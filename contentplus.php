@@ -3,13 +3,13 @@
 Plugin Name: Pizazz ContentPlus Block for Headway
 Plugin URI: http://pizazzwp.com
 Description: Example block for Headway 3.0.
-Version: 0.0
+Version: 0.1
 Author: Chris Howard
 Author URI: http://pizazzwp.com
 License: GNU GPL v2
 */
 
-define('CPLUS_VERSION','1.0.12');
+define('CPLUS_VERSION','0.1');
 
 define('CPLUS_PLUGIN_URL', substr(WP_PLUGIN_URL.'/'.str_replace(basename(__FILE__),'', plugin_basename(__FILE__)), 0, -1));
 define('CPLUS_PLUGIN_PATH', substr(WP_PLUGIN_DIR.'/'.str_replace(basename(__FILE__),'', plugin_basename(__FILE__)), 0, -1));
