@@ -75,7 +75,7 @@ class HeadwayContentPlusBlockOptions extends HeadwayBlockOptionsAPI {
 				'type' => 'repeater',
 				'name' => 'cplus-sections',
 				'label' => 'Sections',
-				'tooltip' => 'You can create sections in your ContentPlus block. For example, you might create two sections, one to show the first post in full, then a 3x3 grid of older posts.',
+				'tooltip' => 'You can create sections in your ContentPlus block. For example, you might create two sections, one to show the first post in full, then a 3x3 grid of older posts, and then maybe a bulleted list of the next 10 posts. Maximum 3 sections',
 				'default' => null,
 				'inputs' => array(
 					'cplus-cell-layout' => array(
@@ -116,7 +116,7 @@ class HeadwayContentPlusBlockOptions extends HeadwayBlockOptionsAPI {
 					),
 				),
 				'sortable' => true,
-				'limit' => 3
+				'limit' => 2
 			),
 		);
 		return $settings;
@@ -138,19 +138,13 @@ class HeadwayContentPlusBlockOptions extends HeadwayBlockOptionsAPI {
 				'default' => false,
 				'tooltip' => __('Enabling this makes each cell in a row the same vertical position.','pzcplus')
 			),
-			'cplus-width-tablet-upper' => array(
-				'type' => 'integer',
-				'name' => 'cplus-width-tablet-upper',
-				'label' => __('Tablet maximum width','pzcplus'),
-				'default' => 1024,
-				'tooltip' => __('Set the maximum width for phone sized devices.','pzcplus')
-			),
-			'cplus-width-tablet-lower' => array(
-				'type' => 'integer',
-				'name' => 'cplus-width-tablet-lower',
-				'label' => __('Tablet minimum width','pzcplus'),
-				'default' => 720,
-				'tooltip' => __('Set the minimum width for tablet sized devices.','pzcplus')
+			'cplus-default-display' => array(
+				'type' => 'checkbox',
+				'name' => 'cplus-default-display',
+				'label' => __('Use page defaults','pzcplus'),
+				'default' => true,
+				'tooltip' => __('Use the page\'s default content.','pzcplus'),
+				'callback' => ''
 			),
 		);
 		return $settings;

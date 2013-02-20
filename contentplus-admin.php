@@ -7,12 +7,19 @@ add_action('init', 'contentplus_create_layouts_post_type');
 if (is_admin()) {
 	add_action('admin_init', 'contentplus_layouts_meta');
 	add_action('admin_head', 'contentplus_admin_head');
+	add_action('admin_enqueue_scripts','contentplus_admin_enqueue');
 }
 
-add_action('admin_enqueue_scripts','contentplus_admin_enqueue');
 function contentplus_admin_enqueue() {
 	wp_enqueue_script('jquery-ui-tabs');
 	wp_enqueue_script('jquery-ui-button');
+	wp_enqueue_script('jquery-ui-draggable');
+	wp_enqueue_script('jquery-ui-droppable');
+	wp_enqueue_script('jquery-ui-sortable');
+	wp_enqueue_script('jquery-ui-resizable');
+
+	wp_enqueue_style('contentplus-block-css', CPLUS_PLUGIN_URL.'/css/contentplus-back.css');
+	wp_enqueue_style('contentplus-jqueryui-css', CPLUS_PLUGIN_URL.'/css/smoothness/jquery-ui-1.10.1.custom.min.css');
 
 	
 }
@@ -94,6 +101,7 @@ function contentplus_admin_head() {
 				 * Setup Layouts extra fields
 				 *
 				 */
+				$i = 0;
 				$contentplus_cpt_layouts_meta_boxes = array(
 						'id' => 'contentplus-layouts-id',
 						'title' => 'Layouts',
@@ -101,39 +109,35 @@ function contentplus_admin_head() {
 						'context' => 'normal',
 						'priority' => 'high',
 						'tabs' => array(
-							0 => array(
+							$i++ => array(
 								'icon' => '<img src="'.CPLUS_PLUGIN_URL.'/libs/images/icons/general-65grey.png" width="16px"/>',
 								'label' => __('General','contentplus'),
 								'id' => $prefix . 'tab_layouts_general',
 								'type' => 'tab',
 							),
-							1 => array(
+							$i++ => array(
+								'icon' => '<img src="'.CPLUS_PLUGIN_URL.'/libs/images/icons/layout2-65grey.png" width="16px"/>',
+								'label' => __('Layout','contentplus'),
+								'id' => $prefix . 'tab_layouts_layout',
+								'type' => 'tab',
+							),
+							$i++ => array(
 								'icon' => '<img src="'.CPLUS_PLUGIN_URL.'/libs/images/icons/phone-65grey.png" width="16px"/>',
 								'label' => __('Responsive','contentplus'),
 								'id' => $prefix . 'tab_layouts_responsive',
 								'type' => 'tab',
 							),
-							2 => array(
-								'icon' => '<img src="'.CPLUS_PLUGIN_URL.'/libs/images/icons/layout2-65grey.png" width="16px"/>',
-								'label' => __('Header','contentplus'),
-								'id' => $prefix . 'tab_layouts_header',
+							$i++ => array(
+								'icon' => '<img src="'.CPLUS_PLUGIN_URL.'/libs/images/icons/images-65grey.png" width="16px"/>',
+								'label' => __('Images','contentplus'),
+								'id' => $prefix . 'tab_layouts_images',
 								'type' => 'tab',
 							),
-							3 => array(
-								'icon' => '<img src="'.CPLUS_PLUGIN_URL.'/libs/images/icons/layout1-65grey.png" width="16px"/>',
-								'label' => __('Columns','contentplus'),
-								'id' => $prefix . 'tab_layouts_columns',
-								'type' => 'tab',
-							),
-							4 => array(
-								'icon' => '<img src="'.CPLUS_PLUGIN_URL.'/libs/images/icons/general-65grey.png" width="16px"/>',
-								'label' => __('Footer','contentplus'),
-								'id' => $prefix . 'tab_layouts_footer',
-								'type' => 'tab',
-							)
 						)
 				);
-				$contentplus_cpt_layouts_meta_boxes['tabs'][0]['fields'] = array(
+
+				$i = 0;
+				$contentplus_cpt_layouts_meta_boxes['tabs'][$i++]['fields'] = array(
 					array(
 	            'label' => __('Short Name ','contentplus'),
 	            'id' => $prefix . 'layout-short-name',
@@ -141,8 +145,150 @@ function contentplus_admin_head() {
 							'default' => '',
 	            'desc' => __('Something about the cell responsiveness.','contentplus')
 	        ),
+					array('label' => __('Formatting','pzsp'),
+	            'desc' => __('','contentplus'),
+	            'id' => $prefix . 'cell_formatting',
+	            'type' => 'heading',
+	            'default' => '',
+							),
+					array(
+	            'label' => __('Title bullet','contentplus'),
+	            'id' => $prefix . 'layout-title-bullet',
+	            'type' => 'text',
+							'default' => '',
+	            'desc' => __('Prefix titles with bullets.','contentplus')
+	        ),
+					array(
+	            'label' => __('Link title','contentplus'),
+	            'id' => $prefix . 'layout-link-title',
+	            'type' => 'checkbox',
+							'default' => true,
+	            'desc' => __('Link titles to the post.','contentplus')
+	        ),
+					array(
+	            'label' => __('Read more message','contentplus'),
+	            'id' => $prefix . 'layout-read-more',
+	            'type' => 'text',
+							'default' => '[Read more]',
+	            'desc' => __('Text to display for read more.','contentplus')
+	        ),
+					array(
+	            'label' => __('Excerpt length','contentplus'),
+	            'id' => $prefix . 'layout-read-more',
+	            'type' => 'text',
+							'default' => '[Read more]',
+	            'desc' => __('Text to display for read more.','contentplus')
+	        ),
 	      );
-				$contentplus_cpt_layouts_meta_boxes['tabs'][1]['fields'] = array(
+				$contentplus_cpt_layouts_meta_boxes['tabs'][$i++]['fields'] = array(
+						// array(
+	     //        'label' => __('Elements','contentplus'),
+	     //        'id' => $prefix . 'layout-elements',
+	     //        'type' => 'dragsource',
+						// 	'default' => '',
+						// 	'options' => array(
+						// 		array('value' => 'title'   , 'text' => 'Title'),
+						// 		array('value' => 'excerpt' , 'text' => 'Excerpt'),
+						// 		array('value' => 'excerptthumb' , 'text' => 'Excerpt & thumb'),
+						// 		array('value' => 'content' , 'text' => 'Content'),
+						// 		array('value' => 'image'   , 'text' => 'Image'),
+						// 		array('value' => 'meta1'   , 'text' => 'Meta1'),
+						// 		array('value' => 'meta2'   , 'text' => 'Meta2'),
+						// 		array('value' => 'meta3'   , 'text' => 'Meta3'),
+						// 		),
+						// 	'help' => 'Drag and drop the elements into the cell template to build the cell layout. Elements in a cell can be ordered by drag and drop.',
+	     //        'desc' => __('','contentplus')
+	     //    ),
+
+					array('label' => __('Element widths','pzsp'),
+	            'desc' => __('','contentplus'),
+	            'id' => $prefix . 'cell_zone_widths',
+	            'type' => 'heading',
+	            'default' => '',
+							),
+						array(
+	            'label' => __('Title width','contentplus'),
+	            'id' => $prefix . 'layout-title-width',
+	            'type' => 'percent',
+	            'alt' => 'title',
+							'default' => '100',
+	            'desc' => __('Set the title width as a percentage of the cell width.','contentplus')
+	        ),
+					array(
+	            'label' => __('Excerpt width','contentplus'),
+	            'id' => $prefix . 'layout-excerpt-width',
+	            'type' => 'percent',
+	            'alt' => 'excerpt',
+							'default' => '100',
+	            'desc' => __('Set the excerpt width as a percentage of the cell width.','contentplus')
+	        ),
+					array(
+	            'label' => __('Excerpt with image width','contentplus'),
+	            'id' => $prefix . 'layout-excerptthumb-width',
+	            'type' => 'percent',
+	            'alt' => 'excerptthumb',
+							'default' => '100',
+	            'desc' => __('Set the excerpt with image width as a percentage of the cell width.','contentplus')
+	        ),
+					array(
+	            'label' => __('Content width','contentplus'),
+	            'id' => $prefix . 'layout-content-width',
+	            'type' => 'percent',
+	            'alt' => 'content',
+							'default' => '100',
+	            'desc' => __('Set the content width as a percentage of the cell width..','contentplus')
+	        ),
+					array(
+	            'label' => __('Image width','contentplus'),
+	            'id' => $prefix . 'layout-image-width',
+	            'type' => 'percent',
+	            'alt' => 'image',
+							'default' => '100',
+	            'desc' => __('Set the image width as a percentage of the cell width..','contentplus')
+	        ),
+					array(
+	            'label' => __('Meta 1 width','contentplus'),
+	            'id' => $prefix . 'layout-meta1-width',
+	            'type' => 'percent',
+	            'alt' => 'meta1',
+							'default' => '49',
+	            'desc' => __('Set the meta 1 width as a percentage of the cell width.','contentplus')
+	        ),
+					array(
+	            'label' => __('Meta 2 width','contentplus'),
+	            'id' => $prefix . 'layout-meta2-width',
+	            'type' => 'percent',
+	            'alt' => 'meta2',
+							'default' => '49',
+	            'desc' => __('Set the meta 2 width as a percentage of the cell width.','contentplus')
+	        ),
+					array(
+	            'label' => __('Meta 3 width','contentplus'),
+	            'id' => $prefix . 'layout-meta3-width',
+	            'type' => 'percent',
+	            'alt' => 'meta3',
+							'default' => '33',
+	            'desc' => __('Set the meta 3 width as a percentage of the cell width.','contentplus')
+	        ),
+					array(
+	            'label' => __('Gutter width','contentplus'),
+	            'id' => $prefix . 'layout-gutter-width',
+	            'type' => 'numeric',
+	            'alt' => 'gutter',
+							'default' => '1',
+	            'desc' => __('Set the gutter width as a percentage of the cell width. The gutter is the gap between adjoining elements','contentplus')
+	        ),
+					array(
+	            'label' => __('Cell example preview','contentplus'),
+	            'id' => $prefix . 'layout-layout',
+	            'type' => 'custom',
+							'default' => null,
+							'code' => cplus_draw_cell_layout(),
+	            'help' => __('Drag and drop to sort the order of your elements. Use the sliders below to resize their widths as a pecentage of the cell. Heights are fluid, so not indicative.','contentplus'),
+	             'desc' => __('','contentplus')
+	        ),
+			);
+				$contentplus_cpt_layouts_meta_boxes['tabs'][$i++]['fields'] = array(
 					array(
 	            'label' => __('Upper ','contentplus'),
 	            'id' => $prefix . 'layout-responsive-upper',
@@ -172,175 +318,17 @@ function contentplus_admin_head() {
 	            'desc' => __('Something about the cell responsiveness.','contentplus')
 	        ),
 	       );
-				$contentplus_cpt_layouts_meta_boxes['tabs'][2]['fields'] = array(
-					array(
-	            'label' => __('Header left','contentplus'),
-	            'id' => $prefix . 'layout-header-left',
-	            'type' => 'multiselect',
-	            'options' => array(
-	                array('value' => 'title', 'text'=> __('Title','contentplus')),
-	                array('value' => 'content', 'text'=> __('Content','contentplus')),
-	                array('value' => 'excerpt', 'text'=> __('Excerpt','contentplus')),
-	                array('value' => 'image', 'text'=> __('Image','contentplus')),
-	                array('value' => 'meta1', 'text'=> __('Meta 1','contentplus')),
-	                array('value' => 'meta2', 'text'=> __('Meta 2','contentplus')),
-	                array('value' => 'meta3', 'text'=> __('Meta 3','contentplus')),
-	            ),
-							'default' => null,
-	            'desc' => __('Choose what to show in this part of the cell.','contentplus')
-	        ),
-					array(
-	            'label' => __('Header right','contentplus'),
-	            'id' => $prefix . 'layout-header-right',
-	            'type' => 'multiselect',
-	            'options' => array(
-	                array('value' => 'title', 'text'=> __('Title','contentplus')),
-	                array('value' => 'content', 'text'=> __('Content','contentplus')),
-	                array('value' => 'excerpt', 'text'=> __('Excerpt','contentplus')),
-	                array('value' => 'image', 'text'=> __('Image','contentplus')),
-	                array('value' => 'meta1', 'text'=> __('Meta 1','contentplus')),
-	                array('value' => 'meta2', 'text'=> __('Meta 2','contentplus')),
-	                array('value' => 'meta3', 'text'=> __('Meta 3','contentplus')),
-	            ),
-							'default' => null,
-	            'desc' => __('Choose what to show in this part of the cell.','contentplus')
-	        ),
-					array(
-	            'label' => __('Header left width (%)','contentplus'),
-	            'id' => $prefix . 'layout-header-left-width',
-	            'type' => 'numeric',
-							'default' => '50',
-	            'desc' => __('Set the header left width as a percentage of the cell width. The two header widths must total no more than 100%.','contentplus')
-	        ),
-					array(
-	            'label' => __('Header right width (%)','contentplus'),
-	            'id' => $prefix . 'layout-header-right-width',
-	            'type' => 'numeric',
-							'default' => '50',
-	            'desc' => __('Set the header right width as a percentage of the cell width. The two header widths must total no more than 100%.','contentplus')
-	        ),
-				);
-				$contentplus_cpt_layouts_meta_boxes['tabs'][3]['fields'] = array(
-					array(
-	            'label' => __('Column left','contentplus'),
-	            'id' => $prefix . 'layout-column-left',
-	            'type' => 'multiselect',
-	            'options' => array(
-	                array('value' => 'title', 'text'=> __('Title','contentplus')),
-	                array('value' => 'content', 'text'=> __('Content','contentplus')),
-	                array('value' => 'excerpt', 'text'=> __('Excerpt','contentplus')),
-	                array('value' => 'image', 'text'=> __('Image','contentplus')),
-	                array('value' => 'meta1', 'text'=> __('Meta 1','contentplus')),
-	                array('value' => 'meta2', 'text'=> __('Meta 2','contentplus')),
-	                array('value' => 'meta3', 'text'=> __('Meta 3','contentplus')),
-	            ),
-							'default' => null,
-	            'desc' => __('Choose what to show in this part of the cell.','contentplus')
-	        ),
-					array(
-	            'label' => __('Column centre','contentplus'),
-	            'id' => $prefix . 'layout-column-centre',
-	            'type' => 'multiselect',
-	            'options' => array(
-	                array('value' => 'title', 'text'=> __('Title','contentplus')),
-	                array('value' => 'content', 'text'=> __('Content','contentplus')),
-	                array('value' => 'excerpt', 'text'=> __('Excerpt','contentplus')),
-	                array('value' => 'image', 'text'=> __('Image','contentplus')),
-	                array('value' => 'meta1', 'text'=> __('Meta 1','contentplus')),
-	                array('value' => 'meta2', 'text'=> __('Meta 2','contentplus')),
-	                array('value' => 'meta3', 'text'=> __('Meta 3','contentplus')),
-	            ),
-							'default' => null,
-	            'desc' => __('Choose what to show in this part of the cell.','contentplus')
-	        ),
-					array(
-	            'label' => __('Column right','contentplus'),
-	            'id' => $prefix . 'layout-column-right',
-	            'type' => 'multiselect',
-	            'options' => array(
-	                array('value' => 'title', 'text'=> __('Title','contentplus')),
-	                array('value' => 'content', 'text'=> __('Content','contentplus')),
-	                array('value' => 'excerpt', 'text'=> __('Excerpt','contentplus')),
-	                array('value' => 'image', 'text'=> __('Image','contentplus')),
-	                array('value' => 'meta1', 'text'=> __('Meta 1','contentplus')),
-	                array('value' => 'meta2', 'text'=> __('Meta 2','contentplus')),
-	                array('value' => 'meta3', 'text'=> __('Meta 3','contentplus')),
-	            ),
-							'default' => null,
-	            'desc' => __('Choose what to show in this part of the cell.','contentplus')
-	        ),
-					array(
-	            'label' => __('Column left width (%)','contentplus'),
-	            'id' => $prefix . 'layout-column-left-width',
-	            'type' => 'numeric',
-							'default' => '33.33',
-	            'desc' => __('Set the column left width as a percentage of the cell width. The three column widths must total no more than 100%.','contentplus')
-	        ),
-					array(
-	            'label' => __('Column centre width (%)','contentplus'),
-	            'id' => $prefix . 'layout-column-centre-width',
-	            'type' => 'numeric',
-							'default' => '33.33',
-	            'desc' => __('Set the column centre width as a percentage of the cell width. The three column widths must total no more than 100%.','contentplus')
-	        ),
-					array(
-	            'label' => __('Column right width (%)','contentplus'),
-	            'id' => $prefix . 'layout-column-right-width',
-	            'type' => 'numeric',
-							'default' => '33.33',
-	            'desc' => __('Set the column right width as a percentage of the cell width. The three column widths must total no more than 100%.','contentplus')
-	        ),
-				);
-				$contentplus_cpt_layouts_meta_boxes['tabs'][4]['fields'] = array(
-					array(
-	            'label' => __('Footer left','contentplus'),
-	            'id' => $prefix . 'layout-footer-left',
-	            'type' => 'multiselect',
-	            'options' => array(
-	                array('value' => 'title', 'text'=> __('Title','contentplus')),
-	                array('value' => 'content', 'text'=> __('Content','contentplus')),
-	                array('value' => 'excerpt', 'text'=> __('Excerpt','contentplus')),
-	                array('value' => 'image', 'text'=> __('Image','contentplus')),
-	                array('value' => 'meta1', 'text'=> __('Meta 1','contentplus')),
-	                array('value' => 'meta2', 'text'=> __('Meta 2','contentplus')),
-	                array('value' => 'meta3', 'text'=> __('Meta 3','contentplus')),
-	            ),
-							'default' => null,
-	            'desc' => __('Choose what to show in this part of the cell.','contentplus')
-	        ),
-					array(
-	            'label' => __('Footer right','contentplus'),
-	            'id' => $prefix . 'layout-footer-right',
-	            'type' => 'multiselect',
-	            'options' => array(
-	                array('value' => 'title', 'text'=> __('Title','contentplus')),
-	                array('value' => 'content', 'text'=> __('Content','contentplus')),
-	                array('value' => 'excerpt', 'text'=> __('Excerpt','contentplus')),
-	                array('value' => 'image', 'text'=> __('Image','contentplus')),
-	                array('value' => 'meta1', 'text'=> __('Meta 1','contentplus')),
-	                array('value' => 'meta2', 'text'=> __('Meta 2','contentplus')),
-	                array('value' => 'meta3', 'text'=> __('Meta 3','contentplus')),
-	            ),
-							'default' => null,
-	            'desc' => __('Choose what to show in this part of the cell.','contentplus')
-	        ),
-					array(
-	            'label' => __('Footer left width (%)','contentplus'),
-	            'id' => $prefix . 'layout-footer-left-width',
-	            'type' => 'numeric',
-							'default' => '50',
-	            'desc' => __('Set the footer left width as a percentage of the cell width. The two footer widths must total no more than 100%.','contentplus')
-	        ),
-					array(
-	            'label' => __('Footer right width (%)','contentplus'),
-	            'id' => $prefix . 'layout-footer-right-width',
-	            'type' => 'numeric',
-							'default' => '50',
-	            'desc' => __('Set the footer right width as a percentage of the cell width. The two footer widths must total no more than 100%.','contentplus')
-	        ),
 
-				);
-				
+				$contentplus_cpt_layouts_meta_boxes['tabs'][$i++]['fields'] = array(
+					array(
+	            'label' => __('Width','contentplus'),
+	            'id' => $prefix . 'layout-image-width',
+	            'type' => 'numeric',
+							'default' => '50',
+	            'desc' => __('','contentplus')
+	        ),
+	       );
+
 
 	}	
 	// add_action('admin_head','contentplus_layouts_add_help_tab');
@@ -463,6 +451,10 @@ function contentplus_show_box($postobj,$pizazz_callback_args) {
 										echo '<input type="text" name="', $field['id'], '" id="', $field['id'], '" value="', (!$contentplus_is_new && ($pizazz_value || $pizazz_value === '' || $pizazz_value === '0')) ? $pizazz_value : $field['default'], '" size="30" style="width:97%" />', '<br />';
 										echo '<span class="howto">'.$field['help'].'</span>';
 										break;
+								case 'percent':
+										echo '<input alt="'.$field['alt'].'"" type="range" min=0 max=100 name="', $field['id'], '" id="', $field['id'], '" value="', (!$contentplus_is_new && ($pizazz_value || $pizazz_value === '' || $pizazz_value === '0')) ? $pizazz_value : $field['default'], '"style="width:80%" /><span class="cplus-range-percent percent-'.$field['id'].'">', $pizazz_value,'%</span><br />';
+										echo '<span class="howto">'.$field['help'].'</span>';
+										break;
 								case 'colorpicker':
 										echo '<input type="text" name="', $field['id'], '" id="', $field['id'], '" value="', (!$contentplus_is_new && $pizazz_value) ? $pizazz_value : $field['default'], '" size="30" style="width:100px" />', '<span class="pzwp_colour_swatch pzwp_colour_'.$field['id'].'">&nbsp;</span><br />';
 										echo '<span class="howto">'.$field['help'].'</span>';
@@ -539,6 +531,35 @@ function contentplus_show_box($postobj,$pizazz_callback_args) {
 										echo '<input type="checkbox" name="', $field['id'], '" id="', $field['id'], '"', $pizazz_value ? ' checked="checked"' : '', ' />';
 										echo '<span class="howto">'.$field['help'].'</span>';
 									break;
+								case 'dropzone':
+									 echo '<div id="cplus-dropzone-'.$field['id'].'" class="cplus-dropzone">';
+									 echo '</div>';
+										echo '<input type="text" name="', $field['id'], '" id="', $field['id'], '" value="', (!$contentplus_is_new && ($pizazz_value || $pizazz_value === '' || $pizazz_value === '0')) ? $pizazz_value : $field['default'], '" size="30" style="width:97%" />', '<br />';
+										//echo '<input type="text" name="cplus-cell-template-'.$field['id'].'" id="cplus-cell-template-'.$field['id'].'" size=44><br/>';
+									echo '<span class="howto">'.$field['help'].'</span>';
+									break;
+								case 'dragsource':
+										$pizazz_value = ($contentplus_is_new) ? $field['default'] : $pizazz_value;
+										if (!$field['options']) {
+											echo '<div id="element-', $field['id'], '">';
+											echo '<span class="pzwp-infobox">No options available</span>';
+											echo '</div>';
+											echo '<span class="howto">'.$field['help'].'</span>';
+											break;
+										}
+										echo '<div id="', $field['id'], '">';
+										foreach ($field['options'] as $option) {
+												echo '<div id="element-'.$field['id'].'" alt="'.$option['value'].'" class="cplus-dragsource dragsource-'.$field['id'].'"><span>'.$option['text'].'</span></div>';
+											}
+										echo '</div>';
+										echo '<span class="howto">'.$field['help'].'</span>';
+										break;
+								case 'custom':
+									 echo '<div id="cplus-custom-'.$field['id'].'" class="cplus-custom">';
+									 echo $field['code'];
+									 echo '</div>';
+									echo '<span class="howto">'.$field['help'].'</span>';
+									break;
 						}
 						echo '</div><td>',
 								'</tr>';
@@ -601,3 +622,75 @@ function contentplus_save_data($post_id) {
 }
 add_action('save_post', 'contentplus_save_data');
 //add_action('post_updated', 'pizazz_save_data');
+
+function cplus_draw_cell_layout() {
+	$return_html = '';
+
+	$return_html = '
+			<div class="cplus_cell cplus-dropzone">
+				    <div class="cplus_cell_header">
+				        <div class="cplus_cell_header_left">
+									<ol>
+								  </ol>
+							  </div>
+				        <div class="cplus_cell_header_right">
+									<ol>
+								  </ol>
+				        </div>
+				    </div>
+				    <div class="cplus_clearfloat"></div>
+				    <div class="cplus_cell_columns">
+				        <div class= "cplus_cell_left_col">
+									<ol>
+								  </ol>
+				        </div>
+				        <div class="cplus_cell_right_col">
+									<ol>
+								  </ol>
+				        </div>
+				    </div>
+				    <div class="cplus_clearfloat"></div>
+				    <div class="cplus_cell_footer">
+				        <div class="cplus_cell_footer_left">
+									<ol>
+								  </ol>
+				        </div>
+				        <div class="cplus_cell_footer_right">
+									<ol>
+								  </ol>
+				        </div>
+				    </div>
+				    <div class="cplus_clearfloat"></div>
+			</div>
+			<div class="cplus-cells-inputs">
+				<input type="text" name="cplus_cell_header_left" size=44><br/>	
+				<input type="text" name="cplus_cell_header_right" size=44><br/>
+				<input type="text" name="cplus_cell_column_left" size=44><br/>
+				<input type="text" name="cplus_cell_column_centre" size=44><br/>
+				<input type="text" name="cplus_cell_column_right" size=44><br/>
+				<input type="text" name="cplus_cell_footer_left" size=44><br/>
+				<input type="text" name="cplus_cell_footer_right" size=44><br/>
+			</div>
+	';
+
+
+	$return_html = '
+		<div id="cplus-dropzone-contentplus_layout-layout" class="cplus-dropzone ui-droppable ui-sortable">
+			<span class="cplus-dropped cplus-dropped-title" title= "Post title" alt="%title%" style="display: inline-block;font-weight:bold;font-size:15px;">This is the title</span>
+			<span class="cplus-dropped cplus-dropped-meta1"  title= "Meta info 1" alt="%meta1%" style="font-size:11px;">Jan 1 2013</span>
+			<span class="cplus-dropped cplus-dropped-meta2" title= "Meta info 2"  alt="%meta2%" style="font-size:11px;">Categories - News, Sport</span>
+			<span class="cplus-dropped cplus-dropped-image"  title= "Featured image" alt="%image%" style="max-height:100px;overflow:hidden;"><img src="'.CPLUS_PLUGIN_URL.'/images/sample-image.jpg" style="max-width:100%;"/></span>
+			<span class="cplus-dropped cplus-dropped-excerpt"  title= "Post excerpt" alt="%excerpt%" style="font-size:13px;">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam quis...[more]</span>
+			<span class="cplus-dropped cplus-dropped-content" title= "Full post content"  alt="%content%" style="font-size:13px;"><img src="'.CPLUS_PLUGIN_URL.'/images/sample-image.jpg" style="max-width:30%;float:left;padding:5px;"/>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam quis justo erat. <ul><li>Cras semper sem hendrerit</li><li>Tortor porta at auctor</li></ul><strong>Lacus consequat</strong><br>Pellentesque pulvinar iaculis tellus in blandit. Suspendisse rhoncus, magna vel eleifend cursus, turpis odio molestie urna, quis posuere eros risus quis neque. </span>
+			<span class="cplus-dropped cplus-dropped-excerptthumb"  title= "Excerpt with featured image" alt="%excerptthumb%" style="font-size:13px;"><img src="'.CPLUS_PLUGIN_URL.'/images/sample-image.jpg" style="max-width:20%;float:right;padding:2px;"/>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam quis...[more]</span>
+			<span class="cplus-dropped cplus-dropped-meta3"  title= "Meta info 3" alt="%meta3%" style="font-size:11px;">Comments: 27</span>
+		</div>
+		<input type="text" name="contentplus_layout-layout" id="contentplus_layout-layout" value="%title% %meta1% %meta2% %excerpt% %excerptthumb% %content% %image% " size="30" style="width:97%">
+	';
+
+
+	return $return_html;
+
+}
+
+

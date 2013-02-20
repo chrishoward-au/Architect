@@ -9,7 +9,12 @@
     box-sizing:border-box;
     clear:both;
 }
-
+.cplus_cell_header {
+    margin-bottom:20px;
+}
+.cplus_cell_footer {
+    margin-top:10px;
+}
 .cplus_cell_header_left,
 .cplus_cell_footer_left {
     float:left;
@@ -33,13 +38,33 @@
 .cplus_cell_right_col {
     float:left;
     box-sizing:border-box;
-    margin:0 1%;
 }
-.cplus_cell_left_col {width:2%;background:#aaa;}
+.cplus_cell_left_col {width:25%;}
 .cplus_cell_centre_col {width:75%;}
-.cplus_cell_right_col {width:20%;}
+.cplus_cell_right_col {width:0;}
 
 
 .cplus_clearfloat {
     clear:both;
+}
+
+/*default styling */
+.cplus_entry_meta,
+.cplus_entry_meta a
+ {
+    font-size:11px;
+    color:#777;
+    text-decoration:none;
+    margin-bottom:5px;
+}
+
+
+
+/* remember this for the background of text */
+.cplus-a-textarea {
+    background:rgba(32,63,96,0.5);
+    color:red;
+    width:50%;
+    padding:20px;
+    margin:5px;
 }

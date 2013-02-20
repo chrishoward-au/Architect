@@ -121,9 +121,6 @@ class HeadwayContentPlusBlock extends HeadwayBlockAPI {
 
 		$cplus_col_width = HeadwayBlocksData::get_block_width($block['id'])/$cplus_section['cplus-cells-per-row-desktop'];
 
-			$return_js .= "
-				var section = jQuery('#block-".$block_id." .cplus_section_".$key."');
-				var cell = jQuery('#block-".$block_id." .cplus_section_".$key." .cplus_cell');
 				// if (jQuery(window).width() < ".$settings['cplus-width-tablet-lower']." ) {
 				// 	var columns = ".$cplus_section['cplus-cells-per-row-phone'].";
 				// } else if (jQuery(window).width() < ".$settings['cplus-width-tablet-upper']." ) {
@@ -144,6 +141,10 @@ class HeadwayContentPlusBlock extends HeadwayBlockAPI {
 				// 		console.log(newWidth);
 				// 		console.log(cell.width(),section.width());
 				// 	});
+
+			$return_js .= "
+				var section = jQuery('#block-".$block_id." .cplus_section_".$key."');
+				var cell = jQuery('#block-".$block_id." .cplus_section_".$key." .cplus_cell');
 				section.isotope({
 				  // options
 				  itemSelector : '.cplus_cell',
@@ -221,27 +222,21 @@ class HeadwayContentPlusBlock extends HeadwayBlockAPI {
 			if ($cplus_query->have_posts()) {
 				$cplus_location = array();
 				$cplus_layout = $cplus_layouts[$cplus_section['cplus-cell-layout']];
-				$cplus_location['header-left']   = (isset($cplus_layout['contentplus_layout-header-left']))   ? '%'.implode('% %' , $cplus_layout['contentplus_layout-header-left']).'%'   : '';
-				$cplus_location['header-right']  = (isset($cplus_layout['contentplus_layout-header-right']))  ? '%'.implode('% %' , $cplus_layout['contentplus_layout-header-right']).'%'  : '';
-				$cplus_location['column-left']   = (isset($cplus_layout['contentplus_layout-column-left']))   ? '%'.implode('% %' , $cplus_layout['contentplus_layout-column-left']).'%'   : '';
-				$cplus_location['column-centre'] = (isset($cplus_layout['contentplus_layout-column-centre'])) ? '%'.implode('% %' , $cplus_layout['contentplus_layout-column-centre']).'%' : '';
-				$cplus_location['column-right']  = (isset($cplus_layout['contentplus_layout-column-right']))  ? '%'.implode('% %' , $cplus_layout['contentplus_layout-column-right']).'%'  : '';
-				$cplus_location['footer-left']   = (isset($cplus_layout['contentplus_layout-footer-left']))   ? '%'.implode('% %' , $cplus_layout['contentplus_layout-footer-left']).'%'   : '';
-				$cplus_location['footer-right']  = (isset($cplus_layout['contentplus_layout-footer-right']))  ? '%'.implode('% %' , $cplus_layout['contentplus_layout-footer-right']).'%'  : '';
+				$cplus_location['header-left']   = (isset($cplus_layout['contentplus_layout-header-left']))   ? $cplus_layout['contentplus_layout-header-left']   : '';
+				$cplus_location['header-right']  = (isset($cplus_layout['contentplus_layout-header-right']))  ? $cplus_layout['contentplus_layout-header-right']  : '';
+				$cplus_location['column-left']   = (isset($cplus_layout['contentplus_layout-column-left']))   ? $cplus_layout['contentplus_layout-column-left']   : '';
+				$cplus_location['column-centre'] = (isset($cplus_layout['contentplus_layout-column-centre'])) ? $cplus_layout['contentplus_layout-column-centre'] : '';
+				$cplus_location['column-right']  = (isset($cplus_layout['contentplus_layout-column-right']))  ? $cplus_layout['contentplus_layout-column-right']  : '';
+				$cplus_location['footer-left']   = (isset($cplus_layout['contentplus_layout-footer-left']))   ? $cplus_layout['contentplus_layout-footer-left']   : '';
+				$cplus_location['footer-right']  = (isset($cplus_layout['contentplus_layout-footer-right']))  ? $cplus_layout['contentplus_layout-footer-right']  : '';
 
 				echo '<div class="cplus_section_'.$key.' cplus_section">';
-
-				while ($cplus_query->have_posts()) {
-
-					$cplus_query->the_post();
-
-					self::display_cell($settings,$block,$cplus_section,$cplus_query,$cplus_location);
-
-					echo $this->cplus_cells;
-
-				}
-
-				echo '</div>'; // End of sections
+					while ($cplus_query->have_posts()) {
+						$cplus_query->the_post();
+						self::display_cell($settings,$block,$cplus_section,$cplus_query,$cplus_location);
+						echo $this->cplus_cells;
+					}
+				echo '</div>'; // End of section
 
 			}
 		}
@@ -253,13 +248,13 @@ class HeadwayContentPlusBlock extends HeadwayBlockAPI {
 			$cplus['excerpt'] = '<div class="cplus_entry_excerpt cplus_entry_body">'.get_the_excerpt().'</div>';
 			$cplus['content'] = '<div class="cplus_entry_content cplus_entry_body">'.get_the_content().'</div>';
 			$cplus['image'] = '<div class="cplus_entry_image">'.get_the_post_thumbnail(get_the_ID(),array(48,48)).'</div>';
-			$cplus['meta1'] = '<div class="cplus_entry_meta1">'.'meta1'.'</div>';
-			$cplus['meta2'] = '<div class="cplus_entry_meta2">'.'meta2'.'</div>';
-			$cplus['meta3'] = '<div class="cplus_entry_meta3">'.'meta3'.'</div>';
+			$cplus['meta1'] = '<div class="cplus_entry_meta1 cplus_entry_meta">'.'meta1'.'</div>';
+			$cplus['meta2'] = '<div class="cplus_entry_meta2 cplus_entry_meta">'.'meta2'.'</div>';
+			$cplus['meta3'] = '<div class="cplus_entry_meta3 cplus_entry_meta">'.'meta3'.'</div>';
 
 			$cplus_cell = $this->cplus_cells_template;
-			// Work out what goes where....
 
+			// Work out what goes where
 			foreach ($cplus_locations as $key => $value) {
 				$cplus_locations[$key] = str_replace('%title%'   , $cplus['title']   , $cplus_locations[$key]);
 				$cplus_locations[$key] = str_replace('%excerpt%' , $cplus['excerpt'] , $cplus_locations[$key]);
