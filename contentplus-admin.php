@@ -181,24 +181,6 @@ function contentplus_admin_head() {
 	        ),
 	      );
 				$contentplus_cpt_layouts_meta_boxes['tabs'][$i++]['fields'] = array(
-						// array(
-	     //        'label' => __('Elements','contentplus'),
-	     //        'id' => $prefix . 'layout-elements',
-	     //        'type' => 'dragsource',
-						// 	'default' => '',
-						// 	'options' => array(
-						// 		array('value' => 'title'   , 'text' => 'Title'),
-						// 		array('value' => 'excerpt' , 'text' => 'Excerpt'),
-						// 		array('value' => 'excerptthumb' , 'text' => 'Excerpt & thumb'),
-						// 		array('value' => 'content' , 'text' => 'Content'),
-						// 		array('value' => 'image'   , 'text' => 'Image'),
-						// 		array('value' => 'meta1'   , 'text' => 'Meta1'),
-						// 		array('value' => 'meta2'   , 'text' => 'Meta2'),
-						// 		array('value' => 'meta3'   , 'text' => 'Meta3'),
-						// 		),
-						// 	'help' => 'Drag and drop the elements into the cell template to build the cell layout. Elements in a cell can be ordered by drag and drop.',
-	     //        'desc' => __('','contentplus')
-	     //    ),
 
 					array('label' => __('Element widths','pzsp'),
 	            'desc' => __('','contentplus'),
@@ -282,7 +264,7 @@ function contentplus_admin_head() {
 	            'label' => __('Cell example preview','contentplus'),
 	            'id' => $prefix . 'layout-layout',
 	            'type' => 'custom',
-							'default' => null,
+							'default' => '%title% %meta1% %meta2% %excerpt% %excerptthumb% %content% %image%',
 							'code' => cplus_draw_cell_layout(),
 	            'help' => __('Drag and drop to sort the order of your elements. Use the sliders below to resize their widths as a pecentage of the cell. Heights are fluid, so not indicative.','contentplus'),
 	             'desc' => __('','contentplus')
@@ -557,6 +539,7 @@ function contentplus_show_box($postobj,$pizazz_callback_args) {
 								case 'custom':
 									 echo '<div id="cplus-custom-'.$field['id'].'" class="cplus-custom">';
 									 echo $field['code'];
+										echo '<input type="hidden" name="', $field['id'], '" id="', $field['id'], '" value="', (!$contentplus_is_new && ($pizazz_value || $pizazz_value === '' || $pizazz_value === '0')) ? $pizazz_value : $field['default'], '" style="display:none;" />', '<br />';
 									 echo '</div>';
 									echo '<span class="howto">'.$field['help'].'</span>';
 									break;
@@ -676,17 +659,9 @@ function cplus_draw_cell_layout() {
 
 	$return_html = '
 		<div id="cplus-dropzone-contentplus_layout-layout" class="cplus-dropzone ui-droppable ui-sortable">
-			<span class="cplus-dropped cplus-dropped-title" title= "Post title" alt="%title%" style="display: inline-block;font-weight:bold;font-size:15px;">This is the title</span>
-			<span class="cplus-dropped cplus-dropped-meta1"  title= "Meta info 1" alt="%meta1%" style="font-size:11px;">Jan 1 2013</span>
-			<span class="cplus-dropped cplus-dropped-meta2" title= "Meta info 2"  alt="%meta2%" style="font-size:11px;">Categories - News, Sport</span>
-			<span class="cplus-dropped cplus-dropped-image"  title= "Featured image" alt="%image%" style="max-height:100px;overflow:hidden;"><img src="'.CPLUS_PLUGIN_URL.'/images/sample-image.jpg" style="max-width:100%;"/></span>
-			<span class="cplus-dropped cplus-dropped-excerpt"  title= "Post excerpt" alt="%excerpt%" style="font-size:13px;">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam quis...[more]</span>
-			<span class="cplus-dropped cplus-dropped-content" title= "Full post content"  alt="%content%" style="font-size:13px;"><img src="'.CPLUS_PLUGIN_URL.'/images/sample-image.jpg" style="max-width:30%;float:left;padding:5px;"/>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam quis justo erat. <ul><li>Cras semper sem hendrerit</li><li>Tortor porta at auctor</li></ul><strong>Lacus consequat</strong><br>Pellentesque pulvinar iaculis tellus in blandit. Suspendisse rhoncus, magna vel eleifend cursus, turpis odio molestie urna, quis posuere eros risus quis neque. </span>
-			<span class="cplus-dropped cplus-dropped-excerptthumb"  title= "Excerpt with featured image" alt="%excerptthumb%" style="font-size:13px;"><img src="'.CPLUS_PLUGIN_URL.'/images/sample-image.jpg" style="max-width:20%;float:right;padding:2px;"/>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam quis...[more]</span>
-			<span class="cplus-dropped cplus-dropped-meta3"  title= "Meta info 3" alt="%meta3%" style="font-size:11px;">Comments: 27</span>
 		</div>
-		<input type="text" name="contentplus_layout-layout" id="contentplus_layout-layout" value="%title% %meta1% %meta2% %excerpt% %excerptthumb% %content% %image% " size="30" style="width:97%">
-	';
+		<div class="plugin_url" style="display:none;">'.CPLUS_PLUGIN_URL.'</div>';
+	
 
 
 	return $return_html;
