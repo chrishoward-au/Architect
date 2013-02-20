@@ -179,6 +179,14 @@ function contentplus_admin_head() {
 							'default' => '[Read more]',
 	            'desc' => __('Text to display for read more.','contentplus')
 	        ),
+					array(
+	            'label' => __('Gutter width','contentplus'),
+	            'id' => $prefix . 'layout-gutter-width',
+	            'type' => 'numeric',
+	            'alt' => 'gutter',
+							'default' => '1',
+	            'desc' => __('Set the gutter width as a percentage of the cell width. The gutter is the gap between adjoining elements','contentplus')
+	        ),
 	      );
 				$contentplus_cpt_layouts_meta_boxes['tabs'][$i++]['fields'] = array(
 
@@ -189,7 +197,7 @@ function contentplus_admin_head() {
 	            'default' => '',
 							),
 						array(
-	            'label' => __('Title width','contentplus'),
+	            'label' => __('Title area width','contentplus'),
 	            'id' => $prefix . 'layout-title-width',
 	            'type' => 'percent',
 	            'alt' => 'title',
@@ -197,15 +205,15 @@ function contentplus_admin_head() {
 	            'desc' => __('Set the title width as a percentage of the cell width.','contentplus')
 	        ),
 					array(
-	            'label' => __('Excerpt width','contentplus'),
+	            'label' => __('Excerpt area width','contentplus'),
 	            'id' => $prefix . 'layout-excerpt-width',
 	            'type' => 'percent',
 	            'alt' => 'excerpt',
-							'default' => '100',
+							'default' => '0',
 	            'desc' => __('Set the excerpt width as a percentage of the cell width.','contentplus')
 	        ),
 					array(
-	            'label' => __('Excerpt with image width','contentplus'),
+	            'label' => __('Excerpt with image area width','contentplus'),
 	            'id' => $prefix . 'layout-excerptthumb-width',
 	            'type' => 'percent',
 	            'alt' => 'excerptthumb',
@@ -213,60 +221,53 @@ function contentplus_admin_head() {
 	            'desc' => __('Set the excerpt with image width as a percentage of the cell width.','contentplus')
 	        ),
 					array(
-	            'label' => __('Content width','contentplus'),
+	            'label' => __('Content area width','contentplus'),
 	            'id' => $prefix . 'layout-content-width',
 	            'type' => 'percent',
 	            'alt' => 'content',
-							'default' => '100',
+							'default' => '0',
 	            'desc' => __('Set the content width as a percentage of the cell width..','contentplus')
 	        ),
 					array(
-	            'label' => __('Image width','contentplus'),
+	            'label' => __('Image area width','contentplus'),
 	            'id' => $prefix . 'layout-image-width',
 	            'type' => 'percent',
 	            'alt' => 'image',
-							'default' => '100',
+							'default' => '0',
 	            'desc' => __('Set the image width as a percentage of the cell width..','contentplus')
 	        ),
 					array(
-	            'label' => __('Meta 1 width','contentplus'),
+	            'label' => __('Meta 1 area width','contentplus'),
 	            'id' => $prefix . 'layout-meta1-width',
 	            'type' => 'percent',
 	            'alt' => 'meta1',
-							'default' => '49',
+							'default' => '100',
 	            'desc' => __('Set the meta 1 width as a percentage of the cell width.','contentplus')
 	        ),
 					array(
-	            'label' => __('Meta 2 width','contentplus'),
+	            'label' => __('Meta 2 area width','contentplus'),
 	            'id' => $prefix . 'layout-meta2-width',
 	            'type' => 'percent',
 	            'alt' => 'meta2',
-							'default' => '49',
+							'default' => '0',
 	            'desc' => __('Set the meta 2 width as a percentage of the cell width.','contentplus')
 	        ),
 					array(
-	            'label' => __('Meta 3 width','contentplus'),
+	            'label' => __('Meta 3 area width','contentplus'),
 	            'id' => $prefix . 'layout-meta3-width',
 	            'type' => 'percent',
 	            'alt' => 'meta3',
-							'default' => '33',
+							'default' => '0',
 	            'desc' => __('Set the meta 3 width as a percentage of the cell width.','contentplus')
-	        ),
-					array(
-	            'label' => __('Gutter width','contentplus'),
-	            'id' => $prefix . 'layout-gutter-width',
-	            'type' => 'numeric',
-	            'alt' => 'gutter',
-							'default' => '1',
-	            'desc' => __('Set the gutter width as a percentage of the cell width. The gutter is the gap between adjoining elements','contentplus')
 	        ),
 					array(
 	            'label' => __('Cell example preview','contentplus'),
 	            'id' => $prefix . 'layout-layout',
 	            'type' => 'custom',
-							'default' => '%title% %meta1% %meta2% %excerpt% %excerptthumb% %content% %image%',
+							'default' => '%title%,%meta1%,%meta2%,%excerpt%,%excerptthumb%,%content%,%image%',
 							'code' => cplus_draw_cell_layout(),
-	            'help' => __('Drag and drop to sort the order of your elements. Use the sliders below to resize their widths as a pecentage of the cell. Heights are fluid, so not indicative.','contentplus'),
+	            'help' => __('Drag and drop to sort the order of your elements.<br/>Use the sliders above to resize their widths as a pecentage of the cell.<br/>Heights are fluid, so not indicative.<br/>
+	            	<strong>This is an example only and thus only a general guide to how the cells will look.</strong>','contentplus'),
 	             'desc' => __('','contentplus')
 	        ),
 			);
@@ -539,7 +540,7 @@ function contentplus_show_box($postobj,$pizazz_callback_args) {
 								case 'custom':
 									 echo '<div id="cplus-custom-'.$field['id'].'" class="cplus-custom">';
 									 echo $field['code'];
-										echo '<input type="hidden" name="', $field['id'], '" id="', $field['id'], '" value="', (!$contentplus_is_new && ($pizazz_value || $pizazz_value === '' || $pizazz_value === '0')) ? $pizazz_value : $field['default'], '" style="display:none;" />', '<br />';
+										echo '<input type="hidden" readonly name="', $field['id'], '" id="', $field['id'], '" value="', (!$contentplus_is_new && ($pizazz_value || $pizazz_value === '' || $pizazz_value === '0')) ? $pizazz_value : $field['default'], '" style="display:none;height:0;/>', '<br />';
 									 echo '</div>';
 									echo '<span class="howto">'.$field['help'].'</span>';
 									break;

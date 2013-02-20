@@ -1,4 +1,16 @@
-
+#contentplus-layouts-id .form-table th {
+    width:20%;
+}
+.row-contentplus_layout-title-width,
+.row-contentplus_layout-excerpt-width,
+.row-contentplus_layout-excerptthumb-width,
+.row-contentplus_layout-content-width,
+.row-contentplus_layout-image-width,
+.row-contentplus_layout-meta1-width,
+.row-contentplus_layout-meta2-width,
+.row-contentplus_layout-meta3-width {
+    max-height:40px;
+}
 
 div.cplus-dragsource {
     background:#49b;
@@ -116,7 +128,7 @@ div.cplus-dragsource {
     box-sizing:border-box;
     margin:3px 0;
     border:none;
-    border-radius:5px;
+    border-radius:8px;
     padding:5px;
     color:#111;
     display:inline-block;
