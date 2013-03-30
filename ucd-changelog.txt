@@ -1,0 +1,11 @@
+Changelog
+
+
+
+0.2
+Totally restructured folder structure.
+Major move to maximum OOP
+
+0.1
+Intial setup with Cell Layout designer and rudimentary display
+
