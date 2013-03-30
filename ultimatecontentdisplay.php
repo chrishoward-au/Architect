@@ -10,19 +10,19 @@ License: GNU GPL v2
 Shoutouts: Plugin struction based on WP Plugin Boilerplate by Tom McPharlin http://tommcfarlin.com/
 */
 
-if (class_exists('HeadwayDisplay')) {
 	add_action('after_setup_theme', 'register_ultimatecontentdisplay_block');
 	function register_ultimatecontentdisplay_block() {
-		
+        if (class_exists('HeadwayDisplay')) {
+
 		require_once PZUCD_FOLDER.'/headway/ucd-display.php';
 		require_once PZUCD_FOLDER.'/headway/ucd-block-options.php';
 
 		return headway_register_block('HeadwayUltimateContentDisplayBlock', PZUCD_PLUGIN_URL);
+        } else {
+            echo '<h1>WTF? I can\'t find Headway!</h1>';
+        }
 
 	}
-} else {
-	echo '<h1>WTF? I can\'t find Headway!</h1>';
-}
 
 
 
