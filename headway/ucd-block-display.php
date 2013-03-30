@@ -1,7 +1,7 @@
 <?php
 /* This class must be included in another file and included later so we don't get an error about HeadwayBlockAPI class not existing. */
 
-class HeadwayContentPlusBlock extends HeadwayBlockAPI {
+class HeadwayUltimateContentDisplayBlock extends HeadwayBlockAPI {
 	
 	
 	public $id = 'ultimatecontentdisplay-block';

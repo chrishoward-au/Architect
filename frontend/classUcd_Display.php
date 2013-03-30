@@ -1,6 +1,6 @@
 <?php
 /*****************************
-* Class ucdDisplay
+* Class Ucd_Display
 ******************************/
 
 class ucdDisplay {

@@ -15,3 +15,4 @@ sitemap.xml.gz
 /libs
 /.DS_Store
 .DS_Store
+/nbproject/private/
