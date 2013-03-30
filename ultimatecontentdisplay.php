@@ -10,6 +10,22 @@ License: GNU GPL v2
 Shoutouts: Plugin struction based on WP Plugin Boilerplate by Tom McPharlin http://tommcfarlin.com/
 */
 
+if (class_exists('HeadwayDisplay')) {
+	add_action('after_setup_theme', 'register_ultimatecontentdisplay_block');
+	function register_ultimatecontentdisplay_block() {
+		
+		require_once PZUCD_FOLDER.'/headway/ucd-display.php';
+		require_once PZUCD_FOLDER.'/headway/ucd-block-options.php';
+
+		return headway_register_block('HeadwayUltimateContentDisplayBlock', PZUCD_PLUGIN_URL);
+
+	}
+} else {
+	echo '<h1>WTF? I can\'t find Headway!</h1>';
+}
+
+
+
 class Ultimate_Content_Display {
 
 	function __construct() {
@@ -27,6 +43,9 @@ class Ultimate_Content_Display {
 
 		// Load plugin text domain
 		add_action( 'init', array( $this, 'plugin_textdomain' ) );
+		if (!function_exists('pizazzwp_head')) {
+			include_once PZUCD_PLUGIN_PATH.'/libs/PizazzWP.php';
+		}
 
 		// Register admin styles and scripts
 		if (is_admin()) {
@@ -61,17 +80,6 @@ class Ultimate_Content_Display {
 	    // add_filter( 'wp_filter_name', array( $this, 'my_filter_method_name' ) );
 
 
-			if (class_exists('HeadwayDisplay')) {
-				add_action('after_setup_theme', 'register_ultimatecontentdisplay_block');
-				function register_ultimatecontentdisplay_block() {
-					
-					require_once PZUCD_FOLDER.'/headway/ucd-display.php';
-					require_once PZUCD_FOLDER.'/headway/ucd-block-options.php';
-
-					return headway_register_block('HeadwayUltimateContentDisplayBlock', PZUCD_PLUGIN_URL);
-
-				}
-			}
 
 
 
@@ -204,22 +212,6 @@ $pzucd = new Ultimate_Content_Display();
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-if (!function_exists('pizazzwp_head')) {
-	include_once PZUCD_PLUGIN_PATH.'/libs/PizazzWP.php';
-}
 
 
 // Use this for debuggging
