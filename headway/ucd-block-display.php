@@ -85,7 +85,7 @@ class HeadwayUltimateContentDisplayBlock extends HeadwayBlockAPI {
 		}
 
 		$return = '';
-		$settings = HeadwayContentPlusBlockOptions::get_settings( $block );
+		$settings = HeadwayUltimateContentDisplayBlockOptions::get_settings( $block );
 
 
 		$return_js = "jQuery(document).ready(function(){ ";
@@ -190,7 +190,7 @@ class HeadwayUltimateContentDisplayBlock extends HeadwayBlockAPI {
 	function content($block) {
 		global $wp_query;		
 		//The third argument in the following function is the default that will be returned if the setting is not present in the database
-		$settings = HeadwayContentPlusBlockOptions::get_settings($block); 
+		$settings = HeadwayUltimateContentDisplayBlockOptions::get_settings($block); 
 		pzdebug($settings);
 		// Either going to have to pre-grab content, or setup a loop here. :/
 
