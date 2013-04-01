@@ -12,10 +12,11 @@ class pzucdAdmin {
 						//	add_action('admin_init', 'pzucd_preview_meta');
 						add_action('admin_head', array($this, 'admin_head'));
 						add_action('admin_enqueue_scripts', array($this, 'admin_enqueue'));
-				}
 
-				require PZUCD_PLUGIN_PATH . '/admin/ucd-cell-layouts.php';
-				new pzucd_Cell_Layouts;
+						require_once PZUCD_PLUGIN_PATH . '/includes/classForm.php';
+						require_once PZUCD_PLUGIN_PATH . '/admin/ucd-cell-layouts.php';
+						new pzucd_Cell_Layouts;
+				}
 		}
 
 		function admin_enqueue($hook) {
