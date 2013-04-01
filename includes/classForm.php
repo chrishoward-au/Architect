@@ -2,87 +2,150 @@
 
 class pzucdForm
 {
+	/*
+	 * 
+	 */
 
 	function __construct()
 	{
 		add_action( 'save_post', array( $this, 'save_data' ) );
 	}
 
-	private function _label( $field )
+	/**
+	 * 
+	 * @param type $field
+	 * @param type $is_new
+	 */
+	private function _label( $field, $pizazz_value, $is_new )
 	{
 		echo 'Label goes here' . $field[ 'label' ];
 	}
 
-	private function _help( $field )
+	/**
+	 * 
+	 * @param type $field
+	 * @param type $is_new
+	 */
+	private function _help( $field, $pizazz_value, $is_new )
 	{
 		echo '<span class="howto">' . $field[ 'help' ] . '</span>';
 	}
 
-	public function text( $field, $pizazz_value, $pzucd_is_new )
+	/**
+	 * 
+	 * @param type $field
+	 * @param type $is_new
+	 */
+	public function text( $field, $pizazz_value, $is_new )
 	{
-		echo '<tr>';
-		echo '<td>';
-		self::_label( $field );
-		echo '</td><td>';
+//		echo '<tr>';
+//		echo '<td>';
+//		self::_label( $field, $is_new);
+//		echo '</td><td>';
 		echo '<input type="text"';
 		echo ' name="', sanitize_html_class( $field[ 'id' ] );
 		echo '" id="', sanitize_html_class( $field[ 'id' ] );
-		echo '" value="', esc_attr( (!$pzucd_is_new && ($pizazz_value || $pizazz_value === '' || $pizazz_value === '0')) ? $pizazz_value : $field[ 'default' ]  );
+		echo '" value="', esc_attr( (!$is_new && ($pizazz_value || $pizazz_value === '' || $pizazz_value === '0')) ? $pizazz_value : $field[ 'default' ]  );
 		echo '" size="30" style="width:97%" ';
 		echo esc_attr( (!empty( $field[ 'class' ] )) ? ' class="' . $field[ 'class' ] . '" ' : null  );
 		echo '/> <br />';
-		self::_help( $field );
-		echo '</td>';
-		echo '</tr>';
+		self::_help( $field, $pizazz_value, $is_new );
+//		echo '</td>';
+//		echo '</tr>';
 	}
 
-	public function textarea( $field )
+	/**
+	 * 
+	 * @param type $field
+	 * @param type $is_new
+	 */
+	public function textarea( $field, $pizazz_value, $is_new )
 	{
-		echo '<textarea name="', sanitize_html_class( $field[ 'id' ] ), '" id="', sanitize_html_class( $field[ 'id' ] ), '" cols="60" rows="4" style="width:97%">', esc_attr( (!$pzucd_is_new && ($pizazz_value || $pizazz_value === '')) ? $pizazz_value : $field[ 'default' ]  ), '</textarea>', '<br />';
+		echo '<textarea name="', sanitize_html_class( $field[ 'id' ] ), '" id="', sanitize_html_class( $field[ 'id' ] ), '" cols="60" rows="4" style="width:97%">', esc_attr( (!$is_new && ($pizazz_value || $pizazz_value === '')) ? $pizazz_value : $field[ 'default' ]  ), '</textarea>', '<br />';
 		echo '<span class="howto">' . $field[ 'help' ] . '</span>';
 	}
 
-	public function heading( $field )
+	/**
+	 * 
+	 * @param type $field
+	 * @param type $is_new
+	 */
+	public function heading( $field, $pizazz_value, $is_new )
 	{
 		echo '';
 	}
 
-	public function infobox( $field )
+	/**
+	 * 
+	 * @param type $field
+	 * @param type $is_new
+	 */
+	public function infobox( $field, $pizazz_value, $is_new )
 	{
 		echo '<span class="pzucd-infobox">', $field[ 'desc' ], '</span>';
 	}
 
-	public function readonly( $field )
+	/**
+	 * 
+	 * @param type $field
+	 * @param type $is_new
+	 */
+	public function readonly( $field, $pizazz_value, $is_new )
 	{
-		echo '<input type="text" name="', sanitize_html_class( $field[ 'id' ] ), '" id="', sanitize_html_class( $field[ 'id' ] ), '" readonly="readonly" value="', esc_attr( (!$pzucd_is_new && ($pizazz_value || $pizazz_value === '' || $pizazz_value === '0')) ? $pizazz_value : $field[ 'default' ]  ), '"  ' . esc_attr( $pzucd_class ) . '/>';
+		echo '<input type="text" name="', sanitize_html_class( $field[ 'id' ] ), '" id="', sanitize_html_class( $field[ 'id' ] ), '" readonly="readonly" value="', esc_attr( (!$is_new && ($pizazz_value || $pizazz_value === '' || $pizazz_value === '0')) ? $pizazz_value : $field[ 'default' ]  ), '"  ' . esc_attr( $pzucd_class ) . '/>';
 	}
 
-	public function hidden( $field )
+	/**
+	 * 
+	 * @param type $field
+	 * @param type $is_new
+	 */
+	public function hidden( $field, $pizazz_value, $is_new )
 	{
-		echo '<input type="hidden" name="', sanitize_html_class( $field[ 'id' ] ), '" id="', sanitize_html_class( $field[ 'id' ] ), '" value="', esc_attr( (!$pzucd_is_new && ($pizazz_value || $pizazz_value === '' || $pizazz_value === '0')) ? $pizazz_value : $field[ 'default' ]  ), '" style="height:0" />';
+		echo '<input type="hidden" name="', sanitize_html_class( $field[ 'id' ] ), '" id="', sanitize_html_class( $field[ 'id' ] ), '" value="', esc_attr( (!$is_new && ($pizazz_value || $pizazz_value === '' || $pizazz_value === '0')) ? $pizazz_value : $field[ 'default' ]  ), '" style="height:0" />';
 	}
 
-	public function percent( $field )
+	/**
+	 * 
+	 * @param type $field
+	 * @param type $is_new
+	 */
+	public function percent( $field, $pizazz_value, $is_new )
 	{
-		echo '<input alt="' . $field[ 'alt' ] . '"" type="range" min=0 max=100 name="', sanitize_html_class( $field[ 'id' ] ), '" id="', sanitize_html_class( $field[ 'id' ] ), '" value="', esc_attr( (!$pzucd_is_new && ($pizazz_value || $pizazz_value === '' || $pizazz_value === '0')) ? $pizazz_value : $field[ 'default' ]  ), '"style="width:80%" /><span class="pzucd-range-percent percent-' . sanitize_html_class( $field[ 'id' ] ) . '">', $pizazz_value, '%</span><br />';
+		echo '<input alt="' . $field[ 'alt' ] . '"" type="range" min=0 max=100 name="', sanitize_html_class( $field[ 'id' ] ), '" id="', sanitize_html_class( $field[ 'id' ] ), '" value="', esc_attr( (!$is_new && ($pizazz_value || $pizazz_value === '' || $pizazz_value === '0')) ? $pizazz_value : $field[ 'default' ]  ), '"style="width:80%" /><span class="pzucd-range-percent percent-' . sanitize_html_class( $field[ 'id' ] ) . '">', $pizazz_value, '%</span><br />';
 		echo '<span class="howto">' . $field[ 'help' ] . '</span>';
 	}
 
-	public function colorpicker( $field )
+	/**
+	 * 
+	 * @param type $field
+	 * @param type $is_new
+	 */
+	public function colorpicker( $field, $pizazz_value, $is_new )
 	{
-		echo '<input type="text" name="', sanitize_html_class( $field[ 'id' ] ), '" id="', sanitize_html_class( $field[ 'id' ] ), '" value="', esc_attr( (!$pzucd_is_new && $pizazz_value) ? $pizazz_value : $field[ 'default' ]  ), '" size="30" style="width:100px" />', '<span class="pzucd_colour_swatch pzucd_colour_' . sanitize_html_class( $field[ 'id' ] ) . '">&nbsp;</span><br />';
+		echo '<input type="text" name="', sanitize_html_class( $field[ 'id' ] ), '" id="', sanitize_html_class( $field[ 'id' ] ), '" value="', esc_attr( (!$is_new && $pizazz_value) ? $pizazz_value : $field[ 'default' ]  ), '" size="30" style="width:100px" />', '<span class="pzucd_colour_swatch pzucd_colour_' . sanitize_html_class( $field[ 'id' ] ) . '">&nbsp;</span><br />';
 		echo '<span class="howto">' . $field[ 'help' ] . '</span>';
 	}
 
-	public function numeric( $field )
+	/**
+	 * 
+	 * @param type $field
+	 * @param type $is_new
+	 */
+	public function numeric( $field, $pizazz_value, $is_new )
 	{
-		echo '<input type="number" name="', sanitize_html_class( $field[ 'id' ] ), '" id="', sanitize_html_class( $field[ 'id' ] ), '" value="', esc_attr( (!$pzucd_is_new && ($pizazz_value || $pizazz_value === '0' || $pizazz_value === '')) ? $pizazz_value : $field[ 'default' ]  ), '" size="30" min="' . $field[ 'min' ] . '" max="' . $field[ 'max' ] . '" step="' . $field[ 'step' ] . '" style="width:100px" />', '<br />';
+		echo '<input type="number" name="', sanitize_html_class( $field[ 'id' ] ), '" id="', sanitize_html_class( $field[ 'id' ] ), '" value="', esc_attr( (!$is_new && ($pizazz_value || $pizazz_value === '0' || $pizazz_value === '')) ? $pizazz_value : $field[ 'default' ]  ), '" size="30" min="' . $field[ 'min' ] . '" max="' . $field[ 'max' ] . '" step="' . $field[ 'step' ] . '" style="width:100px" />', '<br />';
 		echo '<span class="howto">' . $field[ 'help' ] . '</span>';
 	}
 
-	public function select( $field )
+	/**
+	 * 
+	 * @param type $field
+	 * @param type $is_new
+	 */
+	public function select( $field, $pizazz_value, $is_new )
 	{
-		$pizazz_value = ($pzucd_is_new) ? $field[ 'default' ] : $pizazz_value;
+		$pizazz_value = ($is_new) ? $field[ 'default' ] : $pizazz_value;
 		echo '<select  name="', sanitize_html_class( $field[ 'id' ] ), '" id="', sanitize_html_class( $field[ 'id' ] ), '">';
 		foreach ( $field[ 'options' ] as $option )
 		{
@@ -93,9 +156,14 @@ class pzucdForm
 		echo '<span class="howto">' . $field[ 'help' ] . '</span>';
 	}
 
-	public function multiselect( $field )
+	/**
+	 * 
+	 * @param type $field
+	 * @param type $is_new
+	 */
+	public function multiselect( $field, $pizazz_value, $is_new )
 	{
-		$pizazz_value = ($pzucd_is_new) ? $field[ 'default' ] : $pizazz_value;
+		$pizazz_value = ($is_new) ? $field[ 'default' ] : $pizazz_value;
 		if ( !$field[ 'options' ] )
 		{
 			echo '<div id="', sanitize_html_class( $field[ 'id' ] ), '">';
@@ -122,14 +190,26 @@ class pzucdForm
 		echo '</div>';
 	}
 
-	public function checkbox( $field )
+	/**
+	 * 
+	 * @param type $field
+	 * @param type $is_new
+	 */
+	public function checkbox( $field, $pizazz_value, $is_new )
 	{
-		
+		$pizazz_value = ($is_new) ? $field[ 'default' ] : $pizazz_value;
+		echo '<input type="checkbox" name="', sanitize_html_class( $field[ 'id' ] ), '" id="', sanitize_html_class( $field[ 'id' ] ), '"', $pizazz_value ? ' checked="checked"' : '', ' />';
+		echo '<span class="howto">' . $field[ 'help' ] . '</span>';
 	}
 
-	public function multicheck( $field )
+	/**
+	 * 
+	 * @param type $field
+	 * @param type $is_new
+	 */
+	public function multicheck( $field, $pizazz_value, $is_new )
 	{
-		$pizazz_value = ($pzucd_is_new) ? $field[ 'default' ] : $pizazz_value;
+		$pizazz_value = ($is_new) ? $field[ 'default' ] : $pizazz_value;
 		if ( !$field[ 'options' ] )
 		{
 			echo '<div id="', sanitize_html_class( $field[ 'id' ] ), '">';
@@ -148,9 +228,18 @@ class pzucdForm
 		echo '</div>';
 	}
 
-	public function custom( $field )
+	/**
+	 * 
+	 * @param type $field
+	 * @param type $is_new
+	 */
+	public function custom( $field, $pizazz_value, $is_new )
 	{
-		
+		echo '<div id="pzucd-custom-' . sanitize_html_class( $field[ 'id' ] ) . '" class="pzucd-custom">';
+		echo $field[ 'code' ];
+		echo '<input type="hidden" readonly name="', sanitize_html_class( $field[ 'id' ] ), '" id="', sanitize_html_class( $field[ 'id' ] ), '" value="', esc_attr( (!$is_new && ($pizazz_value || $pizazz_value === '' || $pizazz_value === '0')) ? $pizazz_value : $field[ 'default' ]  ), '" style="display:none;height:0;/>', '<br />';
+		echo '</div>';
+		echo '<span class="howto">' . $field[ 'help' ] . '</span>';
 	}
 
 	// Callback function to show fields in meta box
@@ -165,7 +254,7 @@ class pzucdForm
 		global $post, $post_ID;
 
 		//var_dump($postobj, $pizazz_callback_args);
-		$pzucd_is_new			 = (get_post_status() == 'auto-draft');
+		$is_new						 = (get_post_status() == 'auto-draft');
 		$pizazz_meta_boxes = $pizazz_callback_args[ 'args' ];
 		// Use nonce for verification
 		echo '<input type="hidden" name="pizazz_meta_box_nonce" value="', wp_create_nonce( basename( __FILE__ ) ), '" />';
@@ -219,10 +308,13 @@ class pzucdForm
 				}
 
 				echo '<td class="cell-' . sanitize_html_class( $field[ 'id' ] ) . '">';
+
 				// This is simply to stop PHP debugging notice about missing index 'help' when help isn't specified
+				// prob should do this for all fields!
 				$field[ 'help' ] = ((!array_key_exists( 'help', $field )) ? null : $field[ 'help' ]);
 
-				self::$field[ 'type' ]( $field, $pizazz_value, $pzucd_is_new );
+				// By using a variable to represent the field type, we can do away with the switch statements
+				self::$field[ 'type' ]( $field, $pizazz_value, $is_new );
 
 				/*
 				  switch ( $field[ 'type' ] )
@@ -234,45 +326,45 @@ class pzucdForm
 				  echo '<span class="pzucd-infobox">', $field[ 'desc' ], '</span>';
 				  break;
 				  case 'readonly':
-				  echo '<input type="text" name="', sanitize_html_class( $field[ 'id' ] ), '" id="', sanitize_html_class( $field[ 'id' ] ), '" readonly="readonly" value="', esc_attr( (!$pzucd_is_new && ($pizazz_value || $pizazz_value === '' || $pizazz_value === '0')) ? $pizazz_value : $field[ 'default' ]  ), '"  ' . esc_attr( $pzucd_class ) . '/>';
+				  echo '<input type="text" name="', sanitize_html_class( $field[ 'id' ] ), '" id="', sanitize_html_class( $field[ 'id' ] ), '" readonly="readonly" value="', esc_attr( (!$is_new && ($pizazz_value || $pizazz_value === '' || $pizazz_value === '0')) ? $pizazz_value : $field[ 'default' ]  ), '"  ' . esc_attr( $pzucd_class ) . '/>';
 				  break;
 				  case 'text':
-				  echo '<input type="text" name="', sanitize_html_class( $field[ 'id' ] ), '" id="', sanitize_html_class( $field[ 'id' ] ), '" value="', esc_attr( (!$pzucd_is_new && ($pizazz_value || $pizazz_value === '' || $pizazz_value === '0')) ? $pizazz_value : $field[ 'default' ]  ), '" size="30" style="width:97%" ' . esc_attr( $pzucd_class ) . '/>', '<br />';
+				  echo '<input type="text" name="', sanitize_html_class( $field[ 'id' ] ), '" id="', sanitize_html_class( $field[ 'id' ] ), '" value="', esc_attr( (!$is_new && ($pizazz_value || $pizazz_value === '' || $pizazz_value === '0')) ? $pizazz_value : $field[ 'default' ]  ), '" size="30" style="width:97%" ' . esc_attr( $pzucd_class ) . '/>', '<br />';
 				  echo '<span class="howto">' . $field[ 'help' ] . '</span>';
 				  break;
 				  case 'hidden':
-				  echo '<input type="hidden" name="', sanitize_html_class( $field[ 'id' ] ), '" id="', sanitize_html_class( $field[ 'id' ] ), '" value="', esc_attr( (!$pzucd_is_new && ($pizazz_value || $pizazz_value === '' || $pizazz_value === '0')) ? $pizazz_value : $field[ 'default' ]  ), '" style="height:0" />';
+				  echo '<input type="hidden" name="', sanitize_html_class( $field[ 'id' ] ), '" id="', sanitize_html_class( $field[ 'id' ] ), '" value="', esc_attr( (!$is_new && ($pizazz_value || $pizazz_value === '' || $pizazz_value === '0')) ? $pizazz_value : $field[ 'default' ]  ), '" style="height:0" />';
 				  break;
 				  case 'percent':
-				  echo '<input alt="' . $field[ 'alt' ] . '"" type="range" min=0 max=100 name="', sanitize_html_class( $field[ 'id' ] ), '" id="', sanitize_html_class( $field[ 'id' ] ), '" value="', esc_attr( (!$pzucd_is_new && ($pizazz_value || $pizazz_value === '' || $pizazz_value === '0')) ? $pizazz_value : $field[ 'default' ]  ), '"style="width:80%" /><span class="pzucd-range-percent percent-' . sanitize_html_class( $field[ 'id' ] ) . '">', $pizazz_value, '%</span><br />';
+				  echo '<input alt="' . $field[ 'alt' ] . '"" type="range" min=0 max=100 name="', sanitize_html_class( $field[ 'id' ] ), '" id="', sanitize_html_class( $field[ 'id' ] ), '" value="', esc_attr( (!$is_new && ($pizazz_value || $pizazz_value === '' || $pizazz_value === '0')) ? $pizazz_value : $field[ 'default' ]  ), '"style="width:80%" /><span class="pzucd-range-percent percent-' . sanitize_html_class( $field[ 'id' ] ) . '">', $pizazz_value, '%</span><br />';
 				  echo '<span class="howto">' . $field[ 'help' ] . '</span>';
 				  break;
 				  case 'colorpicker':
-				  echo '<input type="text" name="', sanitize_html_class( $field[ 'id' ] ), '" id="', sanitize_html_class( $field[ 'id' ] ), '" value="', esc_attr( (!$pzucd_is_new && $pizazz_value) ? $pizazz_value : $field[ 'default' ]  ), '" size="30" style="width:100px" />', '<span class="pzucd_colour_swatch pzucd_colour_' . sanitize_html_class( $field[ 'id' ] ) . '">&nbsp;</span><br />';
+				  echo '<input type="text" name="', sanitize_html_class( $field[ 'id' ] ), '" id="', sanitize_html_class( $field[ 'id' ] ), '" value="', esc_attr( (!$is_new && $pizazz_value) ? $pizazz_value : $field[ 'default' ]  ), '" size="30" style="width:100px" />', '<span class="pzucd_colour_swatch pzucd_colour_' . sanitize_html_class( $field[ 'id' ] ) . '">&nbsp;</span><br />';
 				  echo '<span class="howto">' . $field[ 'help' ] . '</span>';
 				  break;
 				  case 'numeric':
-				  echo '<input type="number" name="', sanitize_html_class( $field[ 'id' ] ), '" id="', sanitize_html_class( $field[ 'id' ] ), '" value="', esc_attr( (!$pzucd_is_new && ($pizazz_value || $pizazz_value === '0' || $pizazz_value === '')) ? $pizazz_value : $field[ 'default' ]  ), '" size="30" min="' . $field[ 'min' ] . '" max="' . $field[ 'max' ] . '" step="' . $field[ 'step' ] . '" style="width:100px" />', '<br />';
+				  echo '<input type="number" name="', sanitize_html_class( $field[ 'id' ] ), '" id="', sanitize_html_class( $field[ 'id' ] ), '" value="', esc_attr( (!$is_new && ($pizazz_value || $pizazz_value === '0' || $pizazz_value === '')) ? $pizazz_value : $field[ 'default' ]  ), '" size="30" min="' . $field[ 'min' ] . '" max="' . $field[ 'max' ] . '" step="' . $field[ 'step' ] . '" style="width:100px" />', '<br />';
 				  echo '<span class="howto">' . $field[ 'help' ] . '</span>';
 				  break;
 				  case 'textarea':
-				  echo '<textarea name="', sanitize_html_class( $field[ 'id' ] ), '" id="', sanitize_html_class( $field[ 'id' ] ), '" cols="60" rows="4" style="width:97%">', esc_attr( (!$pzucd_is_new && ($pizazz_value || $pizazz_value === '')) ? $pizazz_value : $field[ 'default' ]  ), '</textarea>', '<br />';
+				  echo '<textarea name="', sanitize_html_class( $field[ 'id' ] ), '" id="', sanitize_html_class( $field[ 'id' ] ), '" cols="60" rows="4" style="width:97%">', esc_attr( (!$is_new && ($pizazz_value || $pizazz_value === '')) ? $pizazz_value : $field[ 'default' ]  ), '</textarea>', '<br />';
 				  echo '<span class="howto">' . $field[ 'help' ] . '</span>';
 				  break;
 				  case 'textarea-oneline':
-				  echo '<textarea name="', sanitize_html_class( $field[ 'id' ] ), '" id="', sanitize_html_class( $field[ 'id' ] ), '" cols="60" rows="1" style="width:97%">', esc_attr( (!$pzucd_is_new && ($pizazz_value || $pizazz_value === '')) ? $pizazz_value : $field[ 'default' ]  ), '</textarea>', '<br />';
+				  echo '<textarea name="', sanitize_html_class( $field[ 'id' ] ), '" id="', sanitize_html_class( $field[ 'id' ] ), '" cols="60" rows="1" style="width:97%">', esc_attr( (!$is_new && ($pizazz_value || $pizazz_value === '')) ? $pizazz_value : $field[ 'default' ]  ), '</textarea>', '<br />';
 				  echo '<span class="howto">' . $field[ 'help' ] . '</span>';
 				  break;
 				  case 'textarea-small':
-				  echo '<textarea name="', sanitize_html_class( $field[ 'id' ] ), '" id="', sanitize_html_class( $field[ 'id' ] ), '" cols="60" rows="2" style="width:97%">', esc_attr( (!$pzucd_is_new && ($pizazz_value || $pizazz_value === '')) ? $pizazz_value : $field[ 'default' ]  ), '</textarea>', '<br />';
+				  echo '<textarea name="', sanitize_html_class( $field[ 'id' ] ), '" id="', sanitize_html_class( $field[ 'id' ] ), '" cols="60" rows="2" style="width:97%">', esc_attr( (!$is_new && ($pizazz_value || $pizazz_value === '')) ? $pizazz_value : $field[ 'default' ]  ), '</textarea>', '<br />';
 				  echo '<span class="howto">' . $field[ 'help' ] . '</span>';
 				  break;
 				  case 'textarea-large':
-				  echo '<textarea name="', sanitize_html_class( $field[ 'id' ] ), '" id="', sanitize_html_class( $field[ 'id' ] ), '" cols="60" rows="16" style="width:97%">', esc_attr( (!$pzucd_is_new && ($pizazz_value || $pizazz_value === '')) ? $pizazz_value : $field[ 'default' ]  ), '</textarea>', '<br />';
+				  echo '<textarea name="', sanitize_html_class( $field[ 'id' ] ), '" id="', sanitize_html_class( $field[ 'id' ] ), '" cols="60" rows="16" style="width:97%">', esc_attr( (!$is_new && ($pizazz_value || $pizazz_value === '')) ? $pizazz_value : $field[ 'default' ]  ), '</textarea>', '<br />';
 				  echo '<span class="howto">' . $field[ 'help' ] . '</span>';
 				  break;
 				  case 'select':
-				  $pizazz_value = ($pzucd_is_new) ? $field[ 'default' ] : $pizazz_value;
+				  $pizazz_value = ($is_new) ? $field[ 'default' ] : $pizazz_value;
 				  echo '<select  name="', sanitize_html_class( $field[ 'id' ] ), '" id="', sanitize_html_class( $field[ 'id' ] ), '">';
 				  foreach ( $field[ 'options' ] as $option )
 				  {
@@ -283,7 +375,7 @@ class pzucdForm
 				  echo '<span class="howto">' . $field[ 'help' ] . '</span>';
 				  break;
 				  case 'ddslick-select':
-				  $pizazz_value = ($pzucd_is_new) ? $field[ 'default' ] : $pizazz_value;
+				  $pizazz_value = ($is_new) ? $field[ 'default' ] : $pizazz_value;
 				  echo '<select  name="', sanitize_html_class( $field[ 'id' ] ), '" id="', sanitize_html_class( $field[ 'id' ] ), '" class="pzucd_ddslick">';
 				  foreach ( $field[ 'options' ] as $option )
 				  {
@@ -294,7 +386,7 @@ class pzucdForm
 				  echo '<span class="howto">' . $field[ 'help' ] . '</span>';
 				  break;
 				  case 'multicheck':
-				  $pizazz_value = ($pzucd_is_new) ? $field[ 'default' ] : $pizazz_value;
+				  $pizazz_value = ($is_new) ? $field[ 'default' ] : $pizazz_value;
 				  if ( !$field[ 'options' ] )
 				  {
 				  echo '<div id="', sanitize_html_class( $field[ 'id' ] ), '">';
@@ -315,7 +407,7 @@ class pzucdForm
 				  echo '<span class="howto">' . $field[ 'help' ] . '</span>';
 				  break;
 				  case 'multiselect':
-				  $pizazz_value = ($pzucd_is_new) ? $field[ 'default' ] : $pizazz_value;
+				  $pizazz_value = ($is_new) ? $field[ 'default' ] : $pizazz_value;
 				  if ( !$field[ 'options' ] )
 				  {
 				  echo '<div id="', sanitize_html_class( $field[ 'id' ] ), '">';
@@ -346,25 +438,25 @@ class pzucdForm
 				  case 'radio':
 				  foreach ( $field[ 'options' ] as $option )
 				  {
-				  $pizazz_value = ($pzucd_is_new) ? $field[ 'default' ] : $pizazz_value;
+				  $pizazz_value = ($is_new) ? $field[ 'default' ] : $pizazz_value;
 				  echo '<input type="radio" name="', sanitize_html_class( $field[ 'id' ] ), '" value="', esc_attr( $option[ 'value' ], '"', $pizazz_value == $option[ 'value' ] ? ' checked="checked"' : ''  ), ' />&nbsp;', $option[ 'text' ], '&nbsp;&nbsp;&nbsp;';
 				  }
 				  echo '<span class="howto">' . $field[ 'help' ] . '</span>';
 				  break;
 				  case 'checkbox':
-				  $pizazz_value	 = ($pzucd_is_new) ? $field[ 'default' ] : $pizazz_value;
+				  $pizazz_value	 = ($is_new) ? $field[ 'default' ] : $pizazz_value;
 				  echo '<input type="checkbox" name="', sanitize_html_class( $field[ 'id' ] ), '" id="', sanitize_html_class( $field[ 'id' ] ), '"', $pizazz_value ? ' checked="checked"' : '', ' />';
 				  echo '<span class="howto">' . $field[ 'help' ] . '</span>';
 				  break;
 				  case 'dropzone':
 				  echo '<div id="pzucd-dropzone-' . sanitize_html_class( $field[ 'id' ] ) . '" class="pzucd-dropzone">';
 				  echo '</div>';
-				  echo '<input type="text" name="', sanitize_html_class( $field[ 'id' ] ), '" id="', sanitize_html_class( $field[ 'id' ] ), '" value="', esc_attr( (!$pzucd_is_new && ($pizazz_value || $pizazz_value === '' || $pizazz_value === '0')) ? $pizazz_value : $field[ 'default' ]  ), '" size="30" style="width:97%" />', '<br />';
+				  echo '<input type="text" name="', sanitize_html_class( $field[ 'id' ] ), '" id="', sanitize_html_class( $field[ 'id' ] ), '" value="', esc_attr( (!$is_new && ($pizazz_value || $pizazz_value === '' || $pizazz_value === '0')) ? $pizazz_value : $field[ 'default' ]  ), '" size="30" style="width:97%" />', '<br />';
 				  //echo '<input type="text" name="pzucd-cell-template-'.sanitize_html_class($field['id']).'" id="pzucd-cell-template-'.sanitize_html_class($field['id']).'" size=44><br/>';
 				  echo '<span class="howto">' . $field[ 'help' ] . '</span>';
 				  break;
 				  case 'dragsource':
-				  $pizazz_value	 = ($pzucd_is_new) ? $field[ 'default' ] : $pizazz_value;
+				  $pizazz_value	 = ($is_new) ? $field[ 'default' ] : $pizazz_value;
 				  if ( !$field[ 'options' ] )
 				  {
 				  echo '<div id="element-', sanitize_html_class( $field[ 'id' ] ), '">';
@@ -384,7 +476,7 @@ class pzucdForm
 				  case 'custom':
 				  echo '<div id="pzucd-custom-' . sanitize_html_class( $field[ 'id' ] ) . '" class="pzucd-custom">';
 				  echo $field[ 'code' ];
-				  echo '<input type="hidden" readonly name="', sanitize_html_class( $field[ 'id' ] ), '" id="', sanitize_html_class( $field[ 'id' ] ), '" value="', esc_attr( (!$pzucd_is_new && ($pizazz_value || $pizazz_value === '' || $pizazz_value === '0')) ? $pizazz_value : $field[ 'default' ]  ), '" style="display:none;height:0;/>', '<br />';
+				  echo '<input type="hidden" readonly name="', sanitize_html_class( $field[ 'id' ] ), '" id="', sanitize_html_class( $field[ 'id' ] ), '" value="', esc_attr( (!$is_new && ($pizazz_value || $pizazz_value === '' || $pizazz_value === '0')) ? $pizazz_value : $field[ 'default' ]  ), '" style="display:none;height:0;/>', '<br />';
 				  echo '</div>';
 				  echo '<span class="howto">' . $field[ 'help' ] . '</span>';
 				  break;
@@ -414,6 +506,7 @@ class pzucdForm
 		{
 			return false;
 		}
+		var_dump( func_get_args(), $_POST );
 		switch ( $_POST[ 'post_type' ] )
 		{
 			case 'ucd-layouts' :
