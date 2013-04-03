@@ -3,7 +3,7 @@
 class pzucd_Cell_Layouts extends pzucdForm
 {
 
-	private $mb_fields;
+	private $form;
 
 	/**
 	 * [__construct description]
@@ -27,12 +27,12 @@ class pzucd_Cell_Layouts extends pzucdForm
 			// check screen ucd-layouts. ugh. doesn't work for save and edit
 //			if ( $_REQUEST[ 'post_type' ] == 'ucd-layouts' )
 //			{
+			$this->form						 = new pzucdForm();
+//				var_dump( $form );
+			$this->form->mb_fields = create_layouts_post_type();
+			add_action( 'save_post', array( $this, 'save_data' ) );
 //			}
 		}
-
-		// Need to do this here so save knows about the layout. 
-		$this->mb_fields = self::_populate_layout_options();
-		add_action( 'save_post', array( $this, 'save_data' ) );
 	}
 
 	/**
@@ -151,14 +151,14 @@ class pzucd_Cell_Layouts extends pzucdForm
 
 	public function save_data( $post_id )
 	{
-//		var_dump( 'SAVE', count( $this->mb_fields ) );
+		var_dump( 'SAVE', $this->mb_fields );
 		parent::save_data( $post_id, $this->mb_fields );
 	}
 
 	public function draw_meta_box( $postobj, $callback_args )
 	{
-//		var_dump( 'DRAW', count( $this->mb_fields ) );
-		parent::show_meta_box( $postobj, $callback_args );
+		var_dump( 'DRAW', $this->form );
+		$this->form = parent::show_meta_box( $postobj, $callback_args );
 
 		//	$this->mb_fields = $callback_args;
 	}
@@ -172,6 +172,9 @@ class pzucd_Cell_Layouts extends pzucdForm
 		// global $this->meta_box_layout;
 		// Fill any defaults if necessary
 //		$this->cell_layout_form = self::layout_defaults();
+		//pzdebug($this->meta_box_layout);
+
+		$this->mb_fields = self::_populate_layout_options();
 		add_meta_box(
 						$this->mb_fields[ 'id' ], $this->mb_fields[ 'title' ], array( $this, 'draw_meta_box' ), $this->mb_fields[ 'page' ], $this->mb_fields[ 'context' ], $this->mb_fields[ 'priority' ], $this->mb_fields
 		);
@@ -780,7 +783,6 @@ class pzucd_Cell_Layouts extends pzucdForm
 		      </div>
 					<div class="plugin_url" style="display:none;">' . PZUCD_PLUGIN_URL . '</div>
 		      ';
-
 		return $return_html;
 	}
 
