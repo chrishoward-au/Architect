@@ -267,6 +267,27 @@ class pzucdForm
 		return $return;
 	}
 
+	// Fields to add
+	public function pages( $field, $pizazz_value, $is_new )
+	{
+		// Call a select field with pages array
+	}
+
+	public function posts( $field, $pizazz_value, $is_new )
+	{
+		
+	}
+
+	public function categories( $field, $pizazz_value, $is_new )
+	{
+		
+	}
+
+	public function tags( $field, $pizazz_value, $is_new )
+	{
+		
+	}
+
 	// Callback function to show fields in meta box
 	/**
 	 * [pzucd_show_box description]
@@ -277,7 +298,7 @@ class pzucdForm
 	function show_meta_box( $postobj, $callback_args )
 	{
 		global $post, $post_ID;
-
+// var_dump( $callback_args );
 
 		$is_new = (get_post_status() == 'auto-draft');
 
@@ -342,7 +363,38 @@ class pzucdForm
 				/* By using a variable to represent the field type, we can do away with the switch statements */
 				// once we get the defaults working right, then there shouldn't be a need to set pizazz_value or sue defaults in the field display 
 				// the ideal method is the load the record with the defaults then replace with the db values if the exist.
-				echo apply_filters( 'pzucd_display_metabox_field', self::$field[ 'type' ]( $field, $pizazz_value, $is_new ) );
+				// Devs can create their own fields by naming them "classname::fieldtype"
+				if ( strpos( $field[ 'type' ], '::' ) )
+				{
+					echo apply_filters( 'pzucd_display_metabox_field', $field[ 'type' ]( $field, $pizazz_value, $is_new ) );
+				}
+				elseif ( in_array( $field[ 'type' ], array(
+										'help',
+										'label',
+										'checkbox',
+										'colorpicker',
+										'custom',
+										'heading',
+										'hidden',
+										'infobox',
+										'multicheck',
+										'multiselect',
+										'numeric',
+										'percent',
+										'readonly',
+										'select',
+										'text',
+										'textarea'
+								) ) )
+				{
+					echo apply_filters( 'pzucd_display_metabox_field', self::$field[ 'type' ]( $field, $pizazz_value, $is_new ) );
+				}
+				else
+				{
+					// oops! this is not good! An unknown field. Better throw an exception or something
+					echo 'Unknown field type: ', $field[ 'type' ];
+				}
+
 				if ( array_key_exists( 'help', $field ) )
 					echo apply_filters( 'pzucd_display_metabox_field_help', self::_help( $field ) );
 				echo apply_filters( 'pzucd_display_metabox_field_end', '' );
