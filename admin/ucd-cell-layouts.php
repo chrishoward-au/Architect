@@ -12,7 +12,7 @@ class pzucd_Cell_Layouts extends pzucdForm
 	{
 
 		add_action( 'init', array( $this, 'create_layouts_post_type' ) );
-		// This overrides the one in the patent class
+		// This overrides the one in the parent class
 
 		if ( is_admin() )
 		{
@@ -54,7 +54,7 @@ class pzucd_Cell_Layouts extends pzucdForm
 			wp_enqueue_script( 'jquery-ui-resizable' );
 
 			wp_enqueue_style( 'pzucd-block-css', PZUCD_PLUGIN_URL . '/admin/css/ucd-admin.css' );
-			wp_enqueue_style( 'pzucd-jqueryui-css', PZUCD_PLUGIN_URL . '/admin/css/smoothness/jquery-ui-1.10.1.custom.min.css' );
+			wp_enqueue_style( 'pzucd-jqueryui-css', PZUCD_PLUGIN_URL . '/external/jquery-ui-1.10.2.custom/css/pz_ultimate_content_display/jquery-ui-1.10.2.custom.min.css' );
 
 			wp_enqueue_script( 'jquery-pzucd-metaboxes', PZUCD_PLUGIN_URL . '/admin/js/ucd-metaboxes.js', array( 'jquery' ) );
 		}
@@ -124,7 +124,7 @@ class pzucd_Cell_Layouts extends pzucdForm
 				'not_found'					 => __( 'No cell layouts found' ),
 				'not_found_in_trash' => __( 'No cell layouts found in Trash' ),
 				'parent_item_colon'	 => '',
-				'menu_name'					 => _x( 'UCD Cell Layouts', 'ucd-layouts' ),
+				'menu_name'					 => _x( 'UCD Cell Layouts', 'pzucd-cell-designer' ),
 		);
 
 		$args = array(
@@ -133,7 +133,7 @@ class pzucd_Cell_Layouts extends pzucdForm
 				'public'							 => false,
 				'publicly_queryable'	 => false,
 				'show_ui'							 => true,
-				'show_in_menu'				 => 'pizazzwp',
+				'show_in_menu'				 => 'pzucd',
 				'show_in_nav_menus'		 => false,
 				'query_var'						 => true,
 				'rewrite'							 => true,
@@ -200,52 +200,52 @@ class pzucd_Cell_Layouts extends pzucdForm
 				'page'				 => 'ucd-layouts',
 				'context'			 => 'normal',
 				'priority'		 => 'high',
-				'orientation'	 => 'vertical',
+				'orientation'	 => 'horizontal',
 				'tabs'				 => array(
 						$i++ => array(
-								'icon'	 => '<img src = "' . esc_url( PZUCD_PLUGIN_URL . '/libs/images/icons/phone-65grey.png' ) . '" width = "16px"/>',
+								'icon'	 => 'phone-65grey.png',
 								'label'	 => __( 'Responsive', 'pzucd' ),
 								'id'		 => $prefix . 'tab_layouts_responsive',
 								'type'	 => 'tab',
 						),
 						$i++ => array(
-								'icon'	 => '<img src = "' . esc_url( PZUCD_PLUGIN_URL . '/libs/images/icons/layout2-65grey.png' ) . '" width = "16px"/>',
+								'icon'	 => 'layout2-65grey.png',
 								'label'	 => __( 'Layout', 'pzucd' ),
 								'id'		 => $prefix . 'tab_layouts_layout',
 								'type'	 => 'tab',
 						),
 						$i++ => array(
-								'icon'	 => '<img src = "' . esc_url( PZUCD_PLUGIN_URL . '/libs/images/icons/text2-65grey.png' ) . '" width = "16px"/>',
+								'icon'	 => 'text2-65grey.png',
 								'label'	 => __( 'Title', 'pzucd' ),
 								'id'		 => $prefix . 'tab_layouts_title',
 								'type'	 => 'tab',
 						),
 						$i++ => array(
-								'icon'	 => '<img src = "' . esc_url( PZUCD_PLUGIN_URL . '/libs/images/icons/text1-65grey.png' ) . '" width = "16px"/>',
+								'icon'	 => 'text1-65grey.png',
 								'label'	 => __( 'Content', 'pzucd' ),
 								'id'		 => $prefix . 'tab_layouts_content',
 								'type'	 => 'tab',
 						),
 						$i++ => array(
-								'icon'	 => '<img src = "' . esc_url( PZUCD_PLUGIN_URL . '/libs/images/icons/layout1-65grey.png' ) . '" width = "16px"/>',
+								'icon'	 => 'layout1-65grey.png',
 								'label'	 => __( 'Excerpt', 'pzucd' ),
 								'id'		 => $prefix . 'tab_layouts_excerpt',
 								'type'	 => 'tab',
 						),
 						$i++ => array(
-								'icon'	 => '<img src = "' . esc_url( PZUCD_PLUGIN_URL . '/libs/images/icons/help2-65grey.png' ) . '" width = "16px"/>',
+								'icon'	 => 'help2-65grey.png',
 								'label'	 => __( 'Meta', 'pzucd' ),
 								'id'		 => $prefix . 'tab_layouts_meta',
 								'type'	 => 'tab',
 						),
 						$i++ => array(
-								'icon'	 => '<img src = "' . esc_url( PZUCD_PLUGIN_URL . '/libs/images/icons/images-65grey.png' ) . '" width = "16px"/>',
+								'icon'	 => 'images-65grey.png',
 								'label'	 => __( 'Image', 'pzucd' ),
 								'id'		 => $prefix . 'tab_layouts_images',
 								'type'	 => 'tab',
 						),
 						$i++ => array(
-								'icon'	 => '<img src = "' . esc_url( PZUCD_PLUGIN_URL . '/libs/images/icons/braces-65grey.png' ) . '" width = "16px"/>',
+								'icon'	 => 'braces-65grey.png',
 								'label'	 => __( 'Format', 'pzucd' ),
 								'id'		 => $prefix . 'tab_layouts_format',
 								'type'	 => 'tab',
@@ -260,61 +260,44 @@ class pzucd_Cell_Layouts extends pzucdForm
 		 * *************** */
 		$meta_box_layout[ 'tabs' ][ $i++ ][ 'fields' ] = array(
 				array(
-						'label'		 => __( 'Responsive', 'pzucd' ),
+						'label'		 => __( 'Intelligence', 'pzucd' ),
 						'id'			 => $prefix . 'layout-layout-responsive',
 						'type'		 => 'heading',
 						'default'	 => '',
 						'desc'		 => __( '', 'pzucd' )
 				),
 				array(
-						'label'		 => __( 'Set name', 'pzucd' ),
-						'id'			 => $prefix . 'layout-set-name',
-						'type'		 => 'text',
-						'default'	 => '',
-						'desc'		 => __( 'Something about the cell responsiveness.', 'pzucd' ),
-						'help'		 => __( 'Create sets of layouts with each layout in a set for different screen dimensions' )
+						'label'			 => __( 'Set name', 'pzucd' ),
+						'id'				 => $prefix . 'layout-set-name',
+						'type'			 => 'text',
+						'default'		 => '',
+						'desc'			 => __( 'A set name for this layout. This enables you to create sets of layouts for different parent dimensions. That is,when the dimensions of the parent change, the layout will change accordingly. Tracditional responsive design is based on the width of your device\'s screen,; however this fails if you place the object in a narrow column on a large screen,', 'pzucd' ),
+						'help'			 => __( 'Create sets of layouts with each layout in a set for different parent dimensions' ),
+						'validation' => 'data-validation-engine="validate[required]"'
 				),
 				array(
-						'label'		 => __( 'Layout short name ', 'pzucd' ),
-						'id'			 => $prefix . 'layout-short-name',
-						'type'		 => 'text',
-						'default'	 => '',
-						'desc'		 => __( 'Something about the cell responsiveness.', 'pzucd' )
+						'label'			 => __( 'Layout short name ', 'pzucd' ),
+						'id'				 => $prefix . 'layout-short-name',
+						'type'			 => 'text',
+						'default'		 => '',
+						'desc'			 => __( 'Something about the cell responsiveness.', 'pzucd' ),
+						'validation' => 'data-validation-engine="validate[required]"'
 				),
 				array(
-						'label'		 => __( 'Display', 'pzucd' ),
-						'id'			 => $prefix . 'layout-display',
-						'type'		 => 'text',
-						'default'	 => '',
-						'desc'		 => __( 'Generic label to help you remember the primary device you expect this layout to show on.', 'pzucd' ),
+						'label'			 => __( 'Minimum parent width (px)', 'pzucd' ),
+						'id'				 => $prefix . 'layout-min-display-width',
+						'type'			 => 'text',
+						'default'		 => '0',
+						'desc'			 => __( 'Something about the cell responsiveness.', 'pzucd' ),
+						'validation' => 'data-validation-engine="validate[required]"'
 				),
 				array(
-						'label'		 => __( 'Minimum display width (px)', 'pzucd' ),
-						'id'			 => $prefix . 'layout-min-display-width',
-						'type'		 => 'text',
-						'default'	 => '0',
-						'desc'		 => __( 'Something about the cell responsiveness.', 'pzucd' ),
-				),
-				array(
-						'label'		 => __( 'Maximum display width (px)', 'pzucd' ),
-						'id'			 => $prefix . 'layout-max-display-width',
-						'type'		 => 'text',
-						'default'	 => '320',
-						'desc'		 => __( 'Something about the cell responsiveness.', 'pzucd' ),
-				),
-				array(
-						'label'		 => __( 'Devices', 'pzucd' ),
-						'id'			 => $prefix . 'layout-responsive-devices',
-						'type'		 => 'text',
-						'default'	 => '',
-						'desc'		 => __( 'Something about the cell responsiveness.', 'pzucd' )
-				),
-				array(
-						'label'		 => __( 'Resolution', 'pzucd' ),
-						'id'			 => $prefix . 'layout-responsive-resolution',
-						'type'		 => 'text',
-						'default'	 => '',
-						'desc'		 => __( 'Something about the cell responsiveness.', 'pzucd' )
+						'label'			 => __( 'Maximum parent width (px)', 'pzucd' ),
+						'id'				 => $prefix . 'layout-max-display-width',
+						'type'			 => 'text',
+						'default'		 => '320',
+						'desc'			 => __( 'Something about the cell responsiveness.', 'pzucd' ),
+						'validation' => 'data-validation-engine="validate[required]"'
 				),
 		);
 
@@ -333,7 +316,7 @@ class pzucd_Cell_Layouts extends pzucdForm
 						'label'		 => __( 'Components to show', 'pzucd' ),
 						'id'			 => $prefix . 'layout-show',
 						'type'		 => 'multicheck',
-						'default'	 => array( 'title', 'excerpt', 'meta1' ),
+						'default'	 => array( 'title', 'excerpt', 'meta1', 'image' ),
 						'options'	 => array(
 								array( 'value'	 => 'title', 'text'	 => 'Title <span class = "title"></span> ' ),
 								array( 'value'	 => 'excerpt', 'text'	 => 'Excerpt <span class = "excerpt"></span> ' ),
@@ -361,7 +344,7 @@ class pzucd_Cell_Layouts extends pzucdForm
 				array(
 						'label'		 => __( 'Components area width (%)', 'pzucd' ),
 						'id'			 => $prefix . 'layout-sections-widths',
-						'type'		 => 'text',
+						'type'		 => 'percent',
 						'default'	 => '100',
 						'alt'			 => 'zones',
 						'min'			 => '1',
@@ -378,7 +361,7 @@ class pzucd_Cell_Layouts extends pzucdForm
 						'desc'		 => __( 'Enter x, y co-ordinates to move the components area. e.g. 75, 75. Note: These measurements are percenatge of the cell.', 'pzucd' )
 				),
 				array(
-						'label'		 => __( 'Background Image', 'pzucd' ),
+						'label'		 => __( 'Feature Image/Video', 'pzucd' ),
 						'id'			 => $prefix . 'layout-background-image',
 						'type'		 => 'select',
 						'default'	 => 'none',
@@ -387,7 +370,18 @@ class pzucd_Cell_Layouts extends pzucdForm
 								array( 'value'	 => 'fill', 'text'	 => 'Fill the cell' ),
 								array( 'value'	 => 'align', 'text'	 => 'Align with components area' ),
 						),
-						'desc'		 => __( 'Select how to display the featured image in the background.', 'pzucd' )
+						'desc'		 => __( 'Select how to display the featured image or video as the background.', 'pzucd' )
+				),
+				array(
+						'label'		 => __( 'Cell Height', 'pzucd' ),
+						'id'			 => $prefix . 'layout-cell-height-type',
+						'type'		 => 'select',
+						'default'	 => 'fluid',
+						'options'	 => array(
+								array( 'value'	 => 'fluid', 'text'	 => 'Fluid' ),
+								array( 'value'	 => 'fixed', 'text'	 => 'Fixed' ),
+						),
+						'desc'		 => __( 'Choose whether to set the height of the cells (fixed), or allow them to adjust to the content height (fluid).', 'pzucd' )
 				),
 				array(
 						'label'		 => __( 'Cell layout preview', 'pzucd' ),
@@ -517,8 +511,8 @@ class pzucd_Cell_Layouts extends pzucdForm
 				array(
 						'label'		 => __( 'Excerpt length', 'pzucd' ),
 						'id'			 => $prefix . 'layout-excerpt-length',
-						'type'		 => 'text',
-						'default'	 => '100',
+						'type'		 => 'colorpicker',
+						'default'	 => '#336699',
 						'desc'		 => __( 'Text to display for read more.', 'pzucd' )
 				),
 				array(

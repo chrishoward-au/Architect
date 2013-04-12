@@ -35,7 +35,7 @@ class Ultimate_Content_Display
 
 		if ( !function_exists( 'pizazzwp_head' ) )
 		{
-			include_once PZUCD_PLUGIN_PATH . '/libs/PizazzWP.php';
+//			include_once PZUCD_PLUGIN_PATH . '/libs/PizazzWP.php';
 		}
 		require_once PZUCD_PLUGIN_PATH . 'includes/ucd-functions.php';
 
@@ -44,9 +44,11 @@ class Ultimate_Content_Display
 		if ( is_admin() )
 		{
 			require_once PZUCD_PLUGIN_PATH . '/admin/ucd-admin.php';
+			//	require_once PZUCD_PLUGIN_PATH . '/external/Custom-Metaboxes-and-Fields/example-functions.php';
 			//require_once(PZUCD_PLUGIN_PATH .'/admin/admin-page-class/admin-page-class.php');
 			add_action( 'admin_print_styles', array( $this, 'register_admin_styles' ) );
 			add_action( 'admin_enqueue_scripts', array( $this, 'register_admin_scripts' ) );
+			//		add_action( 'init', array( $this, 'admin_initialize' ) );
 		}
 
 
@@ -106,6 +108,11 @@ class Ultimate_Content_Display
 		// TODO:	Define activation functionality here
 	}
 
+	public function admin_initialize()
+	{
+		require_once PZUCD_PLUGIN_PATH . '/external/Custom-Metaboxes-and-Fields/init.php';
+	}
+
 // end activate
 
 	/**
@@ -154,6 +161,8 @@ class Ultimate_Content_Display
 	{
 
 		wp_enqueue_style( PZUCD_NAME . '-admin-styles', plugins_url( PZUCD_FOLDER . '/admin/css/ucd-admin.css' ) );
+		wp_enqueue_style( PZUCD_NAME . '-font-awesome', plugins_url( PZUCD_FOLDER . '/external/font-awesome/css/font-awesome.min.css' ) );
+
 		// Be nice to use bootstrap, but it's just not compatible with WP as it uses common non-specific element names.
 		//wp_enqueue_style( 'bootstrap-admin-styles', plugins_url( PZUCD_FOLDER . '/external/bootstrap/css/bootstrap.min.css' ) );
 	}
@@ -170,8 +179,6 @@ class Ultimate_Content_Display
 
 		// wp_enqueue_script( PZUCD_NAME.'-admin-script', plugins_url( PZUCD_FOLDER.'/admin/js/admin.js' ) );
 		//wp_enqueue_script(PZUCD_NAME . '-metaboxes-script', plugins_url(PZUCD_FOLDER . '/admin/js/ucd-metaboxes.js'));
-//		wp_enqueue_script( 'angular-admin-script', plugins_url( PZUCD_FOLDER.'/externals/angular/angular.min.js' ) );
-		wp_enqueue_script( 'angular-admin-script', 'https://ajax.googleapis.com/ajax/libs/angularjs/1.0.6/angular.min.js' );
 	}
 
 // end register_admin_scripts

@@ -9,3 +9,19 @@ Major move to maximum OOP
 0.1
 Intial setup with Cell Layout designer and rudimentary display
 
+
+
+
+// TODO
+
+Layouts:
+Grid
+Slider
+
+Navs:
+Pager
+Pagination
+Tabbed
+
+Misc
+Date conditional. E.g. if post > 3 days, use template x, else use template y
