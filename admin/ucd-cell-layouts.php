@@ -46,17 +46,14 @@ class pzucd_Cell_Layouts extends pzucdForm
 		if ( 'ucd-layouts' == $screen->id )
 		{
 
-			wp_enqueue_script( 'jquery-ui-tabs' );
-			wp_enqueue_script( 'jquery-ui-button' );
 			wp_enqueue_script( 'jquery-ui-draggable' );
 			wp_enqueue_script( 'jquery-ui-droppable' );
 			wp_enqueue_script( 'jquery-ui-sortable' );
 			wp_enqueue_script( 'jquery-ui-resizable' );
 
-			wp_enqueue_style( 'pzucd-block-css', PZUCD_PLUGIN_URL . '/admin/css/ucd-admin.css' );
-			wp_enqueue_style( 'pzucd-jqueryui-css', PZUCD_PLUGIN_URL . '/external/jquery-ui-1.10.2.custom/css/pz_ultimate_content_display/jquery-ui-1.10.2.custom.min.css' );
+			wp_enqueue_style( 'pzucd-admin-cells-css', PZUCD_PLUGIN_URL . '/admin/css/ucd-admin-cells.css' );
 
-			wp_enqueue_script( 'jquery-pzucd-metaboxes', PZUCD_PLUGIN_URL . '/admin/js/ucd-metaboxes.js', array( 'jquery' ) );
+			wp_enqueue_script( 'jquery-pzucd-metaboxes-cells', PZUCD_PLUGIN_URL . '/admin/js/ucd-metaboxes-cells.js', array( 'jquery' ) );
 		}
 	}
 
@@ -113,23 +110,23 @@ class pzucd_Cell_Layouts extends pzucdForm
 	public function create_layouts_post_type()
 	{
 		$labels = array(
-				'name'							 => _x( 'Cell Layouts', 'post type general name' ),
-				'singular_name'			 => _x( 'Cell Layout', 'post type singular name' ),
-				'add_new'						 => __( 'Add New Cell Layout' ),
-				'add_new_item'			 => __( 'Add Cell New Layout' ),
-				'edit_item'					 => __( 'Edit Cell Layout' ),
-				'new_item'					 => __( 'New Cell Layout' ),
-				'view_item'					 => __( 'View Cell Layout' ),
-				'search_items'			 => __( 'Search Cell Layouts' ),
+				'name'							 => _x( 'Cell layouts', 'post type general name' ),
+				'singular_name'			 => _x( 'Cell layout', 'post type singular name' ),
+				'add_new'						 => __( 'Add New Cell layout' ),
+				'add_new_item'			 => __( 'Add New Cell' ),
+				'edit_item'					 => __( 'Edit Cell layout' ),
+				'new_item'					 => __( 'New Cell layout' ),
+				'view_item'					 => __( 'View Cell layout' ),
+				'search_items'			 => __( 'Search Cell layout' ),
 				'not_found'					 => __( 'No cell layouts found' ),
 				'not_found_in_trash' => __( 'No cell layouts found in Trash' ),
 				'parent_item_colon'	 => '',
-				'menu_name'					 => _x( 'UCD Cell Layouts', 'pzucd-cell-designer' ),
+				'menu_name'					 => _x( 'Cell layouts', 'pzucd-cell-designer' ),
 		);
 
 		$args = array(
 				'labels'							 => $labels,
-				'description'					 => __( 'Ultimate Content Display cell layouts are used to create reusable cell layouts for use in your UCD blocks, widgets, shortcodes and template tags' ),
+				'description'					 => __( 'Ultimate Content Display cell layouts are used to create reusable cell layouts for use in your UCD blocks, widgets, shortcodes and layout tags' ),
 				'public'							 => false,
 				'publicly_queryable'	 => false,
 				'show_ui'							 => true,
@@ -203,8 +200,8 @@ class pzucd_Cell_Layouts extends pzucdForm
 				'orientation'	 => 'horizontal',
 				'tabs'				 => array(
 						$i++ => array(
-								'icon'	 => 'phone-65grey.png',
-								'label'	 => __( 'Responsive', 'pzucd' ),
+								'icon'	 => 'general-65grey.png',
+								'label'	 => __( 'General', 'pzucd' ),
 								'id'		 => $prefix . 'tab_layouts_responsive',
 								'type'	 => 'tab',
 						),
@@ -260,8 +257,8 @@ class pzucd_Cell_Layouts extends pzucdForm
 		 * *************** */
 		$meta_box_layout[ 'tabs' ][ $i++ ][ 'fields' ] = array(
 				array(
-						'label'		 => __( 'Intelligence', 'pzucd' ),
-						'id'			 => $prefix . 'layout-layout-responsive',
+						'label'		 => __( 'General', 'pzucd' ),
+						'id'			 => $prefix . 'layout-responsive',
 						'type'		 => 'heading',
 						'default'	 => '',
 						'desc'		 => __( '', 'pzucd' )
@@ -271,16 +268,16 @@ class pzucd_Cell_Layouts extends pzucdForm
 						'id'				 => $prefix . 'layout-set-name',
 						'type'			 => 'text',
 						'default'		 => '',
-						'desc'			 => __( 'A set name for this layout. This enables you to create sets of layouts for different parent dimensions. That is,when the dimensions of the parent change, the layout will change accordingly. Tracditional responsive design is based on the width of your device\'s screen,; however this fails if you place the object in a narrow column on a large screen,', 'pzucd' ),
+						'desc'			 => __( 'A set name for this cell layout. This enables you to create sets of layouts for different parent dimensions. That is, when the dimensions of the parent change, the layout will change accordingly. Traditional responsive design is based on the width of your device\'s screen,; however this fails if you place the object in a narrow column on a large screen,', 'pzucd' ),
 						'help'			 => __( 'Create sets of layouts with each layout in a set for different parent dimensions' ),
 						'validation' => 'data-validation-engine="validate[required]"'
 				),
 				array(
-						'label'			 => __( 'Layout short name ', 'pzucd' ),
+						'label'			 => __( 'Cell layout short name ', 'pzucd' ),
 						'id'				 => $prefix . 'layout-short-name',
 						'type'			 => 'text',
 						'default'		 => '',
-						'desc'			 => __( 'Something about the cell responsiveness.', 'pzucd' ),
+						'desc'			 => __( '.', 'pzucd' ),
 						'validation' => 'data-validation-engine="validate[required]"'
 				),
 				array(
@@ -288,7 +285,7 @@ class pzucd_Cell_Layouts extends pzucdForm
 						'id'				 => $prefix . 'layout-min-display-width',
 						'type'			 => 'text',
 						'default'		 => '0',
-						'desc'			 => __( 'Something about the cell responsiveness.', 'pzucd' ),
+						'desc'			 => __( '.', 'pzucd' ),
 						'validation' => 'data-validation-engine="validate[required]"'
 				),
 				array(
@@ -296,7 +293,7 @@ class pzucd_Cell_Layouts extends pzucdForm
 						'id'				 => $prefix . 'layout-max-display-width',
 						'type'			 => 'text',
 						'default'		 => '320',
-						'desc'			 => __( 'Something about the cell responsiveness.', 'pzucd' ),
+						'desc'			 => __( '.', 'pzucd' ),
 						'validation' => 'data-validation-engine="validate[required]"'
 				),
 		);
@@ -307,7 +304,7 @@ class pzucd_Cell_Layouts extends pzucdForm
 		$meta_box_layout[ 'tabs' ][ $i++ ][ 'fields' ] = array(
 				array(
 						'label'		 => __( 'Layout', 'pzucd' ),
-						'id'			 => $prefix . 'layout-layout-head',
+						'id'			 => $prefix . 'layout-head',
 						'type'		 => 'heading',
 						'default'	 => '',
 						'desc'		 => __( '', 'pzucd' )
@@ -342,23 +339,51 @@ class pzucd_Cell_Layouts extends pzucdForm
 						'desc'		 => __( 'Position for all the components as a group', 'pzucd' )
 				),
 				array(
-						'label'		 => __( 'Components area width (%)', 'pzucd' ),
+						'label'		 => __( 'Components area width', 'pzucd' ),
 						'id'			 => $prefix . 'layout-sections-widths',
-						'type'		 => 'percent',
+						'type'		 => 'spinner',
 						'default'	 => '100',
 						'alt'			 => 'zones',
 						'min'			 => '1',
 						'max'			 => '100',
 						'step'		 => '1',
+					'suffix' => '%',
 						'desc'		 => __( 'Set the overall width for the components area. Necessary for left or right positioning of sections', 'pzucd' ),
 						'help'		 => __( 'Note:The sum of the width and the left/right nudge should equal 100', 'pzucd' )
 				),
+			array(
+				'label'		 => __( 'Nudge components area left/right', 'pzucd' ),
+				'id'			 => $prefix . 'layout-nudge-section-x',
+				'type'		 => 'spinner',
+				'default'	 => '0',
+				'min'			 => '1',
+				'max'			 => '100',
+				'step'		 => '1',
+				'suffix' 	 => '%',
+				'desc'		 => __( 'Enter percent to move the components area left/right. Note: These measurements are percentage of the cell.', 'pzucd' )
+			),
+			array(
+				'label'		 => __( 'Nudge components area up/down', 'pzucd' ),
+				'id'			 => $prefix . 'layout-nudge-section-y',
+				'type'		 => 'spinner',
+				'default'	 => '0',
+				'min'			 => '1',
+				'max'			 => '100',
+				'step'		 => '1',
+				'suffix' 	 => '%',
+				'desc'		 => __( 'Enter percent to move the components area up/down. Note: These measurements are percentage of the cell.', 'pzucd' )
+			),
 				array(
-						'label'		 => __( 'Nudge components area x, y (%)', 'pzucd' ),
-						'id'			 => $prefix . 'layout-nudge-sections',
-						'type'		 => 'text',
-						'default'	 => '0, 0',
-						'desc'		 => __( 'Enter x, y co-ordinates to move the components area. e.g. 75, 75. Note: These measurements are percenatge of the cell.', 'pzucd' )
+						'label'		 => __( 'Excerpt image', 'pzucd' ),
+						'id'			 => $prefix . 'layout-excerpt-thumb',
+						'type'		 => 'select',
+						'default'	 => 'none',
+						'options'	 => array(
+								array( 'value'	 => 'none', 'text'	 => 'No image' ),
+								array( 'value'	 => 'left', 'text'	 => 'Image left' ),
+								array( 'value'	 => 'right', 'text'	 => 'Image right' ),
+						),
+						'desc'		 => __( 'Set the alignment of the image when it is in the excerpt. This will use the image settings', 'pzucd' )
 				),
 				array(
 						'label'		 => __( 'Feature Image/Video', 'pzucd' ),
@@ -490,18 +515,6 @@ class pzucd_Cell_Layouts extends pzucdForm
 						'desc'		 => __( 'Set the excerpt width as a percentage of the cell width.', 'pzucd' )
 				),
 				array(
-						'label'		 => __( 'Excerpt image', 'pzucd' ),
-						'id'			 => $prefix . 'layout-excerpt-thumb',
-						'type'		 => 'select',
-						'default'	 => 'none',
-						'options'	 => array(
-								array( 'value'	 => 'none', 'text'	 => 'No image' ),
-								array( 'value'	 => 'left', 'text'	 => 'Image left' ),
-								array( 'value'	 => 'right', 'text'	 => 'Image right' ),
-						),
-						'desc'		 => __( 'Set the alignment of the image when it is in the excerpt. This will use the image settings', 'pzucd' )
-				),
-				array(
 						'label'		 => __( 'Read more message', 'pzucd' ),
 						'id'			 => $prefix . 'layout-read-more',
 						'type'		 => 'text',
@@ -594,17 +607,6 @@ class pzucd_Cell_Layouts extends pzucdForm
 		 * ************** */
 
 		$meta_box_layout[ 'tabs' ][ $i++ ][ 'fields' ] = array(
-				array(
-						'label'		 => __( 'Gutter width (%)', 'pzucd' ),
-						'id'			 => $prefix . 'layout-gutter-width',
-						'type'		 => 'numeric',
-						'alt'			 => 'gutter',
-						'default'	 => '1',
-						'min'			 => '1',
-						'max'			 => '100',
-						'step'		 => '1',
-						'desc'		 => __( 'Set the gutter width as a percentage of the cell width. The gutter is the gap between adjoining elements', 'pzucd' )
-				),
 				array(
 						'label'		 => __( 'CSS instructions', 'pzucd' ),
 						'id'			 => $prefix . 'layout-format-instructions',
@@ -744,11 +746,11 @@ class pzucd_Cell_Layouts extends pzucdForm
 		$return_html = '';
 
 		// Put in a hidden field with the plugin url for use in js
-		$return_html = '
-			<div id="pzucd-custom-pzucd_layout-layout" class="pzucd-custom">
-				<div id="pzucd-dropzone-pzucd_layout-layout" class="pzucd-dropzone">
+		$return_html = '<h3>Cell Preview</h3>
+			<div id="pzucd-custom-pzucd_layout" class="pzucd-custom">
+				<div id="pzucd-dropzone-pzucd_layout" class="pzucd-dropzone">
 					<div class="pzgp-cell-image-behind"></div>
-					<div class="pzucd-zone-control ui-sortable">
+					<div class="pzucd-content-area sortable">
 					
 					<span class="pzucd-dropped pzucd-dropped-title" title="Post title" data-idcode="%title%" style="display: inline-block; font-weight: bold; font-size: 15px; background-color: rgb(221, 221, 221); background-position: initial initial; background-repeat: initial initial;">This is the title</span>
 					
@@ -782,6 +784,7 @@ class pzucd_Cell_Layouts extends pzucdForm
 	 * 
 	 * @return type
 	 */
+	/*
 	function layout_defaults()
 	{
 		$pzucd_layout_defaults = array( );
@@ -798,7 +801,7 @@ class pzucd_Cell_Layouts extends pzucdForm
 		}
 		return $pzucd_layout_defaults;
 	}
-
+*/
 }
 
 // EOC

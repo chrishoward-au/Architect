@@ -8,7 +8,14 @@
   Author: Chris Howard
   Author URI: http://pizazzwp.com
   License: GNU GPL v2
-  Shoutouts: Plugin struction based on WP Plugin Boilerplate by Tom McPharlin http://tommcfarlin.com/
+  Shoutouts: Plugin structure based on WP Plugin Boilerplate by Tom McPharlin http://tommcfarlin.com/
+ */
+
+/* TEMPLATES: Overall layouts bricks
+ * VIEWS: End user view Nav brick(s)+Template+Cell Brick
+ * CRITERIA:
+ * CELL BRICKS
+ * NAV BRICKS
  */
 
 class Ultimate_Content_Display

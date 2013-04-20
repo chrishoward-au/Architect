@@ -137,6 +137,16 @@ class pzucdForm
 		$return = '<input alt="' . $field[ 'alt' ] . '"" type="range" min=0 max=100 name="' . sanitize_html_class( $field[ 'id' ] ) . '" id="' . sanitize_html_class( $field[ 'id' ] ) . '" value="' . esc_attr( (!$is_new && ($pzucd_value || $pzucd_value === '' || $pzucd_value === '0')) ? $pzucd_value : $field[ 'default' ]  ) . '"style="width:80%" /><span class="pzucd-range-percent percent-' . sanitize_html_class( $field[ 'id' ] ) . '">' . $pzucd_value . '%</span><br />';
 		return $return;
 	}
+	/**
+	 *
+	 * @param type $field
+	 * @param type $is_new
+	 */
+	public function spinner( $field, $pzucd_value, $is_new )
+	{
+		$return = '<input alt="' . $field[ 'alt' ] . '"" type="number" min=0 max=100 name="' . sanitize_html_class( $field[ 'id' ] ) . '" id="' . sanitize_html_class( $field[ 'id' ] ) . '" value="' . esc_attr( (!$is_new && ($pzucd_value || $pzucd_value === '' || $pzucd_value === '0')) ? $pzucd_value : $field[ 'default' ]  ) . '" /><span class="pzucd-range-spinner spinner-' . sanitize_html_class( $field[ 'id' ] ) . '"> '. esc_html( $field[ 'suffix' ]) .'</span><br />';
+		return $return;
+	}
 
 	/**
 	 * 
@@ -249,7 +259,7 @@ class pzucdForm
 		{
 			$pzucd_array_value = (is_string( $pzucd_value )) ? array( $pzucd_value ) : $pzucd_value;
 			$pzucd_in_array		 = ($pzucd_value) ? (in_array( $option[ 'value' ], $pzucd_array_value ) || $pzucd_value == $option[ 'value' ]) : false;
-			$return .= '<span class="pzucd_checkbox"><input type="checkbox" name="' . sanitize_html_class( $field[ 'id' ] ) . '[]" id="' . sanitize_html_class( $field[ 'id' ] ) . '_' . $option[ 'value' ] . '" value="' . esc_attr( $option[ 'value' ] ) . '"' . (($pzucd_in_array) ? ' checked="checked"' : '') . ' />&nbsp;' . $option[ 'text' ] . '</span>';
+			$return .= '<span class="pzucd_checkbox"><input type="checkbox" name="' . sanitize_html_class( $field[ 'id' ] ) . '[]" id="' . sanitize_html_class( $field[ 'id' ] ) . '_' . $option[ 'value' ] . '" value="' . esc_attr( $option[ 'value' ] ) . '"' . (($pzucd_in_array) ? ' checked="checked"' : '') . ' /><label> ' . $option[ 'text' ] . '</label></span> ';
 		}
 		$return .= '</div>';
 		return $return;
@@ -315,7 +325,7 @@ class pzucdForm
 
 		foreach ( $pzucd_meta_boxes[ 'tabs' ] as $pzucd_meta_box_tab )
 		{
-			$pzucd_label_icon			 = isset( $pzucd_meta_box_tab[ 'icon' ] ) ? '<img src = "' . esc_url( PZUCD_PLUGIN_URL . '/libs/images/icons/' . $pzucd_meta_box_tab[ 'icon' ] ) . '" width = "16px"/>' : null;
+			$pzucd_label_icon			 = isset( $pzucd_meta_box_tab[ 'icon' ] ) ? '<img src = "' . esc_url( PZUCD_PLUGIN_URL . '/images/icons/' . $pzucd_meta_box_tab[ 'icon' ] ) . '" width = "16px"/>' : null;
 			$pzucd_showhide_labels = 'show';
 			echo '<li class="pzucd-meta-tab-title"><a href="#pzucd-form-table-' . str_replace( ' ', '-', esc_attr( $pzucd_meta_box_tab[ 'label' ] ) ) . '">' . $pzucd_label_icon . '<span class="pzucd_' . esc_attr( $pzucd_showhide_labels ) . '_labels"><div class="contentplus-arrow-left"></div>' . esc_attr( $pzucd_meta_box_tab[ 'label' ] ) . '</span></a></li>';
 		}
@@ -389,6 +399,7 @@ class pzucdForm
 										'percent',
 										'readonly',
 										'select',
+					'spinner',
 										'text',
 										'textarea'
 								) ) )

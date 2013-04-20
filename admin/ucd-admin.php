@@ -19,19 +19,32 @@ class pzucdAdmin
 
 			require_once PZUCD_PLUGIN_PATH . '/includes/classForm.php';
 			require_once PZUCD_PLUGIN_PATH . '/admin/ucd-cell-layouts.php';
+			require_once PZUCD_PLUGIN_PATH . '/admin/ucd-content-templates.php';
+			require_once PZUCD_PLUGIN_PATH . '/admin/ucd-data-selection.php';
 
-			self::do_it();
+			$cell_layout = new pzucd_Cell_Layouts;
+			$content_template = new pzucd_Content_Templates;
+			$data_selection = new pzucd_Data_Selection;
 //add_action( 'pzucd_do_it', array( $this, 'do_it' ) );
 		}
 	}
+
 
 	function admin_enqueue( $hook )
 	{
 		wp_enqueue_style( 'pzucd-block-css', PZUCD_PLUGIN_URL . '/admin/css/ucd-admin.css' );
 		wp_enqueue_style( 'pzucd-jqueryui-css', PZUCD_PLUGIN_URL . '/external/jquery-ui-1.10.2.custom/css/pz_ultimate_content_display/jquery-ui-1.10.2.custom.min.css' );
 		$screen = get_current_screen();
-		if ( 'ucd-layouts' == $screen->id )
+		if ( strpos(('X'.$screen->id),'ucd-')>0 )
 		{
+			wp_enqueue_script( 'jquery-ui-tabs' );
+			wp_enqueue_script( 'jquery-ui-button' );
+
+			wp_enqueue_style( 'pzucd-block-css', PZUCD_PLUGIN_URL . '/admin/css/ucd-admin.css' );
+			wp_enqueue_style( 'pzucd-jqueryui-css', PZUCD_PLUGIN_URL . '/external/jquery-ui-1.10.2.custom/css/pz_ultimate_content_display/jquery-ui-1.10.2.custom.min.css' );
+
+			wp_enqueue_script( 'jquery-pzucd-metaboxes', PZUCD_PLUGIN_URL . '/admin/js/ucd-metaboxes.js', array( 'jquery' ) );
+
 			wp_enqueue_script( 'pzucd-validation-engine-js-lang', PZUCD_PLUGIN_URL . '/external/jQuery-Validation-Engine/js/languages/jquery.validationEngine-en.js', array( 'jquery' ) );
 			wp_enqueue_script( 'pzucd-validation-engine-js', PZUCD_PLUGIN_URL . '/external/jQuery-Validation-Engine/js/jquery.validationEngine.js', array( 'jquery' ) );
 			wp_enqueue_style( 'pzucd-validation-engine-css', PZUCD_PLUGIN_URL . '/external/jQuery-Validation-Engine/css/validationEngine.jquery.css' );
@@ -74,10 +87,6 @@ class pzucdAdmin
 <div style = "clear:both"></div>';
 	}
 
-	function do_it()
-	{
-		$cell_layout = new pzucd_Cell_Layouts;
-	}
 
 	// add_action('admin_head','pzucd_layouts_add_help_tab');
 	// function pzucd_layouts_add_help_tab () {
