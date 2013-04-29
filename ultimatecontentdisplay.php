@@ -11,6 +11,8 @@
   Shoutouts: Plugin structure based on WP Plugin Boilerplate by Tom McPharlin http://tommcfarlin.com/
  */
 
+// What's the essential difference between E+. G+, S+ and T+? Their navigation. E+ has pagination, G+ thumbs, S+ tabs, T+ tabs.
+
 /* TEMPLATES: Overall layouts bricks
  * VIEWS: End user view Nav brick(s)+Template+Cell Brick
  * CRITERIA:
@@ -44,13 +46,13 @@ class Ultimate_Content_Display
 		{
 //			include_once PZUCD_PLUGIN_PATH . '/libs/PizazzWP.php';
 		}
-		require_once PZUCD_PLUGIN_PATH . 'includes/ucd-functions.php';
+		require_once PZUCD_PLUGIN_PATH . '/code/includes/ucd-functions.php';
 
 		// Register admin styles and scripts
 
 		if ( is_admin() )
 		{
-			require_once PZUCD_PLUGIN_PATH . '/admin/ucd-admin.php';
+			require_once PZUCD_PLUGIN_PATH . '/code/admin/ucd-admin.php';
 			//	require_once PZUCD_PLUGIN_PATH . '/external/Custom-Metaboxes-and-Fields/example-functions.php';
 			//require_once(PZUCD_PLUGIN_PATH .'/admin/admin-page-class/admin-page-class.php');
 			add_action( 'admin_print_styles', array( $this, 'register_admin_styles' ) );
@@ -98,10 +100,11 @@ class Ultimate_Content_Display
 
 		if ( class_exists( 'HeadwayDisplay' ) )
 		{
-			require('headway/ucd-block-display.php');
-			require('headway/ucd-block-options.php');
+			require('code/headway/ucd-block-display.php');
+			require('code/headway/ucd-block-options.php');
+			require('code/frontend/classUcd_Display.php');
 
-			return headway_register_block( 'HeadwayUltimateContentDisplayBlock', PZUCD_PLUGIN_URL . '/headway' );
+			return headway_register_block( 'HeadwayUltimateContentDisplayBlock', PZUCD_PLUGIN_URL . '/code/headway' );
 		}
 	}
 
@@ -117,7 +120,7 @@ class Ultimate_Content_Display
 
 	public function admin_initialize()
 	{
-		require_once PZUCD_PLUGIN_PATH . '/external/Custom-Metaboxes-and-Fields/init.php';
+		require_once PZUCD_PLUGIN_PATH . '/code/external/Custom-Metaboxes-and-Fields/init.php';
 	}
 
 // end activate
@@ -167,8 +170,8 @@ class Ultimate_Content_Display
 	public function register_admin_styles()
 	{
 
-		wp_enqueue_style( PZUCD_NAME . '-admin-styles', plugins_url( PZUCD_FOLDER . '/admin/css/ucd-admin.css' ) );
-		wp_enqueue_style( PZUCD_NAME . '-font-awesome', plugins_url( PZUCD_FOLDER . '/external/font-awesome/css/font-awesome.min.css' ) );
+		wp_enqueue_style( PZUCD_NAME . '-admin-styles', plugins_url( PZUCD_FOLDER . '/code/admin/css/ucd-admin.css' ) );
+		wp_enqueue_style( PZUCD_NAME . '-font-awesome', plugins_url( PZUCD_FOLDER . '/code/external/font-awesome/css/font-awesome.min.css' ) );
 
 		// Be nice to use bootstrap, but it's just not compatible with WP as it uses common non-specific element names.
 		//wp_enqueue_style( 'bootstrap-admin-styles', plugins_url( PZUCD_FOLDER . '/external/bootstrap/css/bootstrap.min.css' ) );
@@ -196,7 +199,7 @@ class Ultimate_Content_Display
 	public function register_plugin_styles()
 	{
 
-		wp_enqueue_style( PZUCD_NAME . '-plugin-styles', plugins_url( PZUCD_FOLDER . '/frontend/css/ucd-front.css' ) );
+		wp_enqueue_style( PZUCD_NAME . '-plugin-styles', plugins_url( PZUCD_FOLDER . '/code/frontend/css/ucd-front.css' ) );
 	}
 
 // end register_plugin_styles
@@ -209,7 +212,7 @@ class Ultimate_Content_Display
 
 		wp_enqueue_script( 'jquery' );
 		// wp_enqueue_script( PZUCD_NAME.'-plugin-script', plugins_url( PZUCD_FOLDER.'/frontend/js/display.js' ) );
-		wp_enqueue_script( PZUCD_NAME . '-isotope', plugins_url( PZUCD_FOLDER . '/frontend/js/jquery.isotope.min.js' ) );
+		wp_enqueue_script( PZUCD_NAME . '-isotope', plugins_url( PZUCD_FOLDER . '/code/frontend/js/jquery.isotope.min.js' ) );
 	}
 
 // end register_plugin_scripts
