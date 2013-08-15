@@ -17,10 +17,10 @@ class pzucdAdmin
 			add_action( 'admin_menu', array( $this, 'admin_menu' ) );
 			add_action( 'admin_enqueue_scripts', array( $this, 'admin_enqueue' ) );
 
-			require_once PZUCD_PLUGIN_PATH . '/code/includes/classForm.php';
-			require_once PZUCD_PLUGIN_PATH . '/code/admin/ucd-cell-layouts.php';
-			require_once PZUCD_PLUGIN_PATH . '/code/admin/ucd-data-selection.php';
-			require_once PZUCD_PLUGIN_PATH . '/code/admin/ucd-content-templates.php';
+			require_once PZUCD_PLUGIN_PATH . '/includes//classForm.php';
+			require_once PZUCD_PLUGIN_PATH . '/includes/admin/ucd-cell-layouts.php';
+			require_once PZUCD_PLUGIN_PATH . '/includes/admin/ucd-data-selection.php';
+			require_once PZUCD_PLUGIN_PATH . '/includes/admin/ucd-content-templates.php';
 
 			$cell_layout			 = new pzucd_Cell_Layouts;
 			$data_selection		 = new pzucd_Criteria;
@@ -31,22 +31,22 @@ class pzucdAdmin
 
 	function admin_enqueue( $hook )
 	{
-		wp_enqueue_style( 'pzucd-block-css', PZUCD_PLUGIN_URL . '/code/admin/css/ucd-admin.css' );
-		wp_enqueue_style( 'pzucd-jqueryui-css', PZUCD_PLUGIN_URL . '/code/external/jquery-ui-1.10.2.custom/css/pz_ultimate_content_display/jquery-ui-1.10.2.custom.min.css' );
+		wp_enqueue_style( 'pzucd-block-css', PZUCD_PLUGIN_URL . '/includes/admin/css/ucd-admin.css' );
+		wp_enqueue_style( 'pzucd-jqueryui-css', PZUCD_PLUGIN_URL . '/includes/external/jquery-ui-1.10.2.custom/css/pz_ultimate_content_display/jquery-ui-1.10.2.custom.min.css' );
 		$screen = get_current_screen();
 		if ( strpos( ('X' . $screen->id ), 'ucd-' ) > 0 )
 		{
 			wp_enqueue_script( 'jquery-ui-tabs' );
 			wp_enqueue_script( 'jquery-ui-button' );
 
-			wp_enqueue_style( 'pzucd-block-css', PZUCD_PLUGIN_URL . '/code/admin/css/ucd-admin.css' );
-			wp_enqueue_style( 'pzucd-jqueryui-css', PZUCD_PLUGIN_URL . '/code/external/jquery-ui-1.10.2.custom/css/pz_ultimate_content_display/jquery-ui-1.10.2.custom.min.css' );
+			wp_enqueue_style( 'pzucd-block-css', PZUCD_PLUGIN_URL . '/includes/admin/css/ucd-admin.css' );
+			wp_enqueue_style( 'pzucd-jqueryui-css', PZUCD_PLUGIN_URL . '/includes/external/jquery-ui-1.10.2.custom/css/pz_ultimate_content_display/jquery-ui-1.10.2.custom.min.css' );
 
-			wp_enqueue_script( 'jquery-pzucd-metaboxes', PZUCD_PLUGIN_URL . '/code/admin/js/ucd-metaboxes.js', array( 'jquery' ) );
+			wp_enqueue_script( 'jquery-pzucd-metaboxes', PZUCD_PLUGIN_URL . '/includes/admin/js/ucd-metaboxes.js', array( 'jquery' ) );
 
-			wp_enqueue_script( 'pzucd-validation-engine-js-lang', PZUCD_PLUGIN_URL . '/code/external/jQuery-Validation-Engine/js/languages/jquery.validationEngine-en.js', array( 'jquery' ) );
-			wp_enqueue_script( 'pzucd-validation-engine-js', PZUCD_PLUGIN_URL . '/code/external/jQuery-Validation-Engine/js/jquery.validationEngine.js', array( 'jquery' ) );
-			wp_enqueue_style( 'pzucd-validation-engine-css', PZUCD_PLUGIN_URL . '/code/external/jQuery-Validation-Engine/css/validationEngine.jquery.css' );
+			wp_enqueue_script( 'pzucd-validation-engine-js-lang', PZUCD_PLUGIN_URL . '/includes/external/jQuery-Validation-Engine/js/languages/jquery.validationEngine-en.js', array( 'jquery' ) );
+			wp_enqueue_script( 'pzucd-validation-engine-js', PZUCD_PLUGIN_URL . '/includes/external/jQuery-Validation-Engine/js/jquery.validationEngine.js', array( 'jquery' ) );
+			wp_enqueue_style( 'pzucd-validation-engine-css', PZUCD_PLUGIN_URL . '/includes/external/jQuery-Validation-Engine/css/validationEngine.jquery.css' );
 		}
 	}
 
@@ -58,14 +58,19 @@ class pzucdAdmin
 			//add_menu_page( $page_title, $menu_title, $capability, $menu_slug, $function, $icon_url, $position );
 			$pzucd_menu = add_menu_page( 'About UCD', 'Ultimate Content Display', 'edit_posts', 'pzucd', 'pzucd_about' );
 			// add_submenu_page( $parent_slug, $page_title, $menu_title, $capability, $menu_slug, $function ); 
+
+			// Don't need this as it's carried in the layouts already
+//			add_submenu_page(
+//				'pzucd', 'Styling', 'Styling', 'manage_options', 'pzucd_styling', array( $this, 'pzucd_styling' )
+//			);
 			add_submenu_page(
-							'pzucd', 'About Ultimate Content Display', 'About', 'manage_options', 'pzucd_about', array( $this, 'pzucd_about' )
+				'pzucd', 'Generate code', 'Generator', 'manage_options', 'pzucd_generator', array( $this, 'pzucd_generator' )
 			);
 			add_submenu_page(
 							'pzucd', 'UCD Options', 'Options', 'manage_options', 'pzucd_options', array( $this, 'pzucd_options' )
 			);
 			add_submenu_page(
-							'pzucd', 'Generate code', 'Generator', 'manage_options', 'pzucd_generator', array( $this, 'pzucd_generator' )
+				'pzucd', 'About Ultimate Content Display', 'About', 'manage_options', 'pzucd_about', array( $this, 'pzucd_about' )
 			);
 		}
 	}
@@ -118,7 +123,7 @@ class pzucdAdmin
 			<div class = "icon32" id = "icon-users"><br></div>
 
 			<h2>' . $title . '</h2>
-
+add a list of common classes as used in TentyX themes and the means to override (and reset) them i.e. .hentry, .entry-title, .entry-content, etc. This way peopel canchange them if their thme uses different ones.
 			</div><!--end table-->
 			</div>
 			<div style = "clear:both"></div>';

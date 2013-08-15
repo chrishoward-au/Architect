@@ -34,3 +34,11 @@ if ( !function_exists( 'pzdebug' ) )
 	}
 
 }
+
+function pz_squish($array) {
+	$return_array = array();
+	foreach($array as $key => $value) {
+		$return_array[$key] = $array[$key][0];
+	}
+	return $return_array;
+}

@@ -41,9 +41,9 @@ class pzucd_Criteria extends pzucdForm {
 		if ('ucd-criterias' == $screen->id) {
 
 
-			wp_enqueue_style('pzucd-admin-criterias-css', PZUCD_PLUGIN_URL . '/code/admin/css/ucd-admin-criterias.css');
+			wp_enqueue_style('pzucd-admin-criterias-css', PZUCD_PLUGIN_URL . '/includes/admin/css/ucd-admin-criterias.css');
 
-			wp_enqueue_script('jquery-pzucd-metaboxes-criterias', PZUCD_PLUGIN_URL . '/code/admin/js/ucd-metaboxes-criterias.js', array('jquery'));
+			wp_enqueue_script('jquery-pzucd-metaboxes-criterias', PZUCD_PLUGIN_URL . '/includes/admin/js/ucd-metaboxes-criterias.js', array('jquery'));
 		}
 	}
 

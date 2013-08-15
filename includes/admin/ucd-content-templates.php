@@ -46,9 +46,9 @@ class pzucd_Content_templates extends pzucdForm
 		{
 
 
-			wp_enqueue_style( 'pzucd-admin-templates-css', PZUCD_PLUGIN_URL . '/code/admin/css/ucd-admin-templates.css' );
+			wp_enqueue_style( 'pzucd-admin-templates-css', PZUCD_PLUGIN_URL . '/includes/admin/css/ucd-admin-templates.css' );
 
-			wp_enqueue_script( 'jquery-pzucd-metaboxes-templates', PZUCD_PLUGIN_URL . '/code/admin/js/ucd-metaboxes-templates.js', array( 'jquery' ) );
+			wp_enqueue_script( 'jquery-pzucd-metaboxes-templates', PZUCD_PLUGIN_URL . '/includes/admin/js/ucd-metaboxes-templates.js', array( 'jquery' ) );
 		}
 	}
 
@@ -204,7 +204,13 @@ class pzucd_Content_templates extends pzucdForm
 						),
 						$i++ => array(
 							'icon'	 => 'fontawesome-forward',
-							'label'	 => __( 'Controls', 'pzucd' ),
+							'label'	 => __( 'Navigation', 'pzucd' ),
+							'id'		 => $prefix . 'tab_templates_controls',
+							'type'	 => 'tab',
+						),
+						$i++ => array(
+							'icon'	 => 'fontawesome-forward',
+							'label'	 => __( 'Pager', 'pzucd' ),
 							'id'		 => $prefix . 'tab_templates_controls',
 							'type'	 => 'tab',
 						),
@@ -300,16 +306,18 @@ class pzucd_Content_templates extends pzucdForm
 				'desc'		 => __( 'Set the gutter width as a percentage of the cell width. The gutter is the gap between adjoining elements', 'pzucd' )
 			),
 		);
+
+		/// Navigation
 		$meta_box_template[ 'tabs' ][ $i++ ][ 'fields' ] = array(
 			array(
-				'label'		 => __( 'Controls', 'pzucd' ),
+				'label'		 => __( 'Navigation', 'pzucd' ),
 				'id'			 => $prefix . 'template-controls-heading',
 				'type'		 => 'heading',
 				'default'	 => '',
-				'desc'		 => __( '', 'pzucd' )
+				'desc'		 => __( 'Navigation controls single cells. Used, for example, in sliders and tabs.', 'pzucd' )
 			),
 			array(
-				'label'		 => __( 'Control positions', 'pzucd' ),
+				'label'		 => __( 'Navigation positions', 'pzucd' ),
 				'id'			 => $prefix . 'control-positions',
 				'type'		 => 'multicheck',
 				'default'	 => array( 'bottom' ),
@@ -335,7 +343,7 @@ class pzucd_Content_templates extends pzucdForm
 				'type'		 => 'text',
 				'default'	 => '',
 				'desc'		 => __( '.', 'pzucd' ),
-				'help'		 => __( 'Top control type: Pagination, pager, navigation, thumbs, titles, ' )
+				'help'		 => __( 'Top control type: navigation, thumbs, titles, bullets' )
 			),
 			array(
 				'label'		 => __( 'Position', 'pzucd' ),
@@ -345,6 +353,52 @@ class pzucd_Content_templates extends pzucdForm
 				'desc'		 => __( '.', 'pzucd' ),
 				'help'		 => __( 'Top control position: Inside, Outside' )
 			),
+		);
+			$meta_box_template[ 'tabs' ][ $i++ ][ 'fields' ] = array(
+				array(
+					'label'		 => __( 'Pager', 'pzucd' ),
+					'id'			 => $prefix . 'template-pager-heading',
+					'type'		 => 'heading',
+					'default'	 => '',
+					'desc'		 => __( 'Pagers control navigation between pages of content. Sometimes these may be a single cell, and sometimes a grid of cells.', 'pzucd' )
+				),
+				array(
+					'label'		 => __( 'Pager positions', 'pzucd' ),
+					'id'			 => $prefix . 'pager-positions',
+					'type'		 => 'multicheck',
+					'default'	 => array( 'bottom' ),
+					'options'	 => array(
+						array( 'value'	 => 'top', 'text'	 => 'Top' ),
+						array( 'value'	 => 'bottom', 'text'	 => 'Bottom' ),
+						array( 'value'	 => 'left', 'text'	 => 'Left' ),
+						array( 'value'	 => 'right', 'text'	 => 'Right' ),
+					),
+					'desc'		 => __( 'Choose where to display controls', 'pzucd' )
+				),
+
+				array(
+					'label'		 => __( 'Top', 'pzucd' ),
+					'id'			 => $prefix . 'template-pager--heading-top',
+					'type'		 => 'heading',
+					'default'	 => '',
+					'desc'		 => __( '', 'pzucd' )
+				),
+				array(
+					'label'		 => __( 'Type', 'pzucd' ),
+					'id'			 => $prefix . 'template-top-pager-type',
+					'type'		 => 'text',
+					'default'	 => '',
+					'desc'		 => __( '.', 'pzucd' ),
+					'help'		 => __( 'Top control type: Pagination, pager' )
+				),
+				array(
+					'label'		 => __( 'Position', 'pzucd' ),
+					'id'			 => $prefix . 'template-top-pager-position',
+					'type'		 => 'text',
+					'default'	 => '',
+					'desc'		 => __( '.', 'pzucd' ),
+					'help'		 => __( 'Top control position: Inside, Outside' )
+				),
 
 
 

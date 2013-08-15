@@ -27,7 +27,7 @@ jQuery(document).ready(function() {
 		// Update background
 		switch (jQuery('select#pzucd_layout-background-image').find('option:selected').val()) {
 			case 'fill':
-				jQuery('.pzucd-dropzone .pzgp-cell-image-behind').html('<img src="' + plugin_url + '/images/sample-image.jpg"/>');
+				jQuery('.pzucd-dropzone .pzgp-cell-image-behind').html('<img src="' + plugin_url + '/assets/images/sample-image.jpg"/>');
 				jQuery('.pzucd-dropzone .pzgp-cell-image-behind').css({
 					'left': '0',
 					top: '0',
@@ -40,7 +40,7 @@ jQuery(document).ready(function() {
 				});
 				break;
 			case 'align':
-				jQuery('.pzucd-dropzone .pzgp-cell-image-behind').html('<img src="' + plugin_url + '/images/sample-image.jpg"/>');
+				jQuery('.pzucd-dropzone .pzgp-cell-image-behind').html('<img src="' + plugin_url + '/assets/images/sample-image.jpg"/>');
 				var zonesWidth = jQuery('.pzucd-content-area').width();
 				var zonesHeight = jQuery('.pzucd-content-area').height();
 				var imageWidth = 400 - zonesWidth;
@@ -263,19 +263,19 @@ jQuery(document).ready(function() {
 
 			element_html['meta2'] = '<span class="pzucd-dropped pzucd-dropped-meta2 pzucd-dropped-meta" title= "Meta info 2"  data-idcode="%meta2%" style="font-size:11px;"><span>Categories - News, Sport</span></span>';
 
-			element_html['image'] = '<span class="pzucd-dropped pzucd-dropped-image"  title= "Featured image" data-idcode="%image%" style="max-height:100px;overflow:hidden;"><span><img src="PZUCD_PLUGIN_URL/images/sample-image.jpg" style="max-width:100%;"/></span></span>';
+			element_html['image'] = '<span class="pzucd-dropped pzucd-dropped-image"  title= "Featured image" data-idcode="%image%" style="max-height:100px;overflow:hidden;"><span><img src="PZUCD_PLUGIN_URL/assets/images/sample-image.jpg" style="max-width:100%;"/></span></span>';
 			element_html['image'] = element_html['image'].replace(/PZUCD_PLUGIN_URL/, plugin_url);
 
 
-			element_html['content'] = '<span class="pzucd-dropped pzucd-dropped-content" title= "Full post content"  data-idcode="%content%" style="font-size:13px;"><span><img src="PZUCD_PLUGIN_URL/images/sample-image.jpg" style="max-width:30%;float:left;padding:5px;"/>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam quis justo erat. <ul><li>&nbsp;&bull;&nbsp;Cras semper sem hendrerit</li><li>&nbsp;&bull;&nbsp;Tortor porta at auctor</li></ul><strong>Lacus consequat</strong><p>Pellentesque pulvinar iaculis tellus in blandit. Suspendisse rhoncus, magna vel eleifend cursus, turpis odio molestie urna, quis posuere eros risus quis neque. </p><p>Donec dictum leo at erat mattis sollicitudin. Nunc vulputate nisl suscipit enim adipiscing faucibus. Ut faucibus sem non sapien rutrum gravida. Maecenas pharetra mi et velit posuere ac elementum mi tincidunt. Nullam tristique tempus odio id rutrum. Nam ligula urna, semper eget elementum nec, euismod at tortor. Duis commodo, purus id posuere aliquam, orci felis facilisis odio, ac sagittis mi nisl at nibh. Sed non risus eu quam euismod faucibus.</p><p>Proin mattis convallis scelerisque. Curabitur auctor felis id sapien dictum vehicula. Aenean euismod porttitor dictum. Vestibulum nulla leo, volutpat quis tempus eu, accumsan eget ante.</p></span></span>';
+			element_html['content'] = '<span class="pzucd-dropped pzucd-dropped-content" title= "Full post content"  data-idcode="%content%" style="font-size:13px;"><span><img src="PZUCD_PLUGIN_URL/assets/images/sample-image.jpg" style="max-width:30%;float:left;padding:5px;"/>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam quis justo erat. <ul><li>&nbsp;&bull;&nbsp;Cras semper sem hendrerit</li><li>&nbsp;&bull;&nbsp;Tortor porta at auctor</li></ul><strong>Lacus consequat</strong><p>Pellentesque pulvinar iaculis tellus in blandit. Suspendisse rhoncus, magna vel eleifend cursus, turpis odio molestie urna, quis posuere eros risus quis neque. </p><p>Donec dictum leo at erat mattis sollicitudin. Nunc vulputate nisl suscipit enim adipiscing faucibus. Ut faucibus sem non sapien rutrum gravida. Maecenas pharetra mi et velit posuere ac elementum mi tincidunt. Nullam tristique tempus odio id rutrum. Nam ligula urna, semper eget elementum nec, euismod at tortor. Duis commodo, purus id posuere aliquam, orci felis facilisis odio, ac sagittis mi nisl at nibh. Sed non risus eu quam euismod faucibus.</p><p>Proin mattis convallis scelerisque. Curabitur auctor felis id sapien dictum vehicula. Aenean euismod porttitor dictum. Vestibulum nulla leo, volutpat quis tempus eu, accumsan eget ante.</p></span></span>';
 			element_html['content'] = element_html['content'].replace(/PZUCD_PLUGIN_URL/, plugin_url);
 
 			if ($thumb_align.val() == 'left') {
-				element_html['excerpt'] = '<span class="pzucd-dropped pzucd-dropped-excerpt"  title= "Excerpt with featured image" data-idcode="%excerpt%" style="font-size:13px;"><span><img src="PZUCD_PLUGIN_URL/images/sample-image.jpg" class="pzucd-align-left" style="max-width:20%;"/>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam quis justo erat. Cras semper sem hendre...[more]</span></span>';
+				element_html['excerpt'] = '<span class="pzucd-dropped pzucd-dropped-excerpt"  title= "Excerpt with featured image" data-idcode="%excerpt%" style="font-size:13px;"><span><img src="PZUCD_PLUGIN_URL/assets/images/sample-image.jpg" class="pzucd-align-left" style="max-width:20%;"/>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam quis justo erat. Cras semper sem hendre...[more]</span></span>';
 			} else if ($thumb_align.val() == 'right') {
-				element_html['excerpt'] = '<span class="pzucd-dropped pzucd-dropped-excerpt"  title= "Excerpt with featured image" data-idcode="%excerpt%" style="font-size:13px;"><span><img src="PZUCD_PLUGIN_URL/images/sample-image.jpg" class="pzucd-align-right" style="max-width:20%;"/>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam quis justo erat. Cras semper sem hendre...[more]</span></span>';
+				element_html['excerpt'] = '<span class="pzucd-dropped pzucd-dropped-excerpt"  title= "Excerpt with featured image" data-idcode="%excerpt%" style="font-size:13px;"><span><img src="PZUCD_PLUGIN_URL/assets/images/sample-image.jpg" class="pzucd-align-right" style="max-width:20%;"/>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam quis justo erat. Cras semper sem hendre...[more]</span></span>';
 			} else {
-				element_html['excerpt'] = '<span class="pzucd-dropped pzucd-dropped-excerpt"  title= "Excerpt with featured image" data-idcode="%excerpt%" style="font-size:13px;"><span><img src="PZUCD_PLUGIN_URL/images/sample-image.jpg" class="pzucd-hide-excerpt-thumb" style="max-width:20%;"/>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam quis justo erat. Cras semper sem hendre...[more]</span></span>';
+				element_html['excerpt'] = '<span class="pzucd-dropped pzucd-dropped-excerpt"  title= "Excerpt with featured image" data-idcode="%excerpt%" style="font-size:13px;"><span><img src="PZUCD_PLUGIN_URL/assets/images/sample-image.jpg" class="pzucd-hide-excerpt-thumb" style="max-width:20%;"/>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam quis justo erat. Cras semper sem hendre...[more]</span></span>';
 
 			}
 			element_html['excerpt'] = element_html['excerpt'].replace(/PZUCD_PLUGIN_URL/, plugin_url);

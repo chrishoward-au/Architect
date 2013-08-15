@@ -9,9 +9,9 @@ class pzucdSources {
 class pzucdPosts extends pzucdSources {
 
 	function __construct() {
-		$this>structure = array(
-
-			);
+//		$this>structure   = array(
+//
+//			);
 	}
 	
 }
