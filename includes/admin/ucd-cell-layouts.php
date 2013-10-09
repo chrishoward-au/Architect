@@ -1,5 +1,7 @@
 <?php
 
+//Cells may need to include Content because of custom fields!!! OOps! But content has to be over-arching! So I guess, cells will need to know the content type and its fields. So lets make Content Criteria again. :S
+
 class pzucd_Cell_Layouts extends pzucdForm {
 
 	private $mb_fields;
@@ -260,6 +262,19 @@ class pzucd_Cell_Layouts extends pzucdForm {
 				'desc'			 => __('A set name for this cell layout. This enables you to create sets of layouts for different parent dimensions. That is, when the dimensions of the parent change, the layout will change accordingly. Traditional responsive design is based on the width of your device\'s screen,; however this fails if you place the object in a narrow column on a large screen,', 'pzucd'),
 				'help'			 => __('Create sets of layouts with each layout in a set for different parent dimensions'),
 				'validation' => 'data-validation-engine="validate[required]"'
+			),
+
+			array(
+				'label'			 => __('Content', 'pzucd'),
+				'id'				 => $prefix . 'layout-cells-content',
+				'type'			 => 'select',
+				'default'		 => 'post',
+				'desc'			 => __('Select the content type to display in these cells.', 'pzucd'),
+				'options'	=> array(
+					array('value'	 => 'post', 'text'	 => 'Posts'),
+					array('value'	 => 'page', 'text'	 => 'Pages'),
+					array('value'	 => 'attachment', 'text'	 => 'Attachments'),
+				)
 			),
 
 			array(
@@ -830,3 +845,12 @@ class pzucd_Cell_Layouts extends pzucdForm {
 }
 
 // EOC
+
+
+/* why not use a WP like methodology!
+
+register_cells('name',$args)'
+register_criteria('name',$args);
+register_layout('name',$args);
+
+*/

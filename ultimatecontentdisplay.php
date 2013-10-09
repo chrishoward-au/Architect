@@ -20,6 +20,17 @@
  * NAV BRICKS
  */
 
+
+
+/* why not use a WP like methodology!
+================================================================================
+register_cell_layout('name',$args)'
+register_criteria('name',$args);
+register_template_layout('name',$args);
+================================================================================
+*/
+
+
 class Ultimate_Content_Display
 {
 
@@ -105,7 +116,6 @@ class Ultimate_Content_Display
 		{
 			require('includes/headway/ucd-block-display.php');
 			require('includes/headway/ucd-block-options.php');
-			require('includes/frontend/classUcd_Display.php');
 
 			return headway_register_block( 'HeadwayUltimateContentDisplayBlock', PZUCD_PLUGIN_URL . '/includes/headway' );
 		}
@@ -282,3 +292,5 @@ $pzucd = new Ultimate_Content_Display();
 
 /* Display method Headway */
 // Provide method to display using a Headway block
+
+

@@ -12,13 +12,13 @@ class ucdDisplay
 	public $pzucd_criteria_options = '';
 	public $pzucd_template_options = '';
 
-	function __construct($cells_template, $cell_options, $criteria_options, $template_options)
+	function __construct($cell_options,$template_options)
 	{
 
 		// add apply_filters so devs can add use their own stuff like navs.
-		$this->pzucd_cells_layout     = $cells_template;
+//		$this->pzucd_cells_layout     = $cells_template;
 		$this->pzucd_cell_options     = $cell_options;
-		$this->pzucd_criteria_options = $criteria_options;
+//		$this->pzucd_criteria_options = $criteria_options;
 		$this->pzucd_template_options = $template_options;
 
 		//$pzucd_navigation = apply_filters();
@@ -52,6 +52,14 @@ class ucdDisplay
 	}
 
 
+	public function cell_layout() {
+		// This is the bit tha works it all out - make sure it's called outside the loop! Don't want to call it every time
+	}
+
+	public function layout_template() {
+		// this bit works out the template layout. Only call once per section!
+	}
+
 	public function layout_header($layout_template)
 	{
 		echo '<h3>Layout Header</h3>';
@@ -75,8 +83,12 @@ class ucdDisplay
 	}
 	public function display_cell($cell_layout,$cell_no)
 	{
-		echo '<li>Cell '.$cell_no.'</li>';
+		// THIS WILL NEED TO BE CHANGED SO ACCOMMODATES ANY CONTENT TYPE
+		$the_title = '<h2 class= "entry-title">'.get_the_title.'</h2>';
+		$the_content = '<div class="entry-content">'.get_the_excerpt().'</div>';
+		return '<div class="hentry">'.$the_title.$the_content.' - Cell '.$cell_no.'</div>';
 	}
+
 
 	function __destruct()
 	{

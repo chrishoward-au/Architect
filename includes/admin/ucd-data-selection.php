@@ -91,23 +91,23 @@ class pzucd_Criteria extends pzucdForm {
 	 */
 	public function create_criterias_post_type() {
 		$labels = array(
-				'name' => _x('Content selections', 'post type general name'),
-				'singular_name' => _x('Content selection', 'post type singular name'),
-				'add_new' => __('Add New Content selection'),
-				'add_new_item' => __('Add New Content selection'),
-				'edit_item' => __('Edit Content selection'),
-				'new_item' => __('New Content selection'),
-				'view_item' => __('View Content selection'),
-				'search_items' => __('Search Content selections'),
-				'not_found' => __('No Content selection found'),
-				'not_found_in_trash' => __('No Content selections found in Trash'),
+				'name' => _x('Criteria selections', 'post type general name'),
+				'singular_name' => _x('Criteria selection', 'post type singular name'),
+				'add_new' => __('Add New Criteria selection'),
+				'add_new_item' => __('Add New Criteria selection'),
+				'edit_item' => __('Edit Criteria selection'),
+				'new_item' => __('New Criteria selection'),
+				'view_item' => __('View Criteria selection'),
+				'search_items' => __('Search Criteria selections'),
+				'not_found' => __('No Criteria selection found'),
+				'not_found_in_trash' => __('No Criteria selections found in Trash'),
 				'parent_item_colon' => '',
-				'menu_name' => _x('Content', 'pzucd-criteria-designer'),
+				'menu_name' => _x('Criteria', 'pzucd-criteria-designer'),
 		);
 
 		$args = array(
 				'labels' => $labels,
-				'description' => __('Ultimate Content Display Content selection are used to create reusable Criteria for use in your UCD blocks, widgets, shortcodes and WP template tags.'),
+				'description' => __('Ultimate Content Display Criteria selection are used to create reusable Criteria for use in your UCD blocks, widgets, shortcodes and WP template tags.'),
 				'public' => false,
 				'publicly_queryable' => false,
 				'show_ui' => true,

@@ -17,14 +17,17 @@ class pzucdAdmin
 			add_action( 'admin_menu', array( $this, 'admin_menu' ) );
 			add_action( 'admin_enqueue_scripts', array( $this, 'admin_enqueue' ) );
 
-			require_once PZUCD_PLUGIN_PATH . '/includes//classForm.php';
+			require_once PZUCD_PLUGIN_PATH . '/includes/class_pzucdForm.php';
 			require_once PZUCD_PLUGIN_PATH . '/includes/admin/ucd-cell-layouts.php';
 			require_once PZUCD_PLUGIN_PATH . '/includes/admin/ucd-data-selection.php';
 			require_once PZUCD_PLUGIN_PATH . '/includes/admin/ucd-content-templates.php';
+			require_once PZUCD_PLUGIN_PATH . '/includes/admin/ucd-controls.php';
 
-			$cell_layout			 = new pzucd_Cell_Layouts;
 			$data_selection		 = new pzucd_Criteria;
+			$cell_layout		 = new pzucd_Cell_Layouts;
 			$content_template	 = new pzucd_Content_Templates;
+			$content_template	 = new pzucd_Controls;
+
 //add_action( 'pzucd_do_it', array( $this, 'do_it' ) );
 		}
 	}
@@ -55,8 +58,8 @@ class pzucdAdmin
 		global $pzucd_menu, $pizazzwp_updates;
 		if ( !$pzucd_menu )
 		{
-			//add_menu_page( $page_title, $menu_title, $capability, $menu_slug, $function, $icon_url, $position );
-			$pzucd_menu = add_menu_page( 'About UCD', 'Ultimate Content Display', 'edit_posts', 'pzucd', 'pzucd_about' );
+			//add_menu_page(             $page_title,  $menu_title,               $capability,   $menu_slug, $function,    $icon_url, $position );
+			$pzucd_menu = add_menu_page( 'About UCD', 'Ultimate Content Display', 'edit_posts', 'pzucd',     'pzucd_about',PZUCD_PLUGIN_URL.'wp-icon.png' );
 			// add_submenu_page( $parent_slug, $page_title, $menu_title, $capability, $menu_slug, $function ); 
 
 			// Don't need this as it's carried in the layouts already
@@ -91,14 +94,18 @@ class pzucdAdmin
 <div class = "icon32" id = "icon-users"><br></div>
 
 <h2>' . $title . '</h2>
-<p>Ultimate Content Display enables you to easily build complex content layouts. A layout is made up of four components:</p>
-<ul style="margin-left:10px;">
-<li>&bull; Cells</li>
-<li>&bull; Criteria</li>
-<li>&bull; Templates</li>
-<li>&bull; Controls</li>
-</ul>
+<p>Ultimate Content Display enables you to easily build complex content layouts, such as magazine layouts, sliders, galleries and tabbed content. A layout is made up of four components:</p>
+<h3>Criteria</h3>
+<ul><li>Criteria define  what content is selected to display</li></ul>
+<h3>Cells</h3>
+<ul><li>Cells define the layout of the content for each cell</li></ul>
+<h3>Sections</h3>
+<ul><li>Sections define the layout of the cells. Multiple sections can be used e.g. first a full post, then a grid of post excerpts</li></ul>
+<h3>Controls</h3>
+<ul><li>Controls define the layout of the navigation controllers</li></ul>
+
 <p>These four are combined to produce the final layout</p>
+<p><img src="'.PZUCD_PLUGIN_URL.'/documentation/ucd-layout.jpg" /></p>
 
 <p>For example, using shortcodes, you might have:</p>
 <p style="font-weight:bold">[pzucd cells="myfirstcelldesign" criteria="latestposts" templates="one-up,six-up" controls="myfirstnav"]</p>
