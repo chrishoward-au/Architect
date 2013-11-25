@@ -4,7 +4,7 @@
   Plugin Name: PizazzWP Ultimate Content Display - a content display framework
   Plugin URI: http://pizazzwp.com
   Description: Display your content in grids, tabs, sliders, galleries with sources like posts, pages, galleries, widgets, custom code, Headway blocks and custom content types
-  Version: 0.2
+  Version: 0.3
   Author: Chris Howard
   Author URI: http://pizazzwp.com
   License: GNU GPL v2
