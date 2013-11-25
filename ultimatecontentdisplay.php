@@ -41,13 +41,13 @@ class Ultimate_Content_Display
 		define( 'PZUCD_NAME', 'pzucd' );
 		define( 'PZUCD_FOLDER', '/pizazzwp-ultimatecontentdisplay' );
 
-		define( 'PZUCD_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
-		define( 'PZUCD_PLUGIN_PATH', plugin_dir_path( __FILE__ ) );
+		define( 'PZUCD_PLUGIN_URL', trailingslashit(plugin_dir_url( __FILE__ ) ));
+		define( 'PZUCD_PLUGIN_PATH', trailingslashit(plugin_dir_path( __FILE__ )) );
 		define( 'PZUCD_CACHE', '/pzucd/' );
 
 		$upload_dir = wp_upload_dir();
-		define( 'PZUCD_CACHE_URL', $upload_dir[ 'baseurl' ] . '/uploads/cache/pizazzwp/pzucd' );
-		define( 'PZUCD_CACHE_PATH', $upload_dir[ 'basedir' ] . '/cache/pizazzwp/pzucd' );
+		define( 'PZUCD_CACHE_URL', trailingslashit($upload_dir[ 'baseurl' ] . '/uploads/cache/pizazzwp/pzucd' ));
+		define( 'PZUCD_CACHE_PATH', trailingslashit($upload_dir[ 'basedir' ] . '/cache/pizazzwp/pzucd' ));
 		define( 'PZUCD_DEBUG', 0 );
 
 		// Load plugin text domain
@@ -63,7 +63,7 @@ class Ultimate_Content_Display
 
 		if ( is_admin() )
 		{
-			require_once PZUCD_PLUGIN_PATH . '/includes/admin/ucd-admin.php';
+			require_once PZUCD_PLUGIN_PATH . '/admin/ucd-admin.php';
 			//	require_once PZUCD_PLUGIN_PATH . '/external/Custom-Metaboxes-and-Fields/example-functions.php';
 			//require_once(PZUCD_PLUGIN_PATH .'/admin/admin-page-class/admin-page-class.php');
 			add_action( 'admin_print_styles', array( $this, 'register_admin_styles' ) );
@@ -78,7 +78,7 @@ class Ultimate_Content_Display
 			add_action( 'wp_enqueue_scripts', array( $this, 'register_plugin_styles' ) );
 			add_action( 'wp_enqueue_scripts', array( $this, 'register_plugin_scripts' ) );
 
-			require_once PZUCD_PLUGIN_PATH . '/includes/frontend/ucd-display.php';
+			require_once PZUCD_PLUGIN_PATH . '/frontend/ucd-display.php';
 
 		}
 
@@ -133,7 +133,7 @@ class Ultimate_Content_Display
 
 	public function admin_initialize()
 	{
-		require_once PZUCD_PLUGIN_PATH . '/includes/external/Custom-Metaboxes-and-Fields/init.php';
+	//	require_once PZUCD_PLUGIN_PATH . '/includes/external/Custom-Metaboxes-and-Fields/init.php';
 	}
 
 // end activate
@@ -183,8 +183,8 @@ class Ultimate_Content_Display
 	public function register_admin_styles()
 	{
 
-		wp_enqueue_style( PZUCD_NAME . '-admin-styles', plugins_url( PZUCD_FOLDER . '/includes/admin/css/ucd-admin.css' ) );
-		wp_enqueue_style( PZUCD_NAME . '-font-awesome', plugins_url( PZUCD_FOLDER . '/includes/external/font-awesome/css/font-awesome.min.css' ) );
+		wp_enqueue_style( PZUCD_NAME . '-admin-styles', plugins_url( PZUCD_FOLDER . '/admin/css/ucd-admin.css' ) );
+		wp_enqueue_style( PZUCD_NAME . '-font-awesome', plugins_url( PZUCD_FOLDER . '/external/font-awesome/css/font-awesome.min.css' ) );
 
 		// Be nice to use bootstrap, but it's just not compatible with WP as it uses common non-specific element names.
 		//wp_enqueue_style( 'bootstrap-admin-styles', plugins_url( PZUCD_FOLDER . '/external/bootstrap/css/bootstrap.min.css' ) );
@@ -212,7 +212,7 @@ class Ultimate_Content_Display
 	public function register_plugin_styles()
 	{
 
-		wp_enqueue_style( PZUCD_NAME . '-plugin-styles', plugins_url( PZUCD_FOLDER . '/includes/frontend/css/ucd-front.css' ) );
+		wp_enqueue_style( PZUCD_NAME . '-plugin-styles', plugins_url( PZUCD_FOLDER . '/frontend/css/ucd-front.css' ) );
 	}
 
 // end register_plugin_styles
@@ -225,7 +225,7 @@ class Ultimate_Content_Display
 
 		wp_enqueue_script( 'jquery' );
 		// wp_enqueue_script( PZUCD_NAME.'-plugin-script', plugins_url( PZUCD_FOLDER.'/frontend/js/display.js' ) );
-		wp_enqueue_script( PZUCD_NAME . '-isotope', plugins_url( PZUCD_FOLDER . '/includes/frontend/js/jquery.isotope.min.js' ) );
+		wp_enqueue_script( PZUCD_NAME . '-isotope', plugins_url( PZUCD_FOLDER . '/frontend/js/jquery.isotope.min.js' ) );
 	}
 
 // end register_plugin_scripts

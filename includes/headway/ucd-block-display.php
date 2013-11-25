@@ -49,10 +49,10 @@ class HeadwayUltimateContentDisplayBlock extends HeadwayBlockAPI
 			$block = HeadwayBlocksData::get_block($block[ 'settings' ][ 'mirror-block' ]);
 		}
 
-		wp_enqueue_style('pzucd-block-css', PZUCD_PLUGIN_URL . '/includes/frontend/css/ucd-front.css');
+		wp_enqueue_style('pzucd-block-css', PZUCD_PLUGIN_URL . '/frontend/css/ucd-front.css');
 
 		wp_enqueue_script('jquery');
-		wp_enqueue_script('jquery-isotope', PZUCD_PLUGIN_URL . '/includes/external/js/jquery.isotope.min.js');
+		wp_enqueue_script('jquery-isotope', PZUCD_PLUGIN_URL . '/external/js/jquery.isotope.min.js');
 
 //		wp_enqueue_script('jquery-masonry');
 
