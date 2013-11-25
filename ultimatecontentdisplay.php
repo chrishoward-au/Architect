@@ -57,7 +57,7 @@ class Ultimate_Content_Display
 		{
 //			include_once PZUCD_PLUGIN_PATH . '/libs/PizazzWP.php';
 		}
-		require_once PZUCD_PLUGIN_PATH . '/includes/ucd-functions.php';
+		require_once PZUCD_PLUGIN_PATH . 'includes/ucd-functions.php';
 
 		// Register admin styles and scripts
 

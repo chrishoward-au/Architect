@@ -15,6 +15,7 @@ jQuery(document).ready(function() {
 //check for2which one is being passed. maybe even pass it
 
 		var target_name = jQuery(target_id).val();
+    console.log(target_id);
 		if (jQuery(target_id).is(':checked')) {
 			jQuery('.pzucd-dropped-' + target_name).show();
 			jQuery('#pzucd_layout-show span.' + target_name).text(' (' + jQuery('input#pzucd_layout-' + target_name + '-width').val() + '%)');
@@ -25,7 +26,7 @@ jQuery(document).ready(function() {
 
 
 		// Update background
-		switch (jQuery('select#pzucd_layout-background-image').find('option:selected').val()) {
+		switch (jQuery('select#_pzucd_layout-background-image-cmb-field-0').find('option:selected').val()) {
 			case 'fill':
 				jQuery('.pzucd-dropzone .pzgp-cell-image-behind').html('<img src="' + plugin_url + '/assets/images/sample-image.jpg"/>');
 				jQuery('.pzucd-dropzone .pzgp-cell-image-behind').css({
@@ -171,7 +172,7 @@ jQuery(document).ready(function() {
 	//jQuery('.pzucd_palette').draggable({scroll: true});
 
 	// Hidden field containing the plugin url
-	var plugin_url = jQuery('#pzucd-custom-pzucd_layout-cell-preview .plugin_url').text();
+	var plugin_url = jQuery('.field.Pizazz_Layout_Field .plugin_url').text();
 	var $preview_inputs = jQuery("#pzucd-form-table-Layout input");
 
 
@@ -213,28 +214,28 @@ jQuery(document).ready(function() {
 		pzucdUpdatePreview(e);
 	});
 
-	jQuery('select#pzucd_layout-background-image').change(function(e) {
+ 	jQuery('select#_pzucd_layout-background-image-cmb-field-0').change(function(e) {
 		pzucdUpdatePreview(e);
 	});
 
 	// Set position of zones
-	jQuery('select#pzucd_layout-sections-position').change(function(e) {
+	jQuery('select#_cmb_present_pzucd_layout-sections-position').change(function(e) {
 		pzucdUpdatePreview(e);
 	});
 
-	jQuery('input#pzucd_layout-cell-height').change(function(e) {
+	jQuery('input#_cmb_present_pzucd_layout-cell-height').change(function(e) {
 		pzucdUpdatePreview(e);
 	});
 
-	jQuery('input#pzucd_layout-sections-widths').change(function(e) {
+	jQuery('input#_cmb_present_pzucd_layout-sections-widths').change(function(e) {
 		pzucdUpdatePreview(e);
 	});
 
-	jQuery('input#pzucd_layout-nudge-section-x').change(function(e) {
+	jQuery('input#_cmb_present_pzucd_layout-nudge-section-x').change(function(e) {
 		pzucdUpdatePreview(e);
 	});
 
-	jQuery('input#pzucd_layout-nudge-section-y').change(function(e) {
+	jQuery('input#_cmb_present_pzucd_layout-nudge-section-y').change(function(e) {
 		pzucdUpdatePreview(e);
 	});
 
@@ -282,7 +283,7 @@ jQuery(document).ready(function() {
 
 			element_html['meta3'] = '<span class="pzucd-dropped pzucd-dropped-meta3 pzucd-dropped-meta"  title= "Meta info 3" data-idcode="%meta3%" style="font-size:11px;"><span>Comments: 27</span></span>';
 
-			var sorted = jQuery('input[name="pzucd_layout-field-order"]').val();
+			var sorted = jQuery('input[name="_pzucd_layout-field-order[cmb-field-0]"]').val();
 			var sort_order = sorted.split(',');
 			var sortzone = jQuery(".pzucd-dropzone .pzucd-content-area");
 			sortzone.html('');

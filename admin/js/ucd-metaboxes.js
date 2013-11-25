@@ -4,7 +4,7 @@ jQuery(document).ready(function() {
 	// Active form validation
 	jQuery("#post").validationEngine();
 
-	jQuery('.pzucd-meta-boxes').tabs({});
+//	jQuery('.pzucd-meta-boxes').tabs({});
 
 
 

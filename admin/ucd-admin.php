@@ -17,12 +17,15 @@ class pzucdAdmin
 			add_action( 'admin_menu', array( $this, 'admin_menu' ) );
 			add_action( 'admin_enqueue_scripts', array( $this, 'admin_enqueue' ) );
 
+      //@TODO: need a bit of screen dependency on this
 			require_once PZUCD_PLUGIN_PATH . '/includes/class_pzucdForm.php';
 			require_once PZUCD_PLUGIN_PATH . '/admin/ucd-cell-layouts.php';
 			require_once PZUCD_PLUGIN_PATH . '/admin/ucd-data-selection.php';
 			require_once PZUCD_PLUGIN_PATH . '/admin/ucd-content-templates.php';
 			require_once PZUCD_PLUGIN_PATH . '/admin/ucd-controls.php';
 
+
+      // @TODO Should these really be classes?
 			$data_selection		 = new pzucd_Criteria;
 			$cell_layout		 = new pzucd_Cell_Layouts;
 			$content_template	 = new pzucd_Content_Templates;
