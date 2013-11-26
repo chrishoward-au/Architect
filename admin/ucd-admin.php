@@ -62,7 +62,7 @@ class pzucdAdmin
 		if ( !$pzucd_menu )
 		{
 			//add_menu_page(             $page_title,  $menu_title,               $capability,   $menu_slug, $function,    $icon_url, $position );
-			$pzucd_menu = add_menu_page( 'About UCD', 'Ultimate Content Display', 'edit_posts', 'pzucd',     'pzucd_about',PZUCD_PLUGIN_URL.'wp-icon.png' );
+			$pzucd_menu = add_menu_page( 'About UCD', 'UCD', 'edit_posts', 'pzucd',     'pzucd_about',PZUCD_PLUGIN_URL.'wp-icon.png' );
 			// add_submenu_page( $parent_slug, $page_title, $menu_title, $capability, $menu_slug, $function ); 
 
 			// Don't need this as it's carried in the layouts already

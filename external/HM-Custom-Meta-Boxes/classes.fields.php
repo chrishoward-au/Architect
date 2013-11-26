@@ -42,7 +42,7 @@ abstract class CMB_Field {
 				'style' 				=> '',
 				'class'					=> '',
 				'readonly'				=> false,
-				'disabled'				=> false
+				'disabled'				=> false,
 			)
 		);
 
@@ -276,7 +276,7 @@ abstract class CMB_Field {
 		if ( $this->title ) { ?>
 
 			<div class="field-title">
-				<label <?php $this->for_attr(); ?>>
+				<label <?php $this->for_attr(); ?> title="<?php echo $this->args['tooltip'] ?>">
 					<?php echo esc_html( $this->title ); ?>
 				</label>
 			</div>
@@ -766,7 +766,7 @@ class CMB_Radio_Field extends CMB_Field {
 			<?php foreach ( $this->args['options'] as $key => $value ): ?>
 
 			<input <?php $this->id_attr( 'item-' . $key ); ?> <?php $this->boolean_attr(); ?> <?php $this->class_attr(); ?> type="radio" <?php $this->name_attr(); ?>  value="<?php echo esc_attr( $key ); ?>" <?php checked( $key, $this->get_value() ); ?> />
-			<label <?php $this->for_attr( 'item-' . $key ); ?> style="margin-right: 20px;">
+			<label <?php $this->for_attr( 'item-' . $key ); ?> style="margin-right: 20px;" title="<?php echo $this->args['tooltip'] ?>">
 				<?php echo esc_html( $value ); ?>
 			</label>
 
@@ -787,7 +787,7 @@ class CMB_Checkbox extends CMB_Field {
 	public function html() { ?>
 
 		<input <?php $this->id_attr(); ?> <?php $this->boolean_attr(); ?> <?php $this->class_attr(); ?> type="checkbox" <?php $this->name_attr(); ?>  value="1" <?php checked( $this->get_value() ); ?> />
-		<label <?php $this->for_attr(); ?>><?php echo esc_html( $this->args['name'] ); ?></label>
+		<label <?php $this->for_attr(); ?> title="<?php echo $this->args['tooltip'] ?>"><?php echo esc_html( $this->args['name'] ); ?></label>
 
 	<?php }
 

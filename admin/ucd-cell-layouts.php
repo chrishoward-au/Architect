@@ -879,7 +879,7 @@ function pzucd_cell_designer_meta($meta_boxes = array())
       'type'       => 'text',
       'default'    => '',
       'cols'       => 6,
-      //'desc'			 => __('A set name for this cell layout. This enables you to create sets of layouts for different parent dimensions. That is, when the dimensions of the parent change, the layout will change accordingly. Traditional responsive design is based on the width of your device\'s screen,; however this fails if you place the object in a narrow column on a large screen,', 'pzucd'),
+      'tooltip'			 => __('A set name for this cell layout. This enables you to create sets of layouts for different parent dimensions. That is, when the dimensions of the parent change, the layout will change accordingly. Traditional responsive design is based on the width of your device\'s screen,; however this fails if you place the object in a narrow column on a large screen,', 'pzucd'),
       'help'       => __('Create sets of layouts with each layout in a set for different parent dimensions'),
       'validation' => 'data-validation-engine="validate[required]"'
     ),
@@ -890,7 +890,7 @@ function pzucd_cell_designer_meta($meta_boxes = array())
       'type'    => 'pzselect',
       'default' => 'post',
       'cols'    => 6,
-      //'desc'			 => __('Select the content type to display in these cells.', 'pzucd'),
+      'tooltip'			 => __('Select the content type to display in these cells.', 'pzucd'),
       'options' => array(
         'post'       => 'Posts',
         'page'       => 'Pages',
@@ -901,7 +901,6 @@ function pzucd_cell_designer_meta($meta_boxes = array())
       'name'    => __('Layout', 'pzucd'),
       'id'      => $prefix . 'layout-head',
       'type'    => 'title',
-      'default' => '',
       //'desc'		 => __('', 'pzucd')
     ),
     array(
@@ -909,8 +908,9 @@ function pzucd_cell_designer_meta($meta_boxes = array())
       'id'      => $prefix . 'layout-cell-preview',
       'cols'    => 12,
       'type'    => 'pzlayout',
+      'readonly' => true,
       'code'    => draw_cell_layout(),
-      'default' => '',
+      'default' => json_encode(array('title'=>100,'meta1'=>100,'image'=>25,'excerpt'=>75,'content'=>100,'meta2'=>100,'meta3'=>100,'custom1'=>100,'custom2'=>100,'custom3'=>100)),
       //'desc'		 => __('', 'pzucd')
     ),
     array(
@@ -932,7 +932,7 @@ function pzucd_cell_designer_meta($meta_boxes = array())
         'custom2' => 'Custom2',
         'custom3' => 'Custom3',
       ),
-      //'desc'		 => __('Select which base components to include in this cell layout.', 'pzucd')
+      'tooltip'		 => __('Select which base components to include in this cell layout.', 'pzucd')
     ),
     array(
       'name'    => __('Components area position', 'pzucd'),
@@ -959,7 +959,7 @@ function pzucd_cell_designer_meta($meta_boxes = array())
       'max'     => '100',
       'step'    => '1',
       'suffix'  => '%',
-      //'desc'		 => __('Set the overall width for the components area. Necessary for left or right positioning of sections', 'pzucd'),
+      'tooltip'		 => __('Set the overall width for the components area. Necessary for left or right positioning of sections', 'pzucd'),
       'help'    => __('Note:The sum of the width and the left/right nudge should equal 100', 'pzucd')
     ),
     array(
@@ -972,7 +972,7 @@ function pzucd_cell_designer_meta($meta_boxes = array())
       'max'     => '100',
       'step'    => '1',
       'suffix'  => '%',
-      //'desc'		 => __('Enter percent to move the components area left/right. Note: These measurements are percentage of the cell.', 'pzucd')
+      'tooltip'		 => __('Enter percent to move the components area left/right. Note: These measurements are percentage of the cell.', 'pzucd')
     ),
     array(
       'name'    => __('Nudge components area up/down', 'pzucd'),
@@ -984,7 +984,7 @@ function pzucd_cell_designer_meta($meta_boxes = array())
       'max'     => '100',
       'step'    => '1',
       'suffix'  => '%',
-      //'desc'		 => __('Enter percent to move the components area up/down. Note: These measurements are percentage of the cell.', 'pzucd')
+      'tooltip'		 => __('Enter percent to move the components area up/down. Note: These measurements are percentage of the cell.', 'pzucd')
     ),
     array(
       'name'    => __('Excerpt image', 'pzucd'),
@@ -997,7 +997,7 @@ function pzucd_cell_designer_meta($meta_boxes = array())
         'left'  => 'Image left',
         'right' => 'Image right',
       ),
-      //'desc'		 => __('Set the alignment of the image when it is in the excerpt. This will use the image settings', 'pzucd')
+      'tooltip'		 => __('Set the alignment of the image when it is in the excerpt. This will use the image settings', 'pzucd')
     ),
     array(
       'name'    => __('Feature Image/Video', 'pzucd'),
@@ -1010,7 +1010,7 @@ function pzucd_cell_designer_meta($meta_boxes = array())
         'fill'  => 'Fill the cell',
         'align' => 'Align with components area',
       ),
-      //'desc'		 => __('Select how to display the featured image or video as the background.', 'pzucd')
+      'tooltip'		 => __('Select how to display the featured image or video as the background.', 'pzucd')
     ),
     array(
       'name'    => __('Cell Height', 'pzucd'),
@@ -1022,121 +1022,7 @@ function pzucd_cell_designer_meta($meta_boxes = array())
         'fluid' => 'Fluid',
         'fixed' => 'Fixed',
       ),
-      //'desc'		 => __('Choose whether to set the height of the cells (fixed), or allow them to adjust to the content height (fluid).', 'pzucd')
-    ),
-    array(
-      'name'     => __('Cell field order', 'pzucd'),
-      'id'       => $prefix . 'layout-field-order',
-      'type'     => 'text',
-      'readonly' => true,
-      'cols'     => 12,
-      'default'  => '%title%, %meta1%, %meta2%, %excerpt%, %content%, %image%, %meta3%',
-      //'desc'		 => __('', 'pzucd')
-    ),
-    array(
-      'name'    => __('Area widths', 'pzucd'),
-      'id'      => $prefix . 'area-widths-header',
-      'type'    => 'title',
-    ),
-    array(
-      'name'     => __('Title', 'pzucd'),
-      'id'       => $prefix . 'layout-title-width',
-      'type'     => 'pzdata',
-      'readonly' => true,
-      'cols'     => 1,
-      'class'    => 'pzucd-zone-percent',
-      'alt'      => 'title',
-      'default'  => '100',
-    ),
-    array(
-      'name'     => __('Content', 'pzucd'),
-      'id'       => $prefix . 'layout-content-width',
-      'type'     => 'pzdata',
-      'readonly' => true,
-      'cols'     => 1,
-      'class'    => 'pzucd-zone-percent',
-      'alt'      => 'content',
-      'default'  => '100',
-    ),
-    array(
-      'name'     => __('Excerpt', 'pzucd'),
-      'id'       => $prefix . 'layout-excerpt-width',
-      'type'     => 'pzdata',
-      'readonly' => true,
-      'cols'     => 1,
-      'class'    => 'pzucd-zone-percent',
-      'alt'      => 'content',
-      'default'  => '100',
-    ),
-    array(
-      'name'     => __('Image', 'pzucd'),
-      'id'       => $prefix . 'layout-image-width',
-      'type'     => 'pzdata',
-      'readonly' => true,
-      'cols'     => 1,
-      'class'    => 'pzucd-zone-percent',
-      'alt'      => 'content',
-      'default'  => '100',
-    ),
-    array(
-      'name'     => __('Meta1', 'pzucd'),
-      'id'       => $prefix . 'layout-meta1-width',
-      'type'     => 'pzdata',
-      'readonly' => true,
-      'cols'     => 1,
-      'class'    => 'pzucd-zone-percent',
-      'alt'      => 'content',
-      'default'  => '100',
-    ),
-    array(
-      'name'     => __('Meta2', 'pzucd'),
-      'id'       => $prefix . 'layout-meta2-width',
-      'type'     => 'pzdata',
-      'readonly' => true,
-      'cols'     => 1,
-      'class'    => 'pzucd-zone-percent',
-      'alt'      => 'content',
-      'default'  => '100',
-    ),
-    array(
-      'name'     => __('Meta3', 'pzucd'),
-      'id'       => $prefix . 'layout-meta3-width',
-      'type'     => 'pzdata',
-      'readonly' => true,
-      'cols'     => 1,
-      'class'    => 'pzucd-zone-percent',
-      'alt'      => 'content',
-      'default'  => '100',
-    ),
-    array(
-      'name'     => __('Custom1', 'pzucd'),
-      'id'       => $prefix . 'layout-custom1-width',
-      'type'     => 'pzdata',
-      'readonly' => true,
-      'cols'     => 1,
-      'class'    => 'pzucd-zone-percent',
-      'alt'      => 'content',
-      'default'  => '100',
-    ),
-    array(
-      'name'     => __('Custom2', 'pzucd'),
-      'id'       => $prefix . 'layout-cusotm2-width',
-      'type'     => 'pzdata',
-      'readonly' => true,
-      'cols'     => 1,
-      'class'    => 'pzucd-zone-percent',
-      'alt'      => 'content',
-      'default'  => '100',
-    ),
-    array(
-      'name'     => __('Custom3', 'pzucd'),
-      'id'       => $prefix . 'layout-custom3-width',
-      'type'     => 'pzdata',
-      'readonly' => true,
-      'cols'     => 1,
-      'class'    => 'pzucd-zone-percent',
-      'alt'      => 'content',
-      'default'  => '100',
+      'tooltip'		 => __('Choose whether to set the height of the cells (fixed), or allow them to adjust to the content height (fluid).', 'pzucd')
     ),
 
   );
@@ -1191,20 +1077,23 @@ function draw_cell_layout()
 					<div class="pzgp-cell-image-behind"></div>
 					<div class="pzucd-content-area sortable">
 
-					<span class="pzucd-dropped pzucd-dropped-title" title="Post title" data-idcode="%title%" style="display: inline-block; font-weight: bold; font-size: 15px; background-color: rgb(221, 221, 221); background-position: initial initial; background-repeat: initial initial;">This is the title</span>
+					<span class="pzucd-draggable pzucd-draggable-title" title="Post title" data-idcode=title style="display: inline-block; font-weight: bold; font-size: 15px; background-color: rgb(221, 221, 221); background-position: initial initial; background-repeat: initial initial;">This is the title</span>
 
-					<span class="pzucd-dropped pzucd-dropped-meta1 pzucd-dropped-meta" title="Meta info 1" data-idcode="%meta1%" style="font-size: 11px; background-color: rgb(204, 170, 170); background-position: initial initial; background-repeat: initial initial;">Jan 1 2013</span>
+					<span class="pzucd-draggable pzucd-draggable-meta1 pzucd-draggable-meta" title="Meta info 1" data-idcode=meta1 style="font-size: 11px; background-color: rgb(204, 170, 170); background-position: initial initial; background-repeat: initial initial;">Jan 1 2013</span>
 
-					<span class="pzucd-dropped pzucd-dropped-excerpt" title="Excerpt with featured image" data-idcode="%excerpt%" style="font-size: 13px;"><img src="' . PZUCD_PLUGIN_URL . '/assets/images/sample-image.jpg" style="max-width:20%;float:right;padding:2px;">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam quis justo erat. Cras semper sem hendre...[more]</span>
+					<span class="pzucd-draggable pzucd-draggable-excerpt" title="Excerpt with featured image" data-idcode=excerpt style="font-size: 13px;"><img src="' . PZUCD_PLUGIN_URL . '/assets/images/sample-image.jpg" style="max-width:20%;float:right;padding:2px;">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam quis justo erat. Cras semper sem hendre...[more]</span>
 
-					<span class="pzucd-dropped pzucd-dropped-content" title="Full post content" data-idcode="%content%" style="font-size: 13px; display: none;"><img src="' . PZUCD_PLUGIN_URL . '/assets/images/sample-image.jpg" style="max-width:30%;float:left;padding:5px;">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam quis justo erat. <ul><li>&nbsp;•&nbsp;Cras semper sem hendrerit</li><li>&nbsp;•&nbsp;Tortor porta at auctor</li></ul><strong>Lacus consequat</strong><p>Pellentesque pulvinar iaculis tellus in blandit. Suspendisse rhoncus, magna vel eleifend cursus, turpis odio molestie urna, quis posuere eros risus quis neque. </p><p>Donec dictum leo at erat mattis sollicitudin. Nunc vulputate nisl suscipit enim adipiscing faucibus. Ut faucibus sem non sapien rutrum gravida. Maecenas pharetra mi et velit posuere ac elementum mi tincidunt. Nullam tristique tempus odio id rutrum. Nam ligula urna, semper eget elementum nec, euismod at tortor. Duis commodo, purus id posuere aliquam, orci felis facilisis odio, ac sagittis mi nisl at nibh. Sed non risus eu quam euismod faucibus.</p><p>Proin mattis convallis scelerisque. Curabitur auctor felis id sapien dictum vehicula. Aenean euismod porttitor dictum. Vestibulum nulla leo, volutpat quis tempus eu, accumsan eget ante.</p></span>
+					<span class="pzucd-draggable pzucd-draggable-content" title="Full post content" data-idcode=content style="font-size: 13px; display: none;"><img src="' . PZUCD_PLUGIN_URL . '/assets/images/sample-image.jpg" style="max-width:30%;float:left;padding:5px;">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam quis justo erat. <ul><li>&nbsp;•&nbsp;Cras semper sem hendrerit</li><li>&nbsp;•&nbsp;Tortor porta at auctor</li></ul><strong>Lacus consequat</strong><p>Pellentesque pulvinar iaculis tellus in blandit. Suspendisse rhoncus, magna vel eleifend cursus, turpis odio molestie urna, quis posuere eros risus quis neque. </p><p>Donec dictum leo at erat mattis sollicitudin. Nunc vulputate nisl suscipit enim adipiscing faucibus. Ut faucibus sem non sapien rutrum gravida. Maecenas pharetra mi et velit posuere ac elementum mi tincidunt. Nullam tristique tempus odio id rutrum. Nam ligula urna, semper eget elementum nec, euismod at tortor. Duis commodo, purus id posuere aliquam, orci felis facilisis odio, ac sagittis mi nisl at nibh. Sed non risus eu quam euismod faucibus.</p><p>Proin mattis convallis scelerisque. Curabitur auctor felis id sapien dictum vehicula. Aenean euismod porttitor dictum. Vestibulum nulla leo, volutpat quis tempus eu, accumsan eget ante.</p></span>
 
-					<span class="pzucd-dropped pzucd-dropped-image" title="Featured image" data-idcode="%image%" style="max-height: 100px; overflow: hidden;"><img src="' . PZUCD_PLUGIN_URL . '/assets/images/sample-image.jpg" style="max-width:100%;"></span>
+					<span class="pzucd-draggable pzucd-draggable-image" title="Featured image" data-idcode=image style="max-height: 100px; overflow: hidden;"><img src="' . PZUCD_PLUGIN_URL . '/assets/images/sample-image.jpg" style="max-width:100%;"></span>
 
 
-					<span class="pzucd-dropped pzucd-dropped-meta2 pzucd-dropped-meta" title="Meta info 2" data-idcode="%meta2%" style="font-size: 11px; background-color: rgb(221, 221, 221); background-position: initial initial; background-repeat: initial initial;">Categories - News, Sport</span>
+					<span class="pzucd-draggable pzucd-draggable-meta2 pzucd-draggable-meta" title="Meta info 2" data-idcode=meta2 style="font-size: 11px; background-color: rgb(221, 221, 221); background-position: initial initial; background-repeat: initial initial;">Categories - News, Sport</span>
 
-					<span class="pzucd-dropped pzucd-dropped-meta3 pzucd-dropped-meta" title="Meta info 3" data-idcode="%meta3%" style="font-size: 11px; background-color: rgb(221, 221, 221); background-position: initial initial; background-repeat: initial initial;">Comments: 27</span>
+					<span class="pzucd-draggable pzucd-draggable-meta3 pzucd-draggable-meta" title="Meta info 3" data-idcode=meta3 style="font-size: 11px; background-color: rgb(221, 221, 221); background-position: initial initial; background-repeat: initial initial;">Comments: 27</span>
+					<span class="pzucd-draggable pzucd-draggable-custom1 pzucd-draggable-meta" title="Custom field 1" data-idcode=custom1 style="font-size: 11px; background-color: rgb(221, 221, 221); background-position: initial initial; background-repeat: initial initial;">Custom content 1</span>
+					<span class="pzucd-draggable pzucd-draggable-custom2 pzucd-draggable-meta" title="Custom field 2" data-idcode=custom2 style="font-size: 11px; background-color: rgb(221, 221, 221); background-position: initial initial; background-repeat: initial initial;">Custom content 2</span>
+					<span class="pzucd-draggable pzucd-draggable-custom3 pzucd-draggable-meta" title="Custom field 3" data-idcode=custom3 style="font-size: 11px; background-color: rgb(221, 221, 221); background-position: initial initial; background-repeat: initial initial;">Custom content 3</span>
 				</div>
 			</div>
 

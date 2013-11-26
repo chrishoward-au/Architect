@@ -3,29 +3,44 @@ jQuery(document).ready(function() {
 
 	//pzucdUpdatePreview('');
 	/**************************
-	 function pzucdUpdatePreview() 
+   *
+   *
+	 * function pzucdUpdatePreview()
+   *
+   *
 	 ***************************/
 	function pzucdUpdatePreview(e) {
 
 		/// add some resets - would save on all those resets being done. Plus add $var decs of each jQ
 
-		//	
-		console.log(e);
+		//
+    var cell_layout = jQuery.parseJSON(jQuery('input#_pzucd_layout-cell-preview-cmb-field-0').val());
+
+//    jQuery.each(cell_layout,function(index, value){
+//      //console.log(index, value);
+//    });
+		//console.log(e);
 		var target_id = '#' + e.target.id;
-//check for2which one is being passed. maybe even pass it
 
-		var target_name = jQuery(target_id).val();
-    console.log(target_id);
-		if (jQuery(target_id).is(':checked')) {
-			jQuery('.pzucd-dropped-' + target_name).show();
-			jQuery('#pzucd_layout-show span.' + target_name).text(' (' + jQuery('input#pzucd_layout-' + target_name + '-width').val() + '%)');
-		} else {
-			jQuery('.pzucd-dropped-' + target_name).hide();
-			jQuery('#pzucd_layout-show span.' + target_name).text('');
-		}
+    //check for2which one is being passed. maybe even pass it
 
+    // e is a field that has changed - eg nudgex
+    // if e is null, then it's not one of the fields we care about.
+    if (target_id != '#') {
+      var target_name = jQuery(target_id).val();
+      //console.log(target_id);
+      if (jQuery(target_id).is(':checked')) {
+        jQuery('.pzucd-draggable-' + target_name).show();
+//        jQuery('#pzucd_layout-show span.' + target_name).text(' (' + jQuery('input#pzucd_layout-' + target_name + '-width').val() + '%)');
+      } else {
+        jQuery('.pzucd-draggable-' + target_name).hide();
+ //       jQuery('#pzucd_layout-show span.' + target_name).text('');
+      }
+    }
 
+    /*********************
 		// Update background
+    *********************/
 		switch (jQuery('select#_pzucd_layout-background-image-cmb-field-0').find('option:selected').val()) {
 			case 'fill':
 				jQuery('.pzucd-dropzone .pzgp-cell-image-behind').html('<img src="' + plugin_url + '/assets/images/sample-image.jpg"/>');
@@ -46,7 +61,7 @@ jQuery(document).ready(function() {
 				var zonesHeight = jQuery('.pzucd-content-area').height();
 				var imageWidth = 400 - zonesWidth;
 				var imageHeight = 300 - zonesHeight;
-				var sections_position = jQuery('select#pzucd_layout-sections-position').find('option:selected').val();
+				var sections_position = jQuery('select#_pzucd_layout-sections-position-cmb-field-0').find('option:selected').val();
 				switch (sections_position) {
 					case 'left':
 						jQuery('.pzucd-dropzone .pzgp-cell-image-behind img').css({
@@ -106,8 +121,11 @@ jQuery(document).ready(function() {
 				jQuery('.pzucd-dropzone .pzgp-cell-image-behind').html('');
 				break;
 		}
-		// Update positions
-		switch (jQuery('select#pzucd_layout-sections-position').find('option:selected').val()) {
+
+    /******************
+		// Update component location
+		******************/
+		switch (jQuery('select#_pzucd_layout-sections-position-cmb-field-0').find('option:selected').val()) {
 			case 'bottom':
 				jQuery('.pzucd-content-area').css({
 					bottom: '0',
@@ -141,15 +159,22 @@ jQuery(document).ready(function() {
 				});
 				break;
 		}
-		// update section width
-		jQuery('.pzucd-content-area').css('width', jQuery('input#pzucd_layout-sections-widths').val() + '%')
 
-		// Update cells height
-		jQuery('.pzucd-content-area').css('height', jQuery('input#pzucd_layout-cell-height').val() + 'px')
+    /**********************
+		// update components width
+    **********************/
+		jQuery('.pzucd-content-area').css('width', jQuery('input#_pzucd_layout-sections-widths-cmb-field-0').val() + '%')
 
-		// Update zones nudge
-		var nudgexy = [jQuery('input#pzucd_layout-nudge-section-x').val(),jQuery('input#pzucd_layout-nudge-section-y').val()];
-		var sections_position = jQuery('select#pzucd_layout-sections-position').find('option:selected').val();
+    /**********************
+		// Update components height
+    **********************/
+		jQuery('.pzucd-content-area').css('height', jQuery('input#_pzucd_layout-cell-height-cmb-field-0').val() + 'px')
+
+    /*********************
+		// Update components nudge
+    *********************/
+		var nudgexy = [jQuery('input#_pzucd_layout-nudge-section-x-cmb-field-0').val(),jQuery('input#_pzucd_layout-nudge-section-y-cmb-field-0').val()];
+		var sections_position = jQuery('select#_pzucd_layout-sections-position-cmb-field-0').find('option:selected').val();
 		if (sections_position == 'left' || sections_position == 'top') {
 			jQuery('.pzucd-content-area').css('marginLeft', nudgexy[0] + '%');
 			jQuery('.pzucd-content-area').css('marginTop', nudgexy[1] + '%');
@@ -164,6 +189,8 @@ jQuery(document).ready(function() {
 //=========================
 
 
+
+
 //***********************
 // Process field values
 //***********************
@@ -173,37 +200,44 @@ jQuery(document).ready(function() {
 
 	// Hidden field containing the plugin url
 	var plugin_url = jQuery('.field.Pizazz_Layout_Field .plugin_url').text();
-	var $preview_inputs = jQuery("#pzucd-form-table-Layout input");
+
+  // Get the fields selector values
+	var $preview_inputs = jQuery("select#_pzucd_layout-show-cmb-field-0 option");
+
+  // Get the current order and widths from the hidden text field attached to preview layout box
+  var cell_layout = jQuery.parseJSON(jQuery('input#_pzucd_layout-cell-preview-cmb-field-0').val());
 
 
 	$preview_inputs.each(function() {
-		var altid = this.alt;
-		var $source_target = jQuery('.pzucd-dropped-' + altid);
-		var $source_percent_text = jQuery('span.percent-pzucd_layout-' + altid + '-width');
-		if (jQuery(this).val() == 0) {
+		var altid = this.value;
+		var $source_target = jQuery('.pzucd-draggable-' + altid);
+		var $source_percent_text = jQuery('#_pzucd_layout-' + altid + '-width-cmb-field-0');
+    //console.log($source_target);
+		if (!this.selected) {
 			$source_target.hide();
-			$source_percent_text.text('Not used');
 		} else {
+//      //console.log($source_target);
 			$source_target.show();
-			$source_target.css("width", jQuery(this).val() + '%');
+      //console.log(altid,cell_layout[altid]);
+			$source_target.css("width", cell_layout[altid]+'%');
 		}
 
 	});
 
-	var $thumb_align = jQuery('select[name="pzucd_layout-excerpt-thumb"]');
+	var $thumb_align = jQuery('select[name="_pzucd_layout-excerpt-thumb[cmb-field-0]"]');
 	$thumb_align.change(function() {
 		if (jQuery(this).val() == 'left') {
-			jQuery('.pzucd-dropped-excerpt img').removeClass('pzucd-align-right');
-			jQuery('.pzucd-dropped-excerpt img').removeClass('pzucd-hide-excerpt-thumb');
-			jQuery('.pzucd-dropped-excerpt img').addClass('pzucd-align-left');
+			jQuery('.pzucd-draggable-excerpt img').removeClass('pzucd-align-right');
+			jQuery('.pzucd-draggable-excerpt img').removeClass('pzucd-hide-excerpt-thumb');
+			jQuery('.pzucd-draggable-excerpt img').addClass('pzucd-align-left');
 		} else if (jQuery(this).val() == 'right') {
-			jQuery('.pzucd-dropped-excerpt img').removeClass('pzucd-align-left');
-			jQuery('.pzucd-dropped-excerpt img').removeClass('pzucd-hide-excerpt-thumb');
-			jQuery('.pzucd-dropped-excerpt img').addClass('pzucd-align-right');
+			jQuery('.pzucd-draggable-excerpt img').removeClass('pzucd-align-left');
+			jQuery('.pzucd-draggable-excerpt img').removeClass('pzucd-hide-excerpt-thumb');
+			jQuery('.pzucd-draggable-excerpt img').addClass('pzucd-align-right');
 		} else {
-			jQuery('.pzucd-dropped-excerpt img').addClass('pzucd-hide-excerpt-thumb');
-			jQuery('.pzucd-dropped-excerpt img').removeClass('pzucd-align-left');
-			jQuery('.pzucd-dropped-excerpt img').removeClass('pzucd-align-right');
+			jQuery('.pzucd-draggable-excerpt img').addClass('pzucd-hide-excerpt-thumb');
+			jQuery('.pzucd-draggable-excerpt img').removeClass('pzucd-align-left');
+			jQuery('.pzucd-draggable-excerpt img').removeClass('pzucd-align-right');
 		}
 	});
 
@@ -219,23 +253,23 @@ jQuery(document).ready(function() {
 	});
 
 	// Set position of zones
-	jQuery('select#_cmb_present_pzucd_layout-sections-position').change(function(e) {
+	jQuery('select#_pzucd_layout-sections-position-cmb-field-0').change(function(e) {
 		pzucdUpdatePreview(e);
 	});
 
-	jQuery('input#_cmb_present_pzucd_layout-cell-height').change(function(e) {
+	jQuery('input#_pzucd_layout-cell-height-type-cmb-field-0').change(function(e) {
 		pzucdUpdatePreview(e);
 	});
 
-	jQuery('input#_cmb_present_pzucd_layout-sections-widths').change(function(e) {
+	jQuery('input#_pzucd_layout-sections-widths-cmb-field-0').change(function(e) {
 		pzucdUpdatePreview(e);
 	});
 
-	jQuery('input#_cmb_present_pzucd_layout-nudge-section-x').change(function(e) {
+	jQuery('input#_pzucd_layout-nudge-section-x-cmb-field-0').change(function(e) {
 		pzucdUpdatePreview(e);
 	});
 
-	jQuery('input#_cmb_present_pzucd_layout-nudge-section-y').change(function(e) {
+	jQuery('input#_pzucd_layout-nudge-section-y-cmb-field-0').change(function(e) {
 		pzucdUpdatePreview(e);
 	});
 
@@ -250,72 +284,87 @@ jQuery(document).ready(function() {
 			jQuery(this).removeClass("ui-state-default");
 		},
 		update: function(event, ui) {
+      var cell_layout = jQuery.parseJSON(jQuery('input#_pzucd_layout-cell-preview-cmb-field-0').val());
 			var sorted = jQuery(".pzucd-dropzone .pzucd-content-area").sortable("toArray", {
 				attribute: "data-idcode"
 			});
-			jQuery('input[name="pzucd_layout-field-order"]').val(sorted);
-			jQuery('input[name="pzucd_layout-field-order"]').change();
+      var new_layout = reorder_parts(cell_layout,sorted);
+      console.log(cell_layout,new_layout);
+      jQuery('input#_pzucd_layout-cell-preview-cmb-field-0').val( JSON.stringify(reorder_parts(cell_layout,sorted) ));
+      var cell_layout = jQuery.parseJSON(jQuery('input#_pzucd_layout-cell-preview-cmb-field-0').val());
+//      //console.log(sorted);
+			jQuery('input[name="_pzucd_layout-field-order-cmb-field-0"]').val(sorted);
+			jQuery('input[name="_pzucd_layout-field-order-cmb-field-0"]').change();
 		},
+    /*************
+    Do on create
+    *************/
 		create: function(event, ui) {
 			var element_html = new Array();
-			element_html['title'] = '<span class="pzucd-dropped pzucd-dropped-title" title= "Post title" data-idcode="%title%" style="display: inline-block;font-weight:bold;font-size:15px;"><span>This is the title</span></span>'
+			element_html['title'] = '<span class="pzucd-draggable pzucd-draggable-title" title= "Post title" data-idcode=title style="display: inline-block;font-weight:bold;font-size:15px;"><span>This is the title</span></span>'
 
-			element_html['meta1'] = '<span class="pzucd-dropped pzucd-dropped-meta1 pzucd-dropped-meta"  title= "Meta info 1" data-idcode="%meta1%" style="font-size:11px;"><span>Jan 1 2013</span></span>';
+			element_html['meta1'] = '<span class="pzucd-draggable pzucd-draggable-meta1 pzucd-draggable-meta"  title= "Meta info 1" data-idcode=meta1 style="font-size:11px;"><span>Jan 1 2013</span></span>';
 
-			element_html['meta2'] = '<span class="pzucd-dropped pzucd-dropped-meta2 pzucd-dropped-meta" title= "Meta info 2"  data-idcode="%meta2%" style="font-size:11px;"><span>Categories - News, Sport</span></span>';
+			element_html['meta2'] = '<span class="pzucd-draggable pzucd-draggable-meta2 pzucd-draggable-meta" title= "Meta info 2"  data-idcode=meta2 style="font-size:11px;"><span>Categories - News, Sport</span></span>';
 
-			element_html['image'] = '<span class="pzucd-dropped pzucd-dropped-image"  title= "Featured image" data-idcode="%image%" style="max-height:100px;overflow:hidden;"><span><img src="PZUCD_PLUGIN_URL/assets/images/sample-image.jpg" style="max-width:100%;"/></span></span>';
+			element_html['image'] = '<span class="pzucd-draggable pzucd-draggable-image"  title= "Featured image" data-idcode=image style="max-height:100px;overflow:hidden;"><span><img src="PZUCD_PLUGIN_URL/assets/images/sample-image.jpg" style="max-width:100%;"/></span></span>';
 			element_html['image'] = element_html['image'].replace(/PZUCD_PLUGIN_URL/, plugin_url);
 
 
-			element_html['content'] = '<span class="pzucd-dropped pzucd-dropped-content" title= "Full post content"  data-idcode="%content%" style="font-size:13px;"><span><img src="PZUCD_PLUGIN_URL/assets/images/sample-image.jpg" style="max-width:30%;float:left;padding:5px;"/>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam quis justo erat. <ul><li>&nbsp;&bull;&nbsp;Cras semper sem hendrerit</li><li>&nbsp;&bull;&nbsp;Tortor porta at auctor</li></ul><strong>Lacus consequat</strong><p>Pellentesque pulvinar iaculis tellus in blandit. Suspendisse rhoncus, magna vel eleifend cursus, turpis odio molestie urna, quis posuere eros risus quis neque. </p><p>Donec dictum leo at erat mattis sollicitudin. Nunc vulputate nisl suscipit enim adipiscing faucibus. Ut faucibus sem non sapien rutrum gravida. Maecenas pharetra mi et velit posuere ac elementum mi tincidunt. Nullam tristique tempus odio id rutrum. Nam ligula urna, semper eget elementum nec, euismod at tortor. Duis commodo, purus id posuere aliquam, orci felis facilisis odio, ac sagittis mi nisl at nibh. Sed non risus eu quam euismod faucibus.</p><p>Proin mattis convallis scelerisque. Curabitur auctor felis id sapien dictum vehicula. Aenean euismod porttitor dictum. Vestibulum nulla leo, volutpat quis tempus eu, accumsan eget ante.</p></span></span>';
+			element_html['content'] = '<span class="pzucd-draggable pzucd-draggable-content" title= "Full post content"  data-idcode=content style="font-size:13px;"><span><img src="PZUCD_PLUGIN_URL/assets/images/sample-image.jpg" style="max-width:30%;float:left;padding:5px;"/>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam quis justo erat. <ul><li>&nbsp;&bull;&nbsp;Cras semper sem hendrerit</li><li>&nbsp;&bull;&nbsp;Tortor porta at auctor</li></ul><strong>Lacus consequat</strong><p>Pellentesque pulvinar iaculis tellus in blandit. Suspendisse rhoncus, magna vel eleifend cursus, turpis odio molestie urna, quis posuere eros risus quis neque. </p><p>Donec dictum leo at erat mattis sollicitudin. Nunc vulputate nisl suscipit enim adipiscing faucibus. Ut faucibus sem non sapien rutrum gravida. Maecenas pharetra mi et velit posuere ac elementum mi tincidunt. Nullam tristique tempus odio id rutrum. Nam ligula urna, semper eget elementum nec, euismod at tortor. Duis commodo, purus id posuere aliquam, orci felis facilisis odio, ac sagittis mi nisl at nibh. Sed non risus eu quam euismod faucibus.</p><p>Proin mattis convallis scelerisque. Curabitur auctor felis id sapien dictum vehicula. Aenean euismod porttitor dictum. Vestibulum nulla leo, volutpat quis tempus eu, accumsan eget ante.</p></span></span>';
 			element_html['content'] = element_html['content'].replace(/PZUCD_PLUGIN_URL/, plugin_url);
 
 			if ($thumb_align.val() == 'left') {
-				element_html['excerpt'] = '<span class="pzucd-dropped pzucd-dropped-excerpt"  title= "Excerpt with featured image" data-idcode="%excerpt%" style="font-size:13px;"><span><img src="PZUCD_PLUGIN_URL/assets/images/sample-image.jpg" class="pzucd-align-left" style="max-width:20%;"/>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam quis justo erat. Cras semper sem hendre...[more]</span></span>';
+				element_html['excerpt'] = '<span class="pzucd-draggable pzucd-draggable-excerpt"  title= "Excerpt with featured image" data-idcode=excerpt style="font-size:13px;"><span><img src="PZUCD_PLUGIN_URL/assets/images/sample-image.jpg" class="pzucd-align-left" style="max-width:20%;"/>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam quis justo erat. Cras semper sem hendre...[more]</span></span>';
 			} else if ($thumb_align.val() == 'right') {
-				element_html['excerpt'] = '<span class="pzucd-dropped pzucd-dropped-excerpt"  title= "Excerpt with featured image" data-idcode="%excerpt%" style="font-size:13px;"><span><img src="PZUCD_PLUGIN_URL/assets/images/sample-image.jpg" class="pzucd-align-right" style="max-width:20%;"/>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam quis justo erat. Cras semper sem hendre...[more]</span></span>';
+				element_html['excerpt'] = '<span class="pzucd-draggable pzucd-draggable-excerpt"  title= "Excerpt with featured image" data-idcode=excerpt style="font-size:13px;"><span><img src="PZUCD_PLUGIN_URL/assets/images/sample-image.jpg" class="pzucd-align-right" style="max-width:20%;"/>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam quis justo erat. Cras semper sem hendre...[more]</span></span>';
 			} else {
-				element_html['excerpt'] = '<span class="pzucd-dropped pzucd-dropped-excerpt"  title= "Excerpt with featured image" data-idcode="%excerpt%" style="font-size:13px;"><span><img src="PZUCD_PLUGIN_URL/assets/images/sample-image.jpg" class="pzucd-hide-excerpt-thumb" style="max-width:20%;"/>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam quis justo erat. Cras semper sem hendre...[more]</span></span>';
+				element_html['excerpt'] = '<span class="pzucd-draggable pzucd-draggable-excerpt"  title= "Excerpt with featured image" data-idcode=excerpt style="font-size:13px;"><span><img src="PZUCD_PLUGIN_URL/assets/images/sample-image.jpg" class="pzucd-hide-excerpt-thumb" style="max-width:20%;"/>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam quis justo erat. Cras semper sem hendre...[more]</span></span>';
 
 			}
 			element_html['excerpt'] = element_html['excerpt'].replace(/PZUCD_PLUGIN_URL/, plugin_url);
 
-			element_html['meta3'] = '<span class="pzucd-dropped pzucd-dropped-meta3 pzucd-dropped-meta"  title= "Meta info 3" data-idcode="%meta3%" style="font-size:11px;"><span>Comments: 27</span></span>';
+			element_html['meta3'] = '<span class="pzucd-draggable pzucd-draggable-meta3 pzucd-draggable-meta"  title= "Meta info 3" data-idcode=meta3 style="font-size:11px;"><span>Comments: 27</span></span>';
+      element_html['custom1'] = '<span class="pzucd-draggable pzucd-draggable-custom1 pzucd-draggable-meta"  title= "Custom field 1" data-idcode=custom1 style="font-size:11px;"><span>Custom content 1</span></span>';
+      element_html['custom2'] = '<span class="pzucd-draggable pzucd-draggable-custom2 pzucd-draggable-meta"  title= "Custom field 2" data-idcode=custom2 style="font-size:11px;"><span>Custom content 2</span></span>';
+      element_html['custom3'] = '<span class="pzucd-draggable pzucd-draggable-custom3 pzucd-draggable-meta"  title= "Custom field 3" data-idcode=custom3 style="font-size:11px;"><span>Custom content 3</span></span>';
 
-			var sorted = jQuery('input[name="_pzucd_layout-field-order[cmb-field-0]"]').val();
-			var sort_order = sorted.split(',');
+      var cell_layout = jQuery.parseJSON(jQuery('input#_pzucd_layout-cell-preview-cmb-field-0').val());
+
 			var sortzone = jQuery(".pzucd-dropzone .pzucd-content-area");
 			sortzone.html('');
-			var i = 0;
-			for (i = 0; i < sort_order.length; i++) {
+      var $preview_inputs = jQuery("select#_pzucd_layout-show-cmb-field-0 option");
+      var input_states = [];
+      $preview_inputs.each(function(){
+        input_states[this.value]= this.selected;
+      });
 
-				var element_id = sort_order[i].replace(/%/g, "");
-				element_id = element_id.replace(/(^\s+|\s+$)/g, '');
-				sortzone.html(sortzone.html() + element_html[element_id]);
-				console.log('[' + element_id + ']');
-				var $source_target = jQuery('.pzucd-dropped-' + element_id);
-				var $source_percent_text = jQuery('span.percent-pzucd_layout-' + element_id + '-width');
-				var $source_input = jQuery('input[name="pzucd_layout-' + element_id + '-width"]');
-				var $source_shown = jQuery('#pzucd_layout-show input#pzucd_layout-show_' + element_id);
-				console.log('.pzucd-dropped-' + element_id, 'input[name="pzucd_layout-' + element_id + '-width"]', '#pzucd_layout-show input#pzucd_layout-show_' + element_id);
-				if ($source_shown.is(':checked')) {
-					$source_target.show();
-					$source_target.css("width", $source_input.val() + '%');
-					$source_percent_text.text($source_input.val() + '%');
-					jQuery("#pzucd_layout-show span." + element_id).text(' (' + $source_input.val() + '%)').css({'font-weight':'bold','color':'#7DB0C7'});
-				} else {
-					$source_target.hide();
-					$source_percent_text.text('Not used');
-				}
-			}
-			pzucdUpdatePreview(event);
+      jQuery.each(cell_layout,function(index, value){
+        sortzone.html(sortzone.html() + element_html[index]);
+        var $source_target = jQuery('.pzucd-draggable-' + index);
+        var $source_percent_text = jQuery('span.percent-pzucd_layout-' + index + '-width');
+        var $source_input = jQuery('input[name="_pzucd_layout-' + index + '-width[cmb-field-0]"]');
+
+        if (input_states[index] == true ) {
+          $source_target.show();
+          $source_target.css("width", value+'%');
+//          $source_input.val(value);
+        } else {
+          $source_target.hide();
+//          $source_input.val('');
+        }
+
+        //console.log(index, value);
+      });
+
+
+      pzucdUpdatePreview(event);
 
 		}
 	});
 
 
-	jQuery(".pzucd-dropped").resizable({
+	jQuery(".pzucd-draggable").resizable({
 		handles: "e",
 		containment: "parent",
 		grid: [4, 1],
@@ -323,11 +372,13 @@ jQuery(document).ready(function() {
 		maxWidth: 400,
 		autoHide: true,
 		resize: function(event, ui) {
-			var zone = jQuery(this).data("idcode").replace(/%/g, "");
+			var zone = jQuery(this).data("idcode");
 			var new_percent = Math.floor((jQuery(this).width() / 400) * 100);
-			jQuery("#pzucd_layout-" + zone + "-width").val(new_percent);
-			jQuery("#pzucd_layout-" + zone + "-width").change();
-			jQuery("#pzucd_layout-show span." + zone).text(' (' + new_percent + '%)');
+			jQuery("#_pzucd_layout-" + zone + "-width[cmb-field-0]").val(new_percent);
+			jQuery("#_pzucd_layout-" + zone + "-width[cmb-field-0]").change();
+
+      // update the array
+//			jQuery("#pzucd_layout-show span." + zone).text(' (' + new_percent + '%)');
 
 		}
 	});
@@ -336,7 +387,7 @@ jQuery(document).ready(function() {
 
 
 //	jQuery('.pzucd-meta-tab-title').mousedown(function(){
-//			jQuery('.pzucd-dropped-title').css("background" , "#caa");
+//			jQuery('.pzucd-draggable-title').css("background" , "#caa");
 //	});
 
 	jQuery('.pzucd-meta-nav li').mousedown(function() {
@@ -350,7 +401,7 @@ jQuery(document).ready(function() {
 
 		var $source_input = jQuery(event.target);
 		var altid = $source_input.attr("alt");
-		var $source_target = jQuery('.pzucd-dropped-' + altid);
+		var $source_target = jQuery('.pzucd-draggable-' + altid);
 		var $source_percent_text = jQuery('span.percent-pzucd_layout-' + altid + '-width');
 
 		//  	$source_target.css("background" , "#caa");
@@ -360,13 +411,13 @@ jQuery(document).ready(function() {
 
 				var $input = jQuery(this);
 
-				$source_target.css("width", $input.val() + '%');
+	//			$source_target.css("width", $input.val() + '%');
 				if ($input.val() == 0) {
 					$source_target.hide();
-					$source_percent_text.text('Not used');
+//					$source_percent_text.text('Not used');
 				} else {
 					$source_target.show();
-					$source_percent_text.text($input.val() + '%');
+	//				$source_percent_text.text($input.val() + '%');
 				}
 
 			});
@@ -379,4 +430,15 @@ jQuery(document).ready(function() {
 
 
 
+  function reorder_parts(o_from,a_to) {
+  var new_from ={};
+
+    jQuery.each(a_to,function(index, value){
+      //console.log(index, value);
+      new_from[value]= o_from[value];
+
+    });
+    //console.log(new_from);
+    return new_from;
+  }
 });
