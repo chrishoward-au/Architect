@@ -7,6 +7,12 @@
  * To change this template use File | Settings | File Templates.
  */
 
+add_filter('admin_body_class','pzucd_add_screen_class');
+function pzucd_add_screen_class() {
+  $screen = get_current_screen();
+  return 'screen-'.$screen->id;
+}
+
 add_filter('cmb_field_types', 'pzucd_custom_fields');
 function pzucd_custom_fields($fields)
 {
@@ -17,6 +23,8 @@ function pzucd_custom_fields($fields)
   $fields[ 'pzselect' ]   = 'Pizazz_Select_Field';
   $fields[ 'pzdata' ]     = 'Pizazz_Data_Field';
   $fields[ 'pzspinner' ]  = 'Pizazz_Spinner_Field';
+  $fields[ 'pzrange' ]  = 'Pizazz_Range_Field';
+  $fields[ 'pzsubmit' ]  = 'Pizazz_Submit_Button';
 
 
   return $fields;
@@ -175,7 +183,7 @@ if (!class_exists('Pizazz_Code_Field'))
       echo($this->args[ 'code' ]);
       ?>
 
-      <input type="text" <?php $this->id_attr(); ?> <?php $this->boolean_attr(); ?> <?php $this->class_attr(); ?> <?php $this->name_attr(); ?>
+      <input type="hidden" <?php $this->id_attr(); ?> <?php $this->boolean_attr(); ?> <?php $this->class_attr(); ?> <?php $this->name_attr(); ?>
              value="<?php echo esc_attr($this->get_value()); ?>"/>
 
     <?php
@@ -315,3 +323,32 @@ if (!class_exists('Pizazz_Spinner_Field'))
   }
 }
 
+if (!class_exists('Pizazz_Range_Field'))
+{
+  class Pizazz_Range_Field extends CMB_Field
+  {
+
+
+    public function html()
+    {
+      ?>
+      <?php echo esc_html( $this->args[ 'min' ])?><input alt="<?php echo $this->args[ 'alt' ]; ?>" type="range" style="width:80%;" min=<?php echo esc_html( $this->args[ 'min' ])?> max=<?php echo esc_html( $this->args[ 'max' ])?> <?php $this->name_attr(); ?><?php $this->boolean_attr(); ?> <?php $this->class_attr(); ?> <?php $this->id_attr(); ?> value="<?php echo esc_attr($this->get_value()) ?>" /><span class="pzucd-range-spinner spinner-'<?php  echo sanitize_html_class( $this->args[ 'id' ] ) ?>"><?php echo esc_html( $this->args[ 'max' ])?><?php echo esc_html( $this->args[ 'suffix' ])?></span><br />
+
+    <?php
+    }
+  }
+}
+if (!class_exists('Pizazz_Submit_Button'))
+{
+  class Pizazz_Submit_Button extends CMB_Field
+  {
+
+
+    public function html()
+    {
+      ?>
+      <input name="save" type="submit" class="button button-primary button-large" id="publish" accesskey="p" value="<?php echo esc_html( $this->args['default'])?>">
+    <?php
+    }
+  }
+}

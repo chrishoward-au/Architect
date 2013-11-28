@@ -397,8 +397,9 @@ jQuery(document).ready(function() {
 
 	});
 
-	jQuery('#pzucd-layouts-id input').mouseover(function(event) {
 
+	jQuery('#cell-designer input').mouseover(function(event) {
+console.log(event);
 		var $source_input = jQuery(event.target);
 		var altid = $source_input.attr("alt");
 		var $source_target = jQuery('.pzucd-draggable-' + altid);
