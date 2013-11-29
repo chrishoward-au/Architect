@@ -24,6 +24,7 @@ function pzucd_custom_fields($fields)
   $fields[ 'pzdata' ]     = 'Pizazz_Data_Field';
   $fields[ 'pzspinner' ]  = 'Pizazz_Spinner_Field';
   $fields[ 'pzrange' ]  = 'Pizazz_Range_Field';
+  $fields[ 'pzmulticheck' ]  = 'Pizazz_MultiCheck_Field';
   $fields[ 'pzsubmit' ]  = 'Pizazz_Submit_Button';
 
 
@@ -183,7 +184,7 @@ if (!class_exists('Pizazz_Code_Field'))
       echo($this->args[ 'code' ]);
       ?>
 
-      <input type="hidden" <?php $this->id_attr(); ?> <?php $this->boolean_attr(); ?> <?php $this->class_attr(); ?> <?php $this->name_attr(); ?>
+      <input type="text" <?php $this->id_attr(); ?> <?php $this->boolean_attr(); ?> <?php $this->class_attr(); ?> <?php $this->name_attr(); ?>
              value="<?php echo esc_attr($this->get_value()); ?>"/>
 
     <?php
@@ -350,5 +351,25 @@ if (!class_exists('Pizazz_Submit_Button'))
       <input name="save" type="submit" class="button button-primary button-large" id="publish" accesskey="p" value="<?php echo esc_html( $this->args['default'])?>">
     <?php
     }
+  }
+}
+if (!class_exists('Pizazz_MultiCheck_Field'))
+{
+  class Pizazz_MultiCheck_Field extends CMB_Field
+  {
+    public function title() {}
+
+    public function html() {
+      foreach ($this->args['options'] as $key => $option) {
+        ?>
+        <div class="multicheck-item" ><input <?php $this->id_attr(); ?> <?php $this->boolean_attr(); ?> <?php $this->class_attr(); ?> type="checkbox" <?php $this->name_attr(); ?>  value="1" <?php echo (in_array($key,$this->value) ? 'checked' : null) ; ?> />
+        <label <?php $this->for_attr(); ?> title="<?php echo $this->args['tooltip'] ?>"><?php echo $option ; ?></label></div>
+
+      <?php
+      }
+
+ }
+
+
   }
 }

@@ -872,7 +872,17 @@ function pzucd_cell_designer_meta($meta_boxes = array())
       'type'     => 'pzlayout',
       'readonly' => true,
       'code'     => draw_cell_layout(),
-      'default'  => json_encode(array('title' => 100, 'meta1' => 100, 'image' => 25, 'excerpt' => 75, 'content' => 100, 'meta2' => 100, 'meta3' => 100, 'custom1' => 100, 'custom2' => 100, 'custom3' => 100)),
+      'default'  => json_encode(array(
+               'title' => array('width'=>100,'show'=>true),
+               'meta1' => array('width'=>100,'show'=>true),
+               'image' => array('width'=>25,'show'=>true),
+               'excerpt' => array('width'=>75,'show'=>true),
+               'content' => array('width'=>100,'show'=>false),
+               'meta2' => array('width'=>100,'show'=>false),
+               'meta3' => array('width'=>100,'show'=>false),
+               'custom1' => array('width'=>100,'show'=>false),
+               'custom2' => array('width'=>100,'show'=>false),
+               'custom3' => array('width'=>100,'show'=>false))),
       'desc'		 => __('Drag and drop to sort the order of your elements. Heights are fluid in cells, so not indicative of how it will look on the page.', 'pzucd')
     ),
   );
@@ -920,9 +930,8 @@ function pzucd_cell_designer_settings_meta($meta_boxes = array())
     array(
       'name'     => __('Components to show', 'pzucd'),
       'id'       => $prefix . 'layout-show',
-      'type'     => 'pzselect',
-      'cols'     => 6,
-      'multiple' => true,
+      'type'     => 'pzmulticheck',
+      'cols'     => 12,
       'default'  => array('title', 'excerpt', 'meta1', 'image'),
       'options'  => array(
         'title'   => 'Title',
@@ -942,7 +951,7 @@ function pzucd_cell_designer_settings_meta($meta_boxes = array())
       'name'    => __('Components area position', 'pzucd'),
       'id'      => $prefix . 'layout-sections-position',
       'type'    => 'pzselect',
-      'cols'    => 6,
+      'cols'    => 12,
       'default' => 'top',
       'options' => array(
         'top'    => 'Top of cell',
@@ -1102,7 +1111,8 @@ function draw_cell_layout()
         <span class="pzucd-draggable pzucd-draggable-custom3 pzucd-draggable-meta" title="Custom field 3" data-idcode=custom3 style="font-size: 11px; background-color: rgb(221, 221, 221); background-position: initial initial; background-repeat: initial initial;">Custom content 3</span>
       </div>
 	  </div>
-	  <p class="howto centred"><strong style="color:#d00;">This is an example only and thus only a <span style="border-bottom: 3px double;">general guide</span> to how the cells will look.</strong></p>
+	  <p class="pzucd-states pzcentred">Loading</p>
+	  <p class="howto pzcentred"><strong style="color:#d00;">This is an example only and thus only a <span style="border-bottom: 3px double;">general guide</span> to how the cells will look.</strong></p>
 	</div>
 	<div class="plugin_url" style="display:none;">' . PZUCD_PLUGIN_URL . '</div>
 	';

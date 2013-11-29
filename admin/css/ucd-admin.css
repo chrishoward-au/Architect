@@ -188,9 +188,14 @@ div.pzucd-dragsource {
 	top:-8px;
 }
 #pzucd-custom-pzucd_layout .ui-resizable-e {
-	width:10px;
+	width:2px;
 	background:#48b;
-	border-right:double 5px #fff;
+	border-right:double 5px #cde;
+  position: absolute;
+  right: 0;
+  top: 0;
+  height:100%;
+  cursor:e-resize;
 }
 
 .pzucd-draggable {
@@ -198,6 +203,7 @@ div.pzucd-dragsource {
 	background:rgba(255,255,255,.7);
 	min-height: 25px;
 	overflow:hidden;
+  position: relative;
 }
 .pzucd-draggable:hover {background:#def;}
 .pzucd-draggable:hover img {opacity:0.5;}
@@ -748,7 +754,7 @@ h2 a.xpzwp_head_links
 	padding:0 10px;
 }
 
-.howto.centred {
+.pzcentred {
   text-align: center;
 }
 
@@ -787,3 +793,7 @@ h2 a.xpzwp_head_links
 }
 
 body.screen-ucd-layouts #submitdiv {display:none;}
+
+.pzucd-states {text-transform: capitalize;}
+
+.multicheck-item {width:48%;display:inline-block;}
