@@ -42,8 +42,10 @@ class pzucdAdmin
 		$screen = get_current_screen();
 		if ( strpos( ('X' . $screen->id ), 'ucd-' ) > 0 )
 		{
-			wp_enqueue_script( 'jquery-ui-tabs' );
-			wp_enqueue_script( 'jquery-ui-button' );
+//			wp_enqueue_script( 'jquery-ui-tabs' );
+//			wp_enqueue_script( 'jquery-ui-button' );
+
+//      wp_enqueue_script('jquerui');
 
 			wp_enqueue_style( 'pzucd-block-css', PZUCD_PLUGIN_URL . '/admin/css/ucd-admin.css' );
 			wp_enqueue_style( 'pzucd-jqueryui-css', PZUCD_PLUGIN_URL . '/external/jquery-ui-1.10.2.custom/css/pz_ultimate_content_display/jquery-ui-1.10.2.custom.min.css' );

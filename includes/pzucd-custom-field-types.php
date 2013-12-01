@@ -358,11 +358,15 @@ if (!class_exists('Pizazz_MultiCheck_Field'))
   class Pizazz_MultiCheck_Field extends CMB_Field
   {
     public function title() {}
-
     public function html() {
+      // Initialize defaults if necessary
+      var_dump($this->value);
+      if (empty($this->value)) {
+        $this->value =  $this->args['default'];
+      }
       foreach ($this->args['options'] as $key => $option) {
         ?>
-        <div class="multicheck-item" ><input <?php $this->id_attr(); ?> <?php $this->boolean_attr(); ?> <?php $this->class_attr(); ?> type="checkbox" <?php $this->name_attr(); ?>  value="1" <?php echo (in_array($key,$this->value) ? 'checked' : null) ; ?> />
+        <div class="multicheck-item" ><input <?php $this->id_attr(); ?> <?php $this->boolean_attr(); ?> <?php $this->class_attr(); ?> type="checkbox" <?php echo 'name="'.$this->name.'['.$key.']"'; ?>  value="<?php echo $key ?>" <?php echo (in_array($key,$this->value) ? 'checked' : null) ; ?> />
         <label <?php $this->for_attr(); ?> title="<?php echo $this->args['tooltip'] ?>"><?php echo $option ; ?></label></div>
 
       <?php

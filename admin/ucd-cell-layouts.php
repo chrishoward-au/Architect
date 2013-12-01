@@ -52,6 +52,7 @@ class pzucd_Cell_Layouts extends pzucdForm
     $screen = get_current_screen();
     if ('ucd-layouts' == $screen->id)
     {
+    //  var_dump($screen->id);
 
       wp_enqueue_script('jquery-ui-draggable');
       wp_enqueue_script('jquery-ui-droppable');
@@ -913,24 +914,25 @@ function pzucd_cell_designer_settings_meta($meta_boxes = array())
       'validation' => 'data-validation-engine="validate[required]"'
     ),
 
-    array(
-      'name'    => __('Content', 'pzucd'),
-      'id'      => $prefix . 'layout-cells-content',
-      'type'    => 'pzselect',
-      'default' => 'post',
-      'cols'    => 12,
-      'tooltip' => __('Select the content type to display in these cells.', 'pzucd'),
-      'options' => array(
-        'post'       => 'Posts',
-        'page'       => 'Pages',
-        'attachment' => 'Attachments'
-      )
-    ),
+//    array(
+//      'name'    => __('Content', 'pzucd'),
+//      'id'      => $prefix . 'layout-cells-content',
+//      'type'    => 'pzselect',
+//      'default' => 'post',
+//      'cols'    => 12,
+//      'tooltip' => __('Select the content type to display in these cells.', 'pzucd'),
+//      'options' => array(
+//        'post'       => 'Posts',
+//        'page'       => 'Pages',
+//        'attachment' => 'Attachments'
+//      )
+//    ),
 
     array(
       'name'     => __('Components to show', 'pzucd'),
       'id'       => $prefix . 'layout-show',
-      'type'     => 'pzmulticheck',
+      'type'     => 'pzselect',
+      'multiple' =>true,
       'cols'     => 12,
       'default'  => array('title', 'excerpt', 'meta1', 'image'),
       'options'  => array(
@@ -947,6 +949,18 @@ function pzucd_cell_designer_settings_meta($meta_boxes = array())
       ),
       'tooltip'  => __('Select which base components to include in this cell layout.', 'pzucd')
     ),
+//    array(
+//      'name'     => __('Components to show', 'pzucd'),
+//      'id'       => $prefix . 'layout-show',
+//      'type' => 'group',
+//      'fields' => array(
+//        array('name'=>'Title','type'=>'checkbox','id'=>$prefix.'show-title','default'=>true),
+//        array('name'=>'Excerpt','type'=>'checkbox','id'=>$prefix.'show-excerpt','default'=>true),
+//        array('name'=>'Content','type'=>'checkbox','id'=>$prefix.'show-content','default'=>false)
+//      ),
+//    ),
+
+
     array(
       'name'    => __('Components area position', 'pzucd'),
       'id'      => $prefix . 'layout-sections-position',
@@ -1037,6 +1051,7 @@ function pzucd_cell_designer_settings_meta($meta_boxes = array())
       ),
       'tooltip' => __('Choose whether to set the height of the cells (fixed), or allow them to adjust to the content height (fluid).', 'pzucd')
     ),
+
     array(
 //      'name'       => __('Update', 'pzucd'),
       'id'         => $prefix . 'layout-set-save',
@@ -1099,16 +1114,16 @@ function draw_cell_layout()
     <div id="pzucd-dropzone-pzucd_layout" class="pzucd-dropzone">
       <div class="pzgp-cell-image-behind"></div>
       <div class="pzucd-content-area sortable">
-        <span class="pzucd-draggable pzucd-draggable-title" title="Post title" data-idcode=title style="display: inline-block; font-weight: bold; font-size: 15px; background-color: rgb(221, 221, 221); background-position: initial initial; background-repeat: initial initial;">This is the title</span>
-        <span class="pzucd-draggable pzucd-draggable-meta1 pzucd-draggable-meta" title="Meta info 1" data-idcode=meta1 style="font-size: 11px; background-color: rgb(204, 170, 170); background-position: initial initial; background-repeat: initial initial;">Jan 1 2013</span>
-        <span class="pzucd-draggable pzucd-draggable-excerpt" title="Excerpt with featured image" data-idcode=excerpt style="font-size: 13px;"><img src="' . PZUCD_PLUGIN_URL . '/assets/images/sample-image.jpg" style="max-width:20%;float:right;padding:2px;">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam quis justo erat. Cras semper sem hendre...[more]</span>
-        <span class="pzucd-draggable pzucd-draggable-content" title="Full post content" data-idcode=content style="font-size: 13px; display: none;"><img src="' . PZUCD_PLUGIN_URL . '/assets/images/sample-image.jpg" style="max-width:30%;float:left;padding:5px;">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam quis justo erat. <ul><li>&nbsp;•&nbsp;Cras semper sem hendrerit</li><li>&nbsp;•&nbsp;Tortor porta at auctor</li></ul><strong>Lacus consequat</strong><p>Pellentesque pulvinar iaculis tellus in blandit. Suspendisse rhoncus, magna vel eleifend cursus, turpis odio molestie urna, quis posuere eros risus quis neque. </p><p>Donec dictum leo at erat mattis sollicitudin. Nunc vulputate nisl suscipit enim adipiscing faucibus. Ut faucibus sem non sapien rutrum gravida. Maecenas pharetra mi et velit posuere ac elementum mi tincidunt. Nullam tristique tempus odio id rutrum. Nam ligula urna, semper eget elementum nec, euismod at tortor. Duis commodo, purus id posuere aliquam, orci felis facilisis odio, ac sagittis mi nisl at nibh. Sed non risus eu quam euismod faucibus.</p><p>Proin mattis convallis scelerisque. Curabitur auctor felis id sapien dictum vehicula. Aenean euismod porttitor dictum. Vestibulum nulla leo, volutpat quis tempus eu, accumsan eget ante.</p></span>
-        <span class="pzucd-draggable pzucd-draggable-image" title="Featured image" data-idcode=image style="max-height: 100px; overflow: hidden;"><img src="' . PZUCD_PLUGIN_URL . '/assets/images/sample-image.jpg" style="max-width:100%;"></span>
-        <span class="pzucd-draggable pzucd-draggable-meta2 pzucd-draggable-meta" title="Meta info 2" data-idcode=meta2 style="font-size: 11px; background-color: rgb(221, 221, 221); background-position: initial initial; background-repeat: initial initial;">Categories - News, Sport</span>
-        <span class="pzucd-draggable pzucd-draggable-meta3 pzucd-draggable-meta" title="Meta info 3" data-idcode=meta3 style="font-size: 11px; background-color: rgb(221, 221, 221); background-position: initial initial; background-repeat: initial initial;">Comments: 27</span>
-        <span class="pzucd-draggable pzucd-draggable-custom1 pzucd-draggable-meta" title="Custom field 1" data-idcode=custom1 style="font-size: 11px; background-color: rgb(221, 221, 221); background-position: initial initial; background-repeat: initial initial;">Custom content 1</span>
-        <span class="pzucd-draggable pzucd-draggable-custom2 pzucd-draggable-meta" title="Custom field 2" data-idcode=custom2 style="font-size: 11px; background-color: rgb(221, 221, 221); background-position: initial initial; background-repeat: initial initial;">Custom content 2</span>
-        <span class="pzucd-draggable pzucd-draggable-custom3 pzucd-draggable-meta" title="Custom field 3" data-idcode=custom3 style="font-size: 11px; background-color: rgb(221, 221, 221); background-position: initial initial; background-repeat: initial initial;">Custom content 3</span>
+        <span class="pzucd-draggable pzucd-draggable-title" title="Post title" data-idcode=title ><span>This is the title</span></span>
+        <span class="pzucd-draggable pzucd-draggable-meta1 pzucd-draggable-meta" title="Meta info 1" data-idcode=meta1 ><span>Jan 1 2013</span></span>
+        <span class="pzucd-draggable pzucd-draggable-excerpt" title="Excerpt with featured image" data-idcode=excerpt ><span><img src="' . PZUCD_PLUGIN_URL . '/assets/images/sample-image.jpg" style="max-width:20%;padding:2px;" class="pzucd-align-none">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam quis justo erat. Cras semper sem hendre...[more]</span></span>
+        <span class="pzucd-draggable pzucd-draggable-content" title="Full post content" data-idcode=content ><span><img src="' . PZUCD_PLUGIN_URL . '/assets/images/sample-image.jpg" style="max-width:30%;float:left;padding:5px;">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam quis justo erat. <ul><li>&nbsp;•&nbsp;Cras semper sem hendrerit</li><li>&nbsp;•&nbsp;Tortor porta at auctor</li></ul><strong>Lacus consequat</strong><p>Pellentesque pulvinar iaculis tellus in blandit. Suspendisse rhoncus, magna vel eleifend cursus, turpis odio molestie urna, quis posuere eros risus quis neque. </p><p>Donec dictum leo at erat mattis sollicitudin. Nunc vulputate nisl suscipit enim adipiscing faucibus. Ut faucibus sem non sapien rutrum gravida. Maecenas pharetra mi et velit posuere ac elementum mi tincidunt. Nullam tristique tempus odio id rutrum. Nam ligula urna, semper eget elementum nec, euismod at tortor. Duis commodo, purus id posuere aliquam, orci felis facilisis odio, ac sagittis mi nisl at nibh. Sed non risus eu quam euismod faucibus.</p><p>Proin mattis convallis scelerisque. Curabitur auctor felis id sapien dictum vehicula. Aenean euismod porttitor dictum. Vestibulum nulla leo, volutpat quis tempus eu, accumsan eget ante.</p></span></span>
+        <span class="pzucd-draggable pzucd-draggable-image" title="Featured image" data-idcode=image style="max-height: 100px; overflow: hidden;"><span><img src="' . PZUCD_PLUGIN_URL . '/assets/images/sample-image.jpg" style="max-width:100%;"></span></span>
+        <span class="pzucd-draggable pzucd-draggable-meta2 pzucd-draggable-meta" title="Meta info 2" data-idcode=meta2 ><span>Categories - News, Sport</span></span>
+        <span class="pzucd-draggable pzucd-draggable-meta3 pzucd-draggable-meta" title="Meta info 3" data-idcode=meta3 ><span>Comments: 27</span></span>
+        <span class="pzucd-draggable pzucd-draggable-custom1 pzucd-draggable-meta" title="Custom field 1" data-idcode=custom1 ><span>Custom content 1</span></span>
+        <span class="pzucd-draggable pzucd-draggable-custom2 pzucd-draggable-meta" title="Custom field 2" data-idcode=custom2 ><span>Custom content 2</span></span>
+        <span class="pzucd-draggable pzucd-draggable-custom3 pzucd-draggable-meta" title="Custom field 3" data-idcode=custom3 ><span>Custom content 3</span></span>
       </div>
 	  </div>
 	  <p class="pzucd-states pzcentred">Loading</p>
