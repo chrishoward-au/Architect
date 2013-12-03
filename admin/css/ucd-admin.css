@@ -809,3 +809,11 @@ body.screen-ucd-layouts #submitdiv {display:none;}
 {font-size:11px;}
 
 select#_pzucd_layout-show-cmb-field-0 {height:130px;}
+
+.pzucd-sections .pzucd-section {
+  width:30%;
+  height:70px;
+  background:#eee;
+  margin:1%;
+  display:inline-block;
+}

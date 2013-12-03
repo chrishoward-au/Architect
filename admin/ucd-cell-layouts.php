@@ -2,10 +2,9 @@
 
 //Cells may need to include Content because of custom fields!!! OOps! But content has to be over-arching! So I guess, cells will need to know the content type and its fields. So lets make Content Criteria again. :S
 
-class pzucd_Cell_Layouts extends pzucdForm
+class pzucd_Cell_Layouts
 {
 
-  private $mb_fields;
 
   /**
    * [__construct description]
@@ -28,8 +27,8 @@ class pzucd_Cell_Layouts extends pzucdForm
       add_action('add_meta_boxes', array($this, 'layouts_meta'));
       add_action('admin_head', array($this, 'cell_layouts_admin_head'));
       add_action('admin_enqueue_scripts', array($this, 'cell_layouts_admin_enqueue'));
-      add_filter('manage_ucd-layouts_posts_columns', array($this, 'add_cell_layout_columns'));
-      add_action('manage_ucd-layouts_posts_custom_column', array($this, 'add_cell_layout_column_content'), 10, 2);
+//      add_filter('manage_ucd-layouts_posts_columns', array($this, 'add_cell_layout_columns'));
+//      add_action('manage_ucd-layouts_posts_custom_column', array($this, 'add_cell_layout_column_content'), 10, 2);
 
       // check screen ucd-layouts. ugh. doesn't work for save and edit
 //			if ( $_REQUEST[ 'post_type' ] == 'ucd-layouts' )
@@ -37,9 +36,6 @@ class pzucd_Cell_Layouts extends pzucdForm
 //			}
     }
 
-    // Need to do this here so save knows about the layout.
-//		$this->mb_fields = self::_populate_layout_options();
-//		add_action('save_post', array($this, 'save_data'));
   }
 
   /**
@@ -154,33 +150,7 @@ class pzucd_Cell_Layouts extends pzucdForm
     register_post_type('ucd-layouts', $args);
   }
 
-  public function save_data($post_id)
-  {
-//		var_dump( 'SAVE', count( $this->mb_fields ) );
-    parent::save_data($post_id, $this->mb_fields);
-  }
 
-  public function draw_meta_box($postobj, $callback_args)
-  {
-//		var_dump( 'DRAW', count( $this->mb_fields ) );
-    parent::show_meta_box($postobj, $callback_args);
-
-    //	$this->mb_fields = $callback_args;
-  }
-
-  /**
-   * [layouts_meta description]
-   * @return [type] [description]
-   */
-  public function layouts_meta()
-  {
-    // global $this->meta_box_layout;
-    // Fill any defaults if necessary
-//		$this->cell_layout_form = self::layout_defaults();
-    add_meta_box(
-            $this->mb_fields[ 'id' ], $this->mb_fields[ 'title' ], array($this, 'draw_meta_box'), $this->mb_fields[ 'page' ], $this->mb_fields[ 'context' ], $this->mb_fields[ 'priority' ], $this->mb_fields
-    );
-  }
 
 // End layouts_meta
   // cpt = custom post type
@@ -827,27 +797,6 @@ class pzucd_Cell_Layouts extends pzucdForm
   }
 
 
-  /**
-   *
-   * @return type
-   */
-  function layout_defaults()
-  {
-    $pzucd_layout_defaults = array();
-    //	$this->_populate_layout_options();
-    foreach ($this->meta_box_layout[ 'tabs' ] as $pzucd_meta_box)
-    {
-      foreach ($pzucd_meta_box[ 'fields' ] as $pzucd_field)
-      {
-        if (!isset($pzucd_field[ 'id' ]))
-        {
-          $pzucd_layout_defaults[ $pzucd_field[ 'id' ] ] = (isset($pzucd_field[ 'default' ]) ? $pzucd_field[ 'default' ] : null);
-        }
-      }
-    }
-
-    return $pzucd_layout_defaults;
-  }
 
 }
 
@@ -871,7 +820,7 @@ function pzucd_cell_designer_meta($meta_boxes = array())
       'id'       => $prefix . 'layout-cell-preview',
       'cols'     => 12,
       'type'     => 'pzlayout',
-      'readonly' => true,
+      'readonly' => false, // Readonly fields can't be written to by code! Weird
       'code'     => draw_cell_layout(),
       'default'  => json_encode(array(
                'title' => array('width'=>100,'show'=>true),
@@ -905,7 +854,7 @@ function pzucd_cell_designer_settings_meta($meta_boxes = array())
   $fields        = array(
     array(
       'name'       => __('Short name', 'pzucd'),
-      'id'         => $prefix . 'layout-set-name',
+      'id'         => $prefix . 'layout-short-name',
       'type'       => 'text',
       'default'    => '',
       'cols'       => 12,

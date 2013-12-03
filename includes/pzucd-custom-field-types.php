@@ -184,7 +184,7 @@ if (!class_exists('Pizazz_Code_Field'))
       echo($this->args[ 'code' ]);
       ?>
 
-      <input type="text" <?php $this->id_attr(); ?> <?php $this->boolean_attr(); ?> <?php $this->class_attr(); ?> <?php $this->name_attr(); ?>
+      <input type="hidden" <?php $this->id_attr(); ?> <?php $this->boolean_attr(); ?> <?php $this->class_attr(); ?> <?php $this->name_attr(); ?>
              value="<?php echo esc_attr($this->get_value()); ?>"/>
 
     <?php
@@ -347,9 +347,13 @@ if (!class_exists('Pizazz_Submit_Button'))
 
     public function html()
     {
+      // Note: Currently, this will publish the content. Can be expanded to save draft
       ?>
-      <input name="save" type="submit" class="button button-primary button-large" id="publish" accesskey="p" value="<?php echo esc_html( $this->args['default'])?>">
-    <?php
+      <div id="publishing-action">
+        <span class="spinner"></span>
+        <input name="original_publish" type="hidden" id="original_publish" value="Publish">
+        <input type="submit" name="publish" id="publish" class="button button-primary button-large" value="<?php echo esc_html( $this->args['default'])?>" accesskey="p"></div>
+     <?php
     }
   }
 }

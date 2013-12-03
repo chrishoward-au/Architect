@@ -1,19 +1,18 @@
 jQuery(document).ready(function() {
 	"use strict";
 
-  init();
+//  init();
   function init() {
     console.log('you are here');
     var cell_layout = jQuery.parseJSON(jQuery('input#_pzucd_layout-cell-preview-cmb-field-0').val());
-    jQuery(".pzucd-dropzone .pzucd-content-area").sortable();
-    pzucd_resort_components(cell_layout);
-    pzucd_update_component_location(cell_layout);
-    pzucd_update_components_container_width(cell_layout);
-    pzucd_update_components_height(cell_layout);
-    pzucd_update_components_nudge(cell_layout);
-    pzucd_update_components_toshow(cell_layout);
-    pzucd_update_component_visibility(cell_layout);
-    pzucd_update_status(cell_layout);
+//    pzucd_update_component_location(cell_layout);
+//    pzucd_update_components_container_width(cell_layout);
+//    pzucd_update_components_height(cell_layout);
+//    pzucd_update_components_nudge(cell_layout);
+//    pzucd_update_components_toshow(cell_layout);
+//    pzucd_update_component_visibility(cell_layout);
+//    pzucd_update_background(cell_layout);
+//    pzucd_update_status(cell_layout);
   }
 
   //***********************
@@ -64,13 +63,16 @@ jQuery(document).ready(function() {
 
   jQuery('select#_pzucd_layout-show-cmb-field-0').change(function(e) {
     var cell_layout = jQuery.parseJSON(jQuery('input#_pzucd_layout-cell-preview-cmb-field-0').val());
-    pzucd_update_components_toshow(cell_layout)
+    pzucd_update_components_toshow(cell_layout,e)
   });
+
 	// Set position of zones
-	jQuery('select#_pzucd_layout-sections-position-cmb-field-0').change(function(e) {
+
+  jQuery('select#_pzucd_layout-sections-position-cmb-field-0').change(function(e) {
+    console.log(e);
     var cell_layout = jQuery.parseJSON(jQuery('input#_pzucd_layout-cell-preview-cmb-field-0').val());
-		pzucd_update_component_location(cell_layout);
-	});
+    pzucd_update_component_location(cell_layout);
+  });
 
   // This does bugger all at the moment!
 	jQuery('input#_pzucd_layout-cell-height-type-cmb-field-0').change(function(e) {
@@ -150,14 +152,19 @@ jQuery(document).ready(function() {
       element_html['custom3'] = '<span class="pzucd-draggable pzucd-draggable-custom3 pzucd-draggable-meta"  title= "Custom field 3" data-idcode=custom3 style="font-size:11px;"><span>Custom content 3</span></span>';
 
       var cell_layout = jQuery.parseJSON(jQuery('input#_pzucd_layout-cell-preview-cmb-field-0').val());
-      cell_layout =  pzucd_resort_components(cell_layout);
-      pzucd_resort_components(cell_layout);
+
+      jQuery(".pzucd-content-area.sortable").html('');
+      jQuery.each(cell_layout,function(index,value){
+        //console.log(index,value);
+        jQuery(".pzucd-content-area.sortable").append(element_html[index]);
+      });
       pzucd_update_component_location(cell_layout);
       pzucd_update_components_container_width(cell_layout);
       pzucd_update_components_height(cell_layout);
       pzucd_update_components_nudge(cell_layout);
       pzucd_update_components_toshow(cell_layout);
       pzucd_update_component_visibility(cell_layout);
+      pzucd_update_background(cell_layout);
       pzucd_update_status(cell_layout);
 
 		}
@@ -202,6 +209,7 @@ jQuery(document).ready(function() {
   }
 
 
+
   /*
   * Update status message and field data
   */
@@ -223,16 +231,18 @@ jQuery(document).ready(function() {
     var components_state = jQuery("select#_pzucd_layout-show-cmb-field-0 option");
     console.log(components_state);
     jQuery.each(components_state,function(index,value){
-      console.log(index,value);
+      //console.log(index,value);
       cell_layout[value.value].show = value.selected;
       if (value.selected) {
         jQuery('.pzucd-draggable-' + value.value).show();
         jQuery('.pzucd-draggable-' + value.value).css('width',cell_layout[value.value].width+'%');
 
       } else {
+//        console.log('.pzucd-draggable-' + value.value);
         jQuery('.pzucd-draggable-' + value.value).hide();
       }
     });
+    pzucd_update_status(cell_layout);
     return cell_layout;
   }
 
@@ -285,6 +295,7 @@ jQuery(document).ready(function() {
 
       function pzucd_update_background(cell_layout) {
 
+        var plugin_url = jQuery('.field.Pizazz_Layout_Field .plugin_url').text();
 
         /*********************
          // Update background
@@ -410,6 +421,7 @@ jQuery(document).ready(function() {
             });
             break;
         }
+    //  pzucd_update_components_nudge(cell_layout);
     }
 
     function pzucd_update_components_container_width(cell_layout){
