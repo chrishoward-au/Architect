@@ -2,11 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f019c0d4-f5e4-4eb4-9404-db453e3a2c1a" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/includes/pzucd-custom-field-types.php" afterPath="$PROJECT_DIR$/includes/pzucd-custom-field-types.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/admin/css/ucd-admin.css" afterPath="$PROJECT_DIR$/admin/css/ucd-admin.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/admin/ucd-cell-layouts.php" afterPath="$PROJECT_DIR$/admin/ucd-cell-layouts.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/admin/ucd-admin.php" afterPath="$PROJECT_DIR$/admin/ucd-admin.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/admin/ucd-content-templates.php" afterPath="$PROJECT_DIR$/admin/ucd-content-templates.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/admin/js/ucd-metaboxes-cells.js" afterPath="$PROJECT_DIR$/admin/js/ucd-metaboxes-cells.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/admin/js/ucd-metaboxes-templates.js" afterPath="$PROJECT_DIR$/admin/js/ucd-metaboxes-templates.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="pizazzwp-ultimatecontentdisplay.iws" />
@@ -47,7 +46,7 @@
       <file leaf-file-name="ucd-admin.php" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/admin/ucd-admin.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="54" column="34" selection-start="1986" selection-end="1988" vertical-scroll-proportion="-4.54" vertical-offset="745" max-vertical-offset="3186">
+            <state line="31" column="2" selection-start="970" selection-end="970" vertical-scroll-proportion="-11.16" vertical-offset="0" max-vertical-offset="3186">
               <folding />
             </state>
           </provider>
@@ -56,7 +55,7 @@
       <file leaf-file-name="ucd-cell-layouts.php" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/admin/ucd-cell-layouts.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="1085" column="0" selection-start="38260" selection-end="42007" vertical-scroll-proportion="-43.666668" vertical-offset="7034" max-vertical-offset="8208">
+            <state line="1009" column="0" selection-start="37168" selection-end="37344" vertical-scroll-proportion="-14.416667" vertical-offset="6368" max-vertical-offset="8208">
               <folding>
                 <element signature="n#_populate_layout_options#0;n#pzucd_Cell_Layouts#0;n#!!top" expanded="false" />
                 <marker date="1385995530000" expanded="true" signature="19264:19374" placeholder="..." />
@@ -68,12 +67,29 @@
       <file leaf-file-name="ucd-content-templates.php" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/admin/ucd-content-templates.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="432" column="0" selection-start="13180" selection-end="13180" vertical-scroll-proportion="0.380406" vertical-offset="7345" max-vertical-offset="9648">
+            <state line="438" column="0" selection-start="13017" selection-end="13771" vertical-scroll-proportion="0.52691966" vertical-offset="7287" max-vertical-offset="11142">
               <folding>
-                <marker date="1385997362000" expanded="true" signature="15735:16258" placeholder="..." />
-                <marker date="1385997362000" expanded="true" signature="16305:16316" placeholder="..." />
-                <marker date="1385997362000" expanded="true" signature="16371:16397" placeholder="..." />
+                <marker date="1386141109000" expanded="true" signature="19371:19382" placeholder="..." />
+                <marker date="1386141109000" expanded="true" signature="19437:19463" placeholder="..." />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="example-functions.php" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/external/HM-Custom-Meta-Boxes/example-functions.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="87" column="22" selection-start="4551" selection-end="4551" vertical-scroll-proportion="-32.208332" vertical-offset="793" max-vertical-offset="1980">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ucd-metaboxes-templates.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/admin/js/ucd-metaboxes-templates.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="28" column="33" selection-start="1007" selection-end="1007" vertical-scroll-proportion="0.0" vertical-offset="373" max-vertical-offset="1692">
+              <folding />
             </state>
           </provider>
         </entry>
@@ -103,7 +119,7 @@
       <file leaf-file-name="pzucd-custom-field-types.php" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/includes/pzucd-custom-field-types.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="33" column="0" selection-start="973" selection-end="973" vertical-scroll-proportion="-20.25" vertical-offset="0" max-vertical-offset="6894">
+            <state line="33" column="0" selection-start="973" selection-end="973" vertical-scroll-proportion="152.625" vertical-offset="4149" max-vertical-offset="6894">
               <folding>
                 <marker date="1385970337000" expanded="true" signature="1128:1230" placeholder="..." />
                 <marker date="1385970337000" expanded="true" signature="2109:2669" placeholder="..." />
@@ -125,8 +141,10 @@
       <file leaf-file-name="ucd-admin.css" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/admin/css/ucd-admin.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="813" column="10" selection-start="16861" selection-end="16861" vertical-scroll-proportion="-38.653847" vertical-offset="13629" max-vertical-offset="14832">
-              <folding />
+            <state line="836" column="2" selection-start="17680" selection-end="17680" vertical-scroll-proportion="-14.185185" vertical-offset="14282" max-vertical-offset="15426">
+              <folding>
+                <element signature="e#15369#16758#2" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -134,8 +152,15 @@
       <file leaf-file-name="class.cmb-meta-box.php" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/external/HM-Custom-Meta-Boxes/class.cmb-meta-box.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="312" column="17" selection-start="8196" selection-end="8198" vertical-scroll-proportion="0.0" vertical-offset="5616" max-vertical-offset="6264">
-              <folding />
+            <state line="312" column="17" selection-start="8196" selection-end="8198" vertical-scroll-proportion="-22.458334" vertical-offset="5077" max-vertical-offset="6264">
+              <folding>
+                <marker date="1385647847000" expanded="true" signature="3125:3302" placeholder="..." />
+                <marker date="1385647847000" expanded="true" signature="3163:3287" placeholder="{...}" />
+                <marker date="1385647847000" expanded="true" signature="6149:7283" placeholder="..." />
+                <marker date="1385647847000" expanded="false" signature="6813:6876" placeholder="..." />
+                <marker date="1385647847000" expanded="true" signature="6932:7045" placeholder="..." />
+                <marker date="1385647847000" expanded="true" signature="6943:7035" placeholder="..." />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -147,34 +172,34 @@
               <folding>
                 <marker date="1385647847000" expanded="true" signature="5783:5936" placeholder="..." />
                 <marker date="1385647847000" expanded="true" signature="5868:5926" placeholder="..." />
-                <marker date="1385647847000" expanded="false" signature="6628:6695" placeholder="..." />
+                <marker date="1385647847000" expanded="true" signature="6628:6695" placeholder="..." />
                 <marker date="1385647847000" expanded="true" signature="6696:6933" placeholder="..." />
-                <marker date="1385647847000" expanded="false" signature="7235:7253" placeholder="..." />
+                <marker date="1385647847000" expanded="true" signature="7235:7253" placeholder="..." />
                 <marker date="1385647847000" expanded="true" signature="7254:7491" placeholder="..." />
                 <marker date="1385647847000" expanded="true" signature="8930:9873" placeholder="..." />
                 <marker date="1385647847000" expanded="true" signature="9145:9204" placeholder="..." />
                 <marker date="1385647847000" expanded="true" signature="9298:9577" placeholder="..." />
                 <marker date="1385647847000" expanded="true" signature="9431:9545" placeholder="..." />
                 <marker date="1385647847000" expanded="true" signature="9671:9728" placeholder="..." />
-                <marker date="1385647847000" expanded="false" signature="10778:10812" placeholder="..." />
+                <marker date="1385647847000" expanded="true" signature="10778:10812" placeholder="..." />
                 <marker date="1385647847000" expanded="true" signature="10863:12065" placeholder="..." />
-                <marker date="1385647847000" expanded="false" signature="10915:10961" placeholder="..." />
+                <marker date="1385647847000" expanded="true" signature="10915:10961" placeholder="..." />
                 <marker date="1385647847000" expanded="true" signature="10962:11178" placeholder="..." />
                 <marker date="1385647847000" expanded="true" signature="11035:11147" placeholder="..." />
                 <marker date="1385647847000" expanded="true" signature="11354:11414" placeholder="..." />
                 <marker date="1385647847000" expanded="true" signature="11555:11769" placeholder="..." />
                 <marker date="1385647847000" expanded="true" signature="11863:11920" placeholder="..." />
-                <marker date="1385647847000" expanded="false" signature="20104:20123" placeholder="..." />
+                <marker date="1385647847000" expanded="true" signature="20104:20123" placeholder="..." />
                 <marker date="1385647847000" expanded="true" signature="20169:20219" placeholder="..." />
                 <marker date="1385647847000" expanded="true" signature="20892:20962" placeholder="..." />
                 <marker date="1385647847000" expanded="true" signature="20900:20953" placeholder="..." />
                 <marker date="1385647847000" expanded="true" signature="21969:22152" placeholder="..." />
                 <marker date="1385647847000" expanded="true" signature="24454:25191" placeholder="..." />
-                <marker date="1385647847000" expanded="false" signature="24760:24771" placeholder="..." />
+                <marker date="1385647847000" expanded="true" signature="24760:24771" placeholder="..." />
                 <marker date="1385647847000" expanded="true" signature="25280:25691" placeholder="..." />
                 <marker date="1385647847000" expanded="true" signature="25299:25667" placeholder="{...}" />
                 <marker date="1385647847000" expanded="true" signature="28156:28525" placeholder="..." />
-                <marker date="1385647847000" expanded="false" signature="28507:28518" placeholder="..." />
+                <marker date="1385647847000" expanded="true" signature="28507:28518" placeholder="..." />
                 <marker date="1385647847000" expanded="true" signature="28695:30953" placeholder="..." />
                 <marker date="1385647847000" expanded="true" signature="28714:30929" placeholder="{...}" />
                 <marker date="1385647847000" expanded="true" signature="29340:29841" placeholder="{...}" />
@@ -182,11 +207,11 @@
                 <marker date="1385647847000" expanded="true" signature="30255:30899" placeholder="{&quot;type&quot;: 'POST'...}" />
                 <marker date="1385647847000" expanded="true" signature="30413:30514" placeholder="{...}" />
                 <marker date="1385647847000" expanded="true" signature="30558:30892" placeholder="{...}" />
-                <marker date="1385647847000" expanded="false" signature="33694:33741" placeholder="..." />
+                <marker date="1385647847000" expanded="true" signature="33694:33741" placeholder="..." />
                 <marker date="1385647847000" expanded="true" signature="33742:33780" placeholder="..." />
-                <marker date="1385647847000" expanded="false" signature="34042:34089" placeholder="..." />
+                <marker date="1385647847000" expanded="true" signature="34042:34089" placeholder="..." />
                 <marker date="1385647847000" expanded="true" signature="34090:34132" placeholder="..." />
-                <marker date="1385647847000" expanded="false" signature="35274:35292" placeholder="..." />
+                <marker date="1385647847000" expanded="true" signature="35274:35292" placeholder="..." />
                 <marker date="1385647847000" expanded="true" signature="35293:35560" placeholder="..." />
               </folding>
             </state>
@@ -229,7 +254,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/includes/admin/ucd-data-selection.php" />
         <option value="$PROJECT_DIR$/includes/admin/ucd-admin.php" />
         <option value="$PROJECT_DIR$/includes/admin/ucd-controls.php" />
         <option value="$PROJECT_DIR$/includes/admin/ucd-cell-layouts.php" />
@@ -239,11 +263,12 @@
         <option value="$PROJECT_DIR$/ultimatecontentdisplay.php" />
         <option value="$PROJECT_DIR$/admin/js/ucd-metaboxes.js" />
         <option value="$PROJECT_DIR$/external/HM-Custom-Meta-Boxes/classes.fields.php" />
-        <option value="$PROJECT_DIR$/admin/ucd-admin.php" />
         <option value="$PROJECT_DIR$/includes/pzucd-custom-field-types.php" />
         <option value="$PROJECT_DIR$/admin/js/ucd-metaboxes-cells.js" />
         <option value="$PROJECT_DIR$/admin/ucd-cell-layouts.php" />
+        <option value="$PROJECT_DIR$/admin/ucd-admin.php" />
         <option value="$PROJECT_DIR$/admin/css/ucd-admin.css" />
+        <option value="$PROJECT_DIR$/admin/js/ucd-metaboxes-templates.js" />
         <option value="$PROJECT_DIR$/admin/ucd-content-templates.php" />
       </list>
     </option>
@@ -358,6 +383,24 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="external" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pizazzwp-ultimatecontentdisplay" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pizazzwp-ultimatecontentdisplay" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="external" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="HM-Custom-Meta-Boxes" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -504,7 +547,7 @@
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3299817" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32881355" sideWeight="0.81861573" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32975337" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.11774065" sideWeight="0.67070216" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.11774065" sideWeight="0.67070216" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.11774065" sideWeight="0.3292978" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32975337" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -518,6 +561,26 @@
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
+    <layout-to-restore>
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3292978" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32881355" sideWeight="0.81861573" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32975337" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32975337" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32903227" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3292978" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3299817" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.11774065" sideWeight="0.67070216" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.11774065" sideWeight="0.3292978" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+    </layout-to-restore>
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
@@ -531,33 +594,9 @@
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/includes/class_pzucdSources.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1152" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/includes/ucd-functions.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1211" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/external/HM-Custom-Meta-Boxes/js/cmb.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="4" column="15" selection-start="71" selection-end="73" vertical-scroll-proportion="0.0" vertical-offset="72" max-vertical-offset="4212">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/external/HM-Custom-Meta-Boxes/custom-meta-boxes.php">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2952">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/external/HM-Custom-Meta-Boxes/class.cmb-meta-box.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="312" column="17" selection-start="8196" selection-end="8198" vertical-scroll-proportion="0.0" vertical-offset="5616" max-vertical-offset="6264">
           <folding />
         </state>
       </provider>
@@ -576,54 +615,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/external/HM-Custom-Meta-Boxes/classes.fields.php">
+    <entry file="file://$PROJECT_DIR$/includes/class_pzucdForm.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="792" column="0" selection-start="20339" selection-end="20742" vertical-scroll-proportion="-22.958334" vertical-offset="13705" max-vertical-offset="26280">
-          <folding>
-            <marker date="1385647847000" expanded="true" signature="5783:5936" placeholder="..." />
-            <marker date="1385647847000" expanded="true" signature="5868:5926" placeholder="..." />
-            <marker date="1385647847000" expanded="false" signature="6628:6695" placeholder="..." />
-            <marker date="1385647847000" expanded="true" signature="6696:6933" placeholder="..." />
-            <marker date="1385647847000" expanded="false" signature="7235:7253" placeholder="..." />
-            <marker date="1385647847000" expanded="true" signature="7254:7491" placeholder="..." />
-            <marker date="1385647847000" expanded="true" signature="8930:9873" placeholder="..." />
-            <marker date="1385647847000" expanded="true" signature="9145:9204" placeholder="..." />
-            <marker date="1385647847000" expanded="true" signature="9298:9577" placeholder="..." />
-            <marker date="1385647847000" expanded="true" signature="9431:9545" placeholder="..." />
-            <marker date="1385647847000" expanded="true" signature="9671:9728" placeholder="..." />
-            <marker date="1385647847000" expanded="false" signature="10778:10812" placeholder="..." />
-            <marker date="1385647847000" expanded="true" signature="10863:12065" placeholder="..." />
-            <marker date="1385647847000" expanded="false" signature="10915:10961" placeholder="..." />
-            <marker date="1385647847000" expanded="true" signature="10962:11178" placeholder="..." />
-            <marker date="1385647847000" expanded="true" signature="11035:11147" placeholder="..." />
-            <marker date="1385647847000" expanded="true" signature="11354:11414" placeholder="..." />
-            <marker date="1385647847000" expanded="true" signature="11555:11769" placeholder="..." />
-            <marker date="1385647847000" expanded="true" signature="11863:11920" placeholder="..." />
-            <marker date="1385647847000" expanded="false" signature="20104:20123" placeholder="..." />
-            <marker date="1385647847000" expanded="true" signature="20169:20219" placeholder="..." />
-            <marker date="1385647847000" expanded="true" signature="20892:20962" placeholder="..." />
-            <marker date="1385647847000" expanded="true" signature="20900:20953" placeholder="..." />
-            <marker date="1385647847000" expanded="true" signature="21969:22152" placeholder="..." />
-            <marker date="1385647847000" expanded="true" signature="24454:25191" placeholder="..." />
-            <marker date="1385647847000" expanded="false" signature="24760:24771" placeholder="..." />
-            <marker date="1385647847000" expanded="true" signature="25280:25691" placeholder="..." />
-            <marker date="1385647847000" expanded="true" signature="25299:25667" placeholder="{...}" />
-            <marker date="1385647847000" expanded="true" signature="28156:28525" placeholder="..." />
-            <marker date="1385647847000" expanded="false" signature="28507:28518" placeholder="..." />
-            <marker date="1385647847000" expanded="true" signature="28695:30953" placeholder="..." />
-            <marker date="1385647847000" expanded="true" signature="28714:30929" placeholder="{...}" />
-            <marker date="1385647847000" expanded="true" signature="29340:29841" placeholder="{...}" />
-            <marker date="1385647847000" expanded="true" signature="29937:30227" placeholder="{&quot;action&quot;: 'cmb_post_select'...}" />
-            <marker date="1385647847000" expanded="true" signature="30255:30899" placeholder="{&quot;type&quot;: 'POST'...}" />
-            <marker date="1385647847000" expanded="true" signature="30413:30514" placeholder="{...}" />
-            <marker date="1385647847000" expanded="true" signature="30558:30892" placeholder="{...}" />
-            <marker date="1385647847000" expanded="false" signature="33694:33741" placeholder="..." />
-            <marker date="1385647847000" expanded="true" signature="33742:33780" placeholder="..." />
-            <marker date="1385647847000" expanded="false" signature="34042:34089" placeholder="..." />
-            <marker date="1385647847000" expanded="true" signature="34090:34132" placeholder="..." />
-            <marker date="1385647847000" expanded="false" signature="35274:35292" placeholder="..." />
-            <marker date="1385647847000" expanded="true" signature="35293:35560" placeholder="..." />
-          </folding>
+        <state line="244" column="18" selection-start="9144" selection-end="9144" vertical-scroll-proportion="-3.6149914" vertical-offset="8636" max-vertical-offset="9810">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/external/jquery.isotope.min.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1198">
+          <folding />
         </state>
       </provider>
     </entry>
@@ -647,10 +649,13 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/includes/class_pzucdForm.php">
+    <entry file="file://$PROJECT_DIR$/admin/ucd-cell-layouts.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="244" column="18" selection-start="9144" selection-end="9144" vertical-scroll-proportion="-3.6149914" vertical-offset="8636" max-vertical-offset="9810">
-          <folding />
+        <state line="1009" column="0" selection-start="37168" selection-end="37344" vertical-scroll-proportion="-14.416667" vertical-offset="6368" max-vertical-offset="8208">
+          <folding>
+            <element signature="n#_populate_layout_options#0;n#pzucd_Cell_Layouts#0;n#!!top" expanded="false" />
+            <marker date="1385995530000" expanded="true" signature="19264:19374" placeholder="..." />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -663,14 +668,95 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/admin/ucd-admin.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="54" column="34" selection-start="1986" selection-end="1988" vertical-scroll-proportion="-4.54" vertical-offset="745" max-vertical-offset="3186">
+        <state line="31" column="2" selection-start="970" selection-end="970" vertical-scroll-proportion="-11.16" vertical-offset="0" max-vertical-offset="3186">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/css/ucd-admin.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="836" column="2" selection-start="17680" selection-end="17680" vertical-scroll-proportion="-14.185185" vertical-offset="14282" max-vertical-offset="15426">
+          <folding>
+            <element signature="e#15369#16758#2" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/external/HM-Custom-Meta-Boxes/classes.fields.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="792" column="0" selection-start="20339" selection-end="20742" vertical-scroll-proportion="-22.958334" vertical-offset="13705" max-vertical-offset="26280">
+          <folding>
+            <marker date="1385647847000" expanded="true" signature="5783:5936" placeholder="..." />
+            <marker date="1385647847000" expanded="true" signature="5868:5926" placeholder="..." />
+            <marker date="1385647847000" expanded="true" signature="6628:6695" placeholder="..." />
+            <marker date="1385647847000" expanded="true" signature="6696:6933" placeholder="..." />
+            <marker date="1385647847000" expanded="true" signature="7235:7253" placeholder="..." />
+            <marker date="1385647847000" expanded="true" signature="7254:7491" placeholder="..." />
+            <marker date="1385647847000" expanded="true" signature="8930:9873" placeholder="..." />
+            <marker date="1385647847000" expanded="true" signature="9145:9204" placeholder="..." />
+            <marker date="1385647847000" expanded="true" signature="9298:9577" placeholder="..." />
+            <marker date="1385647847000" expanded="true" signature="9431:9545" placeholder="..." />
+            <marker date="1385647847000" expanded="true" signature="9671:9728" placeholder="..." />
+            <marker date="1385647847000" expanded="true" signature="10778:10812" placeholder="..." />
+            <marker date="1385647847000" expanded="true" signature="10863:12065" placeholder="..." />
+            <marker date="1385647847000" expanded="true" signature="10915:10961" placeholder="..." />
+            <marker date="1385647847000" expanded="true" signature="10962:11178" placeholder="..." />
+            <marker date="1385647847000" expanded="true" signature="11035:11147" placeholder="..." />
+            <marker date="1385647847000" expanded="true" signature="11354:11414" placeholder="..." />
+            <marker date="1385647847000" expanded="true" signature="11555:11769" placeholder="..." />
+            <marker date="1385647847000" expanded="true" signature="11863:11920" placeholder="..." />
+            <marker date="1385647847000" expanded="true" signature="20104:20123" placeholder="..." />
+            <marker date="1385647847000" expanded="true" signature="20169:20219" placeholder="..." />
+            <marker date="1385647847000" expanded="true" signature="20892:20962" placeholder="..." />
+            <marker date="1385647847000" expanded="true" signature="20900:20953" placeholder="..." />
+            <marker date="1385647847000" expanded="true" signature="21969:22152" placeholder="..." />
+            <marker date="1385647847000" expanded="true" signature="24454:25191" placeholder="..." />
+            <marker date="1385647847000" expanded="true" signature="24760:24771" placeholder="..." />
+            <marker date="1385647847000" expanded="true" signature="25280:25691" placeholder="..." />
+            <marker date="1385647847000" expanded="true" signature="25299:25667" placeholder="{...}" />
+            <marker date="1385647847000" expanded="true" signature="28156:28525" placeholder="..." />
+            <marker date="1385647847000" expanded="true" signature="28507:28518" placeholder="..." />
+            <marker date="1385647847000" expanded="true" signature="28695:30953" placeholder="..." />
+            <marker date="1385647847000" expanded="true" signature="28714:30929" placeholder="{...}" />
+            <marker date="1385647847000" expanded="true" signature="29340:29841" placeholder="{...}" />
+            <marker date="1385647847000" expanded="true" signature="29937:30227" placeholder="{&quot;action&quot;: 'cmb_post_select'...}" />
+            <marker date="1385647847000" expanded="true" signature="30255:30899" placeholder="{&quot;type&quot;: 'POST'...}" />
+            <marker date="1385647847000" expanded="true" signature="30413:30514" placeholder="{...}" />
+            <marker date="1385647847000" expanded="true" signature="30558:30892" placeholder="{...}" />
+            <marker date="1385647847000" expanded="true" signature="33694:33741" placeholder="..." />
+            <marker date="1385647847000" expanded="true" signature="33742:33780" placeholder="..." />
+            <marker date="1385647847000" expanded="true" signature="34042:34089" placeholder="..." />
+            <marker date="1385647847000" expanded="true" signature="34090:34132" placeholder="..." />
+            <marker date="1385647847000" expanded="true" signature="35274:35292" placeholder="..." />
+            <marker date="1385647847000" expanded="true" signature="35293:35560" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/external/HM-Custom-Meta-Boxes/class.cmb-meta-box.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="312" column="17" selection-start="8196" selection-end="8198" vertical-scroll-proportion="-22.458334" vertical-offset="5077" max-vertical-offset="6264">
+          <folding>
+            <marker date="1385647847000" expanded="true" signature="3125:3302" placeholder="..." />
+            <marker date="1385647847000" expanded="true" signature="3163:3287" placeholder="{...}" />
+            <marker date="1385647847000" expanded="true" signature="6149:7283" placeholder="..." />
+            <marker date="1385647847000" expanded="false" signature="6813:6876" placeholder="..." />
+            <marker date="1385647847000" expanded="true" signature="6932:7045" placeholder="..." />
+            <marker date="1385647847000" expanded="true" signature="6943:7035" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/external/HM-Custom-Meta-Boxes/example-functions.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="87" column="22" selection-start="4551" selection-end="4551" vertical-scroll-proportion="-32.208332" vertical-offset="793" max-vertical-offset="1980">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/includes/pzucd-custom-field-types.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="33" column="0" selection-start="973" selection-end="973" vertical-scroll-proportion="-20.25" vertical-offset="0" max-vertical-offset="6894">
+        <state line="33" column="0" selection-start="973" selection-end="973" vertical-scroll-proportion="152.625" vertical-offset="4149" max-vertical-offset="6894">
           <folding>
             <marker date="1385970337000" expanded="true" signature="1128:1230" placeholder="..." />
             <marker date="1385970337000" expanded="true" signature="2109:2669" placeholder="..." />
@@ -688,30 +774,19 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/admin/ucd-cell-layouts.php">
+    <entry file="file://$PROJECT_DIR$/admin/js/ucd-metaboxes-templates.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="1085" column="0" selection-start="38260" selection-end="42007" vertical-scroll-proportion="-43.666668" vertical-offset="7034" max-vertical-offset="8208">
-          <folding>
-            <element signature="n#_populate_layout_options#0;n#pzucd_Cell_Layouts#0;n#!!top" expanded="false" />
-            <marker date="1385995530000" expanded="true" signature="19264:19374" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin/css/ucd-admin.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="813" column="10" selection-start="16861" selection-end="16861" vertical-scroll-proportion="-38.653847" vertical-offset="13629" max-vertical-offset="14832">
+        <state line="28" column="33" selection-start="1007" selection-end="1007" vertical-scroll-proportion="0.0" vertical-offset="373" max-vertical-offset="1692">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/admin/ucd-content-templates.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="432" column="0" selection-start="13180" selection-end="13180" vertical-scroll-proportion="0.380406" vertical-offset="7345" max-vertical-offset="9648">
+        <state line="438" column="0" selection-start="13017" selection-end="13771" vertical-scroll-proportion="0.52691966" vertical-offset="7287" max-vertical-offset="11142">
           <folding>
-            <marker date="1385997362000" expanded="true" signature="15735:16258" placeholder="..." />
-            <marker date="1385997362000" expanded="true" signature="16305:16316" placeholder="..." />
-            <marker date="1385997362000" expanded="true" signature="16371:16397" placeholder="..." />
+            <marker date="1386141109000" expanded="true" signature="19371:19382" placeholder="..." />
+            <marker date="1386141109000" expanded="true" signature="19437:19463" placeholder="..." />
           </folding>
         </state>
       </provider>

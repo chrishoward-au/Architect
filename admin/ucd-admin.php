@@ -22,14 +22,14 @@ class pzucdAdmin
 			require_once PZUCD_PLUGIN_PATH . '/admin/ucd-cell-layouts.php';
 			require_once PZUCD_PLUGIN_PATH . '/admin/ucd-data-selection.php';
 			require_once PZUCD_PLUGIN_PATH . '/admin/ucd-content-templates.php';
-			require_once PZUCD_PLUGIN_PATH . '/admin/ucd-controls.php';
+//			require_once PZUCD_PLUGIN_PATH . '/admin/ucd-controls.php';
 
 
       // @TODO Should these really be classes?
 			$data_selection		 = new pzucd_Criteria;
 			$cell_layout		 = new pzucd_Cell_Layouts;
 			$content_template	 = new pzucd_Content_Templates;
-			$content_template	 = new pzucd_Controls;
+//			$content_template	 = new pzucd_Controls;
 
 //add_action( 'pzucd_do_it', array( $this, 'do_it' ) );
 		}
@@ -71,9 +71,9 @@ class pzucdAdmin
 //			add_submenu_page(
 //				'pzucd', 'Styling', 'Styling', 'manage_options', 'pzucd_styling', array( $this, 'pzucd_styling' )
 //			);
-			add_submenu_page(
-				'pzucd', 'Generate code', 'Generator', 'manage_options', 'pzucd_generator', array( $this, 'pzucd_generator' )
-			);
+//			add_submenu_page(
+//				'pzucd', 'Generate code', 'Generator', 'manage_options', 'pzucd_generator', array( $this, 'pzucd_generator' )
+//			);
 			add_submenu_page(
 							'pzucd', 'UCD Options', 'Options', 'manage_options', 'pzucd_options', array( $this, 'pzucd_options' )
 			);
