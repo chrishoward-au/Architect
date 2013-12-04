@@ -765,8 +765,8 @@ body.screen-ucd-layouts #side-sortables .postbox{
   color:#ccc;
 }
 
-body.screen-ucd-templates #side-sortables h3,
-body.screen-ucd-layouts #side-sortables h3 {
+body.screen-ucd-templates h3.hndle,
+body.screen-ucd-layouts h3.hndle {
   color:#fff;
   background:#6d6d6d;
   border-bottom:none;
@@ -778,7 +778,9 @@ body.screen-ucd-layouts #side-sortables .handlediv {
 }
 
 body.screen-ucd-templates #side-sortables .field-title,
-body.screen-ucd-layouts #side-sortables .field-title {
+body.screen-ucd-layouts #side-sortables .field-title,
+.field.CMB_Checkbox label
+{
   font-size:13px;
   color:#3E8EAC;
 }
@@ -850,3 +852,12 @@ select#_pzucd_layout-show-cmb-field-0 {height:130px;}
 .pzucd-section-cell.guttered {
   margin-left:1%;
 }
+
+/* Initially hide */
+#template-section-1,
+#template-section-2,
+#template-section-3,
+#pzucd-sections-preview-0,
+#pzucd-sections-preview-1,
+#pzucd-sections-preview-2
+{display:none;}

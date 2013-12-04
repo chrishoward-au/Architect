@@ -140,303 +140,88 @@ class pzucd_Content_templates extends pzucdForm
     register_post_type('ucd-templates', $args);
   }
 
+} // EOC
 
-// End templates_meta
-  // cpt = custom post type
-  /**
-   * [populate_template_options description]
-   * @return [type] [description]
-   */
-//	private function _populate_template_options()
-//	{
-//		//		global $this->meta_box_template;
-//
-//		$prefix = 'pzucd_';
-//		/*
-//		 *
-//		 * Setup templates extra fields
-//		 *
-//		 */
-//		$i                 = 0;
-//		$meta_box_template = array(
-//			'id'          => 'pzucd-templates-id',
-//			'title'       => 'Template Designer',
-//			'page'        => 'ucd-templates',
-//			'context'     => 'normal',
-//			'priority'    => 'high',
-//			'orientation' => 'horizontal',
-//			'tabs'        => array(
-//				$i++ => array(
-//					'icon'  => 'entypo-window',
-//					'label' => __('General', 'pzucd'),
-//					'id'    => $prefix . 'tab_templates_general',
-//					'type'  => 'tab',
-//				),
-//				$i++ => array(
-//					'icon'  => 'fontawesome-forward',
-//					'label' => __('Navigation', 'pzucd'),
-//					'id'    => $prefix . 'tab_templates_controls',
-//					'type'  => 'tab',
-//				),
-//				$i++ => array(
-//					'icon'  => 'fontawesome-forward',
-//					'label' => __('Pager', 'pzucd'),
-//					'id'    => $prefix . 'tab_templates_controls',
-//					'type'  => 'tab',
-//				),
-//			)
-//		);
-//
-//		$i = 0;
-//
-//		/*		 * **************
-//		 * RESPONSIVE
-//		 * *************** */
-//		$meta_box_template[ 'tabs' ][ $i++ ][ 'fields' ] = array(
-//			array(
-//				'name' => __('General', 'pzucd'),
-//				'id'      => $prefix . 'template-general',
-//				'type'    => 'heading',
-//				'default' => '',
-//				'desc'    => __('', 'pzucd')
-//			),
-//			array(
-//				'name' => __('Template set name', 'pzucd'),
-//				'id'      => $prefix . 'template-set-name',
-//				'type'    => 'text',
-//				'default' => '',
-//				'desc'    => __('.', 'pzucd'),
-//				'help'    => __('Create sets of templates with each template in a set for different screen dimensions')
-//			),
-//			array(
-//				'name' => __('Template short name ', 'pzucd'),
-//				'id'      => $prefix . 'template-short-name',
-//				'type'    => 'text',
-//				'default' => '',
-//				'desc'    => __('.', 'pzucd')
-//			),
-//			array(
-//				'name' => __('Display', 'pzucd'),
-//				'id'      => $prefix . 'template-display',
-//				'type'    => 'select',
-//				'default' => 'desktop',
-//				'options' => array(
-//					'desktop' => 'Desktop, Tablet landscape - greater than 960 pixels'),
-//					'tablet-portrait' => 'Tablet Portrait - 641 to 960 pixels'),
-//					'smartphone' => 'Smartphone - 0 to 640 pixels'),
-//				),
-//				'desc'    => __('Primary device you expect this template to show on.', 'pzucd'),
-//			),
-////				array(
-////						'label'		 => __( 'Minimum display width (px)', 'pzucd' ),
-////						'id'			 => $prefix . 'template-min-display-width',
-////						'type'		 => 'text',
-////						'default'	 => '0',
-////						'desc'		 => __( '.', 'pzucd' ),
-////				),
-////				array(
-////						'label'		 => __( 'Maximum display width (px)', 'pzucd' ),
-////						'id'			 => $prefix . 'template-max-display-width',
-////						'type'		 => 'text',
-////						'default'	 => '320',
-////						'desc'		 => __( '.', 'pzucd' ),
-////				),
-//			array(
-//				'name' => __('Structure', 'pzucd'),
-//				'id'      => $prefix . 'template-structure',
-//				'type'    => 'heading',
-//				'default' => '',
-//				'desc'    => __('', 'pzucd')
-//			),
-//			array(
-//				'name' => __('Cells per view', 'pzucd'),
-//				'id'      => $prefix . 'template-cells-per-view',
-//				'type'    => 'spinner',
-//				'default' => '9',
-//				'suffix'  => '',
-//				'desc'    => __('.', 'pzucd'),
-//				'help'    => __('')
-//			),
-//			array(
-//				'name' => __('Number of cells across', 'pzucd'),
-//				'id'      => $prefix . 'template-cells-across',
-//				'type'    => 'spinner',
-//				'default' => '3',
-//				'suffix'  => '',
-//				'desc'    => __('.', 'pzucd'),
-//				'help'    => __('')
-//			),
-//			array(
-//				'name' => __('Gutter width (%)', 'pzucd'),
-//				'id'      => $prefix . 'layout-gutter-width',
-//				'type'    => 'spinner',
-//				'alt'     => 'gutter',
-//				'default' => '1',
-//				'min'     => '1',
-//				'max'     => '100',
-//				'step'    => '1',
-//				'suffix'  => '%',
-//				'desc'    => __('Set the gutter width as a percentage of the cell width. The gutter is the gap between adjoining elements', 'pzucd')
-//			),
-//			array(
-//				'name' => __('Layout mode', 'pzucd'),
-//				'id'      => $prefix . 'layout-mode',
-//				'type'    => 'select',
-//				'default' => 'masonary',
-//				'options' => array(
-//					'masonary' => 'Masonary'),
-//					'masonaryVertical' => 'Masonary Vertical'),
-//					'fitRows' => 'Fit rows'),
-//					'fitColumns' => 'Fit columns'),
-//					'cellsByRow' => 'Cells by row'),
-//					'cellsByColumn' => 'Cells by column'),
-//					'straightDown' => 'Straight down'),
-//					'straightAcross' => 'Straight across'),
-//				),
-//				'desc'    => __('Choose how you want the cells to display. Please visit <a href="http://isotope.metafizzy.co/demos/layout-modes.html" target=_blank>Isotope Layout Modes</a> for demonstrations of these layouts', 'pzucd')
-//			),
-//		);
-//
-//		/// Navigation
-//		$meta_box_template[ 'tabs' ][ $i++ ][ 'fields' ] = array(
-//			array(
-//				'name' => __('Navigation', 'pzucd'),
-//				'id'      => $prefix . 'template-controls-heading',
-//				'type'    => 'heading',
-//				'default' => '',
-//				'desc'    => __('Navigation controls single cells. Used, for example, in sliders and tabs.', 'pzucd')
-//			),
-//			array(
-//				'name' => __('Navigation positions', 'pzucd'),
-//				'id'      => $prefix . 'control-positions',
-//				'type'    => 'multicheck',
-//				'default' => array('bottom'),
-//				'options' => array(
-//					'top' => 'Top'),
-//					'bottom' => 'Bottom'),
-//					'left' => 'Left'),
-//					'right' => 'Right'),
-//				),
-//				'desc'    => __('Choose where to display controls', 'pzucd')
-//			),
-//
-//			array(
-//				'name' => __('Top', 'pzucd'),
-//				'id'      => $prefix . 'template-controls--heading-top',
-//				'type'    => 'heading',
-//				'default' => '',
-//				'desc'    => __('', 'pzucd')
-//			),
-//			array(
-//				'name' => __('Type', 'pzucd'),
-//				'id'      => $prefix . 'template-top-control-type',
-//				'type'    => 'text',
-//				'default' => '',
-//				'desc'    => __('.', 'pzucd'),
-//				'help'    => __('Top control type: navigation, thumbs, titles, bullets')
-//			),
-//			array(
-//				'name' => __('Position', 'pzucd'),
-//				'id'      => $prefix . 'template-top-control-position',
-//				'type'    => 'text',
-//				'default' => '',
-//				'desc'    => __('.', 'pzucd'),
-//				'help'    => __('Top control position: Inside, Outside')
-//			),
-//		);
-//		$meta_box_template[ 'tabs' ][ $i++ ][ 'fields' ] = array(
-//			array(
-//				'name' => __('Pager', 'pzucd'),
-//				'id'      => $prefix . 'template-pager-heading',
-//				'type'    => 'heading',
-//				'default' => '',
-//				'desc'    => __('Pagers control navigation between pages of content. Sometimes these may be a single cell, and sometimes a grid of cells.', 'pzucd')
-//			),
-//			array(
-//				'name' => __('Pager positions', 'pzucd'),
-//				'id'      => $prefix . 'pager-positions',
-//				'type'    => 'multicheck',
-//				'default' => array('bottom'),
-//				'options' => array(
-//					'top' => 'Top'),
-//					'bottom' => 'Bottom'),
-//					'left' => 'Left'),
-//					'right' => 'Right'),
-//				),
-//				'desc'    => __('Choose where to display controls', 'pzucd')
-//			),
-//
-//			array(
-//				'name' => __('Top', 'pzucd'),
-//				'id'      => $prefix . 'template-pager--heading-top',
-//				'type'    => 'heading',
-//				'default' => '',
-//				'desc'    => __('', 'pzucd')
-//			),
-//			array(
-//				'name' => __('Type', 'pzucd'),
-//				'id'      => $prefix . 'template-top-pager-type',
-//				'type'    => 'text',
-//				'default' => '',
-//				'desc'    => __('.', 'pzucd'),
-//				'help'    => __('Top control type: Pagination, pager')
-//			),
-//			array(
-//				'name' => __('Position', 'pzucd'),
-//				'id'      => $prefix . 'template-top-pager-position',
-//				'type'    => 'text',
-//				'default' => '',
-//				'desc'    => __('.', 'pzucd'),
-//				'help'    => __('Top control position: Inside, Outside')
-//			),
-//
-//
-//		);
-//
-//		return $meta_box_template;
-//	}
+add_filter('cmb_meta_boxes', 'pzucd_template_preview_metabox');
+function pzucd_template_preview_metabox($meta_boxes = array())
+{
+  $prefix        = '_pzucd_';
+  $fields        = array(
+    array(
+      'id'       => $prefix . '0-sections-preview',
+      'cols'     => 12,
+      'type'     => 'pzlayout',
+      'readonly' => false, // Readonly fields can't be written to by code! Weird
+      'code'     => draw_sections_preview(0),
+      'default'  => 'May not need anything',
+      'desc'     => __('', 'pzucd')
+    ),
+    array(
+      'id'       => $prefix .'1-sections-preview',
+      'cols'     => 12,
+      'type'     => 'pzlayout',
+      'readonly' => false, // Readonly fields can't be written to by code! Weird
+      'code'     => draw_sections_preview(1),
+      'default'  => 'May not need anything',
+      'desc'     => __('', 'pzucd')
+    ),
+    array(
+      'id'       => $prefix . '2-sections-preview',
+      'cols'     => 12,
+      'type'     => 'pzlayout',
+      'readonly' => false, // Readonly fields can't be written to by code! Weird
+      'code'     => draw_sections_preview(2),
+      'default'  => 'May not need anything',
+      'desc'     => __('', 'pzucd')
+    ),
+  );
+  $meta_boxes[ ] = array(
+    'title'    => 'Template Preview',
+    'pages'    => 'ucd-templates',
+    'fields'   => $fields,
+    'context'  => 'normal',
+    'priority' => 'high'
 
+  );
 
+  return $meta_boxes;
 }
 
-// EOC
+
 
 add_filter('cmb_meta_boxes', 'pzucd_sections_preview_meta');
 function pzucd_sections_preview_meta($meta_boxes = array())
 {
   $prefix        = '_pzucd_';
+
+  $args = array(
+    'posts_per_page'   => -1,
+    'orderby'          => 'title',
+    'order'            => 'ASC',
+    'post_type'        => 'ucd-layouts',
+    'suppress_filters' => true );
+
+  $pzucd_cells = get_posts($args);
+  $pzucd_cells_array = array();
+  if (!empty($pzucd_cells)) {
+    foreach($pzucd_cells as $pzucd_cell){
+      $pzucd_cells_array[$pzucd_cell->ID] = (empty($pzucd_cell->post_title)?'No title':$pzucd_cell->post_title);
+    }
+  } else {
+    $pzucd_cells_array = array(0=>'No cell layouts. Create some.');
+  }
+  // ID,post_title
   for ($i = 0; $i < 3; $i++)
   {
     $fields = array(
-//    array(
-//      'name'       => __('Short name', 'pzucd'),
-//      'id'         => $prefix . $i.'-template-short-name',
-//      'type'       => 'text',
-//      'default'    => '',
-//      'cols'       => 12,
-//      'tooltip'    => __('', 'pzucd'),
-//      'validation' => 'data-validation-engine="validate[required]"'
-//    ),
-//  );
-//  $meta_boxes[ ] = array(
-//    'title'   => 'Template sections preview',
-//    'pages'   => 'ucd-templates',
-//    'fields'  => $fields,
-//    'context' => 'normal',
-//  );
-//
-//  return $meta_boxes;
-//}
-//
-//
-//add_filter('cmb_meta_boxes', 'pzucd_sections_settings_metabox');
-//function pzucd_sections_settings_metabox($meta_boxes = array())
-//{
-//  $prefix = '_pzucd_';
-//
-/////  make this agroup up to 3.
-//
-//  $fields        = array(
+
+      array(
+        'id'      => $prefix . $i . '-template-section-title',
+        'name'    => __('Section title', 'pzucd'),
+        'type'    => 'text',
+        'cols'    => 12,
+        'desc' => 'Section title is optional'
+      ),
       array(
         'name'    => __('Cells per section', 'pzucd'),
         'id'      => $prefix . $i . '-template-cells-per-view',
@@ -496,27 +281,19 @@ function pzucd_sections_preview_meta($meta_boxes = array())
 //      'desc'    => __('Set the horizontal gutter width as a percentage of the section width. The gutter is the gap between adjoining elements', 'pzucd')
       ),
       array(
-        'id'       => $prefix . $i . '-sections-preview',
-        'cols'     => 12,
-        'type'     => 'pzlayout',
-        'readonly' => false, // Readonly fields can't be written to by code! Weird
-        'code'     => draw_sections_preview($i),
-        'default'  => 'May not need anything',
-        'desc'     => __('', 'pzucd')
-      ),
-      array(
         'id'      => $prefix . $i . '-template-section-cell-layout',
         'name'    => __('Cells layout', 'pzucd'),
-        'type'    => 'text',
-        'cols'    => 6,
-        'default' => ''
+        'type'    => 'pzselect',
+        'cols'    => 9,
+        'default' => '',
+        'options' => $pzucd_cells_array
       ),
       array(
         'name'    => __('Layout mode', 'pzucd'),
         'id'      => $prefix . $i . '-template-layout-mode',
         'type'    => 'pzselect',
         'default' => 'fitRows',
-        'cols'    => 6,
+        'cols'    => 3,
         'options' => array(
           'fitRows'         => 'Fit rows',
           'fitColumns'      => 'Fit columns',
@@ -527,11 +304,11 @@ function pzucd_sections_preview_meta($meta_boxes = array())
           'straightDown'    => 'Straight down',
           'straightAcross'  => 'Straight across',
         ),
-        'desc'    => __('Choose how you want the cells to display. With evenly sized cells, you\'ll see little difference. Please visit <a href="http://isotope.metafizzy.co/demos/layout-modes.html" target=_blank>Isotope Layout Modes</a> for demonstrations of these layouts', 'pzucd')
+ //       'desc'    => __('Choose how you want the cells to display. With evenly sized cells, you\'ll see little difference. Please visit <a href="http://isotope.metafizzy.co/demos/layout-modes.html" target=_blank>Isotope Layout Modes</a> for demonstrations of these layouts', 'pzucd')
       ),
     );
     $meta_boxes[ ] = array(
-      'title'    => 'Section '.($i+1),
+      'title'    => 'Template Section '.($i+1),
       'pages'    => 'ucd-templates',
       'context'  => 'normal',
       'priority' => 'high',
@@ -546,14 +323,40 @@ function pzucd_sections_preview_meta($meta_boxes = array())
 add_filter('cmb_meta_boxes', 'pzucd_template_settings_metabox');
 function pzucd_template_settings_metabox($meta_boxes = array())
 {
+  $args = array(
+    'posts_per_page'   => -1,
+    'orderby'          => 'title',
+    'order'            => 'ASC',
+    'post_type'        => 'ucd-criterias',
+    'suppress_filters' => true );
+
+
+  $pzucd_criterias = get_posts($args);
+  $pzucd_criterias_array = array();
+  if (!empty($pzucd_criterias)) {
+    foreach($pzucd_criterias as $pzucd_criteria){
+      $pzucd_criterias_array[$pzucd_criteria->ID] = (empty($pzucd_criteria->post_title)?'No title':$pzucd_criteria->post_title);
+    }
+  } else {
+    $pzucd_criterias_array = array(0=>'No criterias defined. Create some.');
+  }
   $prefix        = '_pzucd_';
   $fields        = array(
     array(
+      'id' => $prefix.'template-short-name',
+      'name' => __('Template Short Name','pzucd'),
+      'type' => 'text',
+      'cols' => 12,
+      'default' => '',
+      'desc' => __('Alphanumeric only','pzucd')
+    ),
+    array(
       'id'      => $prefix . 'template-criteria',
       'name'    => __('Criteria', 'pzucd'),
-      'type'    => 'text',
+      'type'    => 'pzselect',
       'cols'    => 12,
-      'default' => ''
+      'default' => '',
+      'options' => $pzucd_criterias_array
     ),
     array(
       'id'      => $prefix . 'template-controls',
@@ -571,13 +374,28 @@ function pzucd_template_settings_metabox($meta_boxes = array())
         'thumbs'      => 'Thumbnails'
       )
     ),
-//    array(
-//      'id' => $prefix.'template-other-thing',
-//      'name' => __('Other thing','pzucd'),
-//      'type' => 'text',
-//      'cols' => 12,
-//      'default' => ''
-//    ),
+    array(
+      'name' => 'Enable section 1',
+      'id' => $prefix . '0-template-section-enable',
+      'type' => 'checkbox',
+      'cols'=> 12,
+      'default' => true,
+    ),
+    array(
+      'name' => 'Enable section 2',
+      'id' => $prefix . '1-template-section-enable',
+      'type' => 'checkbox',
+      'cols'=> 12,
+      'default' => false
+    ),
+    array(
+      'name' => 'Enable section 3',
+      'id' => $prefix . '2-template-section-enable',
+      'type' => 'checkbox',
+      'cols'=> 12,
+      'default' => false
+    ),
+
     array(
       'id'      => $prefix . 'layout-set-save',
       'type'    => 'pzsubmit',
@@ -603,9 +421,8 @@ function draw_sections_preview($section_number)
 
   // Put in a hidden field with the plugin url for use in js
   $return_html = '
-  <div id="pzucd-sections-preview" class="pzucd-sections pzucd-section-".$section_number>';
+  <div id="pzucd-sections-preview-'.$section_number.'" class="pzucd-sections pzucd-section-'.$section_number.'">';
   $return_html .= '</div>
-	  <p class="howto pzcentred"><strong style="color:#f00;">This is an example only and thus only a <span style="border-bottom: 3px double;">general guide</span> to how the cells will look.</strong></p>
 	</div>
 	';
 

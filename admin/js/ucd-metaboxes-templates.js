@@ -27,63 +27,78 @@ jQuery(document).ready(function () {
   pzucd_refresh_template_layout(0);
   pzucd_refresh_template_layout(1);
   pzucd_refresh_template_layout(2);
+
   function pzucd_refresh_template_layout(i) {
     pzucd_update_cell_count(i, jQuery('#_pzucd_' + i + '-template-cells-per-view-cmb-field-0').get(0));
     pzucd_update_cell_margin(i, jQuery('#_pzucd_' + i + '-template-cells-vert-margin-cmb-field-0').get(0));
     pzucd_update_cell_across(i, jQuery('#_pzucd_' + i + '-template-cells-across-cmb-field-0').get(0));
     pzucd_update_min_width(i, jQuery('#_pzucd_' + i + '-template-min-cell-width-cmb-field-0').get(0));
-
+    pzucd_show_hide_section(i);
   }
+
+//  jQuery('#pzucd-sections-preview-0').resize(function(){console.log(this.width);pzucd_refresh_template_layout(0)});
+//  jQuery('#pzucd-sections-preview-1').resize(function(){console.log(this.width);pzucd_refresh_template_layout(1)});
+//  jQuery('#pzucd-sections-preview-2').resize(function(){console.log(this.width);pzucd_refresh_template_layout(2)});
 
 
   for (var i = 0; i < 3; i++) {
     jQuery('#_pzucd_' + i + '-template-cells-vert-margin-cmb-field-0').change(function () {
-      pzucd_refresh_template_layout(i);
+      pzucd_refresh_template_layout(this.id.substr(7,1));
     });
     jQuery('#_pzucd_' + i + '-template-cells-across-cmb-field-0').change(function () {
-      pzucd_refresh_template_layout(i);
+      pzucd_refresh_template_layout(this.id.substr(7,1));
     });
     jQuery('#_pzucd_' + i + '-template-cells-per-view-cmb-field-0').change(function () {
-      pzucd_refresh_template_layout(i);
+      pzucd_refresh_template_layout(this.id.substr(7,1));
     });
     jQuery('#_pzucd_' + i + '-template-min-cell-width-cmb-field-0').change(function () {
-      pzucd_refresh_template_layout(i);
+      pzucd_refresh_template_layout(this.id.substr(7,1));
+    });
+    jQuery('#_pzucd_' + i + '-template-section-enable-cmb-field-0').change(function () {
+      var x = this.id.substr(7,1);
+      pzucd_show_hide_section(x);
     });
   }
 
-
+/* Switched to pixel based once, but not as fluid. Butwhat was it's advantage? Why did I switch? */
   function pzucd_update_cell_margin(i,t) {
-    console.log(i,t,t.value);
+//    console.log(i,t,t.value);
     var cellsAcross = jQuery('#_pzucd_'+i+'-template-cells-across-cmb-field-0').get(0).value;
-    var containerWidth = jQuery('#pzucd-sections-preview.pzucd-section-'+i).width();
+    var containerWidth = jQuery('.pzucd-section-'+i).width();
     //  console.log(containerWidth);
-    jQuery('.pzucd-section-cell').each(function (index, value) {
-//      console.log(((index+1)%cellsAcross),cellsAcross);
+    jQuery('#pzucd-sections-preview-'+i+' .pzucd-section-cell').each(function (index, value) {
+ //     console.log(((index+1)%cellsAcross),cellsAcross);
 //      if (((index+1)%cellsAcross) != 0) {
-      jQuery(value).css({'marginRight': (containerWidth * t.value / 100) + 'px'});
+      jQuery(value).css({'marginRight': (t.value ) + '%'});
 //      }
     });
   }
 
   function pzucd_update_cell_across(i,t) {
-    console.log(i,t,t.value);
-    var containerWidth = jQuery('#pzucd-sections-preview.pzucd-section-'+i).width();
+ //   console.log(i,t,t.value);
+    var containerWidth = jQuery('#pzucd-sections-preview-'+i).width();
 //    console.log(containerWidth);
-    var cellRightMargin = jQuery('#_pzucd_'+i+'-template-cells-vert-margin-cmb-field-0').val() * containerWidth;
+    var cellRightMargin = jQuery('#_pzucd_'+i+'-template-cells-vert-margin-cmb-field-0').val();
     var new_cell_width = ((containerWidth - ((cellRightMargin * (t.value) / 100))) / t.value);
-    jQuery('.pzucd-section-cell').width(new_cell_width + 'px');
+    jQuery('#pzucd-sections-preview-'+i+' .pzucd-section-cell').width( ((100/ t.value)- cellRightMargin) + '%');
   }
 
   function pzucd_update_cell_count(i,t) {
-    console.log(i,t,t.value);
-    jQuery('#pzucd-sections-preview.pzucd-section-'+i).empty();
+//    console.log(i,t,t.value);
+    jQuery('.pzucd-section-'+i).empty();
     for (var j = 1; j <= t.value; j++) {
-      jQuery('#pzucd-sections-preview.pzucd-section-'+i).append('<div class="pzucd-section-cell-' + j + ' pzucd-section-cell">Cell ' + j + '</div>');
+      jQuery('#pzucd-sections-preview-'+i).append('<div class="pzucd-section-cell-' + j + ' pzucd-section-cell">Cell ' + j + '</div>');
     }
   }
 
   function pzucd_update_min_width(i,t) {
-    console.log(i,t,t.value);
-    jQuery('.pzucd-sections.pzucd-section-'+i+' .pzucd-section-cell').css({'minWidth': t.value + 'px'});
+ //   console.log(i,t,t.value);
+    jQuery('#pzucd-sections-preview-'+i+' .pzucd-section-cell').css({'minWidth': t.value + 'px'});
+  }
+
+  function pzucd_show_hide_section(x) {
+    var y = parseInt(x)+1;
+    jQuery('#pzucd-sections-preview-'+x).toggle(jQuery('#_pzucd_'+x+'-template-section-enable-cmb-field-0').get(0).checked);
+    jQuery('#template-section-'+y+'.postbox').toggle(jQuery('#_pzucd_'+x+'-template-section-enable-cmb-field-0').get(0).checked);
   }
 });
