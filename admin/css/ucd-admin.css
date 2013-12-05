@@ -765,6 +765,7 @@ body.screen-ucd-layouts #side-sortables .postbox{
   color:#ccc;
 }
 
+body.screen-ucd-criterias h3.hndle,
 body.screen-ucd-templates h3.hndle,
 body.screen-ucd-layouts h3.hndle {
   color:#fff;
@@ -772,7 +773,11 @@ body.screen-ucd-layouts h3.hndle {
   border-bottom:none;
 }
 
+/* Hide toggle for settings and preview link after publishing for cells and criteris */
+body.screen-ucd-criterias #side-sortables .handlediv,
+body.screen-ucd-criterias #message.updated.below-h2 a,
 body.screen-ucd-templates #side-sortables .handlediv,
+body.screen-ucd-layouts #message.updated.below-h2 a,
 body.screen-ucd-layouts #side-sortables .handlediv {
   display:none;
 }
@@ -861,3 +866,15 @@ select#_pzucd_layout-show-cmb-field-0 {height:130px;}
 #pzucd-sections-preview-1,
 #pzucd-sections-preview-2
 {display:none;}
+
+.cmb_metabox .field {
+  border-bottom: none;
+}
+.field.CMB_Title h2{
+  border-bottom: solid #eee 1px;
+  color:#3E8EAC;
+}
+
+body.screen-ucd-templates #template-settings .CMB_Radio_Field label {
+  margin-right:25%!important;
+}

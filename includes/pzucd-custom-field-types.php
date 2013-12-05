@@ -26,6 +26,7 @@ function pzucd_custom_fields($fields)
   $fields[ 'pzrange' ]  = 'Pizazz_Range_Field';
   $fields[ 'pzmulticheck' ]  = 'Pizazz_MultiCheck_Field';
   $fields[ 'pzsubmit' ]  = 'Pizazz_Submit_Button';
+  $fields[ 'pzgallery' ]  = 'Pizazz_Gallery_Field';
 
 
   return $fields;
@@ -317,7 +318,7 @@ if (!class_exists('Pizazz_Spinner_Field'))
     public function html()
     {
       ?>
-      <input alt="<?php echo $this->args[ 'alt' ]; ?>" type="number" min=<?php echo esc_html( $this->args[ 'min' ])?> max=<?php echo esc_html( $this->args[ 'max' ])?> <?php $this->name_attr(); ?><?php $this->boolean_attr(); ?> <?php $this->class_attr(); ?> <?php $this->id_attr(); ?> value="<?php echo esc_attr($this->get_value()) ?>" /><span class="pzucd-range-spinner spinner-'<?php  echo sanitize_html_class( $this->args[ 'id' ] ) ?>"><?php echo esc_html( $this->args[ 'suffix' ])?></span><br />
+      <input alt="<?php echo $this->args[ 'alt' ]; ?>" type="number" min=<?php echo esc_html( $this->args[ 'min' ])?> max=<?php echo esc_html( $this->args[ 'max' ])?> <?php $this->name_attr(); ?><?php $this->boolean_attr(); ?> <?php $this->class_attr(); ?> <?php $this->id_attr(); ?> value="<?php echo esc_attr($this->get_value()) ?>" /><span class="pzucd-range-spinner spinner-'<?php  echo sanitize_html_class( $this->args[ 'id' ] ) ?>"><?php echo esc_html( (!empty($this->args[ 'suffix' ])?$this->args[ 'suffix' ]:null))?></span><br />
 
     <?php
     }
@@ -379,5 +380,34 @@ if (!class_exists('Pizazz_MultiCheck_Field'))
  }
 
 
+  }
+}
+
+if (!class_exists('Pizazz_Gallery_Field'))
+{
+  /**
+   * Standard text field.
+   *
+   * @extends CMB_Field
+   */
+  class Pizazz_Gallery_Field extends CMB_Field
+  {
+
+    public function enqueue_scripts()
+    {
+
+      parent::enqueue_scripts();
+
+    }
+
+    public function html()
+    {
+      ?>
+
+      <input type="text" <?php $this->id_attr(); ?> <?php $this->boolean_attr(); ?> <?php $this->class_attr(); ?> <?php $this->name_attr(); ?>
+             value="<?php echo esc_attr($this->get_value()); ?>"/>
+
+    <?php
+    }
   }
 }

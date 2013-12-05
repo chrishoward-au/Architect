@@ -17,14 +17,10 @@ class pzucd_Cell_Layouts
 
     if (is_admin())
     {
-      if (!class_exists('CMB_Meta_Box'))
-      {
-        require_once PZUCD_PLUGIN_PATH . 'external/HM-Custom-Meta-Boxes/custom-meta-boxes.php';
-      }
       require_once PZUCD_PLUGIN_PATH . 'includes/pzucd-custom-field-types.php';
 
       //	add_action('admin_init', 'pzucd_preview_meta');
-      add_action('add_meta_boxes', array($this, 'layouts_meta'));
+   //   add_action('add_meta_boxes', array($this, 'layouts_meta'));
       add_action('admin_head', array($this, 'cell_layouts_admin_head'));
       add_action('admin_enqueue_scripts', array($this, 'cell_layouts_admin_enqueue'));
 //      add_filter('manage_ucd-layouts_posts_columns', array($this, 'add_cell_layout_columns'));
@@ -1025,7 +1021,12 @@ add_filter('cmb_meta_boxes', 'pzucd_cell_settings_meta');
 function pzucd_cell_settings_meta($meta_boxes = array())
 {
   $prefix        = '_pzucd_';
-  $fields        = array();
+  $fields        = array(
+    array(
+    'id' => 'nothing1',
+    'name'=>'Nothing here yet',
+    'type'=>'title'
+    )  );
   $meta_boxes[ ] = array(
     'title'  => 'Settings',
     'pages'  => 'ucd-layouts',
@@ -1039,7 +1040,12 @@ add_filter('cmb_meta_boxes', 'pzucd_cell_formats_meta');
 function pzucd_cell_formats_meta($meta_boxes = array())
 {
   $prefix        = '_pzucd_';
-  $fields        = array();
+  $fields        = array(
+    array(
+    'id' => 'nothing2',
+    'name'=>'Nothing here yet',
+    'type'=>'title'
+    ));
   $meta_boxes[ ] = array(
     'title'  => 'Styling',
     'pages'  => 'ucd-layouts',

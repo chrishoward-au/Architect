@@ -11,9 +11,13 @@ require(PZUCD_PLUGIN_PATH .'/frontend/class_pzucdDisplay.php');
 require(PZUCD_PLUGIN_PATH .'/includes/class_pzucdQuery.php');
 
 // Template tag
-function pzucd_display($pzucd_criteria=null ,$pzucd_sections = null, $pzucd_title = null)
+function pzucd_display()
 {
+  $pzucd_criteria=null ;$pzucd_sections = null; $pzucd_title = null;
+  $args =func_get_args();
 	echo '<h1>HELLOOOO!</H1>';
+  echo 'You placed a shortcode with the args:';
+  pzdebug($args);
 	// Load global variables. PAGINATION RELATED
 	global $paged;
 	global $wp_query;
@@ -187,7 +191,7 @@ function pzucd_shortcode($atts, $title = null)
 //	pzdebug($pzucd_sections);
 
 	// Id there goingto be a problem putting thisin a post???? Doe sit cause an infinite loop where it just keeps calling itself? Do we need to ensure if it's a post that the current post isn't displayed?
-	$return_html = pzucd_display($atts['criteria'],$pzucd_sections,$title);
+	$return_html = pzucd_display($atts,$pzucd_sections,$title);
 	return $return_html;
 }
 

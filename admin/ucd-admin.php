@@ -12,6 +12,12 @@ class pzucdAdmin
 
 		if ( is_admin() )
 		{
+
+      if (!class_exists('CMB_Meta_Box'))
+      {
+        require_once PZUCD_PLUGIN_PATH . 'external/HM-Custom-Meta-Boxes/custom-meta-boxes.php';
+      }
+
 //	add_action('admin_init', 'pzucd_preview_meta');
 			add_action( 'admin_head', array( $this, 'admin_head' ) );
 			add_action( 'admin_menu', array( $this, 'admin_menu' ) );

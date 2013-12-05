@@ -38,7 +38,7 @@ class HeadwayUltimateContentDisplayBlock extends HeadwayBlockAPI
 	 *
 	 * This method will be executed at the WordPress 'wp' hook
 	 * */
-	function enqueue_action($block_id, $layout)
+	static function enqueue_action($block_id, $layout)
 	{
 
 		$block = HeadwayBlocksData::get_block($block_id);
@@ -65,7 +65,7 @@ class HeadwayUltimateContentDisplayBlock extends HeadwayBlockAPI
 	 *
 	 * The method will execute for every single block on every single layout.
 	 * */
-	function init_action($block_id, $layout)
+	static function init_action($block_id, $layout)
 	{
 
 		return;
@@ -74,7 +74,7 @@ class HeadwayUltimateContentDisplayBlock extends HeadwayBlockAPI
 	/**
 	 * Use this to insert dynamic JS into the page needed.  This is perfect for initializing instances of jQuery Cycle, jQuery Tabs, etc.
 	 * */
-	function js_content($block_id, $layout)
+	static function js_content($block_id, $layout)
 	{
 		$block = HeadwayBlocksData::get_block($block_id);
 		if (headway_get('mirror-block', $block[ 'settings' ], '') !== '')

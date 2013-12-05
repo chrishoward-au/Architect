@@ -16,13 +16,9 @@ class pzucd_Content_templates extends pzucdForm
     if (is_admin())
     {
 
-      if (!class_exists('CMB_Meta_Box'))
-      {
-        require_once PZUCD_PLUGIN_PATH . 'external/HM-Custom-Meta-Boxes/custom-meta-boxes.php';
-      }
-
-      //	add_action('admin_init', 'pzucd_preview_meta');
-      add_action('add_meta_boxes', array($this, 'templates_meta'));
+     //	add_action('admin_init', 'pzucd_preview_meta');
+//      add_action('add_meta_boxes', array($this, 'templates_meta'));
+//      add_action('add_meta_boxes', 'templates_meta');
       add_action('admin_head', array($this, 'content_templates_admin_head'));
       add_action('admin_enqueue_scripts', array($this, 'content_templates_admin_enqueue'));
 //			add_filter('manage_ucd-templates_posts_columns', array($this, 'add_template_columns'));
@@ -141,6 +137,40 @@ class pzucd_Content_templates extends pzucdForm
   }
 
 } // EOC
+
+
+
+
+add_filter('cmb_meta_boxes', 'pzucd_template_wizard_metabox');
+function pzucd_template_wizard_metabox($meta_boxes = array())
+{
+  $prefix        = '_pzucd_';
+  $fields        = array(
+    array(
+      'name' => 'Select what type of template you want to make',
+      'id' => $prefix.'template-wizard',
+      'type' => 'radio',
+      'default' => 'custom',
+      'options' => array(
+        'custom'=>'Custom',
+        'fullplusgrid' => 'Full plus grid',
+        'gallery'=>'Gallery',
+        'grid' => 'Grid',
+        'slider'=>'Content slider',
+        'tabbed'=> 'Tabbed',
+      )
+    )
+  );
+  $meta_boxes[ ] = array(
+    'title'    => 'What do you want to do?',
+    'pages'    => 'ucd-templates',
+    'context'  => 'normal',
+    'priority' => 'high',
+    'fields'         => $fields // An array of fields.
+  );
+
+  return $meta_boxes;
+}
 
 add_filter('cmb_meta_boxes', 'pzucd_template_preview_metabox');
 function pzucd_template_preview_metabox($meta_boxes = array())
@@ -365,6 +395,7 @@ function pzucd_template_settings_metabox($meta_boxes = array())
       'cols'    => 12,
       'default' => 'pagination',
       'options' => array(
+        'none'=>'None',
         'wpagination' => 'WP pagination',
         'pagenavi'    => 'PageNavi',
         'player'      => 'Media Player',
@@ -375,24 +406,47 @@ function pzucd_template_settings_metabox($meta_boxes = array())
       )
     ),
     array(
-      'name' => 'Enable section 1',
+      'name' => 'Navigation Position',
+      'id' => $prefix.'template-nav-pos',
+      'type' => 'radio',
+      'default' => 'bottom',
+      'options' => array(
+        'left'=>  'Left',
+        'right'=> 'Right',
+        'top'=>   'Top',
+        'bottom'=>'Bottom',
+      )
+    ),
+    array(
+      'name' => 'Navigation Location',
+      'id' => $prefix.'template-nav-loc',
+      'type' => 'radio',
+      'default' => 'outside',
+      'options' => array(
+        'inside'=>'Inside',
+        'outside'=>'Outside',
+      )
+    ),
+
+    array(
+      'name' => 'Section 1',
       'id' => $prefix . '0-template-section-enable',
       'type' => 'checkbox',
-      'cols'=> 12,
+      'cols'=> 4,
       'default' => true,
     ),
     array(
-      'name' => 'Enable section 2',
+      'name' => 'Section 2',
       'id' => $prefix . '1-template-section-enable',
       'type' => 'checkbox',
-      'cols'=> 12,
+      'cols'=> 4,
       'default' => false
     ),
     array(
-      'name' => 'Enable section 3',
+      'name' => 'Section 3',
       'id' => $prefix . '2-template-section-enable',
       'type' => 'checkbox',
-      'cols'=> 12,
+      'cols'=> 4,
       'default' => false
     ),
 
@@ -402,6 +456,7 @@ function pzucd_template_settings_metabox($meta_boxes = array())
       'default' => 'Save'
     ),
   );
+
   $meta_boxes[ ] = array(
     'title'    => 'Template settings',
     'pages'    => 'ucd-templates',
@@ -422,7 +477,7 @@ function draw_sections_preview($section_number)
   // Put in a hidden field with the plugin url for use in js
   $return_html = '
   <div id="pzucd-sections-preview-'.$section_number.'" class="pzucd-sections pzucd-section-'.$section_number.'">';
-  $return_html .= '</div>
+  $return_html .= '
 	</div>
 	';
 

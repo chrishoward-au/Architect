@@ -9,7 +9,7 @@ class HeadwayUltimateContentDisplayBlockOptions extends HeadwayBlockOptionsAPI {
 	public $tab_notices			 = array();
 	public $open_js_callback	 = '';
 
-	function modify_arguments($args) {
+	function modify_arguments($args=false) {
 		$block			 = $args['block'];
 		$this->tabs	 =
 				array(
@@ -35,7 +35,7 @@ class HeadwayUltimateContentDisplayBlockOptions extends HeadwayBlockOptionsAPI {
 		);
 	}
 
-	function get_settings($block) {
+	static function get_settings($block) {
 		// use this function to retrieve block settings to an array to use in the content area of your block
 		//
 		// usage: $settings = HeadwayExampleBlockOptions::get_settings($block)
@@ -60,7 +60,7 @@ class HeadwayUltimateContentDisplayBlockOptions extends HeadwayBlockOptionsAPI {
 		return $settings;
 	}
 
-	function pzucd_sections($block, $just_defaults) {
+	static function pzucd_sections($block, $just_defaults) {
 		$pzucd_layouts = array();
 		if (!$just_defaults)
 		{
@@ -70,7 +70,12 @@ class HeadwayUltimateContentDisplayBlockOptions extends HeadwayBlockOptionsAPI {
 			$pzucd_templates = array_merge(array('none' => 'None selected'), $pzucd_templates);
 			$pzucd_content	 = self::pzucd_get_content(true);
 			$pzucd_content	 = array_merge(array('none' => 'None selected'), $pzucd_content);
-		}
+		} else {
+      $pzucd_layouts	 = array();
+      $pzucd_templates = array();
+      $pzucd_content	 = array();
+
+    }
 		$settings = array(
 			'pzucd-sections' => array(
 				'type'		 => 'repeater',
@@ -201,7 +206,7 @@ class HeadwayUltimateContentDisplayBlockOptions extends HeadwayBlockOptionsAPI {
 	  }
 	 */
 
-	function pzucd_get_layouts($pzucd_inc_width) {
+	static function pzucd_get_layouts($pzucd_inc_width) {
 		global $wp_query;
 		$query_options = array(
 			'post_type'	 => 'ucd-layouts',
@@ -226,7 +231,7 @@ class HeadwayUltimateContentDisplayBlockOptions extends HeadwayBlockOptionsAPI {
 		return $pzucd_return;
 	}
 
-	function pzucd_get_templates($pzucd_inc_width) {
+	static function pzucd_get_templates($pzucd_inc_width) {
 		global $wp_query;
 		$query_options	 = array(
 			'post_type'	 => 'ucd-templates',
@@ -251,7 +256,7 @@ class HeadwayUltimateContentDisplayBlockOptions extends HeadwayBlockOptionsAPI {
 		return $pzucd_return;
 	}
 
-	function pzucd_get_content($pzucd_inc_width) {
+	static function pzucd_get_content($pzucd_inc_width) {
 		global $wp_query;
 		$query_options = array(
 			'post_type'	 => 'ucd-criterias',
