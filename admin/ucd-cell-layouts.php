@@ -110,7 +110,7 @@ class pzucd_Cell_Layouts
   public function create_layouts_post_type()
   {
     $labels = array(
-      'name'               => _x('Cells', 'post type general name'),
+      'name'               => _x('Cell layouts', 'post type general name'),
       'singular_name'      => _x('Cell', 'post type singular name'),
       'add_new'            => __('Add New Cell layout'),
       'add_new_item'       => __('Add New Cell'),
@@ -121,7 +121,7 @@ class pzucd_Cell_Layouts
       'not_found'          => __('No cell layouts found'),
       'not_found_in_trash' => __('No cell layouts found in Trash'),
       'parent_item_colon'  => '',
-      'menu_name'          => _x('Cells', 'pzucd-cell-designer'),
+      'menu_name'          => _x('<span class="dashicons-icon icon-cells"></span>Cell Layouts', 'pzucd-cell-designer'),
     );
 
     $args = array(
@@ -806,6 +806,40 @@ register_criteria('name',$args);
 register_layout('name',$args);
 
 */
+
+
+add_filter('cmb_meta_boxes', 'pzucd_cells_wizard_metabox');
+function pzucd_cells_wizard_metabox($meta_boxes = array())
+{
+  $prefix        = '_pzucd_';
+  $fields        = array(
+    array(
+      'name' => 'Select what style of cell you want to make',
+      'id' => $prefix.'cell-wizard',
+      'type' => 'radio',
+      'default' => 'custom',
+      'desc' => 'Select one to quickly enable relevant settings, or custom to build your own from scratch with all settings and defaults. Minimize this metabox once you are happy with your selection.',
+      'options' => array(
+        'custom'=>'Custom',
+        'article' => 'Article',
+        'blog' => 'Blog Excerpt',
+        'feature' => 'Featured Content',
+        'gallery' => 'Gallery',
+        'magazine' => 'Magazine Excerpt',
+      )
+    )
+  );
+  $meta_boxes[ ] = array(
+    'title'    => 'What do you want to do?',
+    'pages'    => 'ucd-layouts',
+    'context'  => 'normal',
+    'priority' => 'high',
+    'fields'         => $fields // An array of fields.
+  );
+
+  return $meta_boxes;
+}
+
 
 add_filter('cmb_meta_boxes', 'pzucd_cell_designer_meta');
 function pzucd_cell_designer_meta($meta_boxes = array())

@@ -27,8 +27,7 @@ function pzucd_custom_fields($fields)
   $fields[ 'pzmulticheck' ]  = 'Pizazz_MultiCheck_Field';
   $fields[ 'pzsubmit' ]  = 'Pizazz_Submit_Button';
   $fields[ 'pzgallery' ]  = 'Pizazz_Gallery_Field';
-
-
+  $fields[ 'pzinfo' ]  = 'Pizazz_Info_Field';
   return $fields;
 }
 
@@ -382,6 +381,24 @@ if (!class_exists('Pizazz_MultiCheck_Field'))
 
   }
 }
+
+if (!class_exists('Pizazz_Info_Field'))
+{
+  /**
+   * Info field. Only displays the description
+   *
+   * @extends CMB_Field
+   */
+  class Pizazz_Info_Field extends CMB_Field
+  {
+
+    public function title() {}
+    public function html()
+    {
+    }
+  }
+}
+
 
 if (!class_exists('Pizazz_Gallery_Field'))
 {

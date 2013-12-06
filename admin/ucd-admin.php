@@ -52,6 +52,7 @@ class pzucdAdmin
 //			wp_enqueue_script( 'jquery-ui-button' );
 
 //      wp_enqueue_script('jquerui');
+      wp_enqueue_style( 'dashicons' );
 
 			wp_enqueue_style( 'pzucd-block-css', PZUCD_PLUGIN_URL . '/admin/css/ucd-admin.css' );
 			wp_enqueue_style( 'pzucd-jqueryui-css', PZUCD_PLUGIN_URL . '/external/jquery-ui-1.10.2.custom/css/pz_ultimate_content_display/jquery-ui-1.10.2.custom.min.css' );
@@ -63,7 +64,6 @@ class pzucdAdmin
 			wp_enqueue_style( 'pzucd-validation-engine-css', PZUCD_PLUGIN_URL . '/external/jQuery-Validation-Engine/css/validationEngine.jquery.css' );
 		}
 	}
-
 	function admin_menu()
 	{
 		global $pzucd_menu, $pizazzwp_updates;
@@ -77,14 +77,14 @@ class pzucdAdmin
 //			add_submenu_page(
 //				'pzucd', 'Styling', 'Styling', 'manage_options', 'pzucd_styling', array( $this, 'pzucd_styling' )
 //			);
-//			add_submenu_page(
-//				'pzucd', 'Generate code', 'Generator', 'manage_options', 'pzucd_generator', array( $this, 'pzucd_generator' )
-//			);
 			add_submenu_page(
-							'pzucd', 'UCD Options', 'Options', 'manage_options', 'pzucd_options', array( $this, 'pzucd_options' )
+				'pzucd', 'Developer Tools', '<span class="dashicons-icon icon-generator"></span>Tools', 'manage_options', 'pzucd_generator', array( $this, 'pzucd_generator' )
 			);
 			add_submenu_page(
-				'pzucd', 'About Ultimate Content Display', 'About', 'manage_options', 'pzucd_about', array( $this, 'pzucd_about' )
+							'pzucd', 'UCD Options', '<span class="dashicons-icon icon-options"></span>Options', 'manage_options', 'pzucd_options', array( $this, 'pzucd_options' )
+			);
+			add_submenu_page(
+				'pzucd', 'About Ultimate Content Display', '<span class="dashicons-icon icon-about"></span>About', 'manage_options', 'pzucd_about', array( $this, 'pzucd_about' )
 			);
 		}
 	}
@@ -105,6 +105,8 @@ class pzucdAdmin
 <div class = "icon32" id = "icon-users"><br></div>
 
 <h2>' . $title . '</h2>
+<p>Is it a slider? Is it a gallery? Is it a grid layout? Yes! It\'s all these and more.</p>
+<p>Fed up with a plethora of plugins that all seem to do the same thing, but in different ways? Me too. That\'s why I created UCD. I was guilty to. I had four plugins: ExcerptsPlus, GalleryPlus, SliderPlus and TabsPlus providing four different ways to display your content.</p>
 <p>Ultimate Content Display enables you to easily build complex content layouts, such as magazine layouts, sliders, galleries and tabbed content. A layout is made up of four components:</p>
 <h3>Criteria</h3>
 <ul><li>Criteria define  what content is selected to display</li></ul>
@@ -141,7 +143,9 @@ class pzucdAdmin
 			<div class = "icon32" id = "icon-users"><br></div>
 
 			<h2>' . $title . '</h2>
-add a list of common classes as used in TentyX themes and the means to override (and reset) them i.e. .hentry, .entry-title, .entry-content, etc. This way peopel canchange them if their thme uses different ones.
+<p>add a list of common classes as used in TwentyXX themes and the means to override (and reset) them i.e. .hentry, .entry-title, .entry-content, etc. This way people can change them if their theme uses different ones. UCD will add these appropriately to classes</p>
+      <p><label><em>.entry-title</em> alternatives: </label><input type="text" value".excerpt-title"></p>
+      <p><label><em>.entry-content</em> alternatives: </label><input type="text" value".excerpt-content"></p>
 			</div><!--end table-->
 			</div>
 			<div style = "clear:both"></div>';
@@ -157,7 +161,10 @@ add a list of common classes as used in TentyX themes and the means to override 
 			<div class = "icon32" id = "icon-users"><br></div>
 
 			<h2>' . $title . '</h2>
-				Bring it all together in the generator. Take a cell layout, one or more tempaltes, a controller and a criteria, and the generator will generator all the CSS, JS and PHP files you need.
+			<h3>Generator</h3>
+				<p>Generate WordPress page template code for inserting in your templates</p>
+				<p>Can I use Redux or similar??</p>
+				<textarea name="textarea" rows="10" cols="50">Code will appear here upon generating</textarea>
 			</div><!--end table-->
 			</div>
 			<div style = "clear:both"></div>';
@@ -170,8 +177,5 @@ add a list of common classes as used in TentyX themes and the means to override 
 
 new pzucdAdmin();
 
-class pzucdPreview
-{
-	
-}
+
 

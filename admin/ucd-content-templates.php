@@ -49,6 +49,7 @@ class pzucd_Content_templates extends pzucdForm
       wp_enqueue_script('jquery-pzucd-metaboxes-templates', PZUCD_PLUGIN_URL . 'admin/js/ucd-metaboxes-templates.js', array('jquery'));
       wp_enqueue_script('jquery-isotope', PZUCD_PLUGIN_URL . 'external/jquery.isotope.min.js', array('jquery'));
       wp_enqueue_script('jquery-isotope', PZUCD_PLUGIN_URL . 'external/masonry.pkgd.min.js', array('jquery'));
+      wp_enqueue_script('jquery-lorem', PZUCD_PLUGIN_URL . 'external/jquery.lorem.js', array('jquery'));
     }
   }
 
@@ -112,7 +113,7 @@ class pzucd_Content_templates extends pzucdForm
       'not_found'          => __('No Templates found'),
       'not_found_in_trash' => __('No Templates found in Trash'),
       'parent_item_colon'  => '',
-      'menu_name'          => _x('Templates', 'pzucd-template-designer'),
+      'menu_name'          => _x('<span class="dashicons-icon icon-templates"></span>Templates', 'pzucd-template-designer'),
     );
 
     $args = array(
@@ -147,10 +148,11 @@ function pzucd_template_wizard_metabox($meta_boxes = array())
   $prefix        = '_pzucd_';
   $fields        = array(
     array(
-      'name' => 'Select what type of template you want to make',
+      'name' => 'Select what type of template do you want to make',
       'id' => $prefix.'template-wizard',
       'type' => 'radio',
       'default' => 'custom',
+      'desc' => 'Select one to quickly enable relevant settings, or custom to build your own from scratch with all settings and defaults. Minimize this metabox once you are happy with your selection.',
       'options' => array(
         'custom'=>'Custom',
         'fullplusgrid' => 'Full plus grid',
@@ -175,8 +177,15 @@ function pzucd_template_wizard_metabox($meta_boxes = array())
 add_filter('cmb_meta_boxes', 'pzucd_template_preview_metabox');
 function pzucd_template_preview_metabox($meta_boxes = array())
 {
+  // Need to redesign this into one layout that includes navigation positions
   $prefix        = '_pzucd_';
   $fields        = array(
+
+//    array(
+//      'id'       => $prefix . 'sections-preview-desc',
+//      'type' => 'pzinfo',
+//      'desc' => __('The preview gives you a feel for how you layout might look only.','pzucd')
+//    ),
     array(
       'id'       => $prefix . '0-sections-preview',
       'cols'     => 12,
@@ -205,6 +214,7 @@ function pzucd_template_preview_metabox($meta_boxes = array())
       'desc'     => __('', 'pzucd')
     ),
   );
+
   $meta_boxes[ ] = array(
     'title'    => 'Template Preview',
     'pages'    => 'ucd-templates',
@@ -216,7 +226,6 @@ function pzucd_template_preview_metabox($meta_boxes = array())
 
   return $meta_boxes;
 }
-
 
 
 add_filter('cmb_meta_boxes', 'pzucd_sections_preview_meta');
@@ -378,7 +387,7 @@ function pzucd_template_settings_metabox($meta_boxes = array())
       'type' => 'text',
       'cols' => 12,
       'default' => '',
-      'desc' => __('Alphanumeric only','pzucd')
+      'desc' => __('Alphanumeric only. <br/>Use the shortcode <strong class="pzucd-usage-info">[pzucd <span class="pzucd-shortname"></span>]</strong> or the template tag <strong class="pzucd-usage-info">pzucd(\'<span class="pzucd-shortname"></span>\');</strong>','pzucd')
     ),
     array(
       'id'      => $prefix . 'template-criteria',
@@ -389,15 +398,26 @@ function pzucd_template_settings_metabox($meta_boxes = array())
       'options' => $pzucd_criterias_array
     ),
     array(
-      'id'      => $prefix . 'template-controls',
-      'name'    => __('Navigation', 'pzucd'),
+      'id'      => $prefix . 'template-pager',
+      'name'    => __('Pagination', 'pzucd'),
       'type'    => 'pzselect',
       'cols'    => 12,
-      'default' => 'pagination',
+      'default' => 'wppagination',
       'options' => array(
         'none'=>'None',
         'wpagination' => 'WP pagination',
         'pagenavi'    => 'PageNavi',
+        'hover' => 'Hover buttons'
+      )
+    ),
+    array(
+      'id'      => $prefix . 'template-controls',
+      'name'    => __('Navigation', 'pzucd'),
+      'type'    => 'pzselect',
+      'cols'    => 12,
+      'default' => 'none',
+      'options' => array(
+        'none'=>'None',
         'player'      => 'Media Player',
         'titles'      => 'Titles',
         'bullets'     => 'Bullets',
@@ -476,9 +496,9 @@ function draw_sections_preview($section_number)
 
   // Put in a hidden field with the plugin url for use in js
   $return_html = '
-  <div id="pzucd-sections-preview-'.$section_number.'" class="pzucd-sections pzucd-section-'.$section_number.'">';
-  $return_html .= '
+  <div id="pzucd-sections-preview-'.$section_number.'" class="pzucd-sections pzucd-section-'.$section_number.'">
 	</div>
+		<div class="plugin_url" style="display:none;">' . PZUCD_PLUGIN_URL . '</div>
 	';
 
   return $return_html;

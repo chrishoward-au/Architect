@@ -16,6 +16,7 @@ class pzucd_Criteria extends pzucdForm {
 	//		add_action('add_meta_boxes', array($this, 'criterias_meta'));
 			add_action('admin_head', array($this, 'criteria_admin_head'));
 			add_action('admin_enqueue_scripts', array($this, 'criteria_admin_enqueue'));
+      add_action('views_edit-ucd-layouts', array($this,'pzucd_cells_description'));
 //			add_filter('manage_ucd-criterias_posts_columns', array($this, 'add_criteria_columns'));
 //			add_action('manage_ucd-criterias_posts_custom_column', array($this, 'add_criteria_column_content'), 10, 2);
 
@@ -87,23 +88,23 @@ class pzucd_Criteria extends pzucdForm {
 	 */
 	public function create_criterias_post_type() {
 		$labels = array(
-				'name' => _x('Criteria selections', 'post type general name'),
-				'singular_name' => _x('Criteria selection', 'post type singular name'),
-				'add_new' => __('Add New Criteria selection'),
-				'add_new_item' => __('Add New Criteria selection'),
-				'edit_item' => __('Edit Criteria selection'),
-				'new_item' => __('New Criteria selection'),
-				'view_item' => __('View Criteria selection'),
-				'search_items' => __('Search Criteria selections'),
-				'not_found' => __('No Criteria selection found'),
-				'not_found_in_trash' => __('No Criteria selections found in Trash'),
+				'name' => _x('Content selections', 'post type general name'),
+				'singular_name' => _x('Content selection', 'post type singular name'),
+				'add_new' => __('Add New Content selection'),
+				'add_new_item' => __('Add New Content selection'),
+				'edit_item' => __('Edit Content selection'),
+				'new_item' => __('New Content selection'),
+				'view_item' => __('View Content selection'),
+				'search_items' => __('Search Content selections'),
+				'not_found' => __('No Content selection found'),
+				'not_found_in_trash' => __('No Content selections found in Trash'),
 				'parent_item_colon' => '',
-				'menu_name' => _x('Criteria', 'pzucd-criteria-designer'),
+				'menu_name' => _x('<span class="dashicons-icon icon-criterias"></span>Contents', 'pzucd-criteria-designer'),
 		);
 
 		$args = array(
 				'labels' => $labels,
-				'description' => __('Ultimate Content Display Criteria selection are used to create reusable Criteria for use in your UCD blocks, widgets, shortcodes and WP template tags.'),
+				'description' => __('Ultimate Content Display Content selection are used to create reusable criteria for use in your UCD blocks, widgets, shortcodes and WP template tags.'),
 				'public' => false,
 				'publicly_queryable' => false,
 				'show_ui' => true,
@@ -121,6 +122,20 @@ class pzucd_Criteria extends pzucdForm {
 
 		register_post_type('ucd-criterias', $args);
 	}
+
+  function pzucd_cells_description($post)
+  {
+
+    echo '<div class="after-title-help postbox">
+      <div class="inside">
+        <p class="howto">'. __('Cell layouts are...', 'pzsp').'
+      </div>
+      <!-- .inside -->
+    </div><!-- .postbox -->';
+  }
+
+
+
 
 } // EOC
 

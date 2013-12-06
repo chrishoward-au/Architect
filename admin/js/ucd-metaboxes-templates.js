@@ -27,6 +27,7 @@ jQuery(document).ready(function () {
   pzucd_refresh_template_layout(0);
   pzucd_refresh_template_layout(1);
   pzucd_refresh_template_layout(2);
+  pzucd_update_usage_info(jQuery("#_pzucd_template-short-name-cmb-field-0").get(0));
 
   function pzucd_refresh_template_layout(i) {
     pzucd_update_cell_count(i, jQuery('#_pzucd_' + i + '-template-cells-per-view-cmb-field-0').get(0));
@@ -59,6 +60,14 @@ jQuery(document).ready(function () {
       pzucd_show_hide_section(x);
     });
   }
+  jQuery('#_pzucd_template-short-name-cmb-field-0').change(function () {
+    pzucd_update_usage_info(this);
+  });
+  function pzucd_update_usage_info(t){
+    console.log(t.value);
+    jQuery('span.pzucd-shortname').text(t.value);
+  }
+
 
 /* Switched to pixel based once, but not as fluid. Butwhat was it's advantage? Why did I switch? */
   function pzucd_update_cell_margin(i,t) {
@@ -79,20 +88,34 @@ jQuery(document).ready(function () {
     var containerWidth = jQuery('#pzucd-sections-preview-'+i).width();
 //    console.log(containerWidth);
     var cellRightMargin = jQuery('#_pzucd_'+i+'-template-cells-vert-margin-cmb-field-0').val();
-    var new_cell_width = ((containerWidth - ((cellRightMargin * (t.value) / 100))) / t.value);
-    jQuery('#pzucd-sections-preview-'+i+' .pzucd-section-cell').width( ((100/ t.value)- cellRightMargin) + '%');
+    var new_cell_width = (100/ t.value)- cellRightMargin;
+    // Can't use width(), it breaks when padding is set.
+    jQuery('#pzucd-sections-preview-'+i+' .pzucd-section-cell').css( {"width":new_cell_width + '%'});
   }
 
   function pzucd_update_cell_count(i,t) {
 //    console.log(i,t,t.value);
     jQuery('.pzucd-section-'+i).empty();
+    var plugin_url = jQuery('.field.Pizazz_Layout_Field .plugin_url').get(0).textContent;
     for (var j = 1; j <= t.value; j++) {
-      jQuery('#pzucd-sections-preview-'+i).append('<div class="pzucd-section-cell-' + j + ' pzucd-section-cell">Cell ' + j + '</div>');
+      // Need to setup a field to enable random heights in preview
+
+//      if (true) {
+//          var h = parseInt(Math.random()*200)+70;
+//          jQuery('#pzucd-sections-preview-'+i).append('<div class="pzucd-section-cell-' + j + ' pzucd-section-cell" style="height:'+h+'px;"></div>');
+//      } else {
+        jQuery('#pzucd-sections-preview-'+i).append('<div class="pzucd-section-cell-' + j + ' pzucd-section-cell" ></div>');
+//      }
+//      var w = parseInt(Math.random()*50)+10;
+//      jQuery('#pzucd-sections-preview-'+i+' .pzucd-section-cell-' + j).lorem({ type: 'words',amount:w,ptags:true});
+//      jQuery('#pzucd-sections-preview-'+i+' .pzucd-section-cell-' + j).prepend('<h3 class="pzucd-template-cell-preview-title">Title</h3><img src="'+plugin_url+'/assets/images/sample-image.jpg" width="64"/>');
+//      var w = parseInt(Math.random()*5)+1;
+//      jQuery('#pzucd-sections-preview-'+i+' .pzucd-section-cell-' + j+' h3').lorem({ type: 'words',amount:w,ptags:false});
     }
   }
 
   function pzucd_update_min_width(i,t) {
- //   console.log(i,t,t.value);
+//   console.log(t.value);
     jQuery('#pzucd-sections-preview-'+i+' .pzucd-section-cell').css({'minWidth': t.value + 'px'});
   }
 

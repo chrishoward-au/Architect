@@ -817,7 +817,9 @@ body.screen-ucd-layouts #submitdiv {display:none;}
 /*  End settings styling */
 
 .pzucd-states {text-transform: capitalize;font-size:1em;}
-.pzucd-states strong {color:#3E8EAC}
+.pzucd-states strong,
+strong.pzucd-usage-info
+{color:#3E8EAC}
 
 .multicheck-item {width:48%;display:inline-block;}
 
@@ -840,18 +842,17 @@ select#_pzucd_layout-show-cmb-field-0 {height:130px;}
   overflow: hidden;
 }
 .pzucd-sections .pzucd-section-cell {
-  width:32%;
   min-width:180px;
-  height:70px;
-  margin-bottom:10px;
-  margin-right:0;
+  min-height:70px;
+  margin: 0 0 10px 0;
   background:#eee;
-  display:block;
-  float:left;
-  text-align:center;
-  padding-top:20px;
+  /* Remember to remove space between divs to stop inline-block space issue */
+  display:inline-block;
   box-sizing:border-box;
   color:#222;
+  overflow:visible;
+  padding:5px;
+  vertical-align:top;
 }
 
 .pzucd-section-cell.guttered {
@@ -878,3 +879,49 @@ select#_pzucd_layout-show-cmb-field-0 {height:130px;}
 body.screen-ucd-templates #template-settings .CMB_Radio_Field label {
   margin-right:25%!important;
 }
+
+body.screen-ucd-templates #template-preview .pzucd-section-cell h3
+{
+  margin:0 0 5px 0;
+  border:none;
+  padding:0;
+  cursor: default;
+}
+body.screen-ucd-templates #template-preview .pzucd-section-cell img
+{
+  margin:0 5px 5px 0;
+  display:block;
+  float:left;
+}
+
+body.screen-ucd-templates #template-preview .pzucd-section-cell p {
+  margin:0;
+}
+
+span.dashicons-icon {
+  font-family: "dashicons";
+  vertical-align:top;
+  margin-right:5px;
+}
+span.dashicons-icon.icon-cells:before {
+  content: "\f337";
+}
+span.icon-criterias:before {
+  content: "\f179";
+}
+
+span.icon-templates:before {
+  content: "\f180";
+}
+
+span.icon-about:before {
+  content: "\f348";
+}
+
+span.icon-options:before {
+  content: "\f108";
+}
+span.icon-generator:before {
+  content: "\f308";
+}
+
