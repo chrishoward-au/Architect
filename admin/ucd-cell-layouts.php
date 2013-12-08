@@ -847,6 +847,7 @@ function pzucd_cell_designer_meta($meta_boxes = array())
   $prefix        = '_pzucd_';
   $fields        = array(
     array(
+      'name' => 'Cell preview',
       'id'       => $prefix . 'layout-cell-preview',
       'cols'     => 12,
       'type'     => 'pzlayout',
@@ -1032,7 +1033,7 @@ function pzucd_cell_designer_settings_meta($meta_boxes = array())
     ),
 
     array(
-//      'name'       => __('Update', 'pzucd'),
+      'name'       => __('Save cell layout', 'pzucd'),
       'id'         => $prefix . 'layout-set-save',
       'type'       => 'pzsubmit',
       'default' => 'Save'

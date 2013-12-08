@@ -14,7 +14,9 @@ class ucdDisplay
 
 	function __construct($cell_options,$template_options)
 	{
+    require PZUCD_PLUGIN_PATH.'/frontend/ucdGallery.php';
 
+    //$tag, $function_to_add, $priority, $accepted_args
 		// add apply_filters so devs can add use their own stuff like navs.
 //		$this->pzucd_cells_layout     = $cells_template;
 		$this->pzucd_cell_options     = $cell_options;
@@ -28,6 +30,7 @@ class ucdDisplay
 	public function cells_template() {
 		// This should be passed into. eg. $ucd = new ucdDisplay();$ucd->layout = that;$output = $ucd->getOutput();echo $output or whatever you want to do with it
 		// Default
+    // this will bedifferent for each layout
 		$pzucd_cells_layout = '
 				<article class="pzucd_cell %cell-no%" style="width:%cells-per-row%;">
 					<div class="pzucd_cell_header">

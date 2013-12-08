@@ -194,7 +194,7 @@ function pzucd_criterias_metabox($meta_boxes = array()){
     ),
     array(
       'name' => __('Specific Images', 'pzucd'),
-      'id' => $prefix . 'criteria-specific-ids',
+      'id' => $prefix . 'criteria-specific-images',
       'type' => 'image',
       'size'=> 'height=100&width=100&crop=1',
       'repeatable' => true,

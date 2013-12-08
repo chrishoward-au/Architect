@@ -7,6 +7,8 @@
  * To change this template use File | Settings | File Templates.
  */
 
+define ('YOUR_PLUGIN_URL','');
+
 add_filter('admin_body_class','pzucd_add_screen_class');
 function pzucd_add_screen_class() {
   $screen = get_current_screen();
@@ -42,7 +44,7 @@ if (!class_exists('Pizazz_Core_Image_Field'))
       ?>
 
       <p>
-        <img src="<?php echo PZCODEX_PLUGIN_URL . esc_attr($this->args[ 'default' ]) ?>"/>
+        <img src="<?php echo YOUR_PLUGIN_URL . esc_attr($this->args[ 'default' ]) ?>"/>
       </p>
     <?php
     }
@@ -65,13 +67,13 @@ if (!class_exists('Pizazz_Radio_Image_Field'))
     public function enqueue_scripts()
     {
       parent::enqueue_scripts();
-      wp_enqueue_script('cmb_radio_image_js', PZCODEX_PLUGIN_URL . 'js/field.radioimage.js', array('jquery'));
+      wp_enqueue_script('cmb_radio_image_js', YOUR_PLUGIN_URL . 'js/field.radioimage.js', array('jquery'));
     }
 
     public function enqueue_styles()
     {
       parent::enqueue_styles();
-      wp_enqueue_style('cmb_radio_image_css', PZCODEX_PLUGIN_URL . 'css/field.radioimage.css');
+      wp_enqueue_style('cmb_radio_image_css', YOUR_PLUGIN_URL . 'css/field.radioimage.css');
     }
 
     public function html()
@@ -86,7 +88,7 @@ if (!class_exists('Pizazz_Radio_Image_Field'))
 
       <span class="field-radio-image">
       <label <?php $this->for_attr('item-' . $key); ?> >
-        <img src="<?php echo PZCODEX_PLUGIN_URL . esc_attr(strtolower($this->args[ 'imgsrc' ][ $key ])) ?>" <?php checked($key, $this->get_value()); ?><?php $this->id_attr('item-' . $key . '-img'); ?>/>
+        <img src="<?php echo YOUR_PLUGIN_URL . esc_attr(strtolower($this->args[ 'imgsrc' ][ $key ])) ?>" <?php checked($key, $this->get_value()); ?><?php $this->id_attr('item-' . $key . '-img'); ?>/>
       </label>
       <input <?php $this->id_attr('item-' . $key); ?> <?php $this->boolean_attr(); ?> <?php $this->class_attr(); ?>
               type="radio" <?php $this->name_attr(); ?>
@@ -179,6 +181,8 @@ if (!class_exists('Pizazz_Code_Field'))
 
     }
 
+    public function title() {}
+    
     public function html()
     {
       echo($this->args[ 'code' ]);
@@ -344,6 +348,7 @@ if (!class_exists('Pizazz_Submit_Button'))
   class Pizazz_Submit_Button extends CMB_Field
   {
 
+    public function title() {}
 
     public function html()
     {
@@ -364,7 +369,7 @@ if (!class_exists('Pizazz_MultiCheck_Field'))
     public function title() {}
     public function html() {
       // Initialize defaults if necessary
-      var_dump($this->value);
+      //var_dump($this->value);
       if (empty($this->value)) {
         $this->value =  $this->args['default'];
       }

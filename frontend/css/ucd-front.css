@@ -1,5 +1,30 @@
 
-/* Set a base font size */
+.pzucd-container {
+  position:relative;
+}
+.pzucd-section {position:relative;}
+
+.pzucd-cell {
+  min-width:0px;
+  min-height:0px;
+  background:#eee;
+  /* Remember to remove space between divs to stop inline-block space issue */
+  display:inline-block;
+  box-sizing:border-box;
+  color:#222;
+  vertical-align:top;
+}
+
+.entry-image {
+  max-width:100%;
+}
+
+.pzucd-components {
+  padding:5px;
+  box-sizing:border-box;
+}
+/*
+ Set a base font size
 html {
 	font-size:62.5%;
 }
@@ -57,7 +82,7 @@ html {
     clear:both;
 }
 
-/*default styling */
+default styling
 .pzucd_entry_meta,
 .pzucd_entry_meta a
  {
@@ -71,7 +96,7 @@ html {
 
 
 
-/* remember this for the background of text */
+ remember this for the background of text
 .pzucd-a-textarea {
     background:rgba(32,63,96,0.5);
     color:red;
@@ -81,3 +106,4 @@ html {
 	margin:5px;
 	margin:0.5rems;
 }
+*/

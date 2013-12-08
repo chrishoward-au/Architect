@@ -93,7 +93,7 @@ class HeadwayUltimateContentDisplayBlock extends HeadwayBlockAPI
 
 		//$pzucd_sections = !empty($settings['pzucd-sections'])?$settings['pzucd-sections']:array('pzucd-cell-layout'=>'stock1','pzucd-cells-per-row'=>3,'pzucd-number-to-show'=>6);
 		$pzucd_sections = (!isset($pzucd_sections[ 0 ])) ? array($pzucd_sections) : $pzucd_sections;
-		var_dump($pzucd_sections);
+		//var_dump($pzucd_sections);
 
 		$return_js = "jQuery(document).ready(function(){ ";
 

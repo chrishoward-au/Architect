@@ -16,7 +16,7 @@ class pzucd_Content_templates extends pzucdForm
     if (is_admin())
     {
 
-     //	add_action('admin_init', 'pzucd_preview_meta');
+      //	add_action('admin_init', 'pzucd_preview_meta');
 //      add_action('add_meta_boxes', array($this, 'templates_meta'));
 //      add_action('add_meta_boxes', 'templates_meta');
       add_action('admin_head', array($this, 'content_templates_admin_head'));
@@ -140,26 +140,24 @@ class pzucd_Content_templates extends pzucdForm
 } // EOC
 
 
-
-
 add_filter('cmb_meta_boxes', 'pzucd_template_wizard_metabox');
 function pzucd_template_wizard_metabox($meta_boxes = array())
 {
   $prefix        = '_pzucd_';
   $fields        = array(
     array(
-      'name' => 'Select what type of template do you want to make',
-      'id' => $prefix.'template-wizard',
-      'type' => 'radio',
+      'name'    => 'Select what type of template do you want to make',
+      'id'      => $prefix . 'template-wizard',
+      'type'    => 'radio',
       'default' => 'custom',
-      'desc' => 'Select one to quickly enable relevant settings, or custom to build your own from scratch with all settings and defaults. Minimize this metabox once you are happy with your selection.',
+      'desc'    => 'Select one to quickly enable relevant settings, or custom to build your own from scratch with all settings and defaults. Minimize this metabox once you are happy with your selection.',
       'options' => array(
-        'custom'=>'Custom',
-        'fullplusgrid' => 'Full plus grid',
-        'gallery'=>'Gallery',
-        'grid' => 'Grid',
-        'slider'=>'Content slider',
-        'tabbed'=> 'Tabbed',
+        'custom'       => 'Custom',
+        'fullplusgrid' => 'Full + grid',
+        'gallery'      => 'Gallery',
+        'grid'         => 'Grid',
+        'slider'       => 'Content slider',
+        'tabbed'       => 'Tabbed',
       )
     )
   );
@@ -168,7 +166,7 @@ function pzucd_template_wizard_metabox($meta_boxes = array())
     'pages'    => 'ucd-templates',
     'context'  => 'normal',
     'priority' => 'high',
-    'fields'         => $fields // An array of fields.
+    'fields'   => $fields // An array of fields.
   );
 
   return $meta_boxes;
@@ -178,8 +176,8 @@ add_filter('cmb_meta_boxes', 'pzucd_template_preview_metabox');
 function pzucd_template_preview_metabox($meta_boxes = array())
 {
   // Need to redesign this into one layout that includes navigation positions
-  $prefix        = '_pzucd_';
-  $fields        = array(
+  $prefix = '_pzucd_';
+  $fields = array(
 
 //    array(
 //      'id'       => $prefix . 'sections-preview-desc',
@@ -187,6 +185,7 @@ function pzucd_template_preview_metabox($meta_boxes = array())
 //      'desc' => __('The preview gives you a feel for how you layout might look only.','pzucd')
 //    ),
     array(
+      'name' => 'Section 1',
       'id'       => $prefix . '0-sections-preview',
       'cols'     => 12,
       'type'     => 'pzlayout',
@@ -196,7 +195,8 @@ function pzucd_template_preview_metabox($meta_boxes = array())
       'desc'     => __('', 'pzucd')
     ),
     array(
-      'id'       => $prefix .'1-sections-preview',
+      'name' => 'Section 2',
+      'id'       => $prefix . '1-sections-preview',
       'cols'     => 12,
       'type'     => 'pzlayout',
       'readonly' => false, // Readonly fields can't be written to by code! Weird
@@ -205,6 +205,7 @@ function pzucd_template_preview_metabox($meta_boxes = array())
       'desc'     => __('', 'pzucd')
     ),
     array(
+      'name' => 'Section 3',
       'id'       => $prefix . '2-sections-preview',
       'cols'     => 12,
       'type'     => 'pzlayout',
@@ -231,34 +232,38 @@ function pzucd_template_preview_metabox($meta_boxes = array())
 add_filter('cmb_meta_boxes', 'pzucd_sections_preview_meta');
 function pzucd_sections_preview_meta($meta_boxes = array())
 {
-  $prefix        = '_pzucd_';
+  $prefix = '_pzucd_';
 
   $args = array(
     'posts_per_page'   => -1,
     'orderby'          => 'title',
     'order'            => 'ASC',
     'post_type'        => 'ucd-layouts',
-    'suppress_filters' => true );
+    'suppress_filters' => true);
 
-  $pzucd_cells = get_posts($args);
+  $pzucd_cells       = get_posts($args);
   $pzucd_cells_array = array();
-  if (!empty($pzucd_cells)) {
-    foreach($pzucd_cells as $pzucd_cell){
-      $pzucd_cells_array[$pzucd_cell->ID] = (empty($pzucd_cell->post_title)?'No title':$pzucd_cell->post_title);
+  if (!empty($pzucd_cells))
+  {
+    foreach ($pzucd_cells as $pzucd_cell)
+    {
+      $pzucd_cells_array[ $pzucd_cell->ID ] = (empty($pzucd_cell->post_title) ? 'No title' : $pzucd_cell->post_title);
     }
-  } else {
-    $pzucd_cells_array = array(0=>'No cell layouts. Create some.');
+  }
+  else
+  {
+    $pzucd_cells_array = array(0 => 'No cell layouts. Create some.');
   }
   // ID,post_title
   for ($i = 0; $i < 3; $i++)
   {
-    $fields = array(
+    $fields        = array(
 
       array(
-        'id'      => $prefix . $i . '-template-section-title',
-        'name'    => __('Section title', 'pzucd'),
-        'type'    => 'text',
-        'cols'    => 12,
+        'id'   => $prefix . $i . '-template-section-title',
+        'name' => __('Section title', 'pzucd'),
+        'type' => 'text',
+        'cols' => 12,
         'desc' => 'Section title is optional'
       ),
       array(
@@ -343,15 +348,15 @@ function pzucd_sections_preview_meta($meta_boxes = array())
           'straightDown'    => 'Straight down',
           'straightAcross'  => 'Straight across',
         ),
- //       'desc'    => __('Choose how you want the cells to display. With evenly sized cells, you\'ll see little difference. Please visit <a href="http://isotope.metafizzy.co/demos/layout-modes.html" target=_blank>Isotope Layout Modes</a> for demonstrations of these layouts', 'pzucd')
+        //       'desc'    => __('Choose how you want the cells to display. With evenly sized cells, you\'ll see little difference. Please visit <a href="http://isotope.metafizzy.co/demos/layout-modes.html" target=_blank>Isotope Layout Modes</a> for demonstrations of these layouts', 'pzucd')
       ),
     );
     $meta_boxes[ ] = array(
-      'title'    => 'Template Section '.($i+1),
+      'title'    => 'Template Section ' . ($i + 1),
       'pages'    => 'ucd-templates',
       'context'  => 'normal',
       'priority' => 'high',
-      'fields'         => $fields // An array of fields.
+      'fields'   => $fields // An array of fields.
     );
   }
 
@@ -367,27 +372,31 @@ function pzucd_template_settings_metabox($meta_boxes = array())
     'orderby'          => 'title',
     'order'            => 'ASC',
     'post_type'        => 'ucd-criterias',
-    'suppress_filters' => true );
+    'suppress_filters' => true);
 
 
-  $pzucd_criterias = get_posts($args);
+  $pzucd_criterias       = get_posts($args);
   $pzucd_criterias_array = array();
-  if (!empty($pzucd_criterias)) {
-    foreach($pzucd_criterias as $pzucd_criteria){
-      $pzucd_criterias_array[$pzucd_criteria->ID] = (empty($pzucd_criteria->post_title)?'No title':$pzucd_criteria->post_title);
+  if (!empty($pzucd_criterias))
+  {
+    foreach ($pzucd_criterias as $pzucd_criteria)
+    {
+      $pzucd_criterias_array[ $pzucd_criteria->ID ] = (empty($pzucd_criteria->post_title) ? 'No title' : $pzucd_criteria->post_title);
     }
-  } else {
-    $pzucd_criterias_array = array(0=>'No criterias defined. Create some.');
   }
-  $prefix        = '_pzucd_';
-  $fields        = array(
+  else
+  {
+    $pzucd_criterias_array = array(0 => 'No criterias defined. Create some.');
+  }
+  $prefix = '_pzucd_';
+  $fields = array(
     array(
-      'id' => $prefix.'template-short-name',
-      'name' => __('Template Short Name','pzucd'),
-      'type' => 'text',
-      'cols' => 12,
+      'id'      => $prefix . 'template-short-name',
+      'name'    => __('Template Short Name', 'pzucd'),
+      'type'    => 'text',
+      'cols'    => 12,
       'default' => '',
-      'desc' => __('Alphanumeric only. <br/>Use the shortcode <strong class="pzucd-usage-info">[pzucd <span class="pzucd-shortname"></span>]</strong> or the template tag <strong class="pzucd-usage-info">pzucd(\'<span class="pzucd-shortname"></span>\');</strong>','pzucd')
+      'desc'    => __('Alphanumeric only. <br/>Use the shortcode <strong class="pzucd-usage-info">[pzucd <span class="pzucd-shortname"></span>]</strong> or the template tag <strong class="pzucd-usage-info">pzucd(\'<span class="pzucd-shortname"></span>\');</strong>', 'pzucd')
     ),
     array(
       'id'      => $prefix . 'template-criteria',
@@ -404,10 +413,10 @@ function pzucd_template_settings_metabox($meta_boxes = array())
       'cols'    => 12,
       'default' => 'wppagination',
       'options' => array(
-        'none'=>'None',
-        'wpagination' => 'WP pagination',
-        'pagenavi'    => 'PageNavi',
-        'hover' => 'Hover buttons'
+        'none'        => 'None',
+        'wordpress' => 'WP pagination',
+        'wppagenavi'    => 'PageNavi',
+        'hover'       => 'Hover buttons'
       )
     ),
     array(
@@ -417,60 +426,63 @@ function pzucd_template_settings_metabox($meta_boxes = array())
       'cols'    => 12,
       'default' => 'none',
       'options' => array(
-        'none'=>'None',
-        'player'      => 'Media Player',
-        'titles'      => 'Titles',
-        'bullets'     => 'Bullets',
-        'numbers'     => 'Numbers',
-        'thumbs'      => 'Thumbnails'
+        'none'          => 'None',
+        'player'        => 'Media Player buttons',
+        'titles'        => 'Titles (accordion)',
+        'titles'        => 'Titles (tabbed)',
+        'bullets'       => 'Bullets',
+        'numbers'       => 'Numbers',
+        'thumbs'        => 'Thumbnails',
+        'thumbsbuttons' => 'Thumbnails + buttons'
       )
     ),
     array(
-      'name' => 'Navigation Position',
-      'id' => $prefix.'template-nav-pos',
-      'type' => 'radio',
+      'name'    => 'Navigation Position',
+      'id'      => $prefix . 'template-nav-pos',
+      'type'    => 'radio',
       'default' => 'bottom',
       'options' => array(
-        'left'=>  'Left',
-        'right'=> 'Right',
-        'top'=>   'Top',
-        'bottom'=>'Bottom',
+        'left'   => 'Left',
+        'right'  => 'Right',
+        'top'    => 'Top',
+        'bottom' => 'Bottom',
       )
     ),
     array(
-      'name' => 'Navigation Location',
-      'id' => $prefix.'template-nav-loc',
-      'type' => 'radio',
+      'name'    => 'Navigation Location',
+      'id'      => $prefix . 'template-nav-loc',
+      'type'    => 'radio',
       'default' => 'outside',
       'options' => array(
-        'inside'=>'Inside',
-        'outside'=>'Outside',
+        'inside'  => 'Inside',
+        'outside' => 'Outside',
       )
     ),
 
     array(
-      'name' => 'Section 1',
-      'id' => $prefix . '0-template-section-enable',
-      'type' => 'checkbox',
-      'cols'=> 4,
+      'name'    => 'Section 1',
+      'id'      => $prefix . '0-template-section-enable',
+      'type'    => 'checkbox',
+      'cols'    => 4,
       'default' => true,
     ),
     array(
-      'name' => 'Section 2',
-      'id' => $prefix . '1-template-section-enable',
-      'type' => 'checkbox',
-      'cols'=> 4,
+      'name'    => 'Section 2',
+      'id'      => $prefix . '1-template-section-enable',
+      'type'    => 'checkbox',
+      'cols'    => 4,
       'default' => false
     ),
     array(
-      'name' => 'Section 3',
-      'id' => $prefix . '2-template-section-enable',
-      'type' => 'checkbox',
-      'cols'=> 4,
+      'name'    => 'Section 3',
+      'id'      => $prefix . '2-template-section-enable',
+      'type'    => 'checkbox',
+      'cols'    => 4,
       'default' => false
     ),
 
     array(
+      'name' => 'Save template',
       'id'      => $prefix . 'layout-set-save',
       'type'    => 'pzsubmit',
       'default' => 'Save'
@@ -496,7 +508,7 @@ function draw_sections_preview($section_number)
 
   // Put in a hidden field with the plugin url for use in js
   $return_html = '
-  <div id="pzucd-sections-preview-'.$section_number.'" class="pzucd-sections pzucd-section-'.$section_number.'">
+  <div id="pzucd-sections-preview-' . $section_number . '" class="pzucd-sections pzucd-section-' . $section_number . '">
 	</div>
 		<div class="plugin_url" style="display:none;">' . PZUCD_PLUGIN_URL . '</div>
 	';

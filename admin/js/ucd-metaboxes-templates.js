@@ -94,7 +94,7 @@ jQuery(document).ready(function () {
   }
 
   function pzucd_update_cell_count(i,t) {
-//    console.log(i,t,t.value);
+    console.log(i,t,t.value);
     jQuery('.pzucd-section-'+i).empty();
     var plugin_url = jQuery('.field.Pizazz_Layout_Field .plugin_url').get(0).textContent;
     for (var j = 1; j <= t.value; j++) {
