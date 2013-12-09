@@ -2,17 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f019c0d4-f5e4-4eb4-9404-db453e3a2c1a" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/frontend/ucdGallery.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/class_pzucdDisplay.php" afterPath="$PROJECT_DIR$/frontend/class_pzucdDisplay.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/includes/pzucd-custom-field-types.php" afterPath="$PROJECT_DIR$/includes/pzucd-custom-field-types.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/includes/headway/ucd-block-display.php" afterPath="$PROJECT_DIR$/includes/headway/ucd-block-display.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/admin/ucd-cell-layouts.php" afterPath="$PROJECT_DIR$/admin/ucd-cell-layouts.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/admin/ucd-content-templates.php" afterPath="$PROJECT_DIR$/admin/ucd-content-templates.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/admin/ucd-data-selection.php" afterPath="$PROJECT_DIR$/admin/ucd-data-selection.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/ucd-display.php" afterPath="$PROJECT_DIR$/frontend/ucd-display.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/css/ucd-front.css" afterPath="$PROJECT_DIR$/frontend/css/ucd-front.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/admin/js/ucd-metaboxes-templates.js" afterPath="$PROJECT_DIR$/admin/js/ucd-metaboxes-templates.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/ucdGallery.php" afterPath="$PROJECT_DIR$/frontend/ucdGallery.php" />
     </list>
     <ignored path="pizazzwp-ultimatecontentdisplay.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -70,9 +63,9 @@
       <file leaf-file-name="ucd-cell-layouts.php" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/admin/ucd-cell-layouts.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="393" column="54" selection-start="14564" selection-end="14586" vertical-scroll-proportion="-13.04" vertical-offset="6422" max-vertical-offset="20394">
+            <state line="793" column="49" selection-start="26844" selection-end="26863" vertical-scroll-proportion="-5.1282053" vertical-offset="13874" max-vertical-offset="17460">
               <folding>
-                <marker date="1386501924000" expanded="true" signature="19174:19284" placeholder="..." />
+                <marker date="1386549813000" expanded="true" signature="11932:12042" placeholder="..." />
               </folding>
             </state>
           </provider>
@@ -146,10 +139,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ucdGallery.php" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="ucdGallery.php" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/frontend/ucdGallery.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="44" column="196" selection-start="1762" selection-end="1762" vertical-scroll-proportion="0.6672283" vertical-offset="0" max-vertical-offset="1656">
+            <state line="46" column="264" selection-start="1962" selection-end="1962" vertical-scroll-proportion="-34.5" vertical-offset="0" max-vertical-offset="1692">
               <folding>
                 <element signature="e#6#95#0" expanded="true" />
               </folding>
@@ -157,10 +150,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ucd-front.css" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="ucd-front.css" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/frontend/css/ucd-front.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="4" column="20" selection-start="63" selection-end="63" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2052">
+            <state line="12" column="0" selection-start="257" selection-end="257" vertical-scroll-proportion="0.17836499" vertical-offset="0" max-vertical-offset="2106">
               <folding />
             </state>
           </provider>
@@ -169,7 +162,7 @@
       <file leaf-file-name="ucd-display.php" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/frontend/ucd-display.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="183" column="0" selection-start="5943" selection-end="5943" vertical-scroll-proportion="-7.96" vertical-offset="2896" max-vertical-offset="8802">
+            <state line="127" column="94" selection-start="4674" selection-end="4674" vertical-scroll-proportion="-21.8" vertical-offset="1196" max-vertical-offset="8802">
               <folding>
                 <element signature="e#6#168#0" expanded="true" />
               </folding>
@@ -221,11 +214,11 @@
         <option value="$PROJECT_DIR$/admin/ucd-data-selection.php" />
         <option value="$PROJECT_DIR$/includes/pzucd-custom-field-types.php" />
         <option value="$PROJECT_DIR$/includes/headway/ucd-block-display.php" />
-        <option value="$PROJECT_DIR$/admin/ucd-cell-layouts.php" />
-        <option value="$PROJECT_DIR$/frontend/css/ucd-front.css" />
         <option value="$PROJECT_DIR$/admin/ucd-content-templates.php" />
+        <option value="$PROJECT_DIR$/admin/ucd-cell-layouts.php" />
         <option value="$PROJECT_DIR$/frontend/ucd-display.php" />
         <option value="$PROJECT_DIR$/frontend/ucdGallery.php" />
+        <option value="$PROJECT_DIR$/frontend/css/ucd-front.css" />
       </list>
     </option>
   </component>
@@ -343,6 +336,38 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="css" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pizazzwp-ultimatecontentdisplay" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pizazzwp-ultimatecontentdisplay" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="external" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pizazzwp-ultimatecontentdisplay" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pizazzwp-ultimatecontentdisplay" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="external" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="bfi_thumb" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -641,13 +666,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/frontend/css/ucd-front.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="4" column="20" selection-start="63" selection-end="63" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2052">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/frontend/class_pzucdDisplay.php">
       <provider selected="true" editor-type-id="text-editor">
         <state line="107" column="2" selection-start="2999" selection-end="2999" vertical-scroll-proportion="-42.708332" vertical-offset="865" max-vertical-offset="2052">
@@ -669,30 +687,37 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/admin/ucd-cell-layouts.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="793" column="49" selection-start="26844" selection-end="26863" vertical-scroll-proportion="-5.1282053" vertical-offset="13874" max-vertical-offset="17460">
+          <folding>
+            <marker date="1386549813000" expanded="true" signature="11932:12042" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/frontend/ucd-display.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="183" column="0" selection-start="5943" selection-end="5943" vertical-scroll-proportion="-7.96" vertical-offset="2896" max-vertical-offset="8802">
+        <state line="127" column="94" selection-start="4674" selection-end="4674" vertical-scroll-proportion="-21.8" vertical-offset="1196" max-vertical-offset="8802">
           <folding>
             <element signature="e#6#168#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/admin/ucd-cell-layouts.php">
+    <entry file="file://$PROJECT_DIR$/frontend/ucdGallery.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="393" column="54" selection-start="14564" selection-end="14586" vertical-scroll-proportion="-13.04" vertical-offset="6422" max-vertical-offset="20394">
+        <state line="46" column="264" selection-start="1962" selection-end="1962" vertical-scroll-proportion="-34.5" vertical-offset="0" max-vertical-offset="1692">
           <folding>
-            <marker date="1386501924000" expanded="true" signature="19174:19284" placeholder="..." />
+            <element signature="e#6#95#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/frontend/ucdGallery.php">
+    <entry file="file://$PROJECT_DIR$/frontend/css/ucd-front.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="44" column="196" selection-start="1762" selection-end="1762" vertical-scroll-proportion="0.6672283" vertical-offset="0" max-vertical-offset="1656">
-          <folding>
-            <element signature="e#6#95#0" expanded="true" />
-          </folding>
+        <state line="12" column="0" selection-start="257" selection-end="257" vertical-scroll-proportion="0.17836499" vertical-offset="0" max-vertical-offset="2106">
+          <folding />
         </state>
       </provider>
     </entry>

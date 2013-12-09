@@ -10,6 +10,7 @@
 // require(PZUCD_PLUGIN_PATH .'/frontend/class_pzucdDisplay.php');
 //require(PZUCD_PLUGIN_PATH .'/includes/class_pzucdQuery.php');
 require PZUCD_PLUGIN_PATH . '/frontend/ucdGallery.php';
+require_once(PZUCD_PLUGIN_PATH .'external/bfi_thumb/BFI_Thumb.php');
 
 //add_shortcode('ucdgallery', 'pzucd_gallery_shortcode');
 //
@@ -96,7 +97,6 @@ function pzucd_render($pzucd_template, $overrides, $caller)
 
   $pzucd_out->build_query();
   $pzucd_query = new WP_Query($pzucd_out->query_vars);
-  pzdebug($pzucd_query->found_posts);
 
 //  pzdebug((array) $pzucd_query);
   $pzucd_out->template_header();
@@ -105,7 +105,7 @@ function pzucd_render($pzucd_template, $overrides, $caller)
     $pzucd_out->section_info = $pzucd_section_info;
     if ($pzucd_template[ 'section' ][ $key ][ 'section-enable' ])
     {
-      $pzucd_out->output .= '<div class=pzucd-section pzucd-section-' . $key . '">';
+      $pzucd_out->output .= '<div class="pzucd-section pzucd-section-' . $key . '">';
       if ($pzucd_query->have_posts())
       {
         while ($pzucd_query->have_posts())
@@ -139,10 +139,10 @@ function pzucd_build_components($components_open, $the_inputs, $layout, $compone
       switch ($key)
       {
         case 'title' :
-          $return_str .= '<h3 class="entry-title">' . $the_inputs[ 'title' ] . '</h3>';
+          $return_str .= '<h3 class="entry-title" style="'.$cell_info['_pzucd_layout-format-entry-title'].'">' . $the_inputs[ 'title' ] . '</h3>';
           break;
         case 'excerpt' :
-          $return_str .= '<div class="entry-excerpt">' . esc_html($the_inputs[ 'excerpt' ]) . '</div>';
+          $return_str .= '<div class="entry-excerpt"style="'.$cell_info['_pzucd_layout-format-entry-content'].'">' . esc_html($the_inputs[ 'excerpt' ]) . '</div>';
           break;
         case 'image' :
           $return_str .= '<div class="pzucd_image">' . $the_inputs[ 'image' ] . '</div>';
@@ -172,7 +172,7 @@ class pzucd_Display
 
   function template_header()
   {
-    $this->output .= '<div class="pzucd-container">';
+    $this->output .= '<div id="pzucd=container-'.$this->template['template-short-name'].'" class="pzucd-container">';
 //    switch ($this->tempate['template-nav-pos']) {
 //      case 'top':
 //      case 'left':

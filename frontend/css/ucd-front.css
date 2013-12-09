@@ -7,16 +7,19 @@
 .pzucd-cell {
   min-width:0px;
   min-height:0px;
-  background:#eee;
   /* Remember to remove space between divs to stop inline-block space issue */
   display:inline-block;
   box-sizing:border-box;
-  color:#222;
   vertical-align:top;
 }
 
 .entry-image {
   max-width:100%;
+  display:block;
+}
+.pzucd_bg_image{
+  margin:0;
+  padding:0;
 }
 
 .pzucd-components {

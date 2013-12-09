@@ -293,178 +293,21 @@ class pzucd_Cell_Layouts
 //			),
 //		);
 
-    /*		 * **************
-     * LAYOUT
-     * ************** */
-    $meta_box_layout[ 'tabs' ][ $i++ ][ 'fields' ] = array(
-      array(
-        'label'   => __('General', 'pzucd'),
-        'id'      => $prefix . 'layout-responsive',
-        'type'    => 'heading',
-        'default' => '',
-        'desc'    => __('', 'pzucd')
-      ),
-      array(
-        'label'      => __('Set name', 'pzucd'),
-        'id'         => $prefix . 'layout-set-name',
-        'type'       => 'text',
-        'default'    => '',
-        'desc'       => __('A set name for this cell layout. This enables you to create sets of layouts for different parent dimensions. That is, when the dimensions of the parent change, the layout will change accordingly. Traditional responsive design is based on the width of your device\'s screen,; however this fails if you place the object in a narrow column on a large screen,', 'pzucd'),
-        'help'       => __('Create sets of layouts with each layout in a set for different parent dimensions'),
-        'validation' => 'data-validation-engine="validate[required]"'
-      ),
 
-      array(
-        'label'   => __('Content', 'pzucd'),
-        'id'      => $prefix . 'layout-cells-content',
-        'type'    => 'select',
-        'default' => 'post',
-        'desc'    => __('Select the content type to display in these cells.', 'pzucd'),
-        'options' => array(
-          array('value' => 'post', 'text' => 'Posts'),
-          array('value' => 'page', 'text' => 'Pages'),
-          array('value' => 'attachment', 'text' => 'Attachments'),
-        )
-      ),
-      array(
-        'label'   => __('Layout', 'pzucd'),
-        'id'      => $prefix . 'layout-head',
-        'type'    => 'heading',
-        'default' => '',
-        'desc'    => __('', 'pzucd')
-      ),
-      array(
-        'label'   => __('Components to show', 'pzucd'),
-        'id'      => $prefix . 'layout-show',
-        'type'    => 'multicheck',
-        'default' => array('title', 'excerpt', 'meta1', 'image'),
-        'options' => array(
-          array('value' => 'title', 'text' => 'Title <span class = "title"></span> '),
-          array('value' => 'excerpt', 'text' => 'Excerpt <span class = "excerpt"></span> '),
-          array('value' => 'content', 'text' => 'Content <span class = "content"></span> '),
-          array('value' => 'image', 'text' => 'Image <span class = "image"></span> '),
-          array('value' => 'meta1', 'text' => 'Meta1 <span class = "meta1"></span> '),
-          array('value' => 'meta2', 'text' => 'Meta2 <span class = "meta2"></span> '),
-          array('value' => 'meta3', 'text' => 'Meta3 <span class = "meta3"></span>'),
-          array('value' => 'custom1', 'text' => 'Custom1 <span class = "custom1"></span> '),
-          array('value' => 'custom2', 'text' => 'Custom2 <span class = "custom2"></span> '),
-          array('value' => 'custom3', 'text' => 'Custom3 <span class = "custom3"></span>'),
-        ),
-        'desc'    => __('Select which base components to include in this cell layout.', 'pzucd')
-      ),
-      array(
-        'label'   => __('Components area position', 'pzucd'),
-        'id'      => $prefix . 'layout-sections-position',
-        'type'    => 'select',
-        'default' => 'top',
-        'options' => array(
-          array('value' => 'top', 'text' => 'Top of cell'),
-          array('value' => 'bottom', 'text' => 'Bottom of cell'),
-          array('value' => 'left', 'text' => 'Left of cell'),
-          array('value' => 'right', 'text' => 'Right of cell'),
-        ),
-        'desc'    => __('Position for all the components as a group', 'pzucd')
-      ),
-      array(
-        'label'   => __('Components area width', 'pzucd'),
-        'id'      => $prefix . 'layout-sections-widths',
-        'type'    => 'text_small',
-        'default' => '100',
-        'alt'     => 'zones',
-        'min'     => '1',
-        'max'     => '100',
-        'step'    => '1',
-        'suffix'  => '%',
-        'desc'    => __('Set the overall width for the components area. Necessary for left or right positioning of sections', 'pzucd'),
-        'help'    => __('Note:The sum of the width and the left/right nudge should equal 100', 'pzucd')
-      ),
-      array(
-        'label'   => __('Nudge components area left/right', 'pzucd'),
-        'id'      => $prefix . 'layout-nudge-section-x',
-        'type'    => 'text_small',
-        'default' => '0',
-        'min'     => '1',
-        'max'     => '100',
-        'step'    => '1',
-        'suffix'  => '%',
-        'desc'    => __('Enter percent to move the components area left/right. Note: These measurements are percentage of the cell.', 'pzucd')
-      ),
-      array(
-        'label'   => __('Nudge components area up/down', 'pzucd'),
-        'id'      => $prefix . 'layout-nudge-section-y',
-        'type'    => 'text_small',
-        'default' => '0',
-        'min'     => '1',
-        'max'     => '100',
-        'step'    => '1',
-        'suffix'  => '%',
-        'desc'    => __('Enter percent to move the components area up/down. Note: These measurements are percentage of the cell.', 'pzucd')
-      ),
-      array(
-        'label'   => __('Excerpt image', 'pzucd'),
-        'id'      => $prefix . 'layout-excerpt-thumb',
-        'type'    => 'select',
-        'default' => 'none',
-        'options' => array(
-          array('value' => 'none', 'text' => 'No image'),
-          array('value' => 'left', 'text' => 'Image left'),
-          array('value' => 'right', 'text' => 'Image right'),
-        ),
-        'desc'    => __('Set the alignment of the image when it is in the excerpt. This will use the image settings', 'pzucd')
-      ),
-      array(
-        'label'   => __('Feature Image/Video', 'pzucd'),
-        'id'      => $prefix . 'layout-background-image',
-        'type'    => 'select',
-        'default' => 'none',
-        'options' => array(
-          array('value' => 'none', 'text' => 'No image'),
-          array('value' => 'fill', 'text' => 'Fill the cell'),
-          array('value' => 'align', 'text' => 'Align with components area'),
-        ),
-        'desc'    => __('Select how to display the featured image or video as the background.', 'pzucd')
-      ),
-      array(
-        'label'   => __('Cell Height', 'pzucd'),
-        'id'      => $prefix . 'layout-cell-height-type',
-        'type'    => 'select',
-        'default' => 'fluid',
-        'options' => array(
-          array('value' => 'fluid', 'text' => 'Fluid'),
-          array('value' => 'fixed', 'text' => 'Fixed'),
-        ),
-        'desc'    => __('Choose whether to set the height of the cells (fixed), or allow them to adjust to the content height (fluid).', 'pzucd')
-      ),
-      array(
-        'label'   => __('Cell layout preview', 'pzucd'),
-        'id'      => $prefix . 'layout-cell-preview',
-        'type'    => 'custom',
-//				'code'		 => self::draw_cell_layout(),
-        'default' => '',
-        'desc'    => __('', 'pzucd')
-      ),
-      array(
-        'label'   => __('Cell field order', 'pzucd'),
-        'id'      => $prefix . 'layout-field-order',
-        'type'    => 'hidden',
-        'default' => '%title%, %meta1%, %meta2%, %excerpt%, %content%, %image%, %meta3%',
-        'desc'    => __('', 'pzucd')
-      ),
-    );
 
     /*		 * **************
      * TITLES
      * ************** */
     $meta_box_layout[ 'tabs' ][ $i++ ][ 'fields' ] = array(
       array(
-        'label'   => __('Titles', 'pzucd'),
+        'name'   => __('Titles', 'pzucd'),
         'id'      => $prefix . 'layout-title-head',
         'type'    => 'heading',
         'default' => '',
         'desc'    => __('', 'pzucd')
       ),
       array(
-        'label'   => __('Title area width', 'pzucd'),
+        'name'   => __('Title area width', 'pzucd'),
         'id'      => $prefix . 'layout-title-width',
         'type'    => 'readonly',
         'class'   => 'pzucd-zone-percent',
@@ -473,14 +316,14 @@ class pzucd_Cell_Layouts
         'desc'    => __('Set the title width as a percentage of the cell width.', 'pzucd')
       ),
       array(
-        'label'   => __('Title bullet', 'pzucd'),
+        'name'   => __('Title bullet', 'pzucd'),
         'id'      => $prefix . 'layout-title-bullet',
         'type'    => 'text',
         'default' => '',
         'desc'    => __('Prefix titles with bullets.', 'pzucd')
       ),
       array(
-        'label'   => __('Link title', 'pzucd'),
+        'name'   => __('Link title', 'pzucd'),
         'id'      => $prefix . 'layout-link-title',
         'type'    => 'checkbox',
         'default' => true,
@@ -493,14 +336,14 @@ class pzucd_Cell_Layouts
 //		 * ************** */
 //		$meta_box_layout['tabs'][$i++]['fields'] = array(
       array(
-        'label'   => __('Content', 'pzucd'),
+        'name'   => __('Content', 'pzucd'),
         'id'      => $prefix . 'layout-content-head',
         'type'    => 'heading',
         'default' => '',
         'desc'    => __('', 'pzucd')
       ),
       array(
-        'label'   => __('Content area width', 'pzucd'),
+        'name'   => __('Content area width', 'pzucd'),
         'id'      => $prefix . 'layout-content-width',
         'type'    => 'readonly',
         'class'   => 'pzucd-zone-percent',
@@ -509,7 +352,7 @@ class pzucd_Cell_Layouts
         'desc'    => __('Set the content width as a percentage of the cell width.', 'pzucd')
       ),
       array(
-        'label'   => __('Content CSS selectors', 'pzucd'),
+        'name'   => __('Content CSS selectors', 'pzucd'),
         'id'      => $prefix . 'layout-content-css-selectors',
         'type'    => 'infobox',
         'default' => '',
@@ -526,14 +369,14 @@ class pzucd_Cell_Layouts
 //		 * ************** */
 //		$meta_box_layout['tabs'][$i++]['fields'] = array(
       array(
-        'label'   => __('Excerpts', 'pzucd'),
+        'name'   => __('Excerpts', 'pzucd'),
         'id'      => $prefix . 'layout-excerpts-head',
         'type'    => 'heading',
         'default' => '',
         'desc'    => __('', 'pzucd')
       ),
       array(
-        'label'   => __('Excerpt area width', 'pzucd'),
+        'name'   => __('Excerpt area width', 'pzucd'),
         'id'      => $prefix . 'layout-excerpt-width',
         'type'    => 'readonly',
         'class'   => 'pzucd-zone-percent',
@@ -542,21 +385,21 @@ class pzucd_Cell_Layouts
         'desc'    => __('Set the excerpt width as a percentage of the cell width.', 'pzucd')
       ),
       array(
-        'label'   => __('Read more message', 'pzucd'),
+        'name'   => __('Read more message', 'pzucd'),
         'id'      => $prefix . 'layout-read-more',
         'type'    => 'text',
         'default' => '[ Read more ]',
         'desc'    => __('Text to display for read more.', 'pzucd')
       ),
       array(
-        'label'   => __('Excerpt length', 'pzucd'),
+        'name'   => __('Excerpt length', 'pzucd'),
         'id'      => $prefix . 'layout-excerpt-length',
         'type'    => 'colorpicker',
         'default' => '#336699',
         'desc'    => __('Text to display for read more.', 'pzucd')
       ),
       array(
-        'label'   => __('Excerpt length type', 'pzucd'),
+        'name'   => __('Excerpt length type', 'pzucd'),
         'id'      => $prefix . 'layout-excerpt-length-type',
         'type'    => 'select',
         'default' => 'characters',
@@ -572,14 +415,14 @@ class pzucd_Cell_Layouts
 //		 * ************** */
 //		$meta_box_layout['tabs'][$i++]['fields'] = array(
       array(
-        'label'   => __('Meta', 'pzucd'),
+        'name'   => __('Meta', 'pzucd'),
         'id'      => $prefix . 'layout-meta-head',
         'type'    => 'heading',
         'default' => '',
         'desc'    => __('', 'pzucd')
       ),
       array(
-        'label'   => __('Meta 1 area width', 'pzucd'),
+        'name'   => __('Meta 1 area width', 'pzucd'),
         'id'      => $prefix . 'layout-meta1-width',
         'type'    => 'readonly',
         'class'   => 'pzucd-zone-percent',
@@ -588,7 +431,7 @@ class pzucd_Cell_Layouts
         'desc'    => __('Set the meta 1 width as a percentage of the cell width.', 'pzucd')
       ),
       array(
-        'label'   => __('Meta 2 area width', 'pzucd'),
+        'name'   => __('Meta 2 area width', 'pzucd'),
         'id'      => $prefix . 'layout-meta2-width',
         'type'    => 'readonly',
         'class'   => 'pzucd-zone-percent',
@@ -597,7 +440,7 @@ class pzucd_Cell_Layouts
         'desc'    => __('Set the meta 2 width as a percentage of the cell width.', 'pzucd')
       ),
       array(
-        'label'   => __('Meta 3 area width', 'pzucd'),
+        'name'   => __('Meta 3 area width', 'pzucd'),
         'id'      => $prefix . 'layout-meta3-width',
         'type'    => 'readonly',
         'class'   => 'pzucd-zone-percent',
@@ -606,21 +449,21 @@ class pzucd_Cell_Layouts
         'desc'    => __('Set the meta 3 width as a percentage of the cell width.', 'pzucd')
       ),
       array(
-        'label'   => __('Meta1 content', 'pzucd'),
+        'name'   => __('Meta1 content', 'pzucd'),
         'id'      => $prefix . 'layout-meta1-content',
         'type'    => 'textarea',
         'default' => '%date%',
         'desc'    => __('Enter code for meta area 1.', 'pzucd'),
       ),
       array(
-        'label'   => __('Meta2 content', 'pzucd'),
+        'name'   => __('Meta2 content', 'pzucd'),
         'id'      => $prefix . 'layout-meta1-content',
         'type'    => 'textarea',
         'default' => '%categories%',
         'desc'    => __('Enter code for meta area 2.', 'pzucd'),
       ),
       array(
-        'label'   => __('Meta3 content', 'pzucd'),
+        'name'   => __('Meta3 content', 'pzucd'),
         'id'      => $prefix . 'layout-meta3-content',
         'type'    => 'textarea',
         'default' => '%comments%',
@@ -633,14 +476,14 @@ class pzucd_Cell_Layouts
 //		 * ************** */
 //		$meta_box_layout['tabs'][$i++]['fields'] = array(
       array(
-        'label'   => __('Image', 'pzucd'),
+        'name'   => __('Image', 'pzucd'),
         'id'      => $prefix . 'layout-image-head',
         'type'    => 'heading',
         'default' => '',
         'desc'    => __('', 'pzucd')
       ),
       array(
-        'label'   => __('Image area width', 'pzucd'),
+        'name'   => __('Image area width', 'pzucd'),
         'id'      => $prefix . 'layout-image-width',
         'type'    => 'readonly',
         'class'   => 'pzucd-zone-percent',
@@ -650,146 +493,6 @@ class pzucd_Cell_Layouts
       ),
     );
 
-    /*		 * **************
-     * FORMAT
-     * ************** */
-
-    $meta_box_layout[ 'tabs' ][ $i++ ][ 'fields' ] = array(
-      array(
-        'label'   => __('Styling', 'pzucd'),
-        'id'      => $prefix . 'layout-format-head',
-        'type'    => 'heading',
-        'default' => '',
-        'desc'    => __('', 'pzucd')
-      ),
-      array(
-        'label'   => __('CSS instructions', 'pzucd'),
-        'id'      => $prefix . 'layout-format-instructions',
-        'type'    => 'infobox',
-        'default' => '',
-        'desc'    => __('Enter CSS declarations, such as: background:#123; color:#abc; font-size:1.6em; padding:1%;', 'pzucd') . '<br/>' . __('As much as possible, use fluid units (%,em) if you want to ensure maximum responsiveness.', 'pzucd') . '<br/>' .
-                __('The base font size is 10px. So, for example, to get a font size of 14px, use 1.4em. Even better is using relative ems i.e. rem.')
-      ),
-      array(
-        'label'   => __('Cells', 'pzucd'),
-        'id'      => $prefix . 'layout-format-cells',
-        'type'    => 'textarea',
-        'rows'    => 1,
-        'default' => '',
-        'help'    => 'Declarations only for class: .pzucd_cells',
-        'desc'    => __('Format the cells', 'pzucd')
-      ),
-      array(
-        'label'   => __('Components group', 'pzucd'),
-        'id'      => $prefix . 'layout-format-components-group',
-        'type'    => 'textarea',
-        'rows'    => 1,
-        'default' => '',
-        'help'    => 'Declarations only for class: .pzucd_components',
-        'desc'    => __('Format the components group', 'pzucd')
-      ),
-      array(
-        'label'   => __('Entry title', 'pzucd'),
-        'id'      => $prefix . 'layout-format-entry-title',
-        'type'    => 'textarea',
-        'rows'    => 1,
-        'default' => '',
-        'help'    => 'Declarations only for class: .pzucd_entry_title and .pzucd_entry_title a',
-        'desc'    => __('Format the entry title', 'pzucd')
-      ),
-      array(
-        'label'   => __('Entry title hover', 'pzucd'),
-        'id'      => $prefix . 'layout-format-entry-title-hover',
-        'type'    => 'textarea',
-        'rows'    => 1,
-        'default' => '',
-        'help'    => 'Declarations only for class: .pzucd_entry_title a:hover',
-        'desc'    => __('Format the entry title link hover', 'pzucd')
-      ),
-      array(
-        'label'   => __('Entry meta', 'pzucd'),
-        'id'      => $prefix . 'layout-format-entry-meta',
-        'type'    => 'textarea',
-        'rows'    => 1,
-        'default' => '',
-        'help'    => 'Declarations only for class: .pzucd_entry_meta',
-        'desc'    => __('Format the entry meta', 'pzucd')
-      ),
-      array(
-        'label'   => __('Entry meta links', 'pzucd'),
-        'id'      => $prefix . 'layout-format-entry-meta-link',
-        'type'    => 'textarea',
-        'rows'    => 1,
-        'default' => '',
-        'help'    => 'Declarations only for class: .pzucd_entry_meta a',
-        'desc'    => __('Format the entry meta link', 'pzucd')
-      ),
-      array(
-        'label'   => __('Entry meta link hover', 'pzucd'),
-        'id'      => $prefix . 'layout-format-entry-meta-link-hover',
-        'type'    => 'textarea',
-        'rows'    => 1,
-        'default' => '',
-        'help'    => 'Declarations only for class: .pzucd_entry_meta a:hover',
-        'desc'    => __('Format the entry meta link hover', 'pzucd')
-      ),
-      array(
-        'label'   => __('Entry content', 'pzucd'),
-        'id'      => $prefix . 'layout-format-entry-content',
-        'type'    => 'textarea',
-        'rows'    => 1,
-        'default' => '',
-        'help'    => 'Declarations only for class: .pzucd_entry_content',
-        'desc'    => __('Format the entry content', 'pzucd')
-      ),
-      array(
-        'label'   => __('Entry content links', 'pzucd'),
-        'id'      => $prefix . 'layout-format-entry-content-links',
-        'type'    => 'textarea',
-        'rows'    => 1,
-        'default' => '',
-        'help'    => 'Declarations only for class: .pzucd_entry_content a',
-        'desc'    => __('Format the entry content', 'pzucd')
-      ),
-      array(
-        'label'   => __('Entry content link hover', 'pzucd'),
-        'id'      => $prefix . 'layout-format-entry-content-link-hover',
-        'type'    => 'textarea',
-        'rows'    => 1,
-        'default' => '',
-        'help'    => 'Declarations only for class: .pzucd_entry_content a:hover',
-        'desc'    => __('Format the entry content link hover', 'pzucd')
-      ),
-      array(
-        'label'   => __('Entry featured image', 'pzucd'),
-        'id'      => $prefix . 'layout-format-entry-fimage',
-        'type'    => 'textarea',
-        'rows'    => 1,
-        'default' => '',
-        'help'    => 'Declarations only for class: .pzucd_entry_featured_image',
-        'desc'    => __('Format the entry featured image', 'pzucd')
-      ),
-      array(
-        'label'   => __('Read more', 'pzucd'),
-        'id'      => $prefix . 'layout-format-entry-readmore',
-        'type'    => 'textarea',
-        'rows'    => 1,
-        'default' => '',
-        'help'    => 'Declarations only for class: a.pzucd_readmore',
-        'desc'    => __('Format the content "Read more" link', 'pzucd')
-      ),
-      array(
-        'label'   => __('Read more hover', 'pzucd'),
-        'id'      => $prefix . 'layout-format-entry-readmore-hover',
-        'type'    => 'textarea',
-        'rows'    => 1,
-        'default' => '',
-        'help'    => 'Declarations only for class: a.pzucd_readmore:hover',
-        'desc'    => __('Format the content "Read more" link hover', 'pzucd')
-      ),
-    ); // End of settings array
-
-    return $meta_box_layout;
   }
 
 
@@ -1045,7 +748,7 @@ function pzucd_cell_designer_settings_meta($meta_boxes = array())
     'pages'   => 'ucd-layouts',
     'fields'  => $fields,
     'context' => 'side',
-    'priotity' => 'high'
+    'priority' => 'high'
 
   );
 
@@ -1062,9 +765,11 @@ function pzucd_cell_settings_meta($meta_boxes = array())
     'name'=>'Nothing here yet',
     'type'=>'title'
     )  );
+
   $meta_boxes[ ] = array(
     'title'  => 'Settings',
     'pages'  => 'ucd-layouts',
+    'context' => 'side',
     'fields' => $fields
   );
 
@@ -1077,10 +782,142 @@ function pzucd_cell_formats_meta($meta_boxes = array())
   $prefix        = '_pzucd_';
   $fields        = array(
     array(
-    'id' => 'nothing2',
-    'name'=>'Nothing here yet',
-    'type'=>'title'
-    ));
+      'name'   => __('CSS instructions', 'pzucd'),
+      'id'      => $prefix . 'layout-format-instructions',
+      'type'    => 'pzinfo',
+      'default' => '',
+      'desc'    => __('Enter CSS declarations, such as: background:#123; color:#abc; font-size:1.6em; padding:1%;', 'pzucd') . '<br/>' . __('As much as possible, use fluid units (%,em) if you want to ensure maximum responsiveness.', 'pzucd') . '<br/>' .
+              __('The base font size is 10px. So, for example, to get a font size of 14px, use 1.4em. Even better is using relative ems i.e. rem.')
+    ),
+    array(
+      'name'   => __('Cells', 'pzucd'),
+      'id'      => $prefix . 'layout-format-cells',
+      'type'    => 'textarea',
+      'rows'    => 1,
+      'default' => '',
+      'help'    => 'Declarations only for class: .pzucd_cells',
+ //     'desc'    => __('Format the cells', 'pzucd')
+    ),
+    array(
+      'name'   => __('Components group', 'pzucd'),
+      'id'      => $prefix . 'layout-format-components-group',
+      'type'    => 'textarea',
+      'rows'    => 1,
+      'default' => '',
+      'help'    => 'Declarations only for class: .pzucd_components',
+ //     'desc'    => __('Format the components group', 'pzucd')
+    ),
+    array(
+      'name'   => __('Entry title', 'pzucd'),
+      'id'      => $prefix . 'layout-format-entry-title',
+      'type'    => 'textarea',
+      'rows'    => 1,
+      'cols' =>6,
+      'default' => '',
+      'help'    => 'Declarations only for class: .pzucd_entry_title and .pzucd_entry_title a',
+//      'desc'    => __('Format the entry title', 'pzucd')
+    ),
+    array(
+      'name'   => __('Additional classes - base: .entry-title and .entry-title a', 'pzucd'),
+      'id'      => $prefix . 'layout-format-entry-title-classes',
+      'type'    => 'text',
+      'rows'    => 1,
+      'cols' =>6,
+      'default' => '',
+      'help'    => 'Declarations only for class: .entry-title and .entry-title a',
+//      'desc'    => __('Format the entry title', 'pzucd')
+    ),
+    array(
+      'name'   => __('Entry title hover', 'pzucd'),
+      'id'      => $prefix . 'layout-format-entry-title-hover',
+      'type'    => 'textarea',
+      'rows'    => 1,
+      'default' => '',
+      'help'    => 'Declarations only for class: .pzucd_entry_title a:hover',
+//      'desc'    => __('Format the entry title link hover', 'pzucd')
+    ),
+    array(
+      'name'   => __('Entry meta', 'pzucd'),
+      'id'      => $prefix . 'layout-format-entry-meta',
+      'type'    => 'textarea',
+      'rows'    => 1,
+      'default' => '',
+      'help'    => 'Declarations only for class: .pzucd_entry_meta',
+ //     'desc'    => __('Format the entry meta', 'pzucd')
+    ),
+    array(
+      'name'   => __('Entry meta links', 'pzucd'),
+      'id'      => $prefix . 'layout-format-entry-meta-link',
+      'type'    => 'textarea',
+      'rows'    => 1,
+      'default' => '',
+      'help'    => 'Declarations only for class: .pzucd_entry_meta a',
+ //     'desc'    => __('Format the entry meta link', 'pzucd')
+    ),
+    array(
+      'name'   => __('Entry meta link hover', 'pzucd'),
+      'id'      => $prefix . 'layout-format-entry-meta-link-hover',
+      'type'    => 'textarea',
+      'rows'    => 1,
+      'default' => '',
+      'help'    => 'Declarations only for class: .pzucd_entry_meta a:hover',
+ //     'desc'    => __('Format the entry meta link hover', 'pzucd')
+    ),
+    array(
+      'name'   => __('Entry content', 'pzucd'),
+      'id'      => $prefix . 'layout-format-entry-content',
+      'type'    => 'textarea',
+      'rows'    => 1,
+      'default' => '',
+      'help'    => 'Declarations only for class: .pzucd_entry_content',
+ //     'desc'    => __('Format the entry content', 'pzucd')
+    ),
+    array(
+      'name'   => __('Entry content links', 'pzucd'),
+      'id'      => $prefix . 'layout-format-entry-content-links',
+      'type'    => 'textarea',
+      'rows'    => 1,
+      'default' => '',
+      'help'    => 'Declarations only for class: .pzucd_entry_content a',
+ //     'desc'    => __('Format the entry content', 'pzucd')
+    ),
+    array(
+      'name'   => __('Entry content link hover', 'pzucd'),
+      'id'      => $prefix . 'layout-format-entry-content-link-hover',
+      'type'    => 'textarea',
+      'rows'    => 1,
+      'default' => '',
+      'help'    => 'Declarations only for class: .pzucd_entry_content a:hover',
+ //     'desc'    => __('Format the entry content link hover', 'pzucd')
+    ),
+    array(
+      'name'   => __('Entry featured image', 'pzucd'),
+      'id'      => $prefix . 'layout-format-entry-fimage',
+      'type'    => 'textarea',
+      'rows'    => 1,
+      'default' => '',
+      'help'    => 'Declarations only for class: .pzucd_entry_featured_image',
+ //     'desc'    => __('Format the entry featured image', 'pzucd')
+    ),
+    array(
+      'name'   => __('Read more', 'pzucd'),
+      'id'      => $prefix . 'layout-format-entry-readmore',
+      'type'    => 'textarea',
+      'rows'    => 1,
+      'default' => '',
+      'help'    => 'Declarations only for class: a.pzucd_readmore',
+ //     'desc'    => __('Format the content "Read more" link', 'pzucd')
+    ),
+    array(
+      'name'   => __('Read more hover', 'pzucd'),
+      'id'      => $prefix . 'layout-format-entry-readmore-hover',
+      'type'    => 'textarea',
+      'rows'    => 1,
+      'default' => '',
+      'help'    => 'Declarations only for class: a.pzucd_readmore:hover',
+ //     'desc'    => __('Format the content "Read more" link hover', 'pzucd')
+    ),
+  );
   $meta_boxes[ ] = array(
     'title'  => 'Styling',
     'pages'  => 'ucd-layouts',
