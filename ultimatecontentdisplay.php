@@ -4,7 +4,7 @@
   Plugin Name: PizazzWP Ultimate Content Display - a content display framework
   Plugin URI: http://pizazzwp.com
   Description: Display your content in grids, tabs, sliders, galleries with sources like posts, pages, galleries, widgets, custom code, Headway blocks and custom content types
-  Version: 0.4beta1
+  Version: 0.4.4 beta
   Author: Chris Howard
   Author URI: http://pizazzwp.com
   License: GNU GPL v2
@@ -225,7 +225,8 @@ class Ultimate_Content_Display
 
 		wp_enqueue_script( 'jquery' );
 		// wp_enqueue_script( PZUCD_NAME.'-plugin-script', plugins_url( PZUCD_FOLDER.'/frontend/js/display.js' ) );
-		wp_enqueue_script( PZUCD_NAME . '-isotope', plugins_url( PZUCD_FOLDER . '/frontend/js/jquery.isotope.min.js' ) );
+    wp_register_script( 'jquery-isotope', plugins_url( PZUCD_FOLDER . '/external/js/jquery.isotope.min.js' ) );
+    wp_register_script( 'js-isotope-v2', plugins_url( PZUCD_FOLDER . '/external/js/isotope.pkgd.min.js' ) );
 	}
 
 // end register_plugin_scripts
@@ -292,5 +293,30 @@ $pzucd = new Ultimate_Content_Display();
 
 /* Display method Headway */
 // Provide method to display using a Headway block
+if (is_admin())
+{
+  add_action('admin_init', 'pzucd_initiate_updater');
+
+  function pzucd_initiate_updater() {
+//    $opt_val = get_option('pizazz_options');
+//    if (class_exists('HeadwayUpdaterAPI') && empty($opt_val['val_update_method']))
+//    {
+//
+//      $updater = new HeadwayUpdaterAPI(array(
+//                                            'slug'						 => 'excerptsplus',
+//                                            'path'						 => plugin_basename(__FILE__),
+//                                            'name'						 => 'ExcerptsPlus',
+//                                            'type'						 => 'block',
+//                                            'current_version'	 => EPVERSION
+//                                       ));
+//    }
+//    else
+//    {
+      require_once('wp-updates-plugin.php');
+      $ep_update = new WPUpdatesPluginUpdater_259( 'http://wp-updates.com/api/2/plugin', plugin_basename(__FILE__));
+//    }
+  }
+
+}
 
 

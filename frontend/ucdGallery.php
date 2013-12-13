@@ -26,14 +26,21 @@ class ucdGallery extends pzucd_Display
   function build_cell($post_info)
   {
     $cell_info = pzucd_flatten_wpinfo($this->section_info[ 'section-cell-settings' ]);
+
+
+    // ALL THIS STYLING CRAP WILL BE MOVED TO A SEPARATE ROUTINE THAT CREATES A CACHED CSS
     //pzdebug($cell_info);
+
     $cell_width     = 100 / $this->section_info[ 'section-cells-across' ] - $this->section_info[ 'section-cells-vert-margin' ];
     $cell_min_width = $this->section_info[ 'section-min-cell-width' ];
-    // thuis may need to be in its own method
-    $this->output .= '<div class="pzucd-cell" style="position:relative;width:' . $cell_width . '%;margin:' . ($this->section_info[ 'section-cells-vert-margin' ] / 2) . '%;min-width:' . $cell_min_width . 'px;'.$cell_info['_pzucd_layout-format-cells'].'">';
-    $position = 'relative';
+    // this may need to be in its own method
+    $cell_height = ($cell_info['_pzucd_layout-cell-height-type'] == 'fixed')?'height:'.$cell_info['_pzucd_layout-cell-height'].'px;':null;
+    $this->output .= '<div class="pzucd-cell" style="position:relative;width:' . $cell_width . '%;margin:' . ($this->section_info[ 'section-cells-vert-margin' ] / 2) . '%;min-width:' . $cell_min_width . 'px;'.$cell_info['_pzucd_layout-format-cells'].$cell_height.'">';
+    $position = 'static';
     $params = array( 'width' => 300 );
+    // Returns false on failure.
     $post_image = bfi_thumb( $post_info->guid, $params );
+    $post_image = ($post_image?$post_image:$post_info->guid);
     if ($cell_info[ '_pzucd_layout-background-image' ] == 'fill')
     {
       $this->output .= '<div class="pzucd_bg_image"><img class="entry-image" src="' . $post_image . '"></div>';
@@ -44,7 +51,7 @@ class ucdGallery extends pzucd_Display
     $the_inputs[ 'excerpt' ] = $post_info->post_excerpt;
     $the_inputs[ 'image' ]   = '<img class="entry-image" src="' . $post_image . '">';
     // this needs its ownmethod
-    $components_open         = '<div class="pzucd-components" style="position:' . $position . ';' . $cell_info[ '_pzucd_layout-sections-position' ] . ':'.$cell_info[ '_pzucd_layout-nudge-section-y' ].'%;width:' . $cell_info[ '_pzucd_layout-sections-widths' ] . '%;">';
+    $components_open         = '<div class="pzucd-components" style="'.$cell_info['_pzucd_layout-format-components-group'].';position:' . $position . ';' . $cell_info[ '_pzucd_layout-sections-position' ] . ':'.$cell_info[ '_pzucd_layout-nudge-section-y' ].'%;width:' . $cell_info[ '_pzucd_layout-sections-widths' ] . '%;">';
     $components_close        = '</div><!-- End components -->';
     $components              = pzucd_build_components($components_open, $the_inputs, $layout, $components_close, $cell_info);
     $this->output .= $components . '</div><!-- end cell -->';

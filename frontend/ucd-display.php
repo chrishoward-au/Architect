@@ -10,6 +10,7 @@
 // require(PZUCD_PLUGIN_PATH .'/frontend/class_pzucdDisplay.php');
 //require(PZUCD_PLUGIN_PATH .'/includes/class_pzucdQuery.php');
 require PZUCD_PLUGIN_PATH . '/frontend/ucdGallery.php';
+require PZUCD_PLUGIN_PATH . '/frontend/ucdCellDefinitions.php';
 require_once(PZUCD_PLUGIN_PATH .'external/bfi_thumb/BFI_Thumb.php');
 
 //add_shortcode('ucdgallery', 'pzucd_gallery_shortcode');
@@ -40,12 +41,23 @@ require_once(PZUCD_PLUGIN_PATH .'external/bfi_thumb/BFI_Thumb.php');
 
 function pzucd_get_the_template($template)
 {
+  wp_enqueue_script('jquery-isotope');
 
   // meed to return a structure for the cells, the content source, the navgation info
 
-  $the_post = get_post_meta(1893, null, true);
 
-  foreach ($the_post as $key => $value)
+  global $wp_query;
+  $original_query = $wp_query;
+  $template_info = new WP_Query('post_type=ucd-templates&meta_key=_pzucd_template-short-name&meta_value='.$template);
+  if (!isset($template_info->posts[0])) { echo '<p class="pzucd-oops">Template '.$template.' not found</p>';return null;}
+  $the_template_meta = get_post_meta($template_info->posts[0]->ID, null, true);
+//  $wp_query = $original_query;
+ // wp_reset_postdata();
+
+  // VERY risky- fine on single pages, but will cause horror on multi post pages
+ // rewind_posts();
+
+  foreach ($the_template_meta as $key => $value)
   {
     $pzucd_template_field_set[ $key ] = $value[ 0 ];
   }
@@ -53,9 +65,6 @@ function pzucd_get_the_template($template)
     'template-short-name' => $pzucd_template_field_set[ '_pzucd_template-short-name' ],
     'template-criteria'   => $pzucd_template_field_set [ '_pzucd_template-criteria' ],
     'template-pager'      => $pzucd_template_field_set[ '_pzucd_template-pager' ],
-    'template-controls'   => $pzucd_template_field_set[ '_pzucd_template-controls' ],
-    'template-nav-pos'    => $pzucd_template_field_set[ '_pzucd_template-nav-pos' ],
-    'template-nav-loc'    => $pzucd_template_field_set[ '_pzucd_template-nav-loc' ]
   );
   for ($i = 0; $i < 3; $i++)
   {
@@ -69,6 +78,9 @@ function pzucd_get_the_template($template)
               'section-cells-horiz-margin' => $pzucd_template_field_set[ '_pzucd_' . $i . '-template-cells-horiz-margin' ],
               'section-cell-layout'        => $pzucd_template_field_set[ '_pzucd_' . $i . '-template-section-cell-layout' ],
               'section-layout-mode'        => $pzucd_template_field_set[ '_pzucd_' . $i . '-template-layout-mode' ],
+              'section-navigation'         => $pzucd_template_field_set[ '_pzucd_' . $i . '-template-section-navigation' ],
+              'section-nav-pos'            => $pzucd_template_field_set[ '_pzucd_' . $i . '-template-section-nav-pos' ],
+              'section-nav-loc'            => $pzucd_template_field_set[ '_pzucd_' . $i . '-template-section-nav-loc' ],
               'section-cell-settings'      => get_post_meta($pzucd_template_field_set[ '_pzucd_' . $i . '-template-section-cell-layout' ]),
 
             ) : null;
@@ -89,39 +101,89 @@ function pzucd_get_cell_design($pzucd_cell_layout_id)
 
 function pzucd_render($pzucd_template, $overrides, $caller)
 {
+  if (empty($pzucd_template)) {return null;}
+
+  pzdebug($pzucd_template);
   $pzucd_out = new $caller($pzucd_template);
   // Get the criteria
   $the_criteria = get_post_meta($pzucd_template[ 'template-criteria' ], null, true);
 
-  $pzucd_out->get_source($the_criteria, $overrides);
+  pzdebug($pzucd_template[ 'template-criteria' ]);
+  if ($pzucd_template[ 'template-criteria' ]!='default') {
+    $pzucd_out->get_source($the_criteria, $overrides);
 
-  $pzucd_out->build_query();
-  $pzucd_query = new WP_Query($pzucd_out->query_vars);
+    $pzucd_out->build_query();
 
+    if ($pzucd_out->query_vars) {
+      $pzucd_query = new WP_Query($pzucd_out->query_vars);
+    }
+  } else {
+    global $wp_query;
+    $original_query = $wp_query;
+    $pzucd_query = $wp_query;
+  }
+
+  pzdebug($pzucd_query->found_posts);
+  pzdebug(is_main_query());
 //  pzdebug((array) $pzucd_query);
+
+  // is filters a better way to do this? Altho how??
+  //$pzucd_out->output = apply_filters('pzucd_template_header',template_header());
+
   $pzucd_out->template_header();
+
   foreach ($pzucd_template[ 'section' ] as $key => $pzucd_section_info)
   {
+    pzdebug($pzucd_section_info);
     $pzucd_out->section_info = $pzucd_section_info;
     if ($pzucd_template[ 'section' ][ $key ][ 'section-enable' ])
     {
-      $pzucd_out->output .= '<div class="pzucd-section pzucd-section-' . $key . '">';
+      $pzucd_out->output .= '%nav-top-outside%';
+      $pzucd_out->output .= '%nav-left-outside%';
+      if ($pzucd_section_info['section-layout-mode']=='basic') {
+        $pzucd_out->output .= '<div class="pzucd-section pzucd-section-' . $key . '">';
+      }else {
+//        $pzucd_out->output .= '<div class="js-isotope pzucd-section pzucd-section-' . $key . '" data-isotope-options=\'{ "layoutMode": "'.$pzucd_section_info['section-layout-mode'].'","itemSelector": ".pzucd-cell" }\'>';
+        $pzucd_out->output .= '<div class="pzucd-section pzucd-section-' . $key . '">';
+      }
+
       if ($pzucd_query->have_posts())
+       $pzucd_out->output .= '%nav-top-inside%';
+
       {
         while ($pzucd_query->have_posts())
         {
           $pzucd_query->the_post();
+
           $pzucd_out->build_cell($pzucd_query->post);
+
           $pzucd_out->set_nav_link();
+
+// This needs to work out when to show! Maybe add it as a cell row???? Or at least an option??
+          // if show comments {
+//          $pzucd_out->output = apply_filters('pzucd_comments',$pzucd_out->output);
+
         }
+      $pzucd_out->output .= '%nav-bottom-inside%';
       }
       $pzucd_out->output .= '</div><!-- end pzucd-section-' . $key . ' -->';
-      $pzucd_out->add_nav();
+      $pzucd_out->output .= '%nav-top-outside%';
+      $pzucd_out->output .= '%nav-left-outside%';
+      if ($pzucd_section_info['section-navigation'] != 'none') {
+        $pzucd_out->output = str_replace('%nav-'.$pzucd_section_info['section-nav-pos'].'-'.$pzucd_section_info['section-nav-loc'].'%',$pzucd_out->add_nav(),$pzucd_out->output);
+      }
     }
   }
   $pzucd_out->template_footer();
+
   $pzucd_out->add_pager();
 
+  // This isn't necessary yet
+  if (!empty($original_query)){$wp_query=$original_query;}
+
+  // Rememebr to strip out unused tags
+
+  $pzucd_out->strip_unused_tags();
   return $pzucd_out->output;
 }
 
@@ -132,6 +194,11 @@ function pzucd_build_components($components_open, $the_inputs, $layout, $compone
   {
     $return_str .= '<div class="pzucd_bg_image">' . $the_inputs[ 'image' ] . '</div>';
   }
+
+
+  // Now this is where we need to use our cells defs!!!
+  // how do we define what goes into the innards tho? maybe need an array option for each innard.
+  // time for bed!
   foreach ($layout as $key => $value)
   {
     if ($value[ 'show' ])
@@ -142,7 +209,10 @@ function pzucd_build_components($components_open, $the_inputs, $layout, $compone
           $return_str .= '<h3 class="entry-title" style="'.$cell_info['_pzucd_layout-format-entry-title'].'">' . $the_inputs[ 'title' ] . '</h3>';
           break;
         case 'excerpt' :
-          $return_str .= '<div class="entry-excerpt"style="'.$cell_info['_pzucd_layout-format-entry-content'].'">' . esc_html($the_inputs[ 'excerpt' ]) . '</div>';
+          $return_str .= '<div class="entry-excerpt" style="'.$cell_info['_pzucd_layout-format-entry-content'].'">' . esc_html($the_inputs[ 'excerpt' ]) . '</div>';
+          break;
+        case 'content' :
+          $return_str .= '<div class="entry-content" style="'.$cell_info['_pzucd_layout-format-entry-content'].'">' . $the_inputs[ 'content' ] . '</div>';
           break;
         case 'image' :
           $return_str .= '<div class="pzucd_image">' . $the_inputs[ 'image' ] . '</div>';
@@ -164,6 +234,7 @@ class pzucd_Display
   public $query_vars = '';
   public $cell_info = '';
   public $template = '';
+  public $nav_links = array();
 
   function __construct($pzucd_template)
   {
@@ -173,14 +244,6 @@ class pzucd_Display
   function template_header()
   {
     $this->output .= '<div id="pzucd=container-'.$this->template['template-short-name'].'" class="pzucd-container">';
-//    switch ($this->tempate['template-nav-pos']) {
-//      case 'top':
-//      case 'left':
-//        break;
-//      case 'bottom':
-//      case 'right' :
-//        break;
-//    }
     if ($this->template['template-pager']=='hover'){
       $this->output .= '%pager%';
     }
@@ -196,22 +259,94 @@ class pzucd_Display
 
   function build_query()
   {
+    if ($this->template['template-criteria']=='default') {
+      //don't change nuttin!
+      // Do we need to check page type? Single etc?
+      $this->query_vars = '';
+    }  else {
+      //build the new query
+      //Lot of work!
+      //
+      $this->query_vars='post_type=post';
+    }
 
   }
 
 
+  function render(){
+  // Should we do it this way?
+    // Or should it be filters?
+    // And what would happen with multiple ? Would they all get mixed together?
+    do_action('template-header');
+    do_action('template-body');
+    do_action('template-pooter');
+
+    // Or should we doo it an OOP way? Which we are already semi doing.
+
+  }
   function build_cell($post_info)
   {
-    // this is the one that should be inthe specific class!
-    echo "Ma nama na! Oops! You need a cell builder";
+    //pzdebug($post_info);
+    $cell_info = pzucd_flatten_wpinfo($this->section_info[ 'section-cell-settings' ]);
+
+
+    // ALL THIS STYLING CRAP WILL BE MOVED TO A SEPARATE ROUTINE THAT CREATES A CACHED CSS
+    //pzdebug($cell_info);
+
+    $cell_width     = 100 / $this->section_info[ 'section-cells-across' ] - $this->section_info[ 'section-cells-vert-margin' ];
+    $cell_min_width = $this->section_info[ 'section-min-cell-width' ];
+    // this may need to be in its own method
+    $cell_height = ($cell_info['_pzucd_layout-cell-height-type'] == 'fixed')?'height:'.$cell_info['_pzucd_layout-cell-height'].'px;':null;
+    $this->output .= '<div class="pzucd-cell" style="position:relative;width:' . $cell_width . '%;margin:' . ($this->section_info[ 'section-cells-vert-margin' ] / 2) . '%;min-width:' . $cell_min_width . 'px;'.$cell_info['_pzucd_layout-format-cells'].$cell_height.'">';
+    $position = 'static';
+    $params = array( 'width' => 300 );
+    // Returns false on failure.
+    $post_image = bfi_thumb( $post_info->guid, $params );
+    $post_image = ($post_image?$post_image:$post_info->guid);
+    if ($cell_info[ '_pzucd_layout-background-image' ] == 'fill')
+    {
+      $this->output .= '<div class="pzucd_bg_image"><img class="entry-image" src="' . $post_image . '"></div>';
+      $position = 'absolute';
+    }
+    $layout                  = json_decode($cell_info[ '_pzucd_layout-cell-preview' ], true);
+    $the_inputs[ 'title' ]   = get_the_title();
+    $the_inputs[ 'excerpt' ] = get_the_excerpt();
+    $the_inputs[ 'content' ] = apply_filters('the_content', get_the_content());
+    $the_inputs[ 'image' ]   = '<img class="entry-image" src="' . $post_image . '">';
+    // this needs its ownmethod
+    $components_open         = '<div class="pzucd-components" style="'.$cell_info['_pzucd_layout-format-components-group'].';position:' . $position . ';' . $cell_info[ '_pzucd_layout-sections-position' ] . ':'.$cell_info[ '_pzucd_layout-nudge-section-y' ].'%;width:' . $cell_info[ '_pzucd_layout-sections-widths' ] . '%;">';
+    $components_close        = '</div><!-- End components -->';
+    $components              = pzucd_build_components($components_open, $the_inputs, $layout, $components_close, $cell_info);
+    $this->output .= $components . '</div><!-- end cell -->';
+  }
+
+  function add_pager() {
+    $this->output .=  get_next_posts_link( 'Older Entries', 999 );
+    $this->output .=  get_previous_posts_link( 'Newer Entries' );
+    $next_post = get_next_post();
+    $this->output .= '<a href="'.get_permalink( $next_post->ID ).'">'.$next_post->post_title.'</a>';
+
 
   }
 
-  function add_pager() { }
+  function add_nav() {
+    $navigation = '<ul class="pzucd-navigation">';
+    foreach($this->nav_links as $key => $value) {
+      $navigation .= '<li class="pzucd-nav-item"><a hef="'.$value['link'].'" class="pzucd-nav-item-link">'.$value['title'].'</a></li>';
+    }
+    $navigation .= '</ul>';
+    return $navigation;
+  }
 
-  function add_nav() { }
+  function set_nav_link() {
 
-  function set_nav_link() { }
+    $this->nav_links[] = array(
+      'id' => get_the_id(),
+      'title' => get_the_title(),
+      'link' => get_permalink(),
+    );
+    // build up the nav links. Probably use an array that we can construct from later
+  }
 
   function get_source($criteria, $overrides = null)
   {
@@ -220,11 +355,15 @@ class pzucd_Display
       case 'images' :
         $this->source_data = $criteria[ '_pzucd_criteria-specific-images' ];
         break;
+      case 'posts' :
+        break;
     }
 
   }
 
-
+  function strip_unused_tags() {
+    $this->output = str_replace(array('%pager%','%nav-top-outside%','%nav-top-inside%','%nav-left-outside%','%nav-right-outside%','%nav-bottom-inside%','%nav-bottom-outside%'),'',$this->output);
+  }
 }
 
 function pzucd_flatten_wpinfo($array_in)
@@ -242,8 +381,28 @@ function pzucd_flatten_wpinfo($array_in)
   return $array_out;
 }
 
+add_shortcode('pzucd','pzucd_shortcode');
+function pzucd_shortcode($atts,$content=null,$tag) {
+  return pzucd_render(pzucd_get_the_template($atts[ 0]), (!empty($atts[ 'ids' ]) ? $atts[ 'ids' ] : null), 'pzucd_Display');
+;
+}
 
+/* Template tag */
+/* Overrides is a list of ids */
+function pzucd($template=null,$overrides=null){
+  return pzucd_render(pzucd_get_the_template($template), $overrides, 'pzucd_Display');
+}
 
+// Capture and append the comments display
+add_filter('pzucd_comments','pzucd_get_comments');
+function pzucd_get_comments($pzucd_content) {
+  pzdebug(get_the_id());
+  ob_start();
+  comments_template(null,null);
+  $pzucd_comments = ob_get_contents();
+  ob_end_flush();
+  return $pzucd_content.$pzucd_comments;
+}
 
 
 
@@ -482,3 +641,4 @@ function pzucd_shortcode($atts, $title = null)
 
 add_shortcode('pzucd', 'pzucd_shortcode');
 */
+

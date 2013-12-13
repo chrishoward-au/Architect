@@ -110,3 +110,13 @@ default styling
 	margin:0.5rems;
 }
 */
+
+.pzucd-oops {
+  font-size:20px;
+  color:red;
+  background:lightpink;
+  border:1px solid red;
+  padding:10px;
+  display:inline-block;
+  margin:10px 0;
+}

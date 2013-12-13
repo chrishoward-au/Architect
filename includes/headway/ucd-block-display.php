@@ -52,7 +52,7 @@ class HeadwayUltimateContentDisplayBlock extends HeadwayBlockAPI
 		wp_enqueue_style('pzucd-block-css', PZUCD_PLUGIN_URL . '/frontend/css/ucd-front.css');
 
 		wp_enqueue_script('jquery');
-		wp_enqueue_script('jquery-isotope', PZUCD_PLUGIN_URL . '/external/js/jquery.isotope.min.js');
+		wp_enqueue_script('js-isotope-v2');
 
 //		wp_enqueue_script('jquery-masonry');
 

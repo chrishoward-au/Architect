@@ -1,10 +1,10 @@
-=== Plugin Name ===
+=== Ultimate Content Display ===
 Contributors: username1, username2 (this should be a list of wordpress.org userid's)
 Donate link: http://example.com/
 Tags: comments, spam
-Requires at least: 3.3.1
-Tested up to: 3.3.1
-Stable tag: 4.3
+Requires at least: 3.8.0
+Tested up to: 3.8.0
+Stable tag: 0.4.4
 
 Here is a short description of the plugin.  This should be no more than 150 characters.  No markup here.
 
@@ -63,12 +63,10 @@ the directory of the stable readme.txt, so in this case, `/tags/4.3/screenshot-1
 
 == Changelog ==
 
-= 1.0 =
+= 0.4.4 =
 * A change since the previous version.
 * Another change.
 
-= 0.5 =
-* List versions from most recent at top to oldest at bottom.
 
 == Upgrade Notice ==
 

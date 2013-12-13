@@ -77,7 +77,8 @@ jQuery(document).ready(function() {
   // This does bugger all at the moment!
 	jQuery('input#_pzucd_layout-cell-height-type-cmb-field-0').change(function(e) {
     var cell_layout = jQuery.parseJSON(jQuery('input#_pzucd_layout-cell-preview-cmb-field-0').val());
-		pzucd_update_components_height(cell_layout);
+// this is COMPONENTS height, CELLS!
+//		pzucd_update_components_height(cell_layout);
 	});
 
 	jQuery('input#_pzucd_layout-sections-widths-cmb-field-0').change(function(e) {
@@ -435,7 +436,8 @@ jQuery(document).ready(function() {
         /**********************
          // Update components height
          **********************/
-        jQuery('.pzucd-content-area').css('height', jQuery('input#_pzucd_layout-cell-height-cmb-field-0').val() + 'px')
+// this is COMPONENTS height, CELLS!
+//        jQuery('.pzucd-content-area').css('height', jQuery('input#_pzucd_layout-cell-height-cmb-field-0').val() + 'px')
 //      break;
   }
   function pzucd_update_components_nudge(cell_layout) {

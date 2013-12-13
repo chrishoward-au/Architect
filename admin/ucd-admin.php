@@ -15,7 +15,7 @@ class pzucdAdmin
 
       if (!class_exists('CMB_Meta_Box'))
       {
-        require_once PZUCD_PLUGIN_PATH . 'external/HM-Custom-Meta-Boxes/custom-meta-boxes.php';
+        require_once PZUCD_PLUGIN_PATH . 'external/Custom-Meta-Boxes/custom-meta-boxes.php';
       }
 
 //	add_action('admin_init', 'pzucd_preview_meta');

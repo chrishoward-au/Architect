@@ -21,8 +21,8 @@ class pzucd_Content_templates extends pzucdForm
 //      add_action('add_meta_boxes', 'templates_meta');
       add_action('admin_head', array($this, 'content_templates_admin_head'));
       add_action('admin_enqueue_scripts', array($this, 'content_templates_admin_enqueue'));
-//			add_filter('manage_ucd-templates_posts_columns', array($this, 'add_template_columns'));
-//			add_action('manage_ucd-templates_posts_custom_column', array($this, 'add_template_column_content'), 10, 2);
+			add_filter('manage_ucd-templates_posts_columns', array($this, 'add_template_columns'));
+			add_action('manage_ucd-templates_posts_custom_column', array($this, 'add_template_column_content'), 10, 2);
 
       // check screen ucd-templates. ugh. doesn't work for save and edit
 //			if ( $_REQUEST[ 'post_type' ] == 'ucd-templates' )
@@ -47,8 +47,8 @@ class pzucd_Content_templates extends pzucdForm
       wp_enqueue_style('pzucd-admin-templates-css', PZUCD_PLUGIN_URL . 'admin/css/ucd-admin-templates.css');
 
       wp_enqueue_script('jquery-pzucd-metaboxes-templates', PZUCD_PLUGIN_URL . 'admin/js/ucd-metaboxes-templates.js', array('jquery'));
-      wp_enqueue_script('jquery-isotope', PZUCD_PLUGIN_URL . 'external/jquery.isotope.min.js', array('jquery'));
-      wp_enqueue_script('jquery-isotope', PZUCD_PLUGIN_URL . 'external/masonry.pkgd.min.js', array('jquery'));
+      wp_enqueue_script('js-isotope-v2');
+      wp_enqueue_script('jquery-masonary', PZUCD_PLUGIN_URL . 'external/masonry.pkgd.min.js', array('jquery'));
       wp_enqueue_script('jquery-lorem', PZUCD_PLUGIN_URL . 'external/jquery.lorem.js', array('jquery'));
     }
   }
@@ -74,7 +74,7 @@ class pzucd_Content_templates extends pzucdForm
     $pzucd_insert =
             array
             (
-              'pzucd_template_short_name' => __('Template short name', 'pzsp'),
+              '_pzucd_template-short-name' => __('Template short name', 'pzsp'),
             );
 
     return array_merge($pzucd_front, $pzucd_insert, $pzucd_back);
@@ -89,8 +89,8 @@ class pzucd_Content_templates extends pzucdForm
   {
     switch ($column)
     {
-      case 'pzucd_short_name':
-        echo get_post_meta($post_id, 'pzucd_template_short-name', true);
+      case '_pzucd_template-short-name':
+        echo get_post_meta($post_id, '_pzucd_template-short-name', true);
         break;
     }
   }
@@ -325,6 +325,48 @@ function pzucd_sections_preview_meta($meta_boxes = array())
 //      'desc'    => __('Set the horizontal gutter width as a percentage of the section width. The gutter is the gap between adjoining elements', 'pzucd')
       ),
       array(
+        'id'      => $prefix . $i . '-template-section-navigation',
+        'name'    => __('Navigation', 'pzucd'),
+        'type'    => 'pzselect',
+        'cols'    => 4,
+        'default' => 'none',
+        'options' => array(
+          'none'          => 'None',
+          'player'        => 'Media Player buttons',
+          'titles'        => 'Titles (accordion)',
+          'titles'        => 'Titles (tabbed)',
+          'bullets'       => 'Bullets',
+          'numbers'       => 'Numbers',
+          'thumbs'        => 'Thumbnails',
+          'thumbsbuttons' => 'Thumbnails + buttons'
+        )
+      ),
+      array(
+        'name'    => 'Navigation Position',
+        'id'      => $prefix . $i . '-template-section-nav-pos',
+        'type'    => 'radio',
+        'cols'    => 3,
+        'default' => 'bottom',
+        'options' => array(
+          'left'   => 'Left',
+          'right'  => 'Right',
+          'top'    => 'Top',
+          'bottom' => 'Bottom',
+        )
+      ),
+      array(
+        'name'    => 'Navigation Location',
+        'id'      => $prefix . $i . '-template-section-nav-loc',
+        'type'    => 'radio',
+        'cols'    => 3,
+        'default' => 'outside',
+        'options' => array(
+          'inside'  => 'Inside',
+          'outside' => 'Outside',
+        )
+      ),
+
+      array(
         'id'      => $prefix . $i . '-template-section-cell-layout',
         'name'    => __('Cells layout', 'pzucd'),
         'type'    => 'pzselect',
@@ -339,14 +381,15 @@ function pzucd_sections_preview_meta($meta_boxes = array())
         'default' => 'fitRows',
         'cols'    => 3,
         'options' => array(
-          'fitRows'         => 'Fit rows',
-          'fitColumns'      => 'Fit columns',
+          'basic'=> 'Basic (CSS only)',
+//          'fitRows'         => 'Fit rows',
+//          'fitColumns'      => 'Fit columns',
           'masonry'         => 'Masonry (Pinterest-like)',
-          'masonryVertical' => 'Masonry Vertical',
-          'cellsByRow'      => 'Cells by row',
-          'cellsByColumn'   => 'Cells by column',
-          'straightDown'    => 'Straight down',
-          'straightAcross'  => 'Straight across',
+//          'masonryVertical' => 'Masonry Vertical',
+//          'cellsByRow'      => 'Cells by row',
+//          'cellsByColumn'   => 'Cells by column',
+//          'vertical'    => 'Vertical',
+//          'horizontal'  => 'Horizontal',
         ),
         //       'desc'    => __('Choose how you want the cells to display. With evenly sized cells, you\'ll see little difference. Please visit <a href="http://isotope.metafizzy.co/demos/layout-modes.html" target=_blank>Isotope Layout Modes</a> for demonstrations of these layouts', 'pzucd')
       ),
@@ -376,17 +419,13 @@ function pzucd_template_settings_metabox($meta_boxes = array())
 
 
   $pzucd_criterias       = get_posts($args);
-  $pzucd_criterias_array = array();
+  $pzucd_criterias_array['default'] = 'Use default content for the displayed page';
   if (!empty($pzucd_criterias))
   {
     foreach ($pzucd_criterias as $pzucd_criteria)
     {
       $pzucd_criterias_array[ $pzucd_criteria->ID ] = (empty($pzucd_criteria->post_title) ? 'No title' : $pzucd_criteria->post_title);
     }
-  }
-  else
-  {
-    $pzucd_criterias_array = array(0 => 'No criterias defined. Create some.');
   }
   $prefix = '_pzucd_';
   $fields = array(
@@ -403,7 +442,7 @@ function pzucd_template_settings_metabox($meta_boxes = array())
       'name'    => __('Criteria', 'pzucd'),
       'type'    => 'pzselect',
       'cols'    => 12,
-      'default' => '',
+      'default' => 'default',
       'options' => $pzucd_criterias_array
     ),
     array(
@@ -417,45 +456,6 @@ function pzucd_template_settings_metabox($meta_boxes = array())
         'wordpress' => 'WP pagination',
         'wppagenavi'    => 'PageNavi',
         'hover'       => 'Hover buttons'
-      )
-    ),
-    array(
-      'id'      => $prefix . 'template-controls',
-      'name'    => __('Navigation', 'pzucd'),
-      'type'    => 'pzselect',
-      'cols'    => 12,
-      'default' => 'none',
-      'options' => array(
-        'none'          => 'None',
-        'player'        => 'Media Player buttons',
-        'titles'        => 'Titles (accordion)',
-        'titles'        => 'Titles (tabbed)',
-        'bullets'       => 'Bullets',
-        'numbers'       => 'Numbers',
-        'thumbs'        => 'Thumbnails',
-        'thumbsbuttons' => 'Thumbnails + buttons'
-      )
-    ),
-    array(
-      'name'    => 'Navigation Position',
-      'id'      => $prefix . 'template-nav-pos',
-      'type'    => 'radio',
-      'default' => 'bottom',
-      'options' => array(
-        'left'   => 'Left',
-        'right'  => 'Right',
-        'top'    => 'Top',
-        'bottom' => 'Bottom',
-      )
-    ),
-    array(
-      'name'    => 'Navigation Location',
-      'id'      => $prefix . 'template-nav-loc',
-      'type'    => 'radio',
-      'default' => 'outside',
-      'options' => array(
-        'inside'  => 'Inside',
-        'outside' => 'Outside',
       )
     ),
 

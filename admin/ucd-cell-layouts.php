@@ -110,18 +110,18 @@ class pzucd_Cell_Layouts
   public function create_layouts_post_type()
   {
     $labels = array(
-      'name'               => _x('Cell layouts', 'post type general name'),
-      'singular_name'      => _x('Cell', 'post type singular name'),
-      'add_new'            => __('Add New Cell layout'),
-      'add_new_item'       => __('Add New Cell'),
-      'edit_item'          => __('Edit Cell layout'),
-      'new_item'           => __('New Cell layout'),
-      'view_item'          => __('View Cell layout'),
-      'search_items'       => __('Search Cell layout'),
-      'not_found'          => __('No cell layouts found'),
-      'not_found_in_trash' => __('No cell layouts found in Trash'),
+      'name'               => _x('Cell designs', 'post type general name'),
+      'singular_name'      => _x('Cell design', 'post type singular name'),
+      'add_new'            => __('Add New Cell design'),
+      'add_new_item'       => __('Add New Cell design'),
+      'edit_item'          => __('Edit Cell design'),
+      'new_item'           => __('New Cell design'),
+      'view_item'          => __('View Cell design'),
+      'search_items'       => __('Search Cell designs'),
+      'not_found'          => __('No cell designs found'),
+      'not_found_in_trash' => __('No cell designs found in Trash'),
       'parent_item_colon'  => '',
-      'menu_name'          => _x('<span class="dashicons-icon icon-cells"></span>Cell Layouts', 'pzucd-cell-designer'),
+      'menu_name'          => _x('<span class="dashicons-icon icon-cells"></span>Cells', 'pzucd-cell-designer'),
     );
 
     $args = array(
@@ -659,18 +659,16 @@ function pzucd_cell_designer_settings_meta($meta_boxes = array())
       //'desc'		 => __('Position for all the components as a group', 'pzucd')
     ),
     array(
-      'name'    => __('Components area width', 'pzucd'),
-      'id'      => $prefix . 'layout-sections-widths',
-      'type'    => 'pzrange',
+      'name'    => __('Nudge components area up/down', 'pzucd'),
+      'id'      => $prefix . 'layout-nudge-section-y',
       'cols'    => 12,
-      'default' => '100',
-      'alt'     => 'zones',
+      'type'    => 'pzrange',
+      'default' => '0',
       'min'     => '0',
       'max'     => '100',
       'step'    => '1',
       'suffix'  => '%',
-      'tooltip' => __('Set the overall width for the components area. Necessary for left or right positioning of sections', 'pzucd'),
-//      'help'    => __('Note:The sum of the width and the left/right nudge should equal 100', 'pzucd')
+      'tooltip' => __('Enter percent to move the components area up/down. Note: These measurements are percentage of the cell.', 'pzucd')
     ),
     array(
       'name'    => __('Nudge components area left/right', 'pzucd'),
@@ -685,16 +683,18 @@ function pzucd_cell_designer_settings_meta($meta_boxes = array())
       'tooltip' => __('Enter percent to move the components area left/right. Note: These measurements are percentage of the cell.', 'pzucd')
     ),
     array(
-      'name'    => __('Nudge components area up/down', 'pzucd'),
-      'id'      => $prefix . 'layout-nudge-section-y',
-      'cols'    => 12,
+      'name'    => __('Components area width', 'pzucd'),
+      'id'      => $prefix . 'layout-sections-widths',
       'type'    => 'pzrange',
-      'default' => '0',
+      'cols'    => 12,
+      'default' => '100',
+      'alt'     => 'zones',
       'min'     => '0',
       'max'     => '100',
       'step'    => '1',
       'suffix'  => '%',
-      'tooltip' => __('Enter percent to move the components area up/down. Note: These measurements are percentage of the cell.', 'pzucd')
+      'tooltip' => __('Set the overall width for the components area. Necessary for left or right positioning of sections', 'pzucd'),
+//      'help'    => __('Note:The sum of the width and the left/right nudge should equal 100', 'pzucd')
     ),
     array(
       'name'    => __('Excerpt image', 'pzucd'),
@@ -723,7 +723,7 @@ function pzucd_cell_designer_settings_meta($meta_boxes = array())
       'tooltip' => __('Select how to display the featured image or video as the background.', 'pzucd')
     ),
     array(
-      'name'    => __('Cell Height', 'pzucd'),
+      'name'    => __('Cell Height Type', 'pzucd'),
       'id'      => $prefix . 'layout-cell-height-type',
       'cols'    => 12,
       'type'    => 'pzselect',
@@ -733,6 +733,32 @@ function pzucd_cell_designer_settings_meta($meta_boxes = array())
         'fixed' => 'Fixed',
       ),
       'tooltip' => __('Choose whether to set the height of the cells (fixed), or allow them to adjust to the content height (fluid).', 'pzucd')
+    ),
+    // Hmm? How's this gunna sit with the min-height in templates?
+    // We will want to use this for image height cropping when behind.
+    array(
+      'name'    => __('Cell Height', 'pzucd'),
+      'id'      => $prefix . 'layout-cell-height',
+      'type'    => 'pzspinner',
+      'cols'    => 6,
+      'default' => '350',
+      'min'     => '0',
+      'max'     => '9999',
+      'step'    => '1',
+      'suffix'  => 'px',
+      'tooltip' => __('If using fixed height, set height for the cell.', 'pzucd'),
+    ),
+    array(
+      'name'    => __('Components Height', 'pzucd'),
+      'id'      => $prefix . 'layout-components-height',
+      'type'    => 'pzspinner',
+      'cols'    => 6,
+      'default' => '100',
+      'min'     => '0',
+      'max'     => '9999',
+      'step'    => '1',
+      'suffix'  => 'px',
+      'tooltip' => __('If using fixed height, set height for the components area.', 'pzucd'),
     ),
 
     array(
