@@ -232,7 +232,7 @@ jQuery(document).ready(function() {
     var components_state = jQuery("select#_pzucd_layout-show-cmb-field-0 option");
     console.log(components_state);
     jQuery.each(components_state,function(index,value){
-      //console.log(index,value);
+      console.log(value.value,cell_layout[value.value]);
       cell_layout[value.value].show = value.selected;
       if (value.selected) {
         jQuery('.pzucd-draggable-' + value.value).show();
