@@ -346,14 +346,25 @@ class pzucd_Display
     $this->output .= $components . '</div><!-- end cell -->';
   }
 
-  function add_pager() {
-    $this->output .=  get_next_posts_link( 'Older Entries', 999 );
-    $this->output .=  get_previous_posts_link( 'Newer Entries' );
-    $next_post = get_next_post();
-    $this->output .= '<a href="'.get_permalink( $next_post->ID ).'">'.$next_post->post_title.'</a>';
 
+  function add_pager() {
+    var_dump(get_the_id(),get_the_title());
+    $pager = '<div class="pzucd-pager">';
+    $pager .=  get_next_posts_link( 'Older Entries', 999 );
+    $pager .=  get_previous_posts_link( 'Newer Entries' );
+    $next_post = get_next_post();
+   // var_dump($next_post);
+    $prev_post = get_previous_post();
+  //  var_dump($next_post);
+    $pager .= '<a class="pzucd-pager-prev" href="'.get_permalink( $prev_post->ID ).'"><- '.$prev_post->post_title.'</a>';
+    $pager .= '<a class="pzucd-pager-next" href="'.get_permalink( $next_post->ID ).'">'.$next_post->post_title.' -></a>';
+    $pager .= '</div>';
+  //  var_dump(esc_html($pager));
+    $this->output = str_replace('%pager%', $pager,$this->output);
 
   }
+
+
 
   function add_nav() {
     $navigation = '<ul class="pzucd-navigation">';
