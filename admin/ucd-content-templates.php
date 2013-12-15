@@ -370,7 +370,7 @@ function pzucd_sections_preview_meta($meta_boxes = array())
         'id'      => $prefix . $i . '-template-section-cell-layout',
         'name'    => __('Cells layout', 'pzucd'),
         'type'    => 'pzselect',
-        'cols'    => 9,
+        'cols'    => 6,
         'default' => '',
         'options' => $pzucd_cells_array
       ),

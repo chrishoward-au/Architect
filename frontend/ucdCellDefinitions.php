@@ -1,23 +1,12 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: chrishoward
- * Date: 13/12/2013
- * Time: 1:04 AM
- *
- * This defines all the cell types. e.g. single post, excerpts, galleries, yada u, yada
- * Using a class should allow extensibility
- */
 
-class ucdCellDefs extends pzucd_Display
-{
 
-  function __construct()
+  function pzucd_celldef($def)
   {
     // Just a guide to available parts of a cell
     // We put these in an array because the cell layout is user defined, so we can't order them until we have it later in processing.
     //Somewhere we will need to define some basic build formulas, yes? Or we jsut going to make assumptions on what goes in innards?
-    $this->celldefs[ 'null' ] = array(
+    $celldefs[ 'null' ] = array(
       array('wrapper' => ''),
       array('header' => ''),
       array('meta1' => ''),
@@ -39,18 +28,8 @@ class ucdCellDefs extends pzucd_Display
 
     );
 
-  }
-
-  function celldefine()  {  }
-}
-
-class UCD_SinglePost_CellDef extends ucdCellDefs
-{
-
-  function celldefine()
-  {
     // should we add filters? e.g apply_filters('ucdtitle','%title')
-    $this->celldefs[ 'singlepost' ] = array(
+    $celldefs[ 'post' ] = array(
       array('wrapper' => '<article id="post-%postid%" class="pzucd-singlepost post-%postid% post type-%posttype% status-%poststatus% format-%postformat% hentry %category-categories% %tag-tags%">%wrapperinnards%</article>'),
       array('header' => '<header class="entry-header">%headerinnards%</header><!-- .entry-header -->'),
       array('meta1' => '<div class="entry-meta entry-meta-1">%meta1innards%</div><!-- .entry-meta 1 -->'),
@@ -72,25 +51,9 @@ class UCD_SinglePost_CellDef extends ucdCellDefs
       array('footer' => '<footer class="entry-meta">%footerinnards%</footer><!-- .entry-meta -->'),
     );
 
-  }
-}
+    $celldefs[ 'page' ] = array();
 
-class UCD_SinglePage_CellDef extends ucdCellDefs
-{
-
-  function celldefine()
-  {
-    $this->celldefs[ 'singlepage' ] = array();
-
-  }
-}
-
-class UCD_Excerpt_CellDef extends ucdCellDefs
-{
-
-  function celldefine()
-  {
-    $this->celldefs[ 'excerpt' ] = array(
+    $celldefs[ 'excerpt' ] = array(
       array('wrapper' => '<div id="post-%postid%" class="pzucd-postexcerpt post-%postid% post type-%posttype% status-%poststatus% format-%postformat% hentry %category-categories% %tag-tags%">%wrapperinnards%</div>'),
       array('header' => '<header class="entry-header">%headerinnards%</header><!-- .entry-header -->'),
       array('meta1' => '<div class="entry-meta entry-meta-1">%meta1innards%</div><!-- .entry-meta 1 -->'),
@@ -112,15 +75,7 @@ class UCD_Excerpt_CellDef extends ucdCellDefs
       array('footer' => '<footer class="entry-meta">%footerinnards%</footer><!-- .entry-meta -->'),
     );
 
-  }
-}
-
-class UCD_Feature_CellDef extends ucdCellDefs
-{
-
-  function celldefine()
-  {
-    $this->celldefs[ 'feature' ] = array(
+    $celldefs[ 'feature' ] = array(
       array('wrapper' => '<div id="post-%postid%" class="pzucd-feature post-%postid% post type-%posttype% status-%poststatus% format-%postformat% hentry %category-categories% %tag-tags%">%wrapperinnards%</div>'),
       array('header' => '<header class="entry-header">%headerinnards%</header><!-- .entry-header -->'),
       array('meta1' => '<div class="entry-meta entry-meta-1">%meta1innards%</div><!-- .entry-meta 1 -->'),
@@ -142,15 +97,7 @@ class UCD_Feature_CellDef extends ucdCellDefs
       array('footer' => '<footer class="entry-meta">%footerinnards%</footer><!-- .entry-meta -->'),
     );
 
-  }
-}
-
-class UCD_MediaImage_CellDef extends ucdCellDefs
-{
-
-  function celldefine()
-  {
-    $this->celldefs[ 'galleryimage' ] = array(
+    $celldefs[ 'media' ] = array(
       array('wrapper' => '<div id="galleryimage-%postid%" class="pzucd-gallery galleryimage-%postid% galleryimage">%wrapperinnards%</div>'),
       array('header' => '<header class="entry-header">%headerinnards%</header><!-- .entry-header -->'),
       array('title' => '<h3 class="entry-title">%title%</h3>'),
@@ -158,8 +105,9 @@ class UCD_MediaImage_CellDef extends ucdCellDefs
       array('footer' => '<footer class="entry-meta">%footerinnards%</footer><!-- .entry-meta -->'),
     );
 
+    return $celldefs[$def];
   }
-}
+
 
 
 

@@ -111,12 +111,38 @@ default styling
 }
 */
 
+
 .pzucd-oops {
   font-size:20px;
   color:red;
   background:lightpink;
   border:1px solid red;
-  padding:10px;
   display:inline-block;
   margin:10px 0;
+}
+
+.pzucd-pager {
+  display:table;
+  padding:10px 0;
+  width:100%;
+}
+.pzucd-pager-prev,
+.pzucd-pager-next {
+  font-size:13px;
+  font-weight:bold;
+  background: #eee;
+  padding:10px 5px;
+}
+
+.pzucd-pager-prev {
+  float:left;
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+  padding-right:10px;
+}
+.pzucd-pager-next {
+  float:right;
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+  padding-left:10px;
 }
