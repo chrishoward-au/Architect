@@ -121,9 +121,9 @@ class pzucd_Display
 
     $celldef = pzucd_celldef($content_type);
 
-    foreach ($pzucd_template[ 'section' ] as $key => $pzucd_section_info)
+    foreach ($this->template[ 'section' ] as $key => $pzucd_section_info)
     {
-//    self::section_info = $pzucd_section_info;
+      $this->section_info = $pzucd_section_info;
       if ($pzucd_template[ 'section' ][ $key ][ 'section-enable' ])
       {
 
@@ -208,6 +208,9 @@ class pzucd_Display
     $the_inputs[ 'content' ] = apply_filters('the_content', get_the_content());
     $the_inputs[ 'image' ]   = '<img class="entry-image" src="' . $post_image . '">';
     // this needs its ownmethod
+    pzdebug($cell_info);
+    // Need a better way to pullup the styling which will populate all fields.
+    
     $components_open         = '<div class="pzucd-components" style="'.$cell_info['_pzucd_layout-format-components-group'].';position:' . $position . ';' . $cell_info[ '_pzucd_layout-sections-position' ] . ':'.$cell_info[ '_pzucd_layout-nudge-section-y' ].'%;width:' . $cell_info[ '_pzucd_layout-sections-widths' ] . '%;">';
     $components_close        = '</div><!-- End components -->';
     $components              = pzucd_build_components($components_open, $the_inputs, $layout, $components_close, $cell_info, $this->celldefs['singlepost']);
