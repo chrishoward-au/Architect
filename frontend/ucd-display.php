@@ -103,12 +103,13 @@ function pzucd_render($pzucd_template, $overrides, $caller)
 {
   if (empty($pzucd_template)) {return null;}
 
-  pzdebug($pzucd_template);
+ // pzdebug($pzucd_template);
   $pzucd_out = new $caller($pzucd_template);
+ // pzdebug((array)$pzucd_out);
   // Get the criteria
   $the_criteria = get_post_meta($pzucd_template[ 'template-criteria' ], null, true);
 
-  pzdebug($pzucd_template[ 'template-criteria' ]);
+//  pzdebug($pzucd_template[ 'template-criteria' ]);
   if ($pzucd_template[ 'template-criteria' ]!='default') {
     $pzucd_out->get_source($the_criteria, $overrides);
 
@@ -123,8 +124,8 @@ function pzucd_render($pzucd_template, $overrides, $caller)
     $pzucd_query = $wp_query;
   }
 
-  pzdebug($pzucd_query->found_posts);
-  pzdebug(is_main_query());
+ // pzdebug($pzucd_query->found_posts);
+ // pzdebug(is_main_query());
 //  pzdebug((array) $pzucd_query);
 
   // is filters a better way to do this? Altho how??
@@ -134,8 +135,7 @@ function pzucd_render($pzucd_template, $overrides, $caller)
 
   foreach ($pzucd_template[ 'section' ] as $key => $pzucd_section_info)
   {
-    pzdebug($pzucd_section_info);
-    $pzucd_out->section_info = $pzucd_section_info;
+//    $pzucd_out->section_info = $pzucd_section_info;
     if ($pzucd_template[ 'section' ][ $key ][ 'section-enable' ])
     {
       $pzucd_out->output .= '%nav-top-outside%';
@@ -187,7 +187,7 @@ function pzucd_render($pzucd_template, $overrides, $caller)
   return $pzucd_out->output;
 }
 
-function pzucd_build_components($components_open, $the_inputs, $layout, $components_close, $cell_info)
+function pzucd_build_components($components_open, $the_inputs, $layout, $components_close, $cell_info,$celldef)
 {
   $return_str = $components_open;
   if ($cell_info[ '_pzucd_layout-background-image' ] == 'align')
@@ -199,6 +199,7 @@ function pzucd_build_components($components_open, $the_inputs, $layout, $compone
   // Now this is where we need to use our cells defs!!!
   // how do we define what goes into the innards tho? maybe need an array option for each innard.
   // time for bed!
+  var_dump($layout);
   foreach ($layout as $key => $value)
   {
     if ($value[ 'show' ])
@@ -217,6 +218,7 @@ function pzucd_build_components($components_open, $the_inputs, $layout, $compone
         case 'image' :
           $return_str .= '<div class="pzucd_image">' . $the_inputs[ 'image' ] . '</div>';
           break;
+
       }
     }
   }
@@ -235,10 +237,34 @@ class pzucd_Display
   public $cell_info = '';
   public $template = '';
   public $nav_links = array();
+  public $celldefs = array();
 
   function __construct($pzucd_template)
   {
     $this->template = $pzucd_template;
+    $this->celldefs[ 'singlepost' ] = array(
+      array('wrapper' => '<article id="post-%postid%" class="pzucd-singlepost post-%postid% post type-%posttype% status-%poststatus% format-%postformat% hentry %category-categories% %tag-tags%">%wrapperinnards%</article>'),
+      array('header' => '<header class="entry-header">%headerinnards%</header><!-- .entry-header -->'),
+      array('meta1' => '<div class="entry-meta entry-meta-1">%meta1innards%</div><!-- .entry-meta 1 -->'),
+      array('meta2' => '<div class="entry-meta entry-meta-2">%meta2innards%</div><!-- .entry-meta 2 -->'),
+      array('meta3' => '<div class="entry-meta entry-meta-3">%meta3innards%</div><!-- .entry-meta 3 -->'),
+      array('datetime' => '<span class="date"><a href="http://localhost/wp-mba.dev/hello-world/" title="Permalink to Hello world!" rel="bookmark"><time class="entry-date" datetime="2013-10-08T15:04:20+00:00">October 8, 2013</time></a></span>'),
+      array('categories' => '<span class="categories-links">%categories%</span>'),
+      array('categorylinks' => '<a href="%categorylink%" title="View all posts in %categorynam%" rel="category tag">%categoryname%</a>'),
+      array('tags' => '<span class="tags-links">%tags%</span>'),
+      array('taglinks' => '<a href="%taglink%" rel="tag">%tag%</a>'),
+      array('author' => '<span class="author vcard"><a class="url fn n" href="%authorlink%" title="View all posts by %authorname%" rel="author">%authorname%</a></span>'),
+      array('edit' => '<span class="edit-link"><a class="post-edit-link" href="http://localhost/wp-mba.dev/wp-admin/post.php?post=%postid%&amp;action=edit">Edit</a></span>'),
+      array('featuredimage' => '<div class="entry-thumbnail"><img width="%width%" height="%height%" src="%imgsrc%" class="attachment-post-thumbnail wp-post-image" alt="%alttext%"></div>'),
+      array('title' => '<h1 class="entry-title">%title%</h1>'),
+      array('body' => ' <div class="entry-content">%content%</div><!-- .entry-content -->'),
+      array('custom1' => '<div class="entry-customfield entry-customfield-1">%custom1innards%</div><!-- .entry-custom 1 -->'),
+      array('custom2' => '<div class="entry-customfield entry-customfield-2">custom2innards%</div><!-- .entry-custom 2 -->'),
+      array('custom3' => '<div class="entry-customfield entry-customfield-3">%custom3innards%</div><!-- .entry-custom 3 -->'),
+      array('footer' => '<footer class="entry-meta">%footerinnards%</footer><!-- .entry-meta -->'),
+    );
+
+
   }
 
   function template_header()
@@ -316,7 +342,7 @@ class pzucd_Display
     // this needs its ownmethod
     $components_open         = '<div class="pzucd-components" style="'.$cell_info['_pzucd_layout-format-components-group'].';position:' . $position . ';' . $cell_info[ '_pzucd_layout-sections-position' ] . ':'.$cell_info[ '_pzucd_layout-nudge-section-y' ].'%;width:' . $cell_info[ '_pzucd_layout-sections-widths' ] . '%;">';
     $components_close        = '</div><!-- End components -->';
-    $components              = pzucd_build_components($components_open, $the_inputs, $layout, $components_close, $cell_info);
+    $components              = pzucd_build_components($components_open, $the_inputs, $layout, $components_close, $cell_info, $this->celldefs['singlepost']);
     $this->output .= $components . '</div><!-- end cell -->';
   }
 
@@ -396,7 +422,7 @@ function pzucd($template=null,$overrides=null){
 // Capture and append the comments display
 add_filter('pzucd_comments','pzucd_get_comments');
 function pzucd_get_comments($pzucd_content) {
-  pzdebug(get_the_id());
+//  pzdebug(get_the_id());
   ob_start();
   comments_template(null,null);
   $pzucd_comments = ob_get_contents();

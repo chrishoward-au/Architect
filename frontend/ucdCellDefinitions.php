@@ -9,9 +9,8 @@
  * Using a class should allow extensibility
  */
 
-class ucdCellDefs
+class ucdCellDefs extends pzucd_Display
 {
-  public $celldefs = array();
 
   function __construct()
   {
