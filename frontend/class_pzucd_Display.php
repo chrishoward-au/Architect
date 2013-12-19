@@ -23,14 +23,14 @@ class pzucd_Display
   {
     $this->output .= '<div id="pzucd=container-'.$this->template['template-short-name'].'" class="pzucd-container">';
     if ($this->template['template-pager']=='hover'){
-      $this->output .= '%pager%';
+      $this->output .= '{{pager}}';
     }
   }
 
   function template_footer()
   {
     if ($this->template['template-pager']=='wordpress' || $this->template['template-pager']== 'wppagenavi'){
-      $this->output .= '%pager%';
+      $this->output .= '{{pager}}';
     }
     $this->output .= '</div><!-- end pzucd_container-->';
   }
@@ -105,7 +105,7 @@ class pzucd_Display
     }
 
 
-    pzdebug((array)$pzucd_query);
+  //  pzdebug((array)$pzucd_query);
     // pzdebug($pzucd_query->found_posts);
     // pzdebug(is_main_query());
 //  pzdebug((array) $pzucd_query);
@@ -121,15 +121,17 @@ class pzucd_Display
 
     $celldef = pzucd_celldef($content_type);
 
-    foreach ($this->template[ 'section' ] as $key => $pzucd_section_info)
+    foreach ($this->template[ 'section' ] as $key => $section_info)
     {
-      $this->section_info = $pzucd_section_info;
+      // Build out the celldefinition here so dont' do it every single cell.
+      $celldefinition = self::build_cell_definition($celldef,json_decode($section_info['section-cell-settings']['_pzucd_layout-cell-preview'][0],true));
+      $this->section_info = $section_info;
       if ($pzucd_template[ 'section' ][ $key ][ 'section-enable' ])
       {
 
-        $this->output .= '%nav-top-outside%';
-        $this->output .= '%nav-left-outside%';
-        if ($pzucd_section_info['section-layout-mode']=='basic') {
+        $this->output .= '{{nav-top-outside}}';
+        $this->output .= '{{nav-left-outside}}';
+        if ($section_info['section-layout-mode']=='basic') {
           $this->output .= '<div class="pzucd-section pzucd-section-' . $key . '">';
         }else {
 //        $this->output .= '<div class="js-isotope pzucd-section pzucd-section-' . $key . '" data-isotope-options=\'{ "layoutMode": "'.$pzucd_section_info['section-layout-mode'].'","itemSelector": ".pzucd-cell" }\'>';
@@ -137,14 +139,14 @@ class pzucd_Display
         }
 
         if ($pzucd_query->have_posts())
-          $this->output .= '%nav-top-inside%';
+          $this->output .= '{{nav-top-inside}}';
 
         {
           while ($pzucd_query->have_posts())
           {
             $pzucd_query->the_post();
 
-            self::build_cell($pzucd_query->post,$celldef);
+            self::build_cell($pzucd_query->post,$celldefinition);
 
             self::set_nav_link();
 
@@ -153,15 +155,15 @@ class pzucd_Display
 //          $this->output = apply_filters('pzucd_comments',$this->output);
 
           }
-          $this->output .= '%nav-bottom-inside%';
+          $this->output .= '{{nav-bottom-inside}}';
         }
         $this->output .= '</div><!-- end pzucd-section-' . $key . ' -->';
-        $this->output .= '%nav-top-outside%';
-        $this->output .= '%nav-left-outside%';
+        $this->output .= '{{nav-top-outside}}';
+        $this->output .= '{{nav-left-outside}}';
 
         // Add the section nav
-        if ($pzucd_section_info['section-navigation'] != 'none') {
-          $this->output = str_replace('%nav-'.$pzucd_section_info['section-nav-pos'].'-'.$pzucd_section_info['section-nav-loc'].'%',self::add_nav(),$this->output);
+        if ($section_info['section-navigation'] != 'none') {
+          $this->output = str_replace('{{nav-'.$section_info['section-nav-pos'].'-'.$section_info['section-nav-loc'].'}}',self::add_nav(),$this->output);
         }
       }
     }
@@ -169,7 +171,7 @@ class pzucd_Display
     // use a method so we can swap it out in the future with different template headers
     self::template_footer();
 
-    // Process any left over %% variables
+    // Process any left over {{}} variables
     self::add_pager();
     self::strip_unused_tags();
 
@@ -177,8 +179,22 @@ class pzucd_Display
 
 
 
+  function build_cell_definition($celldef,$cell_layout){
+//    pzdebug($celldef);
+    // build up the template for the cell, ordering from
+    // won't this be fun!!
+    // need to match celllayout slugs to celldefs array index
+    $cell_definition = '';
+    foreach ((array)$cell_layout as $key => $value) {
+      if ($value['show']) {
+        $cell_definition .= $celldef[$key];
+      }
 
-  function build_cell($post_info)
+    }
+    return $cell_definition;
+  }
+
+  function build_cell($post_info,$cell_definition)
   {
     //pzdebug($post_info);
     $cell_info = pzucd_flatten_wpinfo($this->section_info[ 'section-cell-settings' ]);
@@ -191,7 +207,10 @@ class pzucd_Display
     $cell_min_width = $this->section_info[ 'section-min-cell-width' ];
     // this may need to be in its own method
     $cell_height = ($cell_info['_pzucd_layout-cell-height-type'] == 'fixed')?'height:'.$cell_info['_pzucd_layout-cell-height'].'px;':null;
+
+    // Open cell
     $this->output .= '<div class="pzucd-cell" style="position:relative;width:' . $cell_width . '%;margin:' . ($this->section_info[ 'section-cells-vert-margin' ] / 2) . '%;min-width:' . $cell_min_width . 'px;'.$cell_info['_pzucd_layout-format-cells'].$cell_height.'">';
+
     $position = 'static';
     $params = array( 'width' => 300 );
     // Returns false on failure.
@@ -203,23 +222,39 @@ class pzucd_Display
       $position = 'absolute';
     }
     $layout                  = json_decode($cell_info[ '_pzucd_layout-cell-preview' ], true);
-    $the_inputs[ 'title' ]   = get_the_title();
-    $the_inputs[ 'excerpt' ] = get_the_excerpt();
+    $the_inputs[ 'title' ]   = apply_filters('the_title',get_the_title());
+    $the_inputs[ 'excerpt' ] = apply_filters('the_excerpt',get_the_excerpt());
     $the_inputs[ 'content' ] = apply_filters('the_content', get_the_content());
-    $the_inputs[ 'image' ]   = '<img class="entry-image" src="' . $post_image . '">';
+    $the_inputs[ 'image' ]   = $post_image;
+    $the_inputs[ 'date' ] = apply_filters('the_', get_the_());
+    $the_inputs[ 'categories' ] = apply_filters('the_', get_the_());
+    $the_inputs[ 'tags' ] = apply_filters('the_', get_the_());
+    $the_inputs[ 'author' ] = apply_filters('the_', get_the_());
+    $the_inputs[ '' ] = apply_filters('the_', get_the_());
+    $the_inputs[ '' ] = apply_filters('the_', get_the_());
+    $the_inputs[ '' ] = apply_filters('the_', get_the_());
+    $the_inputs[ '' ] = apply_filters('the_', get_the_());
+    $the_inputs[ '' ] = apply_filters('the_', get_the_());
+    $the_inputs[ '' ] = apply_filters('the_', get_the_());
+
+
+
+
+    // and heaps more!
     // this needs its ownmethod
-    pzdebug($cell_info);
+ //   pzdebug($cell_info);
     // Need a better way to pullup the styling which will populate all fields.
-    
-    $components_open         = '<div class="pzucd-components" style="'.$cell_info['_pzucd_layout-format-components-group'].';position:' . $position . ';' . $cell_info[ '_pzucd_layout-sections-position' ] . ':'.$cell_info[ '_pzucd_layout-nudge-section-y' ].'%;width:' . $cell_info[ '_pzucd_layout-sections-widths' ] . '%;">';
+
+//    $components_open         = '<div class="pzucd-components" style="'.$cell_info['_pzucd_layout-format-components-group'].';position:' . $position . ';' . $cell_info[ '_pzucd_layout-sections-position' ] . ':'.$cell_info[ '_pzucd_layout-nudge-section-y' ].'%;width:' . $cell_info[ '_pzucd_layout-sections-widths' ] . '%;">';
+    $components_open         = '<div class="pzucd-components" style="position:' . $position . ';' . $cell_info[ '_pzucd_layout-sections-position' ] . ':'.$cell_info[ '_pzucd_layout-nudge-section-y' ].'%;width:' . $cell_info[ '_pzucd_layout-sections-widths' ] . '%;">';
     $components_close        = '</div><!-- End components -->';
-    $components              = pzucd_build_components($components_open, $the_inputs, $layout, $components_close, $cell_info, $this->celldefs['singlepost']);
+    $components              = self::build_components($components_open, $the_inputs, $layout, $components_close, $cell_info, $cell_definition);
     $this->output .= $components . '</div><!-- end cell -->';
   }
 
 
   function add_pager() {
-    var_dump(get_the_id(),get_the_title());
+   // var_dump(get_the_id(),get_the_title());
     $pager = '<div class="pzucd-pager">';
     $pager .=  get_next_posts_link( 'Older Entries', 999 );
     $pager .=  get_previous_posts_link( 'Newer Entries' );
@@ -231,7 +266,7 @@ class pzucd_Display
     $pager .= '<a class="pzucd-pager-next" href="'.get_permalink( $next_post->ID ).'">'.$next_post->post_title.' &raquo;</a>';
     $pager .= '</div>';
     //  var_dump(esc_html($pager));
-    $this->output = str_replace('%pager%', $pager,$this->output);
+    $this->output = str_replace('{{pager}}', $pager,$this->output);
 
   }
 
@@ -270,6 +305,52 @@ class pzucd_Display
   }
 
   function strip_unused_tags() {
-    $this->output = str_replace(array('%pager%','%nav-top-outside%','%nav-top-inside%','%nav-left-outside%','%nav-right-outside%','%nav-bottom-inside%','%nav-bottom-outside%'),'',$this->output);
+    $this->output = str_replace(array('{{pager}}','{{nav-top-outside}}','{{nav-top-inside}}','{{nav-left-outside}}','{{nav-right-outside}}','{{nav-bottom-inside}}','{{nav-bottom-outside}}'),'',$this->output);
   }
+
+  function build_components($components_open, $the_inputs, $layout, $components_close, $cell_info,$celldef)
+  {
+    $return_str = $components_open;
+    if ($cell_info[ '_pzucd_layout-background-image' ] == 'align')
+    {
+      $return_str .= '<div class="pzucd_bg_image">' . $the_inputs[ 'image' ] . '</div>';
+    }
+
+
+
+    foreach($the_inputs as $key => $the_input) {
+      $celldef = str_replace('{{'.$key.'}}',$the_input,$celldef);
+    }
+    // Now this is where we need to use our cells defs!!!
+    // how do we define what goes into the innards tho? maybe need an array option for each innard.
+    // time for bed!
+//    var_dump($layout);
+//    foreach ($layout as $key => $value)
+//    {
+//      if ($value[ 'show' ])
+//      {
+//        switch ($key)
+//        {
+//          case 'title' :
+//            $return_str .= '<h3 class="entry-title" style="'.$cell_info['_pzucd_layout-format-entry-title'].'">' . $the_inputs[ 'title' ] . '</h3>';
+//            break;
+//          case 'excerpt' :
+//            $return_str .= '<div class="entry-excerpt" style="'.$cell_info['_pzucd_layout-format-entry-content'].'">' . esc_html($the_inputs[ 'excerpt' ]) . '</div>';
+//            break;
+//          case 'content' :
+//            $return_str .= '<div class="entry-content" style="'.$cell_info['_pzucd_layout-format-entry-content'].'">' . $the_inputs[ 'content' ] . '</div>';
+//            break;
+//          case 'image' :
+//            $return_str .= '<div class="pzucd_image">' . $the_inputs[ 'image' ] . '</div>';
+//            break;
+//
+//        }
+//      }
+//    }
+    $return_str .= $celldef.$components_close;
+
+    return $return_str;
+
+  }
+
 }

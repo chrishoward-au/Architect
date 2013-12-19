@@ -9,9 +9,14 @@ class pzucdAdmin
 		 * Create the layouts custom post type 
 		 */
 
+    add_action('plugins_loaded',array($this,'init'));
+	}
 
-		if ( is_admin() )
-		{
+  function init() {
+
+    // @TODO: verify this blocks non admins!
+    if ( is_admin() && current_user_can('edit_theme_options'))
+    {
 
       if (!class_exists('CMB_Meta_Box'))
       {
@@ -19,27 +24,29 @@ class pzucdAdmin
       }
 
 //	add_action('admin_init', 'pzucd_preview_meta');
-			add_action( 'admin_head', array( $this, 'admin_head' ) );
-			add_action( 'admin_menu', array( $this, 'admin_menu' ) );
-			add_action( 'admin_enqueue_scripts', array( $this, 'admin_enqueue' ) );
+      add_action( 'admin_head', array( $this, 'admin_head' ) );
+      add_action( 'admin_menu', array( $this, 'admin_menu' ) );
+      add_action( 'admin_enqueue_scripts', array( $this, 'admin_enqueue' ) );
 
-      //@TODO: need a bit of screen dependency on this
-			require_once PZUCD_PLUGIN_PATH . '/includes/class_pzucdForm.php';
-			require_once PZUCD_PLUGIN_PATH . '/admin/ucd-cell-layouts.php';
-			require_once PZUCD_PLUGIN_PATH . '/admin/ucd-data-selection.php';
-			require_once PZUCD_PLUGIN_PATH . '/admin/ucd-content-templates.php';
+      //@TODO: need a bit of screen dependency on this?
+      require_once PZUCD_PLUGIN_PATH . '/includes/class_pzucdForm.php';
+      require_once PZUCD_PLUGIN_PATH . '/admin/ucd-cell-layouts.php';
+      require_once PZUCD_PLUGIN_PATH . '/admin/ucd-data-selection.php';
+      require_once PZUCD_PLUGIN_PATH . '/admin/ucd-content-templates.php';
 //			require_once PZUCD_PLUGIN_PATH . '/admin/ucd-controls.php';
 
 
-      // @TODO Should these really be classes?
-			$data_selection		 = new pzucd_Criteria;
-			$cell_layout		 = new pzucd_Cell_Layouts;
-			$content_template	 = new pzucd_Content_Templates;
+      // @TODO Should these really be objects?
+      // Initialise objects for data
+      $data_selection		 = new pzucd_Criteria;
+      $cell_layout		 = new pzucd_Cell_Layouts;
+      $content_template	 = new pzucd_Content_Templates;
 //			$content_template	 = new pzucd_Controls;
 
 //add_action( 'pzucd_do_it', array( $this, 'do_it' ) );
-		}
-	}
+    }
+
+  }
 
 	function admin_enqueue( $hook )
 	{

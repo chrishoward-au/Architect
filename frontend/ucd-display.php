@@ -103,46 +103,7 @@ function pzucd_get_cell_design($pzucd_cell_layout_id)
 
 }
 
-function pzucd_build_components($components_open, $the_inputs, $layout, $components_close, $cell_info,$celldef)
-{
-  $return_str = $components_open;
-  if ($cell_info[ '_pzucd_layout-background-image' ] == 'align')
-  {
-    $return_str .= '<div class="pzucd_bg_image">' . $the_inputs[ 'image' ] . '</div>';
-  }
 
-
-  // Now this is where we need to use our cells defs!!!
-  // how do we define what goes into the innards tho? maybe need an array option for each innard.
-  // time for bed!
-  var_dump($layout);
-  foreach ($layout as $key => $value)
-  {
-    if ($value[ 'show' ])
-    {
-      switch ($key)
-      {
-        case 'title' :
-          $return_str .= '<h3 class="entry-title" style="'.$cell_info['_pzucd_layout-format-entry-title'].'">' . $the_inputs[ 'title' ] . '</h3>';
-          break;
-        case 'excerpt' :
-          $return_str .= '<div class="entry-excerpt" style="'.$cell_info['_pzucd_layout-format-entry-content'].'">' . esc_html($the_inputs[ 'excerpt' ]) . '</div>';
-          break;
-        case 'content' :
-          $return_str .= '<div class="entry-content" style="'.$cell_info['_pzucd_layout-format-entry-content'].'">' . $the_inputs[ 'content' ] . '</div>';
-          break;
-        case 'image' :
-          $return_str .= '<div class="pzucd_image">' . $the_inputs[ 'image' ] . '</div>';
-          break;
-
-      }
-    }
-  }
-  $return_str .= $components_close;
-
-  return $return_str;
-
-}
 
 
 

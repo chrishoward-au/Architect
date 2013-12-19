@@ -2,6 +2,9 @@
 
 //Cells may need to include Content because of custom fields!!! OOps! But content has to be over-arching! So I guess, cells will need to know the content type and its fields. So lets make Content Criteria again. :S
 
+/**
+ * Class pzucd_Cell_Layouts
+ */
 class pzucd_Cell_Layouts
 {
 
@@ -168,7 +171,7 @@ class pzucd_Cell_Layouts
     $meta_box_layout = array(
       'id'          => 'pzucd-layouts-id',
       'title'       => 'Cell Designer',
-      'page'        => 'ucd-layouts',
+      'pages'        => 'ucd-layouts',
       'context'     => 'normal',
       'priority'    => 'high',
       'orientation' => 'horizontal',
@@ -611,10 +614,12 @@ function pzucd_cell_designer_settings_meta($meta_boxes = array())
 //      )
 //    ),
 
+// OMG!! The multiselect is working and I don't know why!!
+
     array(
       'name'     => __('Components to show', 'pzucd'),
       'id'       => $prefix . 'layout-show',
-      'type'     => 'pzselect',
+      'type'     => 'select',
       'multiple' =>true,
       'cols'     => 12,
       'default'  => array('title', 'excerpt', 'meta1', 'image'),
@@ -626,9 +631,10 @@ function pzucd_cell_designer_settings_meta($meta_boxes = array())
         'meta1'   => 'Meta1',
         'meta2'   => 'Meta2',
         'meta3'   => 'Meta3',
-        'custom1' => 'Custom1',
-        'custom2' => 'Custom2',
-        'custom3' => 'Custom3',
+        'custom1' => 'Custom Field 1',
+        'custom2' => 'Custom Field 2',
+        'custom3' => 'Custom Field 3',
+//        'custom4' => 'Custom Field 4',
       ),
       'tooltip'  => __('Select which base components to include in this cell layout.', 'pzucd')
     ),
@@ -786,16 +792,77 @@ function pzucd_cell_settings_meta($meta_boxes = array())
 {
   $prefix        = '_pzucd_';
   $fields        = array(
-    array(
-    'id' => 'nothing1',
-    'name'=>'Nothing here yet',
-    'type'=>'title'
-    )  );
+          array(
+                  'id' => $prefix.'cell-settings-title',
+                  'name'=>'Title',
+                  'type'=>'title'
+          ),
+
+          array(
+                  'id' => $prefix.'cell-settings-meta1',
+                  'name'=>'Meta1',
+                  'type'=>'title',
+          ),
+          array(
+            'name'     => __('Meta1 config', 'pzucd'),
+            'id'       => $prefix . 'cell-settings-meta1-config',
+            'type' => 'select',
+            'multiple'=>true,
+            'default'=> array('date','author','editlink'),
+            'options'=>array('date'=>'Date','author'=>'Author','editlink'=>'Edit link','categories'=>'Categories','tags'=>'Tags','commentcount'=>'Comment count'),
+          ),
+          array(
+                  'name'     => __('Meta2 config', 'pzucd'),
+                  'id'       => $prefix . 'cell-settings-meta2-config',
+                  'type' => 'select',
+                  'multiple'=>true,
+                  'default'=> array('categories','tags'),
+                  'options'=>array('date'=>'Date','author'=>'Author','editlink'=>'Edit link','categories'=>'Categories','tags'=>'Tags','commentcount'=>'Comment count'),
+          ),
+          array(
+                  'name'     => __('Meta3 config', 'pzucd'),
+                  'id'       => $prefix . 'cell-settings-meta3-config',
+                  'type' => 'select',
+                  'multiple'=>true,
+                  'default'=> array('commentcount'),
+                  'options'=>array('date'=>'Date','author'=>'Author','editlink'=>'Edit link','categories'=>'Categories','tags'=>'Tags','commentcount'=>'Comment count'),
+          ),
+          array(
+                  'id' => $prefix.'cell-settings-excerpt',
+                  'name'=>'Excerpt',
+                  'type'=>'title'
+          ),
+          array(
+                  'id' => $prefix.'cell-settings-image',
+                  'name'=>'Image',
+                  'type'=>'title'
+          ),
+          array(
+                  'id' => $prefix.'cell-settings-content',
+                  'name'=>'Full Content',
+                  'type'=>'title'
+          ),
+          array(
+                  'id' => $prefix.'cell-settings-custom1',
+                  'name'=>'Custom fields 1',
+                  'type'=>'title'
+          ),
+          array(
+                  'id' => $prefix.'cell-settings-custom2',
+                  'name'=>'Custom fields 2',
+                  'type'=>'title'
+          ),
+          array(
+                  'id' => $prefix.'cell-settings-custom3',
+                  'name'=>'Custom fields 3',
+                  'type'=>'title'
+          ),
+  );
 
   $meta_boxes[ ] = array(
     'title'  => 'Settings',
-    'pages'  => 'ucd-layouts',
-    'context' => 'side',
+    'pages'        => 'ucd-layouts',
+    'context'     => 'normal',
     'fields' => $fields
   );
 
