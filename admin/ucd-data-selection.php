@@ -261,6 +261,8 @@ function pzucd_criterias_metabox($meta_boxes = array()){
       'name' => __('Include categories', 'pzucd'),
       'id' => $prefix . 'criteria-inc-cats',
       'type' => 'taxonomy_select',
+      'allow_none '=>true,
+      'default'=>'',
       'cols'=>4,
       'taxonomy'=>'category'
     ),
@@ -275,6 +277,8 @@ function pzucd_criterias_metabox($meta_boxes = array()){
       'name' => __('Exclude categories', 'pzucd'),
       'id' => $prefix . 'criteria-exc-cats',
       'type' => 'taxonomy_select',
+      'default'=>'',
+      'allow_none '=>true,
       'cols'=>4,
       'taxonomy'=>'category'
     ),
@@ -282,6 +286,8 @@ function pzucd_criterias_metabox($meta_boxes = array()){
       'name' => __('Tags', 'pzucd'),
       'id' => $prefix . 'criteria-inc-tags',
       'type' => 'taxonomy_select',
+      'allow_none '=>true,
+      'default'=>'',
       'cols'=>4,
       'taxonomy'=>'tags'
     ),

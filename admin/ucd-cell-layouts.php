@@ -1055,3 +1055,11 @@ function draw_cell_layout()
   return $return_html;
 }
 
+add_action('save_post','save_ucd_layouts');
+function save_ucd_layouts($postid) {
+  $screen = get_current_screen();
+  pzdebug((array) $screen);
+  if ($screen->post_type == 'ucd-layouts') {
+  // save the CSS too
+  }
+}

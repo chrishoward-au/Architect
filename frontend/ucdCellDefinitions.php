@@ -105,13 +105,12 @@
       array('footer' => '<footer class="entry-meta">{{footerinnards}}</footer><!-- .entry-meta -->'),
     );
 
-    $celldefs[ 'media' ] = array(
-      array('wrapper' => '<div id="galleryimage-{{postid}}" class="pzucd-gallery galleryimage-{{postid}} galleryimage">{{wrapperinnards}}</div>'),
-      array('header' => '<header class="entry-header">{{headerinnards}}</header><!-- .entry-header -->'),
-      array('title' => '<h3 class="entry-title">{{title}}</h3>'),
-      array('body' => ' <div class="entry-content">{{content}}</div><!-- .entry-content -->'),
-      array('footer' => '<footer class="entry-meta">{{footerinnards}}</footer><!-- .entry-meta -->'),
-    );
+      $celldefs[ 'images' ]['wrapper'] = '<div id="galleryimage-{{postid}}" class="pzucd-gallery galleryimage-{{postid}} galleryimage">{{wrapperinnards}}</div>';
+      $celldefs[ 'images' ]['header'] = '<header class="entry-header">{{headerinnards}}</header><!-- .entry-header -->';
+      $celldefs[ 'images' ]['title'] = '<h3 class="entry-title">{{title}}</h3>';
+    $celldefs[ 'images' ]['excerpt']  = ' <div class="entry-excerpt">{{excerpt}}</div><!-- .entry-excerpt -->';
+    $celldefs[ 'images' ]['content']  = ' <div class="entry-content">{{content}}</div><!-- .entry-content -->';
+      $celldefs[ 'images' ]['footer'] = '<footer class="entry-meta">{{footerinnards}}</footer><!-- .entry-meta -->';
 
     return $celldefs[$def];
   }

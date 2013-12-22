@@ -2,11 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f019c0d4-f5e4-4eb4-9404-db453e3a2c1a" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/admin/js/tabify.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/class_pzucd_Display.php" afterPath="$PROJECT_DIR$/frontend/class_pzucd_Display.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/admin/ucd-admin.php" afterPath="$PROJECT_DIR$/admin/ucd-admin.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/admin/ucd-cell-layouts.php" afterPath="$PROJECT_DIR$/admin/ucd-cell-layouts.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/admin/ucd-data-selection.php" afterPath="$PROJECT_DIR$/admin/ucd-data-selection.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/ucd-display.php" afterPath="$PROJECT_DIR$/frontend/ucd-display.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/css/ucd-front.css" afterPath="$PROJECT_DIR$/frontend/css/ucd-front.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/ucdCellDefinitions.php" afterPath="$PROJECT_DIR$/frontend/ucdCellDefinitions.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
@@ -25,33 +25,30 @@
   <component name="DaemonCodeAnalyzer">
     <disable_hints />
   </component>
-  <component name="DatabaseView">
-    <flatten value="false" />
-    <groupTables value="false" />
-    <sortChildren value="false" />
-  </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FavoritesManager">
     <favorites_list name="pizazzwp-ultimatecontentdisplay" />
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="tabify.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/admin/js/tabify.js">
+      <file leaf-file-name="ucd-cell-layouts.php" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/admin/ucd-cell-layouts.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="21" column="61" selection-start="845" selection-end="845" vertical-scroll-proportion="0.0" vertical-offset="378" max-vertical-offset="666">
-              <folding />
+            <state line="1063" column="2" selection-start="39533" selection-end="39533" vertical-scroll-proportion="0.9697733" vertical-offset="17979" max-vertical-offset="19260">
+              <folding>
+                <marker date="1387709719000" expanded="true" signature="11977:12087" placeholder="..." />
+                <marker date="1387709719000" expanded="true" signature="17165:17347" placeholder="Select one t..." />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ucd-cell-layouts.php" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/admin/ucd-cell-layouts.php">
+      <file leaf-file-name="ucd-content-templates.php" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/admin/ucd-content-templates.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="3" column="0" selection-start="222" selection-end="223" vertical-scroll-proportion="-0.2922636" vertical-offset="360" max-vertical-offset="19134">
+            <state line="124" column="39" selection-start="4218" selection-end="4218" vertical-scroll-proportion="-6.7" vertical-offset="1897" max-vertical-offset="9414">
               <folding>
-                <marker date="1387331981000" expanded="true" signature="11977:12087" placeholder="..." />
-                <marker date="1387331981000" expanded="true" signature="17165:17347" placeholder="Select one t..." />
+                <marker date="1387170484000" expanded="true" signature="5040:5222" placeholder="Select one t..." />
               </folding>
             </state>
           </provider>
@@ -105,7 +102,7 @@
       <file leaf-file-name="ucd-front.css" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/frontend/css/ucd-front.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="146" column="14" selection-start="2271" selection-end="2271" vertical-scroll-proportion="0.0" vertical-offset="2628" max-vertical-offset="2754">
+            <state line="113" column="0" selection-start="1704" selection-end="1704" vertical-scroll-proportion="-78.23077" vertical-offset="0" max-vertical-offset="2754">
               <folding />
             </state>
           </provider>
@@ -114,8 +111,10 @@
       <file leaf-file-name="ucd-display.php" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/frontend/ucd-display.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="139" column="0" selection-start="5157" selection-end="5157" vertical-scroll-proportion="0.0" vertical-offset="2502" max-vertical-offset="7380">
-              <folding />
+            <state line="125" column="0" selection-start="5921" selection-end="5921" vertical-scroll-proportion="-1.3" vertical-offset="2185" max-vertical-offset="7704">
+              <folding>
+                <element signature="e#6#168#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -123,7 +122,7 @@
       <file leaf-file-name="class_pzucd_Display.php" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/frontend/class_pzucd_Display.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="203" column="26" selection-start="6474" selection-end="6474" vertical-scroll-proportion="0.0" vertical-offset="3264" max-vertical-offset="6516">
+            <state line="210" column="0" selection-start="6891" selection-end="6891" vertical-scroll-proportion="-38.666668" vertical-offset="2852" max-vertical-offset="8316">
               <folding />
             </state>
           </provider>
@@ -141,7 +140,7 @@
       <file leaf-file-name="ucd-data-selection.php" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/admin/ucd-data-selection.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="182" column="0" selection-start="5433" selection-end="5433" vertical-scroll-proportion="0.0" vertical-offset="3276" max-vertical-offset="6228">
+            <state line="288" column="0" selection-start="8423" selection-end="8423" vertical-scroll-proportion="-10.42" vertical-offset="4663" max-vertical-offset="6336">
               <folding />
             </state>
           </provider>
@@ -159,7 +158,7 @@
       <file leaf-file-name="ucdCellDefinitions.php" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/frontend/ucdCellDefinitions.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="32" column="0" selection-start="1312" selection-end="1312" vertical-scroll-proportion="0.0" vertical-offset="576" max-vertical-offset="2340">
+            <state line="32" column="0" selection-start="1059" selection-end="1312" vertical-scroll-proportion="-8.541667" vertical-offset="371" max-vertical-offset="2322">
               <folding />
             </state>
           </provider>
@@ -168,10 +167,11 @@
       <file leaf-file-name="ucd-block-display.php" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/includes/headway/ucd-block-display.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="55" column="0" selection-start="2205" selection-end="2205" vertical-scroll-proportion="0.0" vertical-offset="990" max-vertical-offset="6228">
+            <state line="55" column="0" selection-start="2205" selection-end="2205" vertical-scroll-proportion="-0.0" vertical-offset="990" max-vertical-offset="6228">
               <folding>
                 <marker date="1386722268000" expanded="false" signature="505:527" placeholder="..." />
                 <marker date="1386722268000" expanded="true" signature="528:1319" placeholder="..." />
+                <marker date="1386722268000" expanded="true" signature="568:721" placeholder="..." />
                 <marker date="1386722268000" expanded="true" signature="568:721" placeholder="..." />
                 <marker date="1386722268000" expanded="true" signature="807:1025" placeholder="..." />
                 <marker date="1386722268000" expanded="true" signature="1110:1263" placeholder="..." />
@@ -207,13 +207,14 @@
         <option value="$PROJECT_DIR$/misc-working-info-to-remove/example.wp.post.txt" />
         <option value="$PROJECT_DIR$/frontend/pzucd_Display.php" />
         <option value="$PROJECT_DIR$/admin/ucd-content-templates.php" />
-        <option value="$PROJECT_DIR$/frontend/css/ucd-front.css" />
-        <option value="$PROJECT_DIR$/frontend/ucdCellDefinitions.php" />
-        <option value="$PROJECT_DIR$/frontend/ucd-display.php" />
-        <option value="$PROJECT_DIR$/frontend/class_pzucd_Display.php" />
         <option value="$PROJECT_DIR$/admin/ucd-admin.php" />
         <option value="$PROJECT_DIR$/admin/js/tabify.js" />
         <option value="$PROJECT_DIR$/admin/js/ucd-metaboxes-cells.js" />
+        <option value="$PROJECT_DIR$/admin/ucd-data-selection.php" />
+        <option value="$PROJECT_DIR$/frontend/ucd-display.php" />
+        <option value="$PROJECT_DIR$/frontend/ucdCellDefinitions.php" />
+        <option value="$PROJECT_DIR$/frontend/css/ucd-front.css" />
+        <option value="$PROJECT_DIR$/frontend/class_pzucd_Display.php" />
         <option value="$PROJECT_DIR$/admin/ucd-cell-layouts.php" />
       </list>
     </option>
@@ -226,8 +227,8 @@
   </component>
   <component name="ProjectFrameBounds">
     <option name="y" value="22" />
-    <option name="width" value="2448" />
-    <option name="height" value="1202" />
+    <option name="width" value="2546" />
+    <option name="height" value="1348" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -568,16 +569,16 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="22" width="2448" height="1202" extended-state="0" />
+    <frame x="0" y="22" width="2546" height="1348" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3292978" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32967034" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32975337" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.14701131" sideWeight="0.4642857" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.15128845" sideWeight="0.5341615" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="eSnippet Pro" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32967034" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.1465655" sideWeight="0.46496814" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.1465655" sideWeight="0.53423566" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="eSnippet Pro" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32975337" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32903227" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -585,11 +586,11 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3292978" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32791588" sideWeight="0.85615885" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
     </layout>
     <layout-to-restore>
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -607,9 +608,9 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.11774065" sideWeight="0.67070216" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.11774065" sideWeight="0.3292978" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
     </layout-to-restore>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -642,8 +643,8 @@
       <provider selected="true" editor-type-id="text-editor">
         <state line="123" column="34" selection-start="3954" selection-end="4001" vertical-scroll-proportion="0.0" vertical-offset="1702" max-vertical-offset="19080">
           <folding>
-            <marker date="1387331981000" expanded="true" signature="11977:12087" placeholder="..." />
-            <marker date="1387331981000" expanded="true" signature="17165:17347" placeholder="Select one t..." />
+            <marker date="1387709719000" expanded="true" signature="11977:12087" placeholder="..." />
+            <marker date="1387709719000" expanded="true" signature="17165:17347" placeholder="Select one t..." />
           </folding>
         </state>
       </provider>
@@ -693,7 +694,9 @@
     <entry file="file://$PROJECT_DIR$/frontend/ucd-display.php">
       <provider selected="true" editor-type-id="text-editor">
         <state line="139" column="0" selection-start="5157" selection-end="5157" vertical-scroll-proportion="0.0" vertical-offset="2502" max-vertical-offset="7380">
-          <folding />
+          <folding>
+            <element signature="e#6#168#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -739,6 +742,7 @@
             <marker date="1386722268000" expanded="false" signature="505:527" placeholder="..." />
             <marker date="1386722268000" expanded="true" signature="528:1319" placeholder="..." />
             <marker date="1386722268000" expanded="true" signature="568:721" placeholder="..." />
+            <marker date="1386722268000" expanded="true" signature="568:721" placeholder="..." />
             <marker date="1386722268000" expanded="true" signature="807:1025" placeholder="..." />
             <marker date="1386722268000" expanded="true" signature="1110:1263" placeholder="..." />
           </folding>
@@ -754,8 +758,8 @@
       <provider selected="true" editor-type-id="text-editor">
         <state line="828" column="60" selection-start="28104" selection-end="28120" vertical-scroll-proportion="0.0" vertical-offset="14904" max-vertical-offset="17928">
           <folding>
-            <marker date="1387331981000" expanded="true" signature="11977:12087" placeholder="..." />
-            <marker date="1387331981000" expanded="true" signature="17165:17347" placeholder="Select one t..." />
+            <marker date="1387709719000" expanded="true" signature="11977:12087" placeholder="..." />
+            <marker date="1387709719000" expanded="true" signature="17165:17347" placeholder="Select one t..." />
           </folding>
         </state>
       </provider>
@@ -810,7 +814,9 @@
     <entry file="file://$PROJECT_DIR$/frontend/ucd-display.php">
       <provider selected="true" editor-type-id="text-editor">
         <state line="89" column="0" selection-start="4069" selection-end="4069" vertical-scroll-proportion="0.0" vertical-offset="1602" max-vertical-offset="8082">
-          <folding />
+          <folding>
+            <element signature="e#6#168#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -849,6 +855,7 @@
             <marker date="1386722268000" expanded="false" signature="505:527" placeholder="..." />
             <marker date="1386722268000" expanded="true" signature="528:1319" placeholder="..." />
             <marker date="1386722268000" expanded="true" signature="568:721" placeholder="..." />
+            <marker date="1386722268000" expanded="true" signature="568:721" placeholder="..." />
             <marker date="1386722268000" expanded="true" signature="807:1025" placeholder="..." />
             <marker date="1386722268000" expanded="true" signature="1110:1263" placeholder="..." />
           </folding>
@@ -863,9 +870,16 @@
         <state line="66" column="0" selection-start="2803" selection-end="2803" vertical-scroll-proportion="0.0" vertical-offset="1188" max-vertical-offset="2052" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/admin/ucd-content-templates.php">
+    <entry file="file://$PROJECT_DIR$/admin/js/ucd-metaboxes-cells.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="395" column="0" selection-start="13162" selection-end="13162" vertical-scroll-proportion="0.0" vertical-offset="6339" max-vertical-offset="9414" />
+        <state line="233" column="55" selection-start="11702" selection-end="11702" vertical-scroll-proportion="0.31177446" vertical-offset="4006" max-vertical-offset="8568" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/js/tabify.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="21" column="61" selection-start="845" selection-end="845" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="630">
+          <folding />
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/admin/js/ucd-metaboxes-templates.js">
@@ -903,16 +917,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/frontend/css/ucd-front.css">
+    <entry file="file://$PROJECT_DIR$/admin/ucd-admin.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="146" column="14" selection-start="2271" selection-end="2271" vertical-scroll-proportion="0.0" vertical-offset="1507" max-vertical-offset="2754">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin/ucd-data-selection.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="182" column="0" selection-start="5433" selection-end="5433" vertical-scroll-proportion="0.0" vertical-offset="3276" max-vertical-offset="6228">
+        <state line="30" column="55" selection-start="766" selection-end="766" vertical-scroll-proportion="0.0" vertical-offset="540" max-vertical-offset="3492">
           <folding />
         </state>
       </provider>
@@ -924,6 +931,15 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/admin/ucd-content-templates.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="124" column="39" selection-start="4218" selection-end="4218" vertical-scroll-proportion="-6.7" vertical-offset="1897" max-vertical-offset="9414">
+          <folding>
+            <marker date="1387170484000" expanded="true" signature="5040:5222" placeholder="Select one t..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/includes/headway/ucd-block-display.php">
       <provider selected="true" editor-type-id="text-editor">
         <state line="55" column="0" selection-start="2205" selection-end="2205" vertical-scroll-proportion="0.0" vertical-offset="755" max-vertical-offset="6228">
@@ -931,58 +947,56 @@
             <marker date="1386722268000" expanded="false" signature="505:527" placeholder="..." />
             <marker date="1386722268000" expanded="true" signature="528:1319" placeholder="..." />
             <marker date="1386722268000" expanded="true" signature="568:721" placeholder="..." />
+            <marker date="1386722268000" expanded="true" signature="568:721" placeholder="..." />
             <marker date="1386722268000" expanded="true" signature="807:1025" placeholder="..." />
             <marker date="1386722268000" expanded="true" signature="1110:1263" placeholder="..." />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/frontend/ucdCellDefinitions.php">
+    <entry file="file://$PROJECT_DIR$/frontend/ucd-display.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="32" column="0" selection-start="1312" selection-end="1312" vertical-scroll-proportion="0.0" vertical-offset="576" max-vertical-offset="2340">
+        <state line="125" column="0" selection-start="5921" selection-end="5921" vertical-scroll-proportion="-1.3" vertical-offset="2185" max-vertical-offset="7704">
+          <folding>
+            <element signature="e#6#168#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/ucd-data-selection.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="288" column="0" selection-start="8423" selection-end="8423" vertical-scroll-proportion="-10.42" vertical-offset="4663" max-vertical-offset="6336">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/frontend/ucd-display.php">
+    <entry file="file://$PROJECT_DIR$/frontend/css/ucd-front.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="139" column="0" selection-start="5157" selection-end="5157" vertical-scroll-proportion="0.0" vertical-offset="2502" max-vertical-offset="7380">
+        <state line="113" column="0" selection-start="1704" selection-end="1704" vertical-scroll-proportion="-78.23077" vertical-offset="0" max-vertical-offset="2754">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/frontend/ucdCellDefinitions.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="32" column="0" selection-start="1059" selection-end="1312" vertical-scroll-proportion="-8.541667" vertical-offset="371" max-vertical-offset="2322">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/frontend/class_pzucd_Display.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="203" column="26" selection-start="6474" selection-end="6474" vertical-scroll-proportion="0.0" vertical-offset="3264" max-vertical-offset="6516">
+        <state line="210" column="0" selection-start="6891" selection-end="6891" vertical-scroll-proportion="-38.666668" vertical-offset="2852" max-vertical-offset="8316">
           <folding />
         </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin/ucd-admin.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="30" column="55" selection-start="766" selection-end="766" vertical-scroll-proportion="0.0" vertical-offset="540" max-vertical-offset="3492">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin/js/tabify.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="21" column="61" selection-start="845" selection-end="845" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="630">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin/js/ucd-metaboxes-cells.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="233" column="55" selection-start="11702" selection-end="11702" vertical-scroll-proportion="0.31177446" vertical-offset="4006" max-vertical-offset="8568" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/admin/ucd-cell-layouts.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="3" column="0" selection-start="222" selection-end="223" vertical-scroll-proportion="-0.2922636" vertical-offset="360" max-vertical-offset="19134">
+        <state line="1063" column="2" selection-start="39533" selection-end="39533" vertical-scroll-proportion="0.9697733" vertical-offset="17979" max-vertical-offset="19260">
           <folding>
-            <marker date="1387331981000" expanded="true" signature="11977:12087" placeholder="..." />
-            <marker date="1387331981000" expanded="true" signature="17165:17347" placeholder="Select one t..." />
+            <marker date="1387709719000" expanded="true" signature="11977:12087" placeholder="..." />
+            <marker date="1387709719000" expanded="true" signature="17165:17347" placeholder="Select one t..." />
           </folding>
         </state>
       </provider>

@@ -13,9 +13,9 @@
 // should this be handled in defs??
 //require PZUCD_PLUGIN_PATH . '/frontend/ucdGallery.php';
 
-require_once PZUCD_PLUGIN_PATH. 'frontend/class_pzucd_Display.php';
+require_once PZUCD_PLUGIN_PATH . 'frontend/class_pzucd_Display.php';
 require PZUCD_PLUGIN_PATH . '/frontend/ucdCellDefinitions.php';
-require_once(PZUCD_PLUGIN_PATH .'external/bfi_thumb/BFI_Thumb.php');
+require_once(PZUCD_PLUGIN_PATH . 'external/bfi_thumb/BFI_Thumb.php');
 
 //add_shortcode('ucdgallery', 'pzucd_gallery_shortcode');
 //
@@ -52,41 +52,46 @@ function pzucd_get_the_template($template)
 
   global $wp_query;
   $original_query = $wp_query;
-  $template_info = new WP_Query('post_type=ucd-templates&meta_key=_pzucd_template-short-name&meta_value='.$template);
-  if (!isset($template_info->posts[0])) { echo '<p class="pzucd-oops">Template '.$template.' not found</p>';return null;}
-  $the_template_meta = get_post_meta($template_info->posts[0]->ID, null, true);
+  $template_info  = new WP_Query('post_type=ucd-templates&meta_key=_pzucd_template-short-name&meta_value=' . $template);
+  if (!isset($template_info->posts[ 0 ]))
+  {
+    echo '<p class="pzucd-oops">Template ' . $template . ' not found</p>';
+
+    return null;
+  }
+  $the_template_meta = get_post_meta($template_info->posts[ 0 ]->ID, null, true);
 //  $wp_query = $original_query;
- // wp_reset_postdata();
+  // wp_reset_postdata();
 
   // VERY risky- fine on single pages, but will cause horror on multi post pages
- // rewind_posts();
+  // rewind_posts();
 
   foreach ($the_template_meta as $key => $value)
   {
     $pzucd_template_field_set[ $key ] = $value[ 0 ];
   }
   $pzucd_template = array(
-    'template-short-name' => $pzucd_template_field_set[ '_pzucd_template-short-name' ],
-    'template-criteria'   => $pzucd_template_field_set [ '_pzucd_template-criteria' ],
-    'template-pager'      => $pzucd_template_field_set[ '_pzucd_template-pager' ],
-    'template-type'      => $pzucd_template_field_set[ '_pzucd_template-type' ],
+          'template-short-name' => (!empty($pzucd_template_field_set[ '_pzucd_template-short-name' ]) ? $pzucd_template_field_set[ '_pzucd_template-short-name' ] : null),
+          'template-criteria'   => (!empty($pzucd_template_field_set [ '_pzucd_template-criteria' ]) ? $pzucd_template_field_set [ '_pzucd_template-criteria' ] : null),
+          'template-pager'      => (!empty($pzucd_template_field_set[ '_pzucd_template-pager' ]) ? $pzucd_template_field_set[ '_pzucd_template-pager' ] : null),
+          'template-type'       => (!empty($pzucd_template_field_set[ '_pzucd_template-type' ]) ? $pzucd_template_field_set[ '_pzucd_template-type' ] : null),
   );
   for ($i = 0; $i < 3; $i++)
   {
     $pzucd_template[ 'section' ][ $i ] = !empty($pzucd_template_field_set[ '_pzucd_' . $i . '-template-section-enable' ]) ?
             array(
-              'section-enable'             => !empty($pzucd_template_field_set[ '_pzucd_' . $i . '-template-section-enable' ]),
-              'section-cells-per-view'     => $pzucd_template_field_set[ '_pzucd_' . $i . '-template-cells-per-view' ],
-              'section-cells-across'       => $pzucd_template_field_set[ '_pzucd_' . $i . '-template-cells-across' ],
-              'section-min-cell-width'     => $pzucd_template_field_set[ '_pzucd_' . $i . '-template-min-cell-width' ],
-              'section-cells-vert-margin'  => $pzucd_template_field_set[ '_pzucd_' . $i . '-template-cells-vert-margin' ],
-              'section-cells-horiz-margin' => $pzucd_template_field_set[ '_pzucd_' . $i . '-template-cells-horiz-margin' ],
-              'section-cell-layout'        => $pzucd_template_field_set[ '_pzucd_' . $i . '-template-section-cell-layout' ],
-              'section-layout-mode'        => $pzucd_template_field_set[ '_pzucd_' . $i . '-template-layout-mode' ],
-              'section-navigation'         => $pzucd_template_field_set[ '_pzucd_' . $i . '-template-section-navigation' ],
-              'section-nav-pos'            => $pzucd_template_field_set[ '_pzucd_' . $i . '-template-section-nav-pos' ],
-              'section-nav-loc'            => $pzucd_template_field_set[ '_pzucd_' . $i . '-template-section-nav-loc' ],
-              'section-cell-settings'      => get_post_meta($pzucd_template_field_set[ '_pzucd_' . $i . '-template-section-cell-layout' ]),
+                    'section-enable'             => !empty($pzucd_template_field_set[ '_pzucd_' . $i . '-template-section-enable' ]),
+                    'section-cells-per-view'     => (!empty($pzucd_template_field_set[ '_pzucd_' . $i . '-template-cells-per-view' ]) ? $pzucd_template_field_set[ '_pzucd_' . $i . '-template-cells-per-view' ] : null),
+                    'section-cells-across'       => (!empty($pzucd_template_field_set[ '_pzucd_' . $i . '-template-cells-across' ]) ? $pzucd_template_field_set[ '_pzucd_' . $i . '-template-cells-across' ] : null),
+                    'section-min-cell-width'     => (!empty($pzucd_template_field_set[ '_pzucd_' . $i . '-template-min-cell-width' ]) ? $pzucd_template_field_set[ '_pzucd_' . $i . '-template-min-cell-width' ] : null),
+                    'section-cells-vert-margin'  => (!empty($pzucd_template_field_set[ '_pzucd_' . $i . '-template-cells-vert-margin' ]) ? $pzucd_template_field_set[ '_pzucd_' . $i . '-template-cells-vert-margin' ] : null),
+                    'section-cells-horiz-margin' => (!empty($pzucd_template_field_set[ '_pzucd_' . $i . '-template-cells-horiz-margin' ]) ? $pzucd_template_field_set[ '_pzucd_' . $i . '-template-cells-horiz-margin' ] : null),
+                    'section-cell-layout'        => (!empty($pzucd_template_field_set[ '_pzucd_' . $i . '-template-section-cell-layout' ]) ? $pzucd_template_field_set[ '_pzucd_' . $i . '-template-section-cell-layout' ] : null),
+                    'section-layout-mode'        => (!empty($pzucd_template_field_set[ '_pzucd_' . $i . '-template-layout-mode' ]) ? $pzucd_template_field_set[ '_pzucd_' . $i . '-template-layout-mode' ] : null),
+                    'section-navigation'         => (!empty($pzucd_template_field_set[ '_pzucd_' . $i . '-template-section-navigation' ]) ? $pzucd_template_field_set[ '_pzucd_' . $i . '-template-section-navigation' ] : null),
+                    'section-nav-pos'            => (!empty($pzucd_template_field_set[ '_pzucd_' . $i . '-template-section-nav-pos' ]) ? $pzucd_template_field_set[ '_pzucd_' . $i . '-template-section-nav-pos' ] : null),
+                    'section-nav-loc'            => (!empty($pzucd_template_field_set[ '_pzucd_' . $i . '-template-section-nav-loc' ]) ? $pzucd_template_field_set[ '_pzucd_' . $i . '-template-section-nav-loc' ] : null),
+                    'section-cell-settings'      => get_post_meta($pzucd_template_field_set[ '_pzucd_' . $i . '-template-section-cell-layout' ]),
 
             ) : null;
   }
@@ -104,9 +109,6 @@ function pzucd_get_cell_design($pzucd_cell_layout_id)
 }
 
 
-
-
-
 function pzucd_flatten_wpinfo($array_in)
 {
   $array_out = array();
@@ -122,46 +124,62 @@ function pzucd_flatten_wpinfo($array_in)
   return $array_out;
 }
 
-add_shortcode('pzucd','pzucd_shortcode');
-function pzucd_shortcode($atts,$content=null,$tag) {
-  $pzucd_template_arr =  pzucd_get_the_template($atts[ 0]);
-  var_dump($pzucd_template_arr);
+add_shortcode('pzucd', 'pzucd_shortcode');
+function pzucd_shortcode($atts, $content = null, $tag)
+{
+
+//  $pzucd_template_arr = pzucd_get_the_template($atts[ 0 ]);
+//  var_dump($pzucd_template_arr);
+//  var_dump($atts);
 //  $pzucd = new pzucd_Display();
-    return pzucd_render($pzucd_template_arr, (!empty($atts[ 'ids' ]) ? $atts[ 'ids' ] : null), 'pzucd_Display');
-;
+  $pzucd_template = '';
+  if (!empty($atts[ 'template' ]))
+  {
+    $pzucd_template = $atts[ 'template' ];
+  }
+  elseif (!empty($atts[ 0 ]))
+  {
+    $pzucd_template = $atts[ 0 ];
+  }
+
+  return pzucd($pzucd_template, (!empty($atts[ 'ids' ]) ? $atts[ 'ids' ] : null));
+
+  //  return pzucd_render($pzucd_template_arr, (!empty($atts[ 'ids' ]) ? $atts[ 'ids' ] : null), 'pzucd_Display');
+
 }
 
 
 /* Template tag */
 /* Overrides is a list of ids */
-function pzucd($pzucd_template=null,$pzucd_overrides=null){
-  if (empty($pzucd_template)) {return 'You need to set a template';}
-  $pzucd_template_arr =  pzucd_get_the_template($pzucd_template);
-  pzdebug($pzucd_template_arr);
+function pzucd($pzucd_template = null, $pzucd_overrides = null)
+{
+  if (empty($pzucd_template))
+  {
+    return 'You need to set a template';
+  }
+  $pzucd_template_arr = pzucd_get_the_template($pzucd_template);
+  // pzdebug($pzucd_template_arr);
 
-  // THis is probably where we should preserve the wp_query
-  global $wp_query;
-  $original_query = $wp_query;
 
   $pzucd_stuff = new pzucd_Display();
-  $pzucd_stuff->render($pzucd_template_arr,$pzucd_overrides);
+  $pzucd_stuff->render($pzucd_template_arr, $pzucd_overrides);
 
-  // Reset to original query status.  Will this be conditional?!
-  $wp_query = $original_query;
 
   return $pzucd_stuff->output;
 
 }
 
 // Capture and append the comments display
-add_filter('pzucd_comments','pzucd_get_comments');
-function pzucd_get_comments($pzucd_content) {
+add_filter('pzucd_comments', 'pzucd_get_comments');
+function pzucd_get_comments($pzucd_content)
+{
 //  pzdebug(get_the_id());
   ob_start();
-  comments_template(null,null);
+  comments_template(null, null);
   $pzucd_comments = ob_get_contents();
   ob_end_flush();
-  return $pzucd_content.$pzucd_comments;
+
+  return $pzucd_content . $pzucd_comments;
 }
 
 
