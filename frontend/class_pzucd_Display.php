@@ -146,11 +146,10 @@ class pzucd_Display
     // Cell defs will need to be a little more flexible to cater for for mixed sections of full and excerpts.
 
     $celldef = pzucd_celldef($content_type);
-
     foreach ($this->template[ 'section' ] as $key => $section_info)
     {
       // Build out the celldefinition here so dont' do it every single cell.
-      $celldefinition     = self::build_cell_definition($celldef, $section_info[ 'section-cell-settings' ],$celldef);
+      $celldefinition     = self::build_cell_definition($celldef, $section_info[ 'section-cell-settings' ],$section_info['section-cell-layout']);
       $this->section_info = $section_info;
       if ($pzucd_template[ 'section' ][ $key ][ 'section-enable' ])
       {
@@ -175,7 +174,7 @@ class pzucd_Display
           {
             $pzucd_query->the_post();
 
-            self::build_cell($pzucd_query->post, $celldefinition,$celldef);
+            self::build_cell($pzucd_query->post, $celldefinition,$celldef,$section_info['section-cell-layout']);
 
             self::set_nav_link();
 
@@ -211,8 +210,17 @@ class pzucd_Display
   }
 
 
-  function build_cell_definition($celldef, $section_cell_settings)
+  function build_cell_definition($celldef, $section_cell_settings,$cellid)
   {
+    // Could we build all this when we save the cell????
+    // Could we build all this when we save the cell????
+    // Could we build all this when we save the cell????
+    // Could we build all this when we save the cell????
+    // Could we build all this when we save the cell????
+    /// Make a time to see how long it takes to execute.
+    /// Make a time to see how long it takes to execute.
+    /// Make a time to see how long it takes to execute.
+
 //    pzdebug((array)$this);
     $cell_layout = json_decode($section_cell_settings[ '_pzucd_layout-cell-preview' ][ 0 ], true);
 //    pzdebug($section_cell_settings);
@@ -245,15 +253,18 @@ class pzucd_Display
     $cell_definition = str_replace('{{headerinnards}}', $celldef['title'], $cell_definition);
 //    var_dump(esc_html($cell_definition));
 
-  // And finally, stuff the whole lot into the wrapper
 
-
+    // load up the css
+    $upload_dir = wp_upload_dir();
+    $filename   = trailingslashit($upload_dir[ 'baseurl' ]) . '/cache/pizazzwp/ucd/pzucd-cell-layout-' . $cellid . '.css';
+    if (!empty($cellid)) {
+      wp_enqueue_style('cells-css'.$cellid,$filename);
+    }
     return $cell_definition;
   }
 
-  function build_cell($post_info, $cell_definition,$celldef)
+  function build_cell($post_info, $cell_definition,$celldef,$cellid)
   {
-    //pzdebug($post_info);
     $cell_info = pzucd_flatten_wpinfo($this->section_info[ 'section-cell-settings' ]);
 
 
@@ -266,10 +277,11 @@ class pzucd_Display
     $cell_height = ($cell_info[ '_pzucd_layout-cell-height-type' ] == 'fixed') ? 'height:' . $cell_info[ '_pzucd_layout-cell-height' ] . 'px;' : null;
 
     // Open cell
-    $this_cell = '<div class="pzucd-cell" style="position:relative;width:' . $cell_width . '%;margin:' . ($this->section_info[ 'section-cells-vert-margin' ] / 2) . '%;min-width:' . $cell_min_width . 'px;' . $cell_info[ '_pzucd_layout-format-cells' ] . $cell_height . '">';
+    $this_cell = '<div class="pzucd-cell" style="position:relative;width:' . $cell_width . '%;margin:' . ($this->section_info[ 'section-cells-vert-margin' ] / 2) . '%;min-width:' . $cell_min_width . 'px;' . $cell_height . '">';
 
       $position = 'static';
-      $params   = array('width' => 300);
+      $params   = array('width' => $cell_info['_pzucd_cell-settings-image-max-width'],'height' => $cell_info['_pzucd_cell-settings-image-max-height']);
+
       // Returns false on failure.
       $post_image = bfi_thumb($post_info->guid, $params);
       $post_image = ($post_image ? $post_image : $post_info->guid);
@@ -306,7 +318,7 @@ class pzucd_Display
       // Need a better way to pullup the styling which will populate all fields.
 
   //    $components_open         = '<div class="pzucd-components" style="'.$cell_info['_pzucd_layout-format-components-group'].';position:' . $position . ';' . $cell_info[ '_pzucd_layout-sections-position' ] . ':'.$cell_info[ '_pzucd_layout-nudge-section-y' ].'%;width:' . $cell_info[ '_pzucd_layout-sections-widths' ] . '%;">';
-      $components_open  = '<div class="pzucd-components" style="position:' . $position . ';' . $cell_info[ '_pzucd_layout-sections-position' ] . ':' . $cell_info[ '_pzucd_layout-nudge-section-y' ] . '%;width:' . $cell_info[ '_pzucd_layout-sections-widths' ] . '%;">';
+      $components_open  = '<div class="pzucd-components" style="position:' . $position . ';">';
       $components_close = '</div><!-- End components -->';
       $components       = self::build_components($components_open, $the_inputs, $layout, $components_close, $cell_info, $cell_definition);
     $components = str_replace('{{wrapperinnards}}',$components,$celldef['wrapper']);
@@ -322,6 +334,8 @@ class pzucd_Display
     $this->output = str_replace('{{posttype}}',get_post_type(),$this->output);
     $this->output = str_replace('{{poststatus}}',get_post_status(),$this->output);
     $this->output = str_replace('{{postformat}}',get_post_format(),$this->output);
+    $this->output = str_replace('{{classname}}',$cellid.'-'.$cell_info['_pzucd_layout-short-name'],$this->output);
+    //'.$postid.'-'.$pzucd_cells['_pzucd_layout-short-name']
 
     $the_categories = get_the_category();
     $categories_list = '';
@@ -414,7 +428,7 @@ class pzucd_Display
     $return_str = $components_open;
     if ($cell_info[ '_pzucd_layout-background-image' ] == 'align')
     {
-      $return_str .= '<div class="pzucd-bg-image">' . $the_inputs[ 'image' ] . '</div>';
+      $return_str .= '<div class="pzucd-bg-image entry-content"><img src="' . $the_inputs[ 'image' ] . '" /></div>';
     }
 
 

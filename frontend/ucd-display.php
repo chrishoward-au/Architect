@@ -45,7 +45,7 @@ require_once(PZUCD_PLUGIN_PATH . 'external/bfi_thumb/BFI_Thumb.php');
 
 function pzucd_get_the_template($template)
 {
-  wp_enqueue_script('jquery-isotope');
+//  wp_enqueue_script('jquery-isotope');
 
   // meed to return a structure for the cells, the content source, the navgation info
 
@@ -71,6 +71,7 @@ function pzucd_get_the_template($template)
     $pzucd_template_field_set[ $key ] = $value[ 0 ];
   }
   $pzucd_template = array(
+           'template-id' => $template_info->posts[ 0 ]->ID,
           'template-short-name' => (!empty($pzucd_template_field_set[ '_pzucd_template-short-name' ]) ? $pzucd_template_field_set[ '_pzucd_template-short-name' ] : null),
           'template-criteria'   => (!empty($pzucd_template_field_set [ '_pzucd_template-criteria' ]) ? $pzucd_template_field_set [ '_pzucd_template-criteria' ] : null),
           'template-pager'      => (!empty($pzucd_template_field_set[ '_pzucd_template-pager' ]) ? $pzucd_template_field_set[ '_pzucd_template-pager' ] : null),
@@ -158,7 +159,6 @@ function pzucd($pzucd_template = null, $pzucd_overrides = null)
     return 'You need to set a template';
   }
   $pzucd_template_arr = pzucd_get_the_template($pzucd_template);
-  // pzdebug($pzucd_template_arr);
 
 
   $pzucd_stuff = new pzucd_Display();

@@ -433,3 +433,4 @@ if (!class_exists('Pizazz_Gallery_Field'))
     }
   }
 }
+

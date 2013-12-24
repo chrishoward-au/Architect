@@ -146,3 +146,7 @@ default styling
   border-bottom-right-radius: 20px;
   padding-left:10px;
 }
+
+.pzucd-bg-image img {
+  max-width:100%;
+}

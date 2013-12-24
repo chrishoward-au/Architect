@@ -4,7 +4,7 @@ Donate link: http://example.com/
 Tags: comments, spam
 Requires at least: 3.8.0
 Tested up to: 3.8.0
-Stable tag: 0.4.4
+Stable tag: 0.4.6
 
 Here is a short description of the plugin.  This should be no more than 150 characters.  No markup here.
 
@@ -62,6 +62,9 @@ the directory of the stable readme.txt, so in this case, `/tags/4.3/screenshot-1
 2. This is the second screen shot
 
 == Changelog ==
+
+= 0.4.5 =
+* Large chunk of display code written
 
 = 0.4.4 =
 * A change since the previous version.

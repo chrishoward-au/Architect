@@ -1,9 +1,22 @@
 jQuery(document).ready(function() {
 	"use strict";
 
+// Would like to get meta configs sortable
+// /  jQuery('ul.select2-choices').sortable({cursor:'move'});
+
+//  jQuery("#_pzucd_cell-settings-meta1-config-cmb-field-0").select2("container").find("ul.select2-choices").sortable({
+//    containment: 'parent',
+//    cursor: "move",
+//    opacity: 0.6,
+//    forceHelperSize: true,
+//    placeholder: "ui-state-highlight",
+//    start: function() { jQuery("#_pzucd_cell-settings-meta1-config-cmb-field-0").select2("onSortStart"); },
+//    update: function() { jQuery("#_pzucd_cell-settings-meta1-config-cmb-field-0").select2("onSortEnd"); }
+//  });
+
 //  init();
   function init() {
-    console.log('you are here');
+//    console.log('you are here');
     var cell_layout = jQuery.parseJSON(jQuery('input#_pzucd_layout-cell-preview-cmb-field-0').val());
 //    pzucd_update_component_location(cell_layout);
 //    pzucd_update_components_container_width(cell_layout);

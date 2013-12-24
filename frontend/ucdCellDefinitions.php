@@ -29,7 +29,7 @@
     );
 
     // should we add filters? e.g apply_filters('ucdtitle','{{title}}')
-    $celldefs[ 'post' ]['wrapper'] = '<article id="post-{{postid}}" class="pzucd-{{classname}} post-{{postid}} post type-{{posttype}} status-{{poststatus}} format-{{postformat}} hentry {{category-categories}} {{tag-tags}}">{{wrapperinnards}}</article>';
+    $celldefs[ 'post' ]['wrapper'] = '<article id="post-{{postid}}" class="pzucd-{{classname}} block-type-content post-{{postid}} post type-{{posttype}} status-{{poststatus}} format-{{postformat}} hentry {{category-categories}} {{tag-tags}}">{{wrapperinnards}}</article>';
 
     $celldefs[ 'post' ]['header'] = '<header class="entry-header">{{headerinnards}}</header><!-- .entry-header -->';
     $celldefs[ 'post' ]['title'] = '<h1 class="entry-title">{{title}}</h1>';
@@ -105,7 +105,7 @@
       array('footer' => '<footer class="entry-meta">{{footerinnards}}</footer><!-- .entry-meta -->'),
     );
 
-      $celldefs[ 'images' ]['wrapper'] = '<div id="galleryimage-{{postid}}" class="pzucd-gallery galleryimage-{{postid}} galleryimage">{{wrapperinnards}}</div>';
+      $celldefs[ 'images' ]['wrapper'] = '<div id="galleryimage-{{postid}}" class="pzucd-{{classname}}  galleryimage-{{postid}} galleryimage">{{wrapperinnards}}</div>';
       $celldefs[ 'images' ]['header'] = '<header class="entry-header">{{headerinnards}}</header><!-- .entry-header -->';
       $celldefs[ 'images' ]['title'] = '<h3 class="entry-title">{{title}}</h3>';
     $celldefs[ 'images' ]['excerpt']  = ' <div class="entry-excerpt">{{excerpt}}</div><!-- .entry-excerpt -->';
