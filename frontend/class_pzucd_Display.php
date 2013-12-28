@@ -6,6 +6,12 @@
  * Date: 15/12/2013
  * Time: 10:02 PM
  */
+ /*
+ * class for displaying content
+ * this captures the content and returns it, so needs an echo statemnet to display in templates
+ * this is necessary to work in a shortcode
+ *
+ */
 class pzucd_Display
 {
   public $output = '';
@@ -20,7 +26,13 @@ class pzucd_Display
   {
   }
 
-  function template_header()
+
+/*
+ * draw the header section of the template. includes navigation
+ * opens the ucd container
+ *
+ */
+ function template_header()
   {
     $this->output .= '<div id="pzucd=container-' . $this->template[ 'template-short-name' ] . '" class="pzucd-container">';
     if ($this->template[ 'template-pager' ] == 'hover')
@@ -29,6 +41,10 @@ class pzucd_Display
     }
   }
 
+/*
+ * draw the footer section of the template. includes navigation
+ * closes the ucd container
+ */
   function template_footer()
   {
     if ($this->template[ 'template-pager' ] == 'wordpress' || $this->template[ 'template-pager' ] == 'wppagenavi')
@@ -52,6 +68,7 @@ class pzucd_Display
       //Lot of work!
       switch ($the_criteria[ '_pzucd_criteria-content-source' ][ 0 ])
       {
+      // could we build this into the cell def or somewhere else so more closely tied to the content type stuff
         case 'images':
           $this->query_vars[ 'post_type' ]   = 'attachment';
           $this->query_vars[ 'post__in' ]    = $the_criteria[ '_pzucd_criteria-specific-images' ];
@@ -59,7 +76,7 @@ class pzucd_Display
           break;
       }
     }
-
+// currently this is the only bit that really does anything
      if ($overrides) {
        $this->query_vars[ 'post__in' ]= explode(',',$overrides);
        $this->query_vars['posts_per_page'] = count($this->query_vars[ 'post__in' ]);
@@ -122,9 +139,11 @@ class pzucd_Display
       //eeek. Gotta work out what page content type is!
 
       // What if WE have changed the query?? What is our real current query?
-
+    //  add_filter('parse_query', array($this,'modify_default_query'));
       $pzucd_query = $wp_query;
-
+      $pzucd_query->set( 'posts_per_page', $this->template['template-posts-per-page'] );
+      $pzucd_query->get_posts();
+ //pzdebug((array)$pzucd_query->request);
       // For defaults, determine the content type from the post type
       $content_type = (empty($pzucd_query->query_vars[ 'post_type' ]) ? 'post' : $pzucd_query->query_vars[ 'post_type' ]);
      // var_dump($content_type);
@@ -146,10 +165,25 @@ class pzucd_Display
     // Cell defs will need to be a little more flexible to cater for for mixed sections of full and excerpts.
 
     $celldef = pzucd_celldef($content_type);
+    
+    /*********************************************************************
+    **********************************************************************
+    * THIS IS THE MAIN SECTIONS LOOP. THE WP LOOP IS CONTAINED WITHIN IT
+    *
+    * THE QUERY HAS ALREADY HAPPENED. NOW WE JUST NEED TO SHOW THE CONTENT, BROKEN DOWN INTO SECTIONS AND CELLS
+    **********************************************************************
+    **********************************************************************/
     foreach ($this->template[ 'section' ] as $key => $section_info)
     {
-      // Build out the celldefinition here so dont' do it every single cell.
-      $celldefinition     = self::build_cell_definition($celldef, $section_info[ 'section-cell-settings' ],$section_info['section-cell-layout']);
+
+      // load up the cell's css for this section
+      $cellid =$section_info['section-cell-layout'];
+      if (!empty($cellid)) {
+        $upload_dir = wp_upload_dir();
+        $filename   = trailingslashit($upload_dir[ 'baseurl' ]) . '/cache/pizazzwp/ucd/pzucd-cell-layout-' . $cellid . '.css';
+        wp_enqueue_style('cells-css'.$cellid,$filename);
+      }
+
       $this->section_info = $section_info;
       if ($pzucd_template[ 'section' ][ $key ][ 'section-enable' ])
       {
@@ -170,11 +204,13 @@ class pzucd_Display
         {
           $this->output .= '{{nav-top-inside}}';
         //  var_dump($pzucd_query->found_posts);
+          $i = 1;
           while ($pzucd_query->have_posts())
           {
             $pzucd_query->the_post();
+            self::build_cell($pzucd_query->post, $celldef,$section_info['section-cell-layout'],$section_info[ 'section-cell-settings' ]);
 
-            self::build_cell($pzucd_query->post, $celldefinition,$celldef,$section_info['section-cell-layout']);
+      //      self::build_cell($pzucd_query->post, $celldefinition,$celldef,$section_info['section-cell-layout']);
 
             self::set_nav_link();
 
@@ -182,7 +218,10 @@ class pzucd_Display
             // if show comments {
 //          $this->output = apply_filters('pzucd_comments',$this->output);
 
-          } // End loop
+            // Leave the while loop if up to the post count
+            if (++$i > $section_info['section-cells-per-view']){break;} 
+            
+          } // End WP loop - tho we might use it some more
           $this->output .= '{{nav-bottom-inside}}';
         }
         $this->output .= '</div><!-- end pzucd-section-' . $key . ' -->';
@@ -194,15 +233,23 @@ class pzucd_Display
         {
           $this->output = str_replace('{{nav-' . $section_info[ 'section-nav-pos' ] . '-' . $section_info[ 'section-nav-loc' ] . '}}', self::add_nav(), $this->output);
         }
+        // if we are out ofthe loop then we've run out of posts, so break out otherwise it just loops back tothe firstpost. go figure!
+        if (!in_the_loop()){break;}
       }
-    } // End sections
+    } 
+    /*********************************************************************
+    **********************************************************************
+    // End sections
+    *********************************************************************
+    **********************************************************************/
+    
     // Close up the outer wrapper
     // use a method so we can swap it out in the future with different template headers
     self::template_footer();
 
     // Process any left over {{}} variables
     self::add_pager();
-    self::strip_unused_tags();
+    $this->output = self::strip_unused_tags($this->output);
     // Reset to original query status.  Will this be conditional?!
     $wp_query = $original_query;
     wp_reset_postdata();
@@ -210,19 +257,11 @@ class pzucd_Display
   }
 
 
-  function build_cell_definition($celldef, $section_cell_settings,$cellid)
+  function build_cell_definition($celldef, $section_cell_settings,$cell_layout)
   {
-    // Could we build all this when we save the cell????
-    // Could we build all this when we save the cell????
-    // Could we build all this when we save the cell????
-    // Could we build all this when we save the cell????
-    // Could we build all this when we save the cell????
-    /// Make a time to see how long it takes to execute.
-    /// Make a time to see how long it takes to execute.
-    /// Make a time to see how long it takes to execute.
-
+  
 //    pzdebug((array)$this);
-    $cell_layout = json_decode($section_cell_settings[ '_pzucd_layout-cell-preview' ][ 0 ], true);
+ //   $cell_layout = json_decode($section_cell_settings[ '_pzucd_layout-cell-preview' ][ 0 ], true);
 //    pzdebug($section_cell_settings);
     $meta1_confg = unserialize($section_cell_settings[ '_pzucd_cell-settings-meta1-config' ][ 0 ]);
     $meta2_confg = unserialize($section_cell_settings[ '_pzucd_cell-settings-meta2-config' ][ 0 ]);
@@ -255,15 +294,17 @@ class pzucd_Display
 
 
     // load up the css
-    $upload_dir = wp_upload_dir();
-    $filename   = trailingslashit($upload_dir[ 'baseurl' ]) . '/cache/pizazzwp/ucd/pzucd-cell-layout-' . $cellid . '.css';
-    if (!empty($cellid)) {
-      wp_enqueue_style('cells-css'.$cellid,$filename);
-    }
+//    $upload_dir = wp_upload_dir();
+//    $filename   = trailingslashit($upload_dir[ 'baseurl' ]) . '/cache/pizazzwp/ucd/pzucd-cell-layout-' . $cellid . '.css';
+//    if (!empty($cellid)) {
+//      wp_enqueue_style('cells-css'.$cellid,$filename);
+//    }
     return $cell_definition;
   }
 
-  function build_cell($post_info, $cell_definition,$celldef,$cellid)
+
+
+  function build_cell($post_info, $celldef,$cellid,$section_cell_settings)
   {
     $cell_info = pzucd_flatten_wpinfo($this->section_info[ 'section-cell-settings' ]);
 
@@ -277,50 +318,77 @@ class pzucd_Display
     $cell_height = ($cell_info[ '_pzucd_layout-cell-height-type' ] == 'fixed') ? 'height:' . $cell_info[ '_pzucd_layout-cell-height' ] . 'px;' : null;
 
     // Open cell
-    $this_cell = '<div class="pzucd-cell" style="position:relative;width:' . $cell_width . '%;margin:' . ($this->section_info[ 'section-cells-vert-margin' ] / 2) . '%;min-width:' . $cell_min_width . 'px;' . $cell_height . '">';
+    $this_cell = '<div class="pzucd-cell pzucd-{{classname}}" style="position:relative;width:' . $cell_width . '%;margin:' . ($this->section_info[ 'section-cells-vert-margin' ] / 2) . '%;min-width:' . $cell_min_width . 'px;' . $cell_height . '">';
 
       $position = 'static';
       $params   = array('width' => $cell_info['_pzucd_cell-settings-image-max-width'],'height' => $cell_info['_pzucd_cell-settings-image-max-height']);
 
       // Returns false on failure.
-      $post_image = bfi_thumb($post_info->guid, $params);
-      $post_image = ($post_image ? $post_image : $post_info->guid);
-      if ($cell_info[ '_pzucd_layout-background-image' ] == 'fill')
-      {
-        $this_cell .= '<div class="pzucd-bg-image"><img class="entry-image" src="' . $post_image . '"></div>';
-        $position = 'absolute';
+      // ADD CHECK THERE IS AN IMAGE HERE
+      
+      // ang on... this isn't always whe thum. :/ need tofind thumb for different conent types :S
+      $thumb_src = '';
+      if (has_post_thumbnail($post_info->ID)) {
+    //  var_dump($post_info->ID ,get_post_thumbnail_id($post_info->ID ));
+        $thumbnail = wp_get_attachment_image_src(get_post_thumbnail_id($post_info->ID ),'full');
+        $thumb_src = $thumbnail[0];
+      } elseif ($post_info->post_type=='attachment'){
+        $thumb_src = $post_info->guid;
       }
-      $layout                     = json_decode($cell_info[ '_pzucd_layout-cell-preview' ], true);
-      $the_inputs[ 'title' ]      = apply_filters('the_title', get_the_title());
-      $the_inputs[ 'excerpt' ]    = apply_filters('the_excerpt', get_the_excerpt());
-      $the_inputs[ 'content' ]    = apply_filters('the_content', get_the_content());
-      $the_inputs[ 'image' ]      = $post_image;
-      $the_inputs[ 'date' ]       = apply_filters('the_date', get_the_date());
-      $the_inputs[ 'categories' ] = apply_filters('the_category', 'Categories: ' . trim(get_the_category_list(', '), ', '));
-      $the_inputs[ 'tags' ]       = apply_filters('the_tags', 'Tags: ' . trim(get_the_tag_list(', '), ', '));
-      $the_inputs[ 'author' ]     = apply_filters('the_author', get_the_author());
-      ob_start();
-      comments_number();
-      $comments_count = ob_get_contents();
-      ob_end_clean();
-      $the_inputs[ 'commentcount' ] = apply_filters('the_', $comments_count);
-  //    $the_inputs[ '' ] = apply_filters('the_', get_the_());
-  //    $the_inputs[ '' ] = apply_filters('the_', get_the_());
-  //    $the_inputs[ '' ] = apply_filters('the_', get_the_());
-  //    $the_inputs[ '' ] = apply_filters('the_', get_the_());
-  //    $the_inputs[ '' ] = apply_filters('the_', get_the_());
-  //
+      $post_image = bfi_thumb($thumb_src, $params);
+//var_dump($post_info->ID,$thumb_src,$post_image);
+// need to find out when this is required!!
+//      $post_image = ($post_image ? $post_image : $post_info->guid);
 
 
-      // and heaps more!
-      // this needs its ownmethod
-      //   pzdebug($cell_info);
-      // Need a better way to pullup the styling which will populate all fields.
+    if ($cell_info[ '_pzucd_layout-background-image' ] == 'fill')
+    {
+      $this_cell .= '<div class="pzucd-bg-image"><img class="entry-image" src="' . $post_image . '"></div>';
+      $position = 'absolute';
+    }
 
-  //    $components_open         = '<div class="pzucd-components" style="'.$cell_info['_pzucd_layout-format-components-group'].';position:' . $position . ';' . $cell_info[ '_pzucd_layout-sections-position' ] . ':'.$cell_info[ '_pzucd_layout-nudge-section-y' ].'%;width:' . $cell_info[ '_pzucd_layout-sections-widths' ] . '%;">';
-      $components_open  = '<div class="pzucd-components" style="position:' . $position . ';">';
-      $components_close = '</div><!-- End components -->';
-      $components       = self::build_components($components_open, $the_inputs, $layout, $components_close, $cell_info, $cell_definition);
+    $layout                     = json_decode($cell_info[ '_pzucd_layout-cell-preview' ], true);
+
+    // Get all the content data
+    $the_title = get_the_title();
+    switch ($cell_info['_pzucd_cell-settings-title-prefix']) {
+      case 'none':
+      break;
+      case 'bullet':
+        $the_title = '&bull; '.$the_title;
+      break;
+      case 'thumb':
+        $the_title = '<img src="'.bfi_thumb($thumb_src,array('width'>32,'height'=>32)).'"/>'.$the_title;
+      break;
+    }
+    $the_inputs[ 'title' ]      = apply_filters('the_title', $the_title);
+    $the_inputs[ 'excerpt' ]    = apply_filters('the_excerpt', get_the_excerpt());
+    $the_inputs[ 'content' ]    = apply_filters('the_content', get_the_content());
+    // This needs to be a url coz that's how it's shown
+    $the_inputs[ 'image' ]      = $post_image;
+    $the_inputs[ 'date' ]       = apply_filters('the_date', get_the_date());
+    $the_inputs[ 'categories' ] = apply_filters('the_category', 'Categories: ' . trim(get_the_category_list(', '), ', '));
+    $the_inputs[ 'tags' ]       = apply_filters('the_tags', 'Tags: ' . trim(get_the_tag_list(', '), ', '));
+    $the_inputs[ 'author' ]     = apply_filters('the_author', get_the_author());
+//var_dump($layout,$the_inputs);
+    ob_start();
+    comments_number();
+    $comments_count = ob_get_contents();
+    ob_end_clean();
+    $the_inputs[ 'commentcount' ] = apply_filters('the_', $comments_count);
+    foreach($the_inputs as $key => $value) {
+      if (empty($value)) {
+        $layout[$key]['show']=false;
+      }
+    }
+    // Build this cell's layout
+    $cell_definition = self::build_cell_definition($celldef, $section_cell_settings,$layout);
+ 
+
+    // Create the content section
+    $components_open  = '<div class="pzucd-components" style="position:' . $position . ';">';
+    $components_close = '</div><!-- End components -->';
+    $components       = self::build_components($components_open, $the_inputs, $layout, $components_close, $cell_info, $cell_definition);
     $components = str_replace('{{wrapperinnards}}',$components,$celldef['wrapper']);
     $this_cell .= $components . '</div><!-- end cell -->';
 
@@ -334,7 +402,7 @@ class pzucd_Display
     $this->output = str_replace('{{posttype}}',get_post_type(),$this->output);
     $this->output = str_replace('{{poststatus}}',get_post_status(),$this->output);
     $this->output = str_replace('{{postformat}}',get_post_format(),$this->output);
-    $this->output = str_replace('{{classname}}',$cellid.'-'.$cell_info['_pzucd_layout-short-name'],$this->output);
+    $this->output = str_replace('{{classname}}',$cellid,$this->output);
     //'.$postid.'-'.$pzucd_cells['_pzucd_layout-short-name']
 
     $the_categories = get_the_category();
@@ -361,14 +429,33 @@ class pzucd_Display
   function add_pager()
   {
     // var_dump(get_the_id(),get_the_title());
-    $pager = '<div class="pzucd-pager">';
-//    $pager .=  get_next_posts_link( 'Older Entries', 999 );
-//    $pager .=  get_previous_posts_link( 'Newer Entries' );
-    $prev_post = get_previous_post();
-    $next_post = get_next_post();
-    if (!empty($prev_post))
-    {
-      $pager .= '<a class="pzucd-pager-prev" href="' . get_permalink($prev_post->ID) . '">&laquo; ' . $prev_post->post_title . '</a>';
+//    var_dump();
+    if ($this->template['template-pager']=='wordpress'){
+       $pager = '<div class="pzucd-pager">';
+  //    $pager .=  get_next_posts_link( 'Older Entries', 999 );
+  //    $pager .=  get_previous_posts_link( 'Newer Entries' );
+      $prev_post = get_previous_post();
+      $next_post = get_next_post();
+      if (!empty($prev_post))
+      {
+        $pager .= '<a class="pzucd-pager-prev" href="' . get_permalink($prev_post->ID) . '">&laquo; ' . $prev_post->post_title . '</a>';
+      }
+      if (!empty($next_post))
+      {
+        $pager .= '<a class="pzucd-pager-next" href="' . get_permalink($next_post->ID) . '">' . $next_post->post_title . ' &raquo;</a>';
+  
+      }
+      $pager .= '</div>';
+    } elseif ($this->template['template-pager']=='wppagenavi') {
+      if(function_exists('wp_pagenavi')) { 
+       $pager = '<div class="pzucd-pager">';
+        ob_start();
+        wp_pagenavi(); }
+        $pager .= ob_get_contents();
+        ob_end_clean();
+      $pager .= '</div>';
+        
+    } elseif ($this->template['template-pager']=='hover') {
     }
     if (!empty($next_post))
     {
@@ -418,15 +505,16 @@ class pzucd_Display
 
   }
 
-  function strip_unused_tags()
+
+  function strip_unused_tags($strip_from)
   {
-    $this->output = str_replace(array('{{pager}}', '{{nav-top-outside}}', '{{nav-top-inside}}', '{{nav-left-outside}}', '{{nav-right-outside}}', '{{nav-bottom-inside}}', '{{nav-bottom-outside}}'), '', $this->output);
+  return preg_replace('/{{([\w|\-]*)}}/s', '', $strip_from);
   }
 
   function build_components($components_open, $the_inputs, $layout, $components_close, $cell_info, $celldef)
   {
     $return_str = $components_open;
-    if ($cell_info[ '_pzucd_layout-background-image' ] == 'align')
+    if ($cell_info[ '_pzucd_layout-background-image' ] == 'align' && !empty($the_inputs['image']))
     {
       $return_str .= '<div class="pzucd-bg-image entry-content"><img src="' . $the_inputs[ 'image' ] . '" /></div>';
     }
@@ -436,35 +524,17 @@ class pzucd_Display
     {
       $celldef = str_replace('{{' . $key . '}}', $the_input, $celldef);
     }
-    // Now this is where we need to use our cells defs!!!
-    // how do we define what goes into the innards tho? maybe need an array option for each innard.
-    // time for bed!
-//    var_dump($layout);
-//    foreach ($layout as $key => $value)
-//    {
-//      if ($value[ 'show' ])
-//      {
-//        switch ($key)
-//        {
-//          case 'title' :
-//            $return_str .= '<h3 class="entry-title" style="'.$cell_info['_pzucd_layout-format-entry-title'].'">' . $the_inputs[ 'title' ] . '</h3>';
-//            break;
-//          case 'excerpt' :
-//            $return_str .= '<div class="entry-excerpt" style="'.$cell_info['_pzucd_layout-format-entry-content'].'">' . esc_html($the_inputs[ 'excerpt' ]) . '</div>';
-//            break;
-//          case 'content' :
-//            $return_str .= '<div class="entry-content" style="'.$cell_info['_pzucd_layout-format-entry-content'].'">' . $the_inputs[ 'content' ] . '</div>';
-//            break;
-//          case 'image' :
-//            $return_str .= '<div class="pzucd_image">' . $the_inputs[ 'image' ] . '</div>';
-//            break;
-//
-//        }
-//      }
-//    }
     $return_str .= $celldef . $components_close;
     return $return_str;
 
   }
 
-}
+  function modify_default_query($q) {
+   if (!is_admin()) {
+     $q->set( 'posts_per_page', '10' );
+   }
+pzdebug((array)$q);
+   return $q;
+
+  }
+} //EOC

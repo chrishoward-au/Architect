@@ -458,7 +458,13 @@ function pzucd_template_settings_metabox($meta_boxes = array())
         'hover'       => 'Hover buttons'
       )
     ),
-
+    array(
+      'id'      => $prefix . 'template-posts-per-page',
+      'name'    => __('Posts per page', 'pzucd'),
+      'type'    => 'text',
+      'cols'    => 12,
+      'default' => 10,
+    ),
     array(
       'name'    => 'Section 1',
       'id'      => $prefix . '0-template-section-enable',

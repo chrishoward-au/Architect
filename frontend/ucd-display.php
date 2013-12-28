@@ -73,8 +73,9 @@ function pzucd_get_the_template($template)
   $pzucd_template = array(
            'template-id' => $template_info->posts[ 0 ]->ID,
           'template-short-name' => (!empty($pzucd_template_field_set[ '_pzucd_template-short-name' ]) ? $pzucd_template_field_set[ '_pzucd_template-short-name' ] : null),
-          'template-criteria'   => (!empty($pzucd_template_field_set [ '_pzucd_template-criteria' ]) ? $pzucd_template_field_set [ '_pzucd_template-criteria' ] : null),
+          'template-criteria'   => (!empty($pzucd_template_field_set [ '_pzucd_template-criteria' ]) ? $pzucd_template_field_set [ '_pzucd_template-criteria' ] : 'default'),
           'template-pager'      => (!empty($pzucd_template_field_set[ '_pzucd_template-pager' ]) ? $pzucd_template_field_set[ '_pzucd_template-pager' ] : null),
+          'template-posts-per-page'      => (!empty($pzucd_template_field_set[ '_pzucd_template-posts-per-page' ]) ? $pzucd_template_field_set[ '_pzucd_template-posts-per-page' ] : get_option('posts_per_page')),
           'template-type'       => (!empty($pzucd_template_field_set[ '_pzucd_template-type' ]) ? $pzucd_template_field_set[ '_pzucd_template-type' ] : null),
   );
   for ($i = 0; $i < 3; $i++)
@@ -156,6 +157,7 @@ function pzucd($pzucd_template = null, $pzucd_overrides = null)
 {
   if (empty($pzucd_template))
   {
+  // make this use a set of defaults. prob an excerpt grid
     return 'You need to set a template';
   }
   $pzucd_template_arr = pzucd_get_the_template($pzucd_template);

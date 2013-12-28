@@ -445,6 +445,14 @@ function pzucd_cell_settings_meta($meta_boxes = array())
                   'name' => 'Title',
                   'type' => 'title'
           ),
+          array(
+                  'name'     => __('Titl prefix', 'pzucd'),
+                  'id'       => $prefix . 'cell-settings-title-prefix',
+                  'type'     => 'select',
+                  'cols'     => 4,
+                  'default'  => 'none',
+                  'options'  => array('none' => 'None', 'bullet' => 'Bullet', 'thumb' => 'Thumbnail'),
+          ),
 
           array(
                   'id'   => $prefix . 'cell-settings-meta1',
@@ -553,8 +561,6 @@ function pzucd_cell_formats_meta($meta_boxes = array())
                   'type'    => 'textarea',
                   'rows'    => 1,
                   'cols'    => 6,
-                  
-                  'class'   => '.pzucd_cells',
                   'help'    => 'Declarations only for class: .pzucd_cells',
                   //     'desc'    => __('Format the cells', 'pzucd')
           ),
@@ -564,7 +570,25 @@ function pzucd_cell_formats_meta($meta_boxes = array())
                   'type'    => 'text',
                   'rows'    => 1,
                   'cols'    => 6,
-                  'default' => '.pzucd-cells',
+                  'default' => ' .pzucd-cells',
+                  //      'desc'    => __('Format the entry title', 'pzucd')
+          ),
+          array(
+                  'name'    => __('Entry section', 'pzucd'),
+                  'id'      => $prefix . 'layout-format-entry',
+                  'type'    => 'textarea',
+                  'rows'    => 1,
+                  'cols'    => 6,
+                  'help'    => 'Declarations only for class: .hentry',
+                  //     'desc'    => __('Format the cells', 'pzucd')
+          ),
+          array(
+                  'name'    => __('Entry Classes', 'pzucd'),
+                  'id'      => $prefix . 'layout-format-entry-classes',
+                  'type'    => 'text',
+                  'rows'    => 1,
+                  'cols'    => 6,
+                  'default' => '.hentry',
                   //      'desc'    => __('Format the entry title', 'pzucd')
           ),
           array(
@@ -617,9 +641,17 @@ function pzucd_cell_formats_meta($meta_boxes = array())
                   'id'      => $prefix . 'layout-format-entry-meta',
                   'type'    => 'textarea',
                   'rows'    => 1,
-                  
+                  'cols' => 6,
                   'help'    => 'Declarations only for class: .pzucd_entry_meta',
                   //     'desc'    => __('Format the entry meta', 'pzucd')
+          ),
+          array(
+                  'name'    => __('Entry Meta Classes', 'pzucd'),
+                  'id'      => $prefix . 'layout-format-entry-meta-classes',
+                  'type'    => 'text',
+                  'rows'    => 1,
+                  'cols'    => 6,
+                  'default' => ' .entry-meta',
           ),
           array(
                   'name'    => __('Entry meta links', 'pzucd'),
@@ -695,7 +727,7 @@ function pzucd_cell_formats_meta($meta_boxes = array())
           ),
   );
   $meta_boxes[ ] = array(
-          'title'  => 'Styling',
+          'title'  => 'Styling Overrides',
           'pages'  => 'ucd-layouts',
           'fields' => $fields
   );

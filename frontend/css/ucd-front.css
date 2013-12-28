@@ -17,6 +17,20 @@
   max-width:100%;
   display:block;
 }
+
+.entry-excerpt,
+.entry-content {
+-ms-word-break: break-all;
+     word-break: break-all;
+
+     /* Non standard for webkit */
+     word-break: break-word;
+
+-webkit-hyphens: auto;
+   -moz-hyphens: auto;
+        hyphens: auto;
+        }
+        
 .pzucd-bg-image{
   margin:0;
   padding:0;
@@ -150,3 +164,6 @@ default styling
 .pzucd-bg-image img {
   max-width:100%;
 }
+
+.pzucd-cell img.entry-image {float:left;margin-right:5px;margin-bottom:5px;}
+.pzucd-cell .entry-content {float:left;}
