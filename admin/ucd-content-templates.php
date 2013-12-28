@@ -371,7 +371,7 @@ function pzucd_sections_preview_meta($meta_boxes = array())
         'name'    => __('Cells layout', 'pzucd'),
         'type'    => 'pzselect',
         'cols'    => 6,
-        'default' => '',
+        
         'options' => $pzucd_cells_array
       ),
       array(
@@ -434,7 +434,7 @@ function pzucd_template_settings_metabox($meta_boxes = array())
       'name'    => __('Template Short Name', 'pzucd'),
       'type'    => 'text',
       'cols'    => 12,
-      'default' => '',
+      
       'desc'    => __('Alphanumeric only. <br/>Use the shortcode <strong class="pzucd-usage-info">[pzucd <span class="pzucd-shortname"></span>]</strong> or the template tag <strong class="pzucd-usage-info">pzucd(\'<span class="pzucd-shortname"></span>\');</strong>', 'pzucd')
     ),
     array(

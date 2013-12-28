@@ -160,10 +160,8 @@ function pzucd($pzucd_template = null, $pzucd_overrides = null)
   }
   $pzucd_template_arr = pzucd_get_the_template($pzucd_template);
 
-
   $pzucd_stuff = new pzucd_Display();
   $pzucd_stuff->render($pzucd_template_arr, $pzucd_overrides);
-
 
   return $pzucd_stuff->output;
 

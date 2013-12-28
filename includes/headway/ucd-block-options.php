@@ -64,11 +64,11 @@ class HeadwayUltimateContentDisplayBlockOptions extends HeadwayBlockOptionsAPI {
 		$pzucd_layouts = array();
 		if (!$just_defaults)
 		{
-			$pzucd_layouts	 = self::pzucd_get_layouts(true);
+			$pzucd_layouts	 = self::get_layouts(true);
 			$pzucd_layouts	 = array_merge(array('none' => 'None selected'), $pzucd_layouts);
-			$pzucd_templates = self::pzucd_get_templates(true);
+			$pzucd_templates = self::get_templates(true);
 			$pzucd_templates = array_merge(array('none' => 'None selected'), $pzucd_templates);
-			$pzucd_content	 = self::pzucd_get_content(true);
+			$pzucd_content	 = self::get_content(true);
 			$pzucd_content	 = array_merge(array('none' => 'None selected'), $pzucd_content);
 		} else {
       $pzucd_layouts	 = array();
@@ -77,41 +77,52 @@ class HeadwayUltimateContentDisplayBlockOptions extends HeadwayBlockOptionsAPI {
 
     }
 		$settings = array(
-			'pzucd-sections' => array(
-				'type'		 => 'repeater',
-				'name'		 => 'pzucd-sections',
-				'label'		 => 'Sections',
-				'tooltip'	 => 'You can create sections in your Ultimate ContentDisplay block. For example, you might create two sections, one to show the first post in full, then a 3x3 grid of older posts, and then maybe a bulleted list of the next 10 posts. Maximum 3 sections',
-				'default'	 => null,
-				'inputs'	 => array(
-					'pzucd-cell-layout'	 => array(
-						'type'		 => 'select',
-						'name'		 => 'pzucd-cell-layout',
-						'label'		 => __('Cell layout set', 'pzpzucd'),
-						'default'	 => 'none',
-						'options'	 => $pzucd_layouts,
-						'tooltip'	 => __('Choose a set of layouts for the cells in this section. Layouts are created in WP admin in the PizazzWP > UltimateContentDisplay Layouts menu', 'pzpzucd')
-					),
-					'pzucd-content'			 => array(
-						'type'		 => 'select',
-						'name'		 => 'pzucd-content',
-						'label'		 => __('Content', 'pzpzucd'),
-						'default'	 => 'none',
-						'options'	 => $pzucd_content,
-						'tooltip'	 => __('Choose a set of layouts for the cells in this section. Layouts are created in WP admin in the PizazzWP > UltimateContentDisplay Layouts menu', 'pzpzucd')
-					),
-					'pzucd-template'		 => array(
-						'type'		 => 'select',
-						'name'		 => 'pzucd-template',
-						'label'		 => __('Template', 'pzpzucd'),
-						'default'	 => 'none',
-						'options'	 => $pzucd_templates,
-						'tooltip'	 => __('Choose a set of layouts for the cells in this section. Layouts are created in WP admin in the PizazzWP > UltimateContentDisplay Layouts menu', 'pzpzucd')
-					),
-				),
-				'sortable' => true,
-				'limit'		 => 2
-			),
+//			'pzucd-sections' => array(
+//				'type'		 => 'repeater',
+//				'name'		 => 'pzucd-sections',
+//				'label'		 => 'Sections',
+//				'tooltip'	 => 'You can create sections in your Ultimate ContentDisplay block. For example, you might create two sections, one to show the first post in full, then a 3x3 grid of older posts, and then maybe a bulleted list of the next 10 posts. Maximum 3 sections',
+//				'default'	 => null,
+//				'inputs'	 => array(
+//					'pzucd-cell-layout'	 => array(
+//						'type'		 => 'select',
+//						'name'		 => 'pzucd-cell-layout',
+//						'label'		 => __('Cell layout set', 'pzpzucd'),
+//						'default'	 => 'none',
+//						'options'	 => $pzucd_layouts,
+//						'tooltip'	 => __('Choose a set of layouts for the cells in this section. Layouts are created in WP admin in the PizazzWP > UltimateContentDisplay Layouts menu', 'pzpzucd')
+//					),
+//					'pzucd-content'			 => array(
+//						'type'		 => 'select',
+//						'name'		 => 'pzucd-content',
+//						'label'		 => __('Content', 'pzpzucd'),
+//						'default'	 => 'none',
+//						'options'	 => $pzucd_content,
+//						'tooltip'	 => __('Choose a set of layouts for the cells in this section. Layouts are created in WP admin in the PizazzWP > UltimateContentDisplay Layouts menu', 'pzpzucd')
+//					),
+//					'pzucd-template'		 => array(
+//						'type'		 => 'select',
+//						'name'		 => 'pzucd-template',
+//						'label'		 => __('Template', 'pzpzucd'),
+//						'default'	 => 'none',
+//						'options'	 => $pzucd_templates,
+//						'tooltip'	 => __('Choose a set of layouts for the cells in this section. Layouts are created in WP admin in the PizazzWP > UltimateContentDisplay Layouts menu', 'pzpzucd')
+//					),
+//				),
+//				'sortable' => true,
+//				'limit'		 => 2
+//			),
+      'pzucd-template'		 => array(
+        'type'		 => 'select',
+        'name'		 => 'pzucd-template',
+        'label'		 => __('Template', 'pzpzucd'),
+        'default'	 => 'none',
+        'options'	 => $pzucd_templates,
+        'tooltip'	 => __('Choose a set of layouts for the cells in this section. Layouts are created in WP admin in the PizazzWP > UltimateContentDisplay Layouts menu', 'pzpzucd')
+      ),
+
+
+
 		);
 		return $settings;
 	}
@@ -206,11 +217,11 @@ class HeadwayUltimateContentDisplayBlockOptions extends HeadwayBlockOptionsAPI {
 	  }
 	 */
 
-	static function pzucd_get_layouts($pzucd_inc_width) {
+	static function get_layouts($pzucd_inc_width) {
 		global $wp_query;
 		$query_options = array(
 			'post_type'	 => 'ucd-layouts',
-			'meta_key'	 => 'pzucd_layout-short-name',
+			'meta_key'	 => '_pzucd_layout-short-name',
 		);
 		$layouts_query = new WP_Query($query_options);
 		$pzucd_return	 = array();
@@ -220,7 +231,7 @@ class HeadwayUltimateContentDisplayBlockOptions extends HeadwayBlockOptionsAPI {
 			$pzucd_settings = get_post_custom();
 
 			//				if (!array_key_exists($pzucd_settings['pzucd_layout-set-name'][0],$pzucd_return)) {
-			$pzucd_return[$pzucd_settings['pzucd_layout-set-name'][0]] = $pzucd_settings['pzucd_layout-set-name'][0];
+			$pzucd_return[$pzucd_settings['_pzucd_layout-short-name'][0]] = get_the_title();
 			//				} else {
 			//					preg_match("/(\\d)*(?=\\))/u", $pzucd_return[$pzucd_settings['pzucd_layout-set-name'][0]],$matches);
 			//					$pzucd_return[$pzucd_settings['pzucd_layout-set-name'][0]] = $pzucd_settings['pzucd_layout-set-name'][0].' ('.($matches[0]+1).')';
@@ -231,13 +242,15 @@ class HeadwayUltimateContentDisplayBlockOptions extends HeadwayBlockOptionsAPI {
 		return $pzucd_return;
 	}
 
-	static function pzucd_get_templates($pzucd_inc_width) {
+	static function get_templates($pzucd_inc_width) {
 		global $wp_query;
 		$query_options	 = array(
 			'post_type'	 => 'ucd-templates',
-			'meta_key'	 => 'pzucd_template-short-name',
+			'meta_key'	 => '_pzucd_template-short-name',
 		);
 		$templates_query = new WP_Query($query_options);
+//    pzdebug((array) $templates_query);
+//    die();
 		$pzucd_return		 = array();
 		while ($templates_query->have_posts())
 		{
@@ -245,7 +258,7 @@ class HeadwayUltimateContentDisplayBlockOptions extends HeadwayBlockOptionsAPI {
 			$pzucd_settings = get_post_custom();
 
 			//				if (!array_key_exists($pzucd_settings['pzucd_layout-set-name'][0],$pzucd_return)) {
-			$pzucd_return[$pzucd_settings['pzucd_template-set-name'][0]] = $pzucd_settings['pzucd_template-set-name'][0];
+			$pzucd_return[$pzucd_settings['_pzucd_template-short-name'][0]] = get_the_title();
 			//				} else {
 			//					preg_match("/(\\d)*(?=\\))/u", $pzucd_return[$pzucd_settings['pzucd_layout-set-name'][0]],$matches);
 			//					$pzucd_return[$pzucd_settings['pzucd_layout-set-name'][0]] = $pzucd_settings['pzucd_layout-set-name'][0].' ('.($matches[0]+1).')';
@@ -256,11 +269,11 @@ class HeadwayUltimateContentDisplayBlockOptions extends HeadwayBlockOptionsAPI {
 		return $pzucd_return;
 	}
 
-	static function pzucd_get_content($pzucd_inc_width) {
+	static function get_content($pzucd_inc_width) {
 		global $wp_query;
 		$query_options = array(
 			'post_type'	 => 'ucd-criterias',
-			'meta_key'	 => 'pzucd_criteria-name',
+			'meta_key'	 => '_pzucd_criteria-name',
 		);
 		$content_query = new WP_Query($query_options);
 		$pzucd_return	 = array();
@@ -270,7 +283,7 @@ class HeadwayUltimateContentDisplayBlockOptions extends HeadwayBlockOptionsAPI {
 			$pzucd_settings = get_post_custom();
 
 			//				if (!array_key_exists($pzucd_settings['pzucd_layout-set-name'][0],$pzucd_return)) {
-			$pzucd_return[$pzucd_settings['pzucd_criteria-name'][0]] = $pzucd_settings['pzucd_criteria-name'][0];
+			$pzucd_return[$pzucd_settings['_pzucd_criteria-name'][0]] = get_the_title();
 			//				} else {
 			//					preg_match("/(\\d)*(?=\\))/u", $pzucd_return[$pzucd_settings['pzucd_layout-set-name'][0]],$matches);
 			//					$pzucd_return[$pzucd_settings['pzucd_layout-set-name'][0]] = $pzucd_settings['pzucd_layout-set-name'][0].' ('.($matches[0]+1).')';

@@ -155,7 +155,7 @@ function pzucd_criterias_metabox($meta_boxes = array()){
       'name' => __('Criteria name', 'pzucd'),
       'id' => $prefix . 'criteria-name',
       'type' => 'text',
-      'default' => '',
+      
       'help' => __('Create re-usable sets of criteria')
     ),
     array(
@@ -255,7 +255,7 @@ function pzucd_criterias_metabox($meta_boxes = array()){
       'name' => __('Taxonomies', 'pzucd'),
       'id' => $prefix . 'criteria-filters-taxonomies-heading',
       'type' => 'title',
-      'default' => '',
+      
     ),
     array(
       'name' => __('Include categories', 'pzucd'),
@@ -309,7 +309,7 @@ function pzucd_criterias_metabox($meta_boxes = array()){
       'name' => __('Others', 'pzucd'),
       'id' => $prefix . 'criteria-filters-others-heading',
       'type' => 'title',
-      'default' => '',
+      
     ),
     array(
       'name' => __('Days to show', 'pzucd'),
@@ -323,7 +323,7 @@ function pzucd_criterias_metabox($meta_boxes = array()){
       'id' => $prefix . 'criteria-days-until',
       'type' => 'text',
       'cols'=>6,
-      'default' => '',
+      
     ),
     array(
       'name' => __('Authors', 'pzucd'),

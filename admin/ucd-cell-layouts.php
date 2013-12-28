@@ -243,11 +243,9 @@ function pzucd_cell_designer_settings_meta($meta_boxes = array())
                   'name'       => __('Short name', 'pzucd'),
                   'id'         => $prefix . 'layout-short-name',
                   'type'       => 'text',
-                  'default'    => '',
                   'cols'       => 12,
                   'tooltip'    => __('A short name for this cell layout. This enables you to create sets of layouts for different parent dimensions. That is, when the dimensions of the parent change, the layout will change accordingly. Traditional responsive design is based on the width of your device\'s screen,; however this fails if you place the object in a narrow column on a large screen,', 'pzucd'),
                   'help'       => __('Create sets of layouts with each layout in a set for different parent dimensions'),
-                  'validation' => 'data-validation-engine="validate[required]"'
           ),
 
           //    array(
@@ -545,7 +543,7 @@ function pzucd_cell_formats_meta($meta_boxes = array())
                   'name'    => __('CSS instructions', 'pzucd'),
                   'id'      => $prefix . 'layout-format-instructions',
                   'type'    => 'pzinfo',
-                  'default' => '',
+                  
                   'desc'    => __('Enter CSS declarations, such as: background:#123; color:#abc; font-size:1.6em; padding:1%;', 'pzucd') . '<br/>' . __('As much as possible, use fluid units (%,em) if you want to ensure maximum responsiveness.', 'pzucd') . '<br/>' .
                           __('The base font size is 10px. So, for example, to get a font size of 14px, use 1.4em. Even better is using relative ems i.e. rem.')
           ),
@@ -555,7 +553,7 @@ function pzucd_cell_formats_meta($meta_boxes = array())
                   'type'    => 'textarea',
                   'rows'    => 1,
                   'cols'    => 6,
-                  'default' => '',
+                  
                   'class'   => '.pzucd_cells',
                   'help'    => 'Declarations only for class: .pzucd_cells',
                   //     'desc'    => __('Format the cells', 'pzucd')
@@ -575,7 +573,7 @@ function pzucd_cell_formats_meta($meta_boxes = array())
                   'type'    => 'textarea',
                   'rows'    => 1,
                   'cols'    => 6,
-                  'default' => '',
+                  
                   'help'    => 'Declarations only for class: .pzucd_components',
                   //     'desc'    => __('Format the components group', 'pzucd')
           ),
@@ -593,7 +591,7 @@ function pzucd_cell_formats_meta($meta_boxes = array())
                   'type'    => 'textarea',
                   'rows'    => 1,
                   'cols'    => 6,
-                  'default' => '',
+                  
                   'help'    => 'Declarations only for class: .pzucd_entry_title and .pzucd_entry_title a',
                   //      'desc'    => __('Format the entry title', 'pzucd')
           ),
@@ -610,7 +608,7 @@ function pzucd_cell_formats_meta($meta_boxes = array())
                   'id'      => $prefix . 'layout-format-entry-title-hover',
                   'type'    => 'textarea',
                   'rows'    => 1,
-                  'default' => '',
+                  
                   'help'    => 'Declarations only for class: .pzucd_entry_title a:hover',
                   //      'desc'    => __('Format the entry title link hover', 'pzucd')
           ),
@@ -619,7 +617,7 @@ function pzucd_cell_formats_meta($meta_boxes = array())
                   'id'      => $prefix . 'layout-format-entry-meta',
                   'type'    => 'textarea',
                   'rows'    => 1,
-                  'default' => '',
+                  
                   'help'    => 'Declarations only for class: .pzucd_entry_meta',
                   //     'desc'    => __('Format the entry meta', 'pzucd')
           ),
@@ -628,7 +626,7 @@ function pzucd_cell_formats_meta($meta_boxes = array())
                   'id'      => $prefix . 'layout-format-entry-meta-link',
                   'type'    => 'textarea',
                   'rows'    => 1,
-                  'default' => '',
+                  
                   'help'    => 'Declarations only for class: .pzucd_entry_meta a',
                   //     'desc'    => __('Format the entry meta link', 'pzucd')
           ),
@@ -637,7 +635,7 @@ function pzucd_cell_formats_meta($meta_boxes = array())
                   'id'      => $prefix . 'layout-format-entry-meta-link-hover',
                   'type'    => 'textarea',
                   'rows'    => 1,
-                  'default' => '',
+                  
                   'help'    => 'Declarations only for class: .pzucd_entry_meta a:hover',
                   //     'desc'    => __('Format the entry meta link hover', 'pzucd')
           ),
@@ -646,7 +644,7 @@ function pzucd_cell_formats_meta($meta_boxes = array())
                   'id'      => $prefix . 'layout-format-entry-content',
                   'type'    => 'textarea',
                   'rows'    => 1,
-                  'default' => '',
+                  
                   'help'    => 'Declarations only for class: .pzucd_entry_content',
                   //     'desc'    => __('Format the entry content', 'pzucd')
           ),
@@ -655,7 +653,7 @@ function pzucd_cell_formats_meta($meta_boxes = array())
                   'id'      => $prefix . 'layout-format-entry-content-links',
                   'type'    => 'textarea',
                   'rows'    => 1,
-                  'default' => '',
+                  
                   'help'    => 'Declarations only for class: .pzucd_entry_content a',
                   //     'desc'    => __('Format the entry content', 'pzucd')
           ),
@@ -664,7 +662,7 @@ function pzucd_cell_formats_meta($meta_boxes = array())
                   'id'      => $prefix . 'layout-format-entry-content-link-hover',
                   'type'    => 'textarea',
                   'rows'    => 1,
-                  'default' => '',
+                  
                   'help'    => 'Declarations only for class: .pzucd_entry_content a:hover',
                   //     'desc'    => __('Format the entry content link hover', 'pzucd')
           ),
@@ -673,7 +671,7 @@ function pzucd_cell_formats_meta($meta_boxes = array())
                   'id'      => $prefix . 'layout-format-entry-fimage',
                   'type'    => 'textarea',
                   'rows'    => 1,
-                  'default' => '',
+                  
                   'help'    => 'Declarations only for class: .pzucd_entry_featured_image',
                   //     'desc'    => __('Format the entry featured image', 'pzucd')
           ),
@@ -682,7 +680,7 @@ function pzucd_cell_formats_meta($meta_boxes = array())
                   'id'      => $prefix . 'layout-format-entry-readmore',
                   'type'    => 'textarea',
                   'rows'    => 1,
-                  'default' => '',
+                  
                   'help'    => 'Declarations only for class: a.pzucd_readmore',
                   //     'desc'    => __('Format the content "Read more" link', 'pzucd')
           ),
@@ -691,7 +689,7 @@ function pzucd_cell_formats_meta($meta_boxes = array())
                   'id'      => $prefix . 'layout-format-entry-readmore-hover',
                   'type'    => 'textarea',
                   'rows'    => 1,
-                  'default' => '',
+                  
                   'help'    => 'Declarations only for class: a.pzucd_readmore:hover',
                   //     'desc'    => __('Format the content "Read more" link hover', 'pzucd')
           ),
@@ -722,7 +720,7 @@ function draw_cell_layout()
         <span class="pzucd-draggable pzucd-draggable-title" title="Post title" data-idcode=title ><span>This is the title</span></span>
         <span class="pzucd-draggable pzucd-draggable-meta1 pzucd-draggable-meta" title="Meta info 1" data-idcode=meta1 ><span>Jan 1 2013</span></span>
         <span class="pzucd-draggable pzucd-draggable-excerpt" title="Excerpt with featured image" data-idcode=excerpt ><span><img src="' . PZUCD_PLUGIN_URL . '/assets/images/sample-image.jpg" style="max-width:20%;padding:2px;" class="pzucd-align-none">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam quis justo erat. Cras semper sem hendre...[more]</span></span>
-        <span class="pzucd-draggable pzucd-draggable-content" title="Full post content" data-idcode=content ><span><img src="' . PZUCD_PLUGIN_URL . '/assets/images/sample-image.jpg" style="max-width:30%;float:left;padding:5px;">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam quis justo erat. <ul><li>&nbsp;•&nbsp;Cras semper sem hendrerit</li><li>&nbsp;•&nbsp;Tortor porta at auctor</li></ul><strong>Lacus consequat</strong><p>Pellentesque pulvinar iaculis tellus in blandit. Suspendisse rhoncus, magna vel eleifend cursus, turpis odio molestie urna, quis posuere eros risus quis neque. </p><p>Donec dictum leo at erat mattis sollicitudin. Nunc vulputate nisl suscipit enim adipiscing faucibus. Ut faucibus sem non sapien rutrum gravida. Maecenas pharetra mi et velit posuere ac elementum mi tincidunt. Nullam tristique tempus odio id rutrum. Nam ligula urna, semper eget elementum nec, euismod at tortor. Duis commodo, purus id posuere aliquam, orci felis facilisis odio, ac sagittis mi nisl at nibh. Sed non risus eu quam euismod faucibus.</p><p>Proin mattis convallis scelerisque. Curabitur auctor felis id sapien dictum vehicula. Aenean euismod porttitor dictum. Vestibulum nulla leo, volutpat quis tempus eu, accumsan eget ante.</p></span></span>
+        <span class="pzucd-draggable pzucd-draggable-content" title="Full post content" data-idcode=content ><span><img src="' . PZUCD_PLUGIN_URL . '/assets/images/sample-image.jpg" style="max-width:30%;float:left;padding:5px;">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam quis justo erat. <ul><li>&nbsp;•&nbsp;Cras semper sem hendrerit</li><li>&nbsp;•&nbsp;Tortor porta at auctor</li></ul><strong>Lacus consequat</strong><p>Pellentesque pulvinar iaculis tellus in blandit. Suspendisse rhoncus, magna vel eleifend cursus, turpis odio molestie urna, quis posuere eros risus quis neque. </p></span></span>
         <span class="pzucd-draggable pzucd-draggable-image" title="Featured image" data-idcode=image style="max-height: 100px; overflow: hidden;"><span><img src="' . PZUCD_PLUGIN_URL . '/assets/images/sample-image.jpg" style="max-width:100%;"></span></span>
         <span class="pzucd-draggable pzucd-draggable-meta2 pzucd-draggable-meta" title="Meta info 2" data-idcode=meta2 ><span>Categories - News, Sport</span></span>
         <span class="pzucd-draggable pzucd-draggable-meta3 pzucd-draggable-meta" title="Meta info 3" data-idcode=meta3 ><span>Comments: 27</span></span>
@@ -740,7 +738,7 @@ function draw_cell_layout()
   return $return_html;
 }
 
-add_action('save_post', 'save_ucd_layouts');
+add_action('pre_post_update', 'save_ucd_layouts');
 function save_ucd_layouts($postid)
 {
   $screen = get_current_screen();
@@ -800,13 +798,13 @@ function save_ucd_layouts($postid)
     {
       if (strpos($key, '-format-') && !empty($value[ 0 ]) && !empty($pzucd_cells[ $key . '-classes' ][ 0 ]))
       {
-        $pzucd_classes = '.pzucd-' . $postid . '-' . $pzucd_cells[ '_pzucd_layout-short-name' ][ 0 ] . ' ' . str_replace(',', ', .pzucd-' . $postid . '-' . $pzucd_cells[ '_pzucd_layout-short-name' ][ 0 ] . ' ', $pzucd_cells[ $key . '-classes' ][ 0 ]);
+        $pzucd_classes = '.pzucd-' . $postid  . ' ' . str_replace(',', ', .pzucd-' . $postid  . ' ', $pzucd_cells[ $key . '-classes' ][ 0 ]);
         $pzucd_contents .= $pzucd_classes . ' {' . $value[ 0 ] . '}' . "\n";
       }
-      $pzucd_tb = ($pzucd_cells[ '_pzucd_layout-sections-position' ][ 0 ] == 'left' || $pzucd_cells[ '_pzucd_layout-sections-position' ][ 0 ] == 'right' ? 'top' : $pzucd_cells[ '_pzucd_layout-sections-position' ][ 0 ]);
-      $pzucd_lr = ($pzucd_cells[ '_pzucd_layout-sections-position' ][ 0 ] == 'top' || $pzucd_cells[ '_pzucd_layout-sections-position' ][ 0 ] == 'bottom' ? 'left' : $pzucd_cells[ '_pzucd_layout-sections-position' ][ 0 ]);
-      $pzucd_contents .= '.pzucd-' . $postid . '-' . $pzucd_cells[ '_pzucd_layout-short-name' ][ 0 ] . ' .pzucd-components {' . $pzucd_tb . ':' . $pzucd_cells[ '_pzucd_layout-nudge-section-y' ][ 0 ] . '%;' . $pzucd_lr . ':' . $pzucd_cells[ '_pzucd_layout-nudge-section-x' ][ 0 ] . '%;width:' . $pzucd_cells[ '_pzucd_layout-sections-widths' ][ 0 ] . '%;}';
     }
+    $pzucd_tb = ($pzucd_cells[ '_pzucd_layout-sections-position' ][ 0 ] == 'left' || $pzucd_cells[ '_pzucd_layout-sections-position' ][ 0 ] == 'right' ? 'top' : $pzucd_cells[ '_pzucd_layout-sections-position' ][ 0 ]);
+    $pzucd_lr = ($pzucd_cells[ '_pzucd_layout-sections-position' ][ 0 ] == 'top' || $pzucd_cells[ '_pzucd_layout-sections-position' ][ 0 ] == 'bottom' ? 'left' : $pzucd_cells[ '_pzucd_layout-sections-position' ][ 0 ]);
+    $pzucd_contents .= '.pzucd-' . $postid  . ' .pzucd-components {' . $pzucd_tb . ':' . $pzucd_cells[ '_pzucd_layout-nudge-section-y' ][ 0 ] . '%;' . $pzucd_lr . ':' . $pzucd_cells[ '_pzucd_layout-nudge-section-x' ][ 0 ] . '%;width:' . $pzucd_cells[ '_pzucd_layout-sections-widths' ][ 0 ] . '%;}';
 
 
 // by this point, the $wp_filesystem global should be working, so let's use it to create a file
