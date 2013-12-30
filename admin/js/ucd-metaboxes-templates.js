@@ -94,10 +94,11 @@ jQuery(document).ready(function () {
   }
 
   function pzucd_update_cell_count(i,t) {
-    console.log(i,t,t.value);
+    console.log(t.value);
     jQuery('.pzucd-section-'+i).empty();
     var plugin_url = jQuery('.field.Pizazz_Layout_Field .plugin_url').get(0).textContent;
-    for (var j = 1; j <= t.value; j++) {
+    var show_count = (t.value==0?10: t.value);
+    for (var j = 1; j <= show_count; j++) {
       // Need to setup a field to enable random heights in preview
 
 //      if (true) {

@@ -59,7 +59,7 @@
 
 
 
-    $celldefs[ 'page' ] = array();
+    $celldefs[ 'page' ] = $celldefs[ 'post' ];
 
      $celldefs[ 'excerpt' ]['wrapper'] = '<div id="post-{{postid}}" class="pzucd-postexcerpt post-{{postid}} post type-{{posttype}} status-{{poststatus}} format-{{postformat}} hentry {{category-categories}} {{tag-tags}}">{{wrapperinnards}}</div>';
       $celldefs[ 'excerpt' ]['header'] = '<header class="entry-header">{{headerinnards}}</header><!-- .entry-header -->';

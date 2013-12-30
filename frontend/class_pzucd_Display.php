@@ -32,9 +32,9 @@ class pzucd_Display
  * opens the ucd container
  *
  */
- function template_header()
+ function template_header($template_id)
   {
-    $this->output .= '<div id="pzucd=container-' . $this->template[ 'template-short-name' ] . '" class="pzucd-container">';
+    $this->output .= '<div id="pzucd=container-' . $this->template[ 'template-short-name' ] . '" class="pzucd-container pzucd-template-'.$template_id.'">';
     if ($this->template[ 'template-pager' ] == 'hover')
     {
       $this->output .= '{{pager}}';
@@ -161,7 +161,7 @@ class pzucd_Display
 
     // The outer wrapper
     // use a method so we can swap it out in the future with different template headers
-    self::template_header();
+    self::template_header($this->template['template-id']);
     // Cell defs will need to be a little more flexible to cater for for mixed sections of full and excerpts.
 
     $celldef = pzucd_celldef($content_type);
@@ -178,10 +178,10 @@ class pzucd_Display
 
       // load up the cell's css for this section
       $cellid =$section_info['section-cell-layout'];
-      if (!empty($cellid)) {
+      if (!empty($this->template['template-id'])) {
         $upload_dir = wp_upload_dir();
-        $filename   = trailingslashit($upload_dir[ 'baseurl' ]) . '/cache/pizazzwp/ucd/pzucd-cell-layout-' . $cellid . '.css';
-        wp_enqueue_style('cells-css'.$cellid,$filename);
+        $filename   = trailingslashit($upload_dir[ 'baseurl' ]) . '/cache/pizazzwp/ucd/pzucd-template-' . $this->template['template-id'] . '.css';
+        wp_enqueue_style('template-css'.$this->template['template-id'],$filename);
       }
 
       $this->section_info = $section_info;
@@ -192,12 +192,12 @@ class pzucd_Display
         $this->output .= '{{nav-left-outside}}';
         if ($section_info[ 'section-layout-mode' ] == 'basic')
         {
-          $this->output .= '<div class="pzucd-section pzucd-section-' . $key . '">';
+          $this->output .= '<div class="pzucd-section pzucd-section-' . ($key+1) . '">';
         }
         else
         {
 //        $this->output .= '<div class="js-isotope pzucd-section pzucd-section-' . $key . '" data-isotope-options=\'{ "layoutMode": "'.$pzucd_section_info['section-layout-mode'].'","itemSelector": ".pzucd-cell" }\'>';
-          $this->output .= '<div class="pzucd-section pzucd-section-' . $key . '">';
+          $this->output .= '<div class="pzucd-section pzucd-section-' . ($key+1) . '">';
         }
 
         if ($pzucd_query->have_posts())
@@ -219,12 +219,12 @@ class pzucd_Display
 //          $this->output = apply_filters('pzucd_comments',$this->output);
 
             // Leave the while loop if up to the post count
-            if (++$i > $section_info['section-cells-per-view']){break;} 
+            if ($section_info['section-cells-per-view'] != 0 && ++$i > $section_info['section-cells-per-view']){break;}
             
           } // End WP loop - tho we might use it some more
           $this->output .= '{{nav-bottom-inside}}';
         }
-        $this->output .= '</div><!-- end pzucd-section-' . $key . ' -->';
+        $this->output .= '</div><!-- end pzucd-section-' . ($key+1) . ' -->';
         $this->output .= '{{nav-top-outside}}';
         $this->output .= '{{nav-left-outside}}';
 

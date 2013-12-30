@@ -434,6 +434,191 @@ function pzucd_cell_designer_settings_meta($meta_boxes = array())
 
   return $meta_boxes;
 }
+add_filter('cmb_meta_boxes', 'pzucd_cell_formats_meta');
+function pzucd_cell_formats_meta($meta_boxes = array())
+{
+  $prefix        = '_pzucd_';
+  $fields        = array(
+          array(
+                  'id'   => $prefix . 'layout-styling-header',
+                  'name' => 'Styling',
+                  'type' => 'title',
+                  'cols'=>12,
+                  'desc'    => __('Ultimate Content Display uses standard WordPress class names as much as possible, so your UCD templates will inherit styling from your theme if it uses these. Below you can add your own styling and classes. Enter CSS declarations, such as: background:#123; color:#abc; font-size:1.6em; padding:1%;', 'pzucd') . '<br/>' . __('As much as possible, use fluid units (%,em) if you want to ensure maximum responsiveness.', 'pzucd') . '<br/>' .
+                          __('The base font size is 10px. So, for example, to get a font size of 14px, use 1.4em. Even better is using relative ems i.e. rem.')
+          ),
+          array(
+                  'name'    => __('Cells', 'pzucd'),
+                  'id'      => $prefix . 'layout-format-cells',
+                  'type'    => 'textarea',
+                  'rows'    => 1,
+                  'cols'    => 6,
+                  'help'    => 'Declarations only for class: .pzucd_cells',
+          ),
+          array(
+                  'name'    => __('Cells Classes', 'pzucd'),
+                  'id'      => $prefix . 'layout-format-cells-classes',
+                  'type'    => 'text',
+                  'cols'    => 6,
+                  'default' => '.pzucd-cells',
+          ),
+          array(
+                  'name'    => __('Entry section', 'pzucd'),
+                  'id'      => $prefix . 'layout-format-entry',
+                  'type'    => 'textarea',
+                  'rows'    => 1,
+                  'cols'    => 6,
+                  'help'    => 'Declarations only for class: .hentry',
+          ),
+          array(
+                  'name'    => __('Entry Classes', 'pzucd'),
+                  'id'      => $prefix . 'layout-format-entry-classes',
+                  'type'    => 'text',
+                  'cols'    => 6,
+                  'default' => '.hentry',
+          ),
+          array(
+                  'name'    => __('Components group', 'pzucd'),
+                  'id'      => $prefix . 'layout-format-components-group',
+                  'type'    => 'textarea',
+                  'rows'    => 1,
+                  'cols'    => 6,
+                  'help'    => 'Declarations only for class: .pzucd_components',
+          ),
+          array(
+                  'name'    => __('Components Group Classes', 'pzucd'),
+                  'id'      => $prefix . 'layout-format-components-group-classes',
+                  'type'    => 'text',
+                  'rows'    => 1,
+                  'cols'    => 6,
+                  'default' => '.pzucd-components',
+          ),
+          array(
+                  'name'    => __('Entry title', 'pzucd'),
+                  'id'      => $prefix . 'layout-format-entry-title',
+                  'type'    => 'textarea',
+                  'rows'    => 1,
+                  'cols'    => 6,
+                  'help'    => 'Declarations only for class: .pzucd_entry_title and .pzucd_entry_title a',
+                  //      'desc'    => __('Format the entry title', 'pzucd')
+          ),
+          array(
+                  'name'    => __('Entry Title Classes', 'pzucd'),
+                  'id'      => $prefix . 'layout-format-entry-title-classes',
+                  'type'    => 'text',
+                  'cols'    => 6,
+                  'default' => '.entry-title, .entry-title a',
+          ),
+          array(
+                  'name'    => __('Entry title hover', 'pzucd'),
+                  'id'      => $prefix . 'layout-format-entry-title-hover',
+                  'type'    => 'textarea',
+                  'rows'    => 1,
+
+                  'help'    => 'Declarations only for class: .pzucd_entry_title a:hover',
+                  //      'desc'    => __('Format the entry title link hover', 'pzucd')
+          ),
+          array(
+                  'name'    => __('Entry meta', 'pzucd'),
+                  'id'      => $prefix . 'layout-format-entry-meta',
+                  'type'    => 'textarea',
+                  'rows'    => 1,
+                  'cols' => 6,
+                  'help'    => 'Declarations only for class: .pzucd_entry_meta',
+                  //     'desc'    => __('Format the entry meta', 'pzucd')
+          ),
+          array(
+                  'name'    => __('Entry Meta Classes', 'pzucd'),
+                  'id'      => $prefix . 'layoutt-format-entry-meta-classes',
+                  'type'    => 'text',
+                  'rows'    => 1,
+                  'cols'    => 6,
+                  'default' => ' .entry-meta',
+          ),
+          array(
+                  'name'    => __('Entry meta links', 'pzucd'),
+                  'id'      => $prefix . 'layout-format-entry-meta-link',
+                  'type'    => 'textarea',
+                  'rows'    => 1,
+
+                  'help'    => 'Declarations only for class: .pzucd_entry_meta a',
+                  //     'desc'    => __('Format the entry meta link', 'pzucd')
+          ),
+          array(
+                  'name'    => __('Entry meta link hover', 'pzucd'),
+                  'id'      => $prefix . 'layout-format-entry-meta-link-hover',
+                  'type'    => 'textarea',
+                  'rows'    => 1,
+
+                  'help'    => 'Declarations only for class: .pzucd_entry_meta a:hover',
+                  //     'desc'    => __('Format the entry meta link hover', 'pzucd')
+          ),
+          array(
+                  'name'    => __('Entry content', 'pzucd'),
+                  'id'      => $prefix . 'layout-format-entry-content',
+                  'type'    => 'textarea',
+                  'rows'    => 1,
+
+                  'help'    => 'Declarations only for class: .pzucd_entry_content',
+                  //     'desc'    => __('Format the entry content', 'pzucd')
+          ),
+          array(
+                  'name'    => __('Entry content links', 'pzucd'),
+                  'id'      => $prefix . 'layout-format-entry-content-links',
+                  'type'    => 'textarea',
+                  'rows'    => 1,
+
+                  'help'    => 'Declarations only for class: .pzucd_entry_content a',
+                  //     'desc'    => __('Format the entry content', 'pzucd')
+          ),
+          array(
+                  'name'    => __('Entry content link hover', 'pzucd'),
+                  'id'      => $prefix . 'layout-format-entry-content-link-hover',
+                  'type'    => 'textarea',
+                  'rows'    => 1,
+
+                  'help'    => 'Declarations only for class: .pzucd_entry_content a:hover',
+                  //     'desc'    => __('Format the entry content link hover', 'pzucd')
+          ),
+          array(
+                  'name'    => __('Entry featured image', 'pzucd'),
+                  'id'      => $prefix . 'layoutt-format-entry-fimage',
+                  'type'    => 'textarea',
+                  'rows'    => 1,
+
+                  'help'    => 'Declarations only for class: .pzucd_entry_featured_image',
+                  //     'desc'    => __('Format the entry featured image', 'pzucd')
+          ),
+          array(
+                  'name'    => __('Read more', 'pzucd'),
+                  'id'      => $prefix . 'layout-format-entry-readmore',
+                  'type'    => 'textarea',
+                  'rows'    => 1,
+
+                  'help'    => 'Declarations only for class: a.pzucd_readmore',
+                  //     'desc'    => __('Format the content "Read more" link', 'pzucd')
+          ),
+          array(
+                  'name'    => __('Read more hover', 'pzucd'),
+                  'id'      => $prefix . 'layoutt-format-entry-readmore-hover',
+                  'type'    => 'textarea',
+                  'rows'    => 1,
+
+                  'help'    => 'Declarations only for class: a.pzucd_readmore:hover',
+                  //     'desc'    => __('Format the content "Read more" link hover', 'pzucd')
+          ),
+
+
+
+  );
+  $meta_boxes[ ] = array(
+          'title'  => 'Styling',
+          'pages'  => 'ucd-layouts',
+          'fields' => $fields
+  );
+
+  return $meta_boxes;
+}
 
 add_filter('cmb_meta_boxes', 'pzucd_cell_settings_meta');
 function pzucd_cell_settings_meta($meta_boxes = array())
@@ -446,7 +631,7 @@ function pzucd_cell_settings_meta($meta_boxes = array())
                   'type' => 'title'
           ),
           array(
-                  'name'     => __('Titl prefix', 'pzucd'),
+                  'name'     => __('Title prefix', 'pzucd'),
                   'id'       => $prefix . 'cell-settings-title-prefix',
                   'type'     => 'select',
                   'cols'     => 4,
@@ -542,198 +727,6 @@ function pzucd_cell_settings_meta($meta_boxes = array())
   return $meta_boxes;
 }
 
-add_filter('cmb_meta_boxes', 'pzucd_cell_formats_meta');
-function pzucd_cell_formats_meta($meta_boxes = array())
-{
-  $prefix        = '_pzucd_';
-  $fields        = array(
-          array(
-                  'name'    => __('CSS instructions', 'pzucd'),
-                  'id'      => $prefix . 'layout-format-instructions',
-                  'type'    => 'pzinfo',
-                  
-                  'desc'    => __('Enter CSS declarations, such as: background:#123; color:#abc; font-size:1.6em; padding:1%;', 'pzucd') . '<br/>' . __('As much as possible, use fluid units (%,em) if you want to ensure maximum responsiveness.', 'pzucd') . '<br/>' .
-                          __('The base font size is 10px. So, for example, to get a font size of 14px, use 1.4em. Even better is using relative ems i.e. rem.')
-          ),
-          array(
-                  'name'    => __('Cells', 'pzucd'),
-                  'id'      => $prefix . 'layout-format-cells',
-                  'type'    => 'textarea',
-                  'rows'    => 1,
-                  'cols'    => 6,
-                  'help'    => 'Declarations only for class: .pzucd_cells',
-                  //     'desc'    => __('Format the cells', 'pzucd')
-          ),
-          array(
-                  'name'    => __('Cells Classes', 'pzucd'),
-                  'id'      => $prefix . 'layout-format-cells-classes',
-                  'type'    => 'text',
-                  'rows'    => 1,
-                  'cols'    => 6,
-                  'default' => ' .pzucd-cells',
-                  //      'desc'    => __('Format the entry title', 'pzucd')
-          ),
-          array(
-                  'name'    => __('Entry section', 'pzucd'),
-                  'id'      => $prefix . 'layout-format-entry',
-                  'type'    => 'textarea',
-                  'rows'    => 1,
-                  'cols'    => 6,
-                  'help'    => 'Declarations only for class: .hentry',
-                  //     'desc'    => __('Format the cells', 'pzucd')
-          ),
-          array(
-                  'name'    => __('Entry Classes', 'pzucd'),
-                  'id'      => $prefix . 'layout-format-entry-classes',
-                  'type'    => 'text',
-                  'rows'    => 1,
-                  'cols'    => 6,
-                  'default' => '.hentry',
-                  //      'desc'    => __('Format the entry title', 'pzucd')
-          ),
-          array(
-                  'name'    => __('Components group', 'pzucd'),
-                  'id'      => $prefix . 'layout-format-components-group',
-                  'type'    => 'textarea',
-                  'rows'    => 1,
-                  'cols'    => 6,
-                  
-                  'help'    => 'Declarations only for class: .pzucd_components',
-                  //     'desc'    => __('Format the components group', 'pzucd')
-          ),
-          array(
-                  'name'    => __('Components Group Classes', 'pzucd'),
-                  'id'      => $prefix . 'layout-format-components-group-classes',
-                  'type'    => 'text',
-                  'rows'    => 1,
-                  'cols'    => 6,
-                  'default' => '.pzucd-components',
-          ),
-          array(
-                  'name'    => __('Entry title', 'pzucd'),
-                  'id'      => $prefix . 'layout-format-entry-title',
-                  'type'    => 'textarea',
-                  'rows'    => 1,
-                  'cols'    => 6,
-                  
-                  'help'    => 'Declarations only for class: .pzucd_entry_title and .pzucd_entry_title a',
-                  //      'desc'    => __('Format the entry title', 'pzucd')
-          ),
-          array(
-                  'name'    => __('Entry Title Classes', 'pzucd'),
-                  'id'      => $prefix . 'layout-format-entry-title-classes',
-                  'type'    => 'text',
-                  'rows'    => 1,
-                  'cols'    => 6,
-                  'default' => '.entry-title, .entry-title a',
-          ),
-          array(
-                  'name'    => __('Entry title hover', 'pzucd'),
-                  'id'      => $prefix . 'layout-format-entry-title-hover',
-                  'type'    => 'textarea',
-                  'rows'    => 1,
-                  
-                  'help'    => 'Declarations only for class: .pzucd_entry_title a:hover',
-                  //      'desc'    => __('Format the entry title link hover', 'pzucd')
-          ),
-          array(
-                  'name'    => __('Entry meta', 'pzucd'),
-                  'id'      => $prefix . 'layout-format-entry-meta',
-                  'type'    => 'textarea',
-                  'rows'    => 1,
-                  'cols' => 6,
-                  'help'    => 'Declarations only for class: .pzucd_entry_meta',
-                  //     'desc'    => __('Format the entry meta', 'pzucd')
-          ),
-          array(
-                  'name'    => __('Entry Meta Classes', 'pzucd'),
-                  'id'      => $prefix . 'layout-format-entry-meta-classes',
-                  'type'    => 'text',
-                  'rows'    => 1,
-                  'cols'    => 6,
-                  'default' => ' .entry-meta',
-          ),
-          array(
-                  'name'    => __('Entry meta links', 'pzucd'),
-                  'id'      => $prefix . 'layout-format-entry-meta-link',
-                  'type'    => 'textarea',
-                  'rows'    => 1,
-                  
-                  'help'    => 'Declarations only for class: .pzucd_entry_meta a',
-                  //     'desc'    => __('Format the entry meta link', 'pzucd')
-          ),
-          array(
-                  'name'    => __('Entry meta link hover', 'pzucd'),
-                  'id'      => $prefix . 'layout-format-entry-meta-link-hover',
-                  'type'    => 'textarea',
-                  'rows'    => 1,
-                  
-                  'help'    => 'Declarations only for class: .pzucd_entry_meta a:hover',
-                  //     'desc'    => __('Format the entry meta link hover', 'pzucd')
-          ),
-          array(
-                  'name'    => __('Entry content', 'pzucd'),
-                  'id'      => $prefix . 'layout-format-entry-content',
-                  'type'    => 'textarea',
-                  'rows'    => 1,
-                  
-                  'help'    => 'Declarations only for class: .pzucd_entry_content',
-                  //     'desc'    => __('Format the entry content', 'pzucd')
-          ),
-          array(
-                  'name'    => __('Entry content links', 'pzucd'),
-                  'id'      => $prefix . 'layout-format-entry-content-links',
-                  'type'    => 'textarea',
-                  'rows'    => 1,
-                  
-                  'help'    => 'Declarations only for class: .pzucd_entry_content a',
-                  //     'desc'    => __('Format the entry content', 'pzucd')
-          ),
-          array(
-                  'name'    => __('Entry content link hover', 'pzucd'),
-                  'id'      => $prefix . 'layout-format-entry-content-link-hover',
-                  'type'    => 'textarea',
-                  'rows'    => 1,
-                  
-                  'help'    => 'Declarations only for class: .pzucd_entry_content a:hover',
-                  //     'desc'    => __('Format the entry content link hover', 'pzucd')
-          ),
-          array(
-                  'name'    => __('Entry featured image', 'pzucd'),
-                  'id'      => $prefix . 'layout-format-entry-fimage',
-                  'type'    => 'textarea',
-                  'rows'    => 1,
-                  
-                  'help'    => 'Declarations only for class: .pzucd_entry_featured_image',
-                  //     'desc'    => __('Format the entry featured image', 'pzucd')
-          ),
-          array(
-                  'name'    => __('Read more', 'pzucd'),
-                  'id'      => $prefix . 'layout-format-entry-readmore',
-                  'type'    => 'textarea',
-                  'rows'    => 1,
-                  
-                  'help'    => 'Declarations only for class: a.pzucd_readmore',
-                  //     'desc'    => __('Format the content "Read more" link', 'pzucd')
-          ),
-          array(
-                  'name'    => __('Read more hover', 'pzucd'),
-                  'id'      => $prefix . 'layout-format-entry-readmore-hover',
-                  'type'    => 'textarea',
-                  'rows'    => 1,
-                  
-                  'help'    => 'Declarations only for class: a.pzucd_readmore:hover',
-                  //     'desc'    => __('Format the content "Read more" link hover', 'pzucd')
-          ),
-  );
-  $meta_boxes[ ] = array(
-          'title'  => 'Styling Overrides',
-          'pages'  => 'ucd-layouts',
-          'fields' => $fields
-  );
-
-  return $meta_boxes;
-}
 
 /**
  * [draw_cell_layout description]

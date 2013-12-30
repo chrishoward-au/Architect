@@ -936,3 +936,13 @@ span.icon-generator:before {
   content: "\f308";
 }
 
+
+#template-section-1 .inside {
+  border-left:solid 4px darkred;
+}
+#template-section-2 .inside {
+  border-left:solid 4px darkblue;
+}
+#template-section-3 .inside {
+  border-left:solid 4px darkorange;
+}

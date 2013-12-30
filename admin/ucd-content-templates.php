@@ -191,7 +191,6 @@ function pzucd_template_preview_metabox($meta_boxes = array())
       'type'     => 'pzlayout',
       'readonly' => false, // Readonly fields can't be written to by code! Weird
       'code'     => draw_sections_preview(0),
-      'default'  => 'May not need anything',
       'desc'     => __('', 'pzucd')
     ),
     array(
@@ -201,7 +200,6 @@ function pzucd_template_preview_metabox($meta_boxes = array())
       'type'     => 'pzlayout',
       'readonly' => false, // Readonly fields can't be written to by code! Weird
       'code'     => draw_sections_preview(1),
-      'default'  => 'May not need anything',
       'desc'     => __('', 'pzucd')
     ),
     array(
@@ -211,7 +209,6 @@ function pzucd_template_preview_metabox($meta_boxes = array())
       'type'     => 'pzlayout',
       'readonly' => false, // Readonly fields can't be written to by code! Weird
       'code'     => draw_sections_preview(2),
-      'default'  => 'May not need anything',
       'desc'     => __('', 'pzucd')
     ),
   );
@@ -220,8 +217,8 @@ function pzucd_template_preview_metabox($meta_boxes = array())
     'title'    => 'Template Preview',
     'pages'    => 'ucd-templates',
     'fields'   => $fields,
-    'context'  => 'normal',
-    'priority' => 'high'
+    'context'  => 'side',
+    'priority' => 'default'
 
   );
 
@@ -259,27 +256,33 @@ function pzucd_sections_preview_meta($meta_boxes = array())
   {
     $fields        = array(
 
+            array(
+                    'id'   => $prefix . $i. 'section-layout-header',
+                    'name' => 'Section '.($i+1).' Layout',
+                    'type' => 'title',
+                    'cols'=>12,
+            ),
       array(
         'id'   => $prefix . $i . '-template-section-title',
-        'name' => __('Section title', 'pzucd'),
+        'name' => __('Section '.($i+1).' title (optional)', 'pzucd'),
         'type' => 'text',
         'cols' => 12,
-        'desc' => 'Section title is optional'
       ),
       array(
         'name'    => __('Cells per section', 'pzucd'),
         'id'      => $prefix . $i . '-template-cells-per-view',
         'type'    => 'pzspinner',
-        'default' => '9',
-        'min'     => 1,
-        'max'     => 999,
+        'default' => 0,
+        'min'     => 0,
+        'max'     => 99,
         'cols'    => 2,
+        'desc' => '0 for unlimited'
       ),
       array(
         'name'    => __('Cells across', 'pzucd'),
         'id'      => $prefix . $i . '-template-cells-across',
         'type'    => 'pzspinner',
-        'default' => '3',
+        'default' => 3,
         'min'     => 1,
         'cols'    => 2,
         'max'     => 999,
@@ -393,6 +396,9 @@ function pzucd_sections_preview_meta($meta_boxes = array())
         ),
         //       'desc'    => __('Choose how you want the cells to display. With evenly sized cells, you\'ll see little difference. Please visit <a href="http://isotope.metafizzy.co/demos/layout-modes.html" target=_blank>Isotope Layout Modes</a> for demonstrations of these layouts', 'pzucd')
       ),
+
+
+
     );
     $meta_boxes[ ] = array(
       'title'    => 'Template Section ' . ($i + 1),
@@ -521,3 +527,4 @@ function draw_sections_preview($section_number)
 
   return $return_html;
 }
+
