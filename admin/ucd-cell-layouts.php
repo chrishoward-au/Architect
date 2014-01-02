@@ -124,7 +124,7 @@ class pzucd_Cell_Layouts
             'not_found'          => __('No cell designs found'),
             'not_found_in_trash' => __('No cell designs found in Trash'),
             'parent_item_colon'  => '',
-            'menu_name'          => _x('<span class="dashicons-icon icon-cells"></span>Cells', 'pzucd-cell-designer'),
+            'menu_name'          => _x('<span class="dashicons dashicons-id-alt"></span>Cells', 'pzucd-cell-designer'),
     );
 
     $args = array(
@@ -444,7 +444,7 @@ function pzucd_cell_formats_meta($meta_boxes = array())
                   'name' => 'Styling',
                   'type' => 'title',
                   'cols'=>12,
-                  'desc'    => __('Ultimate Content Display uses standard WordPress class names as much as possible, so your UCD templates will inherit styling from your theme if it uses these. Below you can add your own styling and classes. Enter CSS declarations, such as: background:#123; color:#abc; font-size:1.6em; padding:1%;', 'pzucd') . '<br/>' . __('As much as possible, use fluid units (%,em) if you want to ensure maximum responsiveness.', 'pzucd') . '<br/>' .
+                  'desc'    => __('Ultimate Content Display uses standard WordPress class names as much as possible, so your Architect Blueprints will inherit styling from your theme if it uses these. Below you can add your own styling and classes. Enter CSS declarations, such as: background:#123; color:#abc; font-size:1.6em; padding:1%;', 'pzucd') . '<br/>' . __('As much as possible, use fluid units (%,em) if you want to ensure maximum responsiveness.', 'pzucd') . '<br/>' .
                           __('The base font size is 10px. So, for example, to get a font size of 14px, use 1.4em. Even better is using relative ems i.e. rem.')
           ),
           array(

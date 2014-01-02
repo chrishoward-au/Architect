@@ -759,14 +759,14 @@ h2 a.xpzwp_head_links
 
 
 /* Settings styling */
-body.screen-ucd-templates #side-sortables .postbox,
+body.screen-ucd-blueprints #side-sortables .postbox,
 body.screen-ucd-layouts #side-sortables .postbox{
   background:#333;
   color:#ccc;
 }
 
 body.screen-ucd-criterias h3.hndle,
-body.screen-ucd-templates h3.hndle,
+body.screen-ucd-blueprints h3.hndle,
 body.screen-ucd-layouts h3.hndle {
   color:#fff;
   background:#6d6d6d;
@@ -776,13 +776,13 @@ body.screen-ucd-layouts h3.hndle {
 /* Hide toggle for settings and preview link after publishing for cells and criteris */
 body.screen-ucd-criterias #side-sortables .handlediv,
 body.screen-ucd-criterias #message.updated.below-h2 a,
-body.screen-ucd-templates #side-sortables .handlediv,
+body.screen-ucd-blueprints #side-sortables .handlediv,
 body.screen-ucd-layouts #message.updated.below-h2 a,
 body.screen-ucd-layouts #side-sortables .handlediv {
   display:none;
 }
 
-body.screen-ucd-templates #side-sortables .field-title,
+body.screen-ucd-blueprints #side-sortables .field-title,
 body.screen-ucd-layouts #side-sortables .field-title,
 .field.CMB_Checkbox label
 {
@@ -790,9 +790,9 @@ body.screen-ucd-layouts #side-sortables .field-title,
   color:#3E8EAC;
 }
 
-body.screen-ucd-templates #side-sortables input[type="text"],
-body.screen-ucd-templates #side-sortables input[type="number"],
-body.screen-ucd-templates #side-sortables select,
+body.screen-ucd-blueprints #side-sortables input[type="text"],
+body.screen-ucd-blueprints #side-sortables input[type="number"],
+body.screen-ucd-blueprints #side-sortables select,
 body.screen-ucd-layouts #side-sortables input[type="text"],
 body.screen-ucd-layouts #side-sortables input[type="number"],
 body.screen-ucd-layouts #side-sortables select {
@@ -802,7 +802,7 @@ body.screen-ucd-layouts #side-sortables select {
   border-radius:0;
 }
 
-body.screen-ucd-templates #side-sortables select,
+body.screen-ucd-blueprints #side-sortables select,
 body.screen-ucd-layouts #side-sortables select {
   background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyNpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNS1jMDE0IDc5LjE1MTQ4MSwgMjAxMy8wMy8xMy0xMjowOToxNSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIChNYWNpbnRvc2gpIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOkVGQzUzN0I1NEY4OTExRTNBNkIyOTc4MDZBQjhCODQwIiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOkVGQzUzN0I2NEY4OTExRTNBNkIyOTc4MDZBQjhCODQwIj4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6QUE2OEJDNjI0QUJDMTFFM0E2QjI5NzgwNkFCOEI4NDAiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6RUZDNTM3QjQ0Rjg5MTFFM0E2QjI5NzgwNkFCOEI4NDAiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz63BXjiAAAAbklEQVR42mL8//8/AyWAcdQArAawA/EfIP6HRT0bVO4vPgPcgLgKqgjZEE4gPgfE1UD8GS4KMgANcwBxx39McBeIjdDVYzMAhmuRNF8GYg1s6vAZAMKtQHwOl2YQJhQLzEAsAMRvR1MiDQ0ACDAAM+fK4wDJEZAAAAAASUVORK5CYII=');
   background-repeat:no-repeat;
@@ -812,7 +812,7 @@ body.screen-ucd-layouts #side-sortables select {
   appearance:         none;
 }
 
-body.screen-ucd-templates #submitdiv,
+body.screen-ucd-blueprints #submitdiv,
 body.screen-ucd-layouts #submitdiv {display:none;}
 /*  End settings styling */
 
@@ -860,9 +860,9 @@ select#_pzucd_layout-show-cmb-field-0 {height:130px;}
 }
 
 /* Initially hide */
-#template-section-1,
-#template-section-2,
-#template-section-3,
+#blueprint-section-1,
+#blueprint-section-2,
+#blueprint-section-3,
 #pzucd-sections-preview-0,
 #pzucd-sections-preview-1,
 #pzucd-sections-preview-2
@@ -876,73 +876,53 @@ select#_pzucd_layout-show-cmb-field-0 {height:130px;}
   color:#3E8EAC;
 }
 
-body.screen-ucd-templates #template-settings .CMB_Radio_Field label {
+body.screen-ucd-blueprints #blueprint-settings .CMB_Radio_Field label {
   margin-right:25%!important;
 }
 
-body.screen-ucd-templates #template-preview .pzucd-section-cell h3
+body.screen-ucd-blueprints #blueprint-preview .pzucd-section-cell h3
 {
   margin:0 0 5px 0;
   border:none;
   padding:0;
   cursor: default;
 }
-body.screen-ucd-templates #template-preview .pzucd-section-cell img
+body.screen-ucd-blueprints #blueprint-preview .pzucd-section-cell img
 {
   margin:0 5px 5px 0;
   display:block;
   float:left;
 }
 
-body.screen-ucd-templates #template-preview .pzucd-section-cell p {
+body.screen-ucd-blueprints #blueprint-preview .pzucd-section-cell p {
   margin:0;
 }
 
 /*
-body.screen-ucd-templates {
-  background:url('blurry-1.jpg');
+body.screen-ucd-blueprints #wpwrap{
+  background:url('bg-blueprint.jpg');
 }
-body.screen-ucd-templates .postbox{
+
+body.screen-ucd-blueprints .postbox{
   background:rgba(255,255,255,0.5);
   border:none;
 }
 */
 
 
-span.dashicons-icon {
+span.dashicons {
   font-family: "dashicons";
   vertical-align:top;
   margin-right:5px;
-}
-span.dashicons-icon.icon-cells:before {
-  content: "\f337";
-}
-span.icon-criterias:before {
-  content: "\f179";
+  font-size:14px;
 }
 
-span.icon-templates:before {
-  content: "\f180";
-}
-
-span.icon-about:before {
-  content: "\f348";
-}
-
-span.icon-options:before {
-  content: "\f108";
-}
-span.icon-generator:before {
-  content: "\f308";
-}
-
-
-#template-section-1 .inside {
+#blueprint-section-1 .inside {
   border-left:solid 4px darkred;
 }
-#template-section-2 .inside {
+#blueprint-section-2 .inside {
   border-left:solid 4px darkblue;
 }
-#template-section-3 .inside {
+#blueprint-section-3 .inside {
   border-left:solid 4px darkorange;
 }

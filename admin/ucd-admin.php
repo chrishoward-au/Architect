@@ -32,7 +32,7 @@ class pzucdAdmin
       require_once PZUCD_PLUGIN_PATH . '/includes/class_pzucdForm.php';
       require_once PZUCD_PLUGIN_PATH . '/admin/ucd-cell-layouts.php';
       require_once PZUCD_PLUGIN_PATH . '/admin/ucd-data-selection.php';
-      require_once PZUCD_PLUGIN_PATH . '/admin/ucd-content-templates.php';
+      require_once PZUCD_PLUGIN_PATH . '/admin/ucd-content-blueprints.php';
 //			require_once PZUCD_PLUGIN_PATH . '/admin/ucd-controls.php';
 
 
@@ -40,8 +40,8 @@ class pzucdAdmin
       // Initialise objects for data
       $data_selection		 = new pzucd_Criteria;
       $cell_layout		 = new pzucd_Cell_Layouts;
-      $content_template	 = new pzucd_Content_Templates;
-//			$content_template	 = new pzucd_Controls;
+      $content_blueprint	 = new pzucd_Content_Blueprints;
+//			$content_blueprint	 = new pzucd_Controls;
 
 //add_action( 'pzucd_do_it', array( $this, 'do_it' ) );
     }
@@ -77,7 +77,7 @@ class pzucdAdmin
 		if ( !$pzucd_menu )
 		{
 			//add_menu_page(             $page_title,  $menu_title,               $capability,   $menu_slug, $function,    $icon_url, $position );
-			$pzucd_menu = add_menu_page( 'About UCD', 'UCD', 'edit_posts', 'pzucd',     'pzucd_about',PZUCD_PLUGIN_URL.'wp-icon.png' );
+			$pzucd_menu = add_menu_page( 'About', 'Architect', 'edit_posts', 'pzucd',     'pzucd_about',PZUCD_PLUGIN_URL.'wp-icon.png' );
 			// add_submenu_page( $parent_slug, $page_title, $menu_title, $capability, $menu_slug, $function ); 
 
 			// Don't need this as it's carried in the layouts already
@@ -85,13 +85,13 @@ class pzucdAdmin
 //				'pzucd', 'Styling', 'Styling', 'manage_options', 'pzucd_styling', array( $this, 'pzucd_styling' )
 //			);
 			add_submenu_page(
-				'pzucd', 'Developer Tools', '<span class="dashicons-icon icon-generator"></span>Tools', 'manage_options', 'pzucd_generator', array( $this, 'pzucd_generator' )
+				'pzucd', 'Developer Tools', '<span class="dashicons dashicons-hammer"></span>Tools', 'manage_options', 'pzucd_generator', array( $this, 'pzucd_generator' )
 			);
 			add_submenu_page(
-							'pzucd', 'UCD Options', '<span class="dashicons-icon icon-options"></span>Options', 'manage_options', 'pzucd_options', array( $this, 'pzucd_options' )
+							'pzucd', 'Options', '<span class="dashicons dashicons-admin-settings"></span>Options', 'manage_options', 'pzucd_options', array( $this, 'pzucd_options' )
 			);
 			add_submenu_page(
-				'pzucd', 'About Ultimate Content Display', '<span class="dashicons-icon icon-about"></span>About', 'manage_options', 'pzucd_about', array( $this, 'pzucd_about' )
+				'pzucd', 'About Architect Content Framework', '<span class="dashicons dashicons-info"></span>About', 'manage_options', 'pzucd_about', array( $this, 'pzucd_about' )
 			);
 		}
 	}
@@ -128,12 +128,12 @@ class pzucdAdmin
 <p><img src="'.PZUCD_PLUGIN_URL.'/documentation/ucd-layout.jpg" /></p>
 
 <p>For example, using shortcodes, you might have:</p>
-<p style="font-weight:bold">[pzucd cells="myfirstcelldesign" criteria="latestposts" templates="one-up,six-up" controls="myfirstnav"]</p>
+<p style="font-weight:bold">[pzucd cells="myfirstcelldesign" criteria="latestposts" blueprints="one-up,six-up" controls="myfirstnav"]</p>
 
 <p>Or a template tag</p>
 <p style="font-weight:bold">pzucd_layout(\'myfirstcelldesign\', \'latestposts\', \'one-up,six-up\', \'myfirstnav\');</p>
 
-<p>You can use one or two templates. The second one will continue display of posts from where the first left off. This, for example, would allow you to make a layout that shows the first post in full, and then excerpts for the next six.</p>
+<p>You can use one to three blueprints. The latter ones will continue display of posts from where the previous left off. This, for example, would allow you to make a layout that shows the first post in full, and then excerpts for the next six.</p>
 
 </div><!--end table-->
 </div>
@@ -172,9 +172,12 @@ class pzucdAdmin
 				<p>Generate WordPress page template code for inserting in your templates</p>
 				<p>Can I use Redux or similar??</p>
 				<textarea name="textarea" rows="10" cols="50">Code will appear here upon generating</textarea>
+						<h3>Export</h3>
+						<h3>Import</h3>
 			</div><!--end table-->
 			</div>
-			<div style = "clear:both"></div>';
+			<div style = "clear:both"></div>
+';
 	}
 
 	// Make this only load once - probably loads all the time at the moment

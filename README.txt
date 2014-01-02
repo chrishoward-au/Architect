@@ -1,111 +1,82 @@
-=== Ultimate Content Display ===
-Contributors: username1, username2 (this should be a list of wordpress.org userid's)
-Donate link: http://example.com/
-Tags: comments, spam
-Requires at least: 3.8.0
-Tested up to: 3.8.0
-Stable tag: 0.4.6
+=== Architect WP Content Framework ===
+Contributors: chrishoward
+Tags: content,display,posts,pages,gallery,slider
+Donate link: http://
+Requires at least: 3.5.0
+Tested up to: 3.8
+Stable tag: 1.0.0
+License: GPLv2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Here is a short description of the plugin.  This should be no more than 150 characters.  No markup here.
+Easily build grids, galleries, sliders and much more from various content sources.
+
 
 == Description ==
+Easily display your content in grids, tabs, sliders, galleries with sources like posts, pages, galleries, widgets, custom code, Headway blocks and custom content types.
 
-This is the long description.  No limit, and you can use Markdown (as well as in the following sections).
+The core components of UCD are Content selections, Cell designs, and Blueprint layouts.
 
-For backwards compatibility, if this section is missing, the full length of the short description will be used, and
-Markdown parsed.
+To save time, and keep UCD modular, Content and Cells can be re-used in many Blueprints.
 
-A few notes about the sections above:
+= Why use UCD? =
+UCD greatly reduces the complexity of designing and developing mehtods to display your content. For example, if you are using the Twenty Thirteen and decide youu want a 3x3 grid of excerpts to display on the home page, you would have to code a page tempalte for that purpose.
 
-*   "Contributors" is a comma separated list of wp.org/wp-plugins.org usernames
-*   "Tags" is a comma separated list of tags that apply to the plugin
-*   "Requires at least" is the lowest version that the plugin will work on
-*   "Tested up to" is the highest version that you've *successfully used to test the plugin*. Note that it might work on
-higher versions... this is just the highest one you've verified.
-*   Stable tag should indicate the Subversion "tag" of the latest stable version, or "trunk," if you use `/trunk/` for
-stable.
+With UCD, you code the shell of the blueprint, but build the rest in UCD and paste one very simple line of code into your page blueprint that calls and displays the UCD Blueprint.
 
-    Note that the `readme.txt` of the stable tag is the one that is considered the defining one for the plugin, so
-if the `/trunk/readme.txt` file says that the stable tag is `4.3`, then it is `/tags/4.3/readme.txt` that'll be used
-for displaying information about the plugin.  In this situation, the only thing considered from the trunk `readme.txt`
-is the stable tag pointer.  Thus, if you develop in trunk, you can update the trunk `readme.txt` to reflect changes in
-your in-development version, without having that information incorrectly disclosed about the current stable version
-that lacks those changes -- as long as the trunk's `readme.txt` points to the correct stable tag.
-
-    If no stable tag is provided, it is assumed that trunk is stable, but you should specify "trunk" if that's where
-you put the stable version, in order to eliminate any doubt.
+If you want to display a gallery in a post, build the Content selection, Cell design and Blueprint, then place a simple shortcode in your post. You can even cheat a bit, and copy the image ids from a standard WP gallery if you want to override the defaults. See instructions here
 
 == Installation ==
+1. Activate the plugin through the Plugins menu in WordPress.
 
-This section describes how to install the plugin and get it working.
-
-e.g.
-
-1. Upload `plugin-name.php` to the `/wp-content/plugins/` directory
-1. Activate the plugin through the 'Plugins' menu in WordPress
-1. Place `<?php do_action('plugin_name_hook'); ?>` in your templates
+== Usage ==
+Shortcode: [pzucd blueprint="yourblueprint" ids="1,2,3,4,5"]
+Blueprint tag: echo pzucd('yourblueprint','1,2,3,4,5');
+Widget:
+Block:
 
 == Frequently Asked Questions ==
+= What themes is UCD compatible with =
+UCD should work with any theme but some will take more effort than others, especially in terms of the look and layout. To that end, we provide the emans to match CSS classes and create your own cell definitions.
 
-= A question that someone might have =
+= Is UCD compatible with all plugins =
+The short answer is "Unlikely". No plugin can hope to be compatible with all other plugins (there are more than 36,000 of them!) but we do aim to be compatible with the more popular ones. We will endeavour to rectify any incompatibilities found; however, it's also not uncommon for the root cause to be the conflicting plugin.
 
-An answer to that question.
+= Is UCD WPML compatible =
+At this point in time, and to the best of our knowledge, yes!
 
-= What about foo bar? =
+= Do you provide refunds =
+Yes! We're pretty flexible on refunds, allowing 60 days. But we would like you to make sure you've done everything possible to get UCD to work to your requirements, especially seeking support on our help desk.
 
-Answer to foo bar dilemma.
+= Is UCD for newbies? =
+The short answer is "No". We advise you get to know the theme you have chosen before embarking on the UCD adventure. Learn about posts, pages, taxonomies, custom post types, shortcodes and other more technical things like page blueprints, because ultimately, this is the language of UCD.
+
+= Do you have a trial version? =
+No. Sorry. But we are working on it.
+
+= Does a licence have an expiry =
+Yes. 12 months.
+
+= How many sites can I install UCD on? =
+You may install UCD on an unlimited number of sites that you personally own, or if you are a business, the business owns.
+
+= Can I install UCD on client sites using my licence? =
+Yes. Although to ensure long term support if you are no longer in the industry, from both ourselves and any other WP developer, it is recommended they buy theirown licence.
+
+= Do you have an other licence deals? =
+At this stage, no. We're trying to keep licencing as simple as possible, hence licence for all.
 
 == Screenshots ==
-
-1. This screen shot description corresponds to screenshot-1.(png|jpg|jpeg|gif). Note that the screenshot is taken from
-the directory of the stable readme.txt, so in this case, `/tags/4.3/screenshot-1.png` (or jpg, jpeg, gif)
-2. This is the second screen shot
+1. The screenshot description corresponds to screenshot-1.(png|jpg|jpeg|gif).
+2. The screenshot description corresponds to screenshot-2.(png|jpg|jpeg|gif).
+3. The screenshot description corresponds to screenshot-3.(png|jpg|jpeg|gif).
 
 == Changelog ==
+= 0.5 =
+* First public beta
 
-= 0.4.5 =
-* Large chunk of display code written
-
-= 0.4.4 =
-* A change since the previous version.
-* Another change.
-
+= 0.4 =
+* began small scale beta testing
 
 == Upgrade Notice ==
-
-= 1.0 =
-Upgrade notices describe the reason a user should upgrade.  No more than 300 characters.
-
 = 0.5 =
-This version fixes a security related bug.  Upgrade immediately.
-
-== Arbitrary section ==
-
-You may provide arbitrary sections, in the same format as the ones above.  This may be of use for extremely complicated
-plugins where more information needs to be conveyed that doesn't fit into the categories of "description" or
-"installation."  Arbitrary sections will be shown below the built-in sections outlined above.
-
-== A brief Markdown Example ==
-
-Ordered list:
-
-1. Some feature
-1. Another feature
-1. Something else about the plugin
-
-Unordered list:
-
-* something
-* something else
-* third thing
-
-Here's a link to [WordPress](http://wordpress.org/ "Your favorite software") and one to [Markdown's Syntax Documentation][markdown syntax].
-Titles are optional, naturally.
-
-[markdown syntax]: http://daringfireball.net/projects/markdown/syntax
-            "Markdown is what the parser uses to process much of the readme file"
-
-Markdown uses email style notation for blockquotes and I've been told:
-> Asterisks for *emphasis*. Double it up  for **strong**.
-
-`<?php code(); // goes in backticks ?>`
+* First public beta

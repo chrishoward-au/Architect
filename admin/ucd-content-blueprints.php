@@ -1,6 +1,6 @@
 <?php
 
-class pzucd_Content_templates extends pzucdForm
+class pzucd_Content_blueprints extends pzucdForm
 {
 
   private $mb_fields;
@@ -10,22 +10,22 @@ class pzucd_Content_templates extends pzucdForm
    */
   function __construct()
   {
-    add_action('init', array($this, 'create_templates_post_type'));
+    add_action('init', array($this, 'create_blueprints_post_type'));
     // This overrides the one in the parent class
 
     if (is_admin())
     {
 
       //	add_action('admin_init', 'pzucd_preview_meta');
-//      add_action('add_meta_boxes', array($this, 'templates_meta'));
-//      add_action('add_meta_boxes', 'templates_meta');
-      add_action('admin_head', array($this, 'content_templates_admin_head'));
-      add_action('admin_enqueue_scripts', array($this, 'content_templates_admin_enqueue'));
-			add_filter('manage_ucd-templates_posts_columns', array($this, 'add_template_columns'));
-			add_action('manage_ucd-templates_posts_custom_column', array($this, 'add_template_column_content'), 10, 2);
+//      add_action('add_meta_boxes', array($this, 'blueprints_meta'));
+//      add_action('add_meta_boxes', 'blueprints_meta');
+      add_action('admin_head', array($this, 'content_blueprints_admin_head'));
+      add_action('admin_enqueue_scripts', array($this, 'content_blueprints_admin_enqueue'));
+			add_filter('manage_ucd-blueprints_posts_columns', array($this, 'add_blueprint_columns'));
+			add_action('manage_ucd-blueprints_posts_custom_column', array($this, 'add_blueprint_column_content'), 10, 2);
 
-      // check screen ucd-templates. ugh. doesn't work for save and edit
-//			if ( $_REQUEST[ 'post_type' ] == 'ucd-templates' )
+      // check screen ucd-blueprints. ugh. doesn't work for save and edit
+//			if ( $_REQUEST[ 'post_type' ] == 'ucd-blueprints' )
 //			{
 //			}
     }
@@ -33,40 +33,40 @@ class pzucd_Content_templates extends pzucdForm
   }
 
   /**
-   * [content_templates_admin_enqueue description]
+   * [content_blueprints_admin_enqueue description]
    * @param  [type] $hook [description]
    * @return [type]       [description]
    */
-  public function content_templates_admin_enqueue($hook)
+  public function content_blueprints_admin_enqueue($hook)
   {
     $screen = get_current_screen();
-    if ('ucd-templates' == $screen->id)
+    if ('ucd-blueprints' == $screen->id)
     {
 
 
-      wp_enqueue_style('pzucd-admin-templates-css', PZUCD_PLUGIN_URL . 'admin/css/ucd-admin-templates.css');
+      wp_enqueue_style('pzucd-admin-blueprints-css', PZUCD_PLUGIN_URL . 'admin/css/ucd-admin-blueprints.css');
 
-      wp_enqueue_script('jquery-pzucd-metaboxes-templates', PZUCD_PLUGIN_URL . 'admin/js/ucd-metaboxes-templates.js', array('jquery'));
+      wp_enqueue_script('jquery-pzucd-metaboxes-blueprints', PZUCD_PLUGIN_URL . 'admin/js/ucd-metaboxes-blueprints.js', array('jquery'));
       wp_enqueue_script('js-isotope-v2');
-      wp_enqueue_script('jquery-masonary', PZUCD_PLUGIN_URL . 'external/masonry.pkgd.min.js', array('jquery'));
-      wp_enqueue_script('jquery-lorem', PZUCD_PLUGIN_URL . 'external/jquery.lorem.js', array('jquery'));
+     // wp_enqueue_script('jquery-masonary', PZUCD_PLUGIN_URL . 'external/masonry.pkgd.min.js', array('jquery'));
+     // wp_enqueue_script('jquery-lorem', PZUCD_PLUGIN_URL . 'external/jquery.lorem.js', array('jquery'));
     }
   }
 
   /**
-   * [content_templates_admin_head description]
+   * [content_blueprints_admin_head description]
    * @return [type] [description]
    */
-  public function content_templates_admin_head()
+  public function content_blueprints_admin_head()
   {
 
   }
 
   /**
-   * [add_template_columns description]
+   * [add_blueprint_columns description]
    * @param [type] $columns [description]
    */
-  public function add_template_columns($columns)
+  public function add_blueprint_columns($columns)
   {
     unset($columns[ 'thumbnail' ]);
     $pzucd_front  = array_slice($columns, 0, 2);
@@ -74,51 +74,51 @@ class pzucd_Content_templates extends pzucdForm
     $pzucd_insert =
             array
             (
-              '_pzucd_template-short-name' => __('Template short name', 'pzsp'),
+              '_pzucd_blueprint-short-name' => __('Blueprint short name', 'pzsp'),
             );
 
     return array_merge($pzucd_front, $pzucd_insert, $pzucd_back);
   }
 
   /**
-   * [add_template_column_content description]
+   * [add_blueprint_column_content description]
    * @param [type] $column  [description]
    * @param [type] $post_id [description]
    */
-  public function add_template_column_content($column, $post_id)
+  public function add_blueprint_column_content($column, $post_id)
   {
     switch ($column)
     {
-      case '_pzucd_template-short-name':
-        echo get_post_meta($post_id, '_pzucd_template-short-name', true);
+      case '_pzucd_blueprint-short-name':
+        echo get_post_meta($post_id, '_pzucd_blueprint-short-name', true);
         break;
     }
   }
 
   /**
-   * [create_templates_post_type description]
+   * [create_blueprints_post_type description]
    * @return [type] [description]
    */
-  public function create_templates_post_type()
+  public function create_blueprints_post_type()
   {
     $labels = array(
-      'name'               => _x('Templates', 'post type general name'),
-      'singular_name'      => _x('Template', 'post type singular name'),
-      'add_new'            => __('Add New Template'),
-      'add_new_item'       => __('Add New Template'),
-      'edit_item'          => __('Edit Template'),
-      'new_item'           => __('New Template'),
-      'view_item'          => __('View Template'),
-      'search_items'       => __('Search Templates'),
-      'not_found'          => __('No Templates found'),
-      'not_found_in_trash' => __('No Templates found in Trash'),
+      'name'               => _x('Blueprints', 'post type general name'),
+      'singular_name'      => _x('Blueprint', 'post type singular name'),
+      'add_new'            => __('Add New Blueprint'),
+      'add_new_item'       => __('Add New Blueprint'),
+      'edit_item'          => __('Edit Blueprint'),
+      'new_item'           => __('New Blueprint'),
+      'view_item'          => __('View Blueprint'),
+      'search_items'       => __('Search Blueprints'),
+      'not_found'          => __('No Blueprints found'),
+      'not_found_in_trash' => __('No Blueprints found in Trash'),
       'parent_item_colon'  => '',
-      'menu_name'          => _x('<span class="dashicons-icon icon-templates"></span>Templates', 'pzucd-template-designer'),
+      'menu_name'          => _x('<span class="dashicons dashicons-screenoptions"></span>Blueprints', 'pzucd-blueprint-designer'),
     );
 
     $args = array(
       'labels'              => $labels,
-      'description'         => __('Ultimate Content Display templates are used to create reusable layout templates for use in your UCD blocks, widgets, shortcodes and WP template tags. These are made up of cells, sections, criteria and navigation'),
+      'description'         => __('Architect Blueprints are used to create reusable layout Blueprints for use in your Architect blocks, widgets, shortcodes and WP template tags. These are made up of cells, sections, criteria and navigation'),
       'public'              => false,
       'publicly_queryable'  => false,
       'show_ui'             => true,
@@ -134,20 +134,20 @@ class pzucd_Content_templates extends pzucdForm
       'exclude_from_search' => true,
     );
 
-    register_post_type('ucd-templates', $args);
+    register_post_type('ucd-blueprints', $args);
   }
 
 } // EOC
 
 
-add_filter('cmb_meta_boxes', 'pzucd_template_wizard_metabox');
-function pzucd_template_wizard_metabox($meta_boxes = array())
+add_filter('cmb_meta_boxes', 'pzucd_blueprint_wizard_metabox');
+function pzucd_blueprint_wizard_metabox($meta_boxes = array())
 {
   $prefix        = '_pzucd_';
   $fields        = array(
     array(
-      'name'    => 'Select what type of template do you want to make',
-      'id'      => $prefix . 'template-wizard',
+      'name'    => 'Select what type of blueprint do you want to make',
+      'id'      => $prefix . 'blueprint-wizard',
       'type'    => 'radio',
       'default' => 'custom',
       'desc'    => 'Select one to quickly enable relevant settings, or custom to build your own from scratch with all settings and defaults. Minimize this metabox once you are happy with your selection.',
@@ -163,7 +163,7 @@ function pzucd_template_wizard_metabox($meta_boxes = array())
   );
   $meta_boxes[ ] = array(
     'title'    => 'What do you want to do?',
-    'pages'    => 'ucd-templates',
+    'pages'    => 'ucd-blueprints',
     'context'  => 'normal',
     'priority' => 'high',
     'fields'   => $fields // An array of fields.
@@ -172,8 +172,8 @@ function pzucd_template_wizard_metabox($meta_boxes = array())
   return $meta_boxes;
 }
 
-add_filter('cmb_meta_boxes', 'pzucd_template_preview_metabox');
-function pzucd_template_preview_metabox($meta_boxes = array())
+add_filter('cmb_meta_boxes', 'pzucd_blueprint_preview_metabox');
+function pzucd_blueprint_preview_metabox($meta_boxes = array())
 {
   // Need to redesign this into one layout that includes navigation positions
   $prefix = '_pzucd_';
@@ -214,8 +214,8 @@ function pzucd_template_preview_metabox($meta_boxes = array())
   );
 
   $meta_boxes[ ] = array(
-    'title'    => 'Template Preview',
-    'pages'    => 'ucd-templates',
+    'title'    => 'Blueprint Preview',
+    'pages'    => 'ucd-blueprints',
     'fields'   => $fields,
     'context'  => 'side',
     'priority' => 'default'
@@ -263,14 +263,14 @@ function pzucd_sections_preview_meta($meta_boxes = array())
                     'cols'=>12,
             ),
       array(
-        'id'   => $prefix . $i . '-template-section-title',
+        'id'   => $prefix . $i . '-blueprint-section-title',
         'name' => __('Section '.($i+1).' title (optional)', 'pzucd'),
         'type' => 'text',
         'cols' => 12,
       ),
       array(
         'name'    => __('Cells per section', 'pzucd'),
-        'id'      => $prefix . $i . '-template-cells-per-view',
+        'id'      => $prefix . $i . '-blueprint-cells-per-view',
         'type'    => 'pzspinner',
         'default' => 0,
         'min'     => 0,
@@ -280,7 +280,7 @@ function pzucd_sections_preview_meta($meta_boxes = array())
       ),
       array(
         'name'    => __('Cells across', 'pzucd'),
-        'id'      => $prefix . $i . '-template-cells-across',
+        'id'      => $prefix . $i . '-blueprint-cells-across',
         'type'    => 'pzspinner',
         'default' => 3,
         'min'     => 1,
@@ -289,7 +289,7 @@ function pzucd_sections_preview_meta($meta_boxes = array())
       ),
       array(
         'name'    => __('Minimum cell width', 'pzucd'),
-        'id'      => $prefix . $i . '-template-min-cell-width',
+        'id'      => $prefix . $i . '-blueprint-min-cell-width',
         'type'    => 'pzspinner',
         'alt'     => 'mincellw',
         'default' => 0,
@@ -303,7 +303,7 @@ function pzucd_sections_preview_meta($meta_boxes = array())
 
       array(
         'name'    => __('Cells vertical margin', 'pzucd'),
-        'id'      => $prefix . $i . '-template-cells-vert-margin',
+        'id'      => $prefix . $i . '-blueprint-cells-vert-margin',
         'type'    => 'pzspinner',
         'alt'     => 'gutterv',
         'default' => '1',
@@ -316,7 +316,7 @@ function pzucd_sections_preview_meta($meta_boxes = array())
       ),
       array(
         'name'    => __('Cells horizontal margin', 'pzucd'),
-        'id'      => $prefix . $i . '-template-cells-horiz-margin',
+        'id'      => $prefix . $i . '-blueprint-cells-horiz-margin',
         'type'    => 'pzspinner',
         'alt'     => 'gutterh',
         'default' => '1',
@@ -328,7 +328,7 @@ function pzucd_sections_preview_meta($meta_boxes = array())
 //      'desc'    => __('Set the horizontal gutter width as a percentage of the section width. The gutter is the gap between adjoining elements', 'pzucd')
       ),
       array(
-        'id'      => $prefix . $i . '-template-section-navigation',
+        'id'      => $prefix . $i . '-blueprint-section-navigation',
         'name'    => __('Navigation', 'pzucd'),
         'type'    => 'pzselect',
         'cols'    => 4,
@@ -346,7 +346,7 @@ function pzucd_sections_preview_meta($meta_boxes = array())
       ),
       array(
         'name'    => 'Navigation Position',
-        'id'      => $prefix . $i . '-template-section-nav-pos',
+        'id'      => $prefix . $i . '-blueprint-section-nav-pos',
         'type'    => 'radio',
         'cols'    => 3,
         'default' => 'bottom',
@@ -359,7 +359,7 @@ function pzucd_sections_preview_meta($meta_boxes = array())
       ),
       array(
         'name'    => 'Navigation Location',
-        'id'      => $prefix . $i . '-template-section-nav-loc',
+        'id'      => $prefix . $i . '-blueprint-section-nav-loc',
         'type'    => 'radio',
         'cols'    => 3,
         'default' => 'outside',
@@ -370,7 +370,7 @@ function pzucd_sections_preview_meta($meta_boxes = array())
       ),
 
       array(
-        'id'      => $prefix . $i . '-template-section-cell-layout',
+        'id'      => $prefix . $i . '-blueprint-section-cell-layout',
         'name'    => __('Cells layout', 'pzucd'),
         'type'    => 'pzselect',
         'cols'    => 6,
@@ -379,7 +379,7 @@ function pzucd_sections_preview_meta($meta_boxes = array())
       ),
       array(
         'name'    => __('Layout mode', 'pzucd'),
-        'id'      => $prefix . $i . '-template-layout-mode',
+        'id'      => $prefix . $i . '-blueprint-layout-mode',
         'type'    => 'pzselect',
         'default' => 'fitRows',
         'cols'    => 3,
@@ -401,8 +401,8 @@ function pzucd_sections_preview_meta($meta_boxes = array())
 
     );
     $meta_boxes[ ] = array(
-      'title'    => 'Template Section ' . ($i + 1),
-      'pages'    => 'ucd-templates',
+      'title'    => 'Blueprint Section ' . ($i + 1),
+      'pages'    => 'ucd-blueprints',
       'context'  => 'normal',
       'priority' => 'high',
       'fields'   => $fields // An array of fields.
@@ -413,8 +413,8 @@ function pzucd_sections_preview_meta($meta_boxes = array())
 }
 
 
-add_filter('cmb_meta_boxes', 'pzucd_template_settings_metabox');
-function pzucd_template_settings_metabox($meta_boxes = array())
+add_filter('cmb_meta_boxes', 'pzucd_blueprint_settings_metabox');
+function pzucd_blueprint_settings_metabox($meta_boxes = array())
 {
   $args = array(
     'posts_per_page'   => -1,
@@ -436,15 +436,15 @@ function pzucd_template_settings_metabox($meta_boxes = array())
   $prefix = '_pzucd_';
   $fields = array(
     array(
-      'id'      => $prefix . 'template-short-name',
-      'name'    => __('Template Short Name', 'pzucd'),
+      'id'      => $prefix . 'blueprint-short-name',
+      'name'    => __('Blueprint Short Name', 'pzucd'),
       'type'    => 'text',
       'cols'    => 12,
       
-      'desc'    => __('Alphanumeric only. <br/>Use the shortcode <strong class="pzucd-usage-info">[pzucd <span class="pzucd-shortname"></span>]</strong> or the template tag <strong class="pzucd-usage-info">pzucd(\'<span class="pzucd-shortname"></span>\');</strong>', 'pzucd')
+      'desc'    => __('Alphanumeric only. <br/>Use the shortcode <strong class="pzucd-usage-info">[pzucd <span class="pzucd-shortname"></span>]</strong> or the blueprint tag <strong class="pzucd-usage-info">pzucd(\'<span class="pzucd-shortname"></span>\');</strong>', 'pzucd')
     ),
     array(
-      'id'      => $prefix . 'template-criteria',
+      'id'      => $prefix . 'blueprint-criteria',
       'name'    => __('Criteria', 'pzucd'),
       'type'    => 'pzselect',
       'cols'    => 12,
@@ -452,7 +452,7 @@ function pzucd_template_settings_metabox($meta_boxes = array())
       'options' => $pzucd_criterias_array
     ),
     array(
-      'id'      => $prefix . 'template-pager',
+      'id'      => $prefix . 'blueprint-pager',
       'name'    => __('Pagination', 'pzucd'),
       'type'    => 'pzselect',
       'cols'    => 12,
@@ -465,7 +465,7 @@ function pzucd_template_settings_metabox($meta_boxes = array())
       )
     ),
     array(
-      'id'      => $prefix . 'template-posts-per-page',
+      'id'      => $prefix . 'blueprint-posts-per-page',
       'name'    => __('Posts per page', 'pzucd'),
       'type'    => 'text',
       'cols'    => 12,
@@ -473,28 +473,28 @@ function pzucd_template_settings_metabox($meta_boxes = array())
     ),
     array(
       'name'    => 'Section 1',
-      'id'      => $prefix . '0-template-section-enable',
+      'id'      => $prefix . '0-blueprint-section-enable',
       'type'    => 'checkbox',
       'cols'    => 4,
       'default' => true,
     ),
     array(
       'name'    => 'Section 2',
-      'id'      => $prefix . '1-template-section-enable',
+      'id'      => $prefix . '1-blueprint-section-enable',
       'type'    => 'checkbox',
       'cols'    => 4,
       'default' => false
     ),
     array(
       'name'    => 'Section 3',
-      'id'      => $prefix . '2-template-section-enable',
+      'id'      => $prefix . '2-blueprint-section-enable',
       'type'    => 'checkbox',
       'cols'    => 4,
       'default' => false
     ),
 
     array(
-      'name' => 'Save template',
+      'name' => 'Save blueprint',
       'id'      => $prefix . 'layout-set-save',
       'type'    => 'pzsubmit',
       'default' => 'Save'
@@ -502,8 +502,8 @@ function pzucd_template_settings_metabox($meta_boxes = array())
   );
 
   $meta_boxes[ ] = array(
-    'title'    => 'Template settings',
-    'pages'    => 'ucd-templates',
+    'title'    => 'Blueprint settings',
+    'pages'    => 'ucd-blueprints',
     'fields'   => $fields,
     'context'  => 'side',
     'priority' => 'high'

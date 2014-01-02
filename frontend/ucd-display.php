@@ -4,7 +4,7 @@
  * User: chrishoward
  * Date: 13/08/13
  * Time: 8:32 PM
- * To change this template use File | Settings | File Templates.
+ * To change this blueprint use File | Settings | File Blueprints.
  */
 
 // require(PZUCD_PLUGIN_PATH .'/frontend/class_pzucdDisplay.php');
@@ -26,9 +26,9 @@ require_once(PZUCD_PLUGIN_PATH . 'external/bfi_thumb/BFI_Thumb.php');
 //{
 //
 //
-//  $pzucd_the_template = pzucd_get_the_template($atts[ 'template' ]);
+//  $pzucd_the_blueprint = pzucd_get_the_blueprint($atts[ 'blueprint' ]);
 //  $overrides          = $atts[ 'ids' ];
-//  $output             = pzucd_render($pzucd_the_template, $overrides);
+//  $output             = pzucd_render($pzucd_the_blueprint, $overrides);
 //
 //  return $output;
 //}
@@ -43,7 +43,7 @@ require_once(PZUCD_PLUGIN_PATH . 'external/bfi_thumb/BFI_Thumb.php');
 //  }
 //}
 
-function pzucd_get_the_template($template)
+function pzucd_get_the_blueprint($blueprint)
 {
 //  wp_enqueue_script('jquery-isotope');
 
@@ -52,53 +52,54 @@ function pzucd_get_the_template($template)
 
   global $wp_query;
   $original_query = $wp_query;
-  $template_info  = new WP_Query('post_type=ucd-templates&meta_key=_pzucd_template-short-name&meta_value=' . $template);
-  if (!isset($template_info->posts[ 0 ]))
+  $blueprint_info  = new WP_Query('post_type=ucd-blueprints&meta_key=_pzucd_blueprint-short-name&meta_value=' . $blueprint);
+  var_dump($blueprint_info);
+  if (!isset($blueprint_info->posts[ 0 ]))
   {
-    echo '<p class="pzucd-oops">Template ' . $template . ' not found</p>';
+    echo '<p class="pzucd-oops">Blueprint ' . $blueprint . ' not found</p>';
 
     return null;
   }
-  $the_template_meta = get_post_meta($template_info->posts[ 0 ]->ID, null, true);
+  $the_blueprint_meta = get_post_meta($blueprint_info->posts[ 0 ]->ID, null, true);
 //  $wp_query = $original_query;
   // wp_reset_postdata();
 
   // VERY risky- fine on single pages, but will cause horror on multi post pages
   // rewind_posts();
 
-  foreach ($the_template_meta as $key => $value)
+  foreach ($the_blueprint_meta as $key => $value)
   {
-    $pzucd_template_field_set[ $key ] = $value[ 0 ];
+    $pzucd_blueprint_field_set[ $key ] = $value[ 0 ];
   }
-  $pzucd_template = array(
-           'template-id' => $template_info->posts[ 0 ]->ID,
-          'template-short-name' => (!empty($pzucd_template_field_set[ '_pzucd_template-short-name' ]) ? $pzucd_template_field_set[ '_pzucd_template-short-name' ] : null),
-          'template-criteria'   => (!empty($pzucd_template_field_set [ '_pzucd_template-criteria' ]) ? $pzucd_template_field_set [ '_pzucd_template-criteria' ] : 'default'),
-          'template-pager'      => (!empty($pzucd_template_field_set[ '_pzucd_template-pager' ]) ? $pzucd_template_field_set[ '_pzucd_template-pager' ] : null),
-          'template-posts-per-page'      => (!empty($pzucd_template_field_set[ '_pzucd_template-posts-per-page' ]) ? $pzucd_template_field_set[ '_pzucd_template-posts-per-page' ] : get_option('posts_per_page')),
-          'template-type'       => (!empty($pzucd_template_field_set[ '_pzucd_template-type' ]) ? $pzucd_template_field_set[ '_pzucd_template-type' ] : null),
+  $pzucd_blueprint = array(
+           'blueprint-id' => $blueprint_info->posts[ 0 ]->ID,
+          'blueprint-short-name' => (!empty($pzucd_blueprint_field_set[ '_pzucd_blueprint-short-name' ]) ? $pzucd_blueprint_field_set[ '_pzucd_blueprint-short-name' ] : null),
+          'blueprint-criteria'   => (!empty($pzucd_blueprint_field_set [ '_pzucd_blueprint-criteria' ]) ? $pzucd_blueprint_field_set [ '_pzucd_blueprint-criteria' ] : 'default'),
+          'blueprint-pager'      => (!empty($pzucd_blueprint_field_set[ '_pzucd_blueprint-pager' ]) ? $pzucd_blueprint_field_set[ '_pzucd_blueprint-pager' ] : null),
+          'blueprint-posts-per-page'      => (!empty($pzucd_blueprint_field_set[ '_pzucd_blueprint-posts-per-page' ]) ? $pzucd_blueprint_field_set[ '_pzucd_blueprint-posts-per-page' ] : get_option('posts_per_page')),
+          'blueprint-type'       => (!empty($pzucd_blueprint_field_set[ '_pzucd_blueprint-type' ]) ? $pzucd_blueprint_field_set[ '_pzucd_blueprint-type' ] : null),
   );
   for ($i = 0; $i < 3; $i++)
   {
-    $pzucd_template[ 'section' ][ $i ] = !empty($pzucd_template_field_set[ '_pzucd_' . $i . '-template-section-enable' ]) ?
+    $pzucd_blueprint[ 'section' ][ $i ] = !empty($pzucd_blueprint_field_set[ '_pzucd_' . $i . '-blueprint-section-enable' ]) ?
             array(
-                    'section-enable'             => !empty($pzucd_template_field_set[ '_pzucd_' . $i . '-template-section-enable' ]),
-                    'section-cells-per-view'     => (!empty($pzucd_template_field_set[ '_pzucd_' . $i . '-template-cells-per-view' ]) ? $pzucd_template_field_set[ '_pzucd_' . $i . '-template-cells-per-view' ] : null),
-                    'section-cells-across'       => (!empty($pzucd_template_field_set[ '_pzucd_' . $i . '-template-cells-across' ]) ? $pzucd_template_field_set[ '_pzucd_' . $i . '-template-cells-across' ] : null),
-                    'section-min-cell-width'     => (!empty($pzucd_template_field_set[ '_pzucd_' . $i . '-template-min-cell-width' ]) ? $pzucd_template_field_set[ '_pzucd_' . $i . '-template-min-cell-width' ] : null),
-                    'section-cells-vert-margin'  => (!empty($pzucd_template_field_set[ '_pzucd_' . $i . '-template-cells-vert-margin' ]) ? $pzucd_template_field_set[ '_pzucd_' . $i . '-template-cells-vert-margin' ] : null),
-                    'section-cells-horiz-margin' => (!empty($pzucd_template_field_set[ '_pzucd_' . $i . '-template-cells-horiz-margin' ]) ? $pzucd_template_field_set[ '_pzucd_' . $i . '-template-cells-horiz-margin' ] : null),
-                    'section-cell-layout'        => (!empty($pzucd_template_field_set[ '_pzucd_' . $i . '-template-section-cell-layout' ]) ? $pzucd_template_field_set[ '_pzucd_' . $i . '-template-section-cell-layout' ] : null),
-                    'section-layout-mode'        => (!empty($pzucd_template_field_set[ '_pzucd_' . $i . '-template-layout-mode' ]) ? $pzucd_template_field_set[ '_pzucd_' . $i . '-template-layout-mode' ] : null),
-                    'section-navigation'         => (!empty($pzucd_template_field_set[ '_pzucd_' . $i . '-template-section-navigation' ]) ? $pzucd_template_field_set[ '_pzucd_' . $i . '-template-section-navigation' ] : null),
-                    'section-nav-pos'            => (!empty($pzucd_template_field_set[ '_pzucd_' . $i . '-template-section-nav-pos' ]) ? $pzucd_template_field_set[ '_pzucd_' . $i . '-template-section-nav-pos' ] : null),
-                    'section-nav-loc'            => (!empty($pzucd_template_field_set[ '_pzucd_' . $i . '-template-section-nav-loc' ]) ? $pzucd_template_field_set[ '_pzucd_' . $i . '-template-section-nav-loc' ] : null),
-                    'section-cell-settings'      => get_post_meta($pzucd_template_field_set[ '_pzucd_' . $i . '-template-section-cell-layout' ]),
+                    'section-enable'             => !empty($pzucd_blueprint_field_set[ '_pzucd_' . $i . '-blueprint-section-enable' ]),
+                    'section-cells-per-view'     => (!empty($pzucd_blueprint_field_set[ '_pzucd_' . $i . '-blueprint-cells-per-view' ]) ? $pzucd_blueprint_field_set[ '_pzucd_' . $i . '-blueprint-cells-per-view' ] : null),
+                    'section-cells-across'       => (!empty($pzucd_blueprint_field_set[ '_pzucd_' . $i . '-blueprint-cells-across' ]) ? $pzucd_blueprint_field_set[ '_pzucd_' . $i . '-blueprint-cells-across' ] : null),
+                    'section-min-cell-width'     => (!empty($pzucd_blueprint_field_set[ '_pzucd_' . $i . '-blueprint-min-cell-width' ]) ? $pzucd_blueprint_field_set[ '_pzucd_' . $i . '-blueprint-min-cell-width' ] : null),
+                    'section-cells-vert-margin'  => (!empty($pzucd_blueprint_field_set[ '_pzucd_' . $i . '-blueprint-cells-vert-margin' ]) ? $pzucd_blueprint_field_set[ '_pzucd_' . $i . '-blueprint-cells-vert-margin' ] : null),
+                    'section-cells-horiz-margin' => (!empty($pzucd_blueprint_field_set[ '_pzucd_' . $i . '-blueprint-cells-horiz-margin' ]) ? $pzucd_blueprint_field_set[ '_pzucd_' . $i . '-blueprint-cells-horiz-margin' ] : null),
+                    'section-cell-layout'        => (!empty($pzucd_blueprint_field_set[ '_pzucd_' . $i . '-blueprint-section-cell-layout' ]) ? $pzucd_blueprint_field_set[ '_pzucd_' . $i . '-blueprint-section-cell-layout' ] : null),
+                    'section-layout-mode'        => (!empty($pzucd_blueprint_field_set[ '_pzucd_' . $i . '-blueprint-layout-mode' ]) ? $pzucd_blueprint_field_set[ '_pzucd_' . $i . '-blueprint-layout-mode' ] : null),
+                    'section-navigation'         => (!empty($pzucd_blueprint_field_set[ '_pzucd_' . $i . '-blueprint-section-navigation' ]) ? $pzucd_blueprint_field_set[ '_pzucd_' . $i . '-blueprint-section-navigation' ] : null),
+                    'section-nav-pos'            => (!empty($pzucd_blueprint_field_set[ '_pzucd_' . $i . '-blueprint-section-nav-pos' ]) ? $pzucd_blueprint_field_set[ '_pzucd_' . $i . '-blueprint-section-nav-pos' ] : null),
+                    'section-nav-loc'            => (!empty($pzucd_blueprint_field_set[ '_pzucd_' . $i . '-blueprint-section-nav-loc' ]) ? $pzucd_blueprint_field_set[ '_pzucd_' . $i . '-blueprint-section-nav-loc' ] : null),
+                    'section-cell-settings'      => get_post_meta($pzucd_blueprint_field_set[ '_pzucd_' . $i . '-blueprint-section-cell-layout' ]),
 
             ) : null;
   }
 
-  return $pzucd_template;
+  return $pzucd_blueprint;
 }
 
 function pzucd_get_cell_design($pzucd_cell_layout_id)
@@ -130,40 +131,40 @@ add_shortcode('pzucd', 'pzucd_shortcode');
 function pzucd_shortcode($atts, $content = null, $tag)
 {
 
-//  $pzucd_template_arr = pzucd_get_the_template($atts[ 0 ]);
-//  var_dump($pzucd_template_arr);
+//  $pzucd_blueprint_arr = pzucd_get_the_blueprint($atts[ 0 ]);
+//  var_dump($pzucd_blueprint_arr);
 //  var_dump($atts);
 //  $pzucd = new pzucd_Display();
-  $pzucd_template = '';
-  if (!empty($atts[ 'template' ]))
+  $pzucd_blueprint = '';
+  if (!empty($atts[ 'blueprint' ]))
   {
-    $pzucd_template = $atts[ 'template' ];
+    $pzucd_blueprint = $atts[ 'blueprint' ];
   }
   elseif (!empty($atts[ 0 ]))
   {
-    $pzucd_template = $atts[ 0 ];
+    $pzucd_blueprint = $atts[ 0 ];
   }
 
-  return pzucd($pzucd_template, (!empty($atts[ 'ids' ]) ? $atts[ 'ids' ] : null));
+  return pzucd($pzucd_blueprint, (!empty($atts[ 'ids' ]) ? $atts[ 'ids' ] : null));
 
-  //  return pzucd_render($pzucd_template_arr, (!empty($atts[ 'ids' ]) ? $atts[ 'ids' ] : null), 'pzucd_Display');
+  //  return pzucd_render($pzucd_blueprint_arr, (!empty($atts[ 'ids' ]) ? $atts[ 'ids' ] : null), 'pzucd_Display');
 
 }
 
 
-/* Template tag */
+/* Blueprint tag */
 /* Overrides is a list of ids */
-function pzucd($pzucd_template = null, $pzucd_overrides = null)
+function pzucd($pzucd_blueprint = null, $pzucd_overrides = null)
 {
-  if (empty($pzucd_template))
+  if (empty($pzucd_blueprint))
   {
   // make this use a set of defaults. prob an excerpt grid
-    return 'You need to set a template';
+    return 'You need to set a blueprint';
   }
-  $pzucd_template_arr = pzucd_get_the_template($pzucd_template);
+  $pzucd_blueprint_arr = pzucd_get_the_blueprint($pzucd_blueprint);
 
   $pzucd_stuff = new pzucd_Display();
-  $pzucd_stuff->render($pzucd_template_arr, $pzucd_overrides);
+  $pzucd_stuff->render($pzucd_blueprint_arr, $pzucd_overrides);
 
   return $pzucd_stuff->output;
 
@@ -216,7 +217,7 @@ function pzucd_get_comments($pzucd_content)
 
 /*
 
-// Template tag
+// Blueprint tag
 function pzucd_display()
 {
   $pzucd_criteria = null;
@@ -323,50 +324,50 @@ function pzucd_display()
     $cell_array         = get_posts($query_options);
     $pzucd_cell_options = get_post_custom($cell_array[ 0 ]->ID);
 
-    // Get template options
+    // Get blueprint options
     $query_options          = array(
-      'post_type'  => 'ucd-templates',
-      'meta_key'   => 'pzucd_template-set-name',
-      'meta_value' => $pzucd_section[ 'template' ]
+      'post_type'  => 'ucd-blueprints',
+      'meta_key'   => 'pzucd_blueprint-set-name',
+      'meta_value' => $pzucd_section[ 'blueprint' ]
     );
-    $template_array         = get_posts($query_options);
-    $pzucd_template_options = get_post_custom($template_array[ 0 ]->ID);
+    $blueprint_array         = get_posts($query_options);
+    $pzucd_blueprint_options = get_post_custom($blueprint_array[ 0 ]->ID);
 
     // Squish arrays as values are currently in $x['name'][0]. This makes them $x['name']
     $pzucd_cell_options     = pz_squish($pzucd_cell_options);
-    $pzucd_template_options = pz_squish($pzucd_template_options);
+    $pzucd_blueprint_options = pz_squish($pzucd_blueprint_options);
 
 //		pzdebug($pzucd_cell_options);
 //		pzdebug($pzucd_criteria_options);
-//		pzdebug($pzucd_template_options);
+//		pzdebug($pzucd_blueprint_options);
 
-    // Should each be a separate class?? i.e. layout,criteria, template? or child classes. hmmm
+    // Should each be a separate class?? i.e. layout,criteria, blueprint? or child classes. hmmm
     // Not child coz childs are for adding or changing existing functionailty
     // Separates may be overkill at this stage since there'd only be one method per class
     /// So we'll stick to the single class
 
 
-    // Pass a generic cells template - don't know why yet!
-    $pzucd = new ucdDisplay($pzucd_cell_options, $pzucd_template_options);
+    // Pass a generic cells blueprint - don't know why yet!
+    $pzucd = new ucdDisplay($pzucd_cell_options, $pzucd_blueprint_options);
 
 //		// Get the content
 //		// should this return a query
 //		$pzucd_query = $pzucd->select($pzucd_section['criteria_options']);
 
-    // Generate the cell template
+    // Generate the cell blueprint
     $pzucd_cells_layout = $pzucd->cell_layout();
 
     // Generate the full layout
-    $pzucd_template_layout = $pzucd->layout_template();
+    $pzucd_blueprint_layout = $pzucd->layout_blueprint();
 
-    $pzucd->layout_header($pzucd_template_layout); // Outer wrapper and nav top and left
+    $pzucd->layout_header($pzucd_blueprint_layout); // Outer wrapper and nav top and left
     var_dump($pzucd_query->found_posts);
     if ($pzucd_query->have_posts())
     {
       $row_break = false;
       $i         = 0;
       // These sections are rows - but may not be necessary - although may be useful for advanced formatting
-      $pzucd->section_header($pzucd_template_layout);
+      $pzucd->section_header($pzucd_blueprint_layout);
       while ($pzucd_query->have_posts() && !$row_break)
         // Do we need row breaks? Can % width deal with them automatically? And then do we need sections?
         // Can "dumb" thml with smart css format it?
@@ -377,14 +378,14 @@ function pzucd_display()
         // $i will be used to identify the cell so $i % cells_per_row will enabled us to determine the row beginning
         //	echo $pzucd->display_cell($pzucd_cells_layout,$i++);
       } //Endwhile
-      $pzucd->section_footer($pzucd_template_layout); // Outer wrapper close and nav right and bottom
+      $pzucd->section_footer($pzucd_blueprint_layout); // Outer wrapper close and nav right and bottom
     } //endif
     // Should this be in the loop?
     // And finally, display it
   } //end foreach
   var_dump($pzucd_sections);
   do_action('pzucd_after_sections');
-  $pzucd->layout_footer($pzucd_template_layout);
+  $pzucd->layout_footer($pzucd_blueprint_layout);
   wp_reset_postdata();
   rewind_posts();
 
@@ -398,15 +399,15 @@ function pzucd_shortcode($atts, $title = null)
 // var_dump($atts);
   if (isset($atts[ 'section1' ]))
   {
-    list($pzucd_sections[ 'section1' ][ 'cells' ], $pzucd_sections[ 'section1' ][ 'template' ]) = explode(',', $atts[ 'section1' ]);
+    list($pzucd_sections[ 'section1' ][ 'cells' ], $pzucd_sections[ 'section1' ][ 'blueprint' ]) = explode(',', $atts[ 'section1' ]);
   }
   if (isset($atts[ 'section2' ]))
   {
-    list($pzucd_sections[ 'section2' ][ 'cells' ], $pzucd_sections[ 'section2' ][ 'template' ]) = explode(',', $atts[ 'section2' ]);
+    list($pzucd_sections[ 'section2' ][ 'cells' ], $pzucd_sections[ 'section2' ][ 'blueprint' ]) = explode(',', $atts[ 'section2' ]);
   }
   if (isset($atts[ 'section3' ]))
   {
-    list($pzucd_sections[ 'section3' ][ 'cells' ], $pzucd_sections[ 'section3' ][ 'template' ]) = explode(',', $atts[ 'section3' ]);
+    list($pzucd_sections[ 'section3' ][ 'cells' ], $pzucd_sections[ 'section3' ][ 'blueprint' ]) = explode(',', $atts[ 'section3' ]);
   }
 
 //	pzdebug($pzucd_sections);

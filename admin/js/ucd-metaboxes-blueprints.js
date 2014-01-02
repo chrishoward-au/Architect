@@ -21,46 +21,47 @@ jQuery(document).ready(function () {
    });
    });
    */
-//_pzucd_section-group-_pzucd_template-cells-per-view-cmb-group-0-cmb-field-0
-//_pzucd_section-group-_pzucd_template-cells-per-view-cmb-group-1-cmb-field-0
+//_pzucd_section-group-_pzucd_blueprint-cells-per-view-cmb-group-0-cmb-field-0
+//_pzucd_section-group-_pzucd_blueprint-cells-per-view-cmb-group-1-cmb-field-0
 
-  pzucd_refresh_template_layout(0);
-  pzucd_refresh_template_layout(1);
-  pzucd_refresh_template_layout(2);
-  pzucd_update_usage_info(jQuery("#_pzucd_template-short-name-cmb-field-0").get(0));
+  pzucd_refresh_blueprint_layout(0);
+  pzucd_refresh_blueprint_layout(1);
+  pzucd_refresh_blueprint_layout(2);
+  pzucd_update_usage_info(jQuery("#_pzucd_blueprint-short-name-cmb-field-0").get(0));
 
-  function pzucd_refresh_template_layout(i) {
-    pzucd_update_cell_count(i, jQuery('#_pzucd_' + i + '-template-cells-per-view-cmb-field-0').get(0));
-    pzucd_update_cell_margin(i, jQuery('#_pzucd_' + i + '-template-cells-vert-margin-cmb-field-0').get(0));
-    pzucd_update_cell_across(i, jQuery('#_pzucd_' + i + '-template-cells-across-cmb-field-0').get(0));
-    pzucd_update_min_width(i, jQuery('#_pzucd_' + i + '-template-min-cell-width-cmb-field-0').get(0));
+  function pzucd_refresh_blueprint_layout(i) {
+    console.log(i,jQuery('#_pzucd_' + i + '-blueprint-cells-per-view-cmb-field-0').get(0));
+    pzucd_update_cell_count(i, jQuery('#_pzucd_' + i + '-blueprint-cells-per-view-cmb-field-0').get(0));
+    pzucd_update_cell_margin(i, jQuery('#_pzucd_' + i + '-blueprint-cells-vert-margin-cmb-field-0').get(0));
+    pzucd_update_cell_across(i, jQuery('#_pzucd_' + i + '-blueprint-cells-across-cmb-field-0').get(0));
+    pzucd_update_min_width(i, jQuery('#_pzucd_' + i + '-blueprint-min-cell-width-cmb-field-0').get(0));
     pzucd_show_hide_section(i);
   }
 
-//  jQuery('#pzucd-sections-preview-0').resize(function(){console.log(this.width);pzucd_refresh_template_layout(0)});
-//  jQuery('#pzucd-sections-preview-1').resize(function(){console.log(this.width);pzucd_refresh_template_layout(1)});
-//  jQuery('#pzucd-sections-preview-2').resize(function(){console.log(this.width);pzucd_refresh_template_layout(2)});
+//  jQuery('#pzucd-sections-preview-0').resize(function(){console.log(this.width);pzucd_refresh_blueprint_layout(0)});
+//  jQuery('#pzucd-sections-preview-1').resize(function(){console.log(this.width);pzucd_refresh_blueprint_layout(1)});
+//  jQuery('#pzucd-sections-preview-2').resize(function(){console.log(this.width);pzucd_refresh_blueprint_layout(2)});
 
 
   for (var i = 0; i < 3; i++) {
-    jQuery('#_pzucd_' + i + '-template-cells-vert-margin-cmb-field-0').change(function () {
-      pzucd_refresh_template_layout(this.id.substr(7,1));
+    jQuery('#_pzucd_' + i + '-blueprint-cells-vert-margin-cmb-field-0').change(function () {
+      pzucd_refresh_blueprint_layout(this.id.substr(7,1));
     });
-    jQuery('#_pzucd_' + i + '-template-cells-across-cmb-field-0').change(function () {
-      pzucd_refresh_template_layout(this.id.substr(7,1));
+    jQuery('#_pzucd_' + i + '-blueprint-cells-across-cmb-field-0').change(function () {
+      pzucd_refresh_blueprint_layout(this.id.substr(7,1));
     });
-    jQuery('#_pzucd_' + i + '-template-cells-per-view-cmb-field-0').change(function () {
-      pzucd_refresh_template_layout(this.id.substr(7,1));
+    jQuery('#_pzucd_' + i + '-blueprint-cells-per-view-cmb-field-0').change(function () {
+      pzucd_refresh_blueprint_layout(this.id.substr(7,1));
     });
-    jQuery('#_pzucd_' + i + '-template-min-cell-width-cmb-field-0').change(function () {
-      pzucd_refresh_template_layout(this.id.substr(7,1));
+    jQuery('#_pzucd_' + i + '-blueprint-min-cell-width-cmb-field-0').change(function () {
+      pzucd_refresh_blueprint_layout(this.id.substr(7,1));
     });
-    jQuery('#_pzucd_' + i + '-template-section-enable-cmb-field-0').change(function () {
+    jQuery('#_pzucd_' + i + '-blueprint-section-enable-cmb-field-0').change(function () {
       var x = this.id.substr(7,1);
       pzucd_show_hide_section(x);
     });
   }
-  jQuery('#_pzucd_template-short-name-cmb-field-0').change(function () {
+  jQuery('#_pzucd_blueprint-short-name-cmb-field-0').change(function () {
     pzucd_update_usage_info(this);
   });
   function pzucd_update_usage_info(t){
@@ -72,7 +73,7 @@ jQuery(document).ready(function () {
 /* Switched to pixel based once, but not as fluid. Butwhat was it's advantage? Why did I switch? */
   function pzucd_update_cell_margin(i,t) {
 //    console.log(i,t,t.value);
-    var cellsAcross = jQuery('#_pzucd_'+i+'-template-cells-across-cmb-field-0').get(0).value;
+    var cellsAcross = jQuery('#_pzucd_'+i+'-blueprint-cells-across-cmb-field-0').get(0).value;
     var containerWidth = jQuery('.pzucd-section-'+i).width();
     //  console.log(containerWidth);
     jQuery('#pzucd-sections-preview-'+i+' .pzucd-section-cell').each(function (index, value) {
@@ -87,7 +88,7 @@ jQuery(document).ready(function () {
  //   console.log(i,t,t.value);
     var containerWidth = jQuery('#pzucd-sections-preview-'+i).width();
 //    console.log(containerWidth);
-    var cellRightMargin = jQuery('#_pzucd_'+i+'-template-cells-vert-margin-cmb-field-0').val();
+    var cellRightMargin = jQuery('#_pzucd_'+i+'-blueprint-cells-vert-margin-cmb-field-0').val();
     var new_cell_width = (100/ t.value)- cellRightMargin;
     // Can't use width(), it breaks when padding is set.
     jQuery('#pzucd-sections-preview-'+i+' .pzucd-section-cell').css( {"width":new_cell_width + '%'});
@@ -109,7 +110,7 @@ jQuery(document).ready(function () {
 //      }
 //      var w = parseInt(Math.random()*50)+10;
 //      jQuery('#pzucd-sections-preview-'+i+' .pzucd-section-cell-' + j).lorem({ type: 'words',amount:w,ptags:true});
-//      jQuery('#pzucd-sections-preview-'+i+' .pzucd-section-cell-' + j).prepend('<h3 class="pzucd-template-cell-preview-title">Title</h3><img src="'+plugin_url+'/assets/images/sample-image.jpg" width="64"/>');
+//      jQuery('#pzucd-sections-preview-'+i+' .pzucd-section-cell-' + j).prepend('<h3 class="pzucd-blueprint-cell-preview-title">Title</h3><img src="'+plugin_url+'/assets/images/sample-image.jpg" width="64"/>');
 //      var w = parseInt(Math.random()*5)+1;
 //      jQuery('#pzucd-sections-preview-'+i+' .pzucd-section-cell-' + j+' h3').lorem({ type: 'words',amount:w,ptags:false});
     }
@@ -122,7 +123,7 @@ jQuery(document).ready(function () {
 
   function pzucd_show_hide_section(x) {
     var y = parseInt(x)+1;
-    jQuery('#pzucd-sections-preview-'+x).toggle(jQuery('#_pzucd_'+x+'-template-section-enable-cmb-field-0').get(0).checked);
-    jQuery('#template-section-'+y+'.postbox').toggle(jQuery('#_pzucd_'+x+'-template-section-enable-cmb-field-0').get(0).checked);
+    jQuery('#pzucd-sections-preview-'+x).toggle(jQuery('#_pzucd_'+x+'-blueprint-section-enable-cmb-field-0').get(0).checked);
+    jQuery('#blueprint-section-'+y+'.postbox').toggle(jQuery('#_pzucd_'+x+'-blueprint-section-enable-cmb-field-0').get(0).checked);
   }
 });

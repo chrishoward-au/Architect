@@ -99,7 +99,7 @@ class pzucd_Criteria extends pzucdForm {
 				'not_found' => __('No Content selection found'),
 				'not_found_in_trash' => __('No Content selections found in Trash'),
 				'parent_item_colon' => '',
-				'menu_name' => _x('<span class="dashicons-icon icon-criterias"></span>Contents', 'pzucd-criteria-designer'),
+				'menu_name' => _x('<span class="dashicons dashicons-search"></span>Contents', 'pzucd-criteria-designer'),
 		);
 
 		$args = array(

@@ -1,7 +1,7 @@
 <?php
 
 /*
-  Plugin Name: PizazzWP Ultimate Content Display - an all-in-one content display framework
+  Plugin Name: Architect - an all-in-one content display framework
   Plugin URI: http://pizazzwp.com
   Description: Display your content in grids, tabs, sliders, galleries with sources like posts, pages, galleries, widgets, custom code, Headway blocks and custom content types
   Version: 0.4.7 beta
@@ -13,8 +13,8 @@
 
 // What's the essential difference between E+. G+, S+ and T+? Their navigation. E+ has pagination, G+ thumbs, S+ tabs, T+ tabs.
 
-/* TEMPLATES: Overall layouts bricks
- * VIEWS: End user view Nav brick(s)+Template+Cell Brick
+/* BLUEPRINTS: Overall layouts bricks
+ * VIEWS: End user view Nav brick(s)+Blueprint+Cell Brick
  * CRITERIA:
  * CELL BRICKS
  * NAV BRICKS
@@ -26,7 +26,7 @@
 ================================================================================
 register_cell_layout('name',$args)'
 register_criteria('name',$args);
-register_template_layout('name',$args);
+register_blueprint_layout('name',$args);
 ================================================================================
 */
 
@@ -37,9 +37,9 @@ class Ultimate_Content_Display
 	function __construct()
 	{
 
-		define( 'PZUCD_VERSION', '0.4.6' );
+		define( 'PZUCD_VERSION', '0.4.7' );
 		define( 'PZUCD_NAME', 'pzucd' );
-		define( 'PZUCD_FOLDER', '/pizazzwp-ultimatecontentdisplay' );
+		define( 'PZUCD_FOLDER', '/pizazzwp-architect' );
 
 		define( 'PZUCD_PLUGIN_URL', trailingslashit(plugin_dir_url( __FILE__ ) ));
 		define( 'PZUCD_PLUGIN_PATH', trailingslashit(plugin_dir_path( __FILE__ )) );
@@ -284,8 +284,8 @@ $pzucd = new Ultimate_Content_Display();
 /* Display method Widget */
 // Create an uber widget with all the layout params
 
-/* Display method Template Tag */
-// Create template tag with all the layout params
+/* Display method Blueprint Tag */
+// Create blueprint tag with all the layout params
 
 /* Display method shortcode */
 // We might need a shortcode for gallery displaying

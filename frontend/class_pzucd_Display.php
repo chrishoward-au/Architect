@@ -8,7 +8,7 @@
  */
  /*
  * class for displaying content
- * this captures the content and returns it, so needs an echo statemnet to display in templates
+ * this captures the content and returns it, so needs an echo statemnet to display in blueprints
  * this is necessary to work in a shortcode
  *
  */
@@ -18,7 +18,7 @@ class pzucd_Display
   public $source_data = '';
   public $query_vars = '';
   public $cell_info = '';
-  public $template = '';
+  public $blueprint = '';
   public $nav_links = array();
   public $css ='/* UCD CSS */';
 
@@ -28,26 +28,26 @@ class pzucd_Display
 
 
 /*
- * draw the header section of the template. includes navigation
+ * draw the header section of the blueprint. includes navigation
  * opens the ucd container
  *
  */
- function template_header($template_id)
+ function blueprint_header($blueprint_id)
   {
-    $this->output .= '<div id="pzucd=container-' . $this->template[ 'template-short-name' ] . '" class="pzucd-container pzucd-template-'.$template_id.'">';
-    if ($this->template[ 'template-pager' ] == 'hover')
+    $this->output .= '<div id="pzucd=container-' . $this->blueprint[ 'blueprint-short-name' ] . '" class="pzucd-container pzucd-blueprint-'.$blueprint_id.'">';
+    if ($this->blueprint[ 'blueprint-pager' ] == 'hover')
     {
       $this->output .= '{{pager}}';
     }
   }
 
 /*
- * draw the footer section of the template. includes navigation
+ * draw the footer section of the blueprint. includes navigation
  * closes the ucd container
  */
-  function template_footer()
+  function blueprint_footer()
   {
-    if ($this->template[ 'template-pager' ] == 'wordpress' || $this->template[ 'template-pager' ] == 'wppagenavi')
+    if ($this->blueprint[ 'blueprint-pager' ] == 'wordpress' || $this->blueprint[ 'blueprint-pager' ] == 'wppagenavi')
     {
       $this->output .= '{{pager}}';
     }
@@ -56,7 +56,7 @@ class pzucd_Display
 
   function build_query($the_criteria, $overrides=null)
   {
-    if ($this->template[ 'template-criteria' ] == 'default')
+    if ($this->blueprint[ 'blueprint-criteria' ] == 'default')
     {
       //don't change nuttin!
       // Do we need to check page type? Single etc?
@@ -89,15 +89,15 @@ class pzucd_Display
     // Should we do it this way?
     // Or should it be filters?
     // And what would happen with multiple ? Would they all get mixed together?
-    do_action('template-header');
-    do_action('template-body');
-    do_action('template-footer');
+    do_action('blueprint-header');
+    do_action('blueprint-body');
+    do_action('blueprint-footer');
 
     // Or should we doo it an OOP way? Which we are already semi doing.
 
   }
 
-  function render($pzucd_template, $overrides)
+  function render($pzucd_blueprint, $overrides)
   {
     // THis is probably where we should preserve the wp_query
     global $wp_query;
@@ -107,15 +107,15 @@ class pzucd_Display
 
     // THIS HAS TO ALL WORK NICELY WITH CONTENT IN CONTENT. I.E. NO RECURSIVE ISSUES.
 
-    $this->template = $pzucd_template;
+    $this->blueprint = $pzucd_blueprint;
 
 
-    // pzdebug($pzucd_template);
+    // pzdebug($pzucd_blueprint);
     // pzdebug((array)$pzucd_out);
     // Get the criteria
-    $the_criteria = get_post_meta($pzucd_template[ 'template-criteria' ], null, true);
+    $the_criteria = get_post_meta($pzucd_blueprint[ 'blueprint-criteria' ], null, true);
 
-    if ($this->template[ 'template-criteria' ] != 'default')
+    if ($this->blueprint[ 'blueprint-criteria' ] != 'default')
     {
 
       self::get_source($the_criteria, $overrides);
@@ -141,7 +141,7 @@ class pzucd_Display
       // What if WE have changed the query?? What is our real current query?
     //  add_filter('parse_query', array($this,'modify_default_query'));
       $pzucd_query = $wp_query;
-      $pzucd_query->set( 'posts_per_page', $this->template['template-posts-per-page'] );
+      $pzucd_query->set( 'posts_per_page', $this->blueprint['blueprint-posts-per-page'] );
       $pzucd_query->get_posts();
  //pzdebug((array)$pzucd_query->request);
       // For defaults, determine the content type from the post type
@@ -157,11 +157,11 @@ class pzucd_Display
 
 
     // is filters a better way to do this? Altho how??
-    //$this->output = apply_filters('pzucd_template_header',template_header());
+    //$this->output = apply_filters('pzucd_blueprint_header',blueprint_header());
 
     // The outer wrapper
-    // use a method so we can swap it out in the future with different template headers
-    self::template_header($this->template['template-id']);
+    // use a method so we can swap it out in the future with different blueprint headers
+    self::blueprint_header($this->blueprint['blueprint-id']);
     // Cell defs will need to be a little more flexible to cater for for mixed sections of full and excerpts.
 
     $celldef = pzucd_celldef($content_type);
@@ -173,19 +173,19 @@ class pzucd_Display
     * THE QUERY HAS ALREADY HAPPENED. NOW WE JUST NEED TO SHOW THE CONTENT, BROKEN DOWN INTO SECTIONS AND CELLS
     **********************************************************************
     **********************************************************************/
-    foreach ($this->template[ 'section' ] as $key => $section_info)
+    foreach ($this->blueprint[ 'section' ] as $key => $section_info)
     {
 
       // load up the cell's css for this section
       $cellid =$section_info['section-cell-layout'];
-      if (!empty($this->template['template-id'])) {
+      if (!empty($this->blueprint['blueprint-id'])) {
         $upload_dir = wp_upload_dir();
-        $filename   = trailingslashit($upload_dir[ 'baseurl' ]) . '/cache/pizazzwp/ucd/pzucd-template-' . $this->template['template-id'] . '.css';
-        wp_enqueue_style('template-css'.$this->template['template-id'],$filename);
+        $filename   = trailingslashit($upload_dir[ 'baseurl' ]) . '/cache/pizazzwp/ucd/pzucd-blueprint-' . $this->blueprint['blueprint-id'] . '.css';
+        wp_enqueue_style('blueprint-css'.$this->blueprint['blueprint-id'],$filename);
       }
 
       $this->section_info = $section_info;
-      if ($pzucd_template[ 'section' ][ $key ][ 'section-enable' ])
+      if ($pzucd_blueprint[ 'section' ][ $key ][ 'section-enable' ])
       {
 
         $this->output .= '{{nav-top-outside}}';
@@ -244,8 +244,8 @@ class pzucd_Display
     **********************************************************************/
     
     // Close up the outer wrapper
-    // use a method so we can swap it out in the future with different template headers
-    self::template_footer();
+    // use a method so we can swap it out in the future with different blueprint headers
+    self::blueprint_footer();
 
     // Process any left over {{}} variables
     self::add_pager();
@@ -269,7 +269,7 @@ class pzucd_Display
     $cell_meta1  = (!empty($meta1_confg) ? '{{' . implode('}}, {{', $meta1_confg) . '}}' : null);
     $cell_meta2  = (!empty($meta2_confg) ? '{{' . implode('}}, {{', $meta2_confg) . '}}' : null);
     $cell_meta3  = (!empty($meta3_confg) ? '{{' . implode('}}, {{', $meta3_confg) . '}}' : null);
-    // build up the template for the cell, ordering from
+    // build up the blueprint for the cell, ordering from
     // won't this be fun!!
     // need to match celllayout slugs to celldefs array index
     $cell_definition = '';
@@ -430,7 +430,7 @@ class pzucd_Display
   {
     // var_dump(get_the_id(),get_the_title());
 //    var_dump();
-    if ($this->template['template-pager']=='wordpress'){
+    if ($this->blueprint['blueprint-pager']=='wordpress'){
        $pager = '<div class="pzucd-pager">';
   //    $pager .=  get_next_posts_link( 'Older Entries', 999 );
   //    $pager .=  get_previous_posts_link( 'Newer Entries' );
@@ -446,7 +446,7 @@ class pzucd_Display
   
       }
       $pager .= '</div>';
-    } elseif ($this->template['template-pager']=='wppagenavi') {
+    } elseif ($this->blueprint['blueprint-pager']=='wppagenavi') {
       if(function_exists('wp_pagenavi')) { 
        $pager = '<div class="pzucd-pager">';
         ob_start();
@@ -455,7 +455,7 @@ class pzucd_Display
         ob_end_clean();
       $pager .= '</div>';
         
-    } elseif ($this->template['template-pager']=='hover') {
+    } elseif ($this->blueprint['blueprint-pager']=='hover') {
     }
     if (!empty($next_post))
     {
