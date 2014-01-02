@@ -31,41 +31,41 @@ register_blueprint_layout('name',$args);
 */
 
 
-class Ultimate_Content_Display
+class pz_Architect
 {
 
 	function __construct()
 	{
 
-		define( 'PZUCD_VERSION', '0.4.7' );
-		define( 'PZUCD_NAME', 'pzucd' );
-		define( 'PZUCD_FOLDER', '/pizazzwp-architect' );
+		define( 'PZARC_VERSION', '0.4.7' );
+		define( 'PZARC_NAME', 'pzarc' );
+		define( 'PZARC_FOLDER', '/pizazzwp-architect' );
 
-		define( 'PZUCD_PLUGIN_URL', trailingslashit(plugin_dir_url( __FILE__ ) ));
-		define( 'PZUCD_PLUGIN_PATH', trailingslashit(plugin_dir_path( __FILE__ )) );
-		define( 'PZUCD_CACHE', '/pzucd/' );
+		define( 'PZARC_PLUGIN_URL', trailingslashit(plugin_dir_url( __FILE__ ) ));
+		define( 'PZARC_PLUGIN_PATH', trailingslashit(plugin_dir_path( __FILE__ )) );
+		define( 'PZARC_CACHE', '/pzarc/' );
 
 		$upload_dir = wp_upload_dir();
-		define( 'PZUCD_CACHE_URL', trailingslashit($upload_dir[ 'baseurl' ] . '/uploads/cache/pizazzwp/pzucd' ));
-		define( 'PZUCD_CACHE_PATH', trailingslashit($upload_dir[ 'basedir' ] . '/cache/pizazzwp/pzucd' ));
-		define( 'PZUCD_DEBUG', 0 );
+		define( 'PZARC_CACHE_URL', trailingslashit($upload_dir[ 'baseurl' ] . '/uploads/cache/pizazzwp/pzarc' ));
+		define( 'PZARC_CACHE_PATH', trailingslashit($upload_dir[ 'basedir' ] . '/cache/pizazzwp/pzarc' ));
+		define( 'PZARC_DEBUG', 0 );
 
 		// Load plugin text domain
 		add_action( 'init', array( $this, 'plugin_textdomain' ) );
 
 		if ( !function_exists( 'pizazzwp_head' ) )
 		{
-//			include_once PZUCD_PLUGIN_PATH . '/libs/PizazzWP.php';
+//			include_once PZARC_PLUGIN_PATH . '/libs/PizazzWP.php';
 		}
-		require_once PZUCD_PLUGIN_PATH . 'includes/ucd-functions.php';
+		require_once PZARC_PLUGIN_PATH . 'includes/arc-functions.php';
 
 		// Register admin styles and scripts
 
 		if ( is_admin() )
 		{
-			require_once PZUCD_PLUGIN_PATH . '/admin/ucd-admin.php';
-			//	require_once PZUCD_PLUGIN_PATH . '/external/Custom-Metaboxes-and-Fields/example-functions.php';
-			//require_once(PZUCD_PLUGIN_PATH .'/admin/admin-page-class/admin-page-class.php');
+			require_once PZARC_PLUGIN_PATH . '/admin/arc-admin.php';
+			//	require_once PZARC_PLUGIN_PATH . '/external/Custom-Metaboxes-and-Fields/example-functions.php';
+			//require_once(PZARC_PLUGIN_PATH .'/admin/admin-page-class/admin-page-class.php');
 			add_action( 'admin_print_styles', array( $this, 'register_admin_styles' ) );
 			add_action( 'admin_enqueue_scripts', array( $this, 'register_admin_scripts' ) );
 			//		add_action( 'init', array( $this, 'admin_initialize' ) );
@@ -78,7 +78,7 @@ class Ultimate_Content_Display
 			add_action( 'wp_enqueue_scripts', array( $this, 'register_plugin_styles' ) );
 			add_action( 'wp_enqueue_scripts', array( $this, 'register_plugin_scripts' ) );
 
-			require_once PZUCD_PLUGIN_PATH . '/frontend/ucd-display.php';
+			require_once PZARC_PLUGIN_PATH . '/frontend/arc-display.php';
 
 		}
 
@@ -88,7 +88,7 @@ class Ultimate_Content_Display
 		register_deactivation_hook( __FILE__, array( $this, 'deactivate' ) );
 		//	register_uninstall_hook( __FILE__, array( $this, 'uninstall' ) );
 
-		add_action( 'after_setup_theme', array( $this, 'register_ultimatecontentdisplay_block' ) );
+		add_action( 'after_setup_theme', array( $this, 'register_architect_block' ) );
 
 
 		/*
@@ -109,15 +109,15 @@ class Ultimate_Content_Display
 // end constructor
 
 
-	public function register_ultimatecontentdisplay_block()
+	public function register_architect_block()
 	{
 
 		if ( class_exists( 'HeadwayDisplay' ) )
 		{
-			require('includes/headway/ucd-block-display.php');
-			require('includes/headway/ucd-block-options.php');
+			require('includes/headway/arc-block-display.php');
+			require('includes/headway/arc-block-options.php');
 
-			return headway_register_block( 'HeadwayUltimateContentDisplayBlock', PZUCD_PLUGIN_URL . '/includes/headway' );
+			return headway_register_block( 'HeadwayArchitectBlock', PZARC_PLUGIN_URL . '/includes/headway' );
 		}
 	}
 
@@ -133,7 +133,7 @@ class Ultimate_Content_Display
 
 	public function admin_initialize()
 	{
-	//	require_once PZUCD_PLUGIN_PATH . '/includes/external/Custom-Metaboxes-and-Fields/init.php';
+	//	require_once PZARC_PLUGIN_PATH . '/includes/external/Custom-Metaboxes-and-Fields/init.php';
 	}
 
 // end activate
@@ -169,7 +169,7 @@ class Ultimate_Content_Display
 	{
 
 		// TODO: replace "plugin-name-locale" with a unique value for your plugin
-		$domain	 = PZUCD_NAME;
+		$domain	 = PZARC_NAME;
 		$locale	 = apply_filters( 'plugin_locale', get_locale(), $domain );
 		load_textdomain( $domain, WP_LANG_DIR . '/' . $domain . '/' . $domain . '-' . $locale . '.mo' );
 		load_plugin_textdomain( $domain, FALSE, dirname( plugin_basename( __FILE__ ) ) . '/lang/' );
@@ -183,11 +183,11 @@ class Ultimate_Content_Display
 	public function register_admin_styles()
 	{
 
-		wp_enqueue_style( PZUCD_NAME . '-admin-styles', plugins_url( PZUCD_FOLDER . '/admin/css/ucd-admin.css' ) );
-		wp_enqueue_style( PZUCD_NAME . '-font-awesome', plugins_url( PZUCD_FOLDER . '/external/font-awesome/css/font-awesome.min.css' ) );
+		wp_enqueue_style( PZARC_NAME . '-admin-styles', plugins_url( PZARC_FOLDER . '/admin/css/arc-admin.css' ) );
+		wp_enqueue_style( PZARC_NAME . '-font-awesome', plugins_url( PZARC_FOLDER . '/external/font-awesome/css/font-awesome.min.css' ) );
 
 		// Be nice to use bootstrap, but it's just not compatible with WP as it uses common non-specific element names.
-		//wp_enqueue_style( 'bootstrap-admin-styles', plugins_url( PZUCD_FOLDER . '/external/bootstrap/css/bootstrap.min.css' ) );
+		//wp_enqueue_style( 'bootstrap-admin-styles', plugins_url( PZARC_FOLDER . '/external/bootstrap/css/bootstrap.min.css' ) );
 	}
 
 // end register_admin_styles
@@ -200,8 +200,8 @@ class Ultimate_Content_Display
 
 		wp_enqueue_script( 'jquery' );
 
-		// wp_enqueue_script( PZUCD_NAME.'-admin-script', plugins_url( PZUCD_FOLDER.'/admin/js/admin.js' ) );
-		//wp_enqueue_script(PZUCD_NAME . '-metaboxes-script', plugins_url(PZUCD_FOLDER . '/admin/js/ucd-metaboxes.js'));
+		// wp_enqueue_script( PZARC_NAME.'-admin-script', plugins_url( PZARC_FOLDER.'/admin/js/admin.js' ) );
+		//wp_enqueue_script(PZARC_NAME . '-metaboxes-script', plugins_url(PZARC_FOLDER . '/admin/js/arc-metaboxes.js'));
 	}
 
 // end register_admin_scripts
@@ -212,7 +212,7 @@ class Ultimate_Content_Display
 	public function register_plugin_styles()
 	{
 
-		wp_enqueue_style( PZUCD_NAME . '-plugin-styles', plugins_url( PZUCD_FOLDER . '/frontend/css/ucd-front.css' ) );
+		wp_enqueue_style( PZARC_NAME . '-plugin-styles', plugins_url( PZARC_FOLDER . '/frontend/css/arc-front.css' ) );
 	}
 
 // end register_plugin_styles
@@ -224,9 +224,9 @@ class Ultimate_Content_Display
 	{
 
 		wp_enqueue_script( 'jquery' );
-		// wp_enqueue_script( PZUCD_NAME.'-plugin-script', plugins_url( PZUCD_FOLDER.'/frontend/js/display.js' ) );
-    wp_register_script( 'jquery-isotope', plugins_url( PZUCD_FOLDER . '/external/js/jquery.isotope.min.js' ) );
-    wp_register_script( 'js-isotope-v2', plugins_url( PZUCD_FOLDER . '/external/js/isotope.pkgd.min.js' ) );
+		// wp_enqueue_script( PZARC_NAME.'-plugin-script', plugins_url( PZARC_FOLDER.'/frontend/js/display.js' ) );
+    wp_register_script( 'jquery-isotope', plugins_url( PZARC_FOLDER . '/external/js/jquery.isotope.min.js' ) );
+    wp_register_script( 'js-isotope-v2', plugins_url( PZARC_FOLDER . '/external/js/isotope.pkgd.min.js' ) );
 	}
 
 // end register_plugin_scripts
@@ -269,7 +269,7 @@ class Ultimate_Content_Display
 
 // end class
 // TODO:	Update the instantiation call of your plugin to the name given at the class definition
-$pzucd = new Ultimate_Content_Display();
+$pzarc = new Ultimate_Content_Display();
 
 
 
@@ -295,9 +295,9 @@ $pzucd = new Ultimate_Content_Display();
 // Provide method to display using a Headway block
 if (is_admin())
 {
-  add_action('admin_init', 'pzucd_initiate_updater');
+  add_action('admin_init', 'pzarc_initiate_updater');
 
-  function pzucd_initiate_updater() {
+  function pzarc_initiate_updater() {
 //    $opt_val = get_option('pizazz_options');
 //    if (class_exists('HeadwayUpdaterAPI') && empty($opt_val['val_update_method']))
 //    {

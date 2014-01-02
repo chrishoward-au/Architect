@@ -21,11 +21,11 @@ class pzucd_Content_blueprints extends pzucdForm
 //      add_action('add_meta_boxes', 'blueprints_meta');
       add_action('admin_head', array($this, 'content_blueprints_admin_head'));
       add_action('admin_enqueue_scripts', array($this, 'content_blueprints_admin_enqueue'));
-			add_filter('manage_ucd-blueprints_posts_columns', array($this, 'add_blueprint_columns'));
-			add_action('manage_ucd-blueprints_posts_custom_column', array($this, 'add_blueprint_column_content'), 10, 2);
+			add_filter('manage_arc-blueprints_posts_columns', array($this, 'add_blueprint_columns'));
+			add_action('manage_arc-blueprints_posts_custom_column', array($this, 'add_blueprint_column_content'), 10, 2);
 
-      // check screen ucd-blueprints. ugh. doesn't work for save and edit
-//			if ( $_REQUEST[ 'post_type' ] == 'ucd-blueprints' )
+      // check screen arc-blueprints. ugh. doesn't work for save and edit
+//			if ( $_REQUEST[ 'post_type' ] == 'arc-blueprints' )
 //			{
 //			}
     }
@@ -40,7 +40,7 @@ class pzucd_Content_blueprints extends pzucdForm
   public function content_blueprints_admin_enqueue($hook)
   {
     $screen = get_current_screen();
-    if ('ucd-blueprints' == $screen->id)
+    if ('arc-blueprints' == $screen->id)
     {
 
 
@@ -134,7 +134,7 @@ class pzucd_Content_blueprints extends pzucdForm
       'exclude_from_search' => true,
     );
 
-    register_post_type('ucd-blueprints', $args);
+    register_post_type('arc-blueprints', $args);
   }
 
 } // EOC
@@ -163,7 +163,7 @@ function pzucd_blueprint_wizard_metabox($meta_boxes = array())
   );
   $meta_boxes[ ] = array(
     'title'    => 'What do you want to do?',
-    'pages'    => 'ucd-blueprints',
+    'pages'    => 'arc-blueprints',
     'context'  => 'normal',
     'priority' => 'high',
     'fields'   => $fields // An array of fields.
@@ -215,7 +215,7 @@ function pzucd_blueprint_preview_metabox($meta_boxes = array())
 
   $meta_boxes[ ] = array(
     'title'    => 'Blueprint Preview',
-    'pages'    => 'ucd-blueprints',
+    'pages'    => 'arc-blueprints',
     'fields'   => $fields,
     'context'  => 'side',
     'priority' => 'default'
@@ -402,7 +402,7 @@ function pzucd_sections_preview_meta($meta_boxes = array())
     );
     $meta_boxes[ ] = array(
       'title'    => 'Blueprint Section ' . ($i + 1),
-      'pages'    => 'ucd-blueprints',
+      'pages'    => 'arc-blueprints',
       'context'  => 'normal',
       'priority' => 'high',
       'fields'   => $fields // An array of fields.
@@ -503,7 +503,7 @@ function pzucd_blueprint_settings_metabox($meta_boxes = array())
 
   $meta_boxes[ ] = array(
     'title'    => 'Blueprint settings',
-    'pages'    => 'ucd-blueprints',
+    'pages'    => 'arc-blueprints',
     'fields'   => $fields,
     'context'  => 'side',
     'priority' => 'high'

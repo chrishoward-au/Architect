@@ -3,9 +3,9 @@
 //Cells may need to include Content because of custom fields!!! OOps! But content has to be over-arching! So I guess, cells will need to know the content type and its fields. So lets make Content Criteria again. :S
 
 /**
- * Class pzucd_Cell_Layouts
+ * Class pzarc_Cell_Layouts
  */
-class pzucd_Cell_Layouts
+class pzarc_Cell_Layouts
 {
 
 
@@ -20,17 +20,17 @@ class pzucd_Cell_Layouts
 
     if (is_admin())
     {
-      require_once PZUCD_PLUGIN_PATH . 'includes/pzucd-custom-field-types.php';
+      require_once PZARC_PLUGIN_PATH . 'includes/pzarc-custom-field-types.php';
 
-      //	add_action('admin_init', 'pzucd_preview_meta');
+      //	add_action('admin_init', 'pzarc_preview_meta');
       //   add_action('add_meta_boxes', array($this, 'layouts_meta'));
       add_action('admin_head', array($this, 'cell_layouts_admin_head'));
       add_action('admin_enqueue_scripts', array($this, 'cell_layouts_admin_enqueue'));
-//      add_filter('manage_ucd-layouts_posts_columns', array($this, 'add_cell_layout_columns'));
-//      add_action('manage_ucd-layouts_posts_custom_column', array($this, 'add_cell_layout_column_content'), 10, 2);
+//      add_filter('manage_arc-layouts_posts_columns', array($this, 'add_cell_layout_columns'));
+//      add_action('manage_arc-layouts_posts_custom_column', array($this, 'add_cell_layout_column_content'), 10, 2);
 
-      // check screen ucd-layouts. ugh. doesn't work for save and edit
-//			if ( $_REQUEST[ 'post_type' ] == 'ucd-layouts' )
+      // check screen arc-layouts. ugh. doesn't work for save and edit
+//			if ( $_REQUEST[ 'post_type' ] == 'arc-layouts' )
 //			{
 //			}
     }
@@ -45,7 +45,7 @@ class pzucd_Cell_Layouts
   public function cell_layouts_admin_enqueue($hook)
   {
     $screen = get_current_screen();
-    if ('ucd-layouts' == $screen->id)
+    if ('arc-layouts' == $screen->id)
     {
       //  var_dump($screen->id);
 
@@ -54,9 +54,9 @@ class pzucd_Cell_Layouts
       wp_enqueue_script('jquery-ui-sortable');
       wp_enqueue_script('jquery-ui-resizable');
 
-      wp_enqueue_style('pzucd-admin-cells-css', PZUCD_PLUGIN_URL . 'admin/css/ucd-admin-cells.css');
+      wp_enqueue_style('pzarc-admin-cells-css', PZARC_PLUGIN_URL . 'admin/css/arc-admin-cells.css');
 
-      wp_enqueue_script('jquery-pzucd-metaboxes-cells', PZUCD_PLUGIN_URL . 'admin/js/ucd-metaboxes-cells.js', array('jquery'));
+      wp_enqueue_script('jquery-pzarc-metaboxes-cells', PZARC_PLUGIN_URL . 'admin/js/arc-metaboxes-cells.js', array('jquery'));
     }
   }
 
@@ -76,16 +76,16 @@ class pzucd_Cell_Layouts
   public function add_cell_layout_columns($columns)
   {
     unset($columns[ 'thumbnail' ]);
-    $pzucd_front  = array_slice($columns, 0, 2);
-    $pzucd_back   = array_slice($columns, 2);
-    $pzucd_insert =
+    $pzarc_front  = array_slice($columns, 0, 2);
+    $pzarc_back   = array_slice($columns, 2);
+    $pzarc_insert =
             array
             (
-                    'pzucd_set_name'   => __('Set name', 'pzsp'),
-                    'pzucd_short_name' => __('Screen size', 'pzsp'),
+                    'pzarc_set_name'   => __('Set name', 'pzsp'),
+                    'pzarc_short_name' => __('Screen size', 'pzsp'),
             );
 
-    return array_merge($pzucd_front, $pzucd_insert, $pzucd_back);
+    return array_merge($pzarc_front, $pzarc_insert, $pzarc_back);
   }
 
   /**
@@ -97,11 +97,11 @@ class pzucd_Cell_Layouts
   {
     switch ($column)
     {
-      case 'pzucd_short_name':
-        echo get_post_meta($post_id, 'pzucd_layout-screen-size', true);
+      case 'pzarc_short_name':
+        echo get_post_meta($post_id, 'pzarc_layout-screen-size', true);
         break;
-      case 'pzucd_set_name':
-        echo get_post_meta($post_id, 'pzucd_layout-set-name', true);
+      case 'pzarc_set_name':
+        echo get_post_meta($post_id, 'pzarc_layout-set-name', true);
         break;
     }
   }
@@ -124,7 +124,7 @@ class pzucd_Cell_Layouts
             'not_found'          => __('No cell designs found'),
             'not_found_in_trash' => __('No cell designs found in Trash'),
             'parent_item_colon'  => '',
-            'menu_name'          => _x('<span class="dashicons dashicons-id-alt"></span>Cells', 'pzucd-cell-designer'),
+            'menu_name'          => _x('<span class="dashicons dashicons-id-alt"></span>Cells', 'pzarc-cell-designer'),
     );
 
     $args = array(
@@ -133,7 +133,7 @@ class pzucd_Cell_Layouts
             'public'              => false,
             'publicly_queryable'  => false,
             'show_ui'             => true,
-            'show_in_menu'        => 'pzucd',
+            'show_in_menu'        => 'pzarc',
             'show_in_nav_menus'   => false,
             'query_var'           => true,
             'rewrite'             => true,
@@ -146,7 +146,7 @@ class pzucd_Cell_Layouts
             //			'register_meta_box_cb' => array($this, 'layouts_meta')
     );
 
-    register_post_type('ucd-layouts', $args);
+    register_post_type('arc-layouts', $args);
   }
 
 
@@ -164,10 +164,10 @@ register_layout('name',$args);
 */
 
 
-add_filter('cmb_meta_boxes', 'pzucd_cells_wizard_metabox');
-function pzucd_cells_wizard_metabox($meta_boxes = array())
+add_filter('cmb_meta_boxes', 'pzarc_cells_wizard_metabox');
+function pzarc_cells_wizard_metabox($meta_boxes = array())
 {
-  $prefix        = '_pzucd_';
+  $prefix        = '_pzarc_';
   $fields        = array(
           array(
                   'name'    => 'Select what style of cell you want to make',
@@ -187,7 +187,7 @@ function pzucd_cells_wizard_metabox($meta_boxes = array())
   );
   $meta_boxes[ ] = array(
           'title'    => 'What do you want to do?',
-          'pages'    => 'ucd-layouts',
+          'pages'    => 'arc-layouts',
           'context'  => 'normal',
           'priority' => 'high',
           'fields'   => $fields // An array of fields.
@@ -197,10 +197,10 @@ function pzucd_cells_wizard_metabox($meta_boxes = array())
 }
 
 
-add_filter('cmb_meta_boxes', 'pzucd_cell_designer_meta');
-function pzucd_cell_designer_meta($meta_boxes = array())
+add_filter('cmb_meta_boxes', 'pzarc_cell_designer_meta');
+function pzarc_cell_designer_meta($meta_boxes = array())
 {
-  $prefix        = '_pzucd_';
+  $prefix        = '_pzarc_';
   $fields        = array(
           array(
                   'name'     => 'Cell preview',
@@ -220,12 +220,12 @@ function pzucd_cell_designer_meta($meta_boxes = array())
                                                     'custom1' => array('width' => 100, 'show' => false),
                                                     'custom2' => array('width' => 100, 'show' => false),
                                                     'custom3' => array('width' => 100, 'show' => false))),
-                  'desc'     => __('Drag and drop to sort the order of your elements. Heights are fluid in cells, so not indicative of how it will look on the page.', 'pzucd')
+                  'desc'     => __('Drag and drop to sort the order of your elements. Heights are fluid in cells, so not indicative of how it will look on the page.', 'pzarc')
           ),
   );
   $meta_boxes[ ] = array(
           'title'   => 'Cell designer',
-          'pages'   => 'ucd-layouts',
+          'pages'   => 'arc-layouts',
           'fields'  => $fields,
           'context' => 'normal',
   );
@@ -233,28 +233,28 @@ function pzucd_cell_designer_meta($meta_boxes = array())
   return $meta_boxes;
 }
 
-add_filter('cmb_meta_boxes', 'pzucd_cell_designer_settings_meta');
-function pzucd_cell_designer_settings_meta($meta_boxes = array())
+add_filter('cmb_meta_boxes', 'pzarc_cell_designer_settings_meta');
+function pzarc_cell_designer_settings_meta($meta_boxes = array())
 {
-  $prefix = '_pzucd_';
+  $prefix = '_pzarc_';
 
   $fields        = array(
           array(
-                  'name'       => __('Short name', 'pzucd'),
+                  'name'       => __('Short name', 'pzarc'),
                   'id'         => $prefix . 'layout-short-name',
                   'type'       => 'text',
                   'cols'       => 12,
-                  'tooltip'    => __('A short name for this cell layout. This enables you to create sets of layouts for different parent dimensions. That is, when the dimensions of the parent change, the layout will change accordingly. Traditional responsive design is based on the width of your device\'s screen,; however this fails if you place the object in a narrow column on a large screen,', 'pzucd'),
+                  'tooltip'    => __('A short name for this cell layout. This enables you to create sets of layouts for different parent dimensions. That is, when the dimensions of the parent change, the layout will change accordingly. Traditional responsive design is based on the width of your device\'s screen,; however this fails if you place the object in a narrow column on a large screen,', 'pzarc'),
                   'help'       => __('Create sets of layouts with each layout in a set for different parent dimensions'),
           ),
 
           //    array(
-          //      'name'    => __('Content', 'pzucd'),
+          //      'name'    => __('Content', 'pzarc'),
           //      'id'      => $prefix . 'layout-cells-content',
           //      'type'    => 'pzselect',
           //      'default' => 'post',
           //      'cols'    => 12,
-          //      'tooltip' => __('Select the content type to display in these cells.', 'pzucd'),
+          //      'tooltip' => __('Select the content type to display in these cells.', 'pzarc'),
           //      'options' => array(
           //        'post'       => 'Posts',
           //        'page'       => 'Pages',
@@ -265,7 +265,7 @@ function pzucd_cell_designer_settings_meta($meta_boxes = array())
           // OMG!! The multiselect is working and I don't know why!!
 
           array(
-                  'name'     => __('Components to show', 'pzucd'),
+                  'name'     => __('Components to show', 'pzarc'),
                   'id'       => $prefix . 'layout-show',
                   'type'     => 'select',
                   'multiple' => true,
@@ -284,10 +284,10 @@ function pzucd_cell_designer_settings_meta($meta_boxes = array())
                           'custom3' => 'Custom Field 3',
                           //        'custom4' => 'Custom Field 4',
                   ),
-                  'tooltip'  => __('Select which base components to include in this cell layout.', 'pzucd')
+                  'tooltip'  => __('Select which base components to include in this cell layout.', 'pzarc')
           ),
           //    array(
-          //      'name'     => __('Components to show', 'pzucd'),
+          //      'name'     => __('Components to show', 'pzarc'),
           //      'id'       => $prefix . 'layout-show',
           //      'type' => 'group',
           //      'fields' => array(
@@ -299,7 +299,7 @@ function pzucd_cell_designer_settings_meta($meta_boxes = array())
 
 
           array(
-                  'name'    => __('Components area position', 'pzucd'),
+                  'name'    => __('Components area position', 'pzarc'),
                   'id'      => $prefix . 'layout-sections-position',
                   'type'    => 'pzselect',
                   'cols'    => 12,
@@ -310,10 +310,10 @@ function pzucd_cell_designer_settings_meta($meta_boxes = array())
                           'left'   => 'Left of cell',
                           'right'  => 'Right of cell',
                   ),
-                  //'desc'		 => __('Position for all the components as a group', 'pzucd')
+                  //'desc'		 => __('Position for all the components as a group', 'pzarc')
           ),
           array(
-                  'name'    => __('Nudge components area up/down', 'pzucd'),
+                  'name'    => __('Nudge components area up/down', 'pzarc'),
                   'id'      => $prefix . 'layout-nudge-section-y',
                   'cols'    => 12,
                   'type'    => 'pzrange',
@@ -322,10 +322,10 @@ function pzucd_cell_designer_settings_meta($meta_boxes = array())
                   'max'     => '100',
                   'step'    => '1',
                   'suffix'  => '%',
-                  'tooltip' => __('Enter percent to move the components area up/down. Note: These measurements are percentage of the cell.', 'pzucd')
+                  'tooltip' => __('Enter percent to move the components area up/down. Note: These measurements are percentage of the cell.', 'pzarc')
           ),
           array(
-                  'name'    => __('Nudge components area left/right', 'pzucd'),
+                  'name'    => __('Nudge components area left/right', 'pzarc'),
                   'id'      => $prefix . 'layout-nudge-section-x',
                   'type'    => 'pzrange',
                   'cols'    => 12,
@@ -334,10 +334,10 @@ function pzucd_cell_designer_settings_meta($meta_boxes = array())
                   'max'     => '100',
                   'step'    => '1',
                   'suffix'  => '%',
-                  'tooltip' => __('Enter percent to move the components area left/right. Note: These measurements are percentage of the cell.', 'pzucd')
+                  'tooltip' => __('Enter percent to move the components area left/right. Note: These measurements are percentage of the cell.', 'pzarc')
           ),
           array(
-                  'name'    => __('Components area width', 'pzucd'),
+                  'name'    => __('Components area width', 'pzarc'),
                   'id'      => $prefix . 'layout-sections-widths',
                   'type'    => 'pzrange',
                   'cols'    => 12,
@@ -347,11 +347,11 @@ function pzucd_cell_designer_settings_meta($meta_boxes = array())
                   'max'     => '100',
                   'step'    => '1',
                   'suffix'  => '%',
-                  'tooltip' => __('Set the overall width for the components area. Necessary for left or right positioning of sections', 'pzucd'),
-                  //      'help'    => __('Note:The sum of the width and the left/right nudge should equal 100', 'pzucd')
+                  'tooltip' => __('Set the overall width for the components area. Necessary for left or right positioning of sections', 'pzarc'),
+                  //      'help'    => __('Note:The sum of the width and the left/right nudge should equal 100', 'pzarc')
           ),
           array(
-                  'name'    => __('Excerpt image', 'pzucd'),
+                  'name'    => __('Excerpt image', 'pzarc'),
                   'id'      => $prefix . 'layout-excerpt-thumb',
                   'cols'    => 12,
                   'type'    => 'pzselect',
@@ -361,10 +361,10 @@ function pzucd_cell_designer_settings_meta($meta_boxes = array())
                           'left'  => 'Image left',
                           'right' => 'Image right',
                   ),
-                  'tooltip' => __('Set the alignment of the image when it is in the excerpt. This will use the image settings', 'pzucd')
+                  'tooltip' => __('Set the alignment of the image when it is in the excerpt. This will use the image settings', 'pzarc')
           ),
           array(
-                  'name'    => __('Feature Image/Video', 'pzucd'),
+                  'name'    => __('Feature Image/Video', 'pzarc'),
                   'id'      => $prefix . 'layout-background-image',
                   'cols'    => 12,
                   'type'    => 'pzselect',
@@ -374,10 +374,10 @@ function pzucd_cell_designer_settings_meta($meta_boxes = array())
                           'fill'  => 'Fill the cell',
                           'align' => 'Align with components area',
                   ),
-                  'tooltip' => __('Select how to display the featured image or video as the background.', 'pzucd')
+                  'tooltip' => __('Select how to display the featured image or video as the background.', 'pzarc')
           ),
           array(
-                  'name'    => __('Cell Height Type', 'pzucd'),
+                  'name'    => __('Cell Height Type', 'pzarc'),
                   'id'      => $prefix . 'layout-cell-height-type',
                   'cols'    => 12,
                   'type'    => 'pzselect',
@@ -386,12 +386,12 @@ function pzucd_cell_designer_settings_meta($meta_boxes = array())
                           'fluid' => 'Fluid',
                           'fixed' => 'Fixed',
                   ),
-                  'tooltip' => __('Choose whether to set the height of the cells (fixed), or allow them to adjust to the content height (fluid).', 'pzucd')
+                  'tooltip' => __('Choose whether to set the height of the cells (fixed), or allow them to adjust to the content height (fluid).', 'pzarc')
           ),
           // Hmm? How's this gunna sit with the min-height in templates?
           // We will want to use this for image height cropping when behind.
           array(
-                  'name'    => __('Cell Height', 'pzucd'),
+                  'name'    => __('Cell Height', 'pzarc'),
                   'id'      => $prefix . 'layout-cell-height',
                   'type'    => 'pzspinner',
                   'cols'    => 6,
@@ -400,10 +400,10 @@ function pzucd_cell_designer_settings_meta($meta_boxes = array())
                   'max'     => '9999',
                   'step'    => '1',
                   'suffix'  => 'px',
-                  'tooltip' => __('If using fixed height, set height for the cell.', 'pzucd'),
+                  'tooltip' => __('If using fixed height, set height for the cell.', 'pzarc'),
           ),
           array(
-                  'name'    => __('Components Height', 'pzucd'),
+                  'name'    => __('Components Height', 'pzarc'),
                   'id'      => $prefix . 'layout-components-height',
                   'type'    => 'pzspinner',
                   'cols'    => 6,
@@ -412,11 +412,11 @@ function pzucd_cell_designer_settings_meta($meta_boxes = array())
                   'max'     => '9999',
                   'step'    => '1',
                   'suffix'  => 'px',
-                  'tooltip' => __('If using fixed height, set height for the components area.', 'pzucd'),
+                  'tooltip' => __('If using fixed height, set height for the components area.', 'pzarc'),
           ),
 
           array(
-                  'name'    => __('Save cell layout', 'pzucd'),
+                  'name'    => __('Save cell layout', 'pzarc'),
                   'id'      => $prefix . 'layout-set-save',
                   'type'    => 'pzsubmit',
                   'default' => 'Save'
@@ -425,7 +425,7 @@ function pzucd_cell_designer_settings_meta($meta_boxes = array())
   );
   $meta_boxes[ ] = array(
           'title'    => 'Cell designer settings',
-          'pages'    => 'ucd-layouts',
+          'pages'    => 'arc-layouts',
           'fields'   => $fields,
           'context'  => 'side',
           'priority' => 'high'
@@ -434,36 +434,36 @@ function pzucd_cell_designer_settings_meta($meta_boxes = array())
 
   return $meta_boxes;
 }
-add_filter('cmb_meta_boxes', 'pzucd_cell_formats_meta');
-function pzucd_cell_formats_meta($meta_boxes = array())
+add_filter('cmb_meta_boxes', 'pzarc_cell_formats_meta');
+function pzarc_cell_formats_meta($meta_boxes = array())
 {
-  $prefix        = '_pzucd_';
+  $prefix        = '_pzarc_';
   $fields        = array(
           array(
                   'id'   => $prefix . 'layout-styling-header',
                   'name' => 'Styling',
                   'type' => 'title',
                   'cols'=>12,
-                  'desc'    => __('Ultimate Content Display uses standard WordPress class names as much as possible, so your Architect Blueprints will inherit styling from your theme if it uses these. Below you can add your own styling and classes. Enter CSS declarations, such as: background:#123; color:#abc; font-size:1.6em; padding:1%;', 'pzucd') . '<br/>' . __('As much as possible, use fluid units (%,em) if you want to ensure maximum responsiveness.', 'pzucd') . '<br/>' .
+                  'desc'    => __('Ultimate Content Display uses standard WordPress class names as much as possible, so your Architect Blueprints will inherit styling from your theme if it uses these. Below you can add your own styling and classes. Enter CSS declarations, such as: background:#123; color:#abc; font-size:1.6em; padding:1%;', 'pzarc') . '<br/>' . __('As much as possible, use fluid units (%,em) if you want to ensure maximum responsiveness.', 'pzarc') . '<br/>' .
                           __('The base font size is 10px. So, for example, to get a font size of 14px, use 1.4em. Even better is using relative ems i.e. rem.')
           ),
           array(
-                  'name'    => __('Cells', 'pzucd'),
+                  'name'    => __('Cells', 'pzarc'),
                   'id'      => $prefix . 'layout-format-cells',
                   'type'    => 'textarea',
                   'rows'    => 1,
                   'cols'    => 6,
-                  'help'    => 'Declarations only for class: .pzucd_cells',
+                  'help'    => 'Declarations only for class: .pzarc_cells',
           ),
           array(
-                  'name'    => __('Cells Classes', 'pzucd'),
+                  'name'    => __('Cells Classes', 'pzarc'),
                   'id'      => $prefix . 'layout-format-cells-classes',
                   'type'    => 'text',
                   'cols'    => 6,
-                  'default' => '.pzucd-cells',
+                  'default' => '.pzarc-cells',
           ),
           array(
-                  'name'    => __('Entry section', 'pzucd'),
+                  'name'    => __('Entry section', 'pzarc'),
                   'id'      => $prefix . 'layout-format-entry',
                   'type'    => 'textarea',
                   'rows'    => 1,
@@ -471,64 +471,64 @@ function pzucd_cell_formats_meta($meta_boxes = array())
                   'help'    => 'Declarations only for class: .hentry',
           ),
           array(
-                  'name'    => __('Entry Classes', 'pzucd'),
+                  'name'    => __('Entry Classes', 'pzarc'),
                   'id'      => $prefix . 'layout-format-entry-classes',
                   'type'    => 'text',
                   'cols'    => 6,
                   'default' => '.hentry',
           ),
           array(
-                  'name'    => __('Components group', 'pzucd'),
+                  'name'    => __('Components group', 'pzarc'),
                   'id'      => $prefix . 'layout-format-components-group',
                   'type'    => 'textarea',
                   'rows'    => 1,
                   'cols'    => 6,
-                  'help'    => 'Declarations only for class: .pzucd_components',
+                  'help'    => 'Declarations only for class: .pzarc_components',
           ),
           array(
-                  'name'    => __('Components Group Classes', 'pzucd'),
+                  'name'    => __('Components Group Classes', 'pzarc'),
                   'id'      => $prefix . 'layout-format-components-group-classes',
                   'type'    => 'text',
                   'rows'    => 1,
                   'cols'    => 6,
-                  'default' => '.pzucd-components',
+                  'default' => '.pzarc-components',
           ),
           array(
-                  'name'    => __('Entry title', 'pzucd'),
+                  'name'    => __('Entry title', 'pzarc'),
                   'id'      => $prefix . 'layout-format-entry-title',
                   'type'    => 'textarea',
                   'rows'    => 1,
                   'cols'    => 6,
-                  'help'    => 'Declarations only for class: .pzucd_entry_title and .pzucd_entry_title a',
-                  //      'desc'    => __('Format the entry title', 'pzucd')
+                  'help'    => 'Declarations only for class: .pzarc_entry_title and .pzarc_entry_title a',
+                  //      'desc'    => __('Format the entry title', 'pzarc')
           ),
           array(
-                  'name'    => __('Entry Title Classes', 'pzucd'),
+                  'name'    => __('Entry Title Classes', 'pzarc'),
                   'id'      => $prefix . 'layout-format-entry-title-classes',
                   'type'    => 'text',
                   'cols'    => 6,
                   'default' => '.entry-title, .entry-title a',
           ),
           array(
-                  'name'    => __('Entry title hover', 'pzucd'),
+                  'name'    => __('Entry title hover', 'pzarc'),
                   'id'      => $prefix . 'layout-format-entry-title-hover',
                   'type'    => 'textarea',
                   'rows'    => 1,
 
-                  'help'    => 'Declarations only for class: .pzucd_entry_title a:hover',
-                  //      'desc'    => __('Format the entry title link hover', 'pzucd')
+                  'help'    => 'Declarations only for class: .pzarc_entry_title a:hover',
+                  //      'desc'    => __('Format the entry title link hover', 'pzarc')
           ),
           array(
-                  'name'    => __('Entry meta', 'pzucd'),
+                  'name'    => __('Entry meta', 'pzarc'),
                   'id'      => $prefix . 'layout-format-entry-meta',
                   'type'    => 'textarea',
                   'rows'    => 1,
                   'cols' => 6,
-                  'help'    => 'Declarations only for class: .pzucd_entry_meta',
-                  //     'desc'    => __('Format the entry meta', 'pzucd')
+                  'help'    => 'Declarations only for class: .pzarc_entry_meta',
+                  //     'desc'    => __('Format the entry meta', 'pzarc')
           ),
           array(
-                  'name'    => __('Entry Meta Classes', 'pzucd'),
+                  'name'    => __('Entry Meta Classes', 'pzarc'),
                   'id'      => $prefix . 'layoutt-format-entry-meta-classes',
                   'type'    => 'text',
                   'rows'    => 1,
@@ -536,76 +536,76 @@ function pzucd_cell_formats_meta($meta_boxes = array())
                   'default' => ' .entry-meta',
           ),
           array(
-                  'name'    => __('Entry meta links', 'pzucd'),
+                  'name'    => __('Entry meta links', 'pzarc'),
                   'id'      => $prefix . 'layout-format-entry-meta-link',
                   'type'    => 'textarea',
                   'rows'    => 1,
 
-                  'help'    => 'Declarations only for class: .pzucd_entry_meta a',
-                  //     'desc'    => __('Format the entry meta link', 'pzucd')
+                  'help'    => 'Declarations only for class: .pzarc_entry_meta a',
+                  //     'desc'    => __('Format the entry meta link', 'pzarc')
           ),
           array(
-                  'name'    => __('Entry meta link hover', 'pzucd'),
+                  'name'    => __('Entry meta link hover', 'pzarc'),
                   'id'      => $prefix . 'layout-format-entry-meta-link-hover',
                   'type'    => 'textarea',
                   'rows'    => 1,
 
-                  'help'    => 'Declarations only for class: .pzucd_entry_meta a:hover',
-                  //     'desc'    => __('Format the entry meta link hover', 'pzucd')
+                  'help'    => 'Declarations only for class: .pzarc_entry_meta a:hover',
+                  //     'desc'    => __('Format the entry meta link hover', 'pzarc')
           ),
           array(
-                  'name'    => __('Entry content', 'pzucd'),
+                  'name'    => __('Entry content', 'pzarc'),
                   'id'      => $prefix . 'layout-format-entry-content',
                   'type'    => 'textarea',
                   'rows'    => 1,
 
-                  'help'    => 'Declarations only for class: .pzucd_entry_content',
-                  //     'desc'    => __('Format the entry content', 'pzucd')
+                  'help'    => 'Declarations only for class: .pzarc_entry_content',
+                  //     'desc'    => __('Format the entry content', 'pzarc')
           ),
           array(
-                  'name'    => __('Entry content links', 'pzucd'),
+                  'name'    => __('Entry content links', 'pzarc'),
                   'id'      => $prefix . 'layout-format-entry-content-links',
                   'type'    => 'textarea',
                   'rows'    => 1,
 
-                  'help'    => 'Declarations only for class: .pzucd_entry_content a',
-                  //     'desc'    => __('Format the entry content', 'pzucd')
+                  'help'    => 'Declarations only for class: .pzarc_entry_content a',
+                  //     'desc'    => __('Format the entry content', 'pzarc')
           ),
           array(
-                  'name'    => __('Entry content link hover', 'pzucd'),
+                  'name'    => __('Entry content link hover', 'pzarc'),
                   'id'      => $prefix . 'layout-format-entry-content-link-hover',
                   'type'    => 'textarea',
                   'rows'    => 1,
 
-                  'help'    => 'Declarations only for class: .pzucd_entry_content a:hover',
-                  //     'desc'    => __('Format the entry content link hover', 'pzucd')
+                  'help'    => 'Declarations only for class: .pzarc_entry_content a:hover',
+                  //     'desc'    => __('Format the entry content link hover', 'pzarc')
           ),
           array(
-                  'name'    => __('Entry featured image', 'pzucd'),
+                  'name'    => __('Entry featured image', 'pzarc'),
                   'id'      => $prefix . 'layoutt-format-entry-fimage',
                   'type'    => 'textarea',
                   'rows'    => 1,
 
-                  'help'    => 'Declarations only for class: .pzucd_entry_featured_image',
-                  //     'desc'    => __('Format the entry featured image', 'pzucd')
+                  'help'    => 'Declarations only for class: .pzarc_entry_featured_image',
+                  //     'desc'    => __('Format the entry featured image', 'pzarc')
           ),
           array(
-                  'name'    => __('Read more', 'pzucd'),
+                  'name'    => __('Read more', 'pzarc'),
                   'id'      => $prefix . 'layout-format-entry-readmore',
                   'type'    => 'textarea',
                   'rows'    => 1,
 
-                  'help'    => 'Declarations only for class: a.pzucd_readmore',
-                  //     'desc'    => __('Format the content "Read more" link', 'pzucd')
+                  'help'    => 'Declarations only for class: a.pzarc_readmore',
+                  //     'desc'    => __('Format the content "Read more" link', 'pzarc')
           ),
           array(
-                  'name'    => __('Read more hover', 'pzucd'),
+                  'name'    => __('Read more hover', 'pzarc'),
                   'id'      => $prefix . 'layoutt-format-entry-readmore-hover',
                   'type'    => 'textarea',
                   'rows'    => 1,
 
-                  'help'    => 'Declarations only for class: a.pzucd_readmore:hover',
-                  //     'desc'    => __('Format the content "Read more" link hover', 'pzucd')
+                  'help'    => 'Declarations only for class: a.pzarc_readmore:hover',
+                  //     'desc'    => __('Format the content "Read more" link hover', 'pzarc')
           ),
 
 
@@ -613,17 +613,17 @@ function pzucd_cell_formats_meta($meta_boxes = array())
   );
   $meta_boxes[ ] = array(
           'title'  => 'Styling',
-          'pages'  => 'ucd-layouts',
+          'pages'  => 'arc-layouts',
           'fields' => $fields
   );
 
   return $meta_boxes;
 }
 
-add_filter('cmb_meta_boxes', 'pzucd_cell_settings_meta');
-function pzucd_cell_settings_meta($meta_boxes = array())
+add_filter('cmb_meta_boxes', 'pzarc_cell_settings_meta');
+function pzarc_cell_settings_meta($meta_boxes = array())
 {
-  $prefix = '_pzucd_';
+  $prefix = '_pzarc_';
   $fields = array(
           array(
                   'id'   => $prefix . 'cell-settings-title',
@@ -631,7 +631,7 @@ function pzucd_cell_settings_meta($meta_boxes = array())
                   'type' => 'title'
           ),
           array(
-                  'name'     => __('Title prefix', 'pzucd'),
+                  'name'     => __('Title prefix', 'pzarc'),
                   'id'       => $prefix . 'cell-settings-title-prefix',
                   'type'     => 'select',
                   'cols'     => 4,
@@ -645,7 +645,7 @@ function pzucd_cell_settings_meta($meta_boxes = array())
                   'type' => 'title',
           ),
           array(
-                  'name'     => __('Meta1 config', 'pzucd'),
+                  'name'     => __('Meta1 config', 'pzarc'),
                   'id'       => $prefix . 'cell-settings-meta1-config',
                   'type'     => 'select',
                   'multiple' => true,
@@ -654,7 +654,7 @@ function pzucd_cell_settings_meta($meta_boxes = array())
                   'options'  => array('date' => 'Date', 'author' => 'Author', 'editlink' => 'Edit link', 'categories' => 'Categories', 'tags' => 'Tags', 'commentcount' => 'Comment count'),
           ),
           array(
-                  'name'     => __('Meta2 config', 'pzucd'),
+                  'name'     => __('Meta2 config', 'pzarc'),
                   'id'       => $prefix . 'cell-settings-meta2-config',
                   'type'     => 'select',
                   'multiple' => true,
@@ -663,7 +663,7 @@ function pzucd_cell_settings_meta($meta_boxes = array())
                   'options'  => array('date' => 'Date', 'author' => 'Author', 'editlink' => 'Edit link', 'categories' => 'Categories', 'tags' => 'Tags', 'commentcount' => 'Comment count'),
           ),
           array(
-                  'name'     => __('Meta3 config', 'pzucd'),
+                  'name'     => __('Meta3 config', 'pzarc'),
                   'id'       => $prefix . 'cell-settings-meta3-config',
                   'type'     => 'select',
                   'multiple' => true,
@@ -719,7 +719,7 @@ function pzucd_cell_settings_meta($meta_boxes = array())
 
   $meta_boxes[ ] = array(
           'title'   => 'Settings',
-          'pages'   => 'ucd-layouts',
+          'pages'   => 'arc-layouts',
           'context' => 'normal',
           'fields'  => $fields
   );
@@ -738,33 +738,33 @@ function draw_cell_layout()
 
   // Put in a hidden field with the plugin url for use in js
   $return_html = '
-  <div id="pzucd-custom-pzucd_layout" class="pzucd-custom">
-    <div id="pzucd-dropzone-pzucd_layout" class="pzucd-dropzone">
+  <div id="pzarc-custom-pzarc_layout" class="pzarc-custom">
+    <div id="pzarc-dropzone-pzarc_layout" class="pzarc-dropzone">
       <div class="pzgp-cell-image-behind"></div>
-      <div class="pzucd-content-area sortable">
-        <span class="pzucd-draggable pzucd-draggable-title" title="Post title" data-idcode=title ><span>This is the title</span></span>
-        <span class="pzucd-draggable pzucd-draggable-meta1 pzucd-draggable-meta" title="Meta info 1" data-idcode=meta1 ><span>Jan 1 2013</span></span>
-        <span class="pzucd-draggable pzucd-draggable-excerpt" title="Excerpt with featured image" data-idcode=excerpt ><span><img src="' . PZUCD_PLUGIN_URL . '/assets/images/sample-image.jpg" style="max-width:20%;padding:2px;" class="pzucd-align-none">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam quis justo erat. Cras semper sem hendre...[more]</span></span>
-        <span class="pzucd-draggable pzucd-draggable-content" title="Full post content" data-idcode=content ><span><img src="' . PZUCD_PLUGIN_URL . '/assets/images/sample-image.jpg" style="max-width:30%;float:left;padding:5px;">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam quis justo erat. <ul><li>&nbsp;•&nbsp;Cras semper sem hendrerit</li><li>&nbsp;•&nbsp;Tortor porta at auctor</li></ul><strong>Lacus consequat</strong><p>Pellentesque pulvinar iaculis tellus in blandit. Suspendisse rhoncus, magna vel eleifend cursus, turpis odio molestie urna, quis posuere eros risus quis neque. </p></span></span>
-        <span class="pzucd-draggable pzucd-draggable-image" title="Featured image" data-idcode=image style="max-height: 100px; overflow: hidden;"><span><img src="' . PZUCD_PLUGIN_URL . '/assets/images/sample-image.jpg" style="max-width:100%;"></span></span>
-        <span class="pzucd-draggable pzucd-draggable-meta2 pzucd-draggable-meta" title="Meta info 2" data-idcode=meta2 ><span>Categories - News, Sport</span></span>
-        <span class="pzucd-draggable pzucd-draggable-meta3 pzucd-draggable-meta" title="Meta info 3" data-idcode=meta3 ><span>Comments: 27</span></span>
-        <span class="pzucd-draggable pzucd-draggable-custom1 pzucd-draggable-meta" title="Custom field 1" data-idcode=custom1 ><span>Custom content 1</span></span>
-        <span class="pzucd-draggable pzucd-draggable-custom2 pzucd-draggable-meta" title="Custom field 2" data-idcode=custom2 ><span>Custom content 2</span></span>
-        <span class="pzucd-draggable pzucd-draggable-custom3 pzucd-draggable-meta" title="Custom field 3" data-idcode=custom3 ><span>Custom content 3</span></span>
+      <div class="pzarc-content-area sortable">
+        <span class="pzarc-draggable pzarc-draggable-title" title="Post title" data-idcode=title ><span>This is the title</span></span>
+        <span class="pzarc-draggable pzarc-draggable-meta1 pzarc-draggable-meta" title="Meta info 1" data-idcode=meta1 ><span>Jan 1 2013</span></span>
+        <span class="pzarc-draggable pzarc-draggable-excerpt" title="Excerpt with featured image" data-idcode=excerpt ><span><img src="' . PZARC_PLUGIN_URL . '/assets/images/sample-image.jpg" style="max-width:20%;padding:2px;" class="pzarc-align-none">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam quis justo erat. Cras semper sem hendre...[more]</span></span>
+        <span class="pzarc-draggable pzarc-draggable-content" title="Full post content" data-idcode=content ><span><img src="' . PZARC_PLUGIN_URL . '/assets/images/sample-image.jpg" style="max-width:30%;float:left;padding:5px;">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam quis justo erat. <ul><li>&nbsp;•&nbsp;Cras semper sem hendrerit</li><li>&nbsp;•&nbsp;Tortor porta at auctor</li></ul><strong>Lacus consequat</strong><p>Pellentesque pulvinar iaculis tellus in blandit. Suspendisse rhoncus, magna vel eleifend cursus, turpis odio molestie urna, quis posuere eros risus quis neque. </p></span></span>
+        <span class="pzarc-draggable pzarc-draggable-image" title="Featured image" data-idcode=image style="max-height: 100px; overflow: hidden;"><span><img src="' . PZARC_PLUGIN_URL . '/assets/images/sample-image.jpg" style="max-width:100%;"></span></span>
+        <span class="pzarc-draggable pzarc-draggable-meta2 pzarc-draggable-meta" title="Meta info 2" data-idcode=meta2 ><span>Categories - News, Sport</span></span>
+        <span class="pzarc-draggable pzarc-draggable-meta3 pzarc-draggable-meta" title="Meta info 3" data-idcode=meta3 ><span>Comments: 27</span></span>
+        <span class="pzarc-draggable pzarc-draggable-custom1 pzarc-draggable-meta" title="Custom field 1" data-idcode=custom1 ><span>Custom content 1</span></span>
+        <span class="pzarc-draggable pzarc-draggable-custom2 pzarc-draggable-meta" title="Custom field 2" data-idcode=custom2 ><span>Custom content 2</span></span>
+        <span class="pzarc-draggable pzarc-draggable-custom3 pzarc-draggable-meta" title="Custom field 3" data-idcode=custom3 ><span>Custom content 3</span></span>
       </div>
 	  </div>
-	  <p class="pzucd-states pzcentred">Loading</p>
+	  <p class="pzarc-states pzcentred">Loading</p>
 	  <p class="howto pzcentred"><strong style="color:#d00;">This is an example only and thus only a <span style="border-bottom: 3px double;">general guide</span> to how the cells will look.</strong></p>
 	</div>
-	<div class="plugin_url" style="display:none;">' . PZUCD_PLUGIN_URL . '</div>
+	<div class="plugin_url" style="display:none;">' . PZARC_PLUGIN_URL . '</div>
 	';
 
   return $return_html;
 }
 
-add_action('pre_post_update', 'save_ucd_layouts');
-function save_ucd_layouts($postid)
+add_action('pre_post_update', 'save_arc_layouts');
+function save_arc_layouts($postid)
 {
   $screen = get_current_screen();
   /*
@@ -774,13 +774,13 @@ function save_ucd_layouts($postid)
         [action] =>
         [base] => post
         [WP_Screencolumns] => 0
-        [id] => ucd-layouts
+        [id] => arc-layouts
         [*in_admin] => site
         [is_network] =>
         [is_user] =>
         [parent_base] =>
         [parent_file] =>
-        [post_type] => ucd-layouts
+        [post_type] => arc-layouts
         [taxonomy] =>
         [WP_Screen_help_tabs] => Array()
         [WP_Screen_help_sidebar] =>
@@ -790,11 +790,11 @@ function save_ucd_layouts($postid)
     )
    */
 
-  if ($screen->id == 'ucd-layouts')
+  if ($screen->id == 'arc-layouts')
   {
     // save the CSS too
     // new wp_filesystem
-    // create file named with id e.g. pzucd-cell-layout-123.css
+    // create file named with id e.g. pzarc-cell-layout-123.css
     // Or should we connect this to the template? Potentially there'll be less cell layouts than templates tho
 
     $url = wp_nonce_url('post.php?post=' . $postid . '&action=edit', basename(__FILE__));
@@ -812,31 +812,31 @@ function save_ucd_layouts($postid)
 //    WP_Filesystem(true);
 // get the upload directory and make a test.txt file
     $upload_dir = wp_upload_dir();
-    $filename   = trailingslashit($upload_dir[ 'basedir' ]) . '/cache/pizazzwp/ucd/pzucd-cell-layout-' . $postid . '.css';
-    wp_mkdir_p(trailingslashit($upload_dir[ 'basedir' ]) . '/cache/pizazzwp/ucd/');
+    $filename   = trailingslashit($upload_dir[ 'basedir' ]) . '/cache/pizazzwp/arc/pzarc-cell-layout-' . $postid . '.css';
+    wp_mkdir_p(trailingslashit($upload_dir[ 'basedir' ]) . '/cache/pizazzwp/arc/');
 
     // Need to create the file contents
     // For each field in stylings, create css
-    $pzucd_cells    = get_post_meta($postid);
-    $pzucd_contents = "/* This is the css for cell $postid */\n";
-    foreach ($pzucd_cells as $key => $value)
+    $pzarc_cells    = get_post_meta($postid);
+    $pzarc_contents = "/* This is the css for cell $postid */\n";
+    foreach ($pzarc_cells as $key => $value)
     {
-      if (strpos($key, '-format-') && !empty($value[ 0 ]) && !empty($pzucd_cells[ $key . '-classes' ][ 0 ]))
+      if (strpos($key, '-format-') && !empty($value[ 0 ]) && !empty($pzarc_cells[ $key . '-classes' ][ 0 ]))
       {
-        $pzucd_classes = '.pzucd-' . $postid  . ' ' . str_replace(',', ', .pzucd-' . $postid  . ' ', $pzucd_cells[ $key . '-classes' ][ 0 ]);
-        $pzucd_contents .= $pzucd_classes . ' {' . $value[ 0 ] . '}' . "\n";
+        $pzarc_classes = '.pzarc-' . $postid  . ' ' . str_replace(',', ', .pzarc-' . $postid  . ' ', $pzarc_cells[ $key . '-classes' ][ 0 ]);
+        $pzarc_contents .= $pzarc_classes . ' {' . $value[ 0 ] . '}' . "\n";
       }
     }
-    $pzucd_tb = ($pzucd_cells[ '_pzucd_layout-sections-position' ][ 0 ] == 'left' || $pzucd_cells[ '_pzucd_layout-sections-position' ][ 0 ] == 'right' ? 'top' : $pzucd_cells[ '_pzucd_layout-sections-position' ][ 0 ]);
-    $pzucd_lr = ($pzucd_cells[ '_pzucd_layout-sections-position' ][ 0 ] == 'top' || $pzucd_cells[ '_pzucd_layout-sections-position' ][ 0 ] == 'bottom' ? 'left' : $pzucd_cells[ '_pzucd_layout-sections-position' ][ 0 ]);
-    $pzucd_contents .= '.pzucd-' . $postid  . ' .pzucd-components {' . $pzucd_tb . ':' . $pzucd_cells[ '_pzucd_layout-nudge-section-y' ][ 0 ] . '%;' . $pzucd_lr . ':' . $pzucd_cells[ '_pzucd_layout-nudge-section-x' ][ 0 ] . '%;width:' . $pzucd_cells[ '_pzucd_layout-sections-widths' ][ 0 ] . '%;}';
+    $pzarc_tb = ($pzarc_cells[ '_pzarc_layout-sections-position' ][ 0 ] == 'left' || $pzarc_cells[ '_pzarc_layout-sections-position' ][ 0 ] == 'right' ? 'top' : $pzarc_cells[ '_pzarc_layout-sections-position' ][ 0 ]);
+    $pzarc_lr = ($pzarc_cells[ '_pzarc_layout-sections-position' ][ 0 ] == 'top' || $pzarc_cells[ '_pzarc_layout-sections-position' ][ 0 ] == 'bottom' ? 'left' : $pzarc_cells[ '_pzarc_layout-sections-position' ][ 0 ]);
+    $pzarc_contents .= '.pzarc-' . $postid  . ' .pzarc-components {' . $pzarc_tb . ':' . $pzarc_cells[ '_pzarc_layout-nudge-section-y' ][ 0 ] . '%;' . $pzarc_lr . ':' . $pzarc_cells[ '_pzarc_layout-nudge-section-x' ][ 0 ] . '%;width:' . $pzarc_cells[ '_pzarc_layout-sections-widths' ][ 0 ] . '%;}';
 
 
 // by this point, the $wp_filesystem global should be working, so let's use it to create a file
     global $wp_filesystem;
     if (!$wp_filesystem->put_contents(
             $filename,
-            $pzucd_contents,
+            $pzarc_contents,
             FS_CHMOD_FILE // predefined mode settings for WP files
     )
     )

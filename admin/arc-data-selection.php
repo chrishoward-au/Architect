@@ -17,11 +17,11 @@ class pzucd_Criteria extends pzucdForm {
 			add_action('admin_head', array($this, 'criteria_admin_head'));
 			add_action('admin_enqueue_scripts', array($this, 'criteria_admin_enqueue'));
       add_action('views_edit-ucd-layouts', array($this,'pzucd_cells_description'));
-//			add_filter('manage_ucd-criterias_posts_columns', array($this, 'add_criteria_columns'));
-//			add_action('manage_ucd-criterias_posts_custom_column', array($this, 'add_criteria_column_content'), 10, 2);
+//			add_filter('manage_arc-contents_posts_columns', array($this, 'add_criteria_columns'));
+//			add_action('manage_arc-contents_posts_custom_column', array($this, 'add_criteria_column_content'), 10, 2);
 
-			// check screen ucd-criterias. ugh. doesn't work for save and edit
-//			if ( $_REQUEST[ 'post_type' ] == 'ucd-criterias' )
+			// check screen arc-contents. ugh. doesn't work for save and edit
+//			if ( $_REQUEST[ 'post_type' ] == 'arc-contents' )
 //			{
 //			}
 		}
@@ -35,7 +35,7 @@ class pzucd_Criteria extends pzucdForm {
 	 */
 	public function criteria_admin_enqueue($hook) {
 		$screen = get_current_screen();
-		if ('ucd-criterias' == $screen->id) {
+		if ('arc-contents' == $screen->id) {
 
 
 			wp_enqueue_style('pzucd-admin-criterias-css', PZUCD_PLUGIN_URL . 'admin/css/ucd-admin-criterias.css');
@@ -120,7 +120,7 @@ class pzucd_Criteria extends pzucdForm {
 				'exclude_from_search' => true,
 		);
 
-		register_post_type('ucd-criterias', $args);
+		register_post_type('arc-contents', $args);
 	}
 
   function pzucd_cells_description($post)
@@ -335,7 +335,7 @@ function pzucd_criterias_metabox($meta_boxes = array()){
 
   $meta_boxes[ ] = array(
     'title'    => 'Criteria',
-    'pages'    => 'ucd-criterias',
+    'pages'    => 'arc-contents',
     'fields'   => $fields,
     'context'  => 'normal',
     'priority' => 'high'

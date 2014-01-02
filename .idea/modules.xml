@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/pizazzwp-ultimatecontentdisplay.iml" filepath="$PROJECT_DIR$/.idea/pizazzwp-ultimatecontentdisplay.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/pizazzwp-architect.iml" filepath="$PROJECT_DIR$/.idea/pizazzwp-architect.iml" />
     </modules>
   </component>
 </project>
