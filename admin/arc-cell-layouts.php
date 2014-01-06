@@ -129,7 +129,7 @@ class pzarc_Cell_Layouts
 
     $args = array(
             'labels'              => $labels,
-            'description'         => __('Ultimate Content Display cells are used to create reusable cell designs for use in your UCD blocks, widgets, shortcodes and WP template tags'),
+            'description'         => __('Architect cells are used to create reusable cell designs for use in your Architect blocks, widgets, shortcodes and WP template tags'),
             'public'              => false,
             'publicly_queryable'  => false,
             'show_ui'             => true,
@@ -196,6 +196,29 @@ function pzarc_cells_wizard_metabox($meta_boxes = array())
   return $meta_boxes;
 }
 
+add_filter('cmb_meta_boxes', 'pzarc_cell_designer_tabbed');
+function pzarc_cell_designer_tabbed($meta_boxes = array())
+{
+  $prefix        = '_pzarc_';
+  $fields        = array(
+          array(
+                  'name'    => __('Tabs', 'pzarc'),
+                  'id'      => $prefix . 'layout-cell-tabs',
+                  'type'    => 'pztabs',
+                  'defaults' => array('#cell-designer'=>'Cell Designer','#styling'=>'Styling','#settings'=>'Settings'),
+          ),
+
+  );
+  $meta_boxes[ ] = array(
+          'title'    => 'Cells',
+          'pages'    => 'arc-layouts',
+          'context'  => 'normal',
+          'priority' => 'high',
+          'fields'   => $fields // An array of fields.
+  );
+
+  return $meta_boxes;
+}
 
 add_filter('cmb_meta_boxes', 'pzarc_cell_designer_meta');
 function pzarc_cell_designer_meta($meta_boxes = array())
@@ -444,7 +467,7 @@ function pzarc_cell_formats_meta($meta_boxes = array())
                   'name' => 'Styling',
                   'type' => 'title',
                   'cols'=>12,
-                  'desc'    => __('Ultimate Content Display uses standard WordPress class names as much as possible, so your Architect Blueprints will inherit styling from your theme if it uses these. Below you can add your own styling and classes. Enter CSS declarations, such as: background:#123; color:#abc; font-size:1.6em; padding:1%;', 'pzarc') . '<br/>' . __('As much as possible, use fluid units (%,em) if you want to ensure maximum responsiveness.', 'pzarc') . '<br/>' .
+                  'desc'    => __('Architect uses standard WordPress class names as much as possible, so your Architect Blueprints will inherit styling from your theme if it uses these. Below you can add your own styling and classes. Enter CSS declarations, such as: background:#123; color:#abc; font-size:1.6em; padding:1%;', 'pzarc') . '<br/>' . __('As much as possible, use fluid units (%,em) if you want to ensure maximum responsiveness.', 'pzarc') . '<br/>' .
                           __('The base font size is 10px. So, for example, to get a font size of 14px, use 1.4em. Even better is using relative ems i.e. rem.')
           ),
           array(
@@ -827,9 +850,14 @@ function save_arc_layouts($postid)
         $pzarc_contents .= $pzarc_classes . ' {' . $value[ 0 ] . '}' . "\n";
       }
     }
-    $pzarc_tb = ($pzarc_cells[ '_pzarc_layout-sections-position' ][ 0 ] == 'left' || $pzarc_cells[ '_pzarc_layout-sections-position' ][ 0 ] == 'right' ? 'top' : $pzarc_cells[ '_pzarc_layout-sections-position' ][ 0 ]);
-    $pzarc_lr = ($pzarc_cells[ '_pzarc_layout-sections-position' ][ 0 ] == 'top' || $pzarc_cells[ '_pzarc_layout-sections-position' ][ 0 ] == 'bottom' ? 'left' : $pzarc_cells[ '_pzarc_layout-sections-position' ][ 0 ]);
-    $pzarc_contents .= '.pzarc-' . $postid  . ' .pzarc-components {' . $pzarc_tb . ':' . $pzarc_cells[ '_pzarc_layout-nudge-section-y' ][ 0 ] . '%;' . $pzarc_lr . ':' . $pzarc_cells[ '_pzarc_layout-nudge-section-x' ][ 0 ] . '%;width:' . $pzarc_cells[ '_pzarc_layout-sections-widths' ][ 0 ] . '%;}';
+    $pzarc_sections_postion=(!empty($pzarc_cells['_pzarc_layout-sections-postions'])?$pzarc_cells['_pzarc_layout-sections-postions'][0]:'top');
+    $pzarc_sections_nudge_x=(!empty($pzarc_cells['_pzarc_layout-sections-nudge-x'])?$pzarc_cells['_pzarc_layout-sections-nudge-x'][0]:0);
+    $pzarc_sections_nudge_y=(!empty($pzarc_cells['_pzarc_layout-sections-nudge-y'])?$pzarc_cells['_pzarc_layout-sections-nudge-y'][0]:0);
+    $pzarc_sections_width=(!empty($pzarc_cells['_pzarc_layout-sections-widths'])?$pzarc_cells['_pzarc_layout-sections-widths'][0]:100);
+
+    $pzarc_tb = ($pzarc_sections_postion == 'left' || $pzarc_sections_postion == 'right' ? 'top' : $pzarc_sections_postion);
+    $pzarc_lr = ($pzarc_sections_postion == 'top' || $pzarc_sections_postion == 'bottom' ? 'left' : $pzarc_sections_postion);
+    $pzarc_contents .= '.pzarc-' . $postid  . ' .pzarc-components {' . $pzarc_tb . ':' .  $pzarc_sections_nudge_y . '%;' . $pzarc_lr . ':' .  $pzarc_sections_nudge_x . '%;width:' . $pzarc_sections_width . '%;}';
 
 
 // by this point, the $wp_filesystem global should be working, so let's use it to create a file

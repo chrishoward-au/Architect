@@ -2,7 +2,7 @@
 
 /* This class must be included in another file and included later so we don't get an error about HeadwayBlockOptionsAPI class not existing. */
 
-class HeadwayUltimateContentDisplayBlockOptions extends HeadwayBlockOptionsAPI {
+class HeadwayArchitectBlockOptions extends HeadwayBlockOptionsAPI {
 
 	public $tabs							 = array();
 	public $inputs						 = array();
@@ -20,7 +20,7 @@ class HeadwayUltimateContentDisplayBlockOptions extends HeadwayBlockOptionsAPI {
 		// Setup the tab options		
 		$this->inputs			 =
 				array(
-					'sections' => self::pzucd_sections($block, false),
+					'sections' => self::pzarc_sections($block, false),
 					'info'		 => null
 				//					'info'	=> self::sab_info($block),
 		);
@@ -28,8 +28,8 @@ class HeadwayUltimateContentDisplayBlockOptions extends HeadwayBlockOptionsAPI {
 		$this->tab_notices =
 				array(
 					'info' => '
-							View <a href="https://s3.amazonaws.com/341public/LATEST/versioninfo/pzucd-changelog.html" target=_blank>Change Log</a><br/>
-							Visit <a href="http://guides.pizazzwp.com/swiss-army-block/about-contentsplus/" target=_blank>UltimateContentDisplay User Guide</a></br/>
+							View <a href="https://s3.amazonaws.com/341public/LATEST/versioninfo/pzarc-changelog.html" target=_blank>Change Log</a><br/>
+							Visit <a href="http://guides.pizazzwp.com/swiss-army-block/about-contentsplus/" target=_blank>Architect User Guide</a></br/>
 							<strong>Support:</strong> Please go to PizazzWP support at <a href="http://pizazzwp.zendesk.com" target=_blank>pizazzwp.zendesk.com</a> and log your question there.
 				',
 		);
@@ -50,7 +50,7 @@ class HeadwayUltimateContentDisplayBlockOptions extends HeadwayBlockOptionsAPI {
 		}
 		$settings	 = array();
 		$options	 = array_merge(
-				self::pzucd_sections($block, true)
+				self::pzarc_sections($block, true)
 		);
 		foreach ($options as $option)
 		{
@@ -60,65 +60,65 @@ class HeadwayUltimateContentDisplayBlockOptions extends HeadwayBlockOptionsAPI {
 		return $settings;
 	}
 
-	static function pzucd_sections($block, $just_defaults) {
-		$pzucd_layouts = array();
+	static function pzarc_sections($block, $just_defaults) {
+		$pzarc_layouts = array();
 		if (!$just_defaults)
 		{
-			$pzucd_layouts	 = self::get_layouts(true);
-			$pzucd_layouts	 = array_merge(array('none' => 'None selected'), $pzucd_layouts);
-			$pzucd_blueprints = self::get_blueprints(true);
-			$pzucd_blueprints = array_merge(array('none' => 'None selected'), $pzucd_blueprints);
-			$pzucd_content	 = self::get_content(true);
-			$pzucd_content	 = array_merge(array('none' => 'None selected'), $pzucd_content);
+			$pzarc_layouts	 = self::get_layouts(true);
+			$pzarc_layouts	 = array_merge(array('none' => 'None selected'), $pzarc_layouts);
+			$pzarc_blueprints = self::get_blueprints(true);
+			$pzarc_blueprints = array_merge(array('none' => 'None selected'), $pzarc_blueprints);
+			$pzarc_content	 = self::get_content(true);
+			$pzarc_content	 = array_merge(array('none' => 'None selected'), $pzarc_content);
 		} else {
-      $pzucd_layouts	 = array();
-      $pzucd_blueprints = array();
-      $pzucd_content	 = array();
+      $pzarc_layouts	 = array();
+      $pzarc_blueprints = array();
+      $pzarc_content	 = array();
 
     }
 		$settings = array(
-//			'pzucd-sections' => array(
+//			'pzarc-sections' => array(
 //				'type'		 => 'repeater',
-//				'name'		 => 'pzucd-sections',
+//				'name'		 => 'pzarc-sections',
 //				'label'		 => 'Sections',
-//				'tooltip'	 => 'You can create sections in your Ultimate ContentDisplay block. For example, you might create two sections, one to show the first post in full, then a 3x3 grid of older posts, and then maybe a bulleted list of the next 10 posts. Maximum 3 sections',
+//				'tooltip'	 => 'You can create sections in your Architect block. For example, you might create two sections, one to show the first post in full, then a 3x3 grid of older posts, and then maybe a bulleted list of the next 10 posts. Maximum 3 sections',
 //				'default'	 => null,
 //				'inputs'	 => array(
-//					'pzucd-cell-layout'	 => array(
+//					'pzarc-cell-layout'	 => array(
 //						'type'		 => 'select',
-//						'name'		 => 'pzucd-cell-layout',
-//						'label'		 => __('Cell layout set', 'pzpzucd'),
+//						'name'		 => 'pzarc-cell-layout',
+//						'label'		 => __('Cell layout set', 'pzpzarc'),
 //						'default'	 => 'none',
-//						'options'	 => $pzucd_layouts,
-//						'tooltip'	 => __('Choose a set of layouts for the cells in this section. Layouts are created in WP admin in the PizazzWP > UltimateContentDisplay Layouts menu', 'pzpzucd')
+//						'options'	 => $pzarc_layouts,
+//						'tooltip'	 => __('Choose a set of layouts for the cells in this section. Layouts are created in WP admin in the PizazzWP > UltimateContentDisplay Layouts menu', 'pzpzarc')
 //					),
-//					'pzucd-content'			 => array(
+//					'pzarc-content'			 => array(
 //						'type'		 => 'select',
-//						'name'		 => 'pzucd-content',
-//						'label'		 => __('Content', 'pzpzucd'),
+//						'name'		 => 'pzarc-content',
+//						'label'		 => __('Content', 'pzpzarc'),
 //						'default'	 => 'none',
-//						'options'	 => $pzucd_content,
-//						'tooltip'	 => __('Choose a set of layouts for the cells in this section. Layouts are created in WP admin in the PizazzWP > UltimateContentDisplay Layouts menu', 'pzpzucd')
+//						'options'	 => $pzarc_content,
+//						'tooltip'	 => __('Choose a set of layouts for the cells in this section. Layouts are created in WP admin in the PizazzWP > UltimateContentDisplay Layouts menu', 'pzpzarc')
 //					),
-//					'pzucd-blueprint'		 => array(
+//					'pzarc-blueprint'		 => array(
 //						'type'		 => 'select',
-//						'name'		 => 'pzucd-blueprint',
-//						'label'		 => __('Blueprint', 'pzpzucd'),
+//						'name'		 => 'pzarc-blueprint',
+//						'label'		 => __('Blueprint', 'pzpzarc'),
 //						'default'	 => 'none',
-//						'options'	 => $pzucd_blueprints,
-//						'tooltip'	 => __('Choose a set of layouts for the cells in this section. Layouts are created in WP admin in the PizazzWP > UltimateContentDisplay Layouts menu', 'pzpzucd')
+//						'options'	 => $pzarc_blueprints,
+//						'tooltip'	 => __('Choose a set of layouts for the cells in this section. Layouts are created in WP admin in the PizazzWP > UltimateContentDisplay Layouts menu', 'pzpzarc')
 //					),
 //				),
 //				'sortable' => true,
 //				'limit'		 => 2
 //			),
-      'pzucd-blueprint'		 => array(
+      'pzarc-blueprint'		 => array(
         'type'		 => 'select',
-        'name'		 => 'pzucd-blueprint',
-        'label'		 => __('Blueprint', 'pzpzucd'),
+        'name'		 => 'pzarc-blueprint',
+        'label'		 => __('Blueprint', 'pzpzarc'),
         'default'	 => 'none',
-        'options'	 => $pzucd_blueprints,
-        'tooltip'	 => __('Choose a set of layouts for the cells in this section. Layouts are created in WP admin in the PizazzWP > UltimateContentDisplay Layouts menu', 'pzpzucd')
+        'options'	 => $pzarc_blueprints,
+        'tooltip'	 => __('Choose a set of layouts for the cells in this section. Layouts are created in WP admin in the PizazzWP > Architect Layouts menu', 'pzpzarc')
       ),
 
 
@@ -128,24 +128,24 @@ class HeadwayUltimateContentDisplayBlockOptions extends HeadwayBlockOptionsAPI {
 	}
 
 	/*
-	  function pzucd_layout($block) {
+	  function pzarc_layout($block) {
 	  $settings = array(
-	  'pzucd-layout-method' => array(
+	  'pzarc-layout-method' => array(
 	  'type'		 => 'slect',
-	  'name'		 => 'pzucd-layout-method',
-	  'label'		 => __('Layout method', 'pzpzucd'),
+	  'name'		 => 'pzarc-layout-method',
+	  'label'		 => __('Layout method', 'pzpzarc'),
 	  'default'	 => 'grid',
 	  'options'	 => array(
 	  'grid'	 => 'Grid',
 	  'tabs'	 => 'Tabbbed',
 	  'slider' => 'Slider'
 	  ),
-	  'tooltip'	 => __('Select the method for laying out this block\'s content.', 'pzpzucd')
+	  'tooltip'	 => __('Select the method for laying out this block\'s content.', 'pzpzarc')
 	  ),
-	  'pzucd-content-source' => array(
+	  'pzarc-content-source' => array(
 	  'type'		 => 'select',
-	  'name'		 => 'pzucd-content-source',
-	  'label'		 => __('Content source', 'pzpzucd'),
+	  'name'		 => 'pzarc-content-source',
+	  'label'		 => __('Content source', 'pzpzarc'),
 	  'default'	 => 'page',
 	  'options'	 => array(
 	  'posts'				 => 'Posts',
@@ -156,35 +156,35 @@ class HeadwayUltimateContentDisplayBlockOptions extends HeadwayBlockOptionsAPI {
 	  'custom-code'	 => 'Custom code',
 	  'shortcode'		 => 'Shortcodes'
 	  ),
-	  'tooltip'	 => __('THIS IS JUST A FURPHY TO REMIND ME TO THINK THIS WAY.', 'pzpzucd')
+	  'tooltip'	 => __('THIS IS JUST A FURPHY TO REMIND ME TO THINK THIS WAY.', 'pzpzarc')
 	  ),
-	  'pzucd-paginate'				 => array(
+	  'pzarc-paginate'				 => array(
 	  'type'		 => 'checkbox',
-	  'name'		 => 'pzucd-paginate',
-	  'label'		 => __('Paginate', 'pzpzucd'),
+	  'name'		 => 'pzarc-paginate',
+	  'label'		 => __('Paginate', 'pzpzarc'),
 	  'default'	 => false,
-	  'tooltip'	 => __('Enable pagination.', 'pzpzucd')
+	  'tooltip'	 => __('Enable pagination.', 'pzpzarc')
 	  ),
-	  'pzucd-align-rows'			 => array(
+	  'pzarc-align-rows'			 => array(
 	  'type'		 => 'checkbox',
-	  'name'		 => 'pzucd-align-rows',
-	  'label'		 => __('Align rows', 'pzpzucd'),
+	  'name'		 => 'pzarc-align-rows',
+	  'label'		 => __('Align rows', 'pzpzarc'),
 	  'default'	 => false,
-	  'tooltip'	 => __('Enabling this makes each cell in a row the same vertical position.', 'pzpzucd')
+	  'tooltip'	 => __('Enabling this makes each cell in a row the same vertical position.', 'pzpzarc')
 	  ),
-	  'pzucd-default-display'	 => array(
+	  'pzarc-default-display'	 => array(
 	  'type'		 => 'checkbox',
-	  'name'		 => 'pzucd-default-display',
-	  'label'		 => __('Use page defaults', 'pzpzucd'),
+	  'name'		 => 'pzarc-default-display',
+	  'label'		 => __('Use page defaults', 'pzpzarc'),
 	  'default'	 => true,
-	  'tooltip'	 => __('Use the page\'s default content.', 'pzpzucd'),
+	  'tooltip'	 => __('Use the page\'s default content.', 'pzpzarc'),
 	  'callback' => ''
 	  ),
 	  );
 	  return $settings;
 	  }
 
-	  function pzucd_content($block, $just_defaults) {
+	  function pzarc_content($block, $just_defaults) {
 	  $all_post_types = array('post' => 'Posts', 'page' => 'Pages');
 
 	  if ($just_defaults == 'no')
@@ -204,94 +204,94 @@ class HeadwayUltimateContentDisplayBlockOptions extends HeadwayBlockOptionsAPI {
 	  // Check for update
 	  }
 	  $settings = array(
-	  'pzucd-content-type' => array(
+	  'pzarc-content-type' => array(
 	  'type'		 => 'multi-select',
 	  'options'	 => $all_post_types,
 	  'label'		 => 'Content type',
 	  'tooltip'	 => 'Choose the content type you want to display: Posts, pages or custom post types (if available).',
 	  'default'	 => 'post',
-	  'name'		 => 'pzucd-content-type',
+	  'name'		 => 'pzarc-content-type',
 	  ),
 	  );
 	  return $settings;
 	  }
 	 */
 
-	static function get_layouts($pzucd_inc_width) {
+	static function get_layouts($pzarc_inc_width) {
 		global $wp_query;
 		$query_options = array(
-			'post_type'	 => 'ucd-layouts',
-			'meta_key'	 => '_pzucd_layout-short-name',
+			'post_type'	 => 'arc-layouts',
+			'meta_key'	 => '_pzarc_layout-short-name',
 		);
 		$layouts_query = new WP_Query($query_options);
-		$pzucd_return	 = array();
+		$pzarc_return	 = array();
 		while ($layouts_query->have_posts())
 		{
 			$layouts_query->the_post();
-			$pzucd_settings = get_post_custom();
+			$pzarc_settings = get_post_custom();
 
-			//				if (!array_key_exists($pzucd_settings['pzucd_layout-set-name'][0],$pzucd_return)) {
-			$pzucd_return[$pzucd_settings['_pzucd_layout-short-name'][0]] = get_the_title();
+			//				if (!array_key_exists($pzarc_settings['pzarc_layout-set-name'][0],$pzarc_return)) {
+			$pzarc_return[$pzarc_settings['_pzarc_layout-short-name'][0]] = get_the_title();
 			//				} else {
-			//					preg_match("/(\\d)*(?=\\))/u", $pzucd_return[$pzucd_settings['pzucd_layout-set-name'][0]],$matches);
-			//					$pzucd_return[$pzucd_settings['pzucd_layout-set-name'][0]] = $pzucd_settings['pzucd_layout-set-name'][0].' ('.($matches[0]+1).')';
+			//					preg_match("/(\\d)*(?=\\))/u", $pzarc_return[$pzarc_settings['pzarc_layout-set-name'][0]],$matches);
+			//					$pzarc_return[$pzarc_settings['pzarc_layout-set-name'][0]] = $pzarc_settings['pzarc_layout-set-name'][0].' ('.($matches[0]+1).')';
 			//				}
 		};
 
 
-		return $pzucd_return;
+		return $pzarc_return;
 	}
 
-	static function get_blueprints($pzucd_inc_width) {
+	static function get_blueprints($pzarc_inc_width) {
 		global $wp_query;
 		$query_options	 = array(
-			'post_type'	 => 'ucd-blueprints',
-			'meta_key'	 => '_pzucd_blueprint-short-name',
+			'post_type'	 => 'arc-blueprints',
+			'meta_key'	 => '_pzarc_blueprint-short-name',
 		);
 		$blueprints_query = new WP_Query($query_options);
 //    pzdebug((array) $blueprints_query);
 //    die();
-		$pzucd_return		 = array();
+		$pzarc_return		 = array();
 		while ($blueprints_query->have_posts())
 		{
 			$blueprints_query->the_post();
-			$pzucd_settings = get_post_custom();
+			$pzarc_settings = get_post_custom();
 
-			//				if (!array_key_exists($pzucd_settings['pzucd_layout-set-name'][0],$pzucd_return)) {
-			$pzucd_return[$pzucd_settings['_pzucd_blueprint-short-name'][0]] = get_the_title();
+			//				if (!array_key_exists($pzarc_settings['pzarc_layout-set-name'][0],$pzarc_return)) {
+			$pzarc_return[$pzarc_settings['_pzarc_blueprint-short-name'][0]] = get_the_title();
 			//				} else {
-			//					preg_match("/(\\d)*(?=\\))/u", $pzucd_return[$pzucd_settings['pzucd_layout-set-name'][0]],$matches);
-			//					$pzucd_return[$pzucd_settings['pzucd_layout-set-name'][0]] = $pzucd_settings['pzucd_layout-set-name'][0].' ('.($matches[0]+1).')';
+			//					preg_match("/(\\d)*(?=\\))/u", $pzarc_return[$pzarc_settings['pzarc_layout-set-name'][0]],$matches);
+			//					$pzarc_return[$pzarc_settings['pzarc_layout-set-name'][0]] = $pzarc_settings['pzarc_layout-set-name'][0].' ('.($matches[0]+1).')';
 			//				}
 		};
 
 
-		return $pzucd_return;
+		return $pzarc_return;
 	}
 
-	static function get_content($pzucd_inc_width) {
+	static function get_content($pzarc_inc_width) {
 		global $wp_query;
 		$query_options = array(
-			'post_type'	 => 'ucd-criterias',
-			'meta_key'	 => '_pzucd_criteria-name',
+			'post_type'	 => 'arc-criterias',
+			'meta_key'	 => '_pzarc_criteria-name',
 		);
 		$content_query = new WP_Query($query_options);
-		$pzucd_return	 = array();
+		$pzarc_return	 = array();
 		while ($content_query->have_posts())
 		{
 			$content_query->the_post();
-			$pzucd_settings = get_post_custom();
+			$pzarc_settings = get_post_custom();
 
-			//				if (!array_key_exists($pzucd_settings['pzucd_layout-set-name'][0],$pzucd_return)) {
-			$pzucd_return[$pzucd_settings['_pzucd_criteria-name'][0]] = get_the_title();
+			//				if (!array_key_exists($pzarc_settings['pzarc_layout-set-name'][0],$pzarc_return)) {
+			$pzarc_return[$pzarc_settings['_pzarc_criteria-name'][0]] = get_the_title();
 			//				} else {
-			//					preg_match("/(\\d)*(?=\\))/u", $pzucd_return[$pzucd_settings['pzucd_layout-set-name'][0]],$matches);
-			//					$pzucd_return[$pzucd_settings['pzucd_layout-set-name'][0]] = $pzucd_settings['pzucd_layout-set-name'][0].' ('.($matches[0]+1).')';
+			//					preg_match("/(\\d)*(?=\\))/u", $pzarc_return[$pzarc_settings['pzarc_layout-set-name'][0]],$matches);
+			//					$pzarc_return[$pzarc_settings['pzarc_layout-set-name'][0]] = $pzarc_settings['pzarc_layout-set-name'][0].' ('.($matches[0]+1).')';
 			//				}
 		};
 
 
-		return $pzucd_return;
+		return $pzarc_return;
 	}
 
 }

@@ -1,4 +1,4 @@
-=== Architect WP Content Framework ===
+=== Architect WP Content Display Framework ===
 Contributors: chrishoward
 Tags: content,display,posts,pages,gallery,slider
 Donate link: http://
@@ -72,6 +72,7 @@ At this stage, no. We're trying to keep licencing as simple as possible, hence l
 
 == Changelog ==
 = 0.5 =
+* A new name! Architect
 * First public beta
 
 = 0.4 =
@@ -79,4 +80,5 @@ At this stage, no. We're trying to keep licencing as simple as possible, hence l
 
 == Upgrade Notice ==
 = 0.5 =
+* A new name! Architect
 * First public beta

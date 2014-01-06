@@ -318,7 +318,7 @@ class pzucdForm
 
 		// Use nonce for verification
 		echo '<input type="hidden" name="pzucd_meta_box_nonce" value="', wp_create_nonce( basename( __FILE__ ) ), '" />';
-		echo '<div id="pzucd_' . esc_attr( $pzucd_meta_boxes[ 'id' ] ) . '" class="pzucd-meta-boxes pz_ultimate_content_display" >';
+		echo '<div id="pzucd_' . esc_attr( $pzucd_meta_boxes[ 'id' ] ) . '" class="pzucd-meta-boxes pz_architect" >';
 
 		// Draw the nav
 		echo '<ul id="pzucd-meta-nav" class="pzucd-meta-nav ' . $pzucd_meta_boxes[ 'orientation' ] . '">';

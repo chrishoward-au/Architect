@@ -1038,7 +1038,9 @@ class CMB_Taxonomy extends CMB_Select {
 
 		$terms = $this->get_terms();
 
-		$term_options = array();
+    if (is_object($terms) && get_class($terms)=='WP_Error') { return array(); }
+
+    $term_options = array();
 
 		foreach ( $terms as $term )
 			$term_options[$term->term_id] = $term->name;

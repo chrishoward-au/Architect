@@ -12,7 +12,7 @@
  * this is necessary to work in a shortcode
  *
  */
-class pzucd_Display
+class pzarc_Display
 {
   public $output = '';
   public $source_data = '';
@@ -20,7 +20,7 @@ class pzucd_Display
   public $cell_info = '';
   public $blueprint = '';
   public $nav_links = array();
-  public $css ='/* UCD CSS */';
+  public $css ='/* Architect CSS */';
 
   function __construct()
   {
@@ -29,12 +29,12 @@ class pzucd_Display
 
 /*
  * draw the header section of the blueprint. includes navigation
- * opens the ucd container
+ * opens the arc container
  *
  */
  function blueprint_header($blueprint_id)
   {
-    $this->output .= '<div id="pzucd=container-' . $this->blueprint[ 'blueprint-short-name' ] . '" class="pzucd-container pzucd-blueprint-'.$blueprint_id.'">';
+    $this->output .= '<div id="pzarc=container-' . $this->blueprint[ 'blueprint-short-name' ] . '" class="pzarc-container pzarc-blueprint-'.$blueprint_id.'">';
     if ($this->blueprint[ 'blueprint-pager' ] == 'hover')
     {
       $this->output .= '{{pager}}';
@@ -43,7 +43,7 @@ class pzucd_Display
 
 /*
  * draw the footer section of the blueprint. includes navigation
- * closes the ucd container
+ * closes the arc container
  */
   function blueprint_footer()
   {
@@ -51,7 +51,7 @@ class pzucd_Display
     {
       $this->output .= '{{pager}}';
     }
-    $this->output .= '</div><!-- end pzucd_container-->';
+    $this->output .= '</div><!-- end pzarc_container-->';
   }
 
   function build_query($the_criteria, $overrides=null)
@@ -66,12 +66,12 @@ class pzucd_Display
     {
       //build the new query
       //Lot of work!
-      switch ($the_criteria[ '_pzucd_criteria-content-source' ][ 0 ])
+      switch ($the_criteria[ '_pzarc_criteria-content-source' ][ 0 ])
       {
       // could we build this into the cell def or somewhere else so more closely tied to the content type stuff
         case 'images':
           $this->query_vars[ 'post_type' ]   = 'attachment';
-          $this->query_vars[ 'post__in' ]    = $the_criteria[ '_pzucd_criteria-specific-images' ];
+          $this->query_vars[ 'post__in' ]    = $the_criteria[ '_pzarc_criteria-specific-images' ];
           $this->query_vars[ 'post_status' ] = array('publish', 'inherit', 'private');
           break;
       }
@@ -97,23 +97,23 @@ class pzucd_Display
 
   }
 
-  function render($pzucd_blueprint, $overrides)
+  function render($pzarc_blueprint, $overrides)
   {
     // THis is probably where we should preserve the wp_query
     global $wp_query;
     $original_query = $wp_query;
-    $pzucd_query    = $wp_query;
+    $pzarc_query    = $wp_query;
     // Need to decide what query to use
 
     // THIS HAS TO ALL WORK NICELY WITH CONTENT IN CONTENT. I.E. NO RECURSIVE ISSUES.
 
-    $this->blueprint = $pzucd_blueprint;
+    $this->blueprint = $pzarc_blueprint;
 
 
-    // pzdebug($pzucd_blueprint);
-    // pzdebug((array)$pzucd_out);
+    // pzdebug($pzarc_blueprint);
+    // pzdebug((array)$pzarc_out);
     // Get the criteria
-    $the_criteria = get_post_meta($pzucd_blueprint[ 'blueprint-criteria' ], null, true);
+    $the_criteria = get_post_meta($pzarc_blueprint[ 'blueprint-criteria' ], null, true);
 
     if ($this->blueprint[ 'blueprint-criteria' ] != 'default')
     {
@@ -122,15 +122,15 @@ class pzucd_Display
 
       // Determine the content type the post type so we canget the right cell def (this could be anything from posts, to images to NGG, to RSS
 
-      $content_type = $the_criteria[ '_pzucd_criteria-content-source' ][ 0 ];
+      $content_type = $the_criteria[ '_pzarc_criteria-content-source' ][ 0 ];
 
       self::build_query($the_criteria, $overrides);
 // no matter what happens, somewhere we've got to preserve the original query!
 //      pzdebug($this->query_vars);
       if ($this->query_vars)
       {
-        $pzucd_query = new WP_Query($this->query_vars);
-        //     pzdebug((array)$pzucd_query);
+        $pzarc_query = new WP_Query($this->query_vars);
+        //     pzdebug((array)$pzarc_query);
       }
     }
     else
@@ -140,31 +140,31 @@ class pzucd_Display
 
       // What if WE have changed the query?? What is our real current query?
     //  add_filter('parse_query', array($this,'modify_default_query'));
-      $pzucd_query = $wp_query;
-      $pzucd_query->set( 'posts_per_page', $this->blueprint['blueprint-posts-per-page'] );
-      $pzucd_query->get_posts();
- //pzdebug((array)$pzucd_query->request);
+      $pzarc_query = $wp_query;
+      $pzarc_query->set( 'posts_per_page', $this->blueprint['blueprint-posts-per-page'] );
+      $pzarc_query->get_posts();
+ //pzdebug((array)$pzarc_query->request);
       // For defaults, determine the content type from the post type
-      $content_type = (empty($pzucd_query->query_vars[ 'post_type' ]) ? 'post' : $pzucd_query->query_vars[ 'post_type' ]);
+      $content_type = (empty($pzarc_query->query_vars[ 'post_type' ]) ? 'post' : $pzarc_query->query_vars[ 'post_type' ]);
      // var_dump($content_type);
     }
 
 
-    //  pzdebug((array)$pzucd_query);
-    // pzdebug($pzucd_query->found_posts);
+    //  pzdebug((array)$pzarc_query);
+    // pzdebug($pzarc_query->found_posts);
     // pzdebug(is_main_query());
-//  pzdebug((array) $pzucd_query);
+//  pzdebug((array) $pzarc_query);
 
 
     // is filters a better way to do this? Altho how??
-    //$this->output = apply_filters('pzucd_blueprint_header',blueprint_header());
+    //$this->output = apply_filters('pzarc_blueprint_header',blueprint_header());
 
     // The outer wrapper
     // use a method so we can swap it out in the future with different blueprint headers
     self::blueprint_header($this->blueprint['blueprint-id']);
     // Cell defs will need to be a little more flexible to cater for for mixed sections of full and excerpts.
 
-    $celldef = pzucd_celldef($content_type);
+    $celldef = pzarc_celldef($content_type);
     
     /*********************************************************************
     **********************************************************************
@@ -180,43 +180,43 @@ class pzucd_Display
       $cellid =$section_info['section-cell-layout'];
       if (!empty($this->blueprint['blueprint-id'])) {
         $upload_dir = wp_upload_dir();
-        $filename   = trailingslashit($upload_dir[ 'baseurl' ]) . '/cache/pizazzwp/ucd/pzucd-blueprint-' . $this->blueprint['blueprint-id'] . '.css';
+        $filename   = trailingslashit($upload_dir[ 'baseurl' ]) . '/cache/pizazzwp/arc/pzarc-blueprint-' . $this->blueprint['blueprint-id'] . '.css';
         wp_enqueue_style('blueprint-css'.$this->blueprint['blueprint-id'],$filename);
       }
 
       $this->section_info = $section_info;
-      if ($pzucd_blueprint[ 'section' ][ $key ][ 'section-enable' ])
+      if ($pzarc_blueprint[ 'section' ][ $key ][ 'section-enable' ])
       {
 
         $this->output .= '{{nav-top-outside}}';
         $this->output .= '{{nav-left-outside}}';
         if ($section_info[ 'section-layout-mode' ] == 'basic')
         {
-          $this->output .= '<div class="pzucd-section pzucd-section-' . ($key+1) . '">';
+          $this->output .= '<div class="pzarc-section pzarc-section-' . ($key+1) . '">';
         }
         else
         {
-//        $this->output .= '<div class="js-isotope pzucd-section pzucd-section-' . $key . '" data-isotope-options=\'{ "layoutMode": "'.$pzucd_section_info['section-layout-mode'].'","itemSelector": ".pzucd-cell" }\'>';
-          $this->output .= '<div class="pzucd-section pzucd-section-' . ($key+1) . '">';
+//        $this->output .= '<div class="js-isotope pzarc-section pzarc-section-' . $key . '" data-isotope-options=\'{ "layoutMode": "'.$pzarc_section_info['section-layout-mode'].'","itemSelector": ".pzarc-cell" }\'>';
+          $this->output .= '<div class="pzarc-section pzarc-section-' . ($key+1) . '">';
         }
 
-        if ($pzucd_query->have_posts())
+        if ($pzarc_query->have_posts())
         {
           $this->output .= '{{nav-top-inside}}';
-        //  var_dump($pzucd_query->found_posts);
+        //  var_dump($pzarc_query->found_posts);
           $i = 1;
-          while ($pzucd_query->have_posts())
+          while ($pzarc_query->have_posts())
           {
-            $pzucd_query->the_post();
-            self::build_cell($pzucd_query->post, $celldef,$section_info['section-cell-layout'],$section_info[ 'section-cell-settings' ]);
+            $pzarc_query->the_post();
+            self::build_cell($pzarc_query->post, $celldef,$section_info['section-cell-layout'],$section_info[ 'section-cell-settings' ]);
 
-      //      self::build_cell($pzucd_query->post, $celldefinition,$celldef,$section_info['section-cell-layout']);
+      //      self::build_cell($pzarc_query->post, $celldefinition,$celldef,$section_info['section-cell-layout']);
 
             self::set_nav_link();
 
 // This needs to work out when to show! Maybe add it as a cell row???? Or at least an option??
             // if show comments {
-//          $this->output = apply_filters('pzucd_comments',$this->output);
+//          $this->output = apply_filters('pzarc_comments',$this->output);
 
             // Leave the while loop if up to the post count
             if ($section_info['section-cells-per-view'] != 0 && ++$i > $section_info['section-cells-per-view']){break;}
@@ -224,7 +224,7 @@ class pzucd_Display
           } // End WP loop - tho we might use it some more
           $this->output .= '{{nav-bottom-inside}}';
         }
-        $this->output .= '</div><!-- end pzucd-section-' . ($key+1) . ' -->';
+        $this->output .= '</div><!-- end pzarc-section-' . ($key+1) . ' -->';
         $this->output .= '{{nav-top-outside}}';
         $this->output .= '{{nav-left-outside}}';
 
@@ -261,11 +261,11 @@ class pzucd_Display
   {
   
 //    pzdebug((array)$this);
- //   $cell_layout = json_decode($section_cell_settings[ '_pzucd_layout-cell-preview' ][ 0 ], true);
+ //   $cell_layout = json_decode($section_cell_settings[ '_pzarc_layout-cell-preview' ][ 0 ], true);
 //    pzdebug($section_cell_settings);
-    $meta1_confg = unserialize($section_cell_settings[ '_pzucd_cell-settings-meta1-config' ][ 0 ]);
-    $meta2_confg = unserialize($section_cell_settings[ '_pzucd_cell-settings-meta2-config' ][ 0 ]);
-    $meta3_confg = unserialize($section_cell_settings[ '_pzucd_cell-settings-meta3-config' ][ 0 ]);
+    $meta1_confg = unserialize($section_cell_settings[ '_pzarc_cell-settings-meta1-config' ][ 0 ]);
+    $meta2_confg = unserialize($section_cell_settings[ '_pzarc_cell-settings-meta2-config' ][ 0 ]);
+    $meta3_confg = unserialize($section_cell_settings[ '_pzarc_cell-settings-meta3-config' ][ 0 ]);
     $cell_meta1  = (!empty($meta1_confg) ? '{{' . implode('}}, {{', $meta1_confg) . '}}' : null);
     $cell_meta2  = (!empty($meta2_confg) ? '{{' . implode('}}, {{', $meta2_confg) . '}}' : null);
     $cell_meta3  = (!empty($meta3_confg) ? '{{' . implode('}}, {{', $meta3_confg) . '}}' : null);
@@ -285,7 +285,7 @@ class pzucd_Display
       }
 
     }
-    //cell-settings-meta1-config  _pzucd_cell-settings-meta1-config
+    //cell-settings-meta1-config  _pzarc_cell-settings-meta1-config
     $cell_definition = str_replace('{{meta1innards}}', $cell_meta1, $cell_definition);
     $cell_definition = str_replace('{{meta2innards}}', $cell_meta2, $cell_definition);
     $cell_definition = str_replace('{{meta3innards}}', $cell_meta3, $cell_definition);
@@ -295,7 +295,7 @@ class pzucd_Display
 
     // load up the css
 //    $upload_dir = wp_upload_dir();
-//    $filename   = trailingslashit($upload_dir[ 'baseurl' ]) . '/cache/pizazzwp/ucd/pzucd-cell-layout-' . $cellid . '.css';
+//    $filename   = trailingslashit($upload_dir[ 'baseurl' ]) . '/cache/pizazzwp/arc/pzarc-cell-layout-' . $cellid . '.css';
 //    if (!empty($cellid)) {
 //      wp_enqueue_style('cells-css'.$cellid,$filename);
 //    }
@@ -306,7 +306,7 @@ class pzucd_Display
 
   function build_cell($post_info, $celldef,$cellid,$section_cell_settings)
   {
-    $cell_info = pzucd_flatten_wpinfo($this->section_info[ 'section-cell-settings' ]);
+    $cell_info = pzarc_flatten_wpinfo($this->section_info[ 'section-cell-settings' ]);
 
 
     // ALL THIS STYLING CRAP WILL BE MOVED TO A SEPARATE ROUTINE THAT CREATES A CACHED CSS
@@ -315,13 +315,13 @@ class pzucd_Display
     $cell_width     = 100 / $this->section_info[ 'section-cells-across' ] - $this->section_info[ 'section-cells-vert-margin' ];
     $cell_min_width = $this->section_info[ 'section-min-cell-width' ];
     // this may need to be in its own method
-    $cell_height = ($cell_info[ '_pzucd_layout-cell-height-type' ] == 'fixed') ? 'height:' . $cell_info[ '_pzucd_layout-cell-height' ] . 'px;' : null;
+    $cell_height = ($cell_info[ '_pzarc_layout-cell-height-type' ] == 'fixed') ? 'height:' . $cell_info[ '_pzarc_layout-cell-height' ] . 'px;' : null;
 
     // Open cell
-    $this_cell = '<div class="pzucd-cell pzucd-{{classname}}" style="position:relative;width:' . $cell_width . '%;margin:' . ($this->section_info[ 'section-cells-vert-margin' ] / 2) . '%;min-width:' . $cell_min_width . 'px;' . $cell_height . '">';
+    $this_cell = '<div class="pzarc-cell pzarc-{{classname}}" style="position:relative;width:' . $cell_width . '%;margin:' . ($this->section_info[ 'section-cells-vert-margin' ] / 2) . '%;min-width:' . $cell_min_width . 'px;' . $cell_height . '">';
 
       $position = 'static';
-      $params   = array('width' => $cell_info['_pzucd_cell-settings-image-max-width'],'height' => $cell_info['_pzucd_cell-settings-image-max-height']);
+      $params   = array('width' => $cell_info['_pzarc_cell-settings-image-max-width'],'height' => $cell_info['_pzarc_cell-settings-image-max-height']);
 
       // Returns false on failure.
       // ADD CHECK THERE IS AN IMAGE HERE
@@ -341,17 +341,17 @@ class pzucd_Display
 //      $post_image = ($post_image ? $post_image : $post_info->guid);
 
 
-    if ($cell_info[ '_pzucd_layout-background-image' ] == 'fill')
+    if ($cell_info[ '_pzarc_layout-background-image' ] == 'fill')
     {
-      $this_cell .= '<div class="pzucd-bg-image"><img class="entry-image" src="' . $post_image . '"></div>';
+      $this_cell .= '<div class="pzarc-bg-image"><img class="entry-image" src="' . $post_image . '"></div>';
       $position = 'absolute';
     }
 
-    $layout                     = json_decode($cell_info[ '_pzucd_layout-cell-preview' ], true);
+    $layout                     = json_decode($cell_info[ '_pzarc_layout-cell-preview' ], true);
 
     // Get all the content data
     $the_title = get_the_title();
-    switch ($cell_info['_pzucd_cell-settings-title-prefix']) {
+    switch ($cell_info['_pzarc_cell-settings-title-prefix']) {
       case 'none':
       break;
       case 'bullet':
@@ -386,7 +386,7 @@ class pzucd_Display
  
 
     // Create the content section
-    $components_open  = '<div class="pzucd-components" style="position:' . $position . ';">';
+    $components_open  = '<div class="pzarc-components" style="position:' . $position . ';">';
     $components_close = '</div><!-- End components -->';
     $components       = self::build_components($components_open, $the_inputs, $layout, $components_close, $cell_info, $cell_definition);
     $components = str_replace('{{wrapperinnards}}',$components,$celldef['wrapper']);
@@ -396,14 +396,14 @@ class pzucd_Display
 
     // Replace wrapper tags
     //  id="post-{{postid}}"
-    //  class="pzucd-{{classname}} post-{{postid}} post type-{{posttype}} status-{{poststatus}} format-{{postformat}} hentry {{category-categories}} {{tag-tags}}"
+    //  class="pzarc-{{classname}} post-{{postid}} post type-{{posttype}} status-{{poststatus}} format-{{postformat}} hentry {{category-categories}} {{tag-tags}}"
 
     $this->output = str_replace('{{postid}}',get_the_id(),$this->output);
     $this->output = str_replace('{{posttype}}',get_post_type(),$this->output);
     $this->output = str_replace('{{poststatus}}',get_post_status(),$this->output);
     $this->output = str_replace('{{postformat}}',get_post_format(),$this->output);
     $this->output = str_replace('{{classname}}',$cellid,$this->output);
-    //'.$postid.'-'.$pzucd_cells['_pzucd_layout-short-name']
+    //'.$postid.'-'.$pzarc_cells['_pzarc_layout-short-name']
 
     $the_categories = get_the_category();
     $categories_list = '';
@@ -431,24 +431,24 @@ class pzucd_Display
     // var_dump(get_the_id(),get_the_title());
 //    var_dump();
     if ($this->blueprint['blueprint-pager']=='wordpress'){
-       $pager = '<div class="pzucd-pager">';
+       $pager = '<div class="pzarc-pager">';
   //    $pager .=  get_next_posts_link( 'Older Entries', 999 );
   //    $pager .=  get_previous_posts_link( 'Newer Entries' );
       $prev_post = get_previous_post();
       $next_post = get_next_post();
       if (!empty($prev_post))
       {
-        $pager .= '<a class="pzucd-pager-prev" href="' . get_permalink($prev_post->ID) . '">&laquo; ' . $prev_post->post_title . '</a>';
+        $pager .= '<a class="pzarc-pager-prev" href="' . get_permalink($prev_post->ID) . '">&laquo; ' . $prev_post->post_title . '</a>';
       }
       if (!empty($next_post))
       {
-        $pager .= '<a class="pzucd-pager-next" href="' . get_permalink($next_post->ID) . '">' . $next_post->post_title . ' &raquo;</a>';
+        $pager .= '<a class="pzarc-pager-next" href="' . get_permalink($next_post->ID) . '">' . $next_post->post_title . ' &raquo;</a>';
   
       }
       $pager .= '</div>';
     } elseif ($this->blueprint['blueprint-pager']=='wppagenavi') {
       if(function_exists('wp_pagenavi')) { 
-       $pager = '<div class="pzucd-pager">';
+       $pager = '<div class="pzarc-pager">';
         ob_start();
         wp_pagenavi(); }
         $pager .= ob_get_contents();
@@ -459,7 +459,7 @@ class pzucd_Display
     }
     if (!empty($next_post))
     {
-      $pager .= '<a class="pzucd-pager-next" href="' . get_permalink($next_post->ID) . '">' . $next_post->post_title . ' &raquo;</a>';
+      $pager .= '<a class="pzarc-pager-next" href="' . get_permalink($next_post->ID) . '">' . $next_post->post_title . ' &raquo;</a>';
 
     }
     $pager .= '</div>';
@@ -471,10 +471,10 @@ class pzucd_Display
 
   function add_nav()
   {
-    $navigation = '<ul class="pzucd-navigation">';
+    $navigation = '<ul class="pzarc-navigation">';
     foreach ($this->nav_links as $key => $value)
     {
-      $navigation .= '<li class="pzucd-nav-item"><a hef="' . $value[ 'link' ] . '" class="pzucd-nav-item-link">' . $value[ 'title' ] . '</a></li>';
+      $navigation .= '<li class="pzarc-nav-item"><a hef="' . $value[ 'link' ] . '" class="pzarc-nav-item-link">' . $value[ 'title' ] . '</a></li>';
     }
     $navigation .= '</ul>';
 
@@ -494,10 +494,10 @@ class pzucd_Display
 
   function get_source($criteria, $overrides = null)
   {
-    switch ($criteria[ '_pzucd_criteria-content-source' ][ 0 ])
+    switch ($criteria[ '_pzarc_criteria-content-source' ][ 0 ])
     {
       case 'images' :
-        $this->source_data = $criteria[ '_pzucd_criteria-specific-images' ];
+        $this->source_data = $criteria[ '_pzarc_criteria-specific-images' ];
         break;
       case 'posts' :
         break;
@@ -514,9 +514,9 @@ class pzucd_Display
   function build_components($components_open, $the_inputs, $layout, $components_close, $cell_info, $celldef)
   {
     $return_str = $components_open;
-    if ($cell_info[ '_pzucd_layout-background-image' ] == 'align' && !empty($the_inputs['image']))
+    if ($cell_info[ '_pzarc_layout-background-image' ] == 'align' && !empty($the_inputs['image']))
     {
-      $return_str .= '<div class="pzucd-bg-image entry-content"><img src="' . $the_inputs[ 'image' ] . '" /></div>';
+      $return_str .= '<div class="pzarc-bg-image entry-content"><img src="' . $the_inputs[ 'image' ] . '" /></div>';
     }
 
 

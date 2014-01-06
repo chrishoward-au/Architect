@@ -34,7 +34,7 @@ class pzucd_Controls extends pzucdForm
 
 		$args = array(
 			'labels'               => $labels,
-			'description'          => __('Ultimate Content Display Controls are used to create reusable navigation controllers for use in your UCD blocks, widgets, shortcodes and WP template tags.'),
+			'description'          => __('Architect Controls are used to create reusable navigation controllers for use in your UCD blocks, widgets, shortcodes and WP template tags.'),
 			'public'               => false,
 			'publicly_queryable'   => false,
 			'show_ui'              => true,

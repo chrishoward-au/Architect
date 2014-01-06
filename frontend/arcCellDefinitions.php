@@ -1,7 +1,7 @@
 <?php
 
 
-  function pzucd_celldef($def)
+  function pzarc_celldef($def)
   {
     // Just a guide to available parts of a cell
     // We put these in an array because the cell layout is user defined, so we can't order them until we have it later in processing.
@@ -28,7 +28,7 @@
 
     );
 
-    // should we add filters? e.g apply_filters('ucdtitle','{{title}}')
+    // should we add filters? e.g apply_filters('arctitle','{{title}}')
     $celldefs[ 'post' ]['wrapper'] = '<article id="post-{{postid}}" class="block-type-content post-{{postid}} post type-{{posttype}} status-{{poststatus}} format-{{postformat}} hentry {{category-categories}} {{tag-tags}}">{{wrapperinnards}}</article>';
 
     $celldefs[ 'post' ]['header'] = '<header class="entry-header">{{headerinnards}}</header><!-- .entry-header -->';
@@ -61,7 +61,7 @@
 
     $celldefs[ 'page' ] = $celldefs[ 'post' ];
 
-     $celldefs[ 'excerpt' ]['wrapper'] = '<div id="post-{{postid}}" class="pzucd-postexcerpt post-{{postid}} post type-{{posttype}} status-{{poststatus}} format-{{postformat}} hentry {{category-categories}} {{tag-tags}}">{{wrapperinnards}}</div>';
+     $celldefs[ 'excerpt' ]['wrapper'] = '<div id="post-{{postid}}" class="pzarc-postexcerpt post-{{postid}} post type-{{posttype}} status-{{poststatus}} format-{{postformat}} hentry {{category-categories}} {{tag-tags}}">{{wrapperinnards}}</div>';
       $celldefs[ 'excerpt' ]['header'] = '<header class="entry-header">{{headerinnards}}</header><!-- .entry-header -->';
       $celldefs[ 'excerpt' ]['meta1'] = '<div class="entry-meta entry-meta-1">{{meta1innards}}</div><!-- .entry-meta 1 -->';
       $celldefs[ 'excerpt']['meta2'] = '<div class="entry-meta entry-meta-2">{{meta2innards}}</div><!-- .entry-meta 2 -->';
@@ -81,7 +81,7 @@
       $celldefs[ 'excerpt' ]['custom3'] = '<div class="entry-customfield entry-customfield-3">{{custom3innards}}</div><!-- .entry-custom 3 -->';
       $celldefs[ 'excerpt' ]['footer'] = '<footer class="entry-meta">{{footerinnards}}</footer><!-- .entry-meta -->';
 
-      $celldefs[ 'feature' ]['wrapper'] = '<div id="post-{{postid}}" class="pzucd-feature post-{{postid}} post type-{{posttype}} status-{{poststatus}} format-{{postformat}} hentry {{category-categories}} {{tag-tags}}">{{wrapperinnards}}</div>';
+      $celldefs[ 'feature' ]['wrapper'] = '<div id="post-{{postid}}" class="pzarc-feature post-{{postid}} post type-{{posttype}} status-{{poststatus}} format-{{postformat}} hentry {{category-categories}} {{tag-tags}}">{{wrapperinnards}}</div>';
       $celldefs[ 'feature' ]['header'] = '<header class="entry-header">{{headerinnards}}</header><!-- .entry-header -->';
       $celldefs[ 'feature' ]['meta1'] = '<div class="entry-meta entry-meta-1">{{meta1innards}}</div><!-- .entry-meta 1 -->';
       $celldefs[ 'feature' ]['meta2'] = '<div class="entry-meta entry-meta-2">{{meta2innards}}</div><!-- .entry-meta 2 -->';
@@ -102,7 +102,7 @@
       $celldefs[ 'feature' ]['footer'] = '<footer class="entry-meta">{{footerinnards}}</footer><!-- .entry-meta -->';
     
 
-      $celldefs[ 'images' ]['wrapper'] = '<div id="galleryimage-{{postid}}" class="pzucd-{{classname}}  galleryimage-{{postid}} galleryimage">{{wrapperinnards}}</div>';
+      $celldefs[ 'images' ]['wrapper'] = '<div id="galleryimage-{{postid}}" class="pzarc-{{classname}}  galleryimage-{{postid}} galleryimage">{{wrapperinnards}}</div>';
       $celldefs[ 'images' ]['header'] = '<header class="entry-header">{{headerinnards}}</header><!-- .entry-header -->';
       $celldefs[ 'images' ]['title'] = '<h3 class="entry-title">{{title}}</h3>';
       $celldefs[ 'images' ]['excerpt']  = ' <div class="entry-excerpt">{{excerpt}}</div><!-- .entry-excerpt -->';

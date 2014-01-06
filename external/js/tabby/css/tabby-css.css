@@ -1,0 +1,74 @@
+/* =============================================================
+
+	Tabby 4.0
+	Simple, mobile-first toggle tabs by Chris Ferdinandi.
+	http://gomakethings.com
+
+	Free to use under the MIT License.
+	http://gomakethings.com/mit/
+
+ * ============================================================= */
+/*  Hide tab navigation by default */
+.tabs {
+  display: none;
+  visibility: hidden;
+  margin:0;
+  padding:0;
+
+}
+
+/*  Display tab navigation if javascript enabled.
+ *  This requires on the included js-accessibility.js script. */
+.js .tabs {
+  display: block;
+  visibility: visible;
+}
+.field.Pizazz_Tabs_Field {padding-bottom:10px;}
+/*  Force browser to show a pointer on tab navigation. */
+
+.tabs a,
+.tabs button {
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.tabs li {
+  background:#bbb;
+  margin-right:3px;
+  cursor: pointer;
+  margin-bottom:0;
+  color:#fff;
+}
+
+.tabs li.active {
+  background:#777;
+}
+
+.tabs li {
+  display:inline-block;
+  padding:10px;
+}
+
+/*  Hide tab content if javascript is enabled. */
+.js .tabs-pane {
+  display: none;
+  visibility: hidden;
+}
+
+/*  Show tab content when active class is added.
+ *  This class is added via javascript. */
+.tabs-pane.active {
+  display: block;
+  visibility: visible;
+}
+
+/* Clearfix */
+.tabs:before,
+.tabs:after {
+  display: table;
+  content: "";
+}
+
+.tabs:after {
+  clear: both;
+}

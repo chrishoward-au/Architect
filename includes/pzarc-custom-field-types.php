@@ -7,16 +7,16 @@
  * To change this template use File | Settings | File Templates.
  */
 
-define ('YOUR_PLUGIN_URL','');
+define ('YOUR_PLUGIN_URL',PZARC_PLUGIN_URL );
 
-add_filter('admin_body_class','pzucd_add_screen_class');
-function pzucd_add_screen_class() {
+add_filter('admin_body_class','pzarc_add_screen_class');
+function pzarc_add_screen_class() {
   $screen = get_current_screen();
   return 'screen-'.$screen->id;
 }
 
-add_filter('cmb_field_types', 'pzucd_custom_fields');
-function pzucd_custom_fields($fields)
+add_filter('cmb_field_types', 'pzarc_custom_fields');
+function pzarc_custom_fields($fields)
 {
   $fields[ 'coreimage' ]  = 'Pizazz_Core_Image_Field';
   $fields[ 'radioimage' ] = 'Pizazz_Radio_Image_Field';
@@ -26,10 +26,10 @@ function pzucd_custom_fields($fields)
   $fields[ 'pzdata' ]     = 'Pizazz_Data_Field';
   $fields[ 'pzspinner' ]  = 'Pizazz_Spinner_Field';
   $fields[ 'pzrange' ]  = 'Pizazz_Range_Field';
-  $fields[ 'pzmulticheck' ]  = 'Pizazz_MultiCheck_Field';
   $fields[ 'pzsubmit' ]  = 'Pizazz_Submit_Button';
   $fields[ 'pzgallery' ]  = 'Pizazz_Gallery_Field';
   $fields[ 'pzinfo' ]  = 'Pizazz_Info_Field';
+  $fields[ 'pztabs' ]  = 'Pizazz_Tabs_Field';
   return $fields;
 }
 
@@ -321,7 +321,7 @@ if (!class_exists('Pizazz_Spinner_Field'))
     public function html()
     {
       ?>
-      <input alt="<?php echo $this->args[ 'alt' ]; ?>" type="number" min=<?php echo esc_html( $this->args[ 'min' ])?> max=<?php echo esc_html( $this->args[ 'max' ])?> <?php $this->name_attr(); ?><?php $this->boolean_attr(); ?> <?php $this->class_attr(); ?> <?php $this->id_attr(); ?> value="<?php echo esc_attr($this->get_value()) ?>" /><span class="pzucd-range-spinner spinner-'<?php  echo sanitize_html_class( $this->args[ 'id' ] ) ?>"><?php echo esc_html( (!empty($this->args[ 'suffix' ])?$this->args[ 'suffix' ]:null))?></span><br />
+      <input  type="number" min=<?php echo esc_html( $this->args[ 'min' ])?> max=<?php echo esc_html( $this->args[ 'max' ])?> <?php $this->name_attr(); ?><?php $this->boolean_attr(); ?> <?php $this->class_attr(); ?> <?php $this->id_attr(); ?> value="<?php echo esc_attr($this->get_value()) ?>" /><span class="pzarc-range-spinner spinner-'<?php  echo sanitize_html_class( $this->args[ 'id' ] ) ?>"><?php echo esc_html( (!empty($this->args[ 'suffix' ])?$this->args[ 'suffix' ]:null))?></span><br />
 
     <?php
     }
@@ -337,7 +337,7 @@ if (!class_exists('Pizazz_Range_Field'))
     public function html()
     {
       ?>
-      <?php echo esc_html( $this->args[ 'min' ])?><input alt="<?php echo $this->args[ 'alt' ]; ?>" type="range" style="width:80%;" min=<?php echo esc_html( $this->args[ 'min' ])?> max=<?php echo esc_html( $this->args[ 'max' ])?> <?php $this->name_attr(); ?><?php $this->boolean_attr(); ?> <?php $this->class_attr(); ?> <?php $this->id_attr(); ?> value="<?php echo esc_attr($this->get_value()) ?>" /><span class="pzucd-range-spinner spinner-'<?php  echo sanitize_html_class( $this->args[ 'id' ] ) ?>"><?php echo esc_html( $this->args[ 'max' ])?><?php echo esc_html( $this->args[ 'suffix' ])?></span><br />
+      <?php echo esc_html( $this->args[ 'min' ])?><input  type="range" style="width:80%;" min=<?php echo esc_html( $this->args[ 'min' ])?> max=<?php echo esc_html( $this->args[ 'max' ])?> <?php $this->name_attr(); ?><?php $this->boolean_attr(); ?> <?php $this->class_attr(); ?> <?php $this->id_attr(); ?> value="<?php echo esc_attr($this->get_value()) ?>" /><span class="pzarc-range-spinner spinner-'<?php  echo sanitize_html_class( $this->args[ 'id' ] ) ?>"><?php echo esc_html( $this->args[ 'max' ])?><?php echo esc_html( $this->args[ 'suffix' ])?></span><br />
 
     <?php
     }
@@ -360,30 +360,6 @@ if (!class_exists('Pizazz_Submit_Button'))
         <input type="submit" name="publish" id="publish" class="button button-primary button-large" value="<?php echo esc_html( $this->args['default'])?>" accesskey="p"></div>
      <?php
     }
-  }
-}
-if (!class_exists('Pizazz_MultiCheck_Field'))
-{
-  class Pizazz_MultiCheck_Field extends CMB_Field
-  {
-    public function title() {}
-    public function html() {
-      // Initialize defaults if necessary
-      //var_dump($this->value);
-      if (empty($this->value)) {
-        $this->value =  $this->args['default'];
-      }
-      foreach ($this->args['options'] as $key => $option) {
-        ?>
-        <div class="multicheck-item" ><input <?php $this->id_attr(); ?> <?php $this->boolean_attr(); ?> <?php $this->class_attr(); ?> type="checkbox" <?php echo 'name="'.$this->name.'['.$key.']"'; ?>  value="<?php echo $key ?>" <?php echo (in_array($key,$this->value) ? 'checked' : null) ; ?> />
-        <label <?php $this->for_attr(); ?> title="<?php echo $this->args['tooltip'] ?>"><?php echo $option ; ?></label></div>
-
-      <?php
-      }
-
- }
-
-
   }
 }
 
@@ -434,3 +410,39 @@ if (!class_exists('Pizazz_Gallery_Field'))
   }
 }
 
+if (!class_exists('Pizazz_Tabs_Field'))
+{
+
+  class Pizazz_Tabs_Field extends CMB_Field {
+
+    public function enqueue_scripts()
+    {
+
+      parent::enqueue_scripts();
+//      wp_enqueue_script('js-buoy', YOUR_PLUGIN_URL.'/external/js/tabby/js/buoy.js');
+//      wp_enqueue_script('js-tabby', YOUR_PLUGIN_URL.'/external/js/tabby/js/tabby.js');
+      wp_enqueue_script('js-tabify', YOUR_PLUGIN_URL.'/external/js/tabby/js/tabify.js');
+
+    }
+    public function enqueue_styles()
+    {
+      parent::enqueue_styles();
+      wp_enqueue_style('tabby-css', YOUR_PLUGIN_URL.'/external/js/tabby/css/tabby-css.css');
+    }
+
+    public function title() {}
+    public function html() {
+      $active = 'active';
+      ?><ul class="pztabs tabs"><?php
+      foreach ( $this->args['defaults'] as $key => $value ): ?>
+
+        <li <?php $this->class_attr( 'item-' . $key .' '.$active); ?> data-target="<?php echo esc_html( $key );?>">
+            <?php echo esc_html( $value ); ?>
+        </li>
+
+      <?php $active=null;endforeach; ?>
+      </ul>
+    <?php }
+
+  }
+}
