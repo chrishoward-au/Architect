@@ -17,10 +17,10 @@ class pzarc_Contents
     {
       //	add_action('admin_init', 'pzarc_preview_meta');
       //		add_action('add_meta_boxes', array($this, 'contents_meta'));
-      add_action('admin_head', array($this, 'contents_admin_head'));
+//      add_action('admin_head', array($this, 'contents_admin_head'));
       add_action('admin_enqueue_scripts', array($this, 'contents_admin_enqueue'));
-      add_action('views_edit-arc-layouts', array($this, 'pzarc_cells_description'));
-//			add_filter('manage_arc-contents_posts_columns', array($this, 'add_contents_columns'));
+      add_action('views_edit-arc-contents', array($this, 'pzarc_cells_description'));
+//			add_filter('manage_rrrr_posts_columns', array($this, 'add_contents_columns'));
 //			add_action('manage_arc-contents_posts_custom_column', array($this, 'add_contents_column_content'), 10, 2);
 
       // check screen arc-contents. ugh. doesn't work for save and edit
@@ -156,45 +156,6 @@ function pzarc_contents_posts_metabox($meta_boxes = array())
 
   $fields = array(
           array(
-                  'name'    => __('Order by', 'pzarc'),
-                  'id'      => $prefix . 'contents-orderby',
-                  'type'    => 'pzselect',
-                  'default' => 'date',
-                  'cols'    => 4,
-                  'options' => array(
-                          'date'  => 'Date',
-                          'title' => 'Title',
-                  ),
-          ),
-          array(
-                  'name'    => __('Order direction', 'pzarc'),
-                  'id'      => $prefix . 'contents-orderdir',
-                  'type'    => 'pzselect',
-                  'default' => 'DESC',
-                  'cols'    => 4,
-                  'options' => array(
-                          'ASC'  => 'Ascending',
-                          'DESC' => 'Descending',
-                  ),
-          ),
-          array(
-                  'name' => __('Skip N posts', 'pzarc'),
-                  'id'   => $prefix . 'contents-skip',
-                  'type' => 'pzspinner',
-                  'cols' => 4,
-                  'min'  => 0,
-                  'max'  => 9999,
-                  'step' => 1,
-                  'desc' => __('Note: Skipping breaks pagination. This is a known WordPres bug.', 'pzarc'),
-          ),
-          array(
-                  'name'    => __('Sticky posts first', 'pzarc'),
-                  'id'      => $prefix . 'contents-sticky',
-                  'type'    => 'checkbox',
-                  'cols'    => 6,
-                  'default' => false,
-          ),
-          array(
                   'name' => __('Categories', 'pzarc'),
                   'id'   => $prefix . 'contents-filters-categories-heading',
                   'type' => 'title',
@@ -297,7 +258,7 @@ function pzarc_contents_posts_metabox($meta_boxes = array())
   );
 
   $meta_boxes[ ] = array(
-          'title'    => 'Posts filters and settings',
+          'title'    => 'Posts filters',
           'pages'    => 'arc-contents',
           'fields'   => $fields,
           'context'  => 'normal',
@@ -355,7 +316,7 @@ function pzarc_contents_galleries_metabox($meta_boxes = array())
     ),
   );
   $meta_boxes[ ] = array(
-          'title'    => 'Galleries filters and settings',
+          'title'    => 'Galleries filters',
           'pages'    => 'arc-contents',
           'fields'   => $fields,
           'context'  => 'normal',
@@ -375,7 +336,7 @@ function pzarc_contents_pages_metabox($meta_boxes = array())
 
   $fields        = array();
   $meta_boxes[ ] = array(
-          'title'    => 'Pages filters and settings',
+          'title'    => 'Pages filters',
           'pages'    => 'arc-contents',
           'fields'   => $fields,
           'context'  => 'normal',
@@ -395,7 +356,7 @@ function pzarc_contents_cpt_metabox($meta_boxes = array())
 
   $fields        = array();
   $meta_boxes[ ] = array(
-          'title'    => 'Custom post types filters and settings',
+          'title'    => 'Custom post types filters',
           'pages'    => 'arc-contents',
           'fields'   => $fields,
           'context'  => 'normal',

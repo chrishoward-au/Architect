@@ -557,6 +557,43 @@ function pzarc_blueprint_settings_metabox($meta_boxes = array())
                           'navigator' => 'Navigator'
                   )
           ),
+          array(
+                  'name'    => __('Order by', 'pzarc'),
+                  'id'      => $prefix . 'contents-orderby',
+                  'type'    => 'pzselect',
+                  'default' => 'date',
+                  'cols'    => 6,
+                  'options' => array(
+                          'date'  => 'Date',
+                          'title' => 'Title',
+                  ),
+          ),
+          array(
+                  'name'    => __('Order direction', 'pzarc'),
+                  'id'      => $prefix . 'contents-orderdir',
+                  'type'    => 'pzselect',
+                  'default' => 'DESC',
+                  'cols'    => 6,
+                  'options' => array(
+                          'ASC'  => 'Ascending',
+                          'DESC' => 'Descending',
+                  ),
+          ),
+          array(
+                  'name' => __('Skip N posts', 'pzarc'),
+                  'id'   => $prefix . 'contents-skip',
+                  'type' => 'pzspinner',
+                  'min'  => 0,
+                  'max'  => 9999,
+                  'step' => 1,
+                  'desc' => __('Note: Skipping breaks pagination. This is a known WordPress bug.', 'pzarc'),
+          ),
+          array(
+                  'name'    => __('Sticky posts first', 'pzarc'),
+                  'id'      => $prefix . 'contents-sticky',
+                  'type'    => 'checkbox',
+                  'default' => false,
+          ),
 
           array(
                   'name'    => 'Save blueprint',

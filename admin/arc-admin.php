@@ -42,8 +42,8 @@ class pzarcAdmin
 
       // @TODO Should these really be objects?
       // Initialise objects for data and setup menu items
-      $data_selection    = new pzarc_Contents;
       $cell_layout       = new pzarc_Cell_Layouts;
+      $data_selection    = new pzarc_Contents;
       $content_blueprint = new pzarc_Blueprints;
 
 

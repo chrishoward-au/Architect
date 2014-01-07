@@ -14,7 +14,7 @@ jQuery('#_pzarc_contents-content-source-cmb-field-0').on('change',function() {pz
     var contenttype = jQuery('#_pzarc_contents-content-source-cmb-field-0').get(0);
     console.log(contenttype);
     jQuery.each(contenttype,function(index,value){
-      var typeid = '#'+value.text.toLowerCase().replace(/ /g,"-")+'-filters-and-settings';
+      var typeid = '#'+value.text.toLowerCase().replace(/ /g,"-")+'-filters';
       console.log(typeid,value.selected);
       jQuery(typeid).toggle(value.selected);
     });

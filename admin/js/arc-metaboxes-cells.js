@@ -151,7 +151,7 @@ jQuery(document).ready(function() {
 
 			element_html['image'] = '<span class="pzarc-draggable pzarc-draggable-image"  title= "Featured image" data-idcode=image style="max-height:100px;overflow:hidden;"><span><img src="PZARC_PLUGIN_URL/assets/images/sample-image.jpg" style="max-width:100%;"/></span></span>';
 			element_html['image'] = element_html['image'].replace(/PZARC_PLUGIN_URL/, plugin_url);
-
+      element_html['caption'] = '<span class="pzarc-draggable pzarc-draggable-caption pzarc-draggable-caption" title="Image caption" data-idcode=caption ><span>Featured image caption</span></span>';
 
 			element_html['content'] = '<span class="pzarc-draggable pzarc-draggable-content" title= "Full post content"  data-idcode=content style="font-size:13px;"><span><img src="PZARC_PLUGIN_URL/assets/images/sample-image.jpg" style="max-width:30%;float:left;padding:5px;"/>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam quis justo erat. <ul><li>&nbsp;&bull;&nbsp;Cras semper sem hendrerit</li><li>&nbsp;&bull;&nbsp;Tortor porta at auctor</li></ul><strong>Lacus consequat</strong><p>Pellentesque pulvinar iaculis tellus in blandit. Suspendisse rhoncus, magna vel eleifend cursus, turpis odio molestie urna, quis posuere eros risus quis neque. </p></span></span>';
 			element_html['content'] = element_html['content'].replace(/PZARC_PLUGIN_URL/, plugin_url);
@@ -243,7 +243,7 @@ jQuery(document).ready(function() {
    */
   function pzarc_update_component_visibility(cell_layout) {
     var components_state = jQuery("select#_pzarc_layout-show-cmb-field-0 option");
-    console.log(components_state);
+    console.log(components_state,cell_layout);
     jQuery.each(components_state,function(index,value){
       console.log(value.value,cell_layout[value.value]);
       cell_layout[value.value].show = value.selected;

@@ -164,37 +164,37 @@ register_layout('name',$args);
 */
 
 
-add_filter('cmb_meta_boxes', 'pzarc_cells_wizard_metabox');
-function pzarc_cells_wizard_metabox($meta_boxes = array())
-{
-  $prefix        = '_pzarc_';
-  $fields        = array(
-          array(
-                  'name'    => 'Select what style of cell you want to make',
-                  'id'      => $prefix . 'cell-wizard',
-                  'type'    => 'radio',
-                  'default' => 'custom',
-                  'desc'    => 'Select one to quickly enable relevant settings, or custom to build your own from scratch with all settings and defaults. Minimize this metabox once you are happy with your selection.',
-                  'options' => array(
-                          'custom'   => 'Custom',
-                          'article'  => 'Article',
-                          'blog'     => 'Blog Excerpt',
-                          'feature'  => 'Featured Content',
-                          'gallery'  => 'Gallery',
-                          'magazine' => 'Magazine Excerpt',
-                  )
-          )
-  );
-  $meta_boxes[ ] = array(
-          'title'    => 'What do you want to do?',
-          'pages'    => 'arc-layouts',
-          'context'  => 'normal',
-          'priority' => 'high',
-          'fields'   => $fields // An array of fields.
-  );
-
-  return $meta_boxes;
-}
+//add_filter('cmb_meta_boxes', 'pzarc_cells_wizard_metabox');
+//function pzarc_cells_wizard_metabox($meta_boxes = array())
+//{
+//  $prefix        = '_pzarc_';
+//  $fields        = array(
+//          array(
+//                  'name'    => 'Select what style of cell you want to make',
+//                  'id'      => $prefix . 'cell-wizard',
+//                  'type'    => 'radio',
+//                  'default' => 'custom',
+//                  'desc'    => 'Select one to quickly enable relevant settings, or custom to build your own from scratch with all settings and defaults. Minimize this metabox once you are happy with your selection.',
+//                  'options' => array(
+//                          'custom'   => 'Custom',
+//                          'article'  => 'Article',
+//                          'blog'     => 'Blog Excerpt',
+//                          'feature'  => 'Featured Content',
+//                          'gallery'  => 'Gallery',
+//                          'magazine' => 'Magazine Excerpt',
+//                  )
+//          )
+//  );
+//  $meta_boxes[ ] = array(
+//          'title'    => 'What do you want to do?',
+//          'pages'    => 'arc-layouts',
+//          'context'  => 'normal',
+//          'priority' => 'high',
+//          'fields'   => $fields // An array of fields.
+//  );
+//
+//  return $meta_boxes;
+//}
 
 add_filter('cmb_meta_boxes', 'pzarc_cell_designer_tabbed');
 function pzarc_cell_designer_tabbed($meta_boxes = array())
@@ -205,7 +205,14 @@ function pzarc_cell_designer_tabbed($meta_boxes = array())
                   'name'    => __('Tabs', 'pzarc'),
                   'id'      => $prefix . 'layout-cell-tabs',
                   'type'    => 'pztabs',
-                  'defaults' => array('#cell-designer'=>'Cell Designer','#styling'=>'Styling','#settings'=>'Settings'),
+                  'defaults' => array('#cell-designer'=>'Cell Designer',
+                                      '#styling'=>'Styling',
+                                      '#settings'=>'Settings',
+//                                      '#posts-filters'=>'Posts',
+//                                      '#pages-filters'=>'Pages',
+//                                      '#galleries-filters'=>'Galleries',
+//                                      '#custom-post-types-filters'=>'Custom Content',
+                  ),
           ),
 
   );
@@ -237,6 +244,7 @@ function pzarc_cell_designer_meta($meta_boxes = array())
                                                     'meta1'   => array('width' => 100, 'show' => true),
                                                     'image'   => array('width' => 25, 'show' => true),
                                                     'excerpt' => array('width' => 75, 'show' => true),
+                                                    'caption' => array('width' => 100, 'show' => false),
                                                     'content' => array('width' => 100, 'show' => false),
                                                     'meta2'   => array('width' => 100, 'show' => false),
                                                     'meta3'   => array('width' => 100, 'show' => false),
@@ -244,6 +252,31 @@ function pzarc_cell_designer_meta($meta_boxes = array())
                                                     'custom2' => array('width' => 100, 'show' => false),
                                                     'custom3' => array('width' => 100, 'show' => false))),
                   'desc'     => __('Drag and drop to sort the order of your elements. Heights are fluid in cells, so not indicative of how it will look on the page.', 'pzarc')
+          ),
+          // OMG!! The multiselect is working and I don't know why!!
+
+          array(
+                  'name'     => __('Components to show', 'pzarc'),
+                  'id'       => $prefix . 'layout-show',
+                  'type'     => 'select',
+                  'multiple' => true,
+                  'cols'     => 12,
+                  'default'  => array('title', 'excerpt', 'meta1', 'image'),
+                  'options'  => array(
+                          'title'   => 'Title',
+                          'excerpt' => 'Excerpt',
+                          'content' => 'Content',
+                          'image'   => 'Image',
+                          'caption' => 'Image Caption',
+                          'meta1'   => 'Meta1',
+                          'meta2'   => 'Meta2',
+                          'meta3'   => 'Meta3',
+                          'custom1' => 'Custom Field 1',
+                          'custom2' => 'Custom Field 2',
+                          'custom3' => 'Custom Field 3',
+                          //        'custom4' => 'Custom Field 4',
+                  ),
+                  'tooltip'  => __('Select which base components to include in this cell layout.', 'pzarc')
           ),
   );
   $meta_boxes[ ] = array(
@@ -255,13 +288,12 @@ function pzarc_cell_designer_meta($meta_boxes = array())
 
   return $meta_boxes;
 }
-
-add_filter('cmb_meta_boxes', 'pzarc_cell_designer_settings_meta');
-function pzarc_cell_designer_settings_meta($meta_boxes = array())
+add_filter('cmb_meta_boxes', 'pzarc_cell_general_Settings');
+function pzarc_cell_general_settings($meta_boxes = array())
 {
-  $prefix = '_pzarc_';
-
+  $prefix        = '_pzarc_';
   $fields        = array(
+
           array(
                   'name'       => __('Short name', 'pzarc'),
                   'id'         => $prefix . 'layout-short-name',
@@ -284,31 +316,34 @@ function pzarc_cell_designer_settings_meta($meta_boxes = array())
           //        'attachment' => 'Attachments'
           //      )
           //    ),
-
-          // OMG!! The multiselect is working and I don't know why!!
-
           array(
-                  'name'     => __('Components to show', 'pzarc'),
-                  'id'       => $prefix . 'layout-show',
-                  'type'     => 'select',
-                  'multiple' => true,
-                  'cols'     => 12,
-                  'default'  => array('title', 'excerpt', 'meta1', 'image'),
-                  'options'  => array(
-                          'title'   => 'Title',
-                          'excerpt' => 'Excerpt',
-                          'content' => 'Content',
-                          'image'   => 'Image',
-                          'meta1'   => 'Meta1',
-                          'meta2'   => 'Meta2',
-                          'meta3'   => 'Meta3',
-                          'custom1' => 'Custom Field 1',
-                          'custom2' => 'Custom Field 2',
-                          'custom3' => 'Custom Field 3',
-                          //        'custom4' => 'Custom Field 4',
-                  ),
-                  'tooltip'  => __('Select which base components to include in this cell layout.', 'pzarc')
+                  'name'    => __('Save cell layout', 'pzarc'),
+                  'id'      => $prefix . 'layout-set-save',
+                  'type'    => 'pzsubmit',
+                  'default' => 'Save'
           ),
+
+  );
+  $meta_boxes[ ] = array(
+          'title'    => 'General Settings',
+          'pages'    => 'arc-layouts',
+          'fields'   => $fields,
+          'context'  => 'side',
+          'priority' => 'high'
+
+  );
+
+  return $meta_boxes;
+}
+
+add_filter('cmb_meta_boxes', 'pzarc_cell_designer_settings_meta');
+function pzarc_cell_designer_settings_meta($meta_boxes = array())
+{
+  $prefix = '_pzarc_';
+
+  $fields        = array(
+
+
           //    array(
           //      'name'     => __('Components to show', 'pzarc'),
           //      'id'       => $prefix . 'layout-show',
@@ -319,6 +354,32 @@ function pzarc_cell_designer_settings_meta($meta_boxes = array())
           //        array('name'=>'Content','type'=>'checkbox','id'=>$prefix.'show-content','default'=>false)
           //      ),
           //    ),
+          array(
+                  'name'    => __('Excerpt image', 'pzarc'),
+                  'id'      => $prefix . 'layout-excerpt-thumb',
+                  'cols'    => 12,
+                  'type'    => 'pzselect',
+                  'default' => 'none',
+                  'options' => array(
+                          'none'  => 'No image',
+                          'left'  => 'Image left',
+                          'right' => 'Image right',
+                  ),
+                  'tooltip' => __('Set the alignment of the image when it is in the excerpt. This will use the image settings', 'pzarc')
+          ),
+          array(
+                  'name'    => __('Feature Image/Video', 'pzarc'),
+                  'id'      => $prefix . 'layout-background-image',
+                  'cols'    => 12,
+                  'type'    => 'pzselect',
+                  'default' => 'none',
+                  'options' => array(
+                          'none'  => 'No image',
+                          'fill'  => 'Fill the cell',
+                          'align' => 'Align with components area',
+                  ),
+                  'tooltip' => __('Select how to display the featured image or video as the background.', 'pzarc')
+          ),
 
 
           array(
@@ -374,32 +435,6 @@ function pzarc_cell_designer_settings_meta($meta_boxes = array())
                   //      'help'    => __('Note:The sum of the width and the left/right nudge should equal 100', 'pzarc')
           ),
           array(
-                  'name'    => __('Excerpt image', 'pzarc'),
-                  'id'      => $prefix . 'layout-excerpt-thumb',
-                  'cols'    => 12,
-                  'type'    => 'pzselect',
-                  'default' => 'none',
-                  'options' => array(
-                          'none'  => 'No image',
-                          'left'  => 'Image left',
-                          'right' => 'Image right',
-                  ),
-                  'tooltip' => __('Set the alignment of the image when it is in the excerpt. This will use the image settings', 'pzarc')
-          ),
-          array(
-                  'name'    => __('Feature Image/Video', 'pzarc'),
-                  'id'      => $prefix . 'layout-background-image',
-                  'cols'    => 12,
-                  'type'    => 'pzselect',
-                  'default' => 'none',
-                  'options' => array(
-                          'none'  => 'No image',
-                          'fill'  => 'Fill the cell',
-                          'align' => 'Align with components area',
-                  ),
-                  'tooltip' => __('Select how to display the featured image or video as the background.', 'pzarc')
-          ),
-          array(
                   'name'    => __('Cell Height Type', 'pzarc'),
                   'id'      => $prefix . 'layout-cell-height-type',
                   'cols'    => 12,
@@ -438,25 +473,21 @@ function pzarc_cell_designer_settings_meta($meta_boxes = array())
                   'tooltip' => __('If using fixed height, set height for the components area.', 'pzarc'),
           ),
 
-          array(
-                  'name'    => __('Save cell layout', 'pzarc'),
-                  'id'      => $prefix . 'layout-set-save',
-                  'type'    => 'pzsubmit',
-                  'default' => 'Save'
-          ),
 
   );
   $meta_boxes[ ] = array(
-          'title'    => 'Cell designer settings',
+          'title'    => 'Cell Designer settings',
           'pages'    => 'arc-layouts',
           'fields'   => $fields,
           'context'  => 'side',
-          'priority' => 'high'
+          'priority' => 'default'
 
   );
 
   return $meta_boxes;
 }
+
+
 add_filter('cmb_meta_boxes', 'pzarc_cell_formats_meta');
 function pzarc_cell_formats_meta($meta_boxes = array())
 {
@@ -709,15 +740,22 @@ function pzarc_cell_settings_meta($meta_boxes = array())
                   'name'    => 'Image max width',
                   'type'    => 'text_small',
                   'default' => '300',
-                  'cols'=> 6
+                  'cols'=> 4
           ),
           array(
                   'id'      => $prefix . 'cell-settings-image-max-height',
                   'name'    => 'Image max height',
                   'type'    => 'text_small',
                   'default' => '250',
-                  'cols'=> 6
+                  'cols'=> 4
           ),
+          array(
+                  'name'    => __('Image Captions', 'pzarc'),
+                  'id'      => $prefix . 'cell-settings-image-captions',
+                  'type'    => 'checkbox',
+                  'cols' => 4,
+          ),
+
           array(
                   'id'   => $prefix . 'cell-settings-content',
                   'name' => 'Full Content',
@@ -770,6 +808,7 @@ function draw_cell_layout()
         <span class="pzarc-draggable pzarc-draggable-excerpt" title="Excerpt with featured image" data-idcode=excerpt ><span><img src="' . PZARC_PLUGIN_URL . '/assets/images/sample-image.jpg" style="max-width:20%;padding:2px;" class="pzarc-align-none">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam quis justo erat. Cras semper sem hendre...[more]</span></span>
         <span class="pzarc-draggable pzarc-draggable-content" title="Full post content" data-idcode=content ><span><img src="' . PZARC_PLUGIN_URL . '/assets/images/sample-image.jpg" style="max-width:30%;float:left;padding:5px;">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam quis justo erat. <ul><li>&nbsp;•&nbsp;Cras semper sem hendrerit</li><li>&nbsp;•&nbsp;Tortor porta at auctor</li></ul><strong>Lacus consequat</strong><p>Pellentesque pulvinar iaculis tellus in blandit. Suspendisse rhoncus, magna vel eleifend cursus, turpis odio molestie urna, quis posuere eros risus quis neque. </p></span></span>
         <span class="pzarc-draggable pzarc-draggable-image" title="Featured image" data-idcode=image style="max-height: 100px; overflow: hidden;"><span><img src="' . PZARC_PLUGIN_URL . '/assets/images/sample-image.jpg" style="max-width:100%;"></span></span>
+        <span class="pzarc-draggable pzarc-draggable-caption pzarc-draggable-caption" title="Image caption" data-idcode=caption ><span>Featured image caption</span></span>
         <span class="pzarc-draggable pzarc-draggable-meta2 pzarc-draggable-meta" title="Meta info 2" data-idcode=meta2 ><span>Categories - News, Sport</span></span>
         <span class="pzarc-draggable pzarc-draggable-meta3 pzarc-draggable-meta" title="Meta info 3" data-idcode=meta3 ><span>Comments: 27</span></span>
         <span class="pzarc-draggable pzarc-draggable-custom1 pzarc-draggable-meta" title="Custom field 1" data-idcode=custom1 ><span>Custom content 1</span></span>
@@ -813,7 +852,7 @@ function save_arc_layouts($postid)
     )
    */
 
-  if ($screen->id == 'arc-layouts')
+  if ($screen->id == 'arc-contents')
   {
     // save the CSS too
     // new wp_filesystem

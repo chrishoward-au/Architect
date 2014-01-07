@@ -53,7 +53,7 @@ function pzarc_get_the_blueprint($blueprint)
   global $wp_query;
   $original_query = $wp_query;
   $blueprint_info  = new WP_Query('post_type=arc-blueprints&meta_key=_pzarc_blueprint-short-name&meta_value=' . $blueprint);
-  var_dump($blueprint_info);
+ // var_dump($blueprint_info->request);
   if (!isset($blueprint_info->posts[ 0 ]))
   {
     echo '<p class="pzarc-oops">Blueprint ' . $blueprint . ' not found</p>';
@@ -79,7 +79,23 @@ function pzarc_get_the_blueprint($blueprint)
           'blueprint-posts-per-page'      => (!empty($pzarc_blueprint_field_set[ '_pzarc_blueprint-posts-per-page' ]) ? $pzarc_blueprint_field_set[ '_pzarc_blueprint-posts-per-page' ] : get_option('posts_per_page')),
           'blueprint-type'       => (!empty($pzarc_blueprint_field_set[ '_pzarc_blueprint-type' ]) ? $pzarc_blueprint_field_set[ '_pzarc_blueprint-type' ] : null),
   );
-  for ($i = 0; $i < 3; $i++)
+  $pzarc_blueprint[ 'section' ][ 0 ] = 
+          array(
+                  'section-enable'             => !empty($pzarc_blueprint_field_set[ '_pzarc_0-blueprint-section-enable' ]),
+                  'section-cells-per-view'     => (!empty($pzarc_blueprint_field_set[ '_pzarc_0-blueprint-cells-per-view' ]) ? $pzarc_blueprint_field_set[ '_pzarc_0-blueprint-cells-per-view' ] : null),
+                  'section-cells-across'       => (!empty($pzarc_blueprint_field_set[ '_pzarc_0-blueprint-cells-across' ]) ? $pzarc_blueprint_field_set[ '_pzarc_0-blueprint-cells-across' ] : null),
+                  'section-min-cell-width'     => (!empty($pzarc_blueprint_field_set[ '_pzarc_0-blueprint-min-cell-width' ]) ? $pzarc_blueprint_field_set[ '_pzarc_0-blueprint-min-cell-width' ] : null),
+                  'section-cells-vert-margin'  => (!empty($pzarc_blueprint_field_set[ '_pzarc_0-blueprint-cells-vert-margin' ]) ? $pzarc_blueprint_field_set[ '_pzarc_0-blueprint-cells-vert-margin' ] : null),
+                  'section-cells-horiz-margin' => (!empty($pzarc_blueprint_field_set[ '_pzarc_0-blueprint-cells-horiz-margin' ]) ? $pzarc_blueprint_field_set[ '_pzarc_0-blueprint-cells-horiz-margin' ] : null),
+                  'section-cell-layout'        => (!empty($pzarc_blueprint_field_set[ '_pzarc_0-blueprint-section-cell-layout' ]) ? $pzarc_blueprint_field_set[ '_pzarc_0-blueprint-section-cell-layout' ] : null),
+                  'section-layout-mode'        => (!empty($pzarc_blueprint_field_set[ '_pzarc_0-blueprint-layout-mode' ]) ? $pzarc_blueprint_field_set[ '_pzarc_0-blueprint-layout-mode' ] : null),
+                  'section-navigation'         => (!empty($pzarc_blueprint_field_set[ '_pzarc_0-blueprint-section-navigation' ]) ? $pzarc_blueprint_field_set[ '_pzarc_0-blueprint-section-navigation' ] : null),
+                  'section-nav-pos'            => (!empty($pzarc_blueprint_field_set[ '_pzarc_0-blueprint-section-nav-pos' ]) ? $pzarc_blueprint_field_set[ '_pzarc_0-blueprint-section-nav-pos' ] : null),
+                  'section-nav-loc'            => (!empty($pzarc_blueprint_field_set[ '_pzarc_0-blueprint-section-nav-loc' ]) ? $pzarc_blueprint_field_set[ '_pzarc_0-blueprint-section-nav-loc' ] : null),
+                  'section-cell-settings'      => get_post_meta($pzarc_blueprint_field_set[ '_pzarc_0-blueprint-section-cell-layout' ]),
+
+          ) ;
+  for ($i = 1; $i < 3; $i++)
   {
     $pzarc_blueprint[ 'section' ][ $i ] = !empty($pzarc_blueprint_field_set[ '_pzarc_' . $i . '-blueprint-section-enable' ]) ?
             array(

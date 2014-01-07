@@ -81,6 +81,7 @@
 .row-pzarc_layout-excerpt-width,
 .row-pzarc_layout-content-width,
 .row-pzarc_layout-image-width,
+.row-pzarc_layout-caption-width,
 .row-pzarc_layout-meta1-width,
 .row-pzarc_layout-meta2-width,
 .row-pzarc_layout-meta3-width {
@@ -221,6 +222,7 @@ div.pzarc-dragsource {
 
 .pzarc-draggable-excerpt,
 .pzarc-draggable-image,
+.pzarc-draggable-caption,
 .pzarc-draggable-title,
 .pzarc-draggable-content,
 .pzarc-draggable-meta1,
@@ -839,6 +841,8 @@ strong.pzarc-usage-info { color: #3e8eac }
 .pzarc-draggable-meta1,
 .pzarc-draggable-meta2,
 .pzarc-draggable-meta3 { font-size: 11px; }
+
+.pzarc-draggable-caption { font-size: 11px; font-style:italic;}
 
 select#_pzarc_layout-show-cmb-field-0 { height: 130px; }
 
