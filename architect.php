@@ -227,6 +227,7 @@ class pz_Architect
 		// wp_enqueue_script( PZARC_NAME.'-plugin-script', plugins_url( PZARC_FOLDER.'/frontend/js/display.js' ) );
     wp_register_script( 'jquery-isotope', plugins_url( PZARC_FOLDER . '/external/js/jquery.isotope.min.js' ) );
     wp_register_script( 'js-isotope-v2', plugins_url( PZARC_FOLDER . '/external/js/isotope.pkgd.min.js' ) );
+    wp_enqueue_script('js-useragent',plugins_url(PZARC_FOLDER).'/includes/js/architect.js');
 	}
 
 // end register_plugin_scripts

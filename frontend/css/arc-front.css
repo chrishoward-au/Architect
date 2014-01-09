@@ -165,5 +165,29 @@ default styling
   max-width:100%;
 }
 
-.pzarc-cell img.entry-image {float:left;margin-right:5px;margin-bottom:5px;}
-.pzarc-cell .entry-content {float:left;}
+x.pzarc-cell img.entry-image {float:left;margin-right:5px;margin-bottom:5px;}
+x.pzarc-cell .entry-content {float:left;}
+
+.pzarc-cell .entry-thumbnail img {
+  max-width:100%;
+}
+
+.pzarc-cell .entry-title,
+.pzarc-cell .entry-excerpt,
+.pzarc-cell .entry-thumbnail,
+.pzarc-cell .entry-content,
+.pzarc-cell .entry-meta
+
+{
+  display:block;
+  float:left;
+  vertical-align:top;
+  box-sizing:border-box;
+}
+
+.pzarc-cell .caption {
+  font-size:11px;
+  font-style:italic;
+  line-height: 1;
+}
+

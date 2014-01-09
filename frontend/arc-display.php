@@ -81,7 +81,7 @@ function pzarc_get_the_blueprint($blueprint)
   );
   $pzarc_blueprint[ 'section' ][ 0 ] = 
           array(
-                  'section-enable'             => !empty($pzarc_blueprint_field_set[ '_pzarc_0-blueprint-section-enable' ]),
+                  'section-enable'             => true,
                   'section-cells-per-view'     => (!empty($pzarc_blueprint_field_set[ '_pzarc_0-blueprint-cells-per-view' ]) ? $pzarc_blueprint_field_set[ '_pzarc_0-blueprint-cells-per-view' ] : null),
                   'section-cells-across'       => (!empty($pzarc_blueprint_field_set[ '_pzarc_0-blueprint-cells-across' ]) ? $pzarc_blueprint_field_set[ '_pzarc_0-blueprint-cells-across' ] : null),
                   'section-min-cell-width'     => (!empty($pzarc_blueprint_field_set[ '_pzarc_0-blueprint-min-cell-width' ]) ? $pzarc_blueprint_field_set[ '_pzarc_0-blueprint-min-cell-width' ] : null),

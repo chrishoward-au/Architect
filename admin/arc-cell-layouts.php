@@ -202,16 +202,15 @@ function pzarc_cell_designer_tabbed($meta_boxes = array())
   $prefix        = '_pzarc_';
   $fields        = array(
           array(
-                  'name'    => __('Tabs', 'pzarc'),
-                  'id'      => $prefix . 'layout-cell-tabs',
-                  'type'    => 'pztabs',
-                  'defaults' => array('#cell-designer'=>'Cell Designer',
-                                      '#styling'=>'Styling',
-                                      '#settings'=>'Settings',
-//                                      '#posts-filters'=>'Posts',
-//                                      '#pages-filters'=>'Pages',
-//                                      '#galleries-filters'=>'Galleries',
-//                                      '#custom-post-types-filters'=>'Custom Content',
+                  'name'     => __('Tabs', 'pzarc'),
+                  'id'       => $prefix . 'layout-cell-tabs',
+                  'type'     => 'pztabs',
+                  'defaults' => array('#cell-designer' => 'Cell Designer',
+                                      '#styling'       => 'Styling',
+                                      //                                      '#posts-filters'=>'Posts',
+                                      //                                      '#pages-filters'=>'Pages',
+                                      //                                      '#galleries-filters'=>'Galleries',
+                                      //                                      '#custom-post-types-filters'=>'Custom Content',
                   ),
           ),
 
@@ -288,6 +287,7 @@ function pzarc_cell_designer_meta($meta_boxes = array())
 
   return $meta_boxes;
 }
+
 add_filter('cmb_meta_boxes', 'pzarc_cell_general_Settings');
 function pzarc_cell_general_settings($meta_boxes = array())
 {
@@ -295,12 +295,12 @@ function pzarc_cell_general_settings($meta_boxes = array())
   $fields        = array(
 
           array(
-                  'name'       => __('Short name', 'pzarc'),
-                  'id'         => $prefix . 'layout-short-name',
-                  'type'       => 'text',
-                  'cols'       => 12,
-                  'tooltip'    => __('A short name for this cell layout. This enables you to create sets of layouts for different parent dimensions. That is, when the dimensions of the parent change, the layout will change accordingly. Traditional responsive design is based on the width of your device\'s screen,; however this fails if you place the object in a narrow column on a large screen,', 'pzarc'),
-                  'help'       => __('Create sets of layouts with each layout in a set for different parent dimensions'),
+                  'name'    => __('Short name', 'pzarc'),
+                  'id'      => $prefix . 'layout-short-name',
+                  'type'    => 'text',
+                  'cols'    => 12,
+                  'tooltip' => __('A short name for this cell layout. This enables you to create sets of layouts for different parent dimensions. That is, when the dimensions of the parent change, the layout will change accordingly. Traditional responsive design is based on the width of your device\'s screen,; however this fails if you place the object in a narrow column on a large screen,', 'pzarc'),
+                  'help'    => __('Create sets of layouts with each layout in a set for different parent dimensions'),
           ),
 
           //    array(
@@ -344,134 +344,134 @@ function pzarc_cell_designer_settings_meta($meta_boxes = array())
   $fields        = array(
 
 
-          //    array(
-          //      'name'     => __('Components to show', 'pzarc'),
-          //      'id'       => $prefix . 'layout-show',
-          //      'type' => 'group',
-          //      'fields' => array(
-          //        array('name'=>'Title','type'=>'checkbox','id'=>$prefix.'show-title','default'=>true),
-          //        array('name'=>'Excerpt','type'=>'checkbox','id'=>$prefix.'show-excerpt','default'=>true),
-          //        array('name'=>'Content','type'=>'checkbox','id'=>$prefix.'show-content','default'=>false)
-          //      ),
-          //    ),
-          array(
-                  'name'    => __('Excerpt image', 'pzarc'),
-                  'id'      => $prefix . 'layout-excerpt-thumb',
-                  'cols'    => 12,
-                  'type'    => 'pzselect',
-                  'default' => 'none',
-                  'options' => array(
-                          'none'  => 'No image',
-                          'left'  => 'Image left',
-                          'right' => 'Image right',
-                  ),
-                  'tooltip' => __('Set the alignment of the image when it is in the excerpt. This will use the image settings', 'pzarc')
-          ),
-          array(
-                  'name'    => __('Feature Image/Video', 'pzarc'),
-                  'id'      => $prefix . 'layout-background-image',
-                  'cols'    => 12,
-                  'type'    => 'pzselect',
-                  'default' => 'none',
-                  'options' => array(
-                          'none'  => 'No image',
-                          'fill'  => 'Fill the cell',
-                          'align' => 'Align with components area',
-                  ),
-                  'tooltip' => __('Select how to display the featured image or video as the background.', 'pzarc')
-          ),
+    //    array(
+    //      'name'     => __('Components to show', 'pzarc'),
+    //      'id'       => $prefix . 'layout-show',
+    //      'type' => 'group',
+    //      'fields' => array(
+    //        array('name'=>'Title','type'=>'checkbox','id'=>$prefix.'show-title','default'=>true),
+    //        array('name'=>'Excerpt','type'=>'checkbox','id'=>$prefix.'show-excerpt','default'=>true),
+    //        array('name'=>'Content','type'=>'checkbox','id'=>$prefix.'show-content','default'=>false)
+    //      ),
+    //    ),
+    array(
+            'name'    => __('Excerpt image', 'pzarc'),
+            'id'      => $prefix . 'layout-excerpt-thumb',
+            'cols'    => 12,
+            'type'    => 'pzselect',
+            'default' => 'none',
+            'options' => array(
+                    'none'  => 'No image',
+                    'left'  => 'Image left',
+                    'right' => 'Image right',
+            ),
+            'tooltip' => __('Set the alignment of the image when it is in the excerpt. This will use the image settings', 'pzarc')
+    ),
+    array(
+            'name'    => __('Feature Image/Video', 'pzarc'),
+            'id'      => $prefix . 'layout-background-image',
+            'cols'    => 12,
+            'type'    => 'pzselect',
+            'default' => 'none',
+            'options' => array(
+                    'none'  => 'No image',
+                    'fill'  => 'Fill the cell',
+                    'align' => 'Align with components area',
+            ),
+            'tooltip' => __('Select how to display the featured image or video as the background.', 'pzarc')
+    ),
 
 
-          array(
-                  'name'    => __('Components area position', 'pzarc'),
-                  'id'      => $prefix . 'layout-sections-position',
-                  'type'    => 'pzselect',
-                  'cols'    => 12,
-                  'default' => 'top',
-                  'options' => array(
-                          'top'    => 'Top of cell',
-                          'bottom' => 'Bottom of cell',
-                          'left'   => 'Left of cell',
-                          'right'  => 'Right of cell',
-                  ),
-                  //'desc'		 => __('Position for all the components as a group', 'pzarc')
-          ),
-          array(
-                  'name'    => __('Nudge components area up/down', 'pzarc'),
-                  'id'      => $prefix . 'layout-nudge-section-y',
-                  'cols'    => 12,
-                  'type'    => 'pzrange',
-                  'default' => '0',
-                  'min'     => '0',
-                  'max'     => '100',
-                  'step'    => '1',
-                  'suffix'  => '%',
-                  'tooltip' => __('Enter percent to move the components area up/down. Note: These measurements are percentage of the cell.', 'pzarc')
-          ),
-          array(
-                  'name'    => __('Nudge components area left/right', 'pzarc'),
-                  'id'      => $prefix . 'layout-nudge-section-x',
-                  'type'    => 'pzrange',
-                  'cols'    => 12,
-                  'default' => '0',
-                  'min'     => '0',
-                  'max'     => '100',
-                  'step'    => '1',
-                  'suffix'  => '%',
-                  'tooltip' => __('Enter percent to move the components area left/right. Note: These measurements are percentage of the cell.', 'pzarc')
-          ),
-          array(
-                  'name'    => __('Components area width', 'pzarc'),
-                  'id'      => $prefix . 'layout-sections-widths',
-                  'type'    => 'pzrange',
-                  'cols'    => 12,
-                  'default' => '100',
-                  'alt'     => 'zones',
-                  'min'     => '0',
-                  'max'     => '100',
-                  'step'    => '1',
-                  'suffix'  => '%',
-                  'tooltip' => __('Set the overall width for the components area. Necessary for left or right positioning of sections', 'pzarc'),
-                  //      'help'    => __('Note:The sum of the width and the left/right nudge should equal 100', 'pzarc')
-          ),
-          array(
-                  'name'    => __('Cell Height Type', 'pzarc'),
-                  'id'      => $prefix . 'layout-cell-height-type',
-                  'cols'    => 12,
-                  'type'    => 'pzselect',
-                  'default' => 'fluid',
-                  'options' => array(
-                          'fluid' => 'Fluid',
-                          'fixed' => 'Fixed',
-                  ),
-                  'tooltip' => __('Choose whether to set the height of the cells (fixed), or allow them to adjust to the content height (fluid).', 'pzarc')
-          ),
-          // Hmm? How's this gunna sit with the min-height in templates?
-          // We will want to use this for image height cropping when behind.
-          array(
-                  'name'    => __('Cell Height', 'pzarc'),
-                  'id'      => $prefix . 'layout-cell-height',
-                  'type'    => 'pzspinner',
-                  'cols'    => 6,
-                  'default' => '350',
-                  'min'     => '0',
-                  'max'     => '9999',
-                  'step'    => '1',
-                  'suffix'  => 'px',
-                  'tooltip' => __('If using fixed height, set height for the cell.', 'pzarc'),
-          ),
-          array(
-                  'name'    => __('Components Height', 'pzarc'),
-                  'id'      => $prefix . 'layout-components-height',
-                  'type'    => 'pzspinner',
-                  'cols'    => 6,
-                  'default' => '100',
-                  'min'     => '0',
-                  'max'     => '9999',
-                  'step'    => '1',
-                  'suffix'  => 'px',
-                  'tooltip' => __('If using fixed height, set height for the components area.', 'pzarc'),
-          ),
+    array(
+            'name'    => __('Components area position', 'pzarc'),
+            'id'      => $prefix . 'layout-sections-position',
+            'type'    => 'pzselect',
+            'cols'    => 12,
+            'default' => 'top',
+            'options' => array(
+                    'top'    => 'Top of cell',
+                    'bottom' => 'Bottom of cell',
+                    'left'   => 'Left of cell',
+                    'right'  => 'Right of cell',
+            ),
+            //'desc'		 => __('Position for all the components as a group', 'pzarc')
+    ),
+    array(
+            'name'    => __('Nudge components area up/down', 'pzarc'),
+            'id'      => $prefix . 'layout-nudge-section-y',
+            'cols'    => 12,
+            'type'    => 'pzrange',
+            'default' => '0',
+            'min'     => '0',
+            'max'     => '100',
+            'step'    => '1',
+            'suffix'  => '%',
+            'tooltip' => __('Enter percent to move the components area up/down. Note: These measurements are percentage of the cell.', 'pzarc')
+    ),
+    array(
+            'name'    => __('Nudge components area left/right', 'pzarc'),
+            'id'      => $prefix . 'layout-nudge-section-x',
+            'type'    => 'pzrange',
+            'cols'    => 12,
+            'default' => '0',
+            'min'     => '0',
+            'max'     => '100',
+            'step'    => '1',
+            'suffix'  => '%',
+            'tooltip' => __('Enter percent to move the components area left/right. Note: These measurements are percentage of the cell.', 'pzarc')
+    ),
+    array(
+            'name'    => __('Components area width', 'pzarc'),
+            'id'      => $prefix . 'layout-sections-widths',
+            'type'    => 'pzrange',
+            'cols'    => 12,
+            'default' => '100',
+            'alt'     => 'zones',
+            'min'     => '0',
+            'max'     => '100',
+            'step'    => '1',
+            'suffix'  => '%',
+            'tooltip' => __('Set the overall width for the components area. Necessary for left or right positioning of sections', 'pzarc'),
+            //      'help'    => __('Note:The sum of the width and the left/right nudge should equal 100', 'pzarc')
+    ),
+    array(
+            'name'    => __('Cell Height Type', 'pzarc'),
+            'id'      => $prefix . 'layout-cell-height-type',
+            'cols'    => 12,
+            'type'    => 'pzselect',
+            'default' => 'fluid',
+            'options' => array(
+                    'fluid' => 'Fluid',
+                    'fixed' => 'Fixed',
+            ),
+            'tooltip' => __('Choose whether to set the height of the cells (fixed), or allow them to adjust to the content height (fluid).', 'pzarc')
+    ),
+    // Hmm? How's this gunna sit with the min-height in templates?
+    // We will want to use this for image height cropping when behind.
+    array(
+            'name'    => __('Cell Height', 'pzarc'),
+            'id'      => $prefix . 'layout-cell-height',
+            'type'    => 'pzspinner',
+            'cols'    => 6,
+            'default' => '350',
+            'min'     => '0',
+            'max'     => '9999',
+            'step'    => '1',
+            'suffix'  => 'px',
+            'tooltip' => __('If using fixed height, set height for the cell.', 'pzarc'),
+    ),
+    array(
+            'name'    => __('Components Height', 'pzarc'),
+            'id'      => $prefix . 'layout-components-height',
+            'type'    => 'pzspinner',
+            'cols'    => 6,
+            'default' => '100',
+            'min'     => '0',
+            'max'     => '9999',
+            'step'    => '1',
+            'suffix'  => 'px',
+            'tooltip' => __('If using fixed height, set height for the components area.', 'pzarc'),
+    ),
 
 
   );
@@ -497,17 +497,17 @@ function pzarc_cell_formats_meta($meta_boxes = array())
                   'id'   => $prefix . 'layout-styling-header',
                   'name' => 'Styling',
                   'type' => 'title',
-                  'cols'=>12,
-                  'desc'    => __('Architect uses standard WordPress class names as much as possible, so your Architect Blueprints will inherit styling from your theme if it uses these. Below you can add your own styling and classes. Enter CSS declarations, such as: background:#123; color:#abc; font-size:1.6em; padding:1%;', 'pzarc') . '<br/>' . __('As much as possible, use fluid units (%,em) if you want to ensure maximum responsiveness.', 'pzarc') . '<br/>' .
+                  'cols' => 12,
+                  'desc' => __('Architect uses standard WordPress class names as much as possible, so your Architect Blueprints will inherit styling from your theme if it uses these. Below you can add your own styling and classes. Enter CSS declarations, such as: background:#123; color:#abc; font-size:1.6em; padding:1%;', 'pzarc') . '<br/>' . __('As much as possible, use fluid units (%,em) if you want to ensure maximum responsiveness.', 'pzarc') . '<br/>' .
                           __('The base font size is 10px. So, for example, to get a font size of 14px, use 1.4em. Even better is using relative ems i.e. rem.')
           ),
           array(
-                  'name'    => __('Cells', 'pzarc'),
-                  'id'      => $prefix . 'layout-format-cells',
-                  'type'    => 'textarea',
-                  'rows'    => 1,
-                  'cols'    => 6,
-                  'help'    => 'Declarations only for class: .pzarc_cells',
+                  'name' => __('Cells', 'pzarc'),
+                  'id'   => $prefix . 'layout-format-cells',
+                  'type' => 'textarea',
+                  'rows' => 1,
+                  'cols' => 6,
+                  'help' => 'Declarations only for class: .pzarc_cells',
           ),
           array(
                   'name'    => __('Cells Classes', 'pzarc'),
@@ -517,12 +517,12 @@ function pzarc_cell_formats_meta($meta_boxes = array())
                   'default' => '.pzarc-cells',
           ),
           array(
-                  'name'    => __('Entry section', 'pzarc'),
-                  'id'      => $prefix . 'layout-format-entry',
-                  'type'    => 'textarea',
-                  'rows'    => 1,
-                  'cols'    => 6,
-                  'help'    => 'Declarations only for class: .hentry',
+                  'name' => __('Entry section', 'pzarc'),
+                  'id'   => $prefix . 'layout-format-entry',
+                  'type' => 'textarea',
+                  'rows' => 1,
+                  'cols' => 6,
+                  'help' => 'Declarations only for class: .hentry',
           ),
           array(
                   'name'    => __('Entry Classes', 'pzarc'),
@@ -532,12 +532,12 @@ function pzarc_cell_formats_meta($meta_boxes = array())
                   'default' => '.hentry',
           ),
           array(
-                  'name'    => __('Components group', 'pzarc'),
-                  'id'      => $prefix . 'layout-format-components-group',
-                  'type'    => 'textarea',
-                  'rows'    => 1,
-                  'cols'    => 6,
-                  'help'    => 'Declarations only for class: .pzarc_components',
+                  'name' => __('Components group', 'pzarc'),
+                  'id'   => $prefix . 'layout-format-components-group',
+                  'type' => 'textarea',
+                  'rows' => 1,
+                  'cols' => 6,
+                  'help' => 'Declarations only for class: .pzarc_components',
           ),
           array(
                   'name'    => __('Components Group Classes', 'pzarc'),
@@ -548,12 +548,12 @@ function pzarc_cell_formats_meta($meta_boxes = array())
                   'default' => '.pzarc-components',
           ),
           array(
-                  'name'    => __('Entry title', 'pzarc'),
-                  'id'      => $prefix . 'layout-format-entry-title',
-                  'type'    => 'textarea',
-                  'rows'    => 1,
-                  'cols'    => 6,
-                  'help'    => 'Declarations only for class: .pzarc_entry_title and .pzarc_entry_title a',
+                  'name' => __('Entry title', 'pzarc'),
+                  'id'   => $prefix . 'layout-format-entry-title',
+                  'type' => 'textarea',
+                  'rows' => 1,
+                  'cols' => 6,
+                  'help' => 'Declarations only for class: .pzarc_entry_title and .pzarc_entry_title a',
                   //      'desc'    => __('Format the entry title', 'pzarc')
           ),
           array(
@@ -564,104 +564,103 @@ function pzarc_cell_formats_meta($meta_boxes = array())
                   'default' => '.entry-title, .entry-title a',
           ),
           array(
-                  'name'    => __('Entry title hover', 'pzarc'),
-                  'id'      => $prefix . 'layout-format-entry-title-hover',
-                  'type'    => 'textarea',
-                  'rows'    => 1,
+                  'name' => __('Entry title hover', 'pzarc'),
+                  'id'   => $prefix . 'layout-format-entry-title-hover',
+                  'type' => 'textarea',
+                  'rows' => 1,
 
-                  'help'    => 'Declarations only for class: .pzarc_entry_title a:hover',
+                  'help' => 'Declarations only for class: .pzarc_entry_title a:hover',
                   //      'desc'    => __('Format the entry title link hover', 'pzarc')
           ),
           array(
-                  'name'    => __('Entry meta', 'pzarc'),
-                  'id'      => $prefix . 'layout-format-entry-meta',
-                  'type'    => 'textarea',
-                  'rows'    => 1,
+                  'name' => __('Entry meta', 'pzarc'),
+                  'id'   => $prefix . 'layout-format-entry-meta',
+                  'type' => 'textarea',
+                  'rows' => 1,
                   'cols' => 6,
-                  'help'    => 'Declarations only for class: .pzarc_entry_meta',
+                  'help' => 'Declarations only for class: .pzarc_entry_meta',
                   //     'desc'    => __('Format the entry meta', 'pzarc')
           ),
           array(
                   'name'    => __('Entry Meta Classes', 'pzarc'),
-                  'id'      => $prefix . 'layoutt-format-entry-meta-classes',
+                  'id'      => $prefix . 'layout-format-entry-meta-classes',
                   'type'    => 'text',
                   'rows'    => 1,
                   'cols'    => 6,
                   'default' => ' .entry-meta',
           ),
           array(
-                  'name'    => __('Entry meta links', 'pzarc'),
-                  'id'      => $prefix . 'layout-format-entry-meta-link',
-                  'type'    => 'textarea',
-                  'rows'    => 1,
+                  'name' => __('Entry meta links', 'pzarc'),
+                  'id'   => $prefix . 'layout-format-entry-meta-link',
+                  'type' => 'textarea',
+                  'rows' => 1,
 
-                  'help'    => 'Declarations only for class: .pzarc_entry_meta a',
+                  'help' => 'Declarations only for class: .pzarc_entry_meta a',
                   //     'desc'    => __('Format the entry meta link', 'pzarc')
           ),
           array(
-                  'name'    => __('Entry meta link hover', 'pzarc'),
-                  'id'      => $prefix . 'layout-format-entry-meta-link-hover',
-                  'type'    => 'textarea',
-                  'rows'    => 1,
+                  'name' => __('Entry meta link hover', 'pzarc'),
+                  'id'   => $prefix . 'layout-format-entry-meta-link-hover',
+                  'type' => 'textarea',
+                  'rows' => 1,
 
-                  'help'    => 'Declarations only for class: .pzarc_entry_meta a:hover',
+                  'help' => 'Declarations only for class: .pzarc_entry_meta a:hover',
                   //     'desc'    => __('Format the entry meta link hover', 'pzarc')
           ),
           array(
-                  'name'    => __('Entry content', 'pzarc'),
-                  'id'      => $prefix . 'layout-format-entry-content',
-                  'type'    => 'textarea',
-                  'rows'    => 1,
+                  'name' => __('Entry content', 'pzarc'),
+                  'id'   => $prefix . 'layout-format-entry-content',
+                  'type' => 'textarea',
+                  'rows' => 1,
 
-                  'help'    => 'Declarations only for class: .pzarc_entry_content',
+                  'help' => 'Declarations only for class: .pzarc_entry_content',
                   //     'desc'    => __('Format the entry content', 'pzarc')
           ),
           array(
-                  'name'    => __('Entry content links', 'pzarc'),
-                  'id'      => $prefix . 'layout-format-entry-content-links',
-                  'type'    => 'textarea',
-                  'rows'    => 1,
+                  'name' => __('Entry content links', 'pzarc'),
+                  'id'   => $prefix . 'layout-format-entry-content-links',
+                  'type' => 'textarea',
+                  'rows' => 1,
 
-                  'help'    => 'Declarations only for class: .pzarc_entry_content a',
+                  'help' => 'Declarations only for class: .pzarc_entry_content a',
                   //     'desc'    => __('Format the entry content', 'pzarc')
           ),
           array(
-                  'name'    => __('Entry content link hover', 'pzarc'),
-                  'id'      => $prefix . 'layout-format-entry-content-link-hover',
-                  'type'    => 'textarea',
-                  'rows'    => 1,
+                  'name' => __('Entry content link hover', 'pzarc'),
+                  'id'   => $prefix . 'layout-format-entry-content-link-hover',
+                  'type' => 'textarea',
+                  'rows' => 1,
 
-                  'help'    => 'Declarations only for class: .pzarc_entry_content a:hover',
+                  'help' => 'Declarations only for class: .pzarc_entry_content a:hover',
                   //     'desc'    => __('Format the entry content link hover', 'pzarc')
           ),
           array(
-                  'name'    => __('Entry featured image', 'pzarc'),
-                  'id'      => $prefix . 'layoutt-format-entry-fimage',
-                  'type'    => 'textarea',
-                  'rows'    => 1,
+                  'name' => __('Entry featured image', 'pzarc'),
+                  'id'   => $prefix . 'layout-format-entry-fimage',
+                  'type' => 'textarea',
+                  'rows' => 1,
 
-                  'help'    => 'Declarations only for class: .pzarc_entry_featured_image',
+                  'help' => 'Declarations only for class: .pzarc_entry_featured_image',
                   //     'desc'    => __('Format the entry featured image', 'pzarc')
           ),
           array(
-                  'name'    => __('Read more', 'pzarc'),
-                  'id'      => $prefix . 'layout-format-entry-readmore',
-                  'type'    => 'textarea',
-                  'rows'    => 1,
+                  'name' => __('Read more', 'pzarc'),
+                  'id'   => $prefix . 'layout-format-entry-readmore',
+                  'type' => 'textarea',
+                  'rows' => 1,
 
-                  'help'    => 'Declarations only for class: a.pzarc_readmore',
+                  'help' => 'Declarations only for class: a.pzarc_readmore',
                   //     'desc'    => __('Format the content "Read more" link', 'pzarc')
           ),
           array(
-                  'name'    => __('Read more hover', 'pzarc'),
-                  'id'      => $prefix . 'layoutt-format-entry-readmore-hover',
-                  'type'    => 'textarea',
-                  'rows'    => 1,
+                  'name' => __('Read more hover', 'pzarc'),
+                  'id'   => $prefix . 'layout-format-entry-readmore-hover',
+                  'type' => 'textarea',
+                  'rows' => 1,
 
-                  'help'    => 'Declarations only for class: a.pzarc_readmore:hover',
+                  'help' => 'Declarations only for class: a.pzarc_readmore:hover',
                   //     'desc'    => __('Format the content "Read more" link hover', 'pzarc')
           ),
-
 
 
   );
@@ -679,20 +678,29 @@ function pzarc_cell_settings_meta($meta_boxes = array())
 {
   $prefix = '_pzarc_';
   $fields = array(
+          /// TITLES
           array(
                   'id'   => $prefix . 'cell-settings-title',
                   'name' => 'Title',
                   'type' => 'title'
           ),
           array(
-                  'name'     => __('Title prefix', 'pzarc'),
-                  'id'       => $prefix . 'cell-settings-title-prefix',
-                  'type'     => 'select',
-                  'cols'     => 4,
-                  'default'  => 'none',
-                  'options'  => array('none' => 'None', 'bullet' => 'Bullet', 'thumb' => 'Thumbnail'),
+                  'name'    => __('Title prefix', 'pzarc'),
+                  'id'      => $prefix . 'cell-settings-title-prefix',
+                  'type'    => 'select',
+                  'cols'    => 2,
+                  'default' => 'none',
+                  'options' => array('none' => 'None', 'bullet' => 'Bullet', 'thumb' => 'Thumbnail'),
+          ),
+          array(
+                  'name'    => __('Link titles', 'pzarc'),
+                  'id'      => $prefix . 'cell-settings-link-titles',
+                  'type'    => 'checkbox',
+                  'cols'    => 4,
+                  /// can't set defaults on checkboxes!
           ),
 
+          // META
           array(
                   'id'   => $prefix . 'cell-settings-meta1',
                   'name' => 'Meta1',
@@ -725,37 +733,97 @@ function pzarc_cell_settings_meta($meta_boxes = array())
                   'default'  => array('commentcount'),
                   'options'  => array('date' => 'Date', 'author' => 'Author', 'editlink' => 'Edit link', 'categories' => 'Categories', 'tags' => 'Tags', 'commentcount' => 'Comment count'),
           ),
+          // EXCERPTS
           array(
                   'id'   => $prefix . 'cell-settings-excerpt',
                   'name' => 'Excerpt',
                   'type' => 'title'
           ),
           array(
+                  'id'      => $prefix . 'cell-settings-excerpts-word-count',
+                  'name'    => 'Excerpt length (words)',
+                  'type'    => 'text_small',
+                  'default' => 55,
+                  'cols'    => 3
+          ),
+          array(
+                  'name'    => __('Truncation indicator', 'pzarc'),
+                  'id'      => $prefix . 'cell-settings-excerpts-morestr',
+                  'type'    => 'text_small',
+                  'cols'    => 3,
+                  'default' => '[...]',
+          ),
+          array(
+                  'name'    => __('Read More', 'pzarc'),
+                  'id'      => $prefix . 'cell-settings-excerpts-linkmore',
+                  'type'    => 'text_small',
+                  'cols'    => 6,
+                  'default' => 'Read more',
+          ),
+
+          // IMAGE
+          array(
                   'id'   => $prefix . 'cell-settings-image',
                   'name' => 'Image',
-                  'type' => 'title'
+                  'type' => 'title',
+                  'desc'=> 'Left and right margins are allowed for in the image width. e.g if Image width is 25% and right margin is 3%, image width will be adjusted to 22%'
+          ),
+          array(
+                  'name' => __('Link image', 'pzarc'),
+                  'id'   => $prefix . 'cell-settings-link-image',
+                  'type' => 'checkbox',
+                  'cols' => 3,
+          ),
+          array(
+                  'name' => __('Image Captions', 'pzarc'),
+                  'id'   => $prefix . 'cell-settings-image-captions',
+                  'type' => 'checkbox',
+                  'cols' => 3,
           ),
           array(
                   'id'      => $prefix . 'cell-settings-image-max-width',
                   'name'    => 'Image max width',
                   'type'    => 'text_small',
                   'default' => '300',
-                  'cols'=> 4
+                  'cols'    =>3
           ),
           array(
                   'id'      => $prefix . 'cell-settings-image-max-height',
                   'name'    => 'Image max height',
                   'type'    => 'text_small',
                   'default' => '250',
-                  'cols'=> 4
+                  'cols'    => 3
           ),
           array(
-                  'name'    => __('Image Captions', 'pzarc'),
-                  'id'      => $prefix . 'cell-settings-image-captions',
-                  'type'    => 'checkbox',
-                  'cols' => 4,
+                  'id'      => $prefix . 'cell-settings-image-margin-top',
+                  'name'    => 'Margin top %',
+                  'type'    => 'text_small',
+                  'default' => '',
+                  'cols'    => 3
+          ),
+          array(
+                  'id'      => $prefix . 'cell-settings-image-margin-bottom',
+                  'name'    => 'Margin bottom %',
+                  'type'    => 'text_small',
+                  'default' => '',
+                  'cols'    => 3
+          ),
+          array(
+                  'id'      => $prefix . 'cell-settings-image-margin-left',
+                  'name'    => 'Margin left %',
+                  'type'    => 'text_small',
+                  'default' => '',
+                  'cols'    => 3
+          ),
+          array(
+                  'id'      => $prefix . 'cell-settings-image-margin-right',
+                  'name'    => 'Margin right %',
+                  'type'    => 'text_small',
+                  'default' => '',
+                  'cols'    => 3
           ),
 
+          // CONTENT
           array(
                   'id'   => $prefix . 'cell-settings-content',
                   'name' => 'Full Content',
@@ -825,7 +893,7 @@ function draw_cell_layout()
   return $return_html;
 }
 
-add_action('pre_post_update', 'save_arc_layouts');
+add_action('save_post', 'save_arc_layouts');
 function save_arc_layouts($postid)
 {
   $screen = get_current_screen();
@@ -852,7 +920,7 @@ function save_arc_layouts($postid)
     )
    */
 
-  if ($screen->id == 'arc-contents')
+  if ($screen->id == 'arc-layouts')
   {
     // save the CSS too
     // new wp_filesystem
@@ -881,24 +949,63 @@ function save_arc_layouts($postid)
     // For each field in stylings, create css
     $pzarc_cells    = get_post_meta($postid);
     $pzarc_contents = "/* This is the css for cell $postid */\n";
+//    var_dump($pzarc_cells);
+    // step thru each field loking for ones to format
+
+    // should we jsut do a massive switch?
+
     foreach ($pzarc_cells as $key => $value)
     {
-      if (strpos($key, '-format-') && !empty($value[ 0 ]) && !empty($pzarc_cells[ $key . '-classes' ][ 0 ]))
+      switch (true)
       {
-        $pzarc_classes = '.pzarc-' . $postid  . ' ' . str_replace(',', ', .pzarc-' . $postid  . ' ', $pzarc_cells[ $key . '-classes' ][ 0 ]);
-        $pzarc_contents .= $pzarc_classes . ' {' . $value[ 0 ] . '}' . "\n";
+        case ($key == '_pzarc_layout-cell-preview'):
+          $pzarc_left_margin =(!empty($pzarc_cells[ '_pzarc_cell-settings-image-margin-left' ][0])?$pzarc_cells[ '_pzarc_cell-settings-image-margin-left' ][0]:0);
+          $pzarc_right_margin =(!empty($pzarc_cells[ '_pzarc_cell-settings-image-margin-right' ][0])?$pzarc_cells[ '_pzarc_cell-settings-image-margin-right' ][0]:0);
+          $pzarc_layout = json_decode($value[0], true);
+          $pzarc_contents .= '.pzarc-' . $postid . ' .entry-title {width:'.$pzarc_layout['title']['width'].'%;}'."\n";
+          // Don't give thumbnail div a width if it's in the content
+          if ($pzarc_cells[ '_pzarc_layout-excerpt-thumb' ][0]=='none') {
+            $pzarc_contents .= '.pzarc-' . $postid . ' .entry-thumbnail {width:'.($pzarc_layout['image']['width']-$pzarc_left_margin-$pzarc_right_margin).'%;}'."\n";
+          } else {
+            $pzarc_contents .= '.pzarc-' . $postid . ' .entry-thumbnail {width:'.$pzarc_cells[ '_pzarc_cell-settings-image-max-width' ][0].'px;}'."\n";
+          }
+          $pzarc_contents .= '.pzarc-' . $postid . ' .entry-content {width:'.$pzarc_layout['content']['width'].'%;}'."\n";
+          $pzarc_contents .= '.pzarc-' . $postid . ' .entry-excerpt {width:'.$pzarc_layout['excerpt']['width'].'%;}'."\n";
+          $pzarc_contents .= '.pzarc-' . $postid . ' .entry-meta1 {width:'.$pzarc_layout['meta1']['width'].'%;}'."\n";
+          $pzarc_contents .= '.pzarc-' . $postid . ' .entry-meta2 {width:'.$pzarc_layout['meta2']['width'].'%;}'."\n";
+          $pzarc_contents .= '.pzarc-' . $postid . ' .entry-meta3 {width:'.$pzarc_layout['meta3']['width'].'%;}'."\n";
+          break;
+        case ($key =='_pzarc_cell-settings-image-margin-left' && ($value[0]===0 || $value[0]>0)):
+          $pzarc_contents .= '.pzarc-' . $postid . ' .entry-thumbnail {margin-left: '.$value[0].'%;}'."\n";
+          break;
+        case ($key =='_pzarc_cell-settings-image-margin-right' && ($value[0]===0 || $value[0]>0)):
+          $pzarc_contents .= '.pzarc-' . $postid . ' .entry-thumbnail {margin-right: '.$value[0].'%;}'."\n";
+          break;
+        case ($key =='_pzarc_cell-settings-image-margin-top' && ($value[0]===0 || $value[0]>0)):
+          $pzarc_contents .= '.pzarc-' . $postid . ' .entry-thumbnail {margin-top: '.$value[0].'%;}'."\n";
+          break;
+        case ($key =='_pzarc_cell-settings-image-margin-bottom' && ($value[0]===0 || $value[0]>0)):
+          $pzarc_contents .= '.pzarc-' . $postid . ' .entry-thumbnail {margin-bottom: '.$value[0].'%;}'."\n";
+          break;
+        case (strpos($key, '-format-') && !empty($value[ 0 ]) && !empty($pzarc_cells[ $key . '-classes' ][ 0 ])):
+          $pzarc_classes = '.pzarc-' . $postid . ' ' . str_replace(',', ', .pzarc-' . $postid . ' ', $pzarc_cells[ $key . '-classes' ][ 0 ]);
+          $pzarc_contents .= $pzarc_classes . ' {' . $value[ 0 ] . '}' . "\n";
+          break;
       }
+
+
+      //     var_dump($key,strpos($key, '-format-') , !empty($value[ 0 ]) , !empty($pzarc_cells[ $key . '-classes' ][ 0 ]));
     }
-    $pzarc_sections_postion=(!empty($pzarc_cells['_pzarc_layout-sections-postions'])?$pzarc_cells['_pzarc_layout-sections-postions'][0]:'top');
-    $pzarc_sections_nudge_x=(!empty($pzarc_cells['_pzarc_layout-sections-nudge-x'])?$pzarc_cells['_pzarc_layout-sections-nudge-x'][0]:0);
-    $pzarc_sections_nudge_y=(!empty($pzarc_cells['_pzarc_layout-sections-nudge-y'])?$pzarc_cells['_pzarc_layout-sections-nudge-y'][0]:0);
-    $pzarc_sections_width=(!empty($pzarc_cells['_pzarc_layout-sections-widths'])?$pzarc_cells['_pzarc_layout-sections-widths'][0]:100);
+    $pzarc_sections_postion = (!empty($pzarc_cells[ '_pzarc_layout-sections-postions' ]) ? $pzarc_cells[ '_pzarc_layout-sections-postions' ][ 0 ] : 'top');
+    $pzarc_sections_nudge_x = (!empty($pzarc_cells[ '_pzarc_layout-sections-nudge-x' ]) ? $pzarc_cells[ '_pzarc_layout-sections-nudge-x' ][ 0 ] : 0);
+    $pzarc_sections_nudge_y = (!empty($pzarc_cells[ '_pzarc_layout-sections-nudge-y' ]) ? $pzarc_cells[ '_pzarc_layout-sections-nudge-y' ][ 0 ] : 0);
+    $pzarc_sections_width   = (!empty($pzarc_cells[ '_pzarc_layout-sections-widths' ]) ? $pzarc_cells[ '_pzarc_layout-sections-widths' ][ 0 ] : 100);
 
     $pzarc_tb = ($pzarc_sections_postion == 'left' || $pzarc_sections_postion == 'right' ? 'top' : $pzarc_sections_postion);
     $pzarc_lr = ($pzarc_sections_postion == 'top' || $pzarc_sections_postion == 'bottom' ? 'left' : $pzarc_sections_postion);
-    $pzarc_contents .= '.pzarc-' . $postid  . ' .pzarc-components {' . $pzarc_tb . ':' .  $pzarc_sections_nudge_y . '%;' . $pzarc_lr . ':' .  $pzarc_sections_nudge_x . '%;width:' . $pzarc_sections_width . '%;}';
+    $pzarc_contents .= '.pzarc-' . $postid . ' .pzarc-components {' . $pzarc_tb . ':' . $pzarc_sections_nudge_y . '%;' . $pzarc_lr . ':' . $pzarc_sections_nudge_x . '%;width:' . $pzarc_sections_width . '%;}';
 
-
+///pzdebug($filename);
 // by this point, the $wp_filesystem global should be working, so let's use it to create a file
     global $wp_filesystem;
     if (!$wp_filesystem->put_contents(

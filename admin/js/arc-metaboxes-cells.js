@@ -62,6 +62,9 @@ jQuery(document).ready(function() {
 		}
 	});
 
+  jQuery('li.item-cell-designer').on('click',function(index,value){jQuery('#cell-designer-settings').show();});
+  jQuery('li.item-styling').on('click',function(index,value){jQuery('#cell-designer-settings').hide();});
+  jQuery('li.item-settings').on('click',function(index,value){jQuery('#cell-designer-settings').hide();});
 
   ////Wha??
   //	// Showhide preview zones if checked
