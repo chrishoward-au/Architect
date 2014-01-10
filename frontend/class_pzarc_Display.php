@@ -16,12 +16,12 @@
 class pzarc_Display
 {
   public $output = '';
-  public $source_data = '';
-  public $query_vars = '';
-  public $cell_info = '';
-  public $blueprint = '';
-  public $nav_links = array();
-  public $css = '/* Architect CSS */';
+  private $source_data = '';
+  private $query_vars = '';
+  private $cell_info = '';
+  private $blueprint = '';
+  private $nav_links = array();
+  private $css = '/* Architect CSS */';
 
   /*************************************************
    *
@@ -34,7 +34,7 @@ class pzarc_Display
    * Returns: Nil
    *
    *************************************************/
-  function __construct()
+  function __construct($blueprint_name)
   {
     add_filter('excerpt_length', array($this, 'custom_excerpt_length'), 999);
     add_filter('excerpt_more', array($this, 'new_excerpt_more'));
@@ -61,7 +61,7 @@ class pzarc_Display
   function blueprint_header($blueprint_id)
   {
     $this->output .= '<div id="pzarc=container-' . $this->blueprint[ 'blueprint-short-name' ] . '" class="pzarc-container pzarc-blueprint-' . $blueprint_id . '">';
-    if ($this->blueprint[ 'blueprint-pager' ] == 'hover')
+    if ($this->blueprint[ 'blueprint-pager' ] != 'none' && ($this->blueprint[ 'blueprint-pager-location' ] == 'top' || $this->blueprint[ 'blueprint-pager-location' ]=='both') )
     {
       $this->output .= '{{pager}}';
     }
@@ -84,7 +84,7 @@ class pzarc_Display
    *************************************************/
   function blueprint_footer()
   {
-    if ($this->blueprint[ 'blueprint-pager' ] == 'wordpress' || $this->blueprint[ 'blueprint-pager' ] == 'wppagenavi')
+    if ($this->blueprint[ 'blueprint-pager' ] != 'none' && ($this->blueprint[ 'blueprint-pager-location' ] == 'bottom' || $this->blueprint[ 'blueprint-pager-location' ]=='both') )
     {
       $this->output .= '{{pager}}';
     }
@@ -114,13 +114,14 @@ class pzarc_Display
     {
       //build the new query
       //Lot of work!
-      switch ($the_criteria[ '_pzarc_criteria-content-source' ][ 0 ])
+      switch ($the_criteria[ '_pzarc_contents-content-source' ][ 0 ])
       {
         // could we build this into the cell def or somewhere else so more closely tied to the content type stuff
-        case 'images':
+        case 'gallery':
           $this->query_vars[ 'post_type' ]   = 'attachment';
-          $this->query_vars[ 'post__in' ]    = $the_criteria[ '_pzarc_criteria-specific-images' ];
+          $this->query_vars[ 'post__in' ]    = (!empty($the_criteria[ '_pzarc_contents-specific-images' ])?$the_criteria[ '_pzarc_contents-specific-images' ]:null);
           $this->query_vars[ 'post_status' ] = array('publish', 'inherit', 'private');
+          $this->query_vars['ignore_sticky_posts'] = true;
           break;
       }
     }
@@ -168,7 +169,7 @@ class pzarc_Display
    * Returns:
    *
    *************************************************/
-  function render($pzarc_blueprint, $overrides)
+  function render($pzarc_blueprint, $overrides,$is_shortcode = false)
   {
     // THis is probably where we should preserve the wp_query
     global $wp_query;
@@ -185,8 +186,10 @@ class pzarc_Display
     // Get the criteria
     $the_criteria = get_post_meta($pzarc_blueprint[ 'blueprint-criteria' ], null, true);
 
-    if ($this->blueprint[ 'blueprint-criteria' ] == 'default')
+    if ($this->blueprint[ 'blueprint-criteria' ] == 'default' && !$is_shortcode)
     {
+      // We never want tocome in here for a short code???? That doesn't sound right! :P
+
       // Use default page query
       // Determine the content type the post type so we canget the right cell def
       //eeek. Gotta work out what page content type is!
@@ -208,7 +211,7 @@ class pzarc_Display
 
       // Determine the content type the post type so we canget the right cell def (this could be anything from posts, to images to NGG, to RSS
 
-      $content_type = $the_criteria[ '_pzarc_criteria-content-source' ][ 0 ];
+      $content_type = $the_criteria[ '_pzarc_contents-content-source' ][ 0 ];
 
       $this->build_query($the_criteria, $overrides);
 // no matter what happens, somewhere we've got to preserve the original query!
@@ -220,8 +223,8 @@ class pzarc_Display
       }
     }
 
-
-    //  pzdebug((array)$pzarc_query);
+//      var_dump($this->blueprint[ 'blueprint-criteria' ]);
+//      pzdebug((array)$pzarc_query);
     // pzdebug($pzarc_query->found_posts);
     // pzdebug(is_main_query());
 //  pzdebug((array) $pzarc_query);
@@ -327,7 +330,8 @@ class pzarc_Display
     $this->blueprint_footer();
 
     // Process any left over {{}} variables
-    $this->add_pager();
+
+    $this->output = str_replace('{{pager}}', $this->add_pager(), $this->output);
     $this->output = $this->strip_unused_tags($this->output);
     // Reset to original query status.  Will this be conditional?!
     $wp_query = $original_query;
@@ -576,53 +580,62 @@ class pzarc_Display
    *************************************************/
   function add_pager()
   {
-    // var_dump(get_the_id(),get_the_title());
-//    var_dump();
-    $pager = '';
-    if ($this->blueprint[ 'blueprint-pager' ] == 'posts')
-    {
-      $pager = '<div class="pzarc-pager">';
-      //    $pager .=  get_next_posts_link( 'Older Entries', 999 );
-      //    $pager .=  get_previous_posts_link( 'Newer Entries' );
-      $prev_post = get_previous_post();
-      $next_post = get_next_post();
-      if (!empty($prev_post))
-      {
-        $pager .= '<a class="pzarc-pager-prev" href="' . get_permalink($prev_post->ID) . '">&laquo; ' . $prev_post->post_title . '</a>';
-      }
-      if (!empty($next_post))
-      {
-        $pager .= '<a class="pzarc-pager-next" href="' . get_permalink($next_post->ID) . '">' . $next_post->post_title . ' &raquo;</a>';
 
-      }
-      $pager .= '</div>';
-    }
-    elseif ($this->blueprint[ 'blueprint-pager' ] == 'wppagenavi')
-    {
+    $pager = '';
+
+    $this->blueprint[ 'blueprint-pager' ] = ($this->blueprint[ 'blueprint-pager' ] == 'wppagenavi' && !function_exists('wp_pagenavi')?'prevnext':$this->blueprint[ 'blueprint-pager' ]);
+
+    switch ($this->blueprint[ 'blueprint-pager' ]) {
+      case 'names':
+        $pager = '<div class="pzarc-pager nav-links">';
+        //    $pager .=  get_next_posts_link( 'Older Entries', 999 );
+        //    $pager .=  get_previous_posts_link( 'Newer Entries' );
+        $prev_post = get_previous_post();
+        $next_post = get_next_post();
+
+        if (!empty($prev_post))
+        {
+          $pager .= '<span class="pzarc-pager-prev nav-previous"><a href="' . get_permalink($prev_post->ID) . '">&laquo; ' . $prev_post->post_title . '</a></span>';
+        }
+        if (!empty($next_post))
+        {
+          $pager .= '<span class="pzarc-pager-next nav-next"><a href="' . get_permalink($next_post->ID) . '">' . $next_post->post_title . ' &raquo;</a></span>';
+
+        }
+        $pager .= '</div>';
+        break;
+
+      case 'prevnext':
+        $pager = '<div class="pzarc-pager">';
+        $prev_post=  get_next_posts_link( 'Older Entries', 999 );
+        $next_post=  get_previous_posts_link( 'Newer Entries' );
+
+        if (!empty($prev_post))
+        {
+          $pager .= '<span class="pzarc-pager-prev">'.$prev_post.'</span>';
+        }
+        if (!empty($next_post))
+        {
+          $pager .= '<span class="pzarc-pager-next">'.$next_post.'</span>';
+
+        }
+        $pager .= '</div>';
+        break;
+
+    case 'wppagenavi':
       if (function_exists('wp_pagenavi'))
       {
         $pager = '<div class="pzarc-pager">';
-        // This or pagenavi may be buggy as it breaks the div
         ob_start();
         wp_pagenavi();
         $pager .= ob_get_contents();
         ob_end_clean();
         $pager .= '</div>';
       }
-
+      break;
     }
-    elseif ($this->blueprint[ 'blueprint-pager' ] == 'hover')
-    {
-    }
-    if (!empty($next_post))
-    {
-      $pager .= '<a class="pzarc-pager-next" href="' . get_permalink($next_post->ID) . '">' . $next_post->post_title . ' &raquo;</a>';
 
-    }
-    $pager .= '</div>';
-    //  var_dump(esc_html($pager));
-
-    $this->output = str_replace('{{pager}}', $pager, $this->output);
+    return $pager;
 
   }
 
@@ -684,10 +697,10 @@ class pzarc_Display
    *************************************************/
   function get_source($criteria, $overrides = null)
   {
-    switch ($criteria[ '_pzarc_criteria-content-source' ][ 0 ])
+    switch ($criteria[ '_pzarc_contents-content-source' ][ 0 ])
     {
       case 'images' :
-        $this->source_data = $criteria[ '_pzarc_criteria-specific-images' ];
+        $this->source_data = $criteria[ '_pzarc_contents-specific-images' ];
         break;
       case 'posts' :
         break;
@@ -787,8 +800,7 @@ class pzarc_Display
    *************************************************/
   function custom_excerpt_length($length)
   {
-
-    return $this->cell_info[ '_pzarc_cell-settings-excerpts-word-count' ];
+    return $this->cell_info[ '_pzarc_cell-settings-excerpts-word-count' ][0];
   }
 
   /*************************************************

@@ -103,14 +103,20 @@
       $celldefs[ 'feature' ]['custom3'] = '<div class="entry-customfield entry-customfield-3">{{custom3innards}}</div><!-- .entry-custom 3 -->';
       $celldefs[ 'feature' ]['footer'] = '<footer class="entry-meta">{{footerinnards}}</footer><!-- .entry-meta -->';
     
-
+*/
       $celldefs[ 'images' ]['wrapper'] = '<div id="galleryimage-{{postid}}" class="pzarc-{{classname}}  galleryimage-{{postid}} galleryimage">{{wrapperinnards}}</div>';
       $celldefs[ 'images' ]['header'] = '<header class="entry-header">{{headerinnards}}</header><!-- .entry-header -->';
       $celldefs[ 'images' ]['title'] = '<h3 class="entry-title">{{title}}</h3>';
       $celldefs[ 'images' ]['excerpt']  = ' <div class="entry-excerpt">{{excerpt}}</div><!-- .entry-excerpt -->';
       $celldefs[ 'images' ]['content']  = ' <div class="entry-content">{{content}}</div><!-- .entry-content -->';
       $celldefs[ 'images' ]['footer'] = '<footer class="entry-meta">{{footerinnards}}</footer><!-- .entry-meta -->';
-*/
+
+    $celldefs[ 'images' ]['postlink'] = '<a href="{{permalink}}" title="{{title}}">';
+    $celldefs[ 'images' ]['image'] = '<figure class="entry-thumbnail {{incontent}}">{{postlink}}<img width="{{width}}" src="{{image}}" class="attachment-post-thumbnail wp-post-image" alt="{{alttext}}">{{closepostlink}}{{captioncode}}</figure>';
+    $celldefs[ 'images' ]['caption'] = '<figcaption class="caption">{{caption}}</figcaption>';
+
+
+    $celldefs[ 'gallery' ] = $celldefs[ 'images' ];
     return $celldefs[$def];
   }
 

@@ -52,8 +52,8 @@ function pzarc_get_the_blueprint($blueprint)
 
   global $wp_query;
   $original_query = $wp_query;
-  $blueprint_info  = new WP_Query('post_type=arc-blueprints&meta_key=_pzarc_blueprint-short-name&meta_value=' . $blueprint);
- // var_dump($blueprint_info->request);
+  $blueprint_info = new WP_Query('post_type=arc-blueprints&meta_key=_pzarc_blueprint-short-name&meta_value=' . $blueprint);
+  // var_dump($blueprint_info->request);
   if (!isset($blueprint_info->posts[ 0 ]))
   {
     echo '<p class="pzarc-oops">Blueprint ' . $blueprint . ' not found</p>';
@@ -71,15 +71,16 @@ function pzarc_get_the_blueprint($blueprint)
   {
     $pzarc_blueprint_field_set[ $key ] = $value[ 0 ];
   }
-  $pzarc_blueprint = array(
-           'blueprint-id' => $blueprint_info->posts[ 0 ]->ID,
-          'blueprint-short-name' => (!empty($pzarc_blueprint_field_set[ '_pzarc_blueprint-short-name' ]) ? $pzarc_blueprint_field_set[ '_pzarc_blueprint-short-name' ] : null),
-          'blueprint-criteria'   => (!empty($pzarc_blueprint_field_set [ '_pzarc_blueprint-criteria' ]) ? $pzarc_blueprint_field_set [ '_pzarc_blueprint-criteria' ] : 'default'),
-          'blueprint-pager'      => (!empty($pzarc_blueprint_field_set[ '_pzarc_blueprint-pager' ]) ? $pzarc_blueprint_field_set[ '_pzarc_blueprint-pager' ] : null),
-          'blueprint-posts-per-page'      => (!empty($pzarc_blueprint_field_set[ '_pzarc_blueprint-posts-per-page' ]) ? $pzarc_blueprint_field_set[ '_pzarc_blueprint-posts-per-page' ] : get_option('posts_per_page')),
-          'blueprint-type'       => (!empty($pzarc_blueprint_field_set[ '_pzarc_blueprint-type' ]) ? $pzarc_blueprint_field_set[ '_pzarc_blueprint-type' ] : null),
+  $pzarc_blueprint                   = array(
+          'blueprint-id'             => $blueprint_info->posts[ 0 ]->ID,
+          'blueprint-short-name'     => (!empty($pzarc_blueprint_field_set[ '_pzarc_blueprint-short-name' ]) ? $pzarc_blueprint_field_set[ '_pzarc_blueprint-short-name' ] : null),
+          'blueprint-criteria'       => (!empty($pzarc_blueprint_field_set [ '_pzarc_blueprint-criteria' ]) ? $pzarc_blueprint_field_set [ '_pzarc_blueprint-criteria' ] : 'default'),
+          'blueprint-pager'          => (!empty($pzarc_blueprint_field_set[ '_pzarc_blueprint-pager' ]) ? $pzarc_blueprint_field_set[ '_pzarc_blueprint-pager' ] : 'none'),
+          'blueprint-pager-location' => (!empty($pzarc_blueprint_field_set[ '_pzarc_blueprint-pager-location' ]) ? $pzarc_blueprint_field_set[ '_pzarc_blueprint-pager-location' ] : 'bottom'),
+          'blueprint-posts-per-page' => (!empty($pzarc_blueprint_field_set[ '_pzarc_blueprint-posts-per-page' ]) ? $pzarc_blueprint_field_set[ '_pzarc_blueprint-posts-per-page' ] : get_option('posts_per_page')),
+          'blueprint-type'           => (!empty($pzarc_blueprint_field_set[ '_pzarc_blueprint-type' ]) ? $pzarc_blueprint_field_set[ '_pzarc_blueprint-type' ] : null),
   );
-  $pzarc_blueprint[ 'section' ][ 0 ] = 
+  $pzarc_blueprint[ 'section' ][ 0 ] =
           array(
                   'section-enable'             => true,
                   'section-cells-per-view'     => (!empty($pzarc_blueprint_field_set[ '_pzarc_0-blueprint-cells-per-view' ]) ? $pzarc_blueprint_field_set[ '_pzarc_0-blueprint-cells-per-view' ] : null),
@@ -94,7 +95,7 @@ function pzarc_get_the_blueprint($blueprint)
                   'section-nav-loc'            => (!empty($pzarc_blueprint_field_set[ '_pzarc_0-blueprint-section-nav-loc' ]) ? $pzarc_blueprint_field_set[ '_pzarc_0-blueprint-section-nav-loc' ] : null),
                   'section-cell-settings'      => get_post_meta($pzarc_blueprint_field_set[ '_pzarc_0-blueprint-section-cell-layout' ]),
 
-          ) ;
+          );
   for ($i = 1; $i < 3; $i++)
   {
     $pzarc_blueprint[ 'section' ][ $i ] = !empty($pzarc_blueprint_field_set[ '_pzarc_' . $i . '-blueprint-section-enable' ]) ?
@@ -161,7 +162,7 @@ function pzarc_shortcode($atts, $content = null, $tag)
     $pzarc_blueprint = $atts[ 0 ];
   }
 
-  return pzarc($pzarc_blueprint, (!empty($atts[ 'ids' ]) ? $atts[ 'ids' ] : null));
+  return pzarc($pzarc_blueprint, (!empty($atts[ 'ids' ]) ? $atts[ 'ids' ] : null), true);
 
   //  return pzarc_render($pzarc_blueprint_arr, (!empty($atts[ 'ids' ]) ? $atts[ 'ids' ] : null), 'pzarc_Display');
 
@@ -170,20 +171,25 @@ function pzarc_shortcode($atts, $content = null, $tag)
 
 /* Blueprint tag */
 /* Overrides is a list of ids */
-function pzarc($pzarc_blueprint = null, $pzarc_overrides = null)
+function pzarc($pzarc_blueprint = null, $pzarc_overrides = null, $is_shortcode = false)
 {
   if (empty($pzarc_blueprint))
   {
-  // make this use a set of defaults. prob an excerpt grid
+    // make this use a set of defaults. prob an excerpt grid
     return 'You need to set a blueprint';
   }
   $pzarc_blueprint_arr = pzarc_get_the_blueprint($pzarc_blueprint);
+  $pzarc               = new pzarc_Display($pzarc_blueprint);
+  if ($pzarc_blueprint_arr[ 'blueprint-criteria' ] == 'default' && $is_shortcode)
+  {
+    return 'Ooops! Need to specify a Contents Selection in your blueprint for a shortcode';
+  }
+  else
+  {
+    $pzarc->render($pzarc_blueprint_arr, $pzarc_overrides, $is_shortcode);
 
-  $pzarc_stuff = new pzarc_Display();
-  $pzarc_stuff->render($pzarc_blueprint_arr, $pzarc_overrides);
-
-  return $pzarc_stuff->output;
-
+    return $pzarc->output;
+  }
 }
 
 // Capture and append the comments display

@@ -142,23 +142,23 @@ default styling
 }
 .pzarc-pager-prev,
 .pzarc-pager-next {
-  font-size:13px;
-  font-weight:bold;
-  background: #eee;
-  padding:10px 5px;
+  /*font-size:13px;*/
+  /*font-weight:bold;*/
+  /*background: #eee;*/
+  /*padding:10px 5px;*/
 }
 
 .pzarc-pager-prev {
   float:left;
-  border-top-left-radius: 20px;
-  border-bottom-left-radius: 20px;
-  padding-right:10px;
+  /*border-top-left-radius: 20px;*/
+  /*border-bottom-left-radius: 20px;*/
+  /*padding-right:10px;*/
 }
 .pzarc-pager-next {
   float:right;
-  border-top-right-radius: 20px;
-  border-bottom-right-radius: 20px;
-  padding-left:10px;
+  /*border-top-right-radius: 20px;*/
+  /*border-bottom-right-radius: 20px;*/
+  /*padding-left:10px;*/
 }
 
 .pzarc-bg-image img {

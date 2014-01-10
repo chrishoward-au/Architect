@@ -384,9 +384,21 @@ function pzarc_blueprint_pagination_metabox($meta_boxes = array())
                   'default' => 'wppagination',
                   'options' => array(
                           'none'       => 'None',
-                          'posts'  => 'Post names',
+                          'names'  => 'Post names',
                           'prevnext'=>'Previous/Next',
                           'wppagenavi' => 'PageNavi',
+                  )
+          ),
+          array(
+                  'id'      => $prefix . 'blueprint-pager-location',
+                  'name'    => __('Pagination location', 'pzarc'),
+                  'type'    => 'pzselect',
+                  'cols'    => 12,
+                  'default' => 'bottom',
+                  'options' => array(
+                          'bottom'       => 'Bottom',
+                          'top'  => 'Top',
+                          'both'=>'Both'
                   )
           ),
           array(
@@ -499,7 +511,7 @@ function pzarc_blueprint_settings_metabox($meta_boxes = array())
           'posts_per_page'   => -1,
           'orderby'          => 'title',
           'order'            => 'ASC',
-          'post_type'        => 'arc-criterias',
+          'post_type'        => 'arc-contents',
           'suppress_filters' => true);
 
 
