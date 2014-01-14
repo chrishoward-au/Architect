@@ -22,7 +22,7 @@ class pzarc_Cell_Layouts
     {
       require_once PZARC_PLUGIN_PATH . 'includes/pzarc-custom-field-types.php';
 
-      //	add_action('admin_init', 'pzarc_preview_meta');
+      //  add_action('admin_init', 'pzarc_preview_meta');
       //   add_action('add_meta_boxes', array($this, 'layouts_meta'));
       add_action('admin_head', array($this, 'cell_layouts_admin_head'));
       add_action('admin_enqueue_scripts', array($this, 'cell_layouts_admin_enqueue'));
@@ -30,9 +30,9 @@ class pzarc_Cell_Layouts
 //      add_action('manage_arc-layouts_posts_custom_column', array($this, 'add_cell_layout_column_content'), 10, 2);
 
       // check screen arc-layouts. ugh. doesn't work for save and edit
-//			if ( $_REQUEST[ 'post_type' ] == 'arc-layouts' )
-//			{
-//			}
+//      if ( $_REQUEST[ 'post_type' ] == 'arc-layouts' )
+//      {
+//      }
     }
 
   }
@@ -143,7 +143,7 @@ class pzarc_Cell_Layouts
             'menu_position'       => 10,
             'supports'            => array('title', 'revisions'),
             'exclude_from_search' => true,
-            //			'register_meta_box_cb' => array($this, 'layouts_meta')
+            //      'register_meta_box_cb' => array($this, 'layouts_meta')
     );
 
     register_post_type('arc-layouts', $args);
@@ -207,6 +207,7 @@ function pzarc_cell_designer_tabbed($meta_boxes = array())
                   'type'     => 'pztabs',
                   'defaults' => array('#cell-designer' => 'Cell Designer',
                                       '#styling'       => 'Styling',
+                                      '#settings'=>'Settings'
                                       //                                      '#posts-filters'=>'Posts',
                                       //                                      '#pages-filters'=>'Pages',
                                       //                                      '#galleries-filters'=>'Galleries',
@@ -299,8 +300,7 @@ function pzarc_cell_general_settings($meta_boxes = array())
                   'id'      => $prefix . 'layout-short-name',
                   'type'    => 'text',
                   'cols'    => 12,
-                  'tooltip' => __('A short name for this cell layout. This enables you to create sets of layouts for different parent dimensions. That is, when the dimensions of the parent change, the layout will change accordingly. Traditional responsive design is based on the width of your device\'s screen,; however this fails if you place the object in a narrow column on a large screen,', 'pzarc'),
-                  'help'    => __('Create sets of layouts with each layout in a set for different parent dimensions'),
+                  'tooltip' => __('A short name for this cell layout to identify it.', 'pzarc'),
           ),
 
           //    array(
@@ -394,7 +394,7 @@ function pzarc_cell_designer_settings_meta($meta_boxes = array())
                     'left'   => 'Left of cell',
                     'right'  => 'Right of cell',
             ),
-            //'desc'		 => __('Position for all the components as a group', 'pzarc')
+            //'desc'     => __('Position for all the components as a group', 'pzarc')
     ),
     array(
             'name'    => __('Nudge components area up/down', 'pzarc'),
@@ -574,7 +574,7 @@ function pzarc_cell_formats_meta($meta_boxes = array())
           ),
           array(
                   'name' => __('Entry meta', 'pzarc'),
-                  'id'   => $prefix . 'layout-format-entry-meta',
+                  'id'      => $prefix . 'layout-format-entry-meta',
                   'type' => 'textarea',
                   'rows' => 1,
                   'cols' => 6,
@@ -883,16 +883,22 @@ function draw_cell_layout()
         <span class="pzarc-draggable pzarc-draggable-custom2 pzarc-draggable-meta" title="Custom field 2" data-idcode=custom2 ><span>Custom content 2</span></span>
         <span class="pzarc-draggable pzarc-draggable-custom3 pzarc-draggable-meta" title="Custom field 3" data-idcode=custom3 ><span>Custom content 3</span></span>
       </div>
-	  </div>
-	  <p class="pzarc-states pzcentred">Loading</p>
-	  <p class="howto pzcentred"><strong style="color:#d00;">This is an example only and thus only a <span style="border-bottom: 3px double;">general guide</span> to how the cells will look.</strong></p>
-	</div>
-	<div class="plugin_url" style="display:none;">' . PZARC_PLUGIN_URL . '</div>
-	';
+    </div>
+    <p class="pzarc-states pzcentred">Loading</p>
+    <p class="howto pzcentred"><strong style="color:#d00;">This is an example only and thus only a <span style="border-bottom: 3px double;">general guide</span> to how the cells will look.</strong></p>
+  </div>
+  <div class="plugin_url" style="display:none;">' . PZARC_PLUGIN_URL . '</div>
+  ';
 
   return $return_html;
 }
 
+ /*
+  * save_arc_layouts
+  *
+  * Creates CSS file
+  * 
+  */
 add_action('save_post', 'save_arc_layouts');
 function save_arc_layouts($postid)
 {
@@ -919,7 +925,6 @@ function save_arc_layouts($postid)
         [WP_Screen_screen_settings] =>
     )
    */
-
   if ($screen->id == 'arc-layouts')
   {
     // save the CSS too
@@ -975,18 +980,23 @@ function save_arc_layouts($postid)
           $pzarc_contents .= '.pzarc-' . $postid . ' .entry-meta2 {width:'.$pzarc_layout['meta2']['width'].'%;}'."\n";
           $pzarc_contents .= '.pzarc-' . $postid . ' .entry-meta3 {width:'.$pzarc_layout['meta3']['width'].'%;}'."\n";
           break;
+        
         case ($key =='_pzarc_cell-settings-image-margin-left' && ($value[0]===0 || $value[0]>0)):
           $pzarc_contents .= '.pzarc-' . $postid . ' .entry-thumbnail {margin-left: '.$value[0].'%;}'."\n";
           break;
+        
         case ($key =='_pzarc_cell-settings-image-margin-right' && ($value[0]===0 || $value[0]>0)):
           $pzarc_contents .= '.pzarc-' . $postid . ' .entry-thumbnail {margin-right: '.$value[0].'%;}'."\n";
           break;
+        
         case ($key =='_pzarc_cell-settings-image-margin-top' && ($value[0]===0 || $value[0]>0)):
           $pzarc_contents .= '.pzarc-' . $postid . ' .entry-thumbnail {margin-top: '.$value[0].'%;}'."\n";
           break;
+        
         case ($key =='_pzarc_cell-settings-image-margin-bottom' && ($value[0]===0 || $value[0]>0)):
           $pzarc_contents .= '.pzarc-' . $postid . ' .entry-thumbnail {margin-bottom: '.$value[0].'%;}'."\n";
           break;
+        
         case (strpos($key, '-format-') && !empty($value[ 0 ]) && !empty($pzarc_cells[ $key . '-classes' ][ 0 ])):
           $pzarc_classes = '.pzarc-' . $postid . ' ' . str_replace(',', ', .pzarc-' . $postid . ' ', $pzarc_cells[ $key . '-classes' ][ 0 ]);
           $pzarc_contents .= $pzarc_classes . ' {' . $value[ 0 ] . '}' . "\n";
@@ -1003,7 +1013,7 @@ function save_arc_layouts($postid)
 
     $pzarc_tb = ($pzarc_sections_postion == 'left' || $pzarc_sections_postion == 'right' ? 'top' : $pzarc_sections_postion);
     $pzarc_lr = ($pzarc_sections_postion == 'top' || $pzarc_sections_postion == 'bottom' ? 'left' : $pzarc_sections_postion);
-    $pzarc_contents .= '.pzarc-' . $postid . ' .pzarc-components {' . $pzarc_tb . ':' . $pzarc_sections_nudge_y . '%;' . $pzarc_lr . ':' . $pzarc_sections_nudge_x . '%;width:' . $pzarc_sections_width . '%;}';
+    $pzarc_contents .= '.pzarc-' . $postid . '.abs-content {' . $pzarc_tb . ':' . $pzarc_sections_nudge_y . '%;' . $pzarc_lr . ':' . $pzarc_sections_nudge_x . '%;width:' . $pzarc_sections_width . '%;}';
 
 ///pzdebug($filename);
 // by this point, the $wp_filesystem global should be working, so let's use it to create a file

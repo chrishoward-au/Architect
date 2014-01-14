@@ -18,6 +18,7 @@ jQuery(document).ready(function() {
   function init() {
 //    console.log('you are here');
     var cell_layout = jQuery.parseJSON(jQuery('input#_pzarc_layout-cell-preview-cmb-field-0').val());
+
 //    pzarc_update_component_location(cell_layout);
 //    pzarc_update_components_container_width(cell_layout);
 //    pzarc_update_components_height(cell_layout);

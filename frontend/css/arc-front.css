@@ -36,9 +36,16 @@
   padding:0;
 }
 
+.pzarc-bg-image img {display:block;}
+
+.abs-content {
+  position:absolute;
+}
+
 .pzarc-components {
   padding:5px;
   box-sizing:border-box;
+  overflow:hidden;
 }
 /*
  Set a base font size
@@ -161,9 +168,13 @@ default styling
   /*padding-left:10px;*/
 }
 
-.pzarc-bg-image img {
+.pzarc-bg-image img.nofill{
   max-width:100%;
 }
+.pzarc-bg-image img.fill{
+  max-width:none;
+}
+
 
 x.pzarc-cell img.entry-image {float:left;margin-right:5px;margin-bottom:5px;}
 x.pzarc-cell .entry-content {float:left;}

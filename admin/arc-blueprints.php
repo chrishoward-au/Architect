@@ -516,7 +516,7 @@ function pzarc_blueprint_settings_metabox($meta_boxes = array())
 
 
   $pzarc_criterias                    = get_posts($args);
-  $pzarc_criterias_array[ 'default' ] = 'Use default content for the displayed page';
+  $pzarc_criterias_array[ 'default' ] = 'Page default';
   if (!empty($pzarc_criterias))
   {
     foreach ($pzarc_criterias as $pzarc_criteria)

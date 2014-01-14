@@ -21,7 +21,7 @@ class pzarc_Display
   private $cell_info = '';
   private $blueprint = '';
   private $nav_links = array();
-  private $css = '/* Architect CSS */';
+//  private $css = '/* Architect CSS */';
 
   /*************************************************
    *
@@ -61,7 +61,7 @@ class pzarc_Display
   function blueprint_header($blueprint_id)
   {
     $this->output .= '<div id="pzarc=container-' . $this->blueprint[ 'blueprint-short-name' ] . '" class="pzarc-container pzarc-blueprint-' . $blueprint_id . '">';
-    if ($this->blueprint[ 'blueprint-pager' ] != 'none' && ($this->blueprint[ 'blueprint-pager-location' ] == 'top' || $this->blueprint[ 'blueprint-pager-location' ]=='both') )
+    if ($this->blueprint[ 'blueprint-pager' ] != 'none' && ($this->blueprint[ 'blueprint-pager-location' ] == 'top' || $this->blueprint[ 'blueprint-pager-location' ] == 'both'))
     {
       $this->output .= '{{pager}}';
     }
@@ -84,7 +84,7 @@ class pzarc_Display
    *************************************************/
   function blueprint_footer()
   {
-    if ($this->blueprint[ 'blueprint-pager' ] != 'none' && ($this->blueprint[ 'blueprint-pager-location' ] == 'bottom' || $this->blueprint[ 'blueprint-pager-location' ]=='both') )
+    if ($this->blueprint[ 'blueprint-pager' ] != 'none' && ($this->blueprint[ 'blueprint-pager-location' ] == 'bottom' || $this->blueprint[ 'blueprint-pager-location' ] == 'both'))
     {
       $this->output .= '{{pager}}';
     }
@@ -114,14 +114,20 @@ class pzarc_Display
     {
       //build the new query
       //Lot of work!
+ //     var_dump($the_criteria);
       switch ($the_criteria[ '_pzarc_contents-content-source' ][ 0 ])
       {
+
+        case 'post':
+          $this->query_vars[ 'post_type' ]           = 'post';
+          $this->query_vars[ 'category__in' ]        = (!empty($the_criteria[ '_pzarc_posts_contents-inc-cats' ]) ? $the_criteria[ '_pzarc_posts_contents-inc-cats' ] : null);
+          break;
         // could we build this into the cell def or somewhere else so more closely tied to the content type stuff
         case 'gallery':
-          $this->query_vars[ 'post_type' ]   = 'attachment';
-          $this->query_vars[ 'post__in' ]    = (!empty($the_criteria[ '_pzarc_contents-specific-images' ])?$the_criteria[ '_pzarc_contents-specific-images' ]:null);
-          $this->query_vars[ 'post_status' ] = array('publish', 'inherit', 'private');
-          $this->query_vars['ignore_sticky_posts'] = true;
+          $this->query_vars[ 'post_type' ]           = 'attachment';
+          $this->query_vars[ 'post__in' ]            = (!empty($the_criteria[ '_pzarc_contents-specific-images' ]) ? $the_criteria[ '_pzarc_contents-specific-images' ] : null);
+          $this->query_vars[ 'post_status' ]         = array('publish', 'inherit', 'private');
+          $this->query_vars[ 'ignore_sticky_posts' ] = true;
           break;
       }
     }
@@ -169,7 +175,7 @@ class pzarc_Display
    * Returns:
    *
    *************************************************/
-  function render($pzarc_blueprint, $overrides,$is_shortcode = false)
+  function render($pzarc_blueprint, $overrides, $is_shortcode = false)
   {
     // THis is probably where we should preserve the wp_query
     global $wp_query;
@@ -216,7 +222,7 @@ class pzarc_Display
       $this->build_query($the_criteria, $overrides);
 // no matter what happens, somewhere we've got to preserve the original query!
 //      pzdebug($this->query_vars);
-      if ($this->query_vars)
+      if (!empty($this->query_vars))
       {
         $pzarc_query = new WP_Query($this->query_vars);
 //        pzdebug((array)$pzarc_query);
@@ -348,7 +354,7 @@ class pzarc_Display
    *
    * Method: build_cell_definition
    *
-   * Purpose:
+   * Purpose: Wha?? Where is this being used??!!
    *
    * Parameters:
    *
@@ -392,7 +398,7 @@ class pzarc_Display
   }
 
 
-   /*************************************************
+  /*************************************************
    *
    * Method: build_cell
    *
@@ -405,6 +411,7 @@ class pzarc_Display
    *************************************************/
   function build_cell($post_info, $celldef, $cellid, $section_cell_settings)
   {
+    $featureat = '';
     $this->cell_info = pzarc_flatten_wpinfo($this->section_info[ 'section-cell-settings' ]);
 
 
@@ -416,7 +423,6 @@ class pzarc_Display
     // Open cell
     $this_cell = '<div class="pzarc-cell pzarc-{{classname}}" style="position:relative;width:' . $cell_width . '%;margin:' . ($this->section_info[ 'section-cells-vert-margin' ] / 2) . '%;min-width:' . $cell_min_width . 'px;' . $cell_height . '">';
 
-    $position = 'static';
     $params   = array('width' => $this->cell_info[ '_pzarc_cell-settings-image-max-width' ], 'height' => $this->cell_info[ '_pzarc_cell-settings-image-max-height' ]);
 
     // Returns false on failure.
@@ -435,16 +441,11 @@ class pzarc_Display
       $thumb_src = $post_info->guid;
     }
     $post_image = bfi_thumb($thumb_src, $params);
-//var_dump($post_info->ID,$thumb_src,$post_image);
-// need to find out when this is required!!
-//      $post_image = ($post_image ? $post_image : $post_info->guid);
 
-
-    if ($this->cell_info[ '_pzarc_layout-background-image' ] == 'fill')
-    {
-      $this_cell .= '<div class="pzarc-bg-image"><img class="entry-image" src="' . $post_image . '"></div>';
-      $position = 'absolute';
-    }
+    // if ($this->cell_info[ '_pzarc_layout-background-image' ] == 'fill')
+    // {
+    //   $this_cell .= '<div class="pzarc-bg-image"><img class="entry-image" src="' . $post_image . '"></div>';
+    // }
 
     $layout = json_decode($this->cell_info[ '_pzarc_layout-cell-preview' ], true);
 
@@ -474,7 +475,6 @@ class pzarc_Display
     $the_inputs[ 'author' ]     = apply_filters('the_author', get_the_author());
     $the_inputs[ 'permalink' ]  = get_permalink();
 
-//var_dump($layout,$the_inputs);
     ob_start();
     comments_number();
     $comments_count = ob_get_contents();
@@ -510,7 +510,7 @@ class pzarc_Display
     // Build this cell's layout
     $cell_definition = $this->build_cell_definition($celldef, $section_cell_settings, $layout);
 
-    $cell_definition = str_replace('{{captioncode}}', $celldef[ 'caption' ], $cell_definition);
+    $cell_definition = (!empty($this->cell_info[ '_pzarc_cell-settings-image-captions' ]))?str_replace('{{captioncode}}', $celldef[ 'caption' ], $cell_definition):$cell_definition;
     if (!empty($this->cell_info[ '_pzarc_cell-settings-link-image' ]) && $this->cell_info[ '_pzarc_layout-background-image' ] == 'none')
     {
       $cell_definition = str_replace('{{postlink}}', $celldef[ 'postlink' ], $cell_definition);
@@ -520,11 +520,39 @@ class pzarc_Display
 
 
     // Create the content section
-    $components_open  = '<div class="pzarc-components" style="position:' . $position . ';">';
+    
+    $components_open  = '<div class="pzarc-components">';
     $components_close = '</div><!-- End components -->';
     $components       = $this->build_components($components_open, $the_inputs, $layout, $components_close, $cell_definition);
     $components       = str_replace('{{wrapperinnards}}', $components, $celldef[ 'wrapper' ]);
+
     $this_cell .= $components . '</div><!-- end cell -->';
+
+    // Add background image (or video!)    
+    if ($this->cell_info[ '_pzarc_layout-background-image' ] == 'align' && !empty($the_inputs[ 'image' ])) {
+      if ($this->cell_info[ '_pzarc_layout-sections-position' ]=='bottom' || $this->cell_info[ '_pzarc_layout-sections-position' ]=='right')
+      {
+        $this_cell = str_replace('{{bgimagetl}}', '<div class="pzarc-bg-image"><img class="nofill" src="' . $the_inputs[ 'image' ] . '" /></div>', $this_cell);
+      } 
+      elseif ($this->cell_info[ '_pzarc_layout-sections-position' ]=='top' || $this->cell_info[ '_pzarc_layout-sections-position' ]=='left') 
+      {
+        $this_cell = str_replace('{{bgimagebr}}', '<div class="pzarc-bg-image"><img class="nofill" src="' . $the_inputs[ 'image' ] . '" /></div>', $this_cell);
+        // need to use some absolute positioning to stop content being cut off
+         $featureat = ' abs-content';
+      }
+    }
+    if ($this->cell_info[ '_pzarc_layout-background-image' ] == 'fill' && !empty($the_inputs[ 'image' ])) {
+      if ($this->cell_info[ '_pzarc_layout-sections-position' ]=='bottom' || $this->cell_info[ '_pzarc_layout-sections-position' ]=='right')
+      {
+        $this_cell = str_replace('{{bgimagetl}}', '<div class="pzarc-bg-image"><img class="fill" src="' . $the_inputs[ 'image' ] . '" /></div>', $this_cell);
+        $featureat = ' abs-content';
+      } 
+      elseif ($this->cell_info[ '_pzarc_layout-sections-position' ]=='top' || $this->cell_info[ '_pzarc_layout-sections-position' ]=='left') 
+      {
+        $this_cell = str_replace('{{bgimagebr}}', '<div class="pzarc-bg-image"><img class="fill" src="' . $the_inputs[ 'image' ] . '" /></div>', $this_cell);
+        $featureat = ' abs-content';
+      }
+    }
 //pzdebug(esc_html($components));
     $this->output .= $this_cell;
     // Add the image in the content and excerpt if requested
@@ -539,6 +567,7 @@ class pzarc_Display
     $this->output = str_replace('{{postformat}}', get_post_format(), $this->output);
     $this->output = str_replace('{{classname}}', $cellid, $this->output);
     $this->output = str_replace('{{width}}', $this->cell_info[ '_pzarc_cell-settings-image-max-width' ], $this->output);
+    $this->output = str_replace('{{pzclasses}}', $featureat, $this->output);
 
     //'.$postid.'-'.$pzarc_cells['_pzarc_layout-short-name']
 
@@ -583,9 +612,10 @@ class pzarc_Display
 
     $pager = '';
 
-    $this->blueprint[ 'blueprint-pager' ] = ($this->blueprint[ 'blueprint-pager' ] == 'wppagenavi' && !function_exists('wp_pagenavi')?'prevnext':$this->blueprint[ 'blueprint-pager' ]);
+    $this->blueprint[ 'blueprint-pager' ] = ($this->blueprint[ 'blueprint-pager' ] == 'wppagenavi' && !function_exists('wp_pagenavi') ? 'prevnext' : $this->blueprint[ 'blueprint-pager' ]);
 
-    switch ($this->blueprint[ 'blueprint-pager' ]) {
+    switch ($this->blueprint[ 'blueprint-pager' ])
+    {
       case 'names':
         $pager = '<div class="pzarc-pager nav-links">';
         //    $pager .=  get_next_posts_link( 'Older Entries', 999 );
@@ -606,33 +636,33 @@ class pzarc_Display
         break;
 
       case 'prevnext':
-        $pager = '<div class="pzarc-pager">';
-        $prev_post=  get_next_posts_link( 'Older Entries', 999 );
-        $next_post=  get_previous_posts_link( 'Newer Entries' );
+        $pager     = '<div class="pzarc-pager">';
+        $prev_post = get_next_posts_link('Older Entries', 999);
+        $next_post = get_previous_posts_link('Newer Entries');
 
         if (!empty($prev_post))
         {
-          $pager .= '<span class="pzarc-pager-prev">'.$prev_post.'</span>';
+          $pager .= '<span class="pzarc-pager-prev">' . $prev_post . '</span>';
         }
         if (!empty($next_post))
         {
-          $pager .= '<span class="pzarc-pager-next">'.$next_post.'</span>';
+          $pager .= '<span class="pzarc-pager-next">' . $next_post . '</span>';
 
         }
         $pager .= '</div>';
         break;
 
-    case 'wppagenavi':
-      if (function_exists('wp_pagenavi'))
-      {
-        $pager = '<div class="pzarc-pager">';
-        ob_start();
-        wp_pagenavi();
-        $pager .= ob_get_contents();
-        ob_end_clean();
-        $pager .= '</div>';
-      }
-      break;
+      case 'wppagenavi':
+        if (function_exists('wp_pagenavi'))
+        {
+          $pager = '<div class="pzarc-pager">';
+          ob_start();
+          wp_pagenavi();
+          $pager .= ob_get_contents();
+          ob_end_clean();
+          $pager .= '</div>';
+        }
+        break;
     }
 
     return $pager;
@@ -723,7 +753,7 @@ class pzarc_Display
   function strip_unused_tags($strip_from)
   {
     // removed while in development
-  //  return $strip_from;
+    //  return $strip_from;
 
     return preg_replace('/{{([\w|\-]*)}}/s', '', $strip_from);
   }
@@ -744,11 +774,6 @@ class pzarc_Display
     // $layout = an arrayed version of the cell layout. Not sure why it's there.
 
     $return_str = $components_open;
-    if ($this->cell_info[ '_pzarc_layout-background-image' ] == 'align' && !empty($the_inputs[ 'image' ]))
-    {
-      $return_str .= '<div class="pzarc-bg-image entry-content"><img src="' . $the_inputs[ 'image' ] . '" /></div>';
-    }
-
 
     foreach ($the_inputs as $key => $the_input)
     {
@@ -800,7 +825,12 @@ class pzarc_Display
    *************************************************/
   function custom_excerpt_length($length)
   {
-    return $this->cell_info[ '_pzarc_cell-settings-excerpts-word-count' ][0];
+    if (empty($this->cell_info) || empty($this->cell_info[ '_pzarc_cell-settings-excerpts-word-count' ]))
+    {
+      return $length;
+    }
+
+    return $this->cell_info[ '_pzarc_cell-settings-excerpts-word-count' ][ 0 ];
   }
 
   /*************************************************
@@ -816,6 +846,11 @@ class pzarc_Display
    *************************************************/
   function new_excerpt_more($more)
   {
+    if (empty($this->cell_info) || empty($this->cell_info[ '_pzarc_cell-settings-excerpts-linkmore' ]))
+    {
+      return $more;
+    }
+
     if (!empty($this->cell_info[ '_pzarc_cell-settings-excerpts-linkmore' ]))
     {
       return esc_html($this->cell_info[ '_pzarc_cell-settings-excerpts-morestr' ]) . ' <a class="read-more" href="' . get_permalink(get_the_ID()) . '">' . esc_html($this->cell_info[ '_pzarc_cell-settings-excerpts-linkmore' ]) . '</a>';

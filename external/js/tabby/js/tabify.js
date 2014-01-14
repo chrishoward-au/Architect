@@ -14,7 +14,7 @@ jQuery(document).ready(function() {
   // we should change this to work on any page by makign this defaults
   var tabscontainer = '#normal-sortables';
   //gotta automate this bit!
-  var slugdivs_cells = ['#cell-designer','#styling'];
+  var slugdivs_cells = ['#cell-designer','#styling','#settings'];
   var slugdivs_bpsections = ['#blueprint-section-1','#blueprint-section-2','#blueprint-section-3'];
   var title = 'h3 span';
   var panelsdiv = '.inside';

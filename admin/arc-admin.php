@@ -34,6 +34,8 @@ class pzarcAdmin
       require_once PZARC_PLUGIN_PATH . '/admin/arc-cell-layouts.php';
       require_once PZARC_PLUGIN_PATH . '/admin/arc-data-selection.php';
       require_once PZARC_PLUGIN_PATH . '/admin/arc-blueprints.php';
+      require_once PZARC_PLUGIN_PATH . '/admin/arc-galleries.php';
+      require_once PZARC_PLUGIN_PATH . '/admin/arc-slides.php';
 
  //TODO:     require_once PZARC_PLUGIN_PATH . '/admin/arc-widget.php';
 
@@ -45,6 +47,8 @@ class pzarcAdmin
       $cell_layout       = new pzarc_Cell_Layouts;
       $data_selection    = new pzarc_Contents;
       $content_blueprint = new pzarc_Blueprints;
+      $galleries = new pzarc_Galleries;
+      $slides = new pzarc_Slides;
 
 
 //add_action( 'pzarc_do_it', array( $this, 'do_it' ) );
@@ -54,8 +58,9 @@ class pzarcAdmin
 
   function admin_enqueue($hook)
   {
-    wp_enqueue_style('pzarc-block-css', PZARC_PLUGIN_URL . '/admin/css/arc-admin.css');
-    wp_enqueue_style('pzarc-jqueryui-css', PZARC_PLUGIN_URL . '/external/jquery-ui-1.10.2.custom/css/pz_architect/jquery-ui-1.10.2.custom.min.css');
+    wp_enqueue_style( 'pzarc-admin-styles');
+//    wp_enqueue_style('pzarc-jqueryui-css');
+
     $screen = get_current_screen();
     if (strpos(('X' . $screen->id), 'arc-') > 0)
     {
@@ -65,7 +70,7 @@ class pzarcAdmin
 //      wp_enqueue_script('jquerui');
       wp_enqueue_style('dashicons');
 
-      wp_enqueue_style('pzarc-block-css', PZARC_PLUGIN_URL . '/admin/css/arc-admin.css');
+//      wp_enqueue_style('pzarc-block-css', PZARC_PLUGIN_URL . '/admin/css/arc-admin.css');
       wp_enqueue_style('pzarc-jqueryui-css', PZARC_PLUGIN_URL . '/external/jquery-ui-1.10.2.custom/css/pz_architect/jquery-ui-1.10.2.custom.min.css');
 
       wp_enqueue_script('jquery-pzarc-metaboxes', PZARC_PLUGIN_URL . '/admin/js/arc-metaboxes.js', array('jquery'));

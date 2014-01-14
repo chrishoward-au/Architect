@@ -29,7 +29,7 @@
     );
 
     // should we add filters? e.g apply_filters('arctitle','{{title}}')
-    $celldefs[ 'post' ]['wrapper'] = '<article id="post-{{postid}}" class="block-type-content post-{{postid}} post type-{{posttype}} status-{{poststatus}} format-{{postformat}} hentry {{category-categories}} {{tag-tags}}">{{wrapperinnards}}</article>';
+    $celldefs[ 'post' ]['wrapper'] = '{{bgimagetl}}<article id="post-{{postid}}" class="block-type-content post-{{postid}} post type-{{posttype}} status-{{poststatus}} format-{{postformat}} hentry {{category-categories}} {{tag-tags}} {{pzclasses}}">{{wrapperinnards}}</article>{{bgimagebr}}';
 
     $celldefs[ 'post' ]['postlink'] = '<a href="{{permalink}}" title="{{title}}">';
     $celldefs[ 'post' ]['header'] = '<header class="entry-header">{{headerinnards}}</header><!-- .entry-header -->';
