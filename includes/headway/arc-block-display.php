@@ -28,7 +28,7 @@ class HeadwayArchitectBlock extends HeadwayBlockAPI
 			$block = HeadwayBlocksData::get_block($block[ 'settings' ][ 'mirror-block' ]);
 		}
 
-		wp_enqueue_style('pzarc-block-css', PZARC_PLUGIN_URL . '/frontend/css/arc-front.css');
+//		wp_enqueue_style('pzarc-plugin-styles');
 
 		wp_enqueue_script('jquery');
 		wp_enqueue_script('js-isotope-v2');

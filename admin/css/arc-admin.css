@@ -63,17 +63,17 @@
   border: 1px solid #eeeaf0;
 }
 
-.pzarc-align-left {
+.pzarc-align.left {
   float: left;
   padding-right: 5px;
 }
 
-.pzarc-align-right {
+.pzarc-align.right {
   float: right;
   padding-left: 5px;
 }
 
-.pzarc-align-none {
+.pzarc-align.none {
   display: none;
 }
 
@@ -941,3 +941,9 @@ color:#333;
   margin-bottom:20px;
 }
 
+.cmb_metabox .field-title {
+	margin-bottom: 5px;
+}
+.cmb_metabox .field {
+	padding:10px 0;
+}

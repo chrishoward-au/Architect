@@ -20,6 +20,13 @@
  * NAV BRICKS
  */
 
+/* Plugins to try to support
+*
+ * WPML
+ * WooCommerce
+ * LoopBuddy
+ *
+ */
 
 
 /* why not use a WP like methodology!

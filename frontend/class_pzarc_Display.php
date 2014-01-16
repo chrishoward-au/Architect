@@ -60,7 +60,7 @@ class pzarc_Display
    *************************************************/
   function blueprint_header($blueprint_id)
   {
-    $this->output .= '<div id="pzarc=container-' . $this->blueprint[ 'blueprint-short-name' ] . '" class="pzarc-container pzarc-blueprint-' . $blueprint_id . '">';
+    $this->output .= '<div id="pzarc-container-' . $this->blueprint[ 'blueprint-short-name' ] . '" class="pzarc-container pzarc-blueprint-' . $blueprint_id . '">';
     if ($this->blueprint[ 'blueprint-pager' ] != 'none' && ($this->blueprint[ 'blueprint-pager-location' ] == 'top' || $this->blueprint[ 'blueprint-pager-location' ] == 'both'))
     {
       $this->output .= '{{pager}}';
@@ -253,76 +253,92 @@ class pzarc_Display
      * THE QUERY HAS ALREADY HAPPENED. NOW WE JUST NEED TO SHOW THE CONTENT, BROKEN DOWN INTO SECTIONS AND CELLS
      **********************************************************************
      **********************************************************************/
-    foreach ($this->blueprint[ 'section' ] as $key => $section_info)
-    {
+//    foreach ($this->blueprint[ 'section' ] as $key => $section_info)
+ //   {
 //var_dump($key);
-      // load up the cell's css for this section
-      $cellid = $section_info[ 'section-cell-layout' ];
-      if (!empty($this->blueprint[ 'blueprint-id' ]))
-      {
-        $upload_dir = wp_upload_dir();
-        $filename   = trailingslashit($upload_dir[ 'baseurl' ]) . '/cache/pizazzwp/arc/pzarc-cell-layout-' . $cellid . '.css';
-        wp_enqueue_style('blueprint-css' . $this->blueprint[ 'blueprint-id' ], $filename);
-      }
+ //     // load up the cell's css for this section
+ //     $cellid = $section_info[ 'section-cell-layout' ];
+ //     if (!empty($this->blueprint[ 'blueprint-id' ]))
+ //     {
+  //      $upload_dir = wp_upload_dir();
+ //       $filename   = trailingslashit($upload_dir[ 'baseurl' ]) . '/cache/pizazzwp/arc/pzarc-cell-layout-' . $cellid . '.css';
+  //      wp_enqueue_style('blueprint-css' . $this->blueprint[ 'blueprint-id' ], $filename);
+  //    }
 
-      $this->section_info = $section_info;
-      //     var_dump($pzarc_blueprint[ 'section' ][ $key ][ 'section-enable' ]);
-      if ($pzarc_blueprint[ 'section' ][ $key ][ 'section-enable' ])
+    if (!empty($this->blueprint['section'])) {
+      $key=0;
+      while (!empty($this->blueprint[ 'section' ][$key] ))
       {
-
-        $this->output .= ($key == 0) ? '{{nav-top-outside}}' : null;
-        $this->output .= ($key == 0) ? '{{nav-left-outside}}' : null;
-        if ($section_info[ 'section-layout-mode' ] == 'basic')
+        $section_info = $this->blueprint[ 'section' ][$key];
+        // load up the cell's css for this section
+        $cellid = $section_info[ 'section-cell-layout' ];
+        if (!empty($this->blueprint[ 'blueprint-id' ]))
         {
-          $this->output .= '<div class="pzarc-section pzarc-section-' . ($key + 1) . '">';
-        }
-        else
-        {
-//        $this->output .= '<div class="js-isotope pzarc-section pzarc-section-' . $key . '" data-isotope-options=\'{ "layoutMode": "'.$pzarc_section_info['section-layout-mode'].'","itemSelector": ".pzarc-cell" }\'>';
-          $this->output .= '<div class="pzarc-section pzarc-section-' . ($key + 1) . '">';
+          $upload_dir = wp_upload_dir();
+          $filename   = trailingslashit($upload_dir[ 'baseurl' ]) . '/cache/pizazzwp/arc/pzarc-cell-layout-' . $cellid . '.css';
+          wp_enqueue_style('blueprint-css' . $this->blueprint[ 'blueprint-id' ], $filename);
         }
 
-        if ($pzarc_query->have_posts())
+        $this->section_info = $section_info;
+        //     var_dump($pzarc_blueprint[ 'section' ][ $key ][ 'section-enable' ]);
+        if ($pzarc_blueprint[ 'section' ][ $key ][ 'section-enable' ])
         {
-          $this->output .= ($key == 0) ? '{{nav-top-inside}}' : null;
-          //  var_dump($pzarc_query->found_posts);
-          $i = 1;
-          while ($pzarc_query->have_posts())
+
+          $this->output .= ($key == 0) ? '{{nav-top-outside}}' : null;
+          $this->output .= ($key == 0) ? '{{nav-left-outside}}' : null;
+          if ($section_info[ 'section-layout-mode' ] == 'basic')
           {
-            $pzarc_query->the_post();
-            $this->build_cell($pzarc_query->post, $celldef, $section_info[ 'section-cell-layout' ], $section_info[ 'section-cell-settings' ]);
+            $this->output .= '<div class="pzarc-section pzarc-section-' . ($key + 1) . '">';
+          }
+          else
+          {
+  //        $this->output .= '<div class="js-isotope pzarc-section pzarc-section-' . $key . '" data-isotope-options=\'{ "layoutMode": "'.$pzarc_section_info['section-layout-mode'].'","itemSelector": ".pzarc-cell" }\'>';
+            $this->output .= '<div class="pzarc-section pzarc-section-' . ($key + 1) . '">';
+          }
 
-            //      $this->build_cell($pzarc_query->post, $celldefinition,$celldef,$section_info['section-cell-layout']);
-
-            $this->set_nav_link();
-
-// This needs to work out when to show! Maybe add it as a cell row???? Or at least an option??
-            // if show comments {
-//          $this->output = apply_filters('pzarc_comments',$this->output);
-
-            // Leave the while loop if up to the post count
-            if ($section_info[ 'section-cells-per-view' ] != 0 && ++$i > $section_info[ 'section-cells-per-view' ])
+          if ($pzarc_query->have_posts())
+          {
+            $this->output .= ($key == 0) ? '{{nav-top-inside}}' : null;
+            //  var_dump($pzarc_query->found_posts);
+            $i = 1;
+            while ($pzarc_query->have_posts())
             {
-              break;
-            }
+              $pzarc_query->the_post();
+              $this->build_cell($pzarc_query->post, $celldef, $section_info[ 'section-cell-layout' ], $section_info[ 'section-cell-settings' ]);
 
-          } // End WP loop - tho we might use it some more
-          $this->output .= ($key == 0) ? '{{nav-bottom-inside}}' : null;
-        }
-        $this->output .= '</div><!-- end pzarc-section-' . ($key + 1) . ' -->';
-        $this->output .= ($key == 0) ? '{{nav-top-outside}}' : null;
-        $this->output .= ($key == 0) ? '{{nav-left-outside}}' : null;
+              //      $this->build_cell($pzarc_query->post, $celldefinition,$celldef,$section_info['section-cell-layout']);
 
-        // Add the section nav
-        if ($section_info[ 'section-navigation' ] != 'none')
-        {
-          $this->output = str_replace('{{nav-' . $section_info[ 'section-nav-pos' ] . '-' . $section_info[ 'section-nav-loc' ] . '}}', $this->add_nav(), $this->output);
+              $this->set_nav_link();
+
+  // This needs to work out when to show! Maybe add it as a cell row???? Or at least an option??
+              // if show comments {
+  //          $this->output = apply_filters('pzarc_comments',$this->output);
+
+              // Leave the while loop if up to the post count
+              if ($section_info[ 'section-cells-per-view' ] != 0 && ++$i > $section_info[ 'section-cells-per-view' ])
+              {
+                break;
+              }
+
+            } // End WP loop - tho we might use it some more
+            $this->output .= ($key == 0) ? '{{nav-bottom-inside}}' : null;
+          }
+          $this->output .= '</div><!-- end pzarc-section-' . ($key + 1) . ' -->';
+          $this->output .= ($key == 0) ? '{{nav-top-outside}}' : null;
+          $this->output .= ($key == 0) ? '{{nav-left-outside}}' : null;
+
+          // Add the section nav
+          if ($section_info[ 'section-navigation' ] != 'none')
+          {
+            $this->output = str_replace('{{nav-' . $section_info[ 'section-nav-pos' ] . '-' . $section_info[ 'section-nav-loc' ] . '}}', $this->add_nav(), $this->output);
+          }
+          // if we are out ofthe loop then we've run out of posts, so break out otherwise it just loops back tothe firstpost. go figure!
+          if (!in_the_loop())
+          {
+            break;
+          }
         }
-        // if we are out ofthe loop then we've run out of posts, so break out otherwise it just loops back tothe firstpost. go figure!
-        if (!in_the_loop())
-        {
-          break;
-        }
+        $key++;
       }
     }
     /*********************************************************************
@@ -363,12 +379,10 @@ class pzarc_Display
    *************************************************/
   function build_cell_definition($celldef, $section_cell_settings, $cell_layout)
   {
-    $meta1_confg = unserialize($section_cell_settings[ '_pzarc_cell-settings-meta1-config' ][ 0 ]);
-    $meta2_confg = unserialize($section_cell_settings[ '_pzarc_cell-settings-meta2-config' ][ 0 ]);
-    $meta3_confg = unserialize($section_cell_settings[ '_pzarc_cell-settings-meta3-config' ][ 0 ]);
-    $cell_meta1  = (!empty($meta1_confg) ? '{{' . implode('}}, {{', $meta1_confg) . '}}' : null);
-    $cell_meta2  = (!empty($meta2_confg) ? '{{' . implode('}}, {{', $meta2_confg) . '}}' : null);
-    $cell_meta3  = (!empty($meta3_confg) ? '{{' . implode('}}, {{', $meta3_confg) . '}}' : null);
+    $cell_meta1 = preg_replace('/%(\\w*)%/u','{{$1}}',$section_cell_settings[ '_pzarc_cell-settings-meta1-config' ][ 0 ]);
+    $cell_meta2 = preg_replace('/%(\\w*)%/u','{{$1}}',$section_cell_settings[ '_pzarc_cell-settings-meta2-config' ][ 0 ]);
+    $cell_meta3 = preg_replace('/%(\\w*)%/u','{{$1}}',$section_cell_settings[ '_pzarc_cell-settings-meta3-config' ][ 0 ]);
+
     // build up the blueprint for the cell, ordering from
     // won't this be fun!!
     // need to match celllayout slugs to celldefs array index
@@ -469,7 +483,7 @@ class pzarc_Display
     $the_inputs[ 'content' ]    = apply_filters('the_content', get_the_content());
     $the_inputs[ 'image' ]      = $post_image; // This needs to be a url coz that's how it's shown
     $the_inputs[ 'caption' ]    = pzarc_get_image_caption(get_post_thumbnail_id($post_info->ID));
-    $the_inputs[ 'date' ]       = apply_filters('the_date', get_the_date());
+    $the_inputs[ 'date' ]       = apply_filters('the_date', get_the_date($section_cell_settings['_pzarc_cell-settings-meta-date-format'][0]) );
     $the_inputs[ 'categories' ] = apply_filters('the_category', 'Categories: ' . trim(get_the_category_list(', '), ', '));
     $the_inputs[ 'tags' ]       = apply_filters('the_tags', 'Tags: ' . trim(get_the_tag_list(', '), ', '));
     $the_inputs[ 'author' ]     = apply_filters('the_author', get_the_author());
@@ -493,10 +507,14 @@ class pzarc_Display
     {
       $celldef[ 'excerpt' ] = str_replace('{{image-in-content}}', '', $celldef[ 'excerpt' ]);
       $celldef[ 'content' ] = str_replace('{{image-in-content}}', '', $celldef[ 'content' ]);
+      if (empty($post_image)) {
+        $celldef[ 'excerpt' ] = str_replace('{{nothumb}}', 'pznothumb', $celldef[ 'excerpt' ]);
+        $celldef[ 'content' ] = str_replace('{{nothumb}}', 'pznothumb', $celldef[ 'content' ]);
+      }
     }
     else
     {
-      $celldef[ 'image' ]   = str_replace('{{incontent}}', ' incontent', $celldef[ 'image' ]);
+      $celldef[ 'image' ]   = str_replace('{{incontent}}', ' incontent pzarc-align '. $this->cell_info[ '_pzarc_layout-excerpt-thumb' ], $celldef[ 'image' ]);
       $celldef[ 'excerpt' ] = str_replace('{{image-in-content}}', $celldef[ 'image' ], $celldef[ 'excerpt' ]);
       $celldef[ 'content' ] = str_replace('{{image-in-content}}', $celldef[ 'image' ], $celldef[ 'content' ]);
 

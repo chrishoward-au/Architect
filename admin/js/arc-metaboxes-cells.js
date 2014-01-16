@@ -49,17 +49,29 @@ jQuery(document).ready(function() {
 
   jQuery('select#_pzarc_layout-excerpt-thumb-cmb-field-0').change(function() {
 		if (jQuery(this).val() == 'left') {
-			jQuery('.pzarc-draggable-excerpt img').removeClass('pzarc-align-right');
-			jQuery('.pzarc-draggable-excerpt img').removeClass('pzarc-align-none');
-			jQuery('.pzarc-draggable-excerpt img').addClass('pzarc-align-left');
+      jQuery('.pzarc-draggable-excerpt img.pzarc-align').removeClass('right');
+      jQuery('.pzarc-draggable-excerpt img.pzarc-align').removeClass('none');
+      jQuery('.pzarc-draggable-excerpt img.pzarc-align').addClass('left');
+
+      jQuery('.pzarc-draggable-content img.pzarc-align').removeClass('right');
+      jQuery('.pzarc-draggable-content img.pzarc-align').removeClass('none');
+      jQuery('.pzarc-draggable-content img.pzarc-align').addClass('left');
 		} else if (jQuery(this).val() == 'right') {
-			jQuery('.pzarc-draggable-excerpt img').removeClass('pzarc-align-left');
-			jQuery('.pzarc-draggable-excerpt img').removeClass('pzarc-align-none');
-			jQuery('.pzarc-draggable-excerpt img').addClass('pzarc-align-right');
+      jQuery('.pzarc-draggable-excerpt img.pzarc-align').removeClass('left');
+      jQuery('.pzarc-draggable-excerpt img.pzarc-align').removeClass('none');
+      jQuery('.pzarc-draggable-excerpt img.pzarc-align').addClass('right');
+
+      jQuery('.pzarc-draggable-content img.pzarc-align').removeClass('left');
+      jQuery('.pzarc-draggable-content img.pzarc-align').removeClass('none');
+      jQuery('.pzarc-draggable-content img.pzarc-align').addClass('right');
 		} else {
-			jQuery('.pzarc-draggable-excerpt img').addClass('pzarc-align-none');
-			jQuery('.pzarc-draggable-excerpt img').removeClass('pzarc-align-left');
-			jQuery('.pzarc-draggable-excerpt img').removeClass('pzarc-align-right');
+      jQuery('.pzarc-draggable-excerpt img.pzarc-align').addClass('none');
+      jQuery('.pzarc-draggable-excerpt img.pzarc-align').removeClass('left');
+      jQuery('.pzarc-draggable-excerpt img.pzarc-align').removeClass('right');
+
+      jQuery('.pzarc-draggable-content img.pzarc-align').addClass('none');
+      jQuery('.pzarc-draggable-content img.pzarc-align').removeClass('left');
+      jQuery('.pzarc-draggable-content img.pzarc-align').removeClass('right');
 		}
 	});
 
@@ -103,12 +115,12 @@ jQuery(document).ready(function() {
 		pzarc_update_components_container_width(cell_layout);
 	});
 
-	jQuery('input#_pzarc_layout-nudge-section-x-cmb-field-0').change(function(e) {
+	jQuery('input#_pzarc_layout-sections-nudge-x-cmb-field-0').change(function(e) {
     var cell_layout = jQuery.parseJSON(jQuery('input#_pzarc_layout-cell-preview-cmb-field-0').val());
 		pzarc_update_components_nudge(cell_layout);
 	});
 
-	jQuery('input#_pzarc_layout-nudge-section-y-cmb-field-0').change(function(e) {
+	jQuery('input#_pzarc_layout-sections-nudge-y-cmb-field-0').change(function(e) {
     var cell_layout = jQuery.parseJSON(jQuery('input#_pzarc_layout-cell-preview-cmb-field-0').val());
 		pzarc_update_components_nudge(cell_layout);
 	});
@@ -154,15 +166,15 @@ jQuery(document).ready(function() {
 			element_html['meta2'] = '<span class="pzarc-draggable pzarc-draggable-meta2 pzarc-draggable-meta" title= "Meta info 2"  data-idcode=meta2 style="font-size:11px;"><span>Categories - News, Sport</span></span>';
 
 			element_html['image'] = '<span class="pzarc-draggable pzarc-draggable-image"  title= "Featured image" data-idcode=image style="max-height:100px;overflow:hidden;"><span><img src="PZARC_PLUGIN_URL/assets/images/sample-image.jpg" style="max-width:100%;"/></span></span>';
-			element_html['image'] = element_html['image'].replace(/PZARC_PLUGIN_URL/, plugin_url);
+			element_html['image'] = element_html['image'].replace(/PZARC_PLUGIN_URL/g, plugin_url);
       element_html['caption'] = '<span class="pzarc-draggable pzarc-draggable-caption pzarc-draggable-caption" title="Image caption" data-idcode=caption ><span>Featured image caption</span></span>';
 
-			element_html['content'] = '<span class="pzarc-draggable pzarc-draggable-content" title= "Full post content"  data-idcode=content style="font-size:13px;"><span><img src="PZARC_PLUGIN_URL/assets/images/sample-image.jpg" style="max-width:30%;float:left;padding:5px;"/>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam quis justo erat. <ul><li>&nbsp;&bull;&nbsp;Cras semper sem hendrerit</li><li>&nbsp;&bull;&nbsp;Tortor porta at auctor</li></ul><strong>Lacus consequat</strong><p>Pellentesque pulvinar iaculis tellus in blandit. Suspendisse rhoncus, magna vel eleifend cursus, turpis odio molestie urna, quis posuere eros risus quis neque. </p></span></span>';
-			element_html['content'] = element_html['content'].replace(/PZARC_PLUGIN_URL/, plugin_url);
+			element_html['content'] = '<span class="pzarc-draggable pzarc-draggable-content" title= "Full post content"  data-idcode=content style="font-size:13px;"><span><img src="PZARC_PLUGIN_URL/assets/images/sample-image.jpg" class="pzarc-align '+jQuery("select#_pzarc_layout-excerpt-thumb-cmb-field-0").val()+'" style="max-width:20%;"/><img src="PZARC_PLUGIN_URL/assets/images/fireworks.jpg" style="max-width:30%;float:left;padding:5px;"/>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam quis justo erat. <ul><li>&nbsp;&bull;&nbsp;Cras semper sem hendrerit</li><li>&nbsp;&bull;&nbsp;Tortor porta at auctor</li></ul><strong>Lacus consequat</strong><p>Pellentesque pulvinar iaculis tellus in blandit. Suspendisse rhoncus, magna vel eleifend cursus, turpis odio molestie urna, quis posuere eros risus quis neque. </p></span></span>';
+			element_html['content'] = element_html['content'].replace(/PZARC_PLUGIN_URL/g, plugin_url);
 
-			element_html['excerpt'] = '<span class="pzarc-draggable pzarc-draggable-excerpt"  title= "Excerpt with featured image" data-idcode=excerpt style="font-size:13px;"><span><img src="PZARC_PLUGIN_URL/assets/images/sample-image.jpg" class="pzarc-align-'+jQuery("select#_pzarc_layout-excerpt-thumb-cmb-field-0").val()+'" style="max-width:20%;"/>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam quis justo erat. Cras semper sem hendre...[more]</span></span>';
+			element_html['excerpt'] = '<span class="pzarc-draggable pzarc-draggable-excerpt"  title= "Excerpt with featured image" data-idcode=excerpt style="font-size:13px;"><span><img src="PZARC_PLUGIN_URL/assets/images/sample-image.jpg" class="pzarc-align '+jQuery("select#_pzarc_layout-excerpt-thumb-cmb-field-0").val()+'" style="max-width:20%;"/>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam quis justo erat. Cras semper sem hendre...[more]</span></span>';
 
-			element_html['excerpt'] = element_html['excerpt'].replace(/PZARC_PLUGIN_URL/, plugin_url);
+			element_html['excerpt'] = element_html['excerpt'].replace(/PZARC_PLUGIN_URL/g, plugin_url);
 
 			element_html['meta3'] = '<span class="pzarc-draggable pzarc-draggable-meta3 pzarc-draggable-meta"  title= "Meta info 3" data-idcode=meta3 style="font-size:11px;"><span>Comments: 27</span></span>';
       element_html['custom1'] = '<span class="pzarc-draggable pzarc-draggable-custom1 pzarc-draggable-meta"  title= "Custom field 1" data-idcode=custom1 style="font-size:11px;"><span>Custom content 1</span></span>';
@@ -247,9 +259,9 @@ jQuery(document).ready(function() {
    */
   function pzarc_update_component_visibility(cell_layout) {
     var components_state = jQuery("select#_pzarc_layout-show-cmb-field-0 option");
-    console.log(components_state,cell_layout);
+  //  console.log(components_state,cell_layout);
     jQuery.each(components_state,function(index,value){
-      console.log(value.value,cell_layout[value.value]);
+  //    console.log(value.value,cell_layout[value.value]);
       cell_layout[value.value].show = value.selected;
       if (value.selected) {
         jQuery('.pzarc-draggable-' + value.value).show();
@@ -461,13 +473,19 @@ jQuery(document).ready(function() {
         /*********************
          // Update components nudge
          *********************/
-        var nudgexy = [jQuery('input#_pzarc_layout-nudge-section-x-cmb-field-0').val(),jQuery('input#_pzarc_layout-nudge-section-y-cmb-field-0').val()];
+        var nudgexy = [jQuery('input#_pzarc_layout-sections-nudge-x-cmb-field-0').val(),jQuery('input#_pzarc_layout-sections-nudge-y-cmb-field-0').val()];
         var sections_position = jQuery('select#_pzarc_layout-sections-position-cmb-field-0').find('option:selected').val();
-        if (sections_position == 'left' || sections_position == 'top') {
+        if (sections_position == 'left') {
           jQuery('.pzarc-content-area').css('marginLeft', nudgexy[0] + '%');
           jQuery('.pzarc-content-area').css('marginTop', nudgexy[1] + '%');
-        } else if (sections_position == 'right' || sections_position == 'bottom') {
+        }else if (sections_position == 'top') {
+          jQuery('.pzarc-content-area').css('marginLeft', nudgexy[0] + '%');
+          jQuery('.pzarc-content-area').css('marginTop', nudgexy[1] + '%');
+        } else if (sections_position == 'right') {
           jQuery('.pzarc-content-area').css('marginRight', nudgexy[0] + '%');
+          jQuery('.pzarc-content-area').css('marginTop', nudgexy[1] + '%');
+        } else if (sections_position == 'bottom') {
+          jQuery('.pzarc-content-area').css('marginLeft', nudgexy[0] + '%');
           jQuery('.pzarc-content-area').css('marginBottom', nudgexy[1] + '%');
         }
   }

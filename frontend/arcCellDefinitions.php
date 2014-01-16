@@ -47,14 +47,14 @@
 //oops should be using this for featured image
     $celldefs[ 'post' ]['image'] = '<figure class="entry-thumbnail {{incontent}}">{{postlink}}<img width="{{width}}" src="{{image}}" class="attachment-post-thumbnail wp-post-image" alt="{{alttext}}">{{closepostlink}}{{captioncode}}</figure>';
     $celldefs[ 'post' ]['caption'] = '<figcaption class="caption">{{caption}}</figcaption>';
-    $celldefs[ 'post' ]['content'] = ' <div class="entry-content">{{image-in-content}}{{content}}</div><!-- .entry-content -->';
+    $celldefs[ 'post' ]['content'] = ' <div class="entry-content {{nothumb}}">{{image-in-content}}{{content}}</div><!-- .entry-content -->';
     $celldefs[ 'post' ]['custom1'] = '<div class="entry-customfield entry-customfield-1">{{custom1innards}}</div><!-- .entry-custom 1 -->';
     $celldefs[ 'post' ]['custom2'] = '<div class="entry-customfield entry-customfield-2">custom2innards}}</div><!-- .entry-custom 2 -->';
     $celldefs[ 'post' ]['custom3'] = '<div class="entry-customfield entry-customfield-3">{{custom3innards}}</div><!-- .entry-custom 3 -->';
     $celldefs[ 'post' ]['footer'] = '<footer class="entry-meta">{{footerinnards}}</footer><!-- .entry-meta -->';
 
 //    $celldefs[ 'post' ]['image'] = '<img class="entry-image" src="{{image}}">';
-    $celldefs[ 'post' ]['excerpt'] = ' <div class="entry-excerpt">{{image-in-content}}{{excerpt}}</div><!-- .entry-excerpt -->';
+    $celldefs[ 'post' ]['excerpt'] = ' <div class="entry-excerpt {{nothumb}}">{{image-in-content}}{{excerpt}}</div><!-- .entry-excerpt -->';
  
 
 

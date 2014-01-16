@@ -173,6 +173,7 @@ function pzarc_shortcode($atts, $content = null, $tag)
 /* Overrides is a list of ids */
 function pzarc($pzarc_blueprint = null, $pzarc_overrides = null, $is_shortcode = false)
 {
+
   if (empty($pzarc_blueprint))
   {
     // make this use a set of defaults. prob an excerpt grid
@@ -205,7 +206,16 @@ function pzarc_get_comments($pzarc_content)
   return $pzarc_content . $pzarc_comments;
 }
 
-
+// Add body class by filter
+add_filter('body_class','add_pzarc_class');
+function add_pzarc_class($classes) {
+  // add 'class-name' to the $classes array
+  if (!in_array('pzarchitect', $classes)) {
+    $classes[] = 'pzarchitect';
+  }
+  // return the $classes array
+  return $classes;
+}
 
 
 
