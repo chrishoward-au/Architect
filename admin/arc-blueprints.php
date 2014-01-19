@@ -181,12 +181,18 @@ function pzarc_blueprint_sections_tabbed($meta_boxes = array())
                   'name'     => __('Tabs', 'pzarc'),
                   'id'       => $prefix . 'layout-blueprint-sections-tabs',
                   'type'     => 'pztabs',
-                  'defaults' => array('#blueprint-section-1' => 'Blueprint Section 1', '#blueprint-section-2' => 'Blueprint Section 2', '#blueprint-section-3' => 'Blueprint Section 3','#blueprint-wireframe-preview' => 'Wireframe Preview'),
+                  'defaults' => array('#blueprint-section-1' => 'Blueprint Section 1',
+                                      '#blueprint-section-2' => 'Blueprint Section 2',
+                                      '#blueprint-section-3' => 'Blueprint Section 3',
+                                      '#blueprint-pagination' => 'Pagination',
+                                      '#blueprint-navigator' => 'Navigator',
+                                      '#blueprint-wireframe-preview' => 'Wireframe Preview'
+                  ),
           ),
 
   );
   $meta_boxes[ ] = array(
-          'title'    => 'Blueprint Sections',
+          'title'    => 'Blueprint Layout',
           'pages'    => 'arc-blueprints',
           'context'  => 'normal',
           'priority' => 'high',
@@ -237,7 +243,12 @@ function pzarc_blueprint_parts_switcher($meta_boxes = array())
                   'name'     => __('Switcher', 'pzarc'),
                   'id'       => $prefix . 'layout-blueprint-parts-switch',
                   'type'     => 'pztabs',
-                  'defaults' => array('#contents-selection-settings' => 'Content', '#blueprint-settings' => 'Sections'),
+                  'defaults' => array('#contents-selection-settings' => 'Content', '#blueprint-settings' => 'Layout'),
+                  // This showuld only be one each, so as don't have to worry about what really is visible based on settings
+                  'visibility' => array(
+                    '#blueprint-settings' => array('#blueprint-layout'),
+                    '#contents-selection-settings' => array('#blueprint-content')
+                  )
           ),
 
   );
@@ -616,45 +627,6 @@ function pzarc_blueprint_settings_metabox($meta_boxes = array())
                           'pager'     => 'Pagination',
                           'navigator' => 'Navigator'
                   )
-          ),
-          array(
-                  'name'    => __('Order by', 'pzarc'),
-                  'id'      => $prefix . 'contents-orderby',
-                  'type'    => 'pzselect',
-                  'default' => 'date',
-                  'cols'    => 6,
-                  'options' => array(
-                          'date'  => 'Date',
-                          'title' => 'Title',
-                  ),
-          ),
-          array(
-                  'name'    => __('Order direction', 'pzarc'),
-                  'id'      => $prefix . 'contents-orderdir',
-                  'type'    => 'pzselect',
-                  'default' => 'DESC',
-                  'cols'    => 6,
-                  'options' => array(
-                          'ASC'  => 'Ascending',
-                          'DESC' => 'Descending',
-                  ),
-          ),
-          array(
-                  'name' => __('Skip N posts', 'pzarc'),
-                  'id'   => $prefix . 'contents-skip',
-                  'type' => 'pzspinner',
-                  'min'  => 0,
-                  'max'  => 9999,
-                  'step' => 1,
-                  'default'=>0,
-                  'desc' => __('Note: Skipping breaks pagination. This is a known WordPress bug.', 'pzarc'),
-          ),
-          array(
-                  'name'    => __('Sticky posts first', 'pzarc'),
-                  'id'      => $prefix . 'contents-sticky',
-                  'type'    => 'radio',
-                  'options' => array('yes'=>'Yes','no'=>'No'),
-                  'default' => 'no',
           ),
 
   );

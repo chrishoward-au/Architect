@@ -405,6 +405,45 @@ function pzarc_contents_settings_metabox($meta_boxes = array())
                   ),
                   'desc'    => 'todo: code all the js to show hide relevant sections'
           ),
+          array(
+                  'name'    => __('Order by', 'pzarc'),
+                  'id'      => $prefix . 'contents-orderby',
+                  'type'    => 'pzselect',
+                  'default' => 'date',
+                  'cols'    => 6,
+                  'options' => array(
+                          'date'  => 'Date',
+                          'title' => 'Title',
+                  ),
+          ),
+          array(
+                  'name'    => __('Order direction', 'pzarc'),
+                  'id'      => $prefix . 'contents-orderdir',
+                  'type'    => 'pzselect',
+                  'default' => 'DESC',
+                  'cols'    => 6,
+                  'options' => array(
+                          'ASC'  => 'Ascending',
+                          'DESC' => 'Descending',
+                  ),
+          ),
+          array(
+                  'name' => __('Skip N posts', 'pzarc'),
+                  'id'   => $prefix . 'contents-skip',
+                  'type' => 'pzspinner',
+                  'min'  => 0,
+                  'max'  => 9999,
+                  'step' => 1,
+                  'default'=>0,
+                  'desc' => __('Note: Skipping breaks pagination. This is a known WordPress bug.', 'pzarc'),
+          ),
+          array(
+                  'name'    => __('Sticky posts first', 'pzarc'),
+                  'id'      => $prefix . 'contents-sticky',
+                  'type'    => 'radio',
+                  'options' => array('yes'=>'Yes','no'=>'No'),
+                  'default' => 'no',
+          ),
 
           // array(
           //         'name'    => 'Save Contents Selection',

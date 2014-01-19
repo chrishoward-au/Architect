@@ -127,7 +127,7 @@ jQuery(document).ready(function () {
 
     // Need to make this a little clevered
     // needed this coz container was staying big
-    jQuery('.item-blueprint-section-1').trigger('click');
+    jQuery('.item-blueprint-wireframe-preview').trigger('click');
 
   }
 });

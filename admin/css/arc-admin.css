@@ -747,6 +747,7 @@ body.screen-arc-contents #side-sortables .postbox,
 body.screen-arc-layouts #side-sortables .postbox {
   background: #333;
   color: #ccc;
+  border:none;
 }
 
 body.screen-arc-contents h3.hndle,
