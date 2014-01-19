@@ -113,23 +113,23 @@ class pzarc_Cell_Layouts
   public function create_layouts_post_type()
   {
     $labels = array(
-            'name'               => _x('Cell designs', 'post type general name'),
-            'singular_name'      => _x('Cell design', 'post type singular name'),
-            'add_new'            => __('Add New Cell design'),
-            'add_new_item'       => __('Add New Cell design'),
-            'edit_item'          => __('Edit Cell design'),
-            'new_item'           => __('New Cell design'),
-            'view_item'          => __('View Cell design'),
-            'search_items'       => __('Search Cell designs'),
-            'not_found'          => __('No cell designs found'),
-            'not_found_in_trash' => __('No cell designs found in Trash'),
+            'name'               => _x('Panel designs', 'post type general name'),
+            'singular_name'      => _x('Panel design', 'post type singular name'),
+            'add_new'            => __('Add New Panel design'),
+            'add_new_item'       => __('Add New Panel design'),
+            'edit_item'          => __('Edit Panel design'),
+            'new_item'           => __('New Panel design'),
+            'view_item'          => __('View Panel design'),
+            'search_items'       => __('Search Panel designs'),
+            'not_found'          => __('No Panel designs found'),
+            'not_found_in_trash' => __('No Panel designs found in Trash'),
             'parent_item_colon'  => '',
-            'menu_name'          => _x('<span class="dashicons dashicons-id-alt"></span>Cells', 'pzarc-cell-designer'),
+            'menu_name'          => _x('<span class="dashicons dashicons-id-alt"></span>Panels', 'pzarc-cell-designer'),
     );
 
     $args = array(
             'labels'              => $labels,
-            'description'         => __('Architect cells are used to create reusable cell designs for use in your Architect blocks, widgets, shortcodes and WP template tags'),
+            'description'         => __('Architect Panels are used to create reusable cell designs for use in your Architect blocks, widgets, shortcodes and WP template tags'),
             'public'              => false,
             'publicly_queryable'  => false,
             'show_ui'             => true,
@@ -143,7 +143,7 @@ class pzarc_Cell_Layouts
             'menu_position'       => 10,
             'supports'            => array('title', 'revisions'),
             'exclude_from_search' => true,
-            //      'register_meta_box_cb' => array($this, 'layouts_meta')
+            //			'register_meta_box_cb' => array($this, 'layouts_meta')
     );
 
     register_post_type('arc-layouts', $args);
@@ -394,7 +394,7 @@ function pzarc_cell_designer_settings_meta($meta_boxes = array())
                     'left'   => 'Left of cell',
                     'right'  => 'Right of cell',
             ),
-            //'desc'     => __('Position for all the components as a group', 'pzarc')
+            //'desc'		 => __('Position for all the components as a group', 'pzarc')
     ),
     array(
             'name'    => __('Nudge components area up/down', 'pzarc'),
@@ -414,7 +414,6 @@ function pzarc_cell_designer_settings_meta($meta_boxes = array())
             'type'    => 'pzrange',
             'default'=>'0',
             'cols'    => 12,
-            'default' => '0',
             'min'     => '0',
             'max'     => '100',
             'step'    => '1',
@@ -794,8 +793,10 @@ function pzarc_cell_settings_meta($meta_boxes = array())
           array(
                   'name'    => __('Link titles', 'pzarc'),
                   'id'      => $prefix . 'cell-settings-link-titles',
-                  'type'    => 'checkbox',
                   'cols'    => 4,
+                  'type'    => 'radio',
+                  'options' => array('yes'=>'Yes','no'=>'No'),
+                  'default' => 'yes'
                   /// can't set defaults on checkboxes!
           ),
 
@@ -878,13 +879,17 @@ function pzarc_cell_settings_meta($meta_boxes = array())
           array(
                   'name' => __('Link image', 'pzarc'),
                   'id'   => $prefix . 'cell-settings-link-image',
-                  'type' => 'checkbox',
+                  'type'    => 'radio',
+                  'options' => array('yes'=>'Yes','no'=>'No'),
+                  'default' => 'yes',
                   'cols' => 3,
           ),
           array(
                   'name' => __('Image Captions', 'pzarc'),
                   'id'   => $prefix . 'cell-settings-image-captions',
-                  'type' => 'checkbox',
+                  'type'    => 'radio',
+                  'options' => array('yes'=>'Yes','no'=>'No'),
+                  'default' => 'no',
                   'cols' => 3,
           ),
           array(

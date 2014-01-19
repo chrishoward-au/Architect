@@ -56,6 +56,7 @@ jQuery(document).ready(function () {
     jQuery('#_pzarc_' + i + '-blueprint-min-cell-width-cmb-field-0').change(function () {
       pzarc_refresh_blueprint_layout(this.id.substr(7,1));
     });
+
     jQuery('#_pzarc_' + i + '-blueprint-section-enable-cmb-field-0').change(function () {
       var x = this.id.substr(7,1);
       pzarc_show_hide_section(x);
@@ -72,7 +73,7 @@ jQuery(document).ready(function () {
 
 /* Switched to pixel based once, but not as fluid. Butwhat was it's advantage? Why did I switch? */
   function pzarc_update_cell_margin(i,t) {
-//    //console.log(i,t,t.value);
+    console.log(i);
     var cellsAcross = jQuery('#_pzarc_'+i+'-blueprint-cells-across-cmb-field-0').get(0).value;
     var containerWidth = jQuery('.pzarc-section-'+i).width();
     //  //console.log(containerWidth);
@@ -85,7 +86,7 @@ jQuery(document).ready(function () {
   }
 
   function pzarc_update_cell_across(i,t) {
- //   //console.log(i,t,t.value);
+ console.log(i);
     var containerWidth = jQuery('#pzarc-sections-preview-'+i).width();
 //    //console.log(containerWidth);
     var cellRightMargin = jQuery('#_pzarc_'+i+'-blueprint-cells-vert-margin-cmb-field-0').val();
@@ -95,7 +96,7 @@ jQuery(document).ready(function () {
   }
 
   function pzarc_update_cell_count(i,t) {
-    //console.log(t.value);
+    console.log(i);
     jQuery('.pzarc-section-'+i).empty();
     var plugin_url = jQuery('.field.Pizazz_Layout_Field .plugin_url').get(0).textContent;
     var show_count = (t.value==0?10: t.value);
@@ -105,22 +106,28 @@ jQuery(document).ready(function () {
   }
 
   function pzarc_update_min_width(i,t) {
-//   //console.log(t.value);
+   console.log(i);
     jQuery('#pzarc-sections-preview-'+i+' .pzarc-section-cell').css({'minWidth': t.value + 'px'});
   }
 
   function pzarc_show_hide_section(x) {
     var y = parseInt(x)+1;
+ //   console.log(x);
     if (x==0){
-      jQuery('#pzarc-sections-preview-'+x).show();
-      jQuery('#blueprint-section-'+y+'.postbox').show();
-      jQuery('.item-blueprint-section-'+y).show();
+      jQuery('#pzarc-sections-preview-0').show();
+      jQuery('#blueprint-section-1.postbox').show();
+      jQuery('.item-blueprint-section-1').show();
       return;
     }
+//    console.log(x,jQuery('#_pzarc_'+x+'-blueprint-section-enable-cmb-field-0').get(0).checked);
 
-    console.log(x,jQuery('#_pzarc_'+x+'-blueprint-section-enable-cmb-field-0').get(0).checked);
     jQuery('#pzarc-sections-preview-'+x).toggle(jQuery('#_pzarc_'+x+'-blueprint-section-enable-cmb-field-0').get(0).checked);
     jQuery('#blueprint-section-'+y+'.postbox').toggle(jQuery('#_pzarc_'+x+'-blueprint-section-enable-cmb-field-0').get(0).checked);
     jQuery('.item-blueprint-section-'+y).toggle(jQuery('#_pzarc_'+x+'-blueprint-section-enable-cmb-field-0').get(0).checked);
+
+    // Need to make this a little clevered
+    // needed this coz container was staying big
+    jQuery('.item-blueprint-section-1').trigger('click');
+
   }
 });

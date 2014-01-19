@@ -421,7 +421,7 @@ if (!class_exists('Pizazz_Tabs_Field'))
       parent::enqueue_scripts();
 //      wp_enqueue_script('js-buoy', YOUR_PLUGIN_URL.'/external/js/tabby/js/buoy.js');
 //      wp_enqueue_script('js-tabby', YOUR_PLUGIN_URL.'/external/js/tabby/js/tabby.js');
-      wp_enqueue_script('js-tabify', YOUR_PLUGIN_URL.'/external/js/tabby/js/tabify.js');
+      wp_enqueue_script('js-tabify', YOUR_PLUGIN_URL.'/admin/js/arc-tabify.js');
 
     }
     public function enqueue_styles()

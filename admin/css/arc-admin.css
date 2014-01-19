@@ -856,7 +856,6 @@ select#_pzarc_layout-show-cmb-field-0 { height: 130px; }
   min-width: 180px;
   min-height: 70px;
   margin: 0 0 10px 0;
-  background: #eee;
   /* Remember to remove space between divs to stop inline-block space issue */
   display: inline-block;
   box-sizing: border-box;
@@ -864,6 +863,14 @@ select#_pzarc_layout-show-cmb-field-0 { height: 130px; }
   overflow: visible;
   padding: 5px;
   vertical-align: top;
+  background:#fafafa;
+}
+#pzarc-sections-preview-0 .pzarc-section-cell {border:solid 2px #cde;}
+#pzarc-sections-preview-1 .pzarc-section-cell {border:solid 2px #ced;}
+#pzarc-sections-preview-2 .pzarc-section-cell {border:solid 2px #ecd;}
+
+#pzarc-blueprint-wireframe {
+  background:#fff;
 }
 
 .pzarc-section-cell.guttered {
@@ -873,8 +880,8 @@ select#_pzarc_layout-show-cmb-field-0 { height: 130px; }
 /* Initially hide */
 #blueprint-section-2,
 #blueprint-section-3,
-#pzarc-sections-preview-2,
-#pzarc-sections-preview-3 { display: none; }
+#pzarc-sections-preview-1,
+#pzarc-sections-preview-2 { display: none; }
 
 .cmb_metabox .field {
   border-bottom: none;
@@ -933,9 +940,6 @@ font-size:24px;
 color:#333;
 }
 
-#pzarc-blueprint-wireframe {
-  background:#ddd;
-}
 
 .Pizazz_Submit_Button {
   margin-bottom:20px;

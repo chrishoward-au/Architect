@@ -61,12 +61,30 @@ function pzarc_get_the_blueprint($blueprint)
     return null;
   }
   $the_blueprint_meta = get_post_meta($blueprint_info->posts[ 0 ]->ID, null, true);
-//  $wp_query = $original_query;
-  // wp_reset_postdata();
 
-  // VERY risky- fine on single pages, but will cause horror on multi post pages
-  // rewind_posts();
+  $pzarc_blueprint = pzarc_flatten_wpinfo($the_blueprint_meta);
+//  return $pzarc_blueprint;
+  // 
+  // Is this loop really worth it?? Why not jsut work with the raw data?
+  $pzarc_blueprint['blueprint-id']          = $blueprint_info->posts[ 0 ]->ID;
 
+  $pzarc_blueprint[ 'section' ][ 0 ] =
+          array(
+                  'section-enable'             => true,
+                  'section-cell-settings'      => pzarc_flatten_wpinfo(get_post_meta($pzarc_blueprint[ '_pzarc_0-blueprint-section-cell-layout' ])),
+          );
+  $pzarc_blueprint[ 'section' ][ 1 ] =
+          array(
+                  'section-enable'             => !empty($pzarc_blueprint[ '_pzarc_1-blueprint-section-enable' ]),
+                  'section-cell-settings'      => (!empty($pzarc_blueprint[ '_pzarc_1-blueprint-section-enable' ])?pzarc_flatten_wpinfo(get_post_meta($pzarc_blueprint[ '_pzarc_1-blueprint-section-cell-layout' ])):null),
+          );
+  $pzarc_blueprint[ 'section' ][ 2 ] =
+          array(
+                  'section-enable'             => !empty($pzarc_blueprint[ '_pzarc_2-blueprint-section-enable' ]),
+                  'section-cell-settings'      => (!empty($pzarc_blueprint[ '_pzarc_2-blueprint-section-enable' ])?pzarc_flatten_wpinfo(get_post_meta($pzarc_blueprint[ '_pzarc_2-blueprint-section-cell-layout' ])):null),
+          );
+
+/*
   foreach ($the_blueprint_meta as $key => $value)
   {
     $pzarc_blueprint_field_set[ $key ] = $value[ 0 ];
@@ -115,7 +133,7 @@ function pzarc_get_the_blueprint($blueprint)
 
             ) : null;
   }
-
+*/
   return $pzarc_blueprint;
 }
 
@@ -134,6 +152,7 @@ function pzarc_flatten_wpinfo($array_in)
   $array_out = array();
   foreach ($array_in as $key => $value)
   {
+    if ($key=='_edit_lock' || $key=='_edit_last') {continue;}
     if (is_array($value))
     {
       $array_out[ $key ] = $value;
@@ -181,7 +200,7 @@ function pzarc($pzarc_blueprint = null, $pzarc_overrides = null, $is_shortcode =
   }
   $pzarc_blueprint_arr = pzarc_get_the_blueprint($pzarc_blueprint);
   $pzarc               = new pzarc_Display($pzarc_blueprint);
-  if ($pzarc_blueprint_arr[ 'blueprint-criteria' ] == 'default' && $is_shortcode)
+  if ($pzarc_blueprint_arr[ '_pzarc_blueprint-criteria' ] == 'default' && $is_shortcode)
   {
     return 'Ooops! Need to specify a Contents Selection in your blueprint for a shortcode';
   }

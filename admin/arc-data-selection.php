@@ -10,7 +10,7 @@ class pzarc_Contents
    */
   function __construct()
   {
-    add_action('init', array($this, 'create_contents_post_type'));
+ //   add_action('init', array($this, 'create_contents_post_type'));
     // This overrides the one in the parent class
 
     if (is_admin())
@@ -39,7 +39,7 @@ class pzarc_Contents
   public function contents_admin_enqueue($hook)
   {
     $screen = get_current_screen();
-    if ('arc-contents' == $screen->id)
+    if ('arc-blueprints' == $screen->id)
     {
 
 
@@ -151,7 +151,6 @@ class pzarc_Contents
 add_filter('cmb_meta_boxes', 'pzarc_contents_posts_metabox');
 function pzarc_contents_posts_metabox($meta_boxes = array())
 {
-
   $prefix = '_pzarc_posts_';
 
   $fields = array(
@@ -166,15 +165,16 @@ function pzarc_contents_posts_metabox($meta_boxes = array())
                   'type'        => 'taxonomy_select',
                   'allow_none ' => true,
                   'default'     => '',
-                  'cols'        => 4,
+                  'cols'        => 3,
                   'taxonomy'    => 'category'
           ),
           array(
-                  'name'    => __('Must be in ALL categories', 'pzarc'),
+                  'name'    => __('In ANY or ALL categories', 'pzarc'),
                   'id'      => $prefix . 'contents-all-cats',
-                  'type'    => 'checkbox',
-                  'cols'    => 4,
-                  'default' => false,
+                  'type'    => 'radio',
+                  'options' => array('any'=>'Any','all'=>'All'),
+                  'default' => 'any',
+                  'cols'    => 3,
           ),
           array(
                   'name'        => __('Exclude categories', 'pzarc'),
@@ -182,15 +182,16 @@ function pzarc_contents_posts_metabox($meta_boxes = array())
                   'type'        => 'taxonomy_select',
                   'default'     => '',
                   'allow_none ' => true,
-                  'cols'        => 4,
+                  'cols'        => 3,
                   'taxonomy'    => 'category'
           ),
           array(
                   'name'    => __('Include sub-categories on archives', 'pzarc'),
                   'id'      => $prefix . 'contents-sub-cat-archives',
-                  'type'    => 'checkbox',
-                  'cols'    => 4,
-                  'default' => false,
+                  'type'    => 'radio',
+                  'options' => array('yes'=>'Yes','no'=>'No'),
+                  'default' => 'yes',
+                  'cols'    => 3,
           ),
           array(
                   'name' => __('Tags', 'pzarc'),
@@ -259,7 +260,7 @@ function pzarc_contents_posts_metabox($meta_boxes = array())
 
   $meta_boxes[ ] = array(
           'title'    => 'Posts filters',
-          'pages'    => 'arc-contents',
+          'pages'    => 'arc-blueprints',
           'fields'   => $fields,
           'context'  => 'normal',
           'priority' => 'default'
@@ -317,7 +318,7 @@ function pzarc_contents_galleries_metabox($meta_boxes = array())
   );
   $meta_boxes[ ] = array(
           'title'    => 'Galleries filters',
-          'pages'    => 'arc-contents',
+          'pages'    => 'arc-blueprints',
           'fields'   => $fields,
           'context'  => 'normal',
           'priority' => 'default'
@@ -337,7 +338,7 @@ function pzarc_contents_pages_metabox($meta_boxes = array())
   $fields        = array();
   $meta_boxes[ ] = array(
           'title'    => 'Pages filters',
-          'pages'    => 'arc-contents',
+          'pages'    => 'arc-blueprints',
           'fields'   => $fields,
           'context'  => 'normal',
           'priority' => 'default'
@@ -357,7 +358,7 @@ function pzarc_contents_cpt_metabox($meta_boxes = array())
   $fields        = array();
   $meta_boxes[ ] = array(
           'title'    => 'Custom post types filters',
-          'pages'    => 'arc-contents',
+          'pages'    => 'arc-blueprints',
           'fields'   => $fields,
           'context'  => 'normal',
           'priority' => 'default'
@@ -376,18 +377,19 @@ function pzarc_contents_settings_metabox($meta_boxes = array())
   $prefix = '_pzarc_';
 
   $fields = array(
-          array(
-                  'name' => __('Contents selection name', 'pzarc'),
-                  'id'   => $prefix . 'contents-name',
-                  'type' => 'text',
-          ),
+          // array(
+          //         'name' => __('Contents selection name', 'pzarc'),
+          //         'id'   => $prefix . 'contents-name',
+          //         'type' => 'text',
+          //         'cols'=> '4'
+          // ),
           array(
                   'name'    => __('Content source', 'pzarc'),
                   'id'      => $prefix . 'contents-content-source',
                   'type'    => 'pzselect',
-                  'default' => 'post',
-                  'cols'    => 12,
+                  'default' => 'default',
                   'options' => array(
+                          'default' => 'Default',
                           'post'    => 'Posts',
                           'page'    => 'Pages',
                           'gallery' => 'Galleries',
@@ -404,17 +406,17 @@ function pzarc_contents_settings_metabox($meta_boxes = array())
                   'desc'    => 'todo: code all the js to show hide relevant sections'
           ),
 
-          array(
-                  'name'    => 'Save Contents Selection',
-                  'id'      => $prefix . 'contents-selection-save',
-                  'type'    => 'pzsubmit',
-                  'default' => 'Save'
-          ),
+          // array(
+          //         'name'    => 'Save Contents Selection',
+          //         'id'      => $prefix . 'contents-selection-save',
+          //         'type'    => 'pzsubmit',
+          //         'default' => 'Save'
+          // ),
   );
 
   $meta_boxes[ ] = array(
           'title'    => 'Contents Selection settings',
-          'pages'    => 'arc-contents',
+          'pages'    => 'arc-blueprints',
           'fields'   => $fields,
           'context'  => 'side',
           'priority' => 'high'

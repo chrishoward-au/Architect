@@ -118,7 +118,7 @@ class pzarc_Blueprints
 
     $args = array(
             'labels'              => $labels,
-            'description'         => __('Architect Blueprints are used to create reusable layout Blueprints for use in your Architect blocks, widgets, shortcodes and WP template tags. These are made up of cells, sections, criteria and navigation'),
+            'description'         => __('Architect Blueprints are used to create reusable layout Blueprints for use in your Architect blocks, widgets, shortcodes and WP template tags. These are made up of panels, sections, criteria and navigation'),
             'public'              => false,
             'publicly_queryable'  => false,
             'show_ui'             => true,
@@ -181,7 +181,7 @@ function pzarc_blueprint_sections_tabbed($meta_boxes = array())
                   'name'     => __('Tabs', 'pzarc'),
                   'id'       => $prefix . 'layout-blueprint-sections-tabs',
                   'type'     => 'pztabs',
-                  'defaults' => array('#blueprint-section-1' => 'Blueprint Section 1', '#blueprint-section-2' => 'Blueprint Section 2', '#blueprint-section-3' => 'Blueprint Section 3'),
+                  'defaults' => array('#blueprint-section-1' => 'Blueprint Section 1', '#blueprint-section-2' => 'Blueprint Section 2', '#blueprint-section-3' => 'Blueprint Section 3','#blueprint-wireframe-preview' => 'Wireframe Preview'),
           ),
 
   );
@@ -189,6 +189,62 @@ function pzarc_blueprint_sections_tabbed($meta_boxes = array())
           'title'    => 'Blueprint Sections',
           'pages'    => 'arc-blueprints',
           'context'  => 'normal',
+          'priority' => 'high',
+          'fields'   => $fields // An array of fields.
+  );
+
+  return $meta_boxes;
+
+}
+
+add_filter('cmb_meta_boxes', 'pzarc_blueprint_main');
+function pzarc_blueprint_main($meta_boxes = array())
+{
+  $prefix        = '_pzarc_';
+  $fields        = array(
+          array(
+                  'id'   => $prefix . 'blueprint-short-name',
+                  'name' => __('Blueprint Short Name', 'pzarc'),
+                  'type' => 'text',
+
+                  'desc' => __('Alphanumeric only. <br/>Use the shortcode <strong class="pzarc-usage-info">[pzarc "<span class="pzarc-shortname"></span>"]</strong> or the template tag <strong class="pzarc-usage-info">pzarc(\'<span class="pzarc-shortname"></span>\');</strong>', 'pzarc')
+          ),
+          array(
+                  'name'    => 'Save blueprint',
+                  'id'      => $prefix . 'layout-set-save',
+                  'type'    => 'pzsubmit',
+                  'default' => 'Save'
+          ),
+
+  );
+  $meta_boxes[ ] = array(
+          'title'    => 'Blueprint',
+          'pages'    => 'arc-blueprints',
+          'context'  => 'side',
+          'priority' => 'high',
+          'fields'   => $fields // An array of fields.
+  );
+
+  return $meta_boxes;
+
+}
+add_filter('cmb_meta_boxes', 'pzarc_blueprint_parts_switcher');
+function pzarc_blueprint_parts_switcher($meta_boxes = array())
+{
+  $prefix        = '_pzarc_';
+  $fields        = array(
+          array(
+                  'name'     => __('Switcher', 'pzarc'),
+                  'id'       => $prefix . 'layout-blueprint-parts-switch',
+                  'type'     => 'pztabs',
+                  'defaults' => array('#contents-selection-settings' => 'Content', '#blueprint-settings' => 'Sections'),
+          ),
+
+  );
+  $meta_boxes[ ] = array(
+          'title'    => 'Show settings for',
+          'pages'    => 'arc-blueprints',
+          'context'  => 'side',
           'priority' => 'high',
           'fields'   => $fields // An array of fields.
   );
@@ -271,7 +327,7 @@ function pzarc_sections_preview_meta($meta_boxes = array())
             ),
             array(
                     'id'      => $prefix . $i . '-blueprint-section-cell-layout',
-                    'name'    => __('Cells layout', 'pzarc'),
+                    'name'    => __('Panels layout', 'pzarc'),
                     'type'    => 'pzselect',
                     'cols'    => 6,
 
@@ -297,7 +353,7 @@ function pzarc_sections_preview_meta($meta_boxes = array())
                     //       'desc'    => __('Choose how you want the cells to display. With evenly sized cells, you\'ll see little difference. Please visit <a href="http://isotope.metafizzy.co/demos/layout-modes.html" target=_blank>Isotope Layout Modes</a> for demonstrations of these layouts', 'pzarc')
             ),
             array(
-                    'name'    => __('Cells to show', 'pzarc'),
+                    'name'    => __('Panels to show', 'pzarc'),
                     'id'      => $prefix . $i . '-blueprint-cells-per-view',
                     'type'    => 'pzspinner',
                     'default' => 0,
@@ -307,7 +363,7 @@ function pzarc_sections_preview_meta($meta_boxes = array())
                     'desc'    => '0 for unlimited'
             ),
             array(
-                    'name'    => __('Cells across', 'pzarc'),
+                    'name'    => __('Panels across', 'pzarc'),
                     'id'      => $prefix . $i . '-blueprint-cells-across',
                     'type'    => 'pzspinner',
                     'default' => 3,
@@ -330,7 +386,7 @@ function pzarc_sections_preview_meta($meta_boxes = array())
             ),
 
             array(
-                    'name'    => __('Cells vertical margin', 'pzarc'),
+                    'name'    => __('Panels vertical margin', 'pzarc'),
                     'id'      => $prefix . $i . '-blueprint-cells-vert-margin',
                     'type'    => 'pzspinner',
                     'alt'     => 'gutterv',
@@ -343,7 +399,7 @@ function pzarc_sections_preview_meta($meta_boxes = array())
                     //    'desc'    => __('Set the vertical gutter width as a percentage of the section width. The gutter is the gap between adjoining elements', 'pzarc')
             ),
             array(
-                    'name'    => __('Cells horizontal margin', 'pzarc'),
+                    'name'    => __('Panels horizontal margin', 'pzarc'),
                     'id'      => $prefix . $i . '-blueprint-cells-horiz-margin',
                     'type'    => 'pzspinner',
                     'alt'     => 'gutterh',
@@ -406,7 +462,7 @@ function pzarc_blueprint_pagination_metabox($meta_boxes = array())
                   'name'    => __('Posts per page', 'pzarc'),
                   'type'    => 'text',
                   'cols'    => 12,
-                  'default' => 'Do we really need this? Can\'t we just use the total cells per section?',
+                  'default' => 'Do we really need this? Can\'t we just use the total panels per section?',
           ),
   );
   $meta_boxes[ ] = array(
@@ -477,7 +533,7 @@ function pzarc_blueprint_navigator_metabox($meta_boxes = array())
                   'default' => 'none',
                   'options' => array(
                           'none'   => 'None',
-                          'hover'  => 'Hover over cells',
+                          'hover'  => 'Hover over panels',
                           'inline' => 'Inline with navigator'
                   )
           ),
@@ -487,7 +543,7 @@ function pzarc_blueprint_navigator_metabox($meta_boxes = array())
                   'type'    => 'text',
                   'cols'    => 6,
                   'default' => 0,
-                  'desc'    => 'If zero, it will use the "Cells to show" value'
+                  'desc'    => 'If zero, it will use the "Panels to show" value'
           ),
 
   );
@@ -526,22 +582,14 @@ function pzarc_blueprint_settings_metabox($meta_boxes = array())
   }
   $prefix = '_pzarc_';
   $fields = array(
-          array(
-                  'id'   => $prefix . 'blueprint-short-name',
-                  'name' => __('Blueprint Short Name', 'pzarc'),
-                  'type' => 'text',
-                  'cols' => 12,
-
-                  'desc' => __('Alphanumeric only. <br/>Use the shortcode <strong class="pzarc-usage-info">[pzarc "<span class="pzarc-shortname"></span>"]</strong> or the template tag <strong class="pzarc-usage-info">pzarc(\'<span class="pzarc-shortname"></span>\');</strong>', 'pzarc')
-          ),
-          array(
-                  'id'      => $prefix . 'blueprint-criteria',
-                  'name'    => __('Criteria', 'pzarc'),
-                  'type'    => 'pzselect',
-                  'cols'    => 12,
-                  'default' => 'default',
-                  'options' => $pzarc_criterias_array
-          ),
+          // array(
+          //         'id'      => $prefix . 'blueprint-criteria',
+          //         'name'    => __('Criteria', 'pzarc'),
+          //         'type'    => 'pzselect',
+          //         'cols'    => 12,
+          //         'default' => 'default',
+          //         'options' => $pzarc_criterias_array
+          // ),
 
           array(
                   'name'    => 'Section 2',
@@ -598,21 +646,17 @@ function pzarc_blueprint_settings_metabox($meta_boxes = array())
                   'min'  => 0,
                   'max'  => 9999,
                   'step' => 1,
+                  'default'=>0,
                   'desc' => __('Note: Skipping breaks pagination. This is a known WordPress bug.', 'pzarc'),
           ),
           array(
                   'name'    => __('Sticky posts first', 'pzarc'),
                   'id'      => $prefix . 'contents-sticky',
-                  'type'    => 'checkbox',
-                  'default' => false,
+                  'type'    => 'radio',
+                  'options' => array('yes'=>'Yes','no'=>'No'),
+                  'default' => 'no',
           ),
 
-          array(
-                  'name'    => 'Save blueprint',
-                  'id'      => $prefix . 'layout-set-save',
-                  'type'    => 'pzsubmit',
-                  'default' => 'Save'
-          ),
   );
 
   $meta_boxes[ ] = array(
@@ -633,9 +677,9 @@ function draw_sections_preview()
   // Put in a hidden field with the plugin url for use in js
   $return_html = '
   <div id="pzarc-blueprint-wireframe">
+  <div id="pzarc-sections-preview-0" class="pzarc-sections pzarc-section-0"></div>
   <div id="pzarc-sections-preview-1" class="pzarc-sections pzarc-section-1"></div>
   <div id="pzarc-sections-preview-2" class="pzarc-sections pzarc-section-2"></div>
-  <div id="pzarc-sections-preview-3" class="pzarc-sections pzarc-section-3"></div>
   <div id="pzarc-navigator-preview" class="pzarc-sections pzarc-section-navigator"><span class="dashicons dashicons-arrow-left"></span><span class="dashicons dashicons-editor-justify"></span><span class="dashicons dashicons-editor-justify"></span><span class="dashicons dashicons-editor-justify"></span><span class="dashicons dashicons-arrow-right"></span></div>
 	</div>
 	<div class="plugin_url" style="display:none;">' . PZARC_PLUGIN_URL . '</div>

@@ -133,7 +133,7 @@ default styling
 */
 
 
-.pzarc-oops {
+.pzarchitect .pzarc-oops {
   font-size:20px;
   color:red;
   background:lightpink;
@@ -142,13 +142,13 @@ default styling
   margin:10px 0;
 }
 
-.pzarc-pager {
+.pzarchitect .pzarc-pager {
   display:table;
   padding:10px 0;
   width:100%;
 }
-.pzarc-pager-prev,
-.pzarc-pager-next {
+.pzarchitect .pzarc-pager-prev,
+.pzarchitect .pzarc-pager-next {
   /*font-size:13px;*/
   /*font-weight:bold;*/
   /*background: #eee;*/
