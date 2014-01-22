@@ -243,7 +243,7 @@ function pzarc_blueprint_parts_switcher($meta_boxes = array())
                   'name'     => __('Switcher', 'pzarc'),
                   'id'       => $prefix . 'layout-blueprint-parts-switch',
                   'type'     => 'pztabs',
-                  'defaults' => array('#contents-selection-settings' => 'Content', '#blueprint-settings' => 'Layout'),
+                  'defaults' => array('#blueprint-settings' => 'Layout','#contents-selection-settings' => 'Content'),
                   // This showuld only be one each, so as don't have to worry about what really is visible based on settings
                   'visibility' => array(
                     '#blueprint-settings' => array('#blueprint-layout'),
@@ -624,7 +624,7 @@ function pzarc_blueprint_settings_metabox($meta_boxes = array())
                   'desc'    => 'Note: Navigator will only function when one section',
                   'options' => array(
                           'none'      => 'None',
-                          'pager'     => 'Pagination',
+                          'pagination'     => 'Pagination',
                           'navigator' => 'Navigator'
                   )
           ),

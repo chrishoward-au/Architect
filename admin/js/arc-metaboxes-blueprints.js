@@ -29,6 +29,28 @@ jQuery(document).ready(function () {
   pzarc_refresh_blueprint_layout(2);
   pzarc_update_usage_info(jQuery("#_pzarc_blueprint-short-name-cmb-field-0").get(0));
 
+  init();
+  function init(){
+  var fixorfluid =  jQuery('select#_pzarc_blueprint-navigation-cmb-field-0').find('option:selected').get(0).value;
+  switch ( fixorfluid) {
+    case 'none':
+      jQuery('.item-blueprint-pagination').hide();
+      jQuery('.item-blueprint-navigator').hide();
+      break;
+    case 'pagination':
+      jQuery('.item-blueprint-pagination').show();
+      jQuery('.item-blueprint-navigator').hide();
+      break;
+    case 'navigator':
+      jQuery('.item-blueprint-pagination').hide();
+      jQuery('.item-blueprint-navigator').show();
+      break;
+  }
+  }
+
+
+
+
   function pzarc_refresh_blueprint_layout(i) {
     //console.log(i,jQuery('#_pzarc_' + i + '-blueprint-cells-per-view-cmb-field-0').get(0));
     pzarc_update_cell_count(i, jQuery('#_pzarc_' + i + '-blueprint-cells-per-view-cmb-field-0').get(0));
@@ -131,3 +153,5 @@ jQuery(document).ready(function () {
 
   }
 });
+
+//id="_pzarc_blueprint-navigation-cmb-field-0"

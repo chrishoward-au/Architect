@@ -368,7 +368,84 @@ function pzarc_contents_cpt_metabox($meta_boxes = array())
   return $meta_boxes;
 
 }
+add_filter('cmb_meta_boxes', 'pzarc_contents_slides_metabox');
+function pzarc_contents_slides_metabox($meta_boxes = array())
+{
 
+  $prefix = '_pzarc_pages_';
+
+  $fields        = array();
+  $meta_boxes[ ] = array(
+          'title'    => 'Slides filters',
+          'pages'    => 'arc-blueprints',
+          'fields'   => $fields,
+          'context'  => 'normal',
+          'priority' => 'default'
+
+  );
+
+  return $meta_boxes;
+
+}
+add_filter('cmb_meta_boxes', 'pzarc_contents_default_metabox');
+function pzarc_contents_default_metabox($meta_boxes = array())
+{
+
+  $prefix = '_pzarc_pages_';
+
+  $fields        = array(
+          array(
+                  'name' => __('Defaults', 'pzarc'),
+                  'id'   => $prefix . 'contents-filters-defaults-heading',
+                  'type' => 'title',
+                  'desc' => 'When Default is selected, Architect will use whatever the default content for the page. e.g. the home page, category archives, search results etc'
+          )
+
+
+  );
+  $meta_boxes[ ] = array(
+          'title'    => 'Default filter',
+          'pages'    => 'arc-blueprints',
+          'fields'   => $fields,
+          'context'  => 'normal',
+          'priority' => 'default'
+
+  );
+
+  return $meta_boxes;
+
+}
+
+add_filter('cmb_meta_boxes', 'pzarc_content_types_tabbed');
+function pzarc_content_types_tabbed($meta_boxes = array())
+{
+  $prefix        = '_pzarc_';
+  $fields        = array(
+          array(
+                  'name'     => __('Tabs', 'pzarc'),
+                  'id'       => $prefix . 'layout-content-types-tabs',
+                  'type'     => 'pztabs',
+                  'defaults' => array(
+                          '#default-filter' => 'Default',
+                          '#posts-filter' => 'Posts',
+                          '#pages-filter' => 'Pages',
+                          '#galleries-filter' => 'Galleries',
+                          '#slides-filter' => 'Slides',
+                          '#custom-post-types-filter' => 'Custom Post Types',
+                  ),
+          ),
+
+  );
+  $meta_boxes[ ] = array(
+          'title'    => 'Content',
+          'pages'    => 'arc-blueprints',
+          'context'  => 'normal',
+          'priority' => 'high',
+          'fields'   => $fields // An array of fields.
+  );
+
+  return $meta_boxes;
+}
 
 add_filter('cmb_meta_boxes', 'pzarc_contents_settings_metabox');
 function pzarc_contents_settings_metabox($meta_boxes = array())

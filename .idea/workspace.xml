@@ -4,9 +4,13 @@
     <list default="true" id="6a91661e-ac03-4c49-a442-2faea24b5b57" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/admin/css/arc-admin.css" afterPath="$PROJECT_DIR$/admin/css/arc-admin.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/admin/arc-blueprints.php" afterPath="$PROJECT_DIR$/admin/arc-blueprints.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/admin/arc-cell-layouts.php" afterPath="$PROJECT_DIR$/admin/arc-cell-layouts.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/admin/arc-data-selection.php" afterPath="$PROJECT_DIR$/admin/arc-data-selection.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/admin/js/arc-metaboxes-blueprints.js" afterPath="$PROJECT_DIR$/admin/js/arc-metaboxes-blueprints.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/admin/js/arc-metaboxes-cells.js" afterPath="$PROJECT_DIR$/admin/js/arc-metaboxes-cells.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/admin/js/arc-tabify.js" afterPath="$PROJECT_DIR$/admin/js/arc-tabify.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/includes/js/architect.js" afterPath="$PROJECT_DIR$/includes/js/architect.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/includes/pzarc-custom-field-types.php" afterPath="$PROJECT_DIR$/includes/pzarc-custom-field-types.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="pizazzwp-architect.iws" />
@@ -33,7 +37,7 @@
       <file leaf-file-name="arc-tabify.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/admin/js/arc-tabify.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="78" column="29" selection-start="3405" selection-end="3405" vertical-scroll-proportion="-24.23077" vertical-offset="774" max-vertical-offset="1926">
+            <state line="118" column="5" selection-start="4962" selection-end="4962" vertical-scroll-proportion="0.0" vertical-offset="1466" max-vertical-offset="2322">
               <folding />
             </state>
           </provider>
@@ -42,29 +46,48 @@
       <file leaf-file-name="arc-data-selection.php" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/admin/arc-data-selection.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="446" column="0" selection-start="15230" selection-end="15230" vertical-scroll-proportion="-33.041668" vertical-offset="7235" max-vertical-offset="8496">
+            <state line="406" column="39" selection-start="13075" selection-end="13075" vertical-scroll-proportion="-12.98" vertical-offset="6659" max-vertical-offset="9882">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="arc-blueprints.php" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/admin/arc-blueprints.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="249" column="61" selection-start="9291" selection-end="9309" vertical-scroll-proportion="-21.24" vertical-offset="3420" max-vertical-offset="12006">
-              <folding>
-                <marker date="1390133794000" expanded="true" signature="5313:5495" placeholder="Select one t..." />
-                <marker date="1390133794000" expanded="true" signature="23634:23637" placeholder="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="arc-metaboxes-blueprints.js" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="arc-metaboxes-blueprints.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/admin/js/arc-metaboxes-blueprints.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="129" column="45" selection-start="5748" selection-end="5748" vertical-scroll-proportion="0.8100821" vertical-offset="1631" max-vertical-offset="2484">
+            <state line="39" column="20" selection-start="1422" selection-end="1422" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2916">
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="arc-cell-layouts.php" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/admin/arc-cell-layouts.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="224" column="0" selection-start="6655" selection-end="7504" vertical-scroll-proportion="-10.8" vertical-offset="3492" max-vertical-offset="19530">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="arc-metaboxes-cells.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/admin/js/arc-metaboxes-cells.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="12" column="109" selection-start="528" selection-end="528" vertical-scroll-proportion="0.0" vertical-offset="54" max-vertical-offset="9666">
+              <folding>
+                <marker date="1390302653000" expanded="true" signature="8800:8854" placeholder="..." />
+                <marker date="1390302653000" expanded="true" signature="9044:9059" placeholder="..." />
+                <marker date="1390302653000" expanded="true" signature="9243:9258" placeholder="..." />
+                <marker date="1390302653000" expanded="true" signature="9438:9471" placeholder="..." />
+                <marker date="1390302653000" expanded="true" signature="9545:9560" placeholder="..." />
+                <marker date="1390302653000" expanded="true" signature="10010:10025" placeholder="..." />
+                <marker date="1390302653000" expanded="true" signature="10266:10303" placeholder="..." />
+                <marker date="1390302653000" expanded="true" signature="10958:10973" placeholder="..." />
+                <marker date="1390302653000" expanded="true" signature="11525:11540" placeholder="..." />
+                <marker date="1390302653000" expanded="true" signature="11737:11752" placeholder="..." />
+                <marker date="1390302653000" expanded="true" signature="11953:11968" placeholder="..." />
+                <marker date="1390302653000" expanded="true" signature="12169:12184" placeholder="..." />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -105,19 +128,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="class_pzarc_Display.php" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="class_pzarc_Display.php" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/frontend/class_pzarc_Display.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="448" column="0" selection-start="16721" selection-end="16721" vertical-scroll-proportion="0.0" vertical-offset="8064" max-vertical-offset="16146">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="arc-cell-layouts.php" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/admin/arc-cell-layouts.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="839" column="48" selection-start="33158" selection-end="33175" vertical-scroll-proportion="0.0" vertical-offset="14725" max-vertical-offset="19584">
+            <state line="450" column="111" selection-start="16916" selection-end="16916" vertical-scroll-proportion="-8.824176" vertical-offset="15237" max-vertical-offset="16056">
               <folding />
             </state>
           </provider>
@@ -126,7 +140,7 @@
       <file leaf-file-name="arc-galleries.php" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/admin/arc-galleries.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="97" column="34" selection-start="2709" selection-end="2709" vertical-scroll-proportion="0.0" vertical-offset="1746" max-vertical-offset="7776">
+            <state line="106" column="55" selection-start="3063" selection-end="3063" vertical-scroll-proportion="-6.75" vertical-offset="1746" max-vertical-offset="7776">
               <folding />
             </state>
           </provider>
@@ -135,7 +149,7 @@
       <file leaf-file-name="architect.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/includes/js/architect.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="7" column="0" selection-start="290" selection-end="290" vertical-scroll-proportion="0.0" vertical-offset="126" max-vertical-offset="234">
+            <state line="4" column="39" selection-start="88" selection-end="88" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="270">
               <folding />
             </state>
           </provider>
@@ -153,7 +167,7 @@
       <file leaf-file-name="arc-slides.php" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/admin/arc-slides.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="102" column="20" selection-start="2788" selection-end="2788" vertical-scroll-proportion="0.0" vertical-offset="1836" max-vertical-offset="7884">
+            <state line="102" column="20" selection-start="2788" selection-end="2788" vertical-scroll-proportion="-0.0" vertical-offset="1836" max-vertical-offset="7884">
               <folding />
             </state>
           </provider>
@@ -162,7 +176,7 @@
       <file leaf-file-name="arc-metaboxes-contents.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/admin/js/arc-metaboxes-contents.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="14" column="6" selection-start="396" selection-end="396" vertical-scroll-proportion="0.0" vertical-offset="252" max-vertical-offset="504">
+            <state line="10" column="0" selection-start="163" selection-end="163" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="504">
               <folding />
             </state>
           </provider>
@@ -184,14 +198,11 @@
         <option value="$PROJECT_DIR$/admin/arc-controls.php" />
         <option value="$PROJECT_DIR$/admin/arc-content-blueprints.php" />
         <option value="$PROJECT_DIR$/readme.txt" />
-        <option value="$PROJECT_DIR$/includes/pzarc-custom-field-types.php" />
         <option value="$PROJECT_DIR$/external/js/tabby/css/tabby-css.css" />
         <option value="$PROJECT_DIR$/admin/js/arc-metaboxes.js" />
         <option value="$PROJECT_DIR$/external/Custom-Meta-Boxes/classes.fields.php" />
         <option value="$PROJECT_DIR$/includes/headway/arc-block-display.php" />
-        <option value="$PROJECT_DIR$/admin/js/arc-metaboxes-cells.js" />
         <option value="$PROJECT_DIR$/frontend/arc-front.js" />
-        <option value="$PROJECT_DIR$/admin/arc-cell-layouts.php" />
         <option value="$PROJECT_DIR$/external/js/tabby/js/tabify.js" />
         <option value="$PROJECT_DIR$/frontend/css/arc-front.css" />
         <option value="$PROJECT_DIR$/frontend/arcCellDefinitions.php" />
@@ -202,13 +213,17 @@
         <option value="$PROJECT_DIR$/admin/arc-slides.php" />
         <option value="$PROJECT_DIR$/architect.php" />
         <option value="$PROJECT_DIR$/frontend/arc-display.php" />
-        <option value="$PROJECT_DIR$/admin/js/arc-metaboxes-contents.js" />
         <option value="$PROJECT_DIR$/frontend/class_pzarc_Display.php" />
+        <option value="$PROJECT_DIR$/includes/pzarc-custom-field-types.php" />
+        <option value="$PROJECT_DIR$/admin/arc-cell-layouts.php" />
+        <option value="$PROJECT_DIR$/admin/js/arc-metaboxes-cells.js" />
         <option value="$PROJECT_DIR$/admin/css/arc-admin.css" />
-        <option value="$PROJECT_DIR$/admin/arc-data-selection.php" />
+        <option value="$PROJECT_DIR$/admin/js/arc-metaboxes-blueprints.js" />
         <option value="$PROJECT_DIR$/admin/arc-blueprints.php" />
         <option value="$PROJECT_DIR$/admin/js/arc-tabify.js" />
-        <option value="$PROJECT_DIR$/admin/js/arc-metaboxes-blueprints.js" />
+        <option value="$PROJECT_DIR$/includes/js/architect.js" />
+        <option value="$PROJECT_DIR$/admin/arc-data-selection.php" />
+        <option value="$PROJECT_DIR$/admin/js/arc-metaboxes-contents.js" />
       </list>
     </option>
   </component>
@@ -222,7 +237,7 @@
   <component name="ProjectFrameBounds">
     <option name="y" value="22" />
     <option name="width" value="1680" />
-    <option name="height" value="973" />
+    <option name="height" value="974" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -250,6 +265,7 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -534,7 +550,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -583,15 +598,15 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="22" width="1680" height="973" extended-state="0" />
+    <frame x="0" y="22" width="1680" height="974" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.12881564" sideWeight="0.50283766" order="1" side_tool="true" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.12881564" sideWeight="0.4971623" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.13125764" sideWeight="0.50405407" order="1" side_tool="true" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.11172161" sideWeight="0.49594596" order="0" side_tool="false" content_ui="combo" />
       <window_info id="eSnippet Pro" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -601,7 +616,7 @@
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3292683" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32879817" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -626,9 +641,7 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/admin/css/arc-admin.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="546" column="19" selection-start="9955" selection-end="9957" vertical-scroll-proportion="0.0" vertical-offset="15835" max-vertical-offset="17046">
-          <folding />
-        </state>
+        <state line="546" column="19" selection-start="9955" selection-end="9957" vertical-scroll-proportion="0.0" vertical-offset="15835" max-vertical-offset="17046" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/includes/pzarc-custom-field-types.php">
@@ -660,12 +673,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/admin/arc-blueprints.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="513" column="45" selection-start="19184" selection-end="19184" vertical-scroll-proportion="0.0" vertical-offset="9234" max-vertical-offset="11718">
-          <folding>
-            <marker date="1390133794000" expanded="true" signature="5313:5495" placeholder="Select one t..." />
-            <marker date="1390133794000" expanded="true" signature="23634:23637" placeholder="..." />
-          </folding>
-        </state>
+        <state line="513" column="45" selection-start="19184" selection-end="19184" vertical-scroll-proportion="0.0" vertical-offset="9234" max-vertical-offset="11718" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/frontend/arc-display.php">
@@ -769,11 +777,11 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/readme.txt">
-      <provider editor-type-id="com.intellij.persistence.database.editor.CsvTableFileEditorProvider">
-        <state />
-      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state line="80" column="0" selection-start="4028" selection-end="4028" vertical-scroll-proportion="-15.333333" vertical-offset="1026" max-vertical-offset="1602" />
+      </provider>
+      <provider editor-type-id="com.intellij.persistence.database.editor.CsvTableFileEditorProvider">
+        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/external/js/tabby/js/tabby.js">
@@ -806,11 +814,6 @@
         <state line="8" column="10" selection-start="169" selection-end="169" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="378" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/includes/pzarc-custom-field-types.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="321" column="5" selection-start="8083" selection-end="8083" vertical-scroll-proportion="0.0" vertical-offset="7193" max-vertical-offset="8154" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/external/js/tabby/js/tabify.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="15" column="28" selection-start="648" selection-end="648" vertical-scroll-proportion="0.0" vertical-offset="129" max-vertical-offset="1368" />
@@ -824,53 +827,6 @@
     <entry file="file://$PROJECT_DIR$/frontend/arcCellDefinitions.php">
       <provider selected="true" editor-type-id="text-editor">
         <state line="113" column="22" selection-start="10547" selection-end="10547" vertical-scroll-proportion="0.0" vertical-offset="2034" max-vertical-offset="2412" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/includes/headway/arc-block-display.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="155" column="12" selection-start="5677" selection-end="5677" vertical-scroll-proportion="0.0" vertical-offset="2790" max-vertical-offset="3312">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/includes/headway/arc-block-options.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="36" column="155" selection-start="1655" selection-end="1655" vertical-scroll-proportion="0.0" vertical-offset="648" max-vertical-offset="5850">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin/arc-galleries.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="97" column="34" selection-start="2709" selection-end="2709" vertical-scroll-proportion="0.0" vertical-offset="1746" max-vertical-offset="7776">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/includes/js/architect.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="7" column="0" selection-start="290" selection-end="290" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="198">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin/arc-admin.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="41" column="67" selection-start="1318" selection-end="1318" vertical-scroll-proportion="0.0" vertical-offset="342" max-vertical-offset="3726">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin/arc-slides.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="102" column="20" selection-start="2788" selection-end="2788" vertical-scroll-proportion="0.0" vertical-offset="1710" max-vertical-offset="7884">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin/js/arc-metaboxes-cells.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="13" column="35" selection-start="453" selection-end="454" vertical-scroll-proportion="0.0" vertical-offset="234" max-vertical-offset="8874" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/architect.php">
@@ -887,61 +843,121 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/admin/arc-cell-layouts.php">
+    <entry file="file://$PROJECT_DIR$/includes/headway/arc-block-display.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="839" column="48" selection-start="33158" selection-end="33175" vertical-scroll-proportion="0.0" vertical-offset="14725" max-vertical-offset="19584">
+        <state line="155" column="12" selection-start="5677" selection-end="5677" vertical-scroll-proportion="0.0" vertical-offset="2790" max-vertical-offset="3312">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/admin/js/arc-metaboxes-contents.js">
+    <entry file="file://$PROJECT_DIR$/includes/headway/arc-block-options.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="6" selection-start="396" selection-end="396" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="504">
+        <state line="36" column="155" selection-start="1655" selection-end="1655" vertical-scroll-proportion="0.0" vertical-offset="648" max-vertical-offset="5850">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/frontend/class_pzarc_Display.php">
+    <entry file="file://$PROJECT_DIR$/admin/arc-admin.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="448" column="0" selection-start="16721" selection-end="16721" vertical-scroll-proportion="0.0" vertical-offset="8064" max-vertical-offset="16146">
+        <state line="41" column="67" selection-start="1318" selection-end="1318" vertical-scroll-proportion="0.0" vertical-offset="342" max-vertical-offset="3726">
           <folding />
         </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/includes/pzarc-custom-field-types.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="323" column="408" selection-start="8501" selection-end="8501" vertical-scroll-proportion="-21.833334" vertical-offset="5182" max-vertical-offset="8064" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/admin/css/arc-admin.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="749" column="14" selection-start="15045" selection-end="15045" vertical-scroll-proportion="0.0" vertical-offset="11315" max-vertical-offset="17262">
+        <state line="751" column="19" selection-start="15103" selection-end="15103" vertical-scroll-proportion="-10.615385" vertical-offset="13242" max-vertical-offset="17298" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/arc-blueprints.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="313" column="0" selection-start="10986" selection-end="10986" vertical-scroll-proportion="0.15044248" vertical-offset="5515" max-vertical-offset="12006" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/arc-cell-layouts.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="224" column="0" selection-start="6655" selection-end="7504" vertical-scroll-proportion="-10.8" vertical-offset="3492" max-vertical-offset="19530">
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/arc-slides.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="102" column="20" selection-start="2788" selection-end="2788" vertical-scroll-proportion="0.0" vertical-offset="1710" max-vertical-offset="7884">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/includes/js/architect.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="4" column="39" selection-start="88" selection-end="88" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="270">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/arc-galleries.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="106" column="55" selection-start="3063" selection-end="3063" vertical-scroll-proportion="-6.75" vertical-offset="1746" max-vertical-offset="7776">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/js/arc-metaboxes-cells.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="12" column="109" selection-start="528" selection-end="528" vertical-scroll-proportion="0.0" vertical-offset="54" max-vertical-offset="9666">
+          <folding>
+            <marker date="1390302653000" expanded="true" signature="8800:8854" placeholder="..." />
+            <marker date="1390302653000" expanded="true" signature="9044:9059" placeholder="..." />
+            <marker date="1390302653000" expanded="true" signature="9243:9258" placeholder="..." />
+            <marker date="1390302653000" expanded="true" signature="9438:9471" placeholder="..." />
+            <marker date="1390302653000" expanded="true" signature="9545:9560" placeholder="..." />
+            <marker date="1390302653000" expanded="true" signature="10010:10025" placeholder="..." />
+            <marker date="1390302653000" expanded="true" signature="10266:10303" placeholder="..." />
+            <marker date="1390302653000" expanded="true" signature="10958:10973" placeholder="..." />
+            <marker date="1390302653000" expanded="true" signature="11525:11540" placeholder="..." />
+            <marker date="1390302653000" expanded="true" signature="11737:11752" placeholder="..." />
+            <marker date="1390302653000" expanded="true" signature="11953:11968" placeholder="..." />
+            <marker date="1390302653000" expanded="true" signature="12169:12184" placeholder="..." />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/admin/arc-data-selection.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="446" column="0" selection-start="15230" selection-end="15230" vertical-scroll-proportion="-33.041668" vertical-offset="7235" max-vertical-offset="8496">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin/arc-blueprints.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="249" column="61" selection-start="9291" selection-end="9309" vertical-scroll-proportion="-21.24" vertical-offset="3420" max-vertical-offset="12006">
-          <folding>
-            <marker date="1390133794000" expanded="true" signature="5313:5495" placeholder="Select one t..." />
-            <marker date="1390133794000" expanded="true" signature="23634:23637" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin/js/arc-tabify.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="78" column="29" selection-start="3405" selection-end="3405" vertical-scroll-proportion="-24.23077" vertical-offset="774" max-vertical-offset="1926">
+        <state line="406" column="39" selection-start="13075" selection-end="13075" vertical-scroll-proportion="-12.98" vertical-offset="6659" max-vertical-offset="9882">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/admin/js/arc-metaboxes-blueprints.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="129" column="45" selection-start="5748" selection-end="5748" vertical-scroll-proportion="0.8100821" vertical-offset="1631" max-vertical-offset="2484">
+        <state line="39" column="20" selection-start="1422" selection-end="1422" vertical-scroll-proportion="0.0" vertical-offset="54" max-vertical-offset="2916">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/js/arc-metaboxes-contents.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="10" column="0" selection-start="163" selection-end="163" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="504">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/js/arc-tabify.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="118" column="5" selection-start="4962" selection-end="4962" vertical-scroll-proportion="0.0" vertical-offset="1466" max-vertical-offset="2322">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/frontend/class_pzarc_Display.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="450" column="111" selection-start="16916" selection-end="16916" vertical-scroll-proportion="-8.824176" vertical-offset="15237" max-vertical-offset="16056">
           <folding />
         </state>
       </provider>

@@ -1,9 +1,9 @@
 <?php
 
-//Cells may need to include Content because of custom fields!!! OOps! But content has to be over-arching! So I guess, cells will need to know the content type and its fields. So lets make Content Criteria again. :S
+//Panels may need to include Content because of custom fields!!! OOps! But content has to be over-arching! So I guess, cells will need to know the content type and its fields. So lets make Content Criteria again. :S
 
 /**
- * Class pzarc_Cell_Layouts
+ * Class pzarc_Panel_Layouts
  */
 class pzarc_Cell_Layouts
 {
@@ -129,7 +129,7 @@ class pzarc_Cell_Layouts
 
     $args = array(
             'labels'              => $labels,
-            'description'         => __('Architect Panels are used to create reusable cell designs for use in your Architect blocks, widgets, shortcodes and WP template tags'),
+            'description'         => __('Architect Panels are used to create reusable panel designs for use in your Architect blocks, widgets, shortcodes and WP template tags'),
             'public'              => false,
             'publicly_queryable'  => false,
             'show_ui'             => true,
@@ -170,7 +170,7 @@ register_layout('name',$args);
 //  $prefix        = '_pzarc_';
 //  $fields        = array(
 //          array(
-//                  'name'    => 'Select what style of cell you want to make',
+//                  'name'    => 'Select what style of panel you want to make',
 //                  'id'      => $prefix . 'cell-wizard',
 //                  'type'    => 'radio',
 //                  'default' => 'custom',
@@ -205,19 +205,15 @@ function pzarc_cell_designer_tabbed($meta_boxes = array())
                   'name'     => __('Tabs', 'pzarc'),
                   'id'       => $prefix . 'layout-cell-tabs',
                   'type'     => 'pztabs',
-                  'defaults' => array('#cell-designer' => 'Cell Designer',
+                  'defaults' => array('#panel-designer' => 'Panel Designer',
                                       '#styling'       => 'Styling',
                                       '#settings'=>'Settings'
-                                      //                                      '#posts-filters'=>'Posts',
-                                      //                                      '#pages-filters'=>'Pages',
-                                      //                                      '#galleries-filters'=>'Galleries',
-                                      //                                      '#custom-post-types-filters'=>'Custom Content',
                   ),
           ),
 
   );
   $meta_boxes[ ] = array(
-          'title'    => 'Cells',
+          'title'    => 'Panels',
           'pages'    => 'arc-layouts',
           'context'  => 'normal',
           'priority' => 'high',
@@ -233,7 +229,7 @@ function pzarc_cell_designer_meta($meta_boxes = array())
   $prefix        = '_pzarc_';
   $fields        = array(
           array(
-                  'name'     => 'Cell preview',
+                  'name'     => 'Panel preview',
                   'id'       => $prefix . 'layout-cell-preview',
                   'cols'     => 12,
                   'type'     => 'pzlayout',
@@ -251,36 +247,14 @@ function pzarc_cell_designer_meta($meta_boxes = array())
                                                     'custom1' => array('width' => 100, 'show' => false),
                                                     'custom2' => array('width' => 100, 'show' => false),
                                                     'custom3' => array('width' => 100, 'show' => false))),
-                  'desc'     => __('Drag and drop to sort the order of your elements. Heights are fluid in cells, so not indicative of how it will look on the page.', 'pzarc')
+                  'desc'     => __('Drag and drop to sort the order of your elements. Heights are fluid in panels, so not indicative of how it will look on the page.', 'pzarc')
           ),
           // OMG!! The multiselect is working and I don't know why!!
 
-          array(
-                  'name'     => __('Components to show', 'pzarc'),
-                  'id'       => $prefix . 'layout-show',
-                  'type'     => 'select',
-                  'multiple' => true,
-                  'cols'     => 12,
-                  'default'  => array('title', 'excerpt', 'meta1', 'image'),
-                  'options'  => array(
-                          'title'   => 'Title',
-                          'excerpt' => 'Excerpt',
-                          'content' => 'Content',
-                          'image'   => 'Image',
-                          'caption' => 'Image Caption',
-                          'meta1'   => 'Meta1',
-                          'meta2'   => 'Meta2',
-                          'meta3'   => 'Meta3',
-                          'custom1' => 'Custom Field 1',
-                          'custom2' => 'Custom Field 2',
-                          'custom3' => 'Custom Field 3',
-                          //        'custom4' => 'Custom Field 4',
-                  ),
-                  'tooltip'  => __('Select which base components to include in this cell layout.', 'pzarc')
-          ),
+
   );
   $meta_boxes[ ] = array(
-          'title'   => 'Cell designer',
+          'title'   => 'Panel designer',
           'pages'   => 'arc-layouts',
           'fields'  => $fields,
           'context' => 'normal',
@@ -300,7 +274,7 @@ function pzarc_cell_general_settings($meta_boxes = array())
                   'id'      => $prefix . 'layout-short-name',
                   'type'    => 'text',
                   'cols'    => 12,
-                  'tooltip' => __('A short name for this cell layout to identify it.', 'pzarc'),
+                  'tooltip' => __('A short name for this panel layout to identify it.', 'pzarc'),
           ),
 
           //    array(
@@ -317,7 +291,7 @@ function pzarc_cell_general_settings($meta_boxes = array())
           //      )
           //    ),
           array(
-                  'name'    => __('Save cell layout', 'pzarc'),
+                  'name'    => __('Save panel layout', 'pzarc'),
                   'id'      => $prefix . 'layout-set-save',
                   'type'    => 'pzsubmit',
                   'default' => 'Save'
@@ -355,6 +329,29 @@ function pzarc_cell_designer_settings_meta($meta_boxes = array())
     //      ),
     //    ),
     array(
+            'name'     => __('Components to show', 'pzarc'),
+            'id'       => $prefix . 'layout-show',
+            'type'     => 'select',
+            'multiple' => true,
+            'cols'     => 12,
+            'default'  => array('title', 'excerpt', 'meta1', 'image'),
+            'options'  => array(
+                    'title'   => 'Title',
+                    'excerpt' => 'Excerpt',
+                    'content' => 'Content',
+                    'image'   => 'Image',
+                    'caption' => 'Image Caption',
+                    'meta1'   => 'Meta1',
+                    'meta2'   => 'Meta2',
+                    'meta3'   => 'Meta3',
+                    'custom1' => 'Custom Field 1',
+                    'custom2' => 'Custom Field 2',
+                    'custom3' => 'Custom Field 3',
+                    //        'custom4' => 'Custom Field 4',
+            ),
+            'tooltip'  => __('Select which base components to include in this panel layout.', 'pzarc')
+    ),
+    array(
             'name'    => __('Excerpt/Content featured image', 'pzarc'),
             'id'      => $prefix . 'layout-excerpt-thumb',
             'cols'    => 12,
@@ -375,7 +372,7 @@ function pzarc_cell_designer_settings_meta($meta_boxes = array())
             'default' => 'none',
             'options' => array(
                     'none'  => 'No image',
-                    'fill'  => 'Fill the cell',
+                    'fill'  => 'Fill the panel',
                     'align' => 'Align with components area',
             ),
             'tooltip' => __('Select how to display the featured image or video as the background.', 'pzarc')
@@ -389,10 +386,10 @@ function pzarc_cell_designer_settings_meta($meta_boxes = array())
             'cols'    => 12,
             'default' => 'top',
             'options' => array(
-                    'top'    => 'Top of cell',
-                    'bottom' => 'Bottom of cell',
-                    'left'   => 'Left of cell',
-                    'right'  => 'Right of cell',
+                    'top'    => 'Top of panel',
+                    'bottom' => 'Bottom of panel',
+                    'left'   => 'Left of panel',
+                    'right'  => 'Right of panel',
             ),
             //'desc'		 => __('Position for all the components as a group', 'pzarc')
     ),
@@ -406,7 +403,7 @@ function pzarc_cell_designer_settings_meta($meta_boxes = array())
             'max'     => '100',
             'step'    => '1',
             'suffix'  => '%',
-            'tooltip' => __('Enter percent to move the components area up/down. Note: These measurements are percentage of the cell.', 'pzarc')
+            'tooltip' => __('Enter percent to move the components area up/down. Note: These measurements are percentage of the panel.', 'pzarc')
     ),
     array(
             'name'    => __('Nudge components area left/right', 'pzarc'),
@@ -418,7 +415,7 @@ function pzarc_cell_designer_settings_meta($meta_boxes = array())
             'max'     => '100',
             'step'    => '1',
             'suffix'  => '%',
-            'tooltip' => __('Enter percent to move the components area left/right. Note: These measurements are percentage of the cell.', 'pzarc')
+            'tooltip' => __('Enter percent to move the components area left/right. Note: These measurements are percentage of the panel.', 'pzarc')
     ),
     array(
             'name'    => __('Components area width', 'pzarc'),
@@ -435,21 +432,21 @@ function pzarc_cell_designer_settings_meta($meta_boxes = array())
             //      'help'    => __('Note:The sum of the width and the left/right nudge should equal 100', 'pzarc')
     ),
     array(
-            'name'    => __('Cell Height Type', 'pzarc'),
+            'name'    => __('Panel Height Type', 'pzarc'),
             'id'      => $prefix . 'layout-cell-height-type',
-            'cols'    => 12,
+            'cols'    => 6,
             'type'    => 'pzselect',
             'default' => 'fluid',
             'options' => array(
                     'fluid' => 'Fluid',
                     'fixed' => 'Fixed',
             ),
-            'tooltip' => __('Choose whether to set the height of the cells (fixed), or allow them to adjust to the content height (fluid).', 'pzarc')
+            'tooltip' => __('Choose whether to set the height of the panels (fixed), or allow them to adjust to the content height (fluid).', 'pzarc')
     ),
     // Hmm? How's this gunna sit with the min-height in templates?
     // We will want to use this for image height cropping when behind.
     array(
-            'name'    => __('Cell Height', 'pzarc'),
+            'name'    => __('Panel Height', 'pzarc'),
             'id'      => $prefix . 'layout-cell-height',
             'type'    => 'pzspinner',
             'cols'    => 6,
@@ -458,13 +455,13 @@ function pzarc_cell_designer_settings_meta($meta_boxes = array())
             'max'     => '9999',
             'step'    => '1',
             'suffix'  => 'px',
-            'tooltip' => __('If using fixed height, set height for the cell.', 'pzarc'),
+            'tooltip' => __('If using fixed height, set height for the panel.', 'pzarc'),
     ),
     array(
             'name'    => __('Components Height', 'pzarc'),
             'id'      => $prefix . 'layout-components-height',
             'type'    => 'pzspinner',
-            'cols'    => 6,
+            'cols'    => 12,
             'default' => '100',
             'min'     => '0',
             'max'     => '9999',
@@ -476,7 +473,7 @@ function pzarc_cell_designer_settings_meta($meta_boxes = array())
 
   );
   $meta_boxes[ ] = array(
-          'title'    => 'Cell Designer settings',
+          'title'    => 'Panel Designer settings',
           'pages'    => 'arc-layouts',
           'fields'   => $fields,
           'context'  => 'side',
@@ -502,7 +499,7 @@ function pzarc_cell_formats_meta($meta_boxes = array())
                           __('The base font size is 10px. So, for example, to get a font size of 14px, use 1.4em. Even better is using relative ems i.e. rem.')
           ),
           array(
-                  'name' => __('Cells', 'pzarc'),
+                  'name' => __('Panels', 'pzarc'),
                   'id'   => $prefix . 'layout-format-cells',
                   'type' => 'textarea',
                   'rows' => 1,
@@ -510,7 +507,7 @@ function pzarc_cell_formats_meta($meta_boxes = array())
                   'help' => 'Declarations only for class: .pzarc_cells',
           ),
           array(
-                  'name'    => __('Cells Classes', 'pzarc'),
+                  'name'    => __('Panels Classes', 'pzarc'),
                   'id'      => $prefix . 'layout-format-cells-classes',
                   'type'    => 'text',
                   'cols'    => 6,
@@ -997,7 +994,7 @@ function draw_cell_layout()
       </div>
 	  </div>
 	  <p class="pzarc-states pzcentred">Loading</p>
-	  <p class="howto pzcentred"><strong style="color:#d00;">This is an example only and thus only a <span style="border-bottom: 3px double;">general guide</span> to how the cells will look.</strong></p>
+	  <p class="howto pzcentred"><strong style="color:#d00;">This is an example only and thus only a <span style="border-bottom: 3px double;">general guide</span> to how the panels will look.</strong></p>
 	</div>
 	<div class="plugin_url" style="display:none;">' . PZARC_PLUGIN_URL . '</div>
 	';
@@ -1042,7 +1039,7 @@ function save_arc_layouts($postid)
     // save the CSS too
     // new wp_filesystem
     // create file named with id e.g. pzarc-cell-layout-123.css
-    // Or should we connect this to the template? Potentially there'll be less cell layouts than templates tho
+    // Or should we connect this to the template? Potentially there'll be less panel layouts than templates tho
 
     $url = wp_nonce_url('post.php?post=' . $postid . '&action=edit', basename(__FILE__));
     if (false === ($creds = request_filesystem_credentials($url, '', false, false, null)))

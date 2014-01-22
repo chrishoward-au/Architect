@@ -337,12 +337,13 @@ if (!class_exists('Pizazz_Range_Field'))
     public function html()
     {
       ?>
-      <?php echo esc_html( $this->args[ 'min' ])?><input  type="range" style="width:80%;" min=<?php echo esc_html( $this->args[ 'min' ])?> max=<?php echo esc_html( $this->args[ 'max' ])?> <?php $this->name_attr(); ?><?php $this->boolean_attr(); ?> <?php $this->class_attr(); ?> <?php $this->id_attr(); ?> value="<?php echo esc_attr($this->get_value()) ?>" /><span class="pzarc-range-spinner spinner-'<?php  echo sanitize_html_class( $this->args[ 'id' ] ) ?>"><?php echo esc_html( $this->args[ 'max' ])?><?php echo esc_html( $this->args[ 'suffix' ])?></span><br />
+      <input  type="range" style="width:80%;" min=<?php echo esc_html( $this->args[ 'min' ])?> max=<?php echo esc_html( $this->args[ 'max' ])?> <?php $this->name_attr(); ?><?php $this->boolean_attr(); ?> <?php $this->class_attr(); ?> <?php $this->id_attr(); ?> value="<?php echo esc_attr($this->get_value()) ?>" /><span class="pzarc-range-spinner spinner-<?php  echo sanitize_html_class( $this->args[ 'id' ] ); ?>"><span class="value-<?php echo sanitize_html_class( $this->args[ 'id' ]); ?>"><?php echo esc_attr($this->get_value())?></span><?php echo esc_html( $this->args[ 'suffix' ])?></span><br />
 
     <?php
     }
   }
 }
+
 if (!class_exists('Pizazz_Submit_Button'))
 {
   class Pizazz_Submit_Button extends CMB_Field

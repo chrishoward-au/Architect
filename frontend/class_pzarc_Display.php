@@ -510,7 +510,7 @@ class pzarc_Display
       $celldef[ 'content' ] = str_replace('{{image-in-content}}', $celldef[ 'image' ], $celldef[ 'content' ]);
 
     }
-    if (!empty($this->cell_info[ '_pzarc_cell-settings-link-titles' ]))
+    if (!empty($this->cell_info[ '_pzarc_cell-settings-link-titles' ]) && $this->cell_info[ '_pzarc_cell-settings-link-titles' ]=='yes')
     {
       $celldef[ 'title' ] = str_replace('{{postlink}}', $celldef[ 'postlink' ], $celldef[ 'title' ]);
       $celldef[ 'title' ] = str_replace('{{closepostlink}}', '</a>', $celldef[ 'title' ]);
@@ -519,8 +519,8 @@ class pzarc_Display
     // Build this cell's layout
     $cell_definition = $this->build_cell_definition($celldef, $section_cell_settings, $layout);
 
-    $cell_definition = (!empty($this->cell_info[ '_pzarc_cell-settings-image-captions' ]))?str_replace('{{captioncode}}', $celldef[ 'caption' ], $cell_definition):$cell_definition;
-    if (!empty($this->cell_info[ '_pzarc_cell-settings-link-image' ]) && $this->cell_info[ '_pzarc_layout-background-image' ] == 'none')
+    $cell_definition = (!empty($this->cell_info[ '_pzarc_cell-settings-image-captions' ]) && $this->cell_info[ '_pzarc_cell-settings-image-captions' ]=='yes')?str_replace('{{captioncode}}', $celldef[ 'caption' ], $cell_definition):$cell_definition;
+    if ((!empty($this->cell_info[ '_pzarc_cell-settings-link-image' ]) && $this->cell_info[ '_pzarc_cell-settings-link-image' ]=='yes' && $this->cell_info[ '_pzarc_cell-settings-link-image' ]=='yes') && $this->cell_info[ '_pzarc_layout-background-image' ] == 'none')
     {
       $cell_definition = str_replace('{{postlink}}', $celldef[ 'postlink' ], $cell_definition);
       $cell_definition = str_replace('{{closepostlink}}', '</a>', $cell_definition);

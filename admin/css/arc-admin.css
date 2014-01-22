@@ -109,14 +109,16 @@ div.pzarc-dragsource {
   box-sizing: border-box;
   background: #ddd url(bg-preview.jpg);
   overflow: hidden;
-  width: 402px;
+  width: 406px;
   position: relative;
   background-position: 100%;
 }
 
 .pzarc-content-area {
   position: absolute;
-  background: rgba(182, 168, 147, .9);
+  background: rgba(182, 168, 147, .5);
+  border:solid 2px #553311;
+  box-sizing:border-box;
 }
 
 .pzgp-cell-image-behind {
@@ -747,7 +749,7 @@ body.screen-arc-contents #side-sortables .postbox,
 body.screen-arc-layouts #side-sortables .postbox {
   background: #333;
   color: #ccc;
-  border:none;
+  border-color:#444;
 }
 
 body.screen-arc-contents h3.hndle,
