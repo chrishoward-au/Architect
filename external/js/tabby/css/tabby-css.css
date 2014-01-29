@@ -33,16 +33,31 @@
 }
 
 .tabs li {
-  background:#bbb;
+  background:#ddd;
   margin-right:3px;
   cursor: pointer;
   margin-bottom:0;
+  color:#696969;
+}
+
+.tabs li.active,
+#side-sortables .tabs li.active {
+  background:#6d6d6d;
   color:#fff;
 }
 
-.tabs li.active {
-  background:#777;
+.tabs li:hover,
+#side-sortables .tabs li:hover{
+  background:#888;
+  color:#fff;
 }
+
+#side-sortables .tabs li {
+  background:#393939;
+  color:#aaa;
+}
+
+
 
 .tabs li {
   display:inline-block;

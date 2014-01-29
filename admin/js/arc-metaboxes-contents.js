@@ -12,12 +12,16 @@ jQuery('#_pzarc_contents-content-source-cmb-field-0').on('change',function() {pz
 
   function pzarc_show_hide_types() {
     var contenttype = jQuery('#_pzarc_contents-content-source-cmb-field-0').get(0);
-    //console.log(contenttype);
     jQuery.each(contenttype,function(index,value){
       var typeid = '#'+value.text.toLowerCase().replace(/ /g,"-")+'-filters';
-      //console.log(typeid,value.selected);
+      var tabid = 'li.item-'+value.text.toLowerCase().replace(/ /g,"-")+'-filters';
       jQuery(typeid).toggle(value.selected);
+      jQuery(tabid).toggle(value.selected);
+      if (value.selected) {
+        console.log(jQuery(tabid),tabid);
+        jQuery(tabid).trigger('click');
+      }
     });
-//    jQuery('#pzarc-sections-preview-' + x).toggle();
   }
 });
+

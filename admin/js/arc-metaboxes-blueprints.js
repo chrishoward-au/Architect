@@ -95,7 +95,7 @@ jQuery(document).ready(function () {
 
 /* Switched to pixel based once, but not as fluid. Butwhat was it's advantage? Why did I switch? */
   function pzarc_update_cell_margin(i,t) {
-    console.log(i);
+ //   console.log(i);
     var cellsAcross = jQuery('#_pzarc_'+i+'-blueprint-cells-across-cmb-field-0').get(0).value;
     var containerWidth = jQuery('.pzarc-section-'+i).width();
     //  //console.log(containerWidth);
@@ -108,7 +108,7 @@ jQuery(document).ready(function () {
   }
 
   function pzarc_update_cell_across(i,t) {
- console.log(i);
+ //console.log(i);
     var containerWidth = jQuery('#pzarc-sections-preview-'+i).width();
 //    //console.log(containerWidth);
     var cellRightMargin = jQuery('#_pzarc_'+i+'-blueprint-cells-vert-margin-cmb-field-0').val();
@@ -118,7 +118,7 @@ jQuery(document).ready(function () {
   }
 
   function pzarc_update_cell_count(i,t) {
-    console.log(i);
+   // console.log(i);
     jQuery('.pzarc-section-'+i).empty();
     var plugin_url = jQuery('.field.Pizazz_Layout_Field .plugin_url').get(0).textContent;
     var show_count = (t.value==0?10: t.value);
@@ -128,7 +128,7 @@ jQuery(document).ready(function () {
   }
 
   function pzarc_update_min_width(i,t) {
-   console.log(i);
+   //console.log(i);
     jQuery('#pzarc-sections-preview-'+i+' .pzarc-section-cell').css({'minWidth': t.value + 'px'});
   }
 

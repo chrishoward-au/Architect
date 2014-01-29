@@ -15,7 +15,9 @@
 
 require_once PZARC_PLUGIN_PATH . 'frontend/class_pzarc_Display.php';
 require PZARC_PLUGIN_PATH . '/frontend/arcCellDefinitions.php';
-require_once(PZARC_PLUGIN_PATH . 'external/bfi_thumb/BFI_Thumb.php');
+//require_once(PZARC_PLUGIN_PATH . 'external/bfi_thumb/BFI_Thumb.php');
+require_once(PZARC_PLUGIN_PATH . 'external/jo-image-resizer/jo_image_resizer.php');
+
 
 //add_shortcode('arcgallery', 'pzarc_gallery_shortcode');
 //

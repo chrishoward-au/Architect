@@ -114,13 +114,13 @@ class pzarc_Display
     {
       //build the new query
       //Lot of work!
- //     var_dump($the_criteria);
+      //     var_dump($the_criteria);
       switch ($the_criteria[ '_pzarc_contents-content-source' ])
       {
 
         case 'post':
-          $this->query_vars[ 'post_type' ]           = 'post';
-          $this->query_vars[ 'category__in' ]        = (!empty($the_criteria[ '_pzarc_posts_contents-inc-cats' ]) ? $the_criteria[ '_pzarc_posts_contents-inc-cats' ] : null);
+          $this->query_vars[ 'post_type' ]    = 'post';
+          $this->query_vars[ 'category__in' ] = (!empty($the_criteria[ '_pzarc_posts_contents-inc-cats' ]) ? $the_criteria[ '_pzarc_posts_contents-inc-cats' ] : null);
           break;
         // could we build this into the cell def or somewhere else so more closely tied to the content type stuff
         case 'gallery':
@@ -254,13 +254,14 @@ class pzarc_Display
      **********************************************************************
      **********************************************************************/
 
-    if (!empty($this->blueprint['section'])) {
-      $key=0;
-      while (!empty($this->blueprint[ 'section' ][$key] ))
+    if (!empty($this->blueprint[ 'section' ]))
+    {
+      $key = 0;
+      while (!empty($this->blueprint[ 'section' ][ $key ]))
       {
-        $section_info = $this->blueprint[ 'section' ][$key];
+        $section_info = $this->blueprint[ 'section' ][ $key ];
         // load up the cell's css for this section
-        $cellid = $this->blueprint[ '_pzarc_'.$key.'-blueprint-section-cell-layout' ];
+        $cellid = $this->blueprint[ '_pzarc_' . $key . '-blueprint-section-cell-layout' ];
         //var_dump($section_info);
         if (!empty($this->blueprint[ 'blueprint-id' ]))
         {
@@ -276,13 +277,13 @@ class pzarc_Display
 
           $this->output .= ($key == 0) ? '{{nav-top-outside}}' : null;
           $this->output .= ($key == 0) ? '{{nav-left-outside}}' : null;
-          if ($pzarc_blueprint['_pzarc_'.$key.'-blueprint-layout-mode'] == 'basic')
+          if ($pzarc_blueprint[ '_pzarc_' . $key . '-blueprint-layout-mode' ] == 'basic')
           {
             $this->output .= '<div class="pzarc-section pzarc-section-' . ($key + 1) . '">';
           }
           else
           {
-  //        $this->output .= '<div class="js-isotope pzarc-section pzarc-section-' . $key . '" data-isotope-options=\'{ "layoutMode": "'.$pzarc_section_info['section-layout-mode'].'","itemSelector": ".pzarc-cell" }\'>';
+            //        $this->output .= '<div class="js-isotope pzarc-section pzarc-section-' . $key . '" data-isotope-options=\'{ "layoutMode": "'.$pzarc_section_info['section-layout-mode'].'","itemSelector": ".pzarc-cell" }\'>';
             $this->output .= '<div class="pzarc-section pzarc-section-' . ($key + 1) . '">';
           }
 
@@ -294,18 +295,18 @@ class pzarc_Display
             while ($pzarc_query->have_posts())
             {
               $pzarc_query->the_post();
-              $this->build_cell($pzarc_query->post, $celldef, $cellid, $section_info[ 'section-cell-settings' ],$key);
+              $this->build_cell($pzarc_query->post, $celldef, $cellid, $section_info[ 'section-cell-settings' ], $key);
 
               //      $this->build_cell($pzarc_query->post, $celldefinition,$celldef,$section_info['section-cell-layout']);
 
               $this->set_nav_link();
 
-  // This needs to work out when to show! Maybe add it as a cell row???? Or at least an option??
+              // This needs to work out when to show! Maybe add it as a cell row???? Or at least an option??
               // if show comments {
-  //          $this->output = apply_filters('pzarc_comments',$this->output);
+              //          $this->output = apply_filters('pzarc_comments',$this->output);
 
               // Leave the while loop if up to the post count
-              if ($pzarc_blueprint['_pzarc_'.$key.'-blueprint-cells-per-view' ] != 0 && ++$i > $pzarc_blueprint['_pzarc_'.$key.'-blueprint-cells-per-view' ])
+              if ($pzarc_blueprint[ '_pzarc_' . $key . '-blueprint-cells-per-view' ] != 0 && ++$i > $pzarc_blueprint[ '_pzarc_' . $key . '-blueprint-cells-per-view' ])
               {
                 break;
               }
@@ -318,9 +319,9 @@ class pzarc_Display
           $this->output .= ($key == 0) ? '{{nav-left-outside}}' : null;
 
           // Add the section nav
-          if ($pzarc_blueprint['_pzarc_blueprint-navigation' ] != 'none')
+          if ($pzarc_blueprint[ '_pzarc_blueprint-navigation' ] != 'none')
           {
-            $this->output = str_replace('{{nav-' . $pzarc_blueprint['_pzarc_'.$key.'-blueprint-nav-pos' ] . '-' . $pzarc_blueprint['_pzarc_'.$key.'-blueprint-nav-loc' ] . '}}', $this->add_nav(), $this->output);
+            $this->output = str_replace('{{nav-' . $pzarc_blueprint[ '_pzarc_' . $key . '-blueprint-nav-pos' ] . '-' . $pzarc_blueprint[ '_pzarc_' . $key . '-blueprint-nav-loc' ] . '}}', $this->add_nav(), $this->output);
           }
           // if we are out ofthe loop then we've run out of posts, so break out otherwise it just loops back tothe firstpost. go figure!
           if (!in_the_loop())
@@ -352,56 +353,6 @@ class pzarc_Display
 
   }
 
-  /**********************************
-   *
-   * Method: build_cell_definition
-   *
-   **********************************/
-  /*************************************************
-   *
-   * Method: build_cell_definition
-   *
-   * Purpose: Wha?? Where is this being used??!!
-   *
-   * Parameters:
-   *
-   * Returns:
-   *
-   *************************************************/
-  function build_cell_definition($celldef, $section_cell_settings, $cell_layout)
-  {
-    $cell_meta1 = preg_replace('/%(\\w*)%/u','{{$1}}',(!empty($section_cell_settings[ '_pzarc_cell-settings-meta1-config' ])?$section_cell_settings[ '_pzarc_cell-settings-meta1-config' ]:null));
-    $cell_meta2 = preg_replace('/%(\\w*)%/u','{{$1}}',(!empty($section_cell_settings[ '_pzarc_cell-settings-meta2-config' ])?$section_cell_settings[ '_pzarc_cell-settings-meta2-config' ]:null));
-    $cell_meta3 = preg_replace('/%(\\w*)%/u','{{$1}}',(!empty($section_cell_settings[ '_pzarc_cell-settings-meta3-config' ])?$section_cell_settings[ '_pzarc_cell-settings-meta3-config' ]:null));
-
-    // build up the blueprint for the cell, ordering from
-    // won't this be fun!!
-    // need to match celllayout slugs to celldefs array index
-    $cell_definition = '';
-    foreach ((array)$cell_layout as $key => $value)
-    {
-      if ($value[ 'show' ])
-      {
-        if ($key != 'title')
-        {
-          $cell_definition .= $celldef[ $key ];
-        }
-        else
-        {
-          $cell_definition .= $celldef[ 'header' ];
-        }
-      }
-
-    }
-    $cell_definition = str_replace('{{meta1innards}}', $cell_meta1, $cell_definition);
-    $cell_definition = str_replace('{{meta2innards}}', $cell_meta2, $cell_definition);
-    $cell_definition = str_replace('{{meta3innards}}', $cell_meta3, $cell_definition);
-    $cell_definition = str_replace('{{headerinnards}}', $celldef[ 'title' ], $cell_definition);
-
-
-    return $cell_definition;
-  }
-
 
   /*************************************************
    *
@@ -414,21 +365,21 @@ class pzarc_Display
    * Returns:
    *
    *************************************************/
-  function build_cell($post_info, $celldef, $cellid, $section_cell_settings,$key)
+  function build_cell($post_info, $celldef, $cellid, $section_cell_settings, $key)
   {
-    $featureat = '';
+    $featureat       = '';
     $this->cell_info = ($this->section_info[ 'section-cell-settings' ]);
 
 //var_dump($this->section_info);
-    $cell_width     = 100 / $this->blueprint[ '_pzarc_'.$key.'-blueprint-cells-across' ] - $this->blueprint[ '_pzarc_'.$key.'-blueprint-cells-vert-margin' ];
-    $cell_min_width = $this->blueprint[ '_pzarc_'.$key.'-blueprint-min-cell-width' ];
+    $cell_width     = 100 / $this->blueprint[ '_pzarc_' . $key . '-blueprint-cells-across' ] - $this->blueprint[ '_pzarc_' . $key . '-blueprint-cells-vert-margin' ];
+    $cell_min_width = $this->blueprint[ '_pzarc_' . $key . '-blueprint-min-cell-width' ];
     // this may need to be in its own method
     $cell_height = ($this->cell_info[ '_pzarc_layout-cell-height-type' ] == 'fixed') ? 'height:' . $this->cell_info[ '_pzarc_layout-cell-height' ] . 'px;' : null;
 
     // Open cell
-    $this_cell = '<div class="pzarc-cell pzarc-{{classname}}" style="position:relative;width:' . $cell_width . '%;margin:' . ($this->blueprint[ '_pzarc_'.$key.'-blueprint-cells-vert-margin' ] / 2) . '%;min-width:' . $cell_min_width . 'px;' . $cell_height . '">';
+    $this_cell = '<div class="pzarc-cell pzarc-{{classname}}" style="position:relative;width:' . $cell_width . '%;margin:' . ($this->blueprint[ '_pzarc_' . $key . '-blueprint-cells-vert-margin' ] / 2) . '%;min-width:' . $cell_min_width . 'px;' . $cell_height . '">';
 
-    $params   = array('width' => $this->cell_info[ '_pzarc_cell-settings-image-max-width' ], 'height' => $this->cell_info[ '_pzarc_cell-settings-image-max-height' ]);
+    $params = array('width' => $this->cell_info[ '_pzarc_cell-settings-image-max-width' ], 'height' => $this->cell_info[ '_pzarc_cell-settings-image-max-height' ]);
 
     // Returns false on failure.
     // ADD CHECK THERE IS AN IMAGE HERE
@@ -445,7 +396,21 @@ class pzarc_Display
     {
       $thumb_src = $post_info->guid;
     }
-    $post_image = bfi_thumb($thumb_src, $params);
+
+    // BFI
+    // $post_image = bfi_thumb($thumb_src, $params);
+
+    //JOB
+
+    $post_image = job_resize($thumb_src,$params);
+
+
+
+
+
+
+
+
     // if ($this->cell_info[ '_pzarc_layout-background-image' ] == 'fill')
     // {
     //   $this_cell .= '<div class="pzarc-bg-image"><img class="entry-image" src="' . $post_image . '"></div>';
@@ -474,7 +439,7 @@ class pzarc_Display
     $the_inputs[ 'content' ]    = apply_filters('the_content', get_the_content());
     $the_inputs[ 'image' ]      = $post_image; // This needs to be a url coz that's how it's shown
     $the_inputs[ 'caption' ]    = pzarc_get_image_caption(get_post_thumbnail_id($post_info->ID));
-    $the_inputs[ 'date' ]       = apply_filters('the_date', get_the_date(empty($section_cell_settings['_pzarc_cell-settings-meta-date-format'])?'l, F j, Y g:i a':$section_cell_settings['_pzarc_cell-settings-meta-date-format'] ));
+    $the_inputs[ 'date' ]       = apply_filters('the_date', get_the_date(empty($section_cell_settings[ '_pzarc_cell-settings-meta-date-format' ]) ? 'l, F j, Y g:i a' : $section_cell_settings[ '_pzarc_cell-settings-meta-date-format' ]));
     $the_inputs[ 'categories' ] = apply_filters('the_category', 'Categories: ' . trim(get_the_category_list(', '), ', '));
     $the_inputs[ 'tags' ]       = apply_filters('the_tags', 'Tags: ' . trim(get_the_tag_list(', '), ', '));
     $the_inputs[ 'author' ]     = apply_filters('the_author', get_the_author());
@@ -498,19 +463,20 @@ class pzarc_Display
     {
       $celldef[ 'excerpt' ] = str_replace('{{image-in-content}}', '', $celldef[ 'excerpt' ]);
       $celldef[ 'content' ] = str_replace('{{image-in-content}}', '', $celldef[ 'content' ]);
-      if (empty($post_image)) {
+      if (empty($post_image))
+      {
         $celldef[ 'excerpt' ] = str_replace('{{nothumb}}', 'pznothumb', $celldef[ 'excerpt' ]);
         $celldef[ 'content' ] = str_replace('{{nothumb}}', 'pznothumb', $celldef[ 'content' ]);
       }
     }
     else
     {
-      $celldef[ 'image' ]   = str_replace('{{incontent}}', ' incontent pzarc-align '. $this->cell_info[ '_pzarc_layout-excerpt-thumb' ], $celldef[ 'image' ]);
+      $celldef[ 'image' ]   = str_replace('{{incontent}}', ' incontent pzarc-align ' . $this->cell_info[ '_pzarc_layout-excerpt-thumb' ], $celldef[ 'image' ]);
       $celldef[ 'excerpt' ] = str_replace('{{image-in-content}}', $celldef[ 'image' ], $celldef[ 'excerpt' ]);
       $celldef[ 'content' ] = str_replace('{{image-in-content}}', $celldef[ 'image' ], $celldef[ 'content' ]);
 
     }
-    if (!empty($this->cell_info[ '_pzarc_cell-settings-link-titles' ]) && $this->cell_info[ '_pzarc_cell-settings-link-titles' ]=='yes')
+    if (!empty($this->cell_info[ '_pzarc_cell-settings-link-titles' ]) && $this->cell_info[ '_pzarc_cell-settings-link-titles' ] == 'yes')
     {
       $celldef[ 'title' ] = str_replace('{{postlink}}', $celldef[ 'postlink' ], $celldef[ 'title' ]);
       $celldef[ 'title' ] = str_replace('{{closepostlink}}', '</a>', $celldef[ 'title' ]);
@@ -519,8 +485,8 @@ class pzarc_Display
     // Build this cell's layout
     $cell_definition = $this->build_cell_definition($celldef, $section_cell_settings, $layout);
 
-    $cell_definition = (!empty($this->cell_info[ '_pzarc_cell-settings-image-captions' ]) && $this->cell_info[ '_pzarc_cell-settings-image-captions' ]=='yes')?str_replace('{{captioncode}}', $celldef[ 'caption' ], $cell_definition):$cell_definition;
-    if ((!empty($this->cell_info[ '_pzarc_cell-settings-link-image' ]) && $this->cell_info[ '_pzarc_cell-settings-link-image' ]=='yes' && $this->cell_info[ '_pzarc_cell-settings-link-image' ]=='yes') && $this->cell_info[ '_pzarc_layout-background-image' ] == 'none')
+    $cell_definition = (!empty($this->cell_info[ '_pzarc_cell-settings-image-captions' ]) && $this->cell_info[ '_pzarc_cell-settings-image-captions' ] == 'yes') ? str_replace('{{captioncode}}', $celldef[ 'caption' ], $cell_definition) : $cell_definition;
+    if ((!empty($this->cell_info[ '_pzarc_cell-settings-link-image' ]) && $this->cell_info[ '_pzarc_cell-settings-link-image' ] == 'yes' && $this->cell_info[ '_pzarc_cell-settings-link-image' ] == 'yes') && $this->cell_info[ '_pzarc_layout-background-image' ] == 'none')
     {
       $cell_definition = str_replace('{{postlink}}', $celldef[ 'postlink' ], $cell_definition);
       $cell_definition = str_replace('{{closepostlink}}', '</a>', $cell_definition);
@@ -529,7 +495,7 @@ class pzarc_Display
 
 
     // Create the content section
-    
+
     $components_open  = '<div class="pzarc-components">';
     $components_close = '</div><!-- End components -->';
     $components       = $this->build_components($components_open, $the_inputs, $layout, $components_close, $cell_definition);
@@ -538,25 +504,27 @@ class pzarc_Display
     $this_cell .= $components . '</div><!-- end cell -->';
 
     // Add background image (or video!)    
-    if ($this->cell_info[ '_pzarc_layout-background-image' ] == 'align' && !empty($the_inputs[ 'image' ])) {
-      if ($this->cell_info[ '_pzarc_layout-sections-position' ]=='bottom' || $this->cell_info[ '_pzarc_layout-sections-position' ]=='right')
+    if ($this->cell_info[ '_pzarc_layout-background-image' ] == 'align' && !empty($the_inputs[ 'image' ]))
+    {
+      if ($this->cell_info[ '_pzarc_layout-sections-position' ] == 'bottom' || $this->cell_info[ '_pzarc_layout-sections-position' ] == 'right')
       {
         $this_cell = str_replace('{{bgimagetl}}', '<div class="pzarc-bg-image"><img class="nofill" src="' . $the_inputs[ 'image' ] . '" /></div>', $this_cell);
-      } 
-      elseif ($this->cell_info[ '_pzarc_layout-sections-position' ]=='top' || $this->cell_info[ '_pzarc_layout-sections-position' ]=='left') 
+      }
+      elseif ($this->cell_info[ '_pzarc_layout-sections-position' ] == 'top' || $this->cell_info[ '_pzarc_layout-sections-position' ] == 'left')
       {
         $this_cell = str_replace('{{bgimagebr}}', '<div class="pzarc-bg-image"><img class="nofill" src="' . $the_inputs[ 'image' ] . '" /></div>', $this_cell);
         // need to use some absolute positioning to stop content being cut off
-         $featureat = ' abs-content';
+        $featureat = ' abs-content';
       }
     }
-    if ($this->cell_info[ '_pzarc_layout-background-image' ] == 'fill' && !empty($the_inputs[ 'image' ])) {
-      if ($this->cell_info[ '_pzarc_layout-sections-position' ]=='bottom' || $this->cell_info[ '_pzarc_layout-sections-position' ]=='right')
+    if ($this->cell_info[ '_pzarc_layout-background-image' ] == 'fill' && !empty($the_inputs[ 'image' ]))
+    {
+      if ($this->cell_info[ '_pzarc_layout-sections-position' ] == 'bottom' || $this->cell_info[ '_pzarc_layout-sections-position' ] == 'right')
       {
         $this_cell = str_replace('{{bgimagetl}}', '<div class="pzarc-bg-image"><img class="fill" src="' . $the_inputs[ 'image' ] . '" /></div>', $this_cell);
         $featureat = ' abs-content';
-      } 
-      elseif ($this->cell_info[ '_pzarc_layout-sections-position' ]=='top' || $this->cell_info[ '_pzarc_layout-sections-position' ]=='left') 
+      }
+      elseif ($this->cell_info[ '_pzarc_layout-sections-position' ] == 'top' || $this->cell_info[ '_pzarc_layout-sections-position' ] == 'left')
       {
         $this_cell = str_replace('{{bgimagebr}}', '<div class="pzarc-bg-image"><img class="fill" src="' . $the_inputs[ 'image' ] . '" /></div>', $this_cell);
         $featureat = ' abs-content';
@@ -601,6 +569,80 @@ class pzarc_Display
       }
     }
     $this->output = str_replace('{{tag-tags}}', $tags_list, $this->output);
+
+  }
+
+  /*************************************************
+   *
+   * Method: build_cell_definition
+   *
+   * Purpose: Wha?? Where is this being used??!!
+   *
+   * Parameters:
+   *
+   * Returns:
+   *
+   *************************************************/
+  function build_cell_definition($celldef, $section_cell_settings, $cell_layout)
+  {
+    $cell_meta1 = preg_replace('/%(\\w*)%/u', '{{$1}}', (!empty($section_cell_settings[ '_pzarc_cell-settings-meta1-config' ]) ? $section_cell_settings[ '_pzarc_cell-settings-meta1-config' ] : null));
+    $cell_meta2 = preg_replace('/%(\\w*)%/u', '{{$1}}', (!empty($section_cell_settings[ '_pzarc_cell-settings-meta2-config' ]) ? $section_cell_settings[ '_pzarc_cell-settings-meta2-config' ] : null));
+    $cell_meta3 = preg_replace('/%(\\w*)%/u', '{{$1}}', (!empty($section_cell_settings[ '_pzarc_cell-settings-meta3-config' ]) ? $section_cell_settings[ '_pzarc_cell-settings-meta3-config' ] : null));
+
+    // build up the blueprint for the cell, ordering from
+    // won't this be fun!!
+    // need to match celllayout slugs to celldefs array index
+    $cell_definition = '';
+    foreach ((array)$cell_layout as $key => $value)
+    {
+      if ($value[ 'show' ])
+      {
+        if ($key != 'title')
+        {
+          $cell_definition .= $celldef[ $key ];
+        }
+        else
+        {
+          $cell_definition .= $celldef[ 'header' ];
+        }
+      }
+
+    }
+    $cell_definition = str_replace('{{meta1innards}}', $cell_meta1, $cell_definition);
+    $cell_definition = str_replace('{{meta2innards}}', $cell_meta2, $cell_definition);
+    $cell_definition = str_replace('{{meta3innards}}', $cell_meta3, $cell_definition);
+    $cell_definition = str_replace('{{headerinnards}}', $celldef[ 'title' ], $cell_definition);
+
+    return $cell_definition;
+  }
+
+  /*************************************************
+   *
+   * Method: build_components
+   *
+   * Purpose:
+   *
+   * Parameters:
+   *
+   * Returns:
+   *
+   *************************************************/
+  function build_components($components_open, $the_inputs, $layout, $components_close, $celldef)
+  {
+    // $layout = an arrayed version of the cell layout. Not sure why it's there.
+    $return_str = $components_open;
+
+    foreach ($the_inputs as $key => $the_input)
+    {
+      if (!empty($the_input))
+      {
+        $celldef = str_replace('{{' . $key . '}}', $the_input, $celldef);
+      }
+    }
+
+    $return_str .= $celldef . $components_close;
+
+    return $return_str;
 
   }
 
@@ -767,36 +809,6 @@ class pzarc_Display
     return preg_replace('/{{([\w|\-]*)}}/s', '', $strip_from);
   }
 
-  /*************************************************
-   *
-   * Method: build_components
-   *
-   * Purpose:
-   *
-   * Parameters:
-   *
-   * Returns:
-   *
-   *************************************************/
-  function build_components($components_open, $the_inputs, $layout, $components_close, $celldef)
-  {
-    // $layout = an arrayed version of the cell layout. Not sure why it's there.
-
-    $return_str = $components_open;
-
-    foreach ($the_inputs as $key => $the_input)
-    {
-      if (!empty($the_input))
-      {
-        $celldef = str_replace('{{' . $key . '}}', $the_input, $celldef);
-      }
-    }
-
-    $return_str .= $celldef . $components_close;
-
-    return $return_str;
-
-  }
 
   /*************************************************
    *

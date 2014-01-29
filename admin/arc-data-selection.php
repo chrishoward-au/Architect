@@ -335,7 +335,13 @@ function pzarc_contents_pages_metabox($meta_boxes = array())
 
   $prefix = '_pzarc_pages_';
 
-  $fields        = array();
+  $fields        = array(
+          array(
+                  'name' => __('Pages', 'pzarc'),
+                  'id'   => $prefix . 'contents-filters-pages-heading',
+                  'type' => 'title',
+          )
+  );
   $meta_boxes[ ] = array(
           'title'    => 'Pages filters',
           'pages'    => 'arc-blueprints',
@@ -355,7 +361,13 @@ function pzarc_contents_cpt_metabox($meta_boxes = array())
 
   $prefix = '_pzarc_pages_';
 
-  $fields        = array();
+  $fields        = array(
+          array(
+                  'name' => __('Custom Post Types', 'pzarc'),
+                  'id'   => $prefix . 'contents-filters-cpt-heading',
+                  'type' => 'title',
+          )
+  );
   $meta_boxes[ ] = array(
           'title'    => 'Custom post types filters',
           'pages'    => 'arc-blueprints',
@@ -374,7 +386,13 @@ function pzarc_contents_slides_metabox($meta_boxes = array())
 
   $prefix = '_pzarc_pages_';
 
-  $fields        = array();
+  $fields        = array(
+          array(
+                  'name' => __('Slides', 'pzarc'),
+                  'id'   => $prefix . 'contents-filters-slidess-heading',
+                  'type' => 'title',
+          )
+  );
   $meta_boxes[ ] = array(
           'title'    => 'Slides filters',
           'pages'    => 'arc-blueprints',
@@ -404,7 +422,7 @@ function pzarc_contents_default_metabox($meta_boxes = array())
 
   );
   $meta_boxes[ ] = array(
-          'title'    => 'Default filter',
+          'title'    => 'Default filters',
           'pages'    => 'arc-blueprints',
           'fields'   => $fields,
           'context'  => 'normal',
@@ -426,18 +444,18 @@ function pzarc_content_types_tabbed($meta_boxes = array())
                   'id'       => $prefix . 'layout-content-types-tabs',
                   'type'     => 'pztabs',
                   'defaults' => array(
-                          '#default-filter' => 'Default',
-                          '#posts-filter' => 'Posts',
-                          '#pages-filter' => 'Pages',
-                          '#galleries-filter' => 'Galleries',
-                          '#slides-filter' => 'Slides',
-                          '#custom-post-types-filter' => 'Custom Post Types',
+                          '#default-filters' => 'Default',
+                          '#posts-filters' => 'Posts',
+                          '#pages-filters' => 'Pages',
+                          '#galleries-filters' => 'Galleries',
+                          '#slides-filters' => 'Slides',
+                          '#custom-post-types-filters' => 'Custom Post Types',
                   ),
           ),
 
   );
   $meta_boxes[ ] = array(
-          'title'    => 'Content',
+          'title'    => 'Content Selection',
           'pages'    => 'arc-blueprints',
           'context'  => 'normal',
           'priority' => 'high',
