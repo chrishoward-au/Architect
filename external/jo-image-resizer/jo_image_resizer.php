@@ -28,18 +28,26 @@
 
 if (!function_exists('job_resize'))
 {
-  function job_resize($srcimg, $params)
+  function job_resize($srcimg, $params, $cachepath, $cacheurl)
   {
-    $outimg    = 'out.jpg';
-    $resizeObj = new job_resize($srcimg);
-    $resizeObj->resizeImage($params);
-    $resizeObj->saveImage($outimg, isset($params[ 'quality' ]) ? $params[ 'quality' ] : 75);
+    if (empty($srcimg) || !isset($params) || !isset($cachepath) || !isset($cacheurl)) {return '';}
+    $sourceinfo  = pathinfo($srcimg);
+    $outimg_url  = $cacheurl . $sourceinfo[ 'filename' ] . '-' . $params[ 'uid' ] . '.' . $sourceinfo[ 'extension' ];
+    $outimg_path = $cachepath . $sourceinfo[ 'filename' ] . '-' . $params[ 'uid' ] . '.' . $sourceinfo[ 'extension' ];
+    $file_exists = false;
 
-    return $outimg;
+    if (!$file_exists)
+    {
+      $resizeObj = new job_Resize($srcimg);
+      $resizeObj->resizeImage($params);
+      $resizeObj->saveImage($outimg_path, isset($params[ 'quality' ]) ? $params[ 'quality' ] : 75);
+    }
+
+    return $outimg_url;
   }
 
 }
-if (!class_exists('job_resize'))
+if (!class_exists('job_Resize'))
 {
 
 
@@ -98,7 +106,6 @@ if (!class_exists('job_resize'))
 
     public function resizeImage($params)
     {
-
       $newWidth      = $params[ 'width' ];
       $newHeight     = $params[ 'height' ];
       $resizingType  = isset($params[ 'type' ]) ? $params[ 'type' ] : "crop";
@@ -106,7 +113,7 @@ if (!class_exists('job_resize'))
       $hcrop_align   = isset($params[ 'hcrop' ]) ? $params[ 'hcrop' ] : "center";
       $img_bg_color  = isset($params[ 'backcolour' ]) ? $params[ 'backcolour' ] : "#FFFFFF";
       $centre_image  = isset($params[ 'centre' ]) ? $params[ 'centre' ] : true;
-      $max_image_dim = isset($params[ 'max_dim' ]) ? $params[ 'max_dim' ] : 1000;
+      $max_image_dim = isset($params[ 'max_dim' ]) ? $params[ 'max_dim' ] : 10000;
       $focal_point   = isset($params[ 'focal_point' ]) ? $params[ 'focal_point' ] : false;
 
       if (($this->height > $max_image_dim || $this->width > $max_image_dim) && $max_image_dim)
@@ -470,7 +477,7 @@ if (!class_exists('job_resize'))
         case '.jpeg':
           if (imagetypes() & IMG_JPG)
           {
-            imagejpeg($this->imageResized, $savePath, $imageQuality) or die('Unable to save new image');
+            $result=imagejpeg($this->imageResized, $savePath, $imageQuality) or die('Unable to save new image');
           }
           break;
 

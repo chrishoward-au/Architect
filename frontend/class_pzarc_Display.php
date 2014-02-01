@@ -379,7 +379,7 @@ class pzarc_Display
     // Open cell
     $this_cell = '<div class="pzarc-cell pzarc-{{classname}}" style="position:relative;width:' . $cell_width . '%;margin:' . ($this->blueprint[ '_pzarc_' . $key . '-blueprint-cells-vert-margin' ] / 2) . '%;min-width:' . $cell_min_width . 'px;' . $cell_height . '">';
 
-    $params = array('width' => $this->cell_info[ '_pzarc_cell-settings-image-max-width' ], 'height' => $this->cell_info[ '_pzarc_cell-settings-image-max-height' ]);
+    $params = array('uid'=>$cellid.'_'.$post_info->ID,'width' => $this->cell_info[ '_pzarc_cell-settings-image-max-width' ], 'height' => $this->cell_info[ '_pzarc_cell-settings-image-max-height' ]);
 
     // Returns false on failure.
     // ADD CHECK THERE IS AN IMAGE HERE
@@ -402,13 +402,7 @@ class pzarc_Display
 
     //JOB
 
-    $post_image = job_resize($thumb_src,$params);
-
-
-
-
-
-
+    $post_image = job_resize($thumb_src,$params,PZARC_CACHE_PATH,PZARC_CACHE_URL);
 
 
     // if ($this->cell_info[ '_pzarc_layout-background-image' ] == 'fill')

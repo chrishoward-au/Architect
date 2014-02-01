@@ -4,7 +4,7 @@
   Plugin Name: Architect - an all-in-one content display framework
   Plugin URI: http://pizazzwp.com
   Description: Display your content in grids, tabs, sliders, galleries with sources like posts, pages, galleries, widgets, custom code, Headway blocks and custom content types
-  Version: 0.5.0 beta
+  Version: 0.5.0 beta 30-01-14
   Author: Chris Howard
   Author URI: http://pizazzwp.com
   License: GNU GPL v2
@@ -53,9 +53,11 @@ class pz_Architect
 		define( 'PZARC_CACHE', '/pzarc/' );
 
 		$upload_dir = wp_upload_dir();
-		define( 'PZARC_CACHE_URL', trailingslashit($upload_dir[ 'baseurl' ] . '/uploads/cache/pizazzwp/pzarc' ));
+		define( 'PZARC_CACHE_URL', trailingslashit($upload_dir[ 'baseurl' ] . '/cache/pizazzwp/pzarc' ));
 		define( 'PZARC_CACHE_PATH', trailingslashit($upload_dir[ 'basedir' ] . '/cache/pizazzwp/pzarc' ));
 		define( 'PZARC_DEBUG', 0 );
+
+    wp_mkdir_p(PZARC_CACHE_PATH);
 
 		// Load plugin text domain
 		add_action( 'init', array( $this, 'plugin_textdomain' ) );

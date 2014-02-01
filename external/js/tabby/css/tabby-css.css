@@ -33,7 +33,7 @@
 }
 
 .tabs li {
-  background:#ddd;
+  background:#f4f4f4;
   margin-right:3px;
   cursor: pointer;
   margin-bottom:0;
@@ -53,7 +53,7 @@
 }
 
 #side-sortables .tabs li {
-  background:#393939;
+  background:#333;
   color:#aaa;
 }
 

@@ -207,7 +207,7 @@ function pzarc_cell_designer_tabbed($meta_boxes = array())
                   'type'     => 'pztabs',
                   'defaults' => array('#panel-designer' => 'Panel Designer',
                                       '#styling'       => 'Styling',
-                                      '#settings'=>'Settings'
+                                      '#settings'=>'Settings',
                   ),
           ),
 
@@ -391,7 +391,7 @@ function pzarc_cell_designer_settings_meta($meta_boxes = array())
                     'left'   => 'Left of panel',
                     'right'  => 'Right of panel',
             ),
-            //'desc'		 => __('Position for all the components as a group', 'pzarc')
+            //'desc'		 => __('Position for all the components as a group. NOTE: If feature is set to align, then components will be below the feature, but not at the bottom of the panel. ', 'pzarc')
     ),
     array(
             'name'    => __('Nudge components area up/down', 'pzarc'),
@@ -865,8 +865,29 @@ function pzarc_cell_settings_meta($meta_boxes = array())
                   'cols'    => 3,
                   'default' => 'Read more',
           ),
+          ///
+          // Feature
+          ///
 
+          array(
+                  'id'   => $prefix . 'cell-settings-image',
+                  'name' => 'Featured Image/Video',
+                  'type' => 'title',
+                  'desc'=> ''
+          ),
+
+          ///
           // IMAGE
+          ///
+          array(
+                  'name' => __('Images: Effect on resize', 'pzarc'),
+                  'id'   => $prefix . 'cell-settings-feature-scale',
+                  'type'    => 'select',
+                  'options' => array('scale'=>'Scale Vertically & Horizontally','crop'=>'Crop horizontally, retain height'),
+                  'default' => 'scale',
+                  'cols' => 3,
+          ),
+
           array(
                   'id'   => $prefix . 'cell-settings-image',
                   'name' => 'Image',
@@ -965,6 +986,31 @@ function pzarc_cell_settings_meta($meta_boxes = array())
   return $meta_boxes;
 }
 
+add_filter('cmb_meta_boxes', 'pzarc_panels_help_metabox');
+function pzarc_panels_help_metabox($meta_boxes = array())
+{
+
+  $prefix = '_pzarc_panels_';
+
+  $fields        = array(
+          array(
+                  'name' => __('Panels', 'pzarc'),
+                  'id'   => $prefix . 'contents-filters-slidess-heading',
+                  'type' => 'title',
+          )
+  );
+  $meta_boxes[ ] = array(
+          'title'    => 'Panels Help',
+          'pages'    => 'arc-layouts',
+          'fields'   => $fields,
+          'context'  => 'normal',
+          'priority' => 'low'
+
+  );
+
+  return $meta_boxes;
+
+}
 
 /**
  * [draw_cell_layout description]
