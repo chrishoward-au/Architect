@@ -62,6 +62,11 @@ function pzarc_create_css($postid,$type=null) {
 		    {
 		      switch (true)
 		      {
+            case ($key == '_pzarc_cell-settings-hide-content' && !empty($pzarc_cells[ '_pzarc_cell-settings-hide-content' ][0])):
+              $pzarc_contents .= '@media (max-width: '.$pzarc_cells[ '_pzarc_cell-settings-hide-content' ][0].'px) { .pzarchitect .pzarc-' . $postid . ' entry-content, .pzarchitect .pzarc-' . $postid . ' .entry-excerpt {display:none;}}';
+
+              break;
+
 		        case ($key == '_pzarc_layout-cell-preview'):
 		          $pzarc_left_margin =(!empty($pzarc_cells[ '_pzarc_cell-settings-image-margin-left' ][0])?$pzarc_cells[ '_pzarc_cell-settings-image-margin-left' ][0]:0);
 		          $pzarc_right_margin =(!empty($pzarc_cells[ '_pzarc_cell-settings-image-margin-right' ][0])?$pzarc_cells[ '_pzarc_cell-settings-image-margin-right' ][0]:0);

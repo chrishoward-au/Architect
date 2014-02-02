@@ -1,4 +1,7 @@
 
+/* Frontend layout */
+/* Any styling defaults should be included in the styling defaults values in options */
+
 .pzarchitect .pzarc-container {
   position:relative;
 }
@@ -43,7 +46,6 @@
 }
 
 .pzarchitect .pzarc-components {
-  padding:5px;
   box-sizing:border-box;
   overflow:hidden;
 }
@@ -168,13 +170,17 @@ default styling
   /*padding-left:10px;*/
 }
 
+.pzarchitect .pzarc-bg-image {
+  overflow:hidden;
+}
+.pzarchitect .pzarc-bg-image.fill.scale,
 .pzarchitect .pzarc-bg-image img.nofill{
   max-width:100%;
 }
-.pzarchitect .pzarc-bg-image img.fill{
+
+.pzarchitect .pzarc-bg-image img.fill.crop{
   max-width:none;
 }
-
 
 .pzarchitect x.pzarc-cell img.entry-image {float:left;margin-right:5px;margin-bottom:5px;}
 .pzarchitect x.pzarc-cell .entry-content {float:left;}
@@ -182,6 +188,11 @@ default styling
 .pzarchitect .pzarc-cell .entry-thumbnail img {
   max-width:100%;
 }
+
+.pzarchitect .pzarc-cell .entry-title {
+  line-height:120%;
+}
+
 
 .pzarchitect .pzarc-cell .entry-title,
 .pzarchitect .pzarc-cell .entry-excerpt,
@@ -197,9 +208,6 @@ default styling
 }
 
 .pzarchitect .pzarc-cell .caption {
-  font-size:11px;
-  font-style:italic;
-  line-height: 1;
 }
 
 .pzarchitect .pzarc-container .entry-excerpt.pznothumb ,
@@ -209,10 +217,11 @@ default styling
 
 .pzarchitect .pzarc-align.left {
   float: left;
-  padding-right: 5px;
+  padding-right: 2%;
 }
 
 .pzarchitect .pzarc-align.right {
   float: right;
-  padding-left: 5px;
+  padding-left: 2%;
 }
+

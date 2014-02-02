@@ -497,7 +497,7 @@ class pzarc_Display
 
     $this_cell .= $components . '</div><!-- end cell -->';
 
-    // Add background image (or video!)    
+    // Add background image (or video!)
     if ($this->cell_info[ '_pzarc_layout-background-image' ] == 'align' && !empty($the_inputs[ 'image' ]))
     {
       if ($this->cell_info[ '_pzarc_layout-sections-position' ] == 'bottom' || $this->cell_info[ '_pzarc_layout-sections-position' ] == 'right')
@@ -513,14 +513,15 @@ class pzarc_Display
     }
     if ($this->cell_info[ '_pzarc_layout-background-image' ] == 'fill' && !empty($the_inputs[ 'image' ]))
     {
+
       if ($this->cell_info[ '_pzarc_layout-sections-position' ] == 'bottom' || $this->cell_info[ '_pzarc_layout-sections-position' ] == 'right')
       {
-        $this_cell = str_replace('{{bgimagetl}}', '<div class="pzarc-bg-image"><img class="fill" src="' . $the_inputs[ 'image' ] . '" /></div>', $this_cell);
+        $this_cell = str_replace('{{bgimagetl}}', '<div class="pzarc-bg-image"><img class="fill '.$this->cell_info[ '_pzarc_cell-settings-feature-scale'].'" src="' . $the_inputs[ 'image' ] . '" /></div>', $this_cell);
         $featureat = ' abs-content';
       }
       elseif ($this->cell_info[ '_pzarc_layout-sections-position' ] == 'top' || $this->cell_info[ '_pzarc_layout-sections-position' ] == 'left')
       {
-        $this_cell = str_replace('{{bgimagebr}}', '<div class="pzarc-bg-image"><img class="fill" src="' . $the_inputs[ 'image' ] . '" /></div>', $this_cell);
+        $this_cell = str_replace('{{bgimagebr}}', '<div class="pzarc-bg-image"><img class="fill '.$this->cell_info[ '_pzarc_cell-settings-feature-scale'].'" src="' . $the_inputs[ 'image' ] . '"/></div>', $this_cell);
         $featureat = ' abs-content';
       }
     }

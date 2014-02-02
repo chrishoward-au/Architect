@@ -165,6 +165,9 @@ function pzarc_flatten_wpinfo($array_in)
   return $array_out;
 }
 
+/***********************
+ * Shortcode
+ ***********************/
 add_shortcode('pzarc', 'pzarc_shortcode');
 function pzarc_shortcode($atts, $content = null, $tag)
 {
@@ -189,8 +192,15 @@ function pzarc_shortcode($atts, $content = null, $tag)
 
 }
 
+/***********************
+ * Template tag
+ ***********************/
+function pzarchitect($pzarc_blueprint = null, $pzarc_overrides = null){
+  pzarc($pzarc_blueprint, $pzarc_overrides, false);
+}
 
-/* Blueprint tag */
+/***********************
+/* Blueprint main display function */
 /* Overrides is a list of ids */
 function pzarc($pzarc_blueprint = null, $pzarc_overrides = null, $is_shortcode = false)
 {
@@ -319,38 +329,6 @@ function pzarc_display()
 //	pzdebug((array) $pzarc_query);
 
 
-  // Need to replace as much as possible with actions and filters. Then do the class method calls there.
-  // Need to replace as much as possible with actions and filters. Then do the class method calls there.
-  // Need to replace as much as possible with actions and filters. Then do the class method calls there.
-  // Need to replace as much as possible with actions and filters. Then do the class method calls there.
-  // Need to replace as much as possible with actions and filters. Then do the class method calls there.
-  // Need to replace as much as possible with actions and filters. Then do the class method calls there.
-  // Need to replace as much as possible with actions and filters. Then do the class method calls there.
-  // Need to replace as much as possible with actions and filters. Then do the class method calls there.
-  // Need to replace as much as possible with actions and filters. Then do the class method calls there.
-  // Need to replace as much as possible with actions and filters. Then do the class method calls there.
-  // Need to replace as much as possible with actions and filters. Then do the class method calls there.
-  // Need to replace as much as possible with actions and filters. Then do the class method calls there.
-  // Need to replace as much as possible with actions and filters. Then do the class method calls there.
-  // Need to replace as much as possible with actions and filters. Then do the class method calls there.
-  // Need to replace as much as possible with actions and filters. Then do the class method calls there.
-  // Need to replace as much as possible with actions and filters. Then do the class method calls there.
-  // Need to replace as much as possible with actions and filters. Then do the class method calls there.
-  // Need to replace as much as possible with actions and filters. Then do the class method calls there.
-  // Need to replace as much as possible with actions and filters. Then do the class method calls there.
-  // Need to replace as much as possible with actions and filters. Then do the class method calls there.
-  // Need to replace as much as possible with actions and filters. Then do the class method calls there.
-  // Need to replace as much as possible with actions and filters. Then do the class method calls there.
-  // Need to replace as much as possible with actions and filters. Then do the class method calls there.
-  // Need to replace as much as possible with actions and filters. Then do the class method calls there.
-  // Need to replace as much as possible with actions and filters. Then do the class method calls there.
-  // Need to replace as much as possible with actions and filters. Then do the class method calls there.
-  // Need to replace as much as possible with actions and filters. Then do the class method calls there.
-  // Need to replace as much as possible with actions and filters. Then do the class method calls there.
-  // Need to replace as much as possible with actions and filters. Then do the class method calls there.
-  // Need to replace as much as possible with actions and filters. Then do the class method calls there.
-  // Need to replace as much as possible with actions and filters. Then do the class method calls there.
-  // Need to replace as much as possible with actions and filters. Then do the class method calls there.
   // Need to replace as much as possible with actions and filters. Then do the class method calls there.
   // Need to replace as much as possible with actions and filters. Then do the class method calls there.
   // Need to replace as much as possible with actions and filters. Then do the class method calls there.

@@ -206,8 +206,12 @@ function pzarc_cell_designer_tabbed($meta_boxes = array())
                   'id'       => $prefix . 'layout-cell-tabs',
                   'type'     => 'pztabs',
                   'defaults' => array('#panel-designer' => 'Panel Designer',
-                                      '#styling'       => 'Styling',
-                                      '#settings'=>'Settings',
+                                      '#panels-titles'=>'Titles',
+                                      '#panels-content'=>'Text',
+                                      '#panels-images'=>'Images',
+                                      '#panels-meta'=>'Meta',
+                                      '#panels-custom-fields'=>'Custom Fields',
+                                      '#styling' => 'Styling',
                   ),
           ),
 
@@ -484,9 +488,321 @@ function pzarc_cell_designer_settings_meta($meta_boxes = array())
   return $meta_boxes;
 }
 
+/**********
+ * Titles
+ *********/
+add_filter('cmb_meta_boxes', 'pzarc_cell_settings_titles');
+function pzarc_cell_settings_titles($meta_boxes = array())
+{
+  $prefix        = '_pzarc_';
+  $fields        = array(
+    /// TITLES
+    array(
+            'id'   => $prefix . 'cell-settings-title',
+            'name' => 'Title',
+            'type' => 'title'
+    ),
+    array(
+            'name'    => __('Title prefix', 'pzarc'),
+            'id'      => $prefix . 'cell-settings-title-prefix',
+            'type'    => 'select',
+            'cols'    => 2,
+            'default' => 'none',
+            'options' => array('none' => 'None', 'bullet' => 'Bullet', 'thumb' => 'Thumbnail'),
+    ),
+    array(
+            'name'    => __('Link titles', 'pzarc'),
+            'id'      => $prefix . 'cell-settings-link-titles',
+            'cols'    => 4,
+            'type'    => 'radio',
+            'options' => array('yes'=>'Yes','no'=>'No'),
+            'default' => 'yes'
+            /// can't set defaults on checkboxes!
+    ),
+  );
+  $meta_boxes[ ] = array(
+          'title'    => 'Panels Titles',
+          'pages'    => 'arc-layouts',
+          'fields'   => $fields,
+          'context'  => 'normal',
+          'priority' => 'default'
 
-add_filter('cmb_meta_boxes', 'pzarc_cell_formats_meta');
-function pzarc_cell_formats_meta($meta_boxes = array())
+  );
+
+  return $meta_boxes;
+}
+/**********
+ * Meta
+ *********/
+add_filter('cmb_meta_boxes', 'pzarc_cell_settings_meta');
+function pzarc_cell_settings_meta($meta_boxes = array())
+{
+  $prefix        = '_pzarc_';
+  $fields        = array(
+    // ======================================
+    // META
+    // ======================================
+    array(
+            'id'   => $prefix . 'cell-settings-meta1',
+            'name' => 'Meta',
+            'type' => 'title',
+            'desc'  => 'Include any text, field tags, and simple HTML tags. Available field tags: %date%, %author%, %editlink%, %categories%, %tags%, %commentcount%',
+    ),
+    array(
+            'name'     => __('Meta1 config', 'pzarc'),
+            'id'       => $prefix . 'cell-settings-meta1-config',
+            'type'     => 'textarea',
+            'cols'     => 4,
+            'rows'    => 2,
+            'default'  => '%date%, %author%',
+    ),
+    array(
+            'name'     => __('Meta2 config', 'pzarc'),
+            'id'       => $prefix . 'cell-settings-meta2-config',
+            'type'     => 'textarea',
+            'cols'     => 4,
+            'rows'    => 2,
+            'default'  => '%categories%, %tags%',
+    ),
+    array(
+            'name'     => __('Meta3 config', 'pzarc'),
+            'id'       => $prefix . 'cell-settings-meta3-config',
+            'type'     => 'textarea',
+            'cols'     => 4,
+            'rows'    => 2,
+            'default'  => '%commentcount%   %editlink%',
+    ),
+    array(
+            'id'      => $prefix . 'cell-settings-meta-date-format',
+            'name'    => 'Date format',
+            'type'    => 'text',
+            'default' => 'l, F j, Y g:i a',
+            'cols'    => 4,
+            'desc' => __('See here for information on <a href="http://codex.wordpress.org/Formatting_Date_and_Time" target=_blank>formatting date and time</a>','pzarc')
+    ),
+  );
+  $meta_boxes[ ] = array(
+          'title'    => 'Panels Meta',
+          'pages'    => 'arc-layouts',
+          'fields'   => $fields,
+          'context'  => 'normal',
+          'priority' => 'default'
+
+  );
+
+  return $meta_boxes;
+}
+/**********
+ * Excerpts
+ *********/
+add_filter('cmb_meta_boxes', 'pzarc_cell_settings_content');
+function pzarc_cell_settings_content($meta_boxes = array())
+{
+  $prefix        = '_pzarc_';
+  $fields        = array(
+    // EXCERPTS
+    array(
+            'id'   => $prefix . 'cell-settings-content-responsive-heading',
+            'name' => 'Responsive',
+            'type' => 'title'
+    ),
+    array(
+            'id'      => $prefix . 'cell-settings-hide-content',
+            'name'    => 'Hide Content on screens less than',
+            'type'    => 'text_small',
+            'default' => 0,
+            'cols'    => 3
+    ),
+    array(
+            'id'   => $prefix . 'cell-settings-excerpt',
+            'name' => 'Excerpts',
+            'type' => 'title'
+    ),
+    array(
+            'id'      => $prefix . 'cell-settings-excerpts-word-count',
+            'name'    => 'Excerpt length (words)',
+            'type'    => 'text_small',
+            'default' => 55,
+            'cols'    => 3
+    ),
+    array(
+            'name'    => __('Truncation indicator', 'pzarc'),
+            'id'      => $prefix . 'cell-settings-excerpts-morestr',
+            'type'    => 'text_small',
+            'cols'    => 3,
+            'default' => '[...]',
+    ),
+    array(
+            'name'    => __('Read More', 'pzarc'),
+            'id'      => $prefix . 'cell-settings-excerpts-linkmore',
+            'type'    => 'text',
+            'cols'    => 3,
+            'default' => 'Read more',
+    ),
+    array(
+            'id'   => $prefix . 'cell-settings-content',
+            'name' => 'Full Content',
+            'type' => 'title'
+    ),
+  );
+  $meta_boxes[ ] = array(
+          'title'    => 'Panels Content',
+          'pages'    => 'arc-layouts',
+          'fields'   => $fields,
+          'context'  => 'normal',
+          'priority' => 'default'
+
+  );
+
+  return $meta_boxes;
+}
+
+/**********
+ * Images
+ *********/
+add_filter('cmb_meta_boxes', 'pzarc_cell_settings_images');
+function pzarc_cell_settings_images($meta_boxes = array())
+{
+  $prefix        = '_pzarc_';
+  $fields        = array(
+    ///
+    // Feature
+    ///
+
+    array(
+            'id'   => $prefix . 'cell-settings-image',
+            'name' => 'Featured Image/Video',
+            'type' => 'title',
+            'desc'=> ''
+    ),
+    array(
+            'name' => __('Images: Effect on resize', 'pzarc'),
+            'id'   => $prefix . 'cell-settings-feature-scale',
+            'type'    => 'select',
+            'options' => array('scale'=>'Scale Vertically & Horizontally','crop'=>'Crop horizontally, retain height'),
+            'default' => 'scale',
+            'cols' => 3,
+    ),
+    ///
+    // IMAGE
+    ///
+
+    array(
+            'id'   => $prefix . 'cell-settings-image',
+            'name' => 'Content Images',
+            'type' => 'title',
+            'desc'=> 'Left and right margins are allowed for in the image width. e.g if Image width is 25% and right margin is 3%, image width will be adjusted to 22%'
+    ),
+    array(
+            'name' => __('Link image', 'pzarc'),
+            'id'   => $prefix . 'cell-settings-link-image',
+            'type'    => 'radio',
+            'options' => array('yes'=>'Yes','no'=>'No'),
+            'default' => 'yes',
+            'cols' => 3,
+    ),
+    array(
+            'name' => __('Image Captions', 'pzarc'),
+            'id'   => $prefix . 'cell-settings-image-captions',
+            'type'    => 'radio',
+            'options' => array('yes'=>'Yes','no'=>'No'),
+            'default' => 'no',
+            'cols' => 3,
+    ),
+    array(
+            'id'      => $prefix . 'cell-settings-image-max-width',
+            'name'    => 'Image max width',
+            'type'    => 'text_small',
+            'default' => '300',
+            'cols'    =>3
+    ),
+    array(
+            'id'      => $prefix . 'cell-settings-image-max-height',
+            'name'    => 'Image max height',
+            'type'    => 'text_small',
+            'default' => '250',
+            'cols'    => 3
+    ),
+    array(
+            'id'      => $prefix . 'cell-settings-image-margin-top',
+            'name'    => 'Margin top %',
+            'type'    => 'text_small',
+            'default' => '',
+            'cols'    => 3
+    ),
+    array(
+            'id'      => $prefix . 'cell-settings-image-margin-bottom',
+            'name'    => 'Margin bottom %',
+            'type'    => 'text_small',
+            'default' => '',
+            'cols'    => 3
+    ),
+    array(
+            'id'      => $prefix . 'cell-settings-image-margin-left',
+            'name'    => 'Margin left %',
+            'type'    => 'text_small',
+            'default' => '',
+            'cols'    => 3
+    ),
+    array(
+            'id'      => $prefix . 'cell-settings-image-margin-right',
+            'name'    => 'Margin right %',
+            'type'    => 'text_small',
+            'default' => '',
+            'cols'    => 3
+    ),
+  );
+  $meta_boxes[ ] = array(
+          'title'    => 'Panels Images',
+          'pages'    => 'arc-layouts',
+          'fields'   => $fields,
+          'context'  => 'normal',
+          'priority' => 'default'
+
+  );
+
+  return $meta_boxes;
+}
+
+/**********
+ * Custom Fields
+ *********/
+add_filter('cmb_meta_boxes', 'pzarc_cell_settings_custom_fields');
+function pzarc_cell_settings_custom_fields($meta_boxes = array())
+{
+  $prefix        = '_pzarc_';
+  $fields        = array(
+          array(
+                  'id'   => $prefix . 'cell-settings-custom1',
+                  'name' => 'Custom fields 1',
+                  'type' => 'title'
+          ),
+          array(
+                  'id'   => $prefix . 'cell-settings-custom2',
+                  'name' => 'Custom fields 2',
+                  'type' => 'title'
+          ),
+          array(
+                  'id'   => $prefix . 'cell-settings-custom3',
+                  'name' => 'Custom fields 3',
+                  'type' => 'title'
+          ),
+  );
+  $meta_boxes[ ] = array(
+          'title'    => 'Panels Custom Fields',
+          'pages'    => 'arc-layouts',
+          'fields'   => $fields,
+          'context'  => 'normal',
+          'priority' => 'default'
+
+  );
+
+  return $meta_boxes;
+}
+
+
+add_filter('cmb_meta_boxes', 'pzarc_cell_styling');
+function pzarc_cell_styling($meta_boxes = array())
 {
   $prefix        = '_pzarc_';
   $fields        = array(
@@ -534,6 +850,7 @@ function pzarc_cell_formats_meta($meta_boxes = array())
                   'type' => 'textarea',
                   'rows' => 1,
                   'cols' => 6,
+                  'default' => 'padding:2%;',
                   'help' => 'Declarations only for class: .pzarc_components',
           ),
           array(
@@ -742,6 +1059,7 @@ function pzarc_cell_formats_meta($meta_boxes = array())
                   'type' => 'textarea',
                   'rows' => 1,
                   'cols' => 6,
+                  'default' => 'font-size:11px;  font-style:italic;  line-height: 1;'
           ),
           array(
                   'name' => __('Image caption classes', 'pzarc'),
@@ -763,229 +1081,6 @@ function pzarc_cell_formats_meta($meta_boxes = array())
   return $meta_boxes;
 }
 
-/*
-*
-* SETTINGS
-* 
- */
-add_filter('cmb_meta_boxes', 'pzarc_cell_settings_meta');
-function pzarc_cell_settings_meta($meta_boxes = array())
-{
-  $prefix = '_pzarc_';
-  $fields = array(
-          /// TITLES
-          array(
-                  'id'   => $prefix . 'cell-settings-title',
-                  'name' => 'Title',
-                  'type' => 'title'
-          ),
-          array(
-                  'name'    => __('Title prefix', 'pzarc'),
-                  'id'      => $prefix . 'cell-settings-title-prefix',
-                  'type'    => 'select',
-                  'cols'    => 2,
-                  'default' => 'none',
-                  'options' => array('none' => 'None', 'bullet' => 'Bullet', 'thumb' => 'Thumbnail'),
-          ),
-          array(
-                  'name'    => __('Link titles', 'pzarc'),
-                  'id'      => $prefix . 'cell-settings-link-titles',
-                  'cols'    => 4,
-                  'type'    => 'radio',
-                  'options' => array('yes'=>'Yes','no'=>'No'),
-                  'default' => 'yes'
-                  /// can't set defaults on checkboxes!
-          ),
-
-          // ======================================
-          // META
-          // ======================================
-          array(
-                  'id'   => $prefix . 'cell-settings-meta1',
-                  'name' => 'Meta',
-                  'type' => 'title',
-                  'desc'  => 'Include any text, field tags, and simple HTML tags. Available field tags: %date%, %author%, %editlink%, %categories%, %tags%, %commentcount%',
-          ),
-          array(
-                  'name'     => __('Meta1 config', 'pzarc'),
-                  'id'       => $prefix . 'cell-settings-meta1-config',
-                  'type'     => 'textarea',
-                  'cols'     => 4,
-                  'rows'    => 2,
-                  'default'  => '%date%, %author%',
-          ),
-          array(
-                  'name'     => __('Meta2 config', 'pzarc'),
-                  'id'       => $prefix . 'cell-settings-meta2-config',
-                  'type'     => 'textarea',
-                  'cols'     => 4,
-                  'rows'    => 2,
-                  'default'  => '%categories%, %tags%',
-          ),
-          array(
-                  'name'     => __('Meta3 config', 'pzarc'),
-                  'id'       => $prefix . 'cell-settings-meta3-config',
-                  'type'     => 'textarea',
-                  'cols'     => 4,
-                  'rows'    => 2,
-                  'default'  => '%commentcount%   %editlink%',
-          ),
-          array(
-                  'id'      => $prefix . 'cell-settings-meta-date-format',
-                  'name'    => 'Date format',
-                  'type'    => 'text',
-                  'default' => 'l, F j, Y g:i a',
-                  'cols'    => 4,
-                  'desc' => __('See here for information on <a href="http://codex.wordpress.org/Formatting_Date_and_Time" target=_blank>formatting date and time</a>','pzarc')
-          ),
-          // EXCERPTS
-          array(
-                  'id'   => $prefix . 'cell-settings-excerpt',
-                  'name' => 'Excerpt',
-                  'type' => 'title'
-          ),
-          array(
-                  'id'      => $prefix . 'cell-settings-excerpts-word-count',
-                  'name'    => 'Excerpt length (words)',
-                  'type'    => 'text_small',
-                  'default' => 55,
-                  'cols'    => 3
-          ),
-          array(
-                  'name'    => __('Truncation indicator', 'pzarc'),
-                  'id'      => $prefix . 'cell-settings-excerpts-morestr',
-                  'type'    => 'text_small',
-                  'cols'    => 3,
-                  'default' => '[...]',
-          ),
-          array(
-                  'name'    => __('Read More', 'pzarc'),
-                  'id'      => $prefix . 'cell-settings-excerpts-linkmore',
-                  'type'    => 'text',
-                  'cols'    => 3,
-                  'default' => 'Read more',
-          ),
-          ///
-          // Feature
-          ///
-
-          array(
-                  'id'   => $prefix . 'cell-settings-image',
-                  'name' => 'Featured Image/Video',
-                  'type' => 'title',
-                  'desc'=> ''
-          ),
-
-          ///
-          // IMAGE
-          ///
-          array(
-                  'name' => __('Images: Effect on resize', 'pzarc'),
-                  'id'   => $prefix . 'cell-settings-feature-scale',
-                  'type'    => 'select',
-                  'options' => array('scale'=>'Scale Vertically & Horizontally','crop'=>'Crop horizontally, retain height'),
-                  'default' => 'scale',
-                  'cols' => 3,
-          ),
-
-          array(
-                  'id'   => $prefix . 'cell-settings-image',
-                  'name' => 'Image',
-                  'type' => 'title',
-                  'desc'=> 'Left and right margins are allowed for in the image width. e.g if Image width is 25% and right margin is 3%, image width will be adjusted to 22%'
-          ),
-          array(
-                  'name' => __('Link image', 'pzarc'),
-                  'id'   => $prefix . 'cell-settings-link-image',
-                  'type'    => 'radio',
-                  'options' => array('yes'=>'Yes','no'=>'No'),
-                  'default' => 'yes',
-                  'cols' => 3,
-          ),
-          array(
-                  'name' => __('Image Captions', 'pzarc'),
-                  'id'   => $prefix . 'cell-settings-image-captions',
-                  'type'    => 'radio',
-                  'options' => array('yes'=>'Yes','no'=>'No'),
-                  'default' => 'no',
-                  'cols' => 3,
-          ),
-          array(
-                  'id'      => $prefix . 'cell-settings-image-max-width',
-                  'name'    => 'Image max width',
-                  'type'    => 'text_small',
-                  'default' => '300',
-                  'cols'    =>3
-          ),
-          array(
-                  'id'      => $prefix . 'cell-settings-image-max-height',
-                  'name'    => 'Image max height',
-                  'type'    => 'text_small',
-                  'default' => '250',
-                  'cols'    => 3
-          ),
-          array(
-                  'id'      => $prefix . 'cell-settings-image-margin-top',
-                  'name'    => 'Margin top %',
-                  'type'    => 'text_small',
-                  'default' => '',
-                  'cols'    => 3
-          ),
-          array(
-                  'id'      => $prefix . 'cell-settings-image-margin-bottom',
-                  'name'    => 'Margin bottom %',
-                  'type'    => 'text_small',
-                  'default' => '',
-                  'cols'    => 3
-          ),
-          array(
-                  'id'      => $prefix . 'cell-settings-image-margin-left',
-                  'name'    => 'Margin left %',
-                  'type'    => 'text_small',
-                  'default' => '',
-                  'cols'    => 3
-          ),
-          array(
-                  'id'      => $prefix . 'cell-settings-image-margin-right',
-                  'name'    => 'Margin right %',
-                  'type'    => 'text_small',
-                  'default' => '',
-                  'cols'    => 3
-          ),
-
-          // CONTENT
-          array(
-                  'id'   => $prefix . 'cell-settings-content',
-                  'name' => 'Full Content',
-                  'type' => 'title'
-          ),
-          array(
-                  'id'   => $prefix . 'cell-settings-custom1',
-                  'name' => 'Custom fields 1',
-                  'type' => 'title'
-          ),
-          array(
-                  'id'   => $prefix . 'cell-settings-custom2',
-                  'name' => 'Custom fields 2',
-                  'type' => 'title'
-          ),
-          array(
-                  'id'   => $prefix . 'cell-settings-custom3',
-                  'name' => 'Custom fields 3',
-                  'type' => 'title'
-          ),
-  );
-
-  $meta_boxes[ ] = array(
-          'title'   => 'Settings',
-          'pages'   => 'arc-layouts',
-          'context' => 'normal',
-          'fields'  => $fields
-  );
-
-  return $meta_boxes;
-}
-
 add_filter('cmb_meta_boxes', 'pzarc_panels_help_metabox');
 function pzarc_panels_help_metabox($meta_boxes = array())
 {
@@ -995,7 +1090,7 @@ function pzarc_panels_help_metabox($meta_boxes = array())
   $fields        = array(
           array(
                   'name' => __('Panels', 'pzarc'),
-                  'id'   => $prefix . 'contents-filters-slidess-heading',
+                  'id'   => $prefix . 'contents-filters-panels-help-heading',
                   'type' => 'title',
           )
   );

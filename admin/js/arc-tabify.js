@@ -15,7 +15,8 @@ jQuery(document).ready(function () {
   var tabscontainer = '#normal-sortables';
   //gotta automate this bit!
   // JS doesn't seem to support a[x] = ['v1','v2','v3']
-  var slugdivs_cells = ['#panel-designer', '#styling', '#settings'];
+
+  var slugdivs_cells = ['#panel-designer', '#panels-titles','#panels-content','#panels-images','#panels-meta','#panels-custom-fields','#styling'];
   var slugdivs_bpsections = ['#blueprint-section-1', '#blueprint-section-2', '#blueprint-section-3', '#blueprint-pagination', '#blueprint-navigator', '#blueprint-wireframe-preview'];
   var slugdivs_bpswitcher = ['#blueprint-settings', '#contents-selection-settings'];
   var slugdivs_content = ['#default-filters', '#posts-filters', '#pages-filters', '#galleries-filters', '#slides-filters', '#custom-post-types-filters'];

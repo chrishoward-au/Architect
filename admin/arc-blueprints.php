@@ -643,6 +643,37 @@ function pzarc_blueprint_settings_metabox($meta_boxes = array())
   return $meta_boxes;
 }
 
+add_filter('cmb_meta_boxes', 'pzarc_blueprints_help_metabox');
+function pzarc_blueprints_help_metabox($meta_boxes = array())
+{
+
+  $prefix = '_pzarc_blueprints_';
+
+  $fields        = array(
+          array(
+                  'name' => __('Layout', 'pzarc'),
+                  'id'   => $prefix . 'contents-filters-blueprints-layout-help-heading',
+                  'type' => 'title',
+          ),
+          array(
+                  'name' => __('Content Selection', 'pzarc'),
+                  'id'   => $prefix . 'contents-filters-blueprints-content-help-heading',
+                  'type' => 'title',
+          )
+  );
+  $meta_boxes[ ] = array(
+          'title'    => 'Blueprints Help',
+          'pages'    => 'arc-blueprints',
+          'fields'   => $fields,
+          'context'  => 'normal',
+          'priority' => 'low'
+
+  );
+
+  return $meta_boxes;
+
+}
+
 
 function draw_sections_preview()
 {
