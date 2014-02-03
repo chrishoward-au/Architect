@@ -2,78 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6a91661e-ac03-4c49-a442-2faea24b5b57" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/external/Custom-Meta-Boxes/Gruntfile.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/external/Custom-Meta-Boxes/example-functions.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/external/Custom-Meta-Boxes/package.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/external/Custom-Meta-Boxes/phpunit.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/external/Custom-Meta-Boxes/tests/bootstrap.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/external/Custom-Meta-Boxes/tests/testDateField.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/external/Custom-Meta-Boxes/tests/testField.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/external/Custom-Meta-Boxes/tests/testGroupField.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/external/jQuery-Validation-Engine/demos/demoAdjustments.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/external/jQuery-Validation-Engine/demos/demoAjaxInlinePHP.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/external/jQuery-Validation-Engine/demos/demoAjaxJAVA.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/external/jQuery-Validation-Engine/demos/demoAjaxSubmitPHP.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/external/jQuery-Validation-Engine/demos/demoAttr.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/external/jQuery-Validation-Engine/demos/demoAutoHide.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/external/jQuery-Validation-Engine/demos/demoCheckBox.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/external/jQuery-Validation-Engine/demos/demoChosenLibrary.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/external/jQuery-Validation-Engine/demos/demoCustomErrorMessages.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/external/jQuery-Validation-Engine/demos/demoDatepicker.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/external/jQuery-Validation-Engine/demos/demoDivContainer.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/external/jQuery-Validation-Engine/demos/demoErrorLimit.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/external/jQuery-Validation-Engine/demos/demoFieldTypes.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/external/jQuery-Validation-Engine/demos/demoGlobalSettings.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/external/jQuery-Validation-Engine/demos/demoHooks.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/external/jQuery-Validation-Engine/demos/demoInlineMessages.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/external/jQuery-Validation-Engine/demos/demoLiveEvent.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/external/jQuery-Validation-Engine/demos/demoMultipleForms.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/external/jQuery-Validation-Engine/demos/demoOnForm.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/external/jQuery-Validation-Engine/demos/demoOneMessage.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/external/jQuery-Validation-Engine/demos/demoOverflown.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/external/jQuery-Validation-Engine/demos/demoPerFieldPromptDirection.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/external/jQuery-Validation-Engine/demos/demoPositioning.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/external/jQuery-Validation-Engine/demos/demoRegExp.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/external/jQuery-Validation-Engine/demos/demoSelectBoxLibrary.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/external/jQuery-Validation-Engine/demos/demoShowPrompt.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/external/jQuery-Validation-Engine/demos/demoSilent.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/external/jQuery-Validation-Engine/demos/demoValidationComplete.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/external/jQuery-Validation-Engine/demos/demoValidators.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/external/jQuery-Validation-Engine/demos/demoValidators.ja.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/external/jQuery-Validation-Engine/demos/demoWithoutId.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/external/jQuery-Validation-Engine/demos/phpajax/ajaxValidateFieldName.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/external/jQuery-Validation-Engine/demos/phpajax/ajaxValidateFieldUser.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/external/jQuery-Validation-Engine/demos/phpajax/ajaxValidateSubmit.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/external/jQuery-Validation-Engine/js/jquery-1.8.2.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/external/jQuery-Validation-Engine/runDemo.bat" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/external/jQuery-Validation-Engine/runDemo.sh" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/external/jQuery-Validation-Engine/test/AjaxTestServer$AjaxValidationFieldResponse.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/external/jQuery-Validation-Engine/test/AjaxTestServer$AjaxValidationFormResponse.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/external/jQuery-Validation-Engine/test/AjaxTestServer.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/external/jQuery-Validation-Engine/test/AjaxTestServer.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/external/jQuery-Validation-Engine/test/NanoHTTPD$HTTPSession.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/external/jQuery-Validation-Engine/test/NanoHTTPD$Response.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/external/jQuery-Validation-Engine/test/NanoHTTPD.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/external/jQuery-Validation-Engine/test/NanoHTTPD.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/external/jQuery-Validation-Engine/tests/issue430.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/external/jQuery-Validation-Engine/tests/issue451.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/external/jQuery-Validation-Engine/tests/issue480.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/external/jQuery-Validation-Engine/tests/issue493.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/external/jQuery-Validation-Engine/tests/issue498.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/external/jQuery-Validation-Engine/tests/issue507.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/external/jQuery-Validation-Engine/tests/issue524.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/external/jQuery-Validation-Engine/tests/placeholders.html" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/documentation/arc-layout.jpg" afterPath="$PROJECT_DIR$/documentation/arc-layout.jpg" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/admin/css/arc-admin.css" afterPath="$PROJECT_DIR$/admin/css/arc-admin.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/admin/arc-admin.php" afterPath="$PROJECT_DIR$/admin/arc-admin.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/admin/arc-blueprints.php" afterPath="$PROJECT_DIR$/admin/arc-blueprints.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/admin/arc-cell-layouts.php" afterPath="$PROJECT_DIR$/admin/arc-cell-layouts.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/arc-display.php" afterPath="$PROJECT_DIR$/frontend/arc-display.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/css/arc-front.css" afterPath="$PROJECT_DIR$/frontend/css/arc-front.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/includes/arc-functions.php" afterPath="$PROJECT_DIR$/includes/arc-functions.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/admin/js/arc-tabify.js" afterPath="$PROJECT_DIR$/admin/js/arc-tabify.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/includes/js/architect.js" afterPath="$PROJECT_DIR$/includes/js/architect.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/arcCellDefinitions.php" afterPath="$PROJECT_DIR$/frontend/arcCellDefinitions.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/class_pzarc_Display.php" afterPath="$PROJECT_DIR$/frontend/class_pzarc_Display.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/external/jo-image-resizer/jo_image_resizer.php" afterPath="$PROJECT_DIR$/external/jo-image-resizer/jo_image_resizer.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/admin/settings/options.php" afterPath="$PROJECT_DIR$/admin/settings/options.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/external/wp-settings-framework.php" afterPath="$PROJECT_DIR$/external/wp-settings-framework.php" />
     </list>
     <ignored path="pizazzwp-architect.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -99,16 +38,25 @@
       <file leaf-file-name="arc-tabify.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/admin/js/arc-tabify.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="103" column="0" selection-start="4197" selection-end="4231" vertical-scroll-proportion="0.0" vertical-offset="725" max-vertical-offset="1962">
+            <state line="103" column="0" selection-start="4197" selection-end="4231" vertical-scroll-proportion="0.0" vertical-offset="723" max-vertical-offset="1962">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="arc-cell-layouts.php" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="arc-cell-layouts.php" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/admin/arc-cell-layouts.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="895" column="12" selection-start="32511" selection-end="32511" vertical-scroll-proportion="0.0" vertical-offset="16110" max-vertical-offset="22068">
+            <state line="612" column="39" selection-start="22511" selection-end="22511" vertical-scroll-proportion="-12.16" vertical-offset="10408" max-vertical-offset="20232">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="options.php" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/admin/settings/options.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="264" column="83" selection-start="8373" selection-end="8373" vertical-scroll-proportion="-29.625" vertical-offset="4041" max-vertical-offset="6354">
               <folding />
             </state>
           </provider>
@@ -117,7 +65,16 @@
       <file leaf-file-name="arc-functions.php" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/includes/arc-functions.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="65" column="109" selection-start="1696" selection-end="1696" vertical-scroll-proportion="0.0" vertical-offset="1170" max-vertical-offset="2358">
+            <state line="13" column="11" selection-start="401" selection-end="401" vertical-scroll-proportion="-9.75" vertical-offset="0" max-vertical-offset="2718">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="arcCellDefinitions.php" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/frontend/arcCellDefinitions.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="116" column="88" selection-start="10985" selection-end="10985" vertical-scroll-proportion="0.74814814" vertical-offset="1179" max-vertical-offset="2430">
               <folding />
             </state>
           </provider>
@@ -126,7 +83,7 @@
       <file leaf-file-name="arc-metaboxes-cells.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/admin/js/arc-metaboxes-cells.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="12" column="109" selection-start="528" selection-end="528" vertical-scroll-proportion="0.0" vertical-offset="216" max-vertical-offset="9666">
+            <state line="158" column="34" selection-start="7309" selection-end="7316" vertical-scroll-proportion="-15.384615" vertical-offset="2444" max-vertical-offset="9666">
               <folding>
                 <marker date="1390302653000" expanded="false" signature="8800:8854" placeholder="..." />
                 <marker date="1390302653000" expanded="false" signature="9044:9059" placeholder="..." />
@@ -148,16 +105,7 @@
       <file leaf-file-name="tabby-css.css" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/external/js/tabby/css/tabby-css.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="55" column="17" selection-start="1084" selection-end="1084" vertical-scroll-proportion="0.0" vertical-offset="383" max-vertical-offset="1710">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="arc-display.php" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/frontend/arc-display.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="336" column="0" selection-start="14517" selection-end="14517" vertical-scroll-proportion="0.0" vertical-offset="6048" max-vertical-offset="8280">
+            <state line="55" column="17" selection-start="1084" selection-end="1084" vertical-scroll-proportion="0.0" vertical-offset="990" max-vertical-offset="1710">
               <folding />
             </state>
           </provider>
@@ -172,19 +120,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="arc-block-options.php" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/includes/headway/arc-block-options.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="36" column="155" selection-start="1655" selection-end="1655" vertical-scroll-proportion="0.0" vertical-offset="648" max-vertical-offset="5850">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="class_pzarc_Display.php" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/frontend/class_pzarc_Display.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="523" column="193" selection-start="21679" selection-end="21679" vertical-scroll-proportion="0.0" vertical-offset="9414" max-vertical-offset="16272">
+            <state line="400" column="0" selection-start="14891" selection-end="14891" vertical-scroll-proportion="-13.7" vertical-offset="6425" max-vertical-offset="16362">
               <folding />
             </state>
           </provider>
@@ -193,7 +132,7 @@
       <file leaf-file-name="architect.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/includes/js/architect.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="18" column="47" selection-start="608" selection-end="608" vertical-scroll-proportion="0.0" vertical-offset="324" max-vertical-offset="738">
+            <state line="21" column="44" selection-start="759" selection-end="759" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="738">
               <folding />
             </state>
           </provider>
@@ -202,8 +141,10 @@
       <file leaf-file-name="jo_image_resizer.php" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/external/jo-image-resizer/jo_image_resizer.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="15" column="24" selection-start="570" selection-end="570" vertical-scroll-proportion="0.0" vertical-offset="270" max-vertical-offset="9576">
-              <folding />
+            <state line="40" column="64" selection-start="1671" selection-end="1671" vertical-scroll-proportion="-13.68" vertical-offset="36" max-vertical-offset="9630">
+              <folding>
+                <element signature="e#6#81#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -211,18 +152,31 @@
       <file leaf-file-name="arc-admin.php" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/admin/arc-admin.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="218" column="0" selection-start="8412" selection-end="8486" vertical-scroll-proportion="0.0" vertical-offset="3924" max-vertical-offset="4284">
+            <state line="193" column="107" selection-start="7515" selection-end="7515" vertical-scroll-proportion="-17.833334" vertical-offset="3046" max-vertical-offset="4266">
               <folding>
-                <marker date="1391317250000" expanded="true" signature="6143:6153" placeholder="..." />
+                <marker date="1391331438000" expanded="true" signature="6143:6153" placeholder="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="options.php" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/admin/settings/options.php">
+      <file leaf-file-name="wp-settings-framework.php" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/external/wp-settings-framework.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="108" column="14" selection-start="3184" selection-end="3184" vertical-scroll-proportion="0.0" vertical-offset="1944" max-vertical-offset="2250">
+            <state line="125" column="85" selection-start="4223" selection-end="4223" vertical-scroll-proportion="-7.92" vertical-offset="1728" max-vertical-offset="6390">
+              <folding>
+                <marker date="1391342802000" expanded="true" signature="9250:9268" placeholder="..." />
+                <marker date="1391342802000" expanded="true" signature="11897:11938" placeholder="..." />
+                <marker date="1391342802000" expanded="true" signature="12318:12351" placeholder="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="arc-admin.css" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/admin/css/arc-admin.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="959" column="16" selection-start="23098" selection-end="23098" vertical-scroll-proportion="0.0" vertical-offset="16059" max-vertical-offset="17388">
               <folding />
             </state>
           </provider>
@@ -231,7 +185,7 @@
       <file leaf-file-name="arc-front.css" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/frontend/css/arc-front.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="2" column="58" selection-start="81" selection-end="81" vertical-scroll-proportion="0.0" vertical-offset="36" max-vertical-offset="4194">
+            <state line="209" column="25" selection-start="3839" selection-end="3839" vertical-scroll-proportion="-13.944445" vertical-offset="3009" max-vertical-offset="4194">
               <folding />
             </state>
           </provider>
@@ -264,24 +218,25 @@
         <option value="$PROJECT_DIR$/admin/arc-slides.php" />
         <option value="$PROJECT_DIR$/includes/pzarc-custom-field-types.php" />
         <option value="$PROJECT_DIR$/admin/js/arc-metaboxes-cells.js" />
-        <option value="$PROJECT_DIR$/admin/css/arc-admin.css" />
         <option value="$PROJECT_DIR$/admin/js/arc-metaboxes-blueprints.js" />
         <option value="$PROJECT_DIR$/admin/arc-data-selection.php" />
         <option value="$PROJECT_DIR$/admin/js/arc-metaboxes-contents.js" />
-        <option value="$PROJECT_DIR$/frontend/arcCellDefinitions.php" />
-        <option value="$PROJECT_DIR$/external/jo-image-resizer/jo_image_resizer.php" />
         <option value="$PROJECT_DIR$/architect.php" />
         <option value="$PROJECT_DIR$/external/js/tabby/css/tabby-css.css" />
         <option value="$PROJECT_DIR$/admin/js/arc-tabify.js" />
         <option value="$PROJECT_DIR$/admin/arc-blueprints.php" />
-        <option value="$PROJECT_DIR$/frontend/class_pzarc_Display.php" />
         <option value="$PROJECT_DIR$/includes/js/architect.js" />
-        <option value="$PROJECT_DIR$/includes/arc-functions.php" />
-        <option value="$PROJECT_DIR$/admin/arc-cell-layouts.php" />
         <option value="$PROJECT_DIR$/frontend/arc-display.php" />
         <option value="$PROJECT_DIR$/frontend/css/arc-front.css" />
         <option value="$PROJECT_DIR$/admin/arc-admin.php" />
+        <option value="$PROJECT_DIR$/external/wp-settings-framework.php" />
+        <option value="$PROJECT_DIR$/admin/css/arc-admin.css" />
+        <option value="$PROJECT_DIR$/includes/arc-functions.php" />
         <option value="$PROJECT_DIR$/admin/settings/options.php" />
+        <option value="$PROJECT_DIR$/frontend/class_pzarc_Display.php" />
+        <option value="$PROJECT_DIR$/external/jo-image-resizer/jo_image_resizer.php" />
+        <option value="$PROJECT_DIR$/admin/arc-cell-layouts.php" />
+        <option value="$PROJECT_DIR$/frontend/arcCellDefinitions.php" />
       </list>
     </option>
   </component>
@@ -601,14 +556,14 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="22" width="2560" height="1357" extended-state="0" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.09968229" sideWeight="0.41897234" order="1" side_tool="true" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.09968229" sideWeight="0.5810277" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.10047657" sideWeight="0.41910022" order="1" side_tool="true" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.10047657" sideWeight="0.5808998" order="0" side_tool="false" content_ui="combo" />
       <window_info id="eSnippet Pro" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -617,11 +572,11 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32879817" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -641,11 +596,6 @@
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/frontend/css/arc-front.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="161" column="0" selection-start="2459" selection-end="2561" vertical-scroll-proportion="0.0" vertical-offset="2898" max-vertical-offset="3582" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/frontend/arcCellDefinitions.php">
       <provider selected="true" editor-type-id="text-editor">
         <state line="113" column="22" selection-start="10483" selection-end="10483" vertical-scroll-proportion="0.0" vertical-offset="2034" max-vertical-offset="2412" />
@@ -698,7 +648,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state line="57" column="0" selection-start="1593" selection-end="1593" vertical-scroll-proportion="0.0" vertical-offset="873" max-vertical-offset="3654">
           <folding>
-            <marker date="1391317250000" expanded="true" signature="6143:6153" placeholder="..." />
+            <marker date="1391331438000" expanded="true" signature="6143:6153" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -802,11 +752,6 @@
         <state line="155" column="12" selection-start="5677" selection-end="5677" vertical-scroll-proportion="0.0" vertical-offset="2790" max-vertical-offset="3312" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/admin/css/arc-admin.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="751" column="19" selection-start="15103" selection-end="15103" vertical-scroll-proportion="0.47049314" vertical-offset="12936" max-vertical-offset="17298" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/admin/js/arc-metaboxes-blueprints.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="156" column="46" selection-start="6418" selection-end="6418" vertical-scroll-proportion="0.9564692" vertical-offset="2017" max-vertical-offset="2916" />
@@ -825,11 +770,6 @@
     <entry file="file://$PROJECT_DIR$/external/bfi_thumb/BFI_Thumb.php">
       <provider selected="true" editor-type-id="text-editor">
         <state line="375" column="6" selection-start="12166" selection-end="12166" vertical-scroll-proportion="24.98" vertical-offset="7693" max-vertical-offset="11052" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/frontend/arcCellDefinitions.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="106" column="0" selection-start="9808" selection-end="9808" vertical-scroll-proportion="-30.291666" vertical-offset="1181" max-vertical-offset="2394" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/admin/arc-data-selection.php">
@@ -851,40 +791,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state line="103" column="0" selection-start="4197" selection-end="4231" vertical-scroll-proportion="0.0" vertical-offset="725" max-vertical-offset="1962">
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin/arc-cell-layouts.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="895" column="12" selection-start="32511" selection-end="32511" vertical-scroll-proportion="0.0" vertical-offset="16110" max-vertical-offset="22068">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/includes/arc-functions.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="65" column="109" selection-start="1696" selection-end="1696" vertical-scroll-proportion="0.0" vertical-offset="1170" max-vertical-offset="2358">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin/js/arc-metaboxes-cells.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="12" column="109" selection-start="528" selection-end="528" vertical-scroll-proportion="0.0" vertical-offset="8442" max-vertical-offset="9666">
-          <folding>
-            <marker date="1390302653000" expanded="false" signature="8800:8854" placeholder="..." />
-            <marker date="1390302653000" expanded="false" signature="9044:9059" placeholder="..." />
-            <marker date="1390302653000" expanded="false" signature="9243:9258" placeholder="..." />
-            <marker date="1390302653000" expanded="false" signature="9438:9471" placeholder="..." />
-            <marker date="1390302653000" expanded="false" signature="9545:9560" placeholder="..." />
-            <marker date="1390302653000" expanded="false" signature="10010:10025" placeholder="..." />
-            <marker date="1390302653000" expanded="false" signature="10266:10303" placeholder="..." />
-            <marker date="1390302653000" expanded="false" signature="10958:10973" placeholder="..." />
-            <marker date="1390302653000" expanded="false" signature="11525:11540" placeholder="..." />
-            <marker date="1390302653000" expanded="false" signature="11737:11752" placeholder="..." />
-            <marker date="1390302653000" expanded="false" signature="11953:11968" placeholder="..." />
-            <marker date="1390302653000" expanded="false" signature="12169:12184" placeholder="..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -916,46 +822,107 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/frontend/class_pzarc_Display.php">
+    <entry file="file://$PROJECT_DIR$/frontend/css/arc-front.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="523" column="193" selection-start="21679" selection-end="21679" vertical-scroll-proportion="0.0" vertical-offset="9414" max-vertical-offset="16272">
+        <state line="209" column="25" selection-start="3839" selection-end="3839" vertical-scroll-proportion="-13.944445" vertical-offset="3009" max-vertical-offset="4194">
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/js/arc-metaboxes-cells.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="158" column="34" selection-start="7309" selection-end="7316" vertical-scroll-proportion="-15.384615" vertical-offset="2444" max-vertical-offset="9666">
+          <folding>
+            <marker date="1390302653000" expanded="false" signature="8800:8854" placeholder="..." />
+            <marker date="1390302653000" expanded="false" signature="9044:9059" placeholder="..." />
+            <marker date="1390302653000" expanded="false" signature="9243:9258" placeholder="..." />
+            <marker date="1390302653000" expanded="false" signature="9438:9471" placeholder="..." />
+            <marker date="1390302653000" expanded="false" signature="9545:9560" placeholder="..." />
+            <marker date="1390302653000" expanded="false" signature="10010:10025" placeholder="..." />
+            <marker date="1390302653000" expanded="false" signature="10266:10303" placeholder="..." />
+            <marker date="1390302653000" expanded="false" signature="10958:10973" placeholder="..." />
+            <marker date="1390302653000" expanded="false" signature="11525:11540" placeholder="..." />
+            <marker date="1390302653000" expanded="false" signature="11737:11752" placeholder="..." />
+            <marker date="1390302653000" expanded="false" signature="11953:11968" placeholder="..." />
+            <marker date="1390302653000" expanded="false" signature="12169:12184" placeholder="..." />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/includes/js/architect.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="18" column="47" selection-start="608" selection-end="608" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="738">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/external/jo-image-resizer/jo_image_resizer.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="15" column="24" selection-start="570" selection-end="570" vertical-scroll-proportion="0.0" vertical-offset="270" max-vertical-offset="9576">
+        <state line="21" column="44" selection-start="759" selection-end="759" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="738">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/admin/arc-admin.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="218" column="0" selection-start="8412" selection-end="8486" vertical-scroll-proportion="0.0" vertical-offset="3924" max-vertical-offset="4284">
+        <state line="193" column="107" selection-start="7515" selection-end="7515" vertical-scroll-proportion="-17.833334" vertical-offset="3046" max-vertical-offset="4266">
           <folding>
-            <marker date="1391317250000" expanded="true" signature="6143:6153" placeholder="..." />
+            <marker date="1391331438000" expanded="true" signature="6143:6153" placeholder="..." />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/external/wp-settings-framework.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="125" column="85" selection-start="4223" selection-end="4223" vertical-scroll-proportion="-7.92" vertical-offset="1728" max-vertical-offset="6390">
+          <folding>
+            <marker date="1391342802000" expanded="true" signature="9250:9268" placeholder="..." />
+            <marker date="1391342802000" expanded="true" signature="11897:11938" placeholder="..." />
+            <marker date="1391342802000" expanded="true" signature="12318:12351" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/css/arc-admin.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="959" column="16" selection-start="23098" selection-end="23098" vertical-scroll-proportion="0.0" vertical-offset="16059" max-vertical-offset="17388">
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/admin/settings/options.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="108" column="14" selection-start="3184" selection-end="3184" vertical-scroll-proportion="0.0" vertical-offset="1944" max-vertical-offset="2250">
+        <state line="264" column="83" selection-start="8373" selection-end="8373" vertical-scroll-proportion="-29.625" vertical-offset="4041" max-vertical-offset="6354">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/frontend/css/arc-front.css">
+    <entry file="file://$PROJECT_DIR$/frontend/class_pzarc_Display.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="2" column="58" selection-start="81" selection-end="81" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="4194">
+        <state line="400" column="0" selection-start="14891" selection-end="14891" vertical-scroll-proportion="-13.7" vertical-offset="6425" max-vertical-offset="16362">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/external/jo-image-resizer/jo_image_resizer.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="40" column="64" selection-start="1671" selection-end="1671" vertical-scroll-proportion="-13.68" vertical-offset="36" max-vertical-offset="9630">
+          <folding>
+            <element signature="e#6#81#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/arc-cell-layouts.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="612" column="39" selection-start="22511" selection-end="22511" vertical-scroll-proportion="-12.16" vertical-offset="10408" max-vertical-offset="20232">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/includes/arc-functions.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="13" column="11" selection-start="401" selection-end="401" vertical-scroll-proportion="-9.75" vertical-offset="0" max-vertical-offset="2718">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/frontend/arcCellDefinitions.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="116" column="88" selection-start="10985" selection-end="10985" vertical-scroll-proportion="0.74814814" vertical-offset="1179" max-vertical-offset="2430">
           <folding />
         </state>
       </provider>

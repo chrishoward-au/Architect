@@ -123,7 +123,7 @@ if( !class_exists('WordPressSettingsFramework') ){
                 		if(isset($section['fields']) && is_array($section['fields']) && !empty($section['fields'])){
                     		foreach($section['fields'] as $field){
                         		if(isset($field['id']) && $field['id'] && isset($field['title'])){
-                        		    add_settings_field( $field['id'], $field['title'], array(&$this, 'generate_setting'), $this->option_group, $section['section_id'], array('section' => $section, 'field' => $field) );
+                        		    add_settings_field( $field['id'], '<span class="wpsf-'.$field['type'].'">'.$field['title'].'</span>', array(&$this, 'generate_setting'), $this->option_group, $section['section_id'], array('section' => $section, 'field' => $field) );
                         		}
                     		}
                 		}
@@ -159,7 +159,7 @@ if( !class_exists('WordPressSettingsFramework') ){
         		'std'     => '',
         		'type'    => 'text',
         		'choices' => array(),
-        		'class'   => ''
+        		'class'   => '',
         	);
         	$defaults = apply_filters( 'wpsf_defaults', $defaults );
         	extract( wp_parse_args( $args['field'], $defaults ) );
@@ -171,14 +171,19 @@ if( !class_exists('WordPressSettingsFramework') ){
         	do_action('wpsf_before_field');
         	do_action('wpsf_before_field_'. $el_id);
     		switch( $type ){
-    		    case 'text':
-    		        $val = esc_attr(stripslashes($val));
-    		        echo '<input type="text" name="'. $this->option_group .'_settings['. $el_id .']" id="'. $el_id .'" value="'. $val .'" class="regular-text '. $class .'" />';
-    		        if($desc)  echo '<p class="description">'. $desc .'</p>';
-    		        break;
+          case 'text':
+            $val = esc_attr(stripslashes($val));
+            echo '<input type="text" name="'. $this->option_group .'_settings['. $el_id .']"  id="'. $el_id .'" value="'. $val .'" class="regular-text '. $class .'" />';
+            if($desc)  echo '<p class="description">'. $desc .'</p>';
+            break;
+          case 'readonly':
+            $val = esc_attr(stripslashes($val));
+            echo '<input type="text" readonly name="'. $this->option_group .'_settings['. $el_id .']"  id="'. $el_id .'" value="'. $val .'" class="regular-text '. $class .'" />';
+            if($desc)  echo '<p class="description">'. $desc .'</p>';
+            break;
     		    case 'textarea':
     		        $val = esc_html(stripslashes($val));
-    		        echo '<textarea name="'. $this->option_group .'_settings['. $el_id .']" id="'. $el_id .'" rows="5" cols="60" class="'. $class .'">'. $val .'</textarea>';
+    		        echo '<textarea name="'. $this->option_group .'_settings['. $el_id .']" id="'. $el_id .'" rows="2" cols="40" class="'. $class .'">'. $val .'</textarea>';
     		        if($desc)  echo '<p class="description">'. $desc .'</p>';
     		        break;
     		    case 'select':
@@ -258,9 +263,12 @@ if( !class_exists('WordPressSettingsFramework') ){
     		        wp_editor( $val, $el_id, array( 'textarea_name' => $this->option_group .'_settings['. $el_id .']' ) );
     		        if($desc)  echo '<p class="description">'. $desc .'</p>';
     		        break;
-    		    case 'custom':
-    		        echo $std;
-    		        break;
+          case 'custom':
+            echo $std;
+            break;
+          case 'separator':
+            echo '<hr style="width: 350px;text-align: left;float: left"/>';
+            break;
         		default:
         		    break;
     		}

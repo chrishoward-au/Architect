@@ -191,7 +191,7 @@ class pzarc_Options {
 
     // Include and create a new WordPressSettingsFramework
     require_once( $this->plugin_path .'/external/wp-settings-framework.php' );
-    $this->wpsf = new WordPressSettingsFramework( $this->plugin_path .'/admin/settings/options.php' );
+    $this->wpsf = new WordPressSettingsFramework( $this->plugin_path .'/admin/settings/options.php','architect-defaults' );
     // Add an optional settings validation filter (recommended)
     add_filter( $this->wpsf->get_option_group() .'_settings_validate', array(&$this, 'validate_settings') );
   }
@@ -212,11 +212,10 @@ class pzarc_Options {
 			<div class = "icon32" id = "icon-options-general"><br></div>
 
 			<h2>' . $title . '</h2>
-<p>add a list of common classes as used in TwentyXX themes and the means to override (and reset) them i.e. .hentry, .entry-title, .entry-content, etc. This way people can change them if their theme uses different ones. ARC will add these appropriately to classes</p>
-			</div><!--end table-->
-			</div>
-			<div style = "clear:both"></div>';
+<p>List of common classes as used in TwentyXX themes and the means to override them and their default values i.e. .hentry, .entry-title, .entry-content, etc. This way people can change them if their theme uses different ones. Architect will add these to appropriate parent classes of the panel ID</p>
+    ';
     $this->wpsf->settings();
+    echo '</div>';
   }
 
   function validate_settings( $input )

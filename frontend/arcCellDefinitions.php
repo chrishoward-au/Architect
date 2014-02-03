@@ -113,6 +113,8 @@
 
     $celldefs[ 'images' ]['postlink'] = '<a href="{{permalink}}" title="{{title}}">';
     $celldefs[ 'images' ]['image'] = '<figure class="entry-thumbnail {{incontent}}">{{postlink}}<img width="{{width}}" src="{{image}}" class="attachment-post-thumbnail wp-post-image" alt="{{alttext}}">{{closepostlink}}{{captioncode}}</figure>';
+
+    // Need atrick to include caption to hide when responsive and caption is description
     $celldefs[ 'images' ]['caption'] = '<figcaption class="caption">{{caption}}</figcaption>';
 
     $celldefs[ 'gallery' ] = $celldefs[ 'images' ];

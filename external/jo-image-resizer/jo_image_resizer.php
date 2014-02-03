@@ -36,6 +36,9 @@ if (!function_exists('job_resize'))
     $outimg_path = $cachepath . $sourceinfo[ 'filename' ] . '-' . $params[ 'uid' ] . '.' . $sourceinfo[ 'extension' ];
     $file_exists = false;
 
+    // Check if the file exists. If it does, don't recreate it. Need to cater for using original image
+    // See how BFI do it and caching
+    // Also, use newer WP imag processing techniques, esp saving
     if (!$file_exists)
     {
       $resizeObj = new job_Resize($srcimg);
@@ -112,9 +115,9 @@ if (!class_exists('job_Resize'))
       $vcrop_align   = isset($params[ 'vcrop' ]) ? $params[ 'vcrop' ] : "center";
       $hcrop_align   = isset($params[ 'hcrop' ]) ? $params[ 'hcrop' ] : "center";
       $img_bg_color  = isset($params[ 'backcolour' ]) ? $params[ 'backcolour' ] : "#FFFFFF";
-      $centre_image  = isset($params[ 'centre' ]) ? $params[ 'centre' ] : true;
+//      $centre_image  = isset($params[ 'centre' ]) ? $params[ 'centre' ] : true;
       $max_image_dim = isset($params[ 'max_dim' ]) ? $params[ 'max_dim' ] : 10000;
-      $focal_point   = isset($params[ 'focal_point' ]) ? $params[ 'focal_point' ] : false;
+      $focal_point   = isset($params[ 'focal_point' ]) ? $params[ 'focal_point' ] : '50,50';
 
       if (($this->height > $max_image_dim || $this->width > $max_image_dim) && $max_image_dim)
       {

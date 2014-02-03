@@ -205,13 +205,13 @@ function pzarc_cell_designer_tabbed($meta_boxes = array())
                   'name'     => __('Tabs', 'pzarc'),
                   'id'       => $prefix . 'layout-cell-tabs',
                   'type'     => 'pztabs',
-                  'defaults' => array('#panel-designer' => 'Panel Designer',
-                                      '#panels-titles'=>'Titles',
-                                      '#panels-content'=>'Text',
-                                      '#panels-images'=>'Images',
-                                      '#panels-meta'=>'Meta',
-                                      '#panels-custom-fields'=>'Custom Fields',
-                                      '#styling' => 'Styling',
+                  'defaults' => array('#panel-designer'       => 'Panel Designer',
+                                      '#panels-titles'        => 'Titles',
+                                      '#panels-content'       => 'Text',
+                                      '#panels-images'        => 'Images',
+                                      '#panels-meta'          => 'Meta',
+                                      '#panels-custom-fields' => 'Custom Fields',
+                                      '#styling'              => 'Styling',
                   ),
           ),
 
@@ -402,7 +402,7 @@ function pzarc_cell_designer_settings_meta($meta_boxes = array())
             'id'      => $prefix . 'layout-sections-nudge-y',
             'cols'    => 12,
             'type'    => 'pzrange',
-            'default'=>'0',
+            'default' => '0',
             'min'     => '0',
             'max'     => '100',
             'step'    => '1',
@@ -413,7 +413,7 @@ function pzarc_cell_designer_settings_meta($meta_boxes = array())
             'name'    => __('Nudge components area left/right', 'pzarc'),
             'id'      => $prefix . 'layout-sections-nudge-x',
             'type'    => 'pzrange',
-            'default'=>'0',
+            'default' => '0',
             'cols'    => 12,
             'min'     => '0',
             'max'     => '100',
@@ -515,7 +515,7 @@ function pzarc_cell_settings_titles($meta_boxes = array())
             'id'      => $prefix . 'cell-settings-link-titles',
             'cols'    => 4,
             'type'    => 'radio',
-            'options' => array('yes'=>'Yes','no'=>'No'),
+            'options' => array('yes' => 'Yes', 'no' => 'No'),
             'default' => 'yes'
             /// can't set defaults on checkboxes!
     ),
@@ -531,6 +531,7 @@ function pzarc_cell_settings_titles($meta_boxes = array())
 
   return $meta_boxes;
 }
+
 /**********
  * Meta
  *********/
@@ -546,31 +547,31 @@ function pzarc_cell_settings_meta($meta_boxes = array())
             'id'   => $prefix . 'cell-settings-meta1',
             'name' => 'Meta',
             'type' => 'title',
-            'desc'  => 'Include any text, field tags, and simple HTML tags. Available field tags: %date%, %author%, %editlink%, %categories%, %tags%, %commentcount%',
+            'desc' => 'Include any text, field tags, and simple HTML tags. Available field tags: %date%, %author%, %editlink%, %categories%, %tags%, %commentcount%',
     ),
     array(
-            'name'     => __('Meta1 config', 'pzarc'),
-            'id'       => $prefix . 'cell-settings-meta1-config',
-            'type'     => 'textarea',
-            'cols'     => 4,
+            'name'    => __('Meta1 config', 'pzarc'),
+            'id'      => $prefix . 'cell-settings-meta1-config',
+            'type'    => 'textarea',
+            'cols'    => 4,
             'rows'    => 2,
-            'default'  => '%date%, %author%',
+            'default' => '%date%, %author%',
     ),
     array(
-            'name'     => __('Meta2 config', 'pzarc'),
-            'id'       => $prefix . 'cell-settings-meta2-config',
-            'type'     => 'textarea',
-            'cols'     => 4,
+            'name'    => __('Meta2 config', 'pzarc'),
+            'id'      => $prefix . 'cell-settings-meta2-config',
+            'type'    => 'textarea',
+            'cols'    => 4,
             'rows'    => 2,
-            'default'  => '%categories%, %tags%',
+            'default' => '%categories%, %tags%',
     ),
     array(
-            'name'     => __('Meta3 config', 'pzarc'),
-            'id'       => $prefix . 'cell-settings-meta3-config',
-            'type'     => 'textarea',
-            'cols'     => 4,
+            'name'    => __('Meta3 config', 'pzarc'),
+            'id'      => $prefix . 'cell-settings-meta3-config',
+            'type'    => 'textarea',
+            'cols'    => 4,
             'rows'    => 2,
-            'default'  => '%commentcount%   %editlink%',
+            'default' => '%commentcount%   %editlink%',
     ),
     array(
             'id'      => $prefix . 'cell-settings-meta-date-format',
@@ -578,7 +579,7 @@ function pzarc_cell_settings_meta($meta_boxes = array())
             'type'    => 'text',
             'default' => 'l, F j, Y g:i a',
             'cols'    => 4,
-            'desc' => __('See here for information on <a href="http://codex.wordpress.org/Formatting_Date_and_Time" target=_blank>formatting date and time</a>','pzarc')
+            'desc'    => __('See here for information on <a href="http://codex.wordpress.org/Formatting_Date_and_Time" target=_blank>formatting date and time</a>', 'pzarc')
     ),
   );
   $meta_boxes[ ] = array(
@@ -592,6 +593,7 @@ function pzarc_cell_settings_meta($meta_boxes = array())
 
   return $meta_boxes;
 }
+
 /**********
  * Excerpts
  *********/
@@ -670,18 +672,18 @@ function pzarc_cell_settings_images($meta_boxes = array())
     ///
 
     array(
-            'id'   => $prefix . 'cell-settings-image',
-            'name' => 'Featured Image/Video',
+            'id'   => $prefix . 'cell-settings-image-responsive',
+            'name' => 'Responsive',
             'type' => 'title',
-            'desc'=> ''
+            'desc' => ''
     ),
     array(
-            'name' => __('Images: Effect on resize', 'pzarc'),
-            'id'   => $prefix . 'cell-settings-feature-scale',
+            'name'    => __('Background images: Effect on resize', 'pzarc'),
+            'id'      => $prefix . 'cell-settings-feature-scale',
             'type'    => 'select',
-            'options' => array('scale'=>'Scale Vertically & Horizontally','crop'=>'Crop horizontally, retain height'),
+            'options' => array('scale' => 'Scale Vertically & Horizontally', 'crop' => 'Crop horizontally, retain height'),
             'default' => 'scale',
-            'cols' => 3,
+            'cols'    => 3,
     ),
     ///
     // IMAGE
@@ -689,40 +691,11 @@ function pzarc_cell_settings_images($meta_boxes = array())
 
     array(
             'id'   => $prefix . 'cell-settings-image',
-            'name' => 'Content Images',
+            'name' => 'Content Featured Image',
             'type' => 'title',
-            'desc'=> 'Left and right margins are allowed for in the image width. e.g if Image width is 25% and right margin is 3%, image width will be adjusted to 22%'
+            'desc' => 'Left and right margins are included in the image width in the designer. e.g if Image width is 25% and right margin is 3%, image width will be adjusted to 22%'
     ),
-    array(
-            'name' => __('Link image', 'pzarc'),
-            'id'   => $prefix . 'cell-settings-link-image',
-            'type'    => 'radio',
-            'options' => array('yes'=>'Yes','no'=>'No'),
-            'default' => 'yes',
-            'cols' => 3,
-    ),
-    array(
-            'name' => __('Image Captions', 'pzarc'),
-            'id'   => $prefix . 'cell-settings-image-captions',
-            'type'    => 'radio',
-            'options' => array('yes'=>'Yes','no'=>'No'),
-            'default' => 'no',
-            'cols' => 3,
-    ),
-    array(
-            'id'      => $prefix . 'cell-settings-image-max-width',
-            'name'    => 'Image max width',
-            'type'    => 'text_small',
-            'default' => '300',
-            'cols'    =>3
-    ),
-    array(
-            'id'      => $prefix . 'cell-settings-image-max-height',
-            'name'    => 'Image max height',
-            'type'    => 'text_small',
-            'default' => '250',
-            'cols'    => 3
-    ),
+
     array(
             'id'      => $prefix . 'cell-settings-image-margin-top',
             'name'    => 'Margin top %',
@@ -731,25 +704,89 @@ function pzarc_cell_settings_images($meta_boxes = array())
             'cols'    => 3
     ),
     array(
-            'id'      => $prefix . 'cell-settings-image-margin-bottom',
-            'name'    => 'Margin bottom %',
-            'type'    => 'text_small',
-            'default' => '',
-            'cols'    => 3
+            'id'   => $prefix . 'cell-settings-image-margin-bottom',
+            'name' => 'Margin bottom %',
+            'type' => 'text_small',
+            'cols' => 3
     ),
     array(
-            'id'      => $prefix . 'cell-settings-image-margin-left',
-            'name'    => 'Margin left %',
-            'type'    => 'text_small',
-            'default' => '',
-            'cols'    => 3
+            'id'   => $prefix . 'cell-settings-image-margin-left',
+            'name' => 'Margin left %',
+            'type' => 'text_small',
+            'cols' => 3
     ),
     array(
-            'id'      => $prefix . 'cell-settings-image-margin-right',
-            'name'    => 'Margin right %',
+            'id'   => $prefix . 'cell-settings-image-margin-right',
+            'name' => 'Margin right %',
+            'type' => 'text_small',
+            'cols' => 3
+    ),
+    array(
+            'name'    => __('Link image', 'pzarc'),
+            'id'      => $prefix . 'cell-settings-link-image',
+            'type'    => 'radio',
+            'options' => array('yes' => 'Yes', 'no' => 'No'),
+            'default' => 'yes',
+            'cols'    => 3,
+    ),
+    array(
+            'name'    => __('Image Captions', 'pzarc'),
+            'id'      => $prefix . 'cell-settings-image-captions',
+            'type'    => 'radio',
+            'options' => array('yes' => 'Yes', 'no' => 'No'),
+            'default' => 'no',
+            'cols'    => 3,
+    ),
+    array(
+            'id'   => $prefix . 'cell-settings-image-sizing',
+            'name' => 'Image Sizing',
+            'type' => 'title',
+    ),
+    array(
+            'name'     => __('Image resizing method', 'pzarc'),
+            'id'       => $prefix . 'cell-settings-image-resizing',
+            'type'     => 'select',
+            'cols'     => 3,
+            'default'  => 'crop',
+            'options'  => array(
+                    'crop'					 => 'Crop width and height to fit',
+                    'exact'					 => 'Stretch to width and height (Warning: Can distort image)',
+                    'portrait'			 => 'Crop width, match height',
+                    'landscape'			 => 'Match width, crop height',
+                    'auto'					 => 'Fit within width and height',
+                    'scaletowidth'	 => 'Scale to resize width',
+                    'scaletoheight'	 => 'Scale to resize height',
+                    'none' 						=> 'No cropping, use original. (Use with care!)'
+            ),
+            'desc'	 => 'Choose how you want the image resized in respect of its original width and height to the Image Max Height and Width.',
+    ),
+    array(
+            'id'      => $prefix . 'cell-settings-image-max-width',
+            'name'    => 'Image max width',
             'type'    => 'text_small',
-            'default' => '',
-            'cols'    => 3
+            'default' => '300',
+            'cols'    => 3,
+    ),
+    array(
+            'id'      => $prefix . 'cell-settings-image-max-height',
+            'name'    => 'Image max height',
+            'type'    => 'text_small',
+            'default' => '250',
+            'cols'    => 3,
+
+    ),
+    array(
+            'id'      => $prefix . 'cell-settings-image-quality',
+            'name'    => 'Image quality',
+            'type'    => 'pzspinner',
+            'default' => '75',
+            'min'     => '20',
+            'max'     => '100',
+            'step'    => '1',
+            'suffix'  => '%',
+            'cols'    => 3,
+            'desc' => 'Quality to use when processing images'
+
     ),
   );
   $meta_boxes[ ] = array(
@@ -804,6 +841,10 @@ function pzarc_cell_settings_custom_fields($meta_boxes = array())
 add_filter('cmb_meta_boxes', 'pzarc_cell_styling');
 function pzarc_cell_styling($meta_boxes = array())
 {
+  $defaults  = get_option('architect-defaults_settings');
+  $optprefix = 'architect-defaults_architect_options_';
+
+
   $prefix        = '_pzarc_';
   $fields        = array(
           array(
@@ -817,257 +858,114 @@ function pzarc_cell_styling($meta_boxes = array())
           array(
                   'name' => __('Panels', 'pzarc'),
                   'id'   => $prefix . 'layout-format-cells',
-                  'type' => 'textarea',
-                  'rows' => 1,
-                  'cols' => 6,
-                  'help' => 'Declarations only for class: .pzarc_cells',
+                  'type' => 'text',
+                  'help' => 'Declarations only for class: .pzarc-panel',
           ),
           array(
-                  'name'    => __('Panels Classes', 'pzarc'),
-                  'id'      => $prefix . 'layout-format-cells-classes',
-                  'type'    => 'text',
-                  'cols'    => 6,
-                  'default' => '.pzarc-cells',
-          ),
-          array(
-                  'name' => __('Entry section', 'pzarc'),
+                  'name' => __('Entry', 'pzarc'),
                   'id'   => $prefix . 'layout-format-entry',
-                  'type' => 'textarea',
-                  'rows' => 1,
-                  'cols' => 6,
+                  'type' => 'text',
                   'help' => 'Declarations only for class: .hentry',
-          ),
-          array(
-                  'name'    => __('Entry Classes', 'pzarc'),
-                  'id'      => $prefix . 'layout-format-entry-classes',
-                  'type'    => 'text',
-                  'cols'    => 6,
-                  'default' => '.hentry',
           ),
           array(
                   'name' => __('Components group', 'pzarc'),
                   'id'   => $prefix . 'layout-format-components-group',
-                  'type' => 'textarea',
-                  'rows' => 1,
-                  'cols' => 6,
-                  'default' => 'padding:2%;',
-                  'help' => 'Declarations only for class: .pzarc_components',
+                  'type' => 'text',
+                 'help' => 'Declarations only for class: .pzarc_components',
           ),
           array(
-                  'name'    => __('Components Group Classes', 'pzarc'),
-                  'id'      => $prefix . 'layout-format-components-group-classes',
+                  'name'    => __('Entry title', 'pzarc'),
+                  'id'      => $prefix . 'layout-format-entry-title', //titles_defaults_entry-title-defaults
                   'type'    => 'text',
-                  'rows'    => 1,
-                  'cols'    => 6,
-                  'default' => '.pzarc-components',
-          ),
-          array(
-                  'name' => __('Entry title', 'pzarc'),
-                  'id'   => $prefix . 'layout-format-entry-title',
-                  'type' => 'textarea',
-                  'rows' => 1,
-                  'cols' => 6,
-                  'help' => 'Declarations only for class: .pzarc_entry_title and .pzarc_entry_title a',
+                  'default' => $defaults[ $optprefix . 'titles_defaults_entry-title-defaults' ],
+                  'help'    => 'Declarations only for class: .pzarc_entry_title and .pzarc_entry_title a',
                   //      'desc'    => __('Format the entry title', 'pzarc')
           ),
           array(
-                  'name'    => __('Entry Title Classes', 'pzarc'),
-                  'id'      => $prefix . 'layout-format-entry-title-classes',
+                  'name'    => __('Entry title hover', 'pzarc'),
+                  'id'      => $prefix . 'layout-format-entry-title-hover',
                   'type'    => 'text',
-                  'cols'    => 6,
-                  'default' => '.entry-title, .entry-title a',
-          ),
-          array(
-                  'name' => __('Entry title hover', 'pzarc'),
-                  'id'   => $prefix . 'layout-format-entry-title-hover',
-                  'type' => 'textarea',
-                  'rows' => 1,
-                  'cols'    => 6,
-
-                  'help' => 'Declarations only for class: .pzarc_entry_title a:hover',
+                  'default' => $defaults[ $optprefix . '_titles_defaults_entry-title-hover-defaults' ],
+                  'help'    => 'Declarations only for class: .pzarc_entry_title a:hover',
                   //      'desc'    => __('Format the entry title link hover', 'pzarc')
           ),
-         array(
-                  'name' => __('Entry title hover classes', 'pzarc'),
-                  'id'   => $prefix . 'layout-format-entry-title-hover-classes',
-                  'type' => 'textarea',
-                  'rows' => 1,
-                  'cols'    => 6,
-          ),
           array(
-                  'name' => __('Entry meta', 'pzarc'),
+                  'name'    => __('Entry meta', 'pzarc'),
                   'id'      => $prefix . 'layout-format-entry-meta',
-                  'type' => 'textarea',
-                  'rows' => 1,
-                  'cols' => 6,
-                  'help' => 'Declarations only for class: .pzarc_entry_meta',
+                  'type'    => 'text',
+                  'default' => $defaults[ $optprefix . 'meta_defaults_entry-meta-defaults' ],
+                  'help'    => 'Declarations only for class: .pzarc_entry_meta',
                   //     'desc'    => __('Format the entry meta', 'pzarc')
           ),
           array(
-                  'name'    => __('Entry Meta Classes', 'pzarc'),
-                  'id'      => $prefix . 'layout-format-entry-meta-classes',
+                  'name'    => __('Entry meta links', 'pzarc'),
+                  'id'      => $prefix . 'layout-format-entry-meta-links',
                   'type'    => 'text',
-                  'rows'    => 1,
-                  'cols'    => 6,
-                  'default' => ' .entry-meta',
-          ),
-          array(
-                  'name' => __('Entry meta links', 'pzarc'),
-                  'id'   => $prefix . 'layout-format-entry-meta-link',
-                  'type' => 'textarea',
-                  'rows' => 1,
-                  'cols' => 6,
-
-                  'help' => 'Declarations only for class: .pzarc_entry_meta a',
+                  'default' => $defaults[ $optprefix . 'entry-meta-links-defaults' ],
+                  'help'    => 'Declarations only for class: .pzarc_entry_meta a',
                   //     'desc'    => __('Format the entry meta link', 'pzarc')
           ),
           array(
-                  'name' => __('Entry meta links classes', 'pzarc'),
-                  'id'   => $prefix . 'layout-format-entry-meta-link-classes',
-                  'type' => 'textarea',
-                  'rows' => 1,
-                  'cols' => 6,
-
-          ),
-          array(
-                  'name' => __('Entry meta link hover', 'pzarc'),
-                  'id'   => $prefix . 'layout-format-entry-meta-link-hover',
-                  'type' => 'textarea',
-                  'rows' => 1,
-                  'cols' => 6,
-
-                  'help' => 'Declarations only for class: .pzarc_entry_meta a:hover',
+                  'name'    => __('Entry meta link hover', 'pzarc'),
+                  'id'      => $prefix . 'layout-format-entry-meta-links-hover',
+                  'type'    => 'text',
+                  'default' => $defaults[ $optprefix . 'entry-meta-links-hover-defaults' ],
+                  'help'    => 'Declarations only for class: .pzarc_entry_meta a:hover',
                   //     'desc'    => __('Format the entry meta link hover', 'pzarc')
           ),
           array(
-                  'name' => __('Entry meta link hover classes', 'pzarc'),
-                  'id'   => $prefix . 'layout-format-entry-meta-link-hover-classes',
-                  'type' => 'textarea',
-                  'rows' => 1,
-                  'cols' => 6,
-          ),
-          array(
-                  'name' => __('Entry content', 'pzarc'),
-                  'id'   => $prefix . 'layout-format-entry-content',
-                  'type' => 'textarea',
-                  'rows' => 1,
-                  'cols' => 6,
-
-                  'help' => 'Declarations only for class: .pzarc_entry_content',
+                  'name'    => __('Entry content', 'pzarc'),
+                  'id'      => $prefix . 'layout-format-entry-content',
+                  'type'    => 'text',
+                  'default' => $defaults[ $optprefix . 'content_defaults_entry-content-defaults' ],
+                  'help'    => 'Declarations only for class: .pzarc_entry_content',
                   //     'desc'    => __('Format the entry content', 'pzarc')
           ),
           array(
-                  'name' => __('Entry content classes', 'pzarc'),
-                  'id'   => $prefix . 'layout-format-entry-content-classes',
-                  'type' => 'textarea',
-                  'rows' => 1,
-                  'cols' => 6,
-
-          ),
-          array(
-                  'name' => __('Entry content links', 'pzarc'),
-                  'id'   => $prefix . 'layout-format-entry-content-links',
-                  'type' => 'textarea',
-                  'rows' => 1,
-                  'cols' => 6,
-
-                  'help' => 'Declarations only for class: .pzarc_entry_content a',
+                  'name'    => __('Entry content links', 'pzarc'),
+                  'id'      => $prefix . 'layout-format-entry-content-links',
+                  'type'    => 'text',
+                  'default' => $defaults[ $optprefix . 'content_defaults_entry-content-links-defaults' ],
+                  'help'    => 'Declarations only for class: .pzarc_entry_content a',
                   //     'desc'    => __('Format the entry content', 'pzarc')
           ),
           array(
-                  'name' => __('Entry content links classes', 'pzarc'),
-                  'id'   => $prefix . 'layout-format-entry-content-links-classes',
-                  'type' => 'textarea',
-                  'rows' => 1,
-                  'cols' => 6,
-
-          ),
-          array(
-                  'name' => __('Entry content link hover', 'pzarc'),
-                  'id'   => $prefix . 'layout-format-entry-content-link-hover',
-                  'type' => 'textarea',
-                  'rows' => 1,
-                  'cols' => 6,
-
-                  'help' => 'Declarations only for class: .pzarc_entry_content a:hover',
+                  'name'    => __('Entry content link hover', 'pzarc'),
+                  'id'      => $prefix . 'layout-format-entry-content-links-hover',
+                  'type'    => 'text',
+                  'default' => $defaults[ $optprefix . 'content_defaults_entry-content-links-hover-defaults' ],
+                  'help'    => 'Declarations only for class: .pzarc_entry_content a:hover',
                   //     'desc'    => __('Format the entry content link hover', 'pzarc')
           ),
           array(
-                  'name' => __('Entry content link hover classes', 'pzarc'),
-                  'id'   => $prefix . 'layout-format-entry-content-link-hover-classes',
-                  'type' => 'textarea',
-                  'rows' => 1,
-                  'cols' => 6,
-
-          ),
-          array(
-                  'name' => __('Entry featured image', 'pzarc'),
-                  'id'   => $prefix . 'layout-format-entry-fimage',
-                  'type' => 'textarea',
-                  'rows' => 1,
-                  'cols' => 6,
-
-                  'help' => 'Declarations only for class: .pzarc_entry_featured_image',
+                  'name'    => __('Entry featured image', 'pzarc'),
+                  'id'      => $prefix . 'layout-format-entry-image',
+                  'type'    => 'text',
+                  'default' => $defaults[ $optprefix . 'image_defaults_entry-image-defaults' ],
+                  'help'    => 'Declarations only for class: .pzarc_entry_featured_image',
                   //     'desc'    => __('Format the entry featured image', 'pzarc')
           ),
           array(
-                  'name' => __('Entry featured image classes', 'pzarc'),
-                  'id'   => $prefix . 'layout-format-entry-fimage-classes',
-                  'type' => 'textarea',
-                  'rows' => 1,
-                  'cols' => 6,
-
-          ),
-          array(
-                  'name' => __('Read more', 'pzarc'),
-                  'id'   => $prefix . 'layout-format-entry-readmore',
-                  'type' => 'textarea',
-                  'rows' => 1,
-                  'cols' => 6,
-
-                  'help' => 'Declarations only for class: a.pzarc_readmore',
+                  'name'    => __('Read more', 'pzarc'),
+                  'id'      => $prefix . 'layout-format-entry-readmore',
+                  'type'    => 'text',
+                  'default' => $defaults[ $optprefix . 'content_defaults_entry-readmore-defaults' ],
+                  'help'    => 'Declarations only for class: a.pzarc_readmore',
                   //     'desc'    => __('Format the content "Read more" link', 'pzarc')
           ),
           array(
-                  'name' => __('Read more classes', 'pzarc'),
-                  'id'   => $prefix . 'layout-format-entry-readmore-classes',
-                  'type' => 'textarea',
-                  'rows' => 1,
-                  'cols' => 6,
-
-          ),
-          array(
-                  'name' => __('Read more hover', 'pzarc'),
-                  'id'   => $prefix . 'layout-format-entry-readmore-hover',
-                  'type' => 'textarea',
-                  'rows' => 1,
-                  'cols' => 6,
-
-                  'help' => 'Declarations only for class: a.pzarc_readmore:hover',
+                  'name'    => __('Read more hover', 'pzarc'),
+                  'id'      => $prefix . 'layout-format-entry-readmore-hover',
+                  'type'    => 'text',
+                  'default' => $defaults[ $optprefix . 'content_defaults_entry-readmore-hover-defaults' ],
+                  'help'    => 'Declarations only for class: a.pzarc_readmore:hover',
                   //     'desc'    => __('Format the content "Read more" link hover', 'pzarc')
           ),
           array(
-                  'name' => __('Read more hover classes', 'pzarc'),
-                  'id'   => $prefix . 'layout-format-entry-readmore-hover-classes',
-                  'type' => 'textarea',
-                  'rows' => 1,
-                  'cols' => 6,
-          ),
-          array(
-                  'name' => __('Image caption', 'pzarc'),
-                  'id'   => $prefix . 'layout-format-image-caption',
-                  'type' => 'textarea',
-                  'rows' => 1,
-                  'cols' => 6,
-                  'default' => 'font-size:11px;  font-style:italic;  line-height: 1;'
-          ),
-          array(
-                  'name' => __('Image caption classes', 'pzarc'),
-                  'id'   => $prefix . 'layout-format-image-caption-classes',
-                  'type' => 'textarea',
-                  'rows' => 1,
-                  'cols' => 6,
-                  'default' => 'figcaption.caption'
+                  'name'    => __('Image caption', 'pzarc'),
+                  'id'      => $prefix . 'layout-format-thumb-image-caption',
+                  'type'    => 'text',
+                  'default' => $defaults[ $optprefix . 'image_defaults_entry-image-caption-defaults' ],
           ),
 
 
@@ -1143,13 +1041,13 @@ function draw_cell_layout()
   return $return_html;
 }
 
- /*
-  * save_arc_layouts
-  *
-  * Creates CSS file
-  * 
-  */
-add_action('save_post', 'save_arc_layouts',99);
+/*
+ * save_arc_layouts
+ *
+ * Creates CSS file
+ *
+ */
+add_action('save_post', 'save_arc_layouts', 99);
 function save_arc_layouts($postid)
 {
   $screen = get_current_screen();
@@ -1201,9 +1099,9 @@ function save_arc_layouts($postid)
     wp_mkdir_p(trailingslashit($upload_dir[ 'basedir' ]) . '/cache/pizazzwp/arc/');
 
     // Need to create the file contents
- 
+
 ///pzdebug($filename);
-   $pzarc_contents = pzarc_create_css($postid,'cells');
+    $pzarc_contents = pzarc_create_css($postid, 'cells');
 
 // by this point, the $wp_filesystem global should be working, so let's use it to create a file
     global $wp_filesystem;

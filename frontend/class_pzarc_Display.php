@@ -377,32 +377,42 @@ class pzarc_Display
     $cell_height = ($this->cell_info[ '_pzarc_layout-cell-height-type' ] == 'fixed') ? 'height:' . $this->cell_info[ '_pzarc_layout-cell-height' ] . 'px;' : null;
 
     // Open cell
-    $this_cell = '<div class="pzarc-cell pzarc-{{classname}}" style="position:relative;width:' . $cell_width . '%;margin:' . ($this->blueprint[ '_pzarc_' . $key . '-blueprint-cells-vert-margin' ] / 2) . '%;min-width:' . $cell_min_width . 'px;' . $cell_height . '">';
+    $this_cell = '<div class="pzarc-panel pzarc-{{classname}}" style="position:relative;width:' . $cell_width . '%;margin:' . ($this->blueprint[ '_pzarc_' . $key . '-blueprint-cells-vert-margin' ] / 2) . '%;min-width:' . $cell_min_width . 'px;' . $cell_height . '">';
 
-    $params = array('uid'=>$cellid.'_'.$post_info->ID,'width' => $this->cell_info[ '_pzarc_cell-settings-image-max-width' ], 'height' => $this->cell_info[ '_pzarc_cell-settings-image-max-height' ]);
 
     // Returns false on failure.
     // ADD CHECK THERE IS AN IMAGE HERE
 
     // ang on... this isn't always whe thum. :/ need tofind thumb for different conent types :S
     $thumb_src = '';
+    $focal_point = false;
     if (has_post_thumbnail($post_info->ID))
     {
       //  var_dump($post_info->ID ,get_post_thumbnail_id($post_info->ID ));
       $thumbnail = wp_get_attachment_image_src(get_post_thumbnail_id($post_info->ID), 'full');
       $thumb_src = $thumbnail[ 0 ];
+      $focal_point = get_post_meta(get_post_thumbnail_id(), 'pzgp_focal_point', true);
     }
     elseif ($post_info->post_type == 'attachment')
     {
       $thumb_src = $post_info->guid;
+      $focal_point = get_post_meta($post_info->guid, 'pzgp_focal_point', true);
     }
+
+    $params = array('uid'         => $cellid . '_' . $post_info->ID,
+                    'width'       => $this->cell_info[ '_pzarc_cell-settings-image-max-width' ],
+                    'height'      => $this->cell_info[ '_pzarc_cell-settings-image-max-height' ],
+                    'type'        => $this->cell_info[ '_pzarc_cell-settings-image-resizing' ],
+                    'backcolour'  => $this->cell_info[ '_pzarc_cell-settings-image-bgcolour' ],
+                    'quality'     => $this->cell_info[ '_pzarc_cell-settings-image-quality' ],
+                    'focal_point' => $focal_point);
 
     // BFI
     // $post_image = bfi_thumb($thumb_src, $params);
 
     //JOB
 
-    $post_image = job_resize($thumb_src,$params,PZARC_CACHE_PATH,PZARC_CACHE_URL);
+    $post_image = job_resize($thumb_src, $params, PZARC_CACHE_PATH, PZARC_CACHE_URL);
 
 
     // if ($this->cell_info[ '_pzarc_layout-background-image' ] == 'fill')
@@ -516,12 +526,12 @@ class pzarc_Display
 
       if ($this->cell_info[ '_pzarc_layout-sections-position' ] == 'bottom' || $this->cell_info[ '_pzarc_layout-sections-position' ] == 'right')
       {
-        $this_cell = str_replace('{{bgimagetl}}', '<div class="pzarc-bg-image"><img class="fill '.$this->cell_info[ '_pzarc_cell-settings-feature-scale'].'" src="' . $the_inputs[ 'image' ] . '" /></div>', $this_cell);
+        $this_cell = str_replace('{{bgimagetl}}', '<div class="pzarc-bg-image"><img class="fill ' . $this->cell_info[ '_pzarc_cell-settings-feature-scale' ] . '" src="' . $the_inputs[ 'image' ] . '" /></div>', $this_cell);
         $featureat = ' abs-content';
       }
       elseif ($this->cell_info[ '_pzarc_layout-sections-position' ] == 'top' || $this->cell_info[ '_pzarc_layout-sections-position' ] == 'left')
       {
-        $this_cell = str_replace('{{bgimagebr}}', '<div class="pzarc-bg-image"><img class="fill '.$this->cell_info[ '_pzarc_cell-settings-feature-scale'].'" src="' . $the_inputs[ 'image' ] . '"/></div>', $this_cell);
+        $this_cell = str_replace('{{bgimagebr}}', '<div class="pzarc-bg-image"><img class="fill ' . $this->cell_info[ '_pzarc_cell-settings-feature-scale' ] . '" src="' . $the_inputs[ 'image' ] . '"/></div>', $this_cell);
         $featureat = ' abs-content';
       }
     }
