@@ -1875,7 +1875,7 @@ if( !class_exists( 'ReduxFramework' ) ) {
              * @param object $this ReduxFramework
              */
             do_action( "redux/extensions/{$this->args['opt_name']}/before", $this );
-
+//var_dump($this);
             foreach($folders as $folder){
 
                 if ($folder === '.' or $folder === '..' or !is_dir($path . $folder) ) {

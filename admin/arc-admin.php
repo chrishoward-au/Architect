@@ -19,10 +19,11 @@ class pzarcAdmin
     if (is_admin() && current_user_can('edit_theme_options'))
     {
 
-      if (!class_exists('CMB_Meta_Box'))
-      {
-        require_once PZARC_PLUGIN_PATH . 'external/Custom-Meta-Boxes/custom-meta-boxes.php';
-      }
+//      if (!class_exists('CMB_Meta_Box'))
+//      {
+//        require_once PZARC_PLUGIN_PATH . 'external/Custom-Meta-Boxes/custom-meta-boxes.php';
+//      }
+
 
 //	add_action('admin_init', 'pzarc_preview_meta');
       add_action('admin_head', array($this, 'admin_head'));
@@ -37,7 +38,23 @@ class pzarcAdmin
       require_once PZARC_PLUGIN_PATH . '/admin/arc-galleries.php';
       require_once PZARC_PLUGIN_PATH . '/admin/arc-slides.php';
 
- //TODO:     require_once PZARC_PLUGIN_PATH . '/admin/arc-widget.php';
+      // Setup Redux
+      if (!class_exists('ReduxFramework'))
+      {
+        require_once PZARC_PLUGIN_PATH . '/external/redux-framework/ReduxCore/framework.php';
+      }
+
+//      require_once PZARC_PLUGIN_PATH . '/external/redux-extensions/config.php';
+
+      require_once PZARC_PLUGIN_PATH . '/external/redux-extensions/loader.php';
+
+      // Need an options page to instatiate Redux.
+
+     require_once PZARC_PLUGIN_PATH . '/external/redux-framework/sample/sample-config.php' ;
+
+
+
+      //TODO:     require_once PZARC_PLUGIN_PATH . '/admin/arc-widget.php';
 
 //			require_once PZARC_PLUGIN_PATH . '/admin/ucd-controls.php';
 

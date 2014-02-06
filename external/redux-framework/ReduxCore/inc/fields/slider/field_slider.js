@@ -1,10 +1,12 @@
 /* global redux_change */
 jQuery(document).ready(function() {
 	
-	jQuery('.redux_slider').each(function() {
+	jQuery('.redux_slider').each(function(index) {
 		//slider init
 		var slider = redux.slider[jQuery(this).attr('rel')];
-	
+    //slider= redux.slider['slider'+(index+1)];
+    console.log(index,redux,redux.slider,jQuery(this).attr('rel'));
+
 		jQuery(this).slider({
 			value: parseInt(slider.val, null),
 			min: parseInt(slider.min, null),

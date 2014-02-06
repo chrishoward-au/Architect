@@ -20,7 +20,7 @@ class pzarc_Cell_Layouts
 
     if (is_admin())
     {
-      require_once PZARC_PLUGIN_PATH . 'includes/pzarc-custom-field-types.php';
+ //     require_once PZARC_PLUGIN_PATH . 'includes/pzarc-custom-field-types.php';
 
       //	add_action('admin_init', 'pzarc_preview_meta');
       //   add_action('add_meta_boxes', array($this, 'layouts_meta'));
@@ -33,9 +33,21 @@ class pzarc_Cell_Layouts
 //			if ( $_REQUEST[ 'post_type' ] == 'arc-layouts' )
 //			{
 //			}
-    }
+
+      // Create the metaboxes redux style!
+
+// NOTE, YOU MUST load this before the code you do your new ReduxFramework declaration. IE,
+// put this at the top of your functions.php so it will load properly.
+
+// The loader will load all of the extensions automatically.
+// Alternatively you can run the include/init statements below.
+  //    add_action('redux/metaboxes/architect/boxes', 'pzarc_add_panels_metaboxes',10);
+
+
+      }
 
   }
+
 
   /**
    * [cell_layouts_admin_enqueue description]
@@ -56,7 +68,7 @@ class pzarc_Cell_Layouts
 
       wp_enqueue_style('pzarc-admin-cells-css', PZARC_PLUGIN_URL . 'admin/css/arc-admin-cells.css');
 
-      wp_enqueue_script('jquery-pzarc-metaboxes-cells', PZARC_PLUGIN_URL . 'admin/js/arc-metaboxes-cells.js', array('jquery'));
+  //    wp_enqueue_script('jquery-pzarc-metaboxes-cells', PZARC_PLUGIN_URL . 'admin/js/arc-metaboxes-cells.js', array('jquery'));
     }
   }
 
@@ -113,7 +125,7 @@ class pzarc_Cell_Layouts
   public function create_layouts_post_type()
   {
     $labels = array(
-            'name'               => _x('Panel designs', 'post type general name'),
+            'title'               => _x('Panel designs', 'post type general name'),
             'singular_name'      => _x('Panel design', 'post type singular name'),
             'add_new'            => __('Add New Panel design'),
             'add_new_item'       => __('Add New Panel design'),
@@ -143,7 +155,7 @@ class pzarc_Cell_Layouts
             'menu_position'       => 10,
             'supports'            => array('title', 'revisions'),
             'exclude_from_search' => true,
-            //			'register_meta_box_cb' => array($this, 'layouts_meta')
+  //          'register_meta_box_cb' => 'redux/metaboxes/architect/boxes'
     );
 
     register_post_type('arc-layouts', $args);
@@ -157,24 +169,24 @@ class pzarc_Cell_Layouts
 
 /* why not use a WP like methodology!
 
-register_cells('name',$args)'
-register_criteria('name',$args);
-register_layout('name',$args);
+register_cells('title',$args)'
+register_criteria('title',$args);
+register_layout('title',$args);
 
 */
 
 
-//add_filter('cmb_meta_boxes', 'pzarc_cells_wizard_metabox');
+//add_action('redux/metaboxes/_architect/boxes', 'pzarc_cells_wizard_metabox');
 //function pzarc_cells_wizard_metabox($meta_boxes = array())
 //{
 //  $prefix        = '_pzarc_';
 //  $fields        = array(
 //          array(
-//                  'name'    => 'Select what style of panel you want to make',
+//                  'title'    => 'Select what style of panel you want to make',
 //                  'id'      => $prefix . 'cell-wizard',
 //                  'type'    => 'radio',
 //                  'default' => 'custom',
-//                  'desc'    => 'Select one to quickly enable relevant settings, or custom to build your own from scratch with all settings and defaults. Minimize this metabox once you are happy with your selection.',
+//                  'descx'    => 'Select one to quickly enable relevant settings, or custom to build your own from scratch with all settings and defaults. Minimize this metabox once you are happy with your selection.',
 //                  'options' => array(
 //                          'custom'   => 'Custom',
 //                          'article'  => 'Article',
@@ -196,13 +208,13 @@ register_layout('name',$args);
 //  return $meta_boxes;
 //}
 
-add_filter('cmb_meta_boxes', 'pzarc_cell_designer_tabbed');
+//add_action('redux/metaboxes/_architect/boxes', 'pzarc_cell_designer_tabbed');
 function pzarc_cell_designer_tabbed($meta_boxes = array())
 {
   $prefix        = '_pzarc_';
   $fields        = array(
           array(
-                  'name'     => __('Tabs', 'pzarc'),
+                  'title'     => __('Tabs', 'pzarc'),
                   'id'       => $prefix . 'layout-cell-tabs',
                   'type'     => 'pztabs',
                   'defaults' => array('#panel-designer'       => 'Panel Designer',
@@ -227,15 +239,16 @@ function pzarc_cell_designer_tabbed($meta_boxes = array())
   return $meta_boxes;
 }
 
-add_filter('cmb_meta_boxes', 'pzarc_cell_designer_meta');
+//add_action('redux/metaboxes/_architect/boxes', 'pzarc_cell_designer_meta');
+//add_action('redux/metaboxes/architect/boxes', 'pzarc_cell_designer_meta',10);
 function pzarc_cell_designer_meta($meta_boxes = array())
 {
   $prefix        = '_pzarc_';
   $fields        = array(
           array(
-                  'name'     => 'Panel preview',
+                  'title'     => 'Panel preview',
                   'id'       => $prefix . 'layout-cell-preview',
-                  'cols'     => 12,
+                  'width' =>'100%',
                   'type'     => 'pzlayout',
                   'readonly' => false, // Readonly fields can't be written to by code! Weird
                   'code'     => draw_cell_layout(),
@@ -251,7 +264,7 @@ function pzarc_cell_designer_meta($meta_boxes = array())
                                                     'custom1' => array('width' => 100, 'show' => false),
                                                     'custom2' => array('width' => 100, 'show' => false),
                                                     'custom3' => array('width' => 100, 'show' => false))),
-                  'desc'     => __('Drag and drop to sort the order of your elements. Heights are fluid in panels, so not indicative of how it will look on the page.', 'pzarc')
+                  'descx'     => __('Drag and drop to sort the order of your elements. Heights are fluid in panels, so not indicative of how it will look on the page.', 'pzarc')
           ),
           // OMG!! The multiselect is working and I don't know why!!
 
@@ -267,221 +280,201 @@ function pzarc_cell_designer_meta($meta_boxes = array())
   return $meta_boxes;
 }
 
-add_filter('cmb_meta_boxes', 'pzarc_cell_general_Settings');
+add_action('redux/metaboxes/_architect/boxes', 'pzarc_cell_general_settings');
 function pzarc_cell_general_settings($meta_boxes = array())
 {
-  $prefix        = '_pzarc_';
-  $fields        = array(
-
-          array(
-                  'name'    => __('Short name', 'pzarc'),
-                  'id'      => $prefix . 'layout-short-name',
-                  'type'    => 'text',
-                  'cols'    => 12,
-                  'tooltip' => __('A short name for this panel layout to identify it.', 'pzarc'),
+  $prefix        = 'panels_';
+  $sections = array();
+  $sections[ ] = array(
+          'title'      => __('General Settings', 'pzarc'),
+          'show_title' => true,
+          'icon_class' => 'icon-large',
+          'icon'       => 'el-icon-home',
+          'fields'     => array(
+                  array(
+                          'id'    => $prefix . 'layout-short-name',
+                          'title' => __('Short name', 'pzarc'),
+                          'descx'  => __('A short name for this panel layout to identify it.', 'pzarc'),
+                          'type'  => 'text',
+                  ),
           ),
-
-          //    array(
-          //      'name'    => __('Content', 'pzarc'),
-          //      'id'      => $prefix . 'layout-cells-content',
-          //      'type'    => 'pzselect',
-          //      'default' => 'post',
-          //      'cols'    => 12,
-          //      'tooltip' => __('Select the content type to display in these cells.', 'pzarc'),
-          //      'options' => array(
-          //        'post'       => 'Posts',
-          //        'page'       => 'Pages',
-          //        'attachment' => 'Attachments'
-          //      )
-          //    ),
-          array(
-                  'name'    => __('Save panel layout', 'pzarc'),
-                  'id'      => $prefix . 'layout-set-save',
-                  'type'    => 'pzsubmit',
-                  'default' => 'Save'
-          ),
-
   );
   $meta_boxes[ ] = array(
+          'id'=>'general-settings',
           'title'    => 'General Settings',
-          'pages'    => 'arc-layouts',
-          'fields'   => $fields,
-          'context'  => 'side',
-          'priority' => 'high'
+          'post_types'    => array('arc-layouts'),
+          'sections'   => $sections,
+          'position'  => 'side',
+          'priority' => 'high',
+          'sidebar' => false
 
   );
-
   return $meta_boxes;
 }
 
-add_filter('cmb_meta_boxes', 'pzarc_cell_designer_settings_meta');
+add_action('redux/metaboxes/_architect/boxes', 'pzarc_cell_designer_settings_meta');
 function pzarc_cell_designer_settings_meta($meta_boxes = array())
 {
-  $prefix = '_pzarc_';
+  $prefix = 'panels_';
 
-  $fields        = array(
-
-
-    //    array(
-    //      'name'     => __('Components to show', 'pzarc'),
-    //      'id'       => $prefix . 'layout-show',
-    //      'type' => 'group',
-    //      'fields' => array(
-    //        array('name'=>'Title','type'=>'checkbox','id'=>$prefix.'show-title','default'=>true),
-    //        array('name'=>'Excerpt','type'=>'checkbox','id'=>$prefix.'show-excerpt','default'=>true),
-    //        array('name'=>'Content','type'=>'checkbox','id'=>$prefix.'show-content','default'=>false)
-    //      ),
-    //    ),
-    array(
-            'name'     => __('Components to show', 'pzarc'),
-            'id'       => $prefix . 'layout-show',
-            'type'     => 'select',
-            'multiple' => true,
-            'cols'     => 12,
-            'default'  => array('title', 'excerpt', 'meta1', 'image'),
-            'options'  => array(
-                    'title'   => 'Title',
-                    'excerpt' => 'Excerpt',
-                    'content' => 'Content',
-                    'image'   => 'Image',
-                    'caption' => 'Image Caption',
-                    'meta1'   => 'Meta1',
-                    'meta2'   => 'Meta2',
-                    'meta3'   => 'Meta3',
-                    'custom1' => 'Custom Field 1',
-                    'custom2' => 'Custom Field 2',
-                    'custom3' => 'Custom Field 3',
-                    //        'custom4' => 'Custom Field 4',
-            ),
-            'tooltip'  => __('Select which base components to include in this panel layout.', 'pzarc')
-    ),
-    array(
-            'name'    => __('Excerpt/Content featured image', 'pzarc'),
-            'id'      => $prefix . 'layout-excerpt-thumb',
-            'cols'    => 12,
-            'type'    => 'pzselect',
-            'default' => 'none',
-            'options' => array(
-                    'none'  => 'No image',
-                    'left'  => 'Image left',
-                    'right' => 'Image right',
-            ),
-            'tooltip' => __('Set the alignment of the image to show it in the excerpt or the content. This will use the image settings', 'pzarc')
-    ),
-    array(
-            'name'    => __('Background Feature Image/Video', 'pzarc'),
-            'id'      => $prefix . 'layout-background-image',
-            'cols'    => 12,
-            'type'    => 'pzselect',
-            'default' => 'none',
-            'options' => array(
-                    'none'  => 'No image',
-                    'fill'  => 'Fill the panel',
-                    'align' => 'Align with components area',
-            ),
-            'tooltip' => __('Select how to display the featured image or video as the background.', 'pzarc')
-    ),
+  $sections      = array();
+  $sections[ ]   = array(
+          'title'      => __('Designer Settings', 'pzarc'),
+          'show_title' => true,
+          'icon_class' => 'icon-large',
+          'icon'       => 'el-icon-home',
+          'fields'     => array(
+                  array(
+                          'title'    => __('Components to show', 'pzarc'),
+                          'id'       => $prefix . 'layout-show',
+                          'type'     => 'select',
+                          'multi' => true,
+                          'width' =>'100%',
+                          'default'  => array('title', 'excerpt', 'meta1', 'image'),
+                          'options'  => array(
+                                  'title'   => 'Title',
+                                  'excerpt' => 'Excerpt',
+                                  'content' => 'Content',
+                                  'image'   => 'Image',
+                                  'caption' => 'Image Caption',
+                                  'meta1'   => 'Meta1',
+                                  'meta2'   => 'Meta2',
+                                  'meta3'   => 'Meta3',
+                                  'custom1' => 'Custom Field 1',
+                                  'custom2' => 'Custom Field 2',
+                                  'custom3' => 'Custom Field 3',
+                                  //        'custom4' => 'Custom Field 4',
+                          ),
+                          'descx'  => __('Select which base components to include in this panel layout.', 'pzarc')
+                  ),
+                  array(
+                          'title'   => __('Excerpt/Content featured image', 'pzarc'),
+                          'id'      => $prefix . 'layout-excerpt-thumb',
+                          'width' =>'100%',
+                          'type'    => 'select',
+                          'default' => 'none',
+                          'options' => array(
+                                  'none'  => 'No image',
+                                  'left'  => 'Image left',
+                                  'right' => 'Image right',
+                          ),
+                          'descx' => __('Set the alignment of the image to show it in the excerpt or the content. This will use the image settings', 'pzarc')
+                  ),
+                  array(
+                          'title'   => __('Background Feature Image/Video', 'pzarc'),
+                          'id'      => $prefix . 'layout-background-image',
+                          'width' =>'100%',
+                          'type'    => 'select',
+                          'default' => 'none',
+                          'options' => array(
+                                  'none'  => 'No image',
+                                  'fill'  => 'Fill the panel',
+                                  'align' => 'Align with components area',
+                          ),
+                          'descx' => __('Select how to display the featured image or video as the background.', 'pzarc')
+                  ),
 
 
-    array(
-            'name'    => __('Components area position', 'pzarc'),
-            'id'      => $prefix . 'layout-sections-position',
-            'type'    => 'pzselect',
-            'cols'    => 12,
-            'default' => 'top',
-            'options' => array(
-                    'top'    => 'Top of panel',
-                    'bottom' => 'Bottom of panel',
-                    'left'   => 'Left of panel',
-                    'right'  => 'Right of panel',
-            ),
-            //'desc'		 => __('Position for all the components as a group. NOTE: If feature is set to align, then components will be below the feature, but not at the bottom of the panel. ', 'pzarc')
-    ),
-    array(
-            'name'    => __('Nudge components area up/down', 'pzarc'),
-            'id'      => $prefix . 'layout-sections-nudge-y',
-            'cols'    => 12,
-            'type'    => 'pzrange',
-            'default' => '0',
-            'min'     => '0',
-            'max'     => '100',
-            'step'    => '1',
-            'suffix'  => '%',
-            'tooltip' => __('Enter percent to move the components area up/down. Note: These measurements are percentage of the panel.', 'pzarc')
-    ),
-    array(
-            'name'    => __('Nudge components area left/right', 'pzarc'),
-            'id'      => $prefix . 'layout-sections-nudge-x',
-            'type'    => 'pzrange',
-            'default' => '0',
-            'cols'    => 12,
-            'min'     => '0',
-            'max'     => '100',
-            'step'    => '1',
-            'suffix'  => '%',
-            'tooltip' => __('Enter percent to move the components area left/right. Note: These measurements are percentage of the panel.', 'pzarc')
-    ),
-    array(
-            'name'    => __('Components area width', 'pzarc'),
-            'id'      => $prefix . 'layout-sections-widths',
-            'type'    => 'pzrange',
-            'cols'    => 12,
-            'default' => '100',
-            'alt'     => 'zones',
-            'min'     => '0',
-            'max'     => '100',
-            'step'    => '1',
-            'suffix'  => '%',
-            'tooltip' => __('Set the overall width for the components area. Necessary for left or right positioning of sections', 'pzarc'),
-            //      'help'    => __('Note:The sum of the width and the left/right nudge should equal 100', 'pzarc')
-    ),
-    array(
-            'name'    => __('Panel Height Type', 'pzarc'),
-            'id'      => $prefix . 'layout-cell-height-type',
-            'cols'    => 6,
-            'type'    => 'pzselect',
-            'default' => 'fluid',
-            'options' => array(
-                    'fluid' => 'Fluid',
-                    'fixed' => 'Fixed',
-            ),
-            'tooltip' => __('Choose whether to set the height of the panels (fixed), or allow them to adjust to the content height (fluid).', 'pzarc')
-    ),
-    // Hmm? How's this gunna sit with the min-height in templates?
-    // We will want to use this for image height cropping when behind.
-    array(
-            'name'    => __('Panel Height', 'pzarc'),
-            'id'      => $prefix . 'layout-cell-height',
-            'type'    => 'pzspinner',
-            'cols'    => 6,
-            'default' => '350',
-            'min'     => '0',
-            'max'     => '9999',
-            'step'    => '1',
-            'suffix'  => 'px',
-            'tooltip' => __('If using fixed height, set height for the panel.', 'pzarc'),
-    ),
-    array(
-            'name'    => __('Components Height', 'pzarc'),
-            'id'      => $prefix . 'layout-components-height',
-            'type'    => 'pzspinner',
-            'cols'    => 12,
-            'default' => '100',
-            'min'     => '0',
-            'max'     => '9999',
-            'step'    => '1',
-            'suffix'  => 'px',
-            'tooltip' => __('If using fixed height, set height for the components area.', 'pzarc'),
-    ),
+                  array(
+                          'title'   => __('Components area position', 'pzarc'),
+                          'id'      => $prefix . 'layout-sections-position',
+                          'type'    => 'select',
+                          'width' =>'100%',
+                          'default' => 'top',
+                          'options' => array(
+                                  'top'    => 'Top of panel',
+                                  'bottom' => 'Bottom of panel',
+                                  'left'   => 'Left of panel',
+                                  'right'  => 'Right of panel',
+                          ),
+                          //'descx'		 => __('Position for all the components as a group. NOTE: If feature is set to align, then components will be below the feature, but not at the bottom of the panel. ', 'pzarc')
+                  ),
+                  array(
+                          'title'   => __('Nudge components area up/down', 'pzarc'),
+                          'id'      => $prefix . 'layout-sections-nudge-y',
+                          'width' =>'100%',
+                          'type'    => 'slider',
+                          'default' => '0',
+                          'min'     => '0',
+                          'max'     => '100',
+                          'step'    => '1',
+                          'descx' => __('Enter percent to move the components area up/down. Note: These measurements are percentage of the panel.', 'pzarc')
+                  ),
+                  array(
+                          'title'   => __('Nudge components area left/right', 'pzarc'),
+                          'id'      => $prefix . 'layout-sections-nudge-x',
+                          'type'    => 'slider',
+                          'default' => '0',
+                          'width' =>'100%',
+                          'min'     => '0',
+                          'max'     => '100',
+                          'step'    => '1',
+                          'suffix'  => '%',
+                          'descx' => __('Enter percent to move the components area left/right. Note: These measurements are percentage of the panel.', 'pzarc')
+                  ),
+                  array(
+                          'title'   => __('Components area width', 'pzarc'),
+                          'id'      => $prefix . 'layout-sections-widths',
+                          'type'    => 'slider',
+                          'width' =>'100%',
+                          'default' => '100',
+                          'alt'     => 'zones',
+                          'min'     => '0',
+                          'max'     => '100',
+                          'step'    => '1',
+                          'suffix'  => '%',
+                          'descx' => __('Set the overall width for the components area. Necessary for left or right positioning of sections', 'pzarc'),
+                          //      'help'    => __('Note:The sum of the width and the left/right nudge should equal 100', 'pzarc')
+                  ),
+                  array(
+                          'title'   => __('Panel Height Type', 'pzarc'),
+                          'id'      => $prefix . 'layout-cell-height-type',
+                          'cols'    => 6,
+                          'type'    => 'select',
+                          'default' => 'fluid',
+                          'options' => array(
+                                  'fluid' => 'Fluid',
+                                  'fixed' => 'Fixed',
+                          ),
+                          'descx' => __('Choose whether to set the height of the panels (fixed), or allow them to adjust to the content height (fluid).', 'pzarc')
+                  ),
+                  // Hmm? How's this gunna sit with the min-height in templates?
+                  // We will want to use this for image height cropping when behind.
+                  array(
+                          'title'   => __('Panel Height', 'pzarc'),
+                          'id'      => $prefix . 'layout-cell-height',
+                          'type'    => 'spinner',
+                          'default' => '350',
+                          'min'     => '0',
+                          'max'     => '9999',
+                          'step'    => '1',
+                          'suffix'  => 'px',
+                          'descx' => __('If using fixed height, set height for the panel.', 'pzarc'),
+                  ),
+                  array(
+                          'title'   => __('Components Height', 'pzarc'),
+                          'id'      => $prefix . 'layout-components-height',
+                          'type'    => 'spinner',
+                          'width' =>'100%',
+                          'default' => '100',
+                          'min'     => '0',
+                          'max'     => '9999',
+                          'step'    => '1',
+                          'suffix'  => 'px',
+                          'descx' => __('If using fixed height, set height for the components area.', 'pzarc'),
+                  ),
 
 
+          )
   );
   $meta_boxes[ ] = array(
-          'title'    => 'Panel Designer settings',
-          'pages'    => 'arc-layouts',
-          'fields'   => $fields,
-          'context'  => 'side',
-          'priority' => 'default'
+          'id'=>'designer-settings',
+          'title'    => 'Designer Settings',
+          'post_types'    => array('arc-layouts'),
+          'sections'   => $sections,
+          'position'  => 'normal',
+          'priority' => 'high',
+          'sidebar' => false
 
   );
 
@@ -491,7 +484,7 @@ function pzarc_cell_designer_settings_meta($meta_boxes = array())
 /**********
  * Titles
  *********/
-add_filter('cmb_meta_boxes', 'pzarc_cell_settings_titles');
+//add_action('redux/metaboxes/_architect/boxes', 'pzarc_cell_settings_titles');
 function pzarc_cell_settings_titles($meta_boxes = array())
 {
   $prefix        = '_pzarc_';
@@ -499,11 +492,11 @@ function pzarc_cell_settings_titles($meta_boxes = array())
     /// TITLES
     array(
             'id'   => $prefix . 'cell-settings-title',
-            'name' => 'Title',
+            'title' => 'Title',
             'type' => 'title'
     ),
     array(
-            'name'    => __('Title prefix', 'pzarc'),
+            'title'    => __('Title prefix', 'pzarc'),
             'id'      => $prefix . 'cell-settings-title-prefix',
             'type'    => 'select',
             'cols'    => 2,
@@ -511,7 +504,7 @@ function pzarc_cell_settings_titles($meta_boxes = array())
             'options' => array('none' => 'None', 'bullet' => 'Bullet', 'thumb' => 'Thumbnail'),
     ),
     array(
-            'name'    => __('Link titles', 'pzarc'),
+            'title'    => __('Link titles', 'pzarc'),
             'id'      => $prefix . 'cell-settings-link-titles',
             'cols'    => 4,
             'type'    => 'radio',
@@ -535,7 +528,7 @@ function pzarc_cell_settings_titles($meta_boxes = array())
 /**********
  * Meta
  *********/
-add_filter('cmb_meta_boxes', 'pzarc_cell_settings_meta');
+//add_action('redux/metaboxes/_architect/boxes', 'pzarc_cell_settings_meta');
 function pzarc_cell_settings_meta($meta_boxes = array())
 {
   $prefix        = '_pzarc_';
@@ -545,12 +538,12 @@ function pzarc_cell_settings_meta($meta_boxes = array())
     // ======================================
     array(
             'id'   => $prefix . 'cell-settings-meta1',
-            'name' => 'Meta',
+            'title' => 'Meta',
             'type' => 'title',
-            'desc' => 'Include any text, field tags, and simple HTML tags. Available field tags: %date%, %author%, %editlink%, %categories%, %tags%, %commentcount%',
+            'descx' => 'Include any text, field tags, and simple HTML tags. Available field tags: %date%, %author%, %editlink%, %categories%, %tags%, %commentcount%',
     ),
     array(
-            'name'    => __('Meta1 config', 'pzarc'),
+            'title'    => __('Meta1 config', 'pzarc'),
             'id'      => $prefix . 'cell-settings-meta1-config',
             'type'    => 'textarea',
             'cols'    => 4,
@@ -558,7 +551,7 @@ function pzarc_cell_settings_meta($meta_boxes = array())
             'default' => '%date%, %author%',
     ),
     array(
-            'name'    => __('Meta2 config', 'pzarc'),
+            'title'    => __('Meta2 config', 'pzarc'),
             'id'      => $prefix . 'cell-settings-meta2-config',
             'type'    => 'textarea',
             'cols'    => 4,
@@ -566,7 +559,7 @@ function pzarc_cell_settings_meta($meta_boxes = array())
             'default' => '%categories%, %tags%',
     ),
     array(
-            'name'    => __('Meta3 config', 'pzarc'),
+            'title'    => __('Meta3 config', 'pzarc'),
             'id'      => $prefix . 'cell-settings-meta3-config',
             'type'    => 'textarea',
             'cols'    => 4,
@@ -575,11 +568,11 @@ function pzarc_cell_settings_meta($meta_boxes = array())
     ),
     array(
             'id'      => $prefix . 'cell-settings-meta-date-format',
-            'name'    => 'Date format',
+            'title'    => 'Date format',
             'type'    => 'text',
             'default' => 'l, F j, Y g:i a',
             'cols'    => 4,
-            'desc'    => __('See here for information on <a href="http://codex.wordpress.org/Formatting_Date_and_Time" target=_blank>formatting date and time</a>', 'pzarc')
+            'descx'    => __('See here for information on <a href="http://codex.wordpress.org/Formatting_Date_and_Time" target=_blank>formatting date and time</a>', 'pzarc')
     ),
   );
   $meta_boxes[ ] = array(
@@ -597,7 +590,7 @@ function pzarc_cell_settings_meta($meta_boxes = array())
 /**********
  * Excerpts
  *********/
-add_filter('cmb_meta_boxes', 'pzarc_cell_settings_content');
+//add_action('redux/metaboxes/_architect/boxes', 'pzarc_cell_settings_content');
 function pzarc_cell_settings_content($meta_boxes = array())
 {
   $prefix        = '_pzarc_';
@@ -605,37 +598,37 @@ function pzarc_cell_settings_content($meta_boxes = array())
     // EXCERPTS
     array(
             'id'   => $prefix . 'cell-settings-content-responsive-heading',
-            'name' => 'Responsive',
+            'title' => 'Responsive',
             'type' => 'title'
     ),
     array(
             'id'      => $prefix . 'cell-settings-hide-content',
-            'name'    => 'Hide Content on screens less than',
+            'title'    => 'Hide Content on screens less than',
             'type'    => 'text_small',
             'default' => 0,
             'cols'    => 3
     ),
     array(
             'id'   => $prefix . 'cell-settings-excerpt',
-            'name' => 'Excerpts',
+            'title' => 'Excerpts',
             'type' => 'title'
     ),
     array(
             'id'      => $prefix . 'cell-settings-excerpts-word-count',
-            'name'    => 'Excerpt length (words)',
+            'title'    => 'Excerpt length (words)',
             'type'    => 'text_small',
             'default' => 55,
             'cols'    => 3
     ),
     array(
-            'name'    => __('Truncation indicator', 'pzarc'),
+            'title'    => __('Truncation indicator', 'pzarc'),
             'id'      => $prefix . 'cell-settings-excerpts-morestr',
             'type'    => 'text_small',
             'cols'    => 3,
             'default' => '[...]',
     ),
     array(
-            'name'    => __('Read More', 'pzarc'),
+            'title'    => __('Read More', 'pzarc'),
             'id'      => $prefix . 'cell-settings-excerpts-linkmore',
             'type'    => 'text',
             'cols'    => 3,
@@ -643,7 +636,7 @@ function pzarc_cell_settings_content($meta_boxes = array())
     ),
     array(
             'id'   => $prefix . 'cell-settings-content',
-            'name' => 'Full Content',
+            'title' => 'Full Content',
             'type' => 'title'
     ),
   );
@@ -662,7 +655,7 @@ function pzarc_cell_settings_content($meta_boxes = array())
 /**********
  * Images
  *********/
-add_filter('cmb_meta_boxes', 'pzarc_cell_settings_images');
+//add_action('redux/metaboxes/_architect/boxes', 'pzarc_cell_settings_images');
 function pzarc_cell_settings_images($meta_boxes = array())
 {
   $prefix        = '_pzarc_';
@@ -673,12 +666,12 @@ function pzarc_cell_settings_images($meta_boxes = array())
 
     array(
             'id'   => $prefix . 'cell-settings-image-responsive',
-            'name' => 'Responsive',
+            'title' => 'Responsive',
             'type' => 'title',
-            'desc' => ''
+            'descx' => ''
     ),
     array(
-            'name'    => __('Background images: Effect on resize', 'pzarc'),
+            'title'    => __('Background images: Effect on resize', 'pzarc'),
             'id'      => $prefix . 'cell-settings-feature-scale',
             'type'    => 'select',
             'options' => array('scale' => 'Scale Vertically & Horizontally', 'crop' => 'Crop horizontally, retain height'),
@@ -691,38 +684,38 @@ function pzarc_cell_settings_images($meta_boxes = array())
 
     array(
             'id'   => $prefix . 'cell-settings-image',
-            'name' => 'Content Featured Image',
+            'title' => 'Content Featured Image',
             'type' => 'title',
-            'desc' => 'Left and right margins are included in the image width in the designer. e.g if Image width is 25% and right margin is 3%, image width will be adjusted to 22%'
+            'descx' => 'Left and right margins are included in the image width in the designer. e.g if Image width is 25% and right margin is 3%, image width will be adjusted to 22%'
     ),
 
     array(
             'id'      => $prefix . 'cell-settings-image-margin-top',
-            'name'    => 'Margin top %',
+            'title'    => 'Margin top %',
             'type'    => 'text_small',
             'default' => '',
             'cols'    => 3
     ),
     array(
             'id'   => $prefix . 'cell-settings-image-margin-bottom',
-            'name' => 'Margin bottom %',
+            'title' => 'Margin bottom %',
             'type' => 'text_small',
             'cols' => 3
     ),
     array(
             'id'   => $prefix . 'cell-settings-image-margin-left',
-            'name' => 'Margin left %',
+            'title' => 'Margin left %',
             'type' => 'text_small',
             'cols' => 3
     ),
     array(
             'id'   => $prefix . 'cell-settings-image-margin-right',
-            'name' => 'Margin right %',
+            'title' => 'Margin right %',
             'type' => 'text_small',
             'cols' => 3
     ),
     array(
-            'name'    => __('Link image', 'pzarc'),
+            'title'    => __('Link image', 'pzarc'),
             'id'      => $prefix . 'cell-settings-link-image',
             'type'    => 'radio',
             'options' => array('yes' => 'Yes', 'no' => 'No'),
@@ -730,7 +723,7 @@ function pzarc_cell_settings_images($meta_boxes = array())
             'cols'    => 3,
     ),
     array(
-            'name'    => __('Image Captions', 'pzarc'),
+            'title'    => __('Image Captions', 'pzarc'),
             'id'      => $prefix . 'cell-settings-image-captions',
             'type'    => 'radio',
             'options' => array('yes' => 'Yes', 'no' => 'No'),
@@ -739,11 +732,11 @@ function pzarc_cell_settings_images($meta_boxes = array())
     ),
     array(
             'id'   => $prefix . 'cell-settings-image-sizing',
-            'name' => 'Image Sizing',
+            'title' => 'Image Sizing',
             'type' => 'title',
     ),
     array(
-            'name'     => __('Image resizing method', 'pzarc'),
+            'title'     => __('Image resizing method', 'pzarc'),
             'id'       => $prefix . 'cell-settings-image-resizing',
             'type'     => 'select',
             'cols'     => 3,
@@ -758,18 +751,18 @@ function pzarc_cell_settings_images($meta_boxes = array())
                     'scaletoheight'	 => 'Scale to resize height',
                     'none' 						=> 'No cropping, use original. (Use with care!)'
             ),
-            'desc'	 => 'Choose how you want the image resized in respect of its original width and height to the Image Max Height and Width.',
+            'descx'	 => 'Choose how you want the image resized in respect of its original width and height to the Image Max Height and Width.',
     ),
     array(
             'id'      => $prefix . 'cell-settings-image-max-width',
-            'name'    => 'Image max width',
+            'title'    => 'Image max width',
             'type'    => 'text_small',
             'default' => '300',
             'cols'    => 3,
     ),
     array(
             'id'      => $prefix . 'cell-settings-image-max-height',
-            'name'    => 'Image max height',
+            'title'    => 'Image max height',
             'type'    => 'text_small',
             'default' => '250',
             'cols'    => 3,
@@ -777,7 +770,7 @@ function pzarc_cell_settings_images($meta_boxes = array())
     ),
     array(
             'id'      => $prefix . 'cell-settings-image-quality',
-            'name'    => 'Image quality',
+            'title'    => 'Image quality',
             'type'    => 'pzspinner',
             'default' => '75',
             'min'     => '20',
@@ -785,7 +778,7 @@ function pzarc_cell_settings_images($meta_boxes = array())
             'step'    => '1',
             'suffix'  => '%',
             'cols'    => 3,
-            'desc' => 'Quality to use when processing images'
+            'descx' => 'Quality to use when processing images'
 
     ),
   );
@@ -804,24 +797,24 @@ function pzarc_cell_settings_images($meta_boxes = array())
 /**********
  * Custom Fields
  *********/
-add_filter('cmb_meta_boxes', 'pzarc_cell_settings_custom_fields');
+//add_action('redux/metaboxes/_architect/boxes', 'pzarc_cell_settings_custom_fields');
 function pzarc_cell_settings_custom_fields($meta_boxes = array())
 {
   $prefix        = '_pzarc_';
   $fields        = array(
           array(
                   'id'   => $prefix . 'cell-settings-custom1',
-                  'name' => 'Custom fields 1',
+                  'title' => 'Custom fields 1',
                   'type' => 'title'
           ),
           array(
                   'id'   => $prefix . 'cell-settings-custom2',
-                  'name' => 'Custom fields 2',
+                  'title' => 'Custom fields 2',
                   'type' => 'title'
           ),
           array(
                   'id'   => $prefix . 'cell-settings-custom3',
-                  'name' => 'Custom fields 3',
+                  'title' => 'Custom fields 3',
                   'type' => 'title'
           ),
   );
@@ -838,7 +831,7 @@ function pzarc_cell_settings_custom_fields($meta_boxes = array())
 }
 
 
-add_filter('cmb_meta_boxes', 'pzarc_cell_styling');
+//add_action('redux/metaboxes/_architect/boxes', 'pzarc_cell_styling');
 function pzarc_cell_styling($meta_boxes = array())
 {
   $defaults  = get_option('architect-defaults_settings');
@@ -849,120 +842,120 @@ function pzarc_cell_styling($meta_boxes = array())
   $fields        = array(
           array(
                   'id'   => $prefix . 'layout-styling-header',
-                  'name' => 'Styling',
+                  'title' => 'Styling',
                   'type' => 'title',
                   'cols' => 12,
-                  'desc' => __('Architect uses standard WordPress class names as much as possible, so your Architect Blueprints will inherit styling from your theme if it uses these. Below you can add your own styling and classes. Enter CSS declarations, such as: background:#123; color:#abc; font-size:1.6em; padding:1%;', 'pzarc') . '<br/>' . __('As much as possible, use fluid units (%,em) if you want to ensure maximum responsiveness.', 'pzarc') . '<br/>' .
+                  'descx' => __('Architect uses standard WordPress class names as much as possible, so your Architect Blueprints will inherit styling from your theme if it uses these. Below you can add your own styling and classes. Enter CSS declarations, such as: background:#123; color:#abc; font-size:1.6em; padding:1%;', 'pzarc') . '<br/>' . __('As much as possible, use fluid units (%,em) if you want to ensure maximum responsiveness.', 'pzarc') . '<br/>' .
                           __('The base font size is 10px. So, for example, to get a font size of 14px, use 1.4em. Even better is using relative ems i.e. rem.')
           ),
           array(
-                  'name' => __('Panels', 'pzarc'),
+                  'title' => __('Panels', 'pzarc'),
                   'id'   => $prefix . 'layout-format-cells',
                   'type' => 'text',
                   'help' => 'Declarations only for class: .pzarc-panel',
           ),
           array(
-                  'name' => __('Entry', 'pzarc'),
+                  'title' => __('Entry', 'pzarc'),
                   'id'   => $prefix . 'layout-format-entry',
                   'type' => 'text',
                   'help' => 'Declarations only for class: .hentry',
           ),
           array(
-                  'name' => __('Components group', 'pzarc'),
+                  'title' => __('Components group', 'pzarc'),
                   'id'   => $prefix . 'layout-format-components-group',
                   'type' => 'text',
                  'help' => 'Declarations only for class: .pzarc_components',
           ),
           array(
-                  'name'    => __('Entry title', 'pzarc'),
+                  'title'    => __('Entry title', 'pzarc'),
                   'id'      => $prefix . 'layout-format-entry-title', //titles_defaults_entry-title-defaults
                   'type'    => 'text',
                   'default' => $defaults[ $optprefix . 'titles_defaults_entry-title-defaults' ],
                   'help'    => 'Declarations only for class: .pzarc_entry_title and .pzarc_entry_title a',
-                  //      'desc'    => __('Format the entry title', 'pzarc')
+                  //      'descx'    => __('Format the entry title', 'pzarc')
           ),
           array(
-                  'name'    => __('Entry title hover', 'pzarc'),
+                  'title'    => __('Entry title hover', 'pzarc'),
                   'id'      => $prefix . 'layout-format-entry-title-hover',
                   'type'    => 'text',
                   'default' => $defaults[ $optprefix . '_titles_defaults_entry-title-hover-defaults' ],
                   'help'    => 'Declarations only for class: .pzarc_entry_title a:hover',
-                  //      'desc'    => __('Format the entry title link hover', 'pzarc')
+                  //      'descx'    => __('Format the entry title link hover', 'pzarc')
           ),
           array(
-                  'name'    => __('Entry meta', 'pzarc'),
+                  'title'    => __('Entry meta', 'pzarc'),
                   'id'      => $prefix . 'layout-format-entry-meta',
                   'type'    => 'text',
                   'default' => $defaults[ $optprefix . 'meta_defaults_entry-meta-defaults' ],
                   'help'    => 'Declarations only for class: .pzarc_entry_meta',
-                  //     'desc'    => __('Format the entry meta', 'pzarc')
+                  //     'descx'    => __('Format the entry meta', 'pzarc')
           ),
           array(
-                  'name'    => __('Entry meta links', 'pzarc'),
+                  'title'    => __('Entry meta links', 'pzarc'),
                   'id'      => $prefix . 'layout-format-entry-meta-links',
                   'type'    => 'text',
                   'default' => $defaults[ $optprefix . 'entry-meta-links-defaults' ],
                   'help'    => 'Declarations only for class: .pzarc_entry_meta a',
-                  //     'desc'    => __('Format the entry meta link', 'pzarc')
+                  //     'descx'    => __('Format the entry meta link', 'pzarc')
           ),
           array(
-                  'name'    => __('Entry meta link hover', 'pzarc'),
+                  'title'    => __('Entry meta link hover', 'pzarc'),
                   'id'      => $prefix . 'layout-format-entry-meta-links-hover',
                   'type'    => 'text',
                   'default' => $defaults[ $optprefix . 'entry-meta-links-hover-defaults' ],
                   'help'    => 'Declarations only for class: .pzarc_entry_meta a:hover',
-                  //     'desc'    => __('Format the entry meta link hover', 'pzarc')
+                  //     'descx'    => __('Format the entry meta link hover', 'pzarc')
           ),
           array(
-                  'name'    => __('Entry content', 'pzarc'),
+                  'title'    => __('Entry content', 'pzarc'),
                   'id'      => $prefix . 'layout-format-entry-content',
                   'type'    => 'text',
                   'default' => $defaults[ $optprefix . 'content_defaults_entry-content-defaults' ],
                   'help'    => 'Declarations only for class: .pzarc_entry_content',
-                  //     'desc'    => __('Format the entry content', 'pzarc')
+                  //     'descx'    => __('Format the entry content', 'pzarc')
           ),
           array(
-                  'name'    => __('Entry content links', 'pzarc'),
+                  'title'    => __('Entry content links', 'pzarc'),
                   'id'      => $prefix . 'layout-format-entry-content-links',
                   'type'    => 'text',
                   'default' => $defaults[ $optprefix . 'content_defaults_entry-content-links-defaults' ],
                   'help'    => 'Declarations only for class: .pzarc_entry_content a',
-                  //     'desc'    => __('Format the entry content', 'pzarc')
+                  //     'descx'    => __('Format the entry content', 'pzarc')
           ),
           array(
-                  'name'    => __('Entry content link hover', 'pzarc'),
+                  'title'    => __('Entry content link hover', 'pzarc'),
                   'id'      => $prefix . 'layout-format-entry-content-links-hover',
                   'type'    => 'text',
                   'default' => $defaults[ $optprefix . 'content_defaults_entry-content-links-hover-defaults' ],
                   'help'    => 'Declarations only for class: .pzarc_entry_content a:hover',
-                  //     'desc'    => __('Format the entry content link hover', 'pzarc')
+                  //     'descx'    => __('Format the entry content link hover', 'pzarc')
           ),
           array(
-                  'name'    => __('Entry featured image', 'pzarc'),
+                  'title'    => __('Entry featured image', 'pzarc'),
                   'id'      => $prefix . 'layout-format-entry-image',
                   'type'    => 'text',
                   'default' => $defaults[ $optprefix . 'image_defaults_entry-image-defaults' ],
                   'help'    => 'Declarations only for class: .pzarc_entry_featured_image',
-                  //     'desc'    => __('Format the entry featured image', 'pzarc')
+                  //     'descx'    => __('Format the entry featured image', 'pzarc')
           ),
           array(
-                  'name'    => __('Read more', 'pzarc'),
+                  'title'    => __('Read more', 'pzarc'),
                   'id'      => $prefix . 'layout-format-entry-readmore',
                   'type'    => 'text',
                   'default' => $defaults[ $optprefix . 'content_defaults_entry-readmore-defaults' ],
                   'help'    => 'Declarations only for class: a.pzarc_readmore',
-                  //     'desc'    => __('Format the content "Read more" link', 'pzarc')
+                  //     'descx'    => __('Format the content "Read more" link', 'pzarc')
           ),
           array(
-                  'name'    => __('Read more hover', 'pzarc'),
+                  'title'    => __('Read more hover', 'pzarc'),
                   'id'      => $prefix . 'layout-format-entry-readmore-hover',
                   'type'    => 'text',
                   'default' => $defaults[ $optprefix . 'content_defaults_entry-readmore-hover-defaults' ],
                   'help'    => 'Declarations only for class: a.pzarc_readmore:hover',
-                  //     'desc'    => __('Format the content "Read more" link hover', 'pzarc')
+                  //     'descx'    => __('Format the content "Read more" link hover', 'pzarc')
           ),
           array(
-                  'name'    => __('Image caption', 'pzarc'),
+                  'title'    => __('Image caption', 'pzarc'),
                   'id'      => $prefix . 'layout-format-thumb-image-caption',
                   'type'    => 'text',
                   'default' => $defaults[ $optprefix . 'image_defaults_entry-image-caption-defaults' ],
@@ -979,7 +972,7 @@ function pzarc_cell_styling($meta_boxes = array())
   return $meta_boxes;
 }
 
-add_filter('cmb_meta_boxes', 'pzarc_panels_help_metabox');
+//add_action('redux/metaboxes/_architect/boxes', 'pzarc_panels_help_metabox');
 function pzarc_panels_help_metabox($meta_boxes = array())
 {
 
@@ -987,7 +980,7 @@ function pzarc_panels_help_metabox($meta_boxes = array())
 
   $fields        = array(
           array(
-                  'name' => __('Panels', 'pzarc'),
+                  'title' => __('Panels', 'pzarc'),
                   'id'   => $prefix . 'contents-filters-panels-help-heading',
                   'type' => 'title',
           )

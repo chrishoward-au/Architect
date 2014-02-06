@@ -91,7 +91,7 @@ if ( !class_exists( 'ReduxFramework_extension_metaboxes' ) ) {
                 if ( isset( $box['post_types'] ) && !empty( $box['post_types'] ) ) {
                     if ( !is_array( $box['post_types'] ) ) {
                         $box['post_types'] = array( $box['post_types'] );
-                        $this->boxes[$boxKey]['post_types'] = $box['post_types'];
+                        $this->boxes[$key]['post_types'] = $box['post_types'];
                         add_action( 'admin_enqueue_scripts', array( $this->parent, '_enqueue' ) );    
                     }
                 }

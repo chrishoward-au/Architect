@@ -2,23 +2,18 @@
 
 /*
   Plugin Name: Architect - an all-in-one content display framework
-  Plugin URI: http://pizazzwp.com
+  Plugin URI: http://architect.pizazzwp.com
   Description: Display your content in grids, tabs, sliders, galleries with sources like posts, pages, galleries, widgets, custom code, Headway blocks and custom content types
-  Version: 0.5.0 beta 30-01-14
+  Version: 0.6.0 beta 03-02-14
   Author: Chris Howard
   Author URI: http://pizazzwp.com
   License: GNU GPL v2
   Shoutouts: Plugin structure based on WP Plugin Boilerplate by Tom McPharlin http://tommcfarlin.com/
  */
 
-// What's the essential difference between E+. G+, S+ and T+? Their navigation. E+ has pagination, G+ thumbs, S+ tabs, T+ tabs.
+// What's the essential difference between E+. G+, S+ and T+? Their navigation. E+ has pagination, G+ thumbs, S+ tabs, T+ tabs. So, in reality, they are all doing the same thing: displaying content.
+// Why is it necessary to pay four times then?
 
-/* BLUEPRINTS: Overall layouts bricks
- * VIEWS: End user view Nav brick(s)+Blueprint+Cell Brick
- * CRITERIA:
- * CELL BRICKS
- * NAV BRICKS
- */
 
 /* Plugins to try to support
 *

@@ -39,6 +39,7 @@ if (!function_exists('job_resize'))
     // Check if the file exists. If it does, don't recreate it. Need to cater for using original image
     // See how BFI do it and caching
     // Also, use newer WP imag processing techniques, esp saving
+
     if (!$file_exists)
     {
       $resizeObj = new job_Resize($srcimg);
