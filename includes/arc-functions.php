@@ -49,8 +49,8 @@ function pz_squish($array)
 function pzarc_create_css($postid, $type = null)
 {
 
-  $defaults = get_option('architect-defaults_settings');
-  $prefix   = 'architect-defaults_architect_class_defaults_';
+ $defaults = get_option('architect-defaults_settings');
+ $prefix   = 'architect-defaults_architect_class_defaults_';
  // var_dump($defaults);
 
   // Need to create the file contents

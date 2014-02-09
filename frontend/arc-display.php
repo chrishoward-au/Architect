@@ -19,6 +19,17 @@ require PZARC_PLUGIN_PATH . '/frontend/arcCellDefinitions.php';
 require_once(PZARC_PLUGIN_PATH . 'external/jo-image-resizer/jo_image_resizer.php');
 
 
+add_action('init','pzarc_display_init');
+function pzarc_display_init() {
+  wp_register_script('js-arc-frontjs',PZARC_PLUGIN_URL.'/frontend/js/arc-front.js', array('jquery'));
+  wp_register_script('js-swiperjs',PZARC_PLUGIN_URL.'/external/js/swiper/idangerous.swiper.js');
+  wp_register_style('css-swiperjs',PZARC_PLUGIN_URL.'/external/js/swiper/idangerous.swiper.css');
+
+  wp_enqueue_script('js-arc-frontjs');
+  wp_enqueue_script('js-swiperjs');
+  wp_enqueue_style('css-swiperjs');
+}
+
 //add_shortcode('arcgallery', 'pzarc_gallery_shortcode');
 //
 //// Need to work out how to replace wp gallery with ours

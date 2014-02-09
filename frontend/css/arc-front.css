@@ -225,3 +225,45 @@ default styling
   padding-left: 2%;
 }
 
+/* ===============================================================
+Your custom styles, here you need to specify container's and slide's
+sizes, pagination, etc.
+================================================================*/
+.swiper-container.pzarc-blueprint-2173 {
+  /* Specify Swiper's Size: */
+
+  xwidth:320px;
+  height: 300px;
+  background: #eee;
+  padding:0;
+}
+.pzarc-blueprint-2173 .swiper-slide {
+  /* Specify Slides's Size: */
+
+  width: 320px;
+  height: 100%;
+  margin:0!important;
+}
+.swiper-slide-active {
+  /* Specific active slide styling: */
+
+}
+.swiper-slide-visible {
+  /* Specific visible slide styling: */
+
+}
+/* ===============================================================
+Pagination Styles
+================================================================*/
+.swiper-pagination-switch {
+  /* Stylize pagination button: */
+
+}
+.swiper-active-switch {
+  /* Specific active button style: */
+
+}
+.swiper-visible-switch {
+  /* Specific visible button style: */
+
+}

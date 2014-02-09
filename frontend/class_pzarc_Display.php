@@ -60,7 +60,7 @@ class pzarc_Display
    *************************************************/
   function blueprint_header($blueprint_id)
   {
-    $this->output .= '<div id="pzarc-container-' . $this->blueprint[ '_pzarc_blueprint-short-name' ] . '" class="pzarc-container pzarc-blueprint-' . $blueprint_id . '">';
+    $this->output .= '<div id="pzarc-container-' . $this->blueprint[ '_pzarc_blueprint-short-name' ] . '" class="pzarc-container swiper-container pzarc-blueprint-' . $blueprint_id . '">';
     if ($this->blueprint[ '_pzarc_blueprint-pager' ] != 'none' && ($this->blueprint[ '_pzarc_blueprint-pager-location' ] == 'top' || $this->blueprint[ '_pzarc_blueprint-pager-location' ] == 'both'))
     {
       $this->output .= '{{pager}}';
@@ -279,7 +279,7 @@ class pzarc_Display
           $this->output .= ($key == 0) ? '{{nav-left-outside}}' : null;
           if ($pzarc_blueprint[ '_pzarc_' . $key . '-blueprint-layout-mode' ] == 'basic')
           {
-            $this->output .= '<div class="pzarc-section pzarc-section-' . ($key + 1) . '">';
+            $this->output .= '<div class="pzarc-section pzarc-section-' . ($key + 1) . ' swiper-wrapper">';
           }
           else
           {
@@ -377,7 +377,7 @@ class pzarc_Display
     $cell_height = ($this->cell_info[ '_pzarc_layout-cell-height-type' ] == 'fixed') ? 'height:' . $this->cell_info[ '_pzarc_layout-cell-height' ] . 'px;' : null;
 
     // Open cell
-    $this_cell = '<div class="pzarc-panel pzarc-{{classname}}" style="position:relative;width:' . $cell_width . '%;margin:' . ($this->blueprint[ '_pzarc_' . $key . '-blueprint-cells-vert-margin' ] / 2) . '%;min-width:' . $cell_min_width . 'px;' . $cell_height . '">';
+    $this_cell = '<div class="pzarc-panel swiper-slide pzarc-{{classname}}" style="position:relative;width:' . $cell_width . '%;margin:' . ($this->blueprint[ '_pzarc_' . $key . '-blueprint-cells-vert-margin' ] / 2) . '%;min-width:' . $cell_min_width . 'px;' . $cell_height . '">';
 
 
     // Returns false on failure.

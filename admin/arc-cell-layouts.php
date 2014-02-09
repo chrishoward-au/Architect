@@ -842,8 +842,8 @@ add_filter('cmb_meta_boxes', 'pzarc_cell_styling');
 function pzarc_cell_styling($meta_boxes = array())
 {
   $defaults  = get_option('architect-defaults_settings');
-  $optprefix = 'architect-defaults_architect_options_';
-
+  $optprefix = 'architect-defaults_architect_class_defaults_';
+//var_dump($defaults);
 
   $prefix        = '_pzarc_';
   $fields        = array(
@@ -877,7 +877,7 @@ function pzarc_cell_styling($meta_boxes = array())
                   'name'    => __('Entry title', 'pzarc'),
                   'id'      => $prefix . 'layout-format-entry-title', //titles_defaults_entry-title-defaults
                   'type'    => 'text',
-                  'default' => $defaults[ $optprefix . 'titles_defaults_entry-title-defaults' ],
+                  'default' => $defaults[ $optprefix . 'entry-title-defaults' ],
                   'help'    => 'Declarations only for class: .pzarc_entry_title and .pzarc_entry_title a',
                   //      'desc'    => __('Format the entry title', 'pzarc')
           ),
@@ -885,7 +885,7 @@ function pzarc_cell_styling($meta_boxes = array())
                   'name'    => __('Entry title hover', 'pzarc'),
                   'id'      => $prefix . 'layout-format-entry-title-hover',
                   'type'    => 'text',
-                  'default' => $defaults[ $optprefix . '_titles_defaults_entry-title-hover-defaults' ],
+                  'default' => $defaults[ $optprefix . 'entry-title-hover-defaults' ],
                   'help'    => 'Declarations only for class: .pzarc_entry_title a:hover',
                   //      'desc'    => __('Format the entry title link hover', 'pzarc')
           ),
@@ -893,7 +893,7 @@ function pzarc_cell_styling($meta_boxes = array())
                   'name'    => __('Entry meta', 'pzarc'),
                   'id'      => $prefix . 'layout-format-entry-meta',
                   'type'    => 'text',
-                  'default' => $defaults[ $optprefix . 'meta_defaults_entry-meta-defaults' ],
+                  'default' => $defaults[ $optprefix . 'entry-meta-defaults' ],
                   'help'    => 'Declarations only for class: .pzarc_entry_meta',
                   //     'desc'    => __('Format the entry meta', 'pzarc')
           ),
@@ -917,7 +917,7 @@ function pzarc_cell_styling($meta_boxes = array())
                   'name'    => __('Entry content', 'pzarc'),
                   'id'      => $prefix . 'layout-format-entry-content',
                   'type'    => 'text',
-                  'default' => $defaults[ $optprefix . 'content_defaults_entry-content-defaults' ],
+                  'default' => $defaults[ $optprefix . 'entry-content-defaults' ],
                   'help'    => 'Declarations only for class: .pzarc_entry_content',
                   //     'desc'    => __('Format the entry content', 'pzarc')
           ),
@@ -925,7 +925,7 @@ function pzarc_cell_styling($meta_boxes = array())
                   'name'    => __('Entry content links', 'pzarc'),
                   'id'      => $prefix . 'layout-format-entry-content-links',
                   'type'    => 'text',
-                  'default' => $defaults[ $optprefix . 'content_defaults_entry-content-links-defaults' ],
+                  'default' => $defaults[ $optprefix . 'entry-content-links-defaults' ],
                   'help'    => 'Declarations only for class: .pzarc_entry_content a',
                   //     'desc'    => __('Format the entry content', 'pzarc')
           ),
@@ -933,7 +933,7 @@ function pzarc_cell_styling($meta_boxes = array())
                   'name'    => __('Entry content link hover', 'pzarc'),
                   'id'      => $prefix . 'layout-format-entry-content-links-hover',
                   'type'    => 'text',
-                  'default' => $defaults[ $optprefix . 'content_defaults_entry-content-links-hover-defaults' ],
+                  'default' => $defaults[ $optprefix . 'entry-content-links-hover-defaults' ],
                   'help'    => 'Declarations only for class: .pzarc_entry_content a:hover',
                   //     'desc'    => __('Format the entry content link hover', 'pzarc')
           ),
@@ -941,7 +941,7 @@ function pzarc_cell_styling($meta_boxes = array())
                   'name'    => __('Entry featured image', 'pzarc'),
                   'id'      => $prefix . 'layout-format-entry-image',
                   'type'    => 'text',
-                  'default' => $defaults[ $optprefix . 'image_defaults_entry-image-defaults' ],
+                  'default' => $defaults[ $optprefix . 'entry-image-defaults' ],
                   'help'    => 'Declarations only for class: .pzarc_entry_featured_image',
                   //     'desc'    => __('Format the entry featured image', 'pzarc')
           ),
@@ -949,7 +949,7 @@ function pzarc_cell_styling($meta_boxes = array())
                   'name'    => __('Read more', 'pzarc'),
                   'id'      => $prefix . 'layout-format-entry-readmore',
                   'type'    => 'text',
-                  'default' => $defaults[ $optprefix . 'content_defaults_entry-readmore-defaults' ],
+                  'default' => $defaults[ $optprefix . 'entry-readmore-defaults' ],
                   'help'    => 'Declarations only for class: a.pzarc_readmore',
                   //     'desc'    => __('Format the content "Read more" link', 'pzarc')
           ),
@@ -957,7 +957,7 @@ function pzarc_cell_styling($meta_boxes = array())
                   'name'    => __('Read more hover', 'pzarc'),
                   'id'      => $prefix . 'layout-format-entry-readmore-hover',
                   'type'    => 'text',
-                  'default' => $defaults[ $optprefix . 'content_defaults_entry-readmore-hover-defaults' ],
+                  'default' => $defaults[ $optprefix . 'entry-readmore-hover-defaults' ],
                   'help'    => 'Declarations only for class: a.pzarc_readmore:hover',
                   //     'desc'    => __('Format the content "Read more" link hover', 'pzarc')
           ),
@@ -965,7 +965,7 @@ function pzarc_cell_styling($meta_boxes = array())
                   'name'    => __('Image caption', 'pzarc'),
                   'id'      => $prefix . 'layout-format-thumb-image-caption',
                   'type'    => 'text',
-                  'default' => $defaults[ $optprefix . 'image_defaults_entry-image-caption-defaults' ],
+                  'default' => $defaults[ $optprefix . 'thumb-image-caption-defaults' ],
           ),
 
 
