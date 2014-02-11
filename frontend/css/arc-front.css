@@ -5,7 +5,22 @@
 .pzarchitect .pzarc-container {
   position:relative;
 }
-.pzarchitect .pzarc-section {position:relative;}
+.pzarchitect .pzarc-section {
+  position:relative;
+  /* Added for gridded layout. May break others! */
+  display:block;
+  display:webkit box;
+  display:moz-box;
+  display: -ms-flexbox;
+  display:webkit flex;
+  display:flex;
+  justify-content:flex-start;
+  -webkit-flex-flow:row wrap;
+  -moz-flex-flow:row wrap; /* Unsupported!! Argh! */
+  flex-flow:row wrap;
+  flex-direction: row;
+  flex-wrap:wrap;
+}
 
 .pzarchitect .pzarc-panel {
   min-width:0px;

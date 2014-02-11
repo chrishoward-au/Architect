@@ -24,32 +24,42 @@ jQuery(document).ready(function () {
 //_pzarc_section-group-_pzarc_blueprint-cells-per-view-cmb-group-0-cmb-field-0
 //_pzarc_section-group-_pzarc_blueprint-cells-per-view-cmb-group-1-cmb-field-0
 
-  pzarc_refresh_blueprint_layout(0);
-  pzarc_refresh_blueprint_layout(1);
-  pzarc_refresh_blueprint_layout(2);
-  pzarc_update_usage_info(jQuery("#_pzarc_blueprint-short-name-cmb-field-0").get(0));
 
   init();
   function init(){
-  var fixorfluid =  jQuery('select#_pzarc_blueprint-navigation-cmb-field-0').find('option:selected').get(0).value;
-  switch ( fixorfluid) {
+    pzarc_refresh_blueprint_layout(0);
+    pzarc_refresh_blueprint_layout(1);
+    pzarc_refresh_blueprint_layout(2);
+    pzarc_update_usage_info(jQuery("#_pzarc_blueprint-short-name-cmb-field-0").get(0));
+    pzarc_show_navtype();
+  }
+
+  jQuery('select#_pzarc_blueprint-navigation-cmb-field-0').on('change',function(){pzarc_show_navtype();});
+
+
+function pzarc_show_navtype() {
+  var navtype =  jQuery('select#_pzarc_blueprint-navigation-cmb-field-0').find('option:selected').get(0).value;
+
+  console.log(navtype);
+  switch ( navtype) {
     case 'none':
       jQuery('.item-blueprint-pagination').hide();
       jQuery('.item-blueprint-navigator').hide();
+      jQuery('.item-blueprint-section-1').trigger('click');
       break;
     case 'pagination':
-      jQuery('.item-blueprint-pagination').show();
+      jQuery('.item-blueprint-pagination').fadeIn();
       jQuery('.item-blueprint-navigator').hide();
+      jQuery('.item-blueprint-pagination').trigger('click');
+
       break;
     case 'navigator':
       jQuery('.item-blueprint-pagination').hide();
-      jQuery('.item-blueprint-navigator').show();
+      jQuery('.item-blueprint-navigator').fadeIn();
+      jQuery('.item-blueprint-navigator').trigger('click');
       break;
   }
-  }
-
-
-
+}
 
   function pzarc_refresh_blueprint_layout(i) {
     //console.log(i,jQuery('#_pzarc_' + i + '-blueprint-cells-per-view-cmb-field-0').get(0));
@@ -145,7 +155,7 @@ jQuery(document).ready(function () {
 
     jQuery('#pzarc-sections-preview-'+x).toggle(jQuery('#_pzarc_'+x+'-blueprint-section-enable-cmb-field-0').get(0).checked);
     jQuery('#blueprint-section-'+y+'.postbox').toggle(jQuery('#_pzarc_'+x+'-blueprint-section-enable-cmb-field-0').get(0).checked);
-    jQuery('.item-blueprint-section-'+y).toggle(jQuery('#_pzarc_'+x+'-blueprint-section-enable-cmb-field-0').get(0).checked);
+    jQuery('.item-blueprint-section-'+y).fadeToggle(jQuery('#_pzarc_'+x+'-blueprint-section-enable-cmb-field-0').get(0).checked);
 
     // Need to make this a little clevered
     // needed this coz container was staying big

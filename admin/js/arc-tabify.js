@@ -16,7 +16,7 @@ jQuery(document).ready(function () {
   //gotta automate this bit!
   // JS doesn't seem to support a[x] = ['v1','v2','v3']
 
-  var slugdivs_cells = ['#panel-designer', '#panels-titles','#panels-content','#panels-images','#panels-meta','#panels-custom-fields','#styling'];
+  var slugdivs_panels = ['#panel-designer', '#panels-titles','#panels-content','#panels-images','#panels-meta','#panels-custom-fields','#styling'];
   var slugdivs_bpsections = ['#blueprint-section-1', '#blueprint-section-2', '#blueprint-section-3', '#blueprint-pagination', '#blueprint-navigator', '#blueprint-wireframe-preview'];
   var slugdivs_bpswitcher = ['#blueprint-settings', '#contents-selection-settings'];
   var slugdivs_content = ['#default-filters', '#posts-filters', '#pages-filters', '#galleries-filters', '#slides-filters', '#custom-post-types-filters'];
@@ -29,12 +29,13 @@ jQuery(document).ready(function () {
     var container = '<div class="tabs-content"></div>';
     if (jQuery('#panels').length) {
       jQuery('#panels .inside').append(container);
-      for (x in slugdivs_cells) {
-        jQuery(slugdivs_cells[x]).addClass('tabs-pane').appendTo('#panels .tabs-content').hide();
-        jQuery(slugdivs_cells[x] + ' .handlediv').remove();
-        jQuery(slugdivs_cells[x] + ' h3.hndle').remove();
+      for (x in slugdivs_panels) {
+        jQuery(slugdivs_panels[x]).addClass('tabs-pane').appendTo('#panels .tabs-content').hide();
+        jQuery(slugdivs_panels[x] + ' .handlediv').remove();
+        jQuery(slugdivs_panels[x] + ' h3.hndle').remove();
       }
-      jQuery(slugdivs_cells[0]).show().addClass('active');
+      jQuery(slugdivs_panels[0]).show().addClass('active').trigger('click');
+
     }
 
     if (jQuery('#blueprint-layout').length) {
@@ -44,7 +45,7 @@ jQuery(document).ready(function () {
         jQuery(slugdivs_bpsections[x] + ' .handlediv').remove();
         jQuery(slugdivs_bpsections[x] + ' h3.hndle').remove();
       }
-      jQuery(slugdivs_bpsections[0]).show().addClass('active');
+      jQuery(slugdivs_bpsections[0]).show().addClass('active').trigger('click');
     }
 
     if (jQuery('#show-settings-for').length) {
@@ -54,7 +55,7 @@ jQuery(document).ready(function () {
         jQuery(slugdivs_bpswitcher[x] + ' .handlediv').remove();
         jQuery(slugdivs_bpswitcher[x] + ' h3.hndle').remove();
       }
-      jQuery(slugdivs_bpswitcher[0]).show().addClass('active');
+      jQuery(slugdivs_bpswitcher[0]).show().addClass('active').trigger('click');
     }
 
     if (jQuery('#content-selection').length) {
@@ -64,14 +65,14 @@ jQuery(document).ready(function () {
         jQuery(slugdivs_content[x] + ' .handlediv').remove();
         jQuery(slugdivs_content[x] + ' h3.hndle').remove();
       }
-      jQuery(slugdivs_content[0]).show().addClass('active');
+      jQuery(slugdivs_content[0]).show().addClass('active').trigger('click');
     }
 
   }
 
   // On click on panels tabs
   jQuery('#panels li').on('click', function (e) {
-    pzarc_showhide_panes(e, slugdivs_cells,'#panels li');
+    pzarc_showhide_panes(e, slugdivs_panels,'#panels li');
   });
 
   // On click on blueprint sections tabs
@@ -95,7 +96,7 @@ jQuery(document).ready(function () {
     for (x in slugdivs) {
       jQuery(slugdivs[x]).removeClass('active').hide();
     }
-    jQuery(showdiv).addClass('active').show();
+    jQuery(showdiv).addClass('active').show().trigger('click');
 
   }
 }); // End

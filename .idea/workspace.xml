@@ -2,12 +2,476 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6a91661e-ac03-4c49-a442-2faea24b5b57" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/frontend/js/arc-front.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/admin/arc-cell-layouts.php" afterPath="$PROJECT_DIR$/admin/arc-cell-layouts.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/arc-display.php" afterPath="$PROJECT_DIR$/frontend/arc-display.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/frontend/php/arcNavDefinitions.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/external/php/Custom-Meta-Boxes/css/dist/cmb.min.css" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/external/Custom-Meta-Boxes/css/dist/cmb.min.css" afterPath="" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/admin/arc-admin.php" afterPath="$PROJECT_DIR$/admin/php/arc-admin.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/admin/arc-blueprints.php" afterPath="$PROJECT_DIR$/admin/php/arc-blueprints.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/admin/arc-cell-layouts.php" afterPath="$PROJECT_DIR$/admin/php/arc-cell-layouts.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/admin/arc-data-selection.php" afterPath="$PROJECT_DIR$/admin/php/arc-data-selection.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/admin/arc-galleries.php" afterPath="$PROJECT_DIR$/admin/php/arc-galleries.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/admin/arc-slides.php" afterPath="$PROJECT_DIR$/admin/php/arc-slides.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/admin/settings/options.php" afterPath="$PROJECT_DIR$/admin/php/settings/options.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/admin/ucd-controls.php" afterPath="$PROJECT_DIR$/admin/php/ucd-controls.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/Custom-Meta-Boxes/CONTRIBUTING.md" afterPath="$PROJECT_DIR$/external/php/Custom-Meta-Boxes/CONTRIBUTING.md" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/Custom-Meta-Boxes/class.cmb-meta-box.php" afterPath="$PROJECT_DIR$/external/php/Custom-Meta-Boxes/class.cmb-meta-box.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/Custom-Meta-Boxes/classes.fields.php" afterPath="$PROJECT_DIR$/external/php/Custom-Meta-Boxes/classes.fields.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/Custom-Meta-Boxes/css/dist/cmb.css" afterPath="$PROJECT_DIR$/external/php/Custom-Meta-Boxes/css/dist/cmb.css" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/Custom-Meta-Boxes/css/legacy.css" afterPath="$PROJECT_DIR$/external/php/Custom-Meta-Boxes/css/legacy.css" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/Custom-Meta-Boxes/css/src/file.css" afterPath="$PROJECT_DIR$/external/php/Custom-Meta-Boxes/css/src/file.css" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/Custom-Meta-Boxes/css/src/generic.css" afterPath="$PROJECT_DIR$/external/php/Custom-Meta-Boxes/css/src/generic.css" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/Custom-Meta-Boxes/css/src/group.css" afterPath="$PROJECT_DIR$/external/php/Custom-Meta-Boxes/css/src/group.css" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/Custom-Meta-Boxes/css/src/layout.css" afterPath="$PROJECT_DIR$/external/php/Custom-Meta-Boxes/css/src/layout.css" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/Custom-Meta-Boxes/css/src/misc-fields.css" afterPath="$PROJECT_DIR$/external/php/Custom-Meta-Boxes/css/src/misc-fields.css" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/Custom-Meta-Boxes/css/src/repeatable.css" afterPath="$PROJECT_DIR$/external/php/Custom-Meta-Boxes/css/src/repeatable.css" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/Custom-Meta-Boxes/css/vendor/jquery-ui/images/animated-overlay.gif" afterPath="$PROJECT_DIR$/external/js/jquery-ui-1.10.2.custom/css/pz_architect/images/animated-overlay.gif" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/Custom-Meta-Boxes/css/vendor/jquery-ui/images/ui-bg_flat_0_aaaaaa_40x100.png" afterPath="$PROJECT_DIR$/external/php/Custom-Meta-Boxes/css/vendor/jquery-ui/images/ui-bg_flat_0_aaaaaa_40x100.png" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/Custom-Meta-Boxes/css/vendor/jquery-ui/images/ui-bg_flat_75_ffffff_40x100.png" afterPath="$PROJECT_DIR$/external/php/Custom-Meta-Boxes/css/vendor/jquery-ui/images/ui-bg_flat_75_ffffff_40x100.png" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/Custom-Meta-Boxes/css/vendor/jquery-ui/images/ui-bg_glass_55_fbf9ee_1x400.png" afterPath="$PROJECT_DIR$/external/php/Custom-Meta-Boxes/css/vendor/jquery-ui/images/ui-bg_glass_55_fbf9ee_1x400.png" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/Custom-Meta-Boxes/css/vendor/jquery-ui/images/ui-bg_glass_65_ffffff_1x400.png" afterPath="$PROJECT_DIR$/external/php/Custom-Meta-Boxes/css/vendor/jquery-ui/images/ui-bg_glass_65_ffffff_1x400.png" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/Custom-Meta-Boxes/css/vendor/jquery-ui/images/ui-bg_glass_75_dadada_1x400.png" afterPath="$PROJECT_DIR$/external/php/Custom-Meta-Boxes/css/vendor/jquery-ui/images/ui-bg_glass_75_dadada_1x400.png" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/Custom-Meta-Boxes/css/vendor/jquery-ui/images/ui-bg_glass_75_e6e6e6_1x400.png" afterPath="$PROJECT_DIR$/external/php/Custom-Meta-Boxes/css/vendor/jquery-ui/images/ui-bg_glass_75_e6e6e6_1x400.png" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/Custom-Meta-Boxes/css/vendor/jquery-ui/images/ui-bg_glass_95_fef1ec_1x400.png" afterPath="$PROJECT_DIR$/external/php/Custom-Meta-Boxes/css/vendor/jquery-ui/images/ui-bg_glass_95_fef1ec_1x400.png" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/Custom-Meta-Boxes/css/vendor/jquery-ui/images/ui-bg_highlight-soft_75_cccccc_1x100.png" afterPath="$PROJECT_DIR$/external/php/Custom-Meta-Boxes/css/vendor/jquery-ui/images/ui-bg_highlight-soft_75_cccccc_1x100.png" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/Custom-Meta-Boxes/css/vendor/jquery-ui/images/ui-icons_222222_256x240.png" afterPath="$PROJECT_DIR$/external/php/Custom-Meta-Boxes/css/vendor/jquery-ui/images/ui-icons_222222_256x240.png" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/Custom-Meta-Boxes/css/vendor/jquery-ui/images/ui-icons_2e83ff_256x240.png" afterPath="$PROJECT_DIR$/external/php/Custom-Meta-Boxes/css/vendor/jquery-ui/images/ui-icons_2e83ff_256x240.png" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/Custom-Meta-Boxes/css/vendor/jquery-ui/images/ui-icons_454545_256x240.png" afterPath="$PROJECT_DIR$/external/php/Custom-Meta-Boxes/css/vendor/jquery-ui/images/ui-icons_454545_256x240.png" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/Custom-Meta-Boxes/css/vendor/jquery-ui/images/ui-icons_888888_256x240.png" afterPath="$PROJECT_DIR$/external/php/Custom-Meta-Boxes/css/vendor/jquery-ui/images/ui-icons_888888_256x240.png" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/Custom-Meta-Boxes/css/vendor/jquery-ui/images/ui-icons_cd0a0a_256x240.png" afterPath="$PROJECT_DIR$/external/php/Custom-Meta-Boxes/css/vendor/jquery-ui/images/ui-icons_cd0a0a_256x240.png" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/Custom-Meta-Boxes/css/vendor/jquery-ui/jquery-ui.css" afterPath="$PROJECT_DIR$/external/php/Custom-Meta-Boxes/css/vendor/jquery-ui/jquery-ui.css" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/Custom-Meta-Boxes/css/vendor/jquery-ui/jquery-ui.min.css" afterPath="$PROJECT_DIR$/external/php/Custom-Meta-Boxes/css/vendor/jquery-ui/jquery-ui.min.css" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/Custom-Meta-Boxes/css/vendor/jquery-ui/jquery.ui.theme.css" afterPath="$PROJECT_DIR$/external/php/Custom-Meta-Boxes/css/vendor/jquery-ui/jquery.ui.theme.css" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/Custom-Meta-Boxes/custom-meta-boxes.php" afterPath="$PROJECT_DIR$/external/php/Custom-Meta-Boxes/custom-meta-boxes.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/Custom-Meta-Boxes/fields-anywhere.php" afterPath="$PROJECT_DIR$/external/php/Custom-Meta-Boxes/fields-anywhere.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/Custom-Meta-Boxes/images/cmb-icon-remove.png" afterPath="$PROJECT_DIR$/external/php/Custom-Meta-Boxes/images/cmb-icon-remove.png" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/Custom-Meta-Boxes/images/cmb-icon-remove@2x.png" afterPath="$PROJECT_DIR$/external/php/Custom-Meta-Boxes/images/cmb-icon-remove@2x.png" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/Custom-Meta-Boxes/images/wpspin-2x.gif" afterPath="$PROJECT_DIR$/external/php/Custom-Meta-Boxes/images/wpspin-2x.gif" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/Custom-Meta-Boxes/images/wpspin.gif" afterPath="$PROJECT_DIR$/external/php/Custom-Meta-Boxes/images/wpspin.gif" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/Custom-Meta-Boxes/js/cmb.js" afterPath="$PROJECT_DIR$/external/php/Custom-Meta-Boxes/js/cmb.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/Custom-Meta-Boxes/js/field-wysiwyg.js" afterPath="$PROJECT_DIR$/external/php/Custom-Meta-Boxes/js/field-wysiwyg.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/Custom-Meta-Boxes/js/field.colorpicker.js" afterPath="$PROJECT_DIR$/external/php/Custom-Meta-Boxes/js/field.colorpicker.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/Custom-Meta-Boxes/js/field.datetime.js" afterPath="$PROJECT_DIR$/external/php/Custom-Meta-Boxes/js/field.datetime.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/Custom-Meta-Boxes/js/field.select.js" afterPath="$PROJECT_DIR$/external/php/Custom-Meta-Boxes/js/field.select.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/Custom-Meta-Boxes/js/file-upload.js" afterPath="$PROJECT_DIR$/external/php/Custom-Meta-Boxes/js/file-upload.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/Custom-Meta-Boxes/js/jquery.timePicker.min.js" afterPath="$PROJECT_DIR$/external/php/Custom-Meta-Boxes/js/jquery.timePicker.min.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/Custom-Meta-Boxes/js/select2/LICENSE" afterPath="$PROJECT_DIR$/external/php/Custom-Meta-Boxes/js/select2/LICENSE" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/Custom-Meta-Boxes/js/select2/README.md" afterPath="$PROJECT_DIR$/external/php/Custom-Meta-Boxes/js/select2/README.md" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/Custom-Meta-Boxes/js/select2/component.json" afterPath="$PROJECT_DIR$/external/php/Custom-Meta-Boxes/js/select2/component.json" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/Custom-Meta-Boxes/js/select2/release.sh" afterPath="$PROJECT_DIR$/external/php/Custom-Meta-Boxes/js/select2/release.sh" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/Custom-Meta-Boxes/js/select2/select2-spinner.gif" afterPath="$PROJECT_DIR$/external/php/Custom-Meta-Boxes/js/select2/select2-spinner.gif" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/Custom-Meta-Boxes/js/select2/select2.css" afterPath="$PROJECT_DIR$/external/php/Custom-Meta-Boxes/js/select2/select2.css" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/Custom-Meta-Boxes/js/select2/select2.jquery.json" afterPath="$PROJECT_DIR$/external/php/Custom-Meta-Boxes/js/select2/select2.jquery.json" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/Custom-Meta-Boxes/js/select2/select2.js" afterPath="$PROJECT_DIR$/external/php/Custom-Meta-Boxes/js/select2/select2.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/Custom-Meta-Boxes/js/select2/select2.min.js" afterPath="$PROJECT_DIR$/external/php/Custom-Meta-Boxes/js/select2/select2.min.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/Custom-Meta-Boxes/js/select2/select2.png" afterPath="$PROJECT_DIR$/external/php/Custom-Meta-Boxes/js/select2/select2.png" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/Custom-Meta-Boxes/js/select2/select2_locale_de.js" afterPath="$PROJECT_DIR$/external/php/Custom-Meta-Boxes/js/select2/select2_locale_de.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/Custom-Meta-Boxes/js/select2/select2_locale_en.js.template" afterPath="$PROJECT_DIR$/external/php/Custom-Meta-Boxes/js/select2/select2_locale_en.js.template" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/Custom-Meta-Boxes/js/select2/select2_locale_es.js" afterPath="$PROJECT_DIR$/external/php/Custom-Meta-Boxes/js/select2/select2_locale_es.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/Custom-Meta-Boxes/js/select2/select2_locale_eu.js" afterPath="$PROJECT_DIR$/external/php/Custom-Meta-Boxes/js/select2/select2_locale_eu.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/Custom-Meta-Boxes/js/select2/select2_locale_fr.js" afterPath="$PROJECT_DIR$/external/php/Custom-Meta-Boxes/js/select2/select2_locale_fr.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/Custom-Meta-Boxes/js/select2/select2_locale_hr.js" afterPath="$PROJECT_DIR$/external/php/Custom-Meta-Boxes/js/select2/select2_locale_hr.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/Custom-Meta-Boxes/js/select2/select2_locale_hu.js" afterPath="$PROJECT_DIR$/external/php/Custom-Meta-Boxes/js/select2/select2_locale_hu.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/Custom-Meta-Boxes/js/select2/select2_locale_it.js" afterPath="$PROJECT_DIR$/external/php/Custom-Meta-Boxes/js/select2/select2_locale_it.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/Custom-Meta-Boxes/js/select2/select2_locale_nl.js" afterPath="$PROJECT_DIR$/external/php/Custom-Meta-Boxes/js/select2/select2_locale_nl.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/Custom-Meta-Boxes/js/select2/select2_locale_pt-BR.js" afterPath="$PROJECT_DIR$/external/php/Custom-Meta-Boxes/js/select2/select2_locale_pt-BR.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/Custom-Meta-Boxes/js/select2/select2_locale_pt-PT.js" afterPath="$PROJECT_DIR$/external/php/Custom-Meta-Boxes/js/select2/select2_locale_pt-PT.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/Custom-Meta-Boxes/js/select2/select2_locale_ro.js" afterPath="$PROJECT_DIR$/external/php/Custom-Meta-Boxes/js/select2/select2_locale_ro.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/Custom-Meta-Boxes/js/select2/select2_locale_ru.js" afterPath="$PROJECT_DIR$/external/php/Custom-Meta-Boxes/js/select2/select2_locale_ru.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/Custom-Meta-Boxes/js/select2/select2_locale_sk.js" afterPath="$PROJECT_DIR$/external/php/Custom-Meta-Boxes/js/select2/select2_locale_sk.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/Custom-Meta-Boxes/js/select2/select2_locale_sv.js" afterPath="$PROJECT_DIR$/external/php/Custom-Meta-Boxes/js/select2/select2_locale_sv.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/Custom-Meta-Boxes/js/select2/select2_locale_tr.js" afterPath="$PROJECT_DIR$/external/php/Custom-Meta-Boxes/js/select2/select2_locale_tr.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/Custom-Meta-Boxes/js/select2/select2_locale_ua.js" afterPath="$PROJECT_DIR$/external/php/Custom-Meta-Boxes/js/select2/select2_locale_ua.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/Custom-Meta-Boxes/js/select2/select2_locale_zh-CN.js" afterPath="$PROJECT_DIR$/external/php/Custom-Meta-Boxes/js/select2/select2_locale_zh-CN.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/Custom-Meta-Boxes/js/select2/select2x2.png" afterPath="$PROJECT_DIR$/external/php/Custom-Meta-Boxes/js/select2/select2x2.png" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/Custom-Meta-Boxes/languages/cmb-fi.mo" afterPath="$PROJECT_DIR$/external/php/Custom-Meta-Boxes/languages/cmb-fi.mo" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/Custom-Meta-Boxes/languages/cmb-fi.po" afterPath="$PROJECT_DIR$/external/php/Custom-Meta-Boxes/languages/cmb-fi.po" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/Custom-Meta-Boxes/languages/cmb.pot" afterPath="$PROJECT_DIR$/external/php/Custom-Meta-Boxes/languages/cmb.pot" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/Custom-Meta-Boxes/readme.md" afterPath="$PROJECT_DIR$/external/php/Custom-Meta-Boxes/readme.md" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/README.md" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/README.md" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/README.txt" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/README.txt" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/assets/css/admin.css" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/assets/css/admin.css" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/assets/css/redux.css" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/assets/css/redux.css" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/assets/css/rtl.css" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/assets/css/rtl.css" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/assets/css/vendor/elusive-icons/elusive-webfont-ie7.css" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/assets/css/vendor/elusive-icons/elusive-webfont-ie7.css" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/assets/css/vendor/elusive-icons/elusive-webfont.css" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/assets/css/vendor/elusive-icons/elusive-webfont.css" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/assets/css/vendor/elusive-icons/font/Elusive-Icons.eot" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/assets/css/vendor/elusive-icons/font/Elusive-Icons.eot" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/assets/css/vendor/elusive-icons/font/Elusive-Icons.svg" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/assets/css/vendor/elusive-icons/font/Elusive-Icons.svg" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/assets/css/vendor/elusive-icons/font/Elusive-Icons.ttf" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/assets/css/vendor/elusive-icons/font/Elusive-Icons.ttf" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/assets/css/vendor/elusive-icons/font/Elusive-Icons.woff" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/assets/css/vendor/elusive-icons/font/Elusive-Icons.woff" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/assets/css/vendor/jquery-ui-bootstrap/images/ui-bg_flat_0_aaaaaa_40x100.png" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/assets/css/vendor/jquery-ui-bootstrap/images/ui-bg_flat_0_aaaaaa_40x100.png" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/assets/css/vendor/jquery-ui-bootstrap/images/ui-bg_glass_55_fbf9ee_1x400.png" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/assets/css/vendor/jquery-ui-bootstrap/images/ui-bg_glass_55_fbf9ee_1x400.png" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/assets/css/vendor/jquery-ui-bootstrap/images/ui-bg_glass_65_ffffff_1x400.png" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/assets/css/vendor/jquery-ui-bootstrap/images/ui-bg_glass_65_ffffff_1x400.png" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/assets/css/vendor/jquery-ui-bootstrap/images/ui-bg_glass_75_dadada_1x400.png" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/assets/css/vendor/jquery-ui-bootstrap/images/ui-bg_glass_75_dadada_1x400.png" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/assets/css/vendor/jquery-ui-bootstrap/images/ui-bg_glass_75_e6e6e6_1x400.png" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/assets/css/vendor/jquery-ui-bootstrap/images/ui-bg_glass_75_e6e6e6_1x400.png" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/assets/css/vendor/jquery-ui-bootstrap/images/ui-bg_glass_75_ffffff_1x400.png" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/assets/css/vendor/jquery-ui-bootstrap/images/ui-bg_glass_75_ffffff_1x400.png" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/assets/css/vendor/jquery-ui-bootstrap/images/ui-bg_highlight-soft_75_cccccc_1x100.png" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/assets/css/vendor/jquery-ui-bootstrap/images/ui-bg_highlight-soft_75_cccccc_1x100.png" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/assets/css/vendor/jquery-ui-bootstrap/images/ui-bg_inset-soft_95_fef1ec_1x100.png" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/assets/css/vendor/jquery-ui-bootstrap/images/ui-bg_inset-soft_95_fef1ec_1x100.png" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/assets/css/vendor/jquery-ui-bootstrap/images/ui-icons_222222_256x240.png" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/assets/css/vendor/jquery-ui-bootstrap/images/ui-icons_222222_256x240.png" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/assets/css/vendor/jquery-ui-bootstrap/images/ui-icons_2e83ff_256x240.png" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/assets/css/vendor/jquery-ui-bootstrap/images/ui-icons_2e83ff_256x240.png" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/assets/css/vendor/jquery-ui-bootstrap/images/ui-icons_454545_256x240.png" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/assets/css/vendor/jquery-ui-bootstrap/images/ui-icons_454545_256x240.png" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/assets/css/vendor/jquery-ui-bootstrap/images/ui-icons_888888_256x240.png" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/assets/css/vendor/jquery-ui-bootstrap/images/ui-icons_888888_256x240.png" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/assets/css/vendor/jquery-ui-bootstrap/images/ui-icons_cd0a0a_256x240.png" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/assets/css/vendor/jquery-ui-bootstrap/images/ui-icons_cd0a0a_256x240.png" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/assets/css/vendor/jquery-ui-bootstrap/images/ui-icons_f6cf3b_256x240.png" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/assets/css/vendor/jquery-ui-bootstrap/images/ui-icons_f6cf3b_256x240.png" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/assets/css/vendor/jquery-ui-bootstrap/jquery-ui-1.10.0.custom.css" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/assets/css/vendor/jquery-ui-bootstrap/jquery-ui-1.10.0.custom.css" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/assets/img/1c.png" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/assets/img/1c.png" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/assets/img/1col.png" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/assets/img/1col.png" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/assets/img/2-col-portfolio.png" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/assets/img/2-col-portfolio.png" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/assets/img/2cl.png" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/assets/img/2cl.png" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/assets/img/2cr.png" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/assets/img/2cr.png" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/assets/img/3-col-portfolio.png" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/assets/img/3-col-portfolio.png" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/assets/img/3cl.png" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/assets/img/3cl.png" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/assets/img/3cm.png" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/assets/img/3cm.png" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/assets/img/3cr.png" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/assets/img/3cr.png" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/assets/img/4-col-portfolio.png" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/assets/img/4-col-portfolio.png" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/assets/img/ajax.gif" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/assets/img/ajax.gif" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/assets/img/menu_icon.png" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/assets/img/menu_icon.png" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/assets/img/toggle_tabs.png" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/assets/img/toggle_tabs.png" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/assets/js/redux.js" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/assets/js/redux.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/assets/js/redux.min.js" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/assets/js/redux.min.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/assets/js/vendor.min.js" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/assets/js/vendor.min.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/assets/js/vendor/ace_editor/ace.js" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/assets/js/vendor/ace_editor/ace.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/assets/js/vendor/ace_editor/mode-css.js" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/assets/js/vendor/ace_editor/mode-css.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/assets/js/vendor/ace_editor/mode-html.js" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/assets/js/vendor/ace_editor/mode-html.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/assets/js/vendor/ace_editor/mode-javascript.js" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/assets/js/vendor/ace_editor/mode-javascript.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/assets/js/vendor/ace_editor/mode-json.js" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/assets/js/vendor/ace_editor/mode-json.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/assets/js/vendor/ace_editor/mode-markdown.js" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/assets/js/vendor/ace_editor/mode-markdown.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/assets/js/vendor/ace_editor/mode-mysql.js" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/assets/js/vendor/ace_editor/mode-mysql.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/assets/js/vendor/ace_editor/mode-php.js" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/assets/js/vendor/ace_editor/mode-php.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/assets/js/vendor/ace_editor/mode-plain_text.js" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/assets/js/vendor/ace_editor/mode-plain_text.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/assets/js/vendor/ace_editor/mode-sass.js" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/assets/js/vendor/ace_editor/mode-sass.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/assets/js/vendor/ace_editor/mode-scss.js" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/assets/js/vendor/ace_editor/mode-scss.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/assets/js/vendor/ace_editor/mode-text.js" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/assets/js/vendor/ace_editor/mode-text.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/assets/js/vendor/ace_editor/mode-xml.js" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/assets/js/vendor/ace_editor/mode-xml.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/assets/js/vendor/ace_editor/snippets/css.js" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/assets/js/vendor/ace_editor/snippets/css.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/assets/js/vendor/ace_editor/snippets/html.js" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/assets/js/vendor/ace_editor/snippets/html.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/assets/js/vendor/ace_editor/snippets/javascript.js" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/assets/js/vendor/ace_editor/snippets/javascript.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/assets/js/vendor/ace_editor/snippets/json.js" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/assets/js/vendor/ace_editor/snippets/json.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/assets/js/vendor/ace_editor/snippets/less.js" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/assets/js/vendor/ace_editor/snippets/less.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/assets/js/vendor/ace_editor/snippets/markdown.js" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/assets/js/vendor/ace_editor/snippets/markdown.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/assets/js/vendor/ace_editor/snippets/mysql.js" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/assets/js/vendor/ace_editor/snippets/mysql.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/assets/js/vendor/ace_editor/snippets/php.js" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/assets/js/vendor/ace_editor/snippets/php.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/assets/js/vendor/ace_editor/snippets/plain_text.js" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/assets/js/vendor/ace_editor/snippets/plain_text.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/assets/js/vendor/ace_editor/snippets/sass.js" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/assets/js/vendor/ace_editor/snippets/sass.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/assets/js/vendor/ace_editor/snippets/scss.js" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/assets/js/vendor/ace_editor/snippets/scss.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/assets/js/vendor/ace_editor/snippets/text.js" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/assets/js/vendor/ace_editor/snippets/text.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/assets/js/vendor/ace_editor/snippets/xml.js" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/assets/js/vendor/ace_editor/snippets/xml.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/assets/js/vendor/ace_editor/theme-chrome.js" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/assets/js/vendor/ace_editor/theme-chrome.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/assets/js/vendor/ace_editor/theme-monokai.js" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/assets/js/vendor/ace_editor/theme-monokai.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/assets/js/vendor/ace_editor/worker-css.js" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/assets/js/vendor/ace_editor/worker-css.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/assets/js/vendor/ace_editor/worker-javascript.js" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/assets/js/vendor/ace_editor/worker-javascript.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/assets/js/vendor/ace_editor/worker-json.js" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/assets/js/vendor/ace_editor/worker-json.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/assets/js/vendor/ace_editor/worker-php.js" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/assets/js/vendor/ace_editor/worker-php.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/assets/js/vendor/cookie.js" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/assets/js/vendor/cookie.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/assets/js/vendor/jquery.alphanum.js" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/assets/js/vendor/jquery.alphanum.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/assets/js/vendor/jquery.tipsy.js" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/assets/js/vendor/jquery.tipsy.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/assets/js/vendor/jquery.typewatch.js" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/assets/js/vendor/jquery.typewatch.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/assets/js/vendor/jsonview.js" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/assets/js/vendor/jsonview.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/assets/js/vendor/jsonview.min.js" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/assets/js/vendor/jsonview.min.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/assets/js/vendor/lte-ie7.js" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/assets/js/vendor/lte-ie7.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/assets/js/vendor/minicolors/jquery.minicolors.css" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/assets/js/vendor/minicolors/jquery.minicolors.css" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/assets/js/vendor/minicolors/jquery.minicolors.js" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/assets/js/vendor/minicolors/jquery.minicolors.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/assets/js/vendor/minicolors/jquery.minicolors.min.js" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/assets/js/vendor/minicolors/jquery.minicolors.min.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/assets/js/vendor/minicolors/jquery.minicolors.png" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/assets/js/vendor/minicolors/jquery.minicolors.png" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/assets/js/vendor/minicolors/readme.md" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/assets/js/vendor/minicolors/readme.md" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/assets/js/vendor/select2.sortable.js" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/assets/js/vendor/select2.sortable.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/assets/js/vendor/select2/LICENSE" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/assets/js/vendor/select2/LICENSE" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/assets/js/vendor/select2/README.md" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/assets/js/vendor/select2/README.md" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/assets/js/vendor/select2/bower.json" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/assets/js/vendor/select2/bower.json" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/assets/js/vendor/select2/release.sh" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/assets/js/vendor/select2/release.sh" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/assets/js/vendor/select2/select2-spinner.gif" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/assets/js/vendor/select2/select2-spinner.gif" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/assets/js/vendor/select2/select2.css" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/assets/js/vendor/select2/select2.css" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/assets/js/vendor/select2/select2.jquery.json" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/assets/js/vendor/select2/select2.jquery.json" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/assets/js/vendor/select2/select2.js" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/assets/js/vendor/select2/select2.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/assets/js/vendor/select2/select2.min.js" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/assets/js/vendor/select2/select2.min.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/assets/js/vendor/select2/select2.png" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/assets/js/vendor/select2/select2.png" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/assets/js/vendor/select2/select2_locale_ar.js" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/assets/js/vendor/select2/select2_locale_ar.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/assets/js/vendor/select2/select2_locale_bg.js" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/assets/js/vendor/select2/select2_locale_bg.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/assets/js/vendor/select2/select2_locale_ca.js" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/assets/js/vendor/select2/select2_locale_ca.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/assets/js/vendor/select2/select2_locale_cs.js" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/assets/js/vendor/select2/select2_locale_cs.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/assets/js/vendor/select2/select2_locale_da.js" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/assets/js/vendor/select2/select2_locale_da.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/assets/js/vendor/select2/select2_locale_de.js" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/assets/js/vendor/select2/select2_locale_de.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/assets/js/vendor/select2/select2_locale_el.js" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/assets/js/vendor/select2/select2_locale_el.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/assets/js/vendor/select2/select2_locale_en.js.template" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/assets/js/vendor/select2/select2_locale_en.js.template" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/assets/js/vendor/select2/select2_locale_es.js" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/assets/js/vendor/select2/select2_locale_es.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/assets/js/vendor/select2/select2_locale_et.js" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/assets/js/vendor/select2/select2_locale_et.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/assets/js/vendor/select2/select2_locale_eu.js" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/assets/js/vendor/select2/select2_locale_eu.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/assets/js/vendor/select2/select2_locale_fa.js" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/assets/js/vendor/select2/select2_locale_fa.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/assets/js/vendor/select2/select2_locale_fi.js" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/assets/js/vendor/select2/select2_locale_fi.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/assets/js/vendor/select2/select2_locale_fr.js" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/assets/js/vendor/select2/select2_locale_fr.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/assets/js/vendor/select2/select2_locale_gl.js" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/assets/js/vendor/select2/select2_locale_gl.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/assets/js/vendor/select2/select2_locale_he.js" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/assets/js/vendor/select2/select2_locale_he.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/assets/js/vendor/select2/select2_locale_hr.js" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/assets/js/vendor/select2/select2_locale_hr.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/assets/js/vendor/select2/select2_locale_hu.js" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/assets/js/vendor/select2/select2_locale_hu.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/assets/js/vendor/select2/select2_locale_id.js" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/assets/js/vendor/select2/select2_locale_id.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/assets/js/vendor/select2/select2_locale_is.js" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/assets/js/vendor/select2/select2_locale_is.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/assets/js/vendor/select2/select2_locale_it.js" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/assets/js/vendor/select2/select2_locale_it.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/assets/js/vendor/select2/select2_locale_ja.js" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/assets/js/vendor/select2/select2_locale_ja.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/assets/js/vendor/select2/select2_locale_ko.js" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/assets/js/vendor/select2/select2_locale_ko.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/assets/js/vendor/select2/select2_locale_lt.js" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/assets/js/vendor/select2/select2_locale_lt.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/assets/js/vendor/select2/select2_locale_lv.js" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/assets/js/vendor/select2/select2_locale_lv.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/assets/js/vendor/select2/select2_locale_mk.js" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/assets/js/vendor/select2/select2_locale_mk.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/assets/js/vendor/select2/select2_locale_ms.js" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/assets/js/vendor/select2/select2_locale_ms.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/assets/js/vendor/select2/select2_locale_nl.js" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/assets/js/vendor/select2/select2_locale_nl.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/assets/js/vendor/select2/select2_locale_no.js" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/assets/js/vendor/select2/select2_locale_no.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/assets/js/vendor/select2/select2_locale_pl.js" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/assets/js/vendor/select2/select2_locale_pl.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/assets/js/vendor/select2/select2_locale_pt-BR.js" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/assets/js/vendor/select2/select2_locale_pt-BR.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/assets/js/vendor/select2/select2_locale_pt-PT.js" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/assets/js/vendor/select2/select2_locale_pt-PT.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/assets/js/vendor/select2/select2_locale_ro.js" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/assets/js/vendor/select2/select2_locale_ro.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/assets/js/vendor/select2/select2_locale_ru.js" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/assets/js/vendor/select2/select2_locale_ru.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/assets/js/vendor/select2/select2_locale_sk.js" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/assets/js/vendor/select2/select2_locale_sk.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/assets/js/vendor/select2/select2_locale_sv.js" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/assets/js/vendor/select2/select2_locale_sv.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/assets/js/vendor/select2/select2_locale_th.js" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/assets/js/vendor/select2/select2_locale_th.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/assets/js/vendor/select2/select2_locale_tr.js" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/assets/js/vendor/select2/select2_locale_tr.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/assets/js/vendor/select2/select2_locale_ua.js" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/assets/js/vendor/select2/select2_locale_ua.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/assets/js/vendor/select2/select2_locale_vi.js" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/assets/js/vendor/select2/select2_locale_vi.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/assets/js/vendor/select2/select2_locale_zh-CN.js" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/assets/js/vendor/select2/select2_locale_zh-CN.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/assets/js/vendor/select2/select2_locale_zh-TW.js" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/assets/js/vendor/select2/select2_locale_zh-TW.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/assets/js/vendor/select2/select2x2.png" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/assets/js/vendor/select2/select2x2.png" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/assets/js/vendor/spinner_custom.js" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/assets/js/vendor/spinner_custom.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/extensions/README.txt" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/extensions/README.txt" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/extensions/customizer/extension_customizer.php" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/extensions/customizer/extension_customizer.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/extensions/edd/README.md" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/extensions/edd/README.md" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/extensions/edd/edd_license/EDD_License_Handler.php" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/extensions/edd/edd_license/EDD_License_Handler.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/extensions/edd/edd_license/EDD_SL_Plugin_Updater.php" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/extensions/edd/edd_license/EDD_SL_Plugin_Updater.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/extensions/edd/edd_license/EDD_SL_Theme_Updater.php" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/extensions/edd/edd_license/EDD_SL_Theme_Updater.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/extensions/edd/edd_license/LICENSE" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/extensions/edd/edd_license/LICENSE" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/extensions/edd/edd_license/field_edd_license.css" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/extensions/edd/edd_license/field_edd_license.css" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/extensions/edd/edd_license/field_edd_license.js" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/extensions/edd/edd_license/field_edd_license.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/extensions/edd/edd_license/field_edd_license.php" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/extensions/edd/edd_license/field_edd_license.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/extensions/edd/extension_edd.php" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/extensions/edd/extension_edd.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/framework.php" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/framework.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/inc/browser.php" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/inc/browser.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/inc/class.redux_helpers.php" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/inc/class.redux_helpers.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/inc/fields/ace_editor/field_ace_editor.css" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/inc/fields/ace_editor/field_ace_editor.css" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/inc/fields/ace_editor/field_ace_editor.js" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/inc/fields/ace_editor/field_ace_editor.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/inc/fields/ace_editor/field_ace_editor.php" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/inc/fields/ace_editor/field_ace_editor.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/inc/fields/background/field_background.css" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/inc/fields/background/field_background.css" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/inc/fields/background/field_background.js" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/inc/fields/background/field_background.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/inc/fields/background/field_background.php" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/inc/fields/background/field_background.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/inc/fields/border/field_border.css" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/inc/fields/border/field_border.css" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/inc/fields/border/field_border.js" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/inc/fields/border/field_border.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/inc/fields/border/field_border.php" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/inc/fields/border/field_border.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/inc/fields/button_set/field_button_set.js" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/inc/fields/button_set/field_button_set.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/inc/fields/button_set/field_button_set.php" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/inc/fields/button_set/field_button_set.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/inc/fields/checkbox/field_checkbox.css" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/inc/fields/checkbox/field_checkbox.css" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/inc/fields/checkbox/field_checkbox.php" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/inc/fields/checkbox/field_checkbox.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/inc/fields/color/field_color.css" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/inc/fields/color/field_color.css" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/inc/fields/color/field_color.js" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/inc/fields/color/field_color.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/inc/fields/color/field_color.php" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/inc/fields/color/field_color.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/inc/fields/color_gradient/field_color_gradient.php" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/inc/fields/color_gradient/field_color_gradient.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/inc/fields/color_rgba/field_color_rgba.css" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/inc/fields/color_rgba/field_color_rgba.css" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/inc/fields/color_rgba/field_color_rgba.js" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/inc/fields/color_rgba/field_color_rgba.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/inc/fields/color_rgba/field_color_rgba.php" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/inc/fields/color_rgba/field_color_rgba.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/inc/fields/date/field_date.js" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/inc/fields/date/field_date.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/inc/fields/date/field_date.php" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/inc/fields/date/field_date.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/inc/fields/dimensions/field_dimensions.css" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/inc/fields/dimensions/field_dimensions.css" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/inc/fields/dimensions/field_dimensions.js" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/inc/fields/dimensions/field_dimensions.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/inc/fields/dimensions/field_dimensions.php" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/inc/fields/dimensions/field_dimensions.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/inc/fields/divide/field_divide.php" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/inc/fields/divide/field_divide.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/inc/fields/editor/field_editor.css" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/inc/fields/editor/field_editor.css" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/inc/fields/editor/field_editor.php" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/inc/fields/editor/field_editor.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/inc/fields/gallery/field_gallery.js" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/inc/fields/gallery/field_gallery.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/inc/fields/gallery/field_gallery.php" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/inc/fields/gallery/field_gallery.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/inc/fields/group/field_group.css" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/inc/fields/group/field_group.css" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/inc/fields/group/field_group.js" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/inc/fields/group/field_group.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/inc/fields/group/field_group.php" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/inc/fields/group/field_group.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/inc/fields/image_select/field_image_select.css" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/inc/fields/image_select/field_image_select.css" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/inc/fields/image_select/field_image_select.js" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/inc/fields/image_select/field_image_select.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/inc/fields/image_select/field_image_select.php" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/inc/fields/image_select/field_image_select.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/inc/fields/info/field_info.css" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/inc/fields/info/field_info.css" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/inc/fields/info/field_info.php" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/inc/fields/info/field_info.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/inc/fields/link_color/field_link_color.php" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/inc/fields/link_color/field_link_color.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/inc/fields/media/field_media.css" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/inc/fields/media/field_media.css" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/inc/fields/media/field_media.js" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/inc/fields/media/field_media.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/inc/fields/media/field_media.php" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/inc/fields/media/field_media.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/inc/fields/multi_text/field_multi_text.css" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/inc/fields/multi_text/field_multi_text.css" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/inc/fields/multi_text/field_multi_text.js" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/inc/fields/multi_text/field_multi_text.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/inc/fields/multi_text/field_multi_text.php" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/inc/fields/multi_text/field_multi_text.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/inc/fields/password/field_password.php" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/inc/fields/password/field_password.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/inc/fields/radio/field_radio.php" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/inc/fields/radio/field_radio.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/inc/fields/raw/field_raw.php" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/inc/fields/raw/field_raw.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/inc/fields/raw_align/field_raw_align.php" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/inc/fields/raw_align/field_raw_align.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/inc/fields/section/field_section.css" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/inc/fields/section/field_section.css" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/inc/fields/section/field_section.php" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/inc/fields/section/field_section.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/inc/fields/select/elusive-icons.php" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/inc/fields/select/elusive-icons.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/inc/fields/select/field_select.css" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/inc/fields/select/field_select.css" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/inc/fields/select/field_select.js" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/inc/fields/select/field_select.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/inc/fields/select/field_select.php" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/inc/fields/select/field_select.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/inc/fields/select_image/field_select_image.css" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/inc/fields/select_image/field_select_image.css" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/inc/fields/select_image/field_select_image.js" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/inc/fields/select_image/field_select_image.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/inc/fields/select_image/field_select_image.php" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/inc/fields/select_image/field_select_image.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/inc/fields/slider/field_slider.css" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/inc/fields/slider/field_slider.css" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/inc/fields/slider/field_slider.js" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/inc/fields/slider/field_slider.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/inc/fields/slider/field_slider.php" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/inc/fields/slider/field_slider.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/inc/fields/slider/slider-control.png" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/inc/fields/slider/slider-control.png" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/inc/fields/slides/field_slides.css" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/inc/fields/slides/field_slides.css" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/inc/fields/slides/field_slides.js" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/inc/fields/slides/field_slides.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/inc/fields/slides/field_slides.php" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/inc/fields/slides/field_slides.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/inc/fields/sortable/field_sortable.css" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/inc/fields/sortable/field_sortable.css" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/inc/fields/sortable/field_sortable.js" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/inc/fields/sortable/field_sortable.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/inc/fields/sortable/field_sortable.php" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/inc/fields/sortable/field_sortable.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/inc/fields/sorter/field_sorter-works.js" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/inc/fields/sorter/field_sorter-works.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/inc/fields/sorter/field_sorter-works.php" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/inc/fields/sorter/field_sorter-works.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/inc/fields/sorter/field_sorter.css" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/inc/fields/sorter/field_sorter.css" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/inc/fields/sorter/field_sorter.js" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/inc/fields/sorter/field_sorter.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/inc/fields/sorter/field_sorter.php" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/inc/fields/sorter/field_sorter.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/inc/fields/spacing/field_spacing.css" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/inc/fields/spacing/field_spacing.css" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/inc/fields/spacing/field_spacing.js" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/inc/fields/spacing/field_spacing.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/inc/fields/spacing/field_spacing.php" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/inc/fields/spacing/field_spacing.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/inc/fields/spinner/arrow_left.png" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/inc/fields/spinner/arrow_left.png" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/inc/fields/spinner/arrow_right.png" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/inc/fields/spinner/arrow_right.png" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/inc/fields/spinner/field_spinner.css" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/inc/fields/spinner/field_spinner.css" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/inc/fields/spinner/field_spinner.js" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/inc/fields/spinner/field_spinner.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/inc/fields/spinner/field_spinner.php" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/inc/fields/spinner/field_spinner.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/inc/fields/switch/field_switch.css" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/inc/fields/switch/field_switch.css" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/inc/fields/switch/field_switch.js" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/inc/fields/switch/field_switch.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/inc/fields/switch/field_switch.php" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/inc/fields/switch/field_switch.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/inc/fields/switch/slider-control.png" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/inc/fields/switch/slider-control.png" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/inc/fields/switch/switch.gif" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/inc/fields/switch/switch.gif" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/inc/fields/text/field_text.css" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/inc/fields/text/field_text.css" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/inc/fields/text/field_text.php" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/inc/fields/text/field_text.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/inc/fields/textarea/field_textarea.php" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/inc/fields/textarea/field_textarea.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/inc/fields/typography/field_typography.css" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/inc/fields/typography/field_typography.css" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/inc/fields/typography/field_typography.js" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/inc/fields/typography/field_typography.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/inc/fields/typography/field_typography.php" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/inc/fields/typography/field_typography.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/inc/fields/typography/googlefonts.html" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/inc/fields/typography/googlefonts.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/inc/fields/typography/googlefonts.json" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/inc/fields/typography/googlefonts.json" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/inc/sysinfo.php" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/inc/sysinfo.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/inc/tracking.php" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/inc/tracking.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/inc/validation/color/validation_color.php" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/inc/validation/color/validation_color.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/inc/validation/color_rgba/validation_color_rgba.php" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/inc/validation/color_rgba/validation_color_rgba.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/inc/validation/colorrgba/validation_colorrgba.php" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/inc/validation/colorrgba/validation_colorrgba.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/inc/validation/comma_numeric/validation_comma_numeric.php" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/inc/validation/comma_numeric/validation_comma_numeric.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/inc/validation/css/validation_css.php" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/inc/validation/css/validation_css.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/inc/validation/date/validation_date.php" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/inc/validation/date/validation_date.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/inc/validation/email/validation_email.php" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/inc/validation/email/validation_email.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/inc/validation/html/validation_html.php" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/inc/validation/html/validation_html.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/inc/validation/html_custom/validation_html_custom.php" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/inc/validation/html_custom/validation_html_custom.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/inc/validation/js/validation_js.php" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/inc/validation/js/validation_js.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/inc/validation/no_html/validation_no_html.php" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/inc/validation/no_html/validation_no_html.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/inc/validation/no_special_chars/validation_no_special_chars.php" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/inc/validation/no_special_chars/validation_no_special_chars.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/inc/validation/not_empty/validation_not_empty.php" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/inc/validation/not_empty/validation_not_empty.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/inc/validation/numeric/validation_numeric.php" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/inc/validation/numeric/validation_numeric.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/inc/validation/preg_replace/validation_preg_replace.php" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/inc/validation/preg_replace/validation_preg_replace.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/inc/validation/str_replace/validation_str_replace.php" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/inc/validation/str_replace/validation_str_replace.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/inc/validation/url/validation_url.php" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/inc/validation/url/validation_url.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/languages/README.txt" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/languages/README.txt" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/languages/ar.mo" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/languages/ar.mo" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/languages/bn_BD.mo" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/languages/bn_BD.mo" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/languages/de_DE.mo" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/languages/de_DE.mo" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/languages/es_ES.mo" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/languages/es_ES.mo" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/languages/fa_IR.mo" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/languages/fa_IR.mo" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/languages/fi.mo" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/languages/fi.mo" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/languages/fr_FR.mo" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/languages/fr_FR.mo" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/languages/he_IL.mo" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/languages/he_IL.mo" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/languages/hr.mo" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/languages/hr.mo" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/languages/hu_HU.mo" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/languages/hu_HU.mo" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/languages/id_ID.mo" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/languages/id_ID.mo" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/languages/it_IT.mo" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/languages/it_IT.mo" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/languages/ja.mo" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/languages/ja.mo" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/languages/nb_NO.mo" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/languages/nb_NO.mo" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/languages/ne_NP.mo" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/languages/ne_NP.mo" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/languages/nl_NL.mo" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/languages/nl_NL.mo" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/languages/pl_PL.mo" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/languages/pl_PL.mo" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/languages/pt_BR.mo" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/languages/pt_BR.mo" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/languages/pt_PT.mo" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/languages/pt_PT.mo" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/languages/redux-framework.pot" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/languages/redux-framework.pot" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/languages/ro_RO.mo" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/languages/ro_RO.mo" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/languages/ru_RU.mo" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/languages/ru_RU.mo" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/languages/sv_SE.mo" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/languages/sv_SE.mo" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/ReduxCore/languages/tr_TR.mo" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/ReduxCore/languages/tr_TR.mo" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/class.redux-plugin.php" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/class.redux-plugin.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/index.php" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/index.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/license.txt" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/license.txt" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/redux-framework.php" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/redux-framework.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/redux-metaboxes/config.php" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/redux-metaboxes/config.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/redux-metaboxes/extensions/metaboxes/extension_metaboxes.css" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/redux-metaboxes/extensions/metaboxes/extension_metaboxes.css" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/redux-metaboxes/extensions/metaboxes/extension_metaboxes.less" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/redux-metaboxes/extensions/metaboxes/extension_metaboxes.less" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/redux-metaboxes/extensions/metaboxes/extension_metaboxes.php" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/redux-metaboxes/extensions/metaboxes/extension_metaboxes.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/redux-metaboxes/loader.php" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/redux-metaboxes/loader.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/ReduxFramework-skinny/redux-metaboxes/readme.txt" afterPath="$PROJECT_DIR$/external/php/ReduxFramework-skinny/redux-metaboxes/readme.txt" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/bfi_thumb/BFI_Thumb.php" afterPath="$PROJECT_DIR$/external/php/bfi_thumb/BFI_Thumb.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/bfi_thumb/LICENSE.txt" afterPath="$PROJECT_DIR$/external/php/bfi_thumb/LICENSE.txt" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/bfi_thumb/README.md" afterPath="$PROJECT_DIR$/external/php/bfi_thumb/README.md" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/font-awesome/css/font-awesome-ie7.min.css" afterPath="$PROJECT_DIR$/external/css/font-awesome/css/font-awesome-ie7.min.css" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/font-awesome/css/font-awesome.css" afterPath="$PROJECT_DIR$/external/css/font-awesome/css/font-awesome.css" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/font-awesome/css/font-awesome.min.css" afterPath="$PROJECT_DIR$/external/css/font-awesome/css/font-awesome.min.css" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/font-awesome/font/FontAwesome.otf" afterPath="$PROJECT_DIR$/external/css/font-awesome/font/FontAwesome.otf" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/font-awesome/font/fontawesome-webfont.eot" afterPath="$PROJECT_DIR$/external/css/font-awesome/font/fontawesome-webfont.eot" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/font-awesome/font/fontawesome-webfont.svg" afterPath="$PROJECT_DIR$/external/css/font-awesome/font/fontawesome-webfont.svg" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/font-awesome/font/fontawesome-webfont.ttf" afterPath="$PROJECT_DIR$/external/css/font-awesome/font/fontawesome-webfont.ttf" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/font-awesome/font/fontawesome-webfont.woff" afterPath="$PROJECT_DIR$/external/css/font-awesome/font/fontawesome-webfont.woff" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/jQuery-Validation-Engine/README.md" afterPath="$PROJECT_DIR$/external/js/jQuery-Validation-Engine/README.md" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/jQuery-Validation-Engine/css/customMessages.css" afterPath="$PROJECT_DIR$/external/js/jQuery-Validation-Engine/css/customMessages.css" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/jQuery-Validation-Engine/css/screenshot.png" afterPath="$PROJECT_DIR$/external/js/jQuery-Validation-Engine/css/screenshot.png" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/jQuery-Validation-Engine/css/template.css" afterPath="$PROJECT_DIR$/external/js/jQuery-Validation-Engine/css/template.css" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/jQuery-Validation-Engine/css/validationEngine.jquery.css" afterPath="$PROJECT_DIR$/external/js/jQuery-Validation-Engine/css/validationEngine.jquery.css" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/jQuery-Validation-Engine/index.html" afterPath="$PROJECT_DIR$/external/js/jQuery-Validation-Engine/index.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/jQuery-Validation-Engine/js/contrib/other-validations.js" afterPath="$PROJECT_DIR$/external/js/jQuery-Validation-Engine/js/contrib/other-validations.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/jQuery-Validation-Engine/js/jquery.validationEngine.js" afterPath="$PROJECT_DIR$/external/js/jQuery-Validation-Engine/js/jquery.validationEngine.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/jQuery-Validation-Engine/js/languages/jquery.validationEngine-cz.js" afterPath="$PROJECT_DIR$/external/js/jQuery-Validation-Engine/js/languages/jquery.validationEngine-cz.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/jQuery-Validation-Engine/js/languages/jquery.validationEngine-da.js" afterPath="$PROJECT_DIR$/external/js/jQuery-Validation-Engine/js/languages/jquery.validationEngine-da.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/jQuery-Validation-Engine/js/languages/jquery.validationEngine-de.js" afterPath="$PROJECT_DIR$/external/js/jQuery-Validation-Engine/js/languages/jquery.validationEngine-de.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/jQuery-Validation-Engine/js/languages/jquery.validationEngine-en.js" afterPath="$PROJECT_DIR$/external/js/jQuery-Validation-Engine/js/languages/jquery.validationEngine-en.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/jQuery-Validation-Engine/js/languages/jquery.validationEngine-es.js" afterPath="$PROJECT_DIR$/external/js/jQuery-Validation-Engine/js/languages/jquery.validationEngine-es.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/jQuery-Validation-Engine/js/languages/jquery.validationEngine-et.js" afterPath="$PROJECT_DIR$/external/js/jQuery-Validation-Engine/js/languages/jquery.validationEngine-et.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/jQuery-Validation-Engine/js/languages/jquery.validationEngine-fa.js" afterPath="$PROJECT_DIR$/external/js/jQuery-Validation-Engine/js/languages/jquery.validationEngine-fa.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/jQuery-Validation-Engine/js/languages/jquery.validationEngine-fi.js" afterPath="$PROJECT_DIR$/external/js/jQuery-Validation-Engine/js/languages/jquery.validationEngine-fi.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/jQuery-Validation-Engine/js/languages/jquery.validationEngine-fr.js" afterPath="$PROJECT_DIR$/external/js/jQuery-Validation-Engine/js/languages/jquery.validationEngine-fr.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/jQuery-Validation-Engine/js/languages/jquery.validationEngine-hr.js" afterPath="$PROJECT_DIR$/external/js/jQuery-Validation-Engine/js/languages/jquery.validationEngine-hr.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/jQuery-Validation-Engine/js/languages/jquery.validationEngine-hu.js" afterPath="$PROJECT_DIR$/external/js/jQuery-Validation-Engine/js/languages/jquery.validationEngine-hu.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/jQuery-Validation-Engine/js/languages/jquery.validationEngine-it.js" afterPath="$PROJECT_DIR$/external/js/jQuery-Validation-Engine/js/languages/jquery.validationEngine-it.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/jQuery-Validation-Engine/js/languages/jquery.validationEngine-ja.js" afterPath="$PROJECT_DIR$/external/js/jQuery-Validation-Engine/js/languages/jquery.validationEngine-ja.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/jQuery-Validation-Engine/js/languages/jquery.validationEngine-nl.js" afterPath="$PROJECT_DIR$/external/js/jQuery-Validation-Engine/js/languages/jquery.validationEngine-nl.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/jQuery-Validation-Engine/js/languages/jquery.validationEngine-no.js" afterPath="$PROJECT_DIR$/external/js/jQuery-Validation-Engine/js/languages/jquery.validationEngine-no.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/jQuery-Validation-Engine/js/languages/jquery.validationEngine-pl.js" afterPath="$PROJECT_DIR$/external/js/jQuery-Validation-Engine/js/languages/jquery.validationEngine-pl.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/jQuery-Validation-Engine/js/languages/jquery.validationEngine-pt.js" afterPath="$PROJECT_DIR$/external/js/jQuery-Validation-Engine/js/languages/jquery.validationEngine-pt.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/jQuery-Validation-Engine/js/languages/jquery.validationEngine-pt_BR.js" afterPath="$PROJECT_DIR$/external/js/jQuery-Validation-Engine/js/languages/jquery.validationEngine-pt_BR.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/jQuery-Validation-Engine/js/languages/jquery.validationEngine-ro.js" afterPath="$PROJECT_DIR$/external/js/jQuery-Validation-Engine/js/languages/jquery.validationEngine-ro.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/jQuery-Validation-Engine/js/languages/jquery.validationEngine-ru.js" afterPath="$PROJECT_DIR$/external/js/jQuery-Validation-Engine/js/languages/jquery.validationEngine-ru.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/jQuery-Validation-Engine/js/languages/jquery.validationEngine-se.js" afterPath="$PROJECT_DIR$/external/js/jQuery-Validation-Engine/js/languages/jquery.validationEngine-se.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/jQuery-Validation-Engine/js/languages/jquery.validationEngine-tr.js" afterPath="$PROJECT_DIR$/external/js/jQuery-Validation-Engine/js/languages/jquery.validationEngine-tr.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/jQuery-Validation-Engine/js/languages/jquery.validationEngine-vi.js" afterPath="$PROJECT_DIR$/external/js/jQuery-Validation-Engine/js/languages/jquery.validationEngine-vi.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/jQuery-Validation-Engine/js/languages/jquery.validationEngine-zh_CN.js" afterPath="$PROJECT_DIR$/external/js/jQuery-Validation-Engine/js/languages/jquery.validationEngine-zh_CN.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/jQuery-Validation-Engine/js/languages/jquery.validationEngine-zh_TW.js" afterPath="$PROJECT_DIR$/external/js/jQuery-Validation-Engine/js/languages/jquery.validationEngine-zh_TW.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/jQuery-Validation-Engine/validationengine.jquery.json" afterPath="$PROJECT_DIR$/external/js/jQuery-Validation-Engine/validationengine.jquery.json" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/jo-image-resizer/LICENSE" afterPath="$PROJECT_DIR$/external/php/jo-image-resizer/LICENSE" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/jo-image-resizer/README.md" afterPath="$PROJECT_DIR$/external/php/jo-image-resizer/README.md" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/jo-image-resizer/icon.png" afterPath="$PROJECT_DIR$/external/php/jo-image-resizer/icon.png" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/jo-image-resizer/jo_image_resizer.php" afterPath="$PROJECT_DIR$/external/php/jo-image-resizer/jo_image_resizer.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/jquery-ui-1.10.2.custom/css/pz_architect/images/animated-overlay.gif" afterPath="$PROJECT_DIR$/external/php/Custom-Meta-Boxes/css/vendor/jquery-ui/images/animated-overlay.gif" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/jquery-ui-1.10.2.custom/css/pz_architect/images/ui-bg_flat_0_aaaaaa_40x100.png" afterPath="$PROJECT_DIR$/external/js/jquery-ui-1.10.2.custom/css/pz_architect/images/ui-bg_flat_0_aaaaaa_40x100.png" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/jquery-ui-1.10.2.custom/css/pz_architect/images/ui-bg_flat_75_ffffff_40x100.png" afterPath="$PROJECT_DIR$/external/js/jquery-ui-1.10.2.custom/css/pz_architect/images/ui-bg_flat_75_ffffff_40x100.png" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/jquery-ui-1.10.2.custom/css/pz_architect/images/ui-bg_glass_55_fbf9ee_1x400.png" afterPath="$PROJECT_DIR$/external/js/jquery-ui-1.10.2.custom/css/pz_architect/images/ui-bg_glass_55_fbf9ee_1x400.png" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/jquery-ui-1.10.2.custom/css/pz_architect/images/ui-bg_glass_65_ffffff_1x400.png" afterPath="$PROJECT_DIR$/external/js/jquery-ui-1.10.2.custom/css/pz_architect/images/ui-bg_glass_65_ffffff_1x400.png" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/jquery-ui-1.10.2.custom/css/pz_architect/images/ui-bg_glass_75_dadada_1x400.png" afterPath="$PROJECT_DIR$/external/js/jquery-ui-1.10.2.custom/css/pz_architect/images/ui-bg_glass_75_dadada_1x400.png" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/jquery-ui-1.10.2.custom/css/pz_architect/images/ui-bg_glass_75_e6e6e6_1x400.png" afterPath="$PROJECT_DIR$/external/js/jquery-ui-1.10.2.custom/css/pz_architect/images/ui-bg_glass_75_e6e6e6_1x400.png" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/jquery-ui-1.10.2.custom/css/pz_architect/images/ui-bg_glass_95_fef1ec_1x400.png" afterPath="$PROJECT_DIR$/external/js/jquery-ui-1.10.2.custom/css/pz_architect/images/ui-bg_glass_95_fef1ec_1x400.png" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/jquery-ui-1.10.2.custom/css/pz_architect/images/ui-bg_highlight-soft_75_cccccc_1x100.png" afterPath="$PROJECT_DIR$/external/js/jquery-ui-1.10.2.custom/css/pz_architect/images/ui-bg_highlight-soft_75_cccccc_1x100.png" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/jquery-ui-1.10.2.custom/css/pz_architect/images/ui-icons_222222_256x240.png" afterPath="$PROJECT_DIR$/external/js/jquery-ui-1.10.2.custom/css/pz_architect/images/ui-icons_222222_256x240.png" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/jquery-ui-1.10.2.custom/css/pz_architect/images/ui-icons_2e83ff_256x240.png" afterPath="$PROJECT_DIR$/external/js/jquery-ui-1.10.2.custom/css/pz_architect/images/ui-icons_2e83ff_256x240.png" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/jquery-ui-1.10.2.custom/css/pz_architect/images/ui-icons_454545_256x240.png" afterPath="$PROJECT_DIR$/external/js/jquery-ui-1.10.2.custom/css/pz_architect/images/ui-icons_454545_256x240.png" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/jquery-ui-1.10.2.custom/css/pz_architect/images/ui-icons_888888_256x240.png" afterPath="$PROJECT_DIR$/external/js/jquery-ui-1.10.2.custom/css/pz_architect/images/ui-icons_888888_256x240.png" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/jquery-ui-1.10.2.custom/css/pz_architect/images/ui-icons_cd0a0a_256x240.png" afterPath="$PROJECT_DIR$/external/js/jquery-ui-1.10.2.custom/css/pz_architect/images/ui-icons_cd0a0a_256x240.png" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/jquery-ui-1.10.2.custom/css/pz_architect/jquery-ui-1.10.2.custom.css" afterPath="$PROJECT_DIR$/external/js/jquery-ui-1.10.2.custom/css/pz_architect/jquery-ui-1.10.2.custom.css" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/jquery-ui-1.10.2.custom/css/pz_architect/jquery-ui-1.10.2.custom.min.css" afterPath="$PROJECT_DIR$/external/js/jquery-ui-1.10.2.custom/css/pz_architect/jquery-ui-1.10.2.custom.min.css" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/external/wp-settings-framework.php" afterPath="$PROJECT_DIR$/external/php/wp-settings-framework.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/frontend/arc-display.php" afterPath="$PROJECT_DIR$/frontend/php/arc-display.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/frontend/arcCellDefinitions.php" afterPath="$PROJECT_DIR$/frontend/php/arcCellDefinitions.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/frontend/class_pzarc_Display.php" afterPath="$PROJECT_DIR$/frontend/php/class_pzarc_Display.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/frontend/class_pzucdDisplay.php" afterPath="$PROJECT_DIR$/frontend/php/class_pzucdDisplay.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/frontend/ucdGallery.php" afterPath="$PROJECT_DIR$/frontend/php/ucdGallery.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/frontend/ucd_display.php" afterPath="$PROJECT_DIR$/frontend/php/ucd_display.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/includes/arc-functions.php" afterPath="$PROJECT_DIR$/includes/php/arc-functions.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/includes/class_pzucdForm.php" afterPath="$PROJECT_DIR$/includes/php/class_pzucdForm.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/includes/class_pzucdQuery.php" afterPath="$PROJECT_DIR$/includes/php/class_pzucdQuery.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/includes/class_pzucdSources.php" afterPath="$PROJECT_DIR$/includes/php/class_pzucdSources.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/includes/pzarc-custom-field-types.php" afterPath="$PROJECT_DIR$/includes/php/pzarc-custom-field-types.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/css/arc-front.css" afterPath="$PROJECT_DIR$/frontend/css/arc-front.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/includes/arc-functions.php" afterPath="$PROJECT_DIR$/includes/arc-functions.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/class_pzarc_Display.php" afterPath="$PROJECT_DIR$/frontend/class_pzarc_Display.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/js/arc-front.js" afterPath="$PROJECT_DIR$/frontend/js/arc-front.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/admin/js/arc-metaboxes-blueprints.js" afterPath="$PROJECT_DIR$/admin/js/arc-metaboxes-blueprints.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/admin/js/arc-tabify.js" afterPath="$PROJECT_DIR$/admin/js/arc-tabify.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/architect.php" afterPath="$PROJECT_DIR$/architect.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="pizazzwp-architect.iws" />
@@ -34,150 +498,56 @@
       <file leaf-file-name="arc-tabify.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/admin/js/arc-tabify.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="103" column="0" selection-start="4197" selection-end="4231" vertical-scroll-proportion="0.0" vertical-offset="723" max-vertical-offset="1962">
+            <state line="74" column="58" selection-start="3448" selection-end="3448" vertical-scroll-proportion="-18.907408" vertical-offset="311" max-vertical-offset="1980">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="arc-cell-layouts.php" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/admin/arc-cell-layouts.php">
+      <file leaf-file-name="arcNavDefinitions.php" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/frontend/php/arcNavDefinitions.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="845" column="2" selection-start="29933" selection-end="29933" vertical-scroll-proportion="-12.75" vertical-offset="14904" max-vertical-offset="20232">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="options.php" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/admin/settings/options.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="264" column="83" selection-start="8373" selection-end="8373" vertical-scroll-proportion="0.0" vertical-offset="4752" max-vertical-offset="6354">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="arc-functions.php" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/includes/arc-functions.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="52" column="1" selection-start="1097" selection-end="1097" vertical-scroll-proportion="-11.333333" vertical-offset="664" max-vertical-offset="2718">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="arcCellDefinitions.php" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/frontend/arcCellDefinitions.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="14" column="30" selection-start="565" selection-end="565" vertical-scroll-proportion="-10.5" vertical-offset="0" max-vertical-offset="2430">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="idangerous.swiper.css" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/external/js/swiper/idangerous.swiper.css">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="118" column="0" selection-start="1993" selection-end="2874" vertical-scroll-proportion="0.0" vertical-offset="995" max-vertical-offset="2232">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="arc-metaboxes-cells.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/admin/js/arc-metaboxes-cells.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="2" column="0" selection-start="0" selection-end="51" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="9666">
+            <state line="12" column="0" selection-start="147" selection-end="147" vertical-scroll-proportion="-9.0" vertical-offset="0" max-vertical-offset="1134">
               <folding>
-                <marker date="1390302653000" expanded="false" signature="8800:8854" placeholder="..." />
-                <marker date="1390302653000" expanded="false" signature="9044:9059" placeholder="..." />
-                <marker date="1390302653000" expanded="false" signature="9243:9258" placeholder="..." />
-                <marker date="1390302653000" expanded="false" signature="9438:9471" placeholder="..." />
-                <marker date="1390302653000" expanded="false" signature="9545:9560" placeholder="..." />
-                <marker date="1390302653000" expanded="false" signature="10010:10025" placeholder="..." />
-                <marker date="1390302653000" expanded="false" signature="10266:10303" placeholder="..." />
-                <marker date="1390302653000" expanded="false" signature="10958:10973" placeholder="..." />
-                <marker date="1390302653000" expanded="false" signature="11525:11540" placeholder="..." />
-                <marker date="1390302653000" expanded="false" signature="11737:11752" placeholder="..." />
-                <marker date="1390302653000" expanded="false" signature="11953:11968" placeholder="..." />
-                <marker date="1390302653000" expanded="false" signature="12169:12184" placeholder="..." />
+                <element signature="e#6#96#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="class_pzarc_Display.php" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/frontend/class_pzarc_Display.php">
+      <file leaf-file-name="arc-blueprints.php" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/admin/php/arc-blueprints.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="62" column="135" selection-start="1525" selection-end="1531" vertical-scroll-proportion="-7.9" vertical-offset="631" max-vertical-offset="16362">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="tabby-css.css" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/external/js/tabby/css/tabby-css.css">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="55" column="17" selection-start="1084" selection-end="1084" vertical-scroll-proportion="0.0" vertical-offset="990" max-vertical-offset="1710">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="architect.php" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/architect.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="6" column="30" selection-start="317" selection-end="317" vertical-scroll-proportion="-0.0" vertical-offset="108" max-vertical-offset="6102">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="arc-front.js" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/frontend/js/arc-front.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="5" column="14" selection-start="189" selection-end="189" vertical-scroll-proportion="0.09911894" vertical-offset="0" max-vertical-offset="908">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="jo_image_resizer.php" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/external/jo-image-resizer/jo_image_resizer.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="40" column="64" selection-start="1671" selection-end="1671" vertical-scroll-proportion="0.0" vertical-offset="720" max-vertical-offset="9630">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="wp-settings-framework.php" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/external/wp-settings-framework.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="125" column="85" selection-start="4223" selection-end="4223" vertical-scroll-proportion="0.0" vertical-offset="2250" max-vertical-offset="6516">
+            <state line="440" column="9" selection-start="16489" selection-end="16489" vertical-scroll-proportion="-330.0" vertical-offset="0" max-vertical-offset="12564">
               <folding>
-                <marker date="1391342802000" expanded="true" signature="9250:9268" placeholder="..." />
-                <marker date="1391342802000" expanded="true" signature="11897:11938" placeholder="..." />
-                <marker date="1391342802000" expanded="true" signature="12318:12351" placeholder="..." />
+                <marker date="1391242812000" expanded="true" signature="5313:5495" placeholder="Select one t..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="arc-admin.css" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/admin/css/arc-admin.css">
+      <file leaf-file-name="arc-metaboxes-blueprints.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/admin/js/arc-metaboxes-blueprints.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="959" column="16" selection-start="23098" selection-end="23098" vertical-scroll-proportion="0.0" vertical-offset="16151" max-vertical-offset="17388">
+            <state line="157" column="46" selection-start="6503" selection-end="6503" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="3096">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="arc-front.css" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="arc-admin.php" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/admin/php/arc-admin.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="75" column="79" selection-start="2454" selection-end="2454" vertical-scroll-proportion="-23.75" vertical-offset="780" max-vertical-offset="4266">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="arc-front.css" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/frontend/css/arc-front.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="242" column="14" selection-start="4582" selection-end="4582" vertical-scroll-proportion="0.0" vertical-offset="3587" max-vertical-offset="4950">
+            <state line="18" column="52" selection-start="503" selection-end="503" vertical-scroll-proportion="0.38207546" vertical-offset="0" max-vertical-offset="5220">
               <folding />
             </state>
           </provider>
@@ -209,13 +579,9 @@
         <option value="$PROJECT_DIR$/admin/arc-slidesphp" />
         <option value="$PROJECT_DIR$/admin/arc-slides.php" />
         <option value="$PROJECT_DIR$/includes/pzarc-custom-field-types.php" />
-        <option value="$PROJECT_DIR$/admin/js/arc-metaboxes-cells.js" />
-        <option value="$PROJECT_DIR$/admin/js/arc-metaboxes-blueprints.js" />
         <option value="$PROJECT_DIR$/admin/arc-data-selection.php" />
         <option value="$PROJECT_DIR$/admin/js/arc-metaboxes-contents.js" />
-        <option value="$PROJECT_DIR$/architect.php" />
         <option value="$PROJECT_DIR$/external/js/tabby/css/tabby-css.css" />
-        <option value="$PROJECT_DIR$/admin/js/arc-tabify.js" />
         <option value="$PROJECT_DIR$/admin/arc-blueprints.php" />
         <option value="$PROJECT_DIR$/includes/js/architect.js" />
         <option value="$PROJECT_DIR$/admin/arc-admin.php" />
@@ -229,8 +595,16 @@
         <option value="$PROJECT_DIR$/includes/arc-functions.php" />
         <option value="$PROJECT_DIR$/external/js/swiper/idangerous.swiper.css" />
         <option value="$PROJECT_DIR$/frontend/arc-display.php" />
-        <option value="$PROJECT_DIR$/frontend/css/arc-front.css" />
         <option value="$PROJECT_DIR$/frontend/js/arc-front.js" />
+        <option value="$PROJECT_DIR$/admin/php/arc-cell-layouts.php" />
+        <option value="$PROJECT_DIR$/architect.php" />
+        <option value="$PROJECT_DIR$/frontend/php/arc-display.php" />
+        <option value="$PROJECT_DIR$/admin/php/arc-admin.php" />
+        <option value="$PROJECT_DIR$/admin/js/arc-metaboxes-blueprints.js" />
+        <option value="$PROJECT_DIR$/admin/js/arc-metaboxes-cells.js" />
+        <option value="$PROJECT_DIR$/admin/js/arc-tabify.js" />
+        <option value="$PROJECT_DIR$/frontend/php/arcNavDefinitions.php" />
+        <option value="$PROJECT_DIR$/frontend/css/arc-front.css" />
       </list>
     </option>
   </component>
@@ -242,9 +616,10 @@
     </include_path>
   </component>
   <component name="ProjectFrameBounds">
+    <option name="x" value="-20" />
     <option name="y" value="22" />
     <option name="width" value="2560" />
-    <option name="height" value="1028" />
+    <option name="height" value="968" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -311,22 +686,8 @@
               <option name="myItemId" value="includes" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
-          </PATH>
-          <PATH>
             <PATH_ELEMENT>
-              <option name="myItemId" value="pizazzwp-architect" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pizazzwp-architect" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="includes" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="js" />
+              <option name="myItemId" value="php" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -341,24 +702,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="includes" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="headway" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pizazzwp-architect" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pizazzwp-architect" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="frontend" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -376,7 +719,21 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="js" />
+              <option name="myItemId" value="php" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pizazzwp-architect" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pizazzwp-architect" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="frontend" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -422,11 +779,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="external" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="js" />
+              <option name="myItemId" value="documentation" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -440,47 +793,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="external" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="js" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="swiper" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pizazzwp-architect" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pizazzwp-architect" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="external" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="jo-image-resizer" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pizazzwp-architect" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pizazzwp-architect" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="admin" />
+              <option name="myItemId" value="assets" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -498,7 +811,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="settings" />
+              <option name="myItemId" value="php" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -531,10 +844,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="admin" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="css" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -558,10 +867,11 @@
       <recent name="$PROJECT_DIR$/admin" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/external" />
-      <recent name="$PROJECT_DIR$/includes/js" />
-      <recent name="$PROJECT_DIR$/includes" />
-      <recent name="$PROJECT_DIR$/external/js/tabby/js" />
+      <recent name="$PROJECT_DIR$/admin/php" />
+      <recent name="$PROJECT_DIR$/includes/php" />
+      <recent name="$PROJECT_DIR$/frontend/php" />
+      <recent name="$PROJECT_DIR$/external/php" />
+      <recent name="$PROJECT_DIR$/external/css" />
     </key>
   </component>
   <component name="RunManager">
@@ -607,15 +917,15 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="22" width="2560" height="1028" extended-state="0" />
+    <frame x="-20" y="22" width="2560" height="968" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32962668" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.15011914" sideWeight="0.41880342" order="1" side_tool="true" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.15011914" sideWeight="0.5801282" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.15011914" sideWeight="0.41894978" order="1" side_tool="true" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.15011914" sideWeight="0.57990867" order="0" side_tool="false" content_ui="combo" />
       <window_info id="eSnippet Pro" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -648,12 +958,7 @@
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/admin/arc-blueprints.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="513" column="45" selection-start="19184" selection-end="19184" vertical-scroll-proportion="0.0" vertical-offset="9234" max-vertical-offset="11718" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/frontend/arc-display.php">
+    <entry file="file://$PROJECT_DIR$/frontend/php/arc-display.php">
       <provider selected="true" editor-type-id="text-editor">
         <state line="184" column="89" selection-start="10125" selection-end="10125" vertical-scroll-proportion="0.0" vertical-offset="2870" max-vertical-offset="8118">
           <folding />
@@ -667,10 +972,12 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/includes/headway/arc-block-options.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="36" column="155" selection-start="1655" selection-end="1655" vertical-scroll-proportion="0.0" vertical-offset="648" max-vertical-offset="5850" />
+        <state line="36" column="155" selection-start="1655" selection-end="1655" vertical-scroll-proportion="0.0" vertical-offset="648" max-vertical-offset="5850">
+          <folding />
+        </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/frontend/class_pzarc_Display.php">
+    <entry file="file://$PROJECT_DIR$/frontend/php/class_pzarc_Display.php">
       <provider selected="true" editor-type-id="text-editor">
         <state line="227" column="0" selection-start="6699" selection-end="6797" vertical-scroll-proportion="0.0" vertical-offset="3770" max-vertical-offset="15354">
           <folding />
@@ -684,7 +991,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/admin/arc-admin.php">
+    <entry file="file://$PROJECT_DIR$/admin/php/arc-admin.php">
       <provider selected="true" editor-type-id="text-editor">
         <state line="57" column="0" selection-start="1593" selection-end="1593" vertical-scroll-proportion="0.0" vertical-offset="873" max-vertical-offset="3654">
           <folding />
@@ -704,21 +1011,27 @@
     <entry file="file://$PROJECT_DIR$/architect.php">
       <provider selected="true" editor-type-id="text-editor">
         <state line="119" column="54" selection-start="4103" selection-end="4103" vertical-scroll-proportion="0.0" vertical-offset="324" max-vertical-offset="5904">
-          <folding />
+          <folding>
+            <element signature="e#7#502#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/architect.php">
       <provider selected="true" editor-type-id="text-editor">
         <state line="119" column="54" selection-start="4103" selection-end="4103" vertical-scroll-proportion="0.0" vertical-offset="324" max-vertical-offset="5904">
-          <folding />
+          <folding>
+            <element signature="e#7#502#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/architect.php">
       <provider selected="true" editor-type-id="text-editor">
         <state line="119" column="54" selection-start="4103" selection-end="4103" vertical-scroll-proportion="0.0" vertical-offset="162" max-vertical-offset="5904">
-          <folding />
+          <folding>
+            <element signature="e#7#502#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -732,12 +1045,12 @@
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="616" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/admin/ucd-controls.php">
+    <entry file="file://$PROJECT_DIR$/admin/php/ucd-controls.php">
       <provider selected="true" editor-type-id="text-editor">
         <state line="36" column="45" selection-start="1126" selection-end="1126" vertical-scroll-proportion="0.35422343" vertical-offset="410" max-vertical-offset="1152" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/includes/class_pzucdForm.php">
+    <entry file="file://$PROJECT_DIR$/includes/php/class_pzucdForm.php">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="9810" />
       </provider>
@@ -755,12 +1068,12 @@
         <state line="22" column="53" selection-start="568" selection-end="596" vertical-scroll-proportion="0.3283582" vertical-offset="0" max-vertical-offset="1458" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/external/Custom-Meta-Boxes/classes.fields.php">
+    <entry file="file://$PROJECT_DIR$/external/php/Custom-Meta-Boxes/classes.fields.php">
       <provider selected="true" editor-type-id="text-editor">
         <state line="1058" column="0" selection-start="27230" selection-end="27230" vertical-scroll-proportion="-31.208334" vertical-offset="18295" max-vertical-offset="26028" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/frontend/ucd_display.php">
+    <entry file="file://$PROJECT_DIR$/frontend/php/ucd_display.php">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1237" />
       </provider>
@@ -780,7 +1093,7 @@
         <state line="15" column="28" selection-start="648" selection-end="648" vertical-scroll-proportion="0.0" vertical-offset="129" max-vertical-offset="1368" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/includes/pzarc-custom-field-types.php">
+    <entry file="file://$PROJECT_DIR$/includes/php/pzarc-custom-field-types.php">
       <provider selected="true" editor-type-id="text-editor">
         <state line="323" column="408" selection-start="8501" selection-end="8501" vertical-scroll-proportion="-21.833334" vertical-offset="5182" max-vertical-offset="8064" />
       </provider>
@@ -790,12 +1103,7 @@
         <state line="155" column="12" selection-start="5677" selection-end="5677" vertical-scroll-proportion="0.0" vertical-offset="2790" max-vertical-offset="3312" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/admin/js/arc-metaboxes-blueprints.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="156" column="46" selection-start="6418" selection-end="6418" vertical-scroll-proportion="0.9564692" vertical-offset="2017" max-vertical-offset="2916" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin/arc-galleries.php">
+    <entry file="file://$PROJECT_DIR$/admin/php/arc-galleries.php">
       <provider selected="true" editor-type-id="text-editor">
         <state line="106" column="55" selection-start="3063" selection-end="3063" vertical-scroll-proportion="-6.75" vertical-offset="1746" max-vertical-offset="7776" />
       </provider>
@@ -805,43 +1113,26 @@
         <state line="20" column="41" selection-start="761" selection-end="761" vertical-scroll-proportion="0.42203987" vertical-offset="0" max-vertical-offset="853" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/external/bfi_thumb/BFI_Thumb.php">
+    <entry file="file://$PROJECT_DIR$/external/php/bfi_thumb/BFI_Thumb.php">
       <provider selected="true" editor-type-id="text-editor">
         <state line="375" column="6" selection-start="12166" selection-end="12166" vertical-scroll-proportion="24.98" vertical-offset="7693" max-vertical-offset="11052" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/admin/arc-data-selection.php">
+    <entry file="file://$PROJECT_DIR$/admin/php/arc-data-selection.php">
       <provider selected="true" editor-type-id="text-editor">
         <state line="407" column="0" selection-start="12410" selection-end="13033" vertical-scroll-proportion="-34.833332" vertical-offset="6490" max-vertical-offset="10206" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/admin/arc-blueprints.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="659" column="74" selection-start="24436" selection-end="24436" vertical-scroll-proportion="-18.8" vertical-offset="10922" max-vertical-offset="12564" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin/arc-slides.php">
+    <entry file="file://$PROJECT_DIR$/admin/php/arc-slides.php">
       <provider selected="true" editor-type-id="text-editor">
         <state line="112" column="67" selection-start="3321" selection-end="3321" vertical-scroll-proportion="0.14839241" vertical-offset="1836" max-vertical-offset="7884" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/external/js/tabby/css/tabby-css.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="55" column="17" selection-start="1084" selection-end="1084" vertical-scroll-proportion="0.0" vertical-offset="383" max-vertical-offset="1710">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/architect.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="6" column="30" selection-start="317" selection-end="317" vertical-scroll-proportion="0.0" vertical-offset="2" max-vertical-offset="6102">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/includes/headway/arc-block-options.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="36" column="155" selection-start="1655" selection-end="1655" vertical-scroll-proportion="0.0" vertical-offset="648" max-vertical-offset="5850" />
+        <state line="36" column="155" selection-start="1655" selection-end="1655" vertical-scroll-proportion="0.0" vertical-offset="648" max-vertical-offset="5850">
+          <folding />
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/includes/js/architect.js">
@@ -851,82 +1142,53 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/external/wp-settings-framework.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="125" column="85" selection-start="4223" selection-end="4223" vertical-scroll-proportion="0.0" vertical-offset="2250" max-vertical-offset="6516">
-          <folding>
-            <marker date="1391342802000" expanded="true" signature="9250:9268" placeholder="..." />
-            <marker date="1391342802000" expanded="true" signature="11897:11938" placeholder="..." />
-            <marker date="1391342802000" expanded="true" signature="12318:12351" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin/settings/options.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="264" column="83" selection-start="8373" selection-end="8373" vertical-scroll-proportion="0.0" vertical-offset="4752" max-vertical-offset="6354">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/external/jo-image-resizer/jo_image_resizer.php">
+    <entry file="file://$PROJECT_DIR$/external/php/jo-image-resizer/jo_image_resizer.php">
       <provider selected="true" editor-type-id="text-editor">
         <state line="40" column="64" selection-start="1671" selection-end="1671" vertical-scroll-proportion="0.0" vertical-offset="720" max-vertical-offset="9630">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/admin/js/arc-metaboxes-cells.js">
+    <entry file="file://$PROJECT_DIR$/frontend/php/class_pzarc_Display.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="2" column="0" selection-start="0" selection-end="51" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="9666">
+        <state line="62" column="135" selection-start="1525" selection-end="1531" vertical-scroll-proportion="-7.9" vertical-offset="631" max-vertical-offset="16362">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/frontend/js/arc-front.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="14" column="0" selection-start="277" selection-end="277" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="360">
           <folding>
-            <marker date="1390302653000" expanded="false" signature="8800:8854" placeholder="..." />
-            <marker date="1390302653000" expanded="false" signature="9044:9059" placeholder="..." />
-            <marker date="1390302653000" expanded="false" signature="9243:9258" placeholder="..." />
-            <marker date="1390302653000" expanded="false" signature="9438:9471" placeholder="..." />
-            <marker date="1390302653000" expanded="false" signature="9545:9560" placeholder="..." />
-            <marker date="1390302653000" expanded="false" signature="10010:10025" placeholder="..." />
-            <marker date="1390302653000" expanded="false" signature="10266:10303" placeholder="..." />
-            <marker date="1390302653000" expanded="false" signature="10958:10973" placeholder="..." />
-            <marker date="1390302653000" expanded="false" signature="11525:11540" placeholder="..." />
-            <marker date="1390302653000" expanded="false" signature="11737:11752" placeholder="..." />
-            <marker date="1390302653000" expanded="false" signature="11953:11968" placeholder="..." />
-            <marker date="1390302653000" expanded="false" signature="12169:12184" placeholder="..." />
+            <marker date="1392024425000" expanded="true" signature="-1:-1" placeholder="{...}" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/frontend/arcCellDefinitions.php">
+    <entry file="file://$PROJECT_DIR$/admin/php/arc-cell-layouts.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="30" selection-start="565" selection-end="565" vertical-scroll-proportion="-10.5" vertical-offset="0" max-vertical-offset="2430">
+        <state line="22" column="53" selection-start="559" selection-end="559" vertical-scroll-proportion="-16.5" vertical-offset="0" max-vertical-offset="20232">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/admin/js/arc-tabify.js">
+    <entry file="file://$PROJECT_DIR$/admin/php/settings/options.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="103" column="0" selection-start="4197" selection-end="4231" vertical-scroll-proportion="0.0" vertical-offset="725" max-vertical-offset="1962">
+        <state line="264" column="83" selection-start="8373" selection-end="8373" vertical-scroll-proportion="-198.0" vertical-offset="0" max-vertical-offset="6354">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/admin/arc-cell-layouts.php">
+    <entry file="file://$PROJECT_DIR$/includes/php/arc-functions.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="845" column="2" selection-start="29933" selection-end="29933" vertical-scroll-proportion="-12.75" vertical-offset="14904" max-vertical-offset="20232">
+        <state line="52" column="1" selection-start="1097" selection-end="1097" vertical-scroll-proportion="-39.0" vertical-offset="0" max-vertical-offset="2718">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/includes/arc-functions.php">
+    <entry file="file://$PROJECT_DIR$/frontend/php/arcCellDefinitions.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="52" column="1" selection-start="1097" selection-end="1097" vertical-scroll-proportion="-11.333333" vertical-offset="664" max-vertical-offset="2718">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin/arc-admin.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="172" column="0" selection-start="6847" selection-end="6847" vertical-scroll-proportion="-0.26" vertical-offset="3083" max-vertical-offset="4266">
+        <state line="14" column="30" selection-start="565" selection-end="565" vertical-scroll-proportion="40.75" vertical-offset="1230" max-vertical-offset="2430">
           <folding />
         </state>
       </provider>
@@ -938,37 +1200,109 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/frontend/arc-display.php">
+    <entry file="file://$PROJECT_DIR$/external/js/tabby/css/tabby-css.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="18" column="83" selection-start="687" selection-end="687" vertical-scroll-proportion="0.1780709" vertical-offset="0" max-vertical-offset="8370">
+        <state line="55" column="17" selection-start="1084" selection-end="1084" vertical-scroll-proportion="0.0" vertical-offset="383" max-vertical-offset="1710">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/frontend/class_pzarc_Display.php">
+    <entry file="file://$PROJECT_DIR$/architect.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="62" column="135" selection-start="1525" selection-end="1531" vertical-scroll-proportion="-7.9" vertical-offset="631" max-vertical-offset="16362">
-          <folding />
+        <state line="102" column="6" selection-start="3390" selection-end="3390" vertical-scroll-proportion="-76.5" vertical-offset="0" max-vertical-offset="6102">
+          <folding>
+            <element signature="e#7#502#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/admin/css/arc-admin.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="959" column="16" selection-start="23098" selection-end="23098" vertical-scroll-proportion="0.0" vertical-offset="16059" max-vertical-offset="17388">
+        <state line="902" column="20" selection-start="22224" selection-end="22224" vertical-scroll-proportion="0.06871463" vertical-offset="16151" max-vertical-offset="17388">
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/external/php/wp-settings-framework.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="125" column="85" selection-start="4223" selection-end="4223" vertical-scroll-proportion="-0.10387469" vertical-offset="2250" max-vertical-offset="6390">
+          <folding>
+            <marker date="1391342802000" expanded="false" signature="-1:-1" placeholder="..." />
+            <marker date="1391342802000" expanded="false" signature="-1:-1" placeholder="..." />
+            <marker date="1391342802000" expanded="true" signature="-1:-1" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/frontend/php/arc-display.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="16" column="42" selection-start="515" selection-end="515" vertical-scroll-proportion="0.14839241" vertical-offset="0" max-vertical-offset="8370">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/php/arc-blueprints.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="440" column="9" selection-start="16489" selection-end="16489" vertical-scroll-proportion="-330.0" vertical-offset="0" max-vertical-offset="12564">
+          <folding>
+            <marker date="1391242812000" expanded="true" signature="5313:5495" placeholder="Select one t..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/js/arc-metaboxes-cells.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="297" column="54" selection-start="15059" selection-end="15059" vertical-scroll-proportion="0.33333334" vertical-offset="4956" max-vertical-offset="9666">
+          <folding>
+            <marker date="1392028609000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1392028609000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1392028609000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1392028609000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1392028609000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1392028609000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1392028609000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1392028609000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1392028609000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1392028609000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1392028609000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1392028609000" expanded="true" signature="-1:-1" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/php/arc-admin.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="75" column="79" selection-start="2454" selection-end="2454" vertical-scroll-proportion="-23.75" vertical-offset="780" max-vertical-offset="4266">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/js/arc-metaboxes-blueprints.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="157" column="46" selection-start="6503" selection-end="6503" vertical-scroll-proportion="0.0" vertical-offset="1859" max-vertical-offset="3096">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/js/arc-tabify.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="74" column="58" selection-start="3448" selection-end="3448" vertical-scroll-proportion="-18.907408" vertical-offset="311" max-vertical-offset="1980">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/frontend/php/arcNavDefinitions.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="12" column="0" selection-start="147" selection-end="147" vertical-scroll-proportion="-9.0" vertical-offset="0" max-vertical-offset="1134">
+          <folding>
+            <element signature="e#6#96#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/frontend/css/arc-front.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="242" column="14" selection-start="4582" selection-end="4582" vertical-scroll-proportion="0.0" vertical-offset="3587" max-vertical-offset="4950">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/frontend/js/arc-front.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="5" column="14" selection-start="189" selection-end="189" vertical-scroll-proportion="0.09911894" vertical-offset="0" max-vertical-offset="908">
+        <state line="18" column="52" selection-start="503" selection-end="503" vertical-scroll-proportion="0.38207546" vertical-offset="0" max-vertical-offset="5220">
           <folding />
         </state>
       </provider>

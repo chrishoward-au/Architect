@@ -66,13 +66,13 @@ class pz_Architect
 		{
 //			include_once PZARC_PLUGIN_PATH . '/libs/PizazzWP.php';
 		}
-		require_once PZARC_PLUGIN_PATH . 'includes/arc-functions.php';
+		require_once PZARC_PLUGIN_PATH . '/includes/php/arc-functions.php';
 
 		// Register admin styles and scripts
 
 		if ( is_admin() )
 		{
-			require_once PZARC_PLUGIN_PATH . '/admin/arc-admin.php';
+			require_once PZARC_PLUGIN_PATH . '/admin/php/arc-admin.php';
 			//	require_once PZARC_PLUGIN_PATH . '/external/Custom-Metaboxes-and-Fields/example-functions.php';
 			//require_once(PZARC_PLUGIN_PATH .'/admin/admin-page-class/admin-page-class.php');
 			add_action( 'admin_print_styles', array( $this, 'register_admin_styles' ) );
@@ -87,7 +87,7 @@ class pz_Architect
 			add_action( 'wp_enqueue_scripts', array( $this, 'register_plugin_styles' ) );
 			add_action( 'wp_enqueue_scripts', array( $this, 'register_plugin_scripts' ) );
 
-			require_once PZARC_PLUGIN_PATH . '/frontend/arc-display.php';
+			require_once PZARC_PLUGIN_PATH . '/frontend/php/arc-display.php';
 
 		}
 
