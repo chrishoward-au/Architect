@@ -19,10 +19,16 @@ class pzarcAdmin
     if (is_admin() && current_user_can('edit_theme_options'))
     {
 
-      if (!class_exists('CMB_Meta_Box'))
+//      if (!class_exists('CMB_Meta_Box'))
+//      {
+//        require_once PZARC_PLUGIN_PATH . '/external/php/Custom-Meta-Boxes/custom-meta-boxes.php';
+//      }
+
+      if (!class_exists('ReduxFramework'))
       {
-        require_once PZARC_PLUGIN_PATH . '/external/php/Custom-Meta-Boxes/custom-meta-boxes.php';
+        require_once PZARC_PLUGIN_PATH . '/external/php/redux-framework/ReduxCore/framework.php';
       }
+      require_once PZARC_PLUGIN_PATH . '/external/php/redux-extensions/config.php';
 
 //	add_action('admin_init', 'pzarc_preview_meta');
       add_action('admin_head', array($this, 'admin_head'));
@@ -31,9 +37,9 @@ class pzarcAdmin
 
       //@TODO: need a bit of screen dependency on this?
 //      require_once PZARC_PLUGIN_PATH . '/includes/class_pzarcForm.php';
-      require_once PZARC_PLUGIN_PATH . '/admin/php/arc-cell-layouts.php';
-      require_once PZARC_PLUGIN_PATH . '/admin/php/arc-data-selection.php';
-      require_once PZARC_PLUGIN_PATH . '/admin/php/arc-blueprints.php';
+      require_once PZARC_PLUGIN_PATH . '/admin/php/redux/arc-cell-layouts.php';
+      require_once PZARC_PLUGIN_PATH . '/admin/php/redux/arc-data-selection.php';
+      require_once PZARC_PLUGIN_PATH . '/admin/php/redux/arc-blueprints.php';
       require_once PZARC_PLUGIN_PATH . '/admin/php/arc-galleries.php';
       require_once PZARC_PLUGIN_PATH . '/admin/php/arc-slides.php';
 
