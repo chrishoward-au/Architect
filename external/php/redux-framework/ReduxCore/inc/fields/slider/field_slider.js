@@ -4,7 +4,7 @@ jQuery(document).ready(function() {
 	jQuery('.redux_slider').each(function() {
 		//slider init
 		var slider = redux.slider[jQuery(this).attr('rel')];
-	
+	console.log(redux);
 		jQuery(this).slider({
 			value: parseInt(slider.val, null),
 			min: parseInt(slider.min, null),

@@ -72,7 +72,7 @@ if( !class_exists( 'ReduxFramework_extension_edd' ) ) {
         if ( $field['mode'] == "theme" ) {
 
           if ( !class_exists( 'EDD_SL_Theme_Updater' ) ) {
-            include_once(dirname(__FILE__) . '/edd_license/EDD_SL_Theme_Updater.php');
+            include_once( dirname( __FILE__ ) . '/edd_license/EDD_SL_Theme_Updater.php' );
           }
           if ( !empty( $this->parent->options[$field['id']]['license'] ) && ucfirst( $this->parent->options[$field['id']]['status'] ) == __('Valid', 'redux-framework') ) {
         
@@ -100,7 +100,7 @@ if( !class_exists( 'ReduxFramework_extension_edd' ) ) {
         if ( $field['mode'] == "plugin" ) {
 
           if ( !class_exists( 'EDD_SL_Plugin_Updater' ) ) {
-            include_once(dirname(__FILE__) . '/edd_license/EDD_SL_Plugin_Updater.php');
+            include_once( dirname( __FILE__ ) . '/edd_license/EDD_SL_Plugin_Updater.php' );
           }
 
           if ( isset( $field['path'] ) && !empty( $field['path'] ) ) {

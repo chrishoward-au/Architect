@@ -132,7 +132,7 @@ if( !class_exists( 'ReduxFrameworkPlugin' ) ) {
         public function includes() {
             // Include ReduxCore
             if( file_exists( dirname( __FILE__ ) . '/ReduxCore/framework.php' ) ) {
-                require_once(dirname(__FILE__) . '/ReduxCore/framework.php');
+                require_once( dirname( __FILE__ ) . '/ReduxCore/framework.php' );
             }
 
             // Include demo config, if demo mode is active

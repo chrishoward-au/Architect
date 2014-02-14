@@ -22,11 +22,6 @@
 // Exit if accessed directly
 if( !defined( 'ABSPATH' ) ) exit;
 
-if ( !function_exists( 'wp_get_current_user' ) ) {
-    // Fix from @kprovance. Bug #265.
-    require(ABSPATH . WPINC . '/pluggable.php');
-}
-
 // Fix for the GT3 page builder: http://www.gt3themes.com/wordpress-gt3-page-builder-plugin/
 /** @global string $pagenow */
 if(has_action('ecpt_field_options_')) {
@@ -42,7 +37,7 @@ if(has_action('ecpt_field_options_')) {
 if( !class_exists( 'ReduxFramework' ) ) {
 
     // General helper functions
-    include_once(dirname(__FILE__) . '/inc/class.redux_helpers.php');
+    include_once(dirname(__FILE__).'/inc/class.redux_helpers.php');
 
     /**
      * Main ReduxFramework class
@@ -54,7 +49,7 @@ if( !class_exists( 'ReduxFramework' ) ) {
         // ATTENTION DEVS
         // Please update the build number with each push, no matter how small.
         // This will make for easier support when we ask users what version they are using.
-        public static $_version = '3.1.5.3';
+        public static $_version = '3.1.5.15';
         public static $_dir;
         public static $_url;
         public static $_properties;
@@ -461,7 +456,7 @@ if( !class_exists( 'ReduxFramework' ) ) {
         } // get_instance()
 
         public function _tracking() {
-            include_once(dirname(__FILE__) . '/inc/tracking.php');
+            include_once( dirname( __FILE__ ) . '/inc/tracking.php' );
             new Redux_Tracking($this);
         } // _tracking()
 
@@ -818,6 +813,8 @@ if( !class_exists( 'ReduxFramework' ) ) {
                         foreach( $section['fields'] as $field ) {
                             if( isset( $field['default'] ) ) {
                                 $this->options_defaults[$field['id']] = $field['default'];
+                            } elseif (isset($field['options'])) {
+                                $this->options_defaults[$field['id']] = $field['options'];
                             }
                         }
                     }
@@ -1755,14 +1752,32 @@ if( !class_exists( 'ReduxFramework' ) ) {
 
                         // Set the default value if present
                         $this->options_defaults[$field['id']] = isset( $this->options_defaults[$field['id']] ) ? $this->options_defaults[$field['id']] : '';
-                        
+
                         // Set the defaults to the value if not present
-                        if ( !isset( $this->options[$field['id']] ) && isset( $field['default'] ) ) {
+                        $doUpdate = false;
+                        
+                        // Check fields for values in the default parameter
+                        if ( !isset( $this->options[$field['id']] ) && isset( $field['default'] )) {
                             $this->options_defaults[$field['id']] = $this->options[$field['id']] = $field['default'];
+                            $doUpdate = true;
+
+                        // Check fields that hae no default value, but an options value with settings to
+                        // be saved by default                            
+                        } elseif ( !isset( $this->options[$field['id']] ) && isset( $field['options'] )) {
+                            
+                            // If sorter field, check for options as save them as defaults
+                            if ($field['type'] == 'sorter' || $field['type'] == 'sortable') {
+                                $this->options_defaults[$field['id']] = $this->options[$field['id']] = $field['options'];
+                                $doUpdate = true;
+                            }
+                        }  
+
+                        if (true == $doUpdate) {
                             if ( $this->args['save_defaults'] ) { // Only save that to the DB if allowed to
                                 $runUpdate = true;    
-                            }
-                        }   
+                            }                                                        
+                        }
+                        
 
                         if (!isset($field['class'])) { // No errors please
                             $field['class'] = "";
@@ -2056,8 +2071,32 @@ if( !class_exists( 'ReduxFramework' ) ) {
                                 $plugin_options[$field['id']] = 0;
                             }
                         }
+                        
+                        // Default 'not_empty 'flag to false.
+                        $isNotEmpty = false;
+                        
+                        // Make sure 'validate' field is set.
+                        if (isset($field['validate'])) {
+                            
+                            // Make sure 'validate field' is set to 'not_empty'
+                            if ($field['validate'] == 'not_empty') {
+                                
+                                // Set the flag.
+                                $isNotEmpty = true;
+                            }                        
+                        }                        
 
-                        if( !isset( $plugin_options[$field['id']] ) || $plugin_options[$field['id']] == '' ) continue;
+                        // Check for empty id value
+                        if( !isset( $plugin_options[$field['id']] ) || $plugin_options[$field['id']] == '' ){
+                            
+                            // If we are looking for an empty value, in the case of 'not_empty'
+                            // then we need to keep processing.
+                            if (!$isNotEmpty) {
+                                
+                                // Empoty id and not checking for 'not_empty.  Bail out...
+                                continue;
+                            }
+                        }
 
                         // Force validate of custom field types
                         if( isset( $field['type'] ) && !isset( $field['validate'] ) ) {

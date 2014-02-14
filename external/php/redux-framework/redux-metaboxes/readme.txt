@@ -1,1 +1,0 @@
-Include config.php to get started. Make sure you include it toward the top of your functions.php before you declare your ReduxFramework object.

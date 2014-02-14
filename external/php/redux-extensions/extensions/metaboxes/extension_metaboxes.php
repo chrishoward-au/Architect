@@ -16,7 +16,7 @@
  *
  * @package     ReduxFramework
  * @author      Dovy Paukstys (dovy)
- * @version     1.0.3
+ * @version     1.0.6
  */
 
 // Exit if accessed directly
@@ -39,6 +39,7 @@ if ( !class_exists( 'ReduxFramework_extension_metaboxes' ) ) {
         public $localize_data = array();
         public $_extension_url;
         public $_extension_dir;
+        public $meta = array();
 
         public function __construct( $parent ) {
 
@@ -116,7 +117,7 @@ if ( !class_exists( 'ReduxFramework_extension_metaboxes' ) ) {
 
             }
 
-        } // _enqueue()
+        } // _enqueue()   
 
         /* Post URLs to IDs function, supports custom post types - borrowed and modified from url_to_postid() in wp-includes/rewrite.php */
         // Taken from http://betterwp.net/wordpress-tips/url_to_postid-for-custom-post-types/
@@ -129,40 +130,57 @@ if ( !class_exists( 'ReduxFramework_extension_metaboxes' ) ) {
             // First, check to see if there is a 'p=N' or 'page_id=N' to match against
             if ( preg_match('#[?&](p|page_id|attachment_id)=(\d+)#', $url, $values) )   {
                 $id = absint($values[2]);
-                if ( $id )
+                if ( $id ) {
                     return $id;
+                }
             }
 
             // Check to see if we are using rewrite rules
             $rewrite = $wp_rewrite->wp_rewrite_rules();
 
             // Not using rewrite rules, and 'p=N' and 'page_id=N' methods failed, so we're out of options
-            if ( empty($rewrite) ) {
-                // Add custom rules for non-rewrite.
-                return 0;    
+            if ( empty( $rewrite ) ) {
+                if ( isset( $_GET ) && empty( $_GET ) ) {
+                    // Add custom rules for non-rewrite URLs
+                    foreach( $GLOBALS['wp_post_types'] as $key => $value ) {
+                        if ( isset( $_GET[$key] ) && !empty( $_GET[$key] ) ) {
+                            $args = array(
+                              'name'        => $_GET[$key],
+                              'post_type'   => $key,
+                              'showposts'   => 1,
+                            );
+                            if( $post = get_posts( $args ) ) {
+                                return $post[0]->ID;
+                            }                        
+                        }
+                    }
+                } 
             }
 
             // Get rid of the #anchor
-            $url_split = explode('#', $url);
+            $url_split = explode( '#', $url );
             $url = $url_split[0];
 
             // Get rid of URL ?query=string
-            $url_split = explode('?', $url);
+            $url_split = explode( '?', $url );
             $url = $url_split[0];
 
             // Add 'www.' if it is absent and should be there
-            if ( false !== strpos(home_url(), '://www.') && false === strpos($url, '://www.') )
-                $url = str_replace('://', '://www.', $url);
+            if ( false !== strpos( home_url(), '://www.' ) && false === strpos( $url, '://www.' ) ) {
+                $url = str_replace( '://', '://www.', $url );
+            }
 
             // Strip 'www.' if it is present and shouldn't be
-            if ( false === strpos(home_url(), '://www.') )
+            if ( false === strpos( home_url(), '://www.' ) ) {
                 $url = str_replace('://www.', '://', $url);
+            }
 
             // Strip 'index.php/' if we're not using path info permalinks
-            if ( !$wp_rewrite->using_index_permalinks() )
+            if ( !$wp_rewrite->using_index_permalinks() ) {
                 $url = str_replace('index.php/', '', $url);
+            }
 
-            if ( false !== strpos($url, home_url()) ) {
+            if ( false !== strpos( $url, home_url() ) ) {
                 // Chop off http://domain.com
                 $url = str_replace(home_url(), '', $url);
             } else {
@@ -173,50 +191,57 @@ if ( !class_exists( 'ReduxFramework_extension_metaboxes' ) ) {
             }
 
             // Trim leading and lagging slashes
-            $url = trim($url, '/');
+            $url = trim( $url, '/' );
 
             $request = $url;
-
+            if ( empty( $request ) && ( !isset( $_GET ) || empty( $_GET ) ) ) {
+                return get_option('page_on_front');
+            }
             // Look for matches.
             $request_match = $request;
             foreach ( (array)$rewrite as $match => $query) {
                 // If the requesting file is the anchor of the match, prepend it
                 // to the path info.
-                if ( !empty($url) && ($url != $request) && (strpos($match, $url) === 0) )
+                if ( !empty( $url ) && ( $url != $request ) && ( strpos( $match, $url ) === 0 ) )
                     $request_match = $url . '/' . $request;
 
-                if ( preg_match("!^$match!", $request_match, $matches) ) {
+                if ( preg_match( "!^$match!", $request_match, $matches ) ) {
 
                     // Got a match.
                     // Trim the query of everything up to the '?'.
-                    $query = preg_replace("!^.+\?!", '', $query);
+                    $query = preg_replace( "!^.+\?!", '', $query );
 
                     // Substitute the substring matches into the query.
-                    $query = addslashes(WP_MatchesMapRegex::apply($query, $matches));
+                    $query = addslashes( WP_MatchesMapRegex::apply( $query, $matches ) );
 
                     // Filter out non-public query vars
                     global $wp;
-                    parse_str($query, $query_vars);
+                    parse_str( $query, $query_vars );
                     $query = array();
                     foreach ( (array) $query_vars as $key => $value ) {
-                        if ( in_array($key, $wp->public_query_vars) )
+                        if ( in_array( $key, $wp->public_query_vars ) ) {
                             $query[$key] = $value;
+                        }
                     }
 
                 // Taken from class-wp.php
-                foreach ( $GLOBALS['wp_post_types'] as $post_type => $t )
-                    if ( $t->query_var )
+                foreach ( $GLOBALS['wp_post_types'] as $post_type => $t ) {
+                    if ( $t->query_var ) {
                         $post_type_query_vars[$t->query_var] = $post_type;
+                    }
+                }
 
                 foreach ( $wp->public_query_vars as $wpvar ) {
-                    if ( isset( $wp->extra_query_vars[$wpvar] ) )
+                    if ( isset( $wp->extra_query_vars[$wpvar] ) ) {
                         $query[$wpvar] = $wp->extra_query_vars[$wpvar];
-                    elseif ( isset( $_POST[$wpvar] ) )
+                    } elseif ( isset( $_POST[$wpvar] ) ) {
                         $query[$wpvar] = $_POST[$wpvar];
-                    elseif ( isset( $_GET[$wpvar] ) )
+                    } elseif ( isset( $_GET[$wpvar] ) ) {
                         $query[$wpvar] = $_GET[$wpvar];
-                    elseif ( isset( $query_vars[$wpvar] ) )
+                    } elseif ( isset( $query_vars[$wpvar] ) ) {
                         $query[$wpvar] = $query_vars[$wpvar];
+                    }
+                        
 
                     if ( !empty( $query[$wpvar] ) ) {
                         if ( ! is_array( $query[$wpvar] ) ) {
@@ -229,54 +254,69 @@ if ( !class_exists( 'ReduxFramework_extension_metaboxes' ) ) {
                             }
                         }
 
-                        if ( isset($post_type_query_vars[$wpvar] ) ) {
+                        if ( isset( $post_type_query_vars[$wpvar] ) ) {
                             $query['post_type'] = $post_type_query_vars[$wpvar];
                             $query['name'] = $query[$wpvar];
                         }
                     }
                 }
-                    // Do the query
-                    $query = new WP_Query($query);
+                // Do the query
+                if (isset($query['pagename']) && !empty($query['pagename'])) {
+                    $args = array(
+                      'name'        => $query['pagename'],
+                      'post_type'   => 'page',
+                      'showposts'   => 1,
+                    );
+                    if( $post = get_posts( $args ) ) {
+                        return $post[0]->ID;
+                    }                                              
+                }
+                $query = new WP_Query($query);
 
-                    if ( !empty($query->posts) && $query->is_singular )
-                        return $query->post->ID;
-                    else
-                        return 0;
+                if ( !empty($query->posts) && $query->is_singular )
+                    return $query->post->ID;
+                else {
+
+                    return 0;
+                }
+                        
                 }
             }
+            
             return 0;
-        }        
+        }                 
 
         public function _override_values($options) {
+            global $post, $wp_query;
+            $url = explode('?', 'http://'.$_SERVER["HTTP_HOST"] . $_SERVER["REQUEST_URI"]);
 
             if ( is_admin() ) {
-
                 return $options;
             }
 
-            $url = 'http://'.$_SERVER["HTTP_HOST"] . $_SERVER["REQUEST_URI"];
-            $post_id = $this->url_to_postid($url);
+            $post_id = $this->url_to_postid( 'http://'.$_SERVER["HTTP_HOST"] . $_SERVER["REQUEST_URI"] );
             
-            if (empty($post_id)) {
-                //echo "doing a custom post type. can't override easily";
+            if ( empty( $post_id ) ) {
+                //$post_id = url_to_postid($url[0]);
+            }
+            if ( empty( $post_id ) ) {
                 return $options;
-            }      
-    
+            }            
+
             if( empty( $this->options_defaults ) ) {
                 $this->_default_values(); // fill cache
             }
-
-            $meta = get_post_meta( $post_id, $this->parent->args['opt_name'], true );
-
-            if ( isset( $meta ) && !empty($meta) ) {
-                foreach ( $this->options_defaults as $key=>$value ) {
-                    if ( isset( $meta[$key] ) ) {
-                        $options[$key] = $meta[$key];  
-                    } else {
-                        $options[$key] = $value;
-                    }
+            if ( empty( $this->meta ) ) {
+                $this->meta = get_post_meta( $post_id, $this->parent->args['opt_name'], true );    
+            }
+            foreach ( $this->options_defaults as $key=>$value ) {
+                if ( isset( $this->meta[$key] ) ) {
+                    $options[$key] = $this->meta[$key];  
+                } else {
+                    $options[$key] = $value;
                 }
             }
+
             return $options;
 
         } // _override_values()

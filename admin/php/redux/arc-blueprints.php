@@ -1,4 +1,5 @@
 <?php
+$redux_opt_name = '_architect';
 
 class pzarc_Blueprints
 {
@@ -140,7 +141,7 @@ class pzarc_Blueprints
 } // EOC
 
 
-//add_filter('cmb_meta_boxes', 'pzarc_blueprint_wizard_metabox');
+////add_filter('cmb_meta_boxes', 'pzarc_blueprint_wizard_metabox');
 function pzarc_blueprint_wizard_metabox($meta_boxes = array())
 {
   $prefix        = '_pzarc_';
@@ -172,7 +173,7 @@ function pzarc_blueprint_wizard_metabox($meta_boxes = array())
   return $meta_boxes;
 }
 
-add_filter('cmb_meta_boxes', 'pzarc_blueprint_sections_tabbed');
+//add_filter('cmb_meta_boxes', 'pzarc_blueprint_sections_tabbed');
 function pzarc_blueprint_sections_tabbed($meta_boxes = array())
 {
   $prefix        = '_pzarc_';
@@ -181,11 +182,11 @@ function pzarc_blueprint_sections_tabbed($meta_boxes = array())
                   'name'     => __('Tabs', 'pzarc'),
                   'id'       => $prefix . 'layout-blueprint-sections-tabs',
                   'type'     => 'pztabs',
-                  'defaults' => array('#blueprint-section-1' => 'Blueprint Section 1',
-                                      '#blueprint-section-2' => 'Blueprint Section 2',
-                                      '#blueprint-section-3' => 'Blueprint Section 3',
-                                      '#blueprint-pagination' => 'Pagination',
-                                      '#blueprint-navigator' => 'Navigator',
+                  'defaults' => array('#blueprint-section-1'         => 'Blueprint Section 1',
+                                      '#blueprint-section-2'         => 'Blueprint Section 2',
+                                      '#blueprint-section-3'         => 'Blueprint Section 3',
+                                      '#blueprint-pagination'        => 'Pagination',
+                                      '#blueprint-navigator'         => 'Navigator',
                                       '#blueprint-wireframe-preview' => 'Wireframe Preview'
                   ),
           ),
@@ -203,51 +204,62 @@ function pzarc_blueprint_sections_tabbed($meta_boxes = array())
 
 }
 
-add_filter('cmb_meta_boxes', 'pzarc_blueprint_main');
-function pzarc_blueprint_main($meta_boxes = array())
+add_action("redux/metaboxes/{$redux_opt_name}/boxes", 'pzarc_blueprint_general');
+function pzarc_blueprint_general($meta_boxes = array())
 {
-  $prefix        = '_pzarc_';
-  $fields        = array(
-          array(
-                  'id'   => $prefix . 'blueprint-short-name',
-                  'name' => __('Blueprint Short Name', 'pzarc'),
-                  'type' => 'text',
-
-                  'desc' => __('Alphanumeric only. <br/>Use the shortcode <strong class="pzarc-usage-info">[pzarc "<span class="pzarc-shortname"></span>"]</strong> or the template tag <strong class="pzarc-usage-info">pzarc(\'<span class="pzarc-shortname"></span>\');</strong>', 'pzarc')
-          ),
-          array(
-                  'name'    => 'Save blueprint',
-                  'id'      => $prefix . 'layout-set-save',
-                  'type'    => 'pzsubmit',
-                  'default' => 'Save'
-          ),
-
+  $prefix      = 'blueprints';
+  $sections    = array();
+  $sections[ ] = array(
+      //          'title'      => __('General Settings', 'pzarc'),
+      'show_title' => true,
+      'icon_class' => 'icon-large',
+      'icon'       => 'el-icon-home',
+      'fields'     => array(
+        array(
+                'id'   => $prefix . 'blueprint-short-name',
+                'name' => __('Blueprint Short Name', 'pzarc'),
+                'type' => 'text',
+                'desc' => __('Alphanumeric only. <br/>Use the shortcode <strong class="pzarc-usage-info">[pzarc "<span class="pzarc-shortname"></span>"]</strong> or the template tag <strong class="pzarc-usage-info">pzarc(\'<span class="pzarc-shortname"></span>\');</strong>', 'pzarc')
+        ),
+//        array(
+//                'name'    => 'Save blueprint',
+//                'id'      => $prefix . 'layout-set-save',
+//                'type'    => 'pzsubmit',
+//                'default' => 'Save'
+//        ),
+)
   );
+
   $meta_boxes[ ] = array(
-          'title'    => 'Blueprint',
-          'pages'    => 'arc-blueprints',
-          'context'  => 'side',
-          'priority' => 'high',
-          'fields'   => $fields // An array of fields.
+          'id'         => 'blueprint-general-settings',
+          'title'      => 'General Settings',
+          'post_types' => array('arc-blueprints'),
+          'sections'   => $sections,
+          'position'   => 'side',
+          'priority'   => 'high',
+          'sidebar'    => false
+
   );
+
 
   return $meta_boxes;
 
 }
-add_filter('cmb_meta_boxes', 'pzarc_blueprint_parts_switcher');
+
+//add_filter('cmb_meta_boxes', 'pzarc_blueprint_parts_switcher');
 function pzarc_blueprint_parts_switcher($meta_boxes = array())
 {
   $prefix        = '_pzarc_';
   $fields        = array(
           array(
-                  'name'     => __('Switcher', 'pzarc'),
-                  'id'       => $prefix . 'layout-blueprint-parts-switch',
-                  'type'     => 'pztabs',
-                  'defaults' => array('#blueprint-settings' => 'Layout','#contents-selection-settings' => 'Content'),
+                  'name'       => __('Switcher', 'pzarc'),
+                  'id'         => $prefix . 'layout-blueprint-parts-switch',
+                  'type'       => 'pztabs',
+                  'defaults'   => array('#blueprint-settings' => 'Layout', '#contents-selection-settings' => 'Content'),
                   // This showuld only be one each, so as don't have to worry about what really is visible based on settings
                   'visibility' => array(
-                    '#blueprint-settings' => array('#blueprint-layout'),
-                    '#contents-selection-settings' => array('#blueprint-content')
+                          '#blueprint-settings'          => array('#blueprint-layout'),
+                          '#contents-selection-settings' => array('#blueprint-content')
                   )
           ),
 
@@ -265,7 +277,7 @@ function pzarc_blueprint_parts_switcher($meta_boxes = array())
 }
 
 
-add_filter('cmb_meta_boxes', 'pzarc_blueprint_preview_metabox');
+//add_filter('cmb_meta_boxes', 'pzarc_blueprint_preview_metabox');
 function pzarc_blueprint_preview_metabox($meta_boxes = array())
 {
   // Need to redesign this into one layout that includes navigation positions
@@ -300,7 +312,7 @@ array(
 }
 
 
-add_filter('cmb_meta_boxes', 'pzarc_sections_preview_meta');
+//add_filter('cmb_meta_boxes', 'pzarc_sections_preview_meta');
 function pzarc_sections_preview_meta($meta_boxes = array())
 {
   $prefix = '_pzarc_';
@@ -437,7 +449,7 @@ function pzarc_sections_preview_meta($meta_boxes = array())
   return $meta_boxes;
 }
 
-add_filter('cmb_meta_boxes', 'pzarc_blueprint_pagination_metabox');
+//add_filter('cmb_meta_boxes', 'pzarc_blueprint_pagination_metabox');
 function pzarc_blueprint_pagination_metabox($meta_boxes = array())
 {
   // Need to redesign this into one layout that includes navigation positions
@@ -451,8 +463,8 @@ function pzarc_blueprint_pagination_metabox($meta_boxes = array())
                   'default' => 'wppagination',
                   'options' => array(
                           'none'       => 'None',
-                          'names'  => 'Post names',
-                          'prevnext'=>'Previous/Next',
+                          'names'      => 'Post names',
+                          'prevnext'   => 'Previous/Next',
                           'wppagenavi' => 'PageNavi',
                   )
           ),
@@ -463,9 +475,9 @@ function pzarc_blueprint_pagination_metabox($meta_boxes = array())
                   'cols'    => 12,
                   'default' => 'bottom',
                   'options' => array(
-                          'bottom'       => 'Bottom',
-                          'top'  => 'Top',
-                          'both'=>'Both'
+                          'bottom' => 'Bottom',
+                          'top'    => 'Top',
+                          'both'   => 'Both'
                   )
           ),
           array(
@@ -488,7 +500,7 @@ function pzarc_blueprint_pagination_metabox($meta_boxes = array())
 
 }
 
-add_filter('cmb_meta_boxes', 'pzarc_blueprint_navigator_metabox');
+//add_filter('cmb_meta_boxes', 'pzarc_blueprint_navigator_metabox');
 function pzarc_blueprint_navigator_metabox($meta_boxes = array())
 {
   // Need to redesign this into one layout that includes navigation positions
@@ -571,7 +583,7 @@ function pzarc_blueprint_navigator_metabox($meta_boxes = array())
 }
 
 
-add_filter('cmb_meta_boxes', 'pzarc_blueprint_settings_metabox');
+//add_filter('cmb_meta_boxes', 'pzarc_blueprint_settings_metabox');
 function pzarc_blueprint_settings_metabox($meta_boxes = array())
 {
   $args = array(
@@ -593,41 +605,41 @@ function pzarc_blueprint_settings_metabox($meta_boxes = array())
   }
   $prefix = '_pzarc_';
   $fields = array(
-          // array(
-          //         'id'      => $prefix . 'blueprint-criteria',
-          //         'name'    => __('Criteria', 'pzarc'),
-          //         'type'    => 'pzselect',
-          //         'cols'    => 12,
-          //         'default' => 'default',
-          //         'options' => $pzarc_criterias_array
-          // ),
+    // array(
+    //         'id'      => $prefix . 'blueprint-criteria',
+    //         'name'    => __('Criteria', 'pzarc'),
+    //         'type'    => 'pzselect',
+    //         'cols'    => 12,
+    //         'default' => 'default',
+    //         'options' => $pzarc_criterias_array
+    // ),
 
-          array(
-                  'name'    => 'Section 2',
-                  'id'      => $prefix . '1-blueprint-section-enable',
-                  'type'    => 'checkbox',
-                  'cols'    => 6,
-                  'default' => false
-          ),
-          array(
-                  'name'    => 'Section 3',
-                  'id'      => $prefix . '2-blueprint-section-enable',
-                  'type'    => 'checkbox',
-                  'cols'    => 6,
-                  'default' => false
-          ),
-          array(
-                  'name'    => 'Select what type of navigation to use',
-                  'id'      => $prefix . 'blueprint-navigation',
-                  'type'    => 'pzselect',
-                  'default' => 'none',
-                  'desc'    => 'Note: Navigator will only function when one section',
-                  'options' => array(
-                          'none'      => 'None',
-                          'pagination'     => 'Pagination',
-                          'navigator' => 'Navigator'
-                  )
-          ),
+    array(
+            'name'    => 'Section 2',
+            'id'      => $prefix . '1-blueprint-section-enable',
+            'type'    => 'checkbox',
+            'cols'    => 6,
+            'default' => false
+    ),
+    array(
+            'name'    => 'Section 3',
+            'id'      => $prefix . '2-blueprint-section-enable',
+            'type'    => 'checkbox',
+            'cols'    => 6,
+            'default' => false
+    ),
+    array(
+            'name'    => 'Select what type of navigation to use',
+            'id'      => $prefix . 'blueprint-navigation',
+            'type'    => 'pzselect',
+            'default' => 'none',
+            'desc'    => 'Note: Navigator will only function when one section',
+            'options' => array(
+                    'none'       => 'None',
+                    'pagination' => 'Pagination',
+                    'navigator'  => 'Navigator'
+            )
+    ),
 
   );
 
@@ -643,7 +655,7 @@ function pzarc_blueprint_settings_metabox($meta_boxes = array())
   return $meta_boxes;
 }
 
-add_filter('cmb_meta_boxes', 'pzarc_blueprints_help_metabox');
+//add_filter('cmb_meta_boxes', 'pzarc_blueprints_help_metabox');
 function pzarc_blueprints_help_metabox($meta_boxes = array())
 {
 

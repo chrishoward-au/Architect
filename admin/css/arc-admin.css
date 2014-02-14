@@ -22,8 +22,7 @@
 }
 
 #pzarc-dropzone-pzarc_layout {
-  xbackground: url(bg-preview.jpg);
-  margin: 0 auto 20px auto;
+  margin: 0 0 20px 0;
 }
 
 #pzarc-custom-pzarc_layout-cell-preview {
@@ -751,10 +750,14 @@ body.screen-arc-layouts #side-sortables .postbox {
   color: #ccc;
   border-color:#444;
 }
+#redux-_architect-metabox-designer-settings.postbox {
+  background:#f7f7f7;
+}
+#redux-_architect-metabox-designer-settings .redux-main .form-table tr {border-bottom:none;}
 
-body.screen-arc-contents h3.hndle,
-body.screen-arc-blueprints h3.hndle,
-body.screen-arc-layouts h3.hndle {
+body.post-type-arc-layouts h3.hndle,
+body.post-type-arc-blueprints h3.hndle,
+body.post-type-arc-contents h3.hndle {
   color: #fff;
   background: #6d6d6d;
   border-bottom: none;
@@ -959,3 +962,33 @@ color:#333;
   font-size:18px;
   color:#3e8eac;
 }
+
+/* Redux field classes */
+
+#_architect-panels_cell-settings-link-titles li {
+  display:inline-block;
+  width:auto;
+  margin-right:2%;
+}
+
+/*
+body.post-type-arc-layouts .redux-main select,
+body.post-type-arc-layouts .redux-main .select_wrapper {
+  width:auto;
+}
+*/
+
+
+.redux-info-field.redux-normal.heading {
+  background:none;
+  border:none;
+  padding:0;
+  color:#3e8eac;
+
+}
+.redux-info-field.heading .redux-info-desc b {
+  font-size:18px;
+}
+
+/* Remove this once Dovy fixes! */
+.redux_field_th span:first-child.showDefaults {display:none;}

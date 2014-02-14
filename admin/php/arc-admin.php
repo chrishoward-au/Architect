@@ -1,5 +1,6 @@
 <?php
 
+
 class pzarcAdmin
 {
 
@@ -28,7 +29,7 @@ class pzarcAdmin
       {
         require_once PZARC_PLUGIN_PATH . '/external/php/redux-framework/ReduxCore/framework.php';
       }
-      require_once PZARC_PLUGIN_PATH . '/external/php/redux-extensions/config.php';
+      //require_once PZARC_PLUGIN_PATH . '/external/php/redux-extensions/config.php';
 
 //	add_action('admin_init', 'pzarc_preview_meta');
       add_action('admin_head', array($this, 'admin_head'));
@@ -47,6 +48,13 @@ class pzarcAdmin
 
 //			require_once PZARC_PLUGIN_PATH . '/admin/ucd-controls.php';
 
+//      require_once PZARC_PLUGIN_PATH . '/external/php/redux-extensions/config.php';
+      require_once PZARC_PLUGIN_PATH . '/external/php/redux-custom-fields/loader.php';
+      require_once PZARC_PLUGIN_PATH . '/external/php/redux-extensions/loader.php';
+
+
+
+      require_once PZARC_PLUGIN_PATH . '/external/php/redux-framework/sample/sample-config.php';
 
       // @TODO Should these really be objects?
       // Initialise objects for data and setup menu items
