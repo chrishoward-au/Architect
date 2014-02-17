@@ -47,7 +47,7 @@ class pzarc_Blueprints
 
       wp_enqueue_style('pzarc-admin-blueprints-css', PZARC_PLUGIN_URL . 'admin/css/arc-admin-blueprints.css');
 
-      wp_enqueue_script('jquery-pzarc-metaboxes-blueprints', PZARC_PLUGIN_URL . 'admin/js/arc-metaboxes-blueprints.js', array('jquery'));
+//      wp_enqueue_script('jquery-pzarc-metaboxes-blueprints', PZARC_PLUGIN_URL . 'admin/js/arc-metaboxes-blueprints.js', array('jquery'));
       wp_enqueue_script('js-isotope-v2');
       // wp_enqueue_script('jquery-masonary', PZARC_PLUGIN_URL . 'external/masonry.pkgd.min.js', array('jquery'));
       // wp_enqueue_script('jquery-lorem', PZARC_PLUGIN_URL . 'external/jquery.lorem.js', array('jquery'));
@@ -142,92 +142,82 @@ class pzarc_Blueprints
 
 
 ////add_filter('cmb_meta_boxes', 'pzarc_blueprint_wizard_metabox');
-function pzarc_blueprint_wizard_metabox($meta_boxes = array())
-{
-  $prefix        = '_pzarc_';
-  $fields        = array(
-          array(
-                  'name'    => 'Select what type of blueprint you want to make',
-                  'id'      => $prefix . 'blueprint-wizard',
-                  'type'    => 'radio',
-                  'default' => 'custom',
-                  'desc'    => 'Select one to quickly enable relevant settings, or custom to build your own from scratch with all settings and defaults. Minimize this metabox once you are happy with your selection.',
-                  'options' => array(
-                          'custom'       => 'Custom',
-                          'fullplusgrid' => 'Full + grid',
-                          'gallery'      => 'Gallery',
-                          'grid'         => 'Grid',
-                          'slider'       => 'Content slider',
-                          'tabbed'       => 'Tabbed',
-                  )
-          )
-  );
-  $meta_boxes[ ] = array(
-          'title'    => 'What do you want to do?',
-          'pages'    => 'arc-blueprints',
-          'context'  => 'normal',
-          'priority' => 'high',
-          'fields'   => $fields // An array of fields.
-  );
+//function pzarc_blueprint_wizard_metabox($meta_boxes = array())
+//{
+//  $prefix        = '_pzarc_';
+//  $fields        = array(
+//          array(
+//                  'title'    => 'Select what type of blueprint you want to make',
+//                  'id'      => $prefix . 'wizard',
+//                  'type'    => 'radio',
+//                  'default' => 'custom',
+//                  'subtitle'    => 'Select one to quickly enable relevant settings, or custom to build your own from scratch with all settings and defaults. Minimize this metabox once you are happy with your selection.',
+//                  'options' => array(
+//                          'custom'       => 'Custom',
+//                          'fullplusgrid' => 'Full + grid',
+//                          'gallery'      => 'Gallery',
+//                          'grid'         => 'Grid',
+//                          'slider'       => 'Content slider',
+//                          'tabbed'       => 'Tabbed',
+//                  )
+//          )
+//  );
+//  $meta_boxes[ ] = array(
+//          'title'    => 'What do you want to do?',
+//          'pages'    => 'arc-blueprints',
+//          'context'  => 'normal',
+//          'priority' => 'high',
+//          'fields'   => $fields // An array of fields.
+//  );
+//
+//  return $meta_boxes;
+//}
 
-  return $meta_boxes;
-}
-
-//add_filter('cmb_meta_boxes', 'pzarc_blueprint_sections_tabbed');
-function pzarc_blueprint_sections_tabbed($meta_boxes = array())
-{
-  $prefix        = '_pzarc_';
-  $fields        = array(
-          array(
-                  'name'     => __('Tabs', 'pzarc'),
-                  'id'       => $prefix . 'layout-blueprint-sections-tabs',
-                  'type'     => 'pztabs',
-                  'defaults' => array('#blueprint-section-1'         => 'Blueprint Section 1',
-                                      '#blueprint-section-2'         => 'Blueprint Section 2',
-                                      '#blueprint-section-3'         => 'Blueprint Section 3',
-                                      '#blueprint-pagination'        => 'Pagination',
-                                      '#blueprint-navigator'         => 'Navigator',
-                                      '#blueprint-wireframe-preview' => 'Wireframe Preview'
-                  ),
-          ),
-
-  );
-  $meta_boxes[ ] = array(
-          'title'    => 'Blueprint Layout',
-          'pages'    => 'arc-blueprints',
-          'context'  => 'normal',
-          'priority' => 'high',
-          'fields'   => $fields // An array of fields.
-  );
-
-  return $meta_boxes;
-
-}
 
 add_action("redux/metaboxes/{$redux_opt_name}/boxes", 'pzarc_blueprint_general');
 function pzarc_blueprint_general($meta_boxes = array())
 {
-  $prefix      = 'blueprints';
+  $prefix      = 'blueprints_';
   $sections    = array();
   $sections[ ] = array(
-      //          'title'      => __('General Settings', 'pzarc'),
-      'show_title' => true,
-      'icon_class' => 'icon-large',
-      'icon'       => 'el-icon-home',
-      'fields'     => array(
-        array(
-                'id'   => $prefix . 'blueprint-short-name',
-                'name' => __('Blueprint Short Name', 'pzarc'),
-                'type' => 'text',
-                'desc' => __('Alphanumeric only. <br/>Use the shortcode <strong class="pzarc-usage-info">[pzarc "<span class="pzarc-shortname"></span>"]</strong> or the template tag <strong class="pzarc-usage-info">pzarc(\'<span class="pzarc-shortname"></span>\');</strong>', 'pzarc')
-        ),
-//        array(
-//                'name'    => 'Save blueprint',
-//                'id'      => $prefix . 'layout-set-save',
-//                'type'    => 'pzsubmit',
-//                'default' => 'Save'
-//        ),
-)
+          'fields' => array(
+                  array(
+                          'id'       => $prefix . 'short-name',
+                          'title'    => __('Blueprint Short Name', 'pzarc'),
+                          'type'     => 'text',
+                          'width'    => 'auto',
+                          'subtitle' => __('Alphanumeric only. <br/>Use the shortcode <strong class="pzarc-usage-info">[pzarc "<span class="pzarc-shortname"></span>"]</strong> or the template tag <strong class="pzarc-usage-info">pzarc(\'<span class="pzarc-shortname"></span>\');</strong>', 'pzarc')
+                  ),
+                  array(
+                          'title'   => 'Section 2',
+                          'id'      => $prefix . 'section-1-enable', //this number is the increment number
+                          'type'    => 'switch',
+                          'width'   => 'auto',
+                          'default' => false
+                  ),
+                  array(
+                          'title'   => 'Section 3',
+                          'id'      => $prefix . 'section-2-enable',
+                          'type'    => 'switch',
+                          'width'   => 'auto',
+                          'default' => false
+                  ),
+                  array(
+                          'title'    => 'Select what type of navigation to use',
+                          'id'       => $prefix . 'navigation',
+                          'type'     => 'button_set',
+                          'width'    => 'auto',
+                          'default'  => 'none',
+                          'subtitle' => 'Note: Navigator will only function when one section',
+                          'options'  => array(
+                                  'none'       => 'None',
+                                  'pagination' => 'Pagination',
+                                  'navigator'  => 'Navigator'
+                          )
+                  ),
+
+
+          )
   );
 
   $meta_boxes[ ] = array(
@@ -246,444 +236,321 @@ function pzarc_blueprint_general($meta_boxes = array())
 
 }
 
-//add_filter('cmb_meta_boxes', 'pzarc_blueprint_parts_switcher');
-function pzarc_blueprint_parts_switcher($meta_boxes = array())
+
+add_action("redux/metaboxes/{$redux_opt_name}/boxes", 'pzarc_blueprint_layout');
+function pzarc_blueprint_layout($meta_boxes = array())
 {
-  $prefix        = '_pzarc_';
-  $fields        = array(
-          array(
-                  'name'       => __('Switcher', 'pzarc'),
-                  'id'         => $prefix . 'layout-blueprint-parts-switch',
-                  'type'       => 'pztabs',
-                  'defaults'   => array('#blueprint-settings' => 'Layout', '#contents-selection-settings' => 'Content'),
-                  // This showuld only be one each, so as don't have to worry about what really is visible based on settings
-                  'visibility' => array(
-                          '#blueprint-settings'          => array('#blueprint-layout'),
-                          '#contents-selection-settings' => array('#blueprint-content')
-                  )
-          ),
+  $prefix      = 'blueprints_';
+  $sections    = array();
 
-  );
-  $meta_boxes[ ] = array(
-          'title'    => 'Show settings for',
-          'pages'    => 'arc-blueprints',
-          'context'  => 'side',
-          'priority' => 'high',
-          'fields'   => $fields // An array of fields.
-  );
-
-  return $meta_boxes;
-
-}
-
-
-//add_filter('cmb_meta_boxes', 'pzarc_blueprint_preview_metabox');
-function pzarc_blueprint_preview_metabox($meta_boxes = array())
-{
-  // Need to redesign this into one layout that includes navigation positions
-  $prefix = '_pzarc_';
-  $fields = array(
-
-//    array(
-//      'id'       => $prefix . 'sections-preview-desc',
-//      'type' => 'pzinfo',
-//      'desc' => __('The preview gives you a feel for how you layout might look only.','pzarc')
-//    ),
-array(
-        'name'     => 'Sections',
-        'id'       => $prefix . 'sections-preview',
-        'cols'     => 12,
-        'type'     => 'pzlayout',
-        'readonly' => false, // Readonly fields can't be written to by code! Weird
-        'code'     => draw_sections_preview(),
-),
-  );
-
-  $meta_boxes[ ] = array(
-          'title'    => 'Blueprint Wireframe Preview',
-          'pages'    => 'arc-blueprints',
-          'fields'   => $fields,
-          'context'  => 'normal',
-          'priority' => 'default'
-
-  );
-
-  return $meta_boxes;
-}
-
-
-//add_filter('cmb_meta_boxes', 'pzarc_sections_preview_meta');
-function pzarc_sections_preview_meta($meta_boxes = array())
-{
-  $prefix = '_pzarc_';
 
   $args = array(
           'posts_per_page'   => -1,
           'orderby'          => 'title',
           'order'            => 'ASC',
-          'post_type'        => 'arc-layouts',
+          'post_type'        => 'arc-panels',
           'suppress_filters' => true);
 
-  $pzarc_cells       = get_posts($args);
-  $pzarc_cells_array = array();
-  if (!empty($pzarc_cells))
+  $pzarc_panels       = get_posts($args);
+  $pzarc_panels_array = array();
+  if (!empty($pzarc_panels))
   {
-    foreach ($pzarc_cells as $pzarc_cell)
+    foreach ($pzarc_panels as $pzarc_cell)
     {
-      $pzarc_cells_array[ $pzarc_cell->ID ] = (empty($pzarc_cell->post_title) ? 'No title' : $pzarc_cell->post_title);
+      $pzarc_panels_array[ $pzarc_cell->ID ] = (empty($pzarc_cell->post_title) ? 'No title' : $pzarc_cell->post_title);
     }
   }
   else
   {
-    $pzarc_cells_array = array(0 => 'No cell layouts. Create some.');
+    $pzarc_panels_array = array(0 => 'No cell layouts. Create some.');
   }
   // ID,post_title
+  $icons = array(0 => 'el-icon-align-left', 1 => 'el-icon-th', 2 => 'el-icon-th-list');
   for ($i = 0; $i < 3; $i++)
   {
-    $fields        = array(
+    $sections[ ] = array(
+            'title'      => __('Section ' . ($i + 1), 'pzarc'),
+            'show_title' => true,
+            'icon_class' => 'icon-large',
+            'icon'       => $icons[ $i ],
+            'fields'     => array(
 
-            array(
-                    'id'   => $prefix . $i . '-blueprint-section-title',
-                    'name' => __('Section ' . ($i + 1) . ' title (optional)', 'pzarc'),
-                    'type' => 'text',
-                    'cols' => 12,
-            ),
-            array(
-                    'id'      => $prefix . $i . '-blueprint-section-cell-layout',
-                    'name'    => __('Panels layout', 'pzarc'),
-                    'type'    => 'pzselect',
-                    'cols'    => 6,
-
-                    'options' => $pzarc_cells_array
-            ),
-            array(
-                    'name'    => __('Layout mode', 'pzarc'),
-                    'id'      => $prefix . $i . '-blueprint-layout-mode',
-                    'type'    => 'pzselect',
-                    'default' => 'fitRows',
-                    'cols'    => 6,
-                    'options' => array(
-                            'basic'   => 'Basic (CSS only)',
-                            //          'fitRows'         => 'Fit rows',
-                            //          'fitColumns'      => 'Fit columns',
-                            'masonry' => 'Masonry (Pinterest-like)',
-                            //          'masonryVertical' => 'Masonry Vertical',
-                            //          'cellsByRow'      => 'Cells by row',
-                            //          'cellsByColumn'   => 'Cells by column',
-                            //          'vertical'    => 'Vertical',
-                            //          'horizontal'  => 'Horizontal',
+                    array(
+                            'id'    => $prefix . 'section-' . $i . '-title',
+                            'title' => __('Section ' . ($i + 1) . ' title (optional)', 'pzarc'),
+                            'type'  => 'text',
+                            'cols'  => 12,
                     ),
-                    //       'desc'    => __('Choose how you want the cells to display. With evenly sized cells, you\'ll see little difference. Please visit <a href="http://isotope.metafizzy.co/demos/layout-modes.html" target=_blank>Isotope Layout Modes</a> for demonstrations of these layouts', 'pzarc')
-            ),
-            array(
-                    'name'    => __('Panels to show', 'pzarc'),
-                    'id'      => $prefix . $i . '-blueprint-cells-per-view',
-                    'type'    => 'pzspinner',
-                    'default' => 0,
-                    'min'     => 0,
-                    'max'     => 99,
-                    'cols'    => 2,
-                    'desc'    => '0 for unlimited'
-            ),
-            array(
-                    'name'    => __('Panels across', 'pzarc'),
-                    'id'      => $prefix . $i . '-blueprint-cells-across',
-                    'type'    => 'pzspinner',
-                    'default' => 3,
-                    'min'     => 1,
-                    'cols'    => 2,
-                    'max'     => 999,
-            ),
-            array(
-                    'name'    => __('Minimum cell width', 'pzarc'),
-                    'id'      => $prefix . $i . '-blueprint-min-cell-width',
-                    'type'    => 'pzspinner',
-                    'alt'     => 'mincellw',
-                    'default' => 0,
-                    'min'     => '0',
-                    'max'     => 9999,
-                    'cols'    => 2,
-                    'step'    => '1',
-                    'suffix'  => 'px',
-                    //      'desc'    => __('Set the minimum width for sells in this section. This helps with responsive layout', 'pzarc')
-            ),
+                    array(
+                            'id'         => $prefix . 'section-' . $i . '-panel-layout',
+                            'title'      => __('Panels layout', 'pzarc'),
+                            'type'       => 'select',
+                            'cols'       => 6,
+                            'allow_none' => false,
+                            'options'    => $pzarc_panels_array
+                    ),
+                    array(
+                            'title'      => __('Layout mode', 'pzarc'),
+                            'id'         => $prefix . 'section-' . $i . '-layout-mode',
+                            'type'       => 'select',
+                            'default'    => 'fitRows',
+                            'allow_none' => false,
+                            'cols'       => 6,
+                            'options'    => array(
+                                    'basic'   => 'Basic (CSS only)',
+                                    //          'fitRows'         => 'Fit rows',
+                                    //          'fitColumns'      => 'Fit columns',
+                                    'masonry' => 'Masonry (Pinterest-like)',
+                                    //          'masonryVertical' => 'Masonry Vertical',
+                                    //          'panelsByRow'      => 'Panels by row',
+                                    //          'panelsByColumn'   => 'Panels by column',
+                                    //          'vertical'    => 'Vertical',
+                                    //          'horizontal'  => 'Horizontal',
+                            ),
+                            //       'subtitle'    => __('Choose how you want the panels to display. With evenly sized panels, you\'ll see little difference. Please visit <a href="http://isotope.metafizzy.co/demos/layout-modes.html" target=_blank>Isotope Layout Modes</a> for demonstrations of these layouts', 'pzarc')
+                    ),
+                    array(
+                            'title'    => __('Panels to show', 'pzarc'),
+                            'id'       => $prefix . 'section-' . $i . '-panels-per-view',
+                            'type'     => 'spinner',
+                            'default'  => 0,
+                            'min'      => 0,
+                            'max'      => 99,
+                            'cols'     => 2,
+                            'subtitle' => '0 for unlimited'
+                    ),
+                    array(
+                            'title'   => __('Columns', 'pzarc'),
+                            'id'      => $prefix . 'section-' . $i . '-columns',
+                            'subtitle'=>'Number of columns or panels across. Number of rows is calculated automatically.',
+                            'type'    => 'spinner',
+                            'default' => 3,
+                            'min'     => 1,
+                            'cols'    => 2,
+                            'max'     => 999,
+                    ),
+                    array(
+                            'title'   => __('Minimum panel width', 'pzarc'),
+                            'id'      => $prefix . 'section-' . $i . 'min-panel-width',
+                            'type'    => 'spinner',
+                            'alt'     => 'minpanelw',
+                            'default' => 0,
+                            'min'     => '0',
+                            'max'     => 9999,
+                            'cols'    => 2,
+                            'step'    => '1',
+                            'suffix'  => 'px',
+                            //      'subtitle'    => __('Set the minimum width for sells in this section. This helps with responsive layout', 'pzarc')
+                    ),
 
-            array(
-                    'name'    => __('Panels vertical margin', 'pzarc'),
-                    'id'      => $prefix . $i . '-blueprint-cells-vert-margin',
-                    'type'    => 'pzspinner',
-                    'alt'     => 'gutterv',
-                    'default' => '1',
-                    'min'     => '0',
-                    'max'     => '100',
-                    'cols'    => 3,
-                    'step'    => '1',
-                    'suffix'  => '%',
-                    //    'desc'    => __('Set the vertical gutter width as a percentage of the section width. The gutter is the gap between adjoining elements', 'pzarc')
-            ),
-            array(
-                    'name'    => __('Panels horizontal margin', 'pzarc'),
-                    'id'      => $prefix . $i . '-blueprint-cells-horiz-margin',
-                    'type'    => 'pzspinner',
-                    'alt'     => 'gutterh',
-                    'default' => '1',
-                    'min'     => '0',
-                    'max'     => '100',
-                    'cols'    => 3,
-                    'step'    => '1',
-                    'suffix'  => '%',
-                    //      'desc'    => __('Set the horizontal gutter width as a percentage of the section width. The gutter is the gap between adjoining elements', 'pzarc')
-            ),
-
-
-    );
-    $meta_boxes[ ] = array(
-            'title'    => 'Blueprint Section ' . ($i + 1),
-            'pages'    => 'arc-blueprints',
-            'context'  => 'normal',
-            'priority' => 'high',
-            'fields'   => $fields // An array of fields.
-    );
-  }
-
-  return $meta_boxes;
-}
-
-//add_filter('cmb_meta_boxes', 'pzarc_blueprint_pagination_metabox');
-function pzarc_blueprint_pagination_metabox($meta_boxes = array())
-{
-  // Need to redesign this into one layout that includes navigation positions
-  $prefix        = '_pzarc_';
-  $fields        = array(
-          array(
-                  'id'      => $prefix . 'blueprint-pager',
-                  'name'    => __('Pagination', 'pzarc'),
-                  'type'    => 'pzselect',
-                  'cols'    => 12,
-                  'default' => 'wppagination',
-                  'options' => array(
-                          'none'       => 'None',
-                          'names'      => 'Post names',
-                          'prevnext'   => 'Previous/Next',
-                          'wppagenavi' => 'PageNavi',
-                  )
-          ),
-          array(
-                  'id'      => $prefix . 'blueprint-pager-location',
-                  'name'    => __('Pagination location', 'pzarc'),
-                  'type'    => 'pzselect',
-                  'cols'    => 12,
-                  'default' => 'bottom',
-                  'options' => array(
-                          'bottom' => 'Bottom',
-                          'top'    => 'Top',
-                          'both'   => 'Both'
-                  )
-          ),
-          array(
-                  'id'      => $prefix . 'blueprint-posts-per-page',
-                  'name'    => __('Posts per page', 'pzarc'),
-                  'type'    => 'text',
-                  'cols'    => 12,
-                  'default' => 'Do we really need this? Can\'t we just use the total panels per section?',
-          ),
-  );
-  $meta_boxes[ ] = array(
-          'title'    => 'Blueprint Pagination',
-          'pages'    => 'arc-blueprints',
-          'context'  => 'side',
-          'priority' => 'default',
-          'fields'   => $fields // An array of fields.
-  );
-
-  return $meta_boxes;
-
-}
-
-//add_filter('cmb_meta_boxes', 'pzarc_blueprint_navigator_metabox');
-function pzarc_blueprint_navigator_metabox($meta_boxes = array())
-{
-  // Need to redesign this into one layout that includes navigation positions
-  $prefix        = '_pzarc_';
-  $fields        = array(
-
-          array(
-                  'id'      => $prefix . '-blueprint-navigation',
-                  'name'    => __('Navigator Type', 'pzarc'),
-                  'type'    => 'pzselect',
-                  'cols'    => 12,
-                  'default' => 'none',
-                  'options' => array(
-                          'none'          => 'None',
-                          'player'        => 'Media Player buttons',
-                          'titles'        => 'Titles (accordion)',
-                          'titles'        => 'Titles (tabbed)',
-                          'bullets'       => 'Bullets',
-                          'numbers'       => 'Numbers',
-                          'thumbs'        => 'Thumbnails',
-                          'thumbsbuttons' => 'Thumbnails + buttons'
-                  )
-          ),
-          array(
-                  'name'    => 'Navigator Position',
-                  'id'      => $prefix . '-blueprint-nav-pos',
-                  'type'    => 'pzselect',
-                  'cols'    => 6,
-                  'default' => 'bottom',
-                  'options' => array(
-                          'left'   => 'Left',
-                          'right'  => 'Right',
-                          'top'    => 'Top',
-                          'bottom' => 'Bottom',
-                  )
-          ),
-          array(
-                  'name'    => 'Navigator Location',
-                  'id'      => $prefix . '-blueprint-nav-loc',
-                  'type'    => 'pzselect',
-                  'cols'    => 6,
-                  'default' => 'outside',
-                  'options' => array(
-                          'inside'  => 'Inside',
-                          'outside' => 'Outside',
-                  )
-          ),
-          array(
-                  'name'    => 'Navigator Pager',
-                  'id'      => $prefix . '-blueprint-nav-loc',
-                  'type'    => 'pzselect',
-                  'cols'    => 6,
-                  'default' => 'none',
-                  'options' => array(
-                          'none'   => 'None',
-                          'hover'  => 'Hover over panels',
-                          'inline' => 'Inline with navigator'
-                  )
-          ),
-          array(
-                  'id'      => $prefix . 'blueprint-nav-items-visible',
-                  'name'    => __('Navigator items visible', 'pzarc'),
-                  'type'    => 'text',
-                  'cols'    => 6,
-                  'default' => 0,
-                  'desc'    => 'If zero, it will use the "Panels to show" value'
-          ),
-
-  );
-  $meta_boxes[ ] = array(
-          'title'    => 'Blueprint Navigator',
-          'pages'    => 'arc-blueprints',
-          'context'  => 'side',
-          'priority' => 'default',
-          'fields'   => $fields // An array of fields.
-  );
-
-  return $meta_boxes;
-
-}
-
-
-//add_filter('cmb_meta_boxes', 'pzarc_blueprint_settings_metabox');
-function pzarc_blueprint_settings_metabox($meta_boxes = array())
-{
-  $args = array(
-          'posts_per_page'   => -1,
-          'orderby'          => 'title',
-          'order'            => 'ASC',
-          'post_type'        => 'arc-contents',
-          'suppress_filters' => true);
-
-
-  $pzarc_criterias                    = get_posts($args);
-  $pzarc_criterias_array[ 'default' ] = 'Page default';
-  if (!empty($pzarc_criterias))
-  {
-    foreach ($pzarc_criterias as $pzarc_criteria)
-    {
-      $pzarc_criterias_array[ $pzarc_criteria->ID ] = (empty($pzarc_criteria->post_title) ? 'No title' : $pzarc_criteria->post_title);
-    }
-  }
-  $prefix = '_pzarc_';
-  $fields = array(
-    // array(
-    //         'id'      => $prefix . 'blueprint-criteria',
-    //         'name'    => __('Criteria', 'pzarc'),
-    //         'type'    => 'pzselect',
-    //         'cols'    => 12,
-    //         'default' => 'default',
-    //         'options' => $pzarc_criterias_array
-    // ),
-
-    array(
-            'name'    => 'Section 2',
-            'id'      => $prefix . '1-blueprint-section-enable',
-            'type'    => 'checkbox',
-            'cols'    => 6,
-            'default' => false
-    ),
-    array(
-            'name'    => 'Section 3',
-            'id'      => $prefix . '2-blueprint-section-enable',
-            'type'    => 'checkbox',
-            'cols'    => 6,
-            'default' => false
-    ),
-    array(
-            'name'    => 'Select what type of navigation to use',
-            'id'      => $prefix . 'blueprint-navigation',
-            'type'    => 'pzselect',
-            'default' => 'none',
-            'desc'    => 'Note: Navigator will only function when one section',
-            'options' => array(
-                    'none'       => 'None',
-                    'pagination' => 'Pagination',
-                    'navigator'  => 'Navigator'
+                    array(
+                            'title'   => __('Panels vertical margin', 'pzarc'),
+                            'id'      => $prefix . 'section-' . $i . 'panels-vert-margin',
+                            'type'    => 'spinner',
+                            'alt'     => 'gutterv',
+                            'default' => '1',
+                            'min'     => '0',
+                            'max'     => '100',
+                            'cols'    => 3,
+                            'step'    => '1',
+                            'suffix'  => '%',
+                            //    'subtitle'    => __('Set the vertical gutter width as a percentage of the section width. The gutter is the gap between adjoining elements', 'pzarc')
+                    ),
+                    array(
+                            'title'   => __('Panels horizontal margin', 'pzarc'),
+                            'id'      => $prefix . 'section-' . $i . 'panels-horiz-margin',
+                            'type'    => 'spinner',
+                            'alt'     => 'gutterh',
+                            'default' => '1',
+                            'min'     => '0',
+                            'max'     => '100',
+                            'cols'    => 3,
+                            'step'    => '1',
+                            'suffix'  => '%',
+                            //      'subtitle'    => __('Set the horizontal gutter width as a percentage of the section width. The gutter is the gap between adjoining elements', 'pzarc')
+                    ),
             )
-    ),
 
-  );
+    );
+  }
+  $sections[ ] = array(
+          'title'      => __('Pagination', 'pzarc'),
+          'show_title' => true,
+          'icon_class' => 'icon-large',
+          'icon'       => 'el-icon-chevron-right',
+          'fields'     => array(
 
-  $meta_boxes[ ] = array(
-          'title'    => 'Blueprint settings',
-          'pages'    => 'arc-blueprints',
-          'fields'   => $fields,
-          'context'  => 'side',
-          'priority' => 'high'
-
-  );
-
-  return $meta_boxes;
-}
-
-//add_filter('cmb_meta_boxes', 'pzarc_blueprints_help_metabox');
-function pzarc_blueprints_help_metabox($meta_boxes = array())
-{
-
-  $prefix = '_pzarc_blueprints_';
-
-  $fields        = array(
-          array(
-                  'name' => __('Layout', 'pzarc'),
-                  'id'   => $prefix . 'contents-filters-blueprints-layout-help-heading',
-                  'type' => 'title',
-          ),
-          array(
-                  'name' => __('Content Selection', 'pzarc'),
-                  'id'   => $prefix . 'contents-filters-blueprints-content-help-heading',
-                  'type' => 'title',
+                  array(
+                          'id'      => $prefix . 'pager',
+                          'title'   => __('Pagination', 'pzarc'),
+                          'type'    => 'button_set',
+                          'cols'    => 12,
+                          'default' => 'wppagination',
+                          'options' => array(
+                                  'none'       => 'None',
+                                  'names'      => 'Post names',
+                                  'prevnext'   => 'Previous/Next',
+                                  'wppagenavi' => 'PageNavi',
+                          )
+                  ),
+                  array(
+                          'id'      => $prefix . 'pager-location',
+                          'title'   => __('Pagination location', 'pzarc'),
+                          'type'    => 'button_set',
+                          'cols'    => 12,
+                          'default' => 'bottom',
+                          'options' => array(
+                                  'bottom' => 'Bottom',
+                                  'top'    => 'Top',
+                                  'both'   => 'Both'
+                          )
+                  ),
+                  array(
+                          'id'      => $prefix . 'posts-per-page',
+                          'title'   => __('Posts per page', 'pzarc'),
+                          'type'    => 'text',
+                          'cols'    => 12,
+                          'default' => 'Do we really need this? Can\'t we just use the total panels per section?',
+                  ),
           )
   );
+  $sections[ ] = array(
+          'title'      => __('Navigator', 'pzarc'),
+          'show_title' => true,
+          'icon_class' => 'icon-large',
+          'icon'       => 'el-icon-play-circle',
+          'fields'     => array(
+                  array(
+                          'id'         => $prefix . 'navigator',
+                          'title'      => __('Navigator Type', 'pzarc'),
+                          'type'       => 'select',
+                          'cols'       => 12,
+                          'default'    => 'none',
+                          'allow_none' => false,
+                          'options'    => array(
+                                  'none'          => 'None',
+                                  'player'        => 'Media Player buttons',
+                                  'titles'        => 'Titles (accordion)',
+                                  'titles'        => 'Titles (tabbed)',
+                                  'bullets'       => 'Bullets',
+                                  'numbers'       => 'Numbers',
+                                  'thumbs'        => 'Thumbnails',
+                                  'thumbsbuttons' => 'Thumbnails + buttons'
+                          )
+                  ),
+                  array(
+                          'title'   => 'Navigator Position',
+                          'id'      => $prefix . 'navigator-position',
+                          'type'    => 'button_set',
+                          'cols'    => 6,
+                          'default' => 'bottom',
+                          'options' => array(
+                                  'left'   => 'Left',
+                                  'right'  => 'Right',
+                                  'top'    => 'Top',
+                                  'bottom' => 'Bottom',
+                          )
+                  ),
+                  array(
+                          'title'   => 'Navigator Location',
+                          'id'      => $prefix . 'navigator-location',
+                          'type'    => 'button_set',
+                          'cols'    => 6,
+                          'default' => 'outside',
+                          'options' => array(
+                                  'inside'  => 'Inside',
+                                  'outside' => 'Outside',
+                          )
+                  ),
+                  array(
+                          'title'   => 'Navigator Pager',
+                          'id'      => $prefix . 'navigator-pager',
+                          'type'    => 'button_Set',
+                          'cols'    => 6,
+                          'default' => 'none',
+                          'options' => array(
+                                  'none'   => 'None',
+                                  'hover'  => 'Hover over panels',
+                                  'inline' => 'Inline with navigator'
+                          )
+                  ),
+                  array(
+                          'id'       => $prefix . 'navigator-items-visible',
+                          'title'    => __('Navigator items visible', 'pzarc'),
+                          'type'     => 'text',
+                          'cols'     => 6,
+                          'default'  => 0,
+                          'subtitle' => 'If zero, it will use the "Panels to show" value'
+                  ),
+
+
+          )
+  );
+  $sections[ ] = array(
+          'title'      => __('Wireframe Preview', 'pzarc'),
+          'show_title' => true,
+          'icon_class' => 'icon-large',
+          'icon'       => 'el-icon-th-large',
+          'fields'     => array(
+
+                  array(
+                          'title'    => 'Sections',
+                          'id'       => $prefix . 'sections-preview',
+                          'cols'     => 12,
+                          'type'     => 'code',
+                          'readonly' => false, // Readonly fields can't be written to by code! Weird
+                          'code'     => draw_sections_preview(),
+                  ),
+          )
+  );
+
+  $sections[ ] = array(
+          'title'      => 'Help',
+          'icon_class' => 'icon-large',
+          'icon'       => 'el-icon-info-sign',
+          'fields'     => array(
+
+                  array(
+                          'title' => __('Layout', 'pzarc'),
+                          'id'    => $prefix . 'help-layout',
+                          'type'  => 'info',
+                          'class' => 'plain',
+                          'desc'  => '<p>
+                              Fiant nulla claritatem processus vulputate quarta. Anteposuerit eodem habent parum id et. Notare mutationem facilisi nulla ut facer.
+                              </p>
+
+                              <p>
+                              Nam minim quis est typi nostrud. Et nunc in legere dignissim decima. Feugiat facilisi nulla lectores quod esse.
+                              </p>
+
+                              <p>
+                              Nostrud ipsum usus nam ut magna. Zzril nobis qui est nonummy in. Nonummy seacula dolore amet ipsum decima.
+                              </p>
+
+                              <p>
+                              Nibh cum lorem iriure laoreet ut. Nihil in vel diam sit iusto. Eorum tempor ea zzril dynamicus consuetudium.
+                              </p>
+
+                              <p>
+                              Ut at consectetuer blandit nibh in.
+                              </p>'
+
+                  )
+          )
+  );
+
   $meta_boxes[ ] = array(
-          'title'    => 'Blueprints Help',
-          'pages'    => 'arc-blueprints',
-          'fields'   => $fields,
-          'context'  => 'normal',
-          'priority' => 'low'
+          'id'         => 'blueprint-layout-settings',
+          'title'      => 'Layout Settings',
+          'post_types' => array('arc-blueprints'),
+          'sections'   => $sections,
+          'position'   => 'normal',
+          'priority'   => 'high',
+          'sidebar'    => false
 
   );
 
   return $meta_boxes;
-
 }
 
 
@@ -701,4 +568,480 @@ function draw_sections_preview()
 	';
 
   return $return_html;
+}
+
+add_action("redux/metaboxes/{$redux_opt_name}/boxes", 'pzarc_contents_metabox');
+function pzarc_contents_metabox($meta_boxes = array())
+{
+  $prefix      = 'content_general_';
+  $sections    = array();
+  $sections[ ] = array(
+          'title'      => 'Settings',
+          'icon_class' => 'icon-large',
+          'icon'       => 'el-icon-adjust-alt',
+          'fields'     => array(
+
+                  array(
+                          'title'    => __('Content source', 'pzarc'),
+                          'id'       => $prefix . 'content-source',
+                          'type'     => 'button_set',
+                          'default'  => 'defaults',
+                          'options'  => array(
+                                  'defaults' => 'Defaults',
+                                  'post'     => 'Posts',
+                                  'page'     => 'Pages',
+                                  'gallery'  => 'Galleries',
+                                  'slides'   => 'Slides',
+                                  //                          'images'      => 'Specific Images',
+                                  //                          'wpgallery'   => 'WP Gallery from post',
+                                  //                          'galleryplus' => 'GalleryPlus',
+                                  //                          'nggallery'   => 'NextGen',
+                                  //                        'widgets' => 'Widgets',
+                                  //                          'custom-code' => 'Custom code',
+                                  //                        'rss'     => 'RSS Feed',
+                                  'cpt'      => 'Custom Post Types'
+                          ),
+                          'subtitle' => 'todo: code all the js to show hide relevant sections'
+                  ),
+
+                  array(
+                          'title'   => __('Order by', 'pzarc'),
+                          'id'      => $prefix . 'orderby',
+                          'type'    => 'button_set',
+                          'default' => 'date',
+                          'cols'    => 6,
+                          'options' => array(
+                                  'date'  => 'Date',
+                                  'title' => 'Title',
+                          ),
+                  ),
+                  array(
+                          'title'   => __('Order direction', 'pzarc'),
+                          'id'      => $prefix . 'orderdir',
+                          'type'    => 'button_set',
+                          'default' => 'desc',
+                          'cols'    => 6,
+                          'options' => array(
+                                  'ASC'  => 'Ascending',
+                                  'DESC' => 'Descending',
+                          ),
+                  ),
+                  array(
+                          'title'    => __('Skip N posts', 'pzarc'),
+                          'id'       => $prefix . 'skip',
+                          'type'     => 'spinner',
+                          'min'      => 0,
+                          'max'      => 9999,
+                          'step'     => 1,
+                          'default'  => 0,
+                          'subtitle' => __('Note: Skipping breaks pagination. This is a known WordPress bug.', 'pzarc'),
+                  ),
+                  array(
+                          'title'   => __('Sticky posts first', 'pzarc'),
+                          'id'      => $prefix . 'sticky',
+                          'type'    => 'switch',
+                          'default' => false,
+                  ),
+          )
+  );
+
+  $prefix      = 'content_defaults_';
+  $sections[ ] = array(
+          'title'      => 'Defaults',
+          'required'   => array($prefix . 'content-source', 'equals', 'defaults'),
+          'icon_class' => 'icon-large',
+          'icon'       => 'el-icon-check',
+          'fields'     => array(
+                  array(
+                          'title'    => __('Defaults', 'pzarc'),
+                          'id'       => $prefix . 'defaults-heading',
+                          'type'     => 'info',
+                          'style'    => 'success',
+                          'subtitle' => 'When Default is selected, Architect will use whatever the default content for the page. e.g. the home page, category archives, search results etc'
+                  )
+          )
+  );
+  $prefix      = 'content_posts_';
+  $sections[ ] = array(
+          'title'      => 'Posts',
+          'required'   => array($prefix . 'content-source', 'equals', 'posts'),
+          'icon_class' => 'icon-large',
+          'icon'       => 'el-icon-list',
+          'fields'     => array(
+                  array(
+                          'title' => __('Categories', 'pzarc'),
+                          'id'    => $prefix . 'categories-heading',
+                          'type'  => 'section',
+                          'class' => ' heading',
+                  ),
+                  array(
+                          'title'       => __('Include categories', 'pzarc'),
+                          'id'          => $prefix . 'inc-cats',
+                          'type'        => 'select',
+                          'allow_none ' => true,
+                          'default'     => '',
+                          'cols'        => 3,
+                          'data'        => 'category',
+                          'multi'       => true
+                  ),
+                  array(
+                          'title'   => __('In ANY or ALL categories', 'pzarc'),
+                          'id'      => $prefix . 'all-cats',
+                          'type'    => 'button_set',
+                          'options' => array('any' => 'Any', 'all' => 'All'),
+                          'default' => 'any',
+                  ),
+                  array(
+                          'title'       => __('Exclude categories', 'pzarc'),
+                          'id'          => $prefix . 'exc-cats',
+                          'type'        => 'select',
+                          'default'     => '',
+                          'allow_none ' => true,
+                          'cols'        => 3,
+                          'data'        => 'category',
+                          'multi'       => true
+                  ),
+                  array(
+                          'title'   => __('Include sub-categories on archives', 'pzarc'),
+                          'id'      => $prefix . 'sub-cat-archives',
+                          'type'    => 'switch',
+                          'default' => true,
+                          'cols'    => 3,
+                  ),
+                  array(
+                          'title' => __('Tags', 'pzarc'),
+                          'id'    => $prefix . 'tags-heading',
+                          'type'  => 'section',
+                          'class' => ' heading',
+                  ),
+                  array(
+                          'title'       => __('Tags', 'pzarc'),
+                          'id'          => $prefix . 'inc-tags',
+                          'type'        => 'select',
+                          'allow_none ' => true,
+                          'default'     => '',
+                          'cols'        => 4,
+                          'data'        => 'tags',
+                          'multi'       => true
+                  ),
+                  array(
+                          'title'       => __('Exclude tags', 'pzarc'),
+                          'id'          => $prefix . 'exc-tags',
+                          'type'        => 'select',
+                          'default'     => '',
+                          'allow_none ' => true,
+                          'cols'        => 4,
+                          'data'        => 'tags',
+                          'multi'       => true
+                  ),
+                  array(
+                          'title' => __('Custom taxonomies', 'pzarc'),
+                          'id'    => $prefix . 'custom-taxonomies-heading',
+                          'type'  => 'section',
+                          'class' => ' heading',
+                  ),
+
+                  array(
+                          'title' => __('Other taxonomies', 'pzarc'),
+                          'id'    => $prefix . 'other-tax',
+                          'type'  => 'select',
+                          'data'  => 'taxonomies',
+                          'args' => array('_builtin'=>false)
+                  ),
+                  array(
+                          'title' => __('Other taxonomy tags', 'pzarc'),
+                          'id'    => $prefix . 'other-tax-tags',
+                          'type'  => 'text',
+                          'subtitle'=>'Enter a comma separated list of tags to filter by in the chosen custom taxonomy'
+                  ),
+                  array(
+                          'title'   => __('Taxonomies operator', 'pzarc'),
+                          'id'      => $prefix . 'tax-op',
+                          'type'    => 'button_set',
+                          'options' => array('all' => 'All', 'any' => 'Any'),
+                          'subtitle'=> 'Choose whether posts contain all or any of the taxonomies'
+                  ),
+                  //    array(
+                  //      'title' => __('Days to show', 'pzarc'),
+                  //      'id' => $prefix . 'days',
+                  //      'type' => 'text',
+                  //      'cols'=>6,
+                  //              //      'default' => 'All',
+                  //    ),
+                  //    array(
+                  //      'title' => __('Days to show until', 'pzarc'),
+                  //      'id' => $prefix . 'days-until',
+                  //      'type' => 'text',
+                  //      'cols'=>6,
+                  //
+                  //    ),
+                  array(
+                          'title'   => __('Authors', 'pzarc'),
+                          'id'      => $prefix . 'authors',
+                          'type'    => 'select',
+                          'data'    => 'callback',
+                          'args'    => array('pzarc_get_authors'),
+                          'default' => 'all',
+                  ),
+          )
+  );
+  //Pages
+  $prefix      = 'content_pages_';
+
+  $sections[ ] = array(
+          'title'      => 'Pages',
+          'icon_class' => 'icon-large',
+          'icon'       => 'el-icon-align-justify',
+          'fields'     => array(
+                  array(
+                          'title' => __('Pages', 'pzarc'),
+                          'id'    => $prefix . 'pages-heading',
+                          'type'  => 'section',
+                          'class' => ' heading',
+                  )
+          )
+  );
+
+  // Gallery
+  $prefix      = 'content_galleries_';
+  $sections[ ] = array(
+          'title'      => 'Galleries',
+          'icon_class' => 'icon-large',
+          'icon'       => 'el-icon-picture',
+          'fields'     => array(
+                  array(
+                          'title'    => __('Gallery source', 'pzarc'),
+                          'id'       => $prefix . 'gallery-source',
+                          'type'     => 'button_set',
+                          'default'  => 'images',
+                          'subtitle' => __('Can be overriden by shortcode e.g. [pzarc blueprint="mytemplate" ids="1,2,3,4,5"]', 'pzarc'),
+                          'options'  => array(
+                                  'images'      => 'Image Gallery',
+                                  'ids'         => 'Specific IDs',
+                                  'wpgallery'   => 'WP Galleries',
+                                  'postimages' => 'Post images',
+                                  'galleryplus' => 'GalleryPlus',
+                                  'nggallery'   => 'NextGen',
+                          )
+                  ),
+                  array(
+                          'title'    => __('Image Gallery', 'pzarc'),
+                          'id'       => $prefix . 'specific-images',
+                          'type'     => 'gallery',
+                          'required' => array($prefix . 'gallery-source', 'equals', 'images'),
+                  ),
+                  array(
+                          'title'    => __('Specific IDs', 'pzarc'),
+                          'id'       => $prefix . 'specific-ids',
+                          'type'     => 'text',
+                          'subtitle' => 'Enter a comma separated list of image ids',
+                          'required' => array($prefix . 'gallery-source', 'equals', 'ids')
+                  ),
+                  array(
+                          'title'    => __('WP Gallery', 'pzarc'),
+                          'id'       => $prefix . 'wp-post-gallery',
+                          'type'     => 'select',
+                          'data'     => 'callback',
+                          'args'     => array('pzarc_get_wp_galleries'),
+                          'subtitle' => 'Select a post with a gallery',
+                          'required' => array($prefix . 'gallery-source', 'equals', 'wpgallery')
+                  ),
+                  array(
+                          'title'    => __('Post iamges', 'pzarc'),
+                          'id'       => $prefix . 'wp-post-images',
+                          'type'     => 'select',
+                          'data'     => 'callback',
+                          'args'     => array('pzarc_get_wp_galleries'),
+                          'subtitle' => 'Select a post with images',
+                          'required' => array($prefix . 'gallery-source', 'equals', 'wpgallery')
+                  ),
+                  array(
+                          'title'    => __('GalleryPlus', 'pzarc'),
+                          'id'       => $prefix . 'galleryplus',
+                          'type'     => 'select',
+                          'data'     => 'callback',
+                          'args'     => array('pzarc_get_gp_galleries'),
+                          'subtitle' => 'Select a GalleryPlus gallery',
+                          'required' => array($prefix . 'gallery-source', 'equals', 'galleryplus')
+                  ),
+                  array(
+                          'title'    => __('NextGen Gallery', 'pzarc'),
+                          'id'       => $prefix . 'nggallery',
+                          'type'     => 'select',
+                          'data'     => 'callback',
+                          'args'     => array('pzarc_get_ng_galleries'),
+                          'subtitle' => (class_exists('P_Photocrati_NextGen') ? 'Enter NGG gallery name to use' : 'NextGen is not running on this site'),
+                          'required' => array($prefix . 'gallery-source', 'equals', 'nggallery')
+                  ),
+          )
+  );
+
+  //Custom post types
+  $prefix      = 'content_cpt_';
+  $sections[ ] = array(
+          'title'      => 'Custom Post Types',
+          'icon_class' => 'icon-large',
+          'icon'       => 'el-icon-wrench',
+          'fields'     => array(
+                  array(
+                          'title' => __('Custom Post Types', 'pzarc'),
+                          'id'    => $prefix . 'cpt-heading',
+                          'type'  => 'section',
+                          'class' => ' heading',
+                  )
+          )
+  );
+  // Slides
+  $prefix      = 'content_slides_';
+  $sections[ ] = array(
+          'title'      => 'Slides',
+          'icon_class' => 'icon-large',
+          'icon'       => 'el-icon-video',
+          'fields'     => array(
+                  array(
+                          'title' => __('Slides', 'pzarc'),
+                          'id'    => $prefix . 'slides-heading',
+                          'type'  => 'section',
+                          'class' => ' heading',
+                  )
+          )
+  );
+  $prefix      = 'content_help_';
+  $sections[ ] = array(
+          'title'      => 'Help',
+          'icon_class' => 'icon-large',
+          'icon'       => 'el-icon-info-sign',
+          'fields'     => array(
+
+                  array(
+                          'title' => __('Content Selection', 'pzarc'),
+                          'id'    => $prefix . 'help-content-selection',
+                          'type'  => 'info',
+                          'class' => 'plain',
+                          'desc'  => '<p>
+                              Fiant nulla claritatem processus vulputate quarta. Anteposuerit eodem habent parum id et. Notare mutationem facilisi nulla ut facer.
+                              </p>
+
+                              <p>
+                              Nam minim quis est typi nostrud. Et nunc in legere dignissim decima. Feugiat facilisi nulla lectores quod esse.
+                              </p>
+
+                              <p>
+                              Nostrud ipsum usus nam ut magna. Zzril nobis qui est nonummy in. Nonummy seacula dolore amet ipsum decima.
+                              </p>
+
+                              <p>
+                              Nibh cum lorem iriure laoreet ut. Nihil in vel diam sit iusto. Eorum tempor ea zzril dynamicus consuetudium.
+                              </p>
+
+                              <p>
+                              Ut at consectetuer blandit nibh in.
+                              </p>'
+
+                  )
+          )
+  );
+
+  $meta_boxes[ ] = array(
+          'id'         => 'content-selections',
+          'title'      => 'Content selections',
+          'post_types' => array('arc-blueprints'),
+          'sections'   => $sections,
+          'position'   => 'normal',
+          'priority'   => 'high',
+          'sidebar'    => false
+
+  );
+
+
+  return $meta_boxes;
+
+}
+
+
+function pzarc_get_ng_galleries()
+{
+  if (!class_exists('P_Photocrati_NextGen'))
+  {
+    return null;
+  }
+  global $ngg, $nggdb;
+  $results = array();
+
+
+  $ng_galleries = $nggdb->find_all_galleries('gid', 'asc', true, 0, 0, false);
+
+  if ($ng_galleries)
+  {
+    foreach ($ng_galleries as $gallery)
+    {
+      $results[ $gallery->gid ] = $gallery->title;
+    }
+  }
+
+  return $results;
+}
+
+function pzarc_get_gp_galleries()
+{
+  $post_types = get_post_types();
+  if (!isset($post_types[ 'gp_gallery' ]))
+  {
+    return null;
+  }
+  // Don't need to check for GPlus class coz we add the post type
+  // Get GalleryPlus galleries
+  $args    = array('post_type' => 'gp_gallery', 'numberposts' => -1, 'post_status' => null, 'post_parent' => null);
+  $albums  = get_posts($args);
+  $results = array();
+  if ($albums)
+  {
+    foreach ($albums as $post)
+    {
+      setup_postdata($post);
+      $results[ $post->ID ] = get_the_title($post->ID);
+    }
+  }
+
+  return $results;
+}
+
+function pzarc_get_wp_galleries()
+{
+
+  // Get galleries in posts and pages
+  $args    = array('post_type' => array('post', 'page'), 'numberposts' => -1, 'post_status' => null, 'post_parent' => null);
+  $albums  = get_posts($args);
+  $results = array();
+  if ($albums)
+  {
+    foreach ($albums as $post)
+    {
+      setup_postdata($post);
+      if (get_post_gallery($post->ID))
+      {
+        $results[ $post->ID ] = substr(get_the_title($post->ID), 0, 60);
+      }
+    }
+  }
+
+  return $results;
+
+
+}
+
+function pzarc_get_authors()
+{
+// Get authors
+  $userslist    = get_users();
+  $authors[ 0 ] = 'All';
+  foreach ($userslist as $author)
+  {
+    if (get_the_author_meta('user_level', $author->ID) >= 2)
+    {
+      $authors[ $author->ID ] = $author->display_name;
+    }
+  }
+
+  return $authors;
 }

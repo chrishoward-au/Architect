@@ -33,15 +33,15 @@
 }
 
 /*
-#xpzwp_arc-layouts-id ul#pzarc-meta-nav li.pzarc-meta-tab-title a span
+#xpzwp_arc-panels-id ul#pzarc-meta-nav li.pzarc-meta-tab-title a span
 {display:inline-block;
  padding:3px 0 0 0px;
 }
-#xpzwp_arc-layouts-id ul#pzarc-meta-nav li.pzarc-meta-tab-title a img {
+#xpzwp_arc-panels-id ul#pzarc-meta-nav li.pzarc-meta-tab-title a img {
 	float:right;
 	padding:0 0 0 1px;
 }
-#xpzwp_arc-layouts-id ul#pzarc-meta-nav li.pzarc-meta-tab-title a {
+#xpzwp_arc-panels-id ul#pzarc-meta-nav li.pzarc-meta-tab-title a {
 	right:0;
 }
 */
@@ -237,21 +237,21 @@ div.pzarc-dragsource {
   width: 100%;
 }
 
-#pzarc_pzarc-layouts-id ul#pzarc-meta-nav li.pzarc-meta-tab-title a span.pzarc_show_labels {
+#pzarc_pzarc-panels-id ul#pzarc-meta-nav li.pzarc-meta-tab-title a span.pzarc_show_labels {
   display: inline-block;
 }
 
-#pzarc_pzarc-layouts-id ul#pzarc-meta-nav.horizontal li.pzarc-meta-tab-title a img {
+#pzarc_pzarc-panels-id ul#pzarc-meta-nav.horizontal li.pzarc-meta-tab-title a img {
   float: left;
   padding-right: 0px;
 }
 
-#pzarc_pzarc-layouts-id ul#pzarc-meta-nav.vertical li.pzarc-meta-tab-title a img {
+#pzarc_pzarc-panels-id ul#pzarc-meta-nav.vertical li.pzarc-meta-tab-title a img {
   float: right;
   padding-left: 5px;
 }
 
-#pzarc_pzarc-layouts-id ul#pzarc-meta-nav li.pzarc-meta-tab-title a {
+#pzarc_pzarc-panels-id ul#pzarc-meta-nav li.pzarc-meta-tab-title a {
   right: 0;
   width: 100%;
 }
@@ -745,7 +745,7 @@ h2 a.xpzwp_head_links
 /* Settings styling */
 body.screen-arc-blueprints #side-sortables .postbox,
 body.screen-arc-contents #side-sortables .postbox,
-body.screen-arc-layouts #side-sortables .postbox {
+body.screen-arc-panels #side-sortables .postbox {
   background: #333;
   color: #ccc;
   border-color:#444;
@@ -755,7 +755,7 @@ body.screen-arc-layouts #side-sortables .postbox {
 }
 #redux-_architect-metabox-designer-settings .redux-main .form-table tr {border-bottom:none;}
 
-body.post-type-arc-layouts h3.hndle,
+body.post-type-arc-panels h3.hndle,
 body.post-type-arc-blueprints h3.hndle,
 body.post-type-arc-contents h3.hndle {
   color: #fff;
@@ -768,13 +768,13 @@ body.screen-arc-contents #side-sortables .handlediv,
 body.screen-arc-contents #message.updated.below-h2 a,
 body.screen-arc-blueprints #side-sortables .handlediv,
 body.screen-arc-blueprints #message.updated.below-h2 a,
-body.screen-arc-layouts #message.updated.below-h2 a,
-body.screen-arc-layouts #side-sortables .handlediv {
+body.screen-arc-panels #message.updated.below-h2 a,
+body.screen-arc-panels #side-sortables .handlediv {
   display: none;
 }
 
 body.screen-arc-blueprints #side-sortables .field-title,
-body.screen-arc-layouts #side-sortables .field-title,
+body.screen-arc-panels #side-sortables .field-title,
 .field.CMB_Checkbox label {
   font-size: 13px;
   color: #3e8eac;
@@ -786,16 +786,16 @@ body.screen-arc-blueprints #side-sortables select,
 body.screen-arc-contents #side-sortables input[type="text"],
 body.screen-arc-contents #side-sortables input[type="number"],
 body.screen-arc-contents #side-sortables select,
-body.screen-arc-layouts #side-sortables input[type="text"],
-body.screen-arc-layouts #side-sortables input[type="number"],
-body.screen-arc-layouts #side-sortables select {
+body.screen-arc-panels #side-sortables input[type="text"],
+body.screen-arc-panels #side-sortables input[type="number"],
+body.screen-arc-panels #side-sortables select {
   background: #555;
   color: #fff;
   border: none;
   border-radius: 0;
 }
 
-body.screen-arc-layouts #normal-sortables select,
+body.screen-arc-panels #normal-sortables select,
 body.screen-arc-contents #normal-sortables select,
 body.screen-arc-blueprints #normal-sortables select {
   background: #f4f4f4;
@@ -806,7 +806,7 @@ body.screen-arc-blueprints #normal-sortables select {
 
 body.screen-arc-blueprints #side-sortables select,
 body.screen-arc-contents #side-sortables select,
-body.screen-arc-layouts #side-sortables select {
+body.screen-arc-panels #side-sortables select {
   background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyNpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNS1jMDE0IDc5LjE1MTQ4MSwgMjAxMy8wMy8xMy0xMjowOToxNSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIChNYWNpbnRvc2gpIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOkVGQzUzN0I1NEY4OTExRTNBNkIyOTc4MDZBQjhCODQwIiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOkVGQzUzN0I2NEY4OTExRTNBNkIyOTc4MDZBQjhCODQwIj4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6QUE2OEJDNjI0QUJDMTFFM0E2QjI5NzgwNkFCOEI4NDAiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6RUZDNTM3QjQ0Rjg5MTFFM0E2QjI5NzgwNkFCOEI4NDAiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz63BXjiAAAAbklEQVR42mL8//8/AyWAcdQArAawA/EfIP6HRT0bVO4vPgPcgLgKqgjZEE4gPgfE1UD8GS4KMgANcwBxx39McBeIjdDVYzMAhmuRNF8GYg1s6vAZAMKtQHwOl2YQJhQLzEAsAMRvR1MiDQ0ACDAAM+fK4wDJEZAAAAAASUVORK5CYII=');
   background-repeat: no-repeat;
   background-position: right;
@@ -817,7 +817,7 @@ body.screen-arc-layouts #side-sortables select {
 
 body.screen-arc-blueprints #normal-sortables select,
 body.screen-arc-contents #normal-sortables select,
-body.screen-arc-layouts #normal-sortables select {
+body.screen-arc-panels #normal-sortables select {
   background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAICAYAAADN5B7xAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyNpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNS1jMDE0IDc5LjE1MTQ4MSwgMjAxMy8wMy8xMy0xMjowOToxNSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIChNYWNpbnRvc2gpIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOjJDRTM0NDA3NkQzNjExRTNCOTczQTIzN0VBMDMxMUM3IiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOjJDRTM0NDA4NkQzNjExRTNCOTczQTIzN0VBMDMxMUM3Ij4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6MkNFMzQ0MDU2RDM2MTFFM0I5NzNBMjM3RUEwMzExQzciIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6MkNFMzQ0MDY2RDM2MTFFM0I5NzNBMjM3RUEwMzExQzciLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz7yBBv7AAAAlUlEQVR42mL8//8/AymA5fDhw5xA+icQY9PJpqen94efn/8vTIARiOOAOBIkCcT/kBSDDDq3Z8+eamdn589wG4B4LRCrAHEtmun3gHgBMzPzZ1zOq4U6C4QvA7EGSHD//v0MIH/CMAuShmYg5gBiTyCOAuIbIMG/f/+ietrBwQGZXwfEfUD8FiYgLCyMooGR1GAFCDAA+9EubKwaKIsAAAAASUVORK5CYII=');
   background-repeat: no-repeat;
   background-position: right;
@@ -828,7 +828,7 @@ body.screen-arc-layouts #normal-sortables select {
 
 body.screen-arc-blueprints #submitdiv,
 body.screen-arc-contents #submitdiv,
-body.screen-arc-layouts #submitdiv { display: none; }
+body.screen-arc-panels #submitdiv { display: none; }
 
 /*  End settings styling */
 
@@ -972,23 +972,59 @@ color:#333;
 }
 
 /*
-body.post-type-arc-layouts .redux-main select,
-body.post-type-arc-layouts .redux-main .select_wrapper {
+body.post-type-arc-panels .redux-main select,
+body.post-type-arc-panels .redux-main .select_wrapper {
   width:auto;
 }
 */
 
-
-.redux-info-field.redux-normal.heading {
+#poststuff .heading h3, .metabox-holder .heading h3
+.redux-main .heading h3,
+.redux-sidebar .heading h3 {
   background:none;
-  border:none;
   padding:0;
+  margin-left:0;
   color:#3e8eac;
-
-}
-.redux-info-field.heading .redux-info-desc b {
   font-size:18px;
+
 }
 
 /* Remove this once Dovy fixes! */
-.redux_field_th span:first-child.showDefaults {display:none;}
+.post-type-arc-panels  .showDefaults,
+.post-type-arc-blueprints .showDefaults
+{display:none!important;}
+
+.post-type-arc-panels .redux-main .form-table tr,
+.post-type-arc-blueprints .redux-main .form-table tr
+{border:none;}
+
+.postbox .redux-container.redux-no-sections .redux-main tr td {
+  padding:5px!important;
+}
+
+.post-type-arc-panels .redux_field_th,
+.post-type-arc-blueprints .redux_field_th
+{
+  padding:10px 10px 10px 0;
+}
+.post-type-arc-panels .redux-main .redux-field-container,
+.post-type-arc-blueprints .redux-main .redux-field-container
+{padding:10px 0;}
+
+.post-type-arc-panels #misc-publishing-actions,
+.post-type-arc-blueprints #misc-publishing-actions,
+.post-type-arc-panels #minor-publishing-actions,
+.post-type-arc-blueprints #minor-publishing-actions
+{display:none;}
+
+.postbox-container .redux-main span.description {
+  font-size:12px;
+  color:#888;
+  font-style: italic;
+  margin: 0 0 10px;
+}
+
+#poststuff h3.redux-section-title, .metabox-holder h3.redux-section-title{
+  color:#3e8eac;
+  font-size:20px;
+}

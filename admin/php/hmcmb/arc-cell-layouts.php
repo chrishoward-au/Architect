@@ -54,9 +54,9 @@ class pzarc_Cell_Layouts
       wp_enqueue_script('jquery-ui-sortable');
       wp_enqueue_script('jquery-ui-resizable');
 
-      wp_enqueue_style('pzarc-admin-cells-css', PZARC_PLUGIN_URL . 'admin/css/arc-admin-cells.css');
+      wp_enqueue_style('pzarc-admin-cells-css', PZARC_PLUGIN_URL . 'admin/css/arc-admin-panels.css');
 
-      wp_enqueue_script('jquery-pzarc-metaboxes-cells', PZARC_PLUGIN_URL . 'admin/js/arc-metaboxes-cells.js', array('jquery'));
+      wp_enqueue_script('jquery-pzarc-metaboxes-cells', PZARC_PLUGIN_URL . 'admin/js/arc-metaboxes-panels.js', array('jquery'));
     }
   }
 

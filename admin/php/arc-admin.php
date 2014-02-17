@@ -38,9 +38,9 @@ class pzarcAdmin
 
       //@TODO: need a bit of screen dependency on this?
 //      require_once PZARC_PLUGIN_PATH . '/includes/class_pzarcForm.php';
-      require_once PZARC_PLUGIN_PATH . '/admin/php/redux/arc-cell-layouts.php';
-      require_once PZARC_PLUGIN_PATH . '/admin/php/redux/arc-data-selection.php';
+      require_once PZARC_PLUGIN_PATH . '/admin/php/redux/arc-panels-layouts.php';
       require_once PZARC_PLUGIN_PATH . '/admin/php/redux/arc-blueprints.php';
+      require_once PZARC_PLUGIN_PATH . '/admin/php/redux/arc-css-editor.php';
       require_once PZARC_PLUGIN_PATH . '/admin/php/arc-galleries.php';
       require_once PZARC_PLUGIN_PATH . '/admin/php/arc-slides.php';
 
@@ -58,8 +58,7 @@ class pzarcAdmin
 
       // @TODO Should these really be objects?
       // Initialise objects for data and setup menu items
-      $cell_layout       = new pzarc_Cell_Layouts;
-      $data_selection    = new pzarc_Contents;
+      $panel_layout       = new pzarc_Panels_Layouts;
       $content_blueprint = new pzarc_Blueprints;
       $galleries = new pzarc_Galleries;
       $slides = new pzarc_Slides;

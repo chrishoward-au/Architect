@@ -18,7 +18,7 @@ class pzarc_Display
   public $output = '';
   private $source_data = '';
   private $query_vars = '';
-  private $cell_info = '';
+  private $panel_info = '';
   private $blueprint = '';
   private $nav_links = array();
 //  private $css = '/* Architect CSS */';
@@ -60,8 +60,8 @@ class pzarc_Display
    *************************************************/
   function blueprint_header($blueprint_id)
   {
-    $this->output .= '<div id="pzarc-container-' . $this->blueprint[ '_pzarc_blueprint-short-name' ] . '" class="pzarc-container swiper-container pzarc-blueprint-' . $blueprint_id . '">';
-    if ($this->blueprint[ '_pzarc_blueprint-pager' ] != 'none' && ($this->blueprint[ '_pzarc_blueprint-pager-location' ] == 'top' || $this->blueprint[ '_pzarc_blueprint-pager-location' ] == 'both'))
+    $this->output .= '<div id="pzarc-container-' . $this->blueprint[ '_architect-blueprints_short-name' ] . '" class="pzarc-container swiper-container pzarc-blueprint-' . $blueprint_id . '">';
+    if ($this->blueprint[ '_architect-blueprints_pager' ] != 'none' && ($this->blueprint[ '_architect-blueprints_pager-location' ] == 'top' || $this->blueprint[ '_architect-blueprints_pager-location' ] == 'both'))
     {
       $this->output .= '{{pager}}';
     }
@@ -84,7 +84,7 @@ class pzarc_Display
    *************************************************/
   function blueprint_footer()
   {
-    if ($this->blueprint[ '_pzarc_blueprint-pager' ] != 'none' && ($this->blueprint[ '_pzarc_blueprint-pager-location' ] == 'bottom' || $this->blueprint[ '_pzarc_blueprint-pager-location' ] == 'both'))
+    if ($this->blueprint[ '_architect-blueprints_pager' ] != 'none' && ($this->blueprint[ '_architect-blueprints_pager-location' ] == 'bottom' || $this->blueprint[ '_architect-blueprints_pager-location' ] == 'both'))
     {
       $this->output .= '{{pager}}';
     }
@@ -104,7 +104,7 @@ class pzarc_Display
    *************************************************/
   function build_query($the_criteria, $overrides = null)
   {
-    if ($this->blueprint[ '_pzarc_contents-content-source' ] == 'default')
+    if ($this->blueprint[ '_architect-content_general_content-source' ] == 'default')
     {
       //don't change nuttin!
       // Do we need to check page type? Single etc?
@@ -115,17 +115,17 @@ class pzarc_Display
       //build the new query
       //Lot of work!
       //     var_dump($the_criteria);
-      switch ($the_criteria[ '_pzarc_contents-content-source' ])
+      switch ($the_criteria[ '_architect-content_general_content-source' ])
       {
 
         case 'post':
           $this->query_vars[ 'post_type' ]    = 'post';
-          $this->query_vars[ 'category__in' ] = (!empty($the_criteria[ '_pzarc_posts_contents-inc-cats' ]) ? $the_criteria[ '_pzarc_posts_contents-inc-cats' ] : null);
+          $this->query_vars[ 'category__in' ] = (!empty($the_criteria[ '_architect-content_posts_inc-cats' ]) ? $the_criteria[ '_architect-content_posts_inc-cats' ] : null);
           break;
         // could we build this into the cell def or somewhere else so more closely tied to the content type stuff
         case 'gallery':
           $this->query_vars[ 'post_type' ]           = 'attachment';
-          $this->query_vars[ 'post__in' ]            = (!empty($the_criteria[ '_pzarc_contents-specific-images' ]) ? $the_criteria[ '_pzarc_contents-specific-images' ] : null);
+          $this->query_vars[ 'post__in' ]            = (!empty($the_criteria[ '_architect_content_galleries-specific-images' ]) ? $the_criteria[ '_architect_content_galleries-specific-images' ] : null);
           $this->query_vars[ 'post_status' ]         = array('publish', 'inherit', 'private');
           $this->query_vars[ 'ignore_sticky_posts' ] = true;
           break;
@@ -190,9 +190,9 @@ class pzarc_Display
 
 //     pzdebug((array)$this->pzarc_out);
     // Get the criteria
-//    $the_criteria = get_post_meta($pzarc_blueprint[ '_pzarc_blueprint-criteria' ], null, true);
+//    $the_criteria = get_post_meta($pzarc_blueprint[ '_architect_blueprints-criteria' ], null, true);
 //var_dump($this->blueprint);
-    if ($this->blueprint[ '_pzarc_contents-content-source' ] == 'default' && !$is_shortcode)
+    if ($this->blueprint[ '_architect_content-content-source' ] == 'default' && !$is_shortcode)
     {
       // We never want tocome in here for a short code???? That doesn't sound right! :P
 
@@ -217,7 +217,7 @@ class pzarc_Display
 
       // Determine the content type the post type so we canget the right cell def (this could be anything from posts, to images to NGG, to RSS
 
-      $content_type = $this->blueprint[ '_pzarc_contents-content-source' ];
+      $content_type = $this->blueprint[ '_architect_content-content-source' ];
 
       $this->build_query($this->blueprint, $overrides);
 // no matter what happens, somewhere we've got to preserve the original query!
@@ -261,7 +261,7 @@ class pzarc_Display
       {
         $section_info = $this->blueprint[ 'section' ][ $key ];
         // load up the cell's css for this section
-        $cellid = $this->blueprint[ '_pzarc_' . $key . '-blueprint-section-cell-layout' ];
+        $cellid = $this->blueprint[ '_architect_blueprints-section-' . $key . '-cell-layout' ];
         //var_dump($section_info);
         if (!empty($this->blueprint[ 'blueprint-id' ]))
         {
@@ -319,7 +319,7 @@ class pzarc_Display
           $this->output .= ($key == 0) ? '{{nav-left-outside}}' : null;
 
           // Add the section nav
-          if ($pzarc_blueprint[ '_pzarc_blueprint-navigation' ] != 'none')
+          if ($pzarc_blueprint[ '_architect_blueprints-navigation' ] != 'none')
           {
             $this->output = str_replace('{{nav-' . $pzarc_blueprint[ '_pzarc_' . $key . '-blueprint-nav-pos' ] . '-' . $pzarc_blueprint[ '_pzarc_' . $key . '-blueprint-nav-loc' ] . '}}', $this->add_nav(), $this->output);
           }
@@ -668,9 +668,9 @@ class pzarc_Display
 
     $pager = '';
 
-    $this->blueprint[ '_pzarc_blueprint-pager' ] = ($this->blueprint[ '_pzarc_blueprint-pager' ] == 'wppagenavi' && !function_exists('wp_pagenavi') ? 'prevnext' : $this->blueprint[ '_pzarc_blueprint-pager' ]);
+    $this->blueprint[ '_architect_blueprints-pager' ] = ($this->blueprint[ '_architect_blueprints-pager' ] == 'wppagenavi' && !function_exists('wp_pagenavi') ? 'prevnext' : $this->blueprint[ '_architect_blueprints-pager' ]);
 
-    switch ($this->blueprint[ '_pzarc_blueprint-pager' ])
+    switch ($this->blueprint[ '_architect_blueprints-pager' ])
     {
       case 'names':
         $pager = '<div class="pzarc-pager nav-links">';
@@ -783,10 +783,10 @@ class pzarc_Display
    *************************************************/
   function get_source($criteria, $overrides = null)
   {
-    switch ($criteria[ '_pzarc_contents-content-source' ])
+    switch ($criteria[ '_architect_content-content-source' ])
     {
       case 'images' :
-        $this->source_data = $criteria[ '_pzarc_contents-specific-images' ];
+        $this->source_data = $criteria[ '_architect_content-specific-images' ];
         break;
       case 'posts' :
         break;
