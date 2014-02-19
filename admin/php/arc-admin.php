@@ -54,7 +54,7 @@ class pzarcAdmin
 
 
 
-      require_once PZARC_PLUGIN_PATH . '/external/php/redux-framework/sample/sample-config.php';
+      require_once PZARC_PLUGIN_PATH . '/admin/php/admin-options/sample/sample-config.php';
 
       // @TODO Should these really be objects?
       // Initialise objects for data and setup menu items
@@ -240,5 +240,4 @@ class pzarc_Options {
 
 }
 new pzarc_Options();
-
 

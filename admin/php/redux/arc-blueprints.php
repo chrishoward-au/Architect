@@ -240,8 +240,8 @@ function pzarc_blueprint_general($meta_boxes = array())
 add_action("redux/metaboxes/{$redux_opt_name}/boxes", 'pzarc_blueprint_layout');
 function pzarc_blueprint_layout($meta_boxes = array())
 {
-  $prefix      = 'blueprints_';
-  $sections    = array();
+  $prefix   = 'blueprints_';
+  $sections = array();
 
 
   $args = array(
@@ -320,18 +320,18 @@ function pzarc_blueprint_layout($meta_boxes = array())
                             'subtitle' => '0 for unlimited'
                     ),
                     array(
-                            'title'   => __('Columns', 'pzarc'),
-                            'id'      => $prefix . 'section-' . $i . '-columns',
-                            'subtitle'=>'Number of columns or panels across. Number of rows is calculated automatically.',
-                            'type'    => 'spinner',
-                            'default' => 3,
-                            'min'     => 1,
-                            'cols'    => 2,
-                            'max'     => 999,
+                            'title'    => __('Columns', 'pzarc'),
+                            'id'       => $prefix . 'section-' . $i . '-columns',
+                            'subtitle' => 'Number of columns or panels across. Number of rows is calculated automatically.',
+                            'type'     => 'spinner',
+                            'default'  => 3,
+                            'min'      => 1,
+                            'cols'     => 2,
+                            'max'      => 999,
                     ),
                     array(
                             'title'   => __('Minimum panel width', 'pzarc'),
-                            'id'      => $prefix . 'section-' . $i . 'min-panel-width',
+                            'id'      => $prefix . 'section-' . $i . '-min-panel-width',
                             'type'    => 'spinner',
                             'alt'     => 'minpanelw',
                             'default' => 0,
@@ -345,7 +345,7 @@ function pzarc_blueprint_layout($meta_boxes = array())
 
                     array(
                             'title'   => __('Panels vertical margin', 'pzarc'),
-                            'id'      => $prefix . 'section-' . $i . 'panels-vert-margin',
+                            'id'      => $prefix . 'section-' . $i . '-panels-vert-margin',
                             'type'    => 'spinner',
                             'alt'     => 'gutterv',
                             'default' => '1',
@@ -358,7 +358,7 @@ function pzarc_blueprint_layout($meta_boxes = array())
                     ),
                     array(
                             'title'   => __('Panels horizontal margin', 'pzarc'),
-                            'id'      => $prefix . 'section-' . $i . 'panels-horiz-margin',
+                            'id'      => $prefix . 'section-' . $i . '-panels-horiz-margin',
                             'type'    => 'spinner',
                             'alt'     => 'gutterh',
                             'default' => '1',
@@ -428,14 +428,14 @@ function pzarc_blueprint_layout($meta_boxes = array())
                           'default'    => 'none',
                           'allow_none' => false,
                           'options'    => array(
-                                  'none'          => 'None',
-                                  'player'        => 'Media Player buttons',
-                                  'titles'        => 'Titles (accordion)',
-                                  'titles'        => 'Titles (tabbed)',
-                                  'bullets'       => 'Bullets',
-                                  'numbers'       => 'Numbers',
-                                  'thumbs'        => 'Thumbnails',
-                                  'thumbsbuttons' => 'Thumbnails + buttons'
+                                  'none'             => 'None',
+                                  'player'           => 'Media Player buttons',
+                                  'titles-accordion' => 'Titles (accordion)',
+                                  'titles-tabbed'    => 'Titles (tabbed)',
+                                  'bullets'          => 'Bullets',
+                                  'numbers'          => 'Numbers',
+                                  'thumbs'           => 'Thumbnails',
+                                  'thumbs-buttons'   => 'Thumbnails + buttons'
                           )
                   ),
                   array(
@@ -746,20 +746,20 @@ function pzarc_contents_metabox($meta_boxes = array())
                           'id'    => $prefix . 'other-tax',
                           'type'  => 'select',
                           'data'  => 'taxonomies',
-                          'args' => array('_builtin'=>false)
+                          'args'  => array('_builtin' => false)
                   ),
                   array(
-                          'title' => __('Other taxonomy tags', 'pzarc'),
-                          'id'    => $prefix . 'other-tax-tags',
-                          'type'  => 'text',
-                          'subtitle'=>'Enter a comma separated list of tags to filter by in the chosen custom taxonomy'
+                          'title'    => __('Other taxonomy tags', 'pzarc'),
+                          'id'       => $prefix . 'other-tax-tags',
+                          'type'     => 'text',
+                          'subtitle' => 'Enter a comma separated list of tags to filter by in the chosen custom taxonomy'
                   ),
                   array(
-                          'title'   => __('Taxonomies operator', 'pzarc'),
-                          'id'      => $prefix . 'tax-op',
-                          'type'    => 'button_set',
-                          'options' => array('all' => 'All', 'any' => 'Any'),
-                          'subtitle'=> 'Choose whether posts contain all or any of the taxonomies'
+                          'title'    => __('Taxonomies operator', 'pzarc'),
+                          'id'       => $prefix . 'tax-op',
+                          'type'     => 'button_set',
+                          'options'  => array('all' => 'All', 'any' => 'Any'),
+                          'subtitle' => 'Choose whether posts contain all or any of the taxonomies'
                   ),
                   //    array(
                   //      'title' => __('Days to show', 'pzarc'),
@@ -786,7 +786,7 @@ function pzarc_contents_metabox($meta_boxes = array())
           )
   );
   //Pages
-  $prefix      = 'content_pages_';
+  $prefix = 'content_pages_';
 
   $sections[ ] = array(
           'title'      => 'Pages',
@@ -819,7 +819,7 @@ function pzarc_contents_metabox($meta_boxes = array())
                                   'images'      => 'Image Gallery',
                                   'ids'         => 'Specific IDs',
                                   'wpgallery'   => 'WP Galleries',
-                                  'postimages' => 'Post images',
+                                  'postimages'  => 'Post images',
                                   'galleryplus' => 'GalleryPlus',
                                   'nggallery'   => 'NextGen',
                           )

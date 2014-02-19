@@ -3,8 +3,8 @@ Contributors: nohalfpixels, ghost1227, dovyp, kprovance
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=N5AD7TSH8YA5U
 Tags: admin, admin interface, options, theme options, plugin options, options framework, settings
 Requires at least: 3.5.1
-Tested up to: 3.8
-Stable tag: 3.1.5
+Tested up to: 3.8.1
+Stable tag: 3.1.6
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -36,17 +36,18 @@ It is hard to continue development and support for this free plugin without cont
 
 = Fields Types =
 
+* Background
 * Border
 * Button Set
-* Background
 * Checkbox / Multi-Check
 * Color (WordPress Native)
-* Gradient
+* Color Gradient
+* Color RGBA
 * Date
 * Dimensions (Height/Width)
+* Divider
 * Editor (WordPress Native)
 * Gallery (WordPress Native)
-* Group (Repeatable/Non-Repeatable)
 * Image Select (Patterns/Presets)
 * Info (Header)
 * Link Color
@@ -54,9 +55,12 @@ It is hard to continue development and support for this free plugin without cont
 * Multi-Text
 * Password
 * Radio (w/ WordPress Data)
+* Raw
+* Section
 * Select (Select/Multi-Select w/ Select2 & WordPress Data)
 * Select Image
 * Slider
+* Slides
 * Sortable (Drag/Drop Checkbox/Input Fields)
 * Sorter (Drag/Drop Manager - Works great for content blocks)
 * Spacing (Margin/Padding/Absolute)
@@ -141,40 +145,46 @@ That's because the real FAQ section is on our site! Please visit [http://reduxfr
 
 == Changelog ==
 
-= 3.1.5.15 =
-* Fixed: Default color in border field not saving properly.
-* Fixed: hex2rgba in class.redux_helpers.php changed to static.
+= 3.1.7 =
+* Fixed:    Servers returning forwards slashes in TEMPLATEPATH, while Redux is installed embedded would not show options menu.
+* Fixed:    On and Off for switch field not displaying language translation.
+* Fixed:    email validation allowing a blank field.
+* Added:    Dismiss option to admin notices (internal function)
 
-= 3.1.5.14 =
-* Fixed: 'sortable' field type not saving options as default.
+= 3.1.6.2 =
+* Fixed:    On and Off for switch field not displaying language translation.
+* Fixed:    email validation allowing a blank field.
 
-= 3.1.5.12 =
-* Specified default color not set when clicking the color box default button.
+= 3.1.6.1 =
+* Added:    Dismiss option to admin notices (internal function)
 
-= 3.1.5.11 =
-* Removed wp_get_current_user check.  See https://github.com/ReduxFramework/ReduxFramework/wiki/How-to-fix-%22Fatal-error%3A-Call-to-undefined-function-wp_get_current_user%28%29-%22
-* Sorter field options are now saved as default in database.
-
-= 3.1.5.10 =
-* Fixed issues with checkboxes displaying default values instead of labels.
-
-= 3.1.5.9 =
-* Fixed outstanding render issues with spacing field.
-
-= 3.1.5.8 =
-* Fixed plgins using Redux from load failure.
-
-= 3.1.5.7 =
-* Fixed 'not_empty' field validation.
-
-= 3.1.5.6 =
-* Changed media field 'read-only' to 'readonly' to vonform to HTML standards.
-
-= 3.1.5.5 =
-* Media field fix.
-
-= 3.1.5.4 =
-* Added 'read-only' option for media text field.
+= 3.1.6 =
+* Fixed:    CSS spacing issue
+* Fixed:    Customizer now works and doesn't break other customizer fields outside of Redux.
+* Fixed:    Several minor bug fixes
+* Added:    Metabox support via extension http://reduxframework.com/extensions/
+* Added:    Admin-bar menu
+* Fixed:    Section field now folds.
+* Fixed:    wp_content_dir path now handles double forward slashes.
+* Fixed:    Typography field missing italics in Google fonts.
+* Fixed:    Default color in border field not saving properly.
+* Fixed:    hex2rgba in class.redux_helpers.php changed to static.
+* Fixed:    'sortable' field type not saving options as default.
+* Fixed:    Specified default color not set when clicking the color box default button.
+* Fixed:    Sorter field options are now saved as default in database.
+* Fixed:    Issues with checkboxes displaying default values instead of labels.
+* Fixed:    Outstanding render issues with spacing field.
+* Fixed:    Plugins using Redux from load failure.
+* Fixed:    'not_empty' field validation.
+* Fixed:    Media field.
+* Added:    'read-only' option for media text field.
+* Added:    'mode' option to image_select, so CSS output element may be specified.
+* Added:    Admin Bar menu for option panel.
+* Modified: media field 'read-only' to 'readonly' to vonform to HTML standards.
+* Modified: Removed raw_align field and added align option to raw field. See wiki for more info.
+* Removed:  EDD extension. It never belonged in Core and will be re-released as a downloadable extension shortly
+* Removed:  Group field, temporarily.
+* Removed:  wp_get_current_user check.  See https://github.com/ReduxFramework/ReduxFramework/wiki/How-to-fix-%22Fatal-error%3A-Call-to-undefined-function-wp_get_current_user%28%29-%22
 
 = 3.1.5 =
 * Typography font arrays may not contain comma spaces.

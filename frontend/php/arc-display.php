@@ -13,11 +13,12 @@ require PZARC_PLUGIN_PATH . '/frontend/php/arcPanelDefinitions.php';
 require_once(PZARC_PLUGIN_PATH . '/external/php/jo-image-resizer/jo_image_resizer.php');
 
 
-add_action('init','pzarc_display_init');
-function pzarc_display_init() {
-  wp_register_script('js-arc-frontjs',PZARC_PLUGIN_URL.'/frontend/js/arc-front.js', array('jquery'));
-  wp_register_script('js-swiperjs',PZARC_PLUGIN_URL.'/external/js/swiper/idangerous.swiper.js');
-  wp_register_style('css-swiperjs',PZARC_PLUGIN_URL.'/external/js/swiper/idangerous.swiper.css');
+add_action('init', 'pzarc_display_init');
+function pzarc_display_init()
+{
+  wp_register_script('js-arc-frontjs', PZARC_PLUGIN_URL . '/frontend/js/arc-front.js', array('jquery'));
+  wp_register_script('js-swiperjs', PZARC_PLUGIN_URL . '/external/js/swiper/idangerous.swiper.js');
+  wp_register_style('css-swiperjs', PZARC_PLUGIN_URL . '/external/js/swiper/idangerous.swiper.css');
 
   wp_enqueue_script('js-arc-frontjs');
   wp_enqueue_script('js-swiperjs');
@@ -34,36 +35,54 @@ function pzarc_get_the_blueprint($blueprint)
 
   global $wp_query;
   $original_query = $wp_query;
-  $blueprint_info = new WP_Query('post_type=arc-blueprints&meta_key=_architect-blueprints_short-name&meta_value=' . $blueprint);
-  var_dump($blueprint_info);
+//  $blueprint_info = new WP_Query('post_type=arc-blueprints&meta_key=_architect-blueprints_short-name&meta_value=' . $blueprint);
+
+  $meta_query_args = array(
+          'post_type'    => 'arc-blueprints',
+          'meta_key'     => '_architect',
+          'meta_value'   => '"'.$blueprint.'"',
+          'meta_compare' => 'LIKE'
+  );
+  $blueprint_info  = new WP_Query($meta_query_args);
+
   if (!isset($blueprint_info->posts[ 0 ]))
   {
     echo '<p class="pzarc-oops">Architect Blueprint <strong>' . $blueprint . '</strong> not found</p>';
 
     return null;
   }
-  $the_blueprint_meta = get_post_meta($blueprint_info->posts[ 0 ]->ID, null, true);
+  $the_blueprint_meta = get_post_meta($blueprint_info->posts[ 0 ]->ID, '_architect', true);
 
-  $pzarc_blueprint = pzarc_flatten_wpinfo($the_blueprint_meta);
+  // $pzarc_blueprint = pzarc_flatten_wpinfo($the_blueprint_meta);
+  $pzarc_blueprint = $the_blueprint_meta;
   //
-  $pzarc_blueprint['blueprint-id']          = $blueprint_info->posts[ 0 ]->ID;
+  $pzarc_blueprint[ 'blueprint-id' ] = $blueprint_info->posts[ 0 ]->ID;
+
 
   $pzarc_blueprint[ 'section' ][ 0 ] =
           array(
-                  'section-enable'             => true,
-                  'section-panel-settings'      => pzarc_flatten_wpinfo(get_post_meta($pzarc_blueprint[ '_architect-blueprints_section-0-panel-layout' ])),
+                  'section-enable'         => true,
+                  'section-panel-settings' => get_post_meta($pzarc_blueprint[ 'blueprints_section-0-panel-layout' ], '_architect', true),
           );
+
+  if (!isset($pzarc_blueprint[ 'section' ][ 0 ][ 'section-panel-settings' ]))
+  {
+    echo '<p class="pzarc-oops">No Panel Layout assigned.</p>';
+
+    return null;
+  }
   $pzarc_blueprint[ 'section' ][ 1 ] =
           array(
-                  'section-enable'             => !empty($pzarc_blueprint[ '_architect-blueprints_section-1-enable' ]),
-                  'section-panel-settings'      => (!empty($pzarc_blueprint[ '_architect-blueprints_section-1-enable' ])?pzarc_flatten_wpinfo(get_post_meta($pzarc_blueprint[ '_architect-blueprints_section-1-panel-layout' ])):null),
+                  'section-enable'         => !empty($pzarc_blueprint[ 'blueprints_section-1-enable' ]),
+                  'section-panel-settings' => (!empty($pzarc_blueprint[ 'blueprints_section-1-enable' ]) ? pzarc_flatten_wpinfo(get_post_meta($pzarc_blueprint[ 'blueprints_section-1-panel-layout' ])) : null),
           );
   $pzarc_blueprint[ 'section' ][ 2 ] =
           array(
-                  'section-enable'             => !empty($pzarc_blueprint[ '_architect-blueprints_section-2-enable' ]),
-                  'section-panel-settings'      => (!empty($pzarc_blueprint[ '_architect-blueprints_section-2-enable' ])?pzarc_flatten_wpinfo(get_post_meta($pzarc_blueprint[ '_architect-blueprints_section-2-panel-layout' ])):null),
+                  'section-enable'         => !empty($pzarc_blueprint[ 'blueprints_section-2-enable' ]),
+                  'section-panel-settings' => (!empty($pzarc_blueprint[ 'blueprints_section-2-enable' ]) ? pzarc_flatten_wpinfo(get_post_meta($pzarc_blueprint[ 'blueprints_section-2-panel-layout' ])) : null),
           );
 
+  pzdebug($pzarc_blueprint);
 
   return $pzarc_blueprint;
 }
@@ -83,7 +102,10 @@ function pzarc_flatten_wpinfo($array_in)
   $array_out = array();
   foreach ($array_in as $key => $value)
   {
-    if ($key=='_edit_lock' || $key=='_edit_last') {continue;}
+    if ($key == '_edit_lock' || $key == '_edit_last')
+    {
+      continue;
+    }
     if (is_array($value))
     {
       $array_out[ $key ] = $value;
@@ -124,12 +146,13 @@ function pzarc_shortcode($atts, $content = null, $tag)
 /***********************
  * Template tag
  ***********************/
-function pzarchitect($pzarc_blueprint = null, $pzarc_overrides = null){
+function pzarchitect($pzarc_blueprint = null, $pzarc_overrides = null)
+{
   pzarc($pzarc_blueprint, $pzarc_overrides, false);
 }
 
 /***********************
-/* Blueprint main display function */
+ * /* Blueprint main display function */
 /* Overrides is a list of ids */
 function pzarc($pzarc_blueprint = null, $pzarc_overrides = null, $is_shortcode = false)
 {
@@ -167,12 +190,15 @@ function pzarc_get_comments($pzarc_content)
 }
 
 // Add body class by filter
-add_filter('body_class','add_pzarc_class');
-function add_pzarc_class($classes) {
+add_filter('body_class', 'add_pzarc_class');
+function add_pzarc_class($classes)
+{
   // add 'class-name' to the $classes array
-  if (!in_array('pzarchitect', $classes)) {
-    $classes[] = 'pzarchitect';
+  if (!in_array('pzarchitect', $classes))
+  {
+    $classes[ ] = 'pzarchitect';
   }
+
   // return the $classes array
   return $classes;
 }

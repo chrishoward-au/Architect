@@ -136,7 +136,10 @@ if ( !class_exists( 'ReduxFramework_extension_metaboxes' ) ) {
             }
 
             // Check to see if we are using rewrite rules
-            $rewrite = $wp_rewrite->wp_rewrite_rules();
+            if ( isset( $wp_rewrite ) ) {
+                $rewrite = $wp_rewrite->wp_rewrite_rules();    
+            }
+            
 
             // Not using rewrite rules, and 'p=N' and 'page_id=N' methods failed, so we're out of options
             if ( empty( $rewrite ) ) {
@@ -176,7 +179,7 @@ if ( !class_exists( 'ReduxFramework_extension_metaboxes' ) ) {
             }
 
             // Strip 'index.php/' if we're not using path info permalinks
-            if ( !$wp_rewrite->using_index_permalinks() ) {
+            if ( isset( $wp_rewrite ) && !$wp_rewrite->using_index_permalinks() ) {
                 $url = str_replace('index.php/', '', $url);
             }
 
@@ -276,7 +279,6 @@ if ( !class_exists( 'ReduxFramework_extension_metaboxes' ) ) {
                 if ( !empty($query->posts) && $query->is_singular )
                     return $query->post->ID;
                 else {
-
                     return 0;
                 }
                         
@@ -286,19 +288,15 @@ if ( !class_exists( 'ReduxFramework_extension_metaboxes' ) ) {
             return 0;
         }                 
 
-        public function _override_values($options) {
+        public function _override_values( $options ) {
             global $post, $wp_query;
-            $url = explode('?', 'http://'.$_SERVER["HTTP_HOST"] . $_SERVER["REQUEST_URI"]);
-
+            
             if ( is_admin() ) {
                 return $options;
             }
 
             $post_id = $this->url_to_postid( 'http://'.$_SERVER["HTTP_HOST"] . $_SERVER["REQUEST_URI"] );
-            
-            if ( empty( $post_id ) ) {
-                //$post_id = url_to_postid($url[0]);
-            }
+           
             if ( empty( $post_id ) ) {
                 return $options;
             }            
@@ -408,7 +406,8 @@ if ( !class_exists( 'ReduxFramework_extension_metaboxes' ) ) {
                     $data = $this->parent->options_defaults[$field_id]; 
                 }
                 return $data;                                               
-            }     
+            } 
+
         } // _field_default()
 
         function generate_boxes($post, $metabox) {
@@ -426,7 +425,7 @@ if ( !class_exists( 'ReduxFramework_extension_metaboxes' ) ) {
             }
 
             $data = get_post_meta( $post->ID, $this->parent->args['opt_name'], true );
-            
+//print_r($data);
             ?>
 
             <div class="redux-container<?php echo ( $sidebar ) ? ' redux-has-sections' : ' redux-no-sections'; ?> redux-box-<?php echo $metabox['args']['position']; ?>">
@@ -514,7 +513,11 @@ if ( !class_exists( 'ReduxFramework_extension_metaboxes' ) ) {
                                 } else {
                                     $updateLocalize = $this->update_localize( $field, $data, $updateLocalize );
                                 }
-                                    
+                                
+                                if (!isset($data[$field['id']])) {
+                                    $data[$field['id']] = "";
+                                }
+                                
                                 $this->parent->_field_input($field, $data[$field['id']]);
                                 echo '</td></tr>';
                             }
@@ -605,7 +608,6 @@ if ( !class_exists( 'ReduxFramework_extension_metaboxes' ) ) {
                 }
                 if (!isset( $this->parent->options[$key] ) || ( isset( $this->parent->options[$key] ) && $this->parent->options[$key] != $value ) ) {
                     $toSave[$key] = $value;
-
                     $toCompare[$key] = isset($this->parent->options[$key]) ? $this->parent->options[$key] : "";
                 }
             }
@@ -629,7 +631,7 @@ if ( !class_exists( 'ReduxFramework_extension_metaboxes' ) ) {
                                         if (class_exists("ReduxFramework_{$field['type']}")) {
 
 
-                                            echo "VALIDATE";    
+                                            //echo "VALIDATE";    
                                         }
                                         
                                     }
@@ -639,10 +641,10 @@ if ( !class_exists( 'ReduxFramework_extension_metaboxes' ) ) {
                     }       
                 }                
             }
-            //print_r($toSave);
-            //exit();
+
             /* OK, its safe for us to save the data now. */
             update_post_meta( $post_id, $this->parent->args['opt_name'], $toSave );
+            
         } // meta_boxes_save()
         
 

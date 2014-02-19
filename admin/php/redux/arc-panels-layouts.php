@@ -69,7 +69,7 @@ class pzarc_Panels_Layouts
 
       wp_enqueue_style('pzarc-admin-panels-css', PZARC_PLUGIN_URL . 'admin/css/arc-admin-panels.css');
 
-      //    wp_enqueue_script('jquery-pzarc-metaboxes-panels', PZARC_PLUGIN_URL . 'admin/js/arc-metaboxes-panels.js', array('jquery'));
+      wp_enqueue_script('jquery-pzarc-metaboxes-panels', PZARC_PLUGIN_URL . 'admin/js/arc-metaboxes-panels.js', array('jquery'));
     }
   }
 
@@ -228,6 +228,43 @@ function pzarc_cell_general_settings($meta_boxes = array())
                 'subtitle' => __('A short name for this panel layout to identify it.', 'pzarc'),
                 'type'  => 'text',
         ),
+        array(
+                'title'   => __('Panel Height Type', 'pzarc'),
+                'id'      => $prefix . 'panel-height-type',
+                'cols'    => 6,
+                'type'    => 'button_set',
+                'default' => 'fluid',
+                'options' => array(
+                        'fluid' => 'Fluid',
+                        'fixed' => 'Fixed',
+                ),
+                'subtitle'   => __('Choose whether to set the height of the panels (fixed), or allow them to adjust to the content height (fluid).', 'pzarc')
+        ),
+        // Hmm? How's this gunna sit with the min-height in templates?
+        // We will want to use this for image height cropping when behind.
+        array(
+                'title'   => __('Panel Height px', 'pzarc'),
+                'id'      => $prefix . 'panel-height',
+                'type'    => 'spinner',
+                'default' => '350',
+                'min'     => '0',
+                'step'    => '1',
+                'class'  => ' pixels',
+                'subtitle'   => __('If using fixed height, set height for the panel.', 'pzarc'),
+                'required'=>array($prefix . 'panel-height-type','equals','fixed')
+        ),
+        array(
+                'title'   => __('Components Height px', 'pzarc'),
+                'id'      => $prefix . 'components-height',
+                'type'    => 'spinner',
+                'width'   => '100%',
+                'default' => '100',
+                'min'     => '0',
+                'step'    => '1',
+                'class'  => ' pixels',
+                'subtitle'   => __('If using fixed height, set height for the components area.', 'pzarc'),
+                'required'=>array($prefix . 'panel-height-type','equals','fixed')
+        ),
 ),
 //          array(
 //                  'name'    => 'Save panel',
@@ -314,7 +351,7 @@ function pzarc_panels_settings($meta_boxes = array())
                                                             'custom1' => array('width' => 100, 'show' => false),
                                                             'custom2' => array('width' => 100, 'show' => false),
                                                             'custom3' => array('width' => 100, 'show' => false))),
-                          'desc'    => __('Drag and drop to sort the order of your elements. Heights are fluid in panels, so not indicative of how it will look on the page.', 'pzarc')
+                          'subtitle'    => __('Drag and drop to sort the order of your elements. Heights are fluid in panels, so not indicative of how it will look on the page.', 'pzarc')
                   ),
                   // OMG!! The multiselect is working and I don't know why!!
                   array(
@@ -417,46 +454,6 @@ function pzarc_panels_settings($meta_boxes = array())
                           'subtitle'   => __('Set the overall width for the components area. Necessary for left or right positioning of sections', 'pzarc'),
                           //      'help'    => __('Note:The sum of the width and the left/right nudge should equal 100', 'pzarc')
                   ),
-                  array(
-                          'title'   => __('Panel Height Type', 'pzarc'),
-                          'id'      => $prefix . 'panel-height-type',
-                          'cols'    => 6,
-                          'type'    => 'button_set',
-                          'default' => 'fluid',
-                          'options' => array(
-                                  'fluid' => 'Fluid',
-                                  'fixed' => 'Fixed',
-                          ),
-                          'subtitle'   => __('Choose whether to set the height of the panels (fixed), or allow them to adjust to the content height (fluid).', 'pzarc')
-                  ),
-                  // Hmm? How's this gunna sit with the min-height in templates?
-                  // We will want to use this for image height cropping when behind.
-                  array(
-                          'title'   => __('Panel Height px', 'pzarc'),
-                          'id'      => $prefix . 'panel-height',
-                          'type'    => 'spinner',
-                          'default' => '350',
-                          'min'     => '0',
-                          'step'    => '1',
-                          'class'  => ' pixels',
-                          'subtitle'   => __('If using fixed height, set height for the panel.', 'pzarc'),
-                          'required'=>array($prefix . 'panel-height-type','equals','fixed')
-                  ),
-                  array(
-                          'title'   => __('Components Height px', 'pzarc'),
-                          'id'      => $prefix . 'components-height',
-                          'type'    => 'spinner',
-                          'width'   => '100%',
-                          'default' => '100',
-                          'min'     => '0',
-                          'step'    => '1',
-                          'class'  => ' pixels',
-                          'subtitle'   => __('If using fixed height, set height for the components area.', 'pzarc'),
-                          'required'=>array($prefix . 'panel-height-type','equals','fixed')
-                  ),
-
-
-
 
           )
   );
@@ -969,8 +966,8 @@ function draw_cell_layout()
         <span class="pzarc-draggable pzarc-draggable-custom3 pzarc-draggable-meta" title="Custom field 3" data-idcode=custom3 ><span>Custom content 3</span></span>
       </div>
 	  </div>
-	  <p class="pzarc-states pzcentred">Loading</p>
-	  <p class="howto pzcentred"><strong style="color:#d00;">This is an example only and thus only a <span style="border-bottom: 3px double;">general guide</span> to how the panels will look.</strong></p>
+	  <p class="pzarc-states ">Loading</p>
+	  <p class="howto "><strong style="color:#d00;">This is an example only and thus only a <span style="border-bottom: 3px double;">general guide</span> to how the panels will look.</strong></p>
 	</div>
 	<div class="plugin_url" style="display:none;">' . PZARC_PLUGIN_URL . '</div>
 	';

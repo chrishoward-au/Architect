@@ -116,7 +116,7 @@ div.pzarc-dragsource {
 .pzarc-content-area {
   position: absolute;
   background: rgba(182, 168, 147, .5);
-  border:solid 2px #553311;
+  border:solid 2px #A89B8E;
   box-sizing:border-box;
 }
 
@@ -1028,3 +1028,5 @@ body.post-type-arc-panels .redux-main .select_wrapper {
   color:#3e8eac;
   font-size:20px;
 }
+
+
