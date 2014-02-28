@@ -1,7 +1,7 @@
 <?php
 
 
-class ReduxFramework_typography extends ReduxFramework {
+class ReduxFramework_typography {
 
     private $std_fonts = array(
         "Arial, Helvetica, sans-serif"                          => "Arial, Helvetica, sans-serif",
@@ -64,6 +64,7 @@ class ReduxFramework_typography extends ReduxFramework {
             'subsets' => true,
             'font-weight' => true,
             'font-style' => true,
+            'text-align' => true,
             'font-backup' => false,
             'color' => true,
             'preview' => true,
@@ -79,6 +80,7 @@ class ReduxFramework_typography extends ReduxFramework {
             'font-family'=>'',
             'font-options'=>'',
             'font-backup'=>'',
+            'text-align'=>'',
             'line-height'=>'',
             'word-spacing' => '',
             'letter-spacing' => '',
@@ -113,10 +115,12 @@ class ReduxFramework_typography extends ReduxFramework {
         }
         $unit = $this->field['units'];
 
-		if ($this->field['font-family'] === true):
-        
-	        echo '<div id="'.$this->field['id'].'" class="redux-typography-container" data-id="'.$this->field['id'].'" data-units="'.$unit.'">';
 
+            echo '<div id="'.$this->field['id'].'" class="redux-typography-container" data-id="'.$this->field['id'].'" data-units="'.$unit.'">';
+
+		        if ($this->field['font-family'] === true) {
+        
+	        
     	        /**
     	        Font Family
     	         **/
@@ -188,8 +192,8 @@ class ReduxFramework_typography extends ReduxFramework {
               	// Set a flag so we know to set a header style or not
                   echo '<input type="hidden" class="redux-typography-google'.$this->field['class'].'" id="'.$this->field['id'].'-google" name="' . $this->field['name'] . '[google]' . $this->field['name_suffix'] . '" type="text" value="'. $this->field['google'] .'" data-id="'.$this->field['id'].'" />';            
               }
-
-            endif;
+            }
+            
 
 
 
@@ -226,7 +230,7 @@ class ReduxFramework_typography extends ReduxFramework {
             /**
             Font Script
              **/
-            if ($this->field['subsets'] === true && $this->field['google'] === true):
+            if ( $this->field['font-family'] === true && $this->field['subsets'] === true && $this->field['google'] === true ):
                 echo '<div class="select_wrapper typography-script tooltip" original-title="'.__('Font subsets','redux-framework').'">';
                 echo '<select data-placeholder="'.__('Subsets','redux-framework').'" class="redux-typography redux-typography-subsets'.$this->field['class'].'" original-title="'.__('Font script','redux-framework').'"  id="'.$this->field['id'].'-subsets" name="' . $this->field['name'] . '[subsets]' . $this->field['name_suffix'] . '" data-value="'.$this->value['subsets'].'" data-id="'.$this->field['id'].'" >';
                 if (empty($this->value['subsets'])) {
@@ -276,6 +280,25 @@ class ReduxFramework_typography extends ReduxFramework {
             endif;
 
             
+            /**
+            Font Script
+             **/
+            if ( $this->field['text-align'] === true ):
+                echo '<div class="select_wrapper typography-align tooltip" original-title="'.__('Text Align','redux-framework').'">';
+                echo '<select data-placeholder="'.__('Text Align','redux-framework').'" class="redux-typography redux-typography-align'.$this->field['class'].'" original-title="'.__('Text Align','redux-framework').'"  id="'.$this->field['id'].'-align" name="' . $this->field['name'] . '[text-align]' . $this->field['name_suffix'] . '" data-value="'.$this->value['text-align'].'" data-id="'.$this->field['id'].'" >';
+                echo '<option value=""></option>';
+                $align = array(
+                  'inherit', 'left', 'right', 'center', 'justify', 'initial'
+                );
+                
+                foreach ($align as $v) {
+                    echo '<option value="'. $v .'" ' . selected($this->value['text-align'], $v, false) . '>'. ucfirst( $v ) .'</option>';
+                }
+            
+                echo '</select></div>';
+
+            endif;
+
             /**
             Backup Font
              **/
@@ -411,6 +434,46 @@ class ReduxFramework_typography extends ReduxFramework {
       return '//fonts.googleapis.com/css?family='.$link;
 
     }
+
+    /**
+     * makeGoogleWebfontString Function.
+     *
+     * Creates the google fonts link.
+     *
+     * @since ReduxFramework 3.1.8
+     */
+    function makeGoogleWebfontString($fonts) {
+      $link = "";
+      $subsets = array();
+      foreach($fonts as $family=>$font) {
+        if (!empty($link)) {
+          $link .= "', '"; // Append a new font to the string
+        }
+        $link .= $family;
+
+        if ( !empty( $font['font-style'] ) ) {
+            $link .= ':';
+            if ( !empty($font['all-styles']) ) {
+                $link .= implode(',', $font['all-styles']);
+            } else if ( !empty($font['font-style'] ) ) {
+                $link .= implode(',', $font['font-style']);
+            }
+        }
+        if ( !empty( $font['subset'] ) ) {
+          foreach($font['subset'] as $subset) {
+            if ( !in_array( $subset, $subsets) ) {
+              array_push($subsets, $subset);
+            }  
+          }
+        }
+      }
+      if (!empty($subsets)) {
+        $link .= "&amp;subset=".implode(',', $subsets);
+      }
+
+      return "'".$link."'";
+
+    }    
 
     function output() {
 

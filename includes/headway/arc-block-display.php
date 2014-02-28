@@ -166,9 +166,8 @@ class HeadwayArchitectBlock extends HeadwayBlockAPI
 	function content($block)
 	{
 		global $wp_query;
-		//The third argument in the following function is the default that will be returned if the setting is not present in the database
 		$settings = HeadwayArchitectBlockOptions::get_settings($block);
-//pzdebug($settings['pzarc-blueprint']);
+
 		echo pzarc($settings[ 'pzarc-blueprint' ]);
 
 		return;

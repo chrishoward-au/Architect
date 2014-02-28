@@ -984,9 +984,15 @@ body.post-type-arc-panels .redux-main .select_wrapper {
   background:none;
   padding:0;
   margin-left:0;
-  color:#3e8eac;
-  font-size:18px;
+  color:#2EA2CC;
+  font-size:16px;
 
+}
+
+body.admin-color-midnight #poststuff .heading h3, .metabox-holder .heading h3
+body.admin-color-midnight .redux-main .heading h3,
+body.admin-color-midnight .redux-sidebar .heading h3 {
+  color:#69A8BB;
 }
 
 /* Remove this once Dovy fixes! */
@@ -1024,9 +1030,62 @@ body.post-type-arc-panels .redux-main .select_wrapper {
   margin: 0 0 10px;
 }
 
-#poststuff h3.redux-section-title, .metabox-holder h3.redux-section-title{
-  color:#3e8eac;
+#poststuff h3.redux-section-title,
+.metabox-holder h3.redux-section-title{
+  color:#0074A2;
   font-size:20px;
+  padding-left:0;
 }
 
+body.admin-color-midnight #poststuff h3.redux-section-title,
+body.admin-color-midnight .metabox-holder h3.redux-section-title{
+  color:#E14D43;
+}
 
+.redux-main span.architect-help  {
+  float:right;
+  color:#ccc!important;
+  cursor:help;
+ }
+
+.architect-tips .tipsy-inner{
+  background-color: #f9edbe;
+  color: #444;
+  outline: 1px solid #f0c36d;
+  box-shadow: 0 0 5px rgba(0,0,0,0.3);
+  text-align: left;
+  padding:10px;
+  line-height:150%;
+}
+.architect-tips .tipsy-arrow-e,
+{
+  border-bottom-color: #ffff99;
+}
+.architect-tips.tipsy{
+  font-size: 12px;
+}
+
+.redux-container-tabbed ul,
+.redux-container-tabbed  {
+  padding:0!important;
+  margin:0;
+}
+
+.redux-no-sections .redux-main {margin-left:0;border-left:none;min-height:0;}
+
+#redux-_architect-metabox-panels_tabs_panels .redux-container,
+#redux-_architect-metabox-panels_tabs_panels .redux-main {
+  padding:0;
+  border:none;
+  box-shadow:none;
+  background:none;
+}
+
+.redux-multi-text li:first-child a.redux-multi-text-remove {display:none;}
+
+input[readonly],
+input[readonly]:focus,
+input[readonly]:hover,
+input[readonly]:active
+
+{border:none;background:#eee;box-shadow:none;}

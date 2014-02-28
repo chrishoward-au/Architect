@@ -16,7 +16,7 @@
  *
  * @package     ReduxFramework
  * @author      Dovy Paukstys (dovy)
- * @version     1.0.6
+ * @version     1.0.8
  */
 
 // Exit if accessed directly
@@ -30,7 +30,10 @@ if ( !class_exists( 'ReduxFramework_extension_metaboxes' ) ) {
      *
      * @since       1.0.0
      */
-    class ReduxFramework_extension_metaboxes extends ReduxFramework {
+    class ReduxFramework_extension_metaboxes {
+
+        static $version = "1.1.3";
+
         public $boxes = array();
         public $sections = array();
         private $parent;
@@ -72,12 +75,12 @@ if ( !class_exists( 'ReduxFramework_extension_metaboxes' ) ) {
             add_action( 'pre_post_update', array( $this, 'pre_post_update' ) ); 
             add_action( 'admin_notices', array( $this, 'meta_boxes_show_errors' ) );  
             add_filter( "redux/options/{$this->parent->args['opt_name']}/global_variable", array( $this, '_override_values' ) ); 
-            add_action( 'admin_enqueue_scripts', array( $this, '_enqueue' ) ); 
+            add_action( 'admin_enqueue_scripts', array( $this, '_enqueue' ), 0 ); 
 
         } // __construct()
 
         public function _enqueue() {
-            
+
             global $pagenow;
             
             $types = array();
@@ -98,21 +101,37 @@ if ( !class_exists( 'ReduxFramework_extension_metaboxes' ) ) {
                 }
             }  
 
+
             if ( $pagenow == "post-new.php" || $pagenow == "post.php" ) {
 
-                if ( ( isset( $_GET['post_type'] ) && in_array( $_GET['post_type'], $types ) ) || ( !isset( $_GET['post_type'] ) || empty( $_GET['post_type'] ) && in_array('post', $types) ) ) {
+                if ( ( isset( $_GET['post_type'] ) && in_array( $_GET['post_type'], $types ) ) || ( empty( $_GET['post_type'] ) && in_array( 'post', $types ) ) ) {
+                    $this->parent->_enqueue();
+                    do_action( "redux/metaboxes/{$this->parent->args['opt_name']}/enqueue" );
+
                     /**
                      * Redux metaboxes CSS
-                     * filter 'redux/page/{opt_name}/enqueue/jquery-ui-css'
+                     * filter 'redux/page/{opt_name}/enqueue/redux-extension-metaboxes-css'
                      * @param string  bundled stylesheet src
                      */
                     wp_enqueue_style(
                         'redux-extension-metaboxes-css',
-                        apply_filters( "redux/metaboxes/{$this->args['opt_name']}/enqueue/redux-extension-metaboxes-css", $this->_extension_url . 'extension_metaboxes.css' ),
+                        apply_filters( "redux/metaboxes/{$this->parent->args['opt_name']}/enqueue/redux-extension-metaboxes-css", $this->_extension_url . 'extension_metaboxes.css' ),
                         '',
                         filemtime( $this->_extension_dir . 'extension_metaboxes.css' ), // todo - version should be based on above post-filter src
                         'all'
                     );
+                    /**
+                     * Redux metaboxes JS
+                     * filter 'redux/page/{opt_name}/enqueue/redux-extension-metaboxes-js
+                     * @param string  bundled javscript
+                     */
+                    wp_enqueue_script(
+                        'redux-extension-metaboxes-js',
+                        apply_filters( "redux/metaboxes/{$this->parent->args['opt_name']}/enqueue/redux-extension-metaboxes-js", $this->_extension_url . 'extension_metaboxes.js' ),
+                        '',
+                        filemtime( $this->_extension_dir . 'extension_metaboxes.js' ), // todo - version should be based on above post-filter src
+                        'all'
+                    );                    
                 }
 
             }
@@ -289,6 +308,7 @@ if ( !class_exists( 'ReduxFramework_extension_metaboxes' ) ) {
         }                 
 
         public function _override_values( $options ) {
+
             global $post, $wp_query;
             
             if ( is_admin() ) {
@@ -307,13 +327,10 @@ if ( !class_exists( 'ReduxFramework_extension_metaboxes' ) ) {
             if ( empty( $this->meta ) ) {
                 $this->meta = get_post_meta( $post_id, $this->parent->args['opt_name'], true );    
             }
-            foreach ( $this->options_defaults as $key=>$value ) {
-                if ( isset( $this->meta[$key] ) ) {
-                    $options[$key] = $this->meta[$key];  
-                } else {
-                    $options[$key] = $value;
-                }
-            }
+            // Add the defaults to the current meta
+            $meta = wp_parse_args( $this->meta, $this->options_defaults );
+            // Override the global defaults
+            $options = wp_parse_args($meta, $options);
 
             return $options;
 
@@ -337,7 +354,7 @@ if ( !class_exists( 'ReduxFramework_extension_metaboxes' ) ) {
                     }       
                 }
             }
-            $this->options_defaults = apply_filters( 'redux/metabox/'.$this->args['opt_name'].'/defaults', $this->options_defaults );
+            $this->options_defaults = apply_filters( 'redux/metabox/'.$this->parent->args['opt_name'].'/defaults', $this->options_defaults );
         } // _default_values()
 
 
@@ -423,14 +440,14 @@ if ( !class_exists( 'ReduxFramework_extension_metaboxes' ) ) {
             if ( $metabox['args']['position'] == "side" || count($sections) == 1 || ( isset( $metabox['args']['sidebar'] ) && $metabox['args']['sidebar'] === false ) ) {
                 $sidebar = false; // Show the section dividers or not
             }
-
+            //$this->parent->options = wp_parse_args(get_post_meta( $post->ID, $this->parent->args['opt_name'], true ), $this->parent->options);
             $data = get_post_meta( $post->ID, $this->parent->args['opt_name'], true );
 //print_r($data);
             ?>
 
             <div class="redux-container<?php echo ( $sidebar ) ? ' redux-has-sections' : ' redux-no-sections'; ?> redux-box-<?php echo $metabox['args']['position']; ?>">
                 <?php 
-                echo '<a href="javascript:void(0);" class="expand_options hide" style="display:none;">' . __( 'Expand', $this->args['domain'] ) . '</a>';
+                echo '<a href="javascript:void(0);" class="expand_options hide" style="display:none;">' . __( 'Expand', 'redux-framework' ) . '</a>';
                 if ( $sidebar ) { ?>
                     <div class="redux-sidebar">
                         <ul class="redux-group-menu">
@@ -483,7 +500,9 @@ if ( !class_exists( 'ReduxFramework_extension_metaboxes' ) ) {
                                 // TITLE
                                 // Show if various
                                 // 
-                                $th .= $this->parent->get_default_output_string($field); // Get the default output string if set
+                                if ( $this->parent->args['default_show'] === true && isset( $field['default'] ) && isset($this->options) && isset( $data[$field['id']] ) && $data[$field['id']] != $field['default'] && $field['type'] !== "info" && $field['type'] !== "group" && $field['type'] !== "section" && $field['type'] !== "editor" && $field['type'] !== "ace_editor" ) {
+                                    $th .= $this->parent->get_default_output_string($field); // Get the default output string if set    
+                                }
 
                                 if ( $sidebar ) {
                                     if ( !( isset( $metabox['args']['sections'] ) && count( $metabox['args']['sections'] ) == 1 && isset( $metabox['args']['sections'][0]['fields'] ) && count( $metabox['args']['sections'][0]['fields'] ) == 1 ) && isset( $field['title'] ) ) {
@@ -494,6 +513,12 @@ if ( !class_exists( 'ReduxFramework_extension_metaboxes' ) ) {
                                     //<i style="float:right; " class="elusive el-icon-address-book"></i>  //hints for right metaboxes
                                     echo '<td>'.$th.'';
                                 }
+                                /*
+                                if ($field['id'] == "layout") {
+                                    print_r($field);        
+                                    exit();
+                                }
+                                */
 
                                 // Set the default if it's a new field
                                 $default = $this->_field_default( $field['id'] );
@@ -547,17 +572,55 @@ if ( !class_exists( 'ReduxFramework_extension_metaboxes' ) ) {
             // Update the localization info
             $field_class = 'ReduxFramework_'.$field['type'];
 
-            if (class_exists( $field_class ) ) {
-                if (method_exists( $field_class, 'localize' )) {
-                    if ( empty( $this->localize_data ) ) {
-                        $this->localize_data = $this->parent->localize_data;
-                    }
-                    $this->localize_data[$field['type']][$field['id']] = $field_class::localize($field, $data[$field['id']]);
-                    if ( !isset( $this->parent->localize_data[$field['type']][$field['id']] ) || $this->localize_data[$field['type']][$field['id']] != $this->parent->localize_data[$field['type']][$field['id']] ) {
-                        $updateLocalize = true;    
-                    }
+            if( !class_exists( $field_class ) ) {
+
+                if ( !isset( $field['compiler'] ) ) {
+                    $field['compiler'] = "";
                 }
+
+                 /**
+                 * Field class file
+                 * 
+                 * filter 'redux/{opt_name}/field/class/{field.type}
+                 * @param string        field class file
+                 * @param array $field  field config data
+                 */
+                $class_file = apply_filters( "redux/{$this->parent->args['opt_name']}/field/class/{$field['type']}", ReduxFramework::$_dir . "inc/fields/{$field['type']}/field_{$field['type']}.php", $field );
+                
+                if( $class_file && file_exists($class_file) && !class_exists( $field_class ) ) {
+                    /** @noinspection PhpIncludeInspection */
+                    require_once( $class_file );
+                }
+
             }  
+
+            if ( ( method_exists( $field_class, 'enqueue' ) ) || method_exists( $field_class, 'localize' ) ) {
+                if ( !isset( $data[$field['id']] ) ) {
+                    $data[$field['id']] = "";
+                }
+
+                $theField = new $field_class( $field, $data[$field['id']], $this->parent );
+                
+                //if ( !wp_script_is( 'redux-field-'.$field['type'].'-js', 'enqueued' ) && class_exists($field_class) && $this->args['dev_mode'] === true && method_exists( $field_class, 'enqueue' ) ) {
+                    /** @noinspection PhpUndefinedMethodInspection */
+                    //echo "DOVY";
+                    if ( $this->parent->args['dev_mode'] ) {
+                        $theField->enqueue();        
+                    }
+                //}
+                unset($theField);                               
+            }
+
+            if (method_exists( $field_class, 'localize' )) {
+                if ( empty( $this->localize_data ) ) {
+                    $this->localize_data = $this->parent->localize_data;
+                }
+                $this->localize_data[$field['type']][$field['id']] = $field_class::localize($field, $data[$field['id']]);
+                if ( !isset( $this->parent->localize_data[$field['type']][$field['id']] ) || $this->localize_data[$field['type']][$field['id']] != $this->parent->localize_data[$field['type']][$field['id']] ) {
+                    $updateLocalize = true;    
+                }
+            }
+
             return $updateLocalize;      
         }
 
@@ -631,7 +694,7 @@ if ( !class_exists( 'ReduxFramework_extension_metaboxes' ) ) {
                                         if (class_exists("ReduxFramework_{$field['type']}")) {
 
 
-                                            //echo "VALIDATE";    
+                                            echo "VALIDATE";    
                                         }
                                         
                                     }

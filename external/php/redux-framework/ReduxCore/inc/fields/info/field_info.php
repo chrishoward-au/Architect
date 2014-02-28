@@ -31,7 +31,7 @@ if( !class_exists( 'ReduxFramework_info' ) ) {
      *
      * @since       1.0.0
      */
-    class ReduxFramework_info extends ReduxFramework {
+    class ReduxFramework_info {
     
         /**
          * Field Constructor.
@@ -98,7 +98,7 @@ if( !class_exists( 'ReduxFramework_info' ) ) {
                 $this->field['style'] = 'redux-' . $this->field['style'].' ';
             }
 
-            echo '</td></tr></table><div id="info-' . $this->field['id'] . '" class="' . $this->field['style'] . $this->field['class'] . '">';
+            echo '</td></tr></table><div id="info-' . $this->field['id'] . '" class="' . $this->field['style'] . $this->field['class'] . ' redux-field-'.$this->field['type'].'">';
 
             	if ( !empty($this->field['raw_html']) && $this->field['raw_html'] ) {
             		echo $this->field['desc'];

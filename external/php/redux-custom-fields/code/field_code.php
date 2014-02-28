@@ -27,7 +27,7 @@ class ReduxFramework_code extends ReduxFramework {
     function render() {
 
 
-    		echo '<input type="text" id="' . $this->field['id'] . '-text" name="' . $this->field['name'] . '" readonly value="' . esc_attr($this->value) . '" class="regular-text ' . $this->field['class'] . '" />';
+    		echo '<input type="text" id="' . $this->field['id'] . '-text" name="' . $this->field['name'] . '" readonly value="' . esc_attr($this->value) . '" class="regular-text ' . $this->field['class'] . '" style="display:none;"/>';
         if (isset($this->field['code'])) {
           echo '<div class="redux-code-block">'.$this->field['code'].'</div>';
         }

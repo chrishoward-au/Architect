@@ -64,6 +64,7 @@
   box-sizing:border-box;
   overflow:hidden;
 }
+
 /*
  Set a base font size
 html {
@@ -210,7 +211,6 @@ default styling
   line-height:120%;
 }
 
-
 .pzarchitect .pzarc-panel .entry-title,
 .pzarchitect .pzarc-panel .entry-excerpt,
 .pzarchitect .pzarc-panel .entry-thumbnail,
@@ -219,7 +219,7 @@ default styling
 
 {
   display:block;
-  float:left;
+  /*float:left;*/
   vertical-align:top;
   box-sizing:border-box;
 }

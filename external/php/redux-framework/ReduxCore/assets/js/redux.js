@@ -127,6 +127,8 @@
                     value2 = check_data.checkValue,
                     show = false,
                     infoFieldID = '',
+                    sectionFieldID = '',
+                    divideFieldID = '',                    
                     value2_array;
 
             var testInfoField = current.find('.redux-field:first');
@@ -135,9 +137,15 @@
             }
 
             // Eat it, Travis!
-            var testInfoField2 = current.find('.redux-field:first');
-            if (testInfoField2.hasClass('redux-container-section')) {
-                infoFieldID = current.find('.redux-container-section').data('id');
+            var testSectionField = current.find('.redux-field:first');
+            if (testSectionField.hasClass('redux-container-section')) {
+                sectionFieldID = current.find('.redux-container-section').data('id');
+            }
+
+            // Divide field
+            var testDivideField = current.find('.redux-field:first');
+            if (testDivideField.hasClass('redux-container-divide')) {
+                divideFieldID = current.find('.redux-container-divide').data('id');
             }
 
             if (!is_hidden) {
@@ -211,14 +219,16 @@
             }
 
             if (show === true && current.is('.hiddenFold')) {
-
                 if (infoFieldID !== "") {
                     $('#info-' + infoFieldID).css({display: 'none'}).fadeIn(300).show();
-                    //$('#section-' + infoFieldID).css({display: 'none'}).fadeIn(300).show();
                 }
 
-                if (infoFieldID !== "") {
-                    $('#section-' + infoFieldID).css({display: 'none'}).fadeIn(300).show();
+                if (sectionFieldID !== "") {
+                    $('#section-' + sectionFieldID).css({display: 'none'}).fadeIn(300).show();
+                }
+
+                if (divideFieldID !== "") {
+                    $('#' + divideFieldID + '-divide').css({display: 'none'}).fadeIn(300).show();
                 }
 
                 current.css({
@@ -230,8 +240,13 @@
                     $('#info-' + infoFieldID).css({display: ''}).fadeOut(300).hide();
                 }
 
-                if (infoFieldID !== "") {
-                    $('#section-' + infoFieldID).css({display: ''}).fadeOut(300).hide();
+                if (sectionFieldID !== "") {
+                    $('#section-' + sectionFieldID).css({display: ''}).fadeOut(300).hide();
+                }
+
+                if (divideFieldID !== "") {
+                    $('#' + divideFieldID + '-divide' ).css({display: ''}).fadeOut(300).hide();
+                    console.log ('divide hide');
                 }
 
                 current.css({
@@ -354,7 +369,7 @@ function getContrastColour(hexcolour) {
 function verify_fold(item) {
 
     jQuery(document).ready(function($) {
-        console.log(verify_fold);
+        //console.log(verify_fold);
 
 
 
@@ -569,7 +584,7 @@ jQuery(document).ready(function($) {
     });
 
     function redux_expand_options(parent) {
-        console.log('here');
+        //console.log('here');
         var trigger = parent.find('.expand_options');
         var width = parent.find('.redux-sidebar').width();
         var id = jQuery('.redux-group-menu .active a').data('rel') + '_section_group';
@@ -704,7 +719,7 @@ jQuery(document).ready(function($) {
      BEGIN dev_mode commands
      **/
     $('#consolePrintObject').on('click', function() {
-        console.log(jQuery.parseJSON(jQuery("#redux-object-json").html()));
+        //console.log(jQuery.parseJSON(jQuery("#redux-object-json").html()));
     });
 
     if (typeof jsonView === 'function') {
@@ -725,7 +740,7 @@ jQuery(document).ready(function($) {
             jQuery("#" + sectionID + "_section_group_li_a").prepend('<span class="redux-menu-error">' + sectionArray.total + '</span>');
             jQuery("#" + sectionID + "_section_group_li_a").addClass("hasError");
             jQuery.each(sectionArray.errors, function(key, value) {
-                console.log(value);
+                //console.log(value);
                 jQuery("#" + redux.args.opt_name + '-' + value.id).addClass("redux-field-error");
                 jQuery("#" + redux.args.opt_name + '-' + value.id).append('<div class="redux-th-error">' + value.msg + '</div>');
             });

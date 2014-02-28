@@ -31,7 +31,7 @@ if (!class_exists('ReduxFramework_gallery')) {
      *
      * @since       3.0.0
      */
-    class ReduxFramework_gallery extends ReduxFramework {
+    class ReduxFramework_gallery {
 
         /**
          * Field Constructor.
@@ -102,7 +102,7 @@ if (!class_exists('ReduxFramework_gallery')) {
             wp_enqueue_script(
                 'redux-field-gallery-js', 
                 ReduxFramework::$_url . 'inc/fields/gallery/field_gallery.js', 
-                array('jquery', 'wp-color-picker'), 
+                array('jquery'), 
                 time(), 
                 true
             );

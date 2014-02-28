@@ -11,3 +11,13 @@ add_filter( "redux/{$redux_opt_name}/field/class/code", "code_field_path" ); // 
 function code_field_path($field) {
   return dirname( __FILE__ ).'/code/field_code.php';
 }
+
+add_filter( "redux/{$redux_opt_name}/field/class/tabbed", "tabbed_field_path" ); // Adds the local field
+function tabbed_field_path($field) {
+  return dirname( __FILE__ ).'/tabbed/field_tabbed.php';
+}
+
+  add_filter( "redux/{$redux_opt_name}/field/class/textro", "textro_field_path" ); // Adds the local field
+  function textro_field_path($field) {
+    return dirname( __FILE__ ).'/textro/field_textro.php';
+  }

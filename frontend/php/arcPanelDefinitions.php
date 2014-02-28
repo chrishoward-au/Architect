@@ -1,7 +1,7 @@
 <?php
 
 
-  function pzarc_celldef($def)
+  function pzarc_panel_def($def)
   {
     // Just a guide to available parts of a cell
     // We put these in an array because the cell layout is user defined, so we can't order them until we have it later in processing.
