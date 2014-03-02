@@ -9,6 +9,9 @@
         tabbed.each( function ()
         {
             var target = jQuery( this ).data( 'target' );
+            jQuery( target ).find('.hndle' ).addClass('pzarcHeader' ).css({'background':'#6d6d6d','color':'#fff','cursor':'default'} ).removeClass('hndle' );
+            jQuery( target ).find('.handlediv').hide();
+//            jQuery(target ).css('margin-top','-21px');
             if ( jQuery( this ).hasClass( "active" ) )
             {
                 jQuery( target ).show();
@@ -33,7 +36,7 @@
             jQuery( this ).removeClass( "active" );
             jQuery( jQuery( this ).data( 'target' ) ).hide();
         } );
-        jQuery( target ).slideDown(300);
+        jQuery( target ).show();
         jQuery( target ).find( 'ul.redux-group-menu li a' ).first().trigger( 'click' );
         jQuery( clickedThis ).addClass( "active" );
 

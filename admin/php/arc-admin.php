@@ -47,10 +47,11 @@
 
 //			require_once PZARC_PLUGIN_PATH . '/admin/ucd-controls.php';
 
-//      require_once PZARC_PLUGIN_PATH . '/external/php/redux-extensions/config.php';
+
         require_once PZARC_PLUGIN_PATH . '/external/php/redux-custom-fields/loader.php';
         require_once PZARC_PLUGIN_PATH . '/external/php/redux-extensions/loader.php';
         require_once PZARC_PLUGIN_PATH . '/admin/php/admin-options/architect-config.php';
+        require_once PZARC_PLUGIN_PATH . '/external/php/redux-framework/sample/sample-config.php';
 
         // @TODO Should these really be objects?
         // Initialise objects for data and setup menu items

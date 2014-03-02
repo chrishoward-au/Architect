@@ -697,6 +697,7 @@ h2 a.xpzwp_head_links
 }
 
 /* qTip styling */
+/*
 .ui-tooltip-pizazz { font-size: 13px !important; line-height: 1.5 !important }
 
 .ui-tooltip-light.ui-tooltip-pizazz .ui-tooltip-content,
@@ -730,7 +731,7 @@ h2 a.xpzwp_head_links
 .ui-tooltip-shadow.ui-tooltip-pizazz {
   box-shadow: 0 0 25px 0 rgba(0, 0, 0, 0.4);
 }
-
+*/
 .pzsp_help_callout {
   background: #eff8ff;
   border: #d0e9f5 solid 1px;
@@ -1042,6 +1043,7 @@ body.admin-color-midnight .metabox-holder h3.redux-section-title{
   color:#E14D43;
 }
 
+/*
 .redux-main span.architect-help  {
   float:right;
   color:#ccc!important;
@@ -1064,6 +1066,7 @@ body.admin-color-midnight .metabox-holder h3.redux-section-title{
 .architect-tips.tipsy{
   font-size: 12px;
 }
+*/
 
 .redux-container-tabbed ul,
 .redux-container-tabbed  {
@@ -1074,7 +1077,10 @@ body.admin-color-midnight .metabox-holder h3.redux-section-title{
 .redux-no-sections .redux-main {margin-left:0;border-left:none;min-height:0;}
 
 #redux-_architect-metabox-panels_tabs_panels .redux-container,
-#redux-_architect-metabox-panels_tabs_panels .redux-main {
+#redux-_architect-metabox-panels_tabs_panels .redux-main,
+#redux-_architect-metabox-blueprint_tabs_blueprints .redux-container,
+#redux-_architect-metabox-blueprint_tabs_blueprints .redux-main
+{
   padding:0;
   border:none;
   box-shadow:none;

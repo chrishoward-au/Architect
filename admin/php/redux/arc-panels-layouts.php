@@ -30,7 +30,7 @@
         add_filter('manage_arc-panels_posts_columns', array($this, 'add_panel_layout_columns'));
         add_action('manage_arc-panels_posts_custom_column', array($this, 'add_panel_layout_column_content'), 10, 2);
 
-        add_action('add_meta_boxes', array($this, 'add_panels_tabbed_metabox'));
+//        add_action('add_meta_boxes', array($this, 'add_panels_tabbed_metabox'));
         // check screen arc-panels. ugh. doesn't work for save and edit
 //			if ( $_REQUEST[ 'post_type' ] == 'arc-panels' )
 //			{
@@ -189,7 +189,7 @@
 //                  'id'      => $prefix . 'wizard',
 //                  'type'    => 'radio',
 //                  'default' => 'custom',
-//                  'subtitle'    => 'Select one to quickly enable relevant settings, or custom to build your own from scratch with all settings and defaults. Minimize this metabox once you are happy with your selection.',
+//                  'hint'    => 'Select one to quickly enable relevant settings, or custom to build your own from scratch with all settings and defaults. Minimize this metabox once you are happy with your selection.',
 //                  'options' => array(
 //                          'custom'   => 'Custom',
 //                          'article'  => 'Article',
@@ -258,7 +258,7 @@
             array(
                 'id'       => $prefix . 'short-name',
                 'title'    => __('Short name', 'pzarc'),
-                'subtitle' => __('A short name for this panel layout to identify it.', 'pzarc'),
+                'hint' => array('content'=> __('A short name for this panel layout to identify it.', 'pzarc')),
                 'type'     => 'text',
             ),
             array(
@@ -271,7 +271,7 @@
                     'fluid' => 'Fluid',
                     'fixed' => 'Fixed',
                 ),
-                'subtitle' => __('Choose whether to set the height of the panels (fixed), or allow them to adjust to the content height (fluid).', 'pzarc')
+                'hint' => array('content'=>__('Choose whether to set the height of the panels (fixed), or allow them to adjust to the content height (fluid).', 'pzarc'))
             ),
             // Hmm? How's this gunna sit with the min-height in templates?
             // We will want to use this for image height cropping when behind.
@@ -285,7 +285,7 @@
                 'max'      => '9999',
                 'step'     => '1',
                 'class'    => ' pixels',
-                'subtitle' => __('If using fixed height, set height for the panel.', 'pzarc'),
+                'hint' => array('content'=>__('If using fixed height, set height for the panel.', 'pzarc')),
                 'required' => array($prefix . 'panel-height-type', 'equals', 'fixed')
             ),
             array(
@@ -298,7 +298,7 @@
                 'max'      => '100',
                 'step'     => '1',
                 'class'    => ' pixels',
-                'subtitle' => __('If using fixed height, set height for the components area.', 'pzarc'),
+                'hint' => array('content'=>__('If using fixed height, set height for the components area.', 'pzarc')),
                 'required' => array($prefix . 'panel-height-type', 'equals', 'fixed')
             ),
         )
@@ -353,7 +353,7 @@
                                               'custom1' => array('width' => 100, 'show' => false),
                                               'custom2' => array('width' => 100, 'show' => false),
                                               'custom3' => array('width' => 100, 'show' => false))),
-                'subtitle' => __('Drag and drop to sort the order of your elements. <strong>Heights are fluid in panels, so not indicative of how it will look on the page</strong>.', 'pzarc')
+                'hint' => array('title'=>'','content'=>__('Drag and drop to sort the order of your elements. <strong>Heights are fluid in panels, so not indicative of how it will look on the page</strong>.', 'pzarc'))
             ),
             // OMG!! The multiselect is working and I don't know why!!
             array(
@@ -377,7 +377,7 @@
                     'custom3' => 'Custom Field 3',
                     //        'custom4' => 'Custom Field 4',
                 ),
-                'subtitle' => __('Select which base components to include in this panel layout.', 'pzarc')
+                'hint' => array('content'=>__('Select which base components to include in this panel layout.', 'pzarc'))
             ),
             array(
                 'title'    => __('Excerpt/Content featured image', 'pzarc'),
@@ -390,7 +390,7 @@
                     'left'  => 'Left',
                     'right' => 'Right',
                 ),
-                'subtitle' => __('Set the alignment of the image to show it in the excerpt or the content. This will use the image settings', 'pzarc')
+                'hint' => array('content'=>__('Set the alignment of the image to show it in the excerpt or the content. This will use the image settings', 'pzarc'))
             ),
             array(
                 'title'    => __('Background Feature Image/Video', 'pzarc'),
@@ -403,7 +403,7 @@
                     'fill'  => 'Fill the panel',
                     'align' => 'Align with components area',
                 ),
-                'subtitle' => __('Select how to display the featured image or video as the background.', 'pzarc')
+                'hint' => array('content'=>__('Select how to display the featured image or video as the background.', 'pzarc'))
             ),
             array(
                 'title'    => __('Components area position', 'pzarc'),
@@ -417,7 +417,7 @@
                     'left'   => 'Left',
                     'right'  => 'Right',
                 ),
-                'subtitle' => __('Position for all the components as a group. </br>NOTE: If feature is set to align, then components will be below the feature, but not at the bottom of the panel. ', 'pzarc'),
+                'hint' => array('content'=>__('Position for all the components as a group. </br>NOTE: If feature is set to align, then components will be below the feature, but not at the bottom of the panel. ', 'pzarc')),
                 'desc'     => __('Left/right will only take affect when components area width is less than 100%', 'pzarc')
             ),
             array(
@@ -429,7 +429,7 @@
                 'max'      => '100',
                 'step'     => '1',
                 'class'    => ' percent',
-                'subtitle' => __('Enter percent to move the components area up/down. </br>NOTE: These measurements are percentage of the panel.', 'pzarc')
+                'hint' => array('content'=>__('Enter percent to move the components area up/down. </br>NOTE: These measurements are percentage of the panel.', 'pzarc'))
             ),
             array(
                 'title'    => __('Nudge components area left/right %', 'pzarc'),
@@ -440,7 +440,7 @@
                 'max'      => '100',
                 'step'     => '1',
                 'class'    => ' percent',
-                'subtitle' => __('Enter percent to move the components area left/right. </br>NOTE: These measurements are percentage of the panel.', 'pzarc')
+                'hint' => array('content'=>__('Enter percent to move the components area left/right. </br>NOTE: These measurements are percentage of the panel.', 'pzarc'))
             ),
             array(
                 'title'    => __('Components area width %', 'pzarc'),
@@ -452,7 +452,7 @@
                 'max'      => '100',
                 'step'     => '1',
                 'class'    => ' percent',
-                'subtitle' => __('Set the overall width for the components area. Necessary for left or right positioning of sections', 'pzarc'),
+                'hint' => array('content'=>__('Set the overall width for the components area. Necessary for left or right positioning of sections', 'pzarc')),
             ),
 
         )
@@ -526,7 +526,7 @@
               'type'     => 'text',
               'default'  => 'l, F j, Y g:i a',
               'cols'     => 4,
-              'subtitle' => __('See here for information on <a href="http://codex.wordpress.org/Formatting_Date_and_Time" target=_blank>formatting date and time</a>', 'pzarc')
+              'hint' => array('title'=>'','content'=>'See here for information on <a href="http://codex.wordpress.org/Formatting_Date_and_Time" target=_blank>formatting date and time</a>')
           ),
         )
     );
@@ -585,7 +585,6 @@
                 'title'    => 'Responsive',
                 'type'     => 'section',
                 'class'    => 'heading',
-                'subtitle' => ''
             ),
             array(
                 'title'   => __('Background images: Effect on resize', 'pzarc'),
@@ -605,7 +604,7 @@
                 'title'    => 'Content Featured Image',
                 'type'     => 'section',
                 'class'    => 'heading',
-                'subtitle' => 'Left and right margins are included in the image width in the designer. e.g if Image width is 25% and right margin is 3%, image width will be adjusted to 22%'
+                'hint' => array('content'=>'Left and right margins are included in the image width in the designer. e.g if Image width is 25% and right margin is 3%, image width will be adjusted to 22%')
             ),
             array(
                 'id'      => $prefix . 'image-margin-top',
@@ -683,7 +682,7 @@
                 'type'     => 'switch',
                 'default'  => false,
                 'cols'     => 3,
-                'subtitle' => 'Convert all resized images to JPEG format - usually will be smaller.'
+                'hint' => array('content'=>'Convert all resized images to JPEG format - usually will be smaller.')
             ),
             array(
                 'title'      => __('Image resizing method', 'pzarc'),
@@ -702,7 +701,7 @@
                     'scaletoheight' => 'Scale to resize height',
                     'none'          => 'No cropping, use original. (Use with care!)'
                 ),
-                'subtitle'   => 'Choose how you want the image resized in respect of its original width and height to the Image Max Height and Width.',
+                'hint'   => array('content'=>'Choose how you want the image resized in respect of its original width and height to the Image Max Height and Width.'),
             ),
             array(
                 'id'      => $prefix . 'image-max-width',
@@ -735,7 +734,7 @@
                 'step'     => '1',
                 'units'    => '%',
                 'cols'     => 3,
-                'subtitle' => 'Quality to use when processing images'
+                'hint' => array('content'=>'Quality to use when processing images')
 
             ),
         )
@@ -839,7 +838,7 @@
 //          'title'      => 'Styling',
 //          'icon_class' => 'icon-large',
 //          'icon'       => 'el-icon-brush',
-//          'subtitle' => __('Architect uses standard WordPress class names as much as possible, so your Architect Blueprints will inherit styling from your theme if it uses these. Below you can add your own styling and classes. Enter CSS declarations, such as: background:#123; color:#abc; font-size:1.6em; padding:1%;', 'pzarc') . '<br/>' . __('As much as possible, use fluid units (%,em) if you want to ensure maximum responsiveness.', 'pzarc') . '<br/>' .
+//          'hint' => __('Architect uses standard WordPress class names as much as possible, so your Architect Blueprints will inherit styling from your theme if it uses these. Below you can add your own styling and classes. Enter CSS declarations, such as: background:#123; color:#abc; font-size:1.6em; padding:1%;', 'pzarc') . '<br/>' . __('As much as possible, use fluid units (%,em) if you want to ensure maximum responsiveness.', 'pzarc') . '<br/>' .
 //                  __('The base font size is 10px. So, for example, to get a font size of 14px, use 1.4em. Even better is using relative ems i.e. rem.'),
 //
 //          'fields'     => array(
@@ -856,7 +855,7 @@
                 'id'       => $prefix . 'panels',
                 'type'     => 'section',
                 'class'    => 'heading',
-                'subtitle' => 'Class: .pzarc-panel',
+                'hint' => array('content'=>'Class: .pzarc-panel'),
             ),
             pzarc_redux_bg($prefix . 'panels-bg', array('.pzarc-panel'), $defaults[ $optprefix.'panels-bg' ]),
             pzarc_redux_padding($prefix . 'panels-padding', array('.pzarc-panel'), $defaults[ $optprefix.'panels-padding' ]),
@@ -866,7 +865,7 @@
                 'id'       => $prefix . 'components-group',
                 'type'     => 'section',
                 'class'    => 'heading',
-                'subtitle' => 'Class: .pzarc_components',
+                'hint' => array('content'=>'Class: .pzarc_components'),
             ),
             pzarc_redux_bg($prefix . 'components-bg', array('.pzarc_components')),
             pzarc_redux_padding($prefix . 'components-padding', array('.pzarc_components')),
@@ -876,7 +875,7 @@
                 'id'       => $prefix . 'entry',
                 'type'     => 'section',
                 'class'    => 'heading',
-                'subtitle' => 'Class: .hentry',
+                'hint' => array('content'=>'Class: .hentry'),
             ),
             pzarc_redux_bg($prefix . 'hentry-bg', array('.hentry')),
             pzarc_redux_padding($prefix . 'hentry-padding', array('.hentry')),
@@ -925,7 +924,7 @@
                 'id'       => $prefix . 'entry-readmore',
                 'type'     => 'section',
                 'class'    => 'heading',
-                'subtitle' => 'Class: a.pzarc_readmore',
+                'hint' => array('content'=>'Class: a.pzarc_readmore'),
             ),
             pzarc_redux_font($prefix . 'entry-readmore-font', array('.readmore')),
             pzarc_redux_bg($prefix . 'entry-readmore-font-bg', array('.readmore')),
@@ -945,8 +944,8 @@
                 'type'     => 'section',
                 'class'    => 'heading',
                 //          'default' => $defaults[ $optprefix . 'image_defaults_entry-image-defaults' ],
-                'subtitle' => 'Class: .pzarc_entry_featured_image',
-                //     'subtitle'    => __('Format the entry featured image', 'pzarc')
+                'hint' => array('content'=>'Class: .pzarc_entry_featured_image'),
+                //     'hint'    => __('Format the entry featured image', 'pzarc')
             ),
             array(
                 'title'                 => __('Background', 'pzarc'),

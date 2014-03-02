@@ -289,7 +289,11 @@
                     'id'       => $prefix . 'entry-selectors',
                     'type'     => 'multi_text',
                     'default' => array('.hentry'),
-                    'subtitle'=>'One per row'
+                    'subtitle'=>'One per row',
+                    'hint' => array(
+                        'title'   => 'Hint Title',
+                        'content' => 'This is the content of the tool-tip'
+                    )
                 ),
                 pzarc_redux_bg($prefix . 'hentry-bg', array('.hentry')),
                 pzarc_redux_padding($prefix . 'hentry-padding', array('.hentry')),
@@ -379,6 +383,10 @@
                     'id'    => $prefix . 'entry-image-background',
                     'type'  => 'border',
                     'all'   => false,
+                    'hint' => array(
+                        'title'   => 'Hint Title',
+                        'content' => 'This is the content of the tool-tip'
+                    )
 
                     //    'default' => $defaults[ $optprefix . 'image_defaults_entry-image-caption-defaults' ],
                 ),
@@ -560,6 +568,35 @@
 
           'help_tabs'          => array(),
           'help_sidebar'       => '',
+          'hints' => array(
+              'icon'              => 'icon-question-sign',
+              'icon_position'     => 'right',
+              'icon_color'        => 'lightgray',
+              'icon_size'         => 'normal',
+
+              'tip_style'         => array(
+                  'color'     => 'yellow',
+                  'shadow'    => true,
+                  'rounded'   => false,
+                  'style'     => '',
+              ),
+              'tip_position'      => array(
+                  'my' => 'top right',
+                  'at' => 'bottom left',
+              ),
+              'tip_effect' => array(
+                  'show' => array(
+                      'effect'    => 'show',
+                      'duration'  => '300',
+                      'event'     => 'mouseover',
+                  ),
+                  'hide' => array(
+                      'effect'    => 'show',
+                      'duration'  => '300',
+                      'event'     => 'click mouseleave',
+                  ),
+              ),
+          )
           // __( '', $this->args['domain'] );
         );
 
