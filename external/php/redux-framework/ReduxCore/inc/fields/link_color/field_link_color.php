@@ -67,7 +67,13 @@ if( !class_exists( 'ReduxFramework_link_color' ) ) {
 
             $this->value = wp_parse_args( $this->value, $defaults );  
 
-            $this->field['default'] = isset($this->field['default'])?wp_parse_args( $this->field['default'], $defaults ):$defaults;
+            // In case user passes no default values.
+            if (isset($this->field['default'])) {
+                $this->field['default'] = wp_parse_args( $this->field['default'], $defaults );
+            }else {
+              $this->field['default'] = $defaults;
+            }
+
         
         }
 

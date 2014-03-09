@@ -258,6 +258,7 @@
                     'default' => '.pzarc-panel',
                     'readonly'=>true
                 ),
+
                 pzarc_redux_bg($prefix . 'panels-bg', array('.pzarc-panel')),
                 pzarc_redux_padding($prefix . 'panels-padding', array('.pzarc-panel')),
                 pzarc_redux_borders($prefix . 'panels-borders', array('.pzarc-panel')),
@@ -518,7 +519,7 @@
           // Must be defined to add google fonts to the typography module
           'global_variable'    => 'pzarchitect',
           // Set a different name for your global variable other than the opt_name
-          'dev_mode'           => false,
+          'dev_mode'           => true,
           // Show the time the page took to load, etc
           'customizer'         => false,
           // Enable basic customizer support

@@ -6,6 +6,7 @@
     // Just a guide to available parts of a cell
     // We put these in an array because the cell layout is user defined, so we can't order them until we have it later in processing.
     //Somewhere we will need to define some basic build formulas, yes? Or we jsut going to make assumptions on what goes in innards?
+
     $celldefs[ 'null' ] = array(
       array('wrapper' => ''),
       array('header' => ''),
@@ -118,6 +119,7 @@
     $celldefs[ 'images' ]['caption'] = '<figcaption class="caption">{{caption}}</figcaption>';
 
     $celldefs[ 'gallery' ] = $celldefs[ 'images' ];
+
     return $celldefs[$def];
   }
 

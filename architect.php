@@ -3,7 +3,7 @@
 /*
   Plugin Name: Architect - an all-in-one content display framework
   Plugin URI: http://pizazzwp.com
-  Description: Display your content in grids, tabs, sliders, galleries with sources like posts, pages, galleries, widgets, custom code, Headway blocks and custom content types
+  Description: Display your content in grids, tabs, sliders, galleries with sources like posts, pages, galleries, widgets, custom code, Headway blocks and custom content types. Change themes without havinqg to rebuild your layouts. Seriously!
   Version: 0.6.0 beta 15-02-14
   Author: Chris Howard
   Author URI: http://pizazzwp.com
@@ -28,6 +28,7 @@
  *
  */
 
+// TODO: Make sure it can display comments!!
 
 /* why not use a WP like methodology!
 ================================================================================

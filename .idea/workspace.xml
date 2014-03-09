@@ -2,184 +2,32 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6a91661e-ac03-4c49-a442-2faea24b5b57" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/external/php/Custom-Meta-Boxes/CONTRIBUTING.md" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/external/php/Custom-Meta-Boxes/class.cmb-meta-box.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/external/php/Custom-Meta-Boxes/classes.fields.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/external/php/Custom-Meta-Boxes/css/dist/cmb.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/external/php/Custom-Meta-Boxes/css/dist/cmb.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/external/php/Custom-Meta-Boxes/css/legacy.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/external/php/Custom-Meta-Boxes/css/src/file.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/external/php/Custom-Meta-Boxes/css/src/generic.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/external/php/Custom-Meta-Boxes/css/src/group.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/external/php/Custom-Meta-Boxes/css/src/layout.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/external/php/Custom-Meta-Boxes/css/src/misc-fields.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/external/php/Custom-Meta-Boxes/css/src/repeatable.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/external/php/Custom-Meta-Boxes/css/vendor/jquery-ui/images/animated-overlay.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/external/php/Custom-Meta-Boxes/css/vendor/jquery-ui/images/ui-bg_flat_0_aaaaaa_40x100.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/external/php/Custom-Meta-Boxes/css/vendor/jquery-ui/images/ui-bg_flat_75_ffffff_40x100.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/external/php/Custom-Meta-Boxes/css/vendor/jquery-ui/images/ui-bg_glass_55_fbf9ee_1x400.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/external/php/Custom-Meta-Boxes/css/vendor/jquery-ui/images/ui-bg_glass_65_ffffff_1x400.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/external/php/Custom-Meta-Boxes/css/vendor/jquery-ui/images/ui-bg_glass_75_dadada_1x400.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/external/php/Custom-Meta-Boxes/css/vendor/jquery-ui/images/ui-bg_glass_75_e6e6e6_1x400.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/external/php/Custom-Meta-Boxes/css/vendor/jquery-ui/images/ui-bg_glass_95_fef1ec_1x400.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/external/php/Custom-Meta-Boxes/css/vendor/jquery-ui/images/ui-bg_highlight-soft_75_cccccc_1x100.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/external/php/Custom-Meta-Boxes/css/vendor/jquery-ui/images/ui-icons_222222_256x240.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/external/php/Custom-Meta-Boxes/css/vendor/jquery-ui/images/ui-icons_2e83ff_256x240.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/external/php/Custom-Meta-Boxes/css/vendor/jquery-ui/images/ui-icons_454545_256x240.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/external/php/Custom-Meta-Boxes/css/vendor/jquery-ui/images/ui-icons_888888_256x240.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/external/php/Custom-Meta-Boxes/css/vendor/jquery-ui/images/ui-icons_cd0a0a_256x240.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/external/php/Custom-Meta-Boxes/css/vendor/jquery-ui/jquery-ui.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/external/php/Custom-Meta-Boxes/css/vendor/jquery-ui/jquery-ui.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/external/php/Custom-Meta-Boxes/css/vendor/jquery-ui/jquery.ui.theme.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/external/php/Custom-Meta-Boxes/custom-meta-boxes.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/external/php/Custom-Meta-Boxes/fields-anywhere.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/external/php/Custom-Meta-Boxes/images/cmb-icon-remove.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/external/php/Custom-Meta-Boxes/images/cmb-icon-remove@2x.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/external/php/Custom-Meta-Boxes/images/wpspin-2x.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/external/php/Custom-Meta-Boxes/images/wpspin.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/external/php/Custom-Meta-Boxes/js/cmb.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/external/php/Custom-Meta-Boxes/js/field-wysiwyg.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/external/php/Custom-Meta-Boxes/js/field.colorpicker.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/external/php/Custom-Meta-Boxes/js/field.datetime.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/external/php/Custom-Meta-Boxes/js/field.select.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/external/php/Custom-Meta-Boxes/js/file-upload.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/external/php/Custom-Meta-Boxes/js/jquery.timePicker.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/external/php/Custom-Meta-Boxes/js/select2/LICENSE" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/external/php/Custom-Meta-Boxes/js/select2/README.md" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/external/php/Custom-Meta-Boxes/js/select2/component.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/external/php/Custom-Meta-Boxes/js/select2/release.sh" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/external/php/Custom-Meta-Boxes/js/select2/select2-spinner.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/external/php/Custom-Meta-Boxes/js/select2/select2.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/external/php/Custom-Meta-Boxes/js/select2/select2.jquery.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/external/php/Custom-Meta-Boxes/js/select2/select2.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/external/php/Custom-Meta-Boxes/js/select2/select2.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/external/php/Custom-Meta-Boxes/js/select2/select2.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/external/php/Custom-Meta-Boxes/js/select2/select2_locale_de.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/external/php/Custom-Meta-Boxes/js/select2/select2_locale_en.js.template" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/external/php/Custom-Meta-Boxes/js/select2/select2_locale_es.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/external/php/Custom-Meta-Boxes/js/select2/select2_locale_eu.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/external/php/Custom-Meta-Boxes/js/select2/select2_locale_fr.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/external/php/Custom-Meta-Boxes/js/select2/select2_locale_hr.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/external/php/Custom-Meta-Boxes/js/select2/select2_locale_hu.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/external/php/Custom-Meta-Boxes/js/select2/select2_locale_it.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/external/php/Custom-Meta-Boxes/js/select2/select2_locale_nl.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/external/php/Custom-Meta-Boxes/js/select2/select2_locale_pt-BR.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/external/php/Custom-Meta-Boxes/js/select2/select2_locale_pt-PT.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/external/php/Custom-Meta-Boxes/js/select2/select2_locale_ro.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/external/php/Custom-Meta-Boxes/js/select2/select2_locale_ru.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/external/php/Custom-Meta-Boxes/js/select2/select2_locale_sk.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/external/php/Custom-Meta-Boxes/js/select2/select2_locale_sv.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/external/php/Custom-Meta-Boxes/js/select2/select2_locale_tr.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/external/php/Custom-Meta-Boxes/js/select2/select2_locale_ua.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/external/php/Custom-Meta-Boxes/js/select2/select2_locale_zh-CN.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/external/php/Custom-Meta-Boxes/js/select2/select2x2.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/external/php/Custom-Meta-Boxes/languages/cmb-fi.mo" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/external/php/Custom-Meta-Boxes/languages/cmb-fi.po" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/external/php/Custom-Meta-Boxes/languages/cmb.pot" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/external/php/Custom-Meta-Boxes/readme.md" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/external/php/bfi_thumb/BFI_Thumb.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/external/php/bfi_thumb/LICENSE.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/external/php/bfi_thumb/README.md" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/external/php/extensions109/metaboxes/extension_metaboxes.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/external/php/extensions109/metaboxes/extension_metaboxes.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/external/php/extensions109/metaboxes/extension_metaboxes.less" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/external/php/extensions109/metaboxes/extension_metaboxes.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/external/php/metaboxes-1.1.3.zip" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/external/php/metaboxes-1.1.3/config.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/external/php/metaboxes-1.1.3/loader.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/external/php/metaboxes-1.1.3/readme.txt" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/external/php/redux-framework/ReduxCore/languages/ar.mo" afterPath="$PROJECT_DIR$/external/php/redux-framework/ReduxCore/languages/ar.mo" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/external/php/redux-framework/ReduxCore/languages/bn_BD.mo" afterPath="$PROJECT_DIR$/external/php/redux-framework/ReduxCore/languages/bn_BD.mo" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/external/php/redux-framework/ReduxCore/languages/de_DE.mo" afterPath="$PROJECT_DIR$/external/php/redux-framework/ReduxCore/languages/de_DE.mo" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/external/php/redux-framework/ReduxCore/languages/es_ES.mo" afterPath="$PROJECT_DIR$/external/php/redux-framework/ReduxCore/languages/es_ES.mo" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/external/php/redux-framework/ReduxCore/languages/fa_IR.mo" afterPath="$PROJECT_DIR$/external/php/redux-framework/ReduxCore/languages/fa_IR.mo" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/external/php/redux-framework/ReduxCore/languages/fi.mo" afterPath="$PROJECT_DIR$/external/php/redux-framework/ReduxCore/languages/fi.mo" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/external/php/redux-framework/ReduxCore/languages/fr_FR.mo" afterPath="$PROJECT_DIR$/external/php/redux-framework/ReduxCore/languages/fr_FR.mo" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/external/php/redux-framework/ReduxCore/languages/he_IL.mo" afterPath="$PROJECT_DIR$/external/php/redux-framework/ReduxCore/languages/he_IL.mo" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/external/php/redux-framework/ReduxCore/languages/hr.mo" afterPath="$PROJECT_DIR$/external/php/redux-framework/ReduxCore/languages/hr.mo" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/external/php/redux-framework/ReduxCore/languages/hu_HU.mo" afterPath="$PROJECT_DIR$/external/php/redux-framework/ReduxCore/languages/hu_HU.mo" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/external/php/redux-framework/ReduxCore/languages/id_ID.mo" afterPath="$PROJECT_DIR$/external/php/redux-framework/ReduxCore/languages/id_ID.mo" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/external/php/redux-framework/ReduxCore/languages/it_IT.mo" afterPath="$PROJECT_DIR$/external/php/redux-framework/ReduxCore/languages/it_IT.mo" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/external/php/redux-framework/ReduxCore/languages/ja.mo" afterPath="$PROJECT_DIR$/external/php/redux-framework/ReduxCore/languages/ja.mo" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/external/php/redux-framework/ReduxCore/languages/lt_LT.mo" afterPath="$PROJECT_DIR$/external/php/redux-framework/ReduxCore/languages/lt_LT.mo" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/external/php/redux-framework/ReduxCore/languages/nb_NO.mo" afterPath="$PROJECT_DIR$/external/php/redux-framework/ReduxCore/languages/nb_NO.mo" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/external/php/redux-framework/ReduxCore/languages/ne_NP.mo" afterPath="$PROJECT_DIR$/external/php/redux-framework/ReduxCore/languages/ne_NP.mo" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/external/php/redux-framework/ReduxCore/languages/nl_NL.mo" afterPath="$PROJECT_DIR$/external/php/redux-framework/ReduxCore/languages/nl_NL.mo" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/external/php/redux-framework/ReduxCore/languages/pl_PL.mo" afterPath="$PROJECT_DIR$/external/php/redux-framework/ReduxCore/languages/pl_PL.mo" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/external/php/redux-framework/ReduxCore/languages/pt_BR.mo" afterPath="$PROJECT_DIR$/external/php/redux-framework/ReduxCore/languages/pt_BR.mo" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/external/php/redux-framework/ReduxCore/languages/pt_PT.mo" afterPath="$PROJECT_DIR$/external/php/redux-framework/ReduxCore/languages/pt_PT.mo" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/external/php/redux-framework/ReduxCore/languages/ro_RO.mo" afterPath="$PROJECT_DIR$/external/php/redux-framework/ReduxCore/languages/ro_RO.mo" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/external/php/redux-framework/ReduxCore/languages/ru_RU.mo" afterPath="$PROJECT_DIR$/external/php/redux-framework/ReduxCore/languages/ru_RU.mo" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/external/php/redux-framework/ReduxCore/languages/sv_SE.mo" afterPath="$PROJECT_DIR$/external/php/redux-framework/ReduxCore/languages/sv_SE.mo" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/external/php/redux-framework/ReduxCore/languages/tr_TR.mo" afterPath="$PROJECT_DIR$/external/php/redux-framework/ReduxCore/languages/tr_TR.mo" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/external/php/redux-framework/ReduxCore/languages/README.txt" afterPath="$PROJECT_DIR$/external/php/redux-framework/ReduxCore/languages/README.txt" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/external/php/redux-framework/ReduxCore/assets/js/vendor/jquery.tipsy.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/external/php/redux-framework/ReduxCore/inc/fields/slider/slider-control.png" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/external/php/redux-framework/ReduxCore/assets/css/admin.css" afterPath="$PROJECT_DIR$/external/php/redux-framework/ReduxCore/assets/css/admin.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/external/php/redux-framework/ReduxCore/assets/css/admin.less" afterPath="$PROJECT_DIR$/external/php/redux-framework/ReduxCore/assets/css/admin.less" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/admin/css/arc-admin.css" afterPath="$PROJECT_DIR$/admin/css/arc-admin.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/admin/php/arc-admin.php" afterPath="$PROJECT_DIR$/admin/php/arc-admin.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/admin/js/arc-metaboxes.js" afterPath="$PROJECT_DIR$/admin/js/arc-metaboxes.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/php/arc-display.php" afterPath="$PROJECT_DIR$/frontend/php/arc-display.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/includes/php/arc-functions.php" afterPath="$PROJECT_DIR$/includes/php/arc-functions.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/admin/js/arc-metaboxes-panels.js" afterPath="$PROJECT_DIR$/admin/js/arc-metaboxes-panels.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/admin/php/redux/arc-panels-layouts.php" afterPath="$PROJECT_DIR$/admin/php/redux/arc-panels-layouts.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/php/arcPanelDefinitions.php" afterPath="$PROJECT_DIR$/frontend/php/arcPanelDefinitions.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/admin/php/admin-options/architect-config.php" afterPath="$PROJECT_DIR$/admin/php/admin-options/architect-config.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/external/php/redux-framework/ReduxCore/inc/class.redux_helpers.php" afterPath="$PROJECT_DIR$/external/php/redux-framework/ReduxCore/inc/class.redux_helpers.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/external/php/redux-framework/ReduxCore/extensions/customizer/extension_customizer.php" afterPath="$PROJECT_DIR$/external/php/redux-framework/ReduxCore/extensions/customizer/extension_customizer.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/external/php/redux-framework/ReduxCore/inc/fields/ace_editor/field_ace_editor.css" afterPath="$PROJECT_DIR$/external/php/redux-framework/ReduxCore/inc/fields/ace_editor/field_ace_editor.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/external/php/redux-framework/ReduxCore/inc/fields/ace_editor/field_ace_editor.scss" afterPath="$PROJECT_DIR$/external/php/redux-framework/ReduxCore/inc/fields/ace_editor/field_ace_editor.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/external/php/redux-framework/ReduxCore/inc/fields/background/field_background.scss" afterPath="$PROJECT_DIR$/external/php/redux-framework/ReduxCore/inc/fields/background/field_background.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/external/php/redux-framework/ReduxCore/inc/fields/border/field_border.css" afterPath="$PROJECT_DIR$/external/php/redux-framework/ReduxCore/inc/fields/border/field_border.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/external/php/redux-framework/ReduxCore/inc/fields/border/field_border.scss" afterPath="$PROJECT_DIR$/external/php/redux-framework/ReduxCore/inc/fields/border/field_border.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/external/php/redux-framework/ReduxCore/inc/fields/checkbox/field_checkbox.css" afterPath="$PROJECT_DIR$/external/php/redux-framework/ReduxCore/inc/fields/checkbox/field_checkbox.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/external/php/redux-framework/ReduxCore/inc/fields/checkbox/field_checkbox.less" afterPath="$PROJECT_DIR$/external/php/redux-framework/ReduxCore/inc/fields/checkbox/field_checkbox.less" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/external/php/redux-framework/ReduxCore/inc/fields/checkbox/field_checkbox.scss" afterPath="$PROJECT_DIR$/external/php/redux-framework/ReduxCore/inc/fields/checkbox/field_checkbox.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/external/php/redux-framework/ReduxCore/inc/fields/color/field_color.scss" afterPath="$PROJECT_DIR$/external/php/redux-framework/ReduxCore/inc/fields/color/field_color.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/external/php/redux-framework/ReduxCore/inc/fields/color_rgba/field_color_rgba.scss" afterPath="$PROJECT_DIR$/external/php/redux-framework/ReduxCore/inc/fields/color_rgba/field_color_rgba.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/external/php/redux-framework/ReduxCore/inc/fields/dimensions/field_dimensions.scss" afterPath="$PROJECT_DIR$/external/php/redux-framework/ReduxCore/inc/fields/dimensions/field_dimensions.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/external/php/redux-framework/ReduxCore/inc/fields/editor/field_editor.scss" afterPath="$PROJECT_DIR$/external/php/redux-framework/ReduxCore/inc/fields/editor/field_editor.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/external/php/redux-framework/ReduxCore/inc/fields/group/field_group.js" afterPath="$PROJECT_DIR$/external/php/redux-framework/ReduxCore/inc/fields/group/field_group.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/external/php/redux-framework/ReduxCore/inc/fields/group/field_group.scss" afterPath="$PROJECT_DIR$/external/php/redux-framework/ReduxCore/inc/fields/group/field_group.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/external/php/redux-framework/ReduxCore/inc/fields/image_select/field_image_select.scss" afterPath="$PROJECT_DIR$/external/php/redux-framework/ReduxCore/inc/fields/image_select/field_image_select.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/external/php/redux-framework/ReduxCore/inc/fields/info/field_info.scss" afterPath="$PROJECT_DIR$/external/php/redux-framework/ReduxCore/inc/fields/info/field_info.scss" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/architect.php" afterPath="$PROJECT_DIR$/architect.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/php/class_pzarc_Display.php" afterPath="$PROJECT_DIR$/frontend/php/class_pzarc_Display.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/external/php/redux-framework/ReduxCore/inc/fields/image_select/field_image_select.js" afterPath="$PROJECT_DIR$/external/php/redux-framework/ReduxCore/inc/fields/image_select/field_image_select.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/external/php/redux-framework/ReduxCore/inc/fields/link_color/field_link_color.php" afterPath="$PROJECT_DIR$/external/php/redux-framework/ReduxCore/inc/fields/link_color/field_link_color.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/external/php/redux-framework/ReduxCore/inc/fields/media/field_media.scss" afterPath="$PROJECT_DIR$/external/php/redux-framework/ReduxCore/inc/fields/media/field_media.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/external/php/redux-framework/ReduxCore/inc/fields/multi_text/field_multi_text.scss" afterPath="$PROJECT_DIR$/external/php/redux-framework/ReduxCore/inc/fields/multi_text/field_multi_text.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/external/php/redux-framework/ReduxCore/inc/fields/section/field_section.css" afterPath="$PROJECT_DIR$/external/php/redux-framework/ReduxCore/inc/fields/section/field_section.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/external/php/redux-framework/ReduxCore/inc/fields/section/field_section.scss" afterPath="$PROJECT_DIR$/external/php/redux-framework/ReduxCore/inc/fields/section/field_section.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/external/php/redux-framework/ReduxCore/inc/fields/select/field_select.css" afterPath="$PROJECT_DIR$/external/php/redux-framework/ReduxCore/inc/fields/select/field_select.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/external/php/redux-framework/ReduxCore/inc/fields/select/field_select.less" afterPath="$PROJECT_DIR$/external/php/redux-framework/ReduxCore/inc/fields/select/field_select.less" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/external/php/redux-framework/ReduxCore/inc/fields/select/field_select.scss" afterPath="$PROJECT_DIR$/external/php/redux-framework/ReduxCore/inc/fields/select/field_select.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/external/php/redux-framework/ReduxCore/inc/fields/select_image/field_select_image.css" afterPath="$PROJECT_DIR$/external/php/redux-framework/ReduxCore/inc/fields/select_image/field_select_image.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/external/php/redux-framework/ReduxCore/inc/fields/select_image/field_select_image.js" afterPath="$PROJECT_DIR$/external/php/redux-framework/ReduxCore/inc/fields/select_image/field_select_image.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/external/php/redux-framework/ReduxCore/inc/fields/select_image/field_select_image.php" afterPath="$PROJECT_DIR$/external/php/redux-framework/ReduxCore/inc/fields/select_image/field_select_image.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/external/php/redux-framework/ReduxCore/inc/fields/slider/field_slider.css" afterPath="$PROJECT_DIR$/external/php/redux-framework/ReduxCore/inc/fields/slider/field_slider.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/external/php/redux-framework/ReduxCore/inc/fields/slider/field_slider.js" afterPath="$PROJECT_DIR$/external/php/redux-framework/ReduxCore/inc/fields/slider/field_slider.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/external/php/redux-framework/ReduxCore/inc/fields/slider/field_slider.less" afterPath="$PROJECT_DIR$/external/php/redux-framework/ReduxCore/inc/fields/slider/field_slider.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/external/php/redux-framework/ReduxCore/inc/fields/slider/field_slider.php" afterPath="$PROJECT_DIR$/external/php/redux-framework/ReduxCore/inc/fields/slider/field_slider.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/external/php/redux-framework/ReduxCore/inc/fields/slider/field_slider.scss" afterPath="$PROJECT_DIR$/external/php/redux-framework/ReduxCore/inc/fields/slider/field_slider.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/external/php/redux-framework/ReduxCore/inc/fields/slides/field_slides.css" afterPath="$PROJECT_DIR$/external/php/redux-framework/ReduxCore/inc/fields/slides/field_slides.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/external/php/redux-framework/ReduxCore/inc/fields/slides/field_slides.scss" afterPath="$PROJECT_DIR$/external/php/redux-framework/ReduxCore/inc/fields/slides/field_slides.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/external/php/redux-framework/ReduxCore/inc/fields/sortable/field_sortable.scss" afterPath="$PROJECT_DIR$/external/php/redux-framework/ReduxCore/inc/fields/sortable/field_sortable.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/external/php/redux-framework/ReduxCore/inc/fields/sorter/field_sorter.js" afterPath="$PROJECT_DIR$/external/php/redux-framework/ReduxCore/inc/fields/sorter/field_sorter.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/external/php/redux-framework/ReduxCore/inc/fields/sorter/field_sorter.php" afterPath="$PROJECT_DIR$/external/php/redux-framework/ReduxCore/inc/fields/sorter/field_sorter.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/external/php/redux-framework/ReduxCore/inc/fields/sorter/field_sorter.scss" afterPath="$PROJECT_DIR$/external/php/redux-framework/ReduxCore/inc/fields/sorter/field_sorter.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/external/php/redux-framework/ReduxCore/inc/fields/spacing/field_spacing.scss" afterPath="$PROJECT_DIR$/external/php/redux-framework/ReduxCore/inc/fields/spacing/field_spacing.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/external/php/redux-framework/ReduxCore/inc/fields/spinner/field_spinner.css" afterPath="$PROJECT_DIR$/external/php/redux-framework/ReduxCore/inc/fields/spinner/field_spinner.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/external/php/redux-framework/ReduxCore/inc/fields/spinner/field_spinner.scs" afterPath="$PROJECT_DIR$/external/php/redux-framework/ReduxCore/inc/fields/spinner/field_spinner.scs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/external/php/redux-framework/ReduxCore/inc/fields/switch/field_switch.scss" afterPath="$PROJECT_DIR$/external/php/redux-framework/ReduxCore/inc/fields/switch/field_switch.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/external/php/redux-custom-fields/tabbed/field_tabbed.js" afterPath="$PROJECT_DIR$/external/php/redux-custom-fields/tabbed/field_tabbed.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/external/php/redux-framework/ReduxCore/inc/fields/text/field_text.css" afterPath="$PROJECT_DIR$/external/php/redux-framework/ReduxCore/inc/fields/text/field_text.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/external/php/redux-framework/ReduxCore/inc/fields/text/field_text.less" afterPath="$PROJECT_DIR$/external/php/redux-framework/ReduxCore/inc/fields/text/field_text.less" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/external/php/redux-framework/ReduxCore/inc/fields/text/field_text.php" afterPath="$PROJECT_DIR$/external/php/redux-framework/ReduxCore/inc/fields/text/field_text.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/external/php/redux-framework/ReduxCore/inc/fields/text/field_text.scss" afterPath="$PROJECT_DIR$/external/php/redux-framework/ReduxCore/inc/fields/text/field_text.scss" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/external/php/redux-framework/ReduxCore/inc/fields/typography/field_typography.php" afterPath="$PROJECT_DIR$/external/php/redux-framework/ReduxCore/inc/fields/typography/field_typography.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/external/php/redux-framework/ReduxCore/inc/fields/typography/field_typography.scss" afterPath="$PROJECT_DIR$/external/php/redux-framework/ReduxCore/inc/fields/typography/field_typography.scss" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/external/php/redux-framework/ReduxCore/framework.php" afterPath="$PROJECT_DIR$/external/php/redux-framework/ReduxCore/framework.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/external/php/redux-framework/ReduxCore/inc/fields/typography/googlefonts.html" afterPath="$PROJECT_DIR$/external/php/redux-framework/ReduxCore/inc/fields/typography/googlefonts.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/external/php/redux-framework/ReduxCore/inc/fields/typography/googlefonts.json" afterPath="$PROJECT_DIR$/external/php/redux-framework/ReduxCore/inc/fields/typography/googlefonts.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/external/php/redux-framework/ReduxCore/assets/js/vendor/jquery.alphanum.js" afterPath="$PROJECT_DIR$/external/php/redux-framework/ReduxCore/assets/js/vendor/jquery.alphanum.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/external/php/redux-framework/ReduxCore/languages/redux-framework.pot" afterPath="$PROJECT_DIR$/external/php/redux-framework/ReduxCore/languages/redux-framework.pot" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/external/php/redux-framework/ReduxCore/assets/css/redux.css" afterPath="$PROJECT_DIR$/external/php/redux-framework/ReduxCore/assets/css/redux.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/external/php/redux-framework/ReduxCore/assets/js/redux.js" afterPath="$PROJECT_DIR$/external/php/redux-framework/ReduxCore/assets/js/redux.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/external/php/redux-framework/ReduxCore/assets/js/redux.min.js" afterPath="$PROJECT_DIR$/external/php/redux-framework/ReduxCore/assets/js/redux.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/external/php/redux-framework/ReduxCore/assets/css/rtl.css" afterPath="$PROJECT_DIR$/external/php/redux-framework/ReduxCore/assets/css/rtl.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/external/php/redux-framework/ReduxCore/assets/js/vendor/select2.sortable.js" afterPath="$PROJECT_DIR$/external/php/redux-framework/ReduxCore/assets/js/vendor/select2.sortable.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/external/php/redux-framework/ReduxCore/inc/fields/select_image/select_image.scss" afterPath="$PROJECT_DIR$/external/php/redux-framework/ReduxCore/inc/fields/select_image/select_image.scss" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/external/php/redux-framework/ReduxCore/inc/tracking.php" afterPath="$PROJECT_DIR$/external/php/redux-framework/ReduxCore/inc/tracking.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/external/php/redux-framework/ReduxCore/inc/validation/email_not_empty/validation_email_not_empty.php" afterPath="$PROJECT_DIR$/external/php/redux-framework/ReduxCore/inc/validation/email_not_empty/validation_email_not_empty.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/external/php/redux-framework/ReduxCore/assets/js/vendor.min.js" afterPath="$PROJECT_DIR$/external/php/redux-framework/ReduxCore/assets/js/vendor.min.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
@@ -207,43 +55,7 @@
       <file leaf-file-name="arc-admin.css" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/admin/css/arc-admin.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="1041" column="65" selection-start="25090" selection-end="25090" vertical-scroll-proportion="-7.1153846" vertical-offset="18553" max-vertical-offset="19854">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="field_tabbed.css" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/external/php/redux-custom-fields/tabbed/field_tabbed.css">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="32" column="0" selection-start="624" selection-end="624" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="684">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="loader.php" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/external/php/redux-custom-fields/loader.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="23" column="0" selection-start="733" selection-end="733" vertical-scroll-proportion="-17.25" vertical-offset="0" max-vertical-offset="522">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="field_textro.php" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/external/php/redux-custom-fields/textro/field_textro.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="21" column="6" selection-start="552" selection-end="552" vertical-scroll-proportion="-5.04" vertical-offset="126" max-vertical-offset="1260">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="field_radio.php" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/external/php/redux-framework/ReduxCore/inc/fields/radio/field_radio.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="55" column="5" selection-start="1741" selection-end="1741" vertical-scroll-proportion="-41.25" vertical-offset="0" max-vertical-offset="1170">
+            <state line="1108" column="25" selection-start="26502" selection-end="26502" vertical-scroll-proportion="-44.23077" vertical-offset="18794" max-vertical-offset="20070">
               <folding />
             </state>
           </provider>
@@ -252,77 +64,16 @@
       <file leaf-file-name="arc-admin.php" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/admin/php/arc-admin.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="53" column="0" selection-start="1942" selection-end="1942" vertical-scroll-proportion="-26.25" vertical-offset="324" max-vertical-offset="4518">
+            <state line="53" column="0" selection-start="1942" selection-end="1942" vertical-scroll-proportion="-13.5" vertical-offset="630" max-vertical-offset="4518">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="arc-functions.php" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="arc-functions.php" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/includes/php/arc-functions.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="179" column="11" selection-start="8305" selection-end="8305" vertical-scroll-proportion="-20.625" vertical-offset="2727" max-vertical-offset="3924">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="field_link_color.php" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/external/php/redux-framework/ReduxCore/inc/fields/link_color/field_link_color.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="70" column="0" selection-start="2337" selection-end="2337" vertical-scroll-proportion="-22.416666" vertical-offset="362" max-vertical-offset="3024">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="arc-metaboxes.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/admin/js/arc-metaboxes.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="20" column="49" selection-start="601" selection-end="615" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="810">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="arc-panels-layouts.php" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/admin/php/redux/arc-panels-layouts.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="754" column="0" selection-start="29631" selection-end="29631" vertical-scroll-proportion="8.9435625" vertical-offset="3430" max-vertical-offset="21204">
-              <folding>
-                <marker date="1393733571000" expanded="true" signature="30487:30685" placeholder="..." />
-                <marker date="1393733571000" expanded="true" signature="30720:30897" placeholder="..." />
-                <marker date="1393733571000" expanded="true" signature="30932:31104" placeholder="..." />
-                <marker date="1393733571000" expanded="true" signature="31139:31313" placeholder="..." />
-                <marker date="1393733571000" expanded="true" signature="31348:31449" placeholder="..." />
-                <marker date="1393733571000" expanded="true" signature="41075:41273" placeholder="..." />
-                <marker date="1393733571000" expanded="true" signature="41308:41485" placeholder="..." />
-                <marker date="1393733571000" expanded="true" signature="41520:41692" placeholder="..." />
-                <marker date="1393733571000" expanded="true" signature="41727:41901" placeholder="..." />
-                <marker date="1393733571000" expanded="true" signature="41936:42037" placeholder="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="framework.php" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/external/php/redux-framework/ReduxCore/framework.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="1789" column="68" selection-start="80927" selection-end="80927" vertical-scroll-proportion="-24.5" vertical-offset="31290" max-vertical-offset="61236">
-              <folding>
-                <marker date="1393678595000" expanded="true" signature="60122:60846" placeholder="..." />
-                <marker date="1393678595000" expanded="true" signature="60162:60356" placeholder="{...}" />
-                <marker date="1393678595000" expanded="true" signature="60196:60332" placeholder="{...}" />
-                <marker date="1393678595000" expanded="true" signature="60392:60813" placeholder="{...}" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="field_tabbed.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/external/php/redux-custom-fields/tabbed/field_tabbed.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="11" column="156" selection-start="418" selection-end="418" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="918">
+            <state line="163" column="0" selection-start="7652" selection-end="7652" vertical-scroll-proportion="0.65217394" vertical-offset="2529" max-vertical-offset="3978">
               <folding />
             </state>
           </provider>
@@ -331,19 +82,140 @@
       <file leaf-file-name="architect-config.php" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/admin/php/admin-options/architect-config.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="566" column="16" selection-start="24331" selection-end="24331" vertical-scroll-proportion="-180.0" vertical-offset="1188" max-vertical-offset="12402">
+            <state line="325" column="0" selection-start="12565" selection-end="12565" vertical-scroll-proportion="-7.94" vertical-offset="5453" max-vertical-offset="12420">
               <folding>
-                <marker date="1393733657000" expanded="true" signature="6227:7875" placeholder="..." />
-                <marker date="1393733657000" expanded="true" signature="6435:6638" placeholder="..." />
-                <marker date="1393733657000" expanded="true" signature="6752:6822" placeholder="..." />
-                <marker date="1393733657000" expanded="true" signature="6864:6937" placeholder="..." />
-                <marker date="1393733657000" expanded="true" signature="6954:7859" placeholder="..." />
-                <marker date="1393733657000" expanded="true" signature="6990:7383" placeholder="..." />
-                <marker date="1393733657000" expanded="true" signature="18407:18605" placeholder="..." />
-                <marker date="1393733657000" expanded="true" signature="18640:18817" placeholder="..." />
-                <marker date="1393733657000" expanded="true" signature="18852:19024" placeholder="..." />
-                <marker date="1393733657000" expanded="true" signature="19059:19233" placeholder="..." />
-                <marker date="1393733657000" expanded="true" signature="19268:19369" placeholder="..." />
+                <marker date="1394066628000" expanded="true" signature="6227:7875" placeholder="..." />
+                <marker date="1394066628000" expanded="true" signature="6435:6638" placeholder="..." />
+                <marker date="1394066628000" expanded="true" signature="6752:6822" placeholder="..." />
+                <marker date="1394066628000" expanded="true" signature="6864:6937" placeholder="..." />
+                <marker date="1394066628000" expanded="true" signature="6954:7859" placeholder="..." />
+                <marker date="1394066628000" expanded="true" signature="6990:7383" placeholder="..." />
+                <marker date="1394066628000" expanded="true" signature="18408:18606" placeholder="..." />
+                <marker date="1394066628000" expanded="true" signature="18641:18818" placeholder="..." />
+                <marker date="1394066628000" expanded="true" signature="18853:19025" placeholder="..." />
+                <marker date="1394066628000" expanded="true" signature="19060:19234" placeholder="..." />
+                <marker date="1394066628000" expanded="true" signature="19269:19370" placeholder="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="arc-panels-layouts.php" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/admin/php/redux/arc-panels-layouts.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="407" column="18" selection-start="16112" selection-end="16112" vertical-scroll-proportion="-1.3" vertical-offset="7261" max-vertical-offset="21456">
+              <folding>
+                <marker date="1393921257000" expanded="true" signature="31173:31371" placeholder="..." />
+                <marker date="1393921257000" expanded="true" signature="31406:31583" placeholder="..." />
+                <marker date="1393921257000" expanded="true" signature="31618:31790" placeholder="..." />
+                <marker date="1393921257000" expanded="true" signature="31825:31999" placeholder="..." />
+                <marker date="1393921257000" expanded="true" signature="32034:32135" placeholder="..." />
+                <marker date="1393921257000" expanded="true" signature="41761:41959" placeholder="..." />
+                <marker date="1393921257000" expanded="true" signature="41994:42171" placeholder="..." />
+                <marker date="1393921257000" expanded="true" signature="42206:42378" placeholder="..." />
+                <marker date="1393921257000" expanded="true" signature="42413:42587" placeholder="..." />
+                <marker date="1393921257000" expanded="true" signature="42622:42723" placeholder="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="class_pzarc_Display.php" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/frontend/php/class_pzarc_Display.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="17" column="24" selection-start="351" selection-end="351" vertical-scroll-proportion="-3.9230769" vertical-offset="0" max-vertical-offset="16308">
+              <folding>
+                <element signature="e#9#109#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="arcPanelDefinitions.php" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/frontend/php/arcPanelDefinitions.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="122" column="0" selection-start="11138" selection-end="11138" vertical-scroll-proportion="-40.041668" vertical-offset="1235" max-vertical-offset="2466">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="arc-blueprints.php" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/admin/php/redux/arc-blueprints.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="159" column="61" selection-start="5967" selection-end="5973" vertical-scroll-proportion="-4.32" vertical-offset="2646" max-vertical-offset="20214">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="arc-display.php" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/frontend/php/arc-display.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="61" column="0" selection-start="2211" selection-end="2211" vertical-scroll-proportion="-5.375" vertical-offset="861" max-vertical-offset="4068">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="architect.php" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/architect.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="16" column="57" selection-start="795" selection-end="795" vertical-scroll-proportion="-12.0" vertical-offset="0" max-vertical-offset="6120">
+              <folding>
+                <element signature="e#7#569#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="extension_metaboxes.php" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/external/php/redux-extensions/extensions/metaboxes/extension_metaboxes.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="41" column="15" selection-start="1271" selection-end="1271" vertical-scroll-proportion="-7.56" vertical-offset="54" max-vertical-offset="13428">
+              <folding>
+                <marker date="1393566610000" expanded="true" signature="19617:26546" placeholder="..." />
+                <marker date="1393566610000" expanded="true" signature="19875:20261" placeholder="..." />
+                <marker date="1393566610000" expanded="true" signature="19929:20234" placeholder="..." />
+                <marker date="1393566610000" expanded="true" signature="20363:26485" placeholder="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="arc-metaboxes-panels.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/admin/js/arc-metaboxes-panels.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="20" column="0" selection-start="691" selection-end="691" vertical-scroll-proportion="-13.846154" vertical-offset="0" max-vertical-offset="10404">
+              <folding>
+                <marker date="1393926946000" expanded="true" signature="8238:8292" placeholder="..." />
+                <marker date="1393926946000" expanded="true" signature="8491:8506" placeholder="..." />
+                <marker date="1393926946000" expanded="true" signature="8699:8714" placeholder="..." />
+                <marker date="1393926946000" expanded="true" signature="8903:8936" placeholder="..." />
+                <marker date="1393926946000" expanded="true" signature="9010:9025" placeholder="..." />
+                <marker date="1393926946000" expanded="true" signature="9501:9516" placeholder="..." />
+                <marker date="1393926946000" expanded="true" signature="9763:9800" placeholder="..." />
+                <marker date="1393926946000" expanded="true" signature="10475:10490" placeholder="..." />
+                <marker date="1393926946000" expanded="true" signature="11068:11083" placeholder="..." />
+                <marker date="1393926946000" expanded="true" signature="11286:11301" placeholder="..." />
+                <marker date="1393926946000" expanded="true" signature="11508:11523" placeholder="..." />
+                <marker date="1393926946000" expanded="true" signature="11730:11745" placeholder="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="framework.php" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/external/php/redux-framework/ReduxCore/framework.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="1841" column="0" selection-start="83220" selection-end="83220" vertical-scroll-proportion="-18.36" vertical-offset="31896" max-vertical-offset="61848">
+              <folding>
+                <marker date="1394059240000" expanded="true" signature="1243:161874" placeholder="..." />
+                <marker date="1394059240000" expanded="true" signature="60349:60543" placeholder="{...}" />
+                <marker date="1394059240000" expanded="true" signature="60383:60519" placeholder="{...}" />
+                <marker date="1394059240000" expanded="true" signature="60579:61000" placeholder="{...}" />
+                <marker date="1394059240000" expanded="true" signature="108214:109961" placeholder="..." />
+                <marker date="1394059240000" expanded="true" signature="108214:108267" placeholder="..." />
               </folding>
             </state>
           </provider>
@@ -353,28 +225,12 @@
         <entry file="file://$PROJECT_DIR$/external/php/redux-framework/sample/sample-config.php">
           <provider selected="true" editor-type-id="text-editor">
             <state line="1322" column="35" selection-start="77285" selection-end="77296" vertical-scroll-proportion="-75.05882" vertical-offset="18638" max-vertical-offset="27324">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="arc-metaboxes-panels.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/admin/js/arc-metaboxes-panels.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="295" column="6" selection-start="14580" selection-end="14581" vertical-scroll-proportion="0.0" vertical-offset="4911" max-vertical-offset="10602">
               <folding>
-                <marker date="1392988272000" expanded="false" signature="8243:8297" placeholder="..." />
-                <marker date="1392988272000" expanded="false" signature="8496:8511" placeholder="..." />
-                <marker date="1392988272000" expanded="false" signature="8704:8719" placeholder="..." />
-                <marker date="1392988272000" expanded="false" signature="8908:8941" placeholder="..." />
-                <marker date="1392988272000" expanded="false" signature="9015:9030" placeholder="..." />
-                <marker date="1392988272000" expanded="false" signature="9506:9521" placeholder="..." />
-                <marker date="1392988272000" expanded="false" signature="9768:9805" placeholder="..." />
-                <marker date="1392988272000" expanded="false" signature="10480:10495" placeholder="..." />
-                <marker date="1392988272000" expanded="false" signature="11073:11088" placeholder="..." />
-                <marker date="1392988272000" expanded="false" signature="11291:11306" placeholder="..." />
-                <marker date="1392988272000" expanded="false" signature="11513:11528" placeholder="..." />
-                <marker date="1392988272000" expanded="false" signature="11735:11750" placeholder="..." />
+                <marker date="1393590001000" expanded="true" signature="7734:9476" placeholder="..." />
+                <marker date="1393590001000" expanded="true" signature="8008:8167" placeholder="..." />
+                <marker date="1393590001000" expanded="true" signature="8397:8476" placeholder="..." />
+                <marker date="1393590001000" expanded="true" signature="8499:9456" placeholder="..." />
+                <marker date="1393590001000" expanded="true" signature="8543:8974" placeholder="..." />
               </folding>
             </state>
           </provider>
@@ -413,37 +269,37 @@
         <option value="$PROJECT_DIR$/external/php/ReduxCore/framework.php" />
         <option value="$PROJECT_DIR$/admin/php/redux/arc-cell-layouts.php" />
         <option value="$PROJECT_DIR$/external/php/redux-options/sample-config.php" />
-        <option value="$PROJECT_DIR$/architect.php" />
         <option value="$PROJECT_DIR$/external/php/redux-custom-fields/pzspinner/field_pzspinner.php" />
         <option value="$PROJECT_DIR$/external/php/redux-framework/ReduxCore/inc/fields/spinner/field_spinner.php" />
         <option value="$PROJECT_DIR$/external/php/redux-framework/ReduxCore/assets/css/vendor/jquery-ui-bootstrap/jquery-ui-1.10.0.custom.css" />
         <option value="$PROJECT_DIR$/admin/js/arc-tabify.js" />
         <option value="$PROJECT_DIR$/external/php/redux-custom-fields/tabbed/field_tabbed.less" />
-        <option value="$PROJECT_DIR$/admin/js/arc-metaboxes-panels.js" />
         <option value="$PROJECT_DIR$/external/php/redux-custom-fields/tabbed/field_tabbed.php" />
         <option value="$PROJECT_DIR$/admin/php/admin-options/sample/sample-config.php" />
         <option value="$PROJECT_DIR$/external/php/redux-custom-fields/code/field_code.php" />
         <option value="$PROJECT_DIR$/includes/headway/arc-block-display.php" />
-        <option value="$PROJECT_DIR$/frontend/php/arcPanelDefinitions.php" />
         <option value="$PROJECT_DIR$/admin/php/redux/arc-blueprints.php" />
         <option value="$PROJECT_DIR$/frontend/css/arc-front.css" />
         <option value="$PROJECT_DIR$/includes/headway/arc-block-options.php" />
-        <option value="$PROJECT_DIR$/frontend/php/arc-display.php" />
-        <option value="$PROJECT_DIR$/frontend/php/class_pzarc_Display.php" />
-        <option value="$PROJECT_DIR$/includes/php/arc-functions.php" />
         <option value="$PROJECT_DIR$/external/php/redux-extensions/extensions/metaboxes/extension_metaboxes.php" />
         <option value="$PROJECT_DIR$/external/php/redux-custom-fields/tabbed/field_tabbed.css" />
         <option value="$PROJECT_DIR$/external/php/redux-custom-fields/loader.php" />
         <option value="$PROJECT_DIR$/external/php/redux-custom-fields/textro/field_textro.php" />
         <option value="$PROJECT_DIR$/admin/js/arc-metaboxes.js" />
         <option value="$PROJECT_DIR$/external/php/redux-custom-fields/tabbed/field_tabbed.js" />
-        <option value="$PROJECT_DIR$/admin/css/arc-admin.css" />
         <option value="$PROJECT_DIR$/admin/php/arc-admin.php" />
         <option value="$PROJECT_DIR$/external/php/redux-framework/ReduxCore/framework.php" />
-        <option value="$PROJECT_DIR$/external/php/redux-framework/ReduxCore/inc/fields/link_color/field_link_color.php" />
-        <option value="$PROJECT_DIR$/admin/php/redux/arc-panels-layouts.php" />
-        <option value="$PROJECT_DIR$/admin/php/admin-options/architect-config.php" />
         <option value="$PROJECT_DIR$/external/php/redux-framework/sample/sample-config.php" />
+        <option value="$PROJECT_DIR$/frontend/php/arcPanelDefinitions.php" />
+        <option value="$PROJECT_DIR$/frontend/php/class_pzarc_Display.php" />
+        <option value="$PROJECT_DIR$/architect.php" />
+        <option value="$PROJECT_DIR$/frontend/php/arc-display.php" />
+        <option value="$PROJECT_DIR$/admin/php/redux/arc-panels-layouts.php" />
+        <option value="$PROJECT_DIR$/admin/css/arc-admin.css" />
+        <option value="$PROJECT_DIR$/admin/js/arc-metaboxes-panels.js" />
+        <option value="$PROJECT_DIR$/external/php/redux-framework/ReduxCore/inc/fields/link_color/field_link_color.php" />
+        <option value="$PROJECT_DIR$/admin/php/admin-options/architect-config.php" />
+        <option value="$PROJECT_DIR$/includes/php/arc-functions.php" />
       </list>
     </option>
   </component>
@@ -456,8 +312,8 @@
   </component>
   <component name="ProjectFrameBounds">
     <option name="y" value="22" />
-    <option name="width" value="2560" />
-    <option name="height" value="1317" />
+    <option name="width" value="1680" />
+    <option name="height" value="778" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -623,388 +479,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="php" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pizazzwp-architect" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pizazzwp-architect" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="external" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="php" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="redux-framework" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="sample" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pizazzwp-architect" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pizazzwp-architect" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="external" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="php" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="redux-framework" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ReduxCore" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pizazzwp-architect" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pizazzwp-architect" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="external" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="php" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="redux-framework" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ReduxCore" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="inc" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pizazzwp-architect" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pizazzwp-architect" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="external" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="php" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="redux-framework" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ReduxCore" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="inc" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="fields" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="typography" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pizazzwp-architect" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pizazzwp-architect" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="external" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="php" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="redux-framework" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ReduxCore" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="inc" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="fields" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pizazzwp-architect" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pizazzwp-architect" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="external" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="php" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="redux-framework" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ReduxCore" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="inc" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="fields" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="radio" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pizazzwp-architect" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pizazzwp-architect" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="external" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="php" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="redux-framework" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ReduxCore" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="inc" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="fields" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="link_color" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pizazzwp-architect" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pizazzwp-architect" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="external" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="php" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="redux-extensions" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pizazzwp-architect" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pizazzwp-architect" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="external" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="php" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="redux-extensions" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="extensions" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="metaboxes" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pizazzwp-architect" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pizazzwp-architect" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="external" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="php" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="redux-custom-fields" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pizazzwp-architect" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pizazzwp-architect" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="external" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="php" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="redux-custom-fields" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="textro" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pizazzwp-architect" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pizazzwp-architect" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="external" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="php" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="redux-custom-fields" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tabbed" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pizazzwp-architect" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pizazzwp-architect" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="external" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="php" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="redux-custom-fields" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="code" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -1217,7 +691,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="22" width="2560" height="1317" extended-state="0" />
+    <frame x="0" y="22" width="1680" height="778" extended-state="0" />
     <editor active="false" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3291239" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -1229,9 +703,9 @@
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.13899921" sideWeight="0.42040816" order="1" side_tool="true" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.23076923" sideWeight="0.41982508" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="eSnippet Pro" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3295583" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.13899921" sideWeight="0.5787755" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.23076923" sideWeight="0.5787172" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -1256,17 +730,6 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/admin/js/arc-metaboxes-panels.js</url>
-          <line>149</line>
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/admin/js/arc-metaboxes-panels.js</url>
-          <line>129</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
       <option name="time" value="2" />
     </breakpoint-manager>
   </component>
@@ -1355,13 +818,6 @@
         <state line="424" column="80" selection-start="11132" selection-end="11206" vertical-scroll-proportion="0.3382353" vertical-offset="7248" max-vertical-offset="8064" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/architect.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="50" column="76" selection-start="1388" selection-end="1416" vertical-scroll-proportion="0.0" vertical-offset="900" max-vertical-offset="6102">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/external/php/redux-framework/ReduxCore/inc/fields/select/field_select.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="35" column="0" selection-start="1094" selection-end="1094" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="990" />
@@ -1404,11 +860,6 @@
         <state line="168" column="0" selection-start="6116" selection-end="6116" vertical-scroll-proportion="0.6641791" vertical-offset="2490" max-vertical-offset="3294" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/frontend/php/arcPanelDefinitions.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="3" column="23" selection-start="31" selection-end="31" vertical-scroll-proportion="-2.25" vertical-offset="0" max-vertical-offset="2430" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/frontend/css/arc-front.css">
       <provider selected="true" editor-type-id="text-editor">
         <state line="221" column="17" selection-start="4166" selection-end="4166" vertical-scroll-proportion="0.0" vertical-offset="3402" max-vertical-offset="5274">
@@ -1419,20 +870,6 @@
     <entry file="file://$PROJECT_DIR$/includes/headway/arc-block-options.php">
       <provider selected="true" editor-type-id="text-editor">
         <state line="258" column="32" selection-start="9174" selection-end="9174" vertical-scroll-proportion="0.0" vertical-offset="4277" max-vertical-offset="5094">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/frontend/php/arc-display.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="35" column="110" selection-start="1248" selection-end="1250" vertical-scroll-proportion="0.0" vertical-offset="362" max-vertical-offset="4050">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/frontend/php/class_pzarc_Display.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="180" column="55" selection-start="5457" selection-end="5457" vertical-scroll-proportion="0.0" vertical-offset="2790" max-vertical-offset="16308">
           <folding />
         </state>
       </provider>
@@ -1456,18 +893,6 @@
         <state line="7" column="31" selection-start="259" selection-end="278" vertical-scroll-proportion="0.10387469" vertical-offset="0" max-vertical-offset="1213" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/external/php/redux-extensions/extensions/metaboxes/extension_metaboxes.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="434" column="36" selection-start="18848" selection-end="18848" vertical-scroll-proportion="-11.25" vertical-offset="7236" max-vertical-offset="13428">
-          <folding>
-            <marker date="1393566610000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1393566610000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1393566610000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1393566610000" expanded="true" signature="-1:-1" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/external/php/redux-custom-fields/tabbed/field_tabbed.php">
       <provider selected="true" editor-type-id="text-editor">
         <state line="70" column="17" selection-start="2398" selection-end="2398" vertical-scroll-proportion="-19.083334" vertical-offset="802" max-vertical-offset="1692">
@@ -1482,48 +907,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/admin/php/redux/arc-blueprints.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="355" column="44" selection-start="13196" selection-end="13197" vertical-scroll-proportion="-4.32" vertical-offset="6174" max-vertical-offset="20214">
-          <folding>
-            <marker date="1393160382000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1393160382000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1393160382000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1393160382000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1393160382000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1393160382000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1393160382000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1393160382000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1393160382000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1393160382000" expanded="true" signature="-1:-1" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/external/php/redux-custom-fields/loader.php">
       <provider selected="true" editor-type-id="text-editor">
         <state line="23" column="0" selection-start="733" selection-end="733" vertical-scroll-proportion="-17.25" vertical-offset="0" max-vertical-offset="522">
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin/js/arc-metaboxes-panels.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="295" column="6" selection-start="14580" selection-end="14581" vertical-scroll-proportion="0.0" vertical-offset="4911" max-vertical-offset="10602">
-          <folding>
-            <marker date="1392988272000" expanded="false" signature="8243:8297" placeholder="..." />
-            <marker date="1392988272000" expanded="false" signature="8496:8511" placeholder="..." />
-            <marker date="1392988272000" expanded="false" signature="8704:8719" placeholder="..." />
-            <marker date="1392988272000" expanded="false" signature="8908:8941" placeholder="..." />
-            <marker date="1392988272000" expanded="false" signature="9015:9030" placeholder="..." />
-            <marker date="1392988272000" expanded="false" signature="9506:9521" placeholder="..." />
-            <marker date="1392988272000" expanded="false" signature="9768:9805" placeholder="..." />
-            <marker date="1392988272000" expanded="false" signature="10480:10495" placeholder="..." />
-            <marker date="1392988272000" expanded="false" signature="11073:11088" placeholder="..." />
-            <marker date="1392988272000" expanded="false" signature="11291:11306" placeholder="..." />
-            <marker date="1392988272000" expanded="false" signature="11513:11528" placeholder="..." />
-            <marker date="1392988272000" expanded="false" signature="11735:11750" placeholder="..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1548,27 +935,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/admin/css/arc-admin.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="1041" column="65" selection-start="25090" selection-end="25090" vertical-scroll-proportion="-7.1153846" vertical-offset="18553" max-vertical-offset="19854">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin/php/arc-admin.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="53" column="0" selection-start="1942" selection-end="1942" vertical-scroll-proportion="-26.25" vertical-offset="324" max-vertical-offset="4518">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/includes/php/arc-functions.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="179" column="11" selection-start="8305" selection-end="8305" vertical-scroll-proportion="-20.625" vertical-offset="2727" max-vertical-offset="3924">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/external/php/redux-custom-fields/textro/field_textro.php">
       <provider selected="true" editor-type-id="text-editor">
         <state line="21" column="6" selection-start="552" selection-end="552" vertical-scroll-proportion="-5.04" vertical-offset="126" max-vertical-offset="1260">
@@ -1587,46 +953,8 @@
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-0.21724138" vertical-offset="252" max-vertical-offset="14148">
           <folding>
-            <marker date="1393659612000" expanded="false" signature="-1:-1" placeholder="..." />
-            <marker date="1393659612000" expanded="false" signature="-1:-1" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/external/php/redux-framework/ReduxCore/framework.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="1789" column="68" selection-start="80927" selection-end="80927" vertical-scroll-proportion="-24.5" vertical-offset="31290" max-vertical-offset="61236">
-          <folding>
-            <marker date="1393678595000" expanded="true" signature="60122:60846" placeholder="..." />
-            <marker date="1393678595000" expanded="true" signature="60162:60356" placeholder="{...}" />
-            <marker date="1393678595000" expanded="true" signature="60196:60332" placeholder="{...}" />
-            <marker date="1393678595000" expanded="true" signature="60392:60813" placeholder="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/external/php/redux-framework/ReduxCore/inc/fields/link_color/field_link_color.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="70" column="0" selection-start="2337" selection-end="2337" vertical-scroll-proportion="-22.416666" vertical-offset="362" max-vertical-offset="3024">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin/php/admin-options/architect-config.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="566" column="16" selection-start="24331" selection-end="24331" vertical-scroll-proportion="-180.0" vertical-offset="1188" max-vertical-offset="12402">
-          <folding>
-            <marker date="1393733657000" expanded="true" signature="6227:7875" placeholder="..." />
-            <marker date="1393733657000" expanded="true" signature="6435:6638" placeholder="..." />
-            <marker date="1393733657000" expanded="true" signature="6752:6822" placeholder="..." />
-            <marker date="1393733657000" expanded="true" signature="6864:6937" placeholder="..." />
-            <marker date="1393733657000" expanded="true" signature="6954:7859" placeholder="..." />
-            <marker date="1393733657000" expanded="true" signature="6990:7383" placeholder="..." />
-            <marker date="1393733657000" expanded="true" signature="18407:18605" placeholder="..." />
-            <marker date="1393733657000" expanded="true" signature="18640:18817" placeholder="..." />
-            <marker date="1393733657000" expanded="true" signature="18852:19024" placeholder="..." />
-            <marker date="1393733657000" expanded="true" signature="19059:19233" placeholder="..." />
-            <marker date="1393733657000" expanded="true" signature="19268:19369" placeholder="..." />
+            <marker date="1394059240000" expanded="false" signature="-1:-1" placeholder="..." />
+            <marker date="1394059240000" expanded="false" signature="-1:-1" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -1634,25 +962,163 @@
     <entry file="file://$PROJECT_DIR$/external/php/redux-framework/sample/sample-config.php">
       <provider selected="true" editor-type-id="text-editor">
         <state line="1322" column="35" selection-start="77285" selection-end="77296" vertical-scroll-proportion="-75.05882" vertical-offset="18638" max-vertical-offset="27324">
+          <folding>
+            <marker date="1393590001000" expanded="true" signature="7734:9476" placeholder="..." />
+            <marker date="1393590001000" expanded="true" signature="8008:8167" placeholder="..." />
+            <marker date="1393590001000" expanded="true" signature="8397:8476" placeholder="..." />
+            <marker date="1393590001000" expanded="true" signature="8499:9456" placeholder="..." />
+            <marker date="1393590001000" expanded="true" signature="8543:8974" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/external/php/redux-extensions/extensions/metaboxes/extension_metaboxes.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="41" column="15" selection-start="1271" selection-end="1271" vertical-scroll-proportion="-7.56" vertical-offset="54" max-vertical-offset="13428">
+          <folding>
+            <marker date="1393566610000" expanded="true" signature="19617:26546" placeholder="..." />
+            <marker date="1393566610000" expanded="true" signature="19875:20261" placeholder="..." />
+            <marker date="1393566610000" expanded="true" signature="19929:20234" placeholder="..." />
+            <marker date="1393566610000" expanded="true" signature="20363:26485" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/external/php/redux-framework/ReduxCore/framework.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="1841" column="0" selection-start="83220" selection-end="83220" vertical-scroll-proportion="-18.36" vertical-offset="31896" max-vertical-offset="61848">
+          <folding>
+            <marker date="1394059240000" expanded="true" signature="1243:161874" placeholder="..." />
+            <marker date="1394059240000" expanded="true" signature="60349:60543" placeholder="{...}" />
+            <marker date="1394059240000" expanded="true" signature="60383:60519" placeholder="{...}" />
+            <marker date="1394059240000" expanded="true" signature="60579:61000" placeholder="{...}" />
+            <marker date="1394059240000" expanded="true" signature="108214:109961" placeholder="..." />
+            <marker date="1394059240000" expanded="true" signature="108214:108267" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/frontend/php/class_pzarc_Display.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="17" column="24" selection-start="351" selection-end="351" vertical-scroll-proportion="-3.9230769" vertical-offset="0" max-vertical-offset="16308">
+          <folding>
+            <element signature="e#9#109#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/architect.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="16" column="57" selection-start="795" selection-end="795" vertical-scroll-proportion="-12.0" vertical-offset="0" max-vertical-offset="6120">
+          <folding>
+            <element signature="e#7#569#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/frontend/php/arc-display.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="61" column="0" selection-start="2211" selection-end="2211" vertical-scroll-proportion="-5.375" vertical-offset="861" max-vertical-offset="4068">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/frontend/php/arcPanelDefinitions.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="122" column="0" selection-start="11138" selection-end="11138" vertical-scroll-proportion="-40.041668" vertical-offset="1235" max-vertical-offset="2466">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/php/redux/arc-blueprints.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="159" column="61" selection-start="5967" selection-end="5973" vertical-scroll-proportion="-4.32" vertical-offset="2646" max-vertical-offset="20214">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/admin/php/redux/arc-panels-layouts.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="754" column="0" selection-start="29631" selection-end="29631" vertical-scroll-proportion="8.9435625" vertical-offset="3430" max-vertical-offset="21204">
+        <state line="407" column="18" selection-start="16112" selection-end="16112" vertical-scroll-proportion="-1.3" vertical-offset="7261" max-vertical-offset="21456">
           <folding>
-            <marker date="1393733571000" expanded="true" signature="30487:30685" placeholder="..." />
-            <marker date="1393733571000" expanded="true" signature="30720:30897" placeholder="..." />
-            <marker date="1393733571000" expanded="true" signature="30932:31104" placeholder="..." />
-            <marker date="1393733571000" expanded="true" signature="31139:31313" placeholder="..." />
-            <marker date="1393733571000" expanded="true" signature="31348:31449" placeholder="..." />
-            <marker date="1393733571000" expanded="true" signature="41075:41273" placeholder="..." />
-            <marker date="1393733571000" expanded="true" signature="41308:41485" placeholder="..." />
-            <marker date="1393733571000" expanded="true" signature="41520:41692" placeholder="..." />
-            <marker date="1393733571000" expanded="true" signature="41727:41901" placeholder="..." />
-            <marker date="1393733571000" expanded="true" signature="41936:42037" placeholder="..." />
+            <marker date="1393921257000" expanded="true" signature="31173:31371" placeholder="..." />
+            <marker date="1393921257000" expanded="true" signature="31406:31583" placeholder="..." />
+            <marker date="1393921257000" expanded="true" signature="31618:31790" placeholder="..." />
+            <marker date="1393921257000" expanded="true" signature="31825:31999" placeholder="..." />
+            <marker date="1393921257000" expanded="true" signature="32034:32135" placeholder="..." />
+            <marker date="1393921257000" expanded="true" signature="41761:41959" placeholder="..." />
+            <marker date="1393921257000" expanded="true" signature="41994:42171" placeholder="..." />
+            <marker date="1393921257000" expanded="true" signature="42206:42378" placeholder="..." />
+            <marker date="1393921257000" expanded="true" signature="42413:42587" placeholder="..." />
+            <marker date="1393921257000" expanded="true" signature="42622:42723" placeholder="..." />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/css/arc-admin.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="1108" column="25" selection-start="26502" selection-end="26502" vertical-scroll-proportion="-44.23077" vertical-offset="18794" max-vertical-offset="20070">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/js/arc-metaboxes-panels.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="20" column="0" selection-start="691" selection-end="691" vertical-scroll-proportion="-13.846154" vertical-offset="0" max-vertical-offset="10404">
+          <folding>
+            <marker date="1393926946000" expanded="true" signature="8238:8292" placeholder="..." />
+            <marker date="1393926946000" expanded="true" signature="8491:8506" placeholder="..." />
+            <marker date="1393926946000" expanded="true" signature="8699:8714" placeholder="..." />
+            <marker date="1393926946000" expanded="true" signature="8903:8936" placeholder="..." />
+            <marker date="1393926946000" expanded="true" signature="9010:9025" placeholder="..." />
+            <marker date="1393926946000" expanded="true" signature="9501:9516" placeholder="..." />
+            <marker date="1393926946000" expanded="true" signature="9763:9800" placeholder="..." />
+            <marker date="1393926946000" expanded="true" signature="10475:10490" placeholder="..." />
+            <marker date="1393926946000" expanded="true" signature="11068:11083" placeholder="..." />
+            <marker date="1393926946000" expanded="true" signature="11286:11301" placeholder="..." />
+            <marker date="1393926946000" expanded="true" signature="11508:11523" placeholder="..." />
+            <marker date="1393926946000" expanded="true" signature="11730:11745" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/php/arc-admin.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="53" column="0" selection-start="1942" selection-end="1942" vertical-scroll-proportion="-13.5" vertical-offset="630" max-vertical-offset="4518">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/external/php/redux-framework/ReduxCore/inc/fields/link_color/field_link_color.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="53" column="34" selection-start="1770" selection-end="1770" vertical-scroll-proportion="0.12087912" vertical-offset="495" max-vertical-offset="3132">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/php/admin-options/architect-config.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="325" column="0" selection-start="12565" selection-end="12565" vertical-scroll-proportion="-7.94" vertical-offset="5453" max-vertical-offset="12420">
+          <folding>
+            <marker date="1394066628000" expanded="true" signature="6227:7875" placeholder="..." />
+            <marker date="1394066628000" expanded="true" signature="6435:6638" placeholder="..." />
+            <marker date="1394066628000" expanded="true" signature="6752:6822" placeholder="..." />
+            <marker date="1394066628000" expanded="true" signature="6864:6937" placeholder="..." />
+            <marker date="1394066628000" expanded="true" signature="6954:7859" placeholder="..." />
+            <marker date="1394066628000" expanded="true" signature="6990:7383" placeholder="..." />
+            <marker date="1394066628000" expanded="true" signature="18408:18606" placeholder="..." />
+            <marker date="1394066628000" expanded="true" signature="18641:18818" placeholder="..." />
+            <marker date="1394066628000" expanded="true" signature="18853:19025" placeholder="..." />
+            <marker date="1394066628000" expanded="true" signature="19060:19234" placeholder="..." />
+            <marker date="1394066628000" expanded="true" signature="19269:19370" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/includes/php/arc-functions.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="163" column="0" selection-start="7652" selection-end="7652" vertical-scroll-proportion="0.65217394" vertical-offset="2529" max-vertical-offset="3978">
+          <folding />
         </state>
       </provider>
     </entry>

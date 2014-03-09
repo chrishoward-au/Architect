@@ -6,6 +6,7 @@
    * Class pzarc_Panel_Layouts
    */
   $redux_opt_name = '_architect';
+  $show_hints = true;
 
   class pzarc_Panels_Layouts
   {
@@ -44,7 +45,6 @@
 // The loader will load all of the extensions automatically.
 // Alternatively you can run the include/init statements below.
         //    add_action('redux/metaboxes/architect/boxes', 'pzarc_add_panels_metaboxes',10);
-
 
       }
 
@@ -429,6 +429,7 @@
                 'max'      => '100',
                 'step'     => '1',
                 'class'    => ' percent',
+                'display_value' => 'label',
                 'hint' => array('content'=>__('Enter percent to move the components area up/down. </br>NOTE: These measurements are percentage of the panel.', 'pzarc'))
             ),
             array(
@@ -440,6 +441,7 @@
                 'max'      => '100',
                 'step'     => '1',
                 'class'    => ' percent',
+                'display_value' => 'label',
                 'hint' => array('content'=>__('Enter percent to move the components area left/right. </br>NOTE: These measurements are percentage of the panel.', 'pzarc'))
             ),
             array(
@@ -452,6 +454,7 @@
                 'max'      => '100',
                 'step'     => '1',
                 'class'    => ' percent',
+                'display_value' => 'label',
                 'hint' => array('content'=>__('Set the overall width for the components area. Necessary for left or right positioning of sections', 'pzarc')),
             ),
 
@@ -617,6 +620,7 @@
                 'max'     => '100',
                 'step'    => '1',
                 'units'   => '%',
+                'display_value' => 'label'
             ),
             array(
                 'id'      => $prefix . 'image-margin-bottom',
@@ -629,6 +633,7 @@
                 'max'     => '100',
                 'step'    => '1',
                 'units'   => '%',
+                'display_value' => 'label'
             ),
             array(
                 'id'      => $prefix . 'image-margin-left',
@@ -641,6 +646,7 @@
                 'max'     => '100',
                 'step'    => '1',
                 'units'   => '%',
+                'display_value' => 'label'
             ),
             array(
                 'id'      => $prefix . 'image-margin-right',
@@ -653,6 +659,7 @@
                 'max'     => '100',
                 'step'    => '1',
                 'units'   => '%',
+                'display_value' => 'label'
             ),
             array(
                 'title'   => __('Link image', 'pzarc'),
@@ -723,6 +730,13 @@
                 'default' => '250',
                 'cols'    => 3,
 
+            ),
+            array(
+                'id'       => $prefix . 'image-bgcolour',
+                'title'    => 'Image background colour',
+                'type'     => 'color',
+                'default'  => '#ffffff',
+                'hint' => array('content'=>'If the cropped image  doesn\'t fill the resize area, fill the space with this colour.')
             ),
             array(
                 'id'       => $prefix . 'image-quality',

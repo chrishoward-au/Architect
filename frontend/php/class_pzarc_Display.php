@@ -190,7 +190,7 @@
       // THIS HAS TO ALL WORK NICELY WITH CONTENT IN CONTENT. I.E. NO RECURSIVE ISSUES.
 
       $this->blueprint = $pzarc_blueprint;
-pzdebug($this->blueprint);
+//pzdebug($this->blueprint);
       // Get the criteria
       if ($this->blueprint[ 'content_general_content-source' ] == 'defaults' && !$is_shortcode)
       {
@@ -259,12 +259,12 @@ pzdebug($this->blueprint);
           }
 
           $this->section_info = $section_info;
-          if ($pzarc_blueprint[ 'section' ][ $key ][ 'section-enable' ])
+          if ($this->blueprint[ 'section' ][ $key ][ 'section-enable' ])
           {
 
             $this->output .= ($key == 0) ? '{{nav-top-outside}}' : null;
             $this->output .= ($key == 0) ? '{{nav-left-outside}}' : null;
-            if ($pzarc_blueprint[ 'blueprints_section-' . $key . '-layout-mode' ] == 'basic')
+            if ($this->blueprint[ 'blueprints_section-' . $key . '-layout-mode' ] == 'basic')
             {
               $this->output .= '<div class="pzarc-section pzarc-section-' . ($key + 1) . ' swiper-wrapper">';
             }
@@ -294,7 +294,7 @@ pzdebug($this->blueprint);
 
                 // Leave the while loop if up to the post count
                 // blueprints_section-1-panels-per-view
-                if ($pzarc_blueprint[ 'blueprints-section-' . $key . '-panels-per-view' ] != 0 && ++$i > $pzarc_blueprint[ 'blueprints-section-' . $key . '-panels-per-view' ])
+                if ($this->blueprint[ 'blueprints_section-' . $key . '-panels-per-view' ] != 0 && ++$i > $this->blueprint[ 'blueprints_section-' . $key . '-panels-per-view' ])
                 {
 
                   break;
@@ -308,11 +308,11 @@ pzdebug($this->blueprint);
             $this->output .= ($key == 0) ? '{{nav-top-outside}}' : null;
             $this->output .= ($key == 0) ? '{{nav-left-outside}}' : null;
             // Add the section nav
-            //      var_dump($pzarc_blueprint[ 'blueprints_navigation' ]);
-            if ($pzarc_blueprint[ 'blueprints_navigation' ] != 'none')
+            //      var_dump($this->blueprint[ 'blueprints_navigation' ]);
+            if ($this->blueprint[ 'blueprints_navigation' ] != 'none')
             {
               $this->output = str_replace(
-                  '{{nav-' . $pzarc_blueprint[ 'blueprints_navigator-position' ] . '-' . $pzarc_blueprint[ 'blueprints_navigator-location' ] . '}}',
+                  '{{nav-' . $this->blueprint[ 'blueprints_navigator-position' ] . '-' . $this->blueprint[ 'blueprints_navigator-location' ] . '}}',
                   $this->add_nav(),
                   $this->output
               );
@@ -485,7 +485,7 @@ pzdebug($this->blueprint);
 
       $panel_definition = (!empty($this->panel_info[ 'panels_design_image-captions' ]) && $this->panel_info[ 'panels_design_image-captions' ])
           ? str_replace('{{captioncode}}', $panel_def[ 'caption' ], $panel_definition) : $panel_definition;
-      if ((!empty($this->panel_info[ 'panels_design_link-image' ]) && $this->panel_info[ 'panels_design_link-image' ] && $this->panel_info[ 'panels_design_link-image' ]) && $this->panel_info[ 'panels_settings_background-image' ] == 'none')
+      if ((!empty($this->panel_info[ 'panels_design_link-image' ]) && $this->panel_info[ 'panels_design_link-image' ] && $this->panel_info[ 'panels_design_link-image' ]) && $this->panel_info[ 'panels_design_background-position' ] == 'none')
       {
         $panel_definition = str_replace('{{postlink}}', $panel_def[ 'postlink' ], $panel_definition);
         $panel_definition = str_replace('{{closepostlink}}', '</a>', $panel_definition);
@@ -503,28 +503,28 @@ pzdebug($this->blueprint);
       $this_panel .= $components . '</div><!-- end panel -->';
 
       // Add background image (or video!)
-      if ($this->panel_info[ 'panels_settings_background-image' ] == 'align' && !empty($the_inputs[ 'image' ]))
+      if ($this->panel_info[ 'panels_design_background-position' ] == 'align' && !empty($the_inputs[ 'image' ]))
       {
-        if ($this->panel_info[ 'panels_settings_components-position' ] == 'bottom' || $this->panel_info[ 'panels_settings_components-position' ] == 'right')
+        if ($this->panel_info[ 'panels_design_components-position' ] == 'bottom' || $this->panel_info[ 'panels_design_components-position' ] == 'right')
         {
           $this_panel = str_replace('{{bgimagetl}}', '<div class="pzarc-bg-image"><img class="nofill" src="' . $the_inputs[ 'image' ] . '" /></div>', $this_panel);
         }
-        elseif ($this->panel_info[ 'panels_settings_components-position' ] == 'top' || $this->panel_info[ 'panels_settings_components-position' ] == 'left')
+        elseif ($this->panel_info[ 'panels_design_components-position' ] == 'top' || $this->panel_info[ 'panels_design_components-position' ] == 'left')
         {
           $this_panel = str_replace('{{bgimagebr}}', '<div class="pzarc-bg-image"><img class="nofill" src="' . $the_inputs[ 'image' ] . '" /></div>', $this_panel);
           // need to use some absolute positioning to stop content being cut off
           $featureat = ' abs-content';
         }
       }
-      if ($this->panel_info[ 'panels_settings_background-image' ] == 'fill' && !empty($the_inputs[ 'image' ]))
+      if ($this->panel_info[ 'panels_design_background-position' ] == 'fill' && !empty($the_inputs[ 'image' ]))
       {
 
-        if ($this->panel_info[ 'panels_settings_components-position' ] == 'bottom' || $this->panel_info[ 'panels_settings_components-position' ] == 'right')
+        if ($this->panel_info[ 'panels_design_components-position' ] == 'bottom' || $this->panel_info[ 'panels_design_components-position' ] == 'right')
         {
           $this_panel = str_replace('{{bgimagetl}}', '<div class="pzarc-bg-image"><img class="fill ' . $this->panel_info[ 'panels_design_feature-scale' ] . '" src="' . $the_inputs[ 'image' ] . '" /></div>', $this_panel);
           $featureat  = ' abs-content';
         }
-        elseif ($this->panel_info[ 'panels_settings_components-position' ] == 'top' || $this->panel_info[ 'panels_settings_components-position' ] == 'left')
+        elseif ($this->panel_info[ 'panels_design_components-position' ] == 'top' || $this->panel_info[ 'panels_design_components-position' ] == 'left')
         {
           $this_panel = str_replace('{{bgimagebr}}', '<div class="pzarc-bg-image"><img class="fill ' . $this->panel_info[ 'panels_design_feature-scale' ] . '" src="' . $the_inputs[ 'image' ] . '"/></div>', $this_panel);
           $featureat  = ' abs-content';

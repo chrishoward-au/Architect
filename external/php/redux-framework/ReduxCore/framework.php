@@ -49,7 +49,7 @@ if( !class_exists( 'ReduxFramework' ) ) {
         // ATTENTION DEVS
         // Please update the build number with each push, no matter how small.
         // This will make for easier support when we ask users what version they are using.
-        public static $_version = '3.1.8.8';
+        public static $_version = '3.1.8.11';
         public static $_dir;
         public static $_url;
         public static $_properties;
@@ -232,6 +232,7 @@ if( !class_exists( 'ReduxFramework' ) ) {
             'allow_sub_menu'     => true, // allow submenus to be added if menu_type == menu
             'save_defaults'      => true, // Save defaults to the DB on it if empty
             'footer_credit'      => '',
+            'async_typography'   => false,
             'admin_bar'          => true, // Show the panel pages on the admin bar
             'help_tabs'          => array(),
             'help_sidebar'       => '', // __( '', 'redux-framework' );
@@ -769,6 +770,9 @@ if( !class_exists( 'ReduxFramework' ) ) {
                             }//foreach
                         }//if
                     } else if ($type == "pages" || $type == "page") {
+                        if (!isset($args['posts_per_page'])) {
+                            $args['posts_per_page'] = 20;
+                        }                        
                         $pages = get_pages($args);
                         if (!empty($pages)) {
                             foreach ( $pages as $page ) {
@@ -1306,11 +1310,11 @@ if( !class_exists( 'ReduxFramework' ) ) {
             if ( !empty( $this->outputCSS ) && $this->args['output_tag'] == true ) {
                 echo '<style type="text/css" class="options-output">'.$this->outputCSS.'</style>';
             }
-            
+
             if ( !empty( $this->typography ) && !empty( $this->typography ) && filter_var( $this->args['output'], FILTER_VALIDATE_BOOLEAN ) ) {
                 $version = !empty( $this->options['REDUX_last_saved'] ) ? $this->options['REDUX_last_saved'] : '';
                 $typography = new ReduxFramework_typography( null, null, $this );
-                
+
                 if ( $this->args['async_typography'] && !empty($this->typography)) {
                     $families = array();
                     foreach($this->typography as $key => $value) {
@@ -1331,12 +1335,12 @@ if( !class_exists( 'ReduxFramework' ) ) {
                         var s = document.getElementsByTagName('script')[0];
                         s.parentNode.insertBefore(wf, s);
                       })();
-                    </script><style>.wf-loading{visibility:hidden;}</style>                   
+                    </script><style>.wf-loading{visibility:hidden;}</style>
                     <?php
                 } else {
                     echo '<link rel="stylesheet" id="options-google-fonts"  href="'.$typography->makeGoogleWebfontLink( $this->typography ).'&amp;v='.$version.'" type="text/css" media="all" />';
                     wp_register_style( 'redux-google-fonts', $typography->makeGoogleWebfontLink( $this->typography ), '', $version );
-                    wp_enqueue_style( 'redux-google-fonts' );                     
+                    wp_enqueue_style( 'redux-google-fonts' );
                 }
             }
 
@@ -1395,6 +1399,14 @@ if( !class_exists( 'ReduxFramework' ) ) {
             );
 
 
+            wp_register_style(
+                'nouislider-css',
+                self::$_url . 'assets/css/vendor/nouislider/jquery.nouislider.css',
+                array(),
+                filemtime( self::$_dir . 'assets/css/vendor/nouislider/jquery.nouislider.css' ),
+                'all'
+            );
+
             $wp_styles->add_data( 'redux-elusive-icon-ie7', 'conditional', 'lte IE 7' );
 
             /**
@@ -1412,15 +1424,11 @@ if( !class_exists( 'ReduxFramework' ) ) {
 
 
             wp_enqueue_style( 'jquery-ui-css' );
-
             wp_enqueue_style( 'redux-lte-ie8' );
-
             wp_enqueue_style( 'redux-css' );
-
             wp_enqueue_style( 'select2-css' );
-
-            wp_enqueue_style('qtip-css');
-
+            wp_enqueue_style( 'nouislider-css' );
+            wp_enqueue_style( 'qtip-css' );
             wp_enqueue_style( 'redux-elusive-icon' );
             wp_enqueue_style( 'redux-elusive-icon-ie7' );
 
@@ -1483,6 +1491,14 @@ if( !class_exists( 'ReduxFramework' ) ) {
             );
 
             wp_register_script(
+                'nouislider-js',
+                self::$_url . 'assets/js/vendor/nouislider/jquery.nouislider.js',
+                array( 'jquery' ),
+                filemtime( self::$_dir . 'assets/js/vendor/nouislider/jquery.nouislider.js' ),
+                true
+            );
+
+            wp_register_script(
                 'ace-editor-js',
                 self::$_url . 'assets/js/vendor/ace_editor/ace.js',
                 array( 'jquery' ),
@@ -1502,7 +1518,7 @@ if( !class_exists( 'ReduxFramework' ) ) {
                 wp_register_script(
                     'redux-js',
                     self::$_url . 'assets/js/redux.js',
-                    array( 'jquery', 'select2-js', 'ace-editor-js',  'qtip-js', 'redux-vendor' ),
+                    array( 'jquery', 'select2-js', 'ace-editor-js',  'qtip-js', 'nouislider-js', 'redux-vendor' ),
                     time(),
                     true
                 );
@@ -1511,7 +1527,7 @@ if( !class_exists( 'ReduxFramework' ) ) {
                     wp_register_script(
                         'redux-js',
                         self::$_url . 'assets/js/redux.min.js',
-                        array( 'jquery', 'select2-js',  'qtip-js', 'ace-editor-js' ),
+                        array( 'jquery', 'select2-js',  'qtip-js', 'nouislider-js', 'ace-editor-js' ),
                         filemtime( self::$_dir . 'assets/js/redux.min.js' ),
                         true
                     );
@@ -1787,7 +1803,11 @@ if( !class_exists( 'ReduxFramework' ) ) {
 
                 // current page parameters
                 $curPage    = $_GET['page'];
-                $curTab     = empty($_GET['tab'])?null:$_GET['tab'];;
+
+                $curTab = '0';
+                if (isset($_GET['tab'])) {
+                    $curTab = $_GET['tab'];
+                }
 
                 // Default url values for enabling hints.
                 $dismiss    = 'true';
@@ -2327,6 +2347,13 @@ if( !class_exists( 'ReduxFramework' ) ) {
                 $plugin_options = $this->options_defaults;
                 $plugin_options['REDUX_COMPILER'] = time();
                 $this->set_options( $plugin_options );
+
+                /**
+                 * action 'redux/options/{opt_name}/reset'
+                 * @param object $this ReduxFramework
+                 */
+                do_action( "redux/options/{$this->args['opt_name']}/reset", $this );
+
                 return $plugin_options;
             }
             if( isset( $plugin_options['defaults-section'] ) ) {
@@ -2351,6 +2378,13 @@ if( !class_exists( 'ReduxFramework' ) ) {
                 $plugin_options['defaults'] = true;
                 unset( $plugin_options['compiler'], $plugin_options['import'], $plugin_options['import_code'], $plugin_options['redux-section'] );
                 $this->set_options( $plugin_options );
+
+                /**
+                 * action 'redux/options/{opt_name}/section/reset'
+                 * @param object $this ReduxFramework
+                 */
+                do_action( "redux/options/{$this->args['opt_name']}/section/reset", $this );
+
                 return $plugin_options;
             }
 

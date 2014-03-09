@@ -191,7 +191,7 @@ class ReduxFramework_typography {
                 $this->field['custom_fonts'] = apply_filters("Redux/{$this->parent->args['opt_name']}/Field/Typography/Custom_Fonts", array());
                 if (!empty($this->field['custom_fonts'])) {
                     echo '</optgroup><optgroup label="' . __('Custom WebFonts', 'redux-framework') . '">';
-                    foreach ($this->field['custom_fonts'] as $family) {
+                    foreach ( $this->field['custom_fonts'] as $family => $v ) {
                         echo '<option data-google="false" data-details="' . $font_sizes . '" value="' . $family . '"' . selected($this->value['font-family'], $family, false) . '>' . $family . '</option>';
                     }
                 }
@@ -650,9 +650,9 @@ class ReduxFramework_typography {
         
         if (!file_exists(ReduxFramework::$_dir . 'inc/fields/typography/googlefonts.json')) {
             
-            $result = wp_remote_get('https://www.googleapis.com/webfonts/v1/webfonts?key=' . $this->parent->args['google_api_key']);
+            $result = wp_remote_get(apply_filters('redux-google-fonts-api-url', 'https://www.googleapis.com/webfonts/v1/webfonts?key=') . $this->parent->args['google_api_key'], array( 'sslverify' => false ));
             
-            if ($result['response']['code'] == 200) {
+            if (!is_wp_error($result) && $result['response']['code'] == 200) {
                 $result = json_decode($result['body']);
                 foreach ($result->items as $font) {
                     $this->parent->googleArray[$font->family] = array(

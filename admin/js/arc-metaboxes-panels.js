@@ -18,7 +18,6 @@ jQuery( document ).ready( function ()
     init();
     function init()
     {
-//    console.log('you are here');
 //    var cell_layout = jQuery.parseJSON(jQuery('input#panels_design_preview-text').val());
 
 //    pzarc_update_component_location(cell_layout);
@@ -104,7 +103,6 @@ jQuery( document ).ready( function ()
 
     jQuery( 'select#panels_design_components-to-show-select' ).change(function ( e )
     {
-       console.log(this);
         var cell_layout = jQuery.parseJSON( jQuery( 'input#panels_design_preview-text' ).val() );
         pzarc_update_components_toshow( cell_layout, e )
     } );
@@ -114,7 +112,6 @@ jQuery( document ).ready( function ()
 
     jQuery( 'input\[name="_architect[panels_design_components-position]"' ).on( 'click', function ( e )
     {
-        console.log( e );
         var cell_layout = jQuery.parseJSON( jQuery( 'input#panels_design_preview-text' ).val() );
         pzarc_update_component_location( cell_layout );
     } );
@@ -127,22 +124,22 @@ jQuery( document ).ready( function ()
 //		pzarc_update_components_height(cell_layout);
     } );
 
-    jQuery( 'input#panels_design_components-widths' ).change( function ( e )
+    jQuery( 'fieldset#_architect-panels_design_components-widths .redux-slider-label' ).on("DOMSubtreeModified", function ( e )
     {
-        console.log(jQuery( 'input#panels_components-widths' ).val());
         var cell_layout = jQuery.parseJSON( jQuery( 'input#panels_design_preview-text' ).val() );
         pzarc_update_components_container_width( cell_layout );
 //    jQuery('span.value-_pzarc_layout-sections-widths').text(e.srcElement.value);
     } );
 
-    jQuery( 'input#panels_design_components-nudge-x' ).change( function ( e )
+//    jQuery( 'input#panels_design_components-nudge-x' ).change( function ( e )
+    jQuery( 'fieldset#_architect-panels_design_components-nudge-x .redux-slider-label' ).on("DOMSubtreeModified",function ( e )
     {
         var cell_layout = jQuery.parseJSON( jQuery( 'input#panels_design_preview-text' ).val() );
         pzarc_update_components_nudge( cell_layout );
 //    jQuery('span.value-_pzarc_layout-sections-nudge-x').text(e.srcElement.value);
     } );
 
-    jQuery( 'input#panels_design_components-nudge-y' ).change( function ( e )
+    jQuery( 'fieldset#_architect-panels_design_components-nudge-y  .redux-slider-label' ).on("DOMSubtreeModified", function ( e )
     {
         var cell_layout = jQuery.parseJSON( jQuery( 'input#panels_design_preview-text' ).val() );
         pzarc_update_components_nudge( cell_layout );
@@ -171,10 +168,8 @@ jQuery( document ).ready( function ()
 //				attribute: "data-idcode"
 //			});
 //      var new_layout = reorder_parts(cell_layout,sorted);
-// //     console.log(cell_layout,new_layout);
 //      jQuery('input#_pzarc_layout-cell-preview-cmb-field-0').val( JSON.stringify(reorder_parts(cell_layout,sorted) ));
 //      var cell_layout = jQuery.parseJSON(jQuery('input#panels_design_preview-text').val());
-////      //console.log(sorted);
 //			jQuery('input[name="_pzarc_layout-field-order-cmb-field-0"]').val(sorted);
 //			jQuery('input[name="_pzarc_layout-field-order-cmb-field-0"]').change();
             cell_layout = pzarc_resort_components( cell_layout );
@@ -213,7 +208,6 @@ jQuery( document ).ready( function ()
             jQuery( ".pzarc-content-area.sortable" ).html( '' );
             jQuery.each( cell_layout, function ( index, value )
             {
-                //console.log(index,value);
                 jQuery( ".pzarc-content-area.sortable" ).append( element_html[index] );
             } );
             pzarc_update_component_location( cell_layout );
@@ -275,7 +269,6 @@ jQuery( document ).ready( function ()
     function pzarc_update_status( cell_layout )
     {
         var showing = "";
-   //     console.log(cell_layout);
         jQuery.each( cell_layout, function ( index, value )
         {
             if ( value.show )
@@ -293,7 +286,6 @@ jQuery( document ).ready( function ()
     function pzarc_update_component_visibility( cell_layout )
     {
         var components_state = jQuery( "select#panels_design_components-to-show-select option" );
-//console.log(components_state);
         jQuery.each( components_state, function ( index, value )
         {
             if (value.value!='') {
@@ -339,9 +331,7 @@ jQuery( document ).ready( function ()
         //
 //    var cell_layout = jQuery.parseJSON(jQuery('input#panels_design_preview-text').val());
 //    jQuery.each(cell_layout,function(index, value){
-//      //console.log(index, value);
 //    });
-        //console.log(e);
 //    var target_id = '#' + e.target.id;
 //
 //    //check for2which one is being passed. maybe even pass it
@@ -350,7 +340,6 @@ jQuery( document ).ready( function ()
 //    // if e is null, then it's not one of the fields we care about.
 //    if (target_id != '#') {
 //      var target_name = jQuery(target_id).val();
-//      console.log(target_id,target_name,e);
 //      if (jQuery(target_id).is(':checked')) {
 //        jQuery('.pzarc-draggable-' + target_name).show();
 ////        jQuery('#pzarc_layout-show span.' + target_name).text(' (' + jQuery('input#pzarc_layout-' + target_name + '-width').val() + '%)');
@@ -522,7 +511,7 @@ jQuery( document ).ready( function ()
          // update components width
          **********************/
         // TODO: Get Dovy to change dliders to update inout val in real time
-        jQuery( '.pzarc-content-area' ).css( 'width', jQuery( 'input#panels_design_components-widths' ).val() + '%' )
+        jQuery( '.pzarc-content-area' ).css( 'width', jQuery( 'fieldset#_architect-panels_design_components-widths .redux-slider-label' ).text() + '%' )
 //      break;
     }
 
@@ -541,7 +530,7 @@ jQuery( document ).ready( function ()
         /*********************
          // Update components nudge
          *********************/
-        var nudgexy = [jQuery( 'input#panels_design_components-nudge-x' ).val(), jQuery( 'input#panels_design_components-nudge-y' ).val()];
+        var nudgexy = [jQuery( 'fieldset#_architect-panels_design_components-nudge-x .redux-slider-label' ).text(), jQuery( 'fieldset#_architect-panels_design_components-nudge-y .redux-slider-label' ).text()];
         var sections_position = 'top';
         jQuery( 'input\[name="_architect[panels_design_components-position]"' ).each(function(){
             if (this.checked){

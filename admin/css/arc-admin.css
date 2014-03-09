@@ -1095,3 +1095,16 @@ input[readonly]:hover,
 input[readonly]:active
 
 {border:none;background:#eee;box-shadow:none;}
+
+body.post-type-arc-panels .ui-button,
+body.post-type-arc-blueprints .ui-button
+{padding:0;}
+
+body.post-type-arc-panels .ui-buttonset,
+body.post-type-arc-blueprints .ui-buttonset
+{margin-top:-8px;}
+
+.noUi-handle:hover,
+.noUi-handle:hover:after,
+.noUi-handle:hover:before
+{border-color:#bbb;}

@@ -49,6 +49,8 @@
   function pzarc_create_css($postid, $type = null)
   {
 
+    return;
+
     $defaults = get_option('architect-defaults_settings');
     $prefix   = 'architect-defaults_architect_class_defaults_';
     // var_dump($defaults);
@@ -154,6 +156,7 @@
         'id'     => $id,
         'output' => $selectors,
         'type'   => 'typography',
+        'custom_fonts'=>true
         //      'default' => $defaults[ $optprefix . 'content_defaults_entry-readmore-hover-defaults' ],
     );
   }

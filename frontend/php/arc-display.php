@@ -29,6 +29,8 @@
   function pzarc_get_the_blueprint($blueprint)
   {
 
+    // strip out string containment characters incase user enters them
+    $blueprint = str_replace(array('\'','\"'),'',$blueprint);
     // meed to return a structure for the panels, the content source, the navgation info
 
     global $wp_query;
@@ -42,11 +44,11 @@
         'meta_compare' => 'LIKE'
     );
     $blueprint_info  = new WP_Query($meta_query_args);
+    var_Dump($blueprint_info);
+
     if (!isset($blueprint_info->posts[ 0 ]))
     {
-      echo '<p class="pzarc-oops">Architect Blueprint <strong>' . $blueprint . '</strong> not found</p>';
-
-      return null;
+      return array('err_msg' => '<p class="pzarc-oops">Architect Blueprint <strong>' . $blueprint . '</strong> not found</p>');
     }
     $the_blueprint_meta = get_post_meta($blueprint_info->posts[ 0 ]->ID, '_architect', true);
 
@@ -171,7 +173,11 @@
       return 'You need to set a blueprint';
     }
     $pzarc_blueprint_arr = pzarc_get_the_blueprint($pzarc_blueprint);
-    $pzarc               = new pzarc_Display($pzarc_blueprint);
+    if (isset($pzarc_blueprint_arr[ 'err_msg' ]))
+    {
+      return $pzarc_blueprint_arr[ 'err_msg' ];
+    }
+    $pzarc = new pzarc_Display($pzarc_blueprint);
     if ($pzarc_blueprint_arr[ 'content_general_content-source' ] == 'defaults' && $is_shortcode)
     {
       return 'Ooops! Need to specify a Contents Selection in your Blueprint to use a shortcode';
@@ -179,6 +185,7 @@
     else
     {
       $pzarc->render($pzarc_blueprint_arr, $pzarc_overrides, $is_shortcode);
+
       return $pzarc->output;
     }
   }
