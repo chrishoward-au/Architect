@@ -979,8 +979,10 @@ body.post-type-arc-panels .redux-main .select_wrapper {
 }
 */
 
+
 #poststuff .heading h3, .metabox-holder .heading h3
 .redux-main .heading h3,
+.redux-main .redux-group-tab h3,
 .redux-sidebar .heading h3 {
   background:none;
   padding:0;
@@ -991,6 +993,7 @@ body.post-type-arc-panels .redux-main .select_wrapper {
 }
 
 body.admin-color-midnight #poststuff .heading h3, .metabox-holder .heading h3
+body.admin-color-midnight .redux-main .redux-group-tab h3,
 body.admin-color-midnight .redux-main .heading h3,
 body.admin-color-midnight .redux-sidebar .heading h3 {
   color:#69A8BB;
@@ -1108,3 +1111,4 @@ body.post-type-arc-blueprints .ui-buttonset
 .noUi-handle:hover:after,
 .noUi-handle:hover:before
 {border-color:#bbb;}
+

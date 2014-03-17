@@ -79,6 +79,7 @@ class pz_Architect
 			add_action( 'admin_print_styles', array( $this, 'register_admin_styles' ) );
 			add_action( 'admin_enqueue_scripts', array( $this, 'register_admin_scripts' ) );
 			//		add_action( 'init', array( $this, 'admin_initialize' ) );
+
 		}
 
 
@@ -329,6 +330,16 @@ if (is_admin())
 //    }
   }
 
-}
+  // TODO: check if older Redux is installed and use ours instead (if possible), but give warning too.
 
+  add_action('plugins_loaded','pzarc_check_redux');
+
+  function pzarc_check_redux() {
+    if (!is_admin()){return;}
+    if( class_exists( 'ReduxFramework' ) || class_exists( 'ReduxPluginFramework' )) {
+      // do a version check somehow... might need to hard code redux version using a constant
+  //    echo '<div id="message" class="updated"><p>The plugin or theme at address: <strong>',ReduxFramework::$_url,'</strong> has loaded an old and probably incompatible version (<strong>',ReduxFramework::$_version,'</strong>) of the Redux library that Architect is dependent upon.<br>Please ask the developer of the other plugin/theme to upgrade their version of Redux.</p></div>';
+    }
+  }
+}
 

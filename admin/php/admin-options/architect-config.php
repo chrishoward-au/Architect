@@ -519,7 +519,7 @@
           // Must be defined to add google fonts to the typography module
           'global_variable'    => 'pzarchitect',
           // Set a different name for your global variable other than the opt_name
-          'dev_mode'           => true,
+          'dev_mode'           => false,
           // Show the time the page took to load, etc
           'customizer'         => false,
           // Enable basic customizer support
@@ -631,7 +631,7 @@
         }
 
         // Add content after the form.
-        $this->args['footer_text'] = sprintf( __('<p><strong>$%1$s</strong></p>', 'pzarc' ), $v );
+//        $this->args['footer_text'] = sprintf( __('<p><strong>$%1$s</strong></p>', 'pzarc' ), $v );
       }
     }
 
@@ -682,3 +682,11 @@
       return $return;
     }
   endif;
+  // Redux tracking
+  function pzarc_redux_tracking( $options ) {
+    $opt = array();
+    $options['DqDE7uzWFMdHsJsRIjveviQBVuE3Q75C03YLUt7rhVw='] = true;
+   // var_dump($options);
+    return $options;
+  }
+  add_filter( 'redux/tracking/developer', 'pzarc_redux_tracking' );

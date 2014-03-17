@@ -64,7 +64,7 @@ if( !class_exists( 'ReduxFramework_custom_fonts' ) ) {
          */
         public function render() {
 
-            echo '</fieldset></td></tr></table><fieldset class="redux-field">';
+            echo '</fieldset></td></tr><tr><td colspan="2"><fieldset class="redux-field redux-container-custom_font">';
 
             $nonce = wp_create_nonce("redux_{$this->parent->args['opt_name']}_custom_fonts");
 
@@ -80,43 +80,95 @@ if( !class_exists( 'ReduxFramework_custom_fonts' ) ) {
             $this->value = wp_parse_args( $this->value, $defaults );
 
 
-        
-            //Upload controls DIV
-            echo '<div class="upload_button_div">';
-
-            //If the user has WP3.5+ show upload/remove button
-            echo '<span class="button media_add_font" data-nonce="' . $nonce . '" id="' . $this->field['id'] . '-custom_fonts">' . __( 'Add Font', 'redux-framework' ) . '</span><br />';
-          
-            //echo '<a href="#TB_inline?width=600&height=550&inlineId=nameFont_'.$this->field['id'].'" class="thickbox">Open Thickbox</a>';
-            echo '</div>';  
 
             $this->field['custom_fonts'] = apply_filters("Redux/{$this->parent->args['opt_name']}/Field/Typography/Custom_Fonts", array());
 
 
             
             if (!empty($this->field['custom_fonts'])) {
-                echo '<table class="wp-list-table widefat plugins" cellspacing="0"><thead><tr><th scope="col" id="name" class="manage-column column-name" style="">Font Name</th><th scope="col" id="description" class="manage-column column-description">Font Files</th><th class="manage-column column-action">Actions</th></tr></thead><tbody>';    
-                foreach($this->field['custom_fonts'] as $font => $pieces) {
-                    echo '<tr class="active">
-                    <td class="plugin-title"><strong>'.$font.'</strong></td>
-                    <td class="column-description desc">
-                        <div class="plugin-description">';
-                        if (!empty($pieces)) {
-                            foreach ( $pieces as $piece ) {
-                                echo "<span clas=\"font-pieces\">{$piece}</span> ";
-                            }
+                
+                foreach($this->field['custom_fonts'] as $section => $fonts) {
+                        if (empty($fonts)) {
+                            continue;
                         }
-                    echo '</div>
-                    </td>
-                    <td>
-                        <div class="row-actions visible"><a href="#" class="rename">Rename</a> | <a href="#" class="delete">Delete</a></div>
-                    </td>
-                  </tr>  ';
-                }
-                echo '</tbody></table>';
-            } 
 
-            echo '</fieldset>';        
+                        echo '<h3>'.$section.'</h3>';
+                        echo '<table class="wp-list-table widefat plugins" cellspacing="0"><tbody>';    
+
+                        foreach($fonts as $font => $pieces) {
+
+                            echo '<tr class="active">';
+                            echo '<td class="plugin-title" style="min-width: 40%"><strong>'.$font.'</strong></td>';
+                            echo '<td class="column-description desc"><div class="plugin-description">';
+                            if (!empty($pieces)) {
+                                foreach ( $pieces as $piece ) {
+                                    echo "<span class=\"button button-primary button-small font-pieces\">{$piece}</span> ";
+                                }
+                            }
+                            echo '</div></td><td style="width: 140px;"><div class="action-row visible"><span class="actions"><span style="display:none;"><a href="#" class="rename">Rename</a> | </span><a href="#" class="fontDelete" data-section="'.$section.'" data-name="'.$font.'" data-type="delete">Delete</a></span><span class="spinner" style="display: none;"></span></div></td></tr>';
+                        }
+                        echo '</tbody></table>';
+                        echo '<div class="upload_button_div"><span class="button media_add_font" data-nonce="' . $nonce . '" id="' . $this->field['id'] . '-custom_fonts">' . __( 'Add Font', 'redux-framework' ) . '</span></div><br />';
+
+                    
+                }
+                
+            } else {
+                echo "<h3>".__('No Custom Fonts Found', 'redux-framework')."</h3>";
+                echo '<div class="upload_button_div"><span class="button media_add_font" data-nonce="' . $nonce . '" id="' . $this->field['id'] . '-custom_fonts">' . __( 'Add Font', 'redux-framework' ) . '</span></div>';
+            }
+
+    
+
+            
+
+            ?>
+<script>
+jQuery(function($) {
+    function fnOpenNormalDialog() {
+        $("#dialog-confirm").html("Confirm Dialog Box");
+
+        // Define the Dialog and its properties.
+        $("#dialog-confirm").dialog({
+            resizable: false,
+            modal: true,
+            title: "Modal",
+            dialogClass: 'fixed-dialog',
+            height: 250,
+            width: 400,
+            buttons: {
+                "Yes": function () {
+                    $(this).dialog('close');
+                    callback(true);
+                },
+                    "No": function () {
+                    $(this).dialog('close');
+                    callback(false);
+                }
+            }
+        });
+    }
+
+    $('#btnOpenDialog').click(fnOpenNormalDialog);
+
+    function callback(value) {
+        if (value) {
+            alert("Confirmed");
+        } else {
+            
+        }
+    } 
+});
+   
+
+</script>
+<input type="button" id="btnOpenDialog" style="display:none;"value="Open Confirm Dialog" />
+<div id="dialog-confirm"></div>
+            <?php
+            
+            echo '</fieldset></td></tr>';
+            
+
             
         }
 

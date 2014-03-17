@@ -75,15 +75,9 @@ function redux_remove_font( selector ) {
     "use strict";
     $.redux = $.redux || {};
     $( document ).ready( function() {
-        $.redux.media();
+        $.redux.custom_fonts();
     } );
-    /**
-     * Media Uploader
-     * Dependencies      : jquery, wp media uploader
-     * Feature added by  : Smartik - http://smartik.ws/
-     * Date              : 05.28.2013
-     */
-    $.redux.media = function() {
+    $.redux.custom_fonts = function() {
         // Remove the image button
         $( '.remove-font' ).unbind( 'click' ).on( 'click', function() {
             redux_remove_font( $( this ).parents( 'fieldset.redux-field:first' ) );
@@ -92,5 +86,27 @@ function redux_remove_font( selector ) {
         $( '.media_add_font' ).unbind().on( 'click', function( event ) {
             redux_add_font( event, $( this ).parents( 'fieldset.redux-field:first' ) );
         } );
+
+        $( '.fontDelete' ).on( 'click', function(e) {
+            e.preventDefault();
+            var parent = jQuery(this).parents('td:first');
+            parent.find('.spinner').show();
+            var data = jQuery(this).data();
+            data.action = "redux_custom_fonts";
+            data.nonce = jQuery( this ).parents( '.redux-container-custom_font:first' ).find( '.media_add_font' ).attr( "data-nonce" );
+            jQuery.post( ajaxurl, data, function( response ) {
+                response = jQuery.parseJSON( response );
+                if (response.type && response.type == "success") {
+                    parent.parents('tr:first').fadeOut();
+                } else {
+                    alert('There was an error deleting your font: '+response.msg);
+                    parent.find('.spinner').hide();
+                }
+            } );       
+            return false;
+        });
+
+
+
     };
 } )( jQuery );

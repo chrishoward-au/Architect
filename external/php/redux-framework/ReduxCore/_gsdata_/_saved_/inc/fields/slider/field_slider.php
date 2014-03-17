@@ -314,7 +314,7 @@ class ReduxFramework_slider {
 
         // DIV output
         echo '<div ' . '
-                class="redux-slider-container"' . ' ' . $this->field['class'] . '
+                class="redux-slider-container"' . '
                 id="'               . $fieldID                      . '" ' . '
                 data-id="'          . $fieldID                      . '" ' . '
                 data-min="'         . $this->field['min']           . '" ' . '
@@ -360,7 +360,7 @@ class ReduxFramework_slider {
         // NO output (input hidden)
         if ($this->display_none == $this->field['display_value'] || $this->display_label == $this->field['display_value']) {
             echo '<input type="hidden"
-                         class="redux-slider-value-one-' . $fieldID . ' ' . $this->field['class'] . '"
+                         class="redux-slider-value-one-' . $fieldID . '"
                          name="' . $nameOne . $this->field['name_suffix'] . '"
                          id="' . $idOne . '"
                          value="' . $valOne . '"/>';
@@ -368,7 +368,7 @@ class ReduxFramework_slider {
             // double slider hidden output
             if (true == $twoHandles) {
                 echo '<input type="hidden"
-                             class="redux-slider-value-two-' . $fieldID . ' ' . $this->field['class'] . '"s
+                             class="redux-slider-value-two-' . $fieldID . '"s
                              name="' . $nameTwo . $this->field['name_suffix'] . '"
                              id="' . $idTwo . '"
                              value="' . $valTwo . '"/>';

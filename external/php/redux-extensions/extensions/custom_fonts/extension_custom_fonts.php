@@ -86,6 +86,15 @@ if (!class_exists('ReduxFramework_extension_custom_fonts')) {
             $this->upload_url = $upload['baseurl'] . '/redux_custom_fonts/';
             
             $this->getFonts();
+            if (file_exists($this->upload_dir.'/fonts.css')) {
+                if (filemtime($this->upload_dir) > (filemtime($this->upload_dir.'/fonts.css')+20) ) {
+                    //echo "regen existing file";
+                    $this->generateCSS();
+                }
+            } else {
+                //echo "create non existing file";
+                $this->generateCSS();
+            }
             
             $this->parent = $parent;
             
@@ -120,6 +129,64 @@ if (!class_exists('ReduxFramework_extension_custom_fonts')) {
                     'custom_upload_mimes'
                 ));
             }
+
+            add_action( 'wp_head', array( $this, '_enqueue_output' ), 150 );
+
+            add_filter('tiny_mce_before_init', array( $this, 'extend_tinymce_dropdown' ) );
+
+
+        }
+
+        /**
+         * Adds FontMeister fonts to the TinyMCE drop-down. Typekit fonts don't render properly in the drop-down and in the editor,
+         * because Typekit needs JS and TinyMCE doesn't support that.
+         *
+         * @param $opt
+         * @return array
+         */
+        function extend_tinymce_dropdown($opt) {
+            if (!is_admin()) {
+                return $opt;
+            }
+
+            //print_r($this->custom_fonts);
+            //return $opts;
+
+            $theme_advanced_fonts = "Andale Mono=andale mono,times;Arial=arial,helvetica,sans-serif;Arial Black=arial black,avant garde;Book Antiqua=book antiqua,palatino;Comic Sans MS=comic sans ms,sans-serif;Courier New=courier new,courier;Georgia=georgia,palatino;Helvetica=helvetica;Impact=impact,chicago;Symbol=symbol;Tahoma=tahoma,arial,helvetica,sans-serif;Terminal=terminal,monaco;Times New Roman=times new roman,times;Trebuchet MS=trebuchet ms,geneva;Verdana=verdana,geneva;Webdings=webdings;Wingdings=wingdings,zapf dingbats";
+            $mce_fonts = array();
+            $google_font_counter = 0;
+            $content_css = array();
+            $fontdeck_included = false;
+            
+            foreach ($this->custom_fonts as $font=>$pieces) {
+                $mce_fonts[] = $font;
+            }
+            $mce_fonts = implode(',', $mce_fonts);
+            $content_css = implode(',', $content_css);
+            if (trim($mce_fonts) != '') {
+                $theme_advanced_fonts .= $mce_fonts;
+            }
+            $opt['theme_advanced_fonts'] = $theme_advanced_fonts;
+            if (isset($opt['content_css'])) {
+                $opt['content_css'] .= $content_css;
+            }
+            else {
+                $opt['content_css'] = $content_css;
+            }
+            return $opt;
+
+        }
+
+        function _enqueue_output() {
+            if ( file_exists( $this->upload_dir . 'fonts.css' ) ) {
+                wp_register_style(
+                    'redux-custom-fonts-css',
+                    $this->upload_dir . 'fonts.css',
+                    '',
+                    filemtime( $this->upload_dir . 'fonts.css' ),
+                    'all'
+                );                
+            }
         }
         
         function custom_upload_mimes($existing_mimes = array()) {
@@ -136,8 +203,9 @@ if (!class_exists('ReduxFramework_extension_custom_fonts')) {
             if (!empty($this->custom_fonts)) {
                 return $this->custom_fonts;
             }
+
             $fonts = $wp_filesystem->dirlist($this->upload_dir, false, true);
-            
+            /*
             if (!empty($fonts)) {
                 foreach ($fonts as $font) {
                     if ($font['type'] == "d") {
@@ -155,6 +223,40 @@ if (!class_exists('ReduxFramework_extension_custom_fonts')) {
                     }
                 }
             }
+            */
+            if (!empty($fonts)) {
+                foreach ($fonts as $section) {
+                    if ($section['type'] == "d" && !empty($section['name'])) {
+                        if ($section['name'] == "custom") {
+                            $section['name'] = __('Custom Fonts', 'redux-framework');
+                        } else if ($section['name'] == "fontsquirrel") {
+                            $section['name'] = __('Fonts Squirrel', 'redux-framework');
+                        }
+                        if (!isset($section['files']) || empty($section['files'])) {
+                            continue;
+                        }
+                        $this->custom_fonts[$section['name']] = isset( $this->custom_fonts[$section['name']] ) ? $this->custom_fonts[$section['name']] : array();
+  
+                        $kinds = array();
+                        foreach($section['files'] as $font) {
+                            if (!empty($font['name'])) {
+                                if (!isset($font['files']) || empty($font['files'])) {
+                                    continue;
+                                }
+                                $kinds = array();
+                                foreach($font['files'] as $f) {
+                                    $valid = $this->checkFontFileName($f);
+                                    if ($valid) {
+                                        array_push($kinds, $valid);
+                                    }
+                                }
+                                $this->custom_fonts[$section['name']][$font['name']] = $kinds;
+                            }
+                        
+                        }
+                    }
+                }
+            }
         }
         
         public function addCustomFonts($custom_fonts) {
@@ -162,7 +264,7 @@ if (!class_exists('ReduxFramework_extension_custom_fonts')) {
                 $custom_fonts = array();
             }
             $custom_fonts = wp_parse_args($custom_fonts, $this->custom_fonts);
-            
+
             return $custom_fonts;
         }
         
@@ -170,8 +272,35 @@ if (!class_exists('ReduxFramework_extension_custom_fonts')) {
             
             if (!isset($_REQUEST['nonce']) || !wp_verify_nonce($_REQUEST['nonce'], "redux_{$this->parent->args['opt_name']}_custom_fonts")) {
                 //exit("Not a valid nonce");
-                
+                die(0);
             }
+            if (isset($_REQUEST['type']) && $_REQUEST['type'] == "delete") {
+
+                global $wp_filesystem;
+
+                if ($_REQUEST['section'] == __('Custom Fonts', 'redux-framework')) {
+                    $_REQUEST['section'] = "custom";
+                }
+                if ( $_REQUEST['section'] == __('Fonts Squirrel', 'redux-framework' ) ) {
+                    $_REQUEST['section'] = "fontssquirrel";
+                }                
+                
+                try {
+                    $wp_filesystem->delete($this->upload_dir . $_REQUEST['section'].'/'.$_REQUEST['name'].'/', true, 'd');
+                    $result = array(
+                        'type' => "success"
+                    );
+                    echo json_encode($result);
+
+                } catch (Exception $e) {
+                    echo json_encode(array('type' => 'error', 'msg' => 'Unable to delete font file(s).'));
+                }                  
+                
+                die();
+            }
+
+
+
             if (!isset($_REQUEST['title'])) {
                 $_REQUEST['title'] = "";
             }
@@ -206,7 +335,7 @@ if (!class_exists('ReduxFramework_extension_custom_fonts')) {
             return $output;
         }
         
-        function processWebfont($attachment_id, $name, $mime_type) {
+        function processWebfont($attachment_id, $name, $mime_type, $subfolder = 'custom/') {
             
             global $wp_filesystem;
             
@@ -225,6 +354,9 @@ if (!class_exists('ReduxFramework_extension_custom_fonts')) {
             if (!is_dir($this->upload_dir)) {
                 $wp_filesystem->mkdir($this->upload_dir, FS_CHMOD_DIR);
             }
+            if (!is_dir($this->upload_dir . $subfolder )) {
+                $wp_filesystem->mkdir($this->upload_dir . $subfolder, FS_CHMOD_DIR);
+            }            
             $temp = $this->upload_dir . 'temp';
             
             $path = get_attached_file($attachment_id, false);
@@ -263,11 +395,11 @@ if (!class_exists('ReduxFramework_extension_custom_fonts')) {
                         }
                     }
                     
-                    if (!is_dir($this->upload_dir . $name . '/')) {
-                        $wp_filesystem->mkdir($this->upload_dir . $name . '/', FS_CHMOD_DIR);
+                    if (!is_dir($this->upload_dir . $subfolder . $name . '/')) {
+                        $wp_filesystem->mkdir($this->upload_dir . $subfolder . $name . '/', FS_CHMOD_DIR);
                     }
                     foreach ($output as $key => $value) {
-                        $wp_filesystem->copy($value, $this->upload_dir . $name . '/' . $fontname . '.' . $key, FS_CHMOD_DIR);
+                        $wp_filesystem->copy($value, $this->upload_dir . $subfolder . $name . '/' . $fontname . '.' . $key, FS_CHMOD_DIR);
                     }
                     $this->getMissingFiles($name, $fontname, $missing, $output);
                 }
@@ -281,14 +413,14 @@ if (!class_exists('ReduxFramework_extension_custom_fonts')) {
                     }
                 }
                 
-                if (!is_dir($this->upload_dir . $name . '/')) {
-                    $wp_filesystem->mkdir($this->upload_dir . $name . '/', FS_CHMOD_DIR);
+                if (!is_dir($this->upload_dir . $subfolder . $name . '/')) {
+                    $wp_filesystem->mkdir($this->upload_dir . $subfolder . $fontname . '/', FS_CHMOD_DIR);
                 }
-                $wp_filesystem->copy($path, $this->upload_dir . $name . '/' . $fontname . '.' . $subtype, FS_CHMOD_DIR);
+                $wp_filesystem->copy($path, $this->upload_dir . $subfolder . '/' . $fontname . '/' . $fontname . '.' . $subtype, FS_CHMOD_DIR);
                 $output = array(
                     $subtype => $path
                 );
-                $this->getMissingFiles($name, $fontname, $missing, $output);
+                $this->getMissingFiles($name, $fontname, $missing, $output, $subfolder);
                 $this->generateCSS();
                 wp_delete_attachment($attachment_id, true);
             } else {
@@ -297,7 +429,7 @@ if (!class_exists('ReduxFramework_extension_custom_fonts')) {
             }
         }
         
-        private function getMissingFiles($name, $fontname, $missing, $output) {
+        private function getMissingFiles($name, $fontname, $missing, $output, $subfolder) {
             global $wp_filesystem;
             if (!isset($name) || empty($name) || !isset($missing) || empty($missing) || !is_array($missing)) {
                 return;
@@ -322,7 +454,7 @@ if (!class_exists('ReduxFramework_extension_custom_fonts')) {
                 $response = Unirest::post("https://ofc.p.mashape.com/directConvert/", array(
                     "X-Mashape-Authorization" => "B6tUPzlD13s1mEJbPOZgCbPfIxUQYBjO"
                 ) , array(
-                    "file" => "@" . $this->upload_dir . $name . '/' . $fontname . '.' . $main,
+                    "file" => "@" . $this->upload_dir . $subfolder . $name . '/' . $fontname . '.' . $main,
                     "format" => $item
                 ));
                 $wp_filesystem->put_contents($this->upload_dir . 'missing/' . $name . '.' . $item . ".tar.gz", $response->body, FS_CHMOD_FILE);
@@ -346,7 +478,7 @@ if (!class_exists('ReduxFramework_extension_custom_fonts')) {
             
             if (!empty($output)) {
                 foreach ($output as $key => $value) {
-                    $wp_filesystem->copy($value, $this->upload_dir . $name . '/' . $fontname . '.' . $key, FS_CHMOD_DIR);
+                    $wp_filesystem->copy($value, $this->upload_dir . $subfolder . $name . '/' . $fontname . '.' . $key, FS_CHMOD_DIR);
                 }
             }
             
