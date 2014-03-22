@@ -936,8 +936,14 @@ span.dashicons {
   vertical-align: top;
   margin-right: 5px;
   font-size: 14px;
+  color:lightsteelblue;
 }
 
+a:hover span.dashicons,
+a.current span.dashicons
+{
+  color:inherit;
+}
 .pzarc-section-navigator {
   text-align:center;
 }

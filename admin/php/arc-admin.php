@@ -37,9 +37,8 @@
 
         //@TODO: need a bit of screen dependency on this?
 //      require_once PZARC_PLUGIN_PATH . '/includes/class_pzarcForm.php';
-        require_once PZARC_PLUGIN_PATH . '/admin/php/redux/arc-panels-layouts.php';
-        require_once PZARC_PLUGIN_PATH . '/admin/php/redux/arc-blueprints.php';
-        require_once PZARC_PLUGIN_PATH . '/admin/php/redux/arc-css-editor.php';
+        require_once PZARC_PLUGIN_PATH . '/admin/php/arc-panels-layouts.php';
+        require_once PZARC_PLUGIN_PATH . '/admin/php/arc-blueprints.php';
         require_once PZARC_PLUGIN_PATH . '/admin/php/arc-galleries.php';
         require_once PZARC_PLUGIN_PATH . '/admin/php/arc-slides.php';
 
@@ -50,12 +49,12 @@
 
         require_once PZARC_PLUGIN_PATH . '/external/php/redux-custom-fields/loader.php';
         require_once PZARC_PLUGIN_PATH . '/external/php/redux-extensions/loader.php';
-        require_once PZARC_PLUGIN_PATH . '/admin/php/admin-options/architect-config.php';
-        require_once PZARC_PLUGIN_PATH . '/external/php/redux-framework/sample/sample-config.php';
+        require_once PZARC_PLUGIN_PATH . '/admin/php/arc-options.php';
+//        require_once PZARC_PLUGIN_PATH . '/external/php/redux-framework/sample/sample-config.php';
 
         // @TODO Should these really be objects?
         // Initialise objects for data and setup menu items
-        $panel_layout = new pzarc_Panels_Layouts;
+//        $panel_layout = new pzarc_Panels_Layouts;
         $content_blueprint = new pzarc_Blueprints;
         $galleries = new pzarc_Galleries;
         $slides = new pzarc_Slides;

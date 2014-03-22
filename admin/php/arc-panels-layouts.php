@@ -8,6 +8,8 @@
   $redux_opt_name = '_architect';
   $show_hints = true;
 
+  new pzarc_Panels_Layouts;
+
   class pzarc_Panels_Layouts
   {
 
@@ -211,8 +213,14 @@
 //  return $metaboxes;
 //}
 
+// Load up the metaboxes. Do it all in one hit to easily manage ordering (since order can affect js working)
 
   add_action("redux/metaboxes/{$redux_opt_name}/boxes", 'pzarc_panel_tabs');
+  add_action("redux/metaboxes/{$redux_opt_name}/boxes", 'pzarc_panel_general_settings');
+  add_action("redux/metaboxes/{$redux_opt_name}/boxes", 'pzarc_panels_styling');
+  add_action("redux/metaboxes/{$redux_opt_name}/boxes", 'pzarc_panels_design');
+
+
   function pzarc_panel_tabs($metaboxes)
   {
     $prefix        = 'panels_tabs_';
@@ -245,7 +253,6 @@
     return $metaboxes;
   }
 
-  add_action("redux/metaboxes/{$redux_opt_name}/boxes", 'pzarc_panel_general_settings');
   function pzarc_panel_general_settings($metaboxes)
   {
     $prefix       = 'panels_settings_';
@@ -321,7 +328,6 @@
   /**********
    * Panels Design and Styling
    *********/
-  add_action("redux/metaboxes/{$redux_opt_name}/boxes", 'pzarc_panels_design');
   function pzarc_panels_design($metaboxes)
   {
     $prefix = 'panels_design_';
@@ -837,7 +843,6 @@
 
   }
 
-  add_action("redux/metaboxes/{$redux_opt_name}/boxes", 'pzarc_panels_styling');
   function pzarc_panels_styling($metaboxes)
   {
 

@@ -4,7 +4,7 @@
   Plugin Name: Architect - an all-in-one content display framework
   Plugin URI: http://pizazzwp.com
   Description: Display your content in grids, tabs, sliders, galleries with sources like posts, pages, galleries, widgets, custom code, Headway blocks and custom content types. Change themes without havinqg to rebuild your layouts. Seriously!
-  Version: 0.6.0 beta 15-02-14
+  Version: 0.6.0 beta 20140318
   Author: Chris Howard
   Author URI: http://pizazzwp.com
   License: GNU GPL v2
@@ -57,6 +57,12 @@ class pz_Architect
 		define( 'PZARC_CACHE_URL', trailingslashit($upload_dir[ 'baseurl' ] . '/cache/pizazzwp/pzarc' ));
 		define( 'PZARC_CACHE_PATH', trailingslashit($upload_dir[ 'basedir' ] . '/cache/pizazzwp/pzarc' ));
 		define( 'PZARC_DEBUG', 0 );
+
+// Before we go anywhere, make sure dependent plugins are loaded and active.
+    require_once PZARC_PLUGIN_PATH . '/includes/php/arc-check-dependencies.php';
+
+    if (!class_exists('ReduxFramework')) {return;}
+
 
     wp_mkdir_p(PZARC_CACHE_PATH);
 
@@ -140,6 +146,7 @@ class pz_Architect
 	public function activate( $network_wide )
 	{
 		// TODO:	Define activation functionality here
+    delete_user_meta( get_current_user_id(), 'tgmpa_dismissed_notice' );
 	}
 
 	public function admin_initialize()
