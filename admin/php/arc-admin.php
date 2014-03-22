@@ -19,16 +19,11 @@
       if (is_admin() && current_user_can('edit_theme_options'))
       {
 
-//      if (!class_exists('CMB_Meta_Box'))
-//      {
-//        require_once PZARC_PLUGIN_PATH . '/external/php/Custom-Meta-Boxes/custom-meta-boxes.php';
-//      }
 
-        if (!class_exists('ReduxFramework'))
+        if (!class_exists('ReduxFrameworkPlugin'))
         {
-          require_once PZARC_PLUGIN_PATH . '/external/php/redux-framework/ReduxCore/framework.php';
+          return;
         }
-        //require_once PZARC_PLUGIN_PATH . '/external/php/redux-extensions/config.php';
 
 //	add_action('admin_init', 'pzarc_preview_meta');
         add_action('admin_head', array($this, 'admin_head'));
