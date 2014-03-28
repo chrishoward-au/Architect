@@ -20,7 +20,7 @@
       {
 
 
-        if (!class_exists('ReduxFrameworkPlugin'))
+        if (!(class_exists('ReduxFramework') || class_exists('ReduxFrameworkPlugin')))
         {
           return;
         }
@@ -51,8 +51,8 @@
         // Initialise objects for data and setup menu items
 //        $panel_layout = new pzarc_Panels_Layouts;
         $content_blueprint = new pzarc_Blueprints;
-        $galleries = new pzarc_Galleries;
-        $slides = new pzarc_Slides;
+        $galleries         = new pzarc_Galleries;
+        $slides            = new pzarc_Slides;
 
 
 //add_action( 'pzarc_do_it', array( $this, 'do_it' ) );
@@ -100,10 +100,12 @@
 //				'pzarc', 'Styling', 'Styling', 'manage_options', 'pzarc_styling', array( $this, 'pzarc_styling' )
 //			);
         add_submenu_page(
-            'pzarc', 'Developer Tools', '<span class="dashicons dashicons-hammer"></span>Tools', 'manage_options', 'pzarc_tools', array($this,'pzarc_tools')
+            'pzarc', 'Developer Tools', '<span class="dashicons dashicons-hammer"></span>Tools', 'manage_options', 'pzarc_tools', array($this,
+                                                                                                                                        'pzarc_tools')
         );
         add_submenu_page(
-            'pzarc', 'About Architect Content Display Framework', '<span class="dashicons dashicons-info"></span>About', 'manage_options', 'pzarc_about', array($this,'pzarc_about'),99
+            'pzarc', 'About Architect Content Display Framework', '<span class="dashicons dashicons-info"></span>About', 'manage_options', 'pzarc_about', array($this,
+                                                                                                                                                                'pzarc_about'), 99
         );
       }
     }

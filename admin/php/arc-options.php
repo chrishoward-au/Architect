@@ -1,7 +1,7 @@
 <?php
 
 
-  if (!class_exists("ReduxFramework"))
+  if (!(class_exists('ReduxFramework') || class_exists('ReduxFrameworkPlugin')))
   {
     return;
   }
@@ -18,7 +18,6 @@
 
       public function __construct()
       {
-
 
         // Set the default arguments
         $this->setArguments();
@@ -255,10 +254,9 @@
                     'title'    => __('CSS selectors', 'pzarc'),
                     'id'       => $prefix . 'panels-selectors',
                     'type'     => 'textro',
-                    'default' => '.pzarc-panel',
-                    'readonly'=>true
+                    'default'  => '.pzarc-panel',
+                    'readonly' => true
                 ),
-
                 pzarc_redux_bg($prefix . 'panels-bg', array('.pzarc-panel')),
                 pzarc_redux_padding($prefix . 'panels-padding', array('.pzarc-panel')),
                 pzarc_redux_borders($prefix . 'panels-borders', array('.pzarc-panel')),
@@ -273,25 +271,25 @@
                     'title'    => __('CSS selectors', 'pzarc'),
                     'id'       => $prefix . 'components-group-selectors',
                     'type'     => 'textro',
-                    'default' => '.pzarc-components',
-                    'readonly'=>true
+                    'default'  => '.pzarc-components',
+                    'readonly' => true
                 ),
                 pzarc_redux_bg($prefix . 'components-bg', array('.pzarc_components')),
                 pzarc_redux_padding($prefix . 'components-padding', array('.pzarc_components')),
                 pzarc_redux_borders($prefix . 'components-borders', array('.pzarc_components')),
                 array(
-                    'title'    => __('Entry', 'pzarc'),
-                    'id'       => $prefix . 'entry',
-                    'type'     => 'section',
-                    'class'    => 'heading',
+                    'title' => __('Entry', 'pzarc'),
+                    'id'    => $prefix . 'entry',
+                    'type'  => 'section',
+                    'class' => 'heading',
                 ),
                 array(
                     'title'    => __('CSS selectors', 'pzarc'),
                     'id'       => $prefix . 'entry-selectors',
                     'type'     => 'multi_text',
-                    'default' => array('.hentry'),
-                    'subtitle'=>'One per row',
-                    'hint' => array(
+                    'default'  => array('.hentry'),
+                    'subtitle' => 'One per row',
+                    'hint'     => array(
                         'title'   => 'Hint Title',
                         'content' => 'This is the content of the tool-tip'
                     )
@@ -308,7 +306,7 @@
             'icon'       => 'el-icon-font',
             'desc'       => 'Class: .pzarc_entry-title',
             'fields'     => array(
-                pzarc_redux_font($prefix . 'entry-title-font', array('.entry-title')),
+                pzarc_redux_font($prefix . 'entry-title-font', array('.entry-title'),array('line_height'=>1.2,'text_decoration'=>'none')),
                 pzarc_redux_bg($prefix . 'entry-title-font-bg', array('.entry-title')),
                 pzarc_redux_padding($prefix . 'entry-title-font-padding', array('.entry-title')),
                 pzarc_redux_links($prefix . 'entry-title-font-links', array('.entry-title a')),
@@ -384,7 +382,7 @@
                     'id'    => $prefix . 'entry-image-background',
                     'type'  => 'border',
                     'all'   => false,
-                    'hint' => array(
+                    'hint'  => array(
                         'title'   => 'Hint Title',
                         'content' => 'This is the content of the tool-tip'
                     )
@@ -503,63 +501,41 @@
         $this->args = array(
 
           // TYPICAL -> Change these values as you need/desire
-          'opt_name'           => '_architect',
-          // This is where your data is stored in the database and also becomes your global variable name.
-          'display_name'       => 'Architect Styling Defaults',
-          // Name that appears at the top of your panel
-          'display_version'    => PZARC_VERSION,
-          // Version that appears at the top of your panel
-          'menu_type'          => 'submenu',
-          //Specify if the admin menu should appear or not. Options: menu or submenu (Under appearance only)
-          'allow_sub_menu'     => false,
-          // Show the sections below the admin menu item or not
+          'opt_name'           => '_architect',          // This is where your data is stored in the database and also becomes your global variable name.
+          'display_name'       => 'Architect Styling Defaults',          // Name that appears at the top of your panel
+          'display_version'    => PZARC_VERSION,          // Version that appears at the top of your panel
+          'menu_type'          => 'submenu',          //Specify if the admin menu should appear or not. Options: menu or submenu (Under appearance only)
+          'allow_sub_menu'     => false,          // Show the sections below the admin menu item or not
           'menu_title'         => __('<span class="dashicons dashicons-art"></span>Styling', 'pzarc'),
           'page'               => __('Architect Styling', 'pzarc'),
-          'google_api_key'     => '',
-          // Must be defined to add google fonts to the typography module
-          'global_variable'    => 'pzarchitect',
-          // Set a different name for your global variable other than the opt_name
-          'dev_mode'           => true,
-          // Show the time the page took to load, etc
-          'customizer'         => false,
-          // Enable basic customizer support
+          'google_api_key'     => '',          // Must be defined to add google fonts to the typography module
+          'global_variable'    => 'pzarchitect',          // Set a different name for your global variable other than the opt_name
+          'dev_mode'           => false,          // Show the time the page took to load, etc
+          'customizer'         => false,          // Enable basic customizer support
 
           // OPTIONAL -> Give you extra features
-          'page_priority'      => null,
-          // Order where the menu appears in the admin area. If there is any conflict, something will not show. Warning.
-          'page_parent'        => 'pzarc',
-          // For a full list of options, visit: http://codex.wordpress.org/Function_Reference/add_submenu_page#Parameters
-          'page_permissions'   => 'manage_options',
-          // Permissions needed to access the options panel.
-          'menu_icon'          => '',
-          // Specify a custom URL to an icon
-          'last_tab'           => '',
-          // Force your panel to always open to a specific tab (by id)
-          'page_icon'          => 'icon-themes',
-          // Icon displayed in the admin panel next to your menu_title
-          'page_slug'          => '_architect_styling',
-          // Page slug used to denote the panel
-          'save_defaults'      => true,
-          // On load save the defaults to DB before user clicks save or not
-          'default_show'       => true,
-          // If true, shows the default value next to each field that is not the default value.
-          'default_mark'       => '',
-          // What to print by the field's title if the value shown is default. Suggested: *
+          'page_priority'      => null,          // Order where the menu appears in the admin area. If there is any conflict, something will not show. Warning.
+          'page_parent'        => 'pzarc',          // For a full list of options, visit: http://codex.wordpress.org/Function_Reference/add_submenu_page#Parameters
+          'page_permissions'   => 'manage_options',          // Permissions needed to access the options panel.
+          'menu_icon'          => '',          // Specify a custom URL to an icon
+          'last_tab'           => '',          // Force your panel to always open to a specific tab (by id)
+          'page_icon'          => 'icon-themes',          // Icon displayed in the admin panel next to your menu_title
+          'page_slug'          => '_architect_styling',          // Page slug used to denote the panel
+          'save_defaults'      => true,          // On load save the defaults to DB before user clicks save or not
+          'default_show'       => true,          // If true, shows the default value next to each field that is not the default value.
+          'default_mark'       => '',          // What to print by the field's title if the value shown is default. Suggested: *
 
 
           // CAREFUL -> These options are for advanced use only
           'transient_time'     => 60 * MINUTE_IN_SECONDS,
-          'output'             => false,
-          // Global shut-off for dynamic CSS output by the framework. Will also disable google fonts output
-          'output_tag'         => true,
-          // Allows dynamic CSS to be generated for customizer and google fonts, but stops the dynamic CSS from going to the head
+          'output'             => false,          // Global shut-off for dynamic CSS output by the framework. Will also disable google fonts output
+          'output_tag'         => true,          // Allows dynamic CSS to be generated for customizer and google fonts, but stops the dynamic CSS from going to the head
           //'domain'             	=> 'redux-framework', // Translation domain key. Don't change this unless you want to retranslate all of Redux.
           //'footer_credit'      	=> '', // Disable the footer credit of Redux. Please leave if you can help it.
 
 
           // FUTURE -> Not in use yet, but reserved or partially implemented. Use at your own risk.
-          'database'           => '',
-          // possible: options, theme_mods, theme_mods_expanded, transient. Not fully functional, warning!
+          'database'           => '',          // possible: options, theme_mods, theme_mods_expanded, transient. Not fully functional, warning!
 
 
           'show_import_export' => false,
@@ -569,32 +545,31 @@
 
           'help_tabs'          => array(),
           'help_sidebar'       => '',
-          'hints' => array(
-              'icon'              => 'icon-question-sign',
-              'icon_position'     => 'right',
-              'icon_color'        => 'lightgray',
-              'icon_size'         => 'normal',
-
-              'tip_style'         => array(
-                  'color'     => 'yellow',
-                  'shadow'    => true,
-                  'rounded'   => false,
-                  'style'     => '',
+          'hints'              => array(
+              'icon'          => 'icon-question-sign',
+              'icon_position' => 'right',
+              'icon_color'    => 'lightgray',
+              'icon_size'     => 'normal',
+              'tip_style'     => array(
+                  'color'   => 'yellow',
+                  'shadow'  => true,
+                  'rounded' => false,
+                  'style'   => '',
               ),
-              'tip_position'      => array(
+              'tip_position'  => array(
                   'my' => 'top right',
                   'at' => 'bottom left',
               ),
-              'tip_effect' => array(
+              'tip_effect'    => array(
                   'show' => array(
-                      'effect'    => 'show',
-                      'duration'  => '300',
-                      'event'     => 'mouseover',
+                      'effect'   => 'show',
+                      'duration' => '300',
+                      'event'    => 'mouseover',
                   ),
                   'hide' => array(
-                      'effect'    => 'show',
-                      'duration'  => '300',
-                      'event'     => 'click mouseleave',
+                      'effect'   => 'show',
+                      'duration' => '300',
+                      'event'    => 'click mouseleave',
                   ),
               ),
           )
@@ -683,10 +658,13 @@
     }
   endif;
   // Redux tracking
-  function pzarc_redux_tracking( $options ) {
-    $opt = array();
-    $options['DqDE7uzWFMdHsJsRIjveviQBVuE3Q75C03YLUt7rhVw='] = true;
-   // var_dump($options);
+  function pzarc_redux_tracking($options)
+  {
+    $opt                                                       = array();
+    $options[ 'DqDE7uzWFMdHsJsRIjveviQBVuE3Q75C03YLUt7rhVw=' ] = true;
+
+    // var_dump($options);
     return $options;
   }
-  add_filter( 'redux/tracking/developer', 'pzarc_redux_tracking' );
+
+  add_filter('redux/tracking/developer', 'pzarc_redux_tracking');

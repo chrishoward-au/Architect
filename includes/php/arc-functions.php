@@ -148,7 +148,7 @@
 
   }
 
-  function pzarc_redux_font($id, $selectors)
+  function pzarc_redux_font($id, $selectors,$defaults=null)
   {
 
     return array(
@@ -156,12 +156,13 @@
         'id'     => $id,
         'output' => $selectors,
         'type'   => 'typography',
-        'custom_fonts'=>true
-        //      'default' => $defaults[ $optprefix . 'content_defaults_entry-readmore-hover-defaults' ],
+        'text-decoration'=>true,
+        'custom_fonts'=>true,
+        'default' => $defaults,
     );
   }
 
-  function pzarc_redux_bg($id, $selectors)
+  function pzarc_redux_bg($id, $selectors,$defaults=null)
   {
     return array(
         'title'                 => __('Background', 'pzarc'),
@@ -174,11 +175,11 @@
         'background-attachment' => false,
         'background-position'   => false,
         'preview'               => false,
-        //      'default' => $defaults[ $optprefix . 'content_defaults_entry-readmore-hover-defaults' ],
+        'default' => $defaults,
     );
   }
 
-  function pzarc_redux_padding($id, $selectors)
+  function pzarc_redux_padding($id, $selectors,$defaults=null)
   {
     return array(
         'title'  => __('Padding', 'pzarc'),
@@ -186,24 +187,25 @@
         'output' => $selectors,
         'mode'   => 'padding',
         'type'   => 'spacing',
-        'units'  => array('px', '%')
-        //      'default' => $defaults[ $optprefix . 'content_defaults_entry-readmore-hover-defaults' ],
+        'units'  => array('px', '%'),
+        'default' => $defaults,
     );
 
   }
 
-  function pzarc_redux_links($id, $selectors)
+  function pzarc_redux_links($id, $selectors,$defaults=null)
   {
     return array(
         'title'  => __('Links', 'pzarc'),
         'id'     => $id,
         'type'   => 'link_color',
         'output' => $selectors,
+        'default' => $defaults
     );
 
   }
 
-  function pzarc_redux_borders($id, $selectors)
+  function pzarc_redux_borders($id, $selectors,$defaults=null)
   {
 
     return array(
@@ -212,5 +214,6 @@
         'type'   => 'border',
         'all'    => false,
         'output' => $selectors,
+        'default' => $defaults
     );
   }
