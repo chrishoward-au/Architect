@@ -1247,3 +1247,6 @@ body .redux-container .redux-main .redux-section-field.redux-field.heading h3
   border-radius:2px;
 }
 
+#adminmenu li.toplevel_page_pzarc .wp-menu-image img {
+  opacity:1;
+}

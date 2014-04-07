@@ -510,7 +510,7 @@
           'page'               => __('Architect Styling', 'pzarc'),
           'google_api_key'     => '',          // Must be defined to add google fonts to the typography module
           'global_variable'    => 'pzarchitect',          // Set a different name for your global variable other than the opt_name
-          'dev_mode'           => false,          // Show the time the page took to load, etc
+          'dev_mode'           => true,          // Show the time the page took to load, etc
           'customizer'         => false,          // Enable basic customizer support
 
           // OPTIONAL -> Give you extra features

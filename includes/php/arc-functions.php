@@ -157,7 +157,6 @@
         'output' => $selectors,
         'type'   => 'typography',
         'text-decoration'=>true,
-        'custom_fonts'=>true,
         'default' => $defaults,
     );
   }

@@ -1,4 +1,13 @@
 <?php
+  function pzarc_removeReduxDemoModeLink() { // Be sure to rename this function to something more unique
+    if ( class_exists('ReduxFrameworkPlugin') ) {
+      remove_filter( 'plugin_row_meta', array( ReduxFrameworkPlugin::get_instance(), 'plugin_metalinks'), null, 2 );
+    }
+    if ( class_exists('ReduxFrameworkPlugin') ) {
+      remove_action('admin_notices', array( ReduxFrameworkPlugin::get_instance(), 'admin_notices' ) );
+    }
+  }
+  add_action('init', 'pzarc_removeReduxDemoModeLink');
 
   class pzarcAdmin
   {
@@ -44,8 +53,7 @@
 
         require_once PZARC_PLUGIN_PATH . '/external/php/redux-custom-fields/loader.php';
         require_once PZARC_PLUGIN_PATH . '/external/php/redux-extensions/loader.php';
-        require_once PZARC_PLUGIN_PATH . '/admin/php/arc-options.php';
-//        require_once PZARC_PLUGIN_PATH . '/external/php/redux-framework/sample/sample-config.php';
+       require_once PZARC_PLUGIN_PATH . '/admin/php/arc-options.php';
 
         // @TODO Should these really be objects?
         // Initialise objects for data and setup menu items
@@ -100,12 +108,10 @@
 //				'pzarc', 'Styling', 'Styling', 'manage_options', 'pzarc_styling', array( $this, 'pzarc_styling' )
 //			);
         add_submenu_page(
-            'pzarc', 'Developer Tools', '<span class="dashicons dashicons-hammer"></span>Tools', 'manage_options', 'pzarc_tools', array($this,
-                                                                                                                                        'pzarc_tools')
+            'pzarc', 'Developer Tools', '<span class="dashicons dashicons-hammer"></span>Tools', 'manage_options', 'pzarc_tools', array($this, 'pzarc_tools')
         );
         add_submenu_page(
-            'pzarc', 'About Architect Content Display Framework', '<span class="dashicons dashicons-info"></span>About', 'manage_options', 'pzarc_about', array($this,
-                                                                                                                                                                'pzarc_about'), 99
+            'pzarc', 'About Architect Content Display Framework', '<span class="dashicons dashicons-info"></span>About', 'manage_options', 'pzarc_about', array($this,'pzarc_about'), 99
         );
       }
     }
