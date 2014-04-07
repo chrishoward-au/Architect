@@ -2,23 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6a91661e-ac03-4c49-a442-2faea24b5b57" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/external/php/redux-extensions/extensions/custom_fonts/custom_fonts/field_custom_fonts.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/external/php/redux-extensions/extensions/custom_fonts/custom_fonts/field_custom_fonts.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/external/php/redux-extensions/extensions/custom_fonts/custom_fonts/field_custom_fonts.less" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/external/php/redux-extensions/extensions/custom_fonts/custom_fonts/field_custom_fonts.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/external/php/redux-extensions/extensions/custom_fonts/extension_custom_fonts.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/external/php/redux-extensions/extensions/custom_fonts/lib/Tar.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/external/php/redux-extensions/extensions/custom_fonts/lib/Unirest.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/external/php/redux-extensions/extensions/custom_fonts/lib/Unirest/HttpMethod.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/external/php/redux-extensions/extensions/custom_fonts/lib/Unirest/HttpResponse.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/external/php/redux-extensions/extensions/custom_fonts/lib/Unirest/Unirest.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/external/php/redux-extensions/extensions/custom_fonts/lib/archive.php" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-icon.png" afterPath="$PROJECT_DIR$/wp-icon.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/admin/css/arc-admin.css" afterPath="$PROJECT_DIR$/admin/css/arc-admin.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/admin/php/arc-admin.php" afterPath="$PROJECT_DIR$/admin/php/arc-admin.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/includes/php/arc-check-dependencies.php" afterPath="$PROJECT_DIR$/includes/php/arc-check-dependencies.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/includes/php/arc-functions.php" afterPath="$PROJECT_DIR$/includes/php/arc-functions.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/admin/php/arc-options.php" afterPath="$PROJECT_DIR$/admin/php/arc-options.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="pizazzwp-architect.iws" />
@@ -51,10 +35,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="arc-admin.php" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="arc-admin.php" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/admin/php/arc-admin.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="56" column="0" selection-start="2035" selection-end="2035" vertical-scroll-proportion="-11.18" vertical-offset="449" max-vertical-offset="4554">
+            <state line="119" column="0" selection-start="4868" selection-end="4939" vertical-scroll-proportion="0.0" vertical-offset="2142" max-vertical-offset="4626">
               <folding />
             </state>
           </provider>
@@ -63,16 +47,16 @@
       <file leaf-file-name="arc-display.php" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/frontend/php/arc-display.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="46" column="12" selection-start="1668" selection-end="1676" vertical-scroll-proportion="-4.42" vertical-offset="499" max-vertical-offset="4068">
+            <state line="46" column="12" selection-start="1668" selection-end="1676" vertical-scroll-proportion="0.0" vertical-offset="828" max-vertical-offset="4176">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="arc-options.php" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="arc-options.php" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/admin/php/arc-options.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="517" column="40" selection-start="22310" selection-end="22310" vertical-scroll-proportion="0.4317269" vertical-offset="8876" max-vertical-offset="12168">
+            <state line="517" column="40" selection-start="22310" selection-end="22310" vertical-scroll-proportion="0.0" vertical-offset="9306" max-vertical-offset="12168">
               <folding>
                 <marker date="1396837501000" expanded="true" signature="18502:18700" placeholder="..." />
                 <marker date="1396837501000" expanded="true" signature="18735:18912" placeholder="..." />
@@ -87,7 +71,7 @@
       <file leaf-file-name="class_pzarc_Display.php" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/frontend/php/class_pzarc_Display.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="318" column="24" selection-start="12008" selection-end="12016" vertical-scroll-proportion="-4.34" vertical-offset="5417" max-vertical-offset="16218">
+            <state line="318" column="24" selection-start="12008" selection-end="12016" vertical-scroll-proportion="0.0" vertical-offset="5724" max-vertical-offset="16308">
               <folding />
             </state>
           </provider>
@@ -96,7 +80,7 @@
       <file leaf-file-name="architect.php" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/architect.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="253" column="0" selection-start="8849" selection-end="8849" vertical-scroll-proportion="-172.5" vertical-offset="252" max-vertical-offset="6318">
+            <state line="253" column="0" selection-start="8849" selection-end="8849" vertical-scroll-proportion="0.0" vertical-offset="4554" max-vertical-offset="6480">
               <folding />
             </state>
           </provider>
@@ -105,10 +89,8 @@
       <file leaf-file-name="arc-check-dependencies.php" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/includes/php/arc-check-dependencies.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="74" column="41" selection-start="3453" selection-end="3453" vertical-scroll-proportion="-5.448718" vertical-offset="907" max-vertical-offset="1782">
-              <folding>
-                <element signature="e#6#615#0" expanded="true" />
-              </folding>
+            <state line="74" column="41" selection-start="3453" selection-end="3453" vertical-scroll-proportion="0.0" vertical-offset="1332" max-vertical-offset="1782">
+              <folding />
             </state>
           </provider>
         </entry>
@@ -116,7 +98,7 @@
       <file leaf-file-name="arc-functions.php" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/includes/php/arc-functions.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="201" column="30" selection-start="8749" selection-end="8749" vertical-scroll-proportion="-37.458332" vertical-offset="2719" max-vertical-offset="4014">
+            <state line="201" column="30" selection-start="8749" selection-end="8749" vertical-scroll-proportion="0.0" vertical-offset="3618" max-vertical-offset="4014">
               <folding />
             </state>
           </provider>
@@ -193,8 +175,8 @@
         <option value="$PROJECT_DIR$/includes/php/arc-check-dependencies.php" />
         <option value="$PROJECT_DIR$/admin/css/arc-admin.css" />
         <option value="$PROJECT_DIR$/includes/php/arc-functions.php" />
-        <option value="$PROJECT_DIR$/admin/php/arc-admin.php" />
         <option value="$PROJECT_DIR$/admin/php/arc-options.php" />
+        <option value="$PROJECT_DIR$/admin/php/arc-admin.php" />
       </list>
     </option>
   </component>
@@ -206,10 +188,9 @@
     </include_path>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="5" />
-    <option name="y" value="65" />
-    <option name="width" value="2278" />
-    <option name="height" value="1166" />
+    <option name="y" value="22" />
+    <option name="width" value="1440" />
+    <option name="height" value="836" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -544,28 +525,28 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="5" y="65" width="2278" height="1166" extended-state="0" />
-    <editor active="true" />
+    <frame x="0" y="22" width="1440" height="836" extended-state="0" />
+    <editor active="false" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32795697" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32962668" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.55214155" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3293011" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3293011" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.12298748" sideWeight="0.42271882" order="1" side_tool="true" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32962668" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.12298748" sideWeight="0.4233871" order="1" side_tool="true" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.12298748" sideWeight="0.5766129" order="0" side_tool="false" content_ui="combo" />
       <window_info id="eSnippet Pro" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3295583" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.12298748" sideWeight="0.5763501" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3293011" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.55214155" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -844,43 +825,6 @@
         <state line="313" column="80" selection-start="13294" selection-end="13316" vertical-scroll-proportion="0.0" vertical-offset="5634" max-vertical-offset="39636" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/includes/arc-object-lib.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="13" column="19" selection-start="195" selection-end="195" vertical-scroll-proportion="0.0" vertical-offset="234" max-vertical-offset="1566">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/architect.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="253" column="0" selection-start="8849" selection-end="8849" vertical-scroll-proportion="-172.5" vertical-offset="252" max-vertical-offset="6318">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/includes/php/arc-check-dependencies.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="74" column="41" selection-start="3453" selection-end="3453" vertical-scroll-proportion="-5.448718" vertical-offset="907" max-vertical-offset="1782">
-          <folding>
-            <element signature="e#6#615#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/frontend/php/class_pzarc_Display.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="318" column="24" selection-start="12008" selection-end="12016" vertical-scroll-proportion="-4.34" vertical-offset="5417" max-vertical-offset="16218">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/frontend/php/arc-display.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="46" column="12" selection-start="1668" selection-end="1676" vertical-scroll-proportion="-4.42" vertical-offset="499" max-vertical-offset="4068">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/admin/css/arc-admin.css">
       <provider selected="true" editor-type-id="text-editor">
         <state line="1249" column="33" selection-start="27384" selection-end="27384" vertical-scroll-proportion="0.0" vertical-offset="21840" max-vertical-offset="22644">
@@ -888,23 +832,23 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/includes/php/arc-functions.php">
+    <entry file="file://$PROJECT_DIR$/admin/php/arc-admin.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="201" column="30" selection-start="8749" selection-end="8749" vertical-scroll-proportion="-37.458332" vertical-offset="2719" max-vertical-offset="4014">
+        <state line="119" column="0" selection-start="4868" selection-end="4939" vertical-scroll-proportion="0.0" vertical-offset="2142" max-vertical-offset="4626">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/admin/php/arc-admin.php">
+    <entry file="file://$PROJECT_DIR$/frontend/php/arc-display.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="56" column="0" selection-start="2035" selection-end="2035" vertical-scroll-proportion="-11.18" vertical-offset="449" max-vertical-offset="4554">
+        <state line="46" column="12" selection-start="1668" selection-end="1676" vertical-scroll-proportion="0.0" vertical-offset="828" max-vertical-offset="4176">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/admin/php/arc-options.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="517" column="40" selection-start="22310" selection-end="22310" vertical-scroll-proportion="0.4317269" vertical-offset="8876" max-vertical-offset="12168">
+        <state line="517" column="40" selection-start="22310" selection-end="22310" vertical-scroll-proportion="0.0" vertical-offset="9306" max-vertical-offset="12168">
           <folding>
             <marker date="1396837501000" expanded="true" signature="18502:18700" placeholder="..." />
             <marker date="1396837501000" expanded="true" signature="18735:18912" placeholder="..." />
@@ -912,6 +856,41 @@
             <marker date="1396837501000" expanded="true" signature="19154:19328" placeholder="..." />
             <marker date="1396837501000" expanded="true" signature="19363:19464" placeholder="..." />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/frontend/php/class_pzarc_Display.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="318" column="24" selection-start="12008" selection-end="12016" vertical-scroll-proportion="0.0" vertical-offset="5724" max-vertical-offset="16308">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/architect.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="253" column="0" selection-start="8849" selection-end="8849" vertical-scroll-proportion="0.0" vertical-offset="4554" max-vertical-offset="6480">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/includes/php/arc-check-dependencies.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="74" column="41" selection-start="3453" selection-end="3453" vertical-scroll-proportion="0.0" vertical-offset="1332" max-vertical-offset="1782">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/includes/php/arc-functions.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="201" column="30" selection-start="8749" selection-end="8749" vertical-scroll-proportion="0.0" vertical-offset="3618" max-vertical-offset="4014">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/includes/arc-object-lib.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="13" column="19" selection-start="195" selection-end="195" vertical-scroll-proportion="0.0" vertical-offset="234" max-vertical-offset="1566">
+          <folding />
         </state>
       </provider>
     </entry>

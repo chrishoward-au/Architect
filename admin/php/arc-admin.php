@@ -113,6 +113,10 @@
         add_submenu_page(
             'pzarc', 'About Architect Content Display Framework', '<span class="dashicons dashicons-info"></span>About', 'manage_options', 'pzarc_about', array($this,'pzarc_about'), 99
         );
+
+        global $submenu;
+        // This is reliant on About being the last menu item
+        array_unshift($submenu['pzarc'],array_pop($submenu['pzarc']));
       }
     }
 
