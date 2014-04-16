@@ -6,14 +6,14 @@ v2.0
 
 Example Usage:
 require_once('wp-updates-plugin.php');
-new WPUpdatesPluginUpdater_259( 'http://wp-updates.com/api/2/plugin', plugin_basename(__FILE__) );
+new WPUpdatesPluginUpdater_429( 'http://wp-updates.com/api/2/plugin', plugin_basename(__FILE__) );
 */
 
-if( !class_exists('WPUpdatesPluginUpdater_259') ) {
-    class WPUpdatesPluginUpdater_259 {
+if( !class_exists('WPUpdatesPluginUpdater_429') ) {
+    class WPUpdatesPluginUpdater_429 {
     
     	var $api_url;
-    	var $plugin_id = 259;
+    	var $plugin_id = 429;
     	var $plugin_path;
     	var $plugin_slug;
     	var $license_key;
@@ -53,9 +53,19 @@ if( !class_exists('WPUpdatesPluginUpdater_259') ) {
     		if( !is_wp_error($raw_response) && ($raw_response['response']['code'] == 200) )
     			$response = unserialize($raw_response['body']);
     		
-    		if( is_object($response) && !empty($response) ) // Feed the update data into WP updater
+    		if( is_object($response) && !empty($response) ) {
+                // Feed the update data into WP updater
     			$transient->response[$this->plugin_path] = $response;
-    
+                return $transient;
+            }
+
+            // Check to make sure there is not a similarly named plugin in the wordpress.org repository
+            if ( isset( $transient->response[$this->plugin_path] ) ) {
+                if ( strpos( $transient->response[$this->plugin_path]->package, 'wordpress.org' ) !== false  ) {
+                    unset($transient->response[$this->plugin_path]);
+                }
+            }
+
     		return $transient;
     	}
     

@@ -1,0 +1,71 @@
+
+/* global redux_change, wp */
+
+jQuery(function($){
+
+    "use strict";
+    
+    $.reduxMetaBoxes = $.reduxMetaBoxes || {};
+    
+    $(document).ready(function () {
+         $.reduxMetaBoxes.init();
+    });
+
+    /**
+    * Redux Metaboxes
+    * Dependencies      : jquery
+    * Feature added by  : Dovy Paukstys
+    * Date              : 19 Feb. 2014
+    */
+    $.reduxMetaBoxes.init = function(){
+        $.reduxMetaBoxes.notLoaded = true;
+        $.reduxMetaBoxes.checkBoxVisibility();
+
+        $('.redux-container').each(function() {
+            if ($(this).hasClass('redux-has-sections')) {
+                $(this).parents('.postbox:first').find('h3.hndle').attr('class', 'redux-hndle');  
+            }
+        });
+
+        $('#page_template').change(function() {
+            $.reduxMetaBoxes.checkBoxVisibility('page_template');
+        });
+
+        $('input[name="post_format"]:radio').change(function() {
+            $.reduxMetaBoxes.checkBoxVisibility('post_format');
+        });
+
+    };
+    $.reduxMetaBoxes.checkBoxVisibility = function(fieldID){
+        if (reduxMetaboxes.length !== 0) {
+            $.each(reduxMetaboxes, function(box, values) {
+                $.each(values, function(field, v) {
+                    if (field == fieldID || !fieldID) {
+                        if (field == "post_format") {
+                            var testValue = $("input:radio[name='post_format']:checked").val();
+                        } else {
+                            var testValue = $('#'+field).val();
+                        }
+                        if (testValue) {
+                            var visible = false;
+                            $.each(v, function(key, val) {
+                                if (val == testValue) {
+                                    visible = true;
+                                }
+                            });
+                            if (!visible && !$.reduxMetaBoxes.notLoaded) {
+                                $('#'+box).hide();
+                            }
+                            else if (!visible) {
+                                $('#'+box).fadeOut('50');
+                            } else {
+                                $('#'+box).fadeIn('300');
+                            }
+                        }
+                    }
+                });
+            });
+        }
+    }
+
+});

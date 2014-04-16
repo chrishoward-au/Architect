@@ -330,8 +330,7 @@
 //    else
 //    {
       require_once('wp-updates-plugin.php');
-      $ep_update = new WPUpdatesPluginUpdater_259('http://wp-updates.com/api/2/plugin', plugin_basename(__FILE__));
-//    }
+      new WPUpdatesPluginUpdater_429( 'http://wp-updates.com/api/2/plugin', plugin_basename(__FILE__));//    }
     }
 
     // TODO: check if older Redux is installed and use ours instead (if possible), but give warning too.

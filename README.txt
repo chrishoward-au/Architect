@@ -71,6 +71,9 @@ At this stage, no. We're trying to keep licencing as simple as possible, hence l
 3. The screenshot description corresponds to screenshot-3.(png|jpg|jpeg|gif).
 
 == Changelog ==
+= 0.6 =
+* Switched to Redux for metaboxes and options pages
+
 = 0.5 =
 * A new name! Architect
 * First public beta
