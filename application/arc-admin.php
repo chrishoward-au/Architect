@@ -41,19 +41,19 @@
 
         //@TODO: need a bit of screen dependency on this?
 //      require_once PZARC_PLUGIN_PATH . '/includes/class_pzarcForm.php';
-        require_once PZARC_PLUGIN_PATH . '/admin/php/arc-panels-layouts.php';
-        require_once PZARC_PLUGIN_PATH . '/admin/php/arc-blueprints.php';
-        require_once PZARC_PLUGIN_PATH . '/admin/php/arc-galleries.php';
-        require_once PZARC_PLUGIN_PATH . '/admin/php/arc-slides.php';
+        require_once PZARC_PLUGIN_PATH . '/data/admin/php/arc-panels-layouts.php';
+        require_once PZARC_PLUGIN_PATH . '/data/admin/php/arc-blueprints.php';
+        require_once PZARC_PLUGIN_PATH . '/data/admin/php/arc-galleries.php';
+        require_once PZARC_PLUGIN_PATH . '/data/admin/php/arc-slides.php';
 
         //TODO:     require_once PZARC_PLUGIN_PATH . '/admin/arc-widget.php';
 
 //			require_once PZARC_PLUGIN_PATH . '/admin/ucd-controls.php';
 
 
-        require_once PZARC_PLUGIN_PATH . '/external/php/redux-custom-fields/loader.php';
-        require_once PZARC_PLUGIN_PATH . '/external/php/redux-extensions/loader.php';
-        require_once PZARC_PLUGIN_PATH . '/admin/php/arc-options.php';
+        require_once PZARC_PLUGIN_PATH . '/includes/external/php/redux-custom-fields/loader.php';
+        require_once PZARC_PLUGIN_PATH . '/includes/external/php/redux-extensions/loader.php';
+        require_once PZARC_PLUGIN_PATH . '/data/admin/php/arc-options.php';
 
         // @TODO Should these really be objects?
         // Initialise objects for data and setup menu items
@@ -83,14 +83,14 @@
         wp_enqueue_style('dashicons');
 
 //      wp_enqueue_style('pzarc-block-css', PZARC_PLUGIN_URL . '/admin/css/arc-admin.css');
-        wp_enqueue_style('pzarc-jqueryui-css', PZARC_PLUGIN_URL . '/external/js/jquery-ui-1.10.2.custom/css/pz_architect/jquery-ui-1.10.2.custom.min.css');
+        wp_enqueue_style('pzarc-jqueryui-css', PZARC_PLUGIN_URL . '/includes/external/js/jquery-ui-1.10.2.custom/css/pz_architect/jquery-ui-1.10.2.custom.min.css');
 
-        wp_enqueue_script('jquery-pzarc-metaboxes', PZARC_PLUGIN_URL . '/admin/js/arc-metaboxes.js', array('jquery'));
+        wp_enqueue_script('jquery-pzarc-metaboxes', PZARC_PLUGIN_URL . '/data/admin/js/arc-metaboxes.js', array('jquery'));
 
 
-        wp_enqueue_script('pzarc-validation-engine-js-lang', PZARC_PLUGIN_URL . '/external/js/jQuery-Validation-Engine/js/languages/jquery.validationEngine-en.js', array('jquery'));
-        wp_enqueue_script('pzarc-validation-engine-js', PZARC_PLUGIN_URL . '/external/js/jQuery-Validation-Engine/js/jquery.validationEngine.js', array('jquery'));
-        wp_enqueue_style('pzarc-validation-engine-css', PZARC_PLUGIN_URL . '/external/js/jQuery-Validation-Engine/css/validationEngine.jquery.css');
+        wp_enqueue_script('pzarc-validation-engine-js-lang', PZARC_PLUGIN_URL . '/includes/external/js/jQuery-Validation-Engine/js/languages/jquery.validationEngine-en.js', array('jquery'));
+        wp_enqueue_script('pzarc-validation-engine-js', PZARC_PLUGIN_URL . '/includes/external/js/jQuery-Validation-Engine/js/jquery.validationEngine.js', array('jquery'));
+        wp_enqueue_style('pzarc-validation-engine-css', PZARC_PLUGIN_URL . '/includes/external/js/jQuery-Validation-Engine/css/validationEngine.jquery.css');
       }
     }
 
@@ -146,7 +146,7 @@
       <h3>Blueprints</h3>
       <ul><li>A Blueprint encompasses the overall content selection, design, layout and navigation. It can contain up to three Sections, each section displaying a Panel layout one or multiple times. This allows you to easily create a layout that, for example, might show a single post followed by a grid of excerpts. Within the Blueprint you can also include navigation, which can be pagination type, or a navigator type.</li></ul>
       <p>Below is a wireframe example</p>
-      <p><img src="' . PZARC_PLUGIN_URL . '/documentation/arc-layout.jpg" style="display:block"/></p>
+      <p><img src="' . PZARC_PLUGIN_URL . '/assets/images/help/arc-layout.jpg" style="display:block"/></p>
 
       <h2>Usage</h2>
 
@@ -210,8 +210,8 @@
       add_action('admin_menu', array(&$this, 'admin_menu'), 99);
 
       // Include and create a new WordPressSettingsFramework
-      require_once($this->plugin_path . '/external/php/wp-settings-framework.php');
-      $this->wpsf = new WordPressSettingsFramework($this->plugin_path . '/admin/php/settings/options.php', 'architect-defaults');
+      require_once($this->plugin_path . '/includes/external/php/wp-settings-framework.php');
+      $this->wpsf = new WordPressSettingsFramework($this->plugin_path . '/data/admin/php/settings/options.php', 'architect-defaults');
       // Add an optional settings validation filter (recommended)
       add_filter($this->wpsf->get_option_group() . '_settings_validate', array(&$this, 'validate_settings'));
     }

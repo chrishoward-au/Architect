@@ -45,9 +45,9 @@
       {
 
 
-        wp_enqueue_style('pzarc-admin-blueprints-css', PZARC_PLUGIN_URL . 'admin/css/arc-admin-blueprints.css');
+        wp_enqueue_style('pzarc-admin-blueprints-css', PZARC_PLUGIN_URL . '/data/admin/css/arc-admin-blueprints.css');
 
-        wp_enqueue_script('jquery-pzarc-metaboxes-blueprints', PZARC_PLUGIN_URL . 'admin/js/arc-metaboxes-blueprints.js', array('jquery'));
+        wp_enqueue_script('jquery-pzarc-metaboxes-blueprints', PZARC_PLUGIN_URL . '/data/admin/js/arc-metaboxes-blueprints.js', array('jquery'));
         wp_enqueue_script('js-isotope-v2');
         // wp_enqueue_script('jquery-masonary', PZARC_PLUGIN_URL . 'external/masonry.pkgd.min.js', array('jquery'));
         // wp_enqueue_script('jquery-lorem', PZARC_PLUGIN_URL . 'external/jquery.lorem.js', array('jquery'));

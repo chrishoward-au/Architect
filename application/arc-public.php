@@ -8,17 +8,17 @@
    */
 
 
-  require_once PZARC_PLUGIN_PATH . '/frontend/php/class_pzarc_Display.php';
-  require PZARC_PLUGIN_PATH . '/frontend/php/arcPanelDefinitions.php';
-  require_once(PZARC_PLUGIN_PATH . '/external/php/jo-image-resizer/jo_image_resizer.php');
+  require_once PZARC_PLUGIN_PATH . '/interface/public/php/class_pzarc_Display.php';
+  require PZARC_PLUGIN_PATH . '/data/admin/php/arcPanelDefinitions.php';
+  require_once(PZARC_PLUGIN_PATH . '/includes/external/php/jo-image-resizer/jo_image_resizer.php');
 
 
   add_action('init', 'pzarc_display_init');
   function pzarc_display_init()
   {
-    wp_register_script('js-arc-frontjs', PZARC_PLUGIN_URL . '/frontend/js/arc-front.js', array('jquery'));
-    wp_register_script('js-swiperjs', PZARC_PLUGIN_URL . '/external/js/swiper/idangerous.swiper.js');
-    wp_register_style('css-swiperjs', PZARC_PLUGIN_URL . '/external/js/swiper/idangerous.swiper.css');
+    wp_register_script('js-arc-frontjs', PZARC_PLUGIN_URL . '/interface/public/js/arc-front.js', array('jquery'));
+    wp_register_script('js-swiperjs', PZARC_PLUGIN_URL . '/includes/external/js/swiper/idangerous.swiper.js');
+    wp_register_style('css-swiperjs', PZARC_PLUGIN_URL . '/includes/external/js/swiper/idangerous.swiper.css');
 
     wp_enqueue_script('js-arc-frontjs');
     wp_enqueue_script('js-swiperjs');

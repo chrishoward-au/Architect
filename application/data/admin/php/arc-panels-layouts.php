@@ -70,9 +70,9 @@
         wp_enqueue_script('jquery-ui-sortable');
         wp_enqueue_script('jquery-ui-resizable');
 
-        wp_enqueue_style('pzarc-admin-panels-css', PZARC_PLUGIN_URL . 'admin/css/arc-admin-panels.css');
+        wp_enqueue_style('pzarc-admin-panels-css', PZARC_PLUGIN_URL . '/data/admin/css/arc-admin-panels.css');
 
-        wp_enqueue_script('jquery-pzarc-metaboxes-panels', PZARC_PLUGIN_URL . 'admin/js/arc-metaboxes-panels.js', array('jquery'));
+        wp_enqueue_script('jquery-pzarc-metaboxes-panels', PZARC_PLUGIN_URL . '/data/admin/js/arc-metaboxes-panels.js', array('jquery'));
       }
     }
 

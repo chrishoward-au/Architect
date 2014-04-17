@@ -4,7 +4,7 @@
     Plugin Name: Architect - an all-in-one content display framework
     Plugin URI: http://pizazzwp.com
     Description: Display your content in grids, tabs, sliders, galleries with sources like posts, pages, galleries, widgets, custom code, Headway blocks and custom content types. Change themes without havinqg to rebuild your layouts. Seriously!
-    Version: 0.6.1 beta 20140322
+    Version: 0.6.5 beta
     Author: Chris Howard
     Author URI: http://pizazzwp.com
     License: GNU GPL v2
@@ -48,12 +48,12 @@
     function __construct()
     {
 
-      define('PZARC_VERSION', '0.6.0');
+      define('PZARC_VERSION', '0.6.5');
       define('PZARC_NAME', 'pzarc');
       define('PZARC_FOLDER', '/pizazzwp-architect');
 
-      define('PZARC_PLUGIN_URL', trailingslashit(plugin_dir_url(__FILE__)));
-      define('PZARC_PLUGIN_PATH', trailingslashit(plugin_dir_path(__FILE__)));
+      define('PZARC_PLUGIN_URL', trailingslashit(plugin_dir_url(__FILE__)).'application/');
+      define('PZARC_PLUGIN_PATH', trailingslashit(plugin_dir_path(__FILE__)).'application/');
       define('PZARC_CACHE', '/pzarc/');
 
       $upload_dir = wp_upload_dir();
@@ -62,7 +62,7 @@
       define('PZARC_DEBUG', 0);
 
 // Before we go anywhere, make sure dependent plugins are loaded and active.
-      require_once PZARC_PLUGIN_PATH . '/includes/php/arc-check-dependencies.php';
+      require_once PZARC_PLUGIN_PATH . '/includes/inhouse/php/arc-check-dependencies.php';
 
       wp_mkdir_p(PZARC_CACHE_PATH);
 
@@ -74,15 +74,13 @@
         // The TGM dependency loader needs to run first
 //			include_once PZARC_PLUGIN_PATH . '/libs/PizazzWP.php';
       }
-      require_once PZARC_PLUGIN_PATH . '/includes/php/arc-functions.php';
+      require_once PZARC_PLUGIN_PATH . '/includes/inhouse/php/arc-functions.php';
 
       // Register admin styles and scripts
 
       if (is_admin())
       {
-        require_once PZARC_PLUGIN_PATH . '/admin/php/arc-admin.php';
-        //	require_once PZARC_PLUGIN_PATH . '/external/Custom-Metaboxes-and-Fields/example-functions.php';
-        //require_once(PZARC_PLUGIN_PATH .'/admin/admin-page-class/admin-page-class.php');
+        require_once PZARC_PLUGIN_PATH . '/arc-admin.php';
         add_action('admin_print_styles', array($this, 'register_admin_styles'));
         add_action('admin_enqueue_scripts', array($this, 'register_admin_scripts'));
         //		add_action( 'init', array( $this, 'admin_initialize' ) );
@@ -96,7 +94,7 @@
         add_action('wp_enqueue_scripts', array($this, 'register_plugin_styles'));
         add_action('wp_enqueue_scripts', array($this, 'register_plugin_scripts'));
 
-        require_once PZARC_PLUGIN_PATH . '/frontend/php/arc-display.php';
+        require_once PZARC_PLUGIN_PATH . '/arc-public.php';
 
       }
 
@@ -132,10 +130,10 @@
 
       if (class_exists('HeadwayDisplay'))
       {
-        require('includes/headway/arc-block-display.php');
-        require('includes/headway/arc-block-options.php');
+        require('application/interface/public/php/arc-headway-block-display.php');
+        require('application/data/admin/php/headway/arc-headway-block-options.php');
 
-        return headway_register_block('HeadwayArchitectBlock', PZARC_PLUGIN_URL . '/includes/headway');
+        return headway_register_block('HeadwayArchitectBlock', PZARC_PLUGIN_URL . '/application/data/admin/php/headway');
       }
     }
 
@@ -152,7 +150,6 @@
 
     public function admin_initialize()
     {
-      //	require_once PZARC_PLUGIN_PATH . '/includes/external/Custom-Metaboxes-and-Fields/init.php';
     }
 
 // end activate
@@ -191,7 +188,7 @@
       $domain = PZARC_NAME;
       $locale = apply_filters('plugin_locale', get_locale(), $domain);
       load_textdomain($domain, WP_LANG_DIR . '/' . $domain . '/' . $domain . '-' . $locale . '.mo');
-      load_plugin_textdomain($domain, false, dirname(plugin_basename(__FILE__)) . '/lang/');
+      load_plugin_textdomain($domain, false, dirname(plugin_basename(__FILE__)) . '/languages/');
     }
 
 // end plugin_textdomain
@@ -202,9 +199,9 @@
     public function register_admin_styles()
     {
 
-      wp_enqueue_style('pzarc-admin-styles', plugins_url(PZARC_FOLDER . '/admin/css/arc-admin.css'));
-      wp_register_style('pzarc-font-awesome', plugins_url(PZARC_FOLDER . '/external/font-awesome/css/font-awesome.min.css'));
-      wp_register_style('pzarc-jqueryui-css', PZARC_PLUGIN_URL . '/external/jquery-ui-1.10.2.custom/css/pz_architect/jquery-ui-1.10.2.custom.min.css');
+      wp_enqueue_style('pzarc-admin-styles', plugins_url(PZARC_FOLDER . '/data/admin/css/arc-admin.css'));
+      wp_register_style('pzarc-font-awesome', plugins_url(PZARC_FOLDER . '/includes/external/font-awesome/css/font-awesome.min.css'));
+      wp_register_style('pzarc-jqueryui-css', PZARC_PLUGIN_URL . '/includes/external/jquery-ui-1.10.2.custom/css/pz_architect/jquery-ui-1.10.2.custom.min.css');
 
       // Be nice to use bootstrap, but it's just not compatible with WP as it uses common non-specific element names.
       //wp_enqueue_style( 'bootstrap-admin-styles', plugins_url( PZARC_FOLDER . '/external/bootstrap/css/bootstrap.min.css' ) );
@@ -232,7 +229,7 @@
     public function register_plugin_styles()
     {
 
-      wp_enqueue_style(PZARC_NAME . '-plugin-styles', plugins_url(PZARC_FOLDER . '/frontend/css/arc-front.css'));
+      wp_enqueue_style(PZARC_NAME . '-plugin-styles', plugins_url(PZARC_FOLDER . '/interface/public/css/arc-front.css'));
     }
 
 // end register_plugin_styles
@@ -245,9 +242,9 @@
 
       wp_enqueue_script('jquery');
       // wp_enqueue_script( PZARC_NAME.'-plugin-script', plugins_url( PZARC_FOLDER.'/frontend/js/display.js' ) );
-      wp_register_script('jquery-isotope', plugins_url(PZARC_FOLDER . '/external/js/jquery.isotope.min.js'));
-      wp_register_script('js-isotope-v2', plugins_url(PZARC_FOLDER . '/external/js/isotope.pkgd.min.js'));
-      wp_enqueue_script('js-useragent', plugins_url(PZARC_FOLDER) . '/includes/js/architect.js');
+      wp_register_script('jquery-isotope', plugins_url(PZARC_FOLDER . '/includes/external/js/jquery.isotope.min.js'));
+      wp_register_script('js-isotope-v2', plugins_url(PZARC_FOLDER . '/includes/external/js/isotope.pkgd.min.js'));
+      wp_enqueue_script('js-useragent', plugins_url(PZARC_FOLDER) . '/includes/inhouse/js/architect.js');
     }
 
 // end register_plugin_scripts
