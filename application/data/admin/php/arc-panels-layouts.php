@@ -234,8 +234,10 @@
                 'id'      => $prefix . 'tabs',
                 'type'    => 'tabbed',
                 'options' => array(
-                    'panels-design' => '<span class="icon-large el-icon-website"></span> Design',
-                    'panels-styling' => '<span class="icon-large el-icon-brush"></span> Styling'),
+                    'design' => '<span class="icon-large el-icon-website"></span> Design',
+                    'styling' => '<span class="icon-large el-icon-brush"></span> Styling'
+                ),
+                'targets'=>array('design'=>array('panels-design','_panels_settings_general_settings'),'styling'=>array('panels-styling'))
             ),
         )
     );
@@ -366,7 +368,7 @@
             array(
                 'title'    => __('Components to show', 'pzarc'),
                 'id'       => $prefix . 'components-to-show',
-                'type'     => 'select',
+                'type'     => 'button_set',
                 'multi'    => true,
                 'width'    => '100%',
                 'default'  => array('title', 'excerpt', 'meta1', 'image'),
@@ -375,13 +377,13 @@
                     'excerpt' => 'Excerpt',
                     'content' => 'Content',
                     'image'   => 'Image',
-                    'caption' => 'Image Caption',
+                    'caption' => 'Caption',
                     'meta1'   => 'Meta1',
                     'meta2'   => 'Meta2',
                     'meta3'   => 'Meta3',
-                    'custom1' => 'Custom Field 1',
-                    'custom2' => 'Custom Field 2',
-                    'custom3' => 'Custom Field 3',
+                    'custom1' => 'Custom 1',
+                    'custom2' => 'Custom 2',
+                    'custom3' => 'Custom 3',
                     //        'custom4' => 'Custom Field 4',
                 ),
                 'hint' => array('content'=>__('Select which base components to include in this panel layout.', 'pzarc'))
@@ -469,7 +471,7 @@
     );
 
 
-    $sections[2 ] = array(
+    $sections[ ] = array(
         'title'      => 'Titles',
         'show_title' => false,
         'icon_class' => 'icon-large',

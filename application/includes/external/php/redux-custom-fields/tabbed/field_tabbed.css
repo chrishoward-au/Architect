@@ -31,3 +31,6 @@ body.admin-color-midnight .redux-container-tabbed ul.data-full li.active {
   color:#fff;
 }
 
+.size-small {
+  width:16px;
+}

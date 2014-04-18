@@ -825,7 +825,11 @@ body.screen-arc-panels #side-sortables .postbox {
 
 body.post-type-arc-panels h3.hndle,
 body.post-type-arc-blueprints h3.hndle,
-body.post-type-arc-contents h3.hndle {
+body.post-type-arc-contents h3.hndle,
+body.post-type-arc-panels h3.redux-hndle,
+body.post-type-arc-blueprints h3.redux-hndle,
+body.post-type-arc-contents h3.redux-hndle
+{
   color: #fff;
   background: #6d6d6d;
   border-bottom: none;

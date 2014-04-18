@@ -17,7 +17,3 @@ function tabbed_field_path($field) {
   return dirname( __FILE__ ).'/tabbed/field_tabbed.php';
 }
 
-  add_filter( "redux/{$redux_opt_name}/field/class/textro", "textro_field_path" ); // Adds the local field
-  function textro_field_path($field) {
-    return dirname( __FILE__ ).'/textro/field_textro.php';
-  }

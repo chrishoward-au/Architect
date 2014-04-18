@@ -199,8 +199,8 @@
     public function register_admin_styles()
     {
 
-      wp_enqueue_style('pzarc-admin-styles', plugins_url(PZARC_FOLDER . '/data/admin/css/arc-admin.css'));
-      wp_register_style('pzarc-font-awesome', plugins_url(PZARC_FOLDER . '/includes/external/font-awesome/css/font-awesome.min.css'));
+      wp_enqueue_style('pzarc-admin-styles', PZARC_PLUGIN_URL . '/data/admin/css/arc-admin.css');
+      wp_register_style('pzarc-font-awesome', PZARC_PLUGIN_URL . '/includes/external/font-awesome/css/font-awesome.min.css');
       wp_register_style('pzarc-jqueryui-css', PZARC_PLUGIN_URL . '/includes/external/jquery-ui-1.10.2.custom/css/pz_architect/jquery-ui-1.10.2.custom.min.css');
 
       // Be nice to use bootstrap, but it's just not compatible with WP as it uses common non-specific element names.

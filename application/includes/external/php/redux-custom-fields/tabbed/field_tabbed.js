@@ -1,4 +1,3 @@
-/* global redux_change */
 (function ( $ )
 {
     "use strict";
@@ -8,37 +7,79 @@
         var tabbed = jQuery( '.redux-container-tabbed li' );
         tabbed.each( function ()
         {
-            var target = jQuery( this ).data( 'target' );
-            jQuery( target ).find('.hndle' ).addClass('pzarcHeader' ).css({'background':'#6d6d6d','color':'#fff','cursor':'default'} ).removeClass('hndle' );
-            jQuery( target ).find('.handlediv').hide();
-//            jQuery(target ).css('margin-top','-21px');
+            var targets = jQuery( this ).data( 'targets' ).split( ',' );
+            jQuery( targets ).each( function ()
+            {
+                jQuery( this ).find( '.hndle' ).addClass( 'pzarcHeader' ).css( {'background': '#6d6d6d', 'color': '#fff', 'cursor': 'default'} ).removeClass( 'hndle' );
+            } );
+
+            jQuery( targets ).each( function ()
+            {
+                jQuery( this ).find( '.handlediv' ).hide();
+            } );
+
             if ( jQuery( this ).hasClass( "active" ) )
             {
-                jQuery( target ).show();
-                console.log(jQuery(target).find( 'ul.redux-group-menu li a' ).first().trigger("click"));
-                jQuery( target ).find( 'ul.redux-group-menu li a' ).first().trigger( 'click' );
+                jQuery( targets ).each( function ()
+                {
+                    jQuery( this ).show();
+                } );
+
+                jQuery( targets ).each( function ()
+                {
+                    jQuery( this ).find( 'ul.redux-group-menu li a' ).first().trigger( 'click' );
+                } );
             }
             else
             {
-                jQuery( target ).hide();
+                jQuery( targets ).each( function ()
+                {
+                    jQuery( this ).hide();
+                } );
             }
         } );
 
     }
 
+//    #redux-_architect-metabox-_panels_settings_general_settings
+//    #redux-_architect-metabox-_panels_settings_general-settings
+
     jQuery( '.redux-container-tabbed li' ).on( 'click', function ( e )
     {
         var clickedThis = this;
-        var target = jQuery( clickedThis ).data( 'target' );
-        var parent = jQuery( clickedThis ).siblings();
-        parent.each( function ()
+        var targets = jQuery( clickedThis ).data( 'targets' ).split( ',' );
+
+        jQuery( targets ).each( function ()
         {
-            jQuery( this ).removeClass( "active" );
-            jQuery( jQuery( this ).data( 'target' ) ).hide();
+            console.log("Show: ",this);
+            jQuery( this ).show();
         } );
-        jQuery( target ).show();
-        jQuery( target ).find( 'ul.redux-group-menu li a' ).first().trigger( 'click' );
+        jQuery( targets ).each( function ()
+        {
+            jQuery( this ).find( 'ul.redux-group-menu li a' ).first().trigger( 'click' );
+        } );
         jQuery( clickedThis ).addClass( "active" );
+
+
+
+        var siblings = jQuery( clickedThis ).siblings();
+        siblings.each( function ()
+        {
+            var t = this;
+            // For each sibling, remove the active class
+            jQuery( t ).removeClass( "active" );
+
+            //For each sibling, hide its boxes
+            console.log(t);
+            var sibling_targets = jQuery( t ).data( 'targets' ).split( ',');
+            jQuery(sibling_targets).each( function ()
+            {
+                console.log("Hide: ",this);
+                jQuery( this ).hide();
+            } );
+
+
+        } );
 
     } );
 

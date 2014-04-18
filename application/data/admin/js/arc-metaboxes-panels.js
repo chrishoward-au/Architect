@@ -51,36 +51,7 @@ jQuery( document ).ready( function ()
     jQuery( "input\[name='_architect[panels_design_thumb-position]'" ).on( 'click', function ( e )
     {
         var buttonClicked = this.value;
-        if ( buttonClicked == 'left' )
-        {
-            jQuery( '.pzarc-draggable-excerpt img.pzarc-align' ).removeClass( 'right' );
-            jQuery( '.pzarc-draggable-excerpt img.pzarc-align' ).removeClass( 'none' );
-            jQuery( '.pzarc-draggable-excerpt img.pzarc-align' ).addClass( 'left' );
-
-            jQuery( '.pzarc-draggable-content img.pzarc-align' ).removeClass( 'right' );
-            jQuery( '.pzarc-draggable-content img.pzarc-align' ).removeClass( 'none' );
-            jQuery( '.pzarc-draggable-content img.pzarc-align' ).addClass( 'left' );
-        }
-        else if ( buttonClicked == 'right' )
-        {
-            jQuery( '.pzarc-draggable-excerpt img.pzarc-align' ).removeClass( 'left' );
-            jQuery( '.pzarc-draggable-excerpt img.pzarc-align' ).removeClass( 'none' );
-            jQuery( '.pzarc-draggable-excerpt img.pzarc-align' ).addClass( 'right' );
-
-            jQuery( '.pzarc-draggable-content img.pzarc-align' ).removeClass( 'left' );
-            jQuery( '.pzarc-draggable-content img.pzarc-align' ).removeClass( 'none' );
-            jQuery( '.pzarc-draggable-content img.pzarc-align' ).addClass( 'right' );
-        }
-        else
-        {
-            jQuery( '.pzarc-draggable-excerpt img.pzarc-align' ).addClass( 'none' );
-            jQuery( '.pzarc-draggable-excerpt img.pzarc-align' ).removeClass( 'left' );
-            jQuery( '.pzarc-draggable-excerpt img.pzarc-align' ).removeClass( 'right' );
-
-            jQuery( '.pzarc-draggable-content img.pzarc-align' ).addClass( 'none' );
-            jQuery( '.pzarc-draggable-content img.pzarc-align' ).removeClass( 'left' );
-            jQuery( '.pzarc-draggable-content img.pzarc-align' ).removeClass( 'right' );
-        }
+        pzarc_update_thumb_position(buttonClicked);
     } );
 
 //  jQuery('li.item-panel-designer').on('click',function(index,value){jQuery('#panel-designer-settings').show();});
@@ -100,8 +71,8 @@ jQuery( document ).ready( function ()
         pzarc_update_background( cell_layout );
     } );
 
-
-    jQuery( 'select#panels_design_components-to-show-select' ).change(function ( e )
+    // _architect-panels_design_components-to-show
+    jQuery( 'fieldset#_architect-panels_design_components-to-show input' ).change(function ( e )
     {
         var cell_layout = jQuery.parseJSON( jQuery( 'input#panels_design_preview-text' ).val() );
         pzarc_update_components_toshow( cell_layout, e )
@@ -218,7 +189,7 @@ jQuery( document ).ready( function ()
             pzarc_update_component_visibility( cell_layout );
             pzarc_update_background( cell_layout );
             pzarc_update_status( cell_layout );
-
+            pzarc_update_thumb_position(jQuery( "input\[name='_architect[panels_design_thumb-position]'" ).value);
         }
     } );
 
@@ -285,12 +256,12 @@ jQuery( document ).ready( function ()
      */
     function pzarc_update_component_visibility( cell_layout )
     {
-        var components_state = jQuery( "select#panels_design_components-to-show-select option" );
+        var components_state = jQuery( "fieldset#_architect-panels_design_components-to-show input" );
         jQuery.each( components_state, function ( index, value )
         {
             if (value.value!='') {
-            cell_layout[value.value].show = value.selected;
-            if ( value.selected )
+            cell_layout[value.value].show = value.checked;
+            if ( value.checked )
             {
                 jQuery( '.pzarc-draggable-' + value.value ).show();
                 jQuery( '.pzarc-draggable-' + value.value ).css( 'width', cell_layout[value.value].width + '%' );
@@ -565,6 +536,39 @@ jQuery( document ).ready( function ()
         pzarc_update_component_visibility( cell_layout );
     }
 
+    function pzarc_update_thumb_position(buttonClicked) {
+        if ( buttonClicked == 'left' )
+        {
+            jQuery( '.pzarc-draggable-excerpt img.pzarc-align' ).removeClass( 'right' );
+            jQuery( '.pzarc-draggable-excerpt img.pzarc-align' ).removeClass( 'none' );
+            jQuery( '.pzarc-draggable-excerpt img.pzarc-align' ).addClass( 'left' );
+
+            jQuery( '.pzarc-draggable-content img.pzarc-align' ).removeClass( 'right' );
+            jQuery( '.pzarc-draggable-content img.pzarc-align' ).removeClass( 'none' );
+            jQuery( '.pzarc-draggable-content img.pzarc-align' ).addClass( 'left' );
+        }
+        else if ( buttonClicked == 'right' )
+        {
+            jQuery( '.pzarc-draggable-excerpt img.pzarc-align' ).removeClass( 'left' );
+            jQuery( '.pzarc-draggable-excerpt img.pzarc-align' ).removeClass( 'none' );
+            jQuery( '.pzarc-draggable-excerpt img.pzarc-align' ).addClass( 'right' );
+
+            jQuery( '.pzarc-draggable-content img.pzarc-align' ).removeClass( 'left' );
+            jQuery( '.pzarc-draggable-content img.pzarc-align' ).removeClass( 'none' );
+            jQuery( '.pzarc-draggable-content img.pzarc-align' ).addClass( 'right' );
+        }
+        else
+        {
+            jQuery( '.pzarc-draggable-excerpt img.pzarc-align' ).addClass( 'none' );
+            jQuery( '.pzarc-draggable-excerpt img.pzarc-align' ).removeClass( 'left' );
+            jQuery( '.pzarc-draggable-excerpt img.pzarc-align' ).removeClass( 'right' );
+
+            jQuery( '.pzarc-draggable-content img.pzarc-align' ).addClass( 'none' );
+            jQuery( '.pzarc-draggable-content img.pzarc-align' ).removeClass( 'left' );
+            jQuery( '.pzarc-draggable-content img.pzarc-align' ).removeClass( 'right' );
+        }
+
+    }
 
 } )
 ; // End
