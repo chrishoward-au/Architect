@@ -237,7 +237,7 @@
                     'design' => '<span class="icon-large el-icon-website"></span> Design',
                     'styling' => '<span class="icon-large el-icon-brush"></span> Styling'
                 ),
-                'targets'=>array('design'=>array('panels-design','_panels_settings_general_settings'),'styling'=>array('panels-styling'))
+                'targets'=>array('design'=>array('panels-design','_panels_settings_general-settings'),'styling'=>array('panels-styling'))
             ),
         )
     );
@@ -315,7 +315,7 @@
     );
     $metaboxes[ ] = array(
         'id'         => $prefix . 'general-settings',
-        'title'      => 'General Settings',
+        'title'      => 'Panel Settings',
         'post_types' => array('arc-panels'),
         'sections'   => $sections,
         'position'   => 'side',
@@ -355,7 +355,7 @@
                                               'meta1'   => array('width' => 100, 'show' => true),
                                               'image'   => array('width' => 25, 'show' => true),
                                               'excerpt' => array('width' => 75, 'show' => true),
-                                              'caption' => array('width' => 100, 'show' => false),
+  //                                            'caption' => array('width' => 100, 'show' => false),
                                               'content' => array('width' => 100, 'show' => false),
                                               'meta2'   => array('width' => 100, 'show' => false),
                                               'meta3'   => array('width' => 100, 'show' => false),
@@ -377,7 +377,7 @@
                     'excerpt' => 'Excerpt',
                     'content' => 'Content',
                     'image'   => 'Image',
-                    'caption' => 'Caption',
+//                    'caption' => 'Caption',
                     'meta1'   => 'Meta1',
                     'meta2'   => 'Meta2',
                     'meta3'   => 'Meta3',
@@ -387,32 +387,6 @@
                     //        'custom4' => 'Custom Field 4',
                 ),
                 'hint' => array('content'=>__('Select which base components to include in this panel layout.', 'pzarc'))
-            ),
-            array(
-                'title'    => __('Excerpt/Content featured image', 'pzarc'),
-                'id'       => $prefix . 'thumb-position',
-                'width'    => '100%',
-                'type'     => 'button_set',
-                'default'  => 'none',
-                'options'  => array(
-                    'none'  => 'No image',
-                    'left'  => 'Left',
-                    'right' => 'Right',
-                ),
-                'hint' => array('content'=>__('Set the alignment of the image to show it in the excerpt or the content. This will use the image settings', 'pzarc'))
-            ),
-            array(
-                'title'    => __('Background Feature Image/Video', 'pzarc'),
-                'id'       => $prefix . 'background-position',
-                'width'    => '100%',
-                'type'     => 'button_set',
-                'default'  => 'none',
-                'options'  => array(
-                    'none'  => 'No image',
-                    'fill'  => 'Fill the panel',
-                    'align' => 'Align with components area',
-                ),
-                'hint' => array('content'=>__('Select how to display the featured image or video as the background.', 'pzarc'))
             ),
             array(
                 'title'    => __('Components area position', 'pzarc'),
@@ -428,6 +402,19 @@
                 ),
                 'hint' => array('content'=>__('Position for all the components as a group. </br>NOTE: If feature is set to align, then components will be below the feature, but not at the bottom of the panel. ', 'pzarc')),
                 'desc'     => __('Left/right will only take affect when components area width is less than 100%', 'pzarc')
+            ),
+            array(
+                'title'    => __('Components area width %', 'pzarc'),
+                'id'       => $prefix . 'components-widths',
+                'type'     => 'slider',
+                'default'  => '100',
+                'alt'      => 'zones',
+                'min'      => '0',
+                'max'      => '100',
+                'step'     => '1',
+                'class'    => ' percent',
+                'display_value' => 'label',
+                'hint' => array('content'=>__('Set the overall width for the components area. Necessary for left or right positioning of sections', 'pzarc')),
             ),
             array(
                 'title'    => __('Nudge components area up/down %', 'pzarc'),
@@ -454,17 +441,30 @@
                 'hint' => array('content'=>__('Enter percent to move the components area left/right. </br>NOTE: These measurements are percentage of the panel.', 'pzarc'))
             ),
             array(
-                'title'    => __('Components area width %', 'pzarc'),
-                'id'       => $prefix . 'components-widths',
-                'type'     => 'slider',
-                'default'  => '100',
-                'alt'      => 'zones',
-                'min'      => '0',
-                'max'      => '100',
-                'step'     => '1',
-                'class'    => ' percent',
-                'display_value' => 'label',
-                'hint' => array('content'=>__('Set the overall width for the components area. Necessary for left or right positioning of sections', 'pzarc')),
+                'title'    => __('Excerpt/Content featured image', 'pzarc'),
+                'id'       => $prefix . 'thumb-position',
+                'width'    => '100%',
+                'type'     => 'button_set',
+                'default'  => 'none',
+                'options'  => array(
+                    'none'  => 'No image',
+                    'left'  => 'Left',
+                    'right' => 'Right',
+                ),
+                'hint' => array('content'=>__('Set the alignment of the image to show it in the excerpt or the content. This will use the image settings', 'pzarc'))
+            ),
+            array(
+                'title'    => __('Background Feature Image/Video', 'pzarc'),
+                'id'       => $prefix . 'background-position',
+                'width'    => '100%',
+                'type'     => 'button_set',
+                'default'  => 'none',
+                'options'  => array(
+                    'none'  => 'No image',
+                    'fill'  => 'Fill the panel',
+                    'align' => 'Align with components area',
+                ),
+                'hint' => array('content'=>__('Select how to display the featured image or video as the background.', 'pzarc'))
             ),
 
         )
@@ -868,7 +868,7 @@
 //          'fields'     => array(
 
     $sections[ ] = array(
-        'title'      => 'General',
+        'title'      => 'Overall',
         'show_title' => false,
         'icon_class' => 'icon-large',
         'icon'       => 'el-icon-brush',
@@ -1101,7 +1101,6 @@
         <span class="pzarc-draggable pzarc-draggable-excerpt" title="Excerpt with featured image" data-idcode=excerpt ><span><img src="' . PZARC_PLUGIN_URL . '/assets/images/sample-image.jpg" style="max-width:20%;padding:2px;" class="pzarc-align none">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam quis justo erat. Cras semper sem hendre...[more]</span></span>
         <span class="pzarc-draggable pzarc-draggable-content" title="Full post content" data-idcode=content ><span><img src="' . PZARC_PLUGIN_URL . '/assets/images/sample-image.jpg" style="max-width:20%;padding:2px;" class="pzarc-align none"><img src="' . PZARC_PLUGIN_URL . '/assets/images/fireworks.jpg" style="max-width:30%;float:left;padding:5px;">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam quis justo erat. <ul><li>&nbsp;•&nbsp;Cras semper sem hendrerit</li><li>&nbsp;•&nbsp;Tortor porta at auctor</li></ul><strong>Lacus consequat</strong><p>Pellentesque pulvinar iaculis tellus in blandit. Suspendisse rhoncus, magna vel eleifend cursus, turpis odio molestie urna, quis posuere eros risus quis neque. </p></span></span>
         <span class="pzarc-draggable pzarc-draggable-image" title="Featured image" data-idcode=image style="max-height: 100px; overflow: hidden;"><span><img src="' . PZARC_PLUGIN_URL . '/assets/images/sample-image.jpg" style="max-width:100%;"></span></span>
-        <span class="pzarc-draggable pzarc-draggable-caption pzarc-draggable-caption" title="Image caption" data-idcode=caption ><span>Featured image caption</span></span>
         <span class="pzarc-draggable pzarc-draggable-meta2 pzarc-draggable-meta" title="Meta info 2" data-idcode=meta2 ><span>Categories - News, Sport</span></span>
         <span class="pzarc-draggable pzarc-draggable-meta3 pzarc-draggable-meta" title="Meta info 3" data-idcode=meta3 ><span>Comments: 27</span></span>
         <span class="pzarc-draggable pzarc-draggable-custom1 pzarc-draggable-meta" title="Custom field 1" data-idcode=custom1 ><span>Custom content 1</span></span>

@@ -45,7 +45,7 @@ jQuery(document).ready(function () {
     // ********************************************************************************************
     jQuery( "select#_blueprints_content-source-select" ).find("option").each( function ( i )
     {
-        console.log(this,this.selected,jQuery(this).text());
+        //console.log(this,this.selected,jQuery(this).text());
         // there's a blank one at the to  because of the placeholder
         if (i==0){return;}
         if ( this.selected )
@@ -86,7 +86,7 @@ jQuery(document).ready(function () {
             jQuery( ".redux-sidebar li#4_box_redux-_architect-metabox-layout-settings_section_group_li" ).hide();
             return;
         }
-        //   console.log(i,this.checked);
+        //   //console.log(i,this.checked);
         if ( this.checked )
         {
             jQuery( ".redux-sidebar li#" + (i + 2) + "_box_redux-_architect-metabox-layout-settings_section_group_li" ).show();
@@ -167,7 +167,7 @@ jQuery(document).ready(function () {
         if (clickedOn=="Content") {
             var tab = jQuery( "select#_blueprints_content-source-select" ).find("option:selected");
             var chosenOne = tab.index();
-            console.log(chosenOne);
+            //console.log(chosenOne);
 
             jQuery( "table#section-table-_blueprints_section-start-layout, div#section-_blueprints_section-start-layout, div#section-_blueprints_section-end-layout, table#section-_table-blueprints_section-end-layout" ).hide();
             jQuery( "table#section-table-_blueprints_section-start-content,div#section-_blueprints_section-start-content,div#section-_blueprints_section-end-content,table#section-_table-blueprints_section-end-content" ).show();
@@ -233,7 +233,7 @@ jQuery(document).ready(function () {
 //function pzarc_show_navtype() {
 //  var navtype =  jQuery('select#_pzarc_blueprint-navigation-cmb-field-0').find('option:selected').get(0).value;
 //
-//  console.log(navtype);
+//  //console.log(navtype);
 //  switch ( navtype) {
 //    case 'none':
 //      jQuery('.item-blueprint-pagination').hide();
@@ -255,7 +255,7 @@ jQuery(document).ready(function () {
 //}
 //fieldset#_architect-_blueprints_sections-preview 
  function pzarc_refresh_blueprint_layout(i) {
-    console.log(i,jQuery('input#_blueprints_section-' + i + '-columns'));
+    //console.log(i,jQuery('input#_blueprints_section-' + i + '-columns'));
    pzarc_update_cell_count(i, jQuery('input#_blueprints_section-' + i + '-columns'));
    pzarc_update_cell_margin(i, jQuery('input#_blueprints_section-' + i + '-panels-vert-margin'));
    pzarc_update_cell_across(i, jQuery('input#_blueprints_section-' + i + '-panels-across'));
@@ -263,14 +263,14 @@ jQuery(document).ready(function () {
    pzarc_show_hide_section(i);
  }
 //
-////  jQuery('#pzarc-sections-preview-0').resize(function(){//console.log(this.width);pzarc_refresh_blueprint_layout(0)});
-////  jQuery('#pzarc-sections-preview-1').resize(function(){//console.log(this.width);pzarc_refresh_blueprint_layout(1)});
-////  jQuery('#pzarc-sections-preview-2').resize(function(){//console.log(this.width);pzarc_refresh_blueprint_layout(2)});
+////  jQuery('#pzarc-sections-preview-0').resize(function(){////console.log(this.width);pzarc_refresh_blueprint_layout(0)});
+////  jQuery('#pzarc-sections-preview-1').resize(function(){////console.log(this.width);pzarc_refresh_blueprint_layout(1)});
+////  jQuery('#pzarc-sections-preview-2').resize(function(){////console.log(this.width);pzarc_refresh_blueprint_layout(2)});
 //
 //
  for (var i = 0; i < 3; i++) {
    jQuery('input#_blueprints_section-' + i + '-panels-vert-margin').change(function () {
-    console.log(this.id.substr(20,1));
+    //console.log(this.id.substr(20,1));
      pzarc_refresh_blueprint_layout(this.id.substr(20,1));
    });
    jQuery('input#_blueprints_section-' + i + '-columns').change(function () {
@@ -292,19 +292,19 @@ jQuery(document).ready(function () {
    pzarc_update_usage_info(this);
  });
  function pzarc_update_usage_info(t){
-   //console.log(t.value);
+   ////console.log(t.value);
  //---  jQuery('span.pzarc-shortname').text(t.value);
  }
 
 
 /* Switched to pixel based once, but not as fluid. Butwhat was it's advantage? Why did I switch? */
  function pzarc_update_cell_margin(i,t) {
-   console.log(i,jQuery('#_architect-_blueprints_section-' + i + '-columns'));
+   //console.log(i,jQuery('#_architect-_blueprints_section-' + i + '-columns'));
    var cellsAcross = jQuery('input#_blueprints_section-' + i + '-columns').value;
    var containerWidth = jQuery('.pzarc-section-'+i).width();
-   //  //console.log(containerWidth);
+   //  ////console.log(containerWidth);
    jQuery('#pzarc-sections-preview-'+i+' .pzarc-section-cell').each(function (index, value) {
-//     //console.log(((index+1)%cellsAcross),cellsAcross);
+//     ////console.log(((index+1)%cellsAcross),cellsAcross);
 //      if (((index+1)%cellsAcross) != 0) {
      jQuery(value).css({'marginRight': (t.value ) + '%'});
 //      }
@@ -312,9 +312,9 @@ jQuery(document).ready(function () {
  }
 
  function pzarc_update_cell_across(i,t) {
-//console.log(i);
+////console.log(i);
    var containerWidth = jQuery('#pzarc-sections-preview-'+i).width();
-//    //console.log(containerWidth);
+//    ////console.log(containerWidth);
    var cellRightMargin = jQuery('#_pzarc_'+i+'-blueprint-cells-vert-margin-cmb-field-0').val();
    var new_cell_width = (100/ t.value)- cellRightMargin;
    // Can't use width(), it breaks when padding is set.
@@ -322,7 +322,7 @@ jQuery(document).ready(function () {
  }
 
  function pzarc_update_cell_count(i,t) {
-  // console.log(i);
+  // //console.log(i);
    jQuery('.pzarc-section-'+i).empty();
    var plugin_url = jQuery('fieldset#_architect-_blueprints_sections-preview .plugin_url').get(0).textContent;
    var show_count = (t.value==0?10: t.value);
@@ -332,20 +332,20 @@ jQuery(document).ready(function () {
  }
 
  function pzarc_update_min_width(i,t) {
-  //console.log(i);
+  ////console.log(i);
    jQuery('#pzarc-sections-preview-'+i+' .pzarc-section-cell').css({'minWidth': t.value + 'px'});
  }
 
  function pzarc_show_hide_section(x) {
    var y = parseInt(x)+1;
-//   console.log(x);
+//   //console.log(x);
    if (x==0){
      jQuery('#pzarc-sections-preview-0').show();
      jQuery('#blueprint-section-1.postbox').show();
      jQuery('.item-blueprint-section-1').show();
      return;
    }
-//    console.log(x,jQuery('#_pzarc_'+x+'-blueprint-section-enable-cmb-field-0').get(0).checked);
+//    //console.log(x,jQuery('#_pzarc_'+x+'-blueprint-section-enable-cmb-field-0').get(0).checked);
 
   //--- jQuery('#pzarc-sections-preview-'+x).toggle(jQuery('#_pzarc_'+x+'-blueprint-section-enable-cmb-field-0').get(0).checked);
   //--- jQuery('#blueprint-section-'+y+'.postbox').toggle(jQuery('#_pzarc_'+x+'-blueprint-section-enable-cmb-field-0').get(0).checked);

@@ -173,63 +173,82 @@
 //  return $meta_boxes;
 //}
 
-  // add_action("redux/metaboxes/{$redux_opt_name}/boxes", 'pzarc_blueprint_tabs');
-//   function pzarc_blueprint_tabs($metaboxes)
-//   {
-//     $prefix       = '_blueprint_tabs_';
-//     $sections     = array();
-//     $sections[ ]  = array(
-// //          'title'      => __('General Settings', 'pzarc'),
-// 'show_title' => true,
-// 'icon_class' => 'icon-large',
-// 'icon'       => 'el-icon-home',
-// 'fields'     => array(
-//     array(
-//         'id'      => $prefix . 'tabs',
-//         'type'    => 'tabbed',
-//         'options' => array(
-//                       'layout-settings' => '<span><span class="icon-large el-icon-website"></span> Layout</span>', 
-//                       'content-selections' => '<span><span class="icon-large el-icon-align-left"></span> Content</span>'),
-//     ),
-// )
-//     );
-//     $metaboxes[ ] = array(
-//         'id'         => $prefix . 'blueprints',
-//         'title'      => 'Show settings for:',
-//         'post_types' => array('arc-blueprints'),
-//         'sections'   => $sections,
-//         'position'   => 'side',
-//         'priority'   => 'high',
-//         'sidebar'    => false
+  add_action("redux/metaboxes/{$redux_opt_name}/boxes", 'pzarc_blueprint_tabs');
+  function pzarc_blueprint_tabs($metaboxes)
+  {
+    $prefix       = '_blueprint_tabs_';
+    $sections     = array();
+    $sections[ ]  = array(
+      //          'title'      => __('General Settings', 'pzarc'),
+      'show_title' => true,
+      'icon_class' => 'icon-large',
+      'icon'       => 'el-icon-home',
+      'fields'     => array(
+          array(
+              'id'      => $prefix . 'tabs',
+              'type'    => 'tabbed',
+              'options' => array(
+                  'layout'  => '<span><span class="icon-large el-icon-website"></span> Layout</span>',
+                  'content' => '<span><span class="icon-large el-icon-align-left"></span> Content</span>'),
+              'targets' => array('layout' => array('layout-settings','_blueprints_layout-general-settings'), 'content' => array('content-selections','_blueprints_content-general-settings'))
+          ),
+      )
+    );
+    $metaboxes[ ] = array(
+        'id'         => $prefix . 'blueprints',
+        'title'      => 'Show settings for:',
+        'post_types' => array('arc-blueprints'),
+        'sections'   => $sections,
+        'position'   => 'side',
+        'priority'   => 'high',
+        'sidebar'    => false
 
-//     );
+    );
 
-//     return $metaboxes;
-//   }
+    return $metaboxes;
+  }
 
 
-  add_action("redux/metaboxes/{$redux_opt_name}/boxes", 'pzarc_blueprint_general');
-  function pzarc_blueprint_general($meta_boxes = array())
+//  add_action("redux/metaboxes/{$redux_opt_name}/boxes", 'pzarc_blueprint_general');
+//  function pzarc_blueprint_general($meta_boxes = array())
+//  {
+//    $prefix      = '_blueprints_';
+//    $sections    = array();
+//    $sections[ ] = array(
+//        'fields' => array(
+////            array(
+////                'id'      => $prefix . 'tabs',
+////                'type'    => 'tabbed',
+////                'title' => 'Show settings panel for:',
+////        'options' => array(
+////                      'layout-settings' => '<span class="icon-large el-icon-th-large"></span> Layout',
+////                      'content-selections' => '<span class="icon-large el-icon-pencil"></span> Content'),
+////            ),
+//        )
+//    );
+//
+//    $meta_boxes[ ] = array(
+//        'id'         => 'blueprint-general-settings',
+//        'title'      => 'General Settings',
+//        'post_types' => array('arc-blueprints'),
+//        'sections'   => $sections,
+//        'position'   => 'side',
+//        'priority'   => 'high',
+//        'sidebar'    => false
+//
+//    );
+//
+//
+//    return $meta_boxes;
+//
+//  }
+  add_action("redux/metaboxes/{$redux_opt_name}/boxes", 'pzarc_blueprint_layout_general');
+  function pzarc_blueprint_layout_general($meta_boxes = array())
   {
     $prefix      = '_blueprints_';
-    $sections    = array();
+
     $sections[ ] = array(
         'fields' => array(
-            array(
-                'id'      => $prefix . 'tabs',
-                'type'    => 'tabbed',
-                'title' => 'Show settings panel for:',
-        'options' => array(
-                      'layout-settings' => '<span class="icon-large el-icon-th-large"></span> Layout', 
-                      'content-selections' => '<span class="icon-large el-icon-pencil"></span> Content'),
-            ),
-            array(
-                'id' => $prefix.'section-start-layout',
-                'type' => 'section',
-                'title' => __('Layout settings', 'redux-framework-demo'),
-                'indent' => false
-            ),
-
             array(
                 'id'       => $prefix . 'short-name',
                 'title'    => __('Blueprint Short Name', 'pzarc'),
@@ -243,7 +262,7 @@
                 'id'      => $prefix . 'section-1-enable', //this number is the increment number
                 'type'    => 'switch',
                 'on'      => 'Yes',
-                'off'      => 'No',
+                'off'     => 'No',
                 'width'   => 'auto',
                 'default' => false
             ),
@@ -252,7 +271,7 @@
                 'id'      => $prefix . 'section-2-enable',
                 'type'    => 'switch',
                 'on'      => 'Yes',
-                'off'      => 'No',
+                'off'     => 'No',
                 'width'   => 'auto',
                 'default' => false
             ),
@@ -269,103 +288,111 @@
                     'navigator'  => 'Navigator'
                 )
             ),
-            array(
-                'id'     => $prefix.'section-end-layout',
-                'type'   => 'section',
-                'indent' => false,
-            ),
-            array(
-                'id' => $prefix.'section-start-content',
-                'type' => 'section',
-                'title' => __('Content settings', 'redux-framework-demo'),
-                'indent' => false
-            ),
-            array(
-                'title'    => __('Content source', 'pzarc'),
-                'id'       => $prefix . 'content-source',
-                'type'     => 'select',
-                'select2' => array( 'allowClear'=>false ),
-                'default'  => 'defaults',
-                'options'  => array(
-                    'defaults' => 'Defaults',
-                    'post'     => 'Posts',
-                    'page'     => 'Pages',
-                    'gallery'  => 'Galleries',
-                    'slides'   => 'Slides',
-                    //                          'images'      => 'Specific Images',
-                    //                          'wpgallery'   => 'WP Gallery from post',
-                    //                          'galleryplus' => 'GalleryPlus',
-                    //                          'nggallery'   => 'NextGen',
-                    //                        'widgets' => 'Widgets',
-                    //                          'custom-code' => 'Custom code',
-                    //                        'rss'     => 'RSS Feed',
-                    'cpt'      => 'Custom Post Types'
-                ),
-                'subtitle' => 'todo: code all the js to show hide relevant sections'
-            ),
-            array(
-                'title'   => __('Order by', 'pzarc'),
-                'id'      => $prefix . 'orderby',
-                'type'    => 'button_set',
-                'default' => 'date',
-                'cols'    => 6,
-                'options' => array(
-                    'date'  => 'Date',
-                    'title' => 'Title',
-                ),
-            ),
-            array(
-                'title'   => __('Order direction', 'pzarc'),
-                'id'      => $prefix . 'orderdir',
-                'type'    => 'button_set',
-                'default' => 'desc',
-                'cols'    => 6,
-                'options' => array(
-                    'ASC'  => 'Ascending',
-                    'DESC' => 'Descending',
-                ),
-            ),
-            array(
-                'title'   => __('Skip N posts', 'pzarc'),
-                'id'      => $prefix . 'skip',
-                'type'    => 'spinner',
-                'min'     => 0,
-                'max'     => 9999,
-                'step'    => 1,
-                'default' => 0,
-                'desc'    => __('Note: Skipping breaks pagination. This is a known WordPress bug.', 'pzarc'),
-            ),
-            array(
-                'title'   => __('Sticky posts first', 'pzarc'),
-                'id'      => $prefix . 'sticky',
-                'type'    => 'switch',
-                'on'      => 'Yes',
-                'off'      => 'No',
-                'default' => false,
-            ),
-            array(
-                'id'     => $prefix.'section-end-content',
-                'type'   => 'section',
-                'indent' => false,
-            ),
-
 
         )
     );
+  $meta_boxes[ ] = array(
+      'id'         => $prefix.'layout-general-settings',
+      'title'      => 'General Settings',
+      'post_types' => array('arc-blueprints'),
+      'sections'   => $sections,
+      'position'   => 'side',
+      'priority'   => 'high',
+      'sidebar'    => false
 
-    $meta_boxes[ ] = array(
-        'id'         => 'blueprint-general-settings',
-        'title'      => 'General Settings',
-        'post_types' => array('arc-blueprints'),
-        'sections'   => $sections,
-        'position'   => 'side',
-        'priority'   => 'high',
-        'sidebar'    => false
-
-    );
+  );
 
 
-    return $meta_boxes;
+  return $meta_boxes;
+
+  }
+
+  add_action("redux/metaboxes/{$redux_opt_name}/boxes", 'pzarc_blueprint_content_general');
+  function pzarc_blueprint_content_general($meta_boxes = array())
+  {
+    $prefix      = '_blueprints_';
+
+    $sections[ ] = array(
+      'fields' => array(
+          array(
+              'title'    => __('Content source', 'pzarc'),
+              'id'       => $prefix . 'content-source',
+              'type'     => 'select',
+              'select2'  => array('allowClear' => false),
+              'default'  => 'defaults',
+              'options'  => array(
+                  'defaults' => 'Defaults',
+                  'post'     => 'Posts',
+                  'page'     => 'Pages',
+                  'gallery'  => 'Galleries',
+                  'slides'   => 'Slides',
+                  //                          'images'      => 'Specific Images',
+                  //                          'wpgallery'   => 'WP Gallery from post',
+                  //                          'galleryplus' => 'GalleryPlus',
+                  //                          'nggallery'   => 'NextGen',
+                  //                        'widgets' => 'Widgets',
+                  //                          'custom-code' => 'Custom code',
+                  //                        'rss'     => 'RSS Feed',
+                  'cpt'      => 'Custom Post Types'
+              ),
+              'subtitle' => 'todo: code all the js to show hide relevant sections'
+          ),
+          array(
+              'title'   => __('Order by', 'pzarc'),
+              'id'      => $prefix . 'orderby',
+              'type'    => 'button_set',
+              'default' => 'date',
+              'cols'    => 6,
+              'options' => array(
+                  'date'  => 'Date',
+                  'title' => 'Title',
+              ),
+          ),
+          array(
+              'title'   => __('Order direction', 'pzarc'),
+              'id'      => $prefix . 'orderdir',
+              'type'    => 'button_set',
+              'default' => 'desc',
+              'cols'    => 6,
+              'options' => array(
+                  'ASC'  => 'Ascending',
+                  'DESC' => 'Descending',
+              ),
+          ),
+          array(
+              'title'   => __('Skip N posts', 'pzarc'),
+              'id'      => $prefix . 'skip',
+              'type'    => 'spinner',
+              'min'     => 0,
+              'max'     => 9999,
+              'step'    => 1,
+              'default' => 0,
+              'desc'    => __('Note: Skipping breaks pagination. This is a known WordPress bug.', 'pzarc'),
+          ),
+          array(
+              'title'   => __('Sticky posts first', 'pzarc'),
+              'id'      => $prefix . 'sticky',
+              'type'    => 'switch',
+              'on'      => 'Yes',
+              'off'     => 'No',
+              'default' => false,
+          ),
+      )
+  );
+
+  $meta_boxes[ ] = array(
+      'id'         => $prefix.'content-general-settings',
+      'title'      => 'Content Settings',
+      'post_types' => array('arc-blueprints'),
+      'sections'   => $sections,
+      'position'   => 'side',
+      'priority'   => 'high',
+      'sidebar'    => false
+
+  );
+
+
+  return $meta_boxes;
 
   }
 
@@ -443,14 +470,14 @@
                   //       'subtitle'    => __('Choose how you want the panels to display. With evenly sized panels, you\'ll see little difference. Please visit <a href="http://isotope.metafizzy.co/demos/layout-modes.html" target=_blank>Isotope Layout Modes</a> for demonstrations of these layouts', 'pzarc')
               ),
               array(
-                  'title'    => __('Panels to show', 'pzarc'),
-                  'id'       => $prefix . 'section-' . $i . '-panels-per-view',
-                  'type'     => 'spinner',
-                  'default'  => 0,
-                  'min'      => 0,
-                  'max'      => 99,
-                  'cols'     => 2,
-                  'desc' => '0 for unlimited'
+                  'title'   => __('Panels to show', 'pzarc'),
+                  'id'      => $prefix . 'section-' . $i . '-panels-per-view',
+                  'type'    => 'spinner',
+                  'default' => 0,
+                  'min'     => 0,
+                  'max'     => 99,
+                  'cols'    => 2,
+                  'desc'    => '0 for unlimited'
               ),
               array(
                   'title'    => __('Columns', 'pzarc'),
@@ -633,7 +660,7 @@
                 'cols'     => 12,
                 'type'     => 'raw',
                 'readonly' => false, // Readonly fields can't be written to by code! Weird
-                'content'     => pzarc_draw_sections_preview(),
+                'content'  => pzarc_draw_sections_preview(),
             ),
         )
     );
@@ -708,8 +735,8 @@
   add_action("redux/metaboxes/{$redux_opt_name}/boxes", 'pzarc_contents_metabox');
   function pzarc_contents_metabox($meta_boxes = array())
   {
-    $prefix      = '_content_general_';
-    $sections    = array();
+    $prefix   = '_content_general_';
+    $sections = array();
 //    $sections[ ] = array(
 //        'title'      => 'Settings',
 //        'icon_class' => 'icon-large',
@@ -741,10 +768,10 @@
         'icon'       => 'el-icon-list',
         'fields'     => array(
             array(
-                'title'    => __('Posts', 'pzarc'),
-                'id'       => $prefix.'section-start-posts',
-                'type'     => 'section',
-                'class'    => ' heading',
+                'title' => __('Posts', 'pzarc'),
+                'id'    => $prefix . 'section-start-posts',
+                'type'  => 'section',
+                'class' => ' heading',
             ),
             array(
                 'id'     => $prefix . 'section-end-posts',
@@ -790,7 +817,7 @@
                 'id'      => $prefix . 'sub-cat-archives',
                 'type'    => 'switch',
                 'on'      => 'Yes',
-                'off'      => 'No',
+                'off'     => 'No',
                 'default' => true,
                 'cols'    => 3,
             ),

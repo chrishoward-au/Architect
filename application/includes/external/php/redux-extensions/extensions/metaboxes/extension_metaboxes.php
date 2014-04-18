@@ -16,7 +16,7 @@
  *
  * @package     ReduxFramework
  * @author      Dovy Paukstys (dovy)
- * @version     1.0.8
+ * @version     1.1.7
  */
 
 // Exit if accessed directly
@@ -32,7 +32,7 @@ if ( !class_exists( 'ReduxFramework_extension_metaboxes' ) ) {
      */
     class ReduxFramework_extension_metaboxes {
 
-        static $version = "1.1.5-beta";
+        static $version = "1.1.7";
 
         public $boxes = array();
         public $post_types = array();
@@ -344,7 +344,7 @@ if ( !class_exists( 'ReduxFramework_extension_metaboxes' ) ) {
         }
 
         public function _loop_end() {
-
+            global $post;
             if (is_admin()) {
                 return $post;
             }
@@ -424,6 +424,7 @@ if ( !class_exists( 'ReduxFramework_extension_metaboxes' ) ) {
         /* Post URLs to IDs function, supports custom post types - borrowed and modified from url_to_postid() in wp-includes/rewrite.php */
         // Taken from http://betterwp.net/wordpress-tips/url_to_postid-for-custom-post-types/
         // Customized to work with non-rewrite URLs
+        // Copyright Dovy Paukstys (@dovy) of Redux Framework
         function url_to_postid($url) {
             global $wp_rewrite;
 

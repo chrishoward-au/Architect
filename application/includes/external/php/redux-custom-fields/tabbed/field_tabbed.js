@@ -40,6 +40,8 @@
         } );
 
     }
+//    #redux-_architect-metabox-_panels_settings_general-settings
+//    #redux-_architect-metabox-_panels_settings_general_settings
 
 //    #redux-_architect-metabox-_panels_settings_general_settings
 //    #redux-_architect-metabox-_panels_settings_general-settings
@@ -72,9 +74,11 @@
             //For each sibling, hide its boxes
             console.log(t);
             var sibling_targets = jQuery( t ).data( 'targets' ).split( ',');
+            console.log(sibling_targets);
             jQuery(sibling_targets).each( function ()
             {
                 console.log("Hide: ",this);
+                console.log(jQuery(this));
                 jQuery( this ).hide();
             } );
 
