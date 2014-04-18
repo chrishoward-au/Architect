@@ -1263,3 +1263,10 @@ body .redux-container .redux-main .redux-section-field.redux-field.heading h3
   /*border-top:none;*/
 /*}*/
 
+/* Fix for WP Engine's naughty CSS*/
+.redux-main .icon-large,
+.redux-sidebar .icon-large {
+  background-image:inherit!important;
+  width:inherit;
+  height:inherit;
+}

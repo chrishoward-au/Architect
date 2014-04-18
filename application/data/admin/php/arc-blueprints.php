@@ -75,7 +75,7 @@
       $pzarc_insert
                    = array
       (
-          '_blueprints-short-name' => __('Blueprint short name', 'pzsp'),
+          '_blueprints_short-name' => __('Blueprint short name', 'pzsp'),
       );
 
       return array_merge($pzarc_front, $pzarc_insert, $pzarc_back);
@@ -90,8 +90,8 @@
     {
       switch ($column)
       {
-        case '_blueprinst-short-name':
-          echo get_post_meta($post_id, '_blueprints-short-name', true);
+        case '_blueprints_short-name':
+          echo get_post_meta($post_id, '_blueprints_short-name', true);
           break;
       }
     }
@@ -174,36 +174,38 @@
 //}
 
   // add_action("redux/metaboxes/{$redux_opt_name}/boxes", 'pzarc_blueprint_tabs');
-  function pzarc_blueprint_tabs($metaboxes)
-  {
-    $prefix       = '_blueprint_tabs_';
-    $sections     = array();
-    $sections[ ]  = array(
-//          'title'      => __('General Settings', 'pzarc'),
-'show_title' => true,
-'icon_class' => 'icon-large',
-'icon'       => 'el-icon-home',
-'fields'     => array(
-    array(
-        'id'      => $prefix . 'tabs',
-        'type'    => 'tabbed',
-        'options' => array('layout-settings' => 'Layout', 'content-selections' => 'Content'),
-    ),
-)
-    );
-    $metaboxes[ ] = array(
-        'id'         => $prefix . 'blueprints',
-        'title'      => 'Show settings for:',
-        'post_types' => array('arc-blueprints'),
-        'sections'   => $sections,
-        'position'   => 'side',
-        'priority'   => 'high',
-        'sidebar'    => false
+//   function pzarc_blueprint_tabs($metaboxes)
+//   {
+//     $prefix       = '_blueprint_tabs_';
+//     $sections     = array();
+//     $sections[ ]  = array(
+// //          'title'      => __('General Settings', 'pzarc'),
+// 'show_title' => true,
+// 'icon_class' => 'icon-large',
+// 'icon'       => 'el-icon-home',
+// 'fields'     => array(
+//     array(
+//         'id'      => $prefix . 'tabs',
+//         'type'    => 'tabbed',
+//         'options' => array(
+//                       'layout-settings' => '<span><span class="icon-large el-icon-website"></span> Layout</span>', 
+//                       'content-selections' => '<span><span class="icon-large el-icon-align-left"></span> Content</span>'),
+//     ),
+// )
+//     );
+//     $metaboxes[ ] = array(
+//         'id'         => $prefix . 'blueprints',
+//         'title'      => 'Show settings for:',
+//         'post_types' => array('arc-blueprints'),
+//         'sections'   => $sections,
+//         'position'   => 'side',
+//         'priority'   => 'high',
+//         'sidebar'    => false
 
-    );
+//     );
 
-    return $metaboxes;
-  }
+//     return $metaboxes;
+//   }
 
 
   add_action("redux/metaboxes/{$redux_opt_name}/boxes", 'pzarc_blueprint_general');
@@ -217,7 +219,9 @@
                 'id'      => $prefix . 'tabs',
                 'type'    => 'tabbed',
                 'title' => 'Show settings panel for:',
-                'options' => array('layout-settings' => 'Layout', 'content-selections' => 'Content'),
+        'options' => array(
+                      'layout-settings' => '<span class="icon-large el-icon-th-large"></span> Layout', 
+                      'content-selections' => '<span class="icon-large el-icon-pencil"></span> Content'),
             ),
             array(
                 'id' => $prefix.'section-start-layout',
@@ -629,7 +633,7 @@
                 'cols'     => 12,
                 'type'     => 'raw',
                 'readonly' => false, // Readonly fields can't be written to by code! Weird
-                'content'     => draw_sections_preview(),
+                'content'     => pzarc_draw_sections_preview(),
             ),
         )
     );
@@ -684,7 +688,7 @@
   }
 
 
-  function draw_sections_preview()
+  function pzarc_draw_sections_preview()
   {
     // Put in a hidden field with the plugin url for use in js
     $return_html

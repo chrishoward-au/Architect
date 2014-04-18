@@ -35,7 +35,7 @@
 
   }
 
-  function pz_squish($array)
+  function pzarc_squish($array)
   {
     $return_array = array();
     foreach ($array as $key => $value)
