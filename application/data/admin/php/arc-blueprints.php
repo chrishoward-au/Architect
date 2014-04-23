@@ -675,10 +675,9 @@
             array(
                 'id'       => $prefix . 'navigator-items-visible',
                 'title'    => __('Navigator items visible', 'pzarc'),
-                'type'     => 'text',
-                'cols'     => 6,
+                'type'     => 'spinner',
                 'default'  => 0,
-                'subtitle' => 'If zero, it will use the "Panels to show" value'
+                'subtitle' => 'If zero, it will use the "Panels to show" value. This is the number of items visible in the navigator bar.'
             ),
             array(
                 'title' => __('Transition', 'pzarc'),

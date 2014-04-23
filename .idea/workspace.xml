@@ -2,51 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6a91661e-ac03-4c49-a442-2faea24b5b57" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/application/interface/public/php/arc_template.php" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/includes/external/frameworks/foundation-5.2.2/css/foundation.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/includes/external/frameworks/foundation-5.2.2/css/foundation.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/includes/external/frameworks/foundation-5.2.2/css/normalize.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/includes/external/frameworks/foundation-5.2.2/humans.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/includes/external/frameworks/foundation-5.2.2/img/.gitkeep" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/includes/external/frameworks/foundation-5.2.2/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/includes/external/frameworks/foundation-5.2.2/js/foundation.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/includes/external/frameworks/foundation-5.2.2/js/foundation/foundation.abide.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/includes/external/frameworks/foundation-5.2.2/js/foundation/foundation.accordion.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/includes/external/frameworks/foundation-5.2.2/js/foundation/foundation.alert.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/includes/external/frameworks/foundation-5.2.2/js/foundation/foundation.clearing.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/includes/external/frameworks/foundation-5.2.2/js/foundation/foundation.dropdown.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/includes/external/frameworks/foundation-5.2.2/js/foundation/foundation.equalizer.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/includes/external/frameworks/foundation-5.2.2/js/foundation/foundation.interchange.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/includes/external/frameworks/foundation-5.2.2/js/foundation/foundation.joyride.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/includes/external/frameworks/foundation-5.2.2/js/foundation/foundation.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/includes/external/frameworks/foundation-5.2.2/js/foundation/foundation.magellan.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/includes/external/frameworks/foundation-5.2.2/js/foundation/foundation.offcanvas.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/includes/external/frameworks/foundation-5.2.2/js/foundation/foundation.orbit.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/includes/external/frameworks/foundation-5.2.2/js/foundation/foundation.reveal.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/includes/external/frameworks/foundation-5.2.2/js/foundation/foundation.slider.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/includes/external/frameworks/foundation-5.2.2/js/foundation/foundation.tab.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/includes/external/frameworks/foundation-5.2.2/js/foundation/foundation.tooltip.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/includes/external/frameworks/foundation-5.2.2/js/foundation/foundation.topbar.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/includes/external/frameworks/foundation-5.2.2/js/vendor/fastclick.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/includes/external/frameworks/foundation-5.2.2/js/vendor/jquery.cookie.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/includes/external/frameworks/foundation-5.2.2/js/vendor/jquery.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/includes/external/frameworks/foundation-5.2.2/js/vendor/modernizr.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/includes/external/frameworks/foundation-5.2.2/js/vendor/placeholder.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/includes/external/frameworks/foundation-5.2.2/robots.txt" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/data/admin/css/arc-admin.css" afterPath="$PROJECT_DIR$/application/data/admin/css/arc-admin.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/arc-admin.php" afterPath="$PROJECT_DIR$/application/arc-admin.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/work/nav images.sketch/Data" afterPath="$PROJECT_DIR$/work/nav images.sketch/Data" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/assets/images/metaboxes/nav-pos-bottom.png" afterPath="$PROJECT_DIR$/application/assets/images/metaboxes/nav-pos-bottom.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/assets/images/metaboxes/nav-pos-left.png" afterPath="$PROJECT_DIR$/application/assets/images/metaboxes/nav-pos-left.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/assets/images/metaboxes/nav-pos-right.png" afterPath="$PROJECT_DIR$/application/assets/images/metaboxes/nav-pos-right.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/assets/images/metaboxes/nav-pos-top.png" afterPath="$PROJECT_DIR$/application/assets/images/metaboxes/nav-pos-top.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/assets/images/metaboxes/nav-type-thumbs.png" afterPath="$PROJECT_DIR$/application/assets/images/metaboxes/nav-type-thumbs.png" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/data/admin/php/arc-blueprints.php" afterPath="$PROJECT_DIR$/application/data/admin/php/arc-blueprints.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/data/admin/js/arc-metaboxes-blueprints.js" afterPath="$PROJECT_DIR$/application/data/admin/js/arc-metaboxes-blueprints.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/data/admin/php/arc-panels-layouts.php" afterPath="$PROJECT_DIR$/application/data/admin/php/arc-panels-layouts.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/arc-public.php" afterPath="$PROJECT_DIR$/application/arc-public.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/architect.php" afterPath="$PROJECT_DIR$/architect.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/interface/public/php/class_pzarc_Display.php" afterPath="$PROJECT_DIR$/application/interface/public/php/class_pzarc_Display.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/includes/external/php/redux-extensions/extensions/metaboxes/extension_metaboxes.css" afterPath="$PROJECT_DIR$/application/includes/external/php/redux-extensions/extensions/metaboxes/extension_metaboxes.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/includes/external/php/redux-extensions/extensions/metaboxes/extension_metaboxes.js" afterPath="$PROJECT_DIR$/application/includes/external/php/redux-extensions/extensions/metaboxes/extension_metaboxes.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/includes/external/php/redux-extensions/extensions/metaboxes/extension_metaboxes.less" afterPath="$PROJECT_DIR$/application/includes/external/php/redux-extensions/extensions/metaboxes/extension_metaboxes.less" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/includes/external/php/redux-extensions/extensions/metaboxes/extension_metaboxes.php" afterPath="$PROJECT_DIR$/application/includes/external/php/redux-extensions/extensions/metaboxes/extension_metaboxes.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/includes/external/php/redux-custom-fields/tabbed/field_tabbed.js" afterPath="$PROJECT_DIR$/application/includes/external/php/redux-custom-fields/tabbed/field_tabbed.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/work/nav images.sketch/metadata" afterPath="$PROJECT_DIR$/work/nav images.sketch/metadata" />
     </list>
     <ignored path="pizazzwp-architect.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -69,10 +32,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="architect.php" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="architect.php" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/architect.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="6" column="24" selection-start="386" selection-end="386" vertical-scroll-proportion="0.13106796" vertical-offset="0" max-vertical-offset="6408">
+            <state line="6" column="24" selection-start="386" selection-end="386" vertical-scroll-proportion="-4.5" vertical-offset="0" max-vertical-offset="6408">
               <folding />
             </state>
           </provider>
@@ -114,21 +77,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="arc-blueprints.php" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="arc-blueprints.php" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/application/data/admin/php/arc-blueprints.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="647" column="98" selection-start="25621" selection-end="25621" vertical-scroll-proportion="-6.6923075" vertical-offset="11124" max-vertical-offset="23022">
+            <state line="679" column="137" selection-start="27052" selection-end="27052" vertical-scroll-proportion="0.62827224" vertical-offset="11502" max-vertical-offset="23004">
               <folding>
-                <marker date="1398219257000" expanded="true" signature="29719:29917" placeholder="..." />
-                <marker date="1398219257000" expanded="true" signature="29952:30129" placeholder="..." />
-                <marker date="1398219257000" expanded="true" signature="30164:30336" placeholder="..." />
-                <marker date="1398219257000" expanded="true" signature="30371:30545" placeholder="..." />
-                <marker date="1398219257000" expanded="true" signature="30580:30681" placeholder="..." />
-                <marker date="1398219257000" expanded="true" signature="44884:45082" placeholder="..." />
-                <marker date="1398219257000" expanded="true" signature="45117:45294" placeholder="..." />
-                <marker date="1398219257000" expanded="true" signature="45329:45501" placeholder="..." />
-                <marker date="1398219257000" expanded="true" signature="45536:45710" placeholder="..." />
-                <marker date="1398219257000" expanded="true" signature="45745:45846" placeholder="..." />
+                <marker date="1398257997000" expanded="true" signature="29748:29946" placeholder="..." />
+                <marker date="1398257997000" expanded="true" signature="29981:30158" placeholder="..." />
+                <marker date="1398257997000" expanded="true" signature="30193:30365" placeholder="..." />
+                <marker date="1398257997000" expanded="true" signature="30400:30574" placeholder="..." />
+                <marker date="1398257997000" expanded="true" signature="30609:30710" placeholder="..." />
+                <marker date="1398257997000" expanded="true" signature="44913:45111" placeholder="..." />
+                <marker date="1398257997000" expanded="true" signature="45146:45323" placeholder="..." />
+                <marker date="1398257997000" expanded="true" signature="45358:45530" placeholder="..." />
+                <marker date="1398257997000" expanded="true" signature="45565:45739" placeholder="..." />
+                <marker date="1398257997000" expanded="true" signature="45774:45875" placeholder="..." />
               </folding>
             </state>
           </provider>
@@ -317,8 +280,8 @@
         <option value="$PROJECT_DIR$/application/data/admin/css/arc-admin.css" />
         <option value="$PROJECT_DIR$/application/arc-admin.php" />
         <option value="$PROJECT_DIR$/application/data/admin/php/arc-panels-layouts.php" />
-        <option value="$PROJECT_DIR$/application/data/admin/php/arc-blueprints.php" />
         <option value="$PROJECT_DIR$/architect.php" />
+        <option value="$PROJECT_DIR$/application/data/admin/php/arc-blueprints.php" />
       </list>
     </option>
   </component>
@@ -331,8 +294,8 @@
   </component>
   <component name="ProjectFrameBounds">
     <option name="y" value="22" />
-    <option name="width" value="1680" />
-    <option name="height" value="981" />
+    <option name="width" value="2560" />
+    <option name="height" value="1357" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -809,7 +772,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="22" width="1680" height="981" extended-state="0" />
+    <frame x="0" y="22" width="2560" height="1357" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32795697" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -821,9 +784,9 @@
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3293011" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3293011" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.1929182" sideWeight="0.35320586" order="1" side_tool="true" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.12549643" sideWeight="0.35256916" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="eSnippet Pro" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3295583" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.1929182" sideWeight="0.64679414" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.12549643" sideWeight="0.6466403" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -984,16 +947,16 @@
       <provider selected="true" editor-type-id="text-editor">
         <state line="678" column="29" selection-start="26295" selection-end="26295" vertical-scroll-proportion="0.0" vertical-offset="12060" max-vertical-offset="20970">
           <folding>
-            <marker date="1398219257000" expanded="true" signature="29719:29917" placeholder="..." />
-            <marker date="1398219257000" expanded="true" signature="29952:30129" placeholder="..." />
-            <marker date="1398219257000" expanded="true" signature="30164:30336" placeholder="..." />
-            <marker date="1398219257000" expanded="true" signature="30371:30545" placeholder="..." />
-            <marker date="1398219257000" expanded="true" signature="30580:30681" placeholder="..." />
-            <marker date="1398219257000" expanded="true" signature="44884:45082" placeholder="..." />
-            <marker date="1398219257000" expanded="true" signature="45117:45294" placeholder="..." />
-            <marker date="1398219257000" expanded="true" signature="45329:45501" placeholder="..." />
-            <marker date="1398219257000" expanded="true" signature="45536:45710" placeholder="..." />
-            <marker date="1398219257000" expanded="true" signature="45745:45846" placeholder="..." />
+            <marker date="1398257997000" expanded="true" signature="29748:29946" placeholder="..." />
+            <marker date="1398257997000" expanded="true" signature="29981:30158" placeholder="..." />
+            <marker date="1398257997000" expanded="true" signature="30193:30365" placeholder="..." />
+            <marker date="1398257997000" expanded="true" signature="30400:30574" placeholder="..." />
+            <marker date="1398257997000" expanded="true" signature="30609:30710" placeholder="..." />
+            <marker date="1398257997000" expanded="true" signature="44913:45111" placeholder="..." />
+            <marker date="1398257997000" expanded="true" signature="45146:45323" placeholder="..." />
+            <marker date="1398257997000" expanded="true" signature="45358:45530" placeholder="..." />
+            <marker date="1398257997000" expanded="true" signature="45565:45739" placeholder="..." />
+            <marker date="1398257997000" expanded="true" signature="45774:45875" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -1090,16 +1053,16 @@
       <provider selected="true" editor-type-id="text-editor">
         <state line="49" column="89" selection-start="1596" selection-end="1596" vertical-scroll-proportion="0.0" vertical-offset="882" max-vertical-offset="20970">
           <folding>
-            <marker date="1398219257000" expanded="true" signature="29719:29917" placeholder="..." />
-            <marker date="1398219257000" expanded="true" signature="29952:30129" placeholder="..." />
-            <marker date="1398219257000" expanded="true" signature="30164:30336" placeholder="..." />
-            <marker date="1398219257000" expanded="true" signature="30371:30545" placeholder="..." />
-            <marker date="1398219257000" expanded="true" signature="30580:30681" placeholder="..." />
-            <marker date="1398219257000" expanded="true" signature="44884:45082" placeholder="..." />
-            <marker date="1398219257000" expanded="true" signature="45117:45294" placeholder="..." />
-            <marker date="1398219257000" expanded="true" signature="45329:45501" placeholder="..." />
-            <marker date="1398219257000" expanded="true" signature="45536:45710" placeholder="..." />
-            <marker date="1398219257000" expanded="true" signature="45745:45846" placeholder="..." />
+            <marker date="1398257997000" expanded="true" signature="29748:29946" placeholder="..." />
+            <marker date="1398257997000" expanded="true" signature="29981:30158" placeholder="..." />
+            <marker date="1398257997000" expanded="true" signature="30193:30365" placeholder="..." />
+            <marker date="1398257997000" expanded="true" signature="30400:30574" placeholder="..." />
+            <marker date="1398257997000" expanded="true" signature="30609:30710" placeholder="..." />
+            <marker date="1398257997000" expanded="true" signature="44913:45111" placeholder="..." />
+            <marker date="1398257997000" expanded="true" signature="45146:45323" placeholder="..." />
+            <marker date="1398257997000" expanded="true" signature="45358:45530" placeholder="..." />
+            <marker date="1398257997000" expanded="true" signature="45565:45739" placeholder="..." />
+            <marker date="1398257997000" expanded="true" signature="45774:45875" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -1341,28 +1304,28 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application/data/admin/php/arc-blueprints.php">
+    <entry file="file://$PROJECT_DIR$/architect.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="647" column="98" selection-start="25621" selection-end="25621" vertical-scroll-proportion="-6.6923075" vertical-offset="11124" max-vertical-offset="23022">
-          <folding>
-            <marker date="1398219257000" expanded="true" signature="29719:29917" placeholder="..." />
-            <marker date="1398219257000" expanded="true" signature="29952:30129" placeholder="..." />
-            <marker date="1398219257000" expanded="true" signature="30164:30336" placeholder="..." />
-            <marker date="1398219257000" expanded="true" signature="30371:30545" placeholder="..." />
-            <marker date="1398219257000" expanded="true" signature="30580:30681" placeholder="..." />
-            <marker date="1398219257000" expanded="true" signature="44884:45082" placeholder="..." />
-            <marker date="1398219257000" expanded="true" signature="45117:45294" placeholder="..." />
-            <marker date="1398219257000" expanded="true" signature="45329:45501" placeholder="..." />
-            <marker date="1398219257000" expanded="true" signature="45536:45710" placeholder="..." />
-            <marker date="1398219257000" expanded="true" signature="45745:45846" placeholder="..." />
-          </folding>
+        <state line="6" column="24" selection-start="386" selection-end="386" vertical-scroll-proportion="-4.5" vertical-offset="0" max-vertical-offset="6408">
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/architect.php">
+    <entry file="file://$PROJECT_DIR$/application/data/admin/php/arc-blueprints.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="6" column="24" selection-start="386" selection-end="386" vertical-scroll-proportion="0.13106796" vertical-offset="0" max-vertical-offset="6408">
-          <folding />
+        <state line="679" column="137" selection-start="27052" selection-end="27052" vertical-scroll-proportion="0.62827224" vertical-offset="11502" max-vertical-offset="23004">
+          <folding>
+            <marker date="1398257997000" expanded="true" signature="29748:29946" placeholder="..." />
+            <marker date="1398257997000" expanded="true" signature="29981:30158" placeholder="..." />
+            <marker date="1398257997000" expanded="true" signature="30193:30365" placeholder="..." />
+            <marker date="1398257997000" expanded="true" signature="30400:30574" placeholder="..." />
+            <marker date="1398257997000" expanded="true" signature="30609:30710" placeholder="..." />
+            <marker date="1398257997000" expanded="true" signature="44913:45111" placeholder="..." />
+            <marker date="1398257997000" expanded="true" signature="45146:45323" placeholder="..." />
+            <marker date="1398257997000" expanded="true" signature="45358:45530" placeholder="..." />
+            <marker date="1398257997000" expanded="true" signature="45565:45739" placeholder="..." />
+            <marker date="1398257997000" expanded="true" signature="45774:45875" placeholder="..." />
+          </folding>
         </state>
       </provider>
     </entry>
