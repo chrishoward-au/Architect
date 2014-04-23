@@ -4,7 +4,6 @@
   class pzarc_Blueprints
   {
 
-    private $mb_fields;
 
     /**
      * [__construct description]
@@ -17,18 +16,11 @@
       if (is_admin())
       {
 
-        //	add_action('admin_init', 'pzarc_preview_meta');
-//      add_action('add_meta_boxes', array($this, 'blueprints_meta'));
-//      add_action('add_meta_boxes', 'blueprints_meta');
         add_action('admin_head', array($this, 'content_blueprints_admin_head'));
         add_action('admin_enqueue_scripts', array($this, 'content_blueprints_admin_enqueue'));
         add_filter('manage_arc-blueprints_posts_columns', array($this, 'add_blueprint_columns'));
         add_action('manage_arc-blueprints_posts_custom_column', array($this, 'add_blueprint_column_content'), 10, 2);
 
-        // check screen arc-blueprints. ugh. doesn't work for save and edit
-//			if ( $_REQUEST[ 'post_type' ] == 'arc-blueprints' )
-//			{
-//			}
       }
 
     }
@@ -88,12 +80,13 @@
      */
     public function add_blueprint_column_content($column, $post_id)
     {
-      switch ($column)
-      {
-        case '_blueprints_short-name':
-          echo get_post_meta($post_id, '_blueprints_short-name', true);
-          break;
-      }
+      $post_meta = get_post_meta($post_id, '_architect', true);
+//      switch ($column)
+//      {
+//        case '_blueprints_short-name':
+      echo $post_meta[ $column ];
+//          break;
+//      }
     }
 
     /**
@@ -190,7 +183,8 @@
               'options' => array(
                   'layout'  => '<span><span class="icon-large el-icon-website"></span> Layout</span>',
                   'content' => '<span><span class="icon-large el-icon-align-left"></span> Content</span>'),
-              'targets' => array('layout' => array('layout-settings','_blueprints_layout-general-settings'), 'content' => array('content-selections','_blueprints_content-general-settings'))
+              'targets' => array('layout'  => array('layout-settings', '_blueprints_layout-general-settings'),
+                                 'content' => array('content-selections', '_blueprints_content-general-settings'))
           ),
       )
     );
@@ -245,9 +239,9 @@
   add_action("redux/metaboxes/{$redux_opt_name}/boxes", 'pzarc_blueprint_layout_general');
   function pzarc_blueprint_layout_general($meta_boxes = array())
   {
-    $prefix      = '_blueprints_';
+    $prefix = '_blueprints_';
 
-    $sections[ ] = array(
+    $sections[ ]   = array(
         'fields' => array(
             array(
                 'id'       => $prefix . 'short-name',
@@ -256,24 +250,6 @@
                 'width'    => 'auto',
                 'subtitle' => __('Alphanumeric only. <br/>Use the shortcode <strong class="pzarc-usage-info">[pzarc "<span class="pzarc-shortname"></span>"]</strong> or the template tag <strong class="pzarc-usage-info">pzarc(\'<span class="pzarc-shortname"></span>\');</strong>', 'pzarc'),
                 'validate' => 'not_empty'
-            ),
-            array(
-                'title'   => 'Section 2',
-                'id'      => $prefix . 'section-1-enable', //this number is the increment number
-                'type'    => 'switch',
-                'on'      => 'Yes',
-                'off'     => 'No',
-                'width'   => 'auto',
-                'default' => false
-            ),
-            array(
-                'title'   => 'Section 3',
-                'id'      => $prefix . 'section-2-enable',
-                'type'    => 'switch',
-                'on'      => 'Yes',
-                'off'     => 'No',
-                'width'   => 'auto',
-                'default' => false
             ),
             array(
                 'title'    => 'Select what type of navigation to use',
@@ -288,111 +264,131 @@
                     'navigator'  => 'Navigator'
                 )
             ),
+            array(
+                'title'    => 'Section 2',
+                'id'       => $prefix . 'section-1-enable', //this number is the increment number
+                'type'     => 'switch',
+                'on'       => 'Yes',
+                'off'      => 'No',
+                'width'    => 'auto',
+                'required' => array($prefix . 'navigation', 'not', 'navigator'),
+                'default'  => false
+            ),
+            array(
+                'title'    => 'Section 3',
+                'id'       => $prefix . 'section-2-enable',
+                'type'     => 'switch',
+                'on'       => 'Yes',
+                'off'      => 'No',
+                'width'    => 'auto',
+                'required' => array($prefix . 'navigation', 'not', 'navigator'),
+                'default'  => false
+            ),
 
         )
     );
-  $meta_boxes[ ] = array(
-      'id'         => $prefix.'layout-general-settings',
-      'title'      => 'General Settings',
-      'post_types' => array('arc-blueprints'),
-      'sections'   => $sections,
-      'position'   => 'side',
-      'priority'   => 'high',
-      'sidebar'    => false
+    $meta_boxes[ ] = array(
+        'id'         => $prefix . 'layout-general-settings',
+        'title'      => 'General Settings',
+        'post_types' => array('arc-blueprints'),
+        'sections'   => $sections,
+        'position'   => 'side',
+        'priority'   => 'high',
+        'sidebar'    => false
 
-  );
+    );
 
 
-  return $meta_boxes;
+    return $meta_boxes;
 
   }
 
   add_action("redux/metaboxes/{$redux_opt_name}/boxes", 'pzarc_blueprint_content_general');
   function pzarc_blueprint_content_general($meta_boxes = array())
   {
-    $prefix      = '_blueprints_';
+    $prefix = '_blueprints_';
 
     $sections[ ] = array(
-      'fields' => array(
-          array(
-              'title'    => __('Content source', 'pzarc'),
-              'id'       => $prefix . 'content-source',
-              'type'     => 'select',
-              'select2'  => array('allowClear' => false),
-              'default'  => 'defaults',
-              'options'  => array(
-                  'defaults' => 'Defaults',
-                  'post'     => 'Posts',
-                  'page'     => 'Pages',
-                  'gallery'  => 'Galleries',
-                  'slides'   => 'Slides',
-                  //                          'images'      => 'Specific Images',
-                  //                          'wpgallery'   => 'WP Gallery from post',
-                  //                          'galleryplus' => 'GalleryPlus',
-                  //                          'nggallery'   => 'NextGen',
-                  //                        'widgets' => 'Widgets',
-                  //                          'custom-code' => 'Custom code',
-                  //                        'rss'     => 'RSS Feed',
-                  'cpt'      => 'Custom Post Types'
-              ),
-              'subtitle' => 'todo: code all the js to show hide relevant sections'
-          ),
-          array(
-              'title'   => __('Order by', 'pzarc'),
-              'id'      => $prefix . 'orderby',
-              'type'    => 'button_set',
-              'default' => 'date',
-              'cols'    => 6,
-              'options' => array(
-                  'date'  => 'Date',
-                  'title' => 'Title',
-              ),
-          ),
-          array(
-              'title'   => __('Order direction', 'pzarc'),
-              'id'      => $prefix . 'orderdir',
-              'type'    => 'button_set',
-              'default' => 'desc',
-              'cols'    => 6,
-              'options' => array(
-                  'ASC'  => 'Ascending',
-                  'DESC' => 'Descending',
-              ),
-          ),
-          array(
-              'title'   => __('Skip N posts', 'pzarc'),
-              'id'      => $prefix . 'skip',
-              'type'    => 'spinner',
-              'min'     => 0,
-              'max'     => 9999,
-              'step'    => 1,
-              'default' => 0,
-              'desc'    => __('Note: Skipping breaks pagination. This is a known WordPress bug.', 'pzarc'),
-          ),
-          array(
-              'title'   => __('Sticky posts first', 'pzarc'),
-              'id'      => $prefix . 'sticky',
-              'type'    => 'switch',
-              'on'      => 'Yes',
-              'off'     => 'No',
-              'default' => false,
-          ),
-      )
-  );
+        'fields' => array(
+            array(
+                'title'    => __('Content source', 'pzarc'),
+                'id'       => $prefix . 'content-source',
+                'type'     => 'select',
+                'select2'  => array('allowClear' => false),
+                'default'  => 'defaults',
+                'options'  => array(
+                    'defaults' => 'Defaults',
+                    'post'     => 'Posts',
+                    'page'     => 'Pages',
+                    'gallery'  => 'Galleries',
+                    'slides'   => 'Slides',
+                    //                          'images'      => 'Specific Images',
+                    //                          'wpgallery'   => 'WP Gallery from post',
+                    //                          'galleryplus' => 'GalleryPlus',
+                    //                          'nggallery'   => 'NextGen',
+                    //                        'widgets' => 'Widgets',
+                    //                          'custom-code' => 'Custom code',
+                    //                        'rss'     => 'RSS Feed',
+                    'cpt'      => 'Custom Post Types'
+                ),
+                'subtitle' => 'todo: code all the js to show hide relevant sections'
+            ),
+            array(
+                'title'   => __('Order by', 'pzarc'),
+                'id'      => $prefix . 'orderby',
+                'type'    => 'button_set',
+                'default' => 'date',
+                'cols'    => 6,
+                'options' => array(
+                    'date'  => 'Date',
+                    'title' => 'Title',
+                ),
+            ),
+            array(
+                'title'   => __('Order direction', 'pzarc'),
+                'id'      => $prefix . 'orderdir',
+                'type'    => 'button_set',
+                'default' => 'desc',
+                'cols'    => 6,
+                'options' => array(
+                    'ASC'  => 'Ascending',
+                    'DESC' => 'Descending',
+                ),
+            ),
+            array(
+                'title'   => __('Skip N posts', 'pzarc'),
+                'id'      => $prefix . 'skip',
+                'type'    => 'spinner',
+                'min'     => 0,
+                'max'     => 9999,
+                'step'    => 1,
+                'default' => 0,
+                'desc'    => __('Note: Skipping breaks pagination. This is a known WordPress bug.', 'pzarc'),
+            ),
+            array(
+                'title'   => __('Sticky posts first', 'pzarc'),
+                'id'      => $prefix . 'sticky',
+                'type'    => 'switch',
+                'on'      => 'Yes',
+                'off'     => 'No',
+                'default' => false,
+            ),
+        )
+    );
 
-  $meta_boxes[ ] = array(
-      'id'         => $prefix.'content-general-settings',
-      'title'      => 'Content Settings',
-      'post_types' => array('arc-blueprints'),
-      'sections'   => $sections,
-      'position'   => 'side',
-      'priority'   => 'high',
-      'sidebar'    => false
+    $meta_boxes[ ] = array(
+        'id'         => $prefix . 'content-general-settings',
+        'title'      => 'Content Settings',
+        'post_types' => array('arc-blueprints'),
+        'sections'   => $sections,
+        'position'   => 'side',
+        'priority'   => 'high',
+        'sidebar'    => false
 
-  );
+    );
 
 
-  return $meta_boxes;
+    return $meta_boxes;
 
   }
 
@@ -442,21 +438,21 @@
                   'cols'  => 12,
               ),
               array(
-                  'id'         => $prefix . 'section-' . $i . '-panel-layout',
-                  'title'      => __('Panels layout', 'pzarc'),
-                  'type'       => 'select',
-                  'cols'       => 6,
-                  'allow_none' => false,
-                  'options'    => $pzarc_panels_array
+                  'id'      => $prefix . 'section-' . $i . '-panel-layout',
+                  'title'   => __('Panels layout', 'pzarc'),
+                  'type'    => 'select',
+                  'cols'    => 6,
+                  'select2' => array('allowClear' => false),
+                  'options' => $pzarc_panels_array
               ),
               array(
-                  'title'      => __('Layout mode', 'pzarc'),
-                  'id'         => $prefix . 'section-' . $i . '-layout-mode',
-                  'type'       => 'select',
-                  'default'    => 'fitRows',
-                  'allow_none' => false,
-                  'cols'       => 6,
-                  'options'    => array(
+                  'title'   => __('Layout mode', 'pzarc'),
+                  'id'      => $prefix . 'section-' . $i . '-layout-mode',
+                  'type'    => 'select',
+                  'default' => 'basic',
+                  'select2' => array('allowClear' => false),
+                  'cols'    => 6,
+                  'options' => array(
                       'basic'   => 'Basic (CSS only)',
                       //          'fitRows'         => 'Fit rows',
                       //          'fitColumns'      => 'Fit columns',
@@ -580,47 +576,88 @@
         'icon_class' => 'icon-large',
         'icon'       => 'el-icon-play-circle',
         'required'   => array('blueprints_navigation', 'equals', 'navigator'),
+        'desc'       => 'When the navigation type is set to navigator, presentation will always be in a slider form.',
         'fields'     => array(
             array(
-                'id'         => $prefix . 'navigator',
-                'title'      => __('Navigator Type', 'pzarc'),
-                'type'       => 'select',
-                'cols'       => 12,
-                'default'    => 'none',
-                'allow_none' => false,
-                'options'    => array(
-                    'none'             => 'None',
-                    'player'           => 'Media Player buttons',
-                    'titles-accordion' => 'Titles (accordion)',
-                    'titles-tabbed'    => 'Titles (tabbed)',
-                    'bullets'          => 'Bullets',
-                    'numbers'          => 'Numbers',
-                    'thumbs'           => 'Thumbnails',
-                    'thumbs-buttons'   => 'Thumbnails + buttons'
+                'title' => __('General', 'pzarc'),
+                'id'    => $prefix . 'navigator-heading',
+                'type'  => 'section',
+                'class' => ' heading',
+            ),
+            array(
+                'id'      => $prefix . 'navigator',
+                'title'   => __('Navigator Type', 'pzarc'),
+                'type'    => 'image_select',
+                'default' => 'tabbed',
+                'height'   => 75,
+                'options' => array(
+                    'tabbed' => array(
+                        'alt' => 'Tabbed',
+                        'img' => PZARC_PLUGIN_URL . 'assets/images/metaboxes/nav-type-tabbed.png'
+                    ),
+                    'accordion' => array(
+                        'alt' => 'Accordion',
+                        'img' => PZARC_PLUGIN_URL . 'assets/images/metaboxes/nav-type-accordion.png'
+                    ),
+                    'buttons' => array(
+                        'alt' => 'Buttons',
+                        'img' => PZARC_PLUGIN_URL . 'assets/images/metaboxes/nav-type-buttons.png'
+                    ),
+                    'bullets' => array(
+                        'alt' => 'Tabbed',
+                        'img' => PZARC_PLUGIN_URL . 'assets/images/metaboxes/nav-type-bullets.png'
+                    ),
+                    'numbers' => array(
+                        'alt' => 'Numbers',
+                        'img' => PZARC_PLUGIN_URL . 'assets/images/metaboxes/nav-type-numeric.png'
+                    ),
+                    'thumbs' => array(
+                        'alt' => 'Thumbs',
+                        'img' => PZARC_PLUGIN_URL . 'assets/images/metaboxes/nav-type-thumbs.png'
+                    ),
                 )
             ),
             array(
                 'title'   => 'Navigator Position',
                 'id'      => $prefix . 'navigator-position',
-                'type'    => 'button_set',
-                'cols'    => 6,
+                'type'    => 'image_select',
                 'default' => 'bottom',
+                'height'   => 75,
                 'options' => array(
-                    'left'   => 'Left',
-                    'right'  => 'Right',
-                    'top'    => 'Top',
-                    'bottom' => 'Bottom',
+                    'bottom' => array(
+                        'alt' => 'Bottom',
+                        'img' => PZARC_PLUGIN_URL . 'assets/images/metaboxes/nav-pos-bottom.png'
+                    ),
+                    'top'    => array(
+                        'alt' => 'Top',
+                        'img' => PZARC_PLUGIN_URL . 'assets/images/metaboxes/nav-pos-top.png'
+                    ),
+                    'left'   => array(
+                        'alt' => 'Left',
+                        'img' => PZARC_PLUGIN_URL . 'assets/images/metaboxes/nav-pos-left.png'
+                    ),
+                    'right'  => array(
+                        'alt' => 'Right',
+                        'img' => PZARC_PLUGIN_URL . 'assets/images/metaboxes/nav-pos-right.png'
+                    ),
                 )
             ),
             array(
                 'title'   => 'Navigator Location',
                 'id'      => $prefix . 'navigator-location',
-                'type'    => 'button_set',
-                'cols'    => 6,
+                'subtitle' => 'Select whether navigator should appear over the content are, or outside of it',
+                'type'    => 'image_select',
                 'default' => 'outside',
+                'height'   => 75,
                 'options' => array(
-                    'inside'  => 'Inside',
-                    'outside' => 'Outside',
+                    'inside'  => array(
+                        'alt' => 'Inside',
+                        'img' => PZARC_PLUGIN_URL . 'assets/images/metaboxes/nav-loc-inside.png'
+                    ),
+                    'outside' => array(
+                        'alt' => 'Outside',
+                        'img' => PZARC_PLUGIN_URL . 'assets/images/metaboxes/nav-loc-outside.png'
+                    ),
                 )
             ),
             array(
@@ -643,7 +680,50 @@
                 'default'  => 0,
                 'subtitle' => 'If zero, it will use the "Panels to show" value'
             ),
-
+            array(
+                'title' => __('Transition', 'pzarc'),
+                'id'    => $prefix . 'transition-heading',
+                'type'  => 'section',
+                'class' => ' heading',
+            ),
+            array(
+                'title'   => 'Type',
+                'id'      => $prefix . 'transitions-type',
+                'type'    => 'select',
+                'default' => 'none',
+                'select2' => array('allowClear' => false),
+                'options' => array(
+                    'none'  => 'None',
+                    'fade'  => 'Fade',
+                    'slide' => 'Slide',
+                )
+            ),
+            array(
+                'title'    => 'Duration',
+                'id'       => $prefix . 'transitions-duration',
+                'type'     => 'spinner',
+                'subtitle' => 'Time taken for the transition to display',
+                'default'  => 2,
+            ),
+            array(
+                'title'    => 'Interval',
+                'id'       => $prefix . 'transitions-interval',
+                'type'     => 'spinner',
+                'default'  => 5,
+                'subtitle' => 'Time between transitions',
+            ),
+            array(
+                'title'   => 'Auto start',
+                'id'      => $prefix . 'transitions-autostart',
+                'type'    => 'switch',
+                'default' => false,
+            ),
+            array(
+                'title'   => 'Pause on hover',
+                'id'      => $prefix . 'transitions-pause-on-hover',
+                'type'    => 'switch',
+                'default' => true,
+            ),
 
         )
     );
@@ -720,14 +800,17 @@
     // Put in a hidden field with the plugin url for use in js
     $return_html
         = '
-  <div id="pzarc-blueprint-wireframe">
-  <div id="pzarc-sections-preview-0" class="pzarc-sections pzarc-section-0"></div>
-  <div id="pzarc-sections-preview-1" class="pzarc-sections pzarc-section-1"></div>
-  <div id="pzarc-sections-preview-2" class="pzarc-sections pzarc-section-2"></div>
-  <div id="pzarc-navigator-preview" class="pzarc-sections pzarc-section-navigator"><span class="dashicons dashicons-arrow-left"></span><span class="dashicons dashicons-editor-justify"></span><span class="dashicons dashicons-editor-justify"></span><span class="dashicons dashicons-editor-justify"></span><span class="dashicons dashicons-arrow-right"></span></div>
-	</div>
-	<div class="plugin_url" style="display:none;">' . PZARC_PLUGIN_URL . '</div>
-	';
+          <div id="pzarc-blueprint-wireframe">
+            <div id="pzarc-sections-preview-0" class="pzarc-sections pzarc-section-0"></div>
+            <div id="pzarc-sections-preview-1" class="pzarc-sections pzarc-section-1"></div>
+            <div id="pzarc-sections-preview-2" class="pzarc-sections pzarc-section-2"></div>
+            <div id="pzarc-navigator-preview">
+              <div class="pzarc-sections pzarc-section-navigator"><span class="icon-large el-icon-backward"></span> <span class="icon-large el-icon-caret-left"></span> <span class="icon-xlarge el-icon-stop"></span> <span class="icon-xlarge el-icon-stop"></span> <span class="icon-xlarge el-icon-stop"></span> <span class="icon-large el-icon-caret-right"></span> <span class="icon-large el-icon-forward"></span></div>
+              <div class="pzarc-sections pzarc-section-pagination">First Prev 1 2 3 4 ... 15 Next Last</div>
+            </div>
+          </div>
+          <div class="plugin_url" style="display:none;">' . PZARC_PLUGIN_URL . '</div>
+        ';
 
     return $return_html;
   }
@@ -786,14 +869,14 @@
                 'indent' => true
             ),
             array(
-                'title'       => __('Include categories', 'pzarc'),
-                'id'          => $prefix . 'inc-cats',
-                'type'        => 'select',
-                'allow_none ' => true,
-                'default'     => '',
-                'cols'        => 3,
-                'data'        => 'category',
-                'multi'       => true
+                'title'   => __('Include categories', 'pzarc'),
+                'id'      => $prefix . 'inc-cats',
+                'type'    => 'select',
+                'select2' => array('allowClear' => true),
+                'default' => '',
+                'cols'    => 3,
+                'data'    => 'category',
+                'multi'   => true
             ),
             array(
                 'title'   => __('In ANY or ALL categories', 'pzarc'),
@@ -803,14 +886,14 @@
                 'default' => 'any',
             ),
             array(
-                'title'       => __('Exclude categories', 'pzarc'),
-                'id'          => $prefix . 'exc-cats',
-                'type'        => 'select',
-                'default'     => '',
-                'allow_none ' => true,
-                'cols'        => 3,
-                'data'        => 'category',
-                'multi'       => true
+                'title'   => __('Exclude categories', 'pzarc'),
+                'id'      => $prefix . 'exc-cats',
+                'type'    => 'select',
+                'default' => '',
+                'select2' => array('allowClear' => true),
+                'cols'    => 3,
+                'data'    => 'category',
+                'multi'   => true
             ),
             array(
                 'title'   => __('Include sub-categories on archives', 'pzarc'),
@@ -834,24 +917,24 @@
                 'indent' => true
             ),
             array(
-                'title'       => __('Tags', 'pzarc'),
-                'id'          => $prefix . 'inc-tags',
-                'type'        => 'select',
-                'allow_none ' => true,
-                'default'     => '',
-                'cols'        => 4,
-                'data'        => 'tags',
-                'multi'       => true
+                'title'   => __('Tags', 'pzarc'),
+                'id'      => $prefix . 'inc-tags',
+                'type'    => 'select',
+                'select2' => array('allowClear' => true),
+                'default' => '',
+                'cols'    => 4,
+                'data'    => 'tags',
+                'multi'   => true
             ),
             array(
-                'title'       => __('Exclude tags', 'pzarc'),
-                'id'          => $prefix . 'exc-tags',
-                'type'        => 'select',
-                'default'     => '',
-                'allow_none ' => true,
-                'cols'        => 4,
-                'data'        => 'tags',
-                'multi'       => true
+                'title'   => __('Exclude tags', 'pzarc'),
+                'id'      => $prefix . 'exc-tags',
+                'type'    => 'select',
+                'default' => '',
+                'select2' => array('allowClear' => true),
+                'cols'    => 4,
+                'data'    => 'tags',
+                'multi'   => true
             ),
             array(
                 'id'     => $prefix . 'tags-section-end',

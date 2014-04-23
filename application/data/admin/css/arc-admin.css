@@ -1,4 +1,4 @@
-@import url(http://weloveiconfonts.com/api/?family=entypo|fontawesome);
+/* @import url(http://weloveiconfonts.com/api/?family=entypo|fontawesome); */
 
 /* entypo */
 [class*="entypo-"]:before {
@@ -823,17 +823,17 @@ body.screen-arc-panels #side-sortables .postbox {
   border-bottom: none;
 }
 
-body.post-type-arc-panels h3.hndle,
-body.post-type-arc-blueprints h3.hndle,
-body.post-type-arc-contents h3.hndle,
-body.post-type-arc-panels h3.redux-hndle,
-body.post-type-arc-blueprints h3.redux-hndle,
-body.post-type-arc-contents h3.redux-hndle
-{
-  color: #fff;
-  background: #6d6d6d;
-  border-bottom: none;
-}
+/*body.post-type-arc-panels h3.hndle,*/
+/*body.post-type-arc-blueprints h3.hndle,*/
+/*body.post-type-arc-contents h3.hndle,*/
+/*body.post-type-arc-panels h3.redux-hndle,*/
+/*body.post-type-arc-blueprints h3.redux-hndle,*/
+/*body.post-type-arc-contents h3.redux-hndle*/
+/*{*/
+  /*color: #fff;*/
+  /*background: #6d6d6d;*/
+  /*border-bottom: none;*/
+/*}*/
 
 /* Hide toggle for settings and preview link after publishing for cells and criteris */
 body.screen-arc-contents #side-sortables .handlediv,
@@ -1097,7 +1097,7 @@ body.post-type-arc-panels .redux-main .select_wrapper {
 /* Remove this once Dovy fixes! */
 .post-type-arc-panels .showDefaults,
 .post-type-arc-blueprints .showDefaults {
-  display: none !important;
+  /*display: none !important;*/
 }
 
 .post-type-arc-panels .redux-main .form-table tr,
@@ -1274,3 +1274,19 @@ body .redux-container .redux-main .redux-section-field.redux-field.heading h3
   width:inherit;
   height:inherit;
 }
+
+.pzarc-section-navigator {
+  font-size:20px;
+  color:#aaa;
+}
+
+.pzarc-section-navigator .icon-large,
+.pzarc-section-navigator .icon-xlarge{
+  vertical-align: middle;
+}
+
+
+.pzarc-section-navigator .icon-xlarge{
+   font-size:36px;
+  color:#ccc;
+ }

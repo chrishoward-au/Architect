@@ -1,5 +1,5 @@
 
-/* global redux_change, wp */
+/* global reduxMetaboxes */
 
 jQuery(function($){
 
@@ -22,9 +22,7 @@ jQuery(function($){
         $.reduxMetaBoxes.checkBoxVisibility();
 
         $('.redux-container').each(function() {
-            if ($(this).hasClass('redux-has-sections')) {
-                $(this).parents('.postbox:first').find('h3.hndle').attr('class', 'redux-hndle');  
-            }
+            $(this).parents('.postbox:first').find('h3.hndle').attr('class', 'redux-hndle');
         });
 
         $('#page_template').change(function() {
@@ -34,22 +32,25 @@ jQuery(function($){
         $('input[name="post_format"]:radio').change(function() {
             $.reduxMetaBoxes.checkBoxVisibility('post_format');
         });
-
     };
+    $('#publishing-action .button').click(function() {
+        window.onbeforeunload = null;
+    });
+    var testValue;
     $.reduxMetaBoxes.checkBoxVisibility = function(fieldID){
         if (reduxMetaboxes.length !== 0) {
             $.each(reduxMetaboxes, function(box, values) {
                 $.each(values, function(field, v) {
-                    if (field == fieldID || !fieldID) {
-                        if (field == "post_format") {
-                            var testValue = $("input:radio[name='post_format']:checked").val();
+                    if (field === fieldID || !fieldID) {
+                        if (field === "post_format") {
+                            testValue = $("input:radio[name='post_format']:checked").val();
                         } else {
-                            var testValue = $('#'+field).val();
+                            testValue = $('#'+field).val();
                         }
                         if (testValue) {
                             var visible = false;
                             $.each(v, function(key, val) {
-                                if (val == testValue) {
+                                if (val === testValue) {
                                     visible = true;
                                 }
                             });
@@ -66,6 +67,5 @@ jQuery(function($){
                 });
             });
         }
-    }
-
+    };
 });

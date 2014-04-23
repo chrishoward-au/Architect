@@ -16,7 +16,7 @@
  *
  * @package     ReduxFramework
  * @author      Dovy Paukstys (dovy)
- * @version     1.1.7
+ * @version     1.1.8
  */
 
 // Exit if accessed directly
@@ -32,7 +32,7 @@ if ( !class_exists( 'ReduxFramework_extension_metaboxes' ) ) {
      */
     class ReduxFramework_extension_metaboxes {
 
-        static $version = "1.1.7";
+        static $version = "1.1.8";
 
         public $boxes = array();
         public $post_types = array();
@@ -402,9 +402,10 @@ if ( !class_exists( 'ReduxFramework_extension_metaboxes' ) ) {
                      * filter 'redux/page/{opt_name}/enqueue/redux-extension-metaboxes-js
                      * @param string  bundled javscript
                      */
+	                $min = ( $this->parent->args['dev_mode'] ) ? '.min' : '';
                     wp_enqueue_script(
                         'redux-extension-metaboxes-js',
-                        apply_filters( "redux/metaboxes/{$this->parent->args['opt_name']}/enqueue/redux-extension-metaboxes-js", $this->_extension_url . 'extension_metaboxes.js' ),
+                        apply_filters( "redux/metaboxes/{$this->parent->args['opt_name']}/enqueue/redux-extension-metaboxes-js", $this->_extension_url . 'extension_metaboxes'.$min.'.js' ),
                         '',
                         filemtime( $this->_extension_dir . 'extension_metaboxes.js' ), // todo - version should be based on above post-filter src
                         'all'

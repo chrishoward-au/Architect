@@ -1,13 +1,10 @@
-
 .postbox .redux-container {
   filter: none;
   border: none;
   -moz-border-radius: 0;
   /* Firefox */
-
   -webkit-border-radius: 0;
   /* Safari, Chrome */
-
   border-radius: 0;
   -moz-box-shadow: none;
   -webkit-box-shadow: none;
@@ -16,7 +13,7 @@
   margin-top: -6px;
 }
 .redux-group-tab {
-    margin-bottom: 0 !important;
+  margin-bottom: 0 !important;
 }
 .postbox .redux-container .redux-group-menu .active a {
   background: #FFF;
@@ -59,7 +56,7 @@
   padding-bottom: 0;
 }
 .redux-main .redux-field-container {
-    padding: 10px inherit !important;
+  padding: 10px inherit !important;
 }
 .postbox .redux-container.redux-no-sections .redux-main .form-table:first-child tr:first-child td {
   padding-top: 0 !important;
@@ -100,77 +97,124 @@
   user-select: inherit !important;
   padding-left: 0 !important;
 }
-
-#poststuff h3.redux-hndle, .metabox-holder h3.redux-hndle {
-    cursor: pointer;
+#poststuff h3.redux-hndle,
+.metabox-holder h3.redux-hndle {
+  cursor: pointer;
+  border-bottom: 0;
 }
-.display-group { display: inherit !important; }
-
+.display-group {
+  display: inherit !important;
+}
 .postbox .redux-container.redux-no-sections .redux-main tr td {
-    padding-top: 10px !important;
+  padding-top: 10px !important;
 }
-
 /* Metaboxes CSS overrides */
 @media (min-width: 1125px) and (max-width: 1405px) {
-    .postbox table.form-table,
-    .postbox .form-table > thead,
-    .postbox .form-table > tbody,
-    .postbox .form-table > tbody > tr > th,
-    .postbox .form-table > tbody > tr > td,
-    .postbox .form-table > tbody > tr {
-        display: block !important;
-        width: 100% !important;
-        padding: 0px !important;
-    }
-    .postbox .form-table > tbody > tr > th,
-    .postbox .form-table > tbody > tr > td {
-        padding: 10px !important;
-    }
-    .postbox .form-table > tbody > tr > th,
-    .postbox .form-table > tbody > tr > td {
-        padding: 10px !important;
-    }
-    .postbox .form-table > tbody > tr > th {
-        width: 35%;
-    }
-
+  .postbox table.form-table,
+  .postbox .form-table > thead,
+  .postbox .form-table > tbody,
+  .postbox .form-table > tbody > tr > th,
+  .postbox .form-table > tbody > tr > td,
+  .postbox .form-table > tbody > tr {
+    display: block !important;
+    width: 100% !important;
+    padding: 0px !important;
+  }
+  .postbox .form-table > tbody > tr > th,
+  .postbox .form-table > tbody > tr > td {
+    padding: 10px !important;
+  }
+  .postbox .form-table > tbody > tr > th,
+  .postbox .form-table > tbody > tr > td {
+    padding: 10px !important;
+  }
+  .postbox .form-table > tbody > tr > th {
+    width: 35%;
+  }
 }
-.redux-box-side .redux-main .redux-field-container .select2-container, .redux-box-side .redux-main .redux-field-container select {
-    width: 96% !important;
+.redux-box-side .redux-main .redux-field-container .select2-container,
+.redux-box-side .redux-main .redux-field-container select {
+  width: 96% !important;
 }
 @media (max-width: 1405px) {
-    .redux-box-side .redux-main .redux-field-container .select2-container, .redux-box-side .redux-main .redux-field-container select {
-        width: 92% !important;
-    }
+  .redux-box-side .redux-main .redux-field-container .select2-container,
+  .redux-box-side .redux-main .redux-field-container select {
+    width: 92% !important;
+  }
 }
 @media (max-width: 1125px) {
-    .redux-box-side .redux-main .redux-field-container .select2-container, .redux-box-side .redux-main .redux-field-container select {
-        width: 100% !important;
-    }
+  .redux-box-side .redux-main .redux-field-container .select2-container,
+  .redux-box-side .redux-main .redux-field-container select {
+    width: 100% !important;
+  }
 }
-
-
 @media (max-width: 1405px) {
-    .redux-main .form-table > tbody > tr > td {
-        padding-top: 0 !important;
-        padding-bottom: 0 !important;
-    }
-    .redux-main .redux-field-container {
-        padding: 0 0 20px 0 !important;
-    }
-    .postbox .form-table > tbody > tr > th {
-        padding-bottom: 0 !important;
-    }
-    .redux_field_th {
-        padding-top: 0 !important;
-        padding-bottom: 10px !important;
-    }
-    .redux-main .redux-field-container {
-        padding-bottom: 10px !important;
-    }
-
+  .redux-main .form-table > tbody > tr > td {
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+  }
+  .redux-main .redux-field-container {
+    padding: 0 0 20px 0 !important;
+  }
+  .postbox .form-table > tbody > tr > th {
+    padding-bottom: 0 !important;
+  }
+  .redux_field_th {
+    padding-top: 0 !important;
+    padding-bottom: 10px !important;
+  }
+  .redux-main .redux-field-container {
+    padding-bottom: 10px !important;
+  }
 }
-
 .redux-no-sections .redux-group-tab {
-    display: block !important;
+  display: block !important;
+}
+/* Light fresh theme */
+.admin-color-fresh #poststuff h3.redux-hndle,
+.admin-color-fresh .metabox-holder h3.redux-hndle {
+  background: #222222;
+  color: #ffffff;
+}
+/* Light admin theme */
+.admin-color-light #poststuff h3.redux-hndle,
+.admin-color-light .metabox-holder h3.redux-hndle {
+  background: #888888;
+  color: #ffffff;
+}
+/* Blue admin theme */
+.admin-color-blue #poststuff h3.redux-hndle,
+.admin-color-blue .metabox-holder h3.redux-hndle {
+  background: #096484;
+  color: #ffffff;
+}
+/* Coffee admin theme */
+.admin-color-coffee #poststuff h3.redux-hndle,
+.admin-color-coffee .metabox-holder h3.redux-hndle {
+  background: #46403c;
+  color: #ffffff;
+}
+/* Ectoplasm admin theme */
+.admin-color-ectoplasm #poststuff h3.redux-hndle,
+.admin-color-ectoplasm .metabox-holder h3.redux-hndle {
+  background: #413256;
+  color: #ffffff;
+}
+/* Midnight admin theme */
+.admin-color-midnight #poststuff h3.redux-hndle,
+.admin-color-midnight .metabox-holder h3.redux-hndle {
+  background: #363b3f;
+  color: #ffffff;
+}
+/* Ocean admin theme */
+.admin-color-ocean #poststuff h3.redux-hndle,
+.admin-color-ocean .metabox-holder h3.redux-hndle {
+  background: #627c83;
+  color: #ffffff;
+}
+/* Sunrise admin theme */
+.admin-color-sunrise #poststuff h3.redux-hndle,
+.admin-color-sunrise .metabox-holder h3.redux-hndle {
+  background: #b43c38;
+  color: #ffffff;
 }

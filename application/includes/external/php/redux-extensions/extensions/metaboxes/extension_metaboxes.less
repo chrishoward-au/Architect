@@ -103,6 +103,7 @@
 
 #poststuff h3.redux-hndle, .metabox-holder h3.redux-hndle {
   cursor: pointer;
+  border-bottom: 0;
 }
 .display-group { display: inherit !important; }
 
@@ -173,4 +174,49 @@
 
 .redux-no-sections .redux-group-tab {
     display: block !important;
+}
+
+
+
+
+
+.metaboxesAdminThemeColorOverrides (@darkColor, @textColor) {
+  #poststuff h3.redux-hndle, .metabox-holder h3.redux-hndle {
+    background: @darkColor;
+    color: @textColor;
+  }
+}
+
+/* Light fresh theme */
+.admin-color-fresh {
+    .metaboxesAdminThemeColorOverrides(#222222, #fff);
+}
+
+/* Light admin theme */
+.admin-color-light {
+    .metaboxesAdminThemeColorOverrides(#888888, #fff);
+}
+/* Blue admin theme */
+.admin-color-blue {
+    .metaboxesAdminThemeColorOverrides(#096484, #fff);
+}
+/* Coffee admin theme */
+.admin-color-coffee {
+    .metaboxesAdminThemeColorOverrides(#46403c, #fff);
+}
+/* Ectoplasm admin theme */
+.admin-color-ectoplasm {
+    .metaboxesAdminThemeColorOverrides(#413256, #fff);
+}
+/* Midnight admin theme */
+.admin-color-midnight {
+    .metaboxesAdminThemeColorOverrides(#363b3f, #fff);
+}
+/* Ocean admin theme */
+.admin-color-ocean { 
+    .metaboxesAdminThemeColorOverrides(#627c83, #fff);
+}
+/* Sunrise admin theme */
+.admin-color-sunrise { 
+    .metaboxesAdminThemeColorOverrides(#b43c38, #fff);
 }

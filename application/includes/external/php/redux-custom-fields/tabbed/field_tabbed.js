@@ -10,7 +10,7 @@
             var targets = jQuery( this ).data( 'targets' ).split( ',' );
             jQuery( targets ).each( function ()
             {
-                jQuery( this ).find( '.hndle' ).addClass( 'pzarcHeader' ).css( {'background': '#6d6d6d', 'color': '#fff', 'cursor': 'default'} ).removeClass( 'hndle' );
+               // jQuery( this ).find( '.hndle' ).addClass( 'pzarcHeader' ).css( {'cursor': 'default'} ).removeClass( 'hndle' );
             } );
 
             jQuery( targets ).each( function ()

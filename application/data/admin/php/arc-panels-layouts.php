@@ -110,17 +110,25 @@
      */
     public function add_panel_layout_column_content($column, $post_id)
     {
-      // thiswont work coz
-      switch ($column)
-      {
-        case '_panels_settings_short_name':
-          $metaboxes = get_post_meta($post_id, '_architect', true);
-          echo $metaboxes[ '_panels_settings_short-name' ];
-          break;
+      $post_meta = get_post_meta($post_id,'_architect',true);
+//      var_dump($post_meta);
+//      switch ($column)
+//      {
+//        case '_blueprints_short-name':
+      echo $post_meta[$column];
+//          break;
+//      }
+//      // thiswont work coz
+//      switch ($column)
+//      {
+//        case '_panels_settings_short_name':
+//          $metaboxes = get_post_meta($post_id, '_architect', true);
+//          echo $metaboxes[ '_panels_settings_short-name' ];
+//          break;
 //      case 'pzarc_set_name':
 //        echo get_post_meta($post_id, 'pzarc_layout-set-name', true);
 //        break;
-      }
+ //     }
     }
 
     /**
@@ -704,7 +712,7 @@
                 'title'      => __('Image resizing method', 'pzarc'),
                 'id'         => $prefix . 'image-resizing',
                 'type'       => 'select',
-                'allow_none' => false,
+                'select2'  => array('allowClear' => false),
                 'cols'       => 3,
                 'default'    => 'crop',
                 'options'    => array(

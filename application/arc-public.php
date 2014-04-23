@@ -143,8 +143,9 @@
     {
       $pzarc_blueprint = $atts[ 0 ];
     }
+return  'This isn\'t quite right yet. It goes into a recursive spin';
 
-    return pzarc($pzarc_blueprint, (!empty($atts[ 'ids' ]) ? $atts[ 'ids' ] : null), true);
+//    return pzarc($pzarc_blueprint, (!empty($atts[ 'ids' ]) ? $atts[ 'ids' ] : null), true);
 
 
   }
@@ -185,9 +186,9 @@
     else
     {
       // Generate the content to display
-      $pzarc = new pzarc_Display($pzarc_blueprint,$pzarc_blueprint_arr, $pzarc_overrides, $is_shortcode);
+//      $pzarc = new pzarc_Display($pzarc_blueprint,$pzarc_blueprint_arr, $pzarc_overrides, $is_shortcode);
 
-      return $pzarc->output;
+    return $pzarc->output;
     }
   }
 

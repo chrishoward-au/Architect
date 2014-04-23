@@ -15,7 +15,7 @@
 
   class pzarc_Display
   {
-    public  $output = '';
+    public $output = '';
     private $source_data = '';
     private $query_vars = '';
     private $panel_info = '';
@@ -35,7 +35,7 @@
      * Returns: Nil
      *
      *************************************************/
-    function __construct($blueprint_name,$pzarc_blueprint_arr, $pzarc_overrides, $is_shortcode)
+    function __construct($blueprint_name, $pzarc_blueprint_arr, $pzarc_overrides, $is_shortcode)
     {
       // TODO: CHECK THIS IS EVEN WORKING!
       add_filter('excerpt_length', array($this, 'custom_excerpt_length'), 999);
@@ -102,7 +102,6 @@
       }
 
 
-
       // is filters a better way to do this? Altho how??
       //$this->output = apply_filters('pzarc_blueprint_header',blueprint_header());
 
@@ -132,7 +131,7 @@
           if (!empty($this->blueprint[ 'blueprint-id' ]))
           {
             $upload_dir = wp_upload_dir();
-            $filename = trailingslashit($upload_dir[ 'baseurl' ]) . '/cache/pizazzwp/arc/pzarc-panel-layout-' . $panelid . '.css';
+            $filename   = trailingslashit($upload_dir[ 'baseurl' ]) . '/cache/pizazzwp/arc/pzarc-panel-layout-' . $panelid . '.css';
             wp_enqueue_style('blueprint-css-' . $this->blueprint[ 'blueprint-id' ], $filename);
           }
 
@@ -368,8 +367,8 @@
     {
       $featureat        = '';
       $this->panel_info = ($this->section_info[ 'section-panel-settings' ]);
-      $panel_width     = 100 / $this->blueprint[ '_blueprints_section-'.$key.'-columns' ] - $this->blueprint[ '_blueprints_section-' . $key . '-panels-vert-margin' ];
-      $panel_min_width = $this->blueprint[ '_blueprints_section-' . $key . '-min-panel-width' ];
+      $panel_width      = 100 / $this->blueprint[ '_blueprints_section-' . $key . '-columns' ] - $this->blueprint[ '_blueprints_section-' . $key . '-panels-vert-margin' ];
+      $panel_min_width  = $this->blueprint[ '_blueprints_section-' . $key . '-min-panel-width' ];
       // this may need to be in its own method
       $panel_height = ($this->panel_info[ '_panels_settings_panel-height-type' ] == 'fixed')
           ? 'height:' . $this->panel_info[ '_panels_settings_panel-height' ] . 'px;' : null;
@@ -410,7 +409,10 @@
       //JOB
 
       var_dump($thumb_src, $params, PZARC_CACHE_PATH, PZARC_CACHE_URL);
-      if (false)       $post_image = ($this->panel_info[ '_panels_design_thumb-position' ] != 'none')?job_resize($thumb_src, $params, PZARC_CACHE_PATH, PZARC_CACHE_URL):null;
+      if (false)
+      {
+        $post_image = ($this->panel_info[ '_panels_design_thumb-position' ] != 'none') ? job_resize($thumb_src, $params, PZARC_CACHE_PATH, PZARC_CACHE_URL) : null;
+      }
 
       // if ($this->panel_info[ '_panels_settings_background-image' ] == 'fill')
       // {
@@ -433,9 +435,13 @@
 
       // These match with the panel definition mustaches
       // THIS NEEDS TO HAPPEN IN A SEPARATE CLASS SO WE CAN BE EXTENSIBLE
-      $the_inputs[ 'title' ]      = apply_filters('the_title', $the_title);
-      $the_inputs[ 'excerpt' ]    = apply_filters('the_excerpt', get_the_excerpt());
-      $the_inputs[ 'content' ]    = apply_filters('the_content', get_the_content());
+
+      // TODO: Is this the right way to do the filters? Or should the filters here be pzarc ones
+
+      $the_inputs[ 'title' ]   = apply_filters('the_title', $the_title);
+ //     $the_inputs[ 'excerpt' ] = apply_filters('the_excerpt', get_the_excerpt());
+//      $the_content             = strip_shortcodes(apply_filters('pzarc_the_content', get_the_content()));
+//      $the_inputs[ 'content' ]    = esc_html(preg_replace("/\\[pzarc(.)*\\]/uim", "zip", $the_content));
       $the_inputs[ 'image' ]      = $post_image; // This needs to be a url coz that's how it's shown
       $the_inputs[ 'caption' ]    = pzarc_get_image_caption(get_post_thumbnail_id($post_info->ID));
       $the_inputs[ 'date' ]       = apply_filters('the_date', get_the_date(empty($section_panel_settings[ '_panels_design_meta-date-format' ])
@@ -446,10 +452,7 @@
       $the_inputs[ 'author' ]     = apply_filters('the_author', get_the_author());
       $the_inputs[ 'permalink' ]  = get_permalink();
 
-      ob_start();
-      comments_number();
-      $comments_count = ob_get_contents();
-      ob_end_clean();
+      $comments_count = get_comments_number();
       //TODO Work out what this filter is meant to be!
       $the_inputs[ 'commentcount' ] = apply_filters('the_', $comments_count);
       foreach ($the_inputs as $key => $value)
@@ -642,6 +645,7 @@
       }
 
       $return_str .= $panel_def . $components_close;
+
       return $return_str;
 
     }
@@ -709,6 +713,8 @@
           if (function_exists('wp_pagenavi'))
           {
             $pager = '<div class="pzarc-pager">';
+
+            // We should be using hooks to display the navi
             ob_start();
             wp_pagenavi();
             $pager .= ob_get_contents();
