@@ -585,13 +585,14 @@
                 'class' => ' heading',
             ),
             array(
-                'id'      => $prefix . 'navigator',
-                'title'   => __('Navigator Type', 'pzarc'),
-                'type'    => 'image_select',
-                'default' => 'tabbed',
+                'id'       => $prefix . 'navigator',
+                'title'    => __('Navigator Type', 'pzarc'),
+                'type'     => 'image_select',
+                'default'  => 'tabbed',
+                'subtitle' => 'Tabbed, accordion, buttons, bullets, numbers, thumbnails',
                 'height'   => 75,
-                'options' => array(
-                    'tabbed' => array(
+                'options'  => array(
+                    'tabbed'    => array(
                         'alt' => 'Tabbed',
                         'img' => PZARC_PLUGIN_URL . 'assets/images/metaboxes/nav-type-tabbed.png'
                     ),
@@ -599,31 +600,32 @@
                         'alt' => 'Accordion',
                         'img' => PZARC_PLUGIN_URL . 'assets/images/metaboxes/nav-type-accordion.png'
                     ),
-                    'buttons' => array(
+                    'buttons'   => array(
                         'alt' => 'Buttons',
                         'img' => PZARC_PLUGIN_URL . 'assets/images/metaboxes/nav-type-buttons.png'
                     ),
-                    'bullets' => array(
-                        'alt' => 'Tabbed',
+                    'bullets'   => array(
+                        'alt' => 'Bullets',
                         'img' => PZARC_PLUGIN_URL . 'assets/images/metaboxes/nav-type-bullets.png'
                     ),
-                    'numbers' => array(
+                    'numbers'   => array(
                         'alt' => 'Numbers',
                         'img' => PZARC_PLUGIN_URL . 'assets/images/metaboxes/nav-type-numeric.png'
                     ),
-                    'thumbs' => array(
+                    'thumbs'    => array(
                         'alt' => 'Thumbs',
                         'img' => PZARC_PLUGIN_URL . 'assets/images/metaboxes/nav-type-thumbs.png'
                     ),
                 )
             ),
             array(
-                'title'   => 'Navigator Position',
-                'id'      => $prefix . 'navigator-position',
-                'type'    => 'image_select',
-                'default' => 'bottom',
+                'title'    => 'Navigator Position',
+                'id'       => $prefix . 'navigator-position',
+                'type'     => 'image_select',
+                'default'  => 'bottom',
+                'subtitle' => 'Bottom, top,left, right',
                 'height'   => 75,
-                'options' => array(
+                'options'  => array(
                     'bottom' => array(
                         'alt' => 'Bottom',
                         'img' => PZARC_PLUGIN_URL . 'assets/images/metaboxes/nav-pos-bottom.png'
@@ -643,13 +645,13 @@
                 )
             ),
             array(
-                'title'   => 'Navigator Location',
-                'id'      => $prefix . 'navigator-location',
+                'title'    => 'Navigator Location',
+                'id'       => $prefix . 'navigator-location',
                 'subtitle' => 'Select whether navigator should appear over the content are, or outside of it',
-                'type'    => 'image_select',
-                'default' => 'outside',
+                'type'     => 'image_select',
+                'default'  => 'outside',
                 'height'   => 75,
-                'options' => array(
+                'options'  => array(
                     'inside'  => array(
                         'alt' => 'Inside',
                         'img' => PZARC_PLUGIN_URL . 'assets/images/metaboxes/nav-loc-inside.png'
@@ -669,15 +671,16 @@
                 'options' => array(
                     'none'   => 'None',
                     'hover'  => 'Hover over panels',
-                    'inline' => 'Inline with navigator'
+                    'inline' => 'Inline with navigator',
+                    'both' => 'Both'
                 )
             ),
             array(
                 'id'       => $prefix . 'navigator-items-visible',
                 'title'    => __('Navigator items visible', 'pzarc'),
                 'type'     => 'spinner',
-                'default'  => 0,
-                'subtitle' => 'If zero, it will use the "Panels to show" value. This is the number of items visible in the navigator bar.'
+                'default'  => 5,
+                'subtitle' => 'If zero, it will use the "Panels to show" value. This is the number of items visible in the navigator bar. NOTE: This is also the number of items skipped by multi-skip pager element of the inline pager.'
             ),
             array(
                 'title' => __('Transition', 'pzarc'),
@@ -698,18 +701,18 @@
                 )
             ),
             array(
-                'title'    => 'Duration',
+                'title'    => 'Duration (seconds)',
                 'id'       => $prefix . 'transitions-duration',
                 'type'     => 'spinner',
                 'subtitle' => 'Time taken for the transition to display',
                 'default'  => 2,
             ),
             array(
-                'title'    => 'Interval',
+                'title'    => 'Interval (seconds)',
                 'id'       => $prefix . 'transitions-interval',
                 'type'     => 'spinner',
                 'default'  => 5,
-                'subtitle' => 'Time between transitions',
+                'subtitle' => 'Time slide is shown with no transitions active.',
             ),
             array(
                 'title'   => 'Auto start',

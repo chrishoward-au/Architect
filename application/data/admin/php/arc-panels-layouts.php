@@ -128,7 +128,7 @@
 //      case 'pzarc_set_name':
 //        echo get_post_meta($post_id, 'pzarc_layout-set-name', true);
 //        break;
- //     }
+      //     }
     }
 
     /**
@@ -341,7 +341,7 @@
    *********/
   function pzarc_panels_design($metaboxes)
   {
-    $prefix = 'panels_design_';
+    $prefix = '_panels_design_';
 
     $sections    = array();
     $sections[ ] = array(
@@ -350,29 +350,6 @@
         'icon_class' => 'icon-large',
         'icon'       => 'el-icon-website',
         'fields'     => array(
-            array(
-                'title'    => 'Panel preview',
-                'id'       => $prefix . 'preview',
-                'width'    => 'auto',
-                'type'     => 'code',
-                'readonly' => false, // Readonly fields can't be written to by code! Weird
-                'code'     => draw_panel_layout(),
-                'default_show' => false,
-                'default'  => json_encode(array(
-                                              'title'   => array('width' => 100, 'show' => true),
-                                              'meta1'   => array('width' => 100, 'show' => true),
-                                              'image'   => array('width' => 25, 'show' => true),
-                                              'excerpt' => array('width' => 75, 'show' => true),
-  //                                            'caption' => array('width' => 100, 'show' => false),
-                                              'content' => array('width' => 100, 'show' => false),
-                                              'meta2'   => array('width' => 100, 'show' => false),
-                                              'meta3'   => array('width' => 100, 'show' => false),
-                                              'custom1' => array('width' => 100, 'show' => false),
-                                              'custom2' => array('width' => 100, 'show' => false),
-                                              'custom3' => array('width' => 100, 'show' => false))),
-                'hint' => array('title'=>'','content'=>__('Drag and drop to sort the order of your elements. <strong>Heights are fluid in panels, so not indicative of how it will look on the page</strong>.', 'pzarc'))
-            ),
-            // OMG!! The multiselect is working and I don't know why!!
             array(
                 'title'    => __('Components to show', 'pzarc'),
                 'id'       => $prefix . 'components-to-show',
@@ -385,7 +362,7 @@
                     'excerpt' => 'Excerpt',
                     'content' => 'Content',
                     'image'   => 'Image',
-//                    'caption' => 'Caption',
+                    //                    'caption' => 'Caption',
                     'meta1'   => 'Meta1',
                     'meta2'   => 'Meta2',
                     'meta3'   => 'Meta3',
@@ -395,6 +372,42 @@
                     //        'custom4' => 'Custom Field 4',
                 ),
                 'hint' => array('content'=>__('Select which base components to include in this panel layout.', 'pzarc'))
+            ),
+            array(
+                'title'    => __('Background Feature Image/Video', 'pzarc'),
+                'id'       => $prefix . 'background-position',
+                'width'    => '100%',
+                'type'     => 'button_set',
+                'default'  => 'none',
+                'options'  => array(
+                    'none'  => 'No image',
+                    'fill'  => 'Fill the panel',
+                    'align' => 'Align with components area',
+                ),
+                'hint' => array('content'=>__('Select how to display the featured image or video as the background.', 'pzarc'))
+            ),
+            array(
+                'title'    => 'Panel preview',
+                'id'       => $prefix . 'preview',
+                'width'    => 'auto',
+                'type'     => 'code',
+                'readonly' => false, // Readonly fields can't be written to by code! Weird
+                'code'     => draw_panel_layout(),
+                'default_show' => false,
+                'subtitle'=> 'Drag and drop to reposition and resize components',
+                'default'  => json_encode(array(
+                                              'title'   => array('width' => 100, 'show' => true),
+                                              'meta1'   => array('width' => 100, 'show' => true),
+                                              'image'   => array('width' => 25, 'show' => true),
+                                              'excerpt' => array('width' => 75, 'show' => true),
+                                              //                                            'caption' => array('width' => 100, 'show' => false),
+                                              'content' => array('width' => 100, 'show' => false),
+                                              'meta2'   => array('width' => 100, 'show' => false),
+                                              'meta3'   => array('width' => 100, 'show' => false),
+                                              'custom1' => array('width' => 100, 'show' => false),
+                                              'custom2' => array('width' => 100, 'show' => false),
+                                              'custom3' => array('width' => 100, 'show' => false))),
+                'hint' => array('title'=>'','content'=>__('Drag and drop to sort the order of your elements. <strong>Heights are fluid in panels, so not indicative of how it will look on the page</strong>.', 'pzarc'))
             ),
             array(
                 'title'    => __('Components area position', 'pzarc'),
@@ -460,19 +473,6 @@
                     'right' => 'Right',
                 ),
                 'hint' => array('content'=>__('Set the alignment of the image to show it in the excerpt or the content. This will use the image settings', 'pzarc'))
-            ),
-            array(
-                'title'    => __('Background Feature Image/Video', 'pzarc'),
-                'id'       => $prefix . 'background-position',
-                'width'    => '100%',
-                'type'     => 'button_set',
-                'default'  => 'none',
-                'options'  => array(
-                    'none'  => 'No image',
-                    'fill'  => 'Fill the panel',
-                    'align' => 'Align with components area',
-                ),
-                'hint' => array('content'=>__('Select how to display the featured image or video as the background.', 'pzarc'))
             ),
 
         )
@@ -557,22 +557,34 @@
      *********/
     // EXCERPTS
     $sections[ ] = array(
-        'title'      => 'Content',
+        'title'      => 'Content/Excerpts',
         'icon_class' => 'icon-large',
         'icon'       => 'el-icon-align-left',
         'fields'     => array(
 
             array(
+                'id'       => $prefix . 'content-responsive-heading',
+                'title'    => 'Responsive',
+                'type'     => 'section',
+                'class'    => 'heading',
+            ),
+            array(
                 'id'      => $prefix . 'responsive-hide-content',
                 'title'   => 'Hide Content on screens less than',
-                'type'    => 'text',
+                'type'    => 'spinner',
                 'default' => 0,
                 'cols'    => 3
             ),
             array(
+                'id'       => $prefix . 'excerpt-heading',
+                'title'    => 'Excerpts',
+                'type'     => 'section',
+                'class'    => 'heading',
+            ),
+            array(
                 'id'      => $prefix . 'excerpts-word-count',
                 'title'   => 'Excerpt length (words)',
-                'type'    => 'text',
+                'type'    => 'spinner',
                 'default' => 55,
                 'cols'    => 3
             ),
@@ -706,6 +718,7 @@
                 'type'     => 'switch',
                 'default'  => false,
                 'cols'     => 3,
+                'subtitle'=>'Convert all resized images to JPEG format.',
                 'hint' => array('content'=>'Convert all resized images to JPEG format - usually will be smaller.')
             ),
             array(
@@ -713,7 +726,6 @@
                 'id'         => $prefix . 'image-resizing',
                 'type'       => 'select',
                 'select2'  => array('allowClear' => false),
-                'cols'       => 3,
                 'default'    => 'crop',
                 'options'    => array(
                     'crop'          => 'Crop width and height to fit',
