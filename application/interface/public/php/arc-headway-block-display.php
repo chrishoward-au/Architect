@@ -168,6 +168,7 @@ class HeadwayArchitectBlock extends HeadwayBlockAPI
 		global $wp_query;
 		$settings = HeadwayArchitectBlockOptions::get_settings($block);
 
+    echo '<h3>HW Block</h3>';
 		echo pzarc($settings[ 'pzarc-blueprint' ]);
 
 		return;

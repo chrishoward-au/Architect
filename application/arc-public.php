@@ -186,7 +186,7 @@ return  'This isn\'t quite right yet. It goes into a recursive spin';
     else
     {
       // Generate the content to display
-//      $pzarc = new pzarc_Display($pzarc_blueprint,$pzarc_blueprint_arr, $pzarc_overrides, $is_shortcode);
+      $pzarc = new pzarc_Display($pzarc_blueprint,$pzarc_blueprint_arr, $pzarc_overrides, $is_shortcode);
 
     return $pzarc->output;
     }
