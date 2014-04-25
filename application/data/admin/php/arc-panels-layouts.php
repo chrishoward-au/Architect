@@ -97,7 +97,7 @@
       $pzarc_insert = array
       (
 //                    'pzarc_set_name'   => __('Set name', 'pzsp'),
-'_panels_settings_short_name' => __('Short name', 'pzsp'),
+'_panels_settings_short-name' => __('Short name', 'pzsp'),
       );
 
       return array_merge($pzarc_front, $pzarc_insert, $pzarc_back);
@@ -121,7 +121,7 @@
 //      // thiswont work coz
 //      switch ($column)
 //      {
-//        case '_panels_settings_short_name':
+//        case '_panels_settings_short-name':
 //          $metaboxes = get_post_meta($post_id, '_architect', true);
 //          echo $metaboxes[ '_panels_settings_short-name' ];
 //          break;

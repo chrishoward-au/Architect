@@ -540,8 +540,7 @@
                 'id'      => $prefix . 'pager',
                 'title'   => __('Pagination', 'pzarc'),
                 'type'    => 'button_set',
-                'cols'    => 12,
-                'default' => 'wppagination',
+                'default' => 'none',
                 'options' => array(
                     'none'       => 'None',
                     'names'      => 'Post names',
@@ -553,7 +552,6 @@
                 'id'      => $prefix . 'pager-location',
                 'title'   => __('Pagination location', 'pzarc'),
                 'type'    => 'button_set',
-                'cols'    => 12,
                 'default' => 'bottom',
                 'options' => array(
                     'bottom' => 'Bottom',
@@ -565,7 +563,6 @@
                 'id'      => $prefix . 'posts-per-page',
                 'title'   => __('Posts per page', 'pzarc'),
                 'type'    => 'text',
-                'cols'    => 12,
                 'default' => 'Do we really need this? Can\'t we just use the total panels per section?',
             ),
         )
@@ -578,12 +575,6 @@
         'required'   => array('blueprints_navigation', 'equals', 'navigator'),
         'desc'       => 'When the navigation type is set to navigator, presentation will always be in a slider form.',
         'fields'     => array(
-            array(
-                'title' => __('General', 'pzarc'),
-                'id'    => $prefix . 'navigator-heading',
-                'type'  => 'section',
-                'class' => ' heading',
-            ),
             array(
                 'id'       => $prefix . 'navigator',
                 'title'    => __('Navigator Type', 'pzarc'),
@@ -647,7 +638,7 @@
             array(
                 'title'    => 'Navigator Location',
                 'id'       => $prefix . 'navigator-location',
-                'subtitle' => 'Select whether navigator should appear over the content are, or outside of it',
+                'subtitle' => 'Select whether navigator should appear over the content area, or outside of it',
                 'type'     => 'image_select',
                 'default'  => 'outside',
                 'height'   => 75,
@@ -672,7 +663,7 @@
                     'none'   => 'None',
                     'hover'  => 'Hover over panels',
                     'inline' => 'Inline with navigator',
-                    'both' => 'Both'
+                    'both'   => 'Both'
                 )
             ),
             array(
@@ -682,12 +673,14 @@
                 'default'  => 5,
                 'subtitle' => 'If zero, it will use the "Panels to show" value. This is the number of items visible in the navigator bar. NOTE: This is also the number of items skipped by multi-skip pager element of the inline pager.'
             ),
-            array(
-                'title' => __('Transition', 'pzarc'),
-                'id'    => $prefix . 'transition-heading',
-                'type'  => 'section',
-                'class' => ' heading',
-            ),
+        )
+    );
+    $sections[ ] = array(
+        'title'      => __('Transitions', 'pzarc'),
+        'show_title' => true,
+        'required'   => array('blueprints_navigation', 'equals', 'navigator'),
+        'subsection'=>true,
+        'fields'     => array(
             array(
                 'title'   => 'Type',
                 'id'      => $prefix . 'transitions-type',

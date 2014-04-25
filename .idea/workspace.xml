@@ -9,10 +9,17 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/assets/images/metaboxes/nav-pos-left.png" afterPath="$PROJECT_DIR$/application/assets/images/metaboxes/nav-pos-left.png" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/assets/images/metaboxes/nav-pos-right.png" afterPath="$PROJECT_DIR$/application/assets/images/metaboxes/nav-pos-right.png" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/assets/images/metaboxes/nav-pos-top.png" afterPath="$PROJECT_DIR$/application/assets/images/metaboxes/nav-pos-top.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/data/admin/css/arc-admin.css" afterPath="$PROJECT_DIR$/application/data/admin/css/arc-admin.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/data/admin/php/arc-blueprints.php" afterPath="$PROJECT_DIR$/application/data/admin/php/arc-blueprints.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/data/admin/js/arc-metaboxes-blueprints.js" afterPath="$PROJECT_DIR$/application/data/admin/js/arc-metaboxes-blueprints.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/data/admin/js/arc-metaboxes-panels.js" afterPath="$PROJECT_DIR$/application/data/admin/js/arc-metaboxes-panels.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/data/admin/php/arc-options.php" afterPath="$PROJECT_DIR$/application/data/admin/php/arc-options.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/data/admin/php/arc-panels-layouts.php" afterPath="$PROJECT_DIR$/application/data/admin/php/arc-panels-layouts.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/interface/public/php/arc_template.php" afterPath="$PROJECT_DIR$/application/interface/public/php/arc_template.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/includes/external/php/redux-extensions/extensions/metaboxes/extension_metaboxes.css" afterPath="$PROJECT_DIR$/application/includes/external/php/redux-extensions/extensions/metaboxes/extension_metaboxes.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/includes/external/php/redux-extensions/extensions/metaboxes/extension_metaboxes.js" afterPath="$PROJECT_DIR$/application/includes/external/php/redux-extensions/extensions/metaboxes/extension_metaboxes.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/includes/external/php/redux-extensions/extensions/metaboxes/extension_metaboxes.less" afterPath="$PROJECT_DIR$/application/includes/external/php/redux-extensions/extensions/metaboxes/extension_metaboxes.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/includes/external/php/redux-extensions/extensions/metaboxes/extension_metaboxes.min.js" afterPath="$PROJECT_DIR$/application/includes/external/php/redux-extensions/extensions/metaboxes/extension_metaboxes.min.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/includes/external/php/redux-extensions/extensions/metaboxes/extension_metaboxes.php" afterPath="$PROJECT_DIR$/application/includes/external/php/redux-extensions/extensions/metaboxes/extension_metaboxes.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/work/nav images.sketch/metadata" afterPath="$PROJECT_DIR$/work/nav images.sketch/metadata" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
@@ -85,18 +92,18 @@
       <file leaf-file-name="arc-blueprints.php" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/application/data/admin/php/arc-blueprints.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="714" column="0" selection-start="28546" selection-end="28546" vertical-scroll-proportion="-11.923077" vertical-offset="11922" max-vertical-offset="23058">
+            <state line="577" column="0" selection-start="22398" selection-end="22398" vertical-scroll-proportion="-6.1538463" vertical-offset="9906" max-vertical-offset="22932">
               <folding>
-                <marker date="1398259796000" expanded="true" signature="30100:30298" placeholder="..." />
-                <marker date="1398259796000" expanded="true" signature="30333:30510" placeholder="..." />
-                <marker date="1398259796000" expanded="true" signature="30545:30717" placeholder="..." />
-                <marker date="1398259796000" expanded="true" signature="30752:30926" placeholder="..." />
-                <marker date="1398259796000" expanded="true" signature="30961:31062" placeholder="..." />
-                <marker date="1398259796000" expanded="true" signature="45265:45463" placeholder="..." />
-                <marker date="1398259796000" expanded="true" signature="45498:45675" placeholder="..." />
-                <marker date="1398259796000" expanded="true" signature="45710:45882" placeholder="..." />
-                <marker date="1398259796000" expanded="true" signature="45917:46091" placeholder="..." />
-                <marker date="1398259796000" expanded="true" signature="46126:46227" placeholder="..." />
+                <marker date="1398321488000" expanded="true" signature="29815:30013" placeholder="..." />
+                <marker date="1398321488000" expanded="true" signature="30048:30225" placeholder="..." />
+                <marker date="1398321488000" expanded="true" signature="30260:30432" placeholder="..." />
+                <marker date="1398321488000" expanded="true" signature="30467:30641" placeholder="..." />
+                <marker date="1398321488000" expanded="true" signature="30676:30777" placeholder="..." />
+                <marker date="1398321488000" expanded="true" signature="44980:45178" placeholder="..." />
+                <marker date="1398321488000" expanded="true" signature="45213:45390" placeholder="..." />
+                <marker date="1398321488000" expanded="true" signature="45425:45597" placeholder="..." />
+                <marker date="1398321488000" expanded="true" signature="45632:45806" placeholder="..." />
+                <marker date="1398321488000" expanded="true" signature="45841:45942" placeholder="..." />
               </folding>
             </state>
           </provider>
@@ -113,12 +120,12 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="arc_template.php" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="arc_template.php" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/application/interface/public/php/arc_template.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="16" column="26" selection-start="365" selection-end="365" vertical-scroll-proportion="-12.0" vertical-offset="0" max-vertical-offset="774">
+            <state line="29" column="51" selection-start="732" selection-end="732" vertical-scroll-proportion="0.430338" vertical-offset="0" max-vertical-offset="1213">
               <folding>
-                <marker date="1398139680000" expanded="true" signature="287:300" placeholder="..." />
+                <marker date="1398352549000" expanded="true" signature="681:694" placeholder="..." />
               </folding>
             </state>
           </provider>
@@ -136,7 +143,7 @@
       <file leaf-file-name="arc-metaboxes-blueprints.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/application/data/admin/js/arc-metaboxes-blueprints.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="151" column="0" selection-start="7499" selection-end="7499" vertical-scroll-proportion="0.0" vertical-offset="2317" max-vertical-offset="8226">
+            <state line="451" column="0" selection-start="20261" selection-end="20261" vertical-scroll-proportion="0.0" vertical-offset="7043" max-vertical-offset="8352">
               <folding />
             </state>
           </provider>
@@ -154,19 +161,19 @@
       <file leaf-file-name="arc-options.php" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/application/data/admin/php/arc-options.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="16.5" vertical-offset="396" max-vertical-offset="12294">
+            <state line="530" column="114" selection-start="23315" selection-end="23315" vertical-scroll-proportion="-19.25" vertical-offset="9078" max-vertical-offset="12294">
               <folding>
-                <marker date="1397718732000" expanded="true" signature="6268:7916" placeholder="..." />
-                <marker date="1397718732000" expanded="true" signature="6476:6679" placeholder="..." />
-                <marker date="1397718732000" expanded="true" signature="6793:6863" placeholder="..." />
-                <marker date="1397718732000" expanded="true" signature="6905:6978" placeholder="..." />
-                <marker date="1397718732000" expanded="true" signature="6995:7900" placeholder="..." />
-                <marker date="1397718732000" expanded="true" signature="7031:7424" placeholder="..." />
-                <marker date="1397718732000" expanded="true" signature="18745:18943" placeholder="..." />
-                <marker date="1397718732000" expanded="true" signature="18978:19155" placeholder="..." />
-                <marker date="1397718732000" expanded="true" signature="19190:19362" placeholder="..." />
-                <marker date="1397718732000" expanded="true" signature="19397:19571" placeholder="..." />
-                <marker date="1397718732000" expanded="true" signature="19606:19707" placeholder="..." />
+                <marker date="1398320325000" expanded="true" signature="6268:7916" placeholder="..." />
+                <marker date="1398320325000" expanded="true" signature="6476:6679" placeholder="..." />
+                <marker date="1398320325000" expanded="true" signature="6793:6863" placeholder="..." />
+                <marker date="1398320325000" expanded="true" signature="6905:6978" placeholder="..." />
+                <marker date="1398320325000" expanded="true" signature="6995:7900" placeholder="..." />
+                <marker date="1398320325000" expanded="true" signature="7031:7424" placeholder="..." />
+                <marker date="1398320325000" expanded="true" signature="18745:18943" placeholder="..." />
+                <marker date="1398320325000" expanded="true" signature="18978:19155" placeholder="..." />
+                <marker date="1398320325000" expanded="true" signature="19190:19362" placeholder="..." />
+                <marker date="1398320325000" expanded="true" signature="19397:19571" placeholder="..." />
+                <marker date="1398320325000" expanded="true" signature="19606:19707" placeholder="..." />
               </folding>
             </state>
           </provider>
@@ -175,40 +182,40 @@
       <file leaf-file-name="arc-panels-layouts.php" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/application/data/admin/php/arc-panels-layouts.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="1215" column="0" selection-start="49870" selection-end="49870" vertical-scroll-proportion="-22.76" vertical-offset="20732" max-vertical-offset="21978">
+            <state line="123" column="39" selection-start="3961" selection-end="3961" vertical-scroll-proportion="-22.22" vertical-offset="1103" max-vertical-offset="21978">
               <folding>
-                <marker date="1398260148000" expanded="true" signature="32443:32641" placeholder="..." />
-                <marker date="1398260148000" expanded="true" signature="32676:32853" placeholder="..." />
-                <marker date="1398260148000" expanded="true" signature="32888:33060" placeholder="..." />
-                <marker date="1398260148000" expanded="true" signature="33095:33269" placeholder="..." />
-                <marker date="1398260148000" expanded="true" signature="33304:33405" placeholder="..." />
-                <marker date="1398260148000" expanded="true" signature="42953:43151" placeholder="..." />
-                <marker date="1398260148000" expanded="true" signature="43186:43363" placeholder="..." />
-                <marker date="1398260148000" expanded="true" signature="43398:43570" placeholder="..." />
-                <marker date="1398260148000" expanded="true" signature="43605:43779" placeholder="..." />
-                <marker date="1398260148000" expanded="true" signature="43814:43915" placeholder="..." />
+                <marker date="1398347886000" expanded="true" signature="32443:32641" placeholder="..." />
+                <marker date="1398347886000" expanded="true" signature="32676:32853" placeholder="..." />
+                <marker date="1398347886000" expanded="true" signature="32888:33060" placeholder="..." />
+                <marker date="1398347886000" expanded="true" signature="33095:33269" placeholder="..." />
+                <marker date="1398347886000" expanded="true" signature="33304:33405" placeholder="..." />
+                <marker date="1398347886000" expanded="true" signature="42953:43151" placeholder="..." />
+                <marker date="1398347886000" expanded="true" signature="43186:43363" placeholder="..." />
+                <marker date="1398347886000" expanded="true" signature="43398:43570" placeholder="..." />
+                <marker date="1398347886000" expanded="true" signature="43605:43779" placeholder="..." />
+                <marker date="1398347886000" expanded="true" signature="43814:43915" placeholder="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="arc-metaboxes-panels.js" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="arc-metaboxes-panels.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/application/data/admin/js/arc-metaboxes-panels.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="632" column="116" selection-start="28606" selection-end="28606" vertical-scroll-proportion="0.7295492" vertical-offset="10502" max-vertical-offset="11700">
+            <state line="649" column="0" selection-start="28685" selection-end="28940" vertical-scroll-proportion="-43.307693" vertical-offset="10556" max-vertical-offset="11844">
               <folding>
-                <marker date="1398261242000" expanded="true" signature="6793:6847" placeholder="..." />
-                <marker date="1398261242000" expanded="true" signature="7046:7061" placeholder="..." />
-                <marker date="1398261242000" expanded="true" signature="7254:7269" placeholder="..." />
-                <marker date="1398261242000" expanded="true" signature="7458:7491" placeholder="..." />
-                <marker date="1398261242000" expanded="true" signature="7565:7580" placeholder="..." />
-                <marker date="1398261242000" expanded="true" signature="8066:8081" placeholder="..." />
-                <marker date="1398261242000" expanded="true" signature="8328:8365" placeholder="..." />
-                <marker date="1398261242000" expanded="true" signature="9040:9055" placeholder="..." />
-                <marker date="1398261242000" expanded="true" signature="9633:9648" placeholder="..." />
-                <marker date="1398261242000" expanded="true" signature="9851:9866" placeholder="..." />
-                <marker date="1398261242000" expanded="true" signature="10073:10088" placeholder="..." />
-                <marker date="1398261242000" expanded="true" signature="10295:10310" placeholder="..." />
+                <marker date="1398349777000" expanded="true" signature="6792:6846" placeholder="..." />
+                <marker date="1398349777000" expanded="true" signature="7045:7060" placeholder="..." />
+                <marker date="1398349777000" expanded="true" signature="7253:7268" placeholder="..." />
+                <marker date="1398349777000" expanded="true" signature="7457:7490" placeholder="..." />
+                <marker date="1398349777000" expanded="true" signature="7564:7579" placeholder="..." />
+                <marker date="1398349777000" expanded="true" signature="8065:8080" placeholder="..." />
+                <marker date="1398349777000" expanded="true" signature="8327:8364" placeholder="..." />
+                <marker date="1398349777000" expanded="true" signature="9039:9054" placeholder="..." />
+                <marker date="1398349777000" expanded="true" signature="9632:9647" placeholder="..." />
+                <marker date="1398349777000" expanded="true" signature="9850:9865" placeholder="..." />
+                <marker date="1398349777000" expanded="true" signature="10072:10087" placeholder="..." />
+                <marker date="1398349777000" expanded="true" signature="10294:10309" placeholder="..." />
               </folding>
             </state>
           </provider>
@@ -236,7 +243,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/includes/headway/arc-block-display.php" />
         <option value="$PROJECT_DIR$/admin/php/redux/arc-blueprints.php" />
         <option value="$PROJECT_DIR$/frontend/css/arc-front.css" />
         <option value="$PROJECT_DIR$/includes/headway/arc-block-options.php" />
@@ -277,16 +283,17 @@
         <option value="$PROJECT_DIR$/application/includes/external/php/redux-custom-fields/loader.php" />
         <option value="$PROJECT_DIR$/application/includes/external/php/redux-custom-fields/tabbed/field_tabbed.php" />
         <option value="$PROJECT_DIR$/application/includes/external/php/redux-custom-fields/tabbed/field_tabbed.js" />
-        <option value="$PROJECT_DIR$/application/data/admin/js/arc-metaboxes-blueprints.js" />
-        <option value="$PROJECT_DIR$/application/interface/public/php/arc_template.php" />
         <option value="$PROJECT_DIR$/application/interface/public/php/class_pzarc_Display.php" />
         <option value="$PROJECT_DIR$/application/arc-public.php" />
         <option value="$PROJECT_DIR$/application/arc-admin.php" />
         <option value="$PROJECT_DIR$/architect.php" />
         <option value="$PROJECT_DIR$/application/data/admin/css/arc-admin.css" />
+        <option value="$PROJECT_DIR$/application/data/admin/php/arc-options.php" />
         <option value="$PROJECT_DIR$/application/data/admin/php/arc-blueprints.php" />
         <option value="$PROJECT_DIR$/application/data/admin/php/arc-panels-layouts.php" />
         <option value="$PROJECT_DIR$/application/data/admin/js/arc-metaboxes-panels.js" />
+        <option value="$PROJECT_DIR$/application/data/admin/js/arc-metaboxes-blueprints.js" />
+        <option value="$PROJECT_DIR$/application/interface/public/php/arc_template.php" />
       </list>
     </option>
   </component>
@@ -873,17 +880,17 @@
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="396" max-vertical-offset="12294">
           <folding>
-            <marker date="1397718732000" expanded="true" signature="6268:7916" placeholder="..." />
-            <marker date="1397718732000" expanded="true" signature="6476:6679" placeholder="..." />
-            <marker date="1397718732000" expanded="true" signature="6793:6863" placeholder="..." />
-            <marker date="1397718732000" expanded="true" signature="6905:6978" placeholder="..." />
-            <marker date="1397718732000" expanded="true" signature="6995:7900" placeholder="..." />
-            <marker date="1397718732000" expanded="true" signature="7031:7424" placeholder="..." />
-            <marker date="1397718732000" expanded="true" signature="18745:18943" placeholder="..." />
-            <marker date="1397718732000" expanded="true" signature="18978:19155" placeholder="..." />
-            <marker date="1397718732000" expanded="true" signature="19190:19362" placeholder="..." />
-            <marker date="1397718732000" expanded="true" signature="19397:19571" placeholder="..." />
-            <marker date="1397718732000" expanded="true" signature="19606:19707" placeholder="..." />
+            <marker date="1398320325000" expanded="true" signature="6268:7916" placeholder="..." />
+            <marker date="1398320325000" expanded="true" signature="6476:6679" placeholder="..." />
+            <marker date="1398320325000" expanded="true" signature="6793:6863" placeholder="..." />
+            <marker date="1398320325000" expanded="true" signature="6905:6978" placeholder="..." />
+            <marker date="1398320325000" expanded="true" signature="6995:7900" placeholder="..." />
+            <marker date="1398320325000" expanded="true" signature="7031:7424" placeholder="..." />
+            <marker date="1398320325000" expanded="true" signature="18745:18943" placeholder="..." />
+            <marker date="1398320325000" expanded="true" signature="18978:19155" placeholder="..." />
+            <marker date="1398320325000" expanded="true" signature="19190:19362" placeholder="..." />
+            <marker date="1398320325000" expanded="true" signature="19397:19571" placeholder="..." />
+            <marker date="1398320325000" expanded="true" signature="19606:19707" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -892,16 +899,16 @@
       <provider selected="true" editor-type-id="text-editor">
         <state line="237" column="21" selection-start="8470" selection-end="8470" vertical-scroll-proportion="0.0" vertical-offset="4032" max-vertical-offset="21636">
           <folding>
-            <marker date="1398260148000" expanded="true" signature="32443:32641" placeholder="..." />
-            <marker date="1398260148000" expanded="true" signature="32676:32853" placeholder="..." />
-            <marker date="1398260148000" expanded="true" signature="32888:33060" placeholder="..." />
-            <marker date="1398260148000" expanded="true" signature="33095:33269" placeholder="..." />
-            <marker date="1398260148000" expanded="true" signature="33304:33405" placeholder="..." />
-            <marker date="1398260148000" expanded="true" signature="42953:43151" placeholder="..." />
-            <marker date="1398260148000" expanded="true" signature="43186:43363" placeholder="..." />
-            <marker date="1398260148000" expanded="true" signature="43398:43570" placeholder="..." />
-            <marker date="1398260148000" expanded="true" signature="43605:43779" placeholder="..." />
-            <marker date="1398260148000" expanded="true" signature="43814:43915" placeholder="..." />
+            <marker date="1398347886000" expanded="true" signature="32443:32641" placeholder="..." />
+            <marker date="1398347886000" expanded="true" signature="32676:32853" placeholder="..." />
+            <marker date="1398347886000" expanded="true" signature="32888:33060" placeholder="..." />
+            <marker date="1398347886000" expanded="true" signature="33095:33269" placeholder="..." />
+            <marker date="1398347886000" expanded="true" signature="33304:33405" placeholder="..." />
+            <marker date="1398347886000" expanded="true" signature="42953:43151" placeholder="..." />
+            <marker date="1398347886000" expanded="true" signature="43186:43363" placeholder="..." />
+            <marker date="1398347886000" expanded="true" signature="43398:43570" placeholder="..." />
+            <marker date="1398347886000" expanded="true" signature="43605:43779" placeholder="..." />
+            <marker date="1398347886000" expanded="true" signature="43814:43915" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -952,16 +959,16 @@
       <provider selected="true" editor-type-id="text-editor">
         <state line="678" column="29" selection-start="26295" selection-end="26295" vertical-scroll-proportion="0.0" vertical-offset="12060" max-vertical-offset="20970">
           <folding>
-            <marker date="1398259796000" expanded="true" signature="30100:30298" placeholder="..." />
-            <marker date="1398259796000" expanded="true" signature="30333:30510" placeholder="..." />
-            <marker date="1398259796000" expanded="true" signature="30545:30717" placeholder="..." />
-            <marker date="1398259796000" expanded="true" signature="30752:30926" placeholder="..." />
-            <marker date="1398259796000" expanded="true" signature="30961:31062" placeholder="..." />
-            <marker date="1398259796000" expanded="true" signature="45265:45463" placeholder="..." />
-            <marker date="1398259796000" expanded="true" signature="45498:45675" placeholder="..." />
-            <marker date="1398259796000" expanded="true" signature="45710:45882" placeholder="..." />
-            <marker date="1398259796000" expanded="true" signature="45917:46091" placeholder="..." />
-            <marker date="1398259796000" expanded="true" signature="46126:46227" placeholder="..." />
+            <marker date="1398321488000" expanded="true" signature="29815:30013" placeholder="..." />
+            <marker date="1398321488000" expanded="true" signature="30048:30225" placeholder="..." />
+            <marker date="1398321488000" expanded="true" signature="30260:30432" placeholder="..." />
+            <marker date="1398321488000" expanded="true" signature="30467:30641" placeholder="..." />
+            <marker date="1398321488000" expanded="true" signature="30676:30777" placeholder="..." />
+            <marker date="1398321488000" expanded="true" signature="44980:45178" placeholder="..." />
+            <marker date="1398321488000" expanded="true" signature="45213:45390" placeholder="..." />
+            <marker date="1398321488000" expanded="true" signature="45425:45597" placeholder="..." />
+            <marker date="1398321488000" expanded="true" signature="45632:45806" placeholder="..." />
+            <marker date="1398321488000" expanded="true" signature="45841:45942" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -986,17 +993,17 @@
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="396" max-vertical-offset="12294">
           <folding>
-            <marker date="1397718732000" expanded="true" signature="6268:7916" placeholder="..." />
-            <marker date="1397718732000" expanded="true" signature="6476:6679" placeholder="..." />
-            <marker date="1397718732000" expanded="true" signature="6793:6863" placeholder="..." />
-            <marker date="1397718732000" expanded="true" signature="6905:6978" placeholder="..." />
-            <marker date="1397718732000" expanded="true" signature="6995:7900" placeholder="..." />
-            <marker date="1397718732000" expanded="true" signature="7031:7424" placeholder="..." />
-            <marker date="1397718732000" expanded="true" signature="18745:18943" placeholder="..." />
-            <marker date="1397718732000" expanded="true" signature="18978:19155" placeholder="..." />
-            <marker date="1397718732000" expanded="true" signature="19190:19362" placeholder="..." />
-            <marker date="1397718732000" expanded="true" signature="19397:19571" placeholder="..." />
-            <marker date="1397718732000" expanded="true" signature="19606:19707" placeholder="..." />
+            <marker date="1398320325000" expanded="true" signature="6268:7916" placeholder="..." />
+            <marker date="1398320325000" expanded="true" signature="6476:6679" placeholder="..." />
+            <marker date="1398320325000" expanded="true" signature="6793:6863" placeholder="..." />
+            <marker date="1398320325000" expanded="true" signature="6905:6978" placeholder="..." />
+            <marker date="1398320325000" expanded="true" signature="6995:7900" placeholder="..." />
+            <marker date="1398320325000" expanded="true" signature="7031:7424" placeholder="..." />
+            <marker date="1398320325000" expanded="true" signature="18745:18943" placeholder="..." />
+            <marker date="1398320325000" expanded="true" signature="18978:19155" placeholder="..." />
+            <marker date="1398320325000" expanded="true" signature="19190:19362" placeholder="..." />
+            <marker date="1398320325000" expanded="true" signature="19397:19571" placeholder="..." />
+            <marker date="1398320325000" expanded="true" signature="19606:19707" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -1005,16 +1012,16 @@
       <provider selected="true" editor-type-id="text-editor">
         <state line="74" column="85" selection-start="2618" selection-end="2618" vertical-scroll-proportion="0.0" vertical-offset="1332" max-vertical-offset="21600">
           <folding>
-            <marker date="1398260148000" expanded="true" signature="32443:32641" placeholder="..." />
-            <marker date="1398260148000" expanded="true" signature="32676:32853" placeholder="..." />
-            <marker date="1398260148000" expanded="true" signature="32888:33060" placeholder="..." />
-            <marker date="1398260148000" expanded="true" signature="33095:33269" placeholder="..." />
-            <marker date="1398260148000" expanded="true" signature="33304:33405" placeholder="..." />
-            <marker date="1398260148000" expanded="true" signature="42953:43151" placeholder="..." />
-            <marker date="1398260148000" expanded="true" signature="43186:43363" placeholder="..." />
-            <marker date="1398260148000" expanded="true" signature="43398:43570" placeholder="..." />
-            <marker date="1398260148000" expanded="true" signature="43605:43779" placeholder="..." />
-            <marker date="1398260148000" expanded="true" signature="43814:43915" placeholder="..." />
+            <marker date="1398347886000" expanded="true" signature="32443:32641" placeholder="..." />
+            <marker date="1398347886000" expanded="true" signature="32676:32853" placeholder="..." />
+            <marker date="1398347886000" expanded="true" signature="32888:33060" placeholder="..." />
+            <marker date="1398347886000" expanded="true" signature="33095:33269" placeholder="..." />
+            <marker date="1398347886000" expanded="true" signature="33304:33405" placeholder="..." />
+            <marker date="1398347886000" expanded="true" signature="42953:43151" placeholder="..." />
+            <marker date="1398347886000" expanded="true" signature="43186:43363" placeholder="..." />
+            <marker date="1398347886000" expanded="true" signature="43398:43570" placeholder="..." />
+            <marker date="1398347886000" expanded="true" signature="43605:43779" placeholder="..." />
+            <marker date="1398347886000" expanded="true" signature="43814:43915" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -1058,16 +1065,16 @@
       <provider selected="true" editor-type-id="text-editor">
         <state line="49" column="89" selection-start="1596" selection-end="1596" vertical-scroll-proportion="0.0" vertical-offset="882" max-vertical-offset="20970">
           <folding>
-            <marker date="1398259796000" expanded="true" signature="30100:30298" placeholder="..." />
-            <marker date="1398259796000" expanded="true" signature="30333:30510" placeholder="..." />
-            <marker date="1398259796000" expanded="true" signature="30545:30717" placeholder="..." />
-            <marker date="1398259796000" expanded="true" signature="30752:30926" placeholder="..." />
-            <marker date="1398259796000" expanded="true" signature="30961:31062" placeholder="..." />
-            <marker date="1398259796000" expanded="true" signature="45265:45463" placeholder="..." />
-            <marker date="1398259796000" expanded="true" signature="45498:45675" placeholder="..." />
-            <marker date="1398259796000" expanded="true" signature="45710:45882" placeholder="..." />
-            <marker date="1398259796000" expanded="true" signature="45917:46091" placeholder="..." />
-            <marker date="1398259796000" expanded="true" signature="46126:46227" placeholder="..." />
+            <marker date="1398321488000" expanded="true" signature="29815:30013" placeholder="..." />
+            <marker date="1398321488000" expanded="true" signature="30048:30225" placeholder="..." />
+            <marker date="1398321488000" expanded="true" signature="30260:30432" placeholder="..." />
+            <marker date="1398321488000" expanded="true" signature="30467:30641" placeholder="..." />
+            <marker date="1398321488000" expanded="true" signature="30676:30777" placeholder="..." />
+            <marker date="1398321488000" expanded="true" signature="44980:45178" placeholder="..." />
+            <marker date="1398321488000" expanded="true" signature="45213:45390" placeholder="..." />
+            <marker date="1398321488000" expanded="true" signature="45425:45597" placeholder="..." />
+            <marker date="1398321488000" expanded="true" signature="45632:45806" placeholder="..." />
+            <marker date="1398321488000" expanded="true" signature="45841:45942" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -1076,17 +1083,17 @@
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="396" max-vertical-offset="12294">
           <folding>
-            <marker date="1397718732000" expanded="true" signature="6268:7916" placeholder="..." />
-            <marker date="1397718732000" expanded="true" signature="6476:6679" placeholder="..." />
-            <marker date="1397718732000" expanded="true" signature="6793:6863" placeholder="..." />
-            <marker date="1397718732000" expanded="true" signature="6905:6978" placeholder="..." />
-            <marker date="1397718732000" expanded="true" signature="6995:7900" placeholder="..." />
-            <marker date="1397718732000" expanded="true" signature="7031:7424" placeholder="..." />
-            <marker date="1397718732000" expanded="true" signature="18745:18943" placeholder="..." />
-            <marker date="1397718732000" expanded="true" signature="18978:19155" placeholder="..." />
-            <marker date="1397718732000" expanded="true" signature="19190:19362" placeholder="..." />
-            <marker date="1397718732000" expanded="true" signature="19397:19571" placeholder="..." />
-            <marker date="1397718732000" expanded="true" signature="19606:19707" placeholder="..." />
+            <marker date="1398320325000" expanded="true" signature="6268:7916" placeholder="..." />
+            <marker date="1398320325000" expanded="true" signature="6476:6679" placeholder="..." />
+            <marker date="1398320325000" expanded="true" signature="6793:6863" placeholder="..." />
+            <marker date="1398320325000" expanded="true" signature="6905:6978" placeholder="..." />
+            <marker date="1398320325000" expanded="true" signature="6995:7900" placeholder="..." />
+            <marker date="1398320325000" expanded="true" signature="7031:7424" placeholder="..." />
+            <marker date="1398320325000" expanded="true" signature="18745:18943" placeholder="..." />
+            <marker date="1398320325000" expanded="true" signature="18978:19155" placeholder="..." />
+            <marker date="1398320325000" expanded="true" signature="19190:19362" placeholder="..." />
+            <marker date="1398320325000" expanded="true" signature="19397:19571" placeholder="..." />
+            <marker date="1398320325000" expanded="true" signature="19606:19707" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -1095,16 +1102,16 @@
       <provider selected="true" editor-type-id="text-editor">
         <state line="74" column="85" selection-start="2618" selection-end="2618" vertical-scroll-proportion="0.0" vertical-offset="1332" max-vertical-offset="21600">
           <folding>
-            <marker date="1398260148000" expanded="true" signature="32443:32641" placeholder="..." />
-            <marker date="1398260148000" expanded="true" signature="32676:32853" placeholder="..." />
-            <marker date="1398260148000" expanded="true" signature="32888:33060" placeholder="..." />
-            <marker date="1398260148000" expanded="true" signature="33095:33269" placeholder="..." />
-            <marker date="1398260148000" expanded="true" signature="33304:33405" placeholder="..." />
-            <marker date="1398260148000" expanded="true" signature="42953:43151" placeholder="..." />
-            <marker date="1398260148000" expanded="true" signature="43186:43363" placeholder="..." />
-            <marker date="1398260148000" expanded="true" signature="43398:43570" placeholder="..." />
-            <marker date="1398260148000" expanded="true" signature="43605:43779" placeholder="..." />
-            <marker date="1398260148000" expanded="true" signature="43814:43915" placeholder="..." />
+            <marker date="1398347886000" expanded="true" signature="32443:32641" placeholder="..." />
+            <marker date="1398347886000" expanded="true" signature="32676:32853" placeholder="..." />
+            <marker date="1398347886000" expanded="true" signature="32888:33060" placeholder="..." />
+            <marker date="1398347886000" expanded="true" signature="33095:33269" placeholder="..." />
+            <marker date="1398347886000" expanded="true" signature="33304:33405" placeholder="..." />
+            <marker date="1398347886000" expanded="true" signature="42953:43151" placeholder="..." />
+            <marker date="1398347886000" expanded="true" signature="43186:43363" placeholder="..." />
+            <marker date="1398347886000" expanded="true" signature="43398:43570" placeholder="..." />
+            <marker date="1398347886000" expanded="true" signature="43605:43779" placeholder="..." />
+            <marker date="1398347886000" expanded="true" signature="43814:43915" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -1174,25 +1181,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application/data/admin/php/arc-options.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="16.5" vertical-offset="396" max-vertical-offset="12294">
-          <folding>
-            <marker date="1397718732000" expanded="true" signature="6268:7916" placeholder="..." />
-            <marker date="1397718732000" expanded="true" signature="6476:6679" placeholder="..." />
-            <marker date="1397718732000" expanded="true" signature="6793:6863" placeholder="..." />
-            <marker date="1397718732000" expanded="true" signature="6905:6978" placeholder="..." />
-            <marker date="1397718732000" expanded="true" signature="6995:7900" placeholder="..." />
-            <marker date="1397718732000" expanded="true" signature="7031:7424" placeholder="..." />
-            <marker date="1397718732000" expanded="true" signature="18745:18943" placeholder="..." />
-            <marker date="1397718732000" expanded="true" signature="18978:19155" placeholder="..." />
-            <marker date="1397718732000" expanded="true" signature="19190:19362" placeholder="..." />
-            <marker date="1397718732000" expanded="true" signature="19397:19571" placeholder="..." />
-            <marker date="1397718732000" expanded="true" signature="19606:19707" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/application/includes/external/php/redux-custom-fields/loader.php">
       <provider selected="true" editor-type-id="text-editor">
         <state line="19" column="0" selection-start="524" selection-end="524" vertical-scroll-proportion="-14.25" vertical-offset="0" max-vertical-offset="450">
@@ -1214,13 +1202,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application/data/admin/js/arc-metaboxes-blueprints.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="151" column="0" selection-start="7499" selection-end="7499" vertical-scroll-proportion="0.0" vertical-offset="2317" max-vertical-offset="8226">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../../../wp-includes/comment-template.php">
       <provider selected="true" editor-type-id="text-editor">
         <state line="716" column="9" selection-start="21922" selection-end="21922" vertical-scroll-proportion="0.32038835" vertical-offset="12624" max-vertical-offset="40320">
@@ -1228,15 +1209,6 @@
             <marker date="1397633733000" expanded="true" signature="-1:-1" placeholder="..." />
             <marker date="1397633733000" expanded="true" signature="-1:-1" placeholder="SELECT * FRO..$wpdb-&gt;comments WHERE..." />
             <marker date="1397633733000" expanded="true" signature="-1:-1" placeholder="SELECT * FRO..$wpdb-&gt;comments WHERE..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/interface/public/php/arc_template.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="16" column="26" selection-start="365" selection-end="365" vertical-scroll-proportion="-12.0" vertical-offset="0" max-vertical-offset="774">
-          <folding>
-            <marker date="1398139680000" expanded="true" signature="287:300" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -1278,58 +1250,93 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/application/data/admin/php/arc-options.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="530" column="114" selection-start="23315" selection-end="23315" vertical-scroll-proportion="-19.25" vertical-offset="9078" max-vertical-offset="12294">
+          <folding>
+            <marker date="1398320325000" expanded="true" signature="6268:7916" placeholder="..." />
+            <marker date="1398320325000" expanded="true" signature="6476:6679" placeholder="..." />
+            <marker date="1398320325000" expanded="true" signature="6793:6863" placeholder="..." />
+            <marker date="1398320325000" expanded="true" signature="6905:6978" placeholder="..." />
+            <marker date="1398320325000" expanded="true" signature="6995:7900" placeholder="..." />
+            <marker date="1398320325000" expanded="true" signature="7031:7424" placeholder="..." />
+            <marker date="1398320325000" expanded="true" signature="18745:18943" placeholder="..." />
+            <marker date="1398320325000" expanded="true" signature="18978:19155" placeholder="..." />
+            <marker date="1398320325000" expanded="true" signature="19190:19362" placeholder="..." />
+            <marker date="1398320325000" expanded="true" signature="19397:19571" placeholder="..." />
+            <marker date="1398320325000" expanded="true" signature="19606:19707" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/application/data/admin/php/arc-blueprints.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="714" column="0" selection-start="28546" selection-end="28546" vertical-scroll-proportion="-11.923077" vertical-offset="11922" max-vertical-offset="23058">
+        <state line="577" column="0" selection-start="22398" selection-end="22398" vertical-scroll-proportion="-6.1538463" vertical-offset="9906" max-vertical-offset="22932">
           <folding>
-            <marker date="1398259796000" expanded="true" signature="30100:30298" placeholder="..." />
-            <marker date="1398259796000" expanded="true" signature="30333:30510" placeholder="..." />
-            <marker date="1398259796000" expanded="true" signature="30545:30717" placeholder="..." />
-            <marker date="1398259796000" expanded="true" signature="30752:30926" placeholder="..." />
-            <marker date="1398259796000" expanded="true" signature="30961:31062" placeholder="..." />
-            <marker date="1398259796000" expanded="true" signature="45265:45463" placeholder="..." />
-            <marker date="1398259796000" expanded="true" signature="45498:45675" placeholder="..." />
-            <marker date="1398259796000" expanded="true" signature="45710:45882" placeholder="..." />
-            <marker date="1398259796000" expanded="true" signature="45917:46091" placeholder="..." />
-            <marker date="1398259796000" expanded="true" signature="46126:46227" placeholder="..." />
+            <marker date="1398321488000" expanded="true" signature="29815:30013" placeholder="..." />
+            <marker date="1398321488000" expanded="true" signature="30048:30225" placeholder="..." />
+            <marker date="1398321488000" expanded="true" signature="30260:30432" placeholder="..." />
+            <marker date="1398321488000" expanded="true" signature="30467:30641" placeholder="..." />
+            <marker date="1398321488000" expanded="true" signature="30676:30777" placeholder="..." />
+            <marker date="1398321488000" expanded="true" signature="44980:45178" placeholder="..." />
+            <marker date="1398321488000" expanded="true" signature="45213:45390" placeholder="..." />
+            <marker date="1398321488000" expanded="true" signature="45425:45597" placeholder="..." />
+            <marker date="1398321488000" expanded="true" signature="45632:45806" placeholder="..." />
+            <marker date="1398321488000" expanded="true" signature="45841:45942" placeholder="..." />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/application/data/admin/php/arc-panels-layouts.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="1215" column="0" selection-start="49870" selection-end="49870" vertical-scroll-proportion="-22.76" vertical-offset="20732" max-vertical-offset="21978">
+        <state line="123" column="39" selection-start="3961" selection-end="3961" vertical-scroll-proportion="-22.22" vertical-offset="1103" max-vertical-offset="21978">
           <folding>
-            <marker date="1398260148000" expanded="true" signature="32443:32641" placeholder="..." />
-            <marker date="1398260148000" expanded="true" signature="32676:32853" placeholder="..." />
-            <marker date="1398260148000" expanded="true" signature="32888:33060" placeholder="..." />
-            <marker date="1398260148000" expanded="true" signature="33095:33269" placeholder="..." />
-            <marker date="1398260148000" expanded="true" signature="33304:33405" placeholder="..." />
-            <marker date="1398260148000" expanded="true" signature="42953:43151" placeholder="..." />
-            <marker date="1398260148000" expanded="true" signature="43186:43363" placeholder="..." />
-            <marker date="1398260148000" expanded="true" signature="43398:43570" placeholder="..." />
-            <marker date="1398260148000" expanded="true" signature="43605:43779" placeholder="..." />
-            <marker date="1398260148000" expanded="true" signature="43814:43915" placeholder="..." />
+            <marker date="1398347886000" expanded="true" signature="32443:32641" placeholder="..." />
+            <marker date="1398347886000" expanded="true" signature="32676:32853" placeholder="..." />
+            <marker date="1398347886000" expanded="true" signature="32888:33060" placeholder="..." />
+            <marker date="1398347886000" expanded="true" signature="33095:33269" placeholder="..." />
+            <marker date="1398347886000" expanded="true" signature="33304:33405" placeholder="..." />
+            <marker date="1398347886000" expanded="true" signature="42953:43151" placeholder="..." />
+            <marker date="1398347886000" expanded="true" signature="43186:43363" placeholder="..." />
+            <marker date="1398347886000" expanded="true" signature="43398:43570" placeholder="..." />
+            <marker date="1398347886000" expanded="true" signature="43605:43779" placeholder="..." />
+            <marker date="1398347886000" expanded="true" signature="43814:43915" placeholder="..." />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/application/data/admin/js/arc-metaboxes-panels.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="632" column="116" selection-start="28606" selection-end="28606" vertical-scroll-proportion="0.7295492" vertical-offset="10502" max-vertical-offset="11700">
+        <state line="649" column="0" selection-start="28685" selection-end="28940" vertical-scroll-proportion="-43.307693" vertical-offset="10556" max-vertical-offset="11844">
           <folding>
-            <marker date="1398261242000" expanded="true" signature="6793:6847" placeholder="..." />
-            <marker date="1398261242000" expanded="true" signature="7046:7061" placeholder="..." />
-            <marker date="1398261242000" expanded="true" signature="7254:7269" placeholder="..." />
-            <marker date="1398261242000" expanded="true" signature="7458:7491" placeholder="..." />
-            <marker date="1398261242000" expanded="true" signature="7565:7580" placeholder="..." />
-            <marker date="1398261242000" expanded="true" signature="8066:8081" placeholder="..." />
-            <marker date="1398261242000" expanded="true" signature="8328:8365" placeholder="..." />
-            <marker date="1398261242000" expanded="true" signature="9040:9055" placeholder="..." />
-            <marker date="1398261242000" expanded="true" signature="9633:9648" placeholder="..." />
-            <marker date="1398261242000" expanded="true" signature="9851:9866" placeholder="..." />
-            <marker date="1398261242000" expanded="true" signature="10073:10088" placeholder="..." />
-            <marker date="1398261242000" expanded="true" signature="10295:10310" placeholder="..." />
+            <marker date="1398349777000" expanded="true" signature="6792:6846" placeholder="..." />
+            <marker date="1398349777000" expanded="true" signature="7045:7060" placeholder="..." />
+            <marker date="1398349777000" expanded="true" signature="7253:7268" placeholder="..." />
+            <marker date="1398349777000" expanded="true" signature="7457:7490" placeholder="..." />
+            <marker date="1398349777000" expanded="true" signature="7564:7579" placeholder="..." />
+            <marker date="1398349777000" expanded="true" signature="8065:8080" placeholder="..." />
+            <marker date="1398349777000" expanded="true" signature="8327:8364" placeholder="..." />
+            <marker date="1398349777000" expanded="true" signature="9039:9054" placeholder="..." />
+            <marker date="1398349777000" expanded="true" signature="9632:9647" placeholder="..." />
+            <marker date="1398349777000" expanded="true" signature="9850:9865" placeholder="..." />
+            <marker date="1398349777000" expanded="true" signature="10072:10087" placeholder="..." />
+            <marker date="1398349777000" expanded="true" signature="10294:10309" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/data/admin/js/arc-metaboxes-blueprints.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="451" column="0" selection-start="20261" selection-end="20261" vertical-scroll-proportion="0.0" vertical-offset="7043" max-vertical-offset="8352">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/interface/public/php/arc_template.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="29" column="51" selection-start="732" selection-end="732" vertical-scroll-proportion="0.430338" vertical-offset="0" max-vertical-offset="1213">
+          <folding>
+            <marker date="1398352549000" expanded="true" signature="681:694" placeholder="..." />
           </folding>
         </state>
       </provider>

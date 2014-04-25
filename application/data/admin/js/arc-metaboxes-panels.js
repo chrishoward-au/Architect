@@ -1,7 +1,6 @@
 jQuery( document ).ready( function ()
 {
     "use strict";
-
 // Would like to get meta configs sortable
 // /  jQuery('ul.select2-choices').sortable({cursor:'move'});
 
@@ -638,7 +637,16 @@ jQuery( document ).ready( function ()
 
     }
 
+
 } )
 ; // End
+
+
+jQuery(window).load(function() {
+    if (jQuery('#redux-_architect-metabox-panels-design ul.redux-group-menu li.active').length==0) {
+        jQuery('#0_box_redux-_architect-metabox-panels-design_section_group_li' ).find('a' ).trigger('click');
+    }
+});
+
 // Nothing past here!
 

@@ -9,6 +9,20 @@
 
 // section template that goes into the theme where content is displayed
 
+  // do for each section too!
+
+  // maybe...
+    echo '<div class="pzarc-layout">';
+    do_action('pzarc_section_1');
+    do_action('pzarc_navigator');
+    do_action('pzarc_section_2');
+    do_action('pzarc_section_3');
+    do_action('pzarc_pagination');
+    echo '</div>';
+
+    if (!$is_section2) {remove_action('pzarc_section_2');}
+    if (!$is_section3) {remove_action('pzarc_section_3');}
+
   echo '<div class="pzarc-post-grid">';
   while (have_posts())
   {
@@ -18,21 +32,25 @@
   }
   echo '</div>';
 
+  // Navigtion goes at the foot of the first section
+    if ($nav_type == 'navigation')
+    {
+      do_action('pzarc_pagination');
+
+    }
+
+  // PAgination goes at the foot of all sections
   if ($nav_type == 'pagination')
   {
     if (function_exists(('wp_pagenavi')))
     {
-      do_action('pzarc_navigator', 'wp_pagenavi');
+      do_action('pzarc_pagination', 'wp_pagenavi');
     }
     else
     {
-      do_action('pzarc_navigator', 'pzarc_navigator');
+      do_action('pzarc_pagination', 'others');
     }
   }
-  if ($nav_type == 'pagination')
-  {
-    do_action('pzarc_pagination');
 
-  }
 
 // The comments template will be handled by the theme at this stage.

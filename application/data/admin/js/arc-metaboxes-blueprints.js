@@ -2,6 +2,7 @@ jQuery( document ).ready( function ()
 {
     "use strict";
 
+
     // This doesn't work but it should!!
     // jQuery( "0_box_redux-_architect-metabox-layout-settings_section_group_li" ).find('a' ).trigger('click');
 
@@ -449,4 +450,9 @@ jQuery( document ).ready( function ()
 
 } );
 
-//id="_pzarc_blueprint-navigation-cmb-field-0"
+
+jQuery(window).load(function() {
+    if (jQuery('#0_box_redux-_architect-metabox-layout-settings_section_group_li.active').length==0) {
+        jQuery('#0_box_redux-_architect-metabox-layout-settings_section_group_li' ).find('a' ).trigger('click');
+    }
+});
