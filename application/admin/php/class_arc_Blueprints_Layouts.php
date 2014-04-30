@@ -1,7 +1,7 @@
 <?php
   $redux_opt_name = '_architect';
 
-  class arc_Blueprints
+  class arc_Blueprints_Layouts
   {
 
 
@@ -172,7 +172,7 @@
     $prefix       = '_blueprint_tabs_';
     $sections     = array();
     $sections[ ]  = array(
-      //          'title'      => __('General Settings', 'pzarc'),
+      //          'title'      => __('General Settings', 'pzarchitect'),
       'show_title' => true,
       'icon_class' => 'icon-large',
       'icon'       => 'el-icon-home',
@@ -245,10 +245,10 @@
         'fields' => array(
             array(
                 'id'       => $prefix . 'short-name',
-                'title'    => __('Blueprint Short Name', 'pzarc'),
+                'title'    => __('Blueprint Short Name', 'pzarchitect'),
                 'type'     => 'text',
                 'width'    => 'auto',
-                'subtitle' => __('Alphanumeric only. <br/>Use the shortcode <strong class="pzarc-usage-info">[pzarc "<span class="pzarc-shortname"></span>"]</strong> or the template tag <strong class="pzarc-usage-info">pzarc(\'<span class="pzarc-shortname"></span>\');</strong>', 'pzarc'),
+                'subtitle' => __('Alphanumeric only. <br/>Use the shortcode <strong class="pzarc-usage-info">[pzarc "<span class="pzarc-shortname"></span>"]</strong> or the template tag <strong class="pzarc-usage-info">pzarc(\'<span class="pzarc-shortname"></span>\');</strong>', 'pzarchitect'),
                 'validate' => 'not_empty'
             ),
             array(
@@ -311,7 +311,7 @@
     $sections[ ] = array(
         'fields' => array(
             array(
-                'title'    => __('Content source', 'pzarc'),
+                'title'    => __('Content source', 'pzarchitect'),
                 'id'       => $prefix . 'content-source',
                 'type'     => 'select',
                 'select2'  => array('allowClear' => false),
@@ -334,7 +334,7 @@
                 'subtitle' => 'todo: code all the js to show hide relevant sections'
             ),
             array(
-                'title'   => __('Order by', 'pzarc'),
+                'title'   => __('Order by', 'pzarchitect'),
                 'id'      => $prefix . 'orderby',
                 'type'    => 'button_set',
                 'default' => 'date',
@@ -345,7 +345,7 @@
                 ),
             ),
             array(
-                'title'   => __('Order direction', 'pzarc'),
+                'title'   => __('Order direction', 'pzarchitect'),
                 'id'      => $prefix . 'orderdir',
                 'type'    => 'button_set',
                 'default' => 'desc',
@@ -356,17 +356,17 @@
                 ),
             ),
             array(
-                'title'   => __('Skip N posts', 'pzarc'),
+                'title'   => __('Skip N posts', 'pzarchitect'),
                 'id'      => $prefix . 'skip',
                 'type'    => 'spinner',
                 'min'     => 0,
                 'max'     => 9999,
                 'step'    => 1,
                 'default' => 0,
-                'desc'    => __('Note: Skipping breaks pagination. This is a known WordPress bug.', 'pzarc'),
+                'desc'    => __('Note: Skipping breaks pagination. This is a known WordPress bug.', 'pzarchitect'),
             ),
             array(
-                'title'   => __('Sticky posts first', 'pzarc'),
+                'title'   => __('Sticky posts first', 'pzarchitect'),
                 'id'      => $prefix . 'sticky',
                 'type'    => 'switch',
                 'on'      => 'Yes',
@@ -425,7 +425,7 @@
     for ($i = 0; $i < 3; $i++)
     {
       $sections[ ] = array(
-          'title'      => __('Section ' . ($i + 1), 'pzarc'),
+          'title'      => __('Section ' . ($i + 1), 'pzarchitect'),
           'show_title' => true,
           'icon_class' => 'icon-large',
           'icon'       => $icons[ $i ],
@@ -433,20 +433,20 @@
 
               array(
                   'id'    => $prefix . 'section-' . $i . '-title',
-                  'title' => __('Section ' . ($i + 1) . ' title (optional)', 'pzarc'),
+                  'title' => __('Section ' . ($i + 1) . ' title (optional)', 'pzarchitect'),
                   'type'  => 'text',
                   'cols'  => 12,
               ),
               array(
                   'id'      => $prefix . 'section-' . $i . '-panel-layout',
-                  'title'   => __('Panels layout', 'pzarc'),
+                  'title'   => __('Panels layout', 'pzarchitect'),
                   'type'    => 'select',
                   'cols'    => 6,
                   'select2' => array('allowClear' => false),
                   'options' => $pzarc_panels_array
               ),
               array(
-                  'title'   => __('Layout mode', 'pzarc'),
+                  'title'   => __('Layout mode', 'pzarchitect'),
                   'id'      => $prefix . 'section-' . $i . '-layout-mode',
                   'type'    => 'select',
                   'default' => 'basic',
@@ -463,10 +463,10 @@
                       //          'vertical'    => 'Vertical',
                       //          'horizontal'  => 'Horizontal',
                   ),
-                  //       'subtitle'    => __('Choose how you want the panels to display. With evenly sized panels, you\'ll see little difference. Please visit <a href="http://isotope.metafizzy.co/demos/layout-modes.html" target=_blank>Isotope Layout Modes</a> for demonstrations of these layouts', 'pzarc')
+                  //       'subtitle'    => __('Choose how you want the panels to display. With evenly sized panels, you\'ll see little difference. Please visit <a href="http://isotope.metafizzy.co/demos/layout-modes.html" target=_blank>Isotope Layout Modes</a> for demonstrations of these layouts', 'pzarchitect')
               ),
               array(
-                  'title'   => __('Panels to show', 'pzarc'),
+                  'title'   => __('Panels to show', 'pzarchitect'),
                   'id'      => $prefix . 'section-' . $i . '-panels-per-view',
                   'type'    => 'spinner',
                   'default' => 0,
@@ -476,7 +476,7 @@
                   'desc'    => '0 for unlimited'
               ),
               array(
-                  'title'    => __('Columns', 'pzarc'),
+                  'title'    => __('Columns', 'pzarchitect'),
                   'id'       => $prefix . 'section-' . $i . '-columns',
                   'subtitle' => 'Number of columns or panels across. Number of rows is calculated automatically.',
                   'type'     => 'spinner',
@@ -486,7 +486,7 @@
                   'max'      => 999,
               ),
               array(
-                  'title'   => __('Minimum panel width', 'pzarc'),
+                  'title'   => __('Minimum panel width', 'pzarchitect'),
                   'id'      => $prefix . 'section-' . $i . '-min-panel-width',
                   'type'    => 'spinner',
                   'alt'     => 'minpanelw',
@@ -496,10 +496,10 @@
                   'cols'    => 2,
                   'step'    => '1',
                   'suffix'  => 'px',
-                  //      'subtitle'    => __('Set the minimum width for sells in this section. This helps with responsive layout', 'pzarc')
+                  //      'subtitle'    => __('Set the minimum width for sells in this section. This helps with responsive layout', 'pzarchitect')
               ),
               array(
-                  'title'   => __('Panels vertical margin', 'pzarc'),
+                  'title'   => __('Panels vertical margin', 'pzarchitect'),
                   'id'      => $prefix . 'section-' . $i . '-panels-vert-margin',
                   'type'    => 'spinner',
                   'alt'     => 'gutterv',
@@ -509,10 +509,10 @@
                   'cols'    => 3,
                   'step'    => '1',
                   'suffix'  => '%',
-                  //    'subtitle'    => __('Set the vertical gutter width as a percentage of the section width. The gutter is the gap between adjoining elements', 'pzarc')
+                  //    'subtitle'    => __('Set the vertical gutter width as a percentage of the section width. The gutter is the gap between adjoining elements', 'pzarchitect')
               ),
               array(
-                  'title'   => __('Panels horizontal margin', 'pzarc'),
+                  'title'   => __('Panels horizontal margin', 'pzarchitect'),
                   'id'      => $prefix . 'section-' . $i . '-panels-horiz-margin',
                   'type'    => 'spinner',
                   'alt'     => 'gutterh',
@@ -522,14 +522,14 @@
                   'cols'    => 3,
                   'step'    => '1',
                   'suffix'  => '%',
-                  //      'subtitle'    => __('Set the horizontal gutter width as a percentage of the section width. The gutter is the gap between adjoining elements', 'pzarc')
+                  //      'subtitle'    => __('Set the horizontal gutter width as a percentage of the section width. The gutter is the gap between adjoining elements', 'pzarchitect')
               ),
           )
 
       );
     }
     $sections[ ] = array(
-        'title'      => __('Pagination', 'pzarc'),
+        'title'      => __('Pagination', 'pzarchitect'),
         'show_title' => true,
         'icon_class' => 'icon-large',
         'icon'       => 'el-icon-chevron-right',
@@ -538,7 +538,7 @@
 
             array(
                 'id'      => $prefix . 'pager',
-                'title'   => __('Pagination', 'pzarc'),
+                'title'   => __('Pagination', 'pzarchitect'),
                 'type'    => 'button_set',
                 'default' => 'none',
                 'options' => array(
@@ -550,7 +550,7 @@
             ),
             array(
                 'id'      => $prefix . 'pager-location',
-                'title'   => __('Pagination location', 'pzarc'),
+                'title'   => __('Pagination location', 'pzarchitect'),
                 'type'    => 'button_set',
                 'default' => 'bottom',
                 'options' => array(
@@ -561,14 +561,14 @@
             ),
             array(
                 'id'      => $prefix . 'posts-per-page',
-                'title'   => __('Posts per page', 'pzarc'),
+                'title'   => __('Posts per page', 'pzarchitect'),
                 'type'    => 'text',
                 'default' => 'Do we really need this? Can\'t we just use the total panels per section?',
             ),
         )
     );
     $sections[ ] = array(
-        'title'      => __('Navigator', 'pzarc'),
+        'title'      => __('Navigator', 'pzarchitect'),
         'show_title' => true,
         'icon_class' => 'icon-large',
         'icon'       => 'el-icon-play-circle',
@@ -577,7 +577,7 @@
         'fields'     => array(
             array(
                 'id'       => $prefix . 'navigator',
-                'title'    => __('Navigator Type', 'pzarc'),
+                'title'    => __('Navigator Type', 'pzarchitect'),
                 'type'     => 'image_select',
                 'default'  => 'tabbed',
                 'subtitle' => 'Tabbed, accordion, buttons, bullets, numbers, thumbnails',
@@ -668,7 +668,7 @@
             ),
             array(
                 'id'       => $prefix . 'navigator-items-visible',
-                'title'    => __('Navigator items visible', 'pzarc'),
+                'title'    => __('Navigator items visible', 'pzarchitect'),
                 'type'     => 'spinner',
                 'default'  => 5,
                 'subtitle' => 'If zero, it will use the "Panels to show" value. This is the number of items visible in the navigator bar. NOTE: This is also the number of items skipped by multi-skip pager element of the inline pager.'
@@ -676,7 +676,7 @@
         )
     );
     $sections[ ] = array(
-        'title'      => __('Transitions', 'pzarc'),
+        'title'      => __('Transitions', 'pzarchitect'),
         'show_title' => true,
         'required'   => array('blueprints_navigation', 'equals', 'navigator'),
         'subsection'=>true,
@@ -723,7 +723,7 @@
         )
     );
     $sections[ ] = array(
-        'title'      => __('Wireframe Preview', 'pzarc'),
+        'title'      => __('Wireframe Preview', 'pzarchitect'),
         'show_title' => true,
         'icon_class' => 'icon-large',
         'icon'       => 'el-icon-th-large',
@@ -747,7 +747,7 @@
         'fields'     => array(
 
             array(
-                'title' => __('Layout', 'pzarc'),
+                'title' => __('Layout', 'pzarchitect'),
                 'id'    => $prefix . 'help-layout',
                 'type'  => 'info',
                 'class' => 'plain',
@@ -831,7 +831,7 @@
         'icon'       => 'el-icon-check',
         'fields'     => array(
             array(
-                'title'    => __('Defaults', 'pzarc'),
+                'title'    => __('Defaults', 'pzarchitect'),
                 'id'       => $prefix . 'defaults-heading',
                 'type'     => 'info',
                 'style'    => 'success',
@@ -846,7 +846,7 @@
         'icon'       => 'el-icon-list',
         'fields'     => array(
             array(
-                'title' => __('Posts', 'pzarc'),
+                'title' => __('Posts', 'pzarchitect'),
                 'id'    => $prefix . 'section-start-posts',
                 'type'  => 'section',
                 'class' => ' heading',
@@ -857,14 +857,14 @@
                 'indent' => false
             ),
             array(
-                'title'  => __('Categories', 'pzarc'),
+                'title'  => __('Categories', 'pzarchitect'),
                 'id'     => $prefix . 'categories-heading-start',
                 'type'   => 'section',
                 'class'  => ' heading',
                 'indent' => true
             ),
             array(
-                'title'   => __('Include categories', 'pzarc'),
+                'title'   => __('Include categories', 'pzarchitect'),
                 'id'      => $prefix . 'inc-cats',
                 'type'    => 'select',
                 'select2' => array('allowClear' => true),
@@ -874,14 +874,14 @@
                 'multi'   => true
             ),
             array(
-                'title'   => __('In ANY or ALL categories', 'pzarc'),
+                'title'   => __('In ANY or ALL categories', 'pzarchitect'),
                 'id'      => $prefix . 'all-cats',
                 'type'    => 'button_set',
                 'options' => array('any' => 'Any', 'all' => 'All'),
                 'default' => 'any',
             ),
             array(
-                'title'   => __('Exclude categories', 'pzarc'),
+                'title'   => __('Exclude categories', 'pzarchitect'),
                 'id'      => $prefix . 'exc-cats',
                 'type'    => 'select',
                 'default' => '',
@@ -891,7 +891,7 @@
                 'multi'   => true
             ),
             array(
-                'title'   => __('Include sub-categories on archives', 'pzarc'),
+                'title'   => __('Include sub-categories on archives', 'pzarchitect'),
                 'id'      => $prefix . 'sub-cat-archives',
                 'type'    => 'switch',
                 'on'      => 'Yes',
@@ -905,14 +905,14 @@
                 'indent' => false
             ),
             array(
-                'title'  => __('Tags', 'pzarc'),
+                'title'  => __('Tags', 'pzarchitect'),
                 'id'     => $prefix . 'tags-section-end',
                 'type'   => 'section',
                 'class'  => ' heading',
                 'indent' => true
             ),
             array(
-                'title'   => __('Tags', 'pzarc'),
+                'title'   => __('Tags', 'pzarchitect'),
                 'id'      => $prefix . 'inc-tags',
                 'type'    => 'select',
                 'select2' => array('allowClear' => true),
@@ -922,7 +922,7 @@
                 'multi'   => true
             ),
             array(
-                'title'   => __('Exclude tags', 'pzarc'),
+                'title'   => __('Exclude tags', 'pzarchitect'),
                 'id'      => $prefix . 'exc-tags',
                 'type'    => 'select',
                 'default' => '',
@@ -937,41 +937,41 @@
                 'indent' => false
             ),
             array(
-                'title'  => __('Custom taxonomies', 'pzarc'),
+                'title'  => __('Custom taxonomies', 'pzarchitect'),
                 'id'     => $prefix . 'custom-taxonomies-section-start',
                 'type'   => 'section',
                 'class'  => ' heading',
                 'indent' => true
             ),
             array(
-                'title' => __('Other taxonomies', 'pzarc'),
+                'title' => __('Other taxonomies', 'pzarchitect'),
                 'id'    => $prefix . 'other-tax',
                 'type'  => 'select',
                 'data'  => 'taxonomies',
                 'args'  => array('_builtin' => false)
             ),
             array(
-                'title'    => __('Other taxonomy tags', 'pzarc'),
+                'title'    => __('Other taxonomy tags', 'pzarchitect'),
                 'id'       => $prefix . 'other-tax-tags',
                 'type'     => 'text',
                 'subtitle' => 'Enter a comma separated list of tags to filter by in the chosen custom taxonomy'
             ),
             array(
-                'title'    => __('Taxonomies operator', 'pzarc'),
+                'title'    => __('Taxonomies operator', 'pzarchitect'),
                 'id'       => $prefix . 'tax-op',
                 'type'     => 'button_set',
                 'options'  => array('all' => 'All', 'any' => 'Any'),
                 'subtitle' => 'Choose whether posts contain all or any of the taxonomies'
             ),
             //    array(
-            //      'title' => __('Days to show', 'pzarc'),
+            //      'title' => __('Days to show', 'pzarchitect'),
             //      'id' => $prefix . 'days',
             //      'type' => 'text',
             //      'cols'=>6,
             //              //      'default' => 'All',
             //    ),
             //    array(
-            //      'title' => __('Days to show until', 'pzarc'),
+            //      'title' => __('Days to show until', 'pzarchitect'),
             //      'id' => $prefix . 'days-until',
             //      'type' => 'text',
             //      'cols'=>6,
@@ -983,14 +983,14 @@
                 'indent' => false
             ),
             array(
-                'title'  => __('Others', 'pzarc'),
+                'title'  => __('Others', 'pzarchitect'),
                 'id'     => $prefix . 'other-section-start',
                 'type'   => 'section',
                 'class'  => ' heading',
                 'indent' => true
             ),
             array(
-                'title'   => __('Authors', 'pzarc'),
+                'title'   => __('Authors', 'pzarchitect'),
                 'id'      => $prefix . 'authors',
                 'type'    => 'select',
                 'data'    => 'callback',
@@ -1013,7 +1013,7 @@
         'icon'       => 'el-icon-align-justify',
         'fields'     => array(
             array(
-                'title' => __('Pages', 'pzarc'),
+                'title' => __('Pages', 'pzarchitect'),
                 'id'    => $prefix . 'pages-heading',
                 'type'  => 'section',
                 'class' => ' heading',
@@ -1029,11 +1029,11 @@
         'icon'       => 'el-icon-picture',
         'fields'     => array(
             array(
-                'title'    => __('Gallery source', 'pzarc'),
+                'title'    => __('Gallery source', 'pzarchitect'),
                 'id'       => $prefix . 'gallery-source',
                 'type'     => 'button_set',
                 'default'  => 'images',
-                'subtitle' => __('Can be overriden by shortcode e.g. [pzarc blueprint="mytemplate" ids="1,2,3,4,5"]', 'pzarc'),
+                'subtitle' => __('Can be overriden by shortcode e.g. [pzarc blueprint="mytemplate" ids="1,2,3,4,5"]', 'pzarchitect'),
                 'options'  => array(
                     'images'      => 'Image Gallery',
                     'ids'         => 'Specific IDs',
@@ -1044,20 +1044,20 @@
                 )
             ),
             array(
-                'title'    => __('Image Gallery', 'pzarc'),
+                'title'    => __('Image Gallery', 'pzarchitect'),
                 'id'       => $prefix . 'specific-images',
                 'type'     => 'gallery',
                 'required' => array($prefix . 'gallery-source', 'equals', 'images'),
             ),
             array(
-                'title'    => __('Specific IDs', 'pzarc'),
+                'title'    => __('Specific IDs', 'pzarchitect'),
                 'id'       => $prefix . 'specific-ids',
                 'type'     => 'text',
                 'subtitle' => 'Enter a comma separated list of image ids',
                 'required' => array($prefix . 'gallery-source', 'equals', 'ids')
             ),
             array(
-                'title'    => __('WP Gallery', 'pzarc'),
+                'title'    => __('WP Gallery', 'pzarchitect'),
                 'id'       => $prefix . 'wp-post-gallery',
                 'type'     => 'select',
                 'data'     => 'callback',
@@ -1066,7 +1066,7 @@
                 'required' => array($prefix . 'gallery-source', 'equals', 'wpgallery')
             ),
             array(
-                'title'    => __('Post iamges', 'pzarc'),
+                'title'    => __('Post iamges', 'pzarchitect'),
                 'id'       => $prefix . 'wp-post-images',
                 'type'     => 'select',
                 'data'     => 'callback',
@@ -1075,7 +1075,7 @@
                 'required' => array($prefix . 'gallery-source', 'equals', 'wpgallery')
             ),
             array(
-                'title'    => __('GalleryPlus', 'pzarc'),
+                'title'    => __('GalleryPlus', 'pzarchitect'),
                 'id'       => $prefix . 'galleryplus',
                 'type'     => 'select',
                 'data'     => 'callback',
@@ -1084,7 +1084,7 @@
                 'required' => array($prefix . 'gallery-source', 'equals', 'galleryplus')
             ),
             array(
-                'title'    => __('NextGen Gallery', 'pzarc'),
+                'title'    => __('NextGen Gallery', 'pzarchitect'),
                 'id'       => $prefix . 'nggallery',
                 'type'     => 'select',
                 'data'     => 'callback',
@@ -1104,7 +1104,7 @@
         'icon'       => 'el-icon-video',
         'fields'     => array(
             array(
-                'title' => __('Slides', 'pzarc'),
+                'title' => __('Slides', 'pzarchitect'),
                 'id'    => $prefix . 'slides-heading',
                 'type'  => 'section',
                 'class' => ' heading',
@@ -1118,7 +1118,7 @@
         'icon'       => 'el-icon-wrench',
         'fields'     => array(
             array(
-                'title' => __('Custom Post Types', 'pzarc'),
+                'title' => __('Custom Post Types', 'pzarchitect'),
                 'id'    => $prefix . 'cpt-heading',
                 'type'  => 'section',
                 'class' => ' heading',
@@ -1133,7 +1133,7 @@
         'fields'     => array(
 
             array(
-                'title' => __('Content Selection', 'pzarc'),
+                'title' => __('Content Selection', 'pzarchitect'),
                 'id'    => $prefix . 'help-content-selection',
                 'type'  => 'info',
                 'class' => 'plain',

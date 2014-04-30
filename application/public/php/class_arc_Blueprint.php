@@ -47,22 +47,31 @@
       }
       $this->blueprint = get_post_meta($blueprint_info->posts[ 0 ]->ID, '_architect', true);
 
-      // Need to add in default values
+      // Need to add in default values for blueprints
       global $pzarchitect;
-      foreach ($pzarchitect as $key => $value) {
+      foreach ($pzarchitect['defaults']['_blueprints'] as $key => $value) {
         if ((strpos($key,'_blueprints_')===0 || strpos($key,'_content_')===0 ) && !isset($this->blueprint[$key])) {
           $this->blueprint[$key] = $value;
         }
       }
       $this->blueprint[ 'blueprint-id' ] = $blueprint_info->posts[ 0 ]->ID;
 
+      /************************************/
       // Add panel settings for Section 1
       $panel = get_post_meta($this->blueprint[ '_blueprints_section-0-panel-layout' ], '_architect', true);
-      foreach ($pzarchitect as $key => $value) {
+
+      // Add default values for panels
+      foreach ($pzarchitect['defaults']['_panels'] as $key => $value) {
         if (strpos($key,'_panels_')===0  && !isset($panel[$key])) {
            $panel[$key] = $value;
         }
       }
+      foreach ($panel as $key => $value) {
+        if (strpos($key, '_panels_styling') === 0) {
+          unset($panel[ $key ]);
+        }
+      }
+
       $this->blueprint[ 'section' ][ 0 ]
           = array(
           'section-enable'         => true,
@@ -75,8 +84,8 @@
         return $this->blueprint;
       }
 
-
       // TODO:Setup check for navigator to save little time
+      /************************************/
       // Add panel settings for Section 2
       $panel = get_post_meta($this->blueprint[ '_blueprints_section-1-panel-layout' ], '_architect', true);
       foreach ($pzarchitect as $key => $value) {
@@ -90,6 +99,7 @@
           'section-panel-settings' => (!empty($this->blueprint[ '_blueprints_section-1-enable' ]) ? $panel : null),
       );
 
+      /************************************/
       // Add panel settings for Section 3
       $panel = get_post_meta($this->blueprint[ '_blueprints_section-2-panel-layout' ], '_architect', true);
       foreach ($pzarchitect as $key => $value) {

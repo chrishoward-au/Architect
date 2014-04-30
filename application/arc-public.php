@@ -24,8 +24,7 @@
     wp_enqueue_script('js-swiperjs');
     wp_enqueue_style('css-swiperjs');
 
-    if (!(class_exists('ReduxFramework') || class_exists('ReduxFrameworkPlugin')))
-    {
+    if (!(class_exists('ReduxFramework') || class_exists('ReduxFrameworkPlugin'))) {
       return;
     }
     require_once PZARC_PLUGIN_PATH . '/admin/php/arc-options.php';
@@ -42,12 +41,10 @@
   {
 
     $pzarc_blueprint = '';
-    if (!empty($atts[ 'blueprint' ]))
-    {
+    if (!empty($atts[ 'blueprint' ])) {
       $pzarc_blueprint = $atts[ 'blueprint' ];
     }
-    elseif (!empty($atts[ 0 ]))
-    {
+    elseif (!empty($atts[ 0 ])) {
       $pzarc_blueprint = $atts[ 0 ];
     }
 
@@ -76,18 +73,15 @@
    ******************************/
   function pzarc($blueprint = null, $overrides = null, $is_shortcode = false)
   {
-    if (empty($blueprint))
-    {
+    if (empty($blueprint)) {
       // make this use a set of defaults. prob an excerpt grid
       echo 'You need to set a blueprint';
 
     }
-    else
-    {
+    else {
 
       $architect = new Architect($blueprint, $is_shortcode);
-      if (empty($architect->build->blueprint[ 'err_msg' ]))
-      {
+      if (empty($architect->build->blueprint[ 'err_msg' ])) {
         global $wp_query;
         $original_query = $wp_query;
 
@@ -139,8 +133,7 @@
   function add_pzarc_class($classes)
   {
     // add 'class-name' to the $classes array
-    if (!in_array('pzarchitect', $classes))
-    {
+    if (!in_array('pzarchitect', $classes)) {
       $classes[ ] = 'pzarchitect';
     }
 

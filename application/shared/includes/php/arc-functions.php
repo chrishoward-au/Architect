@@ -1,7 +1,6 @@
 <?php
 
-  if (!function_exists('pzdebug'))
-  {
+  if (!function_exists('pzdebug')) {
 
     //---------------------------------------------------------------------------------------------------
     // Debug
@@ -17,29 +16,39 @@
       $line = $btr[ 0 ][ 'line' ];
       $file = basename($btr[ 0 ][ 'file' ]);
       print"<pre>$file:$line</pre>\n";
-      if (is_array($value))
-      {
+      if (is_array($value)) {
         print"<pre>";
         print_r($value);
         print"</pre>\n";
       }
-      elseif (is_object($value))
-      {
+      elseif (is_object($value)) {
         var_dump($value);
       }
-      else
-      {
+      else {
         print("<p>&gt;${value}&lt;</p>");
       }
     }
 
   }
 
+  function arc_tax_string_list($tax, $prefix, $suffix, $separator)
+  {
+    $list  = '';
+    $count = count($tax);
+    $i     = 1;
+    if (is_array($tax)) {
+      foreach ($tax as $key => $value) {
+        $list .= $prefix . $value->slug . $suffix . ($i++ == $count ? '' : $separator);
+      }
+    }
+
+    return $list;
+  }
+
   function pzarc_squish($array)
   {
     $return_array = array();
-    foreach ($array as $key => $value)
-    {
+    foreach ($array as $key => $value) {
       $return_array[ $key ] = $array[ $key ][ 0 ];
     }
 
@@ -57,8 +66,7 @@
 
     // Need to create the file contents
     // For each field in stylings, create css
-    switch ($type)
-    {
+    switch ($type) {
       case 'cells':
         $pzarc_cells = get_post_meta($postid);
 
@@ -67,10 +75,8 @@
         // step thru each field loking for ones to format
 
 
-        foreach ($pzarc_cells as $key => $value)
-        {
-          switch (true)
-          {
+        foreach ($pzarc_cells as $key => $value) {
+          switch (true) {
             case ($key == '_pzarc_cell-settings-hide-content' && !empty($pzarc_cells[ '_pzarc_cell-settings-hide-content' ][ 0 ])):
               $pzarc_contents .= '@media (max-width: ' . $pzarc_cells[ '_pzarc_cell-settings-hide-content' ][ 0 ] . 'px) { .pzarchitect .pzarc-' . $postid . ' entry-content, .pzarchitect .pzarc-' . $postid . ' .entry-excerpt {display:none;}}' . "\n";
 
@@ -82,12 +88,10 @@
               $pzarc_layout       = json_decode($value[ 0 ], true);
               $pzarc_contents .= '.pzarchitect .pzarc-' . $postid . ' .entry-title {width:' . $pzarc_layout[ 'title' ][ 'width' ] . '%;}' . "\n";
               // Don't give thumbnail div a width if it's in the content
-              if ($pzarc_cells[ '_pzarc_layout-excerpt-thumb' ][ 0 ] == 'none')
-              {
+              if ($pzarc_cells[ '_pzarc_layout-excerpt-thumb' ][ 0 ] == 'none') {
                 $pzarc_contents .= '.pzarchitect .pzarc-' . $postid . ' .entry-thumbnail {width:' . ($pzarc_layout[ 'image' ][ 'width' ] - $pzarc_left_margin - $pzarc_right_margin) . '%;}' . "\n";
               }
-              else
-              {
+              else {
                 $pzarc_contents .= '.pzarchitect .pzarc-' . $postid . ' .entry-thumbnail {width:' . $pzarc_cells[ '_pzarc_cell-settings-image-max-width' ][ 0 ] . 'px;}' . "\n";
               }
               $pzarc_contents .= '.pzarchitect .pzarc-' . $postid . ' .entry-content {width:' . $pzarc_layout[ 'content' ][ 'width' ] . '%;}' . "\n";
@@ -148,20 +152,20 @@
 
   }
 
-  function pzarc_redux_font($id, $selectors,$defaults=null)
+  function pzarc_redux_font($id, $selectors, $defaults = null)
   {
 
     return array(
-        'title'  => __('Font', 'pzarc'),
-        'id'     => $id,
-        'output' => $selectors,
-        'type'   => 'typography',
-        'text-decoration'=>true,
-        'default' => $defaults,
+        'title'           => __('Font', 'pzarc'),
+        'id'              => $id,
+        'output'          => $selectors,
+        'type'            => 'typography',
+        'text-decoration' => true,
+        'default'         => $defaults,
     );
   }
 
-  function pzarc_redux_bg($id, $selectors,$defaults=null)
+  function pzarc_redux_bg($id, $selectors, $defaults = null)
   {
     return array(
         'title'                 => __('Background', 'pzarc'),
@@ -174,45 +178,45 @@
         'background-attachment' => false,
         'background-position'   => false,
         'preview'               => false,
-        'default' => $defaults,
+        'default'               => $defaults,
     );
   }
 
-  function pzarc_redux_padding($id, $selectors,$defaults=null)
+  function pzarc_redux_padding($id, $selectors, $defaults = null)
   {
     return array(
-        'title'  => __('Padding', 'pzarc'),
-        'id'     => $id,
-        'output' => $selectors,
-        'mode'   => 'padding',
-        'type'   => 'spacing',
-        'units'  => array('px', '%'),
+        'title'   => __('Padding', 'pzarc'),
+        'id'      => $id,
+        'output'  => $selectors,
+        'mode'    => 'padding',
+        'type'    => 'spacing',
+        'units'   => array('px', '%'),
         'default' => $defaults,
     );
 
   }
 
-  function pzarc_redux_links($id, $selectors,$defaults=null)
+  function pzarc_redux_links($id, $selectors, $defaults = null)
   {
     return array(
-        'title'  => __('Links', 'pzarc'),
-        'id'     => $id,
-        'type'   => 'link_color',
-        'output' => $selectors,
+        'title'   => __('Links', 'pzarc'),
+        'id'      => $id,
+        'type'    => 'link_color',
+        'output'  => $selectors,
         'default' => $defaults
     );
 
   }
 
-  function pzarc_redux_borders($id, $selectors,$defaults=null)
+  function pzarc_redux_borders($id, $selectors, $defaults = null)
   {
 
     return array(
-        'title'  => __('Border', 'pzarc'),
-        'id'     => $id,
-        'type'   => 'border',
-        'all'    => false,
-        'output' => $selectors,
+        'title'   => __('Border', 'pzarc'),
+        'id'      => $id,
+        'type'    => 'border',
+        'all'     => false,
+        'output'  => $selectors,
         'default' => $defaults
     );
   }

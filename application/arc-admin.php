@@ -1,12 +1,14 @@
 <?php
-  function pzarc_removeReduxDemoModeLink() { // Be sure to rename this function to something more unique
-    if ( class_exists('ReduxFrameworkPlugin') ) {
-      remove_filter( 'plugin_row_meta', array( ReduxFrameworkPlugin::get_instance(), 'plugin_metalinks'), null, 2 );
+  function pzarc_removeReduxDemoModeLink()
+  { // Be sure to rename this function to something more unique
+    if (class_exists('ReduxFrameworkPlugin')) {
+      remove_filter('plugin_row_meta', array(ReduxFrameworkPlugin::get_instance(), 'plugin_metalinks'), null, 2);
     }
-    if ( class_exists('ReduxFrameworkPlugin') ) {
-      remove_action('admin_notices', array( ReduxFrameworkPlugin::get_instance(), 'admin_notices' ) );
+    if (class_exists('ReduxFrameworkPlugin')) {
+      remove_action('admin_notices', array(ReduxFrameworkPlugin::get_instance(), 'admin_notices'));
     }
   }
+
   add_action('init', 'pzarc_removeReduxDemoModeLink');
 
   class pzarcAdmin
@@ -25,12 +27,10 @@
     {
 
       // @TODO: verify this blocks non admins!
-      if (is_admin() && current_user_can('edit_theme_options'))
-      {
+      if (is_admin() && current_user_can('edit_theme_options')) {
 
 
-        if (!(class_exists('ReduxFramework') || class_exists('ReduxFrameworkPlugin')))
-        {
+        if (!(class_exists('ReduxFramework') || class_exists('ReduxFrameworkPlugin'))) {
           return;
         }
 
@@ -41,8 +41,8 @@
 
         //@TODO: need a bit of screen dependency on this?
 //      require_once PZARC_PLUGIN_PATH . '/shared/class_pzarcForm.php';
-        require_once PZARC_PLUGIN_PATH . '/admin/php/arc-panels-layouts.php';
-        require_once PZARC_PLUGIN_PATH . '/admin/php/arc-blueprints.php';
+        require_once PZARC_PLUGIN_PATH . '/admin/php/class_arc_Panels_Layouts.php';
+        require_once PZARC_PLUGIN_PATH . '/admin/php/class_arc_Blueprints_Layouts.php';
         require_once PZARC_PLUGIN_PATH . '/admin/php/arc-galleries.php';
         require_once PZARC_PLUGIN_PATH . '/admin/php/arc-slides.php';
 
@@ -58,9 +58,9 @@
         // @TODO Should these really be objects?
         // Initialise objects for data and setup menu items
         $panel_layout = new arc_Panels_Layouts;
-        $content_blueprint = new arc_Blueprints;
-        $galleries         = new pzarc_Galleries;
-        $slides            = new pzarc_Slides;
+        $content_blueprint = new arc_Blueprints_Layouts;
+        $galleries = new pzarc_Galleries;
+        $slides = new pzarc_Slides;
 
 
 //add_action( 'pzarc_do_it', array( $this, 'do_it' ) );
@@ -74,8 +74,7 @@
 //    wp_enqueue_style('pzarc-jqueryui-css');
 
       $screen = get_current_screen();
-      if (strpos(('X' . $screen->id), 'arc-') > 0)
-      {
+      if (strpos(('X' . $screen->id), 'arc-') > 0) {
 //			wp_enqueue_script( 'jquery-ui-tabs' );
 //			wp_enqueue_script( 'jquery-ui-button' );
 
@@ -97,10 +96,9 @@
     function admin_menu()
     {
       global $pzarc_menu, $pizazzwp_updates;
-      if (!$pzarc_menu)
-      {
+      if (!$pzarc_menu) {
         //add_menu_page( $page_title,  $menu_title, $capability,   $menu_slug, $function,    $icon_url, $position );
-        $pzarc_menu = add_menu_page('About', 'Architect', 'edit_posts', 'pzarc', 'pzarc_about', PZARC_PLUGIN_URL . 'wp-icon.png',93);
+        $pzarc_menu = add_menu_page('About', 'Architect', 'edit_posts', 'pzarc', 'pzarc_about', PZARC_PLUGIN_URL . 'wp-icon.png', 93);
         // add_submenu_page( $parent_slug, $page_title, $menu_title, $capability, $menu_slug, $function );
 
         // Don't need this as it's carried in the layouts already
@@ -108,15 +106,17 @@
 //				'pzarc', 'Styling', 'Styling', 'manage_options', 'pzarc_styling', array( $this, 'pzarc_styling' )
 //			);
         add_submenu_page(
-            'pzarc', 'Developer Tools', '<span class="dashicons dashicons-hammer size-small"></span>Tools', 'manage_options', 'pzarc_tools', array($this, 'pzarc_tools')
+            'pzarc', 'Developer Tools', '<span class="dashicons dashicons-hammer size-small"></span>Tools', 'manage_options', 'pzarc_tools', array($this,
+                                                                                                                                                   'pzarc_tools')
         );
         add_submenu_page(
-            'pzarc', 'About Architect Content Display Framework', '<span class="dashicons dashicons-info size-small"></span>About', 'manage_options', 'pzarc_about', array($this,'pzarc_about'), 99
+            'pzarc', 'About Architect Content Display Framework', '<span class="dashicons dashicons-info size-small"></span>About', 'manage_options', 'pzarc_about', array($this,
+                                                                                                                                                                           'pzarc_about'), 99
         );
 
         global $submenu;
         // This is reliant on About being the last menu item
-        array_unshift($submenu['pzarc'],array_pop($submenu['pzarc']));
+        array_unshift($submenu[ 'pzarc' ], array_pop($submenu[ 'pzarc' ]));
       }
     }
 
@@ -136,7 +136,7 @@
       <div class = "icon32" id = "icon-users"><br></div>
 
       <h2>' . $title . '</h2>
-      <h4>Version '.PZARC_VERSION.'</h4>
+      <h4>Version ' . PZARC_VERSION . '</h4>
       <p>Is it a slider? Is it a gallery? Is it a grid layout? Yes! It\'s all these and more.</p>
       <p>Fed up with a plethora of plugins that all seem to do the same thing, but in different ways? Me too. That\'s why I created Architect. I was guilty too. I had four plugins: ExcerptsPlus, GalleryPlus, SliderPlus and TabsPlus providing four different ways to display your content.</p>
       <p>Architect enables you to easily design complex content layouts, such as magazine layouts, sliders, galleries and tabbed content. A layout is made up of two components:</p>

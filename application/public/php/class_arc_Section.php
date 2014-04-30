@@ -23,58 +23,48 @@
     private $source;
     private $data;
 
+    /**
+     * @param $number
+     * @param $section
+     * @param $source
+     */
     public function __construct($number, $section, $source)
     {
-      require_once PZARC_PLUGIN_PATH.'/public/php/interface_arc_Panel.php';
+      require_once PZARC_PLUGIN_PATH . '/public/php/class_arc_Panel.php';
 
       $this->section_number = $number;
       $this->section        = $section;
       $this->source         = $source;
-
       do_action('arc_before_section_' . $this->section_number);
-      echo '<div class="pzarc-section-' . $this->section_number . '">';
+      echo '<div class="pzarc-section pzarc-section_' . $this->section_number . ' pzarc-section-using-panel_'.$this->section[ 'section-panel-settings' ]['_panels_settings_short-name'].'">';
     }
 
-    private function set_data()
-    {
-      $this->data[ 'wrapper_open' ][ 'postid' ]     = get_the_ID();
-      $this->data[ 'wrapper_open' ][ 'poststatus' ] = get_post_status();
-      // setto value coz PHP < 5.5 doesn'tsupport it inline in empty
-      $post_format                                   = get_post_format();
-      $this->data [ 'wrapper_open' ][ 'postformat' ] = (empty($post_format) ? 'standard' : $post_format);
-      $this->data[ 'image' ][ 'image' ]              = get_the_post_thumbnail(null, 'thumbnail');
-    }
 
+    /**
+     * @param $panel_def
+     */
     public function render_panel($panel_def)
     {
 
-      self::set_data();
-
-      //var_dump($this->section);
+      $data = arc_Panel::set_data($this->section[ 'section-panel-settings' ]);
       $sequence = json_decode($this->section[ 'section-panel-settings' ][ '_panels_design_preview' ], true);
       // We do want to provide actions so want to use the sequence
       do_action('arc_before_panel_open');
-      echo '<div class="pzarc-panel">';
-      echo self::strip_unused_arctags(arc_Panel_Wrapper::render('open', $panel_def[ 'panel-open' ], '', $this->data[ 'wrapper_open' ]));
-      foreach ($sequence as $key => $value)
-      {
-        if ($value[ 'show' ])
-        {
+      echo '<div class="pzarc-panel pzarc-panel_'.$this->section[ 'section-panel-settings' ]['_panels_settings_short-name'].'">';
+      echo self::strip_unused_arctags(arc_Panel_Wrapper::render('open', $panel_def[ 'panel-open' ], '', $data,$this->section[ 'section-panel-settings' ]));
+      foreach ($sequence as $key => $value) {
+        if ($value[ 'show' ]) {
           do_action('arc_before_' . $key);
           // Make the class name to call - strip numbers from metas and customs
           $class = 'arc_Panel_' . str_replace(array('1', '2', '3'), '', $key);
-          echo apply_filters('arc_filter_' . $key, self::strip_unused_arctags($class::render($key, $panel_def[ $key ], $this->source, $this->data[ $key ])));
+          $line_out = $class::render($key, $panel_def[ $key ], $this->source, $data,$this->section[ 'section-panel-settings' ]);
+          echo apply_filters('arc_filter_' . $key, self::strip_unused_arctags($line_out));
           do_action('arc_after_' . $key);
-        }
-        else
-        {
-          // Because they are in sequence with all the to shows first, we can break once we hit the first not to show
-          break;
         }
       }
 //        echo '<h1 class="entry-title">',get_the_title(),'</h1>';
 //        echo '<div class="entry-content">',get_the_content(),'</div>';
-      echo self::strip_unused_arctags(arc_Panel_Wrapper::render('close', $panel_def[ 'panel-close' ], '', $this->data[ 'wrapper_close' ]));
+      echo self::strip_unused_arctags(arc_Panel_Wrapper::render('close', $panel_def[ 'panel-close' ], '', $data,$this->section[ 'section-panel-settings' ]));
       echo '</div>';
       do_action('arc_after_panel_close');
     }

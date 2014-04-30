@@ -49,11 +49,11 @@
     {
 
       define('PZARC_VERSION', '0.6.5');
-      define('PZARC_NAME', 'pzarc');
+      define('PZARC_NAME', 'pzarchitect'); // This is also used as the locale
       define('PZARC_FOLDER', '/pizazzwp-architect');
 
-      define('PZARC_PLUGIN_URL', trailingslashit(plugin_dir_url(__FILE__)).'application/');
-      define('PZARC_PLUGIN_PATH', trailingslashit(plugin_dir_path(__FILE__)).'application/');
+      define('PZARC_PLUGIN_URL', trailingslashit(plugin_dir_url(__FILE__)) . 'application/');
+      define('PZARC_PLUGIN_PATH', trailingslashit(plugin_dir_path(__FILE__)) . 'application/');
       define('PZARC_CACHE', '/pzarc/');
 
       $upload_dir = wp_upload_dir();
@@ -69,8 +69,7 @@
       // Load plugin text domain
       add_action('init', array($this, 'pzarc_text_domain'));
 
-      if (!function_exists('pizazzwp_head'))
-      {
+      if (!function_exists('pizazzwp_head')) {
         // The TGM dependency loader needs to run first
 //			include_once PZARC_PLUGIN_PATH . '/libs/PizazzWP.php';
       }
@@ -78,8 +77,7 @@
 
       // Register admin styles and scripts
 
-      if (is_admin())
-      {
+      if (is_admin()) {
         require_once PZARC_PLUGIN_PATH . '/arc-admin.php';
         add_action('admin_print_styles', array($this, 'register_admin_styles'));
         add_action('admin_enqueue_scripts', array($this, 'register_admin_scripts'));
@@ -89,8 +87,7 @@
 
 
       // Front end libs, Register site styles and scripts
-      if (!is_admin())
-      {
+      if (!is_admin()) {
         add_action('wp_enqueue_scripts', array($this, 'register_plugin_styles'));
         add_action('wp_enqueue_scripts', array($this, 'register_plugin_scripts'));
 
@@ -128,8 +125,7 @@
     public function register_architect_block()
     {
 
-      if (class_exists('HeadwayDisplay'))
-      {
+      if (class_exists('HeadwayDisplay')) {
         require('application/public/php/arc-headway-block-display.php');
         require('application/admin/php/headway/arc-headway-block-options.php');
 
@@ -244,7 +240,9 @@
       // wp_enqueue_script( PZARC_NAME.'-plugin-script', plugins_url( PZARC_FOLDER.'/frontend/js/display.js' ) );
       wp_register_script('jquery-isotope', plugins_url(PZARC_FOLDER . '/shared/libs/js/jquery.isotope.min.js'));
       wp_register_script('js-isotope-v2', plugins_url(PZARC_FOLDER . '/shared/libs/js/isotope.pkgd.min.js'));
-      wp_enqueue_script('js-useragent', plugins_url(PZARC_FOLDER) . '/shared/includes/js/architect.js');
+
+      // TODO: bug in this, so removed for now
+//      wp_enqueue_script('js-useragent', plugins_url(PZARC_FOLDER) . '/shared/includes/js/architect.js');
     }
 
 // end register_plugin_scripts
@@ -306,8 +304,7 @@
 
   /* Display method Headway */
 // Provide method to display using a Headway block
-  if (is_admin())
-  {
+  if (is_admin()) {
     add_action('admin_init', 'pzarc_initiate_updater');
 
     function pzarc_initiate_updater()
@@ -327,7 +324,7 @@
 //    else
 //    {
       require_once('wp-updates-plugin.php');
-      new WPUpdatesPluginUpdater_429( 'http://wp-updates.com/api/2/plugin', plugin_basename(__FILE__));//    }
+      new WPUpdatesPluginUpdater_429('http://wp-updates.com/api/2/plugin', plugin_basename(__FILE__)); //    }
     }
 
     // TODO: check if older Redux is installed and use ours instead (if possible), but give warning too.
@@ -336,12 +333,10 @@
 
     function pzarc_check_redux()
     {
-      if (!is_admin())
-      {
+      if (!is_admin()) {
         return;
       }
-      if (class_exists('ReduxFramework') || class_exists('ReduxFrameworkPlugin'))
-      {
+      if (class_exists('ReduxFramework') || class_exists('ReduxFrameworkPlugin')) {
         // do a version check somehow... might need to hard code redux version using a constant
         //    echo '<div id="message" class="updated"><p>The plugin or theme at address: <strong>',ReduxFramework::$_url,'</strong> has loaded an old and probably incompatible version (<strong>',ReduxFramework::$_version,'</strong>) of the Redux library that Architect is dependent upon.<br>Please ask the developer of the other plugin/theme to upgrade their version of Redux.</p></div>';
       }
