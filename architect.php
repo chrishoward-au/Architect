@@ -57,12 +57,13 @@
       define('PZARC_CACHE', '/pzarc/');
 
       $upload_dir = wp_upload_dir();
+      // TODO: why isn't this using myfiles folder?
       define('PZARC_CACHE_URL', trailingslashit($upload_dir[ 'baseurl' ] . '/cache/pizazzwp/pzarc'));
       define('PZARC_CACHE_PATH', trailingslashit($upload_dir[ 'basedir' ] . '/cache/pizazzwp/pzarc'));
       define('PZARC_DEBUG', 0);
 
 // Before we go anywhere, make sure dependent plugins are loaded and active.
-      require_once PZARC_PLUGIN_PATH . '/shared/includes/php/arc-check-dependencies.php';
+      require_once PZARC_PLUGIN_PATH . '/resources/includes/php/arc-check-dependencies.php';
 
       wp_mkdir_p(PZARC_CACHE_PATH);
 
@@ -73,7 +74,7 @@
         // The TGM dependency loader needs to run first
 //			include_once PZARC_PLUGIN_PATH . '/libs/PizazzWP.php';
       }
-      require_once PZARC_PLUGIN_PATH . '/shared/includes/php/arc-functions.php';
+      require_once PZARC_PLUGIN_PATH . '/resources/includes/php/arc-functions.php';
 
       // Register admin styles and scripts
 
@@ -196,8 +197,8 @@
     {
 
       wp_enqueue_style('pzarc-admin-styles', PZARC_PLUGIN_URL . '/admin/css/arc-admin.css');
-      wp_register_style('pzarc-font-awesome', PZARC_PLUGIN_URL . '/shared/libs/font-awesome/css/font-awesome.min.css');
-      wp_register_style('pzarc-jqueryui-css', PZARC_PLUGIN_URL . '/shared/libs/jquery-ui-1.10.2.custom/css/pz_architect/jquery-ui-1.10.2.custom.min.css');
+      wp_register_style('pzarc-font-awesome', PZARC_PLUGIN_URL . '/resources/libs/font-awesome/css/font-awesome.min.css');
+      wp_register_style('pzarc-jqueryui-css', PZARC_PLUGIN_URL . '/resources/libs/jquery-ui-1.10.2.custom/css/pz_architect/jquery-ui-1.10.2.custom.min.css');
 
       // Be nice to use bootstrap, but it's just not compatible with WP as it uses common non-specific element names.
       //wp_enqueue_style( 'bootstrap-admin-styles', plugins_url( PZARC_FOLDER . '/libs/bootstrap/css/bootstrap.min.css' ) );
@@ -226,6 +227,10 @@
     {
 
       wp_enqueue_style(PZARC_NAME . '-plugin-styles', plugins_url(PZARC_FOLDER . '/public/css/arc-front.css'));
+      // Need this for custom CSS in styling options
+      if (file_exists(PZARC_CACHE_PATH . 'arc-dynamic-styles.css')) {
+        wp_enqueue_style(PZARC_NAME . '-dynamic-styles', PZARC_CACHE_URL . 'arc-dynamic-styles.css');
+      }
     }
 
 // end register_plugin_styles
@@ -238,11 +243,11 @@
 
       wp_enqueue_script('jquery');
       // wp_enqueue_script( PZARC_NAME.'-plugin-script', plugins_url( PZARC_FOLDER.'/frontend/js/display.js' ) );
-      wp_register_script('jquery-isotope', plugins_url(PZARC_FOLDER . '/shared/libs/js/jquery.isotope.min.js'));
-      wp_register_script('js-isotope-v2', plugins_url(PZARC_FOLDER . '/shared/libs/js/isotope.pkgd.min.js'));
+      wp_register_script('jquery-isotope', plugins_url(PZARC_FOLDER . '/resources/libs/js/jquery.isotope.min.js'));
+      wp_register_script('js-isotope-v2', plugins_url(PZARC_FOLDER . '/resources/libs/js/isotope.pkgd.min.js'));
 
       // TODO: bug in this, so removed for now
-//      wp_enqueue_script('js-useragent', plugins_url(PZARC_FOLDER) . '/shared/includes/js/architect.js');
+//      wp_enqueue_script('js-useragent', plugins_url(PZARC_FOLDER) . '/resources/includes/js/architect.js');
     }
 
 // end register_plugin_scripts

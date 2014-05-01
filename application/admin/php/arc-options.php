@@ -37,7 +37,7 @@
         //add_action( 'redux/plugin/hooks', array( $this, 'remove_demo' ) );
 
         // Function to test the compiler hook and demo CSS output.
-        //add_filter('redux/options/'.$this->args['opt_name'].'/compiler', array( $this, 'compiler_action' ), 10, 2);
+        add_filter('redux/options/'.$this->args['opt_name'].'/compiler', array( $this, 'compiler_action' ), 10, 2);
         // Above 10 is a priority, but 2 in necessary to include the dynamically generated CSS to be sent to the function.
 
         // Change the arguments after they've been declared, but before the panel is created
@@ -62,20 +62,22 @@
 
       function compiler_action($options, $css)
       {
-        //echo "<h1>The compiler hook has run!";
-        //print_r($options); //Option values
+//        echo "<h1>The compiler hook has run!";
+//        var_dump($options); //Option values
+//
+//        var_dump($css); // Compiler selector CSS values  compiler => array( CSS SELECTORS )
 
-        //print_r($css); // Compiler selector CSS values  compiler => array( CSS SELECTORS )
-
-        /*
         // Demo of how to use the dynamic CSS and write your own static CSS file
-          $filename = dirname(__FILE__) . '/style' . '.css';
+          $filename = PZARC_CACHE_PATH. '/arc-dynamic-styles' . '.css';
+        var_dump($filename);
           global $wp_filesystem;
           if( empty( $wp_filesystem ) ) {
-              require_once( ABSPATH .'/wp-admin/shared/file.php' );
+              require_once( ABSPATH .'/wp-admin/resources/file.php' );
               WP_Filesystem();
           }
 
+        // TODO Remove once bug of ACE not being set to $css
+          $css .= $options['architect_config_custom-css'];
           if( $wp_filesystem ) {
               $wp_filesystem->put_contents(
                   $filename,
@@ -83,7 +85,7 @@
                   FS_CHMOD_FILE // predefined mode settings for WP files
               );
           }
-        */
+
       }
 
 
@@ -382,6 +384,7 @@
                     'background-attachment' => false,
                     'background-position'   => false,
                     'preview'               => false,
+                    'compiler'=>array('.pzarc-featured-image')
                     //    'default' => $defaults[ $optprefix . 'image_defaults_entry-image-caption-defaults' ],
                 ),
                 array(
@@ -423,13 +426,16 @@
             'title'      => 'Custom CSS',
             'icon_class' => 'icon-large',
             'icon'       => 'el-icon-wrench',
+
             'fields'     => array(
                 array(
                     'id'    => $prefix . 'custom-css',
                     'type'  => 'ace_editor',
                     'title' => __('Custom CSS', 'pzarc'),
+                    'subtitle'=>__('Enter any custom CSS at all here and it will be loaded with each page. Use wisely!'),
                     'mode'  => 'css',
                     'theme' => 'chrome',
+                    'compiler'=>true
                 ),
             )
         );
@@ -515,9 +521,9 @@
           'allow_sub_menu'     => false,          // Show the sections below the admin menu item or not
           'menu_title'         => __('<span class="dashicons dashicons-art"></span>Styling', 'pzarc'),
           'page'               => __('Architect Styling', 'pzarc'),
-          'google_api_key'     => '',          // Must be defined to add google fonts to the typography module
+          'google_api_key'     => 'Xq9o3CdQFHKr+47vQr6eO4EUYLtlEyTe',          // Must be defined to add google fonts to the typography module
           'global_variable'    => 'pzarchitect',          // Set a different name for your global variable other than the opt_name
-          'dev_mode'           => true,          // Show the time the page took to load, etc
+          'dev_mode'           => false,          // Show the time the page took to load, etc
           'customizer'         => false,          // Enable basic customizer support
 
           // OPTIONAL -> Give you extra features

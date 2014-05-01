@@ -258,7 +258,7 @@
     }
 
     /*
-     * draw the footer section of the blueprint. shared navigation
+     * draw the footer section of the blueprint. resources navigation
      * closes the arc container
      */
     /*************************************************
@@ -399,7 +399,7 @@
         $thumb_src   = $post_info->guid;
         $focal_point = get_post_meta($post_info->guid, 'pzgp_focal_point', true);
       }
-      pzdebug($this->panel_info);
+      //pzdebug($this->panel_info);
       $params = array('uid'         => $panelid . '_' . $post_info->ID,
                       'width'       => $this->panel_info[ '_panels_design_image-max-width' ],
                       'height'      => $this->panel_info[ '_panels_design_image-max-height' ],
@@ -413,7 +413,7 @@
 
       //JOB
 
-      var_dump($thumb_src, $params, PZARC_CACHE_PATH, PZARC_CACHE_URL);
+      //var_dump($thumb_src, $params, PZARC_CACHE_PATH, PZARC_CACHE_URL);
       if (false)
       {
         $post_image = ($this->panel_info[ '_panels_design_thumb-position' ] != 'none') ? job_resize($thumb_src, $params, PZARC_CACHE_PATH, PZARC_CACHE_URL) : null;
@@ -840,7 +840,7 @@
       {
         $q->set('posts_per_page', '10');
       }
-      pzdebug((array)$q);
+     // pzdebug((array)$q);
 
       return $q;
 

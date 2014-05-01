@@ -459,7 +459,7 @@ if ( !class_exists( 'ReduxFramework_extension_metaboxes' ) ) {
 
         } // _enqueue()   
 
-        /* Post URLs to IDs function, supports custom post types - borrowed and modified from url_to_postid() in wp-shared/rewrite.php */
+        /* Post URLs to IDs function, supports custom post types - borrowed and modified from url_to_postid() in wp-resources/rewrite.php */
         // Taken from http://betterwp.net/wordpress-tips/url_to_postid-for-custom-post-types/
         // Customized to work with non-rewrite URLs
         // Copyright Dovy Paukstys (@dovy) of Redux Framework

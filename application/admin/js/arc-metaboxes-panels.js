@@ -160,14 +160,14 @@ jQuery( document ).ready( function ()
 
             element_html['meta2'] = '<span class="pzarc-draggable pzarc-draggable-meta2 pzarc-draggable-meta" title= "Meta info 2"  data-idcode=meta2 style="font-size:11px;"><span>Categories - News, Sport</span></span>';
 
-            element_html['image'] = '<span class="pzarc-draggable pzarc-draggable-image"  title= "Featured image" data-idcode=image style="max-height:100px;overflow:hidden;"><span><img src="PZARC_PLUGIN_URL/shared/assets/images/sample-image.jpg" style="max-width:100%;"/></span></span>';
+            element_html['image'] = '<span class="pzarc-draggable pzarc-draggable-image"  title= "Featured image" data-idcode=image style="max-height:100px;overflow:hidden;"><span><img src="PZARC_PLUGIN_URL/resources/assets/images/sample-image.jpg" style="max-width:100%;"/></span></span>';
             element_html['image'] = element_html['image'].replace( /PZARC_PLUGIN_URL/g, plugin_url );
             //        element_html['caption'] = '<span class="pzarc-draggable pzarc-draggable-caption pzarc-draggable-caption" title="Image caption" data-idcode=caption ><span>Featured image caption</span></span>';
 
-            element_html['content'] = '<span class="pzarc-draggable pzarc-draggable-content" title= "Full post content"  data-idcode=content style="font-size:13px;"><span><img src="PZARC_PLUGIN_URL/shared/assets/images/sample-image.jpg" class="pzarc-align ' + jQuery( "select#_pzarc_layout-excerpt-thumb-cmb-field-0" ).val() + '" style="max-width:20%;"/><img src="PZARC_PLUGIN_URL/shared/assets/images/fireworks.jpg" style="max-width:30%;float:left;padding:5px;"/>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam quis justo erat. <ul><li>&nbsp;&bull;&nbsp;Cras semper sem hendrerit</li><li>&nbsp;&bull;&nbsp;Tortor porta at auctor</li></ul><strong>Lacus consequat</strong><p>Pellentesque pulvinar iaculis tellus in blandit. Suspendisse rhoncus, magna vel eleifend cursus, turpis odio molestie urna, quis posuere eros risus quis neque. </p></span></span>';
+            element_html['content'] = '<span class="pzarc-draggable pzarc-draggable-content" title= "Full post content"  data-idcode=content style="font-size:13px;"><span><img src="PZARC_PLUGIN_URL/resources/assets/images/sample-image.jpg" class="pzarc-align ' + jQuery( "select#_pzarc_layout-excerpt-thumb-cmb-field-0" ).val() + '" style="max-width:20%;"/><img src="PZARC_PLUGIN_URL/resources/assets/images/fireworks.jpg" style="max-width:30%;float:left;padding:5px;"/>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam quis justo erat. <ul><li>&nbsp;&bull;&nbsp;Cras semper sem hendrerit</li><li>&nbsp;&bull;&nbsp;Tortor porta at auctor</li></ul><strong>Lacus consequat</strong><p>Pellentesque pulvinar iaculis tellus in blandit. Suspendisse rhoncus, magna vel eleifend cursus, turpis odio molestie urna, quis posuere eros risus quis neque. </p></span></span>';
             element_html['content'] = element_html['content'].replace( /PZARC_PLUGIN_URL/g, plugin_url );
 
-            element_html['excerpt'] = '<span class="pzarc-draggable pzarc-draggable-excerpt"  title= "Excerpt with featured image" data-idcode=excerpt style="font-size:13px;"><span><img src="PZARC_PLUGIN_URL/shared/assets/images/sample-image.jpg" class="pzarc-align ' + jQuery( "select#_pzarc_layout-excerpt-thumb-cmb-field-0" ).val() + '" style="max-width:20%;"/>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam quis justo erat. Cras semper sem hendre...[more]</span></span>';
+            element_html['excerpt'] = '<span class="pzarc-draggable pzarc-draggable-excerpt"  title= "Excerpt with featured image" data-idcode=excerpt style="font-size:13px;"><span><img src="PZARC_PLUGIN_URL/resources/assets/images/sample-image.jpg" class="pzarc-align ' + jQuery( "select#_pzarc_layout-excerpt-thumb-cmb-field-0" ).val() + '" style="max-width:20%;"/>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam quis justo erat. Cras semper sem hendre...[more]</span></span>';
 
             element_html['excerpt'] = element_html['excerpt'].replace( /PZARC_PLUGIN_URL/g, plugin_url );
 
@@ -343,7 +343,7 @@ jQuery( document ).ready( function ()
         switch (bgPosition)
         {
             case 'fill':
-                jQuery( '.pzarc-dropzone .pzgp-cell-image-behind' ).html( '<img src="' + plugin_url + '/shared/assets/images/sample-image.jpg"/>' );
+                jQuery( '.pzarc-dropzone .pzgp-cell-image-behind' ).html( '<img src="' + plugin_url + '/resources/assets/images/sample-image.jpg"/>' );
                 jQuery( '.pzarc-dropzone .pzgp-cell-image-behind' ).css( {
                     'left': '0',
                     top: '0',
@@ -356,7 +356,7 @@ jQuery( document ).ready( function ()
                 } );
                 break;
             case 'align':
-                jQuery( '.pzarc-dropzone .pzgp-cell-image-behind' ).html( '<img src="' + plugin_url + 'shared/assets/images/sample-image.jpg"/>' );
+                jQuery( '.pzarc-dropzone .pzgp-cell-image-behind' ).html( '<img src="' + plugin_url + 'resources/assets/images/sample-image.jpg"/>' );
                 var zonesWidth = jQuery( '.pzarc-content-area' ).width();
                 var zonesHeight = jQuery( '.pzarc-content-area' ).height();
                 var imageWidth = 400 - zonesWidth;

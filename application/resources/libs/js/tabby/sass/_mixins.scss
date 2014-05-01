@@ -29,7 +29,7 @@
 }
 
 // @font-face mixin
-// Order of the shared matters, and it is: normal, bold, italic, bold+italic.
+// Order of the resources matters, and it is: normal, bold, italic, bold+italic.
 // Forked from Bourbon. https://github.com/thoughtbot/bourbon/
 @mixin font-face($font-family, $file-path, $weight: normal, $style: normal) {
 	@font-face {

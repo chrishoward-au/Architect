@@ -56,14 +56,14 @@
 
 
         // Good to go. Load all the classes
-        require_once(PZARC_PLUGIN_PATH . '/shared/includes/php/arc-functions.php');
+        require_once(PZARC_PLUGIN_PATH . '/resources/includes/php/arc-functions.php');
         require_once(PZARC_PLUGIN_PATH . '/public/php/class_arc_Section.php');
         require_once(PZARC_PLUGIN_PATH . '/public/php/class_arc_Navigator.php');
         require_once(PZARC_PLUGIN_PATH . '/public/php/class_arc_Pagination.php');
         require_once PZARC_PLUGIN_PATH . '/public/php/interface_arc_PanelDefinitions.php';
       }
 
-      function set_defaults()
+      static function set_defaults()
       {
         // TODO: Remove this once Dovy fixes MB defaults
         require_once PZARC_PLUGIN_PATH . '/admin/php/class_arc_Panels_Layouts.php';

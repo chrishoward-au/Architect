@@ -265,7 +265,7 @@ if ( ! class_exists( 'TGM_Plugin_Activation' ) ) {
          * beforehand.
          *
          * WP doesn't make it easy to show the plugin information in the thickbox -
-         * here we have to require a file that shared a function that does the
+         * here we have to require a file that resources a function that does the
          * main work of displaying it, enqueue some styles, set up some globals and
          * finally call that function before exiting.
          *
@@ -573,7 +573,7 @@ if ( ! class_exists( 'TGM_Plugin_Activation' ) ) {
          * Echoes required plugin notice.
          *
          * Outputs a message telling users that a specific plugin is required for
-         * their theme. If appropriate, it shared a link to the form page where
+         * their theme. If appropriate, it resources a link to the form page where
          * users can install and activate the plugin.
          *
          * @since 1.0.0

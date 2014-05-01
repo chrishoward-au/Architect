@@ -18,7 +18,7 @@
      */
     static function set_data(&$section)
     {
-      var_dump($section);
+      //var_dump($section);
       $showbg_after_components                = ($section[ '_panels_design_background-position' ] != 'none' && ($section[ '_panels_design_components-position' ] == 'top' || $section[ '_panels_design_components-position' ] == 'left'));
       $showbg_before_components               = ($section[ '_panels_design_background-position' ] != 'none' && ($section[ '_panels_design_components-position' ] == 'bottom' || $section[ '_panels_design_components-position' ] == 'right'));
       $data[ 'postid' ]                       = get_the_ID();

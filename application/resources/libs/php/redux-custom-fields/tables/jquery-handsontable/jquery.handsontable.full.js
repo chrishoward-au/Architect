@@ -4312,7 +4312,7 @@ Handsontable.SelectionPoint.prototype.arr = function (arr) {
  * @param {Number} col
  * @param {String|Number} prop Row object property name
  * @param value Value to render (remember to escape unsafe HTML before inserting to DOM!)
- * @param {Object} cellProperties Cell properites (shared by cell renderer and editor)
+ * @param {Object} cellProperties Cell properites (resources by cell renderer and editor)
  */
 (function (Handsontable) {
   'use strict';
@@ -4371,7 +4371,7 @@ Handsontable.SelectionPoint.prototype.arr = function (arr) {
    * @param {Number} col
    * @param {String|Number} prop Row object property name
    * @param value Value to render (remember to escape unsafe HTML before inserting to DOM!)
-   * @param {Object} cellProperties Cell properites (shared by cell renderer and editor)
+   * @param {Object} cellProperties Cell properites (resources by cell renderer and editor)
    */
   var AutocompleteRenderer = function (instance, TD, row, col, prop, value, cellProperties) {
 
@@ -4413,7 +4413,7 @@ Handsontable.SelectionPoint.prototype.arr = function (arr) {
  * @param {Number} col
  * @param {String|Number} prop Row object property name
  * @param value Value to render (remember to escape unsafe HTML before inserting to DOM!)
- * @param {Object} cellProperties Cell properites (shared by cell renderer and editor)
+ * @param {Object} cellProperties Cell properites (resources by cell renderer and editor)
  */
 (function (Handsontable) {
 
@@ -4541,7 +4541,7 @@ Handsontable.SelectionPoint.prototype.arr = function (arr) {
  * @param {Number} col
  * @param {String|Number} prop Row object property name
  * @param value Value to render (remember to escape unsafe HTML before inserting to DOM!)
- * @param {Object} cellProperties Cell properites (shared by cell renderer and editor)
+ * @param {Object} cellProperties Cell properites (resources by cell renderer and editor)
  */
 (function (Handsontable) {
 

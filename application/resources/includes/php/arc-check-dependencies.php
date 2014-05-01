@@ -19,7 +19,7 @@
 /**
  * Include the TGM_Plugin_Activation class.
  */
-require_once PZARC_PLUGIN_PATH . '/shared/libs/php/class-tgm-plugin-activation.php';
+require_once PZARC_PLUGIN_PATH . '/resources/libs/php/class-tgm-plugin-activation.php';
 
 add_action( 'tgmpa_register', 'my_theme_register_required_plugins' );
 /**

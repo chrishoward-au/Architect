@@ -40,7 +40,7 @@
         add_action('admin_enqueue_scripts', array($this, 'admin_enqueue'));
 
         //@TODO: need a bit of screen dependency on this?
-//      require_once PZARC_PLUGIN_PATH . '/shared/class_pzarcForm.php';
+//      require_once PZARC_PLUGIN_PATH . '/resources/class_pzarcForm.php';
         require_once PZARC_PLUGIN_PATH . '/admin/php/class_arc_Panels_Layouts.php';
         require_once PZARC_PLUGIN_PATH . '/admin/php/class_arc_Blueprints_Layouts.php';
         require_once PZARC_PLUGIN_PATH . '/admin/php/arc-galleries.php';
@@ -51,8 +51,8 @@
 //			require_once PZARC_PLUGIN_PATH . '/admin/ucd-controls.php';
 
 
-        require_once PZARC_PLUGIN_PATH . '/shared/libs/php/redux-custom-fields/loader.php';
-        require_once PZARC_PLUGIN_PATH . '/shared/libs/php/redux-extensions/loader.php';
+        require_once PZARC_PLUGIN_PATH . '/resources/libs/php/redux-custom-fields/loader.php';
+        require_once PZARC_PLUGIN_PATH . '/resources/libs/php/redux-extensions/loader.php';
         require_once PZARC_PLUGIN_PATH . '/admin/php/arc-options.php';
 
         // @TODO Should these really be objects?
@@ -82,14 +82,14 @@
         wp_enqueue_style('dashicons');
 
 //      wp_enqueue_style('pzarc-block-css', PZARC_PLUGIN_URL . '/admin/css/arc-admin.css');
-        wp_enqueue_style('pzarc-jqueryui-css', PZARC_PLUGIN_URL . '/shared/libs/js/jquery-ui-1.10.2.custom/css/pz_architect/jquery-ui-1.10.2.custom.min.css');
+        wp_enqueue_style('pzarc-jqueryui-css', PZARC_PLUGIN_URL . '/resources/libs/js/jquery-ui-1.10.2.custom/css/pz_architect/jquery-ui-1.10.2.custom.min.css');
 
         wp_enqueue_script('jquery-pzarc-metaboxes', PZARC_PLUGIN_URL . '/data/admin/js/arc-metaboxes.js', array('jquery'));
 
 
-        wp_enqueue_script('pzarc-validation-engine-js-lang', PZARC_PLUGIN_URL . '/shared/libs/js/jQuery-Validation-Engine/js/languages/jquery.validationEngine-en.js', array('jquery'));
-        wp_enqueue_script('pzarc-validation-engine-js', PZARC_PLUGIN_URL . '/shared/libs/js/jQuery-Validation-Engine/js/jquery.validationEngine.js', array('jquery'));
-        wp_enqueue_style('pzarc-validation-engine-css', PZARC_PLUGIN_URL . '/shared/libs/js/jQuery-Validation-Engine/css/validationEngine.jquery.css');
+        wp_enqueue_script('pzarc-validation-engine-js-lang', PZARC_PLUGIN_URL . '/resources/libs/js/jQuery-Validation-Engine/js/languages/jquery.validationEngine-en.js', array('jquery'));
+        wp_enqueue_script('pzarc-validation-engine-js', PZARC_PLUGIN_URL . '/resources/libs/js/jQuery-Validation-Engine/js/jquery.validationEngine.js', array('jquery'));
+        wp_enqueue_style('pzarc-validation-engine-css', PZARC_PLUGIN_URL . '/resources/libs/js/jQuery-Validation-Engine/css/validationEngine.jquery.css');
       }
     }
 
@@ -211,7 +211,7 @@
       add_action('admin_menu', array(&$this, 'admin_menu'), 99);
 
       // Include and create a new WordPressSettingsFramework
-      require_once($this->plugin_path . '/shared/libs/php/wp-settings-framework.php');
+      require_once($this->plugin_path . '/resources/libs/php/wp-settings-framework.php');
       $this->wpsf = new WordPressSettingsFramework($this->plugin_path . '/data/admin/php/settings/options.php', 'architect-defaults');
       // Add an optional settings validation filter (recommended)
       add_filter($this->wpsf->get_option_group() . '_settings_validate', array(&$this, 'validate_settings'));

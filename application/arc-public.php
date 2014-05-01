@@ -9,16 +9,14 @@
 
 
   // TODO: Move these til needed
-  require_once PZARC_PLUGIN_PATH . '/public/php/class_Architect.php';
-  require_once(PZARC_PLUGIN_PATH . '/shared/libs/php/jo-image-resizer/jo_image_resizer.php');
 
 
   add_action('init', 'pzarc_display_init');
   function pzarc_display_init()
   {
     wp_register_script('js-arc-frontjs', PZARC_PLUGIN_URL . '/public/js/arc-front.js', array('jquery'));
-    wp_register_script('js-swiperjs', PZARC_PLUGIN_URL . '/shared/libs/js/swiper/idangerous.swiper.js');
-    wp_register_style('css-swiperjs', PZARC_PLUGIN_URL . '/shared/libs/js/swiper/idangerous.swiper.css');
+    wp_register_script('js-swiperjs', PZARC_PLUGIN_URL . '/resources/libs/js/swiper/idangerous.swiper.js');
+    wp_register_style('css-swiperjs', PZARC_PLUGIN_URL . '/resources/libs/js/swiper/idangerous.swiper.css');
 
     wp_enqueue_script('js-arc-frontjs');
     wp_enqueue_script('js-swiperjs');
@@ -79,6 +77,8 @@
 
     }
     else {
+      require_once PZARC_PLUGIN_PATH . '/public/php/class_Architect.php';
+      require_once(PZARC_PLUGIN_PATH . '/resources/libs/php/jo-image-resizer/jo_image_resizer.php');
 
       $architect = new Architect($blueprint, $is_shortcode);
       if (empty($architect->build->blueprint[ 'err_msg' ])) {
