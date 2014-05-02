@@ -2,850 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6a91661e-ac03-4c49-a442-2faea24b5b57" name="Default" comment="">
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/fonts/README.txt" afterPath="$PROJECT_DIR$/application/resources/assets/fonts/README.txt" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/3D-Cube.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/3D-Cube.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/3D-X-Axis-Rotation.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/3D-X-Axis-Rotation.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/3D-Y-Axis-Rotation.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/3D-Y-Axis-Rotation.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/3D-Z-Axis-Rotation.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/3D-Z-Axis-Rotation.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/3D-cylinder.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/3D-cylinder.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/3D-glasses.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/3D-glasses.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/3D-plane.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/3D-plane.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/3D-pyramid.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/3D-pyramid.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/3D-sphere.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/3D-sphere.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/3D-wedge.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/3D-wedge.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/4-direction-alt.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/4-direction-alt.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/4-direction.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/4-direction.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/8-direction-alt.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/8-direction-alt.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/8-direction.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/8-direction.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/MD-analog.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/MD-analog.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/MD-aspect-ratio-alt.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/MD-aspect-ratio-alt.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/MD-aspect-ratio.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/MD-aspect-ratio.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/MD-audio.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/MD-audio.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/MD-backward.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/MD-backward.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/MD-betamax.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/MD-betamax.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/MD-brightness.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/MD-brightness.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/MD-camera-photo-alt-1.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/MD-camera-photo-alt-1.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/MD-camera-photo-alt-2.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/MD-camera-photo-alt-2.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/MD-camera-photo-alt-3.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/MD-camera-photo-alt-3.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/MD-camera-photo.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/MD-camera-photo.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/MD-camera-polaroid.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/MD-camera-polaroid.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/MD-camera-surveillance.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/MD-camera-surveillance.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/MD-camera-video-alt-1.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/MD-camera-video-alt-1.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/MD-camera-video-alt-2.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/MD-camera-video-alt-2.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/MD-camera-video.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/MD-camera-video.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/MD-camera-web.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/MD-camera-web.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/MD-cassette-tape.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/MD-cassette-tape.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/MD-cd-burn.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/MD-cd-burn.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/MD-cd-card.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/MD-cd-card.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/MD-cd.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/MD-cd.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/MD-contrast.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/MD-contrast.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/MD-dat.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/MD-dat.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/MD-disc-3''.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/MD-disc-3''.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/MD-disc-3-5''.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/MD-disc-3-5''.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/MD-disc-5-1-4''.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/MD-disc-5-1-4''.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/MD-eject.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/MD-eject.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/MD-equalizer-alt.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/MD-equalizer-alt.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/MD-equalizer.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/MD-equalizer.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/MD-fast-backward-alt.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/MD-fast-backward-alt.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/MD-fast-backward.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/MD-fast-backward.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/MD-fast-forward-alt.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/MD-fast-forward-alt.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/MD-fast-forward.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/MD-fast-forward.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/MD-film.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/MD-film.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/MD-flash.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/MD-flash.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/MD-headphones-alt.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/MD-headphones-alt.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/MD-headphones-mic.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/MD-headphones-mic.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/MD-headphones.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/MD-headphones.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/MD-inverse.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/MD-inverse.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/MD-knob-alt.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/MD-knob-alt.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/MD-knob-decrease.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/MD-knob-decrease.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/MD-knob-increase.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/MD-knob-increase.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/MD-knob-volume.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/MD-knob-volume.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/MD-knob.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/MD-knob.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/MD-levels-alt.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/MD-levels-alt.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/MD-levels-decrease.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/MD-levels-decrease.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/MD-levels-increase.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/MD-levels-increase.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/MD-levels.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/MD-levels.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/MD-microphone-alt.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/MD-microphone-alt.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/MD-microphone.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/MD-microphone.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/MD-minidisc.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/MD-minidisc.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/MD-music.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/MD-music.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/MD-next.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/MD-next.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/MD-pause.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/MD-pause.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/MD-photo-alt 2.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/MD-photo-alt 2.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/MD-photo-alt-1.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/MD-photo-alt-1.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/MD-photo.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/MD-photo.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/MD-photos-alt.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/MD-photos-alt.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/MD-photos.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/MD-photos.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/MD-picture-broken-link-alt.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/MD-picture-broken-link-alt.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/MD-picture-broken-link.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/MD-picture-broken-link.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/MD-play.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/MD-play.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/MD-previous.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/MD-previous.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/MD-radio.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/MD-radio.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/MD-record.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/MD-record.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/MD-reload.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/MD-reload.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/MD-repeat-alt.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/MD-repeat-alt.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/MD-repeat-once.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/MD-repeat-once.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/MD-repeat.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/MD-repeat.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/MD-resume.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/MD-resume.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/MD-shuffle.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/MD-shuffle.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/MD-sound.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/MD-sound.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/MD-speaker-alt.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/MD-speaker-alt.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/MD-speaker.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/MD-speaker.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/MD-split.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/MD-split.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/MD-stop.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/MD-stop.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/MD-stream-audio.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/MD-stream-audio.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/MD-stream-video.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/MD-stream-video.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/MD-synth.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/MD-synth.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/MD-time-pos-back.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/MD-time-pos-back.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/MD-time-pos-forward.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/MD-time-pos-forward.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/MD-time-pos-set.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/MD-time-pos-set.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/MD-time-position.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/MD-time-position.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/MD-tv.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/MD-tv.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/MD-vhs.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/MD-vhs.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/MD-video.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/MD-video.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/MD-vinyl-33-1-3.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/MD-vinyl-33-1-3.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/MD-vinyl-45.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/MD-vinyl-45.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/MD-volume-0-alt.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/MD-volume-0-alt.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/MD-volume-0.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/MD-volume-0.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/MD-volume-1.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/MD-volume-1.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/MD-volume-2.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/MD-volume-2.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/MD-volume-3.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/MD-volume-3.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/MD-volume-down.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/MD-volume-down.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/MD-volume-up.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/MD-volume-up.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/about.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/about.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/access.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/access.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/activity.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/activity.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/add.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/add.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/address-book.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/address-book.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/airport.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/airport.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/alarm.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/alarm.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/alert-alt.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/alert-alt.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/alert.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/alert.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/alt.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/alt.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/anchor.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/anchor.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/announce.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/announce.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/antivirus-alt.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/antivirus-alt.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/antivirus.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/antivirus.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/arrow-1-backward.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/arrow-1-backward.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/arrow-1-down-left.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/arrow-1-down-left.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/arrow-1-down-right.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/arrow-1-down-right.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/arrow-1-down.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/arrow-1-down.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/arrow-1-forward.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/arrow-1-forward.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/arrow-1-left.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/arrow-1-left.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/arrow-1-right.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/arrow-1-right.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/arrow-1-up-left.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/arrow-1-up-left.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/arrow-1-up-right.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/arrow-1-up-right.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/arrow-1-up.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/arrow-1-up.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/arrow-2-down-left.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/arrow-2-down-left.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/arrow-2-down-right.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/arrow-2-down-right.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/arrow-2-down.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/arrow-2-down.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/arrow-2-left.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/arrow-2-left.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/arrow-2-right.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/arrow-2-right.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/arrow-2-up-left.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/arrow-2-up-left.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/arrow-2-up-right.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/arrow-2-up-right.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/arrow-2-up.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/arrow-2-up.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/arrow-3-down-left.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/arrow-3-down-left.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/arrow-3-down-right.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/arrow-3-down-right.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/arrow-3-down.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/arrow-3-down.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/arrow-3-left.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/arrow-3-left.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/arrow-3-right.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/arrow-3-right.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/arrow-3-up-left.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/arrow-3-up-left.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/arrow-3-up-right.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/arrow-3-up-right.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/arrow-3-up.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/arrow-3-up.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/arrow-4-down-left.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/arrow-4-down-left.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/arrow-4-down-right.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/arrow-4-down-right.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/arrow-4-down.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/arrow-4-down.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/arrow-4-left.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/arrow-4-left.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/arrow-4-right.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/arrow-4-right.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/arrow-4-up-left.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/arrow-4-up-left.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/arrow-4-up-right.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/arrow-4-up-right.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/arrow-4-up.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/arrow-4-up.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/arrow-5-down.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/arrow-5-down.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/arrow-5-left.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/arrow-5-left.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/arrow-5-right.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/arrow-5-right.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/arrow-5-up.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/arrow-5-up.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/arrow-6-down.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/arrow-6-down.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/arrow-6-left.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/arrow-6-left.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/arrow-6-right.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/arrow-6-right.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/arrow-6-up.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/arrow-6-up.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/arrow-7-down.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/arrow-7-down.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/arrow-7-left.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/arrow-7-left.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/arrow-7-right.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/arrow-7-right.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/arrow-7-up.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/arrow-7-up.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/arrow-8-down.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/arrow-8-down.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/arrow-8-left.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/arrow-8-left.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/arrow-8-right.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/arrow-8-right.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/arrow-8-up.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/arrow-8-up.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/arrow-circular-alt-1.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/arrow-circular-alt-1.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/arrow-circular-alt-2.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/arrow-circular-alt-2.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/arrow-orthogonal-alt-1.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/arrow-orthogonal-alt-1.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/arrow-orthogonal-alt-2.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/arrow-orthogonal-alt-2.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/asterisk-alt.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/asterisk-alt.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/asterisk.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/asterisk.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/attachment.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/attachment.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/axis-x-y-alt.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/axis-x-y-alt.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/axis-x-y.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/axis-x-y.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/badge.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/badge.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/bag-alt-1.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/bag-alt-1.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/bag-alt-2.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/bag-alt-2.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/bag-alt-3.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/bag-alt-3.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/bag-alt-4.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/bag-alt-4.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/bag-alt-5.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/bag-alt-5.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/bag.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/bag.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/baggage.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/baggage.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/balance.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/balance.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/bank-alt-1.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/bank-alt-1.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/bank-alt-2.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/bank-alt-2.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/bank.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/bank.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/barcode.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/barcode.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/basket-alt-1.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/basket-alt-1.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/basket-alt-2.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/basket-alt-2.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/basket-alt-3.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/basket-alt-3.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/basket.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/basket.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/battery-empty-alt.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/battery-empty-alt.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/battery-empty.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/battery-empty.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/battery-full-alt.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/battery-full-alt.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/battery-full.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/battery-full.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/bicycle.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/bicycle.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/blog.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/blog.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/bluetooth.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/bluetooth.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/book-alt-2.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/book-alt-2.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/book-alt-3.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/book-alt-3.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/book-alt-4.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/book-alt-4.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/book-alt.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/book-alt.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/book.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/book.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/bookmark-alt.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/bookmark-alt.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/bookmark.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/bookmark.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/books.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/books.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/box-alt.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/box-alt.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/box.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/box.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/briefcase.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/briefcase.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/brush-alt-1.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/brush-alt-1.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/brush-alt-2.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/brush-alt-2.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/brush.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/brush.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/bug.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/bug.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/bussiness-card.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/bussiness-card.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/cake-alt.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/cake-alt.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/cake.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/cake.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/calculator-alt.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/calculator-alt.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/calculator.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/calculator.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/calendar-alt-1.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/calendar-alt-1.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/calendar-alt-2.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/calendar-alt-2.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/calendar.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/calendar.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/cancel.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/cancel.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/cart-alt-1.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/cart-alt-1.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/cart-alt-2.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/cart-alt-2.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/cart-alt-3.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/cart-alt-3.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/cart-alt-4.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/cart-alt-4.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/cart-alt-5.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/cart-alt-5.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/cart-alt-6.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/cart-alt-6.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/cart.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/cart.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/chair-alt.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/chair-alt.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/chair.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/chair.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/chat-active-alt-1.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/chat-active-alt-1.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/chat-active-alt-2.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/chat-active-alt-2.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/chat-active.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/chat-active.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/chat-alt-1.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/chat-alt-1.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/chat-alt-2.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/chat-alt-2.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/chat-alt-3.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/chat-alt-3.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/chat.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/chat.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/check-alt.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/check-alt.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/check.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/check.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/checkbox-empty.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/checkbox-empty.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/checkbox.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/checkbox.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/cheque.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/cheque.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/cinema.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/cinema.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/city.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/city.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/code.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/code.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/color-picker.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/color-picker.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/color-swatch.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/color-swatch.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/comment-alt.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/comment-alt.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/comment.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/comment.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/compass-alt.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/compass-alt.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/compass.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/compass.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/compress.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/compress.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/computer-laptop.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/computer-laptop.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/computer-retro.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/computer-retro.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/computer.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/computer.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/connect-alt-1.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/connect-alt-1.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/connect-alt-2.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/connect-alt-2.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/connect.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/connect.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/connection-error-alt-1.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/connection-error-alt-1.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/connection-error-alt-2.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/connection-error-alt-2.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/connection-error.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/connection-error.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/construction.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/construction.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/content.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/content.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/controls-alt-1.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/controls-alt-1.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/controls-alt-2.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/controls-alt-2.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/controls.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/controls.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/copy.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/copy.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/couch-alt-1.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/couch-alt-1.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/couch-alt-2.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/couch-alt-2.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/couch.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/couch.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/counter.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/counter.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/credit-card.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/credit-card.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/crop.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/crop.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/cross.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/cross.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/cup-alt.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/cup-alt.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/cup.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/cup.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/cut.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/cut.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/data-alt-1.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/data-alt-1.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/data-alt-2.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/data-alt-2.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/data.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/data.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/database-add-alt-1.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/database-add-alt-1.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/database-add-alt-2.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/database-add-alt-2.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/database-add.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/database-add.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/database-alt-1.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/database-alt-1.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/database-alt-2.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/database-alt-2.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/database-download-alt-1.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/database-download-alt-1.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/database-download-alt-2.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/database-download-alt-2.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/database-download.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/database-download.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/database-reload-alt-1.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/database-reload-alt-1.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/database-reload-alt-2.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/database-reload-alt-2.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/database-reload.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/database-reload.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/database-remove-alt-1.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/database-remove-alt-1.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/database-remove-alt-2.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/database-remove-alt-2.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/database-remove.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/database-remove.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/database-upload-alt-1.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/database-upload-alt-1.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/database-upload-alt-2.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/database-upload-alt-2.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/database-upload.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/database-upload.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/database-user-alt.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/database-user-alt.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/database-user.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/database-user.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/database.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/database.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/delete.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/delete.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/directions-alt.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/directions-alt.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/directions.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/directions.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/display-mac-alt.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/display-mac-alt.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/display-mac.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/display-mac.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/display.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/display.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/document-empty.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/document-empty.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/document-new.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/document-new.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/document.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/document.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/documents.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/documents.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/door-closed.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/door-closed.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/door.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/door.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/download-alt-1.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/download-alt-1.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/download-alt-2.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/download-alt-2.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/download-alt-3.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/download-alt-3.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/download-alt-4.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/download-alt-4.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/download.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/download.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/drawer-locked.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/drawer-locked.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/drawer-unlocked.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/drawer-unlocked.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/drawer.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/drawer.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/drawers-alt-1.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/drawers-alt-1.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/drawers-alt-2.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/drawers-alt-2.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/drawers.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/drawers.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/drill.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/drill.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/drive-disk-cd.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/drive-disk-cd.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/drive-network.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/drive-network.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/edit-alt-1.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/edit-alt-1.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/edit-alt-2.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/edit-alt-2.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/edit-document.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/edit-document.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/edit.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/edit.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/eightball.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/eightball.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/elevator.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/elevator.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/enter.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/enter.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/eraser.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/eraser.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/ethernet.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/ethernet.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/export.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/export.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/facebook-alt.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/facebook-alt.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/facebook.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/facebook.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/factory.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/factory.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/fan-alt.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/fan-alt.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/fan.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/fan.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/favourite-add.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/favourite-add.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/favourite.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/favourite.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/file-add.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/file-add.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/file-download-alt.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/file-download-alt.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/file-download.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/file-download.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/file-edit.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/file-edit.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/file-remove.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/file-remove.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/file-upload-alt.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/file-upload-alt.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/file-upload.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/file-upload.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/file.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/file.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/files.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/files.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/fill.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/fill.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/filter.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/filter.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/find.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/find.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/fire.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/fire.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/firewall.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/firewall.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/firewire.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/firewire.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/first-aid-alt.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/first-aid-alt.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/first-aid.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/first-aid.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/flag.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/flag.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/folder-open.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/folder-open.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/folder.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/folder.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/font.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/font.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/food.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/food.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/ftp-alt-1.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/ftp-alt-1.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/ftp-alt-2.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/ftp-alt-2.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/ftp.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/ftp.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/full-screen-alt-1.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/full-screen-alt-1.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/full-screen-alt-2.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/full-screen-alt-2.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/full-screen-alt-3.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/full-screen-alt-3.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/full-screen-alt-4.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/full-screen-alt-4.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/full-screen-alt-5.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/full-screen-alt-5.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/full-screen-exit-alt-1.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/full-screen-exit-alt-1.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/full-screen-exit-alt-2.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/full-screen-exit-alt-2.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/full-screen-exit-alt-3.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/full-screen-exit-alt-3.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/full-screen-exit-alt-4.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/full-screen-exit-alt-4.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/full-screen-exit-alt-5.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/full-screen-exit-alt-5.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/full-screen-exit.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/full-screen-exit.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/full-screen.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/full-screen.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/gameboy.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/gameboy.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/games-alt-1.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/games-alt-1.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/games-alt-2.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/games-alt-2.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/games-alt-3.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/games-alt-3.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/games-alt-4.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/games-alt-4.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/games-alt-5.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/games-alt-5.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/games-alt-6.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/games-alt-6.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/games.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/games.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/gift.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/gift.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/glasses-swim.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/glasses-swim.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/glasses.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/glasses.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/grid-alt-1.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/grid-alt-1.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/grid-alt-2.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/grid-alt-2.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/grid-alt-3.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/grid-alt-3.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/grid-dot.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/grid-dot.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/grid.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/grid.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/hammer-alt.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/hammer-alt.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/hammer.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/hammer.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/hardware-chip.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/hardware-chip.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/hardware-processor.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/hardware-processor.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/hedge.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/hedge.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/help-alt.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/help-alt.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/help.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/help.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/hierarchy.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/hierarchy.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/high-definition.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/high-definition.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/home.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/home.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/i-phone.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/i-phone.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/i-pod.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/i-pod.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/icecream.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/icecream.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/idea-alt.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/idea-alt.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/idea.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/idea.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/info.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/info.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/key-A.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/key-A.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/key-Alt.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/key-Alt.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/key-apple.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/key-apple.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/key-backspace-alt.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/key-backspace-alt.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/key-backspace.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/key-backspace.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/key-caps.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/key-caps.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/key-command.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/key-command.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/key-control.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/key-control.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/key-enter.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/key-enter.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/key-option.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/key-option.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/key-page-down.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/key-page-down.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/key-page-up.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/key-page-up.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/key-shift.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/key-shift.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/key-tab.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/key-tab.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/key-windows.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/key-windows.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/key.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/key.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/keyboard.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/keyboard.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/keyhole.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/keyhole.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/kokoretsi.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/kokoretsi.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/kraftwerk.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/kraftwerk.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/label.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/label.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/lamp-alt-1.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/lamp-alt-1.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/lamp-alt-2.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/lamp-alt-2.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/lamp.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/lamp.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/layers.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/layers.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/layout-content.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/layout-content.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/layout-header.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/layout-header.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/layout-sidebar.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/layout-sidebar.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/layout.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/layout.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/license-key.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/license-key.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/link-broken.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/link-broken.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/link.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/link.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/list-numbered.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/list-numbered.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/list-ordered.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/list-ordered.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/list-unordered.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/list-unordered.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/list.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/list.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/location.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/location.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/login.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/login.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/logout.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/logout.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/luck.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/luck.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/magnet.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/magnet.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/mail-inbox.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/mail-inbox.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/mail-read.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/mail-read.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/mail-sent.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/mail-sent.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/mail.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/mail.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/man.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/man.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/map-marker-pin.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/map-marker-pin.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/map.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/map.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/medal-alt.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/medal-alt.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/medal.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/medal.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/mobile-alt.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/mobile-alt.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/mobile.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/mobile.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/module.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/module.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/moleskine.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/moleskine.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/moon.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/moon.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/mouse.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/mouse.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/navigation-alt-1.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/navigation-alt-1.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/navigation-alt-2.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/navigation-alt-2.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/navigation.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/navigation.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/network-alt-1.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/network-alt-1.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/network.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/network.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/no.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/no.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/node.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/node.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/notepad-alt.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/notepad-alt.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/notepad.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/notepad.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/open-in-new-window.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/open-in-new-window.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/open-source.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/open-source.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/orientation-landscape.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/orientation-landscape.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/orientation-portrait.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/orientation-portrait.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/padlock-closed.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/padlock-closed.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/padlock-open.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/padlock-open.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/paintroller-alt.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/paintroller-alt.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/paintroller.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/paintroller.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/park-bench.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/park-bench.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/paste.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/paste.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/pattern.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/pattern.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/pen.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/pen.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/pill.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/pill.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/pinetree.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/pinetree.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/plugin-disabled.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/plugin-disabled.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/plugin.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/plugin.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/podcast.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/podcast.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/pollution.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/pollution.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/power-off.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/power-off.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/power-on-off.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/power-on-off.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/power-on.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/power-on.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/power-standby.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/power-standby.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/preferences.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/preferences.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/presentation.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/presentation.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/print-alt.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/print-alt.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/print.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/print.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/printer-preview.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/printer-preview.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/printer.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/printer.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/projector.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/projector.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/read-only.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/read-only.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/refreshment.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/refreshment.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/register.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/register.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/remote-control.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/remote-control.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/report.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/report.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/resize.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/resize.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/rip.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/rip.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/road-sign.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/road-sign.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/rss.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/rss.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/ruby.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/ruby.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/ruler-alt.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/ruler-alt.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/ruler.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/ruler.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/safety-box.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/safety-box.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/save.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/save.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/science.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/science.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/screenshot.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/screenshot.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/script.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/script.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/search-advanced.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/search-advanced.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/search.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/search.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/server.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/server.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/servers.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/servers.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/settings.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/settings.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/shape-circle.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/shape-circle.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/shape-ellipse.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/shape-ellipse.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/shape-hexagon.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/shape-hexagon.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/shape-kite.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/shape-kite.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/shape-parallelogram-orthogonal.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/shape-parallelogram-orthogonal.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/shape-pentagon.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/shape-pentagon.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/shape-rhombus.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/shape-rhombus.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/shape-square.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/shape-square.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/shape-trapezoid.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/shape-trapezoid.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/shape-triangle-equilateral.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/shape-triangle-equilateral.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/shape-triangle-isosceles.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/shape-triangle-isosceles.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/shape-triangle-rectangular.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/shape-triangle-rectangular.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/shape-triangle-scalene.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/shape-triangle-scalene.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/shapes-align-hori-center.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/shapes-align-hori-center.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/shapes-align-hori-left.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/shapes-align-hori-left.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/shapes-align-hori-right.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/shapes-align-hori-right.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/shapes-align-verti-bottom.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/shapes-align-verti-bottom.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/shapes-align-verti-middle.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/shapes-align-verti-middle.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/shapes-align-verti-top.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/shapes-align-verti-top.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/shapes-flip-horizontal.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/shapes-flip-horizontal.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/shapes-flip-vertical.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/shapes-flip-vertical.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/shapes-move-back.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/shapes-move-back.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/shapes-move-backward.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/shapes-move-backward.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/shapes-move-forward.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/shapes-move-forward.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/shapes-move-front.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/shapes-move-front.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/shapes-rotate-anticlockwise.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/shapes-rotate-anticlockwise.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/shapes-rotate-clockwise.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/shapes-rotate-clockwise.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/sitemap.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/sitemap.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/spaceship.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/spaceship.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/stamp.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/stamp.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/star.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/star.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/statistics-chart.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/statistics-chart.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/statistics-pie-chart.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/statistics-pie-chart.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/sticky-note.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/sticky-note.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/stop-alt.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/stop-alt.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/stop.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/stop.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/stopwatch.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/stopwatch.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/store.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/store.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/switch-off-alt.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/switch-off-alt.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/switch-off.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/switch-off.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/switch-on-alt.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/switch-on-alt.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/switch-on.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/switch-on.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/tab.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/tab.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/table.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/table.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/tag.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/tag.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/tags.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/tags.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/target.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/target.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/telephone.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/telephone.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/tent.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/tent.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/terminal.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/terminal.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/thumbnails.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/thumbnails.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/tie.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/tie.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/time-alt.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/time-alt.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/time.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/time.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/toolbox.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/toolbox.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/trafficlight-green.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/trafficlight-green.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/trafficlight-orange.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/trafficlight-orange.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/trafficlight-red.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/trafficlight-red.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/trafficlight.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/trafficlight.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/trash-empty.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/trash-empty.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/trash-full.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/trash-full.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/trophy.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/trophy.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/truck.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/truck.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/twitter.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/twitter.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/typewritter.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/typewritter.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/unfold-from-bottom.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/unfold-from-bottom.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/unfold-from-left.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/unfold-from-left.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/unfold-from-right.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/unfold-from-right.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/unfold-from-top.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/unfold-from-top.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/unfold-multiple.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/unfold-multiple.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/user-alt-1.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/user-alt-1.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/user-alt-2.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/user-alt-2.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/user-alt-3.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/user-alt-3.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/user-alt-4.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/user-alt-4.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/user-art.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/user-art.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/user-chat.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/user-chat.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/user-female-alt-1.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/user-female-alt-1.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/user-female-alt-2.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/user-female-alt-2.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/user-female.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/user-female.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/user-locked.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/user-locked.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/user-male-alt-1.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/user-male-alt-1.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/user-male-alt-2.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/user-male-alt-2.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/user-male-alt-3.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/user-male-alt-3.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/user-male.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/user-male.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/user-offline.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/user-offline.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/user-refresh.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/user-refresh.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/user-sleep.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/user-sleep.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/user.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/user.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/users-alt.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/users-alt.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/users.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/users.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/view.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/view.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/wall-alt.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/wall-alt.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/wall.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/wall.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/wallet.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/wallet.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/water-alt.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/water-alt.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/water.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/water.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/weather-cloud-sun.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/weather-cloud-sun.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/weather-cloud.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/weather-cloud.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/weather-clouds.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/weather-clouds.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/weather-rain.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/weather-rain.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/weather-snow.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/weather-snow.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/weather-sun.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/weather-sun.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/weather-thunder.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/weather-thunder.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/web.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/web.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/weight.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/weight.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/wi-fi.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/wi-fi.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/window-stack.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/window-stack.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/window-tile-horizontally.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/window-tile-horizontally.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/window-tile-vertically.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/window-tile-vertically.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/window-tile.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/window-tile.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/window.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/window.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/wireless-router.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/wireless-router.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/wizard.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/wizard.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/zoom-in.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/zoom-in.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/zoom-out.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/zoom-out.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/32x32/zoom.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/32x32/zoom.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/defaulticons.css" afterPath="$PROJECT_DIR$/application/resources/assets/images/defaulticons.css" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/defaulticons.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/defaulticons.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/fireworks.jpg" afterPath="$PROJECT_DIR$/application/resources/assets/images/fireworks.jpg" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/help/arc-layout.jpg" afterPath="$PROJECT_DIR$/application/resources/assets/images/help/arc-layout.jpg" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/icons/braces-65grey.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/icons/braces-65grey.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/icons/computer-65grey.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/icons/computer-65grey.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/icons/custom1-65grey.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/icons/custom1-65grey.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/icons/custom1.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/icons/custom1.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/icons/filter-65grey.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/icons/filter-65grey.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/icons/general-65grey.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/icons/general-65grey.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/icons/general-white.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/icons/general-white.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/icons/general.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/icons/general.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/icons/help1-65grey.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/icons/help1-65grey.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/icons/help1.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/icons/help1.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/icons/help2-65grey.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/icons/help2-65grey.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/icons/help2.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/icons/help2.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/icons/images-65grey.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/icons/images-65grey.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/icons/images.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/icons/images.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/icons/layout1-65grey.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/icons/layout1-65grey.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/icons/layout1.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/icons/layout1.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/icons/layout2-65grey.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/icons/layout2-65grey.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/icons/layout2.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/icons/layout2.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/icons/navigation-65grey.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/icons/navigation-65grey.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/icons/navigation.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/icons/navigation.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/icons/next.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/icons/next.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/icons/phone-65grey.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/icons/phone-65grey.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/icons/point-65grey.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/icons/point-65grey.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/icons/point.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/icons/point.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/icons/prev.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/icons/prev.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/icons/styling-65grey.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/icons/styling-65grey.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/icons/styling.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/icons/styling.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/icons/tablet-65grey.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/icons/tablet-65grey.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/icons/text1-65grey.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/icons/text1-65grey.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/icons/text1.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/icons/text1.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/icons/text2-65grey.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/icons/text2-65grey.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/icons/text2.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/icons/text2.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/icons/transitions-65grey.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/icons/transitions-65grey.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/icons/transitions.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/icons/transitions.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/icons/video-65grey.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/icons/video-65grey.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/icons/video.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/icons/video.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/icons/world-65grey.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/icons/world-65grey.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/icons/world.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/icons/world.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/layouts-col-centre.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/layouts-col-centre.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/layouts-col-left.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/layouts-col-left.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/layouts-col-right.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/layouts-col-right.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/layouts-footer-left.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/layouts-footer-left.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/layouts-footer-right.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/layouts-footer-right.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/layouts-header-left.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/layouts-header-left.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/layouts-header-right.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/layouts-header-right.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/metaboxes/nav-loc-inside.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/metaboxes/nav-loc-inside.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/metaboxes/nav-loc-outside.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/metaboxes/nav-loc-outside.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/metaboxes/nav-pos-bottom.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/metaboxes/nav-pos-bottom.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/metaboxes/nav-pos-left.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/metaboxes/nav-pos-left.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/metaboxes/nav-pos-right.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/metaboxes/nav-pos-right.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/metaboxes/nav-pos-top.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/metaboxes/nav-pos-top.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/metaboxes/nav-type-accordion.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/metaboxes/nav-type-accordion.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/metaboxes/nav-type-bullets.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/metaboxes/nav-type-bullets.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/metaboxes/nav-type-buttons.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/metaboxes/nav-type-buttons.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/metaboxes/nav-type-numeric.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/metaboxes/nav-type-numeric.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/metaboxes/nav-type-tabbed.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/metaboxes/nav-type-tabbed.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/metaboxes/nav-type-thumbs.png" afterPath="$PROJECT_DIR$/application/resources/assets/images/metaboxes/nav-type-thumbs.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/assets/images/sample-image.jpg" afterPath="$PROJECT_DIR$/application/resources/assets/images/sample-image.jpg" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/includes/js/architect.js" afterPath="$PROJECT_DIR$/application/resources/includes/js/architect.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/includes/php/arc-check-dependencies.php" afterPath="$PROJECT_DIR$/application/resources/includes/php/arc-check-dependencies.php" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/includes/php/arc-functions.php" afterPath="$PROJECT_DIR$/application/resources/includes/php/arc-functions.php" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/includes/php/arc-object-lib.php" afterPath="$PROJECT_DIR$/application/resources/includes/php/arc-object-lib.php" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/includes/php/class_pzucdForm.php" afterPath="$PROJECT_DIR$/application/resources/includes/php/class_pzucdForm.php" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/includes/php/class_pzucdQuery.php" afterPath="$PROJECT_DIR$/application/resources/includes/php/class_pzucdQuery.php" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/includes/php/class_pzucdSources.php" afterPath="$PROJECT_DIR$/application/resources/includes/php/class_pzucdSources.php" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/libs/css/font-awesome/css/font-awesome-ie7.min.css" afterPath="$PROJECT_DIR$/application/resources/libs/css/font-awesome/css/font-awesome-ie7.min.css" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/libs/css/font-awesome/css/font-awesome.css" afterPath="$PROJECT_DIR$/application/resources/libs/css/font-awesome/css/font-awesome.css" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/libs/css/font-awesome/css/font-awesome.min.css" afterPath="$PROJECT_DIR$/application/resources/libs/css/font-awesome/css/font-awesome.min.css" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/libs/css/font-awesome/font/FontAwesome.otf" afterPath="$PROJECT_DIR$/application/resources/libs/css/font-awesome/font/FontAwesome.otf" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/libs/css/font-awesome/font/fontawesome-webfont.eot" afterPath="$PROJECT_DIR$/application/resources/libs/css/font-awesome/font/fontawesome-webfont.eot" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/libs/css/font-awesome/font/fontawesome-webfont.svg" afterPath="$PROJECT_DIR$/application/resources/libs/css/font-awesome/font/fontawesome-webfont.svg" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/libs/css/font-awesome/font/fontawesome-webfont.ttf" afterPath="$PROJECT_DIR$/application/resources/libs/css/font-awesome/font/fontawesome-webfont.ttf" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/libs/css/font-awesome/font/fontawesome-webfont.woff" afterPath="$PROJECT_DIR$/application/resources/libs/css/font-awesome/font/fontawesome-webfont.woff" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/libs/js/dynatable/CONTRIBUTING.md" afterPath="$PROJECT_DIR$/application/resources/libs/js/dynatable/CONTRIBUTING.md" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/libs/js/dynatable/LICENSE.txt" afterPath="$PROJECT_DIR$/application/resources/libs/js/dynatable/LICENSE.txt" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/libs/js/dynatable/PROPRIETARY_LICENSE.html" afterPath="$PROJECT_DIR$/application/resources/libs/js/dynatable/PROPRIETARY_LICENSE.html" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/libs/js/dynatable/README.md" afterPath="$PROJECT_DIR$/application/resources/libs/js/dynatable/README.md" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/libs/js/dynatable/bower.json" afterPath="$PROJECT_DIR$/application/resources/libs/js/dynatable/bower.json" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/libs/js/dynatable/jquery.dynatable.css" afterPath="$PROJECT_DIR$/application/resources/libs/js/dynatable/jquery.dynatable.css" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/libs/js/dynatable/jquery.dynatable.js" afterPath="$PROJECT_DIR$/application/resources/libs/js/dynatable/jquery.dynatable.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/libs/js/dynatable/package.json" afterPath="$PROJECT_DIR$/application/resources/libs/js/dynatable/package.json" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/libs/js/isotope.pkgd.min.js" afterPath="$PROJECT_DIR$/application/resources/libs/js/isotope.pkgd.min.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/libs/js/jQuery-Validation-Engine/README.md" afterPath="$PROJECT_DIR$/application/resources/libs/js/jQuery-Validation-Engine/README.md" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/libs/js/jQuery-Validation-Engine/css/customMessages.css" afterPath="$PROJECT_DIR$/application/resources/libs/js/jQuery-Validation-Engine/css/customMessages.css" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/libs/js/jQuery-Validation-Engine/css/screenshot.png" afterPath="$PROJECT_DIR$/application/resources/libs/js/jQuery-Validation-Engine/css/screenshot.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/libs/js/jQuery-Validation-Engine/css/template.css" afterPath="$PROJECT_DIR$/application/resources/libs/js/jQuery-Validation-Engine/css/template.css" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/libs/js/jQuery-Validation-Engine/css/validationEngine.jquery.css" afterPath="$PROJECT_DIR$/application/resources/libs/js/jQuery-Validation-Engine/css/validationEngine.jquery.css" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/libs/js/jQuery-Validation-Engine/index.html" afterPath="$PROJECT_DIR$/application/resources/libs/js/jQuery-Validation-Engine/index.html" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/libs/js/jQuery-Validation-Engine/js/contrib/other-validations.js" afterPath="$PROJECT_DIR$/application/resources/libs/js/jQuery-Validation-Engine/js/contrib/other-validations.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/libs/js/jQuery-Validation-Engine/js/jquery.validationEngine.js" afterPath="$PROJECT_DIR$/application/resources/libs/js/jQuery-Validation-Engine/js/jquery.validationEngine.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/libs/js/jQuery-Validation-Engine/js/languages/jquery.validationEngine-cz.js" afterPath="$PROJECT_DIR$/application/resources/libs/js/jQuery-Validation-Engine/js/languages/jquery.validationEngine-cz.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/libs/js/jQuery-Validation-Engine/js/languages/jquery.validationEngine-da.js" afterPath="$PROJECT_DIR$/application/resources/libs/js/jQuery-Validation-Engine/js/languages/jquery.validationEngine-da.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/libs/js/jQuery-Validation-Engine/js/languages/jquery.validationEngine-de.js" afterPath="$PROJECT_DIR$/application/resources/libs/js/jQuery-Validation-Engine/js/languages/jquery.validationEngine-de.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/libs/js/jQuery-Validation-Engine/js/languages/jquery.validationEngine-en.js" afterPath="$PROJECT_DIR$/application/resources/libs/js/jQuery-Validation-Engine/js/languages/jquery.validationEngine-en.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/libs/js/jQuery-Validation-Engine/js/languages/jquery.validationEngine-es.js" afterPath="$PROJECT_DIR$/application/resources/libs/js/jQuery-Validation-Engine/js/languages/jquery.validationEngine-es.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/libs/js/jQuery-Validation-Engine/js/languages/jquery.validationEngine-et.js" afterPath="$PROJECT_DIR$/application/resources/libs/js/jQuery-Validation-Engine/js/languages/jquery.validationEngine-et.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/libs/js/jQuery-Validation-Engine/js/languages/jquery.validationEngine-fa.js" afterPath="$PROJECT_DIR$/application/resources/libs/js/jQuery-Validation-Engine/js/languages/jquery.validationEngine-fa.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/libs/js/jQuery-Validation-Engine/js/languages/jquery.validationEngine-fi.js" afterPath="$PROJECT_DIR$/application/resources/libs/js/jQuery-Validation-Engine/js/languages/jquery.validationEngine-fi.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/libs/js/jQuery-Validation-Engine/js/languages/jquery.validationEngine-fr.js" afterPath="$PROJECT_DIR$/application/resources/libs/js/jQuery-Validation-Engine/js/languages/jquery.validationEngine-fr.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/libs/js/jQuery-Validation-Engine/js/languages/jquery.validationEngine-hr.js" afterPath="$PROJECT_DIR$/application/resources/libs/js/jQuery-Validation-Engine/js/languages/jquery.validationEngine-hr.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/libs/js/jQuery-Validation-Engine/js/languages/jquery.validationEngine-hu.js" afterPath="$PROJECT_DIR$/application/resources/libs/js/jQuery-Validation-Engine/js/languages/jquery.validationEngine-hu.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/libs/js/jQuery-Validation-Engine/js/languages/jquery.validationEngine-it.js" afterPath="$PROJECT_DIR$/application/resources/libs/js/jQuery-Validation-Engine/js/languages/jquery.validationEngine-it.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/libs/js/jQuery-Validation-Engine/js/languages/jquery.validationEngine-ja.js" afterPath="$PROJECT_DIR$/application/resources/libs/js/jQuery-Validation-Engine/js/languages/jquery.validationEngine-ja.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/libs/js/jQuery-Validation-Engine/js/languages/jquery.validationEngine-nl.js" afterPath="$PROJECT_DIR$/application/resources/libs/js/jQuery-Validation-Engine/js/languages/jquery.validationEngine-nl.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/libs/js/jQuery-Validation-Engine/js/languages/jquery.validationEngine-no.js" afterPath="$PROJECT_DIR$/application/resources/libs/js/jQuery-Validation-Engine/js/languages/jquery.validationEngine-no.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/libs/js/jQuery-Validation-Engine/js/languages/jquery.validationEngine-pl.js" afterPath="$PROJECT_DIR$/application/resources/libs/js/jQuery-Validation-Engine/js/languages/jquery.validationEngine-pl.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/libs/js/jQuery-Validation-Engine/js/languages/jquery.validationEngine-pt.js" afterPath="$PROJECT_DIR$/application/resources/libs/js/jQuery-Validation-Engine/js/languages/jquery.validationEngine-pt.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/libs/js/jQuery-Validation-Engine/js/languages/jquery.validationEngine-pt_BR.js" afterPath="$PROJECT_DIR$/application/resources/libs/js/jQuery-Validation-Engine/js/languages/jquery.validationEngine-pt_BR.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/libs/js/jQuery-Validation-Engine/js/languages/jquery.validationEngine-ro.js" afterPath="$PROJECT_DIR$/application/resources/libs/js/jQuery-Validation-Engine/js/languages/jquery.validationEngine-ro.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/libs/js/jQuery-Validation-Engine/js/languages/jquery.validationEngine-ru.js" afterPath="$PROJECT_DIR$/application/resources/libs/js/jQuery-Validation-Engine/js/languages/jquery.validationEngine-ru.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/libs/js/jQuery-Validation-Engine/js/languages/jquery.validationEngine-se.js" afterPath="$PROJECT_DIR$/application/resources/libs/js/jQuery-Validation-Engine/js/languages/jquery.validationEngine-se.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/libs/js/jQuery-Validation-Engine/js/languages/jquery.validationEngine-tr.js" afterPath="$PROJECT_DIR$/application/resources/libs/js/jQuery-Validation-Engine/js/languages/jquery.validationEngine-tr.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/libs/js/jQuery-Validation-Engine/js/languages/jquery.validationEngine-vi.js" afterPath="$PROJECT_DIR$/application/resources/libs/js/jQuery-Validation-Engine/js/languages/jquery.validationEngine-vi.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/libs/js/jQuery-Validation-Engine/js/languages/jquery.validationEngine-zh_CN.js" afterPath="$PROJECT_DIR$/application/resources/libs/js/jQuery-Validation-Engine/js/languages/jquery.validationEngine-zh_CN.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/libs/js/jQuery-Validation-Engine/js/languages/jquery.validationEngine-zh_TW.js" afterPath="$PROJECT_DIR$/application/resources/libs/js/jQuery-Validation-Engine/js/languages/jquery.validationEngine-zh_TW.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/libs/js/jQuery-Validation-Engine/validationengine.jquery.json" afterPath="$PROJECT_DIR$/application/resources/libs/js/jQuery-Validation-Engine/validationengine.jquery.json" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/libs/js/jquery-ui-1.10.2.custom/css/pz_architect/images/animated-overlay.gif" afterPath="$PROJECT_DIR$/application/resources/libs/js/jquery-ui-1.10.2.custom/css/pz_architect/images/animated-overlay.gif" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/libs/js/jquery-ui-1.10.2.custom/css/pz_architect/images/ui-bg_flat_0_aaaaaa_40x100.png" afterPath="$PROJECT_DIR$/application/resources/libs/js/jquery-ui-1.10.2.custom/css/pz_architect/images/ui-bg_flat_0_aaaaaa_40x100.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/libs/js/jquery-ui-1.10.2.custom/css/pz_architect/images/ui-bg_flat_75_ffffff_40x100.png" afterPath="$PROJECT_DIR$/application/resources/libs/js/jquery-ui-1.10.2.custom/css/pz_architect/images/ui-bg_flat_75_ffffff_40x100.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/libs/js/jquery-ui-1.10.2.custom/css/pz_architect/images/ui-bg_glass_55_fbf9ee_1x400.png" afterPath="$PROJECT_DIR$/application/resources/libs/js/jquery-ui-1.10.2.custom/css/pz_architect/images/ui-bg_glass_55_fbf9ee_1x400.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/libs/js/jquery-ui-1.10.2.custom/css/pz_architect/images/ui-bg_glass_65_ffffff_1x400.png" afterPath="$PROJECT_DIR$/application/resources/libs/js/jquery-ui-1.10.2.custom/css/pz_architect/images/ui-bg_glass_65_ffffff_1x400.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/libs/js/jquery-ui-1.10.2.custom/css/pz_architect/images/ui-bg_glass_75_dadada_1x400.png" afterPath="$PROJECT_DIR$/application/resources/libs/js/jquery-ui-1.10.2.custom/css/pz_architect/images/ui-bg_glass_75_dadada_1x400.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/libs/js/jquery-ui-1.10.2.custom/css/pz_architect/images/ui-bg_glass_75_e6e6e6_1x400.png" afterPath="$PROJECT_DIR$/application/resources/libs/js/jquery-ui-1.10.2.custom/css/pz_architect/images/ui-bg_glass_75_e6e6e6_1x400.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/libs/js/jquery-ui-1.10.2.custom/css/pz_architect/images/ui-bg_glass_95_fef1ec_1x400.png" afterPath="$PROJECT_DIR$/application/resources/libs/js/jquery-ui-1.10.2.custom/css/pz_architect/images/ui-bg_glass_95_fef1ec_1x400.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/libs/js/jquery-ui-1.10.2.custom/css/pz_architect/images/ui-bg_highlight-soft_75_cccccc_1x100.png" afterPath="$PROJECT_DIR$/application/resources/libs/js/jquery-ui-1.10.2.custom/css/pz_architect/images/ui-bg_highlight-soft_75_cccccc_1x100.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/libs/js/jquery-ui-1.10.2.custom/css/pz_architect/images/ui-icons_222222_256x240.png" afterPath="$PROJECT_DIR$/application/resources/libs/js/jquery-ui-1.10.2.custom/css/pz_architect/images/ui-icons_222222_256x240.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/libs/js/jquery-ui-1.10.2.custom/css/pz_architect/images/ui-icons_2e83ff_256x240.png" afterPath="$PROJECT_DIR$/application/resources/libs/js/jquery-ui-1.10.2.custom/css/pz_architect/images/ui-icons_2e83ff_256x240.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/libs/js/jquery-ui-1.10.2.custom/css/pz_architect/images/ui-icons_454545_256x240.png" afterPath="$PROJECT_DIR$/application/resources/libs/js/jquery-ui-1.10.2.custom/css/pz_architect/images/ui-icons_454545_256x240.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/libs/js/jquery-ui-1.10.2.custom/css/pz_architect/images/ui-icons_888888_256x240.png" afterPath="$PROJECT_DIR$/application/resources/libs/js/jquery-ui-1.10.2.custom/css/pz_architect/images/ui-icons_888888_256x240.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/libs/js/jquery-ui-1.10.2.custom/css/pz_architect/images/ui-icons_cd0a0a_256x240.png" afterPath="$PROJECT_DIR$/application/resources/libs/js/jquery-ui-1.10.2.custom/css/pz_architect/images/ui-icons_cd0a0a_256x240.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/libs/js/jquery-ui-1.10.2.custom/css/pz_architect/jquery-ui-1.10.2.custom.css" afterPath="$PROJECT_DIR$/application/resources/libs/js/jquery-ui-1.10.2.custom/css/pz_architect/jquery-ui-1.10.2.custom.css" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/libs/js/jquery-ui-1.10.2.custom/css/pz_architect/jquery-ui-1.10.2.custom.min.css" afterPath="$PROJECT_DIR$/application/resources/libs/js/jquery-ui-1.10.2.custom/css/pz_architect/jquery-ui-1.10.2.custom.min.css" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/libs/js/jquery.isotope.min.js" afterPath="$PROJECT_DIR$/application/resources/libs/js/jquery.isotope.min.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/libs/js/jquery.lorem.js" afterPath="$PROJECT_DIR$/application/resources/libs/js/jquery.lorem.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/libs/js/masonry.pkgd.min.js" afterPath="$PROJECT_DIR$/application/resources/libs/js/masonry.pkgd.min.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/libs/js/swiper/idangerous.swiper.css" afterPath="$PROJECT_DIR$/application/resources/libs/js/swiper/idangerous.swiper.css" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/libs/js/swiper/idangerous.swiper.js" afterPath="$PROJECT_DIR$/application/resources/libs/js/swiper/idangerous.swiper.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/libs/js/swiper/idangerous.swiper.min.js" afterPath="$PROJECT_DIR$/application/resources/libs/js/swiper/idangerous.swiper.min.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/libs/js/tabby/README.md" afterPath="$PROJECT_DIR$/application/resources/libs/js/tabby/README.md" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/libs/js/tabby/css/tabby-css.css" afterPath="$PROJECT_DIR$/application/resources/libs/js/tabby/css/tabby-css.css" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/libs/js/tabby/index.html" afterPath="$PROJECT_DIR$/application/resources/libs/js/tabby/index.html" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/libs/js/tabby/js/buoy.js" afterPath="$PROJECT_DIR$/application/resources/libs/js/tabby/js/buoy.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/libs/js/tabby/js/tabby.js" afterPath="$PROJECT_DIR$/application/resources/libs/js/tabby/js/tabby.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/libs/js/tabby/js/tabify.js" afterPath="$PROJECT_DIR$/application/resources/libs/js/tabby/js/tabify.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/libs/js/tabby/sass/_config.scss" afterPath="$PROJECT_DIR$/application/resources/libs/js/tabby/sass/_config.scss" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/libs/js/tabby/sass/_mixins.scss" afterPath="$PROJECT_DIR$/application/resources/libs/js/tabby/sass/_mixins.scss" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/libs/js/tabby/sass/_tabby.scss" afterPath="$PROJECT_DIR$/application/resources/libs/js/tabby/sass/_tabby.scss" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/libs/js/tabby/sass/tabby-css.scss" afterPath="$PROJECT_DIR$/application/resources/libs/js/tabby/sass/tabby-css.scss" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/libs/js/unslider.min.js" afterPath="$PROJECT_DIR$/application/resources/libs/js/unslider.min.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/libs/php/class-tgm-plugin-activation.php" afterPath="$PROJECT_DIR$/application/resources/libs/php/class-tgm-plugin-activation.php" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/libs/php/jo-image-resizer/LICENSE" afterPath="$PROJECT_DIR$/application/resources/libs/php/jo-image-resizer/LICENSE" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/libs/php/jo-image-resizer/README.md" afterPath="$PROJECT_DIR$/application/resources/libs/php/jo-image-resizer/README.md" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/libs/php/jo-image-resizer/icon.png" afterPath="$PROJECT_DIR$/application/resources/libs/php/jo-image-resizer/icon.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/libs/php/jo-image-resizer/jo_image_resizer.php" afterPath="$PROJECT_DIR$/application/resources/libs/php/jo-image-resizer/jo_image_resizer.php" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/libs/php/redux-custom-fields/code/field_code.css" afterPath="$PROJECT_DIR$/application/resources/libs/php/redux-custom-fields/code/field_code.css" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/libs/php/redux-custom-fields/code/field_code.less" afterPath="$PROJECT_DIR$/application/resources/libs/php/redux-custom-fields/code/field_code.less" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/libs/php/redux-custom-fields/code/field_code.php" afterPath="$PROJECT_DIR$/application/resources/libs/php/redux-custom-fields/code/field_code.php" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/libs/php/redux-custom-fields/loader.php" afterPath="$PROJECT_DIR$/application/resources/libs/php/redux-custom-fields/loader.php" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/libs/php/redux-custom-fields/tabbed/field_tabbed.css" afterPath="$PROJECT_DIR$/application/resources/libs/php/redux-custom-fields/tabbed/field_tabbed.css" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/libs/php/redux-custom-fields/tabbed/field_tabbed.js" afterPath="$PROJECT_DIR$/application/resources/libs/php/redux-custom-fields/tabbed/field_tabbed.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/libs/php/redux-custom-fields/tabbed/field_tabbed.less" afterPath="$PROJECT_DIR$/application/resources/libs/php/redux-custom-fields/tabbed/field_tabbed.less" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/libs/php/redux-custom-fields/tabbed/field_tabbed.php" afterPath="$PROJECT_DIR$/application/resources/libs/php/redux-custom-fields/tabbed/field_tabbed.php" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/libs/php/redux-custom-fields/tables/field_tables.css" afterPath="$PROJECT_DIR$/application/resources/libs/php/redux-custom-fields/tables/field_tables.css" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/libs/php/redux-custom-fields/tables/field_tables.less" afterPath="$PROJECT_DIR$/application/resources/libs/php/redux-custom-fields/tables/field_tables.less" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/libs/php/redux-custom-fields/tables/field_tables.php" afterPath="$PROJECT_DIR$/application/resources/libs/php/redux-custom-fields/tables/field_tables.php" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/libs/php/redux-custom-fields/tables/jquery-handsontable/jquery.handsontable.full.css" afterPath="$PROJECT_DIR$/application/resources/libs/php/redux-custom-fields/tables/jquery-handsontable/jquery.handsontable.full.css" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/libs/php/redux-custom-fields/tables/jquery-handsontable/jquery.handsontable.full.js" afterPath="$PROJECT_DIR$/application/resources/libs/php/redux-custom-fields/tables/jquery-handsontable/jquery.handsontable.full.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/libs/php/redux-extensions/config.php" afterPath="$PROJECT_DIR$/application/resources/libs/php/redux-extensions/config.php" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/libs/php/redux-extensions/extensions/metaboxes/extension_metaboxes.css" afterPath="$PROJECT_DIR$/application/resources/libs/php/redux-extensions/extensions/metaboxes/extension_metaboxes.css" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/libs/php/redux-extensions/extensions/metaboxes/extension_metaboxes.js" afterPath="$PROJECT_DIR$/application/resources/libs/php/redux-extensions/extensions/metaboxes/extension_metaboxes.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/libs/php/redux-extensions/extensions/metaboxes/extension_metaboxes.less" afterPath="$PROJECT_DIR$/application/resources/libs/php/redux-extensions/extensions/metaboxes/extension_metaboxes.less" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/libs/php/redux-extensions/extensions/metaboxes/extension_metaboxes.min.js" afterPath="$PROJECT_DIR$/application/resources/libs/php/redux-extensions/extensions/metaboxes/extension_metaboxes.min.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/libs/php/redux-extensions/extensions/metaboxes/extension_metaboxes.php" afterPath="$PROJECT_DIR$/application/resources/libs/php/redux-extensions/extensions/metaboxes/extension_metaboxes.php" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/libs/php/redux-extensions/loader.php" afterPath="$PROJECT_DIR$/application/resources/libs/php/redux-extensions/loader.php" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/libs/php/redux-extensions/readme.txt" afterPath="$PROJECT_DIR$/application/resources/libs/php/redux-extensions/readme.txt" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/shared/libs/php/wp-settings-framework.php" afterPath="$PROJECT_DIR$/application/resources/libs/php/wp-settings-framework.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/arc-admin.php" afterPath="$PROJECT_DIR$/application/arc-admin.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/admin/js/arc-metaboxes-panels.js" afterPath="$PROJECT_DIR$/application/admin/js/arc-metaboxes-panels.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/admin/php/arc-options.php" afterPath="$PROJECT_DIR$/application/admin/php/arc-options.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/arc-public.php" afterPath="$PROJECT_DIR$/application/arc-public.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/architect.php" afterPath="$PROJECT_DIR$/architect.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/public/php/class_Architect.php" afterPath="$PROJECT_DIR$/application/public/php/class_Architect.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/public/php/class_arc_Display.php" afterPath="$PROJECT_DIR$/application/public/php/class_arc_Display.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/public/php/class_arc_Panel.php" afterPath="$PROJECT_DIR$/application/public/php/class_arc_Panel.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/admin/php/class_arc_Panels_Layouts.php" afterPath="$PROJECT_DIR$/application/admin/php/class_arc_Panels_Layouts.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/admin/css/arc-admin.css" afterPath="$PROJECT_DIR$/application/admin/css/arc-admin.css" />
     </list>
     <ignored path="pizazzwp-architect.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -868,15 +25,6 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="arc-public.php" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/application/arc-public.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="82" column="28" selection-start="2279" selection-end="2279" vertical-scroll-proportion="-18.458334" vertical-offset="1033" max-vertical-offset="2664">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="class_Architect.php" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/application/public/php/class_Architect.php">
           <provider selected="true" editor-type-id="text-editor">
@@ -973,36 +121,25 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="arc-options.php" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/application/admin/php/arc-options.php">
+      <file leaf-file-name="arc-admin.scss" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/application/admin/css/arc-admin.scss">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="72" column="0" selection-start="2510" selection-end="2510" vertical-scroll-proportion="0.2925" vertical-offset="1062" max-vertical-offset="12402">
+            <state line="1137" column="30" selection-start="26989" selection-end="26989" vertical-scroll-proportion="0.3" vertical-offset="20106" max-vertical-offset="21816">
               <folding>
-                <marker date="1398931641000" expanded="true" signature="19110:19308" placeholder="..." />
-                <marker date="1398931641000" expanded="true" signature="19343:19520" placeholder="..." />
-                <marker date="1398931641000" expanded="true" signature="19555:19727" placeholder="..." />
-                <marker date="1398931641000" expanded="true" signature="19762:19936" placeholder="..." />
-                <marker date="1398931641000" expanded="true" signature="19971:20072" placeholder="..." />
+                <element signature="e#17214#18603#2" expanded="true" />
+                <element signature="e#19002#20443#2" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="class_arc_Panels_Layouts.php" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/application/admin/php/class_arc_Panels_Layouts.php">
+      <file leaf-file-name="arc-admin.css" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/application/admin/css/arc-admin.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="268" column="29" selection-start="9467" selection-end="9467" vertical-scroll-proportion="-6.48" vertical-offset="4500" max-vertical-offset="22248">
+            <state line="989" column="0" selection-start="26759" selection-end="26759" vertical-scroll-proportion="0.0" vertical-offset="17998" max-vertical-offset="19422">
               <folding>
-                <marker date="1398928365000" expanded="true" signature="34134:34332" placeholder="..." />
-                <marker date="1398928365000" expanded="true" signature="34367:34544" placeholder="..." />
-                <marker date="1398928365000" expanded="true" signature="34579:34751" placeholder="..." />
-                <marker date="1398928365000" expanded="true" signature="34786:34960" placeholder="..." />
-                <marker date="1398928365000" expanded="true" signature="34995:35096" placeholder="..." />
-                <marker date="1398928365000" expanded="true" signature="44809:45007" placeholder="..." />
-                <marker date="1398928365000" expanded="true" signature="45042:45219" placeholder="..." />
-                <marker date="1398928365000" expanded="true" signature="45254:45426" placeholder="..." />
-                <marker date="1398928365000" expanded="true" signature="45461:45635" placeholder="..." />
-                <marker date="1398928365000" expanded="true" signature="45670:45771" placeholder="..." />
+                <element signature="e#17757#19146#2" expanded="true" />
+                <element signature="e#19460#20901#2" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -1030,9 +167,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/application/interface/admin/php/arc-panels-layouts.php" />
-        <option value="$PROJECT_DIR$/application/interface/admin/js/arc-metaboxes-blueprints.js" />
-        <option value="$PROJECT_DIR$/application/interface/frontend/php/class_pzarc_Display.php" />
         <option value="$PROJECT_DIR$/application/includes/inhouse/php/arc-check-dependencies.php" />
         <option value="$PROJECT_DIR$/application/includes/inhouse/php/arc-functions.php" />
         <option value="$PROJECT_DIR$/application/includes/external/php/redux-custom-fields/tabbed/field_tabbed.css" />
@@ -1081,6 +215,9 @@
         <option value="$PROJECT_DIR$/application/public/php/class_Architect.php" />
         <option value="$PROJECT_DIR$/architect.php" />
         <option value="$PROJECT_DIR$/application/admin/php/arc-options.php" />
+        <option value="$PROJECT_DIR$/application/admin/css/arc-admin.sass" />
+        <option value="$PROJECT_DIR$/application/admin/css/arc-admin.css" />
+        <option value="$PROJECT_DIR$/application/admin/css/arc-admin.scss" />
       </list>
     </option>
   </component>
@@ -1093,8 +230,8 @@
   </component>
   <component name="ProjectFrameBounds">
     <option name="y" value="22" />
-    <option name="width" value="1680" />
-    <option name="height" value="981" />
+    <option name="width" value="2560" />
+    <option name="height" value="1357" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -1261,13 +398,35 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pizazzwp-architect" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pizazzwp-architect" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="application" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="admin" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="css" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="options.splitter.main.proportions" value="0.23788865" />
-    <property name="options.lastSelected" value="preferences.sourceCode.PHP" />
+    <property name="options.lastSelected" value="preferences.general" />
     <property name="options.searchVisible" value="true" />
     <property name="options.splitter.details.proportions" value="0.2" />
     <property name="WebServerToolWindowFactoryState" value="false" />
@@ -1367,7 +526,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="22" width="1680" height="981" extended-state="0" />
+    <frame x="0" y="22" width="2560" height="1357" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32733408" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -1379,9 +538,9 @@
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32885376" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3293011" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.17032968" sideWeight="0.35353535" order="1" side_tool="true" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.110802226" sideWeight="0.35335967" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="eSnippet Pro" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3295583" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.17032968" sideWeight="0.64646465" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.110802226" sideWeight="0.6458498" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -1443,61 +602,20 @@
     </PATH>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/application/admin/php/class_arc_Blueprints_Layouts.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="678" column="29" selection-start="26295" selection-end="26295" vertical-scroll-proportion="0.0" vertical-offset="12060" max-vertical-offset="20970">
-          <folding>
-            <marker date="1398861744000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1398861744000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1398861744000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1398861744000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1398861744000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1398861744000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1398861744000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1398861744000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1398861744000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1398861744000" expanded="true" signature="-1:-1" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/admin/css/arc-admin.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="21906" max-vertical-offset="22878" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/resources/libs/php/redux-custom-fields/tabbed/field_tabbed.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="22" column="19" selection-start="416" selection-end="416" vertical-scroll-proportion="0.0" vertical-offset="396" max-vertical-offset="684" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/admin/php/arc-options.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="396" max-vertical-offset="12294">
-          <folding>
-            <marker date="1398931641000" expanded="true" signature="19110:19308" placeholder="..." />
-            <marker date="1398931641000" expanded="true" signature="19343:19520" placeholder="..." />
-            <marker date="1398931641000" expanded="true" signature="19555:19727" placeholder="..." />
-            <marker date="1398931641000" expanded="true" signature="19762:19936" placeholder="..." />
-            <marker date="1398931641000" expanded="true" signature="19971:20072" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/application/admin/php/class_arc_Panels_Layouts.php">
       <provider selected="true" editor-type-id="text-editor">
         <state line="74" column="85" selection-start="2618" selection-end="2618" vertical-scroll-proportion="0.0" vertical-offset="1332" max-vertical-offset="21600">
           <folding>
-            <marker date="1398928365000" expanded="true" signature="34134:34332" placeholder="..." />
-            <marker date="1398928365000" expanded="true" signature="34367:34544" placeholder="..." />
-            <marker date="1398928365000" expanded="true" signature="34579:34751" placeholder="..." />
-            <marker date="1398928365000" expanded="true" signature="34786:34960" placeholder="..." />
-            <marker date="1398928365000" expanded="true" signature="34995:35096" placeholder="..." />
-            <marker date="1398928365000" expanded="true" signature="44809:45007" placeholder="..." />
-            <marker date="1398928365000" expanded="true" signature="45042:45219" placeholder="..." />
-            <marker date="1398928365000" expanded="true" signature="45254:45426" placeholder="..." />
-            <marker date="1398928365000" expanded="true" signature="45461:45635" placeholder="..." />
-            <marker date="1398928365000" expanded="true" signature="45670:45771" placeholder="..." />
+            <marker date="1398928365000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1398928365000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1398928365000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1398928365000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1398928365000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1398928365000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1398928365000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1398928365000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1398928365000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1398928365000" expanded="true" signature="-1:-1" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -1557,11 +675,11 @@
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="396" max-vertical-offset="12294">
           <folding>
-            <marker date="1398931641000" expanded="true" signature="19110:19308" placeholder="..." />
-            <marker date="1398931641000" expanded="true" signature="19343:19520" placeholder="..." />
-            <marker date="1398931641000" expanded="true" signature="19555:19727" placeholder="..." />
-            <marker date="1398931641000" expanded="true" signature="19762:19936" placeholder="..." />
-            <marker date="1398931641000" expanded="true" signature="19971:20072" placeholder="..." />
+            <marker date="1398931641000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1398931641000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1398931641000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1398931641000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1398931641000" expanded="true" signature="-1:-1" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -1570,16 +688,16 @@
       <provider selected="true" editor-type-id="text-editor">
         <state line="74" column="85" selection-start="2618" selection-end="2618" vertical-scroll-proportion="0.0" vertical-offset="1332" max-vertical-offset="21600">
           <folding>
-            <marker date="1398928365000" expanded="true" signature="34134:34332" placeholder="..." />
-            <marker date="1398928365000" expanded="true" signature="34367:34544" placeholder="..." />
-            <marker date="1398928365000" expanded="true" signature="34579:34751" placeholder="..." />
-            <marker date="1398928365000" expanded="true" signature="34786:34960" placeholder="..." />
-            <marker date="1398928365000" expanded="true" signature="34995:35096" placeholder="..." />
-            <marker date="1398928365000" expanded="true" signature="44809:45007" placeholder="..." />
-            <marker date="1398928365000" expanded="true" signature="45042:45219" placeholder="..." />
-            <marker date="1398928365000" expanded="true" signature="45254:45426" placeholder="..." />
-            <marker date="1398928365000" expanded="true" signature="45461:45635" placeholder="..." />
-            <marker date="1398928365000" expanded="true" signature="45670:45771" placeholder="..." />
+            <marker date="1398928365000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1398928365000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1398928365000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1398928365000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1398928365000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1398928365000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1398928365000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1398928365000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1398928365000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1398928365000" expanded="true" signature="-1:-1" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -1655,11 +773,6 @@
         <state line="716" column="9" selection-start="21922" selection-end="21922" vertical-scroll-proportion="0.32038835" vertical-offset="12624" max-vertical-offset="40320">
           <folding />
         </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/admin/css/arc-admin.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="1297" column="16" selection-start="28522" selection-end="28522" vertical-scroll-proportion="0.0" vertical-offset="22184" max-vertical-offset="23472" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/application/admin/php/headway/arc-headway-block-options.php">
@@ -1788,16 +901,16 @@
       <provider selected="true" editor-type-id="text-editor">
         <state line="268" column="29" selection-start="9467" selection-end="9467" vertical-scroll-proportion="-6.48" vertical-offset="4500" max-vertical-offset="22248">
           <folding>
-            <marker date="1398928365000" expanded="true" signature="34134:34332" placeholder="..." />
-            <marker date="1398928365000" expanded="true" signature="34367:34544" placeholder="..." />
-            <marker date="1398928365000" expanded="true" signature="34579:34751" placeholder="..." />
-            <marker date="1398928365000" expanded="true" signature="34786:34960" placeholder="..." />
-            <marker date="1398928365000" expanded="true" signature="34995:35096" placeholder="..." />
-            <marker date="1398928365000" expanded="true" signature="44809:45007" placeholder="..." />
-            <marker date="1398928365000" expanded="true" signature="45042:45219" placeholder="..." />
-            <marker date="1398928365000" expanded="true" signature="45254:45426" placeholder="..." />
-            <marker date="1398928365000" expanded="true" signature="45461:45635" placeholder="..." />
-            <marker date="1398928365000" expanded="true" signature="45670:45771" placeholder="..." />
+            <marker date="1398928365000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1398928365000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1398928365000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1398928365000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1398928365000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1398928365000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1398928365000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1398928365000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1398928365000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1398928365000" expanded="true" signature="-1:-1" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -1846,13 +959,54 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/application/admin/php/arc-options.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="72" column="0" selection-start="2510" selection-end="2510" vertical-scroll-proportion="0.2925" vertical-offset="1062" max-vertical-offset="12402">
+        <state line="72" column="0" selection-start="2510" selection-end="2510" vertical-scroll-proportion="-4.68" vertical-offset="1062" max-vertical-offset="12402">
           <folding>
-            <marker date="1398931641000" expanded="true" signature="19110:19308" placeholder="..." />
-            <marker date="1398931641000" expanded="true" signature="19343:19520" placeholder="..." />
-            <marker date="1398931641000" expanded="true" signature="19555:19727" placeholder="..." />
-            <marker date="1398931641000" expanded="true" signature="19762:19936" placeholder="..." />
-            <marker date="1398931641000" expanded="true" signature="19971:20072" placeholder="..." />
+            <marker date="1398931641000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1398931641000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1398931641000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1398931641000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1398931641000" expanded="true" signature="-1:-1" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/admin/css/arc-admin-blueprints.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="863">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/admin/css/arc-admin-panels.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="863">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/admin/css/arc-admin-contents.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="863">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/admin/css/arc-admin.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="989" column="0" selection-start="26759" selection-end="26759" vertical-scroll-proportion="0.0" vertical-offset="17998" max-vertical-offset="19422">
+          <folding>
+            <element signature="e#17757#19146#2" expanded="true" />
+            <element signature="e#19460#20901#2" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/admin/css/arc-admin.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="1137" column="30" selection-start="26989" selection-end="26989" vertical-scroll-proportion="0.3" vertical-offset="20106" max-vertical-offset="21816">
+          <folding>
+            <element signature="e#17214#18603#2" expanded="true" />
+            <element signature="e#19002#20443#2" expanded="true" />
           </folding>
         </state>
       </provider>
