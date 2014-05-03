@@ -4,7 +4,7 @@
 "files": {
 	"\/application\/admin\/css\/arc-admin-blueprints.css": {
 		"fileType": 16,
-		"ignore": 0,
+		"ignore": 1,
 		"ignoreWasSetByUser": 0,
 		"inputAbbreviatedPath": "\/application\/admin\/css\/arc-admin-blueprints.css",
 		"outputAbbreviatedPath": "No Output Path",
@@ -13,7 +13,7 @@
 		},
 	"\/application\/admin\/css\/arc-admin-blueprints.scss": {
 		"createSourceMap": 1,
-		"debugStyle": 2,
+		"debugStyle": 0,
 		"decimalPrecision": 5,
 		"fileType": 4,
 		"ignore": 0,
@@ -23,13 +23,13 @@
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0,
 		"outputStyle": 0,
-		"shouldRunAutoprefixer": 0,
+		"shouldRunAutoprefixer": 1,
 		"shouldRunBless": 0,
 		"useLibsass": 0
 		},
 	"\/application\/admin\/css\/arc-admin-contents.css": {
 		"fileType": 16,
-		"ignore": 0,
+		"ignore": 1,
 		"ignoreWasSetByUser": 0,
 		"inputAbbreviatedPath": "\/application\/admin\/css\/arc-admin-contents.css",
 		"outputAbbreviatedPath": "No Output Path",
@@ -38,7 +38,7 @@
 		},
 	"\/application\/admin\/css\/arc-admin-contents.scss": {
 		"createSourceMap": 1,
-		"debugStyle": 2,
+		"debugStyle": 0,
 		"decimalPrecision": 5,
 		"fileType": 4,
 		"ignore": 0,
@@ -48,13 +48,13 @@
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0,
 		"outputStyle": 0,
-		"shouldRunAutoprefixer": 0,
+		"shouldRunAutoprefixer": 1,
 		"shouldRunBless": 0,
 		"useLibsass": 0
 		},
 	"\/application\/admin\/css\/arc-admin-panels.css": {
 		"fileType": 16,
-		"ignore": 0,
+		"ignore": 1,
 		"ignoreWasSetByUser": 0,
 		"inputAbbreviatedPath": "\/application\/admin\/css\/arc-admin-panels.css",
 		"outputAbbreviatedPath": "No Output Path",
@@ -63,7 +63,7 @@
 		},
 	"\/application\/admin\/css\/arc-admin-panels.scss": {
 		"createSourceMap": 1,
-		"debugStyle": 2,
+		"debugStyle": 0,
 		"decimalPrecision": 5,
 		"fileType": 4,
 		"ignore": 0,
@@ -73,7 +73,7 @@
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0,
 		"outputStyle": 0,
-		"shouldRunAutoprefixer": 0,
+		"shouldRunAutoprefixer": 1,
 		"shouldRunBless": 0,
 		"useLibsass": 0
 		},
@@ -88,7 +88,7 @@
 		},
 	"\/application\/admin\/css\/arc-admin.scss": {
 		"createSourceMap": 1,
-		"debugStyle": 2,
+		"debugStyle": 0,
 		"decimalPrecision": 5,
 		"fileType": 4,
 		"ignore": 0,
@@ -9254,7 +9254,7 @@
 		},
 	"\/application\/resources\/libs\/js\/tabby\/sass\/_config.scss": {
 		"createSourceMap": 1,
-		"debugStyle": 2,
+		"debugStyle": 0,
 		"decimalPrecision": 5,
 		"fileType": 4,
 		"ignore": 1,
@@ -9264,13 +9264,13 @@
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0,
 		"outputStyle": 0,
-		"shouldRunAutoprefixer": 0,
+		"shouldRunAutoprefixer": 1,
 		"shouldRunBless": 0,
 		"useLibsass": 0
 		},
 	"\/application\/resources\/libs\/js\/tabby\/sass\/_mixins.scss": {
 		"createSourceMap": 1,
-		"debugStyle": 2,
+		"debugStyle": 0,
 		"decimalPrecision": 5,
 		"fileType": 4,
 		"ignore": 1,
@@ -9280,13 +9280,13 @@
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0,
 		"outputStyle": 0,
-		"shouldRunAutoprefixer": 0,
+		"shouldRunAutoprefixer": 1,
 		"shouldRunBless": 0,
 		"useLibsass": 0
 		},
 	"\/application\/resources\/libs\/js\/tabby\/sass\/_tabby.scss": {
 		"createSourceMap": 1,
-		"debugStyle": 2,
+		"debugStyle": 0,
 		"decimalPrecision": 5,
 		"fileType": 4,
 		"ignore": 1,
@@ -9296,13 +9296,13 @@
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0,
 		"outputStyle": 0,
-		"shouldRunAutoprefixer": 0,
+		"shouldRunAutoprefixer": 1,
 		"shouldRunBless": 0,
 		"useLibsass": 0
 		},
 	"\/application\/resources\/libs\/js\/tabby\/sass\/tabby-css.scss": {
 		"createSourceMap": 1,
-		"debugStyle": 2,
+		"debugStyle": 0,
 		"decimalPrecision": 5,
 		"fileType": 4,
 		"ignore": 0,
@@ -9312,7 +9312,7 @@
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0,
 		"outputStyle": 0,
-		"shouldRunAutoprefixer": 0,
+		"shouldRunAutoprefixer": 1,
 		"shouldRunBless": 0,
 		"useLibsass": 0
 		},
@@ -9682,7 +9682,7 @@
 	"iconImageName": "globe_gray"
 	},
 "projectSettings": {
-	"alwaysUseExternalServer": 0,
+	"alwaysUseExternalServer": 1,
 	"animateCSSInjections": 1,
 	"autoApplyPSLanguageSettingsStyle": 0,
 	"autoprefixerBrowserString": "> 1%, last 2 versions, ff 17, opera 12.1",
@@ -9794,7 +9794,7 @@
 	"coffeeMinifyOutput": 1,
 	"coffeeOutputStyle": 0,
 	"coffeeSyntaxCheckerStyle": 1,
-	"externalServerAddress": "http:\/\/localhost:8888",
+	"externalServerAddress": "http:\/\/localhost\/wp-architect\/",
 	"externalServerPreviewPathAddition": "",
 	"genericWebpageFileExtensionsString": "html, htm, shtml, shtm, xhtml, php, jsp, asp, aspx, erb, ctp",
 	"hamlAutoOutputPathRelativePath": "",
@@ -10245,7 +10245,7 @@
 	"sassAutoOutputPathReplace2": "css",
 	"sassAutoOutputPathStyle": 2,
 	"sassCreateSourceMap": 1,
-	"sassDebugStyle": 2,
+	"sassDebugStyle": 0,
 	"sassDecimalPrecision": 5,
 	"sassOutputStyle": 0,
 	"sassUseLibsass": 0,
@@ -10420,7 +10420,7 @@
 			}
 		},
 	"uglifyReservedNamesString": "$",
-	"websiteRelativeRoot": "http:\/\/localhost\/wp-mba.dev\/test-page-architect\/"
+	"websiteRelativeRoot": ""
 	},
 "settingsFileVersion": "2"
 }

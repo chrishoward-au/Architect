@@ -585,27 +585,27 @@
                 'options'  => array(
                     'tabbed'    => array(
                         'alt' => 'Tabbed',
-                        'img' => PZARC_PLUGIN_URL . 'assets/images/metaboxes/nav-type-tabbed.png'
+                        'img' => PZARC_PLUGIN_URL . 'resources/assets/images/metaboxes/nav-type-tabbed.png'
                     ),
                     'accordion' => array(
                         'alt' => 'Accordion',
-                        'img' => PZARC_PLUGIN_URL . 'assets/images/metaboxes/nav-type-accordion.png'
+                        'img' => PZARC_PLUGIN_URL . 'resources/assets/images/metaboxes/nav-type-accordion.png'
                     ),
                     'buttons'   => array(
                         'alt' => 'Buttons',
-                        'img' => PZARC_PLUGIN_URL . 'assets/images/metaboxes/nav-type-buttons.png'
+                        'img' => PZARC_PLUGIN_URL . 'resources/assets/images/metaboxes/nav-type-buttons.png'
                     ),
                     'bullets'   => array(
                         'alt' => 'Bullets',
-                        'img' => PZARC_PLUGIN_URL . 'assets/images/metaboxes/nav-type-bullets.png'
+                        'img' => PZARC_PLUGIN_URL . 'resources/assets/images/metaboxes/nav-type-bullets.png'
                     ),
                     'numbers'   => array(
                         'alt' => 'Numbers',
-                        'img' => PZARC_PLUGIN_URL . 'assets/images/metaboxes/nav-type-numeric.png'
+                        'img' => PZARC_PLUGIN_URL . 'resources/assets/images/metaboxes/nav-type-numeric.png'
                     ),
                     'thumbs'    => array(
                         'alt' => 'Thumbs',
-                        'img' => PZARC_PLUGIN_URL . 'assets/images/metaboxes/nav-type-thumbs.png'
+                        'img' => PZARC_PLUGIN_URL . 'resources/assets/images/metaboxes/nav-type-thumbs.png'
                     ),
                 )
             ),
@@ -619,19 +619,19 @@
                 'options'  => array(
                     'bottom' => array(
                         'alt' => 'Bottom',
-                        'img' => PZARC_PLUGIN_URL . 'assets/images/metaboxes/nav-pos-bottom.png'
+                        'img' => PZARC_PLUGIN_URL . 'resources/assets/images/metaboxes/nav-pos-bottom.png'
                     ),
                     'top'    => array(
                         'alt' => 'Top',
-                        'img' => PZARC_PLUGIN_URL . 'assets/images/metaboxes/nav-pos-top.png'
+                        'img' => PZARC_PLUGIN_URL . 'resources/assets/images/metaboxes/nav-pos-top.png'
                     ),
                     'left'   => array(
                         'alt' => 'Left',
-                        'img' => PZARC_PLUGIN_URL . 'assets/images/metaboxes/nav-pos-left.png'
+                        'img' => PZARC_PLUGIN_URL . 'resources/assets/images/metaboxes/nav-pos-left.png'
                     ),
                     'right'  => array(
                         'alt' => 'Right',
-                        'img' => PZARC_PLUGIN_URL . 'assets/images/metaboxes/nav-pos-right.png'
+                        'img' => PZARC_PLUGIN_URL . 'resources/assets/images/metaboxes/nav-pos-right.png'
                     ),
                 )
             ),
@@ -645,11 +645,11 @@
                 'options'  => array(
                     'inside'  => array(
                         'alt' => 'Inside',
-                        'img' => PZARC_PLUGIN_URL . 'assets/images/metaboxes/nav-loc-inside.png'
+                        'img' => PZARC_PLUGIN_URL . 'resources/assets/images/metaboxes/nav-loc-inside.png'
                     ),
                     'outside' => array(
                         'alt' => 'Outside',
-                        'img' => PZARC_PLUGIN_URL . 'assets/images/metaboxes/nav-loc-outside.png'
+                        'img' => PZARC_PLUGIN_URL . 'resources/assets/images/metaboxes/nav-loc-outside.png'
                     ),
                 )
             ),

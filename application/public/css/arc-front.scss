@@ -1,13 +1,17 @@
+// THIS IS THE SCSS VERSION
+
 /* Frontend layout */
 /* Any styling defaults should be included in the styling defaults values in options */
-.warning-msg {
+
+.warning-msg{
   background: #ffa;
   color: #aa0;
-  border: solid 1px #aa0;
-  padding: 10px; }
-
+  border:solid 1px #aa0;
+  padding:10px;
+}
 .pzarchitect .pzarc-container {
-  position: relative; }
+  position: relative;
+}
 
 .pzarchitect .pzarc-section {
   position: relative;
@@ -17,71 +21,62 @@
   display: moz-box;
   display: -ms-flexbox;
   display: webkit flex;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -moz-box;
   display: flex;
-  -webkit-box-pack: start;
-  -webkit-justify-content: flex-start;
-  -moz-box-pack: start;
-  -ms-flex-pack: start;
   justify-content: flex-start;
   -webkit-flex-flow: row wrap;
-  -moz-flex-flow: row wrap;
-  /* Unsupported!! Argh! */
-  -ms-flex-flow: row wrap;
+  -moz-flex-flow: row wrap; /* Unsupported!! Argh! */
   flex-flow: row wrap;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-  -webkit-flex-direction: row;
-  -moz-box-orient: horizontal;
-  -moz-box-direction: normal;
-  -ms-flex-direction: row;
   flex-direction: row;
-  -webkit-flex-wrap: wrap;
-  -ms-flex-wrap: wrap;
-  flex-wrap: wrap; }
+  flex-wrap: wrap;
+}
 
 .pzarchitect .pzarc-panel {
   min-width: 0px;
   min-height: 0px;
   /* Remember to remove space between divs to stop inline-block space issue */
   display: inline-block;
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
   box-sizing: border-box;
-  vertical-align: top; }
+  vertical-align: top;
+}
 
 .pzarchitect .pzarc-panel .entry-image {
   max-width: 100%;
-  display: block; }
+  display: block;
+}
 
-.pzarchitect .pzarc-panel .entry-excerpt,
-.pzarchitect .pzarc-panel .entry-content {
-  -ms-word-break: break-all;
-  word-break: break-all;
-  /* Non standard for webkit */
-  word-break: break-word;
-  -webkit-hyphens: auto;
-  -moz-hyphens: auto;
-  -ms-hyphens: auto;
-  hyphens: auto; }
+.pzarchitect .pzarc-panel {
+
+  .entry-excerpt,
+  .entry-content {
+    -ms-word-break: break-all;
+    word-break: break-all;
+
+    /* Non standard for webkit */
+    word-break: break-word;
+
+    -webkit-hyphens: auto;
+    -moz-hyphens: auto;
+    hyphens: auto;
+  }
+}
 
 .pzarchitect .pzarc-bg-image {
   margin: 0;
-  padding: 0; }
+  padding: 0;
+}
 
 .pzarchitect .pzarc-bg-image img {
-  display: block; }
+  display: block;
+}
 
 .pzarchitect .abs-content {
-  position: absolute; }
+  position: absolute;
+}
 
 .pzarchitect .pzarc-components {
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
   box-sizing: border-box;
-  overflow: hidden; }
+  overflow: hidden;
+}
 
 /*
  Set a base font size
@@ -167,6 +162,7 @@ default styling
 	margin:0.5rems;
 }
 */
+
 .pzarchitect .pzarc-oops {
   font-size: 16px;
   font-family: sans-serif;
@@ -175,55 +171,67 @@ default styling
   border: 1px solid tomato;
   display: inline-block;
   margin: 10px 0;
-  padding: 20px; }
+  padding: 20px;
+}
 
 .pzarchitect .pzarc-pager {
   display: table;
   padding: 10px 0;
-  width: 100%; }
+  width: 100%;
+}
 
 .pzarchitect .pzarc-pager-prev,
 .pzarchitect .pzarc-pager-next {
   /*font-size:13px;*/
   /*font-weight:bold;*/
   /*background: #eee;*/
-  /*padding:10px 5px;*/ }
+  /*padding:10px 5px;*/
+}
 
 .pzarchitect .pzarc-pager-prev {
   float: left;
   /*border-top-left-radius: 20px;*/
   /*border-bottom-left-radius: 20px;*/
-  /*padding-right:10px;*/ }
+  /*padding-right:10px;*/
+}
 
 .pzarchitect .pzarc-pager-next {
   float: right;
   /*border-top-right-radius: 20px;*/
   /*border-bottom-right-radius: 20px;*/
-  /*padding-left:10px;*/ }
+  /*padding-left:10px;*/
+}
 
 .pzarchitect .pzarc-bg-image {
-  overflow: hidden; }
+  overflow: hidden;
+}
 
 .pzarchitect .pzarc-bg-image.fill.scale,
 .pzarchitect .pzarc-bg-image img.nofill {
-  max-width: 100%; }
+  max-width: 100%;
+}
 
 .pzarchitect .pzarc-bg-image img.fill.crop {
-  max-width: none; }
+  max-width: none;
+}
 
 .pzarchitect x.pzarc-panel img.entry-image {
   float: left;
   margin-right: 5px;
-  margin-bottom: 5px; }
+  margin-bottom: 5px;
+}
 
 .pzarchitect x.pzarc-panel .entry-content {
-  float: left; }
+  float: left;
+}
 
 .pzarchitect .pzarc-panel .entry-thumbnail img {
-  max-width: 100%; }
+  max-width: 100%;
+}
 
 .pzarchitect .pzarc-panel .entry-title {
-  line-height: 120%; }
+  line-height: 120%;
+}
 
 .pzarchitect .pzarc-panel .entry-title,
 .pzarchitect .pzarc-panel .entry-excerpt,
@@ -233,21 +241,26 @@ default styling
   display: block;
   /*float:left;*/
   vertical-align: top;
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box; }
+  box-sizing: border-box;
+}
+
+.pzarchitect .pzarc-panel .caption {
+}
 
 .pzarchitect .pzarc-container .entry-excerpt.pznothumb,
 .pzarchitect .pzarc-container .entry-content.pznothumb {
-  width: 100%; }
+  width: 100%;
+}
 
 .pzarchitect .pzarc-align.left {
   float: left;
-  padding-right: 2%; }
+  padding-right: 2%;
+}
 
 .pzarchitect .pzarc-align.right {
   float: right;
-  padding-left: 2%; }
+  padding-left: 2%;
+}
 
 /* ===============================================================
 Your custom styles, here you need to specify container's and slide's
@@ -255,33 +268,46 @@ sizes, pagination, etc.
 ================================================================*/
 .swiper-container.pzarc-blueprint-2173 {
   /* Specify Swiper's Size: */
+
   xwidth: 320px;
   height: 300px;
   background: #eee;
-  padding: 0; }
+  padding: 0;
+}
 
 .pzarc-blueprint-2173 .swiper-slide {
   /* Specify Slides's Size: */
+
   width: 320px;
   height: 100%;
-  margin: 0 !important; }
+  margin: 0 !important;
+}
 
 .swiper-slide-active {
-  /* Specific active slide styling: */ }
+  /* Specific active slide styling: */
+
+}
 
 .swiper-slide-visible {
-  /* Specific visible slide styling: */ }
+  /* Specific visible slide styling: */
+
+}
 
 /* ===============================================================
 Pagination Styles
 ================================================================*/
 .swiper-pagination-switch {
-  /* Stylize pagination button: */ }
+  /* Stylize pagination button: */
+
+}
 
 .swiper-active-switch {
-  /* Specific active button style: */ }
+  /* Specific active button style: */
+
+}
 
 .swiper-visible-switch {
-  /* Specific visible button style: */ }
+  /* Specific visible button style: */
 
-/*# sourceMappingURL=arc-front.css.map */
+}
+

@@ -254,7 +254,7 @@
         'title'      => 'Show settings for:',
         'post_types' => array('arc-panels'),
         'sections'   => $sections,
-        'position'   => 'normal',
+        'position'   => 'side',
         'priority'   => 'high',
         'sidebar'    => false
 

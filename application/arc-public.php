@@ -34,10 +34,8 @@
    * Shortcode
    *
    ***********************/
-  add_shortcode('pzarc', 'pzarc_shortcode');
   function pzarc_shortcode($atts, $content = null, $tag)
   {
-
     $pzarc_blueprint = '';
     if (!empty($atts[ 'blueprint' ])) {
       $pzarc_blueprint = $atts[ 'blueprint' ];
@@ -46,12 +44,13 @@
       $pzarc_blueprint = $atts[ 0 ];
     }
 
-    return 'This isn\'t quite right yet. It goes into a recursive spin';
-
-//    return pzarc($pzarc_blueprint, (!empty($atts[ 'ids' ]) ? $atts[ 'ids' ] : null), true);
-
-
+    ob_start();
+    pzarc($pzarc_blueprint, (!empty($atts[ 'ids' ]) ? $atts[ 'ids' ] : null), true);
+    $pzout=ob_get_contents();
+    ob_end_clean();
+    return $pzout;
   }
+  add_shortcode('pzarc', 'pzarc_shortcode');
 
   /***********************
    *
@@ -71,6 +70,9 @@
    ******************************/
   function pzarc($blueprint = null, $overrides = null, $is_shortcode = false)
   {
+    if ($is_shortcode) {
+      remove_shortcode('pzarc');
+    }
     if (empty($blueprint)) {
       // make this use a set of defaults. prob an excerpt grid
       echo 'You need to set a blueprint';
@@ -95,7 +97,8 @@
         // Reinstated after conflict with breadcrumbs and related posts plugin
         wp_reset_postdata();
         //Added 11/8/13 so can display multiple blocks on single post page with single post's content
-        rewind_posts();
+      // TODO: Ok, this causes recursion so need to determine when it is needed.
+//        rewind_posts();
 
       }
 

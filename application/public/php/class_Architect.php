@@ -61,6 +61,7 @@
         require_once(PZARC_PLUGIN_PATH . '/public/php/class_arc_Navigator.php');
         require_once(PZARC_PLUGIN_PATH . '/public/php/class_arc_Pagination.php');
         require_once PZARC_PLUGIN_PATH . '/public/php/interface_arc_PanelDefinitions.php';
+        return false;
       }
 
       static function set_defaults()
@@ -182,13 +183,13 @@
 
         // Loops
         self::loop(1);
-        if ($do_section_2) {
-          self::loop(2);
-        }
-
-        if ($do_section_3) {
-          self::loop(3);
-        }
+//        if ($do_section_2) {
+//          self::loop(2);
+//        }
+//
+//        if ($do_section_3) {
+//          self::loop(3);
+//        }
         // End loops
 
         if ($this->build->blueprint[ '_blueprints_navigation' ] == 'navigator' && $this->build->blueprint[ '_blueprints_navigator-location' ] == 'outside') {
@@ -199,10 +200,10 @@
         }
 
         if (isset($this->arc[ 'navigator' ])) {
-          $this->arc[ 'navigator' ]->render_navigator();
+          $this->arc[ 'navigator' ]->render();
         }
         if (isset($this->arc[ 'pagination' ])) {
-          $this->arc[ 'pagination' ]->render_pagination();
+          $this->arc[ 'pagination' ]->render();
         }
 
         echo '</div> <!-- end architect -->';
@@ -223,6 +224,8 @@
 
         while ($this->query->have_posts()) {
           $this->query->the_post();
+          global $pzinc;
+          echo "<h1>$pzinc</h1>";
           $section[ $section_no ]->render_panel($panel_def);
         }
 
