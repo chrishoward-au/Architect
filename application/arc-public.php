@@ -44,12 +44,15 @@
       $pzarc_blueprint = $atts[ 0 ];
     }
 
+    // Need to capture the output so we can get it to appear where the shortcode is
     ob_start();
     pzarc($pzarc_blueprint, (!empty($atts[ 'ids' ]) ? $atts[ 'ids' ] : null), true);
-    $pzout=ob_get_contents();
+    $pzout = ob_get_contents();
     ob_end_clean();
+
     return $pzout;
   }
+
   add_shortcode('pzarc', 'pzarc_shortcode');
 
   /***********************
@@ -97,8 +100,10 @@
         // Reinstated after conflict with breadcrumbs and related posts plugin
         wp_reset_postdata();
         //Added 11/8/13 so can display multiple blocks on single post page with single post's content
-      // TODO: Ok, this causes recursion so need to determine when it is needed.
-//        rewind_posts();
+        // TODO: rewind_posts causes recursion if in main loop so need to determine when it is needed. Be aware it still might cause problems used here
+        if (!is_main_query()) {
+          rewind_posts();
+        }
 
       }
 
