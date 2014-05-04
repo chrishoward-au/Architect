@@ -25,7 +25,7 @@
     if (!(class_exists('ReduxFramework') || class_exists('ReduxFrameworkPlugin'))) {
       return;
     }
-    require_once PZARC_PLUGIN_PATH . '/admin/php/arc-options.php';
+ //   require_once PZARC_PLUGIN_PATH . '/admin/php/arc-options.php';
   }
 
 
@@ -39,8 +39,7 @@
     $pzarc_blueprint = '';
     if (!empty($atts[ 'blueprint' ])) {
       $pzarc_blueprint = $atts[ 'blueprint' ];
-    }
-    elseif (!empty($atts[ 0 ])) {
+    } elseif (!empty($atts[ 0 ])) {
       $pzarc_blueprint = $atts[ 0 ];
     }
 
@@ -73,24 +72,25 @@
    ******************************/
   function pzarc($blueprint = null, $overrides = null, $is_shortcode = false)
   {
+    global $wp_query;
+    $original_query = $wp_query;
     if ($is_shortcode) {
-      remove_shortcode('pzarc');
+      // This was just in testing!!
+     // remove_shortcode('pzarc');
     }
     if (empty($blueprint)) {
       // make this use a set of defaults. prob an excerpt grid
       echo 'You need to set a blueprint';
 
-    }
-    else {
+    } else {
       require_once PZARC_PLUGIN_PATH . '/public/php/class_Architect.php';
       require_once(PZARC_PLUGIN_PATH . '/resources/libs/php/jo-image-resizer/jo_image_resizer.php');
 
       $architect = new Architect($blueprint, $is_shortcode);
       if (empty($architect->build->blueprint[ 'err_msg' ])) {
-        global $wp_query;
-        $original_query = $wp_query;
 
         $architect->build($overrides);
+        wp_reset_postdata(); // Pretty sure this goes here... Not after the query reassignment
 
         //restore original query
         $wp_query = $original_query;
@@ -98,11 +98,20 @@
         /* These lines from ExcerptsPlus */
         // removed after null prob fixed. may need to be reinstated one day
         // Reinstated after conflict with breadcrumbs and related posts plugin
-        wp_reset_postdata();
         //Added 11/8/13 so can display multiple blocks on single post page with single post's content
         // TODO: rewind_posts causes recursion if in main loop so need to determine when it is needed. Be aware it still might cause problems used here
         if (!is_main_query()) {
-          rewind_posts();
+          // i.e. when is this necessary???????
+   ////       rewind_posts();
+        } else {
+          // Trying to break out of the main loop!
+          if ($wp_query->current_post == -1) {
+            //WTF? Shouldn't pointer have moved?
+            $wp_query->next_post();
+            // TODO: Be interesting to see what other havoc this is going to cause!
+            // eg when multiple posts have shortcodes and are showing full content
+          }
+
         }
 
       }

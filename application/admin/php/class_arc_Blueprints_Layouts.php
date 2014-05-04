@@ -545,7 +545,7 @@
                     'none'       => 'None',
                     'names'      => 'Post names',
                     'prevnext'   => 'Previous/Next',
-                    'wppagenavi' => 'PageNavi',
+                    'pagenavi' => 'PageNavi',
                 )
             ),
             array(

@@ -176,7 +176,12 @@
           $this->query = $wp_query;
           // This may not do anything since the query may not update!
           // need to set nopaging too
-          $this->query->query_vars[ 'nopaging' ]       = $criteria[ 'nopaging' ];
+          var_dump($this->build->blueprint[ '_blueprints_navigation' ] );
+          if ($this->build->blueprint[ '_blueprints_navigation' ] == 'pagination') {
+            $this->query->query_vars[ 'nopaging' ]       = false;
+          } else {
+            $this->query->query_vars[ 'nopaging' ]       = $criteria[ 'nopaging' ];
+          }
           $this->query->query_vars[ 'posts_per_page' ] = $criteria[ 'panels_to_show' ];
         }
 
@@ -195,21 +200,21 @@
         if ($this->build->blueprint[ '_blueprints_navigation' ] == 'navigator' && $this->build->blueprint[ '_blueprints_navigator-location' ] == 'outside') {
           $this->arc[ 'navigator' ] = new arc_Navigator();
         }
-        elseif ($this->build->blueprint[ '_blueprints_navigation' ] == 'pagination') {
-          $this->arc[ 'pagination' ] = new arc_Pagination('WP');
+        elseif ($this->build->blueprint[ '_blueprints_navigation' ] == 'pagination' && $this->build->blueprint['_blueprints_pager'] != 'none') {
+          $class = 'arc_Pagination_'.$this->build->blueprint['_blueprints_pager'];
+          $this->arc[ 'pagination' ] = new $class;
         }
 
         if (isset($this->arc[ 'navigator' ])) {
           $this->arc[ 'navigator' ]->render();
         }
-        if (isset($this->arc[ 'pagination' ])) {
+        if (isset($this->arc[ 'pagination' ]) ) {
           $this->arc[ 'pagination' ]->render();
         }
 
         echo '</div> <!-- end architect -->';
         do_action('arc_after_architect');
         echo '<h1>END BUILD</h1>';
-
       }
 
       /**
@@ -294,6 +299,13 @@
       public function query($source, $criteria, $overrides)
       {
         //build the new query
+        $query_options =array();
+        if ($this->build->blueprint[ '_blueprints_navigation' ] == 'pagination') {
+          $query_options[ 'nopaging' ]       = false;
+        } else {
+          $query[ 'nopaging' ]       = $criteria[ 'nopaging' ];
+        }
+
         $query_options[ 'posts_per_page' ]      = $criteria[ 'panels_to_show' ];
         $query_options[ 'ignore_sticky_posts' ] = $criteria[ 'ignore_sticky_posts' ];
         $query_options[ 'offset' ]              = $criteria[ 'offset' ];
@@ -322,7 +334,7 @@
           $query_options[ 'posts_per_page' ] = count($query_options[ 'post__in' ]);
         }
         $query = new WP_Query($query_options);
-
+//var_dump($query);
         return $query;
       }
 
