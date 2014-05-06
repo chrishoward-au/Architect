@@ -180,7 +180,11 @@
 				<p>Can I use Redux or similar??</p>
 				<textarea name="textarea" rows="10" cols="50">Code will appear here upon generating</textarea>
 						<h3>Export</h3>
+						<p>Export single or multiple blueprints and panels</p>
 						<h3>Import</h3>
+						<p>Import single or multiple blueprints and panels</p>
+						<h3>Duplicate</h3>
+						<p>Duplicate single or multiple blueprints and panels</p>
 			</div><!--end table-->
 			</div>
       ';

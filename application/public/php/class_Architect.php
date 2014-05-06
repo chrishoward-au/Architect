@@ -42,11 +42,11 @@
       {
         $this->is_shortcode = $is_shortcode;
 
-        self::set_defaults();
+        pzarc_set_defaults();
         require_once(PZARC_PLUGIN_PATH . '/public/php/class_arc_Blueprint.php');
         $this->build = new arc_Blueprint($blueprint);
         if ($this->build->blueprint[ '_blueprints_content-source' ] == 'defaults' && $this->is_shortcode) {
-          $this->build->blueprint[ 'err_msg' ] = 'Ooops! Need to specify a Contents Selection in your Blueprint to use a shortcode';
+          $this->build->blueprint[ 'err_msg' ] = '<p class="warning-msg">Ooops! Need to specify a <strong>Contents Selection</strong> in your Blueprint to use a shortcode. You cannot use Defaults.</p>';
         }
         if (!empty($this->build->blueprint[ 'err_msg' ])) {
           echo $this->build->blueprint[ 'err_msg' ];
@@ -61,57 +61,13 @@
         require_once(PZARC_PLUGIN_PATH . '/public/php/class_arc_Navigator.php');
         require_once(PZARC_PLUGIN_PATH . '/public/php/class_arc_Pagination.php');
         require_once PZARC_PLUGIN_PATH . '/public/php/interface_arc_PanelDefinitions.php';
+        if (!empty($this->build->blueprint[ 'blueprint-id' ]))
+        {
+          $filename   =PZARC_CACHE_URL . '/pzarc-blueprints-layout-' . ($this->build->blueprint[ 'blueprint-id' ]) . '.css';
+          wp_enqueue_style('blueprint-css-' . $this->build->blueprint[ 'blueprint-id' ], $filename);
+        }
+
         return false;
-      }
-
-      static function set_defaults()
-      {
-        // TODO: Remove this once Dovy fixes MB defaults
-        require_once PZARC_PLUGIN_PATH . '/admin/php/class_arc_Panels_Layouts.php';
-        require_once PZARC_PLUGIN_PATH . '/admin/php/class_arc_Blueprints_Layouts.php';
-        global $pzarchitect;
-        $pzarchitect[ 'defaults' ][ 'blueprints' ] = array();
-        // Note: This is a cool trick but won't work in PHP < 5.4. So need Redux to get defaults working again or need to recode to longer form
-        $pzarchitect[ 'defaults' ][ 'blueprints' ][ '_blueprint_layout_general' ]  = pzarc_blueprint_layout_general($pzarchitect[ 'defaults' ][ 'blueprints' ])[ 0 ][ 'sections' ];
-        $pzarchitect[ 'defaults' ][ 'blueprints' ][ '_blueprint_content_general' ] = pzarc_blueprint_content_general($pzarchitect[ 'defaults' ][ 'blueprints' ])[ 0 ][ 'sections' ];
-        $pzarchitect[ 'defaults' ][ 'blueprints' ][ '_blueprint_layout' ]          = pzarc_blueprint_layout($pzarchitect[ 'defaults' ][ 'blueprints' ])[ 0 ][ 'sections' ];
-        $pzarchitect[ 'defaults' ][ 'blueprints' ][ '_contents_metabox' ]          = pzarc_contents_metabox($pzarchitect[ 'defaults' ][ 'blueprints' ])[ 0 ][ 'sections' ];
-
-        $pzarchitect[ 'defaults' ][ 'panels' ][ '_panel_general_settings' ] = pzarc_panel_general_settings($pzarchitect[ 'defaults' ][ 'panels' ])[ 0 ][ 'sections' ];
-        $pzarchitect[ 'defaults' ][ 'panels' ][ '_panels_design' ]          = pzarc_panels_design($pzarchitect[ 'defaults' ][ 'panels' ])[ 0 ][ 'sections' ];
-        $pzarchitect[ 'defaults' ][ 'panels' ][ '_panels_styling' ]         = pzarc_panels_styling($pzarchitect[ 'defaults' ][ 'panels' ])[ 0 ][ 'sections' ];
-
-        foreach ($pzarchitect[ 'defaults' ][ 'blueprints' ] as $key1 => $value1) {
-          foreach ($value1 as $key2 => $value2) {
-            foreach ($value2 as $key3 => $fields) {
-              if (is_array($fields)) {
-                foreach ($fields as $key4 => $field) {
-                  if (isset($field[ 'id' ])) {
-                    $pzarchitect[ 'defaults' ][ '_blueprints' ][ $field[ 'id' ] ] = $field[ 'default' ];
-                  }
-                }
-              }
-            }
-          }
-        }
-
-        unset($pzarchitect[ 'defaults' ][ 'blueprints' ]);
-
-        foreach ($pzarchitect[ 'defaults' ][ 'panels' ] as $key1 => $value1) {
-          foreach ($value1 as $key2 => $value2) {
-            foreach ($value2 as $key3 => $fields) {
-              if (is_array($fields)) {
-                foreach ($fields as $key4 => $field) {
-                  if (isset($field[ 'id' ])) {
-                    $pzarchitect[ 'defaults' ][ '_panels' ][ $field[ 'id' ] ] = $field[ 'default' ];
-                  }
-                }
-              }
-            }
-          }
-        }
-        unset($pzarchitect[ 'defaults' ][ 'panels' ]);
-
       }
 
       /**
@@ -121,7 +77,7 @@
       {
         do_action('arc_before_architect');
         echo '<div class="pzarchitect pzarc-blueprint_'.$this->build->blueprint['_blueprints_short-name'].'">';
-        echo '<h1>START BUILD</h1>';
+        echo '<h3>START BUILD</h3>';
 
         $this->arc = array();
         $criteria  = array();
@@ -188,13 +144,13 @@
 
         // Loops
         self::loop(1);
-//        if ($do_section_2) {
-//          self::loop(2);
-//        }
-//
-//        if ($do_section_3) {
-//          self::loop(3);
-//        }
+        if ($do_section_2) {
+          self::loop(2);
+        }
+
+        if ($do_section_3) {
+          self::loop(3);
+        }
         // End loops
 
         if ($this->build->blueprint[ '_blueprints_navigation' ] == 'navigator' && $this->build->blueprint[ '_blueprints_navigator-location' ] == 'outside') {
@@ -214,7 +170,9 @@
 
         echo '</div> <!-- end architect -->';
         do_action('arc_after_architect');
-        echo '<h1>END BUILD</h1>';
+        echo '<h3>END BUILD</h3>';
+        var_dump($this->build->blueprint['section'][0]['section-panel-settings']);
+
       }
 
       /**
@@ -222,6 +180,7 @@
        */
       private function loop($section_no)
       {
+
         $section[ $section_no ] = arc_SectionFactory::create($section_no, $this->build->blueprint[ 'section' ][ ($section_no - 1) ], $this->build->blueprint[ '_blueprints_content-source' ]);
 
         $class     = 'arc_PanelDef_' . $this->build->blueprint[ '_blueprints_content-source' ];
@@ -229,8 +188,6 @@
 
         while ($this->query->have_posts()) {
           $this->query->the_post();
-          global $pzinc;
-          echo "<h1>$pzinc</h1>";
           $section[ $section_no ]->render_panel($panel_def);
         }
 

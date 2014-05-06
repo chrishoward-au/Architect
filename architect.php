@@ -54,12 +54,12 @@
 
       define('PZARC_PLUGIN_URL', trailingslashit(plugin_dir_url(__FILE__)) . 'application/');
       define('PZARC_PLUGIN_PATH', trailingslashit(plugin_dir_path(__FILE__)) . 'application/');
-      define('PZARC_CACHE', '/pzarc/');
+      define('PZARC_CACHE', '/arc/');
 
       $upload_dir = wp_upload_dir();
       // TODO: why isn't this using myfiles folder?
-      define('PZARC_CACHE_URL', trailingslashit($upload_dir[ 'baseurl' ] . '/cache/pizazzwp/pzarc'));
-      define('PZARC_CACHE_PATH', trailingslashit($upload_dir[ 'basedir' ] . '/cache/pizazzwp/pzarc'));
+      define('PZARC_CACHE_URL', trailingslashit($upload_dir[ 'baseurl' ] . '/cache/pizazzwp/arc'));
+      define('PZARC_CACHE_PATH', trailingslashit($upload_dir[ 'basedir' ] . '/cache/pizazzwp/arc'));
       define('PZARC_DEBUG', 0);
 
 // Before we go anywhere, make sure dependent plugins are loaded and active.

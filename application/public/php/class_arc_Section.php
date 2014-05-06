@@ -30,6 +30,7 @@
      */
     public function __construct($number, $section, $source)
     {
+
       require_once PZARC_PLUGIN_PATH . '/public/php/class_arc_Panel.php';
 
       $this->section_number = $number;
@@ -47,6 +48,7 @@
     {
 
       $data = arc_Panel::set_data($this->section[ 'section-panel-settings' ]);
+
       $sequence = json_decode($this->section[ 'section-panel-settings' ][ '_panels_design_preview' ], true);
       // We do want to provide actions so want to use the sequence
       do_action('arc_before_panel_open');

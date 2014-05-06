@@ -68,7 +68,7 @@
       }
       foreach ($panel as $key => $value) {
         if (strpos($key, '_panels_styling') === 0) {
-          unset($panel[ $key ]);
+  //        unset($panel[ $key ]);
         }
       }
 

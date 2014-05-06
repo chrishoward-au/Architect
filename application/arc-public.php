@@ -117,7 +117,7 @@
       }
 
 //      new pzarc_Display($pzarc_blueprint, $pzarc_blueprint_object, $pzarc_overrides, $pzarc_is_shortcode);
-
+unset ($architect);
 //    return $pzarc->output;
     }
   }

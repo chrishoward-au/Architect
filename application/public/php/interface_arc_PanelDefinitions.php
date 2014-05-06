@@ -40,11 +40,11 @@
         $panel_def[ 'custom1' ]      = '<div class="entry-customfield entry-customfield-1">{{custom1innards}}</div><!-- .entry-custom 1 -->';
         $panel_def[ 'custom2' ]      = '<div class="entry-customfield entry-customfield-2">custom2innards}}</div><!-- .entry-custom 2 -->';
         $panel_def[ 'custom3' ]      = '<div class="entry-customfield entry-customfield-3">{{custom3innards}}</div><!-- .entry-custom 3 -->';
-        $panel_def[ 'footer' ]       = '<footer class="entry-meta">{{footerinnards}}</footer><!-- .entry-meta -->';
+        $panel_def[ 'footer' ]       = '<footer class="entry-footer">{{footerinnards}}</footer><!-- .entry-meta -->';
         $panel_def[ 'excerpt' ]      = ' <div class="entry-excerpt {{nothumb}}">{{image-in-content}}{{excerpt}}</div><!-- .entry-excerpt -->';
         $panel_def[ 'image' ]        = '{{postlink}}{{image}}{{closelink}}';
         $panel_def[ 'feature' ]      = '{{feature}}';
-
+var_dump(json_encode($panel_def));
 //TODO This has to be changed back once we.if we use a link instead of theget thumnail
         //$panel_def[ 'image' ]        = '<img class="entry-image" src="{{image}}">';
         // Yes, WP themes (T13, T14 etc) actually link the date to the post, not the archive for the date. Maybe it's an SEO thing, but I'm going to remove it
