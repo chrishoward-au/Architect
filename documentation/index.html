@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Architect Brief Documentation</title>
+</head>
+<body>
+<h1>Architect Brief Documentation</h1>
+
+<h2>Hooks</h2>
+
+<h3>Actions</h3>
+<h4>arc_before_shortcode</h4>
+<ul>
+  <li>blueprint (string)</li>
+  <li>overrides (array?)</li>
+</ul>
+<h4>arc_do_shortcode</h4>
+<ul>
+  <li>blueprint (string)</li>
+  <li>overrides (array?)</li>
+  <li>shortcode (bool)</li>
+</ul>
+<h4>arc_after_shortcode</h4>
+<ul>
+  <li>blueprint</li>
+  <li>overrides</li>
+</ul>
+<h4>arc_before_{$component_type}</h4>
+title,excerpt,content,image,meta1,meta2,meta3,custom1,custom2,custom3<br>
+<ul>
+  <li>component_type (string)</li>
+  <li>panel_number (numeric)</li>
+  <li>Post data (&array)</li>
+</ul>
+<h4>arc_after_{$component_type}</h4>
+title,excerpt,content,image,meta1,meta2,meta3,custom1,custom2,custom3<br>
+<ul>
+  <li>component_type (string)</li>
+  <li>panel_number (numeric)</li>
+  <li>Post data (&array)</li>
+</ul>
+
+<h3>Filters</h3>
+<h4>arc_filter_shortcode</h4>
+<ul>
+  <li>blueprint (string)</li>
+  <li>overrides (array?)</li>
+</ul>
+<h2>Classes</h2>
+<ul>
+  <li>.pzarc-panel</li>
+</ul>
+
+</body>
+</html>

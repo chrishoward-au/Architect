@@ -25,7 +25,7 @@
     if (!(class_exists('ReduxFramework') || class_exists('ReduxFrameworkPlugin'))) {
       return;
     }
- //   require_once PZARC_PLUGIN_PATH . '/admin/php/arc-options.php';
+    //   require_once PZARC_PLUGIN_PATH . '/admin/php/arc-options.php';
   }
 
 
@@ -46,17 +46,20 @@
     // Need to capture the output so we can get it to appear where the shortcode actually is
     ob_start();
     $pzarc_overrides = !empty($atts[ 'ids' ]) ? $atts[ 'ids' ] : null;
-    pzarc($pzarc_blueprint, $pzarc_overrides, true);
+    do_action('arc_before_shortcode', $pzarc_blueprint, $pzarc_overrides);
+    do_action('arc_do_shortcode', $pzarc_blueprint, $pzarc_overrides, true);
+    do_action('arc_after_shortcode', $pzarc_blueprint, $pzarc_overrides);
     $pzout = ob_get_contents();
     ob_end_clean();
 
-    $pzout = '<div class="pzarc-shortcode pzarc-shortcode-'.$pzarc_blueprint.'">'.$pzout.'</div>';
+    $pzout = '<div class="pzarc-shortcode pzarc-shortcode-' . $pzarc_blueprint . '">' . $pzout . '</div>';
+
     // Putting thru a filter so devs can do stuff with it
-    return apply_filters('arc_filter_shortcode',$pzout,$pzarc_blueprint,$pzarc_overrides);
+    return apply_filters('arc_filter_shortcode', $pzout, $pzarc_blueprint, $pzarc_overrides);
   }
 
   add_shortcode('pzarc', 'pzarc_shortcode');
-
+  add_action('arc_do_shortcode', 'pzarc', 10, 3);
   /***********************
    *
    * Template tag
@@ -64,8 +67,12 @@
    ***********************/
   function pzarchitect($pzarc_blueprint = null, $pzarc_overrides = null)
   {
-    pzarc($pzarc_blueprint,$pzarc_overrides,false);
+    do_action('arc_before_template_tag',$pzarc_blueprint,$pzarc_overrides);
+    do_action('arc_do_template_tag', $pzarc_blueprint, $pzarc_overrides, false);
+    do_action('arc_after_template_tag',$pzarc_blueprint,$pzarc_overrides);
   }
+
+  add_action('arc_do_template_tag', 'pzarc', 10, 3);
 
   /***********************
    *
@@ -79,7 +86,7 @@
     $original_query = $wp_query;
     if ($is_shortcode) {
       // This was just in testing!!
-     // remove_shortcode('pzarc');
+      // remove_shortcode('pzarc');
     }
     if (empty($blueprint)) {
       // TODO: Should we make this use a set of defaults. prob an excerpt grid
@@ -104,12 +111,16 @@
         // TODO: rewind_posts causes recursion if in main loop so need to determine when it is needed. Be aware it still might cause problems used here
         if (!is_main_query()) {
           // i.e. when is this necessary???????
-   ////       rewind_posts();
+          ////       rewind_posts();
         } else {
           // Trying to break out of the main loop!
           if ($wp_query->current_post == -1) {
             //WTF? Shouldn't pointer have moved?
-            $wp_query->next_post();
+//            $wp_query->next_post();
+            // Doing this nudges things, believe it or not!
+            // Solves a few problems: 1) Recursion (but only if in this if), 2) template tag not resetting main loop
+             $wp_query->have_posts();
+
             // TODO: Be interesting to see what other havoc this is going to cause!
             // eg when multiple posts have shortcodes and are showing full content
           }
@@ -119,7 +130,7 @@
       }
 
 //      new pzarc_Display($pzarc_blueprint, $pzarc_blueprint_object, $pzarc_overrides, $pzarc_is_shortcode);
-unset ($architect);
+      unset ($architect);
 //    return $pzarc->output;
     }
   }
