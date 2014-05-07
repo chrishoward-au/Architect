@@ -36,7 +36,7 @@
       $this->section_number = $number;
       $this->section        = $section;
       $this->source         = $source;
-      do_action('arc_before_section_' . $this->section_number);
+      do_action("arc_before_section_{$this->section_number}");
       echo '<div class="pzarc-section pzarc-section_' . $this->section_number . ' pzarc-section-using-panel_'.$this->section[ 'section-panel-settings' ]['_panels_settings_short-name'].'">';
     }
 
@@ -44,7 +44,7 @@
     /**
      * @param $panel_def
      */
-    public function render_panel($panel_def)
+    public function render_panel($panel_def,$panel_number)
     {
 
       $data = arc_Panel::set_data($this->section[ 'section-panel-settings' ]);
@@ -52,21 +52,22 @@
       $sequence = json_decode($this->section[ 'section-panel-settings' ][ '_panels_design_preview' ], true);
       // We do want to provide actions so want to use the sequence
       do_action('arc_before_panel_open');
-      echo '<div class="pzarc-panel pzarc-panel_'.$this->section[ 'section-panel-settings' ]['_panels_settings_short-name'].'">';
-      echo self::strip_unused_arctags(arc_Panel_Wrapper::render('open', $panel_def[ 'panel-open' ], '', $data,$this->section[ 'section-panel-settings' ]));
-      foreach ($sequence as $key => $value) {
+      echo '<div class="pzarc-panel pzarc-panel_'.$this->section[ 'section-panel-settings' ]['_panels_settings_short-name'].' pzarc-panel-no-'.$panel_number.'">';
+      echo self::strip_unused_arctags(arc_Panel_Wrapper::render('panel-open', $panel_def, '', $data,$this->section[ 'section-panel-settings' ]));
+      foreach ($sequence as $component_type => $value) {
         if ($value[ 'show' ]) {
-          do_action('arc_before_' . $key);
+          // Send thru some data devs might find useful
+          do_action("arc_before_{$component_type}",$component_type,$panel_number,$data['postid']);
           // Make the class name to call - strip numbers from metas and customs
-          $class = 'arc_Panel_' . str_replace(array('1', '2', '3'), '', $key);
-          $line_out = $class::render($key, $panel_def[ $key ], $this->source, $data,$this->section[ 'section-panel-settings' ]);
-          echo apply_filters('arc_filter_' . $key, self::strip_unused_arctags($line_out));
-          do_action('arc_after_' . $key);
+          $class = 'arc_Panel_' . str_replace(array('1', '2', '3'), '', $component_type);
+          $line_out = $class::render($component_type, $panel_def, $this->source, $data,$this->section[ 'section-panel-settings' ]);
+          echo apply_filters("arc_filter_{$component_type}", self::strip_unused_arctags($line_out),$data['postid']);
+          do_action("arc_after_{$component_type}",$component_type,$panel_number,$data['postid']);
         }
       }
 //        echo '<h1 class="entry-title">',get_the_title(),'</h1>';
 //        echo '<div class="entry-content">',get_the_content(),'</div>';
-      echo self::strip_unused_arctags(arc_Panel_Wrapper::render('close', $panel_def[ 'panel-close' ], '', $data,$this->section[ 'section-panel-settings' ]));
+      echo self::strip_unused_arctags(arc_Panel_Wrapper::render('panel-close', $panel_def, '', $data,$this->section[ 'section-panel-settings' ]));
       echo '</div>';
       do_action('arc_after_panel_close');
     }
@@ -87,14 +88,14 @@
       // removed while in development
       return $strip_from;
 
-      // return preg_replace('/{{([\w|\-]*)}}/s', '', $strip_from);
+      return preg_replace('/{{([\w|\-]*)}}/s', '', $strip_from);
     }
 
     public function __destruct()
     {
       echo '</div><!-- End section ' . $this->section_number . ' -->';
-      echo '<p>End: ' . $this->section_number . '</p>';
-      do_action('arc_after_section_' . $this->section_number);
+      echo '<p>End section: ' . $this->section_number . '</p>';
+      do_action("arc_after_section_{$this->section_number}");
     }
 
   }

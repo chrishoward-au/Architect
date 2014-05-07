@@ -77,7 +77,6 @@
       {
         do_action('arc_before_architect');
         echo '<div class="pzarchitect pzarc-blueprint_'.$this->build->blueprint['_blueprints_short-name'].'">';
-        echo '<h3>START BUILD</h3>';
 
         $this->arc = array();
         $criteria  = array();
@@ -170,8 +169,7 @@
 
         echo '</div> <!-- end architect -->';
         do_action('arc_after_architect');
-        echo '<h3>END BUILD</h3>';
-        var_dump($this->build->blueprint['section'][0]['section-panel-settings']);
+        var_dump($this->build->blueprint);
 
       }
 
@@ -186,9 +184,13 @@
         $class     = 'arc_PanelDef_' . $this->build->blueprint[ '_blueprints_content-source' ];
         $panel_def = self::build_meta_definition($class::panel_def(), $this->build->blueprint[ 'section' ][ ($section_no - 1) ][ 'section-panel-settings' ]);
 
+        $i = 1;
         while ($this->query->have_posts()) {
           $this->query->the_post();
-          $section[ $section_no ]->render_panel($panel_def);
+          $section[ $section_no ]->render_panel($panel_def,$i);
+          if ($i++>=$this->build->blueprint[ '_blueprints_section-'.($section_no - 1).'-panels-per-view' ]) {
+            break;
+          }
         }
 
         // Unsetting causes it to run the destruct, which closes the div!

@@ -9,6 +9,9 @@
   border:solid 1px #aa0;
   padding:10px;
 }
+body.pzarchitect a {
+  text-decoration:none;
+}
 .pzarchitect .pzarc-container {
   position: relative;
 }
@@ -243,6 +246,7 @@ default styling
   vertical-align: top;
   box-sizing: border-box;
 }
+
 
 .pzarchitect .pzarc-panel .caption {
 }

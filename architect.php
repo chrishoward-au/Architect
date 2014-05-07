@@ -30,6 +30,7 @@
    * NextGen
    *
    */
+  // TODO: Help info: Use shortcodes for things like galleries and slideshows - things that are stylised by you. Use template tag for displaying posts
 
 // TODO: Make sure it can display comments!!
 

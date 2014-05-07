@@ -519,7 +519,7 @@
           'display_version'    => PZARC_VERSION,          // Version that appears at the top of your panel
           'menu_type'          => 'submenu',          //Specify if the admin menu should appear or not. Options: menu or submenu (Under appearance only)
           'allow_sub_menu'     => false,          // Show the sections below the admin menu item or not
-          'menu_title'         => __('<span class="dashicons dashicons-art"></span>Styling', 'pzarc'),
+          'menu_title'         => __('<span class="dashicons dashicons-art"></span>Styling Defaults', 'pzarc'),
           'page'               => __('Architect Styling', 'pzarc'),
           'google_api_key'     => 'Xq9o3CdQFHKr+47vQr6eO4EUYLtlEyTe',          // Must be defined to add google fonts to the typography module
           'global_variable'    => 'pzarchitect',          // Set a different name for your global variable other than the opt_name
@@ -671,13 +671,16 @@
     }
   endif;
   // Redux tracking
-  function pzarc_redux_tracking($options)
-  {
-    $opt                                                       = array();
-    $options[ 'DqDE7uzWFMdHsJsRIjveviQBVuE3Q75C03YLUt7rhVw=' ] = true;
+  if (!function_exists('pzarc_redux_tracking')) {
+    function pzarc_redux_tracking($options)
+    {
+      $opt                                                       = array();
+      $options[ 'DqDE7uzWFMdHsJsRIjveviQBVuE3Q75C03YLUt7rhVw=' ] = true;
 
-    // var_dump($options);
-    return $options;
+      // var_dump($options);
+      return $options;
+    }
+
+    add_filter('redux/tracking/developer', 'pzarc_redux_tracking');
+
   }
-
-  add_filter('redux/tracking/developer', 'pzarc_redux_tracking');

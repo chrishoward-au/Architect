@@ -10,7 +10,7 @@
   {
 //    private $data;
 
-    public static function render($type, $template, $source, &$data, &$section) { }
+    public static function render($type, &$template, $source, &$data, &$section) { }
 
     /**
      * @param $section
@@ -18,29 +18,60 @@
      */
     static function set_data(&$section)
     {
-      //var_dump($section);
-      $showbg_after_components                = ($section[ '_panels_design_background-position' ] != 'none' && ($section[ '_panels_design_components-position' ] == 'top' || $section[ '_panels_design_components-position' ] == 'left'));
-      $showbg_before_components               = ($section[ '_panels_design_background-position' ] != 'none' && ($section[ '_panels_design_components-position' ] == 'bottom' || $section[ '_panels_design_components-position' ] == 'right'));
-      $data[ 'postid' ]                       = get_the_ID();
-      $data[ 'poststatus' ]                   = get_post_status();
-      $data[ 'permalink' ]                    = get_the_permalink();
-      $post_format                            = get_post_format();
-      $data [ 'postformat' ]                  = (empty($post_format) ? 'standard' : $post_format);
+      $toshow = json_decode($section[ '_panels_design_preview' ], true);
+      // TODO: Will need to refine these to be based on content type
+      if ($toshow[ 'title' ][ 'show' ]) {
+        $data[ 'title' ] = get_the_title();
+      }
+
+      if ($toshow[ 'content' ][ 'show' ]) {
+        $data[ 'content' ] = get_the_content();
+      }
+
+      if ($toshow[ 'excerpt' ][ 'show' ]) {
+        $data[ 'excerpt' ] = get_the_excerpt();
+      }
+
+      if ($toshow[ 'image' ][ 'show' ] || $section[ '_panels_design_thumb-position' ] != 'none') {
+        $data[ 'image' ][ 'image' ]   = get_the_post_thumbnail(null, array($section['_panels_design_image-max-width'],$section['_panels_design_image-max-height']));
+        $image                        = get_post(get_post_thumbnail_id());
+        $data[ 'image' ][ 'caption' ] = $image->post_excerpt;
+      }
+
+      if ($toshow[ 'meta1' ][ 'show' ] ||
+          $toshow[ 'meta2' ][ 'show' ] ||
+          $toshow[ 'meta3' ][ 'show' ]
+      ) {
+        $data[ 'meta' ][ 'datetime' ]        = get_the_date();
+        $data[ 'meta' ][ 'fdatetime' ]       = date_i18n($section[ '_panels_design_meta-date-format' ], strtotime(get_the_date()));
+        $data[ 'meta' ][ 'categorieslinks' ] = get_the_category_list(', ');
+        $data[ 'categories' ]                = arc_tax_string_list(get_the_category(), 'category-', '', ' ');
+        $data[ 'meta' ][ 'tagslinks' ]       = get_the_tag_list(null, ', ');
+        $data[ 'tags' ]                      = arc_tax_string_list(get_the_tags(), 'tag-', '', ' ');
+        $data[ 'meta' ][ 'authorlink' ]      = get_author_posts_url(get_the_author_meta('ID'));
+        $data[ 'meta' ][ 'authorname' ]      = get_the_author_meta('display_name');
+        $data[ 'meta' ][ 'comments-count' ]  = get_comments_number();
+      }
+
+      if ($toshow[ 'custom1' ][ 'show' ] ||
+          $toshow[ 'custom2' ][ 'show' ] ||
+          $toshow[ 'custom3' ][ 'show' ]
+      ) {
+        //TODO: Add custom content stuff
+      }
+
+      // NEVER include HTML in these, only should get WP values.
+      $showbg_after_components              = ($section[ '_panels_design_background-position' ] != 'none' && ($section[ '_panels_design_components-position' ] == 'top' || $section[ '_panels_design_components-position' ] == 'left'));
+      $showbg_before_components             = ($section[ '_panels_design_background-position' ] != 'none' && ($section[ '_panels_design_components-position' ] == 'bottom' || $section[ '_panels_design_components-position' ] == 'right'));
+      $data[ 'postid' ]                     = get_the_ID();
+      $data[ 'poststatus' ]                 = get_post_status();
+      $data[ 'permalink' ]                  = get_the_permalink();
+      $post_format                          = get_post_format();
+      $data [ 'postformat' ]                = (empty($post_format) ? 'standard' : $post_format);
       $data[ 'panel-open' ][ 'bgimagetl' ]  = ($showbg_before_components ? get_the_post_thumbnail(null, array($section[ '_panels_design_background-image-width' ],
-                                                                                                                $section[ '_panels_design_background-image-width' ])) : null); //WP seems to smartly figure out which of its saved images to use! Now we jsut gotta get it t work with focal point
+                                                                                                              $section[ '_panels_design_background-image-width' ])) : null); //WP seems to smartly figure out which of its saved images to use! Now we jsut gotta get it t work with focal point
       $data[ 'panel-close' ][ 'bgimagebr' ] = ($showbg_after_components ? get_the_post_thumbnail(null, array($section[ '_panels_design_background-image-width' ],
-                                                                                                               $section[ '_panels_design_background-image-width' ])) : null);
-      $data[ 'image' ][ 'image' ]             = get_the_post_thumbnail(null, 'thumbnail');
-      $data[ 'meta' ][ 'datetime' ]           = get_the_date();
-      $data[ 'meta' ][ 'fdatetime' ]          = date_i18n($section[ '_panels_design_meta-date-format' ], strtotime(get_the_date()));
-      $data[ 'meta' ][ 'categorieslinks' ]    = get_the_category_list(', ');
-      $data[ 'categories' ]         = arc_tax_string_list(get_the_category(), 'category-', '', ' ');
-      $data[ 'meta' ][ 'tagslinks' ]          = get_the_tag_list(null, ', ');
-      $data[ 'tags' ]               = arc_tax_string_list(get_the_tags(), 'tag-', '', ' ');
-      $data[ 'meta' ][ 'authorlink' ]         = get_author_posts_url(get_the_author_meta('ID'));
-      $data[ 'meta' ][ 'authorname' ]         = get_the_author_meta('display_name');
-      $data[ 'meta' ][ 'commentcount' ]       = get_comments_number();
-      $data[ 'meta' ][ 'editlink' ]           = '<span class="edit-link"><a class="post-edit-link" href="' . get_edit_post_link() . '" title="Edit post ' . get_the_title() . '">Edit</a></span>';
+                                                                                                             $section[ '_panels_design_background-image-width' ])) : null);
 
 //        if (strpos($data[ 'image' ][ 'image' ], '<img') === 0) {
 //          preg_match_all("/width=\"(\\d)*\"/uiUm", $data[ 'image' ][ 'image' ], $widthm);
@@ -60,12 +91,13 @@
       //todo: make sure source is actual WP valid eg. soemthings might be attachment
       // Do any generic replacements
       $line = str_replace('{{postid}}', $data[ 'postid' ], $line);
+      $line = str_replace('{{title}}', $data[ 'title' ], $line);
       $line = str_replace('{{permalink}}', $data[ 'permalink' ], $line);
       $line = str_replace('{{closelink}}', '</a>', $line);
-      $line = str_replace('{{categories}}', $data['categories'], $line);
-      $line = str_replace('{{tags}}', $data['tags'], $line);
-      $line = str_replace('{{poststatus}}', $data['poststatus'], $line);
-      $line = str_replace('{{postformat}}', $data['postformat'], $line);
+      $line = str_replace('{{categories}}', $data[ 'categories' ], $line);
+      $line = str_replace('{{tags}}', $data[ 'tags' ], $line);
+      $line = str_replace('{{poststatus}}', $data[ 'poststatus' ], $line);
+      $line = str_replace('{{postformat}}', $data[ 'postformat' ], $line);
       $line = str_replace('{{posttype}}', $source, $line);
 
       return $line;
@@ -77,13 +109,13 @@
     public static function render($type, $template, $source, &$data, &$section)
     {
       foreach ($data[ 'panel-open' ] as $key => $value) {
-        $template = str_replace('{{' . $key . '}}', $value, $template);
+        $template[ $type ] = str_replace('{{' . $key . '}}', $value, $template[ $type ]);
       }
       foreach ($data[ 'panel-close' ] as $key => $value) {
-        $template = str_replace('{{' . $key . '}}', $value, $template);
+        $template[ $type ] = str_replace('{{' . $key . '}}', $value, $template[ $type ]);
       }
 
-      return parent::process_generics($data, $template, $source);
+      return parent::process_generics($data, $template[ $type ], $source);
     }
   }
 
@@ -100,46 +132,47 @@
      * @param $section
      * @return mixed|void
      */
-    public static function render($type, $template, $source, &$data, &$section)
+    public static function render($type, &$template, $source, &$data, &$section)
     {
       switch ($source) {
         case 'post':
         case 'page':
-          $template = str_replace('{{title}}', get_the_title(), $template);
-          if (true) {
-            $template = str_replace('{{postlink}}', '<a href="' . get_the_permalink() . '">', $template);
-            $template = str_replace('{{closepostlink}}', '</a>', $template);
+          $template[ $type ] = str_replace('{{title}}', $data[ 'title' ], $template[ $type ]);
+          if ($section[ '_panels_design_link-titles' ]) {
+            $template[ $type ] = str_replace('{{postlink}}', $template[ 'postlink' ], $template[ $type ]);
+            $template[ $type ] = str_replace('{{closepostlink}}', '</a>', $template[ $type ]);
           }
       };
 
       // this only works for posts! need different rules for different types! :S
-      return parent::process_generics($data, $template, $source);
+      return parent::process_generics($data, $template[ $type ], $source);
     }
   }
 
 
   class arc_Panel_Meta extends arc_Panel
   {
-    public static function render($type, $template, $source, &$data, &$section)
+    public static function render($type, &$template, $source, &$data, &$section)
     {
-//      var_dump($type, $template, $source, $data);
       // get $metaX definition and construct string, then replace metaXinnards
       switch ($source) {
         case 'post':
         case 'page':
-          $template = str_replace('{{datetime}}', $data[ 'meta' ][ 'datetime' ], $template);
-          $template = str_replace('{{fdatetime}}', $data[ 'meta' ][ 'fdatetime' ], $template);
-          $template = str_replace('{{authorname}}', $data[ 'meta' ][ 'authorname' ], $template);
-          $template = str_replace('{{authorlink}}', $data[ 'meta' ][ 'authorlink' ], $template);
-          $template = str_replace('{{categories}}', $data[ 'meta' ][ 'categories' ], $template);
-          $template = str_replace('{{categorieslinks}}', $data[ 'meta' ][ 'categorieslinks' ], $template);
-          $template = str_replace('{{tags}}', $data[ 'meta' ][ 'tags' ], $template);
-          $template = str_replace('{{tagslinks}}', $data[ 'meta' ][ 'tagslinks' ], $template);
-          $template = str_replace('{{commentcount}}', $data[ 'meta' ][ 'commentcount' ], $template);
-          $template = str_replace('{{editlink}}', $data[ 'meta' ][ 'editlink' ], $template);
+          $template[ $type ] = str_replace('{{datetime}}', $data[ 'meta' ][ 'datetime' ], $template[ $type ]);
+          $template[ $type ] = str_replace('{{fdatetime}}', $data[ 'meta' ][ 'fdatetime' ], $template[ $type ]);
+          $template[ $type ] = str_replace('{{authorname}}', $data[ 'meta' ][ 'authorname' ], $template[ $type ]);
+          $template[ $type ] = str_replace('{{authorlink}}', $data[ 'meta' ][ 'authorlink' ], $template[ $type ]);
+          $template[ $type ] = str_replace('{{categories}}', $data[ 'meta' ][ 'categories' ], $template[ $type ]);
+          $template[ $type ] = str_replace('{{categorieslinks}}', $data[ 'meta' ][ 'categorieslinks' ], $template[ $type ]);
+          $template[ $type ] = str_replace('{{tags}}', $data[ 'meta' ][ 'tags' ], $template[ $type ]);
+          $template[ $type ] = str_replace('{{tagslinks}}', $data[ 'meta' ][ 'tagslinks' ], $template[ $type ]);
+          $template[ $type ] = str_replace('{{commentslink}}', $template[ 'comments-link' ], $template[ $type ]);
+          $template[ $type ] = str_replace('{{commentscount}}', $data[ 'comments-count' ], $template[ $type ]);
+          $template[ $type ] = str_replace('{{editlink}}', $template[ 'editlink' ], $template[ $type ]);
 
       }
-      return parent::process_generics($data, $template, $source);
+
+      return parent::process_generics($data, $template[ $type ], $source);
     }
 
   }
@@ -147,21 +180,21 @@
 
   class arc_Panel_Image extends arc_Panel
   {
-    public static function render($type, $template, $source, &$data, &$section)
+    public static function render($type, &$template, $source, &$data, &$section)
     {
       if (true) {
-        $template = str_replace('{{postlink}}', '<a href="' . get_the_permalink() . '">', $template);
-        $template = str_replace('{{closepostlink}}', '</a>', $template);
+        $template[ $type ] = str_replace('{{postlink}}', $template[ 'postlink' ], $template[ $type ]);
+        $template[ $type ] = str_replace('{{closepostlink}}', '</a>', $template[ $type ]);
       }
       if (true) {
-        $image    = get_post(get_post_thumbnail_id());
-        $template = str_replace('{{captioncode}}', $image->post_excerpt, $template);
+        $template[ $type ] = str_replace('{{captioncode}}', $data[ 'image' ][ 'caption' ], $template[ $type ]);
       }
-      foreach ($data[ 'image' ] as $key => $value) {
-        $template = str_replace('{{' . $key . '}}', $value, $template);
-      }
+      $template[ $type ] = str_replace('{{image}}', $data[ 'image' ][ 'image' ], $template[ $type ]);
+//      foreach ($data[ 'image' ] as $key => $value) {
+//        $template[ $type ] = str_replace('{{' . $key . '}}', $value, $template[ $type ]);
+//      }
 
-      return parent::process_generics($data, $template, $source);
+      return parent::process_generics($data, $template[ $type ], $source);
     }
 
   }
@@ -169,14 +202,15 @@
 
   class arc_Panel_Content extends arc_Panel
   {
-    public static function render($type, $template, $source, &$data, &$section)
+    public static function render($type, &$template, $source, &$data, &$section)
     {
       switch ($source) {
         case 'post':
         case 'page':
-          $template = str_replace('{{content}}', get_the_content(), $template);
+          $template[ $type ] = str_replace('{{content}}', $data[ 'content' ], $template[ $type ]);
       };
-      return parent::process_generics($data, $template, $source);
+
+      return parent::process_generics($data, $template[ $type ], $source);
     }
 
   }
@@ -192,21 +226,32 @@
      * @param $section
      * @return mixed|void
      */
-    public static function render($type, $template, $source, &$data, &$section)
+    public static function render($type, &$template, $source, &$data, &$section)
     {
+  //    var_dump($data);
       switch ($source) {
         case 'post':
         case 'page':
-          $template = str_replace('{{excerpt}}', get_the_excerpt(), $template);
+          $template[ $type ] = str_replace('{{excerpt}}', $data[ 'excerpt' ], $template[ $type ]);
       };
-      if ($section['_panels_design_thumb-position'] != 'none') {
-        $template = str_replace('{{image-in-content}}', $data[ 'image' ][ 'image' ], $template);
+      if (!empty($data[ 'image' ][ 'image'] ) && $section[ '_panels_design_thumb-position' ] != 'none') {
+        $template[ $type ] = str_replace('{{image-in-content}}', $template[ 'image' ], $template[ $type ]);
+        if (true) {
+          $template[ $type ] = str_replace('{{captioncode}}', $data[ 'image' ][ 'caption' ], $template[ $type ]);
+        }
+        $template[ $type ] = str_replace('{{image}}', $data[ 'image' ][ 'image' ], $template[ $type ]);
+        $template[ $type ] = str_replace('{{incontent}}', 'in-content-thumb', $template[ $type ]);
+
+        if (true) {
+          $template[ $type ] = str_replace('{{postlink}}', $template[ 'postlink' ], $template[ $type ]);
+          $template[ $type ] = str_replace('{{closepostlink}}', '</a>', $template[ $type ]);
+        }
       }
 
 //_panels_design_thumb-position
 
 
-      return parent::process_generics($data, $template, $source);
+      return parent::process_generics($data, $template[ $type ], $source);
     }
 
   }
@@ -214,7 +259,7 @@
 
   class arc_Panel_Custom extends arc_Panel
   {
-    public static function render($type, $template, $source, &$data, &$section)
+    public static function render($type, &$template, $source, &$data, &$section)
     {
       // this only works for posts! need different rules for different types! :S
       return parent::process_generics($data, $template, $source);

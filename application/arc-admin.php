@@ -39,10 +39,14 @@
         add_action('admin_menu', array($this, 'admin_menu'));
         add_action('admin_enqueue_scripts', array($this, 'admin_enqueue'));
 
+        // TODO: Make up some easily editable panel defs - prob have to be a custom content type
+ //       require_once PZARC_PLUGIN_PATH . '/admin/php/arc-options-def-editor.php';
+
         //@TODO: need a bit of screen dependency on this?
 //      require_once PZARC_PLUGIN_PATH . '/resources/class_pzarcForm.php';
         require_once PZARC_PLUGIN_PATH . '/admin/php/class_arc_Panels_Layouts.php';
         require_once PZARC_PLUGIN_PATH . '/admin/php/class_arc_Blueprints_Layouts.php';
+        require_once PZARC_PLUGIN_PATH . '/admin/php/arc-save-process.php';
         require_once PZARC_PLUGIN_PATH . '/admin/php/arc-galleries.php';
         require_once PZARC_PLUGIN_PATH . '/admin/php/arc-slides.php';
 
@@ -175,10 +179,10 @@
 			<div class = "icon32" id = "icon-users"><br></div>
 
 			<h2>' . $title . '</h2>
-			<h3>Builder</h3>
+			<!-- This is definitely to ambitious for v1!<h3>Builder</h3>
 				<p>Generate WordPress page template code for inserting in your templates</p>
 				<p>Can I use Redux or similar??</p>
-				<textarea name="textarea" rows="10" cols="50">Code will appear here upon generating</textarea>
+				<textarea name="textarea" rows="10" cols="50">Code will appear here upon generating</textarea> -->
 						<h3>Export</h3>
 						<p>Export single or multiple blueprints and panels</p>
 						<h3>Import</h3>
@@ -198,62 +202,3 @@
   new pzarcAdmin();
 
 
-  class pzarc_Options
-  {
-
-    /* Using the WP setting sframework. TODO: Intergrate into the above */
-    private $plugin_path;
-    private $plugin_url;
-    private $l10n;
-    private $wpsf;
-
-    function __construct()
-    {
-      $this->plugin_path = PZARC_PLUGIN_PATH;
-      $this->plugin_url  = PZARC_PLUGIN_URL;
-      $this->l10n        = 'wp-settings-framework';
-      add_action('admin_menu', array(&$this, 'admin_menu'), 99);
-
-      // Include and create a new WordPressSettingsFramework
-      //TODO: Remove this
-      require_once($this->plugin_path . '/resources/libs/php/wp-settings-framework.php');
-      $this->wpsf = new WordPressSettingsFramework($this->plugin_path . '/admin/php/settings/options.php', 'architect-defaults');
-      // Add an optional settings validation filter (recommended)
-      add_filter($this->wpsf->get_option_group() . '_settings_validate', array(&$this, 'validate_settings'));
-    }
-
-    function admin_menu()
-    {
-      add_submenu_page(
-          'pzarc', 'Options', '<span class="dashicons dashicons-admin-settings"></span>Options', 'manage_options', 'pzarc_options', array(&$this,
-                                                                                                                                          'pzarc_options')
-      );
-    }
-
-    function pzarc_options()
-    {
-      global $title;
-
-      echo '<div class = "wrap">
-
-			<!--Display Plugin Icon, Header, and Description-->
-			<div class = "icon32" id = "icon-options-general"><br></div>
-
-			<h2>' . $title . '</h2>
-<p>List of common classes as used in TwentyXX themes and the means to override them and their default values i.e. .hentry, .entry-title, .entry-content, etc. This way people can change them if their theme uses different ones. Architect will add these to appropriate parent classes of the panel ID</p>
-    ';
-      $this->wpsf->settings();
-      echo '</div>';
-    }
-
-    function validate_settings($input)
-    {
-      // Do your settings validation here
-      // Same as $sanitize_callback from http://codex.wordpress.org/Function_Reference/register_setting
-      return $input;
-    }
-
-
-  }
-
-  new pzarc_Options();

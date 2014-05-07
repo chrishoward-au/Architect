@@ -43,13 +43,16 @@
       $pzarc_blueprint = $atts[ 0 ];
     }
 
-    // Need to capture the output so we can get it to appear where the shortcode is
+    // Need to capture the output so we can get it to appear where the shortcode actually is
     ob_start();
-    pzarc($pzarc_blueprint, (!empty($atts[ 'ids' ]) ? $atts[ 'ids' ] : null), true);
+    $pzarc_overrides = !empty($atts[ 'ids' ]) ? $atts[ 'ids' ] : null;
+    pzarc($pzarc_blueprint, $pzarc_overrides, true);
     $pzout = ob_get_contents();
     ob_end_clean();
 
-    return $pzout;
+    $pzout = '<div class="pzarc-shortcode pzarc-shortcode-'.$pzarc_blueprint.'">'.$pzout.'</div>';
+    // Putting thru a filter so devs can do stuff with it
+    return apply_filters('arc_filter_shortcode',$pzout,$pzarc_blueprint,$pzarc_overrides);
   }
 
   add_shortcode('pzarc', 'pzarc_shortcode');
@@ -61,7 +64,7 @@
    ***********************/
   function pzarchitect($pzarc_blueprint = null, $pzarc_overrides = null)
   {
-    pzarc($pzarc_blueprint, $pzarc_overrides, false);
+    pzarc($pzarc_blueprint,$pzarc_overrides,false);
   }
 
   /***********************
@@ -79,9 +82,8 @@
      // remove_shortcode('pzarc');
     }
     if (empty($blueprint)) {
-      // make this use a set of defaults. prob an excerpt grid
-      echo 'You need to set a blueprint';
-
+      // TODO: Should we make this use a set of defaults. prob an excerpt grid
+      echo '<p class="warning-msg">You need to set a blueprint</p>';
     } else {
       require_once PZARC_PLUGIN_PATH . '/public/php/class_Architect.php';
       require_once(PZARC_PLUGIN_PATH . '/resources/libs/php/jo-image-resizer/jo_image_resizer.php');

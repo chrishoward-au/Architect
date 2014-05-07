@@ -272,6 +272,7 @@
         'icon_class' => 'icon-large',
         'icon'       => 'el-icon-home',
         'fields'     => array(
+
             array(
                 'id'       => $prefix . 'short-name',
                 'title'    => __('Short name', 'pzarchitect'),
@@ -477,17 +478,30 @@
                 'subtitle'      => __('This should be larger than the expected maximum viewing size', 'pzarchitect')
             ),
             array(
-                'title'   => __('Excerpt/Content featured image', 'pzarchitect'),
+                'title'   => __('Excerpt/Content thumbnail', 'pzarchitect'),
                 'id'      => $prefix . 'thumb-position',
                 'width'   => '100%',
                 'type'    => 'button_set',
                 'default' => 'none',
                 'options' => array(
-                    'none'  => 'No image',
+                    'none'  => 'No thumb',
                     'left'  => 'Left',
                     'right' => 'Right',
                 ),
-                'hint'    => array('content' => __('Set the alignment of the image to show it in the excerpt or the content. This will use the image settings', 'pzarchitect'))
+                'hint'    => array('content' => __('Set the alignment of the image to show it in the excerpt or the content.', 'pzarchitect'))
+            ),
+            array(
+                'title'         => __('Thumbnail width %', 'pzarchitect'),
+                'id'            => $prefix . 'thumb-width',
+                'type'          => 'slider',
+                'default'       => '25',
+                'min'           => '10',
+                'max'           => '90',
+                'step'          => '1',
+                'class'         => ' percent',
+                'required' => array($prefix . 'thumb-position','!=','none'),
+                'display_value' => 'label',
+                'hint'          => array('content' => __('When you have set the featured image to appear in the content/excerpt, this determines its width.', 'pzarchitect'))
             ),
 
         )
@@ -543,7 +557,6 @@
               'title'   => __('Meta2 config', 'pzarchitect'),
               'id'      => $prefix . 'meta2-config',
               'type'    => 'textarea',
-              'cols'    => 4,
               'rows'    => 2,
               'default' => 'Categories: %categories%   Tags: %tags%',
           ),
@@ -551,9 +564,8 @@
               'title'   => __('Meta3 config', 'pzarchitect'),
               'id'      => $prefix . 'meta3-config',
               'type'    => 'textarea',
-              'cols'    => 4,
               'rows'    => 2,
-              'default' => 'Comments: %commentcount%   %editlink%',
+              'default' => '%commentslink%   %editlink%',
           ),
           array(
               'id'      => $prefix . 'meta-date-format',
@@ -655,56 +667,81 @@
                 'hint'  => array('content' => 'Left and right margins are included in the image width in the designer. e.g if Image width is 25% and right margin is 3%, image width will be adjusted to 22%')
             ),
             array(
-                'id'            => $prefix . 'image-margin-top',
-                'title'         => 'Margin top %',
-                'type'          => 'slider',
-                'width'         => '100%',
-                'default'       => '1',
-                'alt'           => 'zones',
-                'min'           => '0',
-                'max'           => '100',
-                'step'          => '1',
-                'units'         => '%',
-                'display_value' => 'label'
+                'id'             => $prefix.'image-spacing',
+                'type'           => 'spacing',
+//                'output'         => array('.site-header'),
+                'mode'           => 'margin',
+                'units'          => false,
+                'units_extended' => 'false',
+                'title'          => __('Margins', 'pzarchitect'),
+                'default'            => array(
+                    'margin-top'     => '1%',
+                    'margin-right'   => '1%',
+                    'margin-bottom'  => '1%',
+                    'margin-left'    => '0%',
+                    'units'          => '%',
+                )
             ),
+//            array(
+//                'id'            => $prefix . 'image-margin-top',
+//                'title'         => 'Margin top %',
+//                'type'          => 'slider',
+//                'width'         => '100%',
+//                'default'       => '1',
+//                'alt'           => 'zones',
+//                'min'           => '0',
+//                'max'           => '100',
+//                'step'          => '1',
+//                'units'         => '%',
+//                'display_value' => 'label'
+//            ),
+//            array(
+//                'id'            => $prefix . 'image-margin-bottom',
+//                'title'         => 'Margin bottom %',
+//                'type'          => 'slider',
+//                'width'         => '100%',
+//                'default'       => '1',
+//                'alt'           => 'zones',
+//                'min'           => '0',
+//                'max'           => '100',
+//                'step'          => '1',
+//                'units'         => '%',
+//                'display_value' => 'label'
+//            ),
+//            array(
+//                'id'            => $prefix . 'image-margin-left',
+//                'title'         => 'Margin left %',
+//                'type'          => 'slider',
+//                'width'         => '100%',
+//                'default'       => 1,
+//                'alt'           => 'zones',
+//                'min'           => '0',
+//                'max'           => '100',
+//                'step'          => '1',
+//                'units'         => '%',
+//                'display_value' => 'label'
+//            ),
+//            array(
+//                'id'            => $prefix . 'image-margin-right',
+//                'title'         => 'Margin right %',
+//                'type'          => 'slider',
+//                'width'         => '100%',
+//                'default'       => '1',
+//                'alt'           => 'zones',
+//                'min'           => '0',
+//                'max'           => '100',
+//                'step'          => '1',
+//                'units'         => '%',
+//                'display_value' => 'label'
+//            ),
             array(
-                'id'            => $prefix . 'image-margin-bottom',
-                'title'         => 'Margin bottom %',
-                'type'          => 'slider',
-                'width'         => '100%',
-                'default'       => '1',
-                'alt'           => 'zones',
-                'min'           => '0',
-                'max'           => '100',
-                'step'          => '1',
-                'units'         => '%',
-                'display_value' => 'label'
-            ),
-            array(
-                'id'            => $prefix . 'image-margin-left',
-                'title'         => 'Margin left %',
-                'type'          => 'slider',
-                'width'         => '100%',
-                'default'       => 1,
-                'alt'           => 'zones',
-                'min'           => '0',
-                'max'           => '100',
-                'step'          => '1',
-                'units'         => '%',
-                'display_value' => 'label'
-            ),
-            array(
-                'id'            => $prefix . 'image-margin-right',
-                'title'         => 'Margin right %',
-                'type'          => 'slider',
-                'width'         => '100%',
-                'default'       => '1',
-                'alt'           => 'zones',
-                'min'           => '0',
-                'max'           => '100',
-                'step'          => '1',
-                'units'         => '%',
-                'display_value' => 'label'
+                'title'   => __('Maximize content', 'pzarchitect'),
+                'id'      => $prefix . 'maximize-content',
+                'type'    => 'switch',
+                'on'      => 'Yes',
+                'off'     => 'No',
+                'default' => true,
+                'subtitle'=>'Make excerpt or content 100% width if no featured image'
             ),
             array(
                 'title'   => __('Link image', 'pzarchitect'),
@@ -834,11 +871,10 @@
         'icon_class' => 'icon-large',
         'icon'       => 'el-icon-info-sign',
         'fields'     => array(
-
             array(
                 'title' => __('Design', 'pzarchitect'),
                 'id'    => $prefix . 'panels-help-design',
-                'type'  => 'section',
+                'type'  => 'info',
                 //  'class' => 'plain',
                 'desc'  => '<p>
                               Fiant nulla claritatem processus vulputate quarta. Anteposuerit eodem habent parum id et. Notare mutationem facilisi nulla ut facer.
@@ -953,6 +989,14 @@
             pzarc_redux_bg($prefix . 'entry-title-font-bg', array('.entry-title')),
             pzarc_redux_padding($prefix . 'entry-title-font-padding', array('.entry-title')),
             pzarc_redux_links($prefix . 'entry-title-font-links', array('.entry-title a')),
+            array(
+                'title' => __('Other declarations', 'pzarchitect'),
+                'id'    => $prefix . 'text-other-css',
+                'type'  => 'ace_editor',
+                'default'=> ".entry-title {\n\n}",
+                'mode'=>'css',
+                'hint'  => array('content' => 'Class: .entry-title'),
+            ),
         ),
     );
 
