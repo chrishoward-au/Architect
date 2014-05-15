@@ -1,4 +1,6 @@
 <?php
+?>
+// Cell controls
 <div class="cell">
     <div class="cell_head_left"></div>
     <div class="cell_head_right"></div>
@@ -71,4 +73,19 @@ background:#ccc;
     clear:both;
 }
 
-
+// Example of multiple images
+<?php // TODO: Method for multiple images in responsive?>
+<img src="" class="myimage-jpg">
+@media only screen and (min-width: 600px) {
+img.myimage-jpg {
+content:url("http://lorempixel.com/350/100");
+}
+}@media only screen and (min-width: 800px) {
+img.myimage-jpg {
+content:url("http://lorempixel.com/450/200");
+}
+}@media only screen and (min-width: 1000px) {
+img.myimage-jpg {
+content:url("http://lorempixel.com/550/300");
+}
+}

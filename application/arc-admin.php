@@ -59,6 +59,7 @@
         require_once PZARC_PLUGIN_PATH . '/resources/libs/php/redux-extensions/loader.php';
         require_once PZARC_PLUGIN_PATH . '/admin/php/arc-options.php';
 
+
         // @TODO Should these really be objects?
         // Initialise objects for data and setup menu items
         $panel_layout = new arc_Panels_Layouts;

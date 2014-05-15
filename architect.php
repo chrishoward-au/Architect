@@ -4,7 +4,7 @@
     Plugin Name: Architect - an all-in-one content display framework
     Plugin URI: http://pizazzwp.com
     Description: Display your content in grids, tabs, sliders, galleries with sources like posts, pages, galleries, widgets, custom code, Headway blocks and custom content types. Change themes without havinqg to rebuild your layouts. Seriously!
-    Version: 0.6.7 alpha
+    Version: 0.6.8 alpha
     Author: Chris Howard
     Author URI: http://pizazzwp.com
     License: GNU GPL v2
@@ -33,6 +33,8 @@
   // TODO: Help info: Use shortcodes for things like galleries and slideshows - things that are stylised by you. Use template tag for displaying posts
 
 // TODO: Make sure it can display comments!!
+  // TODO: Make it so users can create their own panels and blueprints, but can't edit other users' unless an admin. Thus users could create their own for shortcodes!
+
 
   /* why not use a WP like methodology!
   ================================================================================
@@ -65,6 +67,7 @@
 
 // Before we go anywhere, make sure dependent plugins are loaded and active.
       require_once PZARC_PLUGIN_PATH . '/resources/includes/php/arc-check-dependencies.php';
+      require_once PZARC_PLUGIN_PATH . '/resources/includes/php/class_arc_Widget.php';
 
       wp_mkdir_p(PZARC_CACHE_PATH);
 

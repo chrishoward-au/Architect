@@ -14,7 +14,6 @@ jQuery( document ).ready( function ()
 //    update: function() { jQuery("#_pzarc_cell-settings-meta1-config-cmb-field-0").select2("onSortEnd"); }
 //  });
 
-    init();
     function init()
     {
 //    var cell_layout = jQuery.parseJSON(jQuery('input#_panels_design_preview-text').val());
@@ -29,6 +28,7 @@ jQuery( document ).ready( function ()
 //    pzarc_update_status(cell_layout);
 
     }
+    init();
 
 //***********************
 // Process field values
@@ -46,8 +46,8 @@ jQuery( document ).ready( function ()
     var cell_layout = jQuery.parseJSON( jQuery( 'input#_panels_design_preview-text' ).val() );
 
     pzarc_update_status( cell_layout );
-
-    jQuery( "input\[name='_architect[_panels_design_thumb-position]'" ).on( 'click', function ( e )
+    //input[name="my[one]"]
+    jQuery( 'input[name="_architect[_panels_design_thumb-position]"]' ).on( 'click', function ( e )
     {
         var buttonClicked = this.value;
         pzarc_update_thumb_position( buttonClicked );
@@ -64,7 +64,7 @@ jQuery( document ).ready( function ()
 //	});
 
 
-    jQuery( 'input\[name="_architect[_panels_design_background-position]"' ).on( 'click', function ( e )
+    jQuery( 'input[name="_architect[_panels_design_background-position]"]' ).on( 'click', function ( e )
     {
         var cell_layout = jQuery.parseJSON( jQuery( 'input#_panels_design_preview-text' ).val() );
         pzarc_update_background( cell_layout );
@@ -82,14 +82,14 @@ jQuery( document ).ready( function ()
 
 // Set position of zones
 
-    jQuery( 'input\[name="_architect[_panels_design_components-position]"' ).on( 'click', function ( e )
+    jQuery( 'input[name="_architect[_panels_design_components-position]"]' ).on( 'click', function ( e )
     {
         var cell_layout = jQuery.parseJSON( jQuery( 'input#_panels_design_preview-text' ).val() );
         pzarc_update_component_location( cell_layout );
     } );
 
 // This does bugger all at the moment! And doesn't need to do anything coz Redux has required option!
-    jQuery( 'input\[name="_architect[panels_settingds_panel-height-type]"' ).on( 'click', function ( e )
+    jQuery( 'input[name="_architect[panels_settingds_panel-height-type]"]' ).on( 'click', function ( e )
     {
         var cell_layout = jQuery.parseJSON( jQuery( 'input#_panels_design_preview-text' ).val() );
 // this is COMPONENTS height, CELLS!
@@ -191,7 +191,7 @@ jQuery( document ).ready( function ()
             pzarc_update_component_visibility( cell_layout );
             pzarc_update_background( cell_layout );
             pzarc_update_status( cell_layout );
-            pzarc_update_thumb_position( jQuery( "input\[name='_architect[_panels_design_thumb-position]'" ).value );
+            pzarc_update_thumb_position( jQuery( "input[name='_architect[_panels_design_thumb-position]']" ).value );
         }
     } );
 
@@ -333,7 +333,7 @@ jQuery( document ).ready( function ()
          // Update background
          *********************/
         var bgPosition = 'none';
-        jQuery( 'input\[name="_architect[_panels_design_background-position]"' ).each( function ()
+        jQuery( 'input[name="_architect[_panels_design_background-position]"]' ).each( function ()
         {
             if ( this.checked )
             {
@@ -363,7 +363,7 @@ jQuery( document ).ready( function ()
                 var imageHeight = 300 - zonesHeight;
                 //_architect[_panels_design_components-position]
                 var sections_position = 'top';
-                jQuery( 'input\[name="_architect[_panels_design_components-position]"' ).each( function ()
+                jQuery( 'input[name="_architect[_panels_design_components-position]"]' ).each( function ()
                 {
                     if ( this.checked )
                     {
@@ -439,7 +439,7 @@ jQuery( document ).ready( function ()
          // Update component location
          ******************/
         var sections_position = 'top';
-        jQuery( 'input\[name="_architect[_panels_design_components-position]"' ).each( function ()
+        jQuery( 'input[name="_architect[_panels_design_components-position]"]' ).each( function ()
         {
             if ( this.checked )
             {
@@ -512,29 +512,29 @@ jQuery( document ).ready( function ()
          *********************/
         var nudgexy = [jQuery( 'fieldset#_architect-_panels_design_components-nudge-x .redux-slider-label' ).text(), jQuery( 'fieldset#_architect-_panels_design_components-nudge-y .redux-slider-label' ).text()];
         var sections_position = 'top';
-        jQuery( 'input\[name="_architect[_panels_design_components-position]"' ).each( function ()
+        jQuery( 'input[name="_architect[_panels_design_components-position]"]' ).each( function ()
         {
             if ( this.checked )
             {
                 sections_position = this.value;
             }
         } );
-        if ( sections_position == 'left' )
+        if ( sections_position === 'left' )
         {
             jQuery( '.pzarc-content-area' ).css( 'marginLeft', nudgexy[0] + '%' );
             jQuery( '.pzarc-content-area' ).css( 'marginTop', nudgexy[1] + '%' );
         }
-        else if ( sections_position == 'top' )
+        else if ( sections_position === 'top' )
         {
             jQuery( '.pzarc-content-area' ).css( 'marginLeft', nudgexy[0] + '%' );
             jQuery( '.pzarc-content-area' ).css( 'marginTop', nudgexy[1] + '%' );
         }
-        else if ( sections_position == 'right' )
+        else if ( sections_position === 'right' )
         {
             jQuery( '.pzarc-content-area' ).css( 'marginRight', nudgexy[0] + '%' );
             jQuery( '.pzarc-content-area' ).css( 'marginTop', nudgexy[1] + '%' );
         }
-        else if ( sections_position == 'bottom' )
+        else if ( sections_position === 'bottom' )
         {
             jQuery( '.pzarc-content-area' ).css( 'marginLeft', nudgexy[0] + '%' );
             jQuery( '.pzarc-content-area' ).css( 'marginBottom', nudgexy[1] + '%' );
@@ -549,7 +549,7 @@ jQuery( document ).ready( function ()
 
     function pzarc_update_thumb_position( buttonClicked )
     {
-        if ( buttonClicked == 'left' )
+        if ( buttonClicked === 'left' )
         {
             jQuery( '.pzarc-draggable-excerpt img.pzarc-align' ).removeClass( 'right' );
             jQuery( '.pzarc-draggable-excerpt img.pzarc-align' ).removeClass( 'none' );
@@ -559,7 +559,7 @@ jQuery( document ).ready( function ()
             jQuery( '.pzarc-draggable-content img.pzarc-align' ).removeClass( 'none' );
             jQuery( '.pzarc-draggable-content img.pzarc-align' ).addClass( 'left' );
         }
-        else if ( buttonClicked == 'right' )
+        else if ( buttonClicked === 'right' )
         {
             jQuery( '.pzarc-draggable-excerpt img.pzarc-align' ).removeClass( 'left' );
             jQuery( '.pzarc-draggable-excerpt img.pzarc-align' ).removeClass( 'none' );
@@ -597,17 +597,17 @@ jQuery( document ).ready( function ()
                 case 'meta2':
                 case 'meta3':
                     tab_status = (
-                          jQuery( 'input#_panels_design_components-to-show-buttonsetmeta1:checked' ).length == 1
-                                || jQuery( 'input#_panels_design_components-to-show-buttonsetmeta2:checked' ).length == 1
-                                || jQuery( 'input#_panels_design_components-to-show-buttonsetmeta3:checked' ).length == 1
+                          jQuery( 'input#_panels_design_components-to-show-buttonsetmeta1:checked' ).length === 1
+                                || jQuery( 'input#_panels_design_components-to-show-buttonsetmeta2:checked' ).length === 1
+                                || jQuery( 'input#_panels_design_components-to-show-buttonsetmeta3:checked' ).length === 1
                           );
                     jQuery( '#2_box_redux-_architect-metabox-panels-design_section_group_li' ).toggle( tab_status );
                     break;
                 case 'content':
                 case 'excerpt':
                     tab_status = (
-                          jQuery( 'input#_panels_design_components-to-show-buttonsetcontent:checked' ).length == 1
-                                || jQuery( 'input#_panels_design_components-to-show-buttonsetexcerpt:checked' ).length == 1);
+                          jQuery( 'input#_panels_design_components-to-show-buttonsetcontent:checked' ).length === 1
+                                || jQuery( 'input#_panels_design_components-to-show-buttonsetexcerpt:checked' ).length === 1);
                     jQuery( '#3_box_redux-_architect-metabox-panels-design_section_group_li' ).toggle( tab_status );
                     break;
                 case 'image':
@@ -616,8 +616,8 @@ jQuery( document ).ready( function ()
                 case 'none':
 
                     tab_status = (
-                          jQuery( 'input#_panels_design_components-to-show-buttonsetimage:checked' ).length == 1
-                                || jQuery( 'input#_panels_design_background-position-buttonsetnone:checked' ).length == 0
+                          jQuery( 'input#_panels_design_components-to-show-buttonsetimage:checked' ).length === 1
+                                || jQuery( 'input#_panels_design_background-position-buttonsetnone:checked' ).length === 0
                           );
                     jQuery( '#4_box_redux-_architect-metabox-panels-design_section_group_li' ).toggle( tab_status );
                     break;
@@ -625,9 +625,9 @@ jQuery( document ).ready( function ()
                 case 'custom2':
                 case 'custom3':
                     tab_status = (
-                          jQuery( 'input#_panels_design_components-to-show-buttonsetcustom1:checked' ).length == 1
-                                || jQuery( 'input#_panels_design_components-to-show-buttonsetcustom2:checked' ).length == 1
-                                || jQuery( 'input#_panels_design_components-to-show-buttonsetcustom3:checked' ).length == 1
+                          jQuery( 'input#_panels_design_components-to-show-buttonsetcustom1:checked' ).length === 1
+                                || jQuery( 'input#_panels_design_components-to-show-buttonsetcustom2:checked' ).length === 1
+                                || jQuery( 'input#_panels_design_components-to-show-buttonsetcustom3:checked' ).length === 1
                           );
                     jQuery( '#5_box_redux-_architect-metabox-panels-design_section_group_li' ).toggle( tab_status );
                     break;
@@ -643,7 +643,7 @@ jQuery( document ).ready( function ()
 
 
 jQuery(window).load(function() {
-    if (jQuery('#redux-_architect-metabox-panels-design ul.redux-group-menu li.active').length==0) {
+    if (jQuery('#redux-_architect-metabox-panels-design ul.redux-group-menu li.active').length===0) {
         jQuery('#0_box_redux-_architect-metabox-panels-design_section_group_li' ).find('a' ).trigger('click');
     }
 });

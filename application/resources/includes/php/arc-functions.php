@@ -72,9 +72,27 @@
         'output'          => $selectors,
         'type'            => 'typography',
         'text-decoration' => true,
+        'font-variant'    => true,
+        'text-transform'  => true,
+        'font-family'     => true,
+        'font-size'       => true,
+        'font-weight'     => true,
+        'font-style'      => true,
+        'font-backup'     => false,
+        'subsets'         => false,
+        'custom_fonts'    => false,
+        'text-align'      => true,
+        //'text-shadow'       => false, // false
+        'color'           => true,
+        'preview'         => true,
+        'line-height'     => true,
+        'word-spacing'    => true,
+        'letter-spacing'  => true,
+        'google'          => true,
         'default'         => $defaults,
     );
   }
+
 
   function pzarc_redux_bg($id, $selectors, $defaults = null)
   {
@@ -108,17 +126,86 @@
 
   }
 
-  function pzarc_redux_links($id, $selectors, $defaults = null)
+  function pzarc_redux_margin($id, $selectors, $defaults = null)
   {
     return array(
-        'title'   => __('Links', 'pzarc'),
+        'title'   => __('Margins', 'pzarc'),
         'id'      => $id,
-        'type'    => 'link_color',
         'output'  => $selectors,
-        'default' => $defaults
+        'mode'    => 'margin',
+        'type'    => 'spacing',
+        'units'   => array('px', '%'),
+        'default' => $defaults,
     );
 
   }
+
+  function pzarc_redux_links($id, $selectors, $defaults = null)
+  {
+    return
+        array(
+            array(
+                'title'   => __('Links', 'pzarc'),
+                'id'      => $id,
+                'type'    => 'link_color',
+                'output'  => $selectors,
+                'default' => $defaults,
+                'regular' => true,
+                'hover'   => true,
+                'active'  => true,
+                'visited' => true
+            ),
+            // PREBETA: Add some js so can't select both! Or improve it
+            array(
+                'title'   => __('Links underline', 'pzarc'),
+                'id'      => $id.'-dec',
+                'type'    => 'button_set',
+                'multi'   => true,
+                'output'  => $selectors,
+                'default' => $defaults,
+                'options' => array(
+                    'regular' => 'Regular',
+                    'hover'   => 'Hover',
+                    'active'  => 'Active',
+                    'visited' => 'Visited'
+                )
+            ),
+            array(
+                'title'   => __('Links no underline', 'pzarc'),
+                'id'      => $id.'-nodec',
+                'type'    => 'button_set',
+                'multi'   => true,
+                'output'  => $selectors,
+                'default' => $defaults,
+                'options' => array(
+                    'regular' => 'Regular',
+                    'hover'   => 'Hover',
+                    'active'  => 'Active',
+                    'visited' => 'Visited'
+                )
+            )
+        );
+
+  }
+
+//  function pzarc_redux_links_dec($id, $selectors, $defaults = null)
+//  {
+//    return array(
+//        'title'   => __('Links underline', 'pzarc'),
+//        'id'      => $id,
+//        'type'    => 'button_set',
+//        'multi'   => true,
+//        'output'  => $selectors,
+//        'default' => $defaults,
+//        'options' => array(
+//            'regular' => 'Regular',
+//            'hover'   => 'Hover',
+//            'active'  => 'Active',
+//            'visited' => 'Visited'
+//        )
+//    );
+//
+//  }
 
   function pzarc_redux_borders($id, $selectors, $defaults = null)
   {
@@ -219,4 +306,33 @@
   function pzarc_scf_test($content, $blueprint, $overrides)
   {
     return '<div class="pzarc-shortcode-debug" style="background:#fff4f4;border:solid 1px #c99;box-sizing: border-box;"><h3>Start shortcode blueprint ' . $blueprint . ' with ' . count($overrides) . ' overrides</h3>' . $content . '<h3>End blueprint ' . $blueprint . '</h3>';
+  }
+
+  /**
+   * Convert any variable to an array
+   *
+   * @param $delimiter
+   * @param $var
+   * @return array
+   */
+  function pzarc_to_array($delimiter, $var)
+  {
+    return (is_array($var) ? $var : explode($delimiter, (string)$var));
+  }
+
+  function pzarc_fields()
+  {
+    $arg_list = func_get_args();
+    $returna = array();
+    foreach ($arg_list as $k => $v) {
+      if (isset($v[0])) {
+        foreach ($v as $k2 => $v2 ){
+          $returna[] = $v2;
+        }
+      } else {
+        $returna[] = $v;
+      }
+    }
+
+    return $returna;
   }

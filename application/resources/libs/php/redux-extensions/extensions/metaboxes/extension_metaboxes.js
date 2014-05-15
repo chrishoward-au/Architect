@@ -1,34 +1,35 @@
+/**
+ * Redux Metaboxes
+ * Dependencies      : jquery
+ * Created by        : Dovy Paukstys
+ * Date              : 19 Feb. 2014
+ */
 
 /* global reduxMetaboxes */
-
 jQuery(function($){
 
     "use strict";
-    
+
     $.reduxMetaBoxes = $.reduxMetaBoxes || {};
-    
+
     $(document).ready(function () {
          $.reduxMetaBoxes.init();
     });
 
-    /**
-    * Redux Metaboxes
-    * Dependencies      : jquery
-    * Feature added by  : Dovy Paukstys
-    * Date              : 19 Feb. 2014
-    */
     $.reduxMetaBoxes.init = function(){
         $.reduxMetaBoxes.notLoaded = true;
         $.reduxMetaBoxes.checkBoxVisibility();
-
         $('.redux-container').each(function() {
             $(this).parents('.postbox:first').find('h3.hndle').attr('class', 'redux-hndle');
+            $(this).parents('.postbox:first').addClass('redux-metabox');
+            $(this).parents('.postbox:first').addClass( 'redux-' + redux.args.opt_name );
+            if ( redux.args.container_class != "" ) {
+                $(this).parents('.postbox:first').addClass( redux.args.class );
+            }
         });
-
         $('#page_template').change(function() {
             $.reduxMetaBoxes.checkBoxVisibility('page_template');
         });
-
         $('input[name="post_format"]:radio').change(function() {
             $.reduxMetaBoxes.checkBoxVisibility('post_format');
         });

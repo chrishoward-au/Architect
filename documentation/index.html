@@ -9,18 +9,19 @@
 <h2>Hooks</h2>
 
 <h3>Actions</h3>
-<h4>arc_before_shortcode</h4>
+Callers: shortcode, widget, template_tag<br>
+<h4>arc_before_{$arc_caller}</h4>
 <ul>
   <li>blueprint (string)</li>
   <li>overrides (array?)</li>
 </ul>
-<h4>arc_do_shortcode</h4>
+<h4>arc_do_{$arc_caller}</h4>
 <ul>
   <li>blueprint (string)</li>
   <li>overrides (array?)</li>
   <li>shortcode (bool)</li>
 </ul>
-<h4>arc_after_shortcode</h4>
+<h4>arc_after_{$arc_caller}</h4>
 <ul>
   <li>blueprint</li>
   <li>overrides</li>
@@ -33,7 +34,7 @@ title,excerpt,content,image,meta1,meta2,meta3,custom1,custom2,custom3<br>
   <li>Post data (&array)</li>
 </ul>
 <h4>arc_after_{$component_type}</h4>
-title,excerpt,content,image,meta1,meta2,meta3,custom1,custom2,custom3<br>
+Component types: title,excerpt,content,image,meta1,meta2,meta3,custom1,custom2,custom3<br>
 <ul>
   <li>component_type (string)</li>
   <li>panel_number (numeric)</li>
@@ -48,7 +49,24 @@ title,excerpt,content,image,meta1,meta2,meta3,custom1,custom2,custom3<br>
 </ul>
 <h2>Classes</h2>
 <ul>
-  <li>.pzarc-panel</li>
+  <li>.pzarchitect</li>
+  <li>.pzarc-blueprint_{$blueprint_short_name}</li>
+  <li>.pzarc-is_shortcode / .pzarc-is_template-tag / .pzarc-is_widget</li>
+  <ul>
+    <li>.pzarc-section</li>
+    <li>.pzarc-section_{$section_number}</li>
+    <li>.pzarc-section-using-panel_{$panel_short_name}</li>
+    <ul>
+      <li>.pzarc-panel</li>
+      <li>.pzarc-panel_{$blueprint_short_name}</li>
+      <li>.pzarc-panel-no_{$panel_no}</li>
+    </ul>
+  </ul>
+  <li></li>
+  <li></li>
+  <li></li>
+  <li></li>
+  <li></li>
 </ul>
 
 </body>

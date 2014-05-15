@@ -12,8 +12,7 @@
   -moz-box-shadow: none;
   -webkit-box-shadow: none;
   box-shadow: none;
-  margin: -12px;
-  margin-top: -6px;
+
 }
 .redux-group-tab {
   margin-bottom: 0 !important;
@@ -50,6 +49,7 @@
 }
 .postbox .redux-container.redux-no-sections .redux-main tr td {
   padding-top: 20px !important;
+  width: 100%;
 }
 .postbox .redux-container.redux-no-sections .redux-main tr:last-child {
   border-bottom: none;
@@ -122,6 +122,9 @@
     display: block !important;
     width: 100% !important;
     padding: 0px !important;
+    &.hide {
+      display: none !important;
+    }
   }
   .postbox .form-table > tbody > tr > th,
   .postbox .form-table > tbody > tr > td {
@@ -219,4 +222,34 @@
 /* Sunrise admin theme */
 .admin-color-sunrise { 
     .metaboxesAdminThemeColorOverrides(#b43c38, #fff);
+}
+
+.redux-notices {
+  margin-bottom: 0;
+  border: 0;
+}
+
+.redux-metabox {
+  .redux-container {
+    margin-top: 0;
+  }
+  .inside {
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  .redux-no-sections {
+    .redux-main {
+      padding: 6px 15px 15px 15px !important;
+    }
+    &.redux-box-side {
+      .redux-main {
+        padding: 6px 8px 8px 8px !important;
+        input[type=text] {
+          width: 100% !important;
+        }
+      }
+    }
+
+  }
 }

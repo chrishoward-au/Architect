@@ -910,4 +910,20 @@ body .redux-container .redux-main .redux-section-field.redux-field.heading h3 {
   border-radius: 2px;
   border-width: 2px; }
 
+span.pzarc-required {
+  color: tomato;
+  font-size: 7px;
+  vertical-align: super;
+  cursor: help; }
+
+.textbox-small {
+  width: 100px !important; }
+
+.textbox-medium {
+  width: 200px !important; }
+
+span.pzarc-text-align {
+  font-family: "Times New Roman",Georgia,serif;
+  font-weight: bold; }
+
 /*# sourceMappingURL=arc-admin.css.map */

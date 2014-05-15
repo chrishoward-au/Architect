@@ -15,7 +15,8 @@
   function pzarc_display_init()
   {
     wp_register_script('js-arc-frontjs', PZARC_PLUGIN_URL . '/public/js/arc-front.js', array('jquery'));
-    wp_register_script('js-swiperjs', PZARC_PLUGIN_URL . '/resources/libs/js/swiper/idangerous.swiper.js');
+    wp_register_script('js-swiperjs', PZARC_PLUGIN_URL . '/resources/libs/js/swiper/idangerous.swiper.min.js');
+    wp_register_script('js-swiper-progressjs', PZARC_PLUGIN_URL . '/resources/libs/js/swiper/idangerous.swiper.progress.min.js');
     wp_register_style('css-swiperjs', PZARC_PLUGIN_URL . '/resources/libs/js/swiper/idangerous.swiper.css');
 
     wp_enqueue_script('js-arc-frontjs');
@@ -36,6 +37,7 @@
    ***********************/
   function pzarc_shortcode($atts, $content = null, $tag)
   {
+    $pzarc_caller = 'shortcode';
     $pzarc_blueprint = '';
     if (!empty($atts[ 'blueprint' ])) {
       $pzarc_blueprint = $atts[ 'blueprint' ];
@@ -46,13 +48,13 @@
     // Need to capture the output so we can get it to appear where the shortcode actually is
     ob_start();
     $pzarc_overrides = !empty($atts[ 'ids' ]) ? $atts[ 'ids' ] : null;
-    do_action('arc_before_shortcode', $pzarc_blueprint, $pzarc_overrides);
-    do_action('arc_do_shortcode', $pzarc_blueprint, $pzarc_overrides, true);
-    do_action('arc_after_shortcode', $pzarc_blueprint, $pzarc_overrides);
+    do_action("arc_before_{$pzarc_caller}", $pzarc_blueprint, $pzarc_overrides,$pzarc_caller);
+    do_action("arc_do_{$pzarc_caller}", $pzarc_blueprint, $pzarc_overrides, $pzarc_caller);
+    do_action("arc_after_{$pzarc_caller}", $pzarc_blueprint, $pzarc_overrides,$pzarc_caller);
     $pzout = ob_get_contents();
     ob_end_clean();
 
-    $pzout = '<div class="pzarc-shortcode pzarc-shortcode-' . $pzarc_blueprint . '">' . $pzout . '</div>';
+//    $pzout = '<div class="pzarc-shortcode pzarc-shortcode-' . $pzarc_blueprint . '">' . $pzout . '</div>';
 
     // Putting thru a filter so devs can do stuff with it
     return apply_filters('arc_filter_shortcode', $pzout, $pzarc_blueprint, $pzarc_overrides);
@@ -67,9 +69,10 @@
    ***********************/
   function pzarchitect($pzarc_blueprint = null, $pzarc_overrides = null)
   {
-    do_action('arc_before_template_tag',$pzarc_blueprint,$pzarc_overrides);
-    do_action('arc_do_template_tag', $pzarc_blueprint, $pzarc_overrides, false);
-    do_action('arc_after_template_tag',$pzarc_blueprint,$pzarc_overrides);
+    $pzarc_caller = 'template_tag';
+    do_action("arc_before_{$pzarc_caller}", $pzarc_blueprint, $pzarc_overrides,$pzarc_caller);
+    do_action("arc_do_{$pzarc_caller}", $pzarc_blueprint, $pzarc_overrides, $pzarc_caller);
+    do_action("arc_after_{$pzarc_caller}", $pzarc_blueprint, $pzarc_overrides,$pzarc_caller);
   }
 
   add_action('arc_do_template_tag', 'pzarc', 10, 3);
@@ -80,10 +83,11 @@
    * Overrides is a list of ids
    *
    ******************************/
-  function pzarc($blueprint = null, $overrides = null, $is_shortcode = false)
+  function pzarc($blueprint = null, $overrides = null, $caller)
   {
     global $wp_query;
     $original_query = $wp_query;
+    $is_shortcode = ($caller=='shortcode');
     if ($is_shortcode) {
       // This was just in testing!!
       // remove_shortcode('pzarc');
@@ -98,7 +102,8 @@
       $architect = new Architect($blueprint, $is_shortcode);
       if (empty($architect->build->blueprint[ 'err_msg' ])) {
 
-        $architect->build($overrides);
+        $architect->build($overrides,$caller);
+
         wp_reset_postdata(); // Pretty sure this goes here... Not after the query reassignment
 
         //restore original query

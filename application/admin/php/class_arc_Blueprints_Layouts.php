@@ -13,8 +13,7 @@
       add_action('init', array($this, 'create_blueprints_post_type'));
       // This overrides the one in the parent class
 
-      if (is_admin())
-      {
+      if (is_admin()) {
 
         add_action('admin_head', array($this, 'content_blueprints_admin_head'));
         add_action('admin_enqueue_scripts', array($this, 'content_blueprints_admin_enqueue'));
@@ -33,8 +32,7 @@
     public function content_blueprints_admin_enqueue($hook)
     {
       $screen = get_current_screen();
-      if ('arc-blueprints' == $screen->id)
-      {
+      if ('arc-blueprints' == $screen->id) {
 
 
         wp_enqueue_style('pzarc-admin-blueprints-css', PZARC_PLUGIN_URL . '/admin/css/arc-admin-blueprints.css');
@@ -182,18 +180,22 @@
               'type'    => 'tabbed',
               'options' => array(
                   'layout'  => '<span><span class="icon-large el-icon-website"></span> Layout</span>',
-                  'content' => '<span><span class="icon-large el-icon-align-left"></span> Content</span>'),
+                  'content' => '<span><span class="icon-large el-icon-align-left"></span> Content</span>',
+                  'styling' => '<span><span class="icon-large el-icon-brush"></span> Styling</span>'
+              ),
               'targets' => array('layout'  => array('layout-settings', '_blueprints_layout-general-settings'),
-                                 'content' => array('content-selections', '_blueprints_content-general-settings'))
+                                 'content' => array('content-selections', '_blueprints_content-general-settings'),
+                                 'styling' => array('blueprint-stylings', '_blueprints_styling-general-settings')
+              )
           ),
       )
     );
     $metaboxes[ ] = array(
         'id'         => $prefix . 'blueprints',
-        'title'      => 'Show settings for:',
+        'title'      => 'Show Blueprints settings for:',
         'post_types' => array('arc-blueprints'),
         'sections'   => $sections,
-        'position'   => 'side',
+        'position'   => 'normal',
         'priority'   => 'high',
         'sidebar'    => false
 
@@ -245,7 +247,7 @@
         'fields' => array(
             array(
                 'id'       => $prefix . 'short-name',
-                'title'    => __('Blueprint Short Name', 'pzarchitect'),
+                'title'    => __('Blueprint Short Name', 'pzarchitect') . '<span class="pzarc-required el-icon-star" title="Required"></span>',
                 'type'     => 'text',
                 'width'    => 'auto',
                 'subtitle' => __('Alphanumeric only. <br/>Use the shortcode <strong class="pzarc-usage-info">[pzarc "<span class="pzarc-shortname"></span>"]</strong> or the template tag <strong class="pzarc-usage-info">pzarc(\'<span class="pzarc-shortname"></span>\');</strong>', 'pzarchitect'),
@@ -409,21 +411,16 @@
 
     $pzarc_panels       = get_posts($args);
     $pzarc_panels_array = array();
-    if (!empty($pzarc_panels))
-    {
-      foreach ($pzarc_panels as $pzarc_cell)
-      {
+    if (!empty($pzarc_panels)) {
+      foreach ($pzarc_panels as $pzarc_cell) {
         $pzarc_panels_array[ $pzarc_cell->ID ] = (empty($pzarc_cell->post_title) ? 'No title' : $pzarc_cell->post_title);
       }
-    }
-    else
-    {
+    } else {
       $pzarc_panels_array = array(0 => 'No cell layouts. Create some.');
     }
     // ID,post_title
     $icons = array(0 => 'el-icon-align-left', 1 => 'el-icon-th', 2 => 'el-icon-th-list');
-    for ($i = 0; $i < 3; $i++)
-    {
+    for ($i = 0; $i < 3; $i++) {
       $sections[ ] = array(
           'title'      => __('Section ' . ($i + 1), 'pzarchitect'),
           'show_title' => true,
@@ -438,12 +435,12 @@
                   'cols'  => 12,
               ),
               array(
-                  'id'      => $prefix . 'section-' . $i . '-panel-layout',
-                  'title'   => __('Panels layout', 'pzarchitect'),
-                  'type'    => 'select',
-                  'cols'    => 6,
-                  'select2' => array('allowClear' => false),
-                  'options' => $pzarc_panels_array
+                  'id'       => $prefix . 'section-' . $i . '-panel-layout',
+                  'title'    => __('Panels layout', 'pzarchitect'),
+                  'type'     => 'select',
+                  'validate' => ($i == 0 ? 'not_empty' : null),
+                  'select2'  => array('allowClear' => false),
+                  'options'  => $pzarc_panels_array
               ),
               array(
                   'title'   => __('Layout mode', 'pzarchitect'),
@@ -466,24 +463,31 @@
                   //       'subtitle'    => __('Choose how you want the panels to display. With evenly sized panels, you\'ll see little difference. Please visit <a href="http://isotope.metafizzy.co/demos/layout-modes.html" target=_blank>Isotope Layout Modes</a> for demonstrations of these layouts', 'pzarchitect')
               ),
               array(
-                  'title'   => __('Panels to show', 'pzarchitect'),
-                  'id'      => $prefix . 'section-' . $i . '-panels-per-view',
-                  'type'    => 'spinner',
-                  'default' => 0,
-                  'min'     => 0,
-                  'max'     => 99,
-                  'cols'    => 2,
-                  'desc'    => '0 for unlimited'
+                  'title'   => __('Unlimited Panels', 'pzarchitect'),
+                  'id'      => $prefix . 'section-' . $i . '-panels-unlimited',
+                  'type'    => 'switch',
+                  'on'      => 'Yes',
+                  'off'     => 'No',
+                  'default' => true,
               ),
               array(
-                  'title'    => __('Columns', 'pzarchitect'),
-                  'id'       => $prefix . 'section-' . $i . '-columns',
-                  'subtitle' => 'Number of columns or panels across. Number of rows is calculated automatically.',
+                  'title'    => __('Panels to show', 'pzarchitect'),
+                  'id'       => $prefix . 'section-' . $i . '-panels-per-view',
                   'type'     => 'spinner',
-                  'default'  => 3,
+                  'default'  => 1,
                   'min'      => 1,
-                  'cols'     => 2,
-                  'max'      => 999,
+                  'max'      => 99,
+                  'required' => array($prefix . 'section-' . $i . '-panels-unlimited', '=', false)
+              ),
+              array(
+                  'title'         => __('Columns', 'pzarchitect'),
+                  'id'            => $prefix . 'section-' . $i . '-columns',
+                  'subtitle'      => __('Number of columns or panels across. Number of rows is calculated automatically.', 'pzarchitect'),
+                  'type'          => 'slider',
+                  'default'       => 3,
+                  'min'           => 1,
+                  'max'           => 10,
+                  'display_value' => 'label'
               ),
               array(
                   'title'   => __('Minimum panel width', 'pzarchitect'),
@@ -496,7 +500,7 @@
                   'cols'    => 2,
                   'step'    => '1',
                   'suffix'  => 'px',
-                  //      'subtitle'    => __('Set the minimum width for sells in this section. This helps with responsive layout', 'pzarchitect')
+                  //      'subtitle'    => __('Set the minimum width for panels in this section. This helps with responsive layout', 'pzarchitect')
               ),
               array(
                   'title'   => __('Panels vertical margin', 'pzarchitect'),
@@ -524,6 +528,7 @@
                   'suffix'  => '%',
                   //      'subtitle'    => __('Set the horizontal gutter width as a percentage of the section width. The gutter is the gap between adjoining elements', 'pzarchitect')
               ),
+
           )
 
       );
@@ -542,9 +547,9 @@
                 'type'    => 'button_set',
                 'default' => 'none',
                 'options' => array(
-                    'none'       => 'None',
-                    'names'      => 'Post names',
-                    'prevnext'   => 'Previous/Next',
+                    'none'     => 'None',
+                    'names'    => 'Post names',
+                    'prevnext' => 'Previous/Next',
                     'pagenavi' => 'PageNavi',
                 )
             ),
@@ -673,14 +678,12 @@
                 'default'  => 5,
                 'subtitle' => 'If zero, it will use the "Panels to show" value. This is the number of items visible in the navigator bar. NOTE: This is also the number of items skipped by multi-skip pager element of the inline pager.'
             ),
-        )
-    );
-    $sections[ ] = array(
-        'title'      => __('Transitions', 'pzarchitect'),
-        'show_title' => true,
-        'required'   => array('blueprints_navigation', 'equals', 'navigator'),
-        'subsection'=>true,
-        'fields'     => array(
+            array(
+                'title' => __('Transitions', 'pzarchitect'),
+                'id'    => $prefix . 'section-transitions-heading',
+                'type'  => 'section',
+                'class' => ' heading',
+            ),
             array(
                 'title'   => 'Type',
                 'id'      => $prefix . 'transitions-type',
@@ -719,7 +722,6 @@
                 'type'    => 'switch',
                 'default' => true,
             ),
-
         )
     );
     $sections[ ] = array(
@@ -732,7 +734,6 @@
             array(
                 'title'    => 'Sections',
                 'id'       => $prefix . 'sections-preview',
-                'cols'     => 12,
                 'type'     => 'raw',
                 'readonly' => false, // Readonly fields can't be written to by code! Weird
                 'content'  => pzarc_draw_sections_preview(),
@@ -852,11 +853,6 @@
                 'class' => ' heading',
             ),
             array(
-                'id'     => $prefix . 'section-end-posts',
-                'type'   => 'section',
-                'indent' => false
-            ),
-            array(
                 'title'  => __('Categories', 'pzarchitect'),
                 'id'     => $prefix . 'categories-heading-start',
                 'type'   => 'section',
@@ -897,7 +893,6 @@
                 'on'      => 'Yes',
                 'off'     => 'No',
                 'default' => true,
-                'cols'    => 3,
             ),
             array(
                 'id'     => $prefix . 'categories-section-end',
@@ -1090,7 +1085,7 @@
                 'data'     => 'callback',
                 'args'     => array('pzarc_get_ng_galleries'),
                 'subtitle' => (class_exists('P_Photocrati_NextGen') ? 'Enter NGG gallery name to use'
-                        : 'NextGen is not running on this site'),
+                    : 'NextGen is not running on this site'),
                 'required' => array($prefix . 'gallery-source', 'equals', 'nggallery')
             ),
         )
@@ -1177,11 +1172,132 @@
 
   }
 
+  add_action("redux/metaboxes/{$redux_opt_name}/boxes", 'pzarc_blueprint_layout_styling');
+  function pzarc_blueprint_layout_styling($metaboxes)
+  {
+
+//  $screen = get_current_screen();
+//  if ($screen->ID != 'xx') {return;}
+    $defaults = get_option('_architect');
+
+    $prefix = '_blueprints_styling_';
+
+    $sections  = array();
+    $optprefix = 'architect_config_';
+
+    $sections[ ] = array(
+        'title'      => 'Overall',
+        'show_title' => false,
+        'icon_class' => 'icon-large',
+        'icon'       => 'el-icon-brush',
+        'fields'     => array(
+
+            array(
+                'title'    => __('Blueprint', 'pzarchitect'),
+                'id'       => $prefix . 'the-blueprint',
+                'type'     => 'section',
+                'subtitle' => 'Class: .pzarc-blueprint_{shortname}',
+                'hint'     => array('content' => 'Class: .pzarc-blueprint_{shortname}'),
+            ),
+            // TODO: Get correct $defaults
+            pzarc_redux_bg($prefix . 'blueprint-background', array('.pzarc-blueprint')),
+            pzarc_redux_padding($prefix . 'blueprint-padding', array('.pzarc-blueprint')),
+            pzarc_redux_margin($prefix . 'blueprint-margins', array('.pzarc-blueprint')),
+            pzarc_redux_borders($prefix . 'blueprint-borders', array('.pzarc-blueprint')),
+            pzarc_redux_links($prefix . 'blueprint-links', array('.pzarc-blueprint')),
+            array(
+                'title' => __('Custom CSS', 'pzarchitect'),
+                'id'    => $prefix . 'blueprint-custom-css',
+                'type'  => 'ace_editor',
+                'mode'  => 'css',
+                'hint'  => array('content' => 'This is can be any CSS you\'d like to add to a page this blueprint is displayed on'),
+            ),
+        )
+    );
+    $icons       = array(1 => 'el-icon-align-left', 2 => 'el-icon-th', 3 => 'el-icon-th-list');
+
+    $sections[ ] = array(
+        'title'      => 'Section 1',
+        'show_title' => false,
+        'icon_class' => 'icon-large',
+        'icon'       => $icons[ 1 ],
+        'desc'       => 'Class: .pzarc-section_1',
+        'fields'     => array(
+            pzarc_redux_bg($prefix . 'pzarc-section_1-background', array('.pzarc-section_1')),
+            pzarc_redux_padding($prefix . 'pzarc-section_1-padding', array('.pzarc-section_1')),
+            pzarc_redux_margin($prefix . 'pzarc-section_1-margins', array('.pzarc-section_1')),
+            pzarc_redux_borders($prefix . 'pzarc-section_1-borders', array('.pzarc-section_1')),
+        ),
+    );
+    $sections[ ] = array(
+        'title'      => 'Section 2',
+        'show_title' => false,
+        'icon_class' => 'icon-large',
+        'icon'       => $icons[ 2 ],
+        'desc'       => 'Class: .pzarc-section_2',
+        'fields'     => array(
+            pzarc_redux_bg($prefix . 'pzarc-section_2-background', array('.pzarc-section_2')),
+            pzarc_redux_padding($prefix . 'pzarc-section_2-padding', array('.pzarc-section_2')),
+            pzarc_redux_margin($prefix . 'pzarc-section_2-margins', array('.pzarc-section_2')),
+            pzarc_redux_borders($prefix . 'pzarc-section_2-borders', array('.pzarc-section_2')),
+        ),
+    );
+    $sections[ ] = array(
+        'title'      => 'Section 3',
+        'show_title' => false,
+        'icon_class' => 'icon-large',
+        'icon'       => $icons[ 3 ],
+        'desc'       => 'Class: .pzarc-section_3',
+        'fields'     => array(
+            pzarc_redux_bg($prefix . 'pzarc-section_3-background', array('.pzarc-section_3')),
+            pzarc_redux_padding($prefix . 'pzarc-section_3-padding', array('.pzarc-section_3')),
+            pzarc_redux_margin($prefix . 'pzarc-section_3-margins', array('.pzarc-section_3')),
+            pzarc_redux_borders($prefix . 'pzarc-section_3-borders', array('.pzarc-section_3')),
+        ),
+    );
+
+    $sections[ ]  = array(
+        'id'         => 'blueprint-styling-help',
+        'title'      => 'Help',
+        'icon_class' => 'icon-large',
+        'icon'       => 'el-icon-info-sign',
+        'fields'     => array(
+
+            array(
+                'title' => __('Blueprint styling', 'pzarchitect'),
+                'id'    => $prefix . 'help',
+                'type'  => 'info',
+                //  'class' => 'plain',
+                'desc'  => '<h3>Adding underlines to hover links</h3>
+                            <p>In the Custom CSS field, enter the following CSS</p>
+                            <p>.pzarc-blueprint_SHORTNAME a:hover {text-decoration:underline;}</p>
+                            <p>SHORTNAME = the short name you entered for this blueprint</p>
+                            '
+
+            )
+        )
+    );
+    $metaboxes[ ] = array(
+        'id'         => 'blueprint-stylings',
+        'title'      => 'Blueprint Styling',
+        'post_types' => array('arc-blueprints'),
+        'sections'   => $sections,
+        'position'   => 'normal',
+        'priority'   => 'low',
+        'sidebar'    => true
+
+    );
+
+    //pzdebug($metaboxes);
+
+
+    return $metaboxes;
+  }
+
 
   function pzarc_get_ng_galleries()
   {
-    if (!class_exists('P_Photocrati_NextGen'))
-    {
+    if (!class_exists('P_Photocrati_NextGen')) {
       return null;
     }
     global $ngg, $nggdb;
@@ -1190,10 +1306,8 @@
 
     $ng_galleries = $nggdb->find_all_galleries('gid', 'asc', true, 0, 0, false);
 
-    if ($ng_galleries)
-    {
-      foreach ($ng_galleries as $gallery)
-      {
+    if ($ng_galleries) {
+      foreach ($ng_galleries as $gallery) {
         $results[ $gallery->gid ] = $gallery->title;
       }
     }
@@ -1204,8 +1318,7 @@
   function pzarc_get_gp_galleries()
   {
     $post_types = get_post_types();
-    if (!isset($post_types[ 'gp_gallery' ]))
-    {
+    if (!isset($post_types[ 'gp_gallery' ])) {
       return null;
     }
     // Don't need to check for GPlus class coz we add the post type
@@ -1213,10 +1326,8 @@
     $args    = array('post_type' => 'gp_gallery', 'numberposts' => -1, 'post_status' => null, 'post_parent' => null);
     $albums  = get_posts($args);
     $results = array();
-    if ($albums)
-    {
-      foreach ($albums as $post)
-      {
+    if ($albums) {
+      foreach ($albums as $post) {
         setup_postdata($post);
         $results[ $post->ID ] = get_the_title($post->ID);
       }
@@ -1235,13 +1346,10 @@
                      'post_parent' => null);
     $albums  = get_posts($args);
     $results = array();
-    if ($albums)
-    {
-      foreach ($albums as $post)
-      {
+    if ($albums) {
+      foreach ($albums as $post) {
         setup_postdata($post);
-        if (get_post_gallery($post->ID))
-        {
+        if (get_post_gallery($post->ID)) {
           $results[ $post->ID ] = substr(get_the_title($post->ID), 0, 60);
         }
       }
@@ -1257,10 +1365,8 @@
 // Get authors
     $userslist    = get_users();
     $authors[ 0 ] = 'All';
-    foreach ($userslist as $author)
-    {
-      if (get_the_author_meta('user_level', $author->ID) >= 2)
-      {
+    foreach ($userslist as $author) {
+      if (get_the_author_meta('user_level', $author->ID) >= 2) {
         $authors[ $author->ID ] = $author->display_name;
       }
     }

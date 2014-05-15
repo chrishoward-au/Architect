@@ -6,9 +6,6 @@
   border: solid 1px #aa0;
   padding: 10px; }
 
-body.pzarchitect a {
-  text-decoration: none; }
-
 .pzarchitect .pzarc-container {
   position: relative; }
 
@@ -43,7 +40,8 @@ body.pzarchitect a {
   flex-direction: row;
   -webkit-flex-wrap: wrap;
   -ms-flex-wrap: wrap;
-  flex-wrap: wrap; }
+  flex-wrap: wrap;
+  counter-reset: arc-title-counter; }
 
 .pzarchitect .pzarc-panel {
   min-width: 0px;
@@ -256,16 +254,14 @@ default styling
 Your custom styles, here you need to specify container's and slide's
 sizes, pagination, etc.
 ================================================================*/
-.swiper-container.pzarc-blueprint-2173 {
+.swiper-container-featured-posts-2x4 {
   /* Specify Swiper's Size: */
-  xwidth: 320px;
   height: 300px;
   background: #eee;
   padding: 0; }
 
-.pzarc-blueprint-2173 .swiper-slide {
+.swiper-container-featured-posts-2x4 .swiper-slide {
   /* Specify Slides's Size: */
-  width: 320px;
   height: 100%;
   margin: 0 !important; }
 
@@ -279,12 +275,52 @@ sizes, pagination, etc.
 Pagination Styles
 ================================================================*/
 .swiper-pagination-switch {
-  /* Stylize pagination button: */ }
+  /* Stylize pagination button: */
+  display: inline-block;
+  width: 15px;
+  height: 15px;
+  border-radius: 15px;
+  background: #999;
+  -webkit-box-shadow: 0px 1px 2px #555 inset;
+  box-shadow: 0px 1px 2px #555 inset;
+  margin: 0 3px;
+  cursor: pointer; }
 
-.swiper-active-switch {
-  /* Specific active button style: */ }
+.swiper-pagination-switch:hover {
+  background: #ccc; }
 
 .swiper-visible-switch {
-  /* Specific visible button style: */ }
+  /* Specific style for nav buttons for visible panels: */ }
+
+.swiper-active-switch {
+  /* Specific active button style: */
+  background: #fff; }
+
+.pzarc-navigator {
+  left: 0;
+  text-align: center;
+  bottom: 5px;
+  width: 100%;
+  z-index: 1; }
+
+.pzarchitect .arrow-left {
+  background: url(../../resources/assets/images/slider/arrows1.png) no-repeat left top;
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  margin-top: -15px;
+  width: 17px;
+  height: 30px;
+  z-index: 2; }
+
+.pzarchitect .arrow-right {
+  background: url(../../resources/assets/images/slider/arrows1.png) no-repeat left bottom;
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  margin-top: -15px;
+  width: 17px;
+  height: 30px;
+  z-index: 2; }
 
 /*# sourceMappingURL=arc-front.css.map */

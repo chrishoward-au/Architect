@@ -340,6 +340,17 @@
 		"outputStyle": 1,
 		"syntaxCheckerStyle": 1
 		},
+	"\/application\/admin\/js\/min\/arc-metaboxes-panels-ck.js": {
+		"fileType": 64,
+		"ignore": 1,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/application\/admin\/js\/min\/arc-metaboxes-panels-ck.js",
+		"outputAbbreviatedPath": "\/application\/admin\/js\/min\/min\/arc-metaboxes-panels-ck-ck.js",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"outputStyle": 1,
+		"syntaxCheckerStyle": 1
+		},
 	"\/application\/admin\/php\/arc-galleries.php": {
 		"fileType": 8192,
 		"ignore": 0,
@@ -363,6 +374,15 @@
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
 		"inputAbbreviatedPath": "\/application\/admin\/php\/arc-options.php",
+		"outputAbbreviatedPath": "No Output Path",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/application\/admin\/php\/arc-save-process.php": {
+		"fileType": 8192,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/application\/admin\/php\/arc-save-process.php",
 		"outputAbbreviatedPath": "No Output Path",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
@@ -425,15 +445,6 @@
 		"outputPathIsSetByUser": 0,
 		"processed": 0
 		},
-	"\/application\/admin\/php\/settings\/options.php": {
-		"fileType": 8192,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/application\/admin\/php\/settings\/options.php",
-		"outputAbbreviatedPath": "No Output Path",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0
-		},
 	"\/application\/arc-admin.php": {
 		"fileType": 8192,
 		"ignore": 0,
@@ -492,6 +503,17 @@
 		"ignoreWasSetByUser": 0,
 		"inputAbbreviatedPath": "\/application\/public\/js\/arc-front.js",
 		"outputAbbreviatedPath": "\/application\/public\/js\/min\/arc-front-ck.js",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"outputStyle": 1,
+		"syntaxCheckerStyle": 1
+		},
+	"\/application\/public\/js\/min\/arc-front-ck.js": {
+		"fileType": 64,
+		"ignore": 1,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/application\/public\/js\/min\/arc-front-ck.js",
+		"outputAbbreviatedPath": "\/application\/public\/js\/min\/min\/arc-front-ck-ck.js",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0,
 		"outputStyle": 1,
@@ -7826,7 +7848,7 @@
 		"outputAbbreviatedPath": "\/application\/resources\/assets\/images\/fireworks.jpg",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0,
-		"processed": 0
+		"processed": 1
 		},
 	"\/application\/resources\/assets\/images\/help\/arc-layout.jpg": {
 		"fileType": 16384,
@@ -7837,425 +7859,7 @@
 		"outputAbbreviatedPath": "\/application\/resources\/assets\/images\/help\/arc-layout.jpg",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0,
-		"processed": 0
-		},
-	"\/application\/resources\/assets\/images\/icons\/braces-65grey.png": {
-		"fileType": 32768,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"initialSize": 3359,
-		"inputAbbreviatedPath": "\/application\/resources\/assets\/images\/icons\/braces-65grey.png",
-		"outputAbbreviatedPath": "\/application\/resources\/assets\/images\/icons\/braces-65grey.png",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0,
-		"processed": 0
-		},
-	"\/application\/resources\/assets\/images\/icons\/computer-65grey.png": {
-		"fileType": 32768,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"initialSize": 3014,
-		"inputAbbreviatedPath": "\/application\/resources\/assets\/images\/icons\/computer-65grey.png",
-		"outputAbbreviatedPath": "\/application\/resources\/assets\/images\/icons\/computer-65grey.png",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0,
-		"processed": 0
-		},
-	"\/application\/resources\/assets\/images\/icons\/custom1-65grey.png": {
-		"fileType": 32768,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"initialSize": 3402,
-		"inputAbbreviatedPath": "\/application\/resources\/assets\/images\/icons\/custom1-65grey.png",
-		"outputAbbreviatedPath": "\/application\/resources\/assets\/images\/icons\/custom1-65grey.png",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0,
-		"processed": 0
-		},
-	"\/application\/resources\/assets\/images\/icons\/custom1.png": {
-		"fileType": 32768,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"initialSize": 3563,
-		"inputAbbreviatedPath": "\/application\/resources\/assets\/images\/icons\/custom1.png",
-		"outputAbbreviatedPath": "\/application\/resources\/assets\/images\/icons\/custom1.png",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0,
-		"processed": 0
-		},
-	"\/application\/resources\/assets\/images\/icons\/filter-65grey.png": {
-		"fileType": 32768,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"initialSize": 2035,
-		"inputAbbreviatedPath": "\/application\/resources\/assets\/images\/icons\/filter-65grey.png",
-		"outputAbbreviatedPath": "\/application\/resources\/assets\/images\/icons\/filter-65grey.png",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0,
-		"processed": 0
-		},
-	"\/application\/resources\/assets\/images\/icons\/general-65grey.png": {
-		"fileType": 32768,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"initialSize": 3102,
-		"inputAbbreviatedPath": "\/application\/resources\/assets\/images\/icons\/general-65grey.png",
-		"outputAbbreviatedPath": "\/application\/resources\/assets\/images\/icons\/general-65grey.png",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0,
-		"processed": 0
-		},
-	"\/application\/resources\/assets\/images\/icons\/general-white.png": {
-		"fileType": 32768,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"initialSize": 1416,
-		"inputAbbreviatedPath": "\/application\/resources\/assets\/images\/icons\/general-white.png",
-		"outputAbbreviatedPath": "\/application\/resources\/assets\/images\/icons\/general-white.png",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0,
-		"processed": 0
-		},
-	"\/application\/resources\/assets\/images\/icons\/general.png": {
-		"fileType": 32768,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"initialSize": 3564,
-		"inputAbbreviatedPath": "\/application\/resources\/assets\/images\/icons\/general.png",
-		"outputAbbreviatedPath": "\/application\/resources\/assets\/images\/icons\/general.png",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0,
-		"processed": 0
-		},
-	"\/application\/resources\/assets\/images\/icons\/help1-65grey.png": {
-		"fileType": 32768,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"initialSize": 428,
-		"inputAbbreviatedPath": "\/application\/resources\/assets\/images\/icons\/help1-65grey.png",
-		"outputAbbreviatedPath": "\/application\/resources\/assets\/images\/icons\/help1-65grey.png",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0,
-		"processed": 0
-		},
-	"\/application\/resources\/assets\/images\/icons\/help1.png": {
-		"fileType": 32768,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"initialSize": 3307,
-		"inputAbbreviatedPath": "\/application\/resources\/assets\/images\/icons\/help1.png",
-		"outputAbbreviatedPath": "\/application\/resources\/assets\/images\/icons\/help1.png",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0,
-		"processed": 0
-		},
-	"\/application\/resources\/assets\/images\/icons\/help2-65grey.png": {
-		"fileType": 32768,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"initialSize": 3596,
-		"inputAbbreviatedPath": "\/application\/resources\/assets\/images\/icons\/help2-65grey.png",
-		"outputAbbreviatedPath": "\/application\/resources\/assets\/images\/icons\/help2-65grey.png",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0,
-		"processed": 0
-		},
-	"\/application\/resources\/assets\/images\/icons\/help2.png": {
-		"fileType": 32768,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"initialSize": 3812,
-		"inputAbbreviatedPath": "\/application\/resources\/assets\/images\/icons\/help2.png",
-		"outputAbbreviatedPath": "\/application\/resources\/assets\/images\/icons\/help2.png",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0,
-		"processed": 0
-		},
-	"\/application\/resources\/assets\/images\/icons\/images-65grey.png": {
-		"fileType": 32768,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"initialSize": 3501,
-		"inputAbbreviatedPath": "\/application\/resources\/assets\/images\/icons\/images-65grey.png",
-		"outputAbbreviatedPath": "\/application\/resources\/assets\/images\/icons\/images-65grey.png",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0,
-		"processed": 0
-		},
-	"\/application\/resources\/assets\/images\/icons\/images.png": {
-		"fileType": 32768,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"initialSize": 3708,
-		"inputAbbreviatedPath": "\/application\/resources\/assets\/images\/icons\/images.png",
-		"outputAbbreviatedPath": "\/application\/resources\/assets\/images\/icons\/images.png",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0,
-		"processed": 0
-		},
-	"\/application\/resources\/assets\/images\/icons\/layout1-65grey.png": {
-		"fileType": 32768,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"initialSize": 3200,
-		"inputAbbreviatedPath": "\/application\/resources\/assets\/images\/icons\/layout1-65grey.png",
-		"outputAbbreviatedPath": "\/application\/resources\/assets\/images\/icons\/layout1-65grey.png",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0,
-		"processed": 0
-		},
-	"\/application\/resources\/assets\/images\/icons\/layout1.png": {
-		"fileType": 32768,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"initialSize": 3388,
-		"inputAbbreviatedPath": "\/application\/resources\/assets\/images\/icons\/layout1.png",
-		"outputAbbreviatedPath": "\/application\/resources\/assets\/images\/icons\/layout1.png",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0,
-		"processed": 0
-		},
-	"\/application\/resources\/assets\/images\/icons\/layout2-65grey.png": {
-		"fileType": 32768,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"initialSize": 3237,
-		"inputAbbreviatedPath": "\/application\/resources\/assets\/images\/icons\/layout2-65grey.png",
-		"outputAbbreviatedPath": "\/application\/resources\/assets\/images\/icons\/layout2-65grey.png",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0,
-		"processed": 0
-		},
-	"\/application\/resources\/assets\/images\/icons\/layout2.png": {
-		"fileType": 32768,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"initialSize": 3406,
-		"inputAbbreviatedPath": "\/application\/resources\/assets\/images\/icons\/layout2.png",
-		"outputAbbreviatedPath": "\/application\/resources\/assets\/images\/icons\/layout2.png",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0,
-		"processed": 0
-		},
-	"\/application\/resources\/assets\/images\/icons\/navigation-65grey.png": {
-		"fileType": 32768,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"initialSize": 1235,
-		"inputAbbreviatedPath": "\/application\/resources\/assets\/images\/icons\/navigation-65grey.png",
-		"outputAbbreviatedPath": "\/application\/resources\/assets\/images\/icons\/navigation-65grey.png",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0,
-		"processed": 0
-		},
-	"\/application\/resources\/assets\/images\/icons\/navigation.png": {
-		"fileType": 32768,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"initialSize": 3988,
-		"inputAbbreviatedPath": "\/application\/resources\/assets\/images\/icons\/navigation.png",
-		"outputAbbreviatedPath": "\/application\/resources\/assets\/images\/icons\/navigation.png",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0,
-		"processed": 0
-		},
-	"\/application\/resources\/assets\/images\/icons\/next.png": {
-		"fileType": 32768,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"initialSize": 1147,
-		"inputAbbreviatedPath": "\/application\/resources\/assets\/images\/icons\/next.png",
-		"outputAbbreviatedPath": "\/application\/resources\/assets\/images\/icons\/next.png",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0,
-		"processed": 0
-		},
-	"\/application\/resources\/assets\/images\/icons\/phone-65grey.png": {
-		"fileType": 32768,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"initialSize": 3276,
-		"inputAbbreviatedPath": "\/application\/resources\/assets\/images\/icons\/phone-65grey.png",
-		"outputAbbreviatedPath": "\/application\/resources\/assets\/images\/icons\/phone-65grey.png",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0,
-		"processed": 0
-		},
-	"\/application\/resources\/assets\/images\/icons\/point-65grey.png": {
-		"fileType": 32768,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"initialSize": 1002,
-		"inputAbbreviatedPath": "\/application\/resources\/assets\/images\/icons\/point-65grey.png",
-		"outputAbbreviatedPath": "\/application\/resources\/assets\/images\/icons\/point-65grey.png",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0,
-		"processed": 0
-		},
-	"\/application\/resources\/assets\/images\/icons\/point.png": {
-		"fileType": 32768,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"initialSize": 3603,
-		"inputAbbreviatedPath": "\/application\/resources\/assets\/images\/icons\/point.png",
-		"outputAbbreviatedPath": "\/application\/resources\/assets\/images\/icons\/point.png",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0,
-		"processed": 0
-		},
-	"\/application\/resources\/assets\/images\/icons\/prev.png": {
-		"fileType": 32768,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"initialSize": 1131,
-		"inputAbbreviatedPath": "\/application\/resources\/assets\/images\/icons\/prev.png",
-		"outputAbbreviatedPath": "\/application\/resources\/assets\/images\/icons\/prev.png",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0,
-		"processed": 0
-		},
-	"\/application\/resources\/assets\/images\/icons\/styling-65grey.png": {
-		"fileType": 32768,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"initialSize": 4086,
-		"inputAbbreviatedPath": "\/application\/resources\/assets\/images\/icons\/styling-65grey.png",
-		"outputAbbreviatedPath": "\/application\/resources\/assets\/images\/icons\/styling-65grey.png",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0,
-		"processed": 0
-		},
-	"\/application\/resources\/assets\/images\/icons\/styling.png": {
-		"fileType": 32768,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"initialSize": 4581,
-		"inputAbbreviatedPath": "\/application\/resources\/assets\/images\/icons\/styling.png",
-		"outputAbbreviatedPath": "\/application\/resources\/assets\/images\/icons\/styling.png",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0,
-		"processed": 0
-		},
-	"\/application\/resources\/assets\/images\/icons\/tablet-65grey.png": {
-		"fileType": 32768,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"initialSize": 3111,
-		"inputAbbreviatedPath": "\/application\/resources\/assets\/images\/icons\/tablet-65grey.png",
-		"outputAbbreviatedPath": "\/application\/resources\/assets\/images\/icons\/tablet-65grey.png",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0,
-		"processed": 0
-		},
-	"\/application\/resources\/assets\/images\/icons\/text1-65grey.png": {
-		"fileType": 32768,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"initialSize": 3373,
-		"inputAbbreviatedPath": "\/application\/resources\/assets\/images\/icons\/text1-65grey.png",
-		"outputAbbreviatedPath": "\/application\/resources\/assets\/images\/icons\/text1-65grey.png",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0,
-		"processed": 0
-		},
-	"\/application\/resources\/assets\/images\/icons\/text1.png": {
-		"fileType": 32768,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"initialSize": 3551,
-		"inputAbbreviatedPath": "\/application\/resources\/assets\/images\/icons\/text1.png",
-		"outputAbbreviatedPath": "\/application\/resources\/assets\/images\/icons\/text1.png",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0,
-		"processed": 0
-		},
-	"\/application\/resources\/assets\/images\/icons\/text2-65grey.png": {
-		"fileType": 32768,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"initialSize": 3201,
-		"inputAbbreviatedPath": "\/application\/resources\/assets\/images\/icons\/text2-65grey.png",
-		"outputAbbreviatedPath": "\/application\/resources\/assets\/images\/icons\/text2-65grey.png",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0,
-		"processed": 0
-		},
-	"\/application\/resources\/assets\/images\/icons\/text2.png": {
-		"fileType": 32768,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"initialSize": 3309,
-		"inputAbbreviatedPath": "\/application\/resources\/assets\/images\/icons\/text2.png",
-		"outputAbbreviatedPath": "\/application\/resources\/assets\/images\/icons\/text2.png",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0,
-		"processed": 0
-		},
-	"\/application\/resources\/assets\/images\/icons\/transitions-65grey.png": {
-		"fileType": 32768,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"initialSize": 3502,
-		"inputAbbreviatedPath": "\/application\/resources\/assets\/images\/icons\/transitions-65grey.png",
-		"outputAbbreviatedPath": "\/application\/resources\/assets\/images\/icons\/transitions-65grey.png",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0,
-		"processed": 0
-		},
-	"\/application\/resources\/assets\/images\/icons\/transitions.png": {
-		"fileType": 32768,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"initialSize": 3930,
-		"inputAbbreviatedPath": "\/application\/resources\/assets\/images\/icons\/transitions.png",
-		"outputAbbreviatedPath": "\/application\/resources\/assets\/images\/icons\/transitions.png",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0,
-		"processed": 0
-		},
-	"\/application\/resources\/assets\/images\/icons\/video-65grey.png": {
-		"fileType": 32768,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"initialSize": 4188,
-		"inputAbbreviatedPath": "\/application\/resources\/assets\/images\/icons\/video-65grey.png",
-		"outputAbbreviatedPath": "\/application\/resources\/assets\/images\/icons\/video-65grey.png",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0,
-		"processed": 0
-		},
-	"\/application\/resources\/assets\/images\/icons\/video.png": {
-		"fileType": 32768,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"initialSize": 4373,
-		"inputAbbreviatedPath": "\/application\/resources\/assets\/images\/icons\/video.png",
-		"outputAbbreviatedPath": "\/application\/resources\/assets\/images\/icons\/video.png",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0,
-		"processed": 0
-		},
-	"\/application\/resources\/assets\/images\/icons\/world-65grey.png": {
-		"fileType": 32768,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"initialSize": 4446,
-		"inputAbbreviatedPath": "\/application\/resources\/assets\/images\/icons\/world-65grey.png",
-		"outputAbbreviatedPath": "\/application\/resources\/assets\/images\/icons\/world-65grey.png",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0,
-		"processed": 0
-		},
-	"\/application\/resources\/assets\/images\/icons\/world.png": {
-		"fileType": 32768,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"initialSize": 4719,
-		"inputAbbreviatedPath": "\/application\/resources\/assets\/images\/icons\/world.png",
-		"outputAbbreviatedPath": "\/application\/resources\/assets\/images\/icons\/world.png",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0,
-		"processed": 0
+		"processed": 1
 		},
 	"\/application\/resources\/assets\/images\/layouts-col-centre.png": {
 		"fileType": 32768,
@@ -8266,7 +7870,7 @@
 		"outputAbbreviatedPath": "\/application\/resources\/assets\/images\/layouts-col-centre.png",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0,
-		"processed": 0
+		"processed": 1
 		},
 	"\/application\/resources\/assets\/images\/layouts-col-left.png": {
 		"fileType": 32768,
@@ -8343,7 +7947,7 @@
 		"outputAbbreviatedPath": "\/application\/resources\/assets\/images\/metaboxes\/nav-loc-inside.png",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0,
-		"processed": 0
+		"processed": 1
 		},
 	"\/application\/resources\/assets\/images\/metaboxes\/nav-loc-outside.png": {
 		"fileType": 32768,
@@ -8354,7 +7958,7 @@
 		"outputAbbreviatedPath": "\/application\/resources\/assets\/images\/metaboxes\/nav-loc-outside.png",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0,
-		"processed": 0
+		"processed": 1
 		},
 	"\/application\/resources\/assets\/images\/metaboxes\/nav-pos-bottom.png": {
 		"fileType": 32768,
@@ -8365,7 +7969,7 @@
 		"outputAbbreviatedPath": "\/application\/resources\/assets\/images\/metaboxes\/nav-pos-bottom.png",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0,
-		"processed": 0
+		"processed": 1
 		},
 	"\/application\/resources\/assets\/images\/metaboxes\/nav-pos-left.png": {
 		"fileType": 32768,
@@ -8376,7 +7980,7 @@
 		"outputAbbreviatedPath": "\/application\/resources\/assets\/images\/metaboxes\/nav-pos-left.png",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0,
-		"processed": 0
+		"processed": 1
 		},
 	"\/application\/resources\/assets\/images\/metaboxes\/nav-pos-right.png": {
 		"fileType": 32768,
@@ -8387,7 +7991,7 @@
 		"outputAbbreviatedPath": "\/application\/resources\/assets\/images\/metaboxes\/nav-pos-right.png",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0,
-		"processed": 0
+		"processed": 1
 		},
 	"\/application\/resources\/assets\/images\/metaboxes\/nav-pos-top.png": {
 		"fileType": 32768,
@@ -8398,7 +8002,7 @@
 		"outputAbbreviatedPath": "\/application\/resources\/assets\/images\/metaboxes\/nav-pos-top.png",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0,
-		"processed": 0
+		"processed": 1
 		},
 	"\/application\/resources\/assets\/images\/metaboxes\/nav-type-accordion.png": {
 		"fileType": 32768,
@@ -8409,7 +8013,7 @@
 		"outputAbbreviatedPath": "\/application\/resources\/assets\/images\/metaboxes\/nav-type-accordion.png",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0,
-		"processed": 0
+		"processed": 1
 		},
 	"\/application\/resources\/assets\/images\/metaboxes\/nav-type-bullets.png": {
 		"fileType": 32768,
@@ -8420,7 +8024,7 @@
 		"outputAbbreviatedPath": "\/application\/resources\/assets\/images\/metaboxes\/nav-type-bullets.png",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0,
-		"processed": 0
+		"processed": 1
 		},
 	"\/application\/resources\/assets\/images\/metaboxes\/nav-type-buttons.png": {
 		"fileType": 32768,
@@ -8431,7 +8035,7 @@
 		"outputAbbreviatedPath": "\/application\/resources\/assets\/images\/metaboxes\/nav-type-buttons.png",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0,
-		"processed": 0
+		"processed": 1
 		},
 	"\/application\/resources\/assets\/images\/metaboxes\/nav-type-numeric.png": {
 		"fileType": 32768,
@@ -8442,7 +8046,7 @@
 		"outputAbbreviatedPath": "\/application\/resources\/assets\/images\/metaboxes\/nav-type-numeric.png",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0,
-		"processed": 0
+		"processed": 1
 		},
 	"\/application\/resources\/assets\/images\/metaboxes\/nav-type-tabbed.png": {
 		"fileType": 32768,
@@ -8453,7 +8057,7 @@
 		"outputAbbreviatedPath": "\/application\/resources\/assets\/images\/metaboxes\/nav-type-tabbed.png",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0,
-		"processed": 0
+		"processed": 1
 		},
 	"\/application\/resources\/assets\/images\/metaboxes\/nav-type-thumbs.png": {
 		"fileType": 32768,
@@ -8464,7 +8068,7 @@
 		"outputAbbreviatedPath": "\/application\/resources\/assets\/images\/metaboxes\/nav-type-thumbs.png",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0,
-		"processed": 0
+		"processed": 1
 		},
 	"\/application\/resources\/assets\/images\/sample-image.jpg": {
 		"fileType": 16384,
@@ -8473,6 +8077,17 @@
 		"initialSize": 43853,
 		"inputAbbreviatedPath": "\/application\/resources\/assets\/images\/sample-image.jpg",
 		"outputAbbreviatedPath": "\/application\/resources\/assets\/images\/sample-image.jpg",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"processed": 1
+		},
+	"\/application\/resources\/assets\/images\/slider\/arrows1.png": {
+		"fileType": 32768,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"initialSize": 1251,
+		"inputAbbreviatedPath": "\/application\/resources\/assets\/images\/slider\/arrows1.png",
+		"outputAbbreviatedPath": "\/application\/resources\/assets\/images\/slider\/arrows1.png",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0,
 		"processed": 0
@@ -8511,6 +8126,15 @@
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
 		"inputAbbreviatedPath": "\/application\/resources\/includes\/php\/arc-object-lib.php",
+		"outputAbbreviatedPath": "No Output Path",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/application\/resources\/includes\/php\/class_arc_Widget.php": {
+		"fileType": 8192,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/application\/resources\/includes\/php\/class_arc_Widget.php",
 		"outputAbbreviatedPath": "No Output Path",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
@@ -9214,6 +8838,28 @@
 		"outputStyle": 1,
 		"syntaxCheckerStyle": 1
 		},
+	"\/application\/resources\/libs\/js\/swiper\/idangerous.swiper.progress.js": {
+		"fileType": 64,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/application\/resources\/libs\/js\/swiper\/idangerous.swiper.progress.js",
+		"outputAbbreviatedPath": "\/application\/resources\/libs\/js\/swiper\/min\/idangerous.swiper.progress-ck.js",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"outputStyle": 1,
+		"syntaxCheckerStyle": 1
+		},
+	"\/application\/resources\/libs\/js\/swiper\/idangerous.swiper.progress.min.js": {
+		"fileType": 64,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/application\/resources\/libs\/js\/swiper\/idangerous.swiper.progress.min.js",
+		"outputAbbreviatedPath": "\/application\/resources\/libs\/js\/swiper\/min\/idangerous.swiper.progress.min-ck.js",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"outputStyle": 1,
+		"syntaxCheckerStyle": 1
+		},
 	"\/application\/resources\/libs\/js\/tabby\/css\/tabby-css.css": {
 		"fileType": 16,
 		"ignore": 1,
@@ -9645,6 +9291,15 @@
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
+	"\/documentation\/index.html": {
+		"fileType": 8192,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/documentation\/index.html",
+		"outputAbbreviatedPath": "No Output Path",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
 	"\/fiddle.source.php": {
 		"fileType": 8192,
 		"ignore": 0,
@@ -9663,7 +9318,7 @@
 		"outputAbbreviatedPath": "\/icon.png",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0,
-		"processed": 0
+		"processed": 1
 		},
 	"\/logos.png": {
 		"fileType": 32768,
@@ -9674,7 +9329,7 @@
 		"outputAbbreviatedPath": "\/logos.png",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0,
-		"processed": 0
+		"processed": 1
 		},
 	"\/wp-updates-plugin.php": {
 		"fileType": 8192,

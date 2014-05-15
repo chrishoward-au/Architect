@@ -259,7 +259,7 @@
                     'default'  => '.pzarc-panel',
                     'readonly' => true
                 ),
-                pzarc_redux_bg($prefix . 'panels-bg', array('.pzarc-panel')),
+                pzarc_redux_bg($prefix . 'panels-background', array('.pzarc-panel')),
                 pzarc_redux_padding($prefix . 'panels-padding', array('.pzarc-panel')),
                 pzarc_redux_borders($prefix . 'panels-borders', array('.pzarc-panel')),
                 array(
@@ -277,7 +277,7 @@
                     'default'  => '.pzarc-components',
                     'readonly' => true
                 ),
-                pzarc_redux_bg($prefix . 'components-bg', array('.pzarc_components')),
+                pzarc_redux_bg($prefix . 'components-background', array('.pzarc_components')),
                 pzarc_redux_padding($prefix . 'components-padding', array('.pzarc_components')),
                 pzarc_redux_borders($prefix . 'components-borders', array('.pzarc_components')),
                 array(
@@ -294,7 +294,7 @@
                 ),
                 array(
                     'title'    => __('CSS selectors', 'pzarc'),
-                    'id'       => $prefix . 'entry-selectors',
+                    'id'       => $prefix . 'hentry-selectors',
                     'type'     => 'multi_text',
                     'default'  => array('.hentry'),
                     'subtitle' => 'One per row',
@@ -303,7 +303,7 @@
                         'content' => 'This is the content of the tool-tip'
                     )
                 ),
-                pzarc_redux_bg($prefix . 'hentry-bg', array('.hentry')),
+                pzarc_redux_bg($prefix . 'hentry-background', array('.hentry')),
                 pzarc_redux_padding($prefix . 'hentry-padding', array('.hentry')),
                 pzarc_redux_borders($prefix . 'hentry-borders', array('.hentry')),
             )
@@ -316,7 +316,7 @@
             'desc'       => 'Class: .pzarc_entry-title',
             'fields'     => array(
                 pzarc_redux_font($prefix . 'entry-title-font', array('.entry-title'),array('line_height'=>1.2,'text_decoration'=>'none')),
-                pzarc_redux_bg($prefix . 'entry-title-font-bg', array('.entry-title')),
+                pzarc_redux_bg($prefix . 'entry-title-font-background', array('.entry-title')),
                 pzarc_redux_padding($prefix . 'entry-title-font-padding', array('.entry-title')),
                 pzarc_redux_links($prefix . 'entry-title-font-links', array('.entry-title a')),
             ),
@@ -330,7 +330,7 @@
             'desc'       => 'Class: .pzarc_entry_meta',
             'fields'     => array(
                 pzarc_redux_font($prefix . 'entry-meta-font', array('.entry-meta')),
-                pzarc_redux_bg($prefix . 'entry-meta-font-bg', array('.entry-meta')),
+                pzarc_redux_bg($prefix . 'entry-meta-font-background', array('.entry-meta')),
                 pzarc_redux_padding($prefix . 'entry-meta-font-padding', array('.entry-meta')),
                 pzarc_redux_links($prefix . 'entry-meta-font-links', array('.entry-meta a')),
             )
@@ -342,7 +342,7 @@
             'icon'       => 'el-icon-align-left',
             'fields'     => array(
                 pzarc_redux_font($prefix . 'entry-content-font', array('.entry-content')),
-                pzarc_redux_bg($prefix . 'entry-content-font-bg', array('.entry-content')),
+                pzarc_redux_bg($prefix . 'entry-content-font-background', array('.entry-content')),
                 pzarc_redux_padding($prefix . 'entry-content-font-padding', array('.entry-content')),
                 pzarc_redux_links($prefix . 'entry-content-font-links', array('.entry-content a')),
                 array(
@@ -354,7 +354,7 @@
                     'subtitle' => 'Class: a.pzarc_readmore',
                 ),
                 pzarc_redux_font($prefix . 'entry-readmore-font', array('.readmore')),
-                pzarc_redux_bg($prefix . 'entry-readmore-font-bg', array('.readmore')),
+                pzarc_redux_bg($prefix . 'entry-readmore-font-background', array('.readmore')),
                 pzarc_redux_padding($prefix . 'entry-readmore-font-padding', array('.readmore')),
                 pzarc_redux_links($prefix . 'entry-readmore-font-links', array('a.readmore')),
             )
@@ -415,7 +415,7 @@
                     //    'default' => $defaults[ $optprefix . 'image_defaults_entry-image-caption-defaults' ],
                 ),
                 pzarc_redux_font($prefix . 'entry-mage-caption-font', array('.')),
-                pzarc_redux_bg($prefix . 'entry-mage-caption-font-bg', array('.')),
+                pzarc_redux_bg($prefix . 'entry-mage-caption-font-background', array('.')),
                 pzarc_redux_padding($prefix . 'entry-readmore-font-padding', array('.')),
             )
 
@@ -541,7 +541,7 @@
 
           // CAREFUL -> These options are for advanced use only
           'transient_time'     => 60 * MINUTE_IN_SECONDS,
-          'output'             => false,          // Global shut-off for dynamic CSS output by the framework. Will also disable google fonts output
+          'output'             => true,          // Global shut-off for dynamic CSS output by the framework. Will also disable google fonts output
           'output_tag'         => true,          // Allows dynamic CSS to be generated for customizer and google fonts, but stops the dynamic CSS from going to the head
           //'domain'             	=> 'redux-framework', // Translation domain key. Don't change this unless you want to retranslate all of Redux.
           //'footer_credit'      	=> '', // Disable the footer credit of Redux. Please leave if you can help it.
@@ -551,9 +551,9 @@
           'database'           => '',          // possible: options, theme_mods, theme_mods_expanded, transient. Not fully functional, warning!
 
 
-          'show_import_export' => false,
+          'show_import_export' => true,
           // REMOVE
-          'system_info'        => false,
+          'system_info'        => true,
           // REMOVE
 
           'help_tabs'          => array(),
