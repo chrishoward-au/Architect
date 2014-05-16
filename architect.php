@@ -66,8 +66,8 @@
       define('PZARC_DEBUG', 0);
 
 // Before we go anywhere, make sure dependent plugins are loaded and active.
-      require_once PZARC_PLUGIN_PATH . '/resources/includes/php/arc-check-dependencies.php';
-      require_once PZARC_PLUGIN_PATH . '/resources/includes/php/class_arc_Widget.php';
+      require_once PZARC_PLUGIN_PATH . '/resources/architect/php/arc-check-dependencies.php';
+      require_once PZARC_PLUGIN_PATH . '/resources/architect/php/class_arc_Widget.php';
 
       wp_mkdir_p(PZARC_CACHE_PATH);
 
@@ -76,9 +76,9 @@
 
       if (!function_exists('pizazzwp_head')) {
         // The TGM dependency loader needs to run first
-//			include_once PZARC_PLUGIN_PATH . '/libs/PizazzWP.php';
+//			include_once PZARC_PLUGIN_PATH . '/libraries/PizazzWP.php';
       }
-      require_once PZARC_PLUGIN_PATH . '/resources/includes/php/arc-functions.php';
+      require_once PZARC_PLUGIN_PATH . '/resources/architect/php/arc-functions.php';
 
       // Register admin styles and scripts
 
@@ -91,7 +91,7 @@
       }
 
 
-      // Front end libs, Register site styles and scripts
+      // Front end libraries, Register site styles and scripts
       if (!is_admin()) {
         add_action('wp_enqueue_scripts', array($this, 'register_plugin_styles'));
         add_action('wp_enqueue_scripts', array($this, 'register_plugin_scripts'));
@@ -201,11 +201,11 @@
     {
 
       wp_enqueue_style('pzarc-admin-styles', PZARC_PLUGIN_URL . '/admin/css/arc-admin.css');
-      wp_register_style('pzarc-font-awesome', PZARC_PLUGIN_URL . '/resources/libs/font-awesome/css/font-awesome.min.css');
-      wp_register_style('pzarc-jqueryui-css', PZARC_PLUGIN_URL . '/resources/libs/jquery-ui-1.10.2.custom/css/pz_architect/jquery-ui-1.10.2.custom.min.css');
+      wp_register_style('pzarc-font-awesome', PZARC_PLUGIN_URL . '/resources/libraries/font-awesome/css/font-awesome.min.css');
+      wp_register_style('pzarc-jqueryui-css', PZARC_PLUGIN_URL . '/resources/libraries/jquery-ui-1.10.2.custom/css/pz_architect/jquery-ui-1.10.2.custom.min.css');
 
       // Be nice to use bootstrap, but it's just not compatible with WP as it uses common non-specific element names.
-      //wp_enqueue_style( 'bootstrap-admin-styles', plugins_url( PZARC_FOLDER . '/libs/bootstrap/css/bootstrap.min.css' ) );
+      //wp_enqueue_style( 'bootstrap-admin-styles', plugins_url( PZARC_FOLDER . '/libraries/bootstrap/css/bootstrap.min.css' ) );
     }
 
 // end register_admin_styles
@@ -247,11 +247,11 @@
 
       wp_enqueue_script('jquery');
       // wp_enqueue_script( PZARC_NAME.'-plugin-script', plugins_url( PZARC_FOLDER.'/frontend/js/display.js' ) );
-      wp_register_script('jquery-isotope', plugins_url(PZARC_FOLDER . '/resources/libs/js/jquery.isotope.min.js'));
-      wp_register_script('js-isotope-v2', plugins_url(PZARC_FOLDER . '/resources/libs/js/isotope.pkgd.min.js'));
+      wp_register_script('jquery-isotope', plugins_url(PZARC_FOLDER . '/resources/libraries/js/jquery.isotope.min.js'));
+      wp_register_script('js-isotope-v2', plugins_url(PZARC_FOLDER . '/resources/libraries/js/isotope.pkgd.min.js'));
 
       // TODO: bug in this, so removed for now
-//      wp_enqueue_script('js-useragent', plugins_url(PZARC_FOLDER) . '/resources/includes/js/architect.js');
+//      wp_enqueue_script('js-useragent', plugins_url(PZARC_FOLDER) . '/resources/architect/js/architect.js');
     }
 
 // end register_plugin_scripts

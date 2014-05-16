@@ -6,7 +6,7 @@
    * Time: 1:57 PM
    */
 
-  //TODO: Dang it! It's doing that save twice problem again!!
+  //TODO: Dang it! It's doing that save twice problem again when i use this!!
 //  add_action('save_post_arc-panels', 'save_arc_layouts', 99,3);
 //  add_action('save_post_arc-blueprints', 'save_arc_layouts', 99,3);
   add_action('save_post', 'save_arc_layouts', 999, 3);
@@ -101,7 +101,7 @@
       case 'arc-blueprints':
         $pzarc_blueprints   = get_post_meta($postid, '_architect', true);
         $pzarc_blueprints   = pzarc_merge_defaults($defaults[ '_blueprints' ], $pzarc_blueprints);
-        $pzarc_contents     = '/* This is the css for blueprint ' . $postid . ' ' . $pzarc_blueprints[ '_blueprints_short-name' ] . '*/' . $nl;
+        $pzarc_contents     .= '/* This is the css for blueprint ' . $postid . ' ' . $pzarc_blueprints[ '_blueprints_short-name' ] . '*/' . $nl;
         $pzarc_contents_css = '';
         for ($i = 0; $i < 3; $i++) {
           $classes = '.pzarc-blueprint_' . $pzarc_blueprints[ '_blueprints_short-name' ] . ' .pzarc-section_' . ($i + 1) . ' .pzarc-panel';
@@ -166,7 +166,7 @@
 
         global $pzarchitect;
 
-        $pzarc_contents = '/* This is the css for panel $postid ' . $pzarc_panels[ '_panels_settings_short-name' ] . '*/' . $nl;
+        $pzarc_contents .= '/* This is the css for panel $postid ' . $pzarc_panels[ '_panels_settings_short-name' ] . '*/' . $nl;
 
         // step thru each field looking for ones to format
         $class_prefix = '.pzarchitect .pzarc-panel_' . $pzarc_panels[ '_panels_settings_short-name' ];
@@ -264,13 +264,17 @@
              *    STYLING
              */
             case (strpos($key, '_panels_styling') === 0 && !empty($value)):
-
               switch ($key) {
 
                 // Overall
-                case '_panels_styling_panels-bg' :
+                case '_panels_styling_panels-background' :
                   $this_key = key($value);
-                  $pzarc_contents .= $class_prefix . '.pzarc-panel {' . $this_key . ':' . $value[ $this_key ] . ';}' . $nl;
+                  $pzarc_contents .= $class_prefix . '.pzarc-panel {background-color:' . Redux_Helpers::hex2rgba($value[ 'color' ],$value[ 'alpha' ]) . ';}' . $nl;
+                  break;
+
+                case '_panels_styling_components-background' :
+                  $this_key = key($value);
+                  $pzarc_contents .= $class_prefix . ' .pzarc-components {background-color:' . Redux_Helpers::hex2rgba($value[ 'color' ],$value[ 'alpha' ]) . ';}' . $nl;
                   break;
 
                 case '_panels_styling_panels-padding' :
@@ -283,7 +287,7 @@
 
                 // Titles
                 case '_panels_styling_entry-title-font' :
-                  $pzarc_contents = pzarc_process_fonts($class_prefix . ' .entry-title', $value) . $nl;
+                  $pzarc_contents .= pzarc_process_fonts($class_prefix . ' .entry-title', $value) . $nl;
                   break;
 
                 case ($key === '_panels_styling_entry-title-font-links'):
@@ -333,7 +337,7 @@
         $pzarc_tb               = ($pzarc_sections_postion == 'left' || $pzarc_sections_postion == 'right' ? 'top' : $pzarc_sections_postion);
         $pzarc_lr               = ($pzarc_sections_postion == 'top' || $pzarc_sections_postion == 'bottom' ? 'left' : $pzarc_sections_postion);
 
-        $pzarc_contents .= $class_prefix . ' .abs-content {' . $pzarc_tb . ':' . $pzarc_sections_nudge_y . '%;' . $pzarc_lr . ':' . $pzarc_sections_nudge_x . '%;width:' . $pzarc_sections_width . '%;}';
+        $pzarc_contents .= $class_prefix . ' .has-bgimage {' . $pzarc_tb . ':' . $pzarc_sections_nudge_y . '%;' . $pzarc_lr . ':' . $pzarc_sections_nudge_x . '%;width:' . $pzarc_sections_width . '%;}';
     }
 
 

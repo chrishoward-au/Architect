@@ -17,3 +17,7 @@ function tabbed_field_path($field) {
   return dirname( __FILE__ ).'/tabbed/field_tabbed.php';
 }
 
+  add_filter( "redux/{$redux_opt_name}/field/class/links", "links_field_path" ); // Adds the local field
+  function links_field_path($field) {
+    return dirname( __FILE__ ).'/links/field_links.php';
+  }

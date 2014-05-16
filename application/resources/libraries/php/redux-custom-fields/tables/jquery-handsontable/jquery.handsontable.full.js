@@ -4154,7 +4154,7 @@ Handsontable.SelectionPoint.prototype.arr = function (arr) {
   var copyableLookup = Handsontable.helper.cellMethodLookupFactory('copyable', false);
 
   /**
-   * Returns single value from the data array (intended for clipboard copy to an libs application)
+   * Returns single value from the data array (intended for clipboard copy to an libraries application)
    * @param {Number} row
    * @param {Number} prop
    * @return {String}
@@ -4272,7 +4272,7 @@ Handsontable.SelectionPoint.prototype.arr = function (arr) {
   };
 
   /**
-   * Return data as copyable text (tab separated columns intended for clipboard copy to an libs application)
+   * Return data as copyable text (tab separated columns intended for clipboard copy to an libraries application)
    * @param {Object} start (Optional) Start selection position
    * @param {Object} end (Optional) End selection position
    * @return {String}

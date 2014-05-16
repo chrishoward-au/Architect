@@ -67,13 +67,18 @@
 .pzarchitect .pzarc-bg-image {
   margin: 0;
   padding: 0;
+  max-width:100%;
+  height:auto;
+  position:absolute;
+  z-index:0;
 }
 
 .pzarchitect .pzarc-bg-image img {
   display: block;
 }
 
-.pzarchitect .abs-content {
+
+.pzarchitect .has-bgimage {
   position: absolute;
 }
 

@@ -1113,3 +1113,23 @@ span.pzarc-text-align {
   font-family: "Times New Roman",Georgia,serif;
   font-weight:bold;
 }
+
+span.smaller {
+  font-size:smaller;
+}
+span.underline {
+  text-decoration: underline;
+}
+span.overline {
+  text-decoration: overline;
+}
+span.underline-overline {
+  text-decoration: underline overline;
+}
+span.line-through {
+  text-decoration: line-through;
+}
+
+span.bold {
+   font-weight:bold;
+ }

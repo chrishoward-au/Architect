@@ -39,8 +39,8 @@
 
         wp_enqueue_script('jquery-pzarc-metaboxes-blueprints', PZARC_PLUGIN_URL . '/admin/js/arc-metaboxes-blueprints.js', array('jquery'));
         wp_enqueue_script('js-isotope-v2');
-        // wp_enqueue_script('jquery-masonary', PZARC_PLUGIN_URL . 'libs/masonry.pkgd.min.js', array('jquery'));
-        // wp_enqueue_script('jquery-lorem', PZARC_PLUGIN_URL . 'libs/jquery.lorem.js', array('jquery'));
+        // wp_enqueue_script('jquery-masonary', PZARC_PLUGIN_URL . 'libraries/masonry.pkgd.min.js', array('jquery'));
+        // wp_enqueue_script('jquery-lorem', PZARC_PLUGIN_URL . 'libraries/jquery.lorem.js', array('jquery'));
       }
     }
 
@@ -671,13 +671,14 @@
                     'both'   => 'Both'
                 )
             ),
-            array(
-                'id'       => $prefix . 'navigator-items-visible',
-                'title'    => __('Navigator items visible', 'pzarchitect'),
-                'type'     => 'spinner',
-                'default'  => 5,
-                'subtitle' => 'If zero, it will use the "Panels to show" value. This is the number of items visible in the navigator bar. NOTE: This is also the number of items skipped by multi-skip pager element of the inline pager.'
-            ),
+            // TODO: Notsure this is necessary
+            //            array(
+            //                'id'       => $prefix . 'navigator-items-visible',
+            //                'title'    => __('Navigator items visible', 'pzarchitect'),
+            //                'type'     => 'spinner',
+            //                'default'  => 5,
+            //                'subtitle' => 'If zero, it will use the "Panels to show" value. This is the number of items visible in the navigator bar. NOTE: This is also the number of items skipped by multi-skip pager element of the inline pager.'
+            //            ),
             array(
                 'title' => __('Transitions', 'pzarchitect'),
                 'id'    => $prefix . 'section-transitions-heading',
@@ -1186,20 +1187,14 @@
     $optprefix = 'architect_config_';
 
     $sections[ ] = array(
-        'title'      => 'Overall',
+        'title'      => 'Blueprint',
         'show_title' => false,
         'icon_class' => 'icon-large',
-        'icon'       => 'el-icon-brush',
-        'fields'     => array(
-
-            array(
-                'title'    => __('Blueprint', 'pzarchitect'),
-                'id'       => $prefix . 'the-blueprint',
-                'type'     => 'section',
-                'subtitle' => 'Class: .pzarc-blueprint_{shortname}',
-                'hint'     => array('content' => 'Class: .pzarc-blueprint_{shortname}'),
-            ),
+        'icon'       => 'el-icon-website',
+        'desc' => 'Class: .pzarc-blueprint_{shortname}',
+        'fields'     => pzarc_fields(
             // TODO: Get correct $defaults
+            // TODO: Add shadows
             pzarc_redux_bg($prefix . 'blueprint-background', array('.pzarc-blueprint')),
             pzarc_redux_padding($prefix . 'blueprint-padding', array('.pzarc-blueprint')),
             pzarc_redux_margin($prefix . 'blueprint-margins', array('.pzarc-blueprint')),
@@ -1211,7 +1206,24 @@
                 'type'  => 'ace_editor',
                 'mode'  => 'css',
                 'hint'  => array('content' => 'This is can be any CSS you\'d like to add to a page this blueprint is displayed on'),
-            ),
+            )
+        )
+    );
+    // PREBETA: Change blueprint to main container, and container to sections
+    $sections[ ] = array(
+        'title'      => 'Sections wrapper',
+        'show_title' => false,
+        'icon_class' => 'icon-large',
+        'icon'       => 'el-icon-lines',
+        'desc' => 'Class: .pzarc-container_{shortname}',
+        'fields'     => pzarc_fields(
+
+            // TODO: Get correct $defaults
+            // TODO: Add shadows
+            pzarc_redux_bg($prefix . 'container-background', array('.pzarc-container')),
+            pzarc_redux_padding($prefix . 'container-padding', array('.pzarc-container')),
+            pzarc_redux_margin($prefix . 'container-margins', array('.pzarc-container')),
+            pzarc_redux_borders($prefix . 'container-borders', array('.pzarc-container'))
         )
     );
     $icons       = array(1 => 'el-icon-align-left', 2 => 'el-icon-th', 3 => 'el-icon-th-list');
@@ -1272,6 +1284,8 @@
                             <p>In the Custom CSS field, enter the following CSS</p>
                             <p>.pzarc-blueprint_SHORTNAME a:hover {text-decoration:underline;}</p>
                             <p>SHORTNAME = the short name you entered for this blueprint</p>
+                            <h3>Make pager appear outside of panels</h3>
+                            <p>If you want the pager to appear outside of the panels instead of over them, set a deep left and right padding on the blueprint.</p>
                             '
 
             )

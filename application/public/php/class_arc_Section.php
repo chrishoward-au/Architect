@@ -60,7 +60,10 @@
       echo '<div class="pzarc-panel pzarc-panel_'.$this->section[ 'section-panel-settings' ]['_panels_settings_short-name'].' pzarc-panel-no_'.$panel_number.$this->slider['slide'].'">';
       // Although this loks back to front, this is determining flow compared to components
       if ($this->section[ 'section-panel-settings' ][ '_panels_design_background-position' ] != 'none' && ($this->section[ 'section-panel-settings' ][ '_panels_design_components-position' ] == 'bottom' || $this->section[ 'section-panel-settings' ][ '_panels_design_components-position' ] == 'right')) {
-        echo $data['bgimage'];
+          $line_out = arc_Panel_bgimage::render('bgimage', $panel_def, $this->source, $data,$this->section[ 'section-panel-settings' ]);
+          echo apply_filters("arc_filter_bgimage", self::strip_unused_arctags($line_out),$data['postid']);
+//        echo $data['bgimage'];
+//        var_dump(esc_html( $data['bgimage']));
       }
       // Render the components open html
       echo self::strip_unused_arctags(arc_Panel_Wrapper::render('components-open', $panel_def, '', $data,$this->section[ 'section-panel-settings' ]));

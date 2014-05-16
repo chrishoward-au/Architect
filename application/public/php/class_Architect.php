@@ -59,7 +59,7 @@
 
 
       // Good to go. Load all the classes
-      require_once(PZARC_PLUGIN_PATH . '/resources/includes/php/arc-functions.php');
+      require_once(PZARC_PLUGIN_PATH . '/resources/architect/php/arc-functions.php');
       require_once(PZARC_PLUGIN_PATH . '/public/php/class_arc_Section.php');
       require_once(PZARC_PLUGIN_PATH . '/public/php/class_arc_Navigator.php');
       require_once(PZARC_PLUGIN_PATH . '/public/php/class_arc_Pagination.php');
@@ -89,7 +89,7 @@
       if ($this->build->blueprint[ '_blueprints_navigation' ] === 'navigator') {
         $swiper['class'] = ' swiper-container swiper-container-' . $this->build->blueprint[ '_blueprints_short-name' ];
         $swiper['dataid']    = ' data-swiperid="' . $this->build->blueprint[ '_blueprints_short-name' ] . '"';
-        $swiper['dataopts'] = " data-swiperopts=\"pagination: '.pzarc-navigator-featured-posts-2x4',loop:true,mode:'horizontal',grabCursor: true,paginationClickable: true,slidesPerView:'1',useCSS3Transforms:false,speed:2000,autoplay:1000\"";
+        $swiper['dataopts'] = " data-swiperopts=\"pagination: '.pzarc-navigator-featured-posts-2x4',loop:true,mode:'horizontal',grabCursor: true,paginationClickable: true,slidesPerView:'1',useCSS3Transforms:false,speed:2000\"";
         echo '<a class="arrow-left" href="#"></a>';
         echo '<a class="arrow-right" href="#"></a>';
       }

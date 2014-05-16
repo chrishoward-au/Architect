@@ -62,8 +62,11 @@
       }
 
       // NEVER include HTML in these, only should get WP values.
-      $showbgimage           = ($section[ '_panels_design_background-position' ] != 'none' && ($section[ '_panels_design_components-position' ] == 'top' || $section[ '_panels_design_components-position' ] == 'left')) ||
-          ($section[ '_panels_design_background-position' ] != 'none' && ($section[ '_panels_design_components-position' ] == 'bottom' || $section[ '_panels_design_components-position' ] == 'right'));
+      $showbgimage           = (has_post_thumbnail()
+                                  && $section[ '_panels_design_background-position' ] != 'none'
+                                        && ($section[ '_panels_design_components-position' ] == 'top' || $section[ '_panels_design_components-position' ] == 'left'))
+                                  || ($section[ '_panels_design_background-position' ] != 'none'
+                                        && ($section[ '_panels_design_components-position' ] == 'bottom' || $section[ '_panels_design_components-position' ] == 'right'));
       $data[ 'postid' ]      = get_the_ID();
       $data[ 'poststatus' ]  = get_post_status();
       $data[ 'permalink' ]   = get_the_permalink();
@@ -98,7 +101,7 @@
       $line = str_replace('{{poststatus}}', $data[ 'poststatus' ], $line);
       $line = str_replace('{{postformat}}', $data[ 'postformat' ], $line);
       $line = str_replace('{{posttype}}', $source, $line);
-
+      $line = str_replace('{{pzclasses}}', 'pzarc-components', $line);
       return $line;
     }
   }
@@ -113,6 +116,7 @@
 //      foreach ($data[ 'components-close' ] as $key => $value) {
 //        $template[ $type ] = str_replace('{{' . $key . '}}', $value, $template[ $type ]);
 //      }
+      $template[ $type ] = str_replace('{{using-bg-image}}', (!empty($data[ 'bgimage' ]) ? 'has-bgimage' : 'no-bgimage'), $template[ $type ]);
 
       return parent::process_generics($data, $template[ $type ], $source);
     }
@@ -169,6 +173,7 @@
           $template[ $type ] = str_replace('{{commentscount}}', $data[ 'comments-count' ], $template[ $type ]);
           $template[ $type ] = str_replace('{{editlink}}', $template[ 'editlink' ], $template[ $type ]);
 
+
       }
 
       return parent::process_generics($data, $template[ $type ], $source);
@@ -192,6 +197,17 @@
 //      foreach ($data[ 'image' ] as $key => $value) {
 //        $template[ $type ] = str_replace('{{' . $key . '}}', $value, $template[ $type ]);
 //      }
+
+      return parent::process_generics($data, $template[ $type ], $source);
+    }
+
+  }
+
+  class arc_Panel_bgimage extends arc_Panel
+  {
+    public static function render($type, &$template, $source, &$data, &$section)
+    {
+      $template[ $type ] = str_replace('{{bgimage}}', $data[ 'bgimage' ], $template[ $type ]);
 
       return parent::process_generics($data, $template[ $type ], $source);
     }

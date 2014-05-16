@@ -55,8 +55,8 @@
 //			require_once PZARC_PLUGIN_PATH . '/admin/ucd-controls.php';
 
 
-        require_once PZARC_PLUGIN_PATH . '/resources/libs/php/redux-custom-fields/loader.php';
-        require_once PZARC_PLUGIN_PATH . '/resources/libs/php/redux-extensions/loader.php';
+        require_once PZARC_PLUGIN_PATH . '/resources/libraries/php/redux-custom-fields/loader.php';
+        require_once PZARC_PLUGIN_PATH . '/resources/libraries/php/redux-extensions/loader.php';
         require_once PZARC_PLUGIN_PATH . '/admin/php/arc-options.php';
 
 
@@ -87,14 +87,14 @@
         wp_enqueue_style('dashicons');
 
 //      wp_enqueue_style('pzarc-block-css', PZARC_PLUGIN_URL . '/admin/css/arc-admin.css');
-        wp_enqueue_style('pzarc-jqueryui-css', PZARC_PLUGIN_URL . '/resources/libs/js/jquery-ui-1.10.2.custom/css/pz_architect/jquery-ui-1.10.2.custom.min.css');
+        wp_enqueue_style('pzarc-jqueryui-css', PZARC_PLUGIN_URL . '/resources/libraries/js/jquery-ui-1.10.2.custom/css/pz_architect/jquery-ui-1.10.2.custom.min.css');
 
         wp_enqueue_script('jquery-pzarc-metaboxes', PZARC_PLUGIN_URL . '/admin/js/arc-metaboxes.js', array('jquery'));
 
 
-        wp_enqueue_script('pzarc-validation-engine-js-lang', PZARC_PLUGIN_URL . '/resources/libs/js/jQuery-Validation-Engine/js/languages/jquery.validationEngine-en.js', array('jquery'));
-        wp_enqueue_script('pzarc-validation-engine-js', PZARC_PLUGIN_URL . '/resources/libs/js/jQuery-Validation-Engine/js/jquery.validationEngine.js', array('jquery'));
-        wp_enqueue_style('pzarc-validation-engine-css', PZARC_PLUGIN_URL . '/resources/libs/js/jQuery-Validation-Engine/css/validationEngine.jquery.css');
+        wp_enqueue_script('pzarc-validation-engine-js-lang', PZARC_PLUGIN_URL . '/resources/libraries/js/jQuery-Validation-Engine/js/languages/jquery.validationEngine-en.js', array('jquery'));
+        wp_enqueue_script('pzarc-validation-engine-js', PZARC_PLUGIN_URL . '/resources/libraries/js/jQuery-Validation-Engine/js/jquery.validationEngine.js', array('jquery'));
+        wp_enqueue_style('pzarc-validation-engine-css', PZARC_PLUGIN_URL . '/resources/libraries/js/jQuery-Validation-Engine/css/validationEngine.jquery.css');
       }
     }
 

@@ -23,7 +23,7 @@
     static function panel_def()
     {
       //TODO: Need to get a way to always wrap components in pzarc-compenents div.Problem is...dev has to create definition correctly.
-      $panel_def[ 'components-open' ]  = '<article id="post-{{postid}}" class="block-type-content post-{{postid}} post type-{{posttype}} status-{{poststatus}} format-{{postformat}} hentry {{categories}} {{tags}} {{pzclasses}}">';
+      $panel_def[ 'components-open' ]  = '<article id="post-{{postid}}" class="block-type-content post-{{postid}} post type-{{posttype}} status-{{poststatus}} format-{{postformat}} hentry {{categories}} {{tags}} {{pzclasses}} {{using-bg-image}}">';
       $panel_def[ 'components-close' ] = '</article>';
       $panel_def[ 'postlink' ]    = '<a href="{{permalink}}" title="{{title}}">';
       $panel_def[ 'header' ]      = '<header class="entry-header">{{headerinnards}}</header>';
@@ -37,6 +37,7 @@
       $panel_def[ 'author' ]      = '<span class="byline"><span class="author vcard"><a class="url fn n" href="{{authorlink}}" title="View all posts by {{authorname}}" rel="author">{{authorname}}</a></span></span>';
       $panel_def[ 'image' ]       = '<figure class="entry-thumbnail {{incontent}}">{{postlink}}<img width="{{width}}" src="{{imgsrc}}" class="attachment-post-thumbnail wp-post-image" alt="{{alttext}}">{{closepostlink}}{{captioncode}}</figure>';
       $panel_def[ 'image' ]       = '<figure class="entry-thumbnail {{incontent}}">{{postlink}}{{image}}{{closelink}}{{captioncode}}</figure>';
+      $panel_def[ 'bgimage' ]       = '<figure class="entry-bgimage pzarc-bg-image">{{bgimage}}</figure>';
       $panel_def[ 'caption' ]     = '<figcaption class="caption">{{caption}}</figcaption>';
       $panel_def[ 'content' ]     = ' <div class="entry-content {{nothumb}}">{{image-in-content}}{{content}}</div>';
       $panel_def[ 'custom1' ]     = '<div class="entry-customfield entry-customfield-1">{{custom1innards}}</div>';

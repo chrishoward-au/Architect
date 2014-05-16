@@ -101,7 +101,8 @@
         'id'                    => $id,
         'output'                => $selectors,
         'compiler'              => $selectors,
-        'type'                  => 'background',
+        'type'                  => 'color_rgba',
+        'mode'                  => 'backgound-color',
         'background-image'      => false,
         'background-repeat'     => false,
         'background-size'       => false,
@@ -157,33 +158,78 @@
             ),
             // PREBETA: Add some js so can't select both! Or improve it
             array(
-                'title'   => __('Links underline', 'pzarc'),
-                'id'      => $id.'-dec',
-                'type'    => 'button_set',
-                'multi'   => true,
-                'output'  => $selectors,
-                'default' => $defaults,
-                'options' => array(
-                    'regular' => 'Regular',
-                    'hover'   => 'Hover',
-                    'active'  => 'Active',
-                    'visited' => 'Visited'
-                )
+                'id'    => $id . '-underline-heading',
+                'title' => 'Links underlining',
+                'type'  => 'section',
             ),
-            array(
-                'title'   => __('Links no underline', 'pzarc'),
-                'id'      => $id.'-nodec',
-                'type'    => 'button_set',
-                'multi'   => true,
-                'output'  => $selectors,
-                'default' => $defaults,
-                'options' => array(
-                    'regular' => 'Regular',
-                    'hover'   => 'Hover',
-                    'active'  => 'Active',
-                    'visited' => 'Visited'
-                )
-            )
+ //            array(
+//                'title'   => __('Regular', 'pzarc'),
+//                'id'      => $id . '-regular-deco',
+//                'type'    => 'button_set',
+//                'output'  => $selectors,
+//                'default' => $defaults,
+//                'options' => array(
+//                    'inherit'   => 'Default',
+//                    'none'      => '<span class="smaller bold">Abc</span>',
+//                    'underline' => '<span class="smaller bold underline">Abc</span>',
+//                    'overline' => '<span class="smaller bold overline">Abc</span>',
+//                    'line-through' => '<span class="smaller bold line-through">Abc</span>',
+//                    'underover' => '<span class="smaller bold underline-overline">Abc</span>'
+//                )
+//            ),
+//            array(
+//                'title'   => __('Hover', 'pzarc'),
+//                'id'      => $id . '-hover-deco',
+//                'type'    => 'button_set',
+//                'output'  => $selectors,
+//                'default' => $defaults,
+//                'options' => array(
+//                    'inherit'   => 'Default',
+//                    'none'      => '<span class="smaller bold">Abc</span>',
+//                    'underline' => '<span class="smaller bold underline">Abc</span>',
+//                    'overline' => '<span class="smaller bold overline">Abc</span>',
+//                    'line-through' => '<span class="smaller bold line-through">Abc</span>',
+//                    'underover' => '<span class="smaller bold underline-overline">Abc</span>'
+//                )
+//            ),
+//            array(
+//                'title'   => __('Active', 'pzarc'),
+//                'id'      => $id . '-active-deco',
+//                'type'    => 'button_set',
+//                'output'  => $selectors,
+//                'default' => $defaults,
+//                'options' => array(
+//                    'inherit'   => 'Default',
+//                    'none'      => '<span class="smaller bold">Abc</span>',
+//                    'underline' => '<span class="smaller bold underline">Abc</span>',
+//                    'overline' => '<span class="smaller bold overline">Abc</span>',
+//                    'line-through' => '<span class="smaller bold line-through">Abc</span>',
+//                    'underover' => '<span class="smaller bold underline-overline">Abc</span>'
+//                )
+//            ),
+//            array(
+//                'title'   => __('Visited', 'pzarc'),
+//                'id'      => $id . '-visited-deco',
+//                'type'    => 'button_set',
+//                'output'  => $selectors,
+//                'default' => $defaults,
+//                'options' => array(
+//                    'inherit'   => 'Default',
+//                    'none'      => '<span class="smaller bold">Abc</span>',
+//                    'underline' => '<span class="smaller bold underline">Abc</span>',
+//                    'overline' => '<span class="smaller bold overline">Abc</span>',
+//                    'line-through' => '<span class="smaller bold line-through">Abc</span>',
+//                    'underover' => '<span class="smaller bold underline-overline">Abc</span>'
+//                )
+//            ),
+                        array(
+                            'title'   => __('Links', 'pzarc'),
+                            'id'      => $id.'-links-test',
+                            'type'    => 'links',
+                            'multi'   => true,
+                            'output'  => $selectors,
+                            'default' => $defaults,
+                        )
         );
 
   }
@@ -323,14 +369,14 @@
   function pzarc_fields()
   {
     $arg_list = func_get_args();
-    $returna = array();
+    $returna  = array();
     foreach ($arg_list as $k => $v) {
-      if (isset($v[0])) {
-        foreach ($v as $k2 => $v2 ){
-          $returna[] = $v2;
+      if (isset($v[ 0 ])) {
+        foreach ($v as $k2 => $v2) {
+          $returna[ ] = $v2;
         }
       } else {
-        $returna[] = $v;
+        $returna[ ] = $v;
       }
     }
 
