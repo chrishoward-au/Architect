@@ -35,6 +35,8 @@
 // TODO: Make sure it can display comments!!
   // TODO: Make it so users can create their own panels and blueprints, but can't edit other users' unless an admin. Thus users could create their own for shortcodes!
 
+// TODO: Add a metabox to pages that lets you pick blueprints to prepend or postend to pages. How hard could it be? Plug into hook? Is there a pre-loop hook? loop_start, loop_end
+  //TODO: Add a method to add template tags to hooks
 
   /* why not use a WP like methodology!
   ================================================================================

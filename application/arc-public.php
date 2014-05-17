@@ -37,7 +37,7 @@
    ***********************/
   function pzarc_shortcode($atts, $content = null, $tag)
   {
-    $pzarc_caller = 'shortcode';
+    $pzarc_caller    = 'shortcode';
     $pzarc_blueprint = '';
     if (!empty($atts[ 'blueprint' ])) {
       $pzarc_blueprint = $atts[ 'blueprint' ];
@@ -48,9 +48,14 @@
     // Need to capture the output so we can get it to appear where the shortcode actually is
     ob_start();
     $pzarc_overrides = !empty($atts[ 'ids' ]) ? $atts[ 'ids' ] : null;
-    do_action("arc_before_{$pzarc_caller}", $pzarc_blueprint, $pzarc_overrides,$pzarc_caller);
+
+    do_action("arc_before_{$pzarc_caller}", $pzarc_blueprint, $pzarc_overrides, $pzarc_caller);
+
+    // The caller is shortcode, and not variable here. It just uses a variable for consistency and documentation
     do_action("arc_do_{$pzarc_caller}", $pzarc_blueprint, $pzarc_overrides, $pzarc_caller);
-    do_action("arc_after_{$pzarc_caller}", $pzarc_blueprint, $pzarc_overrides,$pzarc_caller);
+
+    do_action("arc_after_{$pzarc_caller}", $pzarc_blueprint, $pzarc_overrides, $pzarc_caller);
+
     $pzout = ob_get_contents();
     ob_end_clean();
 
@@ -61,7 +66,9 @@
   }
 
   add_shortcode('pzarc', 'pzarc_shortcode');
+  // I still don't understand why this works!! One day, maybe I will
   add_action('arc_do_shortcode', 'pzarc', 10, 3);
+
   /***********************
    *
    * Template tag
@@ -70,9 +77,9 @@
   function pzarchitect($pzarc_blueprint = null, $pzarc_overrides = null)
   {
     $pzarc_caller = 'template_tag';
-    do_action("arc_before_{$pzarc_caller}", $pzarc_blueprint, $pzarc_overrides,$pzarc_caller);
+    do_action("arc_before_{$pzarc_caller}", $pzarc_blueprint, $pzarc_overrides, $pzarc_caller);
     do_action("arc_do_{$pzarc_caller}", $pzarc_blueprint, $pzarc_overrides, $pzarc_caller);
-    do_action("arc_after_{$pzarc_caller}", $pzarc_blueprint, $pzarc_overrides,$pzarc_caller);
+    do_action("arc_after_{$pzarc_caller}", $pzarc_blueprint, $pzarc_overrides, $pzarc_caller);
   }
 
   add_action('arc_do_template_tag', 'pzarc', 10, 3);
@@ -87,7 +94,7 @@
   {
     global $wp_query;
     $original_query = $wp_query;
-    $is_shortcode = ($caller=='shortcode');
+    $is_shortcode   = ($caller == 'shortcode');
     if ($is_shortcode) {
       // This was just in testing!!
       // remove_shortcode('pzarc');
@@ -102,7 +109,7 @@
       $architect = new Architect($blueprint, $is_shortcode);
       if (empty($architect->build->blueprint[ 'err_msg' ])) {
 
-        $architect->build($overrides,$caller);
+        $architect->build($overrides, $caller);
 
         wp_reset_postdata(); // Pretty sure this goes here... Not after the query reassignment
 
@@ -124,7 +131,7 @@
 //            $wp_query->next_post();
             // Doing this nudges things, believe it or not!
             // Solves a few problems: 1) Recursion (but only if in this if), 2) template tag not resetting main loop
-             $wp_query->have_posts();
+            $wp_query->have_posts();
 
             // TODO: Be interesting to see what other havoc this is going to cause!
             // eg when multiple posts have shortcodes and are showing full content

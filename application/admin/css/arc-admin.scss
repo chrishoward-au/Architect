@@ -1133,3 +1133,18 @@ span.line-through {
 span.bold {
    font-weight:bold;
  }
+
+.plain.redux-info-field {
+  background:none;
+  border:none;
+}
+
+.plain.redux-info-field em {
+  color:tomato;
+}
+
+.plain.redux-info-field li {
+  margin-bottom: 6px!important;
+  list-style: disc;
+  margin-left: 15px;
+}

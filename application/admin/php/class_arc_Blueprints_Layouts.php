@@ -771,9 +771,21 @@
 
                               <p>
                               Ut at consectetuer blandit nibh in.
-                              </p>'
+                              </p>
+                <h2>How to use blueprints</h2>
+                <p>There are four methods to displaying a blueprint</p>
+                <ul>
+                <li><strong>Template tag</strong> : Add <em>pzarchitect(\'blueprint\');</em> to your template at the point you want the blueprint to appear</li>
+                <li><strong>Shortcode</strong> : Add <em>[pzarc "blueprint" "overrides"]</em> your content at the point you want the blueprint to appear.</li>
+                <li><strong>Widget</strong> : <em>Select on widgets screen</em></li>
+                <li><strong>Action call</strong> : </em>new showBlueprint(\'action\',\'blueprint\',\'pageids\');</em></li>
+                </ul>
+                <p><em>blueprint</em> = the shortname of the blueprint to display.</p>
+                <p><em>overrides</em> = a comma separated list of the media ids to display instead. Very useful for easily converting a WordPress gallery shortcode. eg [gallery ids="1,2,3,5"] becomes [pzarc "mygallery", "1,2,3,4,5"]</p>
+                <p><em>action</em> = the name of the action hook where you want the blueprint to appear</p>
+                 <p><em>pageids</em> = a comma separated list of names or numeric ids of the pages to display the blueprint. </p>
 
-            )
+            ')
         )
     );
 

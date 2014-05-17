@@ -162,74 +162,74 @@
                 'title' => 'Links underlining',
                 'type'  => 'section',
             ),
- //            array(
-//                'title'   => __('Regular', 'pzarc'),
-//                'id'      => $id . '-regular-deco',
-//                'type'    => 'button_set',
-//                'output'  => $selectors,
-//                'default' => $defaults,
-//                'options' => array(
-//                    'inherit'   => 'Default',
-//                    'none'      => '<span class="smaller bold">Abc</span>',
-//                    'underline' => '<span class="smaller bold underline">Abc</span>',
-//                    'overline' => '<span class="smaller bold overline">Abc</span>',
-//                    'line-through' => '<span class="smaller bold line-through">Abc</span>',
-//                    'underover' => '<span class="smaller bold underline-overline">Abc</span>'
-//                )
-//            ),
-//            array(
-//                'title'   => __('Hover', 'pzarc'),
-//                'id'      => $id . '-hover-deco',
-//                'type'    => 'button_set',
-//                'output'  => $selectors,
-//                'default' => $defaults,
-//                'options' => array(
-//                    'inherit'   => 'Default',
-//                    'none'      => '<span class="smaller bold">Abc</span>',
-//                    'underline' => '<span class="smaller bold underline">Abc</span>',
-//                    'overline' => '<span class="smaller bold overline">Abc</span>',
-//                    'line-through' => '<span class="smaller bold line-through">Abc</span>',
-//                    'underover' => '<span class="smaller bold underline-overline">Abc</span>'
-//                )
-//            ),
-//            array(
-//                'title'   => __('Active', 'pzarc'),
-//                'id'      => $id . '-active-deco',
-//                'type'    => 'button_set',
-//                'output'  => $selectors,
-//                'default' => $defaults,
-//                'options' => array(
-//                    'inherit'   => 'Default',
-//                    'none'      => '<span class="smaller bold">Abc</span>',
-//                    'underline' => '<span class="smaller bold underline">Abc</span>',
-//                    'overline' => '<span class="smaller bold overline">Abc</span>',
-//                    'line-through' => '<span class="smaller bold line-through">Abc</span>',
-//                    'underover' => '<span class="smaller bold underline-overline">Abc</span>'
-//                )
-//            ),
-//            array(
-//                'title'   => __('Visited', 'pzarc'),
-//                'id'      => $id . '-visited-deco',
-//                'type'    => 'button_set',
-//                'output'  => $selectors,
-//                'default' => $defaults,
-//                'options' => array(
-//                    'inherit'   => 'Default',
-//                    'none'      => '<span class="smaller bold">Abc</span>',
-//                    'underline' => '<span class="smaller bold underline">Abc</span>',
-//                    'overline' => '<span class="smaller bold overline">Abc</span>',
-//                    'line-through' => '<span class="smaller bold line-through">Abc</span>',
-//                    'underover' => '<span class="smaller bold underline-overline">Abc</span>'
-//                )
-//            ),
-                        array(
-                            'title'   => __('Links', 'pzarc'),
-                            'id'      => $id.'-links-test',
-                            'type'    => 'links',
-                            'multi'   => true,
-                            'output'  => $selectors,
-                            'default' => $defaults,
-                        )
+            //            array(
+            //                'title'   => __('Regular', 'pzarc'),
+            //                'id'      => $id . '-regular-deco',
+            //                'type'    => 'button_set',
+            //                'output'  => $selectors,
+            //                'default' => $defaults,
+            //                'options' => array(
+            //                    'inherit'   => 'Default',
+            //                    'none'      => '<span class="smaller bold">Abc</span>',
+            //                    'underline' => '<span class="smaller bold underline">Abc</span>',
+            //                    'overline' => '<span class="smaller bold overline">Abc</span>',
+            //                    'line-through' => '<span class="smaller bold line-through">Abc</span>',
+            //                    'underover' => '<span class="smaller bold underline-overline">Abc</span>'
+            //                )
+            //            ),
+            //            array(
+            //                'title'   => __('Hover', 'pzarc'),
+            //                'id'      => $id . '-hover-deco',
+            //                'type'    => 'button_set',
+            //                'output'  => $selectors,
+            //                'default' => $defaults,
+            //                'options' => array(
+            //                    'inherit'   => 'Default',
+            //                    'none'      => '<span class="smaller bold">Abc</span>',
+            //                    'underline' => '<span class="smaller bold underline">Abc</span>',
+            //                    'overline' => '<span class="smaller bold overline">Abc</span>',
+            //                    'line-through' => '<span class="smaller bold line-through">Abc</span>',
+            //                    'underover' => '<span class="smaller bold underline-overline">Abc</span>'
+            //                )
+            //            ),
+            //            array(
+            //                'title'   => __('Active', 'pzarc'),
+            //                'id'      => $id . '-active-deco',
+            //                'type'    => 'button_set',
+            //                'output'  => $selectors,
+            //                'default' => $defaults,
+            //                'options' => array(
+            //                    'inherit'   => 'Default',
+            //                    'none'      => '<span class="smaller bold">Abc</span>',
+            //                    'underline' => '<span class="smaller bold underline">Abc</span>',
+            //                    'overline' => '<span class="smaller bold overline">Abc</span>',
+            //                    'line-through' => '<span class="smaller bold line-through">Abc</span>',
+            //                    'underover' => '<span class="smaller bold underline-overline">Abc</span>'
+            //                )
+            //            ),
+            //            array(
+            //                'title'   => __('Visited', 'pzarc'),
+            //                'id'      => $id . '-visited-deco',
+            //                'type'    => 'button_set',
+            //                'output'  => $selectors,
+            //                'default' => $defaults,
+            //                'options' => array(
+            //                    'inherit'   => 'Default',
+            //                    'none'      => '<span class="smaller bold">Abc</span>',
+            //                    'underline' => '<span class="smaller bold underline">Abc</span>',
+            //                    'overline' => '<span class="smaller bold overline">Abc</span>',
+            //                    'line-through' => '<span class="smaller bold line-through">Abc</span>',
+            //                    'underover' => '<span class="smaller bold underline-overline">Abc</span>'
+            //                )
+            //            ),
+            array(
+                'title'   => __('Links', 'pzarc'),
+                'id'      => $id . '-links-test',
+                'type'    => 'links',
+                'multi'   => true,
+                'output'  => $selectors,
+                'default' => $defaults,
+            )
         );
 
   }
@@ -381,4 +381,50 @@
     }
 
     return $returna;
+  }
+
+  add_action('xloop_start', 'pztopofloop', 10, 1);
+  function pztopofloop(&$the_query)
+  {
+
+    if (is_main_query()) {
+      echo '<h1 style="font-size:24px;font-weight:bold;color:red;">Loop starts here</h1>';
+//      var_dump($the_query);
+    }
+  }
+
+  add_action('xloop_end', 'pzbottomofloop');
+  function pzbottomofloop()
+  {
+    if (is_main_query()) {
+      echo '<h1 style="font-size:24px;font-weight:bold;color:red;">Loop ends here</h1>';
+    }
+  }
+
+
+  /**
+   * Class showBlueprint
+   *
+   * Provides an easy method for users to inject blueprints at any action hook
+   */
+  class showBlueprint
+  {
+
+    // Pass $data var to class
+    function __construct($action, $blueprint, $pageid='home', $overrides=null, $caller='template_tag')
+    {
+      $this->blueprint = $blueprint; // Get data in var
+      $this->action    = $action;
+      $this->overrides = $overrides;
+      $this->caller    = $caller;
+      $this->pageid    = $pageid;
+      add_action($action, array(&$this, 'render'));
+    }
+
+    public function render()
+    {
+      if ('home' === $this->pageid && (is_home() || is_front_page())) {
+        pzarchitect($this->blueprint, $this->overrides, $this->caller);
+      }
+    }
   }
