@@ -2,710 +2,28 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6a91661e-ac03-4c49-a442-2faea24b5b57" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/3D-Cube.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/3D-X-Axis-Rotation.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/3D-Y-Axis-Rotation.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/3D-Z-Axis-Rotation.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/3D-cylinder.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/3D-glasses.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/3D-plane.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/3D-pyramid.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/3D-sphere.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/3D-wedge.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/4-direction-alt.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/4-direction.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/8-direction-alt.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/8-direction.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/MD-analog.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/MD-aspect-ratio-alt.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/MD-aspect-ratio.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/MD-audio.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/MD-backward.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/MD-betamax.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/MD-brightness.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/MD-camera-photo-alt-1.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/MD-camera-photo-alt-2.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/MD-camera-photo-alt-3.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/MD-camera-photo.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/MD-camera-polaroid.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/MD-camera-surveillance.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/MD-camera-video-alt-1.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/MD-camera-video-alt-2.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/MD-camera-video.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/MD-camera-web.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/MD-cassette-tape.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/MD-cd-burn.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/MD-cd-card.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/MD-cd.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/MD-contrast.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/MD-dat.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/MD-disc-3''.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/MD-disc-3-5''.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/MD-disc-5-1-4''.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/MD-eject.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/MD-equalizer-alt.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/MD-equalizer.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/MD-fast-backward-alt.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/MD-fast-backward.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/MD-fast-forward-alt.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/MD-fast-forward.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/MD-film.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/MD-flash.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/MD-headphones-alt.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/MD-headphones-mic.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/MD-headphones.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/MD-inverse.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/MD-knob-alt.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/MD-knob-decrease.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/MD-knob-increase.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/MD-knob-volume.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/MD-knob.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/MD-levels-alt.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/MD-levels-decrease.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/MD-levels-increase.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/MD-levels.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/MD-microphone-alt.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/MD-microphone.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/MD-minidisc.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/MD-music.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/MD-next.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/MD-pause.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/MD-photo-alt 2.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/MD-photo-alt-1.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/MD-photo.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/MD-photos-alt.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/MD-photos.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/MD-picture-broken-link-alt.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/MD-picture-broken-link.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/MD-play.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/MD-previous.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/MD-radio.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/MD-record.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/MD-reload.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/MD-repeat-alt.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/MD-repeat-once.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/MD-repeat.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/MD-resume.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/MD-shuffle.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/MD-sound.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/MD-speaker-alt.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/MD-speaker.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/MD-split.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/MD-stop.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/MD-stream-audio.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/MD-stream-video.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/MD-synth.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/MD-time-pos-back.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/MD-time-pos-forward.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/MD-time-pos-set.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/MD-time-position.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/MD-tv.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/MD-vhs.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/MD-video.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/MD-vinyl-33-1-3.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/MD-vinyl-45.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/MD-volume-0-alt.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/MD-volume-0.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/MD-volume-1.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/MD-volume-2.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/MD-volume-3.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/MD-volume-down.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/MD-volume-up.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/about.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/access.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/activity.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/add.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/address-book.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/airport.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/alarm.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/alert-alt.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/alert.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/alt.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/anchor.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/announce.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/antivirus-alt.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/antivirus.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/arrow-1-backward.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/arrow-1-down-left.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/arrow-1-down-right.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/arrow-1-down.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/arrow-1-forward.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/arrow-1-left.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/arrow-1-right.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/arrow-1-up-left.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/arrow-1-up-right.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/arrow-1-up.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/arrow-2-down-left.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/arrow-2-down-right.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/arrow-2-down.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/arrow-2-left.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/arrow-2-right.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/arrow-2-up-left.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/arrow-2-up-right.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/arrow-2-up.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/arrow-3-down-left.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/arrow-3-down-right.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/arrow-3-down.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/arrow-3-left.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/arrow-3-right.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/arrow-3-up-left.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/arrow-3-up-right.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/arrow-3-up.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/arrow-4-down-left.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/arrow-4-down-right.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/arrow-4-down.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/arrow-4-left.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/arrow-4-right.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/arrow-4-up-left.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/arrow-4-up-right.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/arrow-4-up.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/arrow-5-down.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/arrow-5-left.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/arrow-5-right.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/arrow-5-up.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/arrow-6-down.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/arrow-6-left.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/arrow-6-right.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/arrow-6-up.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/arrow-7-down.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/arrow-7-left.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/arrow-7-right.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/arrow-7-up.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/arrow-8-down.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/arrow-8-left.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/arrow-8-right.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/arrow-8-up.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/arrow-circular-alt-1.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/arrow-circular-alt-2.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/arrow-orthogonal-alt-1.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/arrow-orthogonal-alt-2.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/asterisk-alt.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/asterisk.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/attachment.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/axis-x-y-alt.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/axis-x-y.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/badge.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/bag-alt-1.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/bag-alt-2.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/bag-alt-3.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/bag-alt-4.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/bag-alt-5.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/bag.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/baggage.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/balance.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/bank-alt-1.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/bank-alt-2.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/bank.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/barcode.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/basket-alt-1.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/basket-alt-2.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/basket-alt-3.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/basket.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/battery-empty-alt.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/battery-empty.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/battery-full-alt.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/battery-full.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/bicycle.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/blog.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/bluetooth.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/book-alt-2.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/book-alt-3.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/book-alt-4.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/book-alt.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/book.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/bookmark-alt.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/bookmark.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/books.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/box-alt.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/box.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/briefcase.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/brush-alt-1.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/brush-alt-2.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/brush.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/bug.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/bussiness-card.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/cake-alt.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/cake.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/calculator-alt.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/calculator.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/calendar-alt-1.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/calendar-alt-2.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/calendar.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/cancel.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/cart-alt-1.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/cart-alt-2.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/cart-alt-3.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/cart-alt-4.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/cart-alt-5.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/cart-alt-6.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/cart.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/chair-alt.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/chair.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/chat-active-alt-1.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/chat-active-alt-2.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/chat-active.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/chat-alt-1.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/chat-alt-2.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/chat-alt-3.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/chat.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/check-alt.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/check.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/checkbox-empty.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/checkbox.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/cheque.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/cinema.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/city.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/code.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/color-picker.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/color-swatch.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/comment-alt.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/comment.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/compass-alt.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/compass.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/compress.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/computer-laptop.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/computer-retro.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/computer.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/connect-alt-1.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/connect-alt-2.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/connect.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/connection-error-alt-1.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/connection-error-alt-2.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/connection-error.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/construction.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/content.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/controls-alt-1.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/controls-alt-2.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/controls.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/copy.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/couch-alt-1.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/couch-alt-2.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/couch.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/counter.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/credit-card.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/crop.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/cross.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/cup-alt.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/cup.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/cut.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/data-alt-1.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/data-alt-2.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/data.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/database-add-alt-1.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/database-add-alt-2.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/database-add.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/database-alt-1.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/database-alt-2.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/database-download-alt-1.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/database-download-alt-2.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/database-download.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/database-reload-alt-1.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/database-reload-alt-2.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/database-reload.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/database-remove-alt-1.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/database-remove-alt-2.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/database-remove.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/database-upload-alt-1.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/database-upload-alt-2.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/database-upload.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/database-user-alt.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/database-user.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/database.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/delete.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/directions-alt.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/directions.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/display-mac-alt.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/display-mac.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/display.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/document-empty.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/document-new.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/document.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/documents.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/door-closed.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/door.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/download-alt-1.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/download-alt-2.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/download-alt-3.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/download-alt-4.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/download.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/drawer-locked.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/drawer-unlocked.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/drawer.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/drawers-alt-1.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/drawers-alt-2.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/drawers.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/drill.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/drive-disk-cd.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/drive-network.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/edit-alt-1.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/edit-alt-2.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/edit-document.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/edit.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/eightball.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/elevator.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/enter.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/eraser.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/ethernet.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/export.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/facebook-alt.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/facebook.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/factory.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/fan-alt.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/fan.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/favourite-add.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/favourite.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/file-add.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/file-download-alt.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/file-download.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/file-edit.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/file-remove.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/file-upload-alt.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/file-upload.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/file.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/files.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/fill.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/filter.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/find.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/fire.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/firewall.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/firewire.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/first-aid-alt.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/first-aid.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/flag.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/folder-open.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/folder.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/font.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/food.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/ftp-alt-1.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/ftp-alt-2.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/ftp.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/full-screen-alt-1.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/full-screen-alt-2.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/full-screen-alt-3.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/full-screen-alt-4.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/full-screen-alt-5.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/full-screen-exit-alt-1.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/full-screen-exit-alt-2.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/full-screen-exit-alt-3.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/full-screen-exit-alt-4.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/full-screen-exit-alt-5.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/full-screen-exit.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/full-screen.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/gameboy.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/games-alt-1.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/games-alt-2.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/games-alt-3.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/games-alt-4.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/games-alt-5.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/games-alt-6.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/games.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/gift.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/glasses-swim.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/glasses.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/grid-alt-1.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/grid-alt-2.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/grid-alt-3.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/grid-dot.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/grid.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/hammer-alt.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/hammer.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/hardware-chip.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/hardware-processor.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/hedge.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/help-alt.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/help.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/hierarchy.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/high-definition.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/home.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/i-phone.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/i-pod.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/icecream.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/idea-alt.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/idea.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/info.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/key-A.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/key-Alt.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/key-apple.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/key-backspace-alt.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/key-backspace.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/key-caps.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/key-command.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/key-control.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/key-enter.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/key-option.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/key-page-down.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/key-page-up.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/key-shift.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/key-tab.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/key-windows.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/key.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/keyboard.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/keyhole.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/kokoretsi.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/kraftwerk.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/label.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/lamp-alt-1.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/lamp-alt-2.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/lamp.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/layers.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/layout-content.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/layout-header.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/layout-sidebar.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/layout.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/license-key.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/link-broken.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/link.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/list-numbered.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/list-ordered.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/list-unordered.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/list.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/location.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/login.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/logout.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/luck.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/magnet.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/mail-inbox.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/mail-read.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/mail-sent.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/mail.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/man.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/map-marker-pin.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/map.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/medal-alt.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/medal.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/mobile-alt.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/mobile.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/module.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/moleskine.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/moon.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/mouse.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/navigation-alt-1.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/navigation-alt-2.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/navigation.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/network-alt-1.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/network.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/no.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/node.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/notepad-alt.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/notepad.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/open-in-new-window.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/open-source.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/orientation-landscape.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/orientation-portrait.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/padlock-closed.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/padlock-open.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/paintroller-alt.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/paintroller.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/park-bench.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/paste.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/pattern.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/pen.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/pill.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/pinetree.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/plugin-disabled.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/plugin.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/podcast.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/pollution.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/power-off.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/power-on-off.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/power-on.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/power-standby.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/preferences.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/presentation.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/print-alt.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/print.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/printer-preview.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/printer.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/projector.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/read-only.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/refreshment.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/register.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/remote-control.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/report.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/resize.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/rip.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/road-sign.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/rss.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/ruby.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/ruler-alt.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/ruler.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/safety-box.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/save.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/science.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/screenshot.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/script.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/search-advanced.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/search.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/server.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/servers.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/settings.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/shape-circle.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/shape-ellipse.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/shape-hexagon.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/shape-kite.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/shape-parallelogram-orthogonal.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/shape-pentagon.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/shape-rhombus.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/shape-square.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/shape-trapezoid.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/shape-triangle-equilateral.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/shape-triangle-isosceles.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/shape-triangle-rectangular.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/shape-triangle-scalene.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/shapes-align-hori-center.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/shapes-align-hori-left.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/shapes-align-hori-right.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/shapes-align-verti-bottom.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/shapes-align-verti-middle.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/shapes-align-verti-top.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/shapes-flip-horizontal.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/shapes-flip-vertical.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/shapes-move-back.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/shapes-move-backward.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/shapes-move-forward.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/shapes-move-front.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/shapes-rotate-anticlockwise.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/shapes-rotate-clockwise.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/sitemap.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/spaceship.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/stamp.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/star.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/statistics-chart.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/statistics-pie-chart.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/sticky-note.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/stop-alt.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/stop.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/stopwatch.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/store.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/switch-off-alt.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/switch-off.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/switch-on-alt.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/switch-on.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/tab.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/table.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/tag.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/tags.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/target.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/telephone.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/tent.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/terminal.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/thumbnails.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/tie.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/time-alt.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/time.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/toolbox.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/trafficlight-green.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/trafficlight-orange.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/trafficlight-red.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/trafficlight.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/trash-empty.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/trash-full.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/trophy.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/truck.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/twitter.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/typewritter.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/unfold-from-bottom.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/unfold-from-left.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/unfold-from-right.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/unfold-from-top.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/unfold-multiple.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/user-alt-1.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/user-alt-2.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/user-alt-3.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/user-alt-4.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/user-art.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/user-chat.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/user-female-alt-1.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/user-female-alt-2.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/user-female.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/user-locked.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/user-male-alt-1.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/user-male-alt-2.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/user-male-alt-3.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/user-male.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/user-offline.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/user-refresh.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/user-sleep.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/user.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/users-alt.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/users.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/view.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/wall-alt.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/wall.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/wallet.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/water-alt.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/water.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/weather-cloud-sun.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/weather-cloud.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/weather-clouds.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/weather-rain.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/weather-snow.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/weather-sun.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/weather-thunder.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/web.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/weight.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/wi-fi.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/window-stack.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/window-tile-horizontally.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/window-tile-vertically.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/window-tile.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/window.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/wireless-router.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/wizard.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/zoom-in.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/zoom-out.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/32x32/zoom.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/icons/braces-65grey.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/icons/computer-65grey.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/icons/custom1-65grey.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/icons/custom1.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/icons/filter-65grey.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/icons/general-65grey.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/icons/general-white.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/icons/general.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/icons/help1-65grey.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/icons/help1.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/icons/help2-65grey.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/icons/help2.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/icons/images-65grey.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/icons/images.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/icons/layout1-65grey.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/icons/layout1.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/icons/layout2-65grey.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/icons/layout2.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/icons/navigation-65grey.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/icons/navigation.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/icons/next.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/icons/phone-65grey.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/icons/point-65grey.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/icons/point.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/icons/prev.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/icons/styling-65grey.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/icons/styling.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/icons/tablet-65grey.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/icons/text1-65grey.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/icons/text1.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/icons/text2-65grey.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/icons/text2.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/icons/transitions-65grey.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/icons/transitions.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/icons/video-65grey.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/icons/video.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/icons/world-65grey.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/resources/assets/images/icons/world.png" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/admin/css/.sass-cache/0c627864ce094f59999781504c26ab519159ab66/arc-admin.scssc" afterPath="$PROJECT_DIR$/application/admin/css/.sass-cache/0c627864ce094f59999781504c26ab519159ab66/arc-admin.scssc" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/application/resources/architect/php/class_arc_Adapter.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/public/css/.sass-cache/dceb20a9fc4a1f730cc89393cb8f6c79e45f74bc/arc-front.scssc" afterPath="$PROJECT_DIR$/application/public/css/.sass-cache/dceb20a9fc4a1f730cc89393cb8f6c79e45f74bc/arc-front.scssc" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/admin/css/arc-admin.css.map" afterPath="$PROJECT_DIR$/application/admin/css/arc-admin.css.map" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/admin/css/arc-admin.css" afterPath="$PROJECT_DIR$/application/admin/css/arc-admin.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/admin/css/arc-admin.scss" afterPath="$PROJECT_DIR$/application/admin/css/arc-admin.scss" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/arc-admin.php" afterPath="$PROJECT_DIR$/application/arc-admin.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/public/css/arc-front.css.map" afterPath="$PROJECT_DIR$/application/public/css/arc-front.css.map" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/public/css/arc-front.css" afterPath="$PROJECT_DIR$/application/public/css/arc-front.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/public/css/arc-front.scss" afterPath="$PROJECT_DIR$/application/public/css/arc-front.scss" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/resources/architect/php/arc-functions.php" afterPath="$PROJECT_DIR$/application/resources/architect/php/arc-functions.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/public/php/arc-headway-block-display.php" afterPath="$PROJECT_DIR$/application/public/php/arc-headway-block-display.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/admin/php/headway/arc-headway-block-options.php" afterPath="$PROJECT_DIR$/application/admin/php/headway/arc-headway-block-options.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/admin/php/arc-options-def-editor.php" afterPath="$PROJECT_DIR$/application/admin/php/arc-options-def-editor.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/admin/php/arc-options.php" afterPath="$PROJECT_DIR$/application/admin/php/arc-options.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/arc-public.php" afterPath="$PROJECT_DIR$/application/arc-public.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/admin/php/arc-save-process.php" afterPath="$PROJECT_DIR$/application/admin/php/arc-save-process.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/architect.php" afterPath="$PROJECT_DIR$/architect.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/public/php/class_Architect.php" afterPath="$PROJECT_DIR$/application/public/php/class_Architect.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/admin/php/class_arc_Blueprints_Layouts.php" afterPath="$PROJECT_DIR$/application/admin/php/class_arc_Blueprints_Layouts.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/pizazzwp-architect.iml" afterPath="$PROJECT_DIR$/.idea/pizazzwp-architect.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/public/php/class_arc_Panel.php" afterPath="$PROJECT_DIR$/application/public/php/class_arc_Panel.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/admin/php/class_arc_Panels_Layouts.php" afterPath="$PROJECT_DIR$/application/admin/php/class_arc_Panels_Layouts.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/public/php/class_arc_Section.php" afterPath="$PROJECT_DIR$/application/public/php/class_arc_Section.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config.codekit" afterPath="$PROJECT_DIR$/config.codekit" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/resources/libraries/php/redux-custom-fields/links/field_links.php" afterPath="$PROJECT_DIR$/application/resources/libraries/php/redux-custom-fields/links/field_links.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/public/php/interface_arc_PanelDefinitions.php" afterPath="$PROJECT_DIR$/application/public/php/interface_arc_PanelDefinitions.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <list id="6bc53ef6-a4e7-48ed-9a91-cec0b69ebc38" name="Default task" comment="" />
@@ -731,13 +49,23 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
+      <file leaf-file-name="class_arc_Panel.php" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/application/public/php/class_arc_Panel.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="202" column="0" selection-start="9434" selection-end="9434" vertical-scroll-proportion="0.5241461" vertical-offset="3191" max-vertical-offset="5598">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="arc-functions.php" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/application/resources/architect/php/arc-functions.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="425" column="69" selection-start="15817" selection-end="15817" vertical-scroll-proportion="-43.083332" vertical-offset="6616" max-vertical-offset="7848">
+            <state line="164" column="0" selection-start="4424" selection-end="4609" vertical-scroll-proportion="-15.541667" vertical-offset="2579" max-vertical-offset="7848">
               <folding>
-                <marker date="1400319964000" expanded="true" signature="14857:14899" placeholder="..." />
-                <marker date="1400319964000" expanded="true" signature="15093:15135" placeholder="..." />
+                <marker date="1400553186000" expanded="true" signature="4444:4606" placeholder="..." />
+                <marker date="1400553186000" expanded="true" signature="14889:14931" placeholder="..." />
+                <marker date="1400553186000" expanded="true" signature="15125:15167" placeholder="..." />
               </folding>
             </state>
           </provider>
@@ -746,7 +74,7 @@
       <file leaf-file-name="field_links.php" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/application/resources/libraries/php/redux-custom-fields/links/field_links.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="111" column="15" selection-start="4884" selection-end="4884" vertical-scroll-proportion="0.0" vertical-offset="1649" max-vertical-offset="4140">
+            <state line="128" column="24" selection-start="7385" selection-end="7385" vertical-scroll-proportion="-40.291668" vertical-offset="1337" max-vertical-offset="4140">
               <folding />
             </state>
           </provider>
@@ -764,7 +92,7 @@
       <file leaf-file-name="class_arc_Section.php" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/application/public/php/class_arc_Section.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2286">
+            <state line="105" column="6" selection-start="4960" selection-end="4960" vertical-scroll-proportion="-8.9" vertical-offset="1445" max-vertical-offset="2268">
               <folding />
             </state>
           </provider>
@@ -782,7 +110,7 @@
       <file leaf-file-name="class_arc_Blueprint.php" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/application/public/php/class_arc_Blueprint.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="162" column="0" selection-start="5052" selection-end="5052" vertical-scroll-proportion="-43.833332" vertical-offset="1864" max-vertical-offset="3024">
+            <state line="25" column="13" selection-start="488" selection-end="488" vertical-scroll-proportion="-3.0" vertical-offset="378" max-vertical-offset="3024">
               <folding />
             </state>
           </provider>
@@ -791,7 +119,34 @@
       <file leaf-file-name="arc-save-process.php" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/application/admin/php/arc-save-process.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="262" column="15" selection-start="12362" selection-end="12362" vertical-scroll-proportion="-4.7083335" vertical-offset="4603" max-vertical-offset="8748">
+            <state line="32" column="37" selection-start="937" selection-end="937" vertical-scroll-proportion="-11.52" vertical-offset="0" max-vertical-offset="9054">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="class_arc_Adapter.php" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/application/resources/architect/php/class_arc_Adapter.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="185" column="26" selection-start="7014" selection-end="7014" vertical-scroll-proportion="-4.1282053" vertical-offset="3008" max-vertical-offset="5220">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="arc-headway-block-options.php" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/application/admin/php/headway/arc-headway-block-options.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="269" column="99" selection-start="9685" selection-end="9685" vertical-scroll-proportion="-10.02" vertical-offset="4341" max-vertical-offset="5112">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="arc-headway-block-display.php" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/application/public/php/arc-headway-block-display.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="38" column="53" selection-start="1407" selection-end="1407" vertical-scroll-proportion="-15.333333" vertical-offset="316" max-vertical-offset="3384">
               <folding />
             </state>
           </provider>
@@ -800,18 +155,48 @@
       <file leaf-file-name="class_arc_Panels_Layouts.php" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/application/admin/php/class_arc_Panels_Layouts.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="1002" column="59" selection-start="42961" selection-end="42982" vertical-scroll-proportion="0.0" vertical-offset="17676" max-vertical-offset="22626">
+            <state line="757" column="45" selection-start="31938" selection-end="31938" vertical-scroll-proportion="-17.54" vertical-offset="12749" max-vertical-offset="21978">
               <folding>
-                <marker date="1400143737000" expanded="true" signature="38949:39147" placeholder="..." />
-                <marker date="1400143737000" expanded="true" signature="39182:39359" placeholder="..." />
-                <marker date="1400143737000" expanded="true" signature="39394:39566" placeholder="..." />
-                <marker date="1400143737000" expanded="true" signature="39601:39775" placeholder="..." />
-                <marker date="1400143737000" expanded="true" signature="39810:39911" placeholder="..." />
-                <marker date="1400143737000" expanded="true" signature="52407:52605" placeholder="..." />
-                <marker date="1400143737000" expanded="true" signature="52640:52817" placeholder="..." />
-                <marker date="1400143737000" expanded="true" signature="52852:53024" placeholder="..." />
-                <marker date="1400143737000" expanded="true" signature="53059:53233" placeholder="..." />
-                <marker date="1400143737000" expanded="true" signature="53268:53369" placeholder="..." />
+                <marker date="1400555984000" expanded="true" signature="36829:37027" placeholder="..." />
+                <marker date="1400555984000" expanded="true" signature="37062:37239" placeholder="..." />
+                <marker date="1400555984000" expanded="true" signature="37274:37446" placeholder="..." />
+                <marker date="1400555984000" expanded="true" signature="37481:37655" placeholder="..." />
+                <marker date="1400555984000" expanded="true" signature="37690:37791" placeholder="..." />
+                <marker date="1400555984000" expanded="true" signature="50405:50603" placeholder="..." />
+                <marker date="1400555984000" expanded="true" signature="50638:50815" placeholder="..." />
+                <marker date="1400555984000" expanded="true" signature="50850:51022" placeholder="..." />
+                <marker date="1400555984000" expanded="true" signature="51057:51231" placeholder="..." />
+                <marker date="1400555984000" expanded="true" signature="51266:51367" placeholder="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="class_arc_Blueprints_Layouts.php" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/application/admin/php/class_arc_Blueprints_Layouts.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="529" column="0" selection-start="21445" selection-end="21445" vertical-scroll-proportion="-4.4852943" vertical-offset="9217" max-vertical-offset="25740">
+              <folding>
+                <marker date="1400485856000" expanded="true" signature="31782:32461" placeholder="..." />
+                <marker date="1400485856000" expanded="true" signature="31782:32242" placeholder="..." />
+                <marker date="1400485856000" expanded="true" signature="31782:32230" placeholder="..." />
+                <marker date="1400485856000" expanded="true" signature="31782:32216" placeholder="..." />
+                <marker date="1400485856000" expanded="true" signature="31782:32208" placeholder="..." />
+                <marker date="1400485856000" expanded="true" signature="31782:32132" placeholder="..." />
+                <marker date="1400485856000" expanded="true" signature="31782:32132" placeholder="..." />
+                <marker date="1400485856000" expanded="true" signature="31782:32132" placeholder="..." />
+                <marker date="1400485856000" expanded="true" signature="31782:32132" placeholder="..." />
+                <marker date="1400485856000" expanded="true" signature="31782:32132" placeholder="..." />
+                <marker date="1400485856000" expanded="true" signature="33463:33661" placeholder="..." />
+                <marker date="1400485856000" expanded="true" signature="33696:33873" placeholder="..." />
+                <marker date="1400485856000" expanded="true" signature="33908:34080" placeholder="..." />
+                <marker date="1400485856000" expanded="true" signature="34115:34289" placeholder="..." />
+                <marker date="1400485856000" expanded="true" signature="34324:34425" placeholder="..." />
+                <marker date="1400485856000" expanded="true" signature="48614:48812" placeholder="..." />
+                <marker date="1400485856000" expanded="true" signature="48847:49024" placeholder="..." />
+                <marker date="1400485856000" expanded="true" signature="49059:49231" placeholder="..." />
+                <marker date="1400485856000" expanded="true" signature="49266:49440" placeholder="..." />
+                <marker date="1400485856000" expanded="true" signature="49475:49576" placeholder="..." />
               </folding>
             </state>
           </provider>
@@ -820,7 +205,7 @@
       <file leaf-file-name="class_Architect.php" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/application/public/php/class_Architect.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="6336">
+            <state line="173" column="0" selection-start="7108" selection-end="7108" vertical-scroll-proportion="-9.44" vertical-offset="2642" max-vertical-offset="6372">
               <folding />
             </state>
           </provider>
@@ -829,38 +214,91 @@
       <file leaf-file-name="arc-public.php" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/application/arc-public.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="76" column="22" selection-start="2605" selection-end="2616" vertical-scroll-proportion="-33.75" vertical-offset="558" max-vertical-offset="3420">
+            <state line="198" column="0" selection-start="6911" selection-end="6911" vertical-scroll-proportion="-30.333334" vertical-offset="2836" max-vertical-offset="3672">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="class_arc_Blueprints_Layouts.php" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/application/admin/php/class_arc_Blueprints_Layouts.php">
+      <file leaf-file-name="arc-options-actions.php" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/application/admin/php/arc-options-actions.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="778" column="153" selection-start="32375" selection-end="32375" vertical-scroll-proportion="0.7881657" vertical-offset="13338" max-vertical-offset="25308">
+            <state line="69" column="8" selection-start="2591" selection-end="2591" vertical-scroll-proportion="-4.0833335" vertical-offset="1144" max-vertical-offset="9522">
               <folding>
-                <marker date="1400324397000" expanded="true" signature="30957:31155" placeholder="..." />
-                <marker date="1400324397000" expanded="true" signature="31190:31367" placeholder="..." />
-                <marker date="1400324397000" expanded="true" signature="31402:31574" placeholder="..." />
-                <marker date="1400324397000" expanded="true" signature="31609:31783" placeholder="..." />
-                <marker date="1400324397000" expanded="true" signature="31818:31919" placeholder="..." />
-                <marker date="1400324397000" expanded="true" signature="32059:32609" placeholder="..." />
-                <marker date="1400324397000" expanded="true" signature="32059:32573" placeholder="..." />
-                <marker date="1400324397000" expanded="true" signature="32059:32561" placeholder="..." />
-                <marker date="1400324397000" expanded="true" signature="32059:32547" placeholder="..." />
-                <marker date="1400324397000" expanded="true" signature="32059:32539" placeholder="..." />
-                <marker date="1400324397000" expanded="true" signature="32059:32298" placeholder="..." />
-                <marker date="1400324397000" expanded="true" signature="32059:32286" placeholder="..." />
-                <marker date="1400324397000" expanded="true" signature="32059:32285" placeholder="..." />
-                <marker date="1400324397000" expanded="true" signature="32059:32143" placeholder="..." />
-                <marker date="1400324397000" expanded="true" signature="32059:32132" placeholder="..." />
-                <marker date="1400324397000" expanded="true" signature="47352:47550" placeholder="..." />
-                <marker date="1400324397000" expanded="true" signature="47585:47762" placeholder="..." />
-                <marker date="1400324397000" expanded="true" signature="47797:47969" placeholder="..." />
-                <marker date="1400324397000" expanded="true" signature="48004:48178" placeholder="..." />
-                <marker date="1400324397000" expanded="true" signature="48213:48314" placeholder="..." />
+                <marker date="1400492336000" expanded="true" signature="6325:7961" placeholder="..." />
+                <marker date="1400492336000" expanded="true" signature="6533:6736" placeholder="..." />
+                <marker date="1400492336000" expanded="true" signature="6850:6920" placeholder="..." />
+                <marker date="1400492336000" expanded="true" signature="6962:7035" placeholder="..." />
+                <marker date="1400492336000" expanded="true" signature="7052:7945" placeholder="..." />
+                <marker date="1400492336000" expanded="true" signature="7088:7481" placeholder="..." />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="arc-options-def-editor.php" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/application/admin/php/arc-options-def-editor.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="68" column="11" selection-start="2505" selection-end="2505" vertical-scroll-proportion="-4.4166665" vertical-offset="1118" max-vertical-offset="11268">
+              <folding>
+                <marker date="1400492344000" expanded="true" signature="6237:7873" placeholder="..." />
+                <marker date="1400492344000" expanded="true" signature="6445:6648" placeholder="..." />
+                <marker date="1400492344000" expanded="true" signature="6762:6832" placeholder="..." />
+                <marker date="1400492344000" expanded="true" signature="6874:6947" placeholder="..." />
+                <marker date="1400492344000" expanded="true" signature="6964:7857" placeholder="..." />
+                <marker date="1400492344000" expanded="true" signature="7000:7393" placeholder="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="arc-options.php" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/application/admin/php/arc-options.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="71" column="11" selection-start="2492" selection-end="2492" vertical-scroll-proportion="-4.4166665" vertical-offset="1172" max-vertical-offset="12456">
+              <folding>
+                <marker date="1400492357000" expanded="true" signature="6413:8061" placeholder="..." />
+                <marker date="1400492357000" expanded="true" signature="6621:6824" placeholder="..." />
+                <marker date="1400492357000" expanded="true" signature="6938:7008" placeholder="..." />
+                <marker date="1400492357000" expanded="true" signature="7050:7123" placeholder="..." />
+                <marker date="1400492357000" expanded="true" signature="7140:8045" placeholder="..." />
+                <marker date="1400492357000" expanded="true" signature="7176:7569" placeholder="..." />
+                <marker date="1400492357000" expanded="true" signature="19178:19376" placeholder="..." />
+                <marker date="1400492357000" expanded="true" signature="19411:19588" placeholder="..." />
+                <marker date="1400492357000" expanded="true" signature="19623:19795" placeholder="..." />
+                <marker date="1400492357000" expanded="true" signature="19830:20004" placeholder="..." />
+                <marker date="1400492357000" expanded="true" signature="20039:20140" placeholder="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="PizazzWP.php" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../../../../wp-mba.dev/wp-content/plugins/pizazzwp-libs/PizazzWP.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="241" column="5" selection-start="8573" selection-end="8573" vertical-scroll-proportion="12.75" vertical-offset="4644" max-vertical-offset="23256">
+              <folding>
+                <marker date="1400413070000" expanded="false" signature="3009:3022" placeholder="..." />
+                <marker date="1400413070000" expanded="true" signature="8012:8368" placeholder="..." />
+                <marker date="1400413070000" expanded="false" signature="11469:11482" placeholder="..." />
+                <marker date="1400413070000" expanded="true" signature="13560:13660" placeholder="..." />
+                <marker date="1400413070000" expanded="false" signature="13945:14005" placeholder="..." />
+                <marker date="1400413070000" expanded="true" signature="14006:14028" placeholder="..." />
+                <marker date="1400413070000" expanded="false" signature="18645:18655" placeholder="..." />
+                <marker date="1400413070000" expanded="false" signature="26474:26484" placeholder="..." />
+                <marker date="1400413070000" expanded="false" signature="27803:27813" placeholder="..." />
+                <marker date="1400413070000" expanded="false" signature="33728:33741" placeholder="..." />
+                <marker date="1400413070000" expanded="false" signature="48992:49005" placeholder="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="arc-admin.php" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/application/arc-admin.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="60" column="72" selection-start="2388" selection-end="2388" vertical-scroll-proportion="-45.0" vertical-offset="0" max-vertical-offset="3816">
+              <folding />
             </state>
           </provider>
         </entry>
@@ -868,7 +306,7 @@
       <file leaf-file-name="architect.php" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/architect.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="38" column="52" selection-start="1603" selection-end="1603" vertical-scroll-proportion="-28.5" vertical-offset="0" max-vertical-offset="6516">
+            <state line="143" column="83" selection-start="5779" selection-end="5779" vertical-scroll-proportion="-6.58" vertical-offset="2245" max-vertical-offset="6606">
               <folding />
             </state>
           </provider>
@@ -877,7 +315,7 @@
       <file leaf-file-name="arc-front.scss" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/application/public/css/arc-front.scss">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="71" column="4" selection-start="1453" selection-end="1453" vertical-scroll-proportion="-4.32" vertical-offset="1062" max-vertical-offset="6588">
+            <state line="90" column="28" selection-start="1834" selection-end="1834" vertical-scroll-proportion="-9.36" vertical-offset="1152" max-vertical-offset="6966">
               <folding />
             </state>
           </provider>
@@ -886,16 +324,7 @@
       <file leaf-file-name="interface_arc_PanelDefinitions.php" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/application/public/php/interface_arc_PanelDefinitions.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="3366">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="class_arc_Panel.php" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/application/public/php/class_arc_Panel.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="103" column="44" selection-start="5277" selection-end="5277" vertical-scroll-proportion="-13.083333" vertical-offset="1540" max-vertical-offset="5238">
+            <state line="37" column="3" selection-start="2201" selection-end="2201" vertical-scroll-proportion="-12.75" vertical-offset="360" max-vertical-offset="3366">
               <folding />
             </state>
           </provider>
@@ -919,11 +348,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/application/data/admin/php/headway/arc-headway-block-options.php" />
-        <option value="$PROJECT_DIR$/application/interface/public/php/arc_template.php" />
-        <option value="$PROJECT_DIR$/application/interface/public/php/arc-template.php" />
-        <option value="$PROJECT_DIR$/application/interface/public/php/pzarc_Section.php" />
-        <option value="$PROJECT_DIR$/application/interface/public/php/class_pzarc_Pagination.php" />
         <option value="$PROJECT_DIR$/application/interface/public/php/class_pzarc_Navigator.php" />
         <option value="$PROJECT_DIR$/application/interface/public/php/class_pzarc_Blueprint.php" />
         <option value="$PROJECT_DIR$/application/interface/public/php/class_pzarc_Section.php" />
@@ -945,31 +369,36 @@
         <option value="$PROJECT_DIR$/application/admin/css/arc-admin.sass" />
         <option value="$PROJECT_DIR$/application/admin/css/arc-admin.css" />
         <option value="$PROJECT_DIR$/application/public/php/class_arc_Pagination.php" />
-        <option value="$PROJECT_DIR$/application/admin/php/arc-options-def-editor.php" />
-        <option value="$PROJECT_DIR$/application/arc-admin.php" />
         <option value="$PROJECT_DIR$/application/resources/includes/php/class_arc_Widget.php" />
         <option value="$PROJECT_DIR$/documentation/index.html" />
         <option value="$PROJECT_DIR$/application/resources/libs/php/redux-extensions/extensions/metaboxes/extension_metaboxes.php" />
         <option value="$PROJECT_DIR$/application/admin/js/arc-metaboxes-panels.js" />
         <option value="$PROJECT_DIR$/fiddle.source.php" />
-        <option value="$PROJECT_DIR$/application/admin/php/arc-options.php" />
-        <option value="$PROJECT_DIR$/application/public/php/class_arc_Section.php" />
         <option value="$PROJECT_DIR$/application/public/js/arc-front.js" />
-        <option value="$PROJECT_DIR$/application/public/php/class_Architect.php" />
-        <option value="$PROJECT_DIR$/application/admin/php/class_arc_Panels_Layouts.php" />
-        <option value="$PROJECT_DIR$/application/public/php/interface_arc_PanelDefinitions.php" />
         <option value="$PROJECT_DIR$/application/resources/includes/php/arc-functions.php" />
         <option value="$PROJECT_DIR$/application/resources/libraries/php/redux-custom-fields/loader.php" />
-        <option value="$PROJECT_DIR$/application/resources/libraries/php/redux-custom-fields/links/field_links.php" />
-        <option value="$PROJECT_DIR$/application/public/php/class_arc_Panel.php" />
-        <option value="$PROJECT_DIR$/application/admin/php/arc-save-process.php" />
-        <option value="$PROJECT_DIR$/architect.php" />
-        <option value="$PROJECT_DIR$/application/public/css/arc-front.scss" />
-        <option value="$PROJECT_DIR$/application/arc-public.php" />
         <option value="$PROJECT_DIR$/application/public/php/class_arc_Blueprint.php" />
-        <option value="$PROJECT_DIR$/application/resources/architect/php/arc-functions.php" />
         <option value="$PROJECT_DIR$/application/admin/css/arc-admin.scss" />
+        <option value="$PROJECT_DIR$/application/arc-admin.php" />
+        <option value="$PROJECT_DIR$/../../../../wp-mba.dev/wp-content/plugins/pizazzwp-libs/PizazzWP.php" />
+        <option value="$PROJECT_DIR$/application/arc-public.php" />
         <option value="$PROJECT_DIR$/application/admin/php/class_arc_Blueprints_Layouts.php" />
+        <option value="$PROJECT_DIR$/architect.php" />
+        <option value="$PROJECT_DIR$/application/admin/php/headway/arc-headway-block-options.php" />
+        <option value="$PROJECT_DIR$/application/public/php/arc-headway-block-display.php" />
+        <option value="$PROJECT_DIR$/application/admin/php/arc-options-actions.php" />
+        <option value="$PROJECT_DIR$/application/admin/php/arc-options-def-editor.php" />
+        <option value="$PROJECT_DIR$/application/admin/php/arc-options.php" />
+        <option value="$PROJECT_DIR$/application/public/php/class_Architect.php" />
+        <option value="$PROJECT_DIR$/application/admin/php/arc-save-process.php" />
+        <option value="$PROJECT_DIR$/application/resources/architect/php/class_arc_Adapter.php" />
+        <option value="$PROJECT_DIR$/application/resources/libraries/php/redux-custom-fields/links/field_links.php" />
+        <option value="$PROJECT_DIR$/application/resources/architect/php/arc-functions.php" />
+        <option value="$PROJECT_DIR$/application/public/php/class_arc_Section.php" />
+        <option value="$PROJECT_DIR$/application/public/php/interface_arc_PanelDefinitions.php" />
+        <option value="$PROJECT_DIR$/application/public/css/arc-front.scss" />
+        <option value="$PROJECT_DIR$/application/admin/php/class_arc_Panels_Layouts.php" />
+        <option value="$PROJECT_DIR$/application/public/php/class_arc_Panel.php" />
       </list>
     </option>
   </component>
@@ -983,8 +412,8 @@
   </component>
   <component name="ProjectFrameBounds">
     <option name="y" value="22" />
-    <option name="width" value="2550" />
-    <option name="height" value="1028" />
+    <option name="width" value="1680" />
+    <option name="height" value="980" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -1175,6 +604,160 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pizazzwp-architect" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pizazzwp-architect" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="application" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="resources" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="architect" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="php" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pizazzwp-architect" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pizazzwp-architect" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="application" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="resources" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="architect" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pizazzwp-architect" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pizazzwp-architect" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="application" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="public" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="php" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pizazzwp-architect" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pizazzwp-architect" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="application" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="public" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pizazzwp-architect" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pizazzwp-architect" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="application" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="admin" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="php" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pizazzwp-architect" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pizazzwp-architect" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="application" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="admin" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="php" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="headway" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pizazzwp-architect" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pizazzwp-architect" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="application" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="admin" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
     </panes>
@@ -1185,9 +768,9 @@
     <property name="options.searchVisible" value="true" />
     <property name="options.splitter.details.proportions" value="0.2" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../../wp-mba.dev/wp-content/plugins/headway-excerptsplus" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../../wp-mba.dev/wp-content/plugins/pizazzwp-libs/PizazzWP.php" />
     <property name="FullScreen" value="false" />
-    <property name="SearchEverywhereHistory" value="$&#10;&gt;&#10;tabify" />
+    <property name="SearchEverywhereHistory" value="&#10;$&#10;&gt;&#10;tabify" />
     <property name="LayoutCode.rearrangeEntriesPHP" value="false" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth0" value="326" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder0" value="0" />
@@ -1284,24 +867,24 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="22" width="2550" height="1028" extended-state="0" />
+    <frame x="0" y="22" width="1680" height="980" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32675612" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32603937" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39559165" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32962668" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.16727717" sideWeight="0.3564815" order="1" side_tool="true" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.11044657" sideWeight="0.6435185" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="eSnippet Pro" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3295583" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.5940919" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32885376" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39559165" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.16910867" sideWeight="0.35776806" order="1" side_tool="true" content_ui="tabs" />
+      <window_info id="eSnippet Pro" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3295583" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.16910867" sideWeight="0.64223194" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.5960648" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Duplicates" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.7064117" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
@@ -1351,11 +934,11 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="php">
           <url>file://$PROJECT_DIR$/application/admin/php/class_arc_Blueprints_Layouts.php</url>
-          <line>414</line>
+          <line>424</line>
           <option name="timeStamp" value="4" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="7" />
+      <option name="time" value="8" />
     </breakpoint-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
@@ -1371,29 +954,6 @@
     </PATH>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/wp-updates-plugin.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/README.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0" />
-      </provider>
-      <provider editor-type-id="com.intellij.persistence.database.editor.CsvTableFileEditorProvider">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/admin/php/arc-galleries.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/resources/architect/php/arc-check-dependencies.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/application/resources/libraries/php/redux-custom-fields/tabbed/field_tabbed.css">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0" />
@@ -1459,16 +1019,6 @@
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application/admin/php/headway/arc-headway-block-options.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/admin/php/arc-options-def-editor.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/application/resources/architect/php/class_arc_Widget.php">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0" />
@@ -1485,11 +1035,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/documentation/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/arc-admin.php">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0" />
       </provider>
@@ -1534,11 +1079,6 @@
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application/admin/php/arc-options.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/application/admin/js/arc-metaboxes-contents.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0" />
@@ -1549,28 +1089,7 @@
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application/public/php/class_arc_Section.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/application/public/js/arc-front.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/public/php/class_Architect.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/public/php/interface_arc_PanelDefinitions.php">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0">
           <folding />
@@ -1582,83 +1101,6 @@
         <state line="21" column="50" selection-start="717" selection-end="717" vertical-scroll-proportion="0.46551725" vertical-offset="0" max-vertical-offset="812" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application/resources/libraries/php/redux-custom-fields/links/field_links.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="111" column="15" selection-start="4884" selection-end="4884" vertical-scroll-proportion="0.0" vertical-offset="1649" max-vertical-offset="4140">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/admin/php/class_arc_Panels_Layouts.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="1002" column="59" selection-start="42961" selection-end="42982" vertical-scroll-proportion="0.0" vertical-offset="17676" max-vertical-offset="22626">
-          <folding>
-            <marker date="1400143737000" expanded="true" signature="38949:39147" placeholder="..." />
-            <marker date="1400143737000" expanded="true" signature="39182:39359" placeholder="..." />
-            <marker date="1400143737000" expanded="true" signature="39394:39566" placeholder="..." />
-            <marker date="1400143737000" expanded="true" signature="39601:39775" placeholder="..." />
-            <marker date="1400143737000" expanded="true" signature="39810:39911" placeholder="..." />
-            <marker date="1400143737000" expanded="true" signature="52407:52605" placeholder="..." />
-            <marker date="1400143737000" expanded="true" signature="52640:52817" placeholder="..." />
-            <marker date="1400143737000" expanded="true" signature="52852:53024" placeholder="..." />
-            <marker date="1400143737000" expanded="true" signature="53059:53233" placeholder="..." />
-            <marker date="1400143737000" expanded="true" signature="53268:53369" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/admin/php/arc-save-process.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="262" column="15" selection-start="12362" selection-end="12362" vertical-scroll-proportion="-4.7083335" vertical-offset="4603" max-vertical-offset="8748">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/architect.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="38" column="52" selection-start="1603" selection-end="1603" vertical-scroll-proportion="-28.5" vertical-offset="0" max-vertical-offset="6516">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/public/php/class_arc_Panel.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="103" column="44" selection-start="5277" selection-end="5277" vertical-scroll-proportion="-13.083333" vertical-offset="1540" max-vertical-offset="5238">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/public/css/arc-front.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="71" column="4" selection-start="1453" selection-end="1453" vertical-scroll-proportion="-4.32" vertical-offset="1062" max-vertical-offset="6588">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/public/php/class_arc_Blueprint.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="162" column="0" selection-start="5052" selection-end="5052" vertical-scroll-proportion="-43.833332" vertical-offset="1864" max-vertical-offset="3024">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/arc-public.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="76" column="22" selection-start="2605" selection-end="2616" vertical-scroll-proportion="-33.75" vertical-offset="558" max-vertical-offset="3420">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/resources/architect/php/arc-functions.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="425" column="69" selection-start="15817" selection-end="15817" vertical-scroll-proportion="-43.083332" vertical-offset="6616" max-vertical-offset="7848">
-          <folding>
-            <marker date="1400319964000" expanded="true" signature="14857:14899" placeholder="..." />
-            <marker date="1400319964000" expanded="true" signature="15093:15135" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/application/admin/css/arc-admin.scss">
       <provider selected="true" editor-type-id="text-editor">
         <state line="1146" column="30" selection-start="22835" selection-end="22835" vertical-scroll-proportion="-21.24" vertical-offset="19566" max-vertical-offset="20808">
@@ -1666,31 +1108,224 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/application/arc-admin.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="60" column="72" selection-start="2388" selection-end="2388" vertical-scroll-proportion="-45.0" vertical-offset="0" max-vertical-offset="3816">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../../../wp-mba.dev/wp-content/plugins/pizazzwp-libs/PizazzWP.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="241" column="5" selection-start="8573" selection-end="8573" vertical-scroll-proportion="12.75" vertical-offset="4644" max-vertical-offset="23256">
+          <folding>
+            <marker date="1400413070000" expanded="false" signature="3009:3022" placeholder="..." />
+            <marker date="1400413070000" expanded="true" signature="8012:8368" placeholder="..." />
+            <marker date="1400413070000" expanded="false" signature="11469:11482" placeholder="..." />
+            <marker date="1400413070000" expanded="true" signature="13560:13660" placeholder="..." />
+            <marker date="1400413070000" expanded="false" signature="13945:14005" placeholder="..." />
+            <marker date="1400413070000" expanded="true" signature="14006:14028" placeholder="..." />
+            <marker date="1400413070000" expanded="false" signature="18645:18655" placeholder="..." />
+            <marker date="1400413070000" expanded="false" signature="26474:26484" placeholder="..." />
+            <marker date="1400413070000" expanded="false" signature="27803:27813" placeholder="..." />
+            <marker date="1400413070000" expanded="false" signature="33728:33741" placeholder="..." />
+            <marker date="1400413070000" expanded="false" signature="48992:49005" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/architect.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="143" column="83" selection-start="5779" selection-end="5779" vertical-scroll-proportion="-6.58" vertical-offset="2245" max-vertical-offset="6606">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/public/php/class_arc_Blueprint.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="25" column="13" selection-start="488" selection-end="488" vertical-scroll-proportion="-3.0" vertical-offset="378" max-vertical-offset="3024">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/admin/php/headway/arc-headway-block-options.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="269" column="99" selection-start="9685" selection-end="9685" vertical-scroll-proportion="-10.02" vertical-offset="4341" max-vertical-offset="5112">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/public/php/arc-headway-block-display.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="38" column="53" selection-start="1407" selection-end="1407" vertical-scroll-proportion="-15.333333" vertical-offset="316" max-vertical-offset="3384">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/admin/php/arc-options-actions.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="69" column="8" selection-start="2591" selection-end="2591" vertical-scroll-proportion="-4.0833335" vertical-offset="1144" max-vertical-offset="9522">
+          <folding>
+            <marker date="1400492336000" expanded="true" signature="6325:7961" placeholder="..." />
+            <marker date="1400492336000" expanded="true" signature="6533:6736" placeholder="..." />
+            <marker date="1400492336000" expanded="true" signature="6850:6920" placeholder="..." />
+            <marker date="1400492336000" expanded="true" signature="6962:7035" placeholder="..." />
+            <marker date="1400492336000" expanded="true" signature="7052:7945" placeholder="..." />
+            <marker date="1400492336000" expanded="true" signature="7088:7481" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/admin/php/arc-options-def-editor.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="68" column="11" selection-start="2505" selection-end="2505" vertical-scroll-proportion="-4.4166665" vertical-offset="1118" max-vertical-offset="11268">
+          <folding>
+            <marker date="1400492344000" expanded="true" signature="6237:7873" placeholder="..." />
+            <marker date="1400492344000" expanded="true" signature="6445:6648" placeholder="..." />
+            <marker date="1400492344000" expanded="true" signature="6762:6832" placeholder="..." />
+            <marker date="1400492344000" expanded="true" signature="6874:6947" placeholder="..." />
+            <marker date="1400492344000" expanded="true" signature="6964:7857" placeholder="..." />
+            <marker date="1400492344000" expanded="true" signature="7000:7393" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/admin/php/arc-options.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="71" column="11" selection-start="2492" selection-end="2492" vertical-scroll-proportion="-4.4166665" vertical-offset="1172" max-vertical-offset="12456">
+          <folding>
+            <marker date="1400492357000" expanded="true" signature="6413:8061" placeholder="..." />
+            <marker date="1400492357000" expanded="true" signature="6621:6824" placeholder="..." />
+            <marker date="1400492357000" expanded="true" signature="6938:7008" placeholder="..." />
+            <marker date="1400492357000" expanded="true" signature="7050:7123" placeholder="..." />
+            <marker date="1400492357000" expanded="true" signature="7140:8045" placeholder="..." />
+            <marker date="1400492357000" expanded="true" signature="7176:7569" placeholder="..." />
+            <marker date="1400492357000" expanded="true" signature="19178:19376" placeholder="..." />
+            <marker date="1400492357000" expanded="true" signature="19411:19588" placeholder="..." />
+            <marker date="1400492357000" expanded="true" signature="19623:19795" placeholder="..." />
+            <marker date="1400492357000" expanded="true" signature="19830:20004" placeholder="..." />
+            <marker date="1400492357000" expanded="true" signature="20039:20140" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/arc-public.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="198" column="0" selection-start="6911" selection-end="6911" vertical-scroll-proportion="-30.333334" vertical-offset="2836" max-vertical-offset="3672">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/application/admin/php/class_arc_Blueprints_Layouts.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="778" column="153" selection-start="32375" selection-end="32375" vertical-scroll-proportion="0.7881657" vertical-offset="13338" max-vertical-offset="25308">
+        <state line="529" column="0" selection-start="21445" selection-end="21445" vertical-scroll-proportion="-4.4852943" vertical-offset="9217" max-vertical-offset="25740">
           <folding>
-            <marker date="1400324397000" expanded="true" signature="30957:31155" placeholder="..." />
-            <marker date="1400324397000" expanded="true" signature="31190:31367" placeholder="..." />
-            <marker date="1400324397000" expanded="true" signature="31402:31574" placeholder="..." />
-            <marker date="1400324397000" expanded="true" signature="31609:31783" placeholder="..." />
-            <marker date="1400324397000" expanded="true" signature="31818:31919" placeholder="..." />
-            <marker date="1400324397000" expanded="true" signature="32059:32609" placeholder="..." />
-            <marker date="1400324397000" expanded="true" signature="32059:32573" placeholder="..." />
-            <marker date="1400324397000" expanded="true" signature="32059:32561" placeholder="..." />
-            <marker date="1400324397000" expanded="true" signature="32059:32547" placeholder="..." />
-            <marker date="1400324397000" expanded="true" signature="32059:32539" placeholder="..." />
-            <marker date="1400324397000" expanded="true" signature="32059:32298" placeholder="..." />
-            <marker date="1400324397000" expanded="true" signature="32059:32286" placeholder="..." />
-            <marker date="1400324397000" expanded="true" signature="32059:32285" placeholder="..." />
-            <marker date="1400324397000" expanded="true" signature="32059:32143" placeholder="..." />
-            <marker date="1400324397000" expanded="true" signature="32059:32132" placeholder="..." />
-            <marker date="1400324397000" expanded="true" signature="47352:47550" placeholder="..." />
-            <marker date="1400324397000" expanded="true" signature="47585:47762" placeholder="..." />
-            <marker date="1400324397000" expanded="true" signature="47797:47969" placeholder="..." />
-            <marker date="1400324397000" expanded="true" signature="48004:48178" placeholder="..." />
-            <marker date="1400324397000" expanded="true" signature="48213:48314" placeholder="..." />
+            <marker date="1400485856000" expanded="true" signature="31782:32461" placeholder="..." />
+            <marker date="1400485856000" expanded="true" signature="31782:32242" placeholder="..." />
+            <marker date="1400485856000" expanded="true" signature="31782:32230" placeholder="..." />
+            <marker date="1400485856000" expanded="true" signature="31782:32216" placeholder="..." />
+            <marker date="1400485856000" expanded="true" signature="31782:32208" placeholder="..." />
+            <marker date="1400485856000" expanded="true" signature="31782:32132" placeholder="..." />
+            <marker date="1400485856000" expanded="true" signature="31782:32132" placeholder="..." />
+            <marker date="1400485856000" expanded="true" signature="31782:32132" placeholder="..." />
+            <marker date="1400485856000" expanded="true" signature="31782:32132" placeholder="..." />
+            <marker date="1400485856000" expanded="true" signature="31782:32132" placeholder="..." />
+            <marker date="1400485856000" expanded="true" signature="33463:33661" placeholder="..." />
+            <marker date="1400485856000" expanded="true" signature="33696:33873" placeholder="..." />
+            <marker date="1400485856000" expanded="true" signature="33908:34080" placeholder="..." />
+            <marker date="1400485856000" expanded="true" signature="34115:34289" placeholder="..." />
+            <marker date="1400485856000" expanded="true" signature="34324:34425" placeholder="..." />
+            <marker date="1400485856000" expanded="true" signature="48614:48812" placeholder="..." />
+            <marker date="1400485856000" expanded="true" signature="48847:49024" placeholder="..." />
+            <marker date="1400485856000" expanded="true" signature="49059:49231" placeholder="..." />
+            <marker date="1400485856000" expanded="true" signature="49266:49440" placeholder="..." />
+            <marker date="1400485856000" expanded="true" signature="49475:49576" placeholder="..." />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/public/php/class_Architect.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="173" column="0" selection-start="7108" selection-end="7108" vertical-scroll-proportion="-9.44" vertical-offset="2642" max-vertical-offset="6372">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/admin/php/arc-save-process.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="32" column="37" selection-start="937" selection-end="937" vertical-scroll-proportion="-11.52" vertical-offset="0" max-vertical-offset="9054">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/resources/architect/php/class_arc_Adapter.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="185" column="26" selection-start="7014" selection-end="7014" vertical-scroll-proportion="-4.1282053" vertical-offset="3008" max-vertical-offset="5220">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/resources/libraries/php/redux-custom-fields/links/field_links.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="128" column="24" selection-start="7385" selection-end="7385" vertical-scroll-proportion="-40.291668" vertical-offset="1337" max-vertical-offset="4140">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/resources/architect/php/arc-functions.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="164" column="0" selection-start="4424" selection-end="4609" vertical-scroll-proportion="-15.541667" vertical-offset="2579" max-vertical-offset="7848">
+          <folding>
+            <marker date="1400553186000" expanded="true" signature="4444:4606" placeholder="..." />
+            <marker date="1400553186000" expanded="true" signature="14889:14931" placeholder="..." />
+            <marker date="1400553186000" expanded="true" signature="15125:15167" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/public/php/class_arc_Section.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="105" column="6" selection-start="4960" selection-end="4960" vertical-scroll-proportion="-8.9" vertical-offset="1445" max-vertical-offset="2268">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/public/php/interface_arc_PanelDefinitions.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="37" column="3" selection-start="2201" selection-end="2201" vertical-scroll-proportion="-12.75" vertical-offset="360" max-vertical-offset="3366">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/public/css/arc-front.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="90" column="28" selection-start="1834" selection-end="1834" vertical-scroll-proportion="-9.36" vertical-offset="1152" max-vertical-offset="6966">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/admin/php/class_arc_Panels_Layouts.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="757" column="45" selection-start="31938" selection-end="31938" vertical-scroll-proportion="-17.54" vertical-offset="12749" max-vertical-offset="21978">
+          <folding>
+            <marker date="1400555984000" expanded="true" signature="36829:37027" placeholder="..." />
+            <marker date="1400555984000" expanded="true" signature="37062:37239" placeholder="..." />
+            <marker date="1400555984000" expanded="true" signature="37274:37446" placeholder="..." />
+            <marker date="1400555984000" expanded="true" signature="37481:37655" placeholder="..." />
+            <marker date="1400555984000" expanded="true" signature="37690:37791" placeholder="..." />
+            <marker date="1400555984000" expanded="true" signature="50405:50603" placeholder="..." />
+            <marker date="1400555984000" expanded="true" signature="50638:50815" placeholder="..." />
+            <marker date="1400555984000" expanded="true" signature="50850:51022" placeholder="..." />
+            <marker date="1400555984000" expanded="true" signature="51057:51231" placeholder="..." />
+            <marker date="1400555984000" expanded="true" signature="51266:51367" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/public/php/class_arc_Panel.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="202" column="0" selection-start="9434" selection-end="9434" vertical-scroll-proportion="0.5241461" vertical-offset="3191" max-vertical-offset="5598">
+          <folding />
         </state>
       </provider>
     </entry>

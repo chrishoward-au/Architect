@@ -26,6 +26,20 @@
     if (!(class_exists('ReduxFramework') || class_exists('ReduxFrameworkPlugin'))) {
       return;
     }
+    $actions_options = get_option('_architect_actions');
+    $actions = array();
+    $i = 1;
+    foreach ($actions_options as $k => $v) {
+      if ($k != 'last_tab'){
+        $actions[$i][$k]=$v;
+      }
+      if ($k == 'architect_actions_'.$i.'_pageids'){
+        $i++;
+      }
+    }
+    foreach ($actions as $k => $v) {
+      new showBlueprint($v['architect_actions_'.$k.'_action-name'],$v['architect_actions_'.$k.'_blueprint'],'home');
+    }
     //   require_once PZARC_PLUGIN_PATH . '/admin/php/arc-options.php';
   }
 

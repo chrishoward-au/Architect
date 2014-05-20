@@ -103,7 +103,7 @@
     private function strip_unused_arctags($strip_from)
     {
       // removed while in development
-      return $strip_from;
+    //  return $strip_from;
 
       return preg_replace('/{{([\w|\-]*)}}/s', '', $strip_from);
     }
@@ -111,7 +111,6 @@
     public function __destruct()
     {
       echo '</section><!-- End section ' . $this->section_number . ' -->';
-      echo '<p>End section: ' . $this->section_number . '</p>';
       do_action("arc_after_section_{$this->section_number}");
     }
 

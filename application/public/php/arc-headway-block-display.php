@@ -28,11 +28,15 @@ class HeadwayArchitectBlock extends HeadwayBlockAPI
 			$block = HeadwayBlocksData::get_block($block[ 'settings' ][ 'mirror-block' ]);
 		}
 
+    $blueprint = explode('##',$block['settings'][ 'pzarc-blueprint' ]);
+
+
 //		wp_enqueue_style('pzarc-plugin-styles');
 
 		wp_enqueue_script('jquery');
 		wp_enqueue_script('js-isotope-v2');
-
+    $filename = PZARC_CACHE_URL . '/pzarc-blueprints-layout-' . ($blueprint[1]) . '.css';
+    wp_enqueue_style('blueprint-css-' . $blueprint[ 1 ], $filename);
 //		wp_enqueue_script('jquery-masonry');
 
 		return;
@@ -167,8 +171,9 @@ class HeadwayArchitectBlock extends HeadwayBlockAPI
 	{
 		global $wp_query;
 		$settings = HeadwayArchitectBlockOptions::get_settings($block);
+    $blueprint = explode('##',$settings[ 'pzarc-blueprint' ]);
 
-		echo pzarc($settings[ 'pzarc-blueprint' ]);
+		echo pzarc($blueprint[0],null,'headway-block');
 
 		return;
 

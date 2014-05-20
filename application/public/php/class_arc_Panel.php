@@ -10,6 +10,7 @@
   {
 //    private $data;
 
+    //TODO: Shouldn't data be a this?
     public static function render($type, &$template, $source, &$data, &$section) { }
 
     /**
@@ -19,6 +20,7 @@
     static function set_data(&$section)
     {
       $toshow = json_decode($section[ '_panels_design_preview' ], true);
+      $data   = array();
       // TODO: Will need to refine these to be based on content type
       if ($toshow[ 'title' ][ 'show' ]) {
         $data[ 'title' ] = get_the_title();
@@ -33,12 +35,11 @@
       }
 
       if ($toshow[ 'image' ][ 'show' ] || $section[ '_panels_design_thumb-position' ] != 'none') {
-        $data[ 'image' ][ 'image' ]   = get_the_post_thumbnail(null, array($section[ '_panels_design_image-max-width' ],
-                                                                           $section[ '_panels_design_image-max-height' ]));
+        $data[ 'image' ][ 'image' ]   = get_the_post_thumbnail(null, array($section[ '_panels_design_image-max-dimensions' ][ 'width' ],
+                                                                           $section[ '_panels_design_image-max-dimensions' ][ 'height' ]));
         $image                        = get_post(get_post_thumbnail_id());
         $data[ 'image' ][ 'caption' ] = $image->post_excerpt;
       }
-
       if ($toshow[ 'meta1' ][ 'show' ] ||
           $toshow[ 'meta2' ][ 'show' ] ||
           $toshow[ 'meta3' ][ 'show' ]
@@ -63,17 +64,17 @@
 
       // NEVER include HTML in these, only should get WP values.
       $showbgimage           = (has_post_thumbnail()
-                                  && $section[ '_panels_design_background-position' ] != 'none'
-                                        && ($section[ '_panels_design_components-position' ] == 'top' || $section[ '_panels_design_components-position' ] == 'left'))
-                                  || ($section[ '_panels_design_background-position' ] != 'none'
-                                        && ($section[ '_panels_design_components-position' ] == 'bottom' || $section[ '_panels_design_components-position' ] == 'right'));
+              && $section[ '_panels_design_background-position' ] != 'none'
+              && ($section[ '_panels_design_components-position' ] == 'top' || $section[ '_panels_design_components-position' ] == 'left'))
+          || ($section[ '_panels_design_background-position' ] != 'none'
+              && ($section[ '_panels_design_components-position' ] == 'bottom' || $section[ '_panels_design_components-position' ] == 'right'));
       $data[ 'postid' ]      = get_the_ID();
       $data[ 'poststatus' ]  = get_post_status();
       $data[ 'permalink' ]   = get_the_permalink();
       $post_format           = get_post_format();
       $data [ 'postformat' ] = (empty($post_format) ? 'standard' : $post_format);
-      $data[ 'bgimage' ]     = ($showbgimage ? get_the_post_thumbnail(null, array($section[ '_panels_design_background-image-width' ],
-                                                                                  $section[ '_panels_design_background-image-width' ])) : null); //WP seems to smartly figure out which of its saved images to use! Now we jsut gotta get it t work with focal point
+      $data[ 'bgimage' ]     = ($showbgimage ? get_the_post_thumbnail(null, array($section[ '_panels_design_background-image-width' ][ 'width' ],
+                                                                                  $section[ '_panels_design_background-image-width' ][ 'width' ])) : null); //WP seems to smartly figure out which of its saved images to use! Now we jsut gotta get it t work with focal point
 
 //        if (strpos($data[ 'image' ][ 'image' ], '<img') === 0) {
 //          preg_match_all("/width=\"(\\d)*\"/uiUm", $data[ 'image' ][ 'image' ], $widthm);
@@ -102,6 +103,7 @@
       $line = str_replace('{{postformat}}', $data[ 'postformat' ], $line);
       $line = str_replace('{{posttype}}', $source, $line);
       $line = str_replace('{{pzclasses}}', 'pzarc-components', $line);
+
       return $line;
     }
   }
@@ -186,14 +188,25 @@
   {
     public static function render($type, &$template, $source, &$data, &$section)
     {
-      if (true) {
+      if ($section[ '_panels_design_link-image' ]) {
         $template[ $type ] = str_replace('{{postlink}}', $template[ 'postlink' ], $template[ $type ]);
         $template[ $type ] = str_replace('{{closepostlink}}', '</a>', $template[ $type ]);
       }
-      if (true) {
+
+      if ($section[ '_panels_design_image-captions' ]) {
         $template[ $type ] = str_replace('{{captioncode}}', $data[ 'image' ][ 'caption' ], $template[ $type ]);
       }
+
       $template[ $type ] = str_replace('{{image}}', $data[ 'image' ][ 'image' ], $template[ $type ]);
+
+      if (!empty($section[ '_panels_design_centre-image' ])){
+        $template[$type] = str_replace('{{centred}}', 'centred', $template[ $type ]);
+      }
+
+      if (empty($data[ 'image' ][ 'image' ]) ) {
+        $template[ $type ] ='';
+      }
+
 //      foreach ($data[ 'image' ] as $key => $value) {
 //        $template[ $type ] = str_replace('{{' . $key . '}}', $value, $template[ $type ]);
 //      }
@@ -249,18 +262,25 @@
         case 'page':
           $template[ $type ] = str_replace('{{excerpt}}', $data[ 'excerpt' ], $template[ $type ]);
       };
+
       if (!empty($data[ 'image' ][ 'image' ]) && $section[ '_panels_design_thumb-position' ] != 'none') {
         $template[ $type ] = str_replace('{{image-in-content}}', $template[ 'image' ], $template[ $type ]);
-        if (true) {
+
+        if ($section[ '_panels_design_image-captions' ]) {
           $template[ $type ] = str_replace('{{captioncode}}', $data[ 'image' ][ 'caption' ], $template[ $type ]);
         }
+
         $template[ $type ] = str_replace('{{image}}', $data[ 'image' ][ 'image' ], $template[ $type ]);
         $template[ $type ] = str_replace('{{incontent}}', 'in-content-thumb', $template[ $type ]);
 
-        if (true) {
+        if ($section[ '_panels_design_link-image' ]) {
           $template[ $type ] = str_replace('{{postlink}}', $template[ 'postlink' ], $template[ $type ]);
           $template[ $type ] = str_replace('{{closepostlink}}', '</a>', $template[ $type ]);
         }
+      }
+      if (empty($data[ 'image' ][ 'image' ]) && $section[ '_panels_design_maximize-content' ]){
+        //TODO: Add an option to set if width spreads
+        $template[$type] = str_replace('{{nothumb}}', 'nothumb', $template[ $type ]);
       }
 
 //_panels_design_thumb-position

@@ -58,6 +58,7 @@
         require_once PZARC_PLUGIN_PATH . '/resources/libraries/php/redux-custom-fields/loader.php';
         require_once PZARC_PLUGIN_PATH . '/resources/libraries/php/redux-extensions/loader.php';
         require_once PZARC_PLUGIN_PATH . '/admin/php/arc-options.php';
+        require_once PZARC_PLUGIN_PATH . '/admin/php/arc-options-actions.php';
 
 
         // @TODO Should these really be objects?

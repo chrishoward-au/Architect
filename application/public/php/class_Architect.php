@@ -170,9 +170,10 @@
 
       $section[ $section_no ] = arc_SectionFactory::create($section_no, $this->build->blueprint[ 'section' ][ ($section_no - 1) ], $this->build->blueprint[ '_blueprints_content-source' ], $this->build->blueprint[ '_blueprints_navigation' ]);
 
-      $class     = 'arc_PanelDef_' . $this->build->blueprint[ '_blueprints_content-source' ];
+      // oops! Need to get default content type when defaults chosen.
+      $post_type = (empty($this->build->blueprint[ '_blueprints_content-source' ]) || 'defaults' === $this->build->blueprint[ '_blueprints_content-source' ]?$this->query->queried_object->post_type:$this->build->blueprint[ '_blueprints_content-source' ]);
+      $class     = 'arc_PanelDef_' .$post_type ;
       $panel_def = self::build_meta_definition($class::panel_def(), $this->build->blueprint[ 'section' ][ ($section_no - 1) ][ 'section-panel-settings' ]);
-
       $i = 1;
       while ($this->query->have_posts()) {
         $this->query->the_post();
@@ -298,7 +299,8 @@
       $this->query = $wp_query;
       // This may not do anything since the query may not update!
       // need to set nopaging too
-      var_dump($this->build->blueprint[ '_blueprints_navigation' ]);
+      pzdebug($this->build->blueprint[ '_blueprints_navigation' ]);
+      pzdebug($this->criteria);
       if ($this->build->blueprint[ '_blueprints_navigation' ] == 'pagination') {
         $this->query->query_vars[ 'nopaging' ] = false;
       } else {

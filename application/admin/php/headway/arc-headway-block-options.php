@@ -266,7 +266,8 @@
       {
         $blueprints_query->the_post();
         $the_panel_meta                                             = get_post_meta($blueprints_query->post->ID, '_architect', true);
-        $pzarc_return[ $the_panel_meta[ '_blueprints_short-name' ] ] = get_the_title($blueprints_query->post->ID);
+
+        $pzarc_return[ $the_panel_meta[ '_blueprints_short-name' ].'##'.$blueprints_query->post->ID ] = get_the_title($blueprints_query->post->ID);
       };
 
       return $pzarc_return;

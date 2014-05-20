@@ -35,8 +35,8 @@
       $panel_def[ 'categories' ]  = '<span class="categories-links">{{categorieslinks}}</span>';
       $panel_def[ 'tags' ]        = '<span class="tags-links">{{tagslinks}}</span>';
       $panel_def[ 'author' ]      = '<span class="byline"><span class="author vcard"><a class="url fn n" href="{{authorlink}}" title="View all posts by {{authorname}}" rel="author">{{authorname}}</a></span></span>';
-      $panel_def[ 'image' ]       = '<figure class="entry-thumbnail {{incontent}}">{{postlink}}<img width="{{width}}" src="{{imgsrc}}" class="attachment-post-thumbnail wp-post-image" alt="{{alttext}}">{{closepostlink}}{{captioncode}}</figure>';
-      $panel_def[ 'image' ]       = '<figure class="entry-thumbnail {{incontent}}">{{postlink}}{{image}}{{closelink}}{{captioncode}}</figure>';
+ //     $panel_def[ 'image' ]       = '<figure class="entry-thumbnail {{incontent}}">{{postlink}}<img width="{{width}}" src="{{imgsrc}}" class="attachment-post-thumbnail wp-post-image" alt="{{alttext}}">{{closepostlink}}{{captioncode}}</figure>';
+      $panel_def[ 'image' ]       = '<figure class="entry-thumbnail {{incontent}} {{centred}}">{{postlink}}{{image}}{{closelink}}{{captioncode}}</figure>';
       $panel_def[ 'bgimage' ]       = '<figure class="entry-bgimage pzarc-bg-image">{{bgimage}}</figure>';
       $panel_def[ 'caption' ]     = '<figcaption class="caption">{{caption}}</figcaption>';
       $panel_def[ 'content' ]     = ' <div class="entry-content {{nothumb}}">{{image-in-content}}{{content}}</div>';

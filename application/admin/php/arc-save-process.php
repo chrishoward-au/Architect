@@ -109,10 +109,10 @@
 
             $pzarc_contents .= '@import url("' . PZARC_CACHE_URL . '/pzarc-panels-layout-' . $pzarc_blueprints[ '_blueprints_section-' . $i . '-panel-layout' ] . '.css");' . $nl;
             $columns = intval($pzarc_blueprints[ '_blueprints_section-' . $i . '-columns' ]);
-            $hmargin = $pzarc_blueprints[ '_blueprints_section-' . $i . '-panels-horiz-margin' ];
+            $hmargin = $pzarc_blueprints[ '_blueprints_section-' . $i . '-panels-horiz-margin' ]['height'];
 
             //TODO: Use media queries and nth child trick too
-            $pzarc_contents_css .= $classes . ' {width:' . (((100 - ($hmargin * ($columns - 1))) / $columns)) . '%;margin-right:' . ($hmargin) . '%;margin-bottom:' . $pzarc_blueprints[ '_blueprints_section-' . $i . '-panels-vert-margin' ] . '%;}' . $nl;
+            $pzarc_contents_css .= $classes . ' {width:' . (((100 - ($hmargin * ($columns - 1))) / $columns)) . '%;margin-right:' . ($hmargin) . '%;margin-bottom:' . $pzarc_blueprints[ '_blueprints_section-' . $i . '-panels-vert-margin' ]['width'] . '%;}' . $nl;
             $pzarc_contents_css .= $classes . ':nth-child(' . $columns . 'n) {margin-right: 0;}' . $nl;
 
           }
@@ -176,7 +176,7 @@
           switch (true) {
 
             case ($key == '_panels_design_responsive-hide-content' && !empty($pzarc_panels[ '_panels_design_responsive-hide-content' ])):
-              $pzarc_contents .= '@media (max-width: ' . $pzarc_panels[ '_panels_design_responsive-hide-content' ] . 'px) { .pzarchitect .pzarc-' . $postid . ' entry-content, .pzarchitect .pzarc-' . $postid . ' .entry-excerpt {display:none;}}' . $nl;
+              $pzarc_contents .= '@media (max-width: ' . $pzarc_panels[ '_panels_design_responsive-hide-content' ]['width'] . 'px) { .pzarchitect .pzarc-' . $postid . ' entry-content, .pzarchitect .pzarc-' . $postid . ' .entry-excerpt {display:none;}}' . $nl;
               break;
 
 
@@ -223,7 +223,11 @@
 //                $pzarc_contents .= $class_prefix . ' .entry-thumbnail {width:' . $pzarc_layout[ 'image' ][ 'width' ] . '%;max-width:' . ($pzarc_layout[ 'image' ][ 'width' ] - $pzarc_left_margin - $pzarc_right_margin) . '%;}' . "\n";
               } else {
                 $margins = pzarc_process_spacing($pzarc_panels[ '_panels_design_image-spacing' ]);
-                $pzarc_contents .= $class_prefix . ' .entry-thumbnail {width:' . $pzarc_layout[ 'image' ][ 'width' ] . '%;max-width:' . $pzarc_panels[ '_panels_design_image-max-width' ] . 'px;margin: ' . $margins . ';}' . $nl;
+                $left= $pzarc_panels[ '_panels_design_image-spacing' ]['margin-left'];
+                $left = preg_replace("/([\\%px])/uiUm", "", $left);
+                $right= $pzarc_panels[ '_panels_design_image-spacing' ]['margin-right'];
+                $right = preg_replace("/([\\%px])/uiUm", "", $right);
+                $pzarc_contents .= $class_prefix . ' .entry-thumbnail {width:' . ($pzarc_layout[ 'image' ][ 'width' ]-$left-$right) . '%;max-width:' . $pzarc_panels[ '_panels_design_image-max-width' ] . 'px;margin: ' . $margins . ';}' . $nl;
               }
 
               $pzarc_contents .= $class_prefix . ' .entry-content {width:' . $pzarc_layout[ 'content' ][ 'width' ] . '%;}' . $nl;
@@ -256,6 +260,19 @@
                 $margins = pzarc_process_spacing($pzarc_panels[ '_panels_design_image-spacing' ]);
                 $twidth  = $pzarc_panels[ '_panels_design_thumb-width' ] - ($pzarc_panels[ '_panels_design_image-margin-left' ] + $pzarc_panels[ '_panels_design_image-margin-right' ]);
                 $pzarc_contents .= $class_prefix . ' .in-content-thumb {width:' . $twidth . '%;float:' . $value . ';' . $margins . '}' . $nl;
+
+              }
+              break;
+            case ($key == '_panels_design_background-position'):
+
+              if ($value != 'none') {
+
+              }
+              break;
+
+            case ($key == '_panels_design_components-position'):
+
+              if ($value != 'none') {
 
               }
               break;

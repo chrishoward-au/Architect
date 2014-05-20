@@ -145,23 +145,23 @@
   {
     return
         array(
-            array(
-                'title'   => __('Links', 'pzarc'),
-                'id'      => $id,
-                'type'    => 'link_color',
-                'output'  => $selectors,
-                'default' => $defaults,
-                'regular' => true,
-                'hover'   => true,
-                'active'  => true,
-                'visited' => true
-            ),
+//            array(
+//                'title'   => __('Links', 'pzarc'),
+//                'id'      => $id,
+//                'type'    => 'link_color',
+//                'output'  => $selectors,
+//                'default' => $defaults,
+//                'regular' => true,
+//                'hover'   => true,
+//                'active'  => true,
+//                'visited' => true
+//            ),
             // PREBETA: Add some js so can't select both! Or improve it
-            array(
-                'id'    => $id . '-underline-heading',
-                'title' => 'Links underlining',
-                'type'  => 'section',
-            ),
+//            array(
+//                'id'    => $id . '-underline-heading',
+//                'title' => 'Links underlining',
+//                'type'  => 'section',
+//            ),
             //            array(
             //                'title'   => __('Regular', 'pzarc'),
             //                'id'      => $id . '-regular-deco',

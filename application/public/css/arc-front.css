@@ -1,329 +1,310 @@
 /* Frontend layout */
 /* Any styling defaults should be included in the styling defaults values in options */
-.warning-msg {
-  background: #ffa;
-  color: #aa0;
-  border: solid 1px #aa0;
-  padding: 10px; }
-
-.pzarchitect .pzarc-container {
-  position: relative; }
-
-.pzarchitect .pzarc-section {
-  position: relative;
-  /* Added for gridded layout. May break others! */
-  display: block;
-  display: webkit box;
-  display: moz-box;
-  display: -ms-flexbox;
-  display: webkit flex;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -moz-box;
-  display: flex;
-  -webkit-box-pack: start;
-  -webkit-justify-content: flex-start;
-  -moz-box-pack: start;
-  -ms-flex-pack: start;
-  justify-content: flex-start;
-  -webkit-flex-flow: row wrap;
-  -moz-flex-flow: row wrap;
-  /* Unsupported!! Argh! */
-  -ms-flex-flow: row wrap;
-  flex-flow: row wrap;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-  -webkit-flex-direction: row;
-  -moz-box-orient: horizontal;
-  -moz-box-direction: normal;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  -webkit-flex-wrap: wrap;
-  -ms-flex-wrap: wrap;
-  flex-wrap: wrap;
-  counter-reset: arc-title-counter; }
-
-.pzarchitect .pzarc-panel {
-  min-width: 0px;
-  min-height: 0px;
-  /* Remember to remove space between divs to stop inline-block space issue */
-  display: inline-block;
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
-  vertical-align: top; }
-
-.pzarchitect .pzarc-panel .entry-image {
-  max-width: 100%;
-  display: block; }
-
-.pzarchitect .pzarc-panel .entry-excerpt,
-.pzarchitect .pzarc-panel .entry-content {
-  -ms-word-break: break-all;
-  word-break: break-all;
-  /* Non standard for webkit */
-  word-break: break-word;
-  -webkit-hyphens: auto;
-  -moz-hyphens: auto;
-  -ms-hyphens: auto;
-  hyphens: auto; }
-
-.pzarchitect .pzarc-bg-image {
-  margin: 0;
-  padding: 0;
-  max-width: 100%;
-  height: auto;
-  z-index: 0; }
-
-.pzarchitect .pzarc-bg-image img {
-  display: block; }
-
-.pzarchitect .has-bgimage {
-  position: absolute; }
-
-.pzarchitect .pzarc-components {
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
-  overflow: hidden; }
-
-/*
- Set a base font size
-html {
-	font-size:62.5%;
-}
+.pzarchitect {
+  /*
+   Set a base font size
+  html {
+    font-size:62.5%;
+  }
 
 
-.pzarc_panel {
-    float:left;
-    box-sizing:border-box;
- }
+  .pzarc_panel {
+      float:left;
+      box-sizing:border-box;
+   }
 
-.pzarc_panel_header,
-.pzarc_panel_footer {
-    width:100%;
-    box-sizing:border-box;
-    clear:both;
-}
-.pzarc_panel_header {
-	margin-bottom:20px;
-	margin-bottom:2rems;
-}
-.pzarc_panel_footer {
-	margin-top:10px;
-	margin-top:1rems;
-}
-.pzarc_panel_header_left,
-.pzarc_panel_footer_left {
-    float:left;
-    box-sizing:border-box;
-}
-.pzarc_panel_header_right,
-.pzarc_panel_footer_right {
-    float:right;
-    box-sizing:border-box;
-}
-
-
-.pzarc_panel_columns {
-    width:100%;
-    box-sizing:border-box;
-    clear:both;
-}
-
-.pzarc_panel_left_col,
-.pzarc_panel_centre_col,
-.pzarc_panel_right_col {
-    float:left;
-    box-sizing:border-box;
-}
-.pzarc_panel_left_col {width:25%;}
-.pzarc_panel_centre_col {width:75%;}
-.pzarc_panel_right_col {width:0;}
+  .pzarc_panel_header,
+  .pzarc_panel_footer {
+      width:100%;
+      box-sizing:border-box;
+      clear:both;
+  }
+  .pzarc_panel_header {
+    margin-bottom:20px;
+    margin-bottom:2rems;
+  }
+  .pzarc_panel_footer {
+    margin-top:10px;
+    margin-top:1rems;
+  }
+  .pzarc_panel_header_left,
+  .pzarc_panel_footer_left {
+      float:left;
+      box-sizing:border-box;
+  }
+  .pzarc_panel_header_right,
+  .pzarc_panel_footer_right {
+      float:right;
+      box-sizing:border-box;
+  }
 
 
-.pzarc_clearfloat {
-    clear:both;
-}
+  .pzarc_panel_columns {
+      width:100%;
+      box-sizing:border-box;
+      clear:both;
+  }
 
-default styling
-.pzarc_entry_meta,
-.pzarc_entry_meta a
- {
-	font-size:11px;
-	font-size:1.1rems;
-    color:#777;
-    text-decoration:none;
-	margin-bottom:5px;
-	margin-bottom:0.5rems;
-}
+  .pzarc_panel_left_col,
+  .pzarc_panel_centre_col,
+  .pzarc_panel_right_col {
+      float:left;
+      box-sizing:border-box;
+  }
+  .pzarc_panel_left_col {width:25%;}
+  .pzarc_panel_centre_col {width:75%;}
+  .pzarc_panel_right_col {width:0;}
+
+
+  .pzarc_clearfloat {
+      clear:both;
+  }
+
+  default styling
+  .pzarc_entry_meta,
+  .pzarc_entry_meta a
+   {
+    font-size:11px;
+    font-size:1.1rems;
+      color:#777;
+      text-decoration:none;
+    margin-bottom:5px;
+    margin-bottom:0.5rems;
+  }
 
 
 
- remember this for the background of text
-.pzarc-a-textarea {
-    background:rgba(32,63,96,0.5);
-    color:red;
-    width:50%;
-	padding:20px;
-	padding:2rems;
-	margin:5px;
-	margin:0.5rems;
-}
-*/
-.pzarchitect .pzarc-oops {
-  font-size: 16px;
-  font-family: sans-serif;
-  color: tomato;
-  background: #faf2f5;
-  border: 1px solid tomato;
-  display: inline-block;
-  margin: 10px 0;
-  padding: 20px; }
-
-.pzarchitect .pzarc-pager {
-  display: table;
-  padding: 10px 0;
-  width: 100%; }
-
-.pzarchitect .pzarc-pager-prev,
-.pzarchitect .pzarc-pager-next {
-  /*font-size:13px;*/
-  /*font-weight:bold;*/
-  /*background: #eee;*/
-  /*padding:10px 5px;*/ }
-
-.pzarchitect .pzarc-pager-prev {
-  float: left;
-  /*border-top-left-radius: 20px;*/
-  /*border-bottom-left-radius: 20px;*/
-  /*padding-right:10px;*/ }
-
-.pzarchitect .pzarc-pager-next {
-  float: right;
-  /*border-top-right-radius: 20px;*/
-  /*border-bottom-right-radius: 20px;*/
-  /*padding-left:10px;*/ }
-
-.pzarchitect .pzarc-bg-image {
-  overflow: hidden; }
-
-.pzarchitect .pzarc-bg-image.fill.scale,
-.pzarchitect .pzarc-bg-image img.nofill {
-  max-width: 100%; }
-
-.pzarchitect .pzarc-bg-image img.fill.crop {
-  max-width: none; }
-
-.pzarchitect x.pzarc-panel img.entry-image {
-  float: left;
-  margin-right: 5px;
-  margin-bottom: 5px; }
-
-.pzarchitect x.pzarc-panel .entry-content {
-  float: left; }
-
-.pzarchitect .pzarc-panel .entry-thumbnail img {
-  max-width: 100%; }
-
-.pzarchitect .pzarc-panel .entry-title {
-  line-height: 120%; }
-
-.pzarchitect .pzarc-panel .entry-title,
-.pzarchitect .pzarc-panel .entry-excerpt,
-.pzarchitect .pzarc-panel .entry-thumbnail,
-.pzarchitect .pzarc-panel .entry-content,
-.pzarchitect .pzarc-panel .entry-meta {
-  display: block;
-  /*float:left;*/
-  vertical-align: top;
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box; }
-
-.pzarchitect .pzarc-container .entry-excerpt.pznothumb,
-.pzarchitect .pzarc-container .entry-content.pznothumb {
-  width: 100%; }
-
-.pzarchitect .pzarc-align.left {
-  float: left;
-  padding-right: 2%; }
-
-.pzarchitect .pzarc-align.right {
-  float: right;
-  padding-left: 2%; }
-
-/* ===============================================================
-Your custom styles, here you need to specify container's and slide's
-sizes, pagination, etc.
-================================================================*/
-.swiper-container-featured-posts-2x4 {
-  /* Specify Swiper's Size: */
-  height: 300px;
-  background: #eee;
-  padding: 0; }
-
-.swiper-container-featured-posts-2x4 .swiper-slide {
-  /* Specify Slides's Size: */
-  height: 100%;
-  margin: 0 !important; }
-
-.swiper-slide-active {
-  /* Specific active slide styling: */ }
-
-.swiper-slide-visible {
-  /* Specific visible slide styling: */ }
-
-/* ===============================================================
-Pagination Styles
-================================================================*/
-.swiper-pagination-switch {
-  /* Stylize pagination button: */
-  display: inline-block;
-  width: 15px;
-  height: 15px;
-  border-radius: 15px;
-  background: #999;
-  -webkit-box-shadow: 0px 1px 2px #555 inset;
-  box-shadow: 0px 1px 2px #555 inset;
-  margin: 0 3px;
-  cursor: pointer; }
-
-.swiper-pagination-switch:hover {
-  background: #ccc; }
-
-.swiper-visible-switch {
-  /* Specific style for nav buttons for visible panels: */ }
-
-.swiper-active-switch {
-  /* Specific active button style: */
-  background: #fff; }
-
-.pzarc-navigator {
-  left: 0;
-  text-align: center;
-  bottom: 5px;
-  width: 100%;
-  z-index: 1; }
-
-.pzarchitect .arrow-left {
-  background: url(../../resources/assets/images/slider/arrows1.png) no-repeat left top;
-  position: absolute;
-  left: 10px;
-  top: 50%;
-  margin-top: -15px;
-  width: 17px;
-  height: 30px;
-  z-index: 2; }
-
-.pzarchitect .arrow-right {
-  background: url(../../resources/assets/images/slider/arrows1.png) no-repeat left bottom;
-  position: absolute;
-  right: 10px;
-  top: 50%;
-  margin-top: -15px;
-  width: 17px;
-  height: 30px;
-  z-index: 2; }
+   remember this for the background of text
+  .pzarc-a-textarea {
+      background:rgba(32,63,96,0.5);
+      color:red;
+      width:50%;
+    padding:20px;
+    padding:2rems;
+    margin:5px;
+    margin:0.5rems;
+  }
+  */
+  /* ===============================================================
+  Your custom styles, here you need to specify container's and slide's
+  sizes, pagination, etc.
+  ================================================================*/
+  /* ===============================================================
+  Pagination Styles
+  ================================================================*/ }
+  .pzarchitect .warning-msg {
+    background: #ffa;
+    color: #aa0;
+    border: solid 1px #aa0;
+    padding: 10px; }
+  .pzarchitect .pzarc-container {
+    position: relative; }
+  .pzarchitect .pzarc-section {
+    position: relative;
+    /* Added for gridded layout. May break others! */
+    display: block;
+    display: webkit box;
+    display: moz-box;
+    display: -ms-flexbox;
+    display: webkit flex;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: flex;
+    -webkit-box-pack: start;
+    -webkit-justify-content: flex-start;
+    -moz-box-pack: start;
+    -ms-flex-pack: start;
+    justify-content: flex-start;
+    -webkit-flex-flow: row wrap;
+    -moz-flex-flow: row wrap;
+    /* Unsupported!! Argh! */
+    -ms-flex-flow: row wrap;
+    flex-flow: row wrap;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: row;
+    -moz-box-orient: horizontal;
+    -moz-box-direction: normal;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    -webkit-flex-wrap: wrap;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    counter-reset: arc-title-counter; }
+  .pzarchitect .pzarc-panel {
+    min-width: 0px;
+    min-height: 0px;
+    /* Remember to remove space between divs to stop inline-block space issue */
+    display: inline-block;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    vertical-align: top; }
+    .pzarchitect .pzarc-panel .entry-image {
+      max-width: 100%;
+      display: block; }
+    .pzarchitect .pzarc-panel .entry-excerpt,
+    .pzarchitect .pzarc-panel .entry-content {
+      -ms-word-break: break-all;
+      word-break: break-all;
+      /* Non standard for webkit */
+      word-break: break-word;
+      -webkit-hyphens: auto;
+      -moz-hyphens: auto;
+      -ms-hyphens: auto;
+      hyphens: auto; }
+    .pzarchitect .pzarc-panel .entry-excerpt.nothumb,
+    .pzarchitect .pzarc-panel .entry-content.nothumb {
+      width: 100%; }
+    .pzarchitect .pzarc-panel x.img.entry-image {
+      float: left;
+      margin-right: 5px;
+      margin-bottom: 5px; }
+    .pzarchitect .pzarc-panel x.entry-content {
+      float: left; }
+    .pzarchitect .pzarc-panel .entry-excerpt {
+      float: left; }
+    .pzarchitect .pzarc-panel .entry-thumbnail {
+      float: left; }
+      .pzarchitect .pzarc-panel .entry-thumbnail img {
+        max-width: 100%;
+        height: auto; }
+    .pzarchitect .pzarc-panel .entry-thumbnail.centred {
+      float: none;
+      margin: 0 auto; }
+    .pzarchitect .pzarc-panel .entry-title {
+      line-height: 120%; }
+    .pzarchitect .pzarc-panel .entry-title,
+    .pzarchitect .pzarc-panel .entry-excerpt,
+    .pzarchitect .pzarc-panel .entry-thumbnail,
+    .pzarchitect .pzarc-panel .entry-content,
+    .pzarchitect .pzarc-panel .entry-meta {
+      display: block;
+      float: left;
+      vertical-align: top;
+      -webkit-box-sizing: border-box;
+      -moz-box-sizing: border-box;
+      box-sizing: border-box; }
+  .pzarchitect .pzarc-bg-image {
+    margin: 0;
+    padding: 0;
+    max-width: 100%;
+    height: auto;
+    z-index: 0;
+    overflow: hidden; }
+    .pzarchitect .pzarc-bg-image img {
+      display: block;
+      max-width: 100%;
+      height: auto; }
+    .pzarchitect .pzarc-bg-image img.nofill {
+      max-width: 100%;
+      height: auto; }
+    .pzarchitect .pzarc-bg-image img.fill.crop {
+      max-width: none;
+      height: auto; }
+  .pzarchitect .pzarc-bg-image.fill.scale {
+    max-width: 100%;
+    height: auto; }
+  .pzarchitect .has-bgimage {
+    position: absolute; }
+  .pzarchitect .pzarc-components {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    overflow: hidden; }
+  .pzarchitect .pzarc-oops {
+    font-size: 16px;
+    font-family: sans-serif;
+    color: tomato;
+    background: #faf2f5;
+    border: 1px solid tomato;
+    display: inline-block;
+    margin: 10px 0;
+    padding: 20px; }
+  .pzarchitect .pzarc-pager {
+    display: table;
+    padding: 10px 0;
+    width: 100%; }
+  .pzarchitect .pzarc-pager-prev,
+  .pzarchitect .pzarc-pager-next {
+    /*font-size:13px;*/
+    /*font-weight:bold;*/
+    /*background: #eee;*/
+    /*padding:10px 5px;*/ }
+  .pzarchitect .pzarc-pager-prev {
+    float: left;
+    /*border-top-left-radius: 20px;*/
+    /*border-bottom-left-radius: 20px;*/
+    /*padding-right:10px;*/ }
+  .pzarchitect .pzarc-pager-next {
+    float: right;
+    /*border-top-right-radius: 20px;*/
+    /*border-bottom-right-radius: 20px;*/
+    /*padding-left:10px;*/ }
+  .pzarchitect .pzarc-container .entry-excerpt.pznothumb,
+  .pzarchitect .pzarc-container .entry-content.pznothumb {
+    width: 100%; }
+  .pzarchitect .pzarc-align.left {
+    float: left;
+    padding-right: 2%; }
+  .pzarchitect .pzarc-align.right {
+    float: right;
+    padding-left: 2%; }
+  .pzarchitect .swiper-container-featured-posts-2x4 {
+    /* Specify Swiper's Size: */
+    height: 300px;
+    background: #eee;
+    padding: 0; }
+  .pzarchitect .swiper-container-featured-posts-2x4 .swiper-slide {
+    /* Specify Slides's Size: */
+    height: 100%;
+    margin: 0 !important; }
+  .pzarchitect .swiper-slide-active {
+    /* Specific active slide styling: */ }
+  .pzarchitect .swiper-slide-visible {
+    /* Specific visible slide styling: */ }
+  .pzarchitect .swiper-pagination-switch {
+    /* Stylize pagination button: */
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    border-radius: 15px;
+    background: #999;
+    -webkit-box-shadow: 0px 1px 2px #555 inset;
+    box-shadow: 0px 1px 2px #555 inset;
+    margin: 0 3px;
+    cursor: pointer; }
+  .pzarchitect .swiper-pagination-switch:hover {
+    background: #ccc; }
+  .pzarchitect .swiper-visible-switch {
+    /* Specific style for nav buttons for visible panels: */ }
+  .pzarchitect .swiper-active-switch {
+    /* Specific active button style: */
+    background: #fff; }
+  .pzarchitect .pzarc-navigator {
+    left: 0;
+    text-align: center;
+    bottom: 5px;
+    width: 100%;
+    z-index: 1; }
+  .pzarchitect .arrow-left {
+    background: url(../../resources/assets/images/slider/arrows1.png) no-repeat left top;
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    margin-top: -15px;
+    width: 17px;
+    height: 30px;
+    z-index: 2; }
+  .pzarchitect .arrow-right {
+    background: url(../../resources/assets/images/slider/arrows1.png) no-repeat left bottom;
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    margin-top: -15px;
+    width: 17px;
+    height: 30px;
+    z-index: 2; }
 
 /*# sourceMappingURL=arc-front.css.map */

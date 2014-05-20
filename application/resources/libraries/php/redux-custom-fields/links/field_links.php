@@ -99,7 +99,7 @@
       {
 
         if ($this->field[ 'regular' ] === true && $this->field[ 'default' ][ 'regular' ] !== false) {
-          echo '<input id="' . $this->field[ 'id' ] . '-regular" name="' . $this->field[ 'name' ] . '[regular]' . $this->field[ 'name_suffix' ] . '" value="' . $this->value[ 'regular' ] . '" class="redux-color redux-color-init ' . $this->field[ 'class' ] . '"  type="text" data-default-color="' . $this->field[ 'default' ][ 'regular' ] . '" />&nbsp;&nbsp;&nbsp;&nbsp;';
+          echo 'Regular: <input id="' . $this->field[ 'id' ] . '-regular" name="' . $this->field[ 'name' ] . '[regular]' . $this->field[ 'name_suffix' ] . '" value="' . $this->value[ 'regular' ] . '" class="redux-color redux-color-init ' . $this->field[ 'class' ] . '"  type="text" data-default-color="' . $this->field[ 'default' ][ 'regular' ] . '" />&nbsp;&nbsp;&nbsp;&nbsp;';
           echo  __('Underline', 'redux-framework') . '&nbsp;<select id="' . $this->field[ 'id' ] . '-regular-deco" name="' . $this->field[ 'name' ] . '[regular-deco]' . $this->field[ 'name_suffix' ] . '"  class="redux-links ' . $this->field[ 'class' ] . '" style="width:100px;">';
           echo '<option name="' . $this->field[ 'name' ] . '[regular-deco]' . $this->field[ 'name_suffix' ] . ' value="inherit" ' . ($this->value[ 'regular-deco' ] =='inherit'?'selected':'').'>Inherit</option>';
           echo '<option name="' . $this->field[ 'name' ] . '[regular-deco]' . $this->field[ 'name_suffix' ] . ' value="none" ' . ($this->value[ 'regular-deco' ] =='none'?'selected':'').'>None</option>';
@@ -108,7 +108,7 @@
         }
 
         if ($this->field[ 'hover' ] === true && $this->field[ 'default' ][ 'hover' ] !== false) {
-          echo '<input id="' . $this->field[ 'id' ] . '-hover" name="' . $this->field[ 'name' ] . '[hover]' . $this->field[ 'name_suffix' ] . '" value="' . $this->value[ 'hover' ] . '" class="redux-color redux-color-init ' . $this->field[ 'class' ] . '"  type="text" data-default-color="' . $this->field[ 'default' ][ 'hover' ] . '" />&nbsp;&nbsp;&nbsp;&nbsp;';
+          echo 'Hover: <input id="' . $this->field[ 'id' ] . '-hover" name="' . $this->field[ 'name' ] . '[hover]' . $this->field[ 'name_suffix' ] . '" value="' . $this->value[ 'hover' ] . '" class="redux-color redux-color-init ' . $this->field[ 'class' ] . '"  type="text" data-default-color="' . $this->field[ 'default' ][ 'hover' ] . '" />&nbsp;&nbsp;&nbsp;&nbsp;';
           echo __('Underline', 'redux-framework') . '&nbsp;<select id="' . $this->field[ 'id' ] . '-hover-deco" name="' . $this->field[ 'name' ] . '[hover-deco]' . $this->field[ 'name_suffix' ] . '"  class="redux-links ' . $this->field[ 'class' ] . '" style="width:100px;">';
           echo '<option name="' . $this->field[ 'name' ] . '[hover-deco]' . $this->field[ 'name_suffix' ] . ' value="inherit" ' . ($this->value[ 'hover-deco' ] =='inherit'?'selected':'').'>Inherit</option>';
           echo '<option name="' . $this->field[ 'name' ] . '[hover-deco]' . $this->field[ 'name_suffix' ] . ' value="none" ' . ($this->value[ 'hover-deco' ] =='none'?'selected':'').'>None</option>';
@@ -117,7 +117,7 @@
         }
 
         if ($this->field[ 'visited' ] === true && $this->field[ 'default' ][ 'visited' ] !== false) {
-          echo '<input id="' . $this->field[ 'id' ] . '-hover" name="' . $this->field[ 'name' ] . '[visited]' . $this->field[ 'name_suffix' ] . '" value="' . $this->value[ 'visited' ] . '" class="redux-color redux-color-init ' . $this->field[ 'class' ] . '"  type="text" data-default-color="' . $this->field[ 'default' ][ 'visited' ] . '" />&nbsp;&nbsp;&nbsp;&nbsp;';
+          echo 'Visited: <input id="' . $this->field[ 'id' ] . '-hover" name="' . $this->field[ 'name' ] . '[visited]' . $this->field[ 'name_suffix' ] . '" value="' . $this->value[ 'visited' ] . '" class="redux-color redux-color-init ' . $this->field[ 'class' ] . '"  type="text" data-default-color="' . $this->field[ 'default' ][ 'visited' ] . '" />&nbsp;&nbsp;&nbsp;&nbsp;';
           echo  __('Underline', 'redux-framework') . '&nbsp;<select id="' . $this->field[ 'id' ] . '-visited-deco" name="' . $this->field[ 'name' ] . '[visited-deco]' . $this->field[ 'name_suffix' ] . '"  class="redux-links ' . $this->field[ 'class' ] . '" style="width:100px;">';
           echo '<option name="' . $this->field[ 'name' ] . '[visited-deco]' . $this->field[ 'name_suffix' ] . ' value="inherit" ' . ($this->value[ 'visited-deco' ] =='inherit'?'selected':'').'>Inherit</option>';
           echo '<option name="' . $this->field[ 'name' ] . '[visited-deco]' . $this->field[ 'name_suffix' ] . ' value="none" ' . ($this->value[ 'visited-deco' ] =='none'?'selected':'').'>None</option>';
@@ -126,7 +126,7 @@
         }
 
         if ($this->field[ 'active' ] === true && $this->field[ 'default' ][ 'active' ] !== false) {
-          echo '<input id="' . $this->field[ 'id' ] . '-active" name="' . $this->field[ 'name' ] . '[active]' . $this->field[ 'name_suffix' ] . '" value="' . $this->value[ 'active' ] . '" class="redux-color redux-color-init ' . $this->field[ 'class' ] . '"  type="text" data-default-color="' . $this->field[ 'default' ][ 'active' ] . '" />&nbsp;&nbsp;&nbsp;&nbsp;';
+          echo 'Active: <input id="' . $this->field[ 'id' ] . '-active" name="' . $this->field[ 'name' ] . '[active]' . $this->field[ 'name_suffix' ] . '" value="' . $this->value[ 'active' ] . '" class="redux-color redux-color-init ' . $this->field[ 'class' ] . '"  type="text" data-default-color="' . $this->field[ 'default' ][ 'active' ] . '" />&nbsp;&nbsp;&nbsp;&nbsp;';
           echo __('Underline', 'redux-framework') . '&nbsp;<select id="' . $this->field[ 'id' ] . '-active-deco" name="' . $this->field[ 'name' ] . '[active-deco]' . $this->field[ 'name_suffix' ] . '"  class="redux-links ' . $this->field[ 'class' ] . '" style="width:100px;">';
           echo '<option name="' . $this->field[ 'name' ] . '[active-deco]' . $this->field[ 'name_suffix' ] . ' value="inherit" ' . ($this->value[ 'active-deco' ] =='inherit'?'selected':'').'>Inherit</option>';
           echo '<option name="' . $this->field[ 'name' ] . '[active-deco]' . $this->field[ 'name_suffix' ] . ' value="none" ' . ($this->value[ 'active-deco' ] =='none'?'selected':'').'>None</option>';

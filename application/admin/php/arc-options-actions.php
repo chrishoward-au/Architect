@@ -5,8 +5,8 @@
     return;
   }
 
-  if (!class_exists("Redux_Framework_Architect_Def_Editor_config")) {
-    class Redux_Framework_Architect_Def_Editor_config
+  if (!class_exists("Redux_Framework_Architect_Actions_Editor_config")) {
+    class Redux_Framework_Architect_Actions_Editor_config
     {
 
       public $args = array();
@@ -45,7 +45,8 @@
 
         // Dynamically add a section. Can be also used to modify sections/fields
         // add_filter('redux/options/' . $this->args[ 'opt_name' ] . '/sections', array($this, 'dynamic_section'));
-
+//        global $wp_filter;
+//                pzdebug((array_keys($wp_filter)));
         $this->ReduxFramework = new ReduxFramework($this->sections, $this->args);
 
       }
@@ -66,7 +67,7 @@
 
         // Demo of how to use the dynamic CSS and write your own static CSS file
         $filename = PZARC_CACHE_PATH . '/arc-dynamic-styles' . '.css';
-        // var_dump($filename);
+      //  var_dump($filename);
         global $wp_filesystem;
         if (empty($wp_filesystem)) {
           require_once(ABSPATH . '/wp-admin/resources/file.php');
@@ -225,175 +226,77 @@
           $sampleHTML = $wp_filesystem->get_contents(dirname(__FILE__) . '/info-html.html');
         }
 
-        $prefix = 'architect_panels_def_';
 
         // ACTUAL DECLARATION OF SECTIONS
         $this->sections[ ] = array(
-            'title'      => 'Panel Definitions Editor',
-            'show_title' => false,
-            'icon_class' => 'icon-large',
-            'icon'       => 'el-icon-pencil',
+            'title'      => 'General ',
+            'show_title' => true,
+            'icon'       => 'el-icon-wrench',
             'fields'     => array(
-//                $panel_def[ 'panel-open' ]   = '{{bgimagetl}}<article id="post-{{postid}}" class="block-type-content post-{{postid}} post type-{{posttype}} status-{{poststatus}} format-{{postformat}} hentry {{categories}} {{tags}} {{pzclasses}}">';
-//        $panel_def[ 'panel-close' ]  = '</article>{{bgimagebr}}';
-//        $panel_def[ 'postlink' ]     = '<a href="{{permalink}}" title="{{title}}">';
-//        $panel_def[ 'header' ]       = '<header class="entry-header">{{headerinnards}}</header><!-- .entry-header -->';
-//        $panel_def[ 'title' ]        = '<h1 class="entry-title">{{postlink}}{{title}}{{closepostlink}}</h1>';
-//        $panel_def[ 'meta1' ]        = '<div class="entry-meta entry-meta1">{{meta1innards}}</div><!-- .entry-meta 1 -->';
-//        $panel_def[ 'meta2' ]        = '<div class="entry-meta entry-meta2">{{meta2innards}}</div><!-- .entry-meta 2 -->';
-//        $panel_def[ 'meta3' ]        = '<div class="entry-meta entry-meta3">{{meta3innards}}</div><!-- .entry-meta 3 -->';
-//        $panel_def[ 'datetime' ]     = '<span class="date"><time class="entry-date" datetime="{{datetime}}">{{fdatetime}}</time></span>';
-//        $panel_def[ 'categories' ]   = '<span class="categories-links">{{categorieslinks}}</span>';
-//        $panel_def[ 'tags' ]         = '<span class="tags-links">{{tagslinks}}</span>';
-//        $panel_def[ 'author' ]       = '<span class="author vcard"><a class="url fn n" href="{{authorlink}}" title="View all posts by {{authorname}}" rel="author">{{authorname}}</a></span>';
-//        $panel_def[ 'image' ]        = '<figure class="entry-thumbnail {{incontent}}">{{postlink}}<img width="{{width}}" src="{{imgsrc}}" class="attachment-post-thumbnail wp-post-image" alt="{{alttext}}">{{closepostlink}}{{captioncode}}</figure>';
-//        $panel_def[ 'caption' ]      = '<figcaption class="caption">{{caption}}</figcaption>';
-//        $panel_def[ 'content' ]      = ' <div class="entry-content {{nothumb}}">{{image-in-content}}{{content}}</div><!-- .entry-content -->';
-//        $panel_def[ 'custom1' ]      = '<div class="entry-customfield entry-customfield-1">{{custom1innards}}</div><!-- .entry-custom 1 -->';
-//        $panel_def[ 'custom2' ]      = '<div class="entry-customfield entry-customfield-2">custom2innards}}</div><!-- .entry-custom 2 -->';
-//        $panel_def[ 'custom3' ]      = '<div class="entry-customfield entry-customfield-3">{{custom3innards}}</div><!-- .entry-custom 3 -->';
-//        $panel_def[ 'footer' ]       = '<footer class="entry-footer">{{footerinnards}}</footer><!-- .entry-meta -->';
-//        $panel_def[ 'excerpt' ]      = ' <div class="entry-excerpt {{nothumb}}">{{image-in-content}}{{excerpt}}</div><!-- .entry-excerpt -->';
-//        $panel_def[ 'image' ]        = '{{postlink}}{{image}}{{closelink}}';
-//        $panel_def[ 'feature' ]      = '{{feature}}';
-
-array(
-    'title'   => __('Definition Name', 'pzarc'),
-    'id'      => $prefix . 'definition-name',
-    'type'    => 'text',
-    'default' => '',
-    'validate' => 'not_empty'
-),
-array(
-    'title'   => __('Panel open', 'pzarc'),
-    'id'      => $prefix . 'panels-open',
-    'type'    => 'textarea',
-    'rows'    => 2,
-    'default' => '',
-),
-array(
-    'title'   => __('Header', 'pzarc'),
-    'id'      => $prefix . 'header',
-    'type'    => 'textarea',
-    'rows'    => 2,
-    'default' => '',
-),
-array(
-    'title'   => __('Title', 'pzarc'),
-    'id'      => $prefix . 'title',
-    'type'    => 'textarea',
-    'rows'    => 2,
-    'default' => '',
-),
-array(
-    'title'   => __('Meta area 1', 'pzarc'),
-    'id'      => $prefix . 'meta1',
-    'type'    => 'textarea',
-    'rows'    => 2,
-    'default' => '',
-),
-array(
-    'title'   => __('Date/Time', 'pzarc'),
-    'id'      => $prefix . 'datetime',
-    'type'    => 'textarea',
-    'rows'    => 2,
-    'default' => '',
-),
-array(
-    'title'   => __('Categories', 'pzarc'),
-    'id'      => $prefix . 'categories',
-    'type'    => 'textarea',
-    'rows'    => 2,
-    'default' => '',
-),
-array(
-    'title'   => __('Tags', 'pzarc'),
-    'id'      => $prefix . 'tags',
-    'type'    => 'textarea',
-    'rows'    => 2,
-    'default' => '',
-),
-array(
-    'title'   => __('Author', 'pzarc'),
-    'id'      => $prefix . 'author',
-    'type'    => 'textarea',
-    'rows'    => 2,
-    'default' => '',
-),
-array(
-    'title'   => __('Image', 'pzarc'),
-    'id'      => $prefix . 'image',
-    'type'    => 'textarea',
-    'rows'    => 2,
-    'default' => '',
-),
-array(
-    'title'   => __('Content', 'pzarc'),
-    'id'      => $prefix . 'content',
-    'type'    => 'textarea',
-    'rows'    => 2,
-    'default' => '',
-),
-array(
-    'title'   => __('Excerpt', 'pzarc'),
-    'id'      => $prefix . 'excerpt',
-    'type'    => 'textarea',
-    'rows'    => 2,
-    'default' => '',
-),
-array(
-    'title'   => __('feature', 'pzarc'),
-    'id'      => $prefix . 'footer',
-    'type'    => 'textarea',
-    'rows'    => 2,
-    'default' => '',
-),
-array(
-    'title'   => __('footer', 'pzarc'),
-    'id'      => $prefix . 'footer',
-    'type'    => 'textarea',
-    'rows'    => 2,
-    'default' => '',
-),
-array(
-    'title'   => __('Panel close', 'pzarc'),
-    'id'      => $prefix . 'panels-close',
-    'type'    => 'textarea',
-    'rows'    => 2,
-    'default' => '',
-),
-            )
-        );
-        $this->sections[ ] = array(
-            'id'         => 'def-editor-help',
-            'title'      => 'Help',
-            'icon_class' => 'icon-large',
-            'icon'       => 'el-icon-info-sign',
-            'fields'     => array(
-
                 array(
-                    'title' => __('Panel Definitions Editor', 'pzarc'),
-                    'id'    => $prefix . 'panels-help-def-editor',
-                    'type'  => 'info',
-                    //  'class' => 'plain',
-                    'desc'  => '<h3>Tags</h3>
-<p>{{title}}</p>
-<p>{{content}}</p>
-<p>{{excerpt}}</p>
-<p>{{date}}</p>
-<p>{{}}</p>
-<p>{{}}</p>
-<p>{{}}</p>
-<p>{{}}</p>
-<p>{{}}</p>
-<p>{{}}</p>
-
-'
-
-                )
+                    'title'    => __('Number of Actions', 'pzarc'),
+                    'id'       => 'architect_actions_number-of',
+                    'type'     => 'spinner',
+                    'default'  => 1,
+                    'min'      => '1',
+                    'max'      => '100',
+                    'step'     => '1',
+                ),
             )
         );
+        $actions_options = get_option('_architect_actions');
+        for ($i = 1; $i <= $actions_options['architect_actions_number-of']; $i++) {
+          $action_title = (empty($actions_options['architect_actions_'.$i.'_action-name'])?'Action '.$i:$actions_options['architect_actions_'.$i.'_action-name'].' '.$actions_options['architect_actions_'.$i.'_blueprint']);
+          $prefix = 'architect_actions_'.$i.'_';
+          $this->sections[ ] = array(
+              'title'      => $action_title,
+              'show_title' => true,
+              'icon'       => 'el-icon-cogs',
+              'fields'     => array(
+                  array(
+                      'title'    => __('Action Name', 'pzarc'),
+                      'id'       => $prefix . 'action-name',
+                      'type'     => 'text',
+                      'default'  => '',
+                  ),
+                  array(
+                      'title'   => __('Blueprint shortname', 'pzarc'),
+                      'id'      => $prefix . 'blueprint',
+                      'type'    => 'text',
+                      'default' => '',
+                  ),
+                  array(
+                      'title'   => __('Page IDs', 'pzarc'),
+                      'id'      => $prefix . 'pageids',
+                      'type'    => 'select',
+                      'multi'   => true,
+                      'default' => '',
+                      'options' => array(
+                          'all'         => 'All',
+                          'home'        => 'Home',
+                          'single-post' => 'Single Post',
+                          'single-page' => 'Single page',
+                          'blog'        => 'Blog page',
+                          'catergories' => 'Categories',
+                          'tags'        => 'Tags',
+                          'dates'       => 'Dates',
+                          'authors'     => 'Authors',
+                          'search'      => 'Search',
+                          '404'         => '404',
+                          'specific'    => 'Specific'
+                      )
+                  ),
+                  array(
+                      'title'   => __('Specific page IDs', 'pzarc'),
+                      'id'      => $prefix . 'specificids',
+                      'type'    => 'text',
+                      'default' => '',
+//                      'required'=> array($prefix . 'pageids','contains','specific')
+                  ),
 
+              )
+          );
+        }
 
       }
 
@@ -433,9 +336,9 @@ array(
         $this->args = array(
 
           // TYPICAL -> Change these values as you need/desire
-          'opt_name'           => '_architect_def',
+          'opt_name'           => '_architect_actions',
           // This is where your data is stored in the database and also becomes your global variable name.
-          'display_name'       => 'Panel Definitions Editor',
+          'display_name'       => 'Actions Editor',
           // Name that appears at the top of your panel
           'display_version'    => 'Architect v' . PZARC_VERSION,
           // Version that appears at the top of your panel
@@ -443,8 +346,8 @@ array(
           //Specify if the admin menu should appear or not. Options: menu or submenu (Under appearance only)
           'allow_sub_menu'     => false,
           // Show the sections below the admin menu item or not
-          'menu_title'         => __('<span class="dashicons dashicons-edit"></span>Panel Definitions', 'pzarc'),
-          'page'               => __('Panel Definitions Editor', 'pzarc'),
+          'menu_title'         => __('<span class="dashicons dashicons-edit"></span>Actions Editor', 'pzarc'),
+          'page'               => __('Actions Editor', 'pzarc'),
           'google_api_key'     => 'Xq9o3CdQFHKr+47vQr6eO4EUYLtlEyTe',
           // Must be defined to add google fonts to the typography module
           'global_variable'    => '',
@@ -467,7 +370,7 @@ array(
           // Force your panel to always open to a specific tab (by id)
           'page_icon'          => 'icon-themes',
           // Icon displayed in the admin panel next to your menu_title
-          'page_slug'          => '_architect_def_editor',
+          'page_slug'          => '_architect_actions_editor',
           // Page slug used to denote the panel
           'save_defaults'      => true,
           // On load save the defaults to DB before user clicks save or not
@@ -547,7 +450,7 @@ array(
             $v = str_replace("-", "_", $this->args[ 'opt_name' ]);
           }
           $this->args[ 'intro_text' ]
-              = sprintf(__('<p>On this page you can configure default CSS styling as well as indicating the classes it applies to.</p>', 'redux-framework-demo'), $v);
+              = sprintf(__('<p>On this page you can setup specific blueprints to display at specific points in your page\'s display. This is done using WordPress action hooks. Although WordPress provides many, the ones that work best for content display will be those included in the theme you are using. Review your theme and/or its documentation.</p>', 'redux-framework-demo'), $v);
         } else {
 //          $this->args[ 'intro_text' ]
 //              = __('<p>This text is displayed above the options panel. It isn\'t required, but more info is always better! The intro_text field accepts all HTML.</p>', 'redux-framework-demo');
@@ -558,7 +461,7 @@ array(
       }
     }
 
-    new Redux_Framework_Architect_Def_Editor_config();
+    new Redux_Framework_Architect_Actions_Editor_config();
   }
 
 

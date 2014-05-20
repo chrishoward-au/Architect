@@ -254,12 +254,22 @@
                 'validate' => 'not_empty'
             ),
             array(
-                'title'    => 'Select what type of navigation to use',
+                'id'      => $prefix . 'blueprint-width',
+                'type'    => 'dimensions',
+                //               'mode'    => array('width' => true, 'height' => false),
+                'units'   => array('%', 'px'),
+                'width'   => true,
+                'height'  => false,
+                'title'   => __('Blueprint width', 'pzarchitect'),
+                'default' => array('width' => '100','units'=>'%'),
+            ),
+            array(
+                'title'    => 'Navigation',
                 'id'       => $prefix . 'navigation',
                 'type'     => 'button_set',
                 'width'    => 'auto',
                 'default'  => 'none',
-                'subtitle' => 'Note: Navigator will only function when one section',
+                'subtitle' => 'Note: Navigator will only function when one section selected. Pagination effects all sections.',
                 'options'  => array(
                     'none'       => 'None',
                     'pagination' => 'Pagination',
@@ -435,6 +445,16 @@
                   'cols'  => 12,
               ),
               array(
+                  'id'      => $prefix . 'section-width',
+                  'type'    => 'dimensions',
+                  //               'mode'    => array('width' => true, 'height' => false),
+                  'units'   => array('%', 'px'),
+                  'width'   => true,
+                  'height'  => false,
+                  'title'   => __('Section width', 'pzarchitect'),
+                  'default' => array('width' => '100','units'=>'%'),
+              ),
+              array(
                   'id'       => $prefix . 'section-' . $i . '-panel-layout',
                   'title'    => __('Panels layout', 'pzarchitect'),
                   'type'     => 'select',
@@ -463,8 +483,8 @@
                   //       'subtitle'    => __('Choose how you want the panels to display. With evenly sized panels, you\'ll see little difference. Please visit <a href="http://isotope.metafizzy.co/demos/layout-modes.html" target=_blank>Isotope Layout Modes</a> for demonstrations of these layouts', 'pzarchitect')
               ),
               array(
-                  'title'   => __('Unlimited Panels', 'pzarchitect'),
-                  'id'      => $prefix . 'section-' . $i . '-panels-unlimited',
+                  'title'   => __('Limit panels', 'pzarchitect'),
+                  'id'      => $prefix . 'section-' . $i . '-panels-limited',
                   'type'    => 'switch',
                   'on'      => 'Yes',
                   'off'     => 'No',
@@ -477,12 +497,13 @@
                   'default'  => 1,
                   'min'      => 1,
                   'max'      => 99,
-                  'required' => array($prefix . 'section-' . $i . '-panels-unlimited', '=', false)
+                  'subtitle'=> __('If using pagination, this will be the number per page.'),
+                  'required' => array($prefix . 'section-' . $i . '-panels-limited', '=', true)
               ),
               array(
                   'title'         => __('Columns', 'pzarchitect'),
                   'id'            => $prefix . 'section-' . $i . '-columns',
-                  'subtitle'      => __('Number of columns or panels across. Number of rows is calculated automatically.', 'pzarchitect'),
+                  'subtitle'      => __('Number of columns or panels across. (Number of rows is calculated automatically.)', 'pzarchitect'),
                   'type'          => 'slider',
                   'default'       => 3,
                   'min'           => 1,
@@ -492,40 +513,28 @@
               array(
                   'title'   => __('Minimum panel width', 'pzarchitect'),
                   'id'      => $prefix . 'section-' . $i . '-min-panel-width',
-                  'type'    => 'spinner',
-                  'alt'     => 'minpanelw',
-                  'default' => 0,
-                  'min'     => '0',
-                  'max'     => 9999,
-                  'cols'    => 2,
-                  'step'    => '1',
-                  'suffix'  => 'px',
+                  'type'    => 'dimensions',
+                  'height'=>false,
+                  'units'=>'px',
+                  'default' => array('width'=>'0'),
                   //      'subtitle'    => __('Set the minimum width for panels in this section. This helps with responsive layout', 'pzarchitect')
               ),
               array(
                   'title'   => __('Panels vertical margin', 'pzarchitect'),
                   'id'      => $prefix . 'section-' . $i . '-panels-vert-margin',
-                  'type'    => 'spinner',
-                  'alt'     => 'gutterv',
-                  'default' => '1',
-                  'min'     => '0',
-                  'max'     => '100',
-                  'cols'    => 3,
-                  'step'    => '1',
-                  'suffix'  => '%',
+                  'type'    => 'dimensions',
+                  'height'=>false,
+                  'units'=>false,
+                  'default' => array('width'=>'1'),
                   //    'subtitle'    => __('Set the vertical gutter width as a percentage of the section width. The gutter is the gap between adjoining elements', 'pzarchitect')
               ),
               array(
                   'title'   => __('Panels horizontal margin', 'pzarchitect'),
                   'id'      => $prefix . 'section-' . $i . '-panels-horiz-margin',
-                  'type'    => 'spinner',
-                  'alt'     => 'gutterh',
-                  'default' => '1',
-                  'min'     => '0',
-                  'max'     => '100',
-                  'cols'    => 3,
-                  'step'    => '1',
-                  'suffix'  => '%',
+                  'type'    => 'dimensions',
+                  'width'=>false,
+                  'units'=>false,
+                  'default' => array('height'=>'1'),
                   //      'subtitle'    => __('Set the horizontal gutter width as a percentage of the section width. The gutter is the gap between adjoining elements', 'pzarchitect')
               ),
 
@@ -743,9 +752,36 @@
     );
 
     $sections[ ] = array(
-        'title'      => 'Help',
+        'title'      => 'Using blueprints',
         'icon_class' => 'icon-large',
         'icon'       => 'el-icon-info-sign',
+        'fields'     => array(
+
+            array(
+                'title' => __('How to use blueprints', 'pzarchitect'),
+                'id'    => $prefix . 'help-blueprints',
+                'type'  => 'info',
+                'class' => 'plain',
+                'desc'  => '<p>There are five methods to displaying a blueprint. These are, in order of necessary technical know-how:</p>
+                <ul>
+                <li><strong>Widget</strong> : Select on widgets screen</li>
+                <li><strong>Shortcode</strong> : Add <em>[pzarc "blueprint" "overrides"]</em> your content at the point you want the blueprint to appear.</li>
+                <li><strong>Actions editor</strong> Enter the action name, blueprint and pages to appear on</li>
+                <li><strong>Action call</strong> :Add </em>new showBlueprint(\'action\',\'blueprint\',\'pageids\');</em> to your functions.php</li>
+                <li><strong>Template tag</strong> : Add <em>pzarchitect(\'blueprint\');</em> to your template at the point you want the blueprint to appear</li>
+                </ul>
+                <p><em>blueprint</em> = the shortname of the blueprint to display.</p>
+                <p><em>overrides</em> = a comma separated list of the media ids to display instead. Very useful for easily converting a WordPress gallery shortcode. eg [gallery ids="1,2,3,5"] becomes [pzarc "mygallery", "1,2,3,4,5"]</p>
+                <p><em>action</em> = the name of the action hook where you want the blueprint to appear</p>
+                 <p><em>pageids</em> = a comma separated list of names or numeric ids of the pages to display the blueprint. </p>
+
+            ')
+        )
+    );
+    $sections[ ] = array(
+        'title'      => 'Help',
+        'icon_class' => 'icon-large',
+        'icon'       => 'el-icon-question-sign',
         'fields'     => array(
 
             array(
@@ -772,18 +808,6 @@
                               <p>
                               Ut at consectetuer blandit nibh in.
                               </p>
-                <h2>How to use blueprints</h2>
-                <p>There are four methods to displaying a blueprint</p>
-                <ul>
-                <li><strong>Template tag</strong> : Add <em>pzarchitect(\'blueprint\');</em> to your template at the point you want the blueprint to appear</li>
-                <li><strong>Shortcode</strong> : Add <em>[pzarc "blueprint" "overrides"]</em> your content at the point you want the blueprint to appear.</li>
-                <li><strong>Widget</strong> : <em>Select on widgets screen</em></li>
-                <li><strong>Action call</strong> : </em>new showBlueprint(\'action\',\'blueprint\',\'pageids\');</em></li>
-                </ul>
-                <p><em>blueprint</em> = the shortname of the blueprint to display.</p>
-                <p><em>overrides</em> = a comma separated list of the media ids to display instead. Very useful for easily converting a WordPress gallery shortcode. eg [gallery ids="1,2,3,5"] becomes [pzarc "mygallery", "1,2,3,4,5"]</p>
-                <p><em>action</em> = the name of the action hook where you want the blueprint to appear</p>
-                 <p><em>pageids</em> = a comma separated list of names or numeric ids of the pages to display the blueprint. </p>
 
             ')
         )
@@ -1098,7 +1122,7 @@
                 'data'     => 'callback',
                 'args'     => array('pzarc_get_ng_galleries'),
                 'subtitle' => (class_exists('P_Photocrati_NextGen') ? 'Enter NGG gallery name to use'
-                    : 'NextGen is not running on this site'),
+                        : 'NextGen is not running on this site'),
                 'required' => array($prefix . 'gallery-source', 'equals', 'nggallery')
             ),
         )
@@ -1137,7 +1161,7 @@
     $sections[ ] = array(
         'title'      => 'Help',
         'icon_class' => 'icon-large',
-        'icon'       => 'el-icon-info-sign',
+        'icon'       => 'el-icon-question-sign',
         'fields'     => array(
 
             array(
@@ -1203,10 +1227,10 @@
         'show_title' => false,
         'icon_class' => 'icon-large',
         'icon'       => 'el-icon-website',
-        'desc' => 'Class: .pzarc-blueprint_{shortname}',
+        'desc'       => 'Class: .pzarc-blueprint_{shortname}',
         'fields'     => pzarc_fields(
-            // TODO: Get correct $defaults
-            // TODO: Add shadows
+        // TODO: Get correct $defaults
+        // TODO: Add shadows
             pzarc_redux_bg($prefix . 'blueprint-background', array('.pzarc-blueprint')),
             pzarc_redux_padding($prefix . 'blueprint-padding', array('.pzarc-blueprint')),
             pzarc_redux_margin($prefix . 'blueprint-margins', array('.pzarc-blueprint')),
@@ -1226,12 +1250,12 @@
         'title'      => 'Sections wrapper',
         'show_title' => false,
         'icon_class' => 'icon-large',
-        'icon'       => 'el-icon-lines',
-        'desc' => 'Class: .pzarc-container_{shortname}',
+        'icon'       => 'el-icon-check-empty',
+        'desc'       => 'Class: .pzarc-container_{shortname}',
         'fields'     => pzarc_fields(
 
-            // TODO: Get correct $defaults
-            // TODO: Add shadows
+        // TODO: Get correct $defaults
+        // TODO: Add shadows
             pzarc_redux_bg($prefix . 'container-background', array('.pzarc-container')),
             pzarc_redux_padding($prefix . 'container-padding', array('.pzarc-container')),
             pzarc_redux_margin($prefix . 'container-margins', array('.pzarc-container')),
@@ -1284,7 +1308,7 @@
         'id'         => 'blueprint-styling-help',
         'title'      => 'Help',
         'icon_class' => 'icon-large',
-        'icon'       => 'el-icon-info-sign',
+        'icon'       => 'el-icon-question-sign',
         'fields'     => array(
 
             array(

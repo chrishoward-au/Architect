@@ -30,14 +30,17 @@
    * NextGen
    *
    */
-  // TODO: Help info: Use shortcodes for things like galleries and slideshows - things that are stylised by you. Use template tag for displaying posts
-
-// TODO: Make sure it can display comments!!
-  // TODO: Make it so users can create their own panels and blueprints, but can't edit other users' unless an admin. Thus users could create their own for shortcodes!
-
-// TODO: Add a metabox to pages that lets you pick blueprints to prepend or postend to pages. How hard could it be? Plug into hook? Is there a pre-loop hook? loop_start, loop_end
-  //TODO: Add a method to add template tags to hooks
-
+  /*
+  TODO: Help info: Use shortcodes for things like galleries and slideshows - things that are stylised by you. Use template tag for displaying posts
+  TODO: Make sure it can display comments!!
+  TODO: Make it so users can create their own panels and blueprints, but can't edit other users' unless an admin. Thus users could create their own for shortcodes!
+  TODO: Add a metabox to pages that lets you pick blueprints to prepend or postend to pages. How hard could it be? Plug into hook? Is there a pre-loop hook? loop_start, loop_end
+  TODO: Add a method to add template tags to hooks
+  TODO: Make sure urls are https/http generic
+  TODO: Make sure WP multi compatible
+  TODO: Allow ems and % for responsive dimensions
+  TODO: OOPS! Need a method to rereate css if it goes missing!
+  */
   /* why not use a WP like methodology!
   ================================================================================
   register_cell_layout('name',$args)'
@@ -57,8 +60,10 @@
       define('PZARC_NAME', 'pzarchitect'); // This is also used as the locale
       define('PZARC_FOLDER', '/pizazzwp-architect');
 
-      define('PZARC_PLUGIN_URL', trailingslashit(plugin_dir_url(__FILE__)) . 'application/');
-      define('PZARC_PLUGIN_PATH', trailingslashit(plugin_dir_path(__FILE__)) . 'application/');
+      define('PZARC_PLUGIN_ROOT_URL', trailingslashit(plugin_dir_url(__FILE__)));
+      define('PZARC_PLUGIN_ROOT_PATH', trailingslashit(plugin_dir_path(__FILE__)));
+      define('PZARC_PLUGIN_URL', PZARC_PLUGIN_ROOT_URL . 'application/');
+      define('PZARC_PLUGIN_PATH', PZARC_PLUGIN_ROOT_PATH . 'application/');
       define('PZARC_CACHE', '/arc/');
 
       $upload_dir = wp_upload_dir();
@@ -136,7 +141,7 @@
         require('application/public/php/arc-headway-block-display.php');
         require('application/admin/php/headway/arc-headway-block-options.php');
 
-        return headway_register_block('HeadwayArchitectBlock', PZARC_PLUGIN_URL . '/application/admin/php/headway');
+        return headway_register_block('HeadwayArchitectBlock', PZARC_PLUGIN_URL . '/admin/php/headway');
       }
     }
 

@@ -69,7 +69,7 @@
 
         // Demo of how to use the dynamic CSS and write your own static CSS file
           $filename = PZARC_CACHE_PATH. '/arc-dynamic-styles' . '.css';
-        var_dump($filename);
+        // var_dump($filename);
           global $wp_filesystem;
           if( empty( $wp_filesystem ) ) {
               require_once( ABSPATH .'/wp-admin/resources/file.php' );
