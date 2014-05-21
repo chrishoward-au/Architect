@@ -58,6 +58,7 @@
         require_once PZARC_PLUGIN_PATH . '/resources/libraries/php/redux-custom-fields/loader.php';
         require_once PZARC_PLUGIN_PATH . '/resources/libraries/php/redux-extensions/loader.php';
         require_once PZARC_PLUGIN_PATH . '/admin/php/arc-options.php';
+        require_once PZARC_PLUGIN_PATH . '/admin/php/arc-options-styling.php';
         require_once PZARC_PLUGIN_PATH . '/admin/php/arc-options-actions.php';
 
 
@@ -104,7 +105,7 @@
       global $pzarc_menu, $pizazzwp_updates;
       if (!$pzarc_menu) {
         //add_menu_page( $page_title,  $menu_title, $capability,   $menu_slug, $function,    $icon_url, $position );
-        $pzarc_menu = add_menu_page('About', 'Architect', 'edit_posts', 'pzarc', 'pzarc_about', PZARC_PLUGIN_URL . 'wp-icon.png', 93);
+        $pzarc_menu = add_menu_page('About', 'Architect', 'edit_posts', 'pzarc', 'pzarc_about', PZARC_PLUGIN_URL . 'wp-icon.png');
         // add_submenu_page( $parent_slug, $page_title, $menu_title, $capability, $menu_slug, $function );
 
         // Don't need this as it's carried in the layouts already

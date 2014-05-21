@@ -410,8 +410,7 @@
   {
     $prefix   = '_blueprints_';
     $sections = array();
-
-
+    global $_architect_options;
     $args = array(
         'posts_per_page'   => -1,
         'orderby'          => 'title',
@@ -501,15 +500,36 @@
                   'required' => array($prefix . 'section-' . $i . '-panels-limited', '=', true)
               ),
               array(
-                  'title'         => __('Columns', 'pzarchitect'),
-                  'id'            => $prefix . 'section-' . $i . '-columns',
-                  'subtitle'      => __('Number of columns or panels across. (Number of rows is calculated automatically.)', 'pzarchitect'),
+                  'title'         => __('Columns wide screen', 'pzarchitect').' ('.$_architect_options['architect_breakpoint_1']['width'].')',
+                  'id'            => $prefix . 'section-' . $i . '-columns-breakpoint-1',
+                  'subtitle'      => __('Number of columns or panels across on a wide screen as set in the breakpoints options', 'pzarchitect'),
                   'type'          => 'slider',
                   'default'       => 3,
                   'min'           => 1,
                   'max'           => 10,
                   'display_value' => 'label'
               ),
+              array(
+                  'title'         => __('Columns medium screen', 'pzarchitect').' ('.$_architect_options['architect_breakpoint_2']['width'].')',
+                  'id'            => $prefix . 'section-' . $i . '-columns-breakpoint-2',
+                  'subtitle'      => __('Number of columns or panels across on a medium screen as set in the breakpoints options', 'pzarchitect'),
+                  'type'          => 'slider',
+                  'default'       => 2,
+                  'min'           => 1,
+                  'max'           => 10,
+                  'display_value' => 'label'
+              ),
+              array(
+                  'title'         => __('Columns narrow screen', 'pzarchitect').' ('.$_architect_options['architect_breakpoint_3']['width'].')',
+                  'id'            => $prefix . 'section-' . $i . '-columns-breakpoint-3',
+                  'subtitle'      => __('Number of columns or panels across on a narrow screen as set in the breakpoints options', 'pzarchitect'),
+                  'type'          => 'slider',
+                  'default'       => 1,
+                  'min'           => 1,
+                  'max'           => 10,
+                  'display_value' => 'label'
+              ),
+
               array(
                   'title'   => __('Minimum panel width', 'pzarchitect'),
                   'id'      => $prefix . 'section-' . $i . '-min-panel-width',
@@ -734,22 +754,22 @@
             ),
         )
     );
-    $sections[ ] = array(
-        'title'      => __('Wireframe Preview', 'pzarchitect'),
-        'show_title' => true,
-        'icon_class' => 'icon-large',
-        'icon'       => 'el-icon-th-large',
-        'fields'     => array(
-
-            array(
-                'title'    => 'Sections',
-                'id'       => $prefix . 'sections-preview',
-                'type'     => 'raw',
-                'readonly' => false, // Readonly fields can't be written to by code! Weird
-                'content'  => pzarc_draw_sections_preview(),
-            ),
-        )
-    );
+//    $sections[ ] = array(
+//        'title'      => __('Wireframe Preview', 'pzarchitect'),
+//        'show_title' => true,
+//        'icon_class' => 'icon-large',
+//        'icon'       => 'el-icon-th-large',
+//        'fields'     => array(
+//
+//            array(
+//                'title'    => 'Sections',
+//                'id'       => $prefix . 'sections-preview',
+//                'type'     => 'raw',
+//                'readonly' => false, // Readonly fields can't be written to by code! Weird
+//                'content'  => pzarc_draw_sections_preview(),
+//            ),
+//        )
+//    );
 
     $sections[ ] = array(
         'title'      => 'Using blueprints',

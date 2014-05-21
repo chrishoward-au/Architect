@@ -272,48 +272,48 @@
         'icon'       => 'el-icon-home',
         'fields'     => array(
 //TODO: Make validation check illegal characters
-            array(
-                'id'       => $prefix . 'short-name',
-                'title'    => __('Short name', 'pzarchitect') . '<span class="pzarc-required el-icon-star" title="Required"></span>',
-                'hint'     => array('content' => __('A short name for this panel layout to identify it.', 'pzarchitect')),
-                'type'     => 'text',
-                'validate' => 'not_empty'
-            ),
-            array(
-                'title'   => __('Panel Height Type', 'pzarchitect'),
-                'id'      => $prefix . 'panel-height-type',
-                'cols'    => 6,
-                'type'    => 'button_set',
-                'default' => 'fluid',
-                'options' => array(
-                    'fluid' => 'Fluid',
-                    'fixed' => 'Fixed',
-                ),
-                'hint'    => array('content' => __('Choose whether to set the height of the panels (fixed), or allow them to adjust to the content height (fluid).', 'pzarchitect'))
-            ),
-            // Hmm? How's this gunna sit with the min-height in templates?
-            // We will want to use this for image height cropping when behind.
+array(
+    'id'       => $prefix . 'short-name',
+    'title'    => __('Short name', 'pzarchitect') . '<span class="pzarc-required el-icon-star" title="Required"></span>',
+    'hint'     => array('content' => __('A short name for this panel layout to identify it.', 'pzarchitect')),
+    'type'     => 'text',
+    'validate' => 'not_empty'
+),
+array(
+    'title'   => __('Panel Height Type', 'pzarchitect'),
+    'id'      => $prefix . 'panel-height-type',
+    'cols'    => 6,
+    'type'    => 'button_set',
+    'default' => 'fluid',
+    'options' => array(
+        'fluid' => 'Fluid',
+        'fixed' => 'Fixed',
+    ),
+    'hint'    => array('content' => __('Choose whether to set the height of the panels (fixed), or allow them to adjust to the content height (fluid).', 'pzarchitect'))
+),
+// Hmm? How's this gunna sit with the min-height in templates?
+// We will want to use this for image height cropping when behind.
 
-            array(
-                'title'    => __('Panel Height px', 'pzarchitect'),
-                'id'       => $prefix . 'panel-height',
-                'type'     => 'dimensions',
-                'width'    => false,
-                'units'    => 'px',
-                'default'  => array('height' => '350'),
-                'hint'     => array('content' => __('If using fixed height, set height for the panel.', 'pzarchitect')),
-                'required' => array($prefix . 'panel-height-type', 'equals', 'fixed')
-            ),
-            array(
-                'title'    => __('Components Height px', 'pzarchitect'),
-                'id'       => $prefix . 'components-height',
-                'type'     => 'dimensions',
-                'width'    => false,
-                'units'    => 'px',
-                'default'  => array('height' => '100'),
-                'hint'     => array('content' => __('If using fixed height, set height for the components area.', 'pzarchitect')),
-                'required' => array($prefix . 'panel-height-type', 'equals', 'fixed')
-            ),
+array(
+    'title'    => __('Panel Height px', 'pzarchitect'),
+    'id'       => $prefix . 'panel-height',
+    'type'     => 'dimensions',
+    'width'    => false,
+    'units'    => 'px',
+    'default'  => array('height' => '350'),
+    'hint'     => array('content' => __('If using fixed height, set height for the panel.', 'pzarchitect')),
+    'required' => array($prefix . 'panel-height-type', 'equals', 'fixed')
+),
+array(
+    'title'    => __('Components Height px', 'pzarchitect'),
+    'id'       => $prefix . 'components-height',
+    'type'     => 'dimensions',
+    'width'    => false,
+    'units'    => 'px',
+    'default'  => array('height' => '100'),
+    'hint'     => array('content' => __('If using fixed height, set height for the components area.', 'pzarchitect')),
+    'required' => array($prefix . 'panel-height-type', 'equals', 'fixed')
+),
         )
     );
     $metaboxes[ ]  = array(
@@ -371,7 +371,6 @@
             array(
                 'title'        => 'Panel preview',
                 'id'           => $prefix . 'preview',
-                'width'        => 'auto',
                 'type'         => 'code',
                 'readonly'     => false, // Readonly fields can't be written to by code! Weird
                 'code'         => draw_panel_layout(),
@@ -464,7 +463,7 @@
                 'height'   => false,
                 'units'    => 'px',
                 'default'  => array('width' => '500'),
-                'required'=>array($prefix.'background-position','!=','none'),
+                'required' => array($prefix . 'background-position', '!=', 'none'),
                 'hint'     => array('content' => __('This should be larger than the expected maximum viewing size', 'pzarchitect')),
                 'subtitle' => __('This should be larger than the expected maximum viewing size to ensure best responsive behaviour', 'pzarchitect')
             ),
@@ -755,7 +754,7 @@
             ),
             array(
                 'id'    => $prefix . 'image-sizing-heading',
-                'title'   => __('Image sizing', 'pzarchitect'),
+                'title' => __('Image sizing', 'pzarchitect'),
                 'type'  => 'section',
                 'class' => 'heading',
             ),
@@ -981,6 +980,37 @@
             pzarc_redux_borders($prefix . 'hentry-borders', array('.hentry'), $defaults[ $optprefix . 'hentry-borders' ])
         )
     );
+//    $sections[ ] = array(
+//        'title'      => 'Test',
+//        'show_title' => false,
+//        'icon_class' => 'icon-large',
+//        'icon'       => 'el-icon-idea',
+//        'fields'     => array(
+//            array(
+//                'title'        => 'Title',
+//                'id'           => $prefix . 'entry-title-css',
+//                'type'         => 'code',
+//                'readonly'     => false,
+//                // Readonly fields can't be written to by code! Weird
+//                'code'         => draw_css_styles_editor('.entry-title'),
+//                'default_show' => false,
+//                //                'default'      => json_encode(array(
+//                //                                                  'title'   => array('width' => 100, 'show' => true),
+//                //                                                  'meta1'   => array('width' => 100, 'show' => true),
+//                //                                                  'image'   => array('width' => 25, 'show' => true),
+//                //                                                  'excerpt' => array('width' => 75, 'show' => true),
+//                //                                                  //                                            'caption' => array('width' => 100, 'show' => false),
+//                //                                                  'content' => array('width' => 100, 'show' => false),
+//                //                                                  'meta2'   => array('width' => 100, 'show' => false),
+//                //                                                  'meta3'   => array('width' => 100, 'show' => false),
+//                //                                                  'custom1' => array('width' => 100, 'show' => false),
+//                //                                                  'custom2' => array('width' => 100, 'show' => false),
+//                //                                                  'custom3' => array('width' => 100, 'show' => false))),
+//            ),
+//
+//        )
+//    );
+
     $sections[ ] = array(
         'title'      => 'Titles',
         'show_title' => false,
@@ -992,15 +1022,15 @@
             pzarc_redux_bg($prefix . 'entry-title-font-background', array('.entry-title'), $defaults[ $optprefix . 'entry-title-font-background' ]),
             pzarc_redux_padding($prefix . 'entry-title-font-padding', array('.entry-title'), $defaults[ $optprefix . 'entry-title-font-padding' ]),
             pzarc_redux_margin($prefix . 'entry-title-font-margin', array('.entry-title'), $defaults[ $optprefix . 'entry-title-font-margin' ]),
-            pzarc_redux_links($prefix . 'entry-title-font-links', array('.entry-title a'), $defaults[ $optprefix . 'entry-title-font-links' ]),
-            array(
-                'title'   => __('Other declarations', 'pzarchitect'),
-                'id'      => $prefix . 'text-other-css',
-                'type'    => 'ace_editor',
-                'default' => ".entry-title {\n\n}",
-                'mode'    => 'css',
-                'hint'    => array('content' => 'Class: .entry-title'),
-            )
+            pzarc_redux_links($prefix . 'entry-title-font-links', array('.entry-title a'), $defaults[ $optprefix . 'entry-title-font-links' ])
+//            array(
+//                'title'   => __('Other declarations', 'pzarchitect'),
+//                'id'      => $prefix . 'text-other-css',
+//                'type'    => 'ace_editor',
+//                'default' => ".entry-title {\n\n}",
+//                'mode'    => 'css',
+//                'hint'    => array('content' => 'Class: .entry-title'),
+//            )
         ),
     );
 
@@ -1207,9 +1237,16 @@
     return $return_html;
   }
 
-  /*
-   * save_arc_layouts
-   *
-   * Creates CSS file
-   *
-   */
+//
+  function draw_css_styles_editor($class)
+  {
+    $return_html = '
+    <div class="pzarc-css-styles-editor">
+    <p>Font  Weight  Size  Decoration  Styles  Color</p>
+    </div>
+    ';
+    // if you pass a class, how you gunna make it differentiate different panel?!
+
+
+    return $return_html;
+}

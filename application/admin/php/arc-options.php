@@ -1,14 +1,12 @@
 <?php
 
 
-  if (!(class_exists('ReduxFramework') || class_exists('ReduxFrameworkPlugin')))
-  {
+  if (!(class_exists('ReduxFramework') || class_exists('ReduxFrameworkPlugin'))) {
     return;
   }
 
-  if (!class_exists("Redux_Framework_Architect_config"))
-  {
-    class Redux_Framework_Architect_config
+  if (!class_exists("Redux_Framework_Architect_Actions_Editor_config")) {
+    class Redux_Framework_Architect_Options
     {
 
       public $args = array();
@@ -28,8 +26,7 @@
         // Create the sections and fields
         $this->setSections();
 
-        if (!isset($this->args[ 'opt_name' ]))
-        { // No errors please
+        if (!isset($this->args[ 'opt_name' ])) { // No errors please
           return;
         }
 
@@ -37,7 +34,7 @@
         //add_action( 'redux/plugin/hooks', array( $this, 'remove_demo' ) );
 
         // Function to test the compiler hook and demo CSS output.
-        add_filter('redux/options/'.$this->args['opt_name'].'/compiler', array( $this, 'compiler_action' ), 10, 2);
+        add_filter('redux/options/' . $this->args[ 'opt_name' ] . '/compiler', array($this, 'compiler_action'), 10, 2);
         // Above 10 is a priority, but 2 in necessary to include the dynamically generated CSS to be sent to the function.
 
         // Change the arguments after they've been declared, but before the panel is created
@@ -48,7 +45,8 @@
 
         // Dynamically add a section. Can be also used to modify sections/fields
         // add_filter('redux/options/' . $this->args[ 'opt_name' ] . '/sections', array($this, 'dynamic_section'));
-
+//        global $wp_filter;
+//                pzdebug((array_keys($wp_filter)));
         $this->ReduxFramework = new ReduxFramework($this->sections, $this->args);
 
       }
@@ -68,23 +66,23 @@
 //        var_dump($css); // Compiler selector CSS values  compiler => array( CSS SELECTORS )
 
         // Demo of how to use the dynamic CSS and write your own static CSS file
-          $filename = PZARC_CACHE_PATH. '/arc-dynamic-styles' . '.css';
-        // var_dump($filename);
-          global $wp_filesystem;
-          if( empty( $wp_filesystem ) ) {
-              require_once( ABSPATH .'/wp-admin/resources/file.php' );
-              WP_Filesystem();
-          }
+        // error here. file.php not found!
 
-        // TODO Remove once bug of ACE not being set to $css
-          $css .= $options['architect_config_custom-css'];
-          if( $wp_filesystem ) {
-              $wp_filesystem->put_contents(
-                  $filename,
-                  $css,
-                  FS_CHMOD_FILE // predefined mode settings for WP files
-              );
-          }
+        $filename = PZARC_CACHE_PATH . '/arc-dynamic-styles' . '.css';
+        //  var_dump($filename);
+        global $wp_filesystem;
+        if (empty($wp_filesystem)) {
+          require_once(ABSPATH . '/wp-admin/includes/file.php');
+          WP_Filesystem();
+        }
+
+        if ($wp_filesystem) {
+          $wp_filesystem->put_contents(
+              $filename,
+              $css,
+              FS_CHMOD_FILE // predefined mode settings for WP files
+          );
+        }
 
       }
 
@@ -157,11 +155,9 @@
           if ($sample_patterns_dir = opendir($sample_patterns_path)) :
             $sample_patterns = array();
 
-            while (($sample_patterns_file = readdir($sample_patterns_dir)) !== false)
-            {
+            while (($sample_patterns_file = readdir($sample_patterns_dir)) !== false) {
 
-              if (stristr($sample_patterns_file, '.png') !== false || stristr($sample_patterns_file, '.jpg') !== false)
-              {
+              if (stristr($sample_patterns_file, '.png') !== false || stristr($sample_patterns_file, '.jpg') !== false) {
                 $name               = explode(".", $sample_patterns_file);
                 $name               = str_replace('.' . end($name), '', $sample_patterns_file);
                 $sample_patterns[ ] = array('alt' => $name, 'img' => $sample_patterns_url . $sample_patterns_file);
@@ -206,8 +202,7 @@
               <li><?php echo '<strong>' . __('Tags', 'redux-framework-demo') . ':</strong> '; ?><?php printf($this->theme->display('Tags')); ?></li>
             </ul>
             <p class="theme-description"><?php echo $this->theme->display('Description'); ?></p>
-            <?php if ($this->theme->parent())
-            {
+            <?php if ($this->theme->parent()) {
               printf(' <p class="howto">' . __('This <a href="%1$s">child theme</a> requires its parent theme, %2$s.') . '</p>',
                      __('http://codex.wordpress.org/Child_Themes', 'redux-framework-demo'),
                      $this->theme->parent()->display('Name'));
@@ -223,259 +218,56 @@
         ob_end_clean();
 
         $sampleHTML = '';
-        if (file_exists(dirname(__FILE__) . '/info-html.html'))
-        {
+        if (file_exists(dirname(__FILE__) . '/info-html.html')) {
           /** @global WP_Filesystem_Direct $wp_filesystem */
           global $wp_filesystem;
-          if (empty($wp_filesystem))
-          {
+          if (empty($wp_filesystem)) {
             require_once(ABSPATH . '/wp-admin/includes/file.php');
             WP_Filesystem();
           }
           $sampleHTML = $wp_filesystem->get_contents(dirname(__FILE__) . '/info-html.html');
         }
 
-        $prefix = 'architect_config_';
 
         // ACTUAL DECLARATION OF SECTIONS
         $this->sections[ ] = array(
-            'title'      => 'General',
-            'show_title' => false,
-            'icon_class' => 'icon-large',
-            'icon'       => 'el-icon-brush',
-            'fields'     => array(
-
-                array(
-                    'title'    => __('Panels', 'pzarc'),
-                    'id'       => $prefix . 'panels',
-                    'type'     => 'section',
-                    'class'    => 'heading',
-                    'subtitle' => 'Class: .pzarc-panel',
-                ),
-                array(
-                    'title'    => __('CSS selectors', 'pzarc'),
-                    'id'       => $prefix . 'panels-selectors',
-                    'type'     => 'text',
-                    'default'  => '.pzarc-panel',
-                    'readonly' => true
-                ),
-                pzarc_redux_bg($prefix . 'panels-background', array('.pzarc-panel')),
-                pzarc_redux_padding($prefix . 'panels-padding', array('.pzarc-panel')),
-                pzarc_redux_borders($prefix . 'panels-borders', array('.pzarc-panel')),
-                array(
-                    'title'    => __('Components group', 'pzarc'),
-                    'id'       => $prefix . 'components-group-section-start',
-                    'type'     => 'section',
-                    'class'    => 'heading',
-                    'subtitle' => 'Class: .pzarc-components',
-                    'indent'=>false
-                ),
-                array(
-                    'title'    => __('CSS selectors', 'pzarc'),
-                    'id'       => $prefix . 'components-group-selectors',
-                    'type'     => 'text',
-                    'default'  => '.pzarc-components',
-                    'readonly' => true
-                ),
-                pzarc_redux_bg($prefix . 'components-background', array('.pzarc_components')),
-                pzarc_redux_padding($prefix . 'components-padding', array('.pzarc_components')),
-                pzarc_redux_borders($prefix . 'components-borders', array('.pzarc_components')),
-                array(
-                    'id'     => $prefix.'components-group-section-end',
-                    'type'   => 'section',
-                    'indent' => false,
-                ),
-
-                array(
-                    'title' => __('Entry', 'pzarc'),
-                    'id'    => $prefix . 'entry',
-                    'type'  => 'section',
-                    'class' => 'heading',
-                ),
-                array(
-                    'title'    => __('CSS selectors', 'pzarc'),
-                    'id'       => $prefix . 'hentry-selectors',
-                    'type'     => 'multi_text',
-                    'default'  => array('.hentry'),
-                    'subtitle' => 'One per row',
-                    'hint'     => array(
-                        'title'   => 'Hint Title',
-                        'content' => 'This is the content of the tool-tip'
-                    )
-                ),
-                pzarc_redux_bg($prefix . 'hentry-background', array('.hentry')),
-                pzarc_redux_padding($prefix . 'hentry-padding', array('.hentry')),
-                pzarc_redux_borders($prefix . 'hentry-borders', array('.hentry')),
-            )
-        );
-        $this->sections[ ] = array(
-            'title'      => 'Titles',
-            'show_title' => false,
-            'icon_class' => 'icon-large',
-            'icon'       => 'el-icon-font',
-            'desc'       => 'Class: .pzarc_entry-title',
-            'fields'     => array(
-                pzarc_redux_font($prefix . 'entry-title-font', array('.entry-title'),array('line_height'=>1.2,'text_decoration'=>'none')),
-                pzarc_redux_bg($prefix . 'entry-title-font-background', array('.entry-title')),
-                pzarc_redux_padding($prefix . 'entry-title-font-padding', array('.entry-title')),
-                pzarc_redux_links($prefix . 'entry-title-font-links', array('.entry-title a')),
-            ),
-        );
-
-        $this->sections[ ] = array(
-            'title'      => 'Meta',
-            'show_title' => false,
-            'icon_class' => 'icon-large',
-            'icon'       => 'el-icon-calendar',
-            'desc'       => 'Class: .pzarc_entry_meta',
-            'fields'     => array(
-                pzarc_redux_font($prefix . 'entry-meta-font', array('.entry-meta')),
-                pzarc_redux_bg($prefix . 'entry-meta-font-background', array('.entry-meta')),
-                pzarc_redux_padding($prefix . 'entry-meta-font-padding', array('.entry-meta')),
-                pzarc_redux_links($prefix . 'entry-meta-font-links', array('.entry-meta a')),
-            )
-        );
-        $this->sections[ ] = array(
-            'title'      => 'Content',
-            'show_title' => false,
-            'icon_class' => 'icon-large',
-            'icon'       => 'el-icon-align-left',
-            'fields'     => array(
-                pzarc_redux_font($prefix . 'entry-content-font', array('.entry-content')),
-                pzarc_redux_bg($prefix . 'entry-content-font-background', array('.entry-content')),
-                pzarc_redux_padding($prefix . 'entry-content-font-padding', array('.entry-content')),
-                pzarc_redux_links($prefix . 'entry-content-font-links', array('.entry-content a')),
-                array(
-                    'title'    => __('Read more', 'pzarc'),
-                    'id'       => $prefix . 'entry-readmore',
-                    'type'     => 'section',
-                    'class'    => 'heading',
-                    //        'default' => $defaults[ $optprefix . 'content_defaults_entry-readmore-defaults' ],
-                    'subtitle' => 'Class: a.pzarc_readmore',
-                ),
-                pzarc_redux_font($prefix . 'entry-readmore-font', array('.readmore')),
-                pzarc_redux_bg($prefix . 'entry-readmore-font-background', array('.readmore')),
-                pzarc_redux_padding($prefix . 'entry-readmore-font-padding', array('.readmore')),
-                pzarc_redux_links($prefix . 'entry-readmore-font-links', array('a.readmore')),
-            )
-        );
-        $this->sections[ ] = array(
-            'title'      => 'Entry Featured image',
-            'show_title' => false,
-            'icon_class' => 'icon-large',
-            'icon'       => 'el-icon-picture',
-            'fields'     => array(
-                array(
-                    'title'    => __('Image', 'pzarc'),
-                    'id'       => $prefix . 'entry-image',
-                    'type'     => 'section',
-                    'class'    => 'heading',
-                    //          'default' => $defaults[ $optprefix . 'image_defaults_entry-image-defaults' ],
-                    'subtitle' => 'Class: .pzarc_entry_featured_image',
-                    //     'subtitle'    => __('Format the entry featured image', 'pzarc')
-                ),
-                array(
-                    'title'                 => __('Background', 'pzarc'),
-                    'id'                    => $prefix . 'entry-image-background',
-                    'type'                  => 'background',
-                    'background-image'      => false,
-                    'background-repeat'     => false,
-                    'background-size'       => false,
-                    'background-attachment' => false,
-                    'background-position'   => false,
-                    'preview'               => false,
-                    'compiler'=>array('.pzarc-featured-image')
-                    //    'default' => $defaults[ $optprefix . 'image_defaults_entry-image-caption-defaults' ],
-                ),
-                array(
-                    'title' => __('Border', 'pzarc'),
-                    'id'    => $prefix . 'entry-image-background',
-                    'type'  => 'border',
-                    'all'   => false,
-                    'hint'  => array(
-                        'title'   => 'Hint Title',
-                        'content' => 'This is the content of the tool-tip'
-                    )
-
-                    //    'default' => $defaults[ $optprefix . 'image_defaults_entry-image-caption-defaults' ],
-                ),
-                array(
-                    'title' => __('Padding', 'pzarc'),
-                    'id'    => $prefix . 'entry-image-padding',
-                    'mode'  => 'padding',
-                    'type'  => 'spacing',
-                    'units' => array('px', '%')
-                    //    'default' => $defaults[ $optprefix . 'image_defaults_entry-image-caption-defaults' ],
-                ),
-                array(
-                    'title' => __('Caption', 'pzarc'),
-                    'id'    => $prefix . 'entry-image-caption',
-                    'type'  => 'section',
-                    'class' => 'heading',
-                    //    'default' => $defaults[ $optprefix . 'image_defaults_entry-image-caption-defaults' ],
-                ),
-                pzarc_redux_font($prefix . 'entry-mage-caption-font', array('.')),
-                pzarc_redux_bg($prefix . 'entry-mage-caption-font-background', array('.')),
-                pzarc_redux_padding($prefix . 'entry-readmore-font-padding', array('.')),
-            )
-
-
-        );
-        $this->sections[ ] = array(
-            'id'         => 'custom-css',
-            'title'      => 'Custom CSS',
-            'icon_class' => 'icon-large',
+            'title'      => 'General ',
+            'show_title' => true,
             'icon'       => 'el-icon-wrench',
-
             'fields'     => array(
+              array(
+                  'title'=> __('Breakpoints','pzarchitect'),
+                  'id'=>'architect_breakpoint_section',
+                  'type'=>'section',
+                  'subtitle'=>__('Architect lets you set some arbitrary breakpoints for responsive design. Responsive design, however, is a lot more complicated than a handful of breakpoints! It is affected by devices, content, containers and so on. To provide support for all of that would severely overwhelm Architect\'s settings. For example, for every font styling, it would need to be set for every scenario. The breakpoints are therefore used on a limited range of options. If you want to get serious with responsive design, you will have to write a lot of custom css','pzarchitect')
+                  ),
+
                 array(
-                    'id'    => $prefix . 'custom-css',
-                    'type'  => 'ace_editor',
-                    'title' => __('Custom CSS', 'pzarc'),
-                    'subtitle'=>__('Enter any custom CSS at all here and it will be loaded with each page. Use wisely!'),
-                    'mode'  => 'css',
-                    'theme' => 'chrome',
-                    'compiler'=>true
+                    'title'   => __('Wide screen breakpoint', 'pzarchitect'),
+                    'id'      => 'architect_breakpoint_1',
+                    'type'     => 'dimensions',
+                    'height'    => false,
+                    'units'    => 'px',
+                    'default'  => array('width' => '1100'),
+                ),
+                array(
+                    'title'   => __('Medium screen breakpoint', 'pzarchitect'),
+                    'id'      => 'architect_breakpoint_2',
+                    'type'    => 'dimensions',
+                    'height'    => false,
+                    'units'    => 'px',
+                    'default'  => array('width' => '768'),
+                ),
+                array(
+                    'title'   => __('Narrow screen breakpoint', 'pzarchitect'),
+                    'id'      => 'architect_breakpoint_3',
+                    'type'    => 'dimensions',
+                    'height'    => false,
+                    'units'    => 'px',
+                    'default'  => array('width' => '480'),
                 ),
             )
         );
-        $this->sections[ ] = array(
-            'id'         => 'styling-help',
-            'title'      => 'Help',
-            'icon_class' => 'icon-large',
-            'icon'       => 'el-icon-info-sign',
-            'fields'     => array(
-
-                array(
-                    'title' => __('Design', 'pzarc'),
-                    'id'    => $prefix . 'panels-help-design',
-                    'type'  => 'section',
-                    //  'class' => 'plain',
-                    'desc'  => '<p>
-                              Fiant nulla claritatem processus vulputate quarta. Anteposuerit eodem habent parum id et. Notare mutationem facilisi nulla ut facer.
-                              </p>
-
-                              <p>
-                              Nam minim quis est typi nostrud. Et nunc in legere dignissim decima. Feugiat facilisi nulla lectores quod esse.
-                              </p>
-
-                              <p>
-                              Nostrud ipsum usus nam ut magna. Zzril nobis qui est nonummy in. Nonummy seacula dolore amet ipsum decima.
-                              </p>
-
-                              <p>
-                              Nibh cum lorem iriure laoreet ut. Nihil in vel diam sit iusto. Eorum tempor ea zzril dynamicus consuetudium.
-                              </p>
-
-                              <p>
-                              Ut at consectetuer blandit nibh in.
-                              </p>'
-
-                )
-            )
-        );
-
-
       }
 
       public function setHelpTabs()
@@ -514,46 +306,68 @@
         $this->args = array(
 
           // TYPICAL -> Change these values as you need/desire
-          'opt_name'           => '_architect',          // This is where your data is stored in the database and also becomes your global variable name.
-          'display_name'       => 'Architect Styling Defaults',          // Name that appears at the top of your panel
-          'display_version'    => PZARC_VERSION,          // Version that appears at the top of your panel
-          'menu_type'          => 'submenu',          //Specify if the admin menu should appear or not. Options: menu or submenu (Under appearance only)
-          'allow_sub_menu'     => false,          // Show the sections below the admin menu item or not
-          'menu_title'         => __('<span class="dashicons dashicons-art"></span>Styling Defaults', 'pzarc'),
-          'page'               => __('Architect Styling', 'pzarc'),
-          'google_api_key'     => 'Xq9o3CdQFHKr+47vQr6eO4EUYLtlEyTe',          // Must be defined to add google fonts to the typography module
-          'global_variable'    => 'pzarchitect',          // Set a different name for your global variable other than the opt_name
-          'dev_mode'           => false,          // Show the time the page took to load, etc
-          'customizer'         => false,          // Enable basic customizer support
+          'opt_name'           => '_architect_options',
+          // This is where your data is stored in the database and also becomes your global variable name.
+          'display_name'       => 'Actions Options',
+          // Name that appears at the top of your panel
+          'display_version'    => 'Architect v' . PZARC_VERSION,
+          // Version that appears at the top of your panel
+          'menu_type'          => 'submenu',
+          //Specify if the admin menu should appear or not. Options: menu or submenu (Under appearance only)
+          'allow_sub_menu'     => false,
+          // Show the sections below the admin menu item or not
+          'menu_title'         => __('<span class="dashicons dashicons-admin-settings"></span>Options', 'pzarc'),
+          'page'               => __('Architect Options', 'pzarc'),
+          'google_api_key'     => 'Xq9o3CdQFHKr+47vQr6eO4EUYLtlEyTe',
+          // Must be defined to add google fonts to the typography module
+          'global_variable'    => '',
+          // Set a different name for your global variable other than the opt_name
+          'dev_mode'           => false,
+          // Show the time the page took to load, etc
+          'customizer'         => false,
+          // Enable basic customizer support
 
           // OPTIONAL -> Give you extra features
-          'page_priority'      => null,          // Order where the menu appears in the admin area. If there is any conflict, something will not show. Warning.
-          'page_parent'        => 'pzarc',          // For a full list of options, visit: http://codex.wordpress.org/Function_Reference/add_submenu_page#Parameters
-          'page_permissions'   => 'manage_options',          // Permissions needed to access the options panel.
-          'menu_icon'          => '',          // Specify a custom URL to an icon
-          'last_tab'           => '',          // Force your panel to always open to a specific tab (by id)
-          'page_icon'          => 'icon-themes',          // Icon displayed in the admin panel next to your menu_title
-          'page_slug'          => '_architect_styling',          // Page slug used to denote the panel
-          'save_defaults'      => true,          // On load save the defaults to DB before user clicks save or not
-          'default_show'       => false,          // If true, shows the default value next to each field that is not the default value.
-          'default_mark'       => '',          // What to print by the field's title if the value shown is default. Suggested: *
+          'page_priority'      => null,
+          // Order where the menu appears in the admin area. If there is any conflict, something will not show. Warning.
+          'page_parent'        => 'pzarc',
+          // For a full list of options, visit: http://codex.wordpress.org/Function_Reference/add_submenu_page#Parameters
+          'page_permissions'   => 'manage_options',
+          // Permissions needed to access the options panel.
+          'menu_icon'          => '',
+          // Specify a custom URL to an icon
+          'last_tab'           => '',
+          // Force your panel to always open to a specific tab (by id)
+          'page_icon'          => 'icon-themes',
+          // Icon displayed in the admin panel next to your menu_title
+          'page_slug'          => '_architect_options',
+          // Page slug used to denote the panel
+          'save_defaults'      => true,
+          // On load save the defaults to DB before user clicks save or not
+          'default_show'       => false,
+          // If true, shows the default value next to each field that is not the default value.
+          'default_mark'       => '*',
+          // What to print by the field's title if the value shown is default. Suggested: *
 
 
           // CAREFUL -> These options are for advanced use only
           'transient_time'     => 60 * MINUTE_IN_SECONDS,
-          'output'             => true,          // Global shut-off for dynamic CSS output by the framework. Will also disable google fonts output
-          'output_tag'         => true,          // Allows dynamic CSS to be generated for customizer and google fonts, but stops the dynamic CSS from going to the head
+          'output'             => false,
+          // Global shut-off for dynamic CSS output by the framework. Will also disable google fonts output
+          'output_tag'         => false,
+          // Allows dynamic CSS to be generated for customizer and google fonts, but stops the dynamic CSS from going to the head
           //'domain'             	=> 'redux-framework', // Translation domain key. Don't change this unless you want to retranslate all of Redux.
           //'footer_credit'      	=> '', // Disable the footer credit of Redux. Please leave if you can help it.
 
 
           // FUTURE -> Not in use yet, but reserved or partially implemented. Use at your own risk.
-          'database'           => '',          // possible: options, theme_mods, theme_mods_expanded, transient. Not fully functional, warning!
+          'database'           => '',
+          // possible: options, theme_mods, theme_mods_expanded, transient. Not fully functional, warning!
 
 
           'show_import_export' => true,
           // REMOVE
-          'system_info'        => true,
+          'system_info'        => false,
           // REMOVE
 
           'help_tabs'          => array(),
@@ -599,21 +413,15 @@
 
 
         // Panel Intro text -> before the form
-        if (!isset($this->args[ 'global_variable' ]) || $this->args[ 'global_variable' ] !== false)
-        {
-          if (!empty($this->args[ 'global_variable' ]))
-          {
+        if (!isset($this->args[ 'global_variable' ]) || $this->args[ 'global_variable' ] !== false) {
+          if (!empty($this->args[ 'global_variable' ])) {
             $v = $this->args[ 'global_variable' ];
-          }
-          else
-          {
+          } else {
             $v = str_replace("-", "_", $this->args[ 'opt_name' ]);
           }
           $this->args[ 'intro_text' ]
-              = sprintf(__('<p>On this page you can configure default CSS styling as well as indicating the classes it applies to.</p>', 'redux-framework-demo'), $v);
-        }
-        else
-        {
+              = sprintf(__('<p>On this page you can setup specific blueprints to display at specific points in your page\'s display. This is done using WordPress action hooks. Although WordPress provides many, the ones that work best for content display will be those included in the theme you are using. Review your theme and/or its documentation.</p>', 'redux-framework-demo'), $v);
+        } else {
 //          $this->args[ 'intro_text' ]
 //              = __('<p>This text is displayed above the options panel. It isn\'t required, but more info is always better! The intro_text field accepts all HTML.</p>', 'redux-framework-demo');
         }
@@ -623,7 +431,7 @@
       }
     }
 
-    new Redux_Framework_Architect_config();
+    new Redux_Framework_Architect_Options();
   }
 
 
@@ -662,8 +470,7 @@
       */
 
       $return[ 'value' ] = $value;
-      if ($error == true)
-      {
+      if ($error == true) {
         $return[ 'error' ] = $field;
       }
 

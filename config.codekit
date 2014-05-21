@@ -683,6 +683,15 @@
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
+	"\/application\/resources\/architect\/php\/class_arc_Adapter.php": {
+		"fileType": 8192,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/application\/resources\/architect\/php\/class_arc_Adapter.php",
+		"outputAbbreviatedPath": "No Output Path",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
 	"\/application\/resources\/architect\/php\/class_arc_Widget.php": {
 		"fileType": 8192,
 		"ignore": 0,

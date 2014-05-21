@@ -224,9 +224,8 @@
             //            ),
             array(
                 'title'   => __('Links', 'pzarc'),
-                'id'      => $id . '-links-test',
+                'id'      => $id ,
                 'type'    => 'links',
-                'multi'   => true,
                 'output'  => $selectors,
                 'default' => $defaults,
             )

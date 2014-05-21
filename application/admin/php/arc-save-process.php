@@ -90,6 +90,8 @@
   {
 
     global $pzarchitect;
+    global $_architect_options;
+   // var_dump($_architect_options);
     pzarc_set_defaults();
     $defaults = $pzarchitect[ 'defaults' ];
     // Need to create the file contents
@@ -99,22 +101,30 @@
     $nl = "\n";
     switch ($type) {
       case 'arc-blueprints':
-        $pzarc_blueprints   = get_post_meta($postid, '_architect', true);
-        $pzarc_blueprints   = pzarc_merge_defaults($defaults[ '_blueprints' ], $pzarc_blueprints);
-        $pzarc_contents     .= '/* This is the css for blueprint ' . $postid . ' ' . $pzarc_blueprints[ '_blueprints_short-name' ] . '*/' . $nl;
+        $pzarc_blueprints = get_post_meta($postid, '_architect', true);
+        $pzarc_blueprints = pzarc_merge_defaults($defaults[ '_blueprints' ], $pzarc_blueprints);
+        $pzarc_contents .= '/* This is the css for blueprint ' . $postid . ' ' . $pzarc_blueprints[ '_blueprints_short-name' ] . '*/' . $nl;
         $pzarc_contents_css = '';
         for ($i = 0; $i < 3; $i++) {
           $classes = '.pzarc-blueprint_' . $pzarc_blueprints[ '_blueprints_short-name' ] . ' .pzarc-section_' . ($i + 1) . ' .pzarc-panel';
           if (!empty($pzarc_blueprints[ '_blueprints_section-' . $i . '-panel-layout' ])) {
 
             $pzarc_contents .= '@import url("' . PZARC_CACHE_URL . '/pzarc-panels-layout-' . $pzarc_blueprints[ '_blueprints_section-' . $i . '-panel-layout' ] . '.css");' . $nl;
-            $columns = intval($pzarc_blueprints[ '_blueprints_section-' . $i . '-columns' ]);
-            $hmargin = $pzarc_blueprints[ '_blueprints_section-' . $i . '-panels-horiz-margin' ]['height'];
+            $hmargin = $pzarc_blueprints[ '_blueprints_section-' . $i . '-panels-horiz-margin' ][ 'height' ];
 
-            //TODO: Use media queries and nth child trick too
-            $pzarc_contents_css .= $classes . ' {width:' . (((100 - ($hmargin * ($columns - 1))) / $columns)) . '%;margin-right:' . ($hmargin) . '%;margin-bottom:' . $pzarc_blueprints[ '_blueprints_section-' . $i . '-panels-vert-margin' ]['width'] . '%;}' . $nl;
-            $pzarc_contents_css .= $classes . ':nth-child(' . $columns . 'n) {margin-right: 0;}' . $nl;
-
+            // Need to do this for each breakpoint
+            $columns = intval($pzarc_blueprints[ '_blueprints_section-' . $i . '-columns-breakpoint-1' ]);
+            $pzarc_contents_css .= '@media (max-width:99999px) {';
+            $pzarc_contents_css .= $classes . ' {width:' . (((100 - ($hmargin * ($columns - 1))) / $columns)) . '%;margin-right:' . ($hmargin) . '%;margin-bottom:' . $pzarc_blueprints[ '_blueprints_section-' . $i . '-panels-vert-margin' ][ 'width' ] . '%;}';
+            $pzarc_contents_css .= $classes . ':nth-child(' . $columns . 'n) {margin-right: 0;}';
+            $pzarc_contents_css .= '}'.$nl;
+            for ($bp = 1; $bp <= 3; $bp++) {
+              $columns = intval($pzarc_blueprints[ '_blueprints_section-' . $i . '-columns-breakpoint-'.$bp ]);
+              $pzarc_contents_css .= '@media (max-width:'.$_architect_options['architect_breakpoint_'.$bp]['width'].') {';
+              $pzarc_contents_css .= $classes . ' {width:' . (((100 - ($hmargin * ($columns - 1))) / $columns)) . '%;margin-right:' . ($hmargin) . '%;margin-bottom:' . $pzarc_blueprints[ '_blueprints_section-' . $i . '-panels-vert-margin' ][ 'width' ] . '%;}';
+              $pzarc_contents_css .= $classes . ':nth-child(' . $columns . 'n) {margin-right: 0;}';
+              $pzarc_contents_css .= '}'.$nl;
+            }
           }
         }
         $pzarc_contents .= $pzarc_contents_css;
@@ -125,7 +135,10 @@
           switch (true) {
 
             case ($key === '_blueprints_styling_blueprint-background'):
-              $pzarc_contents .= '.pzarc-blueprint_' . $pzarc_blueprints[ '_blueprints_short-name' ] . ' {' . key($value) . ':' . $value[ key($value) ] . ';}' . $nl;
+              if (!empty($value[ 'color' ])) {
+                $pzarc_contents .= '.pzarc-blueprint_' . $pzarc_blueprints[ '_blueprints_short-name' ] . ' {background-color:' . Redux_Helpers::hex2rgba($value[ 'color' ], $value[ 'alpha' ]) . ';}' . $nl;
+              }
+//              $pzarc_contents .= '.pzarc-blueprint_' . $pzarc_blueprints[ '_blueprints_short-name' ] . ' {' . key($value) . ':' . $value[ key($value) ] . ';}' . $nl;
               break;
 
             case ($key === '_blueprints_styling_blueprint-padding' && !pzarc_is_empty_vals($value, array('units'))):
@@ -143,19 +156,19 @@
               break;
 
             case ($key === '_blueprints_styling_blueprint-links'):
-              $pzarc_contents .= pzarc_process_links($classes, $value) . $nl;
-              break;
-            case ($key === '_blueprints_styling_blueprint-links-dec'):
-              $pzarc_contents .= pzarc_process_links_deco($classes, $value) . $nl;
+              $pzarc_contents .= pzarc_process_links($classes, $value, $nl) . $nl;
               break;
             case ($key === '_blueprints_styling_blueprint-custom-css'):
               $custom_css = trim($value);
               $pzarc_contents .= (!empty($custom_css) ? $value . $nl : '');
               break;
+            default :
+              //             var_Dump($key);
+              break;
           }
         }
 
-        break;
+        break; // case blueprints
 
       /**
        * PANELS CSS
@@ -170,13 +183,12 @@
 
         // step thru each field looking for ones to format
         $class_prefix = '.pzarchitect .pzarc-panel_' . $pzarc_panels[ '_panels_settings_short-name' ];
-
+//var_dump($pzarc_panels);
         foreach ($pzarc_panels as $key => $value) {
-
           switch (true) {
 
             case ($key == '_panels_design_responsive-hide-content' && !empty($pzarc_panels[ '_panels_design_responsive-hide-content' ])):
-              $pzarc_contents .= '@media (max-width: ' . $pzarc_panels[ '_panels_design_responsive-hide-content' ]['width'] . 'px) { .pzarchitect .pzarc-' . $postid . ' entry-content, .pzarchitect .pzarc-' . $postid . ' .entry-excerpt {display:none;}}' . $nl;
+              $pzarc_contents .= '@media (max-width: ' . $pzarc_panels[ '_panels_design_responsive-hide-content' ][ 'width' ] . 'px) { .pzarchitect .pzarc-' . $postid . ' entry-content, .pzarchitect .pzarc-' . $postid . ' .entry-excerpt {display:none;}}' . $nl;
               break;
 
 
@@ -223,11 +235,11 @@
 //                $pzarc_contents .= $class_prefix . ' .entry-thumbnail {width:' . $pzarc_layout[ 'image' ][ 'width' ] . '%;max-width:' . ($pzarc_layout[ 'image' ][ 'width' ] - $pzarc_left_margin - $pzarc_right_margin) . '%;}' . "\n";
               } else {
                 $margins = pzarc_process_spacing($pzarc_panels[ '_panels_design_image-spacing' ]);
-                $left= $pzarc_panels[ '_panels_design_image-spacing' ]['margin-left'];
-                $left = preg_replace("/([\\%px])/uiUm", "", $left);
-                $right= $pzarc_panels[ '_panels_design_image-spacing' ]['margin-right'];
-                $right = preg_replace("/([\\%px])/uiUm", "", $right);
-                $pzarc_contents .= $class_prefix . ' .entry-thumbnail {width:' . ($pzarc_layout[ 'image' ][ 'width' ]-$left-$right) . '%;max-width:' . $pzarc_panels[ '_panels_design_image-max-width' ] . 'px;margin: ' . $margins . ';}' . $nl;
+                $left    = $pzarc_panels[ '_panels_design_image-spacing' ][ 'margin-left' ];
+                $left    = preg_replace("/([\\%px])/uiUm", "", $left);
+                $right   = $pzarc_panels[ '_panels_design_image-spacing' ][ 'margin-right' ];
+                $right   = preg_replace("/([\\%px])/uiUm", "", $right);
+                $pzarc_contents .= $class_prefix . ' .entry-thumbnail {width:' . ($pzarc_layout[ 'image' ][ 'width' ] - $left - $right) . '%;max-width:' . $pzarc_panels[ '_panels_design_image-max-width' ] . 'px;margin: ' . $margins . ';}' . $nl;
               }
 
               $pzarc_contents .= $class_prefix . ' .entry-content {width:' . $pzarc_layout[ 'content' ][ 'width' ] . '%;}' . $nl;
@@ -285,13 +297,20 @@
 
                 // Overall
                 case '_panels_styling_panels-background' :
-                  $this_key = key($value);
-                  $pzarc_contents .= $class_prefix . '.pzarc-panel {background-color:' . Redux_Helpers::hex2rgba($value[ 'color' ],$value[ 'alpha' ]) . ';}' . $nl;
+                  $this_key     = key($value);
+                  $colour_model = ($value[ 'alpha' ] > 0 ? 'rgba(' : 'rgb(');
+                  //            var_dump($value);
+                  if (!empty($value[ 'color' ])) {
+                    $pzarc_contents .= $class_prefix . '.pzarc-panel {background-color:' . Redux_Helpers::hex2rgba($value[ 'color' ], $value[ 'alpha' ]) . ';}' . $nl;
+                  }
                   break;
 
                 case '_panels_styling_components-background' :
-                  $this_key = key($value);
-                  $pzarc_contents .= $class_prefix . ' .pzarc-components {background-color:' . Redux_Helpers::hex2rgba($value[ 'color' ],$value[ 'alpha' ]) . ';}' . $nl;
+                  $this_key     = key($value);
+                  $colour_model = ($value[ 'alpha' ] > 0 ? 'rgba(' : 'rgb(');
+                  if (!empty($value[ 'color' ])) {
+                    $pzarc_contents .= $class_prefix . ' .pzarc-components {background-color:' . Redux_Helpers::hex2rgba($value[ 'color' ], $value[ 'alpha' ]) . ';}' . $nl;
+                  }
                   break;
 
                 case '_panels_styling_panels-padding' :
@@ -308,17 +327,33 @@
                   break;
 
                 case ($key === '_panels_styling_entry-title-font-links'):
-                  $pzarc_contents .= pzarc_process_links($class_prefix . ' .entry-title', $value) . $nl;
-                  break;
-
-                case ($key === '_panels_styling_entry-title-font-links-dec'):
-                  $pzarc_contents .= pzarc_process_links_deco($class_prefix . ' .entry-title', $value) . $nl;
+                  $pzarc_contents .= pzarc_process_links($class_prefix . ' .entry-title ', $value, $nl) . $nl;
                   break;
 
 
                 // Meta
+                case '_panels_styling_entry-meta-font' :
+                  $pzarc_contents .= pzarc_process_fonts($class_prefix . ' .entry-meta', $value) . $nl;
+                  break;
+
+                case ($key === '_panels_styling_entry-meta-font-links'):
+//                  var_dump($key,$value);
+                  $pzarc_contents .= pzarc_process_links($class_prefix . ' .entry-meta ', $value, $nl) . $nl;
+                  break;
+
                 // Images
+
                 // Content
+                case '_panels_styling_entry-content-font' :
+                  //              var_dump($key);
+                  $pzarc_contents .= pzarc_process_fonts($class_prefix . ' .entry-content', $value) . $nl;
+                  $pzarc_contents .= pzarc_process_fonts($class_prefix . ' .entry-excerpt', $value) . $nl;
+                  break;
+
+                case ($key === '_panels_styling_entry-content-font-links'):
+                  $pzarc_contents .= pzarc_process_links($class_prefix . ' .entry-content ', $value, $nl) . $nl;
+                  $pzarc_contents .= pzarc_process_links($class_prefix . ' .entry-excerpt ', $value, $nl) . $nl;
+                  break;
 
 
                 //What is this lot?
@@ -333,6 +368,9 @@
                   $margins     = pzarc_process_spacing($pzarc_panels[ $key ]);
                   $pzarc_contents .= (!empty($margins) ? $classes . ' {' . $margins . '}' . $nl : '');
                   //    var_dump($class_prefix,$classes . ' {' . $margins . '}');
+                  break;
+                default :
+                  //             var_Dump($key);
                   break;
 
               }
@@ -375,8 +413,24 @@
     $filler = '';
     foreach ($properties as $k => $v) {
       // Need to only process specific properties
+      // This is to add quoties around fonts that don't have them
       switch ($k) {
         case (!empty($v) && $k == 'font-family'):
+          $ff    = explode(', ', $v);
+          $fonts = '';
+          foreach ($ff as $key => $font) {
+            if (strpos($font, ' ') > 0 && strpos($font, '\'') === false) {
+              $fonts .= '"' . $font . '"';
+            } else {
+              $fonts .= $font;
+            }
+
+            if ($key != count($ff) - 1) {
+              $fonts .= ', ';
+            }
+          }
+          $filler .= $k . ':' . $fonts . ';';
+          break;
         case (!empty($v) && $k == 'font-style'):
         case (!empty($v) && $v !== 'px' && $k == 'font-size'):
         case (!empty($v) && $k == 'font-variant'):
@@ -448,34 +502,40 @@
    * @param $properties
    * @return string
    */
-  function pzarc_process_links($classes, $properties)
+  function pzarc_process_links($classes, $properties, $nl)
   {
     $links_css = '';
+    if (!empty($properties[ 'regular' ]) || strtolower($properties[ 'regular-deco' ]) !== 'default') {
+      $links_css .= $classes . 'a {';
+      $links_css .= (!empty($properties[ 'regular' ]) ? 'color:' . $properties[ 'regular' ] . ';' : '');
+      $links_css .= (strtolower($properties[ 'regular-deco' ]) !== 'default' ? 'text-decoration:' . strtolower($properties[ 'regular-deco' ]) . ';' : '');
+      $links_css .= '}' . $nl;
+    }
 
-    $links_css .= (!empty($properties[ 'regular' ]) ? $classes . ' a {color:' . $properties[ 'regular' ] . '}' : '');
-    $links_css .= (!empty($properties[ 'active' ]) ? $classes . ' a:active {color:' . $properties[ 'active' ] . '}' : '');
-    $links_css .= (!empty($properties[ 'hover' ]) ? $classes . ' a:hover {color:' . $properties[ 'hover' ] . '}' : '');
-    $links_css .= (!empty($properties[ 'visited' ]) ? $classes . ' a:visited {color:' . $properties[ 'visited' ] . '}' : '');
+    if (!empty($properties[ 'hover' ]) || strtolower($properties[ 'hover-deco' ]) !== 'default') {
+      $links_css .= $classes . 'a:hover {';
+      $links_css .= (!empty($properties[ 'hover' ]) ? 'color:' . $properties[ 'hover' ] . ';' : '');
+      $links_css .= (strtolower($properties[ 'hover-deco' ]) !== 'default' ? 'text-decoration:' . strtolower($properties[ 'hover-deco' ]) . ';' : '');
+      $links_css .= '}' . $nl;
+    }
 
-    return str_replace(';;',';',$links_css);
+    if (!empty($properties[ 'active' ]) || strtolower($properties[ 'active-deco' ]) !== 'default') {
+      $links_css .= $classes . 'a:active {';
+      $links_css .= (!empty($properties[ 'active' ]) ? 'color:' . $properties[ 'active' ] . ';' : '');
+      $links_css .= (strtolower($properties[ 'active-deco' ]) !== 'default' ? 'text-decoration:' . strtolower($properties[ 'active-deco' ]) . ';' : '');
+      $links_css .= '}' . $nl;
+    }
+
+    if (!empty($properties[ 'visited' ]) || strtolower($properties[ 'visited-deco' ]) !== 'default') {
+      $links_css .= $classes . 'a:visited {';
+      $links_css .= (!empty($properties[ 'visited' ]) ? 'color:' . $properties[ 'visited' ] . ';' : '');
+      $links_css .= (strtolower($properties[ 'visited-deco' ]) !== 'default' ? 'text-decoration:' . strtolower($properties[ 'visited-deco' ]) . ';' : '');
+      $links_css .= '}' . $nl;
+    }
+
+    return $links_css;
   }
 
-  /**
-   * @param $classes
-   * @param $properties
-   * @return string
-   */
-  function pzarc_process_links_deco($classes, $properties)
-  {
-    $links_css = '';
-    // This doesn't deal with a "none" situation. Need custom css for that
-    $links_css .= ($properties[ 0 ] == 'regular' ? $classes . ' a {text-decoration:underline}' : '');
-    $links_css .= ($properties[ 0 ] == 'active' ? $classes . ' a:active {text-decoration:underline}' : '');
-    $links_css .= ($properties[ 0 ] == 'hover' ? $classes . ' a:hover {text-decoration:underline}' : '');
-    $links_css .= ($properties[ 0 ] == 'visited' ? $classes . ' a:visited {text-decoration:underline}' : '');
-
-    return str_replace(';;',';',$links_css);
-  }
 
   /**
    * @param $properties

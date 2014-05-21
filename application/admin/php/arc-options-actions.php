@@ -5,8 +5,8 @@
     return;
   }
 
-  if (!class_exists("Redux_Framework_Architect_Actions_Editor_config")) {
-    class Redux_Framework_Architect_Actions_Editor_config
+  if (!class_exists("Redux_Framework_Architect_Options_Actions_Editor")) {
+    class Redux_Framework_Architect_Options_Actions_Editor
     {
 
       public $args = array();
@@ -70,7 +70,7 @@
       //  var_dump($filename);
         global $wp_filesystem;
         if (empty($wp_filesystem)) {
-          require_once(ABSPATH . '/wp-admin/resources/file.php');
+          require_once(ABSPATH . '/wp-admin/includes/file.php');
           WP_Filesystem();
         }
 
@@ -461,7 +461,7 @@
       }
     }
 
-    new Redux_Framework_Architect_Actions_Editor_config();
+    new Redux_Framework_Architect_Options_Actions_Editor();
   }
 
 

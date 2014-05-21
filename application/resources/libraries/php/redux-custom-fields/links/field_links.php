@@ -56,11 +56,11 @@
         $defaults    = array(
             'regular'      => true,
             'hover'        => true,
-            'visited'      => false,
+            'visited'      => true,
             'active'       => true,
             'regular-deco' => true,
             'hover-deco'   => true,
-            'visited-deco' => false,
+            'visited-deco' => tru,
             'active-deco'  => true
         );
         $this->field = wp_parse_args($this->field, $defaults);
@@ -70,10 +70,10 @@
             'hover'        => '',
             'visited'      => '',
             'active'       => '',
-            'regular-deco' => 'inherit',
-            'hover-deco'   => 'inherit',
-            'visited-deco' => 'inherit',
-            'active-deco'  => 'inherit'
+            'regular-deco' => 'Default',
+            'hover-deco'   => 'Default',
+            'visited-deco' => 'Default',
+            'active-deco'  => 'Default'
         );
 
         $this->value = wp_parse_args($this->value, $defaults);
@@ -98,39 +98,43 @@
       public function render()
       {
 
-        if ($this->field[ 'regular' ] === true && $this->field[ 'default' ][ 'regular' ] !== false) {
-          echo 'Regular: <input id="' . $this->field[ 'id' ] . '-regular" name="' . $this->field[ 'name' ] . '[regular]' . $this->field[ 'name_suffix' ] . '" value="' . $this->value[ 'regular' ] . '" class="redux-color redux-color-init ' . $this->field[ 'class' ] . '"  type="text" data-default-color="' . $this->field[ 'default' ][ 'regular' ] . '" />&nbsp;&nbsp;&nbsp;&nbsp;';
-          echo  __('Underline', 'redux-framework') . '&nbsp;<select id="' . $this->field[ 'id' ] . '-regular-deco" name="' . $this->field[ 'name' ] . '[regular-deco]' . $this->field[ 'name_suffix' ] . '"  class="redux-links ' . $this->field[ 'class' ] . '" style="width:100px;">';
-          echo '<option name="' . $this->field[ 'name' ] . '[regular-deco]' . $this->field[ 'name_suffix' ] . ' value="inherit" ' . ($this->value[ 'regular-deco' ] =='inherit'?'selected':'').'>Inherit</option>';
-          echo '<option name="' . $this->field[ 'name' ] . '[regular-deco]' . $this->field[ 'name_suffix' ] . ' value="none" ' . ($this->value[ 'regular-deco' ] =='none'?'selected':'').'>None</option>';
-          echo '<option name="' . $this->field[ 'name' ] . '[regular-deco]' . $this->field[ 'name_suffix' ] . ' value="underline" ' . ($this->value[ 'regular-deco' ] =='underline'?'selected':'').'>Underline</option>';
+        if ($this->field[ 'regular' ] === true) {
+          echo '<strong>Regular</strong>: <input id="' . $this->field[ 'id' ] . '-regular" name="' . $this->field[ 'name' ] . '[regular]' . $this->field[ 'name_suffix' ] . '" value="' . $this->value[ 'regular' ] . '" class="redux-color redux-color-init ' . $this->field[ 'class' ] . '"  type="text" data-default-color="' . $this->field[ 'default' ][ 'regular' ] . '" />&nbsp;&nbsp;&nbsp;&nbsp;';
+          echo __('Underline', 'redux-framework') . '&nbsp;<select id="' . $this->field[ 'id' ] . '-regular-deco" name="' . $this->field[ 'name' ] . '[regular-deco]' . $this->field[ 'name_suffix' ] . '"  class="redux-links ' . $this->field[ 'class' ] . '" style="width:100px;">';
+          echo '<option  value="Default" ' . (strtolower($this->value[ 'regular-deco' ]) === 'default' ? 'selected' : '') . '>Default</option>';
+          echo '<option  value="Inherit" ' . (strtolower($this->value[ 'regular-deco' ]) === 'inherit' ? 'selected' : '') . '>Inherit</option>';
+          echo '<option  value="None" ' . (strtolower($this->value[ 'regular-deco' ]) === 'none' ? 'selected' : '') . '>None</option>';
+          echo '<option  value="Underline" ' . (strtolower($this->value[ 'regular-deco' ]) === 'underline' ? 'selected' : '') . '>Underline</option>';
           echo '</select><br>';
         }
 
-        if ($this->field[ 'hover' ] === true && $this->field[ 'default' ][ 'hover' ] !== false) {
-          echo 'Hover: <input id="' . $this->field[ 'id' ] . '-hover" name="' . $this->field[ 'name' ] . '[hover]' . $this->field[ 'name_suffix' ] . '" value="' . $this->value[ 'hover' ] . '" class="redux-color redux-color-init ' . $this->field[ 'class' ] . '"  type="text" data-default-color="' . $this->field[ 'default' ][ 'hover' ] . '" />&nbsp;&nbsp;&nbsp;&nbsp;';
+        if ($this->field[ 'hover' ] === true) {
+          echo '<strong>Hover</strong>: <input id="' . $this->field[ 'id' ] . '-hover" name="' . $this->field[ 'name' ] . '[hover]' . $this->field[ 'name_suffix' ] . '" value="' . $this->value[ 'hover' ] . '" class="redux-color redux-color-init ' . $this->field[ 'class' ] . '"  type="text" data-default-color="' . $this->field[ 'default' ][ 'hover' ] . '" />&nbsp;&nbsp;&nbsp;&nbsp;';
           echo __('Underline', 'redux-framework') . '&nbsp;<select id="' . $this->field[ 'id' ] . '-hover-deco" name="' . $this->field[ 'name' ] . '[hover-deco]' . $this->field[ 'name_suffix' ] . '"  class="redux-links ' . $this->field[ 'class' ] . '" style="width:100px;">';
-          echo '<option name="' . $this->field[ 'name' ] . '[hover-deco]' . $this->field[ 'name_suffix' ] . ' value="inherit" ' . ($this->value[ 'hover-deco' ] =='inherit'?'selected':'').'>Inherit</option>';
-          echo '<option name="' . $this->field[ 'name' ] . '[hover-deco]' . $this->field[ 'name_suffix' ] . ' value="none" ' . ($this->value[ 'hover-deco' ] =='none'?'selected':'').'>None</option>';
-          echo '<option name="' . $this->field[ 'name' ] . '[hover-deco]' . $this->field[ 'name_suffix' ] . ' value="underline" ' . ($this->value[ 'hover-deco' ] =='underline'?'selected':'').'>Underline</option>';
+          echo '<option  value="Default" ' . (strtolower($this->value[ 'hover-deco' ]) === 'default' ? 'selected' : '') . '>Default</option>';
+          echo '<option  value="Inherit" ' . (strtolower($this->value[ 'hover-deco' ]) === 'inherit' ? 'selected' : '') . '>Inherit</option>';
+          echo '<option  value="None" ' . (strtolower($this->value[ 'hover-deco' ]) === 'none' ? 'selected' : '') . '>None</option>';
+          echo '<option  value="Underline" ' . (strtolower($this->value[ 'hover-deco' ]) === 'underline' ? 'selected' : '') . '>Underline</option>';
           echo '</select><br>';
         }
 
-        if ($this->field[ 'visited' ] === true && $this->field[ 'default' ][ 'visited' ] !== false) {
-          echo 'Visited: <input id="' . $this->field[ 'id' ] . '-hover" name="' . $this->field[ 'name' ] . '[visited]' . $this->field[ 'name_suffix' ] . '" value="' . $this->value[ 'visited' ] . '" class="redux-color redux-color-init ' . $this->field[ 'class' ] . '"  type="text" data-default-color="' . $this->field[ 'default' ][ 'visited' ] . '" />&nbsp;&nbsp;&nbsp;&nbsp;';
-          echo  __('Underline', 'redux-framework') . '&nbsp;<select id="' . $this->field[ 'id' ] . '-visited-deco" name="' . $this->field[ 'name' ] . '[visited-deco]' . $this->field[ 'name_suffix' ] . '"  class="redux-links ' . $this->field[ 'class' ] . '" style="width:100px;">';
-          echo '<option name="' . $this->field[ 'name' ] . '[visited-deco]' . $this->field[ 'name_suffix' ] . ' value="inherit" ' . ($this->value[ 'visited-deco' ] =='inherit'?'selected':'').'>Inherit</option>';
-          echo '<option name="' . $this->field[ 'name' ] . '[visited-deco]' . $this->field[ 'name_suffix' ] . ' value="none" ' . ($this->value[ 'visited-deco' ] =='none'?'selected':'').'>None</option>';
-          echo '<option name="' . $this->field[ 'name' ] . '[visited-deco]' . $this->field[ 'name_suffix' ] . ' value="underline" ' . ($this->value[ 'visited-deco' ] =='underline'?'selected':'').'>Underline</option>';
-          echo '</select><br>';
-        }
-
-        if ($this->field[ 'active' ] === true && $this->field[ 'default' ][ 'active' ] !== false) {
-          echo 'Active: <input id="' . $this->field[ 'id' ] . '-active" name="' . $this->field[ 'name' ] . '[active]' . $this->field[ 'name_suffix' ] . '" value="' . $this->value[ 'active' ] . '" class="redux-color redux-color-init ' . $this->field[ 'class' ] . '"  type="text" data-default-color="' . $this->field[ 'default' ][ 'active' ] . '" />&nbsp;&nbsp;&nbsp;&nbsp;';
+        if ($this->field[ 'active' ] === true) {
+          echo '<strong>Active</strong>: <input id="' . $this->field[ 'id' ] . '-active" name="' . $this->field[ 'name' ] . '[active]' . $this->field[ 'name_suffix' ] . '" value="' . $this->value[ 'active' ] . '" class="redux-color redux-color-init ' . $this->field[ 'class' ] . '"  type="text" data-default-color="' . $this->field[ 'default' ][ 'active' ] . '" />&nbsp;&nbsp;&nbsp;&nbsp;';
           echo __('Underline', 'redux-framework') . '&nbsp;<select id="' . $this->field[ 'id' ] . '-active-deco" name="' . $this->field[ 'name' ] . '[active-deco]' . $this->field[ 'name_suffix' ] . '"  class="redux-links ' . $this->field[ 'class' ] . '" style="width:100px;">';
-          echo '<option name="' . $this->field[ 'name' ] . '[active-deco]' . $this->field[ 'name_suffix' ] . ' value="inherit" ' . ($this->value[ 'active-deco' ] =='inherit'?'selected':'').'>Inherit</option>';
-          echo '<option name="' . $this->field[ 'name' ] . '[active-deco]' . $this->field[ 'name_suffix' ] . ' value="none" ' . ($this->value[ 'active-deco' ] =='none'?'selected':'').'>None</option>';
-          echo '<option name="' . $this->field[ 'name' ] . '[active-deco]' . $this->field[ 'name_suffix' ] . ' value="underline" ' . ($this->value[ 'active-deco' ] =='underline'?'selected':'').'>Underline</option>';
+          echo '<option  value="Default" ' . (strtolower($this->value[ 'avtive-deco' ]) === 'default' ? 'selected' : '') . '>Default</option>';
+          echo '<option  value="Inherit" ' . (strtolower($this->value[ 'active-deco' ]) === 'inherit' ? 'selected' : '') . '>Inherit</option>';
+          echo '<option  value="None" ' . (strtolower($this->value[ 'active-deco' ]) === 'none' ? 'selected' : '') . '>None</option>';
+          echo '<option  value="Underline" ' . (strtolower($this->value[ 'active-deco' ]) === 'underline' ? 'selected' : '') . '>Underline</option>';
+          echo '</select><br>';
+        }
+
+        if ($this->field[ 'visited' ] === true) {
+          echo '<strong>Visited</strong>: <input id="' . $this->field[ 'id' ] . '-visited" name="' . $this->field[ 'name' ] . '[visited]' . $this->field[ 'name_suffix' ] . '" value="' . $this->value[ 'visited' ] . '" class="redux-color redux-color-init ' . $this->field[ 'class' ] . '"  type="text" data-default-color="' . $this->field[ 'default' ][ 'visited' ] . '" />&nbsp;&nbsp;&nbsp;&nbsp;';
+          echo __('Underline', 'redux-framework') . '&nbsp;<select id="' . $this->field[ 'id' ] . '-visited-deco" name="' . $this->field[ 'name' ] . '[regular-deco]' . $this->field[ 'name_suffix' ] . '"  class="redux-links ' . $this->field[ 'class' ] . '" style="width:100px;">';
+          echo '<option  value="Default" ' . (strtolower($this->value[ 'visited-deco' ]) === 'default' ? 'selected' : '') . '>Default</option>';
+          echo '<option  value="Inherit" ' . (strtolower($this->value[ 'visited-deco' ]) === 'inherit' ? 'selected' : '') . '>Inherit</option>';
+          echo '<option  value="None" ' . (strtolower($this->value[ 'visited-deco' ]) === 'none' ? 'selected' : '') . '>None</option>';
+          echo '<option  value="Underline" ' . (strtolower($this->value[ 'visited-deco' ]) === 'underline' ? 'selected' : '') . '>Underline</option>';
           echo '</select><br>';
         }
       }
