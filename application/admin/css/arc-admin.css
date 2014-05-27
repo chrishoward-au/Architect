@@ -757,7 +757,8 @@ body.post-type-arc-panels .redux-main .select_wrapper {
 .post-type-arc-blueprints #minor-publishing-actions {
   display: none; }
 
-.postbox-container .redux-main span.description {
+.postbox-container .redux-main span.description,
+.postbox-container .redux-main .redux-section-desc {
   font-size: 12px;
   color: #888;
   font-style: italic;
@@ -773,30 +774,30 @@ body.admin-color-midnight #poststuff h3.redux-section-title,
 body.admin-color-midnight .metabox-holder h3.redux-section-title {
   color: #e14d43; }
 
-/*
-.redux-main span.architect-help  {
-  float:right;
-  color:#ccc!important;
-  cursor:help;
- }
+  /*
+  .redux-main span.architect-help  {
+    float:right;
+    color:#ccc!important;
+    cursor:help;
+   }
 
-.architect-tips .tipsy-inner{
-  background-color: #f9edbe;
-  color: #444;
-  outline: 1px solid #f0c36d;
-  box-shadow: 0 0 5px rgba(0,0,0,0.3);
-  text-align: left;
-  padding:10px;
-  line-height:150%;
-}
-.architect-tips .tipsy-arrow-e,
-{
-  border-bottom-color: #ffff99;
-}
-.architect-tips.tipsy{
-  font-size: 12px;
-}
-*/
+  .architect-tips .tipsy-inner{
+    background-color: #f9edbe;
+    color: #444;
+    outline: 1px solid #f0c36d;
+    box-shadow: 0 0 5px rgba(0,0,0,0.3);
+    text-align: left;
+    padding:10px;
+    line-height:150%;
+  }
+  .architect-tips .tipsy-arrow-e,
+  {
+    border-bottom-color: #ffff99;
+  }
+  .architect-tips.tipsy{
+    font-size: 12px;
+  }
+  */
 .redux-container-tabbed ul,
 .redux-container-tabbed {
   padding: 0 !important;
@@ -872,7 +873,8 @@ body .redux-container .redux-main .redux-section-field.redux-field.heading h3 {
   background: #aaa;
   padding-left: 10px !important;
   line-height: 2;
-  border-radius: 2px; }
+  border-radius: 2px;
+  margin-bottom: 5px; }
 
 #adminmenu li.toplevel_page_pzarc .wp-menu-image img {
   opacity: 1; }
@@ -923,7 +925,7 @@ span.pzarc-required {
   width: 200px !important; }
 
 span.pzarc-text-align {
-  font-family: "Times New Roman",Georgia,serif;
+  font-family: "Times New Roman", Georgia, serif;
   font-weight: bold; }
 
 span.smaller {
@@ -955,5 +957,8 @@ span.bold {
   margin-bottom: 6px !important;
   list-style: disc;
   margin-left: 15px; }
+
+.sp-container .sp-input-container.sp-cf {
+  width: 170px; }
 
 /*# sourceMappingURL=arc-admin.css.map */

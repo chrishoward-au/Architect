@@ -1,0 +1,92 @@
+.pzarc-panel {
+  min-width: 0px;
+  min-height: 0px;
+  /* Remember to remove space between divs to stop inline-block space issue */
+  display: inline-block;
+  box-sizing: border-box;
+  vertical-align: top;
+  position: relative;
+  overflow:hidden;
+
+  .entry-image {
+    max-width: 100%;
+    display: block;
+  }
+
+  .entry-excerpt,
+  .entry-content {
+    -ms-word-break: break-all;
+    word-break: break-all;
+
+    /* Non standard for webkit */
+    word-break: break-word;
+
+    -webkit-hyphens: auto;
+    -moz-hyphens: auto;
+    hyphens: auto;
+    &.nothumb {
+      width: 100%;
+    }
+  }
+
+  x.img.entry-image {
+    float: left;
+    margin-right: 5px;
+    margin-bottom: 5px;
+  }
+
+  x.entry-content {
+    float: left;
+  }
+
+  .entry-excerpt {
+    float: left;
+  }
+
+  .entry-thumbnail {
+    float: left;
+    img {
+      max-width: 100%;
+      height: auto;
+    }
+    &.centred {
+      float: none;
+      margin: 0 auto;
+    }
+    .caption {
+      display:block;
+    }
+  }
+
+  .entry-title {
+    line-height: 120%;
+  }
+
+  .entry-title,
+  .entry-excerpt,
+  .entry-thumbnail,
+  .entry-content,
+  .entry-meta {
+    display: block;
+    float: left;
+    vertical-align: top;
+    box-sizing: border-box;
+  }
+
+
+}
+
+
+.has-bgimage {
+  position: absolute;
+  z-index: 1;
+}
+
+.vertical-content {
+  top:0;
+  bottom:0;
+}
+.pzarc-components {
+  box-sizing: border-box;
+  overflow: hidden;
+}

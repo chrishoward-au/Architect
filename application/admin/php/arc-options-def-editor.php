@@ -69,7 +69,7 @@
         // var_dump($filename);
         global $wp_filesystem;
         if (empty($wp_filesystem)) {
-          require_once(ABSPATH . '/wp-admin/resources/file.php');
+          require_once(ABSPATH . '/wp-admin/shared/file.php');
           WP_Filesystem();
         }
 

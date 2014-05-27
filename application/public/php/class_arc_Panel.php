@@ -28,6 +28,7 @@
 
       if ($toshow[ 'content' ][ 'show' ]) {
         $data[ 'content' ] = get_the_content();
+
       }
 
       if ($toshow[ 'excerpt' ][ 'show' ]) {
@@ -35,8 +36,21 @@
       }
 
       if ($toshow[ 'image' ][ 'show' ] || $section[ '_panels_design_thumb-position' ] != 'none') {
-        $data[ 'image' ][ 'image' ]   = get_the_post_thumbnail(null, array($section[ '_panels_design_image-max-dimensions' ][ 'width' ],
-                                                                           $section[ '_panels_design_image-max-dimensions' ][ 'height' ]));
+//        if (false)
+//        {
+//          $post_image = ($this->panel_info[ '_panels_design_thumb-position' ] != 'none') ? job_resize($thumb_src, $params, PZARC_CACHE_PATH, PZARC_CACHE_URL) : null;
+//        }
+        // BFI
+
+        $width  = (int)str_replace('px', '', $section[ '_panels_design_image-max-dimensions' ][ 'width' ]);
+        $height = (int)str_replace('px', '', $section[ '_panels_design_image-max-dimensions' ][ 'height' ]);
+
+        $data[ 'image' ][ 'image' ]   = get_the_post_thumbnail(null,
+                                                               array($width,
+                                                                     $height,
+                                                                     'bfi_thumb' => true,
+                                                                     'crop'      => true)
+        );
         $image                        = get_post(get_post_thumbnail_id());
         $data[ 'image' ][ 'caption' ] = $image->post_excerpt;
       }
@@ -73,8 +87,22 @@
       $data[ 'permalink' ]   = get_the_permalink();
       $post_format           = get_post_format();
       $data [ 'postformat' ] = (empty($post_format) ? 'standard' : $post_format);
-      $data[ 'bgimage' ]     = ($showbgimage ? get_the_post_thumbnail(null, array($section[ '_panels_design_background-image-width' ][ 'width' ],
-                                                                                  $section[ '_panels_design_background-image-width' ][ 'width' ])) : null); //WP seems to smartly figure out which of its saved images to use! Now we jsut gotta get it t work with focal point
+
+      // Need to setup for break points.
+
+      //  data-imagesrcs ="1,2,3", data-breakpoints="1,2,3". Then use js to change src.
+      $width                 = (int)str_replace('px', '', $section[ '_panels_design_background-image-max' ][ 'width' ]);
+      if ($section[ '_panels_settings_panel-height-type' ] === 'fixed') {
+        $height = (int)str_replace('px', '', $section[ '_panels_settings_panel-height' ][ 'height' ]);
+      } else {
+        $height = (int)str_replace('px', '', $section[ '_panels_design_background-image-max' ][ 'height' ]);
+      }
+      $data[ 'bgimage' ] = ($showbgimage ? get_the_post_thumbnail(null, array($width,
+                                                                              $height,
+                                                                              'bfi_thumb' => true,
+                                                                              'crop'      => false,
+                                                                      )
+      ) : null); //WP seems to smartly figure out which of its saved images to use! Now we jsut gotta get it t work with focal point
 
 //        if (strpos($data[ 'image' ][ 'image' ], '<img') === 0) {
 //          preg_match_all("/width=\"(\\d)*\"/uiUm", $data[ 'image' ][ 'image' ], $widthm);
@@ -89,20 +117,23 @@
 
     }
 
-    public function process_generics(&$data, $line, $source)
+    public function process_generics(&$data, $line, $source, &$section)
     {
       //todo: make sure source is actual WP valid eg. soemthings might be attachment
       // Do any generic replacements
-      $line = str_replace('{{postid}}', $data[ 'postid' ], $line);
-      $line = str_replace('{{title}}', $data[ 'title' ], $line);
-      $line = str_replace('{{permalink}}', $data[ 'permalink' ], $line);
-      $line = str_replace('{{closelink}}', '</a>', $line);
-      $line = str_replace('{{categories}}', $data[ 'categories' ], $line);
-      $line = str_replace('{{tags}}', $data[ 'tags' ], $line);
-      $line = str_replace('{{poststatus}}', $data[ 'poststatus' ], $line);
-      $line = str_replace('{{postformat}}', $data[ 'postformat' ], $line);
-      $line = str_replace('{{posttype}}', $source, $line);
-      $line = str_replace('{{pzclasses}}', 'pzarc-components', $line);
+      $line      = str_replace('{{postid}}', $data[ 'postid' ], $line);
+      $line      = str_replace('{{title}}', $data[ 'title' ], $line);
+      $line      = str_replace('{{permalink}}', $data[ 'permalink' ], $line);
+      $line      = str_replace('{{closelink}}', '</a>', $line);
+      $line      = str_replace('{{categories}}', $data[ 'categories' ], $line);
+      $line      = str_replace('{{tags}}', $data[ 'tags' ], $line);
+      $line      = str_replace('{{poststatus}}', $data[ 'poststatus' ], $line);
+      $line      = str_replace('{{postformat}}', $data[ 'postformat' ], $line);
+      $line      = str_replace('{{posttype}}', $source, $line);
+      $pzclasses = 'pzarc-components ';
+      $pzclasses .= ($section[ '_panels_design_components-position' ] === 'left' || $section[ '_panels_design_components-position' ] === 'right') ? 'vertical-content ' : '';
+
+      $line = str_replace('{{pzclasses}}', $pzclasses, $line);
 
       return $line;
     }
@@ -118,9 +149,10 @@
 //      foreach ($data[ 'components-close' ] as $key => $value) {
 //        $template[ $type ] = str_replace('{{' . $key . '}}', $value, $template[ $type ]);
 //      }
-      $template[ $type ] = str_replace('{{using-bg-image}}', (!empty($data[ 'bgimage' ]) ? 'has-bgimage' : 'no-bgimage'), $template[ $type ]);
 
-      return parent::process_generics($data, $template[ $type ], $source);
+      $template[ $type ] = str_replace('{{using-bg-image}}', (!empty($data[ 'bgimage' ]) ? 'has-bgimage ' : 'no-bgimage '), $template[ $type ]);
+
+      return parent::process_generics($data, $template[ $type ], $source, $section);
     }
   }
 
@@ -150,7 +182,7 @@
       };
 
       // this only works for posts! need different rules for different types! :S
-      return parent::process_generics($data, $template[ $type ], $source);
+      return parent::process_generics($data, $template[ $type ], $source, $section);
     }
   }
 
@@ -178,7 +210,7 @@
 
       }
 
-      return parent::process_generics($data, $template[ $type ], $source);
+      return parent::process_generics($data, $template[ $type ], $source, $section);
     }
 
   }
@@ -199,19 +231,19 @@
 
       $template[ $type ] = str_replace('{{image}}', $data[ 'image' ][ 'image' ], $template[ $type ]);
 
-      if (!empty($section[ '_panels_design_centre-image' ])){
-        $template[$type] = str_replace('{{centred}}', 'centred', $template[ $type ]);
+      if (!empty($section[ '_panels_design_centre-image' ])) {
+        $template[ $type ] = str_replace('{{centred}}', 'centred', $template[ $type ]);
       }
 
-      if (empty($data[ 'image' ][ 'image' ]) ) {
-        $template[ $type ] ='';
+      if (empty($data[ 'image' ][ 'image' ])) {
+        $template[ $type ] = '';
       }
 
 //      foreach ($data[ 'image' ] as $key => $value) {
 //        $template[ $type ] = str_replace('{{' . $key . '}}', $value, $template[ $type ]);
 //      }
 
-      return parent::process_generics($data, $template[ $type ], $source);
+      return parent::process_generics($data, $template[ $type ], $source, $section);
     }
 
   }
@@ -221,8 +253,9 @@
     public static function render($type, &$template, $source, &$data, &$section)
     {
       $template[ $type ] = str_replace('{{bgimage}}', $data[ 'bgimage' ], $template[ $type ]);
+      $template[ $type ] = str_replace('{{trim-scale}}', ' fill ' . $section[ '_panels_design_background-image-resize' ], $template[ $type ]);
 
-      return parent::process_generics($data, $template[ $type ], $source);
+      return parent::process_generics($data, $template[ $type ], $source, $section);
     }
 
   }
@@ -232,13 +265,33 @@
   {
     public static function render($type, &$template, $source, &$data, &$section)
     {
+  //    var_Dump(strlen($data['content']));
       switch ($source) {
         case 'post':
         case 'page':
           $template[ $type ] = str_replace('{{content}}', $data[ 'content' ], $template[ $type ]);
       };
+      if (!empty($data[ 'image' ][ 'image' ]) && $section[ '_panels_design_thumb-position' ] != 'none') {
+        $template[ $type ] = str_replace('{{image-in-content}}', $template[ 'image' ], $template[ $type ]);
 
-      return parent::process_generics($data, $template[ $type ], $source);
+        if ($section[ '_panels_design_image-captions' ]) {
+          $template[ $type ] = str_replace('{{captioncode}}', '<span class="caption">'.$data[ 'image' ][ 'caption' ].'</span>', $template[ $type ]);
+        }
+
+        $template[ $type ] = str_replace('{{image}}', $data[ 'image' ][ 'image' ], $template[ $type ]);
+        $template[ $type ] = str_replace('{{incontent}}', 'in-content-thumb', $template[ $type ]);
+
+        if ($section[ '_panels_design_link-image' ]) {
+          $template[ $type ] = str_replace('{{postlink}}', $template[ 'postlink' ], $template[ $type ]);
+          $template[ $type ] = str_replace('{{closepostlink}}', '</a>', $template[ $type ]);
+        }
+      }
+      if (empty($data[ 'image' ][ 'image' ]) && $section[ '_panels_design_maximize-content' ]) {
+        //TODO: Add an option to set if width spreads
+        $template[ $type ] = str_replace('{{nothumb}}', 'nothumb', $template[ $type ]);
+      }
+
+      return parent::process_generics($data, $template[ $type ], $source, $section);
     }
 
   }
@@ -263,11 +316,12 @@
           $template[ $type ] = str_replace('{{excerpt}}', $data[ 'excerpt' ], $template[ $type ]);
       };
 
-      if (!empty($data[ 'image' ][ 'image' ]) && $section[ '_panels_design_thumb-position' ] != 'none') {
+    //  var_dump($section[ '_panels_design_thumb-position' ]);
+      if (!empty($data[ 'image' ][ 'image' ]) && !empty($section[ '_panels_design_thumb-position' ]) && $section[ ' _panels_design_thumb-position' ] != 'none') {
         $template[ $type ] = str_replace('{{image-in-content}}', $template[ 'image' ], $template[ $type ]);
 
         if ($section[ '_panels_design_image-captions' ]) {
-          $template[ $type ] = str_replace('{{captioncode}}', $data[ 'image' ][ 'caption' ], $template[ $type ]);
+          $template[ $type ] = str_replace('{{captioncode}}', '<span class="caption">'.$data[ 'image' ][ 'caption' ].'</span>', $template[ $type ]);
         }
 
         $template[ $type ] = str_replace('{{image}}', $data[ 'image' ][ 'image' ], $template[ $type ]);
@@ -278,15 +332,15 @@
           $template[ $type ] = str_replace('{{closepostlink}}', '</a>', $template[ $type ]);
         }
       }
-      if (empty($data[ 'image' ][ 'image' ]) && $section[ '_panels_design_maximize-content' ]){
+      if (empty($data[ 'image' ][ 'image' ]) && $section[ '_panels_design_maximize-content' ]) {
         //TODO: Add an option to set if width spreads
-        $template[$type] = str_replace('{{nothumb}}', 'nothumb', $template[ $type ]);
+        $template[ $type ] = str_replace('{{nothumb}}', 'nothumb', $template[ $type ]);
       }
 
 //_panels_design_thumb-position
 
 
-      return parent::process_generics($data, $template[ $type ], $source);
+      return parent::process_generics($data, $template[ $type ], $source, $section);
     }
 
   }
@@ -297,7 +351,7 @@
     public static function render($type, &$template, $source, &$data, &$section)
     {
       // this only works for posts! need different rules for different types! :S
-      return parent::process_generics($data, $template, $source);
+      return parent::process_generics($data, $template, $source, $section);
     }
 
   }

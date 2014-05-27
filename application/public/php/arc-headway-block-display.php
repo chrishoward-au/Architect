@@ -34,7 +34,6 @@ class HeadwayArchitectBlock extends HeadwayBlockAPI
 //		wp_enqueue_style('pzarc-plugin-styles');
 
 		wp_enqueue_script('jquery');
-		wp_enqueue_script('js-isotope-v2');
     $filename = PZARC_CACHE_URL . '/pzarc-blueprints-layout-' . ($blueprint[1]) . '.css';
     wp_enqueue_style('blueprint-css-' . $blueprint[ 1 ], $filename);
 //		wp_enqueue_script('jquery-masonry');

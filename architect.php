@@ -3,22 +3,16 @@
   /*
     Plugin Name: Architect - an all-in-one content display framework
     Plugin URI: http://pizazzwp.com
-    Description: Display your content in grids, tabs, sliders, galleries with sources like posts, pages, galleries, widgets, custom code, Headway blocks and custom content types. Change themes without havinqg to rebuild your layouts. Seriously!
-    Version: 0.6.8 alpha
+    Description: Display your content in grids, tabs, sliders, galleries with sources like posts, pages, galleries, and custom content types. Layout using shorcodes, widgets, WP action hooks and template tags. Change themes without havinq to rebuild your layouts.
+    Version: 0.7.0 beta
     Author: Chris Howard
     Author URI: http://pizazzwp.com
     License: GNU GPL v2
     Shoutouts: Plugin structure based on WP Plugin Boilerplate by Tom McPharlin http://tommcfarlin.com/
+    Shoutouts: Options and metabox management all done with Redux plugin
    */
 
 // What's the essential difference between E+. G+, S+ and T+? Their navigation. E+ has pagination, G+ thumbs, S+ tabs, T+ tabs.
-
-  /* BLUEPRINTS: Overall layouts bricks
-   * VIEWS: End user view Nav brick(s)+Blueprint+Cell Brick
-   * CRITERIA:
-   * CELL BRICKS
-   * NAV BRICKS
-   */
 
   /* Plugins to try to support
   *
@@ -40,6 +34,7 @@
   TODO: Make sure WP multi compatible
   TODO: Allow ems and % for responsive dimensions
   TODO: OOPS! Need a method to rereate css if it goes missing!
+  TODO: Add Snippets post type to PizazzWP Libs
   */
   /* why not use a WP like methodology!
   ================================================================================
@@ -50,20 +45,20 @@
   */
 
 
-  class pz_Architect
+  class pzArchitect
   {
 
     function __construct()
     {
 
-      define('PZARC_VERSION', '0.6.5');
+      define('PZARC_VERSION', '0.7.0');
       define('PZARC_NAME', 'pzarchitect'); // This is also used as the locale
       define('PZARC_FOLDER', '/pizazzwp-architect');
 
-      define('PZARC_PLUGIN_ROOT_URL', trailingslashit(plugin_dir_url(__FILE__)));
-      define('PZARC_PLUGIN_ROOT_PATH', trailingslashit(plugin_dir_path(__FILE__)));
-      define('PZARC_PLUGIN_URL', PZARC_PLUGIN_ROOT_URL . 'application/');
-      define('PZARC_PLUGIN_PATH', PZARC_PLUGIN_ROOT_PATH . 'application/');
+      define('PZARC_PLUGIN_URL', trailingslashit(plugin_dir_url(__FILE__)));
+      define('PZARC_PLUGIN_PATH', trailingslashit(plugin_dir_path(__FILE__)));
+      define('PZARC_PLUGIN_APP_URL', PZARC_PLUGIN_URL . 'application/');
+      define('PZARC_PLUGIN_APP_PATH', PZARC_PLUGIN_PATH . 'application/');
       define('PZARC_CACHE', '/arc/');
 
       $upload_dir = wp_upload_dir();
@@ -73,8 +68,8 @@
       define('PZARC_DEBUG', 0);
 
 // Before we go anywhere, make sure dependent plugins are loaded and active.
-      require_once PZARC_PLUGIN_PATH . '/resources/architect/php/arc-check-dependencies.php';
-      require_once PZARC_PLUGIN_PATH . '/resources/architect/php/class_arc_Widget.php';
+      require_once PZARC_PLUGIN_APP_PATH . '/shared/architect/php/arc-check-dependencies.php';
+      require_once PZARC_PLUGIN_APP_PATH . '/shared/architect/php/class_arc_Widget.php';
 
       wp_mkdir_p(PZARC_CACHE_PATH);
 
@@ -85,12 +80,12 @@
         // The TGM dependency loader needs to run first
 //			include_once PZARC_PLUGIN_PATH . '/libraries/PizazzWP.php';
       }
-      require_once PZARC_PLUGIN_PATH . '/resources/architect/php/arc-functions.php';
+      require_once PZARC_PLUGIN_APP_PATH . '/shared/architect/php/arc-functions.php';
 
       // Register admin styles and scripts
 
       if (is_admin()) {
-        require_once PZARC_PLUGIN_PATH . '/arc-admin.php';
+        require_once PZARC_PLUGIN_APP_PATH . '/arc-admin.php';
         add_action('admin_print_styles', array($this, 'register_admin_styles'));
         add_action('admin_enqueue_scripts', array($this, 'register_admin_scripts'));
         //		add_action( 'init', array( $this, 'admin_initialize' ) );
@@ -103,7 +98,7 @@
         add_action('wp_enqueue_scripts', array($this, 'register_plugin_styles'));
         add_action('wp_enqueue_scripts', array($this, 'register_plugin_scripts'));
 
-        require_once PZARC_PLUGIN_PATH . '/arc-public.php';
+        require_once PZARC_PLUGIN_APP_PATH . '/arc-public.php';
 
       }
 
@@ -141,7 +136,7 @@
         require('application/public/php/arc-headway-block-display.php');
         require('application/admin/php/headway/arc-headway-block-options.php');
 
-        return headway_register_block('HeadwayArchitectBlock', PZARC_PLUGIN_URL . '/admin/php/headway');
+        return headway_register_block('HeadwayArchitectBlock', PZARC_PLUGIN_APP_URL . '/admin/php/headway');
       }
     }
 
@@ -207,9 +202,9 @@
     public function register_admin_styles()
     {
 
-      wp_enqueue_style('pzarc-admin-styles', PZARC_PLUGIN_URL . '/admin/css/arc-admin.css');
-      wp_register_style('pzarc-font-awesome', PZARC_PLUGIN_URL . '/resources/libraries/font-awesome/css/font-awesome.min.css');
-      wp_register_style('pzarc-jqueryui-css', PZARC_PLUGIN_URL . '/resources/libraries/jquery-ui-1.10.2.custom/css/pz_architect/jquery-ui-1.10.2.custom.min.css');
+      wp_enqueue_style('pzarc-admin-styles', PZARC_PLUGIN_APP_URL . '/admin/css/arc-admin.css');
+      wp_register_style('pzarc-font-awesome', PZARC_PLUGIN_APP_URL . '/shared/libraries/font-awesome/css/font-awesome.min.css');
+      wp_register_style('pzarc-jqueryui-css', PZARC_PLUGIN_APP_URL . '/shared/libraries/jquery-ui-1.10.2.custom/css/pz_architect/jquery-ui-1.10.2.custom.min.css');
 
       // Be nice to use bootstrap, but it's just not compatible with WP as it uses common non-specific element names.
       //wp_enqueue_style( 'bootstrap-admin-styles', plugins_url( PZARC_FOLDER . '/libraries/bootstrap/css/bootstrap.min.css' ) );
@@ -237,7 +232,7 @@
     public function register_plugin_styles()
     {
 
-      wp_enqueue_style(PZARC_NAME . '-plugin-styles',PZARC_PLUGIN_URL . '/public/css/arc-front.css');
+      wp_enqueue_style(PZARC_NAME . '-plugin-styles',PZARC_PLUGIN_APP_URL . '/public/css/arc-front.css');
       // Need this for custom CSS in styling options
       if (file_exists(PZARC_CACHE_PATH . 'arc-dynamic-styles.css')) {
         wp_enqueue_style(PZARC_NAME . '-dynamic-styles', PZARC_CACHE_URL . 'arc-dynamic-styles.css');
@@ -254,11 +249,11 @@
 
       wp_enqueue_script('jquery');
       // wp_enqueue_script( PZARC_NAME.'-plugin-script', plugins_url( PZARC_FOLDER.'/frontend/js/display.js' ) );
-      wp_register_script('jquery-isotope', plugins_url(PZARC_FOLDER . '/resources/libraries/js/jquery.isotope.min.js'));
-      wp_register_script('js-isotope-v2', plugins_url(PZARC_FOLDER . '/resources/libraries/js/isotope.pkgd.min.js'));
+      wp_register_script('jquery-isotope', plugins_url(PZARC_FOLDER . '/shared/libraries/js/jquery.isotope.min.js'));
+      wp_register_script('js-isotope-v2', PZARC_PLUGIN_APP_URL . '/shared/libraries/js/isotope.pkgd.min.js');
 
       // TODO: bug in this, so removed for now
-//      wp_enqueue_script('js-useragent', plugins_url(PZARC_FOLDER) . '/resources/architect/js/architect.js');
+//      wp_enqueue_script('js-useragent', plugins_url(PZARC_FOLDER) . '/shared/architect/js/architect.js');
     }
 
 // end register_plugin_scripts
@@ -301,7 +296,7 @@
 
 // end class
 // TODO:	Update the instantiation call of your plugin to the name given at the class definition
-  $pzarc = new pz_Architect();
+  $pzarc = new pzArchitect();
 
 
 // Use this for debuggging

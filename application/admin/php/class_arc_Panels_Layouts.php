@@ -23,7 +23,7 @@
       // This overrides the one in the parent class
 
       if (is_admin()) {
-        //     require_once PZARC_PLUGIN_PATH . 'resources/pzarc-custom-field-types.php';
+        //     require_once PZARC_PLUGIN_PATH . 'shared/pzarc-custom-field-types.php';
 
         //	add_action('admin_init', 'pzarc_preview_meta');
         //   add_action('add_meta_boxes', array($this, 'layouts_meta'));
@@ -69,9 +69,9 @@
         wp_enqueue_script('jquery-ui-sortable');
         wp_enqueue_script('jquery-ui-resizable');
 
-        wp_enqueue_style('pzarc-admin-panels-css', PZARC_PLUGIN_URL . '/admin/css/arc-admin-panels.css');
+        wp_enqueue_style('pzarc-admin-panels-css', PZARC_PLUGIN_APP_URL . '/admin/css/arc-admin-panels.css');
 
-        wp_enqueue_script('jquery-pzarc-metaboxes-panels', PZARC_PLUGIN_URL . '/admin/js/arc-metaboxes-panels.js', array('jquery'));
+        wp_enqueue_script('jquery-pzarc-metaboxes-panels', PZARC_PLUGIN_APP_URL . '/admin/js/arc-metaboxes-panels.js', array('jquery'));
       }
     }
 
@@ -336,6 +336,7 @@ array(
    *********/
   function pzarc_panels_design($metaboxes)
   {
+    global $_architect_options;
     $prefix = '_panels_design_';
 
     $sections    = array();
@@ -455,17 +456,6 @@ array(
                     'align' => 'Align with components area',
                 ),
                 'hint'    => array('content' => __('Select how to display the featured image or video as the background.', 'pzarchitect'))
-            ),
-            array(
-                'title'    => __('Background image width', 'pzarchitect'),
-                'id'       => $prefix . 'background-image-width',
-                'type'     => 'dimensions',
-                'height'   => false,
-                'units'    => 'px',
-                'default'  => array('width' => '500'),
-                'required' => array($prefix . 'background-position', '!=', 'none'),
-                'hint'     => array('content' => __('This should be larger than the expected maximum viewing size', 'pzarchitect')),
-                'subtitle' => __('This should be larger than the expected maximum viewing size to ensure best responsive behaviour', 'pzarchitect')
             ),
             array(
                 'title'   => __('Excerpt/Content thumbnail', 'pzarchitect'),
@@ -618,37 +608,44 @@ array(
      *********/
     // EXCERPTS
     $sections[ ] = array(
-        'title'      => 'Content/Excerpts',
+        'title'      => __('Content/Excerpts', 'pzarchitect'),
         'icon_class' => 'icon-large',
         'icon'       => 'el-icon-align-left',
         'fields'     => array(
 
             array(
                 'id'    => $prefix . 'content-responsive-heading',
-                'title' => 'Responsive',
+                'title' => __('Responsive', 'pzarchitect'),
                 'type'  => 'section',
                 'class' => 'heading',
             ),
             array(
-                'id'      => $prefix . 'responsive-hide-content',
-                'title'   => 'Hide Content on screens less than',
-                'type'    => 'dimensions',
-                'height'  => false,
-                'units'   => 'px',
-                'default' => array('width' => '0'),
+                'id'       => $prefix . 'responsive-hide-content',
+                'title'    => __('Hide Content at breakpoint', 'pzarchitect'),
+                'type'     => 'select',
+                'options'  => array(
+                    'none' => 'None',
+                    '3'    => 'Small screen ' . $_architect_options[ 'architect_breakpoint_3' ][ 'width' ],
+                    '2'    => 'Medium screen ' . $_architect_options[ 'architect_breakpoint_2' ][ 'width' ],
+                    '1'    => 'Wide screen ' . $_architect_options[ 'architect_breakpoint_1' ][ 'width' ]
+                ),
+                'default'  => 'none',
+                'subtitle' => __('Breakpoints can be changed in Architect Options', 'pzachitect')
             ),
             array(
                 'id'    => $prefix . 'excerpt-heading',
-                'title' => 'Excerpts',
+                'title' => __('Excerpts', 'pzarchitect'),
                 'type'  => 'section',
                 'class' => 'heading',
             ),
             array(
                 'id'      => $prefix . 'excerpts-word-count',
-                'title'   => 'Excerpt length (words)',
+                'title'   => __('Excerpt length (words)', 'pzarchitect'),
                 'type'    => 'spinner',
                 'default' => 55,
-                'cols'    => 3
+                'min'     => '1',
+                'max'     => '9999',
+                'step'    => '1',
             ),
             array(
                 'title'   => __('Truncation indicator', 'pzarchitect'),
@@ -662,16 +659,16 @@ array(
                 'id'      => $prefix . 'readmore-text',
                 'type'    => 'text',
                 'class'   => 'textbox-medium',
-                'default' => 'Read more',
+                'default' => __('Read more', 'pzarchitect'),
             ),
             array(
                 'title'    => __('Maximize content', 'pzarchitect'),
                 'id'       => $prefix . 'maximize-content',
                 'type'     => 'switch',
-                'on'       => 'Yes',
-                'off'      => 'No',
+                'on'       => __('Yes', 'pzarchitect'),
+                'off'      => __('No', 'pzarchitect'),
                 'default'  => true,
-                'subtitle' => 'Make excerpt or content 100% width if no featured image'
+                'subtitle' => __('Make excerpt or content 100% width if no featured image', 'pzarchitect')
             ),
         )
 
@@ -686,21 +683,6 @@ array(
         'icon'       => 'el-icon-picture',
         'fields'     => array(
 
-            array(
-                'id'    => $prefix . 'image-responsive-heading',
-                'title' => 'Responsive',
-                'type'  => 'section',
-                'class' => 'heading',
-            ),
-            array(
-                'title'   => __('Background images: Effect on resize', 'pzarchitect'),
-                'id'      => $prefix . 'background-image-resize',
-                'type'    => 'button_set',
-                'options' => array('scale' => 'Scale Vertically & Horizontally',
-                                   'crop'  => 'Crop horizontally, retain height'),
-                'default' => 'scale',
-                'cols'    => 3,
-            ),
             ///
             // IMAGE
             ///
@@ -735,6 +717,7 @@ array(
                 'on'      => 'Yes',
                 'off'     => 'No',
                 'default' => false,
+                'subtitle'=>'Centres the image horizontally. It is best to display it on its own row, and the content to be 100% wide.'
             ),
             array(
                 'title'   => __('Link image', 'pzarchitect'),
@@ -743,6 +726,7 @@ array(
                 'on'      => 'Yes',
                 'off'     => 'No',
                 'default' => true,
+                'subtitle'=>'Makes the image link to the post/page'
             ),
             array(
                 'title'   => __('Image Captions', 'pzarchitect'),
@@ -753,8 +737,15 @@ array(
                 'default' => false,
             ),
             array(
-                'id'    => $prefix . 'image-sizing-heading',
-                'title' => __('Image sizing', 'pzarchitect'),
+                'id'      => $prefix . 'image-max-dimensions',
+                'title'   => 'Maximum image dimensions',
+                'type'    => 'dimensions',
+                'units'   => 'px',
+                'default' => array('width' => '300', 'height' => '350'),
+            ),
+            array(
+                'id'    => $prefix . 'image-processing-heading',
+                'title' => __('Image processing', 'pzarchitect'),
                 'type'  => 'section',
                 'class' => 'heading',
             ),
@@ -786,16 +777,9 @@ array(
                 'hint'    => array('content' => 'Choose how you want the image resized in respect of its original width and height to the Image Max Height and Width.'),
             ),
             array(
-                'id'      => $prefix . 'image-max-dimensions',
-                'title'   => 'Maximum image dimensions',
-                'type'    => 'dimensions',
-                'units'   => 'px',
-                'default' => array('width' => '300', 'height' => '350'),
-            ),
-            array(
                 'id'      => $prefix . 'image-bgcolour',
                 'title'   => 'Image background colour',
-                'type'    => 'color',
+                'type'    => 'spectrum',
                 'default' => '#ffffff',
                 'hint'    => array('content' => 'If the cropped image  doesn\'t fill the resize area, fill the space with this colour.')
             ),
@@ -811,6 +795,48 @@ array(
                 'units'         => '%',
                 'hint'          => array('content' => 'Quality to use when processing images')
 
+            ),
+            array(
+                'id'    => $prefix . 'image-bgimage-heading',
+                'title' => 'Background images',
+                'type'  => 'section',
+                'class' => 'heading',
+                'subtitle'=>'Background images can be a bit trickier to work with responsively as they might not fill the background on all devices. Consider the probable aspect ratio of the panel at each breakpoint when setting the image dimensions. What may be landscape on a desktop, could be portrait on a smartphone.'
+            ),
+            array(
+                'title'    => __('Maximum dimensions BP1 : ', 'pzarchitect') . $_architect_options[ 'architect_breakpoint_1' ][ 'width' ],
+                'id'       => $prefix . 'background-image-max',
+                'type'     => 'dimensions',
+                'units'    => 'px',
+                'default'  => array('width' => '300', 'height' => '350'),
+                'required' => array($prefix . 'background-position', '!=', 'none'),
+                'subtitle' => __('This should be larger than the expected maximum viewing size at this breakpoint to ensure best responsive behaviour', 'pzarchitect')
+            ),
+            array(
+                'title'    => __('Maximum dimensions BP2 : ', 'pzarchitect') . $_architect_options[ 'architect_breakpoint_2' ][ 'width' ],
+                'id'       => $prefix . 'background-image-max-bp2',
+                'type'     => 'dimensions',
+                'units'    => 'px',
+                'default'  => array('width' => '600', 'height' => '400'),
+                'required' => array($prefix . 'background-position', '!=', 'none'),
+            ),
+            array(
+                'title'    => __('Maximum dimensions BP3 : ', 'pzarchitect') . $_architect_options[ 'architect_breakpoint_3' ][ 'width' ],
+                'id'       => $prefix . 'background-image-max-bp3',
+                'type'     => 'dimensions',
+                'units'    => 'px',
+                'default'  => array('width' => '200', 'height' => '300'),
+                'required' => array($prefix . 'background-position', '!=', 'none'),
+            ),
+            array(
+                'title'   => __('Effect on resize', 'pzarchitect'),
+                'id'      => $prefix . 'background-image-resize',
+                'type'    => 'button_set',
+                'options' => array(
+                    'trim'  => 'Trim horizontally, retain height',
+                    'scale' => 'Scale Vertically & Horizontally'
+                ),
+                'default' => 'trim',
             ),
         )
     );
@@ -856,7 +882,7 @@ array(
                 'type'  => 'info',
                 'class' => 'plain',
                 'desc'  => '<p>To use a panel, you need to select it to be used by a Blueprint section</p>
-<img src="' . PZARC_PLUGIN_ROOT_URL . '/documentation/assets/images/arc-using-panels.jpg" style="max-width:100%;">
+<img src="' . PZARC_PLUGIN_URL . '/documentation/assets/images/arc-using-panels.jpg" style="max-width:100%;">
 <p>The great thing then is, any panel can be re-used as often as you like.</p>
 
             ')
@@ -1128,7 +1154,8 @@ array(
             ),
             pzarc_redux_font($prefix . 'entry-image-caption-font', array('figure.entry-thumbnail span.caption'), $defaults[ $optprefix . 'entry-image-caption-font' ]),
             pzarc_redux_bg($prefix . 'entry-image-caption-font-background', array('figure.entry-thumbnail span.caption'), $defaults[ $optprefix . 'entry-image-caption-font-background' ]),
-            pzarc_redux_margin($prefix . 'entry-image-caption-font-margin', array('figure.entry-thumbnail span.caption'), $defaults[ $optprefix . 'entry-image-caption-font-margin' ])
+//            pzarc_redux_margin($prefix . 'entry-image-caption-font-margin', array('figure.entry-thumbnail span.caption'), $defaults[ $optprefix . 'entry-image-caption-font-margin' ]),
+            pzarc_redux_padding($prefix . 'entry-image-caption-font-padding', array('figure.entry-thumbnail span.caption'), $defaults[ $optprefix . 'entry-image-caption-font-margin' ])
         )
 
 
@@ -1218,9 +1245,9 @@ array(
       <div class="pzarc-content-area sortable">
         <span class="pzarc-draggable pzarc-draggable-title" title="Post title" data-idcode=title ><span>This is the title</span></span>
         <span class="pzarc-draggable pzarc-draggable-meta1 pzarc-draggable-meta" title="Meta info 1" data-idcode=meta1 ><span>Jan 1 2013</span></span>
-        <span class="pzarc-draggable pzarc-draggable-excerpt" title="Excerpt with featured image" data-idcode=excerpt ><span><img src="' . PZARC_PLUGIN_URL . '/resources/assets/images/sample-image.jpg" style="max-width:20%;padding:2px;" class="pzarc-align none">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam quis justo erat. Cras semper sem hendre...[more]</span></span>
-        <span class="pzarc-draggable pzarc-draggable-content" title="Full post content" data-idcode=content ><span><img src="' . PZARC_PLUGIN_URL . '/resources/assets/images/sample-image.jpg" style="max-width:20%;padding:2px;" class="pzarc-align none"><img src="' . PZARC_PLUGIN_URL . '/resources/assets/images/fireworks.jpg" style="max-width:30%;float:left;padding:5px;">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam quis justo erat. <ul><li>&nbsp;•&nbsp;Cras semper sem hendrerit</li><li>&nbsp;•&nbsp;Tortor porta at auctor</li></ul><strong>Lacus consequat</strong><p>Pellentesque pulvinar iaculis tellus in blandit. Suspendisse rhoncus, magna vel eleifend cursus, turpis odio molestie urna, quis posuere eros risus quis neque. </p></span></span>
-        <span class="pzarc-draggable pzarc-draggable-image" title="Featured image" data-idcode=image style="max-height: 100px; overflow: hidden;"><span><img src="' . PZARC_PLUGIN_URL . '/resources/assets/images/sample-image.jpg" style="max-width:100%;"></span></span>
+        <span class="pzarc-draggable pzarc-draggable-excerpt" title="Excerpt with featured image" data-idcode=excerpt ><span><img src="' . PZARC_PLUGIN_APP_URL . '/shared/assets/images/sample-image.jpg" style="max-width:20%;padding:2px;" class="pzarc-align none">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam quis justo erat. Cras semper sem hendre...[more]</span></span>
+        <span class="pzarc-draggable pzarc-draggable-content" title="Full post content" data-idcode=content ><span><img src="' . PZARC_PLUGIN_APP_URL . '/shared/assets/images/sample-image.jpg" style="max-width:20%;padding:2px;" class="pzarc-align none"><img src="' . PZARC_PLUGIN_APP_URL . '/shared/assets/images/fireworks.jpg" style="max-width:30%;float:left;padding:5px;">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam quis justo erat. <ul><li>&nbsp;•&nbsp;Cras semper sem hendrerit</li><li>&nbsp;•&nbsp;Tortor porta at auctor</li></ul><strong>Lacus consequat</strong><p>Pellentesque pulvinar iaculis tellus in blandit. Suspendisse rhoncus, magna vel eleifend cursus, turpis odio molestie urna, quis posuere eros risus quis neque. </p></span></span>
+        <span class="pzarc-draggable pzarc-draggable-image" title="Featured image" data-idcode=image style="max-height: 100px; overflow: hidden;"><span><img src="' . PZARC_PLUGIN_APP_URL . '/shared/assets/images/sample-image.jpg" style="max-width:100%;"></span></span>
         <span class="pzarc-draggable pzarc-draggable-meta2 pzarc-draggable-meta" title="Meta info 2" data-idcode=meta2 ><span>Categories - News, Sport</span></span>
         <span class="pzarc-draggable pzarc-draggable-meta3 pzarc-draggable-meta" title="Meta info 3" data-idcode=meta3 ><span>Comments: 27</span></span>
         <span class="pzarc-draggable pzarc-draggable-custom1 pzarc-draggable-meta" title="Custom field 1" data-idcode=custom1 ><span>Custom content 1</span></span>
@@ -1231,7 +1258,7 @@ array(
 	  <p class="pzarc-states ">Loading</p>
 	  <p class="howto "><strong style="color:#d00;">This is an example only and thus only a <span style="border-bottom: 3px double;">general guide</span> to how the panels will look.</strong></p>
 	</div>
-	<div class="plugin_url" style="display:none;">' . PZARC_PLUGIN_URL . '</div>
+	<div class="plugin_url" style="display:none;">' . PZARC_PLUGIN_APP_URL . '</div>
 	';
 
     return $return_html;
@@ -1245,8 +1272,9 @@ array(
     <p>Font  Weight  Size  Decoration  Styles  Color</p>
     </div>
     ';
+
     // if you pass a class, how you gunna make it differentiate different panel?!
 
 
     return $return_html;
-}
+  }

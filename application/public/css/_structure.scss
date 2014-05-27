@@ -1,0 +1,101 @@
+.pzarc-blueprint {
+  position: relative;
+}
+
+.pzarc-section {
+  position: relative;
+  /* Added for gridded layout. May break others! */
+  display: block;
+  display: webkit box;
+  display: moz-box;
+  display: -ms-flexbox;
+  display: webkit flex;
+  display: flex;
+  justify-content: flex-start;
+  -webkit-flex-flow: row wrap;
+  -moz-flex-flow: row wrap; /* Unsupported!! Argh! */
+  flex-flow: row wrap;
+  flex-direction: row;
+  flex-wrap: wrap;
+  counter-reset: arc-title-counter;
+}
+
+.pzarc-bg-image {
+  margin: 0;
+  padding: 0;
+  max-width: 100%;
+  height: auto;
+  z-index: 0;
+  overflow: hidden;
+  position: relative;
+
+  &.fill.trim {
+    max-width: none;
+    display: inline-block;
+    right: -50%;
+    overflow:visible;
+  }
+  &.fill.trim img {
+    max-width: none;
+    position: relative;
+    left: -50%;
+  }
+
+  &.fill.scale img {
+    max-width: 100%;
+  }
+
+  img {
+    display: block;
+    height: auto;
+    max-width: 100%;
+
+  }
+}
+
+.pzarc-pager {
+  display: table;
+  padding: 10px 0;
+  width: 100%;
+}
+
+.pzarc-pager-prev,
+.pzarc-pager-next {
+  /*font-size:13px;*/
+  /*font-weight:bold;*/
+  /*background: #eee;*/
+  /*padding:10px 5px;*/
+}
+
+.pzarc-pager-prev {
+  float: left;
+  /*border-top-left-radius: 20px;*/
+  /*border-bottom-left-radius: 20px;*/
+  /*padding-right:10px;*/
+}
+
+.pzarc-pager-next {
+  float: right;
+  /*border-top-right-radius: 20px;*/
+  /*border-bottom-right-radius: 20px;*/
+  /*padding-left:10px;*/
+}
+
+.pzarc-blueprint .entry-excerpt,
+.pzarc-blueprint .entry-content {
+  &.pznothumb {
+    width: 100%;
+  }
+}
+
+.pzarc-align {
+  &.left {
+    float: left;
+    padding-right: 2%;
+  }
+
+  &.right {
+    float: right;
+    padding-left: 2%;
+  }
+}

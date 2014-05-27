@@ -904,247 +904,262 @@ body.post-type-arc-panels .redux-main .select_wrapper {
   }
 }
 
-.postbox-container .redux-main span.description {
-  font-size: 12px;
-  color: #888;
-  font-style: italic;
-  margin: 0 0 10px;
-}
+.postbox-container .redux-main {
 
-#poststuff h3.redux-section-title,
-.metabox-holder h3.redux-section-title {
-  color: #0074a2;
-  font-size: 20px;
-  padding-left: 0;
+  span.description,
+  .redux-section-desc {
+    font-size: 12px;
+    color: #888;
+    font-style: italic;
+    margin: 0 0 10px;
+  }
 }
-
-body.admin-color-midnight {
   #poststuff h3.redux-section-title,
   .metabox-holder h3.redux-section-title {
-    color: #e14d43;
+    color: #0074a2;
+    font-size: 20px;
+    padding-left: 0;
   }
-}
 
-/*
-.redux-main span.architect-help  {
-  float:right;
-  color:#ccc!important;
-  cursor:help;
- }
-
-.architect-tips .tipsy-inner{
-  background-color: #f9edbe;
-  color: #444;
-  outline: 1px solid #f0c36d;
-  box-shadow: 0 0 5px rgba(0,0,0,0.3);
-  text-align: left;
-  padding:10px;
-  line-height:150%;
-}
-.architect-tips .tipsy-arrow-e,
-{
-  border-bottom-color: #ffff99;
-}
-.architect-tips.tipsy{
-  font-size: 12px;
-}
-*/
-
-.redux-container-tabbed ul,
-.redux-container-tabbed {
-  padding: 0 !important;
-  margin: 0;
-}
-
-.redux-no-sections .redux-main {
-  margin-left: 0;
-  border-left: none;
-  min-height: 0;
-}
-
-#redux-_architect-metabox-panels_tabs_panels,
-#redux-_architect-metabox-blueprint_tabs_blueprints {
-
-  .redux-container,
-  .redux-main {
-    padding: 0;
-    border: none;
-    box-shadow: none;
-    background: none;
+  body.admin-color-midnight {
+    #poststuff h3.redux-section-title,
+    .metabox-holder h3.redux-section-title {
+      color: #e14d43;
+    }
   }
-}
 
-.redux-multi-text li:first-child a.redux-multi-text-remove {
-  display: none;
-}
+  /*
+  .redux-main span.architect-help  {
+    float:right;
+    color:#ccc!important;
+    cursor:help;
+   }
 
-input[readonly],
-input[readonly]:focus,
-input[readonly]:hover,
-input[readonly]:active {
-  border: none;
-  background: #eee;
-  box-shadow: none;
-}
-
-body.post-type-arc-panels,
-body.post-type-arc-blueprints {
-  .ui-button {
-    /*padding: 0;*/
+  .architect-tips .tipsy-inner{
+    background-color: #f9edbe;
+    color: #444;
+    outline: 1px solid #f0c36d;
+    box-shadow: 0 0 5px rgba(0,0,0,0.3);
+    text-align: left;
+    padding:10px;
+    line-height:150%;
   }
-}
-
-body.post-type-arc-panels,
-body.post-type-arc-blueprints {
-  .ui-buttonset {
-    margin-top: -8px;
+  .architect-tips .tipsy-arrow-e,
+  {
+    border-bottom-color: #ffff99;
   }
-}
+  .architect-tips.tipsy{
+    font-size: 12px;
+  }
+  */
 
-.noUi-handle:hover,
-.noUi-handle:hover:after,
-.noUi-handle:hover:before {
-  border-color: #bbb;
-}
+  .redux-container-tabbed ul,
+  .redux-container-tabbed {
+    padding: 0 !important;
+    margin: 0;
+  }
 
-/* Generic CSS - this should be prefixed with Architect ids so doesnt' screw other Redux users. Will need to add a body class */
-
-.post-type-arc-blueprints,
-.post-type-arc-panels {
-  #poststuff .heading h3,
-  .metabox-holder .heading h3,
-  .redux-main .heading h3,
-  .redux-main .redux-group-tab h3,
-  .redux-sidebar .heading h3 {
-    background: none;
-    padding: 0;
+  .redux-no-sections .redux-main {
     margin-left: 0;
-    color: #2ea2cc;
-    font-size: 16px;
-
+    border-left: none;
+    min-height: 0;
   }
-}
 
-body.admin-color-midnight {
-  #poststuff .heading h3,
-  .metabox-holder .heading h3,
-  .redux-main .redux-group-tab h3,
-  .redux-main .heading h3,
-  .redux-sidebar .heading h3 {
-    color: #69a8bb;
+  #redux-_architect-metabox-panels_tabs_panels,
+  #redux-_architect-metabox-blueprint_tabs_blueprints {
+
+    .redux-container,
+    .redux-main {
+      padding: 0;
+      border: none;
+      box-shadow: none;
+      background: none;
+    }
   }
-}
 
-body #poststuff,
-body .redux-container {
-  .redux-main .redux-section-field.redux-field.heading h3 {
-    color: #fff;
-    background: #aaa;
-    padding-left: 10px !important;
-    line-height: 2;
-    border-radius: 2px;
+  .redux-multi-text li:first-child a.redux-multi-text-remove {
+    display: none;
   }
-}
 
-#adminmenu li.toplevel_page_pzarc .wp-menu-image img {
-  opacity: 1;
-}
-
-/*#redux-_architect-metabox-blueprint_tabs_blueprints {*/
-/*margin-bottom:-34px;*/
-/*}*/
-/*#redux-_architect-metabox-layout-settings,*/
-/*#redux-_architect-metabox-content-selections {*/
-/*border-top:none;*/
-/*}*/
-
-/* Fix for WP Engine's naughty CSS*/
-.redux-main,
-.redux-sidebar {
-  .icon-large {
-    background-image: inherit !important;
-    width: inherit;
-    height: inherit;
+  input[readonly],
+  input[readonly]:focus,
+  input[readonly]:hover,
+  input[readonly]:active {
+    border: none;
+    background: #eee;
+    box-shadow: none;
   }
-}
 
-.pzarc-section-navigator {
-  font-size: 20px;
-  color: #aaa;
-}
-
-.pzarc-section-navigator {
-  .icon-large,
-  .icon-xlarge {
-    vertical-align: middle;
+  body.post-type-arc-panels,
+  body.post-type-arc-blueprints {
+    .ui-button {
+      /*padding: 0;*/
+    }
   }
-}
 
-.pzarc-section-navigator .icon-xlarge {
-  font-size: 36px;
-  color: #ccc;
-}
-
-.redux-container-image_select .redux-image-select {
-  img,
-  .tiles {
-    border-color: rgba(0, 0, 0, 0);
-    padding: 2px;
-    border-radius: 2px;
-    border-width: 2px;
+  body.post-type-arc-panels,
+  body.post-type-arc-blueprints {
+    .ui-buttonset {
+      margin-top: -8px;
+    }
   }
-}
 
-span.pzarc-required {
-  color:tomato;
-  font-size:7px;
-  vertical-align:super;
-  cursor: help;
-}
+  .noUi-handle:hover,
+  .noUi-handle:hover:after,
+  .noUi-handle:hover:before {
+    border-color: #bbb;
+  }
 
-.textbox-small {
-  width:100px!important;
-}
-.textbox-medium {
-  width:200px!important;
-}
+  /* Generic CSS - this should be prefixed with Architect ids so doesnt' screw other Redux users. Will need to add a body class */
 
-span.pzarc-text-align {
-  font-family: "Times New Roman",Georgia,serif;
-  font-weight:bold;
-}
+  .post-type-arc-blueprints,
+  .post-type-arc-panels {
+    #poststuff .heading h3,
+    .metabox-holder .heading h3,
+    .redux-main .heading h3,
+    .redux-main .redux-group-tab h3,
+    .redux-sidebar .heading h3 {
+      background: none;
+      padding: 0;
+      margin-left: 0;
+      color: #2ea2cc;
+      font-size: 16px;
 
-span.smaller {
-  font-size:smaller;
-}
-span.underline {
-  text-decoration: underline;
-}
-span.overline {
-  text-decoration: overline;
-}
-span.underline-overline {
-  text-decoration: underline overline;
-}
-span.line-through {
-  text-decoration: line-through;
-}
+    }
+  }
 
-span.bold {
-   font-weight:bold;
- }
+  body.admin-color-midnight {
+    #poststuff .heading h3,
+    .metabox-holder .heading h3,
+    .redux-main .redux-group-tab h3,
+    .redux-main .heading h3,
+    .redux-sidebar .heading h3 {
+      color: #69a8bb;
+    }
+  }
 
-.plain.redux-info-field {
-  background:none;
-  border:none;
-}
+  body #poststuff,
+  body .redux-container {
+    .redux-main .redux-section-field.redux-field {
+      &.heading h3 {
+        color: #fff;
+        background: #aaa;
+        padding-left: 10px !important;
+        line-height: 2;
+        border-radius: 2px;
+        margin-bottom: 5px;
+      }
+    }
+  }
 
-.plain.redux-info-field em {
-  color:tomato;
-}
+  #adminmenu li.toplevel_page_pzarc .wp-menu-image img {
+    opacity: 1;
+  }
 
-.plain.redux-info-field li {
-  margin-bottom: 6px!important;
-  list-style: disc;
-  margin-left: 15px;
-}
+  /*#redux-_architect-metabox-blueprint_tabs_blueprints {*/
+  /*margin-bottom:-34px;*/
+  /*}*/
+  /*#redux-_architect-metabox-layout-settings,*/
+  /*#redux-_architect-metabox-content-selections {*/
+  /*border-top:none;*/
+  /*}*/
+
+  /* Fix for WP Engine's naughty CSS*/
+  .redux-main,
+  .redux-sidebar {
+    .icon-large {
+      background-image: inherit !important;
+      width: inherit;
+      height: inherit;
+    }
+  }
+
+  .pzarc-section-navigator {
+    font-size: 20px;
+    color: #aaa;
+  }
+
+  .pzarc-section-navigator {
+    .icon-large,
+    .icon-xlarge {
+      vertical-align: middle;
+    }
+  }
+
+  .pzarc-section-navigator .icon-xlarge {
+    font-size: 36px;
+    color: #ccc;
+  }
+
+  .redux-container-image_select .redux-image-select {
+    img,
+    .tiles {
+      border-color: rgba(0, 0, 0, 0);
+      padding: 2px;
+      border-radius: 2px;
+      border-width: 2px;
+    }
+  }
+
+  span.pzarc-required {
+    color: tomato;
+    font-size: 7px;
+    vertical-align: super;
+    cursor: help;
+  }
+
+  .textbox-small {
+    width: 100px !important;
+  }
+
+  .textbox-medium {
+    width: 200px !important;
+  }
+
+  span.pzarc-text-align {
+    font-family: "Times New Roman", Georgia, serif;
+    font-weight: bold;
+  }
+
+  span.smaller {
+    font-size: smaller;
+  }
+
+  span.underline {
+    text-decoration: underline;
+  }
+
+  span.overline {
+    text-decoration: overline;
+  }
+
+  span.underline-overline {
+    text-decoration: underline overline;
+  }
+
+  span.line-through {
+    text-decoration: line-through;
+  }
+
+  span.bold {
+    font-weight: bold;
+  }
+
+  .plain.redux-info-field {
+    background: none;
+    border: none;
+  }
+
+  .plain.redux-info-field em {
+    color: tomato;
+  }
+
+  .plain.redux-info-field li {
+    margin-bottom: 6px !important;
+    list-style: disc;
+    margin-left: 15px;
+  }
+
+  .sp-container .sp-input-container.sp-cf {
+    width:170px;
+  }

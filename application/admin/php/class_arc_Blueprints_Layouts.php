@@ -35,9 +35,9 @@
       if ('arc-blueprints' == $screen->id) {
 
 
-        wp_enqueue_style('pzarc-admin-blueprints-css', PZARC_PLUGIN_URL . '/admin/css/arc-admin-blueprints.css');
+        wp_enqueue_style('pzarc-admin-blueprints-css', PZARC_PLUGIN_APP_URL . '/admin/css/arc-admin-blueprints.css');
 
-        wp_enqueue_script('jquery-pzarc-metaboxes-blueprints', PZARC_PLUGIN_URL . '/admin/js/arc-metaboxes-blueprints.js', array('jquery'));
+        wp_enqueue_script('jquery-pzarc-metaboxes-blueprints', PZARC_PLUGIN_APP_URL . '/admin/js/arc-metaboxes-blueprints.js', array('jquery'));
         wp_enqueue_script('js-isotope-v2');
         // wp_enqueue_script('jquery-masonary', PZARC_PLUGIN_URL . 'libraries/masonry.pkgd.min.js', array('jquery'));
         // wp_enqueue_script('jquery-lorem', PZARC_PLUGIN_URL . 'libraries/jquery.lorem.js', array('jquery'));
@@ -261,15 +261,34 @@
                 'width'   => true,
                 'height'  => false,
                 'title'   => __('Blueprint width', 'pzarchitect'),
-                'default' => array('width' => '100','units'=>'%'),
+                'default' => array('width' => '100', 'units' => '%'),
+            ),
+            array(
+                'id'      => $prefix . 'sections-width',
+                'type'    => 'dimensions',
+                //               'mode'    => array('width' => true, 'height' => false),
+                'units'   => array('%', 'px'),
+                'width'   => true,
+                'height'  => false,
+                'title'   => __('Sections width', 'pzarchitect'),
+                'default' => array('width' => '100', 'units' => '%'),
+            ),
+            array(
+                'id'      => $prefix . 'sections-align',
+                'type'    => 'button_set',
+                'select2' => array('allowClear' => false),
+                'options' => array('left'   => __('Left', 'pzarchitect'),
+                                   'center' => __('Centre', 'pzarchitect'),
+                                   'right'  => __('Right', 'pzarchitect')),
+                'title'   => __('Sections align', 'pzarchitect'),
+                'default' => 'center',
             ),
             array(
                 'title'    => 'Navigation',
                 'id'       => $prefix . 'navigation',
                 'type'     => 'button_set',
-                'width'    => 'auto',
                 'default'  => 'none',
-                'subtitle' => 'Note: Navigator will only function when one section selected. Pagination effects all sections.',
+                'subtitle' => __('Note: Navigator will only function when one section selected. Pagination effects all sections.', 'pzarchitect'),
                 'options'  => array(
                     'none'       => 'None',
                     'pagination' => 'Pagination',
@@ -332,6 +351,7 @@
                     'defaults' => 'Defaults',
                     'post'     => 'Posts',
                     'page'     => 'Pages',
+                    'snippets' => 'Snippets',
                     'gallery'  => 'Galleries',
                     'slides'   => 'Slides',
                     //                          'images'      => 'Specific Images',
@@ -451,7 +471,7 @@
                   'width'   => true,
                   'height'  => false,
                   'title'   => __('Section width', 'pzarchitect'),
-                  'default' => array('width' => '100','units'=>'%'),
+                  'default' => array('width' => '100', 'units' => '%'),
               ),
               array(
                   'id'       => $prefix . 'section-' . $i . '-panel-layout',
@@ -488,6 +508,7 @@
                   'on'      => 'Yes',
                   'off'     => 'No',
                   'default' => true,
+                  'subtitle'=>'Each panel displays content from the selected content type. Use unlimited with care.'
               ),
               array(
                   'title'    => __('Panels to show', 'pzarchitect'),
@@ -496,11 +517,11 @@
                   'default'  => 1,
                   'min'      => 1,
                   'max'      => 99,
-                  'subtitle'=> __('If using pagination, this will be the number per page.'),
+                  'subtitle' => __('If using pagination, this will be the number per page.'),
                   'required' => array($prefix . 'section-' . $i . '-panels-limited', '=', true)
               ),
               array(
-                  'title'         => __('Columns wide screen', 'pzarchitect').' ('.$_architect_options['architect_breakpoint_1']['width'].')',
+                  'title'         => __('Columns wide screen', 'pzarchitect') . ' (' . $_architect_options[ 'architect_breakpoint_1' ][ 'width' ] . ')',
                   'id'            => $prefix . 'section-' . $i . '-columns-breakpoint-1',
                   'subtitle'      => __('Number of columns or panels across on a wide screen as set in the breakpoints options', 'pzarchitect'),
                   'type'          => 'slider',
@@ -510,7 +531,7 @@
                   'display_value' => 'label'
               ),
               array(
-                  'title'         => __('Columns medium screen', 'pzarchitect').' ('.$_architect_options['architect_breakpoint_2']['width'].')',
+                  'title'         => __('Columns medium screen', 'pzarchitect') . ' (' . $_architect_options[ 'architect_breakpoint_2' ][ 'width' ] . ')',
                   'id'            => $prefix . 'section-' . $i . '-columns-breakpoint-2',
                   'subtitle'      => __('Number of columns or panels across on a medium screen as set in the breakpoints options', 'pzarchitect'),
                   'type'          => 'slider',
@@ -520,7 +541,7 @@
                   'display_value' => 'label'
               ),
               array(
-                  'title'         => __('Columns narrow screen', 'pzarchitect').' ('.$_architect_options['architect_breakpoint_3']['width'].')',
+                  'title'         => __('Columns narrow screen', 'pzarchitect') . ' (' . $_architect_options[ 'architect_breakpoint_3' ][ 'width' ] . ')',
                   'id'            => $prefix . 'section-' . $i . '-columns-breakpoint-3',
                   'subtitle'      => __('Number of columns or panels across on a narrow screen as set in the breakpoints options', 'pzarchitect'),
                   'type'          => 'slider',
@@ -529,32 +550,31 @@
                   'max'           => 10,
                   'display_value' => 'label'
               ),
-
               array(
                   'title'   => __('Minimum panel width', 'pzarchitect'),
                   'id'      => $prefix . 'section-' . $i . '-min-panel-width',
                   'type'    => 'dimensions',
-                  'height'=>false,
-                  'units'=>'px',
-                  'default' => array('width'=>'0'),
+                  'height'  => false,
+                  'units'   => 'px',
+                  'default' => array('width' => '0'),
                   //      'subtitle'    => __('Set the minimum width for panels in this section. This helps with responsive layout', 'pzarchitect')
               ),
               array(
                   'title'   => __('Panels vertical margin', 'pzarchitect'),
                   'id'      => $prefix . 'section-' . $i . '-panels-vert-margin',
                   'type'    => 'dimensions',
-                  'height'=>false,
-                  'units'=>false,
-                  'default' => array('width'=>'1'),
+                  'height'  => false,
+                  'units'   => false,
+                  'default' => array('width' => '1'),
                   //    'subtitle'    => __('Set the vertical gutter width as a percentage of the section width. The gutter is the gap between adjoining elements', 'pzarchitect')
               ),
               array(
                   'title'   => __('Panels horizontal margin', 'pzarchitect'),
                   'id'      => $prefix . 'section-' . $i . '-panels-horiz-margin',
                   'type'    => 'dimensions',
-                  'width'=>false,
-                  'units'=>false,
-                  'default' => array('height'=>'1'),
+                  'width'   => false,
+                  'units'   => false,
+                  'default' => array('height' => '1'),
                   //      'subtitle'    => __('Set the horizontal gutter width as a percentage of the section width. The gutter is the gap between adjoining elements', 'pzarchitect')
               ),
 
@@ -619,27 +639,27 @@
                 'options'  => array(
                     'tabbed'    => array(
                         'alt' => 'Tabbed',
-                        'img' => PZARC_PLUGIN_URL . 'resources/assets/images/metaboxes/nav-type-tabbed.png'
+                        'img' => PZARC_PLUGIN_APP_URL . 'shared/assets/images/metaboxes/nav-type-tabbed.png'
                     ),
                     'accordion' => array(
                         'alt' => 'Accordion',
-                        'img' => PZARC_PLUGIN_URL . 'resources/assets/images/metaboxes/nav-type-accordion.png'
+                        'img' => PZARC_PLUGIN_APP_URL . 'shared/assets/images/metaboxes/nav-type-accordion.png'
                     ),
                     'buttons'   => array(
                         'alt' => 'Buttons',
-                        'img' => PZARC_PLUGIN_URL . 'resources/assets/images/metaboxes/nav-type-buttons.png'
+                        'img' => PZARC_PLUGIN_APP_URL . 'shared/assets/images/metaboxes/nav-type-buttons.png'
                     ),
                     'bullets'   => array(
                         'alt' => 'Bullets',
-                        'img' => PZARC_PLUGIN_URL . 'resources/assets/images/metaboxes/nav-type-bullets.png'
+                        'img' => PZARC_PLUGIN_APP_URL . 'shared/assets/images/metaboxes/nav-type-bullets.png'
                     ),
                     'numbers'   => array(
                         'alt' => 'Numbers',
-                        'img' => PZARC_PLUGIN_URL . 'resources/assets/images/metaboxes/nav-type-numeric.png'
+                        'img' => PZARC_PLUGIN_APP_URL . 'shared/assets/images/metaboxes/nav-type-numeric.png'
                     ),
                     'thumbs'    => array(
                         'alt' => 'Thumbs',
-                        'img' => PZARC_PLUGIN_URL . 'resources/assets/images/metaboxes/nav-type-thumbs.png'
+                        'img' => PZARC_PLUGIN_APP_URL . 'shared/assets/images/metaboxes/nav-type-thumbs.png'
                     ),
                 )
             ),
@@ -653,19 +673,19 @@
                 'options'  => array(
                     'bottom' => array(
                         'alt' => 'Bottom',
-                        'img' => PZARC_PLUGIN_URL . 'resources/assets/images/metaboxes/nav-pos-bottom.png'
+                        'img' => PZARC_PLUGIN_APP_URL . 'shared/assets/images/metaboxes/nav-pos-bottom.png'
                     ),
                     'top'    => array(
                         'alt' => 'Top',
-                        'img' => PZARC_PLUGIN_URL . 'resources/assets/images/metaboxes/nav-pos-top.png'
+                        'img' => PZARC_PLUGIN_APP_URL . 'shared/assets/images/metaboxes/nav-pos-top.png'
                     ),
                     'left'   => array(
                         'alt' => 'Left',
-                        'img' => PZARC_PLUGIN_URL . 'resources/assets/images/metaboxes/nav-pos-left.png'
+                        'img' => PZARC_PLUGIN_APP_URL . 'shared/assets/images/metaboxes/nav-pos-left.png'
                     ),
                     'right'  => array(
                         'alt' => 'Right',
-                        'img' => PZARC_PLUGIN_URL . 'resources/assets/images/metaboxes/nav-pos-right.png'
+                        'img' => PZARC_PLUGIN_APP_URL . 'shared/assets/images/metaboxes/nav-pos-right.png'
                     ),
                 )
             ),
@@ -679,11 +699,11 @@
                 'options'  => array(
                     'inside'  => array(
                         'alt' => 'Inside',
-                        'img' => PZARC_PLUGIN_URL . 'resources/assets/images/metaboxes/nav-loc-inside.png'
+                        'img' => PZARC_PLUGIN_APP_URL . 'shared/assets/images/metaboxes/nav-loc-inside.png'
                     ),
                     'outside' => array(
                         'alt' => 'Outside',
-                        'img' => PZARC_PLUGIN_URL . 'resources/assets/images/metaboxes/nav-loc-outside.png'
+                        'img' => PZARC_PLUGIN_APP_URL . 'shared/assets/images/metaboxes/nav-loc-outside.png'
                     ),
                 )
             ),
@@ -862,7 +882,7 @@
               <div class="pzarc-sections pzarc-section-pagination">First Prev 1 2 3 4 ... 15 Next Last</div>
             </div>
           </div>
-          <div class="plugin_url" style="display:none;">' . PZARC_PLUGIN_URL . '</div>
+          <div class="plugin_url" style="display:none;">' . PZARC_PLUGIN_APP_URL . '</div>
         ';
 
     return $return_html;
@@ -1271,15 +1291,15 @@
         'show_title' => false,
         'icon_class' => 'icon-large',
         'icon'       => 'el-icon-check-empty',
-        'desc'       => 'Class: .pzarc-container_{shortname}',
+        'desc'       => 'Class: .pzarc-sections_{shortname}',
         'fields'     => pzarc_fields(
 
         // TODO: Get correct $defaults
         // TODO: Add shadows
-            pzarc_redux_bg($prefix . 'container-background', array('.pzarc-container')),
-            pzarc_redux_padding($prefix . 'container-padding', array('.pzarc-container')),
-            pzarc_redux_margin($prefix . 'container-margins', array('.pzarc-container')),
-            pzarc_redux_borders($prefix . 'container-borders', array('.pzarc-container'))
+            pzarc_redux_bg($prefix . 'sections-background', array('.pzarc-sections')),
+            pzarc_redux_padding($prefix . 'sections-padding', array('.pzarc-sections')),
+            pzarc_redux_margin($prefix . 'sections-margins', array('.pzarc-sections')),
+            pzarc_redux_borders($prefix . 'sections-borders', array('.pzarc-sections'))
         )
     );
     $icons       = array(1 => 'el-icon-align-left', 2 => 'el-icon-th', 3 => 'el-icon-th-list');

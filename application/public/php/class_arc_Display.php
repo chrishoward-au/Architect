@@ -258,7 +258,7 @@
     }
 
     /*
-     * draw the footer section of the blueprint. resources navigation
+     * draw the footer section of the blueprint. shared navigation
      * closes the arc container
      */
     /*************************************************

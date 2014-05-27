@@ -13,10 +13,17 @@ jQuery( document ).ready( function ()
      });
      */
 
-    var arcSwiperID = jQuery('.swiper-container.swiper-container-featured-posts-2x4' ).attr('data-swiperid');
-    var arcSwiperOpts = jQuery('.swiper-container.swiper-container-featured-posts-2x4' ).attr('data-swiperopts');
-    // TODO: Get fader working
-    var arcSwiperFade = ',"progress":true,\
+    var arcSwipers = jQuery( '.swiper-container.swiper-container' );
+    //for each
+    arcSwipers.each( function ()
+    {
+        var arcSwiperID = jQuery( this ).attr( 'data-swiperid' );
+        console.log( arcSwiperID );
+        if ( null !== arcSwiperID )
+        {
+            var arcSwiperOpts = jQuery( this ).attr( 'data-swiperopts' );
+            // TODO: Get fader working
+            var arcSwiperFade = ',"progress":true,\
                         "onProgressChange": "function(swiper){\
                             for (var i = 0; i < swiper.slides.length; i++){\
                                 var slide = swiper.slides[i];\
@@ -37,20 +44,28 @@ jQuery( document ).ready( function ()
                                 swiper.setTransition(swiper.slides[i], speed);\
                             }\
                         }"';
-    arcSwiperOpts = arcSwiperOpts.replace(/:/g,'":');
-    arcSwiperOpts = arcSwiperOpts.replace(/,/g,',"');
-    arcSwiperOpts = arcSwiperOpts.replace(/'/g,'"');
+            arcSwiperOpts = arcSwiperOpts.replace( /:/g, '":' );
+            arcSwiperOpts = arcSwiperOpts.replace( /,/g, ',"' );
+            arcSwiperOpts = arcSwiperOpts.replace( /'/g, '"' );
 //    arcSwiperOpts += arcSwiperFade;
-    arcSwiperOpts = '{"'+arcSwiperOpts+'}';
-    console.log(JSON.parse(arcSwiperOpts));
-    var arcSwiper = jQuery('.swiper-container.swiper-container-'+arcSwiperID ).swiper(JSON.parse(arcSwiperOpts));
-    jQuery('.arrow-left').on('click', function(e){
-        e.preventDefault();
-        arcSwiper.swipePrev();
-    });
-    jQuery('.arrow-right').on('click', function(e){
-        e.preventDefault();
-        arcSwiper.swipeNext();
-    });
+
+            // Add fixed options
+            arcSwiperOpts += ',"roundLengths":true';
+
+            arcSwiperOpts = '{"' + arcSwiperOpts + '}';
+            console.log( JSON.parse( arcSwiperOpts ) );
+            var arcSwiper = jQuery( '.swiper-container.swiper-container-' + arcSwiperID ).swiper( JSON.parse( arcSwiperOpts ) );
+            jQuery( '.arrow-left' ).on( 'click', function ( e )
+            {
+                e.preventDefault();
+                arcSwiper.swipePrev();
+            } );
+            jQuery( '.arrow-right' ).on( 'click', function ( e )
+            {
+                e.preventDefault();
+                arcSwiper.swipeNext();
+            } );
+        }
+    } );
 
 } );

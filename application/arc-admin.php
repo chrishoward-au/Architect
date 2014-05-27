@@ -43,31 +43,30 @@
  //       require_once PZARC_PLUGIN_PATH . '/admin/php/arc-options-def-editor.php';
 
         //@TODO: need a bit of screen dependency on this?
-//      require_once PZARC_PLUGIN_PATH . '/resources/class_pzarcForm.php';
-        require_once PZARC_PLUGIN_PATH . '/admin/php/class_arc_Panels_Layouts.php';
-        require_once PZARC_PLUGIN_PATH . '/admin/php/class_arc_Blueprints_Layouts.php';
-        require_once PZARC_PLUGIN_PATH . '/admin/php/arc-save-process.php';
-        require_once PZARC_PLUGIN_PATH . '/admin/php/arc-galleries.php';
-        require_once PZARC_PLUGIN_PATH . '/admin/php/arc-slides.php';
+//      require_once PZARC_PLUGIN_PATH . '/shared/class_pzarcForm.php';
+        require_once PZARC_PLUGIN_APP_PATH . '/admin/php/class_arc_Panels_Layouts.php';
+        require_once PZARC_PLUGIN_APP_PATH . '/admin/php/class_arc_Blueprints_Layouts.php';
+        require_once PZARC_PLUGIN_APP_PATH . '/admin/php/arc-save-process.php';
 
         //TODO:     require_once PZARC_PLUGIN_PATH . '/admin/arc-widget.php';
 
 //			require_once PZARC_PLUGIN_PATH . '/admin/ucd-controls.php';
 
 
-        require_once PZARC_PLUGIN_PATH . '/resources/libraries/php/redux-custom-fields/loader.php';
-        require_once PZARC_PLUGIN_PATH . '/resources/libraries/php/redux-extensions/loader.php';
-        require_once PZARC_PLUGIN_PATH . '/admin/php/arc-options.php';
-        require_once PZARC_PLUGIN_PATH . '/admin/php/arc-options-styling.php';
-        require_once PZARC_PLUGIN_PATH . '/admin/php/arc-options-actions.php';
+        require_once PZARC_PLUGIN_APP_PATH . '/shared/libraries/php/redux-custom-fields/loader.php';
+        require_once PZARC_PLUGIN_APP_PATH . '/shared/libraries/php/redux-extensions/loader.php';
+        require_once PZARC_PLUGIN_APP_PATH . '/admin/php/arc-options.php';
+        require_once PZARC_PLUGIN_APP_PATH . '/admin/php/arc-options-styling.php';
+        require_once PZARC_PLUGIN_APP_PATH . '/admin/php/arc-options-actions.php';
 
 
         // @TODO Should these really be objects?
         // Initialise objects for data and setup menu items
         $panel_layout = new arc_Panels_Layouts;
         $content_blueprint = new arc_Blueprints_Layouts;
-        $galleries = new pzarc_Galleries;
-        $slides = new pzarc_Slides;
+        // Changed this to a function
+//        $galleries = new pzarc_Galleries;
+//        $slides = new pzarc_Slides;
 
 
 //add_action( 'pzarc_do_it', array( $this, 'do_it' ) );
@@ -89,14 +88,14 @@
         wp_enqueue_style('dashicons');
 
 //      wp_enqueue_style('pzarc-block-css', PZARC_PLUGIN_URL . '/admin/css/arc-admin.css');
-        wp_enqueue_style('pzarc-jqueryui-css', PZARC_PLUGIN_URL . '/resources/libraries/js/jquery-ui-1.10.2.custom/css/pz_architect/jquery-ui-1.10.2.custom.min.css');
+        wp_enqueue_style('pzarc-jqueryui-css', PZARC_PLUGIN_APP_URL . '/shared/libraries/js/jquery-ui-1.10.2.custom/css/pz_architect/jquery-ui-1.10.2.custom.min.css');
 
-        wp_enqueue_script('jquery-pzarc-metaboxes', PZARC_PLUGIN_URL . '/admin/js/arc-metaboxes.js', array('jquery'));
+        wp_enqueue_script('jquery-pzarc-metaboxes', PZARC_PLUGIN_APP_URL . '/admin/js/arc-metaboxes.js', array('jquery'));
 
 
-        wp_enqueue_script('pzarc-validation-engine-js-lang', PZARC_PLUGIN_URL . '/resources/libraries/js/jQuery-Validation-Engine/js/languages/jquery.validationEngine-en.js', array('jquery'));
-        wp_enqueue_script('pzarc-validation-engine-js', PZARC_PLUGIN_URL . '/resources/libraries/js/jQuery-Validation-Engine/js/jquery.validationEngine.js', array('jquery'));
-        wp_enqueue_style('pzarc-validation-engine-css', PZARC_PLUGIN_URL . '/resources/libraries/js/jQuery-Validation-Engine/css/validationEngine.jquery.css');
+        wp_enqueue_script('pzarc-validation-engine-js-lang', PZARC_PLUGIN_APP_URL . '/shared/libraries/js/jQuery-Validation-Engine/js/languages/jquery.validationEngine-en.js', array('jquery'));
+        wp_enqueue_script('pzarc-validation-engine-js', PZARC_PLUGIN_APP_URL . '/shared/libraries/js/jQuery-Validation-Engine/js/jquery.validationEngine.js', array('jquery'));
+        wp_enqueue_style('pzarc-validation-engine-css', PZARC_PLUGIN_APP_URL . '/shared/libraries/js/jQuery-Validation-Engine/css/validationEngine.jquery.css');
       }
     }
 
@@ -105,7 +104,7 @@
       global $pzarc_menu, $pizazzwp_updates;
       if (!$pzarc_menu) {
         //add_menu_page( $page_title,  $menu_title, $capability,   $menu_slug, $function,    $icon_url, $position );
-        $pzarc_menu = add_menu_page('About', 'Architect', 'edit_posts', 'pzarc', 'pzarc_about', PZARC_PLUGIN_URL . 'wp-icon.png');
+        $pzarc_menu = add_menu_page('About', 'Architect', 'edit_posts', 'pzarc', 'pzarc_about', PZARC_PLUGIN_APP_URL . 'wp-icon.png');
         // add_submenu_page( $parent_slug, $page_title, $menu_title, $capability, $menu_slug, $function );
 
         // Don't need this as it's carried in the layouts already
@@ -154,7 +153,7 @@
       <h3>Blueprints</h3>
       <ul><li>A Blueprint encompasses the overall content selection, design, layout and navigation. It can contain up to three Sections, each section displaying a Panel layout one or multiple times. This allows you to easily create a layout that, for example, might show a single post followed by a grid of excerpts. Within the Blueprint you can also include navigation, which can be pagination type, or a navigator type.</li></ul>
       <p>Below is a wireframe example</p>
-      <p><img src="' . PZARC_PLUGIN_URL . '/assets/images/help/arc-layout.jpg" style="display:block"/></p>
+      <p><img src="' . PZARC_PLUGIN_APP_URL . '/assets/images/help/arc-layout.jpg" style="display:block"/></p>
 
       <h2>Usage</h2>
 
