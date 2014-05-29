@@ -350,3 +350,7 @@
       }
     }
   }
+
+function arc_msg($text,$type) {
+echo '<div class="message-'.$type.'">'.$text.'</div>';
+}

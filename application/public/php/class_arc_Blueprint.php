@@ -46,7 +46,6 @@
         return $this->blueprint;
       }
       $this->blueprint = get_post_meta($blueprint_info->posts[ 0 ]->ID, '_architect', true);
-
       // Need to add in default values for blueprints
       global $pzarchitect;
       foreach ($pzarchitect['defaults']['_blueprints'] as $key => $value) {
@@ -58,6 +57,7 @@
 
       /************************************/
       // Add panel settings for Section 1
+      /************************************/
       $panel = get_post_meta($this->blueprint[ '_blueprints_section-0-panel-layout' ], '_architect', true);
 
       // Add default values for panels
@@ -80,15 +80,16 @@
 
       if (!isset($this->blueprint[ 'section' ][ 0 ][ 'section-panel-settings' ]))
       {
-        $this->blueprint = array('err_msg' => '<p class="pzarc-oops">No Panel Layout assigned.</p>');
+        $this->blueprint = array('err_msg' => '<p class="message-error">No Panel Layout assigned.</p>');
         return $this->blueprint;
       }
 
       // TODO:Setup check for navigator to save little time
       /************************************/
       // Add panel settings for Section 2
+      /************************************/
       $panel = get_post_meta($this->blueprint[ '_blueprints_section-1-panel-layout' ], '_architect', true);
-      foreach ($pzarchitect as $key => $value) {
+      foreach ($pzarchitect['defaults']['_panels'] as $key => $value) {
         if (strpos($key,'_panels_')===0  && !isset($panel[$key])) {
           $panel[$key] = $value;
         }
@@ -101,8 +102,9 @@
 
       /************************************/
       // Add panel settings for Section 3
+      /************************************/
       $panel = get_post_meta($this->blueprint[ '_blueprints_section-2-panel-layout' ], '_architect', true);
-      foreach ($pzarchitect as $key => $value) {
+      foreach ($pzarchitect['defaults']['_panels'] as $key => $value) {
         if (strpos($key,'_panels_')===0  && !isset($panel[$key])) {
           $panel[$key] = $value;
         }

@@ -272,7 +272,7 @@
         case 'page':
           $template[ $type ] = str_replace('{{content}}', $data[ 'content' ], $template[ $type ]);
       };
-      if ($section[ ' _panels_design_thumb-position' ] != 'none') {
+      if ($section[ '_panels_design_thumb-position' ] != 'none') {
         if (!empty($data[ 'image' ][ 'image' ])) {
           $template[ $type ] = str_replace('{{image-in-content}}', $template[ 'image' ], $template[ $type ]);
 
@@ -321,7 +321,7 @@
       };
 
       //  var_dump($section[ '_panels_design_thumb-position' ]);
-      if ($section[ ' _panels_design_thumb-position' ] != 'none') {
+      if ($section[ '_panels_design_thumb-position' ] != 'none') {
         if (!empty($data[ 'image' ][ 'image' ]) && !empty($section[ '_panels_design_thumb-position' ])) {
           $template[ $type ] = str_replace('{{image-in-content}}', $template[ 'image' ], $template[ $type ]);
 

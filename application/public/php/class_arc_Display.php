@@ -617,6 +617,7 @@
         }
 
       }
+      var_dump($panel_definition);
       $panel_definition = str_replace('{{meta1innards}}', $panel_meta1, $panel_definition);
       $panel_definition = str_replace('{{meta2innards}}', $panel_meta2, $panel_definition);
       $panel_definition = str_replace('{{meta3innards}}', $panel_meta3, $panel_definition);

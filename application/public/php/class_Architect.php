@@ -49,7 +49,7 @@
       //var_dump(((array)$this->build->blueprint));
 
       if ($this->build->blueprint[ '_blueprints_content-source' ] == 'defaults' && $this->is_shortcode) {
-        $this->build->blueprint[ 'err_msg' ] = '<p class="warning-msg">Ooops! Need to specify a <strong>Contents Selection</strong> in your Blueprint to use a shortcode. You cannot use Defaults.</p>';
+        $this->build->blueprint[ 'err_msg' ] = '<p class="message-warning">Ooops! Need to specify a <strong>Contents Selection</strong> in your Blueprint to use a shortcode. You cannot use Defaults.</p>';
       }
       if (!empty($this->build->blueprint[ 'err_msg' ])) {
         echo $this->build->blueprint[ 'err_msg' ];
@@ -198,6 +198,8 @@
           $this->arc_query->queried_object->post_type :
           $this->build->blueprint[ '_blueprints_content-source' ]);
       $class     = 'arc_PanelDef_' . $post_type;
+      if (empty($post_type)){ arc_msg('No post type specified','error');return null;}
+      if (!class_exists($class)){ arc_msg('Unknown post type '.$post_type,'error');return null;}
       $panel_def = self::build_meta_definition($class::panel_def(), $this->build->blueprint[ 'section' ][ ($section_no - 1) ][ 'section-panel-settings' ]);
       $i         = 1;
       $nav_items = array();
@@ -233,6 +235,7 @@
      *************************************************/
     function build_meta_definition($panel_def, $section_panel_settings)
     {
+      //replace meta1innards etc
 
       $meta = array_pad(array(), 3, null);
       foreach ($meta as $key => $value) {
@@ -279,6 +282,7 @@
      */
     public function query($source, $overrides)
     {
+  //    pzdebug($source);
       //build the new query
       $query_options = array();
       if ($this->build->blueprint[ '_blueprints_navigation' ] == 'pagination') {
@@ -296,9 +300,10 @@
       switch ($source) {
 
         case 'post':
+//          var_dump($this->criteria[ '_content_posts_inc-cats']);
           $query_options[ 'post_type' ]    = 'post';
-          $query_options[ 'category__in' ] = (!empty($this->criteria[ 'content_posts_inc-cats' ])
-              ? $this->criteria[ 'content_posts_inc-cats' ] : null);
+          $query_options[ 'category__in' ] = (!empty($this->criteria[ '_content_posts_inc-cats' ])
+              ? $this->criteria[ '_content_posts_inc-cats' ] : null);
           break;
         // could we build this into the panel def or somewhere else so more closely tied to the content type stuff
         case 'gallery':
@@ -314,6 +319,7 @@
         $query_options[ 'post__in' ]       = explode(',', $overrides);
         $query_options[ 'posts_per_page' ] = count($query_options[ 'post__in' ]);
       }
+  //    var_dump($query_options);
       $query = new WP_Query($query_options);
 
 //var_dump($query);
@@ -346,6 +352,7 @@
      */
     private function build_new_query($overrides)
     {
+ //     var_dump($this->build->blueprint['_content_posts_inc-cats']);
       $prefix = '';
       switch ($this->build->blueprint[ '_blueprints_content-source' ]) {
         case 'post':

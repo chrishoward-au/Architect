@@ -1285,7 +1285,6 @@
             )
         )
     );
-    // PREBETA: Change blueprint to main container, and container to sections
     $sections[ ] = array(
         'title'      => 'Sections wrapper',
         'show_title' => false,

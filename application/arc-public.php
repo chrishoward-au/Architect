@@ -115,7 +115,7 @@
     }
     if (empty($blueprint)) {
       // TODO: Should we make this use a set of defaults. prob an excerpt grid
-      echo '<p class="warning-msg">You need to set a blueprint</p>';
+      echo '<p class="message-warning">You need to set a blueprint</p>';
     } else {
       require_once PZARC_PLUGIN_APP_PATH . '/public/php/class_Architect.php';
       require_once(PZARC_PLUGIN_APP_PATH . '/shared/libraries/php/jo-image-resizer/jo_image_resizer.php');

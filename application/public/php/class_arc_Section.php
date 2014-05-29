@@ -64,13 +64,13 @@
      */
     public function render_panel($panel_def, $panel_number)
     {
-
       $data = arc_Panel::set_data($this->section[ 'section-panel-settings' ]);
 
       $sequence = json_decode($this->section[ 'section-panel-settings' ][ '_panels_design_preview' ], true);
       // We do want to provide actions so want to use the sequence
       do_action('arc_before_panel_open');
       //       echo '<div class="js-isotope pzarc-section pzarc-section-' . $key . '" data-isotope-options=\'{ "layoutMode": "'.$pzarc_section_info['section-layout-mode'].'","itemSelector": ".pzarc-panel" }\'>';
+
       switch ($this->layout_mode) {
         case 'masonry':
 //          $isotope = 'data-isotope-options=\'{ "layoutMode": "masonry","itemSelector": ".pzarc-panel","masonry":{"columnWidth":50,"gutter":20}}\'';
@@ -79,8 +79,10 @@
         default:
           $isotope = '';
       }
+
       echo '<div class="pzarc-panel pzarc-panel_' . $this->section[ 'section-panel-settings' ][ '_panels_settings_short-name' ] . ' pzarc-panel-no_' . $panel_number . $this->slider[ 'slide' ] . '" ' . $isotope . '>';
       // Although this loks back to front, this is determining flow compared to components
+
       if ($this->section[ 'section-panel-settings' ][ '_panels_design_background-position' ] != 'none' && ($this->section[ 'section-panel-settings' ][ '_panels_design_components-position' ] == 'bottom' || $this->section[ 'section-panel-settings' ][ '_panels_design_components-position' ] == 'right')) {
         $line_out = arc_Panel_bgimage::render('bgimage', $panel_def, $this->source, $data, $this->section[ 'section-panel-settings' ]);
         echo apply_filters("arc_filter_bgimage", self::strip_unused_arctags($line_out), $data[ 'postid' ]);
@@ -88,14 +90,16 @@
 //        var_dump(esc_html( $data['bgimage']));
       }
       // Render the components open html
+
       echo self::strip_unused_arctags(arc_Panel_Wrapper::render('components-open', $panel_def, '', $data, $this->section[ 'section-panel-settings' ]));
+
       foreach ($sequence as $component_type => $value) {
         if ($value[ 'show' ]) {
           // Send thru some data devs might find useful
           do_action("arc_before_{$component_type}", $component_type, $panel_number, $data[ 'postid' ]);
           // Make the class name to call - strip numbers from metas and customs
           // We could do this in a concatenation first of all components' templates, and then replace the {{tags}}.... But then we couldn't do the filter on each component. Nor could we as easily make the components extensible
-          $class    = 'arc_Panel_' . str_replace(array('1', '2', '3'), '', $component_type);
+          $class    = 'arc_Panel_' . str_replace(array('1', '2', '3'), '', ucfirst($component_type));
           $line_out = $class::render($component_type, $panel_def, $this->source, $data, $this->section[ 'section-panel-settings' ]);
           echo apply_filters("arc_filter_{$component_type}", self::strip_unused_arctags($line_out), $data[ 'postid' ]);
           do_action("arc_after_{$component_type}", $component_type, $panel_number, $data[ 'postid' ]);

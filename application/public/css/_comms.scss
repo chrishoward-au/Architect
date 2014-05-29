@@ -1,11 +1,11 @@
-.warning-msg {
+.message-warning {
   background: $warningbg;
   color: $warningfg;
   border: solid $base-border-width $warningfg;
   padding: $base-gap;
 }
 
-.pzarc-oops {
+.message-error {
   font-size: $base-font-size*1.6;
   font-family: sans-serif;
   color: $oopsfg;
