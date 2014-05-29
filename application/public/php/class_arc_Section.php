@@ -50,9 +50,11 @@
       $this->layout_mode    = $layout_mode;
 
       do_action("arc_before_section_{$this->section_number}");
-      $this->slider = ($this->section_number === 1 && $this->navtype === 'navigator') ? array('wrapper' => ' swiper-wrapper',
-                                                                                              'slide'   => ' swiper-slide') : array('wrapper' => '',
-                                                                                                                                    'slide'   => '');
+      $this->slider = ($this->section_number === 1 && $this->navtype === 'navigator')
+          ? array('wrapper'          => ' swiper-wrapper',
+                  'slide'            => ' swiper-slide')
+          : array('wrapper' => '',
+                  'slide'   => '');
       echo '<section class="' . ($this->layout_mode !== 'basic' ? 'js-isotope ' : '') . 'pzarc-section pzarc-section_' . $this->section_number . ' pzarc-section-using-panel_' . $this->section[ 'section-panel-settings' ][ '_panels_settings_short-name' ] . $this->slider[ 'wrapper' ] . '">';
     }
 
@@ -69,13 +71,13 @@
       // We do want to provide actions so want to use the sequence
       do_action('arc_before_panel_open');
       //       echo '<div class="js-isotope pzarc-section pzarc-section-' . $key . '" data-isotope-options=\'{ "layoutMode": "'.$pzarc_section_info['section-layout-mode'].'","itemSelector": ".pzarc-panel" }\'>';
-      switch ($this->layout_mode){
+      switch ($this->layout_mode) {
         case 'masonry':
 //          $isotope = 'data-isotope-options=\'{ "layoutMode": "masonry","itemSelector": ".pzarc-panel","masonry":{"columnWidth":50,"gutter":20}}\'';
           $isotope = 'data-isotope-options=\'{ "layoutMode": "masonry","itemSelector": ".pzarc-panel"}\'';
           break;
         default:
-          $isotope ='';
+          $isotope = '';
       }
       echo '<div class="pzarc-panel pzarc-panel_' . $this->section[ 'section-panel-settings' ][ '_panels_settings_short-name' ] . ' pzarc-panel-no_' . $panel_number . $this->slider[ 'slide' ] . '" ' . $isotope . '>';
       // Although this loks back to front, this is determining flow compared to components

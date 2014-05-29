@@ -1,10 +1,11 @@
+// MAKE SURE NO FORMATTING OF GENERIC ELEMENTS
 .pzarc-blueprint {
   position: relative;
 }
 
 .pzarc-section {
   position: relative;
-  /* Added for gridded layout. May break others! */
+  /* Added for gridded layout. May break others! Equal height panels*/
   display: block;
   display: webkit box;
   display: moz-box;
@@ -13,7 +14,7 @@
   display: flex;
   justify-content: flex-start;
   -webkit-flex-flow: row wrap;
-  -moz-flex-flow: row wrap; /* Unsupported!! Argh! */
+  -moz-flex-flow: row wrap; /* Unsupported in FF ATOW!! Argh! */
   flex-flow: row wrap;
   flex-direction: row;
   flex-wrap: wrap;

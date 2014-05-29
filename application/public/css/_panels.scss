@@ -1,3 +1,4 @@
+// Make sure there's no formatting in this
 .pzarc-panel {
   min-width: 0px;
   min-height: 0px;
@@ -29,14 +30,10 @@
     }
   }
 
-  x.img.entry-image {
-    float: left;
-    margin-right: 5px;
-    margin-bottom: 5px;
+  img.entry-image {
   }
 
-  x.entry-content {
-    float: left;
+  .entry-content {
   }
 
   .entry-excerpt {
@@ -59,7 +56,6 @@
   }
 
   .entry-title {
-    line-height: 120%;
   }
 
   .entry-title,

@@ -28,7 +28,6 @@
 
       if ($toshow[ 'content' ][ 'show' ]) {
         $data[ 'content' ] = get_the_content();
-
       }
 
       if ($toshow[ 'excerpt' ][ 'show' ]) {
@@ -91,7 +90,7 @@
       // Need to setup for break points.
 
       //  data-imagesrcs ="1,2,3", data-breakpoints="1,2,3". Then use js to change src.
-      $width                 = (int)str_replace('px', '', $section[ '_panels_design_background-image-max' ][ 'width' ]);
+      $width = (int)str_replace('px', '', $section[ '_panels_design_background-image-max' ][ 'width' ]);
       if ($section[ '_panels_settings_panel-height-type' ] === 'fixed') {
         $height = (int)str_replace('px', '', $section[ '_panels_settings_panel-height' ][ 'height' ]);
       } else {
@@ -172,6 +171,7 @@
     public static function render($type, &$template, $source, &$data, &$section)
     {
       switch ($source) {
+        case 'defaults':
         case 'post':
         case 'page':
           $template[ $type ] = str_replace('{{title}}', $data[ 'title' ], $template[ $type ]);
@@ -193,6 +193,7 @@
     {
       // get $metaX definition and construct string, then replace metaXinnards
       switch ($source) {
+        case 'defaults':
         case 'post':
         case 'page':
           $template[ $type ] = str_replace('{{datetime}}', $data[ 'meta' ][ 'datetime' ], $template[ $type ]);
@@ -265,30 +266,32 @@
   {
     public static function render($type, &$template, $source, &$data, &$section)
     {
-  //    var_Dump(strlen($data['content']));
       switch ($source) {
+        case 'defaults':
         case 'post':
         case 'page':
           $template[ $type ] = str_replace('{{content}}', $data[ 'content' ], $template[ $type ]);
       };
-      if (!empty($data[ 'image' ][ 'image' ]) && $section[ '_panels_design_thumb-position' ] != 'none') {
-        $template[ $type ] = str_replace('{{image-in-content}}', $template[ 'image' ], $template[ $type ]);
+      if ($section[ ' _panels_design_thumb-position' ] != 'none') {
+        if (!empty($data[ 'image' ][ 'image' ])) {
+          $template[ $type ] = str_replace('{{image-in-content}}', $template[ 'image' ], $template[ $type ]);
 
-        if ($section[ '_panels_design_image-captions' ]) {
-          $template[ $type ] = str_replace('{{captioncode}}', '<span class="caption">'.$data[ 'image' ][ 'caption' ].'</span>', $template[ $type ]);
+          if ($section[ '_panels_design_image-captions' ]) {
+            $template[ $type ] = str_replace('{{captioncode}}', '<span class="caption">' . $data[ 'image' ][ 'caption' ] . '</span>', $template[ $type ]);
+          }
+
+          $template[ $type ] = str_replace('{{image}}', $data[ 'image' ][ 'image' ], $template[ $type ]);
+          $template[ $type ] = str_replace('{{incontent}}', 'in-content-thumb', $template[ $type ]);
+
+          if ($section[ '_panels_design_link-image' ]) {
+            $template[ $type ] = str_replace('{{postlink}}', $template[ 'postlink' ], $template[ $type ]);
+            $template[ $type ] = str_replace('{{closepostlink}}', '</a>', $template[ $type ]);
+          }
         }
-
-        $template[ $type ] = str_replace('{{image}}', $data[ 'image' ][ 'image' ], $template[ $type ]);
-        $template[ $type ] = str_replace('{{incontent}}', 'in-content-thumb', $template[ $type ]);
-
-        if ($section[ '_panels_design_link-image' ]) {
-          $template[ $type ] = str_replace('{{postlink}}', $template[ 'postlink' ], $template[ $type ]);
-          $template[ $type ] = str_replace('{{closepostlink}}', '</a>', $template[ $type ]);
+        if (empty($data[ 'image' ][ 'image' ]) && $section[ '_panels_design_maximize-content' ]) {
+          //TODO: Add an option to set if width spreads
+          $template[ $type ] = str_replace('{{nothumb}}', 'nothumb', $template[ $type ]);
         }
-      }
-      if (empty($data[ 'image' ][ 'image' ]) && $section[ '_panels_design_maximize-content' ]) {
-        //TODO: Add an option to set if width spreads
-        $template[ $type ] = str_replace('{{nothumb}}', 'nothumb', $template[ $type ]);
       }
 
       return parent::process_generics($data, $template[ $type ], $source, $section);
@@ -311,30 +314,33 @@
     {
       //    var_dump($data);
       switch ($source) {
+        case 'defaults':
         case 'post':
         case 'page':
           $template[ $type ] = str_replace('{{excerpt}}', $data[ 'excerpt' ], $template[ $type ]);
       };
 
-    //  var_dump($section[ '_panels_design_thumb-position' ]);
-      if (!empty($data[ 'image' ][ 'image' ]) && !empty($section[ '_panels_design_thumb-position' ]) && $section[ ' _panels_design_thumb-position' ] != 'none') {
-        $template[ $type ] = str_replace('{{image-in-content}}', $template[ 'image' ], $template[ $type ]);
+      //  var_dump($section[ '_panels_design_thumb-position' ]);
+      if ($section[ ' _panels_design_thumb-position' ] != 'none') {
+        if (!empty($data[ 'image' ][ 'image' ]) && !empty($section[ '_panels_design_thumb-position' ])) {
+          $template[ $type ] = str_replace('{{image-in-content}}', $template[ 'image' ], $template[ $type ]);
 
-        if ($section[ '_panels_design_image-captions' ]) {
-          $template[ $type ] = str_replace('{{captioncode}}', '<span class="caption">'.$data[ 'image' ][ 'caption' ].'</span>', $template[ $type ]);
+          if ($section[ '_panels_design_image-captions' ]) {
+            $template[ $type ] = str_replace('{{captioncode}}', '<span class="caption">' . $data[ 'image' ][ 'caption' ] . '</span>', $template[ $type ]);
+          }
+
+          $template[ $type ] = str_replace('{{image}}', $data[ 'image' ][ 'image' ], $template[ $type ]);
+          $template[ $type ] = str_replace('{{incontent}}', 'in-content-thumb', $template[ $type ]);
+
+          if ($section[ '_panels_design_link-image' ]) {
+            $template[ $type ] = str_replace('{{postlink}}', $template[ 'postlink' ], $template[ $type ]);
+            $template[ $type ] = str_replace('{{closepostlink}}', '</a>', $template[ $type ]);
+          }
         }
-
-        $template[ $type ] = str_replace('{{image}}', $data[ 'image' ][ 'image' ], $template[ $type ]);
-        $template[ $type ] = str_replace('{{incontent}}', 'in-content-thumb', $template[ $type ]);
-
-        if ($section[ '_panels_design_link-image' ]) {
-          $template[ $type ] = str_replace('{{postlink}}', $template[ 'postlink' ], $template[ $type ]);
-          $template[ $type ] = str_replace('{{closepostlink}}', '</a>', $template[ $type ]);
+        if (empty($data[ 'image' ][ 'image' ]) && $section[ '_panels_design_maximize-content' ]) {
+          //TODO: Add an option to set if width spreads
+          $template[ $type ] = str_replace('{{nothumb}}', 'nothumb', $template[ $type ]);
         }
-      }
-      if (empty($data[ 'image' ][ 'image' ]) && $section[ '_panels_design_maximize-content' ]) {
-        //TODO: Add an option to set if width spreads
-        $template[ $type ] = str_replace('{{nothumb}}', 'nothumb', $template[ $type ]);
       }
 
 //_panels_design_thumb-position

@@ -1108,13 +1108,13 @@ array(
                 'type'  => 'section',
                 'class' => 'heading',
                 //          'default' => $defaults[ $optprefix . 'image_defaults_entry-image-defaults' ],
-                'hint'  => array('content' => 'Class: .pzarc_entry_featured_image'),
+                'hint'  => array('content' => 'Class: figure.entry-thumbnail'),
                 //     'hint'    => __('Format the entry featured image', 'pzarchitect')
             ),
             array(
                 'title'                 => __('Background', 'pzarchitect'),
                 'id'                    => $prefix . 'entry-image-background',
-                'type'                  => 'background',
+                'type'                  => 'spectrum',
                 'background-image'      => false,
                 'background-repeat'     => false,
                 'background-size'       => false,

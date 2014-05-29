@@ -2,187 +2,23 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6a91661e-ac03-4c49-a442-2faea24b5b57" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/application/public/css/_comms.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/application/public/css/_panels.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/application/public/css/_slider.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/application/public/css/_structure.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/application/public/css/_vars.scss" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/admin/php/arc-galleries.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/admin/php/arc-slides.php" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/resources/architect/js/architect.js" afterPath="$PROJECT_DIR$/application/shared/architect/js/architect.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/resources/architect/php/arc-check-dependencies.php" afterPath="$PROJECT_DIR$/application/shared/architect/php/arc-check-dependencies.php" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/resources/architect/php/arc-functions.php" afterPath="$PROJECT_DIR$/application/shared/architect/php/arc-functions.php" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/resources/architect/php/arc-object-lib.php" afterPath="$PROJECT_DIR$/application/shared/architect/php/arc-object-lib.php" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/resources/architect/php/class_arc_Adapter.php" afterPath="$PROJECT_DIR$/application/shared/architect/php/class_arc_Adapter.php" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/resources/architect/php/class_arc_Widget.php" afterPath="$PROJECT_DIR$/application/shared/architect/php/class_arc_Widget.php" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/resources/architect/php/class_pzucdForm.php" afterPath="$PROJECT_DIR$/application/shared/architect/php/class_pzucdForm.php" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/resources/architect/php/class_pzucdQuery.php" afterPath="$PROJECT_DIR$/application/shared/architect/php/class_pzucdQuery.php" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/resources/architect/php/class_pzucdSources.php" afterPath="$PROJECT_DIR$/application/shared/architect/php/class_pzucdSources.php" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/resources/assets/fonts/README.txt" afterPath="$PROJECT_DIR$/application/shared/assets/fonts/README.txt" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/resources/assets/images/defaulticons.css" afterPath="$PROJECT_DIR$/application/shared/assets/images/defaulticons.css" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/resources/assets/images/defaulticons.png" afterPath="$PROJECT_DIR$/application/shared/assets/images/defaulticons.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/resources/assets/images/fireworks.jpg" afterPath="$PROJECT_DIR$/application/shared/assets/images/fireworks.jpg" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/resources/assets/images/help/arc-layout.jpg" afterPath="$PROJECT_DIR$/application/shared/assets/images/help/arc-layout.jpg" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/resources/assets/images/layouts-col-centre.png" afterPath="$PROJECT_DIR$/application/shared/assets/images/layouts-col-centre.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/resources/assets/images/layouts-col-left.png" afterPath="$PROJECT_DIR$/application/shared/assets/images/layouts-col-left.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/resources/assets/images/layouts-col-right.png" afterPath="$PROJECT_DIR$/application/shared/assets/images/layouts-col-right.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/resources/assets/images/layouts-footer-left.png" afterPath="$PROJECT_DIR$/application/shared/assets/images/layouts-footer-left.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/resources/assets/images/layouts-footer-right.png" afterPath="$PROJECT_DIR$/application/shared/assets/images/layouts-footer-right.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/resources/assets/images/layouts-header-left.png" afterPath="$PROJECT_DIR$/application/shared/assets/images/layouts-header-left.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/resources/assets/images/layouts-header-right.png" afterPath="$PROJECT_DIR$/application/shared/assets/images/layouts-header-right.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/resources/assets/images/metaboxes/nav-loc-inside.png" afterPath="$PROJECT_DIR$/application/shared/assets/images/metaboxes/nav-loc-inside.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/resources/assets/images/metaboxes/nav-loc-outside.png" afterPath="$PROJECT_DIR$/application/shared/assets/images/metaboxes/nav-loc-outside.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/resources/assets/images/metaboxes/nav-pos-bottom.png" afterPath="$PROJECT_DIR$/application/shared/assets/images/metaboxes/nav-pos-bottom.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/resources/assets/images/metaboxes/nav-pos-left.png" afterPath="$PROJECT_DIR$/application/shared/assets/images/metaboxes/nav-pos-left.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/resources/assets/images/metaboxes/nav-pos-right.png" afterPath="$PROJECT_DIR$/application/shared/assets/images/metaboxes/nav-pos-right.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/resources/assets/images/metaboxes/nav-pos-top.png" afterPath="$PROJECT_DIR$/application/shared/assets/images/metaboxes/nav-pos-top.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/resources/assets/images/metaboxes/nav-type-accordion.png" afterPath="$PROJECT_DIR$/application/shared/assets/images/metaboxes/nav-type-accordion.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/resources/assets/images/metaboxes/nav-type-bullets.png" afterPath="$PROJECT_DIR$/application/shared/assets/images/metaboxes/nav-type-bullets.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/resources/assets/images/metaboxes/nav-type-buttons.png" afterPath="$PROJECT_DIR$/application/shared/assets/images/metaboxes/nav-type-buttons.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/resources/assets/images/metaboxes/nav-type-numeric.png" afterPath="$PROJECT_DIR$/application/shared/assets/images/metaboxes/nav-type-numeric.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/resources/assets/images/metaboxes/nav-type-tabbed.png" afterPath="$PROJECT_DIR$/application/shared/assets/images/metaboxes/nav-type-tabbed.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/resources/assets/images/metaboxes/nav-type-thumbs.png" afterPath="$PROJECT_DIR$/application/shared/assets/images/metaboxes/nav-type-thumbs.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/resources/assets/images/sample-image.jpg" afterPath="$PROJECT_DIR$/application/shared/assets/images/sample-image.jpg" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/resources/assets/images/slider/arrows1.png" afterPath="$PROJECT_DIR$/application/shared/assets/images/slider/arrows1.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/resources/libraries/css/font-awesome/css/font-awesome-ie7.min.css" afterPath="$PROJECT_DIR$/application/shared/libraries/css/font-awesome/css/font-awesome-ie7.min.css" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/resources/libraries/css/font-awesome/css/font-awesome.css" afterPath="$PROJECT_DIR$/application/shared/libraries/css/font-awesome/css/font-awesome.css" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/resources/libraries/css/font-awesome/css/font-awesome.min.css" afterPath="$PROJECT_DIR$/application/shared/libraries/css/font-awesome/css/font-awesome.min.css" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/resources/libraries/css/font-awesome/font/FontAwesome.otf" afterPath="$PROJECT_DIR$/application/shared/libraries/css/font-awesome/font/FontAwesome.otf" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/resources/libraries/css/font-awesome/font/fontawesome-webfont.eot" afterPath="$PROJECT_DIR$/application/shared/libraries/css/font-awesome/font/fontawesome-webfont.eot" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/resources/libraries/css/font-awesome/font/fontawesome-webfont.svg" afterPath="$PROJECT_DIR$/application/shared/libraries/css/font-awesome/font/fontawesome-webfont.svg" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/resources/libraries/css/font-awesome/font/fontawesome-webfont.ttf" afterPath="$PROJECT_DIR$/application/shared/libraries/css/font-awesome/font/fontawesome-webfont.ttf" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/resources/libraries/css/font-awesome/font/fontawesome-webfont.woff" afterPath="$PROJECT_DIR$/application/shared/libraries/css/font-awesome/font/fontawesome-webfont.woff" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/resources/libraries/js/dynatable/CONTRIBUTING.md" afterPath="$PROJECT_DIR$/application/shared/libraries/js/dynatable/CONTRIBUTING.md" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/resources/libraries/js/dynatable/LICENSE.txt" afterPath="$PROJECT_DIR$/application/shared/libraries/js/dynatable/LICENSE.txt" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/resources/libraries/js/dynatable/PROPRIETARY_LICENSE.html" afterPath="$PROJECT_DIR$/application/shared/libraries/js/dynatable/PROPRIETARY_LICENSE.html" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/resources/libraries/js/dynatable/README.md" afterPath="$PROJECT_DIR$/application/shared/libraries/js/dynatable/README.md" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/resources/libraries/js/dynatable/bower.json" afterPath="$PROJECT_DIR$/application/shared/libraries/js/dynatable/bower.json" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/resources/libraries/js/dynatable/jquery.dynatable.css" afterPath="$PROJECT_DIR$/application/shared/libraries/js/dynatable/jquery.dynatable.css" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/resources/libraries/js/dynatable/jquery.dynatable.js" afterPath="$PROJECT_DIR$/application/shared/libraries/js/dynatable/jquery.dynatable.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/resources/libraries/js/dynatable/package.json" afterPath="$PROJECT_DIR$/application/shared/libraries/js/dynatable/package.json" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/resources/libraries/js/isotope.pkgd.min.js" afterPath="$PROJECT_DIR$/application/shared/libraries/js/isotope.pkgd.min.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/resources/libraries/js/jQuery-Validation-Engine/README.md" afterPath="$PROJECT_DIR$/application/shared/libraries/js/jQuery-Validation-Engine/README.md" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/resources/libraries/js/jQuery-Validation-Engine/css/customMessages.css" afterPath="$PROJECT_DIR$/application/shared/libraries/js/jQuery-Validation-Engine/css/customMessages.css" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/resources/libraries/js/jQuery-Validation-Engine/css/screenshot.png" afterPath="$PROJECT_DIR$/application/shared/libraries/js/jQuery-Validation-Engine/css/screenshot.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/resources/libraries/js/jQuery-Validation-Engine/css/template.css" afterPath="$PROJECT_DIR$/application/shared/libraries/js/jQuery-Validation-Engine/css/template.css" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/resources/libraries/js/jQuery-Validation-Engine/css/validationEngine.jquery.css" afterPath="$PROJECT_DIR$/application/shared/libraries/js/jQuery-Validation-Engine/css/validationEngine.jquery.css" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/resources/libraries/js/jQuery-Validation-Engine/index.html" afterPath="$PROJECT_DIR$/application/shared/libraries/js/jQuery-Validation-Engine/index.html" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/resources/libraries/js/jQuery-Validation-Engine/js/contrib/other-validations.js" afterPath="$PROJECT_DIR$/application/shared/libraries/js/jQuery-Validation-Engine/js/contrib/other-validations.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/resources/libraries/js/jQuery-Validation-Engine/js/jquery.validationEngine.js" afterPath="$PROJECT_DIR$/application/shared/libraries/js/jQuery-Validation-Engine/js/jquery.validationEngine.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/resources/libraries/js/jQuery-Validation-Engine/js/languages/jquery.validationEngine-cz.js" afterPath="$PROJECT_DIR$/application/shared/libraries/js/jQuery-Validation-Engine/js/languages/jquery.validationEngine-cz.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/resources/libraries/js/jQuery-Validation-Engine/js/languages/jquery.validationEngine-da.js" afterPath="$PROJECT_DIR$/application/shared/libraries/js/jQuery-Validation-Engine/js/languages/jquery.validationEngine-da.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/resources/libraries/js/jQuery-Validation-Engine/js/languages/jquery.validationEngine-de.js" afterPath="$PROJECT_DIR$/application/shared/libraries/js/jQuery-Validation-Engine/js/languages/jquery.validationEngine-de.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/resources/libraries/js/jQuery-Validation-Engine/js/languages/jquery.validationEngine-en.js" afterPath="$PROJECT_DIR$/application/shared/libraries/js/jQuery-Validation-Engine/js/languages/jquery.validationEngine-en.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/resources/libraries/js/jQuery-Validation-Engine/js/languages/jquery.validationEngine-es.js" afterPath="$PROJECT_DIR$/application/shared/libraries/js/jQuery-Validation-Engine/js/languages/jquery.validationEngine-es.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/resources/libraries/js/jQuery-Validation-Engine/js/languages/jquery.validationEngine-et.js" afterPath="$PROJECT_DIR$/application/shared/libraries/js/jQuery-Validation-Engine/js/languages/jquery.validationEngine-et.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/resources/libraries/js/jQuery-Validation-Engine/js/languages/jquery.validationEngine-fa.js" afterPath="$PROJECT_DIR$/application/shared/libraries/js/jQuery-Validation-Engine/js/languages/jquery.validationEngine-fa.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/resources/libraries/js/jQuery-Validation-Engine/js/languages/jquery.validationEngine-fi.js" afterPath="$PROJECT_DIR$/application/shared/libraries/js/jQuery-Validation-Engine/js/languages/jquery.validationEngine-fi.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/resources/libraries/js/jQuery-Validation-Engine/js/languages/jquery.validationEngine-fr.js" afterPath="$PROJECT_DIR$/application/shared/libraries/js/jQuery-Validation-Engine/js/languages/jquery.validationEngine-fr.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/resources/libraries/js/jQuery-Validation-Engine/js/languages/jquery.validationEngine-hr.js" afterPath="$PROJECT_DIR$/application/shared/libraries/js/jQuery-Validation-Engine/js/languages/jquery.validationEngine-hr.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/resources/libraries/js/jQuery-Validation-Engine/js/languages/jquery.validationEngine-hu.js" afterPath="$PROJECT_DIR$/application/shared/libraries/js/jQuery-Validation-Engine/js/languages/jquery.validationEngine-hu.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/resources/libraries/js/jQuery-Validation-Engine/js/languages/jquery.validationEngine-it.js" afterPath="$PROJECT_DIR$/application/shared/libraries/js/jQuery-Validation-Engine/js/languages/jquery.validationEngine-it.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/resources/libraries/js/jQuery-Validation-Engine/js/languages/jquery.validationEngine-ja.js" afterPath="$PROJECT_DIR$/application/shared/libraries/js/jQuery-Validation-Engine/js/languages/jquery.validationEngine-ja.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/resources/libraries/js/jQuery-Validation-Engine/js/languages/jquery.validationEngine-nl.js" afterPath="$PROJECT_DIR$/application/shared/libraries/js/jQuery-Validation-Engine/js/languages/jquery.validationEngine-nl.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/resources/libraries/js/jQuery-Validation-Engine/js/languages/jquery.validationEngine-no.js" afterPath="$PROJECT_DIR$/application/shared/libraries/js/jQuery-Validation-Engine/js/languages/jquery.validationEngine-no.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/resources/libraries/js/jQuery-Validation-Engine/js/languages/jquery.validationEngine-pl.js" afterPath="$PROJECT_DIR$/application/shared/libraries/js/jQuery-Validation-Engine/js/languages/jquery.validationEngine-pl.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/resources/libraries/js/jQuery-Validation-Engine/js/languages/jquery.validationEngine-pt.js" afterPath="$PROJECT_DIR$/application/shared/libraries/js/jQuery-Validation-Engine/js/languages/jquery.validationEngine-pt.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/resources/libraries/js/jQuery-Validation-Engine/js/languages/jquery.validationEngine-pt_BR.js" afterPath="$PROJECT_DIR$/application/shared/libraries/js/jQuery-Validation-Engine/js/languages/jquery.validationEngine-pt_BR.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/resources/libraries/js/jQuery-Validation-Engine/js/languages/jquery.validationEngine-ro.js" afterPath="$PROJECT_DIR$/application/shared/libraries/js/jQuery-Validation-Engine/js/languages/jquery.validationEngine-ro.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/resources/libraries/js/jQuery-Validation-Engine/js/languages/jquery.validationEngine-ru.js" afterPath="$PROJECT_DIR$/application/shared/libraries/js/jQuery-Validation-Engine/js/languages/jquery.validationEngine-ru.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/resources/libraries/js/jQuery-Validation-Engine/js/languages/jquery.validationEngine-se.js" afterPath="$PROJECT_DIR$/application/shared/libraries/js/jQuery-Validation-Engine/js/languages/jquery.validationEngine-se.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/resources/libraries/js/jQuery-Validation-Engine/js/languages/jquery.validationEngine-tr.js" afterPath="$PROJECT_DIR$/application/shared/libraries/js/jQuery-Validation-Engine/js/languages/jquery.validationEngine-tr.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/resources/libraries/js/jQuery-Validation-Engine/js/languages/jquery.validationEngine-vi.js" afterPath="$PROJECT_DIR$/application/shared/libraries/js/jQuery-Validation-Engine/js/languages/jquery.validationEngine-vi.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/resources/libraries/js/jQuery-Validation-Engine/js/languages/jquery.validationEngine-zh_CN.js" afterPath="$PROJECT_DIR$/application/shared/libraries/js/jQuery-Validation-Engine/js/languages/jquery.validationEngine-zh_CN.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/resources/libraries/js/jQuery-Validation-Engine/js/languages/jquery.validationEngine-zh_TW.js" afterPath="$PROJECT_DIR$/application/shared/libraries/js/jQuery-Validation-Engine/js/languages/jquery.validationEngine-zh_TW.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/resources/libraries/js/jQuery-Validation-Engine/validationengine.jquery.json" afterPath="$PROJECT_DIR$/application/shared/libraries/js/jQuery-Validation-Engine/validationengine.jquery.json" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/resources/libraries/js/jquery-ui-1.10.2.custom/css/pz_architect/images/animated-overlay.gif" afterPath="$PROJECT_DIR$/application/shared/libraries/js/jquery-ui-1.10.2.custom/css/pz_architect/images/animated-overlay.gif" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/resources/libraries/js/jquery-ui-1.10.2.custom/css/pz_architect/images/ui-bg_flat_0_aaaaaa_40x100.png" afterPath="$PROJECT_DIR$/application/shared/libraries/js/jquery-ui-1.10.2.custom/css/pz_architect/images/ui-bg_flat_0_aaaaaa_40x100.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/resources/libraries/js/jquery-ui-1.10.2.custom/css/pz_architect/images/ui-bg_flat_75_ffffff_40x100.png" afterPath="$PROJECT_DIR$/application/shared/libraries/js/jquery-ui-1.10.2.custom/css/pz_architect/images/ui-bg_flat_75_ffffff_40x100.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/resources/libraries/js/jquery-ui-1.10.2.custom/css/pz_architect/images/ui-bg_glass_55_fbf9ee_1x400.png" afterPath="$PROJECT_DIR$/application/shared/libraries/js/jquery-ui-1.10.2.custom/css/pz_architect/images/ui-bg_glass_55_fbf9ee_1x400.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/resources/libraries/js/jquery-ui-1.10.2.custom/css/pz_architect/images/ui-bg_glass_65_ffffff_1x400.png" afterPath="$PROJECT_DIR$/application/shared/libraries/js/jquery-ui-1.10.2.custom/css/pz_architect/images/ui-bg_glass_65_ffffff_1x400.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/resources/libraries/js/jquery-ui-1.10.2.custom/css/pz_architect/images/ui-bg_glass_75_dadada_1x400.png" afterPath="$PROJECT_DIR$/application/shared/libraries/js/jquery-ui-1.10.2.custom/css/pz_architect/images/ui-bg_glass_75_dadada_1x400.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/resources/libraries/js/jquery-ui-1.10.2.custom/css/pz_architect/images/ui-bg_glass_75_e6e6e6_1x400.png" afterPath="$PROJECT_DIR$/application/shared/libraries/js/jquery-ui-1.10.2.custom/css/pz_architect/images/ui-bg_glass_75_e6e6e6_1x400.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/resources/libraries/js/jquery-ui-1.10.2.custom/css/pz_architect/images/ui-bg_glass_95_fef1ec_1x400.png" afterPath="$PROJECT_DIR$/application/shared/libraries/js/jquery-ui-1.10.2.custom/css/pz_architect/images/ui-bg_glass_95_fef1ec_1x400.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/resources/libraries/js/jquery-ui-1.10.2.custom/css/pz_architect/images/ui-bg_highlight-soft_75_cccccc_1x100.png" afterPath="$PROJECT_DIR$/application/shared/libraries/js/jquery-ui-1.10.2.custom/css/pz_architect/images/ui-bg_highlight-soft_75_cccccc_1x100.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/resources/libraries/js/jquery-ui-1.10.2.custom/css/pz_architect/images/ui-icons_222222_256x240.png" afterPath="$PROJECT_DIR$/application/shared/libraries/js/jquery-ui-1.10.2.custom/css/pz_architect/images/ui-icons_222222_256x240.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/resources/libraries/js/jquery-ui-1.10.2.custom/css/pz_architect/images/ui-icons_2e83ff_256x240.png" afterPath="$PROJECT_DIR$/application/shared/libraries/js/jquery-ui-1.10.2.custom/css/pz_architect/images/ui-icons_2e83ff_256x240.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/resources/libraries/js/jquery-ui-1.10.2.custom/css/pz_architect/images/ui-icons_454545_256x240.png" afterPath="$PROJECT_DIR$/application/shared/libraries/js/jquery-ui-1.10.2.custom/css/pz_architect/images/ui-icons_454545_256x240.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/resources/libraries/js/jquery-ui-1.10.2.custom/css/pz_architect/images/ui-icons_888888_256x240.png" afterPath="$PROJECT_DIR$/application/shared/libraries/js/jquery-ui-1.10.2.custom/css/pz_architect/images/ui-icons_888888_256x240.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/resources/libraries/js/jquery-ui-1.10.2.custom/css/pz_architect/images/ui-icons_cd0a0a_256x240.png" afterPath="$PROJECT_DIR$/application/shared/libraries/js/jquery-ui-1.10.2.custom/css/pz_architect/images/ui-icons_cd0a0a_256x240.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/resources/libraries/js/jquery-ui-1.10.2.custom/css/pz_architect/jquery-ui-1.10.2.custom.css" afterPath="$PROJECT_DIR$/application/shared/libraries/js/jquery-ui-1.10.2.custom/css/pz_architect/jquery-ui-1.10.2.custom.css" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/resources/libraries/js/jquery-ui-1.10.2.custom/css/pz_architect/jquery-ui-1.10.2.custom.min.css" afterPath="$PROJECT_DIR$/application/shared/libraries/js/jquery-ui-1.10.2.custom/css/pz_architect/jquery-ui-1.10.2.custom.min.css" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/resources/libraries/js/jquery.isotope.min.js" afterPath="$PROJECT_DIR$/application/shared/libraries/js/jquery.isotope.min.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/resources/libraries/js/jquery.lorem.js" afterPath="$PROJECT_DIR$/application/shared/libraries/js/jquery.lorem.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/resources/libraries/js/masonry.pkgd.min.js" afterPath="$PROJECT_DIR$/application/shared/libraries/js/masonry.pkgd.min.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/resources/libraries/js/swiper/idangerous.swiper.css" afterPath="$PROJECT_DIR$/application/shared/libraries/js/swiper/idangerous.swiper.css" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/resources/libraries/js/swiper/idangerous.swiper.js" afterPath="$PROJECT_DIR$/application/shared/libraries/js/swiper/idangerous.swiper.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/resources/libraries/js/swiper/idangerous.swiper.min.js" afterPath="$PROJECT_DIR$/application/shared/libraries/js/swiper/idangerous.swiper.min.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/resources/libraries/js/swiper/idangerous.swiper.progress.js" afterPath="$PROJECT_DIR$/application/shared/libraries/js/swiper/idangerous.swiper.progress.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/resources/libraries/js/swiper/idangerous.swiper.progress.min.js" afterPath="$PROJECT_DIR$/application/shared/libraries/js/swiper/idangerous.swiper.progress.min.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/resources/libraries/js/tabby/README.md" afterPath="$PROJECT_DIR$/application/shared/libraries/js/tabby/README.md" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/resources/libraries/js/tabby/css/tabby-css.css" afterPath="$PROJECT_DIR$/application/shared/libraries/js/tabby/css/tabby-css.css" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/resources/libraries/js/tabby/index.html" afterPath="$PROJECT_DIR$/application/shared/libraries/js/tabby/index.html" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/resources/libraries/js/tabby/js/buoy.js" afterPath="$PROJECT_DIR$/application/shared/libraries/js/tabby/js/buoy.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/resources/libraries/js/tabby/js/tabby.js" afterPath="$PROJECT_DIR$/application/shared/libraries/js/tabby/js/tabby.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/resources/libraries/js/tabby/js/tabify.js" afterPath="$PROJECT_DIR$/application/shared/libraries/js/tabby/js/tabify.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/resources/libraries/js/tabby/sass/_config.scss" afterPath="$PROJECT_DIR$/application/shared/libraries/js/tabby/sass/_config.scss" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/resources/libraries/js/tabby/sass/_mixins.scss" afterPath="$PROJECT_DIR$/application/shared/libraries/js/tabby/sass/_mixins.scss" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/resources/libraries/js/tabby/sass/_tabby.scss" afterPath="$PROJECT_DIR$/application/shared/libraries/js/tabby/sass/_tabby.scss" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/resources/libraries/js/tabby/sass/tabby-css.scss" afterPath="$PROJECT_DIR$/application/shared/libraries/js/tabby/sass/tabby-css.scss" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/resources/libraries/js/unslider.min.js" afterPath="$PROJECT_DIR$/application/shared/libraries/js/unslider.min.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/resources/libraries/php/class-tgm-plugin-activation.php" afterPath="$PROJECT_DIR$/application/shared/libraries/php/class-tgm-plugin-activation.php" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/resources/libraries/php/jo-image-resizer/LICENSE" afterPath="$PROJECT_DIR$/application/shared/libraries/php/jo-image-resizer/LICENSE" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/resources/libraries/php/jo-image-resizer/README.md" afterPath="$PROJECT_DIR$/application/shared/libraries/php/jo-image-resizer/README.md" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/resources/libraries/php/jo-image-resizer/icon.png" afterPath="$PROJECT_DIR$/application/shared/libraries/php/jo-image-resizer/icon.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/resources/libraries/php/jo-image-resizer/jo_image_resizer.php" afterPath="$PROJECT_DIR$/application/shared/libraries/php/jo-image-resizer/jo_image_resizer.php" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/resources/libraries/php/redux-custom-fields/code/field_code.css" afterPath="$PROJECT_DIR$/application/shared/libraries/php/redux-custom-fields/code/field_code.css" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/resources/libraries/php/redux-custom-fields/code/field_code.less" afterPath="$PROJECT_DIR$/application/shared/libraries/php/redux-custom-fields/code/field_code.less" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/resources/libraries/php/redux-custom-fields/code/field_code.php" afterPath="$PROJECT_DIR$/application/shared/libraries/php/redux-custom-fields/code/field_code.php" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/resources/libraries/php/redux-custom-fields/links/field_links.php" afterPath="$PROJECT_DIR$/application/shared/libraries/php/redux-custom-fields/links/field_links.php" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/resources/libraries/php/redux-custom-fields/loader.php" afterPath="$PROJECT_DIR$/application/shared/libraries/php/redux-custom-fields/loader.php" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/resources/libraries/php/redux-custom-fields/tabbed/field_tabbed.css" afterPath="$PROJECT_DIR$/application/shared/libraries/php/redux-custom-fields/tabbed/field_tabbed.css" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/resources/libraries/php/redux-custom-fields/tabbed/field_tabbed.js" afterPath="$PROJECT_DIR$/application/shared/libraries/php/redux-custom-fields/tabbed/field_tabbed.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/resources/libraries/php/redux-custom-fields/tabbed/field_tabbed.less" afterPath="$PROJECT_DIR$/application/shared/libraries/php/redux-custom-fields/tabbed/field_tabbed.less" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/resources/libraries/php/redux-custom-fields/tabbed/field_tabbed.php" afterPath="$PROJECT_DIR$/application/shared/libraries/php/redux-custom-fields/tabbed/field_tabbed.php" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/resources/libraries/php/redux-custom-fields/tables/field_tables.css" afterPath="$PROJECT_DIR$/application/shared/libraries/php/redux-custom-fields/tables/field_tables.css" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/resources/libraries/php/redux-custom-fields/tables/field_tables.less" afterPath="$PROJECT_DIR$/application/shared/libraries/php/redux-custom-fields/tables/field_tables.less" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/resources/libraries/php/redux-custom-fields/tables/field_tables.php" afterPath="$PROJECT_DIR$/application/shared/libraries/php/redux-custom-fields/tables/field_tables.php" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/resources/libraries/php/redux-custom-fields/tables/jquery-handsontable/jquery.handsontable.full.css" afterPath="$PROJECT_DIR$/application/shared/libraries/php/redux-custom-fields/tables/jquery-handsontable/jquery.handsontable.full.css" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/resources/libraries/php/redux-custom-fields/tables/jquery-handsontable/jquery.handsontable.full.js" afterPath="$PROJECT_DIR$/application/shared/libraries/php/redux-custom-fields/tables/jquery-handsontable/jquery.handsontable.full.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/resources/libraries/php/redux-extensions/config.php" afterPath="$PROJECT_DIR$/application/shared/libraries/php/redux-extensions/config.php" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/resources/libraries/php/redux-extensions/extensions/metaboxes/extension_metaboxes.css" afterPath="$PROJECT_DIR$/application/shared/libraries/php/redux-extensions/extensions/metaboxes/extension_metaboxes.css" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/resources/libraries/php/redux-extensions/extensions/metaboxes/extension_metaboxes.js" afterPath="$PROJECT_DIR$/application/shared/libraries/php/redux-extensions/extensions/metaboxes/extension_metaboxes.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/resources/libraries/php/redux-extensions/extensions/metaboxes/extension_metaboxes.less" afterPath="$PROJECT_DIR$/application/shared/libraries/php/redux-extensions/extensions/metaboxes/extension_metaboxes.less" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/resources/libraries/php/redux-extensions/extensions/metaboxes/extension_metaboxes.min.js" afterPath="$PROJECT_DIR$/application/shared/libraries/php/redux-extensions/extensions/metaboxes/extension_metaboxes.min.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/resources/libraries/php/redux-extensions/extensions/metaboxes/extension_metaboxes.php" afterPath="$PROJECT_DIR$/application/shared/libraries/php/redux-extensions/extensions/metaboxes/extension_metaboxes.php" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/resources/libraries/php/redux-extensions/loader.php" afterPath="$PROJECT_DIR$/application/shared/libraries/php/redux-extensions/loader.php" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/resources/libraries/php/redux-extensions/readme.txt" afterPath="$PROJECT_DIR$/application/shared/libraries/php/redux-extensions/readme.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/admin/css/.sass-cache/0c627864ce094f59999781504c26ab519159ab66/arc-admin.scssc" afterPath="$PROJECT_DIR$/application/admin/css/.sass-cache/0c627864ce094f59999781504c26ab519159ab66/arc-admin.scssc" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/public/css/.sass-cache/dceb20a9fc4a1f730cc89393cb8f6c79e45f74bc/_panels.scssc" afterPath="$PROJECT_DIR$/application/public/css/.sass-cache/dceb20a9fc4a1f730cc89393cb8f6c79e45f74bc/_panels.scssc" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/public/css/.sass-cache/dceb20a9fc4a1f730cc89393cb8f6c79e45f74bc/_slider.scssc" afterPath="$PROJECT_DIR$/application/public/css/.sass-cache/dceb20a9fc4a1f730cc89393cb8f6c79e45f74bc/_slider.scssc" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/public/css/.sass-cache/dceb20a9fc4a1f730cc89393cb8f6c79e45f74bc/_structure.scssc" afterPath="$PROJECT_DIR$/application/public/css/.sass-cache/dceb20a9fc4a1f730cc89393cb8f6c79e45f74bc/_structure.scssc" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/public/css/.sass-cache/dceb20a9fc4a1f730cc89393cb8f6c79e45f74bc/arc-front.scssc" afterPath="$PROJECT_DIR$/application/public/css/.sass-cache/dceb20a9fc4a1f730cc89393cb8f6c79e45f74bc/arc-front.scssc" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/admin/css/arc-admin.css.map" afterPath="$PROJECT_DIR$/application/admin/css/arc-admin.css.map" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/admin/css/arc-admin.css" afterPath="$PROJECT_DIR$/application/admin/css/arc-admin.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/arc-admin.php" afterPath="$PROJECT_DIR$/application/arc-admin.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/admin/css/arc-admin.scss" afterPath="$PROJECT_DIR$/application/admin/css/arc-admin.scss" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/public/css/_panels.scss" afterPath="$PROJECT_DIR$/application/public/css/_panels.scss" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/public/css/_slider.scss" afterPath="$PROJECT_DIR$/application/public/css/_slider.scss" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/public/css/_structure.scss" afterPath="$PROJECT_DIR$/application/public/css/_structure.scss" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/public/js/min/arc-front-ck.js" afterPath="$PROJECT_DIR$/application/public/js/min/arc-front-ck.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/public/css/arc-front.css.map" afterPath="$PROJECT_DIR$/application/public/css/arc-front.css.map" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/public/css/arc-front.css" afterPath="$PROJECT_DIR$/application/public/css/arc-front.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/public/js/arc-front.js" afterPath="$PROJECT_DIR$/application/public/js/arc-front.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/public/css/arc-front.scss" afterPath="$PROJECT_DIR$/application/public/css/arc-front.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/public/php/arc-headway-block-display.php" afterPath="$PROJECT_DIR$/application/public/php/arc-headway-block-display.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/admin/js/min/arc-metaboxes-panels-ck.js" afterPath="$PROJECT_DIR$/application/admin/js/min/arc-metaboxes-panels-ck.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/admin/js/arc-metaboxes-panels.js" afterPath="$PROJECT_DIR$/application/admin/js/arc-metaboxes-panels.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/admin/php/arc-options-def-editor.php" afterPath="$PROJECT_DIR$/application/admin/php/arc-options-def-editor.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/arc-public.php" afterPath="$PROJECT_DIR$/application/arc-public.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/admin/php/arc-save-process.php" afterPath="$PROJECT_DIR$/application/admin/php/arc-save-process.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/architect.php" afterPath="$PROJECT_DIR$/architect.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/public/php/class_Architect.php" afterPath="$PROJECT_DIR$/application/public/php/class_Architect.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/admin/php/class_arc_Blueprints_Layouts.php" afterPath="$PROJECT_DIR$/application/admin/php/class_arc_Blueprints_Layouts.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/public/php/class_arc_Display.php" afterPath="$PROJECT_DIR$/application/public/php/class_arc_Display.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/public/php/class_arc_Panel.php" afterPath="$PROJECT_DIR$/application/public/php/class_arc_Panel.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/admin/php/class_arc_Panels_Layouts.php" afterPath="$PROJECT_DIR$/application/admin/php/class_arc_Panels_Layouts.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/public/php/class_arc_Section.php" afterPath="$PROJECT_DIR$/application/public/php/class_arc_Section.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config.codekit" afterPath="$PROJECT_DIR$/config.codekit" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/public/php/interface_arc_PanelDefinitions.php" afterPath="$PROJECT_DIR$/application/public/php/interface_arc_PanelDefinitions.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <list id="6bc53ef6-a4e7-48ed-9a91-cec0b69ebc38" name="Default task" comment="" />
@@ -211,16 +47,16 @@
       <file leaf-file-name="class_arc_Panel.php" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/application/public/php/class_arc_Panel.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="277" column="126" selection-start="12705" selection-end="12705" vertical-scroll-proportion="0.33333334" vertical-offset="4994" max-vertical-offset="6570">
+            <state line="275" column="50" selection-start="12437" selection-end="12437" vertical-scroll-proportion="-14.416667" vertical-offset="4604" max-vertical-offset="6678">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="field_links.php" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/application/shared/libraries/php/redux-custom-fields/links/field_links.php">
+      <file leaf-file-name="class_Architect.php" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/application/public/php/class_Architect.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="59" column="35" selection-start="1814" selection-end="1814" vertical-scroll-proportion="0.0" vertical-offset="1062" max-vertical-offset="4482">
+            <state line="165" column="0" selection-start="7538" selection-end="7538" vertical-scroll-proportion="0.8238173" vertical-offset="1960" max-vertical-offset="6930">
               <folding />
             </state>
           </provider>
@@ -229,16 +65,7 @@
       <file leaf-file-name="class_arc_Section.php" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/application/public/php/class_arc_Section.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="74" column="104" selection-start="2900" selection-end="2900" vertical-scroll-proportion="0.33333334" vertical-offset="1340" max-vertical-offset="2628">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="arc-headway-block-display.php" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/application/public/php/arc-headway-block-display.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="36" column="0" selection-start="1226" selection-end="1226" vertical-scroll-proportion="0.0" vertical-offset="648" max-vertical-offset="3366">
+            <state line="54" column="55" selection-start="1446" selection-end="1446" vertical-scroll-proportion="-19.916666" vertical-offset="494" max-vertical-offset="2664">
               <folding />
             </state>
           </provider>
@@ -247,198 +74,7 @@
       <file leaf-file-name="arc-front.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/application/public/js/arc-front.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="43" column="79" selection-start="1914" selection-end="1914" vertical-scroll-proportion="0.0" vertical-offset="774" max-vertical-offset="1386">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="arc-functions.php" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/application/shared/architect/php/arc-functions.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="80" column="34" selection-start="2063" selection-end="2063" vertical-scroll-proportion="0.33333334" vertical-offset="1448" max-vertical-offset="6444">
-              <folding>
-                <marker date="1401171013000" expanded="false" signature="10168:10210" placeholder="..." />
-                <marker date="1401171013000" expanded="false" signature="10404:10446" placeholder="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="arc-save-process.php" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/application/admin/php/arc-save-process.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="428" column="58" selection-start="20513" selection-end="20513" vertical-scroll-proportion="0.32" vertical-offset="7720" max-vertical-offset="11718">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="class_arc_Panels_Layouts.php" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/application/admin/php/class_arc_Panels_Layouts.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="1157" column="75" selection-start="53150" selection-end="53150" vertical-scroll-proportion="0.33333334" vertical-offset="20834" max-vertical-offset="23130">
-              <folding>
-                <marker date="1401166120000" expanded="true" signature="38399:38597" placeholder="..." />
-                <marker date="1401166120000" expanded="true" signature="38632:38809" placeholder="..." />
-                <marker date="1401166120000" expanded="true" signature="38844:39016" placeholder="..." />
-                <marker date="1401166120000" expanded="true" signature="39051:39225" placeholder="..." />
-                <marker date="1401166120000" expanded="true" signature="39260:39361" placeholder="..." />
-                <marker date="1401166120000" expanded="true" signature="54307:54505" placeholder="..." />
-                <marker date="1401166120000" expanded="true" signature="54540:54717" placeholder="..." />
-                <marker date="1401166120000" expanded="true" signature="54752:54924" placeholder="..." />
-                <marker date="1401166120000" expanded="true" signature="54959:55133" placeholder="..." />
-                <marker date="1401166120000" expanded="true" signature="55168:55269" placeholder="..." />
-                <marker date="1401166120000" expanded="true" signature="59133:59201" placeholder="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="arc-admin.scss" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/application/admin/css/arc-admin.scss">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="1163" column="9" selection-start="23458" selection-end="23458" vertical-scroll-proportion="0.0" vertical-offset="20934" max-vertical-offset="21060">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="class_arc_Blueprints_Layouts.php" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/application/admin/php/class_arc_Blueprints_Layouts.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="510" column="115" selection-start="20527" selection-end="20527" vertical-scroll-proportion="0.33333334" vertical-offset="9188" max-vertical-offset="26460">
-              <folding>
-                <marker date="1401161151000" expanded="true" signature="34433:35112" placeholder="..." />
-                <marker date="1401161151000" expanded="true" signature="36114:36312" placeholder="..." />
-                <marker date="1401161151000" expanded="true" signature="36347:36524" placeholder="..." />
-                <marker date="1401161151000" expanded="true" signature="36559:36731" placeholder="..." />
-                <marker date="1401161151000" expanded="true" signature="36766:36940" placeholder="..." />
-                <marker date="1401161151000" expanded="true" signature="36975:37076" placeholder="..." />
-                <marker date="1401161151000" expanded="true" signature="51269:51467" placeholder="..." />
-                <marker date="1401161151000" expanded="true" signature="51502:51679" placeholder="..." />
-                <marker date="1401161151000" expanded="true" signature="51714:51886" placeholder="..." />
-                <marker date="1401161151000" expanded="true" signature="51921:52095" placeholder="..." />
-                <marker date="1401161151000" expanded="true" signature="52130:52231" placeholder="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="class_Architect.php" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/application/public/php/class_Architect.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="189" column="6" selection-start="8298" selection-end="8298" vertical-scroll-proportion="0.59090906" vertical-offset="2962" max-vertical-offset="6714">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="arc-public.php" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/application/arc-public.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="121" column="73" selection-start="4364" selection-end="4364" vertical-scroll-proportion="0.0" vertical-offset="2178" max-vertical-offset="3690">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="arc-admin.php" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/application/arc-admin.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="106" column="132" selection-start="4441" selection-end="4441" vertical-scroll-proportion="0.0" vertical-offset="1908" max-vertical-offset="3816">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="architect.php" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/architect.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="249" column="34" selection-start="9401" selection-end="9401" vertical-scroll-proportion="0.0" vertical-offset="4482" max-vertical-offset="6516">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="arc-front.scss" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/application/public/css/arc-front.scss">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="15" column="0" selection-start="324" selection-end="324" vertical-scroll-proportion="0.0" vertical-offset="270" max-vertical-offset="2016">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="_structure.scss" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/application/public/css/_structure.scss">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="19" column="35" selection-start="477" selection-end="477" vertical-scroll-proportion="0.0" vertical-offset="342" max-vertical-offset="1908">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="_panels.scss" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/application/public/css/_panels.scss">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="58" column="0" selection-start="961" selection-end="961" vertical-scroll-proportion="0.33333334" vertical-offset="1052" max-vertical-offset="1764">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="field_spectrum.php" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/application/shared/libraries/php/redux-custom-fields/spectrum/field_spectrum.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="67" column="0" selection-start="1948" selection-end="1948" vertical-scroll-proportion="0.0" vertical-offset="1206" max-vertical-offset="2682">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="field_spectrum.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/application/shared/libraries/php/redux-custom-fields/spectrum/field_spectrum.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="20" column="31" selection-start="431" selection-end="431" vertical-scroll-proportion="0.0" vertical-offset="360" max-vertical-offset="2286">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="field_tabbed.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/application/shared/libraries/php/redux-custom-fields/tabbed/field_tabbed.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="46" column="65" selection-start="1470" selection-end="1470" vertical-scroll-proportion="0.0" vertical-offset="828" max-vertical-offset="1728">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="spectrum.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/application/shared/libraries/php/redux-custom-fields/spectrum/vendor/spectrum/spectrum.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="24" column="0" selection-start="509" selection-end="537" vertical-scroll-proportion="0.0" vertical-offset="432" max-vertical-offset="37548">
-              <folding>
-                <marker date="1396860322000" expanded="false" signature="5300:5329" placeholder="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="_comms.scss" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/application/public/css/_comms.scss">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="14" column="21" selection-start="340" selection-end="340" vertical-scroll-proportion="0.0" vertical-offset="252" max-vertical-offset="414">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="_vars.scss" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/application/public/css/_vars.scss">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="33" column="0" selection-start="716" selection-end="716" vertical-scroll-proportion="0.0" vertical-offset="594" max-vertical-offset="810">
+            <state line="86" column="17" selection-start="3968" selection-end="3968" vertical-scroll-proportion="0.0" vertical-offset="450" max-vertical-offset="1998">
               <folding />
             </state>
           </provider>
@@ -447,16 +83,16 @@
       <file leaf-file-name="_slider.scss" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/application/public/css/_slider.scss">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="70" column="11" selection-start="1551" selection-end="1551" vertical-scroll-proportion="0.0" vertical-offset="1260" max-vertical-offset="1638">
+            <state line="82" column="0" selection-start="1798" selection-end="1798" vertical-scroll-proportion="-37.375" vertical-offset="579" max-vertical-offset="2322">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="interface_arc_PanelDefinitions.php" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/application/public/php/interface_arc_PanelDefinitions.php">
+      <file leaf-file-name="class_arc_Blueprints_Layouts.php" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/application/admin/php/class_arc_Blueprints_Layouts.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="44" column="69" selection-start="3229" selection-end="3229" vertical-scroll-proportion="0.33333334" vertical-offset="800" max-vertical-offset="3366">
+            <state line="589" column="47" selection-start="24888" selection-end="24893" vertical-scroll-proportion="23.791666" vertical-offset="11173" max-vertical-offset="26460">
               <folding />
             </state>
           </provider>
@@ -502,15 +138,11 @@
         <option value="$PROJECT_DIR$/application/admin/php/arc-options-styling.php" />
         <option value="$PROJECT_DIR$/application/admin/php/arc-options.php" />
         <option value="$PROJECT_DIR$/application/resources/architect/php/arc-functions.php" />
-        <option value="$PROJECT_DIR$/application/public/css/arc-front.scss" />
         <option value="$PROJECT_DIR$/application/public/css/_vars.scss" />
         <option value="$PROJECT_DIR$/application/public/css/_comms.scss" />
-        <option value="$PROJECT_DIR$/application/public/css/_slider.scss" />
         <option value="$PROJECT_DIR$/application/arc-public.php" />
         <option value="$PROJECT_DIR$/application/resources/libraries/php/BFI_Thumb.php" />
         <option value="$PROJECT_DIR$/application/public/php/interface_arc_PanelDefinitions.php" />
-        <option value="$PROJECT_DIR$/application/public/js/arc-front.js" />
-        <option value="$PROJECT_DIR$/application/public/css/_structure.scss" />
         <option value="$PROJECT_DIR$/application/admin/php/arc-post-types.php" />
         <option value="$PROJECT_DIR$/application/resources/architect/php/arc-post-types.php" />
         <option value="$PROJECT_DIR$/application/shared/architect/php/arc-post-types.php" />
@@ -523,13 +155,17 @@
         <option value="$PROJECT_DIR$/application/admin/css/arc-admin.scss" />
         <option value="$PROJECT_DIR$/architect.php" />
         <option value="$PROJECT_DIR$/application/public/php/arc-headway-block-display.php" />
-        <option value="$PROJECT_DIR$/application/public/php/class_arc_Section.php" />
         <option value="$PROJECT_DIR$/application/admin/php/class_arc_Blueprints_Layouts.php" />
-        <option value="$PROJECT_DIR$/application/public/php/class_arc_Panel.php" />
-        <option value="$PROJECT_DIR$/application/admin/php/class_arc_Panels_Layouts.php" />
-        <option value="$PROJECT_DIR$/application/admin/php/arc-save-process.php" />
-        <option value="$PROJECT_DIR$/application/public/css/_panels.scss" />
         <option value="$PROJECT_DIR$/application/shared/architect/php/arc-functions.php" />
+        <option value="$PROJECT_DIR$/application/admin/php/class_arc_Panels_Layouts.php" />
+        <option value="$PROJECT_DIR$/application/public/css/arc-front.scss" />
+        <option value="$PROJECT_DIR$/application/public/css/_panels.scss" />
+        <option value="$PROJECT_DIR$/application/public/css/_structure.scss" />
+        <option value="$PROJECT_DIR$/application/admin/php/arc-save-process.php" />
+        <option value="$PROJECT_DIR$/application/public/php/class_arc_Section.php" />
+        <option value="$PROJECT_DIR$/application/public/php/class_arc_Panel.php" />
+        <option value="$PROJECT_DIR$/application/public/css/_slider.scss" />
+        <option value="$PROJECT_DIR$/application/public/js/arc-front.js" />
         <option value="$PROJECT_DIR$/application/public/php/class_Architect.php" />
       </list>
     </option>
@@ -544,8 +180,8 @@
   </component>
   <component name="ProjectFrameBounds">
     <option name="y" value="22" />
-    <option name="width" value="1680" />
-    <option name="height" value="980" />
+    <option name="width" value="2560" />
+    <option name="height" value="1357" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -979,6 +615,10 @@
               <option name="myItemId" value="public" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="js" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -1096,7 +736,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="options.splitter.main.proportions" value="0.23788865" />
-    <property name="options.lastSelected" value="editor" />
+    <property name="options.lastSelected" value="preferences.keymap" />
     <property name="options.searchVisible" value="true" />
     <property name="options.splitter.details.proportions" value="0.2" />
     <property name="WebServerToolWindowFactoryState" value="false" />
@@ -1199,24 +839,24 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="22" width="1680" height="980" extended-state="6" />
+    <frame x="0" y="22" width="2560" height="1357" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32603937" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39559165" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32962668" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.22100122" sideWeight="0.35776806" order="1" side_tool="true" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.22100122" sideWeight="0.64113784" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="eSnippet Pro" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3295583" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.41812226" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32885376" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39559165" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.1437649" sideWeight="0.35786211" order="1" side_tool="true" content_ui="tabs" />
+      <window_info id="eSnippet Pro" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3295583" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.1437649" sideWeight="0.64136326" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4190372" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Duplicates" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.7064117" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
@@ -1397,7 +1037,9 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/application/public/css/arc-front.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="3376" max-vertical-offset="5706" />
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="3376" max-vertical-offset="5706">
+          <folding />
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/application/arc-public.php">
@@ -1409,19 +1051,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/application/shared/libraries/php/BFI_Thumb.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="42" column="0" selection-start="1576" selection-end="1576" vertical-scroll-proportion="0.0" vertical-offset="11371" max-vertical-offset="12888" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/public/js/arc-front.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="43" column="79" selection-start="1914" selection-end="1914" vertical-scroll-proportion="0.0" vertical-offset="288" max-vertical-offset="1386">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/public/css/_slider.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="70" column="11" selection-start="1551" selection-end="1551" vertical-scroll-proportion="0.0" vertical-offset="777" max-vertical-offset="1638">
+        <state line="42" column="0" selection-start="1576" selection-end="1576" vertical-scroll-proportion="0.0" vertical-offset="11371" max-vertical-offset="12888">
           <folding />
         </state>
       </provider>
@@ -1433,30 +1063,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application/public/css/_comms.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="21" selection-start="340" selection-end="340" vertical-scroll-proportion="0.0" vertical-offset="252" max-vertical-offset="414">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/public/css/_structure.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="19" column="35" selection-start="477" selection-end="477" vertical-scroll-proportion="0.0" vertical-offset="342" max-vertical-offset="1908">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/application/arc-admin.php">
       <provider selected="true" editor-type-id="text-editor">
         <state line="106" column="132" selection-start="4441" selection-end="4441" vertical-scroll-proportion="0.0" vertical-offset="1260" max-vertical-offset="3816">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/public/css/arc-front.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="15" column="0" selection-start="324" selection-end="324" vertical-scroll-proportion="0.0" vertical-offset="270" max-vertical-offset="2016">
           <folding />
         </state>
       </provider>
@@ -1468,14 +1077,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/application/shared/libraries/php/redux-custom-fields/spectrum/vendor/spectrum/spectrum.scss">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="284" column="30" selection-start="7527" selection-end="7527" vertical-scroll-proportion="0.8408551" vertical-offset="4050" max-vertical-offset="9450" />
+        <state line="284" column="30" selection-start="7527" selection-end="7527" vertical-scroll-proportion="0.8408551" vertical-offset="4050" max-vertical-offset="9450">
+          <folding />
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/application/shared/libraries/php/redux-custom-fields/spectrum/vendor/spectrum/spectrum.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="24" column="0" selection-start="509" selection-end="537" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="37548">
           <folding>
-            <marker date="1396860322000" expanded="false" signature="5300:5329" placeholder="..." />
+            <marker date="1396860322000" expanded="false" signature="-1:-1" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -1517,12 +1128,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/application/public/php/class_arc_Display.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="448" column="41" selection-start="17531" selection-end="17533" vertical-scroll-proportion="0.3329283" vertical-offset="7790" max-vertical-offset="16596" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/architect.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="249" column="34" selection-start="9401" selection-end="9401" vertical-scroll-proportion="0.0" vertical-offset="4254" max-vertical-offset="6516">
+        <state line="448" column="41" selection-start="17531" selection-end="17533" vertical-scroll-proportion="0.3329283" vertical-offset="7790" max-vertical-offset="16596">
           <folding />
         </state>
       </provider>
@@ -1534,75 +1140,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application/admin/php/class_arc_Blueprints_Layouts.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="510" column="115" selection-start="20527" selection-end="20527" vertical-scroll-proportion="0.33333334" vertical-offset="9188" max-vertical-offset="26460">
-          <folding>
-            <marker date="1401161151000" expanded="true" signature="34433:35112" placeholder="..." />
-            <marker date="1401161151000" expanded="true" signature="36114:36312" placeholder="..." />
-            <marker date="1401161151000" expanded="true" signature="36347:36524" placeholder="..." />
-            <marker date="1401161151000" expanded="true" signature="36559:36731" placeholder="..." />
-            <marker date="1401161151000" expanded="true" signature="36766:36940" placeholder="..." />
-            <marker date="1401161151000" expanded="true" signature="36975:37076" placeholder="..." />
-            <marker date="1401161151000" expanded="true" signature="51269:51467" placeholder="..." />
-            <marker date="1401161151000" expanded="true" signature="51502:51679" placeholder="..." />
-            <marker date="1401161151000" expanded="true" signature="51714:51886" placeholder="..." />
-            <marker date="1401161151000" expanded="true" signature="51921:52095" placeholder="..." />
-            <marker date="1401161151000" expanded="true" signature="52130:52231" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/public/php/class_arc_Section.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="74" column="104" selection-start="2900" selection-end="2900" vertical-scroll-proportion="0.33333334" vertical-offset="1340" max-vertical-offset="2628">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/application/public/php/interface_arc_PanelDefinitions.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="44" column="69" selection-start="3229" selection-end="3229" vertical-scroll-proportion="0.33333334" vertical-offset="800" max-vertical-offset="3366">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/public/php/class_arc_Panel.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="277" column="126" selection-start="12705" selection-end="12705" vertical-scroll-proportion="0.33333334" vertical-offset="4994" max-vertical-offset="6570">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/admin/php/class_arc_Panels_Layouts.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="1157" column="75" selection-start="53150" selection-end="53150" vertical-scroll-proportion="0.33333334" vertical-offset="20834" max-vertical-offset="23130">
-          <folding>
-            <marker date="1401166120000" expanded="true" signature="38399:38597" placeholder="..." />
-            <marker date="1401166120000" expanded="true" signature="38632:38809" placeholder="..." />
-            <marker date="1401166120000" expanded="true" signature="38844:39016" placeholder="..." />
-            <marker date="1401166120000" expanded="true" signature="39051:39225" placeholder="..." />
-            <marker date="1401166120000" expanded="true" signature="39260:39361" placeholder="..." />
-            <marker date="1401166120000" expanded="true" signature="54307:54505" placeholder="..." />
-            <marker date="1401166120000" expanded="true" signature="54540:54717" placeholder="..." />
-            <marker date="1401166120000" expanded="true" signature="54752:54924" placeholder="..." />
-            <marker date="1401166120000" expanded="true" signature="54959:55133" placeholder="..." />
-            <marker date="1401166120000" expanded="true" signature="55168:55269" placeholder="..." />
-            <marker date="1401166120000" expanded="true" signature="59133:59201" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/admin/php/arc-save-process.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="428" column="58" selection-start="20513" selection-end="20513" vertical-scroll-proportion="0.32" vertical-offset="7720" max-vertical-offset="11718">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/public/css/_panels.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="58" column="0" selection-start="961" selection-end="961" vertical-scroll-proportion="0.33333334" vertical-offset="1052" max-vertical-offset="1764">
+        <state line="44" column="69" selection-start="3229" selection-end="3229" vertical-scroll-proportion="-0.009400705" vertical-offset="800" max-vertical-offset="3366">
           <folding />
         </state>
       </provider>
@@ -1611,15 +1151,111 @@
       <provider selected="true" editor-type-id="text-editor">
         <state line="80" column="34" selection-start="2063" selection-end="2063" vertical-scroll-proportion="0.33333334" vertical-offset="1448" max-vertical-offset="6444">
           <folding>
-            <marker date="1401171013000" expanded="false" signature="10168:10210" placeholder="..." />
-            <marker date="1401171013000" expanded="false" signature="10404:10446" placeholder="..." />
+            <marker date="1401171013000" expanded="false" signature="-1:-1" placeholder="..." />
+            <marker date="1401171013000" expanded="false" signature="-1:-1" placeholder="..." />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/public/css/_comms.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="12" column="43" selection-start="293" selection-end="293" vertical-scroll-proportion="0.33333334" vertical-offset="224" max-vertical-offset="414">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/public/css/arc-front.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="16" column="0" selection-start="325" selection-end="325" vertical-scroll-proportion="0.33333334" vertical-offset="296" max-vertical-offset="2034">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/public/css/_structure.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="16" column="53" selection-start="442" selection-end="442" vertical-scroll-proportion="-12.0" vertical-offset="0" max-vertical-offset="1926">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/public/css/_panels.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="42" selection-start="42" selection-end="42" vertical-scroll-proportion="3.08" vertical-offset="154" max-vertical-offset="1692">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/admin/php/arc-save-process.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="115" column="6" selection-start="3801" selection-end="3801" vertical-scroll-proportion="-17.416666" vertical-offset="1652" max-vertical-offset="12690">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/architect.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="249" column="34" selection-start="9401" selection-end="9401" vertical-scroll-proportion="0.0" vertical-offset="4254" max-vertical-offset="6516">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/admin/php/class_arc_Panels_Layouts.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="1120" column="49" selection-start="50842" selection-end="50842" vertical-scroll-proportion="0.07520564" vertical-offset="20096" max-vertical-offset="23130">
+          <folding>
+            <marker date="1401193643000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1401193643000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1401193643000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1401193643000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1401193643000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1401193643000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1401193643000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1401193643000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1401193643000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1401193643000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1401193643000" expanded="true" signature="-1:-1" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/public/php/class_arc_Panel.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="275" column="50" selection-start="12437" selection-end="12437" vertical-scroll-proportion="-14.416667" vertical-offset="4604" max-vertical-offset="6678">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/public/php/class_arc_Section.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="54" column="55" selection-start="1446" selection-end="1446" vertical-scroll-proportion="-19.916666" vertical-offset="494" max-vertical-offset="2664">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/admin/php/class_arc_Blueprints_Layouts.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="589" column="47" selection-start="24888" selection-end="24893" vertical-scroll-proportion="23.791666" vertical-offset="11173" max-vertical-offset="26460">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/public/css/_slider.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="82" column="0" selection-start="1798" selection-end="1798" vertical-scroll-proportion="-37.375" vertical-offset="579" max-vertical-offset="2322">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/public/js/arc-front.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="86" column="17" selection-start="3968" selection-end="3968" vertical-scroll-proportion="0.0" vertical-offset="450" max-vertical-offset="1998">
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/application/public/php/class_Architect.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="189" column="6" selection-start="8298" selection-end="8298" vertical-scroll-proportion="0.59090906" vertical-offset="2962" max-vertical-offset="6714">
+        <state line="165" column="0" selection-start="7538" selection-end="7538" vertical-scroll-proportion="0.8238173" vertical-offset="1960" max-vertical-offset="6930">
           <folding />
         </state>
       </provider>

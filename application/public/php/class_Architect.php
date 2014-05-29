@@ -30,7 +30,7 @@
     public $build;
     private $panel_def;
     private $arc;
-    private $query;
+    private $arc_query;
     private $is_shortcode;
     private $criteria = array();
 
@@ -90,17 +90,25 @@
       $swiper               = array();
       $swiper[ 'class' ]    = '';
       $swiper[ 'dataid' ]   = '';
+      $swiper[ 'datatype' ] = '';
       $swiper[ 'dataopts' ] = '';
+      $bpshortname        = $this->build->blueprint[ '_blueprints_short-name' ];
       if ($this->build->blueprint[ '_blueprints_navigation' ] === 'navigator') {
-        $swiper[ 'class' ]    = ' swiper-container swiper-container-' . $this->build->blueprint[ '_blueprints_short-name' ];
-        $swiper[ 'dataid' ]   = ' data-swiperid="' . $this->build->blueprint[ '_blueprints_short-name' ] . '"';
-        $swiper[ 'dataopts' ] = " data-swiperopts=\"pagination: '.pzarc-navigator-" . $this->build->blueprint[ '_blueprints_short-name' ] . "',loop:true,mode:'horizontal',grabCursor: true,paginationClickable: true,slidesPerView:'1',useCSS3Transforms:true,speed:2000\"";
+        $swiper[ 'class' ]  = ' swiper-container swiper-container-' . $bpshortname;
+        $swiper[ 'dataid' ] = ' data-swiperid="' . $this->build->blueprint[ '_blueprints_short-name' ] . '"';
+        if ($this->build->blueprint[ '_blueprints_navigator' ] === 'tabbed') {
+          $swiper[ 'dataopts' ] = " data-swiperopts=\"loop:true,mode:'horizontal',grabCursor: true, createPagination:false, paginationClickable: true,slidesPerView:'1',useCSS3Transforms:true,speed:2000\"";
+        } else {
+          $swiper[ 'dataopts' ] = " data-swiperopts=\"pagination: '.pzarc-navigator-" . $this->build->blueprint[ '_blueprints_short-name' ] . "',loop:true,mode:'horizontal',grabCursor: true, createPagination:true, paginationClickable: true,slidesPerView:'1',useCSS3Transforms:true,speed:2000\"";
+        }
+        $swiper[ 'datatype' ] = 'data-navtype=' . $this->build->blueprint[ '_blueprints_navigator' ];
         echo '<a class="arrow-left" href="#"></a>';
         echo '<a class="arrow-right" href="#"></a>';
       }
       //TODO: Should the bp name be in the class or ID?
-      echo '<div class="pzarc-sections_' . $this->build->blueprint[ '_blueprints_short-name' ] . ' pzarc-is_' . $caller . $swiper[ 'class' ] . '"' . $swiper[ 'dataid' ] . $swiper[ 'dataopts' ] . '>';
+      echo '<div class="pzarc-sections_' . $this->build->blueprint[ '_blueprints_short-name' ] . ' pzarc-is_' . $caller . $swiper[ 'class' ] . '"' . $swiper[ 'dataid' ] . $swiper[ 'dataopts' ] . $swiper[ 'datatype' ] . '>';
 
+      do_action('arcNavBeforeSection-{$bpshortname}');
       $this->arc      = array();
       $this->criteria = array();
 
@@ -131,22 +139,28 @@
       }
 
       // Loops
-      self::loop(1);
+      $nav_items = self::loop(1);
       if ($do_section_2) {
-        self::loop(2);
+        $notused = self::loop(2);
       }
       if ($do_section_3) {
-        self::loop(3);
+        $notused = self::loop(3);
       }
       // End loops
-
       echo '</div> <!-- end blueprint sections -->';
 
+      //TODO: Is it possible toshow the nav based on an action?
+      do_action('arcNavAfterSection-{$bpshortname}');
       // NAVIGATION
-      if ($this->build->blueprint[ '_blueprints_navigation' ] == 'navigator' && $this->build->blueprint[ '_blueprints_navigator-location' ] == 'outside') {
+      if ($this->build->blueprint[ '_blueprints_navigation' ] === 'navigator' && $this->build->blueprint[ '_blueprints_navigator-location' ] === 'outside') {
 //        $this->arc[ 'navigator' ] = new arc_Navigator();
-        echo '<div class="pzarc-navigator pzarc-navigator-' . $this->build->blueprint[ '_blueprints_short-name' ] . '"></div>';
-
+        echo '<div class="pzarc-navigator ' . $this->build->blueprint[ '_blueprints_navigator' ] . ' pzarc-navigator-' . $this->build->blueprint[ '_blueprints_short-name' ] . '">';
+        if ($this->build->blueprint[ '_blueprints_navigator' ] === 'tabbed') {
+          foreach ($nav_items as $nav_item) {
+            echo '<span class="swiper-pagination-switch">' . $nav_item . '</span>';
+          }
+        }
+        echo '</div>';
       } elseif ($this->build->blueprint[ '_blueprints_navigation' ] == 'pagination' && $this->build->blueprint[ '_blueprints_pager' ] != 'none') {
         $class                     = 'arc_Pagination_' . $this->build->blueprint[ '_blueprints_pager' ];
         $this->arc[ 'pagination' ] = new $class;
@@ -181,16 +195,17 @@
 
       // oops! Need to get default content type when defaults chosen.
       $post_type = (empty($this->build->blueprint[ '_blueprints_content-source' ]) || 'defaults' === $this->build->blueprint[ '_blueprints_content-source' ] ?
-          $this->query->queried_object->post_type :
+          $this->arc_query->queried_object->post_type :
           $this->build->blueprint[ '_blueprints_content-source' ]);
       $class     = 'arc_PanelDef_' . $post_type;
       $panel_def = self::build_meta_definition($class::panel_def(), $this->build->blueprint[ 'section' ][ ($section_no - 1) ][ 'section-panel-settings' ]);
       $i         = 1;
-      var_dump($this->query);
-      while ($this->query->have_posts()) {
-        var_dump($this->query[ 'name' ]);
-        $this->query->the_post();
-        var_dump($this->query->name);
+      $nav_items = array();
+      // Does this work for non
+      while ($this->arc_query->have_posts()) {
+        $this->arc_query->the_post();
+        // TODO: This needs to be improved as only valid for posts!!
+        $nav_items[ ] = get_the_title();
         $section[ $section_no ]->render_panel($panel_def, $i);
         if ($i++ >= $this->build->blueprint[ '_blueprints_section-' . ($section_no - 1) . '-panels-per-view' ]) {
           break;
@@ -200,6 +215,7 @@
       // Unsetting causes it to run the destruct, which closes the div!
       unset($section[ $section_no ]);
 
+      return $nav_items;
     }
 
     /*************************************************
@@ -310,18 +326,18 @@
     private function use_default_query()
     {
       global $wp_query;
-      $this->query = $wp_query;
+      $this->arc_query = $wp_query;
       // This may not do anything since the query may not update!
       // need to set nopaging too
 //      pzdebug($this->build->blueprint[ '_blueprints_navigation' ]);
 //      pzdebug($this->criteria);
 // //     var_dump($this->query);
       if ($this->build->blueprint[ '_blueprints_navigation' ] == 'pagination') {
-        $this->query->query_vars[ 'nopaging' ] = false;
+        $this->arc_query->query_vars[ 'nopaging' ] = false;
       } else {
-        $this->query->query_vars[ 'nopaging' ] = $this->criteria[ 'nopaging' ];
+        $this->arc_query->query_vars[ 'nopaging' ] = $this->criteria[ 'nopaging' ];
       }
-      $this->query->query_vars[ 'posts_per_page' ] = $this->criteria[ 'panels_to_show' ];
+      $this->arc_query->query_vars[ 'posts_per_page' ] = $this->criteria[ 'panels_to_show' ];
     }
 
     /**
@@ -353,7 +369,7 @@
           $this->criteria[ $key ] = $value;
         }
       }
-      $this->query = self::query($this->build->blueprint[ '_blueprints_content-source' ], $overrides);
+      $this->arc_query = self::query($this->build->blueprint[ '_blueprints_content-source' ], $overrides);
 
     }
 

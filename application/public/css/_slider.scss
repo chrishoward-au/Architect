@@ -1,3 +1,14 @@
+.pzarc-navigator {
+  //absolute if over content
+  //position: absolute;
+  left: 0;
+  text-align: center;
+  bottom: 5px;
+  width: 100%;
+  z-index: 1;
+  counter-reset: arc_navigator;
+}
+
 /* ===============================================================
   Your custom styles, here you need to specify container's and slide's
   sizes, pagination, etc.
@@ -31,37 +42,63 @@
 /* ===============================================================
 Pagination Styles
 ================================================================*/
-.swiper-pagination-switch {
-  /* Stylize pagination button: */
-  display: inline-block;
-  width: 15px;
-  height: 15px;
-  border-radius: 15px;
-  background: #999;
-  box-shadow: 0px 1px 2px #555 inset;
-  margin: 0 3px;
-  cursor: pointer;
+.bullets {
+  .swiper-pagination-switch {
+    /* Stylize pagination button: */
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    border-radius: 15px;
+    background: #999;
+    box-shadow: 0px 1px 2px #555 inset;
+    margin: 0 3px;
+    cursor: pointer;
+  }
+  .swiper-pagination-switch:hover {
+    background: #ccc;
+  }
+  .swiper-active-switch:before {
+    color: #fff;
+  }
+  .swiper-active-switch {
+    /* Specific active button style: */
+    background: #fff;
+  }
 }
-.swiper-pagination-switch:hover {
-  background: #ccc;
+
+.tabbed {
+  .swiper-pagination-switch {
+    /* Stylize pagination button: */
+    display: inline-block;
+    height: 30px;
+    cursor: pointer;
+    padding: 10px 10px 0 10px;
+    background: rgba(0, 0, 0, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-top: none;
+    border-bottom: none;
+    text-decoration: none;
+    font-family: sans-serif;
+  }
+
 }
+
+.numbers {
+  .swiper-pagination-switch:before {
+    counter-increment: arc_navigator;
+  }
+
+  .swiper-pagination-switch:before {
+    content: counter(arc_navigator);
+    font-size: 28px;
+    font-family: sans-serif;
+  }
+
+}
+
 .swiper-visible-switch {
   /* Specific style for nav buttons for visible panels: */
   // background:#eee;
-}
-.swiper-active-switch {
-  /* Specific active button style: */
-  background: #fff;
-}
-
-.pzarc-navigator {
-  //absolute if over content
-  //position: absolute;
-  left: 0;
-  text-align: center;
-  bottom: 5px;
-  width: 100%;
-  z-index: 1;
 }
 
 .arrow-left {
@@ -74,6 +111,7 @@ Pagination Styles
   height: 30px;
   z-index: 2;
 }
+
 .arrow-right {
   background: url(../../shared/assets/images/slider/arrows1.png) no-repeat left bottom;
   position: absolute;
