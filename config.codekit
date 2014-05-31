@@ -340,6 +340,17 @@
 		"outputStyle": 1,
 		"syntaxCheckerStyle": 1
 		},
+	"\/application\/admin\/js\/min\/arc-metaboxes-blueprints-ck.js": {
+		"fileType": 64,
+		"ignore": 1,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/application\/admin\/js\/min\/arc-metaboxes-blueprints-ck.js",
+		"outputAbbreviatedPath": "\/application\/admin\/js\/min\/min\/arc-metaboxes-blueprints-ck-ck.js",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"outputStyle": 1,
+		"syntaxCheckerStyle": 1
+		},
 	"\/application\/admin\/js\/min\/arc-metaboxes-panels-ck.js": {
 		"fileType": 64,
 		"ignore": 1,
@@ -392,6 +403,15 @@
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
 		"inputAbbreviatedPath": "\/application\/admin\/php\/arc-save-process.php",
+		"outputAbbreviatedPath": "No Output Path",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/application\/admin\/php\/class-arc-save-process.php": {
+		"fileType": 8192,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/application\/admin\/php\/class-arc-save-process.php",
 		"outputAbbreviatedPath": "No Output Path",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
@@ -1095,6 +1115,350 @@
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
 		"inputAbbreviatedPath": "\/application\/shared\/libraries\/css\/font-awesome\/css\/font-awesome.min.css",
+		"outputAbbreviatedPath": "No Output Path",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/application\/shared\/libraries\/js\/bgrins-spectrum-77699c6\/docs\/bootstrap.css": {
+		"fileType": 16,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/application\/shared\/libraries\/js\/bgrins-spectrum-77699c6\/docs\/bootstrap.css",
+		"outputAbbreviatedPath": "No Output Path",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/application\/shared\/libraries\/js\/bgrins-spectrum-77699c6\/docs\/docs.css": {
+		"fileType": 16,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/application\/shared\/libraries\/js\/bgrins-spectrum-77699c6\/docs\/docs.css",
+		"outputAbbreviatedPath": "No Output Path",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/application\/shared\/libraries\/js\/bgrins-spectrum-77699c6\/docs\/docs.js": {
+		"fileType": 64,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/application\/shared\/libraries\/js\/bgrins-spectrum-77699c6\/docs\/docs.js",
+		"outputAbbreviatedPath": "\/application\/shared\/libraries\/js\/bgrins-spectrum-77699c6\/docs\/min\/docs-ck.js",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"outputStyle": 1,
+		"syntaxCheckerStyle": 1
+		},
+	"\/application\/shared\/libraries\/js\/bgrins-spectrum-77699c6\/docs\/jquery-1.9.1.js": {
+		"fileType": 64,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/application\/shared\/libraries\/js\/bgrins-spectrum-77699c6\/docs\/jquery-1.9.1.js",
+		"outputAbbreviatedPath": "\/application\/shared\/libraries\/js\/bgrins-spectrum-77699c6\/docs\/min\/jquery-1.9.1-ck.js",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"outputStyle": 1,
+		"syntaxCheckerStyle": 1
+		},
+	"\/application\/shared\/libraries\/js\/bgrins-spectrum-77699c6\/docs\/jquery-2.1.0.js": {
+		"fileType": 64,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/application\/shared\/libraries\/js\/bgrins-spectrum-77699c6\/docs\/jquery-2.1.0.js",
+		"outputAbbreviatedPath": "\/application\/shared\/libraries\/js\/bgrins-spectrum-77699c6\/docs\/min\/jquery-2.1.0-ck.js",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"outputStyle": 1,
+		"syntaxCheckerStyle": 1
+		},
+	"\/application\/shared\/libraries\/js\/bgrins-spectrum-77699c6\/docs\/prettify.js": {
+		"fileType": 64,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/application\/shared\/libraries\/js\/bgrins-spectrum-77699c6\/docs\/prettify.js",
+		"outputAbbreviatedPath": "\/application\/shared\/libraries\/js\/bgrins-spectrum-77699c6\/docs\/min\/prettify-ck.js",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"outputStyle": 1,
+		"syntaxCheckerStyle": 1
+		},
+	"\/application\/shared\/libraries\/js\/bgrins-spectrum-77699c6\/docs\/toc.js": {
+		"fileType": 64,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/application\/shared\/libraries\/js\/bgrins-spectrum-77699c6\/docs\/toc.js",
+		"outputAbbreviatedPath": "\/application\/shared\/libraries\/js\/bgrins-spectrum-77699c6\/docs\/min\/toc-ck.js",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"outputStyle": 1,
+		"syntaxCheckerStyle": 1
+		},
+	"\/application\/shared\/libraries\/js\/bgrins-spectrum-77699c6\/example\/example.js": {
+		"fileType": 64,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/application\/shared\/libraries\/js\/bgrins-spectrum-77699c6\/example\/example.js",
+		"outputAbbreviatedPath": "\/application\/shared\/libraries\/js\/bgrins-spectrum-77699c6\/example\/min\/example-ck.js",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"outputStyle": 1,
+		"syntaxCheckerStyle": 1
+		},
+	"\/application\/shared\/libraries\/js\/bgrins-spectrum-77699c6\/example\/index.html": {
+		"fileType": 8192,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/application\/shared\/libraries\/js\/bgrins-spectrum-77699c6\/example\/index.html",
+		"outputAbbreviatedPath": "No Output Path",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/application\/shared\/libraries\/js\/bgrins-spectrum-77699c6\/example\/testcase.html": {
+		"fileType": 8192,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/application\/shared\/libraries\/js\/bgrins-spectrum-77699c6\/example\/testcase.html",
+		"outputAbbreviatedPath": "No Output Path",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/application\/shared\/libraries\/js\/bgrins-spectrum-77699c6\/Gruntfile.js": {
+		"fileType": 64,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/application\/shared\/libraries\/js\/bgrins-spectrum-77699c6\/Gruntfile.js",
+		"outputAbbreviatedPath": "\/application\/shared\/libraries\/js\/bgrins-spectrum-77699c6\/min\/Gruntfile-ck.js",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"outputStyle": 1,
+		"syntaxCheckerStyle": 1
+		},
+	"\/application\/shared\/libraries\/js\/bgrins-spectrum-77699c6\/i18n\/jquery.spectrum-de.js": {
+		"fileType": 64,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/application\/shared\/libraries\/js\/bgrins-spectrum-77699c6\/i18n\/jquery.spectrum-de.js",
+		"outputAbbreviatedPath": "\/application\/shared\/libraries\/js\/bgrins-spectrum-77699c6\/i18n\/min\/jquery.spectrum-de-ck.js",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"outputStyle": 1,
+		"syntaxCheckerStyle": 1
+		},
+	"\/application\/shared\/libraries\/js\/bgrins-spectrum-77699c6\/i18n\/jquery.spectrum-dk.js": {
+		"fileType": 64,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/application\/shared\/libraries\/js\/bgrins-spectrum-77699c6\/i18n\/jquery.spectrum-dk.js",
+		"outputAbbreviatedPath": "\/application\/shared\/libraries\/js\/bgrins-spectrum-77699c6\/i18n\/min\/jquery.spectrum-dk-ck.js",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"outputStyle": 1,
+		"syntaxCheckerStyle": 1
+		},
+	"\/application\/shared\/libraries\/js\/bgrins-spectrum-77699c6\/i18n\/jquery.spectrum-es.js": {
+		"fileType": 64,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/application\/shared\/libraries\/js\/bgrins-spectrum-77699c6\/i18n\/jquery.spectrum-es.js",
+		"outputAbbreviatedPath": "\/application\/shared\/libraries\/js\/bgrins-spectrum-77699c6\/i18n\/min\/jquery.spectrum-es-ck.js",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"outputStyle": 1,
+		"syntaxCheckerStyle": 1
+		},
+	"\/application\/shared\/libraries\/js\/bgrins-spectrum-77699c6\/i18n\/jquery.spectrum-fi.js": {
+		"fileType": 64,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/application\/shared\/libraries\/js\/bgrins-spectrum-77699c6\/i18n\/jquery.spectrum-fi.js",
+		"outputAbbreviatedPath": "\/application\/shared\/libraries\/js\/bgrins-spectrum-77699c6\/i18n\/min\/jquery.spectrum-fi-ck.js",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"outputStyle": 1,
+		"syntaxCheckerStyle": 1
+		},
+	"\/application\/shared\/libraries\/js\/bgrins-spectrum-77699c6\/i18n\/jquery.spectrum-fr.js": {
+		"fileType": 64,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/application\/shared\/libraries\/js\/bgrins-spectrum-77699c6\/i18n\/jquery.spectrum-fr.js",
+		"outputAbbreviatedPath": "\/application\/shared\/libraries\/js\/bgrins-spectrum-77699c6\/i18n\/min\/jquery.spectrum-fr-ck.js",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"outputStyle": 1,
+		"syntaxCheckerStyle": 1
+		},
+	"\/application\/shared\/libraries\/js\/bgrins-spectrum-77699c6\/i18n\/jquery.spectrum-it.js": {
+		"fileType": 64,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/application\/shared\/libraries\/js\/bgrins-spectrum-77699c6\/i18n\/jquery.spectrum-it.js",
+		"outputAbbreviatedPath": "\/application\/shared\/libraries\/js\/bgrins-spectrum-77699c6\/i18n\/min\/jquery.spectrum-it-ck.js",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"outputStyle": 1,
+		"syntaxCheckerStyle": 1
+		},
+	"\/application\/shared\/libraries\/js\/bgrins-spectrum-77699c6\/i18n\/jquery.spectrum-ja.js": {
+		"fileType": 64,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/application\/shared\/libraries\/js\/bgrins-spectrum-77699c6\/i18n\/jquery.spectrum-ja.js",
+		"outputAbbreviatedPath": "\/application\/shared\/libraries\/js\/bgrins-spectrum-77699c6\/i18n\/min\/jquery.spectrum-ja-ck.js",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"outputStyle": 1,
+		"syntaxCheckerStyle": 1
+		},
+	"\/application\/shared\/libraries\/js\/bgrins-spectrum-77699c6\/i18n\/jquery.spectrum-nl.js": {
+		"fileType": 64,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/application\/shared\/libraries\/js\/bgrins-spectrum-77699c6\/i18n\/jquery.spectrum-nl.js",
+		"outputAbbreviatedPath": "\/application\/shared\/libraries\/js\/bgrins-spectrum-77699c6\/i18n\/min\/jquery.spectrum-nl-ck.js",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"outputStyle": 1,
+		"syntaxCheckerStyle": 1
+		},
+	"\/application\/shared\/libraries\/js\/bgrins-spectrum-77699c6\/i18n\/jquery.spectrum-pt-br.js": {
+		"fileType": 64,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/application\/shared\/libraries\/js\/bgrins-spectrum-77699c6\/i18n\/jquery.spectrum-pt-br.js",
+		"outputAbbreviatedPath": "\/application\/shared\/libraries\/js\/bgrins-spectrum-77699c6\/i18n\/min\/jquery.spectrum-pt-br-ck.js",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"outputStyle": 1,
+		"syntaxCheckerStyle": 1
+		},
+	"\/application\/shared\/libraries\/js\/bgrins-spectrum-77699c6\/i18n\/jquery.spectrum-ru.js": {
+		"fileType": 64,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/application\/shared\/libraries\/js\/bgrins-spectrum-77699c6\/i18n\/jquery.spectrum-ru.js",
+		"outputAbbreviatedPath": "\/application\/shared\/libraries\/js\/bgrins-spectrum-77699c6\/i18n\/min\/jquery.spectrum-ru-ck.js",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"outputStyle": 1,
+		"syntaxCheckerStyle": 1
+		},
+	"\/application\/shared\/libraries\/js\/bgrins-spectrum-77699c6\/i18n\/jquery.spectrum-sv.js": {
+		"fileType": 64,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/application\/shared\/libraries\/js\/bgrins-spectrum-77699c6\/i18n\/jquery.spectrum-sv.js",
+		"outputAbbreviatedPath": "\/application\/shared\/libraries\/js\/bgrins-spectrum-77699c6\/i18n\/min\/jquery.spectrum-sv-ck.js",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"outputStyle": 1,
+		"syntaxCheckerStyle": 1
+		},
+	"\/application\/shared\/libraries\/js\/bgrins-spectrum-77699c6\/i18n\/jquery.spectrum-tr.js": {
+		"fileType": 64,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/application\/shared\/libraries\/js\/bgrins-spectrum-77699c6\/i18n\/jquery.spectrum-tr.js",
+		"outputAbbreviatedPath": "\/application\/shared\/libraries\/js\/bgrins-spectrum-77699c6\/i18n\/min\/jquery.spectrum-tr-ck.js",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"outputStyle": 1,
+		"syntaxCheckerStyle": 1
+		},
+	"\/application\/shared\/libraries\/js\/bgrins-spectrum-77699c6\/index.html": {
+		"fileType": 8192,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/application\/shared\/libraries\/js\/bgrins-spectrum-77699c6\/index.html",
+		"outputAbbreviatedPath": "No Output Path",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/application\/shared\/libraries\/js\/bgrins-spectrum-77699c6\/README.md": {
+		"enableFootnoteSupport": 0,
+		"enableSmartyPants": 1,
+		"expandTabs": 1,
+		"fileType": 4096,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/application\/shared\/libraries\/js\/bgrins-spectrum-77699c6\/README.md",
+		"outputAbbreviatedPath": "\/application\/shared\/libraries\/js\/bgrins-spectrum-77699c6\/README.html",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/application\/shared\/libraries\/js\/bgrins-spectrum-77699c6\/spectrum.css": {
+		"fileType": 16,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/application\/shared\/libraries\/js\/bgrins-spectrum-77699c6\/spectrum.css",
+		"outputAbbreviatedPath": "No Output Path",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/application\/shared\/libraries\/js\/bgrins-spectrum-77699c6\/spectrum.js": {
+		"fileType": 64,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/application\/shared\/libraries\/js\/bgrins-spectrum-77699c6\/spectrum.js",
+		"outputAbbreviatedPath": "\/application\/shared\/libraries\/js\/bgrins-spectrum-77699c6\/min\/spectrum-ck.js",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"outputStyle": 1,
+		"syntaxCheckerStyle": 1
+		},
+	"\/application\/shared\/libraries\/js\/bgrins-spectrum-77699c6\/test\/index.html": {
+		"fileType": 8192,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/application\/shared\/libraries\/js\/bgrins-spectrum-77699c6\/test\/index.html",
+		"outputAbbreviatedPath": "No Output Path",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/application\/shared\/libraries\/js\/bgrins-spectrum-77699c6\/test\/qunit.css": {
+		"fileType": 16,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/application\/shared\/libraries\/js\/bgrins-spectrum-77699c6\/test\/qunit.css",
+		"outputAbbreviatedPath": "No Output Path",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/application\/shared\/libraries\/js\/bgrins-spectrum-77699c6\/test\/qunit.js": {
+		"fileType": 64,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/application\/shared\/libraries\/js\/bgrins-spectrum-77699c6\/test\/qunit.js",
+		"outputAbbreviatedPath": "\/application\/shared\/libraries\/js\/bgrins-spectrum-77699c6\/test\/min\/qunit-ck.js",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"outputStyle": 1,
+		"syntaxCheckerStyle": 1
+		},
+	"\/application\/shared\/libraries\/js\/bgrins-spectrum-77699c6\/test\/tests.js": {
+		"fileType": 64,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/application\/shared\/libraries\/js\/bgrins-spectrum-77699c6\/test\/tests.js",
+		"outputAbbreviatedPath": "\/application\/shared\/libraries\/js\/bgrins-spectrum-77699c6\/test\/min\/tests-ck.js",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"outputStyle": 1,
+		"syntaxCheckerStyle": 1
+		},
+	"\/application\/shared\/libraries\/js\/bgrins-spectrum-77699c6\/themes\/index.html": {
+		"fileType": 8192,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/application\/shared\/libraries\/js\/bgrins-spectrum-77699c6\/themes\/index.html",
+		"outputAbbreviatedPath": "No Output Path",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/application\/shared\/libraries\/js\/bgrins-spectrum-77699c6\/themes\/sp-dark.css": {
+		"fileType": 16,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/application\/shared\/libraries\/js\/bgrins-spectrum-77699c6\/themes\/sp-dark.css",
 		"outputAbbreviatedPath": "No Output Path",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
@@ -2250,6 +2614,17 @@
 		"shouldRunBless": 0,
 		"useLibsass": 0
 		},
+	"\/application\/shared\/libraries\/php\/redux-custom-fields\/spectrum\/min\/field_spectrum-ck.js": {
+		"fileType": 64,
+		"ignore": 1,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/application\/shared\/libraries\/php\/redux-custom-fields\/spectrum\/min\/field_spectrum-ck.js",
+		"outputAbbreviatedPath": "\/application\/shared\/libraries\/php\/redux-custom-fields\/spectrum\/min\/min\/field_spectrum-ck-ck.js",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"outputStyle": 1,
+		"syntaxCheckerStyle": 1
+		},
 	"\/application\/shared\/libraries\/php\/redux-custom-fields\/spectrum\/vendor\/spectrum\/i18n\/jquery.spectrum-de.js": {
 		"fileType": 64,
 		"ignore": 0,
@@ -2489,6 +2864,17 @@
 		"outputAbbreviatedPath": "No Output Path",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
+		},
+	"\/application\/shared\/libraries\/php\/redux-custom-fields\/tabbed\/min\/field_tabbed-ck.js": {
+		"fileType": 64,
+		"ignore": 1,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/application\/shared\/libraries\/php\/redux-custom-fields\/tabbed\/min\/field_tabbed-ck.js",
+		"outputAbbreviatedPath": "\/application\/shared\/libraries\/php\/redux-custom-fields\/tabbed\/min\/min\/field_tabbed-ck-ck.js",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"outputStyle": 1,
+		"syntaxCheckerStyle": 1
 		},
 	"\/application\/shared\/libraries\/php\/redux-custom-fields\/tables\/field_tables.css": {
 		"fileType": 16,

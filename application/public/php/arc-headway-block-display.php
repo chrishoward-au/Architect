@@ -17,16 +17,12 @@ class HeadwayArchitectBlock extends HeadwayBlockAPI
 	 *
 	 * This method will be executed at the WordPress 'wp' hook
 	 * */
-	static function enqueue_action($block_id, $layout)
+	static function enqueue_action($block_id, $block, $original_block = null)
 	{
 
-		$block = HeadwayBlocksData::get_block($block_id);
-
-		//If it's a mirrored block, enqueue the scripts for that block instead
-		if (headway_get('mirror-block', $block[ 'settings' ], '') !== '')
-		{
-			$block = HeadwayBlocksData::get_block($block[ 'settings' ][ 'mirror-block' ]);
-		}
+    if (method_exists('HeadwayBlocksData', 'get_legacy_id')) {
+      $block[ 'id' ] = HeadwayBlocksData::get_legacy_id($block);
+    }
 
     $blueprint = explode('##',$block['settings'][ 'pzarc-blueprint' ]);
 
@@ -56,13 +52,11 @@ class HeadwayArchitectBlock extends HeadwayBlockAPI
 	/**
 	 * Use this to insert dynamic JS into the page needed.  This is perfect for initializing instances of jQuery Cycle, jQuery Tabs, etc.
 	 * */
-	static function js_content($block_id, $layout)
+	static function js_content($block_id, $block, $original_block = null)
 	{
-		$block = HeadwayBlocksData::get_block($block_id);
-		if (headway_get('mirror-block', $block[ 'settings' ], '') !== '')
-		{
-			$block = HeadwayBlocksData::get_block($block[ 'settings' ][ 'mirror-block' ]);
-		}
+    if (method_exists('HeadwayBlocksData', 'get_legacy_id')) {
+      $block[ 'id' ] = HeadwayBlocksData::get_legacy_id($block);
+    }
 
 		$return_js = '';
 		$settings  = HeadwayArchitectBlockOptions::get_settings($block);

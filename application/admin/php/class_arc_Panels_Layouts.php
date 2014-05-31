@@ -565,6 +565,9 @@ array(
         'show_title' => false,
         'icon_class' => 'icon-large',
         'icon'       => 'el-icon-calendar',
+        'desc'       => __('Available tags are %author%, %email%,%date%,%categories%,%tags, %commentslink%,%editlink%.', 'pzarchitect') . '<br>' .
+            __('Note: Enclose any author related text in // to hide it when using excluded authors.', 'pzarchitect') . '<br>' .
+            __('Note: The email address will be encoded to prevent automated harvesting by spammers.', 'pzarchitect'),
         'fields'     => array(
           // ======================================
           // META
@@ -575,7 +578,7 @@ array(
               'type'    => 'textarea',
               'cols'    => 4,
               'rows'    => 2,
-              'default' => '%date% by %author%',
+              'default' => '%date% //by// %author%',
           ),
           array(
               'title'   => __('Meta2 config', 'pzarchitect'),
@@ -596,8 +599,20 @@ array(
               'title'   => 'Date format',
               'type'    => 'text',
               'default' => 'l, F j, Y g:i a',
+              'desc'    => __('See here for information on <a href="http://codex.wordpress.org/Formatting_Date_and_Time" target=_blank>formatting date and time</a>', 'pzarchitect'),
               'hint'    => array('title'   => '',
                                  'content' => 'See here for information on <a href="http://codex.wordpress.org/Formatting_Date_and_Time" target=_blank>formatting date and time</a>')
+          ),
+          array(
+              'title'    => __('Excluded authors', 'pzarchitect'),
+              'id'       => $prefix . 'excluded-authors',
+              'type'     => 'select',
+              'multi'    => true,
+              'data'     => 'callback',
+              //TODO: Findout how to pass parameters
+              'args'     => array('pzarc_get_authors', array(false, 0)),
+              'default'  => '',
+              'subtitle' => __('Select any authors here you want to exclude from showing when the %author% or %email% tag is used.', 'pzarchitect')
           ),
         )
     );
@@ -683,193 +698,182 @@ array(
         'icon'       => 'el-icon-picture',
         'fields'     => array(
 
-            ///
-            // IMAGE
-            ///
+          ///
+          // IMAGE
+          ///
 
-            array(
-                'id'    => $prefix . 'featured-image-heading',
-                'title' => 'Featured Image',
-                'type'  => 'section',
-                'class' => 'heading',
-                'hint'  => array('content' => 'Left and right margins are included in the image width in the designer. e.g if Image width is 25% and right margin is 3%, image width will be adjusted to 22%')
-            ),
-            array(
-                'id'             => $prefix . 'image-spacing',
-                'type'           => 'spacing',
-                //                'output'         => array('.site-header'),
-                'mode'           => 'margin',
-                'units'          => '%',
-                'units_extended' => 'false',
-                'title'          => __('Margins (%)', 'pzarchitect'),
-                'default'        => array(
-                    'margin-top'    => '1%',
-                    'margin-right'  => '1%',
-                    'margin-bottom' => '1%',
-                    'margin-left'   => '0',
-                    'units'         => '%',
-                )
-            ),
-            array(
-                'title'   => __('Centre image', 'pzarchitect'),
-                'id'      => $prefix . 'centre-image',
-                'type'    => 'switch',
-                'on'      => 'Yes',
-                'off'     => 'No',
-                'default' => false,
-                'subtitle'=>'Centres the image horizontally. It is best to display it on its own row, and the content to be 100% wide.'
-            ),
-            array(
-                'title'   => __('Link image', 'pzarchitect'),
-                'id'      => $prefix . 'link-image',
-                'type'    => 'switch',
-                'on'      => 'Yes',
-                'off'     => 'No',
-                'default' => true,
-                'subtitle'=>'Makes the image link to the post/page'
-            ),
-            array(
-                'title'   => __('Image Captions', 'pzarchitect'),
-                'id'      => $prefix . 'image-captions',
-                'type'    => 'switch',
-                'on'      => 'Yes',
-                'off'     => 'No',
-                'default' => false,
-            ),
-            array(
-                'id'      => $prefix . 'image-max-dimensions',
-                'title'   => 'Maximum image dimensions',
-                'type'    => 'dimensions',
-                'units'   => 'px',
-                'default' => array('width' => '300', 'height' => '350'),
-            ),
-            array(
-                'id'    => $prefix . 'image-processing-heading',
-                'title' => __('Image processing', 'pzarchitect'),
-                'type'  => 'section',
-                'class' => 'heading',
-            ),
-            array(
-                'title'    => __('Convert to JPEG', 'pzarchitect'),
-                'id'       => $prefix . 'image-to-jpeg',
-                'type'     => 'switch',
-                'default'  => false,
-                'cols'     => 3,
-                'subtitle' => 'Convert all resized images to JPEG format.',
-                'hint'     => array('content' => 'Convert all resized images to JPEG format - usually will be smaller.')
-            ),
-            array(
-                'title'   => __('Image resizing method', 'pzarchitect'),
-                'id'      => $prefix . 'image-resizing',
-                'type'    => 'select',
-                'select2' => array('allowClear' => false),
-                'default' => 'crop',
-                'options' => array(
-                    'crop'          => 'Crop width and height to fit',
-                    'exact'         => 'Stretch to width and height (Warning: Can distort image)',
-                    'portrait'      => 'Crop width, match height',
-                    'landscape'     => 'Match width, crop height',
-                    'auto'          => 'Fit within width and height',
-                    'scaletowidth'  => 'Scale to resize width',
-                    'scaletoheight' => 'Scale to resize height',
-                    'none'          => 'No cropping, use original. (Use with care!)'
-                ),
-                'hint'    => array('content' => 'Choose how you want the image resized in respect of its original width and height to the Image Max Height and Width.'),
-            ),
-            array(
-                'id'      => $prefix . 'image-bgcolour',
-                'title'   => 'Image background colour',
-                'type'    => 'spectrum',
-                'default' => '#ffffff',
-                'hint'    => array('content' => 'If the cropped image  doesn\'t fill the resize area, fill the space with this colour.')
-            ),
-            array(
-                'id'            => $prefix . 'image-quality',
-                'title'         => 'Image quality',
-                'type'          => 'slider',
-                'display_value' => 'label',
-                'default'       => '75',
-                'min'           => '20',
-                'max'           => '100',
-                'step'          => '1',
-                'units'         => '%',
-                'hint'          => array('content' => 'Quality to use when processing images')
+          array(
+              'id'    => $prefix . 'featured-image-heading',
+              'title' => 'Featured Image',
+              'type'  => 'section',
+              'class' => 'heading',
+              'hint'  => array('content' => 'Left and right margins are included in the image width in the designer. e.g if Image width is 25% and right margin is 3%, image width will be adjusted to 22%')
+          ),
+          array(
+              'id'             => $prefix . 'image-spacing',
+              'type'           => 'spacing',
+              //                'output'         => array('.site-header'),
+              'mode'           => 'margin',
+              'units'          => '%',
+              'units_extended' => 'false',
+              'title'          => __('Margins (%)', 'pzarchitect'),
+              'default'        => array(
+                  'margin-top'    => '1%',
+                  'margin-right'  => '1%',
+                  'margin-bottom' => '1%',
+                  'margin-left'   => '0',
+                  'units'         => '%',
+              )
+          ),
+          array(
+              'title'    => __('Centre image', 'pzarchitect'),
+              'id'       => $prefix . 'centre-image',
+              'type'     => 'switch',
+              'on'       => 'Yes',
+              'off'      => 'No',
+              'default'  => false,
+              'subtitle' => 'Centres the image horizontally. It is best to display it on its own row, and the content to be 100% wide.'
+          ),
+          array(
+              'title'    => __('Link image', 'pzarchitect'),
+              'id'       => $prefix . 'link-image',
+              'type'     => 'switch',
+              'on'       => 'Yes',
+              'off'      => 'No',
+              'default'  => true,
+              'subtitle' => 'Makes the image link to the post/page'
+          ),
+          array(
+              'title'   => __('Image Captions', 'pzarchitect'),
+              'id'      => $prefix . 'image-captions',
+              'type'    => 'switch',
+              'on'      => 'Yes',
+              'off'     => 'No',
+              'default' => false,
+          ),
+          array(
+              'id'      => $prefix . 'image-max-dimensions',
+              'title'   => 'Maximum image dimensions',
+              'type'    => 'dimensions',
+              'units'   => 'px',
+              'default' => array('width' => '300', 'height' => '350'),
+          ),
+          array(
+              'id'    => $prefix . 'image-processing-heading',
+              'title' => __('Image processing', 'pzarchitect'),
+              'type'  => 'section',
+              'class' => 'heading',
+          ),
+          array(
+              'title'    => __('Convert to JPEG', 'pzarchitect'),
+              'id'       => $prefix . 'image-to-jpeg',
+              'type'     => 'switch',
+              'default'  => false,
+              'cols'     => 3,
+              'subtitle' => 'Convert all resized images to JPEG format.',
+              'hint'     => array('content' => 'Convert all resized images to JPEG format - usually will be smaller.')
+          ),
+          array(
+              'title'   => __('Image resizing method', 'pzarchitect'),
+              'id'      => $prefix . 'image-resizing',
+              'type'    => 'select',
+              'select2' => array('allowClear' => false),
+              'default' => 'crop',
+              'options' => array(
+                  'crop'          => 'Crop width and height to fit',
+                  'exact'         => 'Stretch to width and height (Warning: Can distort image)',
+                  'portrait'      => 'Crop width, match height',
+                  'landscape'     => 'Match width, crop height',
+                  'auto'          => 'Fit within width and height',
+                  'scaletowidth'  => 'Scale to resize width',
+                  'scaletoheight' => 'Scale to resize height',
+                  'none'          => 'No cropping, use original. (Use with care!)'
+              ),
+              'hint'    => array('content' => 'Choose how you want the image resized in respect of its original width and height to the Image Max Height and Width.'),
+          ),
+          array(
+              'id'      => $prefix . 'image-bgcolour',
+              'title'   => 'Image background colour',
+              'type'    => 'spectrum',
+              'default' => '#ffffff',
+              'hint'    => array('content' => 'If the cropped image  doesn\'t fill the resize area, fill the space with this colour.')
+          ),
+          array(
+              'id'            => $prefix . 'image-quality',
+              'title'         => 'Image quality',
+              'type'          => 'slider',
+              'display_value' => 'label',
+              'default'       => '75',
+              'min'           => '20',
+              'max'           => '100',
+              'step'          => '1',
+              'units'         => '%',
+              'hint'          => array('content' => 'Quality to use when processing images')
 
-            ),
-            array(
-                'id'    => $prefix . 'image-bgimage-heading',
-                'title' => 'Background images',
-                'type'  => 'section',
-                'class' => 'heading',
-                'subtitle'=>'Background images can be a bit trickier to work with responsively as they might not fill the background on all devices. Consider the probable aspect ratio of the panel at each breakpoint when setting the image dimensions. What may be landscape on a desktop, could be portrait on a smartphone.'
-            ),
-            array(
-                'title'    => __('Maximum dimensions BP1 : ', 'pzarchitect') . $_architect_options[ 'architect_breakpoint_1' ][ 'width' ],
-                'id'       => $prefix . 'background-image-max',
-                'type'     => 'dimensions',
-                'units'    => 'px',
-                'default'  => array('width' => '300', 'height' => '350'),
-                'required' => array($prefix . 'background-position', '!=', 'none'),
-                'subtitle' => __('This should be larger than the expected maximum viewing size at this breakpoint to ensure best responsive behaviour', 'pzarchitect')
-            ),
-            array(
-                'title'    => __('Maximum dimensions BP2 : ', 'pzarchitect') . $_architect_options[ 'architect_breakpoint_2' ][ 'width' ],
-                'id'       => $prefix . 'background-image-max-bp2',
-                'type'     => 'dimensions',
-                'units'    => 'px',
-                'default'  => array('width' => '600', 'height' => '400'),
-                'required' => array($prefix . 'background-position', '!=', 'none'),
-            ),
-            array(
-                'title'    => __('Maximum dimensions BP3 : ', 'pzarchitect') . $_architect_options[ 'architect_breakpoint_3' ][ 'width' ],
-                'id'       => $prefix . 'background-image-max-bp3',
-                'type'     => 'dimensions',
-                'units'    => 'px',
-                'default'  => array('width' => '200', 'height' => '300'),
-                'required' => array($prefix . 'background-position', '!=', 'none'),
-            ),
-            array(
-                'title'   => __('Effect on resize', 'pzarchitect'),
-                'id'      => $prefix . 'background-image-resize',
-                'type'    => 'button_set',
-                'options' => array(
-                    'trim'  => 'Trim horizontally, retain height',
-                    'scale' => 'Scale Vertically & Horizontally'
-                ),
-                'default' => 'trim',
-            ),
+          ),
+          array(
+              'id'       => $prefix . 'image-bgimage-heading',
+              'title'    => 'Background images',
+              'type'     => 'section',
+              'class'    => 'heading',
+              'subtitle' => 'Background images can be a bit trickier to work with responsively as they might not fill the background on all devices. Consider the probable aspect ratio of the panel at each breakpoint when setting the image dimensions. What may be landscape on a desktop, could be portrait on a smartphone.'
+          ),
+          array(
+              'title'    => __('Maximum dimensions BP1 : ', 'pzarchitect') . $_architect_options[ 'architect_breakpoint_1' ][ 'width' ],
+              'id'       => $prefix . 'background-image-max',
+              'type'     => 'dimensions',
+              'units'    => 'px',
+              'default'  => array('width' => '300', 'height' => '350'),
+              'required' => array($prefix . 'background-position', '!=', 'none'),
+              'subtitle' => __('This should be larger than the expected maximum viewing size at this breakpoint to ensure best responsive behaviour', 'pzarchitect')
+          ),
+          array(
+              'title'    => __('Maximum dimensions BP2 : ', 'pzarchitect') . $_architect_options[ 'architect_breakpoint_2' ][ 'width' ],
+              'id'       => $prefix . 'background-image-max-bp2',
+              'type'     => 'dimensions',
+              'units'    => 'px',
+              'default'  => array('width' => '600', 'height' => '400'),
+              'required' => array($prefix . 'background-position', '!=', 'none'),
+          ),
+          array(
+              'title'    => __('Maximum dimensions BP3 : ', 'pzarchitect') . $_architect_options[ 'architect_breakpoint_3' ][ 'width' ],
+              'id'       => $prefix . 'background-image-max-bp3',
+              'type'     => 'dimensions',
+              'units'    => 'px',
+              'default'  => array('width' => '200', 'height' => '300'),
+              'required' => array($prefix . 'background-position', '!=', 'none'),
+          ),
+          array(
+              'title'   => __('Effect on resize', 'pzarchitect'),
+              'id'      => $prefix . 'background-image-resize',
+              'type'    => 'button_set',
+              'options' => array(
+                  'trim'  => 'Trim horizontally, retain height',
+                  'scale' => 'Scale Vertically & Horizontally'
+              ),
+              'default' => 'trim',
+          ),
         )
     );
 
-    $sections[ ] = array(
-        'title'      => 'Custom Fields',
-        'icon_class' => 'icon-large',
-        'icon'       => 'el-icon-wrench',
-        'fields'     => array(
-            array(
-                'id'    => $prefix . 'settings-custom1',
-                'title' => 'Custom fields 1',
-                'type'  => 'section',
-                'class' => 'heading',
+    for ($i = 1; $i <= 3; $i++) {
+      $sections[ ] = array(
+          'title'      => 'Custom Field '.$i,
+          'icon_class' => 'icon-large',
+          'icon'       => 'el-icon-wrench',
+          'desc'=>'Note: Only fields with content will show.',
+          'fields'     => array(
+              array(
+                  'title'   => __('Field name', 'pzarchitect'),
+                  'id'      => $prefix . 'cfield-'.$i,
+                  'type'    => 'select',
+                  'data'     => 'callback',
+                  'args'    => array('pzarc_get_custom_fields'),
 
-            ),
-            array(
-                'id'    => $prefix . 'settings-custom2',
-                'title' => 'Custom fields 2',
-                'type'  => 'section',
-                'class' => 'heading',
-
-            ),
-            array(
-                'id'    => $prefix . 'settings-custom3',
-                'title' => 'Custom fields 3',
-                'type'  => 'section',
-                'class' => 'heading',
-
-            ),
-        )
-    );
-
+              ),
+          )
+      );
+    }
     $sections[ ] = array(
         'title'      => 'Using panels',
         'icon_class' => 'icon-large',
@@ -882,8 +886,8 @@ array(
                 'type'  => 'info',
                 'class' => 'plain',
                 'desc'  => '<p>To use a panel, you need to select it to be used by a Blueprint section</p>
-<img src="' . PZARC_PLUGIN_URL . '/documentation/assets/images/arc-using-panels.jpg" style="max-width:100%;">
-<p>The great thing then is, any panel can be re-used as often as you like.</p>
+                <img src="' . PZARC_PLUGIN_URL . '/documentation/assets/images/arc-using-panels.jpg" style="max-width:100%;">
+                <p>The great thing then is, any panel can be re-used as often as you like.</p>
 
             ')
         )
@@ -1048,6 +1052,7 @@ array(
             pzarc_redux_bg($prefix . 'entry-title-font-background', array('.entry-title'), $defaults[ $optprefix . 'entry-title-font-background' ]),
             pzarc_redux_padding($prefix . 'entry-title-font-padding', array('.entry-title'), $defaults[ $optprefix . 'entry-title-font-padding' ]),
             pzarc_redux_margin($prefix . 'entry-title-font-margin', array('.entry-title'), $defaults[ $optprefix . 'entry-title-font-margin' ]),
+            pzarc_redux_borders($prefix . 'entry-title-borders', array('.entry-title'), $defaults[ $optprefix . 'entry-title-borders' ]),
             pzarc_redux_links($prefix . 'entry-title-font-links', array('.entry-title a'), $defaults[ $optprefix . 'entry-title-font-links' ])
 //            array(
 //                'title'   => __('Other declarations', 'pzarchitect'),
@@ -1167,12 +1172,12 @@ array(
         'icon'       => 'el-icon-wrench',
         'fields'     => array(
             array(
-                'id'      => $prefix . 'custom-css',
-                'type'    => 'ace_editor',
-                'title'   => __('Custom CSS', 'pzarchitect'),
-                'mode'    => 'css',
-                'theme'   => 'chrome',
-                'default' => $defaults[ $optprefix . 'custom-css' ]
+                'id'       => $prefix . 'custom-css',
+                'type'     => 'ace_editor',
+                'title'    => __('Custom CSS', 'pzarchitect'),
+                'mode'     => 'css',
+                'default'  => $defaults[ $optprefix . 'custom-css' ],
+                'subtitle' => 'To apply to this panel design specifically, prepend with class .pzarc-panel_shortname where shortname is the shortname of this panel. Note: underscore before shortname.'
             ),
         )
     );

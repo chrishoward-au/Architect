@@ -58,7 +58,8 @@
         } );
         jQuery( targets ).each( function ()
         {
-            jQuery( this ).find( 'ul.redux-group-menu li a' ).first().trigger( 'click' );
+            // TODO: Which is worse? Select first tab? Or no tab?
+            // jQuery( this ).find( 'ul.redux-group-menu li a' ).first().trigger( 'click' );
         } );
         jQuery( clickedThis ).addClass( "active" );
 

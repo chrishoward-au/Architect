@@ -11,7 +11,15 @@
 //    private $data;
 
     //TODO: Shouldn't data be a this?
-    public static function render($type, &$template, $source, &$data, &$section) { }
+    /**
+     * @param $component : Component type
+     * @param $panel_def : Panel definition
+     * @param $content_type : Content type
+     * @param $data : Post data array
+     * @param $section : Section settings
+     */
+    // $panel_def is not by reference to  ensure it doesn't get changed accidentally.
+    public static function render($component, $panel_def, $content_type, &$data, &$section) { }
 
     /**
      * @param $section
@@ -63,9 +71,16 @@
         $data[ 'categories' ]                = arc_tax_string_list(get_the_category(), 'category-', '', ' ');
         $data[ 'meta' ][ 'tagslinks' ]       = get_the_tag_list(null, ', ');
         $data[ 'tags' ]                      = arc_tax_string_list(get_the_tags(), 'tag-', '', ' ');
-        $data[ 'meta' ][ 'authorlink' ]      = get_author_posts_url(get_the_author_meta('ID'));
-        $data[ 'meta' ][ 'authorname' ]      = get_the_author_meta('display_name');
-        $data[ 'meta' ][ 'comments-count' ]  = get_comments_number();
+
+        $data[ 'meta' ][ 'authorlink' ] = get_author_posts_url(get_the_author_meta('ID'));
+        $data[ 'meta' ][ 'authorname' ] = sanitize_text_field(get_the_author_meta('display_name'));
+        $rawemail                       = sanitize_email(get_the_author_meta('user_email'));
+        $encodedmail                    = '';
+        for ($i = 0; $i < strlen($rawemail); $i++) {
+          $encodedmail .= "&#" . ord($rawemail[ $i ]) . ';';
+        }
+        $data[ 'meta' ][ 'authoremail' ]    = $encodedmail;
+        $data[ 'meta' ][ 'comments-count' ] = get_comments_number();
       }
 
       if ($toshow[ 'custom1' ][ 'show' ] ||
@@ -140,7 +155,7 @@
 
   class arc_Panel_Wrapper extends arc_Panel
   {
-    public static function render($type, $template, $source, &$data, &$section)
+    public static function render($component, $panel_def, $content_type, &$data, &$section)
     {
 //      foreach ($data[ 'components-open' ] as $key => $value) {
 //        $template[ $type ] = str_replace('{{' . $key . '}}', $value, $template[ $type ]);
@@ -149,9 +164,9 @@
 //        $template[ $type ] = str_replace('{{' . $key . '}}', $value, $template[ $type ]);
 //      }
 
-      $template[ $type ] = str_replace('{{using-bg-image}}', (!empty($data[ 'bgimage' ]) ? 'has-bgimage ' : 'no-bgimage '), $template[ $type ]);
+      $panel_def[ $component ] = str_replace('{{using-bg-image}}', (!empty($data[ 'bgimage' ]) ? 'has-bgimage ' : 'no-bgimage '), $panel_def[ $component ]);
 
-      return parent::process_generics($data, $template[ $type ], $source, $section);
+      return parent::process_generics($data, $panel_def[ $component ], $content_type, $section);
     }
   }
 
@@ -161,57 +176,63 @@
   class arc_Panel_Title extends arc_Panel
   {
     /**
-     * @param $type (Line type, e.g.excerpt, meta, image, title etc)
-     * @param $template
-     * @param $source (Post type source - eg. post, page, gallery)
+     * @param $component (Line type, e.g.excerpt, meta, image, title etc)
+     * @param $panel_def
+     * @param $content_type (Post type source - eg. post, page, gallery)
      * @param $data
      * @param $section
      * @return mixed|void
      */
-    public static function render($type, &$template, $source, &$data, &$section)
+    public static function render($component, $panel_def, $content_type, &$data, &$section)
     {
-      switch ($source) {
+      switch ($content_type) {
         case 'defaults':
         case 'post':
         case 'page':
-          $template[ $type ] = str_replace('{{title}}', $data[ 'title' ], $template[ $type ]);
+          $panel_def[ $component ] = str_replace('{{title}}', $data[ 'title' ], $panel_def[ $component ]);
           if ($section[ '_panels_design_link-titles' ]) {
-            $template[ $type ] = str_replace('{{postlink}}', $template[ 'postlink' ], $template[ $type ]);
-            $template[ $type ] = str_replace('{{closepostlink}}', '</a>', $template[ $type ]);
+            $panel_def[ $component ] = str_replace('{{postlink}}', $panel_def[ 'postlink' ], $panel_def[ $component ]);
+            $panel_def[ $component ] = str_replace('{{closepostlink}}', '</a>', $panel_def[ $component ]);
           }
       };
 
       // this only works for posts! need different rules for different types! :S
-      return parent::process_generics($data, $template[ $type ], $source, $section);
+      return parent::process_generics($data, $panel_def[ $component ], $content_type, $section);
     }
   }
 
 
   class arc_Panel_Meta extends arc_Panel
   {
-    public static function render($type, &$template, $source, &$data, &$section)
+    public static function render($component, $panel_def, $content_type, &$data, &$section)
     {
       // get $metaX definition and construct string, then replace metaXinnards
-      switch ($source) {
+      switch ($content_type) {
         case 'defaults':
         case 'post':
         case 'page':
-          $template[ $type ] = str_replace('{{datetime}}', $data[ 'meta' ][ 'datetime' ], $template[ $type ]);
-          $template[ $type ] = str_replace('{{fdatetime}}', $data[ 'meta' ][ 'fdatetime' ], $template[ $type ]);
-          $template[ $type ] = str_replace('{{authorname}}', $data[ 'meta' ][ 'authorname' ], $template[ $type ]);
-          $template[ $type ] = str_replace('{{authorlink}}', $data[ 'meta' ][ 'authorlink' ], $template[ $type ]);
-          $template[ $type ] = str_replace('{{categories}}', $data[ 'meta' ][ 'categories' ], $template[ $type ]);
-          $template[ $type ] = str_replace('{{categorieslinks}}', $data[ 'meta' ][ 'categorieslinks' ], $template[ $type ]);
-          $template[ $type ] = str_replace('{{tags}}', $data[ 'meta' ][ 'tags' ], $template[ $type ]);
-          $template[ $type ] = str_replace('{{tagslinks}}', $data[ 'meta' ][ 'tagslinks' ], $template[ $type ]);
-          $template[ $type ] = str_replace('{{commentslink}}', $template[ 'comments-link' ], $template[ $type ]);
-          $template[ $type ] = str_replace('{{commentscount}}', $data[ 'comments-count' ], $template[ $type ]);
-          $template[ $type ] = str_replace('{{editlink}}', $template[ 'editlink' ], $template[ $type ]);
+          $panel_def[ $component ] = str_replace('{{datetime}}', $data[ 'meta' ][ 'datetime' ], $panel_def[ $component ]);
+          $panel_def[ $component ] = str_replace('{{fdatetime}}', $data[ 'meta' ][ 'fdatetime' ], $panel_def[ $component ]);
+          if (empty($section[ '_panels_design_excluded-authors' ]) || !in_array(get_the_author_meta('ID'), $section[ '_panels_design_excluded-authors' ])) {
+            $panel_def[ $component ] = str_replace('{{authorname}}', $data[ 'meta' ][ 'authorname' ], $panel_def[ $component ]);
+            $panel_def[ $component ] = str_replace('{{authorlink}}', $data[ 'meta' ][ 'authorlink' ], $panel_def[ $component ]);
+            $panel_def[ $component ] = str_replace('{{authoremail}}', $data[ 'meta' ][ 'authoremail' ], $panel_def[ $component ]);
+            $panel_def[$component]= str_replace('//','',$panel_def[$component]);
+          } else {
+            $panel_def[$component] = preg_replace("/\\/\\/(.)*\\/\\//uiUm", "", $panel_def[$component]);
+          }
+          $panel_def[ $component ] = str_replace('{{categories}}', $data[ 'meta' ][ 'categories' ], $panel_def[ $component ]);
+          $panel_def[ $component ] = str_replace('{{categorieslinks}}', $data[ 'meta' ][ 'categorieslinks' ], $panel_def[ $component ]);
+          $panel_def[ $component ] = str_replace('{{tags}}', $data[ 'meta' ][ 'tags' ], $panel_def[ $component ]);
+          $panel_def[ $component ] = str_replace('{{tagslinks}}', $data[ 'meta' ][ 'tagslinks' ], $panel_def[ $component ]);
+          $panel_def[ $component ] = str_replace('{{commentslink}}', $panel_def[ 'comments-link' ], $panel_def[ $component ]);
+          $panel_def[ $component ] = str_replace('{{commentscount}}', $data[ 'comments-count' ], $panel_def[ $component ]);
+          $panel_def[ $component ] = str_replace('{{editlink}}', $panel_def[ 'editlink' ], $panel_def[ $component ]);
 
 
       }
 
-      return parent::process_generics($data, $template[ $type ], $source, $section);
+      return parent::process_generics($data, $panel_def[ $component ], $content_type, $section);
     }
 
   }
@@ -219,44 +240,44 @@
 
   class arc_Panel_Image extends arc_Panel
   {
-    public static function render($type, &$template, $source, &$data, &$section)
+    public static function render($component, $panel_def, $content_type, &$data, &$section)
     {
       if ($section[ '_panels_design_link-image' ]) {
-        $template[ $type ] = str_replace('{{postlink}}', $template[ 'postlink' ], $template[ $type ]);
-        $template[ $type ] = str_replace('{{closepostlink}}', '</a>', $template[ $type ]);
+        $panel_def[ $component ] = str_replace('{{postlink}}', $panel_def[ 'postlink' ], $panel_def[ $component ]);
+        $panel_def[ $component ] = str_replace('{{closepostlink}}', '</a>', $panel_def[ $component ]);
       }
 
       if ($section[ '_panels_design_image-captions' ]) {
-        $template[ $type ] = str_replace('{{captioncode}}', $data[ 'image' ][ 'caption' ], $template[ $type ]);
+        $panel_def[ $component ] = str_replace('{{captioncode}}', $data[ 'image' ][ 'caption' ], $panel_def[ $component ]);
       }
 
-      $template[ $type ] = str_replace('{{image}}', $data[ 'image' ][ 'image' ], $template[ $type ]);
+      $panel_def[ $component ] = str_replace('{{image}}', $data[ 'image' ][ 'image' ], $panel_def[ $component ]);
 
       if (!empty($section[ '_panels_design_centre-image' ])) {
-        $template[ $type ] = str_replace('{{centred}}', 'centred', $template[ $type ]);
+        $panel_def[ $component ] = str_replace('{{centred}}', 'centred', $panel_def[ $component ]);
       }
 
       if (empty($data[ 'image' ][ 'image' ])) {
-        $template[ $type ] = '';
+        $panel_def[ $component ] = '';
       }
 
 //      foreach ($data[ 'image' ] as $key => $value) {
 //        $template[ $type ] = str_replace('{{' . $key . '}}', $value, $template[ $type ]);
 //      }
 
-      return parent::process_generics($data, $template[ $type ], $source, $section);
+      return parent::process_generics($data, $panel_def[ $component ], $content_type, $section);
     }
 
   }
 
   class arc_Panel_bgimage extends arc_Panel
   {
-    public static function render($type, &$template, $source, &$data, &$section)
+    public static function render($component, $panel_def, $content_type, &$data, &$section)
     {
-      $template[ $type ] = str_replace('{{bgimage}}', $data[ 'bgimage' ], $template[ $type ]);
-      $template[ $type ] = str_replace('{{trim-scale}}', ' fill ' . $section[ '_panels_design_background-image-resize' ], $template[ $type ]);
+      $panel_def[ $component ] = str_replace('{{bgimage}}', $data[ 'bgimage' ], $panel_def[ $component ]);
+      $panel_def[ $component ] = str_replace('{{trim-scale}}', ' fill ' . $section[ '_panels_design_background-image-resize' ], $panel_def[ $component ]);
 
-      return parent::process_generics($data, $template[ $type ], $source, $section);
+      return parent::process_generics($data, $panel_def[ $component ], $content_type, $section);
     }
 
   }
@@ -264,37 +285,37 @@
 
   class arc_Panel_Content extends arc_Panel
   {
-    public static function render($type, &$template, $source, &$data, &$section)
+    public static function render($component, $panel_def, $content_type, &$data, &$section)
     {
-      switch ($source) {
+      switch ($content_type) {
         case 'defaults':
         case 'post':
         case 'page':
-          $template[ $type ] = str_replace('{{content}}', $data[ 'content' ], $template[ $type ]);
+          $panel_def[ $component ] = str_replace('{{content}}', $data[ 'content' ], $panel_def[ $component ]);
       };
       if ($section[ '_panels_design_thumb-position' ] != 'none') {
         if (!empty($data[ 'image' ][ 'image' ])) {
-          $template[ $type ] = str_replace('{{image-in-content}}', $template[ 'image' ], $template[ $type ]);
+          $panel_def[ $component ] = str_replace('{{image-in-content}}', $panel_def[ 'image' ], $panel_def[ $component ]);
 
           if ($section[ '_panels_design_image-captions' ]) {
-            $template[ $type ] = str_replace('{{captioncode}}', '<span class="caption">' . $data[ 'image' ][ 'caption' ] . '</span>', $template[ $type ]);
+            $panel_def[ $component ] = str_replace('{{captioncode}}', '<span class="caption">' . $data[ 'image' ][ 'caption' ] . '</span>', $panel_def[ $component ]);
           }
 
-          $template[ $type ] = str_replace('{{image}}', $data[ 'image' ][ 'image' ], $template[ $type ]);
-          $template[ $type ] = str_replace('{{incontent}}', 'in-content-thumb', $template[ $type ]);
+          $panel_def[ $component ] = str_replace('{{image}}', $data[ 'image' ][ 'image' ], $panel_def[ $component ]);
+          $panel_def[ $component ] = str_replace('{{incontent}}', 'in-content-thumb', $panel_def[ $component ]);
 
           if ($section[ '_panels_design_link-image' ]) {
-            $template[ $type ] = str_replace('{{postlink}}', $template[ 'postlink' ], $template[ $type ]);
-            $template[ $type ] = str_replace('{{closepostlink}}', '</a>', $template[ $type ]);
+            $panel_def[ $component ] = str_replace('{{postlink}}', $panel_def[ 'postlink' ], $panel_def[ $component ]);
+            $panel_def[ $component ] = str_replace('{{closepostlink}}', '</a>', $panel_def[ $component ]);
           }
         }
         if (empty($data[ 'image' ][ 'image' ]) && $section[ '_panels_design_maximize-content' ]) {
           //TODO: Add an option to set if width spreads
-          $template[ $type ] = str_replace('{{nothumb}}', 'nothumb', $template[ $type ]);
+          $panel_def[ $component ] = str_replace('{{nothumb}}', 'nothumb', $panel_def[ $component ]);
         }
       }
 
-      return parent::process_generics($data, $template[ $type ], $source, $section);
+      return parent::process_generics($data, $panel_def[ $component ], $content_type, $section);
     }
 
   }
@@ -303,50 +324,50 @@
   class arc_Panel_Excerpt extends arc_Panel
   {
     /**
-     * @param $type
-     * @param $template
-     * @param $source
+     * @param $component
+     * @param $panel_def
+     * @param $content_type
      * @param $data
      * @param $section
      * @return mixed|void
      */
-    public static function render($type, &$template, $source, &$data, &$section)
+    public static function render($component, $panel_def, $content_type, &$data, &$section)
     {
       //    var_dump($data);
-      switch ($source) {
+      switch ($content_type) {
         case 'defaults':
         case 'post':
         case 'page':
-          $template[ $type ] = str_replace('{{excerpt}}', $data[ 'excerpt' ], $template[ $type ]);
+          $panel_def[ $component ] = str_replace('{{excerpt}}', $data[ 'excerpt' ], $panel_def[ $component ]);
       };
 
       //  var_dump($section[ '_panels_design_thumb-position' ]);
       if ($section[ '_panels_design_thumb-position' ] != 'none') {
         if (!empty($data[ 'image' ][ 'image' ]) && !empty($section[ '_panels_design_thumb-position' ])) {
-          $template[ $type ] = str_replace('{{image-in-content}}', $template[ 'image' ], $template[ $type ]);
+          $panel_def[ $component ] = str_replace('{{image-in-content}}', $panel_def[ 'image' ], $panel_def[ $component ]);
 
           if ($section[ '_panels_design_image-captions' ]) {
-            $template[ $type ] = str_replace('{{captioncode}}', '<span class="caption">' . $data[ 'image' ][ 'caption' ] . '</span>', $template[ $type ]);
+            $panel_def[ $component ] = str_replace('{{captioncode}}', '<span class="caption">' . $data[ 'image' ][ 'caption' ] . '</span>', $panel_def[ $component ]);
           }
 
-          $template[ $type ] = str_replace('{{image}}', $data[ 'image' ][ 'image' ], $template[ $type ]);
-          $template[ $type ] = str_replace('{{incontent}}', 'in-content-thumb', $template[ $type ]);
+          $panel_def[ $component ] = str_replace('{{image}}', $data[ 'image' ][ 'image' ], $panel_def[ $component ]);
+          $panel_def[ $component ] = str_replace('{{incontent}}', 'in-content-thumb', $panel_def[ $component ]);
 
           if ($section[ '_panels_design_link-image' ]) {
-            $template[ $type ] = str_replace('{{postlink}}', $template[ 'postlink' ], $template[ $type ]);
-            $template[ $type ] = str_replace('{{closepostlink}}', '</a>', $template[ $type ]);
+            $panel_def[ $component ] = str_replace('{{postlink}}', $panel_def[ 'postlink' ], $panel_def[ $component ]);
+            $panel_def[ $component ] = str_replace('{{closepostlink}}', '</a>', $panel_def[ $component ]);
           }
         }
         if (empty($data[ 'image' ][ 'image' ]) && $section[ '_panels_design_maximize-content' ]) {
           //TODO: Add an option to set if width spreads
-          $template[ $type ] = str_replace('{{nothumb}}', 'nothumb', $template[ $type ]);
+          $panel_def[ $component ] = str_replace('{{nothumb}}', 'nothumb', $panel_def[ $component ]);
         }
       }
 
 //_panels_design_thumb-position
 
 
-      return parent::process_generics($data, $template[ $type ], $source, $section);
+      return parent::process_generics($data, $panel_def[ $component ], $content_type, $section);
     }
 
   }
@@ -354,10 +375,10 @@
 
   class arc_Panel_Custom extends arc_Panel
   {
-    public static function render($type, &$template, $source, &$data, &$section)
+    public static function render($component, $panel_def, $content_type, &$data, &$section)
     {
       // this only works for posts! need different rules for different types! :S
-      return parent::process_generics($data, $template, $source, $section);
+      return parent::process_generics($data, $panel_def, $content_type, $section);
     }
 
   }

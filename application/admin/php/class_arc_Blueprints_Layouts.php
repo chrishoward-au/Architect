@@ -502,13 +502,13 @@
                   //       'subtitle'    => __('Choose how you want the panels to display. With evenly sized panels, you\'ll see little difference. Please visit <a href="http://isotope.metafizzy.co/demos/layout-modes.html" target=_blank>Isotope Layout Modes</a> for demonstrations of these layouts', 'pzarchitect')
               ),
               array(
-                  'title'   => __('Limit panels', 'pzarchitect'),
-                  'id'      => $prefix . 'section-' . $i . '-panels-limited',
-                  'type'    => 'switch',
-                  'on'      => 'Yes',
-                  'off'     => 'No',
-                  'default' => true,
-                  'subtitle'=>'Each panel displays content from the selected content type. Use unlimited with care.'
+                  'title'    => __('Limit panels', 'pzarchitect'),
+                  'id'       => $prefix . 'section-' . $i . '-panels-limited',
+                  'type'     => 'switch',
+                  'on'       => 'Yes',
+                  'off'      => 'No',
+                  'default'  => true,
+                  'subtitle' => 'Each panel displays content from the selected content type. Use unlimited with care.'
               ),
               array(
                   'title'    => __('Panels to show', 'pzarchitect'),
@@ -631,7 +631,7 @@
         'fields'     => array(
             array(
                 'id'       => $prefix . 'navigator',
-                'title'    => __('Navigator Type', 'pzarchitect'),
+                'title'    => __('Type', 'pzarchitect'),
                 'type'     => 'image_select',
                 'default'  => 'tabbed',
                 'subtitle' => 'Tabbed, accordion, buttons, bullets, numbers, thumbnails',
@@ -664,7 +664,7 @@
                 )
             ),
             array(
-                'title'    => 'Navigator Position',
+                'title'    => 'Position',
                 'id'       => $prefix . 'navigator-position',
                 'type'     => 'image_select',
                 'default'  => 'bottom',
@@ -687,10 +687,13 @@
                         'alt' => 'Right',
                         'img' => PZARC_PLUGIN_APP_URL . 'shared/assets/images/metaboxes/nav-pos-right.png'
                     ),
+                ),
+                'required' => array(
+                    array($prefix . 'navigator', '!=', 'accordion'),
                 )
             ),
             array(
-                'title'    => 'Navigator Location',
+                'title'    => 'Location',
                 'id'       => $prefix . 'navigator-location',
                 'subtitle' => 'Select whether navigator should appear over the content area, or outside of it',
                 'type'     => 'image_select',
@@ -705,19 +708,83 @@
                         'alt' => 'Outside',
                         'img' => PZARC_PLUGIN_APP_URL . 'shared/assets/images/metaboxes/nav-loc-outside.png'
                     ),
+                ),
+                'required' => array(
+                    array($prefix . 'navigator', '!=', 'accordion'),
+                    array($prefix . 'navigator', '!=', 'tabbed'),
+                    array($prefix . 'navigator', '!=', 'thumbs'),
+                )
+
+            ),
+            array(
+                'title'    => 'Horizontal alignment',
+                'id'       => $prefix . 'navigator-align',
+                'type'     => 'button_set',
+                'default'  => 'center',
+                'options'  => array(
+                    'left'   => 'Left',
+                    'center' => 'Centre',
+                    'right'  => 'Right'
+                ),
+                'required' => array(
+                    array($prefix . 'navigator', '!=', 'accordion'),
+                    array($prefix . 'navigator', '!=', 'buttons'),
+                    array($prefix . 'navigator', '!=', 'thumbs'),
+                    array($prefix . 'navigator-position', '!=', 'left'),
+                    array($prefix . 'navigator-position', '!=', 'right')
                 )
             ),
             array(
-                'title'   => 'Navigator Pager',
-                'id'      => $prefix . 'navigator-pager',
-                'type'    => 'button_Set',
-                'cols'    => 6,
-                'default' => 'none',
+                'title'    => 'Vertical width',
+                'id'       => $prefix . 'navigator-vertical-width',
+                'type'     => 'dimensions',
+                'default'  => array('width' => '10%'),
+                'height'   => false,
+                'units'    => '%',
+                'required' => array(
+                    array($prefix . 'navigator', '!=', 'accordion'),
+                    array($prefix . 'navigator-position', '!=', 'top'),
+                    array($prefix . 'navigator-position', '!=', 'bottom')
+                )
+            ),
+            array(
+                'title'    => 'Bullet shape',
+                'id'       => $prefix . 'navigator-bullet-shape',
+                'type'     => 'button_set',
+                'default'  => 'circle',
+                'options'  => array(
+                    'circle' => 'Circle',
+                    'square' => 'Square',
+                ),
+                'required' => array(
+                    array($prefix . 'navigator', 'equals', 'bullets'),
+                )
+            ),
+            array(
+                'title'   => 'Sizing',
+                'id'      => $prefix . 'navigator-sizing',
+                'type'    => 'button_set',
+                'default' => 'small',
                 'options' => array(
+                    'small'  => 'Small',
+                    'medium' => 'Medium',
+                    'large'  => 'Large'
+                ),
+            ),
+            array(
+                'title'    => 'Pager',
+                'id'       => $prefix . 'navigator-pager',
+                'type'     => 'button_set',
+                'cols'     => 6,
+                'default'  => 'none',
+                'options'  => array(
                     'none'   => 'None',
                     'hover'  => 'Hover over panels',
                     'inline' => 'Inline with navigator',
                     'both'   => 'Both'
+                ),
+                'required' => array(
+                    array($prefix . 'navigator', '!=', 'accordion'),
                 )
             ),
             // TODO: Notsure this is necessary
@@ -942,7 +1009,7 @@
                 'type'    => 'select',
                 'select2' => array('allowClear' => true),
                 'default' => '',
-                'cols'    => 3,
+                'wpqv'    => 'category__in',
                 'data'    => 'category',
                 'multi'   => true
             ),
@@ -951,6 +1018,7 @@
                 'id'      => $prefix . 'all-cats',
                 'type'    => 'button_set',
                 'options' => array('any' => 'Any', 'all' => 'All'),
+                'wpqv'    => 'category__and',
                 'default' => 'any',
             ),
             array(
@@ -959,7 +1027,7 @@
                 'type'    => 'select',
                 'default' => '',
                 'select2' => array('allowClear' => true),
-                'cols'    => 3,
+                'wpqv'    => 'category__not_in',
                 'data'    => 'category',
                 'multi'   => true
             ),
@@ -1015,6 +1083,8 @@
                 'class'  => ' heading',
                 'indent' => true
             ),
+            // TODO: Add a loop to display custom taxonomies
+            // foreach($taxonomies as $taxonomy ){}
             array(
                 'title' => __('Other taxonomies', 'pzarchitect'),
                 'id'    => $prefix . 'other-tax',
@@ -1033,6 +1103,7 @@
                 'id'       => $prefix . 'tax-op',
                 'type'     => 'button_set',
                 'options'  => array('all' => 'All', 'any' => 'Any'),
+                'default'  => 'any',
                 'subtitle' => 'Choose whether posts contain all or any of the taxonomies'
             ),
             //    array(
@@ -1384,81 +1455,3 @@
   }
 
 
-  function pzarc_get_ng_galleries()
-  {
-    if (!class_exists('P_Photocrati_NextGen')) {
-      return null;
-    }
-    global $ngg, $nggdb;
-    $results = array();
-
-
-    $ng_galleries = $nggdb->find_all_galleries('gid', 'asc', true, 0, 0, false);
-
-    if ($ng_galleries) {
-      foreach ($ng_galleries as $gallery) {
-        $results[ $gallery->gid ] = $gallery->title;
-      }
-    }
-
-    return $results;
-  }
-
-  function pzarc_get_gp_galleries()
-  {
-    $post_types = get_post_types();
-    if (!isset($post_types[ 'gp_gallery' ])) {
-      return null;
-    }
-    // Don't need to check for GPlus class coz we add the post type
-    // Get GalleryPlus galleries
-    $args    = array('post_type' => 'gp_gallery', 'numberposts' => -1, 'post_status' => null, 'post_parent' => null);
-    $albums  = get_posts($args);
-    $results = array();
-    if ($albums) {
-      foreach ($albums as $post) {
-        setup_postdata($post);
-        $results[ $post->ID ] = get_the_title($post->ID);
-      }
-    }
-
-    return $results;
-  }
-
-  function pzarc_get_wp_galleries()
-  {
-
-    // Get galleries in posts and pages
-    $args    = array('post_type'   => array('post', 'page'),
-                     'numberposts' => -1,
-                     'post_status' => null,
-                     'post_parent' => null);
-    $albums  = get_posts($args);
-    $results = array();
-    if ($albums) {
-      foreach ($albums as $post) {
-        setup_postdata($post);
-        if (get_post_gallery($post->ID)) {
-          $results[ $post->ID ] = substr(get_the_title($post->ID), 0, 60);
-        }
-      }
-    }
-
-    return $results;
-
-
-  }
-
-  function pzarc_get_authors()
-  {
-// Get authors
-    $userslist    = get_users();
-    $authors[ 0 ] = 'All';
-    foreach ($userslist as $author) {
-      if (get_the_author_meta('user_level', $author->ID) >= 2) {
-        $authors[ $author->ID ] = $author->display_name;
-      }
-    }
-
-    return $authors;
-  }

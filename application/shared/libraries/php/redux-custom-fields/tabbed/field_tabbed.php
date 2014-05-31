@@ -70,7 +70,7 @@ if (!class_exists('ReduxFramework_tabbed'))
             $targets[] = '#redux-'.$this->parent->args['opt_name'].'-metabox-'.$value;
           }
           // #redux-_architect-metabox-panels-design
-          echo '<li data-targets="'.implode(',',$targets).'" '.($i++==0?'class="active"':null).'>';
+          echo '<li id="tab-'.strtolower($k).'" data-targets="'.implode(',',$targets).'" '.($i++==0?'class="active"':null).'>';
 //          echo '<label for="' . $this->field[ 'id' ] . '_' . array_search($k, array_keys($this->field[ 'options' ])) . '">';
 //          echo '<input type="radio" class="radio ' . $this->field[ 'class' ] . '" id="' . $this->field[ 'id' ] . '_' . array_search($k, array_keys($this->field[ 'options' ])) . '" name="' . $this->field[ 'name' ] . $this->field[ 'name_suffix' ] . '" value="' . $k . '" ' . checked($this->value, $k, false) . '/>';
           echo ' <span>' . $v . '</span>';

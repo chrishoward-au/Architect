@@ -323,6 +323,154 @@
     }
   }
 
+  function pzarc_get_ng_galleries()
+  {
+    if (!class_exists('P_Photocrati_NextGen')) {
+      return null;
+    }
+    global $ngg, $nggdb;
+    $results = array();
+
+
+    $ng_galleries = $nggdb->find_all_galleries('gid', 'asc', true, 0, 0, false);
+
+    if ($ng_galleries) {
+      foreach ($ng_galleries as $gallery) {
+        $results[ $gallery->gid ] = $gallery->title;
+      }
+    }
+
+    return $results;
+  }
+
+  function pzarc_get_gp_galleries()
+  {
+    $post_types = get_post_types();
+    if (!isset($post_types[ 'gp_gallery' ])) {
+      return null;
+    }
+    // Don't need to check for GPlus class coz we add the post type
+    // Get GalleryPlus galleries
+    $args    = array('post_type' => 'gp_gallery', 'numberposts' => -1, 'post_status' => null, 'post_parent' => null);
+    $albums  = get_posts($args);
+    $results = array();
+    if ($albums) {
+      foreach ($albums as $post) {
+        setup_postdata($post);
+        $results[ $post->ID ] = get_the_title($post->ID);
+      }
+    }
+
+    return $results;
+  }
+
+  function pzarc_get_wp_galleries()
+  {
+
+    // Get galleries in posts and pages
+    $args    = array('post_type'   => array('post', 'page'),
+                     'numberposts' => -1,
+                     'post_status' => null,
+                     'post_parent' => null);
+    $albums  = get_posts($args);
+    $results = array();
+    if ($albums) {
+      foreach ($albums as $post) {
+        setup_postdata($post);
+        if (get_post_gallery($post->ID)) {
+          $results[ $post->ID ] = substr(get_the_title($post->ID), 0, 60);
+        }
+      }
+    }
+
+    return $results;
+
+
+  }
+
+  function pzarc_get_authors($inc_all = true, $min_level = 2)
+  {
+// Get authors
+    $userslist = get_users();
+    $authors   = array();
+    if ($inc_all) {
+      $authors[ 0 ] = 'All';
+    }
+    foreach ($userslist as $author) {
+      if (get_the_author_meta('user_level', $author->ID) >= $min_level) {
+        $authors[ $author->ID ] = $author->display_name;
+      }
+    }
+
+    return $authors;
+  }
+
+  function pzarc_get_custom_fields()
+  {
+    global $wpdb;
+
+    //Get custom fields
+    // This is only able to get custom fields that have been used! ugh!
+    $pzep_cf_list = $wpdb->get_results(
+        "SELECT DISTINCT meta_key FROM $wpdb->postmeta HAVING (meta_key NOT LIKE '\_%' AND meta_key NOT LIKE 'pz%' AND meta_key NOT LIKE 'field_%') ORDER BY meta_key"
+    );
+//    $pzep_cf_list = $wpdb->get_results(
+//        "SELECT meta_key,post_id,wp_posts.post_type FROM wp_postmeta,wp_posts GROUP BY meta_key HAVING ((meta_key NOT LIKE '\_%' AND meta_key NOT LIKE 'pz%' AND meta_key NOT LIKE 'enclosure%') AND (wp_posts.post_type NOT LIKE 'attachment' AND wp_posts.post_type NOT LIKE 'revision' AND wp_posts.post_type NOT LIKE 'acf' AND wp_posts.post_type NOT LIKE 'arc-%' AND wp_posts.post_type NOT LIKE 'nav_menu_item' AND wp_posts.post_type NOT LIKE 'wp-types%')) ORDER BY meta_key"
+//    );
+ //   var_dump($pzep_cf_list);
+    $exclude_fields = array(
+        'ID',
+        'post_id',
+        'post_author',
+        'post_date',
+        'post_date_gmt',
+        'post_content',
+        'post_title',
+        'post_excerpt',
+        'post_status',
+        'comment_status',
+        'ping_status',
+        'post_password',
+        'post_name',
+        'to_ping',
+        'pinged',
+        'post_modified',
+        'post_modified_gmt',
+        'post_content_filtered',
+        'post_parent',
+        'guid',
+        'menu_order',
+        'post_type',
+        'post_mime_type',
+        'comment_count',
+        'meta_id',
+        'meta_key',
+        'meta_value',
+        'enclosure',
+        'hide_on_screen',
+        'original_post_id',
+        'pre_import_post_id',
+        'pre_import_post_parent',
+        'panels_data',
+        'position',
+        'rule',
+        'layout',
+        'standard_link_url_field',
+        'standard_seo_post_level_layout',
+        'standard_seo_post_meta_description',
+        'sharing_disabled'
+    );
+
+    $pzep_custom_fields = array();
+    foreach ($pzep_cf_list as $pzep_cf) {
+      if (in_array($pzep_cf->meta_key, $exclude_fields) === false) {
+        $pzep_custom_fields[ $pzep_cf->meta_key ] = $pzep_cf->meta_key;
+      }
+    }
+
+    return $pzep_custom_fields;
+  }
+
 
   /**
    * Class showBlueprint
@@ -351,6 +499,7 @@
     }
   }
 
-function arc_msg($text,$type) {
-echo '<div class="message-'.$type.'">'.$text.'</div>';
-}
+  function arc_msg($text, $type)
+  {
+    echo '<div class="message - ' . $type . '">' . $text . '</div>';
+  }

@@ -371,7 +371,9 @@
                   }
                   break;
 
+                //TODO: Really got to make this dumb!
                 // Titles
+                ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                 case '_panels_styling_entry-title-font' :
                   $pzarc_contents .= pzarc_process_fonts($class_prefix . ' .entry-title', $value) . $nl;
                   break;
@@ -380,8 +382,25 @@
                   $pzarc_contents .= pzarc_process_links($class_prefix . ' .entry-title ', $value, $nl) . $nl;
                   break;
 
+                case ('_panels_styling_entry-title-borders'):
+                  if (($value[ 'border-style' ] !== 'none')) {
+                    $pzarc_contents .= pzarc_process_borders($class_prefix . ' .entry-title', $value) . $nl;
+                  }
+                  break;
+
+                case '_panels_styling_entry-title-font-padding' :
+                  $padding = pzarc_process_spacing($value);
+                  $pzarc_contents .= $class_prefix . ' .entry-title {' . $padding . ';}' . $nl;
+                  break;
+
+                case '_panels_styling_entry-title-font-margin' :
+                  $margins = pzarc_process_spacing($value);
+                  $pzarc_contents .= $class_prefix . ' .entry-title {' . $margins . ';}' . $nl;
+                  break;
+
 
                 // Meta
+                ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                 case '_panels_styling_entry-meta-font' :
                   $pzarc_contents .= pzarc_process_fonts($class_prefix . ' .entry-meta', $value) . $nl;
                   break;
@@ -393,7 +412,7 @@
 
                 //
                 // IMAGES
-                //
+                ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
                 case '_panels_styling_entry-image-background' :
                   $pzarc_contents .= pzarc_process_background($class_prefix . ' figure.entry-thumbnail ', $value) . $nl;
@@ -412,6 +431,7 @@
                   break;
 
                 // Captions
+                ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                 case '_panels_styling_entry-content-font' :
                   //              var_dump($key);
                   $pzarc_contents .= pzarc_process_fonts($class_prefix . ' .entry-content', $value) . $nl;
@@ -419,6 +439,7 @@
                   break;
 
                 // Content
+                ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                 //entry-image-caption-font', array('figure.entry-thumbnail span.caption'
                 case '_panels_styling_entry-image-caption-font' :
                   //              var_dump($key);
@@ -444,6 +465,7 @@
 
 
                 //What is this lot?
+                ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                 case '_panels_styling_hentry-margin' :
                 case '_panels_styling_components-group-margin' :
                 case '_panels_styling_panels-margin' :
@@ -455,6 +477,11 @@
                   $margins     = pzarc_process_spacing($pzarc_panels[ $key ]);
                   $pzarc_contents .= (!empty($margins) ? $classes . ' {' . $margins . '}' . $nl : '');
                   //    var_dump($class_prefix,$classes . ' {' . $margins . '}');
+                  break;
+
+                // Custom CSS
+                case '_panels_styling_custom-css':
+                  $pzarc_contents .= $value;
                   break;
                 default :
                   //             var_Dump($key);
