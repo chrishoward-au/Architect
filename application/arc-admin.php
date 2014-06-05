@@ -53,12 +53,11 @@
 //			require_once PZARC_PLUGIN_PATH . '/admin/ucd-controls.php';
 
 
-        require_once PZARC_PLUGIN_APP_PATH . '/shared/libraries/php/redux-custom-fields/loader.php';
-        require_once PZARC_PLUGIN_APP_PATH . '/shared/libraries/php/redux-extensions/loader.php';
+        require_once PZARC_PLUGIN_APP_PATH . '/shared/includes/php/redux-custom-fields/loader.php';
+        require_once PZARC_PLUGIN_APP_PATH . '/shared/includes/php/redux-extensions/loader.php';
         require_once PZARC_PLUGIN_APP_PATH . '/admin/php/arc-options.php';
         require_once PZARC_PLUGIN_APP_PATH . '/admin/php/arc-options-styling.php';
         require_once PZARC_PLUGIN_APP_PATH . '/admin/php/arc-options-actions.php';
-
 
         // @TODO Should these really be objects?
         // Initialise objects for data and setup menu items
@@ -68,10 +67,34 @@
 //        $galleries = new pzarc_Galleries;
 //        $slides = new pzarc_Slides;
 
-
+        add_filter( 'admin_body_class', array(&$this,'add_admin_body_class' ));
 //add_action( 'pzarc_do_it', array( $this, 'do_it' ) );
       }
 
+    }
+    function add_admin_body_class( $classes )
+    {
+      $screen = get_current_screen();
+//      pzdebug($screen->id);
+      switch ($screen->id ){
+        case 'architect_page__architect_options':
+        case 'architect_page__architect_styling':
+        case 'architect_page__architect_actions_editor':
+        case 'edit-arc-panels':
+        case 'edit-arc-blueprints':
+        case 'arc-panels':
+        case 'arc-blueprints':
+        case 'architect_page_pzarc_tools':
+        case 'architect_page_pzarc_about':
+          global $_architect_options;
+          if ($_architect_options['architect_enable_bgimage']) {
+            $arc_bg = $_architect_options['architect_bgimage'];
+            $classes .=  ' arc-bgimage '.$arc_bg;
+          }
+          break;
+      }
+      $classes .= ' ' . $screen->post_type;
+      return $classes;
     }
 
     function admin_enqueue($hook)
@@ -88,14 +111,14 @@
         wp_enqueue_style('dashicons');
 
 //      wp_enqueue_style('pzarc-block-css', PZARC_PLUGIN_URL . '/admin/css/arc-admin.css');
-        wp_enqueue_style('pzarc-jqueryui-css', PZARC_PLUGIN_APP_URL . '/shared/libraries/js/jquery-ui-1.10.2.custom/css/pz_architect/jquery-ui-1.10.2.custom.min.css');
+        wp_enqueue_style('pzarc-jqueryui-css', PZARC_PLUGIN_APP_URL . '/shared/includes/js/jquery-ui-1.10.2.custom/css/pz_architect/jquery-ui-1.10.2.custom.min.css');
 
         wp_enqueue_script('jquery-pzarc-metaboxes', PZARC_PLUGIN_APP_URL . '/admin/js/arc-metaboxes.js', array('jquery'));
 
 
-        wp_enqueue_script('pzarc-validation-engine-js-lang', PZARC_PLUGIN_APP_URL . '/shared/libraries/js/jQuery-Validation-Engine/js/languages/jquery.validationEngine-en.js', array('jquery'));
-        wp_enqueue_script('pzarc-validation-engine-js', PZARC_PLUGIN_APP_URL . '/shared/libraries/js/jQuery-Validation-Engine/js/jquery.validationEngine.js', array('jquery'));
-        wp_enqueue_style('pzarc-validation-engine-css', PZARC_PLUGIN_APP_URL . '/shared/libraries/js/jQuery-Validation-Engine/css/validationEngine.jquery.css');
+        wp_enqueue_script('pzarc-validation-engine-js-lang', PZARC_PLUGIN_APP_URL . '/shared/includes/js/jQuery-Validation-Engine/js/languages/jquery.validationEngine-en.js', array('jquery'));
+        wp_enqueue_script('pzarc-validation-engine-js', PZARC_PLUGIN_APP_URL . '/shared/includes/js/jQuery-Validation-Engine/js/jquery.validationEngine.js', array('jquery'));
+        wp_enqueue_style('pzarc-validation-engine-css', PZARC_PLUGIN_APP_URL . '/shared/includes/js/jQuery-Validation-Engine/css/validationEngine.jquery.css');
       }
     }
 
@@ -153,7 +176,7 @@
       <h3>Blueprints</h3>
       <ul><li>A Blueprint encompasses the overall content selection, design, layout and navigation. It can contain up to three Sections, each section displaying a Panel layout one or multiple times. This allows you to easily create a layout that, for example, might show a single post followed by a grid of excerpts. Within the Blueprint you can also include navigation, which can be pagination type, or a navigator type.</li></ul>
       <p>Below is a wireframe example</p>
-      <p><img src="' . PZARC_PLUGIN_APP_URL . '/assets/images/help/arc-layout.jpg" style="display:block"/></p>
+      <p><img src="' . PZARC_PLUGIN_APP_URL . '/shared/assets/images/help/arc-layout.jpg" style="display:block"/></p>
 
       <h2>Usage</h2>
 

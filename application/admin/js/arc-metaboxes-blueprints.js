@@ -53,7 +53,8 @@ jQuery( document ).ready( function ()
         {
             //console.log(this,this.selected,jQuery(this).text());
             // there's a blank one at the to  because of the placeholder
-            if ( i === 0 )
+            console.log(i,this.value)
+            if ( i === 0 || this.value === 'help')
             {return;}
             if ( this.selected )
             {
@@ -181,7 +182,7 @@ jQuery( document ).ready( function ()
             jQuery( ".redux-sidebar li#2_box_redux-_architect-metabox-layout-settings_section_group_li" ).find( 'a' ).trigger( "click" );
         }
         jQuery( "#section-table-blueprints_section-start-content" ).toggle( jQuery( this ).find( 'input' ).val() === "1" );
-        if ( jQuery( this ).find( 'input' ).val() != "1" )
+        if ( jQuery( this ).find( 'input' ).val() !== "1" )
         {
             if ( jQuery( '#5_box_redux-_architect-metabox-layout-settings_section_group_li.active' ).length === 0 )
             {
@@ -297,12 +298,12 @@ jQuery( document ).ready( function ()
         var navtype = jQuery( 'fieldset#_architect-_blueprints_navigation input:checked' ).val();
         console.log( navtype );
         jQuery( "#pzarc-navigator-preview .pzarc-sections" ).hide();
-        if ( navtype != "none" )
+        if ( navtype !== "none" )
         {
             var np = jQuery( ".pzarc-section-" + navtype ).get( 0 );
             jQuery( np ).show();
         }
-        pzarc_update_usage_info( jQuery( "#_pzarc_blueprint-short-name-cmb-field-0" ).get( 0 ) );
+        pzarc_update_usage_info( jQuery( "input#_blueprints_short-name-text" ));
 
         for ( var i = 0; i < 3; i++ )
         {
@@ -315,10 +316,10 @@ jQuery( document ).ready( function ()
             {
                 pzarc_refresh_blueprint_layout( this.id.substr( 20, 1 ) );
             } );
-            jQuery( 'input#_blueprints_section-' + i + '-panels-per-view' ).change( function ()
-            {
-                pzarc_refresh_blueprint_layout( this.id.substr( 20, 1 ) );
-            } );
+//            jQuery( 'input#_blueprints_section-' + i + '-panels-per-view' ).change( function ()
+//            {
+//                pzarc_refresh_blueprint_layout( this.id.substr( 20, 1 ) );
+//            } );
             jQuery( 'input#_blueprints_section-' + i + '-min-panel-width' ).change( function ()
             {
                 pzarc_refresh_blueprint_layout( this.id.substr( 20, 1 ) );
@@ -367,7 +368,7 @@ jQuery( document ).ready( function ()
      */
     function pzarc_update_usage_info( t )
     {
-        ////console.log(t.value);
+       // console.log(t);
         jQuery( 'span.pzarc-shortname' ).text( jQuery( t ).val() );
     }
 
@@ -388,7 +389,7 @@ jQuery( document ).ready( function ()
 //        jQuery( '#pzarc-sections-preview-' + i + ' .pzarc-section-cell' ).each( function ( index, value )
 //        {
 ////     ////console.log(((index+1)%cellsAcross),cellsAcross);
-////      if (((index+1)%cellsAcross) != 0) {
+////      if (((index+1)%cellsAcross) !== 0) {
 //            jQuery( value ).css( {'marginRight': (t.value ) + '%'} );
 ////      }
 //        } );

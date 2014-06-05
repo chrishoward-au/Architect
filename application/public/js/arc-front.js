@@ -2,6 +2,21 @@
 jQuery( document ).ready( function ()
 {
     "use strict";
+
+
+//    //bxSlider
+//    jQuery( '.bxslider' ).bxSlider( {
+//              mode: 'fade',
+//              pagerType:'full',
+//              autoControls:false,
+//              auto:false,
+//              pager:false,
+//              pagerCustom:'.bxpager'
+//          }
+//    );
+
+
+    // Swiper
     /*
      var mySwiper = jQuery('.swiper-container.pzarc-blueprint-2173').swiper({
      //Your options here:
@@ -13,8 +28,9 @@ jQuery( document ).ready( function ()
      });
      */
 
-    // Look in class_Architect build()
+    // Look in class_Architect build() for swiper vars
     var arcSwipers = jQuery( '.swiper-container.swiper-container' );
+    console.log(arcSwipers);
     //for each
     arcSwipers.each( function ()
     {
@@ -26,7 +42,7 @@ jQuery( document ).ready( function ()
         {
             switch (arcSwiperType)
             {
-                case 'bullets':
+                case 'bulletsold':
                     arcSwiperOpts = jQuery( this ).attr( 'data-swiperopts' );
                     arcSwiperOpts = arcSwiperOpts.replace( /:/g, '":' );
                     arcSwiperOpts = arcSwiperOpts.replace( /,/g, ',"' );
@@ -35,6 +51,12 @@ jQuery( document ).ready( function ()
                     break;
                 case 'tabbed':
                     arcSwiperOpts = '"onSlideChangeStart": "function(){jQuery(\'.pzarc-navigator.tabbed .active\').removeClass(\'active\');jQuery(\'.pzarc-navigator.tabbed span\').eq(arcSwiper.activeIndex).addClass(\'active\')}"';
+                    break;
+                case 'numbers':
+                    arcSwiperOpts = '"onSlideChangeStart": "function(){jQuery(\'.pzarc-navigator.numbers .active\').removeClass(\'active\');jQuery(\'.pzarc-navigator.numbers span\').eq(arcSwiper.activeIndex).addClass(\'active\')}"';
+                    break;
+                case 'bullets':
+                    arcSwiperOpts = '"onSlideChangeStart": "function(){jQuery(\'.pzarc-navigator.bullets .active\').removeClass(\'active\');jQuery(\'.pzarc-navigator.bullets span\').eq(arcSwiper.activeIndex).addClass(\'active\')}"';
                     break;
             }
 
@@ -60,8 +82,8 @@ jQuery( document ).ready( function ()
 //                                swiper.setTransition(swiper.slides[i], speed);\
 //                            }\
 //                        }"';
-
-//    arcSwiperOpts += arcSwiperFade;
+//
+//   arcSwiperOpts += arcSwiperFade;
 
             // Add fixed options
             arcSwiperOpts += ',"roundLengths":true';
@@ -71,15 +93,15 @@ jQuery( document ).ready( function ()
             console.log( JSON.parse( arcSwiperOpts ) );
 
             //TODO: Change this to full js using vars from data. Isn't that what we're essentially already doing? Yes, but this does it easier.
-            var arcSwiper = jQuery( '.swiper-container.swiper-container-' + arcSwiperID ).swiper( JSON.parse( arcSwiperOpts ) );
+                       var arcSwiper = jQuery( '.swiper-container.swiper-container-' + arcSwiperID ).swiper( JSON.parse( arcSwiperOpts ) );
+  //         var arcSwiper = jQuery( '.swiper-container.swiper-container-' + arcSwiperID ).swiper(  );
 
-            if ( arcSwiperType === 'tabbed' )
-            {
-                var arcTabs = jQuery( ".pzarc-navigator.tabbed span" );
+
+                var arcTabs = jQuery( ".pzarc-navigator span" );
                 arcTabs.on( 'touchstart mousedown', function ( e )
                 {
                     e.preventDefault();
-                    jQuery( ".pzarc-navigator.tabbed .active" ).removeClass( 'active' );
+                    jQuery( ".pzarc-navigator .active" ).removeClass( 'active' );
                     jQuery( this ).addClass( 'active' );
                     arcSwiper.swipeTo( jQuery( this ).index() );
                 } );
@@ -87,7 +109,23 @@ jQuery( document ).ready( function ()
                 {
                     e.preventDefault();
                 } );
-            }
+
+
+//            if ( arcSwiperType === 'tabbed' )
+//            {
+//                var arcTabs = jQuery( ".pzarc-navigator.tabbed span" );
+//                arcTabs.on( 'touchstart mousedown', function ( e )
+//                {
+//                    e.preventDefault();
+//                    jQuery( ".pzarc-navigator.tabbed .active" ).removeClass( 'active' );
+//                    jQuery( this ).addClass( 'active' );
+//                    arcSwiper.swipeTo( jQuery( this ).index() );
+//                } );
+//                arcTabs.click( function ( e )
+//                {
+//                    e.preventDefault();
+//                } );
+//            }
             jQuery( '.arrow-left' ).on( 'click', function ( e )
             {
                 e.preventDefault();

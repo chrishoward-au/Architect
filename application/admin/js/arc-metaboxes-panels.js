@@ -172,9 +172,9 @@ jQuery( document ).ready( function ()
             element_html['excerpt'] = element_html['excerpt'].replace( /PZARC_PLUGIN_URL/g, plugin_url );
 
             element_html['meta3'] = '<span class="pzarc-draggable pzarc-draggable-meta3 pzarc-draggable-meta"  title= "Meta info 3" data-idcode=meta3 style="font-size:11px;"><span>Comments: 27</span></span>';
-            element_html['custom1'] = '<span class="pzarc-draggable pzarc-draggable-custom1 pzarc-draggable-meta"  title= "Custom field 1" data-idcode=custom1 style="font-size:11px;"><span>Custom content 1</span></span>';
-            element_html['custom2'] = '<span class="pzarc-draggable pzarc-draggable-custom2 pzarc-draggable-meta"  title= "Custom field 2" data-idcode=custom2 style="font-size:11px;"><span>Custom content 2</span></span>';
-            element_html['custom3'] = '<span class="pzarc-draggable pzarc-draggable-custom3 pzarc-draggable-meta"  title= "Custom field 3" data-idcode=custom3 style="font-size:11px;"><span>Custom content 3</span></span>';
+            element_html['custom1'] = '<span class="pzarc-draggable pzarc-draggable-custom1 pzarc-draggable-meta"  title= "Custom field 1" data-idcode=custom1 style="font-size:11px;"><span>Custom content group 1</span></span>';
+            element_html['custom2'] = '<span class="pzarc-draggable pzarc-draggable-custom2 pzarc-draggable-meta"  title= "Custom field 2" data-idcode=custom2 style="font-size:11px;"><span>Custom content group 2</span></span>';
+            element_html['custom3'] = '<span class="pzarc-draggable pzarc-draggable-custom3 pzarc-draggable-meta"  title= "Custom field 3" data-idcode=custom3 style="font-size:11px;"><span>Custom content group 3</span></span>';
 
             var cell_layout = jQuery.parseJSON( jQuery( 'input#_panels_design_preview-text' ).val() );
 

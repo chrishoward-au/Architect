@@ -393,6 +393,18 @@ array(
                                         'content' => __('Drag and drop to sort the order of your elements. <strong>Heights are fluid in panels, so not indicative of how it will look on the page</strong>.', 'pzarchitect'))
             ),
             array(
+                'title'         => __('Number of custom fields', 'pzarchitect'),
+                'id'            => $prefix . 'custom-fields-count',
+                'type'          => 'spinner',
+                'default'       => 0,
+                'min'           => '0',
+                'max'           => '999',
+                'step'          => '1',
+                'display_value' => 'label',
+                'subtitle'      => __('Each of the three Custom groups can have multiple custom fields. Select total number of custom fields, click Save/Update', 'pzarchitect'),
+                'hint'          => array('content' => __('', 'pzarchitect'))
+            ),
+            array(
                 'title'   => __('Components area position', 'pzarchitect'),
                 'id'      => $prefix . 'components-position',
                 'type'    => 'button_set',
@@ -445,7 +457,7 @@ array(
                 'hint'          => array('content' => __('Enter percent to move the components area left/right. </br>NOTE: These measurements are percentage of the panel.', 'pzarchitect'))
             ),
             array(
-                'title'   => __('Background Feature Image/Video', 'pzarchitect'),
+                'title'   => __('Background Feature Image', 'pzarchitect'),
                 'id'      => $prefix . 'background-position',
                 'width'   => '100%',
                 'type'    => 'button_set',
@@ -855,22 +867,105 @@ array(
           ),
         )
     );
-
-    for ($i = 1; $i <= 3; $i++) {
+    $thispostmeta = get_post_meta($_GET['post'],'_architect',true);
+    $cfcount = (!empty($thispostmeta['_panels_design_custom-fields-count'])?$thispostmeta['_panels_design_custom-fields-count']:0);
+    for ($i = 1; $i <= $cfcount; $i++) {
+      $cfname = 'Custom field '.$i.(!empty($thispostmeta['_panels_design_cfield-'.$i.'-name'])?': <br>'.$thispostmeta['_panels_design_cfield-'.$i.'-name']:'');
       $sections[ ] = array(
-          'title'      => 'Custom Field '.$i,
+          'title'      => $cfname,
           'icon_class' => 'icon-large',
           'icon'       => 'el-icon-wrench',
-          'desc'=>'Note: Only fields with content will show.',
+          'desc'       => 'Note: Only fields with content will show.',
           'fields'     => array(
-              array(
-                  'title'   => __('Field name', 'pzarchitect'),
-                  'id'      => $prefix . 'cfield-'.$i,
-                  'type'    => 'select',
-                  'data'     => 'callback',
-                  'args'    => array('pzarc_get_custom_fields'),
+            array(
+                'title'   => __('Show in custom field group', 'pzarchitect'),
+                'id'      => $prefix . 'cfield-' . $i.'-group',
+                'type'    => 'button_set',
+                'default' => 'custom1',
+                'options' => array('custom1' => 'Custom 1',
+                                   'custom2' => 'Custom 2',
+                                   'custom3' => 'Custom 3')
+            ),
+            array(
+                'title' => __('Field name', 'pzarchitect'),
+                'id'    => $prefix . 'cfield-' . $i.'-name',
+                'type'  => 'select',
+                'data'  => 'callback',
+                'args'  => array('pzarc_get_custom_fields'),
 
-              ),
+            ),
+            array(
+                'title'   => __('Is image', 'pzarchitect'),
+                'id'      => $prefix . 'cfield-' . $i . '-is-image',
+                'type'    => 'switch',
+                'on'      => 'Yes',
+                'off'     => 'No',
+                'default' => false
+
+            ),
+            array(
+                'title'    => __('Wrapper tag', 'pzarchitect'),
+                'id'       => $prefix . 'cfield-' . $i . '-wrapper-tag',
+                'type'     => 'select',
+                'default'  => 'p',
+                'options'  => array(
+                    'p'    => 'p',
+                    'div'  => 'div',
+                    'span' => 'span',
+                    'h1'   => 'h1',
+                    'h2'   => 'h2',
+                    'h3'   => 'h3',
+                    'h4'   => 'h4',
+                    'h5'   => 'h5',
+                    'h6'   => 'h6',
+                    'none' => 'None'),
+                'subtitle' => 'Select the wrapper element for this custom field'
+
+            ),
+            array(
+                'title'    => __('Link field', 'pzarchitect'),
+                'id'       => $prefix . 'cfield-' . $i . '-link-field',
+                'type'     => 'select',
+                'data'     => 'callback',
+                'args'     => array('pzarc_get_custom_fields'),
+                'subtitle' => 'Select a custom field that contains URLs you want to use as the link',
+            ),
+            array(
+                'title' => __('Prefix text', 'pzarchitect'),
+                'id'    => $prefix . 'cfield-' . $i . '-prefix-text',
+                'type'  => 'text',
+            ),
+            array(
+                'title' => __('Prefix image', 'pzarchitect'),
+                'id'    => $prefix . 'cfield-' . $i . '-prefix-image',
+                'type'  => 'media',
+            ),
+            array(
+                'title' => __('Suffix text', 'pzarchitect'),
+                'id'    => $prefix . 'cfield-' . $i . '-suffix-text',
+                'type'  => 'text',
+            ),
+            array(
+                'title' => __('Suffix image', 'pzarchitect'),
+                'id'    => $prefix . 'cfield-' . $i . '-suffix-image',
+                'type'  => 'media',
+            ),
+            array(
+                'title'   => __('Images width', 'pzarchitect'),
+                'id'      => $prefix . 'cfield-' . $i . '-images-width',
+                'type'    => 'dimensions',
+                'height'  => false,
+                'default' => array('width' => '32px'),
+                'units'   => 'px'
+            ),
+            array(
+                'title'   => __('Images height', 'pzarchitect'),
+                'id'      => $prefix . 'cfield-' . $i . '-images-height',
+                'type'    => 'dimensions',
+                'width'   => false,
+                'default' => array('height' => '32px'),
+                'units'   => 'px'
+            ),
           )
       );
     }
@@ -1065,7 +1160,7 @@ array(
         ),
     );
 
-    $sections[ ]  = array(
+    $sections[ ] = array(
         'title'      => 'Meta',
         'show_title' => false,
         'icon_class' => 'icon-large',
@@ -1078,7 +1173,7 @@ array(
             pzarc_redux_links($prefix . 'entry-meta-font-links', array('.entry-meta a'), $defaults[ $optprefix . 'entry-meta-font-links' ])
         )
     );
-    $sections[ ]  = array(
+    $sections[ ] = array(
         'title'      => 'Content',
         'show_title' => false,
         'icon_class' => 'icon-large',
@@ -1101,7 +1196,7 @@ array(
             pzarc_redux_links($prefix . 'entry-readmore-font-links', array('a.readmore'), $defaults[ $optprefix . 'entry-readmore-font-links' ])
         )
     );
-    $sections[ ]  = array(
+    $sections[ ] = array(
         'title'      => 'Entry Featured image',
         'show_title' => false,
         'icon_class' => 'icon-large',
@@ -1162,9 +1257,27 @@ array(
 //            pzarc_redux_margin($prefix . 'entry-image-caption-font-margin', array('figure.entry-thumbnail span.caption'), $defaults[ $optprefix . 'entry-image-caption-font-margin' ]),
             pzarc_redux_padding($prefix . 'entry-image-caption-font-padding', array('figure.entry-thumbnail span.caption'), $defaults[ $optprefix . 'entry-image-caption-font-margin' ])
         )
-
-
     );
+    $thispostmeta = get_post_meta($_GET['post'],'_architect',true);
+    $cfcount = (!empty($thispostmeta['_panels_design_custom-fields-count'])?$thispostmeta['_panels_design_custom-fields-count']:0);
+    for ($i = 1; $i <= $cfcount; $i++) {
+      $cfname = 'Custom field '.$i.(!empty($thispostmeta['_panels_design_cfield-'.$i.'-name'])?': <br>'.$thispostmeta['_panels_design_cfield-'.$i.'-name']:'');
+      $sections[ ] = array(
+          'title'      => $cfname,
+          'show_title' => false,
+          'icon_class' => 'icon-large',
+          'icon'       => 'el-icon-font',
+          'desc'       => 'Class: .entry-customfield-' . $i,
+          'fields'     => pzarc_fields(
+              pzarc_redux_font($prefix . 'entry-customfield-' . $i . '-font', array('.entry-customfield-' . $i . ''), $defaults[ $optprefix . 'entry-customfield-' . $i . '-font' ]),
+              pzarc_redux_bg($prefix . 'entry-customfield-' . $i . '-font-background', array('.entry-customfield-' . $i . ''), $defaults[ $optprefix . 'entry-customfield-' . $i . '-font-background' ]),
+              pzarc_redux_padding($prefix . 'entry-customfield-' . $i . '-font-padding', array('.entry-customfield-' . $i . ''), $defaults[ $optprefix . 'entry-customfield-' . $i . '-font-padding' ]),
+              pzarc_redux_margin($prefix . 'entry-customfield-' . $i . '-font-margin', array('.entry-customfield-' . $i . ''), $defaults[ $optprefix . 'entry-customfield-' . $i . '-font-margin' ]),
+              pzarc_redux_borders($prefix . 'entry-customfield-' . $i . '-borders', array('.entry-customfield-' . $i . ''), $defaults[ $optprefix . 'entry-customfield-' . $i . '-borders' ]),
+              pzarc_redux_links($prefix . 'entry-customfield-' . $i . '-font-links', array('.entry-customfield-' . $i . ' a'), $defaults[ $optprefix . 'entry-customfield-' . $i . '-font-links' ])
+          ),
+      );
+    }
     $sections[ ]  = array(
         'id'         => 'custom-css',
         'title'      => 'Custom CSS',
@@ -1255,9 +1368,9 @@ array(
         <span class="pzarc-draggable pzarc-draggable-image" title="Featured image" data-idcode=image style="max-height: 100px; overflow: hidden;"><span><img src="' . PZARC_PLUGIN_APP_URL . '/shared/assets/images/sample-image.jpg" style="max-width:100%;"></span></span>
         <span class="pzarc-draggable pzarc-draggable-meta2 pzarc-draggable-meta" title="Meta info 2" data-idcode=meta2 ><span>Categories - News, Sport</span></span>
         <span class="pzarc-draggable pzarc-draggable-meta3 pzarc-draggable-meta" title="Meta info 3" data-idcode=meta3 ><span>Comments: 27</span></span>
-        <span class="pzarc-draggable pzarc-draggable-custom1 pzarc-draggable-meta" title="Custom field 1" data-idcode=custom1 ><span>Custom content 1</span></span>
-        <span class="pzarc-draggable pzarc-draggable-custom2 pzarc-draggable-meta" title="Custom field 2" data-idcode=custom2 ><span>Custom content 2</span></span>
-        <span class="pzarc-draggable pzarc-draggable-custom3 pzarc-draggable-meta" title="Custom field 3" data-idcode=custom3 ><span>Custom content 3</span></span>
+        <span class="pzarc-draggable pzarc-draggable-custom1 pzarc-draggable-meta" title="Custom field 1" data-idcode=custom1 ><span>Custom content group 1</span></span>
+        <span class="pzarc-draggable pzarc-draggable-custom2 pzarc-draggable-meta" title="Custom field 2" data-idcode=custom2 ><span>Custom content group 2</span></span>
+        <span class="pzarc-draggable pzarc-draggable-custom3 pzarc-draggable-meta" title="Custom field 3" data-idcode=custom3 ><span>Custom content group 3</span></span>
       </div>
 	  </div>
 	  <p class="pzarc-states ">Loading</p>

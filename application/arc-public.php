@@ -15,13 +15,31 @@
   function pzarc_display_init()
   {
     wp_register_script('js-arc-frontjs', PZARC_PLUGIN_APP_URL . '/public/js/arc-front.js', array('jquery'));
-    wp_register_script('js-swiperjs', PZARC_PLUGIN_APP_URL . '/shared/libraries/js/swiper/idangerous.swiper.min.js');
-    wp_register_script('js-swiper-progressjs', PZARC_PLUGIN_APP_URL . '/shared/libraries/js/swiper/idangerous.swiper.progress.min.js');
-    wp_register_style('css-swiperjs', PZARC_PLUGIN_APP_URL . '/shared/libraries/js/swiper/idangerous.swiper.css');
-
     wp_enqueue_script('js-arc-frontjs');
+
+
+    // bxSlider
+//    wp_register_script('js-bxslider', PZARC_PLUGIN_APP_URL . '/shared/includes/js/jquery.bxslider/jquery.bxslider.min.js');
+//    wp_register_style('css-bxslider', PZARC_PLUGIN_APP_URL . '/shared/includes/js/jquery.bxslider/jquery.bxslider.css');
+//
+//    wp_enqueue_script('js-bxslider');
+//    wp_enqueue_style('css-bxslider');
+
+    // Swiper
+    wp_register_script('js-swiperjs', PZARC_PLUGIN_APP_URL . '/shared/includes/js/swiper/idangerous.swiper.min.js');
+    wp_register_script('js-swiper-progressjs', PZARC_PLUGIN_APP_URL . '/shared/includes/js/swiper/idangerous.swiper.progress.min.js');
+    wp_register_style('css-swiperjs', PZARC_PLUGIN_APP_URL . '/shared/includes/js/swiper/idangerous.swiper.css');
+
     wp_enqueue_script('js-swiperjs');
     wp_enqueue_style('css-swiperjs');
+
+    // ResponCSS
+//    wp_register_script('js-responcss', PZARC_PLUGIN_APP_URL . '/shared/includes/css/ResponCSS/js/responcss.js');
+//    wp_register_style('css-responcss', PZARC_PLUGIN_APP_URL . '/shared/includes/css/ResponCSS/css/responcss.css');
+//
+//    wp_enqueue_script('js-responcss');
+//    wp_enqueue_style('css-responcss');
+
 
     if (!(class_exists('ReduxFramework') || class_exists('ReduxFrameworkPlugin'))) {
       return;
@@ -118,8 +136,8 @@
       echo '<p class="message-warning">You need to set a blueprint</p>';
     } else {
       require_once PZARC_PLUGIN_APP_PATH . '/public/php/class_Architect.php';
-      require_once(PZARC_PLUGIN_APP_PATH . '/shared/libraries/php/jo-image-resizer/jo_image_resizer.php');
-      require_once(PZARC_PLUGIN_APP_PATH . '/shared/libraries/php/BFI_Thumb.php');
+      require_once(PZARC_PLUGIN_APP_PATH . '/shared/includes/php/jo-image-resizer/jo_image_resizer.php');
+      require_once(PZARC_PLUGIN_APP_PATH . '/shared/includes/php/BFI_Thumb.php');
 
       $architect = new Architect($blueprint, $is_shortcode);
       if (empty($architect->build->blueprint[ 'err_msg' ])) {

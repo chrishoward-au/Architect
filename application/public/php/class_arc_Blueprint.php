@@ -42,7 +42,7 @@
 
       if (!isset($blueprint_info->posts[ 0 ]))
       {
-        $this->blueprint = array('err_msg' => '<p class="pzarc-oops">Architect Blueprint <strong>' . $this->name . '</strong> not found</p>');
+        $this->blueprint = array('err_msg' => '<p class="message-error">Architect Blueprint <strong>' . $this->name . '</strong> not found</p>');
         return $this->blueprint;
       }
       $this->blueprint = get_post_meta($blueprint_info->posts[ 0 ]->ID, '_architect', true);

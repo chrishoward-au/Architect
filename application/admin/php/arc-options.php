@@ -235,36 +235,65 @@
             'show_title' => true,
             'icon'       => 'el-icon-wrench',
             'fields'     => array(
-              array(
-                  'title'=> __('Breakpoints','pzarchitect'),
-                  'id'=>'architect_breakpoint_section',
-                  'type'=>'section',
-                  'subtitle'=>__('Architect lets you set some arbitrary breakpoints for responsive design. Responsive design, however, is a lot more complicated than a handful of breakpoints! It is affected by devices, content, containers and so on. To provide support for all of that would severely overwhelm Architect\'s settings. For example, for every font styling, it would need to be set for every scenario. The breakpoints are therefore used on a limited range of options. If you want to get serious with responsive design, you will have to write a lot of custom css','pzarchitect')
-                  ),
-
+                array(
+                    'title'    => __('Enable admin background image', 'pzarchitect'),
+                    'id'       => 'architect_enable_bgimage',
+                    'type'     => 'switch',
+                    'subtitle' => 'Displays a background image on the Architect admin pages',
+                    'default'  => true
+                ),
+                array(
+                    'title'   => __('Choose image', 'pzarchitect'),
+                    'id'      => 'architect_bgimage',
+                    'type'    => 'image_select',
+                    'options' => array(
+                        'arc-bg-1' => array(
+                            'img' => PZARC_PLUGIN_APP_URL . '/admin/css/images/arc-bg-1-64x42.png'
+                        ),
+                        'arc-bg-3' => array(
+                            'img' => PZARC_PLUGIN_APP_URL . '/admin/css/images/arc-bg-3-64x42.png'
+                        ),
+                        'arc-bg-4' => array(
+                            'img' => PZARC_PLUGIN_APP_URL . '/admin/css/images/arc-bg-4-64x42.png'
+                        ),
+                        'arc-bg-5' => array(
+                            'img' => PZARC_PLUGIN_APP_URL . '/admin/css/images/arc-bg-5-64x42.png'
+                        ),
+                        'arc-bg-6' => array(
+                            'img' => PZARC_PLUGIN_APP_URL . '/admin/css/images/arc-bg-6-64x42.png'
+                        )
+                    ),
+                    'default' => 'arc-bg-1'
+                ),
+                array(
+                    'title'    => __('Breakpoints', 'pzarchitect'),
+                    'id'       => 'architect_breakpoint_section',
+                    'type'     => 'section',
+                    'subtitle' => __('Architect lets you set some arbitrary breakpoints for responsive design. Responsive design, however, is a lot more complicated than a handful of breakpoints! It is affected by devices, content, containers and so on. To provide support for all of that would severely overwhelm Architect\'s settings. For example, for every font styling, it would need to be set for every scenario. The breakpoints are therefore used on a limited range of options. If you want to get serious with responsive design, you will have to write a lot of custom css', 'pzarchitect')
+                ),
                 array(
                     'title'   => __('Wide screen breakpoint', 'pzarchitect'),
                     'id'      => 'architect_breakpoint_1',
-                    'type'     => 'dimensions',
-                    'height'    => false,
-                    'units'    => 'px',
-                    'default'  => array('width' => '1100'),
+                    'type'    => 'dimensions',
+                    'height'  => false,
+                    'units'   => 'px',
+                    'default' => array('width' => '1100'),
                 ),
                 array(
                     'title'   => __('Medium screen breakpoint', 'pzarchitect'),
                     'id'      => 'architect_breakpoint_2',
                     'type'    => 'dimensions',
-                    'height'    => false,
-                    'units'    => 'px',
-                    'default'  => array('width' => '768'),
+                    'height'  => false,
+                    'units'   => 'px',
+                    'default' => array('width' => '768'),
                 ),
                 array(
                     'title'   => __('Narrow screen breakpoint', 'pzarchitect'),
                     'id'      => 'architect_breakpoint_3',
                     'type'    => 'dimensions',
-                    'height'    => false,
-                    'units'    => 'px',
-                    'default'  => array('width' => '480'),
+                    'height'  => false,
+                    'units'   => 'px',
+                    'default' => array('width' => '480'),
                 ),
             )
         );
@@ -308,7 +337,7 @@
           // TYPICAL -> Change these values as you need/desire
           'opt_name'           => '_architect_options',
           // This is where your data is stored in the database and also becomes your global variable name.
-          'display_name'       => 'Actions Options',
+          'display_name'       => 'Architect Options',
           // Name that appears at the top of your panel
           'display_version'    => 'Architect v' . PZARC_VERSION,
           // Version that appears at the top of your panel

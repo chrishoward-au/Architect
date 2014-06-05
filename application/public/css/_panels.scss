@@ -7,7 +7,7 @@
   box-sizing: border-box;
   vertical-align: top;
   position: relative;
-  overflow:hidden;
+  overflow: hidden;
 
   .entry-image {
     max-width: 100%;
@@ -51,7 +51,7 @@
       margin: 0 auto;
     }
     .caption {
-      display:block;
+      display: block;
     }
   }
 
@@ -69,20 +69,36 @@
     box-sizing: border-box;
   }
 
+  .entry-customfieldgroup {
+    display: block;
+    float: left;
+  }
+
+  &.using-bgimages {
+    .pzarc-components {
+      position: relative;
+      z-index: 1;
+    }
+    article + img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: -1;
+    }
+  }
+
+  .vertical-content {
+    top: 0;
+    bottom: 0;
+    height: 100%;
+  }
+
+  .pzarc-components {
+    box-sizing: border-box;
+    overflow: hidden;
+    position: relative;
+  }
 
 }
 
 
-.has-bgimage {
-  position: absolute;
-  z-index: 1;
-}
-
-.vertical-content {
-  top:0;
-  bottom:0;
-}
-.pzarc-components {
-  box-sizing: border-box;
-  overflow: hidden;
-}

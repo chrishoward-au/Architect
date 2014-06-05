@@ -7,6 +7,29 @@
   width: 100%;
   z-index: 1;
   counter-reset: arc_navigator;
+  &.outside {
+
+  }
+  &.inside {
+    position: absolute;
+    z-index: 1;
+  }
+  &.top {
+    top: 15px;
+  }
+  &.bottom {
+    bottom: 15px;
+  }
+  &.left {
+    left: 15px;
+    text-align: left;
+    right: initial
+  }
+  &.right {
+    right: 15px;
+    text-align: right;
+    left: initial
+  }
 }
 
 /* ===============================================================
@@ -16,9 +39,6 @@
 .swiper-container {
   /* Specify Swiper's Size: */
 
-  //  width: 320px;
-  height: 300px;
-  background: #eee;
   padding: 0;
   .swiper-slide {
     /* Specify Slides's Size: */
@@ -42,28 +62,48 @@
 /* ===============================================================
 Pagination Styles
 ================================================================*/
+
 .bullets {
   .swiper-pagination-switch {
     /* Stylize pagination button: */
     display: inline-block;
     width: 15px;
     height: 15px;
-    border-radius: 15px;
     background: #999;
     box-shadow: 0px 1px 2px #555 inset;
     margin: 0 3px;
     cursor: pointer;
+    &.small {
+      width: 12px;
+      height: 12px;
+
+    }
+    &.medium {
+      width: 15px;
+      height: 15px;
+
+    }
+    &.large {
+      width: 18px;
+      height: 18px;
+
+    }
+    &:hover {
+      background: #ccc;
+    }
+    &.active {
+      /* Specific active button style: */
+      background: #fff;
+    }
   }
-  .swiper-pagination-switch:hover {
-    background: #ccc;
+  &.circle .swiper-pagination-switch {
+    border-radius: 15px;
   }
-  .swiper-active-switch:before {
-    color: #fff;
+  &.square .swiper-pagination-switch {
+    border-radius: 1px;
+    border-bottom: 1px solid #999;
   }
-  .swiper-active-switch {
-    /* Specific active button style: */
-    background: #fff;
-  }
+
 }
 
 .tabbed {
@@ -84,15 +124,36 @@ Pagination Styles
 }
 
 .numbers {
-  .swiper-pagination-switch:before {
-    counter-increment: arc_navigator;
-  }
-
-  .swiper-pagination-switch:before {
-    content: counter(arc_navigator);
+  .swiper-pagination-switch {
     font-size: 28px;
     font-family: sans-serif;
+    font-weight: bold;
+    padding: 5px;
+    color: #999;
+    &.small {
+      font-size: 22px;
+    }
+    &.medium {
+      font-size: 28px;
+
+    }
+    &.large {
+      font-size: 34px;
+
+    }
+    &:hover {
+      color: #ccc;
+    }
+    &.active {
+      /* Specific active button style: */
+      color: #fff;
+    }
   }
+
+}
+
+.swiper-pagination-switch {
+  cursor: pointer;
 
 }
 
@@ -101,24 +162,40 @@ Pagination Styles
   // background:#eee;
 }
 
-.arrow-left {
-  background: url(../../shared/assets/images/slider/arrows1.png) no-repeat left top;
-  position: absolute;
-  left: 10px;
-  top: 50%;
-  margin-top: -15px;
-  width: 17px;
-  height: 30px;
-  z-index: 2;
-}
+.nav-navigator {
+  .pager {
+    position: absolute;
+    top: 50%;
+    margin-top: -15px;
+    width: 17px;
+    height: 30px;
+    z-index: 2;
+    display: none;
 
-.arrow-right {
-  background: url(../../shared/assets/images/slider/arrows1.png) no-repeat left bottom;
-  position: absolute;
-  right: 10px;
-  top: 50%;
-  margin-top: -15px;
-  width: 17px;
-  height: 30px;
-  z-index: 2;
+    &.arrow-left {
+      background: url(../../shared/assets/images/slider/arrows1.png) no-repeat left top;
+      left: 10px;
+    }
+
+    &.arrow-right {
+      background: url(../../shared/assets/images/slider/arrows1.png) no-repeat left bottom;
+      right: 10px;
+    }
+  }
+
+  &:hover {
+    .arrow-right,
+    .arrow-left {
+      display: block;
+    }
+  }
+
+  .bxpager a {
+    padding: 10px;
+    margin: 2px;
+    background: #eee;
+    &:hover {
+      background: #fff;
+    }
+  }
 }

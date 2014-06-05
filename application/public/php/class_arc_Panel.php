@@ -27,8 +27,9 @@
      */
     static function set_data(&$section)
     {
-      $toshow = json_decode($section[ '_panels_design_preview' ], true);
-      $data   = array();
+      $toshow   = json_decode($section[ '_panels_design_preview' ], true);
+      $data     = array();
+      $postmeta = get_post_meta(get_the_ID());
       // TODO: Will need to refine these to be based on content type
       if ($toshow[ 'title' ][ 'show' ]) {
         $data[ 'title' ] = get_the_title();
@@ -82,12 +83,17 @@
         $data[ 'meta' ][ 'authoremail' ]    = $encodedmail;
         $data[ 'meta' ][ 'comments-count' ] = get_comments_number();
       }
-
-      if ($toshow[ 'custom1' ][ 'show' ] ||
-          $toshow[ 'custom2' ][ 'show' ] ||
-          $toshow[ 'custom3' ][ 'show' ]
-      ) {
-        //TODO: Add custom content stuff
+//var_dump($postmeta);
+      //     var_dump($section);
+      $cfcount = $section[ '_panels_design_custom-fields-count' ];
+      for ($i = 1; $i <= $cfcount; $i++) {
+        // var_dump($section);
+        // the settings come from section
+        $data[ 'cfield' ][ $i ][ 'name' ]  = $section[ '_panels_design_cfield-' . $i . '-name' ];
+        $data[ 'cfield' ][ $i ][ 'group' ] = $section[ '_panels_design_cfield-' . $i . '-group' ];
+        // The content itself comes from post meta
+        $data[ 'cfield' ][ $i ][ 'value' ] = $postmeta[ $section[ '_panels_design_cfield-' . $i . '-name' ] ][ 0 ];
+        // TODO : Add other attributes
       }
 
       // NEVER include HTML in these, only should get WP values.
@@ -164,7 +170,7 @@
 //        $template[ $type ] = str_replace('{{' . $key . '}}', $value, $template[ $type ]);
 //      }
 
-      $panel_def[ $component ] = str_replace('{{using-bg-image}}', (!empty($data[ 'bgimage' ]) ? 'has-bgimage ' : 'no-bgimage '), $panel_def[ $component ]);
+   //   $panel_def[ $component ] = str_replace('{{using-bg-image}}', (!empty($data[ 'bgimage' ]) ? 'has-bgimage ' : 'no-bgimage '), $panel_def[ $component ]);
 
       return parent::process_generics($data, $panel_def[ $component ], $content_type, $section);
     }
@@ -217,9 +223,9 @@
             $panel_def[ $component ] = str_replace('{{authorname}}', $data[ 'meta' ][ 'authorname' ], $panel_def[ $component ]);
             $panel_def[ $component ] = str_replace('{{authorlink}}', $data[ 'meta' ][ 'authorlink' ], $panel_def[ $component ]);
             $panel_def[ $component ] = str_replace('{{authoremail}}', $data[ 'meta' ][ 'authoremail' ], $panel_def[ $component ]);
-            $panel_def[$component]= str_replace('//','',$panel_def[$component]);
+            $panel_def[ $component ] = str_replace('//', '', $panel_def[ $component ]);
           } else {
-            $panel_def[$component] = preg_replace("/\\/\\/(.)*\\/\\//uiUm", "", $panel_def[$component]);
+            $panel_def[ $component ] = preg_replace("/\\/\\/(.)*\\/\\//uiUm", "", $panel_def[ $component ]);
           }
           $panel_def[ $component ] = str_replace('{{categories}}', $data[ 'meta' ][ 'categories' ], $panel_def[ $component ]);
           $panel_def[ $component ] = str_replace('{{categorieslinks}}', $data[ 'meta' ][ 'categorieslinks' ], $panel_def[ $component ]);
@@ -377,8 +383,30 @@
   {
     public static function render($component, $panel_def, $content_type, &$data, &$section)
     {
-      // this only works for posts! need different rules for different types! :S
-      return parent::process_generics($data, $panel_def, $content_type, $section);
+
+      // TODO: Is this still relevant?
+      // This only works for posts! need different rules for different types! :S ???????????
+//      if (!empty($data[ $component ]['value'])){
+      // Show each custom field in this group
+
+      if (!empty($data[ 'cfield' ])) {
+        $panel_def_cfield = $panel_def[ 'cfield' ];
+        $build_field      = '';
+        foreach ($data[ 'cfield' ] as $k => $v) {
+          if ($v[ 'group' ] === $component && !empty($v[ 'value' ])) {
+            $panel_def_cfield = str_replace('{{cfieldcontent}}', $v[ 'value' ], $panel_def_cfield);
+            $panel_def_cfield = str_replace('{{cfieldname}}', $v[ 'name' ], $panel_def_cfield);
+            $build_field .= $panel_def_cfield;
+          }
+          $panel_def_cfield = $panel_def[ 'cfield' ];
+        }
+        $panel_def[ $component ] = str_replace('{{' . $component . 'innards}}', $build_field, $panel_def[ $component ]);
+      } else {
+        $panel_def[ $component ] = '';
+      }
+
+
+      return parent::process_generics($data, $panel_def[ $component ], $content_type, $section);
     }
 
   }

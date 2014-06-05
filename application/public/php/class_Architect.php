@@ -65,12 +65,11 @@
       require_once(PZARC_PLUGIN_APP_PATH . '/public/php/class_arc_Pagination.php');
       require_once PZARC_PLUGIN_APP_PATH . '/public/php/interface_arc_PanelDefinitions.php';
       if (!empty($this->build->blueprint[ 'blueprint-id' ])) {
-        $filename     = PZARC_CACHE_URL . '/pzarc-blueprints-layout-' . ($this->build->blueprint[ 'blueprint-id' ]) . '.css';
-        $filenamepath = PZARC_CACHE_PATH . '/pzarc-blueprints-layout-' . ($this->build->blueprint[ 'blueprint-id' ]) . '.css';
-        if (file_exists($filenamepath)) {
-          wp_enqueue_style('blueprint-css-' . $this->build->blueprint[ 'blueprint-id' ], $filename);
+        $filename     = 'pzarc-blueprints-layout-' . ($this->build->blueprint[ 'blueprint-id' ]) . '-' . $this->build->blueprint[ '_blueprints_short-name' ] . '.css';
+        if (file_exists(PZARC_CACHE_PATH . $filename)) {
+          wp_enqueue_style('blueprint-css-' . $this->build->blueprint[ 'blueprint-id' ], PZARC_CACHE_URL . $filename);
         } else {
-          echo '<p class="warning-msg">Oops! Could not find css cache file: ' . $filename . '</p>';
+          echo '<p class="message-warning">Oops! Could not find css cache file: ' . $filename . '</p>';
         }
       }
 
@@ -85,29 +84,58 @@
       do_action('arc_before_architect');
       do_action('arc_navigation_top');
       do_action('arc_navigation_left');
-      echo '<div class="pzarchitect pzarc-blueprint pzarc-blueprint_' . $this->build->blueprint[ '_blueprints_short-name' ] . '">';
+      echo '<div class="pzarchitect pzarc-blueprint pzarc-blueprint_' . $this->build->blueprint[ '_blueprints_short-name' ] . ' nav-'.$this->build->blueprint[ '_blueprints_navigation' ].'">';
       /*******************************/
-      $swiper               = array();
-      $swiper[ 'class' ]    = '';
-      $swiper[ 'dataid' ]   = '';
-      $swiper[ 'datatype' ] = '';
-      $swiper[ 'dataopts' ] = '';
-      $bpshortname        = $this->build->blueprint[ '_blueprints_short-name' ];
-      if ($this->build->blueprint[ '_blueprints_navigation' ] === 'navigator') {
-        $swiper[ 'class' ]  = ' swiper-container swiper-container-' . $bpshortname;
-        $swiper[ 'dataid' ] = ' data-swiperid="' . $this->build->blueprint[ '_blueprints_short-name' ] . '"';
-        if ($this->build->blueprint[ '_blueprints_navigator' ] === 'tabbed') {
-          $swiper[ 'dataopts' ] = " data-swiperopts=\"loop:true,mode:'horizontal',grabCursor: true, createPagination:false, paginationClickable: true,slidesPerView:'1',useCSS3Transforms:true,speed:2000\"";
-        } else {
-          $swiper[ 'dataopts' ] = " data-swiperopts=\"pagination: '.pzarc-navigator-" . $this->build->blueprint[ '_blueprints_short-name' ] . "',loop:true,mode:'horizontal',grabCursor: true, createPagination:true, paginationClickable: true,slidesPerView:'1',useCSS3Transforms:true,speed:2000\"";
-        }
-        $swiper[ 'datatype' ] = 'data-navtype=' . $this->build->blueprint[ '_blueprints_navigator' ];
-        echo '<a class="arrow-left" href="#"></a>';
-        echo '<a class="arrow-right" href="#"></a>';
+      switch ($this->build->blueprint[ '_blueprints_navigator-slider-engine' ]) {
+        case 'bxslider':
+          echo '<div class="pzarc-sections_' . $this->build->blueprint[ '_blueprints_short-name' ] . ' pzarc-is_' . $caller . '">';
+          break;
+        case 'swiper':
+          $swiper               = array();
+          $swiper[ 'class' ]    = '';
+          $swiper[ 'dataid' ]   = '';
+          $swiper[ 'datatype' ] = '';
+          $swiper[ 'dataopts' ] = '';
+          $bpshortname          = $this->build->blueprint[ '_blueprints_short-name' ];
+          if ($this->build->blueprint[ '_blueprints_navigation' ] === 'navigator') {
+            $swiper[ 'class' ]  = ' swiper-container swiper-container-' . $bpshortname;
+            $swiper[ 'dataid' ] = ' data-swiperid="' . $this->build->blueprint[ '_blueprints_short-name' ] . '"';
+            if ($this->build->blueprint[ '_blueprints_navigator' ] === 'tabbed') {
+              $swiper[ 'dataopts' ] = " data-swiperopts=\"
+                  loop:true,calculateHeight:true,
+                  mode:'horizontal',
+                  grabCursor: true,
+                  createPagination:false,
+                  paginationClickable: true,
+                  slidesPerView:'1',
+                  useCSS3Transforms:true,
+                  speed:2000
+                  \"";
+            } else {
+              $swiper[ 'dataopts' ] = " data-swiperopts=\"
+                  pagination: '.pzarc-navigator-" . $this->build->blueprint[ '_blueprints_short-name' ] . "',
+                  loop:true,
+                  calculateHeight:true,
+                  mode:'horizontal',
+                  grabCursor: true,
+                  createPagination:true,
+                  paginationClickable: true,
+                  slidesPerView:'1',
+                  useCSS3Transforms:true,
+                  speed:2000
+                  \"";
+            }
+            $swiper[ 'datatype' ] = 'data-navtype=' . $this->build->blueprint[ '_blueprints_navigator' ];
+            echo '<a class="pager arrow-left" href="#"></a>';
+            echo '<a class="pager arrow-right" href="#"></a>';
+          }
+          //TODO: Should the bp name be in the class or ID?
+          echo '<div class="pzarc-sections_' . $this->build->blueprint[ '_blueprints_short-name' ] . ' pzarc-is_' . $caller . $swiper[ 'class' ] . '"' . $swiper[ 'dataid' ] . $swiper[ 'dataopts' ] . $swiper[ 'datatype' ] . '>';
+          break;
+        default:
+          echo '<div class="pzarc-sections_' . $this->build->blueprint[ '_blueprints_short-name' ] . ' pzarc-is_' . $caller . '">';
+          break;
       }
-      //TODO: Should the bp name be in the class or ID?
-      echo '<div class="pzarc-sections_' . $this->build->blueprint[ '_blueprints_short-name' ] . ' pzarc-is_' . $caller . $swiper[ 'class' ] . '"' . $swiper[ 'dataid' ] . $swiper[ 'dataopts' ] . $swiper[ 'datatype' ] . '>';
-
       do_action('arcNavBeforeSection-{$bpshortname}');
       $this->arc      = array();
       $this->criteria = array();
@@ -152,15 +180,10 @@
       //TODO: Is it possible toshow the nav based on an action?
       do_action('arcNavAfterSection-{$bpshortname}');
       // NAVIGATION
-      if ($this->build->blueprint[ '_blueprints_navigation' ] === 'navigator' && $this->build->blueprint[ '_blueprints_navigator-location' ] === 'outside') {
-//        $this->arc[ 'navigator' ] = new arc_Navigator();
-        echo '<div class="pzarc-navigator ' . $this->build->blueprint[ '_blueprints_navigator' ] . ' pzarc-navigator-' . $this->build->blueprint[ '_blueprints_short-name' ] . '">';
-        if ($this->build->blueprint[ '_blueprints_navigator' ] === 'tabbed') {
-          foreach ($nav_items as $nav_item) {
-            echo '<span class="swiper-pagination-switch">' . $nav_item . '</span>';
-          }
-        }
-        echo '</div>';
+//      if ($this->build->blueprint[ '_blueprints_navigation' ] === 'navigator' && $this->build->blueprint[ '_blueprints_navigator-location' ] === 'outside') {
+      if ($this->build->blueprint[ '_blueprints_navigation' ] === 'navigator') {
+        $class                    = 'arc_Navigator_' . $this->build->blueprint[ '_blueprints_navigator' ];
+        $this->arc[ 'navigator' ] = new $class($this->build->blueprint, $nav_items);
       } elseif ($this->build->blueprint[ '_blueprints_navigation' ] == 'pagination' && $this->build->blueprint[ '_blueprints_pager' ] != 'none') {
         $class                     = 'arc_Pagination_' . $this->build->blueprint[ '_blueprints_pager' ];
         $this->arc[ 'pagination' ] = new $class;
@@ -175,6 +198,7 @@
         $this->arc[ 'pagination' ]->render();
       }
       echo '</div> <!-- end the whole lot-->';
+      // TODO:: Hmmm how we planning to use these?
       do_action('arc_navigation_right');
       do_action('arc_navigation_bottom');
       do_action('arc_after_architect');
@@ -186,20 +210,28 @@
      */
     private function loop($section_no)
     {
-
       $section[ $section_no ] = arc_SectionFactory::create($section_no,
                                                            $this->build->blueprint[ 'section' ][ ($section_no - 1) ],
                                                            $this->build->blueprint[ '_blueprints_content-source' ],
                                                            $this->build->blueprint[ '_blueprints_navigation' ],
-                                                           $this->build->blueprint[ '_blueprints_section-' . ($section_no - 1) . '-layout-mode' ]);
+                                                           $this->build->blueprint[ '_blueprints_section-' . ($section_no - 1) . '-layout-mode' ],
+                                                           $this->build->blueprint[ '_blueprints_navigator-slider-engine' ]);
 
       // oops! Need to get default content type when defaults chosen.
       $post_type = (empty($this->build->blueprint[ '_blueprints_content-source' ]) || 'defaults' === $this->build->blueprint[ '_blueprints_content-source' ] ?
           $this->arc_query->queried_object->post_type :
           $this->build->blueprint[ '_blueprints_content-source' ]);
       $class     = 'arc_PanelDef_' . $post_type;
-      if (empty($post_type)){ arc_msg('No post type specified','error');return null;}
-      if (!class_exists($class)){ arc_msg('Unknown post type '.$post_type,'error');return null;}
+      if (empty($post_type)) {
+        arc_msg('No post type specified', 'error');
+
+        return null;
+      }
+      if (!class_exists($class)) {
+        arc_msg('Unknown post type ' . $post_type, 'error');
+
+        return null;
+      }
       $panel_def = self::build_meta_definition($class::panel_def(), $this->build->blueprint[ 'section' ][ ($section_no - 1) ][ 'section-panel-settings' ]);
       $i         = 1;
       $nav_items = array();
@@ -209,6 +241,7 @@
         // TODO: This needs to be improved as only valid for posts!!
         $nav_items[ ] = get_the_title();
         $section[ $section_no ]->render_panel($panel_def, $i);
+
         if ($i++ >= $this->build->blueprint[ '_blueprints_section-' . ($section_no - 1) . '-panels-per-view' ]) {
           break;
         }
@@ -283,7 +316,7 @@
      */
     public function query($source, $overrides)
     {
-  //    pzdebug($source);
+      //    pzdebug($source);
       //build the new query
       $query_options = array();
       if ($this->build->blueprint[ '_blueprints_navigation' ] == 'pagination') {
@@ -320,7 +353,7 @@
         $query_options[ 'post__in' ]       = explode(',', $overrides);
         $query_options[ 'posts_per_page' ] = count($query_options[ 'post__in' ]);
       }
-  //    var_dump($query_options);
+      //    var_dump($query_options);
       $query = new WP_Query($query_options);
 
 //var_dump($query);
@@ -353,7 +386,7 @@
      */
     private function build_new_query($overrides)
     {
- //     var_dump($this->build->blueprint['_content_posts_inc-cats']);
+      //     var_dump($this->build->blueprint['_content_posts_inc-cats']);
       $prefix = '';
       switch ($this->build->blueprint[ '_blueprints_content-source' ]) {
         case 'post':
