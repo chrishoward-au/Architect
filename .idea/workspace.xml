@@ -2,13 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6a91661e-ac03-4c49-a442-2faea24b5b57" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/public/css/.sass-cache/dceb20a9fc4a1f730cc89393cb8f6c79e45f74bc/_panels.scssc" afterPath="$PROJECT_DIR$/application/public/css/.sass-cache/dceb20a9fc4a1f730cc89393cb8f6c79e45f74bc/_panels.scssc" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/public/css/.sass-cache/dceb20a9fc4a1f730cc89393cb8f6c79e45f74bc/_structure.scssc" afterPath="$PROJECT_DIR$/application/public/css/.sass-cache/dceb20a9fc4a1f730cc89393cb8f6c79e45f74bc/_structure.scssc" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/public/css/_panels.scss" afterPath="$PROJECT_DIR$/application/public/css/_panels.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/public/css/_structure.scss" afterPath="$PROJECT_DIR$/application/public/css/_structure.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/public/css/arc-front.css.map" afterPath="$PROJECT_DIR$/application/public/css/arc-front.css.map" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/public/css/arc-front.css" afterPath="$PROJECT_DIR$/application/public/css/arc-front.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config.codekit" afterPath="$PROJECT_DIR$/config.codekit" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/public/js/arc-front.js" afterPath="$PROJECT_DIR$/application/public/js/arc-front.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <list id="6bc53ef6-a4e7-48ed-9a91-cec0b69ebc38" name="Default task" comment="" />
@@ -64,7 +58,7 @@
       <file leaf-file-name="arc-public.php" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/application/arc-public.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="206" column="14" selection-start="7440" selection-end="7440" vertical-scroll-proportion="0.0" vertical-offset="2999" max-vertical-offset="4237">
+            <state line="206" column="14" selection-start="7440" selection-end="7440" vertical-scroll-proportion="0.0" vertical-offset="3914" max-vertical-offset="4237">
               <folding />
             </state>
           </provider>
@@ -73,7 +67,7 @@
       <file leaf-file-name="arc-admin.php" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/application/arc-admin.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="178" column="54" selection-start="8622" selection-end="8622" vertical-scroll-proportion="0.0" vertical-offset="969" max-vertical-offset="4465">
+            <state line="178" column="54" selection-start="8622" selection-end="8622" vertical-scroll-proportion="0.0" vertical-offset="3382" max-vertical-offset="4465">
               <folding />
             </state>
           </provider>
@@ -116,7 +110,7 @@
       <file leaf-file-name="arc-save-process.php" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/application/admin/php/arc-save-process.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="600" column="67" selection-start="28767" selection-end="28767" vertical-scroll-proportion="-2.5882354" vertical-offset="11268" max-vertical-offset="15010">
+            <state line="600" column="67" selection-start="28767" selection-end="28767" vertical-scroll-proportion="0.0" vertical-offset="11400" max-vertical-offset="15010">
               <folding />
             </state>
           </provider>
@@ -134,7 +128,7 @@
       <file leaf-file-name="arc-front.js" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/application/public/js/arc-front.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="29" column="0" selection-start="618" selection-end="618" vertical-scroll-proportion="-1.1860465" vertical-offset="1622" max-vertical-offset="2831">
+            <state line="120" column="35" selection-start="5353" selection-end="5353" vertical-scroll-proportion="0.70874864" vertical-offset="1640" max-vertical-offset="3154">
               <folding />
             </state>
           </provider>
@@ -161,7 +155,7 @@
       <file leaf-file-name="_structure.scss" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/application/public/css/_structure.scss">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="24" column="0" selection-start="573" selection-end="573" vertical-scroll-proportion="-18.24" vertical-offset="0" max-vertical-offset="1463">
+            <state line="24" column="0" selection-start="573" selection-end="573" vertical-scroll-proportion="0.0" vertical-offset="456" max-vertical-offset="1463">
               <folding />
             </state>
           </provider>
@@ -170,7 +164,7 @@
       <file leaf-file-name="arc-admin.scss" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/application/admin/css/arc-admin.scss">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="1232" column="0" selection-start="24441" selection-end="24441" vertical-scroll-proportion="0.0" vertical-offset="22247" max-vertical-offset="23522">
+            <state line="1232" column="0" selection-start="24441" selection-end="24441" vertical-scroll-proportion="0.0" vertical-offset="23408" max-vertical-offset="23522">
               <folding />
             </state>
           </provider>
@@ -216,7 +210,7 @@
       <file leaf-file-name="_panels.scss" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/application/public/css/_panels.scss">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="85" column="8" selection-start="1363" selection-end="1363" vertical-scroll-proportion="-7.08" vertical-offset="1438" max-vertical-offset="2717">
+            <state line="85" column="8" selection-start="1363" selection-end="1363" vertical-scroll-proportion="0.0" vertical-offset="1615" max-vertical-offset="2717">
               <folding />
             </state>
           </provider>
@@ -234,7 +228,7 @@
       <file leaf-file-name="_comms.scss" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/application/public/css/_comms.scss">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="16" column="1" selection-start="374" selection-end="374" vertical-scroll-proportion="-12.16" vertical-offset="0" max-vertical-offset="437">
+            <state line="16" column="1" selection-start="374" selection-end="374" vertical-scroll-proportion="0.0" vertical-offset="304" max-vertical-offset="437">
               <folding />
             </state>
           </provider>
@@ -243,7 +237,7 @@
       <file leaf-file-name="interface_arc_PanelDefinitions.php" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/application/public/php/interface_arc_PanelDefinitions.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="25" column="225" selection-start="968" selection-end="968" vertical-scroll-proportion="0.0" vertical-offset="855" max-vertical-offset="3629">
+            <state line="25" column="225" selection-start="968" selection-end="968" vertical-scroll-proportion="0.0" vertical-offset="475" max-vertical-offset="3629">
               <folding />
             </state>
           </provider>
@@ -319,7 +313,6 @@
         <option value="$PROJECT_DIR$/application/shared/architect/php/post_types/class_arc_posttype_post.php" />
         <option value="$PROJECT_DIR$/application/admin/js/arc-metaboxes-panels.js" />
         <option value="$PROJECT_DIR$/application/arc-public.php" />
-        <option value="$PROJECT_DIR$/application/public/js/arc-front.js" />
         <option value="$PROJECT_DIR$/application/public/php/class_arc_Navigator.php" />
         <option value="$PROJECT_DIR$/application/arc-admin.php" />
         <option value="$PROJECT_DIR$/application/admin/php/arc-options.php" />
@@ -336,6 +329,7 @@
         <option value="$PROJECT_DIR$/application/admin/php/arc-save-process.php" />
         <option value="$PROJECT_DIR$/application/public/css/_structure.scss" />
         <option value="$PROJECT_DIR$/application/public/css/_panels.scss" />
+        <option value="$PROJECT_DIR$/application/public/js/arc-front.js" />
       </list>
     </option>
   </component>
@@ -1127,8 +1121,8 @@
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39473686" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32962668" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.21246007" sideWeight="0.35805085" order="1" side_tool="true" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.21246007" sideWeight="0.6408898" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.21458998" sideWeight="0.35805085" order="1" side_tool="true" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.21458998" sideWeight="0.6408898" order="0" side_tool="false" content_ui="combo" />
       <window_info id="eSnippet Pro" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3295583" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -1159,11 +1153,11 @@
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3293011" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.12629071" sideWeight="0.35256916" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="eSnippet Pro" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3295583" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.12629071" sideWeight="0.6466403" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="eSnippet Pro" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3295583" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout-to-restore>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -1544,35 +1538,35 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/application/public/css/_comms.scss">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="16" column="1" selection-start="374" selection-end="374" vertical-scroll-proportion="-12.16" vertical-offset="0" max-vertical-offset="437">
+        <state line="16" column="1" selection-start="374" selection-end="374" vertical-scroll-proportion="0.0" vertical-offset="304" max-vertical-offset="437">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/application/admin/php/arc-save-process.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="600" column="67" selection-start="28767" selection-end="28767" vertical-scroll-proportion="-2.5882354" vertical-offset="11268" max-vertical-offset="15010">
+        <state line="600" column="67" selection-start="28767" selection-end="28767" vertical-scroll-proportion="0.0" vertical-offset="11400" max-vertical-offset="15010">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/application/public/css/_structure.scss">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="24" column="0" selection-start="573" selection-end="573" vertical-scroll-proportion="-18.24" vertical-offset="0" max-vertical-offset="1463">
+        <state line="24" column="0" selection-start="573" selection-end="573" vertical-scroll-proportion="0.0" vertical-offset="456" max-vertical-offset="1463">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/application/public/css/_panels.scss">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="85" column="8" selection-start="1363" selection-end="1363" vertical-scroll-proportion="-7.08" vertical-offset="1438" max-vertical-offset="2717">
+        <state line="85" column="8" selection-start="1363" selection-end="1363" vertical-scroll-proportion="0.0" vertical-offset="1615" max-vertical-offset="2717">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/application/public/js/arc-front.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="29" column="0" selection-start="618" selection-end="618" vertical-scroll-proportion="-1.1860465" vertical-offset="1622" max-vertical-offset="2831">
+        <state line="120" column="35" selection-start="5353" selection-end="5353" vertical-scroll-proportion="0.70874864" vertical-offset="1640" max-vertical-offset="3154">
           <folding />
         </state>
       </provider>

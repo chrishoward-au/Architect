@@ -93,22 +93,33 @@ jQuery( document ).ready( function ()
             console.log( JSON.parse( arcSwiperOpts ) );
 
             //TODO: Change this to full js using vars from data. Isn't that what we're essentially already doing? Yes, but this does it easier.
-                       var arcSwiper = jQuery( '.swiper-container.swiper-container-' + arcSwiperID ).swiper( JSON.parse( arcSwiperOpts ) );
-  //         var arcSwiper = jQuery( '.swiper-container.swiper-container-' + arcSwiperID ).swiper(  );
+            //                      var arcSwiper = jQuery( '.swiper-container.swiper-container-' + arcSwiperID ).swiper( JSON.parse( arcSwiperOpts ) );
+            var arcSwiper = jQuery( '.swiper-container.swiper-container-' + arcSwiperID ).swiper( {
+                loop:false,
+                calculateHeight:true,
+                cssWidthAndHeight:false,
+                mode:'horizontal',
+                grabCursor: true,
+                createPagination:false,
+                paginationClickable: true,
+                slidesPerView:'1',
+                useCSS3Transforms:true,
+                speed:2000
+            } );
 
 
-                var arcTabs = jQuery( ".pzarc-navigator span" );
-                arcTabs.on( 'touchstart mousedown', function ( e )
-                {
-                    e.preventDefault();
-                    jQuery( ".pzarc-navigator .active" ).removeClass( 'active' );
-                    jQuery( this ).addClass( 'active' );
-                    arcSwiper.swipeTo( jQuery( this ).index() );
-                } );
-                arcTabs.click( function ( e )
-                {
-                    e.preventDefault();
-                } );
+            var arcTabs = jQuery(  ".pzarc-navigator-"+arcSwiperID+" span" );
+            arcTabs.on( 'touchstart mousedown', function ( e )
+            {
+                e.preventDefault();
+                jQuery(  ".pzarc-navigator-"+arcSwiperID+" .active").removeClass( 'active' );
+                jQuery( this ).addClass( 'active' );
+                arcSwiper.swipeTo( jQuery( this ).index() );
+            } );
+            arcTabs.click( function ( e )
+            {
+                e.preventDefault();
+            } );
 
 
 //            if ( arcSwiperType === 'tabbed' )
@@ -126,15 +137,21 @@ jQuery( document ).ready( function ()
 //                    e.preventDefault();
 //                } );
 //            }
+
+            // Note: Rapid clicking doesn't queue the clicks. Some users may not like that
             jQuery( '.arrow-left' ).on( 'click', function ( e )
             {
                 e.preventDefault();
+                jQuery( ".pzarc-navigator-"+arcSwiperID+" .active" ).removeClass( 'active' );
                 arcSwiper.swipePrev();
+                jQuery(jQuery( ".pzarc-navigator-"+arcSwiperID+" span").get(arcSwiper.activeIndex)).addClass("active");
             } );
             jQuery( '.arrow-right' ).on( 'click', function ( e )
             {
                 e.preventDefault();
+                jQuery(  ".pzarc-navigator-"+arcSwiperID+" .active" ).removeClass( 'active' );
                 arcSwiper.swipeNext();
+                jQuery(jQuery( ".pzarc-navigator-"+arcSwiperID+" span" ).get(arcSwiper.activeIndex )).addClass("active");
             } );
 
         } // End if has ID
