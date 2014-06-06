@@ -36,6 +36,7 @@ jQuery( document ).ready( function ()
     {
         var arcSwiperID = jQuery( this ).attr( 'data-swiperid' );
         var arcSwiperType = jQuery( this ).attr( 'data-navtype' );
+        var arcSwiperVals = (jQuery( this ).attr( 'data-vals' ));
         var arcSwiperOpts = '';
         console.log( arcSwiperID, arcSwiperType );
         if ( null !== arcSwiperID )
@@ -89,8 +90,9 @@ jQuery( document ).ready( function ()
             arcSwiperOpts += ',"roundLengths":true';
 
             arcSwiperOpts = '{' + arcSwiperOpts + '}';
-            console.log( arcSwiperOpts );
-            console.log( JSON.parse( arcSwiperOpts ) );
+//            console.log( arcSwiperOpts );
+            console.log(  arcSwiperVals  );
+            console.log( JSON.parse( arcSwiperVals ) );
 
             //TODO: Change this to full js using vars from data. Isn't that what we're essentially already doing? Yes, but this does it easier.
             //                      var arcSwiper = jQuery( '.swiper-container.swiper-container-' + arcSwiperID ).swiper( JSON.parse( arcSwiperOpts ) );
@@ -104,9 +106,9 @@ jQuery( document ).ready( function ()
                 paginationClickable: true,
                 slidesPerView:'1',
                 useCSS3Transforms:true,
-                speed:2000
+                speed:arcSwiperVals[0],
+                autoplay:arcSwiperVals[1]
             } );
-
 
             var arcTabs = jQuery(  ".pzarc-navigator-"+arcSwiperID+" span" );
             arcTabs.on( 'touchstart mousedown', function ( e )

@@ -277,43 +277,54 @@ array(
     'title'    => __('Short name', 'pzarchitect') . '<span class="pzarc-required el-icon-star" title="Required"></span>',
     'hint'     => array('content' => __('A short name for this panel layout to identify it.', 'pzarchitect')),
     'type'     => 'text',
-    'validate' => 'not_empty'
+    'validate' => 'no_special_chars'
 ),
 array(
     'title'   => __('Panel Height Type', 'pzarchitect'),
     'id'      => $prefix . 'panel-height-type',
     'cols'    => 6,
     'type'    => 'button_set',
-    'default' => 'fluid',
+    'default' => 'height',
     'options' => array(
-        'fluid' => 'Fluid',
-        'fixed' => 'Fixed',
+        'height'     => 'Exact',
+        'max-height' => 'Max',
+        'min-height' => 'Min'
     ),
-    'hint'    => array('content' => __('Choose whether to set the height of the panels (fixed), or allow them to adjust to the content height (fluid).', 'pzarchitect'))
+    'hint'    => array('content' => __('Choose if you want an exact height or not for the panels. If you want totally fluid, choose Min, and a height of 0.', 'pzarchitect'))
 ),
 // Hmm? How's this gunna sit with the min-height in templates?
 // We will want to use this for image height cropping when behind.
 
 array(
-    'title'    => __('Panel Height px', 'pzarchitect'),
-    'id'       => $prefix . 'panel-height',
-    'type'     => 'dimensions',
-    'width'    => false,
-    'units'    => 'px',
-    'default'  => array('height' => '350'),
-    'hint'     => array('content' => __('If using fixed height, set height for the panel.', 'pzarchitect')),
-    'required' => array($prefix . 'panel-height-type', 'equals', 'fixed')
+    'title'   => __('Panel Height px', 'pzarchitect'),
+    'id'      => $prefix . 'panel-height',
+    'type'    => 'dimensions',
+    'width'   => false,
+    'units'   => 'px',
+    'default' => array('height' => '0'),
+    'hint'    => array('content' => __('Set a height for the panel according to the height type you chose.', 'pzarchitect')),
+
 ),
-array(
-    'title'    => __('Components Height px', 'pzarchitect'),
-    'id'       => $prefix . 'components-height',
-    'type'     => 'dimensions',
-    'width'    => false,
-    'units'    => 'px',
-    'default'  => array('height' => '100'),
-    'hint'     => array('content' => __('If using fixed height, set height for the components area.', 'pzarchitect')),
-    'required' => array($prefix . 'panel-height-type', 'equals', 'fixed')
-),
+//array(
+//    'title'    => __('Components min height px', 'pzarchitect'),
+//    'id'       => $prefix . 'components-height',
+//    'type'     => 'dimensions',
+//    'width'    => false,
+//    'units'    => 'px',
+//    'default'  => array('height' => '100'),
+//    'hint'     => array('content' => __('This prevents components shrinking too much on resizing of screen.', 'pzarchitect')),
+//    'required' => array($prefix . 'panel-height-type', 'equals', 'fixed')
+//),
+//array(
+//    'title'    => __('Components min width px', 'pzarchitect'),
+//    'id'       => $prefix . 'components-width',
+//    'type'     => 'dimensions',
+//    'height'    => false,
+//    'units'    => 'px',
+//    'default'  => array('false' => '100'),
+//    'hint'     => array('content' => __('This prevents components shrinking too much on resizing of screen.', 'pzarchitect')),
+//    'required' => array($prefix . 'panel-height-type', 'equals', 'fixed')
+//),
         )
     );
     $metaboxes[ ]  = array(
@@ -704,7 +715,7 @@ array(
     /**
      * IMAGES
      */
-    $sections[ ] = array(
+    $sections[ ]  = array(
         'title'      => 'Images',
         'icon_class' => 'icon-large',
         'icon'       => 'el-icon-picture',
@@ -867,105 +878,105 @@ array(
           ),
         )
     );
-    $thispostmeta = get_post_meta($_GET['post'],'_architect',true);
-    $cfcount = (!empty($thispostmeta['_panels_design_custom-fields-count'])?$thispostmeta['_panels_design_custom-fields-count']:0);
+    $thispostmeta = get_post_meta($_GET[ 'post' ], '_architect', true);
+    $cfcount      = (!empty($thispostmeta[ '_panels_design_custom-fields-count' ]) ? $thispostmeta[ '_panels_design_custom-fields-count' ] : 0);
     for ($i = 1; $i <= $cfcount; $i++) {
-      $cfname = 'Custom field '.$i.(!empty($thispostmeta['_panels_design_cfield-'.$i.'-name'])?': <br>'.$thispostmeta['_panels_design_cfield-'.$i.'-name']:'');
+      $cfname      = 'Custom field ' . $i . (!empty($thispostmeta[ '_panels_design_cfield-' . $i . '-name' ]) ? ': <br>' . $thispostmeta[ '_panels_design_cfield-' . $i . '-name' ] : '');
       $sections[ ] = array(
           'title'      => $cfname,
           'icon_class' => 'icon-large',
           'icon'       => 'el-icon-wrench',
           'desc'       => 'Note: Only fields with content will show.',
           'fields'     => array(
-            array(
-                'title'   => __('Show in custom field group', 'pzarchitect'),
-                'id'      => $prefix . 'cfield-' . $i.'-group',
-                'type'    => 'button_set',
-                'default' => 'custom1',
-                'options' => array('custom1' => 'Custom 1',
-                                   'custom2' => 'Custom 2',
-                                   'custom3' => 'Custom 3')
-            ),
-            array(
-                'title' => __('Field name', 'pzarchitect'),
-                'id'    => $prefix . 'cfield-' . $i.'-name',
-                'type'  => 'select',
-                'data'  => 'callback',
-                'args'  => array('pzarc_get_custom_fields'),
+              array(
+                  'title'   => __('Show in custom field group', 'pzarchitect'),
+                  'id'      => $prefix . 'cfield-' . $i . '-group',
+                  'type'    => 'button_set',
+                  'default' => 'custom1',
+                  'options' => array('custom1' => 'Custom 1',
+                                     'custom2' => 'Custom 2',
+                                     'custom3' => 'Custom 3')
+              ),
+              array(
+                  'title' => __('Field name', 'pzarchitect'),
+                  'id'    => $prefix . 'cfield-' . $i . '-name',
+                  'type'  => 'select',
+                  'data'  => 'callback',
+                  'args'  => array('pzarc_get_custom_fields'),
 
-            ),
-            array(
-                'title'   => __('Is image', 'pzarchitect'),
-                'id'      => $prefix . 'cfield-' . $i . '-is-image',
-                'type'    => 'switch',
-                'on'      => 'Yes',
-                'off'     => 'No',
-                'default' => false
+              ),
+              array(
+                  'title'   => __('Is image', 'pzarchitect'),
+                  'id'      => $prefix . 'cfield-' . $i . '-is-image',
+                  'type'    => 'switch',
+                  'on'      => 'Yes',
+                  'off'     => 'No',
+                  'default' => false
 
-            ),
-            array(
-                'title'    => __('Wrapper tag', 'pzarchitect'),
-                'id'       => $prefix . 'cfield-' . $i . '-wrapper-tag',
-                'type'     => 'select',
-                'default'  => 'p',
-                'options'  => array(
-                    'p'    => 'p',
-                    'div'  => 'div',
-                    'span' => 'span',
-                    'h1'   => 'h1',
-                    'h2'   => 'h2',
-                    'h3'   => 'h3',
-                    'h4'   => 'h4',
-                    'h5'   => 'h5',
-                    'h6'   => 'h6',
-                    'none' => 'None'),
-                'subtitle' => 'Select the wrapper element for this custom field'
+              ),
+              array(
+                  'title'    => __('Wrapper tag', 'pzarchitect'),
+                  'id'       => $prefix . 'cfield-' . $i . '-wrapper-tag',
+                  'type'     => 'select',
+                  'default'  => 'p',
+                  'options'  => array(
+                      'p'    => 'p',
+                      'div'  => 'div',
+                      'span' => 'span',
+                      'h1'   => 'h1',
+                      'h2'   => 'h2',
+                      'h3'   => 'h3',
+                      'h4'   => 'h4',
+                      'h5'   => 'h5',
+                      'h6'   => 'h6',
+                      'none' => 'None'),
+                  'subtitle' => 'Select the wrapper element for this custom field'
 
-            ),
-            array(
-                'title'    => __('Link field', 'pzarchitect'),
-                'id'       => $prefix . 'cfield-' . $i . '-link-field',
-                'type'     => 'select',
-                'data'     => 'callback',
-                'args'     => array('pzarc_get_custom_fields'),
-                'subtitle' => 'Select a custom field that contains URLs you want to use as the link',
-            ),
-            array(
-                'title' => __('Prefix text', 'pzarchitect'),
-                'id'    => $prefix . 'cfield-' . $i . '-prefix-text',
-                'type'  => 'text',
-            ),
-            array(
-                'title' => __('Prefix image', 'pzarchitect'),
-                'id'    => $prefix . 'cfield-' . $i . '-prefix-image',
-                'type'  => 'media',
-            ),
-            array(
-                'title' => __('Suffix text', 'pzarchitect'),
-                'id'    => $prefix . 'cfield-' . $i . '-suffix-text',
-                'type'  => 'text',
-            ),
-            array(
-                'title' => __('Suffix image', 'pzarchitect'),
-                'id'    => $prefix . 'cfield-' . $i . '-suffix-image',
-                'type'  => 'media',
-            ),
-            array(
-                'title'   => __('Images width', 'pzarchitect'),
-                'id'      => $prefix . 'cfield-' . $i . '-images-width',
-                'type'    => 'dimensions',
-                'height'  => false,
-                'default' => array('width' => '32px'),
-                'units'   => 'px'
-            ),
-            array(
-                'title'   => __('Images height', 'pzarchitect'),
-                'id'      => $prefix . 'cfield-' . $i . '-images-height',
-                'type'    => 'dimensions',
-                'width'   => false,
-                'default' => array('height' => '32px'),
-                'units'   => 'px'
-            ),
+              ),
+              array(
+                  'title'    => __('Link field', 'pzarchitect'),
+                  'id'       => $prefix . 'cfield-' . $i . '-link-field',
+                  'type'     => 'select',
+                  'data'     => 'callback',
+                  'args'     => array('pzarc_get_custom_fields'),
+                  'subtitle' => 'Select a custom field that contains URLs you want to use as the link',
+              ),
+              array(
+                  'title' => __('Prefix text', 'pzarchitect'),
+                  'id'    => $prefix . 'cfield-' . $i . '-prefix-text',
+                  'type'  => 'text',
+              ),
+              array(
+                  'title' => __('Prefix image', 'pzarchitect'),
+                  'id'    => $prefix . 'cfield-' . $i . '-prefix-image',
+                  'type'  => 'media',
+              ),
+              array(
+                  'title' => __('Suffix text', 'pzarchitect'),
+                  'id'    => $prefix . 'cfield-' . $i . '-suffix-text',
+                  'type'  => 'text',
+              ),
+              array(
+                  'title' => __('Suffix image', 'pzarchitect'),
+                  'id'    => $prefix . 'cfield-' . $i . '-suffix-image',
+                  'type'  => 'media',
+              ),
+              array(
+                  'title'   => __('Images width', 'pzarchitect'),
+                  'id'      => $prefix . 'cfield-' . $i . '-images-width',
+                  'type'    => 'dimensions',
+                  'height'  => false,
+                  'default' => array('width' => '32px'),
+                  'units'   => 'px'
+              ),
+              array(
+                  'title'   => __('Images height', 'pzarchitect'),
+                  'id'      => $prefix . 'cfield-' . $i . '-images-height',
+                  'type'    => 'dimensions',
+                  'width'   => false,
+                  'default' => array('height' => '32px'),
+                  'units'   => 'px'
+              ),
           )
       );
     }
@@ -1160,7 +1171,7 @@ array(
         ),
     );
 
-    $sections[ ] = array(
+    $sections[ ]  = array(
         'title'      => 'Meta',
         'show_title' => false,
         'icon_class' => 'icon-large',
@@ -1173,7 +1184,7 @@ array(
             pzarc_redux_links($prefix . 'entry-meta-font-links', array('.entry-meta a'), $defaults[ $optprefix . 'entry-meta-font-links' ])
         )
     );
-    $sections[ ] = array(
+    $sections[ ]  = array(
         'title'      => 'Content',
         'show_title' => false,
         'icon_class' => 'icon-large',
@@ -1196,7 +1207,7 @@ array(
             pzarc_redux_links($prefix . 'entry-readmore-font-links', array('a.readmore'), $defaults[ $optprefix . 'entry-readmore-font-links' ])
         )
     );
-    $sections[ ] = array(
+    $sections[ ]  = array(
         'title'      => 'Entry Featured image',
         'show_title' => false,
         'icon_class' => 'icon-large',
@@ -1258,10 +1269,10 @@ array(
             pzarc_redux_padding($prefix . 'entry-image-caption-font-padding', array('figure.entry-thumbnail span.caption'), $defaults[ $optprefix . 'entry-image-caption-font-margin' ])
         )
     );
-    $thispostmeta = get_post_meta($_GET['post'],'_architect',true);
-    $cfcount = (!empty($thispostmeta['_panels_design_custom-fields-count'])?$thispostmeta['_panels_design_custom-fields-count']:0);
+    $thispostmeta = get_post_meta($_GET[ 'post' ], '_architect', true);
+    $cfcount      = (!empty($thispostmeta[ '_panels_design_custom-fields-count' ]) ? $thispostmeta[ '_panels_design_custom-fields-count' ] : 0);
     for ($i = 1; $i <= $cfcount; $i++) {
-      $cfname = 'Custom field '.$i.(!empty($thispostmeta['_panels_design_cfield-'.$i.'-name'])?': <br>'.$thispostmeta['_panels_design_cfield-'.$i.'-name']:'');
+      $cfname      = 'Custom field ' . $i . (!empty($thispostmeta[ '_panels_design_cfield-' . $i . '-name' ]) ? ': <br>' . $thispostmeta[ '_panels_design_cfield-' . $i . '-name' ] : '');
       $sections[ ] = array(
           'title'      => $cfname,
           'show_title' => false,
@@ -1396,3 +1407,4 @@ array(
 
     return $return_html;
   }
+

@@ -6,9 +6,11 @@
    * Time: 1:57 PM
    */
 //add_action('pre_post_update','testx');
-  function testx($post){
+  function testx($post)
+  {
     var_dump($post);
   }
+
   //TODO: Dang it! It's doing that save twice problem again when i use this!!
 //  add_action('save_post_arc-panels', 'save_arc_layouts', 99,3);
 //  add_action('save_post_arc-blueprints', 'save_arc_layouts', 99,3);
@@ -17,7 +19,9 @@
   {
 //   var_dump($postid,$post, $update);
     // keep an eye on this to be sure it doesn't prevent some saves
-   if (!$update){return;}
+    if (!$update) {
+      return;
+    }
     $screen = get_current_screen();
     /*
      * $screen:
@@ -63,16 +67,16 @@
       $pzarc_settings = get_post_meta($postid, '_architect', true);
 //      var_dump($pzarc_settings,$post->post_type,$pzarc_settings['_blueprints_short-name']);
 
-      $pzarc_shortname = ($post->post_type === 'arc-panels'?$pzarc_settings['_panels_settings_short-name']:$pzarc_settings['_blueprints_short-name']);
-      $upload_dir = wp_upload_dir();
+      $pzarc_shortname = ($post->post_type === 'arc-panels' ? $pzarc_settings[ '_panels_settings_short-name' ] : $pzarc_settings[ '_blueprints_short-name' ]);
+      $upload_dir      = wp_upload_dir();
       $filename
-                  = trailingslashit($upload_dir[ 'basedir' ]) . '/cache/pizazzwp/arc/pz' . $post->post_type . '-layout-' . $postid . '-'.$pzarc_shortname.'.css';
+                       = trailingslashit($upload_dir[ 'basedir' ]) . '/cache/pizazzwp/arc/pz' . $post->post_type . '-layout-' . $postid . '-' . $pzarc_shortname . '.css';
       wp_mkdir_p(trailingslashit($upload_dir[ 'basedir' ]) . '/cache/pizazzwp/arc/');
 
       // Need to create the file contents
 
 ///pzdebug($filename);
-      $pzarc_contents = pzarc_create_css($postid, $post->post_type,$pzarc_settings);
+      $pzarc_contents = pzarc_create_css($postid, $post->post_type, $pzarc_settings);
 
 
 // by this point, the $wp_filesystem global should be working, so let's use it to create a file
@@ -97,7 +101,7 @@
    * @purpose: It is necessary to create the css files as they are imported separately. Redux can't handle that.
    *
    */
-  function pzarc_create_css($postid, $type = null,$pzarc_settings)
+  function pzarc_create_css($postid, $type = null, $pzarc_settings)
   {
 
     global $pzarchitect;
@@ -220,11 +224,11 @@
         foreach ($pzarc_panels as $key => $value) {
           switch (true) {
 
-            case ($key == '_panels_settings_panel-height'):
-              if ($pzarc_panels[ '_panels_settings_panel-height-type' ] === 'fixed') {
-                $pzarc_contents .= $class_prefix . ' {height:' . $value[ 'height' ] . ';}' . $nl;
-              }
-              break;
+//            case ($key == '_panels_settings_panel-height'):
+//              if ($pzarc_panels[ '_panels_settings_panel-height-type' ] === 'fixed') {
+//                $pzarc_contents .= $class_prefix . ' {height:' . $value[ 'height' ] . ';}' . $nl;
+//              }
+//              break;
 
             case ($key == '_panels_design_responsive-hide-content' && $pzarc_panels[ '_panels_design_responsive-hide-content' ] !== 'none'):
               $pzarc_contents .= '@media (max-width: ' . $_architect_options[ 'architect_breakpoint_' . $pzarc_panels[ '_panels_design_responsive-hide-content' ] ][ 'width' ] . ') { ' . $class_prefix . ' .entry-content, ' . $class_prefix . ' .entry-excerpt {display:none!important;}}' . $nl;
@@ -728,7 +732,7 @@
     $pzarc_mediaq_css = '';
     if (!empty($pzarc_blueprints[ '_blueprints_section-' . $i . '-panel-layout' ])) {
       // var_dump($pzarc_blueprints[ '_blueprints_section-' . $i . '-panel-layout' ]);
-      $pzarc_import_css .= '@import url("' . PZARC_CACHE_URL . '/pzarc-panels-layout-' . $panel_id . '-'.$pzarc_panels['_panels_settings_short-name'].'.css");' . $nl;
+      $pzarc_import_css .= '@import url("' . PZARC_CACHE_URL . '/pzarc-panels-layout-' . $panel_id . '-' . $pzarc_panels[ '_panels_settings_short-name' ] . '.css");' . $nl;
       $hmargin = $pzarc_blueprints[ '_blueprints_section-' . $i . '-panels-horiz-margin' ][ 'height' ];
 
       // Need to do this for each breakpoint
@@ -752,10 +756,9 @@
         $pzarc_mediaq_css .= '}' . $nl;
       }
 
-      if (!empty($pzarc_panels[ '_panels_settings_panel-height' ])) {
+//        // TODO: do we have to use the bg image height instead if it is set??
         $pzarc_panel_height = $pzarc_panels[ '_panels_settings_panel-height' ][ 'height' ];
-      }
-      $pzarc_mediaq_css .= '.pzarchitect .swiper-container.swiper-container-' . $pzarc_blueprints[ '_blueprints_short-name' ] . ' {max-height:' . $pzarc_panel_height . ';}' . $nl;
+        $pzarc_mediaq_css .= '.pzarchitect .swiper-container.swiper-container-' . $pzarc_blueprints[ '_blueprints_short-name' ] . ' {'.$pzarc_panels[ '_panels_settings_panel-height-type' ].':' . $pzarc_panel_height . ';}' . $nl;
 
 
     }

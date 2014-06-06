@@ -100,6 +100,7 @@
     position: relative;
   }
 
+  //when the bgimage is set to align, still use absolute as it sticks in the page flow!!
   figure.pzarc-bg-image {
     margin: 0;
     padding: 0;
@@ -109,19 +110,22 @@
     overflow: hidden;
     position: relative;
 
-    &.fill.trim  {
+    &.fill.trim {
       max-width: none;
       display: inline-block;
       right: -50%;
-      overflow:visible;
-    }
-    &.fill.trim  img {
-      max-width: none;
-      position: relative;
-      left: -50%;
+      overflow: visible;
+
+      img {
+        max-width: none;
+        position: relative;
+        left: -50%;
+      }
+
+
     }
 
-    &.fill.scale  img {
+    &.fill.scale img {
       max-width: 100%;
     }
 
@@ -131,6 +135,13 @@
       max-width: 100%;
 
     }
+    &.align {
+      position: absolute;
+      &.scale {
+        max-width: none;
+      }
+    }
+
   }
 }
 

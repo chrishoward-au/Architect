@@ -630,16 +630,16 @@
         'required'   => array('blueprints_navigation', 'equals', 'navigator'),
         'desc'       => 'When the navigation type is set to navigator, presentation will always be in a slider form.',
         'fields'     => array(
-            array(
-                'title'   => 'Slider engine',
-                'id'      => $prefix . 'navigator-slider-engine',
-                'type'    => 'button_set',
-                'default' => 'swiper',
-                'options' => array(
-                    'swiper'   => 'Swiper',
-                    'bxslider' => 'bxSlider'
-                )
-            ),
+//            array(
+//                'title'   => 'Slider engine',
+//                'id'      => $prefix . 'navigator-slider-engine',
+//                'type'    => 'button_set',
+//                'default' => 'swiper',
+//                'options' => array(
+//                    'swiper'   => 'Swiper',
+//                    'bxslider' => 'bxSlider'
+//                )
+//            ),
             array(
                 'id'      => $prefix . 'navigator',
                 'title'   => __('Type', 'pzarchitect'),
@@ -815,44 +815,56 @@
                 'type'  => 'section',
                 'class' => ' heading',
             ),
-            array(
-                'title'   => 'Type',
-                'id'      => $prefix . 'transitions-type',
-                'type'    => 'select',
-                'default' => 'none',
-                'select2' => array('allowClear' => false),
-                'options' => array(
-                    'none'  => 'None',
-                    'fade'  => 'Fade',
-                    'slide' => 'Slide',
-                )
-            ),
+            //TODO: Get the fader working!
+//            array(
+//                'title'   => 'Type',
+//                'id'      => $prefix . 'transitions-type',
+//                'type'    => 'select',
+//                'default' => 'none',
+//                'select2' => array('allowClear' => false),
+//                'options' => array(
+//                    'none'  => 'None',
+//                    'fade'  => 'Fade',
+//                    'slide' => 'Slide',
+//                )
+//            ),
             array(
                 'title'   => 'Duration (seconds)',
                 'id'      => $prefix . 'transitions-duration',
-                'type'    => 'spinner',
+                'type'    => 'slider',
+                'min'      => 0.5,
+                'max'      => 5,
+                'resolution' => 0.1,
+                'step'       => 0.5,
                 'hint'    => array('content' => __('Time taken for the transition to display', 'pzarchitect')),
                 'default' => 2,
+                'display_value' => 'label'
             ),
             array(
                 'title'   => 'Interval (seconds)',
                 'id'      => $prefix . 'transitions-interval',
-                'type'    => 'spinner',
+                'type'    => 'slider',
+                'resolution' => 0.1,
+                'step'       => 0.5,
                 'default' => 5,
-                'hint'    => array('content' => __('Time slide is shown with no transitions active.', 'pzarchitect')),
+                'min'      => 0,
+                'max'      => 60,
+                'display_value' => 'label',
+                'desc'=>__('Set to zero to disable autoplay','pzarchitect'),
+                'hint'    => array('content' => __('Time slide is shown with no transitions active. Set to zero to disable autoplay', 'pzarchitect')),
             ),
-            array(
-                'title'   => 'Auto start',
-                'id'      => $prefix . 'transitions-autostart',
-                'type'    => 'switch',
-                'default' => false,
-            ),
-            array(
-                'title'   => 'Pause on hover',
-                'id'      => $prefix . 'transitions-pause-on-hover',
-                'type'    => 'switch',
-                'default' => true,
-            ),
+//            array(
+//                'title'   => 'Auto start',
+//                'id'      => $prefix . 'transitions-autostart',
+//                'type'    => 'switch',
+//                'default' => false,
+//            ),
+//            array(
+//                'title'   => 'Pause on hover',
+//                'id'      => $prefix . 'transitions-pause-on-hover',
+//                'type'    => 'switch',
+//                'default' => true,
+//            ),
         )
     );
 //    $sections[ ] = array(

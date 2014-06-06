@@ -79,8 +79,8 @@
         default:
           $isotope = '';
       }
-      $image_in_bg = ($this->section[ 'section-panel-settings' ]['_panels_design_background-position']==='fill')?' using-bgimages':'';
-      echo '<div class="pzarc-panel pzarc-panel_' . $this->section[ 'section-panel-settings' ][ '_panels_settings_short-name' ] . ' pzarc-panel-no_' . $panel_number . $this->slider[ 'slide' ] . $image_in_bg.'" ' . $isotope . '>';
+      $image_in_bg = ($this->section[ 'section-panel-settings' ][ '_panels_design_background-position' ] === 'fill') ? ' using-bgimages' : ($this->section[ 'section-panel-settings' ][ '_panels_design_background-position' ] === 'align') ? ' using-aligned-bgimages' : '';
+      echo '<div class="pzarc-panel pzarc-panel_' . $this->section[ 'section-panel-settings' ][ '_panels_settings_short-name' ] . ' pzarc-panel-no_' . $panel_number . $this->slider[ 'slide' ] . $image_in_bg . '" ' . $isotope . '>';
       // Although this loks back to front, this is determining flow compared to components
 
       if ($this->section[ 'section-panel-settings' ][ '_panels_design_background-position' ] != 'none' && ($this->section[ 'section-panel-settings' ][ '_panels_design_components-position' ] == 'bottom' || $this->section[ 'section-panel-settings' ][ '_panels_design_components-position' ] == 'right')) {

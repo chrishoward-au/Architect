@@ -65,7 +65,7 @@
       require_once(PZARC_PLUGIN_APP_PATH . '/public/php/class_arc_Pagination.php');
       require_once PZARC_PLUGIN_APP_PATH . '/public/php/interface_arc_PanelDefinitions.php';
       if (!empty($this->build->blueprint[ 'blueprint-id' ])) {
-        $filename     = 'pzarc-blueprints-layout-' . ($this->build->blueprint[ 'blueprint-id' ]) . '-' . $this->build->blueprint[ '_blueprints_short-name' ] . '.css';
+        $filename = 'pzarc-blueprints-layout-' . ($this->build->blueprint[ 'blueprint-id' ]) . '-' . $this->build->blueprint[ '_blueprints_short-name' ] . '.css';
         if (file_exists(PZARC_CACHE_PATH . $filename)) {
           wp_enqueue_style('blueprint-css-' . $this->build->blueprint[ 'blueprint-id' ], PZARC_CACHE_URL . $filename);
         } else {
@@ -84,57 +84,42 @@
       do_action('arc_before_architect');
       do_action('arc_navigation_top');
       do_action('arc_navigation_left');
-      echo '<div class="pzarchitect pzarc-blueprint pzarc-blueprint_' . $this->build->blueprint[ '_blueprints_short-name' ] . ' nav-'.$this->build->blueprint[ '_blueprints_navigation' ].'">';
+      echo '<div class="pzarchitect pzarc-blueprint pzarc-blueprint_' . $this->build->blueprint[ '_blueprints_short-name' ] . ' nav-' . $this->build->blueprint[ '_blueprints_navigation' ] . '">';
       /*******************************/
-      switch ($this->build->blueprint[ '_blueprints_navigator-slider-engine' ]) {
-        case 'bxslider':
-          echo '<div class="pzarc-sections_' . $this->build->blueprint[ '_blueprints_short-name' ] . ' pzarc-is_' . $caller . '">';
-          break;
-        case 'swiper':
-          $swiper               = array();
-          $swiper[ 'class' ]    = '';
-          $swiper[ 'dataid' ]   = '';
-          $swiper[ 'datatype' ] = '';
-          $swiper[ 'dataopts' ] = '';
-          $bpshortname          = $this->build->blueprint[ '_blueprints_short-name' ];
-          if ($this->build->blueprint[ '_blueprints_navigation' ] === 'navigator') {
-            $swiper[ 'class' ]  = ' swiper-container swiper-container-' . $bpshortname;
-            $swiper[ 'dataid' ] = ' data-swiperid="' . $this->build->blueprint[ '_blueprints_short-name' ] . '"';
-            if ($this->build->blueprint[ '_blueprints_navigator' ] === 'tabbed') {
-              $swiper[ 'dataopts' ] = " data-swiperopts=\"
-                  loop:true,calculateHeight:true,
-                  mode:'horizontal',
-                  grabCursor: true,
-                  createPagination:false,
-                  paginationClickable: true,
-                  slidesPerView:'1',
-                  useCSS3Transforms:true,
-                  speed:2000
-                  \"";
-            } else {
-              $swiper[ 'dataopts' ] = " data-swiperopts=\"
-                  pagination: '.pzarc-navigator-" . $this->build->blueprint[ '_blueprints_short-name' ] . "',
-                  loop:true,
-                  calculateHeight:true,
-                  mode:'horizontal',
-                  grabCursor: true,
-                  createPagination:true,
-                  paginationClickable: true,
-                  slidesPerView:'1',
-                  useCSS3Transforms:true,
-                  speed:2000
-                  \"";
-            }
-            $swiper[ 'datatype' ] = 'data-navtype=' . $this->build->blueprint[ '_blueprints_navigator' ];
-            echo '<a class="pager arrow-left" href="#"></a>';
-            echo '<a class="pager arrow-right" href="#"></a>';
-          }
-          //TODO: Should the bp name be in the class or ID?
-          echo '<div class="pzarc-sections_' . $this->build->blueprint[ '_blueprints_short-name' ] . ' pzarc-is_' . $caller . $swiper[ 'class' ] . '"' . $swiper[ 'dataid' ] . $swiper[ 'dataopts' ] . $swiper[ 'datatype' ] . '>';
-          break;
-        default:
-          echo '<div class="pzarc-sections_' . $this->build->blueprint[ '_blueprints_short-name' ] . ' pzarc-is_' . $caller . '">';
-          break;
+//      switch ($this->build->blueprint[ '_blueprints_navigator-slider-engine' ]) {
+//        case 'bxslider':
+//          echo '<div class="pzarc-sections_' . $this->build->blueprint[ '_blueprints_short-name' ] . ' pzarc-is_' . $caller . '">';
+//          break;
+//        case 'swiper':
+      if ($this->build->blueprint[ '_blueprints_navigation' ] === 'navigator') {
+        $swiper               = array();
+        $swiper[ 'class' ]    = '';
+        $swiper[ 'dataid' ]   = '';
+        $swiper[ 'datatype' ] = '';
+        $swiper[ 'dataopts' ] = '';
+        $bpshortname          = $this->build->blueprint[ '_blueprints_short-name' ];
+        if ($this->build->blueprint[ '_blueprints_navigation' ] === 'navigator') {
+          $swiper[ 'class' ]    = ' swiper-container swiper-container-' . $bpshortname;
+          $swiper[ 'dataid' ]   = ' data-swiperid="' . $this->build->blueprint[ '_blueprints_short-name' ] . '"';
+          $duration             = $this->build->blueprint[ '_blueprints_transitions-duration' ] * 1000;
+          $interval             = $this->build->blueprint[ '_blueprints_transitions-interval' ] * 1000;
+          $swiper[ 'datatype' ] = 'data-navtype="' . $this->build->blueprint[ '_blueprints_navigator' ] . '"';
+//          $swiper[ 'datavals' ] = "[['duration',$duration],['interval',$interval]]";
+
+//THIS WORKS!          $swiper['datavals']= 'data-vals="['.$duration.','.$interval.']"';
+          $swiper['datavals']= 'data-vals="['.$duration.','.$interval.']"';
+
+
+          echo '<a class="pager arrow-left" href="#"></a>';
+          echo '<a class="pager arrow-right" href="#"></a>';
+        }
+//          //TODO: Should the bp name be in the class or ID?
+        echo '<div class="pzarc-sections_' . $this->build->blueprint[ '_blueprints_short-name' ] . ' pzarc-is_' . $caller . $swiper[ 'class' ] . '"' . $swiper[ 'dataid' ] . $swiper[ 'datatype' ] . $swiper[ 'datavals' ] . '>';
+//          break;
+//        default:
+      } else {
+        echo '<div class="pzarc-sections_' . $this->build->blueprint[ '_blueprints_short-name' ] . ' pzarc-is_' . $caller . '">';
+//          break;
       }
       do_action('arcNavBeforeSection-{$bpshortname}');
       $this->arc      = array();
