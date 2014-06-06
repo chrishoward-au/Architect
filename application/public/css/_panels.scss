@@ -76,14 +76,15 @@
 
   &.using-bgimages {
     .pzarc-components {
-      position: relative;
+      position: absolute;
       z-index: 1;
     }
-    article + img {
-      position: absolute;
-      top: 0;
-      left: 0;
-      z-index: -1;
+
+    > figure {
+      position: relative;
+      //top: 0;
+      //left: 0;
+      z-index: 0;
     }
   }
 
@@ -99,6 +100,38 @@
     position: relative;
   }
 
+  figure.pzarc-bg-image {
+    margin: 0;
+    padding: 0;
+    max-width: 100%;
+    height: auto;
+    z-index: 0;
+    overflow: hidden;
+    position: relative;
+
+    &.fill.trim  {
+      max-width: none;
+      display: inline-block;
+      right: -50%;
+      overflow:visible;
+    }
+    &.fill.trim  img {
+      max-width: none;
+      position: relative;
+      left: -50%;
+    }
+
+    &.fill.scale  img {
+      max-width: 100%;
+    }
+
+    img {
+      display: block;
+      height: auto;
+      max-width: 100%;
+
+    }
+  }
 }
 
 

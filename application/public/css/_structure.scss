@@ -22,38 +22,7 @@
   height:100%;
 }
 
-.pzarc-bg-image {
-  margin: 0;
-  padding: 0;
-  max-width: 100%;
-  height: auto;
-  z-index: 0;
-  overflow: hidden;
-  position: relative;
 
-  &.fill.trim {
-    max-width: none;
-    display: inline-block;
-    right: -50%;
-    overflow:visible;
-  }
-  &.fill.trim img {
-    max-width: none;
-    position: relative;
-    left: -50%;
-  }
-
-  &.fill.scale img {
-    max-width: 100%;
-  }
-
-  img {
-    display: block;
-    height: auto;
-    max-width: 100%;
-
-  }
-}
 
 .pzarc-pager {
   display: table;
