@@ -45,18 +45,18 @@
       return;
     }
     $actions_options = get_option('_architect_actions');
-    $actions = array();
-    $i = 1;
+    $actions         = array();
+    $i               = 1;
     foreach ($actions_options as $k => $v) {
-      if ($k != 'last_tab'){
-        $actions[$i][$k]=$v;
+      if ($k != 'last_tab') {
+        $actions[ $i ][ $k ] = $v;
       }
-      if ($k == 'architect_actions_'.$i.'_pageids'){
+      if ($k == 'architect_actions_' . $i . '_pageids') {
         $i++;
       }
     }
     foreach ($actions as $k => $v) {
-      new showBlueprint($v['architect_actions_'.$k.'_action-name'],$v['architect_actions_'.$k.'_blueprint'],'home');
+      new showBlueprint($v[ 'architect_actions_' . $k . '_action-name' ], $v[ 'architect_actions_' . $k . '_blueprint' ], 'home');
     }
     //   require_once PZARC_PLUGIN_PATH . '/admin/php/arc-options.php';
   }
@@ -97,7 +97,7 @@
     return apply_filters('arc_filter_shortcode', $pzout, $pzarc_blueprint, $pzarc_overrides);
   }
 
-  add_shortcode('pzarc', 'pzarc_shortcode');
+  add_shortcode('architect', 'pzarc_shortcode');
   // I still don't understand why this works!! One day, maybe I will
   add_action('arc_do_shortcode', 'pzarc', 10, 3);
 
@@ -127,10 +127,6 @@
     global $wp_query;
     $original_query = $wp_query;
     $is_shortcode   = ($caller == 'shortcode');
-    if ($is_shortcode) {
-      // This was just in testing!!
-      // remove_shortcode('pzarc');
-    }
     if (empty($blueprint)) {
       // TODO: Should we make this use a set of defaults. prob an excerpt grid
       echo '<p class="message-warning">You need to set a blueprint</p>';
@@ -142,41 +138,55 @@
       $architect = new Architect($blueprint, $is_shortcode);
       if (empty($architect->build->blueprint[ 'err_msg' ])) {
 
-        $architect->build($overrides, $caller);
+
+        $architect->build_blueprint($overrides, $caller);
 
         wp_reset_postdata(); // Pretty sure this goes here... Not after the query reassignment
 
-        //restore original query
+        // Fix up $wp_query in case we changed it
+        $wp_query = null;
         $wp_query = $original_query;
+
 
         /* These lines from ExcerptsPlus */
         // removed after null prob fixed. may need to be reinstated one day
         // Reinstated after conflict with breadcrumbs and related posts plugin
         //Added 11/8/13 so can display multiple blocks on single post page with single post's content
-        // TODO: rewind_posts causes recursion if in main loop so need to determine when it is needed. Be aware it still might cause problems used here
-        if (!is_main_query()) {
-          // i.e. when is this necessary???????
-          ////       rewind_posts();
-        } else {
-          // Trying to break out of the main loop!
-          if ($wp_query->current_post == -1) {
-            //WTF? Shouldn't pointer have moved?
-//            $wp_query->next_post();
-            // Doing this nudges things, believe it or not!
-            // Solves a few problems: 1) Recursion (but only if in this if), 2) template tag not resetting main loop
-            $wp_query->have_posts();
 
-            // TODO: Be interesting to see what other havoc this is going to cause!
-            // eg when multiple posts have shortcodes and are showing full content
-          }
+        // TODO: We mighthave to check these!!
+        //  public 'is_single' => boolean false
+        //  public 'is_preview' => boolean false
+        //  public 'is_page' => boolean true
+        //  public 'is_archive' => boolean false
+        //  public 'is_date' => boolean false
+        //  public 'is_year' => boolean false
+        //  public 'is_month' => boolean false
+        //  public 'is_day' => boolean false
+        //  public 'is_time' => boolean false
+        //  public 'is_author' => boolean false
+        //  public 'is_category' => boolean false
+        //  public 'is_tag' => boolean false
+        //  public 'is_tax' => boolean false
+        //  public 'is_search' => boolean false
+        //  public 'is_feed' => boolean false
+        //  public 'is_comment_feed' => boolean false
+        //  public 'is_trackback' => boolean false
+        //  public 'is_home' => boolean false
+        //  public 'is_404' => boolean false
+        //  public 'is_comments_popup' => boolean false
+        //  public 'is_paged' => boolean false
+        //  public 'is_admin' => boolean false
+        //  public 'is_attachment' => boolean false
+        //  public 'is_singular' => boolean true
+        //  public 'is_robots' => boolean false
+        //  public 'is_posts_page' => boolean false
+        //  public 'is_post_type_archive' => boolean false
 
+        // might need this... don't know
+        if (is_main_query() || in_the_loop() || $caller === 'shortcode') {
         }
-
+        unset ($architect);
       }
-
-//      new pzarc_Display($pzarc_blueprint, $pzarc_blueprint_object, $pzarc_overrides, $pzarc_is_shortcode);
-      unset ($architect);
-//    return $pzarc->output;
     }
   }
 

@@ -14,6 +14,23 @@
       // This overrides the one in the parent class
 
       if (is_admin()) {
+        global $pzarc_panels_array;
+        $args = array(
+            'posts_per_page'   => -1,
+            'orderby'          => 'title',
+            'order'            => 'ASC',
+            'post_type'        => 'arc-panels',
+            'suppress_filters' => true);
+
+        $pzarc_panels       = get_posts($args);
+        $pzarc_panels_array = array();
+        if (!empty($pzarc_panels)) {
+          foreach ($pzarc_panels as $pzarc_cell) {
+            $pzarc_panels_array[ $pzarc_cell->ID ] = (empty($pzarc_cell->post_title) ? 'No title' : $pzarc_cell->post_title);
+          }
+        } else {
+          $pzarc_panels_array = array(0 => 'No cell layouts. Create some.');
+        }
 
         add_action('admin_head', array($this, 'content_blueprints_admin_head'));
         add_action('admin_enqueue_scripts', array($this, 'content_blueprints_admin_enqueue'));
@@ -60,12 +77,13 @@
     public function add_blueprint_columns($columns)
     {
       unset($columns[ 'thumbnail' ]);
-      $pzarc_front = array_slice($columns, 0, 2);
-      $pzarc_back  = array_slice($columns, 2);
-      $pzarc_insert
-                   = array
-      (
-          '_blueprints_short-name' => __('Blueprint short name', 'pzsp'),
+      $pzarc_front  = array_slice($columns, 0, 2);
+      $pzarc_back   = array_slice($columns, 2);
+      $pzarc_insert = array(
+          '_blueprints_short-name'     => __('Blueprint short name', 'pzarchitect'),
+          'panels'                     => __('Panels', 'pzarchitect'),
+          '_blueprints_content-source' => __('Content source', 'pzarchitect'),
+          'navigation'                 => __('Navigation', 'pzarchitect'),
       );
 
       return array_merge($pzarc_front, $pzarc_insert, $pzarc_back);
@@ -78,13 +96,39 @@
      */
     public function add_blueprint_column_content($column, $post_id)
     {
+
       $post_meta = get_post_meta($post_id, '_architect', true);
-//      switch ($column)
-//      {
-//        case '_blueprints_short-name':
-      echo $post_meta[ $column ];
-//          break;
-//      }
+      switch ($column) {
+        case '_blueprints_short-name':
+          echo $post_meta[ $column ];
+          break;
+        case '_blueprints_content-source':
+          echo ucwords(empty($post_meta[ $column ]) ? 'default' : $post_meta[ $column ]);
+          break;
+        case 'navigation':
+          switch (true) {
+            case empty($post_meta[ '_blueprints_navigation' ]):
+            case $post_meta[ '_blueprints_navigation' ] === 'none':
+              echo 'None';
+              break;
+            case $post_meta[ '_blueprints_navigation' ] === 'pagination':
+              echo 'Pagination : ' . ucwords(empty($post_meta[ '_blueprints_pager' ]) ? 'Prev/Next' : $post_meta[ '_blueprints_pager' ]);
+              break;
+            case $post_meta[ '_blueprints_navigation' ] === 'navigator':
+              echo "Navigator : " . ucwords(empty($post_meta[ '_blueprints_navigator' ]) ? 'Tabbed' : $post_meta[ '_blueprints_navigator' ]);
+              break;
+          }
+          break;
+        case 'panels':
+          global $pzarc_panels_array;
+          echo $pzarc_panels_array[ $post_meta[ '_blueprints_section-0-panel-layout' ] ];
+          if (!empty($post_meta[ '_blueprints_section-1-panel-layout' ])) {
+            echo '<br>' . $pzarc_panels_array[ $post_meta[ '_blueprints_section-1-panel-layout' ] ];
+          }
+          if (!empty($post_meta[ '_blueprints_section-2-panel-layout' ])) {
+            echo '<br>' . $pzarc_panels_array[ $post_meta[ '_blueprints_section-2-panel-layout' ] ];
+          }
+      }
     }
 
     /**
@@ -432,22 +476,26 @@
     $prefix   = '_blueprints_';
     $sections = array();
     global $_architect_options;
-    $args = array(
-        'posts_per_page'   => -1,
-        'orderby'          => 'title',
-        'order'            => 'ASC',
-        'post_type'        => 'arc-panels',
-        'suppress_filters' => true);
+    global $pzarc_panels_array;
+    if (empty($pzarc_panels_array)) {
+      $args = array(
+          'posts_per_page'   => -1,
+          'orderby'          => 'title',
+          'order'            => 'ASC',
+          'post_type'        => 'arc-panels',
+          'suppress_filters' => true);
 
-    $pzarc_panels       = get_posts($args);
-    $pzarc_panels_array = array();
-    if (!empty($pzarc_panels)) {
-      foreach ($pzarc_panels as $pzarc_cell) {
-        $pzarc_panels_array[ $pzarc_cell->ID ] = (empty($pzarc_cell->post_title) ? 'No title' : $pzarc_cell->post_title);
+      $pzarc_panels       = get_posts($args);
+      $pzarc_panels_array = array();
+      if (!empty($pzarc_panels)) {
+        foreach ($pzarc_panels as $pzarc_cell) {
+          $pzarc_panels_array[ $pzarc_cell->ID ] = (empty($pzarc_cell->post_title) ? 'No title' : $pzarc_cell->post_title);
+        }
+      } else {
+        $pzarc_panels_array = array(0 => 'No cell layouts. Create some.');
       }
-    } else {
-      $pzarc_panels_array = array(0 => 'No cell layouts. Create some.');
     }
+
     // ID,post_title
     $icons = array(0 => 'el-icon-align-left', 1 => 'el-icon-th', 2 => 'el-icon-th-list');
     for ($i = 0; $i < 3; $i++) {
@@ -592,15 +640,21 @@
         'fields'     => array(
 
             array(
+                'title'    => __('Warning', 'pzarchitect'),
+                'id'       => $prefix . 'pager-info',
+                'type'     => 'info',
+                'subtitle' => __('You should never display more than one pagination element on a page as pagination reloads the page and will therefore affect all paginated content.', 'pzarchitect')
+            ),
+            array(
                 'id'      => $prefix . 'pager',
                 'title'   => __('Pagination', 'pzarchitect'),
                 'type'    => 'button_set',
-                'default' => 'none',
+                'default' => 'prevnext',
                 'options' => array(
-                    'none'     => 'None',
-                    'names'    => 'Post names',
-                    'prevnext' => 'Previous/Next',
-                    'pagenavi' => 'PageNavi',
+//                    'none'     => 'None',
+'prevnext' => 'Previous/Next',
+'names'    => 'Post names',
+'pagenavi' => 'PageNavi',
                 )
             ),
             array(
@@ -628,243 +682,243 @@
         'icon_class' => 'icon-large',
         'icon'       => 'el-icon-play-circle',
         'required'   => array('blueprints_navigation', 'equals', 'navigator'),
-        'desc'       => 'When the navigation type is set to navigator, presentation will always be in a slider form.',
+        'desc'       => 'When the navigation type is set to navigator, presentation will always be in a slider form. You can have multiple navigators on a page, thus multiple sliders.',
         'fields'     => array(
-//            array(
-//                'title'   => 'Slider engine',
-//                'id'      => $prefix . 'navigator-slider-engine',
-//                'type'    => 'button_set',
-//                'default' => 'swiper',
-//                'options' => array(
-//                    'swiper'   => 'Swiper',
-//                    'bxslider' => 'bxSlider'
-//                )
-//            ),
-            array(
-                'id'      => $prefix . 'navigator',
-                'title'   => __('Type', 'pzarchitect'),
-                'type'    => 'image_select',
-                'default' => 'tabbed',
-                'hint'    => array('content' => __('Tabbed, accordion, buttons, bullets, numbers, thumbnails', 'pzarchitect')),
-                'height'  => 75,
-                'options' => array(
-                    'tabbed'  => array(
-                        'alt' => 'Tabbed',
-                        'img' => PZARC_PLUGIN_APP_URL . 'shared/assets/images/metaboxes/nav-type-tabbed.png'
-                    ),
-                    // TODO: Add these beta2
-                    //                    'accordion' => array(
-                    //                        'alt' => 'Accordion',
-                    //                        'img' => PZARC_PLUGIN_APP_URL . 'shared/assets/images/metaboxes/nav-type-accordion.png'
-                    //                    ),
-                    //                    'buttons'   => array(
-                    //                        'alt' => 'Buttons',
-                    //                        'img' => PZARC_PLUGIN_APP_URL . 'shared/assets/images/metaboxes/nav-type-buttons.png'
-                    //                    ),
-                    'bullets' => array(
-                        'alt' => 'Bullets',
-                        'img' => PZARC_PLUGIN_APP_URL . 'shared/assets/images/metaboxes/nav-type-bullets.png'
-                    ),
-                    'numbers' => array(
-                        'alt' => 'Numbers',
-                        'img' => PZARC_PLUGIN_APP_URL . 'shared/assets/images/metaboxes/nav-type-numeric.png'
-                    ),
-                    'thumbs'  => array(
-                        'alt' => 'Thumbs',
-                        'img' => PZARC_PLUGIN_APP_URL . 'shared/assets/images/metaboxes/nav-type-thumbs.png'
-                    ),
-                )
-            ),
-            array(
-                'title'    => 'Position',
-                'id'       => $prefix . 'navigator-position',
-                'type'     => 'image_select',
-                'default'  => 'bottom',
-                'hint'     => array('content' => __('Bottom, top,left, right', 'pzarchitect')),
-                'height'   => 75,
-                'options'  => array(
-                    'bottom' => array(
-                        'alt' => 'Bottom',
-                        'img' => PZARC_PLUGIN_APP_URL . 'shared/assets/images/metaboxes/nav-pos-bottom.png'
-                    ),
-                    'top'    => array(
-                        'alt' => 'Top',
-                        'img' => PZARC_PLUGIN_APP_URL . 'shared/assets/images/metaboxes/nav-pos-top.png'
-                    ),
-                    // TODO: Add these beta2
-                    //                    'left'   => array(
-                    //                        'alt' => 'Left',
-                    //                        'img' => PZARC_PLUGIN_APP_URL . 'shared/assets/images/metaboxes/nav-pos-left.png'
-                    //                    ),
-                    //                    'right'  => array(
-                    //                        'alt' => 'Right',
-                    //                        'img' => PZARC_PLUGIN_APP_URL . 'shared/assets/images/metaboxes/nav-pos-right.png'
-                    //                    ),
-                ),
-                'required' => array(
-                    array($prefix . 'navigator', '!=', 'accordion'),
-                )
-            ),
-            array(
-                'title'    => 'Location',
-                'id'       => $prefix . 'navigator-location',
-                'hint'     => array('content' => __('Select whether navigator should appear over the content area, or outside of it', 'pzarchitect')),
-                'type'     => 'image_select',
-                'default'  => 'outside',
-                'height'   => 75,
-                'options'  => array(
-                    'inside'  => array(
-                        'alt' => 'Inside',
-                        'img' => PZARC_PLUGIN_APP_URL . 'shared/assets/images/metaboxes/nav-loc-inside.png'
-                    ),
-                    'outside' => array(
-                        'alt' => 'Outside',
-                        'img' => PZARC_PLUGIN_APP_URL . 'shared/assets/images/metaboxes/nav-loc-outside.png'
-                    ),
-                ),
-                'required' => array(
-                    array($prefix . 'navigator', '!=', 'accordion'),
-                    array($prefix . 'navigator', '!=', 'tabbed'),
-                    array($prefix . 'navigator', '!=', 'thumbs'),
-                )
+          //            array(
+          //                'title'   => 'Slider engine',
+          //                'id'      => $prefix . 'navigator-slider-engine',
+          //                'type'    => 'button_set',
+          //                'default' => 'swiper',
+          //                'options' => array(
+          //                    'swiper'   => 'Swiper',
+          //                    'bxslider' => 'bxSlider'
+          //                )
+          //            ),
+          array(
+              'id'      => $prefix . 'navigator',
+              'title'   => __('Type', 'pzarchitect'),
+              'type'    => 'image_select',
+              'default' => 'tabbed',
+              'hint'    => array('content' => __('Tabbed, accordion, buttons, bullets, numbers, thumbnails', 'pzarchitect')),
+              'height'  => 75,
+              'options' => array(
+                  'tabbed'  => array(
+                      'alt' => 'Tabbed',
+                      'img' => PZARC_PLUGIN_APP_URL . 'shared/assets/images/metaboxes/nav-type-tabbed.png'
+                  ),
+                  // TODO: Add these beta2
+                  //                    'accordion' => array(
+                  //                        'alt' => 'Accordion',
+                  //                        'img' => PZARC_PLUGIN_APP_URL . 'shared/assets/images/metaboxes/nav-type-accordion.png'
+                  //                    ),
+                  //                    'buttons'   => array(
+                  //                        'alt' => 'Buttons',
+                  //                        'img' => PZARC_PLUGIN_APP_URL . 'shared/assets/images/metaboxes/nav-type-buttons.png'
+                  //                    ),
+                  'bullets' => array(
+                      'alt' => 'Bullets',
+                      'img' => PZARC_PLUGIN_APP_URL . 'shared/assets/images/metaboxes/nav-type-bullets.png'
+                  ),
+                  'numbers' => array(
+                      'alt' => 'Numbers',
+                      'img' => PZARC_PLUGIN_APP_URL . 'shared/assets/images/metaboxes/nav-type-numeric.png'
+                  ),
+                  'thumbs'  => array(
+                      'alt' => 'Thumbs',
+                      'img' => PZARC_PLUGIN_APP_URL . 'shared/assets/images/metaboxes/nav-type-thumbs.png'
+                  ),
+              )
+          ),
+          array(
+              'title'    => 'Position',
+              'id'       => $prefix . 'navigator-position',
+              'type'     => 'image_select',
+              'default'  => 'bottom',
+              'hint'     => array('content' => __('Bottom, top,left, right', 'pzarchitect')),
+              'height'   => 75,
+              'options'  => array(
+                  'bottom' => array(
+                      'alt' => 'Bottom',
+                      'img' => PZARC_PLUGIN_APP_URL . 'shared/assets/images/metaboxes/nav-pos-bottom.png'
+                  ),
+                  'top'    => array(
+                      'alt' => 'Top',
+                      'img' => PZARC_PLUGIN_APP_URL . 'shared/assets/images/metaboxes/nav-pos-top.png'
+                  ),
+                  // TODO: Add these beta2
+                  //                    'left'   => array(
+                  //                        'alt' => 'Left',
+                  //                        'img' => PZARC_PLUGIN_APP_URL . 'shared/assets/images/metaboxes/nav-pos-left.png'
+                  //                    ),
+                  //                    'right'  => array(
+                  //                        'alt' => 'Right',
+                  //                        'img' => PZARC_PLUGIN_APP_URL . 'shared/assets/images/metaboxes/nav-pos-right.png'
+                  //                    ),
+              ),
+              'required' => array(
+                  array($prefix . 'navigator', '!=', 'accordion'),
+              )
+          ),
+          array(
+              'title'    => 'Location',
+              'id'       => $prefix . 'navigator-location',
+              'hint'     => array('content' => __('Select whether navigator should appear over the content area, or outside of it', 'pzarchitect')),
+              'type'     => 'image_select',
+              'default'  => 'outside',
+              'height'   => 75,
+              'options'  => array(
+                  'inside'  => array(
+                      'alt' => 'Inside',
+                      'img' => PZARC_PLUGIN_APP_URL . 'shared/assets/images/metaboxes/nav-loc-inside.png'
+                  ),
+                  'outside' => array(
+                      'alt' => 'Outside',
+                      'img' => PZARC_PLUGIN_APP_URL . 'shared/assets/images/metaboxes/nav-loc-outside.png'
+                  ),
+              ),
+              'required' => array(
+                  array($prefix . 'navigator', '!=', 'accordion'),
+                  array($prefix . 'navigator', '!=', 'tabbed'),
+                  array($prefix . 'navigator', '!=', 'thumbs'),
+              )
 
-            ),
-            array(
-                'title'    => 'Horizontal alignment',
-                'id'       => $prefix . 'navigator-align',
-                'type'     => 'button_set',
-                'default'  => 'center',
-                'options'  => array(
-                    'left'   => 'Left',
-                    'center' => 'Centre',
-                    'right'  => 'Right'
-                ),
-                'required' => array(
-                    array($prefix . 'navigator', '!=', 'accordion'),
-                    array($prefix . 'navigator', '!=', 'buttons'),
-                    array($prefix . 'navigator', '!=', 'thumbs'),
-                    array($prefix . 'navigator-position', '!=', 'left'),
-                    array($prefix . 'navigator-position', '!=', 'right')
-                )
-            ),
-            // TODO: Add these beta2
-            //            array(
-            //                'title'    => 'Vertical width',
-            //                'id'       => $prefix . 'navigator-vertical-width',
-            //                'type'     => 'dimensions',
-            //                'default'  => array('width' => '10%'),
-            //                'height'   => false,
-            //                'units'    => '%',
-            //                'required' => array(
-            //                    array($prefix . 'navigator', '!=', 'accordion'),
-            //                    array($prefix . 'navigator-position', '!=', 'top'),
-            //                    array($prefix . 'navigator-position', '!=', 'bottom')
-            //                )
-            //            ),
-            array(
-                'title'    => 'Bullet shape',
-                'id'       => $prefix . 'navigator-bullet-shape',
-                'type'     => 'button_set',
-                'default'  => 'circle',
-                'options'  => array(
-                    'circle' => 'Circle',
-                    'square' => 'Square',
-                ),
-                'required' => array(
-                    array($prefix . 'navigator', 'equals', 'bullets'),
-                )
-            ),
-            array(
-                'title'   => 'Sizing',
-                'id'      => $prefix . 'navigator-sizing',
-                'type'    => 'button_set',
-                'default' => 'small',
-                'options' => array(
-                    'small'  => 'Small',
-                    'medium' => 'Medium',
-                    'large'  => 'Large'
-                ),
-            ),
-            array(
-                'title'    => 'Pager',
-                'id'       => $prefix . 'navigator-pager',
-                'type'     => 'button_set',
-                'cols'     => 6,
-                'default'  => 'none',
-                'options'  => array(
-                    'none'   => 'None',
-                    'hover'  => 'Hover over panels',
-                    'inline' => 'Inline with navigator',
-                    'both'   => 'Both'
-                ),
-                'required' => array(
-                    array($prefix . 'navigator', '!=', 'accordion'),
-                )
-            ),
-            // TODO: Notsure this is necessary
-            //            array(
-            //                'id'       => $prefix . 'navigator-items-visible',
-            //                'title'    => __('Navigator items visible', 'pzarchitect'),
-            //                'type'     => 'spinner',
-            //                'default'  => 5,
-            //                'subtitle' => 'If zero, it will use the "Panels to show" value. This is the number of items visible in the navigator bar. NOTE: This is also the number of items skipped by multi-skip pager element of the inline pager.'
-            //            ),
-            array(
-                'title' => __('Transitions', 'pzarchitect'),
-                'id'    => $prefix . 'section-transitions-heading',
-                'type'  => 'section',
-                'class' => ' heading',
-            ),
-            //TODO: Get the fader working!
-//            array(
-//                'title'   => 'Type',
-//                'id'      => $prefix . 'transitions-type',
-//                'type'    => 'select',
-//                'default' => 'none',
-//                'select2' => array('allowClear' => false),
-//                'options' => array(
-//                    'none'  => 'None',
-//                    'fade'  => 'Fade',
-//                    'slide' => 'Slide',
-//                )
-//            ),
-            array(
-                'title'   => 'Duration (seconds)',
-                'id'      => $prefix . 'transitions-duration',
-                'type'    => 'slider',
-                'min'      => 0.5,
-                'max'      => 5,
-                'resolution' => 0.1,
-                'step'       => 0.5,
-                'hint'    => array('content' => __('Time taken for the transition to display', 'pzarchitect')),
-                'default' => 2,
-                'display_value' => 'label'
-            ),
-            array(
-                'title'   => 'Interval (seconds)',
-                'id'      => $prefix . 'transitions-interval',
-                'type'    => 'slider',
-                'resolution' => 0.1,
-                'step'       => 0.5,
-                'default' => 5,
-                'min'      => 0,
-                'max'      => 60,
-                'display_value' => 'label',
-                'desc'=>__('Set to zero to disable autoplay','pzarchitect'),
-                'hint'    => array('content' => __('Time slide is shown with no transitions active. Set to zero to disable autoplay', 'pzarchitect')),
-            ),
-//            array(
-//                'title'   => 'Auto start',
-//                'id'      => $prefix . 'transitions-autostart',
-//                'type'    => 'switch',
-//                'default' => false,
-//            ),
-//            array(
-//                'title'   => 'Pause on hover',
-//                'id'      => $prefix . 'transitions-pause-on-hover',
-//                'type'    => 'switch',
-//                'default' => true,
-//            ),
+          ),
+          array(
+              'title'    => 'Horizontal alignment',
+              'id'       => $prefix . 'navigator-align',
+              'type'     => 'button_set',
+              'default'  => 'center',
+              'options'  => array(
+                  'left'   => 'Left',
+                  'center' => 'Centre',
+                  'right'  => 'Right'
+              ),
+              'required' => array(
+                  array($prefix . 'navigator', '!=', 'accordion'),
+                  array($prefix . 'navigator', '!=', 'buttons'),
+                  array($prefix . 'navigator', '!=', 'thumbs'),
+                  array($prefix . 'navigator-position', '!=', 'left'),
+                  array($prefix . 'navigator-position', '!=', 'right')
+              )
+          ),
+          // TODO: Add these beta2
+          //            array(
+          //                'title'    => 'Vertical width',
+          //                'id'       => $prefix . 'navigator-vertical-width',
+          //                'type'     => 'dimensions',
+          //                'default'  => array('width' => '10%'),
+          //                'height'   => false,
+          //                'units'    => '%',
+          //                'required' => array(
+          //                    array($prefix . 'navigator', '!=', 'accordion'),
+          //                    array($prefix . 'navigator-position', '!=', 'top'),
+          //                    array($prefix . 'navigator-position', '!=', 'bottom')
+          //                )
+          //            ),
+          array(
+              'title'    => 'Bullet shape',
+              'id'       => $prefix . 'navigator-bullet-shape',
+              'type'     => 'button_set',
+              'default'  => 'circle',
+              'options'  => array(
+                  'circle' => 'Circle',
+                  'square' => 'Square',
+              ),
+              'required' => array(
+                  array($prefix . 'navigator', 'equals', 'bullets'),
+              )
+          ),
+          array(
+              'title'   => 'Sizing',
+              'id'      => $prefix . 'navigator-sizing',
+              'type'    => 'button_set',
+              'default' => 'small',
+              'options' => array(
+                  'small'  => 'Small',
+                  'medium' => 'Medium',
+                  'large'  => 'Large'
+              ),
+          ),
+          array(
+              'title'    => 'Pager',
+              'id'       => $prefix . 'navigator-pager',
+              'type'     => 'button_set',
+              'cols'     => 6,
+              'default'  => 'none',
+              'options'  => array(
+                  'none'   => 'None',
+                  'hover'  => 'Hover over panels',
+                  'inline' => 'Inline with navigator',
+                  'both'   => 'Both'
+              ),
+              'required' => array(
+                  array($prefix . 'navigator', '!=', 'accordion'),
+              )
+          ),
+          // TODO: Notsure this is necessary
+          //            array(
+          //                'id'       => $prefix . 'navigator-items-visible',
+          //                'title'    => __('Navigator items visible', 'pzarchitect'),
+          //                'type'     => 'spinner',
+          //                'default'  => 5,
+          //                'subtitle' => 'If zero, it will use the "Panels to show" value. This is the number of items visible in the navigator bar. NOTE: This is also the number of items skipped by multi-skip pager element of the inline pager.'
+          //            ),
+          array(
+              'title' => __('Transitions', 'pzarchitect'),
+              'id'    => $prefix . 'section-transitions-heading',
+              'type'  => 'section',
+              'class' => ' heading',
+          ),
+          //TODO: Get the fader working!
+          //            array(
+          //                'title'   => 'Type',
+          //                'id'      => $prefix . 'transitions-type',
+          //                'type'    => 'select',
+          //                'default' => 'none',
+          //                'select2' => array('allowClear' => false),
+          //                'options' => array(
+          //                    'none'  => 'None',
+          //                    'fade'  => 'Fade',
+          //                    'slide' => 'Slide',
+          //                )
+          //            ),
+          array(
+              'title'         => 'Duration (seconds)',
+              'id'            => $prefix . 'transitions-duration',
+              'type'          => 'slider',
+              'min'           => 0.5,
+              'max'           => 5,
+              'resolution'    => 0.1,
+              'step'          => 0.5,
+              'hint'          => array('content' => __('Time taken for the transition to display', 'pzarchitect')),
+              'default'       => 2,
+              'display_value' => 'label'
+          ),
+          array(
+              'title'         => 'Interval (seconds)',
+              'id'            => $prefix . 'transitions-interval',
+              'type'          => 'slider',
+              'resolution'    => 0.1,
+              'step'          => 0.5,
+              'default'       => 5,
+              'min'           => 0,
+              'max'           => 60,
+              'display_value' => 'label',
+              'desc'          => __('Set to zero to disable autoplay', 'pzarchitect'),
+              'hint'          => array('content' => __('Time slide is shown with no transitions active. Set to zero to disable autoplay', 'pzarchitect')),
+          ),
+          //            array(
+          //                'title'   => 'Auto start',
+          //                'id'      => $prefix . 'transitions-autostart',
+          //                'type'    => 'switch',
+          //                'default' => false,
+          //            ),
+          //            array(
+          //                'title'   => 'Pause on hover',
+          //                'id'      => $prefix . 'transitions-pause-on-hover',
+          //                'type'    => 'switch',
+          //                'default' => true,
+          //            ),
         )
     );
 //    $sections[ ] = array(
@@ -1174,7 +1228,7 @@
         )
     );
     //Pages
-    $prefix = '_content_pages_';
+    $prefix      = '_content_pages_';
     $sections[ ] = array(
         'title'      => 'Pages',
         'icon_class' => 'icon-large',
@@ -1189,7 +1243,7 @@
         )
     );
     //Snippets
-    $prefix = '_content_snippets_';
+    $prefix      = '_content_snippets_';
     $sections[ ] = array(
         'title'      => 'Snippets',
         'icon_class' => 'icon-large',

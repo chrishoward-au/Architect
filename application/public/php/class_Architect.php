@@ -33,7 +33,7 @@
     private $arc_query;
     private $is_shortcode;
     private $criteria = array();
-
+    private $backup_wp_query;
 
     /**
      * @param $blueprint
@@ -79,7 +79,7 @@
     /**
      * @param $overrides
      */
-    public function build($overrides, $caller)
+    public function build_blueprint($overrides, $caller)
     {
       do_action('arc_before_architect');
       do_action('arc_navigation_top');
@@ -96,25 +96,22 @@
         $swiper[ 'class' ]    = '';
         $swiper[ 'dataid' ]   = '';
         $swiper[ 'datatype' ] = '';
-        $swiper[ 'dataopts' ] = '';
         $bpshortname          = $this->build->blueprint[ '_blueprints_short-name' ];
         if ($this->build->blueprint[ '_blueprints_navigation' ] === 'navigator') {
           $swiper[ 'class' ]    = ' swiper-container swiper-container-' . $bpshortname;
           $swiper[ 'dataid' ]   = ' data-swiperid="' . $this->build->blueprint[ '_blueprints_short-name' ] . '"';
+          $swiper[ 'datatype' ] = 'data-navtype="' . $this->build->blueprint[ '_blueprints_navigator' ] . '"';
+
           $duration             = $this->build->blueprint[ '_blueprints_transitions-duration' ] * 1000;
           $interval             = $this->build->blueprint[ '_blueprints_transitions-interval' ] * 1000;
-          $swiper[ 'datatype' ] = 'data-navtype="' . $this->build->blueprint[ '_blueprints_navigator' ] . '"';
-//          $swiper[ 'datavals' ] = "[['duration',$duration],['interval',$interval]]";
-
-//THIS WORKS!          $swiper['datavals']= 'data-vals="['.$duration.','.$interval.']"';
-          $swiper['datavals']= 'data-vals="['.$duration.','.$interval.']"';
+          $swiper[ 'dataopts' ] = 'data-opts="{#tduration#:' . $duration . ',#tinterval#:' . $interval . '}"';
 
 
           echo '<a class="pager arrow-left" href="#"></a>';
           echo '<a class="pager arrow-right" href="#"></a>';
         }
 //          //TODO: Should the bp name be in the class or ID?
-        echo '<div class="pzarc-sections_' . $this->build->blueprint[ '_blueprints_short-name' ] . ' pzarc-is_' . $caller . $swiper[ 'class' ] . '"' . $swiper[ 'dataid' ] . $swiper[ 'datatype' ] . $swiper[ 'datavals' ] . '>';
+        echo '<div class="pzarc-sections_' . $this->build->blueprint[ '_blueprints_short-name' ] . ' pzarc-is_' . $caller . $swiper[ 'class' ] . '"' . $swiper[ 'dataid' ] . $swiper[ 'datatype' ] . $swiper[ 'dataopts' ] . '>';
 //          break;
 //        default:
       } else {
@@ -125,23 +122,17 @@
       $this->arc      = array();
       $this->criteria = array();
 
-      $this->criteria[ 'panels_to_show' ] = $this->build->blueprint[ '_blueprints_section-0-panels-per-view' ];
-
+      $this->criteria[ 'panels_to_show' ] = $this->build->blueprint[ '_blueprints_section-0-panels-per-view' ] +
+          ((int)$this->build->blueprint[ '_blueprints_section-1-enable' ] * $this->build->blueprint[ '_blueprints_section-1-panels-per-view' ]) +
+          ((int)$this->build->blueprint[ '_blueprints_section-2-enable' ] * $this->build->blueprint[ '_blueprints_section-2-panels-per-view' ]);
       // hmm? if nopaging is true, it returns all records. Do we ever need that? Maybe we could manage pagination ourself then?!
       // $this->criteria[ 'nopaging' ] = ($this->build->blueprint['_blueprints_navigation']=='none');
 
       $this->criteria[ 'ignore_sticky_posts' ] = !$this->build->blueprint[ '_blueprints_sticky' ];
       $this->criteria[ 'offset' ]              = $this->build->blueprint[ '_blueprints_skip' ];
 
-      $do_section_2 = ($this->build->blueprint[ 'section' ][ 1 ][ 'section-enable' ] && $this->build->blueprint[ '_blueprints_navigation' ] != 'navigator');
-      if ($do_section_2) {
-        $this->criteria[ 'panels_to_show' ] .= $this->build->blueprint[ '_blueprints_section-1-panels-per-view' ];
-      }
-
-      $do_section_3 = ($this->build->blueprint[ 'section' ][ 2 ][ 'section-enable' ] && $this->build->blueprint[ '_blueprints_navigation' ] != 'navigator');
-      if ($do_section_3) {
-        $this->criteria[ 'panels_to_show' ] .= $this->build->blueprint[ '_blueprints_section-2-panels-per-view' ];
-      }
+      $do_section_2 = ($this->build->blueprint[ '_blueprints_section-1-enable' ] && $this->build->blueprint[ '_blueprints_navigation' ] != 'navigator');
+      $do_section_3 = ($this->build->blueprint[ '_blueprints_section-2-enable' ] && $this->build->blueprint[ '_blueprints_navigation' ] != 'navigator');
 
 
       // TODO: Are all these 'self's too un-oop?
@@ -190,53 +181,6 @@
 
     }
 
-    /**
-     * @param $section_no
-     */
-    private function loop($section_no)
-    {
-      $section[ $section_no ] = arc_SectionFactory::create($section_no,
-                                                           $this->build->blueprint[ 'section' ][ ($section_no - 1) ],
-                                                           $this->build->blueprint[ '_blueprints_content-source' ],
-                                                           $this->build->blueprint[ '_blueprints_navigation' ],
-                                                           $this->build->blueprint[ '_blueprints_section-' . ($section_no - 1) . '-layout-mode' ],
-                                                           $this->build->blueprint[ '_blueprints_navigator-slider-engine' ]);
-
-      // oops! Need to get default content type when defaults chosen.
-      $post_type = (empty($this->build->blueprint[ '_blueprints_content-source' ]) || 'defaults' === $this->build->blueprint[ '_blueprints_content-source' ] ?
-          $this->arc_query->queried_object->post_type :
-          $this->build->blueprint[ '_blueprints_content-source' ]);
-      $class     = 'arc_PanelDef_' . $post_type;
-      if (empty($post_type)) {
-        arc_msg('No post type specified', 'error');
-
-        return null;
-      }
-      if (!class_exists($class)) {
-        arc_msg('Unknown post type ' . $post_type, 'error');
-
-        return null;
-      }
-      $panel_def = self::build_meta_definition($class::panel_def(), $this->build->blueprint[ 'section' ][ ($section_no - 1) ][ 'section-panel-settings' ]);
-      $i         = 1;
-      $nav_items = array();
-      // Does this work for non
-      while ($this->arc_query->have_posts()) {
-        $this->arc_query->the_post();
-        // TODO: This needs to be improved as only valid for posts!!
-        $nav_items[ ] = get_the_title();
-        $section[ $section_no ]->render_panel($panel_def, $i);
-
-        if ($i++ >= $this->build->blueprint[ '_blueprints_section-' . ($section_no - 1) . '-panels-per-view' ]) {
-          break;
-        }
-      }
-
-      // Unsetting causes it to run the destruct, which closes the div!
-      unset($section[ $section_no ]);
-
-      return $nav_items;
-    }
 
     /*************************************************
      *
@@ -292,79 +236,6 @@
 
       return $panel_def;
     }
-
-    /**
-     * @param $source
-     * @param $this ->criteria
-     * @param $overrides
-     * @return WP_Query
-     */
-    public function query($source, $overrides)
-    {
-      //    pzdebug($source);
-      //build the new query
-      $query_options = array();
-      if ($this->build->blueprint[ '_blueprints_navigation' ] == 'pagination') {
-        $query_options[ 'nopaging' ] = false;
-      } else {
-        $query[ 'nopaging' ] = $this->criteria[ 'nopaging' ];
-      }
-
-      $query_options[ 'posts_per_page' ]      = $this->criteria[ 'panels_to_show' ];
-      $query_options[ 'ignore_sticky_posts' ] = $this->criteria[ 'ignore_sticky_posts' ];
-      $query_options[ 'offset' ]              = $this->criteria[ 'offset' ];
-
-      //Lot of work!
-      //     pzdebug($this->criteria);
-      switch ($source) {
-
-        case 'post':
-//          var_dump($this->criteria[ '_content_posts_inc-cats']);
-          $query_options[ 'post_type' ]    = 'post';
-          $query_options[ 'category__in' ] = (!empty($this->criteria[ '_content_posts_inc-cats' ])
-              ? $this->criteria[ '_content_posts_inc-cats' ] : null);
-          break;
-        // could we build this into the panel def or somewhere else so more closely tied to the content type stuff
-        case 'gallery':
-          $query_options[ 'post_type' ]           = 'attachment';
-          $query_options[ 'post__in' ]            = (!empty($this->criteria[ 'content_galleries-specific-images' ])
-              ? $this->criteria[ 'content_galleries-specific-images' ] : null);
-          $query_options[ 'post_status' ]         = array('publish', 'inherit', 'private');
-          $query_options[ 'ignore_sticky_posts' ] = true;
-          break;
-      }
-// currently this is the only bit that really does anything
-      if ($overrides) {
-        $query_options[ 'post__in' ]       = explode(',', $overrides);
-        $query_options[ 'posts_per_page' ] = count($query_options[ 'post__in' ]);
-      }
-      //    var_dump($query_options);
-      $query = new WP_Query($query_options);
-
-//var_dump($query);
-      return $query;
-    }
-
-    /**
-     * @param $this ->criteria
-     */
-    private function use_default_query()
-    {
-      global $wp_query;
-      $this->arc_query = $wp_query;
-      // This may not do anything since the query may not update!
-      // need to set nopaging too
-//      pzdebug($this->build->blueprint[ '_blueprints_navigation' ]);
-//      pzdebug($this->criteria);
-// //     var_dump($this->query);
-      if ($this->build->blueprint[ '_blueprints_navigation' ] == 'pagination') {
-        $this->arc_query->query_vars[ 'nopaging' ] = false;
-      } else {
-        $this->arc_query->query_vars[ 'nopaging' ] = $this->criteria[ 'nopaging' ];
-      }
-      $this->arc_query->query_vars[ 'posts_per_page' ] = $this->criteria[ 'panels_to_show' ];
-    }
-
     /**
      * @param $this ->criteria
      * @param $overrides
@@ -398,7 +269,145 @@
       $this->arc_query = self::query($this->build->blueprint[ '_blueprints_content-source' ], $overrides);
 
     }
+    /**
+     * @param $this ->criteria
+     */
+    private function use_default_query()
+    {
+      global $wp_query;
+      $this->arc_query = $wp_query;
+      // This may not do anything since the query may not update!
+      // need to set nopaging too
+//      pzdebug($this->build->blueprint[ '_blueprints_navigation' ]);
+//      pzdebug($this->criteria);
+// //     var_dump($this->query);
+      if ($this->build->blueprint[ '_blueprints_navigation' ] == 'pagination') {
+        $this->arc_query->query_vars[ 'nopaging' ] = false;
+      } else {
+        $this->arc_query->query_vars[ 'nopaging' ] = $this->criteria[ 'nopaging' ];
+      }
+      $this->arc_query->query_vars[ 'posts_per_page' ] = $this->criteria[ 'panels_to_show' ];
+    }
 
+    /**
+     * @param $source
+     * @param $this ->criteria
+     * @param $overrides
+     * @return WP_Query
+     */
+    public function query($source, $overrides)
+    {
+      //  TODO: Work out why have build_query and query?!!
+      //    pzdebug($source);
+      //build the new query
+      $query_options = array();
+
+      //Paging parameters
+      if ($this->build->blueprint[ '_blueprints_navigation' ] == 'pagination') {
+        // WordPress uses the main query for pagination. Need to get our query in there. http://wordpress.stackexchange.com/questions/120407/how-to-fix-pagination-for-custom-loops
+
+//        $query_options[ 'nopaging' ]       = false;
+        $query_options[ 'posts_per_page' ] = $this->criteria[ 'panels_to_show' ];
+        $query_options[ 'pagination' ]     = true;
+        global $paged;
+        var_dump($paged,get_query_var('paged'));
+        $query_options[ 'paged' ]          = get_query_var('paged') ? get_query_var('paged') : 1;
+
+      } else {
+        $query[ 'nopaging' ]               = $this->criteria[ 'nopaging' ];
+        $query_options[ 'posts_per_page' ] = $this->criteria[ 'panels_to_show' ];
+        $query_options[ 'offset' ]         = $this->criteria[ 'offset' ];
+      }
+
+      // these two break paging yes?
+      $query_options[ 'ignore_sticky_posts' ] = $this->criteria[ 'ignore_sticky_posts' ];
+
+      //Lot of work!
+      //     pzdebug($this->criteria);
+      switch ($source) {
+
+        case 'post':
+//          var_dump($this->criteria[ '_content_posts_inc-cats']);
+          $query_options[ 'post_type' ]    = 'post';
+          $query_options[ 'category__in' ] = (!empty($this->criteria[ '_content_posts_inc-cats' ])
+              ? $this->criteria[ '_content_posts_inc-cats' ] : null);
+          break;
+        // could we build this into the panel def or somewhere else so more closely tied to the content type stuff
+        case 'gallery':
+          $query_options[ 'post_type' ]           = 'attachment';
+          $query_options[ 'post__in' ]            = (!empty($this->criteria[ 'content_galleries-specific-images' ])
+              ? $this->criteria[ 'content_galleries-specific-images' ] : null);
+          $query_options[ 'post_status' ]         = array('publish', 'inherit', 'private');
+          $query_options[ 'ignore_sticky_posts' ] = true;
+          break;
+      }
+
+      // OVERRIDES
+      // currently this is the only bit that really does anything
+      if ($overrides) {
+        $query_options[ 'post__in' ]       = explode(',', $overrides);
+        $query_options[ 'posts_per_page' ] = count($query_options[ 'post__in' ]);
+      }
+
+      //    var_dump($query_options);
+      global $wp_query;
+      $wp_query = new WP_Query($query_options);
+
+
+      var_dump($query_options, $query->request);
+
+      return $wp_query;
+    }
+
+
+
+    /**
+     * @param $section_no
+     */
+    private function loop($section_no)
+    {
+      $section[ $section_no ] = arc_SectionFactory::create($section_no,
+                                                           $this->build->blueprint[ 'section' ][ ($section_no - 1) ],
+                                                           $this->build->blueprint[ '_blueprints_content-source' ],
+                                                           $this->build->blueprint[ '_blueprints_navigation' ],
+                                                           $this->build->blueprint[ '_blueprints_section-' . ($section_no - 1) . '-layout-mode' ],
+                                                           $this->build->blueprint[ '_blueprints_navigator-slider-engine' ]);
+
+      // oops! Need to get default content type when defaults chosen.
+      $post_type = (empty($this->build->blueprint[ '_blueprints_content-source' ]) || 'defaults' === $this->build->blueprint[ '_blueprints_content-source' ] ?
+          $this->arc_query->queried_object->post_type :
+          $this->build->blueprint[ '_blueprints_content-source' ]);
+      $class     = 'arc_PanelDef_' . $post_type;
+      if (empty($post_type)) {
+        arc_msg('No post type specified', 'error');
+
+        return null;
+      }
+      if (!class_exists($class)) {
+        arc_msg('Unknown post type ' . $post_type, 'error');
+
+        return null;
+      }
+      $panel_def = self::build_meta_definition($class::panel_def(), $this->build->blueprint[ 'section' ][ ($section_no - 1) ][ 'section-panel-settings' ]);
+      $i         = 1;
+      $nav_items = array();
+      // Does this work for non
+      while ($this->arc_query->have_posts()) {
+        $this->arc_query->the_post();
+        // TODO: This may need to be modified for other types that dont' use post_title
+        $nav_items[ ] = $this->arc_query->post->post_title;
+        $section[ $section_no ]->render_panel($panel_def, $i);
+//var_dump($this->arc_query->post->ID);
+        if ($i++ >= $this->build->blueprint[ '_blueprints_section-' . ($section_no - 1) . '-panels-per-view' ]) {
+          break;
+        }
+      }
+
+      // Unsetting causes it to run the destruct, which closes the div!
+      unset($section[ $section_no ]);
+
+      return $nav_items;
+    }
   }
 
   // EOC Architect
