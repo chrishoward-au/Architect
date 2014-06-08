@@ -124,8 +124,6 @@
    ******************************/
   function pzarc($blueprint = null, $overrides = null, $caller)
   {
-    global $wp_query;
-    $original_query = $wp_query;
     $is_shortcode   = ($caller == 'shortcode');
     if (empty($blueprint)) {
       // TODO: Should we make this use a set of defaults. prob an excerpt grid
@@ -141,11 +139,6 @@
 
         $architect->build_blueprint($overrides, $caller);
 
-        wp_reset_postdata(); // Pretty sure this goes here... Not after the query reassignment
-
-        // Fix up $wp_query in case we changed it
-        $wp_query = null;
-        $wp_query = $original_query;
 
 
         /* These lines from ExcerptsPlus */

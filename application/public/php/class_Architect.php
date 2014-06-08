@@ -81,6 +81,14 @@
      */
     public function build_blueprint($overrides, $caller)
     {
+
+      // If we use pagination, we'll have to mod $wp_query
+      global $wp_query;
+      $original_query = $wp_query;
+
+      // Don't allow pagination on pages it doesn't work on!
+      $allow_pagination = (is_home() || is_single()) && !is_front_page();
+
       do_action('arc_before_architect');
       do_action('arc_navigation_top');
       do_action('arc_navigation_left');
@@ -137,7 +145,7 @@
 
       // TODO: Are all these 'self's too un-oop?
       if ($this->build->blueprint[ '_blueprints_content-source' ] != 'defaults') {
-        self::build_new_query($$overrides);
+        self::use_custom_query($$overrides);
       } else {
         self::use_default_query();
       }
@@ -170,7 +178,9 @@
       if (isset($this->arc[ 'navigator' ])) {
         $this->arc[ 'navigator' ]->render();
       }
-      if (isset($this->arc[ 'pagination' ])) {
+      // Don't allow pagination on pages it doesn't work on!
+      Todo : setup pagination for single or blog index
+      if (isset($this->arc[ 'pagination' ]) && $allow_pagination) {
         $this->arc[ 'pagination' ]->render();
       }
       echo '</div> <!-- end the whole lot-->';
@@ -178,6 +188,12 @@
       do_action('arc_navigation_right');
       do_action('arc_navigation_bottom');
       do_action('arc_after_architect');
+
+
+      // Set our original query back in case we had pagination.
+      wp_reset_postdata(); // Pretty sure this goes here... Not after the query reassignment
+      $wp_query = null;
+      $wp_query = $original_query;
 
     }
 
@@ -240,7 +256,7 @@
      * @param $this ->criteria
      * @param $overrides
      */
-    private function build_new_query($overrides)
+    private function use_custom_query($overrides)
     {
       //     var_dump($this->build->blueprint['_content_posts_inc-cats']);
       $prefix = '';
@@ -266,8 +282,15 @@
           $this->criteria[ $key ] = $value;
         }
       }
-      $this->arc_query = self::query($this->build->blueprint[ '_blueprints_content-source' ], $overrides);
+      $this->arc_query = self::build_custom_query($this->build->blueprint[ '_blueprints_content-source' ], $overrides);
 
+      // WordPress uses the main query for pagination. Need to get our query in there. http://wordpress.stackexchange.com/questions/120407/how-to-fix-pagination-for-custom-loops
+      // We'll still use our query, but paging will be picked up from $wp_query. We'll reset $wp_query back after
+      if ($this->build->blueprint[ '_blueprints_navigation']==='pagination') {
+        global $wp_query;
+        $wp_query = $this->arc_query;
+        wp_reset_postdata();
+      }
     }
     /**
      * @param $this ->criteria
@@ -278,9 +301,6 @@
       $this->arc_query = $wp_query;
       // This may not do anything since the query may not update!
       // need to set nopaging too
-//      pzdebug($this->build->blueprint[ '_blueprints_navigation' ]);
-//      pzdebug($this->criteria);
-// //     var_dump($this->query);
       if ($this->build->blueprint[ '_blueprints_navigation' ] == 'pagination') {
         $this->arc_query->query_vars[ 'nopaging' ] = false;
       } else {
@@ -295,22 +315,17 @@
      * @param $overrides
      * @return WP_Query
      */
-    public function query($source, $overrides)
+    public function build_custom_query($source, $overrides)
     {
-      //  TODO: Work out why have build_query and query?!!
-      //    pzdebug($source);
       //build the new query
       $query_options = array();
 
       //Paging parameters
       if ($this->build->blueprint[ '_blueprints_navigation' ] == 'pagination') {
-        // WordPress uses the main query for pagination. Need to get our query in there. http://wordpress.stackexchange.com/questions/120407/how-to-fix-pagination-for-custom-loops
 
 //        $query_options[ 'nopaging' ]       = false;
         $query_options[ 'posts_per_page' ] = $this->criteria[ 'panels_to_show' ];
         $query_options[ 'pagination' ]     = true;
-        global $paged;
-        var_dump($paged,get_query_var('paged'));
         $query_options[ 'paged' ]          = get_query_var('paged') ? get_query_var('paged') : 1;
 
       } else {
@@ -351,12 +366,12 @@
 
       //    var_dump($query_options);
       global $wp_query;
-      $wp_query = new WP_Query($query_options);
+      $query = new WP_Query($query_options);
 
 
-      var_dump($query_options, $query->request);
+    //  var_dump($query_options, $query->request);
 
-      return $wp_query;
+      return $query;
     }
 
 

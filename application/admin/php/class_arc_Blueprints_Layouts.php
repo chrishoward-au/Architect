@@ -640,21 +640,33 @@
         'fields'     => array(
 
             array(
-                'title'    => __('Warning', 'pzarchitect'),
+                'title'    => __('Note', 'pzarchitect'),
                 'id'       => $prefix . 'pager-info',
                 'type'     => 'info',
-                'subtitle' => __('You should never display more than one pagination element on a page as pagination reloads the page and will therefore affect all paginated content.', 'pzarchitect')
+                'subtitle' => '<p>' . __('<strong>Pagination will only show on WordPress pages that support it.</strong> These are the blog list page and single posts', 'pzarchitect') . '</p>' .
+                    __('Also, you should never display more than one pagination element on a page as pagination reloads the page and will therefore affect all paginated content.', 'pzarchitect')
             ),
             array(
                 'id'      => $prefix . 'pager',
-                'title'   => __('Pagination', 'pzarchitect'),
+                'title'   => __('Blog Pagination', 'pzarchitect'),
                 'type'    => 'button_set',
                 'default' => 'prevnext',
                 'options' => array(
-//                    'none'     => 'None',
-'prevnext' => 'Previous/Next',
-'names'    => 'Post names',
-'pagenavi' => 'PageNavi',
+                  //                    'none'     => 'None',
+                  'prevnext' => 'Previous/Next',
+                  'names'    => 'Post names',
+                  'pagenavi' => 'PageNavi',
+                )
+            ),
+            array(
+                'id'      => $prefix . 'pager-single',
+                'title'   => __('Single Post Pagination', 'pzarchitect'),
+                'type'    => 'button_set',
+                'default' => 'prevnext',
+                'options' => array(
+                  //                    'none'     => 'None',
+                  'prevnext' => 'Previous/Next',
+                  'names'    => 'Post names',
                 )
             ),
             array(
@@ -668,12 +680,12 @@
                     'both'   => 'Both'
                 )
             ),
-            array(
-                'id'      => $prefix . 'posts-per-page',
-                'title'   => __('Posts per page', 'pzarchitect'),
-                'type'    => 'text',
-                'default' => 'Do we really need this? Can\'t we just use the total panels per section?',
-            ),
+            //            array(
+            //                'id'      => $prefix . 'posts-per-page',
+            //                'title'   => __('Posts per page', 'pzarchitect'),
+            //                'type'    => 'text',
+            //                'default' => 'Do we really need this? Can\'t we just use the total panels per section?',
+            //            ),
         )
     );
     $sections[ ] = array(
