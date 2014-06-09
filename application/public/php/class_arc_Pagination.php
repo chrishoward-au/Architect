@@ -9,27 +9,43 @@
   class arc_Pagination
   {
 
-
     function __construct()
     {
     }
 
-    function render()    {    }
+    /**
+     * @param $the_query
+     * @param $location_class
+     */
+    function render($the_query, $location_class) { }
   }
 
   class arc_Pagination_names extends arc_Pagination
   {
 
-    function render()
+    function render($the_query, $location_class)
     {
-      //TODO: Make this names
-      // Arg!! have_posts() is the evil screwing the pointer!
-//      var_dump(is_main_query(),have_posts());
-      ?>
-      <div class="nav-previous alignleft">Name 1<?php next_posts_link('Older posts'); ?></div>
-      <div class="nav-next alignright"><?php previous_posts_link('Newer posts'); ?>Name 2</div>
+      if (is_home()|| is_archive()) {
+        if ($the_query->max_num_pages > 1) : ?>
+          <nav id="<?php echo $location_class; ?>" class="navigation page-nav clearfix" role="navigation">
+            <div
+                class="nav-previous alignleft"><?php next_posts_link(__('<span class="meta-nav">&larr;</span> Older posts', 'pzarchitect')); ?></div>
+            <div
+                class="nav-next alignright"><?php previous_posts_link(__('Newer posts <span class="meta-nav">&rarr;</span>', 'pzarchitect')); ?></div>
+          </nav>
+        <?php
+        endif;
+      } elseif (is_single()) {
+        ?>
+        <nav id="<?php echo $location_class; ?>" class="navigation nav-single clearfix">
+          <span
+              class="nav-previous alignleft"><?php previous_post_link('%link', '<span class="meta-nav">' . _x('&larr;', 'Previous post link', 'pzarchitect') . '</span> %title'); ?></span>
+          <span
+              class="nav-next alignright"><?php next_post_link('%link', '%title <span class="meta-nav">' . _x('&rarr;', 'Next post link', 'pzarchitect') . '</span>'); ?></span>
+        </nav><!-- .nav-single -->
+      <?php
+      }
 
-    <?php
     }
 
 
@@ -38,26 +54,30 @@
   class arc_Pagination_prevnext extends arc_Pagination
   {
 
-    function render()
+    function render($the_query, $location_class)
     {
-      global $wp_query;
 
+      if (is_home() || is_archive()) {
+        if ($the_query->max_num_pages > 1) : ?>
+          <nav id="<?php echo $location_class; ?>" class="navigation page-nav clearfix" role="navigation">
+            <div
+                class="nav-previous alignleft"><?php next_posts_link(__('<span class="meta-nav">&larr;</span> Older posts', 'pzarchitect')); ?></div>
+            <div
+                class="nav-next alignright"><?php previous_posts_link(__('Newer posts <span class="meta-nav">&rarr;</span>', 'pzarchitect')); ?></div>
+          </nav>
+        <?php
+        endif;
+      } elseif (is_single()) {
+        ?>
+        <nav id="<?php echo $location_class; ?>" class="navigation nav-single clearfix">
+          <span
+              class="nav-previous alignleft"><?php previous_post_link('%link', '<span class="meta-nav">' . _x('&larr;', 'Previous post link', 'pzarchitect') . '</span> Previous post'); ?></span>
+          <span
+              class="nav-next alignright"><?php next_post_link('%link', 'Next post <span class="meta-nav">' . _x('&rarr;', 'Next post link', 'pzarchitect') . '</span>'); ?></span>
+        </nav><!-- .nav-single -->
+      <?php
+      }
 
-      if ( $wp_query->max_num_pages > 1 ) : ?>
-        <nav id="<?php echo 'page-nav nav-below'; ?>" class="navigation" role="navigation">
-          <h3 class="assistive-text"><?php _e( 'Post navigation', 'twentytwelve' ); ?></h3>
-          <div class="nav-previous"><?php next_posts_link( __( '<span class="meta-nav">&larr;</span> Older posts', 'twentytwelve' ) ); ?></div>
-          <div class="nav-next"><?php previous_posts_link( __( 'Newer posts <span class="meta-nav">&rarr;</span>', 'twentytwelve' ) ); ?></div>
-        </nav>
-      <?php endif;
-
-      // Arg!! have_posts() is the evil screwing the pointer!
-//      var_dump(is_main_query(),have_posts());
-      ?>
-      <div class="nav-previous alignleft"><<<?php next_posts_link('Older posts'); ?></div>
-      <div class="nav-next alignright"><?php previous_posts_link('Newer posts'); ?>>></div>
-
-    <?php
     }
 
 
@@ -65,14 +85,13 @@
 
   class arc_Pagination_pagenavi extends arc_Pagination
   {
-    function render()
+    function render($the_query, $location_class)
     {
- //     var_dump(is_main_query(),have_posts());
-      if (function_exists('wp_pagenavi'))
-      {
+      //     var_dump(is_main_query(),have_posts());
+      if (function_exists('wp_pagenavi')) {
 
-        echo '<div class="nav-below navigation">';
-        wp_pagenavi();
+        echo '<div id="'.$location_class.'" class="navigation clearfix">';
+        wp_pagenavi(array('query' => $the_query));
         echo '</div><!-- end nav-below navigation  -->';
       }
     }

@@ -6,7 +6,7 @@
    * Date: 29/04/2014
    * Time: 12:16 PM
    */
-  class arc_Panel
+  class arc_Panel_post
   {
 //    private $data;
 
@@ -20,6 +20,45 @@
      */
     // $panel_def is not by reference to  ensure it doesn't get changed accidentally.
     public static function render($component, $panel_def, $content_type, &$data, &$section) { }
+
+    static function panel_def()
+    {
+      //TODO: Need to get a way to always wrap components in pzarc-compenents div.Problem is...dev has to create definition correctly.
+      $panel_def[ 'components-open' ]  = '<article id="post-{{postid}}" class="block-type-content post-{{postid}} post type-{{posttype}} status-{{poststatus}} format-{{postformat}} hentry {{categories}} {{tags}} {{pzclasses}}">';
+      $panel_def[ 'components-close' ] = '</article>';
+      $panel_def[ 'postlink' ]         = '<a href="{{permalink}}" title="{{title}}">';
+      $panel_def[ 'header' ]           = '<header class="entry-header">{{headerinnards}}</header>';
+      $panel_def[ 'title' ]            = '<h1 class="entry-title">{{postlink}}{{title}}{{closepostlink}}</h1>';
+      $panel_def[ 'meta1' ]            = '<div class="entry-meta entry-meta1">{{meta1innards}}</div>';
+      $panel_def[ 'meta2' ]            = '<div class="entry-meta entry-meta2">{{meta2innards}}</div>';
+      $panel_def[ 'meta3' ]            = '<div class="entry-meta entry-meta3">{{meta3innards}}</div>';
+      $panel_def[ 'datetime' ]         = '<span class="entry-date"><a href="{{permalink}}"<time class="entry-date" datetime="{{datetime}}">{{fdatetime}}</time></span></a></span>';
+      $panel_def[ 'categories' ]       = '<span class="categories-links">{{categorieslinks}}</span>';
+      $panel_def[ 'tags' ]             = '<span class="tags-links">{{tagslinks}}</span>';
+      $panel_def[ 'author' ]           = '<span class="byline"><span class="author vcard"><a class="url fn n" href="{{authorlink}}" title="View all posts by {{authorname}}" rel="author">{{authorname}}</a></span></span>';
+      $panel_def[ 'email' ]            = '<span class="byline email"><span class="author vcard"><a class="url fn n" href="mailto:{{authoremail}}" title="Email {{authorname}}" rel="author">{{authoremail}}</a></span></span>';
+      //     $panel_def[ 'image' ]       = '<figure class="entry-thumbnail {{incontent}}">{{postlink}}<img width="{{width}}" src="{{imgsrc}}" class="attachment-post-thumbnail wp-post-image" alt="{{alttext}}">{{closepostlink}}{{captioncode}}</figure>';
+      $panel_def[ 'image' ]         = '<figure class="entry-thumbnail {{incontent}} {{centred}}">{{postlink}}{{image}}{{closelink}}{{captioncode}}</figure>';
+      $panel_def[ 'bgimage' ]       = '<figure class="entry-bgimage pzarc-bg-image {{trim-scale}}">{{bgimage}}</figure>';
+      $panel_def[ 'caption' ]       = '<figcaption class="caption">{{caption}}</figcaption>';
+      $panel_def[ 'content' ]       = ' <div class="entry-content {{nothumb}}">{{image-in-content}}{{content}}</div>';
+      $panel_def[ 'custom1' ]       = '<div class="entry-customfieldgroup entry-customfieldgroup-1">{{custom1innards}}</div>';
+      $panel_def[ 'custom2' ]       = '<div class="entry-customfieldgroup entry-customfieldgroup-2">{{custom2innards}}</div>';
+      $panel_def[ 'custom3' ]       = '<div class="entry-customfieldgroup entry-customfieldgroup-3">{{custom3innards}}</div>';
+      $panel_def[ 'cfield' ]        = '<div class="entry-customfield entry-customfield-{{cfieldname}}">{{cfieldcontent}}</div>';
+      $panel_def[ 'footer' ]        = '<footer class="entry-footer">{{footerinnards}}</footer>';
+      $panel_def[ 'excerpt' ]       = ' <div class="entry-excerpt {{nothumb}}">{{image-in-content}}{{excerpt}}</div>';
+      $panel_def[ 'feature' ]       = '{{feature}}';
+      $panel_def[ 'editlink' ]      = '<span class="edit-link"><a class="post-edit-link" href="{{permalink}}" title="Edit post {{title}}">Edit</a></span>';
+      $panel_def[ 'comments-link' ] = '<span class="comments-link"><a href="{{permalink}}/#comments" title="Comment on {{title}}">Comments: {{commentscount}}</a></span>';
+//TODO This has to be changed back once we.if we use a link instead of theget thumnail
+      //$panel_def[ 'image' ]        = '<img class="entry-image" src="{{image}}">';
+      // Yes, WP themes (T13, T14 etc) actually link the date to the post, not the archive for the date. Maybe it's an SEO thing, but I'm going to remove it
+      // $panel_def[ 'datetime' ]      = '<span class="date"><a href="{{permalink}}" title="{{title}}" rel="bookmark"><time class="entry-date" datetime="{{datetime}}">{{fdatetime}}</time></a></span>';
+      // oops should be using this for featured image
+
+      return $panel_def;
+    }
 
     /**
      * @param $section
@@ -36,18 +75,18 @@
       }
 
       if ($toshow[ 'content' ][ 'show' ]) {
-        $data[ 'content' ] = get_the_content();
+        $data[ 'content' ] = apply_filters('the_content', get_the_content());
       }
 
       if ($toshow[ 'excerpt' ][ 'show' ]) {
-        $data[ 'excerpt' ] = get_the_excerpt();
+        $data[ 'excerpt' ] = apply_filters('the_excerpt', get_the_excerpt());
       }
 
       if ($toshow[ 'image' ][ 'show' ] || $section[ '_panels_design_thumb-position' ] != 'none') {
-//        if (false)
-//        {
-//          $post_image = ($this->panel_info[ '_panels_design_thumb-position' ] != 'none') ? job_resize($thumb_src, $params, PZARC_CACHE_PATH, PZARC_CACHE_URL) : null;
-//        }
+        //        if (false)
+        //        {
+        //          $post_image = ($this->panel_info[ '_panels_design_thumb-position' ] != 'none') ? job_resize($thumb_src, $params, PZARC_CACHE_PATH, PZARC_CACHE_URL) : null;
+        //        }
         // BFI
 
         $width  = (int)str_replace('px', '', $section[ '_panels_design_image-max-dimensions' ][ 'width' ]);
@@ -160,7 +199,7 @@
     }
   }
 
-  class arc_Panel_Wrapper extends arc_Panel
+  class arc_Panel_post_Wrapper extends arc_Panel_post
   {
     public static function render($component, $panel_def, $content_type, &$data, &$section)
     {
@@ -171,7 +210,7 @@
 //        $template[ $type ] = str_replace('{{' . $key . '}}', $value, $template[ $type ]);
 //      }
 
-   //   $panel_def[ $component ] = str_replace('{{using-bg-image}}', (!empty($data[ 'bgimage' ]) ? 'has-bgimage ' : 'no-bgimage '), $panel_def[ $component ]);
+      //   $panel_def[ $component ] = str_replace('{{using-bg-image}}', (!empty($data[ 'bgimage' ]) ? 'has-bgimage ' : 'no-bgimage '), $panel_def[ $component ]);
 
       return parent::process_generics($data, $panel_def[ $component ], $content_type, $section);
     }
@@ -180,7 +219,7 @@
   /**
    * Class arc_Panel_Title
    */
-  class arc_Panel_Title extends arc_Panel
+  class arc_Panel_post_Title extends arc_Panel_post
   {
     /**
      * @param $component (Line type, e.g.excerpt, meta, image, title etc)
@@ -209,7 +248,7 @@
   }
 
 
-  class arc_Panel_Meta extends arc_Panel
+  class arc_Panel_post_Meta extends arc_Panel_post
   {
     public static function render($component, $panel_def, $content_type, &$data, &$section)
     {
@@ -221,11 +260,13 @@
           $panel_def[ $component ] = str_replace('{{datetime}}', $data[ 'meta' ][ 'datetime' ], $panel_def[ $component ]);
           $panel_def[ $component ] = str_replace('{{fdatetime}}', $data[ 'meta' ][ 'fdatetime' ], $panel_def[ $component ]);
           if (empty($section[ '_panels_design_excluded-authors' ]) || !in_array(get_the_author_meta('ID'), $section[ '_panels_design_excluded-authors' ])) {
+            //Remove text indicators
+            $panel_def[ $component ] = str_replace('//', '', $panel_def[ $component ]);
             $panel_def[ $component ] = str_replace('{{authorname}}', $data[ 'meta' ][ 'authorname' ], $panel_def[ $component ]);
             $panel_def[ $component ] = str_replace('{{authorlink}}', $data[ 'meta' ][ 'authorlink' ], $panel_def[ $component ]);
             $panel_def[ $component ] = str_replace('{{authoremail}}', $data[ 'meta' ][ 'authoremail' ], $panel_def[ $component ]);
-            $panel_def[ $component ] = str_replace('//', '', $panel_def[ $component ]);
           } else {
+            // Removed unused text and indicators
             $panel_def[ $component ] = preg_replace("/\\/\\/(.)*\\/\\//uiUm", "", $panel_def[ $component ]);
           }
           $panel_def[ $component ] = str_replace('{{categories}}', $data[ 'meta' ][ 'categories' ], $panel_def[ $component ]);
@@ -245,7 +286,7 @@
   }
 
 
-  class arc_Panel_Image extends arc_Panel
+  class arc_Panel_post_Image extends arc_Panel_post
   {
     public static function render($component, $panel_def, $content_type, &$data, &$section)
     {
@@ -277,12 +318,12 @@
 
   }
 
-  class arc_Panel_bgimage extends arc_Panel
+  class arc_Panel_post_bgimage extends arc_Panel_post
   {
     public static function render($component, $panel_def, $content_type, &$data, &$section)
     {
       $panel_def[ $component ] = str_replace('{{bgimage}}', $data[ 'bgimage' ], $panel_def[ $component ]);
-      $panel_def[ $component ] = str_replace('{{trim-scale}}', ' '.$section[ '_panels_design_background-position' ].' ' . $section[ '_panels_design_background-image-resize' ], $panel_def[ $component ]);
+      $panel_def[ $component ] = str_replace('{{trim-scale}}', ' ' . $section[ '_panels_design_background-position' ] . ' ' . $section[ '_panels_design_background-image-resize' ], $panel_def[ $component ]);
 
       return parent::process_generics($data, $panel_def[ $component ], $content_type, $section);
     }
@@ -290,7 +331,7 @@
   }
 
 
-  class arc_Panel_Content extends arc_Panel
+  class arc_Panel_post_Content extends arc_Panel_post
   {
     public static function render($component, $panel_def, $content_type, &$data, &$section)
     {
@@ -328,7 +369,7 @@
   }
 
 
-  class arc_Panel_Excerpt extends arc_Panel
+  class arc_Panel_post_Excerpt extends arc_Panel_post
   {
     /**
      * @param $component
@@ -380,7 +421,7 @@
   }
 
 
-  class arc_Panel_Custom extends arc_Panel
+  class arc_Panel_post_Custom extends arc_Panel_post
   {
     public static function render($component, $panel_def, $content_type, &$data, &$section)
     {

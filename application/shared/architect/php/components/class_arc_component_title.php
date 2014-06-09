@@ -14,7 +14,7 @@
 
   }
 
-  class arc_Panel_Title extends arc_Panel
+  class arc_Panel_post_Title extends arc_Panel_post
   {
   }
 

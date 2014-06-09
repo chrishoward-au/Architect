@@ -75,6 +75,7 @@
   }
 
   &.using-bgimages {
+    // If itis aligned, it will be relaitve per below
     .pzarc-components {
       position: absolute;
       z-index: 1;
@@ -110,23 +111,22 @@
     overflow: hidden;
     position: relative;
 
-    &.fill.trim {
-      max-width: none;
-      display: inline-block;
-      right: -50%;
-      overflow: visible;
-
-      img {
+    &.fill {
+      &.trim {
         max-width: none;
-        position: relative;
-        left: -50%;
+        display: inline-block;
+        right: -50%;
+        overflow: visible;
+
+        img {
+          max-width: none;
+          position: relative;
+          left: -50%;
+        }
       }
-
-
-    }
-
-    &.fill.scale img {
-      max-width: 100%;
+      &.scale img {
+        max-width: 100%;
+      }
     }
 
     img {

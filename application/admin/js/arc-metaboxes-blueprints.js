@@ -59,11 +59,11 @@ jQuery( document ).ready( function ()
             if ( this.selected )
             {
                 console.log( i, this.value );
-                jQuery( ".redux-sidebar li#" + (i - 1) + "_box_redux-_architect-metabox-content-selections_section_group_li" ).show().trigger( "click" );
+   //             jQuery( ".redux-sidebar li#" + (i - 1) + "_box_redux-_architect-metabox-content-selections_section_group_li" ).show().trigger( "click" );
             }
             else
             {
-                jQuery( ".redux-sidebar li#" + (i - 1) + "_box_redux-_architect-metabox-content-selections_section_group_li" ).hide();
+   //             jQuery( ".redux-sidebar li#" + (i - 1) + "_box_redux-_architect-metabox-content-selections_section_group_li" ).hide();
             }
         } );
 

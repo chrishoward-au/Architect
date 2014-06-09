@@ -271,60 +271,59 @@
         'icon_class' => 'icon-large',
         'icon'       => 'el-icon-home',
         'fields'     => array(
-//TODO: Make validation check illegal characters
-array(
-    'id'       => $prefix . 'short-name',
-    'title'    => __('Short name', 'pzarchitect') . '<span class="pzarc-required el-icon-star" title="Required"></span>',
-    'hint'     => array('content' => __('A short name for this panel layout to identify it.', 'pzarchitect')),
-    'type'     => 'text',
-    'validate' => 'no_special_chars'
-),
-array(
-    'title'   => __('Panel Height Type', 'pzarchitect'),
-    'id'      => $prefix . 'panel-height-type',
-    'cols'    => 6,
-    'type'    => 'button_set',
-    'default' => 'height',
-    'options' => array(
-        'height'     => 'Exact',
-        'max-height' => 'Max',
-        'min-height' => 'Min'
-    ),
-    'hint'    => array('content' => __('Choose if you want an exact height or not for the panels. If you want totally fluid, choose Min, and a height of 0.', 'pzarchitect'))
-),
-// Hmm? How's this gunna sit with the min-height in templates?
-// We will want to use this for image height cropping when behind.
+          //TODO: Make validation check illegal characters
+          array(
+              'id'       => $prefix . 'short-name',
+              'title'    => __('Short name', 'pzarchitect') . '<span class="pzarc-required el-icon-star" title="Required"></span>',
+              'hint'     => array('content' => __('A short name for this panel layout to identify it.', 'pzarchitect')),
+              'type'     => 'text',
+              'validate' => 'no_special_chars'
+          ),
+          array(
+              'title'   => __('Panel Height Type', 'pzarchitect'),
+              'id'      => $prefix . 'panel-height-type',
+              'type'    => 'select',
+              'default' => 'height',
+              'options' => array(
+                  'height'     => 'Exact',
+                  'max-height' => 'Max',
+                  'min-height' => 'Min'
+              ),
+              'hint'    => array('content' => __('Choose if you want an exact height or not for the panels. If you want totally fluid, choose Min, and a height of 0.', 'pzarchitect'))
+          ),
+          // Hmm? How's this gunna sit with the min-height in templates?
+          // We will want to use this for image height cropping when behind.
 
-array(
-    'title'   => __('Panel Height px', 'pzarchitect'),
-    'id'      => $prefix . 'panel-height',
-    'type'    => 'dimensions',
-    'width'   => false,
-    'units'   => 'px',
-    'default' => array('height' => '0'),
-    'hint'    => array('content' => __('Set a height for the panel according to the height type you chose.', 'pzarchitect')),
+          array(
+              'title'   => __('Panel Height px', 'pzarchitect'),
+              'id'      => $prefix . 'panel-height',
+              'type'    => 'dimensions',
+              'width'   => false,
+              'units'   => 'px',
+              'default' => array('height' => '0'),
+              'hint'    => array('content' => __('Set a height for the panel according to the height type you chose.', 'pzarchitect')),
 
-),
-//array(
-//    'title'    => __('Components min height px', 'pzarchitect'),
-//    'id'       => $prefix . 'components-height',
-//    'type'     => 'dimensions',
-//    'width'    => false,
-//    'units'    => 'px',
-//    'default'  => array('height' => '100'),
-//    'hint'     => array('content' => __('This prevents components shrinking too much on resizing of screen.', 'pzarchitect')),
-//    'required' => array($prefix . 'panel-height-type', 'equals', 'fixed')
-//),
-//array(
-//    'title'    => __('Components min width px', 'pzarchitect'),
-//    'id'       => $prefix . 'components-width',
-//    'type'     => 'dimensions',
-//    'height'    => false,
-//    'units'    => 'px',
-//    'default'  => array('false' => '100'),
-//    'hint'     => array('content' => __('This prevents components shrinking too much on resizing of screen.', 'pzarchitect')),
-//    'required' => array($prefix . 'panel-height-type', 'equals', 'fixed')
-//),
+          ),
+          //array(
+          //    'title'    => __('Components min height px', 'pzarchitect'),
+          //    'id'       => $prefix . 'components-height',
+          //    'type'     => 'dimensions',
+          //    'width'    => false,
+          //    'units'    => 'px',
+          //    'default'  => array('height' => '100'),
+          //    'hint'     => array('content' => __('This prevents components shrinking too much on resizing of screen.', 'pzarchitect')),
+          //    'required' => array($prefix . 'panel-height-type', 'equals', 'fixed')
+          //),
+          //array(
+          //    'title'    => __('Components min width px', 'pzarchitect'),
+          //    'id'       => $prefix . 'components-width',
+          //    'type'     => 'dimensions',
+          //    'height'    => false,
+          //    'units'    => 'px',
+          //    'default'  => array('false' => '100'),
+          //    'hint'     => array('content' => __('This prevents components shrinking too much on resizing of screen.', 'pzarchitect')),
+          //    'required' => array($prefix . 'panel-height-type', 'equals', 'fixed')
+          //),
         )
     );
     $metaboxes[ ]  = array(

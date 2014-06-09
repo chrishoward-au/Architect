@@ -48,8 +48,7 @@
       // The $settings array will then contain all your block options
       // eg $settings['dob'], $settings['height'] etc
 
-      if (is_integer($block))
-      {
+      if (is_integer($block)) {
         $block = HeadwayBlocksData::get_block($block);
       }
       $settings = array();
@@ -57,8 +56,7 @@
           self::pzarc_build($block, true),
           self::pzarc_custom($block, true)
       );
-      foreach ($options as $option)
-      {
+      foreach ($options as $option) {
         $settings[ $option[ 'name' ] ] = HeadwayBlockAPI::get_setting($block, $option[ 'name' ], $option[ 'default' ]);
       }
 
@@ -68,16 +66,13 @@
     static function pzarc_build($block, $just_defaults)
     {
       $pzarc_layouts = array();
-      if (!$just_defaults)
-      {
+      if (!$just_defaults) {
 //      $pzarc_layouts    = self::get_layouts(true);
 //
 ////      $pzarc_layouts    = array_merge(array('none' => 'None selected'), $pzarc_layouts);
         $pzarc_blueprints = self::get_blueprints(true);
         $pzarc_blueprints = array_merge(array('custom' => 'Custom blueprint'), $pzarc_blueprints);
-      }
-      else
-      {
+      } else {
         $pzarc_layouts    = array();
         $pzarc_blueprints = array();
         $pzarc_content    = array();
@@ -136,8 +131,7 @@
 
     static function pzarc_custom($block, $just_defaults)
     {
-      if (!$just_defaults)
-      {
+      if (!$just_defaults) {
       }
       $settings = array();
 
@@ -240,13 +234,13 @@
       $query_options = array(
           'post_type' => 'arc-panels',
           'meta_key'  => '_architect',
+          'posts_per_page'=>'-1'
       );
       $layouts_query = new WP_Query($query_options);
       $pzarc_return  = array();
-      while ($layouts_query->have_posts())
-      {
+      while ($layouts_query->have_posts()) {
         $layouts_query->the_post();
-        $the_panel_meta                                                  = get_post_meta($layouts_query->posts->ID, '_architect', true);
+        $the_panel_meta                                                   = get_post_meta($layouts_query->posts->ID, '_architect', true);
         $pzarc_return[ $the_panel_meta[ '_panels_settings_short-name' ] ] = get_the_title($layouts_query->post->ID);
       };
 
@@ -259,15 +253,15 @@
       $query_options    = array(
           'post_type' => 'arc-blueprints',
           'meta_key'  => '_architect',
+          'posts_per_page'=>'-1'
       );
       $blueprints_query = new WP_Query($query_options);
       $pzarc_return     = array();
-      while ($blueprints_query->have_posts())
-      {
+      while ($blueprints_query->have_posts()) {
         $blueprints_query->the_post();
-        $the_panel_meta                                             = get_post_meta($blueprints_query->post->ID, '_architect', true);
+        $the_panel_meta = get_post_meta($blueprints_query->post->ID, '_architect', true);
 
-        $pzarc_return[ $the_panel_meta[ '_blueprints_short-name' ].'##'.$blueprints_query->post->ID ] = get_the_title($blueprints_query->post->ID);
+        $pzarc_return[ $the_panel_meta[ '_blueprints_short-name' ] . '##' . $blueprints_query->post->ID ] = get_the_title($blueprints_query->post->ID);
       };
 
       return $pzarc_return;

@@ -4,9 +4,9 @@
   left: 0;
   text-align: center;
   bottom: 5px;
-  width: 100%;
   z-index: 1;
-  counter-reset: arc_navigator;
+  //display:inline-table; (Maybe useful later)
+  // width:100%; Prob better if user sets width and margins
   &.outside {
 
   }
@@ -16,9 +16,11 @@
   }
   &.top {
     top: 15px;
+    bottom: initial;
   }
   &.bottom {
     bottom: 15px;
+    top: initial;
   }
   &.left {
     left: 15px;
@@ -109,16 +111,18 @@ Pagination Styles
 .tabbed {
   .swiper-pagination-switch {
     /* Stylize pagination button: */
-    display: inline-block;
-    height: 30px;
+    display: table-cell; // Woot! This fixes height matching and width distribution
+    min-height: 30px;
     cursor: pointer;
-    padding: 10px 10px 0 10px;
+    padding: 10px;
+    margin:0;
     background: rgba(0, 0, 0, 0.05);
     border: 1px solid rgba(255, 255, 255, 0.5);
     border-top: none;
     border-bottom: none;
     text-decoration: none;
     font-family: sans-serif;
+    box-sizing:border-box;
   }
 
 }
@@ -163,23 +167,53 @@ Pagination Styles
 }
 
 .nav-navigator {
-  .pager {
+  a.pager {
     position: absolute;
     top: 50%;
-    margin-top: -15px;
-    width: 17px;
-    height: 30px;
+    margin-top: -20px;
+    width: 40px;
+    height: 40px;
+    border-radius:30px;
+    padding:0;
     z-index: 2;
     display: none;
+    font-family: Dashicons;
+    font-size: 40px;
+    color: #fff;
+    text-decoration: none;
+    text-align:center;
+    background:rgba(0, 0, 0, 0.3);
 
+    // TODO: Replace this with multiple icon font arrows.
     &.arrow-left {
-      background: url(../../shared/assets/images/slider/arrows1.png) no-repeat left top;
-      left: 10px;
+      left: 5px;
+      &:before {
+        content: "\f341";
+        vertical-align: text-bottom;
+        position:relative;
+        left:-2px;
+      }
+      &.icon-btn-style:before {
+        content: "\f141";
+        vertical-align: text-bottom;
+        position:relative;
+        left:-2px;
+      }
     }
-
     &.arrow-right {
-      background: url(../../shared/assets/images/slider/arrows1.png) no-repeat left bottom;
-      right: 10px;
+      right: 5px;
+      &:before {
+        content: "\f345";
+        vertical-align: text-bottom;
+        position:relative;
+        right:-2px;
+      }
+      &.icon-btn-style:before {
+        content: "\f139";
+        vertical-align: text-bottom;
+        position:relative;
+        right:-2px;
+      }
     }
   }
 
@@ -198,4 +232,5 @@ Pagination Styles
       background: #fff;
     }
   }
+
 }

@@ -84,6 +84,7 @@
           'panels'                     => __('Panels', 'pzarchitect'),
           '_blueprints_content-source' => __('Content source', 'pzarchitect'),
           'navigation'                 => __('Navigation', 'pzarchitect'),
+          'id'                 => __('ID', 'pzarchitect'),
       );
 
       return array_merge($pzarc_front, $pzarc_insert, $pzarc_back);
@@ -99,6 +100,9 @@
 
       $post_meta = get_post_meta($post_id, '_architect', true);
       switch ($column) {
+        case 'id':
+          echo $post_id;
+          break;
         case '_blueprints_short-name':
           echo $post_meta[ $column ];
           break;
@@ -308,6 +312,14 @@
                 'default' => array('width' => '100', 'units' => '%'),
             ),
             array(
+                'title'    => 'Page title',
+                'id'       => $prefix . 'page-title', //this number is the increment number
+                'type'     => 'switch',
+                'on'       => 'Yes',
+                'off'      => 'No',
+                'default'  => false
+            ),
+            array(
                 'id'      => $prefix . 'sections-width',
                 'type'    => 'dimensions',
                 //               'mode'    => array('width' => true, 'height' => false),
@@ -509,8 +521,9 @@
               array(
                   'id'    => $prefix . 'section-' . $i . '-title',
                   'title' => __('Section ' . ($i + 1) . ' title (optional)', 'pzarchitect'),
-                  'type'  => 'text',
-                  'cols'  => 12,
+                  'type'  => 'textarea',
+                  'rows'=>2,
+                  'subtitle'=>__('Use %title% to display the actual page title. Useful on archive pages. You may include HTML.')
               ),
               array(
                   'id'      => $prefix . 'section-width',
@@ -667,6 +680,18 @@
                   //                    'none'     => 'None',
                   'prevnext' => 'Previous/Next',
                   'names'    => 'Post names',
+                )
+            ),
+            array(
+                'id'      => $prefix . 'pager-archives',
+                'title'   => __('Archives Pagination', 'pzarchitect'),
+                'type'    => 'button_set',
+                'default' => 'prevnext',
+                'options' => array(
+                  //                    'none'     => 'None',
+                  'prevnext' => 'Previous/Next',
+                  'names'    => 'Post names',
+                  'pagenavi' => 'PageNavi',
                 )
             ),
             array(
@@ -1254,21 +1279,6 @@
             )
         )
     );
-    //Snippets
-    $prefix      = '_content_snippets_';
-    $sections[ ] = array(
-        'title'      => 'Snippets',
-        'icon_class' => 'icon-large',
-        'icon'       => 'el-icon-align-justify',
-        'fields'     => array(
-            array(
-                'title' => __('Snippets', 'pzarchitect'),
-                'id'    => $prefix . 'snippets-heading',
-                'type'  => 'section',
-                'class' => ' heading',
-            )
-        )
-    );
 
     // Gallery
     $prefix      = '_content_galleries_';
@@ -1447,7 +1457,8 @@ You can use them however you like though.</p>
                 'id'    => $prefix . 'blueprint-custom-css',
                 'type'  => 'ace_editor',
                 'mode'  => 'css',
-                'hint'  => array('content' => __('This is can be any CSS you\'d like to add to a page this blueprint is displayed on', 'pzarchitect')),
+                'subtitle'  => __('This can be any CSS you\'d like to add to a page this blueprint is displayed on. It will ONLY load on the pages this blueprint is shown on, so will only impact those pages. However, if you have multiple blueprints on a page, this CSS could affect or be overriden by ther blueprints\' custom CSS.', 'pzarchitect'),
+//                'hint'  => array('content' => __('This is can be any CSS you\'d like to add to a page this blueprint is displayed on. It will ONLY load on the pages this blueprint is shown on, so will only impact those pages. However, if you have multiple blueprints on a page, this CSS could affect or be overriden by ther blueprints\' custom CSS.', 'pzarchitect')),
             )
         )
     );

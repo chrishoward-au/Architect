@@ -417,7 +417,7 @@
 //    $pzep_cf_list = $wpdb->get_results(
 //        "SELECT meta_key,post_id,wp_posts.post_type FROM wp_postmeta,wp_posts GROUP BY meta_key HAVING ((meta_key NOT LIKE '\_%' AND meta_key NOT LIKE 'pz%' AND meta_key NOT LIKE 'enclosure%') AND (wp_posts.post_type NOT LIKE 'attachment' AND wp_posts.post_type NOT LIKE 'revision' AND wp_posts.post_type NOT LIKE 'acf' AND wp_posts.post_type NOT LIKE 'arc-%' AND wp_posts.post_type NOT LIKE 'nav_menu_item' AND wp_posts.post_type NOT LIKE 'wp-types%')) ORDER BY meta_key"
 //    );
- //   var_dump($pzep_cf_list);
+    //   var_dump($pzep_cf_list);
     $exclude_fields = array(
         'ID',
         'post_id',
@@ -493,9 +493,12 @@
 
     public function render()
     {
-      if ('home' === $this->pageid && (is_home() || is_front_page())) {
-        pzarchitect($this->blueprint, $this->overrides, $this->caller);
-      }
+      //TODO: Get the page conditionals working
+ //     switch (true) {
+//        case ('home' === $this->pageid && (is_home() || is_front_page())) :
+          pzarchitect($this->blueprint, $this->overrides, $this->caller);
+  //        break;
+   //   }
     }
   }
 
