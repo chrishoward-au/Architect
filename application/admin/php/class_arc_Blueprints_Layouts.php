@@ -892,14 +892,13 @@
                   array($prefix . 'navigator', '!=', 'accordion'),
               )
           ),
-          // TODO: Notsure this is necessary
-          //            array(
-          //                'id'       => $prefix . 'navigator-items-visible',
-          //                'title'    => __('Navigator items visible', 'pzarchitect'),
-          //                'type'     => 'spinner',
-          //                'default'  => 5,
-          //                'subtitle' => 'If zero, it will use the "Panels to show" value. This is the number of items visible in the navigator bar. NOTE: This is also the number of items skipped by multi-skip pager element of the inline pager.'
-          //            ),
+          array(
+              'id'       => $prefix . 'navigator-items-visible',
+              'title'    => __('Limit navigator items visible', 'pzarchitect'),
+              'type'     => 'spinner',
+              'default'  => 5,
+              'subtitle' => 'If zero, it will use the "Panels to show" value. This is the number of items visible in the navigator bar. NOTE: This is also the number of items skipped by multi-skip pager element of the inline pager.'
+          ),
           array(
               'title' => __('Transitions', 'pzarchitect'),
               'id'    => $prefix . 'section-transitions-heading',
@@ -911,13 +910,13 @@
               'id'      => $prefix . 'transitions-type',
               'type'    => 'button_set',
               'default' => 'slide',
-//              'select2' => array('allowClear' => false),
+              //              'select2' => array('allowClear' => false),
               'options' => array(
-                  'fade'   => 'Fade',
-                  'slide'  => 'Slide',
-//                  'swipe'  => 'Swipe',
-//                  'rotate' => 'Rotate',
-//                  'flip'   => 'Flip'
+                  'fade'  => 'Fade',
+                  'slide' => 'Slide',
+                  //                  'swipe'  => 'Swipe',
+                  //                  'rotate' => 'Rotate',
+                  //                  'flip'   => 'Flip'
               )
           ),
           array(

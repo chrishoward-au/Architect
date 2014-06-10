@@ -2,11 +2,138 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6a91661e-ac03-4c49-a442-2faea24b5b57" name="Default" comment="Add post types files">
+      <change type="DELETED" beforePath="$PROJECT_DIR$/application/shared/includes/js/bgrins-spectrum-77699c6/.gitignore" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/application/shared/includes/js/bgrins-spectrum-77699c6/.travis.yml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/application/shared/includes/js/bgrins-spectrum-77699c6/Gruntfile.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/application/shared/includes/js/bgrins-spectrum-77699c6/LICENSE" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/application/shared/includes/js/bgrins-spectrum-77699c6/README.md" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/application/shared/includes/js/bgrins-spectrum-77699c6/bower.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/application/shared/includes/js/bgrins-spectrum-77699c6/build/.gitignore" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/application/shared/includes/js/bgrins-spectrum-77699c6/docs/bootstrap.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/application/shared/includes/js/bgrins-spectrum-77699c6/docs/docs.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/application/shared/includes/js/bgrins-spectrum-77699c6/docs/docs.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/application/shared/includes/js/bgrins-spectrum-77699c6/docs/jquery-1.9.1.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/application/shared/includes/js/bgrins-spectrum-77699c6/docs/jquery-2.1.0.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/application/shared/includes/js/bgrins-spectrum-77699c6/docs/min/jquery-1.9.1-ck.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/application/shared/includes/js/bgrins-spectrum-77699c6/docs/min/jquery-2.1.0-ck.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/application/shared/includes/js/bgrins-spectrum-77699c6/docs/prettify.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/application/shared/includes/js/bgrins-spectrum-77699c6/docs/toc.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/application/shared/includes/js/bgrins-spectrum-77699c6/example/example.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/application/shared/includes/js/bgrins-spectrum-77699c6/example/index.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/application/shared/includes/js/bgrins-spectrum-77699c6/example/testcase.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/application/shared/includes/js/bgrins-spectrum-77699c6/i18n/jquery.spectrum-de.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/application/shared/includes/js/bgrins-spectrum-77699c6/i18n/jquery.spectrum-dk.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/application/shared/includes/js/bgrins-spectrum-77699c6/i18n/jquery.spectrum-es.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/application/shared/includes/js/bgrins-spectrum-77699c6/i18n/jquery.spectrum-fi.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/application/shared/includes/js/bgrins-spectrum-77699c6/i18n/jquery.spectrum-fr.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/application/shared/includes/js/bgrins-spectrum-77699c6/i18n/jquery.spectrum-it.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/application/shared/includes/js/bgrins-spectrum-77699c6/i18n/jquery.spectrum-ja.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/application/shared/includes/js/bgrins-spectrum-77699c6/i18n/jquery.spectrum-nl.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/application/shared/includes/js/bgrins-spectrum-77699c6/i18n/jquery.spectrum-pt-br.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/application/shared/includes/js/bgrins-spectrum-77699c6/i18n/jquery.spectrum-ru.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/application/shared/includes/js/bgrins-spectrum-77699c6/i18n/jquery.spectrum-sv.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/application/shared/includes/js/bgrins-spectrum-77699c6/i18n/jquery.spectrum-tr.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/application/shared/includes/js/bgrins-spectrum-77699c6/index.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/application/shared/includes/js/bgrins-spectrum-77699c6/package.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/application/shared/includes/js/bgrins-spectrum-77699c6/spectrum.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/application/shared/includes/js/bgrins-spectrum-77699c6/spectrum.jquery.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/application/shared/includes/js/bgrins-spectrum-77699c6/spectrum.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/application/shared/includes/js/bgrins-spectrum-77699c6/test/index.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/application/shared/includes/js/bgrins-spectrum-77699c6/test/qunit.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/application/shared/includes/js/bgrins-spectrum-77699c6/test/qunit.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/application/shared/includes/js/bgrins-spectrum-77699c6/test/tests.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/application/shared/includes/js/bgrins-spectrum-77699c6/themes/index.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/application/shared/includes/js/bgrins-spectrum-77699c6/themes/sp-dark.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/application/shared/includes/js/dynatable/CONTRIBUTING.md" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/application/shared/includes/js/dynatable/LICENSE.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/application/shared/includes/js/dynatable/PROPRIETARY_LICENSE.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/application/shared/includes/js/dynatable/README.md" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/application/shared/includes/js/dynatable/bower.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/application/shared/includes/js/dynatable/jquery.dynatable.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/application/shared/includes/js/dynatable/jquery.dynatable.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/application/shared/includes/js/dynatable/package.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/application/shared/includes/js/jQuery-Validation-Engine/README.md" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/application/shared/includes/js/jQuery-Validation-Engine/css/customMessages.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/application/shared/includes/js/jQuery-Validation-Engine/css/screenshot.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/application/shared/includes/js/jQuery-Validation-Engine/css/template.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/application/shared/includes/js/jQuery-Validation-Engine/css/validationEngine.jquery.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/application/shared/includes/js/jQuery-Validation-Engine/index.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/application/shared/includes/js/jQuery-Validation-Engine/js/contrib/other-validations.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/application/shared/includes/js/jQuery-Validation-Engine/js/jquery.validationEngine.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/application/shared/includes/js/jQuery-Validation-Engine/js/languages/jquery.validationEngine-cz.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/application/shared/includes/js/jQuery-Validation-Engine/js/languages/jquery.validationEngine-da.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/application/shared/includes/js/jQuery-Validation-Engine/js/languages/jquery.validationEngine-de.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/application/shared/includes/js/jQuery-Validation-Engine/js/languages/jquery.validationEngine-en.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/application/shared/includes/js/jQuery-Validation-Engine/js/languages/jquery.validationEngine-es.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/application/shared/includes/js/jQuery-Validation-Engine/js/languages/jquery.validationEngine-et.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/application/shared/includes/js/jQuery-Validation-Engine/js/languages/jquery.validationEngine-fa.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/application/shared/includes/js/jQuery-Validation-Engine/js/languages/jquery.validationEngine-fi.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/application/shared/includes/js/jQuery-Validation-Engine/js/languages/jquery.validationEngine-fr.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/application/shared/includes/js/jQuery-Validation-Engine/js/languages/jquery.validationEngine-hr.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/application/shared/includes/js/jQuery-Validation-Engine/js/languages/jquery.validationEngine-hu.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/application/shared/includes/js/jQuery-Validation-Engine/js/languages/jquery.validationEngine-it.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/application/shared/includes/js/jQuery-Validation-Engine/js/languages/jquery.validationEngine-ja.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/application/shared/includes/js/jQuery-Validation-Engine/js/languages/jquery.validationEngine-nl.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/application/shared/includes/js/jQuery-Validation-Engine/js/languages/jquery.validationEngine-no.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/application/shared/includes/js/jQuery-Validation-Engine/js/languages/jquery.validationEngine-pl.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/application/shared/includes/js/jQuery-Validation-Engine/js/languages/jquery.validationEngine-pt.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/application/shared/includes/js/jQuery-Validation-Engine/js/languages/jquery.validationEngine-pt_BR.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/application/shared/includes/js/jQuery-Validation-Engine/js/languages/jquery.validationEngine-ro.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/application/shared/includes/js/jQuery-Validation-Engine/js/languages/jquery.validationEngine-ru.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/application/shared/includes/js/jQuery-Validation-Engine/js/languages/jquery.validationEngine-se.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/application/shared/includes/js/jQuery-Validation-Engine/js/languages/jquery.validationEngine-tr.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/application/shared/includes/js/jQuery-Validation-Engine/js/languages/jquery.validationEngine-vi.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/application/shared/includes/js/jQuery-Validation-Engine/js/languages/jquery.validationEngine-zh_CN.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/application/shared/includes/js/jQuery-Validation-Engine/js/languages/jquery.validationEngine-zh_TW.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/application/shared/includes/js/jQuery-Validation-Engine/validationengine.jquery.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/application/shared/includes/js/jquery-ui-1.10.2.custom/css/pz_architect/images/animated-overlay.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/application/shared/includes/js/jquery-ui-1.10.2.custom/css/pz_architect/images/ui-bg_flat_0_aaaaaa_40x100.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/application/shared/includes/js/jquery-ui-1.10.2.custom/css/pz_architect/images/ui-bg_flat_75_ffffff_40x100.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/application/shared/includes/js/jquery-ui-1.10.2.custom/css/pz_architect/images/ui-bg_glass_55_fbf9ee_1x400.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/application/shared/includes/js/jquery-ui-1.10.2.custom/css/pz_architect/images/ui-bg_glass_65_ffffff_1x400.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/application/shared/includes/js/jquery-ui-1.10.2.custom/css/pz_architect/images/ui-bg_glass_75_dadada_1x400.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/application/shared/includes/js/jquery-ui-1.10.2.custom/css/pz_architect/images/ui-bg_glass_75_e6e6e6_1x400.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/application/shared/includes/js/jquery-ui-1.10.2.custom/css/pz_architect/images/ui-bg_glass_95_fef1ec_1x400.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/application/shared/includes/js/jquery-ui-1.10.2.custom/css/pz_architect/images/ui-bg_highlight-soft_75_cccccc_1x100.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/application/shared/includes/js/jquery-ui-1.10.2.custom/css/pz_architect/images/ui-icons_222222_256x240.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/application/shared/includes/js/jquery-ui-1.10.2.custom/css/pz_architect/images/ui-icons_2e83ff_256x240.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/application/shared/includes/js/jquery-ui-1.10.2.custom/css/pz_architect/images/ui-icons_454545_256x240.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/application/shared/includes/js/jquery-ui-1.10.2.custom/css/pz_architect/images/ui-icons_888888_256x240.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/application/shared/includes/js/jquery-ui-1.10.2.custom/css/pz_architect/images/ui-icons_cd0a0a_256x240.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/application/shared/includes/js/jquery-ui-1.10.2.custom/css/pz_architect/jquery-ui-1.10.2.custom.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/application/shared/includes/js/jquery-ui-1.10.2.custom/css/pz_architect/jquery-ui-1.10.2.custom.min.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/application/shared/includes/js/jquery.bxslider/bower.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/application/shared/includes/js/jquery.bxslider/images/bx_loader.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/application/shared/includes/js/jquery.bxslider/images/controls.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/application/shared/includes/js/jquery.bxslider/jquery.bxslider.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/application/shared/includes/js/jquery.bxslider/jquery.bxslider.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/application/shared/includes/js/jquery.bxslider/jquery.bxslider.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/application/shared/includes/js/jquery.bxslider/plugins/jquery.easing.1.3.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/application/shared/includes/js/jquery.bxslider/plugins/jquery.fitvids.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/application/shared/includes/js/jquery.bxslider/readme.md" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/application/shared/includes/js/tabby/README.md" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/application/shared/includes/js/tabby/css/tabby-css.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/application/shared/includes/js/tabby/css/tabby-css.css.map" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/application/shared/includes/js/tabby/index.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/application/shared/includes/js/tabby/js/buoy.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/application/shared/includes/js/tabby/js/tabby.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/application/shared/includes/js/tabby/js/tabify.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/application/shared/includes/js/tabby/sass/.sass-cache/a70439988d5d363093a84568b31bfd46d21ea71d/_config.scssc" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/application/shared/includes/js/tabby/sass/.sass-cache/a70439988d5d363093a84568b31bfd46d21ea71d/_mixins.scssc" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/application/shared/includes/js/tabby/sass/.sass-cache/a70439988d5d363093a84568b31bfd46d21ea71d/_tabby.scssc" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/application/shared/includes/js/tabby/sass/.sass-cache/a70439988d5d363093a84568b31bfd46d21ea71d/tabby-css.scssc" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/application/shared/includes/js/tabby/sass/_config.scss" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/application/shared/includes/js/tabby/sass/_mixins.scss" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/application/shared/includes/js/tabby/sass/_tabby.scss" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/application/shared/includes/js/tabby/sass/tabby-css.scss" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/application/shared/includes/js/unslider.min.js" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/arc-admin.php" afterPath="$PROJECT_DIR$/application/arc-admin.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/public/js/min/arc-front-ck.js" afterPath="$PROJECT_DIR$/application/public/js/min/arc-front-ck.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/public/js/arc-front.js" afterPath="$PROJECT_DIR$/application/public/js/arc-front.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/arc-public.php" afterPath="$PROJECT_DIR$/application/arc-public.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/public/php/class_Architect.php" afterPath="$PROJECT_DIR$/application/public/php/class_Architect.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/admin/php/class_arc_Blueprints_Layouts.php" afterPath="$PROJECT_DIR$/application/admin/php/class_arc_Blueprints_Layouts.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config.codekit" afterPath="$PROJECT_DIR$/config.codekit" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <list id="6bc53ef6-a4e7-48ed-9a91-cec0b69ebc38" name="Default task" comment="" />
     <ignored path="pizazzwp-architect.iws" />
@@ -34,7 +161,7 @@
       <file leaf-file-name="class_Architect.php" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/application/public/php/class_Architect.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="242" column="47" selection-start="9477" selection-end="9477" vertical-scroll-proportion="-20.833334" vertical-offset="3130" max-vertical-offset="8295">
+            <state line="533" column="9" selection-start="21261" selection-end="21261" vertical-scroll-proportion="-29.583334" vertical-offset="7285" max-vertical-offset="8325">
               <folding />
             </state>
           </provider>
@@ -88,7 +215,7 @@
       <file leaf-file-name="arc-admin.php" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/application/arc-admin.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="169" column="40" selection-start="7064" selection-end="7064" vertical-scroll-proportion="-14.291667" vertical-offset="2192" max-vertical-offset="3660">
+            <state line="107" column="52" selection-start="3924" selection-end="3924" vertical-scroll-proportion="-2.4166667" vertical-offset="1547" max-vertical-offset="3765">
               <folding />
             </state>
           </provider>
@@ -158,7 +285,7 @@
       <file leaf-file-name="arc-front.js" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/application/public/js/arc-front.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="51" column="33" selection-start="1590" selection-end="1595" vertical-scroll-proportion="0.212828" vertical-offset="546" max-vertical-offset="2925">
+            <state line="31" column="99" selection-start="1486" selection-end="1486" vertical-scroll-proportion="0.55714285" vertical-offset="75" max-vertical-offset="2655">
               <folding />
             </state>
           </provider>
@@ -260,16 +387,16 @@
       <file leaf-file-name="class_arc_Blueprints_Layouts.php" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/application/admin/php/class_arc_Blueprints_Layouts.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="913" column="2" selection-start="40514" selection-end="40514" vertical-scroll-proportion="-9.74" vertical-offset="13208" max-vertical-offset="23550">
+            <state line="899" column="57" selection-start="39772" selection-end="39772" vertical-scroll-proportion="-15.14" vertical-offset="12728" max-vertical-offset="23535">
               <folding>
-                <marker date="1402402048000" expanded="true" signature="43804:44483" placeholder="..." />
-                <marker date="1402402048000" expanded="true" signature="45485:45683" placeholder="..." />
-                <marker date="1402402048000" expanded="true" signature="45718:45895" placeholder="..." />
-                <marker date="1402402048000" expanded="true" signature="45930:46102" placeholder="..." />
-                <marker date="1402402048000" expanded="true" signature="46137:46311" placeholder="..." />
-                <marker date="1402402048000" expanded="true" signature="46346:46447" placeholder="..." />
-                <marker date="1402402048000" expanded="true" signature="60910:61284" placeholder="..." />
-                <marker date="1402402048000" expanded="true" signature="61288:61323" placeholder="..." />
+                <marker date="1402404566000" expanded="true" signature="43733:44412" placeholder="..." />
+                <marker date="1402404566000" expanded="true" signature="45414:45612" placeholder="..." />
+                <marker date="1402404566000" expanded="true" signature="45647:45824" placeholder="..." />
+                <marker date="1402404566000" expanded="true" signature="45859:46031" placeholder="..." />
+                <marker date="1402404566000" expanded="true" signature="46066:46240" placeholder="..." />
+                <marker date="1402404566000" expanded="true" signature="46275:46376" placeholder="..." />
+                <marker date="1402404566000" expanded="true" signature="60839:61213" placeholder="..." />
+                <marker date="1402404566000" expanded="true" signature="61217:61252" placeholder="..." />
               </folding>
             </state>
           </provider>
@@ -356,7 +483,6 @@
         <option value="$PROJECT_DIR$/application/shared/architect/php/arc-functions.php" />
         <option value="$PROJECT_DIR$/application/admin/php/class_arc_Panels_Layouts.php" />
         <option value="$PROJECT_DIR$/application/public/php/post_types/class_arc_Panel_Page.php" />
-        <option value="$PROJECT_DIR$/application/arc-admin.php" />
         <option value="$PROJECT_DIR$/application/public/php/post_types/class_arc_Panel_Post.php" />
         <option value="$PROJECT_DIR$/application/public/php/post_types/class_arc_Panel_Slides.php" />
         <option value="$PROJECT_DIR$/application/public/php/post_types/class_arc_Panel_Snippets.php" />
@@ -364,8 +490,9 @@
         <option value="$PROJECT_DIR$/application/public/php/class_arc_Navigator.php" />
         <option value="$PROJECT_DIR$/application/public/css/_slider.scss" />
         <option value="$PROJECT_DIR$/application/arc-public.php" />
-        <option value="$PROJECT_DIR$/application/public/php/class_Architect.php" />
+        <option value="$PROJECT_DIR$/application/arc-admin.php" />
         <option value="$PROJECT_DIR$/application/admin/php/class_arc_Blueprints_Layouts.php" />
+        <option value="$PROJECT_DIR$/application/public/php/class_Architect.php" />
         <option value="$PROJECT_DIR$/application/public/js/arc-front.js" />
       </list>
     </option>
@@ -381,7 +508,7 @@
   <component name="ProjectFrameBounds">
     <option name="y" value="22" />
     <option name="width" value="2560" />
-    <option name="height" value="1357" />
+    <option name="height" value="1028" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -642,36 +769,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="js" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pizazzwp-architect" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pizazzwp-architect" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="application" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="shared" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="includes" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="js" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="jquery.bxslider" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -1183,10 +1280,10 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="22" width="2560" height="1357" extended-state="0" />
+    <frame x="0" y="22" width="2560" height="1028" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.18125483" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24324325" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32932165" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32962668" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1195,9 +1292,9 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32822758" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32932165" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3938731" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.12271644" sideWeight="0.3586367" order="1" side_tool="true" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.12271644" sideWeight="0.35862786" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="eSnippet Pro" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32932165" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.12271644" sideWeight="0.6405887" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.12271644" sideWeight="0.64033264" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32897604" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -1278,27 +1375,27 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="php">
           <url>file://$PROJECT_DIR$/application/admin/php/class_arc_Blueprints_Layouts.php</url>
-          <line>979</line>
+          <line>978</line>
           <option name="timeStamp" value="14" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="php">
           <url>file://$PROJECT_DIR$/application/admin/php/class_arc_Blueprints_Layouts.php</url>
-          <line>1006</line>
+          <line>1005</line>
           <option name="timeStamp" value="15" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="php">
           <url>file://$PROJECT_DIR$/application/admin/php/class_arc_Blueprints_Layouts.php</url>
-          <line>1106</line>
+          <line>1105</line>
           <option name="timeStamp" value="16" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="php">
           <url>file://$PROJECT_DIR$/application/admin/php/class_arc_Blueprints_Layouts.php</url>
-          <line>1270</line>
+          <line>1269</line>
           <option name="timeStamp" value="17" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="php">
           <url>file://$PROJECT_DIR$/application/admin/php/class_arc_Blueprints_Layouts.php</url>
-          <line>903</line>
+          <line>902</line>
           <option name="timeStamp" value="18" />
         </line-breakpoint>
       </breakpoints>
@@ -1579,13 +1676,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application/arc-admin.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="169" column="40" selection-start="7064" selection-end="7064" vertical-scroll-proportion="-14.291667" vertical-offset="2192" max-vertical-offset="3660">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/application/public/php/post_types/class_arc_Panel_Page.php">
       <provider selected="true" editor-type-id="text-editor">
         <state line="425" column="22" selection-start="22791" selection-end="22791" vertical-scroll-proportion="-4.9166665" vertical-offset="6257" max-vertical-offset="6960">
@@ -1649,32 +1739,39 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application/public/php/class_Architect.php">
+    <entry file="file://$PROJECT_DIR$/application/arc-admin.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="242" column="47" selection-start="9477" selection-end="9477" vertical-scroll-proportion="-20.833334" vertical-offset="3130" max-vertical-offset="8295">
+        <state line="107" column="52" selection-start="3924" selection-end="3924" vertical-scroll-proportion="-2.4166667" vertical-offset="1547" max-vertical-offset="3765">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/application/admin/php/class_arc_Blueprints_Layouts.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="913" column="2" selection-start="40514" selection-end="40514" vertical-scroll-proportion="-9.74" vertical-offset="13208" max-vertical-offset="23550">
+        <state line="899" column="57" selection-start="39772" selection-end="39772" vertical-scroll-proportion="-15.14" vertical-offset="12728" max-vertical-offset="23535">
           <folding>
-            <marker date="1402402048000" expanded="true" signature="43804:44483" placeholder="..." />
-            <marker date="1402402048000" expanded="true" signature="45485:45683" placeholder="..." />
-            <marker date="1402402048000" expanded="true" signature="45718:45895" placeholder="..." />
-            <marker date="1402402048000" expanded="true" signature="45930:46102" placeholder="..." />
-            <marker date="1402402048000" expanded="true" signature="46137:46311" placeholder="..." />
-            <marker date="1402402048000" expanded="true" signature="46346:46447" placeholder="..." />
-            <marker date="1402402048000" expanded="true" signature="60910:61284" placeholder="..." />
-            <marker date="1402402048000" expanded="true" signature="61288:61323" placeholder="..." />
+            <marker date="1402404566000" expanded="true" signature="43733:44412" placeholder="..." />
+            <marker date="1402404566000" expanded="true" signature="45414:45612" placeholder="..." />
+            <marker date="1402404566000" expanded="true" signature="45647:45824" placeholder="..." />
+            <marker date="1402404566000" expanded="true" signature="45859:46031" placeholder="..." />
+            <marker date="1402404566000" expanded="true" signature="46066:46240" placeholder="..." />
+            <marker date="1402404566000" expanded="true" signature="46275:46376" placeholder="..." />
+            <marker date="1402404566000" expanded="true" signature="60839:61213" placeholder="..." />
+            <marker date="1402404566000" expanded="true" signature="61217:61252" placeholder="..." />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/public/php/class_Architect.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="533" column="9" selection-start="21261" selection-end="21261" vertical-scroll-proportion="-29.583334" vertical-offset="7285" max-vertical-offset="8325">
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/application/public/js/arc-front.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="51" column="33" selection-start="1590" selection-end="1595" vertical-scroll-proportion="0.212828" vertical-offset="546" max-vertical-offset="2925">
+        <state line="31" column="99" selection-start="1486" selection-end="1486" vertical-scroll-proportion="0.55714285" vertical-offset="75" max-vertical-offset="2655">
           <folding />
         </state>
       </provider>

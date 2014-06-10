@@ -1,6 +1,6 @@
 {
 "CodeKitInfo": "This is a CodeKit 2.x project configuration file. It is designed to sync project settings across multiple machines. MODIFYING THE CONTENTS OF THIS FILE IS A POOR LIFE DECISION. If you do so, you will likely cause CodeKit to crash. This file is not useful unless accompanied by the project that created it in CodeKit 2. This file is not backwards-compatible with CodeKit 1.x. For more information, see: http:\/\/incident57.com\/codekit",
-"creatorBuild": "16921",
+"creatorBuild": "17018",
 "files": {
 	"\/application\/admin\/css\/arc-admin-blueprints.css": {
 		"fileType": 16,
@@ -508,6 +508,24 @@
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
+	"\/application\/admin\/php\/arc-save-process-blueprints.php": {
+		"fileType": 8192,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/application\/admin\/php\/arc-save-process-blueprints.php",
+		"outputAbbreviatedPath": "No Output Path",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/application\/admin\/php\/arc-save-process-panels.php": {
+		"fileType": 8192,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/application\/admin\/php\/arc-save-process-panels.php",
+		"outputAbbreviatedPath": "No Output Path",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
 	"\/application\/admin\/php\/arc-save-process.php": {
 		"fileType": 8192,
 		"ignore": 0,
@@ -571,6 +589,15 @@
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
 		"inputAbbreviatedPath": "\/application\/arc-admin.php",
+		"outputAbbreviatedPath": "No Output Path",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/application\/arc-public.php": {
+		"fileType": 8192,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/application\/arc-public.php",
 		"outputAbbreviatedPath": "No Output Path",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
@@ -700,6 +727,17 @@
 		"outputStyle": 1,
 		"syntaxCheckerStyle": 1
 		},
+	"\/application\/public\/js\/flowtype.js": {
+		"fileType": 64,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/application\/public\/js\/flowtype.js",
+		"outputAbbreviatedPath": "\/application\/public\/js\/min\/flowtype-ck.js",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"outputStyle": 1,
+		"syntaxCheckerStyle": 1
+		},
 	"\/application\/public\/js\/min\/arc-front-ck.js": {
 		"fileType": 64,
 		"ignore": 1,
@@ -765,20 +803,20 @@
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
-	"\/application\/public\/php\/class_arc_Panel.php": {
-		"fileType": 8192,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/application\/public\/php\/class_arc_Panel.php",
-		"outputAbbreviatedPath": "No Output Path",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0
-		},
 	"\/application\/public\/php\/class_arc_Section.php": {
 		"fileType": 8192,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
 		"inputAbbreviatedPath": "\/application\/public\/php\/class_arc_Section.php",
+		"outputAbbreviatedPath": "No Output Path",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/application\/public\/php\/class_Architect.php": {
+		"fileType": 8192,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/application\/public\/php\/class_Architect.php",
 		"outputAbbreviatedPath": "No Output Path",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
@@ -797,6 +835,51 @@
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
 		"inputAbbreviatedPath": "\/application\/public\/php\/interface_arc_PanelDefinitions.php",
+		"outputAbbreviatedPath": "No Output Path",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/application\/public\/php\/post_types\/class_arc_Panel_Gallery.php": {
+		"fileType": 8192,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/application\/public\/php\/post_types\/class_arc_Panel_Gallery.php",
+		"outputAbbreviatedPath": "No Output Path",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/application\/public\/php\/post_types\/class_arc_Panel_Page.php": {
+		"fileType": 8192,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/application\/public\/php\/post_types\/class_arc_Panel_Page.php",
+		"outputAbbreviatedPath": "No Output Path",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/application\/public\/php\/post_types\/class_arc_Panel_Post.php": {
+		"fileType": 8192,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/application\/public\/php\/post_types\/class_arc_Panel_Post.php",
+		"outputAbbreviatedPath": "No Output Path",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/application\/public\/php\/post_types\/class_arc_Panel_Slides.php": {
+		"fileType": 8192,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/application\/public\/php\/post_types\/class_arc_Panel_Slides.php",
+		"outputAbbreviatedPath": "No Output Path",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/application\/public\/php\/post_types\/class_arc_Panel_Snippets.php": {
+		"fileType": 8192,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/application\/public\/php\/post_types\/class_arc_Panel_Snippets.php",
 		"outputAbbreviatedPath": "No Output Path",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
@@ -920,6 +1003,69 @@
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
+	"\/application\/shared\/assets\/fonts\/fontello-nav-arrows\/css\/animation.css": {
+		"fileType": 16,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/application\/shared\/assets\/fonts\/fontello-nav-arrows\/css\/animation.css",
+		"outputAbbreviatedPath": "No Output Path",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/application\/shared\/assets\/fonts\/fontello-nav-arrows\/css\/fontello-codes.css": {
+		"fileType": 16,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/application\/shared\/assets\/fonts\/fontello-nav-arrows\/css\/fontello-codes.css",
+		"outputAbbreviatedPath": "No Output Path",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/application\/shared\/assets\/fonts\/fontello-nav-arrows\/css\/fontello-embedded.css": {
+		"fileType": 16,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/application\/shared\/assets\/fonts\/fontello-nav-arrows\/css\/fontello-embedded.css",
+		"outputAbbreviatedPath": "No Output Path",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/application\/shared\/assets\/fonts\/fontello-nav-arrows\/css\/fontello-ie7-codes.css": {
+		"fileType": 16,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/application\/shared\/assets\/fonts\/fontello-nav-arrows\/css\/fontello-ie7-codes.css",
+		"outputAbbreviatedPath": "No Output Path",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/application\/shared\/assets\/fonts\/fontello-nav-arrows\/css\/fontello-ie7.css": {
+		"fileType": 16,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/application\/shared\/assets\/fonts\/fontello-nav-arrows\/css\/fontello-ie7.css",
+		"outputAbbreviatedPath": "No Output Path",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/application\/shared\/assets\/fonts\/fontello-nav-arrows\/css\/fontello.css": {
+		"fileType": 16,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/application\/shared\/assets\/fonts\/fontello-nav-arrows\/css\/fontello.css",
+		"outputAbbreviatedPath": "No Output Path",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/application\/shared\/assets\/fonts\/fontello-nav-arrows\/demo.html": {
+		"fileType": 8192,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/application\/shared\/assets\/fonts\/fontello-nav-arrows\/demo.html",
+		"outputAbbreviatedPath": "No Output Path",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
 	"\/application\/shared\/assets\/images\/defaulticons.css": {
 		"fileType": 16,
 		"ignore": 0,
@@ -958,6 +1104,17 @@
 		"initialSize": 20304,
 		"inputAbbreviatedPath": "\/application\/shared\/assets\/images\/help\/arc-layout.jpg",
 		"outputAbbreviatedPath": "\/application\/shared\/assets\/images\/help\/arc-layout.jpg",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"processed": 0
+		},
+	"\/application\/shared\/assets\/images\/help\/redux-logo.png": {
+		"fileType": 32768,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"initialSize": 13342,
+		"inputAbbreviatedPath": "\/application\/shared\/assets\/images\/help\/redux-logo.png",
+		"outputAbbreviatedPath": "\/application\/shared\/assets\/images\/help\/redux-logo.png",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0,
 		"processed": 0
@@ -1170,6 +1327,17 @@
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0,
 		"processed": 1
+		},
+	"\/application\/shared\/assets\/images\/missing-image.png": {
+		"fileType": 32768,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"initialSize": 2365,
+		"inputAbbreviatedPath": "\/application\/shared\/assets\/images\/missing-image.png",
+		"outputAbbreviatedPath": "\/application\/shared\/assets\/images\/missing-image.png",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"processed": 0
 		},
 	"\/application\/shared\/assets\/images\/sample-image.jpg": {
 		"fileType": 16384,
@@ -1434,425 +1602,6 @@
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
-	"\/application\/shared\/includes\/js\/bgrins-spectrum-77699c6\/docs\/bootstrap.css": {
-		"fileType": 16,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/application\/shared\/includes\/js\/bgrins-spectrum-77699c6\/docs\/bootstrap.css",
-		"outputAbbreviatedPath": "No Output Path",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0
-		},
-	"\/application\/shared\/includes\/js\/bgrins-spectrum-77699c6\/docs\/docs.css": {
-		"fileType": 16,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/application\/shared\/includes\/js\/bgrins-spectrum-77699c6\/docs\/docs.css",
-		"outputAbbreviatedPath": "No Output Path",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0
-		},
-	"\/application\/shared\/includes\/js\/bgrins-spectrum-77699c6\/docs\/docs.js": {
-		"fileType": 64,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/application\/shared\/includes\/js\/bgrins-spectrum-77699c6\/docs\/docs.js",
-		"outputAbbreviatedPath": "\/application\/shared\/includes\/js\/bgrins-spectrum-77699c6\/docs\/min\/docs-ck.js",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0,
-		"outputStyle": 1,
-		"syntaxCheckerStyle": 1
-		},
-	"\/application\/shared\/includes\/js\/bgrins-spectrum-77699c6\/docs\/jquery-1.9.1.js": {
-		"fileType": 64,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/application\/shared\/includes\/js\/bgrins-spectrum-77699c6\/docs\/jquery-1.9.1.js",
-		"outputAbbreviatedPath": "\/application\/shared\/includes\/js\/bgrins-spectrum-77699c6\/docs\/min\/jquery-1.9.1-ck.js",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0,
-		"outputStyle": 1,
-		"syntaxCheckerStyle": 1
-		},
-	"\/application\/shared\/includes\/js\/bgrins-spectrum-77699c6\/docs\/jquery-2.1.0.js": {
-		"fileType": 64,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/application\/shared\/includes\/js\/bgrins-spectrum-77699c6\/docs\/jquery-2.1.0.js",
-		"outputAbbreviatedPath": "\/application\/shared\/includes\/js\/bgrins-spectrum-77699c6\/docs\/min\/jquery-2.1.0-ck.js",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0,
-		"outputStyle": 1,
-		"syntaxCheckerStyle": 1
-		},
-	"\/application\/shared\/includes\/js\/bgrins-spectrum-77699c6\/docs\/min\/jquery-1.9.1-ck.js": {
-		"fileType": 64,
-		"ignore": 1,
-		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/application\/shared\/includes\/js\/bgrins-spectrum-77699c6\/docs\/min\/jquery-1.9.1-ck.js",
-		"outputAbbreviatedPath": "\/application\/shared\/includes\/js\/bgrins-spectrum-77699c6\/docs\/min\/min\/jquery-1.9.1-ck-ck.js",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0,
-		"outputStyle": 1,
-		"syntaxCheckerStyle": 1
-		},
-	"\/application\/shared\/includes\/js\/bgrins-spectrum-77699c6\/docs\/min\/jquery-2.1.0-ck.js": {
-		"fileType": 64,
-		"ignore": 1,
-		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/application\/shared\/includes\/js\/bgrins-spectrum-77699c6\/docs\/min\/jquery-2.1.0-ck.js",
-		"outputAbbreviatedPath": "\/application\/shared\/includes\/js\/bgrins-spectrum-77699c6\/docs\/min\/min\/jquery-2.1.0-ck-ck.js",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0,
-		"outputStyle": 1,
-		"syntaxCheckerStyle": 1
-		},
-	"\/application\/shared\/includes\/js\/bgrins-spectrum-77699c6\/docs\/prettify.js": {
-		"fileType": 64,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/application\/shared\/includes\/js\/bgrins-spectrum-77699c6\/docs\/prettify.js",
-		"outputAbbreviatedPath": "\/application\/shared\/includes\/js\/bgrins-spectrum-77699c6\/docs\/min\/prettify-ck.js",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0,
-		"outputStyle": 1,
-		"syntaxCheckerStyle": 1
-		},
-	"\/application\/shared\/includes\/js\/bgrins-spectrum-77699c6\/docs\/toc.js": {
-		"fileType": 64,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/application\/shared\/includes\/js\/bgrins-spectrum-77699c6\/docs\/toc.js",
-		"outputAbbreviatedPath": "\/application\/shared\/includes\/js\/bgrins-spectrum-77699c6\/docs\/min\/toc-ck.js",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0,
-		"outputStyle": 1,
-		"syntaxCheckerStyle": 1
-		},
-	"\/application\/shared\/includes\/js\/bgrins-spectrum-77699c6\/example\/example.js": {
-		"fileType": 64,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/application\/shared\/includes\/js\/bgrins-spectrum-77699c6\/example\/example.js",
-		"outputAbbreviatedPath": "\/application\/shared\/includes\/js\/bgrins-spectrum-77699c6\/example\/min\/example-ck.js",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0,
-		"outputStyle": 1,
-		"syntaxCheckerStyle": 1
-		},
-	"\/application\/shared\/includes\/js\/bgrins-spectrum-77699c6\/example\/index.html": {
-		"fileType": 8192,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/application\/shared\/includes\/js\/bgrins-spectrum-77699c6\/example\/index.html",
-		"outputAbbreviatedPath": "No Output Path",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0
-		},
-	"\/application\/shared\/includes\/js\/bgrins-spectrum-77699c6\/example\/testcase.html": {
-		"fileType": 8192,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/application\/shared\/includes\/js\/bgrins-spectrum-77699c6\/example\/testcase.html",
-		"outputAbbreviatedPath": "No Output Path",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0
-		},
-	"\/application\/shared\/includes\/js\/bgrins-spectrum-77699c6\/Gruntfile.js": {
-		"fileType": 64,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/application\/shared\/includes\/js\/bgrins-spectrum-77699c6\/Gruntfile.js",
-		"outputAbbreviatedPath": "\/application\/shared\/includes\/js\/bgrins-spectrum-77699c6\/min\/Gruntfile-ck.js",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0,
-		"outputStyle": 1,
-		"syntaxCheckerStyle": 1
-		},
-	"\/application\/shared\/includes\/js\/bgrins-spectrum-77699c6\/i18n\/jquery.spectrum-de.js": {
-		"fileType": 64,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/application\/shared\/includes\/js\/bgrins-spectrum-77699c6\/i18n\/jquery.spectrum-de.js",
-		"outputAbbreviatedPath": "\/application\/shared\/includes\/js\/bgrins-spectrum-77699c6\/i18n\/min\/jquery.spectrum-de-ck.js",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0,
-		"outputStyle": 1,
-		"syntaxCheckerStyle": 1
-		},
-	"\/application\/shared\/includes\/js\/bgrins-spectrum-77699c6\/i18n\/jquery.spectrum-dk.js": {
-		"fileType": 64,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/application\/shared\/includes\/js\/bgrins-spectrum-77699c6\/i18n\/jquery.spectrum-dk.js",
-		"outputAbbreviatedPath": "\/application\/shared\/includes\/js\/bgrins-spectrum-77699c6\/i18n\/min\/jquery.spectrum-dk-ck.js",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0,
-		"outputStyle": 1,
-		"syntaxCheckerStyle": 1
-		},
-	"\/application\/shared\/includes\/js\/bgrins-spectrum-77699c6\/i18n\/jquery.spectrum-es.js": {
-		"fileType": 64,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/application\/shared\/includes\/js\/bgrins-spectrum-77699c6\/i18n\/jquery.spectrum-es.js",
-		"outputAbbreviatedPath": "\/application\/shared\/includes\/js\/bgrins-spectrum-77699c6\/i18n\/min\/jquery.spectrum-es-ck.js",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0,
-		"outputStyle": 1,
-		"syntaxCheckerStyle": 1
-		},
-	"\/application\/shared\/includes\/js\/bgrins-spectrum-77699c6\/i18n\/jquery.spectrum-fi.js": {
-		"fileType": 64,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/application\/shared\/includes\/js\/bgrins-spectrum-77699c6\/i18n\/jquery.spectrum-fi.js",
-		"outputAbbreviatedPath": "\/application\/shared\/includes\/js\/bgrins-spectrum-77699c6\/i18n\/min\/jquery.spectrum-fi-ck.js",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0,
-		"outputStyle": 1,
-		"syntaxCheckerStyle": 1
-		},
-	"\/application\/shared\/includes\/js\/bgrins-spectrum-77699c6\/i18n\/jquery.spectrum-fr.js": {
-		"fileType": 64,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/application\/shared\/includes\/js\/bgrins-spectrum-77699c6\/i18n\/jquery.spectrum-fr.js",
-		"outputAbbreviatedPath": "\/application\/shared\/includes\/js\/bgrins-spectrum-77699c6\/i18n\/min\/jquery.spectrum-fr-ck.js",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0,
-		"outputStyle": 1,
-		"syntaxCheckerStyle": 1
-		},
-	"\/application\/shared\/includes\/js\/bgrins-spectrum-77699c6\/i18n\/jquery.spectrum-it.js": {
-		"fileType": 64,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/application\/shared\/includes\/js\/bgrins-spectrum-77699c6\/i18n\/jquery.spectrum-it.js",
-		"outputAbbreviatedPath": "\/application\/shared\/includes\/js\/bgrins-spectrum-77699c6\/i18n\/min\/jquery.spectrum-it-ck.js",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0,
-		"outputStyle": 1,
-		"syntaxCheckerStyle": 1
-		},
-	"\/application\/shared\/includes\/js\/bgrins-spectrum-77699c6\/i18n\/jquery.spectrum-ja.js": {
-		"fileType": 64,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/application\/shared\/includes\/js\/bgrins-spectrum-77699c6\/i18n\/jquery.spectrum-ja.js",
-		"outputAbbreviatedPath": "\/application\/shared\/includes\/js\/bgrins-spectrum-77699c6\/i18n\/min\/jquery.spectrum-ja-ck.js",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0,
-		"outputStyle": 1,
-		"syntaxCheckerStyle": 1
-		},
-	"\/application\/shared\/includes\/js\/bgrins-spectrum-77699c6\/i18n\/jquery.spectrum-nl.js": {
-		"fileType": 64,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/application\/shared\/includes\/js\/bgrins-spectrum-77699c6\/i18n\/jquery.spectrum-nl.js",
-		"outputAbbreviatedPath": "\/application\/shared\/includes\/js\/bgrins-spectrum-77699c6\/i18n\/min\/jquery.spectrum-nl-ck.js",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0,
-		"outputStyle": 1,
-		"syntaxCheckerStyle": 1
-		},
-	"\/application\/shared\/includes\/js\/bgrins-spectrum-77699c6\/i18n\/jquery.spectrum-pt-br.js": {
-		"fileType": 64,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/application\/shared\/includes\/js\/bgrins-spectrum-77699c6\/i18n\/jquery.spectrum-pt-br.js",
-		"outputAbbreviatedPath": "\/application\/shared\/includes\/js\/bgrins-spectrum-77699c6\/i18n\/min\/jquery.spectrum-pt-br-ck.js",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0,
-		"outputStyle": 1,
-		"syntaxCheckerStyle": 1
-		},
-	"\/application\/shared\/includes\/js\/bgrins-spectrum-77699c6\/i18n\/jquery.spectrum-ru.js": {
-		"fileType": 64,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/application\/shared\/includes\/js\/bgrins-spectrum-77699c6\/i18n\/jquery.spectrum-ru.js",
-		"outputAbbreviatedPath": "\/application\/shared\/includes\/js\/bgrins-spectrum-77699c6\/i18n\/min\/jquery.spectrum-ru-ck.js",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0,
-		"outputStyle": 1,
-		"syntaxCheckerStyle": 1
-		},
-	"\/application\/shared\/includes\/js\/bgrins-spectrum-77699c6\/i18n\/jquery.spectrum-sv.js": {
-		"fileType": 64,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/application\/shared\/includes\/js\/bgrins-spectrum-77699c6\/i18n\/jquery.spectrum-sv.js",
-		"outputAbbreviatedPath": "\/application\/shared\/includes\/js\/bgrins-spectrum-77699c6\/i18n\/min\/jquery.spectrum-sv-ck.js",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0,
-		"outputStyle": 1,
-		"syntaxCheckerStyle": 1
-		},
-	"\/application\/shared\/includes\/js\/bgrins-spectrum-77699c6\/i18n\/jquery.spectrum-tr.js": {
-		"fileType": 64,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/application\/shared\/includes\/js\/bgrins-spectrum-77699c6\/i18n\/jquery.spectrum-tr.js",
-		"outputAbbreviatedPath": "\/application\/shared\/includes\/js\/bgrins-spectrum-77699c6\/i18n\/min\/jquery.spectrum-tr-ck.js",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0,
-		"outputStyle": 1,
-		"syntaxCheckerStyle": 1
-		},
-	"\/application\/shared\/includes\/js\/bgrins-spectrum-77699c6\/index.html": {
-		"fileType": 8192,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/application\/shared\/includes\/js\/bgrins-spectrum-77699c6\/index.html",
-		"outputAbbreviatedPath": "No Output Path",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0
-		},
-	"\/application\/shared\/includes\/js\/bgrins-spectrum-77699c6\/README.md": {
-		"enableFootnoteSupport": 0,
-		"enableSmartyPants": 1,
-		"expandTabs": 1,
-		"fileType": 4096,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/application\/shared\/includes\/js\/bgrins-spectrum-77699c6\/README.md",
-		"outputAbbreviatedPath": "\/application\/shared\/includes\/js\/bgrins-spectrum-77699c6\/README.html",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0
-		},
-	"\/application\/shared\/includes\/js\/bgrins-spectrum-77699c6\/spectrum.css": {
-		"fileType": 16,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/application\/shared\/includes\/js\/bgrins-spectrum-77699c6\/spectrum.css",
-		"outputAbbreviatedPath": "No Output Path",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0
-		},
-	"\/application\/shared\/includes\/js\/bgrins-spectrum-77699c6\/spectrum.js": {
-		"fileType": 64,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/application\/shared\/includes\/js\/bgrins-spectrum-77699c6\/spectrum.js",
-		"outputAbbreviatedPath": "\/application\/shared\/includes\/js\/bgrins-spectrum-77699c6\/min\/spectrum-ck.js",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0,
-		"outputStyle": 1,
-		"syntaxCheckerStyle": 1
-		},
-	"\/application\/shared\/includes\/js\/bgrins-spectrum-77699c6\/test\/index.html": {
-		"fileType": 8192,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/application\/shared\/includes\/js\/bgrins-spectrum-77699c6\/test\/index.html",
-		"outputAbbreviatedPath": "No Output Path",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0
-		},
-	"\/application\/shared\/includes\/js\/bgrins-spectrum-77699c6\/test\/qunit.css": {
-		"fileType": 16,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/application\/shared\/includes\/js\/bgrins-spectrum-77699c6\/test\/qunit.css",
-		"outputAbbreviatedPath": "No Output Path",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0
-		},
-	"\/application\/shared\/includes\/js\/bgrins-spectrum-77699c6\/test\/qunit.js": {
-		"fileType": 64,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/application\/shared\/includes\/js\/bgrins-spectrum-77699c6\/test\/qunit.js",
-		"outputAbbreviatedPath": "\/application\/shared\/includes\/js\/bgrins-spectrum-77699c6\/test\/min\/qunit-ck.js",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0,
-		"outputStyle": 1,
-		"syntaxCheckerStyle": 1
-		},
-	"\/application\/shared\/includes\/js\/bgrins-spectrum-77699c6\/test\/tests.js": {
-		"fileType": 64,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/application\/shared\/includes\/js\/bgrins-spectrum-77699c6\/test\/tests.js",
-		"outputAbbreviatedPath": "\/application\/shared\/includes\/js\/bgrins-spectrum-77699c6\/test\/min\/tests-ck.js",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0,
-		"outputStyle": 1,
-		"syntaxCheckerStyle": 1
-		},
-	"\/application\/shared\/includes\/js\/bgrins-spectrum-77699c6\/themes\/index.html": {
-		"fileType": 8192,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/application\/shared\/includes\/js\/bgrins-spectrum-77699c6\/themes\/index.html",
-		"outputAbbreviatedPath": "No Output Path",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0
-		},
-	"\/application\/shared\/includes\/js\/bgrins-spectrum-77699c6\/themes\/sp-dark.css": {
-		"fileType": 16,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/application\/shared\/includes\/js\/bgrins-spectrum-77699c6\/themes\/sp-dark.css",
-		"outputAbbreviatedPath": "No Output Path",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0
-		},
-	"\/application\/shared\/includes\/js\/dynatable\/CONTRIBUTING.md": {
-		"enableFootnoteSupport": 0,
-		"enableSmartyPants": 1,
-		"expandTabs": 1,
-		"fileType": 4096,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/application\/shared\/includes\/js\/dynatable\/CONTRIBUTING.md",
-		"outputAbbreviatedPath": "\/application\/shared\/includes\/js\/dynatable\/CONTRIBUTING.html",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0
-		},
-	"\/application\/shared\/includes\/js\/dynatable\/jquery.dynatable.css": {
-		"fileType": 16,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/application\/shared\/includes\/js\/dynatable\/jquery.dynatable.css",
-		"outputAbbreviatedPath": "No Output Path",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0
-		},
-	"\/application\/shared\/includes\/js\/dynatable\/jquery.dynatable.js": {
-		"fileType": 64,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/application\/shared\/includes\/js\/dynatable\/jquery.dynatable.js",
-		"outputAbbreviatedPath": "\/application\/shared\/includes\/js\/dynatable\/min\/jquery.dynatable-ck.js",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0,
-		"outputStyle": 1,
-		"syntaxCheckerStyle": 1
-		},
-	"\/application\/shared\/includes\/js\/dynatable\/PROPRIETARY_LICENSE.html": {
-		"fileType": 8192,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/application\/shared\/includes\/js\/dynatable\/PROPRIETARY_LICENSE.html",
-		"outputAbbreviatedPath": "No Output Path",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0
-		},
-	"\/application\/shared\/includes\/js\/dynatable\/README.md": {
-		"enableFootnoteSupport": 0,
-		"enableSmartyPants": 1,
-		"expandTabs": 1,
-		"fileType": 4096,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/application\/shared\/includes\/js\/dynatable\/README.md",
-		"outputAbbreviatedPath": "\/application\/shared\/includes\/js\/dynatable\/README.html",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0
-		},
 	"\/application\/shared\/includes\/js\/isotope.pkgd.min.js": {
 		"fileType": 64,
 		"ignore": 0,
@@ -1863,599 +1612,6 @@
 		"outputPathIsSetByUser": 0,
 		"outputStyle": 1,
 		"syntaxCheckerStyle": 1
-		},
-	"\/application\/shared\/includes\/js\/jquery-ui-1.10.2.custom\/css\/pz_architect\/images\/ui-bg_flat_0_aaaaaa_40x100.png": {
-		"fileType": 32768,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"initialSize": 212,
-		"inputAbbreviatedPath": "\/application\/shared\/includes\/js\/jquery-ui-1.10.2.custom\/css\/pz_architect\/images\/ui-bg_flat_0_aaaaaa_40x100.png",
-		"outputAbbreviatedPath": "\/application\/shared\/includes\/js\/jquery-ui-1.10.2.custom\/css\/pz_architect\/images\/ui-bg_flat_0_aaaaaa_40x100.png",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0,
-		"processed": 0
-		},
-	"\/application\/shared\/includes\/js\/jquery-ui-1.10.2.custom\/css\/pz_architect\/images\/ui-bg_flat_75_ffffff_40x100.png": {
-		"fileType": 32768,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"initialSize": 208,
-		"inputAbbreviatedPath": "\/application\/shared\/includes\/js\/jquery-ui-1.10.2.custom\/css\/pz_architect\/images\/ui-bg_flat_75_ffffff_40x100.png",
-		"outputAbbreviatedPath": "\/application\/shared\/includes\/js\/jquery-ui-1.10.2.custom\/css\/pz_architect\/images\/ui-bg_flat_75_ffffff_40x100.png",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0,
-		"processed": 0
-		},
-	"\/application\/shared\/includes\/js\/jquery-ui-1.10.2.custom\/css\/pz_architect\/images\/ui-bg_glass_55_fbf9ee_1x400.png": {
-		"fileType": 32768,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"initialSize": 335,
-		"inputAbbreviatedPath": "\/application\/shared\/includes\/js\/jquery-ui-1.10.2.custom\/css\/pz_architect\/images\/ui-bg_glass_55_fbf9ee_1x400.png",
-		"outputAbbreviatedPath": "\/application\/shared\/includes\/js\/jquery-ui-1.10.2.custom\/css\/pz_architect\/images\/ui-bg_glass_55_fbf9ee_1x400.png",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0,
-		"processed": 0
-		},
-	"\/application\/shared\/includes\/js\/jquery-ui-1.10.2.custom\/css\/pz_architect\/images\/ui-bg_glass_65_ffffff_1x400.png": {
-		"fileType": 32768,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"initialSize": 207,
-		"inputAbbreviatedPath": "\/application\/shared\/includes\/js\/jquery-ui-1.10.2.custom\/css\/pz_architect\/images\/ui-bg_glass_65_ffffff_1x400.png",
-		"outputAbbreviatedPath": "\/application\/shared\/includes\/js\/jquery-ui-1.10.2.custom\/css\/pz_architect\/images\/ui-bg_glass_65_ffffff_1x400.png",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0,
-		"processed": 0
-		},
-	"\/application\/shared\/includes\/js\/jquery-ui-1.10.2.custom\/css\/pz_architect\/images\/ui-bg_glass_75_dadada_1x400.png": {
-		"fileType": 32768,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"initialSize": 262,
-		"inputAbbreviatedPath": "\/application\/shared\/includes\/js\/jquery-ui-1.10.2.custom\/css\/pz_architect\/images\/ui-bg_glass_75_dadada_1x400.png",
-		"outputAbbreviatedPath": "\/application\/shared\/includes\/js\/jquery-ui-1.10.2.custom\/css\/pz_architect\/images\/ui-bg_glass_75_dadada_1x400.png",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0,
-		"processed": 0
-		},
-	"\/application\/shared\/includes\/js\/jquery-ui-1.10.2.custom\/css\/pz_architect\/images\/ui-bg_glass_75_e6e6e6_1x400.png": {
-		"fileType": 32768,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"initialSize": 262,
-		"inputAbbreviatedPath": "\/application\/shared\/includes\/js\/jquery-ui-1.10.2.custom\/css\/pz_architect\/images\/ui-bg_glass_75_e6e6e6_1x400.png",
-		"outputAbbreviatedPath": "\/application\/shared\/includes\/js\/jquery-ui-1.10.2.custom\/css\/pz_architect\/images\/ui-bg_glass_75_e6e6e6_1x400.png",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0,
-		"processed": 0
-		},
-	"\/application\/shared\/includes\/js\/jquery-ui-1.10.2.custom\/css\/pz_architect\/images\/ui-bg_glass_95_fef1ec_1x400.png": {
-		"fileType": 32768,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"initialSize": 332,
-		"inputAbbreviatedPath": "\/application\/shared\/includes\/js\/jquery-ui-1.10.2.custom\/css\/pz_architect\/images\/ui-bg_glass_95_fef1ec_1x400.png",
-		"outputAbbreviatedPath": "\/application\/shared\/includes\/js\/jquery-ui-1.10.2.custom\/css\/pz_architect\/images\/ui-bg_glass_95_fef1ec_1x400.png",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0,
-		"processed": 0
-		},
-	"\/application\/shared\/includes\/js\/jquery-ui-1.10.2.custom\/css\/pz_architect\/images\/ui-bg_highlight-soft_75_cccccc_1x100.png": {
-		"fileType": 32768,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"initialSize": 280,
-		"inputAbbreviatedPath": "\/application\/shared\/includes\/js\/jquery-ui-1.10.2.custom\/css\/pz_architect\/images\/ui-bg_highlight-soft_75_cccccc_1x100.png",
-		"outputAbbreviatedPath": "\/application\/shared\/includes\/js\/jquery-ui-1.10.2.custom\/css\/pz_architect\/images\/ui-bg_highlight-soft_75_cccccc_1x100.png",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0,
-		"processed": 0
-		},
-	"\/application\/shared\/includes\/js\/jquery-ui-1.10.2.custom\/css\/pz_architect\/images\/ui-icons_222222_256x240.png": {
-		"fileType": 32768,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"initialSize": 6922,
-		"inputAbbreviatedPath": "\/application\/shared\/includes\/js\/jquery-ui-1.10.2.custom\/css\/pz_architect\/images\/ui-icons_222222_256x240.png",
-		"outputAbbreviatedPath": "\/application\/shared\/includes\/js\/jquery-ui-1.10.2.custom\/css\/pz_architect\/images\/ui-icons_222222_256x240.png",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0,
-		"processed": 0
-		},
-	"\/application\/shared\/includes\/js\/jquery-ui-1.10.2.custom\/css\/pz_architect\/images\/ui-icons_2e83ff_256x240.png": {
-		"fileType": 32768,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"initialSize": 4549,
-		"inputAbbreviatedPath": "\/application\/shared\/includes\/js\/jquery-ui-1.10.2.custom\/css\/pz_architect\/images\/ui-icons_2e83ff_256x240.png",
-		"outputAbbreviatedPath": "\/application\/shared\/includes\/js\/jquery-ui-1.10.2.custom\/css\/pz_architect\/images\/ui-icons_2e83ff_256x240.png",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0,
-		"processed": 0
-		},
-	"\/application\/shared\/includes\/js\/jquery-ui-1.10.2.custom\/css\/pz_architect\/images\/ui-icons_454545_256x240.png": {
-		"fileType": 32768,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"initialSize": 6992,
-		"inputAbbreviatedPath": "\/application\/shared\/includes\/js\/jquery-ui-1.10.2.custom\/css\/pz_architect\/images\/ui-icons_454545_256x240.png",
-		"outputAbbreviatedPath": "\/application\/shared\/includes\/js\/jquery-ui-1.10.2.custom\/css\/pz_architect\/images\/ui-icons_454545_256x240.png",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0,
-		"processed": 0
-		},
-	"\/application\/shared\/includes\/js\/jquery-ui-1.10.2.custom\/css\/pz_architect\/images\/ui-icons_888888_256x240.png": {
-		"fileType": 32768,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"initialSize": 6999,
-		"inputAbbreviatedPath": "\/application\/shared\/includes\/js\/jquery-ui-1.10.2.custom\/css\/pz_architect\/images\/ui-icons_888888_256x240.png",
-		"outputAbbreviatedPath": "\/application\/shared\/includes\/js\/jquery-ui-1.10.2.custom\/css\/pz_architect\/images\/ui-icons_888888_256x240.png",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0,
-		"processed": 0
-		},
-	"\/application\/shared\/includes\/js\/jquery-ui-1.10.2.custom\/css\/pz_architect\/images\/ui-icons_cd0a0a_256x240.png": {
-		"fileType": 32768,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"initialSize": 4549,
-		"inputAbbreviatedPath": "\/application\/shared\/includes\/js\/jquery-ui-1.10.2.custom\/css\/pz_architect\/images\/ui-icons_cd0a0a_256x240.png",
-		"outputAbbreviatedPath": "\/application\/shared\/includes\/js\/jquery-ui-1.10.2.custom\/css\/pz_architect\/images\/ui-icons_cd0a0a_256x240.png",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0,
-		"processed": 0
-		},
-	"\/application\/shared\/includes\/js\/jquery-ui-1.10.2.custom\/css\/pz_architect\/jquery-ui-1.10.2.custom.css": {
-		"fileType": 16,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/application\/shared\/includes\/js\/jquery-ui-1.10.2.custom\/css\/pz_architect\/jquery-ui-1.10.2.custom.css",
-		"outputAbbreviatedPath": "No Output Path",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0
-		},
-	"\/application\/shared\/includes\/js\/jquery-ui-1.10.2.custom\/css\/pz_architect\/jquery-ui-1.10.2.custom.min.css": {
-		"fileType": 16,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/application\/shared\/includes\/js\/jquery-ui-1.10.2.custom\/css\/pz_architect\/jquery-ui-1.10.2.custom.min.css",
-		"outputAbbreviatedPath": "No Output Path",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0
-		},
-	"\/application\/shared\/includes\/js\/jQuery-Validation-Engine\/css\/customMessages.css": {
-		"fileType": 16,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/application\/shared\/includes\/js\/jQuery-Validation-Engine\/css\/customMessages.css",
-		"outputAbbreviatedPath": "No Output Path",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0
-		},
-	"\/application\/shared\/includes\/js\/jQuery-Validation-Engine\/css\/screenshot.png": {
-		"fileType": 32768,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"initialSize": 35828,
-		"inputAbbreviatedPath": "\/application\/shared\/includes\/js\/jQuery-Validation-Engine\/css\/screenshot.png",
-		"outputAbbreviatedPath": "\/application\/shared\/includes\/js\/jQuery-Validation-Engine\/css\/screenshot.png",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0,
-		"processed": 0
-		},
-	"\/application\/shared\/includes\/js\/jQuery-Validation-Engine\/css\/template.css": {
-		"fileType": 16,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/application\/shared\/includes\/js\/jQuery-Validation-Engine\/css\/template.css",
-		"outputAbbreviatedPath": "No Output Path",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0
-		},
-	"\/application\/shared\/includes\/js\/jQuery-Validation-Engine\/css\/validationEngine.jquery.css": {
-		"fileType": 16,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/application\/shared\/includes\/js\/jQuery-Validation-Engine\/css\/validationEngine.jquery.css",
-		"outputAbbreviatedPath": "No Output Path",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0
-		},
-	"\/application\/shared\/includes\/js\/jQuery-Validation-Engine\/index.html": {
-		"fileType": 8192,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/application\/shared\/includes\/js\/jQuery-Validation-Engine\/index.html",
-		"outputAbbreviatedPath": "No Output Path",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0
-		},
-	"\/application\/shared\/includes\/js\/jQuery-Validation-Engine\/js\/contrib\/other-validations.js": {
-		"fileType": 64,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/application\/shared\/includes\/js\/jQuery-Validation-Engine\/js\/contrib\/other-validations.js",
-		"outputAbbreviatedPath": "\/application\/shared\/includes\/js\/jQuery-Validation-Engine\/js\/contrib\/min\/other-validations-ck.js",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0,
-		"outputStyle": 1,
-		"syntaxCheckerStyle": 1
-		},
-	"\/application\/shared\/includes\/js\/jQuery-Validation-Engine\/js\/jquery.validationEngine.js": {
-		"fileType": 64,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/application\/shared\/includes\/js\/jQuery-Validation-Engine\/js\/jquery.validationEngine.js",
-		"outputAbbreviatedPath": "\/application\/shared\/includes\/js\/jQuery-Validation-Engine\/js\/min\/jquery.validationEngine-ck.js",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0,
-		"outputStyle": 1,
-		"syntaxCheckerStyle": 1
-		},
-	"\/application\/shared\/includes\/js\/jQuery-Validation-Engine\/js\/languages\/jquery.validationEngine-cz.js": {
-		"fileType": 64,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/application\/shared\/includes\/js\/jQuery-Validation-Engine\/js\/languages\/jquery.validationEngine-cz.js",
-		"outputAbbreviatedPath": "\/application\/shared\/includes\/js\/jQuery-Validation-Engine\/js\/languages\/min\/jquery.validationEngine-cz-ck.js",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0,
-		"outputStyle": 1,
-		"syntaxCheckerStyle": 1
-		},
-	"\/application\/shared\/includes\/js\/jQuery-Validation-Engine\/js\/languages\/jquery.validationEngine-da.js": {
-		"fileType": 64,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/application\/shared\/includes\/js\/jQuery-Validation-Engine\/js\/languages\/jquery.validationEngine-da.js",
-		"outputAbbreviatedPath": "\/application\/shared\/includes\/js\/jQuery-Validation-Engine\/js\/languages\/min\/jquery.validationEngine-da-ck.js",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0,
-		"outputStyle": 1,
-		"syntaxCheckerStyle": 1
-		},
-	"\/application\/shared\/includes\/js\/jQuery-Validation-Engine\/js\/languages\/jquery.validationEngine-de.js": {
-		"fileType": 64,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/application\/shared\/includes\/js\/jQuery-Validation-Engine\/js\/languages\/jquery.validationEngine-de.js",
-		"outputAbbreviatedPath": "\/application\/shared\/includes\/js\/jQuery-Validation-Engine\/js\/languages\/min\/jquery.validationEngine-de-ck.js",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0,
-		"outputStyle": 1,
-		"syntaxCheckerStyle": 1
-		},
-	"\/application\/shared\/includes\/js\/jQuery-Validation-Engine\/js\/languages\/jquery.validationEngine-en.js": {
-		"fileType": 64,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/application\/shared\/includes\/js\/jQuery-Validation-Engine\/js\/languages\/jquery.validationEngine-en.js",
-		"outputAbbreviatedPath": "\/application\/shared\/includes\/js\/jQuery-Validation-Engine\/js\/languages\/min\/jquery.validationEngine-en-ck.js",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0,
-		"outputStyle": 1,
-		"syntaxCheckerStyle": 1
-		},
-	"\/application\/shared\/includes\/js\/jQuery-Validation-Engine\/js\/languages\/jquery.validationEngine-es.js": {
-		"fileType": 64,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/application\/shared\/includes\/js\/jQuery-Validation-Engine\/js\/languages\/jquery.validationEngine-es.js",
-		"outputAbbreviatedPath": "\/application\/shared\/includes\/js\/jQuery-Validation-Engine\/js\/languages\/min\/jquery.validationEngine-es-ck.js",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0,
-		"outputStyle": 1,
-		"syntaxCheckerStyle": 1
-		},
-	"\/application\/shared\/includes\/js\/jQuery-Validation-Engine\/js\/languages\/jquery.validationEngine-et.js": {
-		"fileType": 64,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/application\/shared\/includes\/js\/jQuery-Validation-Engine\/js\/languages\/jquery.validationEngine-et.js",
-		"outputAbbreviatedPath": "\/application\/shared\/includes\/js\/jQuery-Validation-Engine\/js\/languages\/min\/jquery.validationEngine-et-ck.js",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0,
-		"outputStyle": 1,
-		"syntaxCheckerStyle": 1
-		},
-	"\/application\/shared\/includes\/js\/jQuery-Validation-Engine\/js\/languages\/jquery.validationEngine-fa.js": {
-		"fileType": 64,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/application\/shared\/includes\/js\/jQuery-Validation-Engine\/js\/languages\/jquery.validationEngine-fa.js",
-		"outputAbbreviatedPath": "\/application\/shared\/includes\/js\/jQuery-Validation-Engine\/js\/languages\/min\/jquery.validationEngine-fa-ck.js",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0,
-		"outputStyle": 1,
-		"syntaxCheckerStyle": 1
-		},
-	"\/application\/shared\/includes\/js\/jQuery-Validation-Engine\/js\/languages\/jquery.validationEngine-fi.js": {
-		"fileType": 64,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/application\/shared\/includes\/js\/jQuery-Validation-Engine\/js\/languages\/jquery.validationEngine-fi.js",
-		"outputAbbreviatedPath": "\/application\/shared\/includes\/js\/jQuery-Validation-Engine\/js\/languages\/min\/jquery.validationEngine-fi-ck.js",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0,
-		"outputStyle": 1,
-		"syntaxCheckerStyle": 1
-		},
-	"\/application\/shared\/includes\/js\/jQuery-Validation-Engine\/js\/languages\/jquery.validationEngine-fr.js": {
-		"fileType": 64,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/application\/shared\/includes\/js\/jQuery-Validation-Engine\/js\/languages\/jquery.validationEngine-fr.js",
-		"outputAbbreviatedPath": "\/application\/shared\/includes\/js\/jQuery-Validation-Engine\/js\/languages\/min\/jquery.validationEngine-fr-ck.js",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0,
-		"outputStyle": 1,
-		"syntaxCheckerStyle": 1
-		},
-	"\/application\/shared\/includes\/js\/jQuery-Validation-Engine\/js\/languages\/jquery.validationEngine-hr.js": {
-		"fileType": 64,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/application\/shared\/includes\/js\/jQuery-Validation-Engine\/js\/languages\/jquery.validationEngine-hr.js",
-		"outputAbbreviatedPath": "\/application\/shared\/includes\/js\/jQuery-Validation-Engine\/js\/languages\/min\/jquery.validationEngine-hr-ck.js",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0,
-		"outputStyle": 1,
-		"syntaxCheckerStyle": 1
-		},
-	"\/application\/shared\/includes\/js\/jQuery-Validation-Engine\/js\/languages\/jquery.validationEngine-hu.js": {
-		"fileType": 64,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/application\/shared\/includes\/js\/jQuery-Validation-Engine\/js\/languages\/jquery.validationEngine-hu.js",
-		"outputAbbreviatedPath": "\/application\/shared\/includes\/js\/jQuery-Validation-Engine\/js\/languages\/min\/jquery.validationEngine-hu-ck.js",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0,
-		"outputStyle": 1,
-		"syntaxCheckerStyle": 1
-		},
-	"\/application\/shared\/includes\/js\/jQuery-Validation-Engine\/js\/languages\/jquery.validationEngine-it.js": {
-		"fileType": 64,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/application\/shared\/includes\/js\/jQuery-Validation-Engine\/js\/languages\/jquery.validationEngine-it.js",
-		"outputAbbreviatedPath": "\/application\/shared\/includes\/js\/jQuery-Validation-Engine\/js\/languages\/min\/jquery.validationEngine-it-ck.js",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0,
-		"outputStyle": 1,
-		"syntaxCheckerStyle": 1
-		},
-	"\/application\/shared\/includes\/js\/jQuery-Validation-Engine\/js\/languages\/jquery.validationEngine-ja.js": {
-		"fileType": 64,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/application\/shared\/includes\/js\/jQuery-Validation-Engine\/js\/languages\/jquery.validationEngine-ja.js",
-		"outputAbbreviatedPath": "\/application\/shared\/includes\/js\/jQuery-Validation-Engine\/js\/languages\/min\/jquery.validationEngine-ja-ck.js",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0,
-		"outputStyle": 1,
-		"syntaxCheckerStyle": 1
-		},
-	"\/application\/shared\/includes\/js\/jQuery-Validation-Engine\/js\/languages\/jquery.validationEngine-nl.js": {
-		"fileType": 64,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/application\/shared\/includes\/js\/jQuery-Validation-Engine\/js\/languages\/jquery.validationEngine-nl.js",
-		"outputAbbreviatedPath": "\/application\/shared\/includes\/js\/jQuery-Validation-Engine\/js\/languages\/min\/jquery.validationEngine-nl-ck.js",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0,
-		"outputStyle": 1,
-		"syntaxCheckerStyle": 1
-		},
-	"\/application\/shared\/includes\/js\/jQuery-Validation-Engine\/js\/languages\/jquery.validationEngine-no.js": {
-		"fileType": 64,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/application\/shared\/includes\/js\/jQuery-Validation-Engine\/js\/languages\/jquery.validationEngine-no.js",
-		"outputAbbreviatedPath": "\/application\/shared\/includes\/js\/jQuery-Validation-Engine\/js\/languages\/min\/jquery.validationEngine-no-ck.js",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0,
-		"outputStyle": 1,
-		"syntaxCheckerStyle": 1
-		},
-	"\/application\/shared\/includes\/js\/jQuery-Validation-Engine\/js\/languages\/jquery.validationEngine-pl.js": {
-		"fileType": 64,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/application\/shared\/includes\/js\/jQuery-Validation-Engine\/js\/languages\/jquery.validationEngine-pl.js",
-		"outputAbbreviatedPath": "\/application\/shared\/includes\/js\/jQuery-Validation-Engine\/js\/languages\/min\/jquery.validationEngine-pl-ck.js",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0,
-		"outputStyle": 1,
-		"syntaxCheckerStyle": 1
-		},
-	"\/application\/shared\/includes\/js\/jQuery-Validation-Engine\/js\/languages\/jquery.validationEngine-pt.js": {
-		"fileType": 64,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/application\/shared\/includes\/js\/jQuery-Validation-Engine\/js\/languages\/jquery.validationEngine-pt.js",
-		"outputAbbreviatedPath": "\/application\/shared\/includes\/js\/jQuery-Validation-Engine\/js\/languages\/min\/jquery.validationEngine-pt-ck.js",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0,
-		"outputStyle": 1,
-		"syntaxCheckerStyle": 1
-		},
-	"\/application\/shared\/includes\/js\/jQuery-Validation-Engine\/js\/languages\/jquery.validationEngine-pt_BR.js": {
-		"fileType": 64,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/application\/shared\/includes\/js\/jQuery-Validation-Engine\/js\/languages\/jquery.validationEngine-pt_BR.js",
-		"outputAbbreviatedPath": "\/application\/shared\/includes\/js\/jQuery-Validation-Engine\/js\/languages\/min\/jquery.validationEngine-pt_BR-ck.js",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0,
-		"outputStyle": 1,
-		"syntaxCheckerStyle": 1
-		},
-	"\/application\/shared\/includes\/js\/jQuery-Validation-Engine\/js\/languages\/jquery.validationEngine-ro.js": {
-		"fileType": 64,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/application\/shared\/includes\/js\/jQuery-Validation-Engine\/js\/languages\/jquery.validationEngine-ro.js",
-		"outputAbbreviatedPath": "\/application\/shared\/includes\/js\/jQuery-Validation-Engine\/js\/languages\/min\/jquery.validationEngine-ro-ck.js",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0,
-		"outputStyle": 1,
-		"syntaxCheckerStyle": 1
-		},
-	"\/application\/shared\/includes\/js\/jQuery-Validation-Engine\/js\/languages\/jquery.validationEngine-ru.js": {
-		"fileType": 64,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/application\/shared\/includes\/js\/jQuery-Validation-Engine\/js\/languages\/jquery.validationEngine-ru.js",
-		"outputAbbreviatedPath": "\/application\/shared\/includes\/js\/jQuery-Validation-Engine\/js\/languages\/min\/jquery.validationEngine-ru-ck.js",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0,
-		"outputStyle": 1,
-		"syntaxCheckerStyle": 1
-		},
-	"\/application\/shared\/includes\/js\/jQuery-Validation-Engine\/js\/languages\/jquery.validationEngine-se.js": {
-		"fileType": 64,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/application\/shared\/includes\/js\/jQuery-Validation-Engine\/js\/languages\/jquery.validationEngine-se.js",
-		"outputAbbreviatedPath": "\/application\/shared\/includes\/js\/jQuery-Validation-Engine\/js\/languages\/min\/jquery.validationEngine-se-ck.js",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0,
-		"outputStyle": 1,
-		"syntaxCheckerStyle": 1
-		},
-	"\/application\/shared\/includes\/js\/jQuery-Validation-Engine\/js\/languages\/jquery.validationEngine-tr.js": {
-		"fileType": 64,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/application\/shared\/includes\/js\/jQuery-Validation-Engine\/js\/languages\/jquery.validationEngine-tr.js",
-		"outputAbbreviatedPath": "\/application\/shared\/includes\/js\/jQuery-Validation-Engine\/js\/languages\/min\/jquery.validationEngine-tr-ck.js",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0,
-		"outputStyle": 1,
-		"syntaxCheckerStyle": 1
-		},
-	"\/application\/shared\/includes\/js\/jQuery-Validation-Engine\/js\/languages\/jquery.validationEngine-vi.js": {
-		"fileType": 64,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/application\/shared\/includes\/js\/jQuery-Validation-Engine\/js\/languages\/jquery.validationEngine-vi.js",
-		"outputAbbreviatedPath": "\/application\/shared\/includes\/js\/jQuery-Validation-Engine\/js\/languages\/min\/jquery.validationEngine-vi-ck.js",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0,
-		"outputStyle": 1,
-		"syntaxCheckerStyle": 1
-		},
-	"\/application\/shared\/includes\/js\/jQuery-Validation-Engine\/js\/languages\/jquery.validationEngine-zh_CN.js": {
-		"fileType": 64,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/application\/shared\/includes\/js\/jQuery-Validation-Engine\/js\/languages\/jquery.validationEngine-zh_CN.js",
-		"outputAbbreviatedPath": "\/application\/shared\/includes\/js\/jQuery-Validation-Engine\/js\/languages\/min\/jquery.validationEngine-zh_CN-ck.js",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0,
-		"outputStyle": 1,
-		"syntaxCheckerStyle": 1
-		},
-	"\/application\/shared\/includes\/js\/jQuery-Validation-Engine\/js\/languages\/jquery.validationEngine-zh_TW.js": {
-		"fileType": 64,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/application\/shared\/includes\/js\/jQuery-Validation-Engine\/js\/languages\/jquery.validationEngine-zh_TW.js",
-		"outputAbbreviatedPath": "\/application\/shared\/includes\/js\/jQuery-Validation-Engine\/js\/languages\/min\/jquery.validationEngine-zh_TW-ck.js",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0,
-		"outputStyle": 1,
-		"syntaxCheckerStyle": 1
-		},
-	"\/application\/shared\/includes\/js\/jQuery-Validation-Engine\/README.md": {
-		"enableFootnoteSupport": 0,
-		"enableSmartyPants": 1,
-		"expandTabs": 1,
-		"fileType": 4096,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/application\/shared\/includes\/js\/jQuery-Validation-Engine\/README.md",
-		"outputAbbreviatedPath": "\/application\/shared\/includes\/js\/jQuery-Validation-Engine\/README.html",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0
-		},
-	"\/application\/shared\/includes\/js\/jquery.bxslider\/images\/controls.png": {
-		"fileType": 32768,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"initialSize": 2806,
-		"inputAbbreviatedPath": "\/application\/shared\/includes\/js\/jquery.bxslider\/images\/controls.png",
-		"outputAbbreviatedPath": "\/application\/shared\/includes\/js\/jquery.bxslider\/images\/controls.png",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0,
-		"processed": 0
-		},
-	"\/application\/shared\/includes\/js\/jquery.bxslider\/jquery.bxslider.css": {
-		"fileType": 16,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/application\/shared\/includes\/js\/jquery.bxslider\/jquery.bxslider.css",
-		"outputAbbreviatedPath": "No Output Path",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0
-		},
-	"\/application\/shared\/includes\/js\/jquery.bxslider\/jquery.bxslider.js": {
-		"fileType": 64,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/application\/shared\/includes\/js\/jquery.bxslider\/jquery.bxslider.js",
-		"outputAbbreviatedPath": "\/application\/shared\/includes\/js\/jquery.bxslider\/min\/jquery.bxslider-ck.js",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0,
-		"outputStyle": 1,
-		"syntaxCheckerStyle": 1
-		},
-	"\/application\/shared\/includes\/js\/jquery.bxslider\/jquery.bxslider.min.js": {
-		"fileType": 64,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/application\/shared\/includes\/js\/jquery.bxslider\/jquery.bxslider.min.js",
-		"outputAbbreviatedPath": "\/application\/shared\/includes\/js\/jquery.bxslider\/min\/jquery.bxslider.min-ck.js",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0,
-		"outputStyle": 1,
-		"syntaxCheckerStyle": 1
-		},
-	"\/application\/shared\/includes\/js\/jquery.bxslider\/plugins\/jquery.easing.1.3.js": {
-		"fileType": 64,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/application\/shared\/includes\/js\/jquery.bxslider\/plugins\/jquery.easing.1.3.js",
-		"outputAbbreviatedPath": "\/application\/shared\/includes\/js\/jquery.bxslider\/plugins\/min\/jquery.easing.1.3-ck.js",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0,
-		"outputStyle": 1,
-		"syntaxCheckerStyle": 1
-		},
-	"\/application\/shared\/includes\/js\/jquery.bxslider\/plugins\/jquery.fitvids.js": {
-		"fileType": 64,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/application\/shared\/includes\/js\/jquery.bxslider\/plugins\/jquery.fitvids.js",
-		"outputAbbreviatedPath": "\/application\/shared\/includes\/js\/jquery.bxslider\/plugins\/min\/jquery.fitvids-ck.js",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0,
-		"outputStyle": 1,
-		"syntaxCheckerStyle": 1
-		},
-	"\/application\/shared\/includes\/js\/jquery.bxslider\/readme.md": {
-		"enableFootnoteSupport": 0,
-		"enableSmartyPants": 1,
-		"expandTabs": 1,
-		"fileType": 4096,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/application\/shared\/includes\/js\/jquery.bxslider\/readme.md",
-		"outputAbbreviatedPath": "\/application\/shared\/includes\/js\/jquery.bxslider\/readme.html",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0
 		},
 	"\/application\/shared\/includes\/js\/jquery.isotope.min.js": {
 		"fileType": 64,
@@ -2702,144 +1858,6 @@
 		"ignoreWasSetByUser": 0,
 		"inputAbbreviatedPath": "\/application\/shared\/includes\/js\/swiper\/idangerous.swiper.progress.min.js",
 		"outputAbbreviatedPath": "\/application\/shared\/includes\/js\/swiper\/min\/idangerous.swiper.progress.min-ck.js",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0,
-		"outputStyle": 1,
-		"syntaxCheckerStyle": 1
-		},
-	"\/application\/shared\/includes\/js\/tabby\/css\/tabby-css.css": {
-		"fileType": 16,
-		"ignore": 1,
-		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/application\/shared\/includes\/js\/tabby\/css\/tabby-css.css",
-		"outputAbbreviatedPath": "No Output Path",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0
-		},
-	"\/application\/shared\/includes\/js\/tabby\/index.html": {
-		"fileType": 8192,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/application\/shared\/includes\/js\/tabby\/index.html",
-		"outputAbbreviatedPath": "No Output Path",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0
-		},
-	"\/application\/shared\/includes\/js\/tabby\/js\/buoy.js": {
-		"fileType": 64,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/application\/shared\/includes\/js\/tabby\/js\/buoy.js",
-		"outputAbbreviatedPath": "\/application\/shared\/includes\/js\/tabby\/js\/min\/buoy-ck.js",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0,
-		"outputStyle": 1,
-		"syntaxCheckerStyle": 1
-		},
-	"\/application\/shared\/includes\/js\/tabby\/js\/tabby.js": {
-		"fileType": 64,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/application\/shared\/includes\/js\/tabby\/js\/tabby.js",
-		"outputAbbreviatedPath": "\/application\/shared\/includes\/js\/tabby\/js\/min\/tabby-ck.js",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0,
-		"outputStyle": 1,
-		"syntaxCheckerStyle": 1
-		},
-	"\/application\/shared\/includes\/js\/tabby\/js\/tabify.js": {
-		"fileType": 64,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/application\/shared\/includes\/js\/tabby\/js\/tabify.js",
-		"outputAbbreviatedPath": "\/application\/shared\/includes\/js\/tabby\/js\/min\/tabify-ck.js",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0,
-		"outputStyle": 1,
-		"syntaxCheckerStyle": 1
-		},
-	"\/application\/shared\/includes\/js\/tabby\/README.md": {
-		"enableFootnoteSupport": 0,
-		"enableSmartyPants": 1,
-		"expandTabs": 1,
-		"fileType": 4096,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/application\/shared\/includes\/js\/tabby\/README.md",
-		"outputAbbreviatedPath": "\/application\/shared\/includes\/js\/tabby\/README.html",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0
-		},
-	"\/application\/shared\/includes\/js\/tabby\/sass\/_config.scss": {
-		"createSourceMap": 1,
-		"debugStyle": 0,
-		"decimalPrecision": 5,
-		"fileType": 4,
-		"ignore": 1,
-		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/application\/shared\/includes\/js\/tabby\/sass\/_config.scss",
-		"outputAbbreviatedPath": "\/application\/shared\/includes\/js\/tabby\/css\/_config.css",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0,
-		"outputStyle": 0,
-		"shouldRunAutoprefixer": 1,
-		"shouldRunBless": 0,
-		"useLibsass": 0
-		},
-	"\/application\/shared\/includes\/js\/tabby\/sass\/_mixins.scss": {
-		"createSourceMap": 1,
-		"debugStyle": 0,
-		"decimalPrecision": 5,
-		"fileType": 4,
-		"ignore": 1,
-		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/application\/shared\/includes\/js\/tabby\/sass\/_mixins.scss",
-		"outputAbbreviatedPath": "\/application\/shared\/includes\/js\/tabby\/css\/_mixins.css",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0,
-		"outputStyle": 0,
-		"shouldRunAutoprefixer": 1,
-		"shouldRunBless": 0,
-		"useLibsass": 0
-		},
-	"\/application\/shared\/includes\/js\/tabby\/sass\/_tabby.scss": {
-		"createSourceMap": 1,
-		"debugStyle": 0,
-		"decimalPrecision": 5,
-		"fileType": 4,
-		"ignore": 1,
-		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/application\/shared\/includes\/js\/tabby\/sass\/_tabby.scss",
-		"outputAbbreviatedPath": "\/application\/shared\/includes\/js\/tabby\/css\/_tabby.css",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0,
-		"outputStyle": 0,
-		"shouldRunAutoprefixer": 1,
-		"shouldRunBless": 0,
-		"useLibsass": 0
-		},
-	"\/application\/shared\/includes\/js\/tabby\/sass\/tabby-css.scss": {
-		"createSourceMap": 1,
-		"debugStyle": 0,
-		"decimalPrecision": 5,
-		"fileType": 4,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/application\/shared\/includes\/js\/tabby\/sass\/tabby-css.scss",
-		"outputAbbreviatedPath": "\/application\/shared\/includes\/js\/tabby\/css\/tabby-css.css",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0,
-		"outputStyle": 0,
-		"shouldRunAutoprefixer": 1,
-		"shouldRunBless": 0,
-		"useLibsass": 0
-		},
-	"\/application\/shared\/includes\/js\/unslider.min.js": {
-		"fileType": 64,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/application\/shared\/includes\/js\/unslider.min.js",
-		"outputAbbreviatedPath": "\/application\/shared\/includes\/js\/min\/unslider.min-ck.js",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0,
 		"outputStyle": 1,
@@ -3585,10 +2603,6 @@
 			"active": 0,
 			"flagValue": 3
 			},
-		"no-unnecessary_fat_arrows": {
-			"active": 1,
-			"flagValue": -1
-			},
 		"no_backticks": {
 			"active": 1,
 			"flagValue": -1
@@ -3643,6 +2657,10 @@
 			},
 		"no_unnecessary_double_quotes": {
 			"active": 0,
+			"flagValue": -1
+			},
+		"no_unnecessary_fat_arrows": {
+			"active": 1,
 			"flagValue": -1
 			},
 		"non_empty_constructor_needs_parens": {

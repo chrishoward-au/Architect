@@ -2,33 +2,10 @@
 jQuery( document ).ready( function ()
 {
     "use strict";
+    // This stop error in CodeKit compilation
+    /*global console:true */
 
-
-//    //bxSlider
-//    jQuery( '.bxslider' ).bxSlider( {
-//              mode: 'fade',
-//              pagerType:'full',
-//              autoControls:false,
-//              auto:false,
-//              pager:false,
-//              pagerCustom:'.bxpager'
-//          }
-//    );
-
-
-    // Swiper
-    /*
-     var mySwiper = jQuery('.swiper-container.pzarc-blueprint-2173').swiper({
-     //Your options here:
-     mode:'horizontal',
-     loop: true,
-     keyboardControl:true,
-     autoplay:0,
-     slidesPerView:'auto'
-     });
-     */
-
-    // Look in class_Architect build() for swiper vars
+    // Look in class_Architect get_section_opener() for swiper vars
     var arcSwipers = jQuery( '.swiper-container.swiper-container' );
     console.log( arcSwipers );
     //for each
@@ -49,19 +26,25 @@ jQuery( document ).ready( function ()
 
             var arcSwiper = jQuery( '.swiper-container.swiper-container-' + arcSwiperID ).swiper(
                   {
+                      // Nav item gets outta sync when loop on - even with activeLoopIndex
+                      // TODO: Setup vertical mode. Will need an option for fixed height blueprint/panel
+                      // TODO: Is there an option for nav items per view?
+                      // TODO:Is there an option to stop sliding between slides - esp end to beginning.
+                      mode:'horizontal',
                       loop: false,
                       calculateHeight: true,
                       cssWidthAndHeight: false,
-                      mode: 'horizontal',
                       grabCursor: true,
                       createPagination: false,
                       paginationClickable: true,
-                      slidesPerView: '1',
+                      scrollContainer:false,
+                      slidesPerView: 1,
                       useCSS3Transforms: true,
                       speed: arcSwiperOptsObj.tduration,
                       autoplay: arcSwiperOptsObj.tinterval,
+                      autoplayDisableOnInteraction:false,
                       roundLength: true,
-                      onSlideChangeStart: function ( swiper, direction )
+                      onSlideChangeStart: function ( swiper )
                       {
                           jQuery( ".pzarc-navigator-" + arcSwiperID + " .active" ).removeClass( 'active' );
                           jQuery( jQuery( ".pzarc-navigator-" + arcSwiperID + " span.swiper-pagination-switch" ).get( swiper.activeIndex ) ).addClass( "active" );
@@ -69,16 +52,17 @@ jQuery( document ).ready( function ()
                       progress: true,
                       onProgressChange: function ( swiper )
                       {
+                          var i, slide, progress, translate, rotate, opacity;
                           switch (arcSwiperTrans)
                           {
                               case "fade":
                                   console.log( arcSwiperTrans );
-                                  for ( var i = 0; i < swiper.slides.length; i++ )
+                                  for ( i = 0; i < swiper.slides.length; i++ )
                                   {
-                                      var slide = swiper.slides[i];
-                                      var progress = slide.progress;
-                                      var translate = progress * swiper.width;
-                                      var opacity = 1 - Math.min( Math.abs( progress ), 1 );
+                                      slide = swiper.slides[i];
+                                      progress = slide.progress;
+                                      translate = progress * swiper.width;
+                                      opacity = 1 - Math.min( Math.abs( progress ), 1 );
                                       slide.style.opacity = opacity;
                                       swiper.setTransform( slide, 'translate3d(' + translate + 'px,0,0)' );
                                   }
@@ -86,38 +70,42 @@ jQuery( document ).ready( function ()
                               case "swipe":
                                   console.log( arcSwiperTrans );
 
-                                  for ( var i = 0; i < swiper.slides.length; i++ )
+                                  for ( i = 0; i < swiper.slides.length; i++ )
                                   {
-                                      var slide = swiper.slides[i];
-                                      var progress = slide.progress;
+                                      slide = swiper.slides[i];
+                                      progress = slide.progress;
                                       swiper.setTransform( slide, 'translate3d(0px,0,' + (-Math.abs( progress * 1500 )) + 'px)' );
                                   }
                                   break;
                               case "rotate":
                                   console.log( arcSwiperTrans );
-                                  for ( var i = 0; i < swiper.slides.length; i++ )
+                                  for ( i = 0; i < swiper.slides.length; i++ )
                                   {
-                                      var slide = swiper.slides[i];
-                                      var progress = slide.progress;
-                                      var rotate = -90 * progress;
-                                      if ( rotate < -90 ) rotate = -90;
-                                      if ( rotate > 90 ) rotate = 90;
-                                      var translate = progress * swiper.width / 2;
-                                      var opacity = 1 - Math.min( Math.abs( progress ), 1 );
+                                      slide = swiper.slides[i];
+                                      progress = slide.progress;
+                                      rotate = -90 * progress;
+                                      if ( rotate < -90 )
+                                      {rotate = -90;}
+                                      if ( rotate > 90 )
+                                      {rotate = 90;}
+                                      translate = progress * swiper.width / 2;
+                                      opacity = 1 - Math.min( Math.abs( progress ), 1 );
                                       slide.style.opacity = opacity;
                                       swiper.setTransform( slide, 'rotateY(' + rotate + 'deg) translate3d(' + translate + 'px,0,0)' );
                                   }
                                   break;
                               case "flip":
                                   console.log( arcSwiperTrans );
-                                  for ( var i = 0; i < swiper.slides.length; i++ )
+                                  for ( i = 0; i < swiper.slides.length; i++ )
                                   {
-                                      var slide = swiper.slides[i];
-                                      var progress = slide.progress;
-                                      var rotate = -180 * progress;
-                                      if ( rotate < -180 ) rotate = -180;
-                                      if ( rotate > 180 ) rotate = 180;
-                                      var translate = progress * swiper.width;
+                                      slide = swiper.slides[i];
+                                      progress = slide.progress;
+                                      rotate = -180 * progress;
+                                      if ( rotate < -180 )
+                                      {rotate = -180;}
+                                      if ( rotate > 180 )
+                                      {rotate = 180;}
+                                      translate = progress * swiper.width;
                                       swiper.setTransform( slide, 'translate3d(' + translate + 'px,0,' + -Math.abs( progress ) * 500 + 'px)' );
                                       swiper.setTransform( slide.querySelector( '.flip-container' ), 'rotateY(' + rotate + 'deg)' );
                                   }
@@ -145,7 +133,7 @@ jQuery( document ).ready( function ()
                               switch (arcSwiperTrans)
                               {
                                   case "flip":
-                                      swiper.setTransition(swiper.slides[i].querySelector('.flip-container'),swiper.params.speed);
+                                      swiper.setTransition( swiper.slides[i].querySelector( '.flip-container' ), swiper.params.speed );
                                       break;
                               }
                           }
@@ -157,8 +145,6 @@ jQuery( document ).ready( function ()
             arcTabs.on( 'touchstart mousedown', function ( e )
             {
                 e.preventDefault();
-//                jQuery( ".pzarc-navigator-" + arcSwiperID + " .active" ).removeClass( 'active' );
-//                jQuery( this ).addClass( 'active' );
                 arcSwiper.swipeTo( jQuery( this ).index() );
             } );
             arcTabs.click( function ( e )
@@ -171,16 +157,12 @@ jQuery( document ).ready( function ()
             jQuery( '.arrow-left' ).on( 'click', function ( e )
             {
                 e.preventDefault();
-//                jQuery( ".pzarc-navigator-" + arcSwiperID + " .active" ).removeClass( 'active' );
                 arcSwiper.swipePrev();
-//                jQuery( jQuery( ".pzarc-navigator-" + arcSwiperID + " span" ).get( arcSwiper.activeIndex ) ).addClass( "active" );
             } );
             jQuery( '.arrow-right' ).on( 'click', function ( e )
             {
                 e.preventDefault();
-//                jQuery( ".pzarc-navigator-" + arcSwiperID + " .active" ).removeClass( 'active' );
                 arcSwiper.swipeNext();
-//                jQuery( jQuery( ".pzarc-navigator-" + arcSwiperID + " span" ).get( arcSwiper.activeIndex ) ).addClass( "active" );
             } );
 
         } // End if has ID

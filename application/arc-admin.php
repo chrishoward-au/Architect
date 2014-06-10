@@ -199,6 +199,13 @@
         <p style="font-weight:bold">pzarchitect(\'thumb-gallery\', \'321,456,987,123,654,789\')</p>
         </div>
 
+        <h2>Shout outs</h2>
+        <p>Architect is powered by the following awesome code libraries, plugins and add-ons:</p>
+        <ul><li><a href="http://reduxframework.com" target=_blank alt="Redux Options Framework"><img src="' . PZARC_PLUGIN_APP_URL . '/shared/assets/images/help/redux-logo.png" style="display:block"/> Redux Options Framework</li>
+          <li>Swiper JS</li>
+          <li>Isotope JS</li>
+          <li>Tom McPharlin\'s WP Plugin Boilerplate</li>
+        </ul>
       </div>';
     }
 

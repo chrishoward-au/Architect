@@ -521,7 +521,9 @@
             break;
           case 'thumbs':
             //TODO: Need a blank if no image
-            $nav_items[ ] = '<span class="'.$this->build->blueprint[ '_blueprints_navigator' ].'">'.get_the_post_thumbnail($this->arc_query->post->ID, array(50, 50)).'</span>';
+            $thumb = get_the_post_thumbnail($this->arc_query->post->ID, array(50, 50));
+            $thumb = (empty($thumb)?'<img src="' . PZARC_PLUGIN_APP_URL . '/shared/assets/images/missing-image.png" width="50" height="50">':$thumb);
+            $nav_items[ ] = '<span class="'.$this->build->blueprint[ '_blueprints_navigator' ].'">'.$thumb.'</span>';
             break;
           case 'bullets':
           case 'numbers':
