@@ -31,6 +31,7 @@
     wp_register_style('css-swiperjs', PZARC_PLUGIN_APP_URL . '/shared/includes/js/swiper/idangerous.swiper.css');
 
     wp_enqueue_script('js-swiperjs');
+    wp_enqueue_script('js-swiper-progressjs');
     wp_enqueue_style('css-swiperjs');
 
     // ResponCSS

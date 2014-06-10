@@ -89,6 +89,7 @@
       // Shorthand some vars
       $bpshortname = $this->build->blueprint[ '_blueprints_short-name' ];
       $bpnav_type  = $this->build->blueprint[ '_blueprints_navigation' ];
+      $bptranstype  = $this->build->blueprint[ '_blueprints_transitions-type' ];
 
       do_action('arc_before_architect');
       do_action('arc_navigation_top');
@@ -98,7 +99,7 @@
 
       self::display_page_title($this->build->blueprint[ '_blueprints_page-title' ]);
 
-      echo self::get_sections_opener($bpshortname, $bpnav_type, $caller);
+      echo self::get_sections_opener($bpshortname, $bpnav_type, $caller,$bptranstype);
 
       do_action('arcNavBeforeSection-{$bpshortname}');
       $this->arc      = array();
@@ -225,9 +226,10 @@
      * @param $bpshortname
      * @param $bpnav_type (not necessary but makes calling code more informative)
      * @param $caller
+     * @param $bptranstype
      * @return string
      */
-    private function get_sections_opener($bpshortname, $bpnav_type, $caller)
+    private function get_sections_opener($bpshortname, $bpnav_type, $caller, $bptranstype)
     {
       $return_val = '';
       if ($bpnav_type === 'navigator') {
@@ -238,6 +240,7 @@
         $swiper[ 'class' ]    = ' swiper-container swiper-container-' . $bpshortname;
         $swiper[ 'dataid' ]   = ' data-swiperid="' . $bpshortname . '"';
         $swiper[ 'datatype' ] = 'data-navtype="' . $bpnav_type . '"';
+        $swiper['datatrans']= ' data-transtype="'.$bptranstype.'"';
 
         $duration             = $this->build->blueprint[ '_blueprints_transitions-duration' ] * 1000;
         $interval             = $this->build->blueprint[ '_blueprints_transitions-interval' ] * 1000;
@@ -246,7 +249,7 @@
         $return_val .= '<a class="pager arrow-left icon-btn-style" href="#"></a>';
         $return_val .= '<a class="pager arrow-right icon-btn-style" href="#"></a>';
 //          //TODO: Should the bp name be in the class or ID?
-        $return_val .= '<div class="pzarc-sections_' . $bpshortname . ' pzarc-is_' . $caller . $swiper[ 'class' ] . '"' . $swiper[ 'dataid' ] . $swiper[ 'datatype' ] . $swiper[ 'dataopts' ] . '>';
+        $return_val .= '<div class="pzarc-sections_' . $bpshortname . ' pzarc-is_' . $caller . $swiper[ 'class' ] . '"' . $swiper[ 'dataid' ] . $swiper[ 'datatype' ] . $swiper[ 'dataopts' ] . $swiper['datatrans']. '>';
       } else {
         $return_val .= '<div class="pzarc-sections_' . $bpshortname . ' pzarc-is_' . $caller . '">';
       }

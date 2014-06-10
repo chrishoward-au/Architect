@@ -84,7 +84,7 @@
           'panels'                     => __('Panels', 'pzarchitect'),
           '_blueprints_content-source' => __('Content source', 'pzarchitect'),
           'navigation'                 => __('Navigation', 'pzarchitect'),
-          'id'                 => __('ID', 'pzarchitect'),
+          'id'                         => __('ID', 'pzarchitect'),
       );
 
       return array_merge($pzarc_front, $pzarc_insert, $pzarc_back);
@@ -312,12 +312,12 @@
                 'default' => array('width' => '100', 'units' => '%'),
             ),
             array(
-                'title'    => 'Page title',
-                'id'       => $prefix . 'page-title', //this number is the increment number
-                'type'     => 'switch',
-                'on'       => 'Yes',
-                'off'      => 'No',
-                'default'  => false
+                'title'   => 'Page title',
+                'id'      => $prefix . 'page-title', //this number is the increment number
+                'type'    => 'switch',
+                'on'      => 'Yes',
+                'off'     => 'No',
+                'default' => false
             ),
             array(
                 'id'      => $prefix . 'sections-width',
@@ -519,11 +519,11 @@
           'fields'     => array(
 
               array(
-                  'id'    => $prefix . 'section-' . $i . '-title',
-                  'title' => __('Section ' . ($i + 1) . ' title (optional)', 'pzarchitect'),
-                  'type'  => 'textarea',
-                  'rows'=>2,
-                  'subtitle'=>__('Use %title% to display the actual page title. Useful on archive pages. You may include HTML.')
+                  'id'       => $prefix . 'section-' . $i . '-title',
+                  'title'    => __('Section ' . ($i + 1) . ' title (optional)', 'pzarchitect'),
+                  'type'     => 'textarea',
+                  'rows'     => 2,
+                  'subtitle' => __('Use %title% to display the actual page title. Useful on archive pages. You may include HTML.')
               ),
               array(
                   'id'      => $prefix . 'section-width',
@@ -906,19 +906,20 @@
               'type'  => 'section',
               'class' => ' heading',
           ),
-          //TODO: Get the fader working!
-          //            array(
-          //                'title'   => 'Type',
-          //                'id'      => $prefix . 'transitions-type',
-          //                'type'    => 'select',
-          //                'default' => 'none',
-          //                'select2' => array('allowClear' => false),
-          //                'options' => array(
-          //                    'none'  => 'None',
-          //                    'fade'  => 'Fade',
-          //                    'slide' => 'Slide',
-          //                )
-          //            ),
+          array(
+              'title'   => 'Type',
+              'id'      => $prefix . 'transitions-type',
+              'type'    => 'button_set',
+              'default' => 'slide',
+//              'select2' => array('allowClear' => false),
+              'options' => array(
+                  'fade'   => 'Fade',
+                  'slide'  => 'Slide',
+//                  'swipe'  => 'Swipe',
+//                  'rotate' => 'Rotate',
+//                  'flip'   => 'Flip'
+              )
+          ),
           array(
               'title'         => 'Duration (seconds)',
               'id'            => $prefix . 'transitions-duration',
@@ -1453,12 +1454,12 @@ You can use them however you like though.</p>
             pzarc_redux_borders($prefix . 'blueprint-borders', array('.pzarc-blueprint')),
             pzarc_redux_links($prefix . 'blueprint-links', array('.pzarc-blueprint')),
             array(
-                'title' => __('Custom CSS', 'pzarchitect'),
-                'id'    => $prefix . 'blueprint-custom-css',
-                'type'  => 'ace_editor',
-                'mode'  => 'css',
-                'subtitle'  => __('This can be any CSS you\'d like to add to a page this blueprint is displayed on. It will ONLY load on the pages this blueprint is shown on, so will only impact those pages. However, if you have multiple blueprints on a page, this CSS could affect or be overriden by ther blueprints\' custom CSS.', 'pzarchitect'),
-//                'hint'  => array('content' => __('This is can be any CSS you\'d like to add to a page this blueprint is displayed on. It will ONLY load on the pages this blueprint is shown on, so will only impact those pages. However, if you have multiple blueprints on a page, this CSS could affect or be overriden by ther blueprints\' custom CSS.', 'pzarchitect')),
+                'title'    => __('Custom CSS', 'pzarchitect'),
+                'id'       => $prefix . 'blueprint-custom-css',
+                'type'     => 'ace_editor',
+                'mode'     => 'css',
+                'subtitle' => __('This can be any CSS you\'d like to add to a page this blueprint is displayed on. It will ONLY load on the pages this blueprint is shown on, so will only impact those pages. However, if you have multiple blueprints on a page, this CSS could affect or be overriden by ther blueprints\' custom CSS.', 'pzarchitect'),
+                //                'hint'  => array('content' => __('This is can be any CSS you\'d like to add to a page this blueprint is displayed on. It will ONLY load on the pages this blueprint is shown on, so will only impact those pages. However, if you have multiple blueprints on a page, this CSS could affect or be overriden by ther blueprints\' custom CSS.', 'pzarchitect')),
             )
         )
     );
