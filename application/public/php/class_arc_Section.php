@@ -72,7 +72,7 @@
      */
     public function render_panel($panel_def, $panel_number,$class)
     {
-      $data = arc_Panel_post::set_data($this->section[ 'section-panel-settings' ]);
+      $data = arc_Panel_page::set_data($this->section[ 'section-panel-settings' ]);
 
       $sequence = json_decode($this->section[ 'section-panel-settings' ][ '_panels_design_preview' ], true);
       // We do want to provide actions so want to use the sequence
