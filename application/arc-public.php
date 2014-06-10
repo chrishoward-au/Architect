@@ -99,6 +99,7 @@
 
   add_shortcode('architect', 'pzarc_shortcode');
   add_shortcode('pzarc', 'pzarc_shortcode'); // Old version
+  add_shortcode('pzarchitect', 'pzarc_shortcode'); // alternate version
   // I still don't understand why this works!! One day, maybe I will
   add_action('arc_do_shortcode', 'pzarc', 10, 3);
 

@@ -19,20 +19,23 @@
       $this->blueprint = $blueprint;
       $this->navitems = $navitems;
       $this->sizing = ' '.$this->blueprint[ '_blueprints_navigator-sizing' ];
+ //     echo '<span class="dashicons dashicons-arrow-left"></span>';
       echo '<div class="pzarc-navigator pzarc-navigator-' . $this->blueprint[ '_blueprints_short-name' ] .
           ' ' . $this->blueprint[ '_blueprints_navigator' ] .
           ' ' . $this->blueprint[ '_blueprints_navigator-position' ] .
           ' ' . $this->blueprint[ '_blueprints_navigator-location' ] .
           ' ' . $this->blueprint[ '_blueprints_navigator-align' ] .
           ' ' . $this->blueprint[ '_blueprints_navigator-bullet-shape' ] . '">';
+
     }
 
     function render()
     {
     }
 
-    function __descruct(){
+    function __destruct(){
       echo '</div>';
+ //     echo '<span class="dashicons dashicons-arrow-right"></span>';
 
     }
   }
@@ -136,14 +139,12 @@
     }
     function render()
     {
-      echo '<span class="dashicons dashicons-arrow-left"></span>';
       $i=1;
       foreach ($this->navitems as $nav_item) {
         $active = ($i===1?' active':'');
           echo '<span class="swiper-pagination-switch'.$this->sizing.$active.'">' . $nav_item . '</span>';
           $i++;
       }
-      echo '<span class="dashicons dashicons-arrow-right"></span>';
     }
 
   }

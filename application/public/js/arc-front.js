@@ -30,7 +30,7 @@ jQuery( document ).ready( function ()
 
     // Look in class_Architect build() for swiper vars
     var arcSwipers = jQuery( '.swiper-container.swiper-container' );
-    console.log(arcSwipers);
+    console.log( arcSwipers );
     //for each
     arcSwipers.each( function ()
     {
@@ -66,33 +66,38 @@ jQuery( document ).ready( function ()
 //
 
 
-
             // Parse the option values
             // Nothing worked. Need a substitute character (3) for string quotes
             arcSwiperOpts = arcSwiperOpts.replace( /#/g, '"' );
             var arcSwiperOptsObj = JSON.parse( arcSwiperOpts );
 
             var arcSwiper = jQuery( '.swiper-container.swiper-container-' + arcSwiperID ).swiper( {
-                loop:false,
-                calculateHeight:true,
-                cssWidthAndHeight:false,
-                mode:'horizontal',
+                loop: false,
+                calculateHeight: true,
+                cssWidthAndHeight: false,
+                mode: 'horizontal',
                 grabCursor: true,
-                createPagination:false,
+                createPagination: false,
                 paginationClickable: true,
-                slidesPerView:'1',
-                useCSS3Transforms:true,
-                speed:arcSwiperOptsObj.tduration,
-                autoplay:arcSwiperOptsObj.tinterval,
-                roundLength:true
+                slidesPerView: '1',
+                useCSS3Transforms: true,
+                speed: arcSwiperOptsObj.tduration,
+                autoplay: arcSwiperOptsObj.tinterval,
+                roundLength: true,
+                onSlideChangeEnd: function(swiper,direction){
+//                    console.log(( jQuery( ".pzarc-navigator-" + arcSwiperID + " span.swiper-pagination-switch" ).get( swiper.activeIndex ) ));
+//                    console.log(swiper.activeIndex);
+                    jQuery( ".pzarc-navigator-" + arcSwiperID + " .active" ).removeClass( 'active' );
+                    jQuery( jQuery( ".pzarc-navigator-" + arcSwiperID + " span.swiper-pagination-switch" ).get( swiper.activeIndex ) ).addClass( "active" );
+                }
             } );
 
-            var arcTabs = jQuery(  ".pzarc-navigator-"+arcSwiperID+" span" );
+            var arcTabs = jQuery( ".pzarc-navigator-" + arcSwiperID + " span" );
             arcTabs.on( 'touchstart mousedown', function ( e )
             {
                 e.preventDefault();
-                jQuery(  ".pzarc-navigator-"+arcSwiperID+" .active").removeClass( 'active' );
-                jQuery( this ).addClass( 'active' );
+//                jQuery( ".pzarc-navigator-" + arcSwiperID + " .active" ).removeClass( 'active' );
+//                jQuery( this ).addClass( 'active' );
                 arcSwiper.swipeTo( jQuery( this ).index() );
             } );
             arcTabs.click( function ( e )
@@ -105,16 +110,16 @@ jQuery( document ).ready( function ()
             jQuery( '.arrow-left' ).on( 'click', function ( e )
             {
                 e.preventDefault();
-                jQuery( ".pzarc-navigator-"+arcSwiperID+" .active" ).removeClass( 'active' );
+//                jQuery( ".pzarc-navigator-" + arcSwiperID + " .active" ).removeClass( 'active' );
                 arcSwiper.swipePrev();
-                jQuery(jQuery( ".pzarc-navigator-"+arcSwiperID+" span").get(arcSwiper.activeIndex)).addClass("active");
+//                jQuery( jQuery( ".pzarc-navigator-" + arcSwiperID + " span" ).get( arcSwiper.activeIndex ) ).addClass( "active" );
             } );
             jQuery( '.arrow-right' ).on( 'click', function ( e )
             {
                 e.preventDefault();
-                jQuery(  ".pzarc-navigator-"+arcSwiperID+" .active" ).removeClass( 'active' );
+//                jQuery( ".pzarc-navigator-" + arcSwiperID + " .active" ).removeClass( 'active' );
                 arcSwiper.swipeNext();
-                jQuery(jQuery( ".pzarc-navigator-"+arcSwiperID+" span" ).get(arcSwiper.activeIndex )).addClass("active");
+//                jQuery( jQuery( ".pzarc-navigator-" + arcSwiperID + " span" ).get( arcSwiper.activeIndex ) ).addClass( "active" );
             } );
 
         } // End if has ID

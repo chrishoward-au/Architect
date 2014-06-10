@@ -115,14 +115,14 @@ Pagination Styles
     min-height: 30px;
     cursor: pointer;
     padding: 10px;
-    margin:0;
+    margin: 0;
     background: rgba(0, 0, 0, 0.05);
     border: 1px solid rgba(255, 255, 255, 0.5);
     border-top: none;
     border-bottom: none;
     text-decoration: none;
     font-family: sans-serif;
-    box-sizing:border-box;
+    box-sizing: border-box;
   }
 
 }
@@ -130,22 +130,32 @@ Pagination Styles
 .thumbs {
   .swiper-pagination-switch {
     /* Stylize pagination button: */
-//    display: table-cell; // Woot! This fixes height matching and width distribution
-//    min-height: 30px;
-//    cursor: pointer;
-//    padding: 10px;
-//    margin:0;
-//    background: rgba(0, 0, 0, 0.05);
-//    border: 1px solid rgba(255, 255, 255, 0.5);
-//    border-top: none;
-//    border-bottom: none;
-//    text-decoration: none;
-//    font-family: sans-serif;
-//    box-sizing:border-box;
+    //    display: table-cell; // Woot! This fixes height matching and width distribution
+    //    min-height: 30px;
+    //    cursor: pointer;
+    //    padding: 10px;
+    //    margin:0;
+    //    background: rgba(0, 0, 0, 0.05);
+    //    border: 1px solid rgba(255, 255, 255, 0.5);
+    //    border-top: none;
+    //    border-bottom: none;
+    //    text-decoration: none;
+    //    font-family: sans-serif;
+    //    box-sizing:border-box;
+
+    img {
+      border-style:solid;
+      border-width: 2px;
+      border-color:rgba(128,128,128,0);
+    }
+
+    &.active img {
+      border-color: #fff;
+    }
   }
   span.dashicons {
-    font-size:4em;
-    display:inline-table;
+    font-size: 4em;
+    display: inline-table;
 
   }
 }
@@ -196,16 +206,16 @@ Pagination Styles
     margin-top: -20px;
     width: 40px;
     height: 40px;
-    border-radius:30px;
-    padding:0;
+    border-radius: 30px;
+    padding: 0;
     z-index: 2;
     display: none;
     font-family: Dashicons;
     font-size: 40px;
     color: #fff;
     text-decoration: none;
-    text-align:center;
-    background:rgba(0, 0, 0, 0.3);
+    text-align: center;
+    background: rgba(0, 0, 0, 0.3);
 
     // TODO: Replace this with multiple icon font arrows.
     &.arrow-left {
@@ -213,14 +223,14 @@ Pagination Styles
       &:before {
         content: "\f341";
         vertical-align: text-bottom;
-        position:relative;
-        left:-2px;
+        position: relative;
+        left: -2px;
       }
       &.icon-btn-style:before {
         content: "\f141";
         vertical-align: text-bottom;
-        position:relative;
-        left:-2px;
+        position: relative;
+        left: -2px;
       }
     }
     &.arrow-right {
@@ -228,14 +238,14 @@ Pagination Styles
       &:before {
         content: "\f345";
         vertical-align: text-bottom;
-        position:relative;
-        right:-2px;
+        position: relative;
+        right: -2px;
       }
       &.icon-btn-style:before {
         content: "\f139";
         vertical-align: text-bottom;
-        position:relative;
-        right:-2px;
+        position: relative;
+        right: -2px;
       }
     }
   }

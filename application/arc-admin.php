@@ -161,50 +161,45 @@
     {
       global $title;
 
-      echo '<div class = "wrap clearfix">
+      echo '<div class = "wrap">
 
       <!--Display Plugin Icon, Header, and Description-->
         <div class = "icon32" id = "icon-users"><br></div>
-
+        <div class="pzarc-about-box" style="background:#f9f9f9;padding:20px;border:1px solid #ddd;">
         <h2>' . $title . '</h2>
-        <h4>Version ' . PZARC_VERSION . '</h4>
+        <h4>Currently installed version: ' . PZARC_VERSION . '</h4>
         <p>Is it a slider? Is it a gallery? Is it a grid layout? Yes! It\'s all these and more.</p>
         <p>Fed up with a plethora of plugins that all seem to do the same thing, but in different ways? Me too. That\'s why I created Architect. I was guilty too. I had four plugins: ExcerptsPlus, GalleryPlus, SliderPlus and TabsPlus providing four different ways to display your content.</p>
-        <p>Architect enables you to easily design complex content layouts, such as magazine layouts, sliders, galleries and tabbed content. A layout is made up of two components:</p>
-        <p> And probably the most amazing thing... with Architect,  your layouts are transportable. Change your theme without losing your content layouts. And they\'ll even pick up a lot of the fomatting of your new theme if it uses standard WordPress classes</p>
-        <ul><li>Criteria define  what content is selected to display</li></ul>
+        <p>Architect enables you to easily design complex content layouts, such as magazine layouts, sliders, galleries and tabbed content.</p>
+        <p> And probably the most amazing thing... with Architect,  your layouts are transportable. Change your theme without losing your content layouts. And they\'ll even pick up a lot of the formatting of your new theme if it uses standard WordPress classes although, you may need to tweak the styling a little for different themes.</p>
+
+        <p>At first it might be a little confusing about what to setup in Panels and what to do in Blueprints. Here\'s an overview:</p>
         <h3>Panels</h3>
         <ul><li>Panels define the layout of the individual content which can be displayed one or many times in a layout. Panels can also be re-used in multiple Blueprints</li></ul>
+        <ul><li>Individual content layout - titles, text, images, meta info</li>
+        <li>Content styling</li>
+        </ul>
         <h3>Blueprints</h3>
         <ul><li>A Blueprint encompasses the overall content selection, design, layout and navigation. It can contain up to three Sections, each section displaying a Panel layout one or multiple times. This allows you to easily create a layout that, for example, might show a single post followed by a grid of excerpts. Within the Blueprint you can also include navigation, which can be pagination type, or a navigator type.</li></ul>
-        <p>Below is a wireframe example</p>
+        <ul><li>Overall layout</li>
+        <li>content source</li>
+        <li>Navigation</li>
+        </ul>
+        <p>Below is a wireframe example of how a Blueprint is structured</p>
         <p><img src="' . PZARC_PLUGIN_APP_URL . '/shared/assets/images/help/arc-layout.jpg" style="display:block"/></p>
 
         <h2>Usage</h2>
 
         <p>For example, using shortcodes, you might have:</p>
-        <p style="font-weight:bold">[pzarchitect blueprint="blog-page-layout"]</p>
-        <p style="font-weight:bold">[pzarchitect blueprint="thumb-gallery" ids="321,456,987,123,654,789"]</p>
+        <p style="font-weight:bold">[architect blueprint="blog-page-layout"]</p>
+        <p style="font-weight:bold">[architect blueprint="thumb-gallery" ids="321,456,987,123,654,789"]</p>
 
         <p>Or a template tag</p>
         <p style="font-weight:bold">pzarchitect(\'blog-page-layout\')</p>
         <p style="font-weight:bold">pzarchitect(\'thumb-gallery\', \'321,456,987,123,654,789\')</p>
+        </div>
 
-        <h2>When to</h2>
-        <p>At first it might be a little confusing about what to setup in Panels and what to do in Blueprints. Here\'s an overview:</p>
-        <h4>Panels</h4>
-        <ul><li>Individual content layout</li>
-        <li>Content styling</li>
-        </ul>
-        <h4>Blueprints</h4>
-        <ul><li>Overall layout</li>
-        <li>content source</li>
-        <li>Navigation</li>
-        </ul>
-      </div><!--end table-->
-
-      </div>
-      <div class="clear"></div>';
+      </div>';
     }
 
 
