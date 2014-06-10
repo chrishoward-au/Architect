@@ -136,16 +136,14 @@
     }
     function render()
     {
+      echo '<span class="dashicons dashicons-arrow-left"></span>';
       $i=1;
       foreach ($this->navitems as $nav_item) {
         $active = ($i===1?' active':'');
-        if ($this->blueprint[ '_blueprints_navigator-slider-engine' ] === 'bxslider') {
-          echo '<a data-slide-index="'.$i++.'" style="cursor:pointer;">'.$nav_item.'</a>';
-        } else {
           echo '<span class="swiper-pagination-switch'.$this->sizing.$active.'">' . $nav_item . '</span>';
           $i++;
-        }
       }
+      echo '<span class="dashicons dashicons-arrow-right"></span>';
     }
 
   }

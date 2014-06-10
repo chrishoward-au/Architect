@@ -127,6 +127,29 @@ Pagination Styles
 
 }
 
+.thumbs {
+  .swiper-pagination-switch {
+    /* Stylize pagination button: */
+//    display: table-cell; // Woot! This fixes height matching and width distribution
+//    min-height: 30px;
+//    cursor: pointer;
+//    padding: 10px;
+//    margin:0;
+//    background: rgba(0, 0, 0, 0.05);
+//    border: 1px solid rgba(255, 255, 255, 0.5);
+//    border-top: none;
+//    border-bottom: none;
+//    text-decoration: none;
+//    font-family: sans-serif;
+//    box-sizing:border-box;
+  }
+  span.dashicons {
+    font-size:4em;
+    display:inline-table;
+
+  }
+}
+
 .numbers {
   .swiper-pagination-switch {
     font-size: 28px;

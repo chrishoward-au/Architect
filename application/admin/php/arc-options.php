@@ -266,6 +266,13 @@
                     'default' => 'arc-bg-1'
                 ),
                 array(
+                    'title'   => __('Custom post def path', 'pzarchitect'),
+                    'id'      => 'architect_custom_post_def_path',
+                    'type'    => 'url',
+                    'default' => '',
+                ),
+
+                array(
                     'title'    => __('Breakpoints', 'pzarchitect'),
                     'id'       => 'architect_breakpoint_section',
                     'type'     => 'section',

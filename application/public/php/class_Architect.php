@@ -489,12 +489,13 @@
 
         return null;
       }
-      $class     = 'arc_Panel_' . $post_type;
+      $class = 'arc_Panel_' . $post_type;
 
+      // TODO: Should we fall back to Post post type if unknown??
       // Use an include incase it doesn't exist!
-      include_once PZARC_PLUGIN_APP_PATH . '/public/php/class_arc_Panel_' . $post_type . '.php';
+      include_once PZARC_PLUGIN_APP_PATH . '/public/php/post_types/class_arc_Panel_' . ucfirst($post_type) . '.php';
       if (!class_exists($class)) {
-        arc_msg('Unknown post type ' . $post_type, 'error');
+        arc_msg(__('Post type ', 'pzarchitect') . '<strong>' . $post_type . '</strong>' . __(' has no panel definition and cannot be displayed.', 'pzarchitect'), 'error');
 
         return null;
       }
@@ -502,7 +503,7 @@
       // We setup the Paneldef here so we're not doing it every iteration of the Loop!
       $panel_def = self::build_meta_definition($class::panel_def(), $this->build->blueprint[ 'section' ][ ($section_no - 1) ][ 'section-panel-settings' ]);
 
-   //   var_dump(esc_html($panel_def));
+      //   var_dump(esc_html($panel_def));
 
       $i         = 1;
       $nav_items = array();
@@ -510,8 +511,23 @@
       while ($this->arc_query->have_posts()) {
         $this->arc_query->the_post();
         // TODO: This may need to be modified for other types that dont' use post_title
-        $nav_items[ ] = $this->arc_query->post->post_title;
-        $section[ $section_no ]->render_panel($panel_def, $i,$class);
+        // TODO: Make dumb so can be pluggable for other navs
+        switch ($this->build->blueprint[ '_blueprints_navigator' ]) {
+          case 'tabbed':
+            $nav_items[ ] = '<span class="'.$this->build->blueprint[ '_blueprints_navigator' ].'">'.$this->arc_query->post->post_title.'</span>';
+            break;
+          case 'thumbs':
+            //TODO: Need a blank if no image
+            $nav_items[ ] = '<span class="'.$this->build->blueprint[ '_blueprints_navigator' ].'">'.get_the_post_thumbnail($this->arc_query->post->ID, array(50, 50)).'</span>';
+            break;
+          case 'bullets':
+          case 'numbers':
+          case 'buttons':
+            //No need for content on these
+            $nav_items[ ] = '';
+            break;
+        }
+        $section[ $section_no ]->render_panel($panel_def, $i, $class);
         if ($i++ >= $this->build->blueprint[ '_blueprints_section-' . ($section_no - 1) . '-panels-per-view' ]) {
           break;
         }

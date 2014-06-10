@@ -649,25 +649,14 @@
         'icon_class' => 'icon-large',
         'icon'       => 'el-icon-align-left',
         'fields'     => array(
-
             array(
-                'id'    => $prefix . 'content-responsive-heading',
-                'title' => __('Responsive', 'pzarchitect'),
-                'type'  => 'section',
-                'class' => 'heading',
-            ),
-            array(
-                'id'       => $prefix . 'responsive-hide-content',
-                'title'    => __('Hide Content at breakpoint', 'pzarchitect'),
-                'type'     => 'select',
-                'options'  => array(
-                    'none' => 'None',
-                    '3'    => 'Small screen ' . $_architect_options[ 'architect_breakpoint_3' ][ 'width' ],
-                    '2'    => 'Medium screen ' . $_architect_options[ 'architect_breakpoint_2' ][ 'width' ],
-                    '1'    => 'Wide screen ' . $_architect_options[ 'architect_breakpoint_1' ][ 'width' ]
-                ),
-                'default'  => 'none',
-                'subtitle' => __('Breakpoints can be changed in Architect Options', 'pzachitect')
+                'title'    => __('Maximize content', 'pzarchitect'),
+                'id'       => $prefix . 'maximize-content',
+                'type'     => 'switch',
+                'on'       => __('Yes', 'pzarchitect'),
+                'off'      => __('No', 'pzarchitect'),
+                'default'  => true,
+                'subtitle' => __('Make excerpt or content 100% width if no featured image', 'pzarchitect')
             ),
             array(
                 'id'    => $prefix . 'excerpt-heading',
@@ -699,14 +688,103 @@
                 'default' => __('Read more', 'pzarchitect'),
             ),
             array(
-                'title'    => __('Maximize content', 'pzarchitect'),
-                'id'       => $prefix . 'maximize-content',
-                'type'     => 'switch',
-                'on'       => __('Yes', 'pzarchitect'),
-                'off'      => __('No', 'pzarchitect'),
-                'default'  => true,
-                'subtitle' => __('Make excerpt or content 100% width if no featured image', 'pzarchitect')
+                'id'    => $prefix . 'content-responsive-heading',
+                'title' => __('Responsive', 'pzarchitect'),
+                'type'  => 'section',
+                'class' => 'heading',
             ),
+            array(
+                'id'       => $prefix . 'responsive-hide-content',
+                'title'    => __('Hide Content at breakpoint', 'pzarchitect'),
+                'type'     => 'select',
+                'options'  => array(
+                    'none' => 'None',
+                    '3'    => 'Small screen ' . $_architect_options[ 'architect_breakpoint_3' ][ 'width' ],
+                    '2'    => 'Medium screen ' . $_architect_options[ 'architect_breakpoint_2' ][ 'width' ],
+                    '1'    => 'Wide screen ' . $_architect_options[ 'architect_breakpoint_1' ][ 'width' ]
+                ),
+                'default'  => 'none',
+                'subtitle' => __('Breakpoints can be changed in Architect Options', 'pzachitect')
+            ),
+            array(
+                'id'              => $prefix . 'content-font-size-bp1',
+                'title'           => __('Font size - large screen ', 'pzarchitect') .$_architect_options[ 'architect_breakpoint_1' ][ 'width' ],
+                'type'            => 'typography',
+                'text-decoration' => false,
+                'font-variant'    => false,
+                'text-transform'  => false,
+                'font-family'     => false,
+                'font-size'       => true,
+                'font-weight'     => false,
+                'font-style'      => false,
+                'font-backup'     => false,
+                'google'          => false,
+                'subsets'         => false,
+                'custom_fonts'    => false,
+                'text-align'      => false,
+                //'text-shadow'       => false, // false
+                'color'           => false,
+                'preview'         => false,
+                'line-height'     => true,
+                'word-spacing'    => false,
+                'letter-spacing'  => false,
+            ),
+            array(
+                'id'              => $prefix . 'content-font-size-bp2',
+                'title'           => __('Font size - medium screen ', 'pzarchitect'). $_architect_options[ 'architect_breakpoint_2' ][ 'width' ],
+                'type'            => 'typography',
+                'text-decoration' => false,
+                'font-variant'    => false,
+                'text-transform'  => false,
+                'font-family'     => false,
+                'font-size'       => true,
+                'font-weight'     => false,
+                'font-style'      => false,
+                'font-backup'     => false,
+                'google'          => false,
+                'subsets'         => false,
+                'custom_fonts'    => false,
+                'text-align'      => false,
+                //'text-shadow'       => false, // false
+                'color'           => false,
+                'preview'         => false,
+                'line-height'     => true,
+                'word-spacing'    => false,
+                'letter-spacing'  => false,
+            ),
+            array(
+                'id'              => $prefix . 'content-font-size-bp3',
+                'title'           => __('Font size - small screen ', 'pzarchitect'). $_architect_options[ 'architect_breakpoint_3' ][ 'width' ],
+                'type'            => 'typography',
+                'text-decoration' => false,
+                'font-variant'    => false,
+                'text-transform'  => false,
+                'font-family'     => false,
+                'font-size'       => true,
+                'font-weight'     => false,
+                'font-style'      => false,
+                'font-backup'     => false,
+                'google'          => false,
+                'subsets'         => false,
+                'custom_fonts'    => false,
+                'text-align'      => false,
+                //'text-shadow'       => false, // false
+                'color'           => false,
+                'preview'         => false,
+                'line-height'     => true,
+                'word-spacing'    => false,
+                'letter-spacing'  => false,
+            ),
+//            array(
+//                'id'      => $prefix . 'content-font-size-range',
+//                'title'   => __('Font size range', 'pzarchitect'),
+//                'type'    => 'slider',
+//                'min'     => 5,
+//                'max'     => 24,
+//                'step'    => 1,
+//                'handles' => 2,
+//                'default' => array(1=>10,2=>16)
+//            )
         )
 
 

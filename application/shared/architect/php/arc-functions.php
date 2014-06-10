@@ -66,6 +66,7 @@
   function pzarc_redux_font($id, $selectors, $defaults = null)
   {
 
+    // TODO: Change font size to a range and use flowtype.js
     return array(
         'title'           => __('Font', 'pzarc'),
         'id'              => $id,
@@ -504,5 +505,5 @@
 
   function arc_msg($text, $type)
   {
-    echo '<div class="message - ' . $type . '">' . $text . '</div>';
+    echo '<div class="message-' . $type . '">' . $text . '</div>';
   }
