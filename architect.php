@@ -35,6 +35,7 @@
   TODO: Allow ems and % for responsive dimensions
   TODO: OOPS! Need a method to rereate css if it goes missing!
   TODO: Add Snippets post type to PizazzWP Libs
+  TODO: Verify all add ins (js etc) have their licence.txt include
   */
   /* why not use a WP like methodology!
   ================================================================================

@@ -38,6 +38,7 @@ jQuery( document ).ready( function ()
                       createPagination: false,
                       paginationClickable: true,
                       scrollContainer:false,
+                      keyboardControl:true,
                       slidesPerView: 1,
                       useCSS3Transforms: true,
                       speed: arcSwiperOptsObj.tduration,
