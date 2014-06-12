@@ -6,8 +6,7 @@ jQuery( document ).ready( function ()
     /*global console:true */
 
     // Look in class_Architect get_section_opener() for swiper vars
-    var arcSwipers = jQuery( '.swiper-container.swiper-container' );
-    console.log( arcSwipers );
+    var arcSwipers = jQuery( '.swiper-container.slider' );
     //for each
     arcSwipers.each( function ()
     {
@@ -16,7 +15,7 @@ jQuery( document ).ready( function ()
         var arcSwiperTrans = jQuery( this ).attr( 'data-transtype' );
         var arcSwiperOpts = (jQuery( this ).attr( 'data-opts' ));
         console.log( arcSwiperID, arcSwiperType );
-        if ( null !== arcSwiperID )
+        if ( null !== arcSwiperID && null !== arcSwiperOpts)
         {
 
             // Parse the option values
@@ -26,24 +25,24 @@ jQuery( document ).ready( function ()
 
             var arcSwiper = jQuery( '.swiper-container.swiper-container-' + arcSwiperID ).swiper(
                   {
-                      // Nav item gets outta sync when loop on - even with activeLoopIndex
+                      //  Nav item gets outta sync when loop on - even with activeLoopIndex
                       // TODO: Setup vertical mode. Will need an option for fixed height blueprint/panel
                       // TODO: Is there an option for nav items per view?
                       // TODO:Is there an option to stop sliding between slides - esp end to beginning.
-                      mode:'horizontal',
+                      mode: 'horizontal',
                       loop: false,
                       calculateHeight: true,
                       cssWidthAndHeight: false,
                       grabCursor: true,
                       createPagination: false,
                       paginationClickable: true,
-                      scrollContainer:false,
-                      keyboardControl:true,
+                      scrollContainer: false,
+                      keyboardControl: true,
                       slidesPerView: 1,
                       useCSS3Transforms: true,
                       speed: arcSwiperOptsObj.tduration,
                       autoplay: arcSwiperOptsObj.tinterval,
-                      autoplayDisableOnInteraction:false,
+                      autoplayDisableOnInteraction: false,
                       roundLength: true,
                       onSlideChangeStart: function ( swiper )
                       {
@@ -165,8 +164,26 @@ jQuery( document ).ready( function ()
                 e.preventDefault();
                 arcSwiper.swipeNext();
             } );
+            console.log( arcSwiper );
 
         } // End if has ID
+
+        // TODO:: Add shortname to qualify it
+        var arcSwiperNav = jQuery( '.swiper-nav.swiper-container.thumbs' ).swiper( {
+            slidesPerView: 8,
+            freeMode: true,
+            freeModeFluid: true,
+            calculateHeight:false,
+            useCSS3Transforms: false,
+            grabCursor:true
+//
+////            onSlideClick : function(nav) {
+////                arcSwiper.swipeTo(nav.clickedSlideIndex);
+////            }
+//
+        } );
+        console.log( arcSwiperNav );
     } );
+
 
 } );

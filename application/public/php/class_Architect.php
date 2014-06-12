@@ -237,7 +237,7 @@
         $swiper[ 'class' ]    = '';
         $swiper[ 'dataid' ]   = '';
         $swiper[ 'datatype' ] = '';
-        $swiper[ 'class' ]    = ' swiper-container swiper-container-' . $bpshortname;
+        $swiper[ 'class' ]    = ' swiper-container slider swiper-container-' . $bpshortname;
         $swiper[ 'dataid' ]   = ' data-swiperid="' . $bpshortname . '"';
         $swiper[ 'datatype' ] = 'data-navtype="' . $bpnav_type . '"';
         $swiper['datatrans']= ' data-transtype="'.$bptranstype.'"';
@@ -488,7 +488,7 @@
           $this->build->blueprint[ '_blueprints_content-source' ]);
 
       if (empty($post_type)) {
-        arc_msg('No post type specified', 'error');
+        pzarc_msg('No post type specified', 'error');
 
         return null;
       }
@@ -498,7 +498,7 @@
       // Use an include incase it doesn't exist!
       include_once PZARC_PLUGIN_APP_PATH . '/public/php/post_types/class_arc_Panel_' . ucfirst($post_type) . '.php';
       if (!class_exists($class)) {
-        arc_msg(__('Post type ', 'pzarchitect') . '<strong>' . $post_type . '</strong>' . __(' has no panel definition and cannot be displayed.', 'pzarchitect'), 'error');
+        pzarc_msg(__('Post type ', 'pzarchitect') . '<strong>' . $post_type . '</strong>' . __(' has no panel definition and cannot be displayed.', 'pzarchitect'), 'error');
 
         return null;
       }

@@ -29,10 +29,15 @@
     wp_register_script('js-swiperjs', PZARC_PLUGIN_APP_URL . '/shared/includes/js/swiper/idangerous.swiper.min.js');
     wp_register_script('js-swiper-progressjs', PZARC_PLUGIN_APP_URL . '/shared/includes/js/swiper/idangerous.swiper.progress.min.js');
     wp_register_style('css-swiperjs', PZARC_PLUGIN_APP_URL . '/shared/includes/js/swiper/idangerous.swiper.css');
-
     wp_enqueue_script('js-swiperjs');
     wp_enqueue_script('js-swiper-progressjs');
     wp_enqueue_style('css-swiperjs');
+
+    //icomoon
+    wp_register_style('css-icomoon-arrows', PZARC_PLUGIN_APP_URL . '/shared/assets/fonts/icomoon/im-style.css');
+
+    wp_enqueue_style('css-icomoon-arrows');
+
 
     // ResponCSS
 //    wp_register_script('js-responcss', PZARC_PLUGIN_APP_URL . '/shared/includes/css/ResponCSS/js/responcss.js');
@@ -81,6 +86,9 @@
     // Need to capture the output so we can get it to appear where the shortcode actually is
     ob_start();
     $pzarc_overrides = !empty($atts[ 'ids' ]) ? $atts[ 'ids' ] : null;
+
+    // UGH! This is a bit of a mess. Need a better solution
+    // echo '<div class="clearfix"></div>'; // Just need to stop some overlapping when images are bigger than content in post
 
     do_action("arc_before_{$pzarc_caller}", $pzarc_blueprint, $pzarc_overrides, $pzarc_caller);
 

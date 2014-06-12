@@ -656,7 +656,7 @@
                 'title'    => __('Note', 'pzarchitect'),
                 'id'       => $prefix . 'pager-info',
                 'type'     => 'info',
-                'subtitle' => '<p>' . __('<strong>Pagination will only show on WordPress pages that support it.</strong> These are the blog list page and single posts', 'pzarchitect') . '</p>' .
+                'subtitle' => '<p>' . __('<strong>Pagination will only show on WordPress pages that support it.</strong> These are the blog list page and single posts and pages - but not the front page if set as a static page.', 'pzarchitect') . '</p>' .
                     __('Also, you should never display more than one pagination element on a page as pagination reloads the page and will therefore affect all paginated content.', 'pzarchitect')
             ),
             array(
@@ -887,6 +887,32 @@
                   'hover'  => 'Hover over panels',
                   'inline' => 'Inline with navigator',
                   'both'   => 'Both'
+              ),
+              'required' => array(
+                  array($prefix . 'navigator', '!=', 'accordion'),
+              )
+          ),
+          array(
+              'title'    => 'Skip left icon',
+              'id'       => $prefix . 'navigator-skip-left',
+              'type'     => 'button_set',
+              'default'  => 'backward',
+              'options'  => array(
+                  'backward'   => 'Backward',
+                  'step-backward'   => 'Step Backward',
+              ),
+              'required' => array(
+                  array($prefix . 'navigator', '!=', 'accordion'),
+              )
+          ),
+          array(
+              'title'    => 'Skip right icon',
+              'id'       => $prefix . 'navigator-skip-right',
+              'type'     => 'button_set',
+              'default'  => 'forward',
+              'options'  => array(
+                  'forward'   => 'Forward',
+                  'step-forward'   => 'Step Forward',
               ),
               'required' => array(
                   array($prefix . 'navigator', '!=', 'accordion'),

@@ -29,7 +29,7 @@
 
   }
 
-  function arc_tax_string_list($tax, $prefix, $suffix, $separator)
+  function pzarc_tax_string_list($tax, $prefix, $suffix, $separator)
   {
     $list  = '';
     $count = count($tax);
@@ -271,7 +271,7 @@
     return $stuff . '--more stuff added by filter--' . $postid;
   }
 
-  add_filter('arc_filter_shortcode', 'pzarc_scf_test', 10, 3);
+  //add_filter('arc_filter_shortcode', 'pzarc_scf_test', 10, 3);
   function pzarc_scf_test($content, $blueprint, $overrides)
   {
     return '<div class="pzarc-shortcode-debug" style="background:#fff4f4;border:solid 1px #c99;box-sizing: border-box;"><h3>Start shortcode blueprint ' . $blueprint . ' with ' . count($overrides) . ' overrides</h3>' . $content . '<h3>End blueprint ' . $blueprint . '</h3>';
@@ -306,8 +306,8 @@
     return $returna;
   }
 
-  add_action('xloop_start', 'pztopofloop', 10, 1);
-  function pztopofloop(&$the_query)
+  add_action('xloop_start', 'pzarc_top_of_loop', 10, 1);
+  function pzarc_top_of_loop(&$the_query)
   {
 
     if (is_main_query()) {
@@ -316,8 +316,8 @@
     }
   }
 
-  add_action('xloop_end', 'pzbottomofloop');
-  function pzbottomofloop()
+  add_action('xloop_end', 'pzarc_bottom_of_loop');
+  function pzarc_bottom_of_loop()
   {
     if (is_main_query()) {
       echo '<h1 style="font-size:24px;font-weight:bold;color:red;">Loop ends here</h1>';
@@ -473,6 +473,11 @@
   }
 
 
+  function pzarc_msg($text, $type)
+  {
+    echo '<div class="message-' . $type . '">' . $text . '</div>';
+  }
+
   /**
    * Class showBlueprint
    *
@@ -495,15 +500,10 @@
     public function render()
     {
       //TODO: Get the page conditionals working
- //     switch (true) {
+      //     switch (true) {
 //        case ('home' === $this->pageid && (is_home() || is_front_page())) :
-          pzarchitect($this->blueprint, $this->overrides, $this->caller);
-  //        break;
-   //   }
+      pzarchitect($this->blueprint, $this->overrides, $this->caller);
+      //        break;
+      //   }
     }
-  }
-
-  function arc_msg($text, $type)
-  {
-    echo '<div class="message-' . $type . '">' . $text . '</div>';
   }

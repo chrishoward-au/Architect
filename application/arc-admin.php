@@ -113,14 +113,17 @@
         wp_enqueue_style('dashicons');
 
 //      wp_enqueue_style('pzarc-block-css', PZARC_PLUGIN_URL . '/admin/css/arc-admin.css');
-        wp_enqueue_style('pzarc-jqueryui-css', PZARC_PLUGIN_APP_URL . '/shared/includes/js/jquery-ui-1.10.2.custom/css/pz_architect/jquery-ui-1.10.2.custom.min.css');
+
+        // We shouldn't need this anymore
+//        wp_enqueue_style('pzarc-jqueryui-css', PZARC_PLUGIN_APP_URL . '/shared/includes/js/jquery-ui-1.10.2.custom/css/pz_architect/jquery-ui-1.10.2.custom.min.css');
 
         wp_enqueue_script('jquery-pzarc-metaboxes', PZARC_PLUGIN_APP_URL . '/admin/js/arc-metaboxes.js', array('jquery'));
 
+        // We shouldn't need this anymore
 
-        wp_enqueue_script('pzarc-validation-engine-js-lang', PZARC_PLUGIN_APP_URL . '/shared/includes/js/jQuery-Validation-Engine/js/languages/jquery.validationEngine-en.js', array('jquery'));
-        wp_enqueue_script('pzarc-validation-engine-js', PZARC_PLUGIN_APP_URL . '/shared/includes/js/jQuery-Validation-Engine/js/jquery.validationEngine.js', array('jquery'));
-        wp_enqueue_style('pzarc-validation-engine-css', PZARC_PLUGIN_APP_URL . '/shared/includes/js/jQuery-Validation-Engine/css/validationEngine.jquery.css');
+//        wp_enqueue_script('pzarc-validation-engine-js-lang', PZARC_PLUGIN_APP_URL . '/shared/includes/js/jQuery-Validation-Engine/js/languages/jquery.validationEngine-en.js', array('jquery'));
+//        wp_enqueue_script('pzarc-validation-engine-js', PZARC_PLUGIN_APP_URL . '/shared/includes/js/jQuery-Validation-Engine/js/jquery.validationEngine.js', array('jquery'));
+//        wp_enqueue_style('pzarc-validation-engine-css', PZARC_PLUGIN_APP_URL . '/shared/includes/js/jQuery-Validation-Engine/css/validationEngine.jquery.css');
       }
     }
 

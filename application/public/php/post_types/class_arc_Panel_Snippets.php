@@ -111,9 +111,9 @@
         $data[ 'meta' ][ 'datetime' ]        = get_the_date();
         $data[ 'meta' ][ 'fdatetime' ]       = date_i18n($section[ '_panels_design_meta-date-format' ], strtotime(get_the_date()));
         $data[ 'meta' ][ 'categorieslinks' ] = get_the_category_list(', ');
-        $data[ 'categories' ]                = arc_tax_string_list(get_the_category(), 'category-', '', ' ');
+        $data[ 'categories' ]                = pzarc_tax_string_list(get_the_category(), 'category-', '', ' ');
         $data[ 'meta' ][ 'tagslinks' ]       = get_the_tag_list(null, ', ');
-        $data[ 'tags' ]                      = arc_tax_string_list(get_the_tags(), 'tag-', '', ' ');
+        $data[ 'tags' ]                      = pzarc_tax_string_list(get_the_tags(), 'tag-', '', ' ');
 
         $data[ 'meta' ][ 'authorlink' ] = get_author_posts_url(get_the_author_meta('ID'));
         $data[ 'meta' ][ 'authorname' ] = sanitize_text_field(get_the_author_meta('display_name'));

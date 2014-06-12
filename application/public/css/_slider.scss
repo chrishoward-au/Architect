@@ -8,19 +8,29 @@
   //display:inline-table; (Maybe useful later)
   // width:100%; Prob better if user sets width and margins
   &.outside {
+    &.top {
+      position:relative;
+      z-index:1;
+      top: 0px;
+      bottom: initial;
+    }
+    &.bottom {
+      bottom: 0px;
+      top: initial;
+    }
 
   }
   &.inside {
     position: absolute;
     z-index: 1;
-  }
-  &.top {
-    top: 15px;
-    bottom: initial;
-  }
-  &.bottom {
-    bottom: 15px;
-    top: initial;
+    &.top {
+      top: 15px;
+      bottom: initial;
+    }
+    &.bottom {
+      bottom: 15px;
+      top: initial;
+    }
   }
   &.left {
     left: 15px;
@@ -144,9 +154,9 @@ Pagination Styles
     //    box-sizing:border-box;
 
     img {
-      border-style:solid;
+      border-style: solid;
       border-width: 2px;
-      border-color:rgba(128,128,128,0);
+      border-color: rgba(128, 128, 128, 0);
     }
 
     &.active img {
@@ -257,13 +267,75 @@ Pagination Styles
     }
   }
 
-  .bxpager a {
-    padding: 10px;
-    margin: 2px;
-    background: #eee;
-    &:hover {
-      background: #fff;
+
+}
+
+.swiper-nav {
+  max-height: 80px;
+  width: 100%;
+  &:hover {
+    .skip-right,
+    .skip-left {
+      display: block;
     }
   }
+  // TODO: Replace this with multiple icon font arrows.
+  a.pager {
+    position: absolute;
+    top: 50%;
+    margin-top: -20px;
+    padding: 0;
+    z-index: 2;
+    text-decoration: none;
+    display:none;
+    &:hover {
+      display: block;
+    }
+    span {
+      vertical-align: middle;
+      margin:0;
+      padding:0;
+      position:relative;
+      width: 40px;
+      height: 40px;
+      border-radius: 30px;
+      font-size: 30px;
+      display:block;
+      color: #fff;
+      background: rgba(0, 0, 0, 0.3);
+    }
+    &.skip-left {
+      left: 5px;
+      span {
+        left:-4px;
+      }
+    }
+    &.skip-right {
+      right: 5px;
+      span {
+        right:-4px;
+      }
+    }
+  }
+}
 
+.swiper-nav .swiper-wrapper {
+  margin: 0 auto
+}
+
+.swiper-nav span {
+}
+
+.swiper-nav .swiper-wrapper > span:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.swiper-nav .swiper-slide {
+  max-width: 100px;
+}
+
+.swiper-nav .swiper-slide:first-child span {
+}
+
+.swiper-nav .swiper-slide:last-child span {
 }
