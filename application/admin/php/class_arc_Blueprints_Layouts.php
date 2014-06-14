@@ -447,12 +447,12 @@
             array(
                 'title'   => __('Skip N posts', 'pzarchitect'),
                 'id'      => $prefix . 'skip',
-                'type'    => 'spinner',
+                'type'    => 'text',
                 'min'     => 0,
                 'max'     => 9999,
                 'step'    => 1,
                 'default' => 0,
-                'desc'    => __('Note: Skipping breaks pagination. This is a known WordPress bug.', 'pzarchitect'),
+                'desc'    => __('Note: Skipping breaks pagination. This is a known WordPress issue.', 'pzarchitect'),
             ),
             array(
                 'title'   => __('Sticky posts first', 'pzarchitect'),
@@ -519,11 +519,9 @@
           'fields'     => array(
 
               array(
-                  'id'       => $prefix . 'section-' . $i . '-title',
-                  'title'    => __('Section ' . ($i + 1) . ' title (optional)', 'pzarchitect'),
-                  'type'     => 'textarea',
-                  'rows'     => 2,
-                  'subtitle' => __('Use %title% to display the actual page title. Useful on archive pages. You may include HTML.')
+                  'id'    => $prefix . 'section-' . $i . '-title',
+                  'title' => __('Section ' . ($i + 1) . ' title (optional)', 'pzarchitect'),
+                  'type'  => 'text',
               ),
               array(
                   'id'      => $prefix . 'section-width',
@@ -583,7 +581,8 @@
                   'required' => array($prefix . 'section-' . $i . '-panels-limited', '=', true)
               ),
               array(
-                  'title'         => __('Columns wide screen', 'pzarchitect') . ' (' . $_architect_options[ 'architect_breakpoint_1' ][ 'width' ] . ')',
+                  'title'         => __('Columns wide screen', 'pzarchitect'),
+                  'subtitle'          => $_architect_options[ 'architect_breakpoint_1' ][ 'width' ] . ' and above',
                   'id'            => $prefix . 'section-' . $i . '-columns-breakpoint-1',
                   'hint'          => array('content' => __('Number of columns or panels across on a wide screen as set in the breakpoints options', 'pzarchitect')),
                   'type'          => 'slider',
@@ -593,7 +592,8 @@
                   'display_value' => 'label'
               ),
               array(
-                  'title'         => __('Columns medium screen', 'pzarchitect') . ' (' . $_architect_options[ 'architect_breakpoint_2' ][ 'width' ] . ')',
+                  'title'         => __('Columns medium screen', 'pzarchitect') ,
+                  'subtitle'          => $_architect_options[ 'architect_breakpoint_2' ][ 'width' ] . ' to '.$_architect_options[ 'architect_breakpoint_1' ][ 'width' ],
                   'id'            => $prefix . 'section-' . $i . '-columns-breakpoint-2',
                   'hint'          => array('content' => __('Number of columns or panels across on a medium screen as set in the breakpoints options', 'pzarchitect')),
                   'type'          => 'slider',
@@ -603,7 +603,8 @@
                   'display_value' => 'label'
               ),
               array(
-                  'title'         => __('Columns narrow screen', 'pzarchitect') . ' (' . $_architect_options[ 'architect_breakpoint_3' ][ 'width' ] . ')',
+                  'title'         => __('Columns narrow screen', 'pzarchitect'),
+                  'subtitle'          => $_architect_options[ 'architect_breakpoint_2' ][ 'width' ] . ' and below',
                   'id'            => $prefix . 'section-' . $i . '-columns-breakpoint-3',
                   'hint'          => array('content' => __('Number of columns or panels across on a narrow screen as set in the breakpoints options', 'pzarchitect')),
                   'type'          => 'slider',
@@ -898,8 +899,8 @@
               'type'     => 'button_set',
               'default'  => 'backward',
               'options'  => array(
-                  'backward'   => 'Backward',
-                  'step-backward'   => 'Step Backward',
+                  'backward'      => 'Backward',
+                  'step-backward' => 'Step Backward',
               ),
               'required' => array(
                   array($prefix . 'navigator', '!=', 'accordion'),
@@ -911,8 +912,8 @@
               'type'     => 'button_set',
               'default'  => 'forward',
               'options'  => array(
-                  'forward'   => 'Forward',
-                  'step-forward'   => 'Step Forward',
+                  'forward'      => 'Forward',
+                  'step-forward' => 'Step Forward',
               ),
               'required' => array(
                   array($prefix . 'navigator', '!=', 'accordion'),
@@ -1101,6 +1102,8 @@
   add_action("redux/metaboxes/{$redux_opt_name}/boxes", 'pzarc_contents_metabox');
   function pzarc_contents_metabox($meta_boxes = array())
   {
+
+    // TODO: Setup a loop that reads the object containing content type info as appened by the content type classes. Will need a means of letting js know tho.
     $prefix   = '_content_general_';
     $sections = array();
 //    $sections[ ] = array(
@@ -1300,6 +1303,21 @@
             array(
                 'title' => __('Pages', 'pzarchitect'),
                 'id'    => $prefix . 'pages-heading',
+                'type'  => 'section',
+                'class' => ' heading',
+            )
+        )
+    );
+    // Snippets
+    $prefix      = '_content_snippets_';
+    $sections[ ] = array(
+        'title'      => 'Snippets',
+        'icon_class' => 'icon-large',
+        'icon'       => 'el-icon-file',
+        'fields'     => array(
+            array(
+                'title' => __('Snippets', 'pzarchitect'),
+                'id'    => $prefix . 'Snippets-heading',
                 'type'  => 'section',
                 'class' => ' heading',
             )

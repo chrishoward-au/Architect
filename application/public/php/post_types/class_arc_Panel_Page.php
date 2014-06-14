@@ -11,7 +11,11 @@
   
   class arc_Panel_page
   {
-//    private $data;
+
+    /*
+     * Pages is almost identical to Posts. Although they don't technically have excerpts, we will still create them if required.
+     */
+
 
     //TODO: Shouldn't data be a this?
     /**
@@ -54,9 +58,12 @@
       $panel_def[ 'feature' ]       = '{{feature}}';
       $panel_def[ 'editlink' ]      = '<span class="edit-link"><a class="post-edit-link" href="{{permalink}}" title="Edit post {{title}}">Edit</a></span>';
       $panel_def[ 'comments-link' ] = '<span class="comments-link"><a href="{{permalink}}/#comments" title="Comment on {{title}}">Comments: {{commentscount}}</a></span>';
+
 //TODO This has to be changed back once we.if we use a link instead of theget thumnail
       //$panel_def[ 'image' ]        = '<img class="entry-image" src="{{image}}">';
-      // Yes, WP themes (T13, T14 etc) actually link the date to the post, not the archive for the date. Maybe it's an SEO thing, but I'm going to remove it
+
+      // Yes, WP themes (T13, T14 etc) actually link the date to the post, not the archive for the date. It seems to be something to do with when there's no title, then there's stil a clickable link
+
       // $panel_def[ 'datetime' ]      = '<span class="date"><a href="{{permalink}}" title="{{title}}" rel="bookmark"><time class="entry-date" datetime="{{datetime}}">{{fdatetime}}</time></a></span>';
       // oops should be using this for featured image
 

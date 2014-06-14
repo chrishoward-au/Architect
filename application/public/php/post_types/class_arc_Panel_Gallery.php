@@ -26,7 +26,22 @@
 
     static function panel_def()
     {
+
+//      $panel_def[ 'wrapper' ]  = '{{bgimagetl}}<div id="galleryimage-{{postid}}" class="pzarc-{{classname}}  galleryimage-{{postid}} galleryimage {{pzclasses}}">{{wrapperinnards}}</div>{{bgimagebr}}';
+//      $panel_def[ 'header' ]   = '<header class="entry-header">{{headerinnards}}</header>';
+//      $panel_def[ 'title' ]    = '<h3 class="entry-title">{{title}}</h3>';
+//      $panel_def[ 'excerpt' ]  = ' <div class="entry-excerpt">{{excerpt}}</div>';
+//      $panel_def[ 'content' ]  = ' <div class="entry-content">{{content}}</div>';
+//      $panel_def[ 'footer' ]   = '<footer class="entry-meta">{{footerinnards}}</footer>';
+//      $panel_def[ 'postlink' ] = '<a href="{{permalink}}" title="{{title}}">';
+//      $panel_def[ 'image' ]    = '<figure class="entry-thumbnail {{incontent}}">{{postlink}}<img width="{{width}}" src="{{image}}" class="attachment-post-thumbnail wp-post-image" alt="{{alttext}}">{{closepostlink}}{{captioncode}}</figure>';
+//      // Need atrick to include caption to hide when responsive and caption is description
+//      $panel_def[ 'caption' ] = '<figcaption class="caption">{{caption}}</figcaption>';
+
+
       //TODO: Need to get a way to always wrap components in pzarc-compenents div.Problem is...dev has to create definition correctly.
+
+      // Using this for gallery at themoment, butprobablycan trum it down.
       $panel_def[ 'components-open' ]  = '<article id="post-{{postid}}" class="block-type-content post-{{postid}} post type-{{posttype}} status-{{poststatus}} format-{{postformat}} hentry {{categories}} {{tags}} {{pzclasses}}">';
       $panel_def[ 'components-close' ] = '</article>';
       $panel_def[ 'postlink' ]         = '<a href="{{permalink}}" title="{{title}}">';

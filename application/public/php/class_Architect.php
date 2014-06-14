@@ -63,14 +63,21 @@
       require_once(PZARC_PLUGIN_APP_PATH . '/public/php/class_arc_Section.php');
       require_once(PZARC_PLUGIN_APP_PATH . '/public/php/class_arc_Navigator.php');
       require_once(PZARC_PLUGIN_APP_PATH . '/public/php/class_arc_Pagination.php');
-      require_once PZARC_PLUGIN_APP_PATH . '/public/php/interface_arc_PanelDefinitions.php';
+
       if (!empty($this->build->blueprint[ 'blueprint-id' ])) {
+
         $filename = 'pzarc-blueprints-layout-' . ($this->build->blueprint[ 'blueprint-id' ]) . '-' . $this->build->blueprint[ '_blueprints_short-name' ] . '.css';
+
         if (file_exists(PZARC_CACHE_PATH . $filename)) {
+
           wp_enqueue_style('blueprint-css-' . $this->build->blueprint[ 'blueprint-id' ], PZARC_CACHE_URL . $filename);
+
         } else {
+
           echo '<p class="message-warning">Oops! Could not find css cache file: ' . $filename . '</p>';
+
         }
+
       }
 
       return false;
@@ -329,6 +336,7 @@
      */
     private function set_prefix()
     {
+      // TODO: This is not dumb either so no ggod for plugable
       $prefix = '';
       switch ($this->build->blueprint[ '_blueprints_content-source' ]) {
 
@@ -343,6 +351,9 @@
           break;
         case 'slides':
           $prefix = '_content_slides_';
+          break;
+        case 'snippets':
+          $prefix = '_content_snippets_';
           break;
         case 'cpt':
           $prefix = '_content_cpt_';
@@ -437,6 +448,8 @@
 
       //Lot of work!
       //     pzdebug($this->criteria);
+
+      // TODO: We're going to have to make this pluggable too! :P
       switch ($source) {
 
         case 'post':
@@ -445,14 +458,28 @@
           $query_options[ 'category__in' ] = (!empty($this->criteria[ '_content_posts_inc-cats' ])
               ? $this->criteria[ '_content_posts_inc-cats' ] : null);
           break;
-        // could we build this into the panel def or somewhere else so more closely tied to the content type stuff
+
+        // TODO: could we build this into the panel def or somewhere else so more closely tied to the content type stuff
+
         case 'gallery':
+
+          //TODO: What about G+ galleries??
           $query_options[ 'post_type' ]           = 'attachment';
           $query_options[ 'post__in' ]            = (!empty($this->criteria[ 'content_galleries-specific-images' ])
               ? $this->criteria[ 'content_galleries-specific-images' ] : null);
           $query_options[ 'post_status' ]         = array('publish', 'inherit', 'private');
           $query_options[ 'ignore_sticky_posts' ] = true;
+
           break;
+
+        case 'snippets':
+          $query_options[ 'post_type' ]    = 'pz_snippets';
+          break;
+
+        case 'slides':
+          $query_options[ 'post_type' ]    = 'pzsp-slides';
+          break;
+
       }
 
       // OVERRIDES
@@ -463,7 +490,8 @@
       }
 
       $this->arc_query = new WP_Query($query_options);
-
+//      var_dump($this->arc_query->request);
+//      var_dump($this->arc_query->found_posts);
     }
 
 
@@ -488,54 +516,71 @@
           $this->build->blueprint[ '_blueprints_content-source' ]);
 
       if (empty($post_type)) {
-        pzarc_msg('No post type specified', 'error');
 
+        pzarc_msg('No post type specified', 'error');
         return null;
+
       }
+
       $class = 'arc_Panel_' . $post_type;
 
       // TODO: Should we fall back to Post post type if unknown??
       // Use an include incase it doesn't exist!
       include_once PZARC_PLUGIN_APP_PATH . '/public/php/post_types/class_arc_Panel_' . ucfirst($post_type) . '.php';
-      if (!class_exists($class)) {
-        pzarc_msg(__('Post type ', 'pzarchitect') . '<strong>' . $post_type . '</strong>' . __(' has no panel definition and cannot be displayed.', 'pzarchitect'), 'error');
 
+      if (!class_exists($class)) {
+
+        pzarc_msg(__('Post type ', 'pzarchitect') . '<strong>' . $post_type . '</strong>' . __(' has no panel definition and cannot be displayed.', 'pzarchitect'), 'error');
         return null;
+
       }
 
       // We setup the Paneldef here so we're not doing it every iteration of the Loop!
-      $panel_def = self::build_meta_definition($class::panel_def(), $this->build->blueprint[ 'section' ][ ($section_no - 1) ][ 'section-panel-settings' ]);
+      $panel_def = $class::panel_def();
+
+      // Setup meta tags
+      $panel_def = self::build_meta_definition($panel_def, $this->build->blueprint[ 'section' ][ ($section_no - 1) ][ 'section-panel-settings' ]);
 
       //   var_dump(esc_html($panel_def));
 
       $i         = 1;
       $nav_items = array();
+
       // Does this work for non
       while ($this->arc_query->have_posts()) {
+
         $this->arc_query->the_post();
+
         // TODO: This may need to be modified for other types that dont' use post_title
         // TODO: Make dumb so can be pluggable for other navs
         switch ($this->build->blueprint[ '_blueprints_navigator' ]) {
+
           case 'tabbed':
             $nav_items[ ] = '<span class="'.$this->build->blueprint[ '_blueprints_navigator' ].'">'.$this->arc_query->post->post_title.'</span>';
             break;
+
           case 'thumbs':
-            //TODO: Need a blank if no image
             $thumb = get_the_post_thumbnail($this->arc_query->post->ID, array(50, 50));
             $thumb = (empty($thumb)?'<img src="' . PZARC_PLUGIN_APP_URL . '/shared/assets/images/missing-image.png" width="50" height="50">':$thumb);
             $nav_items[ ] = '<span class="'.$this->build->blueprint[ '_blueprints_navigator' ].'">'.$thumb.'</span>';
             break;
+
           case 'bullets':
           case 'numbers':
           case 'buttons':
             //No need for content on these
             $nav_items[ ] = '';
             break;
+
         }
         $section[ $section_no ]->render_panel($panel_def, $i, $class);
+
         if ($i++ >= $this->build->blueprint[ '_blueprints_section-' . ($section_no - 1) . '-panels-per-view' ]) {
+
           break;
+
         }
+
       }
 
       // Unsetting causes it to run the destruct, which closes the div!

@@ -8,9 +8,63 @@
    */
 
   // TODO: These should also definethe content filtering menu in Blueprints options :/
-  
+
+  // TODO: Should we have the post type defined here too?
+  if (!post_type_exists('pz_snippets') && !function_exists('pz_create_snippets_post_type')) {
+    add_action('init', 'pz_create_snippets_post_type');
+    function pz_create_snippets_post_type()
+    {
+      $labels = array(
+          'name'               => _x('Snippets', 'post type general name'),
+          'singular_name'      => _x('Snippet', 'post type singular name'),
+          'add_new'            => _x('Add New Snippet', 'gallery'),
+          'add_new_item'       => __('Add New Snippet'),
+          'edit_item'          => __('Edit Snippet'),
+          'new_item'           => __('New Snippet'),
+          'view_item'          => __('View Snippet'),
+          'search_items'       => __('Search Snippets'),
+          'not_found'          => __('No snippets found'),
+          'not_found_in_trash' => __('No snippets found in Trash'),
+          'parent_item_colon'  => '',
+          'menu_name'          => _x('Snippets', 'pzarchitect'),
+      );
+      $args   = array(
+          'labels'             => $labels,
+          'public'             => true,
+          'publicly_queryable' => true,
+          'show_ui'            => true,
+          //          'show_in_menu'       => 'pzarc',
+          'menu_icon'          => 'dashicons-format-aside',
+          'query_var'          => true,
+          'rewrite'            => true,
+          'capability_type'    => 'page',
+          'has_archive'        => true,
+          'hierarchical'       => true,
+          'taxonomies'         => array('category', 'post_tag'),
+          //          'menu_position'      => 999,
+          'supports'           => array('title',
+                                        'editor',
+                                        'author',
+                                        'thumbnail',
+                                        'excerpt',
+                                        'comments',
+                                        'revisions',
+                                        'post-formats',
+                                        'page-attributes')
+      );
+
+
+      register_post_type('pz_snippets', $args);
+
+    }
+  }
+
   class arc_Panel_snippets
   {
+    /*
+     * Snippets are very much like posts or pages, so we've used the same code. This may evolve - and we'll certainly regret having to duplicate stuff sometimes!
+     */
+
 //    private $data;
 
     //TODO: Shouldn't data be a this?
@@ -104,30 +158,32 @@
         $image                        = get_post(get_post_thumbnail_id());
         $data[ 'image' ][ 'caption' ] = $image->post_excerpt;
       }
-      if ($toshow[ 'meta1' ][ 'show' ] ||
-          $toshow[ 'meta2' ][ 'show' ] ||
-          $toshow[ 'meta3' ][ 'show' ]
-      ) {
+
+      if ($toshow[ 'meta1' ][ 'show' ] || $toshow[ 'meta2' ][ 'show' ] || $toshow[ 'meta3' ][ 'show' ]) {
+
         $data[ 'meta' ][ 'datetime' ]        = get_the_date();
         $data[ 'meta' ][ 'fdatetime' ]       = date_i18n($section[ '_panels_design_meta-date-format' ], strtotime(get_the_date()));
         $data[ 'meta' ][ 'categorieslinks' ] = get_the_category_list(', ');
         $data[ 'categories' ]                = pzarc_tax_string_list(get_the_category(), 'category-', '', ' ');
         $data[ 'meta' ][ 'tagslinks' ]       = get_the_tag_list(null, ', ');
         $data[ 'tags' ]                      = pzarc_tax_string_list(get_the_tags(), 'tag-', '', ' ');
-
         $data[ 'meta' ][ 'authorlink' ] = get_author_posts_url(get_the_author_meta('ID'));
         $data[ 'meta' ][ 'authorname' ] = sanitize_text_field(get_the_author_meta('display_name'));
+
         $rawemail                       = sanitize_email(get_the_author_meta('user_email'));
         $encodedmail                    = '';
+
         for ($i = 0; $i < strlen($rawemail); $i++) {
           $encodedmail .= "&#" . ord($rawemail[ $i ]) . ';';
         }
+
         $data[ 'meta' ][ 'authoremail' ]    = $encodedmail;
         $data[ 'meta' ][ 'comments-count' ] = get_comments_number();
       }
 //var_dump($postmeta);
       //     var_dump($section);
       $cfcount = $section[ '_panels_design_custom-fields-count' ];
+
       for ($i = 1; $i <= $cfcount; $i++) {
         // var_dump($section);
         // the settings come from section
@@ -139,11 +195,12 @@
       }
 
       // NEVER include HTML in these, only should get WP values.
-      $showbgimage           = (has_post_thumbnail()
+      $showbgimage = (has_post_thumbnail()
               && $section[ '_panels_design_background-position' ] != 'none'
               && ($section[ '_panels_design_components-position' ] == 'top' || $section[ '_panels_design_components-position' ] == 'left'))
           || ($section[ '_panels_design_background-position' ] != 'none'
               && ($section[ '_panels_design_components-position' ] == 'bottom' || $section[ '_panels_design_components-position' ] == 'right'));
+
       $data[ 'postid' ]      = get_the_ID();
       $data[ 'poststatus' ]  = get_post_status();
       $data[ 'permalink' ]   = get_the_permalink();
@@ -153,13 +210,16 @@
       // Need to setup for break points.
 
       //  data-imagesrcs ="1,2,3", data-breakpoints="1,2,3". Then use js to change src.
+
       $width = (int)str_replace('px', '', $section[ '_panels_design_background-image-max' ][ 'width' ]);
       // TODO: Should this just choose the greater? Or could that be too stupid if  someone puts a very large max-height?
+
       if ($section[ '_panels_settings_panel-height-type' ] === 'height') {
         $height = (int)str_replace('px', '', $section[ '_panels_settings_panel-height' ][ 'height' ]);
       } else {
         $height = (int)str_replace('px', '', $section[ '_panels_design_background-image-max' ][ 'height' ]);
       }
+
       $data[ 'bgimage' ] = ($showbgimage ? get_the_post_thumbnail(null, array($width,
                                                                               $height,
                                                                               'bfi_thumb' => true,
@@ -234,16 +294,11 @@
      */
     public static function render($component, $panel_def, $content_type, &$data, &$section)
     {
-      switch ($content_type) {
-        case 'defaults':
-        case 'post':
-        case 'page':
-          $panel_def[ $component ] = str_replace('{{title}}', $data[ 'title' ], $panel_def[ $component ]);
-          if ($section[ '_panels_design_link-titles' ]) {
-            $panel_def[ $component ] = str_replace('{{postlink}}', $panel_def[ 'postlink' ], $panel_def[ $component ]);
-            $panel_def[ $component ] = str_replace('{{closepostlink}}', '</a>', $panel_def[ $component ]);
-          }
-      };
+      $panel_def[ $component ] = str_replace('{{title}}', $data[ 'title' ], $panel_def[ $component ]);
+      if ($section[ '_panels_design_link-titles' ]) {
+        $panel_def[ $component ] = str_replace('{{postlink}}', $panel_def[ 'postlink' ], $panel_def[ $component ]);
+        $panel_def[ $component ] = str_replace('{{closepostlink}}', '</a>', $panel_def[ $component ]);
+      }
 
       // this only works for posts! need different rules for different types! :S
       return parent::process_generics($data, $panel_def[ $component ], $content_type, $section);
@@ -255,33 +310,26 @@
   {
     public static function render($component, $panel_def, $content_type, &$data, &$section)
     {
-      // get $metaX definition and construct string, then replace metaXinnards
-      switch ($content_type) {
-        case 'defaults':
-        case 'post':
-        case 'page':
-          $panel_def[ $component ] = str_replace('{{datetime}}', $data[ 'meta' ][ 'datetime' ], $panel_def[ $component ]);
-          $panel_def[ $component ] = str_replace('{{fdatetime}}', $data[ 'meta' ][ 'fdatetime' ], $panel_def[ $component ]);
-          if (empty($section[ '_panels_design_excluded-authors' ]) || !in_array(get_the_author_meta('ID'), $section[ '_panels_design_excluded-authors' ])) {
-            //Remove text indicators
-            $panel_def[ $component ] = str_replace('//', '', $panel_def[ $component ]);
-            $panel_def[ $component ] = str_replace('{{authorname}}', $data[ 'meta' ][ 'authorname' ], $panel_def[ $component ]);
-            $panel_def[ $component ] = str_replace('{{authorlink}}', $data[ 'meta' ][ 'authorlink' ], $panel_def[ $component ]);
-            $panel_def[ $component ] = str_replace('{{authoremail}}', $data[ 'meta' ][ 'authoremail' ], $panel_def[ $component ]);
-          } else {
-            // Removed unused text and indicators
-            $panel_def[ $component ] = preg_replace("/\\/\\/(.)*\\/\\//uiUm", "", $panel_def[ $component ]);
-          }
-          $panel_def[ $component ] = str_replace('{{categories}}', $data[ 'meta' ][ 'categories' ], $panel_def[ $component ]);
-          $panel_def[ $component ] = str_replace('{{categorieslinks}}', $data[ 'meta' ][ 'categorieslinks' ], $panel_def[ $component ]);
-          $panel_def[ $component ] = str_replace('{{tags}}', $data[ 'meta' ][ 'tags' ], $panel_def[ $component ]);
-          $panel_def[ $component ] = str_replace('{{tagslinks}}', $data[ 'meta' ][ 'tagslinks' ], $panel_def[ $component ]);
-          $panel_def[ $component ] = str_replace('{{commentslink}}', $panel_def[ 'comments-link' ], $panel_def[ $component ]);
-          $panel_def[ $component ] = str_replace('{{commentscount}}', $data[ 'comments-count' ], $panel_def[ $component ]);
-          $panel_def[ $component ] = str_replace('{{editlink}}', $panel_def[ 'editlink' ], $panel_def[ $component ]);
-
-
+      $panel_def[ $component ] = str_replace('{{datetime}}', $data[ 'meta' ][ 'datetime' ], $panel_def[ $component ]);
+      $panel_def[ $component ] = str_replace('{{fdatetime}}', $data[ 'meta' ][ 'fdatetime' ], $panel_def[ $component ]);
+      if (empty($section[ '_panels_design_excluded-authors' ]) || !in_array(get_the_author_meta('ID'), $section[ '_panels_design_excluded-authors' ])) {
+        //Remove text indicators
+        $panel_def[ $component ] = str_replace('//', '', $panel_def[ $component ]);
+        $panel_def[ $component ] = str_replace('{{authorname}}', $data[ 'meta' ][ 'authorname' ], $panel_def[ $component ]);
+        $panel_def[ $component ] = str_replace('{{authorlink}}', $data[ 'meta' ][ 'authorlink' ], $panel_def[ $component ]);
+        $panel_def[ $component ] = str_replace('{{authoremail}}', $data[ 'meta' ][ 'authoremail' ], $panel_def[ $component ]);
+      } else {
+        // Removed unused text and indicators
+        $panel_def[ $component ] = preg_replace("/\\/\\/(.)*\\/\\//uiUm", "", $panel_def[ $component ]);
       }
+      $panel_def[ $component ] = str_replace('{{categories}}', $data[ 'meta' ][ 'categories' ], $panel_def[ $component ]);
+      $panel_def[ $component ] = str_replace('{{categorieslinks}}', $data[ 'meta' ][ 'categorieslinks' ], $panel_def[ $component ]);
+      $panel_def[ $component ] = str_replace('{{tags}}', $data[ 'meta' ][ 'tags' ], $panel_def[ $component ]);
+      $panel_def[ $component ] = str_replace('{{tagslinks}}', $data[ 'meta' ][ 'tagslinks' ], $panel_def[ $component ]);
+      $panel_def[ $component ] = str_replace('{{commentslink}}', $panel_def[ 'comments-link' ], $panel_def[ $component ]);
+      $panel_def[ $component ] = str_replace('{{commentscount}}', $data[ 'comments-count' ], $panel_def[ $component ]);
+      $panel_def[ $component ] = str_replace('{{editlink}}', $panel_def[ 'editlink' ], $panel_def[ $component ]);
+
 
       return parent::process_generics($data, $panel_def[ $component ], $content_type, $section);
     }
@@ -338,12 +386,8 @@
   {
     public static function render($component, $panel_def, $content_type, &$data, &$section)
     {
-      switch ($content_type) {
-        case 'defaults':
-        case 'post':
-        case 'page':
-          $panel_def[ $component ] = str_replace('{{content}}', $data[ 'content' ], $panel_def[ $component ]);
-      };
+      $panel_def[ $component ] = str_replace('{{content}}', $data[ 'content' ], $panel_def[ $component ]);
+
       if ($section[ '_panels_design_thumb-position' ] != 'none') {
         if (!empty($data[ 'image' ][ 'image' ])) {
           $panel_def[ $component ] = str_replace('{{image-in-content}}', $panel_def[ 'image' ], $panel_def[ $component ]);
@@ -384,13 +428,7 @@
      */
     public static function render($component, $panel_def, $content_type, &$data, &$section)
     {
-      //    var_dump($data);
-      switch ($content_type) {
-        case 'defaults':
-        case 'post':
-        case 'page':
-          $panel_def[ $component ] = str_replace('{{excerpt}}', $data[ 'excerpt' ], $panel_def[ $component ]);
-      };
+      $panel_def[ $component ] = str_replace('{{excerpt}}', $data[ 'excerpt' ], $panel_def[ $component ]);
 
       if ($section[ '_panels_design_thumb-position' ] != 'none') {
         if (!empty($data[ 'image' ][ 'image' ]) && !empty($section[ '_panels_design_thumb-position' ])) {

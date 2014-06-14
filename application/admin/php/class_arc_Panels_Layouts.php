@@ -708,7 +708,8 @@
             ),
             array(
                 'id'              => $prefix . 'content-font-size-bp1',
-                'title'           => __('Font size - large screen ', 'pzarchitect') .$_architect_options[ 'architect_breakpoint_1' ][ 'width' ],
+                'title'           => __('Font size - large screen ', 'pzarchitect') ,
+                'subtitle'          => $_architect_options[ 'architect_breakpoint_1' ][ 'width' ] . ' and above',
                 'type'            => 'typography',
                 'text-decoration' => false,
                 'font-variant'    => false,
@@ -731,7 +732,8 @@
             ),
             array(
                 'id'              => $prefix . 'content-font-size-bp2',
-                'title'           => __('Font size - medium screen ', 'pzarchitect'). $_architect_options[ 'architect_breakpoint_2' ][ 'width' ],
+                'title'           => __('Font size - medium screen ', 'pzarchitect'),
+                'subtitle'          => $_architect_options[ 'architect_breakpoint_2' ][ 'width' ] . ' to '.$_architect_options[ 'architect_breakpoint_1' ][ 'width' ],
                 'type'            => 'typography',
                 'text-decoration' => false,
                 'font-variant'    => false,
@@ -754,7 +756,8 @@
             ),
             array(
                 'id'              => $prefix . 'content-font-size-bp3',
-                'title'           => __('Font size - small screen ', 'pzarchitect'). $_architect_options[ 'architect_breakpoint_3' ][ 'width' ],
+                'title'           => __('Font size - small screen ', 'pzarchitect'),
+                'subtitle'          => $_architect_options[ 'architect_breakpoint_2' ][ 'width' ] . ' and below',
                 'type'            => 'typography',
                 'text-decoration' => false,
                 'font-variant'    => false,

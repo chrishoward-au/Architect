@@ -284,7 +284,7 @@
                     'type'    => 'dimensions',
                     'height'  => false,
                     'units'   => 'px',
-                    'default' => array('width' => '1100'),
+                    'default' => array('width' => '960'),
                 ),
                 array(
                     'title'   => __('Medium screen breakpoint', 'pzarchitect'),
@@ -292,15 +292,7 @@
                     'type'    => 'dimensions',
                     'height'  => false,
                     'units'   => 'px',
-                    'default' => array('width' => '768'),
-                ),
-                array(
-                    'title'   => __('Narrow screen breakpoint', 'pzarchitect'),
-                    'id'      => 'architect_breakpoint_3',
-                    'type'    => 'dimensions',
-                    'height'  => false,
-                    'units'   => 'px',
-                    'default' => array('width' => '480'),
+                    'default' => array('width' => '640'),
                 ),
             )
         );

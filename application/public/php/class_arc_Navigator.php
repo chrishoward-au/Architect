@@ -6,6 +6,20 @@
    * Date: 25/04/2014
    * Time: 9:11 PM
    */
+
+  //TODO: Accordions will have a different structure. Like thus:
+  //
+  // SECTION
+  // -TITLE
+  // -- PANEL
+  // -TITLE
+  // - PANEL
+  // as opposed to current of
+  // SECTION
+  // - PANEL
+  // - PANEL
+  // - PANEL
+
   class arc_Navigator
   {
 

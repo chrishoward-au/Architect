@@ -130,28 +130,47 @@
       $pzarc_import_css .= '@import url("' . PZARC_CACHE_URL . '/pzarc-panels-layout-' . $panel_id . '-' . $pzarc_panels[ '_panels_settings_short-name' ] . '.css");' . $nl;
       $hmargin = $pzarc_blueprints[ '_blueprints_section-' . $i . '-panels-horiz-margin' ][ 'height' ];
 
-      // Need to do this for each breakpoint
+      // TODO: Need to rethink this coz it's not right!
+      // Currently, breakpoints are 480,768,1024 but that actually gives four ranges
+      // 0-480, 480-768, 768-1024, 1024-999999999
+      //  However, we only set 3 ranges
+      // so, should we switch to 2 break points? 640 & 960? I thinks so!
+
+      $em_width[1] = (str_replace('px','',$_architect_options[ 'architect_breakpoint_1' ][ 'width' ])/16);
+      $em_width[2] = (str_replace('px','',$_architect_options[ 'architect_breakpoint_2' ][ 'width' ])/16);
+
+      // Large
       $columns = intval($pzarc_blueprints[ '_blueprints_section-' . $i . '-columns-breakpoint-1' ]);
-      $pzarc_mediaq_css .= '@media all and (max-width:200em) {';
+      $pzarc_mediaq_css .= '@media all and (min-width:'.$em_width[1].'em) {';
       $pzarc_mediaq_css .= $classes . ' {width:' . (((100 - ($hmargin * ($columns - 1))) / $columns)) . '%;margin-bottom:' . $pzarc_blueprints[ '_blueprints_section-' . $i . '-panels-vert-margin' ][ 'width' ] . '%;}';
       $pzarc_mediaq_css .= $classes . ':nth-child(n) {margin-right: ' . ($hmargin) . '%;}';
       $pzarc_mediaq_css .= $classes . ':nth-child(' . $columns . 'n) {margin-right: 0;}';
-//            $pzarc_contents_css .= $classes . ' {width:' . (((100 - ($hmargin * ($columns - 1))) / $columns)) . '%;margin-bottom:' . $pzarc_blueprints[ '_blueprints_section-' . $i . '-panels-vert-margin' ][ 'width' ] . '%;}';
+//              $pzarc_contents_css .= $classes . ' {width:' . (((100 - ($hmargin * ($columns - 1))) / $columns)) . '%;margin-bottom:' . $pzarc_blueprints[ '_blueprints_section-' . $i . '-panels-vert-margin' ][ 'width' ] . '%;}';
       $pzarc_mediaq_css .= $classes . ' .grid-sizer { width:' . (100 / $columns) . '%;}';
       $pzarc_mediaq_css .= '}' . $nl;
 
-      for ($bp = 1; $bp <= 3; $bp++) {
-        $columns = intval($pzarc_blueprints[ '_blueprints_section-' . $i . '-columns-breakpoint-' . $bp ]);
-        $em_width = (str_replace('px','',$_architect_options[ 'architect_breakpoint_' . $bp ][ 'width' ])/16).'em';
-        $px_width = ($_architect_options[ 'architect_breakpoint_' . $bp ][ 'width' ]).';';
-        $pzarc_mediaq_css .= '@media all and (max-width:' . $em_width . ') {';
-        $pzarc_mediaq_css .= $classes . ' {width:' . (((100 - ($hmargin * ($columns - 1))) / $columns)) . '%;margin-bottom:' . $pzarc_blueprints[ '_blueprints_section-' . $i . '-panels-vert-margin' ][ 'width' ] . '%;}';
-        $pzarc_mediaq_css .= $classes . ':nth-child(n) {margin-right: ' . ($hmargin) . '%;}';
-        $pzarc_mediaq_css .= $classes . ':nth-child(' . $columns . 'n) {margin-right: 0;}';
+
+      // Medium
+      $columns = intval($pzarc_blueprints[ '_blueprints_section-' . $i . '-columns-breakpoint-2' ]);
+      $pzarc_mediaq_css .= '@media all and (min-width: '.$em_width[2].'em) and (max-width: '.($em_width[1]-0.1).'em) {';
+      $pzarc_mediaq_css .= $classes . ' {width:' . (((100 - ($hmargin * ($columns - 1))) / $columns)) . '%;margin-bottom:' . $pzarc_blueprints[ '_blueprints_section-' . $i . '-panels-vert-margin' ][ 'width' ] . '%;}';
+      $pzarc_mediaq_css .= $classes . ':nth-child(n) {margin-right: ' . ($hmargin) . '%;}';
+      $pzarc_mediaq_css .= $classes . ':nth-child(' . $columns . 'n) {margin-right: 0;}';
 //              $pzarc_contents_css .= $classes . ' {width:' . (((100 - ($hmargin * ($columns - 1))) / $columns)) . '%;margin-bottom:' . $pzarc_blueprints[ '_blueprints_section-' . $i . '-panels-vert-margin' ][ 'width' ] . '%;}';
-        $pzarc_mediaq_css .= $classes . ' .grid-sizer { width:' . (100 / $columns) . '%;}';
-        $pzarc_mediaq_css .= '}' . $nl;
-      }
+      $pzarc_mediaq_css .= $classes . ' .grid-sizer { width:' . (100 / $columns) . '%;}';
+      $pzarc_mediaq_css .= '}' . $nl;
+
+
+      // Small
+      $columns = intval($pzarc_blueprints[ '_blueprints_section-' . $i . '-columns-breakpoint-3']);
+      $pzarc_mediaq_css .= '@media all and (max-width: '.($em_width[2]-0.1).'em) {';
+      $pzarc_mediaq_css .= $classes . ' {width:' . (((100 - ($hmargin * ($columns - 1))) / $columns)) . '%;margin-bottom:' . $pzarc_blueprints[ '_blueprints_section-' . $i . '-panels-vert-margin' ][ 'width' ] . '%;}';
+      $pzarc_mediaq_css .= $classes . ':nth-child(n) {margin-right: ' . ($hmargin) . '%;}';
+      $pzarc_mediaq_css .= $classes . ':nth-child(' . $columns . 'n) {margin-right: 0;}';
+//              $pzarc_contents_css .= $classes . ' {width:' . (((100 - ($hmargin * ($columns - 1))) / $columns)) . '%;margin-bottom:' . $pzarc_blueprints[ '_blueprints_section-' . $i . '-panels-vert-margin' ][ 'width' ] . '%;}';
+      $pzarc_mediaq_css .= $classes . ' .grid-sizer { width:' . (100 / $columns) . '%;}';
+      $pzarc_mediaq_css .= '}' . $nl;
+
 
       // Can't do this!! OTherwise would have to regenerate all blueprints on panel save
 ////        // TODO: do we have to use the bg image height instead if it is set??

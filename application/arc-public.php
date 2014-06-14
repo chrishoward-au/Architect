@@ -192,6 +192,9 @@
         unset ($architect);
       }
     }
+
+    // Tell WP to resume using the main query just in case we might have accidentally left another query active.
+    wp_reset_postdata();
   }
 
 

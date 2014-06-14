@@ -78,7 +78,7 @@ jQuery( document ).ready( function ()
 
     function pzarc_show_hide_content_tabs( tab )
     {
-        var a = ["Defaults", "Posts", "Pages", "Galleries", "Slides", "Custom Post Types"];
+        var a = ["Defaults", "Posts", "Pages", "Snippets","Galleries", "Slides", "Custom Post Types"];
         for ( var i = 1; i <= a.length; i++ )
         {
             jQuery( ".redux-sidebar li#" + (i - 1) + "_box_redux-_architect-metabox-content-selections_section_group_li" ).hide();
@@ -289,47 +289,47 @@ jQuery( document ).ready( function ()
      */
     function init()
     {
-        // Setup section
+        // Setup section wireframe
 
-        pzarc_refresh_blueprint_layout( 0 );
-        pzarc_refresh_blueprint_layout( 1 );
-        pzarc_refresh_blueprint_layout( 2 );
-
-        var navtype = jQuery( 'fieldset#_architect-_blueprints_navigation input:checked' ).val();
-        console.log( navtype );
-        jQuery( "#pzarc-navigator-preview .pzarc-sections" ).hide();
-        if ( navtype !== "none" )
-        {
-            var np = jQuery( ".pzarc-section-" + navtype ).get( 0 );
-            jQuery( np ).show();
-        }
-        pzarc_update_usage_info( jQuery( "input#_blueprints_short-name-text" ));
-
-        for ( var i = 0; i < 3; i++ )
-        {
-            jQuery( 'input#_blueprints_section-' + i + '-panels-vert-margin' ).change( function ()
-            {
-                //console.log(this.id.substr(20,1));
-                pzarc_refresh_blueprint_layout( this.id.substr( 20, 1 ) );
-            } );
-            jQuery( 'input#_blueprints_section-' + i + '-panels-per-view' ).change( function ()
-            {
-                pzarc_refresh_blueprint_layout( this.id.substr( 20, 1 ) );
-            } );
+//        pzarc_refresh_blueprint_layout( 0 );
+//        pzarc_refresh_blueprint_layout( 1 );
+//        pzarc_refresh_blueprint_layout( 2 );
+//
+//        var navtype = jQuery( 'fieldset#_architect-_blueprints_navigation input:checked' ).val();
+//        console.log( navtype );
+//        jQuery( "#pzarc-navigator-preview .pzarc-sections" ).hide();
+//        if ( navtype !== "none" )
+//        {
+//            var np = jQuery( ".pzarc-section-" + navtype ).get( 0 );
+//            jQuery( np ).show();
+//        }
+//        pzarc_update_usage_info( jQuery( "input#_blueprints_short-name-text" ));
+//
+//        for ( var i = 0; i < 3; i++ )
+//        {
+//            jQuery( 'input#_blueprints_section-' + i + '-panels-vert-margin' ).change( function ()
+//            {
+//                //console.log(this.id.substr(20,1));
+//                pzarc_refresh_blueprint_layout( this.id.substr( 20, 1 ) );
+//            } );
 //            jQuery( 'input#_blueprints_section-' + i + '-panels-per-view' ).change( function ()
 //            {
 //                pzarc_refresh_blueprint_layout( this.id.substr( 20, 1 ) );
 //            } );
-            jQuery( 'input#_blueprints_section-' + i + '-min-panel-width' ).change( function ()
-            {
-                pzarc_refresh_blueprint_layout( this.id.substr( 20, 1 ) );
-            } );
+////            jQuery( 'input#_blueprints_section-' + i + '-panels-per-view' ).change( function ()
+////            {
+////                pzarc_refresh_blueprint_layout( this.id.substr( 20, 1 ) );
+////            } );
+//            jQuery( 'input#_blueprints_section-' + i + '-min-panel-width' ).change( function ()
+//            {
+//                pzarc_refresh_blueprint_layout( this.id.substr( 20, 1 ) );
+//            } );
 
 // ---   jQuery('#_pzarc_' + i + '-blueprint-section-enable-cmb-field-0').change(function () {
 //      var x = this.id.substr(20,1);
 //      pzarc_show_hide_section(x);
 //    });
-        }
+//        }
 
         // This updates the shortname help text the explains how to use the shortcode
         jQuery( 'input#_blueprints_short-name-text' ).change( function ()

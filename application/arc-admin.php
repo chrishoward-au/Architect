@@ -59,6 +59,10 @@
         require_once PZARC_PLUGIN_APP_PATH . '/admin/php/arc-options-styling.php';
         require_once PZARC_PLUGIN_APP_PATH . '/admin/php/arc-options-actions.php';
 
+        // TODO: this needs to be dumberized so can work on dev defined panels and ocntent
+       require_once PZARC_PLUGIN_APP_PATH . '/public/php/post_types/class_arc_Panel_Snippets.php';
+
+
         // @TODO Should these really be objects?
         // Initialise objects for data and setup menu items
         $panel_layout      = new arc_Panels_Layouts;
