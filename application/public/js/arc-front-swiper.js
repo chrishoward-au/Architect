@@ -11,11 +11,13 @@ jQuery( document ).ready( function ()
     arcSwipers.each( function ()
     {
         var arcSwiperID = jQuery( this ).attr( 'data-swiperid' );
-        var arcSwiperType = jQuery( this ).attr( 'data-navtype' );
+        // TODO: Why aren't we using this?
+//        var arcSwiperType = jQuery( this ).attr( 'data-navtype' );
         var arcSwiperTrans = jQuery( this ).attr( 'data-transtype' );
         var arcSwiperOpts = (jQuery( this ).attr( 'data-opts' ));
-        console.log( arcSwiperID, arcSwiperType );
-        if ( null !== arcSwiperID && null !== arcSwiperOpts)
+        //console.log( arcSwiperID, arcSwiperType );
+        var arcSlideCount = jQuery( this ).find( '.pzarc-panel' ).length;
+        if ( null !== arcSwiperID && null !== arcSwiperOpts )
         {
 
             // Parse the option values
@@ -23,6 +25,44 @@ jQuery( document ).ready( function ()
             arcSwiperOpts = arcSwiperOpts.replace( /#/g, '"' );
             var arcSwiperOptsObj = JSON.parse( arcSwiperOpts );
 
+            // NAVIGATOR
+            var arcSwiperNav = jQuery( '.pzarc-blueprint_' + arcSwiperID + ' .swiper-nav.swiper-container.thumbs' ).swiper( {
+                slidesPerView: 'auto',
+                freeMode: false,
+                freeModeFluid: false,
+                calculateHeight: false,
+                useCSS3Transforms: false,
+                grabCursor: true,
+                onSlideChangeStart: function ( swiper )
+                {
+                    jQuery( ".swiper-nav .pzarc-navigator-" + arcSwiperID + " .active" ).removeClass( 'active' );
+                    jQuery( jQuery( ".swiper-nav .pzarc-navigator-" + arcSwiperID + " span.swiper-pagination-switch" ).get( swiper.activeIndex ) ).addClass( "active" );
+                },
+
+                onSlideClick: function ( nav )
+                {
+                    arcSwiper.swipeTo( nav.clickedSlideIndex );
+                }
+
+            } );
+            jQuery( '.skip-left' ).on( 'click', function ( e )
+            {
+                e.preventDefault();
+                var goto_slide = Math.max( 0, arcSwiperNav.activeIndex - arcSwiperOptsObj.tskip );
+                arcSwiperNav.swipeTo( goto_slide, 1000 , false);
+                arcSwiper.swipeTo( goto_slide );
+
+            } );
+            jQuery( '.skip-right' ).on( 'click', function ( e )
+            {
+                e.preventDefault();
+                var goto_slide = Math.min( arcSlideCount-1, arcSwiperNav.activeIndex + arcSwiperOptsObj.tskip );
+                arcSwiperNav.swipeTo( goto_slide, 1000 ,false);
+                arcSwiper.swipeTo( goto_slide );
+            } );
+
+
+            // PANELS
             var arcSwiper = jQuery( '.swiper-container.swiper-container-' + arcSwiperID ).swiper(
                   {
                       //  Nav item gets outta sync when loop on - even with activeLoopIndex
@@ -56,7 +96,7 @@ jQuery( document ).ready( function ()
                           switch (arcSwiperTrans)
                           {
                               case "fade":
-                                  console.log( arcSwiperTrans );
+//                                  console.log( arcSwiperTrans );
                                   for ( i = 0; i < swiper.slides.length; i++ )
                                   {
                                       slide = swiper.slides[i];
@@ -68,7 +108,7 @@ jQuery( document ).ready( function ()
                                   }
                                   break;
                               case "swipe":
-                                  console.log( arcSwiperTrans );
+                                  //                                console.log( arcSwiperTrans );
 
                                   for ( i = 0; i < swiper.slides.length; i++ )
                                   {
@@ -78,7 +118,7 @@ jQuery( document ).ready( function ()
                                   }
                                   break;
                               case "rotate":
-                                  console.log( arcSwiperTrans );
+                                  //                              console.log( arcSwiperTrans );
                                   for ( i = 0; i < swiper.slides.length; i++ )
                                   {
                                       slide = swiper.slides[i];
@@ -95,7 +135,7 @@ jQuery( document ).ready( function ()
                                   }
                                   break;
                               case "flip":
-                                  console.log( arcSwiperTrans );
+                                  //                            console.log( arcSwiperTrans );
                                   for ( i = 0; i < swiper.slides.length; i++ )
                                   {
                                       slide = swiper.slides[i];
@@ -141,15 +181,36 @@ jQuery( document ).ready( function ()
 
                   } );
 
+            // This sets up the tab method of clicking
             var arcTabs = jQuery( ".pzarc-navigator-" + arcSwiperID + " span" );
-            arcTabs.on( 'touchstart mousedown', function ( e )
+
+            arcTabs.on( 'touchstart', function ( e )
             {
-                e.preventDefault();
-                arcSwiper.swipeTo( jQuery( this ).index() );
+                if ( jQuery( this ).hasClass( 'active' ) )
+                {
+                    e.preventDefault();
+                    return false;
+                }
+                else
+                {
+                    e.preventDefault();
+                    arcSwiper.swipeTo( jQuery( this ).index() );
+                    return true;
+                }
+
             } );
             arcTabs.click( function ( e )
             {
-                e.preventDefault();
+                if ( jQuery( this ).hasClass( 'active' ) )
+                {
+                    e.preventDefault();
+                    return false;
+                }
+                else
+                {
+                    e.preventDefault();
+                    return true;
+                }
             } );
 
 
@@ -164,25 +225,11 @@ jQuery( document ).ready( function ()
                 e.preventDefault();
                 arcSwiper.swipeNext();
             } );
-            console.log( arcSwiper );
+            //    console.log( arcSwiper );
 
+
+            //  console.log( arcSwiperNav );
         } // End if has ID
-
-        // TODO:: Add shortname to qualify it
-        var arcSwiperNav = jQuery( '.swiper-nav.swiper-container.thumbs' ).swiper( {
-            slidesPerView: 8,
-            freeMode: true,
-            freeModeFluid: true,
-            calculateHeight:false,
-            useCSS3Transforms: false,
-            grabCursor:true
-//
-////            onSlideClick : function(nav) {
-////                arcSwiper.swipeTo(nav.clickedSlideIndex);
-////            }
-//
-        } );
-        console.log( arcSwiperNav );
     } );
 
 

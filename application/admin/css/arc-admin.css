@@ -998,6 +998,7 @@ span.bold {
   background: none;
   border: none; }
 
+.pzarc-text-highlight,
 .plain.redux-info-field em {
   color: tomato; }
 

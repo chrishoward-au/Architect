@@ -14,7 +14,7 @@
   add_action('init', 'pzarc_display_init');
   function pzarc_display_init()
   {
-    wp_register_script('js-arc-frontjs', PZARC_PLUGIN_APP_URL . '/public/js/arc-front.js', array('jquery'));
+    wp_register_script('js-arc-frontjs', PZARC_PLUGIN_APP_URL . '/public/js/arc-front-swiper.js', array('jquery'));
     wp_enqueue_script('js-arc-frontjs');
 
 
@@ -26,9 +26,9 @@
 //    wp_enqueue_style('css-bxslider');
 
     // Swiper
-    wp_register_script('js-swiperjs', PZARC_PLUGIN_APP_URL . '/shared/includes/js/swiper/idangerous.swiper.min.js');
-    wp_register_script('js-swiper-progressjs', PZARC_PLUGIN_APP_URL . '/shared/includes/js/swiper/idangerous.swiper.progress.min.js');
-    wp_register_style('css-swiperjs', PZARC_PLUGIN_APP_URL . '/shared/includes/js/swiper/idangerous.swiper.css');
+    wp_register_script('js-swiperjs', PZARC_PLUGIN_APP_URL . '/public/js/swiper/idangerous.swiper.min.js');
+    wp_register_script('js-swiper-progressjs', PZARC_PLUGIN_APP_URL . '/public/js/swiper/idangerous.swiper.progress.min.js');
+    wp_register_style('css-swiperjs', PZARC_PLUGIN_APP_URL . '/public/js/swiper/idangerous.swiper.css');
     wp_enqueue_script('js-swiperjs');
     wp_enqueue_script('js-swiper-progressjs');
     wp_enqueue_style('css-swiperjs');

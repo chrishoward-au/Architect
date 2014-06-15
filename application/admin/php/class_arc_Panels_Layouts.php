@@ -587,8 +587,8 @@
         'show_title' => false,
         'icon_class' => 'icon-large',
         'icon'       => 'el-icon-calendar',
-        'desc'       => __('Available tags are %author%, %email%,%date%,%categories%,%tags, %commentslink%,%editlink%.', 'pzarchitect') . '<br>' .
-            __('Note: Enclose any author related text in // to hide it when using excluded authors.', 'pzarchitect') . '<br>' .
+        'desc'       => __('Available tags are <span class="pzarc-text-highlight">%author%   %email%   %date%   %categories%   %tags   %commentslink%   %editlink%</span>.', 'pzarchitect') . '<br><br>' .
+            __('Note: Enclose any author related text in <span class="pzarc-text-highlight">//</span> to hide it when using excluded authors.', 'pzarchitect') . '<br>' .
             __('Note: The email address will be encoded to prevent automated harvesting by spammers.', 'pzarchitect'),
         'fields'     => array(
           // ======================================
@@ -622,8 +622,6 @@
               'type'    => 'text',
               'default' => 'l, F j, Y g:i a',
               'desc'    => __('See here for information on <a href="http://codex.wordpress.org/Formatting_Date_and_Time" target=_blank>formatting date and time</a>', 'pzarchitect'),
-              'hint'    => array('title'   => '',
-                                 'content' => 'See here for information on <a href="http://codex.wordpress.org/Formatting_Date_and_Time" target=_blank>formatting date and time</a>')
           ),
           array(
               'title'    => __('Excluded authors', 'pzarchitect'),

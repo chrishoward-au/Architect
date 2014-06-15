@@ -582,7 +582,7 @@
               ),
               array(
                   'title'         => __('Columns wide screen', 'pzarchitect'),
-                  'subtitle'          => $_architect_options[ 'architect_breakpoint_1' ][ 'width' ] . ' and above',
+                  'subtitle'      => $_architect_options[ 'architect_breakpoint_1' ][ 'width' ] . ' and above',
                   'id'            => $prefix . 'section-' . $i . '-columns-breakpoint-1',
                   'hint'          => array('content' => __('Number of columns or panels across on a wide screen as set in the breakpoints options', 'pzarchitect')),
                   'type'          => 'slider',
@@ -592,8 +592,8 @@
                   'display_value' => 'label'
               ),
               array(
-                  'title'         => __('Columns medium screen', 'pzarchitect') ,
-                  'subtitle'          => $_architect_options[ 'architect_breakpoint_2' ][ 'width' ] . ' to '.$_architect_options[ 'architect_breakpoint_1' ][ 'width' ],
+                  'title'         => __('Columns medium screen', 'pzarchitect'),
+                  'subtitle'      => $_architect_options[ 'architect_breakpoint_2' ][ 'width' ] . ' to ' . $_architect_options[ 'architect_breakpoint_1' ][ 'width' ],
                   'id'            => $prefix . 'section-' . $i . '-columns-breakpoint-2',
                   'hint'          => array('content' => __('Number of columns or panels across on a medium screen as set in the breakpoints options', 'pzarchitect')),
                   'type'          => 'slider',
@@ -604,7 +604,7 @@
               ),
               array(
                   'title'         => __('Columns narrow screen', 'pzarchitect'),
-                  'subtitle'          => $_architect_options[ 'architect_breakpoint_2' ][ 'width' ] . ' and below',
+                  'subtitle'      => $_architect_options[ 'architect_breakpoint_2' ][ 'width' ] . ' and below',
                   'id'            => $prefix . 'section-' . $i . '-columns-breakpoint-3',
                   'hint'          => array('content' => __('Number of columns or panels across on a narrow screen as set in the breakpoints options', 'pzarchitect')),
                   'type'          => 'slider',
@@ -920,11 +920,13 @@
               )
           ),
           array(
-              'id'       => $prefix . 'navigator-items-visible',
-              'title'    => __('Limit navigator items visible', 'pzarchitect'),
+              'id'       => $prefix . 'navigator-skip-thumbs',
+              'title'    => __('Skip thumbs', 'pzarchitect'),
               'type'     => 'spinner',
               'default'  => 5,
-              'subtitle' => 'If zero, it will use the "Panels to show" value. This is the number of items visible in the navigator bar. NOTE: This is also the number of items skipped by multi-skip pager element of the inline pager.'
+              'min'      => 2,
+              'max'      => 100,
+              'subtitle' => 'This is the number of thumbs skipped by multi-skip pager element of the inline pager.'
           ),
           array(
               'title' => __('Transitions', 'pzarchitect'),
@@ -1003,7 +1005,7 @@
 //    );
 
     $sections[ ] = array(
-        'title'      => 'Using blueprints',
+        'title'      => 'Hot to use blueprints',
         'icon_class' => 'icon-large',
         'icon'       => 'el-icon-info-sign',
         'fields'     => array(

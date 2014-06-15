@@ -96,7 +96,7 @@
       // Shorthand some vars
       $bpshortname = $this->build->blueprint[ '_blueprints_short-name' ];
       $bpnav_type  = $this->build->blueprint[ '_blueprints_navigation' ];
-      $bptranstype  = $this->build->blueprint[ '_blueprints_transitions-type' ];
+      $bptranstype = $this->build->blueprint[ '_blueprints_transitions-type' ];
 
       do_action('arc_before_architect');
       do_action('arc_navigation_top');
@@ -106,7 +106,7 @@
 
       self::display_page_title($this->build->blueprint[ '_blueprints_page-title' ]);
 
-      echo self::get_sections_opener($bpshortname, $bpnav_type, $caller,$bptranstype);
+      echo self::get_sections_opener($bpshortname, $bpnav_type, $caller, $bptranstype);
 
       do_action('arcNavBeforeSection-{$bpshortname}');
       $this->arc      = array();
@@ -240,23 +240,24 @@
     {
       $return_val = '';
       if ($bpnav_type === 'navigator') {
-        $swiper               = array();
-        $swiper[ 'class' ]    = '';
-        $swiper[ 'dataid' ]   = '';
-        $swiper[ 'datatype' ] = '';
-        $swiper[ 'class' ]    = ' swiper-container slider swiper-container-' . $bpshortname;
-        $swiper[ 'dataid' ]   = ' data-swiperid="' . $bpshortname . '"';
-        $swiper[ 'datatype' ] = 'data-navtype="' . $bpnav_type . '"';
-        $swiper['datatrans']= ' data-transtype="'.$bptranstype.'"';
+        $swiper                = array();
+        $swiper[ 'class' ]     = '';
+        $swiper[ 'dataid' ]    = '';
+        $swiper[ 'datatype' ]  = '';
+        $swiper[ 'class' ]     = ' swiper-container slider swiper-container-' . $bpshortname;
+        $swiper[ 'dataid' ]    = ' data-swiperid="' . $bpshortname . '"';
+        $swiper[ 'datatype' ]  = 'data-navtype="' . $bpnav_type . '"';
+        $swiper[ 'datatrans' ] = ' data-transtype="' . $bptranstype . '"';
 
         $duration             = $this->build->blueprint[ '_blueprints_transitions-duration' ] * 1000;
         $interval             = $this->build->blueprint[ '_blueprints_transitions-interval' ] * 1000;
-        $swiper[ 'dataopts' ] = 'data-opts="{#tduration#:' . $duration . ',#tinterval#:' . $interval . '}"';
+        $skip_thumbs          = $this->build->blueprint[ '_blueprints_navigator-skip-thumbs' ];
+        $swiper[ 'dataopts' ] = 'data-opts="{#tduration#:' . $duration . ',#tinterval#:' . $interval . ',#tskip#:'.$skip_thumbs.'}"';
 
         $return_val .= '<a class="pager arrow-left icon-btn-style" href="#"></a>';
         $return_val .= '<a class="pager arrow-right icon-btn-style" href="#"></a>';
 //          //TODO: Should the bp name be in the class or ID?
-        $return_val .= '<div class="pzarc-sections_' . $bpshortname . ' pzarc-is_' . $caller . $swiper[ 'class' ] . '"' . $swiper[ 'dataid' ] . $swiper[ 'datatype' ] . $swiper[ 'dataopts' ] . $swiper['datatrans']. '>';
+        $return_val .= '<div class="pzarc-sections_' . $bpshortname . ' pzarc-is_' . $caller . $swiper[ 'class' ] . '"' . $swiper[ 'dataid' ] . $swiper[ 'datatype' ] . $swiper[ 'dataopts' ] . $swiper[ 'datatrans' ] . '>';
       } else {
         $return_val .= '<div class="pzarc-sections_' . $bpshortname . ' pzarc-is_' . $caller . '">';
       }
@@ -473,11 +474,11 @@
           break;
 
         case 'snippets':
-          $query_options[ 'post_type' ]    = 'pz_snippets';
+          $query_options[ 'post_type' ] = 'pz_snippets';
           break;
 
         case 'slides':
-          $query_options[ 'post_type' ]    = 'pzsp-slides';
+          $query_options[ 'post_type' ] = 'pzsp-slides';
           break;
 
       }
@@ -518,6 +519,7 @@
       if (empty($post_type)) {
 
         pzarc_msg('No post type specified', 'error');
+
         return null;
 
       }
@@ -531,6 +533,7 @@
       if (!class_exists($class)) {
 
         pzarc_msg(__('Post type ', 'pzarchitect') . '<strong>' . $post_type . '</strong>' . __(' has no panel definition and cannot be displayed.', 'pzarchitect'), 'error');
+
         return null;
 
       }
@@ -538,7 +541,7 @@
       // We setup the Paneldef here so we're not doing it every iteration of the Loop!
       // TODO: Some sites get a T_PAAMAYIM_NEKUDOTAYIM error! ugh!
 
-      $panel_class= new $class;
+      $panel_class = new $class;
 
       $panel_def = $panel_class->panel_def();
 
@@ -561,13 +564,13 @@
         switch ($this->build->blueprint[ '_blueprints_navigator' ]) {
 
           case 'tabbed':
-            $nav_items[ ] = '<span class="'.$this->build->blueprint[ '_blueprints_navigator' ].'">'.$this->arc_query->post->post_title.'</span>';
+            $nav_items[ ] = '<span class="' . $this->build->blueprint[ '_blueprints_navigator' ] . '">' . $this->arc_query->post->post_title . '</span>';
             break;
 
           case 'thumbs':
-            $thumb = get_the_post_thumbnail($this->arc_query->post->ID, array(50, 50));
-            $thumb = (empty($thumb)?'<img src="' . PZARC_PLUGIN_APP_URL . '/shared/assets/images/missing-image.png" width="50" height="50">':$thumb);
-            $nav_items[ ] = '<span class="'.$this->build->blueprint[ '_blueprints_navigator' ].'">'.$thumb.'</span>';
+            $thumb        = get_the_post_thumbnail($this->arc_query->post->ID, array(50, 50));
+            $thumb        = (empty($thumb) ? '<img src="' . PZARC_PLUGIN_APP_URL . '/shared/assets/images/missing-image.png" width="50" height="50">' : $thumb);
+            $nav_items[ ] = '<span class="' . $this->build->blueprint[ '_blueprints_navigator' ] . '">' . $thumb . '</span>';
             break;
 
           case 'bullets':
@@ -578,7 +581,7 @@
             break;
 
         }
-        $section[ $section_no ]->render_panel($panel_def, $i, $class,$panel_class);
+        $section[ $section_no ]->render_panel($panel_def, $i, $class, $panel_class);
 
         if ($i++ >= $this->build->blueprint[ '_blueprints_section-' . ($section_no - 1) . '-panels-per-view' ]) {
 

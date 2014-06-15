@@ -288,6 +288,7 @@ Pagination Styles
     z-index: 2;
     text-decoration: none;
     display:none;
+    background:none;
     &:hover {
       display: block;
     }
@@ -332,6 +333,9 @@ Pagination Styles
 
 .swiper-nav .swiper-slide {
   max-width: 100px;
+}
+.swiper-nav.thumbs .swiper-slide {
+  max-width: initial;
 }
 
 .swiper-nav .swiper-slide:first-child span {
