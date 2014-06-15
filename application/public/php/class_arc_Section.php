@@ -75,10 +75,10 @@
     /**
      * @param $panel_def
      */
-    public function render_panel($panel_def, $panel_number, $class)
+    public function render_panel($panel_def, $panel_number, $class,$panel_class)
     {
 
-      $data = $class::set_data($this->section[ 'section-panel-settings' ]);
+      $data = $panel_class->set_data($this->section[ 'section-panel-settings' ]);
 
       $sequence = json_decode($this->section[ 'section-panel-settings' ][ '_panels_design_preview' ], true);
 
@@ -123,16 +123,19 @@
       if ($this->section[ 'section-panel-settings' ][ '_panels_design_background-position' ] != 'none' && ($this->section[ 'section-panel-settings' ][ '_panels_design_components-position' ] == 'bottom' || $this->section[ 'section-panel-settings' ][ '_panels_design_components-position' ] == 'right')) {
 
         $class_bgimage = $class . '_bgimage';
-        $line_out      = $class_bgimage::render('bgimage', $panel_def, $this->source, $data, $this->section[ 'section-panel-settings' ]);
+        $bgimage_class = new $class_bgimage;
+        $line_out      = $bgimage_class->render('bgimage', $panel_def, $this->source, $data, $this->section[ 'section-panel-settings' ]);
         echo apply_filters("arc_filter_bgimage", self::strip_unused_arctags($line_out), $data[ 'postid' ]);
 //        echo $data['bgimage'];
 //        var_dump(esc_html( $data['bgimage']));
 
+        unset($class_bgimage);
       }
 
       // Render the components open html
       $class_wrapper = $class . '_Wrapper';
-      echo self::strip_unused_arctags($class_wrapper::render('components-open', $panel_def, '', $data, $this->section[ 'section-panel-settings' ]));
+      $wrapper_class = new $class_wrapper;
+      echo self::strip_unused_arctags($wrapper_class->render('components-open', $panel_def, '', $data, $this->section[ 'section-panel-settings' ]));
 
       foreach ($sequence as $component_type => $value) {
 
@@ -143,8 +146,9 @@
 
           // Make the class name to call - strip numbers from metas and customs
           // We could do this in a concatenation first of all components' templates, and then replace the {{tags}}.... But then we couldn't do the filter on each component. Nor could we as easily make the components extensible
-          $component_class = $class . '_' . str_replace(array('1', '2', '3'), '', ucfirst($component_type));
-          $line_out        = $component_class::render($component_type, $panel_def, $this->source, $data, $this->section[ 'section-panel-settings' ]);
+          $class_component = $class . '_' . str_replace(array('1', '2', '3'), '', ucfirst($component_type));
+          $component_class = new $class_component;
+          $line_out        = $component_class->render($component_type, $panel_def, $this->source, $data, $this->section[ 'section-panel-settings' ]);
 
 
           echo apply_filters("arc_filter_{$component_type}", self::strip_unused_arctags($line_out), $data[ 'postid' ]);
@@ -155,7 +159,7 @@
       }
 //        echo '<h1 class="entry-title">',get_the_title(),'</h1>';
 //        echo '<div class="entry-content">',get_the_content(),'</div>';
-      echo self::strip_unused_arctags($class_wrapper::render('components-close', $panel_def, '', $data, $this->section[ 'section-panel-settings' ]));
+      echo self::strip_unused_arctags($wrapper_class->render('components-close', $panel_def, '', $data, $this->section[ 'section-panel-settings' ]));
 
       if ($this->section[ 'section-panel-settings' ][ '_panels_design_background-position' ] != 'none' && ($this->section[ 'section-panel-settings' ][ '_panels_design_components-position' ] == 'top' || $this->section[ 'section-panel-settings' ][ '_panels_design_components-position' ] == 'left')) {
 

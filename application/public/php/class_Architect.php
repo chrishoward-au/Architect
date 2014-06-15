@@ -536,7 +536,12 @@
       }
 
       // We setup the Paneldef here so we're not doing it every iteration of the Loop!
-      $panel_def = $class::panel_def();
+      // TODO: Some sites get a T_PAAMAYIM_NEKUDOTAYIM error! ugh!
+
+      $panel_class= new $class;
+
+      $panel_def = $panel_class->panel_def();
+
 
       // Setup meta tags
       $panel_def = self::build_meta_definition($panel_def, $this->build->blueprint[ 'section' ][ ($section_no - 1) ][ 'section-panel-settings' ]);
@@ -573,7 +578,7 @@
             break;
 
         }
-        $section[ $section_no ]->render_panel($panel_def, $i, $class);
+        $section[ $section_no ]->render_panel($panel_def, $i, $class,$panel_class);
 
         if ($i++ >= $this->build->blueprint[ '_blueprints_section-' . ($section_no - 1) . '-panels-per-view' ]) {
 
