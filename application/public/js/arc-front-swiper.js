@@ -26,7 +26,8 @@ jQuery( document ).ready( function ()
             var arcSwiperOptsObj = JSON.parse( arcSwiperOpts );
 
             // NAVIGATOR
-            var arcSwiperNav = jQuery( '.pzarc-blueprint_' + arcSwiperID + ' .swiper-nav.swiper-container.thumbs' ).swiper( {
+            //TODO: Work out how to stop nav being grabberable when not thumbs
+            var arcSwiperNav = jQuery( '.pzarc-blueprint_' + arcSwiperID + ' .swiper-nav.swiper-container' ).swiper( {
                 slidesPerView: 'auto',
                 freeMode: false,
                 freeModeFluid: false,
@@ -79,7 +80,7 @@ jQuery( document ).ready( function ()
                       scrollContainer: false,
                       keyboardControl: true,
                       slidesPerView: 1,
-                      useCSS3Transforms: true,
+                      useCSS3Transforms: false,
                       speed: arcSwiperOptsObj.tduration,
                       autoplay: arcSwiperOptsObj.tinterval,
                       autoplayDisableOnInteraction: false,

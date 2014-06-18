@@ -6,9 +6,8 @@
    * Date: 29/04/2014
    * Time: 12:16 PM
    */
-
   // TODO: These should also definethe content filtering menu in Blueprints options :/
-  
+
   class arc_Panel_gallery
   {
 //    private $data;
@@ -84,14 +83,16 @@
      */
     static function set_data(&$section)
     {
+      global $post;
+
       $toshow   = json_decode($section[ '_panels_design_preview' ], true);
       $data     = array();
       $postmeta = get_post_meta(get_the_ID());
+
       // TODO: Will need to refine these to be based on content type
       if ($toshow[ 'title' ][ 'show' ]) {
         $data[ 'title' ] = get_the_title();
       }
-
       if ($toshow[ 'content' ][ 'show' ]) {
         $data[ 'content' ] = apply_filters('the_content', get_the_content());
       }
@@ -110,19 +111,18 @@
         $width  = (int)str_replace('px', '', $section[ '_panels_design_image-max-dimensions' ][ 'width' ]);
         $height = (int)str_replace('px', '', $section[ '_panels_design_image-max-dimensions' ][ 'height' ]);
 
-        $data[ 'image' ][ 'image' ]   = get_the_post_thumbnail(null,
-                                                               array($width,
-                                                                     $height,
-                                                                     'bfi_thumb' => true,
-                                                                     'crop'      => true)
-        );
-        $image                        = get_post(get_post_thumbnail_id());
-        $data[ 'image' ][ 'caption' ] = $image->post_excerpt;
+        $data[ 'image' ][ 'image' ]   = wp_get_attachment_image($post->guid, array($width,
+                                                                                   $height,
+                                                                                   'bfi_thumb' => true,
+                                                                                   'crop'      => true));
+        $data[ 'image' ][ 'caption' ] = $post->post_excerpt;
       }
+
       if ($toshow[ 'meta1' ][ 'show' ] ||
           $toshow[ 'meta2' ][ 'show' ] ||
           $toshow[ 'meta3' ][ 'show' ]
       ) {
+
         $data[ 'meta' ][ 'datetime' ]        = get_the_date();
         $data[ 'meta' ][ 'fdatetime' ]       = date_i18n($section[ '_panels_design_meta-date-format' ], strtotime(get_the_date()));
         $data[ 'meta' ][ 'categorieslinks' ] = get_the_category_list(', ');
@@ -132,18 +132,25 @@
 
         $data[ 'meta' ][ 'authorlink' ] = get_author_posts_url(get_the_author_meta('ID'));
         $data[ 'meta' ][ 'authorname' ] = sanitize_text_field(get_the_author_meta('display_name'));
-        $rawemail                       = sanitize_email(get_the_author_meta('user_email'));
-        $encodedmail                    = '';
+
+        $rawemail    = sanitize_email(get_the_author_meta('user_email'));
+        $encodedmail = '';
+
         for ($i = 0; $i < strlen($rawemail); $i++) {
+
           $encodedmail .= "&#" . ord($rawemail[ $i ]) . ';';
         }
+
         $data[ 'meta' ][ 'authoremail' ]    = $encodedmail;
         $data[ 'meta' ][ 'comments-count' ] = get_comments_number();
       }
 //var_dump($postmeta);
       //     var_dump($section);
+
       $cfcount = $section[ '_panels_design_custom-fields-count' ];
+
       for ($i = 1; $i <= $cfcount; $i++) {
+
         // var_dump($section);
         // the settings come from section
         $data[ 'cfield' ][ $i ][ 'name' ]  = $section[ '_panels_design_cfield-' . $i . '-name' ];
@@ -151,36 +158,49 @@
         // The content itself comes from post meta
         $data[ 'cfield' ][ $i ][ 'value' ] = $postmeta[ $section[ '_panels_design_cfield-' . $i . '-name' ] ][ 0 ];
         // TODO : Add other attributes
+
       }
 
       // NEVER include HTML in these, only should get WP values.
-      $showbgimage           = (has_post_thumbnail()
+      $showbgimage = (has_post_thumbnail()
               && $section[ '_panels_design_background-position' ] != 'none'
               && ($section[ '_panels_design_components-position' ] == 'top' || $section[ '_panels_design_components-position' ] == 'left'))
           || ($section[ '_panels_design_background-position' ] != 'none'
               && ($section[ '_panels_design_components-position' ] == 'bottom' || $section[ '_panels_design_components-position' ] == 'right'));
-      $data[ 'postid' ]      = get_the_ID();
-      $data[ 'poststatus' ]  = get_post_status();
-      $data[ 'permalink' ]   = get_the_permalink();
-      $post_format           = get_post_format();
-      $data [ 'postformat' ] = (empty($post_format) ? 'standard' : $post_format);
+
+      $data[ 'postid' ]     = get_the_ID();
+      $data[ 'poststatus' ] = get_post_status();
+      $data[ 'permalink' ]  = get_the_permalink();
+      $post_format          = get_post_format();
 
       // Need to setup for break points.
 
       //  data-imagesrcs ="1,2,3", data-breakpoints="1,2,3". Then use js to change src.
       $width = (int)str_replace('px', '', $section[ '_panels_design_background-image-max' ][ 'width' ]);
+
       // TODO: Should this just choose the greater? Or could that be too stupid if  someone puts a very large max-height?
       if ($section[ '_panels_settings_panel-height-type' ] === 'height') {
         $height = (int)str_replace('px', '', $section[ '_panels_settings_panel-height' ][ 'height' ]);
       } else {
         $height = (int)str_replace('px', '', $section[ '_panels_design_background-image-max' ][ 'height' ]);
       }
-      $data[ 'bgimage' ] = ($showbgimage ? get_the_post_thumbnail(null, array($width,
-                                                                              $height,
-                                                                              'bfi_thumb' => true,
-                                                                              'crop'      => false,
-                                                                      )
-      ) : null); //WP seems to smartly figure out which of its saved images to use! Now we jsut gotta get it t work with focal point
+
+
+      $data[ 'bgimage' ] = '';
+      if ($showbgimage) {
+        pzdebug(array($width,$height));
+        $data[ 'bgimage' ] = wp_get_attachment_image($post->guid, array($width,
+                                                                        $height,
+                                                                        'bfi_thumb' => true,
+                                                                        'crop' => array(
+                                                                            'initial_x' => 270,
+                                                                            'initial_y' => 200,
+                                                                            'focalpt'   => false)
+                                                                )
+        ); //WP seems to smartly figure out which of its saved images to use! Now we jsut gotta get it t work with focal point
+//       $data[ 'bgimage' ] = '<img src="'.bfi_thumb($post->guid, array($width, $height, 'crop' => true)).'">'; //WP seems to smartly figure out which of its saved images to use! Now we jsut gotta get it t work with focal point
+
+      }
 
 //        if (strpos($data[ 'image' ][ 'image' ], '<img') === 0) {
 //          preg_match_all("/width=\"(\\d)*\"/uiUm", $data[ 'image' ][ 'image' ], $widthm);
@@ -191,6 +211,7 @@
 //          $data[ 'image' ][ 'alttext' ] = str_replace(array('alt=', '"'), '', $altm[ 0 ][ 0 ]);
 //        }
 //      var_dump($data);
+
       return $data;
 
     }
@@ -249,15 +270,10 @@
      */
     public static function render($component, $panel_def, $content_type, &$data, &$section)
     {
-      switch ($content_type) {
-        case 'defaults':
-        case 'post':
-        case 'page':
-          $panel_def[ $component ] = str_replace('{{title}}', $data[ 'title' ], $panel_def[ $component ]);
-          if ($section[ '_panels_design_link-titles' ]) {
-            $panel_def[ $component ] = str_replace('{{postlink}}', $panel_def[ 'postlink' ], $panel_def[ $component ]);
-            $panel_def[ $component ] = str_replace('{{closepostlink}}', '</a>', $panel_def[ $component ]);
-          }
+      $panel_def[ $component ] = str_replace('{{title}}', $data[ 'title' ], $panel_def[ $component ]);
+      if ($section[ '_panels_design_link-titles' ]) {
+        $panel_def[ $component ] = str_replace('{{postlink}}', $panel_def[ 'postlink' ], $panel_def[ $component ]);
+        $panel_def[ $component ] = str_replace('{{closepostlink}}', '</a>', $panel_def[ $component ]);
       };
 
       // this only works for posts! need different rules for different types! :S
@@ -271,32 +287,26 @@
     public static function render($component, $panel_def, $content_type, &$data, &$section)
     {
       // get $metaX definition and construct string, then replace metaXinnards
-      switch ($content_type) {
-        case 'defaults':
-        case 'post':
-        case 'page':
-          $panel_def[ $component ] = str_replace('{{datetime}}', $data[ 'meta' ][ 'datetime' ], $panel_def[ $component ]);
-          $panel_def[ $component ] = str_replace('{{fdatetime}}', $data[ 'meta' ][ 'fdatetime' ], $panel_def[ $component ]);
-          if (empty($section[ '_panels_design_excluded-authors' ]) || !in_array(get_the_author_meta('ID'), $section[ '_panels_design_excluded-authors' ])) {
-            //Remove text indicators
-            $panel_def[ $component ] = str_replace('//', '', $panel_def[ $component ]);
-            $panel_def[ $component ] = str_replace('{{authorname}}', $data[ 'meta' ][ 'authorname' ], $panel_def[ $component ]);
-            $panel_def[ $component ] = str_replace('{{authorlink}}', $data[ 'meta' ][ 'authorlink' ], $panel_def[ $component ]);
-            $panel_def[ $component ] = str_replace('{{authoremail}}', $data[ 'meta' ][ 'authoremail' ], $panel_def[ $component ]);
-          } else {
-            // Removed unused text and indicators
-            $panel_def[ $component ] = preg_replace("/\\/\\/(.)*\\/\\//uiUm", "", $panel_def[ $component ]);
-          }
-          $panel_def[ $component ] = str_replace('{{categories}}', $data[ 'meta' ][ 'categories' ], $panel_def[ $component ]);
-          $panel_def[ $component ] = str_replace('{{categorieslinks}}', $data[ 'meta' ][ 'categorieslinks' ], $panel_def[ $component ]);
-          $panel_def[ $component ] = str_replace('{{tags}}', $data[ 'meta' ][ 'tags' ], $panel_def[ $component ]);
-          $panel_def[ $component ] = str_replace('{{tagslinks}}', $data[ 'meta' ][ 'tagslinks' ], $panel_def[ $component ]);
-          $panel_def[ $component ] = str_replace('{{commentslink}}', $panel_def[ 'comments-link' ], $panel_def[ $component ]);
-          $panel_def[ $component ] = str_replace('{{commentscount}}', $data[ 'comments-count' ], $panel_def[ $component ]);
-          $panel_def[ $component ] = str_replace('{{editlink}}', $panel_def[ 'editlink' ], $panel_def[ $component ]);
-
-
+      $panel_def[ $component ] = str_replace('{{datetime}}', $data[ 'meta' ][ 'datetime' ], $panel_def[ $component ]);
+      $panel_def[ $component ] = str_replace('{{fdatetime}}', $data[ 'meta' ][ 'fdatetime' ], $panel_def[ $component ]);
+      if (empty($section[ '_panels_design_excluded-authors' ]) || !in_array(get_the_author_meta('ID'), $section[ '_panels_design_excluded-authors' ])) {
+        //Remove text indicators
+        $panel_def[ $component ] = str_replace('//', '', $panel_def[ $component ]);
+        $panel_def[ $component ] = str_replace('{{authorname}}', $data[ 'meta' ][ 'authorname' ], $panel_def[ $component ]);
+        $panel_def[ $component ] = str_replace('{{authorlink}}', $data[ 'meta' ][ 'authorlink' ], $panel_def[ $component ]);
+        $panel_def[ $component ] = str_replace('{{authoremail}}', $data[ 'meta' ][ 'authoremail' ], $panel_def[ $component ]);
+      } else {
+        // Removed unused text and indicators
+        $panel_def[ $component ] = preg_replace("/\\/\\/(.)*\\/\\//uiUm", "", $panel_def[ $component ]);
       }
+      $panel_def[ $component ] = str_replace('{{categories}}', $data[ 'meta' ][ 'categories' ], $panel_def[ $component ]);
+      $panel_def[ $component ] = str_replace('{{categorieslinks}}', $data[ 'meta' ][ 'categorieslinks' ], $panel_def[ $component ]);
+      $panel_def[ $component ] = str_replace('{{tags}}', $data[ 'meta' ][ 'tags' ], $panel_def[ $component ]);
+      $panel_def[ $component ] = str_replace('{{tagslinks}}', $data[ 'meta' ][ 'tagslinks' ], $panel_def[ $component ]);
+      $panel_def[ $component ] = str_replace('{{commentslink}}', $panel_def[ 'comments-link' ], $panel_def[ $component ]);
+      $panel_def[ $component ] = str_replace('{{commentscount}}', $data[ 'comments-count' ], $panel_def[ $component ]);
+      $panel_def[ $component ] = str_replace('{{editlink}}', $panel_def[ 'editlink' ], $panel_def[ $component ]);
+
 
       return parent::process_generics($data, $panel_def[ $component ], $content_type, $section);
     }
@@ -353,12 +363,7 @@
   {
     public static function render($component, $panel_def, $content_type, &$data, &$section)
     {
-      switch ($content_type) {
-        case 'defaults':
-        case 'post':
-        case 'page':
-          $panel_def[ $component ] = str_replace('{{content}}', $data[ 'content' ], $panel_def[ $component ]);
-      };
+      $panel_def[ $component ] = str_replace('{{content}}', $data[ 'content' ], $panel_def[ $component ]);
       if ($section[ '_panels_design_thumb-position' ] != 'none') {
         if (!empty($data[ 'image' ][ 'image' ])) {
           $panel_def[ $component ] = str_replace('{{image-in-content}}', $panel_def[ 'image' ], $panel_def[ $component ]);
@@ -400,12 +405,7 @@
     public static function render($component, $panel_def, $content_type, &$data, &$section)
     {
       //    var_dump($data);
-      switch ($content_type) {
-        case 'defaults':
-        case 'post':
-        case 'page':
-          $panel_def[ $component ] = str_replace('{{excerpt}}', $data[ 'excerpt' ], $panel_def[ $component ]);
-      };
+      $panel_def[ $component ] = str_replace('{{excerpt}}', $data[ 'excerpt' ], $panel_def[ $component ]);
 
       //  var_dump($section[ '_panels_design_thumb-position' ]);
       if ($section[ '_panels_design_thumb-position' ] != 'none') {

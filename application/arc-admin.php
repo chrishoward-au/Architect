@@ -60,7 +60,7 @@
         require_once PZARC_PLUGIN_APP_PATH . '/admin/php/arc-options-actions.php';
 
         // TODO: this needs to be dumberized so can work on dev defined panels and ocntent
-       require_once PZARC_PLUGIN_APP_PATH . '/public/php/post_types/class_arc_Panel_Snippets.php';
+        require_once PZARC_PLUGIN_APP_PATH . '/public/php/post_types/class_arc_Panel_Snippets.php';
 
 
         // @TODO Should these really be objects?
@@ -80,7 +80,8 @@
     function add_admin_body_class($classes)
     {
       $screen = get_current_screen();
-//      pzdebug($screen->id);
+
+      var_dump($screen->id);
       switch ($screen->id) {
         case 'architect_page__architect_options':
         case 'architect_page__architect_styling':
@@ -96,9 +97,9 @@
             $arc_bg = $_architect_options[ 'architect_bgimage' ];
             $classes .= ' arc-bgimage ' . $arc_bg;
           }
+          $classes .= ' ' . $screen->post_type;
           break;
       }
-      $classes .= ' ' . $screen->post_type;
 
       return $classes;
     }

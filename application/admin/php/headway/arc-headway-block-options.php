@@ -17,15 +17,15 @@
              = array(
           'build'  => 'Blueprint',
           'custom' => 'Custom',
-          'info'   => 'Info'
+//          'info'   => 'Info'
       );
 
       // Setup the tab options
       $this->inputs
           = array(
           'build'  => self::pzarc_build($block, false),
-          'custom' => self::pzarc_custom($block, false),
-          'info'   => null
+//          'custom' => self::pzarc_custom($block, false),
+//          'info'   => null
           //					'info'	=> self::sab_info($block),
       );
       // Setup any optional messages you want displayed on each tabs' panel
@@ -33,8 +33,8 @@
 //							Visit <a href="http://guides.pizazzwp.com/swiss-army-block/about-contentsplus/" target=_blank>Architect User Guide</a></br/>
       $this->tab_notices
           = array(
-          'info'   => '<strong>Support:</strong> Please go to PizazzWP support at <a href="http://pizazzwp.zendesk.com" target=_blank>pizazzwp.zendesk.com</a> and log your question there.',
-          'custom' => 'If you set the Blueprint to custom, you can build you own here. You will still need pre-made Cells and Content Selections.',
+//          'info'   => '<strong>Support:</strong> Please support ret <a href="http://pizazzwp.zendesk.com" target=_blank>pizazzwp.zendesk.com</a> and log your question there.',
+ //         'custom' => 'If you set the Blueprint to custom, you can build you own here. You will still need pre-made Cells and Content Selections.',
       );
     }
 
@@ -71,7 +71,8 @@
 //
 ////      $pzarc_layouts    = array_merge(array('none' => 'None selected'), $pzarc_layouts);
         $pzarc_blueprints = self::get_blueprints(true);
-        $pzarc_blueprints = array_merge(array('custom' => 'Custom blueprint'), $pzarc_blueprints);
+//        $pzarc_blueprints = array_merge(array('custom' => 'Custom blueprint'), $pzarc_blueprints);
+        $pzarc_blueprints = array_merge(array('none' => 'Select blueprint'), $pzarc_blueprints);
       } else {
         $pzarc_layouts    = array();
         $pzarc_blueprints = array();

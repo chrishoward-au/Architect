@@ -310,6 +310,7 @@
                 'height'  => false,
                 'title'   => __('Blueprint width', 'pzarchitect'),
                 'default' => array('width' => '100', 'units' => '%'),
+                'desc'=>'Need to set a max width to stop spillage' //TODO:Need to set a max width to stop spillage
             ),
             array(
                 'title'   => 'Page title',
@@ -1005,28 +1006,28 @@
 //    );
 
     $sections[ ] = array(
-        'title'      => 'Hot to use blueprints',
+        'title'      => 'How to use blueprints',
         'icon_class' => 'icon-large',
         'icon'       => 'el-icon-info-sign',
         'fields'     => array(
 
             array(
-                'title' => __('How to use blueprints', 'pzarchitect'),
+                'title' => __('How to use Blueprints', 'pzarchitect'),
                 'id'    => $prefix . 'help-blueprints',
                 'type'  => 'info',
                 'class' => 'plain',
-                'desc'  => '<p>There are five methods to displaying a blueprint. These are, in order of necessary technical know-how:</p>
+                'desc'  => '<p>There are five methods to displaying a Blueprint. In order of required technical know-how (easiest first), these are:</p>
                 <ul>
-                <li><strong>Widget</strong> : Select on widgets screen</li>
-                <li><strong>Shortcode</strong> : Add <em>[pzarc "blueprint" "overrides"]</em> your content at the point you want the blueprint to appear.</li>
-                <li><strong>Actions editor</strong> Enter the action name, blueprint and pages to appear on</li>
-                <li><strong>Action call</strong> :Add </em>new showBlueprint(\'action\',\'blueprint\',\'pageids\');</em> to your functions.php</li>
-                <li><strong>Template tag</strong> : Add <em>pzarchitect(\'blueprint\');</em> to your template at the point you want the blueprint to appear</li>
+                <li><strong>Widget</strong> : Select Architect widget on WP Admin widgets screen</li>
+                <li><strong>Shortcode</strong> : Add <em>[pzarc blueprint="blueprint" ids="overrides"]</em> in your content at the point you want the Blueprint to appear.</li>
+                <li><strong>Actions editor</strong>  : Enter the action name, Blueprint and pages to appear on</li>
+                <li><strong>Action call</strong> : Add </em>new showBlueprint(\'action\',\'blueprint\',\'pageids\');</em> to your functions.php</li>
+                <li><strong>Template tag</strong> : Add <em>pzarchitect(\'blueprint\');</em> to your template at the point you want the Blueprint to appear</li>
                 </ul>
-                <p><em>blueprint</em> = the shortname of the blueprint to display.</p>
-                <p><em>overrides</em> = a comma separated list of the media ids to display instead. Very useful for easily converting a WordPress gallery shortcode. eg [gallery ids="1,2,3,5"] becomes [pzarc "mygallery", "1,2,3,4,5"]</p>
-                <p><em>action</em> = the name of the action hook where you want the blueprint to appear</p>
-                 <p><em>pageids</em> = a comma separated list of names or numeric ids of the pages to display the blueprint. </p>
+                <p><em>blueprint</em> = the shortname of the Blueprint to display.</p>
+                <p><em>overrides</em> = a comma separated list of the media ids to display instead. Very useful for easily converting a WordPress gallery shortcode. eg [gallery ids="1,2,3,5"] change to [architect blueprint="mygallery" ids="1,2,3,4,5"]</p>
+                <p><em>action</em> = the name of the action hook where you want the Blueprint to appear</p>
+                 <p><em>pageids</em> = a comma separated list of names or numeric ids of the pages to display the Blueprint. </p>
 
             ')
         )
@@ -1563,6 +1564,38 @@ You can use them however you like though.</p>
             pzarc_redux_padding($prefix . 'pzarc-section_3-padding', array('.pzarc-section_3')),
             pzarc_redux_margin($prefix . 'pzarc-section_3-margins', array('.pzarc-section_3')),
             pzarc_redux_borders($prefix . 'pzarc-section_3-borders', array('.pzarc-section_3')),
+        ),
+    );
+
+    $sections[ ] = array(
+        'title'      => 'Navigator',
+        'show_title' => false,
+        'icon_class' => 'icon-large',
+        'icon'       => 'el-icon-play-circle',
+        'fields'     => array(
+            array(
+                'title' => __('Navigator container', 'pzarchitect'),
+                'id'    => $prefix . 'blueprint-nav-container-css-heading',
+                'type'  => 'section',
+                'subtitle'       => 'Class: .pzarc-navigator',
+
+            ),
+            pzarc_redux_bg($prefix . 'pzarc-navigator-background', array('.pzarc-navigator')),
+            pzarc_redux_padding($prefix . 'pzarc-navigator-padding', array('.pzarc-navigator')),
+            pzarc_redux_margin($prefix . 'pzarc-navigator-margins', array('.pzarc-navigator')),
+            pzarc_redux_borders($prefix . 'pzarc-navigator-borders', array('.pzarc-navigator')),
+            array(
+                'title' => __('Navigator items', 'pzarchitect'),
+                'id'    => $prefix . 'blueprint-nav-items-css-heading',
+                'type'  => 'section',
+                'subtitle'       => 'Class: .pzarc-navigator .swiper-pagination-switch span',
+
+            ),
+            pzarc_redux_font($prefix . 'pzarc-navigator-items-font', array('.pzarc-navigator .swiper-pagination-switch span')),
+            pzarc_redux_bg($prefix . 'pzarc-navigator-items-background', array('.pzarc-navigator .swiper-pagination-switch span')),
+            pzarc_redux_padding($prefix . 'pzarc-navigator-items-padding', array('.pzarc-navigator .swiper-pagination-switch span')),
+            pzarc_redux_margin($prefix . 'pzarc-navigator-items-margins', array('.pzarc-navigator .swiper-pagination-switch span')),
+            pzarc_redux_borders($prefix . 'pzarc-navigator-items-borders', array('.pzarc-navigator .swiper-pagination-switch span')),
         ),
     );
 

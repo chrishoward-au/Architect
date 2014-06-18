@@ -77,20 +77,27 @@
   {
     $pzarc_caller    = 'shortcode';
     $pzarc_blueprint = '';
+
     if (!empty($atts[ 'blueprint' ])) {
+
       $pzarc_blueprint = $atts[ 'blueprint' ];
+
     } elseif (!empty($atts[ 0 ])) {
+
       $pzarc_blueprint = $atts[ 0 ];
+
     }
 
     // Need to capture the output so we can get it to appear where the shortcode actually is
     ob_start();
-    $pzarc_overrides = !empty($atts[ 'ids' ]) ? $atts[ 'ids' ] : null;
 
+    $pzarc_overrides = !empty($atts[ 'ids' ]) ? $atts[ 'ids' ] : null;
     // UGH! This is a bit of a mess. Need a better solution
     // echo '<div class="clearfix"></div>'; // Just need to stop some overlapping when images are bigger than content in post
 
     do_action("arc_before_{$pzarc_caller}", $pzarc_blueprint, $pzarc_overrides, $pzarc_caller);
+
+//    var_dump($pzarc_blueprint, $pzarc_overrides, $pzarc_caller);
 
     // The caller is shortcode, and not variable here. It just uses a variable for consistency and documentation
     do_action("arc_do_{$pzarc_caller}", $pzarc_blueprint, $pzarc_overrides, $pzarc_caller);
@@ -104,6 +111,7 @@
 
     // Putting thru a filter so devs can do stuff with it
     return apply_filters('arc_filter_shortcode', $pzout, $pzarc_blueprint, $pzarc_overrides);
+
   }
 
   add_shortcode('architect', 'pzarc_shortcode');
@@ -136,13 +144,17 @@
   function pzarc($blueprint = null, $overrides = null, $caller)
   {
     $is_shortcode   = ($caller == 'shortcode');
+
     if (empty($blueprint)) {
+
       // TODO: Should we make this use a set of defaults. prob an excerpt grid
       echo '<p class="message-warning">You need to set a blueprint</p>';
+
     } else {
+
       require_once PZARC_PLUGIN_APP_PATH . '/public/php/class_Architect.php';
       require_once(PZARC_PLUGIN_APP_PATH . '/shared/includes/php/jo-image-resizer/jo_image_resizer.php');
-      require_once(PZARC_PLUGIN_APP_PATH . '/shared/includes/php/BFI_Thumb.php');
+      require_once(PZARC_PLUGIN_APP_PATH . '/shared/includes/php/BFI-thumb-forked/BFI_Thumb.php');
 
       $architect = new Architect($blueprint, $is_shortcode);
       if (empty($architect->build->blueprint[ 'err_msg' ])) {

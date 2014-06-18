@@ -16,13 +16,15 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale; }
   .icomoon [class^="icon-"] :before, .icomoon [class*=" icon-"] :before {
-    vertical-align: middle; }
+    vertical-align: middle;
+    position: relative; }
 .icomoon .icon-step-backward:before {
   content: "\f048"; }
 .icomoon .icon-fast-backward:before {
   content: "\f049"; }
 .icomoon .icon-backward:before {
-  content: "\f04a"; }
+  content: "\f04a";
+  left: -0.1em; }
 .icomoon .icon-play:before {
   content: "\f04b"; }
 .icomoon .icon-pause:before {
@@ -30,7 +32,8 @@
 .icomoon .icon-stop:before {
   content: "\f04d"; }
 .icomoon .icon-forward:before {
-  content: "\f04e"; }
+  content: "\f04e";
+  left: 0.1em; }
 .icomoon .icon-fast-forward:before {
   content: "\f050"; }
 .icomoon .icon-step-forward:before {

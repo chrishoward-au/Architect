@@ -44,21 +44,28 @@
       $this->is_shortcode = $is_shortcode;
 
       pzarc_set_defaults();
+
       require_once(PZARC_PLUGIN_APP_PATH . '/public/php/class_arc_Blueprint.php');
+
       $this->build = new arc_Blueprint($blueprint);
       //var_dump(((array)$this->build->blueprint));
 
       if ($this->build->blueprint[ '_blueprints_content-source' ] == 'defaults' && $this->is_shortcode) {
+
         $this->build->blueprint[ 'err_msg' ] = '<p class="message-warning">Ooops! Need to specify a <strong>Contents Selection</strong> in your Blueprint to use a shortcode. You cannot use Defaults.</p>';
+
       }
+
       if (!empty($this->build->blueprint[ 'err_msg' ])) {
+
         echo $this->build->blueprint[ 'err_msg' ];
 
         return false;
+
       }
 
-
       // Good to go. Load all the classes
+
       require_once(PZARC_PLUGIN_APP_PATH . '/shared/architect/php/arc-functions.php');
       require_once(PZARC_PLUGIN_APP_PATH . '/public/php/class_arc_Section.php');
       require_once(PZARC_PLUGIN_APP_PATH . '/public/php/class_arc_Navigator.php');
@@ -88,7 +95,6 @@
      */
     public function build_blueprint($overrides, $caller)
     {
-
       // If we use pagination, we'll have to mod $wp_query
       global $wp_query;
       $original_query = $wp_query;
@@ -109,6 +115,7 @@
       echo self::get_sections_opener($bpshortname, $bpnav_type, $caller, $bptranstype);
 
       do_action('arcNavBeforeSection-{$bpshortname}');
+
       $this->arc      = array();
       $this->criteria = array();
 
@@ -127,74 +134,110 @@
       // Get pagination
       // Need to do this before we touch the query!?
       if ($bpnav_type == 'pagination') {
+
         switch (true) {
+
           case is_home():
             $class                     = 'arc_Pagination_' . $this->build->blueprint[ '_blueprints_pager' ];
             $this->arc[ 'pagination' ] = new $class;
             break;
+
           case is_archive():
             $class                     = 'arc_Pagination_' . $this->build->blueprint[ '_blueprints_pager-archives' ];
             $this->arc[ 'pagination' ] = new $class;
             break;
+
           case (is_singular() && !is_front_page()):
             $class                     = 'arc_Pagination_' . $this->build->blueprint[ '_blueprints_pager-single' ];
             $this->arc[ 'pagination' ] = new $class;
             break;
+
         }
       }
 
       // Build the query
       if ($this->build->blueprint[ '_blueprints_content-source' ] != 'defaults') {
-        self::use_custom_query($$overrides);
+
+        self::use_custom_query($overrides);
+
       } else {
+
         self::use_default_query();
+
       }
 
       // Display pagination above
       if (isset($this->arc[ 'pagination' ])) {
+
         do_action('arcBeforePaginationAbove');
+
         $this->arc[ 'pagination' ]->render($this->arc_query, 'nav-above');
+
         do_action('arcAfterPaginationAbove');
+
       }
 
       // Loops
       $nav_items = self::loop(1);
+
       if ($do_section_2) {
+
         $notused = self::loop(2);
+
       }
+
       if ($do_section_3) {
+
         $notused = self::loop(3);
+
       }
+
       // End loops
       echo '</div> <!-- end blueprint sections -->';
 
       //TODO: Is it possible toshow the nav based on an action?
       do_action('arcNavAfterSections-{$bpshortname}');
+
       // NAVIGATION
 //      if ($this->build->blueprint[ '_blueprints_navigation' ] === 'navigator' && $this->build->blueprint[ '_blueprints_navigator-location' ] === 'outside') {
       if ($bpnav_type === 'navigator') {
+
         $class                    = 'arc_Navigator_' . $this->build->blueprint[ '_blueprints_navigator' ];
         $this->arc[ 'navigator' ] = new $class($this->build->blueprint, $nav_items);
+
       }
 
       // TODO: Display navigator or pagination using add_action to appropriate spot
       // Display pagination
       if (isset($this->arc[ 'navigator' ])) {
+
         do_action('arcBeforeNavigationBelow');
+
         $this->arc[ 'navigator' ]->render();
+
         do_action('arcAfterNavigationBelow');
+
       }
+
       // Don't allow pagination on pages it doesn't work on!
       //   Todo : setup pagination for single or blog index
       if (isset($this->arc[ 'pagination' ])) {
+
         do_action('arcBeforePaginationBelow');
+
         $this->arc[ 'pagination' ]->render($this->arc_query, 'nav-below');
+
         do_action('arcAfterPaginationBelow');
+
       }
+
       echo '</div> <!-- end the whole lot-->';
       // TODO:: Hmmm how we planning to use these?
+
       do_action('arc_navigation_right');
+
       do_action('arc_navigation_bottom');
+
       do_action('arc_after_architect');
 
 
@@ -252,7 +295,7 @@
         $duration             = $this->build->blueprint[ '_blueprints_transitions-duration' ] * 1000;
         $interval             = $this->build->blueprint[ '_blueprints_transitions-interval' ] * 1000;
         $skip_thumbs          = $this->build->blueprint[ '_blueprints_navigator-skip-thumbs' ];
-        $swiper[ 'dataopts' ] = 'data-opts="{#tduration#:' . $duration . ',#tinterval#:' . $interval . ',#tskip#:'.$skip_thumbs.'}"';
+        $swiper[ 'dataopts' ] = 'data-opts="{#tduration#:' . $duration . ',#tinterval#:' . $interval . ',#tskip#:' . $skip_thumbs . '}"';
 
         $return_val .= '<a class="pager arrow-left icon-btn-style" href="#"></a>';
         $return_val .= '<a class="pager arrow-right icon-btn-style" href="#"></a>';
@@ -420,27 +463,38 @@
      */
     public function build_custom_query($overrides)
     {
+
       //build the new query
       $source        = $this->build->blueprint[ '_blueprints_content-source' ];
       $query_options = array();
 
       //Paging parameters
       if ($this->build->blueprint[ '_blueprints_navigation' ] == 'pagination') {
+
         if (get_query_var('paged')) {
+
           $paged = get_query_var('paged');
+
         } elseif (get_query_var('page')) {
+
           $paged = get_query_var('page');
+
         } else {
+
           $paged = 1;
+
         }
 
 //        $query_options[ 'nopaging' ]       = false;
         $query_options[ 'posts_per_page' ] = $this->criteria[ 'panels_to_show' ];
         $query_options[ 'pagination' ]     = true;
         $query_options[ 'paged' ]          = $paged;
+
       } else {
+
         $query[ 'nopaging' ]               = $this->criteria[ 'nopaging' ];
         $query_options[ 'posts_per_page' ] = $this->criteria[ 'panels_to_show' ];
+
         $query_options[ 'offset' ]         = $this->criteria[ 'offset' ];
       }
 
@@ -449,7 +503,6 @@
 
       //Lot of work!
       //     pzdebug($this->criteria);
-
       // TODO: We're going to have to make this pluggable too! :P
       switch ($source) {
 
@@ -482,10 +535,10 @@
           break;
 
       }
-
       // OVERRIDES
       // currently this is the only bit that really does anything
       if ($overrides) {
+
         $query_options[ 'post__in' ]       = explode(',', $overrides);
         $query_options[ 'posts_per_page' ] = count($query_options[ 'post__in' ]);
       }
@@ -509,7 +562,6 @@
                                                            $this->build->blueprint[ '_blueprints_navigator-slider-engine' ],
                                                            $this->build->blueprint[ '_blueprints_section-' . ($section_no - 1) . '-title' ]
       );
-
 
       // oops! Need to get default content type when defaults chosen.
       $post_type = (empty($this->build->blueprint[ '_blueprints_content-source' ]) || 'defaults' === $this->build->blueprint[ '_blueprints_content-source' ] ?
@@ -545,7 +597,6 @@
 
       $panel_def = $panel_class->panel_def();
 
-
       // Setup meta tags
       $panel_def = self::build_meta_definition($panel_def, $this->build->blueprint[ 'section' ][ ($section_no - 1) ][ 'section-panel-settings' ]);
 
@@ -568,8 +619,20 @@
             break;
 
           case 'thumbs':
-            $thumb        = get_the_post_thumbnail($this->arc_query->post->ID, array(50, 50));
+
+            if ('attachment'===$this->arc_query->post->post_type) {
+
+              // TODO: Will need to change this to use the thumb dimensions set in the blueprint viasmall , medium, large
+              $thumb        = wp_get_attachment_image($this->arc_query->post->ID, array(50, 50));
+
+            } else {
+
+              $thumb        = get_the_post_thumbnail($this->arc_query->post->ID, array(50, 50));
+
+            }
+
             $thumb        = (empty($thumb) ? '<img src="' . PZARC_PLUGIN_APP_URL . '/shared/assets/images/missing-image.png" width="50" height="50">' : $thumb);
+
             $nav_items[ ] = '<span class="' . $this->build->blueprint[ '_blueprints_navigator' ] . '">' . $thumb . '</span>';
             break;
 
@@ -583,8 +646,7 @@
         }
         $section[ $section_no ]->render_panel($panel_def, $i, $class, $panel_class);
 
-        if ($i++ >= $this->build->blueprint[ '_blueprints_section-' . ($section_no - 1) . '-panels-per-view' ]) {
-
+        if ($i++ >= $this->build->blueprint[ '_blueprints_section-' . ($section_no - 1) . '-panels-per-view' ] && !empty($this->build->blueprint[ '_blueprints_section-' . ($section_no - 1) . '-panels-limited' ])) {
           break;
 
         }

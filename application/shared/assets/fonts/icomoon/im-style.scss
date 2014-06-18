@@ -17,6 +17,7 @@
     line-height: 1;
     :before {
       vertical-align: middle;
+      position:relative;
     }
      /* Better Font Rendering =========== */
     -webkit-font-smoothing: antialiased;
@@ -31,6 +32,8 @@
   }
   .icon-backward:before {
     content: "\f04a";
+    left:-0.1em;
+
   }
   .icon-play:before {
     content: "\f04b";
@@ -43,6 +46,7 @@
   }
   .icon-forward:before {
     content: "\f04e";
+    left:0.1em;
   }
   .icon-fast-forward:before {
     content: "\f050";

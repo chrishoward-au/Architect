@@ -1,13 +1,11 @@
 <?php
 
 
-  if (!(class_exists('ReduxFramework') || class_exists('ReduxFrameworkPlugin')))
-  {
+  if (!(class_exists('ReduxFramework') || class_exists('ReduxFrameworkPlugin'))) {
     return;
   }
 
-  if (!class_exists("Redux_Framework_Architect_Options_Styling"))
-  {
+  if (!class_exists("Redux_Framework_Architect_Options_Styling")) {
     class Redux_Framework_Architect_Options_Styling
     {
 
@@ -28,8 +26,7 @@
         // Create the sections and fields
         $this->setSections();
 
-        if (!isset($this->args[ 'opt_name' ]))
-        { // No errors please
+        if (!isset($this->args[ 'opt_name' ])) { // No errors please
           return;
         }
 
@@ -37,7 +34,7 @@
         //add_action( 'redux/plugin/hooks', array( $this, 'remove_demo' ) );
 
         // Function to test the compiler hook and demo CSS output.
-        add_filter('redux/options/'.$this->args['opt_name'].'/compiler', array( $this, 'compiler_action' ), 10, 2);
+        add_filter('redux/options/' . $this->args[ 'opt_name' ] . '/compiler', array($this, 'compiler_action'), 10, 2);
         // Above 10 is a priority, but 2 in necessary to include the dynamically generated CSS to be sent to the function.
 
         // Change the arguments after they've been declared, but before the panel is created
@@ -68,23 +65,23 @@
 //        var_dump($css); // Compiler selector CSS values  compiler => array( CSS SELECTORS )
 
         // Demo of how to use the dynamic CSS and write your own static CSS file
-          $filename = PZARC_CACHE_PATH. '/arc-dynamic-styles' . '.css';
+        $filename = PZARC_CACHE_PATH . '/arc-dynamic-styles' . '.css';
         // var_dump($filename);
-          global $wp_filesystem;
-          if( empty( $wp_filesystem ) ) {
-              require_once( ABSPATH .'/wp-admin/includes/file.php' );
-              WP_Filesystem();
-          }
+        global $wp_filesystem;
+        if (empty($wp_filesystem)) {
+          require_once(ABSPATH . '/wp-admin/includes/file.php');
+          WP_Filesystem();
+        }
 
         // TODO Remove once bug of ACE not being set to $css
-          $css .= $options['architect_config_custom-css'];
-          if( $wp_filesystem ) {
-              $wp_filesystem->put_contents(
-                  $filename,
-                  $css,
-                  FS_CHMOD_FILE // predefined mode settings for WP files
-              );
-          }
+        $css .= $options[ 'architect_config_custom-css' ];
+        if ($wp_filesystem) {
+          $wp_filesystem->put_contents(
+              $filename,
+              $css,
+              FS_CHMOD_FILE // predefined mode settings for WP files
+          );
+        }
 
       }
 
@@ -157,11 +154,9 @@
           if ($sample_patterns_dir = opendir($sample_patterns_path)) :
             $sample_patterns = array();
 
-            while (($sample_patterns_file = readdir($sample_patterns_dir)) !== false)
-            {
+            while (($sample_patterns_file = readdir($sample_patterns_dir)) !== false) {
 
-              if (stristr($sample_patterns_file, '.png') !== false || stristr($sample_patterns_file, '.jpg') !== false)
-              {
+              if (stristr($sample_patterns_file, '.png') !== false || stristr($sample_patterns_file, '.jpg') !== false) {
                 $name               = explode(".", $sample_patterns_file);
                 $name               = str_replace('.' . end($name), '', $sample_patterns_file);
                 $sample_patterns[ ] = array('alt' => $name, 'img' => $sample_patterns_url . $sample_patterns_file);
@@ -206,8 +201,7 @@
               <li><?php echo '<strong>' . __('Tags', 'redux-framework-demo') . ':</strong> '; ?><?php printf($this->theme->display('Tags')); ?></li>
             </ul>
             <p class="theme-description"><?php echo $this->theme->display('Description'); ?></p>
-            <?php if ($this->theme->parent())
-            {
+            <?php if ($this->theme->parent()) {
               printf(' <p class="howto">' . __('This <a href="%1$s">child theme</a> requires its parent theme, %2$s.') . '</p>',
                      __('http://codex.wordpress.org/Child_Themes', 'redux-framework-demo'),
                      $this->theme->parent()->display('Name'));
@@ -223,12 +217,10 @@
         ob_end_clean();
 
         $sampleHTML = '';
-        if (file_exists(dirname(__FILE__) . '/info-html.html'))
-        {
+        if (file_exists(dirname(__FILE__) . '/info-html.html')) {
           /** @global WP_Filesystem_Direct $wp_filesystem */
           global $wp_filesystem;
-          if (empty($wp_filesystem))
-          {
+          if (empty($wp_filesystem)) {
             require_once(ABSPATH . '/wp-admin/includes/file.php');
             WP_Filesystem();
           }
@@ -268,7 +260,7 @@
                     'type'     => 'section',
                     'class'    => 'heading',
                     'subtitle' => 'Class: .pzarc-components',
-                    'indent'=>false
+                    'indent'   => false
                 ),
                 array(
                     'title'    => __('CSS selectors', 'pzarc'),
@@ -281,11 +273,10 @@
                 pzarc_redux_padding($prefix . 'components-padding', array('.pzarc_components')),
                 pzarc_redux_borders($prefix . 'components-borders', array('.pzarc_components')),
                 array(
-                    'id'     => $prefix.'components-group-section-end',
+                    'id'     => $prefix . 'components-group-section-end',
                     'type'   => 'section',
                     'indent' => false,
                 ),
-
                 array(
                     'title' => __('Entry', 'pzarc'),
                     'id'    => $prefix . 'entry',
@@ -315,7 +306,8 @@
             'icon'       => 'el-icon-font',
             'desc'       => 'Class: .pzarc_entry-title',
             'fields'     => array(
-                pzarc_redux_font($prefix . 'entry-title-font', array('.entry-title'),array('line_height'=>1.2,'text_decoration'=>'none')),
+                pzarc_redux_font($prefix . 'entry-title-font', array('.entry-title'), array('line_height'     => 1.2,
+                                                                                            'text_decoration' => 'none')),
                 pzarc_redux_bg($prefix . 'entry-title-font-background', array('.entry-title')),
                 pzarc_redux_padding($prefix . 'entry-title-font-padding', array('.entry-title')),
                 pzarc_redux_links($prefix . 'entry-title-font-links', array('.entry-title a')),
@@ -384,7 +376,7 @@
                     'background-attachment' => false,
                     'background-position'   => false,
                     'preview'               => false,
-                    'compiler'=>array('.pzarc-featured-image')
+                    'compiler'              => array('.pzarc-featured-image')
                     //    'default' => $defaults[ $optprefix . 'image_defaults_entry-image-caption-defaults' ],
                 ),
                 array(
@@ -426,16 +418,15 @@
             'title'      => 'Custom CSS',
             'icon_class' => 'icon-large',
             'icon'       => 'el-icon-wrench',
-
             'fields'     => array(
                 array(
-                    'id'    => $prefix . 'custom-css',
-                    'type'  => 'ace_editor',
-                    'title' => __('Custom CSS', 'pzarc'),
-                    'subtitle'=>__('Enter any custom CSS at all here and it will be loaded with each page. Use wisely!'),
-                    'mode'  => 'css',
-                    'theme' => 'chrome',
-                    'compiler'=>true
+                    'id'       => $prefix . 'custom-css',
+                    'type'     => 'ace_editor',
+                    'title'    => __('Custom CSS', 'pzarc'),
+                    'subtitle' => __('Enter any custom CSS at all here and it will be loaded with each page. Use wisely!'),
+                    'mode'     => 'css',
+                    'theme'    => 'chrome',
+                    'compiler' => true
                 ),
             )
         );
@@ -514,46 +505,68 @@
         $this->args = array(
 
           // TYPICAL -> Change these values as you need/desire
-          'opt_name'           => '_architect',          // This is where your data is stored in the database and also becomes your global variable name.
-          'display_name'       => 'Architect Styling Defaults',          // Name that appears at the top of your panel
-          'display_version'    => PZARC_VERSION,          // Version that appears at the top of your panel
-          'menu_type'          => 'submenu',          //Specify if the admin menu should appear or not. Options: menu or submenu (Under appearance only)
-          'allow_sub_menu'     => false,          // Show the sections below the admin menu item or not
+          'opt_name'           => '_architect',
+          // This is where your data is stored in the database and also becomes your global variable name.
+          'display_name'       => 'Architect Styling Defaults',
+          // Name that appears at the top of your panel
+          'display_version'    => 'Architect v' . PZARC_VERSION,
+          // Version that appears at the top of your panel
+          'menu_type'          => 'submenu',
+          //Specify if the admin menu should appear or not. Options: menu or submenu (Under appearance only)
+          'allow_sub_menu'     => false,
+          // Show the sections below the admin menu item or not
           'menu_title'         => __('<span class="dashicons dashicons-art"></span>Styling Defaults', 'pzarc'),
           'page'               => __('Architect Styling', 'pzarc'),
-          'google_api_key'     => 'Xq9o3CdQFHKr+47vQr6eO4EUYLtlEyTe',          // Must be defined to add google fonts to the typography module
-          'global_variable'    => 'pzarchitect',          // Set a different name for your global variable other than the opt_name
-          'dev_mode'           => false,          // Show the time the page took to load, etc
-          'customizer'         => false,          // Enable basic customizer support
+          'google_api_key'     => 'Xq9o3CdQFHKr+47vQr6eO4EUYLtlEyTe',
+          // Must be defined to add google fonts to the typography module
+          'global_variable'    => 'pzarchitect',
+          // Set a different name for your global variable other than the opt_name
+          'dev_mode'           => false,
+          // Show the time the page took to load, etc
+          'customizer'         => false,
+          // Enable basic customizer support
 
           // OPTIONAL -> Give you extra features
-          'page_priority'      => null,          // Order where the menu appears in the admin area. If there is any conflict, something will not show. Warning.
-          'page_parent'        => 'pzarc',          // For a full list of options, visit: http://codex.wordpress.org/Function_Reference/add_submenu_page#Parameters
-          'page_permissions'   => 'manage_options',          // Permissions needed to access the options panel.
-          'menu_icon'          => '',          // Specify a custom URL to an icon
-          'last_tab'           => '',          // Force your panel to always open to a specific tab (by id)
-          'page_icon'          => 'icon-themes',          // Icon displayed in the admin panel next to your menu_title
-          'page_slug'          => '_architect_styling',          // Page slug used to denote the panel
-          'save_defaults'      => true,          // On load save the defaults to DB before user clicks save or not
-          'default_show'       => false,          // If true, shows the default value next to each field that is not the default value.
-          'default_mark'       => '',          // What to print by the field's title if the value shown is default. Suggested: *
+          'page_priority'      => null,
+          // Order where the menu appears in the admin area. If there is any conflict, something will not show. Warning.
+          'page_parent'        => 'pzarc',
+          // For a full list of options, visit: http://codex.wordpress.org/Function_Reference/add_submenu_page#Parameters
+          'page_permissions'   => 'manage_options',
+          // Permissions needed to access the options panel.
+          'menu_icon'          => '',
+          // Specify a custom URL to an icon
+          'last_tab'           => '',
+          // Force your panel to always open to a specific tab (by id)
+          'page_icon'          => 'icon-themes',
+          // Icon displayed in the admin panel next to your menu_title
+          'page_slug'          => '_architect_styling',
+          // Page slug used to denote the panel
+          'save_defaults'      => true,
+          // On load save the defaults to DB before user clicks save or not
+          'default_show'       => false,
+          // If true, shows the default value next to each field that is not the default value.
+          'default_mark'       => '',
+          // What to print by the field's title if the value shown is default. Suggested: *
 
 
           // CAREFUL -> These options are for advanced use only
           'transient_time'     => 60 * MINUTE_IN_SECONDS,
-          'output'             => true,          // Global shut-off for dynamic CSS output by the framework. Will also disable google fonts output
-          'output_tag'         => true,          // Allows dynamic CSS to be generated for customizer and google fonts, but stops the dynamic CSS from going to the head
+          'output'             => true,
+          // Global shut-off for dynamic CSS output by the framework. Will also disable google fonts output
+          'output_tag'         => true,
+          // Allows dynamic CSS to be generated for customizer and google fonts, but stops the dynamic CSS from going to the head
           //'domain'             	=> 'redux-framework', // Translation domain key. Don't change this unless you want to retranslate all of Redux.
           //'footer_credit'      	=> '', // Disable the footer credit of Redux. Please leave if you can help it.
 
 
           // FUTURE -> Not in use yet, but reserved or partially implemented. Use at your own risk.
-          'database'           => '',          // possible: options, theme_mods, theme_mods_expanded, transient. Not fully functional, warning!
+          'database'           => '',
+          // possible: options, theme_mods, theme_mods_expanded, transient. Not fully functional, warning!
 
 
           'show_import_export' => true,
           // REMOVE
-          'system_info'        => true,
+          'system_info'        => false,
           // REMOVE
 
           'help_tabs'          => array(),
@@ -599,21 +612,15 @@
 
 
         // Panel Intro text -> before the form
-        if (!isset($this->args[ 'global_variable' ]) || $this->args[ 'global_variable' ] !== false)
-        {
-          if (!empty($this->args[ 'global_variable' ]))
-          {
+        if (!isset($this->args[ 'global_variable' ]) || $this->args[ 'global_variable' ] !== false) {
+          if (!empty($this->args[ 'global_variable' ])) {
             $v = $this->args[ 'global_variable' ];
-          }
-          else
-          {
+          } else {
             $v = str_replace("-", "_", $this->args[ 'opt_name' ]);
           }
           $this->args[ 'intro_text' ]
               = sprintf(__('<p>On this page you can configure default CSS styling as well as indicating the classes it applies to.</p>', 'redux-framework-demo'), $v);
-        }
-        else
-        {
+        } else {
 //          $this->args[ 'intro_text' ]
 //              = __('<p>This text is displayed above the options panel. It isn\'t required, but more info is always better! The intro_text field accepts all HTML.</p>', 'redux-framework-demo');
         }
@@ -662,8 +669,7 @@
       */
 
       $return[ 'value' ] = $value;
-      if ($error == true)
-      {
+      if ($error == true) {
         $return[ 'error' ] = $field;
       }
 

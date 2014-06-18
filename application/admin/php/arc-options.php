@@ -5,7 +5,7 @@
     return;
   }
 
-  if (!class_exists("Redux_Framework_Architect_Actions_Editor_config")) {
+  if (!class_exists("Redux_Framework_Architect_Options")) {
     class Redux_Framework_Architect_Options
     {
 
@@ -265,13 +265,13 @@
                     ),
                     'default' => 'arc-bg-1'
                 ),
-                array(
-                    'title'   => __('Custom post def path', 'pzarchitect'),
-                    'id'      => 'architect_custom_post_def_path',
-                    'type'    => 'url',
-                    'default' => '',
-                ),
-
+//                array(
+//                    'title'    => __('Custom post def path', 'pzarchitect'),
+//                    'id'       => 'architect_custom_post_def_path',
+//                    'type'     => 'text',
+//                    'validate' => 'url',
+//                    'default'  => '',
+//                ),
                 array(
                     'title'    => __('Breakpoints', 'pzarchitect'),
                     'id'       => 'architect_breakpoint_section',
@@ -374,7 +374,7 @@
           // On load save the defaults to DB before user clicks save or not
           'default_show'       => false,
           // If true, shows the default value next to each field that is not the default value.
-          'default_mark'       => '*',
+          'default_mark'       => '',
           // What to print by the field's title if the value shown is default. Suggested: *
 
 
@@ -395,7 +395,7 @@
 
           'show_import_export' => true,
           // REMOVE
-          'system_info'        => false,
+          'system_info'        => true,
           // REMOVE
 
           'help_tabs'          => array(),
@@ -460,62 +460,62 @@
     }
 
     new Redux_Framework_Architect_Options();
-  }
 
 
-  /**
-   *
-   * Custom function for the callback referenced above
+    /**
+     *
+     * Custom function for the callback referenced above
 
-   */
-  if (!function_exists('redux_my_custom_field')):
-    function redux_my_custom_field($field, $value)
-    {
-      print_r($field);
-      print_r($value);
-    }
-  endif;
-
-  /**
-   *
-   * Custom function for the callback validation referenced above
-   **/
-  if (!function_exists('redux_validate_callback_function')):
-    function redux_validate_callback_function($field, $value, $existing_value)
-    {
-      $error = false;
-      $value = 'just testing';
-      /*
-      do your validation
-
-      if(something) {
-          $value = $value;
-      } elseif(something else) {
-          $error = true;
-          $value = $existing_value;
-          $field['msg'] = 'your custom error message';
+     */
+    if (!function_exists('redux_my_custom_field')):
+      function redux_my_custom_field($field, $value)
+      {
+        print_r($field);
+        print_r($value);
       }
-      */
+    endif;
 
-      $return[ 'value' ] = $value;
-      if ($error == true) {
-        $return[ 'error' ] = $field;
+    /**
+     *
+     * Custom function for the callback validation referenced above
+     **/
+    if (!function_exists('redux_validate_callback_function')):
+      function redux_validate_callback_function($field, $value, $existing_value)
+      {
+        $error = false;
+        $value = 'just testing';
+        /*
+        do your validation
+
+        if(something) {
+            $value = $value;
+        } elseif(something else) {
+            $error = true;
+            $value = $existing_value;
+            $field['msg'] = 'your custom error message';
+        }
+        */
+
+        $return[ 'value' ] = $value;
+        if ($error == true) {
+          $return[ 'error' ] = $field;
+        }
+
+        return $return;
+      }
+    endif;
+    // Redux tracking
+    if (!function_exists('pzarc_redux_tracking')) {
+      function pzarc_redux_tracking($options)
+      {
+        $opt                                                       = array();
+        $options[ 'DqDE7uzWFMdHsJsRIjveviQBVuE3Q75C03YLUt7rhVw=' ] = true;
+
+        // var_dump($options);
+        return $options;
       }
 
-      return $return;
+      add_filter('redux/tracking/developer', 'pzarc_redux_tracking');
+
     }
-  endif;
-  // Redux tracking
-  if (!function_exists('pzarc_redux_tracking')) {
-    function pzarc_redux_tracking($options)
-    {
-      $opt                                                       = array();
-      $options[ 'DqDE7uzWFMdHsJsRIjveviQBVuE3Q75C03YLUt7rhVw=' ] = true;
-
-      // var_dump($options);
-      return $options;
-    }
-
-    add_filter('redux/tracking/developer', 'pzarc_redux_tracking');
-
   }

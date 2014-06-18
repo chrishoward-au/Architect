@@ -283,8 +283,10 @@
               'title'   => __('Panel Height Type', 'pzarchitect'),
               'id'      => $prefix . 'panel-height-type',
               'type'    => 'select',
-              'default' => 'height',
+              'default' => 'none',
+              'select2' => array('allowClear' => false),
               'options' => array(
+                'none'=>'None',
                   'height'     => 'Exact',
                   'max-height' => 'Max',
                   'min-height' => 'Min'
@@ -298,6 +300,7 @@
               'title'   => __('Panel Height px', 'pzarchitect'),
               'id'      => $prefix . 'panel-height',
               'type'    => 'dimensions',
+              'required'=>array($prefix . 'panel-height-type','!=','none'),
               'width'   => false,
               'units'   => 'px',
               'default' => array('height' => '0'),

@@ -15,17 +15,25 @@
 
     foreach ($pzarc_panels as $key => $value) {
 
+      /**
+       * Panels settings and design
+       */
       switch (true) {
 
-//            case ($key == '_panels_settings_panel-height'):
-//              if ($pzarc_panels[ '_panels_settings_panel-height-type' ] === 'fixed') {
-//                $pzarc_contents .= $class_prefix . ' {height:' . $value[ 'height' ] . ';}' . $nl;
-//              }
-//              break;
+        case ($key == '_panels_settings_panel-height'):
+
+          if ($pzarc_panels[ '_panels_settings_panel-height-type' ] !== 'none') {
+
+            $pzarc_contents .= $class_prefix . ' {' . $pzarc_panels[ '_panels_settings_panel-height-type' ] . ':' . $value[ 'height' ] . ';}' . $nl;
+
+          }
+          break;
 
         case ($key == '_panels_design_responsive-hide-content' && $pzarc_panels[ '_panels_design_responsive-hide-content' ] !== 'none'):
+
           $em_width = (int)str_replace('px', '', $_architect_options[ 'architect_breakpoint_' . $pzarc_panels[ '_panels_design_responsive-hide-content' ] ][ 'width' ]) / 16;
           $pzarc_contents .= '@media (max-width: ' . $em_width . 'em;) { ' . $class_prefix . ' .entry-content, ' . $class_prefix . ' .entry-excerpt {display:none!important;}}' . $nl;
+
           break;
 
 
@@ -132,17 +140,16 @@
           }
           break;
 
-        /**
-         *    STYLING
-         */
+        /********************************************************
+         *    PANELS STYLING
+         *********************************************************/
 
         case (strpos($key, '_panels_styling') === 0 && !empty($value)):
           //           var_dump($key,$value);
           switch (true) {
 
             ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-            // Overall
-            // PANELS
+            /** Overall */
             ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
             case $key === '_panels_styling_panels-background' :
               $this_key = key($value);
@@ -166,7 +173,7 @@
               break;
 
             ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-            // COMPONENTS
+            /** COMPONENTS */
             ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
             case $key === '_panels_styling_components-background' :
               $this_key = key($value);
@@ -190,7 +197,7 @@
 
             //TODO: Really got to make this dumb!
             ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-            // Titles
+            /** Titles */
             ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
             case $key === '_panels_styling_entry-title-font' :
               $pzarc_contents .= pzarc_process_fonts($class_prefix . ' .entry-title', $value) . $nl;
@@ -218,7 +225,7 @@
 
 
             ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-            // Meta
+            /** Meta */
             ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
             case $key === '_panels_styling_entry-meta-font' :
               $pzarc_contents .= pzarc_process_fonts($class_prefix . ' .entry-meta', $value) . $nl;
@@ -230,7 +237,7 @@
               break;
 
             ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-            // IMAGES
+            /** IMAGES */
             ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
             case $key === '_panels_styling_entry-image-background' :
@@ -249,8 +256,9 @@
               }
               break;
 
+
             ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-            // Content
+            /** Content */
             ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
             case $key === '_panels_styling_entry-content-font' :
 
@@ -265,7 +273,7 @@
               break;
 
             ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-            // Captions
+            /** Captions */
             ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
             //entry-image-caption-font', array('figure.entry-thumbnail span.caption'
             case $key === '_panels_styling_entry-image-caption-font' :
@@ -286,9 +294,9 @@
               break;
 
 
-            // Custom
             ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-            //
+            /** Custom */
+            ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
             case $key === '_panels_styling_entry-customfield-1-font' :
               //              var_dump($key);
               $pzarc_contents .= pzarc_process_fonts($class_prefix . ' .entry-customfield-1 ', $value) . $nl;
@@ -317,7 +325,7 @@
               break;
 
 
-            //What is this lot?
+            // TODO:What is this lot and why here?
             ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
             case $key === '_panels_styling_hentry-margin' :
             case $key === '_panels_styling_components-group-margin' :
@@ -363,7 +371,8 @@
     // TODO: Extend this for multiple breakpoints
     // Put this in an if since it's only when we are using bg images.
     // NOTE: It can affect wide screen content if you set the image smaller than the panel width
-    $pzarc_contents .= $class_prefix . '.using-bgimages .pzarc-components{max-width:' . $pzarc_panels[ '_panels_design_background-image-max' ][ 'width' ] . ';' . $pzarc_tb . ':' . $pzarc_components_nudge_y . '%;' . $pzarc_lr . ':' . $pzarc_components_nudge_x . '%;width:' . $pzarc_components_width . '%;}';
+//    $pzarc_contents .= $class_prefix . '.using-bgimages .pzarc-components{max-width:' . $pzarc_panels[ '_panels_design_background-image-max' ][ 'width' ] . ';' . $pzarc_tb . ':' . $pzarc_components_nudge_y . '%;' . $pzarc_lr . ':' . $pzarc_components_nudge_x . '%;width:' . $pzarc_components_width . '%;}';
+    $pzarc_contents .= $class_prefix . '.using-bgimages .pzarc-components{' . $pzarc_tb . ':' . $pzarc_components_nudge_y . '%;' . $pzarc_lr . ':' . $pzarc_components_nudge_x . '%;width:' . $pzarc_components_width . '%;}';
 
 //    $pzarc_contents .= $class_prefix . ' .pzarc-components{max-width:'.$pzarc_panels['_panels_design_background-image-max']['width'].';' . $pzarc_tb . ':' . $pzarc_components_nudge_y . '%;' . $pzarc_lr . ':' . $pzarc_components_nudge_x . '%;width:' . $pzarc_components_width . '%;}';
 
