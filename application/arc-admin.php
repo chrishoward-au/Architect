@@ -63,6 +63,10 @@
         require_once PZARC_PLUGIN_APP_PATH . '/public/php/post_types/class_arc_Panel_Snippets.php';
 
 
+        require_once(PZARC_PLUGIN_APP_PATH . '/shared/includes/php/bfi_thumb/BFI_Thumb.php');
+        require_once(PZARC_PLUGIN_APP_PATH . '/shared/includes/php/pzwp-focal-point/pzwp-focal-point.php');
+//        require_once(PZARC_PLUGIN_APP_PATH . '/shared/includes/php/bfi_focus_point/bfi_focus_point.php');
+
         // @TODO Should these really be objects?
         // Initialise objects for data and setup menu items
         $panel_layout      = new arc_Panels_Layouts;
@@ -81,7 +85,6 @@
     {
       $screen = get_current_screen();
 
-      var_dump($screen->id);
       switch ($screen->id) {
         case 'architect_page__architect_options':
         case 'architect_page__architect_styling':

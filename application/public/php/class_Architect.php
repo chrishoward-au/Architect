@@ -104,18 +104,6 @@
       $bpnav_type  = $this->build->blueprint[ '_blueprints_navigation' ];
       $bptranstype = $this->build->blueprint[ '_blueprints_transitions-type' ];
 
-      do_action('arc_before_architect');
-      do_action('arc_navigation_top');
-      do_action('arc_navigation_left');
-
-      echo '<div class="pzarchitect pzarc-blueprint pzarc-blueprint_' . $this->build->blueprint[ '_blueprints_short-name' ] . ' nav-' . $bpnav_type . '">';
-
-      self::display_page_title($this->build->blueprint[ '_blueprints_page-title' ]);
-
-      echo self::get_sections_opener($bpshortname, $bpnav_type, $caller, $bptranstype);
-
-      do_action('arcNavBeforeSection-{$bpshortname}');
-
       $this->arc      = array();
       $this->criteria = array();
 
@@ -165,6 +153,21 @@
         self::use_default_query();
 
       }
+
+      // TODO: Show or hide blueprint if no content
+
+      do_action('arc_before_architect');
+      do_action('arc_navigation_top');
+      do_action('arc_navigation_left');
+
+      echo '<div class="pzarchitect pzarc-blueprint pzarc-blueprint_' . $this->build->blueprint[ '_blueprints_short-name' ] . ' nav-' . $bpnav_type . '">';
+
+      self::display_page_title($this->build->blueprint[ '_blueprints_page-title' ]);
+
+      echo self::get_sections_opener($bpshortname, $bpnav_type, $caller, $bptranstype);
+
+      do_action('arcNavBeforeSection-{$bpshortname}');
+
 
       // Display pagination above
       if (isset($this->arc[ 'pagination' ])) {
@@ -385,23 +388,32 @@
       switch ($this->build->blueprint[ '_blueprints_content-source' ]) {
 
         case 'post':
+        case 'posts':
           $prefix = '_content_posts_';
           break;
         case 'galleries':
+        case 'gallery':
           $prefix = '_content_galleries_';
           break;
         case 'page':
+        case 'pages':
           $prefix = '_content_pages_';
           break;
         case 'slides':
+        case 'slide':
           $prefix = '_content_slides_';
           break;
         case 'snippets':
+        case 'snippet':
           $prefix = '_content_snippets_';
           break;
         case 'cpt':
           $prefix = '_content_cpt_';
           break;
+
+        //TODO: We don't really want to do thsi, do we?
+        default:
+          $prefix = '_content_posts_';
       }
 
       return $prefix;
@@ -429,6 +441,7 @@
      */
     private function set_criteria_prefix($prefix)
     {
+        // TODO: Leave this // until id'ed why $prefix is empty. And prob set up a better response
 //      if (empty($prefix)){return;}
       foreach ($this->build->blueprint as $key => $value) {
         if (strpos($key, $prefix) === 0) {

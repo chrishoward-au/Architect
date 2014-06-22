@@ -111,10 +111,10 @@
         $width  = (int)str_replace('px', '', $section[ '_panels_design_image-max-dimensions' ][ 'width' ]);
         $height = (int)str_replace('px', '', $section[ '_panels_design_image-max-dimensions' ][ 'height' ]);
 
-        $data[ 'image' ][ 'image' ]   = wp_get_attachment_image($post->guid, array($width,
-                                                                                   $height,
-                                                                                   'bfi_thumb' => true,
-                                                                                   'crop'      => true));
+        $data[ 'image' ][ 'image' ]   = wp_get_attachment_image($post->ID, array($width,
+                                                                                 $height,
+                                                                                 'bfi_thumb' => true,
+                                                                                 'crop'      => true));
         $data[ 'image' ][ 'caption' ] = $post->post_excerpt;
       }
 
@@ -188,15 +188,23 @@
 
       $data[ 'bgimage' ] = '';
       if ($showbgimage) {
-        pzdebug(array($width,$height));
-        $data[ 'bgimage' ] = wp_get_attachment_image($post->guid, array($width,
-                                                                        $height,
-                                                                        'bfi_thumb' => true,
-                                                                        'crop' => array(
-                                                                            'initial_x' => 270,
-                                                                            'initial_y' => 200,
-                                                                            'focalpt'   => false)
-                                                                )
+
+        $focal_point = get_post_meta($post->ID, 'pzgp_focal_point', true);
+
+        list($fp_x, $fp_y) = (empty($focal_point) ? array(50, 50) : explode(',', $focal_point));
+
+        $fp_x = $fp_x > 1 ? $fp_x / 100 : $fp_x;
+        $fp_y = $fp_y > 1 ? $fp_y / 100 : $fp_y;
+
+        $data[ 'bgimage' ] = wp_get_attachment_image($post->ID, array($width,
+                                                                      $height,
+                                                                      'bfi_thumb' => true,
+                                                                      'crop'      => array(
+                                                                          $fp_x,
+                                                                          $fp_y,
+                                                                          //                                                                            'focalpt'   => true
+                                                                      ),
+                                                              )
         ); //WP seems to smartly figure out which of its saved images to use! Now we jsut gotta get it t work with focal point
 //       $data[ 'bgimage' ] = '<img src="'.bfi_thumb($post->guid, array($width, $height, 'crop' => true)).'">'; //WP seems to smartly figure out which of its saved images to use! Now we jsut gotta get it t work with focal point
 
@@ -220,8 +228,9 @@
     {
       //todo: make sure source is actual WP valid eg. soemthings might be attachment
       // Do any generic replacements
-      $line      = str_replace('{{postid}}', $data[ 'postid' ], $line);
-      $line      = str_replace('{{title}}', $data[ 'title' ], $line);
+      $line = str_replace('{{postid}}', $data[ 'postid' ], $line);
+      $line = str_replace('{{title}}', $data[ 'title' ], $line);
+      //TODO:: Need to make this link to a lightbox
       $line      = str_replace('{{permalink}}', $data[ 'permalink' ], $line);
       $line      = str_replace('{{closelink}}', '</a>', $line);
       $line      = str_replace('{{categories}}', $data[ 'categories' ], $line);
@@ -324,7 +333,8 @@
       }
 
       if ($section[ '_panels_design_image-captions' ]) {
-        $panel_def[ $component ] = str_replace('{{captioncode}}', $data[ 'image' ][ 'caption' ], $panel_def[ $component ]);
+        $caption                 = str_replace('{{caption}}', $data[ 'image' ][ 'caption' ], $panel_def[ 'caption' ]);
+        $panel_def[ $component ] = str_replace('{{captioncode}}', $caption, $panel_def[ $component ]);
       }
 
       $panel_def[ $component ] = str_replace('{{image}}', $data[ 'image' ][ 'image' ], $panel_def[ $component ]);

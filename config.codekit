@@ -593,6 +593,15 @@
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
+	"\/application\/arc-public.php": {
+		"fileType": 8192,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/application\/arc-public.php",
+		"outputAbbreviatedPath": "No Output Path",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
 	"\/application\/dependencies\/platform\/index.php": {
 		"fileType": 8192,
 		"ignore": 0,
@@ -707,6 +716,17 @@
 		"shouldRunBless": 0,
 		"useLibsass": 0
 		},
+	"\/application\/public\/js\/arc-front-swiper.js": {
+		"fileType": 64,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/application\/public\/js\/arc-front-swiper.js",
+		"outputAbbreviatedPath": "\/application\/public\/js\/min\/arc-front-swiper-ck.js",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"outputStyle": 1,
+		"syntaxCheckerStyle": 1
+		},
 	"\/application\/public\/js\/danielstocks-jQuery-Collapse\/README.md": {
 		"enableFootnoteSupport": 0,
 		"enableSmartyPants": 1,
@@ -763,12 +783,56 @@
 		"outputStyle": 1,
 		"syntaxCheckerStyle": 1
 		},
+	"\/application\/public\/js\/isotope.pkgd.min.js": {
+		"fileType": 64,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/application\/public\/js\/isotope.pkgd.min.js",
+		"outputAbbreviatedPath": "\/application\/public\/js\/min\/isotope.pkgd.min-ck.js",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"outputStyle": 1,
+		"syntaxCheckerStyle": 1
+		},
+	"\/application\/public\/js\/jquery.isotope.min.js": {
+		"fileType": 64,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/application\/public\/js\/jquery.isotope.min.js",
+		"outputAbbreviatedPath": "\/application\/public\/js\/min\/jquery.isotope.min-ck.js",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"outputStyle": 1,
+		"syntaxCheckerStyle": 1
+		},
+	"\/application\/public\/js\/masonry.pkgd.min.js": {
+		"fileType": 64,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/application\/public\/js\/masonry.pkgd.min.js",
+		"outputAbbreviatedPath": "\/application\/public\/js\/min\/masonry.pkgd.min-ck.js",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"outputStyle": 1,
+		"syntaxCheckerStyle": 1
+		},
 	"\/application\/public\/js\/min\/arc-front-ck.js": {
 		"fileType": 64,
 		"ignore": 1,
 		"ignoreWasSetByUser": 0,
 		"inputAbbreviatedPath": "\/application\/public\/js\/min\/arc-front-ck.js",
 		"outputAbbreviatedPath": "\/application\/public\/js\/min\/min\/arc-front-ck-ck.js",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"outputStyle": 1,
+		"syntaxCheckerStyle": 1
+		},
+	"\/application\/public\/js\/min\/arc-front-swiper-ck.js": {
+		"fileType": 64,
+		"ignore": 1,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/application\/public\/js\/min\/arc-front-swiper-ck.js",
+		"outputAbbreviatedPath": "\/application\/public\/js\/min\/min\/arc-front-swiper-ck-ck.js",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0,
 		"outputStyle": 1,
@@ -820,6 +884,59 @@
 		"shouldRunAutoprefixer": 1,
 		"shouldRunBless": 0,
 		"useLibsass": 0
+		},
+	"\/application\/public\/js\/swiper\/idangerous.swiper.css": {
+		"fileType": 16,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/application\/public\/js\/swiper\/idangerous.swiper.css",
+		"outputAbbreviatedPath": "No Output Path",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/application\/public\/js\/swiper\/idangerous.swiper.js": {
+		"fileType": 64,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/application\/public\/js\/swiper\/idangerous.swiper.js",
+		"outputAbbreviatedPath": "\/application\/public\/js\/swiper\/min\/idangerous.swiper-ck.js",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"outputStyle": 1,
+		"syntaxCheckerStyle": 1
+		},
+	"\/application\/public\/js\/swiper\/idangerous.swiper.min.js": {
+		"fileType": 64,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/application\/public\/js\/swiper\/idangerous.swiper.min.js",
+		"outputAbbreviatedPath": "\/application\/public\/js\/swiper\/min\/idangerous.swiper.min-ck.js",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"outputStyle": 1,
+		"syntaxCheckerStyle": 1
+		},
+	"\/application\/public\/js\/swiper\/idangerous.swiper.progress.js": {
+		"fileType": 64,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/application\/public\/js\/swiper\/idangerous.swiper.progress.js",
+		"outputAbbreviatedPath": "\/application\/public\/js\/swiper\/min\/idangerous.swiper.progress-ck.js",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"outputStyle": 1,
+		"syntaxCheckerStyle": 1
+		},
+	"\/application\/public\/js\/swiper\/idangerous.swiper.progress.min.js": {
+		"fileType": 64,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/application\/public\/js\/swiper\/idangerous.swiper.progress.min.js",
+		"outputAbbreviatedPath": "\/application\/public\/js\/swiper\/min\/idangerous.swiper.progress.min-ck.js",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"outputStyle": 1,
+		"syntaxCheckerStyle": 1
 		},
 	"\/application\/public\/php\/arc-headway-block-display.php": {
 		"fileType": 8192,
@@ -880,6 +997,15 @@
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
 		"inputAbbreviatedPath": "\/application\/public\/php\/class_arc_Section.php",
+		"outputAbbreviatedPath": "No Output Path",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/application\/public\/php\/class_Architect.php": {
+		"fileType": 8192,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/application\/public\/php\/class_Architect.php",
 		"outputAbbreviatedPath": "No Output Path",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
@@ -1487,6 +1613,28 @@
 		"outputPathIsSetByUser": 0,
 		"processed": 0
 		},
+	"\/application\/shared\/assets\/images\/test-crop.jpg": {
+		"fileType": 16384,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"initialSize": 10005,
+		"inputAbbreviatedPath": "\/application\/shared\/assets\/images\/test-crop.jpg",
+		"outputAbbreviatedPath": "\/application\/shared\/assets\/images\/test-crop.jpg",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"processed": 0
+		},
+	"\/application\/shared\/assets\/images\/Untitled-1.jpg": {
+		"fileType": 16384,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"initialSize": 60240,
+		"inputAbbreviatedPath": "\/application\/shared\/assets\/images\/Untitled-1.jpg",
+		"outputAbbreviatedPath": "\/application\/shared\/assets\/images\/Untitled-1.jpg",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"processed": 0
+		},
 	"\/application\/shared\/includes\/css\/font-awesome\/css\/font-awesome-ie7.min.css": {
 		"fileType": 16,
 		"ignore": 0,
@@ -1728,45 +1876,12 @@
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
-	"\/application\/shared\/includes\/js\/isotope.pkgd.min.js": {
-		"fileType": 64,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/application\/shared\/includes\/js\/isotope.pkgd.min.js",
-		"outputAbbreviatedPath": "\/application\/shared\/includes\/js\/min\/isotope.pkgd.min-ck.js",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0,
-		"outputStyle": 1,
-		"syntaxCheckerStyle": 1
-		},
-	"\/application\/shared\/includes\/js\/jquery.isotope.min.js": {
-		"fileType": 64,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/application\/shared\/includes\/js\/jquery.isotope.min.js",
-		"outputAbbreviatedPath": "\/application\/shared\/includes\/js\/min\/jquery.isotope.min-ck.js",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0,
-		"outputStyle": 1,
-		"syntaxCheckerStyle": 1
-		},
 	"\/application\/shared\/includes\/js\/jquery.lorem.js": {
 		"fileType": 64,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
 		"inputAbbreviatedPath": "\/application\/shared\/includes\/js\/jquery.lorem.js",
 		"outputAbbreviatedPath": "\/application\/shared\/includes\/js\/min\/jquery.lorem-ck.js",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0,
-		"outputStyle": 1,
-		"syntaxCheckerStyle": 1
-		},
-	"\/application\/shared\/includes\/js\/masonry.pkgd.min.js": {
-		"fileType": 64,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/application\/shared\/includes\/js\/masonry.pkgd.min.js",
-		"outputAbbreviatedPath": "\/application\/shared\/includes\/js\/min\/masonry.pkgd.min-ck.js",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0,
 		"outputStyle": 1,
@@ -1936,58 +2051,14 @@
 		"outputStyle": 1,
 		"syntaxCheckerStyle": 1
 		},
-	"\/application\/shared\/includes\/js\/swiper\/idangerous.swiper.css": {
-		"fileType": 16,
+	"\/application\/shared\/includes\/php\/BFI-thumb-forked\/BFI_Thumb.php": {
+		"fileType": 8192,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/application\/shared\/includes\/js\/swiper\/idangerous.swiper.css",
+		"inputAbbreviatedPath": "\/application\/shared\/includes\/php\/BFI-thumb-forked\/BFI_Thumb.php",
 		"outputAbbreviatedPath": "No Output Path",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
-		},
-	"\/application\/shared\/includes\/js\/swiper\/idangerous.swiper.js": {
-		"fileType": 64,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/application\/shared\/includes\/js\/swiper\/idangerous.swiper.js",
-		"outputAbbreviatedPath": "\/application\/shared\/includes\/js\/swiper\/min\/idangerous.swiper-ck.js",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0,
-		"outputStyle": 1,
-		"syntaxCheckerStyle": 1
-		},
-	"\/application\/shared\/includes\/js\/swiper\/idangerous.swiper.min.js": {
-		"fileType": 64,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/application\/shared\/includes\/js\/swiper\/idangerous.swiper.min.js",
-		"outputAbbreviatedPath": "\/application\/shared\/includes\/js\/swiper\/min\/idangerous.swiper.min-ck.js",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0,
-		"outputStyle": 1,
-		"syntaxCheckerStyle": 1
-		},
-	"\/application\/shared\/includes\/js\/swiper\/idangerous.swiper.progress.js": {
-		"fileType": 64,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/application\/shared\/includes\/js\/swiper\/idangerous.swiper.progress.js",
-		"outputAbbreviatedPath": "\/application\/shared\/includes\/js\/swiper\/min\/idangerous.swiper.progress-ck.js",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0,
-		"outputStyle": 1,
-		"syntaxCheckerStyle": 1
-		},
-	"\/application\/shared\/includes\/js\/swiper\/idangerous.swiper.progress.min.js": {
-		"fileType": 64,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/application\/shared\/includes\/js\/swiper\/idangerous.swiper.progress.min.js",
-		"outputAbbreviatedPath": "\/application\/shared\/includes\/js\/swiper\/min\/idangerous.swiper.progress.min-ck.js",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0,
-		"outputStyle": 1,
-		"syntaxCheckerStyle": 1
 		},
 	"\/application\/shared\/includes\/php\/BFI_Thumb.php": {
 		"fileType": 8192,

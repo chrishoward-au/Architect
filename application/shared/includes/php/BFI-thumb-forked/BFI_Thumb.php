@@ -648,10 +648,10 @@
   if (!function_exists('bfi_image_resize_dimensions')) {
     function bfi_image_resize_dimensions($payload, $orig_w, $orig_h, $dest_w, $dest_h, $crop = false)
     {
-  //    pzdebug(array($payload, $orig_w, $orig_h, $dest_w, $dest_h, $crop));
       $aspect_ratio = $orig_w / $orig_h;
-      $new_w        = $dest_w;
-      $new_h        = $dest_h;
+
+      $new_w = $dest_w;
+      $new_h = $dest_h;
 
       if (!$new_w) {
         $new_w = intval($new_h * $aspect_ratio);
@@ -663,87 +663,53 @@
 
       $size_ratio = max($new_w / $orig_w, $new_h / $orig_h);
 
-      switch (true) {
+      $crop_w = round($new_w / $size_ratio);
+      $crop_h = round($new_h / $size_ratio);
 
-        case $crop === true:
-          // This is a central crop
-          $crop_w = round($new_w / $size_ratio);
-          $crop_h = round($new_h / $size_ratio);
-          $s_x    = floor(($orig_w - $crop_w) / 2);
-          $s_y    = floor(($orig_h - $crop_h) / 2);
-          break;
 
-        case (isset($crop[ 'initial_x' ]) || isset($crop[ 'initial_y' ])):
+      // Crop from offsets (left, top) as percentages
 
-          // Need to offset the crop.
-          if (!empty($crop[ 'focalpt' ])) {
-
-            // Initial X and Y are focal points, we need to calculate back to get starting points
-            /** NOTE: Focal point X & Y are percentages because the image where they we set isn't the same size as the one being cropped. */
-
-            $heightRatio = $this->height / $new_h;
-            $widthRatio  = $this->width / $new_w;
-
-            if ($heightRatio < $widthRatio) {
-
-              $optimalRatio = $heightRatio;
-
-            } else {
-
-              $optimalRatio = $widthRatio;
-
-            }
-
-            $optimalHeight = $orig_h / $optimalRatio;
-            $optimalWidth  = $orig_w / $optimalRatio;
-
-            $opt_y_fp    = $optimalHeight * ($crop[ 'initial_y' ] / 100);
-            $new_y_fp    = $new_h * ($crop[ 'initial_y' ] / 100);
-
-            $start_src_y = $opt_y_fp - $new_y_fp;
-            //			}
-            //			if ($newWidth < $optimalWidth) {
-
-            $opt_x_fp    = $optimalWidth * ($crop[ 'initial_x' ] / 100);
-            $new_x_fp    = $new_w * ($crop[ 'initial_x' ] / 100);
-
-            $start_src_x = $opt_x_fp - $new_x_fp;
-
-          } else {
-
-            // Initial X and Y are starting points.
-            $crop_w = $orig_w;
-            $crop_h = $orig_h;
-
-            $s_x = $crop[ 'initial_x' ];
-            $s_y = $crop[ 'initial_y' ];
-
-//            $crop_w = round($new_w / $size_ratio);
-//            $crop_h = round($new_h / $size_ratio);
-//            $s_x    = floor(($orig_w - $crop_w) / 2);
-//            $s_y    = floor(($orig_h - $crop_h) / 2);
-
-            var_dump(array($new_w,$new_h));
-            list($new_w, $new_h) = wp_constrain_dimensions($orig_w, $orig_h, $dest_w, $dest_h);
-            var_dump(array($new_w,$new_h));
-
-          }
-//          pzdebug(array((int)$s_x, (int)$s_y, (int)$new_w, (int)$new_h, (int)$crop_w, (int)$crop_h));
-          break;
-
-        case $crop === false:
-        default:
-          // don't crop, just resize using $dest_w x $dest_h as a maximum bounding box
-          $crop_w = $orig_w;
-          $crop_h = $orig_h;
-
-          $s_x = 0;
-          $s_y = 0;
-
-          list($new_w, $new_h) = wp_constrain_dimensions($orig_w, $orig_h, $dest_w, $dest_h);
-          break;
+      if (!is_array($crop) || count($crop) !== 2) {
+        $crop = array(0.5, 0.5);
+        // defaults are equivelant to center, center.
       }
 
+      list($x, $y) = $crop;
+
+//      var_dump($x, $y);
+      $x = $x > 1 ? $x / 100 : $x;
+      $y = $y > 1 ? $y / 100 : $y;
+      //   var_dump($x, $y,$crop);
+
+      // Ideal offsets to centre
+      $ideal_s_x = $x * $orig_w - ($crop_w * 0.5);
+      $ideal_s_y = $y * $orig_h - ($crop_h * 0.5);
+
+      // Ideal offsets to focal point
+      $ideal_s_x = $x * $orig_w - ($crop_w * $x);
+      $ideal_s_y = $y * $orig_h - ($crop_h * $y);
+
+      // Ideally we want our x,y crop-focus-point perfectly in the middle...
+      // but to put (for example) the top left corner in the centre of our cropped
+      // image we end up with black strips where there isn't enough image on the
+      // left and top.
+      // This maths takes our ideal offsets and gets as close to it as possible.
+
+      if ($ideal_s_x < 0):
+        $s_x = 0;
+      elseif ($ideal_s_x + $crop_w > $orig_w):
+        $s_x = $orig_w - $crop_w;
+      else:
+        $s_x = floor($ideal_s_x);
+      endif;
+
+      if ($ideal_s_y < 0):
+        $s_y = 0;
+      elseif ($ideal_s_y + $crop_h > $orig_h):
+        $s_y = $orig_h - $crop_h;
+      else:
+        $s_y = floor($ideal_s_y);
+      endif;
 
       // the return array matches the parameters to imagecopyresampled()
       // int dst_x, int dst_y, int src_x, int src_y, int dst_w, int dst_h, int src_w, int src_h

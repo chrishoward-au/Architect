@@ -153,7 +153,7 @@
     } else {
 
       require_once PZARC_PLUGIN_APP_PATH . '/public/php/class_Architect.php';
-      require_once(PZARC_PLUGIN_APP_PATH . '/shared/includes/php/jo-image-resizer/jo_image_resizer.php');
+//      require_once(PZARC_PLUGIN_APP_PATH . '/shared/includes/php/jo-image-resizer/jo_image_resizer.php');
       require_once(PZARC_PLUGIN_APP_PATH . '/shared/includes/php/BFI-thumb-forked/BFI_Thumb.php');
 
       $architect = new Architect($blueprint, $is_shortcode);

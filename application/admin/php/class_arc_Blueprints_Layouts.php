@@ -1399,6 +1399,13 @@
                         : 'NextGen is not running on this site'),
                 'required' => array($prefix . 'gallery-source', 'equals', 'nggallery')
             ),
+            array(
+                'title'    => __('Click behaviour', 'pzarchitect'),
+                'id'       => $prefix . 'click-behavioury',
+                'type'     => 'checkbox',
+                'default'=>true,
+                'subtitle'=> __('Open image in lightbox when clicked','pzarchitect')
+            )
         )
     );
 

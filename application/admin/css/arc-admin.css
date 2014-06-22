@@ -1010,4 +1010,40 @@ span.bold {
 .sp-container .sp-input-container.sp-cf {
   width: 170px; }
 
+@media all and (min-width: 999999px) {
+  .arc-blueprints .redux-sidebar,
+  .arc-panels .redux-sidebar {
+    width: 100%; }
+  .arc-blueprints .redux-container .redux-sidebar,
+  .arc-panels .redux-container .redux-sidebar {
+    min-height: 0;
+    margin: 5px 0 -1px 0; }
+  .arc-blueprints .redux-sidebar .redux-group-menu li a,
+  .arc-panels .redux-sidebar .redux-group-menu li a {
+    display: inline-block;
+    padding: 10px;
+    border-top-left-radius: 2px;
+    border-top-right-radius: 2px; }
+  .arc-blueprints .redux-sidebar .redux-group-menu li.active a,
+  .arc-blueprints .redux-sidebar .redux-group-menu li.activeChild a,
+  .arc-panels .redux-sidebar .redux-group-menu li.active a,
+  .arc-panels .redux-sidebar .redux-group-menu li.activeChild a {
+    width: auto; }
+  .arc-blueprints .redux-sidebar ul.redux-group-menu,
+  .arc-panels .redux-sidebar ul.redux-group-menu {
+    margin: 0; }
+  .arc-blueprints .redux-sidebar .redux-group-menu li,
+  .arc-panels .redux-sidebar .redux-group-menu li {
+    display: inline-block; }
+  .arc-blueprints .redux-main,
+  .arc-panels .redux-main {
+    position: relative;
+    clear: both;
+    margin-left: 0;
+    border-top: solid 1px #ddd; }
+  .arc-blueprints .postbox .redux-container .redux-sidebar .redux-group-menu .active a,
+  .arc-panels .postbox .redux-container .redux-sidebar .redux-group-menu .active a {
+    background: #707070;
+    color: #fff; } }
+
 /*# sourceMappingURL=arc-admin.css.map */

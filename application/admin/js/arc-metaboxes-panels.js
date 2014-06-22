@@ -196,7 +196,7 @@ jQuery( document ).ready( function ()
     } );
 
 
-    /*
+    /**
      * Process resizing
      *
      */
@@ -218,7 +218,7 @@ jQuery( document ).ready( function ()
     } );
 
 
-    /*
+    /**
      * Resort the components
      */
     function pzarc_resort_components( cell_layout )
@@ -236,7 +236,7 @@ jQuery( document ).ready( function ()
     }
 
 
-    /*
+    /**
      * Update status message and field data
      */
     function pzarc_update_status( cell_layout )
@@ -253,7 +253,7 @@ jQuery( document ).ready( function ()
         jQuery( 'input#_panels_design_preview-text' ).val( JSON.stringify( cell_layout ) );
     }
 
-    /*
+    /**
      * Update visibility
      */
     function pzarc_update_component_visibility( cell_layout )
@@ -280,7 +280,7 @@ jQuery( document ).ready( function ()
         return cell_layout;
     }
 
-    /*
+    /**
      * Update component widths
      * Although this is a seemingly superfluous function, it does provide consistency and makes future changes easier.
      */
@@ -518,26 +518,27 @@ jQuery( document ).ready( function ()
             {
                 sections_position = this.value;
             }
+
         } );
+
         if ( sections_position === 'left' )
         {
-            jQuery( '.pzarc-content-area' ).css( 'marginLeft', nudgexy[0] + '%' );
-            jQuery( '.pzarc-content-area' ).css( 'marginTop', nudgexy[1] + '%' );
+            jQuery( '.pzarc-content-area' ).css( 'marginLeft', nudgexy[0] + '%' ).css( 'marginTop', nudgexy[1] + '%' );
         }
+
         else if ( sections_position === 'top' )
         {
-            jQuery( '.pzarc-content-area' ).css( 'marginLeft', nudgexy[0] + '%' );
-            jQuery( '.pzarc-content-area' ).css( 'marginTop', nudgexy[1] + '%' );
+            jQuery( '.pzarc-content-area' ).css( 'marginLeft', nudgexy[0] + '%' ).css( 'marginTop', nudgexy[1] + '%' );
         }
+
         else if ( sections_position === 'right' )
         {
-            jQuery( '.pzarc-content-area' ).css( 'marginRight', nudgexy[0] + '%' );
-            jQuery( '.pzarc-content-area' ).css( 'marginTop', nudgexy[1] + '%' );
+            jQuery( '.pzarc-content-area' ).css( 'marginRight', nudgexy[0] + '%' ).css( 'marginTop', nudgexy[1] + '%' );
         }
+
         else if ( sections_position === 'bottom' )
         {
-            jQuery( '.pzarc-content-area' ).css( 'marginLeft', nudgexy[0] + '%' );
-            jQuery( '.pzarc-content-area' ).css( 'marginBottom', nudgexy[1] + '%' );
+            jQuery( '.pzarc-content-area' ).css( 'marginLeft', nudgexy[0] + '%' ).css( 'marginBottom', nudgexy[1] + '%' );
         }
     }
 
@@ -551,37 +552,29 @@ jQuery( document ).ready( function ()
     {
         if ( buttonClicked === 'left' )
         {
-            jQuery( '.pzarc-draggable-excerpt img.pzarc-align' ).removeClass( 'right' );
-            jQuery( '.pzarc-draggable-excerpt img.pzarc-align' ).removeClass( 'none' );
-            jQuery( '.pzarc-draggable-excerpt img.pzarc-align' ).addClass( 'left' );
+            jQuery( '.pzarc-draggable-excerpt img.pzarc-align' ).removeClass( 'right none' ).addClass( 'left' );
 
-            jQuery( '.pzarc-draggable-content img.pzarc-align' ).removeClass( 'right' );
-            jQuery( '.pzarc-draggable-content img.pzarc-align' ).removeClass( 'none' );
-            jQuery( '.pzarc-draggable-content img.pzarc-align' ).addClass( 'left' );
+            jQuery( '.pzarc-draggable-content img.pzarc-align' ).removeClass( 'right none' ).addClass( 'left' );
         }
         else if ( buttonClicked === 'right' )
         {
-            jQuery( '.pzarc-draggable-excerpt img.pzarc-align' ).removeClass( 'left' );
-            jQuery( '.pzarc-draggable-excerpt img.pzarc-align' ).removeClass( 'none' );
-            jQuery( '.pzarc-draggable-excerpt img.pzarc-align' ).addClass( 'right' );
+            jQuery( '.pzarc-draggable-excerpt img.pzarc-align' ).removeClass( 'left none' ).addClass( 'right' );
 
-            jQuery( '.pzarc-draggable-content img.pzarc-align' ).removeClass( 'left' );
-            jQuery( '.pzarc-draggable-content img.pzarc-align' ).removeClass( 'none' );
-            jQuery( '.pzarc-draggable-content img.pzarc-align' ).addClass( 'right' );
+            jQuery( '.pzarc-draggable-content img.pzarc-align' ).removeClass( 'left none' ).addClass( 'right' );
         }
         else
         {
-            jQuery( '.pzarc-draggable-excerpt img.pzarc-align' ).addClass( 'none' );
-            jQuery( '.pzarc-draggable-excerpt img.pzarc-align' ).removeClass( 'left' );
-            jQuery( '.pzarc-draggable-excerpt img.pzarc-align' ).removeClass( 'right' );
+            jQuery( '.pzarc-draggable-excerpt img.pzarc-align' ).addClass( 'none' ).removeClass( 'left right' );
 
-            jQuery( '.pzarc-draggable-content img.pzarc-align' ).addClass( 'none' );
-            jQuery( '.pzarc-draggable-content img.pzarc-align' ).removeClass( 'left' );
-            jQuery( '.pzarc-draggable-content img.pzarc-align' ).removeClass( 'right' );
+            jQuery( '.pzarc-draggable-content img.pzarc-align' ).addClass( 'none' ).removeClass( 'left right' );
         }
 
     }
 
+
+    /**
+     * Update tabs to show
+     */
 
     function pzarc_update_tabs_to_show( e )
     {
@@ -611,13 +604,9 @@ jQuery( document ).ready( function ()
                     jQuery( '#3_box_redux-_architect-metabox-panels-design_section_group_li' ).toggle( tab_status );
                     break;
                 case 'image':
-                case 'fill':
-                case 'align':
-                case 'none':
 
                     tab_status = (
                           jQuery( 'input#_panels_design_components-to-show-buttonsetimage:checked' ).length === 1
-                                || jQuery( 'input#_panels_design_background-position-buttonsetnone:checked' ).length === 0
                           );
                     jQuery( '#4_box_redux-_architect-metabox-panels-design_section_group_li' ).toggle( tab_status );
                     break;

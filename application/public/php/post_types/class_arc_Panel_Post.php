@@ -6,9 +6,8 @@
    * Date: 29/04/2014
    * Time: 12:16 PM
    */
-
   // TODO: These should also definethe content filtering menu in Blueprints options :/
-  
+
   class arc_Panel_post
   {
 //    private $data;
@@ -85,6 +84,10 @@
         $data[ 'excerpt' ] = apply_filters('the_excerpt', get_the_excerpt());
       }
 
+      $thumb_id    = get_post_thumbnail_id();
+      $focal_point = get_post_meta($thumb_id, 'pzgp_focal_point', true);
+      $focal_point = (empty($focal_point) ? array(50, 50) : explode(',', $focal_point));
+
       if ($toshow[ 'image' ][ 'show' ] || $section[ '_panels_design_thumb-position' ] != 'none') {
         //        if (false)
         //        {
@@ -95,13 +98,16 @@
         $width  = (int)str_replace('px', '', $section[ '_panels_design_image-max-dimensions' ][ 'width' ]);
         $height = (int)str_replace('px', '', $section[ '_panels_design_image-max-dimensions' ][ 'height' ]);
 
-        $data[ 'image' ][ 'image' ]   = get_the_post_thumbnail(null,
-                                                               array($width,
-                                                                     $height,
-                                                                     'bfi_thumb' => true,
-                                                                     'crop'      => true)
-        );
-        $image                        = get_post(get_post_thumbnail_id());
+        $data[ 'image' ][ 'image' ]   = wp_get_attachment_image($thumb_id, array($width,
+                                                                                 $height,
+                                                                                 'bfi_thumb' => true,
+                                                                                 'crop'      => array(
+                                                                                     (int)$focal_point[ 0 ],
+                                                                                     (int)$focal_point[ 1 ],
+                                                                                     //                                                                            'focalpt'   => true
+                                                                                 )
+        ));
+        $image                        = get_post($thumb_id);
         $data[ 'image' ][ 'caption' ] = $image->post_excerpt;
       }
       if ($toshow[ 'meta1' ][ 'show' ] ||
@@ -160,12 +166,17 @@
       } else {
         $height = (int)str_replace('px', '', $section[ '_panels_design_background-image-max' ][ 'height' ]);
       }
-      $data[ 'bgimage' ] = ($showbgimage ? get_the_post_thumbnail(null, array($width,
-                                                                              $height,
-                                                                              'bfi_thumb' => true,
-                                                                              'crop'      => false,
-                                                                      )
-      ) : null); //WP seems to smartly figure out which of its saved images to use! Now we jsut gotta get it t work with focal point
+
+      // Need to grab image again because it uses different dimensions for the bgimge
+      $data[ 'bgimage' ] = wp_get_attachment_image($thumb_id, array($width,
+                                                                    $height,
+                                                                    'bfi_thumb' => true,
+                                                                    'crop'      => array(
+                                                                        (int)$focal_point[ 0 ],
+                                                                        (int)$focal_point[ 1 ],
+                                                                        //                                                                            'focalpt'   => true
+                                                                    )
+      )); //WP seems to smartly figure out which of its saved images to use! Now we jsut gotta get it t work with focal point
 
 //        if (strpos($data[ 'image' ][ 'image' ], '<img') === 0) {
 //          preg_match_all("/width=\"(\\d)*\"/uiUm", $data[ 'image' ][ 'image' ], $widthm);
@@ -299,7 +310,8 @@
       }
 
       if ($section[ '_panels_design_image-captions' ]) {
-        $panel_def[ $component ] = str_replace('{{captioncode}}', $data[ 'image' ][ 'caption' ], $panel_def[ $component ]);
+        $caption                 = str_replace('{{caption}}', $data[ 'image' ][ 'caption' ], $panel_def[ 'caption' ]);
+        $panel_def[ $component ] = str_replace('{{captioncode}}', $caption, $panel_def[ $component ]);
       }
 
       $panel_def[ $component ] = str_replace('{{image}}', $data[ 'image' ][ 'image' ], $panel_def[ $component ]);

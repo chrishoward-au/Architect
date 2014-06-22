@@ -1231,3 +1231,46 @@ span.bold {
   width: 170px;
 }
 
+// Not sure this is effective when menu items show and hide
+@media all and (min-width: 999999px) {
+  .arc-blueprints,
+  .arc-panels {
+    .redux-sidebar {
+      width: 100%;
+    }
+
+    .redux-container .redux-sidebar {
+      min-height: 0;
+      margin:5px 0 -1px 0;
+
+    }
+
+    .redux-sidebar .redux-group-menu li a {
+      display: inline-block;
+      padding:10px;
+      border-top-left-radius: 2px;
+      border-top-right-radius: 2px;
+    }
+
+    .redux-sidebar .redux-group-menu li.active a,
+    .redux-sidebar .redux-group-menu li.activeChild a {
+      width: auto;
+    }
+    .redux-sidebar ul.redux-group-menu  {
+      margin:0;
+    }
+    .redux-sidebar .redux-group-menu li {
+      display: inline-block;
+    }
+    .redux-main {
+      position: relative;
+      clear: both;
+      margin-left:0;
+      border-top:solid 1px #ddd;
+    }
+    .postbox .redux-container .redux-sidebar .redux-group-menu .active a {
+      background:#707070;
+      color:#fff;
+    }
+  }
+}
