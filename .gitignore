@@ -16,3 +16,4 @@ sitemap.xml.gz
 /.DS_Store
 .DS_Store
 /nbproject/private/
+/config.codekit
