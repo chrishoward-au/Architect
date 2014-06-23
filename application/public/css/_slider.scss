@@ -9,8 +9,8 @@
   // width:100%; Prob better if user sets width and margins
   &.outside {
     &.top {
-      position:relative;
-      z-index:1;
+      position: relative;
+      z-index: 1;
       top: 0px;
       bottom: initial;
     }
@@ -48,7 +48,7 @@
   Your custom styles, here you need to specify container's and slide's
   sizes, pagination, etc.
   ================================================================*/
-.swiper-container {
+.pzarc-sections.swiper-container {
   /* Specify Swiper's Size: */
 
   padding: 0;
@@ -83,7 +83,7 @@ Pagination Styles
     height: 15px;
     background: #999;
     box-shadow: 0px 1px 2px #555 inset;
-    margin: 0 3px;
+    margin: 3px;
     cursor: pointer;
     &.small {
       width: 12px;
@@ -267,7 +267,6 @@ Pagination Styles
     }
   }
 
-
 }
 
 .swiper-nav {
@@ -287,34 +286,34 @@ Pagination Styles
     padding: 0;
     z-index: 2;
     text-decoration: none;
-    display:none;
-    background:none;
+    display: none;
+    background: none;
     &:hover {
       display: block;
     }
     span {
       vertical-align: middle;
-      margin:0;
-      padding:0;
-      position:relative;
+      margin: 0;
+      padding: 0;
+      position: relative;
       width: 40px;
       height: 40px;
       border-radius: 30px;
       font-size: 30px;
-      display:block;
+      display: block;
       color: #fff;
       background: rgba(0, 0, 0, 0.3);
     }
     &.skip-left {
       left: 5px;
       span {
-        left:-4px;
+        left: -4px;
       }
     }
     &.skip-right {
       right: 5px;
       span {
-        right:-4px;
+        right: -4px;
       }
     }
   }
@@ -334,6 +333,7 @@ Pagination Styles
 .swiper-nav .swiper-slide {
   max-width: 100px;
 }
+
 .swiper-nav.thumbs .swiper-slide {
   max-width: initial;
 }

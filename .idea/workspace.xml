@@ -2,28 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6a91661e-ac03-4c49-a442-2faea24b5b57" name="Default" comment="Add post types files">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/shared/includes/php/BFI_Thumb.php" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/public/css/.sass-cache/dceb20a9fc4a1f730cc89393cb8f6c79e45f74bc/_panels.scssc" afterPath="$PROJECT_DIR$/application/public/css/.sass-cache/dceb20a9fc4a1f730cc89393cb8f6c79e45f74bc/_panels.scssc" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/admin/css/.sass-cache/0c627864ce094f59999781504c26ab519159ab66/arc-admin.scssc" afterPath="$PROJECT_DIR$/application/admin/css/.sass-cache/0c627864ce094f59999781504c26ab519159ab66/arc-admin.scssc" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/shared/includes/php/BFI-thumb-forked/BFI_Thumb.php" afterPath="$PROJECT_DIR$/application/shared/includes/php/BFI-thumb-forked/BFI_Thumb.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/public/css/_panels.scss" afterPath="$PROJECT_DIR$/application/public/css/_panels.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/admin/css/arc-admin.css.map" afterPath="$PROJECT_DIR$/application/admin/css/arc-admin.css.map" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/admin/css/arc-admin.css" afterPath="$PROJECT_DIR$/application/admin/css/arc-admin.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/arc-admin.php" afterPath="$PROJECT_DIR$/application/arc-admin.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/admin/css/arc-admin.scss" afterPath="$PROJECT_DIR$/application/admin/css/arc-admin.scss" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/public/css/.sass-cache/dceb20a9fc4a1f730cc89393cb8f6c79e45f74bc/_slider.scssc" afterPath="$PROJECT_DIR$/application/public/css/.sass-cache/dceb20a9fc4a1f730cc89393cb8f6c79e45f74bc/_slider.scssc" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/public/css/_slider.scss" afterPath="$PROJECT_DIR$/application/public/css/_slider.scss" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/public/js/min/arc-front-swiper-ck.js" afterPath="$PROJECT_DIR$/application/public/js/min/arc-front-swiper-ck.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/public/js/arc-front-swiper.js" afterPath="$PROJECT_DIR$/application/public/js/arc-front-swiper.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/public/css/arc-front.css.map" afterPath="$PROJECT_DIR$/application/public/css/arc-front.css.map" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/public/css/arc-front.css" afterPath="$PROJECT_DIR$/application/public/css/arc-front.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/admin/js/min/arc-metaboxes-panels-ck.js" afterPath="$PROJECT_DIR$/application/admin/js/min/arc-metaboxes-panels-ck.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/admin/js/arc-metaboxes-panels.js" afterPath="$PROJECT_DIR$/application/admin/js/arc-metaboxes-panels.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/arc-public.php" afterPath="$PROJECT_DIR$/application/arc-public.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/architect.php" afterPath="$PROJECT_DIR$/architect.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/public/php/class_Architect.php" afterPath="$PROJECT_DIR$/application/public/php/class_Architect.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/admin/php/class_arc_Blueprints_Layouts.php" afterPath="$PROJECT_DIR$/application/admin/php/class_arc_Blueprints_Layouts.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/public/php/post_types/class_arc_Panel_Gallery.php" afterPath="$PROJECT_DIR$/application/public/php/post_types/class_arc_Panel_Gallery.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/public/php/post_types/class_arc_Panel_Post.php" afterPath="$PROJECT_DIR$/application/public/php/post_types/class_arc_Panel_Post.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/admin/php/class_arc_Panels_Layouts.php" afterPath="$PROJECT_DIR$/application/admin/php/class_arc_Panels_Layouts.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config.codekit" afterPath="$PROJECT_DIR$/config.codekit" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/shared/includes/php/jo-image-resizer/jo_image_resizer.php" afterPath="$PROJECT_DIR$/application/shared/includes/php/jo-image-resizer/jo_image_resizer.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/public/php/class_arc_Navigator.php" afterPath="$PROJECT_DIR$/application/public/php/class_arc_Navigator.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <list id="6bc53ef6-a4e7-48ed-9a91-cec0b69ebc38" name="Default task" comment="" />
@@ -48,7 +33,7 @@
     <favorites_list name="pizazzwp-architect" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="vertical" split-proportion="0.9">
+    <splitter split-orientation="vertical" split-proportion="0.19716775">
       <split-first>
         <splitter split-orientation="horizontal" split-proportion="0.76739925">
           <split-first>
@@ -159,10 +144,10 @@
                   </provider>
                 </entry>
               </file>
-              <file leaf-file-name="arc-save-process-panels.php" pinned="false" current="true" current-in-tab="true">
+              <file leaf-file-name="arc-save-process-panels.php" pinned="false" current="false" current-in-tab="false">
                 <entry file="file://$PROJECT_DIR$/application/admin/php/arc-save-process-panels.php">
                   <provider selected="true" editor-type-id="text-editor">
-                    <state line="21" column="0" selection-start="572" selection-end="572" vertical-scroll-proportion="0.27384195" vertical-offset="114" max-vertical-offset="5790">
+                    <state line="21" column="0" selection-start="572" selection-end="572" vertical-scroll-proportion="-4.02" vertical-offset="114" max-vertical-offset="5790">
                       <folding />
                     </state>
                   </provider>
@@ -219,7 +204,7 @@
               <file leaf-file-name="arc-save-process-blueprints.php" pinned="false" current="false" current-in-tab="false">
                 <entry file="file://$PROJECT_DIR$/application/admin/php/arc-save-process-blueprints.php">
                   <provider selected="true" editor-type-id="text-editor">
-                    <state line="154" column="115" selection-start="7126" selection-end="7126" vertical-scroll-proportion="0.0" vertical-offset="2310" max-vertical-offset="2895">
+                    <state line="183" column="0" selection-start="9666" selection-end="9666" vertical-scroll-proportion="-25.416666" vertical-offset="2135" max-vertical-offset="2895">
                       <folding />
                     </state>
                   </provider>
@@ -245,10 +230,10 @@
                   </provider>
                 </entry>
               </file>
-              <file leaf-file-name="class_arc_Navigator.php" pinned="false" current="false" current-in-tab="false">
+              <file leaf-file-name="class_arc_Navigator.php" pinned="false" current="false" current-in-tab="true">
                 <entry file="file://$PROJECT_DIR$/application/public/php/class_arc_Navigator.php">
                   <provider selected="true" editor-type-id="text-editor">
-                    <state line="21" column="0" selection-start="326" selection-end="326" vertical-scroll-proportion="59.625" vertical-offset="1746" max-vertical-offset="2820">
+                    <state line="127" column="1" selection-start="2883" selection-end="2883" vertical-scroll-proportion="5.9140625" vertical-offset="1148" max-vertical-offset="2715">
                       <folding />
                     </state>
                   </provider>
@@ -301,7 +286,7 @@
               <file leaf-file-name="class_arc_Panels_Layouts.php" pinned="false" current="false" current-in-tab="true">
                 <entry file="file://$PROJECT_DIR$/application/admin/php/class_arc_Panels_Layouts.php">
                   <provider selected="true" editor-type-id="text-editor">
-                    <state line="400" column="0" selection-start="15317" selection-end="15317" vertical-scroll-proportion="0.59574467" vertical-offset="5580" max-vertical-offset="22770">
+                    <state line="400" column="0" selection-start="15317" selection-end="15317" vertical-scroll-proportion="7.0" vertical-offset="5580" max-vertical-offset="22770">
                       <folding>
                         <marker date="1403442523000" expanded="true" signature="28104:28202" placeholder="Select any a..." />
                         <marker date="1403442523000" expanded="true" signature="49581:49779" placeholder="..." />
@@ -343,7 +328,7 @@
         </splitter>
       </split-first>
       <split-second>
-        <splitter split-orientation="horizontal" split-proportion="0.1">
+        <splitter split-orientation="horizontal" split-proportion="0.64590967">
           <split-first>
             <leaf>
               <file leaf-file-name="im-style.scss" pinned="false" current="false" current-in-tab="false">
@@ -373,10 +358,10 @@
                   </provider>
                 </entry>
               </file>
-              <file leaf-file-name="_panels.scss" pinned="false" current="false" current-in-tab="true">
+              <file leaf-file-name="_panels.scss" pinned="false" current="false" current-in-tab="false">
                 <entry file="file://$PROJECT_DIR$/application/public/css/_panels.scss">
                   <provider selected="true" editor-type-id="text-editor">
-                    <state line="51" column="24" selection-start="897" selection-end="897" vertical-scroll-proportion="0.0" vertical-offset="576" max-vertical-offset="2325">
+                    <state line="51" column="24" selection-start="897" selection-end="897" vertical-scroll-proportion="-3.78" vertical-offset="576" max-vertical-offset="2325">
                       <folding />
                     </state>
                   </provider>
@@ -391,10 +376,10 @@
                   </provider>
                 </entry>
               </file>
-              <file leaf-file-name="_slider.scss" pinned="false" current="false" current-in-tab="false">
+              <file leaf-file-name="_slider.scss" pinned="false" current="true" current-in-tab="true">
                 <entry file="file://$PROJECT_DIR$/application/public/css/_slider.scss">
                   <provider selected="true" editor-type-id="text-editor">
-                    <state line="303" column="20" selection-start="5754" selection-end="5754" vertical-scroll-proportion="-14.375" vertical-offset="4200" max-vertical-offset="5265">
+                    <state line="85" column="12" selection-start="1685" selection-end="1685" vertical-scroll-proportion="0.84513277" vertical-offset="702" max-vertical-offset="5265">
                       <folding />
                     </state>
                   </provider>
@@ -404,10 +389,10 @@
           </split-first>
           <split-second>
             <leaf>
-              <file leaf-file-name="arc-front-swiper.js" pinned="false" current="false" current-in-tab="false">
+              <file leaf-file-name="arc-front-swiper.js" pinned="false" current="false" current-in-tab="true">
                 <entry file="file://$PROJECT_DIR$/application/public/js/arc-front-swiper.js">
                   <provider selected="true" editor-type-id="text-editor">
-                    <state line="82" column="46" selection-start="3797" selection-end="3797" vertical-scroll-proportion="0.0" vertical-offset="985" max-vertical-offset="3645">
+                    <state line="49" column="17" selection-start="2280" selection-end="2280" vertical-scroll-proportion="0.8597285" vertical-offset="165" max-vertical-offset="3705">
                       <folding />
                     </state>
                   </provider>
@@ -422,10 +407,10 @@
                   </provider>
                 </entry>
               </file>
-              <file leaf-file-name="arc-metaboxes-panels.js" pinned="false" current="false" current-in-tab="true">
+              <file leaf-file-name="arc-metaboxes-panels.js" pinned="false" current="false" current-in-tab="false">
                 <entry file="file://$PROJECT_DIR$/application/admin/js/arc-metaboxes-panels.js">
                   <provider selected="true" editor-type-id="text-editor">
-                    <state line="622" column="0" selection-start="27504" selection-end="27504" vertical-scroll-proportion="15.977273" vertical-offset="8627" max-vertical-offset="9705">
+                    <state line="622" column="0" selection-start="27504" selection-end="27504" vertical-scroll-proportion="0.0" vertical-offset="8627" max-vertical-offset="9705">
                       <folding>
                         <marker date="1403442320000" expanded="false" signature="6819:6873" placeholder="..." />
                         <marker date="1403442320000" expanded="false" signature="7072:7087" placeholder="..." />
@@ -490,16 +475,13 @@
         <option value="$PROJECT_DIR$/application/public/js/arc-front.js" />
         <option value="$PROJECT_DIR$/application/public/php/post_types/class_arc_Panel_Snippets.php" />
         <option value="$PROJECT_DIR$/application/public/php/post_types/class_arc_Panel_Page.php" />
-        <option value="$PROJECT_DIR$/application/public/php/class_arc_Navigator.php" />
         <option value="$PROJECT_DIR$/application/admin/js/arc-metaboxes-blueprints.js" />
         <option value="$PROJECT_DIR$/application/admin/php/arc-save-process-blueprints.php" />
         <option value="$PROJECT_DIR$/application/public/php/class_arc_Section.php" />
         <option value="$PROJECT_DIR$/application/admin/php/arc-options-styling.php" />
-        <option value="$PROJECT_DIR$/application/public/css/_slider.scss" />
         <option value="$PROJECT_DIR$/application/shared/assets/fonts/icomoon/im-style.scss" />
         <option value="$PROJECT_DIR$/application/admin/php/arc-options.php" />
         <option value="$PROJECT_DIR$/application/admin/php/arc-save-process-panels.php" />
-        <option value="$PROJECT_DIR$/application/public/js/arc-front-swiper.js" />
         <option value="$PROJECT_DIR$/application/admin/php/headway/arc-headway-block-options.php" />
         <option value="$PROJECT_DIR$/application/shared/includes/php/jo-image-resizer/jo_image_resizer.php" />
         <option value="$PROJECT_DIR$/application/admin/php/class_arc_Blueprints_Layouts.php" />
@@ -522,6 +504,9 @@
         <option value="$PROJECT_DIR$/application/public/css/_panels.scss" />
         <option value="$PROJECT_DIR$/application/admin/js/arc-metaboxes-panels.js" />
         <option value="$PROJECT_DIR$/application/admin/php/class_arc_Panels_Layouts.php" />
+        <option value="$PROJECT_DIR$/application/public/js/arc-front-swiper.js" />
+        <option value="$PROJECT_DIR$/application/public/php/class_arc_Navigator.php" />
+        <option value="$PROJECT_DIR$/application/public/css/_slider.scss" />
       </list>
     </option>
   </component>
@@ -1603,13 +1588,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application/admin/php/arc-save-process-blueprints.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="154" column="115" selection-start="7126" selection-end="7126" vertical-scroll-proportion="0.0" vertical-offset="2310" max-vertical-offset="2895">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/application/public/php/class_arc_Section.php">
       <provider selected="true" editor-type-id="text-editor">
         <state line="131" column="30" selection-start="5017" selection-end="5017" vertical-scroll-proportion="-10.625" vertical-offset="1710" max-vertical-offset="3210">
@@ -1666,20 +1644,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application/public/php/class_arc_Navigator.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="21" column="0" selection-start="326" selection-end="326" vertical-scroll-proportion="59.625" vertical-offset="1746" max-vertical-offset="2820">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/public/css/_slider.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="303" column="20" selection-start="5754" selection-end="5754" vertical-scroll-proportion="-14.375" vertical-offset="4200" max-vertical-offset="5265">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/application/admin/php/arc-options.php">
       <provider selected="true" editor-type-id="text-editor">
         <state line="258" column="0" selection-start="9846" selection-end="9846" vertical-scroll-proportion="-0.625" vertical-offset="3855" max-vertical-offset="7890">
@@ -1691,13 +1655,6 @@
             <marker date="1402970198000" expanded="true" signature="7069:7962" placeholder="..." />
             <marker date="1402970198000" expanded="true" signature="7105:7498" placeholder="..." />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/public/js/arc-front-swiper.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="82" column="46" selection-start="3797" selection-end="3797" vertical-scroll-proportion="0.0" vertical-offset="985" max-vertical-offset="3645">
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1837,7 +1794,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/application/public/css/_panels.scss">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="51" column="24" selection-start="897" selection-end="897" vertical-scroll-proportion="0.0" vertical-offset="576" max-vertical-offset="2325">
+        <state line="51" column="24" selection-start="897" selection-end="897" vertical-scroll-proportion="-3.78" vertical-offset="576" max-vertical-offset="2325">
           <folding />
         </state>
       </provider>
@@ -1851,7 +1808,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/application/admin/js/arc-metaboxes-panels.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="622" column="0" selection-start="27504" selection-end="27504" vertical-scroll-proportion="15.977273" vertical-offset="8627" max-vertical-offset="9705">
+        <state line="622" column="0" selection-start="27504" selection-end="27504" vertical-scroll-proportion="0.0" vertical-offset="8627" max-vertical-offset="9705">
           <folding>
             <marker date="1403442320000" expanded="false" signature="6819:6873" placeholder="..." />
             <marker date="1403442320000" expanded="false" signature="7072:7087" placeholder="..." />
@@ -1871,7 +1828,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/application/admin/php/class_arc_Panels_Layouts.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="400" column="0" selection-start="15317" selection-end="15317" vertical-scroll-proportion="0.59574467" vertical-offset="5580" max-vertical-offset="22770">
+        <state line="400" column="0" selection-start="15317" selection-end="15317" vertical-scroll-proportion="7.0" vertical-offset="5580" max-vertical-offset="22770">
           <folding>
             <marker date="1403442523000" expanded="true" signature="28104:28202" placeholder="Select any a..." />
             <marker date="1403442523000" expanded="true" signature="49581:49779" placeholder="..." />
@@ -1891,7 +1848,35 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/application/admin/php/arc-save-process-panels.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="21" column="0" selection-start="572" selection-end="572" vertical-scroll-proportion="0.27384195" vertical-offset="114" max-vertical-offset="5790">
+        <state line="21" column="0" selection-start="572" selection-end="572" vertical-scroll-proportion="-4.02" vertical-offset="114" max-vertical-offset="5790">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/admin/php/arc-save-process-blueprints.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="183" column="0" selection-start="9666" selection-end="9666" vertical-scroll-proportion="-25.416666" vertical-offset="2135" max-vertical-offset="2895">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/public/js/arc-front-swiper.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="49" column="17" selection-start="2280" selection-end="2280" vertical-scroll-proportion="0.8597285" vertical-offset="165" max-vertical-offset="3705">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/public/php/class_arc_Navigator.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="127" column="1" selection-start="2883" selection-end="2883" vertical-scroll-proportion="5.9140625" vertical-offset="1148" max-vertical-offset="2715">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/public/css/_slider.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="85" column="12" selection-start="1685" selection-end="1685" vertical-scroll-proportion="0.84513277" vertical-offset="702" max-vertical-offset="5265">
           <folding />
         </state>
       </provider>

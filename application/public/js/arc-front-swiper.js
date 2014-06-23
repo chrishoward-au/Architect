@@ -29,15 +29,19 @@ jQuery( document ).ready( function ()
             //TODO: Work out how to stop nav being grabberable when not thumbs
             var arcSwiperNav = jQuery( '.pzarc-blueprint_' + arcSwiperID + ' .swiper-nav.swiper-container' ).swiper( {
                 slidesPerView: 'auto',
-                freeMode: false,
-                freeModeFluid: false,
+                createPagination: false,
+                paginationClickable: false,
+                simulateTouch:false, //This is the one that stops mouse dragging
+                keyboardControl: false,
+                freeMode: true,
+                freeModeFluid: true,
                 calculateHeight: false,
                 useCSS3Transforms: false,
-                grabCursor: true,
+                grabCursor: false,
                 onSlideChangeStart: function ( swiper )
                 {
-                    jQuery( ".swiper-nav .pzarc-navigator-" + arcSwiperID + " .active" ).removeClass( 'active' );
-                    jQuery( jQuery( ".swiper-nav .pzarc-navigator-" + arcSwiperID + " span.swiper-pagination-switch" ).get( swiper.activeIndex ) ).addClass( "active" );
+                    jQuery( ".swiper-nav.pzarc-navigator-" + arcSwiperID + " .active" ).removeClass( 'active' );
+                    jQuery( jQuery( ".swiper-nav.pzarc-navigator-" + arcSwiperID + " span.swiper-pagination-switch" ).get( swiper.activeIndex ) ).addClass( "active" );
                 },
 
                 onSlideClick: function ( nav )
