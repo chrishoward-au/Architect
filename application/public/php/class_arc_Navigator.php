@@ -37,7 +37,7 @@
       $skip_left  = $this->blueprint[ '_blueprints_navigator-skip-left' ];
       $skip_right = $this->blueprint[ '_blueprints_navigator-skip-right' ];
 
-      echo '<div class="swiper-nav swiper-container icomoon ' . $this->blueprint[ '_blueprints_navigator' ] . '">';
+//      echo '<div class="swiper-nav swiper-container icomoon ' . $this->blueprint[ '_blueprints_navigator' ] . '">';
       if ('thumbs' === $this->blueprint[ '_blueprints_navigator' ]) {
         echo '<a class="pager skip-left icon-btn-styled" href="#"><span class="icon-' . $skip_left . '"></span></a>';
         echo '<a class="pager skip-right icon-btn-style" href="#"><span class="icon-' . $skip_right . '"></span></a>';
@@ -58,7 +58,8 @@
 
     function __destruct()
     {
-      echo '</div></div>';
+//      echo '</div></div>';
+      echo '</div>';
 
     }
   }
