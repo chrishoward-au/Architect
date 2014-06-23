@@ -21,31 +21,34 @@ jQuery( document ).ready( function ()
         {
 
             // Parse the option values
-            // Nothing worked. Need a substitute character (3) for string quotes
+            // Nothing worked. Need a substitute character (#) for string quotes
             arcSwiperOpts = arcSwiperOpts.replace( /#/g, '"' );
             var arcSwiperOptsObj = JSON.parse( arcSwiperOpts );
 
+            console.log(jQuery( '.pzarc-navigator-' + arcSwiperID  ));
             // NAVIGATOR
-            //TODO: Work out how to stop nav being grabberable when not thumbs
-            var arcSwiperNav = jQuery( '.pzarc-blueprint_' + arcSwiperID + ' .swiper-nav.swiper-container' ).swiper( {
+            var arcSwiperNav = jQuery( '.pzarc-navigator-' + arcSwiperID  ).swiper( {
                 slidesPerView: 'auto',
                 freeMode: false,
                 freeModeFluid: false,
                 calculateHeight: false,
+                noSwiping:true,
                 useCSS3Transforms: false,
-                grabCursor: true,
+                grabCursor: false,
                 onSlideChangeStart: function ( swiper )
                 {
-                    jQuery( ".swiper-nav .pzarc-navigator-" + arcSwiperID + " .active" ).removeClass( 'active' );
-                    jQuery( jQuery( ".swiper-nav .pzarc-navigator-" + arcSwiperID + " span.swiper-pagination-switch" ).get( swiper.activeIndex ) ).addClass( "active" );
+                    jQuery( ".pzarc-navigator-" + arcSwiperID + " .active" ).removeClass( 'active' );
+                    jQuery( jQuery( ".pzarc-navigator-" + arcSwiperID + " span.swiper-pagination-switch" ).get( swiper.activeIndex ) ).addClass( "active" );
                 },
 
                 onSlideClick: function ( nav )
                 {
+                    console.log(nav);
                     arcSwiper.swipeTo( nav.clickedSlideIndex );
                 }
 
             } );
+            console.log(arcSwiperNav);
             jQuery( '.skip-left' ).on( 'click', function ( e )
             {
                 e.preventDefault();

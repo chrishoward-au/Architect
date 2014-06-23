@@ -37,18 +37,18 @@
       $skip_left  = $this->blueprint[ '_blueprints_navigator-skip-left' ];
       $skip_right = $this->blueprint[ '_blueprints_navigator-skip-right' ];
 
-//      echo '<div class="swiper-nav swiper-container icomoon ' . $this->blueprint[ '_blueprints_navigator' ] . '">';
       if ('thumbs' === $this->blueprint[ '_blueprints_navigator' ]) {
+        echo '<div class="swiper-nav swiper-container icomoon ' . $this->blueprint[ '_blueprints_navigator' ] . '">';
         echo '<a class="pager skip-left icon-btn-styled" href="#"><span class="icon-' . $skip_left . '"></span></a>';
         echo '<a class="pager skip-right icon-btn-style" href="#"><span class="icon-' . $skip_right . '"></span></a>';
       }
 
-      echo '<div class="swiper-wrapper pzarc-navigator pzarc-navigator-' . $this->blueprint[ '_blueprints_short-name' ] .
+      echo '<div class="pzarc-navigator pzarc-navigator-' . $this->blueprint[ '_blueprints_short-name' ] .
           ' ' . $this->blueprint[ '_blueprints_navigator' ] .
           ' ' . $this->blueprint[ '_blueprints_navigator-position' ] .
           ' ' . $this->blueprint[ '_blueprints_navigator-location' ] .
           ' ' . $this->blueprint[ '_blueprints_navigator-align' ] .
-          ' ' . $this->blueprint[ '_blueprints_navigator-bullet-shape' ] . '">';
+          ' ' . $this->blueprint[ '_blueprints_navigator-bullet-shape' ] . ' swiper-wrapper ">';
 
     }
 
@@ -58,9 +58,11 @@
 
     function __destruct()
     {
-//      echo '</div></div>';
-      echo '</div>';
-
+      if ('thumbs' === $this->blueprint[ '_blueprints_navigator' ]) {
+        echo '</div></div>';
+      } else {
+        echo '</div>';
+      }
     }
   }
 
