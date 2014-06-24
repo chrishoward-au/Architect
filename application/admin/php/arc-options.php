@@ -236,16 +236,24 @@
             'icon'       => 'el-icon-wrench',
             'fields'     => array(
                 array(
+                    'title'    => __('Enable styling settings', 'pzarchitect'),
+                    'id'       => 'architect_enable_styling',
+                    'type'     => 'switch',
+                    'subtitle' => 'Turn this off if you want to manage styling from your own CSS stylesheets.',
+                    'default'  => true
+                ),
+                array(
                     'title'    => __('Enable admin background image', 'pzarchitect'),
                     'id'       => 'architect_enable_bgimage',
                     'type'     => 'switch',
                     'subtitle' => 'Displays a background image on the Architect admin pages',
-                    'default'  => true
+                    'default'  => true,
                 ),
                 array(
                     'title'   => __('Choose image', 'pzarchitect'),
                     'id'      => 'architect_bgimage',
                     'type'    => 'image_select',
+                    'required'=>array('architect_enable_bgimage','equals',true),
                     'options' => array(
                         'arc-bg-1' => array(
                             'img' => PZARC_PLUGIN_APP_URL . '/admin/css/images/arc-bg-1-64x42.png'

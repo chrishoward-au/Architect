@@ -320,8 +320,17 @@ Pagination Styles
   }
 }
 
+.pzarc-navigator.inside {
+  width:100%;
+  .swiper-wrapper {
+   // TODO: Find the right way to do this
+   // width:auto!important;
+    width:100%!important;
+  }
+
+}
 .swiper-nav .swiper-wrapper {
-  margin: 0 auto
+  margin: 0 auto;
 }
 
 .swiper-nav span {

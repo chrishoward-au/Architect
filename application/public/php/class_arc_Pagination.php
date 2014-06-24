@@ -88,12 +88,39 @@
     function render($the_query, $location_class)
     {
       //     var_dump(is_main_query(),have_posts());
-      if (function_exists('wp_pagenavi')) {
+      if (is_home() || is_archive()) {
+        if ($the_query->max_num_pages > 1) : ?>
+          <nav id="<?php echo $location_class; ?>" class="navigation page-nav clearfix" role="navigation">
+          
+          <?php
+          if (function_exists('wp_pagenavi')) {
+            echo '<div id="'.$location_class.'" class="navigation clearfix">';
+            wp_pagenavi(array('query' => $the_query));
+          } else {
+            echo 'PageNavi not present';
+          }
+          echo '</div><!-- end nav-below navigation  -->';
+          ?>
 
-        echo '<div id="'.$location_class.'" class="navigation clearfix">';
-        wp_pagenavi(array('query' => $the_query));
-        echo '</div><!-- end nav-below navigation  -->';
+          </nav>
+        <?php
+        endif;
+      } elseif (is_single()) {
+        ?>
+        <nav id="<?php echo $location_class; ?>" class="navigation nav-single clearfix">
+          <?php
+          if (function_exists('wp_pagenavi')) {
+            echo '<div id="'.$location_class.'" class="navigation clearfix">';
+            wp_pagenavi(array('query' => $the_query));
+          } else {
+            echo 'PageNavi not present';
+          }
+          echo '</div><!-- end nav-below navigation  -->';
+          ?>
+        </nav><!-- .nav-single -->
+      <?php
       }
+
     }
 
   }

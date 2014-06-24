@@ -2,9 +2,20 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6a91661e-ac03-4c49-a442-2faea24b5b57" name="Default" comment="Add post types files">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/public/css/.sass-cache/dceb20a9fc4a1f730cc89393cb8f6c79e45f74bc/_slider.scssc" afterPath="$PROJECT_DIR$/application/public/css/.sass-cache/dceb20a9fc4a1f730cc89393cb8f6c79e45f74bc/_slider.scssc" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/public/css/_slider.scss" afterPath="$PROJECT_DIR$/application/public/css/_slider.scss" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/public/js/min/arc-front-swiper-ck.js" afterPath="$PROJECT_DIR$/application/public/js/min/arc-front-swiper-ck.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/public/js/arc-front-swiper.js" afterPath="$PROJECT_DIR$/application/public/js/arc-front-swiper.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/public/css/arc-front.css.map" afterPath="$PROJECT_DIR$/application/public/css/arc-front.css.map" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/public/css/arc-front.css" afterPath="$PROJECT_DIR$/application/public/css/arc-front.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/admin/php/headway/arc-headway-block-options.php" afterPath="$PROJECT_DIR$/application/admin/php/headway/arc-headway-block-options.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/admin/php/arc-options.php" afterPath="$PROJECT_DIR$/application/admin/php/arc-options.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/public/php/class_Architect.php" afterPath="$PROJECT_DIR$/application/public/php/class_Architect.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/admin/php/class_arc_Blueprints_Layouts.php" afterPath="$PROJECT_DIR$/application/admin/php/class_arc_Blueprints_Layouts.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/public/php/class_arc_Navigator.php" afterPath="$PROJECT_DIR$/application/public/php/class_arc_Navigator.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/public/php/class_arc_Pagination.php" afterPath="$PROJECT_DIR$/application/public/php/class_arc_Pagination.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/admin/php/class_arc_Panels_Layouts.php" afterPath="$PROJECT_DIR$/application/admin/php/class_arc_Panels_Layouts.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/public/php/class_arc_Section.php" afterPath="$PROJECT_DIR$/application/public/php/class_arc_Section.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <list id="6bc53ef6-a4e7-48ed-9a91-cec0b69ebc38" name="Default task" comment="" />
@@ -29,15 +40,15 @@
     <favorites_list name="pizazzwp-architect" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="vertical" split-proportion="0.5924207">
+    <splitter split-orientation="vertical" split-proportion="0.9">
       <split-first>
-        <splitter split-orientation="horizontal" split-proportion="0.76739925">
+        <splitter split-orientation="horizontal" split-proportion="0.1">
           <split-first>
             <leaf>
               <file leaf-file-name="class_Architect.php" pinned="false" current="false" current-in-tab="false">
                 <entry file="file://$PROJECT_DIR$/application/public/php/class_Architect.php">
                   <provider selected="true" editor-type-id="text-editor">
-                    <state line="445" column="0" selection-start="15131" selection-end="15131" vertical-scroll-proportion="0.0" vertical-offset="6622" max-vertical-offset="10245">
+                    <state line="164" column="0" selection-start="5432" selection-end="5432" vertical-scroll-proportion="-6.875" vertical-offset="2295" max-vertical-offset="10605">
                       <folding />
                     </state>
                   </provider>
@@ -152,7 +163,7 @@
               <file leaf-file-name="arc-headway-block-options.php" pinned="false" current="false" current-in-tab="false">
                 <entry file="file://$PROJECT_DIR$/application/admin/php/headway/arc-headway-block-options.php">
                   <provider selected="true" editor-type-id="text-editor">
-                    <state line="74" column="59" selection-start="2983" selection-end="2983" vertical-scroll-proportion="0.0" vertical-offset="1110" max-vertical-offset="4185">
+                    <state line="76" column="36" selection-start="3072" selection-end="3072" vertical-scroll-proportion="0.0" vertical-offset="1140" max-vertical-offset="4215">
                       <folding />
                     </state>
                   </provider>
@@ -194,10 +205,10 @@
                   </provider>
                 </entry>
               </file>
-              <file leaf-file-name="class_arc_Section.php" pinned="false" current="false" current-in-tab="false">
+              <file leaf-file-name="class_arc_Section.php" pinned="false" current="false" current-in-tab="true">
                 <entry file="file://$PROJECT_DIR$/application/public/php/class_arc_Section.php">
                   <provider selected="true" editor-type-id="text-editor">
-                    <state line="131" column="30" selection-start="5017" selection-end="5017" vertical-scroll-proportion="0.0" vertical-offset="1965" max-vertical-offset="3210">
+                    <state line="65" column="51" selection-start="1824" selection-end="1824" vertical-scroll-proportion="0.33464566" vertical-offset="720" max-vertical-offset="3225">
                       <folding />
                     </state>
                   </provider>
@@ -212,10 +223,10 @@
                   </provider>
                 </entry>
               </file>
-              <file leaf-file-name="class_arc_Navigator.php" pinned="false" current="false" current-in-tab="true">
+              <file leaf-file-name="class_arc_Navigator.php" pinned="false" current="false" current-in-tab="false">
                 <entry file="file://$PROJECT_DIR$/application/public/php/class_arc_Navigator.php">
                   <provider selected="true" editor-type-id="text-editor">
-                    <state line="50" column="92" selection-start="1754" selection-end="1754" vertical-scroll-proportion="0.8005618" vertical-offset="180" max-vertical-offset="2865">
+                    <state line="52" column="42" selection-start="1786" selection-end="1786" vertical-scroll-proportion="-21.25" vertical-offset="270" max-vertical-offset="2880">
                       <folding />
                     </state>
                   </provider>
@@ -225,13 +236,7 @@
                 <entry file="file://$PROJECT_DIR$/application/shared/architect/php/arc-functions.php">
                   <provider selected="true" editor-type-id="text-editor">
                     <state line="253" column="5" selection-start="8645" selection-end="8645" vertical-scroll-proportion="0.0" vertical-offset="3795" max-vertical-offset="7725">
-                      <folding>
-                        <marker date="1402448466000" expanded="true" signature="10245:10287" placeholder="..." />
-                        <marker date="1402448466000" expanded="true" signature="10493:10535" placeholder="..." />
-                        <marker date="1402448466000" expanded="true" signature="12781:12937" placeholder="SELECT DISTI..$wpdb-&gt;postmeta HAVING..." />
-                        <marker date="1402448466000" expanded="true" signature="12999:13461" placeholder="SELECT meta_..wp_postmeta..." />
-                        <marker date="1402448466000" expanded="true" signature="13461:13470" placeholder="SELECT meta_..wp_posts..." />
-                      </folding>
+                      <folding />
                     </state>
                   </provider>
                 </entry>
@@ -252,39 +257,26 @@
               <file leaf-file-name="arc-options.php" pinned="false" current="false" current-in-tab="false">
                 <entry file="file://$PROJECT_DIR$/application/admin/php/arc-options.php">
                   <provider selected="true" editor-type-id="text-editor">
-                    <state line="258" column="0" selection-start="9846" selection-end="9846" vertical-scroll-proportion="0.0" vertical-offset="3870" max-vertical-offset="7890">
+                    <state line="344" column="53" selection-start="13979" selection-end="13997" vertical-scroll-proportion="-8.75" vertical-offset="4950" max-vertical-offset="8010">
                       <folding />
                     </state>
                   </provider>
                 </entry>
               </file>
-              <file leaf-file-name="class_arc_Panels_Layouts.php" pinned="false" current="false" current-in-tab="true">
-                <entry file="file://$PROJECT_DIR$/application/admin/php/class_arc_Panels_Layouts.php">
-                  <provider selected="true" editor-type-id="text-editor">
-                    <state line="400" column="0" selection-start="15317" selection-end="15317" vertical-scroll-proportion="0.0" vertical-offset="6000" max-vertical-offset="22770">
-                      <folding>
-                        <marker date="1403525433000" expanded="true" signature="28104:28202" placeholder="Select any a..." />
-                        <marker date="1403525433000" expanded="true" signature="49581:49779" placeholder="..." />
-                        <marker date="1403525433000" expanded="true" signature="49814:49991" placeholder="..." />
-                        <marker date="1403525433000" expanded="true" signature="50026:50198" placeholder="..." />
-                        <marker date="1403525433000" expanded="true" signature="50233:50407" placeholder="..." />
-                        <marker date="1403525433000" expanded="true" signature="50442:50543" placeholder="..." />
-                        <marker date="1403525433000" expanded="true" signature="66127:66325" placeholder="..." />
-                        <marker date="1403525433000" expanded="true" signature="66360:66537" placeholder="..." />
-                        <marker date="1403525433000" expanded="true" signature="66572:66744" placeholder="..." />
-                        <marker date="1403525433000" expanded="true" signature="66779:66953" placeholder="..." />
-                        <marker date="1403525433000" expanded="true" signature="66988:67089" placeholder="..." />
-                        <marker date="1403525433000" expanded="true" signature="70971:71039" placeholder="..." />
-                      </folding>
-                    </state>
-                  </provider>
-                </entry>
-              </file>
-              <file leaf-file-name="class_arc_Blueprints_Layouts.php" pinned="false" current="false" current-in-tab="false">
+              <file leaf-file-name="class_arc_Blueprints_Layouts.php" pinned="false" current="true" current-in-tab="true">
                 <entry file="file://$PROJECT_DIR$/application/admin/php/class_arc_Blueprints_Layouts.php">
                   <provider selected="true" editor-type-id="text-editor">
-                    <state line="402" column="55" selection-start="16168" selection-end="16182" vertical-scroll-proportion="0.0" vertical-offset="5921" max-vertical-offset="24825">
-                      <folding />
+                    <state line="1519" column="0" selection-start="65415" selection-end="65415" vertical-scroll-proportion="0.40682414" vertical-offset="22475" max-vertical-offset="25350">
+                      <folding>
+                        <marker date="1403591307000" expanded="true" signature="46239:46965" placeholder="..." />
+                        <marker date="1403591307000" expanded="true" signature="47986:48184" placeholder="..." />
+                        <marker date="1403591307000" expanded="true" signature="48219:48396" placeholder="..." />
+                        <marker date="1403591307000" expanded="true" signature="48431:48603" placeholder="..." />
+                        <marker date="1403591307000" expanded="true" signature="48638:48812" placeholder="..." />
+                        <marker date="1403591307000" expanded="true" signature="48847:48948" placeholder="..." />
+                        <marker date="1403591307000" expanded="true" signature="64362:64736" placeholder="..." />
+                        <marker date="1403591307000" expanded="true" signature="64740:64775" placeholder="..." />
+                      </folding>
                     </state>
                   </provider>
                 </entry>
@@ -294,7 +286,7 @@
         </splitter>
       </split-first>
       <split-second>
-        <splitter split-orientation="horizontal" split-proportion="0.1">
+        <splitter split-orientation="horizontal" split-proportion="0.5774424">
           <split-first>
             <leaf>
               <file leaf-file-name="im-style.scss" pinned="false" current="false" current-in-tab="false">
@@ -324,10 +316,10 @@
                   </provider>
                 </entry>
               </file>
-              <file leaf-file-name="_panels.scss" pinned="false" current="false" current-in-tab="true">
+              <file leaf-file-name="_panels.scss" pinned="false" current="false" current-in-tab="false">
                 <entry file="file://$PROJECT_DIR$/application/public/css/_panels.scss">
                   <provider selected="true" editor-type-id="text-editor">
-                    <state line="51" column="24" selection-start="897" selection-end="897" vertical-scroll-proportion="0.0" vertical-offset="765" max-vertical-offset="2325">
+                    <state line="51" column="24" selection-start="897" selection-end="897" vertical-scroll-proportion="-6.375" vertical-offset="612" max-vertical-offset="2325">
                       <folding />
                     </state>
                   </provider>
@@ -342,10 +334,10 @@
                   </provider>
                 </entry>
               </file>
-              <file leaf-file-name="_slider.scss" pinned="false" current="false" current-in-tab="false">
+              <file leaf-file-name="_slider.scss" pinned="false" current="false" current-in-tab="true">
                 <entry file="file://$PROJECT_DIR$/application/public/css/_slider.scss">
                   <provider selected="true" editor-type-id="text-editor">
-                    <state line="303" column="20" selection-start="5754" selection-end="5754" vertical-scroll-proportion="0.0" vertical-offset="4200" max-vertical-offset="5265">
+                    <state line="327" column="14" selection-start="6134" selection-end="6134" vertical-scroll-proportion="4.6363635" vertical-offset="4752" max-vertical-offset="5400">
                       <folding />
                     </state>
                   </provider>
@@ -355,10 +347,10 @@
           </split-first>
           <split-second>
             <leaf>
-              <file leaf-file-name="arc-front-swiper.js" pinned="false" current="true" current-in-tab="true">
+              <file leaf-file-name="arc-front-swiper.js" pinned="false" current="false" current-in-tab="true">
                 <entry file="file://$PROJECT_DIR$/application/public/js/arc-front-swiper.js">
                   <provider selected="true" editor-type-id="text-editor">
-                    <state line="27" column="50" selection-start="1155" selection-end="1155" vertical-scroll-proportion="0.2987805" vertical-offset="258" max-vertical-offset="3690">
+                    <state line="34" column="37" selection-start="1477" selection-end="1477" vertical-scroll-proportion="4.431818" vertical-offset="315" max-vertical-offset="3705">
                       <folding />
                     </state>
                   </provider>
@@ -376,21 +368,8 @@
               <file leaf-file-name="arc-metaboxes-panels.js" pinned="false" current="false" current-in-tab="false">
                 <entry file="file://$PROJECT_DIR$/application/admin/js/arc-metaboxes-panels.js">
                   <provider selected="true" editor-type-id="text-editor">
-                    <state line="622" column="0" selection-start="27504" selection-end="27504" vertical-scroll-proportion="0.0" vertical-offset="8627" max-vertical-offset="9705">
-                      <folding>
-                        <marker date="1403525433000" expanded="false" signature="6819:6873" placeholder="..." />
-                        <marker date="1403525433000" expanded="false" signature="7072:7087" placeholder="..." />
-                        <marker date="1403525433000" expanded="false" signature="7280:7295" placeholder="..." />
-                        <marker date="1403525433000" expanded="false" signature="7484:7517" placeholder="..." />
-                        <marker date="1403525433000" expanded="false" signature="7598:7613" placeholder="..." />
-                        <marker date="1403525433000" expanded="false" signature="8099:8114" placeholder="..." />
-                        <marker date="1403525433000" expanded="false" signature="8375:8412" placeholder="..." />
-                        <marker date="1403525433000" expanded="false" signature="9087:9102" placeholder="..." />
-                        <marker date="1403525433000" expanded="false" signature="9687:9702" placeholder="..." />
-                        <marker date="1403525433000" expanded="false" signature="9905:9920" placeholder="..." />
-                        <marker date="1403525433000" expanded="false" signature="10133:10148" placeholder="..." />
-                        <marker date="1403525433000" expanded="false" signature="10361:10376" placeholder="..." />
-                      </folding>
+                    <state line="622" column="0" selection-start="27504" selection-end="27504" vertical-scroll-proportion="0.0" vertical-offset="9330" max-vertical-offset="9705">
+                      <folding />
                     </state>
                   </provider>
                 </entry>
@@ -422,7 +401,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/application/shared/libraries/php/redux-custom-fields/tabbed/field_tabbed.js" />
         <option value="$PROJECT_DIR$/application/public/php/arc-headway-block-display.php" />
         <option value="$PROJECT_DIR$/application/shared/architect/php/components/class_arc_component_title.php" />
         <option value="$PROJECT_DIR$/application/shared/architect/php/post_types/class_arc_posttype_post.php" />
@@ -443,15 +421,11 @@
         <option value="$PROJECT_DIR$/application/public/php/post_types/class_arc_Panel_Page.php" />
         <option value="$PROJECT_DIR$/application/admin/js/arc-metaboxes-blueprints.js" />
         <option value="$PROJECT_DIR$/application/admin/php/arc-save-process-blueprints.php" />
-        <option value="$PROJECT_DIR$/application/public/php/class_arc_Section.php" />
         <option value="$PROJECT_DIR$/application/admin/php/arc-options-styling.php" />
-        <option value="$PROJECT_DIR$/application/public/css/_slider.scss" />
         <option value="$PROJECT_DIR$/application/shared/assets/fonts/icomoon/im-style.scss" />
-        <option value="$PROJECT_DIR$/application/admin/php/arc-options.php" />
         <option value="$PROJECT_DIR$/application/admin/php/arc-save-process-panels.php" />
         <option value="$PROJECT_DIR$/application/admin/php/headway/arc-headway-block-options.php" />
         <option value="$PROJECT_DIR$/application/shared/includes/php/jo-image-resizer/jo_image_resizer.php" />
-        <option value="$PROJECT_DIR$/application/admin/php/class_arc_Blueprints_Layouts.php" />
         <option value="$PROJECT_DIR$/application/shared/includes/php/BFI-thumb-forked/BFI_Thumb.php" />
         <option value="$PROJECT_DIR$/application/arc-public.php" />
         <option value="$PROJECT_DIR$/application/shared/includes/php/bfi_thumb/BFI_Thumb.php" />
@@ -466,13 +440,18 @@
         <option value="$PROJECT_DIR$/application/admin/css/arc-admin.scss" />
         <option value="$PROJECT_DIR$/application/shared/includes/php/pzwp-focal-point/pzwp-focal-point.js" />
         <option value="$PROJECT_DIR$/application/public/php/post_types/class_arc_Panel_Post.php" />
-        <option value="$PROJECT_DIR$/application/public/php/class_Architect.php" />
         <option value="$PROJECT_DIR$/application/public/php/post_types/class_arc_Panel_Gallery.php" />
         <option value="$PROJECT_DIR$/application/public/css/_panels.scss" />
         <option value="$PROJECT_DIR$/application/admin/js/arc-metaboxes-panels.js" />
-        <option value="$PROJECT_DIR$/application/admin/php/class_arc_Panels_Layouts.php" />
         <option value="$PROJECT_DIR$/application/public/php/class_arc_Navigator.php" />
+        <option value="$PROJECT_DIR$/application/public/css/_slider.scss" />
+        <option value="$PROJECT_DIR$/application/public/php/class_Architect.php" />
         <option value="$PROJECT_DIR$/application/public/js/arc-front-swiper.js" />
+        <option value="$PROJECT_DIR$/application/public/php/class_arc_Section.php" />
+        <option value="$PROJECT_DIR$/application/admin/php/arc-options.php" />
+        <option value="$PROJECT_DIR$/application/admin/php/class_arc_Panels_Layouts.php" />
+        <option value="$PROJECT_DIR$/application/shared/includes/php/redux-extensions/extensions/metaboxes/extension_metaboxes.php" />
+        <option value="$PROJECT_DIR$/application/admin/php/class_arc_Blueprints_Layouts.php" />
       </list>
     </option>
   </component>
@@ -486,8 +465,8 @@
   </component>
   <component name="ProjectFrameBounds">
     <option name="y" value="22" />
-    <option name="width" value="2560" />
-    <option name="height" value="1357" />
+    <option name="width" value="1680" />
+    <option name="height" value="984" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -515,6 +494,7 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -543,42 +523,6 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="documentation" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pizazzwp-architect" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pizazzwp-architect" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="documentation" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="assets" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="images" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pizazzwp-architect" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pizazzwp-architect" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
               <option name="myItemId" value="application" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -653,7 +597,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="redux-custom-fields" />
+              <option name="myItemId" value="redux-extensions" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -683,45 +627,15 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="redux-custom-fields" />
+              <option name="myItemId" value="redux-extensions" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="tabbed" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pizazzwp-architect" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pizazzwp-architect" />
+              <option name="myItemId" value="extensions" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="application" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="shared" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="includes" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="php" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="redux-custom-fields" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="links" />
+              <option name="myItemId" value="metaboxes" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -744,296 +658,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="includes" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="php" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pzwp-focal-point" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pizazzwp-architect" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pizazzwp-architect" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="application" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="shared" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="includes" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="php" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="jo-image-resizer" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pizazzwp-architect" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pizazzwp-architect" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="application" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="shared" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="includes" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="php" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="bfi_thumb" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pizazzwp-architect" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pizazzwp-architect" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="application" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="shared" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="includes" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="php" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="bfi_focus_point" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pizazzwp-architect" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pizazzwp-architect" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="application" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="shared" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="includes" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="php" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="BFI-thumb-forked" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pizazzwp-architect" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pizazzwp-architect" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="application" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="shared" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="includes" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="js" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pizazzwp-architect" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pizazzwp-architect" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="application" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="shared" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="includes" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pizazzwp-architect" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pizazzwp-architect" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="application" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="shared" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="includes" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="css" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pizazzwp-architect" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pizazzwp-architect" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="application" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="public" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="php" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pizazzwp-architect" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pizazzwp-architect" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="application" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="public" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="php" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="post_types" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pizazzwp-architect" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pizazzwp-architect" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="application" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="public" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="js" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pizazzwp-architect" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pizazzwp-architect" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="application" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="public" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -1074,64 +698,11 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="admin" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="php" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="headway" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pizazzwp-architect" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pizazzwp-architect" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="application" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="admin" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="js" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pizazzwp-architect" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pizazzwp-architect" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="application" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="admin" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="css" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -1275,7 +846,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="22" width="2560" height="1357" extended-state="0" />
+    <frame x="0" y="22" width="1680" height="984" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.18238504" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -1283,7 +854,7 @@
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3938731" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32962668" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.1923077" sideWeight="0.35947713" order="1" side_tool="true" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.1923077" sideWeight="0.63943356" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.1923077" sideWeight="0.63943356" order="0" side_tool="false" content_ui="combo" />
       <window_info id="eSnippet Pro" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32932165" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -1292,13 +863,13 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32822758" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.26637554" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32932165" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Duplicates" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.7064117" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
     </layout>
     <layout-to-restore>
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -1316,12 +887,12 @@
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3938731" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.16666667" sideWeight="0.35917032" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="eSnippet Pro" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32932165" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.16666667" sideWeight="0.63973796" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Duplicates" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.7064117" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
+      <window_info id="eSnippet Pro" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32932165" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32897604" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Duplicates" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.7064117" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout-to-restore>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -1352,73 +923,68 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="php">
           <url>file://$PROJECT_DIR$/application/admin/php/class_arc_Blueprints_Layouts.php</url>
-          <line>486</line>
+          <line>519</line>
           <option name="timeStamp" value="9" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="php">
           <url>file://$PROJECT_DIR$/application/admin/php/class_arc_Blueprints_Layouts.php</url>
-          <line>649</line>
+          <line>682</line>
           <option name="timeStamp" value="11" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="php">
           <url>file://$PROJECT_DIR$/application/admin/php/class_arc_Blueprints_Layouts.php</url>
-          <line>515</line>
+          <line>548</line>
           <option name="timeStamp" value="12" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="php">
           <url>file://$PROJECT_DIR$/application/admin/php/class_arc_Blueprints_Layouts.php</url>
-          <line>718</line>
+          <line>751</line>
           <option name="timeStamp" value="13" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="php">
           <url>file://$PROJECT_DIR$/application/admin/php/class_arc_Blueprints_Layouts.php</url>
-          <line>1008</line>
+          <line>1041</line>
           <option name="timeStamp" value="14" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="php">
           <url>file://$PROJECT_DIR$/application/admin/php/class_arc_Blueprints_Layouts.php</url>
-          <line>1035</line>
+          <line>1068</line>
           <option name="timeStamp" value="15" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="php">
           <url>file://$PROJECT_DIR$/application/admin/php/class_arc_Blueprints_Layouts.php</url>
-          <line>1137</line>
+          <line>1170</line>
           <option name="timeStamp" value="16" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="php">
           <url>file://$PROJECT_DIR$/application/admin/php/class_arc_Blueprints_Layouts.php</url>
-          <line>1301</line>
+          <line>1336</line>
           <option name="timeStamp" value="17" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="php">
           <url>file://$PROJECT_DIR$/application/admin/php/class_arc_Blueprints_Layouts.php</url>
-          <line>932</line>
+          <line>965</line>
           <option name="timeStamp" value="18" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="php">
           <url>file://$PROJECT_DIR$/application/admin/php/class_arc_Panels_Layouts.php</url>
-          <line>1229</line>
+          <line>1248</line>
           <option name="timeStamp" value="21" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="php">
           <url>file://$PROJECT_DIR$/application/admin/php/class_arc_Panels_Layouts.php</url>
-          <line>1182</line>
+          <line>1200</line>
           <option name="timeStamp" value="22" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="php">
           <url>file://$PROJECT_DIR$/application/admin/php/class_arc_Panels_Layouts.php</url>
-          <line>1256</line>
+          <line>1275</line>
           <option name="timeStamp" value="23" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="php">
           <url>file://$PROJECT_DIR$/application/admin/php/class_arc_Panels_Layouts.php</url>
-          <line>1273</line>
+          <line>1289</line>
           <option name="timeStamp" value="24" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="php">
-          <url>file://$PROJECT_DIR$/application/admin/php/class_arc_Panels_Layouts.php</url>
-          <line>1300</line>
-          <option name="timeStamp" value="25" />
         </line-breakpoint>
       </breakpoints>
       <option name="time" value="26" />
@@ -1437,11 +1003,6 @@
     </PATH>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/application/public/php/class_arc_Display.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="614" column="56" selection-start="26462" selection-end="26462" vertical-scroll-proportion="0.6855895" vertical-offset="10581" max-vertical-offset="16614" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/application/shared/includes/php/redux-custom-fields/tabbed/field_tabbed.php">
       <provider selected="true" editor-type-id="text-editor">
         <state line="72" column="43" selection-start="2092" selection-end="2092" vertical-scroll-proportion="0.0" vertical-offset="1512" max-vertical-offset="2079" />
@@ -1519,13 +1080,7 @@
     <entry file="file://$PROJECT_DIR$/application/shared/architect/php/arc-functions.php">
       <provider selected="true" editor-type-id="text-editor">
         <state line="253" column="5" selection-start="8645" selection-end="8645" vertical-scroll-proportion="0.0" vertical-offset="3795" max-vertical-offset="7725">
-          <folding>
-            <marker date="1402448466000" expanded="true" signature="10245:10287" placeholder="..." />
-            <marker date="1402448466000" expanded="true" signature="10493:10535" placeholder="..." />
-            <marker date="1402448466000" expanded="true" signature="12781:12937" placeholder="SELECT DISTI..$wpdb-&gt;postmeta HAVING..." />
-            <marker date="1402448466000" expanded="true" signature="12999:13461" placeholder="SELECT meta_..wp_postmeta..." />
-            <marker date="1402448466000" expanded="true" signature="13461:13470" placeholder="SELECT meta_..wp_posts..." />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1551,13 +1106,6 @@
     <entry file="file://$PROJECT_DIR$/application/admin/php/arc-save-process-blueprints.php">
       <provider selected="true" editor-type-id="text-editor">
         <state line="154" column="115" selection-start="7126" selection-end="7126" vertical-scroll-proportion="0.0" vertical-offset="2310" max-vertical-offset="2895">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/public/php/class_arc_Section.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="131" column="30" selection-start="5017" selection-end="5017" vertical-scroll-proportion="0.0" vertical-offset="1965" max-vertical-offset="3210">
           <folding />
         </state>
       </provider>
@@ -1597,23 +1145,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application/public/css/_slider.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="303" column="20" selection-start="5754" selection-end="5754" vertical-scroll-proportion="0.0" vertical-offset="4200" max-vertical-offset="5265">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/admin/php/arc-options.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="258" column="0" selection-start="9846" selection-end="9846" vertical-scroll-proportion="0.0" vertical-offset="3870" max-vertical-offset="7890">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/application/admin/php/headway/arc-headway-block-options.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="74" column="59" selection-start="2983" selection-end="2983" vertical-scroll-proportion="0.0" vertical-offset="897" max-vertical-offset="4185">
+        <state line="76" column="36" selection-start="3072" selection-end="3072" vertical-scroll-proportion="0.0" vertical-offset="1140" max-vertical-offset="4215">
           <folding />
         </state>
       </provider>
@@ -1648,9 +1182,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/application/shared/includes/php/bfi_focus_point/bfi_focus_point.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="107" column="71" selection-start="3586" selection-end="3586" vertical-scroll-proportion="-13.041667" vertical-offset="1292" max-vertical-offset="2400">
-          <folding />
-        </state>
+        <state line="107" column="71" selection-start="3586" selection-end="3586" vertical-scroll-proportion="-13.041667" vertical-offset="1292" max-vertical-offset="2400" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/application/arc-admin.php">
@@ -1700,20 +1232,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application/public/php/class_Architect.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="445" column="0" selection-start="15131" selection-end="15131" vertical-scroll-proportion="0.0" vertical-offset="6622" max-vertical-offset="10245">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/admin/php/class_arc_Blueprints_Layouts.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="402" column="55" selection-start="16168" selection-end="16182" vertical-scroll-proportion="0.0" vertical-offset="5921" max-vertical-offset="24825">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/application/public/php/post_types/class_arc_Panel_Post.php">
       <provider selected="true" editor-type-id="text-editor">
         <state line="314" column="0" selection-start="18638" selection-end="18860" vertical-scroll-proportion="0.0" vertical-offset="4417" max-vertical-offset="7140">
@@ -1730,7 +1248,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/application/public/css/_panels.scss">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="51" column="24" selection-start="897" selection-end="897" vertical-scroll-proportion="0.0" vertical-offset="765" max-vertical-offset="2325">
+        <state line="51" column="24" selection-start="897" selection-end="897" vertical-scroll-proportion="-6.375" vertical-offset="612" max-vertical-offset="2325">
           <folding />
         </state>
       </provider>
@@ -1745,40 +1263,7 @@
     <entry file="file://$PROJECT_DIR$/application/admin/js/arc-metaboxes-panels.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="622" column="0" selection-start="27504" selection-end="27504" vertical-scroll-proportion="0.0" vertical-offset="8627" max-vertical-offset="9705">
-          <folding>
-            <marker date="1403525433000" expanded="false" signature="6819:6873" placeholder="..." />
-            <marker date="1403525433000" expanded="false" signature="7072:7087" placeholder="..." />
-            <marker date="1403525433000" expanded="false" signature="7280:7295" placeholder="..." />
-            <marker date="1403525433000" expanded="false" signature="7484:7517" placeholder="..." />
-            <marker date="1403525433000" expanded="false" signature="7598:7613" placeholder="..." />
-            <marker date="1403525433000" expanded="false" signature="8099:8114" placeholder="..." />
-            <marker date="1403525433000" expanded="false" signature="8375:8412" placeholder="..." />
-            <marker date="1403525433000" expanded="false" signature="9087:9102" placeholder="..." />
-            <marker date="1403525433000" expanded="false" signature="9687:9702" placeholder="..." />
-            <marker date="1403525433000" expanded="false" signature="9905:9920" placeholder="..." />
-            <marker date="1403525433000" expanded="false" signature="10133:10148" placeholder="..." />
-            <marker date="1403525433000" expanded="false" signature="10361:10376" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/admin/php/class_arc_Panels_Layouts.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="400" column="0" selection-start="15317" selection-end="15317" vertical-scroll-proportion="0.0" vertical-offset="6000" max-vertical-offset="22770">
-          <folding>
-            <marker date="1403525433000" expanded="true" signature="28104:28202" placeholder="Select any a..." />
-            <marker date="1403525433000" expanded="true" signature="49581:49779" placeholder="..." />
-            <marker date="1403525433000" expanded="true" signature="49814:49991" placeholder="..." />
-            <marker date="1403525433000" expanded="true" signature="50026:50198" placeholder="..." />
-            <marker date="1403525433000" expanded="true" signature="50233:50407" placeholder="..." />
-            <marker date="1403525433000" expanded="true" signature="50442:50543" placeholder="..." />
-            <marker date="1403525433000" expanded="true" signature="66127:66325" placeholder="..." />
-            <marker date="1403525433000" expanded="true" signature="66360:66537" placeholder="..." />
-            <marker date="1403525433000" expanded="true" signature="66572:66744" placeholder="..." />
-            <marker date="1403525433000" expanded="true" signature="66779:66953" placeholder="..." />
-            <marker date="1403525433000" expanded="true" signature="66988:67089" placeholder="..." />
-            <marker date="1403525433000" expanded="true" signature="70971:71039" placeholder="..." />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1791,15 +1276,88 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/application/public/php/class_arc_Navigator.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="50" column="92" selection-start="1754" selection-end="1754" vertical-scroll-proportion="0.8005618" vertical-offset="180" max-vertical-offset="2865">
+        <state line="52" column="42" selection-start="1786" selection-end="1786" vertical-scroll-proportion="-21.25" vertical-offset="270" max-vertical-offset="2880">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/public/css/_slider.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="327" column="14" selection-start="6134" selection-end="6134" vertical-scroll-proportion="4.6363635" vertical-offset="4752" max-vertical-offset="5400">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/public/php/class_Architect.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="164" column="0" selection-start="5432" selection-end="5432" vertical-scroll-proportion="-6.875" vertical-offset="2295" max-vertical-offset="10605">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/application/public/js/arc-front-swiper.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="27" column="50" selection-start="1155" selection-end="1155" vertical-scroll-proportion="0.2987805" vertical-offset="258" max-vertical-offset="3690">
+        <state line="34" column="37" selection-start="1477" selection-end="1477" vertical-scroll-proportion="4.431818" vertical-offset="315" max-vertical-offset="3705">
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/public/php/class_arc_Section.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="65" column="51" selection-start="1824" selection-end="1824" vertical-scroll-proportion="0.33464566" vertical-offset="720" max-vertical-offset="3225">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/shared/includes/php/redux-extensions/extensions/metaboxes/extension_metaboxes.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="434" column="0" selection-start="21314" selection-end="21314" vertical-scroll-proportion="7.3425198" vertical-offset="915" max-vertical-offset="17685">
+          <folding>
+            <marker date="1403590860000" expanded="false" signature="-1:-1" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/admin/php/class_arc_Panels_Layouts.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="1479" column="5" selection-start="68097" selection-end="68097" vertical-scroll-proportion="0.9409449" vertical-offset="21468" max-vertical-offset="23085">
+          <folding>
+            <marker date="1403591222000" expanded="true" signature="-1:-1" placeholder="Select any a..." />
+            <marker date="1403591222000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1403591222000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1403591222000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1403591222000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1403591222000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1403591222000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1403591222000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1403591222000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1403591222000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1403591222000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1403591222000" expanded="true" signature="-1:-1" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/admin/php/arc-options.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="344" column="53" selection-start="13979" selection-end="13997" vertical-scroll-proportion="-8.75" vertical-offset="4950" max-vertical-offset="8010">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/admin/php/class_arc_Blueprints_Layouts.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="1519" column="0" selection-start="65415" selection-end="65415" vertical-scroll-proportion="0.40682414" vertical-offset="22475" max-vertical-offset="25350">
+          <folding>
+            <marker date="1403591307000" expanded="true" signature="46239:46965" placeholder="..." />
+            <marker date="1403591307000" expanded="true" signature="47986:48184" placeholder="..." />
+            <marker date="1403591307000" expanded="true" signature="48219:48396" placeholder="..." />
+            <marker date="1403591307000" expanded="true" signature="48431:48603" placeholder="..." />
+            <marker date="1403591307000" expanded="true" signature="48638:48812" placeholder="..." />
+            <marker date="1403591307000" expanded="true" signature="48847:48948" placeholder="..." />
+            <marker date="1403591307000" expanded="true" signature="64362:64736" placeholder="..." />
+            <marker date="1403591307000" expanded="true" signature="64740:64775" placeholder="..." />
+          </folding>
         </state>
       </provider>
     </entry>

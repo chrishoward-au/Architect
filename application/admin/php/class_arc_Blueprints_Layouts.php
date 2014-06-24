@@ -81,7 +81,8 @@
       $pzarc_back   = array_slice($columns, 2);
       $pzarc_insert = array(
           '_blueprints_short-name'     => __('Blueprint short name', 'pzarchitect'),
-          'panels'                     => __('Panels', 'pzarchitect'),
+          '_blueprints_description'     => __('Description', 'pzarchitect'),
+          'panels'                     => __('Section Panels', 'pzarchitect'),
           '_blueprints_content-source' => __('Content source', 'pzarchitect'),
           'navigation'                 => __('Navigation', 'pzarchitect'),
           'id'                         => __('ID', 'pzarchitect'),
@@ -106,6 +107,9 @@
         case '_blueprints_short-name':
           echo $post_meta[ $column ];
           break;
+        case '_blueprints_description':
+          echo $post_meta[ $column ];
+          break;
         case '_blueprints_content-source':
           echo ucwords(empty($post_meta[ $column ]) ? 'default' : $post_meta[ $column ]);
           break;
@@ -125,12 +129,12 @@
           break;
         case 'panels':
           global $pzarc_panels_array;
-          echo $pzarc_panels_array[ $post_meta[ '_blueprints_section-0-panel-layout' ] ];
+          echo '1: '.$pzarc_panels_array[ $post_meta[ '_blueprints_section-0-panel-layout' ] ];
           if (!empty($post_meta[ '_blueprints_section-1-panel-layout' ])) {
-            echo '<br>' . $pzarc_panels_array[ $post_meta[ '_blueprints_section-1-panel-layout' ] ];
+            echo '<br>' . '2: '.$pzarc_panels_array[ $post_meta[ '_blueprints_section-1-panel-layout' ] ];
           }
           if (!empty($post_meta[ '_blueprints_section-2-panel-layout' ])) {
-            echo '<br>' . $pzarc_panels_array[ $post_meta[ '_blueprints_section-2-panel-layout' ] ];
+            echo '<br>' . '3: '.$pzarc_panels_array[ $post_meta[ '_blueprints_section-2-panel-layout' ] ];
           }
       }
     }
@@ -215,15 +219,14 @@
   add_action("redux/metaboxes/{$redux_opt_name}/boxes", 'pzarc_blueprint_tabs');
   function pzarc_blueprint_tabs($metaboxes)
   {
+
     $prefix       = '_blueprint_tabs_';
     $sections     = array();
-    $sections[ ]  = array(
-      //          'title'      => __('General Settings', 'pzarchitect'),
-      'show_title' => true,
-      'icon_class' => 'icon-large',
-      'icon'       => 'el-icon-home',
-      'fields'     => array(
-          array(
+
+    global $_architect_options;
+    $fields = array();
+    if (!empty($_architect_options['architect_enable_styling'])){
+      $fields =  array(         array(
               'id'      => $prefix . 'tabs',
               'type'    => 'tabbed',
               'options' => array(
@@ -236,7 +239,29 @@
                                  'styling' => array('blueprint-stylings', '_blueprints_styling-general-settings')
               )
           ),
-      )
+        );
+    } else {
+      $fields =  array(         array(
+              'id'      => $prefix . 'tabs',
+              'type'    => 'tabbed',
+              'options' => array(
+                  'layout'  => '<span><span class="icon-large el-icon-website"></span> Layout</span>',
+                  'content' => '<span><span class="icon-large el-icon-align-left"></span> Content</span>',
+              ),
+              'targets' => array('layout'  => array('layout-settings', '_blueprints_layout-general-settings'),
+                                 'content' => array('content-selections', '_blueprints_content-general-settings'),
+              )
+          ),
+        );
+
+
+    }
+    $sections[ ]  = array(
+      //          'title'      => __('General Settings', 'pzarchitect'),
+      'show_title' => true,
+      'icon_class' => 'icon-large',
+      'icon'       => 'el-icon-home',
+      'fields'     => $fields
     );
     $metaboxes[ ] = array(
         'id'         => $prefix . 'blueprints',
@@ -300,6 +325,14 @@
                 'width'    => 'auto',
                 'subtitle' => __('Alphanumeric only. ', 'pzarchitect') . __('Use the shortcode <strong class="pzarc-usage-info">[pzarc "<span class="pzarc-shortname"></span>"]</strong> or the template tag <strong class="pzarc-usage-info">pzarc(\'<span class="pzarc-shortname"></span>\');</strong>', 'pzarchitect'),
                 'validate' => 'not_empty'
+            ),
+            array(
+                'id'       => $prefix . 'description',
+                'title'    => __('Description', 'pzarchitect'),
+                'type'     => 'textarea',
+                'rows'    => 2,
+                // 'hint' => __('A short desctription to help you or others know what this Blueprint is for', 'pzarchitect'),
+                // 'validate' => 'not_empty'
             ),
             array(
                 'id'      => $prefix . 'blueprint-width',
@@ -1482,6 +1515,8 @@ You can use them however you like though.</p>
   add_action("redux/metaboxes/{$redux_opt_name}/boxes", 'pzarc_blueprint_layout_styling');
   function pzarc_blueprint_layout_styling($metaboxes)
   {
+    global $_architect_options;
+    if (!empty($_architect_options['architect_enable_styling'])){
 
 //  $screen = get_current_screen();
 //  if ($screen->ID != 'xx') {return;}
@@ -1645,5 +1680,5 @@ You can use them however you like though.</p>
 
     return $metaboxes;
   }
-
+}
 

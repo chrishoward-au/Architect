@@ -157,8 +157,17 @@
       // TODO: Show or hide blueprint if no content
 
       do_action('arc_before_architect');
-      do_action('arc_navigation_top');
-      do_action('arc_navigation_left');
+
+      if ($bpnav_type === 'navigator') {
+
+        // TODO: How do we make thisgo into the action?WP-Navi does it!
+//        self::display_navigation();
+
+        // Nav left or top
+        do_action('arc_navigation_top');
+        do_action('arc_navigation_left');
+
+      }
 
       echo '<div class="pzarchitect pzarc-blueprint pzarc-blueprint_' . $this->build->blueprint[ '_blueprints_short-name' ] . ' nav-' . $bpnav_type . '">';
 
@@ -211,16 +220,7 @@
       }
 
       // TODO: Display navigator or pagination using add_action to appropriate spot
-      // Display pagination
-      if (isset($this->arc[ 'navigator' ])) {
 
-        do_action('arcBeforeNavigationBelow');
-
-        $this->arc[ 'navigator' ]->render();
-
-        do_action('arcAfterNavigationBelow');
-
-      }
 
       // Don't allow pagination on pages it doesn't work on!
       //   Todo : setup pagination for single or blog index
@@ -237,10 +237,17 @@
       echo '</div> <!-- end the whole lot-->';
       // TODO:: Hmmm how we planning to use these?
 
-      do_action('arc_navigation_right');
 
-      do_action('arc_navigation_bottom');
+      if ($bpnav_type === 'navigator') {
 
+        // TODO: How do we make thisgo into the action
+        self::display_navigation();
+
+        // Right or bottom
+        do_action('arc_navigation_right');
+        do_action('arc_navigation_bottom');
+
+      }
       do_action('arc_after_architect');
 
 
@@ -248,6 +255,21 @@
       wp_reset_postdata(); // Pretty sure this goes here... Not after the query reassignment
       $wp_query = null;
       $wp_query = $original_query;
+
+    }
+
+    private function display_navigation()
+    {
+      // Display navigator
+      if (isset($this->arc[ 'navigator' ])) {
+
+        do_action('arcBeforeNavigationBelow');
+
+        $this->arc[ 'navigator' ]->render();
+
+        do_action('arcAfterNavigationBelow');
+
+      }
 
     }
 
@@ -441,7 +463,7 @@
      */
     private function set_criteria_prefix($prefix)
     {
-        // TODO: Leave this // until id'ed why $prefix is empty. And prob set up a better response
+      // TODO: Leave this // until id'ed why $prefix is empty. And prob set up a better response
 //      if (empty($prefix)){return;}
       foreach ($this->build->blueprint as $key => $value) {
         if (strpos($key, $prefix) === 0) {
@@ -508,7 +530,7 @@
         $query[ 'nopaging' ]               = $this->criteria[ 'nopaging' ];
         $query_options[ 'posts_per_page' ] = $this->criteria[ 'panels_to_show' ];
 
-        $query_options[ 'offset' ]         = $this->criteria[ 'offset' ];
+        $query_options[ 'offset' ] = $this->criteria[ 'offset' ];
       }
 
       // these two break paging yes?
@@ -578,10 +600,12 @@
 
       // oops! Need to get default content type when defaults chosen.
       $post_type = (empty($this->build->blueprint[ '_blueprints_content-source' ]) || 'defaults' === $this->build->blueprint[ '_blueprints_content-source' ] ?
-          $this->arc_query->queried_object->post_type :
+          (empty($this->arc_query->queried_object->post_type)?'post':$this->arc_query->queried_object->post_type) :
           $this->build->blueprint[ '_blueprints_content-source' ]);
 
       if (empty($post_type)) {
+
+        // Should never get this message now.
 
         pzarc_msg('No post type specified', 'error');
 
@@ -633,18 +657,18 @@
 
           case 'thumbs':
 
-            if ('attachment'===$this->arc_query->post->post_type) {
+            if ('attachment' === $this->arc_query->post->post_type) {
 
               // TODO: Will need to change this to use the thumb dimensions set in the blueprint viasmall , medium, large
-              $thumb        = wp_get_attachment_image($this->arc_query->post->ID, array(50, 50));
+              $thumb = wp_get_attachment_image($this->arc_query->post->ID, array(50, 50));
 
             } else {
 
-              $thumb        = get_the_post_thumbnail($this->arc_query->post->ID, array(50, 50));
+              $thumb = get_the_post_thumbnail($this->arc_query->post->ID, array(50, 50));
 
             }
 
-            $thumb        = (empty($thumb) ? '<img src="' . PZARC_PLUGIN_APP_URL . '/shared/assets/images/missing-image.png" width="50" height="50">' : $thumb);
+            $thumb = (empty($thumb) ? '<img src="' . PZARC_PLUGIN_APP_URL . '/shared/assets/images/missing-image.png" width="50" height="50">' : $thumb);
 
             $nav_items[ ] = '<span class="' . $this->build->blueprint[ '_blueprints_navigator' ] . '">' . $thumb . '</span>';
             break;

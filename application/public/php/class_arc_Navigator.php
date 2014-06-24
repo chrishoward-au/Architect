@@ -48,8 +48,9 @@
           ' ' . $this->blueprint[ '_blueprints_navigator-position' ] .
           ' ' . $this->blueprint[ '_blueprints_navigator-location' ] .
           ' ' . $this->blueprint[ '_blueprints_navigator-align' ] .
-          ' ' . $this->blueprint[ '_blueprints_navigator-bullet-shape' ] . ' swiper-wrapper ">';
+          ' ' . $this->blueprint[ '_blueprints_navigator-bullet-shape' ] . '">';
 
+      echo '<div class="swiper-wrapper">';
     }
 
     function render()

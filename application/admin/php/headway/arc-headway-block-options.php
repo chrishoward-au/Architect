@@ -244,6 +244,7 @@
         $the_panel_meta                                                   = get_post_meta($layouts_query->posts->ID, '_architect', true);
         $pzarc_return[ $the_panel_meta[ '_panels_settings_short-name' ] ] = get_the_title($layouts_query->post->ID);
       };
+       asort($pzarc_return);
 
       return $pzarc_return;
     }
@@ -264,6 +265,7 @@
 
         $pzarc_return[ $the_panel_meta[ '_blueprints_short-name' ] . '##' . $blueprints_query->post->ID ] = get_the_title($blueprints_query->post->ID);
       };
+       asort($pzarc_return);
 
       return $pzarc_return;
     }

@@ -63,6 +63,7 @@
 
       if (!empty($section_title)) {
 
+        // TODO: Neeed to process %% tags in title.
         echo '<div class="pzarc-section-title pzarc-section-title-' . $this->section_number . '"><h3>' . $section_title . '</h3></div>';
 
       }
