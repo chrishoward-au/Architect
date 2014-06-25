@@ -311,6 +311,9 @@
 //    return $meta_boxes;
 //
 //  }
+
+  // TODO: ADD FILTER OPTION FOR RELATED POSTS
+
   add_action("redux/metaboxes/{$redux_opt_name}/boxes", 'pzarc_blueprint_layout_general');
   function pzarc_blueprint_layout_general($meta_boxes = array())
   {

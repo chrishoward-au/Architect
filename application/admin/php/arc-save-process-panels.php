@@ -144,7 +144,7 @@
          *    PANELS STYLING
          *********************************************************/
 
-        case (strpos($key, '_panels_styling') === 0 && !empty($value)):
+        case (strpos($key, '_panels_styling') === 0 && !empty($value) && !empty($_architect_options['architect_enable_styling'])):
           //           var_dump($key,$value);
           switch (true) {
 

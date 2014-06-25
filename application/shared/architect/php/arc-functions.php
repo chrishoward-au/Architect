@@ -191,10 +191,13 @@
 
   function pzarc_set_defaults()
   {
+    // TODO: Do we really need to call this on the front end??!!
+
     // TODO: Remove this once Dovy fixes MB defaults... or maybe not...
     require_once PZARC_PLUGIN_APP_PATH . '/admin/php/class_arc_Panels_Layouts.php';
     require_once PZARC_PLUGIN_APP_PATH . '/admin/php/class_arc_Blueprints_Layouts.php';
     global $pzarchitect;
+    global $_architect_options;
     $pzarchitect[ 'defaults' ][ 'blueprints' ]                                 = array();
     $blueprint_layout_general                                                  = pzarc_blueprint_layout_general($pzarchitect[ 'defaults' ][ 'blueprints' ]);
     $pzarc_blueprint_content_general                                           = pzarc_blueprint_content_general($pzarchitect[ 'defaults' ][ 'blueprints' ]);
@@ -209,8 +212,10 @@
     $pzarc_panels_styling                                                      = pzarc_panels_styling($pzarchitect[ 'defaults' ][ 'panels' ]);
     $pzarchitect[ 'defaults' ][ 'panels' ][ '_panel_general_settings' ]        = $pzarc_panel_general_settings[ 0 ][ 'sections' ];
     $pzarchitect[ 'defaults' ][ 'panels' ][ '_panels_design' ]                 = $pzarc_panels_design[ 0 ][ 'sections' ];
-    $pzarchitect[ 'defaults' ][ 'panels' ][ '_panels_styling' ]                = $pzarc_panels_styling[ 0 ][ 'sections' ];
 
+    if (!empty($_architect_options[ 'architect_enable_styling' ])) {
+      $pzarchitect[ 'defaults' ][ 'panels' ][ '_panels_styling' ] = $pzarc_panels_styling[ 0 ][ 'sections' ];
+    }
     foreach ($pzarchitect[ 'defaults' ][ 'blueprints' ] as $key1 => $value1) {
       foreach ($value1 as $key2 => $value2) {
         foreach ($value2 as $key3 => $fields) {
