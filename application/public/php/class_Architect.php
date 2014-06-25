@@ -105,14 +105,8 @@
       $bptranstype = $this->build->blueprint[ '_blueprints_transitions-type' ];
 
       $this->arc      = array();
-      $this->criteria = array();
 
-      // Setup some generic criteria
-      $this->criteria[ 'panels_to_show' ]      = $this->build->blueprint[ '_blueprints_section-0-panels-per-view' ] +
-          ((int)$this->build->blueprint[ '_blueprints_section-1-enable' ] * $this->build->blueprint[ '_blueprints_section-1-panels-per-view' ]) +
-          ((int)$this->build->blueprint[ '_blueprints_section-2-enable' ] * $this->build->blueprint[ '_blueprints_section-2-panels-per-view' ]);
-      $this->criteria[ 'ignore_sticky_posts' ] = !$this->build->blueprint[ '_blueprints_sticky' ];
-      $this->criteria[ 'offset' ]              = $this->build->blueprint[ '_blueprints_skip' ];
+      self::set_generic_criteria();
 
       // Set vars to identify if we need to display sections 2 and 3.
       $do_section_2 = ($this->build->blueprint[ '_blueprints_section-1-enable' ] && $bpnav_type != 'navigator');
@@ -258,6 +252,41 @@
 
     }
 
+    private function set_generic_criteria(){
+      $this->criteria = array();
+
+      /** Setup some generic criteria */
+
+      // Set posts to show
+      $limited = ((int)$this->build->blueprint[ '_blueprints_section-1-enable' ] * (int)$this->build->blueprint[ '_blueprints_section-1-panels-limited' ])
+          || ((int)$this->build->blueprint[ '_blueprints_section-2-enable' ] * (int)$this->build->blueprint[ '_blueprints_section-2-panels-limited' ])
+          || (int)$this->build->blueprint[ '_blueprints_section-0-panels-limited' ];
+
+      if (!$limited) {
+
+        $this->criteria[ 'panels_to_show' ] = -1;
+
+      } else {
+
+        $this->criteria[ 'panels_to_show' ] =
+            $this->build->blueprint[ '_blueprints_section-0-panels-per-view' ] +
+            ((int)$this->build->blueprint[ '_blueprints_section-1-enable' ] * $this->build->blueprint[ '_blueprints_section-1-panels-per-view' ]) +
+            ((int)$this->build->blueprint[ '_blueprints_section-2-enable' ] * $this->build->blueprint[ '_blueprints_section-2-panels-per-view' ]);
+
+      }
+
+      // Sticky posts
+      $this->criteria[ 'ignore_sticky_posts' ] = !$this->build->blueprint[ '_blueprints_sticky' ];
+
+      // Offset
+      $this->criteria[ 'offset' ]              = $this->build->blueprint[ '_blueprints_skip' ];
+
+      // Order
+      $this->criteria['orderby'] = $this->build->blueprint[ '_blueprints_orderby'];
+      $this->criteria['order'] = $this->build->blueprint[ '_blueprints_orderdir'];
+
+    }
+
     private function display_navigation()
     {
       // Display navigator
@@ -288,6 +317,7 @@
             $title = single_month_title(__('Showing month: ', 'pzarchitect'), false);
             break;
           case is_single() :
+          case is_singular() :
             $title = single_post_title(null, false);
             break;
         }
@@ -488,6 +518,10 @@
         $this->arc_query->query_vars[ 'nopaging' ] = $this->criteria[ 'nopaging' ];
       }
       $this->arc_query->query_vars[ 'posts_per_page' ] = $this->criteria[ 'panels_to_show' ];
+
+      $this->arc_query->query_vars[ 'orderby' ] = $this->criteria[ 'orderby' ];
+      $this->arc_query->query_vars[ 'order' ]   = $this->criteria[ 'order' ];
+
     }
 
     /**
@@ -570,6 +604,12 @@
           break;
 
       }
+
+      // Order. This is always set
+      $query_options[ 'orderby' ] = $this->criteria[ 'orderby' ];
+      $query_options[ 'order' ]   = $this->criteria[ 'order' ];
+
+
       // OVERRIDES
       // currently this is the only bit that really does anything
       if ($overrides) {
@@ -600,7 +640,7 @@
 
       // oops! Need to get default content type when defaults chosen.
       $post_type = (empty($this->build->blueprint[ '_blueprints_content-source' ]) || 'defaults' === $this->build->blueprint[ '_blueprints_content-source' ] ?
-          (empty($this->arc_query->queried_object->post_type)?'post':$this->arc_query->queried_object->post_type) :
+          (empty($this->arc_query->queried_object->post_type) ? 'post' : $this->arc_query->queried_object->post_type) :
           $this->build->blueprint[ '_blueprints_content-source' ]);
 
       if (empty($post_type)) {

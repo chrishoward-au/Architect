@@ -118,7 +118,12 @@
 //      echo '<div class="arc-panel-wrapper" style="margin:0;padding:0">';
 //      echo '<div class="arc-panel-title"></div>'; // Use this for future accordion layout
 
-      echo '<div class="pzarc-panel pzarc-panel_' . $this->section[ 'section-panel-settings' ][ '_panels_settings_short-name' ] . ' pzarc-panel-no_' . $panel_number . $this->slider[ 'slide' ] . $image_in_bg . '" ' . $isotope . '>';
+      $odds_evens_section = ($panel_number%2?' odd-section-panel':' even-section-panel');
+      static $panel_count = 1;
+      $odds_evens_bp = ($panel_count++%2?' odd-blueprint-panel':' even-blueprint-panel');
+
+
+      echo '<div class="pzarc-panel pzarc-panel_' . $this->section[ 'section-panel-settings' ][ '_panels_settings_short-name' ] . ' pzarc-panel-no_' . $panel_number . $this->slider[ 'slide' ] . $image_in_bg . $odds_evens_bp.$odds_evens_section.'" ' . $isotope . '>';
       // Although this loks back to front, this is determining flow compared to components
 
       if ($this->section[ 'section-panel-settings' ][ '_panels_design_background-position' ] != 'none' && ($this->section[ 'section-panel-settings' ][ '_panels_design_components-position' ] == 'bottom' || $this->section[ 'section-panel-settings' ][ '_panels_design_components-position' ] == 'right')) {

@@ -81,7 +81,7 @@
       $pzarc_back   = array_slice($columns, 2);
       $pzarc_insert = array(
           '_blueprints_short-name'     => __('Blueprint short name', 'pzarchitect'),
-          '_blueprints_description'     => __('Description', 'pzarchitect'),
+          '_blueprints_description'    => __('Description', 'pzarchitect'),
           'panels'                     => __('Section Panels', 'pzarchitect'),
           '_blueprints_content-source' => __('Content source', 'pzarchitect'),
           'navigation'                 => __('Navigation', 'pzarchitect'),
@@ -129,12 +129,12 @@
           break;
         case 'panels':
           global $pzarc_panels_array;
-          echo '1: '.$pzarc_panels_array[ $post_meta[ '_blueprints_section-0-panel-layout' ] ];
+          echo '1: ' . $pzarc_panels_array[ $post_meta[ '_blueprints_section-0-panel-layout' ] ];
           if (!empty($post_meta[ '_blueprints_section-1-panel-layout' ])) {
-            echo '<br>' . '2: '.$pzarc_panels_array[ $post_meta[ '_blueprints_section-1-panel-layout' ] ];
+            echo '<br>' . '2: ' . $pzarc_panels_array[ $post_meta[ '_blueprints_section-1-panel-layout' ] ];
           }
           if (!empty($post_meta[ '_blueprints_section-2-panel-layout' ])) {
-            echo '<br>' . '3: '.$pzarc_panels_array[ $post_meta[ '_blueprints_section-2-panel-layout' ] ];
+            echo '<br>' . '3: ' . $pzarc_panels_array[ $post_meta[ '_blueprints_section-2-panel-layout' ] ];
           }
       }
     }
@@ -220,39 +220,44 @@
   function pzarc_blueprint_tabs($metaboxes)
   {
 
-    $prefix       = '_blueprint_tabs_';
-    $sections     = array();
+    $prefix   = '_blueprint_tabs_';
+    $sections = array();
 
     global $_architect_options;
     $fields = array();
-    if (!empty($_architect_options['architect_enable_styling'])){
-      $fields =  array(         array(
-              'id'      => $prefix . 'tabs',
-              'type'    => 'tabbed',
-              'options' => array(
-                  'layout'  => '<span><span class="icon-large el-icon-website"></span> Layout</span>',
-                  'content' => '<span><span class="icon-large el-icon-align-left"></span> Content</span>',
-                  'styling' => '<span><span class="icon-large el-icon-brush"></span> Styling</span>'
-              ),
-              'targets' => array('layout'  => array('layout-settings', '_blueprints_layout-general-settings'),
-                                 'content' => array('content-selections', '_blueprints_content-general-settings'),
-                                 'styling' => array('blueprint-stylings', '_blueprints_styling-general-settings')
-              )
-          ),
-        );
+    if (!empty($_architect_options[ 'architect_enable_styling' ])) {
+      $fields = array(array(
+                          'id'      => $prefix . 'tabs',
+                          'type'    => 'tabbed',
+                          'options' => array(
+                              'layout'  => '<span><span class="icon-large el-icon-website"></span> Layout</span>',
+                              'content' => '<span><span class="icon-large el-icon-align-left"></span> Content</span>',
+                              'styling' => '<span><span class="icon-large el-icon-brush"></span> Styling</span>'
+                          ),
+                          'targets' => array('layout'  => array('layout-settings',
+                                                                '_blueprints_layout-general-settings'),
+                                             'content' => array('content-selections',
+                                                                '_blueprints_content-general-settings'),
+                                             'styling' => array('blueprint-stylings',
+                                                                '_blueprints_styling-general-settings')
+                          )
+                      ),
+      );
     } else {
-      $fields =  array(         array(
-              'id'      => $prefix . 'tabs',
-              'type'    => 'tabbed',
-              'options' => array(
-                  'layout'  => '<span><span class="icon-large el-icon-website"></span> Layout</span>',
-                  'content' => '<span><span class="icon-large el-icon-align-left"></span> Content</span>',
-              ),
-              'targets' => array('layout'  => array('layout-settings', '_blueprints_layout-general-settings'),
-                                 'content' => array('content-selections', '_blueprints_content-general-settings'),
-              )
-          ),
-        );
+      $fields = array(array(
+                          'id'      => $prefix . 'tabs',
+                          'type'    => 'tabbed',
+                          'options' => array(
+                              'layout'  => '<span><span class="icon-large el-icon-website"></span> Layout</span>',
+                              'content' => '<span><span class="icon-large el-icon-align-left"></span> Content</span>',
+                          ),
+                          'targets' => array('layout'  => array('layout-settings',
+                                                                '_blueprints_layout-general-settings'),
+                                             'content' => array('content-selections',
+                                                                '_blueprints_content-general-settings'),
+                          )
+                      ),
+      );
 
 
     }
@@ -330,10 +335,10 @@
                 'validate' => 'not_empty'
             ),
             array(
-                'id'       => $prefix . 'description',
-                'title'    => __('Description', 'pzarchitect'),
-                'type'     => 'textarea',
-                'rows'    => 2,
+                'id'    => $prefix . 'description',
+                'title' => __('Description', 'pzarchitect'),
+                'type'  => 'textarea',
+                'rows'  => 2,
                 // 'hint' => __('A short desctription to help you or others know what this Blueprint is for', 'pzarchitect'),
                 // 'validate' => 'not_empty'
             ),
@@ -346,11 +351,11 @@
                 'height'  => false,
                 'title'   => __('Blueprint width', 'pzarchitect'),
                 'default' => array('width' => '100', 'units' => '%'),
-                'desc'=>'Need to set a max width to stop spillage' //TODO:Need to set a max width to stop spillage
+                'desc'    => 'Need to set a max width to stop spillage' //TODO:Need to set a max width to stop spillage
             ),
             array(
                 'title'   => 'Page title',
-                'id'      => $prefix . 'page-title', //this number is the increment number
+                'id'      => $prefix . 'page-title',
                 'type'    => 'switch',
                 'on'      => 'Yes',
                 'off'     => 'No',
@@ -468,14 +473,14 @@
                 'options' => array(
                     'date'  => 'Date',
                     'title' => 'Title',
+                    'menu_order' => 'Page order (if set)',
                 ),
             ),
             array(
                 'title'   => __('Order direction', 'pzarchitect'),
                 'id'      => $prefix . 'orderdir',
                 'type'    => 'button_set',
-                'default' => 'desc',
-                'cols'    => 6,
+                'default' => 'DESC',
                 'options' => array(
                     'ASC'  => 'Ascending',
                     'DESC' => 'Descending',
@@ -1139,6 +1144,13 @@
   }
 
   add_action("redux/metaboxes/{$redux_opt_name}/boxes", 'pzarc_contents_metabox');
+  /**
+   *
+   * CONTENT
+   *
+   * @param array $meta_boxes
+   * @return array
+   */
   function pzarc_contents_metabox($meta_boxes = array())
   {
 
@@ -1439,8 +1451,8 @@
                 'title'    => __('Click behaviour', 'pzarchitect'),
                 'id'       => $prefix . 'click-behavioury',
                 'type'     => 'checkbox',
-                'default'=>true,
-                'subtitle'=> __('Open image in lightbox when clicked','pzarchitect')
+                'default'  => true,
+                'subtitle' => __('Open image in lightbox when clicked', 'pzarchitect')
             )
         )
     );
@@ -1519,144 +1531,144 @@ You can use them however you like though.</p>
   function pzarc_blueprint_layout_styling($metaboxes)
   {
     global $_architect_options;
-    if (!empty($_architect_options['architect_enable_styling'])){
+    if (!empty($_architect_options[ 'architect_enable_styling' ])) {
 
 //  $screen = get_current_screen();
 //  if ($screen->ID != 'xx') {return;}
-    $defaults = get_option('_architect');
+      $defaults = get_option('_architect');
 
-    $prefix = '_blueprints_styling_';
+      $prefix = '_blueprints_styling_';
 
-    $sections  = array();
-    $optprefix = 'architect_config_';
+      $sections  = array();
+      $optprefix = 'architect_config_';
 
-    $sections[ ] = array(
-        'title'      => 'Blueprint',
-        'show_title' => false,
-        'icon_class' => 'icon-large',
-        'icon'       => 'el-icon-website',
-        'desc'       => 'Class: .pzarc-blueprint_{shortname}',
-        'fields'     => pzarc_fields(
-        // TODO: Get correct $defaults
-        // TODO: Add shadows
-            pzarc_redux_bg($prefix . 'blueprint-background', array('.pzarc-blueprint')),
-            pzarc_redux_padding($prefix . 'blueprint-padding', array('.pzarc-blueprint')),
-            pzarc_redux_margin($prefix . 'blueprint-margins', array('.pzarc-blueprint')),
-            pzarc_redux_borders($prefix . 'blueprint-borders', array('.pzarc-blueprint')),
-            pzarc_redux_links($prefix . 'blueprint-links', array('.pzarc-blueprint')),
-            array(
-                'title'    => __('Custom CSS', 'pzarchitect'),
-                'id'       => $prefix . 'blueprint-custom-css',
-                'type'     => 'ace_editor',
-                'mode'     => 'css',
-                'subtitle' => __('This can be any CSS you\'d like to add to a page this blueprint is displayed on. It will ONLY load on the pages this blueprint is shown on, so will only impact those pages. However, if you have multiple blueprints on a page, this CSS could affect or be overriden by ther blueprints\' custom CSS.', 'pzarchitect'),
-                //                'hint'  => array('content' => __('This is can be any CSS you\'d like to add to a page this blueprint is displayed on. It will ONLY load on the pages this blueprint is shown on, so will only impact those pages. However, if you have multiple blueprints on a page, this CSS could affect or be overriden by ther blueprints\' custom CSS.', 'pzarchitect')),
-            )
-        )
-    );
-    $sections[ ] = array(
-        'title'      => 'Sections wrapper',
-        'show_title' => false,
-        'icon_class' => 'icon-large',
-        'icon'       => 'el-icon-check-empty',
-        'desc'       => 'Class: .pzarc-sections_{shortname}',
-        'fields'     => pzarc_fields(
+      $sections[ ] = array(
+          'title'      => 'Blueprint',
+          'show_title' => false,
+          'icon_class' => 'icon-large',
+          'icon'       => 'el-icon-website',
+          'desc'       => 'Class: .pzarc-blueprint_{shortname}',
+          'fields'     => pzarc_fields(
+          // TODO: Get correct $defaults
+          // TODO: Add shadows
+              pzarc_redux_bg($prefix . 'blueprint-background', array('.pzarc-blueprint')),
+              pzarc_redux_padding($prefix . 'blueprint-padding', array('.pzarc-blueprint')),
+              pzarc_redux_margin($prefix . 'blueprint-margins', array('.pzarc-blueprint')),
+              pzarc_redux_borders($prefix . 'blueprint-borders', array('.pzarc-blueprint')),
+              pzarc_redux_links($prefix . 'blueprint-links', array('.pzarc-blueprint')),
+              array(
+                  'title'    => __('Custom CSS', 'pzarchitect'),
+                  'id'       => $prefix . 'blueprint-custom-css',
+                  'type'     => 'ace_editor',
+                  'mode'     => 'css',
+                  'subtitle' => __('This can be any CSS you\'d like to add to a page this blueprint is displayed on. It will ONLY load on the pages this blueprint is shown on, so will only impact those pages. However, if you have multiple blueprints on a page, this CSS could affect or be overriden by ther blueprints\' custom CSS.', 'pzarchitect'),
+                  //                'hint'  => array('content' => __('This is can be any CSS you\'d like to add to a page this blueprint is displayed on. It will ONLY load on the pages this blueprint is shown on, so will only impact those pages. However, if you have multiple blueprints on a page, this CSS could affect or be overriden by ther blueprints\' custom CSS.', 'pzarchitect')),
+              )
+          )
+      );
+      $sections[ ] = array(
+          'title'      => 'Sections wrapper',
+          'show_title' => false,
+          'icon_class' => 'icon-large',
+          'icon'       => 'el-icon-check-empty',
+          'desc'       => 'Class: .pzarc-sections_{shortname}',
+          'fields'     => pzarc_fields(
 
-        // TODO: Get correct $defaults
-        // TODO: Add shadows
-            pzarc_redux_bg($prefix . 'sections-background', array('.pzarc-sections')),
-            pzarc_redux_padding($prefix . 'sections-padding', array('.pzarc-sections')),
-            pzarc_redux_margin($prefix . 'sections-margins', array('.pzarc-sections')),
-            pzarc_redux_borders($prefix . 'sections-borders', array('.pzarc-sections'))
-        )
-    );
-    $icons       = array(1 => 'el-icon-align-left', 2 => 'el-icon-th', 3 => 'el-icon-th-list');
+          // TODO: Get correct $defaults
+          // TODO: Add shadows
+              pzarc_redux_bg($prefix . 'sections-background', array('.pzarc-sections')),
+              pzarc_redux_padding($prefix . 'sections-padding', array('.pzarc-sections')),
+              pzarc_redux_margin($prefix . 'sections-margins', array('.pzarc-sections')),
+              pzarc_redux_borders($prefix . 'sections-borders', array('.pzarc-sections'))
+          )
+      );
+      $icons       = array(1 => 'el-icon-align-left', 2 => 'el-icon-th', 3 => 'el-icon-th-list');
 
-    $sections[ ] = array(
-        'title'      => 'Section 1',
-        'show_title' => false,
-        'icon_class' => 'icon-large',
-        'icon'       => $icons[ 1 ],
-        'desc'       => 'Class: .pzarc-section_1',
-        'fields'     => array(
-            pzarc_redux_bg($prefix . 'pzarc-section_1-background', array('.pzarc-section_1')),
-            pzarc_redux_padding($prefix . 'pzarc-section_1-padding', array('.pzarc-section_1')),
-            pzarc_redux_margin($prefix . 'pzarc-section_1-margins', array('.pzarc-section_1')),
-            pzarc_redux_borders($prefix . 'pzarc-section_1-borders', array('.pzarc-section_1')),
-        ),
-    );
-    $sections[ ] = array(
-        'title'      => 'Section 2',
-        'show_title' => false,
-        'icon_class' => 'icon-large',
-        'icon'       => $icons[ 2 ],
-        'desc'       => 'Class: .pzarc-section_2',
-        'fields'     => array(
-            pzarc_redux_bg($prefix . 'pzarc-section_2-background', array('.pzarc-section_2')),
-            pzarc_redux_padding($prefix . 'pzarc-section_2-padding', array('.pzarc-section_2')),
-            pzarc_redux_margin($prefix . 'pzarc-section_2-margins', array('.pzarc-section_2')),
-            pzarc_redux_borders($prefix . 'pzarc-section_2-borders', array('.pzarc-section_2')),
-        ),
-    );
-    $sections[ ] = array(
-        'title'      => 'Section 3',
-        'show_title' => false,
-        'icon_class' => 'icon-large',
-        'icon'       => $icons[ 3 ],
-        'desc'       => 'Class: .pzarc-section_3',
-        'fields'     => array(
-            pzarc_redux_bg($prefix . 'pzarc-section_3-background', array('.pzarc-section_3')),
-            pzarc_redux_padding($prefix . 'pzarc-section_3-padding', array('.pzarc-section_3')),
-            pzarc_redux_margin($prefix . 'pzarc-section_3-margins', array('.pzarc-section_3')),
-            pzarc_redux_borders($prefix . 'pzarc-section_3-borders', array('.pzarc-section_3')),
-        ),
-    );
+      $sections[ ] = array(
+          'title'      => 'Section 1',
+          'show_title' => false,
+          'icon_class' => 'icon-large',
+          'icon'       => $icons[ 1 ],
+          'desc'       => 'Class: .pzarc-section_1',
+          'fields'     => array(
+              pzarc_redux_bg($prefix . 'pzarc-section_1-background', array('.pzarc-section_1')),
+              pzarc_redux_padding($prefix . 'pzarc-section_1-padding', array('.pzarc-section_1')),
+              pzarc_redux_margin($prefix . 'pzarc-section_1-margins', array('.pzarc-section_1')),
+              pzarc_redux_borders($prefix . 'pzarc-section_1-borders', array('.pzarc-section_1')),
+          ),
+      );
+      $sections[ ] = array(
+          'title'      => 'Section 2',
+          'show_title' => false,
+          'icon_class' => 'icon-large',
+          'icon'       => $icons[ 2 ],
+          'desc'       => 'Class: .pzarc-section_2',
+          'fields'     => array(
+              pzarc_redux_bg($prefix . 'pzarc-section_2-background', array('.pzarc-section_2')),
+              pzarc_redux_padding($prefix . 'pzarc-section_2-padding', array('.pzarc-section_2')),
+              pzarc_redux_margin($prefix . 'pzarc-section_2-margins', array('.pzarc-section_2')),
+              pzarc_redux_borders($prefix . 'pzarc-section_2-borders', array('.pzarc-section_2')),
+          ),
+      );
+      $sections[ ] = array(
+          'title'      => 'Section 3',
+          'show_title' => false,
+          'icon_class' => 'icon-large',
+          'icon'       => $icons[ 3 ],
+          'desc'       => 'Class: .pzarc-section_3',
+          'fields'     => array(
+              pzarc_redux_bg($prefix . 'pzarc-section_3-background', array('.pzarc-section_3')),
+              pzarc_redux_padding($prefix . 'pzarc-section_3-padding', array('.pzarc-section_3')),
+              pzarc_redux_margin($prefix . 'pzarc-section_3-margins', array('.pzarc-section_3')),
+              pzarc_redux_borders($prefix . 'pzarc-section_3-borders', array('.pzarc-section_3')),
+          ),
+      );
 
-    $sections[ ] = array(
-        'title'      => 'Navigator',
-        'show_title' => false,
-        'icon_class' => 'icon-large',
-        'icon'       => 'el-icon-play-circle',
-        'fields'     => array(
-            array(
-                'title' => __('Navigator container', 'pzarchitect'),
-                'id'    => $prefix . 'blueprint-nav-container-css-heading',
-                'type'  => 'section',
-                'subtitle'       => 'Class: .pzarc-navigator',
+      $sections[ ] = array(
+          'title'      => 'Navigator',
+          'show_title' => false,
+          'icon_class' => 'icon-large',
+          'icon'       => 'el-icon-play-circle',
+          'fields'     => array(
+              array(
+                  'title'    => __('Navigator container', 'pzarchitect'),
+                  'id'       => $prefix . 'blueprint-nav-container-css-heading',
+                  'type'     => 'section',
+                  'subtitle' => 'Class: .pzarc-navigator',
 
-            ),
-            pzarc_redux_bg($prefix . 'pzarc-navigator-background', array('.pzarc-navigator')),
-            pzarc_redux_padding($prefix . 'pzarc-navigator-padding', array('.pzarc-navigator')),
-            pzarc_redux_margin($prefix . 'pzarc-navigator-margins', array('.pzarc-navigator')),
-            pzarc_redux_borders($prefix . 'pzarc-navigator-borders', array('.pzarc-navigator')),
-            array(
-                'title' => __('Navigator items', 'pzarchitect'),
-                'id'    => $prefix . 'blueprint-nav-items-css-heading',
-                'type'  => 'section',
-                'subtitle'       => 'Class: .pzarc-navigator .swiper-pagination-switch span',
+              ),
+              pzarc_redux_bg($prefix . 'pzarc-navigator-background', array('.pzarc-navigator')),
+              pzarc_redux_padding($prefix . 'pzarc-navigator-padding', array('.pzarc-navigator')),
+              pzarc_redux_margin($prefix . 'pzarc-navigator-margins', array('.pzarc-navigator')),
+              pzarc_redux_borders($prefix . 'pzarc-navigator-borders', array('.pzarc-navigator')),
+              array(
+                  'title'    => __('Navigator items', 'pzarchitect'),
+                  'id'       => $prefix . 'blueprint-nav-items-css-heading',
+                  'type'     => 'section',
+                  'subtitle' => 'Class: .pzarc-navigator .swiper-pagination-switch span',
 
-            ),
-            pzarc_redux_font($prefix . 'pzarc-navigator-items-font', array('.pzarc-navigator .swiper-pagination-switch span')),
-            pzarc_redux_bg($prefix . 'pzarc-navigator-items-background', array('.pzarc-navigator .swiper-pagination-switch span')),
-            pzarc_redux_padding($prefix . 'pzarc-navigator-items-padding', array('.pzarc-navigator .swiper-pagination-switch span')),
-            pzarc_redux_margin($prefix . 'pzarc-navigator-items-margins', array('.pzarc-navigator .swiper-pagination-switch span')),
-            pzarc_redux_borders($prefix . 'pzarc-navigator-items-borders', array('.pzarc-navigator .swiper-pagination-switch span')),
-        ),
-    );
+              ),
+              pzarc_redux_font($prefix . 'pzarc-navigator-items-font', array('.pzarc-navigator .swiper-pagination-switch span')),
+              pzarc_redux_bg($prefix . 'pzarc-navigator-items-background', array('.pzarc-navigator .swiper-pagination-switch span')),
+              pzarc_redux_padding($prefix . 'pzarc-navigator-items-padding', array('.pzarc-navigator .swiper-pagination-switch span')),
+              pzarc_redux_margin($prefix . 'pzarc-navigator-items-margins', array('.pzarc-navigator .swiper-pagination-switch span')),
+              pzarc_redux_borders($prefix . 'pzarc-navigator-items-borders', array('.pzarc-navigator .swiper-pagination-switch span')),
+          ),
+      );
 
-    $sections[ ]  = array(
-        'id'         => 'blueprint-styling-help',
-        'title'      => 'Help',
-        'icon_class' => 'icon-large',
-        'icon'       => 'el-icon-question-sign',
-        'fields'     => array(
+      $sections[ ]  = array(
+          'id'         => 'blueprint-styling-help',
+          'title'      => 'Help',
+          'icon_class' => 'icon-large',
+          'icon'       => 'el-icon-question-sign',
+          'fields'     => array(
 
-            array(
-                'title' => __('Blueprint styling', 'pzarchitect'),
-                'id'    => $prefix . 'help',
-                'type'  => 'info',
-                //  'class' => 'plain',
-                'desc'  => '<h3>Adding underlines to hover links</h3>
+              array(
+                  'title' => __('Blueprint styling', 'pzarchitect'),
+                  'id'    => $prefix . 'help',
+                  'type'  => 'info',
+                  //  'class' => 'plain',
+                  'desc'  => '<h3>Adding underlines to hover links</h3>
                             <p>In the Custom CSS field, enter the following CSS</p>
                             <p>.pzarc-blueprint_SHORTNAME a:hover {text-decoration:underline;}</p>
                             <p>SHORTNAME = the short name you entered for this blueprint</p>
@@ -1664,24 +1676,26 @@ You can use them however you like though.</p>
                             <p>If you want the pager to appear outside of the panels instead of over them, set a deep left and right padding on the blueprint.</p>
                             '
 
-            )
-        )
-    );
-    $metaboxes[ ] = array(
-        'id'         => 'blueprint-stylings',
-        'title'      => 'Blueprint Styling',
-        'post_types' => array('arc-blueprints'),
-        'sections'   => $sections,
-        'position'   => 'normal',
-        'priority'   => 'low',
-        'sidebar'    => true
+              )
+          )
+      );
+      $metaboxes[ ] = array(
+          'id'         => 'blueprint-stylings',
+          'title'      => 'Blueprint Styling',
+          'post_types' => array('arc-blueprints'),
+          'sections'   => $sections,
+          'position'   => 'normal',
+          'priority'   => 'low',
+          'sidebar'    => true
 
-    );
+      );
 
-    //pzdebug($metaboxes);
+      //pzdebug($metaboxes);
 
 
+    }
+
+    // Still need to return this, even if we did nothing.
     return $metaboxes;
   }
-}
 
