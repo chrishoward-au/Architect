@@ -230,6 +230,7 @@
 
 
         // ACTUAL DECLARATION OF SECTIONS
+        $current_theme = wp_get_theme();
         $this->sections[ ] = array(
             'title'      => 'General ',
             'show_title' => true,
@@ -242,6 +243,17 @@
                     'subtitle' => 'Turn this off if you want to manage styling from your own CSS stylesheets.',
                     'default'  => true
                 ),
+                ('headway' == $current_theme->stylesheet?array(
+                    'title'    => __('Add Headway Content Block class', 'pzarchitect'),
+                    'id'       => 'architect_hw-content-class',
+                    'type'     => 'switch',
+                    'on'=>'Yes',
+                    'off'=>'No',
+                    'default'=>true,
+                    'subtitle' => __('This will add the class <strong>block-type-content</strong> to the panels, which enables them to inherit the stylings for the Content block.','pzarchitect')
+
+                ):null),
+
                 array(
                     'title'    => __('Enable admin background image', 'pzarchitect'),
                     'id'       => 'architect_enable_bgimage',

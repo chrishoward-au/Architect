@@ -26,7 +26,7 @@
     static function panel_def()
     {
       //TODO: Need to get a way to always wrap components in pzarc-compenents div.Problem is...dev has to create definition correctly.
-      $panel_def[ 'components-open' ]  = '<article id="post-{{postid}}" class="block-type-content post-{{postid}} post type-{{posttype}} status-{{poststatus}} format-{{postformat}} hentry {{categories}} {{tags}} {{pzclasses}}">';
+      $panel_def[ 'components-open' ]  = '<article id="post-{{postid}}" class="{{mimic-block-type}} post-{{postid}} post type-{{posttype}} status-{{poststatus}} format-{{postformat}} hentry {{categories}} {{tags}} {{pzclasses}}">';
       $panel_def[ 'components-close' ] = '</article>';
       $panel_def[ 'postlink' ]         = '<a href="{{permalink}}" title="{{title}}">';
       $panel_def[ 'header' ]           = '<header class="entry-header">{{headerinnards}}</header>';
@@ -64,26 +64,60 @@
 
     /**
      * @param $section
+     * @param $arc_post
      * @return mixed
      */
-    static function set_data(&$section)
+    static function set_data(&$section, &$arc_post)
     {
+
+
+    /* STANDARD POST EXAMPLE
+      'ID'                    => int 183
+      'post_author'           => string '1' (length=1)
+      'post_date'             => string '2014-06-06 11:03:12' (length=19)
+      'post_date_gmt'         => string '2014-06-06 11:03:12' (length=19)
+      'post_content'          => string '<h2>Double Gang Back Box Product Description:</h2>Nenco double gang back box provides an all in one outlet compatible with all UK face plates. Available in single and double gang back boxes.' (length=194)
+      'post_title'            => string 'Double Gang Back Box' (length=20)
+      'post_excerpt'          => string '<a href="http://nenco-networks.co.uk/contact-us"><img class="aligncenter wp-image-116 size-full" src="http://localhost/wpothertest/wp-content/uploads/product-contact.jpg" alt="product-contact" width="460" height="45" /></a>' (length=223)
+      'post_status'           => string 'publish' (length=7)
+      'comment_status'        => string 'closed' (length=6)
+      'ping_status'           => string 'closed' (length=6)
+      'post_password'         => string '' (length=0)
+      'post_name'             => string 'double-gang-back-box' (length=20)
+      'to_ping'               => string '' (length=0)
+      'pinged'                => string '' (length=0)
+      'post_modified'         => string '2014-06-23 15:24:43' (length=19)
+      'post_modified_gmt'     => string '2014-06-23 15:24:43' (length=19)
+      'post_content_filtered' => string '' (length=0)
+      'post_parent'           => int 0
+      'guid'                  => string 'http://localhost/wpothertest/products-page/uncategorized/' (length=57)
+      'menu_order'            => int 0
+      'post_type'             => string 'wpsc-product' (length=12)
+      'post_mime_type'        => string '' (length=0)
+      'comment_count'         => string '0' (length=1)
+      'filter'                => string 'raw' (length=3)
+    */
       $toshow   = json_decode($section[ '_panels_design_preview' ], true);
       $data     = array();
       $postmeta = get_post_meta(get_the_ID());
-      // TODO: Will need to refine these to be based on content type
+
+
+      /** TITLE */
       if ($toshow[ 'title' ][ 'show' ]) {
         $data[ 'title' ] = get_the_title();
       }
 
+      /** CONTENT */
       if ($toshow[ 'content' ][ 'show' ]) {
         $data[ 'content' ] = apply_filters('the_content', get_the_content());
       }
 
+      /** EXCERPT  */
       if ($toshow[ 'excerpt' ][ 'show' ]) {
         $data[ 'excerpt' ] = apply_filters('the_excerpt', get_the_excerpt());
       }
 
+      /** FEATURED IMAGE */
       $thumb_id    = get_post_thumbnail_id();
       $focal_point = get_post_meta($thumb_id, 'pzgp_focal_point', true);
       $focal_point = (empty($focal_point) ? array(50, 50) : explode(',', $focal_point));
@@ -110,6 +144,8 @@
         $image                        = get_post($thumb_id);
         $data[ 'image' ][ 'caption' ] = $image->post_excerpt;
       }
+
+      /** META */
       if ($toshow[ 'meta1' ][ 'show' ] ||
           $toshow[ 'meta2' ][ 'show' ] ||
           $toshow[ 'meta3' ][ 'show' ]
@@ -133,6 +169,10 @@
       }
 //var_dump($postmeta);
       //     var_dump($section);
+
+      /** END OF STANDARD CONTENT DATA */
+
+      /** CUSTOM FIELDS **/
       $cfcount = $section[ '_panels_design_custom-fields-count' ];
       for ($i = 1; $i <= $cfcount; $i++) {
         // var_dump($section);
@@ -145,6 +185,8 @@
       }
 
       // NEVER include HTML in these, only should get WP values.
+
+      /** BACKGROUND IMAGE */
       $showbgimage           = (has_post_thumbnail()
               && $section[ '_panels_design_background-position' ] != 'none'
               && ($section[ '_panels_design_components-position' ] == 'top' || $section[ '_panels_design_components-position' ] == 'left'))
@@ -177,6 +219,11 @@
                                                                         //                                                                            'focalpt'   => true
                                                                     )
       )); //WP seems to smartly figure out which of its saved images to use! Now we jsut gotta get it t work with focal point
+
+      /** MISCELLANARY */
+
+      global $_architect_options;
+      $data['inherit-hw-block-type'] = (!empty($_architect_options[ 'architect_hw-content-class' ])?'block-type-content ':'');
 
 //        if (strpos($data[ 'image' ][ 'image' ], '<img') === 0) {
 //          preg_match_all("/width=\"(\\d)*\"/uiUm", $data[ 'image' ][ 'image' ], $widthm);
@@ -225,6 +272,8 @@
 //      }
 
       //   $panel_def[ $component ] = str_replace('{{using-bg-image}}', (!empty($data[ 'bgimage' ]) ? 'has-bgimage ' : 'no-bgimage '), $panel_def[ $component ]);
+
+      $panel_def[ $component ]      = str_replace('{{mimic-block-type}}', $data['inherit-hw-block-type'], $panel_def[ $component ]);
 
       return parent::process_generics($data, $panel_def[ $component ], $content_type, $section);
     }

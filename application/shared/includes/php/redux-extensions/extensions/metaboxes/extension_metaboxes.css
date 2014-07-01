@@ -239,6 +239,15 @@
 .redux-metabox .redux-no-sections .redux-main {
   padding: 6px 15px 15px 15px !important;
 }
+.redux-metabox .redux-no-sections .redux-main .default_br {
+  display: none;
+}
+.redux-metabox .redux-no-sections .redux-main .redux-field-container {
+  padding: 10px 0 20px !important;
+}
+.redux-metabox .redux-no-sections .redux-main .redux_field_th {
+  padding-top: 5px !important;
+}
 .redux-metabox .redux-no-sections.redux-box-side .redux-main {
   padding: 6px 8px 8px 8px !important;
 }

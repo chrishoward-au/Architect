@@ -1,3 +1,5 @@
+
+
 /**
  * Redux Metaboxes
  * Dependencies      : jquery
@@ -5,7 +7,8 @@
  * Date              : 19 Feb. 2014
  */
 
-/* global reduxMetaboxes */
+/* global reduxMetaboxes, redux */
+
 jQuery(function($){
 
     "use strict";
@@ -23,7 +26,7 @@ jQuery(function($){
             $(this).parents('.postbox:first').find('h3.hndle').attr('class', 'redux-hndle');
             $(this).parents('.postbox:first').addClass('redux-metabox');
             $(this).parents('.postbox:first').addClass( 'redux-' + redux.args.opt_name );
-            if ( redux.args.container_class != "" ) {
+            if ( redux.args.container_class !== "" ) {
                 $(this).parents('.postbox:first').addClass( redux.args.class );
             }
         });
@@ -33,6 +36,8 @@ jQuery(function($){
         $('input[name="post_format"]:radio').change(function() {
             $.reduxMetaBoxes.checkBoxVisibility('post_format');
         });
+
+        $.redux.initFields();
     };
     $('#publishing-action .button').click(function() {
         window.onbeforeunload = null;
@@ -62,6 +67,7 @@ jQuery(function($){
                                 $('#'+box).fadeOut('50');
                             } else {
                                 $('#'+box).fadeIn('300');
+                                $.redux.initFields();
                             }
                         }
                     }

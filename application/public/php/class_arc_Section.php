@@ -76,10 +76,10 @@
     /**
      * @param $panel_def
      */
-    public function render_panel($panel_def, $panel_number, $class,$panel_class)
+    public function render_panel($panel_def, $panel_number, $class,$panel_class,&$arc_query)
     {
 
-      $data = $panel_class->set_data($this->section[ 'section-panel-settings' ]);
+      $data = $panel_class->set_data($this->section[ 'section-panel-settings' ],$arc_query->post);
 
       $sequence = json_decode($this->section[ 'section-panel-settings' ][ '_panels_design_preview' ], true);
 

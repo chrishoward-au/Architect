@@ -1203,7 +1203,6 @@
           'icon_class' => 'icon-large',
           'icon'       => 'el-icon-brush',
           'fields'     => pzarc_fields(
-
               array(
                   'title'    => __('Panels', 'pzarchitect'),
                   'id'       => $prefix . 'panels-section',

@@ -104,7 +104,7 @@
       $bpnav_type  = $this->build->blueprint[ '_blueprints_navigation' ];
       $bptranstype = $this->build->blueprint[ '_blueprints_transitions-type' ];
 
-      $this->arc      = array();
+      $this->arc = array();
 
       self::set_generic_criteria();
 
@@ -163,7 +163,7 @@
 
       }
 
-      echo '<div class="pzarchitect pzarc-blueprint pzarc-blueprint_' . $this->build->blueprint[ '_blueprints_short-name' ] . ' nav-' . $bpnav_type . '">';
+      echo '<div class="pzarchitect pzarc-blueprint pzarc-blueprint_' . $this->build->blueprint[ '_blueprints_short-name' ] . ' nav-' . $bpnav_type . ' icomoon">';
 
       self::display_page_title($this->build->blueprint[ '_blueprints_page-title' ]);
 
@@ -252,10 +252,13 @@
 
     }
 
-    private function set_generic_criteria(){
+    private function set_generic_criteria()
+    {
       $this->criteria = array();
 
       /** Setup some generic criteria */
+
+      // Technically we don't need to do this, but it just makes things neater and easier to read.
 
       // Set posts to show
       $limited = ((int)$this->build->blueprint[ '_blueprints_section-1-enable' ] * (int)$this->build->blueprint[ '_blueprints_section-1-panels-limited' ])
@@ -279,11 +282,17 @@
       $this->criteria[ 'ignore_sticky_posts' ] = !$this->build->blueprint[ '_blueprints_sticky' ];
 
       // Offset
-      $this->criteria[ 'offset' ]              = $this->build->blueprint[ '_blueprints_skip' ];
+      $this->criteria[ 'offset' ] = $this->build->blueprint[ '_blueprints_skip' ];
 
       // Order
-      $this->criteria['orderby'] = $this->build->blueprint[ '_blueprints_orderby'];
-      $this->criteria['order'] = $this->build->blueprint[ '_blueprints_orderdir'];
+      $this->criteria[ 'orderby' ] = $this->build->blueprint[ '_blueprints_orderby' ];
+      $this->criteria[ 'order' ]   = $this->build->blueprint[ '_blueprints_orderdir' ];
+
+      // Categories
+      $this->criteria['category__in']=$this->build->blueprint['_content_general_inc-cats'];
+
+      // Tags
+      $this->criteria['tag__in']=$this->build->blueprint['_content_general_inc-tags'];
 
     }
 
@@ -352,8 +361,8 @@
         $skip_thumbs          = $this->build->blueprint[ '_blueprints_navigator-skip-thumbs' ];
         $swiper[ 'dataopts' ] = 'data-opts="{#tduration#:' . $duration . ',#tinterval#:' . $interval . ',#tskip#:' . $skip_thumbs . '}"';
 
-        $return_val .= '<a class="pager arrow-left icon-btn-style" href="#"></a>';
-        $return_val .= '<a class="pager arrow-right icon-btn-style" href="#"></a>';
+        $return_val .= '<a class="pager arrow-left icon-arrow-left4" href="#"></a>';
+        $return_val .= '<a class="pager arrow-right icon-uniE60D" href="#"></a>';
 //          //TODO: Should the bp name be in the class or ID?
         $return_val .= '<div class="pzarc-sections_' . $bpshortname . ' pzarc-is_' . $caller . $swiper[ 'class' ] . '"' . $swiper[ 'dataid' ] . $swiper[ 'datatype' ] . $swiper[ 'dataopts' ] . $swiper[ 'datatrans' ] . '>';
       } else {
@@ -572,14 +581,18 @@
 
       //Lot of work!
       //     pzdebug($this->criteria);
-      // TODO: We're going to have to make this pluggable too! :P
+      // TODO: We're going to have to make this pluggable too! :P Probably with a loop?
+
+      /** General content filters */
+      $query_options[ 'category__in' ] = (!empty($this->criteria[ 'category__in' ]) ? $this->criteria[ 'category__in' ] : null);
+      $query_options[ 'tag__in' ] = (!empty($this->criteria[ 'tag__in' ]) ? $this->criteria[ 'tag__in' ] : null);
+
+
+      /** Specific content filters */
       switch ($source) {
 
         case 'post':
-//          var_dump($this->criteria[ '_content_posts_inc-cats']);
-          $query_options[ 'post_type' ]    = 'post';
-          $query_options[ 'category__in' ] = (!empty($this->criteria[ '_content_posts_inc-cats' ])
-              ? $this->criteria[ '_content_posts_inc-cats' ] : null);
+          $query_options[ 'post_type' ] = 'post';
           break;
 
         // TODO: could we build this into the panel def or somewhere else so more closely tied to the content type stuff
@@ -721,7 +734,7 @@
             break;
 
         }
-        $section[ $section_no ]->render_panel($panel_def, $i, $class, $panel_class);
+        $section[ $section_no ]->render_panel($panel_def, $i, $class, $panel_class,$this->arc_query);
 
         if ($i++ >= $this->build->blueprint[ '_blueprints_section-' . ($section_no - 1) . '-panels-per-view' ] && !empty($this->build->blueprint[ '_blueprints_section-' . ($section_no - 1) . '-panels-limited' ])) {
           break;

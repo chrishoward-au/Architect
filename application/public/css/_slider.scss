@@ -9,8 +9,8 @@
   // width:100%; Prob better if user sets width and margins
   &.outside {
     &.top {
-      position:relative;
-      z-index:1;
+      position: relative;
+      z-index: 1;
       top: 0px;
       bottom: initial;
     }
@@ -214,49 +214,23 @@ Pagination Styles
     position: absolute;
     top: 50%;
     margin-top: -20px;
-    width: 40px;
-    height: 40px;
-    border-radius: 30px;
-    padding: 0;
+    border-radius: 3px;
+    padding: 5px;
     z-index: 2;
     display: none;
-    font-family: Dashicons;
-    font-size: 40px;
+    font-family: icomoon;
+    font-size: 32px;
     color: #fff;
     text-decoration: none;
     text-align: center;
     background: rgba(0, 0, 0, 0.3);
 
-    // TODO: Replace this with multiple icon font arrows.
+    // Uses icons defined in im-style.css.
     &.arrow-left {
       left: 5px;
-      &:before {
-        content: "\f341";
-        vertical-align: text-bottom;
-        position: relative;
-        left: -2px;
-      }
-      &.icon-btn-style:before {
-        content: "\f141";
-        vertical-align: text-bottom;
-        position: relative;
-        left: -2px;
-      }
     }
     &.arrow-right {
       right: 5px;
-      &:before {
-        content: "\f345";
-        vertical-align: text-bottom;
-        position: relative;
-        right: -2px;
-      }
-      &.icon-btn-style:before {
-        content: "\f139";
-        vertical-align: text-bottom;
-        position: relative;
-        right: -2px;
-      }
     }
   }
 
@@ -266,7 +240,6 @@ Pagination Styles
       display: block;
     }
   }
-
 
 }
 
@@ -287,48 +260,49 @@ Pagination Styles
     padding: 0;
     z-index: 2;
     text-decoration: none;
-    display:none;
-    background:none;
+    display: none;
+    background: none;
     &:hover {
       display: block;
     }
     span {
       vertical-align: middle;
-      margin:0;
-      padding:0;
-      position:relative;
+      margin: 0;
+      padding: 0;
+      position: relative;
       width: 40px;
       height: 40px;
       border-radius: 30px;
       font-size: 30px;
-      display:block;
+      display: block;
       color: #fff;
       background: rgba(0, 0, 0, 0.3);
     }
     &.skip-left {
       left: 5px;
       span {
-        left:-4px;
+        left: -4px;
       }
     }
     &.skip-right {
       right: 5px;
       span {
-        right:-4px;
+        right: -4px;
       }
     }
   }
 }
 
 .pzarc-navigator.inside {
-  width:100%;
+  width: 100%;
   .swiper-wrapper {
-   // TODO: Find the right way to do this
-   // width:auto!important;
-    width:100%!important;
+    // TODO: Find the right way to do this
+    // width:auto!important;
+    width: 100% !important;
   }
 
 }
+
 .swiper-nav .swiper-wrapper {
   margin: 0 auto;
 }
@@ -343,6 +317,7 @@ Pagination Styles
 .swiper-nav .swiper-slide {
   max-width: 100px;
 }
+
 .swiper-nav.thumbs .swiper-slide {
   max-width: initial;
 }

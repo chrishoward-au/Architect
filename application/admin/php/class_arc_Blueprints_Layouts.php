@@ -320,6 +320,11 @@
   // TODO: ADD FILTER OPTION FOR RELATED POSTS
 
   add_action("redux/metaboxes/{$redux_opt_name}/boxes", 'pzarc_blueprint_layout_general');
+  /**
+   * pzarc_blueprint_layout_general
+   * @param array $meta_boxes
+   * @return array
+   */
   function pzarc_blueprint_layout_general($meta_boxes = array())
   {
     $prefix = '_blueprints_';
@@ -433,6 +438,11 @@
   }
 
   add_action("redux/metaboxes/{$redux_opt_name}/boxes", 'pzarc_blueprint_content_general');
+  /**
+   * pzarc_blueprint_content_general
+   * @param array $meta_boxes
+   * @return array
+   */
   function pzarc_blueprint_content_general($meta_boxes = array())
   {
     $prefix = '_blueprints_';
@@ -471,8 +481,8 @@
                 'default' => 'date',
                 'cols'    => 6,
                 'options' => array(
-                    'date'  => 'Date',
-                    'title' => 'Title',
+                    'date'       => 'Date',
+                    'title'      => 'Title',
                     'menu_order' => 'Page order (if set)',
                 ),
             ),
@@ -665,21 +675,21 @@
                   //      'hint'  => array('content' => __('Set the minimum width for panels in this section. This helps with responsive layout', 'pzarchitect'))
               ),
               array(
-                  'title'   => __('Panels vertical margin', 'pzarchitect'),
+                  'title'   => __('Panels bottom margin', 'pzarchitect'),
                   'id'      => $prefix . 'section-' . $i . '-panels-vert-margin',
                   'type'    => 'dimensions',
-                  'height'  => false,
+                  'width'  => false,
                   'units'   => false,
-                  'default' => array('width' => '1'),
+                  'default' => array('height' => '1'),
                   //    'hint'  => array('content' => __('Set the vertical gutter width as a percentage of the section width. The gutter is the gap between adjoining elements', 'pzarchitect'))
               ),
               array(
-                  'title'   => __('Panels horizontal margin', 'pzarchitect'),
+                  'title'   => __('Panels right margin', 'pzarchitect'),
                   'id'      => $prefix . 'section-' . $i . '-panels-horiz-margin',
                   'type'    => 'dimensions',
-                  'width'   => false,
+                  'height'   => false,
                   'units'   => false,
-                  'default' => array('height' => '1'),
+                  'default' => array('width' => '1'),
                   //      'hint'  => array('content' => __('Set the horizontal gutter width as a percentage of the section width. The gutter is the gap between adjoining elements', 'pzarchitect'))
               ),
 
@@ -1166,33 +1176,13 @@
 //        )
 //    );
 //
-    $prefix      = '_content_defaults_';
+    /** GENERAL  */
+    $prefix      = '_content_general_';
     $sections[ ] = array(
-        'title'      => 'Defaults',
+        'title'      => 'General Filters',
         'icon_class' => 'icon-large',
-        'icon'       => 'el-icon-check',
+        'icon'       => 'el-icon-filter',
         'fields'     => array(
-            array(
-                'title'    => __('Defaults', 'pzarchitect'),
-                'id'       => $prefix . 'defaults-heading',
-                'type'     => 'info',
-                'style'    => 'success',
-                'subtitle' => 'When Default is selected, Architect will use whatever the default content for the page. e.g. the home page, category archives, search results etc'
-            )
-        )
-    );
-    $prefix      = '_content_posts_';
-    $sections[ ] = array(
-        'title'      => 'Posts',
-        'icon_class' => 'icon-large',
-        'icon'       => 'el-icon-list',
-        'fields'     => array(
-            array(
-                'title' => __('Posts', 'pzarchitect'),
-                'id'    => $prefix . 'section-start-posts',
-                'type'  => 'section',
-                'class' => ' heading',
-            ),
             array(
                 'title'  => __('Categories', 'pzarchitect'),
                 'id'     => $prefix . 'categories-heading-start',
@@ -1243,7 +1233,7 @@
             ),
             array(
                 'title'  => __('Tags', 'pzarchitect'),
-                'id'     => $prefix . 'tags-section-end',
+                'id'     => $prefix . 'tags-section-start',
                 'type'   => 'section',
                 'class'  => ' heading',
                 'indent' => true
@@ -1344,7 +1334,42 @@
             ),
         )
     );
-    //Pages
+
+    /** DEFAULTS */
+    $prefix      = '_content_defaults_';
+    $sections[ ] = array(
+        'title'      => 'Default content',
+        'icon_class' => 'icon-large',
+        'icon'       => 'el-icon-check',
+        'fields'     => array(
+            array(
+                'title'    => __('Default Content', 'pzarchitect'),
+                'id'       => $prefix . 'defaults-heading',
+                'type'     => 'info',
+                'style'    => 'success',
+                'subtitle' => 'When Default is selected, Architect will use whatever the default content for the page. e.g. the home page, category archives, search results etc'
+            )
+        )
+    );
+    /** POSTS */
+    $prefix      = '_content_posts_';
+    $sections[ ] = array(
+        'title'      => 'Posts',
+        'icon_class' => 'icon-large',
+        'icon'       => 'el-icon-list',
+        'fields'     => array(
+            array(
+                'title'   => __('Specific posts', 'pzarchitect'),
+                'id'      => $prefix . 'specific-posts',
+                'type'    => 'select',
+                'select2' => array('allowClear' => true),
+                'data'    => 'posts',
+                'multi'   => true
+            ),
+        )
+    );
+
+    /**  PAGES */
     $prefix      = '_content_pages_';
     $sections[ ] = array(
         'title'      => 'Pages',
@@ -1352,26 +1377,24 @@
         'icon'       => 'el-icon-align-justify',
         'fields'     => array(
             array(
-                'title' => __('Pages', 'pzarchitect'),
-                'id'    => $prefix . 'pages-heading',
-                'type'  => 'section',
-                'class' => ' heading',
-            )
+                'title'   => __('Specific pages', 'pzarchitect'),
+                'id'      => $prefix . 'specific-pages',
+                'type'    => 'select',
+                'select2' => array('allowClear' => true),
+                'data'    => 'pages',
+                'multi'   => true
+            ),
         )
     );
-    // Snippets
+
+
+    /** SNIPPETS */
     $prefix      = '_content_snippets_';
     $sections[ ] = array(
         'title'      => 'Snippets',
         'icon_class' => 'icon-large',
         'icon'       => 'el-icon-file',
         'fields'     => array(
-            array(
-                'title' => __('Snippets', 'pzarchitect'),
-                'id'    => $prefix . 'Snippets-heading',
-                'type'  => 'section',
-                'class' => ' heading',
-            )
         )
     );
 
@@ -1444,7 +1467,7 @@
                 'data'     => 'callback',
                 'args'     => array('pzarc_get_ng_galleries'),
                 'subtitle' => (class_exists('P_Photocrati_NextGen') ? 'Enter NGG gallery name to use'
-                        : 'NextGen is not running on this site'),
+                    : 'NextGen is not running on this site'),
                 'required' => array($prefix . 'gallery-source', 'equals', 'nggallery')
             ),
             array(
@@ -1458,6 +1481,12 @@
     );
 
     // Slides
+    $slides_obj      = get_posts(array('post_type' => 'pzsp-slides'));
+  //var_dump($slides_obj);
+    $slides = array();
+    foreach($slides_obj as $key => $value) {
+      $slides[$value->ID]=$value->post_title;
+    }
     $prefix      = '_content_slides_';
     $sections[ ] = array(
         'title'      => 'Slides',
@@ -1465,11 +1494,13 @@
         'icon'       => 'el-icon-video',
         'fields'     => array(
             array(
-                'title' => __('Slides', 'pzarchitect'),
-                'id'    => $prefix . 'slides-heading',
-                'type'  => 'section',
-                'class' => ' heading',
-            )
+                'title'   => __('Specific pages', 'pzarchitect'),
+                'id'      => $prefix . 'specific-pages',
+                'type'    => 'select',
+                'select2' => array('allowClear' => true),
+                'multi'   => true,
+                'options' => $slides
+            ),
         )
     );
     //Custom post types
@@ -1528,6 +1559,11 @@ You can use them however you like though.</p>
   }
 
   add_action("redux/metaboxes/{$redux_opt_name}/boxes", 'pzarc_blueprint_layout_styling');
+  /**
+   * pzarc_blueprint_layout_styling
+   * @param $metaboxes
+   * @return array
+   */
   function pzarc_blueprint_layout_styling($metaboxes)
   {
     global $_architect_options;

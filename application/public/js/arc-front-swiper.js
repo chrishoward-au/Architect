@@ -187,9 +187,10 @@ jQuery( document ).ready( function ()
                   } );
 
             // This sets up the tab method of clicking
-            var arcTabs = jQuery( ".pzarc-navigator-" + arcSwiperID + " span" );
+            var arcTabs = jQuery( ".pzarc-navigator-" + arcSwiperID + " > span" );
+            console.log(arcTabs);
 
-            arcTabs.on( 'touchstart', function ( e )
+            arcTabs.on( 'touchstart mousedown', function ( e )
             {
                 if ( jQuery( this ).hasClass( 'active' ) )
                 {
@@ -199,24 +200,30 @@ jQuery( document ).ready( function ()
                 else
                 {
                     e.preventDefault();
-                    arcSwiper.swipeTo( jQuery( this ).index() );
+                    arcSwiper.swipeTo( jQuery( this ).index()-1 );
                     return true;
                 }
 
             } );
-            arcTabs.click( function ( e )
-            {
-                if ( jQuery( this ).hasClass( 'active' ) )
-                {
-                    e.preventDefault();
-                    return false;
-                }
-                else
-                {
-                    e.preventDefault();
-                    return true;
-                }
-            } );
+
+            arcTabs.click(function(e){
+                e.preventDefault();
+            });
+
+//            arcTabs.click( function ( e )
+//            {
+//                if ( jQuery( this ).hasClass( 'active' ) )
+//                {
+//                    e.preventDefault();
+//                    return false;
+//                }
+//                else
+//                {
+//                    e.preventDefault();
+//                    arcSwiper.swipeTo( jQuery( this ).index() );
+//                    return true;
+//                }
+//            } );
 
 
             // Note: Rapid clicking doesn't queue the clicks. Some users may not like that

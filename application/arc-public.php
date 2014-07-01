@@ -152,6 +152,11 @@
 
     } else {
 
+      // Need accezs to some options
+if (!isset($GLOBALS['_architect_options'])) {
+        $GLOBALS['_architect_options'] = get_option('_architect_options', array());
+    }
+
       require_once PZARC_PLUGIN_APP_PATH . '/public/php/class_Architect.php';
 //      require_once(PZARC_PLUGIN_APP_PATH . '/shared/includes/php/jo-image-resizer/jo_image_resizer.php');
       require_once(PZARC_PLUGIN_APP_PATH . '/shared/includes/php/BFI-thumb-forked/BFI_Thumb.php');
