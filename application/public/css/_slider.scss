@@ -327,3 +327,23 @@ Pagination Styles
 
 .swiper-nav .swiper-slide:last-child span {
 }
+
+
+ul.slick-dots {
+  left:0;
+}
+
+// TODO: Use this once multiple slides allowed
+x.pzarc-panel {
+  opacity:0.5;
+
+  &.slick-active.slick-center {
+    opacity:1;
+    article {
+      visibility:visible;
+    }
+  }
+  article {
+    visibility: hidden;
+  }
+}

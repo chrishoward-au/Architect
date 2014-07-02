@@ -14,8 +14,11 @@
   add_action('init', 'pzarc_display_init');
   function pzarc_display_init()
   {
-    wp_register_script('js-arc-frontjs', PZARC_PLUGIN_APP_URL . '/public/js/arc-front-swiper.js', array('jquery'));
-    wp_enqueue_script('js-arc-frontjs');
+//    wp_register_script('js-arc-frontjs', PZARC_PLUGIN_APP_URL . '/public/js/arc-front-swiper.js', array('jquery'));
+//    wp_enqueue_script('js-arc-frontjs');
+
+    wp_register_script('js-arc-front-slickjs', PZARC_PLUGIN_APP_URL . '/public/js/arc-front-slick.js', array('jquery'));
+    wp_enqueue_script('js-arc-front-slickjs');
 
 
     // bxSlider
@@ -26,12 +29,18 @@
 //    wp_enqueue_style('css-bxslider');
 
     // Swiper
-    wp_register_script('js-swiperjs', PZARC_PLUGIN_APP_URL . '/public/js/swiper/idangerous.swiper.min.js');
-    wp_register_script('js-swiper-progressjs', PZARC_PLUGIN_APP_URL . '/public/js/swiper/idangerous.swiper.progress.min.js');
-    wp_register_style('css-swiperjs', PZARC_PLUGIN_APP_URL . '/public/js/swiper/idangerous.swiper.css');
-    wp_enqueue_script('js-swiperjs');
-    wp_enqueue_script('js-swiper-progressjs');
-    wp_enqueue_style('css-swiperjs');
+//    wp_register_script('js-swiperjs', PZARC_PLUGIN_APP_URL . '/public/js/swiper/idangerous.swiper.min.js');
+//    wp_register_script('js-swiper-progressjs', PZARC_PLUGIN_APP_URL . '/public/js/swiper/idangerous.swiper.progress.min.js');
+//    wp_register_style('css-swiperjs', PZARC_PLUGIN_APP_URL . '/public/js/swiper/idangerous.swiper.css');
+//    wp_enqueue_script('js-swiperjs');
+//    wp_enqueue_script('js-swiper-progressjs');
+//    wp_enqueue_style('css-swiperjs');
+
+    // Slick
+    wp_register_script('js-slickjs', PZARC_PLUGIN_APP_URL . '/public/js/slick/slick/slick.min.js', array('jquery'), null, true);
+    wp_register_style('css-slickjs', PZARC_PLUGIN_APP_URL . '/public/js/slick/slick/slick.css');
+    wp_enqueue_script('js-slickjs');
+    wp_enqueue_style('css-slickjs');
 
     //icomoon
     wp_register_style('css-icomoon-arrows', PZARC_PLUGIN_APP_URL . '/shared/assets/fonts/icomoon/im-style.css');
@@ -143,7 +152,7 @@
    ******************************/
   function pzarc($blueprint = null, $overrides = null, $caller)
   {
-    $is_shortcode   = ($caller == 'shortcode');
+    $is_shortcode = ($caller == 'shortcode');
 
     if (empty($blueprint)) {
 
@@ -153,9 +162,9 @@
     } else {
 
       // Need accezs to some options
-if (!isset($GLOBALS['_architect_options'])) {
-        $GLOBALS['_architect_options'] = get_option('_architect_options', array());
-    }
+      if (!isset($GLOBALS[ '_architect_options' ])) {
+        $GLOBALS[ '_architect_options' ] = get_option('_architect_options', array());
+      }
 
       require_once PZARC_PLUGIN_APP_PATH . '/public/php/class_Architect.php';
 //      require_once(PZARC_PLUGIN_APP_PATH . '/shared/includes/php/jo-image-resizer/jo_image_resizer.php');
@@ -166,7 +175,6 @@ if (!isset($GLOBALS['_architect_options'])) {
 
 
         $architect->build_blueprint($overrides, $caller);
-
 
 
         /* These lines from ExcerptsPlus */
