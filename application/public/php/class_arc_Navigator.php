@@ -50,7 +50,6 @@
           ' ' . $this->blueprint[ '_blueprints_navigator-align' ] .
           ' ' . $this->blueprint[ '_blueprints_navigator-bullet-shape' ] . '">';
 
-      echo '<div class="swiper-wrapper">';
     }
 
     function render()
@@ -60,9 +59,9 @@
     function __destruct()
     {
       if ('thumbs' === $this->blueprint[ '_blueprints_navigator' ]) {
-        echo '</div></div>';
+        echo '</div><!-- end thumbs nav --></div>><!-- End pzarc-navigator -->';
       } else {
-        echo '</div>';
+        echo '</div><!-- End pzarc-navigator -->';
       }
     }
   }
@@ -134,7 +133,7 @@
         if ($this->blueprint[ '_blueprints_navigator-slider-engine' ] === 'bxslider') {
           echo '<a data-slide-index="' . $i++ . '" style="cursor:pointer;">' . $nav_item . '</a>';
         } else {
-          echo '<span class="swiper-pagination-switch' . $this->sizing . $active . '"></span>';
+          echo '<div class="swiper-pagination-switch' . $this->sizing . $active . '"></div>';
           $i++;
         }
       }

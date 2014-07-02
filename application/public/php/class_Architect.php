@@ -165,74 +165,70 @@
 
       echo '<div class="pzarchitect pzarc-blueprint pzarc-blueprint_' . $this->build->blueprint[ '_blueprints_short-name' ] . ' nav-' . $bpnav_type . ' icomoon">';
 
-      self::display_page_title($this->build->blueprint[ '_blueprints_page-title' ]);
+        self::display_page_title($this->build->blueprint[ '_blueprints_page-title' ]);
 
-      echo self::get_sections_opener($bpshortname, $bpnav_type, $caller, $bptranstype);
+        echo self::get_sections_opener($bpshortname, $bpnav_type, $caller, $bptranstype);
 
-      do_action('arcNavBeforeSection-{$bpshortname}');
-
-
-      // Display pagination above
-      if (isset($this->arc[ 'pagination' ])) {
-
-        do_action('arcBeforePaginationAbove');
-
-        $this->arc[ 'pagination' ]->render($this->arc_query, 'nav-above');
-
-        do_action('arcAfterPaginationAbove');
-
-      }
-
-      // Loops
-      $nav_items = self::loop(1);
-
-      if ($do_section_2) {
-
-        $notused = self::loop(2);
-
-      }
-
-      if ($do_section_3) {
-
-        $notused = self::loop(3);
-
-      }
-
-      // End loops
-      echo '</div> <!-- end blueprint sections -->';
-
-      //TODO: Is it possible toshow the nav based on an action?
-      do_action('arcNavAfterSections-{$bpshortname}');
-
-      // NAVIGATION
-//      if ($this->build->blueprint[ '_blueprints_navigation' ] === 'navigator' && $this->build->blueprint[ '_blueprints_navigator-location' ] === 'outside') {
-      if ($bpnav_type === 'navigator') {
-
-        $class                    = 'arc_Navigator_' . $this->build->blueprint[ '_blueprints_navigator' ];
-        $this->arc[ 'navigator' ] = new $class($this->build->blueprint, $nav_items);
-
-      }
-
-      // TODO: Display navigator or pagination using add_action to appropriate spot
+        do_action('arcNavBeforeSection-{$bpshortname}');
 
 
-      // Don't allow pagination on pages it doesn't work on!
-      //   Todo : setup pagination for single or blog index
-      if (isset($this->arc[ 'pagination' ])) {
+        // Display pagination above
+        if (isset($this->arc[ 'pagination' ])) {
 
-        do_action('arcBeforePaginationBelow');
+          do_action('arcBeforePaginationAbove');
 
-        $this->arc[ 'pagination' ]->render($this->arc_query, 'nav-below');
+          $this->arc[ 'pagination' ]->render($this->arc_query, 'nav-above');
 
-        do_action('arcAfterPaginationBelow');
+          do_action('arcAfterPaginationAbove');
 
-      }
+        }
 
-      echo '</div> <!-- end the whole lot-->';
+        // Loops
+        $nav_items = self::loop(1);
+
+        if ($do_section_2) {
+
+          $notused = self::loop(2);
+
+        }
+
+        if ($do_section_3) {
+
+          $notused = self::loop(3);
+
+        }
+
+        // End loops
+        echo '</div> <!-- end blueprint sections -->';
+
+        //TODO: Is it possible toshow the nav based on an action?
+        do_action('arcNavAfterSections-{$bpshortname}');
+
+
+        // TODO: Display navigator or pagination using add_action to appropriate spot
+
+
+        // Don't allow pagination on pages it doesn't work on!
+        //   Todo : setup pagination for single or blog index
+        if (isset($this->arc[ 'pagination' ])) {
+
+          do_action('arcBeforePaginationBelow');
+
+          $this->arc[ 'pagination' ]->render($this->arc_query, 'nav-below');
+
+          do_action('arcAfterPaginationBelow');
+
+        }
+
       // TODO:: Hmmm how we planning to use these?
 
 
       if ($bpnav_type === 'navigator') {
+        // NAVIGATION
+
+          $class                    = 'arc_Navigator_' . $this->build->blueprint[ '_blueprints_navigator' ];
+          $this->arc[ 'navigator' ] = new $class($this->build->blueprint, $nav_items);
+
 
         // TODO: How do we make thisgo into the action
         self::display_navigation();
@@ -241,7 +237,11 @@
         do_action('arc_navigation_right');
         do_action('arc_navigation_bottom');
 
+        unset($this->arc[ 'navigator' ]);
       }
+
+      echo '</div> <!-- end pzarchitect blueprint '. $this->build->blueprint[ '_blueprints_short-name' ].'-->';
+
       do_action('arc_after_architect');
 
 
