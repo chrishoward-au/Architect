@@ -210,7 +210,7 @@ Pagination Styles
 }
 
 .nav-navigator {
-  a.pager {
+  button.pager {
     position: absolute;
     top: 50%;
     margin-top: -20px;
@@ -226,6 +226,9 @@ Pagination Styles
     background: rgba(0, 0, 0, 0.3);
 
     // Uses icons defined in im-style.css.
+    &:focus {
+      outline:none;
+    }
     &.arrow-left {
       left: 5px;
     }
@@ -253,7 +256,7 @@ Pagination Styles
     }
   }
   // TODO: Replace this with multiple icon font arrows.
-  a.pager {
+  button.pager {
     position: absolute;
     top: 50%;
     margin-top: -20px;

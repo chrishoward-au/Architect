@@ -18,7 +18,7 @@ jQuery( document ).ready( function ()
 
             var paging = function ( slider, i )
             {
-                return '<button type="button" class="nav-bullets">[' + (i + 1) + ']</button>';
+                return '<button type="button" class="nav-bullets">' + (i + 1) + '</button>';
             };
 
             var arcSlickNav = jQuery( '.pzarc-navigator-' + arcSlickID + ' .swiper-pagination-switch' );
@@ -33,25 +33,20 @@ jQuery( document ).ready( function ()
                       autoPlaySpeed: 2000,
                       arrows: false,
                       easing: 'linear',
-                      dots: true,
+                      dots: false,
                       centerMode: false,
 // TODO: Needs some tweaking - prob height and overflow
                       vertical: false,
-                      customPaging: function ( slider, i )
-                      {
-                          return '<button type="button" class="nav-bullets">' + arcSlickNav[i].outerHTML + '</button>';
-                      }
+                      customPaging: paging
 
                   }
             );
-            jQuery( '.arrow-left' ).on( 'click', function ( e )
+            jQuery( '.arrow-left' ).on( 'click', function (  )
             {
-//                e.preventDefault();
                 arcSlick.slickPrev();
             } );
-            jQuery( '.arrow-right' ).on( 'click', function ( e )
+            jQuery( '.arrow-right' ).on( 'click', function (  )
             {
- //               e.preventDefault();
                 arcSlick.slickNext();
             } );
 

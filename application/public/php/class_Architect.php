@@ -361,8 +361,8 @@
         $skip_thumbs          = $this->build->blueprint[ '_blueprints_navigator-skip-thumbs' ];
         $swiper[ 'dataopts' ] = 'data-opts="{#tduration#:' . $duration . ',#tinterval#:' . $interval . ',#tskip#:' . $skip_thumbs . '}"';
 
-        $return_val .= '<a class="pager arrow-left icon-arrow-left4" href="#"></a>';
-        $return_val .= '<a class="pager arrow-right icon-uniE60D" href="#"></a>';
+        $return_val .= '<button type="button" class="pager arrow-left icon-arrow-left4"></button>';
+        $return_val .= '<button type="button" class="pager arrow-right icon-uniE60D"></button>';
 //          //TODO: Should the bp name be in the class or ID?
         $return_val .= '<div class="pzarc-sections_' . $bpshortname . ' pzarc-is_' . $caller . $swiper[ 'class' ] . '"' . $swiper[ 'dataid' ] . $swiper[ 'datatype' ] . $swiper[ 'dataopts' ] . $swiper[ 'datatrans' ] . '>';
       } else {
