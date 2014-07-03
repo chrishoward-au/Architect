@@ -254,3 +254,6 @@
 .redux-metabox .redux-no-sections.redux-box-side .redux-main input[type=text] {
   width: 100% !important;
 }
+.wp-color-result {
+  margin: 0 6px 0 0px !important;
+}

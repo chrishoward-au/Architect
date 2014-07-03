@@ -228,7 +228,6 @@
 
       }
 
-      echo '</div> <!-- end the whole lot-->';
       // TODO:: Hmmm how we planning to use these?
 
 
@@ -240,8 +239,10 @@
         // Right or bottom
         do_action('arc_navigation_right');
         do_action('arc_navigation_bottom');
+        unset($this->arc[ 'navigator' ]);
 
       }
+      echo '</div> <!-- end pzarchitect '. $this->build->blueprint[ '_blueprints_short-name']. '-->';
       do_action('arc_after_architect');
 
 

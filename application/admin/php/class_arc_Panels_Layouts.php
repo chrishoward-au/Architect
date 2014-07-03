@@ -320,6 +320,20 @@
               'hint'     => array('content' => __('Set a height for the panel according to the height type you chose.', 'pzarchitect')),
 
           ),
+                    array(
+                        'title'    => __('Images Focal Point', 'pzarchitect'),
+                        'id'       => $prefix . 'image-focal-point',
+                        'type'     => 'button_set',
+                        'default'  => 'respect',
+                        'options'=> array(
+                          'respect'=>__('Respect','pzarchitect'),
+                          'centre'=>__('Centre','pzarchitect'),
+                          'none'=> __('None','pzarchitect')
+
+                        ),
+//                        'subtitle' => 'Convert all resized images to JPEG format.',
+                        'hint'     => array('content' => 'If you have tagged image focal points, you can also choose where the focal point is positioned in the output image.<ul><li>Respect: Try to keep it in the same relative position</li><li>Centre: Try to centre it in the output image</li><li>None: Don\'t use it</li></ul>')
+                    ),
           //array(
           //    'title'    => __('Components min height px', 'pzarchitect'),
           //    'id'       => $prefix . 'components-height',

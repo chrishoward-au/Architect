@@ -60,9 +60,9 @@
     function __destruct()
     {
       if ('thumbs' === $this->blueprint[ '_blueprints_navigator' ]) {
-        echo '</div></div>';
+        echo '</div></div></div>';
       } else {
-        echo '</div>';
+        echo '</div><!-- end swiper-wrapper --></div><!-- end navigator -->';
       }
     }
   }
