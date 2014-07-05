@@ -86,17 +86,17 @@ Pagination Styles
     margin: 0 3px;
     cursor: pointer;
     &.small {
-      width: 12px;
+      width: 12px!important;
       height: 12px;
 
     }
     &.medium {
-      width: 15px;
+      width: 15px!important;
       height: 15px;
 
     }
     &.large {
-      width: 18px;
+      width: 18px!important;
       height: 18px;
 
     }

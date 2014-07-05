@@ -56,7 +56,7 @@
       $panel_def[ 'email' ]            = '<span class="byline email"><span class="author vcard"><a class="url fn n" href="mailto:{{authoremail}}" title="Email {{authorname}}" rel="author">{{authoremail}}</a></span></span>';
       //     $panel_def[ 'image' ]       = '<figure class="entry-thumbnail {{incontent}}">{{postlink}}<img width="{{width}}" src="{{imgsrc}}" class="attachment-post-thumbnail wp-post-image" alt="{{alttext}}">{{closepostlink}}{{captioncode}}</figure>';
       $panel_def[ 'image' ]         = '<figure class="entry-thumbnail {{incontent}} {{centred}}">{{postlink}}{{image}}{{closelink}}{{captioncode}}</figure>';
-      $panel_def[ 'bgimage' ]       = '<figure class="entry-bgimage pzarc-bg-image {{trim-scale}}">{{bgimage}}</figure>';
+      $panel_def[ 'bgimage' ]       = '<figure class="entry-bgimage pzarc-bg-image {{trim-scale}}">{{postlink}}{{bgimage}}{{closelink}}</figure>';
       $panel_def[ 'caption' ]       = '<figcaption class="caption">{{caption}}</figcaption>';
       $panel_def[ 'content' ]       = ' <div class="entry-content {{nothumb}}">{{image-in-content}}{{content}}</div>';
       $panel_def[ 'custom1' ]       = '<div class="entry-customfieldgroup entry-customfieldgroup-1">{{custom1innards}}</div>';
@@ -162,7 +162,8 @@
       }
 
       // NEVER include HTML in these, only should get WP values.
-      $showbgimage = (has_post_thumbnail()
+      $showbgimage = (
+              !empty($post->guid)
               && $section[ '_panels_design_background-position' ] != 'none'
               && ($section[ '_panels_design_components-position' ] == 'top' || $section[ '_panels_design_components-position' ] == 'left'))
           || ($section[ '_panels_design_background-position' ] != 'none'
@@ -204,7 +205,7 @@
                                                                           $fp_y,
                                                                           //                                                                            'focalpt'   => true
                                                                       ),
-                                                              )
+            )
         ); //WP seems to smartly figure out which of its saved images to use! Now we jsut gotta get it t work with focal point
 //       $data[ 'bgimage' ] = '<img src="'.bfi_thumb($post->guid, array($width, $height, 'crop' => true)).'">'; //WP seems to smartly figure out which of its saved images to use! Now we jsut gotta get it t work with focal point
 
@@ -327,8 +328,9 @@
   {
     public static function render($component, $panel_def, $content_type, &$data, &$section)
     {
-      if ($section[ '_panels_design_link-image' ]) {
-        $panel_def[ $component ] = str_replace('{{postlink}}', $panel_def[ 'postlink' ], $panel_def[ $component ]);
+      if ('yes' === $section[ '_panels_design_link-image' ] || 'url' === $section[ '_panels_design_link-image' ]) {
+        $link = ('url' === $section[ '_panels_design_link-image' ]) ? 'a href="' . $section[ '_panels_design_link-image-url' ].'">':$panel_def[ 'postlink' ];
+        $panel_def[ $component ] = str_replace('{{postlink}}', $link, $panel_def[ $component ]);
         $panel_def[ $component ] = str_replace('{{closepostlink}}', '</a>', $panel_def[ $component ]);
       }
 
@@ -362,6 +364,11 @@
     {
       $panel_def[ $component ] = str_replace('{{bgimage}}', $data[ 'bgimage' ], $panel_def[ $component ]);
       $panel_def[ $component ] = str_replace('{{trim-scale}}', ' ' . $section[ '_panels_design_background-position' ] . ' ' . $section[ '_panels_design_background-image-resize' ], $panel_def[ $component ]);
+      if ('yes' === $section[ '_panels_design_link-bgimage' ] || 'url' === $section[ '_panels_design_link-bgimage' ]) {
+        $link = ('url' === $section[ '_panels_design_link-bgimage' ]) ? 'a href="' . $section[ '_panels_design_link-bgimage-url' ].'">':$panel_def[ 'postlink' ];
+        $panel_def[ $component ] = str_replace('{{postlink}}', $link, $panel_def[ $component ]);
+        $panel_def[ $component ] = str_replace('{{closepostlink}}', '</a>', $panel_def[ $component ]);
+      }
 
       return parent::process_generics($data, $panel_def[ $component ], $content_type, $section);
     }
@@ -385,7 +392,7 @@
           $panel_def[ $component ] = str_replace('{{image}}', $data[ 'image' ][ 'image' ], $panel_def[ $component ]);
           $panel_def[ $component ] = str_replace('{{incontent}}', 'in-content-thumb', $panel_def[ $component ]);
 
-          if ($section[ '_panels_design_link-image' ]) {
+          if ('yes' === $section[ '_panels_design_link-image' ]) {
             $panel_def[ $component ] = str_replace('{{postlink}}', $panel_def[ 'postlink' ], $panel_def[ $component ]);
             $panel_def[ $component ] = str_replace('{{closepostlink}}', '</a>', $panel_def[ $component ]);
           }
@@ -429,7 +436,7 @@
           $panel_def[ $component ] = str_replace('{{image}}', $data[ 'image' ][ 'image' ], $panel_def[ $component ]);
           $panel_def[ $component ] = str_replace('{{incontent}}', 'in-content-thumb', $panel_def[ $component ]);
 
-          if ($section[ '_panels_design_link-image' ]) {
+          if ('yes' === $section[ '_panels_design_link-image' ]) {
             $panel_def[ $component ] = str_replace('{{postlink}}', $panel_def[ 'postlink' ], $panel_def[ $component ]);
             $panel_def[ $component ] = str_replace('{{closepostlink}}', '</a>', $panel_def[ $component ]);
           }

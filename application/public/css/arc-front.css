@@ -218,13 +218,13 @@
     margin: 0 3px;
     cursor: pointer; }
     .pzarchitect .bullets .swiper-pagination-switch.small {
-      width: 12px;
+      width: 12px !important;
       height: 12px; }
     .pzarchitect .bullets .swiper-pagination-switch.medium {
-      width: 15px;
+      width: 15px !important;
       height: 15px; }
     .pzarchitect .bullets .swiper-pagination-switch.large {
-      width: 18px;
+      width: 18px !important;
       height: 18px; }
     .pzarchitect .bullets .swiper-pagination-switch:hover {
       background: #ccc; }

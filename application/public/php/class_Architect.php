@@ -34,6 +34,7 @@
     private $is_shortcode;
     private $criteria = array();
     private $backup_wp_query;
+    private $nav_items = array();
 
     /**
      * @param $blueprint
@@ -100,22 +101,23 @@
       $original_query = $wp_query;
 
       // Shorthand some vars
-      $bpshortname = $this->build->blueprint[ '_blueprints_short-name' ];
-      $bpnav_type  = $this->build->blueprint[ '_blueprints_navigation' ];
-      $bptranstype = $this->build->blueprint[ '_blueprints_transitions-type' ];
+      $bp_shortname = $this->build->blueprint[ '_blueprints_short-name' ];
+      $bp_nav_type  = $this->build->blueprint[ '_blueprints_navigation' ];
+      $bp_nav_pos   = $this->build->blueprint[ '_blueprints_navigator-position' ];
+      $bp_transtype = $this->build->blueprint[ '_blueprints_transitions-type' ];
 
       $this->arc = array();
 
       self::set_generic_criteria();
 
       // Set vars to identify if we need to display sections 2 and 3.
-      $do_section_2 = ($this->build->blueprint[ '_blueprints_section-1-enable' ] && $bpnav_type != 'navigator');
-      $do_section_3 = ($this->build->blueprint[ '_blueprints_section-2-enable' ] && $bpnav_type != 'navigator');
+      $do_section_2 = ($this->build->blueprint[ '_blueprints_section-1-enable' ] && $bp_nav_type != 'navigator');
+      $do_section_3 = ($this->build->blueprint[ '_blueprints_section-2-enable' ] && $bp_nav_type != 'navigator');
 
       // TODO: Are all these 'self's too un-oop?
       // Get pagination
       // Need to do this before we touch the query!?
-      if ($bpnav_type == 'pagination') {
+      if ($bp_nav_type == 'pagination') {
 
         switch (true) {
 
@@ -148,99 +150,82 @@
 
       }
 
+      // at tis point we have the necessary info to populate the navigator. So let's do it!
+      $this->nav_items = self::get_nav_items($this->build->blueprint[ '_blueprints_navigator' ]);
+
       // TODO: Show or hide blueprint if no content
 
       do_action('arc_before_architect');
 
-      if ($bpnav_type === 'navigator') {
 
-        // TODO: How do we make thisgo into the action?WP-Navi does it!
-//        self::display_navigation();
 
-        // Nav left or top
-        do_action('arc_navigation_top');
-        do_action('arc_navigation_left');
+      /** BLUEPRINT */
+      echo '<div class="pzarchitect pzarc-blueprint pzarc-blueprint_' . $this->build->blueprint[ '_blueprints_short-name' ] . ' nav-' . $bp_nav_type . ' icomoon">';
+
+      /** NAVIGATOR TOP*/
+      if ($bp_nav_type === 'navigator' && ('top' === $bp_nav_pos || 'left' === $bp_nav_pos)) {
+        self::display_navigation('tl');
+      }
+
+
+      self::display_page_title($this->build->blueprint[ '_blueprints_page-title' ]);
+
+      echo self::get_sections_opener($bp_shortname, $bp_nav_type, $caller, $bp_transtype);
+
+      do_action('arcNavBeforeSection-{$bpshortname}');
+
+
+      /** Display pagination above */
+      if (isset($this->arc[ 'pagination' ])) {
+
+        do_action('arcBeforePaginationAbove');
+
+        $this->arc[ 'pagination' ]->render($this->arc_query, 'nav-above');
+
+        do_action('arcAfterPaginationAbove');
 
       }
 
-      echo '<div class="pzarchitect pzarc-blueprint pzarc-blueprint_' . $this->build->blueprint[ '_blueprints_short-name' ] . ' nav-' . $bpnav_type . ' icomoon">';
+      /** LOOPS */
+      $this->nav_items = self::loop(1);
 
-        self::display_page_title($this->build->blueprint[ '_blueprints_page-title' ]);
+      if ($do_section_2) {
 
-        echo self::get_sections_opener($bpshortname, $bpnav_type, $caller, $bptranstype);
+        $notused = self::loop(2);
 
-        do_action('arcNavBeforeSection-{$bpshortname}');
-
-
-        // Display pagination above
-        if (isset($this->arc[ 'pagination' ])) {
-
-          do_action('arcBeforePaginationAbove');
-
-          $this->arc[ 'pagination' ]->render($this->arc_query, 'nav-above');
-
-          do_action('arcAfterPaginationAbove');
-
-        }
-
-        // Loops
-        $nav_items = self::loop(1);
-
-        if ($do_section_2) {
-
-          $notused = self::loop(2);
-
-        }
-
-        if ($do_section_3) {
-
-          $notused = self::loop(3);
-
-        }
-
-        // End loops
-        echo '</div> <!-- end blueprint sections -->';
-
-        //TODO: Is it possible toshow the nav based on an action?
-        do_action('arcNavAfterSections-{$bpshortname}');
-
-
-        // TODO: Display navigator or pagination using add_action to appropriate spot
-
-
-        // Don't allow pagination on pages it doesn't work on!
-        //   Todo : setup pagination for single or blog index
-        if (isset($this->arc[ 'pagination' ])) {
-
-          do_action('arcBeforePaginationBelow');
-
-          $this->arc[ 'pagination' ]->render($this->arc_query, 'nav-below');
-
-          do_action('arcAfterPaginationBelow');
-
-        }
-
-      // TODO:: Hmmm how we planning to use these?
-
-
-      if ($bpnav_type === 'navigator') {
-        // NAVIGATION
-
-          $class                    = 'arc_Navigator_' . $this->build->blueprint[ '_blueprints_navigator' ];
-          $this->arc[ 'navigator' ] = new $class($this->build->blueprint, $nav_items);
-
-
-        // TODO: How do we make thisgo into the action
-        self::display_navigation();
-
-        // Right or bottom
-        do_action('arc_navigation_right');
-        do_action('arc_navigation_bottom');
-
-        unset($this->arc[ 'navigator' ]);
       }
 
-      echo '</div> <!-- end pzarchitect blueprint '. $this->build->blueprint[ '_blueprints_short-name' ].'-->';
+      if ($do_section_3) {
+
+        $notused = self::loop(3);
+
+      }
+
+      // End loops
+      echo '</div> <!-- end blueprint sections -->';
+
+
+      // Don't allow pagination on pages it doesn't work on!
+      //   Todo : setup pagination for single or blog index
+
+      /** PAGINATION BELOW  */
+      if (isset($this->arc[ 'pagination' ])) {
+
+        do_action('arcBeforePaginationBelow');
+
+        $this->arc[ 'pagination' ]->render($this->arc_query, 'nav-below');
+
+        do_action('arcAfterPaginationBelow');
+
+      }
+
+      /** NAVIGATION BELOW */
+      if ($bp_nav_type === 'navigator' && ('bottom' === $bp_nav_pos || 'right' === $bp_nav_pos)) {
+        self::display_navigation('br');
+      }
+
+
+      echo '</div> <!-- end pzarchitect blueprint ' . $this->build->blueprint[ '_blueprints_short-name' ] . '-->';
 
       do_action('arc_after_architect');
 
@@ -252,6 +237,111 @@
 
     }
 
+    private function display_navigation($location)
+    {
+
+
+      $class                    = 'arc_Navigator_' . $this->build->blueprint[ '_blueprints_navigator' ];
+      $this->arc[ 'navigator' ] = new $class($this->build->blueprint, $this->nav_items);
+
+      if ('tl' === $location) {
+
+        // TODO: How do we make thi sgo into the action?WP-Navi does it!
+        if (isset($this->arc[ 'navigator' ])) {
+
+
+          do_action('arcBeforeNavigationAbove');
+
+          $this->arc[ 'navigator' ]->render();
+
+          do_action('arcAfterNavigationAbove');
+
+        }
+
+        // Nav left or top
+        do_action('arc_navigation_top');
+        do_action('arc_navigation_left');
+
+      }
+
+      if ('br' === $location) {
+
+        // TODO: How do we make thi sgo into the action?WP-Navi does it!
+        if (isset($this->arc[ 'navigator' ])) {
+
+
+          do_action('arcBeforeNavigationBelow');
+
+          $this->arc[ 'navigator' ]->render();
+
+          do_action('arcAfterNavigationBelow');
+
+        }
+
+        // Nav right or bottom
+        do_action('arc_navigation_right');
+        do_action('arc_navigation_bottom');
+
+      }
+
+      unset($this->arc[ 'navigator' ]);
+
+
+    }
+
+    /**
+     * get_nav_items
+     */
+    private function get_nav_items($blueprints_navigator)
+    {
+
+      $nav_items = array();
+
+//      var_dump($blueprints_navigator, $this->arc_query->posts);
+
+      foreach ($this->arc_query->posts as $the_post) {
+
+        switch ($blueprints_navigator) {
+
+          case 'tabbed':
+            $nav_items[ ] = '<span class="' . $blueprints_navigator . '">' . $the_post->post_title . '</span>';
+            break;
+
+          case 'thumbs':
+
+            if ('attachment' === $the_post->post_type) {
+
+              // TODO: Will need to change this to use the thumb dimensions set in the blueprint viasmall , medium, large
+              $thumb = wp_get_attachment_image($the_post->ID, array(50, 50));
+
+            } else {
+
+              $thumb = get_the_post_thumbnail($the_post->ID, array(50, 50));
+
+            }
+
+            $thumb = (empty($thumb) ? '<img src="' . PZARC_PLUGIN_APP_URL . '/shared/assets/images/missing-image.png" width="50" height="50">' : $thumb);
+
+            $nav_items[ ] = '<span class="' . $blueprints_navigator . '">' . $thumb . '</span>';
+            break;
+
+          case 'bullets':
+          case 'numbers':
+          case 'buttons':
+            //No need for content on these
+            $nav_items[ ] = '';
+            break;
+
+        }
+
+      }
+
+      return $nav_items;
+    }
+
+    /**
+     * set_generic_criteria
+     */
     private function set_generic_criteria()
     {
       $this->criteria = array();
@@ -289,28 +379,16 @@
       $this->criteria[ 'order' ]   = $this->build->blueprint[ '_blueprints_orderdir' ];
 
       // Categories
-      $this->criteria['category__in']=$this->build->blueprint['_content_general_inc-cats'];
+      $this->criteria[ 'category__in' ] = $this->build->blueprint[ '_content_general_inc-cats' ];
 
       // Tags
-      $this->criteria['tag__in']=$this->build->blueprint['_content_general_inc-tags'];
+      $this->criteria[ 'tag__in' ] = $this->build->blueprint[ '_content_general_inc-tags' ];
 
     }
 
-    private function display_navigation()
-    {
-      // Display navigator
-      if (isset($this->arc[ 'navigator' ])) {
-
-        do_action('arcBeforeNavigationBelow');
-
-        $this->arc[ 'navigator' ]->render();
-
-        do_action('arcAfterNavigationBelow');
-
-      }
-
-    }
-
+    /**
+     * display_page_title
+     */
     private function display_page_title($display_title)
     {
       if (!empty($display_title)) {
@@ -337,6 +415,9 @@
     }
 
     /**
+     *
+     * get_sections_opener
+     *
      * @param $bpshortname
      * @param $bpnav_type (not necessary but makes calling code more informative)
      * @param $caller
@@ -355,6 +436,7 @@
         $swiper[ 'dataid' ]    = ' data-swiperid="' . $bpshortname . '"';
         $swiper[ 'datatype' ]  = 'data-navtype="' . $bpnav_type . '"';
         $swiper[ 'datatrans' ] = ' data-transtype="' . $bptranstype . '"';
+
 
         $duration             = $this->build->blueprint[ '_blueprints_transitions-duration' ] * 1000;
         $interval             = $this->build->blueprint[ '_blueprints_transitions-interval' ] * 1000;
@@ -585,7 +667,7 @@
 
       /** General content filters */
       $query_options[ 'category__in' ] = (!empty($this->criteria[ 'category__in' ]) ? $this->criteria[ 'category__in' ] : null);
-      $query_options[ 'tag__in' ] = (!empty($this->criteria[ 'tag__in' ]) ? $this->criteria[ 'tag__in' ] : null);
+      $query_options[ 'tag__in' ]      = (!empty($this->criteria[ 'tag__in' ]) ? $this->criteria[ 'tag__in' ] : null);
 
 
       /** Specific content filters */
@@ -734,7 +816,7 @@
             break;
 
         }
-        $section[ $section_no ]->render_panel($panel_def, $i, $class, $panel_class,$this->arc_query);
+        $section[ $section_no ]->render_panel($panel_def, $i, $class, $panel_class, $this->arc_query);
 
         if ($i++ >= $this->build->blueprint[ '_blueprints_section-' . ($section_no - 1) . '-panels-per-view' ] && !empty($this->build->blueprint[ '_blueprints_section-' . ($section_no - 1) . '-panels-limited' ])) {
           break;

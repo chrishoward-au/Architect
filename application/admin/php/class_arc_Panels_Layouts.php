@@ -167,7 +167,7 @@
           'has_archive'         => false,
           'hierarchical'        => false,
           'menu_position'       => 10,
-          'supports'            => array('title', 'revisions'),
+          'supports'            => array('title'),
           'exclude_from_search' => true,
           //          'register_meta_box_cb' => 'redux/metaboxes/architect/boxes'
       );
@@ -340,6 +340,18 @@
           //    'hint'     => array('content' => __('This prevents components shrinking too much on resizing of screen.', 'pzarchitect')),
           //    'required' => array($prefix . 'panel-height-type', 'equals', 'fixed')
           //),
+          array(
+              'title'   => __('Images Focal Point', 'pzarchitect'),
+              'id'      => $prefix . 'image-focal-point',
+              'type'    => 'button_set',
+              'default' => 'respect',
+              'options' => array(
+                  'respect' => __('Respect', 'pzarchitect'),
+                  'centre'  => __('Centre', 'pzarchitect'),
+                  'none'    => __('None', 'pzarchitect')
+
+              )
+          ),
         )
     );
     $metaboxes[ ]  = array(
@@ -852,11 +864,22 @@
           array(
               'title'    => __('Link image', 'pzarchitect'),
               'id'       => $prefix . 'link-image',
-              'type'     => 'switch',
-              'on'       => 'Yes',
-              'off'      => 'No',
-              'default'  => true,
-              'subtitle' => 'Makes the image link to the post/page'
+              'type'     => 'button_set',
+              'options'  => array(
+                  'no'  => 'No',
+                  'yes' => 'Yes',
+                  'url' => 'Specific URL'
+              ),
+              'default'  => 'yes',
+              'subtitle' => __('Makes the image link to the post/page or all images link to a specific URL', 'pzazrchitect')
+          ),
+          array(
+              'title'    => __('Specific URL', 'pzarchitect'),
+              'id'       => $prefix . 'link-image-url',
+              'type'     => 'text',
+              'required' => array($prefix . 'link-image', 'equals', 'url'),
+              'validate' => 'url',
+              'subtitle' => __('Enter the URL that all images will link to', 'pzazrchitect')
           ),
           array(
               'title'   => __('Image Captions', 'pzarchitect'),
@@ -977,6 +1000,31 @@
                     'scale' => 'Scale Vertically & Horizontally'
                 ),
                 'default' => 'trim',
+                'required' => array($prefix . 'background-position', '!=', 'none'),
+            ),
+            array(
+                'title'    => __('Link image', 'pzarchitect'),
+                'id'       => $prefix . 'link-bgimage',
+                'type'     => 'button_set',
+                'options'  => array(
+                    'no'  => 'No',
+                    'yes' => 'Yes',
+                    'url' => 'Specific URL'
+                ),
+                'required'=> array($prefix.'background-position','!=','none'),
+                'default'  => 'yes',
+                'subtitle' => __('Makes the image link to the post/page or all images link to a specific URL', 'pzazrchitect')
+            ),
+            array(
+                'title'    => __('Specific URL', 'pzarchitect'),
+                'id'       => $prefix . 'link-bgimage-url',
+                'type'     => 'text',
+                'required' => array(
+                    array($prefix.'background-position','!=','none'),
+                    array($prefix . 'link-bgimage', 'equals', 'url')
+                ),
+                'validate' => 'url',
+                'subtitle' => __('Enter the URL that all images will link to', 'pzazrchitect')
             ),
         )
     );

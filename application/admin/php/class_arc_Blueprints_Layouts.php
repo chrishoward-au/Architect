@@ -174,7 +174,7 @@
           'has_archive'         => false,
           'hierarchical'        => false,
           'menu_position'       => 30,
-          'supports'            => array('title', 'revisions'),
+          'supports'            => array('title'),
           'exclude_from_search' => true,
       );
 
@@ -629,7 +629,8 @@
                   'default'  => 1,
                   'min'      => 1,
                   'max'      => 99,
-                  'subtitle' => __('If using pagination, this will be the number per page.'),
+                  'subtitle' => __('This is how many posts or pages will show.'),
+                  'desc'=>__('If using pagination, this will be the number per page.'),
                   'required' => array($prefix . 'section-' . $i . '-panels-limited', '=', true)
               ),
               array(

@@ -39,12 +39,12 @@ jQuery( document ).ready( function ()
 //        jQuery( ".redux-sidebar li#" + j + "_box_redux-_architect-metabox-content-selections_section_group_li" ).show();
 //    }
 
-    // ********************************************************************************************
+    /********************************************************************************************
     // 
     // Control the visibility of the tabs for CONTENT TYPES in Blueprints metaboxes
     // This one is for when using a dropdown selector.
     // 
-    // ********************************************************************************************
+     ********************************************************************************************/
     function init_content_tabs()
     {
         var  content_options = jQuery( "select#_blueprints_content-source-select" ).find( "option" );
@@ -53,24 +53,25 @@ jQuery( document ).ready( function ()
         {
             //console.log(this,this.selected,jQuery(this).text());
             // there's a blank one at the to  because of the placeholder
-            console.log(i,this.value)
+            console.log(i,this.value,this.selected)
             if ( i === 0 || this.value === 'help')
             {return;}
+
             if ( this.selected )
             {
                 console.log( i, this.value );
-   //             jQuery( ".redux-sidebar li#" + (i - 1) + "_box_redux-_architect-metabox-content-selections_section_group_li" ).show().trigger( "click" );
+                jQuery( ".redux-sidebar li#" + (i ) + "_box_redux-_architect-metabox-content-selections_section_group_li" ).show().trigger( "click" );
             }
             else
             {
-   //             jQuery( ".redux-sidebar li#" + (i - 1) + "_box_redux-_architect-metabox-content-selections_section_group_li" ).hide();
+                jQuery( ".redux-sidebar li#" + (i ) + "_box_redux-_architect-metabox-content-selections_section_group_li" ).hide();
             }
         } );
 
     }
-    //TODO: Need to run this on tab change
-
     init_content_tabs();
+
+    // Change content tab on content source change
     jQuery( "select#_blueprints_content-source-select" ).on( 'click', function ()
     {
         pzarc_show_hide_content_tabs( jQuery( this ).find( "option:selected" ).text().trim() );
@@ -78,8 +79,8 @@ jQuery( document ).ready( function ()
 
     function pzarc_show_hide_content_tabs( tab )
     {
-        var a = ["Defaults", "Posts", "Pages", "Snippets","Galleries", "Slides", "Custom Post Types"];
-        for ( var i = 1; i <= a.length; i++ )
+        var a = ["General","Defaults", "Posts", "Pages", "Snippets","Galleries", "Slides", "Custom Post Types"];
+        for ( var i = 2; i <= a.length; i++ )
         {
             jQuery( ".redux-sidebar li#" + (i - 1) + "_box_redux-_architect-metabox-content-selections_section_group_li" ).hide();
         }
