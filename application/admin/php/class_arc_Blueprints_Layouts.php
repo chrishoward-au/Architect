@@ -332,6 +332,151 @@
     $sections[ ]   = array(
         'fields' => array(
             array(
+                'title'    => 'Navigation',
+                'id'       => $prefix . 'navigation',
+                'type'     => 'button_set',
+                'default'  => 'none',
+                'subtitle' => __('Note: Navigator will only function when one section selected. Pagination effects all sections.', 'pzarchitect'),
+                'options'  => array(
+                    'none'       => 'None',
+                    'pagination' => 'Pagination',
+                    'navigator'  => 'Navigator'
+                )
+            ),
+            array(
+                'title'    => 'Section 2',
+                'id'       => $prefix . 'section-1-enable', //this number is the increment number
+                'type'     => 'switch',
+                'on'       => 'Yes',
+                'off'      => 'No',
+                'width'    => 'auto',
+                'required' => array($prefix . 'navigation', 'not', 'navigator'),
+                'default'  => false
+            ),
+            array(
+                'title'    => 'Section 3',
+                'id'       => $prefix . 'section-2-enable',
+                'type'     => 'switch',
+                'on'       => 'Yes',
+                'off'      => 'No',
+                'width'    => 'auto',
+                'required' => array($prefix . 'navigation', 'not', 'navigator'),
+                'default'  => false
+            ),
+
+        )
+    );
+    $meta_boxes[ ] = array(
+        'id'         => $prefix . 'layout-general-settings',
+        'title'      => 'Options',
+        'post_types' => array('arc-blueprints'),
+        'sections'   => $sections,
+        'position'   => 'side',
+        'priority'   => 'high',
+        'sidebar'    => false
+
+    );
+
+
+    return $meta_boxes;
+
+  }
+
+  add_action("redux/metaboxes/{$redux_opt_name}/boxes", 'pzarc_blueprint_content_general');
+  /**
+   * pzarc_blueprint_content_general
+   * @param array $meta_boxes
+   * @return array
+   */
+  function pzarc_blueprint_content_general($meta_boxes = array())
+  {
+
+    $prefix = '_blueprints_';
+
+    $sections[ ] = array(
+        'fields' => array(
+            array(
+                'title'    => __('Content source', 'pzarchitect'),
+                'id'       => $prefix . 'content-source',
+                'type'     => 'select',
+                'select2'  => array('allowClear' => false),
+                'default'  => 'defaults',
+                'options'  => array(
+                  // need to make adjustments when adding new ones so help still displays
+                  'defaults' => 'Defaults',
+                  'post'     => 'Posts',
+                  'page'     => 'Pages',
+                  'snippets' => 'Snippets',
+                  'gallery'  => 'Galleries',
+                  'slides'   => 'Slides',
+                  //                          'images'      => 'Specific Images',
+                  //                          'wpgallery'   => 'WP Gallery from post',
+                  //                          'galleryplus' => 'GalleryPlus',
+                  //                          'nggallery'   => 'NextGen',
+                  //                        'widgets' => 'Widgets',
+                  //                          'custom-code' => 'Custom code',
+                  //                        'rss'     => 'RSS Feed',
+                  'cpt'      => 'Custom Post Types'
+                ),
+                'subtitle' => 'todo: code all the js to show hide relevant sections'
+            ),
+        )
+    );
+
+    $meta_boxes[ ] = array(
+        'id'         => $prefix . 'content-general-settings',
+        'title'      => 'Content Settings',
+        'post_types' => array('arc-blueprints'),
+        'sections'   => $sections,
+        'position'   => 'side',
+        'priority'   => 'high',
+        'sidebar'    => false
+
+    );
+
+
+    return $meta_boxes;
+
+  }
+
+
+  /**
+   * LAYOUT
+   */
+  add_action("redux/metaboxes/{$redux_opt_name}/boxes", 'pzarc_blueprint_layout');
+  function pzarc_blueprint_layout($meta_boxes = array())
+  {
+    $prefix   = '_blueprints_';
+    $sections = array();
+    global $_architect_options;
+    global $pzarc_panels_array;
+    if (empty($pzarc_panels_array)) {
+      $args = array(
+          'posts_per_page'   => -1,
+          'orderby'          => 'title',
+          'order'            => 'ASC',
+          'post_type'        => 'arc-panels',
+          'suppress_filters' => true);
+
+      $pzarc_panels       = get_posts($args);
+      $pzarc_panels_array = array();
+      if (!empty($pzarc_panels)) {
+        foreach ($pzarc_panels as $pzarc_cell) {
+          $pzarc_panels_array[ $pzarc_cell->ID ] = (empty($pzarc_cell->post_title) ? 'No title' : $pzarc_cell->post_title);
+        }
+      } else {
+        $pzarc_panels_array = array(0 => 'No cell layouts. Create some.');
+      }
+    }
+
+
+    $sections[ ] = array(
+        'title'      => __('General settings', 'pzarchitect'),
+        'show_title' => true,
+        'icon_class' => 'icon-large',
+        'icon'       => 'el-icon-adjust-alt',
+        'fields'     => array(
+            array(
                 'id'       => $prefix . 'short-name',
                 'title'    => __('Blueprint Short Name', 'pzarchitect') . '<span class="pzarc-required el-icon-star" title="Required"></span>',
                 'type'     => 'text',
@@ -344,8 +489,7 @@
                 'title' => __('Description', 'pzarchitect'),
                 'type'  => 'textarea',
                 'rows'  => 2,
-                // 'hint' => __('A short desctription to help you or others know what this Blueprint is for', 'pzarchitect'),
-                // 'validate' => 'not_empty'
+                'hint'  => __('A short description to help you or others know what this Blueprint is for', 'pzarchitect'),
             ),
             array(
                 'id'      => $prefix . 'blueprint-width',
@@ -386,181 +530,11 @@
                 'title'   => __('Sections align', 'pzarchitect'),
                 'default' => 'center',
             ),
-            array(
-                'title'    => 'Navigation',
-                'id'       => $prefix . 'navigation',
-                'type'     => 'button_set',
-                'default'  => 'none',
-                'subtitle' => __('Note: Navigator will only function when one section selected. Pagination effects all sections.', 'pzarchitect'),
-                'options'  => array(
-                    'none'       => 'None',
-                    'pagination' => 'Pagination',
-                    'navigator'  => 'Navigator'
-                )
-            ),
-            array(
-                'title'    => 'Section 2',
-                'id'       => $prefix . 'section-1-enable', //this number is the increment number
-                'type'     => 'switch',
-                'on'       => 'Yes',
-                'off'      => 'No',
-                'width'    => 'auto',
-                'required' => array($prefix . 'navigation', 'not', 'navigator'),
-                'default'  => false
-            ),
-            array(
-                'title'    => 'Section 3',
-                'id'       => $prefix . 'section-2-enable',
-                'type'     => 'switch',
-                'on'       => 'Yes',
-                'off'      => 'No',
-                'width'    => 'auto',
-                'required' => array($prefix . 'navigation', 'not', 'navigator'),
-                'default'  => false
-            ),
-
-        )
-    );
-    $meta_boxes[ ] = array(
-        'id'         => $prefix . 'layout-general-settings',
-        'title'      => 'General Settings',
-        'post_types' => array('arc-blueprints'),
-        'sections'   => $sections,
-        'position'   => 'side',
-        'priority'   => 'high',
-        'sidebar'    => false
-
-    );
-
-
-    return $meta_boxes;
-
-  }
-
-  add_action("redux/metaboxes/{$redux_opt_name}/boxes", 'pzarc_blueprint_content_general');
-  /**
-   * pzarc_blueprint_content_general
-   * @param array $meta_boxes
-   * @return array
-   */
-  function pzarc_blueprint_content_general($meta_boxes = array())
-  {
-    $prefix = '_blueprints_';
-
-    $sections[ ] = array(
-        'fields' => array(
-            array(
-                'title'    => __('Content source', 'pzarchitect'),
-                'id'       => $prefix . 'content-source',
-                'type'     => 'select',
-                'select2'  => array('allowClear' => false),
-                'default'  => 'defaults',
-                'options'  => array(
-                  // need to make adjustments when adding new ones so help still displays
-                  'defaults' => 'Defaults',
-                  'post'     => 'Posts',
-                  'page'     => 'Pages',
-                  'snippets' => 'Snippets',
-                  'gallery'  => 'Galleries',
-                  'slides'   => 'Slides',
-                  //                          'images'      => 'Specific Images',
-                  //                          'wpgallery'   => 'WP Gallery from post',
-                  //                          'galleryplus' => 'GalleryPlus',
-                  //                          'nggallery'   => 'NextGen',
-                  //                        'widgets' => 'Widgets',
-                  //                          'custom-code' => 'Custom code',
-                  //                        'rss'     => 'RSS Feed',
-                  'cpt'      => 'Custom Post Types'
-                ),
-                'subtitle' => 'todo: code all the js to show hide relevant sections'
-            ),
-            array(
-                'title'   => __('Order by', 'pzarchitect'),
-                'id'      => $prefix . 'orderby',
-                'type'    => 'button_set',
-                'default' => 'date',
-                'cols'    => 6,
-                'options' => array(
-                    'date'       => 'Date',
-                    'title'      => 'Title',
-                    'menu_order' => 'Page order (if set)',
-                ),
-            ),
-            array(
-                'title'   => __('Order direction', 'pzarchitect'),
-                'id'      => $prefix . 'orderdir',
-                'type'    => 'button_set',
-                'default' => 'DESC',
-                'options' => array(
-                    'ASC'  => 'Ascending',
-                    'DESC' => 'Descending',
-                ),
-            ),
-            array(
-                'title'   => __('Skip N posts', 'pzarchitect'),
-                'id'      => $prefix . 'skip',
-                'type'    => 'text',
-                'min'     => 0,
-                'max'     => 9999,
-                'step'    => 1,
-                'default' => 0,
-                'desc'    => __('Note: Skipping breaks pagination. This is a known WordPress issue.', 'pzarchitect'),
-            ),
-            array(
-                'title'   => __('Sticky posts first', 'pzarchitect'),
-                'id'      => $prefix . 'sticky',
-                'type'    => 'switch',
-                'on'      => 'Yes',
-                'off'     => 'No',
-                'default' => false,
-            ),
         )
     );
 
-    $meta_boxes[ ] = array(
-        'id'         => $prefix . 'content-general-settings',
-        'title'      => 'Content Settings',
-        'post_types' => array('arc-blueprints'),
-        'sections'   => $sections,
-        'position'   => 'side',
-        'priority'   => 'high',
-        'sidebar'    => false
 
-    );
-
-
-    return $meta_boxes;
-
-  }
-
-
-  add_action("redux/metaboxes/{$redux_opt_name}/boxes", 'pzarc_blueprint_layout');
-  function pzarc_blueprint_layout($meta_boxes = array())
-  {
-    $prefix   = '_blueprints_';
-    $sections = array();
-    global $_architect_options;
-    global $pzarc_panels_array;
-    if (empty($pzarc_panels_array)) {
-      $args = array(
-          'posts_per_page'   => -1,
-          'orderby'          => 'title',
-          'order'            => 'ASC',
-          'post_type'        => 'arc-panels',
-          'suppress_filters' => true);
-
-      $pzarc_panels       = get_posts($args);
-      $pzarc_panels_array = array();
-      if (!empty($pzarc_panels)) {
-        foreach ($pzarc_panels as $pzarc_cell) {
-          $pzarc_panels_array[ $pzarc_cell->ID ] = (empty($pzarc_cell->post_title) ? 'No title' : $pzarc_cell->post_title);
-        }
-      } else {
-        $pzarc_panels_array = array(0 => 'No cell layouts. Create some.');
-      }
-    }
-
-    // ID,post_title
+    /** SECTIONS */
     $icons = array(0 => 'el-icon-align-left', 1 => 'el-icon-th', 2 => 'el-icon-th-list');
     for ($i = 0; $i < 3; $i++) {
       $sections[ ] = array(
@@ -614,13 +588,13 @@
                   //       'subtitle'    => __('Choose how you want the panels to display. With evenly sized panels, you\'ll see little difference. Please visit <a href="http://isotope.metafizzy.co/demos/layout-modes.html" target=_blank>Isotope Layout Modes</a> for demonstrations of these layouts', 'pzarchitect')
               ),
               array(
-                  'title'    => __('Limit panels', 'pzarchitect'),
+                  'title'    => __('Limit panels (content)', 'pzarchitect'),
                   'id'       => $prefix . 'section-' . $i . '-panels-limited',
                   'type'     => 'switch',
                   'on'       => 'Yes',
                   'off'      => 'No',
                   'default'  => true,
-                  'subtitle' => 'Each panel displays content from the selected content type. Use unlimited with care.'
+                  'subtitle' => 'Each panel displays content from the selected content type.'
               ),
               array(
                   'title'    => __('Panels to show', 'pzarchitect'),
@@ -630,7 +604,7 @@
                   'min'      => 1,
                   'max'      => 99,
                   'subtitle' => __('This is how many posts or pages will show.'),
-                  'desc'=>__('If using pagination, this will be the number per page.'),
+                  'desc'     => __('If using pagination, this will be the number per page.'),
                   'required' => array($prefix . 'section-' . $i . '-panels-limited', '=', true)
               ),
               array(
@@ -676,28 +650,24 @@
                   //      'hint'  => array('content' => __('Set the minimum width for panels in this section. This helps with responsive layout', 'pzarchitect'))
               ),
               array(
-                  'title'   => __('Panels bottom margin', 'pzarchitect'),
-                  'id'      => $prefix . 'section-' . $i . '-panels-vert-margin',
-                  'type'    => 'dimensions',
-                  'width'  => false,
-                  'units'   => false,
-                  'default' => array('height' => '1'),
+                  'title'    => __('Panels margins (%)', 'pzarchitect'),
+                  'id'       => $prefix . 'section-' . $i . '-panels-margins',
+                  'type'     => 'spacing',
+                  'top'      => false,
+                  'left'     => false,
+                  'units'    => '%',
+                  'mode'     => 'margin',
+                  'default'  => array('right' => '1', 'bottom' => '1'),
+                  'subtitle' => __('Right, bottom', 'pzarchitect')
                   //    'hint'  => array('content' => __('Set the vertical gutter width as a percentage of the section width. The gutter is the gap between adjoining elements', 'pzarchitect'))
-              ),
-              array(
-                  'title'   => __('Panels right margin', 'pzarchitect'),
-                  'id'      => $prefix . 'section-' . $i . '-panels-horiz-margin',
-                  'type'    => 'dimensions',
-                  'height'   => false,
-                  'units'   => false,
-                  'default' => array('width' => '1'),
-                  //      'hint'  => array('content' => __('Set the horizontal gutter width as a percentage of the section width. The gutter is the gap between adjoining elements', 'pzarchitect'))
               ),
 
           )
 
       );
     }
+
+    /** PAGINATION  */
     $sections[ ] = array(
         'title'      => __('Pagination', 'pzarchitect'),
         'show_title' => true,
@@ -767,6 +737,8 @@
             //            ),
         )
     );
+
+    /** NAVIGATOR  */
     $sections[ ] = array(
         'title'      => __('Navigator', 'pzarchitect'),
         'show_title' => true,
@@ -836,15 +808,14 @@
                       'alt' => 'Top',
                       'img' => PZARC_PLUGIN_APP_URL . 'shared/assets/images/metaboxes/nav-pos-top.png'
                   ),
-                  // TODO: Add these beta2
-                  //                    'left'   => array(
-                  //                        'alt' => 'Left',
-                  //                        'img' => PZARC_PLUGIN_APP_URL . 'shared/assets/images/metaboxes/nav-pos-left.png'
-                  //                    ),
-                  //                    'right'  => array(
-                  //                        'alt' => 'Right',
-                  //                        'img' => PZARC_PLUGIN_APP_URL . 'shared/assets/images/metaboxes/nav-pos-right.png'
-                  //                    ),
+                  'left'   => array(
+                      'alt' => 'Left',
+                      'img' => PZARC_PLUGIN_APP_URL . 'shared/assets/images/metaboxes/nav-pos-left.png'
+                  ),
+                  'right'  => array(
+                      'alt' => 'Right',
+                      'img' => PZARC_PLUGIN_APP_URL . 'shared/assets/images/metaboxes/nav-pos-right.png'
+                  ),
               ),
               'required' => array(
                   array($prefix . 'navigator', '!=', 'accordion'),
@@ -892,20 +863,19 @@
                   array($prefix . 'navigator-position', '!=', 'right')
               )
           ),
-          // TODO: Add these beta2
-          //            array(
-          //                'title'    => 'Vertical width',
-          //                'id'       => $prefix . 'navigator-vertical-width',
-          //                'type'     => 'dimensions',
-          //                'default'  => array('width' => '10%'),
-          //                'height'   => false,
-          //                'units'    => '%',
-          //                'required' => array(
-          //                    array($prefix . 'navigator', '!=', 'accordion'),
-          //                    array($prefix . 'navigator-position', '!=', 'top'),
-          //                    array($prefix . 'navigator-position', '!=', 'bottom')
-          //                )
-          //            ),
+          array(
+              'title'    => 'Vertical width',
+              'id'       => $prefix . 'navigator-vertical-width',
+              'type'     => 'dimensions',
+              'default'  => array('width' => '10%'),
+              'height'   => false,
+              'units'    => '%',
+              'required' => array(
+                  array($prefix . 'navigator', '!=', 'accordion'),
+                  array($prefix . 'navigator-position', '!=', 'top'),
+                  array($prefix . 'navigator-position', '!=', 'bottom')
+              )
+          ),
           array(
               'title'    => 'Bullet shape',
               'id'       => $prefix . 'navigator-bullet-shape',
@@ -981,6 +951,8 @@
               'max'      => 100,
               'subtitle' => 'This is the number of thumbs skipped by multi-skip pager element of the inline pager.'
           ),
+          /** TRANSITIONS */
+
           array(
               'title' => __('Transitions', 'pzarchitect'),
               'id'    => $prefix . 'section-transitions-heading',
@@ -1177,7 +1149,58 @@
 //        )
 //    );
 //
-    /** GENERAL  */
+    /** GENERAL  Settings*/
+    $prefix      = '_content_general_';
+    $sections[ ] = array(
+        'title'      => 'Settings',
+        'icon_class' => 'icon-large',
+        'icon'       => 'el-icon-adjust-alt',
+        'fields'     => array(
+            array(
+                'title'   => __('Order by', 'pzarchitect'),
+                'id'      => $prefix . 'orderby',
+                'type'    => 'button_set',
+                'default' => 'date',
+                'cols'    => 6,
+                'options' => array(
+                    'date'       => 'Date',
+                    'title'      => 'Title',
+                    'menu_order' => 'Page order (if set)',
+                    'rand'     => 'Random',
+                ),
+                'subtitle'=>'Some hosts disable random as it slows things down significantly on large sites. WPEngine does this. Look in WPE Dashboard, Advanced Configuration.'
+            ),
+            array(
+                'title'   => __('Order direction', 'pzarchitect'),
+                'id'      => $prefix . 'orderdir',
+                'type'    => 'button_set',
+                'default' => 'DESC',
+                'options' => array(
+                    'ASC'  => 'Ascending',
+                    'DESC' => 'Descending',
+                ),
+            ),
+            array(
+                'title'   => __('Skip N posts', 'pzarchitect'),
+                'id'      => $prefix . 'skip',
+                'type'    => 'text',
+                'min'     => 0,
+                'max'     => 9999,
+                'step'    => 1,
+                'default' => 0,
+                'desc'    => __('Note: Skipping breaks pagination. This is a known WordPress issue.', 'pzarchitect'),
+            ),
+            array(
+                'title'   => __('Sticky posts first', 'pzarchitect'),
+                'id'      => $prefix . 'sticky',
+                'type'    => 'switch',
+                'on'      => 'Yes',
+                'off'     => 'No',
+                'default' => false,
+            ),
+        )
+    );
+    /** GENERAL  Filters*/
     $prefix      = '_content_general_';
     $sections[ ] = array(
         'title'      => 'General Filters',
@@ -1396,6 +1419,14 @@
         'icon_class' => 'icon-large',
         'icon'       => 'el-icon-file',
         'fields'     => array(
+            array(
+                'title'   => __('Specific snippets', 'pzarchitect'),
+                'id'      => $prefix . 'specific-snippets',
+                'type'    => 'select',
+                'select2' => array('allowClear' => true),
+                'data'    => 'snippets',
+                'multi'   => true
+            ),
         )
     );
 
@@ -1474,7 +1505,7 @@
             array(
                 'title'    => __('Click behaviour', 'pzarchitect'),
                 'id'       => $prefix . 'click-behavioury',
-                'type'     => 'checkbox',
+                'type'     => 'switch',
                 'default'  => true,
                 'subtitle' => __('Open image in lightbox when clicked', 'pzarchitect')
             )
@@ -1482,11 +1513,11 @@
     );
 
     // Slides
-    $slides_obj      = get_posts(array('post_type' => 'pzsp-slides'));
-  //var_dump($slides_obj);
+    $slides_obj = get_posts(array('post_type' => 'pzsp-slides'));
+    //var_dump($slides_obj);
     $slides = array();
-    foreach($slides_obj as $key => $value) {
-      $slides[$value->ID]=$value->post_title;
+    foreach ($slides_obj as $key => $value) {
+      $slides[ $value->ID ] = $value->post_title;
     }
     $prefix      = '_content_slides_';
     $sections[ ] = array(

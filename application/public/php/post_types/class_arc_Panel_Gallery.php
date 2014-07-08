@@ -203,7 +203,7 @@
                                                                       'crop'      => array(
                                                                           $fp_x,
                                                                           $fp_y,
-                                                                          //                                                                            'focalpt'   => true
+                                                                          'focalpt' => $section[ '_panels_settings_image-focal-point' ]
                                                                       ),
             )
         ); //WP seems to smartly figure out which of its saved images to use! Now we jsut gotta get it t work with focal point
@@ -219,7 +219,7 @@
 //          $data[ 'image' ][ 'imgsrc' ]  = str_replace(array('src=', '"'), '', $srcm[ 0 ][ 0 ]);
 //          $data[ 'image' ][ 'alttext' ] = str_replace(array('alt=', '"'), '', $altm[ 0 ][ 0 ]);
 //        }
-//      var_dump($data);
+//     var_dump($data);
 
       return $data;
 
@@ -329,7 +329,7 @@
     public static function render($component, $panel_def, $content_type, &$data, &$section)
     {
       if ('yes' === $section[ '_panels_design_link-image' ] || 'url' === $section[ '_panels_design_link-image' ]) {
-        $link = ('url' === $section[ '_panels_design_link-image' ]) ? 'a href="' . $section[ '_panels_design_link-image-url' ].'">':$panel_def[ 'postlink' ];
+        $link                    = ('url' === $section[ '_panels_design_link-image' ]) ? '<a href="' . $section[ '_panels_design_link-image-url' ] . '" title="' . $section[ '_panels_design_link-image-url-tooltip' ] . '">' : $panel_def[ 'postlink' ];
         $panel_def[ $component ] = str_replace('{{postlink}}', $link, $panel_def[ $component ]);
         $panel_def[ $component ] = str_replace('{{closepostlink}}', '</a>', $panel_def[ $component ]);
       }
@@ -364,8 +364,9 @@
     {
       $panel_def[ $component ] = str_replace('{{bgimage}}', $data[ 'bgimage' ], $panel_def[ $component ]);
       $panel_def[ $component ] = str_replace('{{trim-scale}}', ' ' . $section[ '_panels_design_background-position' ] . ' ' . $section[ '_panels_design_background-image-resize' ], $panel_def[ $component ]);
+
       if ('yes' === $section[ '_panels_design_link-bgimage' ] || 'url' === $section[ '_panels_design_link-bgimage' ]) {
-        $link = ('url' === $section[ '_panels_design_link-bgimage' ]) ? 'a href="' . $section[ '_panels_design_link-bgimage-url' ].'">':$panel_def[ 'postlink' ];
+        $link                    = ('url' === $section[ '_panels_design_link-bgimage' ]) ? '<a href="' . $section[ '_panels_design_link-bgimage-url' ] . '" title="' . $section[ '_panels_design_link-bgimage-url-tooltip' ] . '">' : $panel_def[ 'postlink' ];
         $panel_def[ $component ] = str_replace('{{postlink}}', $link, $panel_def[ $component ]);
         $panel_def[ $component ] = str_replace('{{closepostlink}}', '</a>', $panel_def[ $component ]);
       }

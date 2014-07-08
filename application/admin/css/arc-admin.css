@@ -13,7 +13,6 @@
 #pzarc-custom-pzarc_layout-cell-preview {
   width: 402px;
   border-radius: 3px 3px 0 0;
-  -webkit-box-shadow: 0 0 10px #aaa;
   box-shadow: 0 0 10px #aaa;
   margin-bottom: 10px; }
 
@@ -85,8 +84,6 @@ div.pzarc-dragsource {
   padding: 0px;
   border: #eee solid 1px;
   min-height: 300px;
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
   box-sizing: border-box;
   background: #dddddd url(bg-preview.jpg);
   overflow: hidden;
@@ -98,8 +95,6 @@ div.pzarc-dragsource {
   position: absolute;
   background: rgba(182, 168, 147, 0.5);
   border: solid 2px #a89b8e;
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
   box-sizing: border-box; }
 
 .pzgp-cell-image-behind {
@@ -113,8 +108,6 @@ div.pzarc-dragsource {
 /* */
 .pzarc_cell {
   float: left;
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
   box-sizing: border-box;
   background: #bbb;
   padding: 10px;
@@ -125,8 +118,6 @@ div.pzarc-dragsource {
 .pzarc_cell_header,
 .pzarc_cell_footer {
   width: 100%;
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
   box-sizing: border-box;
   clear: both; }
 
@@ -140,8 +131,6 @@ div.pzarc-dragsource {
 .pzarc_cell_left_col,
 .pzarc_cell_footer_left {
   float: left;
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
   box-sizing: border-box;
   width: 49%;
   background: #fff;
@@ -151,8 +140,6 @@ div.pzarc-dragsource {
 .pzarc_cell_right_col,
 .pzarc_cell_footer_right {
   float: right;
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
   box-sizing: border-box;
   width: 49%;
   background: #fff;
@@ -160,8 +147,6 @@ div.pzarc-dragsource {
 
 .pzarc_cell_columns {
   width: 100%;
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
   box-sizing: border-box;
   clear: both;
   margin: 10px 0; }
@@ -267,11 +252,8 @@ ul#pzarc-meta-nav.vertical {
 .pzarc_options {
   width: 98%;
   overflow: auto;
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
   box-sizing: border-box;
   background: #fff;
-  -webkit-box-shadow: 3px 3px 4px #ccc;
   box-shadow: 3px 3px 4px #ccc;
   border-radius: 3px;
   min-height: 410px !important;
@@ -288,7 +270,6 @@ ul#pzarc-meta-nav.vertical {
   border: solid 1px #ddd;
   margin: 20px 10px 10px 10px;
   display: block;
-  -webkit-box-shadow: 0px 0px 3px #aaa;
   box-shadow: 0px 0px 3px #aaa; }
 
 /* Need to make this only for my form! */
@@ -321,7 +302,6 @@ ul#pzarc-meta-nav.vertical {
 
 /* Metabox tabs */
 img.pzarc-layout-images {
-  -webkit-box-shadow: 0 0 5px #aaa;
   box-shadow: 0 0 5px #aaa;
   margin-right: 20px;
   margin-left: 5px; }
@@ -343,7 +323,6 @@ ul.pzarc-meta-nav li.pzarc-meta-tab-title.ui-state-active {
 li.pzarc-meta-tab-title a {
   text-decoration: none;
   background: #fff;
-  -webkit-box-shadow: 3px 3px 4px #ccc;
   box-shadow: 3px 3px 4px #ccc;
   border-top-left-radius: 3px;
   border-bottom-left-radius: 3px; }
@@ -616,8 +595,6 @@ select#_pzarc_layout-show-cmb-field-0 {
 /* This is all the sections preview */
 .pzarc-sections {
   padding: 5px;
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
   box-sizing: border-box;
   overflow: hidden; }
 
@@ -627,8 +604,6 @@ select#_pzarc_layout-show-cmb-field-0 {
   margin: 0 0 10px 0;
   /* Remember to remove space between divs to stop inline-block space issue */
   display: inline-block;
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
   box-sizing: border-box;
   color: #222;
   overflow: visible;
@@ -697,7 +672,6 @@ body.arc-bgimage.architect_page_pzarc_about .wrap {
   background: rgba(255, 255, 255, 0.9);
   padding: 2%; }
 body.arc-bgimage.post-type-arc-panels #wpwrap, body.arc-bgimage.post-type-arc-blueprints #wpwrap {
-  -webkit-background-size: cover;
   background-size: cover;
   background-attachment: fixed; }
 body.arc-bgimage.post-type-arc-panels .postbox,
@@ -862,7 +836,6 @@ body.admin-color-midnight .metabox-holder h3.redux-section-title {
 #redux-_architect-metabox-blueprint_tabs_blueprints .redux-main {
   padding: 0;
   border: none;
-  -webkit-box-shadow: none;
   box-shadow: none;
   background: none; }
 
@@ -875,7 +848,6 @@ input[readonly]:hover,
 input[readonly]:active {
   border: none;
   background: #eee;
-  -webkit-box-shadow: none;
   box-shadow: none; }
 
 body.post-type-arc-panels .ui-button,
@@ -960,11 +932,12 @@ body .redux-container .redux-main .redux-section-field.redux-field.heading h3 {
   border-radius: 2px;
   border-width: 2px; }
 
-span.pzarc-required {
+.redux_field_th span.pzarc-required {
   color: tomato;
   font-size: 7px;
   vertical-align: super;
-  cursor: help; }
+  cursor: help;
+  display: inline; }
 
 .textbox-small {
   width: 100px !important; }
@@ -1045,5 +1018,3 @@ span.bold {
   .arc-panels .postbox .redux-container .redux-sidebar .redux-group-menu .active a {
     background: #707070;
     color: #fff; } }
-
-/*# sourceMappingURL=arc-admin.css.map */

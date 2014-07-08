@@ -7,7 +7,8 @@
     ================================================================*/
   /* ===============================================================
   Pagination Styles
-  ================================================================*/ }
+  ================================================================*/
+  /* This is coz transforms were preventing display of content section */ }
   .pzarchitect .message-warning {
     background: #ffffaa;
     color: #aaaa00;
@@ -192,11 +193,13 @@
     .pzarchitect .pzarc-navigator.left {
       left: 15px;
       text-align: left;
-      right: initial; }
+      right: initial;
+      width: 10%; }
     .pzarchitect .pzarc-navigator.right {
       right: 15px;
       text-align: right;
-      left: initial; }
+      left: initial;
+      width: 10%; }
   .pzarchitect .swiper-container {
     /* Specify Swiper's Size: */
     padding: 0; }
@@ -358,6 +361,8 @@
     left: 0; }
   .pzarchitect .slick-slider {
     margin-bottom: 0; }
+  .pzarchitect .slick-slide img {
+    -webkit-transform: initial; }
   .pzarchitect x.pzarc-panel {
     opacity: 0.5; }
     .pzarchitect x.pzarc-panel.slick-active.slick-center {

@@ -99,6 +99,7 @@
       $pzarc_insert = array
       (
           '_panels_settings_short-name' => __('Short name', 'pzsp'),
+          '_panels_settings_description'    => __('Description', 'pzarchitect'),
       );
 
       return array_merge($pzarc_front, $pzarc_insert, $pzarc_back);
@@ -293,6 +294,13 @@
               'validate' => 'no_special_chars'
           ),
           array(
+              'id'    => $prefix . 'description',
+              'title' => __('Description', 'pzarchitect'),
+              'type'  => 'textarea',
+              'rows'  => 2,
+              'hint' => __('A short description to help you or others know what this Panel is for', 'pzarchitect'),
+          ),
+          array(
               'title'   => __('Panel Height Type', 'pzarchitect'),
               'id'      => $prefix . 'panel-height-type',
               'type'    => 'select',
@@ -341,14 +349,15 @@
           //    'required' => array($prefix . 'panel-height-type', 'equals', 'fixed')
           //),
           array(
-              'title'   => __('Images Focal Point', 'pzarchitect'),
+              'title'   => __('Image cropping', 'pzarchitect'),
               'id'      => $prefix . 'image-focal-point',
               'type'    => 'button_set',
               'default' => 'respect',
               'options' => array(
-                  'respect' => __('Respect', 'pzarchitect'),
-                  'centre'  => __('Centre', 'pzarchitect'),
-                  'none'    => __('None', 'pzarchitect')
+                  'respect' => __('Respect focal point', 'pzarchitect'),
+                  'centre'  => __('Centre focal point', 'pzarchitect'),
+                  'none'    => __('Crop to centre', 'pzarchitect'),
+                  'scale'    => __('Scale images, no cropping', 'pzarchitect')
 
               )
           ),
@@ -882,6 +891,14 @@
               'subtitle' => __('Enter the URL that all images will link to', 'pzazrchitect')
           ),
           array(
+              'title'    => __('Specific URL tooltip', 'pzarchitect'),
+              'id'       => $prefix . 'link-image-url-tooltip',
+              'type'     => 'text',
+              'required' => array($prefix . 'link-image', 'equals', 'url'),
+              'validate' => 'url',
+              'subtitle' => __('Enter the text that appears when the user hovers over the link', 'pzazrchitect')
+          ),
+          array(
               'title'   => __('Image Captions', 'pzarchitect'),
               'id'      => $prefix . 'image-captions',
               'type'    => 'switch',
@@ -1025,6 +1042,17 @@
                 ),
                 'validate' => 'url',
                 'subtitle' => __('Enter the URL that all images will link to', 'pzazrchitect')
+            ),
+            array(
+                'title'    => __('Specific URL tooltip', 'pzarchitect'),
+                'id'       => $prefix . 'link-bgimage-url-tooltip',
+                'type'     => 'text',
+                'required' => array(
+                    array($prefix.'background-position','!=','none'),
+                    array($prefix . 'link-bgimage', 'equals', 'url')
+                ),
+                'validate' => 'url',
+                'subtitle' => __('Enter the text that appears when the user hovers over the link', 'pzazrchitect')
             ),
         )
     );

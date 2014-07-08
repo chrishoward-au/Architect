@@ -669,27 +669,51 @@
 
       // Crop from offsets (left, top) as percentages
 
-      if (!is_array($crop) || count($crop) !== 2) {
-        $crop = array(0.5, 0.5);
+      if (!is_array($crop)) {
+        $crop = array(0.5, 0.5,'center');
         // defaults are equivelant to center, center.
       }
 
-      list($x, $y) = $crop;
+      list($x, $y, $f) = $crop;
 
-//      var_dump($x, $y);
+      // Convert $x and $y to decimal if necessary
       $x = $x > 1 ? $x / 100 : $x;
       $y = $y > 1 ? $y / 100 : $y;
       //   var_dump($x, $y,$crop);
 
-      // Ideal offsets to centre
-      $ideal_s_x = $x * $orig_w - ($crop_w * 0.5);
-      $ideal_s_y = $y * $orig_h - ($crop_h * 0.5);
+      $ideal_s_x = 0;
+      $ideal_s_y = 0;
 
-      // Ideal offsets to focal point
-      $ideal_s_x = $x * $orig_w - ($crop_w * $x);
-      $ideal_s_y = $y * $orig_h - ($crop_h * $y);
+      // Handle focal point positioning in output image
+      switch($f) {
 
-      // Ideally we want our x,y crop-focus-point perfectly in the middle...
+        case 'none':
+          // No focal point. Crop from top left
+          $ideal_s_x = 0;
+          $ideal_s_y = 0;
+          break;
+
+        case 'respect':
+          // Try to maintain relative focal point
+          $ideal_s_x = $x * $orig_w - ($crop_w * $x);
+          $ideal_s_y = $y * $orig_h - ($crop_h * $y);
+          break;
+
+        case 'centre':
+        case 'center':
+        // Try to centre focal point
+        $ideal_s_x = $x * $orig_w - ($crop_w * 0.5);
+        $ideal_s_y = $y * $orig_h - ($crop_h * 0.5);
+          break;
+
+        case 'scale':
+          $ideal_s_x = 0;
+          $ideal_s_y = 0;
+          break;
+
+      }
+
+      // Ideally we want our x,y crop-focus-point as chosen
       // but to put (for example) the top left corner in the centre of our cropped
       // image we end up with black strips where there isn't enough image on the
       // left and top.
@@ -750,4 +774,83 @@
 
       return array($resized_img_url, $size[ 0 ], $size[ 1 ], false);
     }
+  }
+
+  // Add Toolbar Menus
+  function bfi_thumbs_toolbar() {
+    global $wp_admin_bar;
+    $args = array(
+        'id'     => 'bfi_thumbs',
+        'parent' => false,
+        'title'  => __( 'Thumbs', 'pzarchitect' ),
+    );
+    $wp_admin_bar->add_menu( $args );
+
+    $args = array(
+        'id'     => 'bfi_thumbs_flush',
+        'parent' => 'bfi_thumbs',
+        'title'  => __( 'Flush images cache', 'pzarchitect' ),
+        'href'   => 'options-media.php',
+    );
+    $wp_admin_bar->add_menu( $args );
+
+  }
+
+// Hook into the 'wp_before_admin_bar_render' action
+  add_action( 'wp_before_admin_bar_render', 'bfi_thumbs_toolbar', 999 );
+
+// ------------------------------------------------------------------
+  // Add all your sections, fields and settings during admin_init
+  // ------------------------------------------------------------------
+  //
+
+  function eg_settings_api_init() {
+    // Add the section to reading settings so we can add our
+    // fields to it
+    add_settings_section(
+        'eg_setting_section',
+        'Example settings section in reading',
+        'eg_setting_section_callback_function',
+        'media'
+    );
+
+    // Add the field with the names and function to use for our new
+    // settings, put it in our new section
+    add_settings_field(
+        'eg_setting_name',
+        'Example setting Name',
+        'eg_setting_callback_function',
+        'media',
+        'eg_setting_section'
+    );
+
+    // Register our setting so that $_POST handling is done for us and
+    // our callback function just has to echo the <input>
+    register_setting( 'media', 'eg_setting_name' );
+  } // eg_settings_api_init()
+
+  add_action( 'admin_init', 'eg_settings_api_init' );
+
+
+  // ------------------------------------------------------------------
+  // Settings section callback function
+  // ------------------------------------------------------------------
+  //
+  // This function is needed if we added a new section. This function
+  // will be run at the start of our section
+  //
+
+  function eg_setting_section_callback_function() {
+    echo '<p>Intro text for our settings section</p>';
+  }
+
+  // ------------------------------------------------------------------
+  // Callback function for our example setting
+  // ------------------------------------------------------------------
+  //
+  // creates a checkbox true/false option. Other types are surely possible
+  //
+
+  function eg_setting_callback_function() {
+    echo '<input name="eg_setting_name" id="gv_thumbnails_insert_into_excerpt" type="checkbox" value="1" class="code" ' . checked( 1, get_option( 'eg_setting_name' ), false ) . ' /> Explanation text';
   }

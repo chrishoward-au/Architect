@@ -6,7 +6,7 @@ jQuery( document ).ready( function ()
     var arcSlicks = jQuery( '.swiper-container.slider' );
     //for each
 
-    function update_nav_after( i, arcNav )
+    function update_nav( i, arcNav )
     {
 
         var nav = jQuery( arcNav ).find( '.swiper-pagination-switch' );
@@ -32,28 +32,30 @@ jQuery( document ).ready( function ()
             arcSlickOpts = arcSlickOpts.replace( /#/g, '"' );
             var arcSlickOptsObj = JSON.parse( arcSlickOpts );
 
-            var afterChange = function ( slider, i )
+            var beforeChange = function ( slider, i, newIndex )
             {
-                update_nav_after( i, arcSlickNav );
+                update_nav( newIndex, arcSlickNav );
             };
 
 
             var arcSlick = jQuery( '.swiper-container.swiper-container-' + arcSlickID + ' .pzarc-section' ).slick(
                   {
                       slide: '.pzarc-panel',
-// TODO: replace these with vars
-                      slidesToShow: 1,
                       fade: arcSlickTrans,
                       speed: arcSlickOptsObj.tduration,
                       autoplay: (arcSlickOptsObj.tinterval>0),
                       autoPlaySpeed: arcSlickOptsObj.tinterval,
                       arrows: false,
-                      easing: 'linear',
                       dots: false,
+                      onBeforeChange: beforeChange,
+// TODO: replace these with vars
+                      infinite:true,
+                      pauseOnHover:true,
+                      slidesToShow: 1,
+                      slidesToScroll:1,
                       centerMode: false,
 // TODO: Needs some tweaking - prob height and overflow
-                      vertical: false,
-                      onAfterChange: afterChange
+                      vertical: false
 
                   }
             );

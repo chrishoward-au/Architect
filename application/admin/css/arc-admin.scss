@@ -1167,11 +1167,12 @@ body .redux-container {
   }
 }
 
-span.pzarc-required {
+.redux_field_th span.pzarc-required {
   color: tomato;
   font-size: 7px;
   vertical-align: super;
   cursor: help;
+  display:inline;
 }
 
 .textbox-small {

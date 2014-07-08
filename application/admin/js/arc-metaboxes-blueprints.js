@@ -53,18 +53,20 @@ jQuery( document ).ready( function ()
         {
             //console.log(this,this.selected,jQuery(this).text());
             // there's a blank one at the to  because of the placeholder
-            console.log(i,this.value,this.selected)
-            if ( i === 0 || this.value === 'help')
+
+            console.log(i,this.value,this.selected);
+
+            if ( i < 1 || this.value === 'help')
             {return;}
 
             if ( this.selected )
             {
                 console.log( i, this.value );
-                jQuery( ".redux-sidebar li#" + (i ) + "_box_redux-_architect-metabox-content-selections_section_group_li" ).show().trigger( "click" );
+                jQuery( ".redux-sidebar li#" + (i+1 ) + "_box_redux-_architect-metabox-content-selections_section_group_li" ).show().trigger( "click" );
             }
             else
             {
-                jQuery( ".redux-sidebar li#" + (i ) + "_box_redux-_architect-metabox-content-selections_section_group_li" ).hide();
+                jQuery( ".redux-sidebar li#" + (i +1) + "_box_redux-_architect-metabox-content-selections_section_group_li" ).hide();
             }
         } );
 
@@ -79,35 +81,35 @@ jQuery( document ).ready( function ()
 
     function pzarc_show_hide_content_tabs( tab )
     {
-        var a = ["General","Defaults", "Posts", "Pages", "Snippets","Galleries", "Slides", "Custom Post Types"];
-        for ( var i = 2; i <= a.length; i++ )
+        var a = ["Defaults", "Posts", "Pages", "Snippets","Galleries", "Slides", "Custom Post Types"];
+        for ( var i = 1; i <= a.length; i++ )
         {
-            jQuery( ".redux-sidebar li#" + (i - 1) + "_box_redux-_architect-metabox-content-selections_section_group_li" ).hide();
+            jQuery( ".redux-sidebar li#" + (i - 1+2) + "_box_redux-_architect-metabox-content-selections_section_group_li" ).hide();
         }
-        jQuery( ".redux-sidebar li#" + a.indexOf( tab ) + "_box_redux-_architect-metabox-content-selections_section_group_li" ).show().find( "a" ).trigger( "click" );
+        jQuery( ".redux-sidebar li#" + (a.indexOf( tab )+2) + "_box_redux-_architect-metabox-content-selections_section_group_li" ).show().find( "a" ).trigger( "click" );
     }
 
-    // ********************************************************************************************
+    /********************************************************************************************
     // 
     // Control visibility of NAVIGATION tabs
     // 
-    // ********************************************************************************************
+    // ********************************************************************************************/
     jQuery( "#_architect-_blueprints_navigation input" ).each( function ( i )
     {
         if ( i === 0 && this.checked )
         {
-            jQuery( ".redux-sidebar li#3_box_redux-_architect-metabox-layout-settings_section_group_li" ).hide();
-            jQuery( ".redux-sidebar li#4_box_redux-_architect-metabox-layout-settings_section_group_li" ).hide();
+            jQuery( ".redux-sidebar li#5_box_redux-_architect-metabox-layout-settings_section_group_li" ).hide();
+            jQuery( ".redux-sidebar li#5_box_redux-_architect-metabox-layout-settings_section_group_li" ).hide();
             return;
         }
         //   //console.log(i,this.checked);
         if ( this.checked )
         {
-            jQuery( ".redux-sidebar li#" + (i + 2) + "_box_redux-_architect-metabox-layout-settings_section_group_li" ).show();
+            jQuery( ".redux-sidebar li#" + (i + 3) + "_box_redux-_architect-metabox-layout-settings_section_group_li" ).show();
         }
         else
         {
-            jQuery( ".redux-sidebar li#" + (i + 2) + "_box_redux-_architect-metabox-layout-settings_section_group_li" ).hide();
+            jQuery( ".redux-sidebar li#" + (i + 3) + "_box_redux-_architect-metabox-layout-settings_section_group_li" ).hide();
         }
     } );
 
@@ -120,56 +122,59 @@ jQuery( document ).ready( function ()
     {
         if ( tab === 'None' )
         {
-            jQuery( ".redux-sidebar li#3_box_redux-_architect-metabox-layout-settings_section_group_li" ).hide();
             jQuery( ".redux-sidebar li#4_box_redux-_architect-metabox-layout-settings_section_group_li" ).hide();
-            if ( jQuery( '#5_box_redux-_architect-metabox-layout-settings_section_group_li.active' ).length === 0 )
-            {
+            jQuery( ".redux-sidebar li#5_box_redux-_architect-metabox-layout-settings_section_group_li" ).hide();
+//            if ( jQuery( '#5_box_redux-_architect-metabox-layout-settings_section_group_li.active' ).length === 0 )
+//            {
                 jQuery( ".redux-sidebar li#0_box_redux-_architect-metabox-layout-settings_section_group_li" ).find( 'a' ).trigger( "click" );
-            }
+//            }
         }
         else
         {
             var a = ["Pagination", "Navigator"];
+
+            // Start by hiding both tabs
             for ( var i = 1; i <= 2; i++ )
             {
-                jQuery( ".redux-sidebar li#" + (i + 2) + "_box_redux-_architect-metabox-layout-settings_section_group_li" ).hide();
+                jQuery( ".redux-sidebar li#" + (i + 3) + "_box_redux-_architect-metabox-layout-settings_section_group_li" ).hide();
             }
-            var j = a.indexOf( tab ) + 3;
+
+            var j = a.indexOf( tab ) + 4;
 //            console.log(jQuery(jQuery('#5_box_redux-_architect-metabox-layout-settings_section_group_li.active' ).length));
             // This checks first if thewireframe preview tab is active.
             // Need tosetup somebetter method that is dumber
             jQuery( ".redux-sidebar li#" + j + "_box_redux-_architect-metabox-layout-settings_section_group_li" ).show().find( 'a' );
-            if ( jQuery( '#5_box_redux-_architect-metabox-layout-settings_section_group_li.active' ).length === 0 )
-            {
+         //   if ( jQuery( '#5_box_redux-_architect-metabox-layout-settings_section_group_li.active' ).length === 0 )
+           // {
                 jQuery( ".redux-sidebar li#" + j + "_box_redux-_architect-metabox-layout-settings_section_group_li" ).find( 'a' ).trigger( 'click' );
-            }
+           // }
         }
     }
 
-    // ********************************************************************************************
+    /********************************************************************************************
     // 
     // Show hide SECTION tabs
     // 
-    // ********************************************************************************************
-    jQuery( ".redux-sidebar li#1_box_redux-_architect-metabox-layout-settings_section_group_li" ).toggle( jQuery( "fieldset#_architect-_blueprints_section-1-enable" ).find( 'input' ).val() === "1" );
-    jQuery( ".redux-sidebar li#2_box_redux-_architect-metabox-layout-settings_section_group_li" ).toggle( jQuery( "fieldset#_architect-_blueprints_section-2-enable" ).find( 'input' ).val() === "1" );
+    // ********************************************************************************************/
+    jQuery( ".redux-sidebar li#2_box_redux-_architect-metabox-layout-settings_section_group_li" ).toggle( jQuery( "fieldset#_architect-_blueprints_section-1-enable" ).find( 'input' ).val() === "1" );
+    jQuery( ".redux-sidebar li#3_box_redux-_architect-metabox-layout-settings_section_group_li" ).toggle( jQuery( "fieldset#_architect-_blueprints_section-2-enable" ).find( 'input' ).val() === "1" );
 
     jQuery( "fieldset#_architect-_blueprints_section-1-enable" ).on( 'click', function ()
     {
         var state = (jQuery( this ).find( 'input' ).val() === "1");
-        jQuery( ".redux-sidebar li#1_box_redux-_architect-metabox-layout-settings_section_group_li" ).toggle( state );
+        jQuery( ".redux-sidebar li#2_box_redux-_architect-metabox-layout-settings_section_group_li" ).toggle( state );
         if ( jQuery( '#5_box_redux-_architect-metabox-layout-settings_section_group_li.active' ).length === 0 )
         {
-            jQuery( ".redux-sidebar li#1_box_redux-_architect-metabox-layout-settings_section_group_li" ).find( 'a' ).trigger( "click" );
+            jQuery( ".redux-sidebar li#0_box_redux-_architect-metabox-layout-settings_section_group_li" ).find( 'a' ).trigger( "click" );
         }
 
         if ( state )
         {
-            jQuery( ".redux-sidebar li#1_box_redux-_architect-metabox-layout-settings_section_group_li" ).toggle( state );
+            jQuery( ".redux-sidebar li#2_box_redux-_architect-metabox-layout-settings_section_group_li" ).toggle( state );
             pzarc_refresh_blueprint_layout( 1 );
             if ( jQuery( '#5_box_redux-_architect-metabox-layout-settings_section_group_li.active' ).length === 0 )
             {
-                jQuery( ".redux-sidebar li#1_box_redux-_architect-metabox-layout-settings_section_group_li" ).find( 'a' ).trigger( "click" );
+                jQuery( ".redux-sidebar li#2_box_redux-_architect-metabox-layout-settings_section_group_li" ).find( 'a' ).trigger( "click" );
             }
         }
     } );
@@ -177,10 +182,10 @@ jQuery( document ).ready( function ()
     jQuery( "fieldset#_architect-_blueprints_section-2-enable" ).on( 'click', function ()
     {
         pzarc_refresh_blueprint_layout( 1 );
-        jQuery( ".redux-sidebar li#2_box_redux-_architect-metabox-layout-settings_section_group_li" ).toggle( jQuery( this ).find( 'input' ).val() === "1" );
+        jQuery( ".redux-sidebar li#3_box_redux-_architect-metabox-layout-settings_section_group_li" ).toggle( jQuery( this ).find( 'input' ).val() === "1" );
         if ( jQuery( '#5_box_redux-_architect-metabox-layout-settings_section_group_li.active' ).length === 0 )
         {
-            jQuery( ".redux-sidebar li#2_box_redux-_architect-metabox-layout-settings_section_group_li" ).find( 'a' ).trigger( "click" );
+            jQuery( ".redux-sidebar li#3_box_redux-_architect-metabox-layout-settings_section_group_li" ).find( 'a' ).trigger( "click" );
         }
         jQuery( "#section-table-blueprints_section-start-content" ).toggle( jQuery( this ).find( 'input' ).val() === "1" );
         if ( jQuery( this ).find( 'input' ).val() !== "1" )
@@ -192,11 +197,11 @@ jQuery( document ).ready( function ()
         }
     } );
 
-    // ********************************************************************************************
+    /********************************************************************************************
     // 
     // Show hide GENERAL SETTINGS sections off tabs
     // 
-    // ********************************************************************************************
+    // ********************************************************************************************/
     jQuery( "table#section-table-_blueprints_section-start-layout, div#section-_blueprints_section-start-layout, div#section-_blueprints_section-end-layout, table#section-table-_blueprints_section-end-layout" ).show();
     jQuery( "table#section-table-_blueprints_section-start-content,div#section-_blueprints_section-start-content,div#section-_blueprints_section-end-content,table#section-table-_blueprints_section-end-content" ).hide();
     jQuery( "fieldset#_architect-_blueprints_section-start-layout, fieldset#_architect-_blueprints_section-start-content,fieldset#_architect-_blueprints_section-end-layout, fieldset#_architect-_blueprints_section-end-content" ).hide();
@@ -284,7 +289,6 @@ jQuery( document ).ready( function ()
 
 //fieldset#_architect-_blueprints_sections-preview
 
-    init();
     /**
      *
      */
@@ -340,6 +344,7 @@ jQuery( document ).ready( function ()
 
         pzarc_show_navtype();
     }
+    init();
 
 
     /**

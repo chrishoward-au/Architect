@@ -142,7 +142,6 @@
       $class_wrapper = $class . '_Wrapper';
       $wrapper_class = new $class_wrapper;
       echo self::strip_unused_arctags($wrapper_class->render('components-open', $panel_def, '', $data, $this->section[ 'section-panel-settings' ]));
-
       foreach ($sequence as $component_type => $value) {
 
         if ($value[ 'show' ]) {
@@ -169,7 +168,14 @@
 
       if ($this->section[ 'section-panel-settings' ][ '_panels_design_background-position' ] != 'none' && ($this->section[ 'section-panel-settings' ][ '_panels_design_components-position' ] == 'top' || $this->section[ 'section-panel-settings' ][ '_panels_design_components-position' ] == 'left')) {
 
-        echo $data[ 'bgimage' ];
+        $class_bgimage = $class . '_bgimage';
+        $bgimage_class = new $class_bgimage;
+        $line_out      = $bgimage_class->render('bgimage', $panel_def, $this->source, $data, $this->section[ 'section-panel-settings' ]);
+        echo apply_filters("arc_filter_bgimage", self::strip_unused_arctags($line_out), $data[ 'postid' ]);
+//        echo $data['bgimage'];
+//        var_dump(esc_html( $data['bgimage']));
+
+        unset($class_bgimage);
 
       }
 

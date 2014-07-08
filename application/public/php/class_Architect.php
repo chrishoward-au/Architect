@@ -105,6 +105,7 @@
       $bp_nav_type  = $this->build->blueprint[ '_blueprints_navigation' ];
       $bp_nav_pos   = $this->build->blueprint[ '_blueprints_navigator-position' ];
       $bp_transtype = $this->build->blueprint[ '_blueprints_transitions-type' ];
+      $bp_focalpt   = $this->build->blueprint[ '_blueprints_image-focal-point' ];
 
       $this->arc = array();
 
@@ -150,13 +151,13 @@
 
       }
 
+
       // at tis point we have the necessary info to populate the navigator. So let's do it!
       $this->nav_items = self::get_nav_items($this->build->blueprint[ '_blueprints_navigator' ]);
 
       // TODO: Show or hide blueprint if no content
 
       do_action('arc_before_architect');
-
 
 
       /** BLUEPRINT */
@@ -170,7 +171,7 @@
 
       self::display_page_title($this->build->blueprint[ '_blueprints_page-title' ]);
 
-      echo self::get_sections_opener($bp_shortname, $bp_nav_type, $caller, $bp_transtype);
+      echo self::get_sections_opener($bp_shortname, $bp_nav_type, $caller, $bp_transtype, $bp_focalpt);
 
       do_action('arcNavBeforeSection-{$bpshortname}');
 
@@ -369,14 +370,14 @@
       }
 
       // Sticky posts
-      $this->criteria[ 'ignore_sticky_posts' ] = !$this->build->blueprint[ '_blueprints_sticky' ];
+      $this->criteria[ 'ignore_sticky_posts' ] = !$this->build->blueprint[ '_content_general_sticky' ];
 
       // Offset
-      $this->criteria[ 'offset' ] = $this->build->blueprint[ '_blueprints_skip' ];
+      $this->criteria[ 'offset' ] = $this->build->blueprint[ '_content_general_skip' ];
 
       // Order
-      $this->criteria[ 'orderby' ] = $this->build->blueprint[ '_blueprints_orderby' ];
-      $this->criteria[ 'order' ]   = $this->build->blueprint[ '_blueprints_orderdir' ];
+      $this->criteria[ 'orderby' ] = $this->build->blueprint[ '_content_general_orderby' ];
+      $this->criteria[ 'order' ]   = $this->build->blueprint[ '_content_general_orderdir' ];
 
       // Categories
       $this->criteria[ 'category__in' ] = $this->build->blueprint[ '_content_general_inc-cats' ];
@@ -418,37 +419,37 @@
      *
      * get_sections_opener
      *
-     * @param $bpshortname
-     * @param $bpnav_type (not necessary but makes calling code more informative)
+     * @param $bp_shortname
+     * @param $bp_nav_type (not necessary but makes calling code more informative)
      * @param $caller
-     * @param $bptranstype
+     * @param $bp_transtype
      * @return string
      */
-    private function get_sections_opener($bpshortname, $bpnav_type, $caller, $bptranstype)
+    private function get_sections_opener($bp_shortname, $bp_nav_type, $caller, $bp_transtype, $bp_focalpt)
     {
       $return_val = '';
-      if ($bpnav_type === 'navigator') {
-        $swiper                = array();
-        $swiper[ 'class' ]     = '';
-        $swiper[ 'dataid' ]    = '';
-        $swiper[ 'datatype' ]  = '';
-        $swiper[ 'class' ]     = ' swiper-container slider swiper-container-' . $bpshortname;
-        $swiper[ 'dataid' ]    = ' data-swiperid="' . $bpshortname . '"';
-        $swiper[ 'datatype' ]  = 'data-navtype="' . $bpnav_type . '"';
-        $swiper[ 'datatrans' ] = ' data-transtype="' . $bptranstype . '"';
+      if ($bp_nav_type === 'navigator') {
+        $slider                  = array();
+        $slider[ 'class' ]       = '';
+        $slider[ 'dataid' ]      = '';
+        $slider[ 'datatype' ]    = '';
+        $slider[ 'class' ]       = ' swiper-container slider swiper-container-' . $bp_shortname;
+        $slider[ 'dataid' ]      = ' data-swiperid="' . $bp_shortname . '"';
+        $slider[ 'datatype' ]    = ' data-navtype="' . $bp_nav_type . '"';
+        $slider[ 'datatrans' ]   = ' data-transtype="' . $bp_transtype . '"';
 
 
         $duration             = $this->build->blueprint[ '_blueprints_transitions-duration' ] * 1000;
         $interval             = $this->build->blueprint[ '_blueprints_transitions-interval' ] * 1000;
         $skip_thumbs          = $this->build->blueprint[ '_blueprints_navigator-skip-thumbs' ];
-        $swiper[ 'dataopts' ] = 'data-opts="{#tduration#:' . $duration . ',#tinterval#:' . $interval . ',#tskip#:' . $skip_thumbs . '}"';
+        $slider[ 'dataopts' ] = 'data-opts="{#tduration#:' . $duration . ',#tinterval#:' . $interval . ',#tskip#:' . $skip_thumbs . '}"';
 
         $return_val .= '<button type="button" class="pager arrow-left icon-arrow-left4"></button>';
         $return_val .= '<button type="button" class="pager arrow-right icon-uniE60D"></button>';
 //          //TODO: Should the bp name be in the class or ID?
-        $return_val .= '<div class="pzarc-sections_' . $bpshortname . ' pzarc-is_' . $caller . $swiper[ 'class' ] . '"' . $swiper[ 'dataid' ] . $swiper[ 'datatype' ] . $swiper[ 'dataopts' ] . $swiper[ 'datatrans' ] . '>';
+        $return_val .= '<div class="pzarc-sections_' . $bp_shortname . ' pzarc-is_' . $caller . $slider[ 'class' ] . '"' . $slider[ 'dataid' ] . $slider[ 'datatype' ] . $slider[ 'dataopts' ] . $slider[ 'datatrans' ].'>';
       } else {
-        $return_val .= '<div class="pzarc-sections_' . $bpshortname . ' pzarc-is_' . $caller . '">';
+        $return_val .= '<div class="pzarc-sections_' . $bp_shortname . ' pzarc-is_' . $caller . '">';
       }
 
       return $return_val;
@@ -752,13 +753,18 @@
 
       // TODO: Should we fall back to Post post type if unknown??
       // Use an include incase it doesn't exist!
-      include_once PZARC_PLUGIN_APP_PATH . '/public/php/post_types/class_arc_Panel_' . ucfirst($post_type) . '.php';
+      @include_once PZARC_PLUGIN_APP_PATH . '/public/php/post_types/class_arc_Panel_' . ucfirst($post_type) . '.php';
 
+      // TODO: Add an option to throw an error if post type doesn't exist, instead of falling back on Post
       if (!class_exists($class)) {
 
-        pzarc_msg(__('Post type ', 'pzarchitect') . '<strong>' . $post_type . '</strong>' . __(' has no panel definition and cannot be displayed.', 'pzarchitect'), 'error');
+//        pzarc_msg(__('Post type ', 'pzarchitect') . '<strong>' . $post_type . '</strong>' . __(' has no panel definition and cannot be displayed.', 'pzarchitect'), 'error');
 
-        return null;
+        $class = 'arc_Panel_post';
+
+        include_once PZARC_PLUGIN_APP_PATH . '/public/php/post_types/class_arc_Panel_Post.php';
+
+//        return null;
 
       }
 
@@ -778,6 +784,7 @@
       $nav_items = array();
 
       // Does this work for non
+
       while ($this->arc_query->have_posts()) {
 
         $this->arc_query->the_post();
