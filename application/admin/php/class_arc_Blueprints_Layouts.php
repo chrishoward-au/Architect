@@ -382,7 +382,7 @@
 
   }
 
-  add_action("redux/metaboxes/{$redux_opt_name}/boxes", 'pzarc_blueprint_content_general');
+ // add_action("redux/metaboxes/{$redux_opt_name}/boxes", 'pzarc_blueprint_content_general');
   /**
    * pzarc_blueprint_content_general
    * @param array $meta_boxes
@@ -395,31 +395,6 @@
 
     $sections[ ] = array(
         'fields' => array(
-            array(
-                'title'    => __('Content source', 'pzarchitect'),
-                'id'       => $prefix . 'content-source',
-                'type'     => 'select',
-                'select2'  => array('allowClear' => false),
-                'default'  => 'defaults',
-                'options'  => array(
-                  // need to make adjustments when adding new ones so help still displays
-                  'defaults' => 'Defaults',
-                  'post'     => 'Posts',
-                  'page'     => 'Pages',
-                  'snippets' => 'Snippets',
-                  'gallery'  => 'Galleries',
-                  'slides'   => 'Slides',
-                  //                          'images'      => 'Specific Images',
-                  //                          'wpgallery'   => 'WP Gallery from post',
-                  //                          'galleryplus' => 'GalleryPlus',
-                  //                          'nggallery'   => 'NextGen',
-                  //                        'widgets' => 'Widgets',
-                  //                          'custom-code' => 'Custom code',
-                  //                        'rss'     => 'RSS Feed',
-                  'cpt'      => 'Custom Post Types'
-                ),
-                'subtitle' => 'todo: code all the js to show hide relevant sections'
-            ),
         )
     );
 
@@ -1157,6 +1132,31 @@
         'icon'       => 'el-icon-adjust-alt',
         'fields'     => array(
             array(
+                'title'    => __('Content source', 'pzarchitect'),
+                'id'       => $prefix . 'content-source',
+                'type'     => 'select',
+                'select2'  => array('allowClear' => false),
+                'default'  => 'defaults',
+                'options'  => array(
+                  // need to make adjustments when adding new ones so help still displays
+                  'defaults' => 'Defaults',
+                  'post'     => 'Posts',
+                  'page'     => 'Pages',
+                  'snippets' => 'Snippets',
+                  'gallery'  => 'Galleries',
+                  'slides'   => 'Slides',
+                  //                          'images'      => 'Specific Images',
+                  //                          'wpgallery'   => 'WP Gallery from post',
+                  //                          'galleryplus' => 'GalleryPlus',
+                  //                          'nggallery'   => 'NextGen',
+                  //                        'widgets' => 'Widgets',
+                  //                          'custom-code' => 'Custom code',
+                  //                        'rss'     => 'RSS Feed',
+                  'cpt'      => 'Custom Post Types'
+                ),
+                'subtitle' => 'todo: code all the js to show hide relevant sections'
+            ),
+            array(
                 'title'   => __('Order by', 'pzarchitect'),
                 'id'      => $prefix . 'orderby',
                 'type'    => 'button_set',
@@ -1183,7 +1183,7 @@
             array(
                 'title'   => __('Skip N posts', 'pzarchitect'),
                 'id'      => $prefix . 'skip',
-                'type'    => 'text',
+                'type'    => 'spinner',
                 'min'     => 0,
                 'max'     => 9999,
                 'step'    => 1,

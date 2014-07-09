@@ -39,7 +39,8 @@ jQuery(function($){
 
         $.redux.initFields();
     };
-    $('#publishing-action .button').click(function() {
+
+    $('#publishing-action .button, #save-action .button').click(function() {
         window.onbeforeunload = null;
     });
     var testValue;

@@ -20,106 +20,99 @@
     {
       // strip out string text containment characters incase user enters them
       $this->name = str_replace(array('\'', '\"'), '', $name);
+
       self::get_blueprint();
+
     }
 
+    /**
+     * get_blueprint()
+     *
+     * @return bool
+     */
     function get_blueprint()
     {
 
       // meed to return a structure for the panels, the content source, the navgation info
 
-      global $wp_query;
-      $original_query = $wp_query;
-//  $blueprint_info = new WP_Query('post_type=arc-blueprints&meta_key=_architect-blueprints_short-name&meta_value=' . $blueprint);
 
       $meta_query_args = array(
           'post_type'    => 'arc-blueprints',
-          'meta_key'     => '_architect',
-          'meta_value'   => '"' . $this->name . '"',
+          'meta_key'     => '_blueprints_short-name',
+          'meta_value'   => $this->name,
           'meta_compare' => 'LIKE'
       );
-      $blueprint_info  = new WP_Query($meta_query_args);
 
-      if (!isset($blueprint_info->posts[ 0 ]))
-      {
+      $blueprint_id    = new WP_Query($meta_query_args);
+
+      if (!isset($blueprint_id->posts[ 0 ]->ID)) {
+
         $this->blueprint = array('err_msg' => '<p class="message-error">Architect Blueprint <strong>' . $this->name . '</strong> not found</p>');
+
         return $this->blueprint;
-      }
-      $this->blueprint = get_post_meta($blueprint_info->posts[ 0 ]->ID, '_architect', true);
-      // Need to add in default values for blueprints
-      global $pzarchitect;
-      foreach ($pzarchitect['defaults']['_blueprints'] as $key => $value) {
-        if ((strpos($key,'_blueprints_')===0 || strpos($key,'_content_')===0 ) && !isset($this->blueprint[$key])) {
-          $this->blueprint[$key] = $value;
-        }
-      }
-      $this->blueprint[ 'blueprint-id' ] = $blueprint_info->posts[ 0 ]->ID;
 
-      /************************************/
-      // Add panel settings for Section 1
-      /************************************/
-      $panel = get_post_meta($this->blueprint[ '_blueprints_section-0-panel-layout' ], '_architect', true);
+      }
 
-      // Add default values for panels
-      foreach ($pzarchitect['defaults']['_panels'] as $key => $value) {
-        if (strpos($key,'_panels_')===0  && !isset($panel[$key])) {
-           $panel[$key] = $value;
+      $this->blueprint[ 'blueprint-id' ] = $blueprint_id->posts[ 0 ]->ID;
+
+      $blueprint_info = get_post_meta($blueprint_id->posts[ 0 ]->ID, null, true);
+
+      foreach ($blueprint_info as $key => $value) {
+
+        if ('_edit_lock' !== $key && '_edit_last' !== $key) {
+
+          $this->blueprint[ $key ] = maybe_unserialize($blueprint_info[ $key ][ 0 ]);
+
         }
+
       }
-      foreach ($panel as $key => $value) {
-        if (strpos($key, '_panels_styling') === 0) {
-  //        unset($panel[ $key ]);
-        }
-      }
+
+      /** Add panel settings for Section 1 */
+      $panel[ 0 ]  = get_post_meta($this->blueprint[ '_blueprints_section-0-panel-layout' ]);
+
+      $panel[ 1 ] = !$panel[ 0 ]?array():self::flatten_wpinfo($panel[0]);
 
       $this->blueprint[ 'section' ][ 0 ]
           = array(
-          'section-enable'         => true,
-          'section-panel-settings' => $panel,
+          'section-enable'         => !empty($panel[0]),
+          'section-panel-settings' => $panel[ 1 ],
       );
 
-      if (!isset($this->blueprint[ 'section' ][ 0 ][ 'section-panel-settings' ]))
-      {
+      if (!$panel[0]) {
+
         $this->blueprint = array('err_msg' => '<p class="message-error">No Panel Layout assigned.</p>');
+
         return $this->blueprint;
+
       }
 
-      // TODO:Setup check for navigator to save little time
-      /************************************/
-      // Add panel settings for Section 2
-      /************************************/
-      $panel = get_post_meta($this->blueprint[ '_blueprints_section-1-panel-layout' ], '_architect', true);
-      foreach ($pzarchitect['defaults']['_panels'] as $key => $value) {
-        if (strpos($key,'_panels_')===0  && !isset($panel[$key])) {
-          $panel[$key] = $value;
-        }
-      }
-      $this->blueprint[ 'section' ][ 1 ]
+      /** Add panel settings for Section 2 */
+      $panel[ 0 ]  = get_post_meta($this->blueprint[ '_blueprints_section-1-panel-layout' ]);
+
+      $panel[ 2 ] = !$panel[ 0 ]?array():self::flatten_wpinfo($panel[0]);
+
+      $this->blueprint[ 'section' ][ 0 ]
           = array(
-          'section-enable'         => !empty($this->blueprint[ '_blueprints_section-1-enable' ]),
-          'section-panel-settings' => (!empty($this->blueprint[ '_blueprints_section-1-enable' ]) ? $panel : null),
+          'section-enable'         => !empty($panel[0]),
+          'section-panel-settings' => $panel[ 2 ],
       );
 
-      /************************************/
-      // Add panel settings for Section 3
-      /************************************/
-      $panel = get_post_meta($this->blueprint[ '_blueprints_section-2-panel-layout' ], '_architect', true);
-      foreach ($pzarchitect['defaults']['_panels'] as $key => $value) {
-        if (strpos($key,'_panels_')===0  && !isset($panel[$key])) {
-          $panel[$key] = $value;
-        }
-      }
-      $this->blueprint[ 'section' ][ 2 ]
+      /** Add panel settings for Section 3 */
+      $panel[ 0 ]  = get_post_meta($this->blueprint[ '_blueprints_section-2-panel-layout' ]);
+
+      $panel[ 3 ] = !$panel[ 0 ]?array():self::flatten_wpinfo($panel[0]);
+
+      $this->blueprint[ 'section' ][ 0 ]
           = array(
-          'section-enable'         => !empty($this->blueprint[ '_blueprints_section-2-enable' ]),
-          'section-panel-settings' => (!empty($this->blueprint[ '_blueprints_section-2-enable' ]) ? $panel : null),
+          'section-enable'         => !empty($panel[0]),
+          'section-panel-settings' => $panel[ 3 ],
       );
 
-     // return $this->blueprint;
+      unset($panel);
+
       return true;
     }
 
-    //TODO: Don't think we need either of these methods
     /***********************
      *
      * Get panel design
@@ -143,17 +136,14 @@
     static function flatten_wpinfo($array_in)
     {
       $array_out = array();
-      foreach ($array_in as $key => $value)
-      {
-        if ($key == '_edit_lock' || $key == '_edit_last')
-        {
+      foreach ($array_in as $key => $value) {
+        if ($key == '_edit_lock' || $key == '_edit_last') {
           continue;
         }
-        if (is_array($value))
-        {
+        if (is_array($value)) {
           $array_out[ $key ] = $value;
         }
-        $array_out[ $key ] = $value[ 0 ];
+        $array_out[ $key ] = maybe_unserialize($value[ 0 ]);
       }
 
       return $array_out;

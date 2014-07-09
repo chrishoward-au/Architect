@@ -2,41 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6a91661e-ac03-4c49-a442-2faea24b5b57" name="Default" comment="Add post types files">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/watcherTasks.xml" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/shared/includes/php/bfi_focus_point/.gitignore" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/shared/includes/php/bfi_focus_point/README.md" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/shared/includes/php/bfi_focus_point/bfi_focus_point.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/shared/includes/php/bfi_focus_point/loupe.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/shared/includes/php/bfi_focus_point/min/script-ck.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/shared/includes/php/bfi_focus_point/script.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/shared/includes/php/bfi_focus_point/style.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/shared/includes/php/bfi_thumb/.gitignore" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/shared/includes/php/bfi_thumb/BFI_Thumb.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/shared/includes/php/bfi_thumb/LICENSE.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/shared/includes/php/bfi_thumb/README.md" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/shared/includes/php/jo-image-resizer/LICENSE" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/shared/includes/php/jo-image-resizer/README.md" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/shared/includes/php/jo-image-resizer/icon.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/shared/includes/php/jo-image-resizer/jo_image_resizer.php" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/public/css/.sass-cache/dceb20a9fc4a1f730cc89393cb8f6c79e45f74bc/_slider.scssc" afterPath="$PROJECT_DIR$/application/public/css/.sass-cache/dceb20a9fc4a1f730cc89393cb8f6c79e45f74bc/_slider.scssc" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/admin/css/.sass-cache/0c627864ce094f59999781504c26ab519159ab66/arc-admin.scssc" afterPath="$PROJECT_DIR$/application/admin/css/.sass-cache/0c627864ce094f59999781504c26ab519159ab66/arc-admin.scssc" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/shared/includes/php/BFI-thumb-forked/BFI_Thumb.php" afterPath="$PROJECT_DIR$/application/shared/includes/php/BFI-thumb-forked/BFI_Thumb.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/public/css/_slider.scss" afterPath="$PROJECT_DIR$/application/public/css/_slider.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/admin/css/arc-admin.css" afterPath="$PROJECT_DIR$/application/admin/css/arc-admin.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/arc-admin.php" afterPath="$PROJECT_DIR$/application/arc-admin.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/admin/css/arc-admin.scss" afterPath="$PROJECT_DIR$/application/admin/css/arc-admin.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/public/js/min/arc-front-slick-ck.js" afterPath="$PROJECT_DIR$/application/public/js/min/arc-front-slick-ck.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/public/js/arc-front-slick.js" afterPath="$PROJECT_DIR$/application/public/js/arc-front-slick.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/public/css/arc-front.css" afterPath="$PROJECT_DIR$/application/public/css/arc-front.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/admin/js/min/arc-metaboxes-blueprints-ck.js" afterPath="$PROJECT_DIR$/application/admin/js/min/arc-metaboxes-blueprints-ck.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/admin/js/arc-metaboxes-blueprints.js" afterPath="$PROJECT_DIR$/application/admin/js/arc-metaboxes-blueprints.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/admin/php/arc-save-process-blueprints.php" afterPath="$PROJECT_DIR$/application/admin/php/arc-save-process-blueprints.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/arc-public.php" afterPath="$PROJECT_DIR$/application/arc-public.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/public/php/class_Architect.php" afterPath="$PROJECT_DIR$/application/public/php/class_Architect.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/public/php/class_arc_Blueprint.php" afterPath="$PROJECT_DIR$/application/public/php/class_arc_Blueprint.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/admin/php/class_arc_Blueprints_Layouts.php" afterPath="$PROJECT_DIR$/application/admin/php/class_arc_Blueprints_Layouts.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/public/php/post_types/class_arc_Panel_Gallery.php" afterPath="$PROJECT_DIR$/application/public/php/post_types/class_arc_Panel_Gallery.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/admin/php/class_arc_Panels_Layouts.php" afterPath="$PROJECT_DIR$/application/admin/php/class_arc_Panels_Layouts.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/public/php/class_arc_Section.php" afterPath="$PROJECT_DIR$/application/public/php/class_arc_Section.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/shared/includes/php/redux-extensions/extensions/metaboxes/extension_metaboxes.css" afterPath="$PROJECT_DIR$/application/shared/includes/php/redux-extensions/extensions/metaboxes/extension_metaboxes.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/shared/includes/php/redux-extensions/extensions/metaboxes/extension_metaboxes.js" afterPath="$PROJECT_DIR$/application/shared/includes/php/redux-extensions/extensions/metaboxes/extension_metaboxes.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/shared/includes/php/redux-extensions/extensions/metaboxes/extension_metaboxes.less" afterPath="$PROJECT_DIR$/application/shared/includes/php/redux-extensions/extensions/metaboxes/extension_metaboxes.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/shared/includes/php/redux-extensions/extensions/metaboxes/extension_metaboxes.min.js" afterPath="$PROJECT_DIR$/application/shared/includes/php/redux-extensions/extensions/metaboxes/extension_metaboxes.min.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/shared/includes/php/redux-extensions/extensions/metaboxes/extension_metaboxes.php" afterPath="$PROJECT_DIR$/application/shared/includes/php/redux-extensions/extensions/metaboxes/extension_metaboxes.php" />
     </list>
     <list id="6bc53ef6-a4e7-48ed-9a91-cec0b69ebc38" name="Default task" comment="" />
     <ignored path="pizazzwp-architect.iws" />
@@ -60,14 +37,14 @@
     <favorites_list name="pizazzwp-architect" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="vertical" split-proportion="0.7688679">
+    <splitter split-orientation="vertical" split-proportion="0.88490564">
       <split-first>
         <leaf>
           <file leaf-file-name="class_Architect.php" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/application/public/php/class_Architect.php">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.39834026" vertical-offset="11517" max-vertical-offset="12735">
-                  <caret line="787" column="0" selection-start-line="787" selection-start-column="0" selection-end-line="787" selection-end-column="0" />
+                <state vertical-scroll-proportion="0.24038461" vertical-offset="1680" max-vertical-offset="12735">
+                  <caret line="122" column="0" selection-start-line="122" selection-start-column="0" selection-end-line="122" selection-end-column="0" />
                   <folding />
                 </state>
               </provider>
@@ -76,33 +53,33 @@
           <file leaf-file-name="class_arc_Panels_Layouts.php" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/application/admin/php/class_arc_Panels_Layouts.php">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="-6.32" vertical-offset="5069" max-vertical-offset="24195">
-                  <caret line="359" column="61" selection-start-line="359" selection-start-column="61" selection-end-line="359" selection-end-column="61" />
+                <state vertical-scroll-proportion="-12.92" vertical-offset="4649" max-vertical-offset="24195">
+                  <caret line="353" column="32" selection-start-line="353" selection-start-column="32" selection-end-line="353" selection-end-column="32" />
                   <folding>
-                    <marker date="1404792807000" expanded="true" signature="29228:29326" placeholder="Select any a..." />
-                    <marker date="1404792807000" expanded="false" signature="52890:52905" placeholder="..." />
-                    <marker date="1404792807000" expanded="true" signature="53452:53650" placeholder="..." />
-                    <marker date="1404792807000" expanded="true" signature="53685:53862" placeholder="..." />
-                    <marker date="1404792807000" expanded="true" signature="53897:54069" placeholder="..." />
-                    <marker date="1404792807000" expanded="true" signature="54104:54278" placeholder="..." />
-                    <marker date="1404792807000" expanded="true" signature="54313:54414" placeholder="..." />
-                    <marker date="1404792807000" expanded="true" signature="70868:71066" placeholder="..." />
-                    <marker date="1404792807000" expanded="true" signature="71101:71278" placeholder="..." />
-                    <marker date="1404792807000" expanded="true" signature="71313:71485" placeholder="..." />
-                    <marker date="1404792807000" expanded="true" signature="71520:71694" placeholder="..." />
-                    <marker date="1404792807000" expanded="true" signature="71729:71830" placeholder="..." />
-                    <marker date="1404792807000" expanded="true" signature="72546:75520" placeholder="..." />
-                    <marker date="1404792807000" expanded="true" signature="72612:75276" placeholder="..." />
-                    <marker date="1404792807000" expanded="true" signature="72709:75265" placeholder="..." />
-                    <marker date="1404792807000" expanded="false" signature="73208:73234" placeholder="..." />
-                    <marker date="1404792807000" expanded="false" signature="73588:73614" placeholder="..." />
-                    <marker date="1404792807000" expanded="false" signature="73723:73760" placeholder="..." />
-                    <marker date="1404792807000" expanded="false" signature="74265:74301" placeholder="..." />
-                    <marker date="1404792807000" expanded="false" signature="74394:74409" placeholder="..." />
-                    <marker date="1404792807000" expanded="false" signature="75356:75367" placeholder="..." />
-                    <marker date="1404792807000" expanded="false" signature="75422:75448" placeholder="..." />
-                    <marker date="1404792807000" expanded="false" signature="75555:75568" placeholder="..." />
-                    <marker date="1404792807000" expanded="true" signature="75751:75819" placeholder="..." />
+                    <marker date="1404795312000" expanded="true" signature="29224:29322" placeholder="Select any a..." />
+                    <marker date="1404795312000" expanded="false" signature="52886:52901" placeholder="..." />
+                    <marker date="1404795312000" expanded="true" signature="53448:53646" placeholder="..." />
+                    <marker date="1404795312000" expanded="true" signature="53681:53858" placeholder="..." />
+                    <marker date="1404795312000" expanded="true" signature="53893:54065" placeholder="..." />
+                    <marker date="1404795312000" expanded="true" signature="54100:54274" placeholder="..." />
+                    <marker date="1404795312000" expanded="true" signature="54309:54410" placeholder="..." />
+                    <marker date="1404795312000" expanded="true" signature="70864:71062" placeholder="..." />
+                    <marker date="1404795312000" expanded="true" signature="71097:71274" placeholder="..." />
+                    <marker date="1404795312000" expanded="true" signature="71309:71481" placeholder="..." />
+                    <marker date="1404795312000" expanded="true" signature="71516:71690" placeholder="..." />
+                    <marker date="1404795312000" expanded="true" signature="71725:71826" placeholder="..." />
+                    <marker date="1404795312000" expanded="true" signature="72542:75516" placeholder="..." />
+                    <marker date="1404795312000" expanded="true" signature="72608:75272" placeholder="..." />
+                    <marker date="1404795312000" expanded="true" signature="72705:75261" placeholder="..." />
+                    <marker date="1404795312000" expanded="false" signature="73204:73230" placeholder="..." />
+                    <marker date="1404795312000" expanded="false" signature="73584:73610" placeholder="..." />
+                    <marker date="1404795312000" expanded="false" signature="73719:73756" placeholder="..." />
+                    <marker date="1404795312000" expanded="false" signature="74261:74297" placeholder="..." />
+                    <marker date="1404795312000" expanded="false" signature="74390:74405" placeholder="..." />
+                    <marker date="1404795312000" expanded="false" signature="75352:75363" placeholder="..." />
+                    <marker date="1404795312000" expanded="false" signature="75418:75444" placeholder="..." />
+                    <marker date="1404795312000" expanded="false" signature="75551:75564" placeholder="..." />
+                    <marker date="1404795312000" expanded="true" signature="75747:75815" placeholder="..." />
                   </folding>
                 </state>
               </provider>
@@ -111,7 +88,7 @@
           <file leaf-file-name="arc-options.php" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/application/admin/php/arc-options.php">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.0" vertical-offset="5085" max-vertical-offset="8190">
+                <state vertical-scroll-proportion="58.125" vertical-offset="5100" max-vertical-offset="8190">
                   <caret line="247" column="45" selection-start-line="247" selection-start-column="45" selection-end-line="247" selection-end-column="45" />
                   <folding />
                 </state>
@@ -131,20 +108,20 @@
           <file leaf-file-name="class_arc_Blueprints_Layouts.php" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/application/admin/php/class_arc_Blueprints_Layouts.php">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="-19.82" vertical-offset="7784" max-vertical-offset="26625">
-                  <caret line="585" column="64" selection-start-line="585" selection-start-column="64" selection-end-line="585" selection-end-column="64" />
+                <state vertical-scroll-proportion="-8.78" vertical-offset="9821" max-vertical-offset="26625">
+                  <caret line="684" column="54" selection-start-line="684" selection-start-column="40" selection-end-line="684" selection-end-column="54" />
                   <folding>
-                    <marker date="1404792552000" expanded="true" signature="44975:45701" placeholder="..." />
-                    <marker date="1404792552000" expanded="true" signature="46722:46920" placeholder="..." />
-                    <marker date="1404792552000" expanded="true" signature="46955:47132" placeholder="..." />
-                    <marker date="1404792552000" expanded="true" signature="47167:47339" placeholder="..." />
-                    <marker date="1404792552000" expanded="true" signature="47374:47548" placeholder="..." />
-                    <marker date="1404792552000" expanded="true" signature="47583:47684" placeholder="..." />
-                    <marker date="1404792552000" expanded="true" signature="48235:49123" placeholder="..." />
-                    <marker date="1404792552000" expanded="true" signature="48561:49106" placeholder="..." />
-                    <marker date="1404792552000" expanded="false" signature="49166:49179" placeholder="..." />
-                    <marker date="1404792552000" expanded="true" signature="66200:66574" placeholder="..." />
-                    <marker date="1404792552000" expanded="true" signature="66578:66613" placeholder="..." />
+                    <marker date="1404796619000" expanded="true" signature="43600:44326" placeholder="..." />
+                    <marker date="1404796619000" expanded="true" signature="45347:45545" placeholder="..." />
+                    <marker date="1404796619000" expanded="true" signature="45580:45757" placeholder="..." />
+                    <marker date="1404796619000" expanded="true" signature="45792:45964" placeholder="..." />
+                    <marker date="1404796619000" expanded="true" signature="45999:46173" placeholder="..." />
+                    <marker date="1404796619000" expanded="true" signature="46208:46309" placeholder="..." />
+                    <marker date="1404796619000" expanded="true" signature="46860:47748" placeholder="..." />
+                    <marker date="1404796619000" expanded="true" signature="47186:47731" placeholder="..." />
+                    <marker date="1404796619000" expanded="false" signature="47791:47804" placeholder="..." />
+                    <marker date="1404796619000" expanded="true" signature="66205:66579" placeholder="..." />
+                    <marker date="1404796619000" expanded="true" signature="66583:66618" placeholder="..." />
                   </folding>
                 </state>
               </provider>
@@ -173,7 +150,7 @@
           <file leaf-file-name="class_arc_Panel_Snippets.php" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/application/public/php/post_types/class_arc_Panel_Snippets.php">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.0" vertical-offset="1101" max-vertical-offset="7530">
+                <state vertical-scroll-proportion="-6.0" vertical-offset="1101" max-vertical-offset="7530">
                   <caret line="83" column="79" selection-start-line="83" selection-start-column="79" selection-end-line="83" selection-end-column="99" />
                   <folding />
                 </state>
@@ -193,8 +170,8 @@
           <file leaf-file-name="arc-public.php" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/application/arc-public.php">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="64.375" vertical-offset="2130" max-vertical-offset="3975">
-                  <caret line="39" column="108" selection-start-line="39" selection-start-column="108" selection-end-line="39" selection-end-column="108" />
+                <state vertical-scroll-proportion="-4.82" vertical-offset="2324" max-vertical-offset="4050">
+                  <caret line="171" column="0" selection-start-line="169" selection-start-column="0" selection-end-line="171" selection-end-column="0" />
                   <folding />
                 </state>
               </provider>
@@ -203,8 +180,8 @@
           <file leaf-file-name="arc-admin.php" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/application/arc-admin.php">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="-22.5" vertical-offset="435" max-vertical-offset="3930">
-                  <caret line="65" column="83" selection-start-line="65" selection-start-column="83" selection-end-line="65" selection-end-column="83" />
+                <state vertical-scroll-proportion="-18.125" vertical-offset="435" max-vertical-offset="3930">
+                  <caret line="58" column="0" selection-start-line="57" selection-start-column="0" selection-end-line="58" selection-end-column="0" />
                   <folding>
                     <marker date="1404716047000" expanded="true" signature="7350:10785" placeholder="..." />
                     <marker date="1404716047000" expanded="false" signature="7514:7568" placeholder="..." />
@@ -278,9 +255,15 @@
           <file leaf-file-name="arc-options-styling.php" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/application/admin/php/arc-options-styling.php">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.0" vertical-offset="765" max-vertical-offset="10470">
+                <state vertical-scroll-proportion="275.0" vertical-offset="7365" max-vertical-offset="10470">
                   <caret line="51" column="0" selection-start-line="51" selection-start-column="0" selection-end-line="51" selection-end-column="0" />
-                  <folding />
+                  <folding>
+                    <marker date="1404272979000" expanded="true" signature="19227:19425" placeholder="..." />
+                    <marker date="1404272979000" expanded="true" signature="19460:19637" placeholder="..." />
+                    <marker date="1404272979000" expanded="true" signature="19672:19844" placeholder="..." />
+                    <marker date="1404272979000" expanded="true" signature="19879:20053" placeholder="..." />
+                    <marker date="1404272979000" expanded="true" signature="20088:20189" placeholder="..." />
+                  </folding>
                 </state>
               </provider>
             </entry>
@@ -298,8 +281,18 @@
           <file leaf-file-name="class_arc_Section.php" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/application/public/php/class_arc_Section.php">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="-16.92" vertical-offset="1824" max-vertical-offset="3390">
-                  <caret line="178" column="0" selection-start-line="178" selection-start-column="0" selection-end-line="178" selection-end-column="0" />
+                <state vertical-scroll-proportion="-2.1" vertical-offset="345" max-vertical-offset="3390">
+                  <caret line="30" column="7" selection-start-line="30" selection-start-column="7" selection-end-line="30" selection-end-column="7" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="class_arc_Blueprint.php" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/application/public/php/class_arc_Blueprint.php">
+              <provider selected="true" editor-type-id="text-editor">
+                <state vertical-scroll-proportion="11.4" vertical-offset="1260" max-vertical-offset="2400">
+                  <caret line="46" column="0" selection-start-line="46" selection-start-column="0" selection-end-line="46" selection-end-column="0" />
                   <folding />
                 </state>
               </provider>
@@ -348,7 +341,7 @@
         </leaf>
       </split-first>
       <split-second>
-        <splitter split-orientation="horizontal" split-proportion="0.515884">
+        <splitter split-orientation="horizontal" split-proportion="0.1">
           <split-first>
             <leaf>
               <file leaf-file-name="im-style.scss" pinned="false" current-in-tab="false">
@@ -364,7 +357,7 @@
               <file leaf-file-name="arc-admin.scss" pinned="false" current-in-tab="true">
                 <entry file="file://$PROJECT_DIR$/application/admin/css/arc-admin.scss">
                   <provider selected="true" editor-type-id="text-editor">
-                    <state vertical-scroll-proportion="0.27210885" vertical-offset="17540" max-vertical-offset="19230">
+                    <state vertical-scroll-proportion="0.0" vertical-offset="17540" max-vertical-offset="19230">
                       <caret line="1172" column="14" selection-start-line="1172" selection-start-column="12" selection-end-line="1172" selection-end-column="14" />
                       <folding />
                     </state>
@@ -438,8 +431,8 @@
               <file leaf-file-name="arc-metaboxes-blueprints.js" pinned="false" current-in-tab="true">
                 <entry file="file://$PROJECT_DIR$/application/admin/js/arc-metaboxes-blueprints.js">
                   <provider selected="true" editor-type-id="text-editor">
-                    <state vertical-scroll-proportion="3.0818713" vertical-offset="493" max-vertical-offset="7350">
-                      <caret line="68" column="52" selection-start-line="68" selection-start-column="52" selection-end-line="68" selection-end-column="52" />
+                    <state vertical-scroll-proportion="6.875" vertical-offset="1315" max-vertical-offset="7380">
+                      <caret line="95" column="18" selection-start-line="95" selection-start-column="17" selection-end-line="95" selection-end-column="18" />
                       <folding />
                     </state>
                   </provider>
@@ -483,7 +476,6 @@
     <option name="changedFiles">
       <list>
         <option value="$PROJECT_DIR$/application/shared/architect/php/post_types/class_arc_posttype_post.php" />
-        <option value="$PROJECT_DIR$/application/public/php/class_arc_Blueprint.php" />
         <option value="$PROJECT_DIR$/application/public/php/interface_arc_PanelDefinitions.php" />
         <option value="$PROJECT_DIR$/application/public/php/class_arc_Pagination.php" />
         <option value="$PROJECT_DIR$/application/admin/php/arc-save-process.php" />
@@ -519,19 +511,20 @@
         <option value="$PROJECT_DIR$/application/admin/php/arc-options.php" />
         <option value="$PROJECT_DIR$/application/public/js/arc-front-swiper.js" />
         <option value="$PROJECT_DIR$/application/public/php/post_types/class_arc_Panel_Post.php" />
-        <option value="$PROJECT_DIR$/application/arc-public.php" />
         <option value="$PROJECT_DIR$/application/public/php/class_arc_Navigator.php" />
         <option value="$PROJECT_DIR$/application/public/php/class_arc_Section.php" />
         <option value="$PROJECT_DIR$/application/public/js/arc-front-slick.js" />
         <option value="$PROJECT_DIR$/application/arc-admin.php" />
-        <option value="$PROJECT_DIR$/application/admin/js/arc-metaboxes-blueprints.js" />
         <option value="$PROJECT_DIR$/application/public/css/_slider.scss" />
         <option value="$PROJECT_DIR$/application/admin/php/arc-save-process-blueprints.php" />
         <option value="$PROJECT_DIR$/application/admin/css/arc-admin.scss" />
-        <option value="$PROJECT_DIR$/application/admin/php/class_arc_Blueprints_Layouts.php" />
-        <option value="$PROJECT_DIR$/application/admin/php/class_arc_Panels_Layouts.php" />
         <option value="$PROJECT_DIR$/application/shared/includes/php/BFI-thumb-forked/BFI_Thumb.php" />
         <option value="$PROJECT_DIR$/application/public/php/post_types/class_arc_Panel_Gallery.php" />
+        <option value="$PROJECT_DIR$/application/admin/php/class_arc_Panels_Layouts.php" />
+        <option value="$PROJECT_DIR$/application/admin/js/arc-metaboxes-blueprints.js" />
+        <option value="$PROJECT_DIR$/application/admin/php/class_arc_Blueprints_Layouts.php" />
+        <option value="$PROJECT_DIR$/application/arc-public.php" />
+        <option value="$PROJECT_DIR$/application/public/php/class_arc_Blueprint.php" />
         <option value="$PROJECT_DIR$/application/public/php/class_Architect.php" />
       </list>
     </option>
@@ -766,6 +759,46 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="public" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="php" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pizazzwp-architect" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pizazzwp-architect" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="application" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="public" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pizazzwp-architect" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pizazzwp-architect" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="application" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="admin" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -961,7 +994,7 @@
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.18238504" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32932165" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39281827" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.26484448" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.26415095" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32962668" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.22896698" sideWeight="0.36132076" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.22896698" sideWeight="0.63867927" order="0" side_tool="false" content_ui="combo" />
@@ -1055,37 +1088,37 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="php">
           <url>file://$PROJECT_DIR$/application/admin/php/class_arc_Blueprints_Layouts.php</url>
-          <line>540</line>
+          <line>515</line>
           <option name="timeStamp" value="26" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="php">
           <url>file://$PROJECT_DIR$/application/admin/php/class_arc_Blueprints_Layouts.php</url>
-          <line>446</line>
+          <line>421</line>
           <option name="timeStamp" value="27" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="php">
           <url>file://$PROJECT_DIR$/application/admin/php/class_arc_Blueprints_Layouts.php</url>
-          <line>671</line>
+          <line>646</line>
           <option name="timeStamp" value="28" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="php">
           <url>file://$PROJECT_DIR$/application/admin/php/class_arc_Blueprints_Layouts.php</url>
-          <line>742</line>
+          <line>717</line>
           <option name="timeStamp" value="29" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="php">
           <url>file://$PROJECT_DIR$/application/admin/php/class_arc_Blueprints_Layouts.php</url>
-          <line>956</line>
+          <line>931</line>
           <option name="timeStamp" value="30" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="php">
           <url>file://$PROJECT_DIR$/application/admin/php/class_arc_Blueprints_Layouts.php</url>
-          <line>1032</line>
+          <line>1007</line>
           <option name="timeStamp" value="31" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="php">
           <url>file://$PROJECT_DIR$/application/admin/php/class_arc_Blueprints_Layouts.php</url>
-          <line>1059</line>
+          <line>1034</line>
           <option name="timeStamp" value="32" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="php">
@@ -1158,13 +1191,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="513" max-vertical-offset="1995">
           <caret line="27" column="34" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/public/php/class_arc_Blueprint.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="705" max-vertical-offset="3230">
-          <caret line="44" column="70" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -1254,26 +1280,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application/admin/php/arc-options-styling.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="918" max-vertical-offset="12564">
-          <caret line="51" column="0" selection-start-line="51" selection-start-column="0" selection-end-line="51" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/application/shared/architect/php/arc-functions.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="3366" max-vertical-offset="9360">
           <caret line="187" column="30" selection-start-line="187" selection-start-column="30" selection-end-line="187" selection-end-column="30" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/public/php/post_types/class_arc_Panel_Snippets.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1101" max-vertical-offset="7530">
-          <caret line="83" column="79" selection-start-line="83" selection-start-column="79" selection-end-line="83" selection-end-column="99" />
           <folding />
         </state>
       </provider>
@@ -1290,14 +1300,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="345" max-vertical-offset="5475">
           <caret line="56" column="36" selection-start-line="56" selection-start-column="36" selection-end-line="56" selection-end-column="36" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/admin/php/arc-options.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="5085" max-vertical-offset="8190">
-          <caret line="247" column="45" selection-start-line="247" selection-start-column="45" selection-end-line="247" selection-end-column="45" />
           <folding />
         </state>
       </provider>
@@ -1334,14 +1336,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application/public/php/class_arc_Section.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-16.92" vertical-offset="1824" max-vertical-offset="3390">
-          <caret line="178" column="0" selection-start-line="178" selection-start-column="0" selection-end-line="178" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/application/public/css/_panels.scss">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="918" max-vertical-offset="2790">
@@ -1354,14 +1348,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-10.0" vertical-offset="0" max-vertical-offset="345">
           <caret line="16" column="1" selection-start-line="16" selection-start-column="1" selection-end-line="16" selection-end-column="1" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/arc-public.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="64.375" vertical-offset="2130" max-vertical-offset="3975">
-          <caret line="39" column="108" selection-start-line="39" selection-start-column="108" selection-end-line="39" selection-end-column="108" />
           <folding />
         </state>
       </provider>
@@ -1386,37 +1372,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="720" max-vertical-offset="1695">
           <caret line="6" column="14" selection-start-line="6" selection-start-column="14" selection-end-line="6" selection-end-column="14" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/arc-admin.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-22.5" vertical-offset="435" max-vertical-offset="3930">
-          <caret line="65" column="83" selection-start-line="65" selection-start-column="83" selection-end-line="65" selection-end-column="83" />
-          <folding>
-            <marker date="1404716047000" expanded="true" signature="7350:10785" placeholder="..." />
-            <marker date="1404716047000" expanded="false" signature="7514:7568" placeholder="..." />
-            <marker date="1404716047000" expanded="true" signature="7569:10284" placeholder="..." />
-            <marker date="1404716047000" expanded="true" signature="8901:9016" placeholder="..." />
-            <marker date="1404716047000" expanded="true" signature="9491:9588" placeholder="..." />
-            <marker date="1404716047000" expanded="false" signature="9766:9779" placeholder="..." />
-            <marker date="1404716047000" expanded="false" signature="9892:9908" placeholder="..." />
-            <marker date="1404716047000" expanded="false" signature="9973:9989" placeholder="..." />
-            <marker date="1404716047000" expanded="false" signature="10115:10131" placeholder="..." />
-            <marker date="1404716047000" expanded="false" signature="10189:10205" placeholder="..." />
-            <marker date="1404716047000" expanded="true" signature="10424:10772" placeholder="..." />
-            <marker date="1404716047000" expanded="false" signature="10597:10610" placeholder="..." />
-            <marker date="1404716047000" expanded="true" signature="10883:11574" placeholder="..." />
-            <marker date="1404716047000" expanded="true" signature="11030:11307" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/admin/js/arc-metaboxes-blueprints.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="3.0818713" vertical-offset="493" max-vertical-offset="7350">
-          <caret line="68" column="52" selection-start-line="68" selection-start-column="52" selection-end-line="68" selection-end-column="52" />
           <folding />
         </state>
       </provider>
@@ -1447,62 +1402,9 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/application/admin/css/arc-admin.scss">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.27210885" vertical-offset="17540" max-vertical-offset="19230">
+        <state vertical-scroll-proportion="0.0" vertical-offset="17540" max-vertical-offset="19230">
           <caret line="1172" column="14" selection-start-line="1172" selection-start-column="12" selection-end-line="1172" selection-end-column="14" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/admin/php/class_arc_Blueprints_Layouts.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-19.82" vertical-offset="7784" max-vertical-offset="26625">
-          <caret line="585" column="64" selection-start-line="585" selection-start-column="64" selection-end-line="585" selection-end-column="64" />
-          <folding>
-            <marker date="1404792552000" expanded="true" signature="44975:45701" placeholder="..." />
-            <marker date="1404792552000" expanded="true" signature="46722:46920" placeholder="..." />
-            <marker date="1404792552000" expanded="true" signature="46955:47132" placeholder="..." />
-            <marker date="1404792552000" expanded="true" signature="47167:47339" placeholder="..." />
-            <marker date="1404792552000" expanded="true" signature="47374:47548" placeholder="..." />
-            <marker date="1404792552000" expanded="true" signature="47583:47684" placeholder="..." />
-            <marker date="1404792552000" expanded="true" signature="48235:49123" placeholder="..." />
-            <marker date="1404792552000" expanded="true" signature="48561:49106" placeholder="..." />
-            <marker date="1404792552000" expanded="false" signature="49166:49179" placeholder="..." />
-            <marker date="1404792552000" expanded="true" signature="66200:66574" placeholder="..." />
-            <marker date="1404792552000" expanded="true" signature="66578:66613" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/admin/php/class_arc_Panels_Layouts.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-6.32" vertical-offset="5069" max-vertical-offset="24195">
-          <caret line="359" column="61" selection-start-line="359" selection-start-column="61" selection-end-line="359" selection-end-column="61" />
-          <folding>
-            <marker date="1404792807000" expanded="true" signature="29228:29326" placeholder="Select any a..." />
-            <marker date="1404792807000" expanded="false" signature="52890:52905" placeholder="..." />
-            <marker date="1404792807000" expanded="true" signature="53452:53650" placeholder="..." />
-            <marker date="1404792807000" expanded="true" signature="53685:53862" placeholder="..." />
-            <marker date="1404792807000" expanded="true" signature="53897:54069" placeholder="..." />
-            <marker date="1404792807000" expanded="true" signature="54104:54278" placeholder="..." />
-            <marker date="1404792807000" expanded="true" signature="54313:54414" placeholder="..." />
-            <marker date="1404792807000" expanded="true" signature="70868:71066" placeholder="..." />
-            <marker date="1404792807000" expanded="true" signature="71101:71278" placeholder="..." />
-            <marker date="1404792807000" expanded="true" signature="71313:71485" placeholder="..." />
-            <marker date="1404792807000" expanded="true" signature="71520:71694" placeholder="..." />
-            <marker date="1404792807000" expanded="true" signature="71729:71830" placeholder="..." />
-            <marker date="1404792807000" expanded="true" signature="72546:75520" placeholder="..." />
-            <marker date="1404792807000" expanded="true" signature="72612:75276" placeholder="..." />
-            <marker date="1404792807000" expanded="true" signature="72709:75265" placeholder="..." />
-            <marker date="1404792807000" expanded="false" signature="73208:73234" placeholder="..." />
-            <marker date="1404792807000" expanded="false" signature="73588:73614" placeholder="..." />
-            <marker date="1404792807000" expanded="false" signature="73723:73760" placeholder="..." />
-            <marker date="1404792807000" expanded="false" signature="74265:74301" placeholder="..." />
-            <marker date="1404792807000" expanded="false" signature="74394:74409" placeholder="..." />
-            <marker date="1404792807000" expanded="false" signature="75356:75367" placeholder="..." />
-            <marker date="1404792807000" expanded="false" signature="75422:75448" placeholder="..." />
-            <marker date="1404792807000" expanded="false" signature="75555:75568" placeholder="..." />
-            <marker date="1404792807000" expanded="true" signature="75751:75819" placeholder="..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1522,10 +1424,148 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/application/public/php/post_types/class_arc_Panel_Snippets.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-6.0" vertical-offset="1101" max-vertical-offset="7530">
+          <caret line="83" column="79" selection-start-line="83" selection-start-column="79" selection-end-line="83" selection-end-column="99" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/public/php/class_arc_Section.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-2.1" vertical-offset="345" max-vertical-offset="3390">
+          <caret line="30" column="7" selection-start-line="30" selection-start-column="7" selection-end-line="30" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/admin/js/arc-metaboxes-blueprints.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="6.875" vertical-offset="1315" max-vertical-offset="7380">
+          <caret line="95" column="18" selection-start-line="95" selection-start-column="17" selection-end-line="95" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/arc-admin.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-18.125" vertical-offset="435" max-vertical-offset="3930">
+          <caret line="58" column="0" selection-start-line="57" selection-start-column="0" selection-end-line="58" selection-end-column="0" />
+          <folding>
+            <marker date="1404716047000" expanded="true" signature="7350:10785" placeholder="..." />
+            <marker date="1404716047000" expanded="false" signature="7514:7568" placeholder="..." />
+            <marker date="1404716047000" expanded="true" signature="7569:10284" placeholder="..." />
+            <marker date="1404716047000" expanded="true" signature="8901:9016" placeholder="..." />
+            <marker date="1404716047000" expanded="true" signature="9491:9588" placeholder="..." />
+            <marker date="1404716047000" expanded="false" signature="9766:9779" placeholder="..." />
+            <marker date="1404716047000" expanded="false" signature="9892:9908" placeholder="..." />
+            <marker date="1404716047000" expanded="false" signature="9973:9989" placeholder="..." />
+            <marker date="1404716047000" expanded="false" signature="10115:10131" placeholder="..." />
+            <marker date="1404716047000" expanded="false" signature="10189:10205" placeholder="..." />
+            <marker date="1404716047000" expanded="true" signature="10424:10772" placeholder="..." />
+            <marker date="1404716047000" expanded="false" signature="10597:10610" placeholder="..." />
+            <marker date="1404716047000" expanded="true" signature="10883:11574" placeholder="..." />
+            <marker date="1404716047000" expanded="true" signature="11030:11307" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/admin/php/class_arc_Panels_Layouts.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-12.92" vertical-offset="4649" max-vertical-offset="24195">
+          <caret line="353" column="32" selection-start-line="353" selection-start-column="32" selection-end-line="353" selection-end-column="32" />
+          <folding>
+            <marker date="1404795312000" expanded="true" signature="29224:29322" placeholder="Select any a..." />
+            <marker date="1404795312000" expanded="false" signature="52886:52901" placeholder="..." />
+            <marker date="1404795312000" expanded="true" signature="53448:53646" placeholder="..." />
+            <marker date="1404795312000" expanded="true" signature="53681:53858" placeholder="..." />
+            <marker date="1404795312000" expanded="true" signature="53893:54065" placeholder="..." />
+            <marker date="1404795312000" expanded="true" signature="54100:54274" placeholder="..." />
+            <marker date="1404795312000" expanded="true" signature="54309:54410" placeholder="..." />
+            <marker date="1404795312000" expanded="true" signature="70864:71062" placeholder="..." />
+            <marker date="1404795312000" expanded="true" signature="71097:71274" placeholder="..." />
+            <marker date="1404795312000" expanded="true" signature="71309:71481" placeholder="..." />
+            <marker date="1404795312000" expanded="true" signature="71516:71690" placeholder="..." />
+            <marker date="1404795312000" expanded="true" signature="71725:71826" placeholder="..." />
+            <marker date="1404795312000" expanded="true" signature="72542:75516" placeholder="..." />
+            <marker date="1404795312000" expanded="true" signature="72608:75272" placeholder="..." />
+            <marker date="1404795312000" expanded="true" signature="72705:75261" placeholder="..." />
+            <marker date="1404795312000" expanded="false" signature="73204:73230" placeholder="..." />
+            <marker date="1404795312000" expanded="false" signature="73584:73610" placeholder="..." />
+            <marker date="1404795312000" expanded="false" signature="73719:73756" placeholder="..." />
+            <marker date="1404795312000" expanded="false" signature="74261:74297" placeholder="..." />
+            <marker date="1404795312000" expanded="false" signature="74390:74405" placeholder="..." />
+            <marker date="1404795312000" expanded="false" signature="75352:75363" placeholder="..." />
+            <marker date="1404795312000" expanded="false" signature="75418:75444" placeholder="..." />
+            <marker date="1404795312000" expanded="false" signature="75551:75564" placeholder="..." />
+            <marker date="1404795312000" expanded="true" signature="75747:75815" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/admin/php/arc-options.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="58.125" vertical-offset="5100" max-vertical-offset="8190">
+          <caret line="247" column="45" selection-start-line="247" selection-start-column="45" selection-end-line="247" selection-end-column="45" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/admin/php/arc-options-styling.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="275.0" vertical-offset="7365" max-vertical-offset="10470">
+          <caret line="51" column="0" selection-start-line="51" selection-start-column="0" selection-end-line="51" selection-end-column="0" />
+          <folding>
+            <marker date="1404272979000" expanded="true" signature="19227:19425" placeholder="..." />
+            <marker date="1404272979000" expanded="true" signature="19460:19637" placeholder="..." />
+            <marker date="1404272979000" expanded="true" signature="19672:19844" placeholder="..." />
+            <marker date="1404272979000" expanded="true" signature="19879:20053" placeholder="..." />
+            <marker date="1404272979000" expanded="true" signature="20088:20189" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/arc-public.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-4.82" vertical-offset="2324" max-vertical-offset="4050">
+          <caret line="171" column="0" selection-start-line="169" selection-start-column="0" selection-end-line="171" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/admin/php/class_arc_Blueprints_Layouts.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-8.78" vertical-offset="9821" max-vertical-offset="26625">
+          <caret line="684" column="54" selection-start-line="684" selection-start-column="40" selection-end-line="684" selection-end-column="54" />
+          <folding>
+            <marker date="1404796619000" expanded="true" signature="43600:44326" placeholder="..." />
+            <marker date="1404796619000" expanded="true" signature="45347:45545" placeholder="..." />
+            <marker date="1404796619000" expanded="true" signature="45580:45757" placeholder="..." />
+            <marker date="1404796619000" expanded="true" signature="45792:45964" placeholder="..." />
+            <marker date="1404796619000" expanded="true" signature="45999:46173" placeholder="..." />
+            <marker date="1404796619000" expanded="true" signature="46208:46309" placeholder="..." />
+            <marker date="1404796619000" expanded="true" signature="46860:47748" placeholder="..." />
+            <marker date="1404796619000" expanded="true" signature="47186:47731" placeholder="..." />
+            <marker date="1404796619000" expanded="false" signature="47791:47804" placeholder="..." />
+            <marker date="1404796619000" expanded="true" signature="66205:66579" placeholder="..." />
+            <marker date="1404796619000" expanded="true" signature="66583:66618" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/public/php/class_arc_Blueprint.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="11.4" vertical-offset="1260" max-vertical-offset="2400">
+          <caret line="46" column="0" selection-start-line="46" selection-start-column="0" selection-end-line="46" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/application/public/php/class_Architect.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.39834026" vertical-offset="11517" max-vertical-offset="12735">
-          <caret line="787" column="0" selection-start-line="787" selection-start-column="0" selection-end-line="787" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.24038461" vertical-offset="1680" max-vertical-offset="12735">
+          <caret line="122" column="0" selection-start-line="122" selection-start-column="0" selection-end-line="122" selection-end-column="0" />
           <folding />
         </state>
       </provider>

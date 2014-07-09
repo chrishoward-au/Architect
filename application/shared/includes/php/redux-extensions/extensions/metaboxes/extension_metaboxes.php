@@ -16,7 +16,7 @@
      * @package     ReduxFramework
      * @author      Dovy Paukstys (dovy)
      * @author      Kevin Provance (kprovance)
-     * @version     1.2.2
+     * @version     1.2.7
      */
 
 // Exit if accessed directly
@@ -34,7 +34,7 @@
          */
         class ReduxFramework_extension_metaboxes {
 
-            static $version = "1.2.2";
+            static $version = "1.2.7";
 
             public $boxes = array();
             public $post_types = array();
@@ -898,8 +898,30 @@
 
             // Function to get and cache the post meta.
             function get_meta( $id ) {
+
                 if ( ! isset( $this->meta[ $id ] ) ) {
-                    $this->meta[ $id ] = get_post_meta( $id, $this->parent->args['opt_name'], true );
+                    $this->meta[ $id ] = array();
+                    $oData             = get_post_meta( $id );
+                    if ( ! empty( $oData ) ) {
+                        foreach ( $oData as $key => $value ) {
+                            if ( count( $value ) == 1 ) {
+                                $this->meta[ $id ][ $key ] = maybe_unserialize( $value[0] );
+                            } else {
+                                $this->meta[ $id ][ $key ] = array_map('maybe_unserialize', $value);
+                            }
+
+                        }
+                    }
+
+                    if ( isset( $this->meta[ $id ][ $this->parent->args['opt_name'] ] ) ) {
+                        $data = maybe_unserialize( $this->meta[ $id ][ $this->parent->args['opt_name'] ] );
+                        foreach ( $data as $key => $value ) {
+                            $this->meta[ $id ][ $key ] = $value;
+                            update_post_meta( $id, $key, $value );
+                        }
+                        unset( $this->meta[ $id ][ $this->parent->args['opt_name'] ] );
+                        delete_post_meta( $id, $this->parent->args['opt_name'] );
+                    }
                 }
 
                 return $this->meta[ $id ];
@@ -917,7 +939,7 @@
                                 $defaults[ $key ] = $this->options_defaults[ $key ];
                             }
                         }
-                        $meta = wp_parse_args( $this->get_meta( $thePost->ID ), $defaults );
+                        $meta                                          = wp_parse_args( $this->get_meta( $thePost->ID ), $defaults );
                         $this->post_type_fields[ $thePost->post_type ] = $meta;
                     }
 
@@ -1025,7 +1047,7 @@
                                             if ( ! ( isset( $metabox['args']['sections'] ) && count( $metabox['args']['sections'] ) == 1 && isset( $metabox['args']['sections'][0]['fields'] ) && count( $metabox['args']['sections'][0]['fields'] ) == 1 ) && isset( $field['title'] ) ) {
                                                 echo '<th scope="row">';
                                                 if ( ! empty( $th ) ) {
-                                                    echo '<div class="redux_field_th">' . $th . '</div>';
+                                                    echo $th;
                                                 }
                                                 echo '</th>';
                                                 echo '<td>';
@@ -1097,6 +1119,7 @@
 
                 // If this is an autosave, our form has not been submitted, so we don't want to do anything.
                 if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
+                    echo "here";
                     return $post_id;
                 }
 
@@ -1120,6 +1143,10 @@
 
                 $toSave    = array();
                 $toCompare = array();
+                $toDelete  = array();
+
+                //print_r( $_POST );
+                //exit();
 
                 foreach ( $_POST[ $this->parent->args['opt_name'] ] as $key => $value ) {
                     // Have to remove the escaping for array comparison
@@ -1149,6 +1176,8 @@
                     if ( $save ) {
                         $toSave[ $key ]    = $value;
                         $toCompare[ $key ] = isset( $this->parent->options[ $key ] ) ? $this->parent->options[ $key ] : "";
+                    } else {
+                        $toDelete[ $key ] = $value;
                     }
 
                 }
@@ -1184,11 +1213,16 @@
                 }
                 //exit();
 
-                /* OK, its safe for us to save the data now. */
-                //print_r($toSave);
-                //exit();
+                foreach ( $toSave as $key => $value ) {
+                    $prev_value = isset( $this->meta[ $post_id ][ $key ] ) ? $this->meta[ $post_id ][ $key ] : '';
+                    update_post_meta( $post_id, $key, $value, $prev_value );
+                }
+                foreach ( $toDelete as $key => $value ) {
+                    $prev_value = isset( $this->meta[ $post_id ][ $key ] ) ? $this->meta[ $post_id ][ $key ] : '';
+                    delete_post_meta( $post_id, $key, $prev_value );
+                }
 
-                update_post_meta( $post_id, $this->parent->args['opt_name'], $toSave );
+                //update_post_meta( $post_id, $this->parent->args['opt_name'], $toSave );
                 //print_r($toSave);
                 //exit();
             } // meta_boxes_save()
@@ -1261,7 +1295,9 @@
             }
             global $post;
             $redux     = ReduxFrameworkInstances::get_instance( $opt_name );
+            var_dump($redux);
             $metaboxes = $redux->extensions['metaboxes'];
+            var_dump($metaboxes);
             if ( isset( $thePost ) && is_array( $thePost ) ) {
                 $thePost = $post;
             } else if ( is_integer( $thePost ) ) {
@@ -1269,7 +1305,7 @@
             } else if ( ! is_object( $thePost ) ) {
                 $thePost = $post;
             }
-
+//var_dump($thePost,$meta_key);
             return $metaboxes->get_values( $thePost, $meta_key );
 
 

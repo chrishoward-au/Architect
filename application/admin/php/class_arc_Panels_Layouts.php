@@ -351,7 +351,7 @@
           array(
               'title'   => __('Image cropping', 'pzarchitect'),
               'id'      => $prefix . 'image-focal-point',
-              'type'    => 'button_set',
+              'type'    => 'select',
               'default' => 'respect',
               'options' => array(
                   'respect' => __('Respect focal point', 'pzarchitect'),

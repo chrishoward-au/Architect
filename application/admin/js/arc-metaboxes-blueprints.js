@@ -47,7 +47,8 @@ jQuery( document ).ready( function ()
      ********************************************************************************************/
     function init_content_tabs()
     {
-        var  content_options = jQuery( "select#_blueprints_content-source-select" ).find( "option" );
+//        var  content_options = jQuery( "select#_blueprints_content-source-select" ).find( "option" );
+        var  content_options = jQuery( "select#_content_general_content-source-select" ).find( "option" );
 
         content_options.each( function ( i )
         {
@@ -62,7 +63,7 @@ jQuery( document ).ready( function ()
             if ( this.selected )
             {
                 console.log( i, this.value );
-                jQuery( ".redux-sidebar li#" + (i+1 ) + "_box_redux-_architect-metabox-content-selections_section_group_li" ).show().trigger( "click" );
+                jQuery( ".redux-sidebar li#" + (i+1 ) + "_box_redux-_architect-metabox-content-selections_section_group_li" ).show(); //.trigger( "click" );
             }
             else
             {
@@ -74,7 +75,8 @@ jQuery( document ).ready( function ()
     init_content_tabs();
 
     // Change content tab on content source change
-    jQuery( "select#_blueprints_content-source-select" ).on( 'click', function ()
+//    jQuery( "select#_blueprints_content-source-select" ).on( 'click', function ()
+    jQuery( "select#_content_general_content-source-select" ).on( 'click', function ()
     {
         pzarc_show_hide_content_tabs( jQuery( this ).find( "option:selected" ).text().trim() );
     } );
@@ -86,7 +88,7 @@ jQuery( document ).ready( function ()
         {
             jQuery( ".redux-sidebar li#" + (i - 1+2) + "_box_redux-_architect-metabox-content-selections_section_group_li" ).hide();
         }
-        jQuery( ".redux-sidebar li#" + (a.indexOf( tab )+2) + "_box_redux-_architect-metabox-content-selections_section_group_li" ).show().find( "a" ).trigger( "click" );
+        jQuery( ".redux-sidebar li#" + (a.indexOf( tab )+2) + "_box_redux-_architect-metabox-content-selections_section_group_li" ).show();//.find( "a" ).trigger( "click" );
     }
 
     /********************************************************************************************

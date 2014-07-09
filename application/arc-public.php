@@ -166,9 +166,14 @@
         $GLOBALS[ '_architect_options' ] = get_option('_architect_options', array());
       }
 
+
+//      require_once PZARC_PLUGIN_APP_PATH . '/admin/php/arc-options-styling.php';
+//      require_once PZARC_PLUGIN_APP_PATH . '/shared/includes/php/redux-extensions/extensions/metaboxes/extension_metaboxes.php';
+
       require_once PZARC_PLUGIN_APP_PATH . '/public/php/class_Architect.php';
 //      require_once(PZARC_PLUGIN_APP_PATH . '/shared/includes/php/jo-image-resizer/jo_image_resizer.php');
       require_once(PZARC_PLUGIN_APP_PATH . '/shared/includes/php/BFI-thumb-forked/BFI_Thumb.php');
+
 
       $architect = new Architect($blueprint, $is_shortcode);
       if (empty($architect->build->blueprint[ 'err_msg' ])) {

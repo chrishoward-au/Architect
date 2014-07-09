@@ -123,17 +123,17 @@
         switch (true) {
 
           case is_home():
-            $class                     = 'arc_Pagination_' . $this->build->blueprint[ '_blueprints_pager' ];
+            $class                     = 'arc_Pagination_' . (!$this->build->blueprint[ '_blueprints_pager' ]?'prevnext':$this->build->blueprint[ '_blueprints_pager' ]);
             $this->arc[ 'pagination' ] = new $class;
             break;
 
           case is_archive():
-            $class                     = 'arc_Pagination_' . $this->build->blueprint[ '_blueprints_pager-archives' ];
+            $class                     = 'arc_Pagination_' . (!$this->build->blueprint[ '_blueprints_pager-archives' ]?'prevnext':$this->build->blueprint[ '_blueprints_pager-archives' ]);
             $this->arc[ 'pagination' ] = new $class;
             break;
 
           case (is_singular() && !is_front_page()):
-            $class                     = 'arc_Pagination_' . $this->build->blueprint[ '_blueprints_pager-single' ];
+            $class                     = 'arc_Pagination_' . (!$this->build->blueprint[ '_blueprints_pager-single' ]?'prevnext':$this->build->blueprint[ '_blueprints_pager-single' ]);
             $this->arc[ 'pagination' ] = new $class;
             break;
 
