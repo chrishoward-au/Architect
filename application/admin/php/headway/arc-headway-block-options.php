@@ -241,8 +241,8 @@
       $pzarc_return  = array();
       while ($layouts_query->have_posts()) {
         $layouts_query->the_post();
-        $the_panel_meta                                                   = get_post_meta($layouts_query->posts->ID, '_architect', true);
-        $pzarc_return[ $the_panel_meta[ '_panels_settings_short-name' ] ] = get_the_title($layouts_query->post->ID);
+        $the_panel_meta                                                   = get_post_meta($layouts_query->posts->ID);
+        $pzarc_return[ $the_panel_meta[ '_panels_settings_short-name' ][0] ] = get_the_title($layouts_query->post->ID);
       };
        asort($pzarc_return);
 
@@ -261,9 +261,9 @@
       $pzarc_return     = array();
       while ($blueprints_query->have_posts()) {
         $blueprints_query->the_post();
-        $the_panel_meta = get_post_meta($blueprints_query->post->ID, '_architect', true);
+        $the_panel_meta = get_post_meta($blueprints_query->post->ID);
 
-        $pzarc_return[ $the_panel_meta[ '_blueprints_short-name' ] . '##' . $blueprints_query->post->ID ] = get_the_title($blueprints_query->post->ID);
+        $pzarc_return[ $the_panel_meta[ '_blueprints_short-name' ][0] . '##' . $blueprints_query->post->ID ] = get_the_title($blueprints_query->post->ID);
       };
        asort($pzarc_return);
 

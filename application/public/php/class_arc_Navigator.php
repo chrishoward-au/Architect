@@ -20,6 +20,9 @@
   // - PANEL
   // - PANEL
 
+
+  // TODO: Consider changing echoes to $out .= and then echoing in a filter. This might make extra navs easier. Plus might make it easier to put it anywhere. maybe
+
   class arc_Navigator
   {
 

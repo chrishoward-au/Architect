@@ -212,10 +212,10 @@
 
         <h2>Shout outs</h2>
         <p>Architect is powered by the following awesome code libraries, plugins and add-ons:</p>
-        <ul><li><a href="http://reduxframework.com" target=_blank alt="Redux Options Framework"><img src="' . PZARC_PLUGIN_APP_URL . '/shared/assets/images/help/redux-logo.png" style="display:block"/> Redux Options Framework</li>
-          <li>Swiper JS</li>
-          <li>Isotope JS</li>
-          <li>Tom McPharlin\'s WP Plugin Boilerplate</li>
+        <ul><li><a href="http://reduxframework.com" target=_blank alt="Redux Options Framework"><img src="' . PZARC_PLUGIN_APP_URL . '/shared/assets/images/help/redux-logo.png" style="display:block"/> Redux Options Framework</a></li>
+          <li><a href="http://kenwheeler.github.io/slick/" target="_blank">Slick JS</a></li>
+          <li><a href="http://isotope.metafizzy.co/" target="_blank">Isotope JS</a></li>
+          <li><a href="https://github.com/tommcfarlin/WordPress-Plugin-Boilerplate" target="_blank">Tom McPharlin\'s WP Plugin Boilerplate</a></li>
         </ul>
       </div>';
     }

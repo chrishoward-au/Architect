@@ -40,10 +40,12 @@
           'post_type'    => 'arc-blueprints',
           'meta_key'     => '_blueprints_short-name',
           'meta_value'   => $this->name,
-          'meta_compare' => 'LIKE'
+          'meta_compare' => '='
       );
 
-      $blueprint_id    = new WP_Query($meta_query_args);
+      global $pzarchitect;
+
+      $blueprint_id = new WP_Query($meta_query_args);
 
       if (!isset($blueprint_id->posts[ 0 ]->ID)) {
 
@@ -55,7 +57,8 @@
 
       $this->blueprint[ 'blueprint-id' ] = $blueprint_id->posts[ 0 ]->ID;
 
-      $blueprint_info = get_post_meta($blueprint_id->posts[ 0 ]->ID, null, true);
+      $blueprint_info = get_post_meta($blueprint_id->posts[ 0 ]->ID);
+
 
       foreach ($blueprint_info as $key => $value) {
 
@@ -67,18 +70,36 @@
 
       }
 
+      // Add the default values except for the styling ones
+      foreach ($pzarchitect[ 'defaults' ][ '_blueprints' ] as $key => $value) {
+
+        if ((strpos($key, '_blueprints_') === 0 || strpos($key, '_content_') === 0) && !isset($this->blueprint[ $key ])) {
+          $this->blueprint[ $key ] = maybe_unserialize($value);
+        };
+
+      }
+
       /** Add panel settings for Section 1 */
-      $panel[ 0 ]  = get_post_meta($this->blueprint[ '_blueprints_section-0-panel-layout' ]);
+      $panel[ 0 ] = get_post_meta($this->blueprint[ '_blueprints_section-0-panel-layout' ]);
 
-      $panel[ 1 ] = !$panel[ 0 ]?array():self::flatten_wpinfo($panel[0]);
+      $panel[ 1 ] = !$panel[ 0 ] ? array() : self::flatten_wpinfo($panel[ 0 ]);
 
+      if (!empty($panel[ 0 ])) {
+        foreach ($pzarchitect[ 'defaults' ][ '_panels' ] as $key => $value) {
+
+          if (strpos($key, '_panel') === 0 && !isset($panel[ 1 ][ $key ])) {
+            $panel[ 1 ][ $key ] = maybe_unserialize($value);
+          };
+
+        }
+      }
       $this->blueprint[ 'section' ][ 0 ]
           = array(
-          'section-enable'         => !empty($panel[0]),
+          'section-enable'         => !empty($panel[ 0 ]),
           'section-panel-settings' => $panel[ 1 ],
       );
 
-      if (!$panel[0]) {
+      if (!$panel[ 0 ]) {
 
         $this->blueprint = array('err_msg' => '<p class="message-error">No Panel Layout assigned.</p>');
 
@@ -87,24 +108,42 @@
       }
 
       /** Add panel settings for Section 2 */
-      $panel[ 0 ]  = get_post_meta($this->blueprint[ '_blueprints_section-1-panel-layout' ]);
+      $panel[ 0 ] = get_post_meta($this->blueprint[ '_blueprints_section-1-panel-layout' ]);
 
-      $panel[ 2 ] = !$panel[ 0 ]?array():self::flatten_wpinfo($panel[0]);
+      $panel[ 2 ] = !$panel[ 0 ] ? array() : self::flatten_wpinfo($panel[ 0 ]);
 
-      $this->blueprint[ 'section' ][ 0 ]
+      if (!empty($panel[ 0 ])) {
+        foreach ($pzarchitect[ 'defaults' ][ '_panels' ] as $key => $value) {
+
+          if (strpos($key, '_panel') === 0 && !isset($panel[ 2 ][ $key ])) {
+            $panel[ 2 ][ $key ] = maybe_unserialize($value);
+          };
+
+        }
+      }
+      $this->blueprint[ 'section' ][ 1 ]
           = array(
-          'section-enable'         => !empty($panel[0]),
+          'section-enable'         => !empty($panel[ 0 ]),
           'section-panel-settings' => $panel[ 2 ],
       );
 
       /** Add panel settings for Section 3 */
-      $panel[ 0 ]  = get_post_meta($this->blueprint[ '_blueprints_section-2-panel-layout' ]);
+      $panel[ 0 ] = get_post_meta($this->blueprint[ '_blueprints_section-2-panel-layout' ]);
 
-      $panel[ 3 ] = !$panel[ 0 ]?array():self::flatten_wpinfo($panel[0]);
+      $panel[ 3 ] = !$panel[ 0 ] ? array() : self::flatten_wpinfo($panel[ 0 ]);
 
-      $this->blueprint[ 'section' ][ 0 ]
+      if (!empty($panel[ 0 ])) {
+        foreach ($pzarchitect[ 'defaults' ][ '_panels' ] as $key => $value) {
+
+          if (strpos($key, '_panel') === 0 && !isset($panel[ 3 ][ $key ])) {
+            $panel[ 3 ][ $key ] = maybe_unserialize($value);
+          };
+
+        }
+      }
+      $this->blueprint[ 'section' ][ 2 ]
           = array(
-          'section-enable'         => !empty($panel[0]),
+          'section-enable'         => !empty($panel[ 0 ]),
           'section-panel-settings' => $panel[ 3 ],
       );
 
@@ -118,14 +157,14 @@
      * Get panel design
      *
      ***********************/
-    function get_panel_design($panel_layout_id)
-    {
-
-      $panel_design = get_post_meta($panel_layout_id, '_architect-panels_preview', true);
-
-      return $panel_design;
-
-    }
+//    function get_panel_design($panel_layout_id)
+//    {
+//
+//      $panel_design = get_post_meta($panel_layout_id, '_architect-panels_preview', true);
+//
+//      return $panel_design;
+//
+//    }
 
     /***********************
      *

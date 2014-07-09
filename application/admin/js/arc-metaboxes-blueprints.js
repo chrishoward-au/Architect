@@ -219,7 +219,7 @@ jQuery( document ).ready( function ()
         }
         if ( clickedOn === "Content" )
         {
-            var tab = jQuery( "select#_blueprints_content-source-select" ).find( "option:selected" );
+            var tab = jQuery( "select#_content_general_content-source-select" ).find( "option:selected" );
             var chosenOne = tab.index();
             //console.log(chosenOne);
 

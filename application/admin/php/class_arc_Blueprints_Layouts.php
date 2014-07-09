@@ -83,7 +83,7 @@
           '_blueprints_short-name'     => __('Blueprint short name', 'pzarchitect'),
           '_blueprints_description'    => __('Description', 'pzarchitect'),
           'panels'                     => __('Section Panels', 'pzarchitect'),
-          '_blueprints_content-source' => __('Content source', 'pzarchitect'),
+          '_content_general_content-source' => __('Content source', 'pzarchitect'),
           'navigation'                 => __('Navigation', 'pzarchitect'),
           'id'                         => __('ID', 'pzarchitect'),
       );
@@ -99,42 +99,43 @@
     public function add_blueprint_column_content($column, $post_id)
     {
 
-      $post_meta = get_post_meta($post_id, '_architect', true);
+      $post_meta = get_post_meta($post_id);
+
       switch ($column) {
         case 'id':
           echo $post_id;
           break;
         case '_blueprints_short-name':
-          echo $post_meta[ $column ];
+          echo $post_meta[ $column ][0];
           break;
         case '_blueprints_description':
-          echo $post_meta[ $column ];
+          echo $post_meta[ $column ][0];
           break;
-        case '_blueprints_content-source':
-          echo ucwords(empty($post_meta[ $column ]) ? 'default' : $post_meta[ $column ]);
+        case '_content_general_content-source':
+          echo ucwords(empty($post_meta[ $column ][0]) ? 'default' : $post_meta[ $column ][0]);
           break;
         case 'navigation':
           switch (true) {
-            case empty($post_meta[ '_blueprints_navigation' ]):
-            case $post_meta[ '_blueprints_navigation' ] === 'none':
+            case empty($post_meta[ '_blueprints_navigation' ][0]):
+            case $post_meta[ '_blueprints_navigation' ][0] === 'none':
               echo 'None';
               break;
-            case $post_meta[ '_blueprints_navigation' ] === 'pagination':
-              echo 'Pagination : ' . ucwords(empty($post_meta[ '_blueprints_pager' ]) ? 'Prev/Next' : $post_meta[ '_blueprints_pager' ]);
+            case $post_meta[ '_blueprints_navigation' ][0] === 'pagination':
+              echo 'Pagination : ' . ucwords(empty($post_meta[ '_blueprints_pager' ][0]) ? 'Prev/Next' : $post_meta[ '_blueprints_pager' ][0]);
               break;
-            case $post_meta[ '_blueprints_navigation' ] === 'navigator':
-              echo "Navigator : " . ucwords(empty($post_meta[ '_blueprints_navigator' ]) ? 'Tabbed' : $post_meta[ '_blueprints_navigator' ]);
+            case $post_meta[ '_blueprints_navigation' ][0] === 'navigator':
+              echo "Navigator : " . ucwords(empty($post_meta[ '_blueprints_navigator' ][0]) ? 'Tabbed' : $post_meta[ '_blueprints_navigator' ][0]);
               break;
           }
           break;
         case 'panels':
           global $pzarc_panels_array;
-          echo '1: ' . $pzarc_panels_array[ $post_meta[ '_blueprints_section-0-panel-layout' ] ];
-          if (!empty($post_meta[ '_blueprints_section-1-panel-layout' ])) {
-            echo '<br>' . '2: ' . $pzarc_panels_array[ $post_meta[ '_blueprints_section-1-panel-layout' ] ];
+          echo '1: ' . $pzarc_panels_array[ $post_meta[ '_blueprints_section-0-panel-layout' ][0] ];
+          if (!empty($post_meta[ '_blueprints_section-1-panel-layout' ][0])) {
+            echo '<br>' . '2: ' . $pzarc_panels_array[ $post_meta[ '_blueprints_section-1-panel-layout' ][0] ];
           }
-          if (!empty($post_meta[ '_blueprints_section-2-panel-layout' ])) {
-            echo '<br>' . '3: ' . $pzarc_panels_array[ $post_meta[ '_blueprints_section-2-panel-layout' ] ];
+          if (!empty($post_meta[ '_blueprints_section-2-panel-layout' ][0])) {
+            echo '<br>' . '3: ' . $pzarc_panels_array[ $post_meta[ '_blueprints_section-2-panel-layout' ][0] ];
           }
       }
     }

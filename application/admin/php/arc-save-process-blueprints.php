@@ -120,14 +120,14 @@
   function pzarc_process_bp_sections(&$pzarc_blueprints, $i, $nl, &$_architect_options)
   {
     $panel_id         = $pzarc_blueprints[ '_blueprints_section-' . $i . '-panel-layout' ];
-    $pzarc_panels     = get_post_meta($panel_id, '_architect', true);
-    $classes          = '.pzarchitect .pzarc-blueprint_' . $pzarc_blueprints[ '_blueprints_short-name' ] . ' .pzarc-section_' . ($i + 1) . '.pzarc-section-using-panel_' . $pzarc_panels[ '_panels_settings_short-name' ] . ' .pzarc-panel';
+    $pzarc_panels     = get_post_meta($panel_id);
+    $classes          = '.pzarchitect .pzarc-blueprint_' . $pzarc_blueprints[ '_blueprints_short-name' ] . ' .pzarc-section_' . ($i + 1) . '.pzarc-section-using-panel_' . $pzarc_panels[ '_panels_settings_short-name' ][0] . ' .pzarc-panel';
     $pzarc_import_css = '';
     $pzarc_mediaq_css = '';
 
     if (!empty($pzarc_blueprints[ '_blueprints_section-' . $i . '-panel-layout' ])) {
       // var_dump($pzarc_blueprints[ '_blueprints_section-' . $i . '-panel-layout' ]);
-      $pzarc_import_css .= '@import url("' . PZARC_CACHE_URL . '/pzarc-panels-layout-' . $panel_id . '-' . $pzarc_panels[ '_panels_settings_short-name' ] . '.css");' . $nl;
+      $pzarc_import_css .= '@import url("' . PZARC_CACHE_URL . '/pzarc-panels-layout-' . $panel_id . '-' . $pzarc_panels[ '_panels_settings_short-name' ][0] . '.css");' . $nl;
       $hmargin = $pzarc_blueprints[ '_blueprints_section-' . $i . '-panels-margins']['margin-right'];
 
       // TODO: Need to rethink this coz it's not right!

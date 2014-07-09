@@ -112,12 +112,12 @@
      */
     public function add_panel_layout_column_content($column, $post_id)
     {
-      $post_meta = get_post_meta($post_id, '_architect', true);
+      $post_meta = get_post_meta($post_id);
       //      var_dump($post_meta);
       //      switch ($column)
       //      {
       //        case '_blueprints_short-name':
-      echo $post_meta[ $column ];
+      echo $post_meta[ $column ][0];
       //          break;
       //      }
       //      // thiswont work coz
@@ -1060,10 +1060,10 @@
     /**
      * CUSTOM FIELDS
      */
-    $thispostmeta = get_post_meta($_GET[ 'post' ], '_architect', true);
+    $thispostmeta = get_post_meta($_GET[ 'post' ]);
     $cfcount      = (!empty($thispostmeta[ '_panels_design_custom-fields-count' ]) ? $thispostmeta[ '_panels_design_custom-fields-count' ] : 0);
     for ($i = 1; $i <= $cfcount; $i++) {
-      $cfname      = 'Custom field ' . $i . (!empty($thispostmeta[ '_panels_design_cfield-' . $i . '-name' ]) ? ': <br>' . $thispostmeta[ '_panels_design_cfield-' . $i . '-name' ] : '');
+      $cfname      = 'Custom field ' . $i . (!empty($thispostmeta[ '_panels_design_cfield-' . $i . '-name' ][0]) ? ': <br>' . $thispostmeta[ '_panels_design_cfield-' . $i . '-name' ][0] : '');
       $sections[ ] = array(
           'title'      => $cfname,
           'icon_class' => 'icon-large',
@@ -1456,10 +1456,10 @@
       /**
        * CUSTOM FIELDS
        */
-      $thispostmeta = get_post_meta($_GET[ 'post' ], '_architect', true);
-      $cfcount      = (!empty($thispostmeta[ '_panels_design_custom-fields-count' ]) ? $thispostmeta[ '_panels_design_custom-fields-count' ] : 0);
+      $thispostmeta = get_post_meta($_GET[ 'post' ]);
+      $cfcount      = (!empty($thispostmeta[ '_panels_design_custom-fields-count' ][0]) ? $thispostmeta[ '_panels_design_custom-fields-count' ][0] : 0);
       for ($i = 1; $i <= $cfcount; $i++) {
-        $cfname      = 'Custom field ' . $i . (!empty($thispostmeta[ '_panels_design_cfield-' . $i . '-name' ]) ? ': <br>' . $thispostmeta[ '_panels_design_cfield-' . $i . '-name' ] : '');
+        $cfname      = 'Custom field ' . $i . (!empty($thispostmeta[ '_panels_design_cfield-' . $i . '-name' ][0]) ? ': <br>' . $thispostmeta[ '_panels_design_cfield-' . $i . '-name' ][0] : '');
         $sections[ ] = array(
             'title'      => $cfname,
             'show_title' => false,

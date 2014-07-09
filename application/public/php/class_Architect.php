@@ -49,9 +49,10 @@
       require_once(PZARC_PLUGIN_APP_PATH . '/public/php/class_arc_Blueprint.php');
 
       $this->build = new arc_Blueprint($blueprint);
-      //var_dump(((array)$this->build->blueprint));
 
-      if ($this->build->blueprint[ '_blueprints_content-source' ] == 'defaults' && $this->is_shortcode) {
+//      pzdebug(((array)$this->build->blueprint));
+
+      if ($this->build->blueprint[ '_content_general_content-source' ] == 'defaults' && $this->is_shortcode) {
 
         $this->build->blueprint[ 'err_msg' ] = '<p class="message-warning">Ooops! Need to specify a <strong>Contents Selection</strong> in your Blueprint to use a shortcode. You cannot use Defaults.</p>';
 
@@ -141,7 +142,7 @@
       }
 
       // Build the query
-      if ($this->build->blueprint[ '_blueprints_content-source' ] != 'defaults') {
+      if ($this->build->blueprint[ '_content_general_content-source' ] != 'defaults') {
 
         self::use_custom_query($overrides);
 
@@ -164,6 +165,7 @@
       echo '<div class="pzarchitect pzarc-blueprint pzarc-blueprint_' . $this->build->blueprint[ '_blueprints_short-name' ] . ' nav-' . $bp_nav_type . ' icomoon">';
 
       /** NAVIGATOR TOP*/
+
       if ($bp_nav_type === 'navigator' && ('top' === $bp_nav_pos || 'left' === $bp_nav_pos)) {
         self::display_navigation('tl');
       }
@@ -468,7 +470,7 @@
      * Returns:
      *
      *************************************************/
-    function build_meta_definition($panel_def, $section_panel_settings)
+    private function build_meta_definition($panel_def, $section_panel_settings)
     {
       //replace meta1innards etc
 
@@ -529,7 +531,7 @@
     {
       // TODO: This is not dumb either so no ggod for plugable
       $prefix = '';
-      switch ($this->build->blueprint[ '_blueprints_content-source' ]) {
+      switch ($this->build->blueprint[ '_content_general_content-source' ]) {
 
         case 'post':
         case 'posts':
@@ -622,11 +624,11 @@
      * @param $overrides
      * @return WP_Query
      */
-    public function build_custom_query($overrides)
+    private function build_custom_query($overrides)
     {
 
       //build the new query
-      $source        = $this->build->blueprint[ '_blueprints_content-source' ];
+      $source        = $this->build->blueprint[ '_content_general_content-source' ];
       $query_options = array();
 
       //Paging parameters
@@ -664,6 +666,7 @@
 
       //Lot of work!
       //     pzdebug($this->criteria);
+
       // TODO: We're going to have to make this pluggable too! :P Probably with a loop?
 
       /** General content filters */
@@ -682,13 +685,37 @@
 
         case 'gallery':
 
-          //TODO: What about G+ galleries??
-          $query_options[ 'post_type' ]           = 'attachment';
-          $query_options[ 'post__in' ]            = (!empty($this->criteria[ 'content_galleries-specific-images' ])
-              ? $this->criteria[ 'content_galleries-specific-images' ] : null);
-          $query_options[ 'post_status' ]         = array('publish', 'inherit', 'private');
-          $query_options[ 'ignore_sticky_posts' ] = true;
+          $prefix = '_content_galleries_';
+          $gallery_source        = !empty($overrides)?'ids':$this->build->blueprint[ $prefix.'gallery-source' ];
 
+          switch ($gallery_source){
+
+            case 'galleryplus':
+              $gallery_post = get_post($this->build->blueprint[$prefix . 'galleryplus'] );
+              preg_match_all('/'. get_shortcode_regex() .'/s', $gallery_post->post_content,$matches);
+              $ids = '';
+              foreach ($matches[0] as $match){
+                if (strpos($match, '[gallery ids=')===0) {
+                  $ids = str_replace('[gallery ids="', '', $match);
+                  $ids = str_replace('"]','',$ids);
+                  $query_options[ 'post_type' ]           = 'attachment';
+                  $query_options[ 'post__in' ]            = explode(',',$ids);
+                  $query_options[ 'post_status' ]         = array('publish', 'inherit', 'private');
+                  $query_options[ 'ignore_sticky_posts' ] = true;
+                  // Only do first one
+                  break;
+                }
+              }
+              break;
+            case 'ids':
+              $ids        = !empty($overrides)?$overrides:$this->criteria[ $prefix.'specific-images' ];
+
+              $query_options[ 'post_type' ]           = 'attachment';
+              $query_options[ 'post__in' ]            = (!empty($ids) ? explode(',',$ids) : null);
+              $query_options[ 'post_status' ]         = array('publish', 'inherit', 'private');
+              $query_options[ 'ignore_sticky_posts' ] = true;
+              break;
+          }
           break;
 
         case 'snippets':
@@ -715,8 +742,7 @@
       }
 
       $this->arc_query = new WP_Query($query_options);
-//      var_dump($this->arc_query->request);
-//      var_dump($this->arc_query->found_posts);
+
     }
 
 
@@ -727,7 +753,7 @@
     {
       $section[ $section_no ] = arc_SectionFactory::create($section_no,
                                                            $this->build->blueprint[ 'section' ][ ($section_no - 1) ],
-                                                           $this->build->blueprint[ '_blueprints_content-source' ],
+                                                           $this->build->blueprint[ '_content_general_content-source' ],
                                                            $this->build->blueprint[ '_blueprints_navigation' ],
                                                            $this->build->blueprint[ '_blueprints_section-' . ($section_no - 1) . '-layout-mode' ],
                                                            $this->build->blueprint[ '_blueprints_navigator-slider-engine' ],
@@ -735,9 +761,9 @@
       );
 
       // oops! Need to get default content type when defaults chosen.
-      $post_type = (empty($this->build->blueprint[ '_blueprints_content-source' ]) || 'defaults' === $this->build->blueprint[ '_blueprints_content-source' ] ?
+      $post_type = (empty($this->build->blueprint[ '_content_general_content-source' ]) || 'defaults' === $this->build->blueprint[ '_content_general_content-source' ] ?
           (empty($this->arc_query->queried_object->post_type) ? 'post' : $this->arc_query->queried_object->post_type) :
-          $this->build->blueprint[ '_blueprints_content-source' ]);
+          $this->build->blueprint[ '_content_general_content-source' ]);
 
       if (empty($post_type)) {
 
