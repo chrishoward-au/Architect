@@ -18,5 +18,5 @@ sitemap.xml.gz
 /nbproject/private/
 /config.codekit
 .idea/
-
+/.idea/
 /.idea/workspace.xml
