@@ -183,6 +183,7 @@
 
         do_action('arcBeforePaginationAbove');
 
+        // TODO: Make this replace via an action or filter
         $this->arc[ 'pagination' ]->render($this->arc_query, 'nav-above');
 
         do_action('arcAfterPaginationAbove');
