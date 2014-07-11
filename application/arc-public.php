@@ -71,7 +71,9 @@
       }
     }
     foreach ($actions as $k => $v) {
-      new showBlueprint($v[ 'architect_actions_' . $k . '_action-name' ], $v[ 'architect_actions_' . $k . '_blueprint' ], 'home');
+      if (isset($v[ 'architect_actions_' . $k . '_action-name' ]) && isset($v[ 'architect_actions_' . $k . '_blueprint' ])) {
+        new showBlueprint($v[ 'architect_actions_' . $k . '_action-name' ], $v[ 'architect_actions_' . $k . '_blueprint' ], 'home');
+      }
     }
     //   require_once PZARC_PLUGIN_PATH . '/admin/php/arc-options.php';
   }

@@ -80,12 +80,12 @@
       $pzarc_front  = array_slice($columns, 0, 2);
       $pzarc_back   = array_slice($columns, 2);
       $pzarc_insert = array(
-          '_blueprints_short-name'     => __('Blueprint short name', 'pzarchitect'),
-          '_blueprints_description'    => __('Description', 'pzarchitect'),
-          'panels'                     => __('Section Panels', 'pzarchitect'),
+          '_blueprints_short-name'          => __('Blueprint short name', 'pzarchitect'),
+          '_blueprints_description'         => __('Description', 'pzarchitect'),
+          'panels'                          => __('Section Panels', 'pzarchitect'),
           '_content_general_content-source' => __('Content source', 'pzarchitect'),
-          'navigation'                 => __('Navigation', 'pzarchitect'),
-          'id'                         => __('ID', 'pzarchitect'),
+          'navigation'                      => __('Navigation', 'pzarchitect'),
+          'id'                              => __('ID', 'pzarchitect'),
       );
 
       return array_merge($pzarc_front, $pzarc_insert, $pzarc_back);
@@ -106,36 +106,42 @@
           echo $post_id;
           break;
         case '_blueprints_short-name':
-          echo $post_meta[ $column ][0];
+          if (isset($post_meta[ $column ])) {
+            echo $post_meta[ $column ][ 0 ];
+          }
           break;
         case '_blueprints_description':
-          echo $post_meta[ $column ][0];
+          if (isset($post_meta[ $column ])) {
+            echo $post_meta[ $column ][ 0 ];
+          }
           break;
         case '_content_general_content-source':
-          echo ucwords(empty($post_meta[ $column ][0]) ? 'default' : $post_meta[ $column ][0]);
+          if (isset($post_meta[ $column ])) {
+            echo ucwords(empty($post_meta[ $column ][ 0 ]) ? 'default' : $post_meta[ $column ][ 0 ]);
+          }
           break;
         case 'navigation':
           switch (true) {
-            case empty($post_meta[ '_blueprints_navigation' ][0]):
-            case $post_meta[ '_blueprints_navigation' ][0] === 'none':
+            case empty($post_meta[ '_blueprints_navigation' ][ 0 ]):
+            case $post_meta[ '_blueprints_navigation' ][ 0 ] === 'none':
               echo 'None';
               break;
-            case $post_meta[ '_blueprints_navigation' ][0] === 'pagination':
-              echo 'Pagination : ' . ucwords(empty($post_meta[ '_blueprints_pager' ][0]) ? 'Prev/Next' : $post_meta[ '_blueprints_pager' ][0]);
+            case $post_meta[ '_blueprints_navigation' ][ 0 ] === 'pagination':
+              echo 'Pagination : ' . ucwords(empty($post_meta[ '_blueprints_pager' ][ 0 ]) ? 'Prev/Next' : $post_meta[ '_blueprints_pager' ][ 0 ]);
               break;
-            case $post_meta[ '_blueprints_navigation' ][0] === 'navigator':
-              echo "Navigator : " . ucwords(empty($post_meta[ '_blueprints_navigator' ][0]) ? 'Tabbed' : $post_meta[ '_blueprints_navigator' ][0]);
+            case $post_meta[ '_blueprints_navigation' ][ 0 ] === 'navigator':
+              echo "Navigator : " . ucwords(empty($post_meta[ '_blueprints_navigator' ][ 0 ]) ? 'Tabbed' : $post_meta[ '_blueprints_navigator' ][ 0 ]);
               break;
           }
           break;
         case 'panels':
           global $pzarc_panels_array;
-          echo '1: ' . $pzarc_panels_array[ $post_meta[ '_blueprints_section-0-panel-layout' ][0] ];
-          if (!empty($post_meta[ '_blueprints_section-1-panel-layout' ][0])) {
-            echo '<br>' . '2: ' . $pzarc_panels_array[ $post_meta[ '_blueprints_section-1-panel-layout' ][0] ];
+          echo '1: ' . $pzarc_panels_array[ $post_meta[ '_blueprints_section-0-panel-layout' ][ 0 ] ];
+          if (!empty($post_meta[ '_blueprints_section-1-panel-layout' ][ 0 ])) {
+            echo '<br>' . '2: ' . $pzarc_panels_array[ $post_meta[ '_blueprints_section-1-panel-layout' ][ 0 ] ];
           }
-          if (!empty($post_meta[ '_blueprints_section-2-panel-layout' ][0])) {
-            echo '<br>' . '3: ' . $pzarc_panels_array[ $post_meta[ '_blueprints_section-2-panel-layout' ][0] ];
+          if (!empty($post_meta[ '_blueprints_section-2-panel-layout' ][ 0 ])) {
+            echo '<br>' . '3: ' . $pzarc_panels_array[ $post_meta[ '_blueprints_section-2-panel-layout' ][ 0 ] ];
           }
       }
     }
@@ -333,6 +339,13 @@
     $sections[ ]   = array(
         'fields' => array(
             array(
+                'id'    => $prefix . 'description',
+                'title' => __('Description', 'pzarchitect'),
+                'type'  => 'textarea',
+                'rows'  => 2,
+                'hint'  => __('A short description to help you or others know what this Blueprint is for', 'pzarchitect'),
+            ),
+            array(
                 'title'    => 'Navigation',
                 'id'       => $prefix . 'navigation',
                 'type'     => 'button_set',
@@ -383,7 +396,7 @@
 
   }
 
- // add_action("redux/metaboxes/{$redux_opt_name}/boxes", 'pzarc_blueprint_content_general');
+  // add_action("redux/metaboxes/{$redux_opt_name}/boxes", 'pzarc_blueprint_content_general');
   /**
    * pzarc_blueprint_content_general
    * @param array $meta_boxes
@@ -395,8 +408,7 @@
     $prefix = '_blueprints_';
 
     $sections[ ] = array(
-        'fields' => array(
-        )
+        'fields' => array()
     );
 
     $meta_boxes[ ] = array(
@@ -459,13 +471,6 @@
                 'width'    => 'auto',
                 'subtitle' => __('Alphanumeric only. ', 'pzarchitect') . __('Use the shortcode <strong class="pzarc-usage-info">[pzarc "<span class="pzarc-shortname"></span>"]</strong> or the template tag <strong class="pzarc-usage-info">pzarc(\'<span class="pzarc-shortname"></span>\');</strong>', 'pzarchitect'),
                 'validate' => 'not_empty'
-            ),
-            array(
-                'id'    => $prefix . 'description',
-                'title' => __('Description', 'pzarchitect'),
-                'type'  => 'textarea',
-                'rows'  => 2,
-                'hint'  => __('A short description to help you or others know what this Blueprint is for', 'pzarchitect'),
             ),
             array(
                 'id'      => $prefix . 'blueprint-width',
@@ -1158,18 +1163,18 @@
                 'subtitle' => 'todo: code all the js to show hide relevant sections'
             ),
             array(
-                'title'   => __('Order by', 'pzarchitect'),
-                'id'      => $prefix . 'orderby',
-                'type'    => 'button_set',
-                'default' => 'date',
-                'cols'    => 6,
-                'options' => array(
+                'title'    => __('Order by', 'pzarchitect'),
+                'id'       => $prefix . 'orderby',
+                'type'     => 'button_set',
+                'default'  => 'date',
+                'cols'     => 6,
+                'options'  => array(
                     'date'       => 'Date',
                     'title'      => 'Title',
                     'menu_order' => 'Page order (if set)',
-                    'rand'     => 'Random',
+                    'rand'       => 'Random',
                 ),
-                'subtitle'=>'Some hosts disable random as it slows things down significantly on large sites. WPEngine does this. Look in WPE Dashboard, Advanced Configuration.'
+                'subtitle' => 'Some hosts disable random as it slows things down significantly on large sites. WPEngine does this. Look in WPE Dashboard, Advanced Configuration.'
             ),
             array(
                 'title'   => __('Order direction', 'pzarchitect'),

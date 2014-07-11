@@ -254,7 +254,7 @@
       global $wp_query;
       $query_options    = array(
           'post_type' => 'arc-blueprints',
-          'meta_key'  => '_architect',
+          'meta_key'  => '_blueprints_short-name',
           'posts_per_page'=>'-1'
       );
       $blueprints_query = new WP_Query($query_options);

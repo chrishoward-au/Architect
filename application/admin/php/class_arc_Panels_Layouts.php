@@ -98,8 +98,8 @@
       $pzarc_back   = array_slice($columns, 2);
       $pzarc_insert = array
       (
-          '_panels_settings_short-name' => __('Short name', 'pzsp'),
-          '_panels_settings_description'    => __('Description', 'pzarchitect'),
+          '_panels_settings_short-name'  => __('Short name', 'pzsp'),
+          '_panels_settings_description' => __('Description', 'pzarchitect'),
       );
 
       return array_merge($pzarc_front, $pzarc_insert, $pzarc_back);
@@ -113,24 +113,18 @@
     public function add_panel_layout_column_content($column, $post_id)
     {
       $post_meta = get_post_meta($post_id);
-      //      var_dump($post_meta);
-      //      switch ($column)
-      //      {
-      //        case '_blueprints_short-name':
-      echo $post_meta[ $column ][0];
-      //          break;
-      //      }
-      //      // thiswont work coz
-      //      switch ($column)
-      //      {
-      //        case '_panels_settings_short-name':
-      //          $metaboxes = get_post_meta($post_id, '_architect', true);
-      //          echo $metaboxes[ '_panels_settings_short-name' ];
-      //          break;
-      //      case 'pzarc_set_name':
-      //        echo get_post_meta($post_id, 'pzarc_layout-set-name', true);
-      //        break;
-      //     }
+      switch ($column) {
+        case '_panels_settings_short-name':
+          if (isset($post_meta[ $column ])) {
+            echo $post_meta[ $column ][ 0 ];
+          }
+          break;
+        case '_panels_settings_description':
+          if (isset($post_meta[ $column ])) {
+            echo $post_meta[ $column ][ 0 ];
+          }
+          break;
+      }
     }
 
     /**
@@ -287,18 +281,11 @@
         'fields'     => array(
           //TODO: Make validation check illegal characters
           array(
-              'id'       => $prefix . 'short-name',
-              'title'    => __('Short name', 'pzarchitect') . '<span class="pzarc-required el-icon-star" title="Required"></span>',
-              'hint'     => array('content' => __('A short name for this panel layout to identify it.', 'pzarchitect')),
-              'type'     => 'text',
-              'validate' => 'no_special_chars'
-          ),
-          array(
               'id'    => $prefix . 'description',
               'title' => __('Description', 'pzarchitect'),
               'type'  => 'textarea',
               'rows'  => 2,
-              'hint' => __('A short description to help you or others know what this Panel is for', 'pzarchitect'),
+              'hint'  => __('A short description to help you or others know what this Panel is for', 'pzarchitect'),
           ),
           array(
               'title'   => __('Panel Height Type', 'pzarchitect'),
@@ -357,7 +344,7 @@
                   'respect' => __('Respect focal point', 'pzarchitect'),
                   'centre'  => __('Centre focal point', 'pzarchitect'),
                   'none'    => __('Crop to centre', 'pzarchitect'),
-                  'scale'    => __('Scale images, no cropping', 'pzarchitect')
+                  'scale'   => __('Scale images, no cropping', 'pzarchitect')
 
               )
           ),
@@ -393,6 +380,13 @@
         'icon_class' => 'icon-large',
         'icon'       => 'el-icon-website',
         'fields'     => array(
+            array(
+                'id'       => '_panels_settings_short-name',
+                'title'    => __('Short name', 'pzarchitect') . '<span class="pzarc-required el-icon-star" title="Required"></span>',
+                'hint'     => array('content' => __('A short name for this panel layout to identify it.', 'pzarchitect')),
+                'type'     => 'text',
+                'validate' => 'no_special_chars'
+            ),
             array(
                 'title'   => __('Components to show', 'pzarchitect'),
                 'id'      => $prefix . 'components-to-show',
@@ -875,11 +869,13 @@
               'id'       => $prefix . 'link-image',
               'type'     => 'button_set',
               'options'  => array(
-                  'no'  => 'No',
-                  'yes' => 'Yes',
-                  'url' => 'Specific URL'
+                  'none'     => 'None',
+                  'page'     => 'Page',
+                  'image'    => 'Image',
+                  'original' => 'Original',
+                  'url'      => 'Specific URL'
               ),
-              'default'  => 'yes',
+              'default'  => 'page',
               'subtitle' => __('Makes the image link to the post/page or all images link to a specific URL', 'pzazrchitect')
           ),
           array(
@@ -1009,14 +1005,14 @@
                 'required' => array($prefix . 'background-position', '!=', 'none'),
             ),
             array(
-                'title'   => __('Effect on resize', 'pzarchitect'),
-                'id'      => $prefix . 'background-image-resize',
-                'type'    => 'button_set',
-                'options' => array(
+                'title'    => __('Effect on resize', 'pzarchitect'),
+                'id'       => $prefix . 'background-image-resize',
+                'type'     => 'button_set',
+                'options'  => array(
                     'trim'  => 'Trim horizontally, retain height',
                     'scale' => 'Scale Vertically & Horizontally'
                 ),
-                'default' => 'trim',
+                'default'  => 'trim',
                 'required' => array($prefix . 'background-position', '!=', 'none'),
             ),
             array(
@@ -1024,12 +1020,14 @@
                 'id'       => $prefix . 'link-bgimage',
                 'type'     => 'button_set',
                 'options'  => array(
-                    'no'  => 'No',
-                    'yes' => 'Yes',
-                    'url' => 'Specific URL'
+                    'none'     => 'None',
+                    'page'     => 'Page',
+                    'image'    => 'Image',
+                    'original' => 'Original',
+                    'url'      => 'Specific URL'
                 ),
-                'required'=> array($prefix.'background-position','!=','none'),
-                'default'  => 'yes',
+                'default'  => 'page',
+                'required' => array($prefix . 'background-position', '!=', 'none'),
                 'subtitle' => __('Makes the image link to the post/page or all images link to a specific URL', 'pzazrchitect')
             ),
             array(
@@ -1037,7 +1035,7 @@
                 'id'       => $prefix . 'link-bgimage-url',
                 'type'     => 'text',
                 'required' => array(
-                    array($prefix.'background-position','!=','none'),
+                    array($prefix . 'background-position', '!=', 'none'),
                     array($prefix . 'link-bgimage', 'equals', 'url')
                 ),
                 'validate' => 'url',
@@ -1048,7 +1046,7 @@
                 'id'       => $prefix . 'link-bgimage-url-tooltip',
                 'type'     => 'text',
                 'required' => array(
-                    array($prefix.'background-position','!=','none'),
+                    array($prefix . 'background-position', '!=', 'none'),
                     array($prefix . 'link-bgimage', 'equals', 'url')
                 ),
                 'validate' => 'url',
@@ -1063,7 +1061,7 @@
     $thispostmeta = get_post_meta($_GET[ 'post' ]);
     $cfcount      = (!empty($thispostmeta[ '_panels_design_custom-fields-count' ]) ? $thispostmeta[ '_panels_design_custom-fields-count' ] : 0);
     for ($i = 1; $i <= $cfcount; $i++) {
-      $cfname      = 'Custom field ' . $i . (!empty($thispostmeta[ '_panels_design_cfield-' . $i . '-name' ][0]) ? ': <br>' . $thispostmeta[ '_panels_design_cfield-' . $i . '-name' ][0] : '');
+      $cfname      = 'Custom field ' . $i . (!empty($thispostmeta[ '_panels_design_cfield-' . $i . '-name' ][ 0 ]) ? ': <br>' . $thispostmeta[ '_panels_design_cfield-' . $i . '-name' ][ 0 ] : '');
       $sections[ ] = array(
           'title'      => $cfname,
           'icon_class' => 'icon-large',
@@ -1457,9 +1455,9 @@
        * CUSTOM FIELDS
        */
       $thispostmeta = get_post_meta($_GET[ 'post' ]);
-      $cfcount      = (!empty($thispostmeta[ '_panels_design_custom-fields-count' ][0]) ? $thispostmeta[ '_panels_design_custom-fields-count' ][0] : 0);
+      $cfcount      = (!empty($thispostmeta[ '_panels_design_custom-fields-count' ][ 0 ]) ? $thispostmeta[ '_panels_design_custom-fields-count' ][ 0 ] : 0);
       for ($i = 1; $i <= $cfcount; $i++) {
-        $cfname      = 'Custom field ' . $i . (!empty($thispostmeta[ '_panels_design_cfield-' . $i . '-name' ][0]) ? ': <br>' . $thispostmeta[ '_panels_design_cfield-' . $i . '-name' ][0] : '');
+        $cfname      = 'Custom field ' . $i . (!empty($thispostmeta[ '_panels_design_cfield-' . $i . '-name' ][ 0 ]) ? ': <br>' . $thispostmeta[ '_panels_design_cfield-' . $i . '-name' ][ 0 ] : '');
         $sections[ ] = array(
             'title'      => $cfname,
             'show_title' => false,

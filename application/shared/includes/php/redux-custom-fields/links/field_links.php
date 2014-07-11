@@ -121,7 +121,7 @@
         if ($this->field[ 'active' ] === true) {
           echo '<strong>Active</strong>: <input id="' . $this->field[ 'id' ] . '-active" name="' . $this->field[ 'name' ] . '[active]' . $this->field[ 'name_suffix' ] . '" value="' . $this->value[ 'active' ] . '" class="redux-spectrum redux-spectrum-init ' . $this->field[ 'class' ] . '"  type="text" data-default-spectrum="' . $this->field[ 'default' ][ 'active' ] . '" />&nbsp;&nbsp;&nbsp;&nbsp;';
           echo __('Underline', 'redux-framework') . '&nbsp;<select id="' . $this->field[ 'id' ] . '-active-deco" name="' . $this->field[ 'name' ] . '[active-deco]' . $this->field[ 'name_suffix' ] . '"  class="redux-links ' . $this->field[ 'class' ] . '" style="width:100px;">';
-          echo '<option  value="Default" ' . (strtolower($this->value[ 'avtive-deco' ]) === 'default' ? 'selected' : '') . '>Default</option>';
+          echo '<option  value="Default" ' . (strtolower($this->value[ 'active-deco' ]) === 'default' ? 'selected' : '') . '>Default</option>';
           echo '<option  value="Inherit" ' . (strtolower($this->value[ 'active-deco' ]) === 'inherit' ? 'selected' : '') . '>Inherit</option>';
           echo '<option  value="None" ' . (strtolower($this->value[ 'active-deco' ]) === 'none' ? 'selected' : '') . '>None</option>';
           echo '<option  value="Underline" ' . (strtolower($this->value[ 'active-deco' ]) === 'underline' ? 'selected' : '') . '>Underline</option>';

@@ -95,7 +95,7 @@
   }
 
 
-  function pzarc_redux_bg($id, $selectors, $defaults = null)
+  function pzarc_redux_bg($id, $selectors = null, $defaults = null)
   {
     return array(
         'title'                 => __('Background', 'pzarc'),
@@ -145,14 +145,12 @@
   function pzarc_redux_links($id, $selectors, $defaults = null)
   {
     return
-        array(
             array(
                 'title'   => __('Links', 'pzarc'),
                 'id'      => $id,
                 'type'    => 'links',
                 'output'  => $selectors,
                 'default' => $defaults,
-            )
         );
 
   }
