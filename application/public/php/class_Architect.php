@@ -634,7 +634,7 @@
       //Paging parameters
       if ($this->build->blueprint[ '_blueprints_navigation' ] == 'pagination') {
 
-        // Thisis meant ot be the magic tonic to make pagination work on static front page. Bah!! Didnt' for me - ever
+        // This is meant ot be the magic tonic to make pagination work on static front page. Bah!! Didnt' for me - ever
         if (get_query_var('paged')) {
 
           $paged = get_query_var('paged');
