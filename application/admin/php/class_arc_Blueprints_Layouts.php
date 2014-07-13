@@ -83,7 +83,7 @@
           '_blueprints_short-name'          => __('Blueprint short name', 'pzarchitect'),
           '_blueprints_description'         => __('Description', 'pzarchitect'),
           'panels'                          => __('Section Panels', 'pzarchitect'),
-          '_content_general_content-source' => __('Content source', 'pzarchitect'),
+          '_blueprints_content-source' => __('Content source', 'pzarchitect'),
           'navigation'                      => __('Navigation', 'pzarchitect'),
           'id'                              => __('ID', 'pzarchitect'),
       );
@@ -115,7 +115,7 @@
             echo $post_meta[ $column ][ 0 ];
           }
           break;
-        case '_content_general_content-source':
+        case '_blueprints_content-source':
           if (isset($post_meta[ $column ])) {
             echo ucwords(empty($post_meta[ $column ][ 0 ]) ? 'default' : $post_meta[ $column ][ 0 ]);
           }
@@ -1139,7 +1139,7 @@
         'fields'     => array(
             array(
                 'title'    => __('Content source', 'pzarchitect'),
-                'id'       => $prefix . 'content-source',
+                'id'       => '_blueprints_content-source',
                 'type'     => 'select',
                 'select2'  => array('allowClear' => false),
                 'default'  => 'defaults',

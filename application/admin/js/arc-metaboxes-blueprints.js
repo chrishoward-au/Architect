@@ -11,7 +11,7 @@ jQuery( document ).ready( function ()
     // Control the visibility of the tabs for CONTENT TYPES in Blueprints metaboxes
     // This one is for when using thebutton_Set in the main area. Need sto be modified for sidebar.
     // ********************************************************************************************
-//    jQuery( "#_architect-content_general_content-source input" ).each( function ( i )
+//    jQuery( "#_architect-blueprints_content-source input" ).each( function ( i )
 //    {
 //        if ( this.checked )
 //        {
@@ -23,7 +23,7 @@ jQuery( document ).ready( function ()
 //        }
 //    } );
 //
-//    jQuery( "#_architect-content_general_content-source label" ).on( 'click', function ( e )
+//    jQuery( "#_architect-blueprints_content-source label" ).on( 'click', function ( e )
 //    {
 //        pzarc_show_hide_content_tabs( e.target.innerText.trim() );
 //    } );
@@ -40,62 +40,63 @@ jQuery( document ).ready( function ()
 //    }
 
     /********************************************************************************************
-    // 
-    // Control the visibility of the tabs for CONTENT TYPES in Blueprints metaboxes
-    // This one is for when using a dropdown selector.
-    // 
+     //
+     // Control the visibility of the tabs for CONTENT TYPES in Blueprints metaboxes
+     // This one is for when using a dropdown selector.
+     //
      ********************************************************************************************/
     function init_content_tabs()
     {
 //        var  content_options = jQuery( "select#_blueprints_content-source-select" ).find( "option" );
-        var  content_options = jQuery( "select#_content_general_content-source-select" ).find( "option" );
+        var content_options = jQuery( "select#_blueprints_content-source-select" ).find( "option" );
 
         content_options.each( function ( i )
         {
             //console.log(this,this.selected,jQuery(this).text());
             // there's a blank one at the to  because of the placeholder
 
-            console.log(i,this.value,this.selected);
+            console.log( i, this.value, this.selected );
 
-            if ( i < 1 || this.value === 'help')
+            if ( i < 1 || this.value === 'help' )
             {return;}
 
             if ( this.selected )
             {
                 console.log( i, this.value );
-                jQuery( ".redux-sidebar li#" + (i+1 ) + "_box_redux-_architect-metabox-content-selections_section_group_li" ).show(); //.trigger( "click" );
+                jQuery( ".redux-sidebar li#" + (i + 1 ) + "_box_redux-_architect-metabox-content-selections_section_group_li" ).show(); //.trigger( "click" );
             }
             else
             {
-                jQuery( ".redux-sidebar li#" + (i +1) + "_box_redux-_architect-metabox-content-selections_section_group_li" ).hide();
+                jQuery( ".redux-sidebar li#" + (i + 1) + "_box_redux-_architect-metabox-content-selections_section_group_li" ).hide();
             }
         } );
 
     }
+
     init_content_tabs();
 
     // Change content tab on content source change
 //    jQuery( "select#_blueprints_content-source-select" ).on( 'click', function ()
-    jQuery( "select#_content_general_content-source-select" ).on( 'click', function ()
+    jQuery( "select#_blueprints_content-source-select" ).on( 'click', function ()
     {
         pzarc_show_hide_content_tabs( jQuery( this ).find( "option:selected" ).text().trim() );
     } );
 
     function pzarc_show_hide_content_tabs( tab )
     {
-        var a = ["Defaults", "Posts", "Pages", "Snippets","Galleries", "Slides", "Custom Post Types"];
+        var a = ["Defaults", "Posts", "Pages", "Snippets", "Galleries", "Slides", "Custom Post Types"];
         for ( var i = 1; i <= a.length; i++ )
         {
-            jQuery( ".redux-sidebar li#" + (i - 1+2) + "_box_redux-_architect-metabox-content-selections_section_group_li" ).hide();
+            jQuery( ".redux-sidebar li#" + (i - 1 + 2) + "_box_redux-_architect-metabox-content-selections_section_group_li" ).hide();
         }
-        jQuery( ".redux-sidebar li#" + (a.indexOf( tab )+2) + "_box_redux-_architect-metabox-content-selections_section_group_li" ).show();//.find( "a" ).trigger( "click" );
+        jQuery( ".redux-sidebar li#" + (a.indexOf( tab ) + 2) + "_box_redux-_architect-metabox-content-selections_section_group_li" ).show();//.find( "a" ).trigger( "click" );
     }
 
     /********************************************************************************************
-    // 
-    // Control visibility of NAVIGATION tabs
-    // 
-    // ********************************************************************************************/
+     //
+     // Control visibility of NAVIGATION tabs
+     //
+     // ********************************************************************************************/
     jQuery( "#_architect-_blueprints_navigation input" ).each( function ( i )
     {
         if ( i === 0 && this.checked )
@@ -128,7 +129,7 @@ jQuery( document ).ready( function ()
             jQuery( ".redux-sidebar li#5_box_redux-_architect-metabox-layout-settings_section_group_li" ).hide();
 //            if ( jQuery( '#5_box_redux-_architect-metabox-layout-settings_section_group_li.active' ).length === 0 )
 //            {
-                jQuery( ".redux-sidebar li#0_box_redux-_architect-metabox-layout-settings_section_group_li" ).find( 'a' ).trigger( "click" );
+            jQuery( ".redux-sidebar li#0_box_redux-_architect-metabox-layout-settings_section_group_li" ).find( 'a' ).trigger( "click" );
 //            }
         }
         else
@@ -145,19 +146,26 @@ jQuery( document ).ready( function ()
 //            console.log(jQuery(jQuery('#5_box_redux-_architect-metabox-layout-settings_section_group_li.active' ).length));
             // This checks first if thewireframe preview tab is active.
             // Need tosetup somebetter method that is dumber
-            jQuery( ".redux-sidebar li#" + j + "_box_redux-_architect-metabox-layout-settings_section_group_li" ).show().find( 'a' );
-         //   if ( jQuery( '#5_box_redux-_architect-metabox-layout-settings_section_group_li.active' ).length === 0 )
-           // {
-                jQuery( ".redux-sidebar li#" + j + "_box_redux-_architect-metabox-layout-settings_section_group_li" ).find( 'a' ).trigger( 'click' );
-           // }
+            var $it =jQuery( ".redux-sidebar li#" + j + "_box_redux-_architect-metabox-layout-settings_section_group_li" );
+
+            $it.show().find( 'a' );
+            //   if ( jQuery( '#5_box_redux-_architect-metabox-layout-settings_section_group_li.active' ).length === 0 )
+            // {
+        //    jQuery( ".redux-sidebar li#" + j + "_box_redux-_architect-metabox-layout-settings_section_group_li" ).find( 'a' ).trigger( 'click' );
+         //   $it.find('a');
+            $it.css('background-color','#ff5d43' ).trigger( "click" ).css( {
+                'background-color': '#fff',
+                '-webkit-transition': 'background-color 1s ease-out'
+            } ).css('background-color','');
+            // }
         }
     }
 
     /********************************************************************************************
-    // 
-    // Show hide SECTION tabs
-    // 
-    // ********************************************************************************************/
+     //
+     // Show hide SECTION tabs
+     //
+     // ********************************************************************************************/
     jQuery( ".redux-sidebar li#2_box_redux-_architect-metabox-layout-settings_section_group_li" ).toggle( jQuery( "fieldset#_architect-_blueprints_section-1-enable" ).find( 'input' ).val() === "1" );
     jQuery( ".redux-sidebar li#3_box_redux-_architect-metabox-layout-settings_section_group_li" ).toggle( jQuery( "fieldset#_architect-_blueprints_section-2-enable" ).find( 'input' ).val() === "1" );
 
@@ -200,10 +208,10 @@ jQuery( document ).ready( function ()
     } );
 
     /********************************************************************************************
-    // 
-    // Show hide GENERAL SETTINGS sections off tabs
-    // 
-    // ********************************************************************************************/
+     //
+     // Show hide GENERAL SETTINGS sections off tabs
+     //
+     // ********************************************************************************************/
     jQuery( "table#section-table-_blueprints_section-start-layout, div#section-_blueprints_section-start-layout, div#section-_blueprints_section-end-layout, table#section-table-_blueprints_section-end-layout" ).show();
     jQuery( "table#section-table-_blueprints_section-start-content,div#section-_blueprints_section-start-content,div#section-_blueprints_section-end-content,table#section-table-_blueprints_section-end-content" ).hide();
     jQuery( "fieldset#_architect-_blueprints_section-start-layout, fieldset#_architect-_blueprints_section-start-content,fieldset#_architect-_blueprints_section-end-layout, fieldset#_architect-_blueprints_section-end-content" ).hide();
@@ -219,7 +227,7 @@ jQuery( document ).ready( function ()
         }
         if ( clickedOn === "Content" )
         {
-            var tab = jQuery( "select#_content_general_content-source-select" ).find( "option:selected" );
+            var tab = jQuery( "select#_blueprints_content-source-select" ).find( "option:selected" );
             var chosenOne = tab.index();
             //console.log(chosenOne);
 
@@ -346,6 +354,7 @@ jQuery( document ).ready( function ()
 
         pzarc_show_navtype();
     }
+
     init();
 
 
@@ -376,7 +385,7 @@ jQuery( document ).ready( function ()
      */
     function pzarc_update_usage_info( t )
     {
-       // console.log(t);
+        // console.log(t);
         jQuery( 'span.pzarc-shortname' ).text( jQuery( t ).val() );
     }
 

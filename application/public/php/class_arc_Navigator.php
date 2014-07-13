@@ -94,6 +94,8 @@
   {
     function _construct()
     {
+      // are these even possible with the current structure?????
+      // TODO Maybe we can use a add_filter in a loop? That's quite reasonable...just need a filter where they go
       $this->nav_types[ ] = __CLASS__;
 
     }

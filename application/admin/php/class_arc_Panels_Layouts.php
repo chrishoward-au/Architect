@@ -385,7 +385,7 @@
                 'title'    => __('Short name', 'pzarchitect') . '<span class="pzarc-required el-icon-star" title="Required"></span>',
                 'hint'     => array('content' => __('A short name for this panel layout to identify it.', 'pzarchitect')),
                 'type'     => 'text',
-                'validate' => 'no_special_chars'
+                'validate' => 'not_empty'
             ),
             array(
                 'title'   => __('Components to show', 'pzarchitect'),
@@ -408,7 +408,19 @@
                     'custom3' => 'Custom 3',
                     //        'custom4' => 'Custom Field 4',
                 ),
-                'hint'    => array('content' => __('Select which base components to include in this panel layout.', 'pzarchitect'))
+                'hint'    => array('content' => __('Select which base components to include in this panel layout. Note: You can show no components, but you should then show the background image.', 'pzarchitect'))
+            ),
+            array(
+                'title'         => __('Number of custom fields', 'pzarchitect'),
+                'id'            => $prefix . 'custom-fields-count',
+                'type'          => 'spinner',
+                'default'       => 0,
+                'min'           => '0',
+                'max'           => '999',
+                'step'          => '1',
+                'display_value' => 'label',
+                'subtitle'      => __('Each of the three Custom groups can have multiple custom fields. Enter <strong>total</strong>strong> number of custom fields, click Save/Update', 'pzarchitect'),
+                'hint'          => array('content' => __('', 'pzarchitect'))
             ),
             array(
                 'title'   => __('Background Feature Image', 'pzarchitect'),
@@ -1059,7 +1071,7 @@
      * CUSTOM FIELDS
      */
     $thispostmeta = get_post_meta($_GET[ 'post' ]);
-    $cfcount      = (!empty($thispostmeta[ '_panels_design_custom-fields-count' ]) ? $thispostmeta[ '_panels_design_custom-fields-count' ] : 0);
+    $cfcount      = (!empty($thispostmeta[ '_panels_design_custom-fields-count' ][0]) ? $thispostmeta[ '_panels_design_custom-fields-count' ][0] : 0);
     for ($i = 1; $i <= $cfcount; $i++) {
       $cfname      = 'Custom field ' . $i . (!empty($thispostmeta[ '_panels_design_cfield-' . $i . '-name' ][ 0 ]) ? ': <br>' . $thispostmeta[ '_panels_design_cfield-' . $i . '-name' ][ 0 ] : '');
       $sections[ ] = array(

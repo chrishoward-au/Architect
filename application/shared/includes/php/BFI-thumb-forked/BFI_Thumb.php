@@ -693,22 +693,24 @@
           $ideal_s_y = 0;
           break;
 
-        case 'respect':
-          // Try to maintain relative focal point
-          $ideal_s_x = $x * $orig_w - ($crop_w * $x);
-          $ideal_s_y = $y * $orig_h - ($crop_h * $y);
+        // TODO: Make scale work
+        case 'scale':
+          $ideal_s_x = 0;
+          $ideal_s_y = 0;
           break;
 
         case 'centre':
         case 'center':
-        // Try to centre focal point
-        $ideal_s_x = $x * $orig_w - ($crop_w * 0.5);
-        $ideal_s_y = $y * $orig_h - ($crop_h * 0.5);
+          // Try to centre focal point
+          $ideal_s_x = $x * $orig_w - ($crop_w * 0.5);
+          $ideal_s_y = $y * $orig_h - ($crop_h * 0.5);
           break;
 
-        case 'scale':
-          $ideal_s_x = 0;
-          $ideal_s_y = 0;
+        default:
+        case 'respect':
+          // Try to maintain relative focal point
+          $ideal_s_x = $x * $orig_w - ($crop_w * $x);
+          $ideal_s_y = $y * $orig_h - ($crop_h * $y);
           break;
 
       }

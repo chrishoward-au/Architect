@@ -82,9 +82,14 @@
       $data = $panel_class->set_data($this->section[ 'section-panel-settings' ],$arc_query->post);
 
       $sequence = json_decode($this->section[ 'section-panel-settings' ][ '_panels_design_preview' ], true);
-
       // We do want to provide actions so want to use the sequence
-      do_action('arc_before_panel_open');
+      do_action('arc_before_panel_open_a');
+      $nav_item[$panel_number] = null;
+      // This is for adding nav items to each panel. Used by navs like accordions
+      // Although we could do it already, we want to kepp it in the nav class for extensibility
+      echo apply_filters('arc_before_panel_open_f',$nav_item[$panel_number]);
+
+      // TODO: What's this??
       //       echo '<div class="js-isotope pzarc-section pzarc-section-' . $key . '" data-isotope-options=\'{ "layoutMode": "'.$pzarc_section_info['section-layout-mode'].'","itemSelector": ".pzarc-panel" }\'>';
 
       switch ($this->layout_mode) {

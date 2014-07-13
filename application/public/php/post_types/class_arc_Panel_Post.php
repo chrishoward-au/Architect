@@ -132,6 +132,9 @@
         $width  = (int)str_replace('px', '', $section[ '_panels_design_image-max-dimensions' ][ 'width' ]);
         $height = (int)str_replace('px', '', $section[ '_panels_design_image-max-dimensions' ][ 'height' ]);
 
+        // TODO: Add all the focal point stuff to all the post types images and bgimages
+        // Easiest to do via a reusable function or all this stuff could be done once!!!!!!!!!
+        // could pass $data thru a filter
         $data[ 'image' ][ 'image' ]   = wp_get_attachment_image($thumb_id, array($width,
                                                                                  $height,
                                                                                  'bfi_thumb' => true,

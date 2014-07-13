@@ -259,7 +259,7 @@
                     'id'       => 'architect_enable_bgimage',
                     'type'     => 'switch',
                     'subtitle' => 'Displays a background image on the Architect admin pages',
-                    'default'  => true,
+                    'default'  => false,
                 ),
                 array(
                     'title'   => __('Choose image', 'pzarchitect'),
