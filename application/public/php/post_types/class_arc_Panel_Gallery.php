@@ -147,6 +147,7 @@
 //var_dump($postmeta);
       //     var_dump($section);
 
+      /** Custom fields */
       $cfcount = $section[ '_panels_design_custom-fields-count' ];
 
       for ($i = 1; $i <= $cfcount; $i++) {

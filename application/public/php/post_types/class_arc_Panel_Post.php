@@ -71,36 +71,35 @@
     {
 
 
-    /* STANDARD POST EXAMPLE
-      'ID'                    => int 183
-      'post_author'           => string '1' (length=1)
-      'post_date'             => string '2014-06-06 11:03:12' (length=19)
-      'post_date_gmt'         => string '2014-06-06 11:03:12' (length=19)
-      'post_content'          => string '<h2>Double Gang Back Box Product Description:</h2>Nenco double gang back box provides an all in one outlet compatible with all UK face plates. Available in single and double gang back boxes.' (length=194)
-      'post_title'            => string 'Double Gang Back Box' (length=20)
-      'post_excerpt'          => string '<a href="http://nenco-networks.co.uk/contact-us"><img class="aligncenter wp-image-116 size-full" src="http://localhost/wpothertest/wp-content/uploads/product-contact.jpg" alt="product-contact" width="460" height="45" /></a>' (length=223)
-      'post_status'           => string 'publish' (length=7)
-      'comment_status'        => string 'closed' (length=6)
-      'ping_status'           => string 'closed' (length=6)
-      'post_password'         => string '' (length=0)
-      'post_name'             => string 'double-gang-back-box' (length=20)
-      'to_ping'               => string '' (length=0)
-      'pinged'                => string '' (length=0)
-      'post_modified'         => string '2014-06-23 15:24:43' (length=19)
-      'post_modified_gmt'     => string '2014-06-23 15:24:43' (length=19)
-      'post_content_filtered' => string '' (length=0)
-      'post_parent'           => int 0
-      'guid'                  => string 'http://localhost/wpothertest/products-page/uncategorized/' (length=57)
-      'menu_order'            => int 0
-      'post_type'             => string 'wpsc-product' (length=12)
-      'post_mime_type'        => string '' (length=0)
-      'comment_count'         => string '0' (length=1)
-      'filter'                => string 'raw' (length=3)
-    */
+      /* STANDARD POST EXAMPLE
+        'ID'                    => int 183
+        'post_author'           => string '1' (length=1)
+        'post_date'             => string '2014-06-06 11:03:12' (length=19)
+        'post_date_gmt'         => string '2014-06-06 11:03:12' (length=19)
+        'post_content'          => string '<h2>Double Gang Back Box Product Description:</h2>Nenco double gang back box provides an all in one outlet compatible with all UK face plates. Available in single and double gang back boxes.' (length=194)
+        'post_title'            => string 'Double Gang Back Box' (length=20)
+        'post_excerpt'          => string '<a href="http://nenco-networks.co.uk/contact-us"><img class="aligncenter wp-image-116 size-full" src="http://localhost/wpothertest/wp-content/uploads/product-contact.jpg" alt="product-contact" width="460" height="45" /></a>' (length=223)
+        'post_status'           => string 'publish' (length=7)
+        'comment_status'        => string 'closed' (length=6)
+        'ping_status'           => string 'closed' (length=6)
+        'post_password'         => string '' (length=0)
+        'post_name'             => string 'double-gang-back-box' (length=20)
+        'to_ping'               => string '' (length=0)
+        'pinged'                => string '' (length=0)
+        'post_modified'         => string '2014-06-23 15:24:43' (length=19)
+        'post_modified_gmt'     => string '2014-06-23 15:24:43' (length=19)
+        'post_content_filtered' => string '' (length=0)
+        'post_parent'           => int 0
+        'guid'                  => string 'http://localhost/wpothertest/products-page/uncategorized/' (length=57)
+        'menu_order'            => int 0
+        'post_type'             => string 'wpsc-product' (length=12)
+        'post_mime_type'        => string '' (length=0)
+        'comment_count'         => string '0' (length=1)
+        'filter'                => string 'raw' (length=3)
+      */
       $toshow   = json_decode($section[ '_panels_design_preview' ], true);
       $data     = array();
       $postmeta = get_post_meta(get_the_ID());
-
 
       /** TITLE */
       if ($toshow[ 'title' ][ 'show' ]) {
@@ -180,10 +179,27 @@
       for ($i = 1; $i <= $cfcount; $i++) {
         // var_dump($section);
         // the settings come from section
-        $data[ 'cfield' ][ $i ][ 'name' ]  = $section[ '_panels_design_cfield-' . $i . '-name' ];
-        $data[ 'cfield' ][ $i ][ 'group' ] = $section[ '_panels_design_cfield-' . $i . '-group' ];
+        $data[ 'cfield' ][ $i ][ 'group' ]            = $section[ '_panels_design_cfield-' . $i . '-group' ];
+        $data[ 'cfield' ][ $i ][ 'name' ]             = $section[ '_panels_design_cfield-' . $i . '-name' ];
+        $data[ 'cfield' ][ $i ][ 'field-type' ]       = $section[ '_panels_design_cfield-' . $i . '-field-type' ];
+        $data[ 'cfield' ][ $i ][ 'date-format' ]      = $section[ '_panels_design_cfield-' . $i . '-date-format' ];
+        $data[ 'cfield' ][ $i ][ 'wrapper-tag' ]      = $section[ '_panels_design_cfield-' . $i . '-wrapper-tag' ];
+        $data[ 'cfield' ][ $i ][ 'class-name' ]       = $section[ '_panels_design_cfield-' . $i . '-class-name' ];
+        $data[ 'cfield' ][ $i ][ 'link-field' ]       = $section[ '_panels_design_cfield-' . $i . '-link-field' ];
+        $data[ 'cfield' ][ $i ][ 'prefix-text' ]      = $section[ '_panels_design_cfield-' . $i . '-prefix-text' ];
+        $data[ 'cfield' ][ $i ][ 'prefix-image' ]     = $section[ '_panels_design_cfield-' . $i . '-prefix-image' ];
+        $data[ 'cfield' ][ $i ][ 'suffix-text' ]      = $section[ '_panels_design_cfield-' . $i . '-suffix-text' ];
+        $data[ 'cfield' ][ $i ][ 'suffix-image' ]     = $section[ '_panels_design_cfield-' . $i . '-suffix-image' ];
+        $data[ 'cfield' ][ $i ][ 'ps-images-width' ]  = $section[ '_panels_design_cfield-' . $i . '-ps-images-width' ];
+        $data[ 'cfield' ][ $i ][ 'ps-images-height' ] = $section[ '_panels_design_cfield-' . $i . '-ps-images-height' ];
         // The content itself comes from post meta
         $data[ 'cfield' ][ $i ][ 'value' ] = $postmeta[ $section[ '_panels_design_cfield-' . $i . '-name' ] ][ 0 ];
+
+        // TODO:Bet this doesn't work!
+        if (!empty($section[ '_panels_design_cfield-' . $i . '-link-field' ])) {
+          $data[ 'cfield' ][ $i ][ 'link-field' ] = $postmeta[ $section[ '_panels_design_cfield-' . $i . '-link-field' ] ][ 0 ];
+        }
+
         // TODO : Add other attributes
       }
 
@@ -226,7 +242,7 @@
       /** MISCELLANARY */
 
       global $_architect_options;
-      $data['inherit-hw-block-type'] = (!empty($_architect_options[ 'architect_hw-content-class' ])?'block-type-content ':'');
+      $data[ 'inherit-hw-block-type' ] = (!empty($_architect_options[ 'architect_hw-content-class' ]) ? 'block-type-content ' : '');
 
 //        if (strpos($data[ 'image' ][ 'image' ], '<img') === 0) {
 //          preg_match_all("/width=\"(\\d)*\"/uiUm", $data[ 'image' ][ 'image' ], $widthm);
@@ -276,7 +292,7 @@
 
       //   $panel_def[ $component ] = str_replace('{{using-bg-image}}', (!empty($data[ 'bgimage' ]) ? 'has-bgimage ' : 'no-bgimage '), $panel_def[ $component ]);
 
-      $panel_def[ $component ]      = str_replace('{{mimic-block-type}}', $data['inherit-hw-block-type'], $panel_def[ $component ]);
+      $panel_def[ $component ] = str_replace('{{mimic-block-type}}', $data[ 'inherit-hw-block-type' ], $panel_def[ $component ]);
 
       return parent::process_generics($data, $panel_def[ $component ], $content_type, $section);
     }
@@ -297,16 +313,11 @@
      */
     public static function render($component, $panel_def, $content_type, &$data, &$section)
     {
-      switch ($content_type) {
-        case 'defaults':
-        case 'post':
-        case 'page':
-          $panel_def[ $component ] = str_replace('{{title}}', $data[ 'title' ], $panel_def[ $component ]);
-          if ($section[ '_panels_design_link-titles' ]) {
-            $panel_def[ $component ] = str_replace('{{postlink}}', $panel_def[ 'postlink' ], $panel_def[ $component ]);
-            $panel_def[ $component ] = str_replace('{{closepostlink}}', '</a>', $panel_def[ $component ]);
-          }
-      };
+      $panel_def[ $component ] = str_replace('{{title}}', $data[ 'title' ], $panel_def[ $component ]);
+      if ($section[ '_panels_design_link-titles' ]) {
+        $panel_def[ $component ] = str_replace('{{postlink}}', $panel_def[ 'postlink' ], $panel_def[ $component ]);
+        $panel_def[ $component ] = str_replace('{{closepostlink}}', '</a>', $panel_def[ $component ]);
+      }
 
       // this only works for posts! need different rules for different types! :S
       return parent::process_generics($data, $panel_def[ $component ], $content_type, $section);
@@ -319,32 +330,26 @@
     public static function render($component, $panel_def, $content_type, &$data, &$section)
     {
       // get $metaX definition and construct string, then replace metaXinnards
-      switch ($content_type) {
-        case 'defaults':
-        case 'post':
-        case 'page':
-          $panel_def[ $component ] = str_replace('{{datetime}}', $data[ 'meta' ][ 'datetime' ], $panel_def[ $component ]);
-          $panel_def[ $component ] = str_replace('{{fdatetime}}', $data[ 'meta' ][ 'fdatetime' ], $panel_def[ $component ]);
-          if (empty($section[ '_panels_design_excluded-authors' ]) || !in_array(get_the_author_meta('ID'), $section[ '_panels_design_excluded-authors' ])) {
-            //Remove text indicators
-            $panel_def[ $component ] = str_replace('//', '', $panel_def[ $component ]);
-            $panel_def[ $component ] = str_replace('{{authorname}}', $data[ 'meta' ][ 'authorname' ], $panel_def[ $component ]);
-            $panel_def[ $component ] = str_replace('{{authorlink}}', $data[ 'meta' ][ 'authorlink' ], $panel_def[ $component ]);
-            $panel_def[ $component ] = str_replace('{{authoremail}}', $data[ 'meta' ][ 'authoremail' ], $panel_def[ $component ]);
-          } else {
-            // Removed unused text and indicators
-            $panel_def[ $component ] = preg_replace("/\\/\\/(.)*\\/\\//uiUm", "", $panel_def[ $component ]);
-          }
-          $panel_def[ $component ] = str_replace('{{categories}}', $data[ 'meta' ][ 'categories' ], $panel_def[ $component ]);
-          $panel_def[ $component ] = str_replace('{{categorieslinks}}', $data[ 'meta' ][ 'categorieslinks' ], $panel_def[ $component ]);
-          $panel_def[ $component ] = str_replace('{{tags}}', $data[ 'meta' ][ 'tags' ], $panel_def[ $component ]);
-          $panel_def[ $component ] = str_replace('{{tagslinks}}', $data[ 'meta' ][ 'tagslinks' ], $panel_def[ $component ]);
-          $panel_def[ $component ] = str_replace('{{commentslink}}', $panel_def[ 'comments-link' ], $panel_def[ $component ]);
-          $panel_def[ $component ] = str_replace('{{commentscount}}', $data[ 'comments-count' ], $panel_def[ $component ]);
-          $panel_def[ $component ] = str_replace('{{editlink}}', $panel_def[ 'editlink' ], $panel_def[ $component ]);
-
-
+      $panel_def[ $component ] = str_replace('{{datetime}}', $data[ 'meta' ][ 'datetime' ], $panel_def[ $component ]);
+      $panel_def[ $component ] = str_replace('{{fdatetime}}', $data[ 'meta' ][ 'fdatetime' ], $panel_def[ $component ]);
+      if (empty($section[ '_panels_design_excluded-authors' ]) || !in_array(get_the_author_meta('ID'), $section[ '_panels_design_excluded-authors' ])) {
+        //Remove text indicators
+        $panel_def[ $component ] = str_replace('//', '', $panel_def[ $component ]);
+        $panel_def[ $component ] = str_replace('{{authorname}}', $data[ 'meta' ][ 'authorname' ], $panel_def[ $component ]);
+        $panel_def[ $component ] = str_replace('{{authorlink}}', $data[ 'meta' ][ 'authorlink' ], $panel_def[ $component ]);
+        $panel_def[ $component ] = str_replace('{{authoremail}}', $data[ 'meta' ][ 'authoremail' ], $panel_def[ $component ]);
+      } else {
+        // Removed unused text and indicators
+        $panel_def[ $component ] = preg_replace("/\\/\\/(.)*\\/\\//uiUm", "", $panel_def[ $component ]);
       }
+      $panel_def[ $component ] = str_replace('{{categories}}', $data[ 'meta' ][ 'categories' ], $panel_def[ $component ]);
+      $panel_def[ $component ] = str_replace('{{categorieslinks}}', $data[ 'meta' ][ 'categorieslinks' ], $panel_def[ $component ]);
+      $panel_def[ $component ] = str_replace('{{tags}}', $data[ 'meta' ][ 'tags' ], $panel_def[ $component ]);
+      $panel_def[ $component ] = str_replace('{{tagslinks}}', $data[ 'meta' ][ 'tagslinks' ], $panel_def[ $component ]);
+      $panel_def[ $component ] = str_replace('{{commentslink}}', $panel_def[ 'comments-link' ], $panel_def[ $component ]);
+      $panel_def[ $component ] = str_replace('{{commentscount}}', $data[ 'comments-count' ], $panel_def[ $component ]);
+      $panel_def[ $component ] = str_replace('{{editlink}}', $panel_def[ 'editlink' ], $panel_def[ $component ]);
+
 
       return parent::process_generics($data, $panel_def[ $component ], $content_type, $section);
     }
@@ -402,12 +407,7 @@
   {
     public static function render($component, $panel_def, $content_type, &$data, &$section)
     {
-      switch ($content_type) {
-        case 'defaults':
-        case 'post':
-        case 'page':
-          $panel_def[ $component ] = str_replace('{{content}}', $data[ 'content' ], $panel_def[ $component ]);
-      };
+      $panel_def[ $component ] = str_replace('{{content}}', $data[ 'content' ], $panel_def[ $component ]);
       if ($section[ '_panels_design_thumb-position' ] != 'none') {
         if (!empty($data[ 'image' ][ 'image' ])) {
           $panel_def[ $component ] = str_replace('{{image-in-content}}', $panel_def[ 'image' ], $panel_def[ $component ]);
@@ -448,13 +448,7 @@
      */
     public static function render($component, $panel_def, $content_type, &$data, &$section)
     {
-      //    var_dump($data);
-      switch ($content_type) {
-        case 'defaults':
-        case 'post':
-        case 'page':
-          $panel_def[ $component ] = str_replace('{{excerpt}}', $data[ 'excerpt' ], $panel_def[ $component ]);
-      };
+      $panel_def[ $component ] = str_replace('{{excerpt}}', $data[ 'excerpt' ], $panel_def[ $component ]);
 
       if ($section[ '_panels_design_thumb-position' ] != 'none') {
         if (!empty($data[ 'image' ][ 'image' ]) && !empty($section[ '_panels_design_thumb-position' ])) {
@@ -494,16 +488,61 @@
 
       // TODO: Is this still relevant?
       // This only works for posts! need different rules for different types! :S ???????????
+
 //      if (!empty($data[ $component ]['value'])){
       // Show each custom field in this group
-
       if (!empty($data[ 'cfield' ])) {
         $panel_def_cfield = $panel_def[ 'cfield' ];
         $build_field      = '';
         foreach ($data[ 'cfield' ] as $k => $v) {
+
           if ($v[ 'group' ] === $component && !empty($v[ 'value' ])) {
-            $panel_def_cfield = str_replace('{{cfieldcontent}}', $v[ 'value' ], $panel_def_cfield);
+            switch ($v[ 'field-type' ]) {
+
+              case 'image':
+                $content = '<img src="' . bfi_thumb($v[ 'value' ]) . '">';
+                break;
+
+              case 'date':
+                if (is_numeric($v[ 'value' ])) {
+                  $content = date($v[ 'date-format' ], $v[ 'value' ]);
+                } else {
+                  $content = $v[ 'value' ];
+                }
+                $content = '<time datetime="' . $content . '">' . $content . '</time>';
+                break;
+
+              case 'text':
+              default:
+                $content = $v[ 'value' ];
+                break;
+            }
+
+            $prefix_image = '';
+            $suffix_image = '';
+            if (!empty($v[ 'prefix-image' ][ 'url' ])) {
+              $prefix_image = '<img src="' . bfi_thumb($v[ 'prefix-image' ][ 'url' ]) . '">';
+            }
+            if (!empty($v[ 'suffix-image' ][ 'url' ])) {
+              $suffix_image = '<img src="' . bfi_thumb($v[ 'prefix-image' ][ 'url' ]) . '">';
+            }
+
+
+            $content = $prefix_image . $v[ 'prefix-text' ] . $content . $v[ 'suffix-text' ] . $suffix_image;
+
+            if (!empty($v[ 'link-field' ])) {
+              $content = '<a href="'.$v[ 'link-field' ].'">'.$content.'</a>';
+            }
+
+            if ('none' !== $v[ 'wrapper-tag' ]) {
+              $class_name = !empty($v[ 'class-name' ]) ? ' class="' . $v[ 'class-name' ] . '"' : null;
+              $content    = '<' . $v[ 'wrapper-tag' ] . $class_name . '>' . $content . '</' . $v[ 'wrapper-tag' ] . '>';
+            }
+
+            // TODO: Should apply filters here?
+            $panel_def_cfield = str_replace('{{cfieldcontent}}', $content, $panel_def_cfield);
             $panel_def_cfield = str_replace('{{cfieldname}}', $v[ 'name' ], $panel_def_cfield);
+
             $build_field .= $panel_def_cfield;
           }
           $panel_def_cfield = $panel_def[ 'cfield' ];

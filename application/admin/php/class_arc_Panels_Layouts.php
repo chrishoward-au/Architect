@@ -589,7 +589,7 @@
                 'hint'          => array('content' => __('', 'pzarchitect')),
             ),
             array(
-                'title'    => __('Bullet separator', 'pzarchitect'),
+                'title'    => __('Prefix separator', 'pzarchitect'),
                 'id'       => $prefix . 'title-bullet-separator',
                 'type'     => 'text',
                 'class'    => 'textbox-small',
@@ -1057,7 +1057,7 @@
      * CUSTOM FIELDS
      */
     $thispostmeta = get_post_meta($_GET[ 'post' ]);
-    $cfcount      = (!empty($thispostmeta[ '_panels_design_custom-fields-count' ][0]) ? $thispostmeta[ '_panels_design_custom-fields-count' ][0] : 0);
+    $cfcount      = (!empty($thispostmeta[ '_panels_design_custom-fields-count' ][ 0 ]) ? $thispostmeta[ '_panels_design_custom-fields-count' ][ 0 ] : 0);
     for ($i = 1; $i <= $cfcount; $i++) {
       $cfname      = 'Custom field ' . $i . (!empty($thispostmeta[ '_panels_design_cfield-' . $i . '-name' ][ 0 ]) ? ': <br>' . $thispostmeta[ '_panels_design_cfield-' . $i . '-name' ][ 0 ] : '');
       $sections[ ] = array(
@@ -1084,13 +1084,19 @@
 
               ),
               array(
-                  'title'   => __('Is image', 'pzarchitect'),
-                  'id'      => $prefix . 'cfield-' . $i . '-is-image',
-                  'type'    => 'switch',
-                  'on'      => 'Yes',
-                  'off'     => 'No',
-                  'default' => false
+                  'title'   => __('Field type', 'pzarchitect'),
+                  'id'      => $prefix . 'cfield-' . $i . '-field-type',
+                  'type'    => 'button_set',
+                  'default' => 'text',
+                  'options' => array('text' => 'Text', 'image' => 'Image', 'date' => 'Date')
 
+              ),
+              array(
+                  'id'      => $prefix . 'cfield-' . $i .'-date-format',
+                  'title'   => 'Date format',
+                  'type'    => 'text',
+                  'default' => 'l, F j, Y g:i a',
+                  'desc'    => __('See here for information on <a href="http://codex.wordpress.org/Formatting_Date_and_Time" target=_blank>formatting date and time</a>', 'pzarchitect'),
               ),
               array(
                   'title'    => __('Wrapper tag', 'pzarchitect'),
@@ -1110,6 +1116,12 @@
                       'none' => 'None'),
                   'subtitle' => 'Select the wrapper element for this custom field'
 
+              ),
+              array(
+                  'id'      => $prefix . 'cfield-' . $i .'-class-name',
+                  'title'   => 'Add class name',
+                  'type'    => 'text',
+                  'default' => '',
               ),
               array(
                   'title'    => __('Link field', 'pzarchitect'),
@@ -1140,16 +1152,16 @@
                   'type'  => 'media',
               ),
               array(
-                  'title'   => __('Images width', 'pzarchitect'),
-                  'id'      => $prefix . 'cfield-' . $i . '-images-width',
+                  'title'   => __('Prefix/suffix images width', 'pzarchitect'),
+                  'id'      => $prefix . 'cfield-' . $i . '-ps-images-width',
                   'type'    => 'dimensions',
                   'height'  => false,
                   'default' => array('width' => '32px'),
                   'units'   => 'px'
               ),
               array(
-                  'title'   => __('Images height', 'pzarchitect'),
-                  'id'      => $prefix . 'cfield-' . $i . '-images-height',
+                  'title'   => __('Prefix/suffix images height', 'pzarchitect'),
+                  'id'      => $prefix . 'cfield-' . $i . '-ps-images-height',
                   'type'    => 'dimensions',
                   'width'   => false,
                   'default' => array('height' => '32px'),

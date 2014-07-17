@@ -795,6 +795,7 @@
       @include_once PZARC_PLUGIN_APP_PATH . '/public/php/post_types/class_arc_Panel_' . ucfirst($post_type) . '.php';
 
       // TODO: Add an option to throw an error if post type doesn't exist, instead of falling back on Post
+      // Although.. this makes handling custom types slightly easier
       if (!class_exists($class)) {
 
 //        pzarc_msg(__('Post type ', 'pzarchitect') . '<strong>' . $post_type . '</strong>' . __(' has no panel definition and cannot be displayed.', 'pzarchitect'), 'error');
