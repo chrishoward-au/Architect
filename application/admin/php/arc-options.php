@@ -243,6 +243,14 @@
                     'subtitle' => 'Turn this off if you want to manage styling from your own CSS stylesheets.',
                     'default'  => true
                 ),
+                // TODO: This requires lots of bollocksing to make sure all traces are fully removed. A good excuse to make extensibility work!
+                array(
+                    'title'    => __('Disable Snippets content type', 'pzarchitect'),
+                    'id'       => 'architect_disable_snippets',
+                    'type'     => 'switch',
+                    'subtitle' => 'Turn off this if you won\'t need the Snippets content type.',
+                    'default'  => false
+                ),
                 ('headway' == $current_theme->stylesheet?array(
                     'title'    => __('Add Headway Content Block class', 'pzarchitect'),
                     'id'       => 'architect_hw-content-class',

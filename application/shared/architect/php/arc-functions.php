@@ -145,12 +145,12 @@
   function pzarc_redux_links($id, $selectors, $defaults = null)
   {
     return
-            array(
-                'title'   => __('Links', 'pzarc'),
-                'id'      => $id,
-                'type'    => 'links',
-                'output'  => $selectors,
-                'default' => $defaults,
+        array(
+            'title'   => __('Links', 'pzarc'),
+            'id'      => $id,
+            'type'    => 'links',
+            'output'  => $selectors,
+            'default' => $defaults,
         );
 
   }
@@ -409,6 +409,15 @@
     return $authors;
   }
 
+  function pzarc_get_custom_post_types(){
+    $pzarc_cpts= (get_post_types(array('_builtin' => false, 'public' => true), 'objects'));
+    $return = array();
+    foreach ($pzarc_cpts as $key => $value) {
+      $return[$key]=$value->labels->name;
+    }
+    return $return;
+  }
+
   function pzarc_get_custom_fields()
   {
     global $wpdb;
@@ -509,4 +518,26 @@
       //        break;
       //   }
     }
+  } // EOC showBlueprint
+
+  /***********************
+   *
+   * Flatten wp arrays if necessary
+   *
+   ***********************/
+
+  function pzarc_flatten_wpinfo($array_in)
+  {
+    $array_out = array();
+    foreach ($array_in as $key => $value) {
+      if ($key == '_edit_lock' || $key == '_edit_last') {
+        continue;
+      }
+      if (is_array($value)) {
+        $array_out[ $key ] = $value;
+      }
+      $array_out[ $key ] = maybe_unserialize($value[ 0 ]);
+    }
+
+    return $array_out;
   }

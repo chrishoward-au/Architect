@@ -37,6 +37,7 @@
         add_filter('manage_arc-blueprints_posts_columns', array($this, 'add_blueprint_columns'));
         add_action('manage_arc-blueprints_posts_custom_column', array($this, 'add_blueprint_column_content'), 10, 2);
 
+
       }
 
     }
@@ -59,6 +60,8 @@
         // wp_enqueue_script('jquery-masonary', PZARC_PLUGIN_URL . 'includes/masonry.pkgd.min.js', array('jquery'));
         // wp_enqueue_script('jquery-lorem', PZARC_PLUGIN_URL . 'includes/jquery.lorem.js', array('jquery'));
       }
+//      global $pzcustom_post_types;
+//      $pzcustom_post_types = (get_post_types(array('_builtin' => false, 'public' => true), 'names'));
     }
 
     /**
@@ -80,12 +83,12 @@
       $pzarc_front  = array_slice($columns, 0, 2);
       $pzarc_back   = array_slice($columns, 2);
       $pzarc_insert = array(
-          '_blueprints_short-name'          => __('Blueprint short name', 'pzarchitect'),
-          '_blueprints_description'         => __('Description', 'pzarchitect'),
-          'panels'                          => __('Section Panels', 'pzarchitect'),
+          '_blueprints_short-name'     => __('Blueprint short name', 'pzarchitect'),
+          '_blueprints_description'    => __('Description', 'pzarchitect'),
+          'panels'                     => __('Section Panels', 'pzarchitect'),
           '_blueprints_content-source' => __('Content source', 'pzarchitect'),
-          'navigation'                      => __('Navigation', 'pzarchitect'),
-          'id'                              => __('ID', 'pzarchitect'),
+          'navigation'                 => __('Navigation', 'pzarchitect'),
+          'id'                         => __('ID', 'pzarchitect'),
       );
 
       return array_merge($pzarc_front, $pzarc_insert, $pzarc_back);
@@ -222,6 +225,8 @@
 //
 //  return $meta_boxes;
 //}
+
+
 
   add_action("redux/metaboxes/{$redux_opt_name}/boxes", 'pzarc_blueprint_tabs');
   function pzarc_blueprint_tabs($metaboxes)
@@ -638,7 +643,7 @@
                   'left'     => false,
                   'units'    => '%',
                   'mode'     => 'margin',
-                  'default'  => array('right' => '1', 'bottom' => '1'),
+                  'default'  => array('right' => '0', 'bottom' => '0'),
                   'subtitle' => __('Right, bottom', 'pzarchitect')
                   //    'hint'  => array('content' => __('Set the vertical gutter width as a percentage of the section width. The gutter is the gap between adjoining elements', 'pzarchitect'))
               ),
@@ -1024,7 +1029,7 @@
                 'desc'  => '<p>There are five methods to displaying a Blueprint. In order of required technical know-how (easiest first), these are:</p>
                 <ul>
                 <li><strong>Widget</strong> : Select Architect widget on WP Admin widgets screen</li>
-                <li><strong>Shortcode</strong> : Add <em>[pzarc blueprint="blueprint" ids="overrides"]</em> in your content at the point you want the Blueprint to appear.</li>
+                <li><strong>Shortcode</strong> : Add <em>[pzarchitect blueprint="blueprint" ids="overrides"]</em> in your content at the point you want the Blueprint to appear.</li>
                 <li><strong>Actions editor</strong>  : Enter the action name, Blueprint and pages to appear on</li>
                 <li><strong>Action call</strong> : Add </em>new showBlueprint(\'action\',\'blueprint\',\'pageids\');</em> to your functions.php</li>
                 <li><strong>Template tag</strong> : Add <em>pzarchitect(\'blueprint\');</em> to your template at the point you want the Blueprint to appear</li>
@@ -1436,7 +1441,7 @@
         )
     );
 
-    // Gallery
+    /** Galleries */
     $prefix      = '_content_galleries_';
     $sections[ ] = array(
         'title'      => 'Galleries',
@@ -1518,7 +1523,7 @@
         )
     );
 
-    // Slides
+    /** Slides */
     $slides_obj = get_posts(array('post_type' => 'pzsp-slides'));
     //var_dump($slides_obj);
     $slides = array();
@@ -1541,18 +1546,26 @@
             ),
         )
     );
-    //Custom post types
+
+    /** Custom post types */
+    // This doesn't work in Redux MBs
+    // $pzcustom_post_types = get_post_types(array('_builtin' => false, 'public' => true), 'names')
+    $prefix = '_content_cpt_';
     $sections[ ] = array(
         'title'      => 'Custom Post Types',
         'icon_class' => 'icon-large',
         'icon'       => 'el-icon-wrench',
         'fields'     => array(
             array(
-                'title' => __('Custom Post Types', 'pzarchitect'),
-                'id'    => $prefix . 'cpt-heading',
-                'type'  => 'section',
-                'class' => ' heading',
-            )
+                'title'   => __('Select custom post type', 'pzarchitect'),
+                'id'      => $prefix . 'custom-post-type',
+                'type'    => 'select',
+                'select2' => array('allowClear' => true),
+//                'data' => 'post_types'
+                //'options' => $pzcustom_post_types
+                  'data'  => 'callback',
+                  'args'  => array('pzarc_get_custom_post_types'),
+            ),
         )
     );
     $prefix      = '_content_help_';

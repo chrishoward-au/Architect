@@ -128,15 +128,16 @@
             $this->arc[ 'pagination' ] = new $class;
             break;
 
+          case (is_singular()):
+            $class                     = 'arc_Pagination_' . (!$this->build->blueprint[ '_blueprints_pager-single' ]?'prevnext':$this->build->blueprint[ '_blueprints_pager-single' ]);
+            $this->arc[ 'pagination' ] = new $class;
+            break;
+
           case is_archive():
             $class                     = 'arc_Pagination_' . (!$this->build->blueprint[ '_blueprints_pager-archives' ]?'prevnext':$this->build->blueprint[ '_blueprints_pager-archives' ]);
             $this->arc[ 'pagination' ] = new $class;
             break;
 
-          case (is_singular() && !is_front_page()):
-            $class                     = 'arc_Pagination_' . (!$this->build->blueprint[ '_blueprints_pager-single' ]?'prevnext':$this->build->blueprint[ '_blueprints_pager-single' ]);
-            $this->arc[ 'pagination' ] = new $class;
-            break;
 
         }
       }
@@ -630,7 +631,10 @@
 
       //build the new query
       $source        = $this->build->blueprint[ '_blueprints_content-source' ];
+
       $query_options = array();
+
+      global $paged;
 
       //Paging parameters
       if ($this->build->blueprint[ '_blueprints_navigation' ] == 'pagination') {
@@ -649,6 +653,9 @@
           $paged = 1;
 
         }
+
+
+        query_posts('posts_per_page=3&paged=' . $paged);
 
 //        $query_options[ 'nopaging' ]       = false;
         $query_options[ 'posts_per_page' ] = $this->criteria[ 'panels_to_show' ];
@@ -681,6 +688,10 @@
 
         case 'post':
           $query_options[ 'post_type' ] = 'post';
+          break;
+
+        case 'cpt':
+          $query_options[ 'post_type' ] = $this->build->blueprint['_content_cpt_custom-post-type'];
           break;
 
         // TODO: could we build this into the panel def or somewhere else so more closely tied to the content type stuff

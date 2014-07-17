@@ -160,6 +160,7 @@
         // This is reliant on About being the last menu item
         array_unshift($submenu[ 'pzarc' ], array_pop($submenu[ 'pzarc' ]));
       }
+
     }
 
     function admin_head()

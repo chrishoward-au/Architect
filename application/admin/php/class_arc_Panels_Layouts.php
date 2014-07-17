@@ -459,18 +459,6 @@
                                         'content' => __('Drag and drop to sort the order of your elements. <strong>Heights are fluid in panels, so not indicative of how it will look on the page</strong>.', 'pzarchitect'))
             ),
             array(
-                'title'         => __('Number of custom fields', 'pzarchitect'),
-                'id'            => $prefix . 'custom-fields-count',
-                'type'          => 'spinner',
-                'default'       => 0,
-                'min'           => '0',
-                'max'           => '999',
-                'step'          => '1',
-                'display_value' => 'label',
-                'subtitle'      => __('Each of the three Custom groups can have multiple custom fields. Select total number of custom fields, click Save/Update', 'pzarchitect'),
-                'hint'          => array('content' => __('', 'pzarchitect'))
-            ),
-            array(
                 'title'   => __('Components area position', 'pzarchitect'),
                 'id'      => $prefix . 'components-position',
                 'type'    => 'button_set',
@@ -680,7 +668,6 @@
         )
     );
 
-
     /**********
      * Content
      *********/
@@ -740,9 +727,8 @@
                 'type'     => 'select',
                 'options'  => array(
                     'none' => 'None',
-                    '3'    => 'Small screen ' . $_architect_options[ 'architect_breakpoint_3' ][ 'width' ],
-                    '2'    => 'Medium screen ' . $_architect_options[ 'architect_breakpoint_2' ][ 'width' ],
-                    '1'    => 'Wide screen ' . $_architect_options[ 'architect_breakpoint_1' ][ 'width' ]
+                    '2'    => 'Small screen ' . $_architect_options[ 'architect_breakpoint_2' ][ 'width' ],
+                    '1'    => 'Medium screen ' . $_architect_options[ 'architect_breakpoint_1' ][ 'width' ]
                 ),
                 'default'  => 'none',
                 'subtitle' => __('Breakpoints can be changed in Architect Options', 'pzachitect')
@@ -882,9 +868,9 @@
               'type'     => 'button_set',
               'options'  => array(
                   'none'     => 'None',
-                  'page'     => 'Page',
-                  'image'    => 'Image',
-                  'original' => 'Original',
+                  'page'     => 'Post',
+                  'image'    => 'Attachment page',
+                  'original' => 'Lightbox',
                   'url'      => 'Specific URL'
               ),
               'default'  => 'page',
@@ -1033,9 +1019,9 @@
                 'type'     => 'button_set',
                 'options'  => array(
                     'none'     => 'None',
-                    'page'     => 'Page',
-                    'image'    => 'Image',
-                    'original' => 'Original',
+                    'page'     => 'Post',
+                    'image'    => 'Attachment page',
+                    'original' => 'Lightbox',
                     'url'      => 'Specific URL'
                 ),
                 'default'  => 'page',

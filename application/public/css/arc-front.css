@@ -165,7 +165,7 @@
         height: auto;
         max-width: 100%; }
       .pzarchitect .pzarc-panel figure.pzarc-bg-image.align {
-        position: absolute; }
+        position: relative; }
         .pzarchitect .pzarc-panel figure.pzarc-bg-image.align.scale {
           max-width: none; }
   .pzarchitect .pzarc-navigator {

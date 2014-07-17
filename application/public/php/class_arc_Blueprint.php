@@ -82,7 +82,7 @@
       /** Add panel settings for Section 1 */
       $panel[ 0 ] = get_post_meta($this->blueprint[ '_blueprints_section-0-panel-layout' ]);
 
-      $panel[ 1 ] = !$panel[ 0 ] ? array() : self::flatten_wpinfo($panel[ 0 ]);
+      $panel[ 1 ] = !$panel[ 0 ] ? array() : pzarc_flatten_wpinfo($panel[ 0 ]);
 
       if (!empty($panel[ 0 ])) {
         foreach ($pzarchitect[ 'defaults' ][ '_panels' ] as $key => $value) {
@@ -110,7 +110,7 @@
       /** Add panel settings for Section 2 */
       $panel[ 0 ] = get_post_meta($this->blueprint[ '_blueprints_section-1-panel-layout' ]);
 
-      $panel[ 2 ] = !$panel[ 0 ] ? array() : self::flatten_wpinfo($panel[ 0 ]);
+      $panel[ 2 ] = !$panel[ 0 ] ? array() : pzarc_flatten_wpinfo($panel[ 0 ]);
 
       if (!empty($panel[ 0 ])) {
         foreach ($pzarchitect[ 'defaults' ][ '_panels' ] as $key => $value) {
@@ -130,7 +130,7 @@
       /** Add panel settings for Section 3 */
       $panel[ 0 ] = get_post_meta($this->blueprint[ '_blueprints_section-2-panel-layout' ]);
 
-      $panel[ 3 ] = !$panel[ 0 ] ? array() : self::flatten_wpinfo($panel[ 0 ]);
+      $panel[ 3 ] = !$panel[ 0 ] ? array() : pzarc_flatten_wpinfo($panel[ 0 ]);
 
       if (!empty($panel[ 0 ])) {
         foreach ($pzarchitect[ 'defaults' ][ '_panels' ] as $key => $value) {
@@ -166,27 +166,6 @@
 //
 //    }
 
-    /***********************
-     *
-     * Flatten wp arrays if necessary
-     *
-     ***********************/
-
-    static function flatten_wpinfo($array_in)
-    {
-      $array_out = array();
-      foreach ($array_in as $key => $value) {
-        if ($key == '_edit_lock' || $key == '_edit_last') {
-          continue;
-        }
-        if (is_array($value)) {
-          $array_out[ $key ] = $value;
-        }
-        $array_out[ $key ] = maybe_unserialize($value[ 0 ]);
-      }
-
-      return $array_out;
-    }
 
   }
 

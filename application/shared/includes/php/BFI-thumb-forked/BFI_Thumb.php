@@ -670,7 +670,7 @@
       // Crop from offsets (left, top) as percentages
 
       if (!is_array($crop)) {
-        $crop = array(0.5, 0.5,'center');
+        $crop = array(0.5, 0.5, 'center');
         // defaults are equivelant to center, center.
       }
 
@@ -685,7 +685,7 @@
       $ideal_s_y = 0;
 
       // Handle focal point positioning in output image
-      switch($f) {
+      switch ($f) {
 
         case 'none':
           // No focal point. Crop from top left
@@ -778,81 +778,74 @@
     }
   }
 
-  // Add Toolbar Menus
-  function bfi_thumbs_toolbar() {
-    global $wp_admin_bar;
-    $args = array(
-        'id'     => 'bfi_thumbs',
-        'parent' => false,
-        'title'  => __( 'Thumbs', 'pzarchitect' ),
-    );
-    $wp_admin_bar->add_menu( $args );
 
-    $args = array(
-        'id'     => 'bfi_thumbs_flush',
-        'parent' => 'bfi_thumbs',
-        'title'  => __( 'Flush images cache', 'pzarchitect' ),
-        'href'   => 'options-media.php',
-    );
-    $wp_admin_bar->add_menu( $args );
+  /**
+   * Add all the admin menus etc
+   */
+
+
+  function bfi_add_options_pages(){
+    add_options_page('BFI Thumbs', 'BFI Thumbs', 'manage_options', 'bfithumbs', 'bfi_thumbs_settings');
 
   }
 
-// Hook into the 'wp_before_admin_bar_render' action
-  add_action( 'wp_before_admin_bar_render', 'bfi_thumbs_toolbar', 999 );
+  add_action('admin_menu', 'bfi_add_options_pages');
 
-// ------------------------------------------------------------------
-  // Add all your sections, fields and settings during admin_init
-  // ------------------------------------------------------------------
-  //
+  /**
+   * bfi_thumbs_settings
+   */
+  function bfi_thumbs_settings()
+  {
+    if ( !current_user_can( 'manage_options' ) )  {
+      wp_die( __( 'You do not have sufficient permissions to access this page.','default' ) );
+    }
 
-  function eg_settings_api_init() {
-    // Add the section to reading settings so we can add our
-    // fields to it
-    add_settings_section(
-        'eg_setting_section',
-        'Example settings section in reading',
-        'eg_setting_section_callback_function',
-        'media'
-    );
+    global $title;
+    // TODO: Need to nonce this probs!
+    ?>
 
-    // Add the field with the names and function to use for our new
-    // settings, put it in our new section
-    add_settings_field(
-        'eg_setting_name',
-        'Example setting Name',
-        'eg_setting_callback_function',
-        'media',
-        'eg_setting_section'
-    );
+    <div class="wrap">
+    <!-- Display Plugin Icon, Header, and Description -->
+    <div class="icon32" id="icon-tools"><br></div>
+    <h2><?php echo $title ?></h2>
 
-    // Register our setting so that $_POST handling is done for us and
-    // our callback function just has to echo the <input>
-    register_setting( 'media', 'eg_setting_name' );
-  } // eg_settings_api_init()
+    <h3>Flush BFI Thumbs image cache</h3>
+    <p>If you update or change images in any posts,sometimes the image cache may get out-of-sync. In that case, you can
+      refresh the thumbs image cache to ensure your site visitors are seeing the correct images.</p>
 
-  add_action( 'admin_init', 'eg_settings_api_init' );
+    <p>Please note:
+      Refreshing the cache causes no problems other than the next person who visits your site may have to wait a little
+      longer as the cache images get recreated. <strong>No images in any post will be affected</strong>. </p>
 
+    <p>Click the
+      button to empty the BFI Thumbs image cache.</p>
 
-  // ------------------------------------------------------------------
-  // Settings section callback function
-  // ------------------------------------------------------------------
-  //
-  // This function is needed if we added a new section. This function
-  // will be run at the start of our section
-  //
+    <form action="options-general.php?page=bfithumbs" method="post">
+      <input class="button-primary" type="submit" name="flushbficache" value="Flush BFI Thumbs image cache">
+    </form>
+    <hr style="margin-top:20px;border-color:#eee;border-style:solid;"/>
+    <?php
+    if (isset($_POST[ 'flushbficache' ])) {
+      bfi_flush_image_cache();
+      echo '<div id="message" class="updated"><p>BFI Thumbs image cache cleared. It will be recreated next time someone vists your site.</p></div>';
+    }
 
-  function eg_setting_section_callback_function() {
-    echo '<p>Intro text for our settings section</p>';
   }
 
-  // ------------------------------------------------------------------
-  // Callback function for our example setting
-  // ------------------------------------------------------------------
-  //
-  // creates a checkbox true/false option. Other types are surely possible
-  //
-
-  function eg_setting_callback_function() {
-    echo '<input name="eg_setting_name" id="gv_thumbnails_insert_into_excerpt" type="checkbox" value="1" class="code" ' . checked( 1, get_option( 'eg_setting_name' ), false ) . ' /> Explanation text';
+  function bfi_flush_image_cache()
+  {
+    $upload_info = wp_upload_dir();
+    $upload_dir  = $upload_info[ 'basedir' ];
+    if (defined('BFITHUMB_UPLOAD_DIR')) {
+      $upload_dir .= "/" . BFITHUMB_UPLOAD_DIR;
+    } else {
+      $upload_dir .= "/bfi_thumb";
+    }
+    $cache_files = scandir($upload_dir);
+    foreach ($cache_files as $cache_file) {
+      if ($cache_file !== '.' && $cache_file !== '..') {
+        unlink($upload_dir . '/' . $cache_file);
+      }
+    }
   }
+

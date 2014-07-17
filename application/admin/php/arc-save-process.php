@@ -64,13 +64,17 @@
 
 //    WP_Filesystem(true);
 // get the upload directory and make a test.txt file
-      $pzarc_settings = get_post_meta($postid, '_architect', true);
+      $pzarc_settings = get_post_meta($postid);
 //      var_dump($pzarc_settings,$post->post_type,$pzarc_settings['_blueprints_short-name']);
 
+      $pzarc_settings = pzarc_flatten_wpinfo($pzarc_settings);
+
       $pzarc_shortname = ($post->post_type === 'arc-panels' ? $pzarc_settings[ '_panels_settings_short-name' ] : $pzarc_settings[ '_blueprints_short-name' ]);
+
       $upload_dir      = wp_upload_dir();
-      $filename
-                       = trailingslashit($upload_dir[ 'basedir' ]) . '/cache/pizazzwp/arc/pz' . $post->post_type . '-layout-' . $postid . '-' . $pzarc_shortname . '.css';
+
+      $filename        = trailingslashit($upload_dir[ 'basedir' ]) . '/cache/pizazzwp/arc/pz' . $post->post_type . '-layout-' . $postid . '-' . $pzarc_shortname . '.css';
+
       wp_mkdir_p(trailingslashit($upload_dir[ 'basedir' ]) . '/cache/pizazzwp/arc/');
 
       // Need to create the file contents
