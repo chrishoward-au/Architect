@@ -227,7 +227,6 @@
 //}
 
 
-
   add_action("redux/metaboxes/{$redux_opt_name}/boxes", 'pzarc_blueprint_tabs');
   function pzarc_blueprint_tabs($metaboxes)
   {
@@ -1214,7 +1213,7 @@
     /** GENERAL  Filters*/
     $prefix      = '_content_general_';
     $sections[ ] = array(
-        'title'      => 'General Filters',
+        'title'      => __('Filters', 'pzarchitect'),
         'icon_class' => 'icon-large',
         'icon'       => 'el-icon-filter',
         'fields'     => array(
@@ -1305,7 +1304,7 @@
                 'class'  => ' heading',
                 'indent' => true
             ),
-            // TODO: Add a loop to display custom taxonomies
+            // TODO: Add a loop to display all custom taxonomies
             // foreach($taxonomies as $taxonomy ){}
             array(
                 'title' => __('Other taxonomies', 'pzarchitect'),
@@ -1324,10 +1323,11 @@
                 'title'   => __('Taxonomies operator', 'pzarchitect'),
                 'id'      => $prefix . 'tax-op',
                 'type'    => 'button_set',
-                'options' => array('all' => 'All', 'any' => 'Any'),
-                'default' => 'any',
-                'hint'    => array('content' => __('Choose whether posts contain all or any of the taxonomies', 'pzarchitect')),
+                'options' => array('AND' => 'All', 'IN' => 'Any','NOT IN'=>'None'),
+                'default' => 'ALL',
+                'hint'    => array('content' => __('Display posts containing all, any or none of the taxonomies', 'pzarchitect')),
             ),
+            //TODO: Add taxomonies to exclude
             //    array(
             //      'title' => __('Days to show', 'pzarchitect'),
             //      'id' => $prefix . 'days',
@@ -1550,7 +1550,7 @@
     /** Custom post types */
     // This doesn't work in Redux MBs
     // $pzcustom_post_types = get_post_types(array('_builtin' => false, 'public' => true), 'names')
-    $prefix = '_content_cpt_';
+    $prefix      = '_content_cpt_';
     $sections[ ] = array(
         'title'      => 'Custom Post Types',
         'icon_class' => 'icon-large',
@@ -1561,10 +1561,11 @@
                 'id'      => $prefix . 'custom-post-type',
                 'type'    => 'select',
                 'select2' => array('allowClear' => true),
-//                'data' => 'post_types'
+                //                'data' => 'post_types',
                 //'options' => $pzcustom_post_types
-                  'data'  => 'callback',
-                  'args'  => array('pzarc_get_custom_post_types'),
+                'data'    => 'callback',
+                //               'args'  => array('_builtin' => false,'public'=>true)
+                'args'    => array('pzarc_get_custom_post_types'),
             ),
         )
     );

@@ -124,17 +124,17 @@
         switch (true) {
 
           case is_home():
-            $class                     = 'arc_Pagination_' . (!$this->build->blueprint[ '_blueprints_pager' ]?'prevnext':$this->build->blueprint[ '_blueprints_pager' ]);
+            $class                     = 'arc_Pagination_' . (!$this->build->blueprint[ '_blueprints_pager' ] ? 'prevnext' : $this->build->blueprint[ '_blueprints_pager' ]);
             $this->arc[ 'pagination' ] = new $class;
             break;
 
           case (is_singular()):
-            $class                     = 'arc_Pagination_' . (!$this->build->blueprint[ '_blueprints_pager-single' ]?'prevnext':$this->build->blueprint[ '_blueprints_pager-single' ]);
+            $class                     = 'arc_Pagination_' . (!$this->build->blueprint[ '_blueprints_pager-single' ] ? 'prevnext' : $this->build->blueprint[ '_blueprints_pager-single' ]);
             $this->arc[ 'pagination' ] = new $class;
             break;
 
           case is_archive():
-            $class                     = 'arc_Pagination_' . (!$this->build->blueprint[ '_blueprints_pager-archives' ]?'prevnext':$this->build->blueprint[ '_blueprints_pager-archives' ]);
+            $class                     = 'arc_Pagination_' . (!$this->build->blueprint[ '_blueprints_pager-archives' ] ? 'prevnext' : $this->build->blueprint[ '_blueprints_pager-archives' ]);
             $this->arc[ 'pagination' ] = new $class;
             break;
 
@@ -384,10 +384,12 @@
       $this->criteria[ 'order' ]   = $this->build->blueprint[ '_content_general_orderdir' ];
 
       // Categories
-      $this->criteria[ 'category__in' ] = $this->build->blueprint[ '_content_general_inc-cats' ];
+      $this->criteria[ 'category__in' ]     = $this->build->blueprint[ '_content_general_inc-cats' ];
+      $this->criteria[ 'category__not_in' ] = $this->build->blueprint[ '_content_general_exc-cats' ];
 
       // Tags
-      $this->criteria[ 'tag__in' ] = $this->build->blueprint[ '_content_general_inc-tags' ];
+      $this->criteria[ 'tag__in' ]     = $this->build->blueprint[ '_content_general_inc-tags' ];
+      $this->criteria[ 'tag__not_in' ] = $this->build->blueprint[ '_content_general_exc-tags' ];
 
     }
 
@@ -433,14 +435,14 @@
     {
       $return_val = '';
       if ($bp_nav_type === 'navigator') {
-        $slider                  = array();
-        $slider[ 'class' ]       = '';
-        $slider[ 'dataid' ]      = '';
-        $slider[ 'datatype' ]    = '';
-        $slider[ 'class' ]       = ' swiper-container slider swiper-container-' . $bp_shortname;
-        $slider[ 'dataid' ]      = ' data-swiperid="' . $bp_shortname . '"';
-        $slider[ 'datatype' ]    = ' data-navtype="' . $bp_nav_type . '"';
-        $slider[ 'datatrans' ]   = ' data-transtype="' . $bp_transtype . '"';
+        $slider                = array();
+        $slider[ 'class' ]     = '';
+        $slider[ 'dataid' ]    = '';
+        $slider[ 'datatype' ]  = '';
+        $slider[ 'class' ]     = ' swiper-container slider swiper-container-' . $bp_shortname;
+        $slider[ 'dataid' ]    = ' data-swiperid="' . $bp_shortname . '"';
+        $slider[ 'datatype' ]  = ' data-navtype="' . $bp_nav_type . '"';
+        $slider[ 'datatrans' ] = ' data-transtype="' . $bp_transtype . '"';
 
 
         $duration             = $this->build->blueprint[ '_blueprints_transitions-duration' ] * 1000;
@@ -451,7 +453,7 @@
         $return_val .= '<button type="button" class="pager arrow-left icon-arrow-left4"></button>';
         $return_val .= '<button type="button" class="pager arrow-right icon-uniE60D"></button>';
 //          //TODO: Should the bp name be in the class or ID?
-        $return_val .= '<div class="pzarc-sections_' . $bp_shortname . ' pzarc-is_' . $caller . $slider[ 'class' ] . '"' . $slider[ 'dataid' ] . $slider[ 'datatype' ] . $slider[ 'dataopts' ] . $slider[ 'datatrans' ].'>';
+        $return_val .= '<div class="pzarc-sections_' . $bp_shortname . ' pzarc-is_' . $caller . $slider[ 'class' ] . '"' . $slider[ 'dataid' ] . $slider[ 'datatype' ] . $slider[ 'dataopts' ] . $slider[ 'datatrans' ] . '>';
       } else {
         $return_val .= '<div class="pzarc-sections_' . $bp_shortname . ' pzarc-is_' . $caller . '">';
       }
@@ -630,7 +632,7 @@
     {
 
       //build the new query
-      $source        = $this->build->blueprint[ '_blueprints_content-source' ];
+      $source = $this->build->blueprint[ '_blueprints_content-source' ];
 
       $query_options = array();
 
@@ -679,10 +681,23 @@
       // TODO: We're going to have to make this pluggable too! :P Probably with a loop?
 
       /** General content filters */
-      $query_options[ 'category__in' ] = (!empty($this->criteria[ 'category__in' ]) ? $this->criteria[ 'category__in' ] : null);
-      $query_options[ 'tag__in' ]      = (!empty($this->criteria[ 'tag__in' ]) ? $this->criteria[ 'tag__in' ] : null);
+      $query_options[ 'category__in' ]     = (!empty($this->criteria[ 'category__in' ]) ? $this->criteria[ 'category__in' ] : null);
+      $query_options[ 'tag__in' ]          = (!empty($this->criteria[ 'tag__in' ]) ? $this->criteria[ 'tag__in' ] : null);
+      $query_options[ 'category__not_in' ] = (!empty($this->criteria[ 'category__in' ]) ? $this->criteria[ 'category__not_in' ] : null);
+      $query_options[ 'tag__not_in' ]      = (!empty($this->criteria[ 'tag__in' ]) ? $this->criteria[ 'tag__not_in' ] : null);
 
 
+      /** Custom taxonomies  */
+      if (!empty($this->build->blueprint[ '_content_general_other-tax-tags' ])) {
+        $query_options[ 'tax_query' ] = array(
+            array(
+                'taxonomy' => $this->build->blueprint[ '_content_general_other-tax' ],
+                'field'    => 'slug',
+                'terms'    => explode(',', $this->build->blueprint[ '_content_general_other-tax-tags' ]),
+                'operator' => $this->build->blueprint[ '_content_general_tax-op' ]
+            ),
+        );
+      }
       /** Specific content filters */
       switch ($source) {
 
@@ -691,28 +706,28 @@
           break;
 
         case 'cpt':
-          $query_options[ 'post_type' ] = $this->build->blueprint['_content_cpt_custom-post-type'];
+          $query_options[ 'post_type' ] = $this->build->blueprint[ '_content_cpt_custom-post-type' ];
           break;
 
         // TODO: could we build this into the panel def or somewhere else so more closely tied to the content type stuff
 
         case 'gallery':
 
-          $prefix = '_content_galleries_';
-          $gallery_source        = !empty($overrides)?'ids':$this->build->blueprint[ $prefix.'gallery-source' ];
+          $prefix         = '_content_galleries_';
+          $gallery_source = !empty($overrides) ? 'ids' : $this->build->blueprint[ $prefix . 'gallery-source' ];
 
-          switch ($gallery_source){
+          switch ($gallery_source) {
 
             case 'galleryplus':
-              $gallery_post = get_post($this->build->blueprint[$prefix . 'galleryplus'] );
-              preg_match_all('/'. get_shortcode_regex() .'/s', $gallery_post->post_content,$matches);
+              $gallery_post = get_post($this->build->blueprint[ $prefix . 'galleryplus' ]);
+              preg_match_all('/' . get_shortcode_regex() . '/s', $gallery_post->post_content, $matches);
               $ids = '';
-              foreach ($matches[0] as $match){
-                if (strpos($match, '[gallery ids=')===0) {
-                  $ids = str_replace('[gallery ids="', '', $match);
-                  $ids = str_replace('"]','',$ids);
+              foreach ($matches[ 0 ] as $match) {
+                if (strpos($match, '[gallery ids=') === 0) {
+                  $ids                                    = str_replace('[gallery ids="', '', $match);
+                  $ids                                    = str_replace('"]', '', $ids);
                   $query_options[ 'post_type' ]           = 'attachment';
-                  $query_options[ 'post__in' ]            = explode(',',$ids);
+                  $query_options[ 'post__in' ]            = explode(',', $ids);
                   $query_options[ 'post_status' ]         = array('publish', 'inherit', 'private');
                   $query_options[ 'ignore_sticky_posts' ] = true;
                   // Only do first one
@@ -721,10 +736,10 @@
               }
               break;
             case 'ids':
-              $ids        = !empty($overrides)?$overrides:$this->criteria[ $prefix.'specific-images' ];
+              $ids = !empty($overrides) ? $overrides : $this->criteria[ $prefix . 'specific-images' ];
 
               $query_options[ 'post_type' ]           = 'attachment';
-              $query_options[ 'post__in' ]            = (!empty($ids) ? explode(',',$ids) : null);
+              $query_options[ 'post__in' ]            = (!empty($ids) ? explode(',', $ids) : null);
               $query_options[ 'post_status' ]         = array('publish', 'inherit', 'private');
               $query_options[ 'ignore_sticky_posts' ] = true;
               break;
