@@ -16,6 +16,7 @@
     public $name;
     public $blueprint;
 
+
     function __construct($name)
     {
       // strip out string text containment characters incase user enters them
@@ -23,7 +24,24 @@
 
       self::get_blueprint();
 
+
+      for ($i = 1; $i <= 3; $i++) {
+        $this->blueprint[ 'section_object' ][ $i ] =
+            arc_SectionFactory::create($i,
+                                       $this->blueprint[ 'section' ][ ($i - 1) ],
+                                       $this->blueprint[ '_blueprints_content-source' ],
+                                       $this->blueprint[ '_blueprints_navigation' ],
+                                       $this->blueprint[ '_blueprints_section-' . ($i - 1) . '-layout-mode' ],
+                                       $this->blueprint[ '_blueprints_navigator-slider-engine' ],
+                                       $this->blueprint[ '_blueprints_section-' . ($i - 1) . '-title' ]
+            );
+
+
+      }
+
+
     }
+
 
     /**
      * get_blueprint()
@@ -166,6 +184,8 @@
 //
 //    }
 
+  function __destruct(){
+  }
 
   }
 

@@ -168,6 +168,8 @@
         position: relative; }
         .pzarchitect .pzarc-panel figure.pzarc-bg-image.align.scale {
           max-width: none; }
+    .pzarchitect .pzarc-panel .pzarc-presuff-image {
+      vertical-align: middle; }
   .pzarchitect .pzarc-navigator {
     left: 0;
     text-align: center;

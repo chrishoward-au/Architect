@@ -26,10 +26,8 @@
     private $navtype;
     private $layout_mode;
     private $blueprint;
-    /**
-     * @var null
-     */
     private $section_title;
+    private $slider_type;
 
     /**
      * @param      $number
@@ -44,14 +42,29 @@
     public function __construct($number, $section_panel, $content_source, $navtype, $layout_mode, $slider_type = null, $section_title = null)
     {
 
-      // Do we load up the MAsonry here?
-      wp_enqueue_script('js-isotope-v2');
 
       $this->section_number = $number;
       $this->section        = $section_panel;
       $this->source         = $content_source;
       $this->navtype        = $navtype;
       $this->layout_mode    = $layout_mode;
+      $this->section_title  = $section_title;
+      $this->slider_type    = $slider_type;
+
+
+    }
+
+    function open_section()
+    {
+        if (!empty($this->section[ 'section-panel-settings' ][ '_panels_design_excerpts-word-count' ])) {
+          add_filter('excerpt_length', array(&$this, 'set_excerpt_length'), 999);
+        }
+        if (!empty($this->section[ 'section-panel-settings' ][ '_panels_design_readmore-truncation-indicator' ])) {
+          add_filter('excerpt_more', array(&$this, 'set_excerpt_more'), 999);
+        }
+
+      // Do we load up the MAsonry here?
+      wp_enqueue_script('js-isotope-v2');
 
       do_action("arc_before_section_{$this->section_number}");
 
@@ -61,10 +74,10 @@
           : array('wrapper' => '',
                   'slide'   => '');
 
-      if (!empty($section_title)) {
+      if (!empty($this->section_title)) {
 
         // TODO: Neeed to process %% tags in title.
-        echo '<div class="pzarc-section-title pzarc-section-title-' . $this->section_number . '"><h3>' . $section_title . '</h3></div>';
+        echo '<div class="pzarc-section-title pzarc-section-title-' . $this->section_number . '"><h3>' . $this->section_title . '</h3></div>';
 
       }
 
@@ -72,22 +85,44 @@
 
     }
 
+    function set_excerpt_length($excerpt_length)
+    {
+      return $this->section[ 'section-panel-settings' ][ '_panels_design_excerpts-word-count' ];
+    }
+
+    function set_excerpt_more($excerpt_more)
+    {
+      $new_more = $this->section[ 'section-panel-settings' ][ '_panels_design_readmore-truncation-indicator' ];
+      $new_more .= ($this->section[ 'section-panel-settings' ][ '_panels_design_readmore-text' ]?'<a href="'.get_the_permalink().'" class="readmore moretag">'.$this->section[ 'section-panel-settings' ][ '_panels_design_readmore-text' ].'</a>':null);
+      return $new_more;
+
+    }
+
+    function close_section()
+    {
+      echo '</section><!-- End section ' . $this->section_number . ' -->';
+      do_action("arc_after_section_{$this->section_number}");
+
+      remove_filter('excerpt_length',array(&$this,'set_excerpt_length'),999);
+      remove_filter('excerpt_more',array(&$this,'set_excerpt_more'),999);
+
+    }
 
     /**
      * @param $panel_def
      */
-    public function render_panel($panel_def, $panel_number, $class,$panel_class,&$arc_query)
+    public function render_panel($panel_def, $panel_number, $class, $panel_class, &$arc_query)
     {
 
-      $data = $panel_class->set_data($this->section[ 'section-panel-settings' ],$arc_query->post);
+      $data = $panel_class->set_data($this->section[ 'section-panel-settings' ], $arc_query->post);
 
       $sequence = json_decode($this->section[ 'section-panel-settings' ][ '_panels_design_preview' ], true);
       // We do want to provide actions so want to use the sequence
       do_action('arc_before_panel_open_a');
-      $nav_item[$panel_number] = null;
+      $nav_item[ $panel_number ] = null;
       // This is for adding nav items to each panel. Used by navs like accordions
       // Although we could do it already, we want to kepp it in the nav class for extensibility
-      echo apply_filters('arc_before_panel_open_f',$nav_item[$panel_number]);
+      echo apply_filters('arc_before_panel_open_f', $nav_item[ $panel_number ]);
 
       // TODO: What's this??
       //       echo '<div class="js-isotope pzarc-section pzarc-section-' . $key . '" data-isotope-options=\'{ "layoutMode": "'.$pzarc_section_info['section-layout-mode'].'","itemSelector": ".pzarc-panel" }\'>';
@@ -123,12 +158,12 @@
 //      echo '<div class="arc-panel-wrapper" style="margin:0;padding:0">';
 //      echo '<div class="arc-panel-title"></div>'; // Use this for future accordion layout
 
-      $odds_evens_section = ($panel_number%2?' odd-section-panel':' even-section-panel');
+      $odds_evens_section = ($panel_number % 2 ? ' odd-section-panel' : ' even-section-panel');
       static $panel_count = 1;
-      $odds_evens_bp = ($panel_count++%2?' odd-blueprint-panel':' even-blueprint-panel');
+      $odds_evens_bp = ($panel_count++ % 2 ? ' odd-blueprint-panel' : ' even-blueprint-panel');
 
 
-      echo '<div class="pzarc-panel pzarc-panel_' . $this->section[ 'section-panel-settings' ][ '_panels_settings_short-name' ] . ' pzarc-panel-no_' . $panel_number . $this->slider[ 'slide' ] . $image_in_bg . $odds_evens_bp.$odds_evens_section.'" ' . $isotope . '>';
+      echo '<div class="pzarc-panel pzarc-panel_' . $this->section[ 'section-panel-settings' ][ '_panels_settings_short-name' ] . ' pzarc-panel-no_' . $panel_number . $this->slider[ 'slide' ] . $image_in_bg . $odds_evens_bp . $odds_evens_section . '" ' . $isotope . '>';
       // Although this loks back to front, this is determining flow compared to components
 
       if ($this->section[ 'section-panel-settings' ][ '_panels_design_background-position' ] != 'none' && ($this->section[ 'section-panel-settings' ][ '_panels_design_components-position' ] == 'bottom' || $this->section[ 'section-panel-settings' ][ '_panels_design_components-position' ] == 'right')) {
@@ -188,7 +223,7 @@
 
       do_action('arc_after_panel_close');
 
-     //  echo '</div>'; // close panel wrapper
+      //  echo '</div>'; // close panel wrapper
     }
 
     /*************************************************
@@ -213,9 +248,6 @@
 
     public function __destruct()
     {
-
-      echo '</section><!-- End section ' . $this->section_number . ' -->';
-      do_action("arc_after_section_{$this->section_number}");
 
     }
 

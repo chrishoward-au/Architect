@@ -16,7 +16,7 @@
      * @package     ReduxFramework
      * @author      Dovy Paukstys (dovy)
      * @author      Kevin Provance (kprovance)
-     * @version     1.2.7
+     * @version     1.2.8
      */
 
 // Exit if accessed directly
@@ -34,7 +34,7 @@
          */
         class ReduxFramework_extension_metaboxes {
 
-            static $version = "1.2.7";
+            static $version = "1.2.8";
 
             public $boxes = array();
             public $post_types = array();
@@ -907,7 +907,7 @@
                             if ( count( $value ) == 1 ) {
                                 $this->meta[ $id ][ $key ] = maybe_unserialize( $value[0] );
                             } else {
-                                $this->meta[ $id ][ $key ] = array_map('maybe_unserialize', $value);
+                                $this->meta[ $id ][ $key ] = array_map( 'maybe_unserialize', $value );
                             }
 
                         }
@@ -1108,6 +1108,8 @@
                     return $post_id;
                 }
 
+                $meta = $this->get_meta($post_id);
+
                 $nonce = $_POST['redux_metaboxes_meta_nonce'];
                 // Verify that the nonce is valid.
                 // Validate fields (if needed)
@@ -1119,7 +1121,6 @@
 
                 // If this is an autosave, our form has not been submitted, so we don't want to do anything.
                 if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
-                    echo "here";
                     return $post_id;
                 }
 
@@ -1145,8 +1146,6 @@
                 $toCompare = array();
                 $toDelete  = array();
 
-                //print_r( $_POST );
-                //exit();
 
                 foreach ( $_POST[ $this->parent->args['opt_name'] ] as $key => $value ) {
                     // Have to remove the escaping for array comparison
@@ -1182,6 +1181,7 @@
 
                 }
 
+
                 $validate = $this->parent->_validate_values( $toSave, $toCompare, $this->sections );
 
                 // Validate fields (if needed)
@@ -1212,14 +1212,25 @@
                     }
                 }
                 //exit();
+                $check = $this->post_type_fields[ $_POST['post_type'] ];
 
                 foreach ( $toSave as $key => $value ) {
                     $prev_value = isset( $this->meta[ $post_id ][ $key ] ) ? $this->meta[ $post_id ][ $key ] : '';
+                    if ( isset( $check[ $key ] ) ) {
+                        unset( $check[ $key ] );
+                    }
                     update_post_meta( $post_id, $key, $value, $prev_value );
                 }
                 foreach ( $toDelete as $key => $value ) {
+                    if ( isset( $check[ $key ] ) ) {
+                        unset( $check[ $key ] );
+                    }
                     $prev_value = isset( $this->meta[ $post_id ][ $key ] ) ? $this->meta[ $post_id ][ $key ] : '';
                     delete_post_meta( $post_id, $key, $prev_value );
+                }
+
+                foreach ( $check as $key => $value ) {
+                    delete_post_meta( $post_id, $key );
                 }
 
                 //update_post_meta( $post_id, $this->parent->args['opt_name'], $toSave );
@@ -1295,9 +1306,7 @@
             }
             global $post;
             $redux     = ReduxFrameworkInstances::get_instance( $opt_name );
-            var_dump($redux);
             $metaboxes = $redux->extensions['metaboxes'];
-            var_dump($metaboxes);
             if ( isset( $thePost ) && is_array( $thePost ) ) {
                 $thePost = $post;
             } else if ( is_integer( $thePost ) ) {
@@ -1305,7 +1314,7 @@
             } else if ( ! is_object( $thePost ) ) {
                 $thePost = $post;
             }
-//var_dump($thePost,$meta_key);
+
             return $metaboxes->get_values( $thePost, $meta_key );
 
 

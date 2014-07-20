@@ -76,6 +76,10 @@ If you require support, please sen an email to support@pizazzwp.com or access th
 3. The screenshot description corresponds to screenshot-3.(png|jpg|jpeg|gif).
 
 == Changelog ==
+
+= 0.7.5 =
+* First public beta
+
 = 0.6 =
 * Switched to Redux for metaboxes and options pages
 

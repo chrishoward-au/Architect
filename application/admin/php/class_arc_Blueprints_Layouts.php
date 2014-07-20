@@ -108,21 +108,26 @@
         case 'id':
           echo $post_id;
           break;
+
         case '_blueprints_short-name':
           if (isset($post_meta[ $column ])) {
             echo $post_meta[ $column ][ 0 ];
           }
           break;
+
         case '_blueprints_description':
           if (isset($post_meta[ $column ])) {
             echo $post_meta[ $column ][ 0 ];
           }
           break;
+
         case '_blueprints_content-source':
-          if (isset($post_meta[ $column ])) {
-            echo ucwords(empty($post_meta[ $column ][ 0 ]) ? 'default' : $post_meta[ $column ][ 0 ]);
-          }
+
+          $content_source = ucwords(empty($post_meta[ $column ][ 0 ]) ? 'default' : $post_meta[ $column ][ 0 ]);
+          $content_source = ($content_source === 'Cpt' ? 'Custom Post Type' : $content_source);
+          echo $content_source;
           break;
+
         case 'navigation':
           switch (true) {
             case empty($post_meta[ '_blueprints_navigation' ][ 0 ]):
@@ -137,6 +142,7 @@
               break;
           }
           break;
+
         case 'panels':
           global $pzarc_panels_array;
           echo '1: ' . $pzarc_panels_array[ $post_meta[ '_blueprints_section-0-panel-layout' ][ 0 ] ];
@@ -1229,8 +1235,7 @@
                 'id'      => $prefix . 'inc-cats',
                 'type'    => 'select',
                 'select2' => array('allowClear' => true),
-                'default' => '',
-                'wpqv'    => 'category__in',
+                //                'wpqv'    => 'category__in',
                 'data'    => 'category',
                 'multi'   => true
             ),
@@ -1239,26 +1244,26 @@
                 'id'      => $prefix . 'all-cats',
                 'type'    => 'button_set',
                 'options' => array('any' => 'Any', 'all' => 'All'),
-                'wpqv'    => 'category__and',
+                //               'wpqv'    => 'category__and',
                 'default' => 'any',
             ),
             array(
                 'title'   => __('Exclude categories', 'pzarchitect'),
                 'id'      => $prefix . 'exc-cats',
                 'type'    => 'select',
-                'default' => '',
                 'select2' => array('allowClear' => true),
-                'wpqv'    => 'category__not_in',
+                //                'wpqv'  => 'category__not_in',
                 'data'    => 'category',
                 'multi'   => true
             ),
             array(
-                'title'   => __('Include sub-categories on archives', 'pzarchitect'),
-                'id'      => $prefix . 'sub-cat-archives',
-                'type'    => 'switch',
-                'on'      => 'Yes',
-                'off'     => 'No',
-                'default' => true,
+                'title'    => __('Include sub-categories on archives', 'pzarchitect'),
+                'id'       => $prefix . 'sub-cats',
+                'type'     => 'switch',
+                'on'       => 'Yes',
+                'off'      => 'No',
+                'default'  => false,
+                'subtitle' => 'This requires a specified post type, not Defaults'
             ),
             array(
                 'id'     => $prefix . 'categories-section-end',
@@ -1273,22 +1278,18 @@
                 'indent' => true
             ),
             array(
-                'title'   => __('Tags', 'pzarchitect'),
-                'id'      => $prefix . 'inc-tags',
-                'type'    => 'select',
-                'select2' => array('allowClear' => true),
-                'default' => '',
-                'cols'    => 4,
-                'data'    => 'tags',
-                'multi'   => true
+                'title' => __('Tags', 'pzarchitect'),
+                'id'    => $prefix . 'inc-tags',
+                'type'  => 'select',
+                //              'select2' => array('allowClear' => true),
+                'data'  => 'tags',
+                'multi' => true
             ),
             array(
                 'title'   => __('Exclude tags', 'pzarchitect'),
                 'id'      => $prefix . 'exc-tags',
                 'type'    => 'select',
-                'default' => '',
                 'select2' => array('allowClear' => true),
-                'cols'    => 4,
                 'data'    => 'tags',
                 'multi'   => true
             ),
@@ -1323,8 +1324,8 @@
                 'title'   => __('Taxonomies operator', 'pzarchitect'),
                 'id'      => $prefix . 'tax-op',
                 'type'    => 'button_set',
-                'options' => array('AND' => 'All', 'IN' => 'Any','NOT IN'=>'None'),
-                'default' => 'ALL',
+                'options' => array('AND' => 'All', 'IN' => 'Any', 'NOT IN' => 'None'),
+                'default' => 'IN',
                 'hint'    => array('content' => __('Display posts containing all, any or none of the taxonomies', 'pzarchitect')),
             ),
             //TODO: Add taxomonies to exclude

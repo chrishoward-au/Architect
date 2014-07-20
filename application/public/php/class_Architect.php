@@ -46,6 +46,7 @@
 
       pzarc_set_defaults();
 
+      require_once(PZARC_PLUGIN_APP_PATH . '/public/php/class_arc_Section.php');
       require_once(PZARC_PLUGIN_APP_PATH . '/public/php/class_arc_Blueprint.php');
 
       $this->build = new arc_Blueprint($blueprint);
@@ -69,7 +70,6 @@
       // Good to go. Load all the classes
 
       require_once(PZARC_PLUGIN_APP_PATH . '/shared/architect/php/arc-functions.php');
-      require_once(PZARC_PLUGIN_APP_PATH . '/public/php/class_arc_Section.php');
       require_once(PZARC_PLUGIN_APP_PATH . '/public/php/class_arc_Navigator.php');
       require_once(PZARC_PLUGIN_APP_PATH . '/public/php/class_arc_Pagination.php');
 
@@ -642,6 +642,7 @@
       if ($this->build->blueprint[ '_blueprints_navigation' ] == 'pagination') {
 
         // This is meant ot be the magic tonic to make pagination work on static front page. Bah!! Didnt' for me - ever
+        // Ah! It only doesn't work with Headway!
         if (get_query_var('paged')) {
 
           $paged = get_query_var('paged');
@@ -681,9 +682,25 @@
       // TODO: We're going to have to make this pluggable too! :P Probably with a loop?
 
       /** General content filters */
-      $query_options[ 'category__in' ]     = (!empty($this->criteria[ 'category__in' ]) ? $this->criteria[ 'category__in' ] : null);
-      $query_options[ 'tag__in' ]          = (!empty($this->criteria[ 'tag__in' ]) ? $this->criteria[ 'tag__in' ] : null);
+      $cat_ids     = $this->criteria[ 'category__in' ];
+//      var_dump(get_the_category(),is_category());
+
+      // TODO: This doesn't work right yet
+//      if ($this->build->blueprint[ '_content_general_sub-cats' ]  && is_category()) {
+//        $current_cat = get_the_category();
+//        $archive_cat = $current_cat->cat_ID;
+//        $cat_kids = get_categories(array('child_of' => $archive_cat));
+//
+//        foreach ($cat_kids as $kid) {
+//          $cat_ids[] = $kid->cat_ID;
+//        }
+//
+//      }
+
+      $query_options[ 'category__in' ]     = (!empty($this->criteria[ 'category__in' ]) ? $cat_ids: null);
       $query_options[ 'category__not_in' ] = (!empty($this->criteria[ 'category__in' ]) ? $this->criteria[ 'category__not_in' ] : null);
+
+      $query_options[ 'tag__in' ]          = (!empty($this->criteria[ 'tag__in' ]) ? $this->criteria[ 'tag__in' ] : null);
       $query_options[ 'tag__not_in' ]      = (!empty($this->criteria[ 'tag__in' ]) ? $this->criteria[ 'tag__not_in' ] : null);
 
 
@@ -769,6 +786,8 @@
         $query_options[ 'posts_per_page' ] = count($query_options[ 'post__in' ]);
       }
 
+  //    var_dump($query_options);
+
       $this->arc_query = new WP_Query($query_options);
 
     }
@@ -779,15 +798,8 @@
      */
     private function loop($section_no)
     {
-      $section[ $section_no ] = arc_SectionFactory::create($section_no,
-                                                           $this->build->blueprint[ 'section' ][ ($section_no - 1) ],
-                                                           $this->build->blueprint[ '_blueprints_content-source' ],
-                                                           $this->build->blueprint[ '_blueprints_navigation' ],
-                                                           $this->build->blueprint[ '_blueprints_section-' . ($section_no - 1) . '-layout-mode' ],
-                                                           $this->build->blueprint[ '_blueprints_navigator-slider-engine' ],
-                                                           $this->build->blueprint[ '_blueprints_section-' . ($section_no - 1) . '-title' ]
-      );
 
+      $section[ $section_no ] = $this->build->blueprint['section_object'][$section_no];
       // oops! Need to get default content type when defaults chosen.
       $post_type = (empty($this->build->blueprint[ '_blueprints_content-source' ]) || 'defaults' === $this->build->blueprint[ '_blueprints_content-source' ] ?
           (empty($this->arc_query->queried_object->post_type) ? 'post' : $this->arc_query->queried_object->post_type) :
@@ -840,6 +852,8 @@
 
       // Does this work for non
 
+      $section[ $section_no ]->open_section();
+
       while ($this->arc_query->have_posts()) {
 
         $this->arc_query->the_post();
@@ -886,6 +900,7 @@
         }
 
       }
+      $section[ $section_no ]->close_section();
 
       // Unsetting causes it to run the destruct, which closes the div!
       unset($section[ $section_no ]);

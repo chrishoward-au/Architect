@@ -117,7 +117,16 @@
       }
 
       /** FEATURED IMAGE */
-      $thumb_id    = get_post_thumbnail_id();
+      $thumb_id = get_post_thumbnail_id();
+      if (!$thumb_id && $section[ '_panels_design_use-embedded-images' ]) {
+        $args        = array('post_type'   => 'attachment',
+                             'numberposts' => -1,
+                             'post_status' => null,
+                             'post_parent' => get_the_ID());
+        $attachments = get_posts($args);
+        $thumb_id    = (!empty($attachments[ 0 ]) && wp_attachment_is_image($attachments[ 0 ]->ID) ? $attachments[ 0 ]->ID : false);
+      }
+
       $focal_point = get_post_meta($thumb_id, 'pzgp_focal_point', true);
       $focal_point = (empty($focal_point) ? array(50, 50) : explode(',', $focal_point));
 
@@ -179,22 +188,22 @@
       for ($i = 1; $i <= $cfcount; $i++) {
         // var_dump($section);
         // the settings come from section
-        $data[ 'cfield' ][ $i ][ 'group' ]            = $section[ '_panels_design_cfield-' . $i . '-group' ];
-        $data[ 'cfield' ][ $i ][ 'name' ]             = $section[ '_panels_design_cfield-' . $i . '-name' ];
-        $data[ 'cfield' ][ $i ][ 'field-type' ]       = $section[ '_panels_design_cfield-' . $i . '-field-type' ];
-        $data[ 'cfield' ][ $i ][ 'date-format' ]      = $section[ '_panels_design_cfield-' . $i . '-date-format' ];
-        $data[ 'cfield' ][ $i ][ 'wrapper-tag' ]      = $section[ '_panels_design_cfield-' . $i . '-wrapper-tag' ];
-        $data[ 'cfield' ][ $i ][ 'class-name' ]       = $section[ '_panels_design_cfield-' . $i . '-class-name' ];
-        $data[ 'cfield' ][ $i ][ 'link-field' ]       = $section[ '_panels_design_cfield-' . $i . '-link-field' ];
-        $data[ 'cfield' ][ $i ][ 'prefix-text' ]      = $section[ '_panels_design_cfield-' . $i . '-prefix-text' ];
-        $data[ 'cfield' ][ $i ][ 'prefix-image' ]     = $section[ '_panels_design_cfield-' . $i . '-prefix-image' ];
-        $data[ 'cfield' ][ $i ][ 'suffix-text' ]      = $section[ '_panels_design_cfield-' . $i . '-suffix-text' ];
-        $data[ 'cfield' ][ $i ][ 'suffix-image' ]     = $section[ '_panels_design_cfield-' . $i . '-suffix-image' ];
-        $data[ 'cfield' ][ $i ][ 'ps-images-width' ]  = $section[ '_panels_design_cfield-' . $i . '-ps-images-width' ];
-        $data[ 'cfield' ][ $i ][ 'ps-images-height' ] = $section[ '_panels_design_cfield-' . $i . '-ps-images-height' ];
+        $data[ 'cfield' ][ $i ][ 'group' ]       = $section[ '_panels_design_cfield-' . $i . '-group' ];
+        $data[ 'cfield' ][ $i ][ 'name' ]        = $section[ '_panels_design_cfield-' . $i . '-name' ];
+        $data[ 'cfield' ][ $i ][ 'field-type' ]  = $section[ '_panels_design_cfield-' . $i . '-field-type' ];
+        $data[ 'cfield' ][ $i ][ 'date-format' ] = $section[ '_panels_design_cfield-' . $i . '-date-format' ];
+        $data[ 'cfield' ][ $i ][ 'wrapper-tag' ] = $section[ '_panels_design_cfield-' . $i . '-wrapper-tag' ];
+        $data[ 'cfield' ][ $i ][ 'class-name' ]  = $section[ '_panels_design_cfield-' . $i . '-class-name' ];
+        $data[ 'cfield' ][ $i ][ 'link-field' ]  = $section[ '_panels_design_cfield-' . $i . '-link-field' ];
+        $data[ 'cfield' ][ $i ][ 'prefix-text' ] = $section[ '_panels_design_cfield-' . $i . '-prefix-text' ];
+        $params                                  = array('width'  => str_replace($section[ '_panels_design_cfield-' . $i . '-ps-images-width' ][ 'units' ], '', $section[ '_panels_design_cfield-' . $i . '-ps-images-width' ][ 'width' ]),
+                                                         'height' => str_replace($section[ '_panels_design_cfield-' . $i . '-ps-images-height' ][ 'units' ], '', $section[ '_panels_design_cfield-' . $i . '-ps-images-height' ][ 'height' ]));
+
+        $data[ 'cfield' ][ $i ][ 'prefix-image' ] = bfi_thumb($section[ '_panels_design_cfield-' . $i . '-prefix-image' ][ 'url' ], $params);
+        $data[ 'cfield' ][ $i ][ 'suffix-text' ]  = $section[ '_panels_design_cfield-' . $i . '-suffix-text' ];
+        $data[ 'cfield' ][ $i ][ 'suffix-image' ] = bfi_thumb($section[ '_panels_design_cfield-' . $i . '-suffix-image' ][ 'url' ], $params);
         // The content itself comes from post meta
         $data[ 'cfield' ][ $i ][ 'value' ] = $postmeta[ $section[ '_panels_design_cfield-' . $i . '-name' ] ][ 0 ];
-
         // TODO:Bet this doesn't work!
         if (!empty($section[ '_panels_design_cfield-' . $i . '-link-field' ])) {
           $data[ 'cfield' ][ $i ][ 'link-field' ] = $postmeta[ $section[ '_panels_design_cfield-' . $i . '-link-field' ] ][ 0 ];
@@ -520,18 +529,18 @@
 
             $prefix_image = '';
             $suffix_image = '';
-            if (!empty($v[ 'prefix-image' ][ 'url' ])) {
-              $prefix_image = '<img src="' . bfi_thumb($v[ 'prefix-image' ][ 'url' ]) . '">';
+            if (!empty($v[ 'prefix-image' ])) {
+              $prefix_image = '<img src="' . $v[ 'prefix-image' ]. '" class="pzarc-presuff-image prefix-image">';
             }
-            if (!empty($v[ 'suffix-image' ][ 'url' ])) {
-              $suffix_image = '<img src="' . bfi_thumb($v[ 'prefix-image' ][ 'url' ]) . '">';
+            if (!empty($v[ 'suffix-image' ])) {
+              $suffix_image = '<img src="' . $v[ 'suffix-image' ]. '" class="pzarc-presuff-image suffix-image">';
             }
 
 
             $content = $prefix_image . $v[ 'prefix-text' ] . $content . $v[ 'suffix-text' ] . $suffix_image;
 
             if (!empty($v[ 'link-field' ])) {
-              $content = '<a href="'.$v[ 'link-field' ].'">'.$content.'</a>';
+              $content = '<a href="' . $v[ 'link-field' ] . '">' . $content . '</a>';
             }
 
             if ('none' !== $v[ 'wrapper-tag' ]) {
