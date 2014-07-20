@@ -147,7 +147,7 @@
           $image_in_bg = ' using-bgimages';
           break;
 
-        case 'aligned':
+        case 'align':
           $image_in_bg = ' using-aligned-bgimages';
           break;
 

@@ -144,7 +144,7 @@
          *    PANELS STYLING
          *********************************************************/
 
-        case (strpos($key, '_panels_styling') === 0 && !empty($value) && !empty($_architect_options['architect_enable_styling'])):
+        case (strpos($key, '_panels_styling') === 0 && !empty($value) && !empty($_architect_options[ 'architect_enable_styling' ])):
           //           var_dump($key,$value);
           switch (true) {
 
@@ -372,7 +372,23 @@
     // Put this in an if since it's only when we are using bg images.
     // NOTE: It can affect wide screen content if you set the image smaller than the panel width
 //    $pzarc_contents .= $class_prefix . '.using-bgimages .pzarc-components{max-width:' . $pzarc_panels[ '_panels_design_background-image-max' ][ 'width' ] . ';' . $pzarc_tb . ':' . $pzarc_components_nudge_y . '%;' . $pzarc_lr . ':' . $pzarc_components_nudge_x . '%;width:' . $pzarc_components_width . '%;}';
-    $pzarc_contents .= $class_prefix . '.using-bgimages .pzarc-components{' . $pzarc_tb . ':' . $pzarc_components_nudge_y . '%;' . $pzarc_lr . ':' . $pzarc_components_nudge_x . '%;width:' . $pzarc_components_width . '%;}';
+    if ('fill' === $pzarc_panels[ '_panels_design_background-position' ]) {
+      $pzarc_contents .= $class_prefix . '.using-bgimages .pzarc-components{' . $pzarc_tb . ':' . $pzarc_components_nudge_y . '%;' . $pzarc_lr . ':' . $pzarc_components_nudge_x . '%;width:' . $pzarc_components_width . '%;}';
+    }
+    if ('align' === $pzarc_panels[ '_panels_design_background-position' ]) {
+
+
+      switch ($pzarc_components_position) {
+        case 'left':
+          $pzarc_contents .= $class_prefix . '.using-aligned-bgimages figure {left:' . ($pzarc_components_width+$pzarc_components_nudge_x) . '%;}';
+          $pzarc_contents .= $class_prefix . '.using-aligned-bgimages .pzarc-components {' . $pzarc_tb . ':' . $pzarc_components_nudge_y . '%;' . $pzarc_lr . ':' . $pzarc_components_nudge_x . '%;width:' . $pzarc_components_width . '%;}';
+          break;
+        case 'right':
+          $pzarc_contents .= $class_prefix . '.using-aligned-bgimages figure {right:' . ($pzarc_components_width+$pzarc_components_nudge_x) . '%;}';
+          $pzarc_contents .= $class_prefix . '.using-aligned-bgimages .pzarc-components {' . $pzarc_tb . ':' . $pzarc_components_nudge_y . '%;' . 'left:' . (100-$pzarc_components_nudge_x-$pzarc_components_width) . '%;width:' . $pzarc_components_width . '%;}';
+          break;
+      }
+    }
 
 //    $pzarc_contents .= $class_prefix . ' .pzarc-components{max-width:'.$pzarc_panels['_panels_design_background-image-max']['width'].';' . $pzarc_tb . ':' . $pzarc_components_nudge_y . '%;' . $pzarc_lr . ':' . $pzarc_components_nudge_x . '%;width:' . $pzarc_components_width . '%;}';
 

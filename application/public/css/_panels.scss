@@ -75,21 +75,6 @@
     float: left;
   }
 
-  &.using-bgimages {
-    // If itis aligned, it will be relaitve per below
-    .pzarc-components {
-      position: absolute;
-      z-index: 1;
-    }
-
-    > figure {
-      position: relative;
-      //top: 0;
-      //left: 0;
-      z-index: 0;
-    }
-  }
-
   .vertical-content {
     top: 0;
     bottom: 0;
@@ -112,6 +97,11 @@
     overflow: hidden;
     position: relative;
 
+    img {
+      display: block;
+      height: auto;
+    }
+
     &.fill {
       &.trim {
         max-width: none;
@@ -125,24 +115,53 @@
           left: -50%;
         }
       }
+
       &.scale img {
         max-width: 100%;
       }
     }
 
-    img {
-      display: block;
-      height: auto;
-      max-width: 100%;
-
-    }
     &.align {
-      position: relative;
+//      position: relative;
+      top:0;
       &.scale {
         max-width: none;
       }
+      &.scale img {
+        max-width: 100%;
+      }
     }
 
+  }
+  &.using-bgimages {
+    .pzarc-components {
+      position: absolute;
+      z-index: 1;
+    }
+
+    > figure {
+      position: relative;
+      //top: 0;
+      //left: 0;
+      z-index: 0;
+    }
+  }
+  &.using-aligned-bgimages {
+    .pzarc-components {
+      position: relative;
+      z-index: 1;
+    }
+
+    > figure {
+      position: absolute;
+      //top: 0;
+      //left: 0;
+      z-index: 0;
+      img {
+        max-width:none;
+      }
+
+    }
   }
 
   .pzarc-presuff-image {

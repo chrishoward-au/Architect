@@ -127,12 +127,6 @@
     .pzarchitect .pzarc-panel .entry-customfieldgroup {
       display: block;
       float: left; }
-    .pzarchitect .pzarc-panel.using-bgimages .pzarc-components {
-      position: absolute;
-      z-index: 1; }
-    .pzarchitect .pzarc-panel.using-bgimages > figure {
-      position: relative;
-      z-index: 0; }
     .pzarchitect .pzarc-panel .vertical-content {
       top: 0;
       bottom: 0;
@@ -149,6 +143,9 @@
       z-index: 0;
       overflow: hidden;
       position: relative; }
+      .pzarchitect .pzarc-panel figure.pzarc-bg-image img {
+        display: block;
+        height: auto; }
       .pzarchitect .pzarc-panel figure.pzarc-bg-image.fill.trim {
         max-width: none;
         display: inline-block;
@@ -160,14 +157,26 @@
           left: -50%; }
       .pzarchitect .pzarc-panel figure.pzarc-bg-image.fill.scale img {
         max-width: 100%; }
-      .pzarchitect .pzarc-panel figure.pzarc-bg-image img {
-        display: block;
-        height: auto;
-        max-width: 100%; }
       .pzarchitect .pzarc-panel figure.pzarc-bg-image.align {
-        position: relative; }
+        top: 0; }
         .pzarchitect .pzarc-panel figure.pzarc-bg-image.align.scale {
           max-width: none; }
+        .pzarchitect .pzarc-panel figure.pzarc-bg-image.align.scale img {
+          max-width: 100%; }
+    .pzarchitect .pzarc-panel.using-bgimages .pzarc-components {
+      position: absolute;
+      z-index: 1; }
+    .pzarchitect .pzarc-panel.using-bgimages > figure {
+      position: relative;
+      z-index: 0; }
+    .pzarchitect .pzarc-panel.using-aligned-bgimages .pzarc-components {
+      position: relative;
+      z-index: 1; }
+    .pzarchitect .pzarc-panel.using-aligned-bgimages > figure {
+      position: absolute;
+      z-index: 0; }
+      .pzarchitect .pzarc-panel.using-aligned-bgimages > figure img {
+        max-width: none; }
     .pzarchitect .pzarc-panel .pzarc-presuff-image {
       vertical-align: middle; }
   .pzarchitect .pzarc-navigator {
