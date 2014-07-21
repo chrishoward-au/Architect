@@ -91,9 +91,10 @@
       $postmeta = get_post_meta(get_the_ID());
 
       // TODO: Will need to refine these to be based on content type
-      if ($toshow[ 'title' ][ 'show' ]) {
+//      if ($toshow[ 'title' ][ 'show' ]) {
+      // Enable this so it is available to lightboxes
         $data[ 'title' ] = get_the_title();
-      }
+//      }
       if ($toshow[ 'content' ][ 'show' ]) {
         $data[ 'content' ] = apply_filters('the_content', get_the_content());
       }
@@ -377,7 +378,7 @@
             $link = ('url' === $section[ '_panels_design_link-bgimage' ]) ? '<a href="' . $section[ '_panels_design_link-bgimage-url' ] . '" title="' . $section[ '_panels_design_link-bgimage-url-tooltip' ] . '">' : $panel_def[ 'postlink' ];
             break;
           case 'original':
-            $link = '<a class="lightbox lightbox-'.$rsid.'" href="' . $data['bgimage']['original'][0] . '" title="' . $section[ '_panels_design_link-bgimage-url-tooltip' ] . '">';
+            $link = '<a class="lightbox lightbox-'.$rsid.'" href="' . $data['bgimage']['original'][0] . '" title="' . $data['title'] . '">';
           break;
         }
         $panel_def[ $component ] = str_replace('{{postlink}}', $link, $panel_def[ $component ]);
