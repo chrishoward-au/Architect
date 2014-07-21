@@ -252,6 +252,7 @@ Pagination Styles
 .swiper-nav {
   max-height: 80px;
   width: 100%;
+  position:relative;
   &:hover {
     .skip-right,
     .skip-left {
@@ -326,6 +327,7 @@ Pagination Styles
 
 .swiper-nav.thumbs .swiper-slide {
   max-width: initial;
+  display:inline-block;
 }
 
 .swiper-nav .swiper-slide:first-child span {

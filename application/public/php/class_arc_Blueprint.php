@@ -115,6 +115,7 @@
           = array(
           'section-enable'         => !empty($panel[ 0 ]),
           'section-panel-settings' => $panel[ 1 ],
+          'section-rsid'           => 'rsid' . rand(1000, 9999)
       );
 
       if (!$panel[ 0 ]) {
@@ -143,6 +144,7 @@
           = array(
           'section-enable'         => !empty($panel[ 0 ]),
           'section-panel-settings' => $panel[ 2 ],
+          'section-rsid'           => 'rsid' . rand(1000, 9999)
       );
 
       /** Add panel settings for Section 3 */
@@ -163,6 +165,7 @@
           = array(
           'section-enable'         => !empty($panel[ 0 ]),
           'section-panel-settings' => $panel[ 3 ],
+          'section-rsid'           => 'rsid' . rand(1000, 9999)
       );
 
       unset($panel);
@@ -184,8 +187,9 @@
 //
 //    }
 
-  function __destruct(){
-  }
+    function __destruct()
+    {
+    }
 
   }
 

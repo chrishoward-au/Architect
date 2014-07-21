@@ -56,8 +56,14 @@
         wp_enqueue_style('pzarc-admin-blueprints-css', PZARC_PLUGIN_APP_URL . '/admin/css/arc-admin-blueprints.css');
 
         wp_enqueue_script('jquery-pzarc-metaboxes-blueprints', PZARC_PLUGIN_APP_URL . '/admin/js/arc-metaboxes-blueprints.js', array('jquery'));
+
         wp_enqueue_script('js-isotope-v2');
+
+        wp_enqueue_script('js-magnific');
+
+
         // wp_enqueue_script('jquery-masonary', PZARC_PLUGIN_URL . 'includes/masonry.pkgd.min.js', array('jquery'));
+
         // wp_enqueue_script('jquery-lorem', PZARC_PLUGIN_URL . 'includes/jquery.lorem.js', array('jquery'));
       }
 //      global $pzcustom_post_types;
@@ -594,9 +600,12 @@
                   'default'  => 1,
                   'min'      => 1,
                   'max'      => 99,
-                  'subtitle' => __('This is how many posts or pages will show.'),
-                  'desc'     => __('If using pagination, this will be the number per page.'),
-                  'required' => array($prefix . 'section-' . $i . '-panels-limited', '=', true)
+                  'subtitle' => __('This is how many posts will show if Limit enabled above','pzarchitect'),
+                  'desc'     => __('If using pagination, this will be the number per page.','pzarchitect'),
+//                  'required' => array(
+//                      array( $prefix . 'section-' . $i . '-panels-limited', '=', true ),
+//                      array( $prefix . 'navigation', '!=', 'pagination' ),
+//                  )
               ),
               array(
                   'title'         => __('Columns wide screen', 'pzarchitect'),
@@ -1442,7 +1451,7 @@
         )
     );
 
-    /** Galleries */
+    /** GALLERIES */
     $prefix      = '_content_galleries_';
     $sections[ ] = array(
         'title'      => 'Galleries',

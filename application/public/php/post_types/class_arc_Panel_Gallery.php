@@ -19,9 +19,10 @@
      * @param $content_type : Content type
      * @param $data : Post data array
      * @param $section : Section settings
+     * @param $rsid
      */
     // $panel_def is not by reference to  ensure it doesn't get changed accidentally.
-    public static function render($component, $panel_def, $content_type, &$data, &$section) { }
+    public static function render($component, $panel_def, $content_type, &$data, &$section, $rsid) { }
 
     static function panel_def()
     {
@@ -188,7 +189,7 @@
       }
 
 
-      $data[ 'bgimage' ] = '';
+      $data[ 'bgimage' ] = array();
       if ($showbgimage) {
 
         $focal_point = get_post_meta($post->ID, 'pzgp_focal_point', true);
@@ -198,16 +199,18 @@
         $fp_x = $fp_x > 1 ? $fp_x / 100 : $fp_x;
         $fp_y = $fp_y > 1 ? $fp_y / 100 : $fp_y;
 
-        $data[ 'bgimage' ] = wp_get_attachment_image($post->ID, array($width,
-                                                                      $height,
-                                                                      'bfi_thumb' => true,
-                                                                      'crop'      => array(
-                                                                          $fp_x,
-                                                                          $fp_y,
-                                                                          'focalpt' => $section[ '_panels_settings_image-focal-point' ]
-                                                                      ),
+        $data[ 'bgimage' ]['thumb']               = wp_get_attachment_image($post->ID, array($width,
+                                                                                    $height,
+                                                                                    'bfi_thumb' => true,
+                                                                                    'crop'      => array(
+                                                                                        $fp_x,
+                                                                                        $fp_y,
+                                                                                        'focalpt' => $section[ '_panels_settings_image-focal-point' ]
+                                                                                    ),
             )
-        ); //WP seems to smartly figure out which of its saved images to use! Now we jsut gotta get it t work with focal point
+        );
+        $data[ 'bgimage' ][ 'original' ] = wp_get_attachment_image_src($post->ID,'full');
+        //WP seems to smartly figure out which of its saved images to use! Now we jsut gotta get it t work with focal point
 //       $data[ 'bgimage' ] = '<img src="'.bfi_thumb($post->guid, array($width, $height, 'crop' => true)).'">'; //WP seems to smartly figure out which of its saved images to use! Now we jsut gotta get it t work with focal point
 
       }
@@ -251,7 +254,7 @@
 
   class arc_Panel_gallery_Wrapper extends arc_Panel_gallery
   {
-    public static function render($component, $panel_def, $content_type, &$data, &$section)
+    public static function render($component, $panel_def, $content_type, &$data, &$section, $rsid)
     {
 //      foreach ($data[ 'components-open' ] as $key => $value) {
 //        $template[ $type ] = str_replace('{{' . $key . '}}', $value, $template[ $type ]);
@@ -277,9 +280,10 @@
      * @param $content_type (Post type source - eg. post, page, gallery)
      * @param $data
      * @param $section
+     * @param $rsid
      * @return mixed|void
      */
-    public static function render($component, $panel_def, $content_type, &$data, &$section)
+    public static function render($component, $panel_def, $content_type, &$data, &$section, $rsid)
     {
       $panel_def[ $component ] = str_replace('{{title}}', $data[ 'title' ], $panel_def[ $component ]);
       if ($section[ '_panels_design_link-titles' ]) {
@@ -295,7 +299,7 @@
 
   class arc_Panel_gallery_Meta extends arc_Panel_gallery
   {
-    public static function render($component, $panel_def, $content_type, &$data, &$section)
+    public static function render($component, $panel_def, $content_type, &$data, &$section, $rsid)
     {
       // get $metaX definition and construct string, then replace metaXinnards
       $panel_def[ $component ] = str_replace('{{datetime}}', $data[ 'meta' ][ 'datetime' ], $panel_def[ $component ]);
@@ -327,7 +331,7 @@
 
   class arc_Panel_gallery_Image extends arc_Panel_gallery
   {
-    public static function render($component, $panel_def, $content_type, &$data, &$section)
+    public static function render($component, $panel_def, $content_type, &$data, &$section, $rsid)
     {
       if ('page' === $section[ '_panels_design_link-image' ] || 'url' === $section[ '_panels_design_link-image' ]) {
         $link                    = ('url' === $section[ '_panels_design_link-image' ]) ? '<a href="' . $section[ '_panels_design_link-image-url' ] . '" title="' . $section[ '_panels_design_link-image-url-tooltip' ] . '">' : $panel_def[ 'postlink' ];
@@ -361,13 +365,21 @@
 
   class arc_Panel_gallery_bgimage extends arc_Panel_gallery
   {
-    public static function render($component, $panel_def, $content_type, &$data, &$section)
+    public static function render($component, $panel_def, $content_type, &$data, &$section, $rsid)
     {
-      $panel_def[ $component ] = str_replace('{{bgimage}}', $data[ 'bgimage' ], $panel_def[ $component ]);
+      $panel_def[ $component ] = str_replace('{{bgimage}}', $data[ 'bgimage' ]['thumb'], $panel_def[ $component ]);
       $panel_def[ $component ] = str_replace('{{trim-scale}}', ' ' . $section[ '_panels_design_background-position' ] . ' ' . $section[ '_panels_design_background-image-resize' ], $panel_def[ $component ]);
 
-      if ('page' === $section[ '_panels_design_link-bgimage' ] || 'url' === $section[ '_panels_design_link-bgimage' ]) {
-        $link                    = ('url' === $section[ '_panels_design_link-bgimage' ]) ? '<a href="' . $section[ '_panels_design_link-bgimage-url' ] . '" title="' . $section[ '_panels_design_link-bgimage-url-tooltip' ] . '">' : $panel_def[ 'postlink' ];
+      if ('none' !== $section[ '_panels_design_link-bgimage' ]) {
+        switch ($section[ '_panels_design_link-bgimage' ]) {
+          case 'page':
+          case 'url':
+            $link = ('url' === $section[ '_panels_design_link-bgimage' ]) ? '<a href="' . $section[ '_panels_design_link-bgimage-url' ] . '" title="' . $section[ '_panels_design_link-bgimage-url-tooltip' ] . '">' : $panel_def[ 'postlink' ];
+            break;
+          case 'original':
+            $link = '<a class="lightbox lightbox-'.$rsid.'" href="' . $data['bgimage']['original'][0] . '" title="' . $section[ '_panels_design_link-bgimage-url-tooltip' ] . '">';
+          break;
+        }
         $panel_def[ $component ] = str_replace('{{postlink}}', $link, $panel_def[ $component ]);
         $panel_def[ $component ] = str_replace('{{closepostlink}}', '</a>', $panel_def[ $component ]);
       }
@@ -380,7 +392,7 @@
 
   class arc_Panel_gallery_Content extends arc_Panel_gallery
   {
-    public static function render($component, $panel_def, $content_type, &$data, &$section)
+    public static function render($component, $panel_def, $content_type, &$data, &$section, $rsid)
     {
       $panel_def[ $component ] = str_replace('{{content}}', $data[ 'content' ], $panel_def[ $component ]);
       if ($section[ '_panels_design_thumb-position' ] != 'none') {
@@ -419,9 +431,10 @@
      * @param $content_type
      * @param $data
      * @param $section
+     * @param $rsid
      * @return mixed|void
      */
-    public static function render($component, $panel_def, $content_type, &$data, &$section)
+    public static function render($component, $panel_def, $content_type, &$data, &$section, $rsid)
     {
       //    var_dump($data);
       $panel_def[ $component ] = str_replace('{{excerpt}}', $data[ 'excerpt' ], $panel_def[ $component ]);
@@ -460,7 +473,7 @@
 
   class arc_Panel_gallery_Custom extends arc_Panel_gallery
   {
-    public static function render($component, $panel_def, $content_type, &$data, &$section)
+    public static function render($component, $panel_def, $content_type, &$data, &$section, $rsid)
     {
 
       // TODO: Is this still relevant?

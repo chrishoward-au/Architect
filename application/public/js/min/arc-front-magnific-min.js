@@ -1,0 +1,1 @@
+jQuery(document).ready(function(){"use strict";var e=jQuery(".pzarchitect .pzarc-section"),t="";e.each(function(e){t=this.id;var a=jQuery("a.lightbox-"+t);a.length>0&&a.magnificPopup({type:"image",gallery:{enabled:!0}})})});

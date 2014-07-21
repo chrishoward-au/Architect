@@ -682,7 +682,7 @@
       // TODO: We're going to have to make this pluggable too! :P Probably with a loop?
 
       /** General content filters */
-      $cat_ids     = $this->criteria[ 'category__in' ];
+      $cat_ids = $this->criteria[ 'category__in' ];
 //      var_dump(get_the_category(),is_category());
 
       // TODO: This doesn't work right yet
@@ -697,11 +697,11 @@
 //
 //      }
 
-      $query_options[ 'category__in' ]     = (!empty($this->criteria[ 'category__in' ]) ? $cat_ids: null);
+      $query_options[ 'category__in' ]     = (!empty($this->criteria[ 'category__in' ]) ? $cat_ids : null);
       $query_options[ 'category__not_in' ] = (!empty($this->criteria[ 'category__in' ]) ? $this->criteria[ 'category__not_in' ] : null);
 
-      $query_options[ 'tag__in' ]          = (!empty($this->criteria[ 'tag__in' ]) ? $this->criteria[ 'tag__in' ] : null);
-      $query_options[ 'tag__not_in' ]      = (!empty($this->criteria[ 'tag__in' ]) ? $this->criteria[ 'tag__not_in' ] : null);
+      $query_options[ 'tag__in' ]     = (!empty($this->criteria[ 'tag__in' ]) ? $this->criteria[ 'tag__in' ] : null);
+      $query_options[ 'tag__not_in' ] = (!empty($this->criteria[ 'tag__in' ]) ? $this->criteria[ 'tag__not_in' ] : null);
 
 
       /** Custom taxonomies  */
@@ -752,7 +752,10 @@
                 }
               }
               break;
+
+            case 'images':
             case 'ids':
+
               $ids = !empty($overrides) ? $overrides : $this->criteria[ $prefix . 'specific-images' ];
 
               $query_options[ 'post_type' ]           = 'attachment';
@@ -786,7 +789,7 @@
         $query_options[ 'posts_per_page' ] = count($query_options[ 'post__in' ]);
       }
 
-  //    var_dump($query_options);
+      //    var_dump($query_options);
 
       $this->arc_query = new WP_Query($query_options);
 
@@ -799,7 +802,7 @@
     private function loop($section_no)
     {
 
-      $section[ $section_no ] = $this->build->blueprint['section_object'][$section_no];
+      $section[ $section_no ] = $this->build->blueprint[ 'section_object' ][ $section_no ];
       // oops! Need to get default content type when defaults chosen.
       $post_type = (empty($this->build->blueprint[ '_blueprints_content-source' ]) || 'defaults' === $this->build->blueprint[ '_blueprints_content-source' ] ?
           (empty($this->arc_query->queried_object->post_type) ? 'post' : $this->arc_query->queried_object->post_type) :

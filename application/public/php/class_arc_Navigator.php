@@ -42,8 +42,8 @@
 
       if ('thumbs' === $this->blueprint[ '_blueprints_navigator' ]) {
         echo '<div class="swiper-nav swiper-container icomoon ' . $this->blueprint[ '_blueprints_navigator' ] . '">';
-        echo '<a class="pager skip-left icon-btn-style" href="#"><span class="icon-' . $skip_left . '"></span></a>';
-        echo '<a class="pager skip-right icon-btn-style" href="#"><span class="icon-' . $skip_right . '"></span></a>';
+        echo '<button class="pager skip-left icon-btn-style"><span class="icon-' . $skip_left . '"></span></button>';
+        echo '<button class="pager skip-right icon-btn-style"><span class="icon-' . $skip_right . '"></span></button>';
       }
 
       echo '<div class="pzarc-navigator pzarc-navigator-' . $this->blueprint[ '_blueprints_short-name' ] .
@@ -62,7 +62,7 @@
     function __destruct()
     {
       if ('thumbs' === $this->blueprint[ '_blueprints_navigator' ]) {
-        echo '</div><!-- end thumbs nav --></div>><!-- End pzarc-navigator -->';
+        echo '</div><!-- end thumbs nav --></div><!-- End pzarc-navigator -->';
       } else {
         echo '</div><!-- End pzarc-navigator -->';
       }

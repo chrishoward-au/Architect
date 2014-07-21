@@ -37,22 +37,31 @@ jQuery( document ).ready( function ()
                 update_nav( newIndex, arcSlickNav );
             };
 
+            var arcSlickNav = jQuery( '.pzarc-navigator-' + arcSlickID );
+
+//            /** Use custom pager/dots */
+            var arcSlickNavThumbs = jQuery( '.pzarc-navigator-' + arcSlickID+ '.thumbs' ).slick( {
+                      autoplay: true,
+                      slidesToShow: 1,
+                      slidesToScroll: 1
+                  }
+            );
 
             var arcSlick = jQuery( '.swiper-container.swiper-container-' + arcSlickID + ' .pzarc-section' ).slick(
                   {
                       slide: '.pzarc-panel',
                       fade: arcSlickTrans,
                       speed: arcSlickOptsObj.tduration,
-                      autoplay: (arcSlickOptsObj.tinterval>0),
+                      autoplay: (arcSlickOptsObj.tinterval > 0),
                       autoPlaySpeed: arcSlickOptsObj.tinterval,
                       arrows: false,
                       dots: false,
                       onBeforeChange: beforeChange,
 // TODO: replace these with vars
-                      infinite:true,
-                      pauseOnHover:true,
+                      infinite: true,
+                      pauseOnHover: true,
                       slidesToShow: 1,
-                      slidesToScroll:1,
+                      slidesToScroll: 1,
                       centerMode: false,
 // TODO: Needs some tweaking - prob height and overflow
                       vertical: false
@@ -69,13 +78,6 @@ jQuery( document ).ready( function ()
                 arcSlick.slickNext();
             } );
 
-//            /** Use custom pager/dots */
-//            var arcSlickNav = jQuery( '.pzarc-navigator-featured-posts-2x4.thumbs' ).slick( {
-//                arrows:true,
-//                autoplay:false,
-//                  slidesToShow:10}
-//            );
-            var arcSlickNav = jQuery( '.pzarc-navigator-' + arcSlickID );
 
             // Custom Nav we'll use for everything except thumbs
             jQuery( arcSlickNav ).find( '.swiper-pagination-switch' ).on( 'click', function ()

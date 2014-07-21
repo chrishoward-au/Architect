@@ -37,10 +37,18 @@
 //    wp_enqueue_style('css-swiperjs');
 
     // Slick
-    wp_register_script('js-slickjs', PZARC_PLUGIN_APP_URL . '/public/js/slick/slick/slick.min.js', array('jquery'), null, true);
-    wp_register_style('css-slickjs', PZARC_PLUGIN_APP_URL . '/public/js/slick/slick/slick.css');
+    wp_register_script('js-slickjs', PZARC_PLUGIN_APP_URL . '/public/js/slick/slick.min.js', array('jquery'), null, true);
+    wp_register_style('css-slickjs', PZARC_PLUGIN_APP_URL . '/public/js/slick/slick.css');
     wp_enqueue_script('js-slickjs');
     wp_enqueue_style('css-slickjs');
+
+    // Magnific
+    wp_register_script('js-magnific-arc', PZARC_PLUGIN_APP_URL . '/public/js/arc-front-magnific.js', array('jquery'), null, true);
+    wp_register_script('js-magnific', PZARC_PLUGIN_APP_URL . '/public/js/Magnific-Popup/jquery.magnific-popup.min.js', array('jquery'), null, true);
+    wp_register_style('css-magnific', PZARC_PLUGIN_APP_URL . '/public/js/Magnific-Popup/magnific-popup.css');
+    wp_enqueue_script('js-magnific');
+    wp_enqueue_script('js-magnific-arc');
+    wp_enqueue_style('css-magnific');
 
     //icomoon
     wp_register_style('css-icomoon-arrows', PZARC_PLUGIN_APP_URL . '/shared/assets/fonts/icomoon/im-style.css');

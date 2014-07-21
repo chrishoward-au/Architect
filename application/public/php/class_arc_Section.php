@@ -28,6 +28,7 @@
     private $blueprint;
     private $section_title;
     private $slider_type;
+    private $rsid;
 
     /**
      * @param      $number
@@ -50,18 +51,18 @@
       $this->layout_mode    = $layout_mode;
       $this->section_title  = $section_title;
       $this->slider_type    = $slider_type;
-
+      $this->rsid           = 'rsid' . (rand(1,9999)*rand(10000,99999));
 
     }
 
     function open_section()
     {
-        if (!empty($this->section[ 'section-panel-settings' ][ '_panels_design_excerpts-word-count' ])) {
-          add_filter('excerpt_length', array(&$this, 'set_excerpt_length'), 999);
-        }
-        if (!empty($this->section[ 'section-panel-settings' ][ '_panels_design_readmore-truncation-indicator' ])) {
-          add_filter('excerpt_more', array(&$this, 'set_excerpt_more'), 999);
-        }
+      if (!empty($this->section[ 'section-panel-settings' ][ '_panels_design_excerpts-word-count' ])) {
+        add_filter('excerpt_length', array(&$this, 'set_excerpt_length'), 999);
+      }
+      if (!empty($this->section[ 'section-panel-settings' ][ '_panels_design_readmore-truncation-indicator' ])) {
+        add_filter('excerpt_more', array(&$this, 'set_excerpt_more'), 999);
+      }
 
       // Do we load up the MAsonry here?
       wp_enqueue_script('js-isotope-v2');
@@ -81,7 +82,7 @@
 
       }
 
-      echo '<section class="' . ($this->layout_mode !== 'basic' ? 'js-isotope ' : '') . 'pzarc-section pzarc-section_' . $this->section_number . ' pzarc-section-using-panel_' . $this->section[ 'section-panel-settings' ][ '_panels_settings_short-name' ] . $this->slider[ 'wrapper' ] . '">';
+      echo '<section id="'.$this->rsid.'" class="' . ($this->layout_mode !== 'basic' ? 'js-isotope ' : '') . 'pzarc-section pzarc-section_' . $this->section_number . ' pzarc-section-using-panel_' . $this->section[ 'section-panel-settings' ][ '_panels_settings_short-name' ] . $this->slider[ 'wrapper' ] . '">';
 
     }
 
@@ -93,7 +94,8 @@
     function set_excerpt_more($excerpt_more)
     {
       $new_more = $this->section[ 'section-panel-settings' ][ '_panels_design_readmore-truncation-indicator' ];
-      $new_more .= ($this->section[ 'section-panel-settings' ][ '_panels_design_readmore-text' ]?'<a href="'.get_the_permalink().'" class="readmore moretag">'.$this->section[ 'section-panel-settings' ][ '_panels_design_readmore-text' ].'</a>':null);
+      $new_more .= ($this->section[ 'section-panel-settings' ][ '_panels_design_readmore-text' ] ? '<a href="' . get_the_permalink() . '" class="readmore moretag">' . $this->section[ 'section-panel-settings' ][ '_panels_design_readmore-text' ] . '</a>' : null);
+
       return $new_more;
 
     }
@@ -103,8 +105,8 @@
       echo '</section><!-- End section ' . $this->section_number . ' -->';
       do_action("arc_after_section_{$this->section_number}");
 
-      remove_filter('excerpt_length',array(&$this,'set_excerpt_length'),999);
-      remove_filter('excerpt_more',array(&$this,'set_excerpt_more'),999);
+      remove_filter('excerpt_length', array(&$this, 'set_excerpt_length'), 999);
+      remove_filter('excerpt_more', array(&$this, 'set_excerpt_more'), 999);
 
     }
 
@@ -170,7 +172,7 @@
 
         $class_bgimage = $class . '_bgimage';
         $bgimage_class = new $class_bgimage;
-        $line_out      = $bgimage_class->render('bgimage', $panel_def, $this->source, $data, $this->section[ 'section-panel-settings' ]);
+        $line_out      = $bgimage_class->render('bgimage', $panel_def, $this->source, $data, $this->section[ 'section-panel-settings' ],$this->rsid);
         echo apply_filters("arc_filter_bgimage", self::strip_unused_arctags($line_out), $data[ 'postid' ]);
 //        echo $data['bgimage'];
 //        var_dump(esc_html( $data['bgimage']));
@@ -181,7 +183,7 @@
       // Render the components open html
       $class_wrapper = $class . '_Wrapper';
       $wrapper_class = new $class_wrapper;
-      echo self::strip_unused_arctags($wrapper_class->render('components-open', $panel_def, '', $data, $this->section[ 'section-panel-settings' ]));
+      echo self::strip_unused_arctags($wrapper_class->render('components-open', $panel_def, '', $data, $this->section[ 'section-panel-settings' ],$this->rsid));
       foreach ($sequence as $component_type => $value) {
 
         if ($value[ 'show' ]) {
@@ -193,7 +195,7 @@
           // We could do this in a concatenation first of all components' templates, and then replace the {{tags}}.... But then we couldn't do the filter on each component. Nor could we as easily make the components extensible
           $class_component = $class . '_' . str_replace(array('1', '2', '3'), '', ucfirst($component_type));
           $component_class = new $class_component;
-          $line_out        = $component_class->render($component_type, $panel_def, $this->source, $data, $this->section[ 'section-panel-settings' ]);
+          $line_out        = $component_class->render($component_type, $panel_def, $this->source, $data, $this->section[ 'section-panel-settings' ],$this->rsid);
 
 
           echo apply_filters("arc_filter_{$component_type}", self::strip_unused_arctags($line_out), $data[ 'postid' ]);
@@ -204,13 +206,13 @@
       }
 //        echo '<h1 class="entry-title">',get_the_title(),'</h1>';
 //        echo '<div class="entry-content">',get_the_content(),'</div>';
-      echo self::strip_unused_arctags($wrapper_class->render('components-close', $panel_def, '', $data, $this->section[ 'section-panel-settings' ]));
+      echo self::strip_unused_arctags($wrapper_class->render('components-close', $panel_def, '', $data, $this->section[ 'section-panel-settings' ],$this->rsid));
 
       if ($this->section[ 'section-panel-settings' ][ '_panels_design_background-position' ] != 'none' && ($this->section[ 'section-panel-settings' ][ '_panels_design_components-position' ] == 'top' || $this->section[ 'section-panel-settings' ][ '_panels_design_components-position' ] == 'left')) {
 
         $class_bgimage = $class . '_bgimage';
         $bgimage_class = new $class_bgimage;
-        $line_out      = $bgimage_class->render('bgimage', $panel_def, $this->source, $data, $this->section[ 'section-panel-settings' ]);
+        $line_out      = $bgimage_class->render('bgimage', $panel_def, $this->source, $data, $this->section[ 'section-panel-settings' ],$this->rsid);
         echo apply_filters("arc_filter_bgimage", self::strip_unused_arctags($line_out), $data[ 'postid' ]);
 //        echo $data['bgimage'];
 //        var_dump(esc_html( $data['bgimage']));

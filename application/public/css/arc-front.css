@@ -179,6 +179,8 @@
         max-width: none; }
     .pzarchitect .pzarc-panel .pzarc-presuff-image {
       vertical-align: middle; }
+    .pzarchitect .pzarc-panel .lightbox {
+      cursor: zoom-in; }
   .pzarchitect .pzarc-navigator {
     left: 0;
     text-align: center;
@@ -321,7 +323,8 @@
     display: block; }
   .pzarchitect .swiper-nav {
     max-height: 80px;
-    width: 100%; }
+    width: 100%;
+    position: relative; }
     .pzarchitect .swiper-nav:hover .skip-right,
     .pzarchitect .swiper-nav:hover .skip-left {
       display: block; }
@@ -367,7 +370,8 @@
   .pzarchitect .swiper-nav .swiper-slide {
     max-width: 100px; }
   .pzarchitect .swiper-nav.thumbs .swiper-slide {
-    max-width: initial; }
+    max-width: initial;
+    display: inline-block; }
   .pzarchitect ul.slick-dots {
     left: 0; }
   .pzarchitect .slick-slider {

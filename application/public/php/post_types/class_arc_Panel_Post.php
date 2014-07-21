@@ -19,9 +19,10 @@
      * @param $content_type : Content type
      * @param $data : Post data array
      * @param $section : Section settings
+     * @param $rsid
      */
     // $panel_def is not by reference to  ensure it doesn't get changed accidentally.
-    public static function render($component, $panel_def, $content_type, &$data, &$section) { }
+    public static function render($component, $panel_def, $content_type, &$data, &$section, $rsid) { }
 
     static function panel_def()
     {
@@ -290,7 +291,7 @@
 
   class arc_Panel_post_Wrapper extends arc_Panel_post
   {
-    public static function render($component, $panel_def, $content_type, &$data, &$section)
+    public static function render($component, $panel_def, $content_type, &$data, &$section, $rsid)
     {
 //      foreach ($data[ 'components-open' ] as $key => $value) {
 //        $template[ $type ] = str_replace('{{' . $key . '}}', $value, $template[ $type ]);
@@ -318,9 +319,10 @@
      * @param $content_type (Post type source - eg. post, page, gallery)
      * @param $data
      * @param $section
+     * @param $rsid
      * @return mixed|void
      */
-    public static function render($component, $panel_def, $content_type, &$data, &$section)
+    public static function render($component, $panel_def, $content_type, &$data, &$section, $rsid)
     {
       $panel_def[ $component ] = str_replace('{{title}}', $data[ 'title' ], $panel_def[ $component ]);
       if ($section[ '_panels_design_link-titles' ]) {
@@ -336,7 +338,7 @@
 
   class arc_Panel_post_Meta extends arc_Panel_post
   {
-    public static function render($component, $panel_def, $content_type, &$data, &$section)
+    public static function render($component, $panel_def, $content_type, &$data, &$section, $rsid)
     {
       // get $metaX definition and construct string, then replace metaXinnards
       $panel_def[ $component ] = str_replace('{{datetime}}', $data[ 'meta' ][ 'datetime' ], $panel_def[ $component ]);
@@ -368,7 +370,7 @@
 
   class arc_Panel_post_Image extends arc_Panel_post
   {
-    public static function render($component, $panel_def, $content_type, &$data, &$section)
+    public static function render($component, $panel_def, $content_type, &$data, &$section, $rsid)
     {
       if ($section[ '_panels_design_link-image' ]) {
         $panel_def[ $component ] = str_replace('{{postlink}}', $panel_def[ 'postlink' ], $panel_def[ $component ]);
@@ -401,7 +403,7 @@
 
   class arc_Panel_post_bgimage extends arc_Panel_post
   {
-    public static function render($component, $panel_def, $content_type, &$data, &$section)
+    public static function render($component, $panel_def, $content_type, &$data, &$section, $rsid)
     {
       $panel_def[ $component ] = str_replace('{{bgimage}}', $data[ 'bgimage' ], $panel_def[ $component ]);
       $panel_def[ $component ] = str_replace('{{trim-scale}}', ' ' . $section[ '_panels_design_background-position' ] . ' ' . $section[ '_panels_design_background-image-resize' ], $panel_def[ $component ]);
@@ -414,7 +416,7 @@
 
   class arc_Panel_post_Content extends arc_Panel_post
   {
-    public static function render($component, $panel_def, $content_type, &$data, &$section)
+    public static function render($component, $panel_def, $content_type, &$data, &$section, $rsid)
     {
       $panel_def[ $component ] = str_replace('{{content}}', $data[ 'content' ], $panel_def[ $component ]);
       if ($section[ '_panels_design_thumb-position' ] != 'none') {
@@ -453,9 +455,10 @@
      * @param $content_type
      * @param $data
      * @param $section
+     * @param $rsid
      * @return mixed|void
      */
-    public static function render($component, $panel_def, $content_type, &$data, &$section)
+    public static function render($component, $panel_def, $content_type, &$data, &$section, $rsid)
     {
       $panel_def[ $component ] = str_replace('{{excerpt}}', $data[ 'excerpt' ], $panel_def[ $component ]);
 
@@ -492,7 +495,7 @@
 
   class arc_Panel_post_Custom extends arc_Panel_post
   {
-    public static function render($component, $panel_def, $content_type, &$data, &$section)
+    public static function render($component, $panel_def, $content_type, &$data, &$section, $rsid)
     {
 
       // TODO: Is this still relevant?
