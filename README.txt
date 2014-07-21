@@ -77,6 +77,13 @@ If you require support, please sen an email to support@pizazzwp.com or access th
 
 == Changelog ==
 
+= 0.7.7 =
+* ENABLED: Lightbox functionality
+
+= 0.7.6 =
+* FIXED: Left/right alignment of background images
+* ENABLED: Excerpt options - lenght, truncation indicator, link text
+
 = 0.7.5 =
 * First public beta
 
