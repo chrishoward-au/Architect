@@ -24,7 +24,7 @@
       $this->inputs
           = array(
           'build' => self::pzarc_build($block, false),
-          //          'custom' => self::pzarc_custom($block, false),
+                    'custom' => self::pzarc_custom($block, false),
           //          'info'   => null
           //					'info'	=> self::sab_info($block),
       );

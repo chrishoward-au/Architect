@@ -136,7 +136,7 @@
     {
 
       if (class_exists('HeadwayDisplay')) {
-        require('application/public/php/arc-headway-block-display.php');
+        require('application/public/php/headway/arc-headway-block-display.php');
         require('application/admin/php/headway/arc-headway-block-options.php');
 
         return headway_register_block('HeadwayArchitectBlock', PZARC_PLUGIN_APP_URL . '/admin/php/headway');
