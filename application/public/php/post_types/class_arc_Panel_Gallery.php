@@ -230,7 +230,7 @@
 
     }
 
-    public function process_generics(&$data, $line, $source, &$section)
+    public static function process_generics(&$data, $line, $source, &$section)
     {
       //todo: make sure source is actual WP valid eg. soemthings might be attachment
       // Do any generic replacements
