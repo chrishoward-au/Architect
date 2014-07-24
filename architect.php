@@ -4,7 +4,7 @@
     Plugin Name: Architect - an all-in-one content display framework
     Plugin URI: http://pizazzwp.com
     Description: Display your content in grids, tabs, sliders, galleries with sources like posts, pages, galleries, and custom content types. Layout using shorcodes, widgets, WP action hooks and template tags. Change themes without havinq to rebuild your layouts.
-    Version: 0.7.7 beta
+    Version: 0.7.8 beta
     Author: Chris Howard
     Author URI: http://pizazzwp.com
     License: GNU GPL v2
@@ -54,7 +54,7 @@
     function __construct()
     {
 
-      define('PZARC_VERSION', '0.7.7');
+      define('PZARC_VERSION', '0.7.8');
       define('PZARC_NAME', 'pzarchitect'); // This is also used as the locale
       define('PZARC_FOLDER', '/pizazzwp-architect');
 

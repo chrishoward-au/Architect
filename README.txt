@@ -77,6 +77,9 @@ If you require support, please sen an email to support@pizazzwp.com or access th
 
 == Changelog ==
 
+= 0.7.8 =
+ENABLED: Custom taxonomies to show in meta area.
+
 = 0.7.7 =
 * ENABLED: Lightbox functionality
 
