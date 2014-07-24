@@ -10,6 +10,7 @@
 
   class arc_Panel_post
   {
+    private $meta_custom = array();
 //    private $data;
 
     //TODO: Shouldn't data be a this?
@@ -178,9 +179,12 @@
         }
         $data[ 'meta' ][ 'authoremail' ]    = $encodedmail;
         $data[ 'meta' ][ 'comments-count' ] = get_comments_number();
+
+        $data[ 'meta' ][ 'custom' ][ 1 ] = self::get_post_terms(get_the_id(), $section[ '_panels_design_meta1-config' ]);
+        $data[ 'meta' ][ 'custom' ][ 2 ] = self::get_post_terms(get_the_id(), $section[ '_panels_design_meta2-config' ]);
+        $data[ 'meta' ][ 'custom' ][ 3 ] = self::get_post_terms(get_the_id(), $section[ '_panels_design_meta3-config' ]);
       }
-//var_dump($postmeta);
-      //     var_dump($section);
+
 
       /** END OF STANDARD CONTENT DATA */
 
@@ -265,6 +269,20 @@
 //      var_dump($data);
       return $data;
 
+    }
+
+    private static function get_post_terms($post_id, $meta_string)
+    {
+      $post_tax_terms = array();
+      $meta_custom    = substr_count($meta_string, '%ct:');
+      preg_match_all("/(?<=\\%)(ct\\:)(.*)(?=\\%)/uiUmx", $meta_string, $matches);
+      for ($i = 1; $i <= $meta_custom; $i++) {
+        if (taxonomy_exists($matches[ 2 ][ $i - 1 ])) {
+          $post_tax_terms = array($matches[ 2 ][ $i - 1 ] => get_the_term_list($post_id, $matches[ 2 ][ $i - 1 ]));
+        }
+      }
+
+      return $post_tax_terms;
     }
 
     public static function process_generics(&$data, $line, $source, &$section)
@@ -360,7 +378,10 @@
       $panel_def[ $component ] = str_replace('{{commentslink}}', $panel_def[ 'comments-link' ], $panel_def[ $component ]);
       $panel_def[ $component ] = str_replace('{{commentscount}}', $data[ 'comments-count' ], $panel_def[ $component ]);
       $panel_def[ $component ] = str_replace('{{editlink}}', $panel_def[ 'editlink' ], $panel_def[ $component ]);
+      foreach ($data[ 'meta' ][ 'custom' ] as $meta) {
+        $panel_def[ $component ] = str_replace('{{ct:' . key($meta) . '}}', $meta[ key($meta) ], $panel_def[ $component ]);
 
+      }
 
       return parent::process_generics($data, $panel_def[ $component ], $content_type, $section);
     }
@@ -533,10 +554,10 @@
             $prefix_image = '';
             $suffix_image = '';
             if (!empty($v[ 'prefix-image' ])) {
-              $prefix_image = '<img src="' . $v[ 'prefix-image' ]. '" class="pzarc-presuff-image prefix-image">';
+              $prefix_image = '<img src="' . $v[ 'prefix-image' ] . '" class="pzarc-presuff-image prefix-image">';
             }
             if (!empty($v[ 'suffix-image' ])) {
-              $suffix_image = '<img src="' . $v[ 'suffix-image' ]. '" class="pzarc-presuff-image suffix-image">';
+              $suffix_image = '<img src="' . $v[ 'suffix-image' ] . '" class="pzarc-presuff-image suffix-image">';
             }
 
 

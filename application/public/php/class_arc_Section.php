@@ -244,7 +244,7 @@
       // removed while in development
       //  return $strip_from;
 
-      return preg_replace('/{{([\w|\-]*)}}/s', '', $strip_from);
+      return preg_replace('/{{([\w|\-|\:]*)}}/s', '', $strip_from);
 
     }
 
