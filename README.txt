@@ -3,8 +3,8 @@ Contributors: chrishoward
 Tags: content,display,posts,pages,gallery,slider
 Donate link: http://
 Requires at least: 3.5.0
-Tested up to: 3.8
-Stable tag: 0.7.6
+Tested up to: 3.9.1
+Stable tag: 0.7.8
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -58,17 +58,19 @@ No. Sorry. But we are working on it.
 Yes. 12 months.
 
 = How many sites can I install Architect on? =
-You may install Architect on an unlimited number of sites that you personally own, or if you are a business, the business owns.
+todo
 
 = Can I install Architect on client sites using my licence? =
-Yes. Although to ensure long term support if you are no longer in the industry, from both ourselves and any other WP developer, it is recommended they buy theirown licence.
+todo
 
 = Do you have an other licence deals? =
-At this stage, no. We're trying to keep licencing as simple as possible, hence licence for all.
+todo
 
-== Support ==
+= Support =
 If you require support, please sen an email to support@pizazzwp.com or access the support form in WP Admin> PizazzWP > About & Support
 
+= Known issues =
+todo
 
 == Screenshots ==
 1. The screenshot description corresponds to screenshot-1.(png|jpg|jpeg|gif).
@@ -78,7 +80,8 @@ If you require support, please sen an email to support@pizazzwp.com or access th
 == Changelog ==
 
 = 0.7.8 =
-ENABLED: Custom taxonomies to show in meta area.
+* ADDED: Headway Visual Editor option for post ID overrides
+* ENABLED: Custom taxonomies to show in meta area.
 
 = 0.7.7 =
 * ENABLED: Lightbox functionality
