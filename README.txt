@@ -58,10 +58,10 @@ No. Sorry. But we are working on it.
 Yes. 12 months.
 
 = How many sites can I install Architect on? =
-todo
+As per HW??
 
 = Can I install Architect on client sites using my licence? =
-todo
+As per HW??
 
 = Do you have an other licence deals? =
 todo

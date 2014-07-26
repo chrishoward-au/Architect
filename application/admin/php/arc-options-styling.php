@@ -149,9 +149,8 @@
         $sample_patterns_url  = ReduxFramework::$_url . '../sample/patterns/';
         $sample_patterns      = array();
 
-        if (is_dir($sample_patterns_path)) :
-
-          if ($sample_patterns_dir = opendir($sample_patterns_path)) :
+        if (is_dir($sample_patterns_path)) : {
+          if ($sample_patterns_dir = opendir($sample_patterns_path)) : {
             $sample_patterns = array();
 
             while (($sample_patterns_file = readdir($sample_patterns_dir)) !== false) {
@@ -162,7 +161,9 @@
                 $sample_patterns[ ] = array('alt' => $name, 'img' => $sample_patterns_url . $sample_patterns_file);
               }
             }
+          }
           endif;
+        }
         endif;
 
         ob_start();
@@ -179,16 +180,16 @@
 
         ?>
         <div id="current-theme" class="<?php echo esc_attr($class); ?>">
-          <?php if ($screenshot) : ?>
-            <?php if (current_user_can('edit_theme_options')) : ?>
+          <?php if ($screenshot) : { ?>
+            <?php if (current_user_can('edit_theme_options')) : { ?>
               <a href="<?php echo wp_customize_url(); ?>" class="load-customize hide-if-no-customize"
                  title="<?php echo esc_attr($customize_title); ?>">
                 <img src="<?php echo esc_url($screenshot); ?>" alt="<?php esc_attr_e('Current theme preview'); ?>"/>
               </a>
-            <?php endif; ?>
+            <?php } endif; ?>
             <img class="hide-if-customize" src="<?php echo esc_url($screenshot); ?>"
                  alt="<?php esc_attr_e('Current theme preview'); ?>"/>
-          <?php endif; ?>
+          <?php } endif; ?>
 
           <h4>
             <?php echo $this->theme->display('Name'); ?>
@@ -296,6 +297,7 @@
                 ),
                 pzarc_redux_bg($prefix . 'hentry-background', array('.hentry')),
                 pzarc_redux_padding($prefix . 'hentry-padding', array('.hentry')),
+                pzarc_redux_margin($prefix . 'hentry-margin', array('.hentry')),
                 pzarc_redux_borders($prefix . 'hentry-borders', array('.hentry')),
             )
         );
@@ -310,7 +312,9 @@
                                                                                             'text_decoration' => 'none')),
                 pzarc_redux_bg($prefix . 'entry-title-font-background', array('.entry-title')),
                 pzarc_redux_padding($prefix . 'entry-title-font-padding', array('.entry-title')),
+                pzarc_redux_margin($prefix . 'entry-title-font-margin', array('.entry-title')),
                 pzarc_redux_links($prefix . 'entry-title-font-links', array('.entry-title a')),
+                pzarc_redux_borders($prefix . 'entry-title-borders', array('.entry-title')),
             ),
         );
 
@@ -366,39 +370,9 @@
                     'subtitle' => 'Class: .pzarc_entry_featured_image',
                     //     'subtitle'    => __('Format the entry featured image', 'pzarc')
                 ),
-                array(
-                    'title'                 => __('Background', 'pzarc'),
-                    'id'                    => $prefix . 'entry-image-background',
-                    'type'                  => 'background',
-                    'background-image'      => false,
-                    'background-repeat'     => false,
-                    'background-size'       => false,
-                    'background-attachment' => false,
-                    'background-position'   => false,
-                    'preview'               => false,
-                    'compiler'              => array('.pzarc-featured-image')
-                    //    'default' => $defaults[ $optprefix . 'image_defaults_entry-image-caption-defaults' ],
-                ),
-                array(
-                    'title' => __('Border', 'pzarc'),
-                    'id'    => $prefix . 'entry-image-background',
-                    'type'  => 'border',
-                    'all'   => false,
-                    'hint'  => array(
-                        'title'   => 'Hint Title',
-                        'content' => 'This is the content of the tool-tip'
-                    )
-
-                    //    'default' => $defaults[ $optprefix . 'image_defaults_entry-image-caption-defaults' ],
-                ),
-                array(
-                    'title' => __('Padding', 'pzarc'),
-                    'id'    => $prefix . 'entry-image-padding',
-                    'mode'  => 'padding',
-                    'type'  => 'spacing',
-                    'units' => array('px', '%')
-                    //    'default' => $defaults[ $optprefix . 'image_defaults_entry-image-caption-defaults' ],
-                ),
+                pzarc_redux_bg($prefix . 'entry-image-background', array('.entry-title')),
+                pzarc_redux_padding($prefix . 'entry-image-padding', array('.entry-title')),
+                pzarc_redux_borders($prefix . 'entry-image-borders', array('.entry-title')),
                 array(
                     'title' => __('Caption', 'pzarc'),
                     'id'    => $prefix . 'entry-image-caption',
@@ -406,9 +380,9 @@
                     'class' => 'heading',
                     //    'default' => $defaults[ $optprefix . 'image_defaults_entry-image-caption-defaults' ],
                 ),
-                pzarc_redux_font($prefix . 'entry-mage-caption-font', array('.')),
-                pzarc_redux_bg($prefix . 'entry-mage-caption-font-background', array('.')),
-                pzarc_redux_padding($prefix . 'entry-readmore-font-padding', array('.')),
+                pzarc_redux_font($prefix . 'entry-image-caption-font', array('.entry-thumbnail caption')),
+                pzarc_redux_bg($prefix . 'entry-image-caption-font-background', array('.entry-thumbnail caption')),
+                pzarc_redux_padding($prefix . 'entry-image-caption-font-padding', array('.entry-thumbnail caption')),
             )
 
 
@@ -639,19 +613,20 @@
    * Custom function for the callback referenced above
 
    */
-  if (!function_exists('redux_my_custom_field')):
+  if (!function_exists('redux_my_custom_field')): {
     function redux_my_custom_field($field, $value)
     {
       print_r($field);
       print_r($value);
     }
+  }
   endif;
 
   /**
    *
    * Custom function for the callback validation referenced above
    **/
-  if (!function_exists('redux_validate_callback_function')):
+  if (!function_exists('redux_validate_callback_function')): {
     function redux_validate_callback_function($field, $value, $existing_value)
     {
       $error = false;
@@ -675,6 +650,7 @@
 
       return $return;
     }
+  }
   endif;
   // Redux tracking
   if (!function_exists('pzarc_redux_tracking')) {

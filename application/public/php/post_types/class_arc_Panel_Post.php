@@ -99,9 +99,31 @@
         'comment_count'         => string '0' (length=1)
         'filter'                => string 'raw' (length=3)
       */
-      $toshow   = json_decode($section[ '_panels_design_preview' ], true);
-      $data     = array();
-      $postmeta = get_post_meta(get_the_ID());
+      $toshow = json_decode($section[ '_panels_design_preview' ], true);
+      $data   = array();
+      // Null up everything to prevent warnings later on
+      $data[ 'title' ]                     = null;
+      $data[ 'content' ]                   = null;
+      $data[ 'excerpt' ]                   = null;
+      $data[ 'meta' ][ 'categories' ]      = null;
+      $data[ 'meta' ][ 'tags' ]            = null;
+      $data[ 'image' ][ 'image' ]          = null;
+      $data[ 'image' ][ 'caption' ]        = null;
+      $data[ 'meta' ][ 'datetime' ]        = null;
+      $data[ 'meta' ][ 'fdatetime' ]       = null;
+      $data[ 'meta' ][ 'categorieslinks' ] = null;
+      $data[ 'meta' ][ 'tagslinks' ]       = null;
+      $data[ 'meta' ][ 'authorlink' ]      = null;
+      $data[ 'meta' ][ 'authorname' ]      = null;
+      $data[ 'meta' ][ 'authoremail' ]     = null;
+      $data[ 'meta' ][ 'comments-count' ]  = null;
+      $data[ 'postid' ]                    = null;
+      $data[ 'poststatus' ]                = null;
+      $data[ 'permalink' ]                 = null;
+      $data[ 'postformat' ]                = null;
+      $data[ 'bgimage' ][ 'thumb' ]        = null;
+      $data[ 'bgimage' ][ 'original' ]     = null;
+      $postmeta                            = get_post_meta(get_the_ID());
 
       /** TITLE */
       if ($toshow[ 'title' ][ 'show' ]) {
@@ -148,11 +170,8 @@
         $data[ 'image' ][ 'image' ]   = wp_get_attachment_image($thumb_id, array($width,
                                                                                  $height,
                                                                                  'bfi_thumb' => true,
-                                                                                 'crop'      => array(
-                                                                                     (int)$focal_point[ 0 ],
-                                                                                     (int)$focal_point[ 1 ],
-                                                                                     //                                                                            'focalpt'   => true
-                                                                                 )
+                                                                                 'crop'      => (int)$focal_point[ 0 ] . 'x' . (int)$focal_point[ 1 ] . 'x' . $section[ '_panels_settings_image-focal-point' ]
+
         ));
         $image                        = get_post($thumb_id);
         $data[ 'image' ][ 'caption' ] = $image->post_excerpt;
@@ -166,9 +185,9 @@
         $data[ 'meta' ][ 'datetime' ]        = get_the_date();
         $data[ 'meta' ][ 'fdatetime' ]       = date_i18n($section[ '_panels_design_meta-date-format' ], strtotime(get_the_date()));
         $data[ 'meta' ][ 'categorieslinks' ] = get_the_category_list(', ');
-        $data[ 'categories' ]                = pzarc_tax_string_list(get_the_category(), 'category-', '', ' ');
+        $data[ 'meta' ][ 'categories' ]      = pzarc_tax_string_list(get_the_category(), 'category-', '', ' ');
         $data[ 'meta' ][ 'tagslinks' ]       = get_the_tag_list(null, ', ');
-        $data[ 'tags' ]                      = pzarc_tax_string_list(get_the_tags(), 'tag-', '', ' ');
+        $data[ 'meta' ][ 'tags' ]            = pzarc_tax_string_list(get_the_tags(), 'tag-', '', ' ');
 
         $data[ 'meta' ][ 'authorlink' ] = get_author_posts_url(get_the_author_meta('ID'));
         $data[ 'meta' ][ 'authorname' ] = sanitize_text_field(get_the_author_meta('display_name'));
@@ -207,11 +226,12 @@
         $data[ 'cfield' ][ $i ][ 'prefix-image' ] = bfi_thumb($section[ '_panels_design_cfield-' . $i . '-prefix-image' ][ 'url' ], $params);
         $data[ 'cfield' ][ $i ][ 'suffix-text' ]  = $section[ '_panels_design_cfield-' . $i . '-suffix-text' ];
         $data[ 'cfield' ][ $i ][ 'suffix-image' ] = bfi_thumb($section[ '_panels_design_cfield-' . $i . '-suffix-image' ][ 'url' ], $params);
+
         // The content itself comes from post meta
-        $data[ 'cfield' ][ $i ][ 'value' ] = $postmeta[ $section[ '_panels_design_cfield-' . $i . '-name' ] ][ 0 ];
+        $data[ 'cfield' ][ $i ][ 'value' ] = (!empty($postmeta[ $section[ '_panels_design_cfield-' . $i . '-name' ] ]) ? $postmeta[ $section[ '_panels_design_cfield-' . $i . '-name' ] ][ 0 ] : null);
         // TODO:Bet this doesn't work!
         if (!empty($section[ '_panels_design_cfield-' . $i . '-link-field' ])) {
-          $data[ 'cfield' ][ $i ][ 'link-field' ] = $postmeta[ $section[ '_panels_design_cfield-' . $i . '-link-field' ] ][ 0 ];
+          $data[ 'cfield' ][ $i ][ 'link-field' ] = (!empty($postmeta[ $section[ '_panels_design_cfield-' . $i . '-link-field' ] ]) ? $postmeta[ $section[ '_panels_design_cfield-' . $i . '-link-field' ] ][ 0 ] : null);
         }
 
         // TODO : Add other attributes
@@ -246,11 +266,7 @@
       $data[ 'bgimage' ] = wp_get_attachment_image($thumb_id, array($width,
                                                                     $height,
                                                                     'bfi_thumb' => true,
-                                                                    'crop'      => array(
-                                                                        (int)$focal_point[ 0 ],
-                                                                        (int)$focal_point[ 1 ],
-                                                                        //                                                                            'focalpt'   => true
-                                                                    )
+                                                                    'crop'      => (int)$focal_point[ 0 ] . 'x' . (int)$focal_point[ 1 ] . 'x' . $section[ '_panels_settings_image-focal-point' ]
       )); //WP seems to smartly figure out which of its saved images to use! Now we jsut gotta get it t work with focal point
 
       /** MISCELLANARY */
@@ -293,8 +309,8 @@
       $line      = str_replace('{{title}}', $data[ 'title' ], $line);
       $line      = str_replace('{{permalink}}', $data[ 'permalink' ], $line);
       $line      = str_replace('{{closelink}}', '</a>', $line);
-      $line      = str_replace('{{categories}}', $data[ 'categories' ], $line);
-      $line      = str_replace('{{tags}}', $data[ 'tags' ], $line);
+      $line      = str_replace('{{categories}}', $data[ 'meta' ][ 'categories' ], $line);
+      $line      = str_replace('{{tags}}', $data[ 'meta' ][ 'tags' ], $line);
       $line      = str_replace('{{poststatus}}', $data[ 'poststatus' ], $line);
       $line      = str_replace('{{postformat}}', $data[ 'postformat' ], $line);
       $line      = str_replace('{{posttype}}', $source, $line);
@@ -376,11 +392,12 @@
       $panel_def[ $component ] = str_replace('{{tags}}', $data[ 'meta' ][ 'tags' ], $panel_def[ $component ]);
       $panel_def[ $component ] = str_replace('{{tagslinks}}', $data[ 'meta' ][ 'tagslinks' ], $panel_def[ $component ]);
       $panel_def[ $component ] = str_replace('{{commentslink}}', $panel_def[ 'comments-link' ], $panel_def[ $component ]);
-      $panel_def[ $component ] = str_replace('{{commentscount}}', $data[ 'comments-count' ], $panel_def[ $component ]);
+      $panel_def[ $component ] = str_replace('{{commentscount}}', $data[ 'meta' ][ 'comments-count' ], $panel_def[ $component ]);
       $panel_def[ $component ] = str_replace('{{editlink}}', $panel_def[ 'editlink' ], $panel_def[ $component ]);
       foreach ($data[ 'meta' ][ 'custom' ] as $meta) {
-        $panel_def[ $component ] = str_replace('{{ct:' . key($meta) . '}}', $meta[ key($meta) ], $panel_def[ $component ]);
-
+        if (!empty($meta)) {
+          $panel_def[ $component ] = str_replace('{{ct:' . key($meta) . '}}', $meta[ key($meta) ], $panel_def[ $component ]);
+        }
       }
 
       return parent::process_generics($data, $panel_def[ $component ], $content_type, $section);

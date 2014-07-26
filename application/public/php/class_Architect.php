@@ -106,7 +106,6 @@
       $bp_nav_type  = $this->build->blueprint[ '_blueprints_navigation' ];
       $bp_nav_pos   = $this->build->blueprint[ '_blueprints_navigator-position' ];
       $bp_transtype = $this->build->blueprint[ '_blueprints_transitions-type' ];
-      $bp_focalpt   = $this->build->blueprint[ '_blueprints_image-focal-point' ];
 
       $this->arc = array();
 
@@ -174,7 +173,7 @@
 
       self::display_page_title($this->build->blueprint[ '_blueprints_page-title' ]);
 
-      echo self::get_sections_opener($bp_shortname, $bp_nav_type, $caller, $bp_transtype, $bp_focalpt);
+      echo self::get_sections_opener($bp_shortname, $bp_nav_type, $caller, $bp_transtype);
 
       do_action('arcNavBeforeSection-{$bpshortname}');
 
@@ -363,6 +362,7 @@
       if (!$limited) {
 
         $this->criteria[ 'panels_to_show' ] = -1;
+        $this->criteria[ 'nopaging' ]       = true;
 
       } else {
 
@@ -370,6 +370,7 @@
             $this->build->blueprint[ '_blueprints_section-0-panels-per-view' ] +
             ((int)$this->build->blueprint[ '_blueprints_section-1-enable' ] * $this->build->blueprint[ '_blueprints_section-1-panels-per-view' ]) +
             ((int)$this->build->blueprint[ '_blueprints_section-2-enable' ] * $this->build->blueprint[ '_blueprints_section-2-panels-per-view' ]);
+        $this->criteria[ 'nopaging' ]       = false;
 
       }
 
@@ -431,7 +432,7 @@
      * @param $bp_transtype
      * @return string
      */
-    private function get_sections_opener($bp_shortname, $bp_nav_type, $caller, $bp_transtype, $bp_focalpt)
+    private function get_sections_opener($bp_shortname, $bp_nav_type, $caller, $bp_transtype)
     {
       $return_val = '';
       if ($bp_nav_type === 'navigator') {
@@ -477,7 +478,6 @@
     private function build_meta_definition($panel_def, $section_panel_settings)
     {
       //replace meta1innards etc
-
       $meta = array_pad(array(), 3, null);
       foreach ($meta as $key => $value) {
         $i = $key + 1;
@@ -490,7 +490,8 @@
         $panel_def[ 'meta' . $i ] = str_replace('{{email}}', $panel_def[ 'email' ], $panel_def[ 'meta' . $i ]);
         $panel_def[ 'meta' . $i ] = str_replace('{{categories}}', $panel_def[ 'categories' ], $panel_def[ 'meta' . $i ]);
         $panel_def[ 'meta' . $i ] = str_replace('{{tags}}', $panel_def[ 'tags' ], $panel_def[ 'meta' . $i ]);
-        $panel_def[ 'meta' . $i ] = str_replace('{{edit}}', $panel_def[ 'edit' ], $panel_def[ 'meta' . $i ]);
+// TODO: This maybe meant to be editlink
+//        $panel_def[ 'meta' . $i ] = str_replace('{{edit}}', $panel_def[ 'edit' ], $panel_def[ 'meta' . $i ]);
       }
 
 
@@ -659,8 +660,8 @@
 
         }
 
-
-        query_posts('posts_per_page=3&paged=' . $paged);
+// TODO: WTF IS THIS?! Surely just some debugging left behind!
+//        query_posts('posts_per_page=3&paged=' . $paged);
 
 //        $query_options[ 'nopaging' ]       = false;
         $query_options[ 'posts_per_page' ] = $this->criteria[ 'panels_to_show' ];

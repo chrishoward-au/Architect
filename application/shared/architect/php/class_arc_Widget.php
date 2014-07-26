@@ -21,15 +21,15 @@
 // Widget description
           array('description' => __('Display an Architect blueprint', 'pzarchitect'),)
       );
-      add_action('arc_do_widget','pzarc',10,3);
+      add_action('arc_do_widget', 'pzarc', 10, 3);
     }
 
 // Creating widget front-end
 // This is where the action happens
     public function widget($args, $instance)
     {
-      $pzarc_caller = 'widget';
-      $title            = apply_filters('widget_title', $instance[ 'title' ]);
+      $pzarc_caller    = 'widget';
+      $title           = apply_filters('widget_title', $instance[ 'title' ]);
       $pzarc_blueprint = $instance[ 'arc_bp_shortname' ];
       $pzarc_overrides = $instance[ 'arc_bp_overrides' ];
 // before and after widget arguments are defined by themes
@@ -37,9 +37,9 @@
       if (!empty($title)) {
         echo $args[ 'before_title' ] . $title . $args[ 'after_title' ];
       }
-      do_action("arc_before_{$pzarc_caller}", $pzarc_blueprint, $pzarc_overrides,$pzarc_caller);
+      do_action("arc_before_{$pzarc_caller}", $pzarc_blueprint, $pzarc_overrides, $pzarc_caller);
       do_action("arc_do_{$pzarc_caller}", $pzarc_blueprint, $pzarc_overrides, $pzarc_caller);
-      do_action("arc_after_{$pzarc_caller}", $pzarc_blueprint, $pzarc_overrides,$pzarc_caller);
+      do_action("arc_after_{$pzarc_caller}", $pzarc_blueprint, $pzarc_overrides, $pzarc_caller);
       echo $args[ 'after_widget' ];
     }
 
@@ -61,6 +61,7 @@
       } else {
         $arc_bp_overrides = __('', 'pzarchitect');
       }
+      $blueprint_list = pzarc_get_blueprints();
 // Widget admin form
       ?>
       <p>
@@ -68,11 +69,15 @@
         <input class="widefat" id="<?php echo $this->get_field_id('title'); ?>"
                name="<?php echo $this->get_field_name('title'); ?>" type="text"
                value="<?php echo esc_attr($title); ?>"/>
-        <label for="<?php echo $this->get_field_id('arc_bp_shortname'); ?>"><?php _e('Blueprint shortname:'); ?></label>
-        <input class="widefat" id="<?php echo $this->get_field_id('arc_bp_shortname'); ?>"
-               name="<?php echo $this->get_field_name('arc_bp_shortname'); ?>" type="text"
-               value="<?php echo esc_attr($arc_bp_shortname); ?>"/>
-        <label for="<?php echo $this->get_field_id('arc_bp_overrides'); ?>"><?php _e('Overrides (comma separated IDs)'); ?></label>
+      </p><p>
+      <label for="<?php echo $this->get_field_id('arc_bp_shortname'); ?>"><?php _e('Blueprint shortname:'); ?></label>
+      <select class="widefat" id="<?php echo $this->get_field_id('arc_bp_shortname'); ?>"
+              name="<?php echo $this->get_field_name('arc_bp_shortname'); ?>">
+        <?php pzarc_array_to_options_list($blueprint_list, $arc_bp_shortname); ?>
+      </select>
+      <p>
+        <label
+            for="<?php echo $this->get_field_id('arc_bp_overrides'); ?>"><?php _e('Overrides (comma separated IDs)'); ?></label>
         <input class="widefat" id="<?php echo $this->get_field_id('arc_bp_overrides'); ?>"
                name="<?php echo $this->get_field_name('arc_bp_overrides'); ?>" type="text"
                value="<?php echo esc_attr($arc_bp_overrides); ?>"/>

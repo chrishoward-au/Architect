@@ -399,6 +399,16 @@
 
         return new WP_Error('image_negate_error', __('Image negate failed.', 'default'), $this->file);
       }
+
+      public function progressivejpeg()
+      {
+        if (function_exists('imageinterlace')) {
+          if (imageinterlace($this->image, true)) {
+            return true;
+          }
+        }
+
+      }
     }
   }
 
@@ -488,7 +498,7 @@
         // to check whether a resize was previously done.
         if (isset($width)) {
           //get image size after cropping
-          $dims  = image_resize_dimensions($orig_w, $orig_h, $width, isset($height) ? $height : null, isset($crop) ? $crop : false);
+          $dims  = image_resize_dimensions($orig_w, $orig_h, $width, isset($height) ? $height : null, (isset($crop)  ? $crop : false));
           $dst_w = $dims[ 4 ];
           $dst_h = $dims[ 5 ];
         }
@@ -546,7 +556,7 @@
            * Perform image manipulations
            */
           if ((isset($width) && $width) || (isset($height) && $height)) {
-            if (is_wp_error($editor->resize(isset($width) ? $width : null, isset($height) ? $height : null, isset($crop) ? $crop : false))) {
+            if (is_wp_error($editor->resize(isset($width) ? $width : null, isset($height) ? $height : null, (isset($crop)  ? $crop : false)))) {
               return false;
             }
           }
@@ -579,8 +589,12 @@
             }
           }
 
+
           // save our new image
-          $mime_type    = isset($opacity) ? 'image/png' : null;
+          $mime_type = isset($opacity) ? 'image/png' : null;
+          if ($mime_type === 'image/jpeg' || empty($mime_type)) {
+            $editor->progressivejpeg();
+          }
           $resized_file = $editor->save($destfilename, $mime_type);
         }
 
@@ -648,6 +662,22 @@
   if (!function_exists('bfi_image_resize_dimensions')) {
     function bfi_image_resize_dimensions($payload, $orig_w, $orig_h, $dest_w, $dest_h, $crop = false)
     {
+      // Need to pass $crop in string form because WP function doesn't cope with it as an array (throws a PHP Notice" Array to String conversion)
+      // Use format XxYxF
+      // X = crop X position as a decimal between 0 and 1
+      // Y = crop Y position
+      // F = focal point
+      if (is_string($crop)) {
+        $crop = explode('x', $crop);
+        // Check if defaults needed
+        // TODO: Need to work with WP left, right, center options
+        $crop[ 0 ] = (!isset($crop[ 0 ]) ? 50 : $crop[ 0 ]);
+        $crop[ 1 ] = (!isset($crop[ 1 ]) ? 50 : $crop[ 1 ]);
+        $crop[ 2 ] = (!isset($crop[ 2 ]) ? 'center' : $crop[ 2 ]);
+      } elseif (true === $crop) {
+        $crop = array('50','50','center');
+      }
+
       $aspect_ratio = $orig_w / $orig_h;
 
       $new_w = $dest_w;
@@ -669,17 +699,11 @@
 
       // Crop from offsets (left, top) as percentages
 
-      if (!is_array($crop)) {
-        $crop = array(0.5, 0.5, 'center');
-        // defaults are equivelant to center, center.
-      }
-
       list($x, $y, $f) = $crop;
 
       // Convert $x and $y to decimal if necessary
       $x = $x > 1 ? $x / 100 : $x;
       $y = $y > 1 ? $y / 100 : $y;
-      //   var_dump($x, $y,$crop);
 
       $ideal_s_x = 0;
       $ideal_s_y = 0;
@@ -721,20 +745,22 @@
       // left and top.
       // This maths takes our ideal offsets and gets as close to it as possible.
 
-      if ($ideal_s_x < 0):
+      if ($ideal_s_x < 0): {
         $s_x = 0;
-      elseif ($ideal_s_x + $crop_w > $orig_w):
+      } elseif ($ideal_s_x + $crop_w > $orig_w): {
         $s_x = $orig_w - $crop_w;
-      else:
+      } else: {
         $s_x = floor($ideal_s_x);
+      }
       endif;
 
-      if ($ideal_s_y < 0):
+      if ($ideal_s_y < 0): {
         $s_y = 0;
-      elseif ($ideal_s_y + $crop_h > $orig_h):
+      } elseif ($ideal_s_y + $crop_h > $orig_h): {
         $s_y = $orig_h - $crop_h;
-      else:
+      } else: {
         $s_y = floor($ideal_s_y);
+      }
       endif;
 
       // the return array matches the parameters to imagecopyresampled()
@@ -771,8 +797,7 @@
       $params             = $size;
       $params[ 'width' ]  = $size[ 0 ];
       $params[ 'height' ] = $size[ 1 ];
-
-      $resized_img_url = bfi_thumb($img_url, $params);
+      $resized_img_url    = bfi_thumb($img_url, $params);
 
       return array($resized_img_url, $size[ 0 ], $size[ 1 ], false);
     }
@@ -784,7 +809,8 @@
    */
 
 
-  function bfi_add_options_pages(){
+  function bfi_add_options_pages()
+  {
     add_options_page('BFI Thumbs', 'BFI Thumbs', 'manage_options', 'bfithumbs', 'bfi_thumbs_settings');
 
   }
@@ -796,8 +822,8 @@
    */
   function bfi_thumbs_settings()
   {
-    if ( !current_user_can( 'manage_options' ) )  {
-      wp_die( __( 'You do not have sufficient permissions to access this page.','default' ) );
+    if (!current_user_can('manage_options')) {
+      wp_die(__('You do not have sufficient permissions to access this page.', 'default'));
     }
 
     global $title;
@@ -810,6 +836,7 @@
     <h2><?php echo $title ?></h2>
 
     <h3>Flush BFI Thumbs image cache</h3>
+
     <p>If you update or change images in any posts,sometimes the image cache may get out-of-sync. In that case, you can
       refresh the thumbs image cache to ensure your site visitors are seeing the correct images.</p>
 

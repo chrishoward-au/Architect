@@ -166,6 +166,7 @@ jQuery( document ).ready( function ()
      // Show hide SECTION tabs
      //
      // ********************************************************************************************/
+    // TODO: Use the jquery :gt(n) psuedo element
     jQuery( ".redux-sidebar li#2_box_redux-_architect-metabox-layout-settings_section_group_li" ).toggle( jQuery( "fieldset#_architect-_blueprints_section-1-enable" ).find( 'input' ).val() === "1" );
     jQuery( ".redux-sidebar li#3_box_redux-_architect-metabox-layout-settings_section_group_li" ).toggle( jQuery( "fieldset#_architect-_blueprints_section-2-enable" ).find( 'input' ).val() === "1" );
 

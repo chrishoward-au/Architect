@@ -32,7 +32,7 @@
                                        $this->blueprint[ '_blueprints_content-source' ],
                                        $this->blueprint[ '_blueprints_navigation' ],
                                        $this->blueprint[ '_blueprints_section-' . ($i - 1) . '-layout-mode' ],
-                                       $this->blueprint[ '_blueprints_navigator-slider-engine' ],
+                                       'slick', // Possible Future use
                                        $this->blueprint[ '_blueprints_section-' . ($i - 1) . '-title' ]
             );
 

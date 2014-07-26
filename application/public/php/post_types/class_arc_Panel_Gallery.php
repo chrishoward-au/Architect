@@ -86,14 +86,39 @@
     {
       global $post;
 
-      $toshow   = json_decode($section[ '_panels_design_preview' ], true);
-      $data     = array();
+      $toshow = json_decode($section[ '_panels_design_preview' ], true);
+      $data   = array();
+
+      // Null up everything to prevent warnings later on
+      $data[ 'title' ]                     = null;
+      $data[ 'content' ]                   = null;
+      $data[ 'excerpt' ]                   = null;
+      $data[ 'categories' ]                = null;
+      $data[ 'tags' ]                      = null;
+      $data[ 'image' ][ 'image' ]          = null;
+      $data[ 'image' ][ 'caption' ]        = null;
+      $data[ 'meta' ][ 'datetime' ]        = null;
+      $data[ 'meta' ][ 'fdatetime' ]       = null;
+      $data[ 'meta' ][ 'categorieslinks' ] = null;
+      $data[ 'meta' ][ 'tagslinks' ]       = null;
+      $data[ 'meta' ][ 'authorlink' ]      = null;
+      $data[ 'meta' ][ 'authorname' ]      = null;
+      $data[ 'meta' ][ 'authoremail' ]     = null;
+      $data[ 'meta' ][ 'comments-count' ]  = null;
+      $data[ 'postid' ]                    = null;
+      $data[ 'poststatus' ]                = null;
+      $data[ 'permalink' ]                 = null;
+      $data[ 'postformat' ]                = null;
+      $data[ 'bgimage' ][ 'thumb' ]        = null;
+      $data[ 'bgimage' ][ 'original' ]     = null;
+
+
       $postmeta = get_post_meta(get_the_ID());
 
       // TODO: Will need to refine these to be based on content type
 //      if ($toshow[ 'title' ][ 'show' ]) {
       // Enable this so it is available to lightboxes
-        $data[ 'title' ] = get_the_title();
+      $data[ 'title' ] = get_the_title();
 //      }
       if ($toshow[ 'content' ][ 'show' ]) {
         $data[ 'content' ] = apply_filters('the_content', get_the_content());
@@ -113,10 +138,15 @@
         $width  = (int)str_replace('px', '', $section[ '_panels_design_image-max-dimensions' ][ 'width' ]);
         $height = (int)str_replace('px', '', $section[ '_panels_design_image-max-dimensions' ][ 'height' ]);
 
+        $focal_point = get_post_meta($post->ID, 'pzgp_focal_point', true);
+        list($fp_x, $fp_y) = (empty($focal_point) ? array(50, 50) : explode(',', $focal_point));
+
+        $crop = $fp_x . 'x' . $fp_y . 'x' . $section[ '_panels_settings_image-focal-point' ];
+
         $data[ 'image' ][ 'image' ]   = wp_get_attachment_image($post->ID, array($width,
                                                                                  $height,
                                                                                  'bfi_thumb' => true,
-                                                                                 'crop'      => true));
+                                                                                 'crop'      => $crop));
         $data[ 'image' ][ 'caption' ] = $post->post_excerpt;
       }
 
@@ -175,7 +205,8 @@
       $data[ 'postid' ]     = get_the_ID();
       $data[ 'poststatus' ] = get_post_status();
       $data[ 'permalink' ]  = get_the_permalink();
-      $post_format          = get_post_format();
+      $data[ 'postformat' ] = get_the_permalink();
+//      $post_format          = get_post_format();
 
       // Need to setup for break points.
 
@@ -194,23 +225,16 @@
       if ($showbgimage) {
 
         $focal_point = get_post_meta($post->ID, 'pzgp_focal_point', true);
-
         list($fp_x, $fp_y) = (empty($focal_point) ? array(50, 50) : explode(',', $focal_point));
 
-        $fp_x = $fp_x > 1 ? $fp_x / 100 : $fp_x;
-        $fp_y = $fp_y > 1 ? $fp_y / 100 : $fp_y;
-
-        $data[ 'bgimage' ]['thumb']               = wp_get_attachment_image($post->ID, array($width,
+        $crop                            = $fp_x . 'x' . $fp_y . 'x' . $section[ '_panels_settings_image-focal-point' ];
+        $data[ 'bgimage' ][ 'thumb' ]    = wp_get_attachment_image($post->ID, array($width,
                                                                                     $height,
                                                                                     'bfi_thumb' => true,
-                                                                                    'crop'      => array(
-                                                                                        $fp_x,
-                                                                                        $fp_y,
-                                                                                        'focalpt' => $section[ '_panels_settings_image-focal-point' ]
-                                                                                    ),
+                                                                                    'crop'      => $crop
             )
         );
-        $data[ 'bgimage' ][ 'original' ] = wp_get_attachment_image_src($post->ID,'full');
+        $data[ 'bgimage' ][ 'original' ] = wp_get_attachment_image_src($post->ID, 'full');
         //WP seems to smartly figure out which of its saved images to use! Now we jsut gotta get it t work with focal point
 //       $data[ 'bgimage' ] = '<img src="'.bfi_thumb($post->guid, array($width, $height, 'crop' => true)).'">'; //WP seems to smartly figure out which of its saved images to use! Now we jsut gotta get it t work with focal point
 
@@ -368,7 +392,7 @@
   {
     public static function render($component, $panel_def, $content_type, &$data, &$section, $rsid)
     {
-      $panel_def[ $component ] = str_replace('{{bgimage}}', $data[ 'bgimage' ]['thumb'], $panel_def[ $component ]);
+      $panel_def[ $component ] = str_replace('{{bgimage}}', $data[ 'bgimage' ][ 'thumb' ], $panel_def[ $component ]);
       $panel_def[ $component ] = str_replace('{{trim-scale}}', ' ' . $section[ '_panels_design_background-position' ] . ' ' . $section[ '_panels_design_background-image-resize' ], $panel_def[ $component ]);
 
       if ('none' !== $section[ '_panels_design_link-bgimage' ]) {
@@ -378,8 +402,8 @@
             $link = ('url' === $section[ '_panels_design_link-bgimage' ]) ? '<a href="' . $section[ '_panels_design_link-bgimage-url' ] . '" title="' . $section[ '_panels_design_link-bgimage-url-tooltip' ] . '">' : $panel_def[ 'postlink' ];
             break;
           case 'original':
-            $link = '<a class="lightbox lightbox-'.$rsid.'" href="' . $data['bgimage']['original'][0] . '" title="' . $data['title'] . '">';
-          break;
+            $link = '<a class="lightbox lightbox-' . $rsid . '" href="' . $data[ 'bgimage' ][ 'original' ][ 0 ] . '" title="' . $data[ 'title' ] . '">';
+            break;
         }
         $panel_def[ $component ] = str_replace('{{postlink}}', $link, $panel_def[ $component ]);
         $panel_def[ $component ] = str_replace('{{closepostlink}}', '</a>', $panel_def[ $component ]);
