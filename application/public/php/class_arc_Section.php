@@ -70,8 +70,8 @@
       do_action("arc_before_section_{$this->section_number}");
 
       $this->slider = ($this->section_number === 1 && $this->navtype === 'navigator')
-          ? array('wrapper' => ' swiper-wrapper',
-                  'slide'   => ' swiper-slide')
+          ? array('wrapper' => ' arc-slider-wrapper',
+                  'slide'   => ' arc-slider-slide')
           : array('wrapper' => '',
                   'slide'   => '');
 

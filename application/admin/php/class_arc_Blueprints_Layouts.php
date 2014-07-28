@@ -747,16 +747,6 @@
         'required'   => array('blueprints_navigation', 'equals', 'navigator'),
         'desc'       => 'When the navigation type is set to navigator, presentation will always be in a slider form. You can have multiple navigators on a page, thus multiple sliders.',
         'fields'     => array(
-          //            array(
-          //                'title'   => 'Slider engine',
-          //                'id'      => $prefix . 'navigator-slider-engine',
-          //                'type'    => 'button_set',
-          //                'default' => 'swiper',
-          //                'options' => array(
-          //                    'swiper'   => 'Swiper',
-          //                    'bxslider' => 'bxSlider'
-          //                )
-          //            ),
           array(
               'id'      => $prefix . 'navigator',
               'title'   => __('Type', 'pzarchitect'),
@@ -1744,14 +1734,14 @@ You can use them however you like though.</p>
                   'title'    => __('Navigator items', 'pzarchitect'),
                   'id'       => $prefix . 'blueprint-nav-items-css-heading',
                   'type'     => 'section',
-                  'subtitle' => 'Class: .pzarc-navigator .swiper-pagination-switch span',
+                  'subtitle' => 'Class: .pzarc-navigator .arc-slider-slide-nav-item span',
 
               ),
-              pzarc_redux_font($prefix . 'pzarc-navigator-items-font', array('.pzarc-navigator .swiper-pagination-switch span')),
-              pzarc_redux_bg($prefix . 'pzarc-navigator-items-background', array('.pzarc-navigator .swiper-pagination-switch span')),
-              pzarc_redux_padding($prefix . 'pzarc-navigator-items-padding', array('.pzarc-navigator .swiper-pagination-switch span')),
-              pzarc_redux_margin($prefix . 'pzarc-navigator-items-margins', array('.pzarc-navigator .swiper-pagination-switch span')),
-              pzarc_redux_borders($prefix . 'pzarc-navigator-items-borders', array('.pzarc-navigator .swiper-pagination-switch span')),
+              pzarc_redux_font($prefix . 'pzarc-navigator-items-font', array('.pzarc-navigator .arc-slider-slide-nav-item span')),
+              pzarc_redux_bg($prefix . 'pzarc-navigator-items-background', array('.pzarc-navigator .arc-slider-slide-nav-item span')),
+              pzarc_redux_padding($prefix . 'pzarc-navigator-items-padding', array('.pzarc-navigator .arc-slider-slide-nav-item span')),
+              pzarc_redux_margin($prefix . 'pzarc-navigator-items-margins', array('.pzarc-navigator .arc-slider-slide-nav-item span')),
+              pzarc_redux_borders($prefix . 'pzarc-navigator-items-borders', array('.pzarc-navigator .arc-slider-slide-nav-item span')),
           ),
       );
 

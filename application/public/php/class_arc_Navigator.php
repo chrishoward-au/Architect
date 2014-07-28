@@ -41,7 +41,7 @@
       $skip_right = $this->blueprint[ '_blueprints_navigator-skip-right' ];
 
       if ('thumbs' === $this->blueprint[ '_blueprints_navigator' ]) {
-        echo '<div class="swiper-nav swiper-container icomoon ' . $this->blueprint[ '_blueprints_navigator' ] . '">';
+        echo '<div class="arc-slider-nav arc-slider-container icomoon ' . $this->blueprint[ '_blueprints_navigator' ] . '">';
         echo '<button class="pager skip-left icon-btn-style"><span class="icon-' . $skip_left . '"></span></button>';
         echo '<button class="pager skip-right icon-btn-style"><span class="icon-' . $skip_right . '"></span></button>';
       }
@@ -83,7 +83,7 @@
       foreach ($this->navitems as $nav_item) {
         $active = ($i === 1 ? ' active' : '');
 
-        echo '<span class="swiper-slide swiper-pagination-switch' . $active . '" data-index="'.$i.'">' . $nav_item . '</span>';
+        echo '<span class="arc-slider-slide arc-slider-slide-nav-item' . $active . '" data-index="'.$i.'">' . $nav_item . '</span>';
         $i++;
       }
     }
@@ -138,7 +138,7 @@
         if ($this->blueprint[ '_blueprints_navigator-slider-engine' ] === 'bxslider') {
           echo '<a data-slide-index="' . $i++ . '" style="cursor:pointer;">' . $nav_item . '</a>';
         } else {
-          echo '<span class="swiper-pagination-switch' . $this->sizing . $active . '" data-index="'.$i.'"></span>';
+          echo '<span class="arc-slider-slide-nav-item' . $this->sizing . $active . '" data-index="'.$i.'"></span>';
           $i++;
         }
       }
@@ -162,7 +162,7 @@
         if ($this->blueprint[ '_blueprints_navigator-slider-engine' ] === 'bxslider') {
           echo '<a data-slide-index="' . $i++ . '" style="cursor:pointer;">' . $nav_item . '</a>';
         } else {
-          echo '<span class="swiper-pagination-switch' . $this->sizing . $active . '" data-index="'.$i.'">' . $i++ . '</span>';
+          echo '<span class="arc-slider-slide-nav-item' . $this->sizing . $active . '" data-index="'.$i.'">' . $i++ . '</span>';
         }
       }
     }
@@ -182,7 +182,7 @@
       $i = 1;
       foreach ($this->navitems as $nav_item) {
         $active = ($i === 1 ? ' active' : '');
-        echo '<span class="swiper-slide swiper-pagination-switch' . $this->sizing . $active . '" data-index="'.$i.'">' . $nav_item . '</span>';
+        echo '<span class="arc-slider-slide arc-slider-slide-nav-item' . $this->sizing . $active . '" data-index="'.$i.'">' . $nav_item . '</span>';
         $i++;
       }
     }

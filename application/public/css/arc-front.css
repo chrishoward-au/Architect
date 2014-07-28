@@ -43,7 +43,7 @@
     flex-wrap: wrap;
     counter-reset: arc-title-counter;
     height: 100%; }
-  .pzarchitect .pzarc-page-title h2 {
+  .pzarchitect h2.pzarc-page-title {
     font-size: 1.5em;
     line-height: 1.5em; }
   .pzarchitect .pzarc-section-title h3 {
@@ -213,18 +213,18 @@
       text-align: right;
       left: initial;
       width: 10%; }
-  .pzarchitect .swiper-container {
-    /* Specify Swiper's Size: */
+  .pzarchitect .arc-slider-container {
+    /* Specify slider's Size: */
     padding: 0; }
-    .pzarchitect .swiper-container .swiper-slide {
+    .pzarchitect .arc-slider-container .arc-slider-slide {
       /* Specify Slides's Size: */
       height: 100%;
       margin: 0 !important; }
-  .pzarchitect .swiper-slide-active {
+  .pzarchitect .arc-slider-slide-active {
     /* Specific active slide styling: */ }
-  .pzarchitect .swiper-slide-visible {
+  .pzarchitect .arc-slider-slide-visible {
     /* Specific visible slide styling: */ }
-  .pzarchitect .bullets .swiper-pagination-switch {
+  .pzarchitect .bullets .arc-slider-slide-nav-item {
     /* Stylize pagination button: */
     display: inline-block;
     width: 15px;
@@ -233,26 +233,26 @@
     box-shadow: 0px 1px 2px #555 inset;
     margin: 0 3px;
     cursor: pointer; }
-    .pzarchitect .bullets .swiper-pagination-switch.small {
+    .pzarchitect .bullets .arc-slider-slide-nav-item.small {
       width: 12px !important;
       height: 12px; }
-    .pzarchitect .bullets .swiper-pagination-switch.medium {
+    .pzarchitect .bullets .arc-slider-slide-nav-item.medium {
       width: 15px !important;
       height: 15px; }
-    .pzarchitect .bullets .swiper-pagination-switch.large {
+    .pzarchitect .bullets .arc-slider-slide-nav-item.large {
       width: 18px !important;
       height: 18px; }
-    .pzarchitect .bullets .swiper-pagination-switch:hover {
+    .pzarchitect .bullets .arc-slider-slide-nav-item:hover {
       background: #ccc; }
-    .pzarchitect .bullets .swiper-pagination-switch.active {
+    .pzarchitect .bullets .arc-slider-slide-nav-item.active {
       /* Specific active button style: */
       background: #fff; }
-  .pzarchitect .bullets.circle .swiper-pagination-switch {
+  .pzarchitect .bullets.circle .arc-slider-slide-nav-item {
     border-radius: 15px; }
-  .pzarchitect .bullets.square .swiper-pagination-switch {
+  .pzarchitect .bullets.square .arc-slider-slide-nav-item {
     border-radius: 1px;
     border-bottom: 1px solid #999; }
-  .pzarchitect .tabbed .swiper-pagination-switch {
+  .pzarchitect .tabbed .arc-slider-slide-nav-item {
     /* Stylize pagination button: */
     display: table-cell;
     min-height: 30px;
@@ -266,37 +266,37 @@
     text-decoration: none;
     font-family: sans-serif;
     box-sizing: border-box; }
-  .pzarchitect .thumbs .swiper-pagination-switch {
+  .pzarchitect .thumbs .arc-slider-slide-nav-item {
     /* Stylize pagination button: */ }
-    .pzarchitect .thumbs .swiper-pagination-switch img {
+    .pzarchitect .thumbs .arc-slider-slide-nav-item img {
       border-style: solid;
       border-width: 2px;
       border-color: rgba(128, 128, 128, 0); }
-    .pzarchitect .thumbs .swiper-pagination-switch.active img {
+    .pzarchitect .thumbs .arc-slider-slide-nav-item.active img {
       border-color: #fff; }
   .pzarchitect .thumbs span.dashicons {
     font-size: 4em;
     display: inline-table; }
-  .pzarchitect .numbers .swiper-pagination-switch {
+  .pzarchitect .numbers .arc-slider-slide-nav-item {
     font-size: 28px;
     font-family: sans-serif;
     font-weight: bold;
     padding: 5px;
     color: #999; }
-    .pzarchitect .numbers .swiper-pagination-switch.small {
+    .pzarchitect .numbers .arc-slider-slide-nav-item.small {
       font-size: 22px; }
-    .pzarchitect .numbers .swiper-pagination-switch.medium {
+    .pzarchitect .numbers .arc-slider-slide-nav-item.medium {
       font-size: 28px; }
-    .pzarchitect .numbers .swiper-pagination-switch.large {
+    .pzarchitect .numbers .arc-slider-slide-nav-item.large {
       font-size: 34px; }
-    .pzarchitect .numbers .swiper-pagination-switch:hover {
+    .pzarchitect .numbers .arc-slider-slide-nav-item:hover {
       color: #ccc; }
-    .pzarchitect .numbers .swiper-pagination-switch.active {
+    .pzarchitect .numbers .arc-slider-slide-nav-item.active {
       /* Specific active button style: */
       color: #fff; }
-  .pzarchitect .swiper-pagination-switch {
+  .pzarchitect .arc-slider-slide-nav-item {
     cursor: pointer; }
-  .pzarchitect .swiper-visible-switch {
+  .pzarchitect .arc-slider-slide-nav-item-visible {
     /* Specific style for nav buttons for visible panels: */ }
   .pzarchitect .nav-navigator button.pager {
     position: absolute;
@@ -321,14 +321,14 @@
   .pzarchitect .nav-navigator:hover .arrow-right,
   .pzarchitect .nav-navigator:hover .arrow-left {
     display: block; }
-  .pzarchitect .swiper-nav {
+  .pzarchitect .arc-slider-nav {
     max-height: 80px;
     width: 100%;
     position: relative; }
-    .pzarchitect .swiper-nav:hover .skip-right,
-    .pzarchitect .swiper-nav:hover .skip-left {
+    .pzarchitect .arc-slider-nav:hover .skip-right,
+    .pzarchitect .arc-slider-nav:hover .skip-left {
       display: block; }
-    .pzarchitect .swiper-nav button.pager {
+    .pzarchitect .arc-slider-nav button.pager {
       position: absolute;
       top: 50%;
       margin-top: -20px;
@@ -337,9 +337,9 @@
       text-decoration: none;
       display: none;
       background: none; }
-      .pzarchitect .swiper-nav button.pager:hover {
+      .pzarchitect .arc-slider-nav button.pager:hover {
         display: block; }
-      .pzarchitect .swiper-nav button.pager span {
+      .pzarchitect .arc-slider-nav button.pager span {
         vertical-align: middle;
         margin: 0;
         padding: 0;
@@ -351,25 +351,25 @@
         display: block;
         color: #fff;
         background: rgba(0, 0, 0, 0.3); }
-      .pzarchitect .swiper-nav button.pager.skip-left {
+      .pzarchitect .arc-slider-nav button.pager.skip-left {
         left: 5px; }
-        .pzarchitect .swiper-nav button.pager.skip-left span {
+        .pzarchitect .arc-slider-nav button.pager.skip-left span {
           left: -4px; }
-      .pzarchitect .swiper-nav button.pager.skip-right {
+      .pzarchitect .arc-slider-nav button.pager.skip-right {
         right: 5px; }
-        .pzarchitect .swiper-nav button.pager.skip-right span {
+        .pzarchitect .arc-slider-nav button.pager.skip-right span {
           right: -4px; }
   .pzarchitect .pzarc-navigator.inside {
     width: 100%; }
-    .pzarchitect .pzarc-navigator.inside .swiper-wrapper {
+    .pzarchitect .pzarc-navigator.inside .arc-slider-wrapper {
       width: 100% !important; }
-  .pzarchitect .swiper-nav .swiper-wrapper {
+  .pzarchitect .arc-slider-nav .arc-slider-wrapper {
     margin: 0 auto; }
-  .pzarchitect .swiper-nav .swiper-wrapper > span:hover {
+  .pzarchitect .arc-slider-nav .arc-slider-wrapper > span:hover {
     background: rgba(255, 255, 255, 0.3); }
-  .pzarchitect .swiper-nav .swiper-slide {
+  .pzarchitect .arc-slider-nav .arc-slider-slide {
     max-width: 100px; }
-  .pzarchitect .swiper-nav.thumbs .swiper-slide {
+  .pzarchitect .arc-slider-nav.thumbs .arc-slider-slide {
     max-width: initial;
     display: inline-block; }
   .pzarchitect ul.slick-dots {

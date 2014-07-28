@@ -440,8 +440,8 @@
         $slider[ 'class' ]     = '';
         $slider[ 'dataid' ]    = '';
         $slider[ 'datatype' ]  = '';
-        $slider[ 'class' ]     = ' swiper-container slider swiper-container-' . $bp_shortname;
-        $slider[ 'dataid' ]    = ' data-swiperid="' . $bp_shortname . '"';
+        $slider[ 'class' ]     = ' arc-slider-container slider arc-slider-container-' . $bp_shortname;
+        $slider[ 'dataid' ]    = ' data-sliderid="' . $bp_shortname . '"';
         $slider[ 'datatype' ]  = ' data-navtype="' . $bp_nav_type . '"';
         $slider[ 'datatrans' ] = ' data-transtype="' . $bp_transtype . '"';
 

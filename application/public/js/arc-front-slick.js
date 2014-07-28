@@ -3,13 +3,13 @@ jQuery( document ).ready( function ()
     "use strict";
     // This stop error in CodeKit compilation
     /*global console:true */
-    var arcSlicks = jQuery( '.swiper-container.slider' );
+    var arcSlicks = jQuery( '.arc-slider-container.slider' );
     //for each
 
     function update_nav( i, arcNav )
     {
 
-        var nav = jQuery( arcNav ).find( '.swiper-pagination-switch' );
+        var nav = jQuery( arcNav ).find( '.arc-slider-slide-nav-item' );
         jQuery( nav ).removeClass( 'active' );
         jQuery( nav[i] ).addClass( 'active' );
 
@@ -19,7 +19,7 @@ jQuery( document ).ready( function ()
     arcSlicks.each( function ()
     {
 
-        var arcSlickID = jQuery( this ).attr( 'data-swiperid' );
+        var arcSlickID = jQuery( this ).attr( 'data-sliderid' );
         var arcSlickTrans = jQuery( this ).attr( 'data-transtype' ) === 'fade';
         var arcSlickOpts = (jQuery( this ).attr( 'data-opts' ));
 
@@ -47,7 +47,7 @@ jQuery( document ).ready( function ()
                   }
             );
 
-            var arcSlick = jQuery( '.swiper-container.swiper-container-' + arcSlickID + ' .pzarc-section' ).slick(
+            var arcSlick = jQuery( '.arc-slider-container.arc-slider-container-' + arcSlickID + ' .pzarc-section' ).slick(
                   {
                       slide: '.pzarc-panel',
                       fade: arcSlickTrans,
@@ -80,7 +80,7 @@ jQuery( document ).ready( function ()
 
 
             // Custom Nav we'll use for everything except thumbs
-            jQuery( arcSlickNav ).find( '.swiper-pagination-switch' ).on( 'click', function ()
+            jQuery( arcSlickNav ).find( '.arc-slider-slide-nav-item' ).on( 'click', function ()
             {
                 arcSlick.slickGoTo( (jQuery( this ).attr( 'data-index' ) - 1) );
             } );

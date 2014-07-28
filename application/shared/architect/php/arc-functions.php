@@ -603,7 +603,7 @@
           $keys[ 'class' ] = '.pzarc-navigator';
           break;
         case  'pzarc-navigator-items':
-          $keys[ 'class' ] = '.swiper-pagination-switch'; // not always!! ugh!
+          $keys[ 'class' ] = '.arc-slider-slide-nav-item'; // not always!! ugh!
           break;
 
       }
