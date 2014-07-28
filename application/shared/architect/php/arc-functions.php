@@ -227,7 +227,7 @@
           if (is_array($fields)) {
             foreach ($fields as $key4 => $field) {
               if (isset($field[ 'id' ])) {
-                $pzarchitect[ 'defaults' ][ '_blueprints' ][ $field[ 'id' ] ] = (empty($field[ 'default' ])?'':$field[ 'default' ]);
+                $pzarchitect[ 'defaults' ][ '_blueprints' ][ $field[ 'id' ] ] = (empty($field[ 'default' ]) ? '' : $field[ 'default' ]);
               }
             }
           }
@@ -243,7 +243,7 @@
           if (is_array($fields)) {
             foreach ($fields as $key4 => $field) {
               if (isset($field[ 'id' ])) {
-                $pzarchitect[ 'defaults' ][ '_panels' ][ $field[ 'id' ] ] = (empty($field[ 'default' ])?'':$field[ 'default' ]);
+                $pzarchitect[ 'defaults' ][ '_panels' ][ $field[ 'id' ] ] = (empty($field[ 'default' ]) ? '' : $field[ 'default' ]);
               }
             }
           }
@@ -441,14 +441,17 @@
     foreach ($blueprints_obj as $blueprint_obj) {
       $blueprint_list[ $blueprint_obj->post_name ] = $blueprint_obj->post_title;
     }
+
     return $blueprint_list;
   }
 
-  function pzarc_array_to_options_list($source_arr,$selected) {
+  function pzarc_array_to_options_list($source_arr, $selected)
+  {
     foreach ($source_arr as $key => $value) {
-      echo '<option value="'.esc_attr($key).'" '.($selected==$key?'selected':null).'>'.esc_attr($value).'</option>';
+      echo '<option value="' . esc_attr($key) . '" ' . ($selected == $key ? 'selected' : null) . '>' . esc_attr($value) . '</option>';
     }
   }
+
   function pzarc_get_custom_fields()
   {
     global $wpdb;
@@ -573,3 +576,80 @@
     return $array_out;
   }
 
+  function pzarc_get_styling($source, $keys)
+  {
+
+    if ('blueprint' === $source) {
+      switch ($keys[ 'id' ]) {
+        case 'blueprint':
+          $keys[ 'class' ] = '.pzarc-blueprint';
+          break;
+        case  'blueprint-custom':
+          $keys[ 'class' ] = '.';
+          break;
+        case  'sections':
+          $keys[ 'class' ] = '.pzarc-section';
+          break;
+        case  'pzarc-section_1':
+          $keys[ 'class' ] = '.pzarc-section_1';
+          break;
+        case  'pzarc-section_2':
+          $keys[ 'class' ] = '.pzarc-section_2';
+          break;
+        case  'pzarc-section_3':
+          $keys[ 'class' ] = '.pzarc-section_3';
+          break;
+        case  'pzarc-navigator':
+          $keys[ 'class' ] = '.pzarc-navigator';
+          break;
+        case  'pzarc-navigator-items':
+          $keys[ 'class' ] = '.swiper-pagination-switch'; // not always!! ugh!
+          break;
+
+      }
+    }
+
+    // generate correct whosit
+    $pzf = 'pzarc_style_' . $keys[ 'style' ];
+    $def = call_user_func($pzf, $keys[ 'class' ]);
+
+    var_dump($def);
+
+    return $def;
+  }
+
+  function pzarc_style_background($class)
+  {
+    return $class;
+  }
+
+  function pzarc_style_padding($class)
+  {
+    $padding = pzarc_process_spacing($value);
+    return $class;
+  }
+
+  function pzarc_style_margins($class)
+  {
+    return $class;
+  }
+
+  function pzarc_style_borders($class)
+  {
+    return $class;
+  }
+
+  function pzarc_style_links($class)
+  {
+    return $class;
+  }
+
+  function pzarc_style_font($class)
+  {
+    return $class;
+  }
+
+  function pzarc_style_css($class)
+  {
+    return $class;
+  }

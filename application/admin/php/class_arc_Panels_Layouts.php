@@ -1488,12 +1488,12 @@
               'icon'       => 'el-icon' . $font,
               'desc'       => 'Class: .entry-customfield-' . $i,
               'fields'     => pzarc_fields(
-                  pzarc_redux_font($prefix . 'entry-customfield-' . $i . '' . $font, array('.entry-customfield-' . $i . ''), $defaults[ $optprefix . 'entry-customfield-' . $i . '' . $font ]),
-                  pzarc_redux_bg($prefix . 'entry-customfield-' . $i . '' . $font . $background, array('.entry-customfield-' . $i . ''), $defaults[ $optprefix . 'entry-customfield-' . $i . '' . $font . $background ]),
-                  pzarc_redux_padding($prefix . 'entry-customfield-' . $i . '' . $font . $padding, array('.entry-customfield-' . $i . ''), $defaults[ $optprefix . 'entry-customfield-' . $i . '' . $font . $padding ]),
-                  pzarc_redux_margin($prefix . 'entry-customfield-' . $i . '' . $font . $margin, array('.entry-customfield-' . $i . ''), $defaults[ $optprefix . 'entry-customfield-' . $i . '' . $font . $margin ]),
-                  pzarc_redux_borders($prefix . 'entry-customfield-' . $i . '' . $border, array('.entry-customfield-' . $i . ''), $defaults[ $optprefix . 'entry-customfield-' . $i . '' . $border ]),
-                  pzarc_redux_links($prefix . 'entry-customfield-' . $i . '' . $font . $link, array('.entry-customfield-' . $i . ' a'), $defaults[ $optprefix . 'entry-customfield-' . $i . '' . $font . $link ])
+                  pzarc_redux_font($prefix . 'entry-customfield-' . $i . '' . $font, array('.entry-customfield-' . $i . '')),
+                  pzarc_redux_bg($prefix . 'entry-customfield-' . $i . '' . $font . $background, array('.entry-customfield-' . $i . '')),
+                  pzarc_redux_padding($prefix . 'entry-customfield-' . $i . '' . $font . $padding, array('.entry-customfield-' . $i . '')),
+                  pzarc_redux_margin($prefix . 'entry-customfield-' . $i . '' . $font . $margin, array('.entry-customfield-' . $i . '')),
+                  pzarc_redux_borders($prefix . 'entry-customfield-' . $i . '' . $border, array('.entry-customfield-' . $i . '')),
+                  pzarc_redux_links($prefix . 'entry-customfield-' . $i . '' . $font . $link, array('.entry-customfield-' . $i . ' a'))
               ),
           );
         }

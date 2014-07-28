@@ -26,10 +26,10 @@
 
       //NOTE: the focal pont field name really is pzgp-... That is a throw back to where it began life in GalleryPlus and maintains compatibility with all existing installs
       $form_fields[ 'pzgp-focal-point' ] = array(
-          'label' => 'Focal Point',
-          'input' => 'text',
-          'value' => get_post_meta($post->ID, 'pzgp_focal_point', true),
-          'helps' => 'Format: X,Y percents.<strong>Double click on the image to automatically fill the focal point field.</strong>',
+          'label' => __('Focal Point','pzwp'),
+          'input' => 'html',
+          'html'=>"<input type='text' readonly value='".get_post_meta($post->ID, 'pzgp_focal_point', true)."' name='attachments[{$post->ID}][pzgp-focal-point]' id='attachments[{$post->ID}][pzgp-focal-point]' title='".__('Supported plugins will use this point to ensure more reliable cropping - e.g. without chopped off heads.','pzwp')."'/>",
+          'helps' => __('Double click on the image to set the focal point.','pzwp'),
       );
 
       return $form_fields;

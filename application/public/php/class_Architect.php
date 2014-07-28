@@ -417,7 +417,7 @@
             break;
         }
         if ($title) {
-          echo '<div class="pzarc-page-title"><h2>' . $title . '</h2></div>';
+          echo '<h2 class="pzarc-page-title">' . $title . '</h2>';
         }
       }
     }
@@ -454,9 +454,9 @@
         $return_val .= '<button type="button" class="pager arrow-left icon-arrow-left4"></button>';
         $return_val .= '<button type="button" class="pager arrow-right icon-uniE60D"></button>';
 //          //TODO: Should the bp name be in the class or ID?
-        $return_val .= '<div class="pzarc-sections_' . $bp_shortname . ' pzarc-is_' . $caller . $slider[ 'class' ] . '"' . $slider[ 'dataid' ] . $slider[ 'datatype' ] . $slider[ 'dataopts' ] . $slider[ 'datatrans' ] . '>';
+        $return_val .= '<div class="pzarc-sections pzarc-sections_' . $bp_shortname . ' pzarc-is_' . $caller . $slider[ 'class' ] . '"' . $slider[ 'dataid' ] . $slider[ 'datatype' ] . $slider[ 'dataopts' ] . $slider[ 'datatrans' ] . '>';
       } else {
-        $return_val .= '<div class="pzarc-sections_' . $bp_shortname . ' pzarc-is_' . $caller . '">';
+        $return_val .= '<div class="pzarc-sections pzarc-sections_' . $bp_shortname . ' pzarc-is_' . $caller . '">';
       }
 
       return $return_val;
