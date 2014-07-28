@@ -119,7 +119,7 @@
 
     switch ($type) {
       case 'arc-blueprints':
-        require_once PZARC_PLUGIN_APP_PATH . '/admin/php/arc-save-process-blueprints-new.php';
+        require_once PZARC_PLUGIN_APP_PATH . '/admin/php/arc-save-process-blueprints.php';
         $pzarc_blueprints = pzarc_merge_defaults($defaults[ '_blueprints' ], $pzarc_settings);
         $pzarc_contents .= pzarc_create_blueprint_css($pzarc_blueprints, $pzarc_contents, $postid);
         break;
