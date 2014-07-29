@@ -234,10 +234,10 @@
     public function register_plugin_styles()
     {
 
-      wp_enqueue_style(PZARC_NAME . '-plugin-styles',PZARC_PLUGIN_APP_URL . '/public/css/arc-front.css');
+      wp_register_style(PZARC_NAME . '-plugin-styles',PZARC_PLUGIN_APP_URL . '/public/css/arc-front.css');
       // Need this for custom CSS in styling options
       if (file_exists(PZARC_CACHE_PATH . 'arc-dynamic-styles.css')) {
-        wp_enqueue_style(PZARC_NAME . '-dynamic-styles', PZARC_CACHE_URL . 'arc-dynamic-styles.css');
+        wp_register_style(PZARC_NAME . '-dynamic-styles', PZARC_CACHE_URL . 'arc-dynamic-styles.css');
       }
     }
 

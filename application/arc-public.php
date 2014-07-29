@@ -11,12 +11,12 @@
   // TODO: Move these til needed
 
 
+  // How do we do this only on pages needing it?
   add_action('init', 'pzarc_display_init');
   function pzarc_display_init()
   {
 
     wp_register_script('js-arc-front-slickjs', PZARC_PLUGIN_APP_URL . '/public/js/arc-front-slick.js', array('jquery'));
-    wp_enqueue_script('js-arc-front-slickjs');
 
 
 
@@ -24,21 +24,15 @@
     // Slick
     wp_register_script('js-slickjs', PZARC_PLUGIN_APP_URL . '/public/js/slick/slick.min.js', array('jquery'), null, true);
     wp_register_style('css-slickjs', PZARC_PLUGIN_APP_URL . '/public/js/slick/slick.css');
-    wp_enqueue_script('js-slickjs');
-    wp_enqueue_style('css-slickjs');
 
     // Magnific
     wp_register_script('js-magnific-arc', PZARC_PLUGIN_APP_URL . '/public/js/arc-front-magnific.js', array('jquery'), null, true);
     wp_register_script('js-magnific', PZARC_PLUGIN_APP_URL . '/public/js/Magnific-Popup/jquery.magnific-popup.min.js', array('jquery'), null, true);
     wp_register_style('css-magnific', PZARC_PLUGIN_APP_URL . '/public/js/Magnific-Popup/magnific-popup.css');
-    wp_enqueue_script('js-magnific');
-    wp_enqueue_script('js-magnific-arc');
-    wp_enqueue_style('css-magnific');
 
     //icomoon
     wp_register_style('css-icomoon-arrows', PZARC_PLUGIN_APP_URL . '/shared/assets/fonts/icomoon/im-style.css');
 
-    wp_enqueue_style('css-icomoon-arrows');
 
 
     // ResponCSS
@@ -147,6 +141,18 @@
    ******************************/
   function pzarc($blueprint = null, $overrides = null, $caller)
   {
+    // Enqueue registered scripts and styles
+    wp_enqueue_script('js-arc-front-slickjs');
+    wp_enqueue_script('js-slickjs');
+    wp_enqueue_style('css-slickjs');
+    wp_enqueue_script('js-magnific');
+    wp_enqueue_script('js-magnific-arc');
+    wp_enqueue_style('css-magnific');
+    wp_enqueue_style('css-icomoon-arrows');
+    wp_enqueue_style(PZARC_NAME . '-plugin-styles');
+    wp_enqueue_style(PZARC_NAME . '-dynamic-styles');
+
+
     $is_shortcode = ($caller == 'shortcode');
 
     if (empty($blueprint)) {
