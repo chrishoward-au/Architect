@@ -230,12 +230,19 @@
 
 
         // ACTUAL DECLARATION OF SECTIONS
-        $current_theme = wp_get_theme();
+        $current_theme     = wp_get_theme();
         $this->sections[ ] = array(
             'title'      => 'General ',
             'show_title' => true,
             'icon'       => 'el-icon-wrench',
             'fields'     => array(
+                array(
+                    'title'    => __('Default shortcode blueprint', 'pzarchitect'),
+                    'id'       => 'architect_default_shortcode_blueprint',
+                    'type'     => 'select',
+                    'options'  => pzarc_get_blueprints(),
+                    'subtitle' => 'If you omit the blueprint name from a shortcode, it will use the one selected here. Usefult for quick conversion of WP galleries.',
+                ),
                 array(
                     'title'    => __('Enable styling settings', 'pzarchitect'),
                     'id'       => 'architect_enable_styling',
@@ -251,17 +258,16 @@
                     'subtitle' => 'Turn off this if you won\'t need the Snippets content type.',
                     'default'  => false
                 ),
-                ('headway' == $current_theme->stylesheet?array(
+                ('headway' == $current_theme->stylesheet ? array(
                     'title'    => __('Add Headway Content Block class', 'pzarchitect'),
                     'id'       => 'architect_hw-content-class',
                     'type'     => 'switch',
-                    'on'=>'Yes',
-                    'off'=>'No',
-                    'default'=>true,
-                    'subtitle' => __('This will add the class <strong>block-type-content</strong> to the panels, which enables them to inherit the stylings for the Content block.','pzarchitect')
+                    'on'       => 'Yes',
+                    'off'      => 'No',
+                    'default'  => false,
+                    'subtitle' => __('This will add the class <strong>block-type-content</strong> to the panels, which enables them to inherit the stylings for the Content block. However, this cna make styling in the Visual Editor Design Mode a little confusing, and may cause some conflicts', 'pzarchitect')
 
-                ):null),
-
+                ) : null),
                 array(
                     'title'    => __('Enable admin background image', 'pzarchitect'),
                     'id'       => 'architect_enable_bgimage',
@@ -270,11 +276,11 @@
                     'default'  => false,
                 ),
                 array(
-                    'title'   => __('Choose image', 'pzarchitect'),
-                    'id'      => 'architect_bgimage',
-                    'type'    => 'image_select',
-                    'required'=>array('architect_enable_bgimage','equals',true),
-                    'options' => array(
+                    'title'    => __('Choose image', 'pzarchitect'),
+                    'id'       => 'architect_bgimage',
+                    'type'     => 'image_select',
+                    'required' => array('architect_enable_bgimage', 'equals', true),
+                    'options'  => array(
                         'arc-bg-1' => array(
                             'img' => PZARC_PLUGIN_APP_URL . '/admin/css/images/arc-bg-1-64x42.png'
                         ),
@@ -291,15 +297,15 @@
                             'img' => PZARC_PLUGIN_APP_URL . '/admin/css/images/arc-bg-6-64x42.png'
                         )
                     ),
-                    'default' => 'arc-bg-1'
+                    'default'  => 'arc-bg-1'
                 ),
-//                array(
-//                    'title'    => __('Custom post def path', 'pzarchitect'),
-//                    'id'       => 'architect_custom_post_def_path',
-//                    'type'     => 'text',
-//                    'validate' => 'url',
-//                    'default'  => '',
-//                ),
+                //                array(
+                //                    'title'    => __('Custom post def path', 'pzarchitect'),
+                //                    'id'       => 'architect_custom_post_def_path',
+                //                    'type'     => 'text',
+                //                    'validate' => 'url',
+                //                    'default'  => '',
+                //                ),
                 array(
                     'title'    => __('Breakpoints', 'pzarchitect'),
                     'id'       => 'architect_breakpoint_section',

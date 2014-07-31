@@ -19,8 +19,6 @@
     wp_register_script('js-arc-front-slickjs', PZARC_PLUGIN_APP_URL . '/public/js/arc-front-slick.js', array('jquery'));
 
 
-
-
     // Slick
     wp_register_script('js-slickjs', PZARC_PLUGIN_APP_URL . '/public/js/slick/slick.min.js', array('jquery'), null, true);
     wp_register_style('css-slickjs', PZARC_PLUGIN_APP_URL . '/public/js/slick/slick.css');
@@ -32,7 +30,6 @@
 
     //icomoon
     wp_register_style('css-icomoon-arrows', PZARC_PLUGIN_APP_URL . '/shared/assets/fonts/icomoon/im-style.css');
-
 
 
     // ResponCSS
@@ -142,31 +139,41 @@
   function pzarc($blueprint = null, $overrides = null, $caller)
   {
     // Enqueue registered scripts and styles
+    // make optional
     wp_enqueue_script('js-arc-front-slickjs');
     wp_enqueue_script('js-slickjs');
     wp_enqueue_style('css-slickjs');
+    wp_enqueue_style('css-icomoon-arrows');
+    // make optional
     wp_enqueue_script('js-magnific');
     wp_enqueue_script('js-magnific-arc');
     wp_enqueue_style('css-magnific');
-    wp_enqueue_style('css-icomoon-arrows');
+
     wp_enqueue_style(PZARC_NAME . '-plugin-styles');
     wp_enqueue_style(PZARC_NAME . '-dynamic-styles');
 
 
     $is_shortcode = ($caller == 'shortcode');
 
-    if (empty($blueprint)) {
+    global $_architect_options;
+
+    // Just incase that didn't work... A problem from days of past
+    if (!isset($GLOBALS[ '_architect_options' ])) {
+      $GLOBALS[ '_architect_options' ] = get_option('_architect_options', array());
+    }
+
+    if (empty($blueprint) && ($is_shortcode && empty($_architect_options[ 'architect_default_shortcode_blueprint' ]))) {
 
       // TODO: Should we make this use a set of defaults. prob an excerpt grid
       echo '<p class="message-warning">You need to set a blueprint</p>';
 
     } else {
 
-      // Need accezs to some options
-      if (!isset($GLOBALS[ '_architect_options' ])) {
-        $GLOBALS[ '_architect_options' ] = get_option('_architect_options', array());
-      }
+      if (empty($blueprint) && ($is_shortcode && !empty($_architect_options[ 'architect_default_shortcode_blueprint' ]))) {
 
+        $blueprint = $_architect_options[ 'architect_default_shortcode_blueprint' ];
+
+      }
 
 //      require_once PZARC_PLUGIN_APP_PATH . '/admin/php/arc-options-styling.php';
 //      require_once PZARC_PLUGIN_APP_PATH . '/shared/includes/php/redux-extensions/extensions/metaboxes/extension_metaboxes.php';
