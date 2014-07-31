@@ -160,9 +160,11 @@
 
       do_action('arc_before_architect');
 
+      global $_architect_options;
+      $use_hw_css = (!empty($_architect_options['architect_use-hw-css'])?'use-hw-css':null);
 
       /** BLUEPRINT */
-      echo '<div class="pzarchitect pzarc-blueprint pzarc-blueprint_' . $this->build->blueprint[ '_blueprints_short-name' ] . ' nav-' . $bp_nav_type . ' icomoon">';
+      echo '<div class="pzarchitect '.$use_hw_css.' pzarc-blueprint pzarc-blueprint_' . $this->build->blueprint[ '_blueprints_short-name' ] . ' nav-' . $bp_nav_type . ' icomoon">';
 
       /** NAVIGATOR TOP*/
 
