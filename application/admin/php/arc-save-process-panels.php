@@ -145,217 +145,18 @@
          *********************************************************/
 
         case (strpos($key, '_panels_styling') === 0 && !empty($value) && !empty($_architect_options[ 'architect_enable_styling' ])):
-          //           var_dump($key,$value);
-          switch (true) {
-
-            ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-            /** Overall */
-            ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-            case $key === '_panels_styling_panels-background' :
-              $this_key = key($value);
-              if (!empty($value[ 'color' ])) {
-                $pzarc_contents .= $class_prefix . '.pzarc-panel {background-color:' . $value[ 'color' ] . ';}' . $nl;
-              }
-              break;
-
-            case $key === '_panels_styling_panels-padding' :
-              $filler = '';
-              foreach ($value as $k => $v) {
-                $filler .= (strpos($k, 'padding') === 0 && !empty($v) ? $k . ':' . $v . ';' : '');
-              }
-              $pzarc_contents .= (!empty($filler) ? $class_prefix . '.pzarc-panel {' . $filler . '}' . $nl : '');
-              break;
-
-            case ($key === '_panels_styling_panels-borders'):
-              if (($value[ 'border-style' ] !== 'none')) {
-                $pzarc_contents .= pzarc_process_borders($class_prefix . '.pzarc-panel', $value) . $nl;
-              }
-              break;
-
-            ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-            /** COMPONENTS */
-            ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-            case $key === '_panels_styling_components-background' :
-              $this_key = key($value);
-              if (!empty($value[ 'color' ])) {
-                $pzarc_contents .= $class_prefix . ' .pzarc-components {background-color:' . $value[ 'color' ] . ';}' . $nl;
-              }
-              break;
-
-            case $key === '_panels_styling_components-padding' :
-              $padding = pzarc_process_spacing($value);
-              if (!empty($padding)) {
-                $pzarc_contents .= $class_prefix . ' .pzarc-components {' . $padding . '}' . $nl;
-              }
-              break;
-
-            case ($key === '_panels_styling_components-borders'):
-              if (($value[ 'border-style' ] !== 'none')) {
-                $pzarc_contents .= pzarc_process_borders($class_prefix . ' .pzarc-components', $value) . $nl;
-              }
-              break;
-
-            //TODO: Really got to make this dumb!
-            ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-            /** Titles */
-            ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-            case $key === '_panels_styling_entry-title-font' :
-              $pzarc_contents .= pzarc_process_fonts($class_prefix . ' .entry-title', $value) . $nl;
-              break;
-
-            case ($key === '_panels_styling_entry-title-font-links'):
-              $pzarc_contents .= pzarc_process_links($class_prefix . ' .entry-title ', $value, $nl) . $nl;
-              break;
-
-            case ($key === '_panels_styling_entry-title-borders'):
-              if (($value[ 'border-style' ] !== 'none')) {
-                $pzarc_contents .= pzarc_process_borders($class_prefix . ' .entry-title', $value) . $nl;
-              }
-              break;
-
-            case $key === '_panels_styling_entry-title-font-padding' :
-              $padding = pzarc_process_spacing($value);
-              $pzarc_contents .= $class_prefix . ' .entry-title {' . $padding . ';}' . $nl;
-              break;
-
-            case $key === '_panels_styling_entry-title-font-margin' :
-              $margins = pzarc_process_spacing($value);
-              $pzarc_contents .= $class_prefix . ' .entry-title {' . $margins . ';}' . $nl;
-              break;
+          $pkeys            = array();
+          $pkey             = str_replace('_panels_styling_', '', $key);
+          $splitter         = (substr_count($pkey, '-font-') === 1 ? strrpos($pkey, '-font-') : strrpos($pkey, '-'));
+          $pkeys[ 'style' ] = str_replace('-', '', substr($pkey, $splitter + 1));
+          $pkeys[ 'id' ]    = substr($pkey, 0, $splitter);
 
 
-            ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-            /** Meta */
-            ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-            case $key === '_panels_styling_entry-meta-font' :
-              $pzarc_contents .= pzarc_process_fonts($class_prefix . ' .entry-meta', $value) . $nl;
-              break;
-
-            case ($key === '_panels_styling_entry-meta-font-links'):
-//                  var_dump($key,$value);
-              $pzarc_contents .= pzarc_process_links($class_prefix . ' .entry-meta ', $value, $nl) . $nl;
-              break;
-
-            ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-            /** IMAGES */
-            ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-            case $key === '_panels_styling_entry-image-background' :
-              $pzarc_contents .= pzarc_process_background($class_prefix . ' figure.entry-thumbnail ', $value) . $nl;
-              break;
-
-            case $key === '_panels_styling_entry-image-padding' :
-              //              var_dump($key);
-              $padding = pzarc_process_spacing($value);
-              $pzarc_contents .= $class_prefix . ' figure.entry-thumbnail  {' . $padding . ';}' . $nl;
-              break;
-
-            case ($key === '_panels_styling_entry-image-borders'):
-              if (($value[ 'border-style' ] !== 'none')) {
-                $pzarc_contents .= pzarc_process_borders($class_prefix . ' figure.entry-thumbnail', $value) . $nl;
-              }
-              break;
+          $pzarc_contents .= pzarc_get_styling('panel', $pkeys, $value, $class_prefix);
 
 
-            ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-            /** Content */
-            ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-            case $key === '_panels_styling_entry-content-font' :
-
-              //var_dump($key);
-              $pzarc_contents .= pzarc_process_fonts($class_prefix . ' .entry-content', $value) . $nl;
-              $pzarc_contents .= pzarc_process_fonts($class_prefix . ' .entry-excerpt', $value) . $nl;
-              break;
-
-            case ($key === '_panels_styling_entry-content-font-links'):
-              $pzarc_contents .= pzarc_process_links($class_prefix . ' .entry-content ', $value, $nl) . $nl;
-              $pzarc_contents .= pzarc_process_links($class_prefix . ' .entry-excerpt ', $value, $nl) . $nl;
-              break;
-
-            ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-            /** Captions */
-            ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-            //entry-image-caption-font', array('figure.entry-thumbnail span.caption'
-            case $key === '_panels_styling_entry-image-caption-font' :
-              //              var_dump($key);
-              $pzarc_contents .= pzarc_process_fonts($class_prefix . ' figure.entry-thumbnail span.caption ', $value) . $nl;
-              break;
-
-            case $key === '_panels_styling_entry-image-caption-font-background' :
-              $pzarc_contents .= pzarc_process_background($class_prefix . ' figure.entry-thumbnail span.caption ', $value) . $nl;
-//                  $pzarc_contents .= pzarc_process_bg($class_prefix . ' figure.entry-thumbnail span.caption {', $value) . $nl;
-              break;
-
-
-            case $key === '_panels_styling_entry-image-caption-font-padding' :
-              //              var_dump($key);
-              $padding = pzarc_process_spacing($value);
-              $pzarc_contents .= $class_prefix . ' figure.entry-thumbnail span.caption {' . $padding . ';}' . $nl;
-              break;
-
-
-            ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-            /** Custom */
-            ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-            case $key === '_panels_styling_entry-customfield-1-font' :
-              //              var_dump($key);
-              $pzarc_contents .= pzarc_process_fonts($class_prefix . ' .entry-customfield-1 ', $value) . $nl;
-              break;
-
-            case $key === '_panels_styling_entry-customfield-1-font-background' :
-              $pzarc_contents .= pzarc_process_background($class_prefix . ' .entry-customfield-1 ', $value) . $nl;
-//                  $pzarc_contents .= pzarc_process_bg($class_prefix . ' figure.entry-thumbnail span.caption {', $value) . $nl;
-              break;
-
-
-            case $key === '_panels_styling_entry-customfield-1-font-padding' :
-              //              var_dump($key);
-              $padding = pzarc_process_spacing($value);
-              $pzarc_contents .= $class_prefix . ' .entry-customfield-1 {' . $padding . ';}' . $nl;
-              break;
-
-            case ($key === '_panels_styling_entry-customfield-1-font-links'):
-              $pzarc_contents .= pzarc_process_links($class_prefix . ' .entry-customfield-1 ', $value, $nl) . $nl;
-              break;
-
-            case ($key === '_panels_styling_entry-customfield-1-borders'):
-              if (($value[ 'border-style' ] !== 'none')) {
-                $pzarc_contents .= pzarc_process_borders($class_prefix . ' .entry-customfield-1', $value) . $nl;
-              }
-              break;
-
-
-            // TODO:What is this lot and why here?
-            ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-            case $key === '_panels_styling_hentry-margin' :
-            case $key === '_panels_styling_components-group-margin' :
-            case $key === '_panels_styling_panels-margin' :
-              $this_key = key($value);
-              // architect_config_hentry-selectors
-              $options_key = str_replace('_panels_styling_', 'architect_config_', $key);
-              $options_key = str_replace('-margin', '-selectors', $options_key);
-              $classes     = (is_array($pzarchitect[ $options_key ]) ? $class_prefix . ' ' . implode(', ' . $class_prefix . ' ', $pzarchitect[ $options_key ]) : $class_prefix . ' ' . $pzarchitect[ $options_key ]);
-              $margins     = pzarc_process_spacing($pzarc_panels[ $key ]);
-              $pzarc_contents .= (!empty($margins) ? $classes . ' {' . $margins . '}' . $nl : '');
-              //    var_dump($class_prefix,$classes . ' {' . $margins . '}');
-              break;
-
-            // Custom CSS
-            case $key === '_panels_styling_custom-css':
-              $pzarc_contents .= $value;
-              break;
-            default :
-              //             var_Dump($key);
-              break;
-
-          }
           break;
       }
-//              $fieldname = str_replace('_pzarc_layout-format-', '', $key);
-////            var_dump($fieldname,$key,$prefix.$fieldname.'-class',$defaults[ $prefix.$fieldname.'-class'],$value);
-//              $pzarc_classes = $class_prefix . ' ' . str_replace(',', ', .pzarchitect .pzarc-' . $postid . ' ', $defaults[ $prefix . $fieldname . '-class' ]);
-//              $pzarc_contents .= $pzarc_classes . ' {' . $value . '}' . "\n";
-      //         break;
     }
 
 
@@ -380,12 +181,12 @@
 
       switch ($pzarc_components_position) {
         case 'left':
-          $pzarc_contents .= $class_prefix . '.using-aligned-bgimages figure {left:' . ($pzarc_components_width+$pzarc_components_nudge_x) . '%;}';
+          $pzarc_contents .= $class_prefix . '.using-aligned-bgimages figure {left:' . ($pzarc_components_width + $pzarc_components_nudge_x) . '%;}';
           $pzarc_contents .= $class_prefix . '.using-aligned-bgimages .pzarc-components {' . $pzarc_tb . ':' . $pzarc_components_nudge_y . '%;' . $pzarc_lr . ':' . $pzarc_components_nudge_x . '%;width:' . $pzarc_components_width . '%;}';
           break;
         case 'right':
-          $pzarc_contents .= $class_prefix . '.using-aligned-bgimages figure {right:' . ($pzarc_components_width+$pzarc_components_nudge_x) . '%;}';
-          $pzarc_contents .= $class_prefix . '.using-aligned-bgimages .pzarc-components {' . $pzarc_tb . ':' . $pzarc_components_nudge_y . '%;' . 'left:' . (100-$pzarc_components_nudge_x-$pzarc_components_width) . '%;width:' . $pzarc_components_width . '%;}';
+          $pzarc_contents .= $class_prefix . '.using-aligned-bgimages figure {right:' . ($pzarc_components_width + $pzarc_components_nudge_x) . '%;}';
+          $pzarc_contents .= $class_prefix . '.using-aligned-bgimages .pzarc-components {' . $pzarc_tb . ':' . $pzarc_components_nudge_y . '%;' . 'left:' . (100 - $pzarc_components_nudge_x - $pzarc_components_width) . '%;width:' . $pzarc_components_width . '%;}';
           break;
       }
     }

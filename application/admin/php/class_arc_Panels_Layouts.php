@@ -1289,6 +1289,21 @@
 //                  __('The base font size is 10px. So, for example, to get a font size of 14px, use 1.4em. Even better is using relative ems i.e. rem.'),
 //
 //          'fields'     => array(
+      $sections[ ] = array(
+          'title'      => 'Styling',
+          'show_title' => false,
+          'icon_class' => 'icon-large',
+          'icon'       => 'el-icon-info-sign',
+          'fields'     => array(
+              array(
+                  'title'    => __('Styling Panels', 'pzarchitect'),
+                  'id'       => $prefix . 'styling-panels',
+                  'type'     => 'info',
+                  'subtitle' => __('To style panels...', 'pzarchitect'),
+              )
+
+          )
+      );
 
       /**
        * GENERAL

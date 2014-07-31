@@ -49,7 +49,7 @@
       $panel_def[ 'custom1' ]       = '<div class="entry-customfieldgroup entry-customfieldgroup-1">{{custom1innards}}</div>';
       $panel_def[ 'custom2' ]       = '<div class="entry-customfieldgroup entry-customfieldgroup-2">{{custom2innards}}</div>';
       $panel_def[ 'custom3' ]       = '<div class="entry-customfieldgroup entry-customfieldgroup-3">{{custom3innards}}</div>';
-      $panel_def[ 'cfield' ]        = '<div class="entry-customfield entry-customfield-{{cfieldname}}">{{cfieldcontent}}</div>';
+      $panel_def[ 'cfield' ]        = '<div class="entry-customfield entry-customfield-{{cfieldname}} entry-customfield-{{cfieldnumber}}">{{cfieldcontent}}</div>';
       $panel_def[ 'footer' ]        = '<footer class="entry-footer">{{footerinnards}}</footer>';
       $panel_def[ 'excerpt' ]       = ' <div class="entry-excerpt {{nothumb}}">{{image-in-content}}{{excerpt}}</div>';
       $panel_def[ 'feature' ]       = '{{feature}}';
@@ -544,6 +544,7 @@
       if (!empty($data[ 'cfield' ])) {
         $panel_def_cfield = $panel_def[ 'cfield' ];
         $build_field      = '';
+        $i = 1;
         foreach ($data[ 'cfield' ] as $k => $v) {
 
           if ($v[ 'group' ] === $component && !empty($v[ 'value' ])) {
@@ -585,13 +586,14 @@
             }
 
             if ('none' !== $v[ 'wrapper-tag' ]) {
-              $class_name = !empty($v[ 'class-name' ]) ? ' class="' . $v[ 'class-name' ] . '"' : null;
+              $class_name = !empty($v[ 'class-name' ]) ? ' class="' . $v[ 'class-name' ].'"' : null;
               $content    = '<' . $v[ 'wrapper-tag' ] . $class_name . '>' . $content . '</' . $v[ 'wrapper-tag' ] . '>';
             }
 
             // TODO: Should apply filters here?
             $panel_def_cfield = str_replace('{{cfieldcontent}}', $content, $panel_def_cfield);
             $panel_def_cfield = str_replace('{{cfieldname}}', $v[ 'name' ], $panel_def_cfield);
+            $panel_def_cfield = str_replace('{{cfieldnumber}}', $k, $panel_def_cfield);
 
             $build_field .= $panel_def_cfield;
           }
