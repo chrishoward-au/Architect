@@ -60,8 +60,21 @@
       }
     }
     //   require_once PZARC_PLUGIN_PATH . '/admin/php/arc-options.php';
-  }
 
+    // Override WP Gallery if necessary
+    global $_architect_options;
+
+    // Just incase that didn't work... A problem from days of past
+    if (!isset($GLOBALS[ '_architect_options' ])) {
+      $GLOBALS[ '_architect_options' ] = get_option('_architect_options', array());
+    }
+    if (!empty($_architect_options[ 'architect_replace_wpgalleries' ])) {
+
+      remove_shortcode('gallery');
+      add_shortcode('gallery', 'pzarc_shortcode');
+
+    }
+  }
 
   /***********************
    *
@@ -90,14 +103,14 @@
     // UGH! This is a bit of a mess. Need a better solution
     // echo '<div class="clearfix"></div>'; // Just need to stop some overlapping when images are bigger than content in post
 
-    do_action("arc_before_{$pzarc_caller}", $pzarc_blueprint, $pzarc_overrides, $pzarc_caller);
+    do_action("arc_before_{$pzarc_caller}", $pzarc_blueprint, $pzarc_overrides, $pzarc_caller, $tag);
 
 //    var_dump($pzarc_blueprint, $pzarc_overrides, $pzarc_caller);
 
     // The caller is shortcode, and not variable here. It just uses a variable for consistency and documentation
-    do_action("arc_do_{$pzarc_caller}", $pzarc_blueprint, $pzarc_overrides, $pzarc_caller);
+    do_action("arc_do_{$pzarc_caller}", $pzarc_blueprint, $pzarc_overrides, $pzarc_caller, $tag);
 
-    do_action("arc_after_{$pzarc_caller}", $pzarc_blueprint, $pzarc_overrides, $pzarc_caller);
+    do_action("arc_after_{$pzarc_caller}", $pzarc_blueprint, $pzarc_overrides, $pzarc_caller, $tag);
 
     $pzout = ob_get_contents();
     ob_end_clean();
@@ -105,7 +118,7 @@
 //    $pzout = '<div class="pzarc-shortcode pzarc-shortcode-' . $pzarc_blueprint . '">' . $pzout . '</div>';
 
     // Putting thru a filter so devs can do stuff with it
-    return apply_filters('arc_filter_shortcode', $pzout, $pzarc_blueprint, $pzarc_overrides);
+    return apply_filters('arc_filter_shortcode', $pzout, $pzarc_blueprint, $pzarc_overrides, $tag);
 
   }
 
@@ -113,7 +126,7 @@
   add_shortcode('pzarc', 'pzarc_shortcode'); // Old version
   add_shortcode('pzarchitect', 'pzarc_shortcode'); // alternate version
   // I still don't understand why this works!! One day, maybe I will
-  add_action('arc_do_shortcode', 'pzarc', 10, 3);
+  add_action('arc_do_shortcode', 'pzarc', 10, 4);
 
   /***********************
    *
@@ -136,8 +149,9 @@
    * Overrides is a list of ids
    *
    ******************************/
-  function pzarc($blueprint = null, $overrides = null, $caller)
+  function pzarc($blueprint = null, $overrides = null, $caller, $tag = null)
   {
+
     // Enqueue registered scripts and styles
     // make optional
     wp_enqueue_script('js-arc-front-slickjs');
@@ -162,18 +176,22 @@
       $GLOBALS[ '_architect_options' ] = get_option('_architect_options', array());
     }
 
-    if (empty($blueprint) && ($is_shortcode && empty($_architect_options[ 'architect_default_shortcode_blueprint' ]))) {
+    if (empty($blueprint) && ($is_shortcode && (empty($_architect_options[ 'architect_default_shortcode_blueprint' ])) && empty($_architect_options[ 'architect_replace_wpgalleries' ]))) {
 
       // TODO: Should we make this use a set of defaults. prob an excerpt grid
       echo '<p class="message-warning">You need to set a blueprint</p>';
 
     } else {
 
-      if (empty($blueprint) && ($is_shortcode && !empty($_architect_options[ 'architect_default_shortcode_blueprint' ]))) {
+      if (empty($blueprint) && $is_shortcode) {
 
-        $blueprint = $_architect_options[ 'architect_default_shortcode_blueprint' ];
-
+        if ($tag === 'gallery') {
+          $blueprint = ($_architect_options[ 'architect_replace_wpgalleries' ] ? $_architect_options[ 'architect_replace_wpgalleries' ] : $_architect_options[ 'architect_default_shortcode_blueprint' ]);
+        } else {
+          $blueprint = $_architect_options[ 'architect_default_shortcode_blueprint' ];
+        }
       }
+      // Ok - how do we id the shortcode?
 
 //      require_once PZARC_PLUGIN_APP_PATH . '/admin/php/arc-options-styling.php';
 //      require_once PZARC_PLUGIN_APP_PATH . '/shared/includes/php/redux-extensions/extensions/metaboxes/extension_metaboxes.php';

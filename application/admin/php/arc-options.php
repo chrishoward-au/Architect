@@ -244,6 +244,14 @@
                     'subtitle' => 'If you omit the blueprint name from a shortcode, it will use the one selected here. Usefult for quick conversion of WP galleries.',
                 ),
                 array(
+                    'title'    => __('Replace WP Galleries with Blueprint', 'pzarchitect'),
+                    'id'       => 'architect_replace_wpgalleries',
+                    'type'     => 'select',
+                    'options'  => pzarc_get_blueprints(),
+                    'subtitle' => 'Select a Blueprint to use for all WP gallery shortcodes.',
+                    'desc'     => 'Make sure this Blueprint is using Galleries as its Content Source!'
+                ),
+                array(
                     'title'    => __('Enable styling settings', 'pzarchitect'),
                     'id'       => 'architect_enable_styling',
                     'type'     => 'switch',
