@@ -71,9 +71,9 @@
 
       $pzarc_shortname = ($post->post_type === 'arc-panels' ? $pzarc_settings[ '_panels_settings_short-name' ] : $pzarc_settings[ '_blueprints_short-name' ]);
 
-      $upload_dir      = wp_upload_dir();
+      $upload_dir = wp_upload_dir();
 
-      $filename        = trailingslashit($upload_dir[ 'basedir' ]) . '/cache/pizazzwp/arc/pz' . $post->post_type . '-layout-' . $postid . '-' . $pzarc_shortname . '.css';
+      $filename = trailingslashit($upload_dir[ 'basedir' ]) . '/cache/pizazzwp/arc/pz' . $post->post_type . '-layout-' . $postid . '-' . $pzarc_shortname . '.css';
 
       wp_mkdir_p(trailingslashit($upload_dir[ 'basedir' ]) . '/cache/pizazzwp/arc/');
 
@@ -119,7 +119,7 @@
 
     switch ($type) {
       case 'arc-blueprints':
-        require_once PZARC_PLUGIN_APP_PATH . '/admin/php/arc-save-process-blueprints.php';
+        require_once PZARC_PLUGIN_APP_PATH . '/admin/php/arc-save-process-blueprints-new.php';
         $pzarc_blueprints = pzarc_merge_defaults($defaults[ '_blueprints' ], $pzarc_settings);
         $pzarc_contents .= pzarc_create_blueprint_css($pzarc_blueprints, $pzarc_contents, $postid);
         break;
@@ -141,6 +141,8 @@
    */
   function pzarc_process_fonts($classes, $properties)
   {
+
+    // TODO: Build support for Google fonts and backup
     $filler = '';
     foreach ($properties as $k => $v) {
       // Need to only process specific properties
@@ -235,6 +237,7 @@
    */
   function pzarc_process_links($classes, $properties, $nl)
   {
+    // TODO: Should Default use inherit?
     $links_css = '';
     if (!empty($properties[ 'regular' ]) || strtolower($properties[ 'regular-deco' ]) !== 'default') {
       $links_css .= $classes . ' a {';
@@ -299,4 +302,127 @@
     }
 
     return $is_empty;
+  }
+
+  // TODO: If this was all a class it could be extensible!
+  function pzarc_get_styling($source, $keys, $value, $classes)
+  {
+    // TODO: We need to makes it so only one declaration per case. i.e. class {padding;margins;border;etc}
+    // which would require smarterness by the caller.
+    if ('blueprint' === $source) {
+      switch ($keys[ 'id' ]) {
+        case 'blueprint':
+          // Note no space for this class as it's in the same declaration
+          $keys[ 'class' ] = $classes . '.pzarc-blueprint';
+          break;
+        case  'blueprint-custom':
+          $keys[ 'class' ] = '';
+          break;
+        case  'sections':
+          $keys[ 'class' ] = $classes . ' .pzarc-section';
+          break;
+        case  'pzarc-section_1':
+          $keys[ 'class' ] = $classes . ' .pzarc-section_1';
+          break;
+        case  'pzarc-section_2':
+          $keys[ 'class' ] = $classes . ' .pzarc-section_2';
+          break;
+        case  'pzarc-section_3':
+          $keys[ 'class' ] = $classes . ' .pzarc-section_3';
+          break;
+        case  'pzarc-navigator':
+          $keys[ 'class' ] = $classes . ' .pzarc-navigator';
+          break;
+        case  'pzarc-navigator-items':
+          $keys[ 'class' ] = $classes . ' .arc-slider-slide-nav-item'; // not always!! ugh!
+          break;
+
+      }
+
+    }
+    if ('panel' === $source) {
+      switch (true) {
+        case 'panels' === $keys['id'] :
+          $keys[ 'class' ] = $classes . '.pzarc-panel';
+          break;
+        case 'components' === $keys['id'] :
+          $keys[ 'class' ] = $classes . ' .pzarc-components';
+          break;
+        case 'entry-title'  === $keys['id']:
+          $keys[ 'class' ] = $classes . ' .entry-title';
+          break;
+        case 'entry-meta'  === $keys['id']:
+          $keys[ 'class' ] = $classes . ' .entry-meta';
+          break;
+        case 'entry-content'  === $keys['id']:
+          $keys[ 'class' ] = $classes . ' .entry-content';
+          break;
+        case strpos( $keys['id'],'entry-customfield-')===0 :
+          $keys[ 'class' ] = $classes . ' .'.$keys['id'];
+          break;
+        case 'custom'  === $keys['id']:
+          $keys[ 'class' ] = $classes . '';
+          break;
+        case 'entry-readmore'  === $keys['id']:
+          $keys[ 'class' ] = $classes . ' a.readmore';
+          break;
+        case 'entry-image'  === $keys['id']:
+          $keys[ 'class' ] = $classes . ' figure.entry-thumbnail';
+          break;
+        case 'entry-image-caption'  === $keys['id']:
+          $keys[ 'class' ] = $classes . ' figure.entry-thumbnail caption';
+          break;
+        case 'hentry'  === $keys['id']:
+          $keys[ 'class' ] = $classes . ' .hentry';
+          break;
+      }
+
+    }
+
+
+    //Need to do the above switch for Panels
+    // generate correct whosit
+    $pzarc_func = 'pzarc_style_' . $keys[ 'style' ];
+    $pzarc_css  = (function_exists($pzarc_func)?call_user_func($pzarc_func, $keys[ 'class' ], $value):'');
+
+    return $pzarc_css;
+  }
+
+  function pzarc_style_background($class, $value)
+  {
+    return (!empty($value[ 'color' ]) ? $class . ' {background-color:' . $value[ 'color' ] . ';}' . "\n" : null);
+
+  }
+
+  function pzarc_style_padding($class, $value)
+  {
+    return (!pzarc_is_empty_vals($value, array('units')) ? $class . ' {' . pzarc_process_spacing($value) . ';}' . "\n" : null);
+  }
+
+  function pzarc_style_margins($class, $value)
+  {
+    return (!pzarc_is_empty_vals($value, array('units')) ? $class . ' {' . pzarc_process_spacing($value) . ';}' . "\n" : null);
+  }
+
+  function pzarc_style_borders($class, $value)
+  {
+    return pzarc_process_borders($class, $value) . "\n";
+  }
+
+  function pzarc_style_links($class, $value)
+  {
+    return pzarc_process_links($class, $value, "\n") . "\n";
+  }
+
+  function pzarc_style_font($class, $value)
+  {
+    return pzarc_process_fonts($class, $value) . "\n";
+  }
+
+  function pzarc_style_css($class, $value)
+  {
+    // PHP doesn't like trim used inline
+    $value = trim($value);
+
+    return (!empty($value) ? $class . $value : null);
   }

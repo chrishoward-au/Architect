@@ -116,10 +116,11 @@
 
   function pzarc_redux_padding($id, $selectors, $defaults = null)
   {
+//    var_dump($id, $defaults);
     return array(
         'title'   => __('Padding', 'pzarc'),
         'id'      => $id,
-        'output'  => $selectors,
+        //      'output'  => $selectors,
         'mode'    => 'padding',
         'type'    => 'spacing',
         'units'   => array('px', '%'),
@@ -576,80 +577,3 @@
     return $array_out;
   }
 
-  function pzarc_get_styling($source, $keys)
-  {
-
-    if ('blueprint' === $source) {
-      switch ($keys[ 'id' ]) {
-        case 'blueprint':
-          $keys[ 'class' ] = '.pzarc-blueprint';
-          break;
-        case  'blueprint-custom':
-          $keys[ 'class' ] = '.';
-          break;
-        case  'sections':
-          $keys[ 'class' ] = '.pzarc-section';
-          break;
-        case  'pzarc-section_1':
-          $keys[ 'class' ] = '.pzarc-section_1';
-          break;
-        case  'pzarc-section_2':
-          $keys[ 'class' ] = '.pzarc-section_2';
-          break;
-        case  'pzarc-section_3':
-          $keys[ 'class' ] = '.pzarc-section_3';
-          break;
-        case  'pzarc-navigator':
-          $keys[ 'class' ] = '.pzarc-navigator';
-          break;
-        case  'pzarc-navigator-items':
-          $keys[ 'class' ] = '.arc-slider-slide-nav-item'; // not always!! ugh!
-          break;
-
-      }
-    }
-
-    // generate correct whosit
-    $pzf = 'pzarc_style_' . $keys[ 'style' ];
-    $def = call_user_func($pzf, $keys[ 'class' ]);
-
-    var_dump($def);
-
-    return $def;
-  }
-
-  function pzarc_style_background($class)
-  {
-    return $class;
-  }
-
-  function pzarc_style_padding($class)
-  {
-    $padding = pzarc_process_spacing($value);
-    return $class;
-  }
-
-  function pzarc_style_margins($class)
-  {
-    return $class;
-  }
-
-  function pzarc_style_borders($class)
-  {
-    return $class;
-  }
-
-  function pzarc_style_links($class)
-  {
-    return $class;
-  }
-
-  function pzarc_style_font($class)
-  {
-    return $class;
-  }
-
-  function pzarc_style_css($class)
-  {
-    return $class;
-  }

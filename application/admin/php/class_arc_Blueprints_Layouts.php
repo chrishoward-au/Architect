@@ -45,7 +45,6 @@
     /**
      * [content_blueprints_admin_enqueue description]
      * @param  [type] $hook [description]
-     * @return [type]       [description]
      */
     public function content_blueprints_admin_enqueue($hook)
     {
@@ -72,7 +71,6 @@
 
     /**
      * [content_blueprints_admin_head description]
-     * @return [type] [description]
      */
     public function content_blueprints_admin_head()
     {
@@ -1630,6 +1628,24 @@ You can use them however you like though.</p>
 
       $sections  = array();
       $optprefix = 'architect_config_';
+
+      $sections[ ] = array(
+          'title'      => 'Styling',
+          'show_title' => false,
+          'icon_class' => 'icon-large',
+          'icon'       => 'el-icon-info-sign',
+          'fields'     => array(
+              array(
+                  'title'    => __('Styling Blueprints', 'pzarchitect'),
+                  'id'       => $prefix . 'styling-blueprints',
+                  'type'     => 'info',
+                  'subtitle' => __('To style blueprints...', 'pzarchitect'),
+                  //                'hint'  => array('content' => __('This is can be any CSS you\'d like to add to a page this blueprint is displayed on. It will ONLY load on the pages this blueprint is shown on, so will only impact those pages. However, if you have multiple blueprints on a page, this CSS could affect or be overriden by ther blueprints\' custom CSS.', 'pzarchitect')),
+              )
+
+          )
+      );
+
 
       $sections[ ] = array(
           'title'      => 'Blueprint',

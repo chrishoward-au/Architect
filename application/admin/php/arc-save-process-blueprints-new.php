@@ -41,77 +41,15 @@
 
       // First off process the styling settings, which should be automatable
 
-      if (substr_count($key, '_blueprints_styling_') === 1) {
+      if (substr_count($key, '_blueprints_styling_') === 1 && !empty($_architect_options[ 'architect_enable_styling' ])) {
+        $bpkeys            = array();
         $bpkey             = str_replace('_blueprints_styling_', '', $key);
         $bpkeys[ 'style' ] = substr($bpkey, strrpos($bpkey, "-") + 1);;
         $bpkeys[ 'id' ] = substr($bpkey, 0, strrpos($bpkey, "-"));
 
-        $out = pzarc_get_styling('blueprint',$bpkeys);
+        $pzarc_contents .= pzarc_get_styling('blueprint', $bpkeys, $value, $bpclasses);
       }
 
-//          var_dump($key,$value);
-      switch (true) {
-
-        // Blueprints styling
-        case ($key === '_blueprints_styling_blueprint-background' && !empty($_architect_options[ 'architect_enable_styling' ])):
-          if (!empty($value[ 'color' ])) {
-            $pzarc_contents .= $bpclasses . ' {background-color:' . $value[ 'color' ] . ';}' . $nl;
-          }
-//              $pzarc_contents .= $classes . ' {' . key($value) . ':' . $value[ key($value) ] . ';}' . $nl;
-          break;
-
-        case ($key === '_blueprints_styling_blueprint-padding' && !pzarc_is_empty_vals($value, array('units')) && !empty($_architect_options[ 'architect_enable_styling' ])):
-          $padding = pzarc_process_spacing($value);
-          $pzarc_contents .= $bpclasses . ' {' . $padding . ';}' . $nl;
-          break;
-
-        case ($key === '_blueprints_styling_blueprint-margins' && !pzarc_is_empty_vals($value, array('units')) && !empty($_architect_options[ 'architect_enable_styling' ])):
-          $margins = pzarc_process_spacing($value);
-          $pzarc_contents .= $bpclasses . ' {' . $margins . ';}' . $nl;
-          break;
-
-        case ($key === '_blueprints_styling_blueprint-borders' && ($value[ 'border-style' ] !== 'none') && !empty($_architect_options[ 'architect_enable_styling' ])):
-          $pzarc_contents .= pzarc_process_borders($bpclasses, $value) . $nl;
-          break;
-
-        case ($key === '_blueprints_styling_sections-borders' && ($value[ 'border-style' ] !== 'none') && !empty($_architect_options[ 'architect_enable_styling' ])):
-          $pzarc_contents .= pzarc_process_borders($sectionsclasses, $value) . $nl;
-          break;
-
-        case ($key === '_blueprints_styling_container-links' && !empty($_architect_options[ 'architect_enable_styling' ])):
-          $pzarc_contents .= pzarc_process_links($sectionsclasses, $value, $nl) . $nl;
-          break;
-
-
-        case ($key === '_blueprints_styling_blueprint-custom-css' && !empty($_architect_options[ 'architect_enable_styling' ])):
-          $custom_css = trim($value);
-          $pzarc_contents .= (!empty($custom_css) ? $value . $nl : '');
-          break;
-
-
-        // Sections wrapper styling
-        case ($key === '_blueprints_styling_sections-background' && !empty($_architect_options[ 'architect_enable_styling' ])):
-          if (!empty($value[ 'color' ])) {
-            $pzarc_contents .= $sectionsclasses . ' {background-color:' . $value[ 'color' ] . ';}' . $nl;
-          }
-//              $pzarc_contents .= $classes . ' {' . key($value) . ':' . $value[ key($value) ] . ';}' . $nl;
-          break;
-
-        case ($key === '_blueprints_styling_sections-padding' && !pzarc_is_empty_vals($value, array('units')) && !empty($_architect_options[ 'architect_enable_styling' ])):
-          $padding = pzarc_process_spacing($value);
-          $pzarc_contents .= $sectionsclasses . ' {' . $padding . ';}' . $nl;
-          break;
-
-        case ($key === '_blueprints_styling_sections-margins' && !pzarc_is_empty_vals($value, array('units')) && !empty($_architect_options[ 'architect_enable_styling' ])):
-          $margins = pzarc_process_spacing($value);
-          $pzarc_contents .= $sectionsclasses . ' {' . $margins . ';}' . $nl;
-          break;
-
-
-        default :
-          //             var_Dump($key);
-          break;
-      }
     }
 
     return $pzarc_contents;
