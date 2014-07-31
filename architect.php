@@ -251,7 +251,7 @@
 
       wp_enqueue_script('jquery');
       // wp_enqueue_script( PZARC_NAME.'-plugin-script', plugins_url( PZARC_FOLDER.'/frontend/js/display.js' ) );
-      wp_register_script('jquery-isotope', plugins_url(PZARC_FOLDER . '/public/js/jquery.isotope.min.js'));
+      //wp_register_script('jquery-isotope', plugins_url(PZARC_FOLDER . '/public/js/jquery.isotope.min.js'));
       wp_register_script('js-isotope-v2', PZARC_PLUGIN_APP_URL . '/public/js/isotope.pkgd.min.js');
 
       // TODO: bug in this, so removed for now

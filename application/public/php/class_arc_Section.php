@@ -82,7 +82,24 @@
 
       }
 
-      echo '<section id="'.$this->rsid.'" class="' . ($this->layout_mode !== 'basic' ? 'js-isotope ' : '') . 'pzarc-section pzarc-section_' . $this->section_number . ' pzarc-section-using-panel_' . $this->section[ 'section-panel-settings' ][ '_panels_settings_short-name' ] . $this->slider[ 'wrapper' ] . '">';
+      switch ($this->layout_mode) {
+
+        case 'masonry':
+//          $isotope = 'data-isotope-options=\'{ "layoutMode": "masonry","itemSelector": ".pzarc-panel","masonry":{"columnWidth":50,"gutter":20}}\'';
+
+          $isotope = 'data-isotope-options=\'{ "layoutMode": "masonry","itemSelector": ".pzarc-panel","masonry":{"columnWidth":".grid-sizer","gutter":".gutter-sizer"}}\'';
+          break;
+
+        default:
+          $isotope = '';
+
+      }
+
+      echo '<section id="'.$this->rsid.'" class="' . ($this->layout_mode !== 'basic' ? 'js-isotope ' : '') . 'pzarc-section pzarc-section_' . $this->section_number . ' pzarc-section-using-panel_' . $this->section[ 'section-panel-settings' ][ '_panels_settings_short-name' ] . $this->slider[ 'wrapper' ] . '"' . $isotope . '>';
+      if (!empty($isotope)) {
+        echo '<div class="grid-sizer"></div><div class="gutter-sizer"></div>';
+
+      }
 
     }
 
@@ -129,17 +146,6 @@
       // TODO: What's this??
       //       echo '<div class="js-isotope pzarc-section pzarc-section-' . $key . '" data-isotope-options=\'{ "layoutMode": "'.$pzarc_section_info['section-layout-mode'].'","itemSelector": ".pzarc-panel" }\'>';
 
-      switch ($this->layout_mode) {
-
-        case 'masonry':
-//          $isotope = 'data-isotope-options=\'{ "layoutMode": "masonry","itemSelector": ".pzarc-panel","masonry":{"columnWidth":50,"gutter":20}}\'';
-          $isotope = 'data-isotope-options=\'{ "layoutMode": "masonry","itemSelector": ".pzarc-panel"}\'';
-          break;
-
-        default:
-          $isotope = '';
-
-      }
 
       $image_in_bg = '';
 
@@ -165,7 +171,7 @@
       $odds_evens_bp = ($panel_count++ % 2 ? ' odd-blueprint-panel' : ' even-blueprint-panel');
 
 
-      echo '<div class="pzarc-panel pzarc-panel_' . $this->section[ 'section-panel-settings' ][ '_panels_settings_short-name' ] . ' pzarc-panel-no_' . $panel_number . $this->slider[ 'slide' ] . $image_in_bg . $odds_evens_bp . $odds_evens_section . '" ' . $isotope . '>';
+      echo '<div class="pzarc-panel pzarc-panel_' . $this->section[ 'section-panel-settings' ][ '_panels_settings_short-name' ] . ' pzarc-panel-no_' . $panel_number . $this->slider[ 'slide' ] . $image_in_bg . $odds_evens_bp . $odds_evens_section . '" >';
       // Although this loks back to front, this is determining flow compared to components
 
       if ($this->section[ 'section-panel-settings' ][ '_panels_design_background-position' ] != 'none' && ($this->section[ 'section-panel-settings' ][ '_panels_design_components-position' ] == 'bottom' || $this->section[ 'section-panel-settings' ][ '_panels_design_components-position' ] == 'right')) {
