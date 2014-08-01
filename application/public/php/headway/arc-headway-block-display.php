@@ -160,6 +160,18 @@
                                                               'box-shadow',
                                                               'fonts'),
                                     ));
+      $this->register_block_element(array(
+                                        'id'         => 'pzarc-panel-page-title',
+                                        'name'       => 'Page title',
+                                        'selector'   => '.use-hw-css .pzarc-page-title',
+                                        'properties' => array('background',
+                                                              'borders',
+                                                              'padding',
+                                                              'margins',
+                                                              'rounded-corners',
+                                                              'box-shadow',
+                                                              'fonts'),
+                                    ));
       // SECTIONS
       $this->register_block_element(array(
                                         'id'         => 'pzarc-sections',
@@ -373,7 +385,7 @@
       $settings  = HeadwayArchitectBlockOptions::get_settings($block);
       $blueprint = explode('##', $settings[ 'pzarc-blueprint' ]);
 
-      echo pzarc($blueprint[ 0 ], $settings[ 'pzarc-overrides-ids' ], 'headway-block');
+      echo pzarc($blueprint[ 0 ], $settings[ 'pzarc-overrides-ids' ], 'headway-block',$settings);
 
       return;
 
