@@ -95,11 +95,13 @@
     /**
      * @param $overrides
      */
-    public function build_blueprint($overrides, $caller)
+    public function build_blueprint($overrides, $caller, &$additional_overrides)
     {
       // If we use pagination, we'll have to mod $wp_query
       global $wp_query;
       $original_query = $wp_query;
+
+      $this->build->blueprint[ 'additional_overrides' ] = $additional_overrides;
 
       // Shorthand some vars
       $bp_shortname = $this->build->blueprint[ '_blueprints_short-name' ];
@@ -174,8 +176,8 @@
 
 
       self::display_page_title($this->build->blueprint[ '_blueprints_page-title' ], array('category' => $_architect_options[ 'architect_language-categories-archive-pages-title' ],
-                                                                                          'tag'     => $_architect_options[ 'architect_language-tags-archive-pages-title' ],
-                                                                                          'month'   => $_architect_options[ 'architect_language-tags-archive-pages-title' ],
+                                                                                          'tag'      => $_architect_options[ 'architect_language-tags-archive-pages-title' ],
+                                                                                          'month'    => $_architect_options[ 'architect_language-tags-archive-pages-title' ],
                                                                                           'custom'   => $_architect_options[ 'architect_language-custom-archive-pages-title' ]
       ));
 
@@ -405,7 +407,7 @@
      */
     private function display_page_title($display_title, $title_override)
     {
-      if (!empty($display_title)) {
+      if (!empty($display_title) || !empty($this->build->blueprint['additional_overrides']['pzarc-overrides-page-title'])) {
         $title = '';
         switch (true) {
           case is_category() :

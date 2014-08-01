@@ -100,6 +100,13 @@
               'default' => '',
               'tooltip' => __('Enter  comma separated list of IDs of content to display instead of the Blueprint\'s preset', 'pzarchitect')
           ),
+          'pzarc-overrides-page-title' => array(
+              'type'    => 'checkbox',
+              'name'    => 'pzarc-overrides-page-title',
+              'label'   => __('Show page title', 'pzpzarc'),
+              'default' => '',
+              'tooltip' => __('', 'pzarchitect')
+          ),
 
       );
 
