@@ -294,28 +294,20 @@
                     'default'  => false,
                 ),
                 array(
-                    'title'    => __('Choose image', 'pzarchitect'),
+                    'title'    => __('Choose background image', 'pzarchitect'),
                     'id'       => 'architect_bgimage',
-                    'type'     => 'image_select',
+                    'type'     => 'button_set',
                     'required' => array('architect_enable_bgimage', 'equals', true),
                     'options'  => array(
-                        'arc-bg-1' => array(
-                            'img' => PZARC_PLUGIN_APP_URL . '/admin/css/images/arc-bg-1-64x42.png'
-                        ),
-                        'arc-bg-3' => array(
-                            'img' => PZARC_PLUGIN_APP_URL . '/admin/css/images/arc-bg-3-64x42.png'
-                        ),
-                        'arc-bg-4' => array(
-                            'img' => PZARC_PLUGIN_APP_URL . '/admin/css/images/arc-bg-4-64x42.png'
-                        ),
-                        'arc-bg-5' => array(
-                            'img' => PZARC_PLUGIN_APP_URL . '/admin/css/images/arc-bg-5-64x42.png'
-                        ),
-                        'arc-bg-6' => array(
-                            'img' => PZARC_PLUGIN_APP_URL . '/admin/css/images/arc-bg-6-64x42.png'
-                        )
+                        'blue' => 'Blue',
+                        'green' => 'Green',
+                        'ocean-blue' => 'Ocean/Blue',
+                        'orange-green' => 'Orange/Green',
+                        'pink' => 'Pink',
+                        'purple' => 'Purple',
+                        'red-blue' => 'Red/Blue',
                     ),
-                    'default'  => 'arc-bg-1'
+                    'default'  => 'arc-bg-orange-green'
                 ),
                 //                array(
                 //                    'title'    => __('Custom post def path', 'pzarchitect'),

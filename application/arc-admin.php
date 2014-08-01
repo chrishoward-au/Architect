@@ -98,7 +98,7 @@
           global $_architect_options;
           if ($_architect_options[ 'architect_enable_bgimage' ]) {
             $arc_bg = $_architect_options[ 'architect_bgimage' ];
-            $classes .= ' arc-bgimage ' . $arc_bg;
+            $classes .= ' arc-bgimage arc-bg-' . $arc_bg;
           }
           $classes .= ' ' . $screen->post_type;
           break;
