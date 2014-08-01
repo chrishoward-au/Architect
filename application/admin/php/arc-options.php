@@ -340,6 +340,41 @@
                 ),
             )
         );
+        $this->sections[ ] = array(
+            'title'      => 'Language ',
+            'show_title' => true,
+            'icon'       => 'el-icon-globe',
+            'fields'     => array(
+                array(
+                    'title'    => __('Categories archive pages title', 'pzarchitect'),
+                    'id'       => 'architect_language-categories-archive-pages-title',
+                    'type'     => 'text',
+                    'subtitle' => 'Enter a title to appear at the top of Categories archives pages',
+                    'default'  => 'Posts in Category: '
+                ),
+                array(
+                    'title'    => __('Tags archive pages title', 'pzarchitect'),
+                    'id'       => 'architect_language-tags-archive-pages-title',
+                    'type'     => 'text',
+                    'subtitle' => 'Enter a title to appear at the top of Tags archives pages',
+                    'default'  => 'Posts in Tag: '
+                ),
+                array(
+                    'title'    => __('Months archive pages title', 'pzarchitect'),
+                    'id'       => 'architect_language-months-archive-pages-title',
+                    'type'     => 'text',
+                    'subtitle' => 'Enter a title to appear at the top of Months archives pages',
+                    'default'  => 'Posts in Month: '
+                ),
+                array(
+                    'title'    => __('Custom taxonomies archive pages title', 'pzarchitect'),
+                    'id'       => 'architect_language-custom-archive-pages-title',
+                    'type'     => 'text',
+                    'subtitle' => 'Enter a title to appear at the top of Custom taxonomies archives pages',
+                    'default'  => 'Posts in: '
+                ),
+            )
+        );
       }
 
       public function setHelpTabs()

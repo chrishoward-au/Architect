@@ -161,10 +161,10 @@
       do_action('arc_before_architect');
 
       global $_architect_options;
-      $use_hw_css = (!empty($_architect_options['architect_use-hw-css'])?'use-hw-css':null);
+      $use_hw_css = (!empty($_architect_options[ 'architect_use-hw-css' ]) ? 'use-hw-css' : null);
 
       /** BLUEPRINT */
-      echo '<div class="pzarchitect '.$use_hw_css.' pzarc-blueprint pzarc-blueprint_' . $this->build->blueprint[ '_blueprints_short-name' ] . ' nav-' . $bp_nav_type . ' icomoon">';
+      echo '<div class="pzarchitect ' . $use_hw_css . ' pzarc-blueprint pzarc-blueprint_' . $this->build->blueprint[ '_blueprints_short-name' ] . ' nav-' . $bp_nav_type . ' icomoon">';
 
       /** NAVIGATOR TOP*/
 
@@ -173,7 +173,11 @@
       }
 
 
-      self::display_page_title($this->build->blueprint[ '_blueprints_page-title' ]);
+      self::display_page_title($this->build->blueprint[ '_blueprints_page-title' ], array('category' => $_architect_options[ 'architect_language-categories-archive-pages-title' ],
+                                                                                          'tags'     => $_architect_options[ 'architect_language-tags-archive-pages-title' ],
+                                                                                          'months'   => $_architect_options[ 'architect_language-tags-archive-pages-title' ],
+                                                                                          'custom'   => $_architect_options[ 'architect_language-custom-archive-pages-title' ]
+      ));
 
       echo self::get_sections_opener($bp_shortname, $bp_nav_type, $caller, $bp_transtype);
 
@@ -399,19 +403,22 @@
     /**
      * display_page_title
      */
-    private function display_page_title($display_title)
+    private function display_page_title($display_title, $title_override)
     {
       if (!empty($display_title)) {
         $title = '';
         switch (true) {
           case is_category() :
-            $title = single_cat_title(__('Showing category: ', 'pzarchitect'), false);
+            $title = single_cat_title(__($title_override[ 'category' ], 'pzarchitect'), false);
             break;
           case is_tag() :
-            $title = single_tag_title(__('Showing tag: ', 'pzarchitect'), false);
+            $title = single_tag_title(__($title_override[ 'tag' ], 'pzarchitect'), false);
             break;
           case is_month() :
-            $title = single_month_title(__('Showing month: ', 'pzarchitect'), false);
+            $title = single_month_title(__($title_override[ 'month' ], 'pzarchitect'), false);
+            break;
+          case is_tax() :
+            $title = single_term_title(__($title_override[ 'custom' ], 'pzarchitect'), false);
             break;
           case is_single() :
           case is_singular() :
