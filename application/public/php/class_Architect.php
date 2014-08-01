@@ -174,8 +174,8 @@
 
 
       self::display_page_title($this->build->blueprint[ '_blueprints_page-title' ], array('category' => $_architect_options[ 'architect_language-categories-archive-pages-title' ],
-                                                                                          'tags'     => $_architect_options[ 'architect_language-tags-archive-pages-title' ],
-                                                                                          'months'   => $_architect_options[ 'architect_language-tags-archive-pages-title' ],
+                                                                                          'tag'     => $_architect_options[ 'architect_language-tags-archive-pages-title' ],
+                                                                                          'month'   => $_architect_options[ 'architect_language-tags-archive-pages-title' ],
                                                                                           'custom'   => $_architect_options[ 'architect_language-custom-archive-pages-title' ]
       ));
 
