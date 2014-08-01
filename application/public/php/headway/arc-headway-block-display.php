@@ -385,7 +385,7 @@
       $settings  = HeadwayArchitectBlockOptions::get_settings($block);
       $blueprint = explode('##', $settings[ 'pzarc-blueprint' ]);
 
-      echo pzarc($blueprint[ 0 ], $settings[ 'pzarc-overrides-ids' ], 'headway-block',$settings);
+      echo pzarc($blueprint[ 0 ], $settings[ 'pzarc-overrides-ids' ], 'headway-block',null,$settings);
 
       return;
 

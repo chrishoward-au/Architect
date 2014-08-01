@@ -149,7 +149,7 @@
    * Overrides is a list of ids
    *
    ******************************/
-  function pzarc($blueprint = null, $overrides = null, $caller, $tag = null,$additional_overrides)
+  function pzarc($blueprint = null, $overrides = null, $caller, $tag = null,$additional_overrides=null)
   {
 
     // Enqueue registered scripts and styles

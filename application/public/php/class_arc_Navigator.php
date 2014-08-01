@@ -41,7 +41,7 @@
       $skip_right = $this->blueprint[ '_blueprints_navigator-skip-right' ];
 
       if ('thumbs' === $this->blueprint[ '_blueprints_navigator' ]) {
-        echo '<div class="arc-slider-nav arc-slider-container icomoon ' . $this->blueprint[ '_blueprints_navigator' ] . '">';
+        echo '<div class="arc-slider-nav arc-slider-container icomoon ' . $this->blueprint[ '_blueprints_navigator' ] . ' has-pager">';
         echo '<button class="pager skip-left icon-btn-style"><span class="icon-' . $skip_left . '"></span></button>';
         echo '<button class="pager skip-right icon-btn-style"><span class="icon-' . $skip_right . '"></span></button>';
       }
@@ -182,7 +182,7 @@
       $i = 1;
       foreach ($this->navitems as $nav_item) {
         $active = ($i === 1 ? ' active' : '');
-        echo '<span class="arc-slider-slide arc-slider-slide-nav-item' . $this->sizing . $active . '" data-index="'.$i.'">' . $nav_item . '</span>';
+        echo '<div class="arc-slider-slide arc-slider-slide-nav-item' . $this->sizing . $active . '" data-index="'.$i.'">' . $nav_item . '</div>';
         $i++;
       }
     }
