@@ -149,7 +149,7 @@
    * Overrides is a list of ids
    *
    ******************************/
-  function pzarc($blueprint = null, $overrides = null, $caller, $tag = null)
+  function pzarc($blueprint = null, $overrides = null, $caller, $tag = null,$additional_overrides=null)
   {
 
     // Enqueue registered scripts and styles
@@ -205,7 +205,7 @@
       if (empty($architect->build->blueprint[ 'err_msg' ])) {
 
 
-        $architect->build_blueprint($overrides, $caller);
+        $architect->build_blueprint($overrides, $caller,$additional_overrides);
 
 
         /* These lines from ExcerptsPlus */

@@ -658,16 +658,27 @@ body.screen-arc-blueprints #blueprint-preview .pzarc-section-cell img {
 body.screen-arc-blueprints #blueprint-preview .pzarc-section-cell p {
   margin: 0; }
 
-body.arc-bgimage.arc-bg-1 #wpwrap {
-  background: url("images/arc-bg-1.jpg"); }
-body.arc-bgimage.arc-bg-3 #wpwrap {
-  background: url("images/arc-bg-3.jpg"); }
-body.arc-bgimage.arc-bg-4 #wpwrap {
-  background: url("images/arc-bg-4.jpg"); }
-body.arc-bgimage.arc-bg-5 #wpwrap {
-  background: url("images/arc-bg-5.jpg"); }
-body.arc-bgimage.arc-bg-6 #wpwrap {
-  background: url("images/arc-bg-6.jpg"); }
+body.arc-bgimage.arc-bg-blue #wpwrap {
+  background-size: cover;
+  background-image: url("images/trianglify-background-blue.svg"); }
+body.arc-bgimage.arc-bg-green #wpwrap {
+  background-size: cover;
+  background-image: url("images/trianglify-background-green.svg"); }
+body.arc-bgimage.arc-bg-ocean-blue #wpwrap {
+  background-size: cover;
+  background-image: url("images/trianglify-background-ocean-blue.svg"); }
+body.arc-bgimage.arc-bg-orange-green #wpwrap {
+  background-size: cover;
+  background-image: url("images/trianglify-background-orange-green.svg"); }
+body.arc-bgimage.arc-bg-pink #wpwrap {
+  background-size: cover;
+  background-image: url("images/trianglify-background-pink.svg"); }
+body.arc-bgimage.arc-bg-purple #wpwrap {
+  background-size: cover;
+  background-image: url("images/trianglify-background-purple.svg"); }
+body.arc-bgimage.arc-bg-red-blue #wpwrap {
+  background-size: cover;
+  background-image: url("images/trianglify-background-red-blue.svg"); }
 body.arc-bgimage.architect_page_pzarc_about .wrap {
   background: rgba(255, 255, 255, 0.9);
   padding: 2%; }
@@ -967,15 +978,16 @@ span.line-through {
 span.bold {
   font-weight: bold; }
 
-.plain.redux-info-field {
-  background: none;
-  border: none; }
+.redux-container-raw.plain p {
+  color: #636363;
+  font-size: 13px;
+  line-height: 1.5; }
 
 .pzarc-text-highlight,
-.plain.redux-info-field em {
+.redux-container-raw.plain em {
   color: tomato; }
 
-.plain.redux-info-field li {
+.redux-container-raw.plain li {
   margin-bottom: 6px !important;
   list-style: disc;
   margin-left: 15px; }

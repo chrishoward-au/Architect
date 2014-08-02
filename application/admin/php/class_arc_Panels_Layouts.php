@@ -733,9 +733,17 @@
                 'subtitle' => __('Breakpoints can be changed in Architect Options', 'pzachitect')
             ),
             array(
+                'title'   => __('Use responsive font sizes', 'pzarchitect'),
+                'id'      => $prefix . 'use-responsive-font-size',
+                'type'    => 'switch',
+                'default' => false,
+                'subtitle'=>__('Enabling this will override all other CSS for content/excerpt text','pzarchitect')
+            ),
+            array(
                 'id'              => $prefix . 'content-font-size-bp1',
                 'title'           => __('Font size - large screen ', 'pzarchitect'),
                 'subtitle'        => $_architect_options[ 'architect_breakpoint_1' ][ 'width' ] . ' and above',
+                'required'=> array($prefix . 'use-responsive-font-size','equals',true),
                 'type'            => 'typography',
                 'text-decoration' => false,
                 'font-variant'    => false,
@@ -760,6 +768,7 @@
                 'id'              => $prefix . 'content-font-size-bp2',
                 'title'           => __('Font size - medium screen ', 'pzarchitect'),
                 'subtitle'        => $_architect_options[ 'architect_breakpoint_2' ][ 'width' ] . ' to ' . $_architect_options[ 'architect_breakpoint_1' ][ 'width' ],
+                'required'=> array($prefix . 'use-responsive-font-size','equals',true),
                 'type'            => 'typography',
                 'text-decoration' => false,
                 'font-variant'    => false,
@@ -784,6 +793,7 @@
                 'id'              => $prefix . 'content-font-size-bp3',
                 'title'           => __('Font size - small screen ', 'pzarchitect'),
                 'subtitle'        => $_architect_options[ 'architect_breakpoint_2' ][ 'width' ] . ' and below',
+                'required'=> array($prefix . 'use-responsive-font-size','equals',true),
                 'type'            => 'typography',
                 'text-decoration' => false,
                 'font-variant'    => false,

@@ -37,13 +37,19 @@ jQuery( document ).ready( function ()
                 update_nav( newIndex, arcSlickNav );
             };
 
-            var arcSlickNav = jQuery( '.pzarc-navigator-' + arcSlickID );
 
-//            /** Use custom pager/dots */
-            var arcSlickNavThumbs = jQuery( '.pzarc-navigator-' + arcSlickID+ '.thumbs' ).slick( {
-                      autoplay: true,
-                      slidesToShow: 1,
-                      slidesToScroll: 1
+
+            // TODO: Work out how to use infinite without messing up index!!
+            var arcSlickNav = jQuery( '.pzarc-navigator-' + arcSlickID + '.thumbs' ).slick( {
+                      autoplay: false,
+                      centerMode: false,
+                      draggable: true,
+                      infinite: false,
+                      dots: false,
+                      arrows: false,
+                      slidesToShow: 5,
+                      slidesToScroll: 5,
+                      onBeforeChange: beforeChange
                   }
             );
 
@@ -58,7 +64,7 @@ jQuery( document ).ready( function ()
                       dots: false,
                       onBeforeChange: beforeChange,
 // TODO: replace these with vars
-                      infinite: true,
+                      infinite: false,
                       pauseOnHover: true,
                       slidesToShow: 1,
                       slidesToScroll: 1,
@@ -79,12 +85,30 @@ jQuery( document ).ready( function ()
             } );
 
 
-            // Custom Nav we'll use for everything except thumbs
             jQuery( arcSlickNav ).find( '.arc-slider-slide-nav-item' ).on( 'click', function ()
             {
                 arcSlick.slickGoTo( (jQuery( this ).attr( 'data-index' ) - 1) );
             } );
 
+            /** Use custom pager */
+            jQuery( '.pager.skip-left' ).on( 'click', function ()
+            {
+                // dataindex is 1 to n, slick index is 0 to n-1
+                var currentIndex = jQuery( arcSlickNav ).find( '.active' ).attr( 'data-index' )-1;
+                var newIndex = Math.max(+currentIndex - 5,0);
+                arcSlickNav.slickGoTo( newIndex );
+                arcSlick.slickGoTo( newIndex );
+            } );
+
+            jQuery( '.pager.skip-right' ).on( 'click', function ()
+            {
+                // dataindex is 1 to n, slick index is 0 to n-1
+                var currentIndex = jQuery( arcSlickNav ).find( '.active' ).attr( 'data-index' )-1;
+                var maxIndex = jQuery( arcSlickNav ).find('.arc-slider-slide-nav-item');
+                var newIndex = Math.min(+currentIndex + 5,(jQuery(maxIndex).length-1));
+                arcSlickNav.slickGoTo( newIndex );
+                arcSlick.slickGoTo( newIndex );
+            } );
 
 //
 //            /** Custom skipper */

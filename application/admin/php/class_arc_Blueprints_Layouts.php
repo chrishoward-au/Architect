@@ -598,12 +598,12 @@
                   'default'  => 1,
                   'min'      => 1,
                   'max'      => 99,
-                  'subtitle' => __('This is how many posts will show if Limit enabled above','pzarchitect'),
-                  'desc'     => __('If using pagination, this will be the number per page.','pzarchitect'),
-//                  'required' => array(
-//                      array( $prefix . 'section-' . $i . '-panels-limited', '=', true ),
-//                      array( $prefix . 'navigation', '!=', 'pagination' ),
-//                  )
+                  'subtitle' => __('This is how many posts will show if Limit enabled above', 'pzarchitect'),
+                  'desc'     => __('If using pagination, this will be the number per page.', 'pzarchitect'),
+                  //                  'required' => array(
+                  //                      array( $prefix . 'section-' . $i . '-panels-limited', '=', true ),
+                  //                      array( $prefix . 'navigation', '!=', 'pagination' ),
+                  //                  )
               ),
               array(
                   'title'         => __('Columns wide screen', 'pzarchitect'),
@@ -745,260 +745,260 @@
         'required'   => array('blueprints_navigation', 'equals', 'navigator'),
         'desc'       => 'When the navigation type is set to navigator, presentation will always be in a slider form. You can have multiple navigators on a page, thus multiple sliders.',
         'fields'     => array(
-          array(
-              'id'      => $prefix . 'navigator',
-              'title'   => __('Type', 'pzarchitect'),
-              'type'    => 'image_select',
-              'default' => 'tabbed',
-              'hint'    => array('content' => __('Tabbed, accordion, buttons, bullets, numbers, thumbnails', 'pzarchitect')),
-              'height'  => 75,
-              'options' => array(
-                  'tabbed'  => array(
-                      'alt' => 'Tabbed',
-                      'img' => PZARC_PLUGIN_APP_URL . 'shared/assets/images/metaboxes/nav-type-tabbed.png'
-                  ),
-                  // TODO: Add these beta2
-                  //                    'accordion' => array(
-                  //                        'alt' => 'Accordion',
-                  //                        'img' => PZARC_PLUGIN_APP_URL . 'shared/assets/images/metaboxes/nav-type-accordion.png'
-                  //                    ),
-                  //                    'buttons'   => array(
-                  //                        'alt' => 'Buttons',
-                  //                        'img' => PZARC_PLUGIN_APP_URL . 'shared/assets/images/metaboxes/nav-type-buttons.png'
-                  //                    ),
-                  'bullets' => array(
-                      'alt' => 'Bullets',
-                      'img' => PZARC_PLUGIN_APP_URL . 'shared/assets/images/metaboxes/nav-type-bullets.png'
-                  ),
-                  'numbers' => array(
-                      'alt' => 'Numbers',
-                      'img' => PZARC_PLUGIN_APP_URL . 'shared/assets/images/metaboxes/nav-type-numeric.png'
-                  ),
-                  'thumbs'  => array(
-                      'alt' => 'Thumbs',
-                      'img' => PZARC_PLUGIN_APP_URL . 'shared/assets/images/metaboxes/nav-type-thumbs.png'
-                  ),
-              )
-          ),
-          array(
-              'title'    => 'Position',
-              'id'       => $prefix . 'navigator-position',
-              'type'     => 'image_select',
-              'default'  => 'bottom',
-              'hint'     => array('content' => __('Bottom, top,left, right', 'pzarchitect')),
-              'height'   => 75,
-              'options'  => array(
-                  'bottom' => array(
-                      'alt' => 'Bottom',
-                      'img' => PZARC_PLUGIN_APP_URL . 'shared/assets/images/metaboxes/nav-pos-bottom.png'
-                  ),
-                  'top'    => array(
-                      'alt' => 'Top',
-                      'img' => PZARC_PLUGIN_APP_URL . 'shared/assets/images/metaboxes/nav-pos-top.png'
-                  ),
-                  //TODO: beta 2
-//                  'left'   => array(
-//                      'alt' => 'Left',
-//                      'img' => PZARC_PLUGIN_APP_URL . 'shared/assets/images/metaboxes/nav-pos-left.png'
-//                  ),
-//                  'right'  => array(
-//                      'alt' => 'Right',
-//                      'img' => PZARC_PLUGIN_APP_URL . 'shared/assets/images/metaboxes/nav-pos-right.png'
-//                  ),
-              ),
-              'required' => array(
-                  array($prefix . 'navigator', '!=', 'accordion'),
-              )
-          ),
-          array(
-              'title'    => 'Location',
-              'id'       => $prefix . 'navigator-location',
-              'hint'     => array('content' => __('Select whether navigator should appear over the content area, or outside of it', 'pzarchitect')),
-              'type'     => 'image_select',
-              'default'  => 'outside',
-              'height'   => 75,
-              'options'  => array(
-                  'inside'  => array(
-                      'alt' => 'Inside',
-                      'img' => PZARC_PLUGIN_APP_URL . 'shared/assets/images/metaboxes/nav-loc-inside.png'
-                  ),
-                  'outside' => array(
-                      'alt' => 'Outside',
-                      'img' => PZARC_PLUGIN_APP_URL . 'shared/assets/images/metaboxes/nav-loc-outside.png'
-                  ),
-              ),
-              'required' => array(
-                  array($prefix . 'navigator', '!=', 'accordion'),
-                  array($prefix . 'navigator', '!=', 'tabbed'),
-                  array($prefix . 'navigator', '!=', 'thumbs'),
-              )
+            array(
+                'id'      => $prefix . 'navigator',
+                'title'   => __('Type', 'pzarchitect'),
+                'type'    => 'image_select',
+                'default' => 'tabbed',
+                'hint'    => array('content' => __('Tabbed, accordion, buttons, bullets, numbers, thumbnails', 'pzarchitect')),
+                'height'  => 75,
+                'options' => array(
+                    'tabbed'  => array(
+                        'alt' => 'Tabbed',
+                        'img' => PZARC_PLUGIN_APP_URL . 'shared/assets/images/metaboxes/nav-type-tabbed.png'
+                    ),
+                    // TODO: Add these beta2
+                    //                    'accordion' => array(
+                    //                        'alt' => 'Accordion',
+                    //                        'img' => PZARC_PLUGIN_APP_URL . 'shared/assets/images/metaboxes/nav-type-accordion.png'
+                    //                    ),
+                    //                    'buttons'   => array(
+                    //                        'alt' => 'Buttons',
+                    //                        'img' => PZARC_PLUGIN_APP_URL . 'shared/assets/images/metaboxes/nav-type-buttons.png'
+                    //                    ),
+                    'bullets' => array(
+                        'alt' => 'Bullets',
+                        'img' => PZARC_PLUGIN_APP_URL . 'shared/assets/images/metaboxes/nav-type-bullets.png'
+                    ),
+                    'numbers' => array(
+                        'alt' => 'Numbers',
+                        'img' => PZARC_PLUGIN_APP_URL . 'shared/assets/images/metaboxes/nav-type-numeric.png'
+                    ),
+                    'thumbs'  => array(
+                        'alt' => 'Thumbs',
+                        'img' => PZARC_PLUGIN_APP_URL . 'shared/assets/images/metaboxes/nav-type-thumbs.png'
+                    ),
+                )
+            ),
+            array(
+                'title'    => 'Position',
+                'id'       => $prefix . 'navigator-position',
+                'type'     => 'image_select',
+                'default'  => 'bottom',
+                'hint'     => array('content' => __('Bottom, top,left, right', 'pzarchitect')),
+                'height'   => 75,
+                'options'  => array(
+                    'bottom' => array(
+                        'alt' => 'Bottom',
+                        'img' => PZARC_PLUGIN_APP_URL . 'shared/assets/images/metaboxes/nav-pos-bottom.png'
+                    ),
+                    'top'    => array(
+                        'alt' => 'Top',
+                        'img' => PZARC_PLUGIN_APP_URL . 'shared/assets/images/metaboxes/nav-pos-top.png'
+                    ),
+                    //TODO: beta 2
+                    //                  'left'   => array(
+                    //                      'alt' => 'Left',
+                    //                      'img' => PZARC_PLUGIN_APP_URL . 'shared/assets/images/metaboxes/nav-pos-left.png'
+                    //                  ),
+                    //                  'right'  => array(
+                    //                      'alt' => 'Right',
+                    //                      'img' => PZARC_PLUGIN_APP_URL . 'shared/assets/images/metaboxes/nav-pos-right.png'
+                    //                  ),
+                ),
+                'required' => array(
+                    array($prefix . 'navigator', '!=', 'accordion'),
+                )
+            ),
+            array(
+                'title'    => 'Location',
+                'id'       => $prefix . 'navigator-location',
+                'hint'     => array('content' => __('Select whether navigator should appear over the content area, or outside of it', 'pzarchitect')),
+                'type'     => 'image_select',
+                'default'  => 'outside',
+                'height'   => 75,
+                'options'  => array(
+                    'inside'  => array(
+                        'alt' => 'Inside',
+                        'img' => PZARC_PLUGIN_APP_URL . 'shared/assets/images/metaboxes/nav-loc-inside.png'
+                    ),
+                    'outside' => array(
+                        'alt' => 'Outside',
+                        'img' => PZARC_PLUGIN_APP_URL . 'shared/assets/images/metaboxes/nav-loc-outside.png'
+                    ),
+                ),
+                'required' => array(
+                    array($prefix . 'navigator', '!=', 'accordion'),
+                    array($prefix . 'navigator', '!=', 'tabbed'),
+                    array($prefix . 'navigator', '!=', 'thumbs'),
+                )
 
-          ),
-          array(
-              'title'    => 'Horizontal alignment',
-              'id'       => $prefix . 'navigator-align',
-              'type'     => 'button_set',
-              'default'  => 'center',
-              'options'  => array(
-                  'left'   => 'Left',
-                  'center' => 'Centre',
-                  'right'  => 'Right'
-              ),
-              'required' => array(
-                  array($prefix . 'navigator', '!=', 'accordion'),
-                  array($prefix . 'navigator', '!=', 'buttons'),
-                  array($prefix . 'navigator', '!=', 'thumbs'),
-                  array($prefix . 'navigator-position', '!=', 'left'),
-                  array($prefix . 'navigator-position', '!=', 'right')
-              )
-          ),
-          array(
-              'title'    => 'Vertical width',
-              'id'       => $prefix . 'navigator-vertical-width',
-              'type'     => 'dimensions',
-              'default'  => array('width' => '10%'),
-              'height'   => false,
-              'units'    => '%',
-              'required' => array(
-                  array($prefix . 'navigator', '!=', 'accordion'),
-                  array($prefix . 'navigator-position', '!=', 'top'),
-                  array($prefix . 'navigator-position', '!=', 'bottom')
-              )
-          ),
-          array(
-              'title'    => 'Bullet shape',
-              'id'       => $prefix . 'navigator-bullet-shape',
-              'type'     => 'button_set',
-              'default'  => 'circle',
-              'options'  => array(
-                  'circle' => 'Circle',
-                  'square' => 'Square',
-              ),
-              'required' => array(
-                  array($prefix . 'navigator', 'equals', 'bullets'),
-              )
-          ),
-          array(
-              'title'   => 'Sizing',
-              'id'      => $prefix . 'navigator-sizing',
-              'type'    => 'button_set',
-              'default' => 'small',
-              'options' => array(
-                  'small'  => 'Small',
-                  'medium' => 'Medium',
-                  'large'  => 'Large'
-              ),
-          ),
-          array(
-              'title'    => 'Pager',
-              'id'       => $prefix . 'navigator-pager',
-              'type'     => 'button_set',
-              'cols'     => 6,
-              'default'  => 'none',
-              'options'  => array(
-                  'none'   => 'None',
-                  'hover'  => 'Hover over panels',
-                  'inline' => 'Inline with navigator',
-                  'both'   => 'Both'
-              ),
-              'required' => array(
-                  array($prefix . 'navigator', '!=', 'accordion'),
-              )
-          ),
-          array(
-              'title'    => 'Skip left icon',
-              'id'       => $prefix . 'navigator-skip-left',
-              'type'     => 'button_set',
-              'default'  => 'backward',
-              'options'  => array(
-                  'backward'      => 'Backward',
-                  'step-backward' => 'Step Backward',
-              ),
-              'required' => array(
-                  array($prefix . 'navigator', '!=', 'accordion'),
-              )
-          ),
-          array(
-              'title'    => 'Skip right icon',
-              'id'       => $prefix . 'navigator-skip-right',
-              'type'     => 'button_set',
-              'default'  => 'forward',
-              'options'  => array(
-                  'forward'      => 'Forward',
-                  'step-forward' => 'Step Forward',
-              ),
-              'required' => array(
-                  array($prefix . 'navigator', '!=', 'accordion'),
-              )
-          ),
-          array(
-              'id'       => $prefix . 'navigator-skip-thumbs',
-              'title'    => __('Skip thumbs', 'pzarchitect'),
-              'type'     => 'spinner',
-              'default'  => 5,
-              'min'      => 2,
-              'max'      => 100,
-              'subtitle' => 'This is the number of thumbs skipped by multi-skip pager element of the inline pager.'
-          ),
-          /** TRANSITIONS */
+            ),
+            array(
+                'title'    => 'Horizontal alignment',
+                'id'       => $prefix . 'navigator-align',
+                'type'     => 'button_set',
+                'default'  => 'center',
+                'options'  => array(
+                    'left'   => 'Left',
+                    'center' => 'Centre',
+                    'right'  => 'Right'
+                ),
+                'required' => array(
+                    array($prefix . 'navigator', '!=', 'accordion'),
+                    array($prefix . 'navigator', '!=', 'buttons'),
+                    array($prefix . 'navigator', '!=', 'thumbs'),
+                    array($prefix . 'navigator-position', '!=', 'left'),
+                    array($prefix . 'navigator-position', '!=', 'right')
+                )
+            ),
+            array(
+                'title'    => 'Vertical width',
+                'id'       => $prefix . 'navigator-vertical-width',
+                'type'     => 'dimensions',
+                'default'  => array('width' => '10%'),
+                'height'   => false,
+                'units'    => '%',
+                'required' => array(
+                    array($prefix . 'navigator', '!=', 'accordion'),
+                    array($prefix . 'navigator-position', '!=', 'top'),
+                    array($prefix . 'navigator-position', '!=', 'bottom')
+                )
+            ),
+            array(
+                'title'    => 'Bullet shape',
+                'id'       => $prefix . 'navigator-bullet-shape',
+                'type'     => 'button_set',
+                'default'  => 'circle',
+                'options'  => array(
+                    'circle' => 'Circle',
+                    'square' => 'Square',
+                ),
+                'required' => array(
+                    array($prefix . 'navigator', 'equals', 'bullets'),
+                )
+            ),
+            array(
+                'title'   => 'Sizing',
+                'id'      => $prefix . 'navigator-sizing',
+                'type'    => 'button_set',
+                'default' => 'small',
+                'options' => array(
+                    'small'  => 'Small',
+                    'medium' => 'Medium',
+                    'large'  => 'Large'
+                ),
+            ),
+            array(
+                'title'    => 'Pager',
+                'id'       => $prefix . 'navigator-pager',
+                'type'     => 'button_set',
+                'cols'     => 6,
+                'default'  => 'none',
+                'options'  => array(
+                    'none'   => 'None',
+                    'hover'  => 'Hover over panels',
+                    'inline' => 'Inline with navigator',
+                    'both'   => 'Both'
+                ),
+                'required' => array(
+                    array($prefix . 'navigator', '!=', 'accordion'),
+                )
+            ),
+            array(
+                'title'    => 'Skip left icon',
+                'id'       => $prefix . 'navigator-skip-left',
+                'type'     => 'button_set',
+                'default'  => 'backward',
+                'options'  => array(
+                    'backward'      => 'Backward',
+                    'step-backward' => 'Step Backward',
+                ),
+                'required' => array(
+                    array($prefix . 'navigator', '!=', 'accordion'),
+                )
+            ),
+            array(
+                'title'    => 'Skip right icon',
+                'id'       => $prefix . 'navigator-skip-right',
+                'type'     => 'button_set',
+                'default'  => 'forward',
+                'options'  => array(
+                    'forward'      => 'Forward',
+                    'step-forward' => 'Step Forward',
+                ),
+                'required' => array(
+                    array($prefix . 'navigator', '!=', 'accordion'),
+                )
+            ),
+            array(
+                'id'       => $prefix . 'navigator-skip-thumbs',
+                'title'    => __('Skip thumbs', 'pzarchitect'),
+                'type'     => 'spinner',
+                'default'  => 5,
+                'min'      => 2,
+                'max'      => 100,
+                'subtitle' => 'This is the number of thumbs skipped by multi-skip pager element of the inline pager.'
+            ),
+            /** TRANSITIONS */
 
-          array(
-              'title' => __('Transitions', 'pzarchitect'),
-              'id'    => $prefix . 'section-transitions-heading',
-              'type'  => 'section',
-              'class' => ' heading',
-          ),
-          array(
-              'title'   => 'Type',
-              'id'      => $prefix . 'transitions-type',
-              'type'    => 'button_set',
-              'default' => 'slide',
-              //              'select2' => array('allowClear' => false),
-              'options' => array(
-                  'fade'  => 'Fade',
-                  'slide' => 'Slide',
-                  //                  'swipe'  => 'Swipe',
-                  //                  'rotate' => 'Rotate',
-                  //                  'flip'   => 'Flip'
-              )
-          ),
-          array(
-              'title'         => 'Duration (seconds)',
-              'id'            => $prefix . 'transitions-duration',
-              'type'          => 'slider',
-              'min'           => 0.5,
-              'max'           => 5,
-              'resolution'    => 0.1,
-              'step'          => 0.5,
-              'hint'          => array('content' => __('Time taken for the transition to display', 'pzarchitect')),
-              'default'       => 2,
-              'display_value' => 'label'
-          ),
-          array(
-              'title'         => 'Interval (seconds)',
-              'id'            => $prefix . 'transitions-interval',
-              'type'          => 'slider',
-              'resolution'    => 0.1,
-              'step'          => 0.5,
-              'default'       => 5,
-              'min'           => 0,
-              'max'           => 60,
-              'display_value' => 'label',
-              'desc'          => __('Set to zero to disable autoplay', 'pzarchitect'),
-              'hint'          => array('content' => __('Time slide is shown with no transitions active. Set to zero to disable autoplay', 'pzarchitect')),
-          ),
-          //            array(
-          //                'title'   => 'Auto start',
-          //                'id'      => $prefix . 'transitions-autostart',
-          //                'type'    => 'switch',
-          //                'default' => false,
-          //            ),
-          //            array(
-          //                'title'   => 'Pause on hover',
-          //                'id'      => $prefix . 'transitions-pause-on-hover',
-          //                'type'    => 'switch',
-          //                'default' => true,
-          //            ),
+            array(
+                'title' => __('Transitions', 'pzarchitect'),
+                'id'    => $prefix . 'section-transitions-heading',
+                'type'  => 'section',
+                'class' => ' heading',
+            ),
+            array(
+                'title'   => 'Type',
+                'id'      => $prefix . 'transitions-type',
+                'type'    => 'button_set',
+                'default' => 'slide',
+                //              'select2' => array('allowClear' => false),
+                'options' => array(
+                    'fade'  => 'Fade',
+                    'slide' => 'Slide',
+                    //                  'swipe'  => 'Swipe',
+                    //                  'rotate' => 'Rotate',
+                    //                  'flip'   => 'Flip'
+                )
+            ),
+            array(
+                'title'         => 'Duration (seconds)',
+                'id'            => $prefix . 'transitions-duration',
+                'type'          => 'slider',
+                'min'           => 0.5,
+                'max'           => 5,
+                'resolution'    => 0.1,
+                'step'          => 0.5,
+                'hint'          => array('content' => __('Time taken for the transition to display', 'pzarchitect')),
+                'default'       => 2,
+                'display_value' => 'label'
+            ),
+            array(
+                'title'         => 'Interval (seconds)',
+                'id'            => $prefix . 'transitions-interval',
+                'type'          => 'slider',
+                'resolution'    => 0.1,
+                'step'          => 0.5,
+                'default'       => 5,
+                'min'           => 0,
+                'max'           => 60,
+                'display_value' => 'label',
+                'desc'          => __('Set to zero to disable autoplay', 'pzarchitect'),
+                'hint'          => array('content' => __('Time slide is shown with no transitions active. Set to zero to disable autoplay', 'pzarchitect')),
+            ),
+            //            array(
+            //                'title'   => 'Auto start',
+            //                'id'      => $prefix . 'transitions-autostart',
+            //                'type'    => 'switch',
+            //                'default' => false,
+            //            ),
+            //            array(
+            //                'title'   => 'Pause on hover',
+            //                'id'      => $prefix . 'transitions-pause-on-hover',
+            //                'type'    => 'switch',
+            //                'default' => true,
+            //            ),
         )
     );
 //    $sections[ ] = array(
@@ -1025,24 +1025,29 @@
         'fields'     => array(
 
             array(
-                'title' => __('How to use Blueprints', 'pzarchitect'),
+                'title' => __('Displaying Blueprints', 'pzarchitect'),
                 'id'    => $prefix . 'help-blueprints',
-                'type'  => 'info',
-                'class' => 'plain',
-                'desc'  => '<p>There are five methods to displaying a Blueprint. In order of required technical know-how (easiest first), these are:</p>
-                <ul>
-                <li><strong>Widget</strong> : Select Architect widget on WP Admin widgets screen</li>
-                <li><strong>Shortcode</strong> : Add <em>[pzarchitect blueprint="blueprint" ids="overrides"]</em> in your content at the point you want the Blueprint to appear.</li>
-                <li><strong>Actions editor</strong>  : Enter the action name, Blueprint and pages to appear on</li>
-                <li><strong>Action call</strong> : Add </em>new showBlueprint(\'action\',\'blueprint\',\'pageids\');</em> to your functions.php</li>
-                <li><strong>Template tag</strong> : Add <em>pzarchitect(\'blueprint\');</em> to your template at the point you want the Blueprint to appear</li>
-                </ul>
-                <p><em>blueprint</em> = the shortname of the Blueprint to display.</p>
-                <p><em>overrides</em> = a comma separated list of the media ids to display instead. Very useful for easily converting a WordPress gallery shortcode. eg [gallery ids="1,2,3,5"] change to [architect blueprint="mygallery" ids="1,2,3,4,5"]</p>
-                <p><em>action</em> = the name of the action hook where you want the Blueprint to appear</p>
-                 <p><em>pageids</em> = a comma separated list of names or numeric ids of the pages to display the Blueprint. </p>
+                'type'  => 'raw',
+                'class'=>'plain',
+                'markdown'=>true,
+                'content'  => 'There are five methods to displaying a Blueprint. In order of required technical know-how (easiest first), these are:
 
-            ')
+-   **Widget** : Select Architect widget on WP Admin widgets screen
+-   **Shortcode** : Add *[architect blueprint=“blueprint” ids=“overrides”]* in your content at the point you want the Blueprint to appear.
+-   **Actions editor** : Enter the action name, Blueprint and pages to appear on
+-   **Action call** : Add </em>new showBlueprint(\\’action\\’,\\’blueprint\\’,\\’pageids\\’);</em> to your functions.php
+-   **Template tag** : Add *pzarchitect(\\’blueprint\\’);* to your template at the point you want the Blueprint to appear
+
+*blueprint* = the shortname of the Blueprint to display.
+
+*overrides* = a comma separated list of the media ids to display instead. Very useful for easily converting a WordPress gallery shortcode. eg [gallery ids=“1,2,3,5”] change to [architect blueprint=“mygallery” ids=“1,2,3,4,5”]
+
+*action* = the name of the action hook where you want the Blueprint to appear
+
+*pageids* = a comma separated list of names or numeric ids of the pages to display the Blueprint.
+
+**NOTE**: In Architect Options, you can also select any Blueprint with Galleries as the content source to override the WordPress Gallery shortcode layout.
+','pzarchitect')
         )
     );
     $sections[ ] = array(
@@ -1446,6 +1451,7 @@
         'title'      => 'Galleries',
         'icon_class' => 'icon-large',
         'icon'       => 'el-icon-picture',
+        'desc'       => __('Did you know, you can set any Blueprint with Galleries as the content source to override the layout of the WordPress gallery shortcode? Look in Architect Options.', 'pzarchitect'),
         'fields'     => array(
             array(
                 'title'   => __('Gallery source', 'pzarchitect'),
@@ -1578,15 +1584,12 @@
             array(
                 'title' => __('Snippets', 'pzarchitect'),
                 'id'    => $prefix . 'help-content-selection',
-                'type'  => 'info',
-                'class' => 'plain',
-                'desc'  => '
-<p>With Architect you can enable an extra content type called Snippets.
+                'type'  => 'raw',
+                'markdown'=>true,
+                'content'  => 'With Architect you can enable an extra content type called *Snippets*.
   These give you a third method of creating content that doesn\'t fit into the post or page types.
 It came about with my own need to create grids of product features. I didn\'t want to fill up pages or posts, so created Snippets for these small content bites.
-You can use them however you like though.</p>
-<p>
-                              </p>
+You can use them however you like though.
                 '
 
             )
@@ -1771,9 +1774,10 @@ You can use them however you like though.</p>
               array(
                   'title' => __('Blueprint styling', 'pzarchitect'),
                   'id'    => $prefix . 'help',
-                  'type'  => 'info',
+                  'type'  => 'raw',
+                  'markdown'=>true,
                   //  'class' => 'plain',
-                  'desc'  => '<h3>Adding underlines to hover links</h3>
+                  'content'  => '<h3>Adding underlines to hover links</h3>
                             <p>In the Custom CSS field, enter the following CSS</p>
                             <p>.pzarc-blueprint_SHORTNAME a:hover {text-decoration:underline;}</p>
                             <p>SHORTNAME = the short name you entered for this blueprint</p>

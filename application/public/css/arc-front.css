@@ -277,6 +277,9 @@
   .pzarchitect .thumbs span.dashicons {
     font-size: 4em;
     display: inline-table; }
+  .pzarchitect .thumbs.has-pager .pzarc-navigator {
+    width: 80%;
+    left: 12%; }
   .pzarchitect .numbers .arc-slider-slide-nav-item {
     font-size: 28px;
     font-family: sans-serif;

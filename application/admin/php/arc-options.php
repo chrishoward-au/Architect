@@ -255,17 +255,17 @@
                     'title'    => __('Enable styling settings', 'pzarchitect'),
                     'id'       => 'architect_enable_styling',
                     'type'     => 'switch',
-                    'subtitle' => 'Turn this off if you want to manage styling from your own CSS stylesheets or only from theH eadway Visual Editor Design Mode.',
+                    'subtitle' => 'Turn this off if you want to manage styling from your own CSS stylesheets or only from the Headway Visual Editor Design Mode.',
                     'default'  => true
                 ),
                 // TODO: This requires lots of bollocksing to make sure all traces are fully removed. A good excuse to make extensibility work!
-                array(
-                    'title'    => __('Disable Snippets content type', 'pzarchitect'),
-                    'id'       => 'architect_disable_snippets',
-                    'type'     => 'switch',
-                    'subtitle' => 'Turn off this if you won\'t need the Snippets content type.',
-                    'default'  => false
-                ),
+//                array(
+//                    'title'    => __('Disable Snippets content type', 'pzarchitect'),
+//                    'id'       => 'architect_disable_snippets',
+//                    'type'     => 'switch',
+//                    'subtitle' => 'Turn off this if you won\'t need the Snippets content type.',
+//                    'default'  => false
+//                ),
                 ('headway' == $current_theme->stylesheet ? array(
                     'title'    => __('Add Headway Content Block class', 'pzarchitect'),
                     'id'       => 'architect_hw-content-class',
@@ -294,28 +294,20 @@
                     'default'  => false,
                 ),
                 array(
-                    'title'    => __('Choose image', 'pzarchitect'),
+                    'title'    => __('Choose background image', 'pzarchitect'),
                     'id'       => 'architect_bgimage',
-                    'type'     => 'image_select',
+                    'type'     => 'button_set',
                     'required' => array('architect_enable_bgimage', 'equals', true),
                     'options'  => array(
-                        'arc-bg-1' => array(
-                            'img' => PZARC_PLUGIN_APP_URL . '/admin/css/images/arc-bg-1-64x42.png'
-                        ),
-                        'arc-bg-3' => array(
-                            'img' => PZARC_PLUGIN_APP_URL . '/admin/css/images/arc-bg-3-64x42.png'
-                        ),
-                        'arc-bg-4' => array(
-                            'img' => PZARC_PLUGIN_APP_URL . '/admin/css/images/arc-bg-4-64x42.png'
-                        ),
-                        'arc-bg-5' => array(
-                            'img' => PZARC_PLUGIN_APP_URL . '/admin/css/images/arc-bg-5-64x42.png'
-                        ),
-                        'arc-bg-6' => array(
-                            'img' => PZARC_PLUGIN_APP_URL . '/admin/css/images/arc-bg-6-64x42.png'
-                        )
+                        'blue' => 'Blue',
+                        'green' => 'Green',
+                        'ocean-blue' => 'Ocean/Blue',
+                        'orange-green' => 'Orange/Green',
+                        'pink' => 'Pink',
+                        'purple' => 'Purple',
+                        'red-blue' => 'Red/Blue',
                     ),
-                    'default'  => 'arc-bg-1'
+                    'default'  => 'arc-bg-orange-green'
                 ),
                 //                array(
                 //                    'title'    => __('Custom post def path', 'pzarchitect'),
@@ -345,6 +337,41 @@
                     'height'  => false,
                     'units'   => 'px',
                     'default' => array('width' => '640'),
+                ),
+            )
+        );
+        $this->sections[ ] = array(
+            'title'      => 'Language ',
+            'show_title' => true,
+            'icon'       => 'el-icon-globe',
+            'fields'     => array(
+                array(
+                    'title'    => __('Categories archive pages title', 'pzarchitect'),
+                    'id'       => 'architect_language-categories-archive-pages-title',
+                    'type'     => 'text',
+                    'subtitle' => 'Enter a title to appear at the top of Categories archives pages',
+                    'default'  => 'Posts in Category: '
+                ),
+                array(
+                    'title'    => __('Tags archive pages title', 'pzarchitect'),
+                    'id'       => 'architect_language-tags-archive-pages-title',
+                    'type'     => 'text',
+                    'subtitle' => 'Enter a title to appear at the top of Tags archives pages',
+                    'default'  => 'Posts in Tag: '
+                ),
+                array(
+                    'title'    => __('Months archive pages title', 'pzarchitect'),
+                    'id'       => 'architect_language-months-archive-pages-title',
+                    'type'     => 'text',
+                    'subtitle' => 'Enter a title to appear at the top of Months archives pages',
+                    'default'  => 'Posts in Month: '
+                ),
+                array(
+                    'title'    => __('Custom taxonomies archive pages title', 'pzarchitect'),
+                    'id'       => 'architect_language-custom-archive-pages-title',
+                    'type'     => 'text',
+                    'subtitle' => 'Enter a title to appear at the top of Custom taxonomies archives pages',
+                    'default'  => 'Posts in: '
                 ),
             )
         );
