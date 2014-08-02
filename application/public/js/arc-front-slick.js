@@ -35,12 +35,11 @@ jQuery( document ).ready( function ()
             var beforeChange = function ( slider, i, newIndex )
             {
                 update_nav( newIndex, arcSlickNav );
-                console.log(newIndex);
             };
 
 
 
-            // TODO: Work out how to use infinite witout mesing up index!!
+            // TODO: Work out how to use infinite without messing up index!!
             var arcSlickNav = jQuery( '.pzarc-navigator-' + arcSlickID + '.thumbs' ).slick( {
                       autoplay: false,
                       centerMode: false,
@@ -86,7 +85,6 @@ jQuery( document ).ready( function ()
             } );
 
 
-            // Custom Nav we'll use for everything except thumbs
             jQuery( arcSlickNav ).find( '.arc-slider-slide-nav-item' ).on( 'click', function ()
             {
                 arcSlick.slickGoTo( (jQuery( this ).attr( 'data-index' ) - 1) );
