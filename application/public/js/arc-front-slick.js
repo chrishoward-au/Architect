@@ -47,8 +47,8 @@ jQuery( document ).ready( function ()
                       infinite: false,
                       dots: false,
                       arrows: false,
-                      slidesToShow: 5,
-                      slidesToScroll: 5,
+                      slidesToShow: arcSlickOptsObj.tshow,
+                      slidesToScroll: arcSlickOptsObj.tskip,
                       onBeforeChange: beforeChange
                   }
             );
@@ -95,7 +95,7 @@ jQuery( document ).ready( function ()
             {
                 // dataindex is 1 to n, slick index is 0 to n-1
                 var currentIndex = jQuery( arcSlickNav ).find( '.active' ).attr( 'data-index' )-1;
-                var newIndex = Math.max(+currentIndex - 5,0);
+                var newIndex = Math.max(+currentIndex - arcSlickOptsObj.tskip,0);
                 arcSlickNav.slickGoTo( newIndex );
                 arcSlick.slickGoTo( newIndex );
             } );
@@ -105,7 +105,7 @@ jQuery( document ).ready( function ()
                 // dataindex is 1 to n, slick index is 0 to n-1
                 var currentIndex = jQuery( arcSlickNav ).find( '.active' ).attr( 'data-index' )-1;
                 var maxIndex = jQuery( arcSlickNav ).find('.arc-slider-slide-nav-item');
-                var newIndex = Math.min(+currentIndex + 5,(jQuery(maxIndex).length-1));
+                var newIndex = Math.min(+currentIndex + arcSlickOptsObj.tskip,(jQuery(maxIndex).length-1));
                 arcSlickNav.slickGoTo( newIndex );
                 arcSlick.slickGoTo( newIndex );
             } );

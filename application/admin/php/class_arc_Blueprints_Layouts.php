@@ -483,20 +483,21 @@
                 'title'    => __('Blueprint Short Name', 'pzarchitect') . '<span class="pzarc-required el-icon-star" title="Required"></span>',
                 'type'     => 'text',
                 'width'    => 'auto',
-                'subtitle' => __('Alphanumeric only. ', 'pzarchitect') . __('Use the shortcode <strong class="pzarc-usage-info">[pzarc "<span class="pzarc-shortname"></span>"]</strong> or the template tag <strong class="pzarc-usage-info">pzarc(\'<span class="pzarc-shortname"></span>\');</strong>', 'pzarchitect'),
+                'subtitle' => __('Alphanumeric only. ', 'pzarchitect') . '<br>' . __('Use the shortcode <strong class="pzarc-usage-info">[architect "<span class="pzarc-shortname"></span>"]</strong> <br>or the template tag <strong class="pzarc-usage-info">pzarchitect(\'<span class="pzarc-shortname"></span>\');</strong>', 'pzarchitect'),
+                //TODO: Write acomprehensive little help dialog here
                 'validate' => 'not_empty'
             ),
-            array(
-                'id'      => $prefix . 'blueprint-width',
-                'type'    => 'dimensions',
-                //               'mode'    => array('width' => true, 'height' => false),
-                'units'   => array('%', 'px'),
-                'width'   => true,
-                'height'  => false,
-                'title'   => __('Blueprint width', 'pzarchitect'),
-                'default' => array('width' => '100', 'units' => '%'),
-                'desc'    => 'Need to set a max width to stop spillage' //TODO:Need to set a max width to stop spillage
-            ),
+            //            array(
+            //                'id'      => $prefix . 'blueprint-width',
+            //                'type'    => 'dimensions',
+            //                //               'mode'    => array('width' => true, 'height' => false),
+            //                'units'   => array('%', 'px'),
+            //                'width'   => true,
+            //                'height'  => false,
+            //                'title'   => __('Blueprint width', 'pzarchitect'),
+            //                'default' => array('width' => '100', 'units' => '%'),
+            //                'desc'    => 'Need to set a max width to stop spillage' //TODO:Need to set a max width to stop spillage. What spillage??
+            //            ),
             array(
                 'title'   => 'Page title',
                 'id'      => $prefix . 'page-title',
@@ -504,26 +505,6 @@
                 'on'      => 'Yes',
                 'off'     => 'No',
                 'default' => false
-            ),
-            array(
-                'id'      => $prefix . 'sections-width',
-                'type'    => 'dimensions',
-                //               'mode'    => array('width' => true, 'height' => false),
-                'units'   => array('%', 'px'),
-                'width'   => true,
-                'height'  => false,
-                'title'   => __('Sections width', 'pzarchitect'),
-                'default' => array('width' => '100', 'units' => '%'),
-            ),
-            array(
-                'id'      => $prefix . 'sections-align',
-                'type'    => 'button_set',
-                'select2' => array('allowClear' => false),
-                'options' => array('left'   => __('Left', 'pzarchitect'),
-                                   'center' => __('Centre', 'pzarchitect'),
-                                   'right'  => __('Right', 'pzarchitect')),
-                'title'   => __('Sections align', 'pzarchitect'),
-                'default' => 'center',
             ),
         )
     );
@@ -545,14 +526,24 @@
                   'type'  => 'text',
               ),
               array(
-                  'id'      => $prefix . 'section-width',
+                  'id'      => $prefix . 'sections-width' . $i,
                   'type'    => 'dimensions',
                   //               'mode'    => array('width' => true, 'height' => false),
                   'units'   => array('%', 'px'),
                   'width'   => true,
                   'height'  => false,
-                  'title'   => __('Section width', 'pzarchitect'),
+                  'title'   => __('Sections width', 'pzarchitect'),
                   'default' => array('width' => '100', 'units' => '%'),
+              ),
+              array(
+                  'id'      => $prefix . 'sections-align' . $i,
+                  'type'    => 'button_set',
+                  'select2' => array('allowClear' => false),
+                  'options' => array('left'   => __('Left', 'pzarchitect'),
+                                     'center' => __('Centre', 'pzarchitect'),
+                                     'right'  => __('Right', 'pzarchitect')),
+                  'title'   => __('Sections align', 'pzarchitect'),
+                  'default' => 'center',
               ),
               array(
                   'id'       => $prefix . 'section-' . $i . '-panel-layout',
@@ -933,12 +924,12 @@
             ),
             array(
                 'id'       => $prefix . 'navigator-skip-thumbs',
-                'title'    => __('Skip thumbs', 'pzarchitect'),
+                'title'    => __('Number of thumbnails', 'pzarchitect'),
                 'type'     => 'spinner',
                 'default'  => 5,
-                'min'      => 2,
+                'min'      => 1,
                 'max'      => 100,
-                'subtitle' => 'This is the number of thumbs skipped by multi-skip pager element of the inline pager.'
+                'subtitle' => __('Number of thumbnails to show at once in the navigator. This is also the number of thumbs skipped by by the navigator forward and back buttons', 'pzarchitect')
             ),
             /** TRANSITIONS */
 
@@ -1025,11 +1016,11 @@
         'fields'     => array(
 
             array(
-                'title' => __('Displaying Blueprints', 'pzarchitect'),
-                'id'    => $prefix . 'help-blueprints',
-                'type'  => 'raw',
-                'class'=>'plain',
-                'markdown'=>true,
+                'title'    => __('Displaying Blueprints', 'pzarchitect'),
+                'id'       => $prefix . 'help-blueprints',
+                'type'     => 'raw',
+                'class'    => 'plain',
+                'markdown' => true,
                 'content'  => 'There are five methods to displaying a Blueprint. In order of required technical know-how (easiest first), these are:
 
 -   **Widget** : Select Architect widget on WP Admin widgets screen
@@ -1047,7 +1038,8 @@
 *pageids* = a comma separated list of names or numeric ids of the pages to display the Blueprint.
 
 **NOTE**: In Architect Options, you can also select any Blueprint with Galleries as the content source to override the WordPress Gallery shortcode layout.
-','pzarchitect')
+',
+                'pzarchitect')
         )
     );
     $sections[ ] = array(
@@ -1582,10 +1574,10 @@
         'fields'     => array(
 
             array(
-                'title' => __('Snippets', 'pzarchitect'),
-                'id'    => $prefix . 'help-content-selection',
-                'type'  => 'raw',
-                'markdown'=>true,
+                'title'    => __('Snippets', 'pzarchitect'),
+                'id'       => $prefix . 'help-content-selection',
+                'type'     => 'raw',
+                'markdown' => true,
                 'content'  => 'With Architect you can enable an extra content type called *Snippets*.
   These give you a third method of creating content that doesn\'t fit into the post or page types.
 It came about with my own need to create grids of product features. I didn\'t want to fill up pages or posts, so created Snippets for these small content bites.
@@ -1772,10 +1764,10 @@ You can use them however you like though.
           'fields'     => array(
 
               array(
-                  'title' => __('Blueprint styling', 'pzarchitect'),
-                  'id'    => $prefix . 'help',
-                  'type'  => 'raw',
-                  'markdown'=>true,
+                  'title'    => __('Blueprint styling', 'pzarchitect'),
+                  'id'       => $prefix . 'help',
+                  'type'     => 'raw',
+                  'markdown' => true,
                   //  'class' => 'plain',
                   'content'  => '<h3>Adding underlines to hover links</h3>
                             <p>In the Custom CSS field, enter the following CSS</p>
