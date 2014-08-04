@@ -18,7 +18,6 @@
   *
    * WPML
    * WooCommerce
-   * LoopBuddy
    * Advanced Custom Fields
    * Types
    * NextGen
@@ -61,6 +60,8 @@
       define('PZARC_PLUGIN_PATH', trailingslashit(plugin_dir_path(__FILE__)));
       define('PZARC_PLUGIN_APP_URL', PZARC_PLUGIN_URL . 'application/');
       define('PZARC_PLUGIN_APP_PATH', PZARC_PLUGIN_PATH . 'application/');
+      define('PZARC_DOCUMENTATION_URL', PZARC_PLUGIN_URL . 'documentation/');
+      define('PZARC_DOCUMENTATION_PATH', PZARC_PLUGIN_PATH . 'documentation/');
       define('PZARC_CACHE', '/arc/');
 
       $upload_dir = wp_upload_dir();

@@ -253,7 +253,7 @@
 
       // Need to setup for break points.
 
-      //  data-imagesrcs ="1,2,3", data-breakpoints="1,2,3". Then use js to change src.
+      //  TODO: data-imagesrcs ="1,2,3", data-breakpoints="1,2,3". Then use js to change src.
       $width = (int)str_replace('px', '', $section[ '_panels_design_background-image-max' ][ 'width' ]);
       // TODO: Should this just choose the greater? Or could that be too stupid if  someone puts a very large max-height?
       if ($section[ '_panels_settings_panel-height-type' ] === 'height') {

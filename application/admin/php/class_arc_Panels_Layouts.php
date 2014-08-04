@@ -997,27 +997,29 @@
 
 
             array(
-                'title'    => __('Maximum dimensions: Screens >', 'pzarchitect') . $_architect_options[ 'architect_breakpoint_1' ][ 'width' ],
+//                'title'    => __('Maximum dimensions: Screens >', 'pzarchitect') . $_architect_options[ 'architect_breakpoint_1' ][ 'width' ],
+                'title'    => __('Maximum dimensions', 'pzarchitect') ,
                 'id'       => $prefix . 'background-image-max',
                 'type'     => 'dimensions',
                 'units'    => 'px',
                 'default'  => array('width' => '300', 'height' => '350'),
-                'subtitle' => __('This should be larger than the expected maximum viewing size at this breakpoint to ensure best responsive behaviour', 'pzarchitect')
+//                'subtitle' => __('This should be larger than the expected maximum viewing size at this breakpoint to ensure best responsive behaviour', 'pzarchitect')
+                'subtitle' => __('This should be as large or a little larger than the expected maximum viewing size to ensure best responsive behaviour', 'pzarchitect')
             ),
-            array(
-                'title'    => __('Maximum dimensions: Screens > ', 'pzarchitect') . $_architect_options[ 'architect_breakpoint_2' ][ 'width' ] . __(' and  < ') . $_architect_options[ 'architect_breakpoint_1' ][ 'width' ],
-                'id'       => $prefix . 'background-image-max-bp2',
-                'type'     => 'dimensions',
-                'units'    => 'px',
-                'default'  => array('width' => '600', 'height' => '400'),
-            ),
-            array(
-                'title'    => __('Maximum dimensions: Screens < ', 'pzarchitect') . $_architect_options[ 'architect_breakpoint_2' ][ 'width' ],
-                'id'       => $prefix . 'background-image-max-bp3',
-                'type'     => 'dimensions',
-                'units'    => 'px',
-                'default'  => array('width' => '200', 'height' => '300'),
-            ),
+//            array(
+//                'title'    => __('Maximum dimensions: Screens > ', 'pzarchitect') . $_architect_options[ 'architect_breakpoint_2' ][ 'width' ] . __(' and  < ') . $_architect_options[ 'architect_breakpoint_1' ][ 'width' ],
+//                'id'       => $prefix . 'background-image-max-bp2',
+//                'type'     => 'dimensions',
+//                'units'    => 'px',
+//                'default'  => array('width' => '600', 'height' => '400'),
+//            ),
+//            array(
+//                'title'    => __('Maximum dimensions: Screens < ', 'pzarchitect') . $_architect_options[ 'architect_breakpoint_2' ][ 'width' ],
+//                'id'       => $prefix . 'background-image-max-bp3',
+//                'type'     => 'dimensions',
+//                'units'    => 'px',
+//                'default'  => array('width' => '200', 'height' => '300'),
+//            ),
             array(
                 'title'    => __('Effect on resize', 'pzarchitect'),
                 'id'       => $prefix . 'background-image-resize',

@@ -232,10 +232,10 @@
                                             'Odd within Section'    => '.use-hw-css .pzarc-panel.odd-section-panel',
                                             'Even within Section'   => '.use-hw-css .pzarc-panel.even-section-panel',
                                         ),
+                                        // Don't allow margins on panels as it messes up layout. Margins must be set in the Blueprint settings
                                         'properties' => array('background',
                                                               'borders',
                                                               'padding',
-                                                              'margins',
                                                               'rounded-corners',
                                                               'box-shadow',
                                                               'fonts'),
