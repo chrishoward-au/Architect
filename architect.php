@@ -4,7 +4,7 @@
     Plugin Name: Architect - an all-in-one content display framework
     Plugin URI: http://pizazzwp.com
     Description: Display your content in grids, tabs, sliders, galleries with sources like posts, pages, galleries, and custom content types. Layout using shorcodes, widgets, WP action hooks and template tags. Change themes without havinq to rebuild your layouts.
-    Version: 0.7.9 beta
+    Version: 0.7.9.1 beta
     Author: Chris Howard
     Author URI: http://pizazzwp.com
     License: GNU GPL v2
@@ -17,9 +17,9 @@
   /* Plugins to try to support
   *
    * WPML
-   * WooCommerce
-   * Advanced Custom Fields
-   * Types
+   * WooCommerce *
+   * Advanced Custom Fields *
+   * Types *
    * NextGen
    *
    */
@@ -37,7 +37,7 @@
   TODO: Add option to hide blueprint if it has no content. Should be able to do that with a CSS class
 
   */
-  /* why not use a WP like methodology!
+  /* TODO: why not use a WP like methodology!
   ================================================================================
   register_cell_layout('name',$args)'
   register_criteria('name',$args);

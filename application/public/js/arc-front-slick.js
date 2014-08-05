@@ -38,7 +38,6 @@ jQuery( document ).ready( function ()
             };
 
 
-
             // TODO: Work out how to use infinite without messing up index!!
             var arcSlickNav = jQuery( '.pzarc-navigator-' + arcSlickID + '.thumbs' ).slick( {
                       autoplay: false,
@@ -52,7 +51,10 @@ jQuery( document ).ready( function ()
                       onBeforeChange: beforeChange
                   }
             );
-
+            if ( arcSlickNav.length === 0 )
+            {
+                arcSlickNav = jQuery( '.pzarc-navigator-' + arcSlickID ).slick();
+            }
             var arcSlick = jQuery( '.arc-slider-container.arc-slider-container-' + arcSlickID + ' .pzarc-section' ).slick(
                   {
                       slide: '.pzarc-panel',
@@ -94,8 +96,8 @@ jQuery( document ).ready( function ()
             jQuery( '.pager.skip-left' ).on( 'click', function ()
             {
                 // dataindex is 1 to n, slick index is 0 to n-1
-                var currentIndex = jQuery( arcSlickNav ).find( '.active' ).attr( 'data-index' )-1;
-                var newIndex = Math.max(+currentIndex - arcSlickOptsObj.tskip,0);
+                var currentIndex = jQuery( arcSlickNav ).find( '.active' ).attr( 'data-index' ) - 1;
+                var newIndex = Math.max( +currentIndex - arcSlickOptsObj.tskip, 0 );
                 arcSlickNav.slickGoTo( newIndex );
                 arcSlick.slickGoTo( newIndex );
             } );
@@ -103,9 +105,9 @@ jQuery( document ).ready( function ()
             jQuery( '.pager.skip-right' ).on( 'click', function ()
             {
                 // dataindex is 1 to n, slick index is 0 to n-1
-                var currentIndex = jQuery( arcSlickNav ).find( '.active' ).attr( 'data-index' )-1;
-                var maxIndex = jQuery( arcSlickNav ).find('.arc-slider-slide-nav-item');
-                var newIndex = Math.min(+currentIndex + arcSlickOptsObj.tskip,(jQuery(maxIndex).length-1));
+                var currentIndex = jQuery( arcSlickNav ).find( '.active' ).attr( 'data-index' ) - 1;
+                var maxIndex = jQuery( arcSlickNav ).find( '.arc-slider-slide-nav-item' );
+                var newIndex = Math.min( +currentIndex + arcSlickOptsObj.tskip, (jQuery( maxIndex ).length - 1) );
                 arcSlickNav.slickGoTo( newIndex );
                 arcSlick.slickGoTo( newIndex );
             } );

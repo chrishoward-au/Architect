@@ -266,7 +266,6 @@
       $links_css .= (strtolower($properties[ 'visited-deco' ]) !== 'default' ? 'text-decoration:' . strtolower($properties[ 'visited-deco' ]) . ';' : '');
       $links_css .= '}' . $nl;
     }
-
     return $links_css;
   }
 

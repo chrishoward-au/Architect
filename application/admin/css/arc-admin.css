@@ -682,6 +682,14 @@ body.arc-bgimage.arc-bg-red-blue #wpwrap {
 body.arc-bgimage.architect_page_pzarc_about .wrap {
   background: rgba(255, 255, 255, 0.9);
   padding: 2%; }
+body.arc-bgimage.post-type-arc-panels #wpfooter, body.arc-bgimage.post-type-arc-blueprints #wpfooter, body.arc-bgimage.architect_page__architect_options #wpfooter, body.arc-bgimage.architect_page__architect_styling #wpfooter, body.arc-bgimage.architect_page__architect_actions_editor #wpfooter, body.arc-bgimage.architect_page_pzarc_about #wpfooter {
+  background: rgba(255, 255, 255, 0.3);
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #fff;
+  margin-bottom: 5px; }
+  body.arc-bgimage.post-type-arc-panels #wpfooter a, body.arc-bgimage.post-type-arc-blueprints #wpfooter a, body.arc-bgimage.architect_page__architect_options #wpfooter a, body.arc-bgimage.architect_page__architect_styling #wpfooter a, body.arc-bgimage.architect_page__architect_actions_editor #wpfooter a, body.arc-bgimage.architect_page_pzarc_about #wpfooter a {
+    color: #def; }
 body.arc-bgimage.post-type-arc-panels #wpwrap, body.arc-bgimage.post-type-arc-blueprints #wpwrap {
   background-size: cover;
   background-attachment: fixed; }

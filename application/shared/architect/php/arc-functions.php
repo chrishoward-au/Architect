@@ -150,7 +150,7 @@
             'title'   => __('Links', 'pzarc'),
             'id'      => $id,
             'type'    => 'links',
-            'output'  => $selectors,
+//            'output'  => $selectors,
             'default' => $defaults,
         );
 
