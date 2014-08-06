@@ -1414,8 +1414,9 @@
                 'id'      => $prefix . 'specific-snippets',
                 'type'    => 'select',
                 'select2' => array('allowClear' => true),
-                'data'    => 'snippets',
-                'multi'   => true
+                'options'    => pzarc_get_posts_in_post_type('pz_snippets'),
+                'multi'   => true,
+                'default' => array()
             ),
         )
     );
