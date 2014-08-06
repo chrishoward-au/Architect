@@ -428,22 +428,22 @@
     return $return;
   }
 
-  function pzarc_get_blueprints()
+  function pzarc_get_posts_in_post_type($pzarc_post_type = 'arc-blueprints')
   {
     $args           = array(
         'posts_per_page'   => -1,
         'orderby'          => 'post_title',
         'order'            => 'ASC',
-        'post_type'        => 'arc-blueprints',
+        'post_type'        => $pzarc_post_type,
         'post_status'      => 'publish',
         'suppress_filters' => true);
-    $blueprints_obj = get_posts($args);
-    $blueprint_list = array();
-    foreach ($blueprints_obj as $blueprint_obj) {
-      $blueprint_list[ $blueprint_obj->post_name ] = $blueprint_obj->post_title;
+    $pzarc_post_types_obj = get_posts($args);
+    $pzarc_post_type_list = array();
+    foreach ($pzarc_post_types_obj as $pzarc_post_type_obj) {
+      $pzarc_post_type_list[ $pzarc_post_type_obj->post_name ] = $pzarc_post_type_obj->post_title;
     }
 
-    return $blueprint_list;
+    return $pzarc_post_type_list;
   }
 
   function pzarc_array_to_options_list($source_arr, $selected)
