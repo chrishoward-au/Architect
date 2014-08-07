@@ -344,7 +344,7 @@
                   'respect' => __('Respect focal point', 'pzarchitect'),
                   'centre'  => __('Centre focal point', 'pzarchitect'),
                   'none'    => __('Crop to centre', 'pzarchitect'),
-                  'scale'   => __('Scale images, no cropping', 'pzarchitect')
+                  'scale'   => __('Preserve aspect, fit width', 'pzarchitect')
 
               )
           ),

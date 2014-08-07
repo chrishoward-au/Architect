@@ -10,8 +10,6 @@
 
   class arc_Panel_post
   {
-    private $meta_custom = array();
-//    private $data;
 
     //TODO: Shouldn't data be a this?
     /**
@@ -109,6 +107,7 @@
       $data[ 'meta' ][ 'tags' ]            = null;
       $data[ 'image' ][ 'image' ]          = null;
       $data[ 'image' ][ 'caption' ]        = null;
+      $data[ 'image' ][ 'original' ]        = null;
       $data[ 'meta' ][ 'datetime' ]        = null;
       $data[ 'meta' ][ 'fdatetime' ]       = null;
       $data[ 'meta' ][ 'categorieslinks' ] = null;
@@ -173,8 +172,11 @@
                                                                                  'crop'      => (int)$focal_point[ 0 ] . 'x' . (int)$focal_point[ 1 ] . 'x' . $section[ '_panels_settings_image-focal-point' ]
 
         ));
+        $data[ 'image' ][ 'original' ] = wp_get_attachment_image_src($thumb_id, 'full');
         $image                        = get_post($thumb_id);
         $data[ 'image' ][ 'caption' ] = $image->post_excerpt;
+
+
       }
 
       /** META */
@@ -268,6 +270,7 @@
                                                                     'bfi_thumb' => true,
                                                                     'crop'      => (int)$focal_point[ 0 ] . 'x' . (int)$focal_point[ 1 ] . 'x' . $section[ '_panels_settings_image-focal-point' ]
       )); //WP seems to smartly figure out which of its saved images to use! Now we jsut gotta get it t work with focal point
+      $data[ 'bgimage' ][ 'original' ] = wp_get_attachment_image_src($thumb_id, 'full');
 
       /** MISCELLANARY */
 
@@ -410,6 +413,7 @@
   {
     public static function render($component, $panel_def, $content_type, &$data, &$section, $rsid)
     {
+
       if ($section[ '_panels_design_link-image' ]) {
         $panel_def[ $component ] = str_replace('{{postlink}}', $panel_def[ 'postlink' ], $panel_def[ $component ]);
         $panel_def[ $component ] = str_replace('{{closepostlink}}', '</a>', $panel_def[ $component ]);
@@ -424,6 +428,22 @@
 
       if (!empty($section[ '_panels_design_centre-image' ])) {
         $panel_def[ $component ] = str_replace('{{centred}}', 'centred', $panel_def[ $component ]);
+      }
+
+
+      if ('none' !== $section[ '_panels_design_link-image' ]) {
+        $link ='';
+        switch ($section[ '_panels_design_link-image' ]) {
+          case 'page':
+          case 'url':
+            $link = ('url' === $section[ '_panels_design_link-image' ]) ? '<a href="' . $section[ '_panels_design_link-image-url' ] . '" title="' . $section[ '_panels_design_link-image-url-tooltip' ] . '">' : $panel_def[ 'postlink' ];
+            break;
+          case 'original':
+            $link = '<a class="lightbox lightbox-' . $rsid . '" href="' . $data[ 'image' ][ 'original' ][ 0 ] . '" title="' . $data[ 'title' ] . '">';
+            break;
+        }
+        $panel_def[ $component ] = str_replace('{{postlink}}', $link, $panel_def[ $component ]);
+        $panel_def[ $component ] = str_replace('{{closepostlink}}', '</a>', $panel_def[ $component ]);
       }
 
       if (empty($data[ 'image' ][ 'image' ])) {
@@ -445,6 +465,20 @@
     {
       $panel_def[ $component ] = str_replace('{{bgimage}}', $data[ 'bgimage' ], $panel_def[ $component ]);
       $panel_def[ $component ] = str_replace('{{trim-scale}}', ' ' . $section[ '_panels_design_background-position' ] . ' ' . $section[ '_panels_design_background-image-resize' ], $panel_def[ $component ]);
+      if ('none' !== $section[ '_panels_design_link-bgimage' ]) {
+        $link = '';
+        switch ($section[ '_panels_design_link-bgimage' ]) {
+          case 'page':
+          case 'url':
+            $link = ('url' === $section[ '_panels_design_link-bgimage' ]) ? '<a href="' . $section[ '_panels_design_link-bgimage-url' ] . '" title="' . $section[ '_panels_design_link-bgimage-url-tooltip' ] . '">' : $panel_def[ 'postlink' ];
+            break;
+          case 'original':
+            $link = '<a class="lightbox lightbox-' . $rsid . '" href="' . $data[ 'bgimage' ][ 'original' ][ 0 ] . '" title="' . $data[ 'title' ] . '">';
+            break;
+        }
+        $panel_def[ $component ] = str_replace('{{postlink}}', $link, $panel_def[ $component ]);
+        $panel_def[ $component ] = str_replace('{{closepostlink}}', '</a>', $panel_def[ $component ]);
+      }
 
       return parent::process_generics($data, $panel_def[ $component ], $content_type, $section);
     }
@@ -468,10 +502,26 @@
           $panel_def[ $component ] = str_replace('{{image}}', $data[ 'image' ][ 'image' ], $panel_def[ $component ]);
           $panel_def[ $component ] = str_replace('{{incontent}}', 'in-content-thumb', $panel_def[ $component ]);
 
-          if ($section[ '_panels_design_link-image' ]) {
-            $panel_def[ $component ] = str_replace('{{postlink}}', $panel_def[ 'postlink' ], $panel_def[ $component ]);
+          if ('none' !== $section[ '_panels_design_link-image' ]) {
+            $link ='';
+            switch ($section[ '_panels_design_link-image' ]) {
+              case 'page':
+              case 'url':
+                $link = ('url' === $section[ '_panels_design_link-image' ]) ? '<a href="' . $section[ '_panels_design_link-image-url' ] . '" title="' . $section[ '_panels_design_link-image-url-tooltip' ] . '">' : $panel_def[ 'postlink' ];
+                break;
+              case 'original':
+                $link = '<a class="lightbox lightbox-' . $rsid . '" href="' . $data[ 'image' ][ 'original' ][ 0 ] . '" title="' . $data[ 'title' ] . '">';
+                break;
+            }
+            $panel_def[ $component ] = str_replace('{{postlink}}', $link, $panel_def[ $component ]);
             $panel_def[ $component ] = str_replace('{{closepostlink}}', '</a>', $panel_def[ $component ]);
           }
+
+
+//          if ($section[ '_panels_design_link-image' ]) {
+//            $panel_def[ $component ] = str_replace('{{postlink}}', $panel_def[ 'postlink' ], $panel_def[ $component ]);
+//            $panel_def[ $component ] = str_replace('{{closepostlink}}', '</a>', $panel_def[ $component ]);
+//          }
         }
       }
       if (empty($data[ 'image' ][ 'image' ]) && $section[ '_panels_design_maximize-content' ]) {
@@ -511,8 +561,18 @@
           $panel_def[ $component ] = str_replace('{{image}}', $data[ 'image' ][ 'image' ], $panel_def[ $component ]);
           $panel_def[ $component ] = str_replace('{{incontent}}', 'in-content-thumb', $panel_def[ $component ]);
 
-          if ($section[ '_panels_design_link-image' ]) {
-            $panel_def[ $component ] = str_replace('{{postlink}}', $panel_def[ 'postlink' ], $panel_def[ $component ]);
+          if ('none' !== $section[ '_panels_design_link-image' ]) {
+            $link ='';
+            switch ($section[ '_panels_design_link-image' ]) {
+              case 'page':
+              case 'url':
+                $link = ('url' === $section[ '_panels_design_link-image' ]) ? '<a href="' . $section[ '_panels_design_link-image-url' ] . '" title="' . $section[ '_panels_design_link-image-url-tooltip' ] . '">' : $panel_def[ 'postlink' ];
+                break;
+              case 'original':
+                $link = '<a class="lightbox lightbox-' . $rsid . '" href="' . $data[ 'image' ][ 'original' ][ 0 ] . '" title="' . $data[ 'title' ] . '">';
+                break;
+            }
+            $panel_def[ $component ] = str_replace('{{postlink}}', $link, $panel_def[ $component ]);
             $panel_def[ $component ] = str_replace('{{closepostlink}}', '</a>', $panel_def[ $component ]);
           }
         }

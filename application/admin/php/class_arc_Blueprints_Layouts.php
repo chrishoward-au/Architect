@@ -487,17 +487,17 @@
                 //TODO: Write acomprehensive little help dialog here
                 'validate' => 'not_empty'
             ),
-            //            array(
-            //                'id'      => $prefix . 'blueprint-width',
-            //                'type'    => 'dimensions',
-            //                //               'mode'    => array('width' => true, 'height' => false),
-            //                'units'   => array('%', 'px'),
-            //                'width'   => true,
-            //                'height'  => false,
-            //                'title'   => __('Blueprint width', 'pzarchitect'),
-            //                'default' => array('width' => '100', 'units' => '%'),
-            //                'desc'    => 'Need to set a max width to stop spillage' //TODO:Need to set a max width to stop spillage. What spillage??
-            //            ),
+                        array(
+                            'id'      => $prefix . 'blueprint-width',
+                            'type'    => 'dimensions',
+                            //               'mode'    => array('width' => true, 'height' => false),
+                            'units'   => array('%', 'px'),
+                            'width'   => true,
+                            'height'  => false,
+                            'title'   => __('Blueprint max width', 'pzarchitect'),
+                            'default' => array('width' => '100', 'units' => '%'),
+                            'subtitle'    => 'Set a max width to stop spillage when the container is larger than you want the Blueprint to be.'
+                        ),
             array(
                 'title'   => 'Page title',
                 'id'      => $prefix . 'page-title',

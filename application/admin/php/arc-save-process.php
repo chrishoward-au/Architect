@@ -93,6 +93,11 @@
       ) {
         echo 'error saving file!';
       }
+
+      // And finally, let's flush the BFI image cache
+      if ($screen->id == 'arc-panels' || $post->post_type === 'arc-panels' && function_exists('bfi_flush_image_cache')) {
+        bfi_flush_image_cache();
+      }
     }
   }
 
