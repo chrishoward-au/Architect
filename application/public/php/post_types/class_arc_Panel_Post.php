@@ -141,13 +141,11 @@
 
       /** FEATURED IMAGE */
       $thumb_id = get_post_thumbnail_id();
-      if (!$thumb_id && $section[ '_panels_design_use-embedded-images' ]) {
-        $args        = array('post_type'   => 'attachment',
-                             'numberposts' => -1,
-                             'post_status' => null,
-                             'post_parent' => get_the_ID());
-        $attachments = get_posts($args);
-        $thumb_id    = (!empty($attachments[ 0 ]) && wp_attachment_is_image($attachments[ 0 ]->ID) ? $attachments[ 0 ]->ID : false);
+
+      if (!$thumb_id && $section[ '_panels_settings_use-embedded-images' ]) {
+        //TODO: Changed to more reliable check if image is in the content?
+        preg_match("/(?<=wp-image-)(\\d)*/uimx", get_the_content(),$matches);
+        $thumb_id    = (!empty($matches[ 0 ]) ? $matches[ 0 ] : false);
       }
 
       $focal_point = get_post_meta($thumb_id, 'pzgp_focal_point', true);
@@ -265,11 +263,12 @@
       }
 
       // Need to grab image again because it uses different dimensions for the bgimge
-      $data[ 'bgimage' ] = wp_get_attachment_image($thumb_id, array($width,
+      $data[ 'bgimage' ]['thumb'] = wp_get_attachment_image($thumb_id, array($width,
                                                                     $height,
                                                                     'bfi_thumb' => true,
                                                                     'crop'      => (int)$focal_point[ 0 ] . 'x' . (int)$focal_point[ 1 ] . 'x' . $section[ '_panels_settings_image-focal-point' ]
       )); //WP seems to smartly figure out which of its saved images to use! Now we jsut gotta get it t work with focal point
+
       $data[ 'bgimage' ][ 'original' ] = wp_get_attachment_image_src($thumb_id, 'full');
 
       /** MISCELLANARY */
@@ -337,7 +336,7 @@
 //        $template[ $type ] = str_replace('{{' . $key . '}}', $value, $template[ $type ]);
 //      }
 
-      //   $panel_def[ $component ] = str_replace('{{using-bg-image}}', (!empty($data[ 'bgimage' ]) ? 'has-bgimage ' : 'no-bgimage '), $panel_def[ $component ]);
+      //   $panel_def[ $component ] = str_replace('{{using-bg-image}}', (!empty($data[ 'bgimage' ]['thumb']) ? 'has-bgimage ' : 'no-bgimage '), $panel_def[ $component ]);
 
       $panel_def[ $component ] = str_replace('{{mimic-block-type}}', $data[ 'inherit-hw-block-type' ], $panel_def[ $component ]);
 
@@ -463,8 +462,9 @@
   {
     public static function render($component, $panel_def, $content_type, &$data, &$section, $rsid)
     {
-      $panel_def[ $component ] = str_replace('{{bgimage}}', $data[ 'bgimage' ], $panel_def[ $component ]);
+      $panel_def[ $component ] = str_replace('{{bgimage}}', $data[ 'bgimage' ]['thumb'], $panel_def[ $component ]);
       $panel_def[ $component ] = str_replace('{{trim-scale}}', ' ' . $section[ '_panels_design_background-position' ] . ' ' . $section[ '_panels_design_background-image-resize' ], $panel_def[ $component ]);
+
       if ('none' !== $section[ '_panels_design_link-bgimage' ]) {
         $link = '';
         switch ($section[ '_panels_design_link-bgimage' ]) {

@@ -32,6 +32,8 @@
     }
 
     $pzarc_contents .= $pzarc_bp_css[ 0 ][ 0 ] . $pzarc_bp_css[ 1 ][ 0 ] . $pzarc_bp_css[ 2 ][ 0 ] . $pzarc_bp_css[ 0 ][ 1 ] . $pzarc_bp_css[ 1 ][ 1 ] . $pzarc_bp_css[ 2 ][ 1 ];
+
+
     //   var_dump($pzarc_blueprints);
     foreach ($pzarc_blueprints as $key => $value) {
 
@@ -48,6 +50,8 @@
       }
 
     }
+
+    $pzarc_contents .= '.pzarchitect .pzarc-blueprint_'.$pzarc_blueprints[ '_blueprints_short-name' ].' {max-width:'.$pzarc_blueprints['_blueprints_blueprint-width']['width'].';margin-left:auto;margin-right:auto}'.$nl;
 
     return $pzarc_contents;
   }

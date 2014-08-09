@@ -348,6 +348,15 @@
 
               )
           ),
+          array(
+              'title'    => __('Use embedded images', 'pzarchitect'),
+              'id'       => $prefix . 'use-embedded-images',
+              'type'     => 'switch',
+              'on'       => 'Yes',
+              'off'      => 'No',
+              'default'  => false,
+              'subtitle' => __('Enable this to use the first found attached image in the content if no featured image is set.', 'pzarchitect')
+          ),
         )
     );
     $metaboxes[ ]  = array(
@@ -917,15 +926,6 @@
               'off'      => 'No',
               'default'  => false,
               'subtitle' => 'Centres the image horizontally. It is best to display it on its own row, and the content to be 100% wide.'
-          ),
-          array(
-              'title'    => __('Use embedded images', 'pzarchitect'),
-              'id'       => $prefix . 'use-embedded-images',
-              'type'     => 'switch',
-              'on'       => 'Yes',
-              'off'      => 'No',
-              'default'  => false,
-              'subtitle' => __('Enable this to use the first found embedded or attached image if no featured image is set.', 'pzarchitect')
           ),
           //          array(
           //              'id'    => $prefix . 'image-processing-heading',

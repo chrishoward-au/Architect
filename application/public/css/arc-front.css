@@ -78,6 +78,11 @@
   .pzarchitect .pzarc-align.right {
     float: right;
     padding-left: 2%; }
+  .pzarchitect .mfp-content .mfp-title {
+    font-weight: bold; }
+    .pzarchitect .mfp-content .mfp-title .caption {
+      font-weight: normal;
+      font-size: smaller; }
   .pzarchitect .pzarc-panel {
     min-width: 0px;
     min-height: 0px;
