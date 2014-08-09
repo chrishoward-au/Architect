@@ -113,7 +113,7 @@
           $left    = preg_replace("/([\\%px])/uiUm", "", $left);
           $right   = $pzarc_panels[ '_panels_design_image-spacing' ][ 'margin-right' ];
           $right   = preg_replace("/([\\%px])/uiUm", "", $right);
-          $pzarc_contents .= $class_prefix . ' .entry-thumbnail {width:' . ($pzarc_layout[ 'image' ][ 'width' ] - $left - $right) . '%;max-width:' . $pzarc_panels[ '_panels_design_image-max-width' ] . 'px;margin: ' . $margins . ';}' . $nl;
+          $pzarc_contents .= $class_prefix . ' .entry-thumbnail {width:' . ($pzarc_layout[ 'image' ][ 'width' ] - $left - $right) . '%;max-width:' . $pzarc_panels[ '_panels_design_image-max-width' ] . 'px;' . $margins . ';}' . $nl;
 //              }
 
           $pzarc_contents .= $class_prefix . ' .entry-content {width:' . $pzarc_layout[ 'content' ][ 'width' ] . '%;}' . $nl;

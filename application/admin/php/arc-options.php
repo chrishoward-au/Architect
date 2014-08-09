@@ -240,14 +240,14 @@
                     'title'    => __('Default shortcode blueprint', 'pzarchitect'),
                     'id'       => 'architect_default_shortcode_blueprint',
                     'type'     => 'select',
-                    'options'  => pzarc_get_blueprints(),
+                    'options'  => pzarc_get_posts_in_post_type(),
                     'subtitle' => 'If you omit the blueprint name from a shortcode, it will use the one selected here. Useful for quick conversion of WP galleries by simply renaming gallery to architect in the shortcode.',
                 ),
                 array(
                     'title'    => __('Replace WP Galleries with Blueprint', 'pzarchitect'),
                     'id'       => 'architect_replace_wpgalleries',
                     'type'     => 'select',
-                    'options'  => pzarc_get_blueprints(),
+                    'options'  => pzarc_get_posts_in_post_type(),
                     'subtitle' => 'Select a Blueprint to use for <strong>all</strong> WP gallery shortcodes.',
                     'desc'     => 'Make sure this Blueprint is using Galleries as its Content Source!'
                 ),
@@ -291,7 +291,7 @@
                     'id'       => 'architect_enable_bgimage',
                     'type'     => 'switch',
                     'subtitle' => 'Displays a background image on the Architect admin pages',
-                    'default'  => false,
+                    'default'  => true,
                 ),
                 array(
                     'title'    => __('Choose background image', 'pzarchitect'),
@@ -373,6 +373,21 @@
                     'subtitle' => 'Enter a title to appear at the top of Custom taxonomies archives pages',
                     'default'  => 'Posts in: '
                 ),
+            )
+        );
+        $this->sections[ ] = array(
+            'title'      => 'Custom CSS',
+            'show_title' => true,
+            'icon'       => 'el-icon-globe',
+            'fields'     => array(
+                array(
+                    'title'    => __('Custom CSS', 'pzarchitect'),
+                    'id'       => 'architect_custom-css',
+                    'type'     => 'ace_editor',
+                    'mode'=>'css',
+                    'subtitle' => 'This can be any CSS',
+                    'default'  => ''
+                )
             )
         );
       }

@@ -55,7 +55,7 @@ jQuery( document ).ready( function ()
             //console.log(this,this.selected,jQuery(this).text());
             // there's a blank one at the to  because of the placeholder
 
-            console.log( i, this.value, this.selected );
+//            console.log( i, this.value, this.selected );
 
             if ( i < 1 || this.value === 'help' )
             {return;}
@@ -352,6 +352,8 @@ jQuery( document ).ready( function ()
         {
             pzarc_update_usage_info( this );
         } );
+
+        pzarc_update_usage_info( jQuery( 'input#_blueprints_short-name-text' ) );
 
         pzarc_show_navtype();
     }

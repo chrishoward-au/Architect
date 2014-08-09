@@ -3,8 +3,8 @@ Contributors: chrishoward
 Tags: content,display,posts,pages,gallery,slider
 Donate link: http://
 Requires at least: 3.5.0
-Tested up to: 3.9.1
-Stable tag: 0.7.8
+Tested up to: 4.0.0
+Stable tag: 0.7.9.6
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -33,7 +33,7 @@ Shortcode: [architect blueprint="yourblueprint" ids="1,2,3,4,5"]
 Blueprint tag: echo pzarc('yourblueprint','1,2,3,4,5');
 Widget:
 Block:
-Action hooks
+Action hooks:
 
 == Frequently Asked Questions ==
 = What themes is Architect compatible with =
@@ -78,6 +78,12 @@ todo
 3. The screenshot description corresponds to screenshot-3.(png|jpg|jpeg|gif).
 
 == Changelog ==
+
+= 0.7.9 =
+* FIXED: Nav by thumbs
+* FIXED: Responsive content fint sizing
+* ADDED: Heaps of HW Design Mode stylings
+* ADDED: Page title option to HW VE overrides
 
 = 0.7.8 =
 * ADDED: Headway Visual Editor option for post ID overrides

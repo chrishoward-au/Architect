@@ -460,7 +460,7 @@
         $duration             = $this->build->blueprint[ '_blueprints_transitions-duration' ] * 1000;
         $interval             = $this->build->blueprint[ '_blueprints_transitions-interval' ] * 1000;
         $skip_thumbs          = $this->build->blueprint[ '_blueprints_navigator-skip-thumbs' ];
-        $slider[ 'dataopts' ] = 'data-opts="{#tduration#:' . $duration . ',#tinterval#:' . $interval . ',#tskip#:' . $skip_thumbs . '}"';
+        $slider[ 'dataopts' ] = 'data-opts="{#tduration#:' . $duration . ',#tinterval#:' . $interval . ',#tshow#:' . $skip_thumbs .',#tskip#:' . $skip_thumbs . '}"';
 
         $return_val .= '<button type="button" class="pager arrow-left icon-arrow-left4"></button>';
         $return_val .= '<button type="button" class="pager arrow-right icon-uniE60D"></button>';

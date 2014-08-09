@@ -498,7 +498,7 @@
         // to check whether a resize was previously done.
         if (isset($width)) {
           //get image size after cropping
-          $dims  = image_resize_dimensions($orig_w, $orig_h, $width, isset($height) ? $height : null, (isset($crop)  ? $crop : false));
+          $dims  = image_resize_dimensions($orig_w, $orig_h, $width, isset($height) ? $height : null, (isset($crop) ? $crop : false));
           $dst_w = $dims[ 4 ];
           $dst_h = $dims[ 5 ];
         }
@@ -556,7 +556,7 @@
            * Perform image manipulations
            */
           if ((isset($width) && $width) || (isset($height) && $height)) {
-            if (is_wp_error($editor->resize(isset($width) ? $width : null, isset($height) ? $height : null, (isset($crop)  ? $crop : false)))) {
+            if (is_wp_error($editor->resize(isset($width) ? $width : null, isset($height) ? $height : null, (isset($crop) ? $crop : false)))) {
               return false;
             }
           }
@@ -675,7 +675,7 @@
         $crop[ 1 ] = (!isset($crop[ 1 ]) ? 50 : $crop[ 1 ]);
         $crop[ 2 ] = (!isset($crop[ 2 ]) ? 'center' : $crop[ 2 ]);
       } elseif (true === $crop) {
-        $crop = array('50','50','center');
+        $crop = array('50', '50', 'center');
       }
 
       $aspect_ratio = $orig_w / $orig_h;
@@ -695,7 +695,6 @@
 
       $crop_w = round($new_w / $size_ratio);
       $crop_h = round($new_h / $size_ratio);
-
 
       // Crop from offsets (left, top) as percentages
 
@@ -719,10 +718,27 @@
 
         // TODO: Make scale work
         case 'scale':
+
+          $w_size = $dest_h / $orig_h * $orig_w;
+          $h_size = $dest_w / $orig_w * $orig_h;
+// var_dump($w_size,$h_size,$dest_w,$dest_h);
+          if ($w_size > $dest_w) {
+            $new_w = $dest_w;
+            $new_h = $h_size;
+          }
+
+          if ($h_size > $dest_h) {
+            $new_w = $w_size;
+            $new_h = $dest_h;
+          }
+
+  //        var_dump($new_w,$new_h);
+
+          $crop_w = $orig_w;
+          $crop_h = $orig_h;
           $ideal_s_x = 0;
           $ideal_s_y = 0;
           break;
-
         case 'centre':
         case 'center':
           // Try to centre focal point

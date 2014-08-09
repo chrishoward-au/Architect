@@ -78,3 +78,14 @@ h2.pzarc-page-title {
     padding-left: 2%;
   }
 }
+
+// Magnific
+.mfp-content {
+  .mfp-title {
+    font-weight: bold;
+    .caption {
+      font-weight: normal;
+      font-size: smaller;
+    }
+  }
+}

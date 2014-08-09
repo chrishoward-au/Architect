@@ -4,7 +4,7 @@
     Plugin Name: Architect - an all-in-one content display framework
     Plugin URI: http://pizazzwp.com
     Description: Display your content in grids, tabs, sliders, galleries with sources like posts, pages, galleries, and custom content types. Layout using shorcodes, widgets, WP action hooks and template tags. Change themes without havinq to rebuild your layouts.
-    Version: 0.7.8.1 beta
+    Version: 0.7.9.6 beta
     Author: Chris Howard
     Author URI: http://pizazzwp.com
     License: GNU GPL v2
@@ -17,10 +17,9 @@
   /* Plugins to try to support
   *
    * WPML
-   * WooCommerce
-   * LoopBuddy
-   * Advanced Custom Fields
-   * Types
+   * WooCommerce *
+   * Advanced Custom Fields *
+   * Types *
    * NextGen
    *
    */
@@ -38,7 +37,7 @@
   TODO: Add option to hide blueprint if it has no content. Should be able to do that with a CSS class
 
   */
-  /* why not use a WP like methodology!
+  /* TODO: why not use a WP like methodology!
   ================================================================================
   register_cell_layout('name',$args)'
   register_criteria('name',$args);
@@ -53,7 +52,7 @@
     function __construct()
     {
 
-      define('PZARC_VERSION', '0.7.8');
+      define('PZARC_VERSION', '0.7.9.6');
       define('PZARC_NAME', 'pzarchitect'); // This is also used as the locale
       define('PZARC_FOLDER', '/pizazzwp-architect');
 
@@ -61,6 +60,8 @@
       define('PZARC_PLUGIN_PATH', trailingslashit(plugin_dir_path(__FILE__)));
       define('PZARC_PLUGIN_APP_URL', PZARC_PLUGIN_URL . 'application/');
       define('PZARC_PLUGIN_APP_PATH', PZARC_PLUGIN_PATH . 'application/');
+      define('PZARC_DOCUMENTATION_URL', PZARC_PLUGIN_URL . 'documentation/');
+      define('PZARC_DOCUMENTATION_PATH', PZARC_PLUGIN_PATH . 'documentation/');
       define('PZARC_CACHE', '/arc/');
 
       $upload_dir = wp_upload_dir();

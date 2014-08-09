@@ -344,9 +344,18 @@
                   'respect' => __('Respect focal point', 'pzarchitect'),
                   'centre'  => __('Centre focal point', 'pzarchitect'),
                   'none'    => __('Crop to centre', 'pzarchitect'),
-                  'scale'   => __('Scale images, no cropping', 'pzarchitect')
+                  'scale'   => __('Preserve aspect, fit width', 'pzarchitect')
 
               )
+          ),
+          array(
+              'title'    => __('Use embedded images', 'pzarchitect'),
+              'id'       => $prefix . 'use-embedded-images',
+              'type'     => 'switch',
+              'on'       => 'Yes',
+              'off'      => 'No',
+              'default'  => false,
+              'subtitle' => __('Enable this to use the first found attached image in the content if no featured image is set.', 'pzarchitect')
           ),
         )
     );
@@ -918,15 +927,6 @@
               'default'  => false,
               'subtitle' => 'Centres the image horizontally. It is best to display it on its own row, and the content to be 100% wide.'
           ),
-          array(
-              'title'    => __('Use embedded images', 'pzarchitect'),
-              'id'       => $prefix . 'use-embedded-images',
-              'type'     => 'switch',
-              'on'       => 'Yes',
-              'off'      => 'No',
-              'default'  => false,
-              'subtitle' => __('Enable this to use the first found embedded or attached image if no featured image is set.', 'pzarchitect')
-          ),
           //          array(
           //              'id'    => $prefix . 'image-processing-heading',
           //              'title' => __('Image processing', 'pzarchitect'),
@@ -997,30 +997,29 @@
 
 
             array(
-                'title'    => __('Maximum dimensions: Screens >', 'pzarchitect') . $_architect_options[ 'architect_breakpoint_1' ][ 'width' ],
+//                'title'    => __('Maximum dimensions: Screens >', 'pzarchitect') . $_architect_options[ 'architect_breakpoint_1' ][ 'width' ],
+                'title'    => __('Maximum dimensions', 'pzarchitect') ,
                 'id'       => $prefix . 'background-image-max',
                 'type'     => 'dimensions',
                 'units'    => 'px',
                 'default'  => array('width' => '300', 'height' => '350'),
-                'required' => array($prefix . 'background-position', '!=', 'none'),
-                'subtitle' => __('This should be larger than the expected maximum viewing size at this breakpoint to ensure best responsive behaviour', 'pzarchitect')
+//                'subtitle' => __('This should be larger than the expected maximum viewing size at this breakpoint to ensure best responsive behaviour', 'pzarchitect')
+                'subtitle' => __('This should be as large or a little larger than the expected maximum viewing size to ensure best responsive behaviour', 'pzarchitect')
             ),
-            array(
-                'title'    => __('Maximum dimensions: Screens > ', 'pzarchitect') . $_architect_options[ 'architect_breakpoint_2' ][ 'width' ] . __(' and  < ') . $_architect_options[ 'architect_breakpoint_1' ][ 'width' ],
-                'id'       => $prefix . 'background-image-max-bp2',
-                'type'     => 'dimensions',
-                'units'    => 'px',
-                'default'  => array('width' => '600', 'height' => '400'),
-                'required' => array($prefix . 'background-position', '!=', 'none'),
-            ),
-            array(
-                'title'    => __('Maximum dimensions: Screens < ', 'pzarchitect') . $_architect_options[ 'architect_breakpoint_2' ][ 'width' ],
-                'id'       => $prefix . 'background-image-max-bp3',
-                'type'     => 'dimensions',
-                'units'    => 'px',
-                'default'  => array('width' => '200', 'height' => '300'),
-                'required' => array($prefix . 'background-position', '!=', 'none'),
-            ),
+//            array(
+//                'title'    => __('Maximum dimensions: Screens > ', 'pzarchitect') . $_architect_options[ 'architect_breakpoint_2' ][ 'width' ] . __(' and  < ') . $_architect_options[ 'architect_breakpoint_1' ][ 'width' ],
+//                'id'       => $prefix . 'background-image-max-bp2',
+//                'type'     => 'dimensions',
+//                'units'    => 'px',
+//                'default'  => array('width' => '600', 'height' => '400'),
+//            ),
+//            array(
+//                'title'    => __('Maximum dimensions: Screens < ', 'pzarchitect') . $_architect_options[ 'architect_breakpoint_2' ][ 'width' ],
+//                'id'       => $prefix . 'background-image-max-bp3',
+//                'type'     => 'dimensions',
+//                'units'    => 'px',
+//                'default'  => array('width' => '200', 'height' => '300'),
+//            ),
             array(
                 'title'    => __('Effect on resize', 'pzarchitect'),
                 'id'       => $prefix . 'background-image-resize',
@@ -1030,7 +1029,6 @@
                     'scale' => 'Scale Vertically & Horizontally'
                 ),
                 'default'  => 'trim',
-                'required' => array($prefix . 'background-position', '!=', 'none'),
             ),
             array(
                 'title'    => __('Link image', 'pzarchitect'),
@@ -1044,7 +1042,6 @@
                     'url'      => 'Specific URL'
                 ),
                 'default'  => 'page',
-                'required' => array($prefix . 'background-position', '!=', 'none'),
                 'subtitle' => __('Makes the image link to the post/page or all images link to a specific URL', 'pzazrchitect')
             ),
             array(
@@ -1052,18 +1049,17 @@
                 'id'       => $prefix . 'link-bgimage-url',
                 'type'     => 'text',
                 'required' => array(
-                    array($prefix . 'background-position', '!=', 'none'),
+//                    array($prefix . 'background-position', '!=', 'none'),
                     array($prefix . 'link-bgimage', 'equals', 'url')
                 ),
                 'validate' => 'url',
-                'subtitle' => __('Enter the URL that all images will link to', 'pzazrchitect')
             ),
             array(
                 'title'    => __('Specific URL tooltip', 'pzarchitect'),
                 'id'       => $prefix . 'link-bgimage-url-tooltip',
                 'type'     => 'text',
                 'required' => array(
-                    array($prefix . 'background-position', '!=', 'none'),
+ //                   array($prefix . 'background-position', '!=', 'none'),
                     array($prefix . 'link-bgimage', 'equals', 'url')
                 ),
                 'validate' => 'url',

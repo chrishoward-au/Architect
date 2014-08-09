@@ -61,7 +61,7 @@
       } else {
         $arc_bp_overrides = __('', 'pzarchitect');
       }
-      $blueprint_list = pzarc_get_blueprints();
+      $blueprint_list = pzarc_get_posts_in_post_type();
 // Widget admin form
       ?>
       <p>

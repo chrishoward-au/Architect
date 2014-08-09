@@ -130,7 +130,7 @@
 
         if ($this->field[ 'visited' ] === true) {
           echo '<strong>Visited</strong>: <input id="' . $this->field[ 'id' ] . '-visited" name="' . $this->field[ 'name' ] . '[visited]' . $this->field[ 'name_suffix' ] . '" value="' . $this->value[ 'visited' ] . '" class="redux-spectrum redux-spectrum-init ' . $this->field[ 'class' ] . '"  type="text" data-default-spectrum="' . $this->field[ 'default' ][ 'visited' ] . '" />&nbsp;&nbsp;&nbsp;&nbsp;';
-          echo __('Underline', 'redux-framework') . '&nbsp;<select id="' . $this->field[ 'id' ] . '-visited-deco" name="' . $this->field[ 'name' ] . '[regular-deco]' . $this->field[ 'name_suffix' ] . '"  class="redux-links ' . $this->field[ 'class' ] . '" style="width:100px;">';
+          echo __('Underline', 'redux-framework') . '&nbsp;<select id="' . $this->field[ 'id' ] . '-visited-deco" name="' . $this->field[ 'name' ] . '[visited-deco]' . $this->field[ 'name_suffix' ] . '"  class="redux-links ' . $this->field[ 'class' ] . '" style="width:100px;">';
           echo '<option  value="Default" ' . (strtolower($this->value[ 'visited-deco' ]) === 'default' ? 'selected' : '') . '>Default</option>';
           echo '<option  value="Inherit" ' . (strtolower($this->value[ 'visited-deco' ]) === 'inherit' ? 'selected' : '') . '>Inherit</option>';
           echo '<option  value="None" ' . (strtolower($this->value[ 'visited-deco' ]) === 'none' ? 'selected' : '') . '>None</option>';

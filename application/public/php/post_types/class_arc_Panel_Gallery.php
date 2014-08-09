@@ -148,6 +148,7 @@
                                                                                  'bfi_thumb' => true,
                                                                                  'crop'      => $crop));
         $data[ 'image' ][ 'caption' ] = $post->post_excerpt;
+        $data[ 'image' ][ 'original' ] = wp_get_attachment_image_src($post->ID, 'full');
       }
 
       if ($toshow[ 'meta1' ][ 'show' ] ||
@@ -228,6 +229,8 @@
         list($fp_x, $fp_y) = (empty($focal_point) ? array(50, 50) : explode(',', $focal_point));
 
         $crop                            = $fp_x . 'x' . $fp_y . 'x' . $section[ '_panels_settings_image-focal-point' ];
+//        var_dump($width,$height);
+        // TODO: We don't really want to have to do scale here... So what if we dropped all this into bfi?
         $data[ 'bgimage' ][ 'thumb' ]    = wp_get_attachment_image($post->ID, array($width,
                                                                                     $height,
                                                                                     'bfi_thumb' => true,
@@ -358,6 +361,7 @@
   {
     public static function render($component, $panel_def, $content_type, &$data, &$section, $rsid)
     {
+
       if ('page' === $section[ '_panels_design_link-image' ] || 'url' === $section[ '_panels_design_link-image' ]) {
         $link                    = ('url' === $section[ '_panels_design_link-image' ]) ? '<a href="' . $section[ '_panels_design_link-image-url' ] . '" title="' . $section[ '_panels_design_link-image-url-tooltip' ] . '">' : $panel_def[ 'postlink' ];
         $panel_def[ $component ] = str_replace('{{postlink}}', $link, $panel_def[ $component ]);
