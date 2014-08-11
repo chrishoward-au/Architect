@@ -375,21 +375,21 @@
                 ),
             )
         );
-        $this->sections[ ] = array(
-            'title'      => 'Custom CSS',
-            'show_title' => true,
-            'icon'       => 'el-icon-globe',
-            'fields'     => array(
-                array(
-                    'title'    => __('Custom CSS', 'pzarchitect'),
-                    'id'       => 'architect_custom-css',
-                    'type'     => 'ace_editor',
-                    'mode'=>'css',
-                    'subtitle' => 'This can be any CSS',
-                    'default'  => ''
-                )
-            )
-        );
+//        $this->sections[ ] = array(
+//            'title'      => 'Custom CSS',
+//            'show_title' => true,
+//            'icon'       => 'el-icon-globe',
+//            'fields'     => array(
+//                array(
+//                    'title'    => __('Custom CSS', 'pzarchitect'),
+//                    'id'       => 'architect_custom-css',
+//                    'type'     => 'ace_editor',
+//                    'mode'=>'css',
+//                    'subtitle' => 'This can be any CSS',
+//                    'default'  => ''
+//                )
+//            )
+//        );
       }
 
       public function setHelpTabs()

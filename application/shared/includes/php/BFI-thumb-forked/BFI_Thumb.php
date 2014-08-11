@@ -732,10 +732,10 @@
             $new_h = $dest_h;
           }
 
-  //        var_dump($new_w,$new_h);
+          //        var_dump($new_w,$new_h);
 
-          $crop_w = $orig_w;
-          $crop_h = $orig_h;
+          $crop_w    = $orig_w;
+          $crop_h    = $orig_h;
           $ideal_s_x = 0;
           $ideal_s_y = 0;
           break;
@@ -883,6 +883,11 @@
       $upload_dir .= "/" . BFITHUMB_UPLOAD_DIR;
     } else {
       $upload_dir .= "/bfi_thumb";
+    }
+    if (!is_dir($upload_dir)) {
+      if (!wp_mkdir_p($upload_dir)) {
+     //     die('Failed to create folders...');
+      }
     }
     $cache_files = scandir($upload_dir);
     foreach ($cache_files as $cache_file) {

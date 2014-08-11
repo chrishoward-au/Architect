@@ -91,16 +91,19 @@ Pagination Styles
     &.small {
       width: 12px!important;
       height: 12px;
+      padding:0;
 
     }
     &.medium {
       width: 15px!important;
       height: 15px;
+      padding:0;
 
     }
     &.large {
       width: 18px!important;
       height: 18px;
+      padding:0;
 
     }
     &:hover {
@@ -123,21 +126,20 @@ Pagination Styles
 
 .tabbed {
   .arc-slider-slide-nav-item {
-    /* Stylize pagination button: */
+    // TODO: Move styling to defaults
     display: table-cell; // Woot! This fixes height matching and width distribution
     min-height: 30px;
     cursor: pointer;
-    padding: 10px;
-    margin: 0;
-    background: rgba(0, 0, 0, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.5);
-    border-top: none;
-    border-bottom: none;
-    text-decoration: none;
-    font-family: sans-serif;
+    background-color:#ddd;
     box-sizing: border-box;
+    &.active {
+      background-color: #ccc;
+      color:#000;
+    }
+    &:hover {
+      background-color: #ccc;
+    }
   }
-
 }
 
 .thumbs {

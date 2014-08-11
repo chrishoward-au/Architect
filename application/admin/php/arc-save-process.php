@@ -387,6 +387,7 @@
     //Need to do the above switch for Panels
     // generate correct whosit
     $pzarc_func = 'pzarc_style_' . $keys[ 'style' ];
+
     $pzarc_css  = (function_exists($pzarc_func)?call_user_func($pzarc_func, $keys[ 'class' ], $value):'');
 
     return $pzarc_css;

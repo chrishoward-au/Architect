@@ -4,7 +4,7 @@
     Plugin Name: Architect - an all-in-one content display framework
     Plugin URI: http://pizazzwp.com
     Description: Display your content in grids, tabs, sliders, galleries with sources like posts, pages, galleries, and custom content types. Layout using shorcodes, widgets, WP action hooks and template tags. Change themes without havinq to rebuild your layouts.
-    Version: 0.7.9.6 beta
+    Version: 0.8
     Author: Chris Howard
     Author URI: http://pizazzwp.com
     License: GNU GPL v2
@@ -52,7 +52,7 @@
     function __construct()
     {
 
-      define('PZARC_VERSION', '0.7.9.6');
+      define('PZARC_VERSION', '0.8');
       define('PZARC_NAME', 'pzarchitect'); // This is also used as the locale
       define('PZARC_FOLDER', '/pizazzwp-architect');
 
@@ -338,7 +338,7 @@
 //    else
 //    {
       require_once('wp-updates-plugin.php');
-      new WPUpdatesPluginUpdater_429('http://wp-updates.com/api/2/plugin', plugin_basename(__FILE__)); //    }
+      new WPUpdatesPluginUpdater_625('http://wp-updates.com/api/2/plugin', plugin_basename(__FILE__)); //    }
     }
 
     // TODO: check if older Redux is installed and use ours instead (if possible), but give warning too.

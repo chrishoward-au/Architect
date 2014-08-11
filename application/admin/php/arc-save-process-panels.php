@@ -11,7 +11,7 @@
     $pzarc_contents .= '/* This is the css for panel $postid ' . $pzarc_panels[ '_panels_settings_short-name' ] . '*/' . $nl;
 
     // Step thru each field looking for ones to format
-    $class_prefix = '.pzarchitect .pzarc-panel_' . $pzarc_panels[ '_panels_settings_short-name' ];
+    $class_prefix = 'body.pzarchitect .pzarc-panel_' . $pzarc_panels[ '_panels_settings_short-name' ];
 
     foreach ($pzarc_panels as $key => $value) {
 
@@ -173,7 +173,9 @@
         case (strpos($key, '_panels_styling') === 0 && !empty($value) && !empty($_architect_options[ 'architect_enable_styling' ])):
           $pkeys            = array();
           $pkey             = str_replace('_panels_styling_', '', $key);
+$pkey = str_replace('-font-','-',$pkey);
           $splitter         = (substr_count($pkey, '-font-') === 1 ? strrpos($pkey, '-font-') : strrpos($pkey, '-'));
+
           $pkeys[ 'style' ] = str_replace('-', '', substr($pkey, $splitter + 1));
           $pkeys[ 'id' ]    = substr($pkey, 0, $splitter);
 

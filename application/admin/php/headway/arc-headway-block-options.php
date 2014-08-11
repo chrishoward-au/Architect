@@ -48,6 +48,7 @@
       // The $settings array will then contain all your block options
       // eg $settings['dob'], $settings['height'] etc
 
+      // TODO: What if new style block ID?
       if (is_integer($block)) {
         $block = HeadwayBlocksData::get_block($block);
       }
