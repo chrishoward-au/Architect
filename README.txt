@@ -14,22 +14,29 @@ Easily build grids, galleries, sliders and much more from various content source
 == Description ==
 Easily display your content in grids, tabs, sliders, galleries with sources like posts, pages, galleries, widgets, custom code, Headway blocks and custom content types.
 
-The core components of Architect are Content selections, Cell designs, and Blueprint layouts.
+Displaying content with Architect is made of two components: Panels and Blueprints.
 
-To save time, and keep Architect modular, Content and Cells can be re-used in many Blueprints.
+Panels allow you design a layout for the content itself.
+
+Blueprints lets you design a layout of how those panels wil be displayed on the page, e.g. grids, sliders etc.
+
+In Blueprints you also choose what content to display - e.g. posts, pages, galleries.
+
+This allows Panels to be easily reusable and cuts down on duplication of effort. You might design a panel that is used in a featured posts slider, but that panel may also be used to display the top story.
 
 = Why use Architect? =
 Architect greatly reduces the complexity of designing and developing methods to display your content. For example, if you are using the Twenty Thirteen and decide you want a 3x3 grid of excerpts to display on the home page, you would have to code a page template for that purpose.
 
 With Architect, you code the shell of the blueprint, but build the rest in Architect and paste one very simple line of code into your page blueprint that calls and displays the Architect Blueprint.
 
-If you want to display a gallery in a post, build the Content selection, Cell design and Blueprint, then place a simple shortcode in your post. You can even override the design of the WP Gallery shortcode with your own Blueprint.
+If you want to display a gallery in a post, build Panel design and Blueprint, then place a simple shortcode in your post. You can even override the design of the WP Gallery shortcode with your own Blueprint.
 
 == Installation ==
 1. Activate the plugin through the Plugins menu in WordPress.
 
 == Usage ==
 There are several ways to display Architect Blueprints.
+
 * Shortcode: [architect blueprint="yourblueprint" ids="1,2,3,4,5"]
 * Template tag: echo pzarc('yourblueprint','1,2,3,4,5');
 * Widget
@@ -40,7 +47,7 @@ There are several ways to display Architect Blueprints.
 
 == Frequently Asked Questions ==
 = What themes is Architect compatible with =
-Architect should work with any theme but some will take more effort than others, especially in terms of the look and layout. To that end, we provide the names to match CSS classes and create your own cell definitions.
+Architect should work with any theme but some will take more effort than others, especially in terms of the look and layout. To that end, we provide the means to match CSS classes and create your own panel definitions.
 
 = Is Architect compatible with all plugins =
 The short answer is "Unlikely". No plugin can hope to be compatible with all other plugins (there are more than 36,000 of them!) but we do aim to be compatible with the more popular ones. We will endeavour to rectify any incompatibilities found; however, it's also not uncommon for the root cause to be the conflicting plugin.
@@ -67,9 +74,12 @@ As per Headway licencing
 As per Headway licencing
 
 = Support =
-If you require support, please sen an email to support@pizazzwp.com or access the support form in WP Admin> PizazzWP > About & Support
+Support for the beta version is available at: [Architect Beta Forum](https://muut.com/pizazzwp#!/architect)
+
+For all other Pizazz support, please send an email to support@pizazzwp.com or access the support form in WP Admin> PizazzWP > About & Support
 
 = Known issues =
+This is BETA software. So there are many!
 
 == Screenshots ==
 1. Architect Panel Designer
@@ -102,19 +112,15 @@ If you require support, please sen an email to support@pizazzwp.com or access th
 * ENABLED: Excerpt options - length, truncation indicator, link text
 
 = 0.7.5 =
-* First public beta
+* First pre beta
 
 = 0.6 =
 * Switched to Redux for metaboxes and options pages
 
 = 0.5 =
 * A new name! Architect
-* First public beta
 
 = 0.4 =
 * began small scale beta testing
 
 == Upgrade Notice ==
-= 0.5 =
-* A new name! Architect
-* First public beta
