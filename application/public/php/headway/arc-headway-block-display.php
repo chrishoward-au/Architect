@@ -145,12 +145,12 @@
       $this->register_block_element(array(
                                         'id'         => 'pzarc-blueprint',
                                         'name'       => 'Blueprint container',
-                                        'selector'   => '.use-hw-css .pzarc-blueprint',
+                                        'selector'   => '.use-hw-css.pzarc-blueprint',
                                         'states'     => array(
-                                            'Links'   => '.use-hw-css .pzarc-blueprint a',
-                                            'Hover'   => '.use-hw-css .pzarc-blueprint a:hover',
-                                            'Clicked' => '.use-hw-css .pzarc-blueprint a:active',
-                                            'Visited' => '.use-hw-css .pzarc-blueprint a:visited'
+                                            'Links'   => '.use-hw-css.pzarc-blueprint a',
+                                            'Hover'   => '.use-hw-css.pzarc-blueprint a:hover',
+                                            'Clicked' => '.use-hw-css.pzarc-blueprint a:active',
+                                            'Visited' => '.use-hw-css.pzarc-blueprint a:visited'
                                         ),
                                         'properties' => array('background',
                                                               'borders',
