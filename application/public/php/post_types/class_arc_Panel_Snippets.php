@@ -56,6 +56,58 @@
 
       register_post_type('pz_snippets', $args);
 
+      // Create custom category taxonomy for Snippets
+      $labels = array(
+          'name' => _x( 'Snippet categories', 'taxonomy general name' ),
+          'singular_name' => _x( 'Snippet category', 'taxonomy singular name' ),
+          'search_items' =>  __( 'Search Snippet categories' ),
+          'all_items' => __( 'All Snippet categories' ),
+          'parent_item' => __( 'Parent Snippet category' ),
+          'parent_item_colon' => __( 'Parent Snippet category:' ),
+          'edit_item' => __( 'Edit Snippet category' ),
+          'update_item' => __( 'Update Snippet category' ),
+          'add_new_item' => __( 'Add New Snippet category' ),
+          'new_item_name' => __( 'New Snippet category name' ),
+          'menu_name' => __( 'Snippet Categories' ),
+      );
+
+      register_taxonomy('pz_snippet_cat',
+                        array('pz_snippets'),
+                        array(
+                            'hierarchical' => true,
+                            'labels' => $labels,
+                            'show_ui' => true,
+                            'query_var' => true,
+                            'rewrite' => array( 'slug' => 'pzsnippetscat' ),
+                        )
+      );
+
+      // Create custom category taxonomy for Snippets
+      $labels = array(
+          'name' => _x( 'Snippet tags', 'taxonomy general name' ),
+          'singular_name' => _x( 'Snippet tag', 'taxonomy singular name' ),
+          'search_items' =>  __( 'Search Snippet tags' ),
+          'all_items' => __( 'All Snippet tags' ),
+          'parent_item' => __( 'Parent Snippet tag' ),
+          'parent_item_colon' => __( 'Parent Snippet tag:' ),
+          'edit_item' => __( 'Edit Snippet tag' ),
+          'update_item' => __( 'Update Snippet tag' ),
+          'add_new_item' => __( 'Add New Snippet tag' ),
+          'new_item_name' => __( 'New Snippet tag name' ),
+          'menu_name' => __( 'Snippet Tags' ),
+      );
+
+      register_taxonomy('pz_snippet_tag',
+                        array('pz_snippets'),
+                        array(
+                            'hierarchical' => false,
+                            'labels' => $labels,
+                            'show_ui' => true,
+                            'query_var' => true,
+                            'rewrite' => array( 'slug' => 'pzsnippetstag' ),
+                        )
+      );
+
     }
   }
 
