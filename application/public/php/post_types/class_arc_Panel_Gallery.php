@@ -361,9 +361,20 @@
   {
     public static function render($component, $panel_def, $content_type, &$data, &$section, $rsid)
     {
+      if ('none' !== $section[ '_panels_design_link-image' ]) {
 
-      if ('page' === $section[ '_panels_design_link-image' ] || 'url' === $section[ '_panels_design_link-image' ]) {
-        $link                    = ('url' === $section[ '_panels_design_link-image' ]) ? '<a href="' . $section[ '_panels_design_link-image-url' ] . '" title="' . $section[ '_panels_design_link-image-url-tooltip' ] . '">' : $panel_def[ 'postlink' ];
+        $link = '';
+        switch ($section[ '_panels_design_link-image' ]) {
+          case 'page':
+          case 'url':
+            $link = ('url' === $section[ '_panels_design_link-image' ]) ? '<a href="' . $section[ '_panels_design_link-image-url' ] . '" title="' . $section[ '_panels_design_link-image-url-tooltip' ] . '">' : $panel_def[ 'postlink' ];
+            break;
+          case 'original':
+            $link = '<a class="lightbox lightbox-' . $rsid . '" href="' . $data[ 'image' ][ 'original' ][ 0 ] . '" title="' . $data[ 'title' ] . '">';
+            break;
+        }
+
+
         $panel_def[ $component ] = str_replace('{{postlink}}', $link, $panel_def[ $component ]);
         $panel_def[ $component ] = str_replace('{{closepostlink}}', '</a>', $panel_def[ $component ]);
       }

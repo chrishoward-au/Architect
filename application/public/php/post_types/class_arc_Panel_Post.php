@@ -70,7 +70,6 @@
     static function set_data(&$section, &$arc_post)
     {
 
-
       /* STANDARD POST EXAMPLE
         'ID'                    => int 183
         'post_author'           => string '1' (length=1)
@@ -107,7 +106,7 @@
       $data[ 'meta' ][ 'tags' ]            = null;
       $data[ 'image' ][ 'image' ]          = null;
       $data[ 'image' ][ 'caption' ]        = null;
-      $data[ 'image' ][ 'original' ]        = null;
+      $data[ 'image' ][ 'original' ]       = null;
       $data[ 'meta' ][ 'datetime' ]        = null;
       $data[ 'meta' ][ 'fdatetime' ]       = null;
       $data[ 'meta' ][ 'categorieslinks' ] = null;
@@ -144,8 +143,8 @@
 
       if (!$thumb_id && $section[ '_panels_settings_use-embedded-images' ]) {
         //TODO: Changed to more reliable check if image is in the content?
-        preg_match("/(?<=wp-image-)(\\d)*/uimx", get_the_content(),$matches);
-        $thumb_id    = (!empty($matches[ 0 ]) ? $matches[ 0 ] : false);
+        preg_match("/(?<=wp-image-)(\\d)*/uimx", get_the_content(), $matches);
+        $thumb_id = (!empty($matches[ 0 ]) ? $matches[ 0 ] : false);
       }
 
       $focal_point = get_post_meta($thumb_id, 'pzgp_focal_point', true);
@@ -164,15 +163,15 @@
         // TODO: Add all the focal point stuff to all the post types images and bgimages
         // Easiest to do via a reusable function or all this stuff could be done once!!!!!!!!!
         // could pass $data thru a filter
-        $data[ 'image' ][ 'image' ]   = wp_get_attachment_image($thumb_id, array($width,
-                                                                                 $height,
-                                                                                 'bfi_thumb' => true,
-                                                                                 'crop'      => (int)$focal_point[ 0 ] . 'x' . (int)$focal_point[ 1 ] . 'x' . $section[ '_panels_settings_image-focal-point' ]
+        $data[ 'image' ][ 'image' ]    = wp_get_attachment_image($thumb_id, array($width,
+                                                                                  $height,
+                                                                                  'bfi_thumb' => true,
+                                                                                  'crop'      => (int)$focal_point[ 0 ] . 'x' . (int)$focal_point[ 1 ] . 'x' . $section[ '_panels_settings_image-focal-point' ]
 
         ));
         $data[ 'image' ][ 'original' ] = wp_get_attachment_image_src($thumb_id, 'full');
-        $image                        = get_post($thumb_id);
-        $data[ 'image' ][ 'caption' ] = $image->post_excerpt;
+        $image                         = get_post($thumb_id);
+        $data[ 'image' ][ 'caption' ]  = $image->post_excerpt;
 
 
       }
@@ -263,10 +262,10 @@
       }
 
       // Need to grab image again because it uses different dimensions for the bgimge
-      $data[ 'bgimage' ]['thumb'] = wp_get_attachment_image($thumb_id, array($width,
-                                                                    $height,
-                                                                    'bfi_thumb' => true,
-                                                                    'crop'      => (int)$focal_point[ 0 ] . 'x' . (int)$focal_point[ 1 ] . 'x' . $section[ '_panels_settings_image-focal-point' ]
+      $data[ 'bgimage' ][ 'thumb' ] = wp_get_attachment_image($thumb_id, array($width,
+                                                                               $height,
+                                                                               'bfi_thumb' => true,
+                                                                               'crop'      => (int)$focal_point[ 0 ] . 'x' . (int)$focal_point[ 1 ] . 'x' . $section[ '_panels_settings_image-focal-point' ]
       )); //WP seems to smartly figure out which of its saved images to use! Now we jsut gotta get it t work with focal point
 
       $data[ 'bgimage' ][ 'original' ] = wp_get_attachment_image_src($thumb_id, 'full');
@@ -413,10 +412,21 @@
     public static function render($component, $panel_def, $content_type, &$data, &$section, $rsid)
     {
 
-      if ($section[ '_panels_design_link-image' ]) {
-        $panel_def[ $component ] = str_replace('{{postlink}}', $panel_def[ 'postlink' ], $panel_def[ $component ]);
+      if ('none' !== $section[ '_panels_design_link-image' ]) {
+        $link = '';
+        switch ($section[ '_panels_design_link-image' ]) {
+          case 'page':
+          case 'url':
+            $link = ('url' === $section[ '_panels_design_link-image' ]) ? '<a href="' . $section[ '_panels_design_link-image-url' ] . '" title="' . $section[ '_panels_design_link-image-url-tooltip' ] . '">' : $panel_def[ 'postlink' ];
+            break;
+          case 'original':
+            $link = '<a class="lightbox lightbox-' . $rsid . '" href="' . $data[ 'image' ][ 'original' ][ 0 ] . '" title="' . $data[ 'title' ] . '">';
+            break;
+        }
+        $panel_def[ $component ] = str_replace('{{postlink}}', $link, $panel_def[ $component ]);
         $panel_def[ $component ] = str_replace('{{closepostlink}}', '</a>', $panel_def[ $component ]);
       }
+
 
       if ($section[ '_panels_design_image-captions' ]) {
         $caption                 = str_replace('{{caption}}', $data[ 'image' ][ 'caption' ], $panel_def[ 'caption' ]);
@@ -430,20 +440,6 @@
       }
 
 
-      if ('none' !== $section[ '_panels_design_link-image' ]) {
-        $link ='';
-        switch ($section[ '_panels_design_link-image' ]) {
-          case 'page':
-          case 'url':
-            $link = ('url' === $section[ '_panels_design_link-image' ]) ? '<a href="' . $section[ '_panels_design_link-image-url' ] . '" title="' . $section[ '_panels_design_link-image-url-tooltip' ] . '">' : $panel_def[ 'postlink' ];
-            break;
-          case 'original':
-            $link = '<a class="lightbox lightbox-' . $rsid . '" href="' . $data[ 'image' ][ 'original' ][ 0 ] . '" title="' . $data[ 'title' ] . '">';
-            break;
-        }
-        $panel_def[ $component ] = str_replace('{{postlink}}', $link, $panel_def[ $component ]);
-        $panel_def[ $component ] = str_replace('{{closepostlink}}', '</a>', $panel_def[ $component ]);
-      }
 
       if (empty($data[ 'image' ][ 'image' ])) {
         $panel_def[ $component ] = '';
@@ -462,7 +458,7 @@
   {
     public static function render($component, $panel_def, $content_type, &$data, &$section, $rsid)
     {
-      $panel_def[ $component ] = str_replace('{{bgimage}}', $data[ 'bgimage' ]['thumb'], $panel_def[ $component ]);
+      $panel_def[ $component ] = str_replace('{{bgimage}}', $data[ 'bgimage' ][ 'thumb' ], $panel_def[ $component ]);
       $panel_def[ $component ] = str_replace('{{trim-scale}}', ' ' . $section[ '_panels_design_background-position' ] . ' ' . $section[ '_panels_design_background-image-resize' ], $panel_def[ $component ]);
 
       if ('none' !== $section[ '_panels_design_link-bgimage' ]) {
@@ -503,7 +499,7 @@
           $panel_def[ $component ] = str_replace('{{incontent}}', 'in-content-thumb', $panel_def[ $component ]);
 
           if ('none' !== $section[ '_panels_design_link-image' ]) {
-            $link ='';
+            $link = '';
             switch ($section[ '_panels_design_link-image' ]) {
               case 'page':
               case 'url':
@@ -562,7 +558,7 @@
           $panel_def[ $component ] = str_replace('{{incontent}}', 'in-content-thumb', $panel_def[ $component ]);
 
           if ('none' !== $section[ '_panels_design_link-image' ]) {
-            $link ='';
+            $link = '';
             switch ($section[ '_panels_design_link-image' ]) {
               case 'page':
               case 'url':
@@ -604,7 +600,7 @@
       if (!empty($data[ 'cfield' ])) {
         $panel_def_cfield = $panel_def[ 'cfield' ];
         $build_field      = '';
-        $i = 1;
+        $i                = 1;
         foreach ($data[ 'cfield' ] as $k => $v) {
 
           if ($v[ 'group' ] === $component && !empty($v[ 'value' ])) {
@@ -646,7 +642,7 @@
             }
 
             if ('none' !== $v[ 'wrapper-tag' ]) {
-              $class_name = !empty($v[ 'class-name' ]) ? ' class="' . $v[ 'class-name' ].'"' : null;
+              $class_name = !empty($v[ 'class-name' ]) ? ' class="' . $v[ 'class-name' ] . '"' : null;
               $content    = '<' . $v[ 'wrapper-tag' ] . $class_name . '>' . $content . '</' . $v[ 'wrapper-tag' ] . '>';
             }
 
