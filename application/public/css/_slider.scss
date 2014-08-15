@@ -5,8 +5,16 @@
   text-align: center;
   bottom: 5px;
   z-index: 1;
-  //display:inline-table; (Maybe useful later)
+  display:block;
   // width:100%; Prob better if user sets width and margins
+  &.tabbed {
+    display:-webkit-flex; // This gives a nice even layout and full height tabs
+    display:flex; // This gives a nice even layout and full height tabs
+    flex-direction: row;
+    &.vertical {
+      flex-direction: column;
+    }
+  }
   &.outside {
     &.top {
       position: relative;
@@ -127,7 +135,7 @@ Pagination Styles
 .tabbed {
   .arc-slider-slide-nav-item {
     // TODO: Move styling to defaults
-    display: table-cell; // Woot! This fixes height matching and width distribution
+//    display: table-cell; // Woot! This fixes height matching and width distribution. Doh! But breaks margins.
     min-height: 30px;
     cursor: pointer;
     background-color:#ddd;

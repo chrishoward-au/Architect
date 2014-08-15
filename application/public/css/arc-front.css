@@ -29,20 +29,21 @@
     position: relative;
     /* Added for gridded layout. May break others! Equal height panels*/
     display: block;
-    display: webkit box;
-    display: moz-box;
-    display: -ms-flexbox;
-    display: webkit flex;
-    display: flex;
-    justify-content: flex-start;
-    -webkit-flex-flow: row wrap;
-    -moz-flex-flow: row wrap;
-    /* Unsupported in FF ATOW!! Argh! */
-    flex-flow: row wrap;
-    flex-direction: row;
-    flex-wrap: wrap;
     counter-reset: arc-title-counter;
     height: 100%; }
+    .pzarchitect .pzarc-section.tiles {
+      display: -webkit-box;
+      display: -moz-box;
+      display: -ms-flexbox;
+      display: -webkit-flex;
+      display: flex;
+      justify-content: flex-start;
+      -webkit-flex-flow: row wrap;
+      -moz-flex-flow: row wrap;
+      /* Unsupported in FF ATOW!! Argh! */
+      flex-flow: row wrap;
+      flex-direction: row;
+      flex-wrap: wrap; }
   .pzarchitect h2.pzarc-page-title {
     font-size: 1.5em;
     line-height: 1.5em; }
@@ -184,13 +185,21 @@
         max-width: none; }
     .pzarchitect .pzarc-panel .pzarc-presuff-image {
       vertical-align: middle; }
-    .pzarchitect .pzarc-panel .lightbox {
-      cursor: zoom-in; }
+    .pzarchitect .pzarc-panel .lightbox img {
+      cursor: zoom-in;
+      cursor: -webkit-zoom-in; }
   .pzarchitect .pzarc-navigator {
     left: 0;
     text-align: center;
     bottom: 5px;
-    z-index: 1; }
+    z-index: 1;
+    display: block; }
+    .pzarchitect .pzarc-navigator.tabbed {
+      display: -webkit-flex;
+      display: flex;
+      flex-direction: row; }
+      .pzarchitect .pzarc-navigator.tabbed.vertical {
+        flex-direction: column; }
     .pzarchitect .pzarc-navigator.outside.top {
       position: relative;
       z-index: 1;
@@ -261,7 +270,6 @@
     border-radius: 1px;
     border-bottom: 1px solid #999; }
   .pzarchitect .tabbed .arc-slider-slide-nav-item {
-    display: table-cell;
     min-height: 30px;
     cursor: pointer;
     background-color: #ddd;

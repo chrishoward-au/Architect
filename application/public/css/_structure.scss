@@ -7,19 +7,24 @@
   position: relative;
   /* Added for gridded layout. May break others! Equal height panels*/
   display: block;
-  display: webkit box;
-  display: moz-box;
-  display: -ms-flexbox;
-  display: webkit flex;
-  display: flex;
-  justify-content: flex-start;
-  -webkit-flex-flow: row wrap;
-  -moz-flex-flow: row wrap; /* Unsupported in FF ATOW!! Argh! */
-  flex-flow: row wrap;
-  flex-direction: row;
-  flex-wrap: wrap;
   counter-reset: arc-title-counter;
   height:100%;
+  &.tiles {
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    justify-content: flex-start;
+    -webkit-flex-flow: row wrap;
+    -moz-flex-flow: row wrap; /* Unsupported in FF ATOW!! Argh! */
+    flex-flow: row wrap;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+  &.js-isotope {
+
+  }
 }
 
 //TODO: These two need to go into stylings defaults
