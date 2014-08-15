@@ -95,7 +95,8 @@
 
       }
 
-      echo '<section id="'.$this->rsid.'" class="' . ($this->layout_mode !== 'basic' ? 'js-isotope ' : '') . 'pzarc-section pzarc-section_' . $this->section_number . ' pzarc-section-using-panel_' . $this->section[ 'section-panel-settings' ][ '_panels_settings_short-name' ] . $this->slider[ 'wrapper' ] . '"' . $isotope . '>';
+      // TODO: Might need to change js-isotope to masonry - chekc impact tho
+      echo '<section id="'.$this->rsid.'" class="' . ($this->layout_mode !== 'basic' ? 'js-isotope ' : 'tiles ') . 'pzarc-section pzarc-section_' . $this->section_number . ' pzarc-section-using-panel_' . $this->section[ 'section-panel-settings' ][ '_panels_settings_short-name' ] . $this->slider[ 'wrapper' ] . '"' . $isotope . '>';
       if (!empty($isotope)) {
         echo '<div class="grid-sizer"></div><div class="gutter-sizer"></div>';
 
@@ -201,6 +202,7 @@
           // We could do this in a concatenation first of all components' templates, and then replace the {{tags}}.... But then we couldn't do the filter on each component. Nor could we as easily make the components extensible
           $class_component = $class . '_' . str_replace(array('1', '2', '3'), '', ucfirst($component_type));
           $component_class = new $class_component;
+
           $line_out        = $component_class->render($component_type, $panel_def, $this->source, $data, $this->section[ 'section-panel-settings' ],$this->rsid);
 
 
