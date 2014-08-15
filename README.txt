@@ -4,16 +4,24 @@ Tags: content,display,posts,pages,gallery,slider
 Donate link: http://
 Requires at least: 3.5.0
 Tested up to: 4.0.0
-Stable tag: 0.8
+Stable tag: 0.8.0.5
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Easily build grids, galleries, sliders and much more from various content sources.
-
+Go beyond the limits of the layouts in the theme you use, to easily build any content layouts for it. E.g. grids, sliders, lists, galleries etc.
 
 == Description ==
-Easily display your content in grids, tabs, sliders, galleries with sources like posts, pages, galleries, widgets, custom code, Headway blocks and custom content types.
+Most themes give you great looking layouts for your content, but are usually limited to what that theme provides. Frameworks give you control, but often require getting your hands dirty.
 
+Architect breaks down both those barriers.
+
+What if you love your theme, but just want the content layout of the homepage to be done your way? Architect solves that.
+
+What if you love your theme framework but want an easy way to build the content layouts without having to cut code? Architect solves that.
+
+With Architect you can build the layouts your theme doesn't provide - and all from one plugin. No longer do you need a plugin for sliders, another for magazine grids, another for tabbed content or another for displaying photo galleries.
+
+= How Architect works =
 Displaying content with Architect is made of two components: Panels and Blueprints.
 
 Panels allow you design a layout for the content itself.
@@ -24,12 +32,16 @@ In Blueprints you also choose what content to display - e.g. posts, pages, galle
 
 This allows Panels to be easily reusable and cuts down on duplication of effort. You might design a panel that is used in a featured posts slider, but that panel may also be used to display the top story.
 
+You can then display those Blueprints using widgets, shortcodes, action hooks, template tags, Headway blocks and even the WP Gallery shortcode.
+
 = Why use Architect? =
 Architect greatly reduces the complexity of designing and developing methods to display your content. For example, if you are using the Twenty Thirteen and decide you want a 3x3 grid of excerpts to display on the home page, you would have to code a page template for that purpose.
 
-With Architect, you code the shell of the blueprint, but build the rest in Architect and paste one very simple line of code into your page blueprint that calls and displays the Architect Blueprint.
+With Architect, you code the shell of the page template, but build the rest in Architect and paste one very simple line of code into your page template that calls and displays the Architect Blueprint.
 
-If you want to display a gallery in a post, build Panel design and Blueprint, then place a simple shortcode in your post. You can even override the design of the WP Gallery shortcode with your own Blueprint.
+Blueprints can be displayed using widgets and shortcodes as well.
+
+You can even override the design of the WP Gallery shortcode with your own Blueprint.
 
 == Installation ==
 1. Activate the plugin through the Plugins menu in WordPress.
@@ -42,7 +54,7 @@ There are several ways to display Architect Blueprints.
 * Widget
 * Headway Block
 * Action hooks
-* Actions editor
+* Actions editor (Built into Architect, all you have to know is the name of the hook you want to use)
 * WP Gallery shortcode override
 
 == Frequently Asked Questions ==
@@ -74,12 +86,14 @@ As per Headway licencing
 As per Headway licencing
 
 = Support =
-Support for the beta version is available at: [Architect Beta Forum](https://muut.com/pizazzwp#!/architect)
+Support for the beta version is available at: [Architect Beta](http://architect4wp.com/beta)
 
 For all other Pizazz support, please send an email to support@pizazzwp.com or access the support form in WP Admin> PizazzWP > About & Support
 
 = Known issues =
-This is BETA software. So there are many!
+This is BETA software. So there are many besides these ones!
+* Full size background images are 3 or 4 pixels short of filling the height of the panel
+* In tabbed navigation, Firefox ignores padding
 
 == Screenshots ==
 1. Architect Panel Designer
@@ -120,7 +134,7 @@ This is BETA software. So there are many!
 = 0.5 =
 * A new name! Architect
 
-= 0.4 =
-* began small scale beta testing
 
 == Upgrade Notice ==
+* Added custom taxonomies to Snippets
+
