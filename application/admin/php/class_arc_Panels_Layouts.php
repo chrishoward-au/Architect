@@ -1217,7 +1217,7 @@
                 'id'    => $prefix . 'panels-help-design',
                 'type'  => 'info',
                 //  'class' => 'plain',
-                'desc'  => '<p>
+                'desc'  => 'Architect: v'.PZARC_VERSION.'<p>
                               Fiant nulla claritatem processus vulputate quarta. Anteposuerit eodem habent parum id et. Notare mutationem facilisi nulla ut facer.
                               </p>
 

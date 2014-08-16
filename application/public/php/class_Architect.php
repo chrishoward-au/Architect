@@ -407,7 +407,7 @@
      */
     private function display_page_title($display_title, $title_override)
     {
-      if (!empty($display_title) || !empty($this->build->blueprint['additional_overrides']['pzarc-overrides-page-title'])) {
+      if (!empty($display_title) || !empty($this->build->blueprint[ 'additional_overrides' ][ 'pzarc-overrides-page-title' ])) {
         $title = '';
         switch (true) {
           case is_category() :
@@ -460,10 +460,12 @@
         $duration             = $this->build->blueprint[ '_blueprints_transitions-duration' ] * 1000;
         $interval             = $this->build->blueprint[ '_blueprints_transitions-interval' ] * 1000;
         $skip_thumbs          = $this->build->blueprint[ '_blueprints_navigator-skip-thumbs' ];
-        $slider[ 'dataopts' ] = 'data-opts="{#tduration#:' . $duration . ',#tinterval#:' . $interval . ',#tshow#:' . $skip_thumbs .',#tskip#:' . $skip_thumbs . '}"';
+        $slider[ 'dataopts' ] = 'data-opts="{#tduration#:' . $duration . ',#tinterval#:' . $interval . ',#tshow#:' . $skip_thumbs . ',#tskip#:' . $skip_thumbs . '}"';
 
-        $return_val .= '<button type="button" class="pager arrow-left icon-arrow-left4"></button>';
-        $return_val .= '<button type="button" class="pager arrow-right icon-uniE60D"></button>';
+        if ('hover' === $this->build->blueprint[ '_blueprints_navigator-pager' ] && 'navigator' === $bp_nav_type) {
+          $return_val .= '<button type="button" class="pager arrow-left icon-arrow-left4"></button>';
+          $return_val .= '<button type="button" class="pager arrow-right icon-uniE60D"></button>';
+        }
 //          //TODO: Should the bp name be in the class or ID?
         $return_val .= '<div class="pzarc-sections pzarc-sections_' . $bp_shortname . ' pzarc-is_' . $caller . $slider[ 'class' ] . '"' . $slider[ 'dataid' ] . $slider[ 'datatype' ] . $slider[ 'dataopts' ] . $slider[ 'datatrans' ] . '>';
       } else {

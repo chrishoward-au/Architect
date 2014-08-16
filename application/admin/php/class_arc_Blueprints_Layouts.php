@@ -885,7 +885,7 @@
                 'id'       => $prefix . 'navigator-pager',
                 'type'     => 'button_set',
                 'cols'     => 6,
-                'default'  => 'none',
+                'default'  => 'hover',
                 'options'  => array(
                     'none'   => 'None',
                     'hover'  => 'Hover over panels',
@@ -957,7 +957,7 @@
                 'title'         => 'Duration (seconds)',
                 'id'            => $prefix . 'transitions-duration',
                 'type'          => 'slider',
-                'min'           => 0.5,
+                'min'           => 0,
                 'max'           => 5,
                 'resolution'    => 0.1,
                 'step'          => 0.5,
@@ -1036,7 +1036,7 @@
                 'id'    => $prefix . 'help-layout',
                 'type'  => 'info',
                 'class' => 'plain',
-                'desc'  => '<p>
+                'desc'  => 'Architect: v'.PZARC_VERSION.'<p>
                               Fiant nulla claritatem processus vulputate quarta. Anteposuerit eodem habent parum id et. Notare mutationem facilisi nulla ut facer.
                               </p>
 
@@ -1758,7 +1758,7 @@ You can use them however you like though.
                             <p>.pzarc-blueprint_SHORTNAME a:hover {text-decoration:underline;}</p>
                             <p>SHORTNAME = the short name you entered for this blueprint</p>
                             <h3>Make pager appear outside of panels</h3>
-                            <p>If you want the pager to appear outside of the panels instead of over them, set a deep left and right padding on the blueprint.</p>
+                            <p>If you want the pager to appear outside of the panels instead of over them, set a the sections width less than 100%.</p>
                             '
 
               )

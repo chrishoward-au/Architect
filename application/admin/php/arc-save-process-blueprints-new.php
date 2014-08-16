@@ -116,7 +116,7 @@
         $pzarc_mediaq_css .= str_replace('.pzarc-panel','', $panels_class . ' .grid-sizer { width:' . $column_width . '%;}');
       }
 //              $pzarc_contents_css .= $classes . ' {width:' . (((100 - ($hmargin * ($columns - 1))) / $columns)) . '%;margin-bottom:' . $pzarc_blueprints[ '_blueprints_section-' . $i . '-panels-margins']['margin-bottom'] . '%;}';
-      $pzarc_mediaq_css .= $panels_class . ' .grid-sizer { width:' . (100 / $columns) . '%;}';
+      $pzarc_mediaq_css .= $panels_class . ' .grid-sizer { width:' . ((100-($hmargin*($columns-1)))/$columns) . '%;}';
       $pzarc_mediaq_css .= '}' . $nl;
 
 
@@ -135,7 +135,7 @@
         $pzarc_mediaq_css .= str_replace('.pzarc-panel','', $panels_class . ' .grid-sizer { width:' . $column_width . '%;}');
       }
       //              $pzarc_contents_css .= $classes . ' {width:' . (((100 - ($hmargin * ($columns - 1))) / $columns)) . '%;margin-bottom:' . $pzarc_blueprints[ '_blueprints_section-' . $i . '-panels-margins']['margin-bottom'] . '%;}';
-      $pzarc_mediaq_css .= $panels_class . ' .grid-sizer { width:' . (100 / $columns) . '%;}';
+      $pzarc_mediaq_css .= $panels_class . ' .grid-sizer { width:' . ((100-($hmargin*($columns-1)))/$columns) . '%;}';
       $pzarc_mediaq_css .= '}' . $nl;
 
       $pzarc_width_val = (100-str_replace($pzarc_blueprints['_blueprints_sections-width'.$i]['units'],'',$pzarc_blueprints['_blueprints_sections-width'.$i]['width']));
@@ -152,7 +152,7 @@
           break;
       }
       $pzarc_css = $pzarc_mediaq_css;
-      $pzarc_css .= $sections_class.' {width:'.$pzarc_blueprints['_blueprints_sections-width'.$i]['width'].'%;'.$pzarc_sections_align.'}';
+      $pzarc_css .= $sections_class.' {width:'.$pzarc_blueprints['_blueprints_sections-width'.$i]['width'].';'.$pzarc_sections_align.'}';
 
       // Can't do this!! OTherwise would have to regenerate all blueprints on panel save
 ////        // TODO: do we have to use the bg image height instead if it is set??
