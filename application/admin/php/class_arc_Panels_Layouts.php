@@ -565,6 +565,7 @@
                 'select2' => array('allowClear' => false),
                 'default' => 'none',
                 'class'   => ' horizontal',
+                'desc'=>__('You must set a left margin on titles for bullets to show.','pzarchitect'),
                 'options' => array('none'                 => 'None',
                                    'disc'                 => 'Disc',
                                    'circle'               => 'Circle',

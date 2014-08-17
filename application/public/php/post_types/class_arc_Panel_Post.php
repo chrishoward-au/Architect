@@ -99,33 +99,47 @@
       $toshow = json_decode($section[ '_panels_design_preview' ], true);
       $data   = array();
       // Null up everything to prevent warnings later on
-      $data[ 'title' ]                     = null;
-      $data[ 'content' ]                   = null;
-      $data[ 'excerpt' ]                   = null;
-      $data[ 'meta' ][ 'categories' ]      = null;
-      $data[ 'meta' ][ 'tags' ]            = null;
-      $data[ 'image' ][ 'image' ]          = null;
-      $data[ 'image' ][ 'caption' ]        = null;
-      $data[ 'image' ][ 'original' ]       = null;
-      $data[ 'meta' ][ 'datetime' ]        = null;
-      $data[ 'meta' ][ 'fdatetime' ]       = null;
-      $data[ 'meta' ][ 'categorieslinks' ] = null;
-      $data[ 'meta' ][ 'tagslinks' ]       = null;
-      $data[ 'meta' ][ 'authorlink' ]      = null;
-      $data[ 'meta' ][ 'authorname' ]      = null;
-      $data[ 'meta' ][ 'authoremail' ]     = null;
-      $data[ 'meta' ][ 'comments-count' ]  = null;
-      $data[ 'postid' ]                    = null;
-      $data[ 'poststatus' ]                = null;
-      $data[ 'permalink' ]                 = null;
-      $data[ 'postformat' ]                = null;
-      $data[ 'bgimage' ][ 'thumb' ]        = null;
-      $data[ 'bgimage' ][ 'original' ]     = null;
-      $postmeta                            = get_post_meta(get_the_ID());
+      $data[ 'title' ][ 'title' ]            = null;
+      $data[ 'title' ][ 'title' ][ 'thumb' ] = null;
+      $data[ 'content' ]                     = null;
+      $data[ 'excerpt' ]                     = null;
+      $data[ 'meta' ][ 'categories' ]        = null;
+      $data[ 'meta' ][ 'tags' ]              = null;
+      $data[ 'image' ][ 'image' ]            = null;
+      $data[ 'image' ][ 'caption' ]          = null;
+      $data[ 'image' ][ 'original' ]         = null;
+      $data[ 'meta' ][ 'datetime' ]          = null;
+      $data[ 'meta' ][ 'fdatetime' ]         = null;
+      $data[ 'meta' ][ 'categorieslinks' ]   = null;
+      $data[ 'meta' ][ 'tagslinks' ]         = null;
+      $data[ 'meta' ][ 'authorlink' ]        = null;
+      $data[ 'meta' ][ 'authorname' ]        = null;
+      $data[ 'meta' ][ 'authoremail' ]       = null;
+      $data[ 'meta' ][ 'comments-count' ]    = null;
+      $data[ 'postid' ]                      = null;
+      $data[ 'poststatus' ]                  = null;
+      $data[ 'permalink' ]                   = null;
+      $data[ 'postformat' ]                  = null;
+      $data[ 'bgimage' ][ 'thumb' ]          = null;
+      $data[ 'bgimage' ][ 'original' ]       = null;
+      $postmeta                              = get_post_meta(get_the_ID());
+      $thumb_id                              = get_post_thumbnail_id();
 
       /** TITLE */
       if ($toshow[ 'title' ][ 'show' ]) {
-        $data[ 'title' ] = get_the_title();
+        $data[ 'title' ][ 'title' ] = get_the_title();
+        if ('thumb' === $section[ '_panels_design_title-prefix' ]) {
+          if (!empty($thumb_id)) {
+            $thumb_prefix               = wp_get_attachment_image($thumb_id, array($section[ '_panels_design_title-thumb-width' ],
+                                                                                   $section[ '_panels_design_title-thumb-width' ],
+                                                                                   'bfi_thumb' => true,
+                                                                                   'crop'      => array(50, 50)
+            ));
+            $data[ 'title' ][ 'thumb' ] = '<span class="pzarc-title-thumb">' . $thumb_prefix . '</span> ';
+          } else {
+            $data[ 'title' ][ 'thumb' ] = '<span class="pzarc-title-thumb" style="width:' . $section[ '_panels_design_title-thumb-width' ] . 'px;height:' . $section[ '_panels_design_title-thumb-width' ] . 'px;"></span> ';
+          }
+        }
       }
 
       /** CONTENT */
@@ -139,7 +153,6 @@
       }
 
       /** FEATURED IMAGE */
-      $thumb_id = get_post_thumbnail_id();
 
       if (!$thumb_id && $section[ '_panels_settings_use-embedded-images' ]) {
         //TODO: Changed to more reliable check if image is in the content?
@@ -307,7 +320,7 @@
       //todo: make sure source is actual WP valid eg. soemthings might be attachment
       // Do any generic replacements
       $line      = str_replace('{{postid}}', $data[ 'postid' ], $line);
-      $line      = str_replace('{{title}}', $data[ 'title' ], $line);
+      $line      = str_replace('{{title}}', $data[ 'title' ][ 'title' ], $line);
       $line      = str_replace('{{permalink}}', $data[ 'permalink' ], $line);
       $line      = str_replace('{{closelink}}', '</a>', $line);
       $line      = str_replace('{{categories}}', $data[ 'meta' ][ 'categories' ], $line);
@@ -359,7 +372,11 @@
      */
     public static function render($component, $panel_def, $content_type, &$data, &$section, $rsid)
     {
-      $panel_def[ $component ] = str_replace('{{title}}', $data[ 'title' ], $panel_def[ $component ]);
+      if ('thumb' === $section[ '_panels_design_title-prefix' ]) {
+        $panel_def[ $component ] = str_replace('{{title}}', $data[ 'title' ][ 'thumb' ] . '<span class="pzarc-title-wrap">'.$data[ 'title' ][ 'title' ].'</span>', $panel_def[ $component ]);
+      } else {
+        $panel_def[ $component ] = str_replace('{{title}}', $data[ 'title' ][ 'title' ], $panel_def[ $component ]);
+      }
       if ($section[ '_panels_design_link-titles' ]) {
         $panel_def[ $component ] = str_replace('{{postlink}}', $panel_def[ 'postlink' ], $panel_def[ $component ]);
         $panel_def[ $component ] = str_replace('{{closepostlink}}', '</a>', $panel_def[ $component ]);
@@ -420,7 +437,7 @@
             $link = ('url' === $section[ '_panels_design_link-image' ]) ? '<a href="' . $section[ '_panels_design_link-image-url' ] . '" title="' . $section[ '_panels_design_link-image-url-tooltip' ] . '">' : $panel_def[ 'postlink' ];
             break;
           case 'original':
-            $link = '<a class="lightbox lightbox-' . $rsid . '" href="' . $data[ 'image' ][ 'original' ][ 0 ] . '" title="' . $data[ 'title' ] . '">';
+            $link = '<a class="lightbox lightbox-' . $rsid . '" href="' . $data[ 'image' ][ 'original' ][ 0 ] . '" title="' . $data[ 'title' ][ 'title' ] . '">';
             break;
         }
         $panel_def[ $component ] = str_replace('{{postlink}}', $link, $panel_def[ $component ]);
@@ -438,7 +455,6 @@
       if (!empty($section[ '_panels_design_centre-image' ])) {
         $panel_def[ $component ] = str_replace('{{centred}}', 'centred', $panel_def[ $component ]);
       }
-
 
 
       if (empty($data[ 'image' ][ 'image' ])) {
@@ -469,7 +485,7 @@
             $link = ('url' === $section[ '_panels_design_link-bgimage' ]) ? '<a href="' . $section[ '_panels_design_link-bgimage-url' ] . '" title="' . $section[ '_panels_design_link-bgimage-url-tooltip' ] . '">' : $panel_def[ 'postlink' ];
             break;
           case 'original':
-            $link = '<a class="lightbox lightbox-' . $rsid . '" href="' . $data[ 'bgimage' ][ 'original' ][ 0 ] . '" title="' . $data[ 'title' ] . '">';
+            $link = '<a class="lightbox lightbox-' . $rsid . '" href="' . $data[ 'bgimage' ][ 'original' ][ 0 ] . '" title="' . $data[ 'title' ][ 'title' ] . '">';
             break;
         }
         $panel_def[ $component ] = str_replace('{{postlink}}', $link, $panel_def[ $component ]);
@@ -506,7 +522,7 @@
                 $link = ('url' === $section[ '_panels_design_link-image' ]) ? '<a href="' . $section[ '_panels_design_link-image-url' ] . '" title="' . $section[ '_panels_design_link-image-url-tooltip' ] . '">' : $panel_def[ 'postlink' ];
                 break;
               case 'original':
-                $link = '<a class="lightbox lightbox-' . $rsid . '" href="' . $data[ 'image' ][ 'original' ][ 0 ] . '" title="' . $data[ 'title' ] . '">';
+                $link = '<a class="lightbox lightbox-' . $rsid . '" href="' . $data[ 'image' ][ 'original' ][ 0 ] . '" title="' . $data[ 'title' ][ 'title' ] . '">';
                 break;
             }
             $panel_def[ $component ] = str_replace('{{postlink}}', $link, $panel_def[ $component ]);
@@ -565,7 +581,7 @@
                 $link = ('url' === $section[ '_panels_design_link-image' ]) ? '<a href="' . $section[ '_panels_design_link-image-url' ] . '" title="' . $section[ '_panels_design_link-image-url-tooltip' ] . '">' : $panel_def[ 'postlink' ];
                 break;
               case 'original':
-                $link = '<a class="lightbox lightbox-' . $rsid . '" href="' . $data[ 'image' ][ 'original' ][ 0 ] . '" title="' . $data[ 'title' ] . '">';
+                $link = '<a class="lightbox lightbox-' . $rsid . '" href="' . $data[ 'image' ][ 'original' ][ 0 ] . '" title="' . $data[ 'title' ][ 'title' ] . '">';
                 break;
             }
             $panel_def[ $component ] = str_replace('{{postlink}}', $link, $panel_def[ $component ]);

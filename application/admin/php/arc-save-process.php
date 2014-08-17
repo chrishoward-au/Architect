@@ -124,7 +124,7 @@
 
     switch ($type) {
       case 'arc-blueprints':
-        require_once PZARC_PLUGIN_APP_PATH . '/admin/php/arc-save-process-blueprints-new.php';
+        require_once PZARC_PLUGIN_APP_PATH . '/admin/php/arc-save-process-blueprints.php';
         $pzarc_blueprints = pzarc_merge_defaults($defaults[ '_blueprints' ], $pzarc_settings);
         $pzarc_contents .= pzarc_create_blueprint_css($pzarc_blueprints, $pzarc_contents, $postid);
         break;
@@ -387,9 +387,10 @@
     //Need to do the above switch for Panels
     // generate correct whosit
     $pzarc_func = 'pzarc_style_' . $keys[ 'style' ];
-
     $pzarc_css  = (function_exists($pzarc_func)?call_user_func($pzarc_func, $keys[ 'class' ], $value):'');
-
+    if (!function_exists($pzarc_func)){
+      print 'Missing function '.$pzarc_func;
+    }
     return $pzarc_css;
   }
 
@@ -404,7 +405,7 @@
     return (!pzarc_is_empty_vals($value, array('units')) ? $class . ' {' . pzarc_process_spacing($value) . ';}' . "\n" : null);
   }
 
-  function pzarc_style_margins($class, $value)
+  function pzarc_style_margin($class, $value)
   {
     return (!pzarc_is_empty_vals($value, array('units')) ? $class . ' {' . pzarc_process_spacing($value) . ';}' . "\n" : null);
   }

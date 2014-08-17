@@ -121,6 +121,12 @@
         text-align: center; }
       .pzarchitect .pzarc-panel .entry-thumbnail .caption {
         display: block; }
+    .pzarchitect .pzarc-panel .pzarc-title-thumb {
+      display: inline-block;
+      float: left;
+      margin-right: 3px; }
+    .pzarchitect .pzarc-panel .pzarc-title-wrap {
+      vertical-align: middle; }
     .pzarchitect .pzarc-panel .entry-title,
     .pzarchitect .pzarc-panel .entry-excerpt,
     .pzarchitect .pzarc-panel .entry-thumbnail,

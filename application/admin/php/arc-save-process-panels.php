@@ -37,28 +37,28 @@
           break;
 
         // TODO: Lazy ass! Work outhow to do this in case statement!
-        case ($key == '_panels_design_content-font-size-bp1' && !empty($pzarc_panels[ '_panels_design_content-font-size-bp1' ]) && !empty($pzarc_panels['_panels_design_use-responsive-font-size'])):
+        case ($key == '_panels_design_content-font-size-bp1' && !empty($pzarc_panels[ '_panels_design_content-font-size-bp1' ]) && !empty($pzarc_panels[ '_panels_design_use-responsive-font-size' ])):
 
-          $em_width = (int)str_replace('px', '', $_architect_options[ 'architect_breakpoint_1']['width']) / 16;
+          $em_width = (int)str_replace('px', '', $_architect_options[ 'architect_breakpoint_1' ][ 'width' ]) / 16;
 
-          $pzarc_contents .= '@media (min-width: ' . $em_width . 'em) { ' . $class_prefix . ' .entry-content, ' . $class_prefix . ' .entry-excerpt {font-size:'.$pzarc_panels[ '_panels_design_content-font-size-bp1' ]['font-size'].'!important;line-height:'.$pzarc_panels[ '_panels_design_content-font-size-bp1' ]['line-height'].';!important}}' . $nl;
-
-          break;
-
-        case ($key == '_panels_design_content-font-size-bp2' && !empty($pzarc_panels[ '_panels_design_content-font-size-bp2' ]) && !empty($pzarc_panels['_panels_design_use-responsive-font-size'])):
-
-          $em_widthU = (int)str_replace('px', '', $_architect_options[ 'architect_breakpoint_1']['width']) / 16;
-          $em_widthL = (int)str_replace('px', '', $_architect_options[ 'architect_breakpoint_2']['width']) / 16;
-
-          $pzarc_contents .= '@media (min-width: ' . $em_widthL . 'em and max-width: ' . $em_widthU . 'em) { ' . $class_prefix . ' .entry-content, ' . $class_prefix . ' .entry-excerpt {font-size:'.$pzarc_panels[ '_panels_design_content-font-size-bp2' ]['font-size'].'!important;line-height:'.$pzarc_panels[ '_panels_design_content-font-size-bp2' ]['line-height'].'!important;}}' . $nl;
+          $pzarc_contents .= '@media (min-width: ' . $em_width . 'em) { ' . $class_prefix . ' .entry-content, ' . $class_prefix . ' .entry-excerpt {font-size:' . $pzarc_panels[ '_panels_design_content-font-size-bp1' ][ 'font-size' ] . '!important;line-height:' . $pzarc_panels[ '_panels_design_content-font-size-bp1' ][ 'line-height' ] . ';!important}}' . $nl;
 
           break;
 
-        case ($key == '_panels_design_content-font-size-bp3' && !empty($pzarc_panels[ '_panels_design_content-font-size-bp3' ]) && !empty($pzarc_panels['_panels_design_use-responsive-font-size'])):
+        case ($key == '_panels_design_content-font-size-bp2' && !empty($pzarc_panels[ '_panels_design_content-font-size-bp2' ]) && !empty($pzarc_panels[ '_panels_design_use-responsive-font-size' ])):
 
-          $em_width = (int)str_replace('px', '', $_architect_options[ 'architect_breakpoint_2']['width']) / 16;
+          $em_widthU = (int)str_replace('px', '', $_architect_options[ 'architect_breakpoint_1' ][ 'width' ]) / 16;
+          $em_widthL = (int)str_replace('px', '', $_architect_options[ 'architect_breakpoint_2' ][ 'width' ]) / 16;
 
-          $pzarc_contents .= '@media (max-width: ' . $em_width . 'em) { ' . $class_prefix . ' .entry-content, ' . $class_prefix . ' .entry-excerpt {font-size:'.$pzarc_panels[ '_panels_design_content-font-size-bp3' ]['font-size'].'!important;line-height:'.$pzarc_panels[ '_panels_design_content-font-size-bp3' ]['line-height'].'!important;}}' . $nl;
+          $pzarc_contents .= '@media (min-width: ' . $em_widthL . 'em and max-width: ' . $em_widthU . 'em) { ' . $class_prefix . ' .entry-content, ' . $class_prefix . ' .entry-excerpt {font-size:' . $pzarc_panels[ '_panels_design_content-font-size-bp2' ][ 'font-size' ] . '!important;line-height:' . $pzarc_panels[ '_panels_design_content-font-size-bp2' ][ 'line-height' ] . '!important;}}' . $nl;
+
+          break;
+
+        case ($key == '_panels_design_content-font-size-bp3' && !empty($pzarc_panels[ '_panels_design_content-font-size-bp3' ]) && !empty($pzarc_panels[ '_panels_design_use-responsive-font-size' ])):
+
+          $em_width = (int)str_replace('px', '', $_architect_options[ 'architect_breakpoint_2' ][ 'width' ]) / 16;
+
+          $pzarc_contents .= '@media (max-width: ' . $em_width . 'em) { ' . $class_prefix . ' .entry-content, ' . $class_prefix . ' .entry-excerpt {font-size:' . $pzarc_panels[ '_panels_design_content-font-size-bp3' ][ 'font-size' ] . '!important;line-height:' . $pzarc_panels[ '_panels_design_content-font-size-bp3' ][ 'line-height' ] . '!important;}}' . $nl;
 
           break;
 
@@ -171,10 +171,10 @@
          *********************************************************/
 
         case (strpos($key, '_panels_styling') === 0 && !empty($value) && !empty($_architect_options[ 'architect_enable_styling' ])):
-          $pkeys            = array();
-          $pkey             = str_replace('_panels_styling_', '', $key);
-$pkey = str_replace('-font-','-',$pkey);
-          $splitter         = (substr_count($pkey, '-font-') === 1 ? strrpos($pkey, '-font-') : strrpos($pkey, '-'));
+          $pkeys    = array();
+          $pkey     = str_replace('_panels_styling_', '', $key);
+          $pkey     = str_replace('-font-', '-', $pkey);
+          $splitter = (substr_count($pkey, '-font-') === 1 ? strrpos($pkey, '-font-') : strrpos($pkey, '-'));
 
           $pkeys[ 'style' ] = str_replace('-', '', substr($pkey, $splitter + 1));
           $pkeys[ 'id' ]    = substr($pkey, 0, $splitter);
