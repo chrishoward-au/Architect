@@ -8,7 +8,12 @@
    */
   // TODO: These should also definethe content filtering menu in Blueprints options :/
 
-  class arc_Panel_post
+  class arc_Panel_post extends  arc_Panel_Renderer
+  {
+
+  }
+
+  class arc_Panel_postx
   {
 
     //TODO: Shouldn't data be a this?

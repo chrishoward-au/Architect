@@ -48,6 +48,7 @@
 
       require_once(PZARC_PLUGIN_APP_PATH . '/public/php/class_arc_Section.php');
       require_once(PZARC_PLUGIN_APP_PATH . '/public/php/class_arc_Blueprint.php');
+      require_once(PZARC_PLUGIN_APP_PATH . '/public/php/class_arc_Panel_Renderer.php');
 
       $this->build = new arc_Blueprint($blueprint);
 
@@ -856,9 +857,9 @@
 
       // We setup the Paneldef here so we're not doing it every iteration of the Loop!
       // TODO: Some sites get a T_PAAMAYIM_NEKUDOTAYIM error! ugh!
+      var_dump($section[$section_no]);
 
-      $panel_class = new $class;
-
+      $panel_class = new $class($section[$section_no]->section);
       $panel_def = $panel_class->panel_def();
 
       // Setup meta tags

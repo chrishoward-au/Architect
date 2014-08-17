@@ -150,7 +150,7 @@
             'title'   => __('Links', 'pzarc'),
             'id'      => $id,
             'type'    => 'links',
-//            'output'  => $selectors,
+            //            'output'  => $selectors,
             'default' => $defaults,
         );
 
@@ -430,7 +430,7 @@
 
   function pzarc_get_posts_in_post_type($pzarc_post_type = 'arc-blueprints')
   {
-    $args           = array(
+    $args                 = array(
         'posts_per_page'   => -1,
         'orderby'          => 'post_title',
         'order'            => 'ASC',
@@ -575,5 +575,19 @@
     }
 
     return $array_out;
+  }
+
+  function pzarc_get_post_terms($post_id, $meta_string)
+  {
+    $post_tax_terms = array();
+    $meta_custom    = substr_count($meta_string, '%ct:');
+    preg_match_all("/(?<=\\%)(ct\\:)(.*)(?=\\%)/uiUmx", $meta_string, $matches);
+    for ($i = 1; $i <= $meta_custom; $i++) {
+      if (taxonomy_exists($matches[ 2 ][ $i - 1 ])) {
+        $post_tax_terms = array($matches[ 2 ][ $i - 1 ] => get_the_term_list($post_id, $matches[ 2 ][ $i - 1 ]));
+      }
+    }
+
+    return $post_tax_terms;
   }
 

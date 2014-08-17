@@ -8,7 +8,11 @@
    */
   // TODO: These should also definethe content filtering menu in Blueprints options :/
 
-  class arc_Panel_gallery
+  class arc_Panel_gallery extends arc_Panel_Renderer
+  {
+  }
+
+  class arc_Panel_galleryx
   {
 //    private $data;
 

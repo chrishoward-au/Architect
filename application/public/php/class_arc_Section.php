@@ -19,7 +19,7 @@
   class arc_Section
   {
     private $section_number;
-    private $section;
+    public $section;
     private $source;
     private $data;
     private $slider;
@@ -134,7 +134,7 @@
     public function render_panel($panel_def, $panel_number, $class, $panel_class, &$arc_query)
     {
 
-      $data = $panel_class->set_data($this->section[ 'section-panel-settings' ], $arc_query->post);
+      $panel_class->set_data($this->section[ 'section-panel-settings' ], $arc_query->post);
 
       $sequence = json_decode($this->section[ 'section-panel-settings' ][ '_panels_design_preview' ], true);
       // We do want to provide actions so want to use the sequence
@@ -177,55 +177,42 @@
 
       if ($this->section[ 'section-panel-settings' ][ '_panels_design_background-position' ] != 'none' && ($this->section[ 'section-panel-settings' ][ '_panels_design_components-position' ] == 'bottom' || $this->section[ 'section-panel-settings' ][ '_panels_design_components-position' ] == 'right')) {
 
-        $class_bgimage = $class . '_bgimage';
-        $bgimage_class = new $class_bgimage;
-        $line_out      = $bgimage_class->render('bgimage', $panel_def, $this->source, $data, $this->section[ 'section-panel-settings' ],$this->rsid);
-        echo apply_filters("arc_filter_bgimage", self::strip_unused_arctags($line_out), $data[ 'postid' ]);
-//        echo $data['bgimage'];
-//        var_dump(esc_html( $data['bgimage']));
+        $line_out      = $panel_class->render_bgimage('bgimage', $this->source, $this->rsid);
+//        echo apply_filters("arc_filter_bgimage", self::strip_unused_arctags($line_out), $data[ 'postid' ]);
+        echo apply_filters("arc_filter_bgimage", self::strip_unused_arctags($line_out), $arc_query->post->ID);
 
-        unset($class_bgimage);
       }
 
       // Render the components open html
-      $class_wrapper = $class . '_Wrapper';
-      $wrapper_class = new $class_wrapper;
-      echo self::strip_unused_arctags($wrapper_class->render('components-open', $panel_def, '', $data, $this->section[ 'section-panel-settings' ],$this->rsid));
+
+      echo self::strip_unused_arctags($panel_class->render_wrapper('components-open',  $this->source,$this->rsid));
       foreach ($sequence as $component_type => $value) {
 
         if ($value[ 'show' ]) {
 
           // Send thru some data devs might find useful
-          do_action("arc_before_{$component_type}", $component_type, $panel_number, $data[ 'postid' ]);
+          do_action("arc_before_{$component_type}", $component_type, $panel_number, $arc_query->post->ID);
 
           // Make the class name to call - strip numbers from metas and customs
           // We could do this in a concatenation first of all components' templates, and then replace the {{tags}}.... But then we couldn't do the filter on each component. Nor could we as easily make the components extensible
-          $class_component = $class . '_' . str_replace(array('1', '2', '3'), '', ucfirst($component_type));
-          $component_class = new $class_component;
+          $method_to_do =  strtolower('render_' . str_replace(array('1', '2', '3'), '', ucfirst($component_type)));
 
-          $line_out        = $component_class->render($component_type, $panel_def, $this->source, $data, $this->section[ 'section-panel-settings' ],$this->rsid);
+          $line_out        = $panel_class->$method_to_do($component_type,  $this->source, $this->rsid);
 
-
-          echo apply_filters("arc_filter_{$component_type}", self::strip_unused_arctags($line_out), $data[ 'postid' ]);
-          do_action("arc_after_{$component_type}", $component_type, $panel_number, $data[ 'postid' ]);
+          echo apply_filters("arc_filter_{$component_type}", self::strip_unused_arctags($line_out), $arc_query->post->ID);
+          do_action("arc_after_{$component_type}", $component_type, $panel_number, $arc_query->post->ID);
 
         }
 
       }
 //        echo '<h1 class="entry-title">',get_the_title(),'</h1>';
 //        echo '<div class="entry-content">',get_the_content(),'</div>';
-      echo self::strip_unused_arctags($wrapper_class->render('components-close', $panel_def, '', $data, $this->section[ 'section-panel-settings' ],$this->rsid));
+      echo self::strip_unused_arctags($panel_class->render_wrapper('components-close', $this->source,$this->rsid));
 
       if ($this->section[ 'section-panel-settings' ][ '_panels_design_background-position' ] != 'none' && ($this->section[ 'section-panel-settings' ][ '_panels_design_components-position' ] == 'top' || $this->section[ 'section-panel-settings' ][ '_panels_design_components-position' ] == 'left')) {
 
-        $class_bgimage = $class . '_bgimage';
-        $bgimage_class = new $class_bgimage;
-        $line_out      = $bgimage_class->render('bgimage', $panel_def, $this->source, $data, $this->section[ 'section-panel-settings' ],$this->rsid);
-        echo apply_filters("arc_filter_bgimage", self::strip_unused_arctags($line_out), $data[ 'postid' ]);
-//        echo $data['bgimage'];
-//        var_dump(esc_html( $data['bgimage']));
-
-        unset($class_bgimage);
+        $line_out      = $panel_class->render_bgimage('bgimage',  $this->source, $this->rsid);
+        echo apply_filters("arc_filter_bgimage", self::strip_unused_arctags($line_out), $arc_query->post->ID);
 
       }
 
