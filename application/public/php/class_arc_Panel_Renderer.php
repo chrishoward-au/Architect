@@ -114,6 +114,23 @@
       /** TITLE */
       if ($this->toshow[ 'title' ][ 'show' ]) {
         $this->data[ 'title' ][ 'title' ] = get_the_title();
+        if ('thumb' === $this->section[ '_panels_design_title-prefix' ]) {
+          if (empty($this->focal_point)) {
+            $this->thumb_id    = get_post_thumbnail_id();
+            $this->focal_point = get_post_meta($this->thumb_id, 'pzgp_focal_point', true);
+            $this->focal_point = (empty($this->focal_point) ? array(50, 50) : explode(',', $this->focal_point));
+          }
+          if (!empty($this->thumb_id)) {
+            $thumb_prefix               = wp_get_attachment_image($this->thumb_id, array($this->section[ '_panels_design_title-thumb-width' ],
+                                                                                   $this->section[ '_panels_design_title-thumb-width' ],
+                                                                                   'bfi_thumb' => true,
+                                                                                   'crop'      => $this->focal_point
+            ));
+            $this->data[ 'title' ][ 'thumb' ] = '<span class="pzarc-title-thumb">' . $thumb_prefix . '</span> ';
+          } else {
+            $this->data[ 'title' ][ 'thumb' ] = '<span class="pzarc-title-thumb" style="width:' . $this->section[ '_panels_design_title-thumb-width' ] . 'px;height:' . $this->section[ '_panels_design_title-thumb-width' ] . 'px;"></span> ';
+          }
+        }
       }
 
     }
