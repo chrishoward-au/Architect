@@ -16,13 +16,13 @@ CDN hosted slick is a great way to get set up quick:
 In your ```<head>``` add:
 
 ````
-<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/jquery.slick/1.3.6/slick.css"/>
+<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/jquery.slick/1.3.7/slick.css"/>
 ````
 
 Then, before your closing ```<body>``` tag add:
 
 ```
-<script type="text/javascript" src="//cdn.jsdelivr.net/jquery.slick/1.3.6/slick.min.js"/></script>
+<script type="text/javascript" src="//cdn.jsdelivr.net/jquery.slick/1.3.7/slick.min.js"/></script>
 ```
 
 #### Options
@@ -37,6 +37,7 @@ centerPadding | string | '50px' | Side padding when in center mode. (px or %)
 cssEase | string |  'ease' | CSS3 easing
 customPaging | function | n/a | Custom paging templates. See source for use example.
 dots | boolean | false | Current slide indicator dots
+dotsClass | string | 'slick-dots' | Class for slide indicator dots container
 draggable | boolean | true | Enables desktop dragging
 easing | string |  'linear' | animate() fallback easing
 fade | boolean | false | Enables fade
@@ -62,6 +63,7 @@ touchMove | boolean | true | Enables slide moving with touch
 touchThreshold | int | 5 | To advance slides, the user must swipe a length of (1/touchThreshold) * the width of the slider.
 useCSS | boolean | true | Enable/Disable CSS Transitions
 vertical | boolean | false | Vertical slide direction
+rtl | boolean | false | Change the slider's direction to become right-to-left
 
 
 #### Methods
