@@ -91,11 +91,11 @@
     }
 
 
-    public function set_data(&$post, &$toshow,&$section)
+    public function set_data(&$post, &$toshow, &$section)
     {
 //      var_dump(get_The_id(),$post->ID);
       $this->section = $section;
-      $this->toshow = $toshow;
+      $this->toshow  = $toshow;
       $this->get_title($post);
       $this->get_meta($post);
       $this->get_content($post);
@@ -115,16 +115,14 @@
       if ($this->toshow[ 'title' ][ 'show' ]) {
         $this->data[ 'title' ][ 'title' ] = get_the_title();
         if ('thumb' === $this->section[ '_panels_design_title-prefix' ]) {
-          if (empty($this->focal_point)) {
-            $this->thumb_id    = get_post_thumbnail_id();
-            $this->focal_point = get_post_meta($this->thumb_id, 'pzgp_focal_point', true);
-            $this->focal_point = (empty($this->focal_point) ? array(50, 50) : explode(',', $this->focal_point));
-          }
-          if (!empty($this->thumb_id)) {
-            $thumb_prefix               = wp_get_attachment_image($this->thumb_id, array($this->section[ '_panels_design_title-thumb-width' ],
-                                                                                   $this->section[ '_panels_design_title-thumb-width' ],
-                                                                                   'bfi_thumb' => true,
-                                                                                   'crop'      => $this->focal_point
+          $thumb_id    = get_post_thumbnail_id();
+          $focal_point = get_post_meta($thumb_id, 'pzgp_focal_point', true);
+          $focal_point = (empty($focal_point) ? array(50, 50) : explode(',', $focal_point));
+          if (!empty($thumb_id)) {
+            $thumb_prefix                     = wp_get_attachment_image($thumb_id, array($this->section[ '_panels_design_title-thumb-width' ],
+                                                                                         $this->section[ '_panels_design_title-thumb-width' ],
+                                                                                         'bfi_thumb' => true,
+                                                                                         'crop'      => $focal_point
             ));
             $this->data[ 'title' ][ 'thumb' ] = '<span class="pzarc-title-thumb">' . $thumb_prefix . '</span> ';
           } else {
@@ -168,18 +166,16 @@
     public function get_image(&$post)
     {
       /** FEATURED IMAGE */
-      $this->thumb_id    = get_post_thumbnail_id();
-      $this->focal_point = get_post_meta($this->thumb_id, 'pzgp_focal_point', true);
-      $this->focal_point = (empty($this->focal_point) ? array(50, 50) : explode(',', $this->focal_point));
+      $thumb_id    = get_post_thumbnail_id();
+      $focal_point = get_post_meta($thumb_id, 'pzgp_focal_point', true);
+      $focal_point = (empty($focal_point) ? array(50, 50) : explode(',', $focal_point));
 
-      if (!$this->thumb_id && $this->section[ '_panels_settings_use-embedded-images' ]) {
+      if (!$thumb_id && $this->section[ '_panels_settings_use-embedded-images' ]) {
         //TODO: Changed to more reliable check if image is in the content?
         preg_match("/(?<=wp-image-)(\\d)*/uimx", get_the_content(), $matches);
-        $this->thumb_id = (!empty($matches[ 0 ]) ? $matches[ 0 ] : false);
+        $thumb_id = (!empty($matches[ 0 ]) ? $matches[ 0 ] : false);
       }
 
-      $focal_point = get_post_meta($this->thumb_id, 'pzgp_focal_point', true);
-      $focal_point = (empty($focal_point) ? array(50, 50) : explode(',', $focal_point));
 
       if ($this->toshow[ 'image' ][ 'show' ] || $this->section[ '_panels_design_thumb-position' ] != 'none') {
         //        if (false)
@@ -194,14 +190,14 @@
         // TODO: Add all the focal point stuff to all the post types images and bgimages
         // Easiest to do via a reusable function or all this stuff could be done once!!!!!!!!!
         // could pass $this->data thru a filter
-        $this->data[ 'image' ][ 'image' ]    = wp_get_attachment_image($this->thumb_id, array($width,
-                                                                                              $height,
-                                                                                              'bfi_thumb' => true,
-                                                                                              'crop'      => (int)$focal_point[ 0 ] . 'x' . (int)$focal_point[ 1 ] . 'x' . $this->section[ '_panels_settings_image-focal-point' ]
+        $this->data[ 'image' ][ 'image' ]    = wp_get_attachment_image($thumb_id, array($width,
+                                                                                        $height,
+                                                                                        'bfi_thumb' => true,
+                                                                                        'crop'      => (int)$focal_point[ 0 ] . 'x' . (int)$focal_point[ 1 ] . 'x' . $this->section[ '_panels_settings_image-focal-point' ]
 
         ));
-        $this->data[ 'image' ][ 'original' ] = wp_get_attachment_image_src($this->thumb_id, 'full');
-        $image                               = get_post($this->thumb_id);
+        $this->data[ 'image' ][ 'original' ] = wp_get_attachment_image_src($thumb_id, 'full');
+        $image                               = get_post($thumb_id);
         $this->data[ 'image' ][ 'caption' ]  = $image->post_excerpt;
 
 
@@ -226,11 +222,9 @@
     public function get_bgimage(&$post)
     {
       /** BACKGROUND IMAGE */
-      if (empty($this->focal_point)) {
-        $this->thumb_id    = get_post_thumbnail_id();
-        $this->focal_point = get_post_meta($this->thumb_id, 'pzgp_focal_point', true);
-        $this->focal_point = (empty($this->focal_point) ? array(50, 50) : explode(',', $this->focal_point));
-      }
+      $thumb_id                    = get_post_thumbnail_id();
+      $focal_point                 = get_post_meta($thumb_id, 'pzgp_focal_point', true);
+      $focal_point                 = (empty($focal_point) ? array(50, 50) : explode(',', $focal_point));
       $showbgimage                 = (has_post_thumbnail()
               && $this->section[ '_panels_design_background-position' ] != 'none'
               && ($this->section[ '_panels_design_components-position' ] == 'top' || $this->section[ '_panels_design_components-position' ] == 'left'))
@@ -254,13 +248,13 @@
       }
 
       // Need to grab image again because it uses different dimensions for the bgimge
-      $this->data[ 'bgimage' ][ 'thumb' ] = wp_get_attachment_image($this->thumb_id, array($width,
-                                                                                           $height,
-                                                                                           'bfi_thumb' => true,
-                                                                                           'crop'      => (int)$this->focal_point[ 0 ] . 'x' . (int)$this->focal_point[ 1 ] . 'x' . $this->section[ '_panels_settings_image-focal-point' ]
+      $this->data[ 'bgimage' ][ 'thumb' ] = wp_get_attachment_image($thumb_id, array($width,
+                                                                                     $height,
+                                                                                     'bfi_thumb' => true,
+                                                                                     'crop'      => (int)$focal_point[ 0 ] . 'x' . (int)$focal_point[ 1 ] . 'x' . $this->section[ '_panels_settings_image-focal-point' ]
       ));
 
-      $this->data[ 'bgimage' ][ 'original' ] = wp_get_attachment_image_src($this->thumb_id, 'full');
+      $this->data[ 'bgimage' ][ 'original' ] = wp_get_attachment_image_src($thumb_id, 'full');
     }
 
     public function get_custom(&$post)
@@ -297,10 +291,11 @@
 
     }
 
-    public function get_miscellanary(&$post){
+    public function get_miscellanary(&$post)
+    {
       global $_architect_options;
       $this->data[ 'inherit-hw-block-type' ] = (!empty($_architect_options[ 'architect_hw-content-class' ]) ? 'block-type-content ' : '');
-   }
+    }
     /****************************************
      * End of data collect
      ***************************************/
