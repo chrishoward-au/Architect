@@ -136,6 +136,8 @@
       float: left;
       vertical-align: top;
       box-sizing: border-box; }
+    .pzarchitect .pzarc-panel .entry-thumbnail img {
+      vertical-align: text-top; }
     .pzarchitect .pzarc-panel .entry-customfieldgroup {
       display: block;
       float: left; }
@@ -162,7 +164,8 @@
         max-width: none;
         display: inline-block;
         right: -50%;
-        overflow: visible; }
+        overflow: visible;
+        vertical-align: text-top; }
         .pzarchitect .pzarc-panel figure.pzarc-bg-image.fill.trim img {
           max-width: none;
           position: relative;

@@ -79,6 +79,9 @@
     vertical-align: top;
     box-sizing: border-box;
   }
+  .entry-thumbnail img {
+    vertical-align: text-top;
+  }
 
   .entry-customfieldgroup {
     display: block;
@@ -118,6 +121,8 @@
         display: inline-block;
         right: -50%;
         overflow: visible;
+        //This fixes the inline-block adding a gap below the image
+        vertical-align: text-top;
 
         img {
           max-width: none;
