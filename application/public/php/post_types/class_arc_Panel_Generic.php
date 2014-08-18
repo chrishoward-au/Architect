@@ -6,11 +6,11 @@
    * Date: 29/04/2014
    * Time: 12:16 PM
    */
-
   // TODO: These should also definethe content filtering menu in Blueprints options :/
-  
-  class arc_Panel_slides extends arc_Panel_Renderer
+
+  class arc_Panel_Generic extends  arc_Panel_Renderer
   {
+
   }
 
 

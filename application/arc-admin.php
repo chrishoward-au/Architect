@@ -60,6 +60,7 @@
         require_once PZARC_PLUGIN_APP_PATH . '/admin/php/arc-options-actions.php';
 
         // TODO: this needs to be dumberized so can work on dev defined panels and ocntent
+        require_once PZARC_PLUGIN_APP_PATH . '/public/php/class_arc_Panel_Renderer.php';
         require_once PZARC_PLUGIN_APP_PATH . '/public/php/post_types/class_arc_Panel_Snippets.php';
 
 

@@ -837,24 +837,17 @@
 
       $class = 'arc_Panel_' . $post_type;
 
-      // TODO: Should we fall back to Post post type if unknown??
+      // Fall back to generics if no class for post type
       // Use an include incase it doesn't exist!
       @include_once PZARC_PLUGIN_APP_PATH . '/public/php/post_types/class_arc_Panel_' . ucfirst($post_type) . '.php';
 
-      // TODO: Add an option to throw an error if post type doesn't exist, instead of falling back on Post
-      // Although.. this makes handling custom types slightly easier
       if (!class_exists($class)) {
 
-//        pzarc_msg(__('Post type ', 'pzarchitect') . '<strong>' . $post_type . '</strong>' . __(' has no panel definition and cannot be displayed.', 'pzarchitect'), 'error');
+        $class = 'arc_Panel_Generic';
 
-        $class = 'arc_Panel_post';
-
-        include_once PZARC_PLUGIN_APP_PATH . '/public/php/post_types/class_arc_Panel_Post.php';
-
-//        return null;
+        include_once PZARC_PLUGIN_APP_PATH . '/public/php/post_types/class_arc_Panel_Generic.php';
 
       }
-
       // We setup the Paneldef here so we're not doing it every iteration of the Loop!
       // TODO: Some sites get a T_PAAMAYIM_NEKUDOTAYIM error! ugh!
 

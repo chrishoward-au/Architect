@@ -102,6 +102,9 @@ This is BETA software. So there are many besides these ones!
 
 == Changelog ==
 
+= 0.8.1 =
+* Refactored the renderer to be extensible
+
 = 0.8.0 =
 * PUBLIC BETA
 

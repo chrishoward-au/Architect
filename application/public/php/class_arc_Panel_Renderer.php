@@ -201,6 +201,9 @@
 
     public function get_excerpt(&$post)
     {
+      if ($this->toshow[ 'excerpt' ][ 'show' ]) {
+        $this->data[ 'excerpt' ] = apply_filters('the_excerpt', get_the_excerpt());
+      }
     }
 
     public function get_bgimage(&$post)
