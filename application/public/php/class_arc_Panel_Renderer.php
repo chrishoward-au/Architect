@@ -4,17 +4,12 @@
   {
     public $data = array();
     public $toshow = array();
-    public $panel_def = array();
     public $section = array();
     public $thumb_id;
     public $focal_point=array();
 
-    public function __construct(&$section)
+    public function __construct()
     {
-
-      $this->section = $section['section-panel-settings'];
-
-      $this->toshow = apply_filters('arc-toshow', json_decode($this->section[ '_panels_design_preview' ], true));
 
       // Null up everything to prevent warnings later on
       $this->data[ 'title' ] = null;
@@ -58,45 +53,48 @@
     public function panel_def()
     {
       //TODO: Need to get a way to always wrap components in pzarc-compenents div.Problem is...dev has to create definition correctly.
-      $this->panel_def[ 'components-open' ]  = '<article id="post-{{postid}}" class="{{mimic-block-type}} post-{{postid}} post type-{{posttype}} status-{{poststatus}} format-{{postformat}} hentry {{categories}} {{tags}} {{pzclasses}}">';
-      $this->panel_def[ 'components-close' ] = '</article>';
-      $this->panel_def[ 'postlink' ]         = '<a href="{{permalink}}" title="{{title}}">';
-      $this->panel_def[ 'header' ]           = '<header class="entry-header">{{headerinnards}}</header>';
-      $this->panel_def[ 'title' ]            = '<h1 class="entry-title">{{postlink}}{{title}}{{closepostlink}}</h1>';
-      $this->panel_def[ 'meta1' ]            = '<div class="entry-meta entry-meta1">{{meta1innards}}</div>';
-      $this->panel_def[ 'meta2' ]            = '<div class="entry-meta entry-meta2">{{meta2innards}}</div>';
-      $this->panel_def[ 'meta3' ]            = '<div class="entry-meta entry-meta3">{{meta3innards}}</div>';
-      $this->panel_def[ 'datetime' ]         = '<span class="entry-date"><a href="{{permalink}}"<time class="entry-date" datetime="{{datetime}}">{{fdatetime}}</time></span></a></span>';
-      $this->panel_def[ 'categories' ]       = '<span class="categories-links">{{categorieslinks}}</span>';
-      $this->panel_def[ 'tags' ]             = '<span class="tags-links">{{tagslinks}}</span>';
-      $this->panel_def[ 'author' ]           = '<span class="byline"><span class="author vcard"><a class="url fn n" href="{{authorlink}}" title="View all posts by {{authorname}}" rel="author">{{authorname}}</a></span></span>';
-      $this->panel_def[ 'email' ]            = '<span class="byline email"><span class="author vcard"><a class="url fn n" href="mailto:{{authoremail}}" title="Email {{authorname}}" rel="author">{{authoremail}}</a></span></span>';
-      //     $this->panel_def[ 'image' ]       = '<figure class="entry-thumbnail {{incontent}}">{{postlink}}<img width="{{width}}" src="{{imgsrc}}" class="attachment-post-thumbnail wp-post-image" alt="{{alttext}}">{{closepostlink}}{{captioncode}}</figure>';
-      $this->panel_def[ 'image' ]         = '<figure class="entry-thumbnail {{incontent}} {{centred}}">{{postlink}}{{image}}{{closelink}}{{captioncode}}</figure>';
-      $this->panel_def[ 'bgimage' ]       = '<figure class="entry-bgimage pzarc-bg-image {{trim-scale}}">{{bgimage}}</figure>';
-      $this->panel_def[ 'caption' ]       = '<figcaption class="caption">{{caption}}</figcaption>';
-      $this->panel_def[ 'content' ]       = ' <div class="entry-content {{nothumb}}">{{image-in-content}}{{content}}</div>';
-      $this->panel_def[ 'custom1' ]       = '<div class="entry-customfieldgroup entry-customfieldgroup-1">{{custom1innards}}</div>';
-      $this->panel_def[ 'custom2' ]       = '<div class="entry-customfieldgroup entry-customfieldgroup-2">{{custom2innards}}</div>';
-      $this->panel_def[ 'custom3' ]       = '<div class="entry-customfieldgroup entry-customfieldgroup-3">{{custom3innards}}</div>';
-      $this->panel_def[ 'cfield' ]        = '<div class="entry-customfield entry-customfield-{{cfieldname}} entry-customfield-{{cfieldnumber}}">{{cfieldcontent}}</div>';
-      $this->panel_def[ 'footer' ]        = '<footer class="entry-footer">{{footerinnards}}</footer>';
-      $this->panel_def[ 'excerpt' ]       = ' <div class="entry-excerpt {{nothumb}}">{{image-in-content}}{{excerpt}}</div>';
-      $this->panel_def[ 'feature' ]       = '{{feature}}';
-      $this->panel_def[ 'editlink' ]      = '<span class="edit-link"><a class="post-edit-link" href="{{permalink}}" title="Edit post {{title}}">Edit</a></span>';
-      $this->panel_def[ 'comments-link' ] = '<span class="comments-link"><a href="{{permalink}}/#comments" title="Comment on {{title}}">Comments: {{commentscount}}</a></span>';
+      $panel_def[ 'components-open' ]  = '<article id="post-{{postid}}" class="{{mimic-block-type}} post-{{postid}} post type-{{posttype}} status-{{poststatus}} format-{{postformat}} hentry {{categories}} {{tags}} {{pzclasses}}">';
+      $panel_def[ 'components-close' ] = '</article>';
+      $panel_def[ 'postlink' ]         = '<a href="{{permalink}}" title="{{title}}">';
+      $panel_def[ 'header' ]           = '<header class="entry-header">{{headerinnards}}</header>';
+      $panel_def[ 'title' ]            = '<h1 class="entry-title">{{postlink}}{{title}}{{closepostlink}}</h1>';
+      $panel_def[ 'meta1' ]            = '<div class="entry-meta entry-meta1">{{meta1innards}}</div>';
+      $panel_def[ 'meta2' ]            = '<div class="entry-meta entry-meta2">{{meta2innards}}</div>';
+      $panel_def[ 'meta3' ]            = '<div class="entry-meta entry-meta3">{{meta3innards}}</div>';
+      $panel_def[ 'datetime' ]         = '<span class="entry-date"><a href="{{permalink}}"<time class="entry-date" datetime="{{datetime}}">{{fdatetime}}</time></span></a></span>';
+      $panel_def[ 'categories' ]       = '<span class="categories-links">{{categorieslinks}}</span>';
+      $panel_def[ 'tags' ]             = '<span class="tags-links">{{tagslinks}}</span>';
+      $panel_def[ 'author' ]           = '<span class="byline"><span class="author vcard"><a class="url fn n" href="{{authorlink}}" title="View all posts by {{authorname}}" rel="author">{{authorname}}</a></span></span>';
+      $panel_def[ 'email' ]            = '<span class="byline email"><span class="author vcard"><a class="url fn n" href="mailto:{{authoremail}}" title="Email {{authorname}}" rel="author">{{authoremail}}</a></span></span>';
+      //     $panel_def[ 'image' ]       = '<figure class="entry-thumbnail {{incontent}}">{{postlink}}<img width="{{width}}" src="{{imgsrc}}" class="attachment-post-thumbnail wp-post-image" alt="{{alttext}}">{{closepostlink}}{{captioncode}}</figure>';
+      $panel_def[ 'image' ]         = '<figure class="entry-thumbnail {{incontent}} {{centred}}">{{postlink}}{{image}}{{closelink}}{{captioncode}}</figure>';
+      $panel_def[ 'bgimage' ]       = '<figure class="entry-bgimage pzarc-bg-image {{trim-scale}}">{{bgimage}}</figure>';
+      $panel_def[ 'caption' ]       = '<figcaption class="caption">{{caption}}</figcaption>';
+      $panel_def[ 'content' ]       = ' <div class="entry-content {{nothumb}}">{{image-in-content}}{{content}}</div>';
+      $panel_def[ 'custom1' ]       = '<div class="entry-customfieldgroup entry-customfieldgroup-1">{{custom1innards}}</div>';
+      $panel_def[ 'custom2' ]       = '<div class="entry-customfieldgroup entry-customfieldgroup-2">{{custom2innards}}</div>';
+      $panel_def[ 'custom3' ]       = '<div class="entry-customfieldgroup entry-customfieldgroup-3">{{custom3innards}}</div>';
+      $panel_def[ 'cfield' ]        = '<div class="entry-customfield entry-customfield-{{cfieldname}} entry-customfield-{{cfieldnumber}}">{{cfieldcontent}}</div>';
+      $panel_def[ 'footer' ]        = '<footer class="entry-footer">{{footerinnards}}</footer>';
+      $panel_def[ 'excerpt' ]       = ' <div class="entry-excerpt {{nothumb}}">{{image-in-content}}{{excerpt}}</div>';
+      $panel_def[ 'feature' ]       = '{{feature}}';
+      $panel_def[ 'editlink' ]      = '<span class="edit-link"><a class="post-edit-link" href="{{permalink}}" title="Edit post {{title}}">Edit</a></span>';
+      $panel_def[ 'comments-link' ] = '<span class="comments-link"><a href="{{permalink}}/#comments" title="Comment on {{title}}">Comments: {{commentscount}}</a></span>';
 
 //TODO This has to be changed back once we.if we use a link instead of theget thumnail
-      //$this->panel_def[ 'image' ]        = '<img class="entry-image" src="{{image}}">';
+      //$panel_def[ 'image' ]        = '<img class="entry-image" src="{{image}}">';
       // Yes, WP themes (T13, T14 etc) actually link the date to the post, not the archive for the date. Maybe it's an SEO thing, but I'm going to remove it
-      // $this->panel_def[ 'datetime' ]      = '<span class="date"><a href="{{permalink}}" title="{{title}}" rel="bookmark"><time class="entry-date" datetime="{{datetime}}">{{fdatetime}}</time></a></span>';
+      // $panel_def[ 'datetime' ]      = '<span class="date"><a href="{{permalink}}" title="{{title}}" rel="bookmark"><time class="entry-date" datetime="{{datetime}}">{{fdatetime}}</time></a></span>';
       // oops should be using this for featured image
 
+      return $panel_def;
     }
 
 
-    public function set_data(&$post)
+    public function set_data(&$post,&$toshow)
     {
+//      var_dump(get_The_id(),$post->ID);
+      $this->toshow = $toshow;
       $this->get_title($post);
       $this->get_meta($post);
       $this->get_content($post);
@@ -278,222 +276,225 @@
 
     }
 
-    /** End of data collect */
+    /****************************************
+     * End of data collect
+     ***************************************/
 
-    /** Begin rendering */
+    /****************************************
+    * Begin rendering
+    ***************************************/
 
-    public function render_title($component, $content_type, $rsid)
+    public function render_title($component, $content_type, $panel_def, $rsid)
     {
       if ('thumb' === $this->section[ '_panels_design_title-prefix' ]) {
-        $this->panel_def[ $component ] = str_replace('{{title}}', $this->data[ 'title' ][ 'thumb' ] . '<span class="pzarc-title-wrap">' . $this->data[ 'title' ][ 'title' ] . '</span>', $this->panel_def[ $component ]);
+        $panel_def[ $component ] = str_replace('{{title}}', $this->data[ 'title' ][ 'thumb' ] . '<span class="pzarc-title-wrap">' . $this->data[ 'title' ][ 'title' ] . '</span>', $panel_def[ $component ]);
       } else {
-        $this->panel_def[ $component ] = str_replace('{{title}}', $this->data[ 'title' ][ 'title' ], $this->panel_def[ $component ]);
+        $panel_def[ $component ] = str_replace('{{title}}', $this->data[ 'title' ][ 'title' ], $panel_def[ $component ]);
       }
       if ($this->section[ '_panels_design_link-titles' ]) {
-        $this->panel_def[ $component ] = str_replace('{{postlink}}', $this->panel_def[ 'postlink' ], $this->panel_def[ $component ]);
-        $this->panel_def[ $component ] = str_replace('{{closepostlink}}', '</a>', $this->panel_def[ $component ]);
+        $panel_def[ $component ] = str_replace('{{postlink}}', $panel_def[ 'postlink' ], $panel_def[ $component ]);
+        $panel_def[ $component ] = str_replace('{{closepostlink}}', '</a>', $panel_def[ $component ]);
       }
 
-      return self::render_generics($component,$content_type);
+      return self::render_generics($component,$content_type,$panel_def[ $component ]);
 
     }
 
     public function render_meta(
-        $component, $content_type, $rsid
+        $component, $content_type, $panel_def, $rsid
     ) {
-      $this->panel_def[ $component ] = str_replace('{{datetime}}', $this->data[ 'meta' ][ 'datetime' ], $this->panel_def[ $component ]);
-      $this->panel_def[ $component ] = str_replace('{{fdatetime}}', $this->data[ 'meta' ][ 'fdatetime' ], $this->panel_def[ $component ]);
+      $panel_def[ $component ] = str_replace('{{datetime}}', $this->data[ 'meta' ][ 'datetime' ], $panel_def[ $component ]);
+      $panel_def[ $component ] = str_replace('{{fdatetime}}', $this->data[ 'meta' ][ 'fdatetime' ], $panel_def[ $component ]);
       if (empty($this->section[ '_panels_design_excluded-authors' ]) || !in_array(get_the_author_meta('ID'), $this->section[ '_panels_design_excluded-authors' ])) {
         //Remove text indicators
-        $this->panel_def[ $component ] = str_replace('//', '', $this->panel_def[ $component ]);
-        $this->panel_def[ $component ] = str_replace('{{authorname}}', $this->data[ 'meta' ][ 'authorname' ], $this->panel_def[ $component ]);
-        $this->panel_def[ $component ] = str_replace('{{authorlink}}', $this->data[ 'meta' ][ 'authorlink' ], $this->panel_def[ $component ]);
-        $this->panel_def[ $component ] = str_replace('{{authoremail}}', $this->data[ 'meta' ][ 'authoremail' ], $this->panel_def[ $component ]);
+        $panel_def[ $component ] = str_replace('//', '', $panel_def[ $component ]);
+        $panel_def[ $component ] = str_replace('{{authorname}}', $this->data[ 'meta' ][ 'authorname' ], $panel_def[ $component ]);
+        $panel_def[ $component ] = str_replace('{{authorlink}}', $this->data[ 'meta' ][ 'authorlink' ], $panel_def[ $component ]);
+        $panel_def[ $component ] = str_replace('{{authoremail}}', $this->data[ 'meta' ][ 'authoremail' ], $panel_def[ $component ]);
       } else {
         // Removed unused text and indicators
-        $this->panel_def[ $component ] = preg_replace("/\\/\\/(.)*\\/\\//uiUm", "", $this->panel_def[ $component ]);
+        $panel_def[ $component ] = preg_replace("/\\/\\/(.)*\\/\\//uiUm", "", $panel_def[ $component ]);
       }
-      $this->panel_def[ $component ] = str_replace('{{categories}}', $this->data[ 'meta' ][ 'categories' ], $this->panel_def[ $component ]);
-      $this->panel_def[ $component ] = str_replace('{{categorieslinks}}', $this->data[ 'meta' ][ 'categorieslinks' ], $this->panel_def[ $component ]);
-      $this->panel_def[ $component ] = str_replace('{{tags}}', $this->data[ 'meta' ][ 'tags' ], $this->panel_def[ $component ]);
-      $this->panel_def[ $component ] = str_replace('{{tagslinks}}', $this->data[ 'meta' ][ 'tagslinks' ], $this->panel_def[ $component ]);
-      $this->panel_def[ $component ] = str_replace('{{commentslink}}', $this->panel_def[ 'comments-link' ], $this->panel_def[ $component ]);
-      $this->panel_def[ $component ] = str_replace('{{commentscount}}', $this->data[ 'meta' ][ 'comments-count' ], $this->panel_def[ $component ]);
-      $this->panel_def[ $component ] = str_replace('{{editlink}}', $this->panel_def[ 'editlink' ], $this->panel_def[ $component ]);
+      $panel_def[ $component ] = str_replace('{{categories}}', $this->data[ 'meta' ][ 'categories' ], $panel_def[ $component ]);
+      $panel_def[ $component ] = str_replace('{{categorieslinks}}', $this->data[ 'meta' ][ 'categorieslinks' ], $panel_def[ $component ]);
+      $panel_def[ $component ] = str_replace('{{tags}}', $this->data[ 'meta' ][ 'tags' ], $panel_def[ $component ]);
+      $panel_def[ $component ] = str_replace('{{tagslinks}}', $this->data[ 'meta' ][ 'tagslinks' ], $panel_def[ $component ]);
+      $panel_def[ $component ] = str_replace('{{commentslink}}', $panel_def[ 'comments-link' ], $panel_def[ $component ]);
+      $panel_def[ $component ] = str_replace('{{commentscount}}', $this->data[ 'meta' ][ 'comments-count' ], $panel_def[ $component ]);
+      $panel_def[ $component ] = str_replace('{{editlink}}', $panel_def[ 'editlink' ], $panel_def[ $component ]);
       foreach ($this->data[ 'meta' ][ 'custom' ] as $meta) {
         if (!empty($meta)) {
-          $this->panel_def[ $component ] = str_replace('{{ct:' . key($meta) . '}}', $meta[ key($meta) ], $this->panel_def[ $component ]);
+          $panel_def[ $component ] = str_replace('{{ct:' . key($meta) . '}}', $meta[ key($meta) ], $panel_def[ $component ]);
         }
       }
 
-      return self::render_generics($component,$content_type);
+      return self::render_generics($component,$content_type,$panel_def[ $component ]);
     }
 
-    public function render_content($component, $content_type, $rsid)
+    public function render_content($component, $content_type, $panel_def, $rsid)
     {
-      $this->panel_def[ $component ] = str_replace('{{content}}', $this->data[ 'content' ], $this->panel_def[ $component ]);
+      $panel_def[ $component ] = str_replace('{{content}}', $this->data[ 'content' ], $panel_def[ $component ]);
       if ($this->section[ '_panels_design_thumb-position' ] != 'none') {
         if (!empty($this->data[ 'image' ][ 'image' ])) {
-          $this->panel_def[ $component ] = str_replace('{{image-in-content}}', $this->panel_def[ 'image' ], $this->panel_def[ $component ]);
+          $panel_def[ $component ] = str_replace('{{image-in-content}}', $panel_def[ 'image' ], $panel_def[ $component ]);
 
           if ($this->section[ '_panels_design_image-captions' ]) {
-            $this->panel_def[ $component ] = str_replace('{{captioncode}}', '<span class="caption">' . $this->data[ 'image' ][ 'caption' ] . '</span>', $this->panel_def[ $component ]);
+            $panel_def[ $component ] = str_replace('{{captioncode}}', '<span class="caption">' . $this->data[ 'image' ][ 'caption' ] . '</span>', $panel_def[ $component ]);
           }
 
-          $this->panel_def[ $component ] = str_replace('{{image}}', $this->data[ 'image' ][ 'image' ], $this->panel_def[ $component ]);
-          $this->panel_def[ $component ] = str_replace('{{incontent}}', 'in-content-thumb', $this->panel_def[ $component ]);
+          $panel_def[ $component ] = str_replace('{{image}}', $this->data[ 'image' ][ 'image' ], $panel_def[ $component ]);
+          $panel_def[ $component ] = str_replace('{{incontent}}', 'in-content-thumb', $panel_def[ $component ]);
 
           if ('none' !== $this->section[ '_panels_design_link-image' ]) {
             $link = '';
             switch ($this->section[ '_panels_design_link-image' ]) {
               case 'page':
               case 'url':
-                $link = ('url' === $this->section[ '_panels_design_link-image' ]) ? '<a href="' . $this->section[ '_panels_design_link-image-url' ] . '" title="' . $this->section[ '_panels_design_link-image-url-tooltip' ] . '">' : $this->panel_def[ 'postlink' ];
+                $link = ('url' === $this->section[ '_panels_design_link-image' ]) ? '<a href="' . $this->section[ '_panels_design_link-image-url' ] . '" title="' . $this->section[ '_panels_design_link-image-url-tooltip' ] . '">' : $panel_def[ 'postlink' ];
                 break;
               case 'original':
                 $link = '<a class="lightbox lightbox-' . $rsid . '" href="' . $this->data[ 'image' ][ 'original' ][ 0 ] . '" title="' . $this->data[ 'title' ][ 'title' ] . '">';
                 break;
             }
-            $this->panel_def[ $component ] = str_replace('{{postlink}}', $link, $this->panel_def[ $component ]);
-            $this->panel_def[ $component ] = str_replace('{{closepostlink}}', '</a>', $this->panel_def[ $component ]);
+            $panel_def[ $component ] = str_replace('{{postlink}}', $link, $panel_def[ $component ]);
+            $panel_def[ $component ] = str_replace('{{closepostlink}}', '</a>', $panel_def[ $component ]);
           }
 
 
 //          if ($this->section[ '_panels_design_link-image' ]) {
-//            $this->panel_def[ $component ] = str_replace('{{postlink}}', $this->panel_def[ 'postlink' ], $this->panel_def[ $component ]);
-//            $this->panel_def[ $component ] = str_replace('{{closepostlink}}', '</a>', $this->panel_def[ $component ]);
+//            $panel_def[ $component ] = str_replace('{{postlink}}', $panel_def[ 'postlink' ], $panel_def[ $component ]);
+//            $panel_def[ $component ] = str_replace('{{closepostlink}}', '</a>', $panel_def[ $component ]);
 //          }
         }
       }
       if (empty($this->data[ 'image' ][ 'image' ]) && $this->section[ '_panels_design_maximize-content' ]) {
         //TODO: Add an option to set if width spreads
-        $this->panel_def[ $component ] = str_replace('{{nothumb}}', 'nothumb', $this->panel_def[ $component ]);
+        $panel_def[ $component ] = str_replace('{{nothumb}}', 'nothumb', $panel_def[ $component ]);
       }
 
-      return self::render_generics($component,$content_type);
+      return self::render_generics($component,$content_type,$panel_def[ $component ]);
     }
 
-    public function render_excerpt($component, $content_type, $rsid)
+    public function render_excerpt($component, $content_type, $panel_def, $rsid)
     {
-      $this->panel_def[ $component ] = str_replace('{{excerpt}}', $this->data[ 'excerpt' ], $this->panel_def[ $component ]);
+      $panel_def[ $component ] = str_replace('{{excerpt}}', $this->data[ 'excerpt' ], $panel_def[ $component ]);
 
       if ($this->section[ '_panels_design_thumb-position' ] != 'none') {
         if (!empty($this->data[ 'image' ][ 'image' ]) && !empty($this->section[ '_panels_design_thumb-position' ])) {
-          $this->panel_def[ $component ] = str_replace('{{image-in-content}}', $this->panel_def[ 'image' ], $this->panel_def[ $component ]);
+          $panel_def[ $component ] = str_replace('{{image-in-content}}', $panel_def[ 'image' ], $panel_def[ $component ]);
 
           if ($this->section[ '_panels_design_image-captions' ]) {
-            $this->panel_def[ $component ] = str_replace('{{captioncode}}', '<span class="caption">' . $this->data[ 'image' ][ 'caption' ] . '</span>', $this->panel_def[ $component ]);
+            $panel_def[ $component ] = str_replace('{{captioncode}}', '<span class="caption">' . $this->data[ 'image' ][ 'caption' ] . '</span>', $panel_def[ $component ]);
           }
 
-          $this->panel_def[ $component ] = str_replace('{{image}}', $this->data[ 'image' ][ 'image' ], $this->panel_def[ $component ]);
-          $this->panel_def[ $component ] = str_replace('{{incontent}}', 'in-content-thumb', $this->panel_def[ $component ]);
+          $panel_def[ $component ] = str_replace('{{image}}', $this->data[ 'image' ][ 'image' ], $panel_def[ $component ]);
+          $panel_def[ $component ] = str_replace('{{incontent}}', 'in-content-thumb', $panel_def[ $component ]);
 
           if ('none' !== $this->section[ '_panels_design_link-image' ]) {
             $link = '';
             switch ($this->section[ '_panels_design_link-image' ]) {
               case 'page':
               case 'url':
-                $link = ('url' === $this->section[ '_panels_design_link-image' ]) ? '<a href="' . $this->section[ '_panels_design_link-image-url' ] . '" title="' . $this->section[ '_panels_design_link-image-url-tooltip' ] . '">' : $this->panel_def[ 'postlink' ];
+                $link = ('url' === $this->section[ '_panels_design_link-image' ]) ? '<a href="' . $this->section[ '_panels_design_link-image-url' ] . '" title="' . $this->section[ '_panels_design_link-image-url-tooltip' ] . '">' : $panel_def[ 'postlink' ];
                 break;
               case 'original':
                 $link = '<a class="lightbox lightbox-' . $rsid . '" href="' . $this->data[ 'image' ][ 'original' ][ 0 ] . '" title="' . $this->data[ 'title' ][ 'title' ] . '">';
                 break;
             }
-            $this->panel_def[ $component ] = str_replace('{{postlink}}', $link, $this->panel_def[ $component ]);
-            $this->panel_def[ $component ] = str_replace('{{closepostlink}}', '</a>', $this->panel_def[ $component ]);
+            $panel_def[ $component ] = str_replace('{{postlink}}', $link, $panel_def[ $component ]);
+            $panel_def[ $component ] = str_replace('{{closepostlink}}', '</a>', $panel_def[ $component ]);
           }
         }
       }
       if (empty($this->data[ 'image' ][ 'image' ]) && $this->section[ '_panels_design_maximize-content' ]) {
         //TODO: Add an option to set if width spreads
-        $this->panel_def[ $component ] = str_replace('{{nothumb}}', 'nothumb', $this->panel_def[ $component ]);
+        $panel_def[ $component ] = str_replace('{{nothumb}}', 'nothumb', $panel_def[ $component ]);
       }
 
 //_panels_design_thumb-position
 
 
-      return self::render_generics($component,$content_type);
+      return self::render_generics($component,$content_type,$panel_def[ $component ]);
     }
 
-    public function render_image($component, $content_type, $rsid)
+    public function render_image($component, $content_type, $panel_def, $rsid)
     {
       if ('none' !== $this->section[ '_panels_design_link-image' ]) {
         $link = '';
         switch ($this->section[ '_panels_design_link-image' ]) {
           case 'page':
           case 'url':
-            $link = ('url' === $this->section[ '_panels_design_link-image' ]) ? '<a href="' . $this->section[ '_panels_design_link-image-url' ] . '" title="' . $this->section[ '_panels_design_link-image-url-tooltip' ] . '">' : $this->panel_def[ 'postlink' ];
+            $link = ('url' === $this->section[ '_panels_design_link-image' ]) ? '<a href="' . $this->section[ '_panels_design_link-image-url' ] . '" title="' . $this->section[ '_panels_design_link-image-url-tooltip' ] . '">' : $panel_def[ 'postlink' ];
             break;
           case 'original':
             $link = '<a class="lightbox lightbox-' . $rsid . '" href="' . $this->data[ 'image' ][ 'original' ][ 0 ] . '" title="' . $this->data[ 'title' ][ 'title' ] . '">';
             break;
         }
-        $this->panel_def[ $component ] = str_replace('{{postlink}}', $link, $this->panel_def[ $component ]);
-        $this->panel_def[ $component ] = str_replace('{{closepostlink}}', '</a>', $this->panel_def[ $component ]);
+        $panel_def[ $component ] = str_replace('{{postlink}}', $link, $panel_def[ $component ]);
+        $panel_def[ $component ] = str_replace('{{closepostlink}}', '</a>', $panel_def[ $component ]);
       }
 
 
       if ($this->section[ '_panels_design_image-captions' ]) {
-        $caption                       = str_replace('{{caption}}', $this->data[ 'image' ][ 'caption' ], $this->panel_def[ 'caption' ]);
-        $this->panel_def[ $component ] = str_replace('{{captioncode}}', $caption, $this->panel_def[ $component ]);
+        $caption                       = str_replace('{{caption}}', $this->data[ 'image' ][ 'caption' ], $panel_def[ 'caption' ]);
+        $panel_def[ $component ] = str_replace('{{captioncode}}', $caption, $panel_def[ $component ]);
       }
 
-      $this->panel_def[ $component ] = str_replace('{{image}}', $this->data[ 'image' ][ 'image' ], $this->panel_def[ $component ]);
+      $panel_def[ $component ] = str_replace('{{image}}', $this->data[ 'image' ][ 'image' ], $panel_def[ $component ]);
 
       if (!empty($this->section[ '_panels_design_centre-image' ])) {
-        $this->panel_def[ $component ] = str_replace('{{centred}}', 'centred', $this->panel_def[ $component ]);
+        $panel_def[ $component ] = str_replace('{{centred}}', 'centred', $panel_def[ $component ]);
       }
 
 
       if (empty($this->data[ 'image' ][ 'image' ])) {
-        $this->panel_def[ $component ] = '';
+        $panel_def[ $component ] = '';
       }
 
 //      foreach ($this->data[ 'image' ] as $key => $value) {
 //        $template[ $type ] = str_replace('{{' . $key . '}}', $value, $template[ $type ]);
 //      }
 
-      return self::render_generics($component,$content_type);
+      return self::render_generics($component,$content_type,$panel_def[ $component ]);
     }
 
 
-    public function render_bgimage($component, $content_type, $rsid)
+    public function render_bgimage($component, $content_type, $panel_def, $rsid)
     {
-      $this->panel_def[ $component ] = str_replace('{{bgimage}}', $this->data[ 'bgimage' ][ 'thumb' ], $this->panel_def[ $component ]);
-      $this->panel_def[ $component ] = str_replace('{{trim-scale}}', ' ' . $this->section[ '_panels_design_background-position' ] . ' ' . $this->section[ '_panels_design_background-image-resize' ], $this->panel_def[ $component ]);
+      $panel_def[ $component ] = str_replace('{{bgimage}}', $this->data[ 'bgimage' ][ 'thumb' ], $panel_def[ $component ]);
+      $panel_def[ $component ] = str_replace('{{trim-scale}}', ' ' . $this->section[ '_panels_design_background-position' ] . ' ' . $this->section[ '_panels_design_background-image-resize' ], $panel_def[ $component ]);
 
       if ('none' !== $this->section[ '_panels_design_link-bgimage' ]) {
         $link = '';
         switch ($this->section[ '_panels_design_link-bgimage' ]) {
           case 'page':
           case 'url':
-            $link = ('url' === $this->section[ '_panels_design_link-bgimage' ]) ? '<a href="' . $this->section[ '_panels_design_link-bgimage-url' ] . '" title="' . $this->section[ '_panels_design_link-bgimage-url-tooltip' ] . '">' : $this->panel_def[ 'postlink' ];
+            $link = ('url' === $this->section[ '_panels_design_link-bgimage' ]) ? '<a href="' . $this->section[ '_panels_design_link-bgimage-url' ] . '" title="' . $this->section[ '_panels_design_link-bgimage-url-tooltip' ] . '">' : $panel_def[ 'postlink' ];
             break;
           case 'original':
             $link = '<a class="lightbox lightbox-' . $rsid . '" href="' . $this->data[ 'bgimage' ][ 'original' ][ 0 ] . '" title="' . $this->data[ 'title' ][ 'title' ] . '">';
             break;
         }
-        $this->panel_def[ $component ] = str_replace('{{postlink}}', $link, $this->panel_def[ $component ]);
-        $this->panel_def[ $component ] = str_replace('{{closepostlink}}', '</a>', $this->panel_def[ $component ]);
+        $panel_def[ $component ] = str_replace('{{postlink}}', $link, $panel_def[ $component ]);
+        $panel_def[ $component ] = str_replace('{{closepostlink}}', '</a>', $panel_def[ $component ]);
       }
 
-      return self::render_generics($component,$content_type);
+      return self::render_generics($component,$content_type,$panel_def[ $component ]);
     }
 
-    public function render_customflds($component, $content_type, $rsid)
+    public function render_customflds($component, $content_type, $panel_def, $rsid)
     {
     }
 
-    public function render_wrapper($component, $content_type, $rsid)
+    public function render_wrapper($component, $content_type, $panel_def, $rsid)
     {
-      $this->panel_def[ $component ] = str_replace('{{mimic-block-type}}', $this->data[ 'inherit-hw-block-type' ], $this->panel_def[ $component ]);
+      $panel_def[ $component ] = str_replace('{{mimic-block-type}}', $this->data[ 'inherit-hw-block-type' ], $panel_def[ $component ]);
 
-      return self::render_generics($component,$content_type);
+      return self::render_generics($component,$content_type,$panel_def[ $component ]);
     }
 
-    public function render_generics($component,$source)
+    public function render_generics($component,$source,$line)
     {
-      $line =  $this->panel_def[ $component ];
       //todo: make sure source is actual WP valid eg. soemthings might be attachment
       // Do any generic replacements
       $line      = str_replace('{{postid}}', $this->data[ 'postid' ], $line);
