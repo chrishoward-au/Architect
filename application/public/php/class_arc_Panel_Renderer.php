@@ -6,7 +6,7 @@
     public $toshow = array();
     public $section = array();
     public $thumb_id;
-    public $focal_point=array();
+    public $focal_point = array();
 
     public function __construct()
     {
@@ -91,9 +91,10 @@
     }
 
 
-    public function set_data(&$post,&$toshow)
+    public function set_data(&$post, &$toshow,&$section)
     {
 //      var_dump(get_The_id(),$post->ID);
+      $this->section = $section;
       $this->toshow = $toshow;
       $this->get_title($post);
       $this->get_meta($post);
@@ -101,7 +102,8 @@
       $this->get_excerpt($post);
       $this->get_image($post);
       $this->get_bgimage($post);
-      $this->get_customflds($post);
+      $this->get_custom($post);
+      $this->get_miscellanary($post);
     }
 
     /**
@@ -111,14 +113,13 @@
     {
       /** TITLE */
       if ($this->toshow[ 'title' ][ 'show' ]) {
-        $this->data[ 'title' ]['title'] = get_the_title();
+        $this->data[ 'title' ][ 'title' ] = get_the_title();
       }
 
     }
 
     public function get_meta(&$post)
     {
-      $postmeta = get_post_meta(get_the_ID());
       /** META */
       if ($this->toshow[ 'meta1' ][ 'show' ] ||
           $this->toshow[ 'meta2' ][ 'show' ] ||
@@ -242,7 +243,7 @@
       $this->data[ 'bgimage' ][ 'original' ] = wp_get_attachment_image_src($this->thumb_id, 'full');
     }
 
-    public function get_customflds(&$post)
+    public function get_custom(&$post)
     {
       /** CUSTOM FIELDS **/
       $cfcount = $this->section[ '_panels_design_custom-fields-count' ];
@@ -276,13 +277,17 @@
 
     }
 
+    public function get_miscellanary(&$post){
+      global $_architect_options;
+      $this->data[ 'inherit-hw-block-type' ] = (!empty($_architect_options[ 'architect_hw-content-class' ]) ? 'block-type-content ' : '');
+   }
     /****************************************
      * End of data collect
      ***************************************/
 
     /****************************************
-    * Begin rendering
-    ***************************************/
+     * Begin rendering
+     ***************************************/
 
     public function render_title($component, $content_type, $panel_def, $rsid)
     {
@@ -296,13 +301,12 @@
         $panel_def[ $component ] = str_replace('{{closepostlink}}', '</a>', $panel_def[ $component ]);
       }
 
-      return self::render_generics($component,$content_type,$panel_def[ $component ]);
+      return self::render_generics($component, $content_type, $panel_def[ $component ]);
 
     }
 
-    public function render_meta(
-        $component, $content_type, $panel_def, $rsid
-    ) {
+    public function render_meta($component, $content_type, $panel_def, $rsid)
+    {
       $panel_def[ $component ] = str_replace('{{datetime}}', $this->data[ 'meta' ][ 'datetime' ], $panel_def[ $component ]);
       $panel_def[ $component ] = str_replace('{{fdatetime}}', $this->data[ 'meta' ][ 'fdatetime' ], $panel_def[ $component ]);
       if (empty($this->section[ '_panels_design_excluded-authors' ]) || !in_array(get_the_author_meta('ID'), $this->section[ '_panels_design_excluded-authors' ])) {
@@ -328,7 +332,7 @@
         }
       }
 
-      return self::render_generics($component,$content_type,$panel_def[ $component ]);
+      return self::render_generics($component, $content_type, $panel_def[ $component ]);
     }
 
     public function render_content($component, $content_type, $panel_def, $rsid)
@@ -372,7 +376,7 @@
         $panel_def[ $component ] = str_replace('{{nothumb}}', 'nothumb', $panel_def[ $component ]);
       }
 
-      return self::render_generics($component,$content_type,$panel_def[ $component ]);
+      return self::render_generics($component, $content_type, $panel_def[ $component ]);
     }
 
     public function render_excerpt($component, $content_type, $panel_def, $rsid)
@@ -414,7 +418,7 @@
 //_panels_design_thumb-position
 
 
-      return self::render_generics($component,$content_type,$panel_def[ $component ]);
+      return self::render_generics($component, $content_type, $panel_def[ $component ]);
     }
 
     public function render_image($component, $content_type, $panel_def, $rsid)
@@ -436,7 +440,7 @@
 
 
       if ($this->section[ '_panels_design_image-captions' ]) {
-        $caption                       = str_replace('{{caption}}', $this->data[ 'image' ][ 'caption' ], $panel_def[ 'caption' ]);
+        $caption                 = str_replace('{{caption}}', $this->data[ 'image' ][ 'caption' ], $panel_def[ 'caption' ]);
         $panel_def[ $component ] = str_replace('{{captioncode}}', $caption, $panel_def[ $component ]);
       }
 
@@ -455,7 +459,7 @@
 //        $template[ $type ] = str_replace('{{' . $key . '}}', $value, $template[ $type ]);
 //      }
 
-      return self::render_generics($component,$content_type,$panel_def[ $component ]);
+      return self::render_generics($component, $content_type, $panel_def[ $component ]);
     }
 
 
@@ -479,21 +483,87 @@
         $panel_def[ $component ] = str_replace('{{closepostlink}}', '</a>', $panel_def[ $component ]);
       }
 
-      return self::render_generics($component,$content_type,$panel_def[ $component ]);
+      return self::render_generics($component, $content_type, $panel_def[ $component ]);
     }
 
-    public function render_customflds($component, $content_type, $panel_def, $rsid)
+    public function render_custom($component, $content_type, $panel_def, $rsid)
     {
+      // Show each custom field in this group
+      if (!empty($data[ 'cfield' ])) {
+        $panel_def_cfield = $panel_def[ 'cfield' ];
+        $build_field      = '';
+        $i                = 1;
+        foreach ($data[ 'cfield' ] as $k => $v) {
+
+          if ($v[ 'group' ] === $component && !empty($v[ 'value' ])) {
+            switch ($v[ 'field-type' ]) {
+
+              case 'image':
+                $content = '<img src="' . bfi_thumb($v[ 'value' ]) . '">';
+                break;
+
+              case 'date':
+                if (is_numeric($v[ 'value' ])) {
+                  $content = date($v[ 'date-format' ], $v[ 'value' ]);
+                } else {
+                  $content = $v[ 'value' ];
+                }
+                $content = '<time datetime="' . $content . '">' . $content . '</time>';
+                break;
+
+              case 'text':
+              default:
+                $content = $v[ 'value' ];
+                break;
+            }
+
+            $prefix_image = '';
+            $suffix_image = '';
+            if (!empty($v[ 'prefix-image' ])) {
+              $prefix_image = '<img src="' . $v[ 'prefix-image' ] . '" class="pzarc-presuff-image prefix-image">';
+            }
+            if (!empty($v[ 'suffix-image' ])) {
+              $suffix_image = '<img src="' . $v[ 'suffix-image' ] . '" class="pzarc-presuff-image suffix-image">';
+            }
+
+
+            $content = $prefix_image . $v[ 'prefix-text' ] . $content . $v[ 'suffix-text' ] . $suffix_image;
+
+            if (!empty($v[ 'link-field' ])) {
+              $content = '<a href="' . $v[ 'link-field' ] . '">' . $content . '</a>';
+            }
+
+            if ('none' !== $v[ 'wrapper-tag' ]) {
+              $class_name = !empty($v[ 'class-name' ]) ? ' class="' . $v[ 'class-name' ] . '"' : null;
+              $content    = '<' . $v[ 'wrapper-tag' ] . $class_name . '>' . $content . '</' . $v[ 'wrapper-tag' ] . '>';
+            }
+
+            // TODO: Should apply filters here?
+            $panel_def_cfield = str_replace('{{cfieldcontent}}', $content, $panel_def_cfield);
+            $panel_def_cfield = str_replace('{{cfieldname}}', $v[ 'name' ], $panel_def_cfield);
+            $panel_def_cfield = str_replace('{{cfieldnumber}}', $k, $panel_def_cfield);
+
+            $build_field .= $panel_def_cfield;
+          }
+          $panel_def_cfield = $panel_def[ 'cfield' ];
+        }
+        $panel_def[ $component ] = str_replace('{{' . $component . 'innards}}', $build_field, $panel_def[ $component ]);
+      } else {
+        $panel_def[ $component ] = '';
+      }
+
+      return self::render_generics($component, $content_type, $panel_def[ $component ]);
+
     }
 
     public function render_wrapper($component, $content_type, $panel_def, $rsid)
     {
       $panel_def[ $component ] = str_replace('{{mimic-block-type}}', $this->data[ 'inherit-hw-block-type' ], $panel_def[ $component ]);
 
-      return self::render_generics($component,$content_type,$panel_def[ $component ]);
+      return self::render_generics($component, $content_type, $panel_def[ $component ]);
     }
 
-    public function render_generics($component,$source,$line)
+    public function render_generics($component, $source, $line)
     {
       //todo: make sure source is actual WP valid eg. soemthings might be attachment
       // Do any generic replacements
@@ -510,6 +580,7 @@
       $pzclasses .= ($this->section[ '_panels_design_components-position' ] === 'left' || $this->section[ '_panels_design_components-position' ] === 'right') ? 'vertical-content ' : '';
 
       $line = str_replace('{{pzclasses}}', $pzclasses, $line);
+
       return $line;
     }
   }

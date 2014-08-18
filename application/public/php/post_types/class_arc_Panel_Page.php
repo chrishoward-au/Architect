@@ -210,7 +210,7 @@
     }
   }
 
-  class arc_Panel_page_Wrapper extends arc_Panel_page
+  class arc_Panel_page_Wrapper extends arc_Panel_pagex
   {
     public static function render($component, $panel_def, $content_type, &$data, &$section)
     {
@@ -230,7 +230,7 @@
   /**
    * Class arc_Panel_Title
    */
-  class arc_Panel_page_Title extends arc_Panel_page
+  class arc_Panel_page_Title extends arc_Panel_pagex
   {
     /**
      * @param $component (Line type, e.g.excerpt, meta, image, title etc)
@@ -259,7 +259,7 @@
   }
 
 
-  class arc_Panel_page_Meta extends arc_Panel_page
+  class arc_Panel_page_Meta extends arc_Panel_pagex
   {
     public static function render($component, $panel_def, $content_type, &$data, &$section)
     {
@@ -297,7 +297,7 @@
   }
 
 
-  class arc_Panel_page_Image extends arc_Panel_page
+  class arc_Panel_page_Image extends arc_Panel_pagex
   {
     public static function render($component, $panel_def, $content_type, &$data, &$section)
     {
@@ -329,7 +329,7 @@
 
   }
 
-  class arc_Panel_page_bgimage extends arc_Panel_page
+  class arc_Panel_page_bgimage extends arc_Panel_pagex
   {
     public static function render($component, $panel_def, $content_type, &$data, &$section)
     {
@@ -342,7 +342,7 @@
   }
 
 
-  class arc_Panel_page_Content extends arc_Panel_page
+  class arc_Panel_page_Content extends arc_Panel_pagex
   {
     public static function render($component, $panel_def, $content_type, &$data, &$section)
     {
@@ -380,7 +380,7 @@
   }
 
 
-  class arc_Panel_page_Excerpt extends arc_Panel_page
+  class arc_Panel_page_Excerpt extends arc_Panel_pagex
   {
     /**
      * @param $component
@@ -431,7 +431,7 @@
   }
 
 
-  class arc_Panel_page_Custom extends arc_Panel_page
+  class arc_Panel_page_Custom extends arc_Panel_pagex
   {
     public static function render($component, $panel_def, $content_type, &$data, &$section)
     {

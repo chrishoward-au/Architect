@@ -284,7 +284,7 @@
     }
   }
 
-  class arc_Panel_gallery_Wrapper extends arc_Panel_gallery
+  class arc_Panel_gallery_Wrapper extends arc_Panel_galleryx
   {
     public static function render($component, $panel_def, $content_type, &$data, &$section, $rsid)
     {
@@ -304,7 +304,7 @@
   /**
    * Class arc_Panel_Title
    */
-  class arc_Panel_gallery_Title extends arc_Panel_gallery
+  class arc_Panel_gallery_Title extends arc_Panel_galleryx
   {
     /**
      * @param $component (Line type, e.g.excerpt, meta, image, title etc)
@@ -329,7 +329,7 @@
   }
 
 
-  class arc_Panel_gallery_Meta extends arc_Panel_gallery
+  class arc_Panel_gallery_Meta extends arc_Panel_galleryx
   {
     public static function render($component, $panel_def, $content_type, &$data, &$section, $rsid)
     {
@@ -361,7 +361,7 @@
   }
 
 
-  class arc_Panel_gallery_Image extends arc_Panel_gallery
+  class arc_Panel_gallery_Image extends arc_Panel_galleryx
   {
     public static function render($component, $panel_def, $content_type, &$data, &$section, $rsid)
     {
@@ -407,7 +407,7 @@
 
   }
 
-  class arc_Panel_gallery_bgimage extends arc_Panel_gallery
+  class arc_Panel_gallery_bgimage extends arc_Panel_galleryx
   {
     public static function render($component, $panel_def, $content_type, &$data, &$section, $rsid)
     {
@@ -434,7 +434,7 @@
   }
 
 
-  class arc_Panel_gallery_Content extends arc_Panel_gallery
+  class arc_Panel_gallery_Content extends arc_Panel_galleryx
   {
     public static function render($component, $panel_def, $content_type, &$data, &$section, $rsid)
     {
@@ -467,7 +467,7 @@
   }
 
 
-  class arc_Panel_gallery_Excerpt extends arc_Panel_gallery
+  class arc_Panel_gallery_Excerpt extends arc_Panel_galleryx
   {
     /**
      * @param $component
@@ -515,7 +515,7 @@
   }
 
 
-  class arc_Panel_gallery_Custom extends arc_Panel_gallery
+  class arc_Panel_gallery_Custom extends arc_Panel_galleryx
   {
     public static function render($component, $panel_def, $content_type, &$data, &$section, $rsid)
     {
