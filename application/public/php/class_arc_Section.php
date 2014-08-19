@@ -173,7 +173,11 @@
       $odds_evens_bp = ($panel_count++ % 2 ? ' odd-blueprint-panel' : ' even-blueprint-panel');
 
 
-      echo '<div class="pzarc-panel pzarc-panel_' . $settings[ '_panels_settings_short-name' ] . ' pzarc-panel-no_' . $panel_number . $this->slider[ 'slide' ] . $image_in_bg . $odds_evens_bp . $odds_evens_section . '" >';
+      // Add standard identifying WP classes to the whole panel
+      $postmeta_classes = ' '.$panel_class->data['posttype'].' type-'.$panel_class->data['posttype'].' status-'.$panel_class->data['poststatus'].' format-'.$panel_class->data['postformat'].' ';
+
+      echo '<div class="pzarc-panel pzarc-panel_' . $settings[ '_panels_settings_short-name' ] . ' pzarc-panel-no_' . $panel_number . $this->slider[ 'slide' ] . $image_in_bg . $odds_evens_bp . $odds_evens_section .$postmeta_classes. '" >';
+
       // Although this loks back to front, this is determining flow compared to components
 
       if ($settings[ '_panels_design_background-position' ] != 'none' && ($settings[ '_panels_design_components-position' ] == 'bottom' || $settings[ '_panels_design_components-position' ] == 'right')) {

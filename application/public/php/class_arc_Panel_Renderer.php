@@ -53,7 +53,7 @@
     public function panel_def()
     {
       //TODO: Need to get a way to always wrap components in pzarc-compenents div.Problem is...dev has to create definition correctly.
-      $panel_def[ 'components-open' ]  = '<article id="post-{{postid}}" class="{{mimic-block-type}} post-{{postid}} post type-{{posttype}} status-{{poststatus}} format-{{postformat}} hentry {{categories}} {{tags}} {{pzclasses}}">';
+      $panel_def[ 'components-open' ]  = '<article id="post-{{postid}}" class="{{mimic-block-type}} post-{{postid}} {{posttype}} type-{{posttype}} status-{{poststatus}} format-{{postformat}} hentry {{categories}} {{tags}} {{pzclasses}}">';
       $panel_def[ 'components-close' ] = '</article>';
       $panel_def[ 'postlink' ]         = '<a href="{{permalink}}" title="{{title}}">';
       $panel_def[ 'header' ]           = '<header class="entry-header">{{headerinnards}}</header>';
@@ -230,11 +230,6 @@
               && ($this->section[ '_panels_design_components-position' ] == 'top' || $this->section[ '_panels_design_components-position' ] == 'left'))
           || ($this->section[ '_panels_design_background-position' ] != 'none'
               && ($this->section[ '_panels_design_components-position' ] == 'bottom' || $this->section[ '_panels_design_components-position' ] == 'right'));
-      $this->data[ 'postid' ]      = get_the_ID();
-      $this->data[ 'poststatus' ]  = get_post_status();
-      $this->data[ 'permalink' ]   = get_the_permalink();
-      $post_format                 = get_post_format();
-      $this->data [ 'postformat' ] = (empty($post_format) ? 'standard' : $post_format);
 
       // Need to setup for break points.
 
@@ -295,6 +290,14 @@
     {
       global $_architect_options;
       $this->data[ 'inherit-hw-block-type' ] = (!empty($_architect_options[ 'architect_hw-content-class' ]) ? 'block-type-content ' : '');
+
+      $this->data[ 'postid' ]      = get_the_ID();
+      $this->data[ 'poststatus' ]  = get_post_status();
+      $this->data[ 'posttype' ]  = get_post_type();
+      $this->data[ 'permalink' ]   = get_the_permalink();
+      $post_format                 = get_post_format();
+      $this->data [ 'postformat' ] = (empty($post_format) ? 'standard' : $post_format);
+
     }
     /****************************************
      * End of data collect
