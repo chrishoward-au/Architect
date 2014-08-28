@@ -57,17 +57,19 @@ jQuery( document ).ready( function ()
 
 //            console.log( i, this.value, this.selected );
 
-            if ( i < 1 || this.value === 'help' )
+            console.log(i,this.value);
+            if ( i < 1 )
             {return;}
+            var offset = 0;
 
             if ( this.selected )
             {
                 console.log( i, this.value );
-                jQuery( ".redux-sidebar li#" + (i + 1 ) + "_box_redux-_architect-metabox-content-selections_section_group_li" ).show(); //.trigger( "click" );
+                jQuery( ".redux-sidebar li#" + (i + offset ) + "_box_redux-_architect-metabox-content-selections_section_group_li" ).show(); //.trigger( "click" );
             }
             else
             {
-                jQuery( ".redux-sidebar li#" + (i + 1) + "_box_redux-_architect-metabox-content-selections_section_group_li" ).hide();
+                jQuery( ".redux-sidebar li#" + (i + offset) + "_box_redux-_architect-metabox-content-selections_section_group_li" ).hide();
             }
         } );
 
@@ -77,19 +79,21 @@ jQuery( document ).ready( function ()
 
     // Change content tab on content source change
 //    jQuery( "select#_blueprints_content-source-select" ).on( 'click', function ()
-    jQuery( "select#_blueprints_content-source-select" ).on( 'click', function ()
+    jQuery( "select#_blueprints_content-source-select" ).on( 'change', function ()
     {
         pzarc_show_hide_content_tabs( jQuery( this ).find( "option:selected" ).text().trim() );
     } );
 
     function pzarc_show_hide_content_tabs( tab )
     {
-        var a = ["Defaults", "Posts", "Pages", "Snippets", "Galleries", "Slides", "Custom Post Types"];
+        // These must match the names exactly
+        var a = ["Defaults", "Posts", "Pages", "Snippets", "Galleries", "Slides", "Dummy content", "Custom Post Types"];
+        var offset =1;
         for ( var i = 1; i <= a.length; i++ )
         {
-            jQuery( ".redux-sidebar li#" + (i - 1 + 2) + "_box_redux-_architect-metabox-content-selections_section_group_li" ).hide();
+          jQuery( ".redux-sidebar li#" + (i - 1 + offset) + "_box_redux-_architect-metabox-content-selections_section_group_li" ).hide();
         }
-        jQuery( ".redux-sidebar li#" + (a.indexOf( tab ) + 2) + "_box_redux-_architect-metabox-content-selections_section_group_li" ).show();//.find( "a" ).trigger( "click" );
+        jQuery( ".redux-sidebar li#" + (a.indexOf( tab ) + offset) + "_box_redux-_architect-metabox-content-selections_section_group_li" ).show();//.find( "a" ).trigger( "click" );
     }
 
     /********************************************************************************************

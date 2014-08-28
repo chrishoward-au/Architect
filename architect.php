@@ -25,11 +25,10 @@
    */
   /*
   TODO: Help info: Use shortcodes for things like galleries and slideshows - things that are stylised by you. Use template tag for displaying posts
-  TODO: Make sure it can display comments!!
+  TODO: Make sure it can display comments!! Though... is this necessary?
   TODO: Make it so users can create their own panels and blueprints, but can't edit other users' unless an admin. Thus users could create their own for shortcodes!
   TODO: Add a metabox to pages that lets you pick blueprints to prepend or postend to pages. How hard could it be? Plug into hook? Is there a pre-loop hook? loop_start, loop_end
   TODO: Make sure urls are https/http generic
-  TODO: Make sure WP multi compatible
   TODO: Allow ems and % for responsive dimensions
   TODO: OOPS! Need a method to rereate css if it goes missing!
   TODO: Add Snippets post type to PizazzWP Libs

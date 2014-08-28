@@ -487,17 +487,17 @@
                 //TODO: Write acomprehensive little help dialog here
                 'validate' => 'not_empty'
             ),
-                        array(
-                            'id'      => $prefix . 'blueprint-width',
-                            'type'    => 'dimensions',
-                            //               'mode'    => array('width' => true, 'height' => false),
-                            'units'   => array('%', 'px'),
-                            'width'   => true,
-                            'height'  => false,
-                            'title'   => __('Blueprint max width', 'pzarchitect'),
-                            'default' => array('width' => '100', 'units' => '%'),
-                            'subtitle'    => 'Set a max width to stop spillage when the container is larger than you want the Blueprint to be.'
-                        ),
+            array(
+                'id'       => $prefix . 'blueprint-width',
+                'type'     => 'dimensions',
+                //               'mode'    => array('width' => true, 'height' => false),
+                'units'    => array('%', 'px'),
+                'width'    => true,
+                'height'   => false,
+                'title'    => __('Blueprint max width', 'pzarchitect'),
+                'default'  => array('width' => '100', 'units' => '%'),
+                'subtitle' => 'Set a max width to stop spillage when the container is larger than you want the Blueprint to be.'
+            ),
             array(
                 'title'   => 'Page title',
                 'id'      => $prefix . 'page-title',
@@ -1036,7 +1036,7 @@
                 'id'    => $prefix . 'help-layout',
                 'type'  => 'info',
                 'class' => 'plain',
-                'desc'  => 'Architect: v'.PZARC_VERSION.'<p>
+                'desc'  => 'Architect: v' . PZARC_VERSION . '<p>
                               Fiant nulla claritatem processus vulputate quarta. Anteposuerit eodem habent parum id et. Notare mutationem facilisi nulla ut facer.
                               </p>
 
@@ -1139,6 +1139,7 @@
                   'snippets' => 'Snippets',
                   'gallery'  => 'Galleries',
                   'slides'   => 'Slides',
+                  'dummy'    => 'Dummy content',
                   //                          'images'      => 'Specific Images',
                   //                          'wpgallery'   => 'WP Gallery from post',
                   //                          'galleryplus' => 'GalleryPlus',
@@ -1194,6 +1195,234 @@
             ),
         )
     );
+
+    /** DEFAULTS */
+    $prefix      = '_content_defaults_';
+    $sections[ ] = array(
+        'title'      => 'Default content',
+        'icon_class' => 'icon-large',
+        'icon'       => 'el-icon-check',
+        'fields'     => array(
+            array(
+                'title'    => __('Default Content', 'pzarchitect'),
+                'id'       => $prefix . 'defaults-heading',
+                'type'     => 'info',
+                'style'    => 'success',
+                'subtitle' => 'When Default is selected, Architect will use whatever the default content for the page. e.g. the home page, category archives, search results etc'
+            )
+        )
+    );
+    /** POSTS */
+    $prefix      = '_content_posts_';
+    $sections[ ] = array(
+        'title'      => 'Posts',
+        'icon_class' => 'icon-large',
+        'icon'       => 'el-icon-list',
+        'fields'     => array(
+            array(
+                'title'   => __('Specific posts', 'pzarchitect'),
+                'id'      => $prefix . 'specific-posts',
+                'type'    => 'select',
+                'select2' => array('allowClear' => true),
+                'data'    => 'posts',
+                'multi'   => true
+            ),
+        )
+    );
+
+    /**  PAGES */
+    $prefix      = '_content_pages_';
+    $sections[ ] = array(
+        'title'      => 'Pages',
+        'icon_class' => 'icon-large',
+        'icon'       => 'el-icon-align-justify',
+        'fields'     => array(
+            array(
+                'title'   => __('Specific pages', 'pzarchitect'),
+                'id'      => $prefix . 'specific-pages',
+                'type'    => 'select',
+                'select2' => array('allowClear' => true),
+                'data'    => 'pages',
+                'multi'   => true
+            ),
+        )
+    );
+
+
+    /** SNIPPETS */
+    $prefix      = '_content_snippets_';
+    $sections[ ] = array(
+        'title'      => 'Snippets',
+        'icon_class' => 'icon-large',
+        'icon'       => 'el-icon-file',
+        'fields'     => array(
+            array(
+                'title'   => __('Specific snippets', 'pzarchitect'),
+                'id'      => $prefix . 'specific-snippets',
+                'type'    => 'select',
+                'select2' => array('allowClear' => true),
+                'options' => pzarc_get_posts_in_post_type('pz_snippets'),
+                'multi'   => true,
+                'default' => array()
+            ),
+        )
+    );
+
+    /** GALLERIES */
+    $prefix      = '_content_galleries_';
+    $sections[ ] = array(
+        'title'      => 'Galleries',
+        'icon_class' => 'icon-large',
+        'icon'       => 'el-icon-picture',
+        'desc'       => __('Did you know, you can set any Blueprint with Galleries as the content source to override the layout of the WordPress gallery shortcode? Look in Architect Options.', 'pzarchitect'),
+        'fields'     => array(
+            array(
+                'title'   => __('Gallery source', 'pzarchitect'),
+                'id'      => $prefix . 'gallery-source',
+                'type'    => 'button_set',
+                'default' => 'images',
+                'hint'    => array('content' => __('Can be overriden by shortcode e.g. [pzarc blueprint="mytemplate" ids="1,2,3,4,5"]', 'pzarchitect')),
+                'options' => array(
+                    'images'      => 'Image Gallery',
+                    'ids'         => 'Specific IDs',
+                    'wpgallery'   => 'WP Galleries',
+                    'postimages'  => 'Post images',
+                    'galleryplus' => 'GalleryPlus',
+                    'nggallery'   => 'NextGen',
+                )
+            ),
+            array(
+                'title'    => __('Image Gallery', 'pzarchitect'),
+                'id'       => $prefix . 'specific-images',
+                'type'     => 'gallery',
+                'required' => array($prefix . 'gallery-source', 'equals', 'images'),
+            ),
+            array(
+                'title'    => __('Specific IDs', 'pzarchitect'),
+                'id'       => $prefix . 'specific-ids',
+                'type'     => 'text',
+                'subtitle' => 'Enter a comma separated list of image ids',
+                'required' => array($prefix . 'gallery-source', 'equals', 'ids')
+            ),
+            array(
+                'title'    => __('WP Gallery', 'pzarchitect'),
+                'id'       => $prefix . 'wp-post-gallery',
+                'type'     => 'select',
+                'data'     => 'callback',
+                'args'     => array('pzarc_get_wp_galleries'),
+                'subtitle' => 'Select a post with a gallery',
+                'required' => array($prefix . 'gallery-source', 'equals', 'wpgallery')
+            ),
+            array(
+                'title'    => __('Post iamges', 'pzarchitect'),
+                'id'       => $prefix . 'wp-post-images',
+                'type'     => 'select',
+                'data'     => 'callback',
+                'args'     => array('pzarc_get_wp_galleries'),
+                'subtitle' => 'Select a post with images',
+                'required' => array($prefix . 'gallery-source', 'equals', 'wpgallery')
+            ),
+            array(
+                'title'    => __('GalleryPlus', 'pzarchitect'),
+                'id'       => $prefix . 'galleryplus',
+                'type'     => 'select',
+                'data'     => 'callback',
+                'args'     => array('pzarc_get_gp_galleries'),
+                'subtitle' => 'Select a GalleryPlus gallery',
+                'required' => array($prefix . 'gallery-source', 'equals', 'galleryplus')
+            ),
+            array(
+                'title'    => __('NextGen Gallery', 'pzarchitect'),
+                'id'       => $prefix . 'nggallery',
+                'type'     => 'select',
+                'data'     => 'callback',
+                'args'     => array('pzarc_get_ng_galleries'),
+                'subtitle' => (class_exists('P_Photocrati_NextGen') ? 'Enter NGG gallery name to use'
+                    : 'NextGen is not running on this site'),
+                'required' => array($prefix . 'gallery-source', 'equals', 'nggallery')
+            ),
+            array(
+                'title'    => __('Click behaviour', 'pzarchitect'),
+                'id'       => $prefix . 'click-behavioury',
+                'type'     => 'switch',
+                'default'  => true,
+                'subtitle' => __('Open image in lightbox when clicked', 'pzarchitect')
+            )
+        )
+    );
+
+    /** Slides */
+    $slides_obj = get_posts(array('post_type' => 'pzsp-slides'));
+    //var_dump($slides_obj);
+    $slides = array();
+    foreach ($slides_obj as $key => $value) {
+      $slides[ $value->ID ] = $value->post_title;
+    }
+    $prefix      = '_content_slides_';
+    $sections[ ] = array(
+        'title'      => 'Slides',
+        'icon_class' => 'icon-large',
+        'icon'       => 'el-icon-video',
+        'fields'     => array(
+            array(
+                'title'   => __('Specific pages', 'pzarchitect'),
+                'id'      => $prefix . 'specific-pages',
+                'type'    => 'select',
+                'select2' => array('allowClear' => true),
+                'multi'   => true,
+                'options' => $slides
+            ),
+        )
+    );
+    /** DUMMY */
+    $prefix      = '_content_dummy_';
+    $sections[ ] = array(
+        'title'      => 'Dummy content',
+        'icon_class' => 'icon-large',
+        'icon'       => 'el-icon-asterisk',
+        'fields'     => array(
+            array(
+                'title'    => __('Dummy Content', 'pzarchitect'),
+                'id'       => $prefix . 'dummy-heading',
+                'type'     => 'info',
+                'style'    => 'normal',
+                'subtitle' => __('The dummy content is automagically generated for you to help plan and test design when the site has no content.', 'pzarchitect')
+            ),
+            array(
+                'title'    => __('Number of dummy records', 'pzarchitect'),
+                'id'       => $prefix . 'dummy-record-count',
+                'type'     => 'spinner',
+                'default'  => 12,
+                'min'      => 1,
+                'max'      => 99,
+                'subtitle' => __('Number of dummy records to simulate', 'pzarchitect'),
+            )
+        )
+    );
+
+    /** Custom post types */
+    // This doesn't work in Redux MBs
+    // $pzcustom_post_types = get_post_types(array('_builtin' => false, 'public' => true), 'names')
+    $prefix      = '_content_cpt_';
+    $sections[ ] = array(
+        'title'      => 'Custom Post Types',
+        'icon_class' => 'icon-large',
+        'icon'       => 'el-icon-wrench',
+        'fields'     => array(
+            array(
+                'title'   => __('Select custom post type', 'pzarchitect'),
+                'id'      => $prefix . 'custom-post-type',
+                'type'    => 'select',
+                'select2' => array('allowClear' => true),
+                //                'data' => 'post_types',
+                //'options' => $pzcustom_post_types
+                'data'    => 'callback',
+                //               'args'  => array('_builtin' => false,'public'=>true)
+                'args'    => array('pzarc_get_custom_post_types'),
+            ),
+        )
+    );
+
     /** GENERAL  Filters*/
     $prefix      = '_content_general_';
     $sections[ ] = array(
@@ -1349,207 +1578,7 @@
         )
     );
 
-    /** DEFAULTS */
-    $prefix      = '_content_defaults_';
-    $sections[ ] = array(
-        'title'      => 'Default content',
-        'icon_class' => 'icon-large',
-        'icon'       => 'el-icon-check',
-        'fields'     => array(
-            array(
-                'title'    => __('Default Content', 'pzarchitect'),
-                'id'       => $prefix . 'defaults-heading',
-                'type'     => 'info',
-                'style'    => 'success',
-                'subtitle' => 'When Default is selected, Architect will use whatever the default content for the page. e.g. the home page, category archives, search results etc'
-            )
-        )
-    );
-    /** POSTS */
-    $prefix      = '_content_posts_';
-    $sections[ ] = array(
-        'title'      => 'Posts',
-        'icon_class' => 'icon-large',
-        'icon'       => 'el-icon-list',
-        'fields'     => array(
-            array(
-                'title'   => __('Specific posts', 'pzarchitect'),
-                'id'      => $prefix . 'specific-posts',
-                'type'    => 'select',
-                'select2' => array('allowClear' => true),
-                'data'    => 'posts',
-                'multi'   => true
-            ),
-        )
-    );
-
-    /**  PAGES */
-    $prefix      = '_content_pages_';
-    $sections[ ] = array(
-        'title'      => 'Pages',
-        'icon_class' => 'icon-large',
-        'icon'       => 'el-icon-align-justify',
-        'fields'     => array(
-            array(
-                'title'   => __('Specific pages', 'pzarchitect'),
-                'id'      => $prefix . 'specific-pages',
-                'type'    => 'select',
-                'select2' => array('allowClear' => true),
-                'data'    => 'pages',
-                'multi'   => true
-            ),
-        )
-    );
-
-
-    /** SNIPPETS */
-    $prefix      = '_content_snippets_';
-    $sections[ ] = array(
-        'title'      => 'Snippets',
-        'icon_class' => 'icon-large',
-        'icon'       => 'el-icon-file',
-        'fields'     => array(
-            array(
-                'title'   => __('Specific snippets', 'pzarchitect'),
-                'id'      => $prefix . 'specific-snippets',
-                'type'    => 'select',
-                'select2' => array('allowClear' => true),
-                'options'    => pzarc_get_posts_in_post_type('pz_snippets'),
-                'multi'   => true,
-                'default' => array()
-            ),
-        )
-    );
-
-    /** GALLERIES */
-    $prefix      = '_content_galleries_';
-    $sections[ ] = array(
-        'title'      => 'Galleries',
-        'icon_class' => 'icon-large',
-        'icon'       => 'el-icon-picture',
-        'desc'       => __('Did you know, you can set any Blueprint with Galleries as the content source to override the layout of the WordPress gallery shortcode? Look in Architect Options.', 'pzarchitect'),
-        'fields'     => array(
-            array(
-                'title'   => __('Gallery source', 'pzarchitect'),
-                'id'      => $prefix . 'gallery-source',
-                'type'    => 'button_set',
-                'default' => 'images',
-                'hint'    => array('content' => __('Can be overriden by shortcode e.g. [pzarc blueprint="mytemplate" ids="1,2,3,4,5"]', 'pzarchitect')),
-                'options' => array(
-                    'images'      => 'Image Gallery',
-                    'ids'         => 'Specific IDs',
-                    'wpgallery'   => 'WP Galleries',
-                    'postimages'  => 'Post images',
-                    'galleryplus' => 'GalleryPlus',
-                    'nggallery'   => 'NextGen',
-                )
-            ),
-            array(
-                'title'    => __('Image Gallery', 'pzarchitect'),
-                'id'       => $prefix . 'specific-images',
-                'type'     => 'gallery',
-                'required' => array($prefix . 'gallery-source', 'equals', 'images'),
-            ),
-            array(
-                'title'    => __('Specific IDs', 'pzarchitect'),
-                'id'       => $prefix . 'specific-ids',
-                'type'     => 'text',
-                'subtitle' => 'Enter a comma separated list of image ids',
-                'required' => array($prefix . 'gallery-source', 'equals', 'ids')
-            ),
-            array(
-                'title'    => __('WP Gallery', 'pzarchitect'),
-                'id'       => $prefix . 'wp-post-gallery',
-                'type'     => 'select',
-                'data'     => 'callback',
-                'args'     => array('pzarc_get_wp_galleries'),
-                'subtitle' => 'Select a post with a gallery',
-                'required' => array($prefix . 'gallery-source', 'equals', 'wpgallery')
-            ),
-            array(
-                'title'    => __('Post iamges', 'pzarchitect'),
-                'id'       => $prefix . 'wp-post-images',
-                'type'     => 'select',
-                'data'     => 'callback',
-                'args'     => array('pzarc_get_wp_galleries'),
-                'subtitle' => 'Select a post with images',
-                'required' => array($prefix . 'gallery-source', 'equals', 'wpgallery')
-            ),
-            array(
-                'title'    => __('GalleryPlus', 'pzarchitect'),
-                'id'       => $prefix . 'galleryplus',
-                'type'     => 'select',
-                'data'     => 'callback',
-                'args'     => array('pzarc_get_gp_galleries'),
-                'subtitle' => 'Select a GalleryPlus gallery',
-                'required' => array($prefix . 'gallery-source', 'equals', 'galleryplus')
-            ),
-            array(
-                'title'    => __('NextGen Gallery', 'pzarchitect'),
-                'id'       => $prefix . 'nggallery',
-                'type'     => 'select',
-                'data'     => 'callback',
-                'args'     => array('pzarc_get_ng_galleries'),
-                'subtitle' => (class_exists('P_Photocrati_NextGen') ? 'Enter NGG gallery name to use'
-                    : 'NextGen is not running on this site'),
-                'required' => array($prefix . 'gallery-source', 'equals', 'nggallery')
-            ),
-            array(
-                'title'    => __('Click behaviour', 'pzarchitect'),
-                'id'       => $prefix . 'click-behavioury',
-                'type'     => 'switch',
-                'default'  => true,
-                'subtitle' => __('Open image in lightbox when clicked', 'pzarchitect')
-            )
-        )
-    );
-
-    /** Slides */
-    $slides_obj = get_posts(array('post_type' => 'pzsp-slides'));
-    //var_dump($slides_obj);
-    $slides = array();
-    foreach ($slides_obj as $key => $value) {
-      $slides[ $value->ID ] = $value->post_title;
-    }
-    $prefix      = '_content_slides_';
-    $sections[ ] = array(
-        'title'      => 'Slides',
-        'icon_class' => 'icon-large',
-        'icon'       => 'el-icon-video',
-        'fields'     => array(
-            array(
-                'title'   => __('Specific pages', 'pzarchitect'),
-                'id'      => $prefix . 'specific-pages',
-                'type'    => 'select',
-                'select2' => array('allowClear' => true),
-                'multi'   => true,
-                'options' => $slides
-            ),
-        )
-    );
-
-    /** Custom post types */
-    // This doesn't work in Redux MBs
-    // $pzcustom_post_types = get_post_types(array('_builtin' => false, 'public' => true), 'names')
-    $prefix      = '_content_cpt_';
-    $sections[ ] = array(
-        'title'      => 'Custom Post Types',
-        'icon_class' => 'icon-large',
-        'icon'       => 'el-icon-wrench',
-        'fields'     => array(
-            array(
-                'title'   => __('Select custom post type', 'pzarchitect'),
-                'id'      => $prefix . 'custom-post-type',
-                'type'    => 'select',
-                'select2' => array('allowClear' => true),
-                //                'data' => 'post_types',
-                //'options' => $pzcustom_post_types
-                'data'    => 'callback',
-                //               'args'  => array('_builtin' => false,'public'=>true)
-                'args'    => array('pzarc_get_custom_post_types'),
-            ),
-        )
-    );
+    /** HELP  */
     $prefix      = '_content_help_';
     $sections[ ] = array(
         'title'      => 'Help',
