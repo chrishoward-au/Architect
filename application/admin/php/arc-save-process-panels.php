@@ -142,6 +142,8 @@
 //              $pzarc_contents .= $class_prefix . ' .entry-thumbnail {margin-bottom: ' . $value . '%;}' . "\n";
 //              break;
 
+
+        // This is in content
         case ($key == '_panels_design_thumb-position'):
 
           if ($value != 'none') {

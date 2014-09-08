@@ -1,7 +1,7 @@
 <?php
 
   /*
-    Plugin Name: Architect - an all-in-one content display framework
+    Plugin Name: Architect - an all-in-one content layout framework
     Plugin URI: http://pizazzwp.com
     Description: Go beyond the limits of the layouts in the theme you use, to easily build any content layouts for it. Build your own content layouts in grids, tabs, sliders, galleries and more with sources like posts, pages, galleries, and custom content types. Display using shorcodes, widgets, Headway blocks, WP action hooks and template tags, and WP Gallery shortcode. Change themes without needing to rebuild your layouts!
     Version: 0.8.1.1

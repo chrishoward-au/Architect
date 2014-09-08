@@ -41,29 +41,31 @@ jQuery( document ).ready( function ()
     } );
 
 
-    jQuery( 'input[name="_architect[_panels_design_background-position]"]' ).on( 'click', function ( e )
+    // FEATURE LOCATION
+    jQuery( 'input[name="_architect[_panels_design_feature-location]"]' ).on( 'click', function ( e )
     {
         var cell_layout = jQuery.parseJSON( jQuery( 'input#_panels_design_preview-text' ).val() );
-        pzarc_update_background( cell_layout );
+        pzarc_update_feature( cell_layout );
         pzarc_update_tabs_to_show( e );
     } );
 
+    // COMPONENTS TO SHOW
     jQuery( 'fieldset#_architect-_panels_design_components-to-show input' ).change( function ( e )
     {
         var cell_layout = jQuery.parseJSON( jQuery( 'input#_panels_design_preview-text' ).val() );
-        pzarc_update_components_toshow( cell_layout, e );
+        pzarc_update_component_visibility( cell_layout, e );
         pzarc_update_tabs_to_show( e );
     } );
 
 
-    // Set position of zones
-
+    // COMPONENTS POSITION
     jQuery( 'input[name="_architect[_panels_design_components-position]"]' ).on( 'click', function (  )
     {
         var cell_layout = jQuery.parseJSON( jQuery( 'input#_panels_design_preview-text' ).val() );
         pzarc_update_component_location( cell_layout );
     } );
 
+    // PANEL HEIGHT TYPE
     jQuery( 'input[name="_architect[panels_settingds_panel-height-type]"]' ).on( 'click', function (  )
     {
        // var cell_layout = jQuery.parseJSON( jQuery( 'input#_panels_design_preview-text' ).val() );
@@ -147,11 +149,9 @@ jQuery( document ).ready( function ()
             pzarc_update_component_location( cell_layout );
             pzarc_update_components_container_width( cell_layout );
             pzarc_update_components_nudge( cell_layout );
-            pzarc_update_components_toshow( cell_layout );
             pzarc_update_component_visibility( cell_layout );
-            pzarc_update_background( cell_layout );
+//            pzarc_update_feature( cell_layout );
             pzarc_update_status( cell_layout );
-            pzarc_update_thumb_position( jQuery( "input[name='_architect[_panels_design_thumb-position]']" ).value );
         }
     } );
 
@@ -220,6 +220,7 @@ jQuery( document ).ready( function ()
                 }
             }
         } );
+        pzarc_update_feature();
         pzarc_update_status( cell_layout );
         return cell_layout;
     }
@@ -235,36 +236,71 @@ jQuery( document ).ready( function ()
     }
 
 
-    function pzarc_update_background()
+    function pzarc_update_feature()
     {
 
         /*********************
-         // Update background
+         // Update feature location
          *********************/
-        var bgPosition = 'none';
-        jQuery( 'input[name="_architect[_panels_design_background-position]"]' ).each( function ()
+        var featureLocation = 'none';
+        // Because this function is called in different ways,we reget the value of feature location
+        jQuery( 'input[name="_architect[_panels_design_feature-location]"]' ).each( function ()
         {
             if ( this.checked )
             {
-                bgPosition = this.value;
+                featureLocation = this.value;
             }
         } );
-        switch (bgPosition)
+
+        // Resets
+        jQuery( '.pzarc-draggable-excerpt img.pzarc-align' ).addClass( 'none' ).removeClass( 'left right' );
+        jQuery( '.pzarc-draggable-content img.pzarc-align' ).addClass( 'none' ).removeClass( 'left right' );
+        jQuery( '.pzarc-dropzone .pzgp-cell-image-behind' ).html( '' );
+        jQuery('.pzarc-draggable-image').hide();
+        var isFeatureOn = jQuery( 'input#_panels_design_components-to-show-buttonsetimage' ).prop('checked');
+        if (!isFeatureOn) {
+            return;
+        }
+
+
+        switch (featureLocation)
         {
-            case 'fill':
+
+            case ('fill'):
                 jQuery( '.pzarc-dropzone .pzgp-cell-image-behind' ).html( '<img src="' + plugin_url + '/shared/assets/images/sample-image.jpg"/>' );
                 jQuery( '.pzarc-dropzone .pzgp-cell-image-behind' ).css( {
                     'left': '0',
-                    top: '0',
-                    right: '',
-                    bottom: ''
+                    'top': '0',
+                    'right': '',
+                    'bottom': '',
+                    'width':'100%',
+                    'height':'auto'
                 } );
-                jQuery( '.pzarc-dropzone .pzgp-cell-image-behind img' ).css( {
-                    'height': '300px',
-                    'width': ''
-                } );
+                // jQuery( '.pzarc-dropzone .pzgp-cell-image-behind img' ).css( {
+                //     'height': '300px',
+                //     'width': ''
+                // } );
+
+                // TODO: Update image width to 100%?
                 break;
-            case 'align':
+
+            case 'components':
+        jQuery('.pzarc-draggable-image').show();
+                break;
+
+            case 'content-left':
+                jQuery( '.pzarc-draggable-excerpt img.pzarc-align' ).removeClass( 'right none' ).addClass( 'left' );
+
+                jQuery( '.pzarc-draggable-content img.pzarc-align' ).removeClass( 'right none' ).addClass( 'left' );
+                break;
+
+            case 'content-right':
+                jQuery( '.pzarc-draggable-excerpt img.pzarc-align' ).removeClass( 'left none' ).addClass( 'right' );
+                jQuery( '.pzarc-draggable-content img.pzarc-align' ).removeClass( 'left none' ).addClass( 'right' );
+                break;
+
+            case 'float':
+            /// TODO: Work out how to make before or after components group/
                 jQuery( '.pzarc-dropzone .pzgp-cell-image-behind' ).html( '<img src="' + plugin_url + 'shared/assets/images/sample-image.jpg"/>' );
                 var zonesWidth = jQuery( '.pzarc-content-area' ).width();
                 var zonesHeight = jQuery( '.pzarc-content-area' ).height();
@@ -281,33 +317,37 @@ jQuery( document ).ready( function ()
                 {
                     case 'left':
                         jQuery( '.pzarc-dropzone .pzgp-cell-image-behind img' ).css( {
-                            'height': '300px',
-                            'width': '',
+                            'height': 'auto',
+                            'width': '100%',
                             'left': ''
                         } );
                         jQuery( '.pzarc-dropzone .pzgp-cell-image-behind' ).css( {
+                            'width': (400-zonesWidth) + 'px',
                             'left': zonesWidth + 'px',
                             'right': '',
                             'top': '',
                             'bottom': ''
                         } );
                         break;
+
                     case 'right':
                         jQuery( '.pzarc-dropzone .pzgp-cell-image-behind img' ).css( {
-                            'height': '300px',
-                            'width': '',
-                            'left': zonesWidth + 'px'
+                            'height': 'auto',
+                            'width': '100%',
+                            'left': ''
                         } );
                         jQuery( '.pzarc-dropzone .pzgp-cell-image-behind' ).css( {
+                            'width': (400-zonesWidth) + 'px',
                             'right': zonesWidth + 'px',
                             'left': '',
                             'top': '',
                             'bottom': ''
                         } );
                         break;
+
                     case 'top':
                         jQuery( '.pzarc-dropzone .pzgp-cell-image-behind img' ).css( {
-                            'width': '400px',
+                            'width': '100%',
                             'height': '',
                             'left': ''
                         } );
@@ -315,12 +355,14 @@ jQuery( document ).ready( function ()
                             'top': zonesHeight + 'px',
                             'right': '',
                             'left': '',
-                            'bottom': ''
+                            'bottom': '',
+                            'width':'100%'
                         } );
                         break;
+
                     case 'bottom':
                         jQuery( '.pzarc-dropzone .pzgp-cell-image-behind img' ).css( {
-                            'width': '400px',
+                            'width': '100%',
                             'height': '',
                             'left': ''
                         } );
@@ -328,7 +370,8 @@ jQuery( document ).ready( function ()
                             'bottom': zonesHeight + 'px',
                             'right': '',
                             'top': '0',
-                            'left': ''
+                            'left': '',
+                            'width':'100%'
                         } );
                         break;
                 }
@@ -388,7 +431,7 @@ jQuery( document ).ready( function ()
                 } );
                 break;
         }
-        pzarc_update_background( cell_layout );
+        pzarc_update_feature( cell_layout );
     }
 
     function pzarc_update_components_container_width(  )
@@ -438,34 +481,6 @@ jQuery( document ).ready( function ()
         }
     }
 
-    function pzarc_update_components_toshow( cell_layout )
-    {
-        pzarc_update_component_visibility( cell_layout );
-    }
-
-    function pzarc_update_thumb_position( buttonClicked )
-    {
-        if ( buttonClicked === 'left' )
-        {
-            jQuery( '.pzarc-draggable-excerpt img.pzarc-align' ).removeClass( 'right none' ).addClass( 'left' );
-
-            jQuery( '.pzarc-draggable-content img.pzarc-align' ).removeClass( 'right none' ).addClass( 'left' );
-        }
-        else if ( buttonClicked === 'right' )
-        {
-            jQuery( '.pzarc-draggable-excerpt img.pzarc-align' ).removeClass( 'left none' ).addClass( 'right' );
-
-            jQuery( '.pzarc-draggable-content img.pzarc-align' ).removeClass( 'left none' ).addClass( 'right' );
-        }
-        else
-        {
-            jQuery( '.pzarc-draggable-excerpt img.pzarc-align' ).addClass( 'none' ).removeClass( 'left right' );
-
-            jQuery( '.pzarc-draggable-content img.pzarc-align' ).addClass( 'none' ).removeClass( 'left right' );
-        }
-
-    }
-
 
     /**
      * Update tabs to show
@@ -498,13 +513,13 @@ jQuery( document ).ready( function ()
                     jQuery( 'input#_panels_design_components-to-show-buttonsetexcerpt:checked' ).length === 1);
                     jQuery( '#3_box_redux-_architect-metabox-panels-design_section_group_li' ).toggle( tab_status );
                     break;
-//                case 'image':
-//
-//                    tab_status = (
-//                    jQuery( 'input#_panels_design_components-to-show-buttonsetimage:checked' ).length === 1
-//                    );
-//                    jQuery( '#4_box_redux-_architect-metabox-panels-design_section_group_li' ).toggle( tab_status );
-//                    break;
+               case 'image':
+
+                   tab_status = (
+                   jQuery( 'input#_panels_design_components-to-show-buttonsetimage:checked' ).length === 1
+                   );
+                   jQuery( '#4_box_redux-_architect-metabox-panels-design_section_group_li' ).toggle( tab_status );
+                   break;
                 case 'custom1':
                 case 'custom2':
                 case 'custom3':

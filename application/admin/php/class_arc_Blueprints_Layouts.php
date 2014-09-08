@@ -487,17 +487,17 @@
                 //TODO: Write acomprehensive little help dialog here
                 'validate' => 'not_empty'
             ),
-            array(
-                'id'       => $prefix . 'blueprint-width',
-                'type'     => 'dimensions',
-                //               'mode'    => array('width' => true, 'height' => false),
-                'units'    => array('%', 'px'),
-                'width'    => true,
-                'height'   => false,
-                'title'    => __('Blueprint max width', 'pzarchitect'),
-                'default'  => array('width' => '100', 'units' => '%'),
-                'subtitle' => 'Set a max width to stop spillage when the container is larger than you want the Blueprint to be.'
-            ),
+                        array(
+                            'id'      => $prefix . 'blueprint-width',
+                            'type'    => 'dimensions',
+                            //               'mode'    => array('width' => true, 'height' => false),
+                            'units'   => array('%', 'px'),
+                            'width'   => true,
+                            'height'  => false,
+                            'title'   => __('Blueprint max width', 'pzarchitect'),
+                            'default' => array('width' => '100', 'units' => '%'),
+                            'subtitle'    => 'Set a max width to stop spillage when the container is larger than you want the Blueprint to be.'
+                        ),
             array(
                 'title'   => 'Page title',
                 'id'      => $prefix . 'page-title',
@@ -1036,7 +1036,7 @@
                 'id'    => $prefix . 'help-layout',
                 'type'  => 'info',
                 'class' => 'plain',
-                'desc'  => 'Architect: v' . PZARC_VERSION . '<p>
+                'desc'  => 'Architect: v'.PZARC_VERSION.'<p>
                               Fiant nulla claritatem processus vulputate quarta. Anteposuerit eodem habent parum id et. Notare mutationem facilisi nulla ut facer.
                               </p>
 
@@ -1195,6 +1195,160 @@
             ),
         )
     );
+    /** GENERAL  Filters*/
+    $prefix      = '_content_general_';
+    $sections[ ] = array(
+        'title'      => __('Filters', 'pzarchitect'),
+        'icon_class' => 'icon-large',
+        'icon'       => 'el-icon-filter',
+        'fields'     => array(
+            array(
+                'title'  => __('Categories', 'pzarchitect'),
+                'id'     => $prefix . 'categories-heading-start',
+                'type'   => 'section',
+                'class'  => ' heading',
+                'indent' => true
+            ),
+            array(
+                'title'   => __('Include categories', 'pzarchitect'),
+                'id'      => $prefix . 'inc-cats',
+                'type'    => 'select',
+                'select2' => array('allowClear' => true),
+                //                'wpqv'    => 'category__in',
+                'data'    => 'category',
+                'multi'   => true
+            ),
+            array(
+                'title'   => __('In ANY or ALL categories', 'pzarchitect'),
+                'id'      => $prefix . 'all-cats',
+                'type'    => 'button_set',
+                'options' => array('any' => 'Any', 'all' => 'All'),
+                //               'wpqv'    => 'category__and',
+                'default' => 'any',
+            ),
+            array(
+                'title'   => __('Exclude categories', 'pzarchitect'),
+                'id'      => $prefix . 'exc-cats',
+                'type'    => 'select',
+                'select2' => array('allowClear' => true),
+                //                'wpqv'  => 'category__not_in',
+                'data'    => 'category',
+                'multi'   => true
+            ),
+            array(
+                'title'    => __('Include sub-categories on archives', 'pzarchitect'),
+                'id'       => $prefix . 'sub-cats',
+                'type'     => 'switch',
+                'on'       => 'Yes',
+                'off'      => 'No',
+                'default'  => false,
+                'subtitle' => 'This requires a specified post type, not Defaults'
+            ),
+            array(
+                'id'     => $prefix . 'categories-section-end',
+                'type'   => 'section',
+                'indent' => false
+            ),
+            array(
+                'title'  => __('Tags', 'pzarchitect'),
+                'id'     => $prefix . 'tags-section-start',
+                'type'   => 'section',
+                'class'  => ' heading',
+                'indent' => true
+            ),
+            array(
+                'title' => __('Tags', 'pzarchitect'),
+                'id'    => $prefix . 'inc-tags',
+                'type'  => 'select',
+                //              'select2' => array('allowClear' => true),
+                'data'  => 'tags',
+                'multi' => true
+            ),
+            array(
+                'title'   => __('Exclude tags', 'pzarchitect'),
+                'id'      => $prefix . 'exc-tags',
+                'type'    => 'select',
+                'select2' => array('allowClear' => true),
+                'data'    => 'tags',
+                'multi'   => true
+            ),
+            array(
+                'id'     => $prefix . 'tags-section-end',
+                'type'   => 'section',
+                'indent' => false
+            ),
+            array(
+                'title'  => __('Custom taxonomies', 'pzarchitect'),
+                'id'     => $prefix . 'custom-taxonomies-section-start',
+                'type'   => 'section',
+                'class'  => ' heading',
+                'indent' => true
+            ),
+            // TODO: Add a loop to display all custom taxonomies
+            // foreach($taxonomies as $taxonomy ){}
+            array(
+                'title' => __('Other taxonomies', 'pzarchitect'),
+                'id'    => $prefix . 'other-tax',
+                'type'  => 'select',
+                'data'  => 'taxonomies',
+                'args'  => array('_builtin' => false)
+            ),
+            array(
+                'title'    => __('Other taxonomy tags', 'pzarchitect'),
+                'id'       => $prefix . 'other-tax-tags',
+                'type'     => 'text',
+                'subtitle' => 'Enter a comma separated list of tags to filter by in the chosen custom taxonomy'
+            ),
+            array(
+                'title'   => __('Taxonomies operator', 'pzarchitect'),
+                'id'      => $prefix . 'tax-op',
+                'type'    => 'button_set',
+                'options' => array('AND' => 'All', 'IN' => 'Any', 'NOT IN' => 'None'),
+                'default' => 'IN',
+                'hint'    => array('content' => __('Display posts containing all, any or none of the taxonomies', 'pzarchitect')),
+            ),
+            //TODO: Add taxomonies to exclude
+            //    array(
+            //      'title' => __('Days to show', 'pzarchitect'),
+            //      'id' => $prefix . 'days',
+            //      'type' => 'text',
+            //      'cols'=>6,
+            //              //      'default' => 'All',
+            //    ),
+            //    array(
+            //      'title' => __('Days to show until', 'pzarchitect'),
+            //      'id' => $prefix . 'days-until',
+            //      'type' => 'text',
+            //      'cols'=>6,
+            //
+            //    ),
+            array(
+                'id'     => $prefix . 'custom-taxonomies-section-end',
+                'type'   => 'section',
+                'indent' => false
+            ),
+            array(
+                'title'  => __('Others', 'pzarchitect'),
+                'id'     => $prefix . 'other-section-start',
+                'type'   => 'section',
+                'class'  => ' heading',
+                'indent' => true
+            ),
+            array(
+                'title'   => __('Authors', 'pzarchitect'),
+                'id'      => $prefix . 'authors',
+                'type'    => 'select',
+                'data'    => 'callback',
+                'args'    => array('pzarc_get_authors'),
+                'default' => 'all',
+            ),
+            array(
+                'id'     => $prefix . 'other-section-end',
+                'type'   => 'section',
+                'indent' => false
+            ),
+        )
+    );
 
     /** DEFAULTS */
     $prefix      = '_content_defaults_';
@@ -1261,7 +1415,7 @@
                 'id'      => $prefix . 'specific-snippets',
                 'type'    => 'select',
                 'select2' => array('allowClear' => true),
-                'options' => pzarc_get_posts_in_post_type('pz_snippets'),
+                'options'    => pzarc_get_posts_in_post_type('pz_snippets'),
                 'multi'   => true,
                 'default' => array()
             ),
@@ -1422,163 +1576,6 @@
             ),
         )
     );
-
-    /** GENERAL  Filters*/
-    $prefix      = '_content_general_';
-    $sections[ ] = array(
-        'title'      => __('Filters', 'pzarchitect'),
-        'icon_class' => 'icon-large',
-        'icon'       => 'el-icon-filter',
-        'fields'     => array(
-            array(
-                'title'  => __('Categories', 'pzarchitect'),
-                'id'     => $prefix . 'categories-heading-start',
-                'type'   => 'section',
-                'class'  => ' heading',
-                'indent' => true
-            ),
-            array(
-                'title'   => __('Include categories', 'pzarchitect'),
-                'id'      => $prefix . 'inc-cats',
-                'type'    => 'select',
-                'select2' => array('allowClear' => true),
-                //                'wpqv'    => 'category__in',
-                'data'    => 'category',
-                'multi'   => true
-            ),
-            array(
-                'title'   => __('In ANY or ALL categories', 'pzarchitect'),
-                'id'      => $prefix . 'all-cats',
-                'type'    => 'button_set',
-                'options' => array('any' => 'Any', 'all' => 'All'),
-                //               'wpqv'    => 'category__and',
-                'default' => 'any',
-            ),
-            array(
-                'title'   => __('Exclude categories', 'pzarchitect'),
-                'id'      => $prefix . 'exc-cats',
-                'type'    => 'select',
-                'select2' => array('allowClear' => true),
-                //                'wpqv'  => 'category__not_in',
-                'data'    => 'category',
-                'multi'   => true
-            ),
-            array(
-                'title'    => __('Include sub-categories on archives', 'pzarchitect'),
-                'id'       => $prefix . 'sub-cats',
-                'type'     => 'switch',
-                'on'       => 'Yes',
-                'off'      => 'No',
-                'default'  => false,
-                'subtitle' => 'This requires a specified post type, not Defaults'
-            ),
-            array(
-                'id'     => $prefix . 'categories-section-end',
-                'type'   => 'section',
-                'indent' => false
-            ),
-            array(
-                'title'  => __('Tags', 'pzarchitect'),
-                'id'     => $prefix . 'tags-section-start',
-                'type'   => 'section',
-                'class'  => ' heading',
-                'indent' => true
-            ),
-            array(
-                'title' => __('Tags', 'pzarchitect'),
-                'id'    => $prefix . 'inc-tags',
-                'type'  => 'select',
-                //              'select2' => array('allowClear' => true),
-                'data'  => 'tags',
-                'multi' => true
-            ),
-            array(
-                'title'   => __('Exclude tags', 'pzarchitect'),
-                'id'      => $prefix . 'exc-tags',
-                'type'    => 'select',
-                'select2' => array('allowClear' => true),
-                'data'    => 'tags',
-                'multi'   => true
-            ),
-            array(
-                'id'     => $prefix . 'tags-section-end',
-                'type'   => 'section',
-                'indent' => false
-            ),
-            array(
-                'title'  => __('Custom taxonomies', 'pzarchitect'),
-                'id'     => $prefix . 'custom-taxonomies-section-start',
-                'type'   => 'section',
-                'class'  => ' heading',
-                'indent' => true
-            ),
-            // TODO: Add a loop to display all custom taxonomies
-            // foreach($taxonomies as $taxonomy ){}
-            array(
-                'title' => __('Other taxonomies', 'pzarchitect'),
-                'id'    => $prefix . 'other-tax',
-                'type'  => 'select',
-                'data'  => 'taxonomies',
-                'args'  => array('_builtin' => false)
-            ),
-            array(
-                'title'    => __('Other taxonomy tags', 'pzarchitect'),
-                'id'       => $prefix . 'other-tax-tags',
-                'type'     => 'text',
-                'subtitle' => 'Enter a comma separated list of tags to filter by in the chosen custom taxonomy'
-            ),
-            array(
-                'title'   => __('Taxonomies operator', 'pzarchitect'),
-                'id'      => $prefix . 'tax-op',
-                'type'    => 'button_set',
-                'options' => array('AND' => 'All', 'IN' => 'Any', 'NOT IN' => 'None'),
-                'default' => 'IN',
-                'hint'    => array('content' => __('Display posts containing all, any or none of the taxonomies', 'pzarchitect')),
-            ),
-            //TODO: Add taxomonies to exclude
-            //    array(
-            //      'title' => __('Days to show', 'pzarchitect'),
-            //      'id' => $prefix . 'days',
-            //      'type' => 'text',
-            //      'cols'=>6,
-            //              //      'default' => 'All',
-            //    ),
-            //    array(
-            //      'title' => __('Days to show until', 'pzarchitect'),
-            //      'id' => $prefix . 'days-until',
-            //      'type' => 'text',
-            //      'cols'=>6,
-            //
-            //    ),
-            array(
-                'id'     => $prefix . 'custom-taxonomies-section-end',
-                'type'   => 'section',
-                'indent' => false
-            ),
-            array(
-                'title'  => __('Others', 'pzarchitect'),
-                'id'     => $prefix . 'other-section-start',
-                'type'   => 'section',
-                'class'  => ' heading',
-                'indent' => true
-            ),
-            array(
-                'title'   => __('Authors', 'pzarchitect'),
-                'id'      => $prefix . 'authors',
-                'type'    => 'select',
-                'data'    => 'callback',
-                'args'    => array('pzarc_get_authors'),
-                'default' => 'all',
-            ),
-            array(
-                'id'     => $prefix . 'other-section-end',
-                'type'   => 'section',
-                'indent' => false
-            ),
-        )
-    );
-
-    /** HELP  */
     $prefix      = '_content_help_';
     $sections[ ] = array(
         'title'      => 'Help',

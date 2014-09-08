@@ -102,6 +102,13 @@ This is BETA software. So there are many besides these ones!
 
 == Changelog ==
 
+= 0.8.2 =
+* Updated Slick
+* *** Changing dummy content support
+* *** changing RSS feed support
+* *** Simplified featured image control
+
+
 = 0.8.1 =
 * Refactored the renderer to be extensible
 

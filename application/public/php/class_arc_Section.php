@@ -136,6 +136,14 @@
       $settings = $this->section[ 'section-panel-settings' ];
       $toshow   = json_decode($settings[ '_panels_design_preview' ], true);
       $panel_class->set_data($arc_query->post,$toshow,$settings);
+
+      // Massage toshow to be more usable here
+      foreach ($toshow as $k => $v) {
+        if ($v['show']){
+          $elements[] = array_merge(array('key'=>$k),$v);
+        }
+      }
+
       $line_out = $panel_def;
       
       // We do want to provide actions so want to use the sequence
@@ -180,7 +188,7 @@
 
       // Although this loks back to front, this is determining flow compared to components
 
-      if ($settings[ '_panels_design_background-position' ] != 'none' && ($settings[ '_panels_design_components-position' ] == 'bottom' || $settings[ '_panels_design_components-position' ] == 'right')) {
+      if ($settings[ '_panels_design_feature-position' ] === 'fill' && ($settings[ '_panels_design_components-position' ] == 'bottom' || $settings[ '_panels_design_components-position' ] == 'right')) {
 
         $line_out = $panel_class->render_bgimage('bgimage', $this->source, $panel_def,$this->rsid);
 //        echo apply_filters("arc_filter_bgimage", self::strip_unused_arctags($line_out), $data[ 'postid' ]);
@@ -190,9 +198,18 @@
 
       // Render the components open html
 
-      echo self::strip_unused_arctags($panel_class->render_wrapper('components-open', $this->source, $panel_def,$this->rsid));
-      foreach ($toshow as $component_type => $value) {
+      if ($elements[0]['key']==='image') {
+        $line_out = $panel_class->render_image('image', $this->source, $panel_def,$this->rsid);
+        if ($elements[0]['width']===100) {
+          $line_out = str_replace('{{nofloat}}','nofloat',$line_out);
+        }
+        echo apply_filters("arc_filter_bgimage", self::strip_unused_arctags($line_out), $arc_query->post->ID);
+        $elements[0]['show'] = false;
+      }
 
+      echo self::strip_unused_arctags($panel_class->render_wrapper('components-open', $this->source, $panel_def,$this->rsid));
+      foreach ($elements as $value) {
+        $component_type = $value['key'];
         if ($value[ 'show' ]) {
 
           // Send thru some data devs might find useful

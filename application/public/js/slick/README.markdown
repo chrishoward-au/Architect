@@ -25,6 +25,12 @@ Then, before your closing ```<body>``` tag add:
 <script type="text/javascript" src="//cdn.jsdelivr.net/jquery.slick/1.3.7/slick.min.js"/></script>
 ```
 
+#### Bower
+
+````
+bower install --save slick.js
+````
+
 #### Options
 
 Option | Type | Default | Description
@@ -47,7 +53,7 @@ prevArrow | string (html|jQuery selector) | object (DOM node|jQuery object) | <b
 nextArrow | string (html|jQuery selector) | object (DOM node|jQuery object) | <button type="button" class="slick-next">Next</button> | Allows you to select a node or customize the HTML for the "Next" arrow.
 infinite | boolean | true | Infinite looping
 lazyLoad | string | 'ondemand' | Accepts 'ondemand' or 'progressive' for lazy load technique
-onBeforeChange(this, index) | method | null | Before slide change callback
+onBeforeChange(this, currentIndex,targetIndex) | method | null | Before slide change callback
 onAfterChange(this, index) | method | null | After slide change callback
 onInit(this) | method | null | When Slick initializes for the first time callback
 onReInit(this) | method | null | Every time Slick (re-)initializes callback
@@ -64,6 +70,7 @@ touchThreshold | int | 5 | To advance slides, the user must swipe a length of (1
 useCSS | boolean | true | Enable/Disable CSS Transitions
 vertical | boolean | false | Vertical slide direction
 rtl | boolean | false | Change the slider's direction to become right-to-left
+waitForAnimate | boolean | true | Ignores requests to advance the slide while animating
 
 
 #### Methods
