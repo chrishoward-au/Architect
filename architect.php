@@ -36,6 +36,7 @@
   TODO: Add option to hide blueprint if it has no content. Should be able to do that with a CSS class
 
   */
+
   /* TODO: why not use a WP like methodology!
   ================================================================================
   register_cell_layout('name',$args)'
@@ -234,7 +235,7 @@
     public function register_plugin_styles()
     {
 
-      wp_register_style(PZARC_NAME . '-plugin-styles',PZARC_PLUGIN_APP_URL . '/public/css/arc-front.css');
+      wp_register_style(PZARC_NAME . '-plugin-styles', PZARC_PLUGIN_APP_URL . '/public/css/arc-front.css');
       // Need this for custom CSS in styling options
       if (file_exists(PZARC_CACHE_PATH . 'arc-dynamic-styles.css')) {
         wp_register_style(PZARC_NAME . '-dynamic-styles', PZARC_CACHE_URL . 'arc-dynamic-styles.css');
@@ -356,3 +357,33 @@
     }
   }
 
+  /** Special notices */
+  /* Display a notice that can be dismissed */
+
+  add_action('admin_notices', 'pzarc_admin_notice');
+  function pzarc_admin_notice()
+  {
+    if (current_user_can('install_plugins')) {
+
+      global $current_user;
+      $user_id = $current_user->ID;
+      /* Check that the user hasn't already clicked to ignore the message */
+      if (!get_user_meta($user_id, 'pzarc_ignore_notice')) {
+        echo '<div class="message error highlight"><p>';
+        printf(__('Apologies, but if upgrading from a version before beta v0.8.3 you will need to redo the Panels source field for each section in Blueprints. Plus, in Panels, settings for featured image and background have been merged, so you will need to check those settings too for each Panel. | <a href="%1$s">Hide Notice</a>'), '?example_nag_ignore=0');
+        echo "</p></div>";
+      }
+    }
+  }
+
+  add_action('admin_init', 'pzarc_nag_ignore');
+
+  function pzarc_nag_ignore()
+  {
+    global $current_user;
+    $user_id = $current_user->ID;
+    /* If user clicks to ignore the notice, add that to their user meta */
+    if (isset($_GET[ 'pzarc_nag_ignore' ]) && '0' == $_GET[ 'pzarc_nag_ignore' ]) {
+      add_user_meta($user_id, 'pzarc_ignore_notice', 'true', true);
+    }
+  }

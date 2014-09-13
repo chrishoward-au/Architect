@@ -1,3 +1,6 @@
+.message.error.highlight {
+  background: #fee; }
+
 .pzarc-tab-icon {
   font-size: 1.3em;
   vertical-align: -6%;
@@ -85,7 +88,7 @@ div.pzarc-dragsource {
   border: #eee solid 1px;
   min-height: 300px;
   box-sizing: border-box;
-  background: #dddddd url(bg-preview.jpg);
+  background: #ddd url(bg-preview.jpg);
   overflow: hidden;
   width: 406px;
   position: relative;
@@ -363,7 +366,7 @@ ul#pzarc-meta-nav li.pzarc-meta-tab-title.ui-state-active a {
   font-weight: bold; }
 
 ul#pzarc-meta-nav li.pzarc-meta-tab-title:hover a {
-  color: white; }
+  color: #fff; }
 
 ul#pzarc-meta-nav li.pzarc-meta-tab-title:hover {
   background: #21759b; }
