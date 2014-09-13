@@ -113,6 +113,8 @@
     public function add_panel_layout_column_content($column, $post_id)
     {
       $post_meta = get_post_meta($post_id);
+      global $post;
+
       switch ($column) {
         case '_panels_settings_short-name':
           if (isset($post_meta[ $column ])) {
@@ -842,9 +844,9 @@
 
 
     );
-    /**
+    /***************************
      * FEATURE IMAGES
-     */
+     ***************************/
     $sections[ ] = array(
         'title'      => 'Featured Images',
         'icon_class' => 'icon-large',

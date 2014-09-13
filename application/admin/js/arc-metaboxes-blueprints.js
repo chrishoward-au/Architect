@@ -60,7 +60,7 @@ jQuery( document ).ready( function ()
             console.log(i,this.value);
             if ( i < 1 )
             {return;}
-            var offset = 0;
+            var offset = 1;
 
             if ( this.selected )
             {

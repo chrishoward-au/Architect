@@ -42,6 +42,7 @@
 
   .entry-thumbnail {
     float: left;
+
     img {
       max-width: 100%;
       height: auto;
@@ -53,6 +54,12 @@
     }
     .caption {
       display: block;
+    }
+    &.pzarc-components-right {
+      float:left;
+    }
+    &.pzarc-components-left {
+      float:right;
     }
   }
 

@@ -73,7 +73,7 @@
 
       $upload_dir = wp_upload_dir();
 
-      $filename = trailingslashit($upload_dir[ 'basedir' ]) . '/cache/pizazzwp/arc/pz' . $post->post_type . '-layout-' . $postid . '-' . $pzarc_shortname . '.css';
+      $filename = trailingslashit($upload_dir[ 'basedir' ]) . '/cache/pizazzwp/arc/pz' . $post->post_type . '-layout-' . $pzarc_shortname . '.css';
 
       wp_mkdir_p(trailingslashit($upload_dir[ 'basedir' ]) . '/cache/pizazzwp/arc/');
 
@@ -265,7 +265,7 @@
       $links_css .= '}' . $nl;
     }
 
-    if (!empty($properties[ 'visited' ]) || strtolower($properties[ 'visited-deco' ]) !== 'default') {
+    if (!empty($properties[ 'visited' ]) || (isset($properties[ 'visited-deco' ]) && strtolower($properties[ 'visited-deco' ]) !== 'default')) {
       $links_css .= $classes . ' a:visited {';
       $links_css .= (!empty($properties[ 'visited' ]) ? 'color:' . $properties[ 'visited' ] . ';' : '');
       $links_css .= (strtolower($properties[ 'visited-deco' ]) !== 'default' ? 'text-decoration:' . strtolower($properties[ 'visited-deco' ]) . ';' : '');
@@ -360,6 +360,9 @@
           break;
         case 'entry-content'  === $keys['id']:
           $keys[ 'class' ] = $classes . ' .entry-content';
+          break;
+        case 'entry-excerpt'  === $keys['id']:
+          $keys[ 'class' ] = $classes . ' .entry-excerpt';
           break;
         case strpos( $keys['id'],'entry-customfield-')===0 :
           $keys[ 'class' ] = $classes . ' .'.$keys['id'];

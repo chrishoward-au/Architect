@@ -102,12 +102,13 @@ This is BETA software. So there are many besides these ones!
 
 == Changelog ==
 
-= 0.8.2 =
+= 0.8.3 =
 * Updated Slick
 * *** Changing dummy content support
 * *** changing RSS feed support
-* *** Simplified featured image control
-
+* CHANGED: Merged image and background images settings and controls into one.
+* CHANGED: Panel selector in the Blueprints is now panel slug based rather than panel ID. This is necessary for export/import to work smoothly.
+* CHANGED: Updated About page with infographic
 
 = 0.8.1 =
 * Refactored the renderer to be extensible

@@ -144,12 +144,12 @@
           'meta_key'       => '_blueprints_short-name',
           'posts_per_page' => '-1'
       );
+
       $blueprints_query = new WP_Query($query_options);
       $pzarc_return     = array();
       while ($blueprints_query->have_posts()) {
         $blueprints_query->the_post();
         $the_panel_meta = get_post_meta($blueprints_query->post->ID);
-
         $pzarc_return[ $the_panel_meta[ '_blueprints_short-name' ][ 0 ] . '##' . $blueprints_query->post->ID ] = get_the_title($blueprints_query->post->ID);
       };
       asort($pzarc_return);

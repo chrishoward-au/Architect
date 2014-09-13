@@ -10,9 +10,9 @@
   ================================================================*/
   /* This is coz transforms were preventing display of content section */ }
   .pzarchitect .message-warning {
-    background: #ffffaa;
-    color: #aaaa00;
-    border: solid 1px #aaaa00;
+    background: #ffa;
+    color: #aa0;
+    border: solid 1px #aa0;
     padding: 10px; }
   .pzarchitect .message-error {
     font-size: 16px;
@@ -112,7 +112,6 @@
       float: left; }
     .pzarchitect .pzarc-panel .entry-thumbnail {
       float: left; }
-
       .pzarchitect .pzarc-panel .entry-thumbnail img {
         max-width: 100%;
         height: auto; }
@@ -122,6 +121,10 @@
         text-align: center; }
       .pzarchitect .pzarc-panel .entry-thumbnail .caption {
         display: block; }
+      .pzarchitect .pzarc-panel .entry-thumbnail.pzarc-components-right {
+        float: left; }
+      .pzarchitect .pzarc-panel .entry-thumbnail.pzarc-components-left {
+        float: right; }
     .pzarchitect .pzarc-panel .pzarc-title-thumb {
       display: inline-block;
       float: left;
@@ -137,10 +140,6 @@
       float: left;
       vertical-align: top;
       box-sizing: border-box; }
-    
-    .pzarchitect .pzarc-panel .entry-thumbnail.nofloat {
-      float: none; }
-
     .pzarchitect .pzarc-panel .entry-thumbnail img {
       vertical-align: text-top; }
     .pzarchitect .pzarc-panel .entry-customfieldgroup {
@@ -207,7 +206,8 @@
     text-align: center;
     bottom: 5px;
     z-index: 1;
-    display: block; }
+    display: block;
+    height: 0; }
     .pzarchitect .pzarc-navigator.tabbed {
       display: -webkit-flex;
       display: flex;

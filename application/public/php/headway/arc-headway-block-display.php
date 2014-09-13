@@ -8,7 +8,7 @@
     public $id = 'architect-block';
     public $name = 'Architect';
     public $options_class = 'HeadwayArchitectBlockOptions';
-    public $description = 'Display your content any way you want';
+    public $description = 'Layout your content any way you want';
 
     /**
      * Use this to enqueue styles or scripts for your block.  This method will be execute when the block type is on

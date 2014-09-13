@@ -6,6 +6,9 @@
   bottom: 5px;
   z-index: 1;
   display:block;
+  // TODO: Verify this doesn't scramble other displays!
+  // This is a an IE fix
+  height:0;
   // width:100%; Prob better if user sets width and margins
   &.tabbed {
     display:-webkit-flex; // This gives a nice even layout and full height tabs

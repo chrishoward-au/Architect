@@ -551,6 +551,7 @@
                     }
                 }
 
+              $rewrite = array();
                 // Check to see if we are using rewrite rules
                 if ( isset( $wp_rewrite ) ) {
                     $rewrite = $wp_rewrite->wp_rewrite_rules();
@@ -747,7 +748,7 @@
                                     }
                                     //$this->parent->used_fields[$field['type']] = isset($this->parent->used_fields[$field['type']]) ? $this->parent->used_fields[$field['type']]++ : 1;
 
-                                    if ( $field['type'] == "section" && $field['indent'] == "true" ) {
+                                    if ( $field['type'] == "section" && !empty($field['indent']) && $field['indent'] == "true" ) {
                                         $field['class'] = isset( $field['class'] ) ? $field['class'] : '';
                                         $field['class'] .= "redux-section-indent-start";
                                         $this->boxes[ $key ]['sections'][ $sk ]['fields'][ $k ] = $field;
@@ -1057,7 +1058,7 @@
                                             echo '<td>' . $th . '';
                                         }
 
-                                        if ( $field['type'] == "section" && $field['indent'] == "true" ) {
+                                        if ( $field['type'] == "section" && !empty($field['indent']) && $field['indent'] == "true" ) {
                                             $field['class'] = isset( $field['class'] ) ? $field['class'] : '';
                                             $field['class'] .= "redux-section-indent-start";
                                             //$this->sections[$sk]['fields'][$k] = $field;

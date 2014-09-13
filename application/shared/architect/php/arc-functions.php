@@ -591,3 +591,8 @@
     return $post_tax_terms;
   }
 
+  function pzarc_convert_name_to_id($post_name) {
+    global $wpdb;
+    $post_id = $wpdb->get_var("SELECT ID FROM $wpdb->posts WHERE post_name = '".$post_name."'");
+    return $post_id;
+  }

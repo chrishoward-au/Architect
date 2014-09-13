@@ -187,6 +187,8 @@
         <p> And probably the most amazing thing... with Architect,  your layouts are transportable. Change your theme without losing your content layouts. And they\'ll even pick up a lot of the formatting of your new theme if it uses standard WordPress classes although, you may need to tweak the styling a little for different themes.</p>
 
         <p>At first it might be a little confusing about what to setup in Panels and what to do in Blueprints. Here\'s an overview:</p>
+        <p><img src="' . PZARC_PLUGIN_URL . '/documentation/assets/images/how-architect-works.jpg" style="display:block;max-width:100%;"/></p>
+
         <h3>Panels</h3>
         <ul><li>Panels define the layout of the individual content which can be displayed one or many times in a layout. Panels can also be re-used in multiple Blueprints</li></ul>
         <ul><li>Individual content layout - titles, text, images, meta info</li>
@@ -199,7 +201,7 @@
         <li>Navigation</li>
         </ul>
         <p>Below is a wireframe example of how a Blueprint is structured</p>
-        <p><img src="' . PZARC_PLUGIN_APP_URL . '/shared/assets/images/help/arc-layout.jpg" style="display:block"/></p>
+        <p><img src="' . PZARC_PLUGIN_APP_URL . '/shared/assets/images/help/arc-layout.jpg" style="display:block;max-width:100%"/></p>
 
         <h2>Usage</h2>
 

@@ -76,11 +76,11 @@
 
       if (!empty($this->build->blueprint[ 'blueprint-id' ])) {
 
-        $filename = 'pzarc-blueprints-layout-' . ($this->build->blueprint[ 'blueprint-id' ]) . '-' . $this->build->blueprint[ '_blueprints_short-name' ] . '.css';
+        $filename = 'pzarc-blueprints-layout-' . $this->build->blueprint[ '_blueprints_short-name' ] . '.css';
 
         if (file_exists(PZARC_CACHE_PATH . $filename)) {
 
-          wp_enqueue_style('blueprint-css-' . $this->build->blueprint[ 'blueprint-id' ], PZARC_CACHE_URL . $filename);
+          wp_enqueue_style('blueprint-css-' . $this->build->blueprint[ '_blueprints_short-name' ], PZARC_CACHE_URL . $filename);
 
         } else {
 
@@ -820,6 +820,7 @@
     {
 
       $section[ $section_no ] = $this->build->blueprint[ 'section_object' ][ $section_no ];
+
       // oops! Need to get default content type when defaults chosen.
       $post_type = (empty($this->build->blueprint[ '_blueprints_content-source' ]) || 'defaults' === $this->build->blueprint[ '_blueprints_content-source' ] ?
           (empty($this->arc_query->queried_object->post_type) ? 'post' : $this->arc_query->queried_object->post_type) :

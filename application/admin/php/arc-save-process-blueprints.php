@@ -68,16 +68,18 @@
    */
   function pzarc_process_bp_sections(&$pzarc_blueprints, $i, $nl, &$_architect_options)
   {
-    $panel_id         = $pzarc_blueprints[ '_blueprints_section-' . $i . '-panel-layout' ];
+    if (empty($pzarc_blueprints[ '_blueprints_section-' . $i . '-panel-layout' ])) {return array(null,null);}
+    $panel_id         =pzarc_convert_name_to_id($pzarc_blueprints[ '_blueprints_section-' . $i . '-panel-layout' ]);
+
     $pzarc_panels     = get_post_meta($panel_id);
     $sections_class          = 'body.pzarchitect .pzarc-blueprint_' . $pzarc_blueprints[ '_blueprints_short-name' ] . ' .pzarc-section_' . ($i + 1) ;
     $panels_class          = $sections_class.'.pzarc-section-using-panel_' . $pzarc_panels[ '_panels_settings_short-name' ][ 0 ] . ' .pzarc-panel';
     $pzarc_import_css = '';
     $pzarc_mediaq_css = '';
-
+    $pzarc_css = '';
     if (!empty($pzarc_blueprints[ '_blueprints_section-' . $i . '-panel-layout' ])) {
       // var_dump($pzarc_blueprints[ '_blueprints_section-' . $i . '-panel-layout' ]);
-      $pzarc_import_css .= '@import url("' . PZARC_CACHE_URL . '/pzarc-panels-layout-' . $panel_id . '-' . $pzarc_panels[ '_panels_settings_short-name' ][ 0 ] . '.css");' . $nl;
+      $pzarc_import_css .= '@import url("' . PZARC_CACHE_URL . '/pzarc-panels-layout-' . $pzarc_panels[ '_panels_settings_short-name' ][ 0 ] . '.css");' . $nl;
       $hmargin = str_replace('%','',$pzarc_blueprints[ '_blueprints_section-' . $i . '-panels-margins' ][ 'margin-right' ]);
 
       $em_width[ 1 ] = (str_replace('px', '', $_architect_options[ 'architect_breakpoint_1' ][ 'width' ]) / 16);

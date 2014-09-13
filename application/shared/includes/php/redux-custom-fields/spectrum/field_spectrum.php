@@ -65,8 +65,7 @@ if (!class_exists('ReduxFramework_spectrum')) {
                 'color' => '',
             );
             $this->value = wp_parse_args($this->value, $defaults);
-
-            echo '<input data-id="' . $this->field['id'] . '" name="' . $this->field['name'] . '[color]' . $this->field['name_suffix'] . '" id="' . $this->field['id'] . '-color" class="redux-spectrum redux-spectrum-init ' . $this->field['class'] . '"  type="text" value="' . $this->value['color'] . '"  data-default-color="' . $this->field['default'] . '" data-defaultvalue="' . $this->field['default'] . '" />';
+            echo '<input data-id="' . $this->field['id'] . '" name="' . $this->field['name'] . '[color]' . $this->field['name_suffix'] . '" id="' . $this->field['id'] . '-color" class="redux-spectrum redux-spectrum-init ' . $this->field['class'] . '"  type="text" value="' . $this->value['color'] . '"  data-default-color="' . $this->field['default']['color'] . '" data-defaultvalue="' . $this->field['default']['color'] . '" />';
 
         }
 

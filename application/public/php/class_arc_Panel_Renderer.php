@@ -67,7 +67,7 @@
       $panel_def[ 'author' ]           = '<span class="byline"><span class="author vcard"><a class="url fn n" href="{{authorlink}}" title="View all posts by {{authorname}}" rel="author">{{authorname}}</a></span></span>';
       $panel_def[ 'email' ]            = '<span class="byline email"><span class="author vcard"><a class="url fn n" href="mailto:{{authoremail}}" title="Email {{authorname}}" rel="author">{{authoremail}}</a></span></span>';
       //     $panel_def[ 'image' ]       = '<figure class="entry-thumbnail {{incontent}}">{{postlink}}<img width="{{width}}" src="{{imgsrc}}" class="attachment-post-thumbnail wp-post-image" alt="{{alttext}}">{{closepostlink}}{{captioncode}}</figure>';
-      $panel_def[ 'image' ]         = '<figure class="entry-thumbnail {{incontent}} {{centred}} {{nofloat}}">{{postlink}}{{image}}{{closelink}}{{captioncode}}</figure>';
+      $panel_def[ 'image' ]         = '<figure class="entry-thumbnail {{incontent}} {{centred}} {{nofloat}} {{location}}">{{postlink}}{{image}}{{closelink}}{{captioncode}}</figure>';
       $panel_def[ 'bgimage' ]       = '<figure class="entry-bgimage pzarc-bg-image {{trim-scale}}">{{bgimage}}</figure>';
       $panel_def[ 'caption' ]       = '<figcaption class="caption">{{caption}}</figcaption>';
       $panel_def[ 'content' ]       = ' <div class="entry-content {{nothumb}}">{{image-in-content}}{{content}}</div>';
@@ -177,7 +177,7 @@
       }
 
 
-      if ($this->toshow[ 'image' ][ 'show' ] || $this->section[ '_panels_design_thumb-position' ] != 'none') {
+      if ($this->toshow[ 'image' ][ 'show' ]) {
         //        if (false)
         //        {
         //          $post_image = ($this->panel_info[ '_panels_design_thumb-position' ] != 'none') ? job_resize($thumb_src, $params, PZARC_CACHE_PATH, PZARC_CACHE_URL) : null;
@@ -222,24 +222,24 @@
     public function get_bgimage(&$post)
     {
       /** BACKGROUND IMAGE */
-      $thumb_id                    = get_post_thumbnail_id();
-      $focal_point                 = get_post_meta($thumb_id, 'pzgp_focal_point', true);
-      $focal_point                 = (empty($focal_point) ? array(50, 50) : explode(',', $focal_point));
-      $showbgimage                 = (has_post_thumbnail()
-              && $this->section[ '_panels_design_background-position' ] != 'none'
+      $thumb_id    = get_post_thumbnail_id();
+      $focal_point = get_post_meta($thumb_id, 'pzgp_focal_point', true);
+      $focal_point = (empty($focal_point) ? array(50, 50) : explode(',', $focal_point));
+      $showbgimage = (has_post_thumbnail()
+              && $this->section[ '_panels_design_feature-location' ] === 'fill'
               && ($this->section[ '_panels_design_components-position' ] == 'top' || $this->section[ '_panels_design_components-position' ] == 'left'))
-          || ($this->section[ '_panels_design_background-position' ] != 'none'
+          || ($this->section[ '_panels_design_feature-location' ] === 'fill'
               && ($this->section[ '_panels_design_components-position' ] == 'bottom' || $this->section[ '_panels_design_components-position' ] == 'right'));
 
       // Need to setup for break points.
 
       //  TODO: data-imagesrcs ="1,2,3", data-breakpoints="1,2,3". Then use js to change src.
-      $width = (int)str_replace('px', '', $this->section[ '_panels_design_background-image-max' ][ 'width' ]);
+      $width = (int)str_replace('px', '', $this->section[ '_panels_design_image-max-dimensions' ][ 'width' ]);
       // TODO: Should this just choose the greater? Or could that be too stupid if  someone puts a very large max-height?
       if ($this->section[ '_panels_settings_panel-height-type' ] === 'height') {
         $height = (int)str_replace('px', '', $this->section[ '_panels_settings_panel-height' ][ 'height' ]);
       } else {
-        $height = (int)str_replace('px', '', $this->section[ '_panels_design_background-image-max' ][ 'height' ]);
+        $height = (int)str_replace('px', '', $this->section[ '_panels_design_image-max-dimensions' ][ 'height' ]);
       }
 
       // Need to grab image again because it uses different dimensions for the bgimge
@@ -293,7 +293,7 @@
 
       $this->data[ 'postid' ]      = get_the_ID();
       $this->data[ 'poststatus' ]  = get_post_status();
-      $this->data[ 'posttype' ]  = get_post_type();
+      $this->data[ 'posttype' ]    = get_post_type();
       $this->data[ 'permalink' ]   = get_the_permalink();
       $post_format                 = get_post_format();
       $this->data [ 'postformat' ] = (empty($post_format) ? 'standard' : $post_format);
@@ -401,8 +401,8 @@
     {
       $panel_def[ $component ] = str_replace('{{excerpt}}', $this->data[ 'excerpt' ], $panel_def[ $component ]);
 
-      if ($this->section[ '_panels_design_thumb-position' ] != 'none') {
-        if (!empty($this->data[ 'image' ][ 'image' ]) && !empty($this->section[ '_panels_design_thumb-position' ])) {
+      if ($this->section[ '_panels_design_feature-location' ] === 'content-left' || $this->section[ '_panels_design_feature-location' ] === 'content-right') {
+        if (!empty($this->data[ 'image' ][ 'image' ])) {
           $panel_def[ $component ] = str_replace('{{image-in-content}}', $panel_def[ 'image' ], $panel_def[ $component ]);
 
           if ($this->section[ '_panels_design_image-captions' ]) {
@@ -467,6 +467,10 @@
       if (!empty($this->section[ '_panels_design_centre-image' ])) {
         $panel_def[ $component ] = str_replace('{{centred}}', 'centred', $panel_def[ $component ]);
       }
+      if ('float' === $this->section[ '_panels_design_feature-location' ]) {
+        $panel_def[ $component ] = str_replace('{{location}}','pzarc-components-'.$this->section[ '_panels_design_components-position' ] , $panel_def[ $component ]);
+
+      }
 
 
       if (empty($this->data[ 'image' ][ 'image' ])) {
@@ -484,17 +488,17 @@
     public function render_bgimage($component, $content_type, $panel_def, $rsid)
     {
       $panel_def[ $component ] = str_replace('{{bgimage}}', $this->data[ 'bgimage' ][ 'thumb' ], $panel_def[ $component ]);
-      $panel_def[ $component ] = str_replace('{{trim-scale}}', ' ' . $this->section[ '_panels_design_background-position' ] . ' ' . $this->section[ '_panels_design_background-image-resize' ], $panel_def[ $component ]);
+      $panel_def[ $component ] = str_replace('{{trim-scale}}', ' ' . $this->section[ '_panels_design_feature-location' ] . ' ' . $this->section[ '_panels_design_background-image-resize' ], $panel_def[ $component ]);
 
-      if ('none' !== $this->section[ '_panels_design_link-bgimage' ]) {
+      if ('none' !== $this->section[ '_panels_design_link-image' ]) {
         $link = '';
-        switch ($this->section[ '_panels_design_link-bgimage' ]) {
+        switch ($this->section[ '_panels_design_link-image' ]) {
           case 'page':
           case 'url':
-            $link = ('url' === $this->section[ '_panels_design_link-bgimage' ]) ? '<a href="' . $this->section[ '_panels_design_link-bgimage-url' ] . '" title="' . $this->section[ '_panels_design_link-bgimage-url-tooltip' ] . '">' : $panel_def[ 'postlink' ];
+            $link = ('url' === $this->section[ '_panels_design_link-image' ]) ? '<a href="' . $this->section[ '_panels_design_link-image-url' ] . '" title="' . $this->section[ '_panels_design_link-image-url-tooltip' ] . '">' : $panel_def[ 'postlink' ];
             break;
           case 'original':
-            $link = '<a class="lightbox lightbox-' . $rsid . '" href="' . $this->data[ 'bgimage' ][ 'original' ][ 0 ] . '" title="' . $this->data[ 'title' ][ 'title' ] . '">';
+            $link = '<a class="lightbox lightbox-' . $rsid . '" href="' . $this->data[ 'image' ][ 'original' ][ 0 ] . '" title="' . $this->data[ 'title' ][ 'title' ] . '">';
             break;
         }
         $panel_def[ $component ] = str_replace('{{postlink}}', $link, $panel_def[ $component ]);

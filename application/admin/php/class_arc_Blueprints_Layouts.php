@@ -26,7 +26,7 @@
         $pzarc_panels_array = array();
         if (!empty($pzarc_panels)) {
           foreach ($pzarc_panels as $pzarc_cell) {
-            $pzarc_panels_array[ $pzarc_cell->ID ] = (empty($pzarc_cell->post_title) ? 'No title' : $pzarc_cell->post_title);
+            $pzarc_panels_array[ $pzarc_cell->post_name ] = (empty($pzarc_cell->post_title) ? 'No title' : $pzarc_cell->post_title);
           }
         } else {
           $pzarc_panels_array = array(0 => 'No cell layouts. Create some.');
@@ -106,17 +106,20 @@
     public function add_blueprint_column_content($column, $post_id)
     {
 
+      global $post;
+      $slug      = $post->post_name;
       $post_meta = get_post_meta($post_id);
+
 
       switch ($column) {
         case 'id':
-          echo $post_id;
-          break;
-
-        case '_blueprints_short-name':
           if (isset($post_meta[ $column ])) {
             echo $post_meta[ $column ][ 0 ];
           }
+          break;
+
+        case '_blueprints_short-name':
+          echo $slug;
           break;
 
         case '_blueprints_description':
@@ -464,7 +467,7 @@
       $pzarc_panels_array = array();
       if (!empty($pzarc_panels)) {
         foreach ($pzarc_panels as $pzarc_cell) {
-          $pzarc_panels_array[ $pzarc_cell->ID ] = (empty($pzarc_cell->post_title) ? 'No title' : $pzarc_cell->post_title);
+          $pzarc_panels_array[ $pzarc_cell->post_name ] = (empty($pzarc_cell->post_title) ? 'No title' : $pzarc_cell->post_title);
         }
       } else {
         $pzarc_panels_array = array(0 => 'No cell layouts. Create some.');
@@ -487,17 +490,17 @@
                 //TODO: Write acomprehensive little help dialog here
                 'validate' => 'not_empty'
             ),
-                        array(
-                            'id'      => $prefix . 'blueprint-width',
-                            'type'    => 'dimensions',
-                            //               'mode'    => array('width' => true, 'height' => false),
-                            'units'   => array('%', 'px'),
-                            'width'   => true,
-                            'height'  => false,
-                            'title'   => __('Blueprint max width', 'pzarchitect'),
-                            'default' => array('width' => '100', 'units' => '%'),
-                            'subtitle'    => 'Set a max width to stop spillage when the container is larger than you want the Blueprint to be.'
-                        ),
+            array(
+                'id'       => $prefix . 'blueprint-width',
+                'type'     => 'dimensions',
+                //               'mode'    => array('width' => true, 'height' => false),
+                'units'    => array('%', 'px'),
+                'width'    => true,
+                'height'   => false,
+                'title'    => __('Blueprint max width', 'pzarchitect'),
+                'default'  => array('width' => '100', 'units' => '%'),
+                'subtitle' => 'Set a max width to stop spillage when the container is larger than you want the Blueprint to be.'
+            ),
             array(
                 'title'   => 'Page title',
                 'id'      => $prefix . 'page-title',
@@ -1036,7 +1039,7 @@
                 'id'    => $prefix . 'help-layout',
                 'type'  => 'info',
                 'class' => 'plain',
-                'desc'  => 'Architect: v'.PZARC_VERSION.'<p>
+                'desc'  => 'Architect: v' . PZARC_VERSION . '<p>
                               Fiant nulla claritatem processus vulputate quarta. Anteposuerit eodem habent parum id et. Notare mutationem facilisi nulla ut facer.
                               </p>
 
@@ -1415,7 +1418,7 @@
                 'id'      => $prefix . 'specific-snippets',
                 'type'    => 'select',
                 'select2' => array('allowClear' => true),
-                'options'    => pzarc_get_posts_in_post_type('pz_snippets'),
+                'options' => pzarc_get_posts_in_post_type('pz_snippets'),
                 'multi'   => true,
                 'default' => array()
             ),
