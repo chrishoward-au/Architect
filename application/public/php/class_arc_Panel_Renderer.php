@@ -225,12 +225,12 @@
       $thumb_id    = get_post_thumbnail_id();
       $focal_point = get_post_meta($thumb_id, 'pzgp_focal_point', true);
       $focal_point = (empty($focal_point) ? array(50, 50) : explode(',', $focal_point));
+
       $showbgimage = (has_post_thumbnail()
               && $this->section[ '_panels_design_feature-location' ] === 'fill'
               && ($this->section[ '_panels_design_components-position' ] == 'top' || $this->section[ '_panels_design_components-position' ] == 'left'))
           || ($this->section[ '_panels_design_feature-location' ] === 'fill'
               && ($this->section[ '_panels_design_components-position' ] == 'bottom' || $this->section[ '_panels_design_components-position' ] == 'right'));
-
       // Need to setup for break points.
 
       //  TODO: data-imagesrcs ="1,2,3", data-breakpoints="1,2,3". Then use js to change src.
@@ -487,9 +487,18 @@
 
     public function render_bgimage($component, $content_type, $panel_def, $rsid)
     {
-      $panel_def[ $component ] = str_replace('{{bgimage}}', $this->data[ 'bgimage' ][ 'thumb' ], $panel_def[ $component ]);
-      $panel_def[ $component ] = str_replace('{{trim-scale}}', ' ' . $this->section[ '_panels_design_feature-location' ] . ' ' . $this->section[ '_panels_design_background-image-resize' ], $panel_def[ $component ]);
+      if (!empty($this->data[ 'bgimage' ][ 'thumb' ])) {
+        $panel_def[ $component ] = str_replace('{{bgimage}}', $this->data[ 'bgimage' ][ 'thumb' ], $panel_def[ $component ]);
+      } else {
+        // Gotta fill the background with something, else it collapses
+        $width  =  $this->section[ '_panels_design_image-max-dimensions' ][ 'width' ];
+        $height =  $this->section[ '_panels_design_image-max-dimensions' ][ 'height' ];
 
+        $fakethumb='<div class="pzarc-fakethumb" style="width:'.$width.';height:'.$height.';"></div>';
+        $panel_def[ $component ] = str_replace('{{bgimage}}', $fakethumb, $panel_def[ $component ]);
+
+      }
+      $panel_def[ $component ] = str_replace('{{trim-scale}}', ' ' . $this->section[ '_panels_design_feature-location' ] . ' ' . $this->section[ '_panels_design_background-image-resize' ], $panel_def[ $component ]);
       if ('none' !== $this->section[ '_panels_design_link-image' ]) {
         $link = '';
         switch ($this->section[ '_panels_design_link-image' ]) {
@@ -599,7 +608,7 @@
       $line      = str_replace('{{postformat}}', $this->data[ 'postformat' ], $line);
       $line      = str_replace('{{posttype}}', $source, $line);
       $pzclasses = 'pzarc-components ';
-      $pzclasses .= ($this->section[ '_panels_design_components-position' ] === 'left' || $this->section[ '_panels_design_components-position' ] === 'right') ? 'vertical-content ' : '';
+      $pzclasses .= ($this->section[ '_panels_design_components-position' ] === 'left' || $this->section[ '_panels_design_components-position' ] === 'right') ? 'vertical-content pzarc-align-'.$this->section[ '_panels_design_components-position' ] : '';
 
       $line = str_replace('{{pzclasses}}', $pzclasses, $line);
 

@@ -190,20 +190,49 @@
       // Although this loks back to front, this is determining flow compared to components
 
       //    var_dump(!empty($toshow[ 'image' ][ 'show' ]) && ($settings[ '_panels_design_components-position' ] == 'bottom' || $settings[ '_panels_design_components-position' ] == 'right'));
-      $show_image_before_components = (!empty($toshow[ 'image' ][ 'show' ]) && ($settings[ '_panels_design_components-position' ] == 'bottom' || $settings[ '_panels_design_components-position' ] == 'right'|| $settings[ '_panels_design_components-position' ] == 'left'));
+//       $show_image_before_components = (!empty($toshow[ 'image' ][ 'show' ]) && ($settings[ '_panels_design_feature-location' ] !== 'float' && $settings[ '_panels_design_components-position' ] == 'top'));
 
-      if ($show_image_before_components) {
+//       if ($show_image_before_components) {
+
+//         /** Background image */
+//         if ($settings[ '_panels_design_feature-location' ] === 'fill') {
+//           $line_out = $panel_class->render_bgimage('bgimage', $this->source, $panel_def, $this->rsid);
+// //        echo apply_filters("arc_filter_bgimage", self::strip_unused_arctags($line_out), $data[ 'postid' ]);
+//           echo apply_filters("arc_filter_bgimage", self::strip_unused_arctags($line_out), $arc_query->post->ID);
+
+//         }
+//         /** Image outside and before components */
+//         if ($settings[ '_panels_design_feature-location' ] === 'float') {
+
+//           $line_out = $panel_class->render_image('image', $this->source, $panel_def, $this->rsid);
+
+//           if ($toshow[ 'image' ][ 'width' ] === 100) {
+
+//             $line_out = str_replace('{{nofloat}}', 'nofloat', $line_out);
+
+//           }
+
+//           echo apply_filters("arc_filter_outer_image", self::strip_unused_arctags($line_out), $arc_query->post->ID);
+
+
+//         }
+//       }
+
+    //TODO: Check this works for all scenarios
+     switch ($settings[ '_panels_design_feature-location' ]){
 
         /** Background image */
-        if ($settings[ '_panels_design_feature-location' ] === 'fill') {
+        case 'fill':
           $line_out = $panel_class->render_bgimage('bgimage', $this->source, $panel_def, $this->rsid);
 //        echo apply_filters("arc_filter_bgimage", self::strip_unused_arctags($line_out), $data[ 'postid' ]);
           echo apply_filters("arc_filter_bgimage", self::strip_unused_arctags($line_out), $arc_query->post->ID);
 
-        }
-        /** Image outside and before components */
-        if ($settings[ '_panels_design_feature-location' ] === 'float') {
+        break;
 
+        /** Image outside and before components */
+        case 'float' :
+
+        if ($settings[ '_panels_design_components-position' ] != 'top') {
           $line_out = $panel_class->render_image('image', $this->source, $panel_def, $this->rsid);
 
           if ($toshow[ 'image' ][ 'width' ] === 100) {
@@ -213,10 +242,11 @@
           }
 
           echo apply_filters("arc_filter_outer_image", self::strip_unused_arctags($line_out), $arc_query->post->ID);
-
-
         }
+        break;
       }
+ 
+
 
 
       /** Open components wrapper */

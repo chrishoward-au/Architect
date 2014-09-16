@@ -4,7 +4,7 @@ Tags: content,display,posts,pages,gallery,slider
 Donate link: http://
 Requires at least: 3.5.0
 Tested up to: 4.0.0
-Stable tag: 0.8.1.1
+Stable tag: 0.8.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -102,11 +102,17 @@ This is BETA software. So there are many besides these ones!
 
 == Changelog ==
 
-= 0.8.3 =
-* Updated Slick
+
 * *** Changing dummy content support
 * *** changing RSS feed support
-* CHANGED: Merged image and background images settings and controls into one.
+
+= 0.8.3.1 =
+* FIXED: Notice that would go away
+* FIXED: Background images not showing when components position bottom
+
+= 0.8.3 =
+* Updated Slick.js slider
+* CHANGED: Merged image and background images settings and controls into one making image control vastly easier. HOWEVER, THIS WILL BREAK SOME SETTINGS IN PANELS AND BLUEPRINTS THAT YOU WILL NEED TO FIX UP. A message will show in WP Admin to explain.
 * CHANGED: Panel selector in the Blueprints is now panel slug based rather than panel ID. This is necessary for export/import to work smoothly.
 * CHANGED: Updated About page with infographic
 

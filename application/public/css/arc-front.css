@@ -153,6 +153,10 @@
       box-sizing: border-box;
       overflow: hidden;
       position: relative; }
+      .pzarchitect .pzarc-panel .pzarc-components.pzarc-align-left {
+        float: left; }
+      .pzarchitect .pzarc-panel .pzarc-components.pzarc-align-right {
+        float: right; }
     .pzarchitect .pzarc-panel figure.pzarc-bg-image {
       margin: 0;
       padding: 0;

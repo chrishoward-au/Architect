@@ -52,7 +52,7 @@
     function __construct()
     {
 
-      define('PZARC_VERSION', '0.8.1.1');
+      define('PZARC_VERSION', '0.8.3');
       define('PZARC_NAME', 'pzarchitect'); // This is also same as the locale
       define('PZARC_FOLDER', '/pizazzwp-architect');
 
@@ -370,7 +370,7 @@
       /* Check that the user hasn't already clicked to ignore the message */
       if (!get_user_meta($user_id, 'pzarc_ignore_notice')) {
         echo '<div class="message error highlight"><p>';
-        printf(__('Apologies, but if upgrading from a version before beta v0.8.3 you will need to redo the Panels source field for each section in Blueprints. Plus, in Panels, settings for featured image and background have been merged, so you will need to check those settings too for each Panel. | <a href="%1$s">Hide Notice</a>'), '?example_nag_ignore=0');
+        printf(__('Apologies, but if upgrading from a version before beta v0.8.3 you will need to redo the Panels source field for each section in Blueprints. Plus, in Panels, settings for featured image and background have been merged, so you will need to check those settings too for each Panel. | <a href="%1$s">Hide Notice</a>'), '?pzarc_nag_ignore=0');
         echo "</p></div>";
       }
     }

@@ -503,7 +503,7 @@
                 'id'            => $prefix . 'components-widths',
                 'type'          => 'slider',
                 'default'       => '100',
-                'min'           => '0',
+                'min'           => '1',
                 'max'           => '100',
                 'step'          => '1',
                 'class'         => ' percent',

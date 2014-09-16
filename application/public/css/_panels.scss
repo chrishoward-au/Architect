@@ -105,6 +105,13 @@
     box-sizing: border-box;
     overflow: hidden;
     position: relative;
+    &.pzarc-align-left {
+      float:left;
+    }
+    &.pzarc-align-right {
+      float:right;
+    }
+
   }
 
   //when the bgimage is set to align, still use absolute as it sticks in the page flow!!

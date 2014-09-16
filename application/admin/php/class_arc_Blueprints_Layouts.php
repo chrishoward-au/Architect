@@ -645,12 +645,10 @@
                   'title'    => __('Panels margins (%)', 'pzarchitect'),
                   'id'       => $prefix . 'section-' . $i . '-panels-margins',
                   'type'     => 'spacing',
-                  'top'      => false,
-                  'left'     => false,
                   'units'    => '%',
                   'mode'     => 'margin',
-                  'default'  => array('right' => '0', 'bottom' => '0'),
-                  'subtitle' => __('Right, bottom', 'pzarchitect')
+                  'default'  => array('right' => '0', 'bottom' => '0','left' => '0', 'top' => '0'),
+                  //'subtitle' => __('Right, bottom', 'pzarchitect')
                   //    'hint'  => array('content' => __('Set the vertical gutter width as a percentage of the section width. The gutter is the gap between adjoining elements', 'pzarchitect'))
               ),
 
@@ -1142,7 +1140,7 @@
                   'snippets' => 'Snippets',
                   'gallery'  => 'Galleries',
                   'slides'   => 'Slides',
-                  'dummy'    => 'Dummy content',
+//                  'dummy'    => 'Dummy content',
                   //                          'images'      => 'Specific Images',
                   //                          'wpgallery'   => 'WP Gallery from post',
                   //                          'galleryplus' => 'GalleryPlus',
