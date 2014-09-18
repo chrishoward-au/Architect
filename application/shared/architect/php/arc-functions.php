@@ -591,8 +591,49 @@
     return $post_tax_terms;
   }
 
-  function pzarc_convert_name_to_id($post_name) {
+  function pzarc_convert_name_to_id($post_name)
+  {
     global $wpdb;
-    $post_id = $wpdb->get_var("SELECT ID FROM $wpdb->posts WHERE post_name = '".$post_name."'");
+    $post_id = $wpdb->get_var("SELECT ID FROM $wpdb->posts WHERE post_name = '" . $post_name . "'");
+
     return $post_id;
+  }
+
+  function pzarc_process_video($vcode)
+  {
+
+    $vcode_type      = 'unknown';
+    $vcode_processed = '';
+
+    switch (true) {
+      case (strpos(strtolower($vcode), 'http') === 0):
+        if (strpos($vcode, home_url()) === 0) {
+          $vcode = '[video src="'.$vcode.'"]';
+          $vcode_type = 'shortcode';
+        } else {
+          $vcode_type = 'url';
+        }
+        break;
+      case (strpos(strtolower($vcode), '<iframe ') === 0):
+        $vcode_type = 'embed';
+        break;
+      case (strpos(strtolower($vcode), '[') === 0):
+        $vcode_type = 'shortcode';
+        break;
+    }
+
+    switch ($vcode_type) {
+      case 'url':
+        // This also throws securing the url back to wp!
+        $vcode_processed = wp_oembed_get($vcode);
+        break;
+      case 'embed':
+        $vcode_processed = $vcode;
+        break;
+      case 'shortcode':
+        $vcode_processed = do_shortcode($vcode);
+        break;
+    }
+
+    return $vcode_processed;
   }

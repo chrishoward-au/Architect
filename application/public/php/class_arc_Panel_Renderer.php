@@ -24,6 +24,7 @@
       $this->data[ 'image' ][ 'image' ]    = null;
       $this->data[ 'image' ][ 'caption' ]  = null;
       $this->data[ 'image' ][ 'original' ] = null;
+      $this->data[ 'video' ][ 'source' ]   = null;
 
       $this->data[ 'meta' ][ 'datetime' ]        = null;
       $this->data[ 'meta' ][ 'fdatetime' ]       = null;
@@ -101,6 +102,7 @@
       $this->get_content($post);
       $this->get_excerpt($post);
       $this->get_image($post);
+      $this->get_video($post);
       $this->get_bgimage($post);
       $this->get_custom($post);
       $this->get_miscellanary($post);
@@ -202,6 +204,12 @@
 
 
       }
+    }
+
+    public function get_video(&$post)
+    {
+      $video_source                      = get_post_meta($post->ID, 'pzarc_features-video', true);
+      $this->data[ 'video' ][ 'source' ] = pzarc_process_video($video_source);
     }
 
     public function get_content(&$post)
@@ -441,42 +449,46 @@
 
     public function render_image($component, $content_type, $panel_def, $rsid)
     {
-      if ('none' !== $this->section[ '_panels_design_link-image' ]) {
-        $link = '';
-        switch ($this->section[ '_panels_design_link-image' ]) {
-          case 'page':
-          case 'url':
-            $link = ('url' === $this->section[ '_panels_design_link-image' ]) ? '<a href="' . $this->section[ '_panels_design_link-image-url' ] . '" title="' . $this->section[ '_panels_design_link-image-url-tooltip' ] . '">' : $panel_def[ 'postlink' ];
-            break;
-          case 'original':
-            $link = '<a class="lightbox lightbox-' . $rsid . '" href="' . $this->data[ 'image' ][ 'original' ][ 0 ] . '" title="' . $this->data[ 'title' ][ 'title' ] . '">';
-            break;
+      if ('video'===$this->section[ '_panels_settings_feature-type' ]) {
+        $panel_def[ $component ] = str_replace('{{image}}', $this->data[ 'video' ][ 'source' ], $panel_def[ $component ]);
+
+      } else {
+        if ('none' !== $this->section[ '_panels_design_link-image' ]) {
+          $link = '';
+          switch ($this->section[ '_panels_design_link-image' ]) {
+            case 'page':
+            case 'url':
+              $link = ('url' === $this->section[ '_panels_design_link-image' ]) ? '<a href="' . $this->section[ '_panels_design_link-image-url' ] . '" title="' . $this->section[ '_panels_design_link-image-url-tooltip' ] . '">' : $panel_def[ 'postlink' ];
+              break;
+            case 'original':
+              $link = '<a class="lightbox lightbox-' . $rsid . '" href="' . $this->data[ 'image' ][ 'original' ][ 0 ] . '" title="' . $this->data[ 'title' ][ 'title' ] . '">';
+              break;
+          }
+          $panel_def[ $component ] = str_replace('{{postlink}}', $link, $panel_def[ $component ]);
+          $panel_def[ $component ] = str_replace('{{closepostlink}}', '</a>', $panel_def[ $component ]);
         }
-        $panel_def[ $component ] = str_replace('{{postlink}}', $link, $panel_def[ $component ]);
-        $panel_def[ $component ] = str_replace('{{closepostlink}}', '</a>', $panel_def[ $component ]);
+
+
+        if ($this->section[ '_panels_design_image-captions' ]) {
+          $caption                 = str_replace('{{caption}}', $this->data[ 'image' ][ 'caption' ], $panel_def[ 'caption' ]);
+          $panel_def[ $component ] = str_replace('{{captioncode}}', $caption, $panel_def[ $component ]);
+        }
+
+        $panel_def[ $component ] = str_replace('{{image}}', $this->data[ 'image' ][ 'image' ], $panel_def[ $component ]);
+
+        if (!empty($this->section[ '_panels_design_centre-image' ])) {
+          $panel_def[ $component ] = str_replace('{{centred}}', 'centred', $panel_def[ $component ]);
+        }
+        if ('float' === $this->section[ '_panels_design_feature-location' ]) {
+          $panel_def[ $component ] = str_replace('{{location}}', 'pzarc-components-' . $this->section[ '_panels_design_components-position' ], $panel_def[ $component ]);
+
+        }
+
+
+        if (empty($this->data[ 'image' ][ 'image' ])) {
+          $panel_def[ $component ] = '';
+        }
       }
-
-
-      if ($this->section[ '_panels_design_image-captions' ]) {
-        $caption                 = str_replace('{{caption}}', $this->data[ 'image' ][ 'caption' ], $panel_def[ 'caption' ]);
-        $panel_def[ $component ] = str_replace('{{captioncode}}', $caption, $panel_def[ $component ]);
-      }
-
-      $panel_def[ $component ] = str_replace('{{image}}', $this->data[ 'image' ][ 'image' ], $panel_def[ $component ]);
-
-      if (!empty($this->section[ '_panels_design_centre-image' ])) {
-        $panel_def[ $component ] = str_replace('{{centred}}', 'centred', $panel_def[ $component ]);
-      }
-      if ('float' === $this->section[ '_panels_design_feature-location' ]) {
-        $panel_def[ $component ] = str_replace('{{location}}','pzarc-components-'.$this->section[ '_panels_design_components-position' ] , $panel_def[ $component ]);
-
-      }
-
-
-      if (empty($this->data[ 'image' ][ 'image' ])) {
-        $panel_def[ $component ] = '';
-      }
-
 //      foreach ($this->data[ 'image' ] as $key => $value) {
 //        $template[ $type ] = str_replace('{{' . $key . '}}', $value, $template[ $type ]);
 //      }
@@ -487,33 +499,38 @@
 
     public function render_bgimage($component, $content_type, $panel_def, $rsid)
     {
-      if (!empty($this->data[ 'bgimage' ][ 'thumb' ])) {
-        $panel_def[ $component ] = str_replace('{{bgimage}}', $this->data[ 'bgimage' ][ 'thumb' ], $panel_def[ $component ]);
+      if ('video'===$this->section[ '_panels_settings_feature-type' ]) {
+        $panel_def[ $component ] = str_replace('{{bgimage}}', $this->data[ 'video' ][ 'source' ], $panel_def[ $component ]);
+
       } else {
-        // Gotta fill the background with something, else it collapses
-        $width  =  $this->section[ '_panels_design_image-max-dimensions' ][ 'width' ];
-        $height =  $this->section[ '_panels_design_image-max-dimensions' ][ 'height' ];
 
-        $fakethumb='<div class="pzarc-fakethumb" style="width:'.$width.';height:'.$height.';"></div>';
-        $panel_def[ $component ] = str_replace('{{bgimage}}', $fakethumb, $panel_def[ $component ]);
+        if (!empty($this->data[ 'bgimage' ][ 'thumb' ])) {
+          $panel_def[ $component ] = str_replace('{{bgimage}}', $this->data[ 'bgimage' ][ 'thumb' ], $panel_def[ $component ]);
+        } else {
+          // Gotta fill the background with something, else it collapses
+          $width  = $this->section[ '_panels_design_image-max-dimensions' ][ 'width' ];
+          $height = $this->section[ '_panels_design_image-max-dimensions' ][ 'height' ];
 
-      }
-      $panel_def[ $component ] = str_replace('{{trim-scale}}', ' ' . $this->section[ '_panels_design_feature-location' ] . ' ' . $this->section[ '_panels_design_background-image-resize' ], $panel_def[ $component ]);
-      if ('none' !== $this->section[ '_panels_design_link-image' ]) {
-        $link = '';
-        switch ($this->section[ '_panels_design_link-image' ]) {
-          case 'page':
-          case 'url':
-            $link = ('url' === $this->section[ '_panels_design_link-image' ]) ? '<a href="' . $this->section[ '_panels_design_link-image-url' ] . '" title="' . $this->section[ '_panels_design_link-image-url-tooltip' ] . '">' : $panel_def[ 'postlink' ];
-            break;
-          case 'original':
-            $link = '<a class="lightbox lightbox-' . $rsid . '" href="' . $this->data[ 'image' ][ 'original' ][ 0 ] . '" title="' . $this->data[ 'title' ][ 'title' ] . '">';
-            break;
+          $fakethumb               = '<div class="pzarc-fakethumb" style="width:' . $width . ';height:' . $height . ';"></div>';
+          $panel_def[ $component ] = str_replace('{{bgimage}}', $fakethumb, $panel_def[ $component ]);
+
         }
-        $panel_def[ $component ] = str_replace('{{postlink}}', $link, $panel_def[ $component ]);
-        $panel_def[ $component ] = str_replace('{{closepostlink}}', '</a>', $panel_def[ $component ]);
+        $panel_def[ $component ] = str_replace('{{trim-scale}}', ' ' . $this->section[ '_panels_design_feature-location' ] . ' ' . $this->section[ '_panels_design_background-image-resize' ], $panel_def[ $component ]);
+        if ('none' !== $this->section[ '_panels_design_link-image' ]) {
+          $link = '';
+          switch ($this->section[ '_panels_design_link-image' ]) {
+            case 'page':
+            case 'url':
+              $link = ('url' === $this->section[ '_panels_design_link-image' ]) ? '<a href="' . $this->section[ '_panels_design_link-image-url' ] . '" title="' . $this->section[ '_panels_design_link-image-url-tooltip' ] . '">' : $panel_def[ 'postlink' ];
+              break;
+            case 'original':
+              $link = '<a class="lightbox lightbox-' . $rsid . '" href="' . $this->data[ 'image' ][ 'original' ][ 0 ] . '" title="' . $this->data[ 'title' ][ 'title' ] . '">';
+              break;
+          }
+          $panel_def[ $component ] = str_replace('{{postlink}}', $link, $panel_def[ $component ]);
+          $panel_def[ $component ] = str_replace('{{closepostlink}}', '</a>', $panel_def[ $component ]);
+        }
       }
-
       return self::render_generics($component, $content_type, $panel_def[ $component ]);
     }
 
@@ -608,7 +625,7 @@
       $line      = str_replace('{{postformat}}', $this->data[ 'postformat' ], $line);
       $line      = str_replace('{{posttype}}', $source, $line);
       $pzclasses = 'pzarc-components ';
-      $pzclasses .= ($this->section[ '_panels_design_components-position' ] === 'left' || $this->section[ '_panels_design_components-position' ] === 'right') ? 'vertical-content pzarc-align-'.$this->section[ '_panels_design_components-position' ] : '';
+      $pzclasses .= ($this->section[ '_panels_design_components-position' ] === 'left' || $this->section[ '_panels_design_components-position' ] === 'right') ? 'vertical-content pzarc-align-' . $this->section[ '_panels_design_components-position' ] : '';
 
       $line = str_replace('{{pzclasses}}', $pzclasses, $line);
 

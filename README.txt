@@ -4,7 +4,7 @@ Tags: content,display,posts,pages,gallery,slider
 Donate link: http://
 Requires at least: 3.5.0
 Tested up to: 4.0.0
-Stable tag: 0.8.3
+Stable tag: 0.8.4.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -103,12 +103,18 @@ This is BETA software. So there are many besides these ones!
 == Changelog ==
 
 
-* *** Changing dummy content support
-* *** changing RSS feed support
+* *** adding dummy content support
+* *** adding RSS feed support
+
+= 0.8.4 =
+* CHANGED: Image component is now called Feature.
+* ADDED: Option to display Video as the Feature
+* ADDED: Video code field added to Posts, Pages and Snippets.
 
 = 0.8.3.1 =
 * FIXED: Notice that would go away
 * FIXED: Background images not showing when components position bottom
+* CHANGED: Prettied up the panel previewer
 
 = 0.8.3 =
 * Updated Slick.js slider

@@ -68,6 +68,7 @@
         require_once(PZARC_PLUGIN_APP_PATH . '/shared/includes/php/pzwp-focal-point/pzwp-focal-point.php');
 //        require_once(PZARC_PLUGIN_APP_PATH . '/shared/includes/php/bfi_focus_point/bfi_focus_point.php');
 
+
         // @TODO Should these really be objects?
         // Initialise objects for data and setup menu items
         $panel_layout      = new arc_Panels_Layouts;
@@ -77,7 +78,11 @@
 //        $slides = new pzarc_Slides;
 
         add_filter('admin_body_class', array(&$this, 'add_admin_body_class'));
+
 //add_action( 'pzarc_do_it', array( $this, 'do_it' ) );
+
+
+
       }
 
     }
@@ -257,4 +262,49 @@
 
   new pzarcAdmin();
 
+  if ( !function_exists( "pzarc_add_fvid_metaboxes" ) ):
+    function pzarc_add_fvid_metaboxes($metaboxes) {
+      // Declare your sections
+
+      global $_architect_options;
+      $pzarc_vids_on = array();
+      if ($_architect_options['architect_mod-video-fields']['post']==1) {
+        $pzarc_vids_on[] = 'post';
+      }
+      if ($_architect_options['architect_mod-video-fields']['page']==1) {
+        $pzarc_vids_on[] = 'page';
+      }
+      if ($_architect_options['architect_mod-video-fields']['pz_snippets']==1) {
+        $pzarc_vids_on[] = 'pz_snippets';
+      }
+      $boxSections = array();
+      $boxSections[] = array(
+        //'title'         => __('General Settings', 'redux-framework-demo'),
+        //'icon'          => 'el-icon-home', // Only used with metabox position normal or advanced
+        'fields'        => array(
+            array(
+                'id' => 'pzarc_features-video',
+                'title' => __( 'Code', 'pzarchitect' ),
+                'desc' => __('Enter the URL, embed code or a video shortcode.','pzarchitect'),
+                'type' => 'textarea',
+                'rows'=>2
+            ),
+        ),
+      );
+
+      // Declare your metaboxes
+      $metaboxes = array();
+      $metaboxes[] = array(
+          'id'            => 'pzarc_mb-featured-video',
+          'title'         => __( 'Featured video', 'pzarchitect' ),
+          'post_types'    => $pzarc_vids_on,
+          'position'      => 'normal', // normal, advanced, side
+          'priority'      => 'default', // high, core, default, low - Priorities of placement
+          'sections'      => $boxSections,
+      );
+
+      return $metaboxes;
+    }
+    add_action("redux/metaboxes/_architect/boxes", "pzarc_add_fvid_metaboxes");
+  endif;
 

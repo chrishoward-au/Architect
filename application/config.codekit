@@ -373,6 +373,28 @@
 		"outputStyle": 1,
 		"syntaxCheckerStyle": 1
 		},
+	"\/admin\/js\/min\/arc-metaboxes-panels-min.js": {
+		"fileType": 64,
+		"ignore": 1,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/admin\/js\/min\/arc-metaboxes-panels-min.js",
+		"outputAbbreviatedPath": "\/admin\/js\/min\/min\/arc-metaboxes-panels-min-min.js",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"outputStyle": 1,
+		"syntaxCheckerStyle": 1
+		},
+	"\/admin\/js\/min\/min\/arc-metaboxes-panels-ck-min.js": {
+		"fileType": 64,
+		"ignore": 1,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/admin\/js\/min\/min\/arc-metaboxes-panels-ck-min.js",
+		"outputAbbreviatedPath": "\/admin\/js\/min\/min\/min\/arc-metaboxes-panels-ck-min-min.js",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"outputStyle": 1,
+		"syntaxCheckerStyle": 1
+		},
 	"\/admin\/php\/arc-options-actions.php": {
 		"fileType": 8192,
 		"ignore": 0,
@@ -1506,6 +1528,28 @@
 		"outputPathIsSetByUser": 0,
 		"processed": 0
 		},
+	"\/shared\/assets\/images\/sample-in-content.jpg": {
+		"fileType": 16384,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"initialSize": 153816,
+		"inputAbbreviatedPath": "\/shared\/assets\/images\/sample-in-content.jpg",
+		"outputAbbreviatedPath": "\/shared\/assets\/images\/sample-in-content.jpg",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"processed": 0
+		},
+	"\/shared\/assets\/images\/sample-video.jpg": {
+		"fileType": 16384,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"initialSize": 122522,
+		"inputAbbreviatedPath": "\/shared\/assets\/images\/sample-video.jpg",
+		"outputAbbreviatedPath": "\/shared\/assets\/images\/sample-video.jpg",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"processed": 0
+		},
 	"\/shared\/assets\/images\/slider\/arrows1.png": {
 		"fileType": 32768,
 		"ignore": 0,
@@ -1528,13 +1572,13 @@
 		"outputPathIsSetByUser": 0,
 		"processed": 0
 		},
-	"\/shared\/assets\/images\/Untitled-1.jpg": {
+	"\/shared\/assets\/sample-image.jpg": {
 		"fileType": 16384,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
-		"initialSize": 60240,
-		"inputAbbreviatedPath": "\/shared\/assets\/images\/Untitled-1.jpg",
-		"outputAbbreviatedPath": "\/shared\/assets\/images\/Untitled-1.jpg",
+		"initialSize": 131963,
+		"inputAbbreviatedPath": "\/shared\/assets\/sample-image.jpg",
+		"outputAbbreviatedPath": "\/shared\/assets\/sample-image.jpg",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0,
 		"processed": 0
@@ -2552,6 +2596,15 @@
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
 		"inputAbbreviatedPath": "\/shared\/includes\/php\/redux-extensions\/loader.php",
+		"outputAbbreviatedPath": "No Output Path",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/shared\/includes\/pk-simplenote\/pk-simplenote.php": {
+		"fileType": 8192,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/shared\/includes\/pk-simplenote\/pk-simplenote.php",
 		"outputAbbreviatedPath": "No Output Path",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0

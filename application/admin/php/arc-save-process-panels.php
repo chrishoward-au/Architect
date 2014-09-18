@@ -130,8 +130,10 @@
               $pzarc_contents .= $class_prefix . ' .entry-thumbnail {width:' . max((100 - $pzarc_components_width - $left - $right), 0) . '%;max-width:' . $pzarc_panels[ '_panels_design_image-max-dimensions' ][ 'width' ] . ';' . $margins . ';}' . $nl;
 
             }
-          } elseif ('fill' === $pzarc_panels[ '_panels_design_feature-location' ]) {
-            $pzarc_contents .= $class_prefix . ' .entry-thumbnail {width:100%;max-width:' . $pzarc_panels[ '_panels_design_image-max-dimensions' ][ 'width' ] . ';;}' . $nl;
+          } elseif ('fill' === $pzarc_panels[ '_panels_design_feature-location' ] && 'image' === $pzarc_panels[ '_panels_settings_feature-type' ]) {
+            $pzarc_contents .= $class_prefix . ' .entry-thumbnail {width:100%;max-width:' . $pzarc_panels[ '_panels_design_image-max-dimensions' ][ 'width' ] . ';}' . $nl;
+          } elseif ('video' === $pzarc_panels[ '_panels_settings_feature-type' ]) {
+            $pzarc_contents .= $class_prefix . ' .entry-thumbnail {width:' . ($pzarc_layout[ 'image' ][ 'width' ] - $left - $right) . '%;}' . $nl;
           } else {
             $pzarc_contents .= $class_prefix . ' .entry-thumbnail {width:' . ($pzarc_layout[ 'image' ][ 'width' ] - $left - $right) . '%;max-width:' . $pzarc_panels[ '_panels_design_image-max-dimensions' ][ 'width' ] . ';' . $margins . ';}' . $nl;
           }
