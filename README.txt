@@ -106,6 +106,9 @@ This is BETA software. So there are many besides these ones!
 * *** adding dummy content support
 * *** adding RSS feed support
 
+= 0.8.4.x =
+* ADDED: Automatically generates and uses retina versions of images! 
+
 = 0.8.4 =
 * CHANGED: Image component is now called Feature.
 * ADDED: Option to display Video as the Feature

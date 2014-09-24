@@ -103,6 +103,7 @@
       $this->get_excerpt($post);
       $this->get_image($post);
       $this->get_video($post);
+      // TODO: Don't run this if not needed!
       $this->get_bgimage($post);
       $this->get_custom($post);
       $this->get_miscellanary($post);
@@ -199,6 +200,13 @@
 
         ));
         $this->data[ 'image' ][ 'original' ] = wp_get_attachment_image_src($thumb_id, 'full');
+        preg_match("/(?<=src\\=\")(.)*(?=\" )/uiUs", $this->data[ 'image' ][ 'image' ],$results);
+        if (isset($results[0]) && !empty($this->section['_panels_settings_use-retina-images'])) {
+          $params = array('width' => ($width * 2), 'height' => ($height * 2));
+          // We need the crop to be identical. :/ So how about we just double the size of the image! I'm sure I Saw somewhere that works still.
+          $thumb_2X                         = bfi_thumb($results[ 0 ], $params);
+          $this->data[ 'image' ][ 'image' ] = str_replace('/>', 'data-at2x="' . $thumb_2X . '" />', $this->data[ 'image' ][ 'image' ]);
+        }
         $image                               = get_post($thumb_id);
         $this->data[ 'image' ][ 'caption' ]  = $image->post_excerpt;
 
@@ -258,6 +266,9 @@
       ));
 
       $this->data[ 'bgimage' ][ 'original' ] = wp_get_attachment_image_src($thumb_id, 'full');
+      $params = array( 'width' => ($width*2), 'height' => ($height*2) );
+      $thumb_2X = bfi_thumb( $this->data[ 'bgimage' ][ 'original' ][0], $params );
+      $this->data[ 'bgimage' ][ 'thumb' ] = str_replace('/>','data-at2x="'.$thumb_2X.'" />',$this->data[ 'bgimage' ][ 'thumb' ]);
     }
 
     public function get_custom(&$post)
@@ -364,7 +375,7 @@
     public function render_content($component, $content_type, $panel_def, $rsid)
     {
       $panel_def[ $component ] = str_replace('{{content}}', $this->data[ 'content' ], $panel_def[ $component ]);
-      if ($this->section[ '_panels_design_thumb-position' ] != 'none') {
+      if ($this->section[ '_panels_design_feature-location' ] === 'content-left' || $this->section[ '_panels_design_feature-location' ] === 'content-right') {
         if (!empty($this->data[ 'image' ][ 'image' ])) {
           $panel_def[ $component ] = str_replace('{{image-in-content}}', $panel_def[ 'image' ], $panel_def[ $component ]);
 

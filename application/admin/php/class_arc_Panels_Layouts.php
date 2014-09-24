@@ -863,6 +863,16 @@
                 'required' => array('_panels_settings_feature-type', '=', 'image'),
                 'subtitle' => __('Enable this to use the first found attached image in the content if no featured image is set.', 'pzarchitect')
             ),
+            array(
+                'title'    => __('Use retina images', 'pzarchitect'),
+                'id'       => '_panels_settings_use-retina-images',
+                'type'     => 'switch',
+                'on'       => 'Yes',
+                'off'      => 'No',
+                'default'  => true,
+                'required' => array('_panels_settings_feature-type', '=', 'image'),
+                'subtitle' => __('If enabled, a retina version of the featured image wil be created and displayed. Ensure the global setting in Architect Options is on as well.', 'pzarchitect')
+            ),
 
           ///
           // IMAGE

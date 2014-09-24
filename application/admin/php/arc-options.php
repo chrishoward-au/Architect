@@ -237,9 +237,9 @@
             'icon'       => 'el-icon-wrench',
             'fields'     => array(
                 array(
-                    'title'    => __('Shortcodes', 'pzarchitect'),
-                    'id'       => 'architect_shortcodes_section',
-                    'type'     => 'section',
+                    'title' => __('Shortcodes', 'pzarchitect'),
+                    'id'    => 'architect_shortcodes_section',
+                    'type'  => 'section',
                 ),
                 array(
                     'title'    => __('Default shortcode blueprint', 'pzarchitect'),
@@ -257,22 +257,22 @@
                     'desc'     => 'Make sure this Blueprint is using Galleries as its Content Source!'
                 ),
                 array(
-                    'title'    => __('Mods', 'pzarchitect'),
-                    'id'       => 'architect_mods_section',
-                    'type'     => 'section',
+                    'title' => __('Mods', 'pzarchitect'),
+                    'id'    => 'architect_mods_section',
+                    'type'  => 'section',
                 ),
                 array(
-                    'title'   => __('Video field (NOT YET IMPLEMENTED)', 'pzarchitect'),
-                    'id'      => 'architect_mod-video-fields',
-                    'type'    => 'checkbox',
-                    'subtitle'=> __('Add a video field to content types to optionally use as the Feature.','pzarchitect'),
-                    'options' => array('post'=>'Posts','page'=>'Pages','pz_snippets'=>'Snippets'),
-                    'default' => array('pz_snippets')
+                    'title'    => __('Video field', 'pzarchitect'),
+                    'id'       => 'architect_mod-video-fields',
+                    'type'     => 'checkbox',
+                    'subtitle' => __('Add a video field to content types to optionally use as the Feature.', 'pzarchitect'),
+                    'options'  => array('post' => 'Posts', 'page' => 'Pages', 'pz_snippets' => 'Snippets'),
+                    'default'  => array('pz_snippets')
                 ),
                 array(
-                    'title'    => __('Styling', 'pzarchitect'),
-                    'id'       => 'architect_stylings_section',
-                    'type'     => 'section',
+                    'title' => __('Styling', 'pzarchitect'),
+                    'id'    => 'architect_stylings_section',
+                    'type'  => 'section',
                 ),
                 array(
                     'title'    => __('Enable styling settings', 'pzarchitect'),
@@ -310,17 +310,18 @@
 
                 ) : null),
                 array(
-                    'title'    => __('Other', 'pzarchitect'),
-                    'id'       => 'architect_other_section',
-                    'type'     => 'section',
+                    'title' => __('Other', 'pzarchitect'),
+                    'id'    => 'architect_other_section',
+                    'type'  => 'section',
                 ),
-
                 array(
                     'title'    => __('Enable admin background image', 'pzarchitect'),
                     'id'       => 'architect_enable_bgimage',
                     'type'     => 'switch',
                     'subtitle' => 'Displays a background image on the Architect admin pages',
                     'default'  => false,
+                    'on'       => 'Yes',
+                    'off'      => 'No'
                 ),
                 array(
                     'title'    => __('Choose background image', 'pzarchitect'),
@@ -373,6 +374,20 @@
                     'height'  => false,
                     'units'   => 'px',
                     'default' => array('width' => '640'),
+                ),
+                array(
+                    'title' => __('Images', 'pzarchitect'),
+                    'id'    => 'architect_responsive-images_section',
+                    'type'  => 'section',
+                ),
+                array(
+                    'title'    => __('Create and use retina images', 'pzarchitect'),
+                    'id'       => 'architect_enable-retina-images',
+                    'type'     => 'switch',
+                    'subtitle' => __('If enabled, when images are created, a second high version to display on retina screens will also be created and then displayed as required.','pzarchitect'),
+                    'default'  => true,
+                    'on'       => 'Yes',
+                    'off'      => 'No'
                 ),
             )
         );

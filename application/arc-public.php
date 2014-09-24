@@ -16,10 +16,13 @@
   function pzarc_display_init()
   {
 
-    wp_register_script('js-arc-front-slickjs', PZARC_PLUGIN_APP_URL . '/public/js/arc-front-slick.js', array('jquery'));
+    // Retina Js
+    // Using hacked version which only supports data-at2x attribute
+    wp_register_script('js-retinajs', PZARC_PLUGIN_APP_URL . '/public/js/retinajs/retina.js');
 
 
     // Slick
+    wp_register_script('js-arc-front-slickjs', PZARC_PLUGIN_APP_URL . '/public/js/arc-front-slick.js', array('jquery'));
     wp_register_script('js-slickjs', PZARC_PLUGIN_APP_URL . '/public/js/slick/slick.min.js', array('jquery'), null, true);
     wp_register_style('css-slickjs', PZARC_PLUGIN_APP_URL . '/public/js/slick/slick.css');
 
@@ -149,8 +152,15 @@
    * Overrides is a list of ids
    *
    ******************************/
-  function pzarc($blueprint = null, $overrides = null, $caller, $tag = null,$additional_overrides=null)
+  function pzarc($blueprint = null, $overrides = null, $caller, $tag = null, $additional_overrides = null)
   {
+
+    global $_architect_options;
+
+    // Just incase that didn't work... A problem from days of past
+    if (!isset($GLOBALS[ '_architect_options' ])) {
+      $GLOBALS[ '_architect_options' ] = get_option('_architect_options', array());
+    }
 
     // Enqueue registered scripts and styles
     // make optional
@@ -159,6 +169,9 @@
     wp_enqueue_style('css-slickjs');
     wp_enqueue_style('css-icomoon-arrows');
     // make optional
+    if (!empty($_architect_options['architect_enable-retina-images'])) {
+      wp_enqueue_script('js-retinajs');
+    }
     wp_enqueue_script('js-magnific');
     wp_enqueue_script('js-magnific-arc');
     wp_enqueue_style('css-magnific');
@@ -169,12 +182,6 @@
 
     $is_shortcode = ($caller == 'shortcode');
 
-    global $_architect_options;
-
-    // Just incase that didn't work... A problem from days of past
-    if (!isset($GLOBALS[ '_architect_options' ])) {
-      $GLOBALS[ '_architect_options' ] = get_option('_architect_options', array());
-    }
 
     if (empty($blueprint) && ($is_shortcode && (empty($_architect_options[ 'architect_default_shortcode_blueprint' ])) && empty($_architect_options[ 'architect_replace_wpgalleries' ]))) {
 
@@ -205,7 +212,7 @@
       if (empty($architect->build->blueprint[ 'err_msg' ])) {
 
 
-        $architect->build_blueprint($overrides, $caller,$additional_overrides);
+        $architect->build_blueprint($overrides, $caller, $additional_overrides);
 
 
         /* These lines from ExcerptsPlus */

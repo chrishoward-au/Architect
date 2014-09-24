@@ -408,7 +408,7 @@
     return (!pzarc_is_empty_vals($value, array('units')) ? $class . ' {' . pzarc_process_spacing($value) . ';}' . "\n" : null);
   }
 
-  function pzarc_style_margin($class, $value)
+  function pzarc_style_margins($class, $value)
   {
     return (!pzarc_is_empty_vals($value, array('units')) ? $class . ' {' . pzarc_process_spacing($value) . ';}' . "\n" : null);
   }

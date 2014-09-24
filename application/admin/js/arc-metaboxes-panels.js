@@ -59,7 +59,7 @@ jQuery( document ).ready( function ()
   //} );
 
 
-  // FEATURE LOCATION
+  /** FEATURE LOCATION **/
   jQuery( 'input[name="_architect[_panels_design_feature-location]"]' ).on( 'click', function ( e )
   {
     var cell_layout = jQuery.parseJSON( jQuery( 'input#_panels_design_preview-text' ).val() );
@@ -68,7 +68,7 @@ jQuery( document ).ready( function ()
     pzarc_update_feature( cell_layout );
     pzarc_update_tabs_to_show( e );
   } );
-  // FEATURE type
+  /** FEATURE type **/
   jQuery( 'input[name="_architect[_panels_settings_feature-type]"]' ).on( 'click', function ()
   {
     var imgorvid = this.value;
@@ -76,7 +76,7 @@ jQuery( document ).ready( function ()
   } );
 
 
-  // COMPONENTS TO SHOW
+  /** COMPONENTS TO SHOW **/
   jQuery( 'fieldset#_architect-_panels_design_components-to-show input' ).change( function ( e )
   {
     var pztarget = e.target;
@@ -123,32 +123,41 @@ jQuery( document ).ready( function ()
   } );
 
 
-  // COMPONENTS POSITION
+  /** COMPONENTS POSITION **/
   jQuery( 'input[name="_architect[_panels_design_components-position]"]' ).on( 'click', function ()
   {
     var cell_layout = jQuery.parseJSON( jQuery( 'input#_panels_design_preview-text' ).val() );
     pzarc_update_component_location( cell_layout );
   } );
 
-  // PANEL HEIGHT TYPE
+  /** PANEL HEIGHT TYPE **/
   jQuery( 'input[name="_architect[panels_settingds_panel-height-type]"]' ).on( 'click', function ()
   {
     // var cell_layout = jQuery.parseJSON( jQuery( 'input#_panels_design_preview-text' ).val() );
   } );
 
 
+  /** COMPONENTS WIDTH**/
   jQuery( 'fieldset#_architect-_panels_design_components-widths .redux-slider-label' ).on( "DOMSubtreeModified", function ()
   {
     var cell_layout = jQuery.parseJSON( jQuery( 'input#_panels_design_preview-text' ).val() );
     pzarc_update_components_container_width( cell_layout );
+
+    if (1 === jQuery( 'input#_panels_design_feature-location-buttonsetfloat:checked' ).length) {
+      // UPDATE
+
+      jQuery('.pzgp-cell-image-behind').width(100-this.textContent+'%');
+    }
   } );
 
+  /** COMPONENTS NUDGE X **/
   jQuery( 'fieldset#_architect-_panels_design_components-nudge-x .redux-slider-label' ).on( "DOMSubtreeModified", function ()
   {
     var cell_layout = jQuery.parseJSON( jQuery( 'input#_panels_design_preview-text' ).val() );
     pzarc_update_components_nudge( cell_layout );
   } );
 
+  /** COMPONENTS NUDGE Y **/
   jQuery( 'fieldset#_architect-_panels_design_components-nudge-y  .redux-slider-label' ).on( "DOMSubtreeModified", function ()
   {
     var cell_layout = jQuery.parseJSON( jQuery( 'input#_panels_design_preview-text' ).val() );
@@ -376,9 +385,9 @@ jQuery( document ).ready( function ()
       case 'float':
         /// TODO: Work out how to make before or after components group/
         jQuery( '.pzarc-dropzone .pzgp-cell-image-behind' ).html( '<img  class="feature-image-video" src="' + plugin_url + 'shared/assets/images/sample-' + jQuery( 'input[name="_architect[_panels_settings_feature-type]"]:checked' ).get( 0 ).value + '.jpg"/>' );
-        var zonesWidth = jQuery( '.pzarc-content-area' ).width();
-        var zonesHeight = jQuery( '.pzarc-content-area' ).height();
-
+        var zonesWidth = jQuery(jQuery( '.pzarc-content-area' ).get(0)).clientWidth;
+        var zonesHeight = jQuery( '.pzarc-content-area' ).get(0 ).clientHeight();
+console.log(jQuery( '.pzarc-content-area' ).get(0 ).clientWidth,zonesWidth,zonesHeight);
         var sections_position = 'top';
         jQuery( 'input[name="_architect[_panels_design_components-position]"]' ).each( function ()
         {
@@ -495,6 +504,7 @@ jQuery( document ).ready( function ()
           left: '0',
           right: ''
         } );
+          jQuery('.pzgp-cell-image-behind' ).css('right','0');
         break;
       case 'right':
         jQuery( '.pzarc-content-area' ).css( {
@@ -503,6 +513,7 @@ jQuery( document ).ready( function ()
           left: '',
           right: '0'
         } );
+        jQuery('.pzgp-cell-image-behind' ).css('left','0');
         break;
     }
     pzarc_update_status( cell_layout );

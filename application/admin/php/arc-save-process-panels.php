@@ -127,7 +127,7 @@
             if ('top'===$pzarc_components_position || 'bottom'===$pzarc_components_position) {
               $pzarc_contents .= $class_prefix . ' .entry-thumbnail {width:' . (100  - $left - $right) . '%;max-width:' . $pzarc_panels[ '_panels_design_image-max-dimensions' ][ 'width' ] . ';' . $margins . ';}' . $nl;
             }else {
-              $pzarc_contents .= $class_prefix . ' .entry-thumbnail {width:' . max((100 - $pzarc_components_width - $left - $right), 0) . '%;max-width:' . $pzarc_panels[ '_panels_design_image-max-dimensions' ][ 'width' ] . ';' . $margins . ';}' . $nl;
+              $pzarc_contents .= $class_prefix . ' .entry-thumbnail {width:' . max((100 - $pzarc_components_width - $left - $right), 0) . '%;max-width:' . $pzarc_panels[ '_panels_design_image-max-dimensions' ][ 'width' ] . ';' . $margins . ';float:'.('left'===$pzarc_components_position?'right':'left').'}' . $nl;
 
             }
           } elseif ('fill' === $pzarc_panels[ '_panels_design_feature-location' ] && 'image' === $pzarc_panels[ '_panels_settings_feature-type' ]) {
