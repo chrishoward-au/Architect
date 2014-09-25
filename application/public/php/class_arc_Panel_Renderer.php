@@ -266,8 +266,13 @@
       ));
 
       $this->data[ 'bgimage' ][ 'original' ] = wp_get_attachment_image_src($thumb_id, 'full');
-      $params = array( 'width' => ($width*2), 'height' => ($height*2) );
-      $thumb_2X = bfi_thumb( $this->data[ 'bgimage' ][ 'original' ][0], $params );
+      preg_match("/(?<=src\\=\")(.)*(?=\" )/uiUs", $this->data[ 'bgimage' ][ 'thumb' ],$results);
+      if (isset($results[0]) && !empty($this->section['_panels_settings_use-retina-images'])) {
+        $params = array('width' => ($width * 2), 'height' => ($height * 2));
+        // We need the crop to be identical. :/ So how about we just double the size of the image! I'm sure I Saw somewhere that works still. In fact, we have no choice, since the double sized image could be bigger than the original.
+        $thumb_2X                         = bfi_thumb($results[ 0 ], $params);
+        $this->data[ 'bgimage' ][ 'thumb' ] = str_replace('/>', 'data-at2x="' . $thumb_2X . '" />', $this->data[ 'bgimage' ][ 'thumb' ]);
+      }
       $this->data[ 'bgimage' ][ 'thumb' ] = str_replace('/>','data-at2x="'.$thumb_2X.'" />',$this->data[ 'bgimage' ][ 'thumb' ]);
     }
 

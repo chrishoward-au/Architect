@@ -74,7 +74,7 @@
 
         wp_enqueue_style('pzarc-admin-panels-css', PZARC_PLUGIN_APP_URL . '/admin/css/arc-admin-panels.css');
 
-        wp_enqueue_script('jquery-pzarc-metaboxes-panels', PZARC_PLUGIN_APP_URL . '/admin/js/arc-metaboxes-panels.js', array('jquery'));
+        wp_enqueue_script('jquery-pzarc-metaboxes-panels', PZARC_PLUGIN_APP_URL . '/admin/js/arc-metaboxes-panels.js', array('jquery'),null,true);
       }
     }
 
@@ -871,7 +871,7 @@
                 'off'      => 'No',
                 'default'  => true,
                 'required' => array('_panels_settings_feature-type', '=', 'image'),
-                'subtitle' => __('If enabled, a retina version of the featured image wil be created and displayed. Ensure the global setting in Architect Options is on as well.', 'pzarchitect')
+                'subtitle' => __('If enabled, a retina version of the featured image wil be created and displayed. Ensure the global setting in Architect Options is on as well. NOTE: This will make your site load slower on retina devices, so you may only want consider which panels you have it enabled on.', 'pzarchitect')
             ),
 
           ///

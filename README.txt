@@ -107,7 +107,7 @@ This is BETA software. So there are many besides these ones!
 * *** adding RSS feed support
 
 = 0.8.4.x =
-* ADDED: Automatically generates and uses retina versions of images! 
+* ADDED: Automatically generates and uses retina versions of images!
 
 = 0.8.4 =
 * CHANGED: Image component is now called Feature.

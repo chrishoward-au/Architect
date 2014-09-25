@@ -384,7 +384,7 @@
                     'title'    => __('Create and use retina images', 'pzarchitect'),
                     'id'       => 'architect_enable-retina-images',
                     'type'     => 'switch',
-                    'subtitle' => __('If enabled, when images are created, a second high version to display on retina screens will also be created and then displayed as required.','pzarchitect'),
+                    'subtitle' => __('If enabled, when images are created, a second high version to display on retina screens will also be created and then displayed as required. NOTE: This will make your site load slower on retina devices.','pzarchitect'),
                     'default'  => true,
                     'on'       => 'Yes',
                     'off'      => 'No'

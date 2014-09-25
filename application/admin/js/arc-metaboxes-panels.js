@@ -128,6 +128,7 @@ jQuery( document ).ready( function ()
   {
     var cell_layout = jQuery.parseJSON( jQuery( 'input#_panels_design_preview-text' ).val() );
     pzarc_update_component_location( cell_layout );
+    pzarc_update_feature(cell_layout);
   } );
 
   /** PANEL HEIGHT TYPE **/
@@ -385,9 +386,8 @@ jQuery( document ).ready( function ()
       case 'float':
         /// TODO: Work out how to make before or after components group/
         jQuery( '.pzarc-dropzone .pzgp-cell-image-behind' ).html( '<img  class="feature-image-video" src="' + plugin_url + 'shared/assets/images/sample-' + jQuery( 'input[name="_architect[_panels_settings_feature-type]"]:checked' ).get( 0 ).value + '.jpg"/>' );
-        var zonesWidth = jQuery(jQuery( '.pzarc-content-area' ).get(0)).clientWidth;
-        var zonesHeight = jQuery( '.pzarc-content-area' ).get(0 ).clientHeight();
-console.log(jQuery( '.pzarc-content-area' ).get(0 ).clientWidth,zonesWidth,zonesHeight);
+        var zonesWidth = jQuery( '.pzarc-content-area' ).get(0).clientWidth;
+        var zonesHeight = jQuery( '.pzarc-content-area' ).get(0 ).clientHeight;
         var sections_position = 'top';
         jQuery( 'input[name="_architect[_panels_design_components-position]"]' ).each( function ()
         {
@@ -406,8 +406,8 @@ console.log(jQuery( '.pzarc-content-area' ).get(0 ).clientWidth,zonesWidth,zones
             } );
             jQuery( '.pzarc-dropzone .pzgp-cell-image-behind' ).css( {
               'width': (450 - zonesWidth) + 'px',
-              'left': zonesWidth + 'px',
-              'right': '',
+              'left': '',
+              'right': '0',
               'top': '',
               'bottom': ''
             } );
@@ -421,8 +421,8 @@ console.log(jQuery( '.pzarc-content-area' ).get(0 ).clientWidth,zonesWidth,zones
             } );
             jQuery( '.pzarc-dropzone .pzgp-cell-image-behind' ).css( {
               'width': (450 - zonesWidth) + 'px',
-              'right': zonesWidth + 'px',
-              'left': '',
+              'right': '',
+              'left': '0',
               'top': '',
               'bottom': ''
             } );
