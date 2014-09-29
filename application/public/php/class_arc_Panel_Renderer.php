@@ -7,6 +7,8 @@
     public $section = array();
     public $thumb_id;
     public $focal_point = array();
+    public $build;
+    public $arc_query;
 
     public function __construct()
     {
@@ -647,4 +649,83 @@
 
       return $line;
     }
+
+    /**
+     * Default Loop
+     */
+    public function loop($section_no,&$architect,&$panel_class,$class)
+    {
+      $this->build->blueprint = $architect->build->blueprint;
+      $this->arc_query = $architect->arc_query;
+
+      $section[ $section_no ] = $this->build->blueprint[ 'section_object' ][ $section_no ];
+
+      $panel_def = $panel_class->panel_def();
+
+      // Setup meta tags
+      $panel_def = $architect->build_meta_definition($panel_def, $this->build->blueprint[ 'section' ][ ($section_no - 1) ][ 'section-panel-settings' ]);
+
+      //   var_dump(esc_html($panel_def));
+
+      $i         = 1;
+      $nav_items = array();
+
+      // Does this work for non
+
+      $section[ $section_no ]->open_section();
+
+      while ($this->arc_query->have_posts()) {
+
+        $this->arc_query->the_post();
+
+        // TODO: This may need to be modified for other types that dont' use post_title
+        // TODO: Make dumb so can be pluggable for other navs
+        switch ($this->build->blueprint[ '_blueprints_navigator' ]) {
+
+          case 'tabbed':
+            $nav_items[ ] = '<span class="' . $this->build->blueprint[ '_blueprints_navigator' ] . '">' . $this->arc_query->post->post_title . '</span>';
+            break;
+
+          case 'thumbs':
+
+            if ('attachment' === $this->arc_query->post->post_type) {
+
+              // TODO: Will need to change this to use the thumb dimensions set in the blueprint viasmall , medium, large
+              $thumb = wp_get_attachment_image($this->arc_query->post->ID, array(50, 50));
+
+            } else {
+
+              $thumb = get_the_post_thumbnail($this->arc_query->post->ID, array(50, 50));
+
+            }
+
+            $thumb = (empty($thumb) ? '<img src="' . PZARC_PLUGIN_APP_URL . '/shared/assets/images/missing-image.png" width="50" height="50">' : $thumb);
+
+            $nav_items[ ] = '<span class="' . $this->build->blueprint[ '_blueprints_navigator' ] . '">' . $thumb . '</span>';
+            break;
+
+          case 'bullets':
+          case 'numbers':
+          case 'buttons':
+            //No need for content on these
+            $nav_items[ ] = '';
+            break;
+
+        }
+        $section[ $section_no ]->render_panel($panel_def, $i, $class, $panel_class, $this->arc_query);
+
+        if ($i++ >= $this->build->blueprint[ '_blueprints_section-' . ($section_no - 1) . '-panels-per-view' ] && !empty($this->build->blueprint[ '_blueprints_section-' . ($section_no - 1) . '-panels-limited' ])) {
+          break;
+
+        }
+
+      }
+      $section[ $section_no ]->close_section();
+
+      // Unsetting causes it to run the destruct, which closes the div!
+      unset($section[ $section_no ]);
+
+      return $nav_items;
+    }
+
   }

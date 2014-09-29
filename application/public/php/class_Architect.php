@@ -30,7 +30,7 @@
     public $build;
     private $panel_def;
     private $arc;
-    private $arc_query;
+    public $arc_query;
     private $is_shortcode;
     private $criteria = array();
     private $backup_wp_query;
@@ -489,7 +489,7 @@
      * Returns:
      *
      *************************************************/
-    private function build_meta_definition($panel_def, $section_panel_settings)
+    public function build_meta_definition($panel_def, $section_panel_settings)
     {
       //replace meta1innards etc
       $meta = array_pad(array(), 3, null);
@@ -812,14 +812,7 @@
 
     }
 
-
-    /**
-     * @param $section_no
-     */
-    private function loop($section_no)
-    {
-
-      $section[ $section_no ] = $this->build->blueprint[ 'section_object' ][ $section_no ];
+    private function loop($section_no) {
 
       // oops! Need to get default content type when defaults chosen.
       $post_type = (empty($this->build->blueprint[ '_blueprints_content-source' ]) || 'defaults' === $this->build->blueprint[ '_blueprints_content-source' ] ?
@@ -849,77 +842,15 @@
         include_once PZARC_PLUGIN_APP_PATH . '/public/php/post_types/class_arc_Panel_Generic.php';
 
       }
+
       // We setup the Paneldef here so we're not doing it every iteration of the Loop!
       // TODO: Some sites get a T_PAAMAYIM_NEKUDOTAYIM error! ugh!
 
       $panel_class = new $class;
-      $panel_def = $panel_class->panel_def();
 
-      // Setup meta tags
-      $panel_def = self::build_meta_definition($panel_def, $this->build->blueprint[ 'section' ][ ($section_no - 1) ][ 'section-panel-settings' ]);
-
-      //   var_dump(esc_html($panel_def));
-
-      $i         = 1;
-      $nav_items = array();
-
-      // Does this work for non
-
-      $section[ $section_no ]->open_section();
-
-      while ($this->arc_query->have_posts()) {
-
-        $this->arc_query->the_post();
-
-        // TODO: This may need to be modified for other types that dont' use post_title
-        // TODO: Make dumb so can be pluggable for other navs
-        switch ($this->build->blueprint[ '_blueprints_navigator' ]) {
-
-          case 'tabbed':
-            $nav_items[ ] = '<span class="' . $this->build->blueprint[ '_blueprints_navigator' ] . '">' . $this->arc_query->post->post_title . '</span>';
-            break;
-
-          case 'thumbs':
-
-            if ('attachment' === $this->arc_query->post->post_type) {
-
-              // TODO: Will need to change this to use the thumb dimensions set in the blueprint viasmall , medium, large
-              $thumb = wp_get_attachment_image($this->arc_query->post->ID, array(50, 50));
-
-            } else {
-
-              $thumb = get_the_post_thumbnail($this->arc_query->post->ID, array(50, 50));
-
-            }
-
-            $thumb = (empty($thumb) ? '<img src="' . PZARC_PLUGIN_APP_URL . '/shared/assets/images/missing-image.png" width="50" height="50">' : $thumb);
-
-            $nav_items[ ] = '<span class="' . $this->build->blueprint[ '_blueprints_navigator' ] . '">' . $thumb . '</span>';
-            break;
-
-          case 'bullets':
-          case 'numbers':
-          case 'buttons':
-            //No need for content on these
-            $nav_items[ ] = '';
-            break;
-
-        }
-        $section[ $section_no ]->render_panel($panel_def, $i, $class, $panel_class, $this->arc_query);
-
-        if ($i++ >= $this->build->blueprint[ '_blueprints_section-' . ($section_no - 1) . '-panels-per-view' ] && !empty($this->build->blueprint[ '_blueprints_section-' . ($section_no - 1) . '-panels-limited' ])) {
-          break;
-
-        }
-
-      }
-      $section[ $section_no ]->close_section();
-
-      // Unsetting causes it to run the destruct, which closes the div!
-      unset($section[ $section_no ]);
-
-      return $nav_items;
+      $panel_class->loop($section_no,$this,$panel_class,$class);
     }
+
   }
 
   // EOC Architect

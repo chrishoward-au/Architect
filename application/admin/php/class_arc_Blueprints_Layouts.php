@@ -642,12 +642,12 @@
                   //      'hint'  => array('content' => __('Set the minimum width for panels in this section. This helps with responsive layout', 'pzarchitect'))
               ),
               array(
-                  'title'    => __('Panels margins (%)', 'pzarchitect'),
-                  'id'       => $prefix . 'section-' . $i . '-panels-margins',
-                  'type'     => 'spacing',
-                  'units'    => '%',
-                  'mode'     => 'margin',
-                  'default'  => array('right' => '0', 'bottom' => '0','left' => '0', 'top' => '0'),
+                  'title'   => __('Panels margins (%)', 'pzarchitect'),
+                  'id'      => $prefix . 'section-' . $i . '-panels-margins',
+                  'type'    => 'spacing',
+                  'units'   => '%',
+                  'mode'    => 'margin',
+                  'default' => array('right' => '0', 'bottom' => '0', 'left' => '0', 'top' => '0'),
                   //'subtitle' => __('Right, bottom', 'pzarchitect')
                   //    'hint'  => array('content' => __('Set the vertical gutter width as a percentage of the section width. The gutter is the gap between adjoining elements', 'pzarchitect'))
               ),
@@ -1120,6 +1120,8 @@
 //    );
 //
     /** GENERAL  Settings*/
+
+    // If you add/remove a content type, you have to add/remove it's side tab too
     $prefix      = '_content_general_';
     $sections[ ] = array(
         'title'      => 'Settings',
@@ -1133,22 +1135,21 @@
                 'select2'  => array('allowClear' => false),
                 'default'  => 'defaults',
                 'options'  => array(
-                  // need to make adjustments when adding new ones so help still displays
-                  'defaults' => 'Defaults',
-                  'post'     => 'Posts',
-                  'page'     => 'Pages',
-                  'snippets' => 'Snippets',
-                  'gallery'  => 'Galleries',
-                  'slides'   => 'Slides',
-//                  'dummy'    => 'Dummy content',
-                  //                          'images'      => 'Specific Images',
-                  //                          'wpgallery'   => 'WP Gallery from post',
-                  //                          'galleryplus' => 'GalleryPlus',
-                  //                          'nggallery'   => 'NextGen',
-                  //                        'widgets' => 'Widgets',
-                  //                          'custom-code' => 'Custom code',
-                  //                        'rss'     => 'RSS Feed',
-                  'cpt'      => 'Custom Post Types'
+                    'defaults' => 'Defaults',
+                    'post'     => 'Posts',
+                    'page'     => 'Pages',
+                    'snippets' => 'Snippets',
+                    'gallery'  => 'Galleries',
+                    'slides'   => 'Slides',
+                    'dummy'    => 'Dummy content',
+                    //                          'images'      => 'Specific Images',
+                    //                          'wpgallery'   => 'WP Gallery from post',
+                    //                          'galleryplus' => 'GalleryPlus',
+                    //                          'nggallery'   => 'NextGen',
+                    //                        'widgets' => 'Widgets',  // This one may not be workable if user can't control where sidebars appear
+                    //                          'custom-code' => 'Custom code',
+                    //                        'rss'     => 'RSS Feed',
+                    'cpt'      => 'Custom Post Types'
                 ),
                 'subtitle' => 'todo: code all the js to show hide relevant sections'
             ),
@@ -1548,6 +1549,7 @@
                 'id'       => $prefix . 'dummy-record-count',
                 'type'     => 'spinner',
                 'default'  => 12,
+                'step'     => 1,
                 'min'      => 1,
                 'max'      => 99,
                 'subtitle' => __('Number of dummy records to simulate', 'pzarchitect'),

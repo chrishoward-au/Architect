@@ -4,7 +4,7 @@ Tags: content,display,posts,pages,gallery,slider
 Donate link: http://
 Requires at least: 3.5.0
 Tested up to: 4.0.0
-Stable tag: 0.8.4.1
+Stable tag: 0.8.4.5
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -92,7 +92,6 @@ For all other Pizazz support, please send an email to support@pizazzwp.com or ac
 
 = Known issues =
 This is BETA software. So there are many besides these ones!
-* Full size background images are 3 or 4 pixels short of filling the height of the panel
 * In tabbed navigation, Firefox ignores padding
 
 == Screenshots ==
@@ -102,12 +101,13 @@ This is BETA software. So there are many besides these ones!
 
 == Changelog ==
 
+= 0.8.4.5 =
+* ADDED: Dummy content type. Seriously!! Now your site doesn't need content to begin development. (Note: it's not yet working with pagination or navigator. These will happen  in time. It won't work with archive type pages and might not ever - dont' know if I've got enough tricks left up my sleeve!)
 
-* *** adding dummy content support
-* *** adding RSS feed support
-
-= 0.8.4.x =
+= 0.8.4.3 =
 * ADDED: Automatically generates and uses retina versions of images!
+* FIXED: Various bugs in panel designer.
+
 
 = 0.8.4 =
 * CHANGED: Image component is now called Feature.

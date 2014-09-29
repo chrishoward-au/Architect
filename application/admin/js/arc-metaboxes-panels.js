@@ -3,7 +3,7 @@ jQuery( document ).ready( function ()
   "use strict";
 
 
-  /**
+  /** ***********************************************************************************************************************
    * Update status message and field data
    */
   function pzarc_update_status( cell_layout )
@@ -39,9 +39,9 @@ jQuery( document ).ready( function ()
 
   }
 
-//***********************
-// Process field values
-//***********************
+  /** ***********************************************************************************************************************
+   Process field values
+   ***********************/
 
 
   // Hidden field containing the plugin url
@@ -59,6 +59,7 @@ jQuery( document ).ready( function ()
   //} );
 
 
+  /** ***********************************************************************************************************************/
   /** FEATURE LOCATION **/
   jQuery( 'input[name="_architect[_panels_design_feature-location]"]' ).on( 'click', function ( e )
   {
@@ -68,6 +69,8 @@ jQuery( document ).ready( function ()
     pzarc_update_feature( cell_layout );
     pzarc_update_tabs_to_show( e );
   } );
+
+  /** ***********************************************************************************************************************/
   /** FEATURE type **/
   jQuery( 'input[name="_architect[_panels_settings_feature-type]"]' ).on( 'click', function ()
   {
@@ -76,6 +79,7 @@ jQuery( document ).ready( function ()
   } );
 
 
+  /** ***********************************************************************************************************************/
   /** COMPONENTS TO SHOW **/
   jQuery( 'fieldset#_architect-_panels_design_components-to-show input' ).change( function ( e )
   {
@@ -108,10 +112,9 @@ jQuery( document ).ready( function ()
         else
         {
           console.log(
-              'checked' === jQuery( 'fieldset#_architect-_panels_design_components-to-show input#_panels_design_components-to-show-buttonsetcustom1' ) ,
-              'checked' === jQuery( 'fieldset#_architect-_panels_design_components-to-show input#_panels_design_components-to-show-buttonsetcustom2' ) ,
+              'checked' === jQuery( 'fieldset#_architect-_panels_design_components-to-show input#_panels_design_components-to-show-buttonsetcustom1' ),
+              'checked' === jQuery( 'fieldset#_architect-_panels_design_components-to-show input#_panels_design_components-to-show-buttonsetcustom2' ),
               'checked' === jQuery( 'fieldset#_architect-_panels_design_components-to-show input#_panels_design_components-to-show-buttonsetcustom3' )
-
           );
           custom_row.hide();
         }
@@ -123,14 +126,17 @@ jQuery( document ).ready( function ()
   } );
 
 
+  /** ***********************************************************************************************************************/
   /** COMPONENTS POSITION **/
   jQuery( 'input[name="_architect[_panels_design_components-position]"]' ).on( 'click', function ()
   {
     var cell_layout = jQuery.parseJSON( jQuery( 'input#_panels_design_preview-text' ).val() );
     pzarc_update_component_location( cell_layout );
-    pzarc_update_feature(cell_layout);
+    pzarc_reposition_components(cell_layout,jQuery( 'fieldset#_architect-_panels_design_components-widths .redux-slider-label' ));
+    pzarc_update_feature( cell_layout );
   } );
 
+  /** ***********************************************************************************************************************/
   /** PANEL HEIGHT TYPE **/
   jQuery( 'input[name="_architect[panels_settingds_panel-height-type]"]' ).on( 'click', function ()
   {
@@ -138,19 +144,15 @@ jQuery( document ).ready( function ()
   } );
 
 
+  /** ***********************************************************************************************************************/
   /** COMPONENTS WIDTH**/
   jQuery( 'fieldset#_architect-_panels_design_components-widths .redux-slider-label' ).on( "DOMSubtreeModified", function ()
   {
     var cell_layout = jQuery.parseJSON( jQuery( 'input#_panels_design_preview-text' ).val() );
-    pzarc_update_components_container_width( cell_layout );
-
-    if (1 === jQuery( 'input#_panels_design_feature-location-buttonsetfloat:checked' ).length) {
-      // UPDATE
-
-      jQuery('.pzgp-cell-image-behind').width(100-this.textContent+'%');
-    }
+    pzarc_reposition_components(cell_layout,this);
   } );
 
+  /** ***********************************************************************************************************************/
   /** COMPONENTS NUDGE X **/
   jQuery( 'fieldset#_architect-_panels_design_components-nudge-x .redux-slider-label' ).on( "DOMSubtreeModified", function ()
   {
@@ -158,6 +160,7 @@ jQuery( document ).ready( function ()
     pzarc_update_components_nudge( cell_layout );
   } );
 
+  /** ***********************************************************************************************************************/
   /** COMPONENTS NUDGE Y **/
   jQuery( 'fieldset#_architect-_panels_design_components-nudge-y  .redux-slider-label' ).on( "DOMSubtreeModified", function ()
   {
@@ -165,10 +168,8 @@ jQuery( document ).ready( function ()
     pzarc_update_components_nudge( cell_layout );
   } );
 
-  /***************************
-   *
+  /************************************************************************************************************************
    * sort
-   *
    */
   jQuery( ".pzarc-dropzone .pzarc-content-area" ).sortable( {
     cursor: "move",
@@ -187,7 +188,7 @@ jQuery( document ).ready( function ()
       pzarc_update_status( cell_layout );
     },
 
-    /*************
+    /************************************************************************************************************************
      Do on create
      *************/
     create: function ()
@@ -231,7 +232,7 @@ jQuery( document ).ready( function ()
   } );
 
 
-  /**
+  /************************************************************************************************************************
    * Process resizing
    *
    */
@@ -249,6 +250,10 @@ jQuery( document ).ready( function ()
   } );
 
 
+  /************************************************************************************************************************
+   *
+   * @param t
+   */
   function pzarc_resize_component( t )
   {
     var zone = jQuery( t ).data( "idcode" );
@@ -261,7 +266,7 @@ jQuery( document ).ready( function ()
     jQuery( t ).width( new_width + '%' );
   }
 
-  /**
+  /************************************************************************************************************************
    * Resort the components
    */
   function pzarc_resort_components( cell_layout )
@@ -279,7 +284,7 @@ jQuery( document ).ready( function ()
   }
 
 
-  /**
+  /************************************************************************************************************************
    * Update visibility
    */
   function pzarc_update_component_visibility( cell_layout )
@@ -308,7 +313,7 @@ jQuery( document ).ready( function ()
     return cell_layout;
   }
 
-  /**
+  /************************************************************************************************************************
    * Update component widths
    * Although this is a seemingly superfluous function, it does provide consistency and makes future changes easier.
    */
@@ -322,7 +327,7 @@ jQuery( document ).ready( function ()
   function pzarc_update_feature( cell_layout )
   {
 
-    /*********************
+    /************************************************************************************************************************
      // Update feature location
      *********************/
     var featureLocation = 'none';
@@ -386,8 +391,8 @@ jQuery( document ).ready( function ()
       case 'float':
         /// TODO: Work out how to make before or after components group/
         jQuery( '.pzarc-dropzone .pzgp-cell-image-behind' ).html( '<img  class="feature-image-video" src="' + plugin_url + 'shared/assets/images/sample-' + jQuery( 'input[name="_architect[_panels_settings_feature-type]"]:checked' ).get( 0 ).value + '.jpg"/>' );
-        var zonesWidth = jQuery( '.pzarc-content-area' ).get(0).clientWidth;
-        var zonesHeight = jQuery( '.pzarc-content-area' ).get(0 ).clientHeight;
+        var zonesWidth = jQuery( '.pzarc-content-area' ).get( 0 ).clientWidth;
+        var zonesHeight = jQuery( '.pzarc-content-area' ).get( 0 ).clientHeight;
         var sections_position = 'top';
         jQuery( 'input[name="_architect[_panels_design_components-position]"]' ).each( function ()
         {
@@ -468,7 +473,7 @@ jQuery( document ).ready( function ()
 
   function pzarc_update_component_location( cell_layout )
   {
-    /******************
+    /************************************************************************************************************************
      // Update component location
      ******************/
     var sections_position = 'top';
@@ -504,7 +509,7 @@ jQuery( document ).ready( function ()
           left: '0',
           right: ''
         } );
-          jQuery('.pzgp-cell-image-behind' ).css('right','0');
+        jQuery( '.pzgp-cell-image-behind' ).css( 'right', '0' );
         break;
       case 'right':
         jQuery( '.pzarc-content-area' ).css( {
@@ -513,7 +518,7 @@ jQuery( document ).ready( function ()
           left: '',
           right: '0'
         } );
-        jQuery('.pzgp-cell-image-behind' ).css('left','0');
+        jQuery( '.pzgp-cell-image-behind' ).css( 'left', '0' );
         break;
     }
     pzarc_update_status( cell_layout );
@@ -521,7 +526,7 @@ jQuery( document ).ready( function ()
 
   function pzarc_update_components_container_width()
   {
-    /**********************
+    /************************************************************************************************************************
      // update components width
      **********************/
       // TODO: Get Dovy to change sliders to update inout val in real time
@@ -533,7 +538,7 @@ jQuery( document ).ready( function ()
 
   function pzarc_update_components_nudge()
   {
-    /*********************
+    /************************************************************************************************************************
      // Update components nudge
      *********************/
     var nudgexy = [jQuery( 'fieldset#_architect-_panels_design_components-nudge-x .redux-slider-label' ).text(), jQuery( 'fieldset#_architect-_panels_design_components-nudge-y .redux-slider-label' ).text()];
@@ -569,7 +574,7 @@ jQuery( document ).ready( function ()
   }
 
 
-  /**
+  /************************************************************************************************************************
    * Update tabs to show
    */
 
@@ -623,6 +628,10 @@ jQuery( document ).ready( function ()
 
   }
 
+  /************************************************************************************************************************
+   *
+   * @param imgorvid
+   */
   function pzarc_update_feature_type( imgorvid )
   {
     jQuery( 'img.feature-image-video' ).each( function ()
@@ -638,10 +647,59 @@ jQuery( document ).ready( function ()
     } );
   }
 
+  function pzarc_reposition_components(cell_layout,t){
+
+    pzarc_update_components_container_width( cell_layout );
+
+    var feature = jQuery( '.pzgp-cell-image-behind' ).detach();
+    var components = jQuery( '.pzarc-content-area' ).detach();
+
+    if ( 1 === jQuery( 'input#_panels_design_feature-location-buttonsetfloat:checked' ).length )
+    {
+      switch (true)
+      {
+        case ( (1 === jQuery( 'input#_panels_design_components-position-buttonsetleft:checked' ).length || 1 === jQuery( 'input#_panels_design_components-position-buttonsetright:checked' ).length) ):
+          console.log( 'left || right' )
+          // UPDATE
+          jQuery( '.pzarc-dropzone' ).append( feature ).append( components );
+          jQuery( '.pzgp-cell-image-behind' ).width( 100 - t.textContent + '%' ).css( 'position', 'absolute' );
+          jQuery( '.pzarc-content-area' ).css( 'position', 'absolute' );
+          break;
+        case ( (1 === jQuery( 'input#_panels_design_components-position-buttonsetbottom:checked' ).length)):
+          console.log( 'bottom' );
+          jQuery( '.pzarc-dropzone' ).append( feature ).append( components );
+          jQuery( '.pzarc-content-area' ).css( 'position', 'relative' )
+          jQuery( '.pzgp-cell-image-behind' ).css( 'position', 'relative' );
+          break;
+
+        case ( (1 === jQuery( 'input#_panels_design_components-position-buttonsettop:checked' ).length)):
+          console.log( 'top' );
+          jQuery( '.pzarc-dropzone' ).append( components ).append( feature );
+          jQuery( '.pzarc-content-area' ).css( 'position', 'relative' )
+          jQuery( '.pzgp-cell-image-behind' ).css( 'position', 'relative' );
+
+          break;
+
+      }
+
+    }
+    else
+    {
+      jQuery( '.pzarc-dropzone' ).append( feature ).append( components );
+      jQuery( '.pzgp-cell-image-behind' ).css( 'position', 'absolute' );
+      jQuery( '.pzarc-content-area' ).css( 'position', 'absolute' );
+
+    }
+    console.log( 'check' )
+
+  }
+
 } )
 ; // End
 
 
+/************************************************************************************************************************
+ */
 jQuery( window ).load( function ()
 {
   if ( jQuery( '#redux-_architect-metabox-panels-design ul.redux-group-menu li.active' ).length === 0 )
