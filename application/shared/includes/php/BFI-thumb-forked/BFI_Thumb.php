@@ -671,6 +671,7 @@
         $crop = explode('x', $crop);
         // Check if defaults needed
         // TODO: Need to work with WP left, right, center options
+        // TODO: Prob should make this 50,33 default
         $crop[ 0 ] = (!isset($crop[ 0 ]) ? 50 : $crop[ 0 ]);
         $crop[ 1 ] = (!isset($crop[ 1 ]) ? 50 : $crop[ 1 ]);
         $crop[ 2 ] = (!isset($crop[ 2 ]) ? 'center' : $crop[ 2 ]);

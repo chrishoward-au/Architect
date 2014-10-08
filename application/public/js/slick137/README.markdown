@@ -16,13 +16,13 @@ CDN hosted slick is a great way to get set up quick:
 In your ```<head>``` add:
 
 ````
-<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/jquery.slick/1.3.8/slick.css"/>
+<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/jquery.slick/1.3.7/slick.css"/>
 ````
 
 Then, before your closing ```<body>``` tag add:
 
 ```
-<script type="text/javascript" src="//cdn.jsdelivr.net/jquery.slick/1.3.8/slick.min.js"></script>
+<script type="text/javascript" src="//cdn.jsdelivr.net/jquery.slick/1.3.7/slick.min.js"/></script>
 ```
 
 #### Bower
@@ -49,7 +49,6 @@ easing | string |  'linear' | animate() fallback easing
 fade | boolean | false | Enables fade
 arrows | boolean | true | Enable Next/Prev arrows
 appendArrows | string | $(element) | Change where the navigation arrows are attached (Selector, htmlString, Array, Element, jQuery object)
-appendDots | string | $(element) | Change where the navigation dots are attached (Selector, htmlString, Array, Element, jQuery object)
 prevArrow | string (html|jQuery selector) | object (DOM node|jQuery object) | <button type="button" class="slick-prev">Previous</button> | Allows you to select a node or customize the HTML for the "Previous" arrow.
 nextArrow | string (html|jQuery selector) | object (DOM node|jQuery object) | <button type="button" class="slick-next">Next</button> | Allows you to select a node or customize the HTML for the "Next" arrow.
 infinite | boolean | true | Infinite looping
@@ -66,11 +65,9 @@ slidesToShow | int | 1 | # of slides to show at a time
 slidesToScroll | int | 1 | # of slides to scroll at a time
 speed | int | 300 | Transition speed
 swipe | boolean | true | Enables touch swipe
-swipeToSlide | boolean | false | Swipe to slide irrespective of slidesToScroll
 touchMove | boolean | true | Enables slide moving with touch
 touchThreshold | int | 5 | To advance slides, the user must swipe a length of (1/touchThreshold) * the width of the slider.
 useCSS | boolean | true | Enable/Disable CSS Transitions
-variableWidth | boolean | false | Disables automatic slide width calculation
 vertical | boolean | false | Vertical slide direction
 rtl | boolean | false | Change the slider's direction to become right-to-left
 waitForAnimate | boolean | true | Ignores requests to advance the slide while animating

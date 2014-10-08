@@ -133,9 +133,19 @@
      */
     public function render_panel($panel_def, $panel_number, $class, $panel_class, &$arc_query)
     {
+      if (!empty($arc_query->post)) {
+        $post   = $arc_query->post;
+        $postid = $arc_query->post->ID;
+      } else {
+        // This happens on non-post types, like dummy content type
+        // TODO: Make these something more useful!
+        $post   = null;
+        $postid = 'NoID';
+
+      }
       $settings = $this->section[ 'section-panel-settings' ];
       $toshow   = json_decode($settings[ '_panels_design_preview' ], true);
-      $panel_class->set_data($arc_query->post, $toshow, $settings);
+      $panel_class->set_data($post, $toshow, $settings);
 //      $elements = array();
 //
 //      // Massage toshow to be more usable here
@@ -219,13 +229,13 @@
 //       }
 
     //TODO: Check this works for all scenarios
-     switch ($settings[ '_panels_design_feature-location' ]){
+      switch ($settings[ '_panels_design_feature-location' ]){
 
         /** Background image */
         case 'fill':
           $line_out = $panel_class->render_bgimage('bgimage', $this->source, $panel_def, $this->rsid);
 //        echo apply_filters("arc_filter_bgimage", self::strip_unused_arctags($line_out), $data[ 'postid' ]);
-          echo apply_filters("arc_filter_bgimage", self::strip_unused_arctags($line_out), $arc_query->post->ID);
+          echo apply_filters("arc_filter_bgimage", self::strip_unused_arctags($line_out), $postid);
 
         break;
 
@@ -241,7 +251,7 @@
 
           }
 
-          echo apply_filters("arc_filter_outer_image", self::strip_unused_arctags($line_out), $arc_query->post->ID);
+          echo apply_filters("arc_filter_outer_image", self::strip_unused_arctags($line_out), $postid);
         }
         break;
       }
@@ -260,7 +270,7 @@
         if ($value[ 'show' ]) {
 
           // Send thru some data devs might find useful
-          do_action("arc_before_{$component_type}", $component_type, $panel_number, $arc_query->post->ID);
+          do_action("arc_before_{$component_type}", $component_type, $panel_number, $postid);
 
           // Make the class name to call - strip numbers from metas and customs
           // We could do this in a concatenation first of all components' templates, and then replace the {{tags}}.... But then we couldn't do the filter on each component. Nor could we as easily make the components extensible
@@ -268,8 +278,8 @@
 
           $line_out = $panel_class->$method_to_do($component_type, $this->source, $panel_def, $this->rsid);
 
-          echo apply_filters("arc_filter_{$component_type}", self::strip_unused_arctags($line_out), $arc_query->post->ID);
-          do_action("arc_after_{$component_type}", $component_type, $panel_number, $arc_query->post->ID);
+          echo apply_filters("arc_filter_{$component_type}", self::strip_unused_arctags($line_out), $postid);
+          do_action("arc_after_{$component_type}", $component_type, $panel_number, $postid);
 
         }
 
@@ -286,7 +296,7 @@
       if ($show_image_after_components) {
 
         $line_out = $panel_class->render_image('image', $this->source, $panel_def, $this->rsid);
-        echo apply_filters("arc_filter_outer_image", self::strip_unused_arctags($line_out), $arc_query->post->ID);
+        echo apply_filters("arc_filter_outer_image", self::strip_unused_arctags($line_out), $postid);
 
       }
 

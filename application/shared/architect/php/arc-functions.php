@@ -400,8 +400,9 @@
 
   }
 
-  function pzarc_get_authors($inc_all = true, $min_level = 2)
+  function pzarc_get_authors($inc_all = true, $min_level = 1)
   {
+    // user_level 1 = contributor
 // Get authors
     $userslist = get_users();
     $authors   = array();

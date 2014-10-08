@@ -16,7 +16,7 @@
      * @package     ReduxFramework
      * @author      Dovy Paukstys (dovy)
      * @author      Kevin Provance (kprovance)
-     * @version     1.2.8
+     * @version     1.2.9
      */
 
 // Exit if accessed directly
@@ -34,7 +34,7 @@
          */
         class ReduxFramework_extension_metaboxes {
 
-            static $version = "1.2.8";
+            static $version = "1.2.9";
 
             public $boxes = array();
             public $post_types = array();
@@ -172,7 +172,7 @@
                                 }
                                 $this->wp_links[ $boxID ]['page_template'] = isset( $this->wp_links[ $boxID ]['page_template'] ) ? wp_parse_args( $this->wp_links['page_template'], $box['page_template'] ) : $box['page_template'];
                             }
-                            if ( isset( $box['post_format'] ) && ( $this->post_type == "post" || $this->post_type == "" ) ) {
+                            if ( isset( $box['post_format'] ) && ( in_array( $this->post_type, $this->post_types ) || $this->post_type == "" ) ) {
                                 if ( ! is_array( $box['post_format'] ) ) {
                                     $box['post_format'] = array( $box['post_format'] );
                                 }
@@ -423,26 +423,27 @@
 
                 //echo "POST ID: ".$the_post->ID;
 
-                if ( isset( $GLOBALS[ $this->parent->args['opt_name'] . '-loop' ] ) ) {
-                    $GLOBALS[ $this->parent->args['opt_name'] ] = $GLOBALS[ $this->parent->args['opt_name'] . '-loop' ];
-                    unset( $GLOBALS[ $this->parent->args['opt_name'] . '-loop' ] );
+                if ( isset( $GLOBALS[ $this->parent->args['global_variable'] . '-loop' ] ) ) {
+                    $GLOBALS[ $this->parent->args['global_variable'] ] = $GLOBALS[ $this->parent->args['global_variable'] . '-loop' ];
+                    unset( $GLOBALS[ $this->parent->args['global_variable'] . '-loop' ] );
                 }
-// Override these values if they differ from the admin panel defaults.  ;)
+                
+                // Override these values if they differ from the admin panel defaults.  ;)
                 if ( in_array( $the_post->post_type, $this->post_types ) ) {
                     $meta = $this->get_meta( $the_post->ID );
                     if ( empty( $meta ) ) {
                         return;
                     }
                     // Backup the args
-                    $GLOBALS[ $this->parent->args['opt_name'] . '-loop' ] = $GLOBALS[ $this->parent->args['opt_name'] ];
-                    $GLOBALS[ $this->parent->args['opt_name'] ]           = wp_parse_args( $meta, $GLOBALS[ $this->parent->args['opt_name'] . '-loop' ] );
+                    $GLOBALS[ $this->parent->args['global_variable'] . '-loop' ] = $GLOBALS[ $this->parent->args['global_variable'] ];
+                    $GLOBALS[ $this->parent->args['global_variable'] ]           = wp_parse_args( $meta, $GLOBALS[ $this->parent->args['global_variable'] . '-loop' ] );
                 }
             }
 
             public function _loop_end() {
-                if ( isset( $GLOBALS[ $this->parent->args['opt_name'] . '-loop' ] ) ) {
-                    $GLOBALS[ $this->parent->args['opt_name'] ] = $GLOBALS[ $this->parent->args['opt_name'] . '-loop' ];
-                    unset( $GLOBALS[ $this->parent->args['opt_name'] . '-loop' ] );
+                if ( isset( $GLOBALS[ $this->parent->args['global_variable'] . '-loop' ] ) ) {
+                    $GLOBALS[ $this->parent->args['global_variable'] ] = $GLOBALS[ $this->parent->args['global_variable'] . '-loop' ];
+                    unset( $GLOBALS[ $this->parent->args['global_variable'] . '-loop' ] );
                 }
             }
 
@@ -551,7 +552,6 @@
                     }
                 }
 
-              $rewrite = array();
                 // Check to see if we are using rewrite rules
                 if ( isset( $wp_rewrite ) ) {
                     $rewrite = $wp_rewrite->wp_rewrite_rules();
@@ -561,6 +561,43 @@
                 // Not using rewrite rules, and 'p=N' and 'page_id=N' methods failed, so we're out of options
                 if ( empty( $rewrite ) ) {
                     if ( isset( $_GET ) && ! empty( $_GET ) ) {
+
+                        /************************************************************************
+                        * ADDED: Trys checks URL for ?posttype=postname
+                        *************************************************************************/
+
+                        // Assign $url to $tempURL just incase. :)
+                        $tempUrl = $url;
+
+                        // Get rid of the #anchor
+                        $url_split = explode( '#', $tempUrl );
+                        $tempUrl = $url_split[0];
+
+                        // Get rid of URL ?query=string
+                        $url_query = explode( '&', $tempUrl );
+                        $tempUrl = $url_query[0];
+
+                        // Get rid of ? mark
+                        $url_query = explode( '?', $tempUrl);
+
+
+                        if(isset($url_query[1]) && !empty($url_query[1]) && strpos( $url_query[1], '=' )){
+                            $url_query = explode( '=', $url_query[1] );
+
+                            if(isset($url_query[0]) && isset($url_query[1])){
+                                $args = array(
+                                    'name'      => $url_query[1],
+                                    'post_type' => $url_query[0],
+                                    'showposts' => 1,
+                                );
+                                
+                                if ( $post = get_posts( $args ) ) {
+                                    return $post[0]->ID;
+                                }
+                            }
+                        }
+                        //END ADDITION                        
+                        
                         //print_r($GLOBALS['wp_post_types']);
                         //if (isset($GLOBALS['wp_post_types']['acme_product']))
                         // Add custom rules for non-rewrite URLs
@@ -652,6 +689,37 @@
                             }
                         }
 
+                        /************************************************************************
+                        * ADDED: $GLOBALS['wp_post_types'] doesn't seem to have custom postypes
+                        * Trying below to find posttypes in $rewrite rules
+                        *************************************************************************/
+
+                        // PostType Array
+                        $custom_post_type = false;
+                        $post_types = array();
+                        foreach ($rewrite as $key => $value) {
+                            if(preg_match('/post_type=([^&]+)/i', $value, $matched)){
+                                if(isset($matched[1]) && !in_array($matched[1], $post_types)){
+                                    $post_types[] = $matched[1];
+                                }
+                            }
+                        }
+
+                        foreach ((array) $query_vars as $key => $value) {
+                            if(in_array($key, $post_types)){
+                                $custom_post_type = true;
+
+                                $query['post_type'] = $key;
+                                $query['postname'] = $value;
+                            }
+                        }
+
+                        // print_r($post_types);
+
+                        /************************************************************************
+                        * END ADD
+                        *************************************************************************/                        
+                        
                         // Taken from class-wp.php
                         foreach ( $GLOBALS['wp_post_types'] as $post_type => $t ) {
                             if ( $t->query_var ) {
@@ -748,7 +816,7 @@
                                     }
                                     //$this->parent->used_fields[$field['type']] = isset($this->parent->used_fields[$field['type']]) ? $this->parent->used_fields[$field['type']]++ : 1;
 
-                                    if ( $field['type'] == "section" && !empty($field['indent']) && $field['indent'] == "true" ) {
+                                    if ( $field['type'] == "section" && $field['indent'] == "true" ) {
                                         $field['class'] = isset( $field['class'] ) ? $field['class'] : '';
                                         $field['class'] .= "redux-section-indent-start";
                                         $this->boxes[ $key ]['sections'][ $sk ]['fields'][ $k ] = $field;
@@ -903,14 +971,20 @@
                 if ( ! isset( $this->meta[ $id ] ) ) {
                     $this->meta[ $id ] = array();
                     $oData             = get_post_meta( $id );
+                    
                     if ( ! empty( $oData ) ) {
                         foreach ( $oData as $key => $value ) {
                             if ( count( $value ) == 1 ) {
                                 $this->meta[ $id ][ $key ] = maybe_unserialize( $value[0] );
                             } else {
-                                $this->meta[ $id ][ $key ] = array_map( 'maybe_unserialize', $value );
+                                $new_value = array_map( 'maybe_unserialize', $value );
+                                
+                                if (is_array($new_value)) {
+                                    $this->meta[ $id ][ $key ] = $new_value[0];
+                                } else {
+                                    $this->meta[ $id ][ $key ] = $new_value;
+                                }
                             }
-
                         }
                     }
 
@@ -1058,7 +1132,7 @@
                                             echo '<td>' . $th . '';
                                         }
 
-                                        if ( $field['type'] == "section" && !empty($field['indent']) && $field['indent'] == "true" ) {
+                                        if ( $field['type'] == "section" && $field['indent'] == "true" ) {
                                             $field['class'] = isset( $field['class'] ) ? $field['class'] : '';
                                             $field['class'] .= "redux-section-indent-start";
                                             //$this->sections[$sk]['fields'][$k] = $field;
@@ -1188,7 +1262,7 @@
                 // Validate fields (if needed)
                 foreach ( $toSave as $key => $value ) {
                     if ( isset( $validate[ $key ] ) && $validate[ $key ] != $toSave[ $key ] ) {
-                        if ( $validate[ $key ] == $this->parent->options[ $key ] ) {
+                        if ( isset( $this->parent->options[ $key ] ) && $validate[ $key ] == $this->parent->options[ $key ] ) {
                             unset( $toSave[ $key ] );
                         } else {
                             $toSave[ $key ] = $validate[ $key ];
@@ -1222,6 +1296,7 @@
                     }
                     update_post_meta( $post_id, $key, $value, $prev_value );
                 }
+                
                 foreach ( $toDelete as $key => $value ) {
                     if ( isset( $check[ $key ] ) ) {
                         unset( $check[ $key ] );

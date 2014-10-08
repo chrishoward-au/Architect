@@ -24,6 +24,7 @@ if(!function_exists('redux_register_custom_extension_loader')) :
 		}
 	}
 	// Modify redux_demo to match your opt_name
+  // $option_name = _architect
 	add_action("redux/extensions/{$redux_opt_name}/before", 'redux_register_custom_extension_loader', 0);
 
 endif;

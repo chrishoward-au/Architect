@@ -259,7 +259,7 @@
 
       if ('tl' === $location) {
 
-        // TODO: How do we make thi sgo into the action?WP-Navi does it!
+        // TODO: How do we make this go into the action?WP-Navi does it!
         if (isset($this->arc[ 'navigator' ])) {
 
 
@@ -848,7 +848,7 @@
 
       $panel_class = new $class;
 
-      $panel_class->loop($section_no,$this,$panel_class,$class);
+      return $panel_class->loop($section_no,$this,$panel_class,$class); // returns nav items
     }
 
   }

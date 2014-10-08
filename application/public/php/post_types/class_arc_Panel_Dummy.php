@@ -14,13 +14,17 @@
     public $faker;
     public $generator;
     public $isfaker = true;
+    public $toshow;
+    public $data;
+    public $section;
 
-    public function __construct() {
+    public function __construct()
+    {
 
       // Faker requires PHP 5.3.3
       if (!defined('PHP_VERSION_ID')) {
         $version = explode('.', PHP_VERSION);
-        define('PHP_VERSION_ID', ($version[0] * 10000 + $version[1] * 100 + $version[2]));
+        define('PHP_VERSION_ID', ($version[ 0 ] * 10000 + $version[ 1 ] * 100 + $version[ 2 ]));
       }
 
       // Ideally we want to use Faker, since it has so many more content types, but it needs PHP 5.3.3, so we'll use LoremIpsum class when less that 5.3.3
@@ -32,7 +36,7 @@
         require_once(PZARC_PLUGIN_APP_PATH . '/shared/includes/php/Faker/src/autoload.php');
         $this->faker = Faker\Factory::create();
       }
-  }
+    }
 
 
     public function set_data(&$post, &$toshow, &$section)
@@ -66,23 +70,26 @@
     public function get_title(&$post)
     {
       if ($this->toshow[ 'title' ][ 'show' ]) {
-        $this->data[ 'title' ][ 'title' ] = ($this->isfaker?$this->faker->sentence():ucfirst($this->generator->getContent(rand(3,8),'plain',false)));
+        $this->data[ 'title' ][ 'title' ] = ($this->isfaker ? $this->faker->sentence() : ucfirst($this->generator->getContent(rand(3, 8), 'plain', false)));
       }
     }
+
     public function get_content(&$post)
     {
       /** CONTENT */
       if ($this->toshow[ 'content' ][ 'show' ]) {
-        $this->data[ 'content' ] = apply_filters('the_content', ($this->isfaker?$this->faker->realText():ucfirst($this->generator->getContent(rand(400,800),'html',false))));
+        $this->data[ 'content' ] = apply_filters('the_content', ($this->isfaker ? $this->faker->realText() : ucfirst($this->generator->getContent(rand(400, 800), 'html', false))));
       }
     }
+
     public function get_excerpt(&$post)
     {
       /** Excerpt */
       if ($this->toshow[ 'excerpt' ][ 'show' ]) {
-        $this->data[ 'excerpt' ] = apply_filters('the_excerpt', ($this->isfaker?$this->faker->realText(250):ucfirst($this->generator->getContent(rand(20,50),'text',false))).'... <a href="#">[Read more]</a>');
+        $this->data[ 'excerpt' ] = apply_filters('the_excerpt', ($this->isfaker ? $this->faker->realText(250) : ucfirst($this->generator->getContent(rand(20, 50), 'text', false))) . '... <a href="#">[Read more]</a>');
       }
     }
+
     public function get_image(&$post)
     {
       /** Image */
@@ -95,15 +102,27 @@
         // Easiest to do via a reusable function or all this stuff could be done once!!!!!!!!!
         // could pass $this->data thru a filter
 
-        $cats = array('abstract','animals','business','cats','city','food','nightlife','fashion','people','nature','sports','technics','transport');
+        $cats = array('abstract',
+                      'animals',
+                      'business',
+                      'cats',
+                      'city',
+                      'food',
+                      'nightlife',
+                      'fashion',
+                      'people',
+                      'nature',
+                      'sports',
+                      'technics',
+                      'transport');
 
-        $imageURL                            = ($this->isfaker?$this->faker->imageURL($width, $height,$cats[$i]):'http://lorempixel.com/'.$width.'/'.$height.'/'.$cats[$i]);
+        $imageURL = ($this->isfaker ? $this->faker->imageURL($width, $height, $cats[ $i ]) : 'http://lorempixel.com/' . $width . '/' . $height . '/' . $cats[ $i ]);
 //        $image = bfi_thumb($imageURL,array($width,$height));
-        $this->data[ 'image' ][ 'image' ]    = '<img src="'. $imageURL .'">';
+        $this->data[ 'image' ][ 'image' ] = '<img src="' . $imageURL . '">';
 
         $this->data[ 'image' ][ 'original' ] = $imageURL;
-        $this->data[ 'image' ][ 'caption' ]  = ($this->isfaker?$this->faker->sentence():'caption');
-        $i = (++$i>count($cats)?0:$i);
+        $this->data[ 'image' ][ 'caption' ]  = ($this->isfaker ? $this->faker->sentence() : 'caption');
+        $i                                   = (++$i > count($cats) ? 0 : $i);
       }
     }
 
@@ -114,27 +133,27 @@
           $this->toshow[ 'meta2' ][ 'show' ] ||
           $this->toshow[ 'meta3' ][ 'show' ]
       ) {
-        $thedate = ($this->isfaker?$this->faker->date():time());
+        $thedate                                   = ($this->isfaker ? $this->faker->date() : time());
         $this->data[ 'meta' ][ 'datetime' ]        = $thedate;
         $this->data[ 'meta' ][ 'fdatetime' ]       = date_i18n($this->section[ '_panels_design_meta-date-format' ], strtotime($thedate));
-        $this->data[ 'meta' ][ 'categorieslinks' ] =($this->isfaker?implode(', ',$this->faker->words(2)):'cat1,cat2');
+        $this->data[ 'meta' ][ 'categorieslinks' ] = ($this->isfaker ? implode(', ', $this->faker->words(2)) : 'cat1,cat2');
         $this->data[ 'meta' ][ 'categories' ]      = '';
-        $this->data[ 'meta' ][ 'tagslinks' ]       = ($this->isfaker?implode(', ',$this->faker->words(3)):'tag1,tag2,tag3');
+        $this->data[ 'meta' ][ 'tagslinks' ]       = ($this->isfaker ? implode(', ', $this->faker->words(3)) : 'tag1,tag2,tag3');
         $this->data[ 'meta' ][ 'tags' ]            = '';
 
         $this->data[ 'meta' ][ 'authorlink' ] = '#';
-        $this->data[ 'meta' ][ 'authorname' ] = sanitize_text_field(($this->isfaker?$this->faker->name():'Bill Bloggs'));
-        $rawemail                             = sanitize_email(($this->isfaker?$this->faker->email:'billbloggs@somewhere.com'));
+        $this->data[ 'meta' ][ 'authorname' ] = sanitize_text_field(($this->isfaker ? $this->faker->name() : 'Bill Bloggs'));
+        $rawemail                             = sanitize_email(($this->isfaker ? $this->faker->email : 'billbloggs@somewhere.com'));
         $encodedmail                          = '';
         for ($i = 0; $i < strlen($rawemail); $i++) {
           $encodedmail .= "&#" . ord($rawemail[ $i ]) . ';';
         }
         $this->data[ 'meta' ][ 'authoremail' ]    = $encodedmail;
-        $this->data[ 'meta' ][ 'comments-count' ] = rand(0,10);
+        $this->data[ 'meta' ][ 'comments-count' ] = rand(0, 10);
 
-        $this->data[ 'meta' ][ 'custom' ][ 1 ] = ($this->isfaker?implode(', ',$this->faker->words(3)):'c1tag1,c1tag2,c1tag3');
-        $this->data[ 'meta' ][ 'custom' ][ 2 ] = ($this->isfaker?implode(', ',$this->faker->words(3)):'c2tag1,c2tag2,c2tag3');
-        $this->data[ 'meta' ][ 'custom' ][ 3 ] = ($this->isfaker?implode(', ',$this->faker->words(3)):'c3tag1,c3tag2,c3tag3');
+        $this->data[ 'meta' ][ 'custom' ][ 1 ] = ($this->isfaker ? implode(', ', $this->faker->words(3)) : 'c1tag1,c1tag2,c1tag3');
+        $this->data[ 'meta' ][ 'custom' ][ 2 ] = ($this->isfaker ? implode(', ', $this->faker->words(3)) : 'c2tag1,c2tag2,c2tag3');
+        $this->data[ 'meta' ][ 'custom' ][ 3 ] = ($this->isfaker ? implode(', ', $this->faker->words(3)) : 'c3tag1,c3tag2,c3tag3');
       }
     }
 
@@ -142,10 +161,10 @@
     /**
      * Default Loop
      */
-    public function loop($section_no,&$architect,&$panel_class,$class)
+    public function loop($section_no, &$architect, &$panel_class, $class)
     {
-      static $j =1;
-      $this->build->blueprint = $architect->build->blueprint;
+      static $j = 1;
+      $this->build     = $architect->build;
       $this->arc_query = $architect->arc_query;
 
       $section[ $section_no ] = $this->build->blueprint[ 'section_object' ][ $section_no ];
@@ -163,7 +182,7 @@
       // Does this work for non
 
       $section[ $section_no ]->open_section();
-      while ($j<=$this->build->blueprint['_content_dummy_dummy-record-count']) {
+      while ($j <= $this->build->blueprint[ '_content_dummy_dummy-record-count' ]) {
 
         $j++;
         // TODO: This may need to be modified for other types that dont' use post_title
@@ -176,7 +195,7 @@
 
           case 'thumbs':
 
-            $thumb =  '<img src="' .($this->isfaker?$this->faker->imageURL(50,50):'http://lorempixel.com/50/50') .'" width="50" height="50">';
+            $thumb        = '<img src="' . ($this->isfaker ? $this->faker->imageURL(50, 50) : 'http://lorempixel.com/50/50') . '" width="50" height="50">';
             $nav_items[ ] = '<span class="' . $this->build->blueprint[ '_blueprints_navigator' ] . '">' . $thumb . '</span>';
             break;
 
@@ -203,7 +222,6 @@
 
       return $nav_items;
     }
-
 
 
   }

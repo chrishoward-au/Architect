@@ -657,7 +657,7 @@
               'type'     => 'select',
               'multi'    => true,
               'data'     => 'callback',
-              //TODO: Findout how to pass parameters
+              //TODO: Findout how to pass parameters. currently that is doing nothing!
               'args'     => array('pzarc_get_authors', array(false, 0)),
               'default'  => '',
               'subtitle' => __('Select any authors here you want to exclude from showing when the %author% or %email% tag is used.', 'pzarchitect')
@@ -858,14 +858,14 @@
                 )
             ),
             array(
-                'title'    => __('Use embedded images', 'pzarchitect'),
+                'title'    => __('Use embedded images/videos', 'pzarchitect'),
                 'id'       => '_panels_settings_use-embedded-images',
                 'type'     => 'switch',
                 'on'       => 'Yes',
                 'off'      => 'No',
                 'default'  => false,
                 'required' => array('_panels_settings_feature-type', '=', 'image'),
-                'subtitle' => __('Enable this to use the first found attached image in the content if no featured image is set.', 'pzarchitect')
+                'subtitle' => __('Enable this to use the first found attached image in the content if no featured image/video is set.', 'pzarchitect')
             ),
             array(
                 'title'    => __('Use retina images', 'pzarchitect'),

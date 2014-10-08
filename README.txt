@@ -101,6 +101,9 @@ This is BETA software. So there are many besides these ones!
 
 == Changelog ==
 
+= 0.8.4.7 =
+* UPDATED Redux metaboxes. Seem to display right now.
+
 = 0.8.4.5 =
 * ADDED: Dummy content type. Seriously!! Now your site doesn't need content to begin development. (Note: it's not yet working with pagination or navigator. These will happen  in time. It won't work with archive type pages and might not ever - dont' know if I've got enough tricks left up my sleeve!)
 

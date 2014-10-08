@@ -202,15 +202,15 @@
 
         ));
         $this->data[ 'image' ][ 'original' ] = wp_get_attachment_image_src($thumb_id, 'full');
-        preg_match("/(?<=src\\=\")(.)*(?=\" )/uiUs", $this->data[ 'image' ][ 'image' ],$results);
-        if (isset($results[0]) && !empty($this->section['_panels_settings_use-retina-images'])) {
+        preg_match("/(?<=src\\=\")(.)*(?=\" )/uiUs", $this->data[ 'image' ][ 'image' ], $results);
+        if (isset($results[ 0 ]) && !empty($this->section[ '_panels_settings_use-retina-images' ])) {
           $params = array('width' => ($width * 2), 'height' => ($height * 2));
           // We need the crop to be identical. :/ So how about we just double the size of the image! I'm sure I Saw somewhere that works still.
           $thumb_2X                         = bfi_thumb($results[ 0 ], $params);
           $this->data[ 'image' ][ 'image' ] = str_replace('/>', 'data-at2x="' . $thumb_2X . '" />', $this->data[ 'image' ][ 'image' ]);
         }
-        $image                               = get_post($thumb_id);
-        $this->data[ 'image' ][ 'caption' ]  = $image->post_excerpt;
+        $image                              = get_post($thumb_id);
+        $this->data[ 'image' ][ 'caption' ] = $image->post_excerpt;
 
 
       }
@@ -218,7 +218,10 @@
 
     public function get_video(&$post)
     {
-      $video_source                      = get_post_meta($post->ID, 'pzarc_features-video', true);
+      $video_source = get_post_meta($post->ID, 'pzarc_features-video', true);
+      if (!empty($this->section[ '_panels_settings_use-embedded-images' ]) && empty($video_source)) {
+        $video_source = '[video]';
+      }
       $this->data[ 'video' ][ 'source' ] = pzarc_process_video($video_source);
     }
 
@@ -268,14 +271,13 @@
       ));
 
       $this->data[ 'bgimage' ][ 'original' ] = wp_get_attachment_image_src($thumb_id, 'full');
-      preg_match("/(?<=src\\=\")(.)*(?=\" )/uiUs", $this->data[ 'bgimage' ][ 'thumb' ],$results);
-      if (isset($results[0]) && !empty($this->section['_panels_settings_use-retina-images'])) {
+      preg_match("/(?<=src\\=\")(.)*(?=\" )/uiUs", $this->data[ 'bgimage' ][ 'thumb' ], $results);
+      if (isset($results[ 0 ]) && !empty($this->section[ '_panels_settings_use-retina-images' ])) {
         $params = array('width' => ($width * 2), 'height' => ($height * 2));
         // We need the crop to be identical. :/ So how about we just double the size of the image! I'm sure I Saw somewhere that works still. In fact, we have no choice, since the double sized image could be bigger than the original.
-        $thumb_2X                         = bfi_thumb($results[ 0 ], $params);
+        $thumb_2X                           = bfi_thumb($results[ 0 ], $params);
         $this->data[ 'bgimage' ][ 'thumb' ] = str_replace('/>', 'data-at2x="' . $thumb_2X . '" />', $this->data[ 'bgimage' ][ 'thumb' ]);
       }
-      $this->data[ 'bgimage' ][ 'thumb' ] = str_replace('/>','data-at2x="'.$thumb_2X.'" />',$this->data[ 'bgimage' ][ 'thumb' ]);
     }
 
     public function get_custom(&$post)
@@ -372,6 +374,7 @@
       $panel_def[ $component ] = str_replace('{{editlink}}', $panel_def[ 'editlink' ], $panel_def[ $component ]);
       foreach ($this->data[ 'meta' ][ 'custom' ] as $meta) {
         if (!empty($meta)) {
+          $meta                    = (!is_array($meta) ? explode(',', $meta) : $meta);
           $panel_def[ $component ] = str_replace('{{ct:' . key($meta) . '}}', $meta[ key($meta) ], $panel_def[ $component ]);
         }
       }
@@ -467,7 +470,7 @@
 
     public function render_image($component, $content_type, $panel_def, $rsid)
     {
-      if ('video'===$this->section[ '_panels_settings_feature-type' ]) {
+      if ('video' === $this->section[ '_panels_settings_feature-type' ]) {
         $panel_def[ $component ] = str_replace('{{image}}', $this->data[ 'video' ][ 'source' ], $panel_def[ $component ]);
 
       } else {
@@ -517,7 +520,7 @@
 
     public function render_bgimage($component, $content_type, $panel_def, $rsid)
     {
-      if ('video'===$this->section[ '_panels_settings_feature-type' ]) {
+      if ('video' === $this->section[ '_panels_settings_feature-type' ]) {
         $panel_def[ $component ] = str_replace('{{bgimage}}', $this->data[ 'video' ][ 'source' ], $panel_def[ $component ]);
 
       } else {
@@ -549,6 +552,7 @@
           $panel_def[ $component ] = str_replace('{{closepostlink}}', '</a>', $panel_def[ $component ]);
         }
       }
+
       return self::render_generics($component, $content_type, $panel_def[ $component ]);
     }
 
@@ -653,9 +657,10 @@
     /**
      * Default Loop
      */
-    public function loop($section_no,&$architect,&$panel_class,$class)
+    public function loop($section_no, &$architect, &$panel_class, $class)
     {
-      $this->build->blueprint = $architect->build->blueprint;
+
+      $this->build     = $architect->build;
       $this->arc_query = $architect->arc_query;
 
       $section[ $section_no ] = $this->build->blueprint[ 'section_object' ][ $section_no ];
