@@ -10,9 +10,9 @@
   ================================================================*/
   /* This is coz transforms were preventing display of content section */ }
   .pzarchitect .message-warning {
-    background: #ffffaa;
-    color: #aaaa00;
-    border: solid 1px #aaaa00;
+    background: #ffa;
+    color: #aa0;
+    border: solid 1px #aa0;
     padding: 10px; }
   .pzarchitect .message-error {
     font-size: 16px;
@@ -29,20 +29,21 @@
     position: relative;
     /* Added for gridded layout. May break others! Equal height panels*/
     display: block;
-    display: webkit box;
-    display: moz-box;
-    display: -ms-flexbox;
-    display: webkit flex;
-    display: flex;
-    justify-content: flex-start;
-    -webkit-flex-flow: row wrap;
-    -moz-flex-flow: row wrap;
-    /* Unsupported in FF ATOW!! Argh! */
-    flex-flow: row wrap;
-    flex-direction: row;
-    flex-wrap: wrap;
     counter-reset: arc-title-counter;
     height: 100%; }
+    .pzarchitect .pzarc-section.tiles {
+      display: -webkit-box;
+      display: -moz-box;
+      display: -ms-flexbox;
+      display: -webkit-flex;
+      display: flex;
+      justify-content: flex-start;
+      -webkit-flex-flow: row wrap;
+      -moz-flex-flow: row wrap;
+      /* Unsupported in FF ATOW!! Argh! */
+      flex-flow: row wrap;
+      flex-direction: row;
+      flex-wrap: wrap; }
   .pzarchitect h2.pzarc-page-title {
     font-size: 1.5em;
     line-height: 1.5em; }
@@ -120,6 +121,16 @@
         text-align: center; }
       .pzarchitect .pzarc-panel .entry-thumbnail .caption {
         display: block; }
+      .pzarchitect .pzarc-panel .entry-thumbnail.pzarc-components-right {
+        float: left; }
+      .pzarchitect .pzarc-panel .entry-thumbnail.pzarc-components-left {
+        float: right; }
+    .pzarchitect .pzarc-panel .pzarc-title-thumb {
+      display: inline-block;
+      float: left;
+      margin-right: 3px; }
+    .pzarchitect .pzarc-panel .pzarc-title-wrap {
+      vertical-align: middle; }
     .pzarchitect .pzarc-panel .entry-title,
     .pzarchitect .pzarc-panel .entry-excerpt,
     .pzarchitect .pzarc-panel .entry-thumbnail,
@@ -129,6 +140,8 @@
       float: left;
       vertical-align: top;
       box-sizing: border-box; }
+    .pzarchitect .pzarc-panel .entry-thumbnail img {
+      vertical-align: text-top; }
     .pzarchitect .pzarc-panel .entry-customfieldgroup {
       display: block;
       float: left; }
@@ -140,6 +153,10 @@
       box-sizing: border-box;
       overflow: hidden;
       position: relative; }
+      .pzarchitect .pzarc-panel .pzarc-components.pzarc-align-left {
+        float: left; }
+      .pzarchitect .pzarc-panel .pzarc-components.pzarc-align-right {
+        float: right; }
     .pzarchitect .pzarc-panel figure.pzarc-bg-image {
       margin: 0;
       padding: 0;
@@ -155,7 +172,8 @@
         max-width: none;
         display: inline-block;
         right: -50%;
-        overflow: visible; }
+        overflow: visible;
+        vertical-align: text-top; }
         .pzarchitect .pzarc-panel figure.pzarc-bg-image.fill.trim img {
           max-width: none;
           position: relative;
@@ -184,13 +202,23 @@
         max-width: none; }
     .pzarchitect .pzarc-panel .pzarc-presuff-image {
       vertical-align: middle; }
-    .pzarchitect .pzarc-panel .lightbox {
-      cursor: zoom-in; }
+    .pzarchitect .pzarc-panel .lightbox img {
+      cursor: zoom-in;
+      cursor: -webkit-zoom-in; }
+  .pzarchitect .msie .pzarc-navigator {
+    height: 0; }
   .pzarchitect .pzarc-navigator {
     left: 0;
     text-align: center;
     bottom: 5px;
-    z-index: 1; }
+    z-index: 1;
+    display: block; }
+    .pzarchitect .pzarc-navigator.tabbed {
+      display: -webkit-flex;
+      display: flex;
+      flex-direction: row; }
+      .pzarchitect .pzarc-navigator.tabbed.vertical {
+        flex-direction: column; }
     .pzarchitect .pzarc-navigator.outside.top {
       position: relative;
       z-index: 1;
@@ -261,7 +289,6 @@
     border-radius: 1px;
     border-bottom: 1px solid #999; }
   .pzarchitect .tabbed .arc-slider-slide-nav-item {
-    display: table-cell;
     min-height: 30px;
     cursor: pointer;
     background-color: #ddd;

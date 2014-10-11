@@ -8,7 +8,7 @@
     public $id = 'architect-block';
     public $name = 'Architect';
     public $options_class = 'HeadwayArchitectBlockOptions';
-    public $description = 'Display your content any way you want';
+    public $description = 'Layout your content any way you want';
 
     /**
      * Use this to enqueue styles or scripts for your block.  This method will be execute when the block type is on
@@ -145,12 +145,12 @@
       $this->register_block_element(array(
                                         'id'         => 'pzarc-blueprint',
                                         'name'       => 'Blueprint container',
-                                        'selector'   => '.use-hw-css .pzarc-blueprint',
+                                        'selector'   => '.use-hw-css.pzarc-blueprint',
                                         'states'     => array(
-                                            'Links'   => '.use-hw-css .pzarc-blueprint a',
-                                            'Hover'   => '.use-hw-css .pzarc-blueprint a:hover',
-                                            'Clicked' => '.use-hw-css .pzarc-blueprint a:active',
-                                            'Visited' => '.use-hw-css .pzarc-blueprint a:visited'
+                                            'Links'   => '.use-hw-css.pzarc-blueprint a',
+                                            'Hover'   => '.use-hw-css.pzarc-blueprint a:hover',
+                                            'Clicked' => '.use-hw-css.pzarc-blueprint a:active',
+                                            'Visited' => '.use-hw-css.pzarc-blueprint a:visited'
                                         ),
                                         'properties' => array('background',
                                                               'borders',

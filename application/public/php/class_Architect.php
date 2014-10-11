@@ -30,7 +30,7 @@
     public $build;
     private $panel_def;
     private $arc;
-    private $arc_query;
+    public $arc_query;
     private $is_shortcode;
     private $criteria = array();
     private $backup_wp_query;
@@ -48,6 +48,7 @@
 
       require_once(PZARC_PLUGIN_APP_PATH . '/public/php/class_arc_Section.php');
       require_once(PZARC_PLUGIN_APP_PATH . '/public/php/class_arc_Blueprint.php');
+      require_once(PZARC_PLUGIN_APP_PATH . '/public/php/class_arc_Panel_Renderer.php');
 
       $this->build = new arc_Blueprint($blueprint);
 
@@ -75,11 +76,11 @@
 
       if (!empty($this->build->blueprint[ 'blueprint-id' ])) {
 
-        $filename = 'pzarc-blueprints-layout-' . ($this->build->blueprint[ 'blueprint-id' ]) . '-' . $this->build->blueprint[ '_blueprints_short-name' ] . '.css';
+        $filename = 'pzarc-blueprints-layout-' . $this->build->blueprint[ '_blueprints_short-name' ] . '.css';
 
         if (file_exists(PZARC_CACHE_PATH . $filename)) {
 
-          wp_enqueue_style('blueprint-css-' . $this->build->blueprint[ 'blueprint-id' ], PZARC_CACHE_URL . $filename);
+          wp_enqueue_style('blueprint-css-' . $this->build->blueprint[ '_blueprints_short-name' ], PZARC_CACHE_URL . $filename);
 
         } else {
 
@@ -258,7 +259,7 @@
 
       if ('tl' === $location) {
 
-        // TODO: How do we make thi sgo into the action?WP-Navi does it!
+        // TODO: How do we make this go into the action?WP-Navi does it!
         if (isset($this->arc[ 'navigator' ])) {
 
 
@@ -407,7 +408,7 @@
      */
     private function display_page_title($display_title, $title_override)
     {
-      if (!empty($display_title) || !empty($this->build->blueprint['additional_overrides']['pzarc-overrides-page-title'])) {
+      if (!empty($display_title) || !empty($this->build->blueprint[ 'additional_overrides' ][ 'pzarc-overrides-page-title' ])) {
         $title = '';
         switch (true) {
           case is_category() :
@@ -460,10 +461,12 @@
         $duration             = $this->build->blueprint[ '_blueprints_transitions-duration' ] * 1000;
         $interval             = $this->build->blueprint[ '_blueprints_transitions-interval' ] * 1000;
         $skip_thumbs          = $this->build->blueprint[ '_blueprints_navigator-skip-thumbs' ];
-        $slider[ 'dataopts' ] = 'data-opts="{#tduration#:' . $duration . ',#tinterval#:' . $interval . ',#tshow#:' . $skip_thumbs .',#tskip#:' . $skip_thumbs . '}"';
+        $slider[ 'dataopts' ] = 'data-opts="{#tduration#:' . $duration . ',#tinterval#:' . $interval . ',#tshow#:' . $skip_thumbs . ',#tskip#:' . $skip_thumbs . '}"';
 
-        $return_val .= '<button type="button" class="pager arrow-left icon-arrow-left4"></button>';
-        $return_val .= '<button type="button" class="pager arrow-right icon-uniE60D"></button>';
+        if ('hover' === $this->build->blueprint[ '_blueprints_navigator-pager' ] && 'navigator' === $bp_nav_type) {
+          $return_val .= '<button type="button" class="pager arrow-left icon-arrow-left4"></button>';
+          $return_val .= '<button type="button" class="pager arrow-right icon-uniE60D"></button>';
+        }
 //          //TODO: Should the bp name be in the class or ID?
         $return_val .= '<div class="pzarc-sections pzarc-sections_' . $bp_shortname . ' pzarc-is_' . $caller . $slider[ 'class' ] . '"' . $slider[ 'dataid' ] . $slider[ 'datatype' ] . $slider[ 'dataopts' ] . $slider[ 'datatrans' ] . '>';
       } else {
@@ -486,7 +489,7 @@
      * Returns:
      *
      *************************************************/
-    private function build_meta_definition($panel_def, $section_panel_settings)
+    public function build_meta_definition($panel_def, $section_panel_settings)
     {
       //replace meta1innards etc
       $meta = array_pad(array(), 3, null);
@@ -809,14 +812,8 @@
 
     }
 
+    private function loop($section_no) {
 
-    /**
-     * @param $section_no
-     */
-    private function loop($section_no)
-    {
-
-      $section[ $section_no ] = $this->build->blueprint[ 'section_object' ][ $section_no ];
       // oops! Need to get default content type when defaults chosen.
       $post_type = (empty($this->build->blueprint[ '_blueprints_content-source' ]) || 'defaults' === $this->build->blueprint[ '_blueprints_content-source' ] ?
           (empty($this->arc_query->queried_object->post_type) ? 'post' : $this->arc_query->queried_object->post_type) :
@@ -834,21 +831,15 @@
 
       $class = 'arc_Panel_' . $post_type;
 
-      // TODO: Should we fall back to Post post type if unknown??
+      // Fall back to generics if no class for post type
       // Use an include incase it doesn't exist!
       @include_once PZARC_PLUGIN_APP_PATH . '/public/php/post_types/class_arc_Panel_' . ucfirst($post_type) . '.php';
 
-      // TODO: Add an option to throw an error if post type doesn't exist, instead of falling back on Post
-      // Although.. this makes handling custom types slightly easier
       if (!class_exists($class)) {
 
-//        pzarc_msg(__('Post type ', 'pzarchitect') . '<strong>' . $post_type . '</strong>' . __(' has no panel definition and cannot be displayed.', 'pzarchitect'), 'error');
+        $class = 'arc_Panel_Generic';
 
-        $class = 'arc_Panel_post';
-
-        include_once PZARC_PLUGIN_APP_PATH . '/public/php/post_types/class_arc_Panel_Post.php';
-
-//        return null;
+        include_once PZARC_PLUGIN_APP_PATH . '/public/php/post_types/class_arc_Panel_Generic.php';
 
       }
 
@@ -857,73 +848,9 @@
 
       $panel_class = new $class;
 
-      $panel_def = $panel_class->panel_def();
-
-      // Setup meta tags
-      $panel_def = self::build_meta_definition($panel_def, $this->build->blueprint[ 'section' ][ ($section_no - 1) ][ 'section-panel-settings' ]);
-
-      //   var_dump(esc_html($panel_def));
-
-      $i         = 1;
-      $nav_items = array();
-
-      // Does this work for non
-
-      $section[ $section_no ]->open_section();
-
-      while ($this->arc_query->have_posts()) {
-
-        $this->arc_query->the_post();
-
-        // TODO: This may need to be modified for other types that dont' use post_title
-        // TODO: Make dumb so can be pluggable for other navs
-        switch ($this->build->blueprint[ '_blueprints_navigator' ]) {
-
-          case 'tabbed':
-            $nav_items[ ] = '<span class="' . $this->build->blueprint[ '_blueprints_navigator' ] . '">' . $this->arc_query->post->post_title . '</span>';
-            break;
-
-          case 'thumbs':
-
-            if ('attachment' === $this->arc_query->post->post_type) {
-
-              // TODO: Will need to change this to use the thumb dimensions set in the blueprint viasmall , medium, large
-              $thumb = wp_get_attachment_image($this->arc_query->post->ID, array(50, 50));
-
-            } else {
-
-              $thumb = get_the_post_thumbnail($this->arc_query->post->ID, array(50, 50));
-
-            }
-
-            $thumb = (empty($thumb) ? '<img src="' . PZARC_PLUGIN_APP_URL . '/shared/assets/images/missing-image.png" width="50" height="50">' : $thumb);
-
-            $nav_items[ ] = '<span class="' . $this->build->blueprint[ '_blueprints_navigator' ] . '">' . $thumb . '</span>';
-            break;
-
-          case 'bullets':
-          case 'numbers':
-          case 'buttons':
-            //No need for content on these
-            $nav_items[ ] = '';
-            break;
-
-        }
-        $section[ $section_no ]->render_panel($panel_def, $i, $class, $panel_class, $this->arc_query);
-
-        if ($i++ >= $this->build->blueprint[ '_blueprints_section-' . ($section_no - 1) . '-panels-per-view' ] && !empty($this->build->blueprint[ '_blueprints_section-' . ($section_no - 1) . '-panels-limited' ])) {
-          break;
-
-        }
-
-      }
-      $section[ $section_no ]->close_section();
-
-      // Unsetting causes it to run the destruct, which closes the div!
-      unset($section[ $section_no ]);
-
-      return $nav_items;
+      return $panel_class->loop($section_no,$this,$panel_class,$class); // returns nav items
     }
+
   }
 
   // EOC Architect

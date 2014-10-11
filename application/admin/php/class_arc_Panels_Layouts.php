@@ -74,7 +74,7 @@
 
         wp_enqueue_style('pzarc-admin-panels-css', PZARC_PLUGIN_APP_URL . '/admin/css/arc-admin-panels.css');
 
-        wp_enqueue_script('jquery-pzarc-metaboxes-panels', PZARC_PLUGIN_APP_URL . '/admin/js/arc-metaboxes-panels.js', array('jquery'));
+        wp_enqueue_script('jquery-pzarc-metaboxes-panels', PZARC_PLUGIN_APP_URL . '/admin/js/arc-metaboxes-panels.js', array('jquery'), null, false);
       }
     }
 
@@ -113,6 +113,8 @@
     public function add_panel_layout_column_content($column, $post_id)
     {
       $post_meta = get_post_meta($post_id);
+      global $post;
+
       switch ($column) {
         case '_panels_settings_short-name':
           if (isset($post_meta[ $column ])) {
@@ -279,84 +281,69 @@
         'icon_class' => 'icon-large',
         'icon'       => 'el-icon-home',
         'fields'     => array(
-          //TODO: Make validation check illegal characters
-          array(
-              'id'    => $prefix . 'description',
-              'title' => __('Description', 'pzarchitect'),
-              'type'  => 'textarea',
-              'rows'  => 2,
-              'hint'  => __('A short description to help you or others know what this Panel is for', 'pzarchitect'),
-          ),
-          array(
-              'title'   => __('Panel Height Type', 'pzarchitect'),
-              'id'      => $prefix . 'panel-height-type',
-              'type'    => 'select',
-              'default' => 'none',
-              'select2' => array('allowClear' => false),
-              'options' => array(
-                  'none'       => 'None',
-                  'height'     => 'Exact',
-                  'max-height' => 'Max',
-                  'min-height' => 'Min'
-              ),
-              'hint'    => array('content' => __('Choose if you want an exact height or not for the panels. If you want totally fluid, choose Min, and a height of 0.', 'pzarchitect'))
-          ),
-          // Hmm? How's this gunna sit with the min-height in templates?
-          // We will want to use this for image height cropping when behind.
+            array(
+                'id'       => '_panels_settings_short-name',
+                'title'    => __('Short name', 'pzarchitect') . '<span class="pzarc-required el-icon-star" title="Required"></span>',
+                'hint'     => array('content' => __('A short name for this panel layout to identify it.', 'pzarchitect')),
+                'type'     => 'text',
+                'validate' => 'not_empty'
+            ),
+            //TODO: Make validation check illegal characters
+            array(
+                'id'    => $prefix . 'description',
+                'title' => __('Description', 'pzarchitect'),
+                'type'  => 'textarea',
+                'rows'  => 2,
+                'hint'  => __('A short description to help you or others know what this Panel is for', 'pzarchitect'),
+            ),
+            array(
+                'title'   => __('Panel Height Type', 'pzarchitect'),
+                'id'      => $prefix . 'panel-height-type',
+                'type'    => 'select',
+                'default' => 'none',
+                'select2' => array('allowClear' => false),
+                'options' => array(
+                    'none'       => 'None',
+                    'height'     => 'Exact',
+                    'max-height' => 'Max',
+                    'min-height' => 'Min'
+                ),
+                'hint'    => array('content' => __('Choose if you want an exact height or not for the panels. If you want totally fluid, choose Min, and a height of 0.', 'pzarchitect'))
+            ),
+            // Hmm? How's this gunna sit with the min-height in templates?
+            // We will want to use this for image height cropping when behind.
 
-          array(
-              'title'    => __('Panel Height px', 'pzarchitect'),
-              'id'       => $prefix . 'panel-height',
-              'type'     => 'dimensions',
-              'required' => array($prefix . 'panel-height-type', '!=', 'none'),
-              'width'    => false,
-              'units'    => 'px',
-              'default'  => array('height' => '0'),
-              'hint'     => array('content' => __('Set a height for the panel according to the height type you chose.', 'pzarchitect')),
+            array(
+                'title'    => __('Panel Height px', 'pzarchitect'),
+                'id'       => $prefix . 'panel-height',
+                'type'     => 'dimensions',
+                'required' => array($prefix . 'panel-height-type', '!=', 'none'),
+                'width'    => false,
+                'units'    => 'px',
+                'default'  => array('height' => '0'),
+                'hint'     => array('content' => __('Set a height for the panel according to the height type you chose.', 'pzarchitect')),
 
-          ),
-          //array(
-          //    'title'    => __('Components min height px', 'pzarchitect'),
-          //    'id'       => $prefix . 'components-height',
-          //    'type'     => 'dimensions',
-          //    'width'    => false,
-          //    'units'    => 'px',
-          //    'default'  => array('height' => '100'),
-          //    'hint'     => array('content' => __('This prevents components shrinking too much on resizing of screen.', 'pzarchitect')),
-          //    'required' => array($prefix . 'panel-height-type', 'equals', 'fixed')
-          //),
-          //array(
-          //    'title'    => __('Components min width px', 'pzarchitect'),
-          //    'id'       => $prefix . 'components-width',
-          //    'type'     => 'dimensions',
-          //    'height'    => false,
-          //    'units'    => 'px',
-          //    'default'  => array('false' => '100'),
-          //    'hint'     => array('content' => __('This prevents components shrinking too much on resizing of screen.', 'pzarchitect')),
-          //    'required' => array($prefix . 'panel-height-type', 'equals', 'fixed')
-          //),
-          array(
-              'title'   => __('Image cropping', 'pzarchitect'),
-              'id'      => $prefix . 'image-focal-point',
-              'type'    => 'select',
-              'default' => 'respect',
-              'options' => array(
-                  'respect' => __('Respect focal point', 'pzarchitect'),
-                  'centre'  => __('Centre focal point', 'pzarchitect'),
-                  'none'    => __('Crop to centre', 'pzarchitect'),
-                  'scale'   => __('Preserve aspect, fit width', 'pzarchitect')
-
-              )
-          ),
-          array(
-              'title'    => __('Use embedded images', 'pzarchitect'),
-              'id'       => $prefix . 'use-embedded-images',
-              'type'     => 'switch',
-              'on'       => 'Yes',
-              'off'      => 'No',
-              'default'  => false,
-              'subtitle' => __('Enable this to use the first found attached image in the content if no featured image is set.', 'pzarchitect')
-          ),
+            ),
+            //array(
+            //    'title'    => __('Components min height px', 'pzarchitect'),
+            //    'id'       => $prefix . 'components-height',
+            //    'type'     => 'dimensions',
+            //    'width'    => false,
+            //    'units'    => 'px',
+            //    'default'  => array('height' => '100'),
+            //    'hint'     => array('content' => __('This prevents components shrinking too much on resizing of screen.', 'pzarchitect')),
+            //    'required' => array($prefix . 'panel-height-type', 'equals', 'fixed')
+            //),
+            //array(
+            //    'title'    => __('Components min width px', 'pzarchitect'),
+            //    'id'       => $prefix . 'components-width',
+            //    'type'     => 'dimensions',
+            //    'height'    => false,
+            //    'units'    => 'px',
+            //    'default'  => array('false' => '100'),
+            //    'hint'     => array('content' => __('This prevents components shrinking too much on resizing of screen.', 'pzarchitect')),
+            //    'required' => array($prefix . 'panel-height-type', 'equals', 'fixed')
+            //),
         )
     );
     $metaboxes[ ]  = array(
@@ -389,13 +376,6 @@
         'icon'       => 'el-icon-website',
         'fields'     => array(
             array(
-                'id'       => '_panels_settings_short-name',
-                'title'    => __('Short name', 'pzarchitect') . '<span class="pzarc-required el-icon-star" title="Required"></span>',
-                'hint'     => array('content' => __('A short name for this panel layout to identify it.', 'pzarchitect')),
-                'type'     => 'text',
-                'validate' => 'not_empty'
-            ),
-            array(
                 'title'   => __('Components to show', 'pzarchitect'),
                 'id'      => $prefix . 'components-to-show',
                 'type'    => 'button_set',
@@ -406,17 +386,30 @@
                     'title'   => 'Title',
                     'excerpt' => 'Excerpt',
                     'content' => 'Content',
-                    'image'   => 'Image',
-                    //                    'caption' => 'Caption',
+                    'image'   => 'Feature',
                     'meta1'   => 'Meta1',
                     'meta2'   => 'Meta2',
                     'meta3'   => 'Meta3',
                     'custom1' => 'Custom 1',
                     'custom2' => 'Custom 2',
                     'custom3' => 'Custom 3',
-                    //        'custom4' => 'Custom Field 4',
                 ),
-                'hint'    => array('content' => __('Select which base components to include in this panel layout. Note: You can show no components, but you should then show the background image.', 'pzarchitect'))
+                'hint'    => array('content' => __('Select which base components to include in this panel layout.', 'pzarchitect'))
+            ),
+            array(
+                'title'   => __('Feature location', 'pzarchitect'),
+                'id'      => $prefix . 'feature-location',
+                'width'   => '100%',
+                'type'    => 'button_set',
+                'default' => 'components',
+                'options' => array(
+                    'components'    => __('In Components Group', 'pzarchitect'),
+                    'float'         => __('Outside components', 'pzarchitect'),
+                    'content-left'  => __('In content left', 'pzarchitect'),
+                    'content-right' => __('In content right', 'pzarchitect'),
+                    'fill'          => __('Background', 'pzarchitect'),
+                ),
+                'hint'    => array('content' => __('Select the location to display the Feature.', 'pzarchitect'))
             ),
             array(
                 'title'         => __('Number of custom fields', 'pzarchitect'),
@@ -427,21 +420,20 @@
                 'max'           => '999',
                 'step'          => '1',
                 'display_value' => 'label',
-                'subtitle'      => __('Each of the three Custom groups can have multiple custom fields. Enter <strong>total</strong>strong> number of custom fields, click Save/Update', 'pzarchitect'),
+                'subtitle'      => __('Each of the three Custom groups can have multiple custom fields. Enter <strong>total</strong> number of custom fields, click Save/Update', 'pzarchitect'),
                 'hint'          => array('content' => __('', 'pzarchitect'))
             ),
             array(
-                'title'   => __('Background Feature Image', 'pzarchitect'),
-                'id'      => $prefix . 'background-position',
-                'width'   => '100%',
-                'type'    => 'button_set',
-                'default' => 'none',
-                'options' => array(
-                    'none'  => 'No image',
-                    'fill'  => 'Fill the panel',
-                    'align' => 'Align with components area',
-                ),
-                'hint'    => array('content' => __('Select how to display the featured image or video as the background.', 'pzarchitect'))
+                'title'         => __('Components area width %', 'pzarchitect'),
+                'id'            => $prefix . 'components-widths',
+                'type'          => 'slider',
+                'default'       => '100',
+                'min'           => '1',
+                'max'           => '100',
+                'step'          => '1',
+                'class'         => ' percent',
+                'display_value' => 'label',
+                'hint'          => array('content' => __('Set the overall width for the components area. Necessary for left or right positioning of sections', 'pzarchitect')),
             ),
             array(
                 'title'        => 'Panel preview',
@@ -481,18 +473,21 @@
                 'hint'    => array('content' => __('Position for all the components as a group. </br>NOTE: If feature is set to align, then components will be below the feature, but not at the bottom of the panel. ', 'pzarchitect')),
                 'desc'    => __('Left/right will only take affect when components area width is less than 100%', 'pzarchitect')
             ),
-            array(
-                'title'         => __('Components area width %', 'pzarchitect'),
-                'id'            => $prefix . 'components-widths',
-                'type'          => 'slider',
-                'default'       => '100',
-                'min'           => '0',
-                'max'           => '100',
-                'step'          => '1',
-                'class'         => ' percent',
-                'display_value' => 'label',
-                'hint'          => array('content' => __('Set the overall width for the components area. Necessary for left or right positioning of sections', 'pzarchitect')),
-            ),
+            // array(
+            //     'title'   => __('Feature position', 'pzarchitect'),
+            //     'id'      => $prefix . 'feature-position',
+            //     'type'    => 'button_set',
+            //     'width'   => '100%',
+            //     'default' => 'left',
+            //     'required'      => array($prefix . 'feature-location', '=', 'float'),
+            //     'options' => array(
+            //         'top'    => 'Top',
+            //         'bottom' => 'Bottom',
+            //         'left'   => 'Left',
+            //         'right'  => 'Right',
+            //     ),
+            //     'desc'    => __('Some of these are dependent on the componets width and position', 'pzarchitect')
+            // ),
             array(
                 'title'         => __('Nudge components area up/down %', 'pzarchitect'),
                 'id'            => $prefix . 'components-nudge-y',
@@ -502,6 +497,7 @@
                 'max'           => '100',
                 'step'          => '1',
                 'class'         => ' percent',
+                'required'      => array($prefix . 'feature-location', '=', 'fill'),
                 'subtitle'      => 'Not sure this is right - as disappears at 80%. Prob something to do with height here. need fixed?',
                 'display_value' => 'label',
                 'hint'          => array('content' => __('Enter percent to move the components area up/down. </br>NOTE: These measurements are percentage of the panel.', 'pzarchitect'))
@@ -515,32 +511,24 @@
                 'max'           => '100',
                 'step'          => '1',
                 'class'         => ' percent',
+                'required'      => array($prefix . 'feature-location', '=', 'fill'),
                 'display_value' => 'label',
                 'hint'          => array('content' => __('Enter percent to move the components area left/right. </br>NOTE: These measurements are percentage of the panel.', 'pzarchitect'))
-            ),
-            array(
-                'title'   => __('Excerpt/Content thumbnail', 'pzarchitect'),
-                'id'      => $prefix . 'thumb-position',
-                'width'   => '100%',
-                'type'    => 'button_set',
-                'default' => 'none',
-                'options' => array(
-                    'none'  => 'No thumb',
-                    'left'  => 'Left',
-                    'right' => 'Right',
-                ),
-                'hint'    => array('content' => __('Set the alignment of the image to show it in the excerpt or the content.', 'pzarchitect'))
             ),
             array(
                 'title'         => __('Thumbnail width %', 'pzarchitect'),
                 'id'            => $prefix . 'thumb-width',
                 'type'          => 'slider',
-                'default'       => '25',
-                'min'           => '10',
-                'max'           => '90',
+                'default'       => '15',
+                'min'           => '5',
+                'max'           => '100',
                 'step'          => '1',
                 'class'         => ' percent',
-                'required'      => array($prefix . 'thumb-position', '!=', 'none'),
+                'required'      => array(
+                    array($prefix . 'feature-location', '!=', 'fill'),
+                    array($prefix . 'feature-location', '!=', 'float'),
+                    array($prefix . 'feature-location', '!=', 'components'),
+                ),
                 'display_value' => 'label',
                 'hint'          => array('content' => __('When you have set the featured image to appear in the content/excerpt, this determines its width.', 'pzarchitect'))
             ),
@@ -565,6 +553,7 @@
                 'select2' => array('allowClear' => false),
                 'default' => 'none',
                 'class'   => ' horizontal',
+                'desc'    => __('You must set a left margin on titles for bullets to show.', 'pzarchitect'),
                 'options' => array('none'                 => 'None',
                                    'disc'                 => 'Disc',
                                    'circle'               => 'Circle',
@@ -668,7 +657,7 @@
               'type'     => 'select',
               'multi'    => true,
               'data'     => 'callback',
-              //TODO: Findout how to pass parameters
+              //TODO: Findout how to pass parameters. currently that is doing nothing!
               'args'     => array('pzarc_get_authors', array(false, 0)),
               'default'  => '',
               'subtitle' => __('Select any authors here you want to exclude from showing when the %author% or %email% tag is used.', 'pzarchitect')
@@ -742,17 +731,17 @@
                 'subtitle' => __('Breakpoints can be changed in Architect Options', 'pzachitect')
             ),
             array(
-                'title'   => __('Use responsive font sizes', 'pzarchitect'),
-                'id'      => $prefix . 'use-responsive-font-size',
-                'type'    => 'switch',
-                'default' => false,
-                'subtitle'=>__('Enabling this will override all other CSS for content/excerpt text','pzarchitect')
+                'title'    => __('Use responsive font sizes', 'pzarchitect'),
+                'id'       => $prefix . 'use-responsive-font-size',
+                'type'     => 'switch',
+                'default'  => false,
+                'subtitle' => __('Enabling this will override all other CSS for content/excerpt text', 'pzarchitect')
             ),
             array(
                 'id'              => $prefix . 'content-font-size-bp1',
                 'title'           => __('Font size - large screen ', 'pzarchitect'),
                 'subtitle'        => $_architect_options[ 'architect_breakpoint_1' ][ 'width' ] . ' and above',
-                'required'=> array($prefix . 'use-responsive-font-size','equals',true),
+                'required'        => array($prefix . 'use-responsive-font-size', 'equals', true),
                 'type'            => 'typography',
                 'text-decoration' => false,
                 'font-variant'    => false,
@@ -777,7 +766,7 @@
                 'id'              => $prefix . 'content-font-size-bp2',
                 'title'           => __('Font size - medium screen ', 'pzarchitect'),
                 'subtitle'        => $_architect_options[ 'architect_breakpoint_2' ][ 'width' ] . ' to ' . $_architect_options[ 'architect_breakpoint_1' ][ 'width' ],
-                'required'=> array($prefix . 'use-responsive-font-size','equals',true),
+                'required'        => array($prefix . 'use-responsive-font-size', 'equals', true),
                 'type'            => 'typography',
                 'text-decoration' => false,
                 'font-variant'    => false,
@@ -802,7 +791,7 @@
                 'id'              => $prefix . 'content-font-size-bp3',
                 'title'           => __('Font size - small screen ', 'pzarchitect'),
                 'subtitle'        => $_architect_options[ 'architect_breakpoint_2' ][ 'width' ] . ' and below',
-                'required'=> array($prefix . 'use-responsive-font-size','equals',true),
+                'required'        => array($prefix . 'use-responsive-font-size', 'equals', true),
                 'type'            => 'typography',
                 'text-decoration' => false,
                 'font-variant'    => false,
@@ -837,202 +826,94 @@
 
 
     );
-    /**
+    /***************************
      * FEATURE IMAGES
-     */
+     ***************************/
     $sections[ ] = array(
-        'title'      => 'Featured Images',
+        'title'      => 'Featured Images/Videos',
         'icon_class' => 'icon-large',
         'icon'       => 'el-icon-picture',
-        'subtitle'   => __('Left and right margins are included in the image width in the designer. e.g if Image width is 25% and right margin is 3%, image width will be adjusted to 22%', 'pzarchitect'),
+        'subtitle'   => __('Left and right margins are included in the image width in the designer. e.g if Feature width is 25% and right margin is 3%, Feature width will be adjusted to 22%', 'pzarchitect'),
         'fields'     => array(
-
-          ///
-          // IMAGE
-          ///
-
-          array(
-              'id'    => $prefix . 'featured-image-heading',
-              'title' => 'Featured Image',
-              'type'  => 'section',
-              'class' => 'heading',
-          ),
-          array(
-              'id'      => $prefix . 'image-max-dimensions',
-              'title'   => 'Maximum image dimensions',
-              'type'    => 'dimensions',
-              'units'   => 'px',
-              'default' => array('width' => '300', 'height' => '350'),
-          ),
-          array(
-              'id'             => $prefix . 'image-spacing',
-              'type'           => 'spacing',
-              //                'output'         => array('.site-header'),
-              'mode'           => 'margin',
-              'units'          => '%',
-              'units_extended' => 'false',
-              'title'          => __('Margins (%)', 'pzarchitect'),
-              'default'        => array(
-                  'margin-top'    => '1%',
-                  'margin-right'  => '1%',
-                  'margin-bottom' => '1%',
-                  'margin-left'   => '0',
-                  'units'         => '%',
-              )
-          ),
-          array(
-              'title'    => __('Link image', 'pzarchitect'),
-              'id'       => $prefix . 'link-image',
-              'type'     => 'button_set',
-              'options'  => array(
-                  'none'     => 'None',
-                  'page'     => 'Post',
-                  'image'    => 'Attachment page',
-                  'original' => 'Lightbox',
-                  'url'      => 'Specific URL'
-              ),
-              'default'  => 'page',
-              'subtitle' => __('Makes the image link to the post/page or all images link to a specific URL', 'pzazrchitect')
-          ),
-          array(
-              'title'    => __('Specific URL', 'pzarchitect'),
-              'id'       => $prefix . 'link-image-url',
-              'type'     => 'text',
-              'required' => array($prefix . 'link-image', 'equals', 'url'),
-              'validate' => 'url',
-              'subtitle' => __('Enter the URL that all images will link to', 'pzazrchitect')
-          ),
-          array(
-              'title'    => __('Specific URL tooltip', 'pzarchitect'),
-              'id'       => $prefix . 'link-image-url-tooltip',
-              'type'     => 'text',
-              'required' => array($prefix . 'link-image', 'equals', 'url'),
-              'validate' => 'url',
-              'subtitle' => __('Enter the text that appears when the user hovers over the link', 'pzazrchitect')
-          ),
-          array(
-              'title'   => __('Image Captions', 'pzarchitect'),
-              'id'      => $prefix . 'image-captions',
-              'type'    => 'switch',
-              'on'      => 'Yes',
-              'off'     => 'No',
-              'default' => false,
-          ),
-          array(
-              'title'    => __('Centre image', 'pzarchitect'),
-              'id'       => $prefix . 'centre-image',
-              'type'     => 'switch',
-              'on'       => 'Yes',
-              'off'      => 'No',
-              'default'  => false,
-              'subtitle' => 'Centres the image horizontally. It is best to display it on its own row, and the content to be 100% wide.'
-          ),
-          //          array(
-          //              'id'    => $prefix . 'image-processing-heading',
-          //              'title' => __('Image processing', 'pzarchitect'),
-          //              'type'  => 'section',
-          //              'class' => 'heading',
-          //          ),
-          //          array(
-          //              'title'    => __('Convert to JPEG', 'pzarchitect'),
-          //              'id'       => $prefix . 'image-to-jpeg',
-          //              'type'     => 'switch',
-          //              'default'  => false,
-          //              'cols'     => 3,
-          //              'subtitle' => 'Convert all resized images to JPEG format.',
-          //              'hint'     => array('content' => 'Convert all resized images to JPEG format - usually will be smaller.')
-          //          ),
-          //          array(
-          //              'title'   => __('Image resizing method', 'pzarchitect'),
-          //              'id'      => $prefix . 'image-resizing',
-          //              'type'    => 'select',
-          //              'select2' => array('allowClear' => false),
-          //              'default' => 'crop',
-          //              'options' => array(
-          //                  'crop'          => 'Crop width and height to fit',
-          //                  'exact'         => 'Stretch to width and height (Warning: Can distort image)',
-          //                  'portrait'      => 'Crop width, match height',
-          //                  'landscape'     => 'Match width, crop height',
-          //                  'auto'          => 'Fit within width and height',
-          //                  'scaletowidth'  => 'Scale to resize width',
-          //                  'scaletoheight' => 'Scale to resize height',
-          //                  'none'          => 'No cropping, use original. (Use with care!)'
-          //              ),
-          //              'hint'    => array('content' => 'Choose how you want the image resized in respect of its original width and height to the Image Max Height and Width.'),
-          //          ),
-          //          array(
-          //              'id'      => $prefix . 'image-bgcolour',
-          //              'title'   => 'Image background colour',
-          //              'type'    => 'spectrum',
-          //              'default' => '#ffffff',
-          //              'hint'    => array('content' => 'If the cropped image  doesn\'t fill the resize area, fill the space with this colour.')
-          //          ),
-          //          array(
-          //              'id'            => $prefix . 'image-quality',
-          //              'title'         => 'Image quality',
-          //              'type'          => 'slider',
-          //              'display_value' => 'label',
-          //              'default'       => '75',
-          //              'min'           => '20',
-          //              'max'           => '100',
-          //              'step'          => '1',
-          //              'units'         => '%',
-          //              'hint'          => array('content' => 'Quality to use when processing images')
-          //
-          //          ),
-        )
-    );
-
-    // var_dump($_architect_options);
-
-    /**
-     * BACKGROUND IMAGES
-     */
-    $sections[ ] = array(
-        'title'      => 'Background Images',
-        'icon_class' => 'icon-large',
-        'icon'       => 'el-icon-picture',
-        'subtitle'   => 'Background images can be a bit trickier to work with responsively as they might not fill the background on all devices. Consider the probable aspect ratio of the panel at each breakpoint when setting the image dimensions. What may be landscape on a desktop, could be portrait on a smartphone.',
-        'fields'     => array(
-
-
             array(
-//                'title'    => __('Maximum dimensions: Screens >', 'pzarchitect') . $_architect_options[ 'architect_breakpoint_1' ][ 'width' ],
-                'title'    => __('Maximum dimensions', 'pzarchitect') ,
-                'id'       => $prefix . 'background-image-max',
+                'title'    => __('Feature type', 'pzarchitect'),
+                'id'       => '_panels_settings_feature-type',
+                'type'     => 'button_set',
+                'default'  => 'image',
+                'options'  => array('image' => 'Images', 'video' => 'Videos'),
+                'subtitle' => __('Choose whether Feature is images or videos.', 'pzarchitect')
+            ),
+            array(
+                'title'    => __('Image cropping', 'pzarchitect'),
+                'id'       => '_panels_settings_image-focal-point',
+                'type'     => 'select',
+                'default'  => 'respect',
+                'required' => array('_panels_settings_feature-type', '=', 'image'),
+                'options'  => array(
+                    'respect' => __('Respect focal point', 'pzarchitect'),
+                    'centre'  => __('Centre focal point', 'pzarchitect'),
+                    'none'    => __('Crop to centre', 'pzarchitect'),
+                    'scale'   => __('Preserve aspect, fit width', 'pzarchitect')
+
+                )
+            ),
+            array(
+                'title'    => __('Use embedded images/videos', 'pzarchitect'),
+                'id'       => '_panels_settings_use-embedded-images',
+                'type'     => 'switch',
+                'on'       => 'Yes',
+                'off'      => 'No',
+                'default'  => false,
+                'required' => array('_panels_settings_feature-type', '=', 'image'),
+                'subtitle' => __('Enable this to use the first found attached image in the content if no featured image/video is set.', 'pzarchitect')
+            ),
+            array(
+                'title'    => __('Use retina images', 'pzarchitect'),
+                'id'       => '_panels_settings_use-retina-images',
+                'type'     => 'switch',
+                'on'       => 'Yes',
+                'off'      => 'No',
+                'default'  => true,
+                'required' => array('_panels_settings_feature-type', '=', 'image'),
+                'subtitle' => __('If enabled, a retina version of the featured image wil be created and displayed. Ensure the global setting in Architect Options is on as well. NOTE: This will make your site load slower on retina devices, so you may only want consider which panels you have it enabled on.', 'pzarchitect')
+            ),
+            ///
+            // IMAGE
+            ///
+
+            //          array(
+            //              'id'    => $prefix . 'featured-image-heading',
+            //              'title' => 'Featured Image',
+            //              'type'  => 'section',
+            //              'class' => 'heading',
+            //          ),
+            array(
+                'id'       => $prefix . 'image-max-dimensions',
+                'title'    => 'Maximum dimensions',
                 'type'     => 'dimensions',
                 'units'    => 'px',
                 'default'  => array('width' => '300', 'height' => '350'),
-//                'subtitle' => __('This should be larger than the expected maximum viewing size at this breakpoint to ensure best responsive behaviour', 'pzarchitect')
-                'subtitle' => __('This should be as large or a little larger than the expected maximum viewing size to ensure best responsive behaviour', 'pzarchitect')
+                'required' => array('_panels_settings_feature-type', '=', 'image'),
             ),
-//            array(
-//                'title'    => __('Maximum dimensions: Screens > ', 'pzarchitect') . $_architect_options[ 'architect_breakpoint_2' ][ 'width' ] . __(' and  < ') . $_architect_options[ 'architect_breakpoint_1' ][ 'width' ],
-//                'id'       => $prefix . 'background-image-max-bp2',
-//                'type'     => 'dimensions',
-//                'units'    => 'px',
-//                'default'  => array('width' => '600', 'height' => '400'),
-//            ),
-//            array(
-//                'title'    => __('Maximum dimensions: Screens < ', 'pzarchitect') . $_architect_options[ 'architect_breakpoint_2' ][ 'width' ],
-//                'id'       => $prefix . 'background-image-max-bp3',
-//                'type'     => 'dimensions',
-//                'units'    => 'px',
-//                'default'  => array('width' => '200', 'height' => '300'),
-//            ),
             array(
-                'title'    => __('Effect on resize', 'pzarchitect'),
-                'id'       => $prefix . 'background-image-resize',
-                'type'     => 'button_set',
-                'options'  => array(
-                    'trim'  => 'Trim horizontally, retain height',
-                    'scale' => 'Scale Vertically & Horizontally'
-                ),
-                'default'  => 'trim',
+                'id'             => $prefix . 'image-spacing',
+                'type'           => 'spacing',
+                //                'output'         => array('.site-header'),
+                'mode'           => 'margin',
+                'units'          => '%',
+                'units_extended' => 'false',
+                'title'          => __('Margins (%)', 'pzarchitect'),
+                'default'        => array(
+                    'margin-top'    => '1%',
+                    'margin-right'  => '1%',
+                    'margin-bottom' => '1%',
+                    'margin-left'   => '0',
+                    'units'         => '%',
+                )
             ),
             array(
                 'title'    => __('Link image', 'pzarchitect'),
-                'id'       => $prefix . 'link-bgimage',
+                'id'       => $prefix . 'link-image',
                 'type'     => 'button_set',
                 'options'  => array(
                     'none'     => 'None',
@@ -1042,31 +923,192 @@
                     'url'      => 'Specific URL'
                 ),
                 'default'  => 'page',
+                'required' => array('_panels_settings_feature-type', '=', 'image'),
                 'subtitle' => __('Makes the image link to the post/page or all images link to a specific URL', 'pzazrchitect')
             ),
             array(
                 'title'    => __('Specific URL', 'pzarchitect'),
-                'id'       => $prefix . 'link-bgimage-url',
+                'id'       => $prefix . 'link-image-url',
                 'type'     => 'text',
                 'required' => array(
-//                    array($prefix . 'background-position', '!=', 'none'),
-                    array($prefix . 'link-bgimage', 'equals', 'url')
+                    array($prefix . 'link-image', 'equals', 'url'),
+                    array('_panels_settings_feature-type', '=', 'image')
                 ),
                 'validate' => 'url',
+                'subtitle' => __('Enter the URL that all images will link to', 'pzazrchitect')
             ),
             array(
                 'title'    => __('Specific URL tooltip', 'pzarchitect'),
-                'id'       => $prefix . 'link-bgimage-url-tooltip',
+                'id'       => $prefix . 'link-image-url-tooltip',
                 'type'     => 'text',
                 'required' => array(
- //                   array($prefix . 'background-position', '!=', 'none'),
-                    array($prefix . 'link-bgimage', 'equals', 'url')
+                    array($prefix . 'link-image', 'equals', 'url'),
+                    array('_panels_settings_feature-type', '=', 'image')
                 ),
                 'validate' => 'url',
                 'subtitle' => __('Enter the text that appears when the user hovers over the link', 'pzazrchitect')
             ),
+            array(
+                'title'    => __('Image Captions', 'pzarchitect'),
+                'id'       => $prefix . 'image-captions',
+                'type'     => 'switch',
+                'on'       => 'Yes',
+                'off'      => 'No',
+                'default'  => false,
+                'required' => array('_panels_settings_feature-type', '=', 'image'),
+            ),
+            array(
+                'title'    => __('Centre feature', 'pzarchitect'),
+                'id'       => $prefix . 'centre-image',
+                'type'     => 'switch',
+                'on'       => 'Yes',
+                'off'      => 'No',
+                'default'  => false,
+                'required' => array('_panels_settings_feature-type', '=', 'image'),
+                'subtitle' => 'Centres the image horizontally. It is best to display it on its own row, and the content to be 100% wide.'
+            ),
+            array(
+                'title'    => __('Effect on resize', 'pzarchitect'),
+                'id'       => $prefix . 'background-image-resize',
+                'type'     => 'button_set',
+                'required' => array($prefix . 'feature-location', '=', 'fill'),
+                'options'  => array(
+                    'trim'  => 'Trim horizontally, retain height',
+                    'scale' => 'Scale Vertically & Horizontally'
+                ),
+                'required' => array('_panels_settings_feature-type', '=', 'image'),
+                'default'  => 'trim',
+            ),
+            //          array(
+            //              'id'    => $prefix . 'image-processing-heading',
+            //              'title' => __('Image processing', 'pzarchitect'),
+            //              'type'  => 'section',
+            //              'class' => 'heading',
+            //          ),
+            //          array(
+            //              'title'    => __('Convert to JPEG', 'pzarchitect'),
+            //              'id'       => $prefix . 'image-to-jpeg',
+            //              'type'     => 'switch',
+            //              'default'  => false,
+            //              'cols'     => 3,
+            //              'subtitle' => 'Convert all resized images to JPEG format.',
+            //              'hint'     => array('content' => 'Convert all resized images to JPEG format - usually will be smaller.')
+            //          ),
+            //          array(
+            //              'title'   => __('Image resizing method', 'pzarchitect'),
+            //              'id'      => $prefix . 'image-resizing',
+            //              'type'    => 'select',
+            //              'select2' => array('allowClear' => false),
+            //              'default' => 'crop',
+            //              'options' => array(
+            //                  'crop'          => 'Crop width and height to fit',
+            //                  'exact'         => 'Stretch to width and height (Warning: Can distort image)',
+            //                  'portrait'      => 'Crop width, match height',
+            //                  'landscape'     => 'Match width, crop height',
+            //                  'auto'          => 'Fit within width and height',
+            //                  'scaletowidth'  => 'Scale to resize width',
+            //                  'scaletoheight' => 'Scale to resize height',
+            //                  'none'          => 'No cropping, use original. (Use with care!)'
+            //              ),
+            //              'hint'    => array('content' => 'Choose how you want the image resized in respect of its original width and height to the Image Max Height and Width.'),
+            //          ),
+            //          array(
+            //              'id'      => $prefix . 'image-bgcolour',
+            //              'title'   => 'Image background colour',
+            //              'type'    => 'spectrum',
+            //              'default' => '#ffffff',
+            //              'hint'    => array('content' => 'If the cropped image  doesn\'t fill the resize area, fill the space with this colour.')
+            //          ),
+            //          array(
+            //              'id'            => $prefix . 'image-quality',
+            //              'title'         => 'Image quality',
+            //              'type'          => 'slider',
+            //              'display_value' => 'label',
+            //              'default'       => '75',
+            //              'min'           => '20',
+            //              'max'           => '100',
+            //              'step'          => '1',
+            //              'units'         => '%',
+            //              'hint'          => array('content' => 'Quality to use when processing images')
+            //
+            //          ),
         )
     );
+
+    // var_dump($_architect_options);
+
+    /**
+     * BACKGROUND IMAGES
+     */
+//     $sections[ ] = array(
+//         'title'      => 'Background Images',
+//         'icon_class' => 'icon-large',
+//         'icon'       => 'el-icon-picture',
+//         'subtitle'   => 'Background images can be a bit trickier to work with responsively as they might not fill the background on all devices. Consider the probable aspect ratio of the panel at each breakpoint when setting the image dimensions. What may be landscape on a desktop, could be portrait on a smartphone.',
+//         'fields'     => array(
+
+
+//             array(
+// //                'title'    => __('Maximum dimensions: Screens >', 'pzarchitect') . $_architect_options[ 'architect_breakpoint_1' ][ 'width' ],
+//                 'title'    => __('Maximum dimensions', 'pzarchitect') ,
+//                 'id'       => $prefix . 'background-image-max',
+//                 'type'     => 'dimensions',
+//                 'units'    => 'px',
+//                 'default'  => array('width' => '300', 'height' => '350'),
+// //                'subtitle' => __('This should be larger than the expected maximum viewing size at this breakpoint to ensure best responsive behaviour', 'pzarchitect')
+//                 'subtitle' => __('This should be as large or a little larger than the expected maximum viewing size to ensure best responsive behaviour', 'pzarchitect')
+//             ),
+// //            array(
+// //                'title'    => __('Maximum dimensions: Screens > ', 'pzarchitect') . $_architect_options[ 'architect_breakpoint_2' ][ 'width' ] . __(' and  < ') . $_architect_options[ 'architect_breakpoint_1' ][ 'width' ],
+// //                'id'       => $prefix . 'background-image-max-bp2',
+// //                'type'     => 'dimensions',
+// //                'units'    => 'px',
+// //                'default'  => array('width' => '600', 'height' => '400'),
+// //            ),
+// //            array(
+// //                'title'    => __('Maximum dimensions: Screens < ', 'pzarchitect') . $_architect_options[ 'architect_breakpoint_2' ][ 'width' ],
+// //                'id'       => $prefix . 'background-image-max-bp3',
+// //                'type'     => 'dimensions',
+// //                'units'    => 'px',
+// //                'default'  => array('width' => '200', 'height' => '300'),
+// //            ),
+//             array(
+//                 'title'    => __('Link image', 'pzarchitect'),
+//                 'id'       => $prefix . 'link-bgimage',
+//                 'type'     => 'button_set',
+//                 'options'  => array(
+//                     'none'     => 'None',
+//                     'page'     => 'Post',
+//                     'image'    => 'Attachment page',
+//                     'original' => 'Lightbox',
+//                     'url'      => 'Specific URL'
+//                 ),
+//                 'default'  => 'page',
+//                 'subtitle' => __('Makes the image link to the post/page or all images link to a specific URL', 'pzazrchitect')
+//             ),
+//             array(
+//                 'title'    => __('Specific URL', 'pzarchitect'),
+//                 'id'       => $prefix . 'link-bgimage-url',
+//                 'type'     => 'text',
+//                 'required' => array(
+// //                    array($prefix . 'background-position', '!=', 'none'),
+//                     array($prefix . 'link-bgimage', 'equals', 'url')
+//                 ),
+//                 'validate' => 'url',
+//             ),
+//             array(
+//                 'title'    => __('Specific URL tooltip', 'pzarchitect'),
+//                 'id'       => $prefix . 'link-bgimage-url-tooltip',
+//                 'type'     => 'text',
+//                 'required' => array(
+//  //                   array($prefix . 'background-position', '!=', 'none'),
+//                     array($prefix . 'link-bgimage', 'equals', 'url')
+//                 ),
+//                 'validate' => 'url',
+//                 'subtitle' => __('Enter the text that appears when the user hovers over the link', 'pzazrchitect')
+//             ),
+//         )
+//     );
 
     /**
      * CUSTOM FIELDS
@@ -1217,7 +1259,7 @@
                 'id'    => $prefix . 'panels-help-design',
                 'type'  => 'info',
                 //  'class' => 'plain',
-                'desc'  => '<p>
+                'desc'  => 'Architect: v' . PZARC_VERSION . '<p>
                               Fiant nulla claritatem processus vulputate quarta. Anteposuerit eodem habent parum id et. Notare mutationem facilisi nulla ut facer.
                               </p>
 
@@ -1614,7 +1656,7 @@
         <span class="pzarc-draggable pzarc-draggable-title" title="Post title" data-idcode=title ><span>This is the title</span></span>
         <span class="pzarc-draggable pzarc-draggable-meta1 pzarc-draggable-meta" title="Meta info 1" data-idcode=meta1 ><span>Jan 1 2013</span></span>
         <span class="pzarc-draggable pzarc-draggable-excerpt" title="Excerpt with featured image" data-idcode=excerpt ><span><img src="' . PZARC_PLUGIN_APP_URL . '/shared/assets/images/sample-image.jpg" style="max-width:20%;padding:2px;" class="pzarc-align none">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam quis justo erat. Cras semper sem hendre...[more]</span></span>
-        <span class="pzarc-draggable pzarc-draggable-content" title="Full post content" data-idcode=content ><span><img src="' . PZARC_PLUGIN_APP_URL . '/shared/assets/images/sample-image.jpg" style="max-width:20%;padding:2px;" class="pzarc-align none"><img src="' . PZARC_PLUGIN_APP_URL . '/shared/assets/images/fireworks.jpg" style="max-width:30%;float:left;padding:5px;">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam quis justo erat. <ul><li>&nbsp;•&nbsp;Cras semper sem hendrerit</li><li>&nbsp;•&nbsp;Tortor porta at auctor</li></ul><strong>Lacus consequat</strong><p>Pellentesque pulvinar iaculis tellus in blandit. Suspendisse rhoncus, magna vel eleifend cursus, turpis odio molestie urna, quis posuere eros risus quis neque. </p></span></span>
+        <span class="pzarc-draggable pzarc-draggable-content" title="Full post content" data-idcode=content ><span><img src="' . PZARC_PLUGIN_APP_URL . '/shared/assets/images/sample-image.jpg" style="max-width:20%;padding:2px;" class="pzarc-align none"><img src="' . PZARC_PLUGIN_APP_URL . '/shared/assets/images/sample-in-content.jpg" style="max-width:30%;float:left;padding:5px;">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam quis justo erat. <ul><li>&nbsp;•&nbsp;Cras semper sem hendrerit</li><li>&nbsp;•&nbsp;Tortor porta at auctor</li></ul><strong>Lacus consequat</strong><p>Pellentesque pulvinar iaculis tellus in blandit. Suspendisse rhoncus, magna vel eleifend cursus, turpis odio molestie urna, quis posuere eros risus quis neque. </p></span></span>
         <span class="pzarc-draggable pzarc-draggable-image" title="Featured image" data-idcode=image style="max-height: 100px; overflow: hidden;"><span><img src="' . PZARC_PLUGIN_APP_URL . '/shared/assets/images/sample-image.jpg" style="max-width:100%;"></span></span>
         <span class="pzarc-draggable pzarc-draggable-meta2 pzarc-draggable-meta" title="Meta info 2" data-idcode=meta2 ><span>Categories - News, Sport</span></span>
         <span class="pzarc-draggable pzarc-draggable-meta3 pzarc-draggable-meta" title="Meta info 3" data-idcode=meta3 ><span>Comments: 27</span></span>

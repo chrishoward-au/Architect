@@ -400,7 +400,8 @@
                     'subtitle' => __('Enter any custom CSS at all here and it will be loaded with each page. Use wisely!'),
                     'mode'     => 'css',
                     'theme'    => 'chrome',
-                    'compiler' => true
+                    'compiler' => true,
+                    'default'  => '.pzarchitect p {word-break:normal;}'
                 ),
             )
         );

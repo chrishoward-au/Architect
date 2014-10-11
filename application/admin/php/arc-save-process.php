@@ -73,7 +73,7 @@
 
       $upload_dir = wp_upload_dir();
 
-      $filename = trailingslashit($upload_dir[ 'basedir' ]) . '/cache/pizazzwp/arc/pz' . $post->post_type . '-layout-' . $postid . '-' . $pzarc_shortname . '.css';
+      $filename = trailingslashit($upload_dir[ 'basedir' ]) . '/cache/pizazzwp/arc/pz' . $post->post_type . '-layout-' . $pzarc_shortname . '.css';
 
       wp_mkdir_p(trailingslashit($upload_dir[ 'basedir' ]) . '/cache/pizazzwp/arc/');
 
@@ -124,7 +124,7 @@
 
     switch ($type) {
       case 'arc-blueprints':
-        require_once PZARC_PLUGIN_APP_PATH . '/admin/php/arc-save-process-blueprints-new.php';
+        require_once PZARC_PLUGIN_APP_PATH . '/admin/php/arc-save-process-blueprints.php';
         $pzarc_blueprints = pzarc_merge_defaults($defaults[ '_blueprints' ], $pzarc_settings);
         $pzarc_contents .= pzarc_create_blueprint_css($pzarc_blueprints, $pzarc_contents, $postid);
         break;
@@ -265,7 +265,7 @@
       $links_css .= '}' . $nl;
     }
 
-    if (!empty($properties[ 'visited' ]) || strtolower($properties[ 'visited-deco' ]) !== 'default') {
+    if (!empty($properties[ 'visited' ]) || (isset($properties[ 'visited-deco' ]) && strtolower($properties[ 'visited-deco' ]) !== 'default')) {
       $links_css .= $classes . ' a:visited {';
       $links_css .= (!empty($properties[ 'visited' ]) ? 'color:' . $properties[ 'visited' ] . ';' : '');
       $links_css .= (strtolower($properties[ 'visited-deco' ]) !== 'default' ? 'text-decoration:' . strtolower($properties[ 'visited-deco' ]) . ';' : '');
@@ -361,6 +361,9 @@
         case 'entry-content'  === $keys['id']:
           $keys[ 'class' ] = $classes . ' .entry-content';
           break;
+        case 'entry-excerpt'  === $keys['id']:
+          $keys[ 'class' ] = $classes . ' .entry-excerpt';
+          break;
         case strpos( $keys['id'],'entry-customfield-')===0 :
           $keys[ 'class' ] = $classes . ' .'.$keys['id'];
           break;
@@ -387,9 +390,10 @@
     //Need to do the above switch for Panels
     // generate correct whosit
     $pzarc_func = 'pzarc_style_' . $keys[ 'style' ];
-
     $pzarc_css  = (function_exists($pzarc_func)?call_user_func($pzarc_func, $keys[ 'class' ], $value):'');
-
+    if (!function_exists($pzarc_func)){
+      print 'Missing function '.$pzarc_func;
+    }
     return $pzarc_css;
   }
 

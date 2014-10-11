@@ -150,7 +150,7 @@
             'title'   => __('Links', 'pzarc'),
             'id'      => $id,
             'type'    => 'links',
-//            'output'  => $selectors,
+            //            'output'  => $selectors,
             'default' => $defaults,
         );
 
@@ -400,8 +400,9 @@
 
   }
 
-  function pzarc_get_authors($inc_all = true, $min_level = 2)
+  function pzarc_get_authors($inc_all = true, $min_level = 1)
   {
+    // user_level 1 = contributor
 // Get authors
     $userslist = get_users();
     $authors   = array();
@@ -430,7 +431,7 @@
 
   function pzarc_get_posts_in_post_type($pzarc_post_type = 'arc-blueprints')
   {
-    $args           = array(
+    $args                 = array(
         'posts_per_page'   => -1,
         'orderby'          => 'post_title',
         'order'            => 'ASC',
@@ -577,3 +578,63 @@
     return $array_out;
   }
 
+  function pzarc_get_post_terms($post_id, $meta_string)
+  {
+    $post_tax_terms = array();
+    $meta_custom    = substr_count($meta_string, '%ct:');
+    preg_match_all("/(?<=\\%)(ct\\:)(.*)(?=\\%)/uiUmx", $meta_string, $matches);
+    for ($i = 1; $i <= $meta_custom; $i++) {
+      if (taxonomy_exists($matches[ 2 ][ $i - 1 ])) {
+        $post_tax_terms = array($matches[ 2 ][ $i - 1 ] => get_the_term_list($post_id, $matches[ 2 ][ $i - 1 ]));
+      }
+    }
+
+    return $post_tax_terms;
+  }
+
+  function pzarc_convert_name_to_id($post_name)
+  {
+    global $wpdb;
+    $post_id = $wpdb->get_var("SELECT ID FROM $wpdb->posts WHERE post_name = '" . $post_name . "'");
+
+    return $post_id;
+  }
+
+  function pzarc_process_video($vcode)
+  {
+
+    $vcode_type      = 'unknown';
+    $vcode_processed = '';
+
+    switch (true) {
+      case (strpos(strtolower($vcode), 'http') === 0):
+        if (strpos($vcode, home_url()) === 0) {
+          $vcode = '[video src="'.$vcode.'"]';
+          $vcode_type = 'shortcode';
+        } else {
+          $vcode_type = 'url';
+        }
+        break;
+      case (strpos(strtolower($vcode), '<iframe ') === 0):
+        $vcode_type = 'embed';
+        break;
+      case (strpos(strtolower($vcode), '[') === 0):
+        $vcode_type = 'shortcode';
+        break;
+    }
+
+    switch ($vcode_type) {
+      case 'url':
+        // This also throws securing the url back to wp!
+        $vcode_processed = wp_oembed_get($vcode);
+        break;
+      case 'embed':
+        $vcode_processed = $vcode;
+        break;
+      case 'shortcode':
+        $vcode_processed = do_shortcode($vcode);
+        break;
+    }
+
+    return $vcode_processed;
+  }

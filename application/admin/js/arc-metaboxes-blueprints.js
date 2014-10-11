@@ -48,26 +48,34 @@ jQuery( document ).ready( function ()
     function init_content_tabs()
     {
 //        var  content_options = jQuery( "select#_blueprints_content-source-select" ).find( "option" );
-        var content_options = jQuery( "select#_blueprints_content-source-select" ).find( "option" );
-
+      var content_options = jQuery('#_blueprints_content-source-select option');
+//        var content_options = jQuery( "select#_blueprints_content-source-select" ).find( "option" );
         content_options.each( function ( i )
         {
             //console.log(this,this.selected,jQuery(this).text());
+
             // there's a blank one at the to  because of the placeholder
 
 //            console.log( i, this.value, this.selected );
 
-            if ( i < 1 || this.value === 'help' )
+            console.log(i,this.value,this.selected);
+
+          // don't touch the first two (0 & 1)
+            if ( i < 1)
             {return;}
+
+          // Offset should be the number of tabs to show at the start... And i is the one to show....
+          // We only want to show want to show one and hide the rest.
+          // There are two tabs at the start, but one blank in the select array hence an offset of one
+            var offset = 2-1;
 
             if ( this.selected )
             {
-                console.log( i, this.value );
-                jQuery( ".redux-sidebar li#" + (i + 1 ) + "_box_redux-_architect-metabox-content-selections_section_group_li" ).show(); //.trigger( "click" );
+                jQuery( ".redux-sidebar li#" + (i + offset ) + "_box_redux-_architect-metabox-content-selections_section_group_li" ).show(); //.trigger( "click" );
             }
             else
             {
-                jQuery( ".redux-sidebar li#" + (i + 1) + "_box_redux-_architect-metabox-content-selections_section_group_li" ).hide();
+                jQuery( ".redux-sidebar li#" + (i + offset) + "_box_redux-_architect-metabox-content-selections_section_group_li" ).hide();
             }
         } );
 
@@ -77,89 +85,34 @@ jQuery( document ).ready( function ()
 
     // Change content tab on content source change
 //    jQuery( "select#_blueprints_content-source-select" ).on( 'click', function ()
-    jQuery( "select#_blueprints_content-source-select" ).on( 'click', function ()
+    jQuery( "select#_blueprints_content-source-select" ).on( 'change', function ()
     {
-        pzarc_show_hide_content_tabs( jQuery( this ).find( "option:selected" ).text().trim() );
+        pzarc_show_hide_content_tabs( jQuery( this ).find( "option:selected" ).val().trim() );
     } );
 
-    function pzarc_show_hide_content_tabs( tab )
+
+  /**
+   *
+   * pzarc_show_hide_content_tabs
+   *
+   */
+  function pzarc_show_hide_content_tabs( tab )
     {
-        var a = ["Defaults", "Posts", "Pages", "Snippets", "Galleries", "Slides", "Custom Post Types"];
-        for ( var i = 1; i <= a.length; i++ )
-        {
-            jQuery( ".redux-sidebar li#" + (i - 1 + 2) + "_box_redux-_architect-metabox-content-selections_section_group_li" ).hide();
+      var content_options = jQuery('#_blueprints_content-source-select option');
+      var a = [];
+      content_options.each(function(i){
+        if ("" !== this.value) {
+          a[i] = this.value;
         }
-        jQuery( ".redux-sidebar li#" + (a.indexOf( tab ) + 2) + "_box_redux-_architect-metabox-content-selections_section_group_li" ).show();//.find( "a" ).trigger( "click" );
+      });
+        var offset =1;
+        for ( var i = 1; i < a.length; i++ )
+        {
+          jQuery( ".redux-sidebar li#" + (i + offset) + "_box_redux-_architect-metabox-content-selections_section_group_li" ).hide();
+        }
+        jQuery( ".redux-sidebar li#" + (a.indexOf( tab ) + offset) + "_box_redux-_architect-metabox-content-selections_section_group_li" ).show();//.find( "a" ).trigger( "click" );
     }
 
-    /********************************************************************************************
-     //
-     // Control visibility of NAVIGATION tabs
-     //
-     // ********************************************************************************************/
-    jQuery( "#_architect-_blueprints_navigation input" ).each( function ( i )
-    {
-        if ( i === 0 && this.checked )
-        {
-            jQuery( ".redux-sidebar li#5_box_redux-_architect-metabox-layout-settings_section_group_li" ).hide();
-            jQuery( ".redux-sidebar li#5_box_redux-_architect-metabox-layout-settings_section_group_li" ).hide();
-            return;
-        }
-        //   //console.log(i,this.checked);
-        if ( this.checked )
-        {
-            jQuery( ".redux-sidebar li#" + (i + 3) + "_box_redux-_architect-metabox-layout-settings_section_group_li" ).show();
-        }
-        else
-        {
-            jQuery( ".redux-sidebar li#" + (i + 3) + "_box_redux-_architect-metabox-layout-settings_section_group_li" ).hide();
-        }
-    } );
-
-    jQuery( "#_architect-_blueprints_navigation label" ).on( 'click', function ( e )
-    {
-        pzarc_show_hide_nav_tabs( e.target.innerText.trim() );
-    } );
-
-    function pzarc_show_hide_nav_tabs( tab )
-    {
-        if ( tab === 'None' )
-        {
-            jQuery( ".redux-sidebar li#4_box_redux-_architect-metabox-layout-settings_section_group_li" ).hide();
-            jQuery( ".redux-sidebar li#5_box_redux-_architect-metabox-layout-settings_section_group_li" ).hide();
-//            if ( jQuery( '#5_box_redux-_architect-metabox-layout-settings_section_group_li.active' ).length === 0 )
-//            {
-            jQuery( ".redux-sidebar li#0_box_redux-_architect-metabox-layout-settings_section_group_li" ).find( 'a' ).trigger( "click" );
-//            }
-        }
-        else
-        {
-            var a = ["Pagination", "Navigator"];
-
-            // Start by hiding both tabs
-            for ( var i = 1; i <= 2; i++ )
-            {
-                jQuery( ".redux-sidebar li#" + (i + 3) + "_box_redux-_architect-metabox-layout-settings_section_group_li" ).hide();
-            }
-
-            var j = a.indexOf( tab ) + 4;
-//            console.log(jQuery(jQuery('#5_box_redux-_architect-metabox-layout-settings_section_group_li.active' ).length));
-            // This checks first if thewireframe preview tab is active.
-            // Need tosetup somebetter method that is dumber
-            var $it =jQuery( ".redux-sidebar li#" + j + "_box_redux-_architect-metabox-layout-settings_section_group_li" );
-
-            $it.show().find( 'a' );
-            //   if ( jQuery( '#5_box_redux-_architect-metabox-layout-settings_section_group_li.active' ).length === 0 )
-            // {
-        //    jQuery( ".redux-sidebar li#" + j + "_box_redux-_architect-metabox-layout-settings_section_group_li" ).find( 'a' ).trigger( 'click' );
-         //   $it.find('a');
-            $it.css('background-color','#ff5d43' ).trigger( "click" ).css( {
-                'background-color': '#fff',
-                '-webkit-transition': 'background-color 1s ease-out'
-            } ).css('background-color','');
-            // }
-        }
-    }
 
     /********************************************************************************************
      //
@@ -207,6 +160,143 @@ jQuery( document ).ready( function ()
             }
         }
     } );
+
+  /********************************************************************************************
+   //
+   // Control visibility of NAVIGATION tabs
+   //
+   // ********************************************************************************************/
+  jQuery( "#_architect-_blueprints_navigation input" ).each( function ( i )
+  {
+    if ( i === 0 && this.checked )
+    {
+      jQuery( ".redux-sidebar li#5_box_redux-_architect-metabox-layout-settings_section_group_li" ).hide();
+      jQuery( ".redux-sidebar li#5_box_redux-_architect-metabox-layout-settings_section_group_li" ).hide();
+      return;
+    }
+    //   //console.log(i,this.checked);
+    if ( this.checked )
+    {
+      jQuery( ".redux-sidebar li#" + (i + 3) + "_box_redux-_architect-metabox-layout-settings_section_group_li" ).show();
+    }
+    else
+    {
+      jQuery( ".redux-sidebar li#" + (i + 3) + "_box_redux-_architect-metabox-layout-settings_section_group_li" ).hide();
+    }
+  } );
+
+  /********************************************************************************************
+   //
+   // Control visibility of NAVIGATION tabs
+   //
+   // ********************************************************************************************/
+  jQuery( "#_architect-_blueprints_navigation input" ).each( function ( i )
+  {
+    if ( i === 0 && this.checked )
+    {
+      jQuery( ".redux-sidebar li#5_box_redux-_architect-metabox-layout-settings_section_group_li" ).hide();
+      jQuery( ".redux-sidebar li#5_box_redux-_architect-metabox-layout-settings_section_group_li" ).hide();
+      return;
+    }
+    //   //console.log(i,this.checked);
+    if ( this.checked )
+    {
+      jQuery( ".redux-sidebar li#" + (i + 3) + "_box_redux-_architect-metabox-layout-settings_section_group_li" ).show();
+    }
+    else
+    {
+      jQuery( ".redux-sidebar li#" + (i + 3) + "_box_redux-_architect-metabox-layout-settings_section_group_li" ).hide();
+    }
+  } );
+
+  jQuery( "#_architect-_blueprints_navigation label" ).on( 'click', function ( e )
+  {
+    pzarc_show_hide_nav_tabs( e.target.innerText.trim() );
+  } );
+
+  function pzarc_show_hide_nav_tabs( tab )
+  {
+    if ( tab === 'None' )
+    {
+      jQuery( ".redux-sidebar li#4_box_redux-_architect-metabox-layout-settings_section_group_li" ).hide();
+      jQuery( ".redux-sidebar li#5_box_redux-_architect-metabox-layout-settings_section_group_li" ).hide();
+//            if ( jQuery( '#5_box_redux-_architect-metabox-layout-settings_section_group_li.active' ).length === 0 )
+//            {
+      jQuery( ".redux-sidebar li#0_box_redux-_architect-metabox-layout-settings_section_group_li" ).find( 'a' ).trigger( "click" );
+//            }
+    }
+    else
+    {
+      var a = ["Pagination", "Navigator"];
+
+      // Start by hiding both tabs
+      for ( var i = 1; i <= 2; i++ )
+      {
+        jQuery( ".redux-sidebar li#" + (i + 3) + "_box_redux-_architect-metabox-layout-settings_section_group_li" ).hide();
+      }
+
+      var j = a.indexOf( tab ) + 4;
+//            console.log(jQuery(jQuery('#5_box_redux-_architect-metabox-layout-settings_section_group_li.active' ).length));
+      // This checks first if thewireframe preview tab is active.
+      // Need tosetup somebetter method that is dumber
+      var $it =jQuery( ".redux-sidebar li#" + j + "_box_redux-_architect-metabox-layout-settings_section_group_li" );
+
+      $it.show().find( 'a' );
+      //   if ( jQuery( '#5_box_redux-_architect-metabox-layout-settings_section_group_li.active' ).length === 0 )
+      // {
+      //    jQuery( ".redux-sidebar li#" + j + "_box_redux-_architect-metabox-layout-settings_section_group_li" ).find( 'a' ).trigger( 'click' );
+      //   $it.find('a');
+      $it.css('background-color','#ff5d43' ).trigger( "click" ).css( {
+        'background-color': '#fff',
+        '-webkit-transition': 'background-color 1s ease-out'
+      } ).css('background-color','');
+      // }
+    }
+  }
+  jQuery( "#_architect-_blueprints_navigation label" ).on( 'click', function ( e )
+  {
+    pzarc_show_hide_nav_tabs( e.target.innerText.trim() );
+  } );
+
+  function pzarc_show_hide_nav_tabs( tab )
+  {
+    if ( tab === 'None' )
+    {
+      jQuery( ".redux-sidebar li#4_box_redux-_architect-metabox-layout-settings_section_group_li" ).hide();
+      jQuery( ".redux-sidebar li#5_box_redux-_architect-metabox-layout-settings_section_group_li" ).hide();
+//            if ( jQuery( '#5_box_redux-_architect-metabox-layout-settings_section_group_li.active' ).length === 0 )
+//            {
+      jQuery( ".redux-sidebar li#0_box_redux-_architect-metabox-layout-settings_section_group_li" ).find( 'a' ).trigger( "click" );
+//            }
+    }
+    else
+    {
+      var a = ["Pagination", "Navigator"];
+
+      // Start by hiding both tabs
+      for ( var i = 1; i <= 2; i++ )
+      {
+        jQuery( ".redux-sidebar li#" + (i + 3) + "_box_redux-_architect-metabox-layout-settings_section_group_li" ).hide();
+      }
+
+      var j = a.indexOf( tab ) + 4;
+//            console.log(jQuery(jQuery('#5_box_redux-_architect-metabox-layout-settings_section_group_li.active' ).length));
+      // This checks first if thewireframe preview tab is active.
+      // Need tosetup somebetter method that is dumber
+      var $it =jQuery( ".redux-sidebar li#" + j + "_box_redux-_architect-metabox-layout-settings_section_group_li" );
+
+      $it.show().find( 'a' );
+      //   if ( jQuery( '#5_box_redux-_architect-metabox-layout-settings_section_group_li.active' ).length === 0 )
+      // {
+      //    jQuery( ".redux-sidebar li#" + j + "_box_redux-_architect-metabox-layout-settings_section_group_li" ).find( 'a' ).trigger( 'click' );
+      //   $it.find('a');
+      $it.css('background-color','#ff5d43' ).trigger( "click" ).css( {
+        'background-color': '#fff',
+        '-webkit-transition': 'background-color 1s ease-out'
+      } ).css('background-color','');
+      // }
+    }
+  }
 
     /********************************************************************************************
      //

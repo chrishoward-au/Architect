@@ -237,6 +237,11 @@
             'icon'       => 'el-icon-wrench',
             'fields'     => array(
                 array(
+                    'title' => __('Shortcodes', 'pzarchitect'),
+                    'id'    => 'architect_shortcodes_section',
+                    'type'  => 'section',
+                ),
+                array(
                     'title'    => __('Default shortcode blueprint', 'pzarchitect'),
                     'id'       => 'architect_default_shortcode_blueprint',
                     'type'     => 'select',
@@ -252,6 +257,24 @@
                     'desc'     => 'Make sure this Blueprint is using Galleries as its Content Source!'
                 ),
                 array(
+                    'title' => __('Mods', 'pzarchitect'),
+                    'id'    => 'architect_mods_section',
+                    'type'  => 'section',
+                ),
+                array(
+                    'title'    => __('Video field', 'pzarchitect'),
+                    'id'       => 'architect_mod-video-fields',
+                    'type'     => 'checkbox',
+                    'subtitle' => __('Add a video field to content types to optionally use as the Feature.', 'pzarchitect'),
+                    'options'  => array('post' => 'Posts', 'page' => 'Pages', 'pz_snippets' => 'Snippets'),
+                    'default'  => array('pz_snippets')
+                ),
+                array(
+                    'title' => __('Styling', 'pzarchitect'),
+                    'id'    => 'architect_stylings_section',
+                    'type'  => 'section',
+                ),
+                array(
                     'title'    => __('Enable styling settings', 'pzarchitect'),
                     'id'       => 'architect_enable_styling',
                     'type'     => 'switch',
@@ -259,13 +282,13 @@
                     'default'  => true
                 ),
                 // TODO: This requires lots of bollocksing to make sure all traces are fully removed. A good excuse to make extensibility work!
-//                array(
-//                    'title'    => __('Disable Snippets content type', 'pzarchitect'),
-//                    'id'       => 'architect_disable_snippets',
-//                    'type'     => 'switch',
-//                    'subtitle' => 'Turn off this if you won\'t need the Snippets content type.',
-//                    'default'  => false
-//                ),
+                //                array(
+                //                    'title'    => __('Disable Snippets content type', 'pzarchitect'),
+                //                    'id'       => 'architect_disable_snippets',
+                //                    'type'     => 'switch',
+                //                    'subtitle' => 'Turn off this if you won\'t need the Snippets content type.',
+                //                    'default'  => false
+                //                ),
                 ('headway' == $current_theme->stylesheet ? array(
                     'title'    => __('Add Headway Content Block class', 'pzarchitect'),
                     'id'       => 'architect_hw-content-class',
@@ -287,11 +310,18 @@
 
                 ) : null),
                 array(
+                    'title' => __('Other', 'pzarchitect'),
+                    'id'    => 'architect_other_section',
+                    'type'  => 'section',
+                ),
+                array(
                     'title'    => __('Enable admin background image', 'pzarchitect'),
                     'id'       => 'architect_enable_bgimage',
                     'type'     => 'switch',
                     'subtitle' => 'Displays a background image on the Architect admin pages',
-                    'default'  => true,
+                    'default'  => false,
+                    'on'       => 'Yes',
+                    'off'      => 'No'
                 ),
                 array(
                     'title'    => __('Choose background image', 'pzarchitect'),
@@ -299,15 +329,15 @@
                     'type'     => 'button_set',
                     'required' => array('architect_enable_bgimage', 'equals', true),
                     'options'  => array(
-                        'blue' => 'Blue',
-                        'green' => 'Green',
-                        'ocean-blue' => 'Ocean/Blue',
+                        'blue'         => 'Blue',
+                        'green'        => 'Green',
+                        'ocean-blue'   => 'Ocean/Blue',
                         'orange-green' => 'Orange/Green',
-                        'pink' => 'Pink',
-                        'purple' => 'Purple',
-                        'red-blue' => 'Red/Blue',
+                        'pink'         => 'Pink',
+                        'purple'       => 'Purple',
+                        'red-blue'     => 'Red/Blue',
                     ),
-                    'default'  => 'arc-bg-orange-green'
+                    'default'  => 'orange-green'
                 ),
                 //                array(
                 //                    'title'    => __('Custom post def path', 'pzarchitect'),
@@ -316,6 +346,13 @@
                 //                    'validate' => 'url',
                 //                    'default'  => '',
                 //                ),
+            )
+        );
+        $this->sections[ ] = array(
+            'title'      => 'Responsive ',
+            'show_title' => true,
+            'icon'       => 'el-icon-laptop',
+            'fields'     => array(
                 array(
                     'title'    => __('Breakpoints', 'pzarchitect'),
                     'id'       => 'architect_breakpoint_section',
@@ -337,6 +374,20 @@
                     'height'  => false,
                     'units'   => 'px',
                     'default' => array('width' => '640'),
+                ),
+                array(
+                    'title' => __('Images', 'pzarchitect'),
+                    'id'    => 'architect_responsive-images_section',
+                    'type'  => 'section',
+                ),
+                array(
+                    'title'    => __('Create and use retina images', 'pzarchitect'),
+                    'id'       => 'architect_enable-retina-images',
+                    'type'     => 'switch',
+                    'subtitle' => __('If enabled, when images are created, a second high version to display on retina screens will also be created and then displayed as required. NOTE: This will make your site load slower on retina devices.','pzarchitect'),
+                    'default'  => true,
+                    'on'       => 'Yes',
+                    'off'      => 'No'
                 ),
             )
         );

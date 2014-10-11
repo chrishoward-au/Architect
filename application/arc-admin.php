@@ -1,4 +1,7 @@
 <?php
+
+  $redux_opt_name = '_architect';
+
   function pzarc_removeReduxDemoModeLink()
   { // Be sure to rename this function to something more unique
     if (class_exists('ReduxFrameworkPlugin')) {
@@ -39,6 +42,9 @@
         add_action('admin_menu', array($this, 'admin_menu'));
         add_action('admin_enqueue_scripts', array($this, 'admin_enqueue'));
 
+        // This one is really only needed on posts, pages and snippets, so could conditionalise its load
+        require_once PZARC_PLUGIN_APP_PATH . '/admin/php/class_arc_Misc_Metaboxes.php';
+
         // TODO: Make up some easily editable panel defs - prob have to be a custom content type
         //       require_once PZARC_PLUGIN_PATH . '/admin/php/arc-options-def-editor.php';
 
@@ -60,12 +66,14 @@
         require_once PZARC_PLUGIN_APP_PATH . '/admin/php/arc-options-actions.php';
 
         // TODO: this needs to be dumberized so can work on dev defined panels and ocntent
+        require_once PZARC_PLUGIN_APP_PATH . '/public/php/class_arc_Panel_Renderer.php';
         require_once PZARC_PLUGIN_APP_PATH . '/public/php/post_types/class_arc_Panel_Snippets.php';
 
 
         require_once(PZARC_PLUGIN_APP_PATH . '/shared/includes/php/BFI-thumb-forked/BFI_Thumb.php');
         require_once(PZARC_PLUGIN_APP_PATH . '/shared/includes/php/pzwp-focal-point/pzwp-focal-point.php');
 //        require_once(PZARC_PLUGIN_APP_PATH . '/shared/includes/php/bfi_focus_point/bfi_focus_point.php');
+
 
         // @TODO Should these really be objects?
         // Initialise objects for data and setup menu items
@@ -76,7 +84,11 @@
 //        $slides = new pzarc_Slides;
 
         add_filter('admin_body_class', array(&$this, 'add_admin_body_class'));
+
 //add_action( 'pzarc_do_it', array( $this, 'do_it' ) );
+
+
+
       }
 
     }
@@ -186,6 +198,8 @@
         <p> And probably the most amazing thing... with Architect,  your layouts are transportable. Change your theme without losing your content layouts. And they\'ll even pick up a lot of the formatting of your new theme if it uses standard WordPress classes although, you may need to tweak the styling a little for different themes.</p>
 
         <p>At first it might be a little confusing about what to setup in Panels and what to do in Blueprints. Here\'s an overview:</p>
+        <p><img src="' . PZARC_PLUGIN_URL . '/documentation/assets/images/how-architect-works.jpg" style="display:block;max-width:100%;"/></p>
+
         <h3>Panels</h3>
         <ul><li>Panels define the layout of the individual content which can be displayed one or many times in a layout. Panels can also be re-used in multiple Blueprints</li></ul>
         <ul><li>Individual content layout - titles, text, images, meta info</li>
@@ -198,7 +212,7 @@
         <li>Navigation</li>
         </ul>
         <p>Below is a wireframe example of how a Blueprint is structured</p>
-        <p><img src="' . PZARC_PLUGIN_APP_URL . '/shared/assets/images/help/arc-layout.jpg" style="display:block"/></p>
+        <p><img src="' . PZARC_PLUGIN_APP_URL . '/shared/assets/images/help/arc-layout.jpg" style="display:block;max-width:100%"/></p>
 
         <h2>Usage</h2>
 
@@ -253,5 +267,4 @@
 // end pzarcAdmin
 
   new pzarcAdmin();
-
 

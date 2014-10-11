@@ -42,6 +42,7 @@
 
   .entry-thumbnail {
     float: left;
+
     img {
       max-width: 100%;
       height: auto;
@@ -49,14 +50,30 @@
     &.centred {
       float: none;
       margin: 0 auto;
-      text-align:center;
+      text-align: center;
     }
     .caption {
       display: block;
     }
+    &.pzarc-components-right {
+      float:left;
+    }
+    &.pzarc-components-left {
+      float:right;
+    }
   }
 
   .entry-title {
+  }
+
+  .pzarc-title-thumb {
+    display:inline-block;
+    float:left;
+    margin-right:3px;
+  }
+
+  .pzarc-title-wrap {
+    vertical-align: middle;
   }
 
   .entry-title,
@@ -68,6 +85,9 @@
     float: left;
     vertical-align: top;
     box-sizing: border-box;
+  }
+  .entry-thumbnail img {
+    vertical-align: text-top;
   }
 
   .entry-customfieldgroup {
@@ -85,6 +105,13 @@
     box-sizing: border-box;
     overflow: hidden;
     position: relative;
+    &.pzarc-align-left {
+      float:left;
+    }
+    &.pzarc-align-right {
+      float:right;
+    }
+
   }
 
   //when the bgimage is set to align, still use absolute as it sticks in the page flow!!
@@ -108,6 +135,8 @@
         display: inline-block;
         right: -50%;
         overflow: visible;
+        //This fixes the inline-block adding a gap below the image
+        vertical-align: text-top;
 
         img {
           max-width: none;
@@ -122,8 +151,8 @@
     }
 
     &.align {
-//      position: relative;
-      top:0;
+      //      position: relative;
+      top: 0;
       &.scale {
         max-width: none;
       }
@@ -158,7 +187,7 @@
       //left: 0;
       z-index: 0;
       img {
-        max-width:none;
+        max-width: none;
       }
 
     }
@@ -167,8 +196,9 @@
   .pzarc-presuff-image {
     vertical-align: middle;
   }
-  .lightbox {
+  .lightbox img {
     cursor: zoom-in;
+    cursor: -webkit-zoom-in;
   }
 }
 

@@ -26,7 +26,7 @@
         $pzarc_panels_array = array();
         if (!empty($pzarc_panels)) {
           foreach ($pzarc_panels as $pzarc_cell) {
-            $pzarc_panels_array[ $pzarc_cell->ID ] = (empty($pzarc_cell->post_title) ? 'No title' : $pzarc_cell->post_title);
+            $pzarc_panels_array[ $pzarc_cell->post_name ] = (empty($pzarc_cell->post_title) ? 'No title' : $pzarc_cell->post_title);
           }
         } else {
           $pzarc_panels_array = array(0 => 'No cell layouts. Create some.');
@@ -106,17 +106,20 @@
     public function add_blueprint_column_content($column, $post_id)
     {
 
+      global $post;
+      $slug      = $post->post_name;
       $post_meta = get_post_meta($post_id);
+
 
       switch ($column) {
         case 'id':
-          echo $post_id;
-          break;
-
-        case '_blueprints_short-name':
           if (isset($post_meta[ $column ])) {
             echo $post_meta[ $column ][ 0 ];
           }
+          break;
+
+        case '_blueprints_short-name':
+          echo $slug;
           break;
 
         case '_blueprints_description':
@@ -464,7 +467,7 @@
       $pzarc_panels_array = array();
       if (!empty($pzarc_panels)) {
         foreach ($pzarc_panels as $pzarc_cell) {
-          $pzarc_panels_array[ $pzarc_cell->ID ] = (empty($pzarc_cell->post_title) ? 'No title' : $pzarc_cell->post_title);
+          $pzarc_panels_array[ $pzarc_cell->post_name ] = (empty($pzarc_cell->post_title) ? 'No title' : $pzarc_cell->post_title);
         }
       } else {
         $pzarc_panels_array = array(0 => 'No cell layouts. Create some.');
@@ -487,17 +490,17 @@
                 //TODO: Write acomprehensive little help dialog here
                 'validate' => 'not_empty'
             ),
-                        array(
-                            'id'      => $prefix . 'blueprint-width',
-                            'type'    => 'dimensions',
-                            //               'mode'    => array('width' => true, 'height' => false),
-                            'units'   => array('%', 'px'),
-                            'width'   => true,
-                            'height'  => false,
-                            'title'   => __('Blueprint max width', 'pzarchitect'),
-                            'default' => array('width' => '100', 'units' => '%'),
-                            'subtitle'    => 'Set a max width to stop spillage when the container is larger than you want the Blueprint to be.'
-                        ),
+            array(
+                'id'       => $prefix . 'blueprint-width',
+                'type'     => 'dimensions',
+                //               'mode'    => array('width' => true, 'height' => false),
+                'units'    => array('%', 'px'),
+                'width'    => true,
+                'height'   => false,
+                'title'    => __('Blueprint max width', 'pzarchitect'),
+                'default'  => array('width' => '100', 'units' => '%'),
+                'subtitle' => 'Set a max width to stop spillage when the container is larger than you want the Blueprint to be.'
+            ),
             array(
                 'title'   => 'Page title',
                 'id'      => $prefix . 'page-title',
@@ -639,15 +642,13 @@
                   //      'hint'  => array('content' => __('Set the minimum width for panels in this section. This helps with responsive layout', 'pzarchitect'))
               ),
               array(
-                  'title'    => __('Panels margins (%)', 'pzarchitect'),
-                  'id'       => $prefix . 'section-' . $i . '-panels-margins',
-                  'type'     => 'spacing',
-                  'top'      => false,
-                  'left'     => false,
-                  'units'    => '%',
-                  'mode'     => 'margin',
-                  'default'  => array('right' => '0', 'bottom' => '0'),
-                  'subtitle' => __('Right, bottom', 'pzarchitect')
+                  'title'   => __('Panels margins (%)', 'pzarchitect'),
+                  'id'      => $prefix . 'section-' . $i . '-panels-margins',
+                  'type'    => 'spacing',
+                  'units'   => '%',
+                  'mode'    => 'margin',
+                  'default' => array('right' => '0', 'bottom' => '0', 'left' => '0', 'top' => '0'),
+                  //'subtitle' => __('Right, bottom', 'pzarchitect')
                   //    'hint'  => array('content' => __('Set the vertical gutter width as a percentage of the section width. The gutter is the gap between adjoining elements', 'pzarchitect'))
               ),
 
@@ -885,7 +886,7 @@
                 'id'       => $prefix . 'navigator-pager',
                 'type'     => 'button_set',
                 'cols'     => 6,
-                'default'  => 'none',
+                'default'  => 'hover',
                 'options'  => array(
                     'none'   => 'None',
                     'hover'  => 'Hover over panels',
@@ -957,7 +958,7 @@
                 'title'         => 'Duration (seconds)',
                 'id'            => $prefix . 'transitions-duration',
                 'type'          => 'slider',
-                'min'           => 0.5,
+                'min'           => 0,
                 'max'           => 5,
                 'resolution'    => 0.1,
                 'step'          => 0.5,
@@ -1036,7 +1037,7 @@
                 'id'    => $prefix . 'help-layout',
                 'type'  => 'info',
                 'class' => 'plain',
-                'desc'  => '<p>
+                'desc'  => 'Architect: v' . PZARC_VERSION . '<p>
                               Fiant nulla claritatem processus vulputate quarta. Anteposuerit eodem habent parum id et. Notare mutationem facilisi nulla ut facer.
                               </p>
 
@@ -1119,6 +1120,8 @@
 //    );
 //
     /** GENERAL  Settings*/
+
+    // If you add/remove a content type, you have to add/remove it's side tab too
     $prefix      = '_content_general_';
     $sections[ ] = array(
         'title'      => 'Settings',
@@ -1132,21 +1135,21 @@
                 'select2'  => array('allowClear' => false),
                 'default'  => 'defaults',
                 'options'  => array(
-                  // need to make adjustments when adding new ones so help still displays
-                  'defaults' => 'Defaults',
-                  'post'     => 'Posts',
-                  'page'     => 'Pages',
-                  'snippets' => 'Snippets',
-                  'gallery'  => 'Galleries',
-                  'slides'   => 'Slides',
-                  //                          'images'      => 'Specific Images',
-                  //                          'wpgallery'   => 'WP Gallery from post',
-                  //                          'galleryplus' => 'GalleryPlus',
-                  //                          'nggallery'   => 'NextGen',
-                  //                        'widgets' => 'Widgets',
-                  //                          'custom-code' => 'Custom code',
-                  //                        'rss'     => 'RSS Feed',
-                  'cpt'      => 'Custom Post Types'
+                    'defaults' => 'Defaults',
+                    'post'     => 'Posts',
+                    'page'     => 'Pages',
+                    'snippets' => 'Snippets',
+                    'gallery'  => 'Galleries',
+                    'slides'   => 'Slides',
+                    'dummy'    => 'Dummy content',
+                    //                          'images'      => 'Specific Images',
+                    //                          'wpgallery'   => 'WP Gallery from post',
+                    //                          'galleryplus' => 'GalleryPlus',
+                    //                          'nggallery'   => 'NextGen',
+                    //                        'widgets' => 'Widgets',  // This one may not be workable if user can't control where sidebars appear
+                    //                          'custom-code' => 'Custom code',
+                    //                        'rss'     => 'RSS Feed',
+                    'cpt'      => 'Custom Post Types'
                 ),
                 'subtitle' => 'todo: code all the js to show hide relevant sections'
             ),
@@ -1414,7 +1417,7 @@
                 'id'      => $prefix . 'specific-snippets',
                 'type'    => 'select',
                 'select2' => array('allowClear' => true),
-                'options'    => pzarc_get_posts_in_post_type('pz_snippets'),
+                'options' => pzarc_get_posts_in_post_type('pz_snippets'),
                 'multi'   => true,
                 'default' => array()
             ),
@@ -1525,6 +1528,32 @@
                 'multi'   => true,
                 'options' => $slides
             ),
+        )
+    );
+    /** DUMMY */
+    $prefix      = '_content_dummy_';
+    $sections[ ] = array(
+        'title'      => 'Dummy content',
+        'icon_class' => 'icon-large',
+        'icon'       => 'el-icon-asterisk',
+        'fields'     => array(
+            array(
+                'title'    => __('Dummy Content', 'pzarchitect'),
+                'id'       => $prefix . 'dummy-heading',
+                'type'     => 'info',
+                'style'    => 'normal',
+                'subtitle' => __('The dummy content is automagically generated for you to help plan and test design when the site has no content.', 'pzarchitect')
+            ),
+            array(
+                'title'    => __('Number of dummy records', 'pzarchitect'),
+                'id'       => $prefix . 'dummy-record-count',
+                'type'     => 'spinner',
+                'default'  => 12,
+                'step'     => 1,
+                'min'      => 1,
+                'max'      => 99,
+                'subtitle' => __('Number of dummy records to simulate', 'pzarchitect'),
+            )
         )
     );
 
@@ -1758,7 +1787,7 @@ You can use them however you like though.
                             <p>.pzarc-blueprint_SHORTNAME a:hover {text-decoration:underline;}</p>
                             <p>SHORTNAME = the short name you entered for this blueprint</p>
                             <h3>Make pager appear outside of panels</h3>
-                            <p>If you want the pager to appear outside of the panels instead of over them, set a deep left and right padding on the blueprint.</p>
+                            <p>If you want the pager to appear outside of the panels instead of over them, set a the sections width less than 100%.</p>
                             '
 
               )

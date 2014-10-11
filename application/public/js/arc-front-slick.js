@@ -36,7 +36,10 @@ jQuery( document ).ready( function ()
             {
                 update_nav( newIndex, arcSlickNav );
             };
-
+            var afterChange = function(slider,i) {
+                var slideHeight = jQuery(slider.$slides[i] ).height();
+                jQuery(slider.$slider ).height( slideHeight);
+            };
 
             // TODO: Work out how to use infinite without messing up index!!
             var arcSlickNav = jQuery( '.pzarc-navigator-' + arcSlickID + '.thumbs' ).slick( {
@@ -65,6 +68,7 @@ jQuery( document ).ready( function ()
                       arrows: false,
                       dots: false,
                       onBeforeChange: beforeChange,
+                      onAfterChange: afterChange,
 // TODO: replace these with vars
                       infinite: false,
                       pauseOnHover: true,

@@ -19,7 +19,7 @@
   class arc_Section
   {
     private $section_number;
-    private $section;
+    public $section;
     private $source;
     private $data;
     private $slider;
@@ -51,7 +51,7 @@
       $this->layout_mode    = $layout_mode;
       $this->section_title  = $section_title;
       $this->slider_type    = $slider_type;
-      $this->rsid           = 'rsid' . (rand(1,9999)*rand(10000,99999));
+      $this->rsid           = 'rsid' . (rand(1, 9999) * rand(10000, 99999));
 
     }
 
@@ -95,7 +95,8 @@
 
       }
 
-      echo '<section id="'.$this->rsid.'" class="' . ($this->layout_mode !== 'basic' ? 'js-isotope ' : '') . 'pzarc-section pzarc-section_' . $this->section_number . ' pzarc-section-using-panel_' . $this->section[ 'section-panel-settings' ][ '_panels_settings_short-name' ] . $this->slider[ 'wrapper' ] . '"' . $isotope . '>';
+      // TODO: Might need to change js-isotope to masonry - chekc impact tho
+      echo '<section id="' . $this->rsid . '" class="' . ($this->layout_mode !== 'basic' ? 'js-isotope ' : 'tiles ') . 'pzarc-section pzarc-section_' . $this->section_number . ' pzarc-section-using-panel_' . $this->section[ 'section-panel-settings' ][ '_panels_settings_short-name' ] . $this->slider[ 'wrapper' ] . '"' . $isotope . '>';
       if (!empty($isotope)) {
         echo '<div class="grid-sizer"></div><div class="gutter-sizer"></div>';
 
@@ -132,10 +133,30 @@
      */
     public function render_panel($panel_def, $panel_number, $class, $panel_class, &$arc_query)
     {
+      if (!empty($arc_query->post)) {
+        $post   = $arc_query->post;
+        $postid = $arc_query->post->ID;
+      } else {
+        // This happens on non-post types, like dummy content type
+        // TODO: Make these something more useful!
+        $post   = null;
+        $postid = 'NoID';
 
-      $data = $panel_class->set_data($this->section[ 'section-panel-settings' ], $arc_query->post);
+      }
+      $settings = $this->section[ 'section-panel-settings' ];
+      $toshow   = json_decode($settings[ '_panels_design_preview' ], true);
+      $panel_class->set_data($post, $toshow, $settings);
+//      $elements = array();
+//
+//      // Massage toshow to be more usable here
+//      foreach ($toshow as $k => $v) {
+//        if ($v[ 'show' ]) {
+//          $elements[ ] = array_merge(array('key' => $k), $v);
+//        }
+//      }
 
-      $sequence = json_decode($this->section[ 'section-panel-settings' ][ '_panels_design_preview' ], true);
+      $line_out = $panel_def;
+
       // We do want to provide actions so want to use the sequence
       do_action('arc_before_panel_open_a');
       $nav_item[ $panel_number ] = null;
@@ -147,19 +168,19 @@
       //       echo '<div class="js-isotope pzarc-section pzarc-section-' . $key . '" data-isotope-options=\'{ "layoutMode": "'.$pzarc_section_info['section-layout-mode'].'","itemSelector": ".pzarc-panel" }\'>';
 
 
-      $image_in_bg = '';
+      $image_in_bg = (!empty($toshow[ 'image' ][ 'show' ]) && $settings[ '_panels_design_feature-location' ] === 'fill') ? ' using-bgimages' : '';
 
-      switch ($this->section[ 'section-panel-settings' ][ '_panels_design_background-position' ]) {
-
-        case 'fill':
-          $image_in_bg = ' using-bgimages';
-          break;
-
-        case 'align':
-          $image_in_bg = ' using-aligned-bgimages';
-          break;
-
-      }
+//      switch ($settings[ '_panels_design_background-position' ]) {
+//
+//        case 'fill':
+//          $image_in_bg = ' using-bgimages';
+//          break;
+//
+//        case 'align':
+//          $image_in_bg = ' using-aligned-bgimages';
+//          break;
+//
+//      }
       // TODO: Added an extra div here to pre-empt the structure needed for accordions. Tho, needs some work as it breaks layout. Maybe conditional
       // TODO: Probably use jQuery Collapse for accordions
 
@@ -171,59 +192,111 @@
       $odds_evens_bp = ($panel_count++ % 2 ? ' odd-blueprint-panel' : ' even-blueprint-panel');
 
 
-      echo '<div class="pzarc-panel pzarc-panel_' . $this->section[ 'section-panel-settings' ][ '_panels_settings_short-name' ] . ' pzarc-panel-no_' . $panel_number . $this->slider[ 'slide' ] . $image_in_bg . $odds_evens_bp . $odds_evens_section . '" >';
+      // Add standard identifying WP classes to the whole panel
+      $postmeta_classes = ' ' . $panel_class->data[ 'posttype' ] . ' type-' . $panel_class->data[ 'posttype' ] . ' status-' . $panel_class->data[ 'poststatus' ] . ' format-' . $panel_class->data[ 'postformat' ] . ' ';
+
+      echo '<div class="pzarc-panel pzarc-panel_' . $settings[ '_panels_settings_short-name' ] . ' pzarc-panel-no_' . $panel_number . $this->slider[ 'slide' ] . $image_in_bg . $odds_evens_bp . $odds_evens_section . $postmeta_classes . '" >';
+
       // Although this loks back to front, this is determining flow compared to components
 
-      if ($this->section[ 'section-panel-settings' ][ '_panels_design_background-position' ] != 'none' && ($this->section[ 'section-panel-settings' ][ '_panels_design_components-position' ] == 'bottom' || $this->section[ 'section-panel-settings' ][ '_panels_design_components-position' ] == 'right')) {
+      //    var_dump(!empty($toshow[ 'image' ][ 'show' ]) && ($settings[ '_panels_design_components-position' ] == 'bottom' || $settings[ '_panels_design_components-position' ] == 'right'));
+//       $show_image_before_components = (!empty($toshow[ 'image' ][ 'show' ]) && ($settings[ '_panels_design_feature-location' ] !== 'float' && $settings[ '_panels_design_components-position' ] == 'top'));
 
-        $class_bgimage = $class . '_bgimage';
-        $bgimage_class = new $class_bgimage;
-        $line_out      = $bgimage_class->render('bgimage', $panel_def, $this->source, $data, $this->section[ 'section-panel-settings' ],$this->rsid);
-        echo apply_filters("arc_filter_bgimage", self::strip_unused_arctags($line_out), $data[ 'postid' ]);
-//        echo $data['bgimage'];
-//        var_dump(esc_html( $data['bgimage']));
+//       if ($show_image_before_components) {
 
-        unset($class_bgimage);
+//         /** Background image */
+//         if ($settings[ '_panels_design_feature-location' ] === 'fill') {
+//           $line_out = $panel_class->render_bgimage('bgimage', $this->source, $panel_def, $this->rsid);
+// //        echo apply_filters("arc_filter_bgimage", self::strip_unused_arctags($line_out), $data[ 'postid' ]);
+//           echo apply_filters("arc_filter_bgimage", self::strip_unused_arctags($line_out), $arc_query->post->ID);
+
+//         }
+//         /** Image outside and before components */
+//         if ($settings[ '_panels_design_feature-location' ] === 'float') {
+
+//           $line_out = $panel_class->render_image('image', $this->source, $panel_def, $this->rsid);
+
+//           if ($toshow[ 'image' ][ 'width' ] === 100) {
+
+//             $line_out = str_replace('{{nofloat}}', 'nofloat', $line_out);
+
+//           }
+
+//           echo apply_filters("arc_filter_outer_image", self::strip_unused_arctags($line_out), $arc_query->post->ID);
+
+
+//         }
+//       }
+
+    //TODO: Check this works for all scenarios
+      switch ($settings[ '_panels_design_feature-location' ]){
+
+        /** Background image */
+        case 'fill':
+          $line_out = $panel_class->render_bgimage('bgimage', $this->source, $panel_def, $this->rsid);
+//        echo apply_filters("arc_filter_bgimage", self::strip_unused_arctags($line_out), $data[ 'postid' ]);
+          echo apply_filters("arc_filter_bgimage", self::strip_unused_arctags($line_out), $postid);
+
+        break;
+
+        /** Image outside and before components */
+        case 'float' :
+
+        if ($settings[ '_panels_design_components-position' ] != 'top') {
+          $line_out = $panel_class->render_image('image', $this->source, $panel_def, $this->rsid);
+
+          if ($toshow[ 'image' ][ 'width' ] === 100) {
+
+            $line_out = str_replace('{{nofloat}}', 'nofloat', $line_out);
+
+          }
+
+          echo apply_filters("arc_filter_outer_image", self::strip_unused_arctags($line_out), $postid);
+        }
+        break;
       }
+ 
 
-      // Render the components open html
-      $class_wrapper = $class . '_Wrapper';
-      $wrapper_class = new $class_wrapper;
-      echo self::strip_unused_arctags($wrapper_class->render('components-open', $panel_def, '', $data, $this->section[ 'section-panel-settings' ],$this->rsid));
-      foreach ($sequence as $component_type => $value) {
 
+
+      /** Open components wrapper */
+      echo self::strip_unused_arctags($panel_class->render_wrapper('components-open', $this->source, $panel_def, $this->rsid));
+
+      /** Components */
+      foreach ($toshow as $component_type => $value) {
+        if ($component_type === 'image' && $settings[ '_panels_design_feature-location' ] !== 'components') {
+          $value[ 'show' ] = false;
+        }
         if ($value[ 'show' ]) {
 
           // Send thru some data devs might find useful
-          do_action("arc_before_{$component_type}", $component_type, $panel_number, $data[ 'postid' ]);
+          do_action("arc_before_{$component_type}", $component_type, $panel_number, $postid);
 
           // Make the class name to call - strip numbers from metas and customs
           // We could do this in a concatenation first of all components' templates, and then replace the {{tags}}.... But then we couldn't do the filter on each component. Nor could we as easily make the components extensible
-          $class_component = $class . '_' . str_replace(array('1', '2', '3'), '', ucfirst($component_type));
-          $component_class = new $class_component;
-          $line_out        = $component_class->render($component_type, $panel_def, $this->source, $data, $this->section[ 'section-panel-settings' ],$this->rsid);
+          $method_to_do = strtolower('render_' . str_replace(array('1', '2', '3'), '', ucfirst($component_type)));
 
+          $line_out = $panel_class->$method_to_do($component_type, $this->source, $panel_def, $this->rsid);
 
-          echo apply_filters("arc_filter_{$component_type}", self::strip_unused_arctags($line_out), $data[ 'postid' ]);
-          do_action("arc_after_{$component_type}", $component_type, $panel_number, $data[ 'postid' ]);
+          echo apply_filters("arc_filter_{$component_type}", self::strip_unused_arctags($line_out), $postid);
+          do_action("arc_after_{$component_type}", $component_type, $panel_number, $postid);
 
         }
 
       }
 //        echo '<h1 class="entry-title">',get_the_title(),'</h1>';
 //        echo '<div class="entry-content">',get_the_content(),'</div>';
-      echo self::strip_unused_arctags($wrapper_class->render('components-close', $panel_def, '', $data, $this->section[ 'section-panel-settings' ],$this->rsid));
 
-      if ($this->section[ 'section-panel-settings' ][ '_panels_design_background-position' ] != 'none' && ($this->section[ 'section-panel-settings' ][ '_panels_design_components-position' ] == 'top' || $this->section[ 'section-panel-settings' ][ '_panels_design_components-position' ] == 'left')) {
+      /** Close components wrapper */
+      echo self::strip_unused_arctags($panel_class->render_wrapper('components-close', $this->source, $panel_def, $this->rsid));
 
-        $class_bgimage = $class . '_bgimage';
-        $bgimage_class = new $class_bgimage;
-        $line_out      = $bgimage_class->render('bgimage', $panel_def, $this->source, $data, $this->section[ 'section-panel-settings' ],$this->rsid);
-        echo apply_filters("arc_filter_bgimage", self::strip_unused_arctags($line_out), $data[ 'postid' ]);
-//        echo $data['bgimage'];
-//        var_dump(esc_html( $data['bgimage']));
+      /** Image outside and after components */
 
-        unset($class_bgimage);
+      $show_image_after_components = (!empty($toshow[ 'image' ][ 'show' ]) && $settings[ '_panels_design_feature-location' ] === 'float' && ($settings[ '_panels_design_components-position' ] == 'top'));
+      if ($show_image_after_components) {
+
+        $line_out = $panel_class->render_image('image', $this->source, $panel_def, $this->rsid);
+        echo apply_filters("arc_filter_outer_image", self::strip_unused_arctags($line_out), $postid);
 
       }
 

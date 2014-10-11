@@ -7,16 +7,12 @@
     <orderEntry type="module-library">
       <library name="PHP">
         <CLASSES>
-          <root url="file://$MODULE_DIR$/../redux-latest" />
           <root url="file://$MODULE_DIR$/../../../wp-admin" />
           <root url="file://$MODULE_DIR$/../../../wp-includes" />
-          <root url="file://$MODULE_DIR$/../../themes/headway" />
         </CLASSES>
         <SOURCES>
-          <root url="file://$MODULE_DIR$/../redux-latest" />
           <root url="file://$MODULE_DIR$/../../../wp-admin" />
           <root url="file://$MODULE_DIR$/../../../wp-includes" />
-          <root url="file://$MODULE_DIR$/../../themes/headway" />
         </SOURCES>
       </library>
     </orderEntry>

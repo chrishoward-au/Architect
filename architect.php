@@ -1,10 +1,10 @@
 <?php
 
   /*
-    Plugin Name: Architect - an all-in-one content display framework
+    Plugin Name: Architect - an all-in-one content layout framework
     Plugin URI: http://pizazzwp.com
-    Description: Display your content in grids, tabs, sliders, galleries with sources like posts, pages, galleries, and custom content types. Layout using shorcodes, widgets, WP action hooks and template tags. Change themes without havinq to rebuild your layouts.
-    Version: 0.8
+    Description: Go beyond the limits of the layouts in the theme you use, to easily build any content layouts for it. Build your own content layouts in grids, tabs, sliders, galleries and more with sources like posts, pages, galleries, and custom content types. Display using shorcodes, widgets, Headway blocks, WP action hooks and template tags, and WP Gallery shortcode. Change themes without needing to rebuild your layouts!
+    Version: 0.8.4.7
     Author: Chris Howard
     Author URI: http://pizazzwp.com
     License: GNU GPL v2
@@ -25,11 +25,10 @@
    */
   /*
   TODO: Help info: Use shortcodes for things like galleries and slideshows - things that are stylised by you. Use template tag for displaying posts
-  TODO: Make sure it can display comments!!
+  TODO: Make sure it can display comments!! Though... is this necessary?
   TODO: Make it so users can create their own panels and blueprints, but can't edit other users' unless an admin. Thus users could create their own for shortcodes!
   TODO: Add a metabox to pages that lets you pick blueprints to prepend or postend to pages. How hard could it be? Plug into hook? Is there a pre-loop hook? loop_start, loop_end
   TODO: Make sure urls are https/http generic
-  TODO: Make sure WP multi compatible
   TODO: Allow ems and % for responsive dimensions
   TODO: OOPS! Need a method to rereate css if it goes missing!
   TODO: Add Snippets post type to PizazzWP Libs
@@ -37,6 +36,7 @@
   TODO: Add option to hide blueprint if it has no content. Should be able to do that with a CSS class
 
   */
+
   /* TODO: why not use a WP like methodology!
   ================================================================================
   register_cell_layout('name',$args)'
@@ -52,8 +52,8 @@
     function __construct()
     {
 
-      define('PZARC_VERSION', '0.8');
-      define('PZARC_NAME', 'pzarchitect'); // This is also used as the locale
+      define('PZARC_VERSION', '0.8.4.7');
+      define('PZARC_NAME', 'pzarchitect'); // This is also same as the locale
       define('PZARC_FOLDER', '/pizazzwp-architect');
 
       define('PZARC_PLUGIN_URL', trailingslashit(plugin_dir_url(__FILE__)));
@@ -88,23 +88,19 @@
       // Register admin styles and scripts
 
       if (is_admin()) {
-        require_once PZARC_PLUGIN_APP_PATH . '/arc-admin.php';
         add_action('admin_print_styles', array($this, 'register_admin_styles'));
         add_action('admin_enqueue_scripts', array($this, 'register_admin_scripts'));
         //		add_action( 'init', array( $this, 'admin_initialize' ) );
+        require_once PZARC_PLUGIN_APP_PATH . '/arc-admin.php';
 
-      }
-
-
-      // Front end includes, Register site styles and scripts
-      if (!is_admin()) {
+      } else  {
+        // Front end includes, Register site styles and scripts
         add_action('wp_enqueue_scripts', array($this, 'register_plugin_styles'));
         add_action('wp_enqueue_scripts', array($this, 'register_plugin_scripts'));
 
         require_once PZARC_PLUGIN_APP_PATH . '/arc-public.php';
 
       }
-
 
       // Register hooks that are fired when the plugin is activated, deactivated, and uninstalled, respectively.
       register_activation_hook(__FILE__, array($this, 'activate'));
@@ -235,7 +231,7 @@
     public function register_plugin_styles()
     {
 
-      wp_register_style(PZARC_NAME . '-plugin-styles',PZARC_PLUGIN_APP_URL . '/public/css/arc-front.css');
+      wp_register_style(PZARC_NAME . '-plugin-styles', PZARC_PLUGIN_APP_URL . '/public/css/arc-front.css');
       // Need this for custom CSS in styling options
       if (file_exists(PZARC_CACHE_PATH . 'arc-dynamic-styles.css')) {
         wp_register_style(PZARC_NAME . '-dynamic-styles', PZARC_CACHE_URL . 'arc-dynamic-styles.css');
@@ -354,6 +350,37 @@
         // do a version check somehow... might need to hard code redux version using a constant
         //    echo '<div id="message" class="updated"><p>The plugin or theme at address: <strong>',ReduxFramework::$_url,'</strong> has loaded an old and probably incompatible version (<strong>',ReduxFramework::$_version,'</strong>) of the Redux library that Architect is dependent upon.<br>Please ask the developer of the other plugin/theme to upgrade their version of Redux.</p></div>';
       }
+    }
+  }
+
+  /** Special notices */
+  /* Display a notice that can be dismissed */
+
+  add_action('admin_notices', 'pzarc_admin_notice');
+  function pzarc_admin_notice()
+  {
+    if (current_user_can('install_plugins')) {
+
+      global $current_user;
+      $user_id = $current_user->ID;
+      /* Check that the user hasn't already clicked to ignore the message */
+      if (!get_user_meta($user_id, 'pzarc_ignore_notice')) {
+        echo '<div class="message error highlight"><p>';
+        printf(__('Apologies, but if upgrading from a version before beta v0.8.3 you will need to redo the Panels source field for each section in Blueprints. Plus, in Panels, settings for featured image and background have been merged, so you will need to check those settings too for each Panel. | <a href="%1$s">Hide Notice</a>'), '?pzarc_nag_ignore=0');
+        echo "</p></div>";
+      }
+    }
+  }
+
+  add_action('admin_init', 'pzarc_nag_ignore');
+
+  function pzarc_nag_ignore()
+  {
+    global $current_user;
+    $user_id = $current_user->ID;
+    /* If user clicks to ignore the notice, add that to their user meta */
+    if (isset($_GET[ 'pzarc_nag_ignore' ]) && '0' == $_GET[ 'pzarc_nag_ignore' ]) {
+      add_user_meta($user_id, 'pzarc_ignore_notice', 'true', true);
     }
   }
 

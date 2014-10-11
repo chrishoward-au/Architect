@@ -8,12 +8,22 @@
 
     $nl = "\n";
 
-    $pzarc_contents .= '/* This is the css for panel $postid ' . $pzarc_panels[ '_panels_settings_short-name' ] . '*/' . $nl;
+    $pzarc_contents .= '/* This is the css for panel ' . $pzarc_panels[ '_panels_settings_short-name' ] . '*/' . $nl;
 
     // Step thru each field looking for ones to format
     $class_prefix = 'body.pzarchitect .pzarc-panel_' . $pzarc_panels[ '_panels_settings_short-name' ];
 
+    $toshow = json_decode($pzarc_panels[ '_panels_design_preview' ], true);
+
+    $pzarc_components_position = (!empty($pzarc_panels[ '_panels_design_components-position' ]) ? $pzarc_panels[ '_panels_design_components-position' ] : 'top');
+    $pzarc_components_nudge_x  = (!empty($pzarc_panels[ '_panels_design_components-nudge-x' ]) ? $pzarc_panels[ '_panels_design_components-nudge-x' ] : 0);
+    $pzarc_components_nudge_y  = (!empty($pzarc_panels[ '_panels_design_components-nudge-y' ]) ? $pzarc_panels[ '_panels_design_components-nudge-y' ] : 0);
+    $pzarc_components_width    = (!empty($pzarc_panels[ '_panels_design_components-widths' ]) ? $pzarc_panels[ '_panels_design_components-widths' ] : 100);
+    $pzarc_tb                  = ($pzarc_components_position == 'left' || $pzarc_components_position == 'right' ? 'top' : $pzarc_components_position);
+    $pzarc_lr                  = ($pzarc_components_position == 'top' || $pzarc_components_position == 'bottom' ? 'left' : $pzarc_components_position);
+
     foreach ($pzarc_panels as $key => $value) {
+
 
       /**
        * Panels settings and design
@@ -29,36 +39,35 @@
           }
           break;
 
-        case ($key == '_panels_design_responsive-hide-content' && $pzarc_panels[ '_panels_design_responsive-hide-content' ] !== 'none'):
-
+        case ($key == '_panels_design_responsive-hide-content' && !empty($pzarc_panels[ '_panels_design_responsive-hide-content' ]) && $pzarc_panels[ '_panels_design_responsive-hide-content' ] !== 'none'):
           $em_width = (int)str_replace('px', '', $_architect_options[ 'architect_breakpoint_' . $pzarc_panels[ '_panels_design_responsive-hide-content' ] ][ 'width' ]) / 16;
           $pzarc_contents .= '@media (max-width: ' . $em_width . 'em) { ' . $class_prefix . ' .entry-content, ' . $class_prefix . ' .entry-excerpt {display:none!important;}}' . $nl;
 
           break;
 
         // TODO: Lazy ass! Work outhow to do this in case statement!
-        case ($key == '_panels_design_content-font-size-bp1' && !empty($pzarc_panels[ '_panels_design_content-font-size-bp1' ]) && !empty($pzarc_panels['_panels_design_use-responsive-font-size'])):
+        case ($key == '_panels_design_content-font-size-bp1' && !empty($pzarc_panels[ '_panels_design_content-font-size-bp1' ]) && !empty($pzarc_panels[ '_panels_design_use-responsive-font-size' ])):
 
-          $em_width = (int)str_replace('px', '', $_architect_options[ 'architect_breakpoint_1']['width']) / 16;
+          $em_width = (int)str_replace('px', '', $_architect_options[ 'architect_breakpoint_1' ][ 'width' ]) / 16;
 
-          $pzarc_contents .= '@media (min-width: ' . $em_width . 'em) { ' . $class_prefix . ' .entry-content, ' . $class_prefix . ' .entry-excerpt {font-size:'.$pzarc_panels[ '_panels_design_content-font-size-bp1' ]['font-size'].'!important;line-height:'.$pzarc_panels[ '_panels_design_content-font-size-bp1' ]['line-height'].';!important}}' . $nl;
-
-          break;
-
-        case ($key == '_panels_design_content-font-size-bp2' && !empty($pzarc_panels[ '_panels_design_content-font-size-bp2' ]) && !empty($pzarc_panels['_panels_design_use-responsive-font-size'])):
-
-          $em_widthU = (int)str_replace('px', '', $_architect_options[ 'architect_breakpoint_1']['width']) / 16;
-          $em_widthL = (int)str_replace('px', '', $_architect_options[ 'architect_breakpoint_2']['width']) / 16;
-
-          $pzarc_contents .= '@media (min-width: ' . $em_widthL . 'em and max-width: ' . $em_widthU . 'em) { ' . $class_prefix . ' .entry-content, ' . $class_prefix . ' .entry-excerpt {font-size:'.$pzarc_panels[ '_panels_design_content-font-size-bp2' ]['font-size'].'!important;line-height:'.$pzarc_panels[ '_panels_design_content-font-size-bp2' ]['line-height'].'!important;}}' . $nl;
+          $pzarc_contents .= '@media (min-width: ' . $em_width . 'em) { ' . $class_prefix . ' .entry-content, ' . $class_prefix . ' .entry-excerpt {font-size:' . $pzarc_panels[ '_panels_design_content-font-size-bp1' ][ 'font-size' ] . '!important;line-height:' . $pzarc_panels[ '_panels_design_content-font-size-bp1' ][ 'line-height' ] . ';!important}}' . $nl;
 
           break;
 
-        case ($key == '_panels_design_content-font-size-bp3' && !empty($pzarc_panels[ '_panels_design_content-font-size-bp3' ]) && !empty($pzarc_panels['_panels_design_use-responsive-font-size'])):
+        case ($key == '_panels_design_content-font-size-bp2' && !empty($pzarc_panels[ '_panels_design_content-font-size-bp2' ]) && !empty($pzarc_panels[ '_panels_design_use-responsive-font-size' ])):
 
-          $em_width = (int)str_replace('px', '', $_architect_options[ 'architect_breakpoint_2']['width']) / 16;
+          $em_widthU = (int)str_replace('px', '', $_architect_options[ 'architect_breakpoint_1' ][ 'width' ]) / 16;
+          $em_widthL = (int)str_replace('px', '', $_architect_options[ 'architect_breakpoint_2' ][ 'width' ]) / 16;
 
-          $pzarc_contents .= '@media (max-width: ' . $em_width . 'em) { ' . $class_prefix . ' .entry-content, ' . $class_prefix . ' .entry-excerpt {font-size:'.$pzarc_panels[ '_panels_design_content-font-size-bp3' ]['font-size'].'!important;line-height:'.$pzarc_panels[ '_panels_design_content-font-size-bp3' ]['line-height'].'!important;}}' . $nl;
+          $pzarc_contents .= '@media (min-width: ' . $em_widthL . 'em and max-width: ' . $em_widthU . 'em) { ' . $class_prefix . ' .entry-content, ' . $class_prefix . ' .entry-excerpt {font-size:' . $pzarc_panels[ '_panels_design_content-font-size-bp2' ][ 'font-size' ] . '!important;line-height:' . $pzarc_panels[ '_panels_design_content-font-size-bp2' ][ 'line-height' ] . '!important;}}' . $nl;
+
+          break;
+
+        case ($key == '_panels_design_content-font-size-bp3' && !empty($pzarc_panels[ '_panels_design_content-font-size-bp3' ]) && !empty($pzarc_panels[ '_panels_design_use-responsive-font-size' ])):
+
+          $em_width = (int)str_replace('px', '', $_architect_options[ 'architect_breakpoint_2' ][ 'width' ]) / 16;
+
+          $pzarc_contents .= '@media (max-width: ' . $em_width . 'em) { ' . $class_prefix . ' .entry-content, ' . $class_prefix . ' .entry-excerpt {font-size:' . $pzarc_panels[ '_panels_design_content-font-size-bp3' ][ 'font-size' ] . '!important;line-height:' . $pzarc_panels[ '_panels_design_content-font-size-bp3' ][ 'line-height' ] . '!important;}}' . $nl;
 
           break;
 
@@ -113,7 +122,21 @@
           $left    = preg_replace("/([\\%px])/uiUm", "", $left);
           $right   = $pzarc_panels[ '_panels_design_image-spacing' ][ 'margin-right' ];
           $right   = preg_replace("/([\\%px])/uiUm", "", $right);
-          $pzarc_contents .= $class_prefix . ' .entry-thumbnail {width:' . ($pzarc_layout[ 'image' ][ 'width' ] - $left - $right) . '%;max-width:' . $pzarc_panels[ '_panels_design_image-max-width' ] . 'px;' . $margins . ';}' . $nl;
+
+          if ('float' === $pzarc_panels[ '_panels_design_feature-location' ]) {
+            if ('top'===$pzarc_components_position || 'bottom'===$pzarc_components_position) {
+              $pzarc_contents .= $class_prefix . ' .entry-thumbnail {width:' . (100  - $left - $right) . '%;max-width:' . $pzarc_panels[ '_panels_design_image-max-dimensions' ][ 'width' ] . ';' . $margins . ';}' . $nl;
+            }else {
+              $pzarc_contents .= $class_prefix . ' .entry-thumbnail {width:' . max((100 - $pzarc_components_width - $left - $right), 0) . '%;max-width:' . $pzarc_panels[ '_panels_design_image-max-dimensions' ][ 'width' ] . ';' . $margins . ';float:'.('left'===$pzarc_components_position?'right':'left').'}' . $nl;
+
+            }
+          } elseif ('fill' === $pzarc_panels[ '_panels_design_feature-location' ] && 'image' === $pzarc_panels[ '_panels_settings_feature-type' ]) {
+            $pzarc_contents .= $class_prefix . ' .entry-thumbnail {width:100%;max-width:' . $pzarc_panels[ '_panels_design_image-max-dimensions' ][ 'width' ] . ';}' . $nl;
+          } elseif ('video' === $pzarc_panels[ '_panels_settings_feature-type' ]) {
+            $pzarc_contents .= $class_prefix . ' .entry-thumbnail {width:' . ($pzarc_layout[ 'image' ][ 'width' ] - $left - $right) . '%;}' . $nl;
+          } else {
+            $pzarc_contents .= $class_prefix . ' .entry-thumbnail {width:' . ($pzarc_layout[ 'image' ][ 'width' ] - $left - $right) . '%;max-width:' . $pzarc_panels[ '_panels_design_image-max-dimensions' ][ 'width' ] . ';' . $margins . ';}' . $nl;
+          }
 //              }
 
           $pzarc_contents .= $class_prefix . ' .entry-content {width:' . $pzarc_layout[ 'content' ][ 'width' ] . '%;}' . $nl;
@@ -142,19 +165,23 @@
 //              $pzarc_contents .= $class_prefix . ' .entry-thumbnail {margin-bottom: ' . $value . '%;}' . "\n";
 //              break;
 
-        case ($key == '_panels_design_thumb-position'):
 
-          if ($value != 'none') {
+        // This is in content
+        case ($key == '_panels_design_feature-location'):
+
+          if ($value === 'content-left' || $value === 'content-right') {
 
             $margins = pzarc_process_spacing($pzarc_panels[ '_panels_design_image-spacing' ]);
-            $twidth  = $pzarc_panels[ '_panels_design_thumb-width' ] - ($pzarc_panels[ '_panels_design_image-margin-left' ] + $pzarc_panels[ '_panels_design_image-margin-right' ]);
-            $pzarc_contents .= $class_prefix . ' .in-content-thumb {width:' . $twidth . '%;float:' . $value . '!important;' . $margins . '}' . $nl;
+            $twidth  = $pzarc_panels[ '_panels_design_thumb-width' ] - (str_replace('%', '', $pzarc_panels[ '_panels_design_image-spacing' ][ 'margin-left' ]) + str_replace('%', '', $pzarc_panels[ '_panels_design_image-spacing' ][ 'margin-right' ]));
+            $float   = $value === 'content-left' ? 'left' : 'right';
+            $pzarc_contents .= $class_prefix . ' .in-content-thumb {width:' . $twidth . '%;float:' . $float . '!important;' . $margins . '}' . $nl;
+          }
+
+          if ($value === 'fill') {
 
           }
-          break;
-        case ($key == '_panels_design_background-position'):
 
-          if ($value != 'none') {
+          if ($value === 'float') {
 
           }
           break;
@@ -171,53 +198,57 @@
          *********************************************************/
 
         case (strpos($key, '_panels_styling') === 0 && !empty($value) && !empty($_architect_options[ 'architect_enable_styling' ])):
-          $pkeys            = array();
-          $pkey             = str_replace('_panels_styling_', '', $key);
-$pkey = str_replace('-font-','-',$pkey);
-          $splitter         = (substr_count($pkey, '-font-') === 1 ? strrpos($pkey, '-font-') : strrpos($pkey, '-'));
+
+          $pkeys    = array();
+          $pkey     = str_replace('_panels_styling_', '', $key);
+          $pkey     = str_replace('-font-', '-', $pkey);
+          $splitter = (substr_count($pkey, '-font-') === 1 ? strrpos($pkey, '-font-') : strrpos($pkey, '-'));
 
           $pkeys[ 'style' ] = str_replace('-', '', substr($pkey, $splitter + 1));
           $pkeys[ 'id' ]    = substr($pkey, 0, $splitter);
 
-
           $pzarc_contents .= pzarc_get_styling('panel', $pkeys, $value, $class_prefix);
 
+          // Content is a unique situation
+          if ($pkeys[ 'id' ] === 'entry-content') {
+
+            $pkeys[ 'id' ] = 'entry-excerpt';
+            $pzarc_contents .= pzarc_get_styling('panel', $pkeys, $value, $class_prefix);
+
+          }
 
           break;
       }
     }
 
-
-    //     var_dump($key,strpos($key, '-format-') , !empty($value) , !empty($pzarc_panels[ $key . '-classes' ]));
-    $pzarc_components_position = (!empty($pzarc_panels[ '_panels_design_components-position' ]) ? $pzarc_panels[ '_panels_design_components-position' ] : 'top');
-    $pzarc_components_nudge_x  = (!empty($pzarc_panels[ '_panels_design_components-nudge-x' ]) ? $pzarc_panels[ '_panels_design_components-nudge-x' ] : 0);
-    $pzarc_components_nudge_y  = (!empty($pzarc_panels[ '_panels_design_components-nudge-y' ]) ? $pzarc_panels[ '_panels_design_components-nudge-y' ] : 0);
-    $pzarc_components_width    = (!empty($pzarc_panels[ '_panels_design_components-widths' ]) ? $pzarc_panels[ '_panels_design_components-widths' ] : 100);
-    $pzarc_tb                  = ($pzarc_components_position == 'left' || $pzarc_components_position == 'right' ? 'top' : $pzarc_components_position);
-    $pzarc_lr                  = ($pzarc_components_position == 'top' || $pzarc_components_position == 'bottom' ? 'left' : $pzarc_components_position);
 
     // TODO: Why is using bgimages here??
     // TODO: Extend this for multiple breakpoints
     // Put this in an if since it's only when we are using bg images.
     // NOTE: It can affect wide screen content if you set the image smaller than the panel width
 //    $pzarc_contents .= $class_prefix . '.using-bgimages .pzarc-components{max-width:' . $pzarc_panels[ '_panels_design_background-image-max' ][ 'width' ] . ';' . $pzarc_tb . ':' . $pzarc_components_nudge_y . '%;' . $pzarc_lr . ':' . $pzarc_components_nudge_x . '%;width:' . $pzarc_components_width . '%;}';
-    if ('fill' === $pzarc_panels[ '_panels_design_background-position' ]) {
-      $pzarc_contents .= $class_prefix . '.using-bgimages .pzarc-components{' . $pzarc_tb . ':' . $pzarc_components_nudge_y . '%;' . $pzarc_lr . ':' . $pzarc_components_nudge_x . '%;width:' . $pzarc_components_width . '%;}';
-    }
-    if ('align' === $pzarc_panels[ '_panels_design_background-position' ]) {
 
-
-      switch ($pzarc_components_position) {
-        case 'left':
-          $pzarc_contents .= $class_prefix . '.using-aligned-bgimages figure {left:' . ($pzarc_components_width + $pzarc_components_nudge_x) . '%;}';
-          $pzarc_contents .= $class_prefix . '.using-aligned-bgimages .pzarc-components {' . $pzarc_tb . ':' . $pzarc_components_nudge_y . '%;' . $pzarc_lr . ':' . $pzarc_components_nudge_x . '%;width:' . $pzarc_components_width . '%;}';
-          break;
-        case 'right':
-          $pzarc_contents .= $class_prefix . '.using-aligned-bgimages figure {right:' . ($pzarc_components_width + $pzarc_components_nudge_x) . '%;}';
-          $pzarc_contents .= $class_prefix . '.using-aligned-bgimages .pzarc-components {' . $pzarc_tb . ':' . $pzarc_components_nudge_y . '%;' . 'left:' . (100 - $pzarc_components_nudge_x - $pzarc_components_width) . '%;width:' . $pzarc_components_width . '%;}';
-          break;
+    if (!empty($toshow[ 'image' ][ 'show' ])) {
+      if ('fill' === $pzarc_panels[ '_panels_design_feature-location' ]) {
+        $pzarc_contents .= $class_prefix . '.using-bgimages .pzarc-components{' . $pzarc_tb . ':' . $pzarc_components_nudge_y . '%;' . $pzarc_lr . ':' . $pzarc_components_nudge_x . '%;width:' . $pzarc_components_width . '%;}';
+      } else {
+        $pzarc_contents .= $class_prefix . ' .pzarc-components{' . $pzarc_tb . ':' . $pzarc_components_nudge_y . '%;' . $pzarc_lr . ':' . $pzarc_components_nudge_x . '%;width:' . $pzarc_components_width . '%;}';
       }
     }
+//    if ('align' === $pzarc_panels[ '_panels_design_background-position' ]) {
+//
+//
+//      switch ($pzarc_components_position) {
+//        case 'left':
+//          $pzarc_contents .= $class_prefix . '.using-aligned-bgimages figure {left:' . ($pzarc_components_width + $pzarc_components_nudge_x) . '%;}';
+//          $pzarc_contents .= $class_prefix . '.using-aligned-bgimages .pzarc-components {' . $pzarc_tb . ':' . $pzarc_components_nudge_y . '%;' . $pzarc_lr . ':' . $pzarc_components_nudge_x . '%;width:' . $pzarc_components_width . '%;}';
+//          break;
+//        case 'right':
+//          $pzarc_contents .= $class_prefix . '.using-aligned-bgimages figure {right:' . ($pzarc_components_width + $pzarc_components_nudge_x) . '%;}';
+//          $pzarc_contents .= $class_prefix . '.using-aligned-bgimages .pzarc-components {' . $pzarc_tb . ':' . $pzarc_components_nudge_y . '%;' . 'left:' . (100 - $pzarc_components_nudge_x - $pzarc_components_width) . '%;width:' . $pzarc_components_width . '%;}';
+//          break;
+//      }
+//    }
 
 //    $pzarc_contents .= $class_prefix . ' .pzarc-components{max-width:'.$pzarc_panels['_panels_design_background-image-max']['width'].';' . $pzarc_tb . ':' . $pzarc_components_nudge_y . '%;' . $pzarc_lr . ':' . $pzarc_components_nudge_x . '%;width:' . $pzarc_components_width . '%;}';
 
