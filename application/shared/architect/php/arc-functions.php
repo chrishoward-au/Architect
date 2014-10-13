@@ -199,6 +199,13 @@
 
     global $pzarchitect;
     global $_architect_options;
+    $registry = Registry::getInstance();
+var_dump($registry);
+    $reg = $registry->get('post_types');
+
+    foreach ($reg as $key => $value) {
+      $sections[]= $value['sections'];
+    }
 
     // BLUEPRINTS
     $pzarchitect[ 'defaults' ][ 'blueprints' ]                                 = (!isset($pzarchitect[ 'defaults' ][ 'blueprints' ]) ? array() : $pzarchitect[ 'defaults' ][ 'blueprints' ]);

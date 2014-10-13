@@ -48,7 +48,7 @@
 
       require_once(PZARC_PLUGIN_APP_PATH . '/public/php/class_arc_Section.php');
       require_once(PZARC_PLUGIN_APP_PATH . '/public/php/class_arc_Blueprint.php');
-      require_once(PZARC_PLUGIN_APP_PATH . '/public/php/class_arc_Panel_Renderer.php');
+      require_once(PZARC_PLUGIN_APP_PATH . '/shared/architect/php/content-types/defaults/class_arc_Panel_Renderer.php');
 
       $this->build = new arc_Blueprint($blueprint);
 
@@ -833,13 +833,13 @@
 
       // Fall back to generics if no class for post type
       // Use an include incase it doesn't exist!
-      @include_once PZARC_PLUGIN_APP_PATH . '/public/php/post_types/class_arc_Panel_' . ucfirst($post_type) . '.php';
+      @include_once PZARC_PLUGIN_APP_PATH . '/shared/architect/php/content-types/' . ucfirst($post_type) . '/class_arc_Panel_' . ucfirst($post_type) . '.php';
 
       if (!class_exists($class)) {
 
         $class = 'arc_Panel_Generic';
 
-        include_once PZARC_PLUGIN_APP_PATH . '/public/php/post_types/class_arc_Panel_Generic.php';
+        include_once PZARC_PLUGIN_APP_PATH . '/shared/architect/php/content-types/defaults/class_arc_Panel_Defaults.php';
 
       }
 

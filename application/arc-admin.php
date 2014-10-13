@@ -28,7 +28,6 @@
 
     function init()
     {
-
       // @TODO: verify this blocks non admins!
       if (is_admin() && current_user_can('edit_theme_options')) {
 
@@ -54,6 +53,12 @@
         require_once PZARC_PLUGIN_APP_PATH . '/admin/php/class_arc_Blueprints_Layouts.php';
         require_once PZARC_PLUGIN_APP_PATH . '/admin/php/arc-save-process.php';
 
+        // @TODO Should these really be objects? Should the self instantiate?
+        // Initialise objects for data and setup menu items
+        $panel_layout      = new arc_Panels_Layouts;
+        $content_blueprint = new arc_Blueprints_Layouts;
+
+
         //TODO:     require_once PZARC_PLUGIN_PATH . '/admin/arc-widget.php';
 
 //			require_once PZARC_PLUGIN_PATH . '/admin/ucd-controls.php';
@@ -66,8 +71,8 @@
         require_once PZARC_PLUGIN_APP_PATH . '/admin/php/arc-options-actions.php';
 
         // TODO: this needs to be dumberized so can work on dev defined panels and ocntent
-        require_once PZARC_PLUGIN_APP_PATH . '/public/php/class_arc_Panel_Renderer.php';
-        require_once PZARC_PLUGIN_APP_PATH . '/public/php/post_types/class_arc_Panel_Snippets.php';
+        require_once PZARC_PLUGIN_APP_PATH . '/shared/architect/php/content-types/defaults/class_arc_Panel_Renderer.php';
+        require_once PZARC_PLUGIN_APP_PATH . '/shared/architect/php/content-types/snippets/class_arc_Panel_Snippets.php';
 
 
         require_once(PZARC_PLUGIN_APP_PATH . '/shared/includes/php/BFI-thumb-forked/BFI_Thumb.php');
@@ -75,10 +80,6 @@
 //        require_once(PZARC_PLUGIN_APP_PATH . '/shared/includes/php/bfi_focus_point/bfi_focus_point.php');
 
 
-        // @TODO Should these really be objects?
-        // Initialise objects for data and setup menu items
-        $panel_layout      = new arc_Panels_Layouts;
-        $content_blueprint = new arc_Blueprints_Layouts;
         // Changed this to a function
 //        $galleries = new pzarc_Galleries;
 //        $slides = new pzarc_Slides;

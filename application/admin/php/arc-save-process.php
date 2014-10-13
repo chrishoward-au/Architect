@@ -115,6 +115,7 @@
 
     global $pzarchitect;
     global $_architect_options;
+
     // var_dump($_architect_options);
     pzarc_set_defaults();
     $defaults = $pzarchitect[ 'defaults' ];

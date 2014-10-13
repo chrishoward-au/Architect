@@ -93,7 +93,7 @@
         //		add_action( 'init', array( $this, 'admin_initialize' ) );
         require_once PZARC_PLUGIN_APP_PATH . '/arc-admin.php';
 
-      } else  {
+      } else {
         // Front end includes, Register site styles and scripts
         add_action('wp_enqueue_scripts', array($this, 'register_plugin_styles'));
         add_action('wp_enqueue_scripts', array($this, 'register_plugin_scripts'));
@@ -108,6 +108,20 @@
       //	register_uninstall_hook( __FILE__, array( $this, 'uninstall' ) );
 
       add_action('after_setup_theme', array($this, 'register_architect_block'));
+
+
+      require_once PZARC_PLUGIN_APP_PATH . '/shared/architect/php/class_arc_set_data.php';
+      require_once PZARC_PLUGIN_APP_PATH . '/shared/architect/php/class_arc_Blueprint_Data.php';
+
+      // Load all the builtin post types
+      require_once PZARC_PLUGIN_APP_PATH . '/shared/architect/php/content-types/defaults/class_arc_content_defaults.php';
+      require_once PZARC_PLUGIN_APP_PATH . '/shared/architect/php/content-types/posts/class_arc_content_posts.php';
+      require_once PZARC_PLUGIN_APP_PATH . '/shared/architect/php/content-types/pages/class_arc_content_pages.php';
+      require_once PZARC_PLUGIN_APP_PATH . '/shared/architect/php/content-types/galleries/class_arc_content_galleries.php';
+      require_once PZARC_PLUGIN_APP_PATH . '/shared/architect/php/content-types/snippets/class_arc_content_snippets.php';
+      require_once PZARC_PLUGIN_APP_PATH . '/shared/architect/php/content-types/dummy/class_arc_content_dummy.php';
+      require_once PZARC_PLUGIN_APP_PATH . '/shared/architect/php/content-types/slides/class_arc_content_slides.php';
+      require_once PZARC_PLUGIN_APP_PATH . '/shared/architect/php/content-types/cpt/class_arc_content_cpt.php';
 
 
       /*
@@ -384,3 +398,46 @@
     }
   }
 
+
+  class Registry
+  {
+    private $registry = array();
+
+    private static $instance = null;
+
+    public static function getInstance()
+    {
+      if (self::$instance === null) {
+        self::$instance = new Registry();
+      }
+
+      return self::$instance;
+    }
+
+    private function __construct() { }
+
+    private function __clone() { }
+
+    public function set($key, $value)
+    {
+
+      // For us, all keys are array parents, so like keys will extend the array, as opposed to throwing an error. This makes keys much more usable and extensible.
+//      if (isset($this->registry[ $key ])) {
+//        throw new Exception("There is already an entry for key " . $key);
+//
+//      }
+        $this->registry[ $key ][] = $value;
+
+
+
+    }
+
+    public function get($key)
+    {
+      if (!isset($this->registry[ $key ])) {
+        throw new Exception("There is no entry for key " . $key);
+      }
+
+      return $this->registry[ $key ];
+    }
+  }
