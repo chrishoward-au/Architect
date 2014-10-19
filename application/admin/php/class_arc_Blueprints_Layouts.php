@@ -1207,7 +1207,7 @@ You can use them however you like though.
         $sections  = array();
         $optprefix = 'architect_config_';
 
-        $sections[ ] = array(
+        $xsections[ ] = array(
             'title'      => 'Styling',
             'show_title' => false,
             'icon_class' => 'icon-large',

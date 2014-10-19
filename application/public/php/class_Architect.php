@@ -47,9 +47,12 @@
 
       require_once(PZARC_PLUGIN_APP_PATH . '/public/php/class_arc_Section.php');
       require_once(PZARC_PLUGIN_APP_PATH . '/public/php/class_arc_Blueprint.php');
-      require_once(PZARC_PLUGIN_APP_PATH . '/shared/architect/php/content-types/defaults/class_arc_Panel_Renderer.php');
 
-      pzarc_set_defaults(array('blueprints'));
+      // Load generics
+      require_once(PZARC_PLUGIN_APP_PATH . '/shared/architect/php/content-types/defaults/class_arc_Panel_Renderer.php');
+      require_once(PZARC_PLUGIN_APP_PATH . '/shared/architect/php/content-types/defaults/class_arc_query_generic.php');
+
+      pzarc_set_defaults();
 
       $this->build = new arc_Blueprint($blueprint);
 
@@ -147,6 +150,7 @@
 
       // Build the query
       if ($this->build->blueprint[ '_blueprints_content-source' ] != 'defaults') {
+
 
         self::use_custom_query($overrides);
 
@@ -542,7 +546,15 @@
     {
       // Is this a better way to code?
       self::set_criteria_prefix(self::set_prefix());
-      self::build_custom_query($overrides);
+
+      $source_query_class = 'arc_query_'.$this->build->blueprint[ '_blueprints_content-source' ];
+      require_once(PZARC_PLUGIN_APP_PATH . '/shared/architect/php/content-types/gallery/class_arc_query_gallery.php');
+
+     // $arc_query_generic =  new arc_query_generic($this->build,$this->criteria);
+
+      var_Dump($source_query_class);
+      $arc_query_source =  new $source_query_class($this->build,$this->criteria);
+      $this->arc_query = $arc_query_source->build_custom_query($overrides);
       self::replace_wp_query();
     }
 
@@ -559,7 +571,7 @@
         case 'posts':
           $prefix = '_content_posts_';
           break;
-        case 'galleries':
+        case 'gallery':
         case 'gallery':
           $prefix = '_content_galleries_';
           break;
@@ -640,179 +652,11 @@
 
     }
 
+
     /**
-     * @param $source
-     * @param $this ->criteria
-     * @param $overrides
-     * @return WP_Query
+     * @param $section_no
+     * @return mixed
      */
-    private function build_custom_query($overrides)
-    {
-
-      //build the new query
-      $source = $this->build->blueprint[ '_blueprints_content-source' ];
-
-      $query_options = array();
-
-      global $paged;
-
-      //Paging parameters
-      if ($this->build->blueprint[ '_blueprints_navigation' ] == 'pagination') {
-
-        // This is meant ot be the magic tonic to make pagination work on static front page. Bah!! Didnt' for me - ever
-        // Ah! It only doesn't work with Headway!
-        if (get_query_var('paged')) {
-
-          $paged = get_query_var('paged');
-
-        } elseif (get_query_var('page')) {
-
-          $paged = get_query_var('page');
-
-        } else {
-
-          $paged = 1;
-
-        }
-
-// TODO: WTF IS THIS?! Surely just some debugging left behind!
-//        query_posts('posts_per_page=3&paged=' . $paged);
-
-//        $query_options[ 'nopaging' ]       = false;
-        $query_options[ 'posts_per_page' ] = $this->criteria[ 'panels_to_show' ];
-        $query_options[ 'pagination' ]     = true;
-        $query_options[ 'paged' ]          = $paged;
-
-      } else {
-
-        $query[ 'nopaging' ]               = $this->criteria[ 'nopaging' ];
-        $query_options[ 'posts_per_page' ] = $this->criteria[ 'panels_to_show' ];
-
-        $query_options[ 'offset' ] = $this->criteria[ 'offset' ];
-      }
-
-      // these two break paging yes?
-      $query_options[ 'ignore_sticky_posts' ] = $this->criteria[ 'ignore_sticky_posts' ];
-
-      //Lot of work!
-      //     pzdebug($this->criteria);
-
-      // TODO: We're going to have to make this pluggable too! :P Probably with a loop?
-
-      /** General content filters */
-      $cat_ids = $this->criteria[ 'category__in' ];
-//      var_dump(get_the_category(),is_category());
-
-      // TODO: This doesn't work right yet
-//      if ($this->build->blueprint[ '_content_general_sub-cats' ]  && is_category()) {
-//        $current_cat = get_the_category();
-//        $archive_cat = $current_cat->cat_ID;
-//        $cat_kids = get_categories(array('child_of' => $archive_cat));
-//
-//        foreach ($cat_kids as $kid) {
-//          $cat_ids[] = $kid->cat_ID;
-//        }
-//
-//      }
-
-      $query_options[ 'category__in' ]     = (!empty($this->criteria[ 'category__in' ]) ? $cat_ids : null);
-      $query_options[ 'category__not_in' ] = (!empty($this->criteria[ 'category__in' ]) ? $this->criteria[ 'category__not_in' ] : null);
-
-      $query_options[ 'tag__in' ]     = (!empty($this->criteria[ 'tag__in' ]) ? $this->criteria[ 'tag__in' ] : null);
-      $query_options[ 'tag__not_in' ] = (!empty($this->criteria[ 'tag__in' ]) ? $this->criteria[ 'tag__not_in' ] : null);
-
-
-      /** Custom taxonomies  */
-      if (!empty($this->build->blueprint[ '_content_general_other-tax-tags' ])) {
-        $query_options[ 'tax_query' ] = array(
-            array(
-                'taxonomy' => $this->build->blueprint[ '_content_general_other-tax' ],
-                'field'    => 'slug',
-                'terms'    => explode(',', $this->build->blueprint[ '_content_general_other-tax-tags' ]),
-                'operator' => $this->build->blueprint[ '_content_general_tax-op' ]
-            ),
-        );
-      }
-      /** Specific content filters */
-      switch ($source) {
-
-        case 'post':
-          $query_options[ 'post_type' ] = 'post';
-          break;
-
-        case 'cpt':
-          $query_options[ 'post_type' ] = $this->build->blueprint[ '_content_cpt_custom-post-type' ];
-          break;
-
-        // TODO: could we build this into the panel def or somewhere else so more closely tied to the content type stuff
-
-        case 'gallery':
-
-          $prefix         = '_content_galleries_';
-          $gallery_source = !empty($overrides) ? 'ids' : $this->build->blueprint[ $prefix . 'gallery-source' ];
-
-          switch ($gallery_source) {
-
-            case 'galleryplus':
-              $gallery_post = get_post($this->build->blueprint[ $prefix . 'galleryplus' ]);
-              preg_match_all('/' . get_shortcode_regex() . '/s', $gallery_post->post_content, $matches);
-              $ids = '';
-              foreach ($matches[ 0 ] as $match) {
-                if (strpos($match, '[gallery ids=') === 0) {
-                  $ids                                    = str_replace('[gallery ids="', '', $match);
-                  $ids                                    = str_replace('"]', '', $ids);
-                  $query_options[ 'post_type' ]           = 'attachment';
-                  $query_options[ 'post__in' ]            = explode(',', $ids);
-                  $query_options[ 'post_status' ]         = array('publish', 'inherit', 'private');
-                  $query_options[ 'ignore_sticky_posts' ] = true;
-                  // Only do first one
-                  break;
-                }
-              }
-              break;
-
-            case 'images':
-            case 'ids':
-
-              $ids = !empty($overrides) ? $overrides : $this->criteria[ $prefix . 'specific-images' ];
-
-              $query_options[ 'post_type' ]           = 'attachment';
-              $query_options[ 'post__in' ]            = (!empty($ids) ? explode(',', $ids) : null);
-              $query_options[ 'post_status' ]         = array('publish', 'inherit', 'private');
-              $query_options[ 'ignore_sticky_posts' ] = true;
-              break;
-          }
-          break;
-
-        case 'snippets':
-          $query_options[ 'post_type' ] = 'pz_snippets';
-          break;
-
-        case 'slides':
-          $query_options[ 'post_type' ] = 'pzsp-slides';
-          break;
-
-      }
-
-      // Order. This is always set
-      $query_options[ 'orderby' ] = $this->criteria[ 'orderby' ];
-      $query_options[ 'order' ]   = $this->criteria[ 'order' ];
-
-
-      // OVERRIDES
-      // currently this is the only bit that really does anything
-      if ($overrides) {
-
-        $query_options[ 'post__in' ]       = explode(',', $overrides);
-        $query_options[ 'posts_per_page' ] = count($query_options[ 'post__in' ]);
-      }
-
-      //    var_dump($query_options);
-
-      $this->arc_query = new WP_Query($query_options);
-
-    }
-
     private function loop($section_no) {
 
       // oops! Need to get default content type when defaults chosen.

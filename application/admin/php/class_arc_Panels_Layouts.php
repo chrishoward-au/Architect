@@ -1277,7 +1277,7 @@
 //                  __('The base font size is 10px. So, for example, to get a font size of 14px, use 1.4em. Even better is using relative ems i.e. rem.'),
 //
 //          'fields'     => array(
-      $sections[ ] = array(
+      $xsections[ ] = array(
           'title'      => 'Styling',
           'show_title' => false,
           'icon_class' => 'icon-large',
