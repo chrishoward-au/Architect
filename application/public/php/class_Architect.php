@@ -571,7 +571,7 @@
         case 'posts':
           $prefix = '_content_posts_';
           break;
-        case 'gallery':
+        case 'galleries':
         case 'gallery':
           $prefix = '_content_galleries_';
           break;

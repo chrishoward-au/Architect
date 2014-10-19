@@ -11,8 +11,12 @@
 
     protected function content_filters($source,$overrides) {
 
+      switch ($source) {
+        case 'gallery':
+
           $prefix         = '_content_galleries_';
           $gallery_source = !empty($overrides) ? 'ids' : $this->build->blueprint[ $prefix . 'gallery-source' ];
+
           switch ($gallery_source) {
 
             case 'galleryplus':
@@ -44,5 +48,8 @@
               $this->query_options[ 'ignore_sticky_posts' ] = true;
               break;
           }
+          break;
+
+      }
     }
   }

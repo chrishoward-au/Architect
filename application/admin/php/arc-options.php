@@ -246,7 +246,7 @@
                     'id'       => 'architect_default_shortcode_blueprint',
                     'type'     => 'select',
                     'options'  => pzarc_get_posts_in_post_type(),
-                    'subtitle' => 'If you omit the blueprint name from a shortcode, it will use the one selected here. Useful for quick conversion of WP gallery by simply renaming gallery to architect in the shortcode.',
+                    'subtitle' => 'If you omit the blueprint name from a shortcode, it will use the one selected here. Useful for quick conversion of WP galleries by simply renaming gallery to architect in the shortcode.',
                 ),
                 array(
                     'title'    => __('Replace WP Galleries with Blueprint', 'pzarchitect'),

@@ -3,7 +3,7 @@
   /*
     Plugin Name: Architect - an all-in-one content layout framework
     Plugin URI: http://pizazzwp.com
-    Description: Go beyond the limits of the layouts in the theme you use, to easily build any content layouts for it. Build your own content layouts in grids, tabs, sliders, gallery and more with sources like posts, pages, gallery, and custom content types. Display using shorcodes, widgets, Headway blocks, WP action hooks and template tags, and WP Gallery shortcode. Change themes without needing to rebuild your layouts!
+    Description: Go beyond the limits of the layouts in the theme you use, to easily build any content layouts for it. Build your own content layouts in grids, tabs, sliders, galleries and more with sources like posts, pages, galleries, and custom content types. Display using shorcodes, widgets, Headway blocks, WP action hooks and template tags, and WP Gallery shortcode. Change themes without needing to rebuild your layouts!
     Version: 0.8.4.8
     Author: Chris Howard
     Author URI: http://pizazzwp.com
@@ -25,7 +25,7 @@
    */
 
   /*
-  TODO: Help info: Use shortcodes for things like gallery and slideshows - things that are stylised by you. Use template tag for displaying posts
+  TODO: Help info: Use shortcodes for things like galleries and slideshows - things that are stylised by you. Use template tag for displaying posts
   TODO: Make sure it can display comments!! Though... is this necessary?
   TODO: Make it so users can create their own panels and blueprints, but can't edit other users' unless an admin. Thus users could create their own for shortcodes!
   TODO: Add a metabox to pages that lets you pick blueprints to prepend or postend to pages. How hard could it be? Plug into hook? Is there a pre-loop hook? loop_start, loop_end

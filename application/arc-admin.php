@@ -180,7 +180,7 @@
         <h4>Currently installed version: ' . PZARC_VERSION . '</h4>
         <p>Is it a slider? Is it a gallery? Is it a grid layout? Yes! It\'s all these and more.</p>
         <p>Fed up with a plethora of plugins that all seem to do the same thing, but in different ways? Me too. That\'s why I created Architect. I was guilty too. I had four plugins: ExcerptsPlus, GalleryPlus, SliderPlus and TabsPlus providing four different ways to display your content.</p>
-        <p>Architect enables you to easily design complex content layouts, such as magazine layouts, sliders, gallery and tabbed content.</p>
+        <p>Architect enables you to easily design complex content layouts, such as magazine layouts, sliders, galleries and tabbed content.</p>
         <p> And probably the most amazing thing... with Architect,  your layouts are transportable. Change your theme without losing your content layouts. And they\'ll even pick up a lot of the formatting of your new theme if it uses standard WordPress classes although, you may need to tweak the styling a little for different themes.</p>
 
         <p>At first it might be a little confusing about what to setup in Panels and what to do in Blueprints. Here\'s an overview:</p>

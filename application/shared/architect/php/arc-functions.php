@@ -364,7 +364,7 @@
       return null;
     }
     // Don't need to check for GPlus class coz we add the post type
-    // Get GalleryPlus gallery
+    // Get GalleryPlus galleries
     $args    = array('post_type' => 'gp_gallery', 'numberposts' => -1, 'post_status' => null, 'post_parent' => null);
     $albums  = get_posts($args);
     $results = array();
@@ -381,7 +381,7 @@
   function pzarc_get_wp_galleries()
   {
 
-    // Get gallery in posts and pages
+    // Get galleries in posts and pages
     $args    = array('post_type'   => array('post', 'page'),
                      'numberposts' => -1,
                      'post_status' => null,

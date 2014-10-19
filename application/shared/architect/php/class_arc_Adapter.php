@@ -109,7 +109,7 @@
                     'posts_authors'                         => '',
                 ),
                 'pages'     => array(),
-                'gallery' => array(
+                'galleries' => array(
                     'galleries_gallery_source'  => '',
                     'galleries_galleryplus'     => '',
                     'galleries_nggallery'       => '',
