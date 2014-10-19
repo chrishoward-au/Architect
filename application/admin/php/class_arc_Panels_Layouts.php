@@ -5,13 +5,13 @@
   /**
    * Class pzarc_Panel_Layouts
    */
-  $redux_opt_name = '_architect';
-  $show_hints     = true;
 
   //  new arc_Panels_Layouts;
 
   class arc_Panels_Layouts
   {
+
+    public $redux_opt_name = '_architect';
 
 
     /**
@@ -20,7 +20,6 @@
     function __construct()
     {
 
-      add_action('init', array($this, 'create_layouts_post_type'));
       // This overrides the one in the parent class
 
       if (is_admin()) {
@@ -34,20 +33,10 @@
         add_action('manage_arc-panels_posts_custom_column', array($this, 'add_panel_layout_column_content'), 10, 2);
 
 
-        //        add_action('add_meta_boxes', array($this, 'add_panels_tabbed_metabox'));
-        // check screen arc-panels. ugh. doesn't work for save and edit
-        //      if ( $_REQUEST[ 'post_type' ] == 'arc-panels' )
-        //      {
-        //      }
-
-        // Create the metaboxes redux style!
-
-        // NOTE, YOU MUST load this before the code you do your new ReduxFramework declaration. IE,
-        // put this at the top of your functions.php so it will load properly.
-
-        // The loader will load all of the extensions automatically.
-        // Alternatively you can run the include/init statements below.
-        //    add_action('redux/metaboxes/architect/boxes', 'pzarc_add_panels_metaboxes',10);
+        add_action("redux/metaboxes/$this->redux_opt_name/boxes", array($this, 'pzarc_panel_tabs'),10,1);
+        add_action("redux/metaboxes/$this->redux_opt_name/boxes", array($this, 'pzarc_panels_styling'),10,1);
+        add_action("redux/metaboxes/$this->redux_opt_name/boxes", array($this, 'pzarc_panel_general_settings'),10,1);
+        add_action("redux/metaboxes/$this->redux_opt_name/boxes", array($this, 'pzarc_panels_design'),10,1);
 
       }
 
@@ -129,53 +118,8 @@
       }
     }
 
-    /**
-     * [create_layouts_post_type description]
-     * @return [type] [description]
-     */
-    public function create_layouts_post_type()
-    {
-      $labels = array(
-          'name'               => _x('Panel designs', 'post type general name'),
-          'singular_name'      => _x('Panel design', 'post type singular name'),
-          'add_new'            => __('Add New Panel design'),
-          'add_new_item'       => __('Add New Panel design'),
-          'edit_item'          => __('Edit Panel design'),
-          'new_item'           => __('New Panel design'),
-          'view_item'          => __('View Panel design'),
-          'search_items'       => __('Search Panel designs'),
-          'not_found'          => __('No Panel designs found'),
-          'not_found_in_trash' => __('No Panel designs found in Trash'),
-          'parent_item_colon'  => '',
-          'menu_name'          => _x('<span class="dashicons dashicons-id-alt"></span>Panels', 'pzarc-cell-designer'),
-      );
-
-      $args = array(
-          'labels'              => $labels,
-          'description'         => __('Architect Panels are used to create reusable panel designs for use in your Architect blocks, widgets, shortcodes and WP template tags'),
-          'public'              => false,
-          'publicly_queryable'  => false,
-          'show_ui'             => true,
-          'show_in_menu'        => 'pzarc',
-          'show_in_nav_menus'   => false,
-          'query_var'           => true,
-          'rewrite'             => true,
-          'capability_type'     => 'post',
-          'has_archive'         => false,
-          'hierarchical'        => false,
-          'menu_position'       => 10,
-          'supports'            => array('title'),
-          'exclude_from_search' => true,
-          //          'register_meta_box_cb' => 'redux/metaboxes/architect/boxes'
-      );
-
-      register_post_type('arc-panels', $args);
-    }
 
 
-  }
-
-  // EOC
 
 
   /* why not use a WP like methodology!
@@ -187,7 +131,7 @@
   */
 
 
-  //add_action("redux/metaboxes/{$redux_opt_name}/boxes", 'pzarc_panels_wizard_metabox');
+  //add_action("redux/metaboxes/$this->redux_opt_name/boxes", 'pzarc_panels_wizard_metabox');
   //function pzarc_panels_wizard_metabox($metaboxes)
   //{
   //  $prefix        = '_pzarc_';
@@ -221,11 +165,6 @@
 
   // Load up the metaboxes. Do it all in one hit to easily manage ordering (since order can affect js working)
 
-
-  add_action("redux/metaboxes/{$redux_opt_name}/boxes", 'pzarc_panel_tabs');
-  add_action("redux/metaboxes/{$redux_opt_name}/boxes", 'pzarc_panels_styling');
-  add_action("redux/metaboxes/{$redux_opt_name}/boxes", 'pzarc_panel_general_settings');
-  add_action("redux/metaboxes/{$redux_opt_name}/boxes", 'pzarc_panels_design');
 
 
   function pzarc_panel_tabs($metaboxes)
@@ -1241,11 +1180,12 @@
                 'id'    => $prefix . 'help-panels-use',
                 'type'  => 'info',
                 'class' => 'plain',
-                'desc'  => '<p>To use a panel, you need to select it to be used by a Blueprint section</p>
+                'desc'  => __('<p>To use a Panel, you need to select it to be used by a <strong>Blueprint section</strong></p>
                 <img src="' . PZARC_PLUGIN_URL . '/documentation/assets/images/arc-using-panels.jpg" style="max-width:100%;">
-                <p>The great thing then is, any panel can be re-used as often as you like.</p>
-
-            ')
+                <p>The great thing then is, any Panel can be re-used as often as you like.</p>
+                <h2>Associating content</h2>
+                <p>Content for the Panel is associated in the Blueprint. This may seem unexpected; however, it enables Panels to be re-usable. For instance, if you had an excerpt layout you wanted to use for three different categories - e.g. News, Sport, Finance - you don\'t want to have to create a Panel for each of those.</p>
+            ','pzarchitect'))
         )
     );
 
@@ -1637,6 +1577,9 @@
 
     return $metaboxes;
   }
+  }
+
+  // EOC
 
   /**
    * [draw_panel_layout description]

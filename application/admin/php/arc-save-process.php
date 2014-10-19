@@ -113,12 +113,12 @@
   function pzarc_create_css($postid, $type = null, $pzarc_settings)
   {
 
-    global $pzarchitect;
+    global $_architect;
     global $_architect_options;
 
     // var_dump($_architect_options);
-    pzarc_set_defaults();
-    $defaults = $pzarchitect[ 'defaults' ];
+    pzarc_set_defaults(array('blueprints','panels'));
+    $defaults = $_architect[ 'defaults' ];
     // Need to create the file contents
     // For each field in stylings, create css
     $pzarc_contents = '';
@@ -409,6 +409,12 @@
     return (!pzarc_is_empty_vals($value, array('units')) ? $class . ' {' . pzarc_process_spacing($value) . ';}' . "\n" : null);
   }
 
+  function pzarc_style_margin($class, $value)
+  {
+    return (!pzarc_is_empty_vals($value, array('units')) ? $class . ' {' . pzarc_process_spacing($value) . ';}' . "\n" : null);
+  }
+
+  // *cough!* Hack. TODO: Fix it!
   function pzarc_style_margins($class, $value)
   {
     return (!pzarc_is_empty_vals($value, array('units')) ? $class . ' {' . pzarc_process_spacing($value) . ';}' . "\n" : null);

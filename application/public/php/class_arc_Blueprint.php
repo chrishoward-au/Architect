@@ -59,7 +59,7 @@
           'meta_value'   => $this->name,
           'meta_compare' => '='
       );
-      global $pzarchitect;
+      global $_architect;
 
       $blueprint_query = new WP_Query($meta_query_args);
 
@@ -85,7 +85,7 @@
       }
 
       /** Add the default values except for the styling ones **/
-      foreach ($pzarchitect[ 'defaults' ][ '_blueprints' ] as $key => $value) {
+      foreach ($_architect[ 'defaults' ][ '_blueprints' ] as $key => $value) {
         if ((strpos($key, '_blueprints_') === 0 || strpos($key, '_content_') === 0) && !isset($this->blueprint[ $key ])) {
           $this->blueprint[ $key ] = maybe_unserialize($value);
         };
@@ -99,7 +99,7 @@
       $panel[ 1 ] = !$panel[ 0 ] ? array() : pzarc_flatten_wpinfo($panel[ 0 ]);
 
       if (!empty($panel[ 0 ])) {
-        foreach ($pzarchitect[ 'defaults' ][ '_panels' ] as $key => $value) {
+        foreach ($_architect[ 'defaults' ][ '_panels' ] as $key => $value) {
 
           if (strpos($key, '_panel') === 0 && !isset($panel[ 1 ][ $key ])) {
             $panel[ 1 ][ $key ] = maybe_unserialize($value);
@@ -130,7 +130,7 @@
       $panel[ 2 ] = !$panel[ 0 ] ? array() : pzarc_flatten_wpinfo($panel[ 0 ]);
 
       if (!empty($panel[ 0 ])) {
-        foreach ($pzarchitect[ 'defaults' ][ '_panels' ] as $key => $value) {
+        foreach ($_architect[ 'defaults' ][ '_panels' ] as $key => $value) {
 
           if (strpos($key, '_panel') === 0 && !isset($panel[ 2 ][ $key ])) {
             $panel[ 2 ][ $key ] = maybe_unserialize($value);
@@ -154,7 +154,7 @@
       $panel[ 3 ] = !$panel[ 0 ] ? array() : pzarc_flatten_wpinfo($panel[ 0 ]);
 
       if (!empty($panel[ 0 ])) {
-        foreach ($pzarchitect[ 'defaults' ][ '_panels' ] as $key => $value) {
+        foreach ($_architect[ 'defaults' ][ '_panels' ] as $key => $value) {
 
           if (strpos($key, '_panel') === 0 && !isset($panel[ 3 ][ $key ])) {
             $panel[ 3 ][ $key ] = maybe_unserialize($value);

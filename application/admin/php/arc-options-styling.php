@@ -494,7 +494,7 @@
           'page'               => __('Architect Styling', 'pzarc'),
           'google_api_key'     => 'Xq9o3CdQFHKr+47vQr6eO4EUYLtlEyTe',
           // Must be defined to add google fonts to the typography module
-          'global_variable'    => 'pzarchitect',
+//          'global_variable'    => 'pzarchitect',
           // Set a different name for your global variable other than the opt_name
           'dev_mode'           => false,
           // Show the time the page took to load, etc

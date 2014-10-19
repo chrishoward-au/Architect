@@ -10,21 +10,19 @@
   class arc_Misc_metaboxes
   {
 
+    public $redux_opt_name = '_architect';
+
 
     /**
      * [__construct description]
      */
     function __construct()
     {
+      add_action("redux/metaboxes/$this->redux_opt_name/boxes", array($this, "pzarc_add_fvid_metaboxes"), 10, 1);
     }
-  }
 
 
-
-  if (!function_exists("pzarc_add_fvid_metaboxes")):
-    add_action("redux/metaboxes/_architect/boxes", "pzarc_add_fvid_metaboxes");
-
-    function pzarc_add_fvid_metaboxes($meta_boxes=array())
+    function pzarc_add_fvid_metaboxes($metaboxes)
     {
       // Declare your sections
       global $_architect_options;
@@ -54,8 +52,8 @@
       );
 
       // Declare your metaboxes
-      $meta_boxes    = array();
-      $meta_boxes[ ] = array(
+      $metaboxes    = array();
+      $metaboxes[ ] = array(
           'id'         => 'pzarc_mb-featured-video',
           'title'      => __('Featured video', 'pzarchitect'),
           'post_types' => $pzarc_vids_on,
@@ -64,7 +62,9 @@
           'sections'   => $boxSections,
           'sidebar'    => false
       );
-      return $meta_boxes;
+
+      return $metaboxes;
     }
-  endif;
+
+  }
 

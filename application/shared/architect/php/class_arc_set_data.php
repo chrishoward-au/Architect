@@ -7,6 +7,8 @@
  * Time: 5:39 PM
  */
 
+  // TODO This doesn't work in PHP 5.2. UGH!
+
 abstract class arc_set_data {
 
   public static function getInstance()

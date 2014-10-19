@@ -23,74 +23,59 @@
        * Create the layouts custom post type
        */
 
+//      add_action('plugins_loaded', array($this, 'init'));
       add_action('plugins_loaded', array($this, 'init'));
     }
 
     function init()
     {
       // @TODO: verify this blocks non admins!
-      if (is_admin() && current_user_can('edit_theme_options')) {
-
-
-        if (!(class_exists('ReduxFramework') || class_exists('ReduxFrameworkPlugin'))) {
-          return;
-        }
-
-//	add_action('admin_init', 'pzarc_preview_meta');
-        add_action('admin_head', array($this, 'admin_head'));
-        add_action('admin_menu', array($this, 'admin_menu'));
-        add_action('admin_enqueue_scripts', array($this, 'admin_enqueue'));
-
-        // This one is really only needed on posts, pages and snippets, so could conditionalise its load
-        require_once PZARC_PLUGIN_APP_PATH . '/admin/php/class_arc_Misc_Metaboxes.php';
-
-        // TODO: Make up some easily editable panel defs - prob have to be a custom content type
-        //       require_once PZARC_PLUGIN_PATH . '/admin/php/arc-options-def-editor.php';
-
-        //@TODO: need a bit of screen dependency on this?
-//      require_once PZARC_PLUGIN_PATH . '/shared/class_pzarcForm.php';
-        require_once PZARC_PLUGIN_APP_PATH . '/admin/php/class_arc_Panels_Layouts.php';
-        require_once PZARC_PLUGIN_APP_PATH . '/admin/php/class_arc_Blueprints_Layouts.php';
-        require_once PZARC_PLUGIN_APP_PATH . '/admin/php/arc-save-process.php';
-
-        // @TODO Should these really be objects? Should the self instantiate?
-        // Initialise objects for data and setup menu items
-        $panel_layout      = new arc_Panels_Layouts;
-        $content_blueprint = new arc_Blueprints_Layouts;
-
-
-        //TODO:     require_once PZARC_PLUGIN_PATH . '/admin/arc-widget.php';
-
-//			require_once PZARC_PLUGIN_PATH . '/admin/ucd-controls.php';
-
-
-        require_once PZARC_PLUGIN_APP_PATH . '/shared/includes/php/redux-custom-fields/loader.php';
-        require_once PZARC_PLUGIN_APP_PATH . '/shared/includes/php/redux-extensions/loader.php';
-        require_once PZARC_PLUGIN_APP_PATH . '/admin/php/arc-options.php';
-        require_once PZARC_PLUGIN_APP_PATH . '/admin/php/arc-options-styling.php';
-        require_once PZARC_PLUGIN_APP_PATH . '/admin/php/arc-options-actions.php';
-
-        // TODO: this needs to be dumberized so can work on dev defined panels and ocntent
-        require_once PZARC_PLUGIN_APP_PATH . '/shared/architect/php/content-types/defaults/class_arc_Panel_Renderer.php';
-        require_once PZARC_PLUGIN_APP_PATH . '/shared/architect/php/content-types/snippets/class_arc_Panel_Snippets.php';
-
-
-        require_once(PZARC_PLUGIN_APP_PATH . '/shared/includes/php/BFI-thumb-forked/BFI_Thumb.php');
-        require_once(PZARC_PLUGIN_APP_PATH . '/shared/includes/php/pzwp-focal-point/pzwp-focal-point.php');
-//        require_once(PZARC_PLUGIN_APP_PATH . '/shared/includes/php/bfi_focus_point/bfi_focus_point.php');
-
-
-        // Changed this to a function
-//        $galleries = new pzarc_Galleries;
-//        $slides = new pzarc_Slides;
-
-        add_filter('admin_body_class', array(&$this, 'add_admin_body_class'));
-
-//add_action( 'pzarc_do_it', array( $this, 'do_it' ) );
-
-
-
+      if (!is_admin() || !current_user_can('edit_theme_options')) {
+        return;
       }
+      if (!(class_exists('ReduxFramework') || class_exists('ReduxFrameworkPlugin'))) {
+        return;
+      }
+      add_action('admin_head', array($this, 'admin_head'));
+      add_action('admin_menu', array($this, 'admin_menu'));
+      add_action('admin_enqueue_scripts', array($this, 'admin_enqueue'));
+      add_filter('admin_body_class', array(&$this, 'add_admin_body_class'));
+
+
+
+      // TODO: Make up some easily editable panel defs - prob have to be a custom content type
+      //       require_once PZARC_PLUGIN_PATH . '/admin/php/arc-options-def-editor.php';
+
+      //@TODO: need a bit of screen dependency on this?
+
+      require_once PZARC_PLUGIN_APP_PATH . '/admin/php/class_arc_Panels_Layouts.php';
+      require_once PZARC_PLUGIN_APP_PATH . '/admin/php/class_arc_Blueprints_Layouts.php';
+      require_once PZARC_PLUGIN_APP_PATH . '/admin/php/arc-save-process.php';
+
+
+      //TODO:     require_once PZARC_PLUGIN_PATH . '/admin/arc-widget.php';
+
+      // This one is really only needed on posts, pages and snippets, so could conditionalise its load
+      require_once PZARC_PLUGIN_APP_PATH . '/admin/php/class_arc_Misc_Metaboxes.php';
+      require_once PZARC_PLUGIN_APP_PATH . '/shared/includes/php/redux-custom-fields/loader.php';
+      require_once PZARC_PLUGIN_APP_PATH . '/shared/includes/php/redux-extensions/loader.php';
+
+      $misc_metaboxes    = new arc_Misc_metaboxes();
+      $panel_layout      = new arc_Panels_Layouts();
+      $content_blueprint = new arc_Blueprints_Layouts();
+
+      require_once PZARC_PLUGIN_APP_PATH . '/admin/php/arc-options.php';
+      require_once PZARC_PLUGIN_APP_PATH . '/admin/php/arc-options-styling.php';
+      require_once PZARC_PLUGIN_APP_PATH . '/admin/php/arc-options-actions.php';
+
+      // TODO: this needs to be dumberized so can work on dev defined panels and content. But why is it here anyway??
+      require_once PZARC_PLUGIN_APP_PATH . '/shared/architect/php/content-types/defaults/class_arc_Panel_Renderer.php';
+      require_once PZARC_PLUGIN_APP_PATH . '/shared/architect/php/content-types/snippets/class_arc_Panel_Snippets.php';
+
+
+      require_once(PZARC_PLUGIN_APP_PATH . '/shared/includes/php/BFI-thumb-forked/BFI_Thumb.php');
+      require_once(PZARC_PLUGIN_APP_PATH . '/shared/includes/php/pzwp-focal-point/pzwp-focal-point.php');
+
 
     }
 
@@ -267,5 +252,6 @@
 
 // end pzarcAdmin
 
-  new pzarcAdmin();
+
+  $pzarcadmin = new pzarcAdmin();
 

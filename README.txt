@@ -101,6 +101,9 @@ This is BETA software. So there are many besides these ones!
 
 == Changelog ==
 
+= 0.8.4.8 =
+* CHANGED: Modified how content types are managed to enable extensibility. i.e. you can code up your own content types and plug them into Architect.
+
 = 0.8.4.7 =
 * UPDATED Redux metaboxes. Seem to display right now.
 

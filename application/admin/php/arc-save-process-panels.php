@@ -3,7 +3,7 @@
   function pzarc_create_panels_css($pzarc_panels, $pzarc_contents, $postid)
   {
 
-    global $pzarchitect;
+    global $_architect;
     global $_architect_options;
 
     $nl = "\n";

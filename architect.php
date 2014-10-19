@@ -4,7 +4,7 @@
     Plugin Name: Architect - an all-in-one content layout framework
     Plugin URI: http://pizazzwp.com
     Description: Go beyond the limits of the layouts in the theme you use, to easily build any content layouts for it. Build your own content layouts in grids, tabs, sliders, galleries and more with sources like posts, pages, galleries, and custom content types. Display using shorcodes, widgets, Headway blocks, WP action hooks and template tags, and WP Gallery shortcode. Change themes without needing to rebuild your layouts!
-    Version: 0.8.4.7
+    Version: 0.8.4.8
     Author: Chris Howard
     Author URI: http://pizazzwp.com
     License: GNU GPL v2
@@ -23,6 +23,7 @@
    * NextGen
    *
    */
+
   /*
   TODO: Help info: Use shortcodes for things like galleries and slideshows - things that are stylised by you. Use template tag for displaying posts
   TODO: Make sure it can display comments!! Though... is this necessary?
@@ -37,14 +38,6 @@
 
   */
 
-  /* TODO: why not use a WP like methodology!
-  ================================================================================
-  register_cell_layout('name',$args)'
-  register_criteria('name',$args);
-  register_blueprint_layout('name',$args);
-  ================================================================================
-  */
-
 
   class pzArchitect
   {
@@ -52,7 +45,7 @@
     function __construct()
     {
 
-      define('PZARC_VERSION', '0.8.4.7');
+      define('PZARC_VERSION', '0.8.4.8');
       define('PZARC_NAME', 'pzarchitect'); // This is also same as the locale
       define('PZARC_FOLDER', '/pizazzwp-architect');
 
@@ -107,6 +100,7 @@
       register_deactivation_hook(__FILE__, array($this, 'deactivate'));
       //	register_uninstall_hook( __FILE__, array( $this, 'uninstall' ) );
 
+      add_action('init', array($this, 'init'));
       add_action('after_setup_theme', array($this, 'register_architect_block'));
 
 
@@ -124,22 +118,13 @@
       require_once PZARC_PLUGIN_APP_PATH . '/shared/architect/php/content-types/cpt/class_arc_content_cpt.php';
 
 
-      /*
-       * TODO:
-       * Define the custom functionality for your plugin. The first parameter of the
-       * add_action/add_filter calls are the hooks into which your code should fire.
-       *
-       * The second parameter is the function name located within this class. See the stubs
-       * later in the file.
-       *
-       * For more information:
-       * http://codex.wordpress.org/Plugin_API#Hooks.2C_Actions_and_Filters
-       */
-      // add_action( 'wp_action_name', array( $this, 'my_action_method_name' ) );
-      // add_filter( 'wp_filter_name', array( $this, 'my_filter_method_name' ) );
     }
 
-// end constructor
+    public function init()
+    {
+      create_panels_post_type();
+      create_blueprints_post_type();
+    }
 
 
     public function register_architect_block()
@@ -219,8 +204,6 @@
       wp_register_style('pzarc-font-awesome', PZARC_PLUGIN_APP_URL . '/shared/includes/font-awesome/css/font-awesome.min.css');
       wp_register_style('pzarc-jqueryui-css', PZARC_PLUGIN_APP_URL . '/shared/includes/jquery-ui-1.10.2.custom/css/pz_architect/jquery-ui-1.10.2.custom.min.css');
 
-      // Be nice to use bootstrap, but it's just not compatible with WP as it uses common non-specific element names.
-      //wp_enqueue_style( 'bootstrap-admin-styles', plugins_url( PZARC_FOLDER . '/includes/bootstrap/css/bootstrap.min.css' ) );
     }
 
 // end register_admin_styles
@@ -231,10 +214,6 @@
     public function register_admin_scripts()
     {
 
-      wp_enqueue_script('jquery');
-
-      // wp_enqueue_script( PZARC_NAME.'-admin-script', plugins_url( PZARC_FOLDER.'/admin/js/admin.js' ) );
-      //wp_enqueue_script(PZARC_NAME . '-metaboxes-script', plugins_url(PZARC_FOLDER . '/admin/js/arc-metaboxes.js'));
     }
 
 // end register_admin_scripts
@@ -426,8 +405,11 @@
 //        throw new Exception("There is already an entry for key " . $key);
 //
 //      }
-        $this->registry[ $key ][] = $value;
-
+      if (substr($key,0,9)==='metaboxes') {
+        $this->registry[ $key ] = $value;
+      } else {
+        $this->registry[ $key ][ ] = $value;
+      }
 
 
     }
@@ -440,4 +422,85 @@
 
       return $this->registry[ $key ];
     }
+  }
+
+
+  function create_blueprints_post_type()
+  {
+    $labels = array(
+        'name'               => _x('Blueprints', 'post type general name'),
+        'singular_name'      => _x('Blueprint', 'post type singular name'),
+        'add_new'            => __('Add New Blueprint'),
+        'add_new_item'       => __('Add New Blueprint'),
+        'edit_item'          => __('Edit Blueprint'),
+        'new_item'           => __('New Blueprint'),
+        'view_item'          => __('View Blueprint'),
+        'search_items'       => __('Search Blueprints'),
+        'not_found'          => __('No Blueprints found'),
+        'not_found_in_trash' => __('No Blueprints found in Trash'),
+        'parent_item_colon'  => '',
+        'menu_name'          => _x('<span class="dashicons dashicons-welcome-widgets-menus"></span>Blueprints', 'pzarc-blueprint-designer'),
+    );
+
+    $args = array(
+        'labels'              => $labels,
+        'description'         => __('Architect Blueprints are used to create reusable layout Blueprints for use in your Architect blocks, widgets, shortcodes and WP template tags. These are made up of panels, sections, criteria and navigation'),
+        'public'              => false,
+        'publicly_queryable'  => false,
+        'show_ui'             => true,
+        'show_in_menu'        => 'pzarc',
+        'show_in_nav_menus'   => false,
+        'query_var'           => true,
+        'rewrite'             => true,
+        'capability_type'     => 'post',
+        'has_archive'         => false,
+        'hierarchical'        => false,
+        'menu_position'       => 30,
+        'supports'            => array('title'),
+        'exclude_from_search' => true,
+    );
+
+    register_post_type('arc-blueprints', $args);
+  }
+
+  /**
+   * [create_layouts_post_type description]
+   * @return [type] [description]
+   */
+  function create_panels_post_type()
+  {
+    $labels = array(
+        'name'               => _x('Panel designs', 'post type general name'),
+        'singular_name'      => _x('Panel design', 'post type singular name'),
+        'add_new'            => __('Add New Panel design'),
+        'add_new_item'       => __('Add New Panel design'),
+        'edit_item'          => __('Edit Panel design'),
+        'new_item'           => __('New Panel design'),
+        'view_item'          => __('View Panel design'),
+        'search_items'       => __('Search Panel designs'),
+        'not_found'          => __('No Panel designs found'),
+        'not_found_in_trash' => __('No Panel designs found in Trash'),
+        'parent_item_colon'  => '',
+        'menu_name'          => _x('<span class="dashicons dashicons-id-alt"></span>Panels', 'pzarc-cell-designer'),
+    );
+
+    $args = array(
+        'labels'              => $labels,
+        'description'         => __('Architect Panels are used to create reusable panel designs for use in your Architect blocks, widgets, shortcodes and WP template tags'),
+        'public'              => false,
+        'publicly_queryable'  => false,
+        'show_ui'             => true,
+        'show_in_menu'        => 'pzarc',
+        'show_in_nav_menus'   => false,
+        'query_var'           => true,
+        'rewrite'             => true,
+        'capability_type'     => 'post',
+        'has_archive'         => false,
+        'hierarchical'        => false,
+        'menu_position'       => 10,
+        'supports'            => array('title'),
+        'exclude_from_search' => true,
+    );
+
+    register_post_type('arc-panels', $args);
   }

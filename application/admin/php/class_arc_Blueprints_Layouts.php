@@ -5,14 +5,13 @@
 
     public $content_types;
     public $redux_opt_name = '_architect';
-    public $metaboxes;
 
     /**
      * [__construct description]
      */
     function __construct()
     {
-      add_action('init', array($this, 'create_blueprints_post_type'));
+
       // This overrides the one in the parent class
 
       if (is_admin()) {
@@ -39,7 +38,7 @@
         add_filter('manage_arc-blueprints_posts_columns', array($this, 'add_blueprint_columns'));
         add_action('manage_arc-blueprints_posts_custom_column', array($this, 'add_blueprint_column_content'), 10, 2);
 
-        add_action("redux/metaboxes/_architect/boxes", array($this, 'pzarc_blueprint_tabs'), 10, 1);
+        add_action("redux/metaboxes/$this->redux_opt_name/boxes", array($this, 'pzarc_blueprint_tabs'), 10, 1);
         add_action("redux/metaboxes/$this->redux_opt_name/boxes", array($this,
                                                                         'pzarc_blueprint_layout_general'), 10, 1);
         add_action("redux/metaboxes/$this->redux_opt_name/boxes", array($this, 'pzarc_blueprint_layout'), 10, 1);
@@ -176,43 +175,6 @@
      * [create_blueprints_post_type description]
      * @return [type] [description]
      */
-    public function create_blueprints_post_type()
-    {
-      $labels = array(
-          'name'               => _x('Blueprints', 'post type general name'),
-          'singular_name'      => _x('Blueprint', 'post type singular name'),
-          'add_new'            => __('Add New Blueprint'),
-          'add_new_item'       => __('Add New Blueprint'),
-          'edit_item'          => __('Edit Blueprint'),
-          'new_item'           => __('New Blueprint'),
-          'view_item'          => __('View Blueprint'),
-          'search_items'       => __('Search Blueprints'),
-          'not_found'          => __('No Blueprints found'),
-          'not_found_in_trash' => __('No Blueprints found in Trash'),
-          'parent_item_colon'  => '',
-          'menu_name'          => _x('<span class="dashicons dashicons-welcome-widgets-menus"></span>Blueprints', 'pzarc-blueprint-designer'),
-      );
-
-      $args = array(
-          'labels'              => $labels,
-          'description'         => __('Architect Blueprints are used to create reusable layout Blueprints for use in your Architect blocks, widgets, shortcodes and WP template tags. These are made up of panels, sections, criteria and navigation'),
-          'public'              => false,
-          'publicly_queryable'  => false,
-          'show_ui'             => true,
-          'show_in_menu'        => 'pzarc',
-          'show_in_nav_menus'   => false,
-          'query_var'           => true,
-          'rewrite'             => true,
-          'capability_type'     => 'post',
-          'has_archive'         => false,
-          'hierarchical'        => false,
-          'menu_position'       => 30,
-          'supports'            => array('title'),
-          'exclude_from_search' => true,
-      );
-
-      register_post_type('arc-blueprints', $args);
-    }
 
 
 
@@ -237,7 +199,7 @@
 //                  )
 //          )
 //  );
-//  $this->metaboxes[ ] = array(
+//  $metaboxes[ ] = array(
 //          'title'    => 'What do you want to do?',
 //          'pages'    => 'arc-blueprints',
 //          'context'  => 'normal',
@@ -245,7 +207,7 @@
 //          'fields'   => $fields // An array of fields.
 //  );
 //
-//  return $this->metaboxes;
+//  return $metaboxes;
 //}
 
 
@@ -261,9 +223,9 @@
                             'id'      => $prefix . 'tabs',
                             'type'    => 'tabbed',
                             'options' => array(
-                                'layout'  => '<span><span class="icon-large el-icon-website"></span> Layout</span>',
-                                'content' => '<span><span class="icon-large el-icon-align-left"></span> Content</span>',
-                                'styling' => '<span><span class="icon-large el-icon-brush"></span> Styling</span>'
+                                'layout'  => '<span><span class="icon-large el-icon-website"></span> Blueprint Layout</span>',
+                                'content' => '<span><span class="icon-large el-icon-align-left"></span> Panel Content</span>',
+                                'styling' => '<span><span class="icon-large el-icon-brush"></span> Blueprint Styling</span>'
                             ),
                             'targets' => array('layout'  => array('layout-settings',
                                                                   '_blueprints_layout-general-settings'),
@@ -299,7 +261,7 @@
         'icon'       => 'el-icon-home',
         'fields'     => $fields
       );
-      $this->metaboxes[ ] = array(
+      $metaboxes[ ] = array(
           'id'         => $prefix . 'blueprints',
           'title'      => 'Show Blueprints settings for:',
           'post_types' => array('arc-blueprints'),
@@ -310,12 +272,12 @@
 
       );
 
-      return $this->metaboxes;
+      return $metaboxes;
     }
 
 
 //  add_action("redux/metaboxes/{$redux_opt_name}/boxes", 'pzarc_blueprint_general');
-//  function pzarc_blueprint_general($metaboxes = array())
+//  function pzarc_blueprint_general($metaboxes)
 //  {
 //    $prefix      = '_blueprints_';
 //    $sections    = array();
@@ -332,7 +294,7 @@
 //        )
 //    );
 //
-//    $this->metaboxes[ ] = array(
+//    $metaboxes[ ] = array(
 //        'id'         => 'blueprint-general-settings',
 //        'title'      => 'General Settings',
 //        'post_types' => array('arc-blueprints'),
@@ -344,7 +306,7 @@
 //    );
 //
 //
-//    return $this->metaboxes;
+//    return $metaboxes;
 //
 //  }
 
@@ -355,7 +317,7 @@
      * @param array $metaboxes
      * @return array
      */
-    function pzarc_blueprint_layout_general($metaboxes = array())
+    function pzarc_blueprint_layout_general($metaboxes)
     {
       $prefix = '_blueprints_';
 
@@ -403,7 +365,7 @@
 
           )
       );
-      $this->metaboxes[ ] = array(
+      $metaboxes[ ] = array(
           'id'         => $prefix . 'layout-general-settings',
           'title'      => 'Options',
           'post_types' => array('arc-blueprints'),
@@ -415,7 +377,7 @@
       );
 
 
-      return $this->metaboxes;
+      return $metaboxes;
 
     }
 
@@ -425,7 +387,7 @@
      * @param array $metaboxes
      * @return array
      */
-    function pzarc_blueprint_content_general($metaboxes = array())
+    function pzarc_blueprint_content_general($metaboxes)
     {
 
       $prefix = '_blueprints_';
@@ -434,7 +396,7 @@
           'fields' => array()
       );
 
-      $this->metaboxes[ ] = array(
+      $metaboxes[ ] = array(
           'id'         => $prefix . 'content-general-settings',
           'title'      => 'Content Settings',
           'post_types' => array('arc-blueprints'),
@@ -446,7 +408,7 @@
       );
 
 
-      return $this->metaboxes;
+      return $metaboxes;
 
     }
 
@@ -454,7 +416,7 @@
     /**
      * LAYOUT
      */
-    function pzarc_blueprint_layout($metaboxes = array())
+    function pzarc_blueprint_layout($metaboxes)
     {
       $prefix   = '_blueprints_';
       $sections = array();
@@ -1066,7 +1028,7 @@
           )
       );
 
-      $this->metaboxes[ ] = array(
+      $metaboxes[ ] = array(
           'id'         => 'layout-settings',
           'title'      => 'Layout Settings',
           'post_types' => array('arc-blueprints'),
@@ -1077,7 +1039,7 @@
 
       );
 
-      return $this->metaboxes;
+      return $metaboxes;
     }
 
 
@@ -1108,7 +1070,7 @@
      * @param array $metaboxes
      * @return array
      */
-    function pzarc_contents_metabox($metaboxes = array())
+    function pzarc_contents_metabox($metaboxes)
     {
 
       // TODO: Setup a loop that reads the object containing content type info as appened by the content type classes. Will need a means of letting js know tho.
@@ -1126,19 +1088,19 @@
       /** DISPLAY ALL THE CONTENT TYPES FORMS */
       $registry = Registry::getInstance();
 
-      $content_post_types           = $registry->get('post_types');
-      $content_types = array();
+      $content_post_types = $registry->get('post_types');
+      $content_types      = array();
       foreach ($content_post_types as $key => $value) {
         if (isset($value[ 'blueprint-content' ])) {
-          $content_types[$value[ 'blueprint-content' ][ 'type' ]]= $value[ 'blueprint-content' ][ 'name' ];
+          $content_types[ $value[ 'blueprint-content' ][ 'type' ] ] = $value[ 'blueprint-content' ][ 'name' ];
         }
       }
       /** GENERAL  Settings*/
-      $blueprint_content_common           = $registry->get('blueprint-content-common');
+      $blueprint_content_common = $registry->get('blueprint-content-common');
 
       // If you add/remove a content type, you have to add/remove it's side tab too
-      $prefix      = '_content_general_';
-      $sections[ '_general'] = array(
+      $prefix                 = '_content_general_';
+      $sections[ '_general' ] = array(
           'title'      => 'Settings',
           'icon_class' => 'icon-large',
           'icon'       => 'el-icon-adjust-alt',
@@ -1149,42 +1111,42 @@
                   'type'     => 'select',
                   'select2'  => array('allowClear' => false),
                   'default'  => 'defaults',
-//                                    'options'  => array(
-//                                        'defaults' => 'Defaults',
-//                                        'post'     => 'Posts',
-//                                        'page'     => 'Pages',
-//                                        'snippets' => 'Snippets',
-//                                        'gallery'  => 'Galleries',
-//                                        'slides'   => 'Slides',
-//                                        'dummy'    => 'Dummy content',
-//                                        //                          'images'      => 'Specific Images',
-//                                        //                          'wpgallery'   => 'WP Gallery from post',
-//                                        //                          'galleryplus' => 'GalleryPlus',
-//                                        //                          'nggallery'   => 'NextGen',
-//                                        //                        'widgets' => 'Widgets',  // This one may not be workable if user can't control where sidebars appear
-//                                        //                          'custom-code' => 'Custom code',
-//                                        //                        'rss'     => 'RSS Feed',
-//                                        'cpt'      => 'Custom Post Types'
-//                                    ),
-                  'options'=>$content_types,
+                  //                                    'options'  => array(
+                  //                                        'defaults' => 'Defaults',
+                  //                                        'post'     => 'Posts',
+                  //                                        'page'     => 'Pages',
+                  //                                        'snippets' => 'Snippets',
+                  //                                        'gallery'  => 'Galleries',
+                  //                                        'slides'   => 'Slides',
+                  //                                        'dummy'    => 'Dummy content',
+                  //                                        //                          'images'      => 'Specific Images',
+                  //                                        //                          'wpgallery'   => 'WP Gallery from post',
+                  //                                        //                          'galleryplus' => 'GalleryPlus',
+                  //                                        //                          'nggallery'   => 'NextGen',
+                  //                                        //                        'widgets' => 'Widgets',  // This one may not be workable if user can't control where sidebars appear
+                  //                                        //                          'custom-code' => 'Custom code',
+                  //                                        //                        'rss'     => 'RSS Feed',
+                  //                                        'cpt'      => 'Custom Post Types'
+                  //                                    ),
+                  'options'  => $content_types,
                   'subtitle' => 'todo: code all the js to show hide relevant sections'
               ),
           )
       );
 
       // Add the rest off general content settings
-      foreach ($blueprint_content_common[0]['general']['sections']['fields'] as $value) {
-        $sections['_general']['fields'][] = $value;
+      foreach ($blueprint_content_common[ 0 ][ 'general' ][ 'sections' ][ 'fields' ] as $value) {
+        $sections[ '_general' ][ 'fields' ][ ] = $value;
       }
 
 
       /** FILTERS */
-      $sections['_filters' ] = $blueprint_content_common[0]['filters'][ 'sections' ];
+      $sections[ '_filters' ] = $blueprint_content_common[ 0 ][ 'filters' ][ 'sections' ];
 
       /** DISPLAY ALL THE CONTENT TYPES FORMS */
       foreach ($content_post_types as $key => $value) {
         if (isset($value[ 'blueprint-content' ])) {
-          $sections['_'.$value['blueprint-content']['type'] ] = $value[ 'blueprint-content' ][ 'sections' ];
+          $sections[ '_' . $value[ 'blueprint-content' ][ 'type' ] ] = $value[ 'blueprint-content' ][ 'sections' ];
         }
       }
 
@@ -1210,7 +1172,7 @@ You can use them however you like though.
           )
       );
 
-      $this->metaboxes[ ] = array(
+      $metaboxes[ ] = array(
           'id'         => 'content-selections',
           'title'      => 'Content selections',
           'post_types' => array('arc-blueprints'),
@@ -1222,7 +1184,7 @@ You can use them however you like though.
       );
 
 
-      return $this->metaboxes;
+      return $metaboxes;
 
     }
 
@@ -1401,7 +1363,7 @@ You can use them however you like though.
                 )
             )
         );
-        $this->metaboxes[ ] = array(
+        $metaboxes[ ] = array(
             'id'         => 'blueprint-stylings',
             'title'      => 'Blueprint Styling',
             'post_types' => array('arc-blueprints'),
@@ -1417,8 +1379,9 @@ You can use them however you like though.
 
       }
 
-      // Still need to return this, even if we did nothing.
-      return $this->metaboxes;
+     // Still need to return this, even if we did nothing.
+      return $metaboxes;
     }
 
   } // EOC
+

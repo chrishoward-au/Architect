@@ -44,11 +44,12 @@
     {
       $this->is_shortcode = $is_shortcode;
 
-      pzarc_set_defaults();
 
       require_once(PZARC_PLUGIN_APP_PATH . '/public/php/class_arc_Section.php');
       require_once(PZARC_PLUGIN_APP_PATH . '/public/php/class_arc_Blueprint.php');
       require_once(PZARC_PLUGIN_APP_PATH . '/shared/architect/php/content-types/defaults/class_arc_Panel_Renderer.php');
+
+      pzarc_set_defaults(array('blueprints'));
 
       $this->build = new arc_Blueprint($blueprint);
 

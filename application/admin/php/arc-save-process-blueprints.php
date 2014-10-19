@@ -3,11 +3,11 @@
   function pzarc_create_blueprint_css($pzarc_blueprints, $pzarc_contents, $postid)
   {
 
-    global $pzarchitect;
+    global $_architect;
     global $_architect_options;
 //    // var_dump($_architect_options);
 //    pzarc_set_defaults();
-//    $defaults = $pzarchitect[ 'defaults' ];
+//    $defaults = $_architect[ 'defaults' ];
 //    // Need to create the file contents
 //    // For each field in stylings, create css
 //    $pzarc_contents = '';
