@@ -24,7 +24,7 @@
    * @properties: $build, $panel_def, $arc, $query, $is_shortcode
    *
    */
-  class Architect
+  class ArchitectPublic
   {
 
     public $build;
