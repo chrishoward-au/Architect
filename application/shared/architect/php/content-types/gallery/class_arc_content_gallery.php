@@ -114,4 +114,3 @@
   $content_posts = arc_content_galleries::getInstance();
 
 
-
