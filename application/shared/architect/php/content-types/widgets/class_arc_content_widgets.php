@@ -7,6 +7,6 @@
  * Time: 9:22 PM
  */
 
-class arc_content_widgets {
+class arc_content_widgets extends arc_set_data{
 
 } 

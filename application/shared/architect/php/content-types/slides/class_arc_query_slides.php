@@ -7,6 +7,6 @@
  * Time: 9:14 PM
  */
 
-class arc_query_slides {
+class arc_query_slides extends arc_query_generic{
 
 } 

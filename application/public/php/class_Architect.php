@@ -49,8 +49,8 @@
       require_once(PZARC_PLUGIN_APP_PATH . '/public/php/class_arc_Blueprint.php');
 
       // Load generics
-      require_once(PZARC_PLUGIN_APP_PATH . '/shared/architect/php/content-types/defaults/class_arc_Panel_Renderer.php');
-      require_once(PZARC_PLUGIN_APP_PATH . '/shared/architect/php/content-types/defaults/class_arc_query_generic.php');
+      require_once(PZARC_PLUGIN_APP_PATH . '/shared/architect/php/content-types/generic/class_arc_Panel_Generic.php');
+      require_once(PZARC_PLUGIN_APP_PATH . '/shared/architect/php/content-types/generic/class_arc_query_generic.php');
 
 
       pzarc_set_defaults();

@@ -7,6 +7,6 @@
  * Time: 9:18 PM
  */
 
-class arc_query_cpt {
+class arc_query_cpt extends arc_query_generic{
 
 } 

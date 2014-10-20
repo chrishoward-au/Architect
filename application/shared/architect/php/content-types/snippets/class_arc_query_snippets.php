@@ -7,6 +7,6 @@
  * Time: 9:15 PM
  */
 
-class arc_query_snippets {
+class arc_query_snippets extends arc_query_generic{
 
 } 

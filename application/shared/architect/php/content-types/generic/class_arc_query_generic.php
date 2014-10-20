@@ -112,8 +112,8 @@
       $this->content_filters($source,$overrides);
 
       // Order. This is always set
-      $this->query_options[ 'orderby' ] = $criteria[ 'orderby' ];
-      $this->query_options[ 'order' ]   = $criteria[ 'order' ];
+      $this->query_options[ 'orderby' ] = $this->criteria[ 'orderby' ];
+      $this->query_options[ 'order' ]   = $this->criteria[ 'order' ];
 
 
       // OVERRIDES

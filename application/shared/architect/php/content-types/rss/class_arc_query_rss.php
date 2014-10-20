@@ -7,6 +7,6 @@
  * Time: 9:13 PM
  */
 
-class arc_query_rss {
+class arc_query_rss extends arc_content_generic {
 
 } 

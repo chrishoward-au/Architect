@@ -7,6 +7,6 @@
  * Time: 9:20 PM
  */
 
-class arc_Panel_CPT {
+class arc_Panel_CPT extends  arc_Panel_Renderer{
 
 } 
