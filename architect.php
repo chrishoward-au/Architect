@@ -109,8 +109,8 @@
 
       // Load all the builtin post types
       require_once PZARC_PLUGIN_APP_PATH . '/shared/architect/php/content-types/defaults/class_arc_content_defaults.php';
-      require_once PZARC_PLUGIN_APP_PATH . '/shared/architect/php/content-types/posts/class_arc_content_posts.php';
-      require_once PZARC_PLUGIN_APP_PATH . '/shared/architect/php/content-types/pages/class_arc_content_pages.php';
+      require_once PZARC_PLUGIN_APP_PATH . '/shared/architect/php/content-types/post/class_arc_content_posts.php';
+      require_once PZARC_PLUGIN_APP_PATH . '/shared/architect/php/content-types/page/class_arc_content_pages.php';
       require_once PZARC_PLUGIN_APP_PATH . '/shared/architect/php/content-types/gallery/class_arc_content_gallery.php';
       require_once PZARC_PLUGIN_APP_PATH . '/shared/architect/php/content-types/snippets/class_arc_content_snippets.php';
       require_once PZARC_PLUGIN_APP_PATH . '/shared/architect/php/content-types/dummy/class_arc_content_dummy.php';

@@ -52,7 +52,6 @@
       require_once(PZARC_PLUGIN_APP_PATH . '/shared/architect/php/content-types/defaults/class_arc_Panel_Renderer.php');
       require_once(PZARC_PLUGIN_APP_PATH . '/shared/architect/php/content-types/defaults/class_arc_query_generic.php');
 
-      require_once(PZARC_PLUGIN_APP_PATH . '/shared/architect/php/content-types/gallery/class_arc_query_gallery.php');
 
       pzarc_set_defaults();
 
@@ -549,14 +548,9 @@
       // Is this a better way to code?
       self::set_criteria_prefix(self::set_prefix());
 
-      if ('gallery' === $this->build->blueprint[ '_blueprints_content-source' ]) {
-        $source_query_class = 'arc_query_' . $this->build->blueprint[ '_blueprints_content-source' ];
-        $arc_query_source = new $source_query_class($this->build, $this->criteria);
-
-      } else {
-        $arc_query_source = new arc_query_generic($this->build, $this->criteria);
-
-      }
+      $source_query_class = 'arc_query_' . $this->build->blueprint[ '_blueprints_content-source' ];
+      require_once(PZARC_PLUGIN_APP_PATH . '/shared/architect/php/content-types/'.$this->build->blueprint[ '_blueprints_content-source' ].'/class_'.$source_query_class.'.php');
+      $arc_query_source   = new $source_query_class($this->build, $this->criteria);
 
 
       //   var_Dump($source_query_class);
