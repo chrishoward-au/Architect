@@ -104,8 +104,15 @@
       add_action('after_setup_theme', array($this, 'register_architect_block'));
 
 
+      require_once PZARC_PLUGIN_APP_PATH . '/shared/architect/php/class_arc_Registry.php';
+
       require_once PZARC_PLUGIN_APP_PATH . '/shared/architect/php/class_arc_set_data.php';
       require_once PZARC_PLUGIN_APP_PATH . '/shared/architect/php/class_arc_Blueprint_Data.php';
+
+      // Load custom custom types
+      require_once PZARC_PLUGIN_APP_PATH . '/shared/architect/php/content-types/snippets/arc-cpt-snippets.php';
+      require_once PZARC_PLUGIN_APP_PATH . '/shared/architect/php/arc-cpt-blueprints.php';
+      require_once PZARC_PLUGIN_APP_PATH . '/shared/architect/php/arc-cpt-panels.php';
 
       // Load all the builtin post types
       require_once PZARC_PLUGIN_APP_PATH . '/shared/architect/php/content-types/defaults/class_arc_content_defaults.php';
@@ -118,12 +125,11 @@
       require_once PZARC_PLUGIN_APP_PATH . '/shared/architect/php/content-types/cpt/class_arc_content_cpt.php';
 
 
+
     }
 
     public function init()
     {
-      create_panels_post_type();
-      create_blueprints_post_type();
     }
 
 
@@ -378,129 +384,3 @@
   }
 
 
-  class Registry
-  {
-    private $registry = array();
-
-    private static $instance = null;
-
-    public static function getInstance()
-    {
-      if (self::$instance === null) {
-        self::$instance = new Registry();
-      }
-
-      return self::$instance;
-    }
-
-    private function __construct() { }
-
-    private function __clone() { }
-
-    public function set($key, $value)
-    {
-
-      // For us, all keys are array parents, so like keys will extend the array, as opposed to throwing an error. This makes keys much more usable and extensible.
-//      if (isset($this->registry[ $key ])) {
-//        throw new Exception("There is already an entry for key " . $key);
-//
-//      }
-      if (substr($key,0,9)==='metaboxes') {
-        $this->registry[ $key ] = $value;
-      } else {
-        $this->registry[ $key ][ ] = $value;
-      }
-
-
-    }
-
-    public function get($key)
-    {
-      if (!isset($this->registry[ $key ])) {
-        throw new Exception("There is no entry for key " . $key);
-      }
-
-      return $this->registry[ $key ];
-    }
-  }
-
-
-  function create_blueprints_post_type()
-  {
-    $labels = array(
-        'name'               => _x('Blueprints', 'post type general name'),
-        'singular_name'      => _x('Blueprint', 'post type singular name'),
-        'add_new'            => __('Add New Blueprint'),
-        'add_new_item'       => __('Add New Blueprint'),
-        'edit_item'          => __('Edit Blueprint'),
-        'new_item'           => __('New Blueprint'),
-        'view_item'          => __('View Blueprint'),
-        'search_items'       => __('Search Blueprints'),
-        'not_found'          => __('No Blueprints found'),
-        'not_found_in_trash' => __('No Blueprints found in Trash'),
-        'parent_item_colon'  => '',
-        'menu_name'          => _x('<span class="dashicons dashicons-welcome-widgets-menus"></span>Blueprints', 'pzarc-blueprint-designer'),
-    );
-
-    $args = array(
-        'labels'              => $labels,
-        'description'         => __('Architect Blueprints are used to create reusable layout Blueprints for use in your Architect blocks, widgets, shortcodes and WP template tags. These are made up of panels, sections, criteria and navigation'),
-        'public'              => false,
-        'publicly_queryable'  => false,
-        'show_ui'             => true,
-        'show_in_menu'        => 'pzarc',
-        'show_in_nav_menus'   => false,
-        'query_var'           => true,
-        'rewrite'             => true,
-        'capability_type'     => 'post',
-        'has_archive'         => false,
-        'hierarchical'        => false,
-        'menu_position'       => 30,
-        'supports'            => array('title'),
-        'exclude_from_search' => true,
-    );
-
-    register_post_type('arc-blueprints', $args);
-  }
-
-  /**
-   * [create_layouts_post_type description]
-   * @return [type] [description]
-   */
-  function create_panels_post_type()
-  {
-    $labels = array(
-        'name'               => _x('Panel designs', 'post type general name'),
-        'singular_name'      => _x('Panel design', 'post type singular name'),
-        'add_new'            => __('Add New Panel design'),
-        'add_new_item'       => __('Add New Panel design'),
-        'edit_item'          => __('Edit Panel design'),
-        'new_item'           => __('New Panel design'),
-        'view_item'          => __('View Panel design'),
-        'search_items'       => __('Search Panel designs'),
-        'not_found'          => __('No Panel designs found'),
-        'not_found_in_trash' => __('No Panel designs found in Trash'),
-        'parent_item_colon'  => '',
-        'menu_name'          => _x('<span class="dashicons dashicons-id-alt"></span>Panels', 'pzarc-cell-designer'),
-    );
-
-    $args = array(
-        'labels'              => $labels,
-        'description'         => __('Architect Panels are used to create reusable panel designs for use in your Architect blocks, widgets, shortcodes and WP template tags'),
-        'public'              => false,
-        'publicly_queryable'  => false,
-        'show_ui'             => true,
-        'show_in_menu'        => 'pzarc',
-        'show_in_nav_menus'   => false,
-        'query_var'           => true,
-        'rewrite'             => true,
-        'capability_type'     => 'post',
-        'has_archive'         => false,
-        'hierarchical'        => false,
-        'menu_position'       => 10,
-        'supports'            => array('title'),
-        'exclude_from_search' => true,
-    );
-
-    register_post_type('arc-panels', $args);
-  }

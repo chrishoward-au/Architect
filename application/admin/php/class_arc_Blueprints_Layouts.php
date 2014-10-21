@@ -1086,7 +1086,7 @@
 //    );
 //
       /** DISPLAY ALL THE CONTENT TYPES FORMS */
-      $registry = Registry::getInstance();
+      $registry = arc_Registry::getInstance();
 
       $content_post_types = $registry->get('post_types');
       $content_types      = array();

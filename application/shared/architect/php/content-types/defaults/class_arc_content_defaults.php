@@ -14,7 +14,7 @@
 
     protected function __construct()
     {
-      $registry = Registry::getInstance();
+      $registry = arc_Registry::getInstance();
 
       $prefix = '_content_defaults_';
 

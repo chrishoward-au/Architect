@@ -14,7 +14,7 @@
 
   add_action('init', 'pzarc_removeReduxDemoModeLink');
 
-  class pzarcAdmin
+  class ArchitectAdmin
   {
 
     function __construct()
@@ -68,9 +68,8 @@
       require_once PZARC_PLUGIN_APP_PATH . '/admin/php/arc-options-styling.php';
       require_once PZARC_PLUGIN_APP_PATH . '/admin/php/arc-options-actions.php';
 
-      // TODO: this needs to be dumberized so can work on dev defined panels and content. But why is it here anyway??
-      require_once PZARC_PLUGIN_APP_PATH . '/shared/architect/php/content-types/defaults/class_arc_Panel_Renderer.php';
-      require_once PZARC_PLUGIN_APP_PATH . '/shared/architect/php/content-types/snippets/class_arc_Panel_Snippets.php';
+      // TODO: this needs to be dumberized so can work on dev defined panels and content. But why is these here anyway??
+//      require_once PZARC_PLUGIN_APP_PATH . '/shared/architect/php/content-types/generic/class_arc_Panel_Generic.php';
 
 
       require_once(PZARC_PLUGIN_APP_PATH . '/shared/includes/php/BFI-thumb-forked/BFI_Thumb.php');
@@ -253,5 +252,5 @@
 // end pzarcAdmin
 
 
-  $pzarcadmin = new pzarcAdmin();
+  $pzarcadmin = new ArchitectAdmin();
 
