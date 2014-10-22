@@ -101,6 +101,9 @@ This is BETA software. So there are many besides these ones!
 
 == Changelog ==
 
+= 0.8.4.8 =
+* FIXED: Bug with saving panels giving message about missing functions. Sorry about that!
+
 = 0.8.4.7 =
 * UPDATED Redux metaboxes. Seem to display right now.
 
