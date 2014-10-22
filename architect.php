@@ -111,8 +111,8 @@
 
       // Load custom custom types
       require_once PZARC_PLUGIN_APP_PATH . '/shared/architect/php/content-types/snippets/arc-cpt-snippets.php';
-      require_once PZARC_PLUGIN_APP_PATH . '/shared/architect/php/arc-cpt-blueprints.php';
       require_once PZARC_PLUGIN_APP_PATH . '/shared/architect/php/arc-cpt-panels.php';
+      require_once PZARC_PLUGIN_APP_PATH . '/shared/architect/php/arc-cpt-blueprints.php';
 
       // Load all the builtin post types
       require_once PZARC_PLUGIN_APP_PATH . '/shared/architect/php/content-types/defaults/class_arc_content_defaults.php';

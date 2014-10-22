@@ -1,6 +1,5 @@
 <?php
 
-  //Panels may need to include Content because of custom fields!!! OOps! But content has to be over-arching! So I guess, cells will need to know the content type and its fields. So lets make Content Criteria again. :S
 
   /**
    * Class pzarc_Panel_Layouts
@@ -1051,6 +1050,7 @@
 
     /**
      * CUSTOM FIELDS
+     * Why are these here even though they are somewhat content related. They're not choosing the content itself. Yes they do limit the usablity of the panel. Partly this came about because of the way WPdoesn't bind custom fields to specific content types.
      */
     if (!empty($_GET[ 'post' ])) {
       $thispostmeta = get_post_meta($_GET[ 'post' ]);

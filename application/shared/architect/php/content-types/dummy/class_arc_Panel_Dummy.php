@@ -18,6 +18,9 @@
     public $data;
     public $section;
 
+    /**
+     *
+     */
     public function __construct()
     {
 
@@ -39,6 +42,11 @@
     }
 
 
+    /**
+     * @param $post
+     * @param $toshow
+     * @param $section
+     */
     public function set_data(&$post, &$toshow, &$section)
     {
       $this->section = $section;
@@ -47,8 +55,10 @@
       $this->get_meta($post);
       $this->get_content($post);
       $this->get_excerpt($post);
+      //TODO: Really must make these one!
       $this->get_image($post);
-//      $this->get_bgimage($post);
+      $this->get_bgimage($post);
+      // TODO: Should I do custom fields in Dummy?
 //      $this->get_custom($post);
       $this->get_miscellanary($post);
     }
@@ -94,7 +104,7 @@
     {
       /** Image */
       static $i = 0;
-      if ($this->toshow[ 'image' ][ 'show' ]) {
+      if ($this->toshow[ 'image' ][ 'show' ] && $this->section[ '_panels_design_feature-location' ] !== 'fill') {
         $width  = (int)str_replace('px', '', $this->section[ '_panels_design_image-max-dimensions' ][ 'width' ]);
         $height = (int)str_replace('px', '', $this->section[ '_panels_design_image-max-dimensions' ][ 'height' ]);
 
@@ -122,6 +132,42 @@
 
         $this->data[ 'image' ][ 'original' ] = $imageURL;
         $this->data[ 'image' ][ 'caption' ]  = ($this->isfaker ? $this->faker->sentence() : 'caption');
+        $i                                   = (++$i > count($cats) ? 0 : $i);
+      }
+    }
+
+    public function get_bgimage(&$post)
+    {
+      /** Image */
+      static $i = 0;
+      if ($this->toshow[ 'image' ][ 'show' ]  && $this->section[ '_panels_design_feature-location' ] === 'fill') {
+        $width  = (int)str_replace('px', '', $this->section[ '_panels_design_image-max-dimensions' ][ 'width' ]);
+        $height = (int)str_replace('px', '', $this->section[ '_panels_design_image-max-dimensions' ][ 'height' ]);
+
+        // TODO: Add all the focal point stuff to all the post types images and bgimages
+        // Easiest to do via a reusable function or all this stuff could be done once!!!!!!!!!
+        // could pass $this->data thru a filter
+
+        $cats = array('abstract',
+                      'animals',
+                      'business',
+                      'cats',
+                      'city',
+                      'food',
+                      'nightlife',
+                      'fashion',
+                      'people',
+                      'nature',
+                      'sports',
+                      'technics',
+                      'transport');
+
+        $imageURL = ($this->isfaker ? $this->faker->imageURL($width, $height, $cats[ $i ]) : 'http://lorempixel.com/' . $width . '/' . $height . '/' . $cats[ $i ]);
+//        $image = bfi_thumb($imageURL,array($width,$height));
+        $this->data[ 'bgimage' ][ 'thumb' ] = '<img src="' . $imageURL . '">';
+
+        $this->data[ 'bgimage' ][ 'original' ] = $imageURL;
+        $this->data[ 'bgimage' ][ 'caption' ]  = ($this->isfaker ? $this->faker->sentence() : 'caption');
         $i                                   = (++$i > count($cats) ? 0 : $i);
       }
     }
