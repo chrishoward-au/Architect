@@ -168,6 +168,19 @@
     }
 
   }
+  class arc_Navigator_None extends arc_Navigator
+  {
+    function _construct()
+    {
+      $this->nav_types[ ] = __CLASS__;
+
+    }
+
+    function render()
+    {
+    }
+
+  }
 
   class arc_Navigator_Thumbs extends arc_Navigator
   {

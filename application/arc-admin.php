@@ -144,12 +144,12 @@
 //			add_submenu_page(
 //				'pzarc', 'Styling', 'Styling', 'manage_options', 'pzarc_styling', array( $this, 'pzarc_styling' )
 //			);
+        // add_submenu_page(
+        //     'pzarc', 'Developer Tools', '<span class="dashicons dashicons-hammer size-small"></span>Tools', 'manage_options', 'pzarc_tools', array($this,
+        //                                                                                                                                            'pzarc_tools')
+        // );
         add_submenu_page(
-            'pzarc', 'Developer Tools', '<span class="dashicons dashicons-hammer size-small"></span>Tools', 'manage_options', 'pzarc_tools', array($this,
-                                                                                                                                                   'pzarc_tools')
-        );
-        add_submenu_page(
-            'pzarc', 'About Architect Content Display Framework', '<span class="dashicons dashicons-info size-small"></span>About', 'manage_options', 'pzarc_about', array($this,
+            'pzarc', 'About Architect Content Layout Framework', '<span class="dashicons dashicons-info size-small"></span>About', 'manage_options', 'pzarc_about', array($this,
                                                                                                                                                                            'pzarc_about'), 99
         );
 

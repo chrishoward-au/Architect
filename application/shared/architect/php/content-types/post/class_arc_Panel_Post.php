@@ -7,7 +7,7 @@
  * Time: 11:00 PM
  */
 
-class arc_Panel_Post extends arc_Panel_Renderer{
+class arc_Panel_Post extends arc_Panel_Generic{
 
   // Posts currently uses all default renderings
 } 

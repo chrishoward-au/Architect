@@ -161,9 +161,13 @@
 
       }
 
+      /** at this point we have the necessary info to populate the navigator. So let's do it! */
+      $class = self::setup_section_panel_class();
+      $panel_class = new $class;
 
-      // at tis point we have the necessary info to populate the navigator. So let's do it!
-      $this->nav_items = self::get_nav_items($this->build->blueprint[ '_blueprints_navigator' ]);
+      if ($bp_nav_type === 'navigator'){
+        $this->nav_items = $panel_class->get_nav_items($this->build->blueprint[ '_blueprints_navigator' ],$this->arc_query);
+      }
 
       // TODO: Show or hide blueprint if no content
 
@@ -205,18 +209,19 @@
 
       }
 
+
       /** LOOPS */
-      $this->nav_items = self::loop(1);
+      $panel_class->loop(1, $this, $panel_class, $class);
 
       if ($do_section_2) {
 
-        $notused = self::loop(2);
+        $panel_class->loop(2, $this, $panel_class, $class);
 
       }
 
       if ($do_section_3) {
 
-        $notused = self::loop(3);
+        $panel_class->loop(3, $this, $panel_class, $class);
 
       }
 
@@ -259,10 +264,8 @@
     private function display_navigation($location)
     {
 
-
       $class                    = 'arc_Navigator_' . $this->build->blueprint[ '_blueprints_navigator' ];
       $this->arc[ 'navigator' ] = new $class($this->build->blueprint, $this->nav_items);
-
       if ('tl' === $location) {
 
         // TODO: How do we make this go into the action?WP-Navi does it!
@@ -308,55 +311,6 @@
 
     }
 
-    /**
-     * get_nav_items
-     */
-    private function get_nav_items($blueprints_navigator)
-    {
-
-      $nav_items = array();
-
-//      var_dump($blueprints_navigator, $this->arc_query->posts);
-
-      foreach ($this->arc_query->posts as $the_post) {
-
-        switch ($blueprints_navigator) {
-
-          case 'tabbed':
-            $nav_items[ ] = '<span class="' . $blueprints_navigator . '">' . $the_post->post_title . '</span>';
-            break;
-
-          case 'thumbs':
-
-            if ('attachment' === $the_post->post_type) {
-
-              // TODO: Will need to change this to use the thumb dimensions set in the blueprint viasmall , medium, large
-              $thumb = wp_get_attachment_image($the_post->ID, array(50, 50));
-
-            } else {
-
-              $thumb = get_the_post_thumbnail($the_post->ID, array(50, 50));
-
-            }
-
-            $thumb = (empty($thumb) ? '<img src="' . PZARC_PLUGIN_APP_URL . '/shared/assets/images/missing-image.png" width="50" height="50">' : $thumb);
-
-            $nav_items[ ] = '<span class="' . $blueprints_navigator . '">' . $thumb . '</span>';
-            break;
-
-          case 'bullets':
-          case 'numbers':
-          case 'buttons':
-            //No need for content on these
-            $nav_items[ ] = '';
-            break;
-
-        }
-
-      }
-
-      return $nav_items;
-    }
 
     /**
      * set_generic_criteria
@@ -549,13 +503,14 @@
       self::set_criteria_prefix(self::set_prefix());
 
       $source_query_class = 'arc_query_' . $this->build->blueprint[ '_blueprints_content-source' ];
-      require_once(PZARC_PLUGIN_APP_PATH . '/shared/architect/php/content-types/'.$this->build->blueprint[ '_blueprints_content-source' ].'/class_'.$source_query_class.'.php');
-      $arc_query_source   = new $source_query_class($this->build, $this->criteria);
-
+      require_once(PZARC_PLUGIN_APP_PATH . '/shared/architect/php/content-types/' . $this->build->blueprint[ '_blueprints_content-source' ] . '/class_' . $source_query_class . '.php');
+      $arc_query_source = new $source_query_class($this->build, $this->criteria);
 
       //   var_Dump($source_query_class);
-      $this->arc_query = $arc_query_source->build_custom_query($overrides);
-      self::replace_wp_query();
+      $arc_query_source->build_custom_query_options($overrides);
+
+      $this->arc_query = $arc_query_source->get_custom_query();
+      self::replace_wp_query(); // NOTE: This is only activated on pagination. So should only be used by legitimate post types
     }
 
     /**
@@ -652,12 +607,7 @@
 
     }
 
-
-    /**
-     * @param $section_no
-     * @return mixed
-     */
-    private function loop($section_no)
+    private function setup_section_panel_class()
     {
 
       // oops! Need to get default content type when defaults chosen.
@@ -679,7 +629,7 @@
 
       // Fall back to generics if no class for post type
       // Use an include incase it doesn't exist!
-      @include_once PZARC_PLUGIN_APP_PATH . '/shared/architect/php/content-types/' . ucfirst($post_type) . '/class_arc_Panel_' . ucfirst($post_type) . '.php';
+      @include_once PZARC_PLUGIN_APP_PATH . '/shared/architect/php/content-types/' . strtolower($post_type) . '/class_arc_Panel_' . ucfirst($post_type) . '.php';
 
       if (!class_exists($class)) {
 
@@ -689,14 +639,8 @@
 
       }
 
-      // We setup the Paneldef here so we're not doing it every iteration of the Loop!
-      // TODO: Some sites get a T_PAAMAYIM_NEKUDOTAYIM error! ugh!
-
-      $panel_class = new $class;
-
-      return $panel_class->loop($section_no, $this, $panel_class, $class); // returns nav items
+      return $class;
     }
-
   }
 
   // EOC Architect

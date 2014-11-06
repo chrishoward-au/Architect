@@ -16,13 +16,14 @@
   function pzarc_display_init()
   {
 
+    // TODO: These seem to be loading late so loading in footer - even the CSS!
     // Retina Js
     // Using hacked version which only supports data-at2x attribute
     wp_register_script('js-retinajs', PZARC_PLUGIN_APP_URL . '/public/js/retinajs/retina.js');
 
 
     // Slick
-    wp_register_script('js-arc-front-slickjs', PZARC_PLUGIN_APP_URL . '/public/js/arc-front-slick.js', array('jquery'));
+    wp_register_script('js-arc-front-slickjs', PZARC_PLUGIN_APP_URL . '/public/js/arc-front-slick.js', array('jquery'),null,true);
     wp_register_script('js-slickjs', PZARC_PLUGIN_APP_URL . '/public/js/slick/slick/slick.min.js', array('jquery'), null, true);
     wp_register_style('css-slickjs', PZARC_PLUGIN_APP_URL . '/public/js/slick/slick/slick.css');
 

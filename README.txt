@@ -4,11 +4,11 @@ Tags: content,display,posts,pages,gallery,slider
 Donate link: http://
 Requires at least: 3.5.0
 Tested up to: 4.0.0
-Stable tag: 0.8.4.5
+Stable tag: 0.8.5.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Go beyond the limits of the layouts in the theme you use, to easily build any content layouts for it. E.g. grids, sliders, lists, galleries etc.
+Go beyond the limitations of the layouts in the theme you use, to easily build any content layouts for it. E.g. grids, sliders, lists, galleries etc.
 
 == Description ==
 Most themes give you great looking layouts for your content, but are usually limited to what that theme provides. Frameworks give you control, but often require getting your hands dirty.
@@ -101,7 +101,18 @@ This is BETA software. So there are many besides these ones!
 
 == Changelog ==
 
+= 0.8.5.1 =
+* ADDED: Option to have no navigator showing when Navigator is navigation type.
+* FIXED: Navigator interval being ignored
+* FIXED: Navigator Pager clicks affecting all sliders on a page
+
+= 0.8.5.0 =
+* FIXED: Custom fields not displaying
+* FIXED: Dummy content navigator thumbs now match featured image
+* CHANGED: Made navs extensible
+
 = 0.8.4.8 =
+* FIXED: Bug with saving panels giving message about missing functions. Sorry about that!
 * CHANGED: Modified how content types are managed to enable extensibility. i.e. you can code up your own content types and plug them into Architect.
 
 = 0.8.4.7 =

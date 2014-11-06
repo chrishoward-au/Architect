@@ -8,7 +8,7 @@
    * Time: 10:19 PM
    */
   // Add content info to the registry
-  class arc_content_slides  extends arc_set_data// Singleton
+  class arc_content_slide  extends arc_set_data// Singleton
   {
 
 
@@ -55,7 +55,7 @@
   }
 
 //  //todo:set this up as a proper singleton?
-  $content_posts = arc_content_slides::getInstance();
+  $content_posts = arc_content_slide::getInstance();
 
 
 

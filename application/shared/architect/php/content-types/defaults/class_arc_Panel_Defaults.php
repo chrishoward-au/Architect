@@ -8,7 +8,7 @@
    */
   // TODO: These should also definethe content filtering menu in Blueprints options :/
 
-  class arc_Panel_Defaults extends  arc_Panel_Renderer
+  class arc_Panel_Defaults extends  arc_Panel_Generic
   {
 
   }

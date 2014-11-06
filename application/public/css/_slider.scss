@@ -269,7 +269,7 @@ Pagination Styles
 }
 
 .arc-slider-nav {
-  max-height: 80px;
+  //max-height: 80px; // removed for now, but prob needed //TODO Verify this wasn't for IE!!!
   width: 100%;
   position:relative;
   &:hover {

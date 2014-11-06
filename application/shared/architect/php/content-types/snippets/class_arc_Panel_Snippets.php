@@ -8,7 +8,7 @@
    */
 
 
-  class arc_Panel_snippets extends arc_Panel_Renderer
+  class arc_Panel_snippets extends arc_Panel_Generic
   {
     /*
      * Snippets are very much like posts or pages, so we've used the same code. This may evolve - and we'll certainly regret having to duplicate stuff sometimes!

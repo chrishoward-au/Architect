@@ -137,12 +137,15 @@
         $post   = $arc_query->post;
         $postid = $arc_query->post->ID;
       } else {
+        // Then it is an array
+
         // This happens on non-post types, like dummy content type
         // TODO: Make these something more useful!
-        $post   = null;
+        $post   = $arc_query[$panel_number-1];
         $postid = 'NoID';
 
       }
+      $postid = (empty($postid)?'NoID':$postid);
       $settings = $this->section[ 'section-panel-settings' ];
       $toshow   = json_decode($settings[ '_panels_design_preview' ], true);
       $panel_class->set_data($post, $toshow, $settings);

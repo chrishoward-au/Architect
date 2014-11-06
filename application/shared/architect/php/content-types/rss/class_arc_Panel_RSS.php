@@ -7,7 +7,7 @@
  * Time: 11:03 PM
  */
 
-class arc_Panel_RSS  extends arc_Panel_Renderer{
+class arc_Panel_RSS  extends arc_Panel_Generic{
 
   // This one will need a lot of stuff!
 } 

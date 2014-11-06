@@ -6,7 +6,7 @@
  * Date: 20/10/14
  * Time: 2:12 AM
  */
-
+//var_dump('MAKE NAV BIT');
   class arc_query_generic {
 
     public $query_options = array();
@@ -18,7 +18,7 @@
       $this->criteria = $criteria;
     }
 
-    public function build_custom_query($overrides)
+    public function build_custom_query_options($overrides)
     {
 
       // TODO: need to scrape this down to just a generic one for built in post types
@@ -88,11 +88,11 @@
 //
 //      }
 
-      $this->query_options[ 'category__in' ]     = (!empty($criteria[ 'category__in' ]) ? $cat_ids : null);
-      $this->query_options[ 'category__not_in' ] = (!empty($criteria[ 'category__in' ]) ? $criteria[ 'category__not_in' ] : null);
+      $this->query_options[ 'category__in' ]     = (!empty($this->criteria[ 'category__in' ]) ? $cat_ids : null);
+      $this->query_options[ 'category__not_in' ] = (!empty($this->criteria[ 'category__in' ]) ? $this->criteria[ 'category__not_in' ] : null);
 
-      $this->query_options[ 'tag__in' ]     = (!empty($criteria[ 'tag__in' ]) ? $criteria[ 'tag__in' ] : null);
-      $this->query_options[ 'tag__not_in' ] = (!empty($criteria[ 'tag__in' ]) ? $criteria[ 'tag__not_in' ] : null);
+      $this->query_options[ 'tag__in' ]     = (!empty($this->criteria[ 'tag__in' ]) ? $this->criteria[ 'tag__in' ] : null);
+      $this->query_options[ 'tag__not_in' ] = (!empty($this->criteria[ 'tag__in' ]) ? $this->criteria[ 'tag__not_in' ] : null);
 
 
       /** Custom taxonomies  */
@@ -124,37 +124,29 @@
         $this->query_options[ 'posts_per_page' ] = count($this->query_options[ 'post__in' ]);
       }
 
-      //    var_dump($this->query_options);
-
-      $arc_query = new WP_Query($this->query_options);
-
-      return $arc_query;
 
     }
 
+    /**
+     *
+     * Replace this in your own extensions if necessary
+     *
+     * @return WP_Query
+     *
+     */
+    public function get_custom_query() {
+      return new WP_Query($this->query_options);
+    }
 
     protected function content_filters($source,$overrides) {
 
       switch ($source) {
 
-        case 'post':
-          $this->query_options[ 'post_type' ] = 'post';
-          break;
-
         case 'cpt':
           $this->query_options[ 'post_type' ] = $this->build->blueprint[ '_content_cpt_custom-post-type' ];
           break;
 
-        // TODO: could we build this into the panel def or somewhere else so more closely tied to the content type stuff
 
-
-        case 'snippets':
-          $this->query_options[ 'post_type' ] = 'pz_snippets';
-          break;
-
-        case 'slides':
-          $this->query_options[ 'post_type' ] = 'pzsp-slides';
-          break;
 
       }
 

@@ -357,7 +357,6 @@
   .pzarchitect .nav-navigator:hover .arrow-left {
     display: block; }
   .pzarchitect .arc-slider-nav {
-    max-height: 80px;
     width: 100%;
     position: relative; }
     .pzarchitect .arc-slider-nav:hover .skip-right,

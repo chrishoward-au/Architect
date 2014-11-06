@@ -1,6 +1,6 @@
 <?php
 
-  class arc_Panel_Renderer
+  class arc_Panel_Generic
   {
     public $data = array();
     public $toshow = array();
@@ -99,15 +99,45 @@
 //      var_dump(get_The_id(),$post->ID);
       $this->section = $section;
       $this->toshow  = $toshow;
-      $this->get_title($post);
-      $this->get_meta($post);
-      $this->get_content($post);
-      $this->get_excerpt($post);
-      $this->get_image($post);
-      $this->get_video($post);
-      // TODO: Don't run this if not needed!
-      $this->get_bgimage($post);
-      $this->get_custom($post);
+
+      if ($this->toshow[ 'title' ][ 'show' ]) {
+        $this->get_title($post);
+      }
+
+      if ($this->toshow[ 'meta1' ][ 'show' ] ||
+          $this->toshow[ 'meta2' ][ 'show' ] ||
+          $this->toshow[ 'meta3' ][ 'show' ]
+      ) {
+        $this->get_meta($post);
+      }
+
+      if ($this->toshow[ 'content' ][ 'show' ]) {
+        $this->get_content($post);
+      }
+
+      if ($this->toshow[ 'excerpt' ][ 'show' ]) {
+        $this->get_excerpt($post);
+      }
+
+      if ($this->toshow[ 'image' ][ 'show' ]) {
+        switch ($this->section[ '_panels_design_feature-location' ]) {
+          case 'fill':
+            $this->get_bgimage($post);
+            break;
+          default:
+            $this->get_image($post);
+            break;
+        }
+        $this->get_video($post);
+      }
+
+      if ($this->toshow[ 'custom1' ][ 'show' ] ||
+          $this->toshow[ 'custom2' ][ 'show' ] ||
+          $this->toshow[ 'custom3' ][ 'show' ]
+      ) {
+        $this->get_custom($post);
+      }
+
       $this->get_miscellanary($post);
     }
 
@@ -117,56 +147,51 @@
     public function get_title(&$post)
     {
       /** TITLE */
-      if ($this->toshow[ 'title' ][ 'show' ]) {
-        $this->data[ 'title' ][ 'title' ] = get_the_title();
-        if ('thumb' === $this->section[ '_panels_design_title-prefix' ]) {
-          $thumb_id    = get_post_thumbnail_id();
-          $focal_point = get_post_meta($thumb_id, 'pzgp_focal_point', true);
-          $focal_point = (empty($focal_point) ? array(50, 50) : explode(',', $focal_point));
-          if (!empty($thumb_id)) {
-            $thumb_prefix                     = wp_get_attachment_image($thumb_id, array($this->section[ '_panels_design_title-thumb-width' ],
-                                                                                         $this->section[ '_panels_design_title-thumb-width' ],
-                                                                                         'bfi_thumb' => true,
-                                                                                         'crop'      => $focal_point
-            ));
-            $this->data[ 'title' ][ 'thumb' ] = '<span class="pzarc-title-thumb">' . $thumb_prefix . '</span> ';
-          } else {
-            $this->data[ 'title' ][ 'thumb' ] = '<span class="pzarc-title-thumb" style="width:' . $this->section[ '_panels_design_title-thumb-width' ] . 'px;height:' . $this->section[ '_panels_design_title-thumb-width' ] . 'px;"></span> ';
-          }
+      $this->data[ 'title' ][ 'title' ] = get_the_title();
+      if ('thumb' === $this->section[ '_panels_design_title-prefix' ]) {
+        $thumb_id    = get_post_thumbnail_id();
+        $focal_point = get_post_meta($thumb_id, 'pzgp_focal_point', true);
+        $focal_point = (empty($focal_point) ? array(50, 50) : explode(',', $focal_point));
+        if (!empty($thumb_id)) {
+          $thumb_prefix                     = wp_get_attachment_image($thumb_id, array($this->section[ '_panels_design_title-thumb-width' ],
+                                                                                       $this->section[ '_panels_design_title-thumb-width' ],
+                                                                                       'bfi_thumb' => true,
+                                                                                       'crop'      => $focal_point
+          ));
+          $this->data[ 'title' ][ 'thumb' ] = '<span class="pzarc-title-thumb">' . $thumb_prefix . '</span> ';
+        } else {
+          $this->data[ 'title' ][ 'thumb' ] = '<span class="pzarc-title-thumb" style="width:' . $this->section[ '_panels_design_title-thumb-width' ] . 'px;height:' . $this->section[ '_panels_design_title-thumb-width' ] . 'px;"></span> ';
         }
       }
+
 
     }
 
     public function get_meta(&$post)
     {
       /** META */
-      if ($this->toshow[ 'meta1' ][ 'show' ] ||
-          $this->toshow[ 'meta2' ][ 'show' ] ||
-          $this->toshow[ 'meta3' ][ 'show' ]
-      ) {
-        $this->data[ 'meta' ][ 'datetime' ]        = get_the_date();
-        $this->data[ 'meta' ][ 'fdatetime' ]       = date_i18n($this->section[ '_panels_design_meta-date-format' ], strtotime(get_the_date()));
-        $this->data[ 'meta' ][ 'categorieslinks' ] = get_the_category_list(', ');
-        $this->data[ 'meta' ][ 'categories' ]      = pzarc_tax_string_list(get_the_category(), 'category-', '', ' ');
-        $this->data[ 'meta' ][ 'tagslinks' ]       = get_the_tag_list(null, ', ');
-        $this->data[ 'meta' ][ 'tags' ]            = pzarc_tax_string_list(get_the_tags(), 'tag-', '', ' ');
+      $this->data[ 'meta' ][ 'datetime' ]        = get_the_date();
+      $this->data[ 'meta' ][ 'fdatetime' ]       = date_i18n($this->section[ '_panels_design_meta-date-format' ], strtotime(get_the_date()));
+      $this->data[ 'meta' ][ 'categorieslinks' ] = get_the_category_list(', ');
+      $this->data[ 'meta' ][ 'categories' ]      = pzarc_tax_string_list(get_the_category(), 'category-', '', ' ');
+      $this->data[ 'meta' ][ 'tagslinks' ]       = get_the_tag_list(null, ', ');
+      $this->data[ 'meta' ][ 'tags' ]            = pzarc_tax_string_list(get_the_tags(), 'tag-', '', ' ');
 
-        $this->data[ 'meta' ][ 'authorlink' ] = get_author_posts_url(get_the_author_meta('ID'));
-        $this->data[ 'meta' ][ 'authorname' ] = sanitize_text_field(get_the_author_meta('display_name'));
-        $rawemail                             = sanitize_email(get_the_author_meta('user_email'));
-        $encodedmail                          = '';
-        for ($i = 0; $i < strlen($rawemail); $i++) {
-          $encodedmail .= "&#" . ord($rawemail[ $i ]) . ';';
-        }
-        $this->data[ 'meta' ][ 'authoremail' ]    = $encodedmail;
-        $this->data[ 'meta' ][ 'comments-count' ] = get_comments_number();
-
-        $this->data[ 'meta' ][ 'custom' ][ 1 ] = pzarc_get_post_terms(get_the_id(), $this->section[ '_panels_design_meta1-config' ]);
-        $this->data[ 'meta' ][ 'custom' ][ 2 ] = pzarc_get_post_terms(get_the_id(), $this->section[ '_panels_design_meta2-config' ]);
-        $this->data[ 'meta' ][ 'custom' ][ 3 ] = pzarc_get_post_terms(get_the_id(), $this->section[ '_panels_design_meta3-config' ]);
+      $this->data[ 'meta' ][ 'authorlink' ] = get_author_posts_url(get_the_author_meta('ID'));
+      $this->data[ 'meta' ][ 'authorname' ] = sanitize_text_field(get_the_author_meta('display_name'));
+      $rawemail                             = sanitize_email(get_the_author_meta('user_email'));
+      $encodedmail                          = '';
+      for ($i = 0; $i < strlen($rawemail); $i++) {
+        $encodedmail .= "&#" . ord($rawemail[ $i ]) . ';';
       }
+      $this->data[ 'meta' ][ 'authoremail' ]    = $encodedmail;
+      $this->data[ 'meta' ][ 'comments-count' ] = get_comments_number();
+
+      $this->data[ 'meta' ][ 'custom' ][ 1 ] = pzarc_get_post_terms(get_the_id(), $this->section[ '_panels_design_meta1-config' ]);
+      $this->data[ 'meta' ][ 'custom' ][ 2 ] = pzarc_get_post_terms(get_the_id(), $this->section[ '_panels_design_meta2-config' ]);
+      $this->data[ 'meta' ][ 'custom' ][ 3 ] = pzarc_get_post_terms(get_the_id(), $this->section[ '_panels_design_meta3-config' ]);
     }
+
 
     public function get_image(&$post)
     {
@@ -182,38 +207,36 @@
       }
 
 
-      if ($this->toshow[ 'image' ][ 'show' ]) {
-        //        if (false)
-        //        {
-        //          $post_image = ($this->panel_info[ '_panels_design_thumb-position' ] != 'none') ? job_resize($thumb_src, $params, PZARC_CACHE_PATH, PZARC_CACHE_URL) : null;
-        //        }
-        // BFI
+      //        if (false)
+      //        {
+      //          $post_image = ($this->panel_info[ '_panels_design_thumb-position' ] != 'none') ? job_resize($thumb_src, $params, PZARC_CACHE_PATH, PZARC_CACHE_URL) : null;
+      //        }
+      // BFI
 
-        $width  = (int)str_replace('px', '', $this->section[ '_panels_design_image-max-dimensions' ][ 'width' ]);
-        $height = (int)str_replace('px', '', $this->section[ '_panels_design_image-max-dimensions' ][ 'height' ]);
+      $width  = (int)str_replace('px', '', $this->section[ '_panels_design_image-max-dimensions' ][ 'width' ]);
+      $height = (int)str_replace('px', '', $this->section[ '_panels_design_image-max-dimensions' ][ 'height' ]);
 
-        // TODO: Add all the focal point stuff to all the post types images and bgimages
-        // Easiest to do via a reusable function or all this stuff could be done once!!!!!!!!!
-        // could pass $this->data thru a filter
-        $this->data[ 'image' ][ 'image' ]    = wp_get_attachment_image($thumb_id, array($width,
-                                                                                        $height,
-                                                                                        'bfi_thumb' => true,
-                                                                                        'crop'      => (int)$focal_point[ 0 ] . 'x' . (int)$focal_point[ 1 ] . 'x' . $this->section[ '_panels_settings_image-focal-point' ]
+      // TODO: Add all the focal point stuff to all the post types images and bgimages
+      // Easiest to do via a reusable function or all this stuff could be done once!!!!!!!!!
+      // could pass $this->data thru a filter
+      $this->data[ 'image' ][ 'image' ]    = wp_get_attachment_image($thumb_id, array($width,
+                                                                                      $height,
+                                                                                      'bfi_thumb' => true,
+                                                                                      'crop'      => (int)$focal_point[ 0 ] . 'x' . (int)$focal_point[ 1 ] . 'x' . $this->section[ '_panels_settings_image-focal-point' ]
 
-        ));
-        $this->data[ 'image' ][ 'original' ] = wp_get_attachment_image_src($thumb_id, 'full');
-        preg_match("/(?<=src\\=\")(.)*(?=\" )/uiUs", $this->data[ 'image' ][ 'image' ], $results);
-        if (isset($results[ 0 ]) && !empty($this->section[ '_panels_settings_use-retina-images' ])) {
-          $params = array('width' => ($width * 2), 'height' => ($height * 2));
-          // We need the crop to be identical. :/ So how about we just double the size of the image! I'm sure I Saw somewhere that works still.
-          $thumb_2X                         = bfi_thumb($results[ 0 ], $params);
-          $this->data[ 'image' ][ 'image' ] = str_replace('/>', 'data-at2x="' . $thumb_2X . '" />', $this->data[ 'image' ][ 'image' ]);
-        }
-        $image                              = get_post($thumb_id);
-        $this->data[ 'image' ][ 'caption' ] = $image->post_excerpt;
-
-
+      ));
+      $this->data[ 'image' ][ 'original' ] = wp_get_attachment_image_src($thumb_id, 'full');
+      preg_match("/(?<=src\\=\")(.)*(?=\" )/uiUs", $this->data[ 'image' ][ 'image' ], $results);
+      if (isset($results[ 0 ]) && !empty($this->section[ '_panels_settings_use-retina-images' ])) {
+        $params = array('width' => ($width * 2), 'height' => ($height * 2));
+        // We need the crop to be identical. :/ So how about we just double the size of the image! I'm sure I Saw somewhere that works still.
+        $thumb_2X                         = bfi_thumb($results[ 0 ], $params);
+        $this->data[ 'image' ][ 'image' ] = str_replace('/>', 'data-at2x="' . $thumb_2X . '" />', $this->data[ 'image' ][ 'image' ]);
       }
+      $image                              = get_post($thumb_id);
+      $this->data[ 'image' ][ 'caption' ] = $image->post_excerpt;
+
+
     }
 
     public function get_video(&$post)
@@ -228,16 +251,12 @@
     public function get_content(&$post)
     {
       /** CONTENT */
-      if ($this->toshow[ 'content' ][ 'show' ]) {
-        $this->data[ 'content' ] = apply_filters('the_content', get_the_content());
-      }
+      $this->data[ 'content' ] = apply_filters('the_content', get_the_content());
     }
 
     public function get_excerpt(&$post)
     {
-      if ($this->toshow[ 'excerpt' ][ 'show' ]) {
-        $this->data[ 'excerpt' ] = apply_filters('the_excerpt', get_the_excerpt());
-      }
+      $this->data[ 'excerpt' ] = apply_filters('the_excerpt', get_the_excerpt());
     }
 
     public function get_bgimage(&$post)
@@ -283,7 +302,8 @@
     public function get_custom(&$post)
     {
       /** CUSTOM FIELDS **/
-      $cfcount = $this->section[ '_panels_design_custom-fields-count' ];
+      $postmeta = get_post_meta(get_the_ID());
+      $cfcount  = $this->section[ '_panels_design_custom-fields-count' ];
       for ($i = 1; $i <= $cfcount; $i++) {
         // var_dump($this->section);
         // the settings come from section
@@ -559,11 +579,11 @@
     public function render_custom($component, $content_type, $panel_def, $rsid)
     {
       // Show each custom field in this group
-      if (!empty($data[ 'cfield' ])) {
+      if (!empty($this->data[ 'cfield' ])) {
         $panel_def_cfield = $panel_def[ 'cfield' ];
         $build_field      = '';
         $i                = 1;
-        foreach ($data[ 'cfield' ] as $k => $v) {
+        foreach ($this->data[ 'cfield' ] as $k => $v) {
 
           if ($v[ 'group' ] === $component && !empty($v[ 'value' ])) {
             switch ($v[ 'field-type' ]) {
@@ -670,53 +690,14 @@
       // Setup meta tags
       $panel_def = $architect->build_meta_definition($panel_def, $this->build->blueprint[ 'section' ][ ($section_no - 1) ][ 'section-panel-settings' ]);
 
-      //   var_dump(esc_html($panel_def));
-
-      $i         = 1;
-      $nav_items = array();
-
-      // Does this work for non
+      $i = 1;
 
       $section[ $section_no ]->open_section();
 
+      // For custom conetnet such as NGG or RSS, this will look quite different!
       while ($this->arc_query->have_posts()) {
 
         $this->arc_query->the_post();
-
-        // TODO: This may need to be modified for other types that dont' use post_title
-        // TODO: Make dumb so can be pluggable for other navs
-        switch ($this->build->blueprint[ '_blueprints_navigator' ]) {
-
-          case 'tabbed':
-            $nav_items[ ] = '<span class="' . $this->build->blueprint[ '_blueprints_navigator' ] . '">' . $this->arc_query->post->post_title . '</span>';
-            break;
-
-          case 'thumbs':
-
-            if ('attachment' === $this->arc_query->post->post_type) {
-
-              // TODO: Will need to change this to use the thumb dimensions set in the blueprint viasmall , medium, large
-              $thumb = wp_get_attachment_image($this->arc_query->post->ID, array(50, 50));
-
-            } else {
-
-              $thumb = get_the_post_thumbnail($this->arc_query->post->ID, array(50, 50));
-
-            }
-
-            $thumb = (empty($thumb) ? '<img src="' . PZARC_PLUGIN_APP_URL . '/shared/assets/images/missing-image.png" width="50" height="50">' : $thumb);
-
-            $nav_items[ ] = '<span class="' . $this->build->blueprint[ '_blueprints_navigator' ] . '">' . $thumb . '</span>';
-            break;
-
-          case 'bullets':
-          case 'numbers':
-          case 'buttons':
-            //No need for content on these
-            $nav_items[ ] = '';
-            break;
-
-        }
         $section[ $section_no ]->render_panel($panel_def, $i, $class, $panel_class, $this->arc_query);
 
         if ($i++ >= $this->build->blueprint[ '_blueprints_section-' . ($section_no - 1) . '-panels-per-view' ] && !empty($this->build->blueprint[ '_blueprints_section-' . ($section_no - 1) . '-panels-limited' ])) {
@@ -727,10 +708,79 @@
       }
       $section[ $section_no ]->close_section();
 
-      // Unsetting causes it to run the destruct, which closes the div!
+      // Unsetting causes it to run the destruct, which closes the div. :D
       unset($section[ $section_no ]);
 
+    }
+
+    /**
+     * get_nav_items
+     */
+    public function get_nav_items($blueprints_navigator, &$arc_query)
+    {
+
+      // We shouldn't have to pass arc_query! And we don't need to in this one, but for some unsolved reason in arc_Panel_Dummy, we do. So for consistency, doing it here too.
+      $nav_items = array();
+
+      foreach ($arc_query->posts as $the_post) {
+
+        switch ($blueprints_navigator) {
+
+          case 'tabbed':
+            $nav_items[ ] = '<span class="' . $blueprints_navigator . '">' . $the_post->post_title . '</span>';
+            break;
+
+          case 'thumbs':
+
+            if ('attachment' === $the_post->post_type) {
+
+              // TODO: Will need to change this to use the thumb dimensions set in the blueprint viasmall , medium, large
+              $thumb = wp_get_attachment_image($the_post->ID, array(self::get_thumbsize('w'),
+                                                                    self::get_thumbsize('h')));
+
+            } else {
+
+              $thumb = get_the_post_thumbnail($the_post->ID, array(self::get_thumbsize('w'), self::get_thumbsize('h')));
+
+            }
+
+            $thumb = (empty($thumb) ? '<img src="' . PZARC_PLUGIN_APP_URL . '/shared/assets/images/missing-image.png" width="' . self::get_thumbsize('w') . '" height="' . self::get_thumbsize('h') . '">' : $thumb);
+
+            $nav_items[ ] = '<span class="' . $blueprints_navigator . '">' . $thumb . '</span>';
+            break;
+
+          case 'bullets':
+          case 'numbers':
+          case 'buttons':
+            //No need for content on these
+            $nav_items[ ] = '';
+            break;
+
+        }
+
+      }
+
       return $nav_items;
+    }
+
+
+    protected function get_thumbsize($dim)
+    {
+      // $dim for later development with rectangular thumbs
+      $thumbsize = 60;
+      switch ($this->build->blueprint[ '_blueprints_navigator-sizing' ]) {
+        case 'small':
+          $thumbsize = 40;
+          break;
+        case 'medium':
+          $thumbsize = 60;
+          break;
+        case 'large':
+          $thumbsize = 80;
+          break;
+      }
+
+      return $thumbsize;
     }
 
   }

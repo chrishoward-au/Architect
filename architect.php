@@ -3,8 +3,8 @@
   /*
     Plugin Name: Architect - an all-in-one content layout framework
     Plugin URI: http://pizazzwp.com
-    Description: Go beyond the limits of the layouts in the theme you use, to easily build any content layouts for it. Build your own content layouts in grids, tabs, sliders, galleries and more with sources like posts, pages, galleries, and custom content types. Display using shorcodes, widgets, Headway blocks, WP action hooks and template tags, and WP Gallery shortcode. Change themes without needing to rebuild your layouts!
-    Version: 0.8.4.8
+    Description: Go beyond the limitations of the theme you use to easily build any content layouts for it. Build your own grids, tabs, sliders, galleries and more with sources such ass posts, pages, galleries, and custom content types. Display using shorcodes, widgets, Headway blocks, WP action hooks and template tags, and WP Gallery shortcode. Change themes without needing to rebuild your layouts!
+    Version: 0.8.5.1
     Author: Chris Howard
     Author URI: http://pizazzwp.com
     License: GNU GPL v2
@@ -12,31 +12,6 @@
     Shoutouts: Options and metabox management all done with Redux plugin
    */
 
-// What's the essential difference between E+. G+, S+ and T+? Their navigation. E+ has pagination, G+ thumbs, S+ tabs, T+ tabs.
-
-  /* Plugins to try to support
-  *
-   * WPML
-   * WooCommerce *
-   * Advanced Custom Fields *
-   * Types *
-   * NextGen
-   *
-   */
-
-  /*
-  TODO: Help info: Use shortcodes for things like galleries and slideshows - things that are stylised by you. Use template tag for displaying posts
-  TODO: Make sure it can display comments!! Though... is this necessary?
-  TODO: Make it so users can create their own panels and blueprints, but can't edit other users' unless an admin. Thus users could create their own for shortcodes!
-  TODO: Add a metabox to pages that lets you pick blueprints to prepend or postend to pages. How hard could it be? Plug into hook? Is there a pre-loop hook? loop_start, loop_end
-  TODO: Make sure urls are https/http generic
-  TODO: Allow ems and % for responsive dimensions
-  TODO: OOPS! Need a method to rereate css if it goes missing!
-  TODO: Add Snippets post type to PizazzWP Libs
-  TODO: Verify all add ins (js etc) have their licence.txt include
-  TODO: Add option to hide blueprint if it has no content. Should be able to do that with a CSS class
-
-  */
 
 
   class pzArchitect
@@ -45,7 +20,7 @@
     function __construct()
     {
 
-      define('PZARC_VERSION', '0.8.4.8');
+      define('PZARC_VERSION', '0.8.5.1');
       define('PZARC_NAME', 'pzarchitect'); // This is also same as the locale
       define('PZARC_FOLDER', '/pizazzwp-architect');
 
@@ -121,7 +96,7 @@
       require_once PZARC_PLUGIN_APP_PATH . '/shared/architect/php/content-types/gallery/class_arc_content_gallery.php';
       require_once PZARC_PLUGIN_APP_PATH . '/shared/architect/php/content-types/snippets/class_arc_content_snippets.php';
       require_once PZARC_PLUGIN_APP_PATH . '/shared/architect/php/content-types/dummy/class_arc_content_dummy.php';
-      require_once PZARC_PLUGIN_APP_PATH . '/shared/architect/php/content-types/slides/class_arc_content_slides.php';
+      require_once PZARC_PLUGIN_APP_PATH . '/shared/architect/php/content-types/slide/class_arc_content_slide.php';
       require_once PZARC_PLUGIN_APP_PATH . '/shared/architect/php/content-types/cpt/class_arc_content_cpt.php';
 
 
@@ -153,6 +128,7 @@
     {
       // TODO:	Define activation functionality here
       TGM_Plugin_Activation::get_instance()->update_dismiss();
+      // TODO: Inisitalize and save all default options
     }
 
     public function admin_initialize()
@@ -355,7 +331,7 @@
   /** Special notices */
   /* Display a notice that can be dismissed */
 
-  add_action('admin_notices', 'pzarc_admin_notice');
+//  add_action('admin_notices', 'pzarc_admin_notice');
   function pzarc_admin_notice()
   {
     if (current_user_can('install_plugins')) {
@@ -365,13 +341,13 @@
       /* Check that the user hasn't already clicked to ignore the message */
       if (!get_user_meta($user_id, 'pzarc_ignore_notice')) {
         echo '<div class="message error highlight"><p>';
-        printf(__('Apologies, but if upgrading from a version before beta v0.8.3 you will need to redo the Panels source field for each section in Blueprints. Plus, in Panels, settings for featured image and background have been merged, so you will need to check those settings too for each Panel. | <a href="%1$s">Hide Notice</a>'), '?pzarc_nag_ignore=0');
+        printf(__('. | <a href="%1$s">Hide Notice</a>'), '?pzarc_nag_ignore=0');
         echo "</p></div>";
       }
     }
   }
 
-  add_action('admin_init', 'pzarc_nag_ignore');
+ // add_action('admin_init', 'pzarc_nag_ignore');
 
   function pzarc_nag_ignore()
   {

@@ -8,7 +8,7 @@
    * Time: 10:19 PM
    */
   // Add content info to the registry
-  class arc_content_cpt  extends arc_set_data// Singleton
+  class arc_content_cpt extends arc_set_data// Singleton
   {
 
     protected function __construct()

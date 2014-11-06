@@ -1256,6 +1256,7 @@
 //  $screen = get_current_screen();
 //  if ($screen->ID != 'xx') {return;}
       $defaults = get_option('_architect');
+    //  var_Dump($defaults);
 //var_dump($defaults);
       $prefix = '_panels_styling_';
 

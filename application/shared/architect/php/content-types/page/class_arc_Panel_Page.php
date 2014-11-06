@@ -7,7 +7,7 @@
  * Time: 11:01 PM
  */
 
-class arc_Panel_Page  extends arc_Panel_Renderer{
+class arc_Panel_Page  extends arc_Panel_Generic{
 
   // Pages currently use default renderings
 

@@ -709,7 +709,7 @@
                   'title'   => __('Type', 'pzarchitect'),
                   'type'    => 'image_select',
                   'default' => 'tabbed',
-                  'hint'    => array('content' => __('Tabbed, accordion, buttons, bullets, numbers, thumbnails', 'pzarchitect')),
+                  'hint'    => array('content' => __('Tabbed, accordion, buttons, bullets, numbers, thumbnails or none', 'pzarchitect')),
                   'height'  => 75,
                   'options' => array(
                       'tabbed'  => array(
@@ -736,6 +736,10 @@
                       'thumbs'  => array(
                           'alt' => 'Thumbs',
                           'img' => PZARC_PLUGIN_APP_URL . 'shared/assets/images/metaboxes/nav-type-thumbs.png'
+                      ),
+                      'none'  => array(
+                          'alt' => 'None',
+                          'img' => PZARC_PLUGIN_APP_URL . 'shared/assets/images/metaboxes/nav-type-none.png'
                       ),
                   )
               ),
@@ -767,6 +771,7 @@
                   ),
                   'required' => array(
                       array($prefix . 'navigator', '!=', 'accordion'),
+                      array($prefix . 'navigator', '!=', 'none'),
                   )
               ),
               array(
@@ -788,6 +793,7 @@
                   ),
                   'required' => array(
                       array($prefix . 'navigator', '!=', 'accordion'),
+                      array($prefix . 'navigator', '!=', 'none'),
                       array($prefix . 'navigator', '!=', 'tabbed'),
                       array($prefix . 'navigator', '!=', 'thumbs'),
                   )
@@ -807,6 +813,7 @@
                       array($prefix . 'navigator', '!=', 'accordion'),
                       array($prefix . 'navigator', '!=', 'buttons'),
                       array($prefix . 'navigator', '!=', 'thumbs'),
+                      array($prefix . 'navigator', '!=', 'none'),
                       array($prefix . 'navigator-position', '!=', 'left'),
                       array($prefix . 'navigator-position', '!=', 'right')
                   )
@@ -820,6 +827,7 @@
                   'units'    => '%',
                   'required' => array(
                       array($prefix . 'navigator', '!=', 'accordion'),
+                      array($prefix . 'navigator', '!=', 'none'),
                       array($prefix . 'navigator-position', '!=', 'top'),
                       array($prefix . 'navigator-position', '!=', 'bottom')
                   )
@@ -847,18 +855,21 @@
                       'medium' => 'Medium',
                       'large'  => 'Large'
                   ),
+                  'required' => array(
+                      array($prefix . 'navigator', '!=', 'none'),
+                  )
               ),
               array(
                   'title'    => 'Pager',
                   'id'       => $prefix . 'navigator-pager',
                   'type'     => 'button_set',
-                  'cols'     => 6,
                   'default'  => 'hover',
                   'options'  => array(
                       'none'   => 'None',
                       'hover'  => 'Hover over panels',
-                      'inline' => 'Inline with navigator',
-                      'both'   => 'Both'
+                      /// TODO: Add inline pager to nav
+//                      'inline' => 'Inline with navigator',
+//                      'both'   => 'Both'
                   ),
                   'required' => array(
                       array($prefix . 'navigator', '!=', 'accordion'),
@@ -897,7 +908,10 @@
                   'default'  => 5,
                   'min'      => 1,
                   'max'      => 100,
-                  'subtitle' => __('Number of thumbnails to show at once in the navigator. This is also the number of thumbs skipped by by the navigator forward and back buttons', 'pzarchitect')
+                  'subtitle' => __('Number of thumbnails to show at once in the navigator. This is also the number of thumbs skipped by by the navigator forward and back buttons', 'pzarchitect'),
+                  'required' => array(
+                      array($prefix . 'navigator', '==', 'thumbs'),
+                  )
               ),
               /** TRANSITIONS */
 

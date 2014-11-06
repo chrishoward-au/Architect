@@ -23,10 +23,11 @@ jQuery( document ).ready( function ()
         var arcSlickTrans = jQuery( this ).attr( 'data-transtype' ) === 'fade';
         var arcSlickOpts = (jQuery( this ).attr( 'data-opts' ));
 
-        console.log( arcSlickOpts );
+//        console.log( arcSlickOpts );
 
         if ( null !== arcSlickID && null !== arcSlickOpts )
         {
+          console.log(arcSlickID);
             // Parse the option values
             // Nothing worked. Need a substitute character (#) for string quotes
             arcSlickOpts = arcSlickOpts.replace( /#/g, '"' );
@@ -64,7 +65,7 @@ jQuery( document ).ready( function ()
                       fade: arcSlickTrans,
                       speed: arcSlickOptsObj.tduration,
                       autoplay: (arcSlickOptsObj.tinterval > 0),
-                      autoPlaySpeed: arcSlickOptsObj.tinterval,
+                      autoplaySpeed: arcSlickOptsObj.tinterval,
                       arrows: false,
                       dots: false,
                       onBeforeChange: beforeChange,
@@ -81,11 +82,12 @@ jQuery( document ).ready( function ()
                   }
             );
             /** Use custom arrows */
-            jQuery( '.arrow-left' ).on( 'click', function ()
+            //pzarchitect use-hw-css pzarc-blueprint pzarc-blueprint_full-width nav-navigator icomoon
+            jQuery( '.pzarc-blueprint_'+arcSlickID+' .arrow-left' ).on( 'click', function ()
             {
                 arcSlick.slickPrev();
             } );
-            jQuery( '.arrow-right' ).on( 'click', function ()
+            jQuery( '.pzarc-blueprint_'+arcSlickID+' .arrow-right' ).on( 'click', function ()
             {
                 arcSlick.slickNext();
             } );
@@ -97,7 +99,7 @@ jQuery( document ).ready( function ()
             } );
 
             /** Use custom pager */
-            jQuery( '.pager.skip-left' ).on( 'click', function ()
+            jQuery( '.pzarc-blueprint_'+arcSlickID+' .pager.skip-left' ).on( 'click', function ()
             {
                 // dataindex is 1 to n, slick index is 0 to n-1
                 var currentIndex = jQuery( arcSlickNav ).find( '.active' ).attr( 'data-index' ) - 1;
@@ -106,7 +108,7 @@ jQuery( document ).ready( function ()
                 arcSlick.slickGoTo( newIndex );
             } );
 
-            jQuery( '.pager.skip-right' ).on( 'click', function ()
+            jQuery( '.pzarc-blueprint_'+arcSlickID+' .pager.skip-right' ).on( 'click', function ()
             {
                 // dataindex is 1 to n, slick index is 0 to n-1
                 var currentIndex = jQuery( arcSlickNav ).find( '.active' ).attr( 'data-index' ) - 1;
