@@ -135,7 +135,15 @@
      *
      */
     public function get_custom_query() {
-      return new WP_Query($this->query_options);
+// Get any existing copy of our transient data
+      if ( false === ( $custom_query = get_transient( 'pzarc_custom_query_'.$this->build->blueprint['_blueprints_short-name'] ) ) ) {
+        // It wasn't there, so regenerate the data and save the transient
+        $custom_query = new WP_Query($this->query_options);
+
+        set_transient( 'pzarc_custom_query_'.$this->build->blueprint['_blueprints_short-name'], $custom_query, PZARC_TRANSIENTS_KEEP );
+      }
+
+      return $custom_query;
     }
 
     protected function content_filters($source,$overrides) {

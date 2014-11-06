@@ -101,6 +101,9 @@ This is BETA software. So there are many besides these ones!
 
 == Changelog ==
 
+= 0.8.5.2 =
+* CHANGED: Using transients to improve performance
+
 = 0.8.5.1 =
 * ADDED: Option to have no navigator showing when Navigator is navigation type.
 * FIXED: Navigator interval being ignored

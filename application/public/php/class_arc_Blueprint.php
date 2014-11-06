@@ -60,8 +60,13 @@
           'meta_compare' => '='
       );
       global $_architect;
+      // Get any existing copy of our transient data
+      if ( false === ( $blueprint_query = get_transient( 'pzarc_blueprint_query_'.$this->name ) ) ) {
+        // It wasn't there, so regenerate the data and save the transient
+        $blueprint_query = new WP_Query($meta_query_args);
+        set_transient( 'pzarc_blueprint_query_'.$this->name, $blueprint_query, PZARC_TRANSIENTS_KEEP );
+      }
 
-      $blueprint_query = new WP_Query($meta_query_args);
 
       if (!isset($blueprint_query->posts[ 0 ]->ID)) {
 
