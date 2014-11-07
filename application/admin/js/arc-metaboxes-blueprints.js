@@ -2,7 +2,12 @@ jQuery( document ).ready( function ()
 {
   "use strict";
 
+  /**
+   * Set validation. Once Redux gets it working, can remove this.
+   */
 
+  jQuery("input#_blueprints_short-name" ).attr("required","required");
+  jQuery("input#_blueprints_short-name" ).attr("pattern",  "[a-zA-Z0-9\-\_]+");
   /********************************************************************************************
    //
    // Control the visibility of the tabs for CONTENT TYPES in Blueprints metaboxes
@@ -159,32 +164,6 @@ jQuery( document ).ready( function ()
   } );
 
 
-  // Show hide navigator tabs
-
-
-  // var $container = jQuery('#pzarc-sections-preview.pzarc-section-1');
-  // var $cell = jQuery('.pzarc-section-cell')
-  // // initialize Isotope
-  // $container.isotope({
-  // // options...
-  // resizable: false, // disable normal resizing
-  // // set columnWidth to a percentage of container width
-  // itemClass: 'pzarc-section-cell',
-  // masonry: { columnWidth: $container.width()/3, gutterWidth:20 }
-  // });
-
-  // // update columnWidth on window resize
-  // jQuery(window).smartresize(function(){
-  // $container.isotope({
-  // itemClass: 'pzarc-section-cell',
-  // // update columnWidth to a percentage of container width
-  // masonry: { columnWidth: $container.width()/3, gutterWidth:20 }
-  // });
-  // });
-
-//_pzarc_section-group-_pzarc_blueprint-cells-per-view-cmb-group-0-cmb-field-0
-//_pzarc_section-group-_pzarc_blueprint-cells-per-view-cmb-group-1-cmb-field-0
-
 
   jQuery( 'fieldset#_architect-_blueprints_navigation input' ).on( 'change', function () {pzarc_show_navtype( this );} );
 
@@ -196,28 +175,7 @@ jQuery( document ).ready( function ()
     if ( navtype === "none" )
     {return;}
     jQuery( "#pzarc-navigator-preview .pzarc-section-" + navtype ).toggle( jQuery( t ).checked );
-//  //console.log(navtype);
-//  switch ( navtype) {
-//    case 'none':
-//      jQuery('.item-blueprint-pagination').hide();
-//      jQuery('.item-blueprint-navigator').hide();
-//      jQuery('.item-blueprint-section-1').trigger('click');
-//      break;
-//    case 'pagination':
-//      jQuery('.item-blueprint-pagination').fadeIn();
-//      jQuery('.item-blueprint-navigator').hide();
-//      jQuery('.item-blueprint-pagination').trigger('click');
-//
-//      break;
-//    case 'navigator':
-//      jQuery('.item-blueprint-pagination').hide();
-//      jQuery('.item-blueprint-navigator').fadeIn();
-//      jQuery('.item-blueprint-navigator').trigger('click');
-//      break;
-//  }
   }
-
-//fieldset#_architect-_blueprints_sections-preview
 
   /**
    *
@@ -267,12 +225,12 @@ jQuery( document ).ready( function ()
 //        }
 
     // This updates the shortname help text the explains how to use the shortcode
-    jQuery( 'input#_blueprints_short-name-text' ).change( function ()
+    jQuery( 'input#_blueprints_short-name' ).change( function ()
     {
       pzarc_update_usage_info( this );
     } );
 
-    pzarc_update_usage_info( jQuery( 'input#_blueprints_short-name-text' ) );
+    pzarc_update_usage_info( jQuery( 'input#_blueprints_short-name' ) );
 
     pzarc_show_navtype();
   }

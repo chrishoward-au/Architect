@@ -222,6 +222,7 @@
             array(
                 'id'       => '_panels_settings_short-name',
                 'title'    => __('Short name', 'pzarchitect') . '<span class="pzarc-required el-icon-star" title="Required"></span>',
+                'subtitle'=> __('Letters, numbers, dashes only','pzarchitect'),
                 'hint'     => array('content' => __('A short name for this panel layout to identify it.', 'pzarchitect')),
                 'type'     => 'text',
                 'validate' => 'not_empty'
