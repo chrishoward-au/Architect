@@ -103,6 +103,7 @@ This is BETA software. So there are many besides these ones!
 
 = 0.8.5.5 =
 * CHANGED: Improved js on blueprints admin
+* ADDED: Vertical navigator
 
 = 0.8.5.4 =
 * FIXED: Nav arrows disappearing in slider
