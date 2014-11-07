@@ -759,14 +759,14 @@
                           'img' => PZARC_PLUGIN_APP_URL . 'shared/assets/images/metaboxes/nav-pos-top.png'
                       ),
                       //TODO: beta 2
-                      //                  'left'   => array(
-                      //                      'alt' => 'Left',
-                      //                      'img' => PZARC_PLUGIN_APP_URL . 'shared/assets/images/metaboxes/nav-pos-left.png'
-                      //                  ),
-                      //                  'right'  => array(
-                      //                      'alt' => 'Right',
-                      //                      'img' => PZARC_PLUGIN_APP_URL . 'shared/assets/images/metaboxes/nav-pos-right.png'
-                      //                  ),
+                                        'left'   => array(
+                                            'alt' => 'Left',
+                                            'img' => PZARC_PLUGIN_APP_URL . 'shared/assets/images/metaboxes/nav-pos-left.png'
+                                        ),
+                                        'right'  => array(
+                                            'alt' => 'Right',
+                                            'img' => PZARC_PLUGIN_APP_URL . 'shared/assets/images/metaboxes/nav-pos-right.png'
+                                        ),
                   ),
                   'required' => array(
                       array($prefix . 'navigator', '!=', 'accordion'),

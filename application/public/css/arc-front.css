@@ -350,9 +350,9 @@
     .pzarchitect .nav-navigator button.pager:focus {
       outline: none; }
     .pzarchitect .nav-navigator button.pager.arrow-left {
-      left: 5px; }
+      left: 1%; }
     .pzarchitect .nav-navigator button.pager.arrow-right {
-      right: 5px; }
+      right: 1%; }
   .pzarchitect .nav-navigator:hover .arrow-right,
   .pzarchitect .nav-navigator:hover .arrow-left {
     display: block; }
