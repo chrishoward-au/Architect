@@ -60,8 +60,13 @@
           'meta_compare' => '='
       );
       global $_architect;
+      // Get any existing copy of our transient data
+      if ( false === ( $blueprint_query = get_transient( 'pzarc_blueprint_query_'.$this->name ) ) ) {
+        // It wasn't there, so regenerate the data and save the transient
+        $blueprint_query = new WP_Query($meta_query_args);
+        set_transient( 'pzarc_blueprint_query_'.$this->name, $blueprint_query, PZARC_TRANSIENTS_KEEP );
+      }
 
-      $blueprint_query = new WP_Query($meta_query_args);
 
       if (!isset($blueprint_query->posts[ 0 ]->ID)) {
 
@@ -92,7 +97,8 @@
 
       }
 
-      /** Add panel settings for Section 1 */
+      /** Add panel settings for Section 1
+      *************************************/
       $panel_id   = pzarc_convert_name_to_id($this->blueprint[ '_blueprints_section-0-panel-layout' ]);
       $panel[ 0 ] = get_post_meta($panel_id);
 
@@ -123,20 +129,25 @@
 
       }
 
-      /** Add panel settings for Section 2 */
-      $panel_id   = pzarc_convert_name_to_id($this->blueprint[ '_blueprints_section-1-panel-layout' ]);
-      $panel[ 0 ] = get_post_meta($panel_id);
+      /** Add panel settings for Section 2
+      *************************************/
+      if(!empty($this->blueprint[ '_blueprints_section-1-panel-layout' ])) {
+        $panel_id   = pzarc_convert_name_to_id($this->blueprint[ '_blueprints_section-1-panel-layout' ]);
+        $panel[ 0 ] = get_post_meta($panel_id);
 
-      $panel[ 2 ] = !$panel[ 0 ] ? array() : pzarc_flatten_wpinfo($panel[ 0 ]);
+        $panel[ 2 ] = !$panel[ 0 ] ? array() : pzarc_flatten_wpinfo($panel[ 0 ]);
 
-      if (!empty($panel[ 0 ])) {
-        foreach ($_architect[ 'defaults' ][ '_panels' ] as $key => $value) {
+        if (!empty($panel[ 0 ])) {
+          foreach ($_architect[ 'defaults' ][ '_panels' ] as $key => $value) {
 
-          if (strpos($key, '_panel') === 0 && !isset($panel[ 2 ][ $key ])) {
-            $panel[ 2 ][ $key ] = maybe_unserialize($value);
-          };
+            if (strpos($key, '_panel') === 0 && !isset($panel[ 2 ][ $key ])) {
+              $panel[ 2 ][ $key ] = maybe_unserialize($value);
+            };
 
+          }
         }
+      } else {
+        $panel[2] = '';
       }
       $this->blueprint[ 'section' ][ 1 ]
           = array(
@@ -147,7 +158,9 @@
 
       );
 
-      /** Add panel settings for Section 3 */
+      /** Add panel settings for Section 3
+       *************************************/
+      if ($this->blueprint[ '_blueprints_section-2-panel-layout' ]) {
       $panel_id   = pzarc_convert_name_to_id($this->blueprint[ '_blueprints_section-2-panel-layout' ]);
       $panel[ 0 ] = get_post_meta($panel_id);
 
@@ -161,6 +174,9 @@
           };
 
         }
+      }
+      } else {
+        $panel[3] = '';
       }
       $this->blueprint[ 'section' ][ 2 ]
           = array(

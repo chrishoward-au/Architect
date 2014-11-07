@@ -147,7 +147,11 @@
     public function get_title(&$post)
     {
       /** TITLE */
-      $this->data[ 'title' ][ 'title' ] = get_the_title();
+      if ('navigator' === $this->build->blueprint[ '_blueprints_navigation' ] && class_exists('HeadwayLayoutOption') && (true == ($alt_title = HeadwayLayoutOption::get($post->ID, 'alternate-title', false, true)))) {
+        $this->data[ 'title' ][ 'title' ] = $alt_title;
+      } else {
+        $this->data[ 'title' ][ 'title' ] = get_the_title();
+      }
       if ('thumb' === $this->section[ '_panels_design_title-prefix' ]) {
         $thumb_id    = get_post_thumbnail_id();
         $focal_point = get_post_meta($thumb_id, 'pzgp_focal_point', true);
@@ -727,7 +731,13 @@
         switch ($blueprints_navigator) {
 
           case 'tabbed':
-            $nav_items[ ] = '<span class="' . $blueprints_navigator . '">' . $the_post->post_title . '</span>';
+            if (class_exists('HeadwayLayoutOption') && (true == ($alt_title = HeadwayLayoutOption::get($the_post->ID, 'alternate-title', false, true)))) {
+              $post_title = $alt_title;
+            } else {
+              $post_title = $the_post->post_title;
+            }
+
+            $nav_items[ ] = '<span class="' . $blueprints_navigator . '">' . $post_title . '</span>';
             break;
 
           case 'thumbs':

@@ -4,11 +4,9 @@
    * User: chrishoward
    * Date: 13/08/13
    * Time: 8:32 PM
-   * To change this blueprint use File | Settings | File Blueprints.
    */
 
 
-  // TODO: Move these til needed
 
 
   // How do we do this only on pages needing it?

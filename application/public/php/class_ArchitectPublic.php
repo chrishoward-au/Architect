@@ -424,7 +424,7 @@
         $slider[ 'dataopts' ] = 'data-opts="{#tduration#:' . $duration . ',#tinterval#:' . $interval . ',#tshow#:' . $skip_thumbs . ',#tskip#:' . $skip_thumbs . '}"';
 
         if ('hover' === $this->build->blueprint[ '_blueprints_navigator-pager' ] && 'navigator' === $bp_nav_type) {
-          $return_val .= '<button type="button" class="pager arrow-left icon-arrow-left4"></button>';
+          $return_val .= '<button type="button" class="pager arrow-left icon-arrow-left4 hide"></button>';
           $return_val .= '<button type="button" class="pager arrow-right icon-uniE60D"></button>';
         }
 //          //TODO: Should the bp name be in the class or ID?

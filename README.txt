@@ -4,7 +4,7 @@ Tags: content,display,posts,pages,gallery,slider
 Donate link: http://
 Requires at least: 3.5.0
 Tested up to: 4.0.0
-Stable tag: 0.8.5.1
+Stable tag: 0.8.5.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -100,6 +100,19 @@ This is BETA software. So there are many besides these ones!
 3. Output of various Architect Blueprints
 
 == Changelog ==
+
+= 0.8.5.5 =
+* CHANGED: Improved js on blueprints admin
+
+= 0.8.5.4 =
+* FIXED: Nav arrows disappearing in slider
+* CHANGED: Sliders will use Headway Alternate Title if available
+
+= 0.8.5.3 =
+* CHANGED: Custom fields show some hidden fields, such as those in Woo Commerce
+
+= 0.8.5.2 =
+* CHANGED: Using transients to improve performance
 
 = 0.8.5.1 =
 * ADDED: Option to have no navigator showing when Navigator is navigation type.
