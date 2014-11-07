@@ -356,6 +356,9 @@
   .pzarchitect .nav-navigator:hover .arrow-right,
   .pzarchitect .nav-navigator:hover .arrow-left {
     display: block; }
+    .pzarchitect .nav-navigator:hover .arrow-right.hide,
+    .pzarchitect .nav-navigator:hover .arrow-left.hide {
+      display: none; }
   .pzarchitect .arc-slider-nav {
     width: 100%;
     position: relative; }

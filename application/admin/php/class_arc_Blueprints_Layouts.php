@@ -324,11 +324,38 @@
       $sections[ ]        = array(
           'fields' => array(
               array(
+                  'id'       => $prefix . 'short-name',
+                  'title'    => __('Blueprint Short Name', 'pzarchitect') . '<span class="pzarc-required el-icon-star" title="Required"></span>',
+                  'type'     => 'text_alphanum',
+                  'subtitle' => __('Alphanumeric only. ', 'pzarchitect') . '<br>' . __('Use the shortcode <strong class="pzarc-usage-info">[architect "<span class="pzarc-shortname"></span>"]</strong> <br>or the template tag <strong class="pzarc-usage-info">pzarchitect(\'<span class="pzarc-shortname"></span>\');</strong>', 'pzarchitect'),
+                  //TODO: Write acomprehensive little help dialog here
+                  'validate' => 'not_empty'
+              ),
+              array(
                   'id'    => $prefix . 'description',
                   'title' => __('Description', 'pzarchitect'),
                   'type'  => 'textarea',
                   'rows'  => 2,
                   'hint'  => __('A short description to help you or others know what this Blueprint is for', 'pzarchitect'),
+              ),
+              array(
+                  'id'       => $prefix . 'blueprint-width',
+                  'type'     => 'dimensions',
+                  //               'mode'    => array('width' => true, 'height' => false),
+                  'units'    => array('%', 'px'),
+                  'width'    => true,
+                  'height'   => false,
+                  'title'    => __('Blueprint max width', 'pzarchitect'),
+                  'default'  => array('width' => '100', 'units' => '%'),
+                  'subtitle' => 'Set a max width to stop spillage when the container is larger than you want the Blueprint to be.'
+              ),
+              array(
+                  'title'   => 'Page title',
+                  'id'      => $prefix . 'page-title',
+                  'type'    => 'switch',
+                  'on'      => 'Yes',
+                  'off'     => 'No',
+                  'default' => false
               ),
               array(
                   'title'    => 'Navigation',
@@ -367,7 +394,7 @@
       );
       $metaboxes[ ] = array(
           'id'         => $prefix . 'layout-general-settings',
-          'title'      => 'Options',
+          'title'      => 'General Settings',
           'post_types' => array('arc-blueprints'),
           'sections'   => $sections,
           'position'   => 'side',
@@ -442,48 +469,20 @@
       }
 
 
-      $sections[ ] = array(
-          'title'      => __('General settings', 'pzarchitect'),
-          'show_title' => true,
-          'icon_class' => 'icon-large',
-          'icon'       => 'el-icon-adjust-alt',
-          'fields'     => array(
-              array(
-                  'id'       => $prefix . 'short-name',
-                  'title'    => __('Blueprint Short Name', 'pzarchitect') . '<span class="pzarc-required el-icon-star" title="Required"></span>',
-                  'type'     => 'text',
-                  'width'    => 'auto',
-                  'subtitle' => __('Alphanumeric only. ', 'pzarchitect') . '<br>' . __('Use the shortcode <strong class="pzarc-usage-info">[architect "<span class="pzarc-shortname"></span>"]</strong> <br>or the template tag <strong class="pzarc-usage-info">pzarchitect(\'<span class="pzarc-shortname"></span>\');</strong>', 'pzarchitect'),
-                  //TODO: Write acomprehensive little help dialog here
-                  'validate' => 'not_empty'
-              ),
-              array(
-                  'id'       => $prefix . 'blueprint-width',
-                  'type'     => 'dimensions',
-                  //               'mode'    => array('width' => true, 'height' => false),
-                  'units'    => array('%', 'px'),
-                  'width'    => true,
-                  'height'   => false,
-                  'title'    => __('Blueprint max width', 'pzarchitect'),
-                  'default'  => array('width' => '100', 'units' => '%'),
-                  'subtitle' => 'Set a max width to stop spillage when the container is larger than you want the Blueprint to be.'
-              ),
-              array(
-                  'title'   => 'Page title',
-                  'id'      => $prefix . 'page-title',
-                  'type'    => 'switch',
-                  'on'      => 'Yes',
-                  'off'     => 'No',
-                  'default' => false
-              ),
-          )
-      );
+//      $sections[ ] = array(
+//          'title'      => __('General settings', 'pzarchitect'),
+//          'show_title' => true,
+//          'icon_class' => 'icon-large',
+//          'icon'       => 'el-icon-adjust-alt',
+//          'fields'     => array(
+//          )
+//      );
 
 
       /** SECTIONS */
       $icons = array(0 => 'el-icon-align-left', 1 => 'el-icon-th', 2 => 'el-icon-th-list');
       for ($i = 0; $i < 3; $i++) {
-        $sections[ ] = array(
+        $sections['_section'.($i+1) ] = array(
             'title'      => __('Section ' . ($i + 1), 'pzarchitect'),
             'show_title' => true,
             'icon_class' => 'icon-large',
@@ -625,7 +624,7 @@
       }
 
       /** PAGINATION  */
-      $sections[ ] = array(
+      $sections['_pagination' ] = array(
           'title'      => __('Pagination', 'pzarchitect'),
           'show_title' => true,
           'icon_class' => 'icon-large',
@@ -696,7 +695,7 @@
       );
 
       /** NAVIGATOR  */
-      $sections[ ] = array(
+      $sections['_navigator' ] = array(
           'title'      => __('Navigator', 'pzarchitect'),
           'show_title' => true,
           'icon_class' => 'icon-large',
@@ -991,7 +990,7 @@
 //        )
 //    );
 
-      $sections[ ] = array(
+      $sections['_usingbp' ] = array(
           'title'      => 'Using Blueprints',
           'icon_class' => 'icon-large',
           'icon'       => 'el-icon-info-sign',
@@ -1007,7 +1006,7 @@
                   'pzarchitect')
           )
       );
-      $sections[ ] = array(
+      $sections['_help' ] = array(
           'title'      => 'Help',
           'icon_class' => 'icon-large',
           'icon'       => 'el-icon-question-sign',
@@ -1165,7 +1164,7 @@
       }
 
       $prefix      = '_content_help_';
-      $sections[ ] = array(
+      $sections['_content_help' ] = array(
           'title'      => 'Help',
           'icon_class' => 'icon-large',
           'icon'       => 'el-icon-question-sign',
@@ -1221,22 +1220,22 @@ You can use them however you like though.
         $sections  = array();
         $optprefix = 'architect_config_';
 
-        $xsections[ ] = array(
-            'title'      => 'Styling',
-            'show_title' => false,
-            'icon_class' => 'icon-large',
-            'icon'       => 'el-icon-info-sign',
-            'fields'     => array(
-                array(
-                    'title'    => __('Styling Blueprints', 'pzarchitect'),
-                    'id'       => $prefix . 'styling-blueprints',
-                    'type'     => 'info',
-                    'subtitle' => __('To style blueprints...', 'pzarchitect'),
-                    //                'hint'  => array('content' => __('This is can be any CSS you\'d like to add to a page this blueprint is displayed on. It will ONLY load on the pages this blueprint is shown on, so will only impact those pages. However, if you have multiple blueprints on a page, this CSS could affect or be overriden by ther blueprints\' custom CSS.', 'pzarchitect')),
-                )
-
-            )
-        );
+//        $xsections[ ] = array(
+//            'title'      => 'Styling',
+//            'show_title' => false,
+//            'icon_class' => 'icon-large',
+//            'icon'       => 'el-icon-info-sign',
+//            'fields'     => array(
+//                array(
+//                    'title'    => __('Styling Blueprints', 'pzarchitect'),
+//                    'id'       => $prefix . 'styling-blueprints',
+//                    'type'     => 'info',
+//                    'subtitle' => __('To style blueprints...', 'pzarchitect'),
+//                    //                'hint'  => array('content' => __('This is can be any CSS you\'d like to add to a page this blueprint is displayed on. It will ONLY load on the pages this blueprint is shown on, so will only impact those pages. However, if you have multiple blueprints on a page, this CSS could affect or be overriden by ther blueprints\' custom CSS.', 'pzarchitect')),
+//                )
+//
+//            )
+//        );
 
 
         $sections[ ] = array(

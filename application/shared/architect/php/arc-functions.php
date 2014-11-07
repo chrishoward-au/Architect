@@ -462,9 +462,14 @@
 
     //Get custom fields
     // This is only able to get custom fields that have been used! ugh!
-    $pzep_cf_list = $wpdb->get_results(
-        "SELECT DISTINCT meta_key FROM $wpdb->postmeta HAVING (meta_key NOT LIKE '\_%' AND meta_key NOT LIKE 'pz%' AND meta_key NOT LIKE 'field_%') ORDER BY meta_key"
-    );
+//    if ( false === ( $pzep_cf_list = get_transient( 'pzarc_custom_fields' ) ) ) {
+      // It wasn't there, so regenerate the data and save the transient
+      $pzep_cf_list = $wpdb->get_results(
+          "SELECT DISTINCT meta_key FROM $wpdb->postmeta HAVING (meta_key NOT LIKE '\_blueprints%' AND meta_key NOT LIKE '_panels%' AND meta_key NOT LIKE '_hw%'  AND meta_key NOT LIKE '_wp_%' AND meta_key NOT LIKE '_format%' AND meta_key NOT LIKE '_edit%' AND meta_key NOT LIKE '_content%' AND meta_key NOT LIKE '_attachment%' AND meta_key NOT LIKE '_menu%' AND meta_key NOT LIKE '_oembed%' AND meta_key NOT LIKE '_publicize%' AND meta_key NOT LIKE '_thumbnail%' AND meta_key NOT LIKE 'pz%' AND meta_key NOT LIKE 'field_%') ORDER BY meta_key"
+      );
+  //    set_transient( 'pzarc_custom_fields', $pzep_cf_list, 0*PZARC_TRANSIENTS_KEEP );
+   // }
+
 //    $pzep_cf_list = $wpdb->get_results(
 //        "SELECT meta_key,post_id,wp_posts.post_type FROM wp_postmeta,wp_posts GROUP BY meta_key HAVING ((meta_key NOT LIKE '\_%' AND meta_key NOT LIKE 'pz%' AND meta_key NOT LIKE 'enclosure%') AND (wp_posts.post_type NOT LIKE 'attachment' AND wp_posts.post_type NOT LIKE 'revision' AND wp_posts.post_type NOT LIKE 'acf' AND wp_posts.post_type NOT LIKE 'arc-%' AND wp_posts.post_type NOT LIKE 'nav_menu_item' AND wp_posts.post_type NOT LIKE 'wp-types%')) ORDER BY meta_key"
 //    );
@@ -597,7 +602,13 @@
   function pzarc_convert_name_to_id($post_name)
   {
     global $wpdb;
-    $post_id = $wpdb->get_var("SELECT ID FROM $wpdb->posts WHERE post_name = '" . $post_name . "'");
+    // Get any existing copy of our transient data
+    if ( false === ( $post_id = get_transient( 'pzarc_post_name_to_id_'.$post_name ) ) ) {
+      // It wasn't there, so regenerate the data and save the transient
+      $post_id = $wpdb->get_var("SELECT ID FROM $wpdb->posts WHERE post_name = '" . $post_name . "'");
+      set_transient( 'pzarc_post_name_to_id_'.$post_name, $post_id, PZARC_TRANSIENTS_KEEP );
+    }
+
 
     return $post_id;
   }
