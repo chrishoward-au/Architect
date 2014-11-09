@@ -51,7 +51,30 @@
 
     }
 
-    $pzarc_contents .= 'body.pzarchitect .pzarc-blueprint_'.$pzarc_blueprints[ '_blueprints_short-name' ].' {max-width:'.$pzarc_blueprints['_blueprints_blueprint-width']['width'].';margin-left:auto;margin-right:auto}'.$nl;
+    $pzarc_contents .= 'body.pzarchitect .pzarc-blueprint_' . $pzarc_blueprints[ '_blueprints_short-name' ] . ' {max-width:' . $pzarc_blueprints[ '_blueprints_blueprint-width' ][ 'width' ] . ';margin-left:auto;margin-right:auto}' . $nl;
+
+    /** Vertical nav styling  */
+    $pzarc_vert_width = str_replace('%', '', $pzarc_blueprints[ '_blueprints_navigator-vertical-width' ][ 'width' ]);
+
+    if ('navigator' === $pzarc_blueprints[ '_blueprints_navigation' ] && 'none' !== $pzarc_blueprints[ '_blueprints_navigator' ]) {
+
+      if ('left' === $pzarc_blueprints[ '_blueprints_navigator-position' ]) {
+
+        $pzarc_contents .= '
+       .pzarchitect.pzarc-blueprint_' . $pzarc_blueprints[ '_blueprints_short-name' ] . ' .pzarc-navigator{width: ' . $pzarc_vert_width . '%;float:left;}
+       .pzarc-sections_' . $pzarc_blueprints[ '_blueprints_short-name' ] . '{float:right; width:' . (100 - $pzarc_vert_width) . '%; }
+       .pzarchitect.pzarc-blueprint_' . $pzarc_blueprints[ '_blueprints_short-name' ] . '.nav-navigator button.pager.arrow-left {left:' . ($pzarc_vert_width + 1) . '%;}
+      ';
+      }
+      if ('right' === $pzarc_blueprints[ '_blueprints_navigator-position' ]) {
+
+        $pzarc_contents .= '
+       .pzarchitect.pzarc-blueprint_' . $pzarc_blueprints[ '_blueprints_short-name' ] . ' .pzarc-navigator{width: ' . $pzarc_vert_width . '%;float:right;}
+       .pzarc-sections_' . $pzarc_blueprints[ '_blueprints_short-name' ] . '{float:left; width:' . (100 - $pzarc_vert_width) . '%; }
+       .pzarchitect.pzarc-blueprint_' . $pzarc_blueprints[ '_blueprints_short-name' ] . '.nav-navigator button.pager.arrow-right {right:' . ($pzarc_vert_width + 1) . '%;}
+      ';
+      }
+    }
 
     return $pzarc_contents;
   }
@@ -68,19 +91,21 @@
    */
   function pzarc_process_bp_sections(&$pzarc_blueprints, $i, $nl, &$_architect_options)
   {
-    if (empty($pzarc_blueprints[ '_blueprints_section-' . $i . '-panel-layout' ])) {return array(null,null);}
-    $panel_id         =pzarc_convert_name_to_id($pzarc_blueprints[ '_blueprints_section-' . $i . '-panel-layout' ]);
+    if (empty($pzarc_blueprints[ '_blueprints_section-' . $i . '-panel-layout' ])) {
+      return array(null, null);
+    }
+    $panel_id = pzarc_convert_name_to_id($pzarc_blueprints[ '_blueprints_section-' . $i . '-panel-layout' ]);
 
     $pzarc_panels     = get_post_meta($panel_id);
-    $sections_class          = 'body.pzarchitect .pzarc-blueprint_' . $pzarc_blueprints[ '_blueprints_short-name' ] . ' .pzarc-section_' . ($i + 1) ;
-    $panels_class          = $sections_class.'.pzarc-section-using-panel_' . $pzarc_panels[ '_panels_settings_short-name' ][ 0 ] . ' .pzarc-panel';
+    $sections_class   = 'body.pzarchitect .pzarc-blueprint_' . $pzarc_blueprints[ '_blueprints_short-name' ] . ' .pzarc-section_' . ($i + 1);
+    $panels_class     = $sections_class . '.pzarc-section-using-panel_' . $pzarc_panels[ '_panels_settings_short-name' ][ 0 ] . ' .pzarc-panel';
     $pzarc_import_css = '';
     $pzarc_mediaq_css = '';
-    $pzarc_css = '';
+    $pzarc_css        = '';
     if (!empty($pzarc_blueprints[ '_blueprints_section-' . $i . '-panel-layout' ])) {
       // var_dump($pzarc_blueprints[ '_blueprints_section-' . $i . '-panel-layout' ]);
       $pzarc_import_css .= '@import url("' . PZARC_CACHE_URL . '/pzarc-panels-layout-' . $pzarc_panels[ '_panels_settings_short-name' ][ 0 ] . '.css");' . $nl;
-      $hmargin = str_replace('%','',$pzarc_blueprints[ '_blueprints_section-' . $i . '-panels-margins' ][ 'margin-right' ]);
+      $hmargin = str_replace('%', '', $pzarc_blueprints[ '_blueprints_section-' . $i . '-panels-margins' ][ 'margin-right' ]);
 
       $em_width[ 1 ] = (str_replace('px', '', $_architect_options[ 'architect_breakpoint_1' ][ 'width' ]) / 16);
       $em_width[ 2 ] = (str_replace('px', '', $_architect_options[ 'architect_breakpoint_2' ][ 'width' ]) / 16);
@@ -94,10 +119,10 @@
       if ('basic' === $pzarc_blueprints[ '_blueprints_section-' . $i . '-layout-mode' ]) {
         $pzarc_mediaq_css .= $panels_class . ':nth-child(n) {margin-right: ' . ($hmargin) . '%;}';
         $pzarc_mediaq_css .= $panels_class . ':nth-child(' . $columns . 'n) {margin-right: 0;}';
-      } elseif ('masonry'=== $pzarc_blueprints[ '_blueprints_section-' . $i . '-layout-mode' ]){
-        $pzarc_mediaq_css .= str_replace('.pzarc-panel','', $panels_class.' .gutter-sizer{width: ' . ($hmargin) . '%;}');
-        $column_width = (100-($hmargin*($columns-1)))/$columns;
-        $pzarc_mediaq_css .= str_replace('.pzarc-panel','', $panels_class . ' .grid-sizer { width:' . $column_width . '%;}');
+      } elseif ('masonry' === $pzarc_blueprints[ '_blueprints_section-' . $i . '-layout-mode' ]) {
+        $pzarc_mediaq_css .= str_replace('.pzarc-panel', '', $panels_class . ' .gutter-sizer{width: ' . ($hmargin) . '%;}');
+        $column_width = (100 - ($hmargin * ($columns - 1))) / $columns;
+        $pzarc_mediaq_css .= str_replace('.pzarc-panel', '', $panels_class . ' .grid-sizer { width:' . $column_width . '%;}');
       }
       //              $pzarc_contents_css .= $classes . ' {width:' . (((100 - ($hmargin * ($columns - 1))) / $columns)) . '%;margin-bottom:' . $pzarc_blueprints[ '_blueprints_section-' . $i . '-panels-margins']['margin-bottom'] . '%;}';
       $pzarc_mediaq_css .= '}' . $nl;
@@ -112,13 +137,13 @@
       if ('basic' === $pzarc_blueprints[ '_blueprints_section-' . $i . '-layout-mode' ]) {
         $pzarc_mediaq_css .= $panels_class . ':nth-child(n) {margin-right: ' . ($hmargin) . '%;}';
         $pzarc_mediaq_css .= $panels_class . ':nth-child(' . $columns . 'n) {margin-right: 0;}';
-      } elseif ('masonry'=== $pzarc_blueprints[ '_blueprints_section-' . $i . '-layout-mode' ]){
-        $pzarc_mediaq_css .= str_replace('.pzarc-panel','', $panels_class.' .gutter-sizer {width: ' . ($hmargin) . '%;}');
-        $column_width = (100-($hmargin*($columns-1)))/$columns;
-        $pzarc_mediaq_css .= str_replace('.pzarc-panel','', $panels_class . ' .grid-sizer { width:' . $column_width . '%;}');
+      } elseif ('masonry' === $pzarc_blueprints[ '_blueprints_section-' . $i . '-layout-mode' ]) {
+        $pzarc_mediaq_css .= str_replace('.pzarc-panel', '', $panels_class . ' .gutter-sizer {width: ' . ($hmargin) . '%;}');
+        $column_width = (100 - ($hmargin * ($columns - 1))) / $columns;
+        $pzarc_mediaq_css .= str_replace('.pzarc-panel', '', $panels_class . ' .grid-sizer { width:' . $column_width . '%;}');
       }
 //              $pzarc_contents_css .= $classes . ' {width:' . (((100 - ($hmargin * ($columns - 1))) / $columns)) . '%;margin-bottom:' . $pzarc_blueprints[ '_blueprints_section-' . $i . '-panels-margins']['margin-bottom'] . '%;}';
-      $pzarc_mediaq_css .= $panels_class . ' .grid-sizer { width:' . ((100-($hmargin*($columns-1)))/$columns) . '%;}';
+      $pzarc_mediaq_css .= $panels_class . ' .grid-sizer { width:' . ((100 - ($hmargin * ($columns - 1))) / $columns) . '%;}';
       $pzarc_mediaq_css .= '}' . $nl;
 
 
@@ -131,30 +156,30 @@
       if ('basic' === $pzarc_blueprints[ '_blueprints_section-' . $i . '-layout-mode' ]) {
         $pzarc_mediaq_css .= $panels_class . ':nth-child(n) {margin-right: ' . ($hmargin) . '%;}';
         $pzarc_mediaq_css .= $panels_class . ':nth-child(' . $columns . 'n) {margin-right: 0;}';
-      } elseif ('masonry'=== $pzarc_blueprints[ '_blueprints_section-' . $i . '-layout-mode' ]){
-        $pzarc_mediaq_css .= str_replace('.pzarc-panel','', $panels_class.' .gutter-sizer {width: ' . ($hmargin) . '%;}');
-        $column_width = (100-($hmargin*($columns-1)))/$columns;
-        $pzarc_mediaq_css .= str_replace('.pzarc-panel','', $panels_class . ' .grid-sizer { width:' . $column_width . '%;}');
+      } elseif ('masonry' === $pzarc_blueprints[ '_blueprints_section-' . $i . '-layout-mode' ]) {
+        $pzarc_mediaq_css .= str_replace('.pzarc-panel', '', $panels_class . ' .gutter-sizer {width: ' . ($hmargin) . '%;}');
+        $column_width = (100 - ($hmargin * ($columns - 1))) / $columns;
+        $pzarc_mediaq_css .= str_replace('.pzarc-panel', '', $panels_class . ' .grid-sizer { width:' . $column_width . '%;}');
       }
       //              $pzarc_contents_css .= $classes . ' {width:' . (((100 - ($hmargin * ($columns - 1))) / $columns)) . '%;margin-bottom:' . $pzarc_blueprints[ '_blueprints_section-' . $i . '-panels-margins']['margin-bottom'] . '%;}';
-      $pzarc_mediaq_css .= $panels_class . ' .grid-sizer { width:' . ((100-($hmargin*($columns-1)))/$columns) . '%;}';
+      $pzarc_mediaq_css .= $panels_class . ' .grid-sizer { width:' . ((100 - ($hmargin * ($columns - 1))) / $columns) . '%;}';
       $pzarc_mediaq_css .= '}' . $nl;
 
-      $pzarc_width_val = (100-str_replace($pzarc_blueprints['_blueprints_sections-width'.$i]['units'],'',$pzarc_blueprints['_blueprints_sections-width'.$i]['width']));
-      switch ($pzarc_blueprints['_blueprints_sections-align'.$i]){
+      $pzarc_width_val = (100 - str_replace($pzarc_blueprints[ '_blueprints_sections-width' . $i ][ 'units' ], '', $pzarc_blueprints[ '_blueprints_sections-width' . $i ][ 'width' ]));
+      switch ($pzarc_blueprints[ '_blueprints_sections-align' . $i ]) {
         case 'left':
           $pzarc_sections_align = 'left:0;';
           break;
         case 'centre':
         case 'center':
-          $pzarc_sections_align = 'left:'.($pzarc_width_val/2).'%;';
+          $pzarc_sections_align = 'left:' . ($pzarc_width_val / 2) . '%;';
           break;
         case 'right':
-          $pzarc_sections_align = 'left:'.$pzarc_width_val.'%;';
+          $pzarc_sections_align = 'left:' . $pzarc_width_val . '%;';
           break;
       }
       $pzarc_css = $pzarc_mediaq_css;
-      $pzarc_css .= $sections_class.' {width:'.$pzarc_blueprints['_blueprints_sections-width'.$i]['width'].';'.$pzarc_sections_align.'}';
+      $pzarc_css .= $sections_class . ' {width:' . $pzarc_blueprints[ '_blueprints_sections-width' . $i ][ 'width' ] . ';' . $pzarc_sections_align . '}';
 
       // Can't do this!! OTherwise would have to regenerate all blueprints on panel save
 ////        // TODO: do we have to use the bg image height instead if it is set??

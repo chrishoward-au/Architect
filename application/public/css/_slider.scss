@@ -1,6 +1,7 @@
 .msie .pzarc-navigator {
-  height:0;
+  height: 0;
 }
+
 .pzarc-navigator {
   //absolute if over content
   //position: absolute;
@@ -8,12 +9,12 @@
   text-align: center;
   bottom: 5px;
   z-index: 1;
-  display:block;
+  display: block;
   // TODO: Verify this doesn't scramble other displays!
   // width:100%; Prob better if user sets width and margin
   &.tabbed {
-    display:-webkit-flex; // This gives a nice even layout and full height tabs
-    display:flex; // This gives a nice even layout and full height tabs
+    display: -webkit-flex; // This gives a nice even layout and full height tabs
+    display: flex; // This gives a nice even layout and full height tabs
     flex-direction: row;
     &.vertical {
       flex-direction: column;
@@ -44,37 +45,25 @@
       top: initial;
     }
   }
-  &.left {
-    left: 15px;
-    text-align: left;
-    right: initial;
-    width:10%;
-
-  }
-  &.right {
-    right: 15px;
-    text-align: right;
-    left: initial;
-    width:10%;
-  }
+  //  &.left {
+  //    left: 15px;
+  //    text-align: left;
+  //    right: initial;
+  //    width: 10%;
+  //
+  //  }
+  //  &.right {
+  //    right: 15px;
+  //    text-align: right;
+  //    left: initial;
+  //    width: 10%;
+  //  }
 }
 
 /* ===============================================================
   Your custom styles, here you need to specify container's and slide's
   sizes, pagination, etc.
   ================================================================*/
-.arc-slider-container {
-  /* Specify slider's Size: */
-
-  padding: 0;
-  .arc-slider-slide {
-    /* Specify Slides's Size: */
-
-    // width: 320px;
-    height: 100%;
-    margin: 0 !important;
-  }
-}
 
 .arc-slider-slide-active {
   /* Specific active slide styling: */
@@ -89,33 +78,81 @@
 /* ===============================================================
 Pagination Styles
 ================================================================*/
+.navpos-left,
+.navpos-right {
+  .arc-slider-slide-nav-item {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .pzarc-navigator {
+    height: 100%;
+    display: block;
+    top: 0;
+  }
+
+  .pzarc-sections {
+    display: block;
+    top: 0;
+  }
+
+}
+
+.navpos-right {
+  .pzarc-navigator {
+    right: 0;
+  }
+}
+
+.navpos-top,
+.navpos-bottom {
+  .arc-slider-slide-nav-item {
+    display: inline-block;
+    margin: 0 3px;
+  }
+  .has-pager .thumbs.pzarc-navigator {
+    width: 80%;
+    // TODO: This is a hack fix. Find a way to centre it properly
+    left: 12%;
+  }
+  .arc-slider-container {
+    /* Specify slider's Size: */
+
+    padding: 0;
+    .arc-slider-slide {
+      /* Specify Slides's Size: */
+
+      // width: 320px;
+      height: 100%;
+      margin: 0 !important;
+    }
+  }
+}
 
 .bullets {
   .arc-slider-slide-nav-item {
     /* Stylize pagination button: */
-    display: inline-block;
     width: 15px;
     height: 15px;
     background: #999;
     box-shadow: 0px 1px 2px #555 inset;
-    margin: 0 3px;
     cursor: pointer;
     &.small {
-      width: 12px!important;
+      width: 12px !important;
       height: 12px;
-      padding:0;
+      padding: 0;
 
     }
     &.medium {
-      width: 15px!important;
+      width: 15px !important;
       height: 15px;
-      padding:0;
+      padding: 0;
 
     }
     &.large {
-      width: 18px!important;
+      width: 18px !important;
       height: 18px;
-      padding:0;
+      padding: 0;
 
     }
     &:hover {
@@ -139,14 +176,14 @@ Pagination Styles
 .tabbed {
   .arc-slider-slide-nav-item {
     // TODO: Move styling to defaults
-//    display: table-cell; // Woot! This fixes height matching and width distribution. Doh! But breaks margins.
+    //    display: table-cell; // Woot! This fixes height matching and width distribution. Doh! But breaks margins.
     min-height: 30px;
     cursor: pointer;
-    background-color:#ddd;
+    background-color: #ddd;
     box-sizing: border-box;
     &.active {
       background-color: #ccc;
-      color:#000;
+      color: #000;
     }
     &:hover {
       background-color: #ccc;
@@ -157,18 +194,18 @@ Pagination Styles
 .thumbs {
   .arc-slider-slide-nav-item {
     /* Stylize pagination button: */
-//        display: table-cell; // Woot! This fixes height matching and width distribution
-//        min-height: 30px;
-//        cursor: pointer;
-//        padding: 10px;
-//        margin:0;
-//        background: rgba(0, 0, 0, 0.05);
-//        border: 1px solid rgba(255, 255, 255, 0.5);
-//        border-top: none;
-//        border-bottom: none;
-//        text-decoration: none;
-//        font-family: sans-serif;
-//        box-sizing:border-box;
+    //        display: table-cell; // Woot! This fixes height matching and width distribution
+    //        min-height: 30px;
+    //        cursor: pointer;
+    //        padding: 10px;
+    //        margin:0;
+    //        background: rgba(0, 0, 0, 0.05);
+    //        border: 1px solid rgba(255, 255, 255, 0.5);
+    //        border-top: none;
+    //        border-bottom: none;
+    //        text-decoration: none;
+    //        font-family: sans-serif;
+    //        box-sizing:border-box;
 
     img {
       border-style: solid;
@@ -185,11 +222,6 @@ Pagination Styles
     display: inline-table;
 
   }
-  &.has-pager .pzarc-navigator {
-    width:80%;
-    // TODO: This is a hack fix. Find a way to centre it properly
-    left:12%;
-  }
 }
 
 .numbers {
@@ -199,6 +231,7 @@ Pagination Styles
     font-weight: bold;
     padding: 5px;
     color: #999;
+    line-height: 1;
     &.small {
       font-size: 22px;
     }
@@ -231,7 +264,9 @@ Pagination Styles
   // background:#eee;
 }
 
+// This tells the pzarchitect class it's a navigator style block
 .nav-navigator {
+  overflow: hidden;
   button.pager {
     position: absolute;
     top: 50%;
@@ -249,7 +284,7 @@ Pagination Styles
 
     // Uses icons defined in im-style.css.
     &:focus {
-      outline:none;
+      outline: none;
     }
     &.arrow-left {
       left: 1%;
@@ -264,7 +299,7 @@ Pagination Styles
     .arrow-left {
       display: block;
       &.hide {
-        display:none;
+        display: none;
       }
     }
   }
@@ -274,7 +309,7 @@ Pagination Styles
 .arc-slider-nav {
   //max-height: 80px; // removed for now, but prob needed //TODO Verify this wasn't for IE!!!
   width: 100%;
-  position:relative;
+  position: relative;
   &:hover {
     .skip-right,
     .skip-left {
@@ -349,7 +384,7 @@ Pagination Styles
 
 .arc-slider-nav.thumbs .arc-slider-slide {
   max-width: initial;
-  display:inline-block;
+  display: inline-block;
 }
 
 .arc-slider-nav .arc-slider-slide:first-child span {
@@ -358,13 +393,12 @@ Pagination Styles
 .arc-slider-nav .arc-slider-slide:last-child span {
 }
 
-
 ul.slick-dots {
-  left:0;
+  left: 0;
 }
 
 .slick-slider {
- margin-bottom:0;
+  margin-bottom: 0;
 }
 
 /* This is coz transforms were preventing display of content section */
@@ -374,12 +408,12 @@ ul.slick-dots {
 
 // TODO: Use this once multiple slides allowed
 x.pzarc-panel {
-  opacity:0.5;
+  opacity: 0.5;
 
   &.slick-active.slick-center {
-    opacity:1;
+    opacity: 1;
     article {
-      visibility:visible;
+      visibility: visible;
     }
   }
   article {

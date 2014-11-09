@@ -177,7 +177,9 @@
       $use_hw_css = (!empty($_architect_options[ 'architect_use-hw-css' ]) ? 'use-hw-css' : null);
 
       /** BLUEPRINT */
-      echo '<div class="pzarchitect ' . $use_hw_css . ' pzarc-blueprint pzarc-blueprint_' . $this->build->blueprint[ '_blueprints_short-name' ] . ' nav-' . $bp_nav_type . ' icomoon">';
+      /** OPEN THE HTML  */
+
+      echo '<div class="pzarchitect ' . $use_hw_css . ' pzarc-blueprint pzarc-blueprint_' . $this->build->blueprint[ '_blueprints_short-name' ] . ' nav-' . $bp_nav_type . ' icomoon '.('navigator'===$bp_nav_type?'navpos-'.$bp_nav_pos:'').'">';
 
       /** NAVIGATOR TOP*/
 

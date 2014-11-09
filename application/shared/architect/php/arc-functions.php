@@ -123,7 +123,7 @@
         //      'output'  => $selectors,
         'mode'    => 'padding',
         'type'    => 'spacing',
-        'units'   => array('px', '%'),
+        'units'   => array('%', 'px'),
         'default' => $defaults,
     );
 
@@ -137,7 +137,7 @@
         'output'  => $selectors,
         'mode'    => 'margin',
         'type'    => 'spacing',
-        'units'   => array('px', '%'),
+        'units'   => array('%', 'px'),
         'default' => $defaults,
     );
 

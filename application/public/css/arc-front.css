@@ -236,35 +236,49 @@
       .pzarchitect .pzarc-navigator.inside.bottom {
         bottom: 15px;
         top: initial; }
-    .pzarchitect .pzarc-navigator.left {
-      left: 15px;
-      text-align: left;
-      right: initial;
-      width: 10%; }
-    .pzarchitect .pzarc-navigator.right {
-      right: 15px;
-      text-align: right;
-      left: initial;
-      width: 10%; }
-  .pzarchitect .arc-slider-container {
-    /* Specify slider's Size: */
-    padding: 0; }
-    .pzarchitect .arc-slider-container .arc-slider-slide {
-      /* Specify Slides's Size: */
-      height: 100%;
-      margin: 0 !important; }
   .pzarchitect .arc-slider-slide-active {
     /* Specific active slide styling: */ }
   .pzarchitect .arc-slider-slide-visible {
     /* Specific visible slide styling: */ }
+  .pzarchitect .navpos-left .arc-slider-slide-nav-item,
+  .pzarchitect .navpos-right .arc-slider-slide-nav-item {
+    display: block;
+    margin-left: auto;
+    margin-right: auto; }
+  .pzarchitect .navpos-left .pzarc-navigator,
+  .pzarchitect .navpos-right .pzarc-navigator {
+    height: 100%;
+    display: block;
+    top: 0; }
+  .pzarchitect .navpos-left .pzarc-sections,
+  .pzarchitect .navpos-right .pzarc-sections {
+    display: block;
+    top: 0; }
+  .pzarchitect .navpos-right .pzarc-navigator {
+    right: 0; }
+  .pzarchitect .navpos-top .arc-slider-slide-nav-item,
+  .pzarchitect .navpos-bottom .arc-slider-slide-nav-item {
+    display: inline-block;
+    margin: 0 3px; }
+  .pzarchitect .navpos-top .has-pager .thumbs.pzarc-navigator,
+  .pzarchitect .navpos-bottom .has-pager .thumbs.pzarc-navigator {
+    width: 80%;
+    left: 12%; }
+  .pzarchitect .navpos-top .arc-slider-container,
+  .pzarchitect .navpos-bottom .arc-slider-container {
+    /* Specify slider's Size: */
+    padding: 0; }
+    .pzarchitect .navpos-top .arc-slider-container .arc-slider-slide,
+    .pzarchitect .navpos-bottom .arc-slider-container .arc-slider-slide {
+      /* Specify Slides's Size: */
+      height: 100%;
+      margin: 0 !important; }
   .pzarchitect .bullets .arc-slider-slide-nav-item {
     /* Stylize pagination button: */
-    display: inline-block;
     width: 15px;
     height: 15px;
     background: #999;
     box-shadow: 0px 1px 2px #555 inset;
-    margin: 0 3px;
     cursor: pointer; }
     .pzarchitect .bullets .arc-slider-slide-nav-item.small {
       width: 12px !important;
@@ -309,15 +323,13 @@
   .pzarchitect .thumbs span.dashicons {
     font-size: 4em;
     display: inline-table; }
-  .pzarchitect .thumbs.has-pager .pzarc-navigator {
-    width: 80%;
-    left: 12%; }
   .pzarchitect .numbers .arc-slider-slide-nav-item {
     font-size: 28px;
     font-family: sans-serif;
     font-weight: bold;
     padding: 5px;
-    color: #999; }
+    color: #999;
+    line-height: 1; }
     .pzarchitect .numbers .arc-slider-slide-nav-item.small {
       font-size: 22px; }
     .pzarchitect .numbers .arc-slider-slide-nav-item.medium {
@@ -333,32 +345,34 @@
     cursor: pointer; }
   .pzarchitect .arc-slider-slide-nav-item-visible {
     /* Specific style for nav buttons for visible panels: */ }
-  .pzarchitect .nav-navigator button.pager {
-    position: absolute;
-    top: 50%;
-    margin-top: -20px;
-    border-radius: 3px;
-    padding: 5px;
-    z-index: 2;
-    display: none;
-    font-family: icomoon;
-    font-size: 32px;
-    color: #fff;
-    text-decoration: none;
-    text-align: center;
-    background: rgba(0, 0, 0, 0.3); }
-    .pzarchitect .nav-navigator button.pager:focus {
-      outline: none; }
-    .pzarchitect .nav-navigator button.pager.arrow-left {
-      left: 1%; }
-    .pzarchitect .nav-navigator button.pager.arrow-right {
-      right: 1%; }
-  .pzarchitect .nav-navigator:hover .arrow-right,
-  .pzarchitect .nav-navigator:hover .arrow-left {
-    display: block; }
-    .pzarchitect .nav-navigator:hover .arrow-right.hide,
-    .pzarchitect .nav-navigator:hover .arrow-left.hide {
-      display: none; }
+  .pzarchitect .nav-navigator {
+    overflow: hidden; }
+    .pzarchitect .nav-navigator button.pager {
+      position: absolute;
+      top: 50%;
+      margin-top: -20px;
+      border-radius: 3px;
+      padding: 5px;
+      z-index: 2;
+      display: none;
+      font-family: icomoon;
+      font-size: 32px;
+      color: #fff;
+      text-decoration: none;
+      text-align: center;
+      background: rgba(0, 0, 0, 0.3); }
+      .pzarchitect .nav-navigator button.pager:focus {
+        outline: none; }
+      .pzarchitect .nav-navigator button.pager.arrow-left {
+        left: 1%; }
+      .pzarchitect .nav-navigator button.pager.arrow-right {
+        right: 1%; }
+    .pzarchitect .nav-navigator:hover .arrow-right,
+    .pzarchitect .nav-navigator:hover .arrow-left {
+      display: block; }
+      .pzarchitect .nav-navigator:hover .arrow-right.hide,
+      .pzarchitect .nav-navigator:hover .arrow-left.hide {
+        display: none; }
   .pzarchitect .arc-slider-nav {
     width: 100%;
     position: relative; }

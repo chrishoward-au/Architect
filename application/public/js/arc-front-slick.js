@@ -64,10 +64,11 @@ jQuery( document ).ready( function ()
             draggable: true,
             infinite: false,
             dots: false,
-            arrows: false,
             slidesToShow: arcSlickOptsObj.tshow,
             slidesToScroll: arcSlickOptsObj.tskip,
-            onBeforeChange: beforeChange
+            onBeforeChange: beforeChange,
+            vertical:false,
+            arrows:false
           }
       );
       if ( arcSlickNav.length === 0 )
