@@ -83,6 +83,8 @@
       $panel_def[ 'feature' ]       = '{{feature}}';
       $panel_def[ 'editlink' ]      = '<span class="edit-link"><a class="post-edit-link" href="{{permalink}}" title="Edit post {{title}}">Edit</a></span>';
       $panel_def[ 'comments-link' ] = '<span class="comments-link"><a href="{{permalink}}/#comments" title="Comment on {{title}}">Comments: {{commentscount}}</a></span>';
+      $panel_def[ 'customtax' ]     = '<span class="{{customtax}}-links">{{customtaxlinks}}</span>';
+
 
 //TODO This has to be changed back once we.if we use a link instead of theget thumnail
       //$panel_def[ 'image' ]        = '<img class="entry-image" src="{{image}}">';
@@ -191,6 +193,7 @@
       $this->data[ 'meta' ][ 'authoremail' ]    = $encodedmail;
       $this->data[ 'meta' ][ 'comments-count' ] = get_comments_number();
 
+      // Extract and find any custom taxonomies - i.e. preceded with ct:
       $this->data[ 'meta' ][ 'custom' ][ 1 ] = pzarc_get_post_terms(get_the_id(), $this->section[ '_panels_design_meta1-config' ]);
       $this->data[ 'meta' ][ 'custom' ][ 2 ] = pzarc_get_post_terms(get_the_id(), $this->section[ '_panels_design_meta2-config' ]);
       $this->data[ 'meta' ][ 'custom' ][ 3 ] = pzarc_get_post_terms(get_the_id(), $this->section[ '_panels_design_meta3-config' ]);
@@ -692,7 +695,7 @@
       $panel_def = $panel_class->panel_def();
 
       // Setup meta tags
-      $panel_def = $architect->build_meta_definition($panel_def, $this->build->blueprint[ 'section' ][ ($section_no - 1) ][ 'section-panel-settings' ]);
+      $panel_def = self::build_meta_definition($panel_def, $this->build->blueprint[ 'section' ][ ($section_no - 1) ][ 'section-panel-settings' ]);
 
       $i = 1;
 
@@ -791,6 +794,62 @@
       }
 
       return $thumbsize;
+    }
+
+    /*************************************************
+     *
+     * Method: build_panel_definition
+     *
+     * Purpose: build meta defs
+     *
+     * @param $panel_def
+     * @param $section_panel_settings
+     * @return mixed
+     *
+     * Returns:
+     *
+     *************************************************/
+    public function build_meta_definition($panel_def, $section_panel_settings)
+    {
+      //replace meta1innards etc
+      $meta = array_pad(array(), 3, null);
+      foreach ($meta as $key => $value) {
+        $i = $key + 1;
+//        $meta[ $key ]             = preg_replace('/%(\\w*)%/u', '{{$1}}', (!empty($section_panel_settings[ '_panels_design_meta' . $i . '-config' ]) ? $section_panel_settings[ '_panels_design_meta' . $i . '-config' ] : null));
+        $first_pass               = preg_replace('/%(\\w|[\\:\\-])*%/uiUmx', '{{$0}}', (!empty($section_panel_settings[ '_panels_design_meta' . $i . '-config' ]) ? $section_panel_settings[ '_panels_design_meta' . $i . '-config' ] : null));
+        $meta[ $key ]             = preg_replace("/%(.*)%/uiUmx", "$1", $first_pass);
+        $panel_def[ 'meta' . $i ] = str_replace('{{meta' . $i . 'innards}}', $meta[ $key ], $panel_def[ 'meta' . $i ]);
+        $panel_def[ 'meta' . $i ] = str_replace('{{date}}', $panel_def[ 'datetime' ], $panel_def[ 'meta' . $i ]);
+        $panel_def[ 'meta' . $i ] = str_replace('{{author}}', $panel_def[ 'author' ], $panel_def[ 'meta' . $i ]);
+        $panel_def[ 'meta' . $i ] = str_replace('{{email}}', $panel_def[ 'email' ], $panel_def[ 'meta' . $i ]);
+        $panel_def[ 'meta' . $i ] = str_replace('{{categories}}', $panel_def[ 'categories' ], $panel_def[ 'meta' . $i ]);
+        $panel_def[ 'meta' . $i ] = str_replace('{{tags}}', $panel_def[ 'tags' ], $panel_def[ 'meta' . $i ]);
+// TODO: This maybe meant to be editlink
+//        $panel_def[ 'meta' . $i ] = str_replace('{{edit}}', $panel_def[ 'edit' ], $panel_def[ 'meta' . $i ]);
+      }
+
+// TODO: Need to work out what to do with the headerinnards!
+
+//      $panel_layout = json_decode($section_panel_settings[ '_panels_design_preview' ], true);
+//      // build up the blueprint for the panel, ordering from
+//      // won't this be fun!!
+//      // need to match panellayout slugs to paneldefs array index
+//      $panel_definition = '';
+//
+//      foreach ((array)$panel_layout as $key => $value) {
+//        if ($value[ 'show' ]) {
+//          if ($key != 'title') {
+//            $panel_definition .= $panel_def[ $key ];
+//          }
+//          else {
+//            $panel_definition .= $panel_def[ 'header' ];
+//          }
+//        }
+//
+//      }
+//      $panel_definition = str_replace('{{headerinnards}}', $panel_def[ 'title' ], $panel_definition);
+
+      return $panel_def;
     }
 
   }

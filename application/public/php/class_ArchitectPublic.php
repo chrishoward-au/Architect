@@ -162,11 +162,11 @@
       }
 
       /** at this point we have the necessary info to populate the navigator. So let's do it! */
-      $class = self::setup_section_panel_class();
+      $class       = self::setup_section_panel_class();
       $panel_class = new $class;
 
-      if ($bp_nav_type === 'navigator'){
-        $this->nav_items = $panel_class->get_nav_items($this->build->blueprint[ '_blueprints_navigator' ],$this->arc_query);
+      if ($bp_nav_type === 'navigator') {
+        $this->nav_items = $panel_class->get_nav_items($this->build->blueprint[ '_blueprints_navigator' ], $this->arc_query);
       }
 
       // TODO: Show or hide blueprint if no content
@@ -179,7 +179,7 @@
       /** BLUEPRINT */
       /** OPEN THE HTML  */
 
-      echo '<div class="pzarchitect ' . $use_hw_css . ' pzarc-blueprint pzarc-blueprint_' . $this->build->blueprint[ '_blueprints_short-name' ] . ' nav-' . $bp_nav_type . ' icomoon '.('navigator'===$bp_nav_type?'navpos-'.$bp_nav_pos:'').'">';
+      echo '<div class="pzarchitect ' . $use_hw_css . ' pzarc-blueprint pzarc-blueprint_' . $this->build->blueprint[ '_blueprints_short-name' ] . ' nav-' . $bp_nav_type . ' icomoon ' . ('navigator' === $bp_nav_type ? 'navpos-' . $bp_nav_pos : '') . '">';
 
       /** NAVIGATOR TOP*/
 
@@ -420,10 +420,15 @@
         $slider[ 'datatrans' ] = ' data-transtype="' . $bp_transtype . '"';
 
 
-        $duration             = $this->build->blueprint[ '_blueprints_transitions-duration' ] * 1000;
-        $interval             = $this->build->blueprint[ '_blueprints_transitions-interval' ] * 1000;
-        $skip_thumbs          = $this->build->blueprint[ '_blueprints_navigator-skip-thumbs' ];
-        $slider[ 'dataopts' ] = 'data-opts="{#tduration#:' . $duration . ',#tinterval#:' . $interval . ',#tshow#:' . $skip_thumbs . ',#tskip#:' . $skip_thumbs . '}"';
+        $duration    = $this->build->blueprint[ '_blueprints_transitions-duration' ] * 1000;
+        $interval    = $this->build->blueprint[ '_blueprints_transitions-interval' ] * 1000;
+        $skip_thumbs = $this->build->blueprint[ '_blueprints_navigator-skip-thumbs' ];
+        $is_vertical = ('left' === $this->build->blueprint[ '_blueprints_navigator-position' ] || 'right' === $this->build->blueprint[ '_blueprints_navigator-position' ]) ? 'true' : 'false';
+        $infinite    = ('infinite' === $this->build->blueprint[ '_blueprints_transitions-infinite' ]) ? 'true' : 'false';
+
+
+        $slider[ 'dataopts' ] = 'data-opts="{#tduration#:' . $duration . ',#tinterval#:' . $interval . ',#tshow#:' . $skip_thumbs . ',#tskip#:' . $skip_thumbs . ',#tisvertical#:' . $is_vertical . ',#tinfinite#:' . $infinite . '}"';
+
 
         if ('hover' === $this->build->blueprint[ '_blueprints_navigator-pager' ] && 'navigator' === $bp_nav_type) {
           $return_val .= '<button type="button" class="pager arrow-left icon-arrow-left4 hide"></button>';
@@ -438,62 +443,6 @@
       return $return_val;
     }
 
-    /*************************************************
-     *
-     * Method: build_panel_definition
-     *
-     * Purpose: build meta defs
-     *
-     * @param $panel_def
-     * @param $section_panel_settings
-     * @return mixed
-     *
-     * Returns:
-     *
-     *************************************************/
-    public function build_meta_definition($panel_def, $section_panel_settings)
-    {
-      //replace meta1innards etc
-      $meta = array_pad(array(), 3, null);
-      foreach ($meta as $key => $value) {
-        $i = $key + 1;
-//        $meta[ $key ]             = preg_replace('/%(\\w*)%/u', '{{$1}}', (!empty($section_panel_settings[ '_panels_design_meta' . $i . '-config' ]) ? $section_panel_settings[ '_panels_design_meta' . $i . '-config' ] : null));
-        $first_pass               = preg_replace('/%(\\w|[\\:\\-])*%/uiUmx', '{{$0}}', (!empty($section_panel_settings[ '_panels_design_meta' . $i . '-config' ]) ? $section_panel_settings[ '_panels_design_meta' . $i . '-config' ] : null));
-        $meta[ $key ]             = preg_replace("/%(.*)%/uiUmx", "$1", $first_pass);
-        $panel_def[ 'meta' . $i ] = str_replace('{{meta' . $i . 'innards}}', $meta[ $key ], $panel_def[ 'meta' . $i ]);
-        $panel_def[ 'meta' . $i ] = str_replace('{{date}}', $panel_def[ 'datetime' ], $panel_def[ 'meta' . $i ]);
-        $panel_def[ 'meta' . $i ] = str_replace('{{author}}', $panel_def[ 'author' ], $panel_def[ 'meta' . $i ]);
-        $panel_def[ 'meta' . $i ] = str_replace('{{email}}', $panel_def[ 'email' ], $panel_def[ 'meta' . $i ]);
-        $panel_def[ 'meta' . $i ] = str_replace('{{categories}}', $panel_def[ 'categories' ], $panel_def[ 'meta' . $i ]);
-        $panel_def[ 'meta' . $i ] = str_replace('{{tags}}', $panel_def[ 'tags' ], $panel_def[ 'meta' . $i ]);
-// TODO: This maybe meant to be editlink
-//        $panel_def[ 'meta' . $i ] = str_replace('{{edit}}', $panel_def[ 'edit' ], $panel_def[ 'meta' . $i ]);
-      }
-
-
-// TODO: Need to work out what to do with the headerinnards!
-
-//      $panel_layout = json_decode($section_panel_settings[ '_panels_design_preview' ], true);
-//      // build up the blueprint for the panel, ordering from
-//      // won't this be fun!!
-//      // need to match panellayout slugs to paneldefs array index
-//      $panel_definition = '';
-//
-//      foreach ((array)$panel_layout as $key => $value) {
-//        if ($value[ 'show' ]) {
-//          if ($key != 'title') {
-//            $panel_definition .= $panel_def[ $key ];
-//          }
-//          else {
-//            $panel_definition .= $panel_def[ 'header' ];
-//          }
-//        }
-//
-//      }
-//      $panel_definition = str_replace('{{headerinnards}}', $panel_def[ 'title' ], $panel_definition);
-
-      return $panel_def;
-    }
 
     /**
      * @param $this ->criteria

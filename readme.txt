@@ -104,6 +104,9 @@ This is BETA software. So there are many besides these ones!
 = 0.8.5.5 =
 * CHANGED: Improved js on blueprints admin
 * ADDED: Vertical navigator
+* ADDED: Option for last slide behaviour
+* CHANGED: Hide next/previous arrows on first/last slide
+* FIXED: Warning and notices in metaboxes
 
 = 0.8.5.4 =
 * FIXED: Nav arrows disappearing in slider

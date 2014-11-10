@@ -186,12 +186,12 @@
                                 if ( isset( $section['fields'] ) && ! empty( $section['fields'] ) ) {
                                     foreach ( $section['fields'] as $fk => $field ) {
                                         if ( ! isset( $field['class'] ) ) {
-                                            $field['class']                                         = "";
+                                            @$field['class']                                         = "";
                                             $this->boxes[ $bk ]['sections'][ $sk ]['fields'][ $fk ] = $field;
                                         }
-                                        if ( stripos( $field['class'], 'redux-field-init' ) === 0 ) {
-                                            //$field['class'] = trim( $field['class'] . ' redux-field-init' );
-                                        }
+//                                        if ( stripos( $field['class'], 'redux-field-init' ) === 0 ) {
+//                                            //$field['class'] = trim( $field['class'] . ' redux-field-init' );
+//                                        }
                                         if ( $addField
                                              || (
                                                 ( is_admin() && ( $pagenow == "post-new.php" || $pagenow == "post.php" ) )
@@ -535,7 +535,7 @@
             // Copyright Dovy Paukstys (@dovy) of Redux Framework
             function url_to_postid( $url ) {
                 global $wp_rewrite;
-
+$rewrite = array();
                 if ( ! empty( $this->post_id ) ) {
                     return $this->post_id;
                 }
@@ -816,6 +816,7 @@
                                     }
                                     //$this->parent->used_fields[$field['type']] = isset($this->parent->used_fields[$field['type']]) ? $this->parent->used_fields[$field['type']]++ : 1;
 
+                                  $field['indent']= (empty($field['indent'])?"false":"true");
                                     if ( $field['type'] == "section" && $field['indent'] == "true" ) {
                                         $field['class'] = isset( $field['class'] ) ? $field['class'] : '';
                                         $field['class'] .= "redux-section-indent-start";
@@ -1131,6 +1132,7 @@
                                             //<i style="float:right; " class="elusive el-icon-address-book"></i>  //hints for right metaboxes
                                             echo '<td>' . $th . '';
                                         }
+                                      $field['indent']= (empty($field['indent'])?"false":"true");
 
                                         if ( $field['type'] == "section" && $field['indent'] == "true" ) {
                                             $field['class'] = isset( $field['class'] ) ? $field['class'] : '';

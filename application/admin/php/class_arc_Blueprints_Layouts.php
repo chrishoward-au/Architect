@@ -913,7 +913,8 @@
                       array($prefix . 'navigator', '==', 'thumbs'),
                   )
               ),
-              /** TRANSITIONS */
+              /** TRANSITIONS
+               ******************/
 
               array(
                   'title' => __('Transitions', 'pzarchitect'),
@@ -960,19 +961,25 @@
                   'desc'          => __('Set to zero to disable autoplay', 'pzarchitect'),
                   'hint'          => array('content' => __('Time slide is shown with no transitions active. Set to zero to disable autoplay', 'pzarchitect')),
               ),
-              //            array(
-              //                'title'   => 'Auto start',
-              //                'id'      => $prefix . 'transitions-autostart',
-              //                'type'    => 'switch',
-              //                'default' => false,
-              //            ),
-              //            array(
-              //                'title'   => 'Pause on hover',
-              //                'id'      => $prefix . 'transitions-pause-on-hover',
-              //                'type'    => 'switch',
-              //                'default' => true,
-              //            ),
-          )
+              array(
+                  'title'   => __('Go to after last slide', 'pzarchitect'),
+                  'id'      => $prefix . 'transitions-infinite',
+                  'type'    => 'button_set',
+                  'options' => array(
+                      'infinite' => 'First',
+                      'reverse'  => 'Previous')
+              ),
+              'default' => 'infinite',
+              'hint'    => array('content' => __('Loop back to the first slide after reaching the last one or reverse direction to previous slide', 'pzarchitect')),
+
+          ),
+          //            array(
+          //                'title'   => 'Pause on hover',
+          //                'id'      => $prefix . 'transitions-pause-on-hover',
+          //                'type'    => 'switch',
+          //                'default' => true,
+          //            ),
+          //)
       );
 //    $sections[ ] = array(
 //        'title'      => __('Wireframe Preview', 'pzarchitect'),

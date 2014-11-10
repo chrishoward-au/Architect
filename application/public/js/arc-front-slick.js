@@ -67,7 +67,7 @@ jQuery( document ).ready( function ()
             slidesToShow: arcSlickOptsObj.tshow,
             slidesToScroll: arcSlickOptsObj.tskip,
             onBeforeChange: beforeChange,
-            vertical:false,
+            vertical:arcSlickOptsObj.tisvertical,
             arrows:false
           }
       );
@@ -87,7 +87,7 @@ jQuery( document ).ready( function ()
             onBeforeChange: beforeChange,
             onAfterChange: afterChange,
 // TODO: replace these with vars
-            infinite: false,
+            infinite: arcSlickOptsObj.tinfinite,
             pauseOnHover: true,
             slidesToShow: 1,
             slidesToScroll: 1,
