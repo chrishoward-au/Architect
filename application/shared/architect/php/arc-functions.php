@@ -654,3 +654,19 @@
 
     return $vcode_processed;
   }
+
+/** 
+ * A simple minifier for CSS from https://ikreativ.com/combine-minify-css-with-php/
+ * @param  [type] $minify [description]
+ * @return [type]         [description]
+ */
+function pzarc_compress( $minify ) 
+    {
+  /* remove comments */
+      $minify = preg_replace( '!/\*[^*]*\*+([^/][^*]*\*+)*/!', '', $minify );
+
+        /* remove tabs, spaces, newlines, etc. */
+      $minify = str_replace( array("\r\n", "\r", "\n", "\t", '  ', '    ', '    '), '', $minify );
+        
+        return $minify;
+    }

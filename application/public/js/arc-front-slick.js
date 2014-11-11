@@ -36,24 +36,29 @@ jQuery( document ).ready( function ()
       var beforeChange = function ( slider, i, newIndex )
       {
         update_nav( newIndex, arcSlickNav );
-        jQuery( '.pzarc-blueprint_' + arcSlickID + '.nav-navigator:hover .arrow-left' ).removeClass('hide');
-        jQuery( '.pzarc-blueprint_' + arcSlickID + '.nav-navigator:hover .arrow-right' ).removeClass('hide');
-        if ( 0 === newIndex )
+        jQuery( '.pzarc-blueprint_' + arcSlickID + '.nav-navigator:hover .arrow-left' ).removeClass( 'hide' );
+        jQuery( '.pzarc-blueprint_' + arcSlickID + '.nav-navigator:hover .arrow-right' ).removeClass( 'hide' );
+        if ( !arcSlickOptsObj.tinfinite )
         {
-          jQuery( '.pzarc-blueprint_' + arcSlickID + '.nav-navigator:hover .arrow-left' ).addClass('hide');
 
-        }
+          if ( 0 === newIndex )
+          {
+            jQuery( '.pzarc-blueprint_' + arcSlickID + '.nav-navigator:hover .arrow-left' ).addClass( 'hide' );
 
-        if ( slider.$slides.length === newIndex + 1 )
-        {
-          jQuery( '.pzarc-blueprint_' + arcSlickID + '.nav-navigator:hover .arrow-right' ).addClass('hide');
+          }
 
+          if ( slider.$slides.length === newIndex + 1 )
+          {
+            jQuery( '.pzarc-blueprint_' + arcSlickID + '.nav-navigator:hover .arrow-right' ).addClass( 'hide' );
+
+          }
         }
       };
       var afterChange = function ( slider, i )
       {
-        var slideHeight = jQuery( slider.$slides[i] ).height();
-        jQuery( slider.$slider ).height( slideHeight );
+        // If it's not infinite loop, then hide respective arrows on first/last slide
+          var slideHeight = jQuery( slider.$slides[i] ).height();
+          jQuery( slider.$slider ).height( slideHeight );
         //jQuery().show();
       };
 
@@ -62,13 +67,13 @@ jQuery( document ).ready( function ()
             autoplay: false,
             centerMode: false,
             draggable: true,
-            infinite: false,
             dots: false,
             slidesToShow: arcSlickOptsObj.tshow,
             slidesToScroll: arcSlickOptsObj.tskip,
             onBeforeChange: beforeChange,
-            vertical:arcSlickOptsObj.tisvertical,
-            arrows:false
+            vertical: false,
+            infinite: arcSlickOptsObj.tinfinite,
+            arrows: false
           }
       );
       if ( arcSlickNav.length === 0 )

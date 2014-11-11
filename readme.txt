@@ -4,7 +4,7 @@ Tags: content,display,posts,pages,gallery,slider
 Donate link: http://
 Requires at least: 3.5.0
 Tested up to: 4.0.0
-Stable tag: 0.8.5.4
+Stable tag: 0.8.6
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -101,12 +101,16 @@ This is BETA software. So there are many besides these ones!
 
 == Changelog ==
 
-= 0.8.5.5 =
+= 0.8.6.1 =
+* CHANGED: Removed excess files causing the zipto be so big
+* CHANGED: Started transitioning to using compressed css and js files
+
+= 0.8.6 =
 * CHANGED: Improved js on blueprints admin
-* ADDED: Vertical navigator
+* ADDED: Vertical navigator (still being refined)
 * ADDED: Option for last slide behaviour
 * CHANGED: Hide next/previous arrows on first/last slide
-* FIXED: Warning and notices in metaboxes
+* CHANGED: CSS is now compressed before saving
 
 = 0.8.5.4 =
 * FIXED: Nav arrows disappearing in slider

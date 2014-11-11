@@ -967,10 +967,10 @@
                   'type'    => 'button_set',
                   'options' => array(
                       'infinite' => 'First',
-                      'reverse'  => 'Previous')
+                      'reverse'  => 'Previous'),
+                  'default' => 'infinite',
+                  'hint'    => array('content' => __('Loop back to the first slide after reaching the last one or reverse direction to previous slide', 'pzarchitect')),
               ),
-              'default' => 'infinite',
-              'hint'    => array('content' => __('Loop back to the first slide after reaching the last one or reverse direction to previous slide', 'pzarchitect')),
 
           ),
           //            array(

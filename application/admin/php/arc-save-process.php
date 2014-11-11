@@ -80,7 +80,7 @@
       // Need to create the file contents
 
 ///pzdebug($filename);
-      $pzarc_contents = pzarc_create_css($postid, $post->post_type, $pzarc_settings);
+      $pzarc_contents = pzarc_compress(pzarc_create_css($postid, $post->post_type, $pzarc_settings));
 
 
 // by this point, the $wp_filesystem global should be working, so let's use it to create a file
