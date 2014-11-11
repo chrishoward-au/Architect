@@ -123,7 +123,7 @@
         //      'output'  => $selectors,
         'mode'    => 'padding',
         'type'    => 'spacing',
-        'units'   => array('px', '%'),
+        'units'   => array('%', 'px'),
         'default' => $defaults,
     );
 
@@ -137,7 +137,7 @@
         'output'  => $selectors,
         'mode'    => 'margin',
         'type'    => 'spacing',
-        'units'   => array('px', '%'),
+        'units'   => array('%', 'px'),
         'default' => $defaults,
     );
 
@@ -602,12 +602,15 @@
   function pzarc_convert_name_to_id($post_name)
   {
     global $wpdb;
-    // Get any existing copy of our transient data
-    if ( false === ( $post_id = get_transient( 'pzarc_post_name_to_id_'.$post_name ) ) ) {
+    // We don't want transients used for admins since they may be testing new settings - which won't take!
+    if ( !current_user_can( 'manage_options' ) && false === ( $post_id = get_transient( 'pzarc_post_name_to_id_'.$post_name ) ) ) {
       // It wasn't there, so regenerate the data and save the transient
       $post_id = $wpdb->get_var("SELECT ID FROM $wpdb->posts WHERE post_name = '" . $post_name . "'");
       set_transient( 'pzarc_post_name_to_id_'.$post_name, $post_id, PZARC_TRANSIENTS_KEEP );
+    } elseif (current_user_can( 'manage_options' )) {
+      $post_id = $wpdb->get_var("SELECT ID FROM $wpdb->posts WHERE post_name = '" . $post_name . "'");
     }
+
 
 
     return $post_id;
@@ -651,3 +654,19 @@
 
     return $vcode_processed;
   }
+
+/** 
+ * A simple minifier for CSS from https://ikreativ.com/combine-minify-css-with-php/
+ * @param  [type] $minify [description]
+ * @return [type]         [description]
+ */
+function pzarc_compress( $minify ) 
+    {
+  /* remove comments */
+      $minify = preg_replace( '!/\*[^*]*\*+([^/][^*]*\*+)*/!', '', $minify );
+
+        /* remove tabs, spaces, newlines, etc. */
+      $minify = str_replace( array("\r\n", "\r", "\n", "\t", '  ', '    ', '    '), '', $minify );
+        
+        return $minify;
+    }

@@ -21,7 +21,7 @@
 
 
     // Slick
-    wp_register_script('js-arc-front-slickjs', PZARC_PLUGIN_APP_URL . '/public/js/arc-front-slick.js', array('jquery'),null,true);
+    wp_register_script('js-arc-front-slickjs', PZARC_PLUGIN_APP_URL . '/public/js/min/arc-front-slick-min.js', array('jquery'),null,true);
     wp_register_script('js-slickjs', PZARC_PLUGIN_APP_URL . '/public/js/slick/slick/slick.min.js', array('jquery'), null, true);
     wp_register_style('css-slickjs', PZARC_PLUGIN_APP_URL . '/public/js/slick/slick/slick.css');
 

@@ -554,7 +554,7 @@
         'show_title' => false,
         'icon_class' => 'icon-large',
         'icon'       => 'el-icon-calendar',
-        'desc'       => __('Available tags are <span class="pzarc-text-highlight">%author%   %email%   %date%   %categories%   %tags   %commentslink%   %editlink%</span>. Any other % tags will be treated as the name of a custom taxonomy.', 'pzarchitect') . '<br><br>' .
+        'desc'       => __('Available tags are <span class="pzarc-text-highlight">%author%   %email%   %date%   %categories%   %tags   %commentslink%   %editlink%</span>. For custom taxonomies, prefix with ct:. e.g. To display the Woo Testimonials category, you would use %ct:testimonial-category%.', 'pzarchitect') . '<br><br>' .
             __('Note: Enclose any author related text in <span class="pzarc-text-highlight">//</span> to hide it when using excluded authors.', 'pzarchitect') . '<br>' .
             __('Note: The email address will be encoded to prevent automated harvesting by spammers.', 'pzarchitect'),
         'fields'     => array(

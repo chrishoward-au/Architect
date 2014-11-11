@@ -83,7 +83,7 @@
       foreach ($this->navitems as $nav_item) {
         $active = ($i === 1 ? ' active' : '');
 
-        echo '<span class="arc-slider-slide arc-slider-slide-nav-item' . $active . '" data-index="'.$i.'">' . $nav_item . '</span>';
+        echo '<span class="arc-slider-slide arc-slider-slide-nav-item' . $active . '" data-index="' . $i . '">' . $nav_item . '</span>';
         $i++;
       }
     }
@@ -135,12 +135,7 @@
       $i = 1;
       foreach ($this->navitems as $nav_item) {
         $active = ($i === 1 ? ' active' : '');
-        if ($this->blueprint[ '_blueprints_navigator-slider-engine' ] === 'bxslider') {
-          echo '<a data-slide-index="' . $i++ . '" style="cursor:pointer;">' . $nav_item . '</a>';
-        } else {
-          echo '<span class="arc-slider-slide-nav-item' . $this->sizing . $active . '" data-index="'.$i.'"></span>';
-          $i++;
-        }
+        echo '<span class="arc-slider-slide-nav-item' . $this->sizing . $active . '" data-index="' . $i++ . '"></span>';
       }
     }
 
@@ -159,15 +154,12 @@
       $i = 1;
       foreach ($this->navitems as $nav_item) {
         $active = ($i === 1 ? ' active' : '');
-        if ($this->blueprint[ '_blueprints_navigator-slider-engine' ] === 'bxslider') {
-          echo '<a data-slide-index="' . $i++ . '" style="cursor:pointer;">' . $nav_item . '</a>';
-        } else {
-          echo '<span class="arc-slider-slide-nav-item' . $this->sizing . $active . '" data-index="'.$i.'">' . $i++ . '</span>';
-        }
+        echo '<span class="arc-slider-slide-nav-item' . $this->sizing . $active . '" data-index="' . $i . '">' . $i++ . '</span>';
       }
     }
 
   }
+
   class arc_Navigator_None extends arc_Navigator
   {
     function _construct()
@@ -195,7 +187,7 @@
       $i = 1;
       foreach ($this->navitems as $nav_item) {
         $active = ($i === 1 ? ' active' : '');
-        echo '<div class="arc-slider-slide arc-slider-slide-nav-item' . $this->sizing . $active . '" data-index="'.$i.'">' . $nav_item . '</div>';
+        echo '<div class="arc-slider-slide arc-slider-slide-nav-item' . $this->sizing . $active . '" data-index="' . $i . '">' . $nav_item . '</div>';
         $i++;
       }
     }

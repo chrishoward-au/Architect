@@ -177,7 +177,6 @@
      */
 
 
-
 ////add_filter('cmb_meta_boxes', 'pzarc_blueprint_wizard_metabox');
 //function pzarc_blueprint_wizard_metabox($metaboxes = array())
 //{
@@ -254,7 +253,7 @@
 
 
       }
-      $sections[ ]        = array(
+      $sections[ ]  = array(
         //          'title'      => __('General Settings', 'pzarchitect'),
         'show_title' => true,
         'icon_class' => 'icon-large',
@@ -321,13 +320,13 @@
     {
       $prefix = '_blueprints_';
 
-      $sections[ ]        = array(
+      $sections[ ]  = array(
           'fields' => array(
               array(
                   'id'       => $prefix . 'short-name',
                   'title'    => __('Blueprint Short Name', 'pzarchitect') . '<span class="pzarc-required el-icon-star" title="Required"></span>',
                   'type'     => 'text',
-                  'subtitle' => '<strong>'.__('Letters, numbers, dashes only. ', 'pzarchitect') . '</strong><br>' . __('Use the shortcode <strong class="pzarc-usage-info">[architect "<span class="pzarc-shortname"></span>"]</strong> <br>or the template tag <strong class="pzarc-usage-info">pzarchitect(\'<span class="pzarc-shortname"></span>\');</strong>', 'pzarchitect'),
+                  'subtitle' => '<strong>' . __('Letters, numbers, dashes only. ', 'pzarchitect') . '</strong><br>' . __('Use the shortcode <strong class="pzarc-usage-info">[architect "<span class="pzarc-shortname"></span>"]</strong> <br>or the template tag <strong class="pzarc-usage-info">pzarchitect(\'<span class="pzarc-shortname"></span>\');</strong>', 'pzarchitect'),
                   //TODO: Write acomprehensive little help dialog here
                   'validate' => 'not_empty'
               ),
@@ -482,7 +481,7 @@
       /** SECTIONS */
       $icons = array(0 => 'el-icon-align-left', 1 => 'el-icon-th', 2 => 'el-icon-th-list');
       for ($i = 0; $i < 3; $i++) {
-        $sections['_section'.($i+1) ] = array(
+        $sections[ '_section' . ($i + 1) ] = array(
             'title'      => __('Section ' . ($i + 1), 'pzarchitect'),
             'show_title' => true,
             'icon_class' => 'icon-large',
@@ -624,7 +623,7 @@
       }
 
       /** PAGINATION  */
-      $sections['_pagination' ] = array(
+      $sections[ '_pagination' ] = array(
           'title'      => __('Pagination', 'pzarchitect'),
           'show_title' => true,
           'icon_class' => 'icon-large',
@@ -695,7 +694,7 @@
       );
 
       /** NAVIGATOR  */
-      $sections['_navigator' ] = array(
+      $sections[ '_navigator' ] = array(
           'title'      => __('Navigator', 'pzarchitect'),
           'show_title' => true,
           'icon_class' => 'icon-large',
@@ -736,7 +735,7 @@
                           'alt' => 'Thumbs',
                           'img' => PZARC_PLUGIN_APP_URL . 'shared/assets/images/metaboxes/nav-type-thumbs.png'
                       ),
-                      'none'  => array(
+                      'none'    => array(
                           'alt' => 'None',
                           'img' => PZARC_PLUGIN_APP_URL . 'shared/assets/images/metaboxes/nav-type-none.png'
                       ),
@@ -759,14 +758,14 @@
                           'img' => PZARC_PLUGIN_APP_URL . 'shared/assets/images/metaboxes/nav-pos-top.png'
                       ),
                       //TODO: beta 2
-                      //                  'left'   => array(
-                      //                      'alt' => 'Left',
-                      //                      'img' => PZARC_PLUGIN_APP_URL . 'shared/assets/images/metaboxes/nav-pos-left.png'
-                      //                  ),
-                      //                  'right'  => array(
-                      //                      'alt' => 'Right',
-                      //                      'img' => PZARC_PLUGIN_APP_URL . 'shared/assets/images/metaboxes/nav-pos-right.png'
-                      //                  ),
+                      'left'   => array(
+                          'alt' => 'Left',
+                          'img' => PZARC_PLUGIN_APP_URL . 'shared/assets/images/metaboxes/nav-pos-left.png'
+                      ),
+                      'right'  => array(
+                          'alt' => 'Right',
+                          'img' => PZARC_PLUGIN_APP_URL . 'shared/assets/images/metaboxes/nav-pos-right.png'
+                      ),
                   ),
                   'required' => array(
                       array($prefix . 'navigator', '!=', 'accordion'),
@@ -795,6 +794,8 @@
                       array($prefix . 'navigator', '!=', 'none'),
                       array($prefix . 'navigator', '!=', 'tabbed'),
                       array($prefix . 'navigator', '!=', 'thumbs'),
+                      array($prefix . 'navigator-position', '!=', 'left'),
+                      array($prefix . 'navigator-position', '!=', 'right')
                   )
 
               ),
@@ -821,7 +822,7 @@
                   'title'    => 'Vertical width',
                   'id'       => $prefix . 'navigator-vertical-width',
                   'type'     => 'dimensions',
-                  'default'  => array('width' => '10%'),
+                  'default'  => array('width' => '15%'),
                   'height'   => false,
                   'units'    => '%',
                   'required' => array(
@@ -845,11 +846,11 @@
                   )
               ),
               array(
-                  'title'   => 'Sizing',
-                  'id'      => $prefix . 'navigator-sizing',
-                  'type'    => 'button_set',
-                  'default' => 'small',
-                  'options' => array(
+                  'title'    => 'Sizing',
+                  'id'       => $prefix . 'navigator-sizing',
+                  'type'     => 'button_set',
+                  'default'  => 'small',
+                  'options'  => array(
                       'small'  => 'Small',
                       'medium' => 'Medium',
                       'large'  => 'Large'
@@ -864,11 +865,11 @@
                   'type'     => 'button_set',
                   'default'  => 'hover',
                   'options'  => array(
-                      'none'   => 'None',
-                      'hover'  => 'Hover over panels',
+                      'none'  => 'None',
+                      'hover' => 'Hover over panels',
                       /// TODO: Add inline pager to nav
-//                      'inline' => 'Inline with navigator',
-//                      'both'   => 'Both'
+                      //                      'inline' => 'Inline with navigator',
+                      //                      'both'   => 'Both'
                   ),
                   'required' => array(
                       array($prefix . 'navigator', '!=', 'accordion'),
@@ -912,7 +913,8 @@
                       array($prefix . 'navigator', '==', 'thumbs'),
                   )
               ),
-              /** TRANSITIONS */
+              /** TRANSITIONS
+               ******************/
 
               array(
                   'title' => __('Transitions', 'pzarchitect'),
@@ -959,19 +961,25 @@
                   'desc'          => __('Set to zero to disable autoplay', 'pzarchitect'),
                   'hint'          => array('content' => __('Time slide is shown with no transitions active. Set to zero to disable autoplay', 'pzarchitect')),
               ),
-              //            array(
-              //                'title'   => 'Auto start',
-              //                'id'      => $prefix . 'transitions-autostart',
-              //                'type'    => 'switch',
-              //                'default' => false,
-              //            ),
-              //            array(
-              //                'title'   => 'Pause on hover',
-              //                'id'      => $prefix . 'transitions-pause-on-hover',
-              //                'type'    => 'switch',
-              //                'default' => true,
-              //            ),
-          )
+              array(
+                  'title'   => __('Go to after last slide', 'pzarchitect'),
+                  'id'      => $prefix . 'transitions-infinite',
+                  'type'    => 'button_set',
+                  'options' => array(
+                      'infinite' => 'First',
+                      'reverse'  => 'Previous'),
+                  'default' => 'infinite',
+                  'hint'    => array('content' => __('Loop back to the first slide after reaching the last one or reverse direction to previous slide', 'pzarchitect')),
+              ),
+
+          ),
+          //            array(
+          //                'title'   => 'Pause on hover',
+          //                'id'      => $prefix . 'transitions-pause-on-hover',
+          //                'type'    => 'switch',
+          //                'default' => true,
+          //            ),
+          //)
       );
 //    $sections[ ] = array(
 //        'title'      => __('Wireframe Preview', 'pzarchitect'),
@@ -990,7 +998,7 @@
 //        )
 //    );
 
-      $sections['_usingbp' ] = array(
+      $sections[ '_usingbp' ] = array(
           'title'      => 'Using Blueprints',
           'icon_class' => 'icon-large',
           'icon'       => 'el-icon-info-sign',
@@ -1006,7 +1014,7 @@
                   'pzarchitect')
           )
       );
-      $sections['_help' ] = array(
+      $sections[ '_help' ]    = array(
           'title'      => 'Help',
           'icon_class' => 'icon-large',
           'icon'       => 'el-icon-question-sign',
@@ -1163,8 +1171,8 @@
         }
       }
 
-      $prefix      = '_content_help_';
-      $sections['_content_help' ] = array(
+      $prefix                      = '_content_help_';
+      $sections[ '_content_help' ] = array(
           'title'      => 'Help',
           'icon_class' => 'icon-large',
           'icon'       => 'el-icon-question-sign',
@@ -1352,7 +1360,7 @@ You can use them however you like though.
             ),
         );
 
-        $sections[ ]        = array(
+        $sections[ ]  = array(
             'id'         => 'blueprint-styling-help',
             'title'      => 'Help',
             'icon_class' => 'icon-large',
@@ -1392,7 +1400,7 @@ You can use them however you like though.
 
       }
 
-     // Still need to return this, even if we did nothing.
+      // Still need to return this, even if we did nothing.
       return $metaboxes;
     }
 
