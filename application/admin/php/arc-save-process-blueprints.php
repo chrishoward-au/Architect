@@ -104,7 +104,18 @@
     $pzarc_css        = '';
     if (!empty($pzarc_blueprints[ '_blueprints_section-' . $i . '-panel-layout' ])) {
       // var_dump($pzarc_blueprints[ '_blueprints_section-' . $i . '-panel-layout' ]);
-      $pzarc_import_css .= '@import url("' . PZARC_CACHE_URL . '/pzarc-panels-layout-' . $pzarc_panels[ '_panels_settings_short-name' ][ 0 ] . '.css");' . $nl;
+
+      $filename =  PZARC_CACHE_URL . '/pzarc-panels-layout-' . $pzarc_panels[ '_panels_settings_short-name' ][ 0 ] . '.css';
+
+      /** TODO Need to insert these not import. However, that means we need to track what blueprints contain what panels, so can update. Or update all blueprints on panel save. blergh! Or could we move it to the front end?*/
+      global $wp_filesystem;
+      if (false === ($pzarc_import_css = $wp_filesystem->get_contents(          $filename,          FS_CHMOD_FILE )   )      ) {
+        echo 'error reading css file for Panel '. $pzarc_panels[ '_panels_settings_short-name' ][ 0] ;
+      }
+
+//      $pzarc_import_css .= '@import url("' . PZARC_CACHE_URL . '/pzarc-panels-layout-' . $pzarc_panels[ '_panels_settings_short-name' ][ 0 ] . '.css");' . $nl;
+
+
       $hmargin = str_replace('%', '', $pzarc_blueprints[ '_blueprints_section-' . $i . '-panels-margins' ][ 'margin-right' ]);
 
       $em_width[ 1 ] = (str_replace('px', '', $_architect_options[ 'architect_breakpoint_1' ][ 'width' ]) / 16);
