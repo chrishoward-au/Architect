@@ -111,7 +111,7 @@
       /** What if we created an array of all the css and saved it in an option. Then we could replace the relevent key and at the end of the save process right the lot to a single file*/
 
       global $wp_filesystem;
-      if (false === ($pzarc_import_css = $wp_filesystem->get_contents($filename, FS_CHMOD_FILE))) {
+      if (false === ($pzarc_import_css = $wp_filesystem->get_contents($filename))) {
         echo 'error reading css file for Panel ' . $pzarc_panels[ '_panels_settings_short-name' ][ 0 ];
       }
 
