@@ -666,7 +666,8 @@ function pzarc_compress( $minify )
       $minify = preg_replace( '!/\*[^*]*\*+([^/][^*]*\*+)*/!', '', $minify );
 
         /* remove tabs, spaces, newlines, etc. */
-      $minify = str_replace( array("\r\n", "\r", "\n", "\t", '  ', '    ', '    '), '', $minify );
-        
+      $minify = str_replace( array("\r\n", "\r", "\n", "\t"), '', $minify );
+      $minify = str_replace( array('  ', '    ', '    '), ' ', $minify );
+
         return $minify;
     }

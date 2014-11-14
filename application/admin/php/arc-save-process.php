@@ -79,7 +79,6 @@
 
       // Need to create the file contents
 
-///pzdebug($filename);
       $pzarc_contents = pzarc_compress(pzarc_create_css($postid, $post->post_type, $pzarc_settings));
 
 
