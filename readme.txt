@@ -104,6 +104,7 @@ This is BETA software. So there are many besides these ones!
 = 0.8.6.1 =
 * CHANGED: Removed excess files causing the zip to be so big
 * FIXED: Masonry layout broken by css compression
+* CHANGED: CSS is cached in db and single styles file then created.
 
 = 0.8.6 =
 * CHANGED: Improved js on blueprints admin

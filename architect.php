@@ -4,14 +4,13 @@
     Plugin Name: Architect - an all-in-one content layout framework
     Plugin URI: http://pizazzwp.com
     Description: Go beyond the limitations of the theme you use to easily build any content layouts for it. Build your own grids, tabs, sliders, galleries and more with sources such ass posts, pages, galleries, and custom content types. Display using shorcodes, widgets, Headway blocks, WP action hooks and template tags, and WP Gallery shortcode. Change themes without needing to rebuild your layouts!
-    Version: 0.8.6.2b
+    Version: 0.8.6.2b2
     Author: Chris Howard
     Author URI: http://pizazzwp.com
     License: GNU GPL v2
     Shoutouts: Plugin structure based on WP Plugin Boilerplate by Tom McPharlin http://tommcfarlin.com/
     Shoutouts: Options and metabox management all done with Redux plugin
    */
-
 
 
   class pzArchitect
@@ -32,7 +31,7 @@
       define('PZARC_DOCUMENTATION_PATH', PZARC_PLUGIN_PATH . 'documentation/');
       define('PZARC_CACHE', '/arc/');
 
-      define('PZARC_TRANSIENTS_KEEP',12 * HOUR_IN_SECONDS);
+      define('PZARC_TRANSIENTS_KEEP', 12 * HOUR_IN_SECONDS);
       $upload_dir = wp_upload_dir();
       // TODO: why isn't this using myfiles folder?
       define('PZARC_CACHE_URL', trailingslashit($upload_dir[ 'baseurl' ] . '/cache/pizazzwp/arc'));
@@ -101,11 +100,11 @@
       require_once PZARC_PLUGIN_APP_PATH . '/shared/architect/php/content-types/cpt/class_arc_content_cpt.php';
 
 
-
     }
 
     public function init()
     {
+
     }
 
 
@@ -130,6 +129,12 @@
       // TODO:	Define activation functionality here
       TGM_Plugin_Activation::get_instance()->update_dismiss();
       // TODO: Inisitalize and save all default options
+
+      $pzarc_cssblueprint_cache = maybe_unserialize(get_option('pzarc_css'));
+
+      if (!$pzarc_cssblueprint_cache) {
+        add_option('pzarc_css', maybe_serialize(array('blueprints' => array(), 'panels' => array())), null, 'no');
+      }
     }
 
     public function admin_initialize()
@@ -184,7 +189,7 @@
     {
 
       wp_enqueue_style('pzarc-admin-styles', PZARC_PLUGIN_APP_URL . '/admin/css/arc-admin.css');
-    //  wp_register_style('pzarc-font-awesome', PZARC_PLUGIN_APP_URL . '/shared/includes/font-awesome/css/font-awesome.min.css');
+      //  wp_register_style('pzarc-font-awesome', PZARC_PLUGIN_APP_URL . '/shared/includes/font-awesome/css/font-awesome.min.css');
       wp_register_style('pzarc-jqueryui-css', PZARC_PLUGIN_APP_URL . '/shared/includes/jquery-ui-1.10.2.custom/css/pz_architect/jquery-ui-1.10.2.custom.min.css');
 
     }
@@ -348,7 +353,7 @@
     }
   }
 
- // add_action('admin_init', 'pzarc_nag_ignore');
+  // add_action('admin_init', 'pzarc_nag_ignore');
 
   function pzarc_nag_ignore()
   {

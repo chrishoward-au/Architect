@@ -79,21 +79,21 @@
       require_once(PZARC_PLUGIN_APP_PATH . '/public/php/class_arc_Navigator.php');
       require_once(PZARC_PLUGIN_APP_PATH . '/public/php/class_arc_Pagination.php');
 
-      if (!empty($this->build->blueprint[ 'blueprint-id' ])) {
-
-        $filename = 'pzarc-blueprints-layout-' . $this->build->blueprint[ '_blueprints_short-name' ] . '.css';
-
-        if (file_exists(PZARC_CACHE_PATH . $filename)) {
-
-          wp_enqueue_style('blueprint-css-' . $this->build->blueprint[ '_blueprints_short-name' ], PZARC_CACHE_URL . $filename);
-
-        } else {
-
-          echo '<p class="message-warning">Oops! Could not find css cache file: ' . $filename . '</p>';
-
-        }
-
-      }
+//      if (!empty($this->build->blueprint[ 'blueprint-id' ])) {
+//
+//        $filename = 'pzarc-blueprints-layout-' . $this->build->blueprint[ '_blueprints_short-name' ] . '.css';
+//
+//        if (file_exists(PZARC_CACHE_PATH . $filename)) {
+//
+//          wp_enqueue_style('blueprint-css-' . $this->build->blueprint[ '_blueprints_short-name' ], PZARC_CACHE_URL . $filename);
+//
+//        } else {
+//
+//          echo '<p class="message-warning">Oops! Could not find css cache file: ' . $filename . '</p>';
+//
+//        }
+//
+//      }
 
       return false;
     }
