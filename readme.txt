@@ -4,7 +4,7 @@ Tags: content,display,posts,pages,gallery,slider
 Donate link: http://
 Requires at least: 3.5.0
 Tested up to: 4.0.0
-Stable tag: 0.8.6
+Stable tag: 0.8.7
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -101,10 +101,13 @@ This is BETA software. So there are many besides these ones!
 
 == Changelog ==
 
-= 0.8.6.1 =
+= 0.8.7 =
 * CHANGED: Removed excess files causing the zip to be so big
 * FIXED: Masonry layout broken by css compression
 * CHANGED: CSS is cached in db and single styles file then created.
+* ADDED: Tools menu
+* ADDED: Rebuild CSS cache in Tools menu
+* ADDED: Quick Start guide to About screen
 
 = 0.8.6 =
 * CHANGED: Improved js on blueprints admin

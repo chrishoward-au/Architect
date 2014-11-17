@@ -4,7 +4,7 @@
     Plugin Name: Architect - an all-in-one content layout framework
     Plugin URI: http://pizazzwp.com
     Description: Go beyond the limitations of the theme you use to easily build any content layouts for it. Build your own grids, tabs, sliders, galleries and more with sources such ass posts, pages, galleries, and custom content types. Display using shorcodes, widgets, Headway blocks, WP action hooks and template tags, and WP Gallery shortcode. Change themes without needing to rebuild your layouts!
-    Version: 0.8.6.2b2
+    Version: 0.8.7
     Author: Chris Howard
     Author URI: http://pizazzwp.com
     License: GNU GPL v2
@@ -19,7 +19,7 @@
     function __construct()
     {
 
-      define('PZARC_VERSION', '0.8.6');
+      define('PZARC_VERSION', '0.8.7');
       define('PZARC_NAME', 'pzarchitect'); // This is also same as the locale
       define('PZARC_FOLDER', '/pizazzwp-architect');
 
@@ -135,6 +135,8 @@
       if (!$pzarc_cssblueprint_cache) {
         add_option('pzarc_css', maybe_serialize(array('blueprints' => array(), 'panels' => array())), null, 'no');
       }
+      require_once(PZARC_PLUGIN_APP_PATH.'/admin/php/arc-save-process.php');
+      save_arc_layouts('all', null, true);
     }
 
     public function admin_initialize()

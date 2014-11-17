@@ -19,8 +19,7 @@
 
     } else {
 
-      echo '<p class="message-warning">Oops! Could not find Architect CSS cache file. Please resave all Panels and Blueprints to create it by selecting all, choosing Edit and press update.</p>';
-      echo '<img src="'.PZARC_PLUGIN_URL.'/documentation/assets/images/resave-css.jpg">';
+      echo '<p class="message-warning">Oops! Could not find Architect CSS cache file. Please go to WP Admin Architect > Tools and rebuild it.</p>';
 
     }
 

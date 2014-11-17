@@ -22,7 +22,7 @@
     if (!$update) {
       return;
     }
-    $screen = get_current_screen();
+    $screen = ('all' === $postid?'refresh-cache': get_current_screen());
     /*
      * $screen:
      * Array
@@ -49,7 +49,7 @@
     // new wp_filesystem
     // create file named with id e.g. pzarc-cell-layout-123.css
     // Or should we connect this to the template? Potentially there'll be less panel layouts than templates tho
-    if ($screen->id == 'arc-panels' || $screen->id == 'arc-blueprints' || $post->post_type === 'arc-panels' || $post->post_type === 'arc-blueprints' || 'all' === $postid) {
+    if ('all' === $postid || $screen->id == 'arc-panels' || $screen->id == 'arc-blueprints' || $post->post_type === 'arc-panels' || $post->post_type === 'arc-blueprints') {
 
 
       $url = wp_nonce_url('post.php?post=' . $postid . '&action=edit', basename(__FILE__));
@@ -67,11 +67,8 @@
 
       //    WP_Filesystem(true);
       // get the upload directory and make a test.txt file
-      $pzarc_settings = get_post_meta($postid);
 
-      $pzarc_settings = pzarc_flatten_wpinfo($pzarc_settings);
-
-      $pzarc_shortname = ($post->post_type === 'arc-panels' ? $pzarc_settings[ '_panels_settings_short-name' ] : $pzarc_settings[ '_blueprints_short-name' ]);
+//      $pzarc_shortname = ($post->post_type === 'arc-panels' ? $pzarc_settings[ '_panels_settings_short-name' ] : $pzarc_settings[ '_blueprints_short-name' ]);
 
       $upload_dir = wp_upload_dir();
 
@@ -82,9 +79,26 @@
       // Need to create the file contents
 
       if ('all' !== $postid) {
+        $pzarc_settings = get_post_meta($postid);
+        $pzarc_settings = pzarc_flatten_wpinfo($pzarc_settings);
         pzarc_create_css($postid, $post->post_type, $pzarc_settings);
       } else {
         //TODO Code to recreate all panels and blueprints css
+        // get the blueprints and panels and step thru each recreating css
+        $pzarc_panels = get_posts(array('post_type' => 'arc-panels', 'post_status' => 'publish'));
+        foreach($pzarc_panels as $pzarc_panel) {
+          $postid = $pzarc_panel->ID;
+          $pzarc_settings = get_post_meta($postid);
+          $pzarc_settings = pzarc_flatten_wpinfo($pzarc_settings);
+          pzarc_create_css($postid, $pzarc_panel->post_type, $pzarc_settings);
+        }
+        $pzarc_blueprints = get_posts(array('post_type' => 'arc-blueprints', 'post_status' => 'publish'));
+        foreach($pzarc_blueprints as $pzarc_blueprint) {
+          $postid = $pzarc_blueprint->ID;
+          $pzarc_settings = get_post_meta($postid);
+          $pzarc_settings = pzarc_flatten_wpinfo($pzarc_settings);
+          pzarc_create_css($postid, $pzarc_blueprint->post_type, $pzarc_settings);
+        }
       }
 
       $pzarc_css_cache = maybe_unserialize(get_option('pzarc_css'));
