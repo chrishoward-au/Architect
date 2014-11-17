@@ -42,7 +42,6 @@
       add_filter('admin_body_class', array(&$this, 'add_admin_body_class'));
 
 
-
       // TODO: Make up some easily editable panel defs - prob have to be a custom content type
       //       require_once PZARC_PLUGIN_PATH . '/admin/php/arc-options-def-editor.php';
 
@@ -144,13 +143,13 @@
 //			add_submenu_page(
 //				'pzarc', 'Styling', 'Styling', 'manage_options', 'pzarc_styling', array( $this, 'pzarc_styling' )
 //			);
-        // add_submenu_page(
-        //     'pzarc', 'Developer Tools', '<span class="dashicons dashicons-hammer size-small"></span>Tools', 'manage_options', 'pzarc_tools', array($this,
-        //                                                                                                                                            'pzarc_tools')
-        // );
+        add_submenu_page(
+            'pzarc', 'Tools', '<span class="dashicons dashicons-hammer size-small"></span>Tools', 'manage_options', 'pzarc_tools', array($this,
+                                                                                                                                         'pzarc_tools')
+        );
         add_submenu_page(
             'pzarc', 'About Architect Content Layout Framework', '<span class="dashicons dashicons-info size-small"></span>About', 'manage_options', 'pzarc_about', array($this,
-                                                                                                                                                                           'pzarc_about'), 99
+                                                                                                                                                                          'pzarc_about'), 99
         );
 
         global $submenu;
@@ -177,6 +176,32 @@
         <div class="pzarc-about-box" style="background:#f9f9f9;padding:20px;border:1px solid #ddd;">
         <h2>' . $title . '</h2>
         <h4>Currently installed version: ' . PZARC_VERSION . '</h4>
+        <h2>Quick start</h2>
+        <div style="background:#f2f2f2;border:1px solid #e2e2e2;padding:10px;border-radius:3px;max-width:800px;font-size:14px;">
+        <ol>
+        <li><strong>Create a Panel</strong></li>
+        <ol style="list-style-type:lower-roman"><li>Go to <em>Architect > Panels</em> and create a basic Panel. Make sure to give it a title and a short name.</li>
+            <li>Leave all the other defaults for now. <em>Publish/Update</em> that.</li></ol>
+        <li><strong>Create a Blueprint</strong></li>
+        <ol style="list-style-type:lower-roman">
+            <li>Go to <em>Architect > Blueprints</em> and create a Blueprint. Give it a <em>Title</em> and <em>Short Name</em> too, and in <em>Section 1</em> tab, under <em>Panels Layout</em>, select your Panel you just created</li>
+            <li>Change the <em>Panels to Show</em> to 9, for example</li>
+            <li>Click the <em>Panels Content</em> button and for the <em>Settings, Content Source</em>, choose <em>Posts</em></li>
+            <li>Click <em>Publish/Update</em>.</li>
+            </ol>
+        <li><strong>Display the Blueprint</strong></li>
+        <ol style="list-style-type:lower-roman">
+            <li>If you are using <strong>Headway</strong>, then go to the Headway Visual Editor, select a layout to show and draw an Architect block on it and select the Blueprint and Save.<br>
+            For <strong>other themes</strong>, the quickest way to test is insert an Architect shortcode on a page.<br>The form is <strong>[architect <em>blueprint-shortname</em>]</strong> where <em>blueprint-shortname</em> is the Short Name of the Blueprint to show
+            </li>
+            <li>Load the page and you should see a 3x3 grid of posts. (if you have that many)</li></ol>
+            </ol>
+            </div>
+            <p>Style wise, it may not look that great yet. To tidy it up, start exploring the Styling settings for Panels and Blueprints</p>
+            <p>To make a <strong>slideshow</strong>, set the <em>Navigation</em> type to <em>Navigator</em></p>
+            <p>There are a lot of settings in Architect that have all sorts of affects on your layouts and designs. Explore, experiment and have fun!</p>
+            <p>For more detailed help, keep an eye on our growing <a href="http://architect4wp.com/codex-listings" target="_blank">documentation at architect4wp.com</a></p>
+        <h2>What is Architect</h2>
         <p>Is it a slider? Is it a gallery? Is it a grid layout? Yes! It\'s all these and more.</p>
         <p>Fed up with a plethora of plugins that all seem to do the same thing, but in different ways? Me too. That\'s why I created Architect. I was guilty too. I had four plugins: ExcerptsPlus, GalleryPlus, SliderPlus and TabsPlus providing four different ways to display your content.</p>
         <p>Architect enables you to easily design complex content layouts, such as magazine layouts, sliders, galleries and tabbed content.</p>
@@ -231,16 +256,31 @@
 			<div class = "icon32" id = "icon-users"><br></div>
 
 			<h2>' . $title . '</h2>
-			<!-- This is definitely to ambitious for v1!<h3>Builder</h3>
+			<!-- This is definitely too ambitious for v1!<h3>Builder</h3>
 				<p>Generate WordPress page template code for inserting in your templates</p>
 				<p>Can I use Redux or similar??</p>
-				<textarea name="textarea" rows="10" cols="50">Code will appear here upon generating</textarea> -->
+				<textarea name="textarea" rows="10" cols="50">Code will appear here upon generating</textarea>
 						<h3>Export</h3>
 						<p>Export single or multiple blueprints and panels</p>
 						<h3>Import</h3>
 						<p>Import single or multiple blueprints and panels</p>
 						<h3>Duplicate</h3>
-						<p>Duplicate single or multiple blueprints and panels</p>
+						<p>Duplicate single or multiple blueprints and panels</p>-->
+						<h3>Rebuild Architect CSS cache</h3>
+						<p>Sometimes the CSS cache file may not exist or may even become scrambled and layouts won\'t look right. If so, simply click the Rebuild button and it will be recreated. If the problem persists, contact Pizazz Support at support@pizazzwp.com.</p>
+						<form action="admin.php?page=pzarc_tools" method="post">';
+      wp_nonce_field('rebuild-architect-css-cache');
+      echo '<input class="button-primary" type="submit" name="rebuildarchitectcss" value="Rebuild Architect CSS Cache">
+        </form>';
+
+      if (isset($_POST[ 'rebuildarchitectcss' ]) && check_admin_referer('rebuild-architect-css-cache')) {
+        require_once(PZARC_PLUGIN_APP_PATH . '/admin/php/arc-save-process.php');
+        save_arc_layouts('all', null, true);
+        echo '<br><div id="message" class="updated"><p>Architect CSS cache has been rebuilt. Your site should look awesome again!</p></div>';
+      }
+
+      echo '<hr style="margin-top:20px;border-color:#eee;border-style:solid;"/>
+
 			</div><!--end table-->
 			</div>
       ';

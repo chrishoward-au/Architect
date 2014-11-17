@@ -45,19 +45,6 @@
       top: initial;
     }
   }
-  //  &.left {
-  //    left: 15px;
-  //    text-align: left;
-  //    right: initial;
-  //    width: 10%;
-  //
-  //  }
-  //  &.right {
-  //    right: 15px;
-  //    text-align: right;
-  //    left: initial;
-  //    width: 10%;
-  //  }
 }
 
 /* ===============================================================
@@ -127,6 +114,20 @@ Pagination Styles
       margin: 0 !important;
     }
   }
+    .left {
+      left: 15px;
+      text-align: left;
+      right: initial;
+ //     width: 10%;
+
+    }
+    .right {
+      right: 15px;
+      text-align: right;
+      left: initial;
+ //     width: 10%;
+    }
+
 }
 
 .bullets {

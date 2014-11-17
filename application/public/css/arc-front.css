@@ -273,6 +273,16 @@
       /* Specify Slides's Size: */
       height: 100%;
       margin: 0 !important; }
+  .pzarchitect .navpos-top .left,
+  .pzarchitect .navpos-bottom .left {
+    left: 15px;
+    text-align: left;
+    right: initial; }
+  .pzarchitect .navpos-top .right,
+  .pzarchitect .navpos-bottom .right {
+    right: 15px;
+    text-align: right;
+    left: initial; }
   .pzarchitect .bullets .arc-slider-slide-nav-item {
     /* Stylize pagination button: */
     width: 15px;

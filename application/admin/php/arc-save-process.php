@@ -22,7 +22,7 @@
     if (!$update) {
       return;
     }
-    $screen = get_current_screen();
+    $screen = ('all' === $postid?'refresh-cache': get_current_screen());
     /*
      * $screen:
      * Array
@@ -49,53 +49,74 @@
     // new wp_filesystem
     // create file named with id e.g. pzarc-cell-layout-123.css
     // Or should we connect this to the template? Potentially there'll be less panel layouts than templates tho
-    if ($screen->id == 'arc-panels' || $screen->id == 'arc-blueprints' || $post->post_type === 'arc-panels' || $post->post_type === 'arc-blueprints') {
+    if ('all' === $postid || $screen->id == 'arc-panels' || $screen->id == 'arc-blueprints' || $post->post_type === 'arc-panels' || $post->post_type === 'arc-blueprints') {
 
 
       $url = wp_nonce_url('post.php?post=' . $postid . '&action=edit', basename(__FILE__));
+
       if (false === ($creds = request_filesystem_credentials($url, '', false, false, null))) {
         return; // stop processing here
       }
+
+
       if (!WP_Filesystem($creds)) {
         request_filesystem_credentials($url, '', true, false, null);
 
         return;
       }
 
-//    WP_Filesystem(true);
-// get the upload directory and make a test.txt file
-      $pzarc_settings = get_post_meta($postid);
-//      var_dump($pzarc_settings,$post->post_type,$pzarc_settings['_blueprints_short-name']);
+      //    WP_Filesystem(true);
+      // get the upload directory and make a test.txt file
 
-      $pzarc_settings = pzarc_flatten_wpinfo($pzarc_settings);
-
-      $pzarc_shortname = ($post->post_type === 'arc-panels' ? $pzarc_settings[ '_panels_settings_short-name' ] : $pzarc_settings[ '_blueprints_short-name' ]);
+//      $pzarc_shortname = ($post->post_type === 'arc-panels' ? $pzarc_settings[ '_panels_settings_short-name' ] : $pzarc_settings[ '_blueprints_short-name' ]);
 
       $upload_dir = wp_upload_dir();
 
-      $filename = trailingslashit($upload_dir[ 'basedir' ]) . '/cache/pizazzwp/arc/pz' . $post->post_type . '-layout-' . $pzarc_shortname . '.css';
+      $filename = trailingslashit($upload_dir[ 'basedir' ]) . '/cache/pizazzwp/arc/pzarc_css_cache.css';
 
       wp_mkdir_p(trailingslashit($upload_dir[ 'basedir' ]) . '/cache/pizazzwp/arc/');
 
       // Need to create the file contents
 
-///pzdebug($filename);
-      $pzarc_contents = pzarc_compress(pzarc_create_css($postid, $post->post_type, $pzarc_settings));
+      if ('all' !== $postid) {
+        $pzarc_settings = get_post_meta($postid);
+        $pzarc_settings = pzarc_flatten_wpinfo($pzarc_settings);
+        pzarc_create_css($postid, $post->post_type, $pzarc_settings);
+      } else {
+        //TODO Code to recreate all panels and blueprints css
+        // get the blueprints and panels and step thru each recreating css
+        $pzarc_panels = get_posts(array('post_type' => 'arc-panels', 'post_status' => 'publish'));
+        foreach($pzarc_panels as $pzarc_panel) {
+          $postid = $pzarc_panel->ID;
+          $pzarc_settings = get_post_meta($postid);
+          $pzarc_settings = pzarc_flatten_wpinfo($pzarc_settings);
+          pzarc_create_css($postid, $pzarc_panel->post_type, $pzarc_settings);
+        }
+        $pzarc_blueprints = get_posts(array('post_type' => 'arc-blueprints', 'post_status' => 'publish'));
+        foreach($pzarc_blueprints as $pzarc_blueprint) {
+          $postid = $pzarc_blueprint->ID;
+          $pzarc_settings = get_post_meta($postid);
+          $pzarc_settings = pzarc_flatten_wpinfo($pzarc_settings);
+          pzarc_create_css($postid, $pzarc_blueprint->post_type, $pzarc_settings);
+        }
+      }
 
+      $pzarc_css_cache = maybe_unserialize(get_option('pzarc_css'));
+      $pzarc_css       = "/* Blueprints */\n" . implode(" \n", $pzarc_css_cache[ 'blueprints' ]) . " \n/* Panels */\n" . implode(" \n", $pzarc_css_cache[ 'panels' ]);
 
-// by this point, the $wp_filesystem global should be working, so let's use it to create a file
+      // by this point, the $wp_filesystem global should be working, so let's use it to create a file
       global $wp_filesystem;
       if (!$wp_filesystem->put_contents(
           $filename,
-          $pzarc_contents,
+          $pzarc_css,
           FS_CHMOD_FILE // predefined mode settings for WP files
       )
       ) {
-        echo 'error saving file!';
+        echo '<p class="error message">Error saving css cache file! Please check the permissions on the WP Uploads folder.</p>';
       }
 
       // And finally, let's flush the BFI image cache
-      if ($screen->id == 'arc-panels' || $post->post_type === 'arc-panels' && function_exists('bfi_flush_image_cache')) {
+      if (($screen->id == 'arc-panels' || $post->post_type === 'arc-panels') && function_exists('bfi_flush_image_cache')) {
         bfi_flush_image_cache();
       }
     }
@@ -117,7 +138,7 @@
     global $_architect_options;
 
     // var_dump($_architect_options);
-    pzarc_set_defaults(array('blueprints','panels'));
+    pzarc_set_defaults(array('blueprints', 'panels'));
     $defaults = $_architect[ 'defaults' ];
     // Need to create the file contents
     // For each field in stylings, create css
@@ -128,16 +149,29 @@
         require_once PZARC_PLUGIN_APP_PATH . '/admin/php/arc-save-process-blueprints.php';
         $pzarc_blueprints = pzarc_merge_defaults($defaults[ '_blueprints' ], $pzarc_settings);
         $pzarc_contents .= pzarc_create_blueprint_css($pzarc_blueprints, $pzarc_contents, $postid);
+
+        // Save css to options cache
+        $pzarc_css_cache = maybe_unserialize(get_option('pzarc_css'));
+        // We have to delete it coz we want to use the 'no' otpion
+        delete_option('pzarc_css');
+        $pzarc_css_cache[ 'blueprints' ][ $pzarc_blueprints[ '_blueprints_short-name' ] ] = pzarc_compress($pzarc_contents);
+        add_option('pzarc_css', maybe_serialize($pzarc_css_cache), null, 'no');
         break;
 
       case 'arc-panels':
         require_once PZARC_PLUGIN_APP_PATH . '/admin/php/arc-save-process-panels.php';
         $pzarc_panels = pzarc_merge_defaults($defaults[ '_panels' ], $pzarc_settings);
         $pzarc_contents .= pzarc_create_panels_css($pzarc_panels, $pzarc_contents, $postid);
+
+        // Save css to options cache
+        $pzarc_css_cache = maybe_unserialize(get_option('pzarc_css'));
+        // We have to delete it coz we want to use the 'no' otpion
+        delete_option('pzarc_css');
+        $pzarc_css_cache[ 'panels' ][ $pzarc_panels[ '_panels_settings_short-name' ] ] = pzarc_compress($pzarc_contents);
+        add_option('pzarc_css', maybe_serialize($pzarc_css_cache), null, 'no');
         break;
     }
 
-    return $pzarc_contents;
   }
 
   /**
@@ -272,6 +306,7 @@
       $links_css .= (strtolower($properties[ 'visited-deco' ]) !== 'default' ? 'text-decoration:' . strtolower($properties[ 'visited-deco' ]) . ';' : '');
       $links_css .= '}' . $nl;
     }
+
     return $links_css;
   }
 
@@ -347,40 +382,40 @@
     }
     if ('panel' === $source) {
       switch (true) {
-        case 'panels' === $keys['id'] :
+        case 'panels' === $keys[ 'id' ] :
           $keys[ 'class' ] = $classes . '.pzarc-panel';
           break;
-        case 'components' === $keys['id'] :
+        case 'components' === $keys[ 'id' ] :
           $keys[ 'class' ] = $classes . ' .pzarc-components';
           break;
-        case 'entry-title'  === $keys['id']:
+        case 'entry-title' === $keys[ 'id' ]:
           $keys[ 'class' ] = $classes . ' .entry-title';
           break;
-        case 'entry-meta'  === $keys['id']:
+        case 'entry-meta' === $keys[ 'id' ]:
           $keys[ 'class' ] = $classes . ' .entry-meta';
           break;
-        case 'entry-content'  === $keys['id']:
+        case 'entry-content' === $keys[ 'id' ]:
           $keys[ 'class' ] = $classes . ' .entry-content';
           break;
-        case 'entry-excerpt'  === $keys['id']:
+        case 'entry-excerpt' === $keys[ 'id' ]:
           $keys[ 'class' ] = $classes . ' .entry-excerpt';
           break;
-        case strpos( $keys['id'],'entry-customfield-')===0 :
-          $keys[ 'class' ] = $classes . ' .'.$keys['id'];
+        case strpos($keys[ 'id' ], 'entry-customfield-') === 0 :
+          $keys[ 'class' ] = $classes . ' .' . $keys[ 'id' ];
           break;
-        case 'custom'  === $keys['id']:
+        case 'custom' === $keys[ 'id' ]:
           $keys[ 'class' ] = $classes . '';
           break;
-        case 'entry-readmore'  === $keys['id']:
+        case 'entry-readmore' === $keys[ 'id' ]:
           $keys[ 'class' ] = $classes . ' a.readmore';
           break;
-        case 'entry-image'  === $keys['id']:
+        case 'entry-image' === $keys[ 'id' ]:
           $keys[ 'class' ] = $classes . ' figure.entry-thumbnail';
           break;
-        case 'entry-image-caption'  === $keys['id']:
+        case 'entry-image-caption' === $keys[ 'id' ]:
           $keys[ 'class' ] = $classes . ' figure.entry-thumbnail caption';
           break;
-        case 'hentry'  === $keys['id']:
+        case 'hentry' === $keys[ 'id' ]:
           $keys[ 'class' ] = $classes . ' .hentry';
           break;
       }
@@ -391,10 +426,11 @@
     //Need to do the above switch for Panels
     // generate correct whosit
     $pzarc_func = 'pzarc_style_' . $keys[ 'style' ];
-    $pzarc_css  = (function_exists($pzarc_func)?call_user_func($pzarc_func, $keys[ 'class' ], $value):'');
-    if (!function_exists($pzarc_func)){
-      print 'Missing function '.$pzarc_func;
+    $pzarc_css  = (function_exists($pzarc_func) ? call_user_func($pzarc_func, $keys[ 'class' ], $value) : '');
+    if (!function_exists($pzarc_func)) {
+      print 'Missing function ' . $pzarc_func;
     }
+
     return $pzarc_css;
   }
 

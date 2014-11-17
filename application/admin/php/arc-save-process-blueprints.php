@@ -103,8 +103,8 @@
     $pzarc_mediaq_css = '';
     $pzarc_css        = '';
     if (!empty($pzarc_blueprints[ '_blueprints_section-' . $i . '-panel-layout' ])) {
-      // var_dump($pzarc_blueprints[ '_blueprints_section-' . $i . '-panel-layout' ]);
-      $pzarc_import_css .= '@import url("' . PZARC_CACHE_URL . '/pzarc-panels-layout-' . $pzarc_panels[ '_panels_settings_short-name' ][ 0 ] . '.css");' . $nl;
+
+
       $hmargin = str_replace('%', '', $pzarc_blueprints[ '_blueprints_section-' . $i . '-panels-margins' ][ 'margin-right' ]);
 
       $em_width[ 1 ] = (str_replace('px', '', $_architect_options[ 'architect_breakpoint_1' ][ 'width' ]) / 16);

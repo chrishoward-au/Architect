@@ -13,6 +13,15 @@
   add_action('init', 'pzarc_display_init');
   function pzarc_display_init()
   {
+    if (!is_admin() && file_exists(PZARC_CACHE_PATH . 'pzarc_css_cache.css')) {
+
+      wp_enqueue_style('pzarc_css', PZARC_CACHE_URL . 'pzarc_css_cache.css');
+
+    } else {
+
+      echo '<p class="message-warning">Oops! Could not find Architect CSS cache file. Please go to WP Admin Architect > Tools and rebuild it.</p>';
+
+    }
 
     // TODO: These seem to be loading late so loading in footer - even the CSS!
     // Retina Js
