@@ -120,6 +120,7 @@
         bfi_flush_image_cache();
       }
     }
+  /// die();
   }
 
   /**
@@ -208,6 +209,7 @@
         case (!empty($v) && $v !== 'px' && $k == 'font-size'):
         case (!empty($v) && $k == 'font-variant'):
         case (!empty($v) && $k == 'text-align'):
+        case (!empty($v) && $k == 'font-weight'):
         case (!empty($v) && $k == 'text-transform'):
         case (!empty($v) && $k == 'text-decoration'):
         case (!empty($v) && $v !== 'px' && $k == 'line-height'):
@@ -219,7 +221,6 @@
 
       }
     }
-
     return (!empty($filler) ? $classes . '{' . $filler . '}' : null);
   }
 
@@ -270,6 +271,18 @@
     return $classes . '{' . $borders_css . '}';
   }
 
+  function pzarc_process_border_radius($classes, $properties)
+  {
+    $borders_css = '';
+
+    $borders_css .= (!empty($properties[ 'border-top' ]) ? 'border-top-left-radius:' . $properties[ 'border-top' ].';' : '');
+    $borders_css .= (!empty($properties[ 'border-right' ]) ? 'border-top-right-radius:' . $properties[ 'border-right' ].';' : '');
+    $borders_css .= (!empty($properties[ 'border-bottom' ]) ? 'border-bottom-left-radius:' . $properties[ 'border-bottom' ].';' : '');
+    $borders_css .= (!empty($properties[ 'border-left' ]) ? 'border-bottom-right-radius:' . $properties[ 'border-left' ].';' : '');
+
+    return $classes . '{' . $borders_css . '}';
+  }
+
   /**
    * @param $classes
    * @param $properties
@@ -312,6 +325,7 @@
 
   function pzarc_process_background($classes, $properties)
   {
+    // Currently not used
     $pzarc_bg_css = '';
     // Could come from one of two methods
     if (!empty($properties[ 'color' ])) {
@@ -345,11 +359,19 @@
   }
 
   // TODO: If this was all a class it could be extensible!
+  /**
+   * @param $source
+   * @param $keys
+   * @param $value
+   * @param $classes
+   * @return mixed|string
+   */
   function pzarc_get_styling($source, $keys, $value, $classes)
   {
     // TODO: We need to makes it so only one declaration per case. i.e. class {padding;margins;border;etc}
     // which would require smarterness by the caller.
     if ('blueprint' === $source) {
+   //   var_dump($keys['id']);
       switch ($keys[ 'id' ]) {
         case 'blueprint':
           // Note no space for this class as it's in the same declaration
@@ -373,8 +395,14 @@
         case  'pzarc-navigator':
           $keys[ 'class' ] = $classes . ' .pzarc-navigator';
           break;
+        case  'arc-slider-nav':
+          $keys[ 'class' ] = $classes . ' .arc-slider-nav';
+          break;
         case  'pzarc-navigator-items':
-          $keys[ 'class' ] = $classes . ' .arc-slider-slide-nav-item'; // not always!! ugh!
+          $keys[ 'class' ] = $classes . ' .arc-slider-slide-nav-item'; // TODO: not always? ugh!
+          break;
+        case  'pzarc-navigator-itemactive':
+          $keys[ 'class' ] = $classes . ' .arc-slider-slide-nav-item.active';
           break;
 
       }
@@ -436,6 +464,7 @@
 
   function pzarc_style_background($class, $value)
   {
+ ///var_dump($class);
     return (!empty($value[ 'color' ]) ? $class . ' {background-color:' . $value[ 'color' ] . ';}' . "\n" : null);
 
   }
@@ -459,6 +488,11 @@
   function pzarc_style_borders($class, $value)
   {
     return pzarc_process_borders($class, $value) . "\n";
+  }
+
+  function pzarc_style_borderradius($class, $value)
+  {
+    return pzarc_process_border_radius($class, $value) . "\n";
   }
 
   function pzarc_style_links($class, $value)

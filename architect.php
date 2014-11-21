@@ -128,7 +128,16 @@
     {
       // TODO:	Define activation functionality here
       TGM_Plugin_Activation::get_instance()->update_dismiss();
+
       // TODO: Inisitalize and save all default options
+      // TODO: Inisitalize and save all default options
+      // TODO: Inisitalize and save all default options
+      // TODO: Inisitalize and save all default options
+      // TODO: Inisitalize and save all default options
+
+
+
+      /** Build CSS cache */
 
       $pzarc_cssblueprint_cache = maybe_unserialize(get_option('pzarc_css'));
 
@@ -339,7 +348,7 @@
   /** Special notices */
   /* Display a notice that can be dismissed */
 
-//  add_action('admin_notices', 'pzarc_admin_notice');
+  add_action('admin_notices', 'pzarc_admin_notice');
   function pzarc_admin_notice()
   {
     if (current_user_can('install_plugins')) {
@@ -347,23 +356,23 @@
       global $current_user;
       $user_id = $current_user->ID;
       /* Check that the user hasn't already clicked to ignore the message */
-      if (!get_user_meta($user_id, 'pzarc_ignore_notice')) {
+      if (!get_user_meta($user_id, 'pzarc_ignore_notice_v087')) {
         echo '<div class="message error highlight"><p>';
-        printf(__('. | <a href="%1$s">Hide Notice</a>'), '?pzarc_nag_ignore=0');
+        printf(__('<p>Architect v0.8.7 changes how CSS is cached. You will need to recreate Architect CSS. To do so, go to <em>Architect</em> > <em>Tools</em> and click <em>Rebuild Architect CSS Cache</em>. If your site has a a caching plugin or service, you will need to clear that as well and possibly first.</p><a href="http://discourse.pizazzwp.com/t/architect-beta-v0-8-7/30" target="_blank">Change log</a> | <a href="%1$s">Hide Notice</a>'), '?pzarc_nag_ignore_v087=0');
         echo "</p></div>";
       }
     }
   }
 
-  // add_action('admin_init', 'pzarc_nag_ignore');
+  add_action('admin_init', 'pzarc_nag_ignore');
 
   function pzarc_nag_ignore()
   {
     global $current_user;
     $user_id = $current_user->ID;
     /* If user clicks to ignore the notice, add that to their user meta */
-    if (isset($_GET[ 'pzarc_nag_ignore' ]) && '0' == $_GET[ 'pzarc_nag_ignore' ]) {
-      add_user_meta($user_id, 'pzarc_ignore_notice', 'true', true);
+    if (isset($_GET[ 'pzarc_nag_ignore_v087' ]) && '0' == $_GET[ 'pzarc_nag_ignore_v087' ]) {
+      add_user_meta($user_id, 'pzarc_ignore_notice_v087', 'true', true);
     }
   }
 

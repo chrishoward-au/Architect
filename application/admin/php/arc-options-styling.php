@@ -31,10 +31,10 @@
         }
 
         // If Redux is running as a plugin, this will remove the demo notice and links
-        //add_action( 'redux/plugin/hooks', array( $this, 'remove_demo' ) );
+        add_action( 'redux/plugin/hooks', array( $this, 'remove_demo' ) );
 
         // Function to test the compiler hook and demo CSS output.
-        add_filter('redux/options/' . $this->args[ 'opt_name' ] . '/compiler', array($this, 'compiler_action'), 10, 2);
+        //add_filter('redux/options/' . $this->args[ 'opt_name' ] . '/compiler', array($this, 'compiler_action'), 10, 2);
         // Above 10 is a priority, but 2 in necessary to include the dynamically generated CSS to be sent to the function.
 
         // Change the arguments after they've been declared, but before the panel is created
@@ -346,7 +346,6 @@
                     'id'       => $prefix . 'entry-readmore',
                     'type'     => 'section',
                     'class'    => 'heading',
-                    //        'default' => $defaults[ $optprefix . 'content_defaults_entry-readmore-defaults' ],
                     'subtitle' => 'Class: a.pzarc_readmore',
                 ),
                 pzarc_redux_font($prefix . 'entry-readmore-font', array('.readmore')),

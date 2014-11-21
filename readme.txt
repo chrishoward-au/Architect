@@ -101,13 +101,27 @@ This is BETA software. So there are many besides these ones!
 
 == Changelog ==
 
+= 0.8.8 =
+* CHANGED: Upgraded Slick.js to 1.3.15
+
 = 0.8.7 =
-* CHANGED: Removed excess files causing the zip to be so big
-* FIXED: Masonry layout broken by css compression
-* CHANGED: CSS is cached in db and single styles file then created.
 * ADDED: Tools menu
 * ADDED: Rebuild CSS cache in Tools menu
 * ADDED: Quick Start guide to About screen
+* ADDED: Lots more help
+* ADDED: Styling for active navigator item
+* ADDED: Border radius styling to navigator items
+* ADDED: Notice to clear CSS cache.
+* CHANGED: Removed excess files causing the zip to be so big
+* CHANGED: CSS is cached in db and single styles file then created.
+* CHANGED: Titles and meta at start of components are now wrapped in a header tag to align with WP methods
+* CHANGED: Meta at end of components are now wrapped in a footer tag to align with WP methods
+* FIXED: Widgets not using short name
+* FIXED: Masonry layout broken by css compression
+* FIXED: Background CSS on thumbs nav not applied
+* FIXED: Font weight not being applied in stylings
+
+* NOTE: LOTS of work still required on navigator especially thumbs and vertical
 
 = 0.8.6 =
 * CHANGED: Improved js on blueprints admin

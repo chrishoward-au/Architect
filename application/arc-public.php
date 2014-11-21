@@ -15,7 +15,7 @@
   {
     if (!is_admin() && file_exists(PZARC_CACHE_PATH . 'pzarc_css_cache.css')) {
 
-      wp_enqueue_style('pzarc_css', PZARC_CACHE_URL . 'pzarc_css_cache.css');
+      wp_register_style('pzarc_css', PZARC_CACHE_URL . 'pzarc_css_cache.css');
 
     } else {
 
@@ -186,6 +186,7 @@
 
     wp_enqueue_style(PZARC_NAME . '-plugin-styles');
     wp_enqueue_style(PZARC_NAME . '-dynamic-styles');
+    wp_enqueue_style('pzarc_css');
 
 
     $is_shortcode = ($caller == 'shortcode');

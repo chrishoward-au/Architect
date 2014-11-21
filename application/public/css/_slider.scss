@@ -98,9 +98,9 @@ Pagination Styles
     margin: 0 3px;
   }
   .has-pager .thumbs.pzarc-navigator {
+    // Centre it
     width: 80%;
-    // TODO: This is a hack fix. Find a way to centre it properly
-    left: 12%;
+    left: 10%;
   }
   .arc-slider-container {
     /* Specify slider's Size: */
@@ -111,18 +111,18 @@ Pagination Styles
 
       // width: 320px;
       height: 100%;
-      margin: 0 !important;
+      //margin: 0 !important;
     }
   }
     .left {
-      left: 15px;
+     // left: 15px;
       text-align: left;
       right: initial;
  //     width: 10%;
 
     }
     .right {
-      right: 15px;
+     // right: 15px;
       text-align: right;
       left: initial;
  //     width: 10%;
@@ -383,8 +383,9 @@ Pagination Styles
   max-width: 100px;
 }
 
+
 .arc-slider-nav.thumbs .arc-slider-slide {
-  max-width: initial;
+ // max-width: initial;
   display: inline-block;
 }
 
@@ -392,6 +393,28 @@ Pagination Styles
 }
 
 .arc-slider-nav .arc-slider-slide:last-child span {
+}
+
+.slick-prev {
+  left:-30px;
+}
+.slick-next {
+  right:-30px;
+}
+.slick-prev, .slick-next {
+  width:28px;
+  height:28px;
+  &:before {
+    font-size:28px;
+    padding:2px;
+    box-sizing: border-box;
+    &.dark {
+      color:#111;
+    }
+    &.light {
+      color:#fff;
+    }
+  }
 }
 
 ul.slick-dots {

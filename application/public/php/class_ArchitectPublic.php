@@ -423,12 +423,11 @@
         $duration    = $this->build->blueprint[ '_blueprints_transitions-duration' ] * 1000;
         $interval    = $this->build->blueprint[ '_blueprints_transitions-interval' ] * 1000;
         $skip_thumbs = $this->build->blueprint[ '_blueprints_navigator-skip-thumbs' ];
+        $no_across   = $this->build->blueprint[ '_blueprints_section-0-columns-breakpoint-1' ];
         $is_vertical = ('left' === $this->build->blueprint[ '_blueprints_navigator-position' ] || 'right' === $this->build->blueprint[ '_blueprints_navigator-position' ]) ? 'true' : 'false';
         $infinite    = ('infinite' === $this->build->blueprint[ '_blueprints_transitions-infinite' ]) ? 'true' : 'false';
 
-
-        $slider[ 'dataopts' ] = 'data-opts="{#tduration#:' . $duration . ',#tinterval#:' . $interval . ',#tshow#:' . $skip_thumbs . ',#tskip#:' . $skip_thumbs . ',#tisvertical#:' . $is_vertical . ',#tinfinite#:' . $infinite . '}"';
-
+        $slider[ 'dataopts' ] = 'data-opts="{#tduration#:' . $duration . ',#tinterval#:' . $interval . ',#tshow#:' . $skip_thumbs . ',#tskip#:' . $skip_thumbs . ',#tisvertical#:' . $is_vertical . ',#tinfinite#:' . $infinite . ',#tacross#:' . $no_across . '}"';
 
         if ('hover' === $this->build->blueprint[ '_blueprints_navigator-pager' ] && 'navigator' === $bp_nav_type) {
           $return_val .= '<button type="button" class="pager arrow-left icon-arrow-left4 hide"></button>';

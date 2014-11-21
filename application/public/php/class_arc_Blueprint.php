@@ -69,7 +69,6 @@
         $blueprint_query = new WP_Query($meta_query_args);
       }
 
-
       if (!isset($blueprint_query->posts[ 0 ]->ID)) {
 
         $this->blueprint = array('err_msg' => '<p class="message-error">Architect Blueprint <strong>' . $this->name . '</strong> not found</p>');

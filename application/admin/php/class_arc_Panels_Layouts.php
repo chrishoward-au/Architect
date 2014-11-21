@@ -36,6 +36,7 @@
         add_action("redux/metaboxes/$this->redux_opt_name/boxes", array($this, 'pzarc_panels_styling'),10,1);
         add_action("redux/metaboxes/$this->redux_opt_name/boxes", array($this, 'pzarc_panel_general_settings'),10,1);
         add_action("redux/metaboxes/$this->redux_opt_name/boxes", array($this, 'pzarc_panels_design'),10,1);
+        add_action('views_edit-arc-panels', array($this,'panels_description'));
 
       }
 
@@ -118,7 +119,23 @@
     }
 
 
+    function panels_description($post)
+    {
 
+      ?>
+      <div class="after-title-help postbox">
+        <div class="inside">
+          <h4>About Panels</h4>
+          <p class="howto">
+            <?php echo __('Architect Panels are where you design the layout of the content, that is, choosing how to display the titles, meta data, featured images, excerpts, content etc.', 'pzarchitect'); ?></p>
+          <p class="howto">Documentation can be found throughout Architect or online at the <a href="http://architect4wp.com/codex-listings" target="_blank">Architect Codex</a></p>
+
+        </div>
+        <!-- .inside -->
+      </div><!-- .postbox -->
+    <?php
+
+    }
 
 
   /* why not use a WP like methodology!

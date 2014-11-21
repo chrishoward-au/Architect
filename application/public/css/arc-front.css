@@ -93,6 +93,10 @@
     vertical-align: top;
     position: relative;
     overflow: hidden; }
+    .pzarchitect .pzarc-panel header.entry-header,
+    .pzarchitect .pzarc-panel footer.entry-footer {
+      float: left;
+      width: 100%; }
     .pzarchitect .pzarc-panel .entry-image {
       max-width: 100%;
       display: block; }
@@ -263,7 +267,7 @@
   .pzarchitect .navpos-top .has-pager .thumbs.pzarc-navigator,
   .pzarchitect .navpos-bottom .has-pager .thumbs.pzarc-navigator {
     width: 80%;
-    left: 12%; }
+    left: 10%; }
   .pzarchitect .navpos-top .arc-slider-container,
   .pzarchitect .navpos-bottom .arc-slider-container {
     /* Specify slider's Size: */
@@ -271,16 +275,13 @@
     .pzarchitect .navpos-top .arc-slider-container .arc-slider-slide,
     .pzarchitect .navpos-bottom .arc-slider-container .arc-slider-slide {
       /* Specify Slides's Size: */
-      height: 100%;
-      margin: 0 !important; }
+      height: 100%; }
   .pzarchitect .navpos-top .left,
   .pzarchitect .navpos-bottom .left {
-    left: 15px;
     text-align: left;
     right: initial; }
   .pzarchitect .navpos-top .right,
   .pzarchitect .navpos-bottom .right {
-    right: 15px;
     text-align: right;
     left: initial; }
   .pzarchitect .bullets .arc-slider-slide-nav-item {
@@ -431,8 +432,22 @@
   .pzarchitect .arc-slider-nav .arc-slider-slide {
     max-width: 100px; }
   .pzarchitect .arc-slider-nav.thumbs .arc-slider-slide {
-    max-width: initial;
     display: inline-block; }
+  .pzarchitect .slick-prev {
+    left: -30px; }
+  .pzarchitect .slick-next {
+    right: -30px; }
+  .pzarchitect .slick-prev, .pzarchitect .slick-next {
+    width: 28px;
+    height: 28px; }
+    .pzarchitect .slick-prev:before, .pzarchitect .slick-next:before {
+      font-size: 28px;
+      padding: 2px;
+      box-sizing: border-box; }
+      .pzarchitect .slick-prev:before.dark, .pzarchitect .slick-next:before.dark {
+        color: #111; }
+      .pzarchitect .slick-prev:before.light, .pzarchitect .slick-next:before.light {
+        color: #fff; }
   .pzarchitect ul.slick-dots {
     left: 0; }
   .pzarchitect .slick-slider {
