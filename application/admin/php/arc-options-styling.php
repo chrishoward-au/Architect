@@ -31,7 +31,7 @@
         }
 
         // If Redux is running as a plugin, this will remove the demo notice and links
-        add_action( 'redux/plugin/hooks', array( $this, 'remove_demo' ) );
+        add_action('redux/plugin/hooks', array($this, 'remove_demo'));
 
         // Function to test the compiler hook and demo CSS output.
         //add_filter('redux/options/' . $this->args[ 'opt_name' ] . '/compiler', array($this, 'compiler_action'), 10, 2);
@@ -242,6 +242,7 @@
                     'title'    => __('Panels', 'pzarc'),
                     'id'       => $prefix . 'panels',
                     'type'     => 'section',
+                    'indent'   => true,
                     'class'    => 'heading',
                     'subtitle' => 'Class: .pzarc-panel',
                 ),
@@ -259,6 +260,7 @@
                     'title'    => __('Components group', 'pzarc'),
                     'id'       => $prefix . 'components-group-section-start',
                     'type'     => 'section',
+                    'indent'   => true,
                     'class'    => 'heading',
                     'subtitle' => 'Class: .pzarc-components',
                     'indent'   => false
@@ -345,6 +347,7 @@
                     'title'    => __('Read more', 'pzarc'),
                     'id'       => $prefix . 'entry-readmore',
                     'type'     => 'section',
+                    'indent'   => true,
                     'class'    => 'heading',
                     'subtitle' => 'Class: a.pzarc_readmore',
                 ),
@@ -364,6 +367,7 @@
                     'title'    => __('Image', 'pzarc'),
                     'id'       => $prefix . 'entry-image',
                     'type'     => 'section',
+                    'indent'   => true,
                     'class'    => 'heading',
                     //          'default' => $defaults[ $optprefix . 'image_defaults_entry-image-defaults' ],
                     'subtitle' => 'Class: .pzarc_entry_featured_image',
@@ -493,7 +497,7 @@
           'page'               => __('Architect Styling', 'pzarc'),
           'google_api_key'     => 'Xq9o3CdQFHKr+47vQr6eO4EUYLtlEyTe',
           // Must be defined to add google fonts to the typography module
-//          'global_variable'    => 'pzarchitect',
+          //          'global_variable'    => 'pzarchitect',
           // Set a different name for your global variable other than the opt_name
           'dev_mode'           => false,
           // Show the time the page took to load, etc

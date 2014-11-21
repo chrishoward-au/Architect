@@ -103,7 +103,7 @@
   }
 
 
-  function pzarc_redux_bg($id, $selectors = null, $defaults = '')
+  function pzarc_redux_bg($id, $selectors = null, $defaults = array('color'=>''))
   {
     return array(
         'title'                 => __('Background', 'pzarchitect'),
@@ -228,10 +228,10 @@
 
     // BLUEPRINTS
     $_architect[ 'defaults' ][ 'blueprints' ]                                 = (!isset($_architect[ 'defaults' ][ 'blueprints' ]) ? array() : $_architect[ 'defaults' ][ 'blueprints' ]);
-    $blueprint_layout_general                                                 = $blueprints->pzarc_blueprint_layout_general($_architect[ 'defaults' ][ 'blueprints' ]);
-    $pzarc_blueprint_content_general                                          = $blueprints->pzarc_blueprint_content_general($_architect[ 'defaults' ][ 'blueprints' ]);
-    $pzarc_blueprint_layout                                                   = $blueprints->pzarc_blueprint_layout($_architect[ 'defaults' ][ 'blueprints' ]);
-    $pzarc_contents_metabox                                                   = $blueprints->pzarc_contents_metabox($_architect[ 'defaults' ][ 'blueprints' ]);
+    $blueprint_layout_general                                                 = $blueprints->pzarc_blueprint_layout_general_mb($_architect[ 'defaults' ][ 'blueprints' ]);
+    $pzarc_blueprint_content_general                                          = $blueprints->pzarc_blueprint_content_general_mb($_architect[ 'defaults' ][ 'blueprints' ]);
+    $pzarc_blueprint_layout                                                   = $blueprints->pzarc_blueprint_layout_mb($_architect[ 'defaults' ][ 'blueprints' ]);
+    $pzarc_contents_metabox                                                   = $blueprints->pzarc_blueprint_contents_mb($_architect[ 'defaults' ][ 'blueprints' ]);
     $_architect[ 'defaults' ][ 'blueprints' ][ '_blueprint_layout_general' ]  = $blueprint_layout_general[ 0 ][ 'sections' ];
     $_architect[ 'defaults' ][ 'blueprints' ][ '_blueprint_content_general' ] = $pzarc_blueprint_content_general[ 0 ][ 'sections' ];
     $_architect[ 'defaults' ][ 'blueprints' ][ '_blueprint_layout' ]          = $pzarc_blueprint_layout[ 0 ][ 'sections' ];

@@ -38,14 +38,15 @@
         add_filter('manage_arc-blueprints_posts_columns', array($this, 'add_blueprint_columns'));
         add_action('manage_arc-blueprints_posts_custom_column', array($this, 'add_blueprint_column_content'), 10, 2);
 
-        add_action("redux/metaboxes/$this->redux_opt_name/boxes", array($this, 'pzarc_blueprint_tabs'), 10, 1);
+        add_action("redux/metaboxes/$this->redux_opt_name/boxes", array($this, 'pzarc_blueprint_tabs_mb'), 10, 1);
         add_action("redux/metaboxes/$this->redux_opt_name/boxes", array($this,
-                                                                        'pzarc_blueprint_layout_general'), 10, 1);
-        add_action("redux/metaboxes/$this->redux_opt_name/boxes", array($this, 'pzarc_blueprint_layout'), 10, 1);
-        add_action("redux/metaboxes/$this->redux_opt_name/boxes", array($this, 'pzarc_contents_metabox'), 10, 1);
+                                                                        'pzarc_blueprint_layout_general_mb'), 10, 1);
         add_action("redux/metaboxes/$this->redux_opt_name/boxes", array($this,
-                                                                        'pzarc_blueprint_layout_styling'), 10, 1);
-        add_action('views_edit-arc-blueprints', array($this,'blueprints_description'));
+                                                                        'pzarc_blueprint_layout_mb'), 10, 1);
+        add_action("redux/metaboxes/$this->redux_opt_name/boxes", array($this, 'pzarc_blueprint_contents_mb'), 10, 1);
+        add_action("redux/metaboxes/$this->redux_opt_name/boxes", array($this,
+                                                                        'pzarc_blueprint_layout_styling_mb'), 10, 1);
+        add_action('views_edit-arc-blueprints', array($this, 'blueprints_description'));
 
 
       }
@@ -182,9 +183,12 @@
       <div class="after-title-help postbox">
         <div class="inside">
           <h4>About Blueprints</h4>
+
           <p class="howto">
             <?php echo __('Architect Blueprints are where you build the overall layouts to display. In Blueprints, you select a Panel, what content will appear in the panels, and how you want to lay them out.', 'pzarchitect'); ?></p>
-          <p class="howto">Documentation can be found throughout Architect or online at the <a href="http://architect4wp.com/codex-listings" target="_blank">Architect Codex</a></p>
+
+          <p class="howto">Documentation can be found throughout Architect or online at the <a
+                href="http://architect4wp.com/codex-listings" target="_blank">Architect Codex</a></p>
 
         </div>
         <!-- .inside -->
@@ -233,7 +237,7 @@
 //}
 
 
-    function pzarc_blueprint_tabs($metaboxes)
+    function pzarc_blueprint_tabs_mb($metaboxes)
     {
       $prefix   = '_blueprint_tabs_';
       $sections = array();
@@ -339,7 +343,7 @@
      * @param array $metaboxes
      * @return array
      */
-    function pzarc_blueprint_layout_general($metaboxes)
+    function pzarc_blueprint_layout_general_mb($metaboxes)
     {
       $prefix = '_blueprints_';
 
@@ -436,7 +440,7 @@
      * @param array $metaboxes
      * @return array
      */
-    function pzarc_blueprint_content_general($metaboxes)
+    function pzarc_blueprint_content_general_mb($metaboxes)
     {
 
       $prefix = '_blueprints_';
@@ -465,7 +469,7 @@
     /**
      * LAYOUT
      */
-    function pzarc_blueprint_layout($metaboxes)
+    function pzarc_blueprint_layout_mb($metaboxes)
     {
       $prefix   = '_blueprints_';
       $sections = array();
@@ -898,32 +902,32 @@
                       array($prefix . 'navigator', '!=', 'accordion'),
                   )
               ),
-//              array(
-//                  'title'    => 'Skip left icon',
-//                  'id'       => $prefix . 'navigator-skip-left',
-//                  'type'     => 'button_set',
-//                  'default'  => 'backward',
-//                  'options'  => array(
-//                      'backward'      => 'Backward',
-//                      'step-backward' => 'Step Backward',
-//                  ),
-//                  'required' => array(
-//                      array($prefix . 'navigator', '!=', 'accordion'),
-//                  )
-//              ),
-//              array(
-//                  'title'    => 'Skip right icon',
-//                  'id'       => $prefix . 'navigator-skip-right',
-//                  'type'     => 'button_set',
-//                  'default'  => 'forward',
-//                  'options'  => array(
-//                      'forward'      => 'Forward',
-//                      'step-forward' => 'Step Forward',
-//                  ),
-//                  'required' => array(
-//                      array($prefix . 'navigator', '!=', 'accordion'),
-//                  )
-//              ),
+              //              array(
+              //                  'title'    => 'Skip left icon',
+              //                  'id'       => $prefix . 'navigator-skip-left',
+              //                  'type'     => 'button_set',
+              //                  'default'  => 'backward',
+              //                  'options'  => array(
+              //                      'backward'      => 'Backward',
+              //                      'step-backward' => 'Step Backward',
+              //                  ),
+              //                  'required' => array(
+              //                      array($prefix . 'navigator', '!=', 'accordion'),
+              //                  )
+              //              ),
+              //              array(
+              //                  'title'    => 'Skip right icon',
+              //                  'id'       => $prefix . 'navigator-skip-right',
+              //                  'type'     => 'button_set',
+              //                  'default'  => 'forward',
+              //                  'options'  => array(
+              //                      'forward'      => 'Forward',
+              //                      'step-forward' => 'Step Forward',
+              //                  ),
+              //                  'required' => array(
+              //                      array($prefix . 'navigator', '!=', 'accordion'),
+              //                  )
+              //              ),
               array(
                   'id'       => $prefix . 'navigator-skip-thumbs',
                   'title'    => __('Number of thumbnails', 'pzarchitect'),
@@ -940,10 +944,11 @@
                ******************/
 
               array(
-                  'title' => __('Transitions', 'pzarchitect'),
-                  'id'    => $prefix . 'section-transitions-heading',
-                  'type'  => 'section',
-                  'class' => ' heading',
+                  'title'  => __('Transitions', 'pzarchitect'),
+                  'id'     => $prefix . 'section-transitions-heading',
+                  'type'   => 'section',
+                  'indent' => true,
+                  'class'  => ' heading',
               ),
               array(
                   'title'   => 'Type',
@@ -984,16 +989,16 @@
                   'desc'          => __('Set to zero to disable autoplay', 'pzarchitect'),
                   'hint'          => array('content' => __('Time slide is shown with no transitions active. Set to zero to disable autoplay', 'pzarchitect')),
               ),
-//              array(
-//                  'title'   => __('Go to after last slide', 'pzarchitect'),
-//                  'id'      => $prefix . 'transitions-infinite',
-//                  'type'    => 'button_set',
-//                  'options' => array(
-//                      'infinite' => 'First',
-//                      'reverse'  => 'Previous'),
-//                  'default' => 'infinite',
-//                  'hint'    => array('content' => __('Loop back to the first slide after reaching the last one or reverse direction to previous slide', 'pzarchitect')),
-//              ),
+              //              array(
+              //                  'title'   => __('Go to after last slide', 'pzarchitect'),
+              //                  'id'      => $prefix . 'transitions-infinite',
+              //                  'type'    => 'button_set',
+              //                  'options' => array(
+              //                      'infinite' => 'First',
+              //                      'reverse'  => 'Previous'),
+              //                  'default' => 'infinite',
+              //                  'hint'    => array('content' => __('Loop back to the first slide after reaching the last one or reverse direction to previous slide', 'pzarchitect')),
+              //              ),
 
           ),
           //            array(
@@ -1099,7 +1104,7 @@
      * @param array $metaboxes
      * @return array
      */
-    function pzarc_contents_metabox($metaboxes)
+    function pzarc_blueprint_contents_mb($metaboxes)
     {
 
       // TODO: Setup a loop that reads the object containing content type info as appened by the content type classes. Will need a means of letting js know tho.
@@ -1212,7 +1217,6 @@ You can use them however you like though.
 
       );
 
-
       return $metaboxes;
 
     }
@@ -1222,7 +1226,7 @@ You can use them however you like though.
      * @param $metaboxes
      * @return array
      */
-    function pzarc_blueprint_layout_styling($metaboxes)
+    function pzarc_blueprint_layout_styling_mb($metaboxes)
     {
       global $_architect_options;
       if (!empty($_architect_options[ 'architect_enable_styling' ])) {
@@ -1347,36 +1351,44 @@ You can use them however you like though.
                     'title'    => __('Navigator container', 'pzarchitect'),
                     'id'       => $prefix . 'blueprint-nav-container-css-heading',
                     'type'     => 'section',
+                    'indent'   => true,
                     'subtitle' => 'Class: .pzarc-navigator',
 
                 ),
-                pzarc_redux_bg($prefix . 'pzarc-navigator-background', array('.arc-slider-nav','.pzarc-navigator')),
-                pzarc_redux_padding($prefix . 'pzarc-navigator-padding', array('.arc-slider-nav','.pzarc-navigator')),
-                pzarc_redux_margin($prefix . 'pzarc-navigator-margins', array('.arc-slider-nav','.pzarc-navigator')),
-                pzarc_redux_borders($prefix . 'pzarc-navigator-borders', array('.arc-slider-nav','.pzarc-navigator')),
-
+                pzarc_redux_bg($prefix . 'pzarc-navigator-background', array('.arc-slider-nav', '.pzarc-navigator')),
+                pzarc_redux_padding($prefix . 'pzarc-navigator-padding', array('.arc-slider-nav', '.pzarc-navigator')),
+                pzarc_redux_margin($prefix . 'pzarc-navigator-margins', array('.arc-slider-nav', '.pzarc-navigator')),
+                pzarc_redux_borders($prefix . 'pzarc-navigator-borders', array('.arc-slider-nav', '.pzarc-navigator')),
                 array(
                     'title'    => __('Navigator items', 'pzarchitect'),
                     'id'       => $prefix . 'blueprint-nav-items-css-heading',
                     'type'     => 'section',
+                    'indent'   => true,
                     'subtitle' => 'Class: .pzarc-navigator .arc-slider-slide-nav-item span',
 
                 ),
-                pzarc_redux_font($prefix . 'pzarc-navigator-items-font', array('.pzarc-navigator .arc-slider-slide-nav-item span'),null),
+                pzarc_redux_font($prefix . 'pzarc-navigator-items-font', array('.pzarc-navigator .arc-slider-slide-nav-item span'), null),
                 pzarc_redux_bg($prefix . 'pzarc-navigator-items-background', array('.pzarc-navigator .arc-slider-slide-nav-item span')),
                 pzarc_redux_padding($prefix . 'pzarc-navigator-items-padding', array('.pzarc-navigator .arc-slider-slide-nav-item span')),
                 pzarc_redux_margin($prefix . 'pzarc-navigator-items-margins', array('.pzarc-navigator .arc-slider-slide-nav-item span')),
                 pzarc_redux_borders($prefix . 'pzarc-navigator-items-borders', array('.pzarc-navigator .arc-slider-slide-nav-item span')),
                 pzarc_redux_border_radius($prefix . 'pzarc-navigator-items-borderradius', array('.pzarc-navigator .arc-slider-slide-nav-item span')),
-
                 array(
                     'title'    => __('Navigator active item', 'pzarchitect'),
                     'id'       => $prefix . 'blueprint-nav-active-item-css-heading',
                     'type'     => 'section',
+                    'indent'   => true,
                     'subtitle' => 'Class: .pzarc-navigator .arc-slider-slide-nav-item.active span',
 
                 ),
-                pzarc_redux_font($prefix . 'pzarc-navigator-itemactive-font', array('.pzarc-navigator .arc-slider-slide-nav-item.active span'),null,array('letter-spacing','font-variant','text-transform','font-family','font-style','text-align','line-height','word-spacing')),
+                pzarc_redux_font($prefix . 'pzarc-navigator-itemactive-font', array('.pzarc-navigator .arc-slider-slide-nav-item.active span'), null, array('letter-spacing',
+                                                                                                                                                            'font-variant',
+                                                                                                                                                            'text-transform',
+                                                                                                                                                            'font-family',
+                                                                                                                                                            'font-style',
+                                                                                                                                                            'text-align',
+                                                                                                                                                            'line-height',
+                                                                                                                                                            'word-spacing')),
                 pzarc_redux_bg($prefix . 'pzarc-navigator-itemactive-background', array('.pzarc-navigator .arc-slider-slide-nav-item.active span')),
                 pzarc_redux_borders($prefix . 'pzarc-navigator-itemactive-borders', array('.pzarc-navigator .arc-slider-slide-nav-item.active span')),
             ),

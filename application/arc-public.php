@@ -162,7 +162,7 @@
    ******************************/
   function pzarc($blueprint = null, $overrides = null, $caller, $tag = null, $additional_overrides = null)
   {
-
+pzdb('start pzarc');
     global $_architect_options;
 
     // Just incase that didn't work... A problem from days of past
@@ -267,6 +267,7 @@
 
     // Tell WP to resume using the main query just in case we might have accidentally left another query active.
     wp_reset_postdata();
+    pzdb('end pzarc');
   }
 
 

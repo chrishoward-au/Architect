@@ -12,6 +12,29 @@
     Shoutouts: Options and metabox management all done with Redux plugin
    */
 
+  define('PZDEBUG', false);
+  if (PZDEBUG) {
+    global $pzstart_time;
+    $pzstart_time = microtime(true);
+    pzdb('start');
+  }
+
+  function pzdb($pre = null, $var = 'dorkus')
+  {
+    if (PZDEBUG) {
+      static $oldtime;
+      $oldtime = empty($oldtime) ? microtime(true) : $oldtime;
+      $btr     = debug_backtrace();
+      $line    = $btr[ 0 ][ 'line' ];
+      $file    = basename($btr[ 0 ][ 'file' ]);
+      global $pzstart_time;
+      var_dump(strtoupper($pre) . ': ' . $file . ':' . $line . ': ' . round((microtime(true) - $pzstart_time), 5) . 's. Time since last: ' . round(microtime(true) - $oldtime, 5) . 's');
+      $oldtime = microtime(true);
+      if ($var !== 'dorkus') {
+        var_dump($var);
+      }
+    }
+  }
 
   class pzArchitect
   {
@@ -99,6 +122,7 @@
       require_once PZARC_PLUGIN_APP_PATH . '/shared/architect/php/content-types/slide/class_arc_content_slide.php';
       require_once PZARC_PLUGIN_APP_PATH . '/shared/architect/php/content-types/cpt/class_arc_content_cpt.php';
 
+      pzdb('end of construct');
 
     }
 
@@ -136,7 +160,6 @@
       // TODO: Inisitalize and save all default options
 
 
-
       /** Build CSS cache */
 
       $pzarc_cssblueprint_cache = maybe_unserialize(get_option('pzarc_css'));
@@ -144,7 +167,7 @@
       if (!$pzarc_cssblueprint_cache) {
         add_option('pzarc_css', maybe_serialize(array('blueprints' => array(), 'panels' => array())), null, 'no');
       }
-      require_once(PZARC_PLUGIN_APP_PATH.'/admin/php/arc-save-process.php');
+      require_once(PZARC_PLUGIN_APP_PATH . '/admin/php/arc-save-process.php');
       save_arc_layouts('all', null, true);
     }
 
@@ -287,6 +310,7 @@
 
 // end class
 // TODO:	Update the instantiation call of your plugin to the name given at the class definition
+
   $pzarc = new pzArchitect();
 
 

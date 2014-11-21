@@ -103,7 +103,7 @@ This is BETA software. So there are many besides these ones!
 
 = 0.8.8 =
 * CHANGED: Upgraded Slick.js to 1.3.15
-
+* FIXED: Cleaned up a few PHP warnings and notices in WP admin 
 = 0.8.7 =
 * ADDED: Tools menu
 * ADDED: Rebuild CSS cache in Tools menu
