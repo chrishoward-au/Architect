@@ -4,7 +4,7 @@
     Plugin Name: Architect - an all-in-one content layout framework
     Plugin URI: http://pizazzwp.com
     Description: Go beyond the limitations of the theme you use to easily build any content layouts for it. Build your own grids, tabs, sliders, galleries and more with sources such ass posts, pages, galleries, and custom content types. Display using shorcodes, widgets, Headway blocks, WP action hooks and template tags, and WP Gallery shortcode. Change themes without needing to rebuild your layouts!
-    Version: 0.8.7
+    Version: 0.8.8
     Author: Chris Howard
     Author URI: http://pizazzwp.com
     License: GNU GPL v2
@@ -12,29 +12,8 @@
     Shoutouts: Options and metabox management all done with Redux plugin
    */
 
-  define('PZDEBUG', false);
-  if (PZDEBUG) {
-    global $pzstart_time;
-    $pzstart_time = microtime(true);
-    pzdb('start');
-  }
 
-  function pzdb($pre = null, $var = 'dorkus')
-  {
-    if (PZDEBUG) {
-      static $oldtime;
-      $oldtime = empty($oldtime) ? microtime(true) : $oldtime;
-      $btr     = debug_backtrace();
-      $line    = $btr[ 0 ][ 'line' ];
-      $file    = basename($btr[ 0 ][ 'file' ]);
-      global $pzstart_time;
-      var_dump(strtoupper($pre) . ': ' . $file . ':' . $line . ': ' . round((microtime(true) - $pzstart_time), 5) . 's. Time since last: ' . round(microtime(true) - $oldtime, 5) . 's');
-      $oldtime = microtime(true);
-      if ($var !== 'dorkus') {
-        var_dump($var);
-      }
-    }
-  }
+  define('PZDEBUG', false);
 
   class pzArchitect
   {
@@ -42,7 +21,7 @@
     function __construct()
     {
 
-      define('PZARC_VERSION', '0.8.7');
+      define('PZARC_VERSION', '0.8.8');
       define('PZARC_NAME', 'pzarchitect'); // This is also same as the locale
       define('PZARC_FOLDER', '/pizazzwp-architect');
 
@@ -400,4 +379,27 @@
     }
   }
 
+
+  if (PZDEBUG) {
+    global $pzstart_time;
+    $pzstart_time = microtime(true);
+    pzdb('start');
+  }
+
+  function pzdb($pre = null, $var = 'dorkus')
+  {
+    if (PZDEBUG) {
+      static $oldtime;
+      $oldtime = empty($oldtime) ? microtime(true) : $oldtime;
+      $btr     = debug_backtrace();
+      $line    = $btr[ 0 ][ 'line' ];
+      $file    = basename($btr[ 0 ][ 'file' ]);
+      global $pzstart_time;
+      var_dump(strtoupper($pre) . ': ' . $file . ':' . $line . ': ' . round((microtime(true) - $pzstart_time), 5) . 's. Time since last: ' . round(microtime(true) - $oldtime, 5) . 's');
+      $oldtime = microtime(true);
+      if ($var !== 'dorkus') {
+        var_dump($var);
+      }
+    }
+  }
 

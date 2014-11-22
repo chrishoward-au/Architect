@@ -3,8 +3,8 @@ Contributors: chrishoward
 Tags: content,display,posts,pages,gallery,slider
 Donate link: http://
 Requires at least: 3.5.0
-Tested up to: 4.0.0
-Stable tag: 0.8.7
+Tested up to: 4.1.0
+Stable tag: 0.8.8
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -103,7 +103,8 @@ This is BETA software. So there are many besides these ones!
 
 = 0.8.8 =
 * CHANGED: Upgraded Slick.js to 1.3.15
-* FIXED: Cleaned up a few PHP warnings and notices in WP admin 
+* FIXED: Cleaned up a few PHP warnings and notices in WP admin (Thanks, Corey)
+
 = 0.8.7 =
 * ADDED: Tools menu
 * ADDED: Rebuild CSS cache in Tools menu

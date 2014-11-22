@@ -25,6 +25,8 @@
     public function __construct()
     {
 
+      parent::initialise_data();
+
       // Faker requires PHP 5.3.3
       if (!defined('PHP_VERSION_ID')) {
         $version = explode('.', PHP_VERSION);

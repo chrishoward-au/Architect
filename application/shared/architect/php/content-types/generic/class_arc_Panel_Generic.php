@@ -12,7 +12,10 @@
 
     public function __construct()
     {
+      self::initialise_data();
+    }
 
+    public function initialise_data() {
       // Null up everything to prevent warnings later on
       $this->data[ 'title' ] = null;
 
@@ -44,9 +47,7 @@
       $this->data[ 'bgimage' ][ 'thumb' ]    = null;
       $this->data[ 'bgimage' ][ 'original' ] = null;
 
-
-    }
-
+  }
     /**
      * Method: panel_def
      *
@@ -248,7 +249,7 @@
 
     public function get_video(&$post)
     {
-      $video_source = get_post_meta($post->ID, 'pzarc_features-video', true);
+      $video_source = (is_object($post)?get_post_meta($post->ID, 'pzarc_features-video', true):'');
       if (!empty($this->section[ '_panels_settings_use-embedded-images' ]) && empty($video_source)) {
         $video_source = '[video]';
       }
