@@ -26,3 +26,8 @@ function tabbed_field_path($field) {
   function spectrum_field_path($field) {
     return dirname( __FILE__ ).'/spectrum/field_spectrum.php';
   }
+
+  // add_filter( "redux/{$redux_opt_name}/field/class/border-radius", "border_radius_field_path" ); // Adds the local field
+  // function border_radius_field_path($field) {
+  //   return dirname( __FILE__ ).'/border-radius/field_border-radius.php';
+  // }

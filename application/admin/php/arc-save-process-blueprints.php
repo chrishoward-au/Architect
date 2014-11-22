@@ -13,7 +13,6 @@
 //    $pzarc_contents = '';
 //
     $nl = "\n";
-
     $pzarc_contents .= '/* This is the css for blueprint ' . $postid . ' ' . $pzarc_blueprints[ '_blueprints_short-name' ] . '*/' . $nl;
     $pzarc_bp_css = array();
 
@@ -45,12 +44,15 @@
         $bpkey             = str_replace('_blueprints_styling_', '', $key);
         $bpkeys[ 'style' ] = substr($bpkey, strrpos($bpkey, "-") + 1);;
         $bpkeys[ 'id' ] = substr($bpkey, 0, strrpos($bpkey, "-"));
-
+        if ($bpkeys['id']==='pzarc-navigator' && $pzarc_blueprints[ '_blueprints_navigator' ]==='thumbs' ) {
+          // UGH! Need to hack this for when is thumb nav
+          $bpkeys['id']='arc-slider-nav';
+        }
+///var_dump('blueprint', $bpkeys, $value, '.pzarchitect.pzarc-blueprint_' . $pzarc_blueprints[ '_blueprints_short-name' ]);
         $pzarc_contents .= pzarc_get_styling('blueprint', $bpkeys, $value, '.pzarchitect.pzarc-blueprint_' . $pzarc_blueprints[ '_blueprints_short-name' ]);
       }
 
     }
-
     $pzarc_contents .= 'body.pzarchitect .pzarc-blueprint_' . $pzarc_blueprints[ '_blueprints_short-name' ] . ' {max-width:' . $pzarc_blueprints[ '_blueprints_blueprint-width' ][ 'width' ] . ';margin-left:auto;margin-right:auto}' . $nl;
 
     /** Vertical nav styling  */
@@ -58,10 +60,13 @@
 
     if ('navigator' === $pzarc_blueprints[ '_blueprints_navigation' ] && 'none' !== $pzarc_blueprints[ '_blueprints_navigator' ]) {
 
+      $nav_class = ($pzarc_blueprints[ '_blueprints_navigator' ]==='thumbs'?' .arc-slider-nav':' .pzarc-navigator');
+
+      //TODO: when this is vertical, need to test using absolute and top 0, bottom 0 to fill it.
       if ('left' === $pzarc_blueprints[ '_blueprints_navigator-position' ]) {
 
         $pzarc_contents .= '
-       .pzarchitect.pzarc-blueprint_' . $pzarc_blueprints[ '_blueprints_short-name' ] . ' .pzarc-navigator{width: ' . $pzarc_vert_width . '%;float:left;}
+       .pzarchitect.pzarc-blueprint_' . $pzarc_blueprints[ '_blueprints_short-name' ] .$nav_class. ' {width: ' . $pzarc_vert_width . '%;float:left;}
        .pzarc-sections_' . $pzarc_blueprints[ '_blueprints_short-name' ] . '{float:right; width:' . (100 - $pzarc_vert_width) . '%; }
        .pzarchitect.pzarc-blueprint_' . $pzarc_blueprints[ '_blueprints_short-name' ] . '.nav-navigator button.pager.arrow-left {left:' . ($pzarc_vert_width + 1) . '%;}
       ';
@@ -69,7 +74,7 @@
       if ('right' === $pzarc_blueprints[ '_blueprints_navigator-position' ]) {
 
         $pzarc_contents .= '
-       .pzarchitect.pzarc-blueprint_' . $pzarc_blueprints[ '_blueprints_short-name' ] . ' .pzarc-navigator{width: ' . $pzarc_vert_width . '%;float:right;}
+       .pzarchitect.pzarc-blueprint_' . $pzarc_blueprints[ '_blueprints_short-name' ] .$nav_class. ' {width: ' . $pzarc_vert_width . '%;float:right;}
        .pzarc-sections_' . $pzarc_blueprints[ '_blueprints_short-name' ] . '{float:left; width:' . (100 - $pzarc_vert_width) . '%; }
        .pzarchitect.pzarc-blueprint_' . $pzarc_blueprints[ '_blueprints_short-name' ] . '.nav-navigator button.pager.arrow-right {right:' . ($pzarc_vert_width + 1) . '%;}
       ';
@@ -87,8 +92,7 @@
    * @param $_architect_options
    * @return string
    *
-   * Sets up import of panels CSS
-   */
+   *   */
   function pzarc_process_bp_sections(&$pzarc_blueprints, $i, $nl, &$_architect_options)
   {
     if (empty($pzarc_blueprints[ '_blueprints_section-' . $i . '-panel-layout' ])) {

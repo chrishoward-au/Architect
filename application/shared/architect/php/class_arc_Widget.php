@@ -30,7 +30,8 @@
     {
       $pzarc_caller    = 'widget';
       $title           = apply_filters('widget_title', $instance[ 'title' ]);
-      $pzarc_blueprint = $instance[ 'arc_bp_shortname' ];
+      $pzarc_blueprint_id = pzarc_convert_name_to_id($instance[ 'arc_bp_shortname' ]);
+      $pzarc_blueprint = get_post_meta( $pzarc_blueprint_id, '_blueprints_short-name', true );
       $pzarc_overrides = $instance[ 'arc_bp_overrides' ];
 // before and after widget arguments are defined by themes
       echo $args[ 'before_widget' ];

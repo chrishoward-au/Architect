@@ -63,12 +63,13 @@
 
   }
 
-  function pzarc_redux_font($id, $selectors, $defaults = null)
+  function pzarc_redux_font($id, $selectors, $defaults = '', $exclude = array())
   {
-
+//var_dump($exclude,in_array('font-family',$exclude),in_array('color',$exclude),!array_search('font-family',$exclude));
     // TODO: Change font size to a range and use flowtype.js
-    return array(
-        'title'           => __('Font', 'pzarc'),
+
+    $return_array = array(
+        'title'           => __('Font', 'pzarchitect'),
         'id'              => $id,
         'output'          => $selectors,
         'type'            => 'typography',
@@ -92,13 +93,20 @@
         'letter-spacing'  => true,
         'default'         => $defaults,
     );
+    foreach ($return_array as $k => $v) {
+      if (in_array($k, $exclude)) {
+        $return_array[ $k ] = false;
+      }
+    }
+
+    return $return_array;
   }
 
 
-  function pzarc_redux_bg($id, $selectors = null, $defaults = null)
+  function pzarc_redux_bg($id, $selectors = null, $defaults = array('color'=>''))
   {
     return array(
-        'title'                 => __('Background', 'pzarc'),
+        'title'                 => __('Background', 'pzarchitect'),
         'id'                    => $id,
         'output'                => $selectors,
         'compiler'              => $selectors,
@@ -114,11 +122,11 @@
     );
   }
 
-  function pzarc_redux_padding($id, $selectors, $defaults = null)
+  function pzarc_redux_padding($id, $selectors, $defaults = '')
   {
 //    var_dump($id, $defaults);
     return array(
-        'title'   => __('Padding', 'pzarc'),
+        'title'   => __('Padding', 'pzarchitect'),
         'id'      => $id,
         //      'output'  => $selectors,
         'mode'    => 'padding',
@@ -129,10 +137,10 @@
 
   }
 
-  function pzarc_redux_margin($id, $selectors, $defaults = null)
+  function pzarc_redux_margin($id, $selectors, $defaults = '')
   {
     return array(
-        'title'   => __('Margins', 'pzarc'),
+        'title'   => __('Margins', 'pzarchitect'),
         'id'      => $id,
         'output'  => $selectors,
         'mode'    => 'margin',
@@ -143,11 +151,11 @@
 
   }
 
-  function pzarc_redux_links($id, $selectors, $defaults = null)
+  function pzarc_redux_links($id, $selectors, $defaults = '')
   {
     return
         array(
-            'title'   => __('Links', 'pzarc'),
+            'title'   => __('Links', 'pzarchitect'),
             'id'      => $id,
             'type'    => 'links',
             //            'output'  => $selectors,
@@ -156,10 +164,10 @@
 
   }
 
-//  function pzarc_redux_links_dec($id, $selectors, $defaults = null)
+//  function pzarc_redux_links_dec($id, $selectors, $defaults = '')
 //  {
 //    return array(
-//        'title'   => __('Links underline', 'pzarc'),
+//        'title'   => __('Links underline', 'pzarchitect'),
 //        'id'      => $id,
 //        'type'    => 'button_set',
 //        'multi'   => true,
@@ -175,14 +183,30 @@
 //
 //  }
 
-  function pzarc_redux_borders($id, $selectors, $defaults = null)
+  function pzarc_redux_borders($id, $selectors, $defaults = '')
   {
 
     return array(
-        'title'   => __('Border', 'pzarc'),
+        'title'   => __('Border', 'pzarchitect'),
         'id'      => $id,
         'type'    => 'border',
         'all'     => false,
+        'output'  => $selectors,
+        'default' => $defaults
+    );
+  }
+
+  function pzarc_redux_border_radius($id, $selectors, $defaults = '')
+  {
+
+    return array(
+        'title'   => __('Border Radius', 'pzarchitect'),
+        'subtitle'=> __('TopLeft, TopRight, BottomLeft, BottomRight','pzarchitect'),
+        'id'      => $id,
+        'type'    => 'border',
+        'all'     => false,
+        'style'   => false,
+        'color'   => false,
         'output'  => $selectors,
         'default' => $defaults
     );
@@ -197,17 +221,17 @@
     require_once PZARC_PLUGIN_APP_PATH . '/admin/php/class_arc_Panels_Layouts.php';
     require_once PZARC_PLUGIN_APP_PATH . '/admin/php/class_arc_Blueprints_Layouts.php';
     $blueprints = new arc_Blueprints_Layouts();
-    $panels = new arc_Panels_Layouts();
+    $panels     = new arc_Panels_Layouts();
 
     global $_architect;
     global $_architect_options;
 
     // BLUEPRINTS
     $_architect[ 'defaults' ][ 'blueprints' ]                                 = (!isset($_architect[ 'defaults' ][ 'blueprints' ]) ? array() : $_architect[ 'defaults' ][ 'blueprints' ]);
-    $blueprint_layout_general                                                  = $blueprints->pzarc_blueprint_layout_general($_architect[ 'defaults' ][ 'blueprints' ]);
-    $pzarc_blueprint_content_general                                           = $blueprints->pzarc_blueprint_content_general($_architect[ 'defaults' ][ 'blueprints' ]);
-    $pzarc_blueprint_layout                                                    = $blueprints->pzarc_blueprint_layout($_architect[ 'defaults' ][ 'blueprints' ]);
-    $pzarc_contents_metabox                                                    = $blueprints->pzarc_contents_metabox($_architect[ 'defaults' ][ 'blueprints' ]);
+    $blueprint_layout_general                                                 = $blueprints->pzarc_blueprint_layout_general_mb($_architect[ 'defaults' ][ 'blueprints' ]);
+    $pzarc_blueprint_content_general                                          = $blueprints->pzarc_blueprint_content_general_mb($_architect[ 'defaults' ][ 'blueprints' ]);
+    $pzarc_blueprint_layout                                                   = $blueprints->pzarc_blueprint_layout_mb($_architect[ 'defaults' ][ 'blueprints' ]);
+    $pzarc_contents_metabox                                                   = $blueprints->pzarc_blueprint_contents_mb($_architect[ 'defaults' ][ 'blueprints' ]);
     $_architect[ 'defaults' ][ 'blueprints' ][ '_blueprint_layout_general' ]  = $blueprint_layout_general[ 0 ][ 'sections' ];
     $_architect[ 'defaults' ][ 'blueprints' ][ '_blueprint_content_general' ] = $pzarc_blueprint_content_general[ 0 ][ 'sections' ];
     $_architect[ 'defaults' ][ 'blueprints' ][ '_blueprint_layout' ]          = $pzarc_blueprint_layout[ 0 ][ 'sections' ];
@@ -215,9 +239,9 @@
 
     // PANELS
     $_architect[ 'defaults' ][ 'panels' ]                              = (!isset($_architect[ 'defaults' ][ 'panels' ]) ? array() : $_architect[ 'defaults' ][ 'panels' ]);
-    $pzarc_panel_general_settings                                       = $panels->pzarc_panel_general_settings($_architect[ 'defaults' ][ 'panels' ]);
-    $pzarc_panels_design                                                = $panels->pzarc_panels_design($_architect[ 'defaults' ][ 'panels' ]);
-    $pzarc_panels_styling                                               = $panels->pzarc_panels_styling($_architect[ 'defaults' ][ 'panels' ]);
+    $pzarc_panel_general_settings                                      = $panels->pzarc_panel_general_settings($_architect[ 'defaults' ][ 'panels' ]);
+    $pzarc_panels_design                                               = $panels->pzarc_panels_design($_architect[ 'defaults' ][ 'panels' ]);
+    $pzarc_panels_styling                                              = $panels->pzarc_panels_styling($_architect[ 'defaults' ][ 'panels' ]);
     $_architect[ 'defaults' ][ 'panels' ][ '_panel_general_settings' ] = $pzarc_panel_general_settings[ 0 ][ 'sections' ];
     $_architect[ 'defaults' ][ 'panels' ][ '_panels_design' ]          = $pzarc_panels_design[ 0 ][ 'sections' ];
 
@@ -463,12 +487,12 @@
     //Get custom fields
     // This is only able to get custom fields that have been used! ugh!
 //    if ( false === ( $pzep_cf_list = get_transient( 'pzarc_custom_fields' ) ) ) {
-      // It wasn't there, so regenerate the data and save the transient
-      $pzep_cf_list = $wpdb->get_results(
-          "SELECT DISTINCT meta_key FROM $wpdb->postmeta HAVING (meta_key NOT LIKE '\_blueprints%' AND meta_key NOT LIKE '_panels%' AND meta_key NOT LIKE '_hw%'  AND meta_key NOT LIKE '_wp_%' AND meta_key NOT LIKE '_format%' AND meta_key NOT LIKE '_edit%' AND meta_key NOT LIKE '_content%' AND meta_key NOT LIKE '_attachment%' AND meta_key NOT LIKE '_menu%' AND meta_key NOT LIKE '_oembed%' AND meta_key NOT LIKE '_publicize%' AND meta_key NOT LIKE '_thumbnail%' AND meta_key NOT LIKE 'pz%' AND meta_key NOT LIKE 'field_%') ORDER BY meta_key"
-      );
-  //    set_transient( 'pzarc_custom_fields', $pzep_cf_list, 0*PZARC_TRANSIENTS_KEEP );
-   // }
+    // It wasn't there, so regenerate the data and save the transient
+    $pzep_cf_list = $wpdb->get_results(
+        "SELECT DISTINCT meta_key FROM $wpdb->postmeta HAVING (meta_key NOT LIKE '\_blueprints%' AND meta_key NOT LIKE '_panels%' AND meta_key NOT LIKE '_hw%'  AND meta_key NOT LIKE '_wp_%' AND meta_key NOT LIKE '_format%' AND meta_key NOT LIKE '_edit%' AND meta_key NOT LIKE '_content%' AND meta_key NOT LIKE '_attachment%' AND meta_key NOT LIKE '_menu%' AND meta_key NOT LIKE '_oembed%' AND meta_key NOT LIKE '_publicize%' AND meta_key NOT LIKE '_thumbnail%' AND meta_key NOT LIKE 'pz%' AND meta_key NOT LIKE 'field_%') ORDER BY meta_key"
+    );
+    //    set_transient( 'pzarc_custom_fields', $pzep_cf_list, 0*PZARC_TRANSIENTS_KEEP );
+    // }
 
 //    $pzep_cf_list = $wpdb->get_results(
 //        "SELECT meta_key,post_id,wp_posts.post_type FROM wp_postmeta,wp_posts GROUP BY meta_key HAVING ((meta_key NOT LIKE '\_%' AND meta_key NOT LIKE 'pz%' AND meta_key NOT LIKE 'enclosure%') AND (wp_posts.post_type NOT LIKE 'attachment' AND wp_posts.post_type NOT LIKE 'revision' AND wp_posts.post_type NOT LIKE 'acf' AND wp_posts.post_type NOT LIKE 'arc-%' AND wp_posts.post_type NOT LIKE 'nav_menu_item' AND wp_posts.post_type NOT LIKE 'wp-types%')) ORDER BY meta_key"
@@ -599,18 +623,25 @@
     return $post_tax_terms;
   }
 
+  /**
+   * @param $post_name
+   * @return mixed
+   *
+   * Convert slug name to post ID
+   *
+   * We need this because we can't save post IDs else things aren't transportable
+   */
   function pzarc_convert_name_to_id($post_name)
   {
     global $wpdb;
     // We don't want transients used for admins since they may be testing new settings - which won't take!
-    if ( !current_user_can( 'manage_options' ) && false === ( $post_id = get_transient( 'pzarc_post_name_to_id_'.$post_name ) ) ) {
+    if (!current_user_can('manage_options') && false === ($post_id = get_transient('pzarc_post_name_to_id_' . $post_name))) {
       // It wasn't there, so regenerate the data and save the transient
       $post_id = $wpdb->get_var("SELECT ID FROM $wpdb->posts WHERE post_name = '" . $post_name . "'");
-      set_transient( 'pzarc_post_name_to_id_'.$post_name, $post_id, PZARC_TRANSIENTS_KEEP );
-    } elseif (current_user_can( 'manage_options' )) {
+      set_transient('pzarc_post_name_to_id_' . $post_name, $post_id, PZARC_TRANSIENTS_KEEP);
+    } elseif (current_user_can('manage_options')) {
       $post_id = $wpdb->get_var("SELECT ID FROM $wpdb->posts WHERE post_name = '" . $post_name . "'");
     }
-
 
 
     return $post_id;
@@ -655,19 +686,19 @@
     return $vcode_processed;
   }
 
-/** 
- * A simple minifier for CSS from https://ikreativ.com/combine-minify-css-with-php/
- * @param  [type] $minify [description]
- * @return [type]         [description]
- */
-function pzarc_compress( $minify ) 
-    {
-  /* remove comments */
-      $minify = preg_replace( '!/\*[^*]*\*+([^/][^*]*\*+)*/!', '', $minify );
+  /**
+   * A simple minifier for CSS from https://ikreativ.com/combine-minify-css-with-php/
+   * @param  [type] $minify [description]
+   * @return [type]         [description]
+   */
+  function pzarc_compress($minify)
+  {
+    /* remove comments */
+    $minify = preg_replace('!/\*[^*]*\*+([^/][^*]*\*+)*/!', '', $minify);
 
-        /* remove tabs, spaces, newlines, etc. */
-      $minify = str_replace( array("\r\n", "\r", "\n", "\t"), '', $minify );
-      $minify = str_replace( array('  ', '    ', '    '), ' ', $minify );
+    /* remove tabs, spaces, newlines, etc. */
+    $minify = str_replace(array("\r\n", "\r", "\n", "\t"), '', $minify);
+    $minify = str_replace(array('  ', '    ', '    '), ' ', $minify);
 
-        return $minify;
-    }
+    return $minify;
+  }

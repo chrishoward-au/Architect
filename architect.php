@@ -4,7 +4,7 @@
     Plugin Name: Architect - an all-in-one content layout framework
     Plugin URI: http://pizazzwp.com
     Description: Go beyond the limitations of the theme you use to easily build any content layouts for it. Build your own grids, tabs, sliders, galleries and more with sources such ass posts, pages, galleries, and custom content types. Display using shorcodes, widgets, Headway blocks, WP action hooks and template tags, and WP Gallery shortcode. Change themes without needing to rebuild your layouts!
-    Version: 0.8.7
+    Version: 0.8.8
     Author: Chris Howard
     Author URI: http://pizazzwp.com
     License: GNU GPL v2
@@ -13,13 +13,15 @@
    */
 
 
+  define('PZDEBUG', false);
+
   class pzArchitect
   {
 
     function __construct()
     {
 
-      define('PZARC_VERSION', '0.8.7');
+      define('PZARC_VERSION', '0.8.8');
       define('PZARC_NAME', 'pzarchitect'); // This is also same as the locale
       define('PZARC_FOLDER', '/pizazzwp-architect');
 
@@ -99,6 +101,7 @@
       require_once PZARC_PLUGIN_APP_PATH . '/shared/architect/php/content-types/slide/class_arc_content_slide.php';
       require_once PZARC_PLUGIN_APP_PATH . '/shared/architect/php/content-types/cpt/class_arc_content_cpt.php';
 
+      pzdb('end of construct');
 
     }
 
@@ -128,14 +131,22 @@
     {
       // TODO:	Define activation functionality here
       TGM_Plugin_Activation::get_instance()->update_dismiss();
+
       // TODO: Inisitalize and save all default options
+      // TODO: Inisitalize and save all default options
+      // TODO: Inisitalize and save all default options
+      // TODO: Inisitalize and save all default options
+      // TODO: Inisitalize and save all default options
+
+
+      /** Build CSS cache */
 
       $pzarc_cssblueprint_cache = maybe_unserialize(get_option('pzarc_css'));
 
       if (!$pzarc_cssblueprint_cache) {
         add_option('pzarc_css', maybe_serialize(array('blueprints' => array(), 'panels' => array())), null, 'no');
       }
-      require_once(PZARC_PLUGIN_APP_PATH.'/admin/php/arc-save-process.php');
+      require_once(PZARC_PLUGIN_APP_PATH . '/admin/php/arc-save-process.php');
       save_arc_layouts('all', null, true);
     }
 
@@ -278,6 +289,7 @@
 
 // end class
 // TODO:	Update the instantiation call of your plugin to the name given at the class definition
+
   $pzarc = new pzArchitect();
 
 
@@ -339,7 +351,7 @@
   /** Special notices */
   /* Display a notice that can be dismissed */
 
-//  add_action('admin_notices', 'pzarc_admin_notice');
+  add_action('admin_notices', 'pzarc_admin_notice');
   function pzarc_admin_notice()
   {
     if (current_user_can('install_plugins')) {
@@ -347,24 +359,47 @@
       global $current_user;
       $user_id = $current_user->ID;
       /* Check that the user hasn't already clicked to ignore the message */
-      if (!get_user_meta($user_id, 'pzarc_ignore_notice')) {
+      if (!get_user_meta($user_id, 'pzarc_ignore_notice_v087')) {
         echo '<div class="message error highlight"><p>';
-        printf(__('. | <a href="%1$s">Hide Notice</a>'), '?pzarc_nag_ignore=0');
+        printf(__('<p>Architect v0.8.7 changes how CSS is cached. You will need to recreate Architect CSS. To do so, go to <em>Architect</em> > <em>Tools</em> and click <em>Rebuild Architect CSS Cache</em>. If your site has a a caching plugin or service, you will need to clear that as well and possibly first.</p><a href="http://discourse.pizazzwp.com/t/architect-beta-v0-8-7/30" target="_blank">Change log</a> | <a href="%1$s">Hide Notice</a>'), '?pzarc_nag_ignore_v087=0');
         echo "</p></div>";
       }
     }
   }
 
-  // add_action('admin_init', 'pzarc_nag_ignore');
+  add_action('admin_init', 'pzarc_nag_ignore');
 
   function pzarc_nag_ignore()
   {
     global $current_user;
     $user_id = $current_user->ID;
     /* If user clicks to ignore the notice, add that to their user meta */
-    if (isset($_GET[ 'pzarc_nag_ignore' ]) && '0' == $_GET[ 'pzarc_nag_ignore' ]) {
-      add_user_meta($user_id, 'pzarc_ignore_notice', 'true', true);
+    if (isset($_GET[ 'pzarc_nag_ignore_v087' ]) && '0' == $_GET[ 'pzarc_nag_ignore_v087' ]) {
+      add_user_meta($user_id, 'pzarc_ignore_notice_v087', 'true', true);
     }
   }
 
+
+  if (PZDEBUG) {
+    global $pzstart_time;
+    $pzstart_time = microtime(true);
+    pzdb('start');
+  }
+
+  function pzdb($pre = null, $var = 'dorkus')
+  {
+    if (PZDEBUG) {
+      static $oldtime;
+      $oldtime = empty($oldtime) ? microtime(true) : $oldtime;
+      $btr     = debug_backtrace();
+      $line    = $btr[ 0 ][ 'line' ];
+      $file    = basename($btr[ 0 ][ 'file' ]);
+      global $pzstart_time;
+      var_dump(strtoupper($pre) . ': ' . $file . ':' . $line . ': ' . round((microtime(true) - $pzstart_time), 5) . 's. Time since last: ' . round(microtime(true) - $oldtime, 5) . 's');
+      $oldtime = microtime(true);
+      if ($var !== 'dorkus') {
+        var_dump($var);
+      }
+    }
+  }
 

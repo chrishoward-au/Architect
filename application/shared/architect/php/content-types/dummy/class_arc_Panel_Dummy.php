@@ -25,6 +25,8 @@
     public function __construct()
     {
 
+      parent::initialise_data();
+
       // Faker requires PHP 5.3.3
       if (!defined('PHP_VERSION_ID')) {
         $version = explode('.', PHP_VERSION);
@@ -167,7 +169,7 @@
       $panel_def = $panel_class->panel_def();
 
       // Setup meta tags
-      $panel_def = self::build_meta_definition($panel_def, $this->build->blueprint[ 'section' ][ ($section_no - 1) ][ 'section-panel-settings' ]);
+      $panel_def = self::build_header_footer_meta_groups($panel_def, $this->build->blueprint[ 'section' ][ ($section_no - 1) ][ 'section-panel-settings' ]);
 
       //   var_dump(esc_html($panel_def));
 

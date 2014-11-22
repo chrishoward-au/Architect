@@ -34,6 +34,7 @@
         return;
       }
       if (!(class_exists('ReduxFramework') || class_exists('ReduxFrameworkPlugin'))) {
+        add_action( 'admin_notices', array($this,'missing_redux_admin_notice' ));
         return;
       }
       add_action('admin_head', array($this, 'admin_head'));
@@ -76,6 +77,11 @@
 
 
     }
+
+    function missing_redux_admin_notice() {
+      echo '<div id="message" class="error"><p><strong>One final step in installing ARCHITECT.</strong><br>It cannot function without the Redux Framework plugin. You need to install and/or activate Redux.<br>Redux is the backbone of Architect, providing all the necessary code libraries for Architect\'s fields and options.<br>There should be another message with a link to make installing and activating Redux easy. If you can\'t find it, contact PizazzWP support.</p></div>';
+    }
+
 
     function add_admin_body_class($classes)
     {
@@ -136,7 +142,7 @@
       global $pzarc_menu, $pizazzwp_updates;
       if (!$pzarc_menu) {
         //add_menu_page( $page_title,  $menu_title, $capability,   $menu_slug, $function,    $icon_url, $position );
-        $pzarc_menu = add_menu_page('About', 'Architect', 'edit_posts', 'pzarc', 'pzarc_about', PZARC_PLUGIN_APP_URL . 'wp-icon.png');
+        $pzarc_menu = add_menu_page('Getting started', 'Architect', 'edit_posts', 'pzarc', 'pzarc_about', PZARC_PLUGIN_APP_URL . 'wp-icon.png');
         // add_submenu_page( $parent_slug, $page_title, $menu_title, $capability, $menu_slug, $function );
 
         // Don't need this as it's carried in the layouts already
@@ -148,7 +154,7 @@
                                                                                                                                          'pzarc_tools')
         );
         add_submenu_page(
-            'pzarc', 'About Architect Content Layout Framework', '<span class="dashicons dashicons-info size-small"></span>About', 'manage_options', 'pzarc_about', array($this,
+            'pzarc', 'Getting started with Architect Content Layout Framework', '<span class="dashicons dashicons-info size-small"></span>Getting started', 'manage_options', 'pzarc_about', array($this,
                                                                                                                                                                           'pzarc_about'), 99
         );
 
@@ -185,7 +191,7 @@
         <li><strong>Create a Blueprint</strong></li>
         <ol style="list-style-type:lower-roman">
             <li>Go to <em>Architect > Blueprints</em> and create a Blueprint. Give it a <em>Title</em> and <em>Short Name</em> too, and in <em>Section 1</em> tab, under <em>Panels Layout</em>, select your Panel you just created</li>
-            <li>Change the <em>Panels to Show</em> to 9, for example</li>
+            <li>Change <em>Limit panels (content)</em> to no so we get a lot of posts</li>
             <li>Click the <em>Panels Content</em> button and for the <em>Settings, Content Source</em>, choose <em>Posts</em></li>
             <li>Click <em>Publish/Update</em>.</li>
             </ol>
@@ -194,9 +200,11 @@
             <li>If you are using <strong>Headway</strong>, then go to the Headway Visual Editor, select a layout to show and draw an Architect block on it and select the Blueprint and Save.<br>
             For <strong>other themes</strong>, the quickest way to test is insert an Architect shortcode on a page.<br>The form is <strong>[architect <em>blueprint-shortname</em>]</strong> where <em>blueprint-shortname</em> is the Short Name of the Blueprint to show
             </li>
-            <li>Load the page and you should see a 3x3 grid of posts. (if you have that many)</li></ol>
+            <li>Load the page and you should see a 3x grid of posts.</li></ol>
             </ol>
             </div>
+            <h3>Video version</h3>
+            <div style="max-width:800px;"><iframe src="//fast.wistia.net/embed/iframe/46fxmn8h0l?videoFoam=true" allowtransparency="true" frameborder="0" scrolling="no" class="wistia_embed" name="wistia_embed" allowfullscreen mozallowfullscreen webkitallowfullscreen oallowfullscreen msallowfullscreen width="720" height="405"></iframe><script src="//fast.wistia.net/assets/external/iframe-api-v1.js"></script></div>
             <p>Style wise, it may not look that great yet. To tidy it up, start exploring the Styling settings for Panels and Blueprints</p>
             <p>To make a <strong>slideshow</strong>, set the <em>Navigation</em> type to <em>Navigator</em></p>
             <p>There are a lot of settings in Architect that have all sorts of affects on your layouts and designs. Explore, experiment and have fun!</p>

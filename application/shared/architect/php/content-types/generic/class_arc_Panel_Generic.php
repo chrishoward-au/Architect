@@ -12,7 +12,10 @@
 
     public function __construct()
     {
+      self::initialise_data();
+    }
 
+    public function initialise_data() {
       // Null up everything to prevent warnings later on
       $this->data[ 'title' ] = null;
 
@@ -44,9 +47,7 @@
       $this->data[ 'bgimage' ][ 'thumb' ]    = null;
       $this->data[ 'bgimage' ][ 'original' ] = null;
 
-
-    }
-
+  }
     /**
      * Method: panel_def
      *
@@ -59,26 +60,26 @@
       $panel_def[ 'components-open' ]  = '<article id="post-{{postid}}" class="{{mimic-block-type}} post-{{postid}} {{posttype}} type-{{posttype}} status-{{poststatus}} format-{{postformat}} hentry {{categories}} {{tags}} {{pzclasses}}">';
       $panel_def[ 'components-close' ] = '</article>';
       $panel_def[ 'postlink' ]         = '<a href="{{permalink}}" title="{{title}}">';
-      $panel_def[ 'header' ]           = '<header class="entry-header">{{headerinnards}}</header>';
-      $panel_def[ 'title' ]            = '<h1 class="entry-title">{{postlink}}{{title}}{{closepostlink}}</h1>';
-      $panel_def[ 'meta1' ]            = '<div class="entry-meta entry-meta1">{{meta1innards}}</div>';
-      $panel_def[ 'meta2' ]            = '<div class="entry-meta entry-meta2">{{meta2innards}}</div>';
-      $panel_def[ 'meta3' ]            = '<div class="entry-meta entry-meta3">{{meta3innards}}</div>';
-      $panel_def[ 'datetime' ]         = '<span class="entry-date"><a href="{{permalink}}"<time class="entry-date" datetime="{{datetime}}">{{fdatetime}}</time></span></a></span>';
-      $panel_def[ 'categories' ]       = '<span class="categories-links">{{categorieslinks}}</span>';
-      $panel_def[ 'tags' ]             = '<span class="tags-links">{{tagslinks}}</span>';
-      $panel_def[ 'author' ]           = '<span class="byline"><span class="author vcard"><a class="url fn n" href="{{authorlink}}" title="View all posts by {{authorname}}" rel="author">{{authorname}}</a></span></span>';
-      $panel_def[ 'email' ]            = '<span class="byline email"><span class="author vcard"><a class="url fn n" href="mailto:{{authoremail}}" title="Email {{authorname}}" rel="author">{{authoremail}}</a></span></span>';
+      //     $panel_def[ 'header' ]           = '<header class="entry-header">{{headerinnards}}</header>';
+      $panel_def[ 'title' ]      = '<h1 class="entry-title">{{postlink}}{{title}}{{closepostlink}}</h1>';
+      $panel_def[ 'meta1' ]      = '<div class="entry-meta entry-meta1">{{meta1innards}}</div>';
+      $panel_def[ 'meta2' ]      = '<div class="entry-meta entry-meta2">{{meta2innards}}</div>';
+      $panel_def[ 'meta3' ]      = '<div class="entry-meta entry-meta3">{{meta3innards}}</div>';
+      $panel_def[ 'datetime' ]   = '<span class="entry-date"><a href="{{permalink}}"<time class="entry-date" datetime="{{datetime}}">{{fdatetime}}</time></span></a></span>';
+      $panel_def[ 'categories' ] = '<span class="categories-links">{{categorieslinks}}</span>';
+      $panel_def[ 'tags' ]       = '<span class="tags-links">{{tagslinks}}</span>';
+      $panel_def[ 'author' ]     = '<span class="byline"><span class="author vcard"><a class="url fn n" href="{{authorlink}}" title="View all posts by {{authorname}}" rel="author">{{authorname}}</a></span></span>';
+      $panel_def[ 'email' ]      = '<span class="byline email"><span class="author vcard"><a class="url fn n" href="mailto:{{authoremail}}" title="Email {{authorname}}" rel="author">{{authoremail}}</a></span></span>';
       //     $panel_def[ 'image' ]       = '<figure class="entry-thumbnail {{incontent}}">{{postlink}}<img width="{{width}}" src="{{imgsrc}}" class="attachment-post-thumbnail wp-post-image" alt="{{alttext}}">{{closepostlink}}{{captioncode}}</figure>';
-      $panel_def[ 'image' ]         = '<figure class="entry-thumbnail {{incontent}} {{centred}} {{nofloat}} {{location}}">{{postlink}}{{image}}{{closelink}}{{captioncode}}</figure>';
-      $panel_def[ 'bgimage' ]       = '<figure class="entry-bgimage pzarc-bg-image {{trim-scale}}">{{bgimage}}</figure>';
-      $panel_def[ 'caption' ]       = '<figcaption class="caption">{{caption}}</figcaption>';
-      $panel_def[ 'content' ]       = ' <div class="entry-content {{nothumb}}">{{image-in-content}}{{content}}</div>';
-      $panel_def[ 'custom1' ]       = '<div class="entry-customfieldgroup entry-customfieldgroup-1">{{custom1innards}}</div>';
-      $panel_def[ 'custom2' ]       = '<div class="entry-customfieldgroup entry-customfieldgroup-2">{{custom2innards}}</div>';
-      $panel_def[ 'custom3' ]       = '<div class="entry-customfieldgroup entry-customfieldgroup-3">{{custom3innards}}</div>';
-      $panel_def[ 'cfield' ]        = '<div class="entry-customfield entry-customfield-{{cfieldname}} entry-customfield-{{cfieldnumber}}">{{cfieldcontent}}</div>';
-      $panel_def[ 'footer' ]        = '<footer class="entry-footer">{{footerinnards}}</footer>';
+      $panel_def[ 'image' ]   = '<figure class="entry-thumbnail {{incontent}} {{centred}} {{nofloat}} {{location}}">{{postlink}}{{image}}{{closelink}}{{captioncode}}</figure>';
+      $panel_def[ 'bgimage' ] = '<figure class="entry-bgimage pzarc-bg-image {{trim-scale}}">{{bgimage}}</figure>';
+      $panel_def[ 'caption' ] = '<figcaption class="caption">{{caption}}</figcaption>';
+      $panel_def[ 'content' ] = ' <div class="entry-content {{nothumb}}">{{image-in-content}}{{content}}</div>';
+      $panel_def[ 'custom1' ] = '<div class="entry-customfieldgroup entry-customfieldgroup-1">{{custom1innards}}</div>';
+      $panel_def[ 'custom2' ] = '<div class="entry-customfieldgroup entry-customfieldgroup-2">{{custom2innards}}</div>';
+      $panel_def[ 'custom3' ] = '<div class="entry-customfieldgroup entry-customfieldgroup-3">{{custom3innards}}</div>';
+      $panel_def[ 'cfield' ]  = '<div class="entry-customfield entry-customfield-{{cfieldname}} entry-customfield-{{cfieldnumber}}">{{cfieldcontent}}</div>';
+//      $panel_def[ 'footer' ]        = '<footer class="entry-footer">{{footerinnards}}</footer>';
       $panel_def[ 'excerpt' ]       = ' <div class="entry-excerpt {{nothumb}}">{{image-in-content}}{{excerpt}}</div>';
       $panel_def[ 'feature' ]       = '{{feature}}';
       $panel_def[ 'editlink' ]      = '<span class="edit-link"><a class="post-edit-link" href="{{permalink}}" title="Edit post {{title}}">Edit</a></span>';
@@ -248,7 +249,7 @@
 
     public function get_video(&$post)
     {
-      $video_source = get_post_meta($post->ID, 'pzarc_features-video', true);
+      $video_source = (is_object($post)?get_post_meta($post->ID, 'pzarc_features-video', true):'');
       if (!empty($this->section[ '_panels_settings_use-embedded-images' ]) && empty($video_source)) {
         $video_source = '[video]';
       }
@@ -681,6 +682,7 @@
       return $line;
     }
 
+
     /**
      * Default Loop
      */
@@ -695,7 +697,7 @@
       $panel_def = $panel_class->panel_def();
 
       // Setup meta tags
-      $panel_def = self::build_meta_definition($panel_def, $this->build->blueprint[ 'section' ][ ($section_no - 1) ][ 'section-panel-settings' ]);
+      $panel_def = self::build_header_footer_meta_groups($panel_def, $this->build->blueprint[ 'section' ][ ($section_no - 1) ][ 'section-panel-settings' ]);
 
       $i = 1;
 
@@ -809,7 +811,7 @@
      * Returns:
      *
      *************************************************/
-    public function build_meta_definition($panel_def, $section_panel_settings)
+    public function build_header_footer_meta_groups($panel_def, $section_panel_settings)
     {
       //replace meta1innards etc
       $meta = array_pad(array(), 3, null);
@@ -828,26 +830,62 @@
 //        $panel_def[ 'meta' . $i ] = str_replace('{{edit}}', $panel_def[ 'edit' ], $panel_def[ 'meta' . $i ]);
       }
 
-// TODO: Need to work out what to do with the headerinnards!
 
-//      $panel_layout = json_decode($section_panel_settings[ '_panels_design_preview' ], true);
-//      // build up the blueprint for the panel, ordering from
-//      // won't this be fun!!
-//      // need to match panellayout slugs to paneldefs array index
-//      $panel_definition = '';
-//
-//      foreach ((array)$panel_layout as $key => $value) {
-//        if ($value[ 'show' ]) {
-//          if ($key != 'title') {
-//            $panel_definition .= $panel_def[ $key ];
-//          }
-//          else {
-//            $panel_definition .= $panel_def[ 'header' ];
-//          }
-//        }
-//
-//      }
-//      $panel_definition = str_replace('{{headerinnards}}', $panel_def[ 'title' ], $panel_definition);
+      $panel_layout = json_decode($section_panel_settings[ '_panels_design_preview' ], true);
+
+      $header_state  = false;
+      $footer_state  = false;
+      $seen_all_body = 0;
+      $last_hf_key = '';
+
+      $max_body      = (int)$panel_layout[ 'excerpt' ][ 'show' ]
+          + (int)$panel_layout[ 'content' ][ 'show' ]
+          + (int)$panel_layout[ 'custom1' ][ 'show' ]
+          + (int)$panel_layout[ 'custom2' ][ 'show' ]
+          + (int)$panel_layout[ 'custom3' ][ 'show' ]
+          + ((int)$panel_layout[ 'image' ][ 'show' ] * (int)($section_panel_settings[ '_panels_design_feature-location' ] === 'components'));
+
+      foreach ((array)$panel_layout as $key => $value) {
+        if ($value[ 'show' ]) {
+          if (($key === 'title' || $key === 'meta1' || $key == 'meta2' || $key === 'meta3')) {
+            $last_hf_key = $key;
+          }
+          switch (true) {
+
+            case ($key === 'title' || $key === 'meta1' || $key == 'meta2' || $key === 'meta3') && !$header_state && !$footer_state:
+              $header_state      = 'open';
+              $panel_def[ $key ] = '<header class="entry-header">' . $panel_def[ $key ];
+              break;
+
+            case ($key === 'meta1' || $key === 'meta2' || $key === 'meta3') && $seen_all_body === $max_body && !$footer_state && $header_state === 'closed':
+              $panel_def[ $key ] = '<footer class="entry-footer">' . $panel_def[ $key ];
+              $footer_state      = 'open';
+              break;
+
+            case $key === 'content':
+            case $key === 'excerpt':
+            case $key === 'custom1':
+            case $key === 'custom2':
+            case $key === 'custom3':
+            case $key === 'image' && ($section_panel_settings[ '_panels_design_feature-location' ] === 'components'):
+              // TODO: We need to work out a method of wrapping content in a div that copes with some content eg images not always being there.
+              if ($header_state === 'open') {
+                $header_state = 'closed';
+                $panel_def[$last_hf_key] .= '</header>';
+              }
+              $seen_all_body++; // Once we've seen all the body, any meta will be for footer
+              break;
+          }
+        }
+
+
+      }
+      if ($header_state === 'open') {
+        $panel_def[ $last_hf_key ] = $panel_def[ $last_hf_key ] . '</header>';
+      }
+      if ($footer_state === 'open') {
+        $panel_def[ $last_hf_key ] = $panel_def[ $last_hf_key ] . '</footer>';
+      }
 
       return $panel_def;
     }

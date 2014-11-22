@@ -15,7 +15,7 @@
   {
     if (!is_admin() && file_exists(PZARC_CACHE_PATH . 'pzarc_css_cache.css')) {
 
-      wp_enqueue_style('pzarc_css', PZARC_CACHE_URL . 'pzarc_css_cache.css');
+      wp_register_style('pzarc_css', PZARC_CACHE_URL . 'pzarc_css_cache.css');
 
     } else {
 
@@ -162,7 +162,7 @@
    ******************************/
   function pzarc($blueprint = null, $overrides = null, $caller, $tag = null, $additional_overrides = null)
   {
-
+pzdb('start pzarc');
     global $_architect_options;
 
     // Just incase that didn't work... A problem from days of past
@@ -186,6 +186,7 @@
 
     wp_enqueue_style(PZARC_NAME . '-plugin-styles');
     wp_enqueue_style(PZARC_NAME . '-dynamic-styles');
+    wp_enqueue_style('pzarc_css');
 
 
     $is_shortcode = ($caller == 'shortcode');
@@ -266,6 +267,7 @@
 
     // Tell WP to resume using the main query just in case we might have accidentally left another query active.
     wp_reset_postdata();
+    pzdb('end pzarc');
   }
 
 

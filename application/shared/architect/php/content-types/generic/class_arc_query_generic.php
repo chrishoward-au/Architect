@@ -52,7 +52,7 @@
 //        query_posts('posts_per_page=3&paged=' . $paged);
 
 //        $this->query_options[ 'nopaging' ]       = false;
-        $this->query_options[ 'posts_per_page' ] = $$this->criteria[ 'panels_to_show' ];
+        $this->query_options[ 'posts_per_page' ] = $this->criteria[ 'panels_to_show' ];
         $this->query_options[ 'pagination' ]     = true;
         $this->query_options[ 'paged' ]          = $paged;
 
