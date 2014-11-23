@@ -101,6 +101,9 @@ This is BETA software. So there are many besides these ones!
 
 == Changelog ==
 
+= 0.8.9 =
+* UPDATED: Spectrum js to 1.5.2
+
 = 0.8.8 =
 * CHANGED: Upgraded Slick.js to 1.3.15
 * FIXED: Cleaned up a few PHP warnings and notices in WP admin (Thanks, Corey)

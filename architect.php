@@ -31,6 +31,7 @@
       define('PZARC_PLUGIN_APP_PATH', PZARC_PLUGIN_PATH . 'application/');
       define('PZARC_DOCUMENTATION_URL', PZARC_PLUGIN_URL . 'documentation/');
       define('PZARC_DOCUMENTATION_PATH', PZARC_PLUGIN_PATH . 'documentation/');
+      define('PZARC_PLUGIN_ASSETS_URL', PZARC_PLUGIN_APP_URL . 'shared/assets/');
       define('PZARC_CACHE', '/arc/');
 
       define('PZARC_TRANSIENTS_KEEP', 12 * HOUR_IN_SECONDS);
@@ -403,3 +404,51 @@
     }
   }
 
+//  if ( ! function_exists('pzfaqs') ) {
+//
+//// Register Custom Post Type
+//    function pzfaqs() {
+//
+//      $labels = array(
+//          'name'                => _x( 'FAQs', 'Post Type General Name', 'pzarchitect' ),
+//          'singular_name'       => _x( 'FAQ', 'Post Type Singular Name', 'pzarchitect' ),
+//          'menu_name'           => __( 'FAQs', 'pzarchitect' ),
+//          'parent_item_colon'   => __( 'Parent FAQ:', 'pzarchitect' ),
+//          'all_items'           => __( 'All FAQs', 'pzarchitect' ),
+//          'view_item'           => __( 'View FAQQ', 'pzarchitect' ),
+//          'add_new_item'        => __( 'Add New FAQ', 'pzarchitect' ),
+//          'add_new'             => __( 'Add New FAQ', 'pzarchitect' ),
+//          'edit_item'           => __( 'Edit FAQ', 'pzarchitect' ),
+//          'update_item'         => __( 'Update FAQ', 'pzarchitect' ),
+//          'search_items'        => __( 'Search FAQ', 'pzarchitect' ),
+//          'not_found'           => __( 'Not found', 'pzarchitect' ),
+//          'not_found_in_trash'  => __( 'Not found in Trash', 'pzarchitect' ),
+//      );
+//      $args = array(
+//          'label'               => __( 'pzfaqs', 'pzarchitect' ),
+//          'description'         => __( 'Frequently Asked Questions', 'pzarchitect' ),
+//          'labels'              => $labels,
+//          'supports'            => array( 'title', 'editor', 'excerpt', 'author', 'thumbnail', 'comments', 'revisions', 'custom-fields', 'page-attributes', 'post-formats', ),
+//          'taxonomies'          => array( 'category', 'post_tag' ),
+//          'hierarchical'        => true,
+//          'public'              => true,
+//          'show_ui'             => true,
+//          'show_in_menu'        => true,
+//          'show_in_nav_menus'   => true,
+//          'show_in_admin_bar'   => true,
+//          'menu_position'       => 25,
+//          'menu_icon'           => PZARC_PLUGIN_ASSETS_URL.'images/faqs-icon.png',
+//          'can_export'          => true,
+//          'has_archive'         => true,
+//          'exclude_from_search' => false,
+//          'publicly_queryable'  => true,
+//          'capability_type'     => 'page',
+//      );
+//      register_post_type( 'pzfaqs', $args );
+//
+//    }
+//
+//// Hook into the 'init' action
+//    add_action( 'init', 'pzfaqs', 0 );
+//
+//  }
