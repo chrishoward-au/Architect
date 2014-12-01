@@ -13,6 +13,7 @@
   add_action('init', 'pzarc_display_init');
   function pzarc_display_init()
   {
+
     if (!is_admin() && file_exists(PZARC_CACHE_PATH . 'pzarc_css_cache.css')) {
 
       wp_register_style('pzarc_css', PZARC_CACHE_URL . 'pzarc_css_cache.css');

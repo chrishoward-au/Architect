@@ -1,9 +1,9 @@
 <?php
 
   /*
-    Plugin Name: Architect - an all-in-one content layout framework
+    Plugin Name: Architect
     Plugin URI: http://pizazzwp.com
-    Description: Go beyond the limitations of the theme you use to easily build any content layouts for it. Build your own grids, tabs, sliders, galleries and more with sources such ass posts, pages, galleries, and custom content types. Display using shorcodes, widgets, Headway blocks, WP action hooks and template tags, and WP Gallery shortcode. Change themes without needing to rebuild your layouts!
+    Description: Architect is an all-in-one content layout framework to extend your theme. Go beyond the limitations of the theme you use to easily build any content layouts for it. Build your own grids, tabs, sliders, galleries and more with sources such ass posts, pages, galleries, and custom content types. Display using shorcodes, widgets, Headway blocks, WP action hooks and template tags, and WP Gallery shortcode. Change themes without needing to rebuild your layouts! The Foundation version provides only content types of Posts and Defaults.
     Version: 0.8.8
     Author: Chris Howard
     Author URI: http://pizazzwp.com
@@ -39,7 +39,6 @@
       // TODO: why isn't this using myfiles folder?
       define('PZARC_CACHE_URL', trailingslashit($upload_dir[ 'baseurl' ] . '/cache/pizazzwp/arc'));
       define('PZARC_CACHE_PATH', trailingslashit($upload_dir[ 'basedir' ] . '/cache/pizazzwp/arc'));
-      define('PZARC_DEBUG', 0);
 
 // Before we go anywhere, make sure dependent plugins are loaded and active.
       require_once PZARC_PLUGIN_APP_PATH . '/shared/architect/php/arc-check-dependencies.php';
@@ -88,21 +87,17 @@
       require_once PZARC_PLUGIN_APP_PATH . '/shared/architect/php/class_arc_Blueprint_Data.php';
 
       // Load custom custom types
-      require_once PZARC_PLUGIN_APP_PATH . '/shared/architect/php/content-types/snippets/arc-cpt-snippets.php';
       require_once PZARC_PLUGIN_APP_PATH . '/shared/architect/php/arc-cpt-panels.php';
       require_once PZARC_PLUGIN_APP_PATH . '/shared/architect/php/arc-cpt-blueprints.php';
 
       // Load all the builtin post types
       require_once PZARC_PLUGIN_APP_PATH . '/shared/architect/php/content-types/defaults/class_arc_content_defaults.php';
       require_once PZARC_PLUGIN_APP_PATH . '/shared/architect/php/content-types/post/class_arc_content_posts.php';
-      require_once PZARC_PLUGIN_APP_PATH . '/shared/architect/php/content-types/page/class_arc_content_pages.php';
-      require_once PZARC_PLUGIN_APP_PATH . '/shared/architect/php/content-types/gallery/class_arc_content_gallery.php';
-      require_once PZARC_PLUGIN_APP_PATH . '/shared/architect/php/content-types/snippets/class_arc_content_snippets.php';
-      require_once PZARC_PLUGIN_APP_PATH . '/shared/architect/php/content-types/dummy/class_arc_content_dummy.php';
-      require_once PZARC_PLUGIN_APP_PATH . '/shared/architect/php/content-types/slide/class_arc_content_slide.php';
-      require_once PZARC_PLUGIN_APP_PATH . '/shared/architect/php/content-types/cpt/class_arc_content_cpt.php';
 
-      pzdb('end of construct');
+      // This is a shorthand way of doing an if. When pro isn't present, it's the lite version.
+      @include PZARC_PLUGIN_PATH .'/extensions/architect-pro.php';
+
+      do_action('load_architect_extensions');
 
     }
 

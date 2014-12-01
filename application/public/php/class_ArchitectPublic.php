@@ -53,7 +53,6 @@
       require_once(PZARC_PLUGIN_APP_PATH . '/shared/architect/php/content-types/generic/class_arc_query_generic.php');
 
 
-      pzarc_set_defaults();
 
       $this->build = new arc_Blueprint($blueprint);
 
@@ -149,11 +148,16 @@
         }
       }
 
-      // Build the query
-      if ($this->build->blueprint[ '_blueprints_content-source' ] != 'defaults') {
 
+      /** Build the query */
+      $registry = arc_Registry::getInstance();
+      $content_source = $registry->get('content_source');
+      if ($this->build->blueprint[ '_blueprints_content-source' ] != 'defaults' && array_key_exists($this->build->blueprint[ '_blueprints_content-source' ], $content_source)) {
 
-        self::use_custom_query($overrides);
+        $source_query_class = 'arc_query_' . $this->build->blueprint[ '_blueprints_content-source' ];
+        require_once($content_source[ $this->build->blueprint[ '_blueprints_content-source' ] ] . '/class_' . $source_query_class . '.php');
+        $source_query_class = 'arc_query_' . $this->build->blueprint[ '_blueprints_content-source' ];
+        self::use_custom_query($overrides, $source_query_class);
 
       } else {
 
@@ -168,6 +172,7 @@
       if ($bp_nav_type === 'navigator') {
         $this->nav_items = $panel_class->get_nav_items($this->build->blueprint[ '_blueprints_navigator' ], $this->arc_query);
       }
+
 
       // TODO: Show or hide blueprint if no content
 
@@ -425,7 +430,7 @@
         $skip_thumbs = $this->build->blueprint[ '_blueprints_navigator-skip-thumbs' ];
         $no_across   = $this->build->blueprint[ '_blueprints_section-0-columns-breakpoint-1' ];
         $is_vertical = ('left' === $this->build->blueprint[ '_blueprints_navigator-position' ] || 'right' === $this->build->blueprint[ '_blueprints_navigator-position' ]) ? 'true' : 'false';
-       $infinite    = (!empty($this->build->blueprint[ '_blueprints_transitions-infinite' ]) && 'infinite' === $this->build->blueprint[ '_blueprints_transitions-infinite' ]) ? 'true' : 'false';
+        $infinite    = (!empty($this->build->blueprint[ '_blueprints_transitions-infinite' ]) && 'infinite' === $this->build->blueprint[ '_blueprints_transitions-infinite' ]) ? 'true' : 'false';
 
         $slider[ 'dataopts' ] = 'data-opts="{#tduration#:' . $duration . ',#tinterval#:' . $interval . ',#tshow#:' . $skip_thumbs . ',#tskip#:' . $skip_thumbs . ',#tisvertical#:' . $is_vertical . ',#tinfinite#:' . $infinite . ',#tacross#:' . $no_across . '}"';
 
@@ -447,13 +452,11 @@
      * @param $this ->criteria
      * @param $overrides
      */
-    private function use_custom_query($overrides)
+    private function use_custom_query($overrides, $source_query_class)
     {
       // Is this a better way to code?
       self::set_criteria_prefix(self::set_prefix());
 
-      $source_query_class = 'arc_query_' . $this->build->blueprint[ '_blueprints_content-source' ];
-      require_once(PZARC_PLUGIN_APP_PATH . '/shared/architect/php/content-types/' . $this->build->blueprint[ '_blueprints_content-source' ] . '/class_' . $source_query_class . '.php');
       $arc_query_source = new $source_query_class($this->build, $this->criteria);
 
       //   var_Dump($source_query_class);
@@ -560,33 +563,18 @@
     private function setup_section_panel_class()
     {
 
-      // oops! Need to get default content type when defaults chosen.
+      //TODO: oops! Need to get default content type when defaults chosen.
       $post_type = (empty($this->build->blueprint[ '_blueprints_content-source' ]) || 'defaults' === $this->build->blueprint[ '_blueprints_content-source' ] ?
           (empty($this->arc_query->queried_object->post_type) ? 'post' : $this->arc_query->queried_object->post_type) :
           $this->build->blueprint[ '_blueprints_content-source' ]);
 
-      if (empty($post_type)) {
+      $registry = arc_Registry::getInstance();
 
-        // Should never get this message now.
-
-        pzarc_msg('No post type specified', 'error');
-
-        return null;
-
-      }
-
+      // Build the query
+      $content_source = $registry->get('content_source');
       $class = 'arc_Panel_' . $post_type;
-
-      // Fall back to generics if no class for post type
-      // Use an include incase it doesn't exist!
-      @include_once PZARC_PLUGIN_APP_PATH . '/shared/architect/php/content-types/' . strtolower($post_type) . '/class_arc_Panel_' . ucfirst($post_type) . '.php';
-
-      if (!class_exists($class)) {
-
-        $class = 'arc_Panel_Generic';
-
-        include_once PZARC_PLUGIN_APP_PATH . '/shared/architect/php/content-types/defaults/class_arc_Panel_Defaults.php';
-
+      if ($this->build->blueprint[ '_blueprints_content-source' ] != 'defaults' && array_key_exists($this->build->blueprint[ '_blueprints_content-source' ], $content_source)) {
+        require_once $content_source[ $this->build->blueprint[ '_blueprints_content-source' ] ] . '/class_arc_Panel_' . ucfirst($post_type) . '.php';
       }
 
       return $class;

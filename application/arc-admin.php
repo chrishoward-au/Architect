@@ -174,14 +174,13 @@
     function pzarc_about()
     {
       global $title;
-
       echo '<div class = "wrap">
 
       <!--Display Plugin Icon, Header, and Description-->
         <div class = "icon32" id = "icon-users"><br></div>
         <div class="pzarc-about-box" style="background:#f9f9f9;padding:20px;border:1px solid #ddd;">
         <h2>' . $title . '</h2>
-        <h4>Currently installed version: ' . PZARC_VERSION . '</h4>
+        <h4>Currently installed version: ' . PZARC_VERSION .'</h4>
         <h2>Quick start</h2>
         <div style="background:#f2f2f2;border:1px solid #e2e2e2;padding:10px;border-radius:3px;max-width:800px;font-size:14px;">
         <ol>

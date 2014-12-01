@@ -730,7 +730,6 @@
 
       // We shouldn't have to pass arc_query! And we don't need to in this one, but for some unsolved reason in arc_Panel_Dummy, we do. So for consistency, doing it here too.
       $nav_items = array();
-
       foreach ($arc_query->posts as $the_post) {
 
         switch ($blueprints_navigator) {

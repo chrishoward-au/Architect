@@ -51,6 +51,7 @@
 
       // This has to be post_types
       $registry->set('post_types', $settings);
+      $registry->set('content_source',array('dummy'=>plugin_dir_path(__FILE__)));
     }
 
   }

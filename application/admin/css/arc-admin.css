@@ -1042,3 +1042,26 @@ span.bold {
   .arc-panels .postbox .redux-container .redux-sidebar .redux-group-menu .active a {
     background: #707070;
     color: #fff; } }
+.after-title-help {
+  border: solid 1px #aaa;
+  border-radius: 3px; }
+  .after-title-help h4 {
+    color: #0074a2; }
+
+body .redux-sidebar .redux-group-menu li.activeChild.hasSubSections ul.subsection li.active a {
+  background: #fff !important; }
+
+body .redux-sidebar .redux-group-menu li.activeChild.hasSubSections ul.subsection li.active a {
+  color: #333 !important; }
+
+body .redux-sidebar .redux-group-menu li.activeChild.hasSubSections ul.subsection li a {
+  background: #ddd !important; }
+
+body .redux-sidebar .redux-group-menu li.activeChild.hasSubSections ul.subsection li a {
+  color: #777 !important; }
+
+body .redux-sidebar .redux-group-menu li.activeChild.hasSubSections a {
+  background: #333 !important; }
+
+body .redux-sidebar .redux-group-menu li.active.hasSubSections .active a:after, body .redux-sidebar .redux-group-menu li.activeChild.hasSubSections .active a:after {
+  border-right-color: #777 !important; }

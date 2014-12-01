@@ -207,16 +207,20 @@
           $pkeys[ 'style' ] = str_replace('-', '', substr($pkey, $splitter + 1));
           $pkeys[ 'id' ]    = substr($pkey, 0, $splitter);
 
-          $pzarc_contents .= pzarc_get_styling('panel', $pkeys, $value, $class_prefix);
-
-          // Content is a unique situation
-          if ($pkeys[ 'id' ] === 'entry-content') {
-
-            $pkeys[ 'id' ] = 'entry-excerpt';
+          // THIS IS ONLY A TEMPORATY IF
+          if (isset($_architect['architect_config_'.$pkeys['id'].'-selectors'])) {
+            $pkeys[ 'classes' ] = (is_array($_architect[ 'architect_config_' . $pkeys[ 'id' ] . '-selectors' ]) ? $_architect[ 'architect_config_' . $pkeys[ 'id' ] . '-selectors' ] : array('0' => $_architect[ 'architect_config_' . $pkeys[ 'id' ] . '-selectors' ]));
             $pzarc_contents .= pzarc_get_styling('panel', $pkeys, $value, $class_prefix);
 
-          }
+            // Content is a unique situation
+            if ($pkeys[ 'id' ] === 'entry-content') {
 
+              $pkeys[ 'id' ] = 'entry-excerpt';
+              $pzarc_contents .= pzarc_get_styling('panel', $pkeys, $value, $class_prefix);
+
+            }
+          }
+var_dump($pzarc_contents);
           break;
       }
     }

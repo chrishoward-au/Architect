@@ -102,7 +102,12 @@ This is BETA software. So there are many besides these ones!
 == Changelog ==
 
 = 0.8.9 =
-* UPDATED: Spectrum js to 1.5.2
+* UPDATED: Spectrum js to 1.5.2 (one of the colour pickers)
+* CHANGED: Refactored to allow easy creation of a Lite version
+* FIXED: Uses classes from Styling Options
+* TODO CHANGED: Panel header/footer components are now selectable, not automatic.
+* TODO ADDED: Method to load preset styles
+* TODO ADDED: Support for tabular layouts using Dynatable
 
 = 0.8.8 =
 * CHANGED: Upgraded Slick.js to 1.3.15
