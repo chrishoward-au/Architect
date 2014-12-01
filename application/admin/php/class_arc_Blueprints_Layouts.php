@@ -5,15 +5,17 @@
 
     public $content_types;
     public $redux_opt_name = '_architect';
+    public $defaults = false;
+
 
     /**
      * [__construct description]
      */
-    function __construct()
+    function __construct($defaults = false)
     {
 
-      // This overrides the one in the parent class
 
+      $this->defaults = $defaults;
       if (is_admin()) {
         global $pzarc_panels_array;
         $args = array(
@@ -1145,25 +1147,8 @@
                   'type'     => 'select',
                   'select2'  => array('allowClear' => false),
                   'default'  => 'defaults',
-                  //                                    'options'  => array(
-                  //                                        'defaults' => 'Defaults',
-                  //                                        'post'     => 'Posts',
-                  //                                        'page'     => 'Pages',
-                  //                                        'snippets' => 'Snippets',
-                  //                                        'gallery'  => 'Galleries',
-                  //                                        'slides'   => 'Slides',
-                  //                                        'dummy'    => 'Dummy content',
-                  //                                        //                          'images'      => 'Specific Images',
-                  //                                        //                          'wpgallery'   => 'WP Gallery from post',
-                  //                                        //                          'galleryplus' => 'GalleryPlus',
-                  //                                        //                          'nggallery'   => 'NextGen',
-                  //                                        //                        'widgets' => 'Widgets',  // This one may not be workable if user can't control where sidebars appear
-                  //                                        //                          'custom-code' => 'Custom code',
-                  //                                        //                        'rss'     => 'RSS Feed',
-                  //                                        'cpt'      => 'Custom Post Types'
-                  //                                    ),
                   'options'  => $content_types,
-                  'subtitle' => 'todo: code all the js to show hide relevant sections'
+                  'subtitle' => (array_key_exists('snippets',$content_types)?'':'Several more content sources supported in Architect Pro version, including Pages, Snippets, Galleries, Custom Post Types and a special Dummy option to display dummy content')
               ),
           )
       );
@@ -1196,10 +1181,10 @@
                   'id'       => $prefix . 'help-content-selection',
                   'type'     => 'raw',
                   'markdown' => true,
-                  'content'  => 'With Architect you can enable an extra content type called *Snippets*.
+                  'content'  => 'With Architect Pro you can enable an extra content type called *Snippets*.
   These give you a third method of creating content that doesn\'t fit into the post or page types.
 It came about with my own need to create grids of product features. I didn\'t want to fill up pages or posts, so created Snippets for these small content bites.
-You can use them however you like though.
+You can use them however you like though, e.g Testimonials, FAQs, Features, Contacts, etc.
                 '
 
               )
@@ -1229,49 +1214,56 @@ You can use them however you like though.
     function pzarc_blueprint_layout_styling_mb($metaboxes)
     {
       global $_architect_options;
+      if (empty($_architect)) {
+        $_architect = get_option('_architect');
+      }
       if (!empty($_architect_options[ 'architect_enable_styling' ])) {
-
-//  $screen = get_current_screen();
-//  if ($screen->ID != 'xx') {return;}
         $defaults = get_option('_architect');
-
         $prefix = '_blueprints_styling_';
+// TODO: need to get styling to take
+        $font       = '-font';
+        $link       = '-links';
+        $padding    = '-padding';
+        $margin     = '-margins';
+        $background = '-background';
+        $border     = '-borders';
 
-        $sections  = array();
-        $optprefix = 'architect_config_';
+        $stylingSections = array();
+        $sections        = array();
+        $optprefix       = 'architect_config_';
 
-//        $xsections[ ] = array(
-//            'title'      => 'Styling',
-//            'show_title' => false,
-//            'icon_class' => 'icon-large',
-//            'icon'       => 'el-icon-info-sign',
-//            'fields'     => array(
-//                array(
-//                    'title'    => __('Styling Blueprints', 'pzarchitect'),
-//                    'id'       => $prefix . 'styling-blueprints',
-//                    'type'     => 'info',
-//                    'subtitle' => __('To style blueprints...', 'pzarchitect'),
-//                    //                'hint'  => array('content' => __('This is can be any CSS you\'d like to add to a page this blueprint is displayed on. It will ONLY load on the pages this blueprint is shown on, so will only impact those pages. However, if you have multiple blueprints on a page, this CSS could affect or be overriden by ther blueprints\' custom CSS.', 'pzarchitect')),
-//                )
-//
-//            )
-//        );
-
+        $thisSection = 'blueprint';
 
         $sections[ ] = array(
-            'title'      => 'Blueprint',
+            'title'      => 'General',
             'show_title' => false,
             'icon_class' => 'icon-large',
             'icon'       => 'el-icon-website',
-            'desc'       => 'Class: .pzarc-blueprint_{shortname}',
             'fields'     => pzarc_fields(
-            // TODO: Get correct $defaults
+                array(
+                    'title'    => __('Load style'),
+                    'id'       => $prefix . 'blueprints-load-style',
+                    'type'     => 'select',
+                    'subtitle' => 'Sorry to tease, but this isn\'t implemented yet.',
+                    'options'  => array('none','dark', 'light'),
+                    'default'=> 'none'
+                ),
+                array(
+                    'title'    => __('Blueprint', 'pzarchitect'),
+                    'id'       => $prefix . 'blueprint-section',
+                    'type'     => 'section',
+                    'indent'   => true,
+                    'class'    => 'heading',
+                    'subtitle' => 'Class: .pzarc-blueprint_{shortname}',
+                ),
+
+                // TODO: Get correct $defaults
             // TODO: Add shadows
-                pzarc_redux_bg($prefix . 'blueprint-background', array('.pzarc-blueprint')),
-                pzarc_redux_padding($prefix . 'blueprint-padding', array('.pzarc-blueprint')),
-                pzarc_redux_margin($prefix . 'blueprint-margins', array('.pzarc-blueprint')),
-                pzarc_redux_borders($prefix . 'blueprint-borders', array('.pzarc-blueprint')),
-                pzarc_redux_links($prefix . 'blueprint-links', array('.pzarc-blueprint')),
+                pzarc_redux_bg($prefix . 'blueprint-background', $this->defaults?'':$_architect[ 'architect_config_'.$thisSection.'-selectors' ],$defaults[ $optprefix . $thisSection . $background ]),
+                pzarc_redux_padding($prefix . 'blueprint-padding', $this->defaults?'':$_architect[ 'architect_config_'.$thisSection.'-selectors' ],$defaults[ $optprefix . $thisSection . $background ]),
+                pzarc_redux_margin($prefix . 'blueprint-margins', $this->defaults?'':$_architect[ 'architect_config_'.$thisSection.'-selectors' ],$defaults[ $optprefix . $thisSection . $background ]),
+                pzarc_redux_borders($prefix . 'blueprint-borders', $this->defaults?'':$_architect[ 'architect_config_'.$thisSection.'-selectors' ],$defaults[ $optprefix . $thisSection . $background ]),
+                pzarc_redux_links($prefix . 'blueprint-links', $this->defaults?'':$_architect[ 'architect_config_'.$thisSection.'-selectors' ],$defaults[ $optprefix . $thisSection . $background ]),
                 array(
                     'title'    => __('Custom CSS', 'pzarchitect'),
                     'id'       => $prefix . 'blueprint-custom-css',
@@ -1282,6 +1274,7 @@ You can use them however you like though.
                 )
             )
         );
+        $thisSection = 'sections';
         $sections[ ] = array(
             'title'      => 'Sections wrapper',
             'show_title' => false,
@@ -1292,14 +1285,16 @@ You can use them however you like though.
 
             // TODO: Get correct $defaults
             // TODO: Add shadows
-                pzarc_redux_bg($prefix . 'sections-background', array('.pzarc-sections')),
-                pzarc_redux_padding($prefix . 'sections-padding', array('.pzarc-sections')),
-                pzarc_redux_margin($prefix . 'sections-margins', array('.pzarc-sections')),
-                pzarc_redux_borders($prefix . 'sections-borders', array('.pzarc-sections'))
+            //$prefix . 'hentry' . $background, $_architect[ 'architect_config_hentry-selectors' ], $defaults[ $optprefix . 'hentry' . $background ]
+                pzarc_redux_bg($prefix . $thisSection . $background, $this->defaults?'':$_architect[ 'architect_config_'.$thisSection.'-selectors' ], $defaults[ $optprefix . $thisSection . $background ]),
+                pzarc_redux_padding($prefix . $thisSection . $padding, $this->defaults?'':$_architect[ 'architect_config_'.$thisSection.'-selectors' ], $defaults[ $optprefix . $thisSection . $padding ]),
+                pzarc_redux_margin($prefix . $thisSection . $margin, $this->defaults?'':$_architect[ 'architect_config_'.$thisSection.'-selectors' ], $defaults[ $optprefix . $thisSection . $margin ]),
+                pzarc_redux_borders($prefix . $thisSection . $border, $this->defaults?'':$_architect[ 'architect_config_'.$thisSection.'-selectors' ], $defaults[ $optprefix . $thisSection . $border ])
             )
         );
         $icons       = array(1 => 'el-icon-align-left', 2 => 'el-icon-th', 3 => 'el-icon-th-list');
 
+        $thisSection = 'pzarc-section_1';
         $sections[ ] = array(
             'title'      => 'Section 1',
             'show_title' => false,
@@ -1307,12 +1302,13 @@ You can use them however you like though.
             'icon'       => $icons[ 1 ],
             'desc'       => 'Class: .pzarc-section_1',
             'fields'     => array(
-                pzarc_redux_bg($prefix . 'pzarc-section_1-background', array('.pzarc-section_1')),
-                pzarc_redux_padding($prefix . 'pzarc-section_1-padding', array('.pzarc-section_1')),
-                pzarc_redux_margin($prefix . 'pzarc-section_1-margins', array('.pzarc-section_1')),
-                pzarc_redux_borders($prefix . 'pzarc-section_1-borders', array('.pzarc-section_1')),
+                pzarc_redux_bg($prefix . $thisSection . $background, $this->defaults?'':$_architect[ 'architect_config_'.$thisSection.'-selectors' ], $defaults[ $optprefix . $thisSection . $background ]),
+                pzarc_redux_padding($prefix . $thisSection . $padding, $this->defaults?'':$_architect[ 'architect_config_'.$thisSection.'-selectors' ], $defaults[ $optprefix . $thisSection . $padding ]),
+                pzarc_redux_margin($prefix . $thisSection . $margin, $this->defaults?'':$_architect[ 'architect_config_'.$thisSection.'-selectors' ], $defaults[ $optprefix . $thisSection . $margin ]),
+                pzarc_redux_borders($prefix . $thisSection . $border, $this->defaults?'':$_architect[ 'architect_config_'.$thisSection.'-selectors' ], $defaults[ $optprefix . $thisSection . $border ])
             ),
         );
+        $thisSection = 'pzarc-section_2';
         $sections[ ] = array(
             'title'      => 'Section 2',
             'show_title' => false,
@@ -1320,12 +1316,13 @@ You can use them however you like though.
             'icon'       => $icons[ 2 ],
             'desc'       => 'Class: .pzarc-section_2',
             'fields'     => array(
-                pzarc_redux_bg($prefix . 'pzarc-section_2-background', array('.pzarc-section_2')),
-                pzarc_redux_padding($prefix . 'pzarc-section_2-padding', array('.pzarc-section_2')),
-                pzarc_redux_margin($prefix . 'pzarc-section_2-margins', array('.pzarc-section_2')),
-                pzarc_redux_borders($prefix . 'pzarc-section_2-borders', array('.pzarc-section_2')),
+                pzarc_redux_bg($prefix . $thisSection . $background, $this->defaults?'':$_architect[ 'architect_config_'.$thisSection.'-selectors' ], $defaults[ $optprefix . $thisSection . $background ]),
+                pzarc_redux_padding($prefix . $thisSection . $padding, $this->defaults?'':$_architect[ 'architect_config_'.$thisSection.'-selectors' ], $defaults[ $optprefix . $thisSection . $padding ]),
+                pzarc_redux_margin($prefix . $thisSection . $margin, $this->defaults?'':$_architect[ 'architect_config_'.$thisSection.'-selectors' ], $defaults[ $optprefix . $thisSection . $margin ]),
+                pzarc_redux_borders($prefix . $thisSection . $border, $this->defaults?'':$_architect[ 'architect_config_'.$thisSection.'-selectors' ], $defaults[ $optprefix . $thisSection . $border ])
             ),
         );
+        $thisSection = 'pzarc-section_3';
         $sections[ ] = array(
             'title'      => 'Section 3',
             'show_title' => false,
@@ -1333,13 +1330,14 @@ You can use them however you like though.
             'icon'       => $icons[ 3 ],
             'desc'       => 'Class: .pzarc-section_3',
             'fields'     => array(
-                pzarc_redux_bg($prefix . 'pzarc-section_3-background', array('.pzarc-section_3')),
-                pzarc_redux_padding($prefix . 'pzarc-section_3-padding', array('.pzarc-section_3')),
-                pzarc_redux_margin($prefix . 'pzarc-section_3-margins', array('.pzarc-section_3')),
-                pzarc_redux_borders($prefix . 'pzarc-section_3-borders', array('.pzarc-section_3')),
+                pzarc_redux_bg($prefix . $thisSection . $background, $this->defaults?'':$_architect[ 'architect_config_'.$thisSection.'-selectors' ], $defaults[ $optprefix . $thisSection . $background ]),
+                pzarc_redux_padding($prefix . $thisSection . $padding, $this->defaults?'':$_architect[ 'architect_config_'.$thisSection.'-selectors' ], $defaults[ $optprefix . $thisSection . $padding ]),
+                pzarc_redux_margin($prefix . $thisSection . $margin, $this->defaults?'':$_architect[ 'architect_config_'.$thisSection.'-selectors' ], $defaults[ $optprefix . $thisSection . $margin ]),
+                pzarc_redux_borders($prefix . $thisSection . $border, $this->defaults?'':$_architect[ 'architect_config_'.$thisSection.'-selectors' ], $defaults[ $optprefix . $thisSection . $border ])
             ),
         );
 
+        $thisSection = 'pzarc-navigator';
         $sections[ ] = array(
             'title'      => 'Navigator',
             'show_title' => false,
@@ -1352,33 +1350,51 @@ You can use them however you like though.
                     'id'       => $prefix . 'blueprint-nav-container-css-heading',
                     'type'     => 'section',
                     'indent'   => true,
-                    'subtitle' => 'Class: .pzarc-navigator',
+                    'subtitle' => 'Classes: '.implode(', ',array('.arc-slider-nav', '.pzarc-navigator')),
 
                 ),
-                pzarc_redux_bg($prefix . 'pzarc-navigator-background', array('.arc-slider-nav', '.pzarc-navigator')),
-                pzarc_redux_padding($prefix . 'pzarc-navigator-padding', array('.arc-slider-nav', '.pzarc-navigator')),
-                pzarc_redux_margin($prefix . 'pzarc-navigator-margins', array('.arc-slider-nav', '.pzarc-navigator')),
-                pzarc_redux_borders($prefix . 'pzarc-navigator-borders', array('.arc-slider-nav', '.pzarc-navigator')),
+                pzarc_redux_bg($prefix . $thisSection . $background, $_architect[ 'architect_config_'.$thisSection.'-selectors' ], $defaults[ $optprefix . $thisSection . $background ]),
+                pzarc_redux_padding($prefix . $thisSection . $padding, $_architect[ 'architect_config_'.$thisSection.'-selectors' ], $defaults[ $optprefix . $thisSection . $padding ]),
+                pzarc_redux_margin($prefix . $thisSection . $margin, $_architect[ 'architect_config_'.$thisSection.'-selectors' ], $defaults[ $optprefix . $thisSection . $margin ]),
+                pzarc_redux_borders($prefix . $thisSection . $border, $_architect[ 'architect_config_'.$thisSection.'-selectors' ], $defaults[ $optprefix . $thisSection . $border ]),
                 array(
                     'title'    => __('Navigator items', 'pzarchitect'),
                     'id'       => $prefix . 'blueprint-nav-items-css-heading',
                     'type'     => 'section',
                     'indent'   => true,
-                    'subtitle' => 'Class: .pzarc-navigator .arc-slider-slide-nav-item span',
+                    'subtitle' => 'Class: '.implode(', ',array('.pzarc-navigator .arc-slider-slide-nav-item span')),
 
                 ),
                 pzarc_redux_font($prefix . 'pzarc-navigator-items-font', array('.pzarc-navigator .arc-slider-slide-nav-item span'), null),
-                pzarc_redux_bg($prefix . 'pzarc-navigator-items-background', array('.pzarc-navigator .arc-slider-slide-nav-item span')),
-                pzarc_redux_padding($prefix . 'pzarc-navigator-items-padding', array('.pzarc-navigator .arc-slider-slide-nav-item span')),
-                pzarc_redux_margin($prefix . 'pzarc-navigator-items-margins', array('.pzarc-navigator .arc-slider-slide-nav-item span')),
-                pzarc_redux_borders($prefix . 'pzarc-navigator-items-borders', array('.pzarc-navigator .arc-slider-slide-nav-item span')),
+                pzarc_redux_bg($prefix . $thisSection . $background, $_architect[ 'architect_config_'.$thisSection.'-selectors' ], $defaults[ $optprefix . $thisSection . $background ]),
+                pzarc_redux_padding($prefix . $thisSection . $padding, $_architect[ 'architect_config_'.$thisSection.'-selectors' ], $defaults[ $optprefix . $thisSection . $padding ]),
+                pzarc_redux_margin($prefix . $thisSection . $margin, $_architect[ 'architect_config_'.$thisSection.'-selectors' ], $defaults[ $optprefix . $thisSection . $margin ]),
+                pzarc_redux_borders($prefix . $thisSection . $border, $_architect[ 'architect_config_'.$thisSection.'-selectors' ], $defaults[ $optprefix . $thisSection . $border ]),
                 pzarc_redux_border_radius($prefix . 'pzarc-navigator-items-borderradius', array('.pzarc-navigator .arc-slider-slide-nav-item span')),
+                array(
+                    'title'    => __('Navigator item hover', 'pzarchitect'),
+                    'id'       => $prefix . 'blueprint-nav-hover-item-css-heading',
+                    'type'     => 'section',
+                    'indent'   => true,
+                    'subtitle' => 'Class: '.implode(', ',array('.pzarc-navigator .arc-slider-slide-nav-item:hover span')),
+
+                ),
+                pzarc_redux_font($prefix . 'pzarc-navigator-items-font-hover', array('.pzarc-navigator .arc-slider-slide-nav-item:hover span'), null,array('letter-spacing',
+                                                                                                                                                     'font-variant',
+                                                                                                                                                     'text-transform',
+                                                                                                                                                     'font-family',
+                                                                                                                                                     'font-style',
+                                                                                                                                                     'text-align',
+                                                                                                                                                     'line-height',
+                                                                                                                                                     'word-spacing')),
+                pzarc_redux_bg($prefix . 'pzarc-navigator-items-background-hover', array('.pzarc-navigator .arc-slider-slide-nav-item:hover span')),
+                pzarc_redux_borders($prefix . 'pzarc-navigator-item-borders-hover', array('.pzarc-navigator .arc-slider-slide-nav-item:hover span')),
                 array(
                     'title'    => __('Navigator active item', 'pzarchitect'),
                     'id'       => $prefix . 'blueprint-nav-active-item-css-heading',
                     'type'     => 'section',
                     'indent'   => true,
-                    'subtitle' => 'Class: .pzarc-navigator .arc-slider-slide-nav-item.active span',
+                    'subtitle' => 'Class: '.implode(', ',array('.pzarc-navigator .arc-slider-slide-nav-item.active span')),
 
                 ),
                 pzarc_redux_font($prefix . 'pzarc-navigator-itemactive-font', array('.pzarc-navigator .arc-slider-slide-nav-item.active span'), null, array('letter-spacing',
@@ -1389,8 +1405,8 @@ You can use them however you like though.
                                                                                                                                                             'text-align',
                                                                                                                                                             'line-height',
                                                                                                                                                             'word-spacing')),
-                pzarc_redux_bg($prefix . 'pzarc-navigator-itemactive-background', array('.pzarc-navigator .arc-slider-slide-nav-item.active span')),
-                pzarc_redux_borders($prefix . 'pzarc-navigator-itemactive-borders', array('.pzarc-navigator .arc-slider-slide-nav-item.active span')),
+                pzarc_redux_bg($prefix . $thisSection . $background, $_architect[ 'architect_config_'.$thisSection.'-selectors' ], $defaults[ $optprefix . $thisSection . $background ]),
+                pzarc_redux_borders($prefix . $thisSection . $border, $_architect[ 'architect_config_'.$thisSection.'-selectors' ], $defaults[ $optprefix . $thisSection . $border ])
             ),
         );
 

@@ -262,12 +262,12 @@
                     'type'  => 'section',
                 ),
                 array(
-                    'title'    => __('Video field', 'pzarchitect'),
+                    'title'    => __('Feature Video field', 'pzarchitect'),
                     'id'       => 'architect_mod-video-fields',
                     'type'     => 'checkbox',
                     'subtitle' => __('Add a video field to content types to optionally use as the Feature.', 'pzarchitect'),
                     'options'  => array('post' => 'Posts', 'page' => 'Pages', 'pz_snippets' => 'Snippets'),
-                    'default'  => array('pz_snippets')
+                    'default'  => array('post'=>0,'page'=>0,'pz_snippets'=>1)
                 ),
                 array(
                     'title' => __('Styling', 'pzarchitect'),
@@ -289,6 +289,7 @@
                 //                    'subtitle' => 'Turn off this if you won\'t need the Snippets content type.',
                 //                    'default'  => false
                 //                ),
+                // TODO : Create lots of content types - FAQs, Testimonials, Features, Contacts
                 ('headway' == $current_theme->stylesheet ? array(
                     'title'    => __('Add Headway Content Block class', 'pzarchitect'),
                     'id'       => 'architect_hw-content-class',

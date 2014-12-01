@@ -70,11 +70,10 @@
 
 //      $pzarc_shortname = ($post->post_type === 'arc-panels' ? $pzarc_settings[ '_panels_settings_short-name' ] : $pzarc_settings[ '_blueprints_short-name' ]);
 
-      $upload_dir = wp_upload_dir();
 
-      $filename = trailingslashit($upload_dir[ 'basedir' ]) . '/cache/pizazzwp/arc/pzarc_css_cache.css';
+      $filename = PZARC_CACHE_PATH. '/pzarc_css_cache.css';
 
-      wp_mkdir_p(trailingslashit($upload_dir[ 'basedir' ]) . '/cache/pizazzwp/arc/');
+      wp_mkdir_p(trailingslashit(PZARC_CACHE_PATH));
 
       // Need to create the file contents
 
@@ -138,7 +137,6 @@
     global $_architect;
     global $_architect_options;
 
-    // var_dump($_architect_options);
     pzarc_set_defaults(array('blueprints', 'panels'));
     $defaults = $_architect[ 'defaults' ];
     // Need to create the file contents
@@ -151,7 +149,7 @@
         $pzarc_blueprints = pzarc_merge_defaults($defaults[ '_blueprints' ], $pzarc_settings);
         $pzarc_contents .= pzarc_create_blueprint_css($pzarc_blueprints, $pzarc_contents, $postid);
 
-        // Save css to options cache
+        /** Save css to options cache */
         $pzarc_css_cache = maybe_unserialize(get_option('pzarc_css'));
         // We have to delete it coz we want to use the 'no' otpion
         delete_option('pzarc_css');
@@ -164,7 +162,7 @@
         $pzarc_panels = pzarc_merge_defaults($defaults[ '_panels' ], $pzarc_settings);
         $pzarc_contents .= pzarc_create_panels_css($pzarc_panels, $pzarc_contents, $postid);
 
-        // Save css to options cache
+        /** Save css to options cache */
         $pzarc_css_cache = maybe_unserialize(get_option('pzarc_css'));
         // We have to delete it coz we want to use the 'no' otpion
         delete_option('pzarc_css');
@@ -370,7 +368,7 @@
   {
     // TODO: We need to makes it so only one declaration per case. i.e. class {padding;margins;border;etc}
     // which would require smarterness by the caller.
-    if ('blueprint' === $source) {
+    if ('xblueprint' === $source) {
    //   var_dump($keys['id']);
       switch ($keys[ 'id' ]) {
         case 'blueprint':
@@ -408,7 +406,7 @@
       }
 
     }
-    if ('panel' === $source) {
+    if ('xpanel' === $source) {
       switch (true) {
         case 'panels' === $keys[ 'id' ] :
           $keys[ 'class' ] = $classes . '.pzarc-panel';
@@ -454,9 +452,13 @@
     //Need to do the above switch for Panels
     // generate correct whosit
     $pzarc_func = 'pzarc_style_' . $keys[ 'style' ];
-    $pzarc_css  = (function_exists($pzarc_func) ? call_user_func($pzarc_func, $keys[ 'class' ], $value) : '');
-    if (!function_exists($pzarc_func)) {
-      print 'Missing function ' . $pzarc_func;
+    $pzarc_css = '';
+    foreach($keys['classes'] as $class) {
+      $pzarc_css  .= (function_exists($pzarc_func) ? call_user_func($pzarc_func, $classes .' '.$class, $value) : '');
+      if (!function_exists($pzarc_func)) {
+        print 'Missing function ' . $pzarc_func;
+      }
+
     }
 
     return $pzarc_css;
@@ -464,7 +466,7 @@
 
   function pzarc_style_background($class, $value)
   {
- ///var_dump($class);
+
     return (!empty($value[ 'color' ]) ? $class . ' {background-color:' . $value[ 'color' ] . ';}' . "\n" : null);
 
   }

@@ -108,8 +108,8 @@
     return array(
         'title'                 => __('Background', 'pzarchitect'),
         'id'                    => $id,
-        'output'                => $selectors,
-        'compiler'              => $selectors,
+//        'output'                => $selectors,
+//        'compiler'              => $selectors,
         'type'                  => 'spectrum',
         'mode'                  => 'backgound-color',
         'background-image'      => false,
@@ -142,7 +142,7 @@
     return array(
         'title'   => __('Margins', 'pzarchitect'),
         'id'      => $id,
-        'output'  => $selectors,
+//        'output'  => $selectors,
         'mode'    => 'margin',
         'type'    => 'spacing',
         'units'   => array('%', 'px'),
@@ -191,7 +191,7 @@
         'id'      => $id,
         'type'    => 'border',
         'all'     => false,
-        'output'  => $selectors,
+  //      'output'  => $selectors,
         'default' => $defaults
     );
   }
@@ -207,7 +207,7 @@
         'all'     => false,
         'style'   => false,
         'color'   => false,
-        'output'  => $selectors,
+ //       'output'  => $selectors,
         'default' => $defaults
     );
   }
@@ -220,8 +220,8 @@
     // Actually, $_architect doesn't populate if it's not here
     require_once PZARC_PLUGIN_APP_PATH . '/admin/php/class_arc_Panels_Layouts.php';
     require_once PZARC_PLUGIN_APP_PATH . '/admin/php/class_arc_Blueprints_Layouts.php';
-    $blueprints = new arc_Blueprints_Layouts();
-    $panels     = new arc_Panels_Layouts();
+    $blueprints = new arc_Blueprints_Layouts('defaults');
+    $panels     = new arc_Panels_Layouts('defaults');
 
     global $_architect;
     global $_architect_options;

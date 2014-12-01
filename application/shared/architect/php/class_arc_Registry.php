@@ -34,9 +34,14 @@
 //        throw new Exception("There is already an entry for key " . $key);
 //
 //      }
+
       if (substr($key,0,9)==='metaboxes') {
         $this->registry[ $key ] = $value;
-      } else {
+      } elseif ($key==='content_source') {
+        $this->registry[ $key ][key($value)] = current($value);
+
+      }
+      else {
         $this->registry[ $key ][ ] = $value;
       }
 
@@ -46,7 +51,7 @@
     public function get($key)
     {
       if (!isset($this->registry[ $key ])) {
-        throw new Exception("There is no entry for key " . $key);
+        return 'key not set';
       }
 
       return $this->registry[ $key ];

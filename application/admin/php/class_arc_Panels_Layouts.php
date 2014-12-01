@@ -10,16 +10,17 @@
   {
 
     public $redux_opt_name = '_architect';
+    public $defaults = false;
 
 
     /**
      * [__construct description]
      */
-    function __construct()
+    function __construct($defaults = false)
     {
 
-      // This overrides the one in the parent class
 
+      $this->defaults = $defaults;
       if (is_admin()) {
         //     require_once PZARC_PLUGIN_PATH . 'shared/pzarc-custom-field-types.php';
 
@@ -488,6 +489,42 @@
                   ),
                   'display_value' => 'label',
                   'hint'          => array('content' => __('When you have set the featured image to appear in the content/excerpt, this determines its width.', 'pzarchitect'))
+              ),
+              array(
+                  'title'   => __('Header Ccmponents', 'pzarchitect'),
+                  'id'      => $prefix . 'components-header',
+                  'type'    => 'button_set',
+                  'multi'   => true,
+                  'width'   => '100%',
+                  'default' => array('title', 'meta1','meta2'),
+                  'options' => array(
+                      'title'   => 'Title',
+                      'meta1'   => 'Meta1',
+                      'meta2'   => 'Meta2',
+                      'meta3'   => 'Meta3',
+                      'custom1' => 'Custom 1',
+                      'custom2' => 'Custom 2',
+                      'custom3' => 'Custom 3',
+                  ),
+                  'hint'    => array('content' => __('Select which components to include in the header of the panel.', 'pzarchitect'))
+              ),
+              array(
+                  'title'   => __('Footer components', 'pzarchitect'),
+                  'id'      => $prefix . 'components-footer',
+                  'type'    => 'button_set',
+                  'multi'   => true,
+                  'width'   => '100%',
+                  'default' => array('meta3'),
+                  'options' => array(
+                      'title'   => 'Title',
+                      'meta1'   => 'Meta1',
+                      'meta2'   => 'Meta2',
+                      'meta3'   => 'Meta3',
+                      'custom1' => 'Custom 1',
+                      'custom2' => 'Custom 2',
+                      'custom3' => 'Custom 3',
+                  ),
+                  'hint'    => array('content' => __('Select which components to include in the footer of the panel.', 'pzarchitect'))
               ),
 
           )
@@ -994,80 +1031,6 @@
           )
       );
 
-      // var_dump($_architect_options);
-
-      /**
-       * BACKGROUND IMAGES
-       */
-//     $sections[ ] = array(
-//         'title'      => 'Background Images',
-//         'icon_class' => 'icon-large',
-//         'icon'       => 'el-icon-picture',
-//         'subtitle'   => 'Background images can be a bit trickier to work with responsively as they might not fill the background on all devices. Consider the probable aspect ratio of the panel at each breakpoint when setting the image dimensions. What may be landscape on a desktop, could be portrait on a smartphone.',
-//         'fields'     => array(
-
-
-//             array(
-// //                'title'    => __('Maximum dimensions: Screens >', 'pzarchitect') . $_architect_options[ 'architect_breakpoint_1' ][ 'width' ],
-//                 'title'    => __('Maximum dimensions', 'pzarchitect') ,
-//                 'id'       => $prefix . 'background-image-max',
-//                 'type'     => 'dimensions',
-//                 'units'    => 'px',
-//                 'default'  => array('width' => '300', 'height' => '350'),
-// //                'subtitle' => __('This should be larger than the expected maximum viewing size at this breakpoint to ensure best responsive behaviour', 'pzarchitect')
-//                 'subtitle' => __('This should be as large or a little larger than the expected maximum viewing size to ensure best responsive behaviour', 'pzarchitect')
-//             ),
-// //            array(
-// //                'title'    => __('Maximum dimensions: Screens > ', 'pzarchitect') . $_architect_options[ 'architect_breakpoint_2' ][ 'width' ] . __(' and  < ') . $_architect_options[ 'architect_breakpoint_1' ][ 'width' ],
-// //                'id'       => $prefix . 'background-image-max-bp2',
-// //                'type'     => 'dimensions',
-// //                'units'    => 'px',
-// //                'default'  => array('width' => '600', 'height' => '400'),
-// //            ),
-// //            array(
-// //                'title'    => __('Maximum dimensions: Screens < ', 'pzarchitect') . $_architect_options[ 'architect_breakpoint_2' ][ 'width' ],
-// //                'id'       => $prefix . 'background-image-max-bp3',
-// //                'type'     => 'dimensions',
-// //                'units'    => 'px',
-// //                'default'  => array('width' => '200', 'height' => '300'),
-// //            ),
-//             array(
-//                 'title'    => __('Link image', 'pzarchitect'),
-//                 'id'       => $prefix . 'link-bgimage',
-//                 'type'     => 'button_set',
-//                 'options'  => array(
-//                     'none'     => 'None',
-//                     'page'     => 'Post',
-//                     'image'    => 'Attachment page',
-//                     'original' => 'Lightbox',
-//                     'url'      => 'Specific URL'
-//                 ),
-//                 'default'  => 'page',
-//                 'subtitle' => __('Makes the image link to the post/page or all images link to a specific URL', 'pzazrchitect')
-//             ),
-//             array(
-//                 'title'    => __('Specific URL', 'pzarchitect'),
-//                 'id'       => $prefix . 'link-bgimage-url',
-//                 'type'     => 'text',
-//                 'required' => array(
-// //                    array($prefix . 'background-position', '!=', 'none'),
-//                     array($prefix . 'link-bgimage', 'equals', 'url')
-//                 ),
-//                 'validate' => 'url',
-//             ),
-//             array(
-//                 'title'    => __('Specific URL tooltip', 'pzarchitect'),
-//                 'id'       => $prefix . 'link-bgimage-url-tooltip',
-//                 'type'     => 'text',
-//                 'required' => array(
-//  //                   array($prefix . 'background-position', '!=', 'none'),
-//                     array($prefix . 'link-bgimage', 'equals', 'url')
-//                 ),
-//                 'validate' => 'url',
-//                 'subtitle' => __('Enter the text that appears when the user hovers over the link', 'pzazrchitect')
-//             ),
-//         )
-//     );
 
       /**
        * CUSTOM FIELDS
@@ -1271,14 +1234,14 @@
     function pzarc_panels_styling($metaboxes)
     {
 
+      global $_architect;
       global $_architect_options;
-      if (!empty($_architect_options[ 'architect_enable_styling' ])) {
 
-//  $screen = get_current_screen();
-//  if ($screen->ID != 'xx') {return;}
+      if (empty($_architect)) {
+        $_architect = get_option('_architect');
+      }
+      if (!empty($_architect_options[ 'architect_enable_styling' ])) {
         $defaults = get_option('_architect');
-        //  var_Dump($defaults);
-//var_dump($defaults);
         $prefix = '_panels_styling_';
 
         $font       = '-font';
@@ -1325,6 +1288,14 @@
             'icon'       => 'el-icon-brush',
             'fields'     => pzarc_fields(
                 array(
+                    'title'    => __('Load style'),
+                    'id'       => $prefix . 'panels-load-style',
+                    'type'     => 'select',
+                    'subtitle' => 'Sorry to tease, but this isn\'t implemented yet.',
+                    'options'  => array('none','dark', 'light'),
+                    'default'=> 'none'
+                ),
+                array(
                     'title'    => __('Panels', 'pzarchitect'),
                     'id'       => $prefix . 'panels-section',
                     'type'     => 'section',
@@ -1355,12 +1326,16 @@
                     'indent'   => true,
                     'class'    => 'heading',
                     'hint'     => array('content' => 'Class: .hentry'),
-                    'subtitle' => 'Class: .hentry'
+                    'subtitle' => !$this->defaults?(is_array($_architect[ 'architect_config_hentry-selectors' ]) ? 'Classes: ' . implode(', ', $_architect[ 'architect_config_hentry-selectors' ]) : 'Class: ' . $_architect[ 'architect_config_hentry-selectors' ]):''
                 ),
-                pzarc_redux_bg($prefix . 'hentry' . $background, array('.hentry'), $defaults[ $optprefix . 'hentry' . $background ]),
-                pzarc_redux_padding($prefix . 'hentry' . $padding, array('.hentry'), $defaults[ $optprefix . 'hentry' . $padding ]),
-                pzarc_redux_margin($prefix . 'hentry' . $margin, array('.hentry'), $defaults[ $optprefix . 'hentry' . $margin ]),
-                pzarc_redux_borders($prefix . 'hentry' . $border, array('.hentry'), $defaults[ $optprefix . 'hentry' . $border ])
+                // id,selectors,defaults
+                // need to grab selectors from options
+                // e.g. $_architect['architect_config_hentry-selectors']
+                // Then we need to get them back later
+                pzarc_redux_bg($prefix . 'hentry' . $background, !$this->defaults?$_architect[ 'architect_config_hentry-selectors' ]:'', $defaults[ $optprefix . 'hentry' . $background ]),
+                pzarc_redux_padding($prefix . 'hentry' . $padding, !$this->defaults?$_architect[ 'architect_config_hentry-selectors' ]:'', $defaults[ $optprefix . 'hentry' . $padding ]),
+                pzarc_redux_margin($prefix . 'hentry' . $margin, !$this->defaults?$_architect[ 'architect_config_hentry-selectors' ]:'', $defaults[ $optprefix . 'hentry' . $margin ]),
+                pzarc_redux_borders($prefix . 'hentry' . $border, !$this->defaults?$_architect[ 'architect_config_hentry-selectors' ]:'', $defaults[ $optprefix . 'hentry' . $border ])
             )
         );
 
@@ -1490,11 +1465,11 @@
                     //    'default' => $defaults[ $optprefix . 'image_defaults_entry-image-caption-defaults' ],
                 ),
                 array(
-                    'title' => __('Caption', 'pzarchitect'),
-                    'id'    => $prefix . 'entry-image-caption',
-                    'type'  => 'section',
-                    'indent'=>true,
-                    'class' => 'heading',
+                    'title'  => __('Caption', 'pzarchitect'),
+                    'id'     => $prefix . 'entry-image-caption',
+                    'type'   => 'section',
+                    'indent' => true,
+                    'class'  => 'heading',
                     //    'default' => $defaults[ $optprefix . 'image_defaults_entry-image-caption-defaults' ],
                 ),
                 pzarc_redux_font($prefix . 'entry-image-caption' . $font, array('figure.entry-thumbnail span.caption'), $defaults[ $optprefix . 'entry-image-caption' . $font ]),
@@ -1560,12 +1535,12 @@
             'fields'     => array(
 
                 array(
-                    'title' => __('Styling', 'pzarchitect'),
-                    'id'    => $prefix . 'panels-help-styling',
-                    'type'  => 'section',
-                    'indent'=>true,
+                    'title'  => __('Styling', 'pzarchitect'),
+                    'id'     => $prefix . 'panels-help-styling',
+                    'type'   => 'section',
+                    'indent' => true,
                     //  'class' => 'plain',
-                    'desc'  => '<p>
+                    'desc'   => '<p>
                               Fiant nulla claritatem processus vulputate quarta. Anteposuerit eodem habent parum id et. Notare mutationem facilisi nulla ut facer.
                               </p>
 

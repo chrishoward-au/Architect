@@ -59,6 +59,8 @@
           'meta_value'   => $this->name,
           'meta_compare' => '='
       );
+      // TODO: Why do we need this still?
+      pzarc_set_defaults();
       global $_architect;
       // Get any existing copy of our transient data
       if ( !current_user_can( 'manage_options' ) && false === ( $blueprint_query = get_transient( 'pzarc_blueprint_query_'.$this->name ) ) ) {

@@ -8,42 +8,33 @@
    * Time: 10:19 PM
    */
   // Add content info to the registry
-  class arc_content_slide  extends arc_set_data// Singleton
+  class arc_content_snippets  extends arc_set_data// Singleton
   {
-
 
     protected function __construct()
     {
       $registry = arc_Registry::getInstance();
-
-      $prefix = '_content_slides_';
-
-      /** Slides */
-      $slides_obj = get_posts(array('post_type' => 'pzsp-slides'));
-      //var_dump($slides_obj);
-      $slides = array();
-      foreach ($slides_obj as $key => $value) {
-        $slides[ $value->ID ] = $value->post_title;
-      }
+      $prefix   = '_content_snippets_';
 
       $settings[ 'blueprint-content' ] = array(
-          'type'        => 'slide',
-          'name'        => 'Slides',
-          'panel_class' => 'arc_panel_Slides',
+          'type'        => 'snippets',
+          'name'        => 'Snippets',
+          'panel_class' => 'arc_panel_Snippets',
           'prefix'      => $prefix,
           // These are the sections to display on the admin metabox. We also use them to get default values.
           'sections'    => array(
-              'title'      => 'Slides',
+              'title'      => 'Snippets',
               'icon_class' => 'icon-large',
-              'icon'       => 'el-icon-video',
+              'icon'       => 'el-icon-file',
               'fields'     => array(
                   array(
-                      'title'   => __('Specific slides', 'pzarchitect'),
-                      'id'      => $prefix . 'specific-slides',
+                      'title'   => __('Specific snippets', 'pzarchitect'),
+                      'id'      => $prefix . 'specific-snippets',
                       'type'    => 'select',
                       'select2' => array('allowClear' => true),
+                      'options' => pzarc_get_posts_in_post_type('pz_snippets'),
                       'multi'   => true,
-                      'options' => $slides
+                      'default' => array()
                   ),
               )
           )
@@ -51,11 +42,20 @@
 
       // This has to be post_type
       $registry->set('post_types', $settings);
+      $registry->set('content_source',array('snippets'=>plugin_dir_path(__FILE__)));
+    }
+
+    private function __clone()
+    {
+    }
+
+    private function __wakeup()
+    {
     }
   }
 
 //  //todo:set this up as a proper singleton?
-  $content_posts = arc_content_slide::getInstance();
+  $content_posts = arc_content_snippets::getInstance();
 
 
 

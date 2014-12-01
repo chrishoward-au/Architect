@@ -59,10 +59,10 @@
 
       function compiler_action($options, $css)
       {
-//        echo "<h1>The compiler hook has run!";
-//        var_dump($options); //Option values
+        echo "<h1>The compiler hook has run!";
+        var_dump($options); //Option values
 //
-//        var_dump($css); // Compiler selector CSS values  compiler => array( CSS SELECTORS )
+        var_dump($css); // Compiler selector CSS values  compiler => array( CSS SELECTORS )
 
         // Demo of how to use the dynamic CSS and write your own static CSS file
         $filename = PZARC_CACHE_PATH . '/arc-dynamic-styles' . '.css';
@@ -230,12 +230,21 @@
 
         $prefix = 'architect_config_';
 
-        // ACTUAL DECLARATION OF SECTIONS
+        $this->sections[ ] = array(
+            'title'      => 'PANELS',
+            'show_title' => false,
+            'icon_class' => 'icon-large',
+            'icon'       => false,
+            'fields'     => array()
+        );
+
+              // ACTUAL DECLARATION OF SECTIONS
         $this->sections[ ] = array(
             'title'      => 'General',
             'show_title' => false,
             'icon_class' => 'icon-large',
             'icon'       => 'el-icon-brush',
+            'subsection'=> true,
             'fields'     => array(
 
                 array(
@@ -289,12 +298,11 @@
                 array(
                     'title'    => __('CSS selectors', 'pzarc'),
                     'id'       => $prefix . 'hentry-selectors',
-                    'type'     => 'multi_text',
-                    'default'  => array('.hentry'),
-                    'subtitle' => 'One per row',
+                    'type'     => 'text',
+                    'default'  => '.hentry',
                     'hint'     => array(
-                        'title'   => 'Hint Title',
-                        'content' => 'This is the content of the tool-tip'
+                        'title'   => 'Change CSS class',
+                        'content' => 'Change this class only if your theme uses different class names'
                     )
                 ),
                 pzarc_redux_bg($prefix . 'hentry-background', array('.hentry')),
@@ -308,8 +316,19 @@
             'show_title' => false,
             'icon_class' => 'icon-large',
             'icon'       => 'el-icon-font',
-            'desc'       => 'Class: .pzarc_entry-title',
+            'desc'       => 'Class: .entry-title',
+            'subsection'=> true,
             'fields'     => array(
+                array(
+                    'title'    => __('CSS selectors', 'pzarc'),
+                    'id'       => $prefix . 'title-selectors',
+                    'type'     => 'text',
+                    'default'  => '.entry-title',
+                    'hint'     => array(
+                        'title'   => 'Change CSS class',
+                        'content' => 'Change this class only if your theme uses different class names'
+                    )
+                ),
                 pzarc_redux_font($prefix . 'entry-title-font', array('.entry-title'), array('line_height'     => 1.2,
                                                                                             'text_decoration' => 'none')),
                 pzarc_redux_bg($prefix . 'entry-title-font-background', array('.entry-title')),
@@ -326,7 +345,18 @@
             'icon_class' => 'icon-large',
             'icon'       => 'el-icon-calendar',
             'desc'       => 'Class: .pzarc_entry_meta',
+            'subsection'=> true,
             'fields'     => array(
+                array(
+                    'title'    => __('CSS selectors', 'pzarc'),
+                    'id'       => $prefix . 'meta-selectors',
+                    'type'     => 'text',
+                    'default'  => '.entry-meta',
+                    'hint'     => array(
+                        'title'   => 'Change CSS class',
+                        'content' => 'Change this class only if your theme uses different class names'
+                    )
+                ),
                 pzarc_redux_font($prefix . 'entry-meta-font', array('.entry-meta')),
                 pzarc_redux_bg($prefix . 'entry-meta-font-background', array('.entry-meta')),
                 pzarc_redux_padding($prefix . 'entry-meta-font-padding', array('.entry-meta')),
@@ -338,7 +368,18 @@
             'show_title' => false,
             'icon_class' => 'icon-large',
             'icon'       => 'el-icon-align-left',
+            'subsection'=> true,
             'fields'     => array(
+                array(
+                    'title'    => __('CSS selectors', 'pzarc'),
+                    'id'       => $prefix . 'content-selectors',
+                    'type'     => 'text',
+                    'default'  => '.entry-content',
+                    'hint'     => array(
+                        'title'   => 'Change CSS class',
+                        'content' => 'Change this class only if your theme uses different class names'
+                    )
+                ),
                 pzarc_redux_font($prefix . 'entry-content-font', array('.entry-content')),
                 pzarc_redux_bg($prefix . 'entry-content-font-background', array('.entry-content')),
                 pzarc_redux_padding($prefix . 'entry-content-font-padding', array('.entry-content')),
@@ -362,6 +403,7 @@
             'show_title' => false,
             'icon_class' => 'icon-large',
             'icon'       => 'el-icon-picture',
+            'subsection'=> true,
             'fields'     => array(
                 array(
                     'title'    => __('Image', 'pzarc'),
@@ -369,19 +411,36 @@
                     'type'     => 'section',
                     'indent'   => true,
                     'class'    => 'heading',
-                    //          'default' => $defaults[ $optprefix . 'image_defaults_entry-image-defaults' ],
-                    'subtitle' => 'Class: .pzarc_entry_featured_image',
-                    //     'subtitle'    => __('Format the entry featured image', 'pzarc')
+                    'subtitle' => 'Class: .entry-thumbnail',
                 ),
-                pzarc_redux_bg($prefix . 'entry-image-background', array('.entry-title')),
-                pzarc_redux_padding($prefix . 'entry-image-padding', array('.entry-title')),
-                pzarc_redux_borders($prefix . 'entry-image-borders', array('.entry-title')),
+                array(
+                    'title'    => __('CSS selectors', 'pzarc'),
+                    'id'       => $prefix . 'image-selectors',
+                    'type'     => 'text',
+                    'default'  => '.entry-thumbnail',
+                    'hint'     => array(
+                        'title'   => 'Change CSS class',
+                        'content' => 'Change this class only if your theme uses different class names'
+                    )
+                ),
+                pzarc_redux_bg($prefix . 'entry-image-background', array('.entry-thumbnail')),
+                pzarc_redux_padding($prefix . 'entry-image-padding', array('.entry-thumbnail')),
+                pzarc_redux_borders($prefix . 'entry-image-borders', array('.entry-thumbnail')),
                 array(
                     'title' => __('Caption', 'pzarc'),
                     'id'    => $prefix . 'entry-image-caption',
                     'type'  => 'section',
                     'class' => 'heading',
-                    //    'default' => $defaults[ $optprefix . 'image_defaults_entry-image-caption-defaults' ],
+                ),
+                array(
+                    'title'    => __('CSS selectors', 'pzarc'),
+                    'id'       => $prefix . 'image-caption-selectors',
+                    'type'     => 'text',
+                    'default'  => '.entry-thumbnail caption',
+                    'hint'     => array(
+                        'title'   => 'Change CSS class',
+                        'content' => 'Change this class only if your theme uses different class names'
+                    )
                 ),
                 pzarc_redux_font($prefix . 'entry-image-caption-font', array('.entry-thumbnail caption')),
                 pzarc_redux_bg($prefix . 'entry-image-caption-font-background', array('.entry-thumbnail caption')),
@@ -390,6 +449,238 @@
 
 
         );
+        /*********************************
+         * *********************************
+         * BLUEPRINTS
+         * *********************************
+         **********************************/
+        $this->sections[ ] = array(
+            'title'      => 'BLUEPRINTS',
+            'show_title' => false,
+            'icon_class' => 'icon-large',
+            'icon'       => false,
+            'fields'     => array()
+        );
+        $this->sections[ ] = array(
+            'title'      => 'General',
+            'show_title' => false,
+            'icon_class' => 'icon-large',
+            'icon'       => 'el-icon-website',
+            'subsection'=> true,
+            'fields'     => pzarc_fields(
+                array(
+                    'title'    => __('Blueprint', 'pzarchitect'),
+                    'id'       => $prefix . 'blueprint-section',
+                    'type'     => 'section',
+                    'indent'   => true,
+                    'class'    => 'heading',
+                ),
+                array(
+                    'title'    => __('CSS selectors', 'pzarc'),
+                    'id'       => $prefix . 'blueprint-selectors',
+                    'type'     => 'text',
+                    'readonly'=>true,
+                    'default'  => '.pzarc-blueprint_{shortname}',
+                ),
+
+                // TODO: Get correct $defaults
+                // TODO: Add shadows
+                pzarc_redux_bg($prefix . 'blueprint-background', array('.pzarc-blueprint')),
+                pzarc_redux_padding($prefix . 'blueprint-padding', array('.pzarc-blueprint')),
+                pzarc_redux_margin($prefix . 'blueprint-margins', array('.pzarc-blueprint')),
+                pzarc_redux_borders($prefix . 'blueprint-borders', array('.pzarc-blueprint')),
+                pzarc_redux_links($prefix . 'blueprint-links', array('.pzarc-blueprint')),
+                array(
+                    'title'    => __('Custom CSS', 'pzarchitect'),
+                    'id'       => $prefix . 'blueprint-custom-css',
+                    'type'     => 'ace_editor',
+                    'mode'     => 'css',
+                    'subtitle' => __('This can be any CSS you\'d like to add to a page this blueprint is displayed on. It will ONLY load on the pages this blueprint is shown on, so will only impact those pages. However, if you have multiple blueprints on a page, this CSS could affect or be overriden by ther blueprints\' custom CSS.', 'pzarchitect'),
+                    //                'hint'  => array('content' => __('This is can be any CSS you\'d like to add to a page this blueprint is displayed on. It will ONLY load on the pages this blueprint is shown on, so will only impact those pages. However, if you have multiple blueprints on a page, this CSS could affect or be overriden by ther blueprints\' custom CSS.', 'pzarchitect')),
+                )
+            )
+        );
+        $this->sections[ ] = array(
+            'title'      => 'Sections wrapper',
+            'show_title' => false,
+            'icon_class' => 'icon-large',
+            'icon'       => 'el-icon-check-empty',
+            'subsection'=> true,
+             'fields'     => pzarc_fields(
+                 array(
+                     'title'    => __('CSS selectors', 'pzarc'),
+                     'id'       => $prefix . 'sections-selectors',
+                     'type'     => 'text',
+                     'readonly'=>true,
+                     'default'  => '.pzarc-sections_{shortname}',
+                 ),
+
+            // TODO: Get correct $defaults
+            // TODO: Add shadows
+                pzarc_redux_bg($prefix . 'sections-background', array('.pzarc-sections')),
+                pzarc_redux_padding($prefix . 'sections-padding', array('.pzarc-sections')),
+                pzarc_redux_margin($prefix . 'sections-margins', array('.pzarc-sections')),
+                pzarc_redux_borders($prefix . 'sections-borders', array('.pzarc-sections'))
+            )
+        );
+        $icons       = array(1 => 'el-icon-align-left', 2 => 'el-icon-th', 3 => 'el-icon-th-list');
+
+        $this->sections[ ] = array(
+            'title'      => 'Section 1',
+            'show_title' => false,
+            'icon_class' => 'icon-large',
+            'icon'       => $icons[ 1 ],
+            'subsection'=> true,
+            'fields'     => array(
+                array(
+                    'title'    => __('CSS selectors', 'pzarc'),
+                    'id'       => $prefix . 'pzarc-section_1-selectors',
+                    'type'     => 'text',
+                    'readonly'=>true,
+                    'default'  => '.pzarc-section_1',
+                ),
+                pzarc_redux_bg($prefix . 'pzarc-section_1-background', array('.pzarc-section_1')),
+                pzarc_redux_padding($prefix . 'pzarc-section_1-padding', array('.pzarc-section_1')),
+                pzarc_redux_margin($prefix . 'pzarc-section_1-margins', array('.pzarc-section_1')),
+                pzarc_redux_borders($prefix . 'pzarc-section_1-borders', array('.pzarc-section_1')),
+            ),
+        );
+        $this->sections[ ] = array(
+            'title'      => 'Section 2',
+            'show_title' => false,
+            'icon_class' => 'icon-large',
+            'icon'       => $icons[ 2 ],
+            'subsection'=> true,
+            'fields'     => array(
+                array(
+                    'title'    => __('CSS selectors', 'pzarc'),
+                    'id'       => $prefix . 'pzarc-section_2-selectors',
+                    'type'     => 'text',
+                    'readonly'=>true,
+                    'default'  => '.pzarc-section_2',
+                ),
+                pzarc_redux_bg($prefix . 'pzarc-section_2-background', array('.pzarc-section_2')),
+                pzarc_redux_padding($prefix . 'pzarc-section_2-padding', array('.pzarc-section_2')),
+                pzarc_redux_margin($prefix . 'pzarc-section_2-margins', array('.pzarc-section_2')),
+                pzarc_redux_borders($prefix . 'pzarc-section_2-borders', array('.pzarc-section_2')),
+            ),
+        );
+        $this->sections[ ] = array(
+            'title'      => 'Section 3',
+            'show_title' => false,
+            'icon_class' => 'icon-large',
+            'icon'       => $icons[ 3 ],
+            'subsection'=> true,
+            'fields'     => array(
+                array(
+                    'title'    => __('CSS selectors', 'pzarc'),
+                    'id'       => $prefix . 'pzarc-section_3-selectors',
+                    'type'     => 'text',
+                    'readonly'=>true,
+                    'default'  => '.pzarc-section_3',
+                ),
+                pzarc_redux_bg($prefix . 'pzarc-section_3-background', array('.pzarc-section_3')),
+                pzarc_redux_padding($prefix . 'pzarc-section_3-padding', array('.pzarc-section_3')),
+                pzarc_redux_margin($prefix . 'pzarc-section_3-margins', array('.pzarc-section_3')),
+                pzarc_redux_borders($prefix . 'pzarc-section_3-borders', array('.pzarc-section_3')),
+            ),
+        );
+
+        $this->sections[ ] = array(
+            'title'      => 'Navigator',
+            'show_title' => false,
+            'icon_class' => 'icon-large',
+            'icon'       => 'el-icon-play-circle',
+            'subsection'=> true,
+            'fields'     => array(
+
+                array(
+                    'title'    => __('Navigator container', 'pzarchitect'),
+                    'id'       => $prefix . 'blueprint-nav-container-css-heading',
+                    'type'     => 'section',
+                    'indent'   => true,
+                ),
+                array(
+                    'title'    => __('CSS selectors', 'pzarc'),
+                    'id'       => $prefix . 'pzarc-navigator-selectors',
+                    'type'     => 'text',
+                    'readonly'=>true,
+                    'default'  => '.pzarc-navigator, .arc-slider-nav',
+                ),
+                pzarc_redux_bg($prefix . 'pzarc-navigator-background', array('.arc-slider-nav', '.pzarc-navigator')),
+                pzarc_redux_padding($prefix . 'pzarc-navigator-padding', array('.arc-slider-nav', '.pzarc-navigator')),
+                pzarc_redux_margin($prefix . 'pzarc-navigator-margins', array('.arc-slider-nav', '.pzarc-navigator')),
+                pzarc_redux_borders($prefix . 'pzarc-navigator-borders', array('.arc-slider-nav', '.pzarc-navigator')),
+                array(
+                    'title'    => __('Navigator items', 'pzarchitect'),
+                    'id'       => $prefix . 'blueprint-nav-items-css-heading',
+                    'type'     => 'section',
+                    'indent'   => true,
+
+                ),
+                array(
+                    'title'    => __('CSS selectors', 'pzarc'),
+                    'id'       => $prefix . 'pzarc-navigator-items-selectors',
+                    'type'     => 'text',
+                    'readonly'=>true,
+                    'default'  => '.pzarc-navigator .arc-slider-slide-nav-item span',
+                ),
+                pzarc_redux_font($prefix . 'pzarc-navigator-items-font', array('.pzarc-navigator .arc-slider-slide-nav-item span'), null),
+                pzarc_redux_bg($prefix . 'pzarc-navigator-items-background', array('.pzarc-navigator .arc-slider-slide-nav-item span')),
+                pzarc_redux_padding($prefix . 'pzarc-navigator-items-padding', array('.pzarc-navigator .arc-slider-slide-nav-item span')),
+                pzarc_redux_margin($prefix . 'pzarc-navigator-items-margins', array('.pzarc-navigator .arc-slider-slide-nav-item span')),
+                pzarc_redux_borders($prefix . 'pzarc-navigator-items-borders', array('.pzarc-navigator .arc-slider-slide-nav-item span')),
+                pzarc_redux_border_radius($prefix . 'pzarc-navigator-items-borderradius', array('.pzarc-navigator .arc-slider-slide-nav-item span')),
+                array(
+                    'title'    => __('Navigator item hover', 'pzarchitect'),
+                    'id'       => $prefix . 'blueprint-nav-hover-item-css-heading',
+                    'type'     => 'section',
+                    'indent'   => true,
+
+                ),
+                array(
+                    'title'    => __('CSS selectors', 'pzarc'),
+                    'id'       => $prefix . 'pzarc-navigator-items-hover--selectors',
+                    'type'     => 'text',
+                    'readonly'=>true,
+                    'default'  => '.pzarc-navigator .arc-slider-slide-nav-item:hover span',
+                ),
+                pzarc_redux_font($prefix . 'pzarc-navigator-items-font-hover', array('.pzarc-navigator .arc-slider-slide-nav-item:hover span'), null,array('letter-spacing',
+                                                                                                                                                           'font-variant',
+                                                                                                                                                           'text-transform',
+                                                                                                                                                           'font-family',
+                                                                                                                                                           'font-style',
+                                                                                                                                                           'text-align',
+                                                                                                                                                           'line-height',
+                                                                                                                                                           'word-spacing')),
+                pzarc_redux_bg($prefix . 'pzarc-navigator-items-background-hover', array('.pzarc-navigator .arc-slider-slide-nav-item:hover span')),
+                pzarc_redux_borders($prefix . 'pzarc-navigator-item-borders-hover', array('.pzarc-navigator .arc-slider-slide-nav-item:hover span')),
+                array(
+                    'title'    => __('Navigator active item', 'pzarchitect'),
+                    'id'       => $prefix . 'blueprint-nav-active-item-css-heading',
+                    'type'     => 'section',
+                    'indent'   => true,
+                ),
+                array(
+                    'title'    => __('CSS selectors', 'pzarc'),
+                    'id'       => $prefix . 'pzarc-navigator-items-active-selectors',
+                    'type'     => 'text',
+                    'readonly'=>true,
+                    'default'  => '.pzarc-navigator .arc-slider-slide-nav-item.active span',
+                ),
+                pzarc_redux_font($prefix . 'pzarc-navigator-itemactive-font', array('.pzarc-navigator .arc-slider-slide-nav-item.active span'), null, array('letter-spacing',
+                                                                                                                                                            'font-variant',
+                                                                                                                                                            'text-transform',
+                                                                                                                                                            'font-family',
+                                                                                                                                                            'font-style',
+                                                                                                                                                            'text-align',
+                                                                                                                                                            'line-height',
+                                                                                                                                                            'word-spacing')),
+                pzarc_redux_bg($prefix . 'pzarc-navigator-itemactive-background', array('.pzarc-navigator .arc-slider-slide-nav-item.active span')),
+                pzarc_redux_borders($prefix . 'pzarc-navigator-itemactive-borders', array('.pzarc-navigator .arc-slider-slide-nav-item.active span')),
+            ),
+        );
+
         $this->sections[ ] = array(
             'id'         => 'custom-css',
             'title'      => 'Custom CSS',
