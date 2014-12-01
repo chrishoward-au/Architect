@@ -16,7 +16,7 @@
 
 //  require_once plugin_dir_path( __FILE__ ). '/content-types/rss/class_arc_content_rss.php';
 //  require_once plugin_dir_path( __FILE__ ). '/content-types/widgets/class_arc_content_widgets.php';
-      // Add content types: Testimonials, FAQs, Features, Contacts, Movies, Books, Recipes 
+      // Add content types: Testimonials, FAQs, Features, Contacts, Movies, Books, Recipes
 
       /** Nav types? */
 
