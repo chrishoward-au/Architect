@@ -33,7 +33,7 @@
     -moz-hyphens: auto;
     hyphens: auto;
     &.nothumb {
-      width: 100%;
+ //     width: 100%; TODO: WTF? Why is this breakking shtuff?
     }
   }
 

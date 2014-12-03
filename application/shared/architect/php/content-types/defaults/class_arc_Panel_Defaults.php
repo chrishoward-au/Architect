@@ -38,7 +38,7 @@
       $panel_def[ 'components-open' ]  = '<article id="post-{{postid}}" class="{{mimic-block-type}} post-{{postid}} post type-{{posttype}} status-{{poststatus}} format-{{postformat}} hentry {{categories}} {{tags}} {{pzclasses}}">';
       $panel_def[ 'components-close' ] = '</article>';
       $panel_def[ 'postlink' ]         = '<a href="{{permalink}}" title="{{title}}">';
-      $panel_def[ 'header' ]           = '<header class="entry-header">{{headerinnards}}</header>';
+ //     $panel_def[ 'header' ]           = '<header class="entry-header">{{headerinnards}}</header>';
       $panel_def[ 'title' ]            = '<h1 class="entry-title">{{postlink}}{{title}}{{closepostlink}}</h1>';
       $panel_def[ 'meta1' ]            = '<div class="entry-meta entry-meta1">{{meta1innards}}</div>';
       $panel_def[ 'meta2' ]            = '<div class="entry-meta entry-meta2">{{meta2innards}}</div>';
@@ -57,7 +57,7 @@
       $panel_def[ 'custom2' ]       = '<div class="entry-customfieldgroup entry-customfieldgroup-2">{{custom2innards}}</div>';
       $panel_def[ 'custom3' ]       = '<div class="entry-customfieldgroup entry-customfieldgroup-3">{{custom3innards}}</div>';
       $panel_def[ 'cfield' ]        = '<div class="entry-customfield entry-customfield-{{cfieldname}} entry-customfield-{{cfieldnumber}}">{{cfieldcontent}}</div>';
-      $panel_def[ 'footer' ]        = '<footer class="entry-footer">{{footerinnards}}</footer>';
+//      $panel_def[ 'footer' ]        = '<footer class="entry-footer">{{footerinnards}}</footer>';
       $panel_def[ 'excerpt' ]       = ' <div class="entry-excerpt {{nothumb}}">{{image-in-content}}{{excerpt}}</div>';
       $panel_def[ 'feature' ]       = '{{feature}}';
       $panel_def[ 'editlink' ]      = '<span class="edit-link"><a class="post-edit-link" href="{{permalink}}" title="Edit post {{title}}">Edit</a></span>';

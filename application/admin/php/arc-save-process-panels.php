@@ -206,21 +206,24 @@
 
           $pkeys[ 'style' ] = str_replace('-', '', substr($pkey, $splitter + 1));
           $pkeys[ 'id' ]    = substr($pkey, 0, $splitter);
+var_dump($pkeys['id']);
+          // TODO: THIS IS ONLY A TEMPORATY IF
+//          if (isset($_architect['architect_config_'.$pkeys['id'].'-selectors'])) {
 
-          // THIS IS ONLY A TEMPORATY IF
-          if (isset($_architect['architect_config_'.$pkeys['id'].'-selectors'])) {
+          if (!in_array($pkeys['id'],array('custom','panels-load'))) {
             $pkeys[ 'classes' ] = (is_array($_architect[ 'architect_config_' . $pkeys[ 'id' ] . '-selectors' ]) ? $_architect[ 'architect_config_' . $pkeys[ 'id' ] . '-selectors' ] : array('0' => $_architect[ 'architect_config_' . $pkeys[ 'id' ] . '-selectors' ]));
-            $pzarc_contents .= pzarc_get_styling('panel', $pkeys, $value, $class_prefix);
+            $pzarc_contents .= pzarc_get_styling('panel', $pkeys, $value, $class_prefix, $pkeys[ 'classes' ]);
 
             // Content is a unique situation
             if ($pkeys[ 'id' ] === 'entry-content') {
 
               $pkeys[ 'id' ] = 'entry-excerpt';
-              $pzarc_contents .= pzarc_get_styling('panel', $pkeys, $value, $class_prefix);
+              $pzarc_contents .= pzarc_get_styling('panel', $pkeys, $value, $class_prefix, $pkeys[ 'classes' ]);
 
             }
           }
-var_dump($pzarc_contents);
+//          }
+//var_dump($pzarc_contents);
           break;
       }
     }

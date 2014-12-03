@@ -108,6 +108,7 @@ This is BETA software. So there are many besides these ones!
 * TODO CHANGED: Panel header/footer components are now selectable, not automatic.
 * TODO ADDED: Method to load preset styles
 * TODO ADDED: Support for tabular layouts using Dynatable
+* CHANGED: Rejigged the layout of the Blueprints settings
 
 = 0.8.8 =
 * CHANGED: Upgraded Slick.js to 1.3.15

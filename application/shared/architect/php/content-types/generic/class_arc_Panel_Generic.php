@@ -844,6 +844,11 @@
           + (int)$panel_layout[ 'custom3' ][ 'show' ]
           + ((int)$panel_layout[ 'image' ][ 'show' ] * (int)($section_panel_settings[ '_panels_design_feature-location' ] === 'components'));
 
+      $header_open = empty($section_panel_settings['_panel_designs_components-headers-footers'])?'':'<header class="entry-header">';
+      $footer_open = empty($section_panel_settings['_panel_designs_components-headers-footers'])?'':'<footer class="entry-header">';
+      $header_close = empty($section_panel_settings['_panel_designs_components-headers-footers'])?'':'</header>';
+      $footer_close = empty($section_panel_settings['_panel_designs_components-headers-footers'])?'':'</footer>';
+
       foreach ((array)$panel_layout as $key => $value) {
         if ($value[ 'show' ]) {
           if (($key === 'title' || $key === 'meta1' || $key == 'meta2' || $key === 'meta3')) {
@@ -853,11 +858,11 @@
 
             case ($key === 'title' || $key === 'meta1' || $key == 'meta2' || $key === 'meta3') && !$header_state && !$footer_state:
               $header_state      = 'open';
-              $panel_def[ $key ] = '<header class="entry-header">' . $panel_def[ $key ];
+              $panel_def[ $key ] = $header_open . $panel_def[ $key ];
               break;
 
             case ($key === 'meta1' || $key === 'meta2' || $key === 'meta3') && $seen_all_body === $max_body && !$footer_state && $header_state === 'closed':
-              $panel_def[ $key ] = '<footer class="entry-footer">' . $panel_def[ $key ];
+              $panel_def[ $key ] = $footer_open . $panel_def[ $key ];
               $footer_state      = 'open';
               break;
 
@@ -870,7 +875,7 @@
               // TODO: We need to work out a method of wrapping content in a div that copes with some content eg images not always being there.
               if ($header_state === 'open') {
                 $header_state = 'closed';
-                $panel_def[$last_hf_key] .= '</header>';
+                $panel_def[$last_hf_key] .= $header_close;
               }
               $seen_all_body++; // Once we've seen all the body, any meta will be for footer
               break;
@@ -880,10 +885,10 @@
 
       }
       if ($header_state === 'open') {
-        $panel_def[ $last_hf_key ] = $panel_def[ $last_hf_key ] . '</header>';
+        $panel_def[ $last_hf_key ] = $panel_def[ $last_hf_key ] . $header_close;
       }
       if ($footer_state === 'open') {
-        $panel_def[ $last_hf_key ] = $panel_def[ $last_hf_key ] . '</footer>';
+        $panel_def[ $last_hf_key ] = $panel_def[ $last_hf_key ] . $footer_close;
       }
 
       return $panel_def;

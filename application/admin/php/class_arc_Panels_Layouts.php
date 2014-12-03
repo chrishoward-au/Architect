@@ -491,40 +491,13 @@
                   'hint'          => array('content' => __('When you have set the featured image to appear in the content/excerpt, this determines its width.', 'pzarchitect'))
               ),
               array(
-                  'title'   => __('Header Ccmponents', 'pzarchitect'),
-                  'id'      => $prefix . 'components-header',
-                  'type'    => 'button_set',
-                  'multi'   => true,
-                  'width'   => '100%',
-                  'default' => array('title', 'meta1','meta2'),
-                  'options' => array(
-                      'title'   => 'Title',
-                      'meta1'   => 'Meta1',
-                      'meta2'   => 'Meta2',
-                      'meta3'   => 'Meta3',
-                      'custom1' => 'Custom 1',
-                      'custom2' => 'Custom 2',
-                      'custom3' => 'Custom 3',
-                  ),
-                  'hint'    => array('content' => __('Select which components to include in the header of the panel.', 'pzarchitect'))
-              ),
-              array(
-                  'title'   => __('Footer components', 'pzarchitect'),
-                  'id'      => $prefix . 'components-footer',
-                  'type'    => 'button_set',
-                  'multi'   => true,
-                  'width'   => '100%',
-                  'default' => array('meta3'),
-                  'options' => array(
-                      'title'   => 'Title',
-                      'meta1'   => 'Meta1',
-                      'meta2'   => 'Meta2',
-                      'meta3'   => 'Meta3',
-                      'custom1' => 'Custom 1',
-                      'custom2' => 'Custom 2',
-                      'custom3' => 'Custom 3',
-                  ),
-                  'hint'    => array('content' => __('Select which components to include in the footer of the panel.', 'pzarchitect'))
+                  'title'   => __('Make headers and footer', 'pzarchitect'),
+                  'id'      => $prefix . 'components-headers-footers',
+                  'type'    => 'switch',
+                  'on'      => 'Yes',
+                  'off'     => 'No',
+                  'default' => true,
+                  'hint'    => array('content' => __('When, Architect will automatically wrap the header and footer components of the panel in header and footer tags to maintain compatibility with current WP layout trends. However, some layouts, such as tabular, are not suited to using the headers and footers.', 'pzarchitect'))
               ),
 
           )
