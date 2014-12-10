@@ -10,12 +10,14 @@
     public $build;
     public $arc_query;
 
-    public function __construct()
+    public function __construct(&$build)
     {
+      $this->build = $build;
       self::initialise_data();
     }
 
-    public function initialise_data() {
+    public function initialise_data()
+    {
       // Null up everything to prevent warnings later on
       $this->data[ 'title' ] = null;
 
@@ -47,7 +49,8 @@
       $this->data[ 'bgimage' ][ 'thumb' ]    = null;
       $this->data[ 'bgimage' ][ 'original' ] = null;
 
-  }
+    }
+
     /**
      * Method: panel_def
      *
@@ -61,26 +64,27 @@
       $panel_def[ 'components-close' ] = '</article>';
       $panel_def[ 'postlink' ]         = '<a href="{{permalink}}" title="{{title}}">';
       //     $panel_def[ 'header' ]           = '<header class="entry-header">{{headerinnards}}</header>';
-      $panel_def[ 'title' ]      = '<h1 class="entry-title">{{postlink}}{{title}}{{closepostlink}}</h1>';
-      $panel_def[ 'meta1' ]      = '<div class="entry-meta entry-meta1">{{meta1innards}}</div>';
-      $panel_def[ 'meta2' ]      = '<div class="entry-meta entry-meta2">{{meta2innards}}</div>';
-      $panel_def[ 'meta3' ]      = '<div class="entry-meta entry-meta3">{{meta3innards}}</div>';
-      $panel_def[ 'datetime' ]   = '<span class="entry-date"><a href="{{permalink}}"<time class="entry-date" datetime="{{datetime}}">{{fdatetime}}</time></span></a></span>';
+      $panel_def[ 'title' ] = '{{h1open}} class="entry-title">{{postlink}}{{title}}{{closepostlink}}{{h1close}}';
+      $panel_def[ 'meta1' ] = '<{{div}} class="entry-meta entry-meta1" {{sortable}}>{{meta1innards}}</{{div}}>';
+      $panel_def[ 'meta2' ] = '<{{div}} class="entry-meta entry-meta2" {{sortable}}>{{meta2innards}}</{{div}}>';
+      $panel_def[ 'meta3' ] = '<{{div}} class="entry-meta entry-meta3" {{sortable}}>{{meta3innards}}</{{div}}>';
+      // TODO Make this only used in tables
+      $panel_def[ 'datetime' ]   = '<span class="entry-date"><a href="{{permalink}}" ><time class="entry-date" datetime="{{datetime}}">{{fdatetime}}</time></span></a></span>';
       $panel_def[ 'categories' ] = '<span class="categories-links">{{categorieslinks}}</span>';
       $panel_def[ 'tags' ]       = '<span class="tags-links">{{tagslinks}}</span>';
       $panel_def[ 'author' ]     = '<span class="byline"><span class="author vcard"><a class="url fn n" href="{{authorlink}}" title="View all posts by {{authorname}}" rel="author">{{authorname}}</a></span></span>';
       $panel_def[ 'email' ]      = '<span class="byline email"><span class="author vcard"><a class="url fn n" href="mailto:{{authoremail}}" title="Email {{authorname}}" rel="author">{{authoremail}}</a></span></span>';
       //     $panel_def[ 'image' ]       = '<figure class="entry-thumbnail {{incontent}}">{{postlink}}<img width="{{width}}" src="{{imgsrc}}" class="attachment-post-thumbnail wp-post-image" alt="{{alttext}}">{{closepostlink}}{{captioncode}}</figure>';
-      $panel_def[ 'image' ]   = '<figure class="entry-thumbnail {{incontent}} {{centred}} {{nofloat}} {{location}}">{{postlink}}{{image}}{{closelink}}{{captioncode}}</figure>';
+      $panel_def[ 'image' ]   = '{{figopen}} class="entry-thumbnail {{incontent}} {{centred}} {{nofloat}} {{location}}">{{postlink}}{{image}}{{closelink}}{{captioncode}}{{figclose}}';
       $panel_def[ 'bgimage' ] = '<figure class="entry-bgimage pzarc-bg-image {{trim-scale}}">{{bgimage}}</figure>';
       $panel_def[ 'caption' ] = '<figcaption class="caption">{{caption}}</figcaption>';
-      $panel_def[ 'content' ] = ' <div class="entry-content {{nothumb}}">{{image-in-content}}{{content}}</div>';
-      $panel_def[ 'custom1' ] = '<div class="entry-customfieldgroup entry-customfieldgroup-1">{{custom1innards}}</div>';
-      $panel_def[ 'custom2' ] = '<div class="entry-customfieldgroup entry-customfieldgroup-2">{{custom2innards}}</div>';
-      $panel_def[ 'custom3' ] = '<div class="entry-customfieldgroup entry-customfieldgroup-3">{{custom3innards}}</div>';
+      $panel_def[ 'content' ] = '<{{div}} class="entry-content {{nothumb}}">{{image-in-content}}{{content}}</{{div}}>';
+      $panel_def[ 'custom1' ] = '<{{div}} class="entry-customfieldgroup entry-customfieldgroup-1">{{custom1innards}}</{{div}}>';
+      $panel_def[ 'custom2' ] = '<{{div}} class="entry-customfieldgroup entry-customfieldgroup-2">{{custom2innards}}</{{div}}>';
+      $panel_def[ 'custom3' ] = '<{{div}} class="entry-customfieldgroup entry-customfieldgroup-3">{{custom3innards}}</{{div}}>';
       $panel_def[ 'cfield' ]  = '<div class="entry-customfield entry-customfield-{{cfieldname}} entry-customfield-{{cfieldnumber}}">{{cfieldcontent}}</div>';
 //      $panel_def[ 'footer' ]        = '<footer class="entry-footer">{{footerinnards}}</footer>';
-      $panel_def[ 'excerpt' ]       = ' <div class="entry-excerpt {{nothumb}}">{{image-in-content}}{{excerpt}}</div>';
+      $panel_def[ 'excerpt' ]       = '<{{div}} class="entry-excerpt {{nothumb}}">{{image-in-content}}{{excerpt}}</{{div}}>';
       $panel_def[ 'feature' ]       = '{{feature}}';
       $panel_def[ 'editlink' ]      = '<span class="edit-link"><a class="post-edit-link" href="{{permalink}}" title="Edit post {{title}}">Edit</a></span>';
       $panel_def[ 'comments-link' ] = '<span class="comments-link"><a href="{{permalink}}/#comments" title="Comment on {{title}}">Comments: {{commentscount}}</a></span>';
@@ -249,7 +253,7 @@
 
     public function get_video(&$post)
     {
-      $video_source = (is_object($post)?get_post_meta($post->ID, 'pzarc_features-video', true):'');
+      $video_source = (is_object($post) ? get_post_meta($post->ID, 'pzarc_features-video', true) : '');
       if (!empty($this->section[ '_panels_settings_use-embedded-images' ]) && empty($video_source)) {
         $video_source = '[video]';
       }
@@ -363,7 +367,7 @@
      * Begin rendering
      ***************************************/
 
-    public function render_title($component, $content_type, $panel_def, $rsid)
+    public function render_title($component, $content_type, $panel_def, $rsid, $layout_mode = false)
     {
       if ('thumb' === $this->section[ '_panels_design_title-prefix' ]) {
         $panel_def[ $component ] = str_replace('{{title}}', $this->data[ 'title' ][ 'thumb' ] . '<span class="pzarc-title-wrap">' . $this->data[ 'title' ][ 'title' ] . '</span>', $panel_def[ $component ]);
@@ -375,14 +379,16 @@
         $panel_def[ $component ] = str_replace('{{closepostlink}}', '</a>', $panel_def[ $component ]);
       }
 
-      return self::render_generics($component, $content_type, $panel_def[ $component ]);
+      return self::render_generics($component, $content_type, $panel_def[ $component ], $layout_mode);
 
     }
 
-    public function render_meta($component, $content_type, $panel_def, $rsid)
+    public function render_meta($component, $content_type, $panel_def, $rsid, $layout_mode = false)
     {
       $panel_def[ $component ] = str_replace('{{datetime}}', $this->data[ 'meta' ][ 'datetime' ], $panel_def[ $component ]);
       $panel_def[ $component ] = str_replace('{{fdatetime}}', $this->data[ 'meta' ][ 'fdatetime' ], $panel_def[ $component ]);
+      $panel_def[ $component ] = str_replace('{{sortable}}', ' data-order="' . strtotime($this->data[ 'meta' ][ 'fdatetime' ]) . '"', $panel_def[ $component ]);
+
       if (empty($this->section[ '_panels_design_excluded-authors' ]) || !in_array(get_the_author_meta('ID'), $this->section[ '_panels_design_excluded-authors' ])) {
         //Remove text indicators
         $panel_def[ $component ] = str_replace('//', '', $panel_def[ $component ]);
@@ -407,10 +413,10 @@
         }
       }
 
-      return self::render_generics($component, $content_type, $panel_def[ $component ]);
+      return self::render_generics($component, $content_type, $panel_def[ $component ], $layout_mode);
     }
 
-    public function render_content($component, $content_type, $panel_def, $rsid)
+    public function render_content($component, $content_type, $panel_def, $rsid, $layout_mode = false)
     {
       $panel_def[ $component ] = str_replace('{{content}}', $this->data[ 'content' ], $panel_def[ $component ]);
       if ($this->section[ '_panels_design_feature-location' ] === 'content-left' || $this->section[ '_panels_design_feature-location' ] === 'content-right') {
@@ -451,10 +457,10 @@
         $panel_def[ $component ] = str_replace('{{nothumb}}', 'nothumb', $panel_def[ $component ]);
       }
 
-      return self::render_generics($component, $content_type, $panel_def[ $component ]);
+      return self::render_generics($component, $content_type, $panel_def[ $component ], $layout_mode);
     }
 
-    public function render_excerpt($component, $content_type, $panel_def, $rsid)
+    public function render_excerpt($component, $content_type, $panel_def, $rsid, $layout_mode = false)
     {
       $panel_def[ $component ] = str_replace('{{excerpt}}', $this->data[ 'excerpt' ], $panel_def[ $component ]);
 
@@ -493,10 +499,19 @@
 //_panels_design_thumb-position
 
 
-      return self::render_generics($component, $content_type, $panel_def[ $component ]);
+      return self::render_generics($component, $content_type, $panel_def[ $component ], $layout_mode);
     }
 
-    public function render_image($component, $content_type, $panel_def, $rsid)
+    /**
+     * render_image()
+     * @param      $component
+     * @param      $content_type
+     * @param      $panel_def
+     * @param      $rsid
+     * @param bool $layout_mode
+     * @return mixed
+     */
+    public function render_image($component, $content_type, $panel_def, $rsid, $layout_mode = false)
     {
       if ('video' === $this->section[ '_panels_settings_feature-type' ]) {
         $panel_def[ $component ] = str_replace('{{image}}', $this->data[ 'video' ][ 'source' ], $panel_def[ $component ]);
@@ -533,21 +548,29 @@
 
         }
 
-
-        if (empty($this->data[ 'image' ][ 'image' ])) {
-          $panel_def[ $component ] = '';
+        switch (true) {
+          case (empty($this->data[ 'image' ][ 'image' ]) && 'table' === $layout_mode) :
+            $panel_def[ $component ] = '<td class="td-entry-thumbnail"></td>';
+            break;
+          case (empty($this->data[ 'image' ][ 'image' ])) :
+            $panel_def[ $component ] = '';
+            break;
         }
+
+
       }
 //      foreach ($this->data[ 'image' ] as $key => $value) {
 //        $template[ $type ] = str_replace('{{' . $key . '}}', $value, $template[ $type ]);
 //      }
 
-      return self::render_generics($component, $content_type, $panel_def[ $component ]);
+      return self::render_generics($component, $content_type, $panel_def[ $component ], $layout_mode);
     }
 
 
-    public function render_bgimage($component, $content_type, $panel_def, $rsid)
-    {
+    public
+    function render_bgimage(
+        $component, $content_type, $panel_def, $rsid, $layout_mode = false
+    ) {
       if ('video' === $this->section[ '_panels_settings_feature-type' ]) {
         $panel_def[ $component ] = str_replace('{{bgimage}}', $this->data[ 'video' ][ 'source' ], $panel_def[ $component ]);
 
@@ -581,11 +604,13 @@
         }
       }
 
-      return self::render_generics($component, $content_type, $panel_def[ $component ]);
+      return self::render_generics($component, $content_type, $panel_def[ $component ], $layout_mode);
     }
 
-    public function render_custom($component, $content_type, $panel_def, $rsid)
-    {
+    public
+    function render_custom(
+        $component, $content_type, $panel_def, $rsid, $layout_mode = false
+    ) {
       // Show each custom field in this group
       if (!empty($this->data[ 'cfield' ])) {
         $panel_def_cfield = $panel_def[ 'cfield' ];
@@ -650,18 +675,18 @@
         $panel_def[ $component ] = '';
       }
 
-      return self::render_generics($component, $content_type, $panel_def[ $component ]);
+      return self::render_generics($component, $content_type, $panel_def[ $component ], $layout_mode);
 
     }
 
-    public function render_wrapper($component, $content_type, $panel_def, $rsid)
+    public function render_wrapper($component, $content_type, $panel_def, $rsid, $layout_mode = false)
     {
       $panel_def[ $component ] = str_replace('{{mimic-block-type}}', $this->data[ 'inherit-hw-block-type' ], $panel_def[ $component ]);
 
-      return self::render_generics($component, $content_type, $panel_def[ $component ]);
+      return self::render_generics($component, $content_type, $panel_def[ $component ], $layout_mode);
     }
 
-    public function render_generics($component, $source, $line)
+    public function render_generics($component, $source, $line, $layout_mode)
     {
       //todo: make sure source is actual WP valid eg. soemthings might be attachment
       // Do any generic replacements
@@ -679,6 +704,21 @@
 
       $line = str_replace('{{pzclasses}}', $pzclasses, $line);
 
+      if ('table' === $layout_mode) {
+        $line = str_replace('{{div}}', 'td', $line);
+        $line = str_replace('{{h1open}}', '<td class="td-entry-title"><h1 ', $line);
+        $line = str_replace('{{h1close}}', '</h1></td>', $line);
+        $line = str_replace('{{figopen}}', '<td class="td-entry-thumbnail"><figure ', $line);
+        $line = str_replace('{{figclose}}', '</figure></td>', $line);
+      } else {
+        $line = str_replace('{{div}}', 'div', $line);
+        $line = str_replace('{{h1open}}', '<h1 ', $line);
+        $line = str_replace('{{h1close}}', '</h1>', $line);
+        $line = str_replace('{{figopen}}', '<figure ', $line);
+        $line = str_replace('{{figclose}}', '</figure>', $line);
+
+      }
+
       return $line;
     }
 
@@ -686,8 +726,10 @@
     /**
      * Default Loop
      */
-    public function loop($section_no, &$architect, &$panel_class, $class)
-    {
+    public
+    function loop(
+        $section_no, &$architect, &$panel_class, $class
+    ) {
 
       $this->build     = $architect->build;
       $this->arc_query = $architect->arc_query;
@@ -725,9 +767,7 @@
     /**
      * get_nav_items
      */
-    public function get_nav_items($blueprints_navigator, &$arc_query)
-    {
-
+    public function get_nav_items($blueprints_navigator, &$arc_query ) {
       // We shouldn't have to pass arc_query! And we don't need to in this one, but for some unsolved reason in arc_Panel_Dummy, we do. So for consistency, doing it here too.
       $nav_items = array();
       foreach ($arc_query->posts as $the_post) {
@@ -810,8 +850,9 @@
      * Returns:
      *
      *************************************************/
-    public function build_header_footer_meta_groups($panel_def, $section_panel_settings)
-    {
+    public function build_header_footer_meta_groups(
+        $panel_def, $section_panel_settings
+    ) {
       //replace meta1innards etc
       $meta = array_pad(array(), 3, null);
       foreach ($meta as $key => $value) {
@@ -835,19 +876,19 @@
       $header_state  = false;
       $footer_state  = false;
       $seen_all_body = 0;
-      $last_hf_key = '';
+      $last_hf_key   = '';
 
-      $max_body      = (int)$panel_layout[ 'excerpt' ][ 'show' ]
+      $max_body = (int)$panel_layout[ 'excerpt' ][ 'show' ]
           + (int)$panel_layout[ 'content' ][ 'show' ]
           + (int)$panel_layout[ 'custom1' ][ 'show' ]
           + (int)$panel_layout[ 'custom2' ][ 'show' ]
           + (int)$panel_layout[ 'custom3' ][ 'show' ]
           + ((int)$panel_layout[ 'image' ][ 'show' ] * (int)($section_panel_settings[ '_panels_design_feature-location' ] === 'components'));
 
-      $header_open = empty($section_panel_settings['_panel_designs_components-headers-footers'])?'':'<header class="entry-header">';
-      $footer_open = empty($section_panel_settings['_panel_designs_components-headers-footers'])?'':'<footer class="entry-header">';
-      $header_close = empty($section_panel_settings['_panel_designs_components-headers-footers'])?'':'</header>';
-      $footer_close = empty($section_panel_settings['_panel_designs_components-headers-footers'])?'':'</footer>';
+      $header_open  = empty($section_panel_settings[ '_panel_designs_components-headers-footers' ]) ? '' : '<header class="entry-header">';
+      $footer_open  = empty($section_panel_settings[ '_panel_designs_components-headers-footers' ]) ? '' : '<footer class="entry-header">';
+      $header_close = empty($section_panel_settings[ '_panel_designs_components-headers-footers' ]) ? '' : '</header>';
+      $footer_close = empty($section_panel_settings[ '_panel_designs_components-headers-footers' ]) ? '' : '</footer>';
 
       foreach ((array)$panel_layout as $key => $value) {
         if ($value[ 'show' ]) {
@@ -875,7 +916,7 @@
               // TODO: We need to work out a method of wrapping content in a div that copes with some content eg images not always being there.
               if ($header_state === 'open') {
                 $header_state = 'closed';
-                $panel_def[$last_hf_key] .= $header_close;
+                $panel_def[ $last_hf_key ] .= $header_close;
               }
               $seen_all_body++; // Once we've seen all the body, any meta will be for footer
               break;

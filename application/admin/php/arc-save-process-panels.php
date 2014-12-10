@@ -110,6 +110,7 @@
           }
 
           $pzarc_contents .= $class_prefix . ' .entry-title {width:' . $pzarc_layout[ 'title' ][ 'width' ] . '%;' . $titles_bullets . '}' . $nl;
+          $pzarc_contents .= $class_prefix . ' .td-entry-title {width:' . $pzarc_layout[ 'title' ][ 'width' ] . '%;' . $titles_bullets . '}' . $nl;
 
 
           // Don't give thumbnail div a width if it's in the content
@@ -206,24 +207,17 @@
 
           $pkeys[ 'style' ] = str_replace('-', '', substr($pkey, $splitter + 1));
           $pkeys[ 'id' ]    = substr($pkey, 0, $splitter);
-var_dump($pkeys['id']);
-          // TODO: THIS IS ONLY A TEMPORATY IF
-//          if (isset($_architect['architect_config_'.$pkeys['id'].'-selectors'])) {
 
           if (!in_array($pkeys['id'],array('custom','panels-load'))) {
-            $pkeys[ 'classes' ] = (is_array($_architect[ 'architect_config_' . $pkeys[ 'id' ] . '-selectors' ]) ? $_architect[ 'architect_config_' . $pkeys[ 'id' ] . '-selectors' ] : array('0' => $_architect[ 'architect_config_' . $pkeys[ 'id' ] . '-selectors' ]));
-            $pzarc_contents .= pzarc_get_styling('panel', $pkeys, $value, $class_prefix, $pkeys[ 'classes' ]);
+            // Filter out old selector names hanging arouind in existing panels
+            if (isset($_architect[ 'architect_config_' . $pkeys[ 'id' ] . '-selectors' ])) {
 
-            // Content is a unique situation
-            if ($pkeys[ 'id' ] === 'entry-content') {
-
-              $pkeys[ 'id' ] = 'entry-excerpt';
+              $pkeys[ 'classes' ] = (is_array($_architect[ 'architect_config_' . $pkeys[ 'id' ] . '-selectors' ]) ? $_architect[ 'architect_config_' . $pkeys[ 'id' ] . '-selectors' ] : array('0' => $_architect[ 'architect_config_' . $pkeys[ 'id' ] . '-selectors' ]));
               $pzarc_contents .= pzarc_get_styling('panel', $pkeys, $value, $class_prefix, $pkeys[ 'classes' ]);
-
             }
+          } elseif ($pkeys['id']==='custom'){
+            $pzarc_contents .= $value;
           }
-//          }
-//var_dump($pzarc_contents);
           break;
       }
     }

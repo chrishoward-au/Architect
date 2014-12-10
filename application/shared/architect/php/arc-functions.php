@@ -67,7 +67,9 @@
   {
 //var_dump($exclude,in_array('font-family',$exclude),in_array('color',$exclude),!array_search('font-family',$exclude));
     // TODO: Change font size to a range and use flowtype.js
-
+//'architect_typography_units'
+    global $_architect_options;
+    $units        = isset($_architect_options[ 'architect_typography_units' ]) ? $_architect_options[ 'architect_typography_units' ] : 'px';
     $return_array = array(
         'title'           => __('Font', 'pzarchitect'),
         'id'              => $id,
@@ -91,6 +93,7 @@
         'line-height'     => true,
         'word-spacing'    => true,
         'letter-spacing'  => true,
+        'units'           => $units,
         'default'         => $defaults,
     );
     foreach ($return_array as $k => $v) {
@@ -103,13 +106,13 @@
   }
 
 
-  function pzarc_redux_bg($id, $selectors = null, $defaults = array('color'=>''))
+  function pzarc_redux_bg($id, $selectors = null, $defaults = array('color' => ''))
   {
     return array(
         'title'                 => __('Background', 'pzarchitect'),
         'id'                    => $id,
-//        'output'                => $selectors,
-//        'compiler'              => $selectors,
+        //        'output'                => $selectors,
+        //        'compiler'              => $selectors,
         'type'                  => 'spectrum',
         'mode'                  => 'backgound-color',
         'background-image'      => false,
@@ -131,7 +134,7 @@
         //      'output'  => $selectors,
         'mode'    => 'padding',
         'type'    => 'spacing',
-        'units'   => array('%', 'px'),
+        'units'   => array('%', 'px', 'em'),
         'default' => $defaults,
     );
 
@@ -142,16 +145,16 @@
     return array(
         'title'   => __('Margins', 'pzarchitect'),
         'id'      => $id,
-//        'output'  => $selectors,
+        //        'output'  => $selectors,
         'mode'    => 'margin',
         'type'    => 'spacing',
-        'units'   => array('%', 'px'),
+        'units'   => array('%', 'px', 'em'),
         'default' => $defaults,
     );
 
   }
 
-  function pzarc_redux_links($id, $selectors, $defaults = '')
+  function pzarc_redux_links($id, $selectors, $defaults = array())
   {
     return
         array(
@@ -191,7 +194,7 @@
         'id'      => $id,
         'type'    => 'border',
         'all'     => false,
-  //      'output'  => $selectors,
+        //      'output'  => $selectors,
         'default' => $defaults
     );
   }
@@ -200,15 +203,15 @@
   {
 
     return array(
-        'title'   => __('Border Radius', 'pzarchitect'),
-        'subtitle'=> __('TopLeft, TopRight, BottomLeft, BottomRight','pzarchitect'),
-        'id'      => $id,
-        'type'    => 'border',
-        'all'     => false,
-        'style'   => false,
-        'color'   => false,
- //       'output'  => $selectors,
-        'default' => $defaults
+        'title'    => __('Border Radius', 'pzarchitect'),
+        'subtitle' => __('TopLeft, TopRight, BottomLeft, BottomRight', 'pzarchitect'),
+        'id'       => $id,
+        'type'     => 'border',
+        'all'      => false,
+        'style'    => false,
+        'color'    => false,
+        //       'output'  => $selectors,
+        'default'  => $defaults
     );
   }
 
@@ -227,15 +230,15 @@
     global $_architect_options;
 
     // BLUEPRINTS
-    $_architect[ 'defaults' ][ 'blueprints' ]                                 = (!isset($_architect[ 'defaults' ][ 'blueprints' ]) ? array() : $_architect[ 'defaults' ][ 'blueprints' ]);
-    $blueprint_layout_general                                                 = $blueprints->pzarc_blueprint_layout_general_mb($_architect[ 'defaults' ][ 'blueprints' ]);
-    $pzarc_blueprint_content_general                                          = $blueprints->pzarc_blueprint_content_general_mb($_architect[ 'defaults' ][ 'blueprints' ]);
-    $pzarc_blueprint_layout                                                   = $blueprints->pzarc_blueprint_layout_mb($_architect[ 'defaults' ][ 'blueprints' ]);
-    $pzarc_contents_metabox                                                   = $blueprints->pzarc_blueprint_contents_mb($_architect[ 'defaults' ][ 'blueprints' ]);
-    $_architect[ 'defaults' ][ 'blueprints' ][ '_blueprint_layout_general' ]  = $blueprint_layout_general[ 0 ][ 'sections' ];
-    $_architect[ 'defaults' ][ 'blueprints' ][ '_blueprint_content_general' ] = $pzarc_blueprint_content_general[ 0 ][ 'sections' ];
-    $_architect[ 'defaults' ][ 'blueprints' ][ '_blueprint_layout' ]          = $pzarc_blueprint_layout[ 0 ][ 'sections' ];
-    $_architect[ 'defaults' ][ 'blueprints' ][ '_contents_metabox' ]          = $pzarc_contents_metabox[ 0 ][ 'sections' ];
+    $_architect[ 'defaults' ][ 'blueprints' ] = (!isset($_architect[ 'defaults' ][ 'blueprints' ]) ? array() : $_architect[ 'defaults' ][ 'blueprints' ]);
+    $blueprint_layout_general                 = $blueprints->pzarc_blueprint_layout_general_mb($_architect[ 'defaults' ][ 'blueprints' ]);
+    //  $pzarc_blueprint_content_general                                          = $blueprints->pzarc_blueprint_content_general_mb($_architect[ 'defaults' ][ 'blueprints' ]);
+    $pzarc_blueprint_layout                                                  = $blueprints->pzarc_blueprint_layout_mb($_architect[ 'defaults' ][ 'blueprints' ]);
+    $pzarc_contents_metabox                                                  = $blueprints->pzarc_blueprint_contents_mb($_architect[ 'defaults' ][ 'blueprints' ]);
+    $_architect[ 'defaults' ][ 'blueprints' ][ '_blueprint_layout_general' ] = $blueprint_layout_general[ 0 ][ 'sections' ];
+    //   $_architect[ 'defaults' ][ 'blueprints' ][ '_blueprint_content_general' ] = $pzarc_blueprint_content_general[ 0 ][ 'sections' ];
+    $_architect[ 'defaults' ][ 'blueprints' ][ '_blueprint_layout' ] = $pzarc_blueprint_layout[ 0 ][ 'sections' ];
+    $_architect[ 'defaults' ][ 'blueprints' ][ '_contents_metabox' ] = $pzarc_contents_metabox[ 0 ][ 'sections' ];
 
     // PANELS
     $_architect[ 'defaults' ][ 'panels' ]                              = (!isset($_architect[ 'defaults' ][ 'panels' ]) ? array() : $_architect[ 'defaults' ][ 'panels' ]);

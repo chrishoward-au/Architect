@@ -283,7 +283,8 @@
       if (isset($_POST[ 'rebuildarchitectcss' ]) && check_admin_referer('rebuild-architect-css-cache')) {
         require_once(PZARC_PLUGIN_APP_PATH . '/admin/php/arc-save-process.php');
         save_arc_layouts('all', null, true);
-        echo '<br><div id="message" class="updated"><p>Architect CSS cache has been rebuilt. Your site should look awesome again!</p></div>';
+        echo '<br><div id="message" class="updated"><p>Architect CSS cache has been rebuilt. Your site should look awesome again!</p>
+        <p>If your site is using a cache plugin or service, clear that cache too.</p></div>';
       }
 
       echo '<hr style="margin-top:20px;border-color:#eee;border-style:solid;"/>

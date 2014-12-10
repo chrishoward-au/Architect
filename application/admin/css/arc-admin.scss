@@ -4,6 +4,9 @@
   background: #fee;
 }
 
+li.arc-message {
+  width:100%;
+}
 .pzarc-tab-icon {
   font-size: 1.3em;
   vertical-align: -6%;
@@ -1088,6 +1091,7 @@ input[readonly]:active {
   border: none;
   background: #eee;
   box-shadow: none;
+  width:90%;
 }
 
 body.post-type-arc-panels,

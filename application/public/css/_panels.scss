@@ -207,6 +207,36 @@
     cursor: zoom-in;
     cursor: -webkit-zoom-in;
   }
-}
 
+  td.td-entry-title,
+  td.entry-meta,
+  td.entry-content,
+  td.entry-excerpt,
+  td.td-entry-thumbnail {
+    display:table-cell;
+    float:none;
+    line-height: initial;
+    text-align: initial;
+    vertical-align: top;
+    border-top: initial;
+  }
+  td.td-entry-title h1.entry-title,
+  td.td-entry-thumbnail figure.entry-thumbnail
+  {
+    width:100%;
+  }
+  // TODO: This won't be neeeed after stylings added
+  td {
+    padding:1%;
+  }
+}
+tr.pzarc-panel {
+  display:table-row;
+}
+table {
+  border-collapse: collapse;
+  thead {
+    background:#eee;
+  }
+}
 

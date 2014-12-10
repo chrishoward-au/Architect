@@ -36,7 +36,7 @@
         add_action("redux/metaboxes/$this->redux_opt_name/boxes", array($this, 'pzarc_panels_styling'), 10, 1);
         add_action("redux/metaboxes/$this->redux_opt_name/boxes", array($this, 'pzarc_panel_general_settings'), 10, 1);
         add_action("redux/metaboxes/$this->redux_opt_name/boxes", array($this, 'pzarc_panels_design'), 10, 1);
-        add_action('views_edit-arc-panels', array($this, 'panels_description'));
+        add_filter('views_edit-arc-panels', array($this, 'panels_description'));
 
       }
 
@@ -119,24 +119,25 @@
     }
 
 
-    function panels_description($post)
+    function panels_description($content)
     {
 
-      ?>
+    $content['arc-message'] = '
       <div class="after-title-help postbox">
         <div class="inside">
           <h4>About Panels</h4>
 
-          <p class="howto">
-            <?php echo __('Architect Panels are where you design the layout of the content, that is, choosing how to display the titles, meta data, featured images, excerpts, content etc.', 'pzarchitect'); ?></p>
+          <p class="howto">'.
+            __('Architect Panels are where you design the layout of the content, that is, choosing how to display the titles, meta data, featured images, excerpts, content etc.', 'pzarchitect').'</p>
 
           <p class="howto">Documentation can be found throughout Architect or online at the <a
                 href="http://architect4wp.com/codex-listings" target="_blank">Architect Codex</a></p>
 
         </div>
         <!-- .inside -->
-      </div><!-- .postbox -->
-    <?php
+      </div><!-- .postbox -->';
+
+      return $content;
 
     }
 
@@ -200,7 +201,7 @@
                     'styling' => '<span class="icon-large el-icon-brush"></span> Styling'
                 ),
                 'targets' => array(
-                    'design'  => array('panels-design', '_panels_settings_general-settings'),
+                    'design'  => array('panels-design'),
                     'styling' => array('panels-styling')
                 )
             ),
@@ -1277,9 +1278,10 @@
                     'subtitle' => 'Class: .pzarc-panel',
                     'hint'     => array('content' => 'Class: .pzarc-panel'),
                 ),
-                pzarc_redux_bg($prefix . 'panels' . $background, pzarc_to_array('%%%', $defaults[ $optprefix . 'panels-selectors' ]), $defaults[ $optprefix . 'panels' . $background ]),
-                pzarc_redux_padding($prefix . 'panels' . $padding, pzarc_to_array('%%%', $defaults[ $optprefix . 'panels-selectors' ]), $defaults[ $optprefix . 'panels' . $padding ]),
-                pzarc_redux_borders($prefix . 'panels' . $border, pzarc_to_array('%%%', $defaults[ $optprefix . 'panels-selectors' ]), $defaults[ $optprefix . 'panels' . $border ]),
+//                pzarc_redux_bg($prefix . 'panels' . $background, pzarc_to_array('%%%', $defaults[ $optprefix . 'panels-selectors' ]), $defaults[ $optprefix . 'panels' . $background ]),
+                pzarc_redux_bg($prefix . 'panels' . $background, '', $defaults[ $optprefix . 'panels' . $background ]),
+                pzarc_redux_padding($prefix . 'panels' . $padding, '', $defaults[ $optprefix . 'panels' . $padding ]),
+                pzarc_redux_borders($prefix . 'panels' . $border, '', $defaults[ $optprefix . 'panels' . $border ]),
                 array(
                     'title'    => __('Components group', 'pzarchitect'),
                     'id'       => $prefix . 'components-section',
@@ -1369,6 +1371,17 @@
                 pzarc_redux_bg($prefix . 'entry-content' . $font . $background, array('.entry-content'), $defaults[ $optprefix . 'entry-content' . $font . $background ]),
                 pzarc_redux_padding($prefix . 'entry-content' . $font . $padding, array('.entry-content'), $defaults[ $optprefix . 'entry-content' . $font . $padding ]),
                 pzarc_redux_links($prefix . 'entry-content' . $font . $link, array('.entry-content a'), $defaults[ $optprefix . 'entry-content' . $font . $link ]),
+                array(
+                    'title'  => __('Excerpt', 'pzarc'),
+                    'id'     => $prefix . 'entry-excerpt',
+                    'type'   => 'section',
+                    'indent' => true,
+                    'class'  => 'heading',
+                ),
+                pzarc_redux_font($prefix . 'entry-excerpt' . $font, array('.entry-excerpt'), $defaults[ $optprefix . 'entry-excerpt' . $font ]),
+                pzarc_redux_bg($prefix . 'entry-excerpt' . $font . $background, array('.entry-excerpt'), $defaults[ $optprefix . 'entry-excerpt' . $font . $background ]),
+                pzarc_redux_padding($prefix . 'entry-excerpt' . $font . $padding, array('.entry-excerpt'), $defaults[ $optprefix . 'entry-excerpt' . $font . $padding ]),
+                pzarc_redux_links($prefix . 'entry-excerpt' . $font . $link, array('.entry-excerpt a'), $defaults[ $optprefix . 'entry-excerpt' . $font . $link ]),
                 array(
                     'title'  => __('Read more', 'pzarchitect'),
                     'id'     => $prefix . 'entry-readmore',

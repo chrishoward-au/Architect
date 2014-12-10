@@ -43,6 +43,9 @@
     //icomoon
     wp_register_style('css-icomoon-arrows', PZARC_PLUGIN_APP_URL . '/shared/assets/fonts/icomoon/im-style.css');
 
+    // DataTables
+    wp_register_script('js-datatables', PZARC_PLUGIN_APP_URL .'/public/js/DataTables/media/js/jquery.dataTables.min.js', array('jquery'), null, true);
+    wp_register_style('css-datatables', PZARC_PLUGIN_APP_URL .'/public/js/DataTables/media/css/jquery.dataTables.min.css');
 
     // ResponCSS
 //    wp_register_script('js-responcss', PZARC_PLUGIN_APP_URL . '/shared/includes/css/ResponCSS/js/responcss.js');
@@ -172,7 +175,7 @@ pzdb('start pzarc');
     }
 
     // Enqueue registered scripts and styles
-    // make optional
+    // TODO: make optional
     wp_enqueue_script('js-arc-front-slickjs');
     wp_enqueue_script('js-slickjs');
     wp_enqueue_style('css-slickjs');
@@ -181,9 +184,11 @@ pzdb('start pzarc');
     if (!empty($_architect_options['architect_enable-retina-images'])) {
       wp_enqueue_script('js-retinajs');
     }
+
     wp_enqueue_script('js-magnific');
     wp_enqueue_script('js-magnific-arc');
     wp_enqueue_style('css-magnific');
+
 
     wp_enqueue_style(PZARC_NAME . '-plugin-styles');
     wp_enqueue_style(PZARC_NAME . '-dynamic-styles');

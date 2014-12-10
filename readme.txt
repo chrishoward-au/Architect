@@ -99,15 +99,17 @@ This is BETA software. So there are many besides these ones!
 2. Architect Blueprint Designer
 3. Output of various Architect Blueprints
 
+* TODO ADD Method to load preset styles
+* TODO: ADD tabular stylings
+
 == Changelog ==
 
 = 0.8.9 =
 * UPDATED: Spectrum js to 1.5.2 (one of the colour pickers)
 * CHANGED: Refactored to allow easy creation of a Lite version
 * FIXED: Uses classes from Styling Options
-* TODO CHANGED: Panel header/footer components are now selectable, not automatic.
-* TODO ADDED: Method to load preset styles
-* TODO ADDED: Support for tabular layouts using Dynatable
+* CHANGED: Option to deactivate wrapping of Panel header/footer components.
+* ADDED: Layout mode Tabular (Many thanks to Matt Davis for this idea)
 * CHANGED: Rejigged the layout of the Blueprints settings
 
 = 0.8.8 =

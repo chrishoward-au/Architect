@@ -1,5 +1,6 @@
 <?php
 
+  /** ACTIONS EDITOR */
 
   if (!(class_exists('ReduxFramework') || class_exists('ReduxFrameworkPlugin'))) {
     return;
@@ -98,8 +99,8 @@
 //      {
 //        //$sections = array();
 //        $sections[ ] = array(
-//            'title'  => __('Section via hook', 'redux-framework-demo'),
-//            'desc'   => __('<p class="description">This is a section created by adding a filter to the sections array. Can be used by child themes to add/remove sections from the options.</p>', 'redux-framework-demo'),
+//            'title'  => __('Section via hook', 'pzarchitect'),
+//            'desc'   => __('<p class="description">This is a section created by adding a filter to the sections array. Can be used by child themes to add/remove sections from the options.</p>', 'pzarchitect'),
 //            'icon'   => 'el-icon-paper-clip',
 //            // Leave this as a blank section, no options just some intro text set above.
 //            'fields' => array()
@@ -174,7 +175,7 @@
         $class       = $screenshot ? 'has-screenshot' : '';
 
         $customize_title
-            = sprintf(__('Customize &#8220;%s&#8221;', 'redux-framework-demo'), $this->theme->display('Name'));
+            = sprintf(__('Customize &#8220;%s&#8221;', 'pzarchitect'), $this->theme->display('Name'));
 
         ?>
         <div id="current-theme" class="<?php echo esc_attr($class); ?>">
@@ -195,14 +196,14 @@
 
           <div>
             <ul class="theme-info">
-              <li><?php printf(__('By %s', 'redux-framework-demo'), $this->theme->display('Author')); ?></li>
-              <li><?php printf(__('Version %s', 'redux-framework-demo'), $this->theme->display('Version')); ?></li>
-              <li><?php echo '<strong>' . __('Tags', 'redux-framework-demo') . ':</strong> '; ?><?php printf($this->theme->display('Tags')); ?></li>
+              <li><?php printf(__('By %s', 'pzarchitect'), $this->theme->display('Author')); ?></li>
+              <li><?php printf(__('Version %s', 'pzarchitect'), $this->theme->display('Version')); ?></li>
+              <li><?php echo '<strong>' . __('Tags', 'pzarchitect') . ':</strong> '; ?><?php printf($this->theme->display('Tags')); ?></li>
             </ul>
             <p class="theme-description"><?php echo $this->theme->display('Description'); ?></p>
             <?php if ($this->theme->parent()) {
               printf(' <p class="howto">' . __('This <a href="%1$s">child theme</a> requires its parent theme, %2$s.') . '</p>',
-                     __('http://codex.wordpress.org/Child_Themes', 'redux-framework-demo'),
+                     __('http://codex.wordpress.org/Child_Themes', 'pzarchitect'),
                      $this->theme->parent()->display('Name'));
             } ?>
 
@@ -306,19 +307,19 @@
         // Custom page help tabs, displayed using the help API. Tabs are shown in order of definition.
         $this->args[ 'help_tabs' ][ ] = array(
             'id'      => 'redux-opts-1',
-            'title'   => __('Theme Information 1', 'redux-framework-demo'),
-            'content' => __('<p>This is the tab content, HTML is allowed.</p>', 'redux-framework-demo')
+            'title'   => __('Theme Information 1', 'pzarchitect'),
+            'content' => __('<p>This is the tab content, HTML is allowed.</p>', 'pzarchitect')
         );
 
         $this->args[ 'help_tabs' ][ ] = array(
             'id'      => 'redux-opts-2',
-            'title'   => __('Theme Information 2', 'redux-framework-demo'),
-            'content' => __('<p>This is the tab content, HTML is allowed.</p>', 'redux-framework-demo')
+            'title'   => __('Theme Information 2', 'pzarchitect'),
+            'content' => __('<p>This is the tab content, HTML is allowed.</p>', 'pzarchitect')
         );
 
         // Set the help sidebar
         $this->args[ 'help_sidebar' ]
-            = __('<p>This is the sidebar content, HTML is allowed.</p>', 'redux-framework-demo');
+            = __('<p>This is the sidebar content, HTML is allowed.</p>', 'pzarchitect');
 
       }
 
@@ -346,7 +347,7 @@
           //Specify if the admin menu should appear or not. Options: menu or submenu (Under appearance only)
           'allow_sub_menu'     => false,
           // Show the sections below the admin menu item or not
-          'menu_title'         => __('<span class="dashicons dashicons-edit"></span>Actions Editor', 'pzarc'),
+          'menu_title'         => __('<span class="dashicons dashicons-migrate"></span>Actions Editor', 'pzarc'),
           'page'               => __('Actions Editor', 'pzarc'),
           'google_api_key'     => 'Xq9o3CdQFHKr+47vQr6eO4EUYLtlEyTe',
           // Must be defined to add google fonts to the typography module
@@ -450,10 +451,10 @@
             $v = str_replace("-", "_", $this->args[ 'opt_name' ]);
           }
           $this->args[ 'intro_text' ]
-              = sprintf(__('<p>On this page you can setup specific blueprints to display at specific points in your page\'s display. This is done using WordPress action hooks. Although WordPress provides many, the ones that work best for content display will be those included in the theme you are using. Review your theme and/or its documentation.</p>', 'redux-framework-demo'), $v);
+              = sprintf(__('<p>On this page you can setup specific blueprints to display at specific points in your page\'s display. This is done using WordPress action hooks. Although WordPress provides many, the ones that work best for content display will be those included in the theme you are using. Review your theme and/or its documentation.</p>', 'pzarchitect'), $v);
         } else {
 //          $this->args[ 'intro_text' ]
-//              = __('<p>This text is displayed above the options panel. It isn\'t required, but more info is always better! The intro_text field accepts all HTML.</p>', 'redux-framework-demo');
+//              = __('<p>This text is displayed above the options panel. It isn\'t required, but more info is always better! The intro_text field accepts all HTML.</p>', 'pzarchitect');
         }
 
         // Add content after the form.

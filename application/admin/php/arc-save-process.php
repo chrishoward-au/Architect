@@ -22,7 +22,7 @@
     if (!$update) {
       return;
     }
-    $screen = ('all' === $postid?'refresh-cache': get_current_screen());
+    $screen = ('all' === $postid ? 'refresh-cache' : get_current_screen());
     /*
      * $screen:
      * Array
@@ -71,7 +71,7 @@
 //      $pzarc_shortname = ($post->post_type === 'arc-panels' ? $pzarc_settings[ '_panels_settings_short-name' ] : $pzarc_settings[ '_blueprints_short-name' ]);
 
 
-      $filename = PZARC_CACHE_PATH. '/pzarc_css_cache.css';
+      $filename = PZARC_CACHE_PATH . '/pzarc_css_cache.css';
 
       wp_mkdir_p(trailingslashit(PZARC_CACHE_PATH));
 
@@ -85,15 +85,15 @@
         //TODO Code to recreate all panels and blueprints css
         // get the blueprints and panels and step thru each recreating css
         $pzarc_panels = get_posts(array('post_type' => 'arc-panels', 'post_status' => 'publish'));
-        foreach($pzarc_panels as $pzarc_panel) {
-          $postid = $pzarc_panel->ID;
+        foreach ($pzarc_panels as $pzarc_panel) {
+          $postid         = $pzarc_panel->ID;
           $pzarc_settings = get_post_meta($postid);
           $pzarc_settings = pzarc_flatten_wpinfo($pzarc_settings);
           pzarc_create_css($postid, $pzarc_panel->post_type, $pzarc_settings);
         }
         $pzarc_blueprints = get_posts(array('post_type' => 'arc-blueprints', 'post_status' => 'publish'));
-        foreach($pzarc_blueprints as $pzarc_blueprint) {
-          $postid = $pzarc_blueprint->ID;
+        foreach ($pzarc_blueprints as $pzarc_blueprint) {
+          $postid         = $pzarc_blueprint->ID;
           $pzarc_settings = get_post_meta($postid);
           $pzarc_settings = pzarc_flatten_wpinfo($pzarc_settings);
           pzarc_create_css($postid, $pzarc_blueprint->post_type, $pzarc_settings);
@@ -119,7 +119,7 @@
         bfi_flush_image_cache();
       }
     }
-  /// die();
+    /// die();
   }
 
   /**
@@ -219,6 +219,7 @@
 
       }
     }
+
     return (!empty($filler) ? $classes . '{' . $filler . '}' : null);
   }
 
@@ -273,10 +274,10 @@
   {
     $borders_css = '';
 
-    $borders_css .= (!empty($properties[ 'border-top' ]) ? 'border-top-left-radius:' . $properties[ 'border-top' ].';' : '');
-    $borders_css .= (!empty($properties[ 'border-right' ]) ? 'border-top-right-radius:' . $properties[ 'border-right' ].';' : '');
-    $borders_css .= (!empty($properties[ 'border-bottom' ]) ? 'border-bottom-left-radius:' . $properties[ 'border-bottom' ].';' : '');
-    $borders_css .= (!empty($properties[ 'border-left' ]) ? 'border-bottom-right-radius:' . $properties[ 'border-left' ].';' : '');
+    $borders_css .= (!empty($properties[ 'border-top' ]) ? 'border-top-left-radius:' . $properties[ 'border-top' ] . ';' : '');
+    $borders_css .= (!empty($properties[ 'border-right' ]) ? 'border-top-right-radius:' . $properties[ 'border-right' ] . ';' : '');
+    $borders_css .= (!empty($properties[ 'border-bottom' ]) ? 'border-bottom-left-radius:' . $properties[ 'border-bottom' ] . ';' : '');
+    $borders_css .= (!empty($properties[ 'border-left' ]) ? 'border-bottom-right-radius:' . $properties[ 'border-left' ] . ';' : '');
 
     return $classes . '{' . $borders_css . '}';
   }
@@ -361,102 +362,25 @@
    * @param $source
    * @param $keys
    * @param $value
-   * @param $classes
+   * @param $parentClass
    * @return mixed|string
    */
-  function pzarc_get_styling($source, $keys, $value, $classes)
+  function pzarc_get_styling($source, $keys, $value, $parentClass)
   {
-    // TODO: We need to makes it so only one declaration per case. i.e. class {padding;margins;border;etc}
-    // which would require smarterness by the caller.
-    if ('xblueprint' === $source) {
-   //   var_dump($keys['id']);
-      switch ($keys[ 'id' ]) {
-        case 'blueprint':
-          // Note no space for this class as it's in the same declaration
-          $keys[ 'class' ] = $classes . '.pzarc-blueprint';
-          break;
-        case  'blueprint-custom':
-          $keys[ 'class' ] = '';
-          break;
-        case  'sections':
-          $keys[ 'class' ] = $classes . ' .pzarc-section';
-          break;
-        case  'pzarc-section_1':
-          $keys[ 'class' ] = $classes . ' .pzarc-section_1';
-          break;
-        case  'pzarc-section_2':
-          $keys[ 'class' ] = $classes . ' .pzarc-section_2';
-          break;
-        case  'pzarc-section_3':
-          $keys[ 'class' ] = $classes . ' .pzarc-section_3';
-          break;
-        case  'pzarc-navigator':
-          $keys[ 'class' ] = $classes . ' .pzarc-navigator';
-          break;
-        case  'arc-slider-nav':
-          $keys[ 'class' ] = $classes . ' .arc-slider-nav';
-          break;
-        case  'pzarc-navigator-items':
-          $keys[ 'class' ] = $classes . ' .arc-slider-slide-nav-item'; // TODO: not always? ugh!
-          break;
-        case  'pzarc-navigator-itemactive':
-          $keys[ 'class' ] = $classes . ' .arc-slider-slide-nav-item.active';
-          break;
 
-      }
-
+    if ('blueprint' === $source) {
+//      var_dump($source, $keys, $value, $parentClass);
     }
-    if ('xpanel' === $source) {
-      switch (true) {
-        case 'panels' === $keys[ 'id' ] :
-          $keys[ 'class' ] = $classes . '.pzarc-panel';
-          break;
-        case 'components' === $keys[ 'id' ] :
-          $keys[ 'class' ] = $classes . ' .pzarc-components';
-          break;
-        case 'entry-title' === $keys[ 'id' ]:
-          $keys[ 'class' ] = $classes . ' .entry-title';
-          break;
-        case 'entry-meta' === $keys[ 'id' ]:
-          $keys[ 'class' ] = $classes . ' .entry-meta';
-          break;
-        case 'entry-content' === $keys[ 'id' ]:
-          $keys[ 'class' ] = $classes . ' .entry-content';
-          break;
-        case 'entry-excerpt' === $keys[ 'id' ]:
-          $keys[ 'class' ] = $classes . ' .entry-excerpt';
-          break;
-        case strpos($keys[ 'id' ], 'entry-customfield-') === 0 :
-          $keys[ 'class' ] = $classes . ' .' . $keys[ 'id' ];
-          break;
-        case 'custom' === $keys[ 'id' ]:
-          $keys[ 'class' ] = $classes . '';
-          break;
-        case 'entry-readmore' === $keys[ 'id' ]:
-          $keys[ 'class' ] = $classes . ' a.readmore';
-          break;
-        case 'entry-image' === $keys[ 'id' ]:
-          $keys[ 'class' ] = $classes . ' figure.entry-thumbnail';
-          break;
-        case 'entry-image-caption' === $keys[ 'id' ]:
-          $keys[ 'class' ] = $classes . ' figure.entry-thumbnail caption';
-          break;
-        case 'hentry' === $keys[ 'id' ]:
-          $keys[ 'class' ] = $classes . ' .hentry';
-          break;
-      }
-
-    }
-
 
     //Need to do the above switch for Panels
     // generate correct whosit
     $pzarc_func = 'pzarc_style_' . $keys[ 'style' ];
-    $pzarc_css = '';
-    foreach($keys['classes'] as $class) {
-      $pzarc_css  .= (function_exists($pzarc_func) ? call_user_func($pzarc_func, $classes .' '.$class, $value) : '');
+    $pzarc_css  = '';
+    foreach ($keys[ 'classes' ] as $class) {
+      $pzarc_css .= (function_exists($pzarc_func) ? call_user_func($pzarc_func, $parentClass . ' ' . $class, $value) : '');
       if (!function_exists($pzarc_func)) {
         print 'Missing function ' . $pzarc_func;
+        var_dump($parentClass);
       }
 
     }

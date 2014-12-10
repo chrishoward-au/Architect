@@ -57,8 +57,8 @@
       $this->build = new arc_Blueprint($blueprint);
 
 //      pzdebug(((array)$this->build->blueprint));
-
-      if ($this->build->blueprint[ '_blueprints_content-source' ] == 'defaults' && $this->is_shortcode) {
+//var_dump($this->build->blueprint);
+      if (isset($this->build->blueprint['_blueprints_content-source'])&& $this->build->blueprint[ '_blueprints_content-source' ] == 'defaults' && $this->is_shortcode) {
 
         $this->build->blueprint[ 'err_msg' ] = '<p class="message-warning">Ooops! Need to specify a <strong>Contents Selection</strong> in your Blueprint to use a shortcode. You cannot use Defaults.</p>';
 
@@ -130,18 +130,18 @@
         switch (true) {
 
           case is_home():
-            $class                     = 'arc_Pagination_' . (!$this->build->blueprint[ '_blueprints_pager' ] ? 'prevnext' : $this->build->blueprint[ '_blueprints_pager' ]);
-            $this->arc[ 'pagination' ] = new $class;
+            $content_class                     = 'arc_Pagination_' . (!$this->build->blueprint[ '_blueprints_pager' ] ? 'prevnext' : $this->build->blueprint[ '_blueprints_pager' ]);
+            $this->arc[ 'pagination' ] = new $content_class;
             break;
 
           case (is_singular()):
-            $class                     = 'arc_Pagination_' . (!$this->build->blueprint[ '_blueprints_pager-single' ] ? 'prevnext' : $this->build->blueprint[ '_blueprints_pager-single' ]);
-            $this->arc[ 'pagination' ] = new $class;
+            $content_class                     = 'arc_Pagination_' . (!$this->build->blueprint[ '_blueprints_pager-single' ] ? 'prevnext' : $this->build->blueprint[ '_blueprints_pager-single' ]);
+            $this->arc[ 'pagination' ] = new $content_class;
             break;
 
           case is_archive():
-            $class                     = 'arc_Pagination_' . (!$this->build->blueprint[ '_blueprints_pager-archives' ] ? 'prevnext' : $this->build->blueprint[ '_blueprints_pager-archives' ]);
-            $this->arc[ 'pagination' ] = new $class;
+            $content_class                     = 'arc_Pagination_' . (!$this->build->blueprint[ '_blueprints_pager-archives' ] ? 'prevnext' : $this->build->blueprint[ '_blueprints_pager-archives' ]);
+            $this->arc[ 'pagination' ] = new $content_class;
             break;
 
 
@@ -166,8 +166,8 @@
       }
 
       /** at this point we have the necessary info to populate the navigator. So let's do it! */
-      $class       = self::setup_section_panel_class();
-      $panel_class = new $class;
+      $content_class       = self::get_blueprint_content_class();
+      $panel_class = new $content_class($this->build); // This gets the settings for the panels of this content type.
 
       if ($bp_nav_type === 'navigator') {
         $this->nav_items = $panel_class->get_nav_items($this->build->blueprint[ '_blueprints_navigator' ], $this->arc_query);
@@ -218,17 +218,17 @@
 
 
       /** LOOPS */
-      $panel_class->loop(1, $this, $panel_class, $class);
+      $panel_class->loop(1, $this, $panel_class, $content_class);
 
       if ($do_section_2) {
 
-        $panel_class->loop(2, $this, $panel_class, $class);
+        $panel_class->loop(2, $this, $panel_class, $content_class);
 
       }
 
       if ($do_section_3) {
 
-        $panel_class->loop(3, $this, $panel_class, $class);
+        $panel_class->loop(3, $this, $panel_class, $content_class);
 
       }
 
@@ -560,20 +560,19 @@
 
     }
 
-    private function setup_section_panel_class()
+    private function get_blueprint_content_class()
     {
 
       //TODO: oops! Need to get default content type when defaults chosen.
-      $post_type = (empty($this->build->blueprint[ '_blueprints_content-source' ]) || 'defaults' === $this->build->blueprint[ '_blueprints_content-source' ] ?
-          (empty($this->arc_query->queried_object->post_type) ? 'post' : $this->arc_query->queried_object->post_type) :
-          $this->build->blueprint[ '_blueprints_content-source' ]);
+      $post_type = (empty($this->build->blueprint[ '_blueprints_content-source' ])  ?  (empty($this->arc_query->queried_object->post_type) ? 'post' : $this->arc_query->queried_object->post_type) : $this->build->blueprint[ '_blueprints_content-source' ]);
 
       $registry = arc_Registry::getInstance();
 
       // Build the query
       $content_source = $registry->get('content_source');
-      $class = 'arc_Panel_' . $post_type;
-      if ($this->build->blueprint[ '_blueprints_content-source' ] != 'defaults' && array_key_exists($this->build->blueprint[ '_blueprints_content-source' ], $content_source)) {
+      $class = 'arc_Panel_' . ('defaults' === $this->build->blueprint[ '_blueprints_content-source' ]?'defaults':$post_type);
+
+      if ( array_key_exists($this->build->blueprint[ '_blueprints_content-source' ], $content_source)) {
         require_once $content_source[ $this->build->blueprint[ '_blueprints_content-source' ] ] . '/class_arc_Panel_' . ucfirst($post_type) . '.php';
       }
 

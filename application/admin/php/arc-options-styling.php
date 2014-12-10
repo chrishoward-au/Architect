@@ -1,5 +1,6 @@
 <?php
 
+  /** STYLE DEFAULTS */
 
   if (!(class_exists('ReduxFramework') || class_exists('ReduxFrameworkPlugin'))) {
     return;
@@ -99,8 +100,8 @@
 //      {
 //        //$sections = array();
 //        $sections[ ] = array(
-//            'title'  => __('Section via hook', 'redux-framework-demo'),
-//            'desc'   => __('<p class="description">This is a section created by adding a filter to the sections array. Can be used by child themes to add/remove sections from the options.</p>', 'redux-framework-demo'),
+//            'title'  => __('Section via hook', 'pzarchitect'),
+//            'desc'   => __('<p class="description">This is a section created by adding a filter to the sections array. Can be used by child themes to add/remove sections from the options.</p>', 'pzarchitect'),
 //            'icon'   => 'el-icon-paper-clip',
 //            // Leave this as a blank section, no options just some intro text set above.
 //            'fields' => array()
@@ -176,7 +177,7 @@
         $class       = $screenshot ? 'has-screenshot' : '';
 
         $customize_title
-            = sprintf(__('Customize &#8220;%s&#8221;', 'redux-framework-demo'), $this->theme->display('Name'));
+            = sprintf(__('Customize &#8220;%s&#8221;', 'pzarchitect'), $this->theme->display('Name'));
 
         ?>
         <div id="current-theme" class="<?php echo esc_attr($class); ?>">
@@ -197,14 +198,14 @@
 
           <div>
             <ul class="theme-info">
-              <li><?php printf(__('By %s', 'redux-framework-demo'), $this->theme->display('Author')); ?></li>
-              <li><?php printf(__('Version %s', 'redux-framework-demo'), $this->theme->display('Version')); ?></li>
-              <li><?php echo '<strong>' . __('Tags', 'redux-framework-demo') . ':</strong> '; ?><?php printf($this->theme->display('Tags')); ?></li>
+              <li><?php printf(__('By %s', 'pzarchitect'), $this->theme->display('Author')); ?></li>
+              <li><?php printf(__('Version %s', 'pzarchitect'), $this->theme->display('Version')); ?></li>
+              <li><?php echo '<strong>' . __('Tags', 'pzarchitect') . ':</strong> '; ?><?php printf($this->theme->display('Tags')); ?></li>
             </ul>
             <p class="theme-description"><?php echo $this->theme->display('Description'); ?></p>
             <?php if ($this->theme->parent()) {
               printf(' <p class="howto">' . __('This <a href="%1$s">child theme</a> requires its parent theme, %2$s.') . '</p>',
-                     __('http://codex.wordpress.org/Child_Themes', 'redux-framework-demo'),
+                     __('http://codex.wordpress.org/Child_Themes', 'pzarchitect'),
                      $this->theme->parent()->display('Name'));
             } ?>
 
@@ -253,18 +254,19 @@
                     'type'     => 'section',
                     'indent'   => true,
                     'class'    => 'heading',
-                    'subtitle' => 'Class: .pzarc-panel',
+                    'subtitle' => 'Class: .pzarc-panel_{shortname}',
                 ),
                 array(
                     'title'    => __('CSS selectors', 'pzarc'),
                     'id'       => $prefix . 'panels-selectors',
                     'type'     => 'text',
-                    'default'  => '.pzarc-panel',
+                    'default'  => '',
                     'readonly' => true
                 ),
-                pzarc_redux_bg($prefix . 'panels-background', array('.pzarc-panel')),
-                pzarc_redux_padding($prefix . 'panels-padding', array('.pzarc-panel')),
-                pzarc_redux_borders($prefix . 'panels-borders', array('.pzarc-panel')),
+                // Dooesn't need a class coz it's already right e.g. .pzarc-panel_{shortname}
+                pzarc_redux_bg($prefix . 'panels-background', array('')),
+                pzarc_redux_padding($prefix . 'panels-padding', array('')),
+                pzarc_redux_borders($prefix . 'panels-borders', array('')),
                 array(
                     'title'    => __('Components group', 'pzarc'),
                     'id'       => $prefix . 'components-group-section-start',
@@ -374,7 +376,7 @@
                     'title'   => __('CSS selectors', 'pzarc'),
                     'id'      => $prefix . 'entry-content-selectors',
                     'type'    => 'text',
-                    'default' => '.entry-content',
+                    'default' => '.entry-content, .entry-excerpt',
                     'hint'    => array(
                         'title'   => 'Change CSS class',
                         'content' => 'Change this class only if your theme uses different class names'
@@ -384,6 +386,27 @@
                 pzarc_redux_bg($prefix . 'entry-content-font-background', array('.entry-content')),
                 pzarc_redux_padding($prefix . 'entry-content-font-padding', array('.entry-content')),
                 pzarc_redux_links($prefix . 'entry-content-font-links', array('.entry-content a')),
+                array(
+                    'title'  => __('Excerpt', 'pzarc'),
+                    'id'     => $prefix . 'entry-excerpt',
+                    'type'   => 'section',
+                    'indent' => true,
+                    'class'  => 'heading',
+                ),
+                array(
+                    'title'   => __('CSS selectors', 'pzarc'),
+                    'id'      => $prefix . 'entry-excerpt-selectors',
+                    'type'    => 'text',
+                    'default' => '.entry-excerpt',
+                    'hint'    => array(
+                        'title'   => 'Change CSS class',
+                        'content' => 'Change this class only if your theme uses different class names'
+                    )
+                ),
+                pzarc_redux_font($prefix . 'entry-excerpt-font', array('.entry-excerpt')),
+                pzarc_redux_bg($prefix . 'entry-excerpt-font-background', array('.entry-excerpt')),
+                pzarc_redux_padding($prefix . 'entry-excerpt-font-padding', array('.entry-excerpt')),
+                pzarc_redux_links($prefix . 'entry-excerpt-font-links', array('.entry-excerpt a')),
                 array(
                     'title'  => __('Read more', 'pzarc'),
                     'id'     => $prefix . 'entry-readmore',
@@ -395,15 +418,15 @@
                     'title'   => __('CSS selectors', 'pzarc'),
                     'id'      => $prefix . 'entry-readmore-selectors',
                     'type'    => 'text',
-                    'default' => '.readmore',
+                    'default' => 'a.readmore',
                     'hint'    => array(
                         'title'   => 'Change CSS class',
                         'content' => 'Change this class only if your theme uses different class names'
                     )
                 ),
-                pzarc_redux_font($prefix . 'entry-readmore-font', array('.readmore')),
-                pzarc_redux_bg($prefix . 'entry-readmore-font-background', array('.readmore')),
-                pzarc_redux_padding($prefix . 'entry-readmore-font-padding', array('.readmore')),
+                pzarc_redux_font($prefix . 'entry-readmore-font', array('a.readmore')),
+                pzarc_redux_bg($prefix . 'entry-readmore-font-background', array('a.readmore')),
+                pzarc_redux_padding($prefix . 'entry-readmore-font-padding', array('a.readmore')),
                 pzarc_redux_links($prefix . 'entry-readmore-font-links', array('a.readmore')),
             )
         );
@@ -685,12 +708,13 @@
                     'id'       => $prefix . 'navigator-selectors',
                     'type'     => 'text',
                     'readonly' => true,
-                    'default'  => '.pzarc-navigator, .arc-slider-nav',
+//                    'default'  => '.pzarc-navigator, .arc-slider-nav',
+                    'default'  => '.pzarc-navigator',
                 ),
-                pzarc_redux_bg($prefix . 'navigator-background', array('.arc-slider-nav', '.pzarc-navigator')),
-                pzarc_redux_padding($prefix . 'navigator-padding', array('.arc-slider-nav', '.pzarc-navigator')),
-                pzarc_redux_margin($prefix . 'navigator-margins', array('.arc-slider-nav', '.pzarc-navigator')),
-                pzarc_redux_borders($prefix . 'navigator-borders', array('.arc-slider-nav', '.pzarc-navigator')),
+                pzarc_redux_bg($prefix . 'navigator-background', array('.pzarc-navigator')),
+                pzarc_redux_padding($prefix . 'navigator-padding', array( '.pzarc-navigator')),
+                pzarc_redux_margin($prefix . 'navigator-margins', array( '.pzarc-navigator')),
+                pzarc_redux_borders($prefix . 'navigator-borders', array( '.pzarc-navigator')),
                 array(
                     'title'  => __('Navigator items', 'pzarchitect'),
                     'id'     => $prefix . 'blueprint-nav-items-css-heading',
@@ -705,12 +729,12 @@
                     'readonly' => true,
                     'default'  => '.pzarc-navigator .arc-slider-slide-nav-item span',
                 ),
-                pzarc_redux_font($prefix . 'navigator-items-font', array('.pzarc-navigator .arc-slider-slide-nav-item span'), null),
-                pzarc_redux_bg($prefix . 'navigator-items-background', array('.pzarc-navigator .arc-slider-slide-nav-item span')),
-                pzarc_redux_padding($prefix . 'navigator-items-padding', array('.pzarc-navigator .arc-slider-slide-nav-item span')),
-                pzarc_redux_margin($prefix . 'navigator-items-margins', array('.pzarc-navigator .arc-slider-slide-nav-item span')),
-                pzarc_redux_borders($prefix . 'navigator-items-borders', array('.pzarc-navigator .arc-slider-slide-nav-item span')),
-                pzarc_redux_border_radius($prefix . 'navigator-items-borderradius', array('.pzarc-navigator .arc-slider-slide-nav-item span')),
+                pzarc_redux_font($prefix . 'navigator-items-font', array('.pzarc-navigator .arc-slider-slide-nav-item '), null),
+                pzarc_redux_bg($prefix . 'navigator-items-background', array('.pzarc-navigator .arc-slider-slide-nav-item ')),
+                pzarc_redux_padding($prefix . 'navigator-items-padding', array('.pzarc-navigator .arc-slider-slide-nav-item ')),
+                pzarc_redux_margin($prefix . 'navigator-items-margins', array('.pzarc-navigator .arc-slider-slide-nav-item ')),
+                pzarc_redux_borders($prefix . 'navigator-items-borders', array('.pzarc-navigator .arc-slider-slide-nav-item ')),
+                pzarc_redux_border_radius($prefix . 'navigator-items-borderradius', array('.pzarc-navigator .arc-slider-slide-nav-item ')),
                 array(
                     'title'  => __('Navigator item hover', 'pzarchitect'),
                     'id'     => $prefix . 'blueprint-nav-hover-item-css-heading',
@@ -725,7 +749,7 @@
                     'readonly' => true,
                     'default'  => '.pzarc-navigator .arc-slider-slide-nav-item:hover span',
                 ),
-                pzarc_redux_font($prefix . 'navigator-items-hover-font', array('.pzarc-navigator .arc-slider-slide-nav-item:hover span'), null, array('letter-spacing',
+                pzarc_redux_font($prefix . 'navigator-items-hover-font', array('.pzarc-navigator .arc-slider-slide-nav-item:hover '), null, array('letter-spacing',
                                                                                                                                                             'font-variant',
                                                                                                                                                             'text-transform',
                                                                                                                                                             'font-family',
@@ -733,8 +757,8 @@
                                                                                                                                                             'text-align',
                                                                                                                                                             'line-height',
                                                                                                                                                             'word-spacing')),
-                pzarc_redux_bg($prefix . 'navigator-items-hover-background', array('.pzarc-navigator .arc-slider-slide-nav-item:hover span')),
-                pzarc_redux_borders($prefix . 'navigator-items-hover-borders', array('.pzarc-navigator .arc-slider-slide-nav-item:hover span')),
+                pzarc_redux_bg($prefix . 'navigator-items-hover-background', array('.pzarc-navigator .arc-slider-slide-nav-item:hover ')),
+                pzarc_redux_borders($prefix . 'navigator-items-hover-borders', array('.pzarc-navigator .arc-slider-slide-nav-item:hover ')),
                 array(
                     'title'  => __('Navigator active item', 'pzarchitect'),
                     'id'     => $prefix . 'blueprint-nav-active-item-css-heading',
@@ -748,7 +772,7 @@
                     'readonly' => true,
                     'default'  => '.pzarc-navigator .arc-slider-slide-nav-item.active span',
                 ),
-                pzarc_redux_font($prefix . 'navigator-items-active-font', array('.pzarc-navigator .arc-slider-slide-nav-item.active span'), null, array('letter-spacing',
+                pzarc_redux_font($prefix . 'navigator-items-active-font', array('.pzarc-navigator .arc-slider-slide-nav-item.active '), null, array('letter-spacing',
                                                                                                                                                             'font-variant',
                                                                                                                                                             'text-transform',
                                                                                                                                                             'font-family',
@@ -756,8 +780,8 @@
                                                                                                                                                             'text-align',
                                                                                                                                                             'line-height',
                                                                                                                                                             'word-spacing')),
-                pzarc_redux_bg($prefix . 'navigator-items-active-background', array('.pzarc-navigator .arc-slider-slide-nav-item.active span')),
-                pzarc_redux_borders($prefix . 'navigator-items-active-borders', array('.pzarc-navigator .arc-slider-slide-nav-item.active span')),
+                pzarc_redux_bg($prefix . 'navigator-items-active-background', array('.pzarc-navigator .arc-slider-slide-nav-item.active ')),
+                pzarc_redux_borders($prefix . 'navigator-items-active-borders', array('.pzarc-navigator .arc-slider-slide-nav-item.active ')),
             ),
         );
 
@@ -824,19 +848,19 @@
         // Custom page help tabs, displayed using the help API. Tabs are shown in order of definition.
         $this->args[ 'help_tabs' ][ ] = array(
             'id'      => 'redux-opts-1',
-            'title'   => __('Theme Information 1', 'redux-framework-demo'),
-            'content' => __('<p>This is the tab content, HTML is allowed.</p>', 'redux-framework-demo')
+            'title'   => __('Theme Information 1', 'pzarchitect'),
+            'content' => __('<p>This is the tab content, HTML is allowed.</p>', 'pzarchitect')
         );
 
         $this->args[ 'help_tabs' ][ ] = array(
             'id'      => 'redux-opts-2',
-            'title'   => __('Theme Information 2', 'redux-framework-demo'),
-            'content' => __('<p>This is the tab content, HTML is allowed.</p>', 'redux-framework-demo')
+            'title'   => __('Theme Information 2', 'pzarchitect'),
+            'content' => __('<p>This is the tab content, HTML is allowed.</p>', 'pzarchitect')
         );
 
         // Set the help sidebar
         $this->args[ 'help_sidebar' ]
-            = __('<p>This is the sidebar content, HTML is allowed.</p>', 'redux-framework-demo');
+            = __('<p>This is the sidebar content, HTML is allowed.</p>', 'pzarchitect');
 
       }
 
@@ -864,7 +888,7 @@
           //Specify if the admin menu should appear or not. Options: menu or submenu (Under appearance only)
           'allow_sub_menu'     => false,
           // Show the sections below the admin menu item or not
-          'menu_title'         => __('<span class="dashicons dashicons-art"></span>Styling Defaults', 'pzarc'),
+          'menu_title'         => __('<span class="dashicons dashicons-admin-appearance"></span>Styling Defaults', 'pzarc'),
           'page'               => __('Architect Styling', 'pzarc'),
           'google_api_key'     => 'Xq9o3CdQFHKr+47vQr6eO4EUYLtlEyTe',
           // Must be defined to add google fonts to the typography module
@@ -968,10 +992,10 @@
             $v = str_replace("-", "_", $this->args[ 'opt_name' ]);
           }
           $this->args[ 'intro_text' ]
-              = sprintf(__('<p>On this page you can configure default CSS styling as well as indicating the classes it applies to.</p>', 'redux-framework-demo'), $v);
+              = sprintf(__('<p>On this page you can configure default CSS styling as well as indicating the classes it applies to.</p>', 'pzarchitect'), $v);
         } else {
 //          $this->args[ 'intro_text' ]
-//              = __('<p>This text is displayed above the options panel. It isn\'t required, but more info is always better! The intro_text field accepts all HTML.</p>', 'redux-framework-demo');
+//              = __('<p>This text is displayed above the options panel. It isn\'t required, but more info is always better! The intro_text field accepts all HTML.</p>', 'pzarchitect');
         }
 
         // Add content after the form.

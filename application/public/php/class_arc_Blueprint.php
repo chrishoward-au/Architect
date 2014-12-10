@@ -34,7 +34,8 @@
                                          $this->blueprint[ '_blueprints_navigation' ],
                                          $this->blueprint[ '_blueprints_section-' . ($i - 1) . '-layout-mode' ],
                                          'slick', // Possible Future use
-                                         $this->blueprint[ '_blueprints_section-' . ($i - 1) . '-title' ]
+                                         $this->blueprint[ '_blueprints_section-' . ($i - 1) . '-title' ],
+                                         $this->blueprint[ '_blueprints_section-' . ($i - 1) . '-table-column-titles' ]
               );
 
 

@@ -206,6 +206,28 @@
     .pzarchitect .pzarc-panel .lightbox img {
       cursor: zoom-in;
       cursor: -webkit-zoom-in; }
+    .pzarchitect .pzarc-panel td.td-entry-title,
+    .pzarchitect .pzarc-panel td.entry-meta,
+    .pzarchitect .pzarc-panel td.entry-content,
+    .pzarchitect .pzarc-panel td.entry-excerpt,
+    .pzarchitect .pzarc-panel td.td-entry-thumbnail {
+      display: table-cell;
+      float: none;
+      line-height: initial;
+      text-align: initial;
+      vertical-align: top;
+      border-top: initial; }
+    .pzarchitect .pzarc-panel td.td-entry-title h1.entry-title,
+    .pzarchitect .pzarc-panel td.td-entry-thumbnail figure.entry-thumbnail {
+      width: 100%; }
+    .pzarchitect .pzarc-panel td {
+      padding: 1%; }
+  .pzarchitect tr.pzarc-panel {
+    display: table-row; }
+  .pzarchitect table {
+    border-collapse: collapse; }
+    .pzarchitect table thead {
+      background: #eee; }
   .pzarchitect .msie .pzarc-navigator {
     height: 0; }
   .pzarchitect .pzarc-navigator {

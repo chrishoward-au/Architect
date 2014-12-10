@@ -33,8 +33,6 @@
     $pzarc_contents .= $pzarc_bp_css[ 0 ][ 0 ] . $pzarc_bp_css[ 1 ][ 0 ] . $pzarc_bp_css[ 2 ][ 0 ] . $pzarc_bp_css[ 0 ][ 1 ] . $pzarc_bp_css[ 1 ][ 1 ] . $pzarc_bp_css[ 2 ][ 1 ];
 
 
-    //   var_dump($pzarc_blueprints);
-    var_dump($pzarc_blueprints);
     foreach ($pzarc_blueprints as $key => $value) {
 
 
@@ -49,16 +47,28 @@
           // UGH! Need to hack this for when is thumb nav
           $bpkeys[ 'id' ] = 'arc-slider-nav';
         }
-var_dump($key.' : '.$bpkeys['id'],$value);
-        // TODO: THIS IS ONLY A TEMPORATY IF
-//        if (isset($_architect[ 'architect_config_' . $bpkeys[ 'id' ] . '-selectors' ])) {
         if (!in_array($bpkeys['id'],array('blueprint-custom','blueprints-load'))) {
 
-          $bpkeys[ 'classes' ] = (is_array($_architect[ 'architect_config_' . $bpkeys[ 'id' ] . '-selectors' ]) ? $_architect[ 'architect_config_' . $bpkeys[ 'id' ] . '-selectors' ] : array('0' => $_architect[ 'architect_config_' . $bpkeys[ 'id' ] . '-selectors' ]));
+          // Filter out old selector names hanging arouind in existing bblueprints
+          if (isset($_architect[ 'architect_config_' . $bpkeys[ 'id' ] . '-selectors' ])) {
+            $bpkeys[ 'classes' ] = (is_array($_architect[ 'architect_config_' . $bpkeys[ 'id' ] . '-selectors' ]) ? $_architect[ 'architect_config_' . $bpkeys[ 'id' ] . '-selectors' ] : array('0' => $_architect[ 'architect_config_' . $bpkeys[ 'id' ] . '-selectors' ]));
 
-///var_dump('blueprint', $bpkeys, $value, '.pzarchitect.pzarc-blueprint_' . $pzarc_blueprints[ '_blueprints_short-name' ]);
-          $pzarc_contents .= pzarc_get_styling('blueprint', $bpkeys, $value, '.pzarchitect.pzarc-blueprint_' . $pzarc_blueprints[ '_blueprints_short-name' ], $bpkeys[ 'classes' ]);
-//        }
+            foreach ($bpkeys['classes'] as $k => $v) {
+              switch (true){
+                case ('.pzarc-sections_{shortname}'===$v):
+                  $bpkeys['classes'][$k] = str_replace('{shortname}',$pzarc_blueprints[ '_blueprints_short-name' ],$v);
+                  break;
+                case ('.pzarc-blueprint_{shortname}'===$v):
+                  $bpkeys['classes'][$k] = '';
+                  break;
+              }
+            }
+            $pzarc_contents .= pzarc_get_styling('blueprint',
+                                                 $bpkeys,
+                                                 $value,
+                                                 '.pzarchitect.pzarc-blueprint_' . $pzarc_blueprints[ '_blueprints_short-name' ],
+                                                 $bpkeys[ 'classes' ]);
+          }
         }
       }
     }
@@ -129,7 +139,7 @@ var_dump($key.' : '.$bpkeys['id'],$value);
       $pzarc_mediaq_css .= $panels_class . ' {width:' . (((100 - ($hmargin * ($columns - 1))) / $columns)) . '%;margin-bottom:' . $pzarc_blueprints[ '_blueprints_section-' . $i . '-panels-margins' ][ 'margin-bottom' ] . ' ;}';
 
       //  Don't want gutters here iff using masonry layoutt
-      if ('basic' === $pzarc_blueprints[ '_blueprints_section-' . $i . '-layout-mode' ]) {
+      if ('basic' === $pzarc_blueprints[ '_blueprints_section-' . $i . '-layout-mode' ] || 'table' === $pzarc_blueprints[ '_blueprints_section-' . $i . '-layout-mode' ]) {
         $pzarc_mediaq_css .= $panels_class . ':nth-child(n) {margin-right: ' . ($hmargin) . '%;}';
         $pzarc_mediaq_css .= $panels_class . ':nth-child(' . $columns . 'n) {margin-right: 0;}';
       } elseif ('masonry' === $pzarc_blueprints[ '_blueprints_section-' . $i . '-layout-mode' ]) {
@@ -147,7 +157,7 @@ var_dump($key.' : '.$bpkeys['id'],$value);
       $pzarc_mediaq_css .= $panels_class . ' {width:' . (((100 - ($hmargin * ($columns - 1))) / $columns)) . '%;margin-bottom:' . $pzarc_blueprints[ '_blueprints_section-' . $i . '-panels-margins' ][ 'margin-bottom' ] . ' ;}';
 
       //  Don't want gutters here iff using masonry layoutt
-      if ('basic' === $pzarc_blueprints[ '_blueprints_section-' . $i . '-layout-mode' ]) {
+      if ('basic' === $pzarc_blueprints[ '_blueprints_section-' . $i . '-layout-mode' ] || 'table' === $pzarc_blueprints[ '_blueprints_section-' . $i . '-layout-mode' ]) {
         $pzarc_mediaq_css .= $panels_class . ':nth-child(n) {margin-right: ' . ($hmargin) . '%;}';
         $pzarc_mediaq_css .= $panels_class . ':nth-child(' . $columns . 'n) {margin-right: 0;}';
       } elseif ('masonry' === $pzarc_blueprints[ '_blueprints_section-' . $i . '-layout-mode' ]) {
@@ -166,7 +176,7 @@ var_dump($key.' : '.$bpkeys['id'],$value);
       $pzarc_mediaq_css .= $panels_class . ' {width:' . (((100 - ($hmargin * ($columns - 1))) / $columns)) . '%;margin-bottom:' . $pzarc_blueprints[ '_blueprints_section-' . $i . '-panels-margins' ][ 'margin-bottom' ] . ' ;}';
 
       //  Don't want gutters here iff using masonry layoutt
-      if ('basic' === $pzarc_blueprints[ '_blueprints_section-' . $i . '-layout-mode' ]) {
+      if ('basic' === $pzarc_blueprints[ '_blueprints_section-' . $i . '-layout-mode' ] || 'table' === $pzarc_blueprints[ '_blueprints_section-' . $i . '-layout-mode' ]) {
         $pzarc_mediaq_css .= $panels_class . ':nth-child(n) {margin-right: ' . ($hmargin) . '%;}';
         $pzarc_mediaq_css .= $panels_class . ':nth-child(' . $columns . 'n) {margin-right: 0;}';
       } elseif ('masonry' === $pzarc_blueprints[ '_blueprints_section-' . $i . '-layout-mode' ]) {
