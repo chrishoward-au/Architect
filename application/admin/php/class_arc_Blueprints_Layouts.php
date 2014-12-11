@@ -1379,7 +1379,7 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
                     'id'       => $prefix . 'blueprint-nav-items-css-heading',
                     'type'     => 'section',
                     'indent'   => true,
-                    'subtitle' => 'Class: ' . implode(', ', array('.pzarc-navigator .arc-slider-slide-nav-item span')),
+                    'subtitle' => 'Class: ' . implode(', ', array('.pzarc-navigator .arc-slider-slide-nav-item')),
 
                 ),
                 pzarc_redux_font($prefix . $thisSection . '-items' . $font,$_architect[ 'architect_config_' . $thisSection . '-selectors' ], $defaults[ $optprefix . $thisSection. '-items' . $font ]),
@@ -1387,13 +1387,13 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
                 pzarc_redux_padding($prefix . $thisSection . '-items' . $padding, $_architect[ 'architect_config_' . $thisSection . '-selectors' ], $defaults[ $optprefix . $thisSection. '-items' . $padding ]),
                 pzarc_redux_margin($prefix . $thisSection . '-items' . $margin, $_architect[ 'architect_config_' . $thisSection . '-selectors' ], $defaults[ $optprefix . $thisSection. '-items' . $margin ]),
                 pzarc_redux_borders($prefix . $thisSection . '-items' . $border, $_architect[ 'architect_config_' . $thisSection . '-selectors' ], $defaults[ $optprefix . $thisSection. '-items' . $border ]),
-                pzarc_redux_border_radius($prefix . $thisSection . '-items' . $borderradius, array('.pzarc-navigator .arc-slider-slide-nav-item span')),
+                pzarc_redux_border_radius($prefix . $thisSection . '-items' . $borderradius, $_architect[ 'architect_config_' . $thisSection . '-selectors' ], $defaults[ $optprefix . $thisSection. '-items' . $borderradius ]),
                 array(
                     'title'    => __('Navigator item hover', 'pzarchitect'),
                     'id'       => $prefix . 'blueprint-nav-hover-item-css-heading',
                     'type'     => 'section',
                     'indent'   => true,
-                    'subtitle' => 'Class: ' . implode(', ', array('.pzarc-navigator .arc-slider-slide-nav-item:hover span')),
+                    'subtitle' => 'Class: ' . implode(', ', array('.pzarc-navigator .arc-slider-slide-nav-item:hover')),
 
                 ),
                 pzarc_redux_font($prefix . $thisSection . '-items-hover' . $font,$_architect[ 'architect_config_' . $thisSection . '-selectors' ],$defaults[ $optprefix . $thisSection. '-items-hover' . $font ], array('letter-spacing',
@@ -1411,7 +1411,7 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
                     'id'       => $prefix . 'blueprint-nav-active-item-css-heading',
                     'type'     => 'section',
                     'indent'   => true,
-                    'subtitle' => 'Class: ' . implode(', ', array('.pzarc-navigator .arc-slider-slide-nav-item.active span')),
+                    'subtitle' => 'Class: ' . implode(', ', array('.pzarc-navigator .arc-slider-slide-nav-item.active')),
 
                 ),
                 pzarc_redux_font($prefix . $thisSection . '-items-active' . $font, $_architect[ 'architect_config_' . $thisSection . '-selectors' ],$defaults[ $optprefix . $thisSection. '-items-active' . $font ],  array('letter-spacing',

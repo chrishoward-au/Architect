@@ -2,14 +2,14 @@
 
   /*
     Plugin Name: Architect
-    Plugin URI: http://pizazzwp.com
-    Description: Architect is an all-in-one content layout framework to extend your theme. Go beyond the limitations of the theme you use to easily build any content layouts for it. Build your own grids, tabs, sliders, galleries and more with sources such ass posts, pages, galleries, and custom content types. Display using shorcodes, widgets, Headway blocks, WP action hooks and template tags, and WP Gallery shortcode. Change themes without needing to rebuild your layouts! The Foundation version provides only content types of Posts and Defaults.
-    Version: 0.8.8
+    Plugin URI: http://architect4wp.com
+    Description: Architect is an all-in-one content layout framework to extend your theme. Go beyond the limitations of the theme you use to easily build any content layouts for it. Build your own grids, tabs, sliders, galleries and more with sources such ass posts, pages, galleries, and custom content types. Display using shorcodes, widgets, Headway blocks, WP action hooks and template tags, and WP Gallery shortcode. Change themes without needing to rebuild your layouts! The Lite version provides only content types of Posts and Defaults.
+    Version: 0.9.0
     Author: Chris Howard
     Author URI: http://pizazzwp.com
     License: GNU GPL v2
-    Shoutouts: Plugin structure based on WP Plugin Boilerplate by Tom McPharlin http://tommcfarlin.com/
-    Shoutouts: Options and metabox management all done with Redux plugin
+    General Support: support@pizazzwp.com
+    Beta support: http://discourse.pizazzwp.com
    */
 
 
@@ -21,7 +21,7 @@
     function __construct()
     {
 
-      define('PZARC_VERSION', '0.8.8');
+      define('PZARC_VERSION', '0.9.0');
       define('PZARC_NAME', 'pzarchitect'); // This is also same as the locale
       define('PZARC_FOLDER', '/pizazzwp-architect');
 
@@ -40,8 +40,9 @@
       define('PZARC_CACHE_URL', trailingslashit($upload_dir[ 'baseurl' ] . '/cache/pizazzwp/arc'));
       define('PZARC_CACHE_PATH', trailingslashit($upload_dir[ 'basedir' ] . '/cache/pizazzwp/arc'));
 
-// Before we go anywhere, make sure dependent plugins are loaded and active.
+      // Before we go anywhere, make sure dependent plugins are loaded and active.
       require_once PZARC_PLUGIN_APP_PATH . '/shared/architect/php/arc-check-dependencies.php';
+      // Need this one to create the Architect widget
       require_once PZARC_PLUGIN_APP_PATH . '/shared/architect/php/class_arc_Widget.php';
 
       wp_mkdir_p(PZARC_CACHE_PATH);
@@ -355,10 +356,18 @@
       global $current_user;
       $user_id = $current_user->ID;
       /* Check that the user hasn't already clicked to ignore the message */
-      if (!get_user_meta($user_id, 'pzarc_ignore_notice_v087')) {
-        echo '<div class="message error highlight"><p>';
-        printf(__('<p>Architect v0.8.7 changes how CSS is cached. You will need to recreate Architect CSS. To do so, go to <em>Architect</em> > <em>Tools</em> and click <em>Rebuild Architect CSS Cache</em>. If your site has a a caching plugin or service, you will need to clear that as well and possibly first.</p><a href="http://discourse.pizazzwp.com/t/architect-beta-v0-8-7/30" target="_blank">Change log</a> | <a href="%1$s">Hide Notice</a>'), '?pzarc_nag_ignore_v087=0');
-        echo "</p></div>";
+      if (!get_user_meta($user_id, 'pzarc_ignore_notice_v090')) {
+        echo '<div class="message updated highlight"><p>';
+        printf(__('<h3>Architect beta 0.9.0</h3><p><strong>Architect v0.9.0 changes how CSS is created.</strong> You will need to recreate Architect CSS. To do so:</p>
+<ol><li>Go to Architect > Styling Defaults and click <em>Reset All</em>. Apologies if you are using the Defaults options and need to re-enter them.</li>
+<li>Go to Architect > Tools and click <em>Rebuild Architect CSS Cache</em>.</li>
+ <li>If your site has a a caching plugin or service, you will need to clear that as well</li></ol>
+<h4>New features in 0.9.0</h4>
+<ul><li>&bull; Tabular layout. Select in Blueprints > Blueprint Layout > Layout mode. Many thanks to Matt Davis for this idea.</li></ul>
+ <p><a href="http://discourse.pizazzwp.com/t/architect-beta-v0-9-0" target="_blank">Full change log</a> | <a href="http://discourse.pizazzwp.com" target="_blank">Support</a> |<a href="%1$s">Hide Notice</a>'), '?pzarc_nag_ignore_v090=0');
+
+        echo "</p>
+</div>";
       }
     }
   }
@@ -370,8 +379,8 @@
     global $current_user;
     $user_id = $current_user->ID;
     /* If user clicks to ignore the notice, add that to their user meta */
-    if (isset($_GET[ 'pzarc_nag_ignore_v087' ]) && '0' == $_GET[ 'pzarc_nag_ignore_v087' ]) {
-      add_user_meta($user_id, 'pzarc_ignore_notice_v087', 'true', true);
+    if (isset($_GET[ 'pzarc_nag_ignore_v090' ]) && '0' == $_GET[ 'pzarc_nag_ignore_v090' ]) {
+      add_user_meta($user_id, 'pzarc_ignore_notice_v090', 'true', true);
     }
   }
 

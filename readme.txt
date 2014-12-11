@@ -4,7 +4,7 @@ Tags: content,display,posts,pages,gallery,slider
 Donate link: http://
 Requires at least: 3.5.0
 Tested up to: 4.1.0
-Stable tag: 0.8.8
+Stable tag: 0.9.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -86,7 +86,7 @@ As per Headway licencing
 As per Headway licencing
 
 = Support =
-Support for the beta version is available at: [Architect Beta](http://architect4wp.com/beta)
+Support for the beta version is available at: [Architect Beta](http://discourse.pizazzwp.com)
 
 For all other Pizazz support, please send an email to support@pizazzwp.com or access the support form in WP Admin> PizazzWP > About & Support
 
@@ -105,12 +105,13 @@ This is BETA software. So there are many besides these ones!
 == Changelog ==
 
 = 0.8.9 =
-* UPDATED: Spectrum js to 1.5.2 (one of the colour pickers)
-* CHANGED: Refactored to allow easy creation of a Lite version
-* FIXED: Uses classes from Styling Options
-* CHANGED: Option to deactivate wrapping of Panel header/footer components.
 * ADDED: Layout mode Tabular (Many thanks to Matt Davis for this idea)
-* CHANGED: Rejigged the layout of the Blueprints settings
+* ADDED: Option to set typography units as px, em or rem
+* CHANGED: Refactored to allow easy creation of a Lite version
+* CHANGED: Option to deactivate wrapping of Panel header/footer components.
+* CHANGED: Rejigged the layout of the Blueprints settings with Content selection first
+* FIXED: Uses classes from Styling Options as it should have already been doing
+* UPDATED: Spectrum js to 1.5.2 (one of the colour pickers)
 
 = 0.8.8 =
 * CHANGED: Upgraded Slick.js to 1.3.15

@@ -689,6 +689,7 @@
             ),
         );
 
+        /** NAVIGATOR  */
         $this->sections[ ] = array(
             'title'      => 'Navigator',
             'show_title' => false,
@@ -727,7 +728,7 @@
                     'id'       => $prefix . 'navigator-items-selectors',
                     'type'     => 'text',
                     'readonly' => true,
-                    'default'  => '.pzarc-navigator .arc-slider-slide-nav-item span',
+                    'default'  => '.pzarc-navigator .arc-slider-slide-nav-item',
                 ),
                 pzarc_redux_font($prefix . 'navigator-items-font', array('.pzarc-navigator .arc-slider-slide-nav-item '), null),
                 pzarc_redux_bg($prefix . 'navigator-items-background', array('.pzarc-navigator .arc-slider-slide-nav-item ')),
@@ -747,7 +748,7 @@
                     'id'       => $prefix . 'navigator-items-hover-selectors',
                     'type'     => 'text',
                     'readonly' => true,
-                    'default'  => '.pzarc-navigator .arc-slider-slide-nav-item:hover span',
+                    'default'  => '.pzarc-navigator .arc-slider-slide-nav-item:hover',
                 ),
                 pzarc_redux_font($prefix . 'navigator-items-hover-font', array('.pzarc-navigator .arc-slider-slide-nav-item:hover '), null, array('letter-spacing',
                                                                                                                                                             'font-variant',
@@ -770,7 +771,7 @@
                     'id'       => $prefix . 'navigator-items-active-selectors',
                     'type'     => 'text',
                     'readonly' => true,
-                    'default'  => '.pzarc-navigator .arc-slider-slide-nav-item.active span',
+                    'default'  => '.pzarc-navigator .arc-slider-slide-nav-item.active',
                 ),
                 pzarc_redux_font($prefix . 'navigator-items-active-font', array('.pzarc-navigator .arc-slider-slide-nav-item.active '), null, array('letter-spacing',
                                                                                                                                                             'font-variant',
