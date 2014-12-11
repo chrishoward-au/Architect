@@ -104,14 +104,16 @@ This is BETA software. So there are many besides these ones!
 
 == Changelog ==
 
-= 0.8.9 =
+= 0.9.0 =
 * ADDED: Layout mode Tabular (Many thanks to Matt Davis for this idea)
+* ADDED: Navigation type Labels which lets you give specific titles. 
 * ADDED: Option to set typography units as px, em or rem
 * CHANGED: Refactored to allow easy creation of a Lite version
 * CHANGED: Option to deactivate wrapping of Panel header/footer components.
 * CHANGED: Rejigged the layout of the Blueprints settings with Content selection first
 * FIXED: Uses classes from Styling Options as it should have already been doing
 * UPDATED: Spectrum js to 1.5.2 (one of the colour pickers)
+
 
 = 0.8.8 =
 * CHANGED: Upgraded Slick.js to 1.3.15

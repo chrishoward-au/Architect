@@ -351,7 +351,7 @@
                         'purple'       => 'Purple',
                         'red-blue'     => 'Red/Blue',
                     ),
-                    'default'  => 'orange-green'
+                    'default'  => 'ocean-blue'
                 ),
                 //                array(
                 //                    'title'    => __('Custom post def path', 'pzarchitect'),

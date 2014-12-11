@@ -116,6 +116,8 @@
       // TODO Accordion
 
       echo '<' . ('table' !== $this->layout_mode ? 'section' : 'table') . ' id="' . $this->rsid . '" class="' . $layout_class . ' pzarc-section pzarc-section_' . $this->section_number . ' pzarc-section-using-panel_' . $this->section[ 'section-panel-settings' ][ '_panels_settings_short-name' ] . $this->slider[ 'wrapper' ] . '"' . $isotope . '>';
+
+      // Table heading stuff
       if ('table' === $this->layout_mode) {
         // TODO: Put this where it really belongs
         echo '<script>
@@ -145,6 +147,7 @@
         echo '</tr></thead>';
       }
 
+      // Masonry stuff
       if ('masonry'===$this->layout_mode) {
         echo '<div class="grid-sizer"></div><div class="gutter-sizer"></div>';
 
@@ -244,6 +247,7 @@
 //      }
       // TODO: Added an extra div here to pre-empt the structure needed for accordions. Tho, needs some work as it breaks layout. Maybe conditional
       // TODO: Probably use jQuery Collapse for accordions
+
       if ('accordion'===$this->layout_mode) {
 //      echo '<div class="arc-panel-wrapper" style="margin:0;padding:0">';
 //      echo '<div class="arc-panel-title"></div>'; // Use this for future accordion layout

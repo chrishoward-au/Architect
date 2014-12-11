@@ -90,6 +90,27 @@
 
   }
 
+  class arc_Navigator_Labels extends arc_Navigator
+  {
+    function _construct()
+    {
+      $this->nav_types[ ] = __CLASS__;
+    }
+
+    function render()
+    {
+
+      $i = 1;
+      foreach ($this->navitems as $nav_item) {
+        $active = ($i === 1 ? ' active' : '');
+
+        echo '<span class="arc-slider-slide arc-slider-slide-nav-item' . $active . '" data-index="' . $i . '">' . $nav_item . '</span>';
+        $i++;
+      }
+    }
+
+  }
+
   class arc_Navigator_Accordion extends arc_Navigator
   {
     function _construct()

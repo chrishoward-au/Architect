@@ -362,8 +362,12 @@
 <ol><li>Go to Architect > Styling Defaults and click <em>Reset All</em>. Apologies if you are using the Defaults options and need to re-enter them.</li>
 <li>Go to Architect > Tools and click <em>Rebuild Architect CSS Cache</em>.</li>
  <li>If your site has a a caching plugin or service, you will need to clear that as well</li></ol>
+ <p>If your Panels or Blueprints still look scrambled on the front end, go to their list in admin, select them all, select Edit from the dropdown and click Apply.</p>
 <h4>New features in 0.9.0</h4>
-<ul><li>&bull; Tabular layout. Select in Blueprints > Blueprint Layout > Layout mode. Many thanks to Matt Davis for this idea.</li></ul>
+<ul>
+<li>&bull; Tabular layout. Select in Blueprints > Blueprint Layout > Layout mode. Many thanks to Matt Davis for this idea.</li>
+<li>&bull; Navigation type Labels. Let you set specific labels for navigation items.</li>
+</ul>
  <p><a href="http://discourse.pizazzwp.com/t/architect-beta-v0-9-0" target="_blank">Full change log</a> | <a href="http://discourse.pizazzwp.com" target="_blank">Support</a> |<a href="%1$s">Hide Notice</a>'), '?pzarc_nag_ignore_v090=0');
 
         echo "</p>

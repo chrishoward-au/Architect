@@ -170,7 +170,7 @@
       $panel_class = new $content_class($this->build); // This gets the settings for the panels of this content type.
 
       if ($bp_nav_type === 'navigator') {
-        $this->nav_items = $panel_class->get_nav_items($this->build->blueprint[ '_blueprints_navigator' ], $this->arc_query);
+        $this->nav_items = $panel_class->get_nav_items($this->build->blueprint[ '_blueprints_navigator' ], $this->arc_query,$this->build->blueprint[ '_blueprints_navigator-labels' ]);
       }
 
 

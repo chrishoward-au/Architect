@@ -767,9 +767,11 @@
     /**
      * get_nav_items
      */
-    public function get_nav_items($blueprints_navigator, &$arc_query ) {
+    public function get_nav_items($blueprints_navigator, &$arc_query,$nav_labels)
+    {
       // We shouldn't have to pass arc_query! And we don't need to in this one, but for some unsolved reason in arc_Panel_Dummy, we do. So for consistency, doing it here too.
       $nav_items = array();
+      $i =0;
       foreach ($arc_query->posts as $the_post) {
 
         switch ($blueprints_navigator) {
@@ -782,6 +784,10 @@
             }
 
             $nav_items[ ] = '<span class="' . $blueprints_navigator . '">' . $post_title . '</span>';
+            break;
+
+          case 'labels':
+            $nav_items[ ] = '<span class="' . $blueprints_navigator . '">' . (isset($nav_labels[$i])?$nav_labels[$i++]:(1+$i++)) . '</span>';
             break;
 
           case 'thumbs':

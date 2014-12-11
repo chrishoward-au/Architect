@@ -47,6 +47,7 @@
     wp_register_script('js-datatables', PZARC_PLUGIN_APP_URL .'/public/js/DataTables/media/js/jquery.dataTables.min.js', array('jquery'), null, true);
     wp_register_style('css-datatables', PZARC_PLUGIN_APP_URL .'/public/js/DataTables/media/css/jquery.dataTables.min.css');
 
+
     // ResponCSS
 //    wp_register_script('js-responcss', PZARC_PLUGIN_APP_URL . '/shared/includes/css/ResponCSS/js/responcss.js');
 //    wp_register_style('css-responcss', PZARC_PLUGIN_APP_URL . '/shared/includes/css/ResponCSS/css/responcss.css');
