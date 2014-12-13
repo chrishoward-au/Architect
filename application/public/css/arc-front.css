@@ -228,12 +228,17 @@
     border-collapse: collapse; }
     .pzarchitect table thead {
       background: #eee; }
+  .pzarchitect .pzarc-accordion.title a {
+    color: inherit;
+    text-decoration: none; }
+  .pzarchitect .pzarc-accordion.title:hover a {
+    color: inherit;
+    text-decoration: none; }
   .pzarchitect .msie .pzarc-navigator {
     height: 0; }
   .pzarchitect .pzarc-navigator {
     left: 0;
     text-align: center;
-    bottom: 5px;
     z-index: 1;
     display: block; }
     .pzarchitect .pzarc-navigator.tabbed {

@@ -626,7 +626,7 @@
                 pzarc_redux_borders($prefix . 'sections-borders', array('.pzarc-sections'))
             )
         );
-        $icons             = array(1 => 'el-icon-align-left', 2 => 'el-icon-th', 3 => 'el-icon-th-list');
+        $icons             = array(1 => 'el-icon-align-left', 2 => 'el-icon-th', 3 => 'el-icon-align-justify');
 
         $this->sections[ ] = array(
             'title'      => 'Section 1',
@@ -709,13 +709,13 @@
                     'id'       => $prefix . 'navigator-selectors',
                     'type'     => 'text',
                     'readonly' => true,
-//                    'default'  => '.pzarc-navigator, .arc-slider-nav',
+                    //                    'default'  => '.pzarc-navigator, .arc-slider-nav',
                     'default'  => '.pzarc-navigator',
                 ),
                 pzarc_redux_bg($prefix . 'navigator-background', array('.pzarc-navigator')),
-                pzarc_redux_padding($prefix . 'navigator-padding', array( '.pzarc-navigator')),
-                pzarc_redux_margin($prefix . 'navigator-margins', array( '.pzarc-navigator')),
-                pzarc_redux_borders($prefix . 'navigator-borders', array( '.pzarc-navigator')),
+                pzarc_redux_padding($prefix . 'navigator-padding', array('.pzarc-navigator')),
+                pzarc_redux_margin($prefix . 'navigator-margins', array('.pzarc-navigator')),
+                pzarc_redux_borders($prefix . 'navigator-borders', array('.pzarc-navigator')),
                 array(
                     'title'  => __('Navigator items', 'pzarchitect'),
                     'id'     => $prefix . 'blueprint-nav-items-css-heading',
@@ -751,13 +751,13 @@
                     'default'  => '.pzarc-navigator .arc-slider-slide-nav-item:hover',
                 ),
                 pzarc_redux_font($prefix . 'navigator-items-hover-font', array('.pzarc-navigator .arc-slider-slide-nav-item:hover '), null, array('letter-spacing',
-                                                                                                                                                            'font-variant',
-                                                                                                                                                            'text-transform',
-                                                                                                                                                            'font-family',
-                                                                                                                                                            'font-style',
-                                                                                                                                                            'text-align',
-                                                                                                                                                            'line-height',
-                                                                                                                                                            'word-spacing')),
+                                                                                                                                                  'font-variant',
+                                                                                                                                                  'text-transform',
+                                                                                                                                                  'font-family',
+                                                                                                                                                  'font-style',
+                                                                                                                                                  'text-align',
+                                                                                                                                                  'line-height',
+                                                                                                                                                  'word-spacing')),
                 pzarc_redux_bg($prefix . 'navigator-items-hover-background', array('.pzarc-navigator .arc-slider-slide-nav-item:hover ')),
                 pzarc_redux_borders($prefix . 'navigator-items-hover-borders', array('.pzarc-navigator .arc-slider-slide-nav-item:hover ')),
                 array(
@@ -774,16 +774,142 @@
                     'default'  => '.pzarc-navigator .arc-slider-slide-nav-item.active',
                 ),
                 pzarc_redux_font($prefix . 'navigator-items-active-font', array('.pzarc-navigator .arc-slider-slide-nav-item.active '), null, array('letter-spacing',
-                                                                                                                                                            'font-variant',
-                                                                                                                                                            'text-transform',
-                                                                                                                                                            'font-family',
-                                                                                                                                                            'font-style',
-                                                                                                                                                            'text-align',
-                                                                                                                                                            'line-height',
-                                                                                                                                                            'word-spacing')),
+                                                                                                                                                    'font-variant',
+                                                                                                                                                    'text-transform',
+                                                                                                                                                    'font-family',
+                                                                                                                                                    'font-style',
+                                                                                                                                                    'text-align',
+                                                                                                                                                    'line-height',
+                                                                                                                                                    'word-spacing')),
                 pzarc_redux_bg($prefix . 'navigator-items-active-background', array('.pzarc-navigator .arc-slider-slide-nav-item.active ')),
                 pzarc_redux_borders($prefix . 'navigator-items-active-borders', array('.pzarc-navigator .arc-slider-slide-nav-item.active ')),
             ),
+        );
+        $thisSection = 'accordion-titles';
+        $primaryClass = '.pzarc-accordion.title';
+        $this->sections[ ] = array(
+            'id'         => 'accordion-css',
+            'title'      => 'Accordion',
+            'icon_class' => 'icon-large',
+            'icon'       => 'el-icon-lines',
+            'subsection' => true,
+            'fields'     => array(
+                array(
+                    'title'  => __('Titles', 'pzarchitect'),
+                    'id'     => $prefix . $thisSection.'-css-heading',
+                    'type'   => 'section',
+                    'indent' => true,
+
+                ),
+                array(
+                    'title'    => __('CSS selectors', 'pzarc'),
+                    'id'       => $prefix . $thisSection.'-selectors',
+                    'type'     => 'text',
+                    'readonly' => true,
+                    'default'  => $primaryClass,
+                ),
+                pzarc_redux_font($prefix . $thisSection.'-font', array($primaryClass), null),
+                pzarc_redux_bg($prefix . $thisSection.'-background', array($primaryClass)),
+                pzarc_redux_padding($prefix . $thisSection.'-padding', array($primaryClass)),
+                pzarc_redux_margin($prefix . $thisSection.'-margins', array($primaryClass)),
+                pzarc_redux_borders($prefix . $thisSection.'-borders', array($primaryClass)),
+                array(
+                    'title'  => __('Open', 'pzarchitect'),
+                    'id'     => $prefix . $thisSection.'-open-css-heading',
+                    'type'   => 'section',
+                    'indent' => true,
+
+                ),
+                array(
+                    'title'    => __('CSS selectors', 'pzarc'),
+                    'id'       => $prefix . $thisSection.'-open-selectors',
+                    'type'     => 'text',
+                    'readonly' => true,
+                    'default'  => $primaryClass.'.open',
+                ),
+                pzarc_redux_font($prefix . $thisSection.'-open-font', array($primaryClass.'.open '), null),
+                pzarc_redux_bg($prefix . $thisSection.'-open-background', array($primaryClass.'.open ')),
+                pzarc_redux_borders($prefix . $thisSection.'-open-borders', array($primaryClass.'.open ')),
+                array(
+                    'title'  => __('Hover', 'pzarchitect'),
+                    'id'     => $prefix . $thisSection.'-hover-css-heading',
+                    'type'   => 'section',
+                    'indent' => true,
+
+                ),
+                array(
+                    'title'    => __('CSS selectors', 'pzarc'),
+                    'id'       => $prefix . $thisSection.'-hover-selectors',
+                    'type'     => 'text',
+                    'readonly' => true,
+                    'default'  => $primaryClass.':hover',
+                ),
+                pzarc_redux_font($prefix . $thisSection.'-hover-font', array($primaryClass.':hover '), null),
+                pzarc_redux_bg($prefix . $thisSection.'-hover-background', array($primaryClass.':hover ')),
+                pzarc_redux_borders($prefix . $thisSection.'-hover-borders', array($primaryClass.':hover ')),
+            ),
+        );
+        $this->sections[ ] = array(
+            'id'         => 'tabular-css',
+            'title'      => 'Tabular',
+            'icon_class' => 'icon-large',
+            'icon'       => 'el-icon-th-list',
+            'subsection' => true,
+            'fields'     => array(
+                array(
+                    'title'  => __('Headings', 'pzarchitect'),
+                    'id'     => $prefix . 'blueprint-tabular-css-heading',
+                    'type'   => 'section',
+                    'indent' => true,
+
+                ),
+                array(
+                    'title'    => __('CSS selectors', 'pzarc'),
+                    'id'       => $prefix . 'tabular-headings-selectors',
+                    'type'     => 'text',
+                    'readonly' => true,
+                    'default'  => '.pzarc-section.datatables th',
+                ),
+                pzarc_redux_font($prefix . 'tabular-headings-font', array('.pzarc-section.datatables th '), null),
+                pzarc_redux_bg($prefix . 'tabular-headings-background', array('.pzarc-section.datatables th ')),
+                pzarc_redux_padding($prefix . 'tabular-headings-padding', array('.pzarc-section.datatables th ')),
+                pzarc_redux_margin($prefix . 'tabular-headings-margins', array('.pzarc-section.datatables th ')),
+                pzarc_redux_borders($prefix . 'tabular-headings-borders', array('.pzarc-section.datatables th ')),
+                array(
+                    'title'  => __('Odd rows', 'pzarchitect'),
+                    'id'     => $prefix . 'blueprint-tabular-odd-rows-css-heading',
+                    'type'   => 'section',
+                    'indent' => true,
+
+                ),
+                array(
+                    'title'    => __('CSS selectors', 'pzarc'),
+                    'id'       => $prefix . 'tabular-odd-rows-selectors',
+                    'type'     => 'text',
+                    'readonly' => true,
+                    'default'  => '.pzarc-section.datatables .odd-section-panel',
+                ),
+                pzarc_redux_font($prefix . 'tabular-odd-rows-font', array('.pzarc-section.datatables .odd-section-panel '), null),
+                pzarc_redux_bg($prefix . 'tabular-odd-rows-background', array('.pzarc-section.datatables .odd-section-panel ')),
+                pzarc_redux_borders($prefix . 'tabular-odd-rows-borders', array('.pzarc-section.datatables .odd-section-panel ')),
+                array(
+                    'title'  => __('Even rows', 'pzarchitect'),
+                    'id'     => $prefix . 'blueprint-tabular-even-rows-css-heading',
+                    'type'   => 'section',
+                    'indent' => true,
+
+                ),
+                array(
+                    'title'    => __('CSS selectors', 'pzarc'),
+                    'id'       => $prefix . 'tabular-even-rows-selectors',
+                    'type'     => 'text',
+                    'readonly' => true,
+                    'default'  => '.pzarc-section.datatables .even-section-panel',
+                ),
+                pzarc_redux_font($prefix . 'tabular-even-rows-font', array('.pzarc-section.datatables .even-section-panel '), null),
+                pzarc_redux_bg($prefix . 'tabular-even-rows-background', array('.pzarc-section.datatables .even-section-panel ')),
+                pzarc_redux_borders($prefix . 'tabular-even-rows-borders', array('.pzarc-section.datatables .even-section-panel ')),
+            )
         );
 
         $this->sections[ ] = array(
@@ -804,6 +930,7 @@
                 ),
             )
         );
+
         $this->sections[ ] = array(
             'id'         => 'styling-help',
             'title'      => 'Help',

@@ -705,3 +705,8 @@
 
     return $minify;
   }
+
+ add_shortcode('pztestsc','pzarc_test_shortcode');
+  function pzarc_test_shortcode($atts) {
+    return 'Shortcode test';
+  }

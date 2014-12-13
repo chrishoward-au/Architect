@@ -570,7 +570,7 @@
                         //          'fitColumns'      => 'Fit columns',
                         'masonry'   => 'Masonry (Pinterest-like)',
                         'table'     => 'Tabular',
-//                        'accordion' => 'Accordion',
+                        'accordion' => 'Accordion',
                         //          'masonryVertical' => 'Masonry Vertical',
                         //          'panelsByRow'      => 'Panels by row',
                         //          'panelsByColumn'   => 'Panels by column',
@@ -588,15 +588,15 @@
                     'add_text'   => 'Add a title',
                     'required'   => array($prefix . 'section-' . $i . '-layout-mode', '=', 'table'),
                 ),
-//                array(
-//                    'id'         => $prefix . 'section-' . $i . '-accordion-titles',
-//                    'title'      => __('Accordion titles', 'pzarchitect'),
-//                    'type'       => 'multi_text',
-//                    'show_empty' => false,
-//                    'add_text'   => 'Add a title',
-//                    'required'   => array($prefix . 'section-' . $i . '-layout-mode', '=', 'accordion'),
-//                    'subtitle'   => 'None to use post titles'
-//                ),
+                array(
+                    'id'         => $prefix . 'section-' . $i . '-accordion-titles',
+                    'title'      => __('Accordion titles', 'pzarchitect'),
+                    'type'       => 'multi_text',
+                    'show_empty' => false,
+                    'add_text'   => 'Add a title',
+                    'required'   => array($prefix . 'section-' . $i . '-layout-mode', '=', 'accordion'),
+                    'subtitle'   => 'None to use post titles'
+                ),
                 array(
                     'title'    => __('Limit panels (content)', 'pzarchitect'),
                     'id'       => $prefix . 'section-' . $i . '-panels-limited',
@@ -1380,6 +1380,93 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
                 pzarc_redux_borders($prefix . $thisSection . $border, $this->defaults ? '' : $_architect[ 'architect_config_' . $thisSection . '-selectors' ], $defaults[ $optprefix . $thisSection . $border ])
             ),
         );
+        $thisSection = 'accordion-titles';
+        $sections[ ] = array(
+            'id'         => 'accordion-css',
+            'title'      => 'Accordion',
+            'icon_class' => 'icon-large',
+            'icon'       => 'el-icon-lines',
+            'fields'     => array(
+                array(
+                    'title'  => __('Titles', 'pzarchitect'),
+                    'id'     => $prefix . 'blueprint-accordion-css-heading',
+                    'type'   => 'section',
+                    'indent' => true,
+                    'subtitle' => 'Class: '.$_architect[ 'architect_config_' . $thisSection . '-selectors' ]
+
+                ),
+                pzarc_redux_font($prefix . $thisSection . $font, $this->defaults ? '' : $_architect[ 'architect_config_' . $thisSection . '-selectors' ], $defaults[ $optprefix . $thisSection . $font ]),
+                pzarc_redux_bg($prefix . $thisSection . $background, $this->defaults ? '' : $_architect[ 'architect_config_' . $thisSection . '-selectors' ], $defaults[ $optprefix . $thisSection . $background ]),
+                pzarc_redux_padding($prefix . $thisSection . $padding, $this->defaults ? '' : $_architect[ 'architect_config_' . $thisSection . '-selectors' ], $defaults[ $optprefix . $thisSection . $padding ]),
+                pzarc_redux_margin($prefix . $thisSection . $margin, $this->defaults ? '' : $_architect[ 'architect_config_' . $thisSection . '-selectors' ], $defaults[ $optprefix . $thisSection . $margin ]),
+                pzarc_redux_borders($prefix . $thisSection . $border, $this->defaults ? '' : $_architect[ 'architect_config_' . $thisSection . '-selectors' ], $defaults[ $optprefix . $thisSection . $border ]),
+                array(
+                    'title'  => __('Open', 'pzarchitect'),
+                    'id'     => $prefix . 'blueprint-accordion-open-css-heading',
+                    'type'   => 'section',
+                    'indent' => true,
+                    'subtitle' => 'Class: '.$_architect[ 'architect_config_' . $thisSection . '-open-selectors' ]
+                ),
+                pzarc_redux_font($prefix . $thisSection . '-open'.$font, $this->defaults ? '' : $_architect[ 'architect_config_' . $thisSection . '-open-selectors' ], $defaults[ $optprefix . $thisSection . '-open' . $font ]),
+                pzarc_redux_bg($prefix . $thisSection . '-open'.$background, $this->defaults ? '' : $_architect[ 'architect_config_' . $thisSection . '-open-selectors' ], $defaults[ $optprefix . $thisSection . '-open' . $background ]),
+                pzarc_redux_borders($prefix . $thisSection . '-open'.$border, $this->defaults ? '' : $_architect[ 'architect_config_' . $thisSection . '-open-selectors' ], $defaults[ $optprefix . $thisSection . '-open' . $border ]),
+                array(
+                    'title'  => __('Hover', 'pzarchitect'),
+                    'id'     => $prefix . 'blueprint-accordion-hover-css-heading',
+                    'type'   => 'section',
+                    'indent' => true,
+                    'subtitle' => 'Class: '.$_architect[ 'architect_config_' . $thisSection . '-hover-selectors' ]
+                ),
+                pzarc_redux_font($prefix . $thisSection .'-hover'. $font, $this->defaults ? '' : $_architect[ 'architect_config_' . $thisSection . '-hover-selectors' ], $defaults[ $optprefix . $thisSection . '-hover' . $font ]),
+                pzarc_redux_bg($prefix . $thisSection . '-hover'.$background, $this->defaults ? '' : $_architect[ 'architect_config_' . $thisSection . '-hover-selectors' ], $defaults[ $optprefix . $thisSection . '-hover' . $background ]),
+                pzarc_redux_borders($prefix . $thisSection . '-hover'.$border, $this->defaults ? '' : $_architect[ 'architect_config_' . $thisSection . '-hover-selectors' ], $defaults[ $optprefix . $thisSection . '-hover' . $border ]),
+            ),
+        );
+        $thisSection = 'tabular';
+        $sections[ ] = array(
+            'id'         => 'tabular-css',
+            'title'      => 'Tabular',
+            'icon_class' => 'icon-large',
+            'icon'       => 'el-icon-th-list',
+            'fields'     => array(
+                array(
+                    'title'  => __('Headings', 'pzarchitect'),
+                    'id'     => $prefix . 'blueprint-tabular-css-heading',
+                    'type'   => 'section',
+                    'subtitle'=> 'Class: '.$this->defaults ? '' : $_architect[ 'architect_config_' . $thisSection . '-selectors' ],
+                    'indent' => true,
+
+                ),
+                pzarc_redux_font($prefix . $thisSection . '-headings'.$font, $this->defaults ? '' : $_architect[ 'architect_config_' . $thisSection . '-headings-selectors' ], $defaults[ $optprefix . $thisSection . '-headings'.$font ]),
+                pzarc_redux_bg($prefix . $thisSection . '-headings'.$background, $this->defaults ? '' : $_architect[ 'architect_config_' . $thisSection . '-headings-selectors' ], $defaults[ $optprefix . $thisSection . '-headings'.$background ]),
+                pzarc_redux_padding($prefix . $thisSection . '-headings'.$padding, $this->defaults ? '' : $_architect[ 'architect_config_' . $thisSection . '-headings-selectors' ], $defaults[ $optprefix . $thisSection .'-headings'. $padding ]),
+                pzarc_redux_margin($prefix . $thisSection . '-headings'.$margin, $this->defaults ? '' : $_architect[ 'architect_config_' . $thisSection . '-headings-selectors' ], $defaults[ $optprefix . $thisSection . '-headings'.$margin ]),
+                pzarc_redux_borders($prefix . $thisSection . '-headings'.$border, $this->defaults ? '' : $_architect[ 'architect_config_' . $thisSection . '-headings-selectors' ], $defaults[ $optprefix . $thisSection .'-headings'. $border ]),
+                array(
+                    'title'  => __('Odd rows', 'pzarchitect'),
+                    'id'     => $prefix . 'blueprint-tabular-odd-rows-css-heading',
+                    'type'   => 'section',
+                    'subtitle'=> 'Class: '.$this->defaults ? '' : $_architect[ 'architect_config_' . $thisSection . '-odd-rows-selectors' ],
+                    'indent' => true,
+
+                ),
+                pzarc_redux_font($prefix . $thisSection .'-odd-rows'. $font, $this->defaults ? '' : $_architect[ 'architect_config_' . $thisSection . '-odd-rows-selectors' ], $defaults[ $optprefix . $thisSection . '-odd-rows' . $font ]),
+                pzarc_redux_bg($prefix . $thisSection . '-odd-rows'.$background, $this->defaults ? '' : $_architect[ 'architect_config_' . $thisSection . '-odd-rows-selectors' ], $defaults[ $optprefix . $thisSection . '-odd-rows' . $background ]),
+                pzarc_redux_borders($prefix . $thisSection . '-odd-rows'.$border, $this->defaults ? '' : $_architect[ 'architect_config_' . $thisSection . '-odd-rows-selectors' ], $defaults[ $optprefix . $thisSection . '-odd-rows' . $border ]),
+                array(
+                    'title'  => __('Even rows', 'pzarchitect'),
+                    'id'     => $prefix . 'blueprint-tabular-even-rows-css-heading',
+                    'type'   => 'section',
+                    'subtitle'=> 'Class: '.$this->defaults ? '' : $_architect[ 'architect_config_' . $thisSection . '-even-rows-selectors' ],
+                    'indent' => true,
+
+                ),
+                pzarc_redux_font($prefix . $thisSection .'-even-rows'. $font, $this->defaults ? '' : $_architect[ 'architect_config_' . $thisSection . '-even-rows-selectors' ], $defaults[ $optprefix . $thisSection . '-even-rows' . $font ]),
+                pzarc_redux_bg($prefix . $thisSection . '-even-rows'.$background, $this->defaults ? '' : $_architect[ 'architect_config_' . $thisSection . '-even-rows-selectors' ], $defaults[ $optprefix . $thisSection . '-even-rows' . $background ]),
+                pzarc_redux_borders($prefix . $thisSection . '-even-rows'.$border, $this->defaults ? '' : $_architect[ 'architect_config_' . $thisSection . '-even-rows-selectors' ], $defaults[ $optprefix . $thisSection . '-even-rows' . $border ]),
+            )
+        );
+
         $thisSection = 'navigator';
         $sections[ ] = array(
             'title'      => 'Navigator',

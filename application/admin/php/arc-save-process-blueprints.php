@@ -47,6 +47,9 @@
           // UGH! Need to hack this for when is thumb nav
           $bpkeys[ 'id' ] = 'arc-slider-nav';
         }
+        if ('blueprint-custom'===$bpkeys['id']){
+          $pzarc_contents .= $value;
+        }
         if (!in_array($bpkeys['id'],array('blueprint-custom','blueprints-load'))) {
 
           // Filter out old selector names hanging arouind in existing bblueprints

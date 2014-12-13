@@ -413,7 +413,7 @@
         }
       }
 
-      return self::render_generics($component, $content_type, $panel_def[ $component ], $layout_mode);
+      return self::render_generics($component, $content_type, do_shortcode($panel_def[ $component ]), $layout_mode);
     }
 
     public function render_content($component, $content_type, $panel_def, $rsid, $layout_mode = false)
@@ -767,11 +767,11 @@
     /**
      * get_nav_items
      */
-    public function get_nav_items($blueprints_navigator, &$arc_query,$nav_labels)
+    public function get_nav_items($blueprints_navigator, &$arc_query, $nav_labels)
     {
       // We shouldn't have to pass arc_query! And we don't need to in this one, but for some unsolved reason in arc_Panel_Dummy, we do. So for consistency, doing it here too.
       $nav_items = array();
-      $i =0;
+      $i         = 0;
       foreach ($arc_query->posts as $the_post) {
 
         switch ($blueprints_navigator) {
@@ -787,7 +787,15 @@
             break;
 
           case 'labels':
-            $nav_items[ ] = '<span class="' . $blueprints_navigator . '">' . (isset($nav_labels[$i])?$nav_labels[$i++]:(1+$i++)) . '</span>';
+            global $pzarc_post_id;
+            $pzarc_post_id = $the_post->ID;
+            if (isset($nav_labels[ $i ])) {
+              $label = do_shortcode($nav_labels[ $i ]);
+            } else {
+              $label = 1 + $i;
+            }
+            $nav_items[ ] = '<span class="' . $blueprints_navigator . '">' . $label . '</span>';
+            $i++;
             break;
 
           case 'thumbs':
@@ -824,8 +832,10 @@
     }
 
 
-    protected function get_thumbsize($dim)
-    {
+    protected
+    function get_thumbsize(
+        $dim
+    ) {
       // $dim for later development with rectangular thumbs
       $thumbsize = 60;
       switch ($this->build->blueprint[ '_blueprints_navigator-sizing' ]) {
@@ -856,7 +866,8 @@
      * Returns:
      *
      *************************************************/
-    public function build_header_footer_meta_groups(
+    public
+    function build_header_footer_meta_groups(
         $panel_def, $section_panel_settings
     ) {
       //replace meta1innards etc

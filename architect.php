@@ -366,7 +366,9 @@
 <h4>New features in 0.9.0</h4>
 <ul>
 <li>&bull; Tabular layout. Select in Blueprints > Blueprint Layout > Layout mode. Many thanks to Matt Davis for this idea.</li>
+<li>&bull; Accordion layout. Select in Blueprints > Blueprint Layout > Layout mode.</li>
 <li>&bull; Navigation type Labels. Let you set specific labels for navigation items.</li>
+<li>&bull; In Meta fields, Accordion titles and Navigation Labels, you can now include shortcodes. This is the best and most secure way to include and execute custom code.</li>
 </ul>
  <p><a href="http://discourse.pizazzwp.com/t/architect-beta-v0-9-0" target="_blank">Full change log</a> | <a href="http://discourse.pizazzwp.com" target="_blank">Support</a> |<a href="%1$s">Hide Notice</a>'), '?pzarc_nag_ignore_v090=0');
 

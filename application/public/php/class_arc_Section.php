@@ -29,7 +29,7 @@
     private $section_title;
     private $slider_type;
     private $rsid;
-    private $table_titles;
+    private $table_accordion_titles;
 
     /**
      * @param      $number
@@ -39,10 +39,10 @@
      * @param      $layout_mode
      * @param null $slider_type
      * @param null $section_title
-     * @param      $table_titles
+     * @param      $table_accordion_titles
      * @internal param $blueprint
      */
-    public function __construct($number, $section_panel, $content_source, $navtype, $layout_mode, $slider_type = null, $section_title = null, $table_titles = array())
+    public function __construct($number, $section_panel, $content_source, $navtype, $layout_mode, $slider_type = null, $section_title = null, $table_accordion_titles = array())
     {
 
 
@@ -54,14 +54,12 @@
       $this->section_title  = $section_title;
       $this->slider_type    = $slider_type;
       $this->rsid           = 'rsid' . (rand(1, 9999) * rand(10000, 99999));
-      $this->table_titles = $table_titles;
+      $this->table_accordion_titles = $table_accordion_titles;
 
       if ('table' === $this->layout_mode) {
-        wp_enqueue_script('js-datatables');
-        wp_enqueue_style('css-datatables');
 
       }
-      $this->table_titles = $table_titles;
+      $this->table_accordion_titles = $table_accordion_titles;
     }
 
     function open_section()
@@ -73,8 +71,6 @@
         add_filter('excerpt_more', array(&$this, 'set_excerpt_more'), 999);
       }
 
-      // Do we load up the MAsonry here?
-      wp_enqueue_script('js-isotope-v2');
 
       do_action("arc_before_section_{$this->section_number}");
 
@@ -92,22 +88,29 @@
       }
 
       $isotope      = '';
+      $accordion = '';
       $layout_class = 'tiles';
       switch ($this->layout_mode) {
 
         case 'masonry':
 //          $isotope = 'data-isotope-options=\'{ "layoutMode": "masonry","itemSelector": ".pzarc-panel","masonry":{"columnWidth":50,"gutter":20}}\'';
 
+          // Do we load up the MAsonry here?
+          wp_enqueue_script('js-isotope-v2');
           $isotope      = 'data-isotope-options=\'{ "layoutMode": "masonry","itemSelector": ".pzarc-panel","masonry":{"columnWidth":".grid-sizer","gutter":".gutter-sizer"}}\'';
           $layout_class = 'js-isotope';
           break;
 
         case 'accordion':
           $layout_class = 'accordion';
+          $accordion = ' data-collapse="accordion"';
+          wp_enqueue_script('js-jquery-collapse');
           break;
 
         case 'table':
-          $layout_class = 'dynatable';
+          wp_enqueue_script('js-datatables');
+          wp_enqueue_style('css-datatables');
+          $layout_class = 'datatables';
           break;
 
       }
@@ -115,7 +118,7 @@
       // TODO: Might need to change js-isotope to masonry - chekc impact tho
       // TODO Accordion
 
-      echo '<' . ('table' !== $this->layout_mode ? 'section' : 'table') . ' id="' . $this->rsid . '" class="' . $layout_class . ' pzarc-section pzarc-section_' . $this->section_number . ' pzarc-section-using-panel_' . $this->section[ 'section-panel-settings' ][ '_panels_settings_short-name' ] . $this->slider[ 'wrapper' ] . '"' . $isotope . '>';
+      echo '<' . ('table' !== $this->layout_mode ? 'section' : 'table') . ' id="' . $this->rsid . '" class="' . $layout_class . ' pzarc-section pzarc-section_' . $this->section_number . ' pzarc-section-using-panel_' . $this->section[ 'section-panel-settings' ][ '_panels_settings_short-name' ] . $this->slider[ 'wrapper' ] . '"' . $isotope . $accordion.'>';
 
       // Table heading stuff
       if ('table' === $this->layout_mode) {
@@ -138,10 +141,10 @@
 
         $i = 0;
         // If any titles are missing, the remainder are blanked
-        $this->table_titles   = (is_array($this->table_titles)?$this->table_titles:array($this->table_titles));
-        $this->table_titles = array_pad($this->table_titles,count($widths),'');
+        $this->table_accordion_titles   = (is_array($this->table_accordion_titles)?$this->table_accordion_titles:array($this->table_accordion_titles));
+        $this->table_accordion_titles = array_pad($this->table_accordion_titles,count($widths),'');
 
-        foreach ($this->table_titles as $title) {
+        foreach ($this->table_accordion_titles as $title) {
           echo '<th>' . $title . '</th>';
         }
         echo '</tr></thead>';
@@ -152,7 +155,6 @@
         echo '<div class="grid-sizer"></div><div class="gutter-sizer"></div>';
 
       }
-
     }
 
     /**
@@ -248,11 +250,14 @@
       // TODO: Added an extra div here to pre-empt the structure needed for accordions. Tho, needs some work as it breaks layout. Maybe conditional
       // TODO: Probably use jQuery Collapse for accordions
 
+      /** ACCORDION TITLES */
       if ('accordion'===$this->layout_mode) {
-//      echo '<div class="arc-panel-wrapper" style="margin:0;padding:0">';
-//      echo '<div class="arc-panel-title"></div>'; // Use this for future accordion layout
-        // Somehow have to grab the title. :/ Maybe also need an option "Use for titles"
-        echo '<div class="pzarc-accordion title">Accordion title</div>';
+        $accordion_title = $post->post_title;
+        if (!empty($this->table_accordion_titles) && isset($this->table_accordion_titles[$panel_def])) {
+          $accordion_title = do_shortcode($this->table_accordion_titles[$panel_number]);
+        }
+        //'_blueprint_section-' . $this->section_number . '-accordion-titles'
+        echo '<div class="pzarc-accordion title '.($panel_number===1?'open':'close').'">'.$accordion_title.'</div>';
       }
 
 
