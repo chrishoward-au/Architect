@@ -136,16 +136,17 @@
      */
     public function get_custom_query() {
 // Get any existing copy of our transient data
+      global $wp_query;
+      // 0.9.0.2 TODO: This scares me! Test thoroughly that it's okay to use $wp_query. The big problem is if something else changes it midstream. And then resets to the main query!
       if ( !current_user_can( 'manage_options' ) && false === ( $custom_query = get_transient( 'pzarc_custom_query_'.$this->build->blueprint['_blueprints_short-name'] ) ) ) {
         // It wasn't there, so regenerate the data and save the transient
-        $custom_query = new WP_Query($this->query_options);
+        $wp_query = new WP_Query($this->query_options);
 
         set_transient( 'pzarc_custom_query_'.$this->build->blueprint['_blueprints_short-name'], $custom_query, PZARC_TRANSIENTS_KEEP );
       } elseif (current_user_can( 'manage_options' )) {
-        $custom_query = new WP_Query($this->query_options);
+        $wp_query = new WP_Query($this->query_options);
       }
-
-      return $custom_query;
+      return $wp_query;
     }
 
     protected function content_filters($source,$overrides) {

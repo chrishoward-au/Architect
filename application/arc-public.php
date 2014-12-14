@@ -243,7 +243,7 @@ pzdb('start pzarc');
       }
     }
 
-    // Tell WP to resume using the main query just in case we might have accidentally left another query active.
+    // Tell WP to resume using the main query just in case we might have accidentally left another query active. (0.9.0.2 This might be our saviour!)
     wp_reset_postdata();
     pzdb('end pzarc');
   }

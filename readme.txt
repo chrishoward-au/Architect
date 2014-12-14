@@ -104,6 +104,9 @@ This is BETA software. So there are many besides these ones!
 
 == Changelog ==
 
+= 0.9.0.2 =
+* CHANGED: Custom query overwrites $wp_query. This makes is_main_query() work, but could have other serious consquences.
+
 = 0.9.0.1 =
 * CHANGED: Blueprint cield in Actions Editor to a dropdown
 
