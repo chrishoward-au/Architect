@@ -104,6 +104,9 @@ This is BETA software. So there are many besides these ones!
 
 == Changelog ==
 
+= 0.9.0.1 =
+* CHANGED: Blueprint cield in Actions Editor to a dropdown
+
 = 0.9.0 =
 * ADDED: Layout mode Tabular (Many thanks to Matt Davis for this idea)
 * ADDED: Layout mode Accordion.
