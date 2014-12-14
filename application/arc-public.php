@@ -200,6 +200,7 @@ pzdb('start pzarc');
 
     $is_shortcode = ($caller == 'shortcode');
 
+//    var_dump(is_main_query(),$caller);
 
     if (empty($blueprint) && ($is_shortcode && (empty($_architect_options[ 'architect_default_shortcode_blueprint' ])) && empty($_architect_options[ 'architect_replace_wpgalleries' ]))) {
 
@@ -227,49 +228,17 @@ pzdb('start pzarc');
 
 
       $architect = new ArchitectPublic($blueprint, $is_shortcode);
+      // If no errors, let's go!
       if (empty($architect->build->blueprint[ 'err_msg' ])) {
 
 
+        /** This is it! **/
         $architect->build_blueprint($overrides, $caller, $additional_overrides);
-
-
-        /* These lines from ExcerptsPlus */
-        // removed after null prob fixed. may need to be reinstated one day
-        // Reinstated after conflict with breadcrumbs and related posts plugin
-        //Added 11/8/13 so can display multiple blocks on single post page with single post's content
-
-        // TODO: We mighthave to check these!!
-        //  public 'is_single' => boolean false
-        //  public 'is_preview' => boolean false
-        //  public 'is_page' => boolean true
-        //  public 'is_archive' => boolean false
-        //  public 'is_date' => boolean false
-        //  public 'is_year' => boolean false
-        //  public 'is_month' => boolean false
-        //  public 'is_day' => boolean false
-        //  public 'is_time' => boolean false
-        //  public 'is_author' => boolean false
-        //  public 'is_category' => boolean false
-        //  public 'is_tag' => boolean false
-        //  public 'is_tax' => boolean false
-        //  public 'is_search' => boolean false
-        //  public 'is_feed' => boolean false
-        //  public 'is_comment_feed' => boolean false
-        //  public 'is_trackback' => boolean false
-        //  public 'is_home' => boolean false
-        //  public 'is_404' => boolean false
-        //  public 'is_comments_popup' => boolean false
-        //  public 'is_paged' => boolean false
-        //  public 'is_admin' => boolean false
-        //  public 'is_attachment' => boolean false
-        //  public 'is_singular' => boolean true
-        //  public 'is_robots' => boolean false
-        //  public 'is_posts_page' => boolean false
-        //  public 'is_post_type_archive' => boolean false
 
         // might need this... don't know
         if (is_main_query() || in_the_loop() || $caller === 'shortcode') {
         }
+        // Cleanup
         unset ($architect);
       }
     }

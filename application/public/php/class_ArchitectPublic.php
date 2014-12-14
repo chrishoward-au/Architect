@@ -520,7 +520,7 @@
         global $wp_query;
         $wp_query = $this->arc_query;
         wp_reset_postdata();
-      }
+     }
 
     }
 

@@ -67,7 +67,7 @@
     static function pzarc_build($block, $just_defaults)
     {
       if (!$just_defaults) {
-        $pzarc_blueprints = self::get_blueprints(true);
+        $pzarc_blueprints = pzarc_get_blueprints(true);
         $pzarc_blueprints = array_merge(array('none' => 'Select blueprint'), $pzarc_blueprints);
       } else {
         $pzarc_blueprints = array();
@@ -136,26 +136,6 @@
       return $pzarc_return;
     }
 
-    static function get_blueprints($pzarc_inc_width)
-    {
-      global $wp_query;
-      $query_options    = array(
-          'post_type'      => 'arc-blueprints',
-          'meta_key'       => '_blueprints_short-name',
-          'posts_per_page' => '-1'
-      );
-
-      $blueprints_query = new WP_Query($query_options);
-      $pzarc_return     = array();
-      while ($blueprints_query->have_posts()) {
-        $blueprints_query->the_post();
-        $the_panel_meta = get_post_meta($blueprints_query->post->ID);
-        $pzarc_return[ $the_panel_meta[ '_blueprints_short-name' ][ 0 ] . '##' . $blueprints_query->post->ID ] = get_the_title($blueprints_query->post->ID);
-      };
-      asort($pzarc_return);
-
-      return $pzarc_return;
-    }
 
 
   }
