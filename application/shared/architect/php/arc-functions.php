@@ -706,7 +706,40 @@
     return $minify;
   }
 
- add_shortcode('pztestsc','pzarc_test_shortcode');
-  function pzarc_test_shortcode($atts) {
+  add_shortcode('pztestsc', 'pzarc_test_shortcode');
+  function pzarc_test_shortcode($atts)
+  {
     return 'Shortcode test';
   }
+
+  // TODO: This is a sorta duplicate of pzarc_get_posts_in_type. Fix it one day.
+  function pzarc_get_blueprints($inc_post_id=false)
+  {
+    $query_options = array(
+        'post_type'      => 'arc-blueprints',
+        'meta_key'       => '_blueprints_short-name',
+        'posts_per_page' => '-1'
+    );
+    $blueprints_query = new WP_Query($query_options);
+    $pzarc_return     = array();
+    while ($blueprints_query->have_posts()) {
+      $blueprints_query->next_post();
+      $the_panel_meta        = get_post_meta($blueprints_query->post->ID);
+      $bpid                  = $the_panel_meta[ '_blueprints_short-name' ][ 0 ] . ($inc_post_id?'##' . $blueprints_query->post->ID:'');
+      $pzarc_return[ $bpid ] = get_the_title($blueprints_query->post->ID);
+    };
+    asort($pzarc_return);
+    wp_reset_postdata();
+    return $pzarc_return;
+  }
+
+  // Testing function.
+//  add_filter( 'the_content', 'cv_display_random_imgs_home' );
+//  function cv_display_random_imgs_home( $content ) {
+//    $custom_content = '1WTF'.$content;
+//    // Theoretically, this shouldn't run in most instances coz Architect is not the main loop. Template tags or a specific action could be the exception.
+//    if ( is_main_query() ) {
+//      $custom_content .= '2WTF';
+//    }
+//    return $custom_content;
+//  }

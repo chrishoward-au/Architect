@@ -68,7 +68,7 @@
 
         // Demo of how to use the dynamic CSS and write your own static CSS file
         $filename = PZARC_CACHE_PATH . '/arc-dynamic-styles' . '.css';
-      //  var_dump($filename);
+        //  var_dump($filename);
         global $wp_filesystem;
         if (empty($wp_filesystem)) {
           require_once(ABSPATH . '/wp-admin/includes/file.php');
@@ -235,35 +235,36 @@
             'icon'       => 'el-icon-wrench',
             'fields'     => array(
                 array(
-                    'title'    => __('Number of Actions', 'pzarc'),
-                    'id'       => 'architect_actions_number-of',
-                    'type'     => 'spinner',
-                    'default'  => 1,
-                    'min'      => '1',
-                    'max'      => '100',
-                    'step'     => '1',
+                    'title'   => __('Number of Actions', 'pzarc'),
+                    'id'      => 'architect_actions_number-of',
+                    'type'    => 'spinner',
+                    'default' => 1,
+                    'min'     => '1',
+                    'max'     => '100',
+                    'step'    => '1',
                 ),
             )
         );
-        $actions_options = get_option('_architect_actions');
-        for ($i = 1; $i <= $actions_options['architect_actions_number-of']; $i++) {
-          $action_title = (empty($actions_options['architect_actions_'.$i.'_action-name'])?'Action '.$i:$actions_options['architect_actions_'.$i.'_action-name'].' '.$actions_options['architect_actions_'.$i.'_blueprint']);
-          $prefix = 'architect_actions_'.$i.'_';
+        $actions_options   = get_option('_architect_actions');
+        for ($i = 1; $i <= $actions_options[ 'architect_actions_number-of' ]; $i++) {
+          $action_title      = (empty($actions_options[ 'architect_actions_' . $i . '_action-name' ]) ? 'Action ' . $i : $actions_options[ 'architect_actions_' . $i . '_action-name' ] . ' ' . $actions_options[ 'architect_actions_' . $i . '_blueprint' ]);
+          $prefix            = 'architect_actions_' . $i . '_';
           $this->sections[ ] = array(
               'title'      => $action_title,
               'show_title' => true,
               'icon'       => 'el-icon-cogs',
               'fields'     => array(
                   array(
-                      'title'    => __('Action Name', 'pzarc'),
-                      'id'       => $prefix . 'action-name',
-                      'type'     => 'text',
-                      'default'  => '',
+                      'title'   => __('Action Name', 'pzarc'),
+                      'id'      => $prefix . 'action-name',
+                      'type'    => 'text',
+                      'default' => '',
                   ),
                   array(
                       'title'   => __('Blueprint shortname', 'pzarc'),
                       'id'      => $prefix . 'blueprint',
-                      'type'    => 'text',
+                      'type'    => 'select',
+                      'options' => pzarc_get_blueprints(false),
                       'default' => '',
                   ),
                   array(
@@ -292,7 +293,7 @@
                       'id'      => $prefix . 'specificids',
                       'type'    => 'text',
                       'default' => '',
-//                      'required'=> array($prefix . 'pageids','contains','specific')
+                      //                      'required'=> array($prefix . 'pageids','contains','specific')
                   ),
 
               )
