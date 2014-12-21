@@ -99,23 +99,34 @@ This is BETA software. So there are many besides these ones!
 2. Architect Blueprint Designer
 3. Output of various Architect Blueprints
 
-* TODO ADD Method to load preset styles
-* TODO: ADD tabular stylings
 
 == Changelog ==
 
+
+= 0.9.0.3 =
+* CHANGED: Sections to use divs for HTML validity
+* CHANGED: Removed use of flexbox in layout coz of IE10 incompatiblity issues.
+* CHANGED: Getting Started to Help & Support page
+* FIXED: Focal Point accuracy on media viewer
+* TODO ADD Method to load preset styles
+* CHANGED: Layout types now include sliders and tabbed.
+* CHANGED: Pagination now its own item in general
+* CHANGED: Removed Navigator from general and is now selected when Sliders or Tabbed is layout type
+* FIXED : D.A.R bug in admin metabox tabs where the first ones weren't showing sometimes.
+* CHANGED: Panel margins in Blueprints to include units selection. This currently renders Architect not working in IE8 (2% marketshare)
+
 = 0.9.0.2 =
-* CHANGED: Custom query overwrites $wp_query. This makes is_main_query() work, but could have other serious consquences.
+* CHANGED: Custom query overwrites $wp_query. This makes is_main_query() work, but could have other serious consaquences.
 
 = 0.9.0.1 =
-* CHANGED: Blueprint cield in Actions Editor to a dropdown
+* CHANGED: Blueprint field in Actions Editor to a dropdown
 
 = 0.9.0 =
 * ADDED: Layout mode Tabular (Many thanks to Matt Davis for this idea)
 * ADDED: Layout mode Accordion.
 * ADDED: Navigation type Labels which lets you give specific titles. 
 * ADDED: Option to set typography units as px, em or rem
-* ADDED: Meta fields, Accordion titles and Navigation Labels can now parse shortcodes. Use shortcodes for any PHP you want to run. In Nav Lables shortcodes, use global $pzarc_post_id to get post ID.
+* ADDED: Meta fields, Accordion titles and Navigation Labels can now parse shortcodes. Use shortcodes for any PHP you want to run. In Nav Label shortcodes, use global $pzarc_post_id to get post ID.
 
 * CHANGED: Refactored to allow easy creation of a Lite version
 * CHANGED: Option to deactivate wrapping of Panel header/footer components.

@@ -5,8 +5,9 @@
 }
 
 li.arc-message {
-  width:100%;
+  width: 100%;
 }
+
 .pzarc-tab-icon {
   font-size: 1.3em;
   vertical-align: -6%;
@@ -963,36 +964,31 @@ body.post-type-arc-panels .redux-main .select_wrapper {
 }
 */
 
+.postbox .redux-container.redux-no-sections .redux-main tr td {
+  padding: 5px !important;
+}
+
 /* Remove this once Dovy fixes! */
 .post-type-arc-panels,
 .post-type-arc-blueprints {
   .showDefaults {
     /*display: none !important;*/
   }
-}
-
-.post-type-arc-panels,
-.post-type-arc-blueprints {
 
   .redux-main .form-table tr {
     border: none;
   }
-}
-
-.postbox .redux-container.redux-no-sections .redux-main tr td {
-  padding: 5px !important;
-}
-
-.post-type-arc-panels,
-.post-type-arc-blueprints {
 
   .redux_field_th {
     padding: 10px 10px 10px 0;
   }
-}
-
-.post-type-arc-panels,
-.post-type-arc-blueprints {
+  .qtip-content {
+    background:#ffe;
+  }
+  .qtip-titlebar {
+    background:#ee9;
+    font-weight: bold;
+  }
   .redux-main .redux-field-container {
     padding: 10px 0;
   }
@@ -1091,7 +1087,7 @@ input[readonly]:active {
   border: none;
   background: #eee;
   box-shadow: none;
-  width:90%;
+  width: 90%;
 }
 
 body.post-type-arc-panels,
@@ -1325,10 +1321,81 @@ span.bold {
   }
 }
 
-body .redux-sidebar .redux-group-menu li.activeChild.hasSubSections ul.subsection li.active a {background:#fff!important;}
-body  .redux-sidebar .redux-group-menu li.activeChild.hasSubSections ul.subsection li.active a {color:#333!important;}
-body .redux-sidebar .redux-group-menu li.activeChild.hasSubSections ul.subsection li a {background:#ddd!important;}
-body  .redux-sidebar .redux-group-menu li.activeChild.hasSubSections ul.subsection li a {color:#777!important;}
-body  .redux-sidebar .redux-group-menu li.activeChild.hasSubSections a {background:#333!important}
+body .redux-sidebar .redux-group-menu li.activeChild.hasSubSections ul.subsection li.active a {
+  background: #fff !important;
+}
 
-body .redux-sidebar .redux-group-menu li.active.hasSubSections .active a:after, body .redux-sidebar .redux-group-menu li.activeChild.hasSubSections .active a:after {border-right-color:#777!important;}
+body .redux-sidebar .redux-group-menu li.activeChild.hasSubSections ul.subsection li.active a {
+  color: #333 !important;
+}
+
+body .redux-sidebar .redux-group-menu li.activeChild.hasSubSections ul.subsection li a {
+  background: #ddd !important;
+}
+
+body .redux-sidebar .redux-group-menu li.activeChild.hasSubSections ul.subsection li a {
+  color: #777 !important;
+}
+
+body .redux-sidebar .redux-group-menu li.activeChild.hasSubSections a {
+  background: #333 !important
+}
+
+body .redux-sidebar .redux-group-menu li.active.hasSubSections .active a:after, body .redux-sidebar .redux-group-menu li.activeChild.hasSubSections .active a:after {
+  border-right-color: #777 !important;
+}
+
+.shoutout {
+  margin-left: 15px;
+  list-style-type: disc;
+  li {
+    a {
+      text-decoration: none;
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}
+
+.tabby {
+  &.tabs {
+    margin-top:10px;
+    border-bottom:1px solid #ddd;
+    outline:none;
+    button {
+      background:none;
+      border:1px solid #ddd;
+      border-bottom:none;
+      border-top-left-radius: 3px;
+      border-bottom-right-radius: 3px;
+      font-size:15px;
+      padding:10px;
+      color:#777;
+      &:hover {
+        background:tomato;
+        color:#fff;
+        cursor:pointer;
+      }
+      &.active {
+        color:#0074a2;
+        &:hover {
+          background:none;
+          color:#0074a2;
+          cursor: default;
+        }
+      }
+      &.first {
+        margin-left: 10px;
+      }
+
+    }
+  }
+  &.tabs-content {
+
+  }
+}
+
+a.pzarc-codex {
+  text-decoration: none;
+}

@@ -11,9 +11,9 @@ jQuery( document ).ready( function ()
     var dst = "tr.compat-field-pzgp-focal-point input[type=\"text\"]";
 
     //Set up bindings
-    jQuery( document ).on( "dblclick", ".media-modal .attachment-details .thumbnail", function ( e )
+    jQuery( document ).on( "dblclick", ".media-modal .attachment-media-view img.details-image", function ( e )
     {
-        process_coordinate_set( e, this, dst );
+      process_coordinate_set( e, this, dst );
         document.getSelection().removeAllRanges();
     } );
 
@@ -32,7 +32,7 @@ jQuery( document ).ready( function ()
         var relX,relY;
 
         // Get mouse click coordinates
-        if ( e.offsetX == undefined ) // this works for Firefox
+        if ( e.offsetX === undefined ) // this works for Firefox
         {
             relX = e.pageX - jQuery( src ).offset().left;
             relY = e.pageY - jQuery( src ).offset().top;

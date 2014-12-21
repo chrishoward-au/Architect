@@ -30,7 +30,7 @@
       global $paged;
 
       //Paging parameters
-      if ($this->build->blueprint[ '_blueprints_navigation' ] == 'pagination') {
+      if (!empty($this->build->blueprint[ '_blueprints_pagination' ] )) {
 
         // This is meant ot be the magic tonic to make pagination work on static front page. Bah!! Didnt' for me - ever
         // Ah! It only doesn't work with Headway!

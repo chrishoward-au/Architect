@@ -5,7 +5,7 @@ jQuery( document ).ready( function ()
   /*global console:true */
   var arcSlicks = jQuery( '.arc-slider-container.slider' );
   //for each
-
+  console.log(arcSlicks);
   function update_nav( i, arcNav )
   {
 
@@ -23,7 +23,7 @@ jQuery( document ).ready( function ()
     var arcSlickTrans = jQuery( this ).attr( 'data-transtype' ) === 'fade';
     var arcSlickOpts = (jQuery( this ).attr( 'data-opts' ));
 
-//        console.log( arcSlickOpts );
+        console.log( arcSlickOpts );
 
     if ( null !== arcSlickID && null !== arcSlickOpts )
     {

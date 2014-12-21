@@ -1089,13 +1089,13 @@
               ),
               'tip_effect'    => array(
                   'show' => array(
-                      'effect'   => 'show',
-                      'duration' => '300',
+                      'effect'   => 'fade',
+                      'duration' => 200,
                       'event'    => 'mouseover',
                   ),
                   'hide' => array(
-                      'effect'   => 'show',
-                      'duration' => '300',
+                      'effect'   => 'fade',
+                      'duration' => 200,
                       'event'    => 'click mouseleave',
                   ),
               ),

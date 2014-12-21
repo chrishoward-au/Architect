@@ -13,6 +13,8 @@
   // TODO: Verify this doesn't scramble other displays!
   // width:100%; Prob better if user sets width and margin
   &.tabbed {
+    // TODO: Can we live without this??? MS 10 probs won't like it.
+    display: -ms-flex; // This gives a nice even layout and full height tabs
     display: -webkit-flex; // This gives a nice even layout and full height tabs
     display: flex; // This gives a nice even layout and full height tabs
     flex-direction: row;

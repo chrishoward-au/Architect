@@ -31,7 +31,7 @@
               arc_SectionFactory::create($i,
                                          $this->blueprint[ 'section' ][ ($i - 1) ],
                                          $this->blueprint[ '_blueprints_content-source' ],
-                                         $this->blueprint[ '_blueprints_navigation' ],
+                                         $this->blueprint[ '_blueprints_pagination' ],
                                          $this->blueprint[ '_blueprints_section-' . ($i - 1) . '-layout-mode' ],
                                          'slick', // Possible Future use
                                          $this->blueprint[ '_blueprints_section-' . ($i - 1) . '-title' ],

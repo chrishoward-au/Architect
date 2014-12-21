@@ -176,7 +176,6 @@ pzdb('start pzarc');
     if (!isset($GLOBALS[ '_architect_options' ])) {
       $GLOBALS[ '_architect_options' ] = get_option('_architect_options', array());
     }
-
     // Enqueue registered scripts and styles
     // TODO: make optional
     wp_enqueue_script('js-arc-front-slickjs');

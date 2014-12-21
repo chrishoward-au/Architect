@@ -34,7 +34,8 @@
         return;
       }
       if (!(class_exists('ReduxFramework') || class_exists('ReduxFrameworkPlugin'))) {
-        add_action( 'admin_notices', array($this,'missing_redux_admin_notice' ));
+        add_action('admin_notices', array($this, 'missing_redux_admin_notice'));
+
         return;
       }
       add_action('admin_head', array($this, 'admin_head'));
@@ -78,7 +79,8 @@
 
     }
 
-    function missing_redux_admin_notice() {
+    function missing_redux_admin_notice()
+    {
       echo '<div id="message" class="error"><p><strong>One final step in installing ARCHITECT.</strong><br>It cannot function without the Redux Framework plugin. You need to install and/or activate Redux.<br>Redux is the backbone of Architect, providing all the necessary code libraries for Architect\'s fields and options.<br>There should be another message with a link to make installing and activating Redux easy. If you can\'t find it, contact PizazzWP support.</p></div>';
     }
 
@@ -129,11 +131,17 @@
 
         wp_enqueue_script('jquery-pzarc-metaboxes', PZARC_PLUGIN_APP_URL . '/admin/js/arc-metaboxes.js', array('jquery'));
 
+
         // We shouldn't need this anymore
 
 //        wp_enqueue_script('pzarc-validation-engine-js-lang', PZARC_PLUGIN_APP_URL . '/shared/includes/js/jQuery-Validation-Engine/js/languages/jquery.validationEngine-en.js', array('jquery'));
 //        wp_enqueue_script('pzarc-validation-engine-js', PZARC_PLUGIN_APP_URL . '/shared/includes/js/jQuery-Validation-Engine/js/jquery.validationEngine.js', array('jquery'));
 //        wp_enqueue_style('pzarc-validation-engine-css', PZARC_PLUGIN_APP_URL . '/shared/includes/js/jQuery-Validation-Engine/css/validationEngine.jquery.css');
+      }
+      if ('architect_page_pzarc_support'===$screen->id) {
+        wp_enqueue_script('js-classlist', PZARC_PLUGIN_APP_URL . '/shared/includes/js/tabby/dist/js/classList.min.js', array('jquery'));
+        wp_enqueue_script('js-tabby', PZARC_PLUGIN_APP_URL . '/shared/includes/js/tabby/dist/js/tabby.min.js', array('jquery'));
+        wp_enqueue_style('css-tabby', PZARC_PLUGIN_APP_URL . '/shared/includes/js/tabby/dist/css/tabby.min.css');
       }
     }
 
@@ -154,12 +162,12 @@
                                                                                                                                          'pzarc_tools')
         );
         add_submenu_page(
-            'pzarc', 'Getting started with Architect Content Layout Framework', '<span class="dashicons dashicons-info size-small"></span>Getting started', 'manage_options', 'pzarc_about', array($this,
-                                                                                                                                                                          'pzarc_about'), 99
+            'pzarc', 'Help & Support', '<span class="dashicons dashicons-editor-help size-small"></span>Help & Support', 'manage_options', 'pzarc_support', array($this,
+                                                                                                                                                                  'pzarc_support')
         );
 
         global $submenu;
-        // This is reliant on About being the last menu item
+        // Shift those last  to the top
         array_unshift($submenu[ 'pzarc' ], array_pop($submenu[ 'pzarc' ]));
       }
 
@@ -170,87 +178,6 @@
 
     }
 
-    // Admin main page
-    function pzarc_about()
-    {
-      global $title;
-      echo '<div class = "wrap">
-
-      <!--Display Plugin Icon, Header, and Description-->
-        <div class = "icon32" id = "icon-users"><br></div>
-        <div class="pzarc-about-box" style="background:#f9f9f9;padding:20px;border:1px solid #ddd;">
-        <h2>' . $title . '</h2>
-        <h4>Currently installed version: ' . PZARC_VERSION .'</h4>
-        <h2>Quick start</h2>
-        <div style="background:#f2f2f2;border:1px solid #e2e2e2;padding:10px;border-radius:3px;max-width:800px;font-size:14px;">
-        <ol>
-        <li><strong>Create a Panel</strong></li>
-        <ol style="list-style-type:lower-roman"><li>Go to <em>Architect > Panels</em> and create a basic Panel. Make sure to give it a title and a short name.</li>
-            <li>Leave all the other defaults for now. <em>Publish/Update</em> that.</li></ol>
-        <li><strong>Create a Blueprint</strong></li>
-        <ol style="list-style-type:lower-roman">
-            <li>Go to <em>Architect > Blueprints</em> and create a Blueprint. Give it a <em>Title</em> and <em>Short Name</em> too, and in <em>Section 1</em> tab, under <em>Panels Layout</em>, select your Panel you just created</li>
-            <li>Change <em>Limit panels (content)</em> to no so we get a lot of posts</li>
-            <li>Click the <em>Panels Content</em> button and for the <em>Settings, Content Source</em>, choose <em>Posts</em></li>
-            <li>Click <em>Publish/Update</em>.</li>
-            </ol>
-        <li><strong>Display the Blueprint</strong></li>
-        <ol style="list-style-type:lower-roman">
-            <li>If you are using <strong>Headway</strong>, then go to the Headway Visual Editor, select a layout to show and draw an Architect block on it and select the Blueprint and Save.<br>
-            For <strong>other themes</strong>, the quickest way to test is insert an Architect shortcode on a page.<br>The form is <strong>[architect <em>blueprint-shortname</em>]</strong> where <em>blueprint-shortname</em> is the Short Name of the Blueprint to show
-            </li>
-            <li>Load the page and you should see a 3x grid of posts.</li></ol>
-            </ol>
-            </div>
-            <h3>Video version</h3>
-            <div style="max-width:800px;"><iframe src="//fast.wistia.net/embed/iframe/46fxmn8h0l?videoFoam=true" allowtransparency="true" frameborder="0" scrolling="no" class="wistia_embed" name="wistia_embed" allowfullscreen mozallowfullscreen webkitallowfullscreen oallowfullscreen msallowfullscreen width="720" height="405"></iframe><script src="//fast.wistia.net/assets/external/iframe-api-v1.js"></script></div>
-            <p>Style wise, it may not look that great yet. To tidy it up, start exploring the Styling settings for Panels and Blueprints</p>
-            <p>To make a <strong>slideshow</strong>, set the <em>Navigation</em> type to <em>Navigator</em></p>
-            <p>There are a lot of settings in Architect that have all sorts of affects on your layouts and designs. Explore, experiment and have fun!</p>
-            <p>For more detailed help, keep an eye on our growing <a href="http://architect4wp.com/codex-listings" target="_blank">documentation at architect4wp.com</a></p>
-        <h2>What is Architect</h2>
-        <p>Is it a slider? Is it a gallery? Is it a grid layout? Yes! It\'s all these and more.</p>
-        <p>Fed up with a plethora of plugins that all seem to do the same thing, but in different ways? Me too. That\'s why I created Architect. I was guilty too. I had four plugins: ExcerptsPlus, GalleryPlus, SliderPlus and TabsPlus providing four different ways to display your content.</p>
-        <p>Architect enables you to easily design complex content layouts, such as magazine layouts, sliders, galleries and tabbed content.</p>
-        <p> And probably the most amazing thing... with Architect,  your layouts are transportable. Change your theme without losing your content layouts. And they\'ll even pick up a lot of the formatting of your new theme if it uses standard WordPress classes although, you may need to tweak the styling a little for different themes.</p>
-
-        <p>At first it might be a little confusing about what to setup in Panels and what to do in Blueprints. Here\'s an overview:</p>
-        <p><img src="' . PZARC_PLUGIN_URL . '/documentation/assets/images/how-architect-works.jpg" style="display:block;max-width:100%;"/></p>
-
-        <h3>Panels</h3>
-        <ul><li>Panels define the layout of the individual content which can be displayed one or many times in a layout. Panels can also be re-used in multiple Blueprints</li></ul>
-        <ul><li>Individual content layout - titles, text, images, meta info</li>
-        <li>Content styling</li>
-        </ul>
-        <h3>Blueprints</h3>
-        <ul><li>A Blueprint encompasses the overall content selection, design, layout and navigation. It can contain up to three Sections, each section displaying a Panel layout one or multiple times. This allows you to easily create a layout that, for example, might show a single post followed by a grid of excerpts. Within the Blueprint you can also include navigation, which can be pagination type, or a navigator type.</li></ul>
-        <ul><li>Overall layout</li>
-        <li>content source</li>
-        <li>Navigation</li>
-        </ul>
-        <p>Below is a wireframe example of how a Blueprint is structured</p>
-        <p><img src="' . PZARC_PLUGIN_APP_URL . '/shared/assets/images/help/arc-layout.jpg" style="display:block;max-width:100%"/></p>
-
-        <h2>Usage</h2>
-
-        <p>For example, using shortcodes, you might have:</p>
-        <p style="font-weight:bold">[architect blueprint="blog-page-layout"]</p>
-        <p style="font-weight:bold">[architect blueprint="thumb-gallery" ids="321,456,987,123,654,789"]</p>
-
-        <p>Or a template tag</p>
-        <p style="font-weight:bold">pzarchitect(\'blog-page-layout\')</p>
-        <p style="font-weight:bold">pzarchitect(\'thumb-gallery\', \'321,456,987,123,654,789\')</p>
-        </div>
-
-        <h2>Shout outs</h2>
-        <p>Architect is powered by the following awesome code libraries, plugins and add-ons:</p>
-        <ul><li><a href="http://reduxframework.com" target=_blank alt="Redux Options Framework"><img src="' . PZARC_PLUGIN_APP_URL . '/shared/assets/images/help/redux-logo.png" style="display:block"/> Redux Options Framework</a></li>
-          <li><a href="http://kenwheeler.github.io/slick/" target="_blank">Slick JS</a></li>
-          <li><a href="http://isotope.metafizzy.co/" target="_blank">Isotope JS</a></li>
-          <li><a href="https://github.com/tommcfarlin/WordPress-Plugin-Boilerplate" target="_blank">Tom McPharlin\'s WP Plugin Boilerplate</a></li>
-        </ul>
-      </div>';
-    }
 
 
     function pzarc_tools()
@@ -261,6 +188,7 @@
 
 			<!--Display Plugin Icon, Header, and Description-->
 			<div class = "icon32" id = "icon-users"><br></div>
+        <div class="pzarc-about-box" style="background:#f9f9f9;padding:20px;border:1px solid #ddd;">
 
 			<h2>' . $title . '</h2>
 			<!-- This is definitely too ambitious for v1!<h3>Builder</h3>
@@ -287,14 +215,174 @@
         <p>If your site is using a cache plugin or service, clear that cache too.</p></div>';
       }
 
-      echo '<hr style="margin-top:20px;border-color:#eee;border-style:solid;"/>
+      echo '<hr style="margin-top:20px;border-color:#eee;border-style:solid;"/>';
+      if (function_exists('bfi_flush_image_cache')) {
+        echo '<h3>Clear Architect images cache</h3>
 
-			</div><!--end table-->
+    <p>If you update or change images in any posts,sometimes the image cache may get out-of-sync. In that case, you can
+      refresh the thumbs image cache to ensure your site visitors are seeing the correct images.</p>
+
+    <p>Please note:
+      Refreshing the cache causes no problems other than the next person who visits your site may have to wait a little
+      longer as the cache images get recreated. <strong>No images in any post will be affected</strong>. </p>
+
+    <form action="admin.php?page=pzarc_tools" method="post">';
+        wp_nonce_field('flush-thumb-cache');
+        echo '<input class="button-primary" type="submit" name="flushbficache" value="Empty Architect image cache">
+    </form>
+    <hr style="margin-top:20px;border-color:#eee;border-style:solid;"/>';
+        if (isset($_POST[ 'flushbficache' ]) && check_admin_referer('flush-thumb-cache')) {
+          bfi_flush_image_cache();
+          echo '<div id="message" class="updated"><p>Architect image cache cleared. It will be recreated next time someone vists your site.</p></div>';
+        }
+
+      }
+      echo '</div><!--end table-->
 			</div>
       ';
     }
 
-    // Make this only load once - probably loads all the time at the moment
+    function pzarc_support()
+    {
+      global $title;
+
+      echo '<div class = "wrap">
+     <script>
+          tabby.init();
+      </script>
+
+  			<!--Display Plugin Icon, Header, and Description-->
+        <div class="icon32" id="icon-users">
+            <br>
+        </div>
+        <div class="pzarc-about-box" style="background:#f9f9f9;padding:20px;border:1px solid #ddd;">
+
+            <h2>' . $title . '</h2>
+
+            <div class="tabby tabs">
+                <button data-tab="#quick" class="first active">Quick start</button>
+                <button data-tab="#what" >What is Architect</button>
+                <button data-tab="#how">Usage</button>
+                <button data-tab="#help">Support</button>
+                <button data-tab="#shout">Shoutouts</button>
+            </div>
+            <div class="tabby tabs-content">
+                <div class="tabs-pane active" id="quick">
+                    <h2>Quick start</h2>
+                    <div style="background:#f2f2f2;border:1px solid #e2e2e2;padding:10px;border-radius:3px;max-width:800px;font-size:14px;">
+                    <ol>
+                    <li><strong>Create a Panel</strong></li>
+                    <ol style="list-style-type:lower-roman"><li>Go to <em>Architect > Panels</em> and create a basic Panel. Make sure to give it a title and a short name.</li>
+                        <li>Leave all the other defaults for now. <em>Publish/Update</em> that.</li></ol>
+                    <li><strong>Create a Blueprint</strong></li>
+                    <ol style="list-style-type:lower-roman">
+                        <li>Go to <em>Architect > Blueprints</em> and create a Blueprint. Give it a <em>Title</em> and <em>Short Name</em> too, and in <em>Section 1</em> tab, under <em>Panels Layout</em>, select your Panel you just created</li>
+                        <li>Change <em>Limit panels (content)</em> to no so we get a lot of posts</li>
+                        <li>Click the <em>Panels Content</em> button and for the <em>Settings, Content Source</em>, choose <em>Posts</em></li>
+                        <li>Click <em>Publish/Update</em>.</li>
+                        </ol>
+                    <li><strong>Display the Blueprint</strong></li>
+                    <ol style="list-style-type:lower-roman">
+                        <li>If you are using <strong>Headway</strong>, then go to the Headway Visual Editor, select a layout to show and draw an Architect block on it and select the Blueprint and Save.<br>
+                        For <strong>other themes</strong>, the quickest way to test is insert an Architect shortcode on a page.<br>The form is <strong>[architect <em>blueprint-shortname</em>]</strong> where <em>blueprint-shortname</em> is the Short Name of the Blueprint to show
+                        </li>
+                        <li>Load the page and you should see a 3x grid of posts.</li></ol>
+                        </ol>
+                        </div>
+                        <h3>Video version</h3>
+                        <div style="max-width:800px;"><iframe src="//fast.wistia.net/embed/iframe/46fxmn8h0l?videoFoam=true" allowtransparency="true" frameborder="0" scrolling="no" class="wistia_embed" name="wistia_embed" allowfullscreen mozallowfullscreen webkitallowfullscreen oallowfullscreen msallowfullscreen width="720" height="405"></iframe><script src="//fast.wistia.net/assets/external/iframe-api-v1.js"></script></div>
+                        <p>Style wise, it may not look that great yet. To tidy it up, start exploring the Styling settings for Panels and Blueprints</p>
+                        <p>To make a <strong>slideshow</strong>, set the <em>Navigation</em> type to <em>Navigator</em></p>
+                        <p>There are a lot of settings in Architect that have all sorts of affects on your layouts and designs. Explore, experiment and have fun!</p>
+                        <p>For more detailed help, keep an eye on our growing <a href="http://architect4wp.com/codex-listings" target="_blank">documentation at architect4wp.com</a></p>
+                </div>
+                <div class="tabs-pane" id="what">
+                    <h2>What is Architect</h2>
+                    <p>Is it a slider? Is it a gallery? Is it a grid layout? Yes! It\'s all these and more.</p>
+                    <p>Fed up with a plethora of plugins that all seem to do the same thing, but in different ways? Me too. That\'s why I created Architect. I was guilty too. I had four plugins: ExcerptsPlus, GalleryPlus, SliderPlus and TabsPlus providing four different ways to display your content.</p>
+                    <p>Architect enables you to easily design complex content layouts, such as magazine layouts, sliders, galleries and tabbed content.</p>
+                    <p> And probably the most amazing thing... with Architect, your layouts are transportable. Change your theme without losing your content layouts. And they\'ll even pick up a lot of the formatting of your new theme if it uses standard WordPress classes although, you may need to tweak the styling a little for different themes.</p>
+
+                    <p>At first it might be a little confusing about what to setup in Panels and what to do in Blueprints. Here\'s an overview:</p>
+                    <p><img src="' . PZARC_PLUGIN_URL . '/documentation/assets/images/how-architect-works.jpg" style="display:block;max-width:100%;" />
+                    </p>
+
+                    <h3>Panels</h3>
+                    <ul>
+                        <li>Panels define the layout of the individual content which can be displayed one or many times in a layout. Panels can also be re-used in multiple Blueprints</li>
+                    </ul>
+                    <ul>
+                        <li>Individual content layout - titles, text, images, meta info</li>
+                        <li>Content styling</li>
+                    </ul>
+                    <h3>Blueprints</h3>
+                    <ul>
+                        <li>A Blueprint encompasses the overall content selection, design, layout and navigation. It can contain up to three Sections, each section displaying a Panel layout one or multiple times. This allows you to easily create a layout that, for example, might show a single post followed by a grid of excerpts. Within the Blueprint you can also include navigation, which can be pagination type, or a navigator type.</li>
+                    </ul>
+                    <ul>
+                        <li>Overall layout</li>
+                        <li>content source</li>
+                        <li>Navigation</li>
+                    </ul>
+                    <p>Below is a wireframe example of how a Blueprint is structured</p>
+                    <p><img src="' . PZARC_PLUGIN_APP_URL . '/shared/assets/images/help/arc-layout.jpg" style="display:block;max-width:100%" />
+                    </p>
+                </div>
+                <div class="tabs-pane " id="how">
+                    <h2>Usage</h2>
+
+                    <p>For example, using shortcodes, you might have:</p>
+                    <p style="font-weight:bold">[architect blueprint="blog-page-layout"]</p>
+                    <p style="font-weight:bold">[architect blueprint="thumb-gallery" ids="321,456,987,123,654,789"]</p>
+
+                    <p>Or a template tag</p>
+                    <p style="font-weight:bold">pzarchitect(\'blog-page-layout\')</p>
+                    <p style="font-weight:bold">pzarchitect(\'thumb-gallery\', \'321,456,987,123,654,789\')</p>
+                </div>
+                <div class="tabs-pane " id="help">
+                    <h2>Support</h2>
+                    <h4>Currently installed version: ' . PZARC_VERSION . '</h4>
+                </div>
+                <div class="tabs-pane " id="shout">
+                    <h2>Shout outs</h2>
+                    <p>A lot of the magic in Architect is powered by third-party code libraries who deserve much credit for the awesomeness they bring to Architect:</p>
+                    <ul class="shoutout">
+                        <li><a href="http://reduxframework.com" target=_blank alt="Redux Options Framework">Redux Options Framework</a>
+                        </li>
+                        <li><a href="https://github.com/tommcfarlin/WordPress-Plugin-Boilerplate" target="_blank">Tom McPharlin\'s WP Plugin Boilerplate</a>
+                        </li>
+                        <li><a href="http://kenwheeler.github.io/slick/" target="_blank">Slick JS</a>
+                        </li>
+                        <li><a href="http://bgrins.github.io/spectrum/" target="_blank">Spectrum JS</a>
+                        </li>
+                        <li><a href="http://www.datatables.net/" target="_blank">DataTables JS</a>
+                        </li>
+                        <li><a href="http://isotope.metafizzy.co/" target="_blank">Isotope JS</a>
+                        </li>
+                        <li><a href="http://dimsemenov.com/plugins/magnific-popup/" target="_blank">Magnific JS</a>
+                        </li>
+                        <li><a href="http://jqueryui.com/" target="_blank">jQueryUI</a>
+                        </li>
+                        <li><a href="http://webcloud.se/jQuery-Collapse/" target="_blank">jQuery Collapse</a>
+                        </li>
+                        <li><a href="https://github.com/fzaninotto/Faker" target="_blank">PHP Faker</a>
+                        </li>
+                        <li><a href="http://tinsology.net/scripts/php-lorem-ipsum-generator/" target="_blank">PHP Lorem Ipsum</a>
+                        </li>
+                        <li><a href="https://github.com/bfintal/bfi_thumb" target="_blank">BFI Thumbs (modded)</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+
+        </div>
+
+
+      </div>';
+    }
+
+
   }
 
 // end pzarcAdmin

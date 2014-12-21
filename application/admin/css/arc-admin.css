@@ -777,22 +777,26 @@ body.post-type-arc-panels .redux-main .select_wrapper {
   width:auto;
 }
 */
+.postbox .redux-container.redux-no-sections .redux-main tr td {
+  padding: 5px !important; }
+
 /* Remove this once Dovy fixes! */
 .post-type-arc-panels .showDefaults,
 .post-type-arc-blueprints .showDefaults {
   /*display: none !important;*/ }
-
 .post-type-arc-panels .redux-main .form-table tr,
 .post-type-arc-blueprints .redux-main .form-table tr {
   border: none; }
-
-.postbox .redux-container.redux-no-sections .redux-main tr td {
-  padding: 5px !important; }
-
 .post-type-arc-panels .redux_field_th,
 .post-type-arc-blueprints .redux_field_th {
   padding: 10px 10px 10px 0; }
-
+.post-type-arc-panels .qtip-content,
+.post-type-arc-blueprints .qtip-content {
+  background: #ffe; }
+.post-type-arc-panels .qtip-titlebar,
+.post-type-arc-blueprints .qtip-titlebar {
+  background: #ee9;
+  font-weight: bold; }
 .post-type-arc-panels .redux-main .redux-field-container,
 .post-type-arc-blueprints .redux-main .redux-field-container {
   padding: 10px 0; }
@@ -1069,3 +1073,40 @@ body .redux-sidebar .redux-group-menu li.activeChild.hasSubSections a {
 
 body .redux-sidebar .redux-group-menu li.active.hasSubSections .active a:after, body .redux-sidebar .redux-group-menu li.activeChild.hasSubSections .active a:after {
   border-right-color: #777 !important; }
+
+.shoutout {
+  margin-left: 15px;
+  list-style-type: disc; }
+  .shoutout li a {
+    text-decoration: none; }
+    .shoutout li a:hover {
+      text-decoration: underline; }
+
+.tabby.tabs {
+  margin-top: 10px;
+  border-bottom: 1px solid #ddd;
+  outline: none; }
+  .tabby.tabs button {
+    background: none;
+    border: 1px solid #ddd;
+    border-bottom: none;
+    border-top-left-radius: 3px;
+    border-bottom-right-radius: 3px;
+    font-size: 15px;
+    padding: 10px;
+    color: #777; }
+    .tabby.tabs button:hover {
+      background: tomato;
+      color: #fff;
+      cursor: pointer; }
+    .tabby.tabs button.active {
+      color: #0074a2; }
+      .tabby.tabs button.active:hover {
+        background: none;
+        color: #0074a2;
+        cursor: default; }
+    .tabby.tabs button.first {
+      margin-left: 10px; }
+
+a.pzarc-codex {
+  text-decoration: none; }

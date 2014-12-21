@@ -118,7 +118,7 @@
       // TODO: Might need to change js-isotope to masonry - chekc impact tho
       // TODO Accordion
 
-      echo '<' . ('table' !== $this->layout_mode ? 'section' : 'table') . ' id="' . $this->rsid . '" class="' . $layout_class . ' pzarc-section pzarc-section_' . $this->section_number . ' pzarc-section-using-panel_' . $this->section[ 'section-panel-settings' ][ '_panels_settings_short-name' ] . $this->slider[ 'wrapper' ] . '"' . $isotope . $accordion.'>';
+      echo '<' . ('table' !== $this->layout_mode ? 'div' : 'table') . ' id="' . $this->rsid . '" class="' . $layout_class . ' pzarc-section pzarc-section_' . $this->section_number . ' pzarc-section-using-panel_' . $this->section[ 'section-panel-settings' ][ '_panels_settings_short-name' ] . $this->slider[ 'wrapper' ] . '"' . $isotope . $accordion.'>';
 
       // Table heading stuff
       if ('table' === $this->layout_mode) {
@@ -181,7 +181,7 @@
      */
     function close_section()
     {
-      $derf = '</' . ('table' !== $this->layout_mode ? 'section' : 'table') . '><!-- End section ' . $this->section_number . ' -->';
+      $derf = '</' . ('table' !== $this->layout_mode ? 'div' : 'table') . '><!-- End section ' . $this->section_number . ' -->';
       //    var_Dump($derf);
       echo $derf;
       do_action("arc_after_section_{$this->section_number}");

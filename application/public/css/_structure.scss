@@ -10,17 +10,19 @@
   counter-reset: arc-title-counter;
   height:100%;
   &.tiles {
-    display: -webkit-box;
-    display: -moz-box;
-    display: -ms-flexbox;
-    display: -webkit-flex;
-    display: flex;
-    justify-content: flex-start;
-    -webkit-flex-flow: row wrap;
-    -moz-flex-flow: row wrap; /* Unsupported in FF ATOW!! Argh! */
-    flex-flow: row wrap;
-    flex-direction: row;
-    flex-wrap: wrap;
+    // This breaks in IE 10. And display:block seems to work anyhows
+//    display: -webkit-box;
+//    display: -moz-box;
+//    display: -ms-flexbox;
+//    display: -webkit-flex;
+//    display: flex;
+//    justify-content: flex-start;
+//    -webkit-flex-flow: row wrap;
+//    -moz-flex-flow: row wrap; /* Unsupported in FF ATOW!! Argh! */
+//    flex-flow: row wrap;
+//    flex-direction: row;
+//    flex-wrap: wrap;
+    display:block;
   }
   &.js-isotope {
 

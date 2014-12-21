@@ -69,7 +69,7 @@
       $panel_def[ 'meta2' ] = '<{{div}} class="entry-meta entry-meta2" {{sortable}}>{{meta2innards}}</{{div}}>';
       $panel_def[ 'meta3' ] = '<{{div}} class="entry-meta entry-meta3" {{sortable}}>{{meta3innards}}</{{div}}>';
       // TODO Make this only used in tables
-      $panel_def[ 'datetime' ]   = '<span class="entry-date"><a href="{{permalink}}" ><time class="entry-date" datetime="{{datetime}}">{{fdatetime}}</time></span></a></span>';
+      $panel_def[ 'datetime' ]   = '<span class="entry-date"><a href="{{permalink}}" ><time class="entry-date" datetime="{{datetime}}">{{fdatetime}}</time></a></span>';
       $panel_def[ 'categories' ] = '<span class="categories-links">{{categorieslinks}}</span>';
       $panel_def[ 'tags' ]       = '<span class="tags-links">{{tagslinks}}</span>';
       $panel_def[ 'author' ]     = '<span class="byline"><span class="author vcard"><a class="url fn n" href="{{authorlink}}" title="View all posts by {{authorname}}" rel="author">{{authorname}}</a></span></span>';
@@ -154,7 +154,7 @@
     public function get_title(&$post)
     {
       /** TITLE */
-      if ('navigator' === $this->build->blueprint[ '_blueprints_navigation' ] && class_exists('HeadwayLayoutOption') && (true == ($alt_title = HeadwayLayoutOption::get($post->ID, 'alternate-title', false, true)))) {
+      if (('slider' === $this->build->blueprint[ '_blueprints_section-0-layout-mode' ] || 'tabbed' === $this->build->blueprint[ '_blueprints_section-0-layout-mode' ]) && class_exists('HeadwayLayoutOption') && (true == ($alt_title = HeadwayLayoutOption::get($post->ID, 'alternate-title', false, true)))) {
         $this->data[ 'title' ][ 'title' ] = $alt_title;
       } else {
         $this->data[ 'title' ][ 'title' ] = get_the_title();
