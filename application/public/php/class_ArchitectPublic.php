@@ -110,17 +110,25 @@
 
       // Shorthand some vars
       $bp_shortname = $this->build->blueprint[ '_blueprints_short-name' ];
-      $bp_layout_type  = $this->build->blueprint[ '_blueprints_section-0-layout-mode' ];
+      $bp_nav_type = 'none';
+      switch (true) {
+        case $this->build->blueprint[ '_blueprints_section-0-layout-mode' ] === 'slider':
+        case  $this->build->blueprint[ '_blueprints_section-0-layout-mode' ] === 'tabbed':
+          $bp_nav_type='navigator';
+          break;
+        case !empty( $this->build->blueprint[ '_blueprints_pagination' ]):
+          $bp_nav_type ='pagination';
+          break;
+      }
       $bp_nav_pos   = $this->build->blueprint[ '_blueprints_navigator-position' ];
       $bp_transtype = $this->build->blueprint[ '_blueprints_transitions-type' ];
-
       $this->arc = array();
 
       self::set_generic_criteria();
 
       // Set vars to identify if we need to display sections 2 and 3.
-      $do_section_2 = ($this->build->blueprint[ '_blueprints_section-1-enable' ] && $bp_layout_type != 'slider' && $bp_layout_type != 'tabbed');
-      $do_section_3 = ($this->build->blueprint[ '_blueprints_section-2-enable' ] && $bp_layout_type != 'slider'&& $bp_layout_type != 'tabbed');
+      $do_section_2 = ($this->build->blueprint[ '_blueprints_section-1-enable' ] && $bp_nav_type != 'navigator');
+      $do_section_3 = ($this->build->blueprint[ '_blueprints_section-2-enable' ] && $bp_nav_type != 'navigator');
 
       // TODO: Are all these 'self's too un-oop?
       // Get pagination
@@ -169,7 +177,7 @@
       $content_class       = self::get_blueprint_content_class();
       $panel_class = new $content_class($this->build); // This gets the settings for the panels of this content type.
 
-      if ($bp_layout_type === 'slider' ||$bp_layout_type === 'tabbed' ) {
+      if ($bp_nav_type === 'navigator' ) {
         $this->nav_items = $panel_class->get_nav_items($this->build->blueprint[ '_blueprints_navigator' ], $this->arc_query,$this->build->blueprint[ '_blueprints_navigator-labels' ]);
       }
 
@@ -184,12 +192,11 @@
       /** BLUEPRINT */
       /** OPEN THE HTML  */
 
-      $nav_type = ($bp_layout_type === 'slider' ||$bp_layout_type === 'tabbed'?'navigator':!empty( $this->build->blueprint[ '_blueprints_pagination' ])?'pagination':'none');
-      echo '<div class="pzarchitect ' . $use_hw_css . ' pzarc-blueprint pzarc-blueprint_' . $this->build->blueprint[ '_blueprints_short-name' ] . ' nav-' . $nav_type . ' icomoon ' . ($bp_layout_type === 'slider' ||$bp_layout_type === 'tabbed' ? 'navpos-' . $bp_nav_pos : '') . '">';
+      echo '<div class="pzarchitect ' . $use_hw_css . ' pzarc-blueprint pzarc-blueprint_' . $this->build->blueprint[ '_blueprints_short-name' ] . ' nav-' . $bp_nav_type . ' icomoon ' . ($bp_nav_type === 'navigator' ? 'navpos-' . $bp_nav_pos : '') . '">';
 
       /** NAVIGATOR TOP*/
 
-      if (($bp_layout_type === 'slider' ||$bp_layout_type === 'tabbed') && ('top' === $bp_nav_pos || 'left' === $bp_nav_pos)) {
+      if ($bp_nav_type=== 'navigator' && ('top' === $bp_nav_pos || 'left' === $bp_nav_pos)) {
         self::display_navigation('tl');
       }
 
@@ -200,7 +207,7 @@
                                                                                           'custom'   => $_architect_options[ 'architect_language-custom-archive-pages-title' ]
       ));
 
-      echo self::get_sections_opener($bp_shortname, $bp_layout_type, $caller, $bp_transtype);
+      echo self::get_sections_opener($bp_shortname, $bp_nav_type, $caller, $bp_transtype);
 
       do_action('arcNavBeforeSection-{$bpshortname}');
 
@@ -252,7 +259,7 @@
       }
 
       /** NAVIGATION BELOW */
-      if (($bp_layout_type === 'slider' ||$bp_layout_type === 'tabbed') && ('bottom' === $bp_nav_pos || 'right' === $bp_nav_pos)) {
+      if ($bp_nav_type === 'navigator' && ('bottom' === $bp_nav_pos || 'right' === $bp_nav_pos)) {
         self::display_navigation('br');
       }
 

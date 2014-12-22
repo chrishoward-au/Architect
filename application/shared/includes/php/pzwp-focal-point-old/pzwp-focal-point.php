@@ -12,7 +12,6 @@
     function pzwp_admin_enqueue_fp()
     {
      wp_enqueue_script('pzwp-focal-point-js',plugin_dir_url(__FILE__) .'/pzwp-focal-point.js',array('jquery'),true);
-      wp_enqueue_style('pzwp-focal-point-css',plugin_dir_url(__FILE__) .'/pzwp-focal-point.css');
     }
 
     function pzwp_add_media_fields($form_fields, $post)
@@ -30,7 +29,7 @@
           'label' => __('Focal Point','pzwp'),
           'input' => 'html',
           'html'=>"<input type='text' readonly value='".get_post_meta($post->ID, 'pzgp_focal_point', true)."' name='attachments[{$post->ID}][pzgp-focal-point]' id='attachments[{$post->ID}][pzgp-focal-point]' title='".__('Supported plugins will use this point to ensure more reliable cropping - e.g. without chopped off heads.','pzwp')."'/>",
-          'helps' => __('Click on the image to set its focal point.','pzwp'),
+          'helps' => __('Double click on the image to set the focal point.','pzwp'),
       );
 
       return $form_fields;

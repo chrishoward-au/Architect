@@ -4,7 +4,7 @@ Tags: content,display,posts,pages,gallery,slider
 Donate link: http://
 Requires at least: 3.5.0
 Tested up to: 4.1.0
-Stable tag: 0.9.0
+Stable tag: 0.9.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -103,7 +103,7 @@ This is BETA software. So there are many besides these ones!
 == Changelog ==
 
 
-= 0.9.0.3 =
+= 0.9.1 =
 * CHANGED: Sections to use divs for HTML validity
 * CHANGED: Removed use of flexbox in layout coz of IE10 incompatiblity issues.
 * CHANGED: Getting Started to Help & Support page
@@ -114,6 +114,10 @@ This is BETA software. So there are many besides these ones!
 * CHANGED: Removed Navigator from general and is now selected when Sliders or Tabbed is layout type
 * FIXED : D.A.R bug in admin metabox tabs where the first ones weren't showing sometimes.
 * CHANGED: Panel margins in Blueprints to include units selection. This currently renders Architect not working in IE8 (2% marketshare)
+* FIXED: Focal point stopped working in Featured Image selector.
+* CHANGED: Only one click to set focal point now
+* CHANGED: Special cursor for focal point
+
 
 = 0.9.0.2 =
 * CHANGED: Custom query overwrites $wp_query. This makes is_main_query() work, but could have other serious consaquences.
