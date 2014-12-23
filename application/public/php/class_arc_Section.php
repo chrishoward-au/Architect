@@ -57,9 +57,19 @@
       $this->table_accordion_titles = $table_accordion_titles;
 
       if ('table' === $this->layout_mode) {
-
+        $this->table_accordion_titles = $table_accordion_titles;
       }
-      $this->table_accordion_titles = $table_accordion_titles;
+      add_action('wp_print_footer_scripts',array($this,'extra_scripts'));
+    }
+
+
+    function extra_scripts(){
+      // This is a much nicer way than creating files!!! Wonder where else I can use it?
+
+      // Tabular scripts
+      if ('table' === $this->layout_mode) {
+        print('<script>jQuery(document).ready(function(){ jQuery("#' . $this->rsid . '").DataTable(); });</script>');
+      }
     }
 
     function open_section()
@@ -122,12 +132,7 @@
 
       // Table heading stuff
       if ('table' === $this->layout_mode) {
-        // TODO: Put this where it really belongs
-        echo '<script>
-                  jQuery(document).ready(function(){
-                      jQuery("#' . $this->rsid . '").DataTable();
-                  });
-            </script>';
+
         $settings = $this->section[ 'section-panel-settings' ];
         $toshow   = json_decode($settings[ '_panels_design_preview' ], true);
         $widths   = array();

@@ -353,7 +353,7 @@
                   'id'       => $prefix . 'short-name',
                   'title'    => __('Blueprint Short Name', 'pzarchitect') . '<span class="pzarc-required el-icon-star" title="Required"></span>',
                   'type'     => 'text',
-                  'subtitle' => '<strong>' . __('Letters, numbers, dashes only. ', 'pzarchitect') . '</strong><br>' . __('Use the shortcode <strong class="pzarc-usage-info">[architect "<span class="pzarc-shortname"></span>"]</strong> <br>or the template tag <strong class="pzarc-usage-info">pzarchitect(\'<span class="pzarc-shortname"></span>\');</strong>', 'pzarchitect'),
+                  'hint' => array('title'=>'Blueprint Short Name','content'=>'<strong>' . __('Letters, numbers, dashes only. ', 'pzarchitect').'</strong>'.__('Use this in shortcodes and template tags','pzarchitect') ),
                   //TODO: Write acomprehensive little help dialog here
                   'validate' => 'not_empty'
               ),
