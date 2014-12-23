@@ -94,6 +94,9 @@
 //
 //      }
 
+      add_action('arc_top_left_navigation',array(&$this,'add_navigation_top_left'),10,1);
+      add_action('arc_bottom_right_navigation',array(&$this,'add_navigation_bottom_right'),10,1);
+
       return false;
     }
 
@@ -177,8 +180,6 @@
       $content_class       = self::get_blueprint_content_class();
       $panel_class = new $content_class($this->build); // This gets the settings for the panels of this content type.
 
-      // TODO: What if we replace this with an action then initiated this code at that action. Ditto many other places which could then enable us to make it all pluggable
-      // e.g. do_action('arc_top_navigation');
       if ($bp_nav_type === 'navigator' ) {
         $this->nav_items = $panel_class->get_nav_items($this->build->blueprint[ '_blueprints_navigator' ], $this->arc_query,$this->build->blueprint[ '_blueprints_navigator-labels' ]);
       }
@@ -197,10 +198,7 @@
       echo '<div class="pzarchitect ' . $use_hw_css . ' pzarc-blueprint pzarc-blueprint_' . $this->build->blueprint[ '_blueprints_short-name' ] . ' nav-' . $bp_nav_type . ' icomoon ' . ($bp_nav_type === 'navigator' ? 'navpos-' . $bp_nav_pos : '') . '">';
 
       /** NAVIGATOR TOP*/
-
-      if ($bp_nav_type=== 'navigator' && ('top' === $bp_nav_pos || 'left' === $bp_nav_pos)) {
-        self::display_navigation('tl');
-      }
+      do_action_ref_array('arc_top_left_navigation',array(&$this));
 
 
       self::display_page_title($this->build->blueprint[ '_blueprints_page-title' ], array('category' => $_architect_options[ 'architect_language-categories-archive-pages-title' ],
@@ -261,9 +259,7 @@
       }
 
       /** NAVIGATION BELOW */
-      if ($bp_nav_type === 'navigator' && ('bottom' === $bp_nav_pos || 'right' === $bp_nav_pos)) {
-        self::display_navigation('br');
-      }
+      do_action_ref_array('arc_bottom_right_navigation',array(&$this));
 
 
       echo '</div> <!-- end pzarchitect blueprint ' . $this->build->blueprint[ '_blueprints_short-name' ] . '-->';
@@ -590,6 +586,20 @@
       }
 
       return $class;
+    }
+
+    // $t will be used if we are external
+    function add_navigation_top_left(&$t){
+      if (($t->build->blueprint[ '_blueprints_section-0-layout-mode' ] === 'tabbed' || $t->build->blueprint[ '_blueprints_section-0-layout-mode' ] === 'slider') && ('top' === $t->build->blueprint[ '_blueprints_navigator-position' ] || 'left' === $t->build->blueprint[ '_blueprints_navigator-position' ])) {
+        self::display_navigation('tl');
+      }
+    }
+    // $t will be used if we are external
+    function add_navigation_bottom_right(&$t){
+      if (($t->build->blueprint[ '_blueprints_section-0-layout-mode' ] === 'tabbed' || $t->build->blueprint[ '_blueprints_section-0-layout-mode' ] === 'slider') && ('bottom' === $t->build->blueprint[ '_blueprints_navigator-position' ] || 'right' === $t->build->blueprint[ '_blueprints_navigator-position' ])) {
+        self::display_navigation('br');
+      }
+
     }
   }
 
