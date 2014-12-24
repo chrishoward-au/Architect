@@ -99,7 +99,8 @@
       // This is a shorthand way of doing an if. When pro isn't present, it's the lite version.
       @include PZARC_PLUGIN_PATH .'/extensions/architect-pro.php';
 
-      do_action('load_architect_extensions');
+      // Extensions hook in here
+      do_action('arc_load_extensions');
 
     }
 

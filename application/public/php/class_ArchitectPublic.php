@@ -28,12 +28,10 @@
   {
 
     public $build;
-    private $panel_def;
     private $arc;
     public $arc_query;
     private $is_shortcode;
     private $criteria = array();
-    private $backup_wp_query;
     private $nav_items = array();
 
     /**
@@ -44,7 +42,6 @@
     {
       $this->is_shortcode = $is_shortcode;
 
-
       require_once(PZARC_PLUGIN_APP_PATH . '/public/php/class_arc_Section.php');
       require_once(PZARC_PLUGIN_APP_PATH . '/public/php/class_arc_Blueprint.php');
 
@@ -52,13 +49,9 @@
       require_once(PZARC_PLUGIN_APP_PATH . '/shared/architect/php/content-types/generic/class_arc_Panel_Generic.php');
       require_once(PZARC_PLUGIN_APP_PATH . '/shared/architect/php/content-types/generic/class_arc_query_generic.php');
 
-
-
       $this->build = new arc_Blueprint($blueprint);
 
-//      pzdebug(((array)$this->build->blueprint));
-//var_dump($this->build->blueprint);
-      if (isset($this->build->blueprint['_blueprints_content-source'])&& $this->build->blueprint[ '_blueprints_content-source' ] == 'defaults' && $this->is_shortcode) {
+      if (isset($this->build->blueprint[ '_blueprints_content-source' ]) && $this->build->blueprint[ '_blueprints_content-source' ] == 'defaults' && $this->is_shortcode) {
 
         $this->build->blueprint[ 'err_msg' ] = '<p class="message-warning">Ooops! Need to specify a <strong>Contents Selection</strong> in your Blueprint to use a shortcode. You cannot use Defaults.</p>';
 
@@ -78,34 +71,32 @@
       require_once(PZARC_PLUGIN_APP_PATH . '/public/php/class_arc_Navigator.php');
       require_once(PZARC_PLUGIN_APP_PATH . '/public/php/class_arc_Pagination.php');
 
-//      if (!empty($this->build->blueprint[ 'blueprint-id' ])) {
-//
-//        $filename = 'pzarc-blueprints-layout-' . $this->build->blueprint[ '_blueprints_short-name' ] . '.css';
-//
-//        if (file_exists(PZARC_CACHE_PATH . $filename)) {
-//
-//          wp_enqueue_style('blueprint-css-' . $this->build->blueprint[ '_blueprints_short-name' ], PZARC_CACHE_URL . $filename);
-//
-//        } else {
-//
-//          echo '<p class="message-warning">Oops! Could not find css cache file: ' . $filename . '</p>';
-//
-//        }
-//
-//      }
+      /** Add navigation.*/
+      //  Putting it in an action allows devs to write their own
+      if (($this->build->blueprint[ '_blueprints_section-0-layout-mode' ] === 'tabbed' || $this->build->blueprint[ '_blueprints_section-0-layout-mode' ] === 'slider') && ('top' === $this->build->blueprint[ '_blueprints_navigator-position' ] || 'left' === $this->build->blueprint[ '_blueprints_navigator-position' ])) {
 
-      add_action('arc_top_left_navigation',array(&$this,'add_navigation_top_left'),10,1);
-      add_action('arc_bottom_right_navigation',array(&$this,'add_navigation_bottom_right'),10,1);
+        add_action('arc_top_left_navigation_' . $this->build->blueprint[ '_blueprints_short-name' ], array(&$this,
+                                                                                                           'add_navigation_'), 10, 1);
+      }
+
+      if (($this->build->blueprint[ '_blueprints_section-0-layout-mode' ] === 'tabbed' || $this->build->blueprint[ '_blueprints_section-0-layout-mode' ] === 'slider') && ('bottom' === $this->build->blueprint[ '_blueprints_navigator-position' ] || 'right' === $this->build->blueprint[ '_blueprints_navigator-position' ])) {
+
+        add_action('arc_bottom_right_navigation_' . $this->build->blueprint[ '_blueprints_short-name' ], array(&$this,
+                                                                                                               'add_navigation'), 10, 1);
+      }
 
       return false;
     }
 
+
     /**
      * @param $overrides
+     * @param $caller
+     * @param $additional_overrides
      */
     public function build_blueprint($overrides, $caller, &$additional_overrides)
     {
-      // If we use pagination, we'll have to mod $wp_query
+      // If we use pagination, we'll have to mod $wp_query. Actually... we have to regardless
       global $wp_query;
       $original_query = $wp_query;
 
@@ -113,19 +104,19 @@
 
       // Shorthand some vars
       $bp_shortname = $this->build->blueprint[ '_blueprints_short-name' ];
-      $bp_nav_type = 'none';
+      $bp_nav_type  = 'none';
       switch (true) {
         case $this->build->blueprint[ '_blueprints_section-0-layout-mode' ] === 'slider':
         case  $this->build->blueprint[ '_blueprints_section-0-layout-mode' ] === 'tabbed':
-          $bp_nav_type='navigator';
+          $bp_nav_type = 'navigator';
           break;
-        case !empty( $this->build->blueprint[ '_blueprints_pagination' ]):
-          $bp_nav_type ='pagination';
+        case !empty($this->build->blueprint[ '_blueprints_pagination' ]):
+          $bp_nav_type = 'pagination';
           break;
       }
       $bp_nav_pos   = $this->build->blueprint[ '_blueprints_navigator-position' ];
       $bp_transtype = $this->build->blueprint[ '_blueprints_transitions-type' ];
-      $this->arc = array();
+      $this->arc    = array();
 
       self::set_generic_criteria();
 
@@ -141,17 +132,17 @@
         switch (true) {
 
           case is_home():
-            $content_class                     = 'arc_Pagination_' . (!$this->build->blueprint[ '_blueprints_pager' ] ? 'prevnext' : $this->build->blueprint[ '_blueprints_pager' ]);
+            $content_class             = 'arc_Pagination_' . (!$this->build->blueprint[ '_blueprints_pager' ] ? 'prevnext' : $this->build->blueprint[ '_blueprints_pager' ]);
             $this->arc[ 'pagination' ] = new $content_class;
             break;
 
           case (is_singular()):
-            $content_class                     = 'arc_Pagination_' . (!$this->build->blueprint[ '_blueprints_pager-single' ] ? 'prevnext' : $this->build->blueprint[ '_blueprints_pager-single' ]);
+            $content_class             = 'arc_Pagination_' . (!$this->build->blueprint[ '_blueprints_pager-single' ] ? 'prevnext' : $this->build->blueprint[ '_blueprints_pager-single' ]);
             $this->arc[ 'pagination' ] = new $content_class;
             break;
 
           case is_archive():
-            $content_class                     = 'arc_Pagination_' . (!$this->build->blueprint[ '_blueprints_pager-archives' ] ? 'prevnext' : $this->build->blueprint[ '_blueprints_pager-archives' ]);
+            $content_class             = 'arc_Pagination_' . (!$this->build->blueprint[ '_blueprints_pager-archives' ] ? 'prevnext' : $this->build->blueprint[ '_blueprints_pager-archives' ]);
             $this->arc[ 'pagination' ] = new $content_class;
             break;
 
@@ -161,7 +152,7 @@
 
 
       /** Build the query */
-      $registry = arc_Registry::getInstance();
+      $registry       = arc_Registry::getInstance();
       $content_source = $registry->get('content_source');
       if ($this->build->blueprint[ '_blueprints_content-source' ] != 'defaults' && array_key_exists($this->build->blueprint[ '_blueprints_content-source' ], $content_source)) {
 
@@ -177,63 +168,101 @@
       }
 
       /** at this point we have the necessary info to populate the navigator. So let's do it! */
-      $content_class       = self::get_blueprint_content_class();
-      $panel_class = new $content_class($this->build); // This gets the settings for the panels of this content type.
+      $content_class = self::get_blueprint_content_class();
+      $panel_class   = new $content_class($this->build); // This gets the settings for the panels of this content type.
 
-      if ($bp_nav_type === 'navigator' ) {
-        $this->nav_items = $panel_class->get_nav_items($this->build->blueprint[ '_blueprints_navigator' ], $this->arc_query,$this->build->blueprint[ '_blueprints_navigator-labels' ]);
+      if ($bp_nav_type === 'navigator') {
+        $this->nav_items = $panel_class->get_nav_items($this->build->blueprint[ '_blueprints_navigator' ], $this->arc_query, $this->build->blueprint[ '_blueprints_navigator-labels' ]);
       }
 
+      /** RENDER THE BLUEPRINT */
+      self::render_this_architect_blueprint($bp_nav_type, $bp_nav_pos, $bp_shortname, $caller, $bp_transtype, $panel_class, $content_class, $do_section_2, $do_section_3);
 
+      /** Set our original query back. */
+      wp_reset_postdata(); // Pretty sure this goes here... Not after the query reassignment
+      $wp_query = null;
+      $wp_query = $original_query;
+
+    }
+
+    /**
+     * @param $bp_nav_type
+     * @param $bp_nav_pos
+     * @param $bp_shortname
+     * @param $caller
+     * @param $bp_transtype
+     * @param $panel_class
+     * @param $content_class
+     * @param $do_section_2
+     * @param $do_section_3
+     */
+    private function render_this_architect_blueprint($bp_nav_type, $bp_nav_pos, $bp_shortname, $caller, $bp_transtype, $panel_class, $content_class, $do_section_2, $do_section_3)
+    {
       // TODO: Show or hide blueprint if no content
 
       do_action('arc_before_architect');
+      do_action('arc_before_architect_' . $bp_shortname);
 
       global $_architect_options;
       $use_hw_css = (!empty($_architect_options[ 'architect_use-hw-css' ]) ? 'use-hw-css' : null);
 
       /** BLUEPRINT */
       /** OPEN THE HTML  */
-
       echo '<div class="pzarchitect ' . $use_hw_css . ' pzarc-blueprint pzarc-blueprint_' . $this->build->blueprint[ '_blueprints_short-name' ] . ' nav-' . $bp_nav_type . ' icomoon ' . ($bp_nav_type === 'navigator' ? 'navpos-' . $bp_nav_pos : '') . '">';
 
-      /** NAVIGATOR TOP*/
-      do_action_ref_array('arc_top_left_navigation',array(&$this));
+      /** Page title */
+      echo apply_filters('arc_page_title', self::display_page_title($this->build->blueprint[ '_blueprints_page-title' ], array('category' => $_architect_options[ 'architect_language-categories-archive-pages-title' ],
+                                                                                                                               'tag'      => $_architect_options[ 'architect_language-tags-archive-pages-title' ],
+                                                                                                                               'month'    => $_architect_options[ 'architect_language-tags-archive-pages-title' ],
+                                                                                                                               'custom'   => $_architect_options[ 'architect_language-custom-archive-pages-title' ]
+      )));
 
 
-      self::display_page_title($this->build->blueprint[ '_blueprints_page-title' ], array('category' => $_architect_options[ 'architect_language-categories-archive-pages-title' ],
-                                                                                          'tag'      => $_architect_options[ 'architect_language-tags-archive-pages-title' ],
-                                                                                          'month'    => $_architect_options[ 'architect_language-tags-archive-pages-title' ],
-                                                                                          'custom'   => $_architect_options[ 'architect_language-custom-archive-pages-title' ]
-      ));
+      /** NAVIGATION TOP/LEFT */
+      // These are the slider and tabbed controls
+      do_action('arc_before_navigation_top_left');
+      do_action('arc_before_navigation_top_left_' . $bp_shortname);
 
-      echo self::get_sections_opener($bp_shortname, $bp_nav_type, $caller, $bp_transtype);
+      // Devs can hook in with their own navigation
+      do_action_ref_array('arc_top_left_navigation_' . $bp_shortname, array(&$this));
 
-      do_action('arcNavBeforeSection-{$bpshortname}');
+      do_action('arc_after_navigation_top_left');
+      do_action('arc_after_navigation_top_left_' . $bp_shortname);
 
 
       /** Display pagination above */
+      // As pagination is WP core, devs can modify pagination in the same way PageNavi hooks in
       if (isset($this->arc[ 'pagination' ])) {
 
-        do_action('arcBeforePaginationAbove');
+        do_action('arc_before_pagination_above');
+        do_action('arc_before_pagination_above_' . $bp_shortname);
 
-        // TODO: Make this replace via an action or filter
         $this->arc[ 'pagination' ]->render($this->arc_query, 'nav-above');
 
-        do_action('arcAfterPaginationAbove');
+        do_action('arc_after_pagination_above');
+        do_action('arc_after_pagination_above_' . $bp_shortname);
 
       }
 
+      do_action('arc_before_sections');
+      do_action('arc_before_sections_' . $bp_shortname);
+
+      /** Sections opening HTML*/
+      echo self::get_sections_opener($bp_shortname, $bp_nav_type, $caller, $bp_transtype);
+
 
       /** LOOPS */
+      // First loop always executes
       $panel_class->loop(1, $this, $panel_class, $content_class);
 
+      // Record point is maintained so second loop carries on from first
       if ($do_section_2) {
 
         $panel_class->loop(2, $this, $panel_class, $content_class);
 
       }
 
+      // Record point is maintained so third loop carries on from second
       if ($do_section_3) {
 
         $panel_class->loop(3, $this, $panel_class, $content_class);
@@ -243,6 +272,8 @@
       // End loops
       echo '</div> <!-- end blueprint sections -->';
 
+      do_action('arc_after_sections');
+      do_action('arc_after_sections_' . $bp_shortname);
 
       // Don't allow pagination on pages it doesn't work on!
       //   Todo : setup pagination for single or blog index
@@ -250,80 +281,33 @@
       /** PAGINATION BELOW  */
       if (isset($this->arc[ 'pagination' ])) {
 
-        do_action('arcBeforePaginationBelow');
+        do_action('arc_before_pagination_below');
+        do_action('arc_before_pagination_below_' . $bp_shortname);
 
         $this->arc[ 'pagination' ]->render($this->arc_query, 'nav-below');
 
-        do_action('arcAfterPaginationBelow');
+        do_action('arc_after_pagination_below');
+        do_action('arc_after_pagination_below_' . $bp_shortname);
 
       }
 
-      /** NAVIGATION BELOW */
-      do_action_ref_array('arc_bottom_right_navigation',array(&$this));
+      /** NAVIGATION BOTTOM OR RIGHT */
+      // These are the slider and tabbed controls
+      do_action('arc_after_navigation');
+      do_action('arc_after_navigation_' . $bp_shortname);
 
+      // Devs can hook in with their own navigation
+      do_action_ref_array('arc_bottom_right_navigation_' . $bp_shortname, array(&$this));
+
+      do_action('arc_after_navigation');
+      do_action('arc_after_navigation_' . $bp_shortname);
 
       echo '</div> <!-- end pzarchitect blueprint ' . $this->build->blueprint[ '_blueprints_short-name' ] . '-->';
 
       do_action('arc_after_architect');
-
-
-      // Set our original query back in case we had pagination.
-      wp_reset_postdata(); // Pretty sure this goes here... Not after the query reassignment
-      $wp_query = null;
-      $wp_query = $original_query;
+      do_action('arc_after_architect_' . $bp_shortname);
 
     }
-
-    private function display_navigation($location)
-    {
-
-      $class                    = 'arc_Navigator_' . $this->build->blueprint[ '_blueprints_navigator' ];
-      $this->arc[ 'navigator' ] = new $class($this->build->blueprint, $this->nav_items);
-      if ('tl' === $location) {
-
-        // TODO: How do we make this go into the action?WP-Navi does it!
-        if (isset($this->arc[ 'navigator' ])) {
-
-
-          do_action('arcBeforeNavigationAbove');
-
-          $this->arc[ 'navigator' ]->render();
-
-          do_action('arcAfterNavigationAbove');
-
-        }
-
-        // Nav left or top
-        do_action('arc_navigation_top');
-        do_action('arc_navigation_left');
-
-      }
-
-      if ('br' === $location) {
-
-        // TODO: How do we make thi sgo into the action?WP-Navi does it!
-        if (isset($this->arc[ 'navigator' ])) {
-
-
-          do_action('arcBeforeNavigationBelow');
-
-          $this->arc[ 'navigator' ]->render();
-
-          do_action('arcAfterNavigationBelow');
-
-        }
-
-        // Nav right or bottom
-        do_action('arc_navigation_right');
-        do_action('arc_navigation_bottom');
-
-      }
-
-      unset($this->arc[ 'navigator' ]);
-
-
-    }
-
 
     /**
      * set_generic_criteria
@@ -378,6 +362,9 @@
 
     /**
      * display_page_title
+     * @param $display_title
+     * @param $title_override
+     * @return null|string
      */
     private function display_page_title($display_title, $title_override)
     {
@@ -402,9 +389,11 @@
             break;
         }
         if ($title) {
-          echo '<h2 class="pzarc-page-title">' . $title . '</h2>';
+          return '<h2 class="pzarc-page-title">' . $title . '</h2>';
         }
       }
+
+      return null;
     }
 
     /**
@@ -461,7 +450,7 @@
     private function use_custom_query($overrides, $source_query_class)
     {
       // Is this a better way to code?
-      self::set_criteria_prefix(self::set_prefix());
+      self::load_criteria();
 
       $arc_query_source = new $source_query_class($this->build, $this->criteria);
 
@@ -475,42 +464,25 @@
     /**
      * @return string
      */
-    private function set_prefix()
+    private function load_criteria()
     {
-      // TODO: This is not dumb either so no ggod for plugable
-      $prefix = '';
-      switch ($this->build->blueprint[ '_blueprints_content-source' ]) {
+      $registry = arc_Registry::getInstance();
 
-        case 'post':
-        case 'posts':
-          $prefix = '_content_posts_';
-          break;
-        case 'galleries':
-        case 'gallery':
-          $prefix = '_content_galleries_';
-          break;
-        case 'page':
-        case 'pages':
-          $prefix = '_content_pages_';
-          break;
-        case 'slides':
-        case 'slide':
-          $prefix = '_content_slides_';
-          break;
-        case 'snippets':
-        case 'snippet':
-          $prefix = '_content_snippets_';
-          break;
-        case 'cpt':
-          $prefix = '_content_cpt_';
-          break;
-
-        //TODO: We don't really want to do thsi, do we?
-        default:
-          $prefix = '_content_posts_';
+      $content_post_types = $registry->get('post_types');
+      $content_types      = array();
+      foreach ($content_post_types as $key => $value) {
+        if (isset($value[ 'blueprint-content' ])) {
+          $content_types[ $value[ 'blueprint-content' ][ 'type' ] ] = $value[ 'blueprint-content' ][ 'prefix' ];
+        }
       }
+      $prefix = $content_types[$this->build->blueprint[ '_blueprints_content-source' ]];
 
-      return $prefix;
+      // Get values to use in criteria
+      foreach ($this->build->blueprint as $key => $value) {
+        if (strpos($key, $prefix) === 0) {
+          $this->criteria[ $key ] = $value;
+        }
+      }
     }
 
     /**
@@ -522,28 +494,14 @@
       // We'll still use our query, but paging will be picked up from $wp_query. We'll reset $wp_query back after
       // followed every tute under the sun to get it to work otherwise, but nothin!
 
-      if (!empty($this->build->blueprint[ '_blueprints_pagination' ] )) {
+      if (!empty($this->build->blueprint[ '_blueprints_pagination' ])) {
         global $wp_query;
         $wp_query = $this->arc_query;
         wp_reset_postdata();
-     }
-
-    }
-
-    /**
-     * @param $prefix
-     */
-    private function set_criteria_prefix($prefix)
-    {
-      // TODO: Leave this // until id'ed why $prefix is empty. And prob set up a better response
-//      if (empty($prefix)){return;}
-      foreach ($this->build->blueprint as $key => $value) {
-        if (strpos($key, $prefix) === 0) {
-          $this->criteria[ $key ] = $value;
-        }
       }
 
     }
+
 
     /**
      * @param $this ->criteria
@@ -573,34 +531,40 @@
     {
 
       //TODO: oops! Need to get default content type when defaults chosen.
-      $post_type = (empty($this->build->blueprint[ '_blueprints_content-source' ])  ?  (empty($this->arc_query->queried_object->post_type) ? 'post' : $this->arc_query->queried_object->post_type) : $this->build->blueprint[ '_blueprints_content-source' ]);
+      $post_type = (empty($this->build->blueprint[ '_blueprints_content-source' ]) ? (empty($this->arc_query->queried_object->post_type) ? 'post' : $this->arc_query->queried_object->post_type) : $this->build->blueprint[ '_blueprints_content-source' ]);
 
       $registry = arc_Registry::getInstance();
 
       // Build the query
       $content_source = $registry->get('content_source');
-      $class = 'arc_Panel_' . ('defaults' === $this->build->blueprint[ '_blueprints_content-source' ]?'defaults':$post_type);
+      $class          = 'arc_Panel_' . ('defaults' === $this->build->blueprint[ '_blueprints_content-source' ] ? 'defaults' : $post_type);
 
-      if ( array_key_exists($this->build->blueprint[ '_blueprints_content-source' ], $content_source)) {
+      if (array_key_exists($this->build->blueprint[ '_blueprints_content-source' ], $content_source)) {
         require_once $content_source[ $this->build->blueprint[ '_blueprints_content-source' ] ] . '/class_arc_Panel_' . ucfirst($post_type) . '.php';
       }
 
       return $class;
     }
 
-    // $t will be used if we are external
-    function add_navigation_top_left(&$t){
-      if (($t->build->blueprint[ '_blueprints_section-0-layout-mode' ] === 'tabbed' || $t->build->blueprint[ '_blueprints_section-0-layout-mode' ] === 'slider') && ('top' === $t->build->blueprint[ '_blueprints_navigator-position' ] || 'left' === $t->build->blueprint[ '_blueprints_navigator-position' ])) {
-        self::display_navigation('tl');
-      }
-    }
-    // $t will be used if we are external
-    function add_navigation_bottom_right(&$t){
-      if (($t->build->blueprint[ '_blueprints_section-0-layout-mode' ] === 'tabbed' || $t->build->blueprint[ '_blueprints_section-0-layout-mode' ] === 'slider') && ('bottom' === $t->build->blueprint[ '_blueprints_navigator-position' ] || 'right' === $t->build->blueprint[ '_blueprints_navigator-position' ])) {
-        self::display_navigation('br');
+    // $t is used so third party navs can be written
+    function add_navigation(&$t)
+    {
+
+      $class = 'arc_Navigator_' . $t->build->blueprint[ '_blueprints_navigator' ];
+
+      $navigator = new $class($t->build->blueprint, $t->nav_items);
+
+      if (isset($navigator)) {
+
+        $navigator->render();
+
       }
 
+      unset($navigator);
+
     }
+
+
   }
 
   // EOC Architect

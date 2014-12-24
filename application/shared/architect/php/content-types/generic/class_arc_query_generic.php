@@ -6,7 +6,7 @@
  * Date: 20/10/14
  * Time: 2:12 AM
  */
-//var_dump('MAKE NAV BIT');
+
   class arc_query_generic {
 
     public $query_options = array();

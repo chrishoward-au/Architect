@@ -30,7 +30,7 @@
 
     }
 
-   add_action('load_architect_extensions','pzarcpro_init');
+   add_action('arc_load_extensions','pzarcpro_init');
 //  }
 
 
