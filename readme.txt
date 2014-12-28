@@ -102,22 +102,25 @@ This is BETA software. So there are many besides these ones!
 
 == Changelog ==
 
+* TODO ADD Method to load preset styles
 
 = 0.9.1 =
+* ADDING: Content source type NextGen Gallery
+
 * CHANGED: Sections to use divs for HTML validity
 * CHANGED: Removed use of flexbox in layout coz of IE10 incompatiblity issues.
 * CHANGED: Getting Started to Help & Support page
-* FIXED: Focal Point accuracy on media viewer
-* TODO ADD Method to load preset styles
 * CHANGED: Layout types now include sliders and tabbed.
 * CHANGED: Pagination now its own item in general
 * CHANGED: Removed Navigator from general and is now selected when Sliders or Tabbed is layout type
-* FIXED : D.A.R bug in admin metabox tabs where the first ones weren't showing sometimes.
 * CHANGED: Panel margins in Blueprints to include units selection. This currently renders Architect not working in IE8 (2% marketshare)
-* FIXED: Focal point stopped working in Featured Image selector.
 * CHANGED: Only one click to set focal point now
 * CHANGED: Special cursor for focal point
+* CHANGED: Vastly more user friendly content source selection
 
+* FIXED: Focal point stopped working in Featured Image selector.
+* FIXED : D.A.R bug in admin metabox tabs where the first ones weren't showing sometimes.
+* FIXED: Focal Point accuracy on media viewer
 
 = 0.9.0.2 =
 * CHANGED: Custom query overwrites $wp_query. This makes is_main_query() work, but could have other serious consaquences.

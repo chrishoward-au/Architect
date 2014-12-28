@@ -1228,7 +1228,7 @@
       /** DISPLAY ALL THE CONTENT TYPES FORMS */
       $registry = arc_Registry::getInstance();
 
-      $content_post_types = $registry->get('post_types');
+      $content_post_types = (array)$registry->get('post_types');
       $content_types      = array();
       foreach ($content_post_types as $key => $value) {
         if (isset($value[ 'blueprint-content' ])) {
@@ -1241,15 +1241,15 @@
       // If you add/remove a content type, you have to add/remove it's side tab too
       $prefix                 = '_content_general_';
       $sections[ '_general' ] = array(
-          'title'      => 'Settings',
+          'title'      => 'Source',
           'icon_class' => 'icon-large',
-          'icon'       => 'el-icon-adjust-alt',
+          'icon'       => 'el-icon-folder',
           'fields'     => array(
               array(
                   'title'    => __('Content source', 'pzarchitect'),
                   'id'       => '_blueprints_content-source',
-                  'type'     => 'select',
-                  'select2'  => array('allowClear' => false),
+                  'type'     => 'button_set',
+//                  'select2'  => array('allowClear' => false),
                   'default'  => 'defaults',
                   'options'  => $content_types,
                   'subtitle' => (array_key_exists('snippets', $content_types) ? '' : 'Several more content sources supported in Architect Pro version, including Pages, Snippets, Galleries, Custom Post Types and a special Dummy option to display dummy content')
@@ -1257,19 +1257,19 @@
           )
       );
 
-      // Add the rest off general content settings
-      foreach ($blueprint_content_common[ 0 ][ 'general' ][ 'sections' ][ 'fields' ] as $value) {
-        $sections[ '_general' ][ 'fields' ][ ] = $value;
-      }
 
 
       /** DISPLAY ALL THE CONTENT TYPES FORMS */
       foreach ($content_post_types as $key => $value) {
         if (isset($value[ 'blueprint-content' ])) {
-          $sections[ '_' . $value[ 'blueprint-content' ][ 'type' ] ] = $value[ 'blueprint-content' ][ 'sections' ];
+          foreach ($value[ 'blueprint-content' ]['sections']['fields'] as $k => $v) {
+            $v['required'][]=array('_blueprints_content-source','equals',$value[ 'blueprint-content' ]['type']);
+            $sections[ '_general' ][ 'fields' ][ ] = $v;
+          }
         }
       }
       /** FILTERS */
+      $sections[ '_settings' ] = $blueprint_content_common[ 0 ][ 'settings' ][ 'sections' ];
       $sections[ '_filters' ] = $blueprint_content_common[ 0 ][ 'filters' ][ 'sections' ];
 
 

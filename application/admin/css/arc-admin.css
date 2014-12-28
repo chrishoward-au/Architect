@@ -1110,3 +1110,10 @@ body .redux-sidebar .redux-group-menu li.active.hasSubSections .active a:after, 
 
 a.pzarc-codex {
   text-decoration: none; }
+
+#redux-_architect-metabox-panels-design,
+#redux-_architect-metabox-panels-styling,
+#redux-_architect-metabox-blueprint-stylings,
+#redux-_architect-metabox-layout-settings,
+#redux-_architect-metabox-content-selections {
+  display: none; }

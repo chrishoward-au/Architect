@@ -193,7 +193,7 @@
     $pzarc_mediaq_css .= $pzarc_mediaq_opener_css;
 //  $column_width = (100 - ($hmargin * ($columns - 1))) / $columns.'%';
     // Calc allows us to do crazy maths like 25% -3px
-    $column_width = ('0' == $hmargin ? 'calc(100% * 1 / ' . $columns . ')' : 'calc(100% * 1 / ' . $columns . ' - ' . $hmargin . ')');
+    $column_width = ('0' == $hmargin ? 'calc(100%  / ' . $columns . ')' : 'calc(100% / ' . $columns . ' - ' . $hmargin . ')');
     $pzarc_mediaq_css .= $panels_class . ' {width:' . $column_width . ';margin-bottom:' . $pzarc_blueprints[ '_blueprints_section-' . $i . '-panels-margins' ][ 'margin-bottom' ] . ' ;}';
 
     //  Don't want gutters here iff using masonry layoutt

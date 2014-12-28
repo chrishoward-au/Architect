@@ -364,25 +364,6 @@
     }
   }
 
-  function pzarc_get_ng_galleries()
-  {
-    if (!class_exists('P_Photocrati_NextGen')) {
-      return null;
-    }
-    global $ngg, $nggdb;
-    $results = array();
-
-
-    $ng_galleries = $nggdb->find_all_galleries('gid', 'asc', true, 0, 0, false);
-
-    if ($ng_galleries) {
-      foreach ($ng_galleries as $gallery) {
-        $results[ $gallery->gid ] = $gallery->title;
-      }
-    }
-
-    return $results;
-  }
 
   function pzarc_get_gp_galleries()
   {
@@ -427,6 +408,11 @@
     return $results;
 
 
+  }
+
+  function pzarc_get_wp_post_images(){
+    $results=array('todo'=>'TODO!!!');
+    return $results;
   }
 
   function pzarc_get_authors($inc_all = true, $min_level = 1)

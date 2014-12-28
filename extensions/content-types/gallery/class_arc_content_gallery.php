@@ -34,14 +34,14 @@
                       'id'      => $prefix . 'gallery-source',
                       'type'    => 'button_set',
                       'default' => 'images',
-                      'hint'    => array('content' => __('Can be overriden by shortcode e.g. [pzarc blueprint="mytemplate" ids="1,2,3,4,5"]', 'pzarchitect')),
+                      'hint'    => array('content' => __('Can be overriden by shortcode e.g:<br>[architect blueprint=&quot;mytemplate&quot; ids=&quot;1,2,3,4,5&quot;]', 'pzarchitect')),
                       'options' => array(
                           'images'      => 'Image Gallery',
                           'ids'         => 'Specific IDs',
                           'wpgallery'   => 'WP Galleries',
-                          'postimages'  => 'Post images',
+                          // TODO: Get post images as gallery source working
+//                          'postimages'  => 'Post images',
                           'galleryplus' => 'GalleryPlus',
-                          'nggallery'   => 'NextGen',
                       )
                   ),
                   array(
@@ -66,15 +66,16 @@
                       'subtitle' => 'Select a post with a gallery',
                       'required' => array($prefix . 'gallery-source', 'equals', 'wpgallery')
                   ),
-                  array(
-                      'title'    => __('Post iamges', 'pzarchitect'),
-                      'id'       => $prefix . 'wp-post-images',
-                      'type'     => 'select',
-                      'data'     => 'callback',
-                      'args'     => array('pzarc_get_wp_galleries'),
-                      'subtitle' => 'Select a post with images',
-                      'required' => array($prefix . 'gallery-source', 'equals', 'wpgallery')
-                  ),
+                  // TODO: Get post images as gallery source working
+//                  array(
+//                      'title'    => __('Post images', 'pzarchitect'),
+//                      'id'       => $prefix . 'wp-post-images',
+//                      'type'     => 'select',
+//                      'data'     => 'callback',
+//                      'args'     => array('pzarc_get_wp_post_images'),
+//                      'subtitle' => 'Select a post with images',
+//                      'required' => array($prefix . 'gallery-source', 'equals', 'postimages')
+//                  ),
                   array(
                       'title'    => __('GalleryPlus', 'pzarchitect'),
                       'id'       => $prefix . 'galleryplus',
@@ -84,23 +85,6 @@
                       'subtitle' => 'Select a GalleryPlus gallery',
                       'required' => array($prefix . 'gallery-source', 'equals', 'galleryplus')
                   ),
-                  array(
-                      'title'    => __('NextGen Gallery', 'pzarchitect'),
-                      'id'       => $prefix . 'nggallery',
-                      'type'     => 'select',
-                      'data'     => 'callback',
-                      'args'     => array('pzarc_get_ng_galleries'),
-                      'subtitle' => (class_exists('P_Photocrati_NextGen') ? 'Enter NGG gallery name to use'
-                          : 'NextGen is not running on this site'),
-                      'required' => array($prefix . 'gallery-source', 'equals', 'nggallery')
-                  ),
-                  array(
-                      'title'    => __('Click behaviour', 'pzarchitect'),
-                      'id'       => $prefix . 'click-behavioury',
-                      'type'     => 'switch',
-                      'default'  => true,
-                      'subtitle' => __('Open image in lightbox when clicked', 'pzarchitect')
-                  )
               )
           )
       );

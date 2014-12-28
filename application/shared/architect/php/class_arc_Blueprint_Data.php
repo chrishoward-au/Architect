@@ -17,7 +17,7 @@
 
       $prefix = '_content_general_';
 
-      $settings[ 'general' ] = array(
+      $settings[ 'settings' ] = array(
           'prefix'   => $prefix,
           'sections' => array(
               'title'      => 'Settings',

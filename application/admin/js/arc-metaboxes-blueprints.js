@@ -17,16 +17,16 @@ jQuery( document ).ready( function ()
    ********************************************************************************************/
   function init_content_tabs()
   {
-    var content_options = jQuery( '#_blueprints_content-source-select option' );
-    var content_options_selected = jQuery( '#_blueprints_content-source-select option:selected' ).val();
-
-    content_options.each( function ( i )
-        {
-          jQuery( ".redux-sidebar li#_" + (jQuery( this ).val()) + "_box_redux-_architect-metabox-content-selections_section_group_li" ).hide();
-        }
-    );
-
-    jQuery( ".redux-sidebar li#_" + content_options_selected + "_box_redux-_architect-metabox-content-selections_section_group_li" ).show();
+    //var content_options = jQuery( 'fieldset#_architect-_blueprints_content-source input' );
+    var content_options_selected = jQuery( 'fieldset#_architect-_blueprints_content-source input:checked').val();
+    pzarc_show_hide_content_tabs( content_options_selected )
+    //content_options.each( function ( i )
+    //    {
+    //      jQuery( ".redux-sidebar li#_" + (jQuery( this ).val()) + "_box_redux-_architect-metabox-content-selections_section_group_li" ).hide();
+    //    }
+    //);
+    //
+    //jQuery( ".redux-sidebar li#_" + content_options_selected + "_box_redux-_architect-metabox-content-selections_section_group_li" ).show();
 
   }
 
@@ -34,9 +34,9 @@ jQuery( document ).ready( function ()
 
   // Change content tab on content source change
 //    jQuery( "select#_blueprints_content-source-select" ).on( 'click', function ()
-  jQuery( "select#_blueprints_content-source-select" ).on( 'change', function ()
+  jQuery( "fieldset#_architect-_blueprints_content-source" ).on( 'change', function ()
   {
-    pzarc_show_hide_content_tabs( jQuery( this ).find( "option:selected" ).val().trim() );
+    pzarc_show_hide_content_tabs( jQuery( this ).find( ":checked" ).val().trim() );
   } );
 
 
@@ -47,7 +47,7 @@ jQuery( document ).ready( function ()
    */
   function pzarc_show_hide_content_tabs( tab )
   {
-    var content_options = jQuery( '#_blueprints_content-source-select option' );
+    var content_options = jQuery( 'fieldset#_architect-_blueprints_content-source input' );
     content_options.each( function ( i )
         {
           jQuery( ".redux-sidebar li#_" + (jQuery( this ).val()) + "_box_redux-_architect-metabox-content-selections_section_group_li" ).hide();

@@ -11,7 +11,10 @@
       require_once plugin_dir_path(__FILE__) . '/content-types/cpt/class_arc_content_cpt.php';
       require_once plugin_dir_path(__FILE__) . '/content-types/page/class_arc_content_pages.php';
       require_once plugin_dir_path(__FILE__) . '/content-types/gallery/class_arc_content_gallery.php';
-      require_once plugin_dir_path(__FILE__) . '/content-types/snippets/class_arc_content_snippets.php';
+      require_once plugin_dir_path(__FILE__) . '/content-types/gallery/class_arc_content_gallery.php';
+      require_once plugin_dir_path(__FILE__) . '/content-types/nextgen/class_arc_content_nextgen.php';
+
+      /** Create additional post types */
       require_once plugin_dir_path(__FILE__) . '/content-types/snippets/arc-cpt-snippets.php';
 
 //  require_once plugin_dir_path( __FILE__ ). '/content-types/rss/class_arc_content_rss.php';

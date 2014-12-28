@@ -12,6 +12,7 @@
 
     public function __construct(&$build)
     {
+      // If you create you own construct, remember to include these two lines!
       $this->build = $build;
       self::initialise_data();
     }
@@ -48,7 +49,6 @@
 
       $this->data[ 'bgimage' ][ 'thumb' ]    = null;
       $this->data[ 'bgimage' ][ 'original' ] = null;
-
     }
 
     /**
@@ -251,26 +251,6 @@
 
     }
 
-    public function get_video(&$post)
-    {
-      $video_source = (is_object($post) ? get_post_meta($post->ID, 'pzarc_features-video', true) : '');
-      if (!empty($this->section[ '_panels_settings_use-embedded-images' ]) && empty($video_source)) {
-        $video_source = '[video]';
-      }
-      $this->data[ 'video' ][ 'source' ] = pzarc_process_video($video_source);
-    }
-
-    public function get_content(&$post)
-    {
-      /** CONTENT */
-      $this->data[ 'content' ] = apply_filters('the_content', get_the_content());
-    }
-
-    public function get_excerpt(&$post)
-    {
-      $this->data[ 'excerpt' ] = apply_filters('the_excerpt', get_the_excerpt());
-    }
-
     public function get_bgimage(&$post)
     {
       /** BACKGROUND IMAGE */
@@ -310,6 +290,28 @@
         $this->data[ 'bgimage' ][ 'thumb' ] = str_replace('/>', 'data-at2x="' . $thumb_2X . '" />', $this->data[ 'bgimage' ][ 'thumb' ]);
       }
     }
+
+    public function get_video(&$post)
+    {
+      $video_source = (is_object($post) ? get_post_meta($post->ID, 'pzarc_features-video', true) : '');
+      if (!empty($this->section[ '_panels_settings_use-embedded-images' ]) && empty($video_source)) {
+        $video_source = '[video]';
+      }
+      $this->data[ 'video' ][ 'source' ] = pzarc_process_video($video_source);
+    }
+
+    public function get_content(&$post)
+    {
+      /** CONTENT */
+      $this->data[ 'content' ] = apply_filters('the_content', get_the_content());
+    }
+
+    public function get_excerpt(&$post)
+    {
+      $this->data[ 'excerpt' ] = apply_filters('the_excerpt', get_the_excerpt());
+    }
+
+
 
     public function get_custom(&$post)
     {
