@@ -1117,3 +1117,7 @@ a.pzarc-codex {
 #redux-_architect-metabox-layout-settings,
 #redux-_architect-metabox-content-selections {
   display: none; }
+
+body.arc-blueprints *,
+body.arc-panels * {
+  outline: none; }

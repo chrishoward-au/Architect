@@ -348,8 +348,6 @@
                         'ocean-blue'   => 'Ocean/Blue',
                         'orange-green' => 'Orange/Green',
                         'pink'         => 'Pink',
-                        'purple'       => 'Purple',
-                        'red-blue'     => 'Red/Blue',
                     ),
                     'default'  => 'ocean-blue'
                 ),

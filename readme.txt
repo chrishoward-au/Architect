@@ -4,7 +4,7 @@ Tags: content,display,posts,pages,gallery,slider
 Donate link: http://
 Requires at least: 3.5.0
 Tested up to: 4.1.0
-Stable tag: 0.9.1
+Stable tag: 0.9.1.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -104,11 +104,20 @@ This is BETA software. So there are many besides these ones!
 
 * TODO ADD Method to load preset styles
 
+= 0.9.2 =
+* CHANGED: Replaced textual Layout Types selection with icons
+* CHANGED: Dropped purple and red/blue admin backgrounds
+
+= 0.9.1.1 =
+* FIXED: Snippets disappeared
+
 = 0.9.1 =
-* ADDING: Content source type NextGen Gallery
+* ADDED: Content source type NextGen Gallery
+* ADDED: Dimensions options for thumbnails
+* ADDED: Option for thumb nav skip buttons to be square or circle
 
 * CHANGED: Sections to use divs for HTML validity
-* CHANGED: Removed use of flexbox in layout coz of IE10 incompatiblity issues.
+* CHANGED: Removed use of flexbox in layout coz of IE10 incompatibility issues.
 * CHANGED: Getting Started to Help & Support page
 * CHANGED: Layout types now include sliders and tabbed.
 * CHANGED: Pagination now its own item in general
@@ -121,9 +130,10 @@ This is BETA software. So there are many besides these ones!
 * FIXED: Focal point stopped working in Featured Image selector.
 * FIXED : D.A.R bug in admin metabox tabs where the first ones weren't showing sometimes.
 * FIXED: Focal Point accuracy on media viewer
+* FIXED: A few small issues in sliders
 
 = 0.9.0.2 =
-* CHANGED: Custom query overwrites $wp_query. This makes is_main_query() work, but could have other serious consaquences.
+* CHANGED: Custom query overwrites $wp_query. This makes is_main_query() work, but could have other serious consequences.
 
 = 0.9.0.1 =
 * CHANGED: Blueprint field in Actions Editor to a dropdown

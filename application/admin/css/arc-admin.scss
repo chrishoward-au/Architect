@@ -1407,3 +1407,8 @@ a.pzarc-codex {
 {
 display:none;
 }
+
+body.arc-blueprints *,
+body.arc-panels * {
+  outline:none;
+}

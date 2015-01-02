@@ -82,6 +82,7 @@
 
     public function get_title(&$post)
     {
+      var_Dump($post);
       if ($this->toshow[ 'title' ][ 'show' ]) {
         $this->data[ 'title' ][ 'title' ] = $post[ 'title' ][ 'title' ];
       }
@@ -156,7 +157,7 @@
 
 
     /**
-     * Default Loop
+     * Custom loop for Dummy data
      */
     public function loop($section_no, &$architect, &$panel_class, $class)
     {

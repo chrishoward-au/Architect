@@ -59,7 +59,8 @@
                     'transport');
 
       $picno = rand(1,10);
-      for ($i = 0; $i < $this->query_options[ 'posts_per_page' ]; $i++) {
+      $no_per_page = ($this->query_options[ 'posts_per_page' ] < 1?$this->build->blueprint['_content_dummy_dummy-record-count']:$this->query_options[ 'posts_per_page' ]);
+      for ($i = 0; $i < $no_per_page; $i++) {
         $dummy_query[$i][ 'title' ][ 'title' ] = ($this->isfaker ? $this->faker->sentence() : ucfirst($this->generator->getContent(rand(3, 8), 'plain', false)));
         $dummy_query[$i][ 'content' ] = apply_filters('the_content', ($this->isfaker ? $this->faker->realText() : ucfirst($this->generator->getContent(rand(400, 800), 'html', false))));
         $dummy_query[$i][ 'excerpt' ] = apply_filters('the_excerpt', ($this->isfaker ? $this->faker->realText(250) : ucfirst($this->generator->getContent(rand(20, 50), 'text', false))) . '... <a href="#">[Read more]</a>');

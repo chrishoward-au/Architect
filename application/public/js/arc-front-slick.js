@@ -69,7 +69,9 @@ jQuery( document ).ready( function ()
       var arcSlickNav = jQuery( '.pzarc-navigator-' + arcSlickID + '' ).slick( {
             autoplay: false,
 //            centerMode: arcSlickOptsObj.tinfinite,
+            // CenterMode:true may have a bug where it doesn't scroll if image count is equal to or less than slidesToShow
             centerMode:false,
+            centerPadding:0,
             focusOnSelect:true,
             draggable: true,
             dots: false,
@@ -80,7 +82,8 @@ jQuery( document ).ready( function ()
 //            infinite: arcSlickOptsObj.tinfinite,
             infinite:false,
             arrows: false,
-            asNavFor:'.arc-slider-container.arc-slider-container-' + arcSlickID + ' .pzarc-section'
+            asNavFor:'.arc-slider-container.arc-slider-container-' + arcSlickID + ' .pzarc-section',
+            waitForAnimate:false
           }
       );
       if ( arcSlickNav.length === 0 )
@@ -108,7 +111,7 @@ jQuery( document ).ready( function ()
 // TODO: Needs some tweaking - prob height and overflow
             vertical: false,
             asNavFor:'.pzarc-navigator-' + arcSlickID + '',
-            waitToAnimate:false
+            waitForAnimate:false
 
           }
       );

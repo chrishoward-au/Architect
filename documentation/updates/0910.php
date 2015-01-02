@@ -25,6 +25,12 @@
 <li>For Blueprints using Pagination, in <em>General settings</em>, click <em>Yes</em> for <em>Pagination</em></li>
 <li>For Blueprints using Navigator, in <em>Blueprint Layout > Section 1</em>, click either <em>Slider</em> or <em>Tabbed</em></li></ol>
 </ol>
+<p>0.9.1 sees three other significant changes:</p>
+<ol>
+<li>The Layout types now include Sliders and Tabbed. Which is why you have to redo those ones with Navigator or Pagination.</li>
+<li>A content source type of NextGEN Galleries has been added</li>
+<li>The content selection has been vastly improved to be much more user friendly</li>
+</ol></u>
  <p><a href="http://discourse.pizazzwp.com/t/architect-beta-v0-9-1" target="_blank">Full change log</a> | <a href="http://discourse.pizazzwp.com" target="_blank">Support</a> |<a href="%1$s">Hide Notice</a>','pzarchitect'), '?pzarc_nag_ignore_v091=0');
 
         echo "</p>

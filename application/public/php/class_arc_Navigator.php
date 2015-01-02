@@ -29,13 +29,15 @@
       $this->navitems  = $navitems;
       $this->sizing    = ' ' . $this->blueprint[ '_blueprints_navigator-sizing' ];
 
-      $skip_left  = $this->blueprint[ '_blueprints_navigator-skip-left' ];
-      $skip_right = $this->blueprint[ '_blueprints_navigator-skip-right' ];
+//      $skip_left  = $this->blueprint[ '_blueprints_navigator-skip-left' ];
+//      $skip_right = $this->blueprint[ '_blueprints_navigator-skip-right' ];
+      $skip_left  = 'backward';
+      $skip_right = 'forward';
 
       if ('thumbs' === $this->blueprint[ '_blueprints_navigator' ]) {
         echo '<div class="arc-slider-nav arc-slider-container icomoon ' . $this->blueprint[ '_blueprints_navigator' ] . ' has-pager">';
-        echo '<button class="pager skip-left icon-btn-style"><span class="icon-' . $skip_left . '"></span></button>';
-        echo '<button class="pager skip-right icon-btn-style"><span class="icon-' . $skip_right . '"></span></button>';
+        echo '<button class="pager skip-left icon-btn-style"><span class="icon-' . $skip_left . ' '.$this->blueprint['_blueprints_navigator-skip-button'].'"></span></button>';
+        echo '<button class="pager skip-right icon-btn-style"><span class="icon-' . $skip_right . ' '.$this->blueprint['_blueprints_navigator-skip-button']. '"></span></button>';
       }
 
       echo '<div class="pzarc-navigator pzarc-navigator-' . $this->blueprint[ '_blueprints_short-name' ] .

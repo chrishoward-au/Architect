@@ -340,13 +340,15 @@
   .pzarchitect .thumbs .arc-slider-slide-nav-item {
     /* Stylize pagination button: */ }
     .pzarchitect .thumbs .arc-slider-slide-nav-item img {
-      border-style: solid;
-      border-width: 2px;
-      border-color: rgba(128, 128, 128, 0); }
+      vertical-align: middle;
+      display: inline;
+      margin: 2px; }
+      .pzarchitect .thumbs .arc-slider-slide-nav-item img:hover {
+        box-shadow: 0 0 0 1px #000, 0 0 0 2px #fff; }
     .pzarchitect .thumbs .arc-slider-slide-nav-item.active img {
-      border-color: #fff; }
+      box-shadow: 0 0 0 1px #fff, 0 0 0 2px #000; }
   .pzarchitect .thumbs span.dashicons {
-    font-size: 4em;
+    font-size: 3em;
     display: inline-table; }
   .pzarchitect .numbers .arc-slider-slide-nav-item {
     font-size: 28px;
@@ -407,7 +409,7 @@
     .pzarchitect .arc-slider-nav button.pager {
       position: absolute;
       top: 50%;
-      margin-top: -20px;
+      margin-top: -15px;
       padding: 0;
       z-index: 2;
       text-decoration: none;
@@ -418,23 +420,23 @@
       .pzarchitect .arc-slider-nav button.pager span {
         vertical-align: middle;
         margin: 0;
-        padding: 0;
+        padding: 2px;
         position: relative;
-        width: 40px;
-        height: 40px;
+        width: 25px;
+        height: 25px;
         border-radius: 30px;
-        font-size: 30px;
+        font-size: 19px;
         display: block;
         color: #fff;
         background: rgba(0, 0, 0, 0.3); }
+        .pzarchitect .arc-slider-nav button.pager span.circle {
+          border-radius: 30px; }
+        .pzarchitect .arc-slider-nav button.pager span.square {
+          border-radius: 2px; }
       .pzarchitect .arc-slider-nav button.pager.skip-left {
         left: 5px; }
-        .pzarchitect .arc-slider-nav button.pager.skip-left span {
-          left: -4px; }
       .pzarchitect .arc-slider-nav button.pager.skip-right {
         right: 5px; }
-        .pzarchitect .arc-slider-nav button.pager.skip-right span {
-          right: -4px; }
   .pzarchitect .pzarc-navigator.inside {
     width: 100%; }
     .pzarchitect .pzarc-navigator.inside .arc-slider-wrapper {

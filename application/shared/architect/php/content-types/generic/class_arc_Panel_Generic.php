@@ -21,6 +21,8 @@
     {
       // Null up everything to prevent warnings later on
       $this->data[ 'title' ] = null;
+      $this->data[ 'title' ]['title'] = null;
+      $this->data[ 'title' ]['thumb'] = null;
 
       $this->data[ 'content' ] = null;
 
@@ -371,6 +373,7 @@
 
     public function render_title($component, $content_type, $panel_def, $rsid, $layout_mode = false)
     {
+//      var_dump($this->data);
       if ('thumb' === $this->section[ '_panels_design_title-prefix' ]) {
         $panel_def[ $component ] = str_replace('{{title}}', $this->data[ 'title' ][ 'thumb' ] . '<span class="pzarc-title-wrap">' . $this->data[ 'title' ][ 'title' ] . '</span>', $panel_def[ $component ]);
       } else {
@@ -728,10 +731,7 @@
     /**
      * Default Loop
      */
-    public
-    function loop(
-        $section_no, &$architect, &$panel_class, $class
-    ) {
+    public function loop( $section_no, &$architect, &$panel_class, $class  ) {
 
       $this->build     = $architect->build;
       $this->arc_query = $architect->arc_query;
@@ -802,15 +802,22 @@
 
           case 'thumbs':
 
+            $focal_point= array(50,50);
+
             if ('attachment' === $the_post->post_type) {
 
               // TODO: Will need to change this to use the thumb dimensions set in the blueprint viasmall , medium, large
               $thumb = wp_get_attachment_image($the_post->ID, array(self::get_thumbsize('w'),
-                                                                    self::get_thumbsize('h')));
+                                                                    self::get_thumbsize('h'),
+                                                                    'bfi_thumb' => true,
+                                                                    'crop'      => (int)$focal_point[ 0 ] . 'x' . (int)$focal_point[ 1 ]
+                                                            )
+              );
 
             } else {
 
-              $thumb = get_the_post_thumbnail($the_post->ID, array(self::get_thumbsize('w'), self::get_thumbsize('h')));
+              $thumb = get_the_post_thumbnail($the_post->ID, array(self::get_thumbsize('w'), self::get_thumbsize('h'),'bfi_thumb' => true,
+                                                                   'crop'      => $focal_point));
 
             }
 
@@ -829,27 +836,21 @@
         }
 
       }
-
       return $nav_items;
     }
 
 
     protected
-    function get_thumbsize(
-        $dim
+    function get_thumbsize( $dim
     ) {
+
       // $dim for later development with rectangular thumbs
       $thumbsize = 60;
-      switch ($this->build->blueprint[ '_blueprints_navigator-sizing' ]) {
-        case 'small':
-          $thumbsize = 40;
-          break;
-        case 'medium':
-          $thumbsize = 60;
-          break;
-        case 'large':
-          $thumbsize = 80;
-          break;
+      if (!empty($this->build->blueprint[ '_blueprints_navigator-thumb-dimensions' ][ 'width' ]) && $dim === 'w') {
+        $thumbsize = str_replace(array('px'), '', $this->build->blueprint[ '_blueprints_navigator-thumb-dimensions' ][ 'width' ]);
+
+      } elseif (!empty($this->build->blueprint[ '_blueprints_navigator-thumb-dimensions' ][ 'height' ]) && $dim === 'h') {
+        $thumbsize = str_replace(array('px'), '', $this->build->blueprint[ '_blueprints_navigator-thumb-dimensions' ][ 'height' ]);
       }
 
       return $thumbsize;

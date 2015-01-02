@@ -211,17 +211,23 @@ Pagination Styles
     //        box-sizing:border-box;
 
     img {
-      border-style: solid;
-      border-width: 2px;
-      border-color: rgba(128, 128, 128, 0);
+      vertical-align: middle;
+      display: inline;
+      margin: 2px;
+      &:hover {
+        box-shadow: 0 0 0 1px #000,
+        0 0 0 2px #fff;
+      }
     }
-
     &.active img {
-      border-color: #fff;
+      box-shadow:
+      0 0 0 1px #fff,
+      0 0 0 2px #000;
+
     }
   }
   span.dashicons {
-    font-size: 4em;
+    font-size: 3em;
     display: inline-table;
 
   }
@@ -323,7 +329,7 @@ Pagination Styles
   button.pager {
     position: absolute;
     top: 50%;
-    margin-top: -20px;
+    margin-top: -15px;
     padding: 0;
     z-index: 2;
     text-decoration: none;
@@ -335,26 +341,32 @@ Pagination Styles
     span {
       vertical-align: middle;
       margin: 0;
-      padding: 0;
+      padding: 2px;
       position: relative;
-      width: 40px;
-      height: 40px;
+      width: 25px;
+      height: 25px;
       border-radius: 30px;
-      font-size: 30px;
+      font-size: 19px;
       display: block;
       color: #fff;
       background: rgba(0, 0, 0, 0.3);
+      &.circle{
+        border-radius:30px;
+      }
+      &.square {
+        border-radius:2px;
+      }
     }
     &.skip-left {
       left: 5px;
       span {
-        left: -4px;
+//        left: -4px;
       }
     }
     &.skip-right {
       right: 5px;
       span {
-        right: -4px;
+//        right: -4px;
       }
     }
   }

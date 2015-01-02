@@ -449,6 +449,12 @@
         $upload_url  = $upload_info[ 'baseurl' ];
         $theme_url   = get_template_directory_uri();
         $theme_dir   = get_template_directory();
+        $content_url = content_url();
+
+        // TODO: WP says not to use this!
+        $content_dir = WP_CONTENT_DIR;
+        $nextgen_url = $content_url . '/gallery/';
+        $nextgen_dir = $content_dir . '/gallery/';
 
         // find the path of the image. Perform 2 checks:
         // #1 check if the image is in the uploads folder
@@ -457,11 +463,14 @@
           $img_path = $upload_dir . $rel_path;
 
           // #2 check if the image is in the current theme folder
-        } else {
-          if (strpos($url, $theme_url) !== false) {
-            $rel_path = str_replace($theme_url, '', $url);
-            $img_path = $theme_dir . $rel_path;
-          }
+        } elseif (strpos($url, $theme_url) !== false) {
+          $rel_path = str_replace($theme_url, '', $url);
+          $img_path = $theme_dir . $rel_path;
+
+        } elseif (strpos($url, $nextgen_url) !== false) {
+          $rel_path = str_replace($nextgen_url, '', $url);
+          $img_path = $nextgen_dir . $rel_path;
+
         }
 
         // Fail if we can't find the image in our WP local directory
@@ -593,7 +602,10 @@
           // save our new image
           $mime_type = isset($opacity) ? 'image/png' : null;
           if ($mime_type === 'image/jpeg' || empty($mime_type)) {
-            $editor->progressivejpeg();
+            // Added this check incase a custom editor like EWWWIO_GD_Editor  that might not have this method
+            if (method_exists(get_class($editor), 'progressivejpeg')) {
+              $editor->progressivejpeg();
+            }
           }
           $resized_file = $editor->save($destfilename, $mime_type);
         }
@@ -677,7 +689,10 @@
         $crop[ 2 ] = (!isset($crop[ 2 ]) ? 'center' : $crop[ 2 ]);
       } elseif (true === $crop) {
         $crop = array('50', '50', 'center');
+      } elseif ($crop !== false && !isset($crop[ 2 ])) {
+        $crop[ 2 ] = 'respect';
       }
+
 
       $aspect_ratio = $orig_w / $orig_h;
 
@@ -698,7 +713,6 @@
       $crop_h = round($new_h / $size_ratio);
 
       // Crop from offsets (left, top) as percentages
-
       list($x, $y, $f) = $crop;
 
       // Convert $x and $y to decimal if necessary
@@ -887,7 +901,7 @@
     }
     if (!is_dir($upload_dir)) {
       if (!wp_mkdir_p($upload_dir)) {
-     //     die('Failed to create folders...');
+        //     die('Failed to create folders...');
       }
     }
     $cache_files = scandir($upload_dir);

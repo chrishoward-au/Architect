@@ -76,7 +76,7 @@
       if (($this->build->blueprint[ '_blueprints_section-0-layout-mode' ] === 'tabbed' || $this->build->blueprint[ '_blueprints_section-0-layout-mode' ] === 'slider') && ('top' === $this->build->blueprint[ '_blueprints_navigator-position' ] || 'left' === $this->build->blueprint[ '_blueprints_navigator-position' ])) {
 
         add_action('arc_top_left_navigation_' . $this->build->blueprint[ '_blueprints_short-name' ], array(&$this,
-                                                                                                           'add_navigation_'), 10, 1);
+                                                                                                           'add_navigation'), 10, 1);
       }
 
       if (($this->build->blueprint[ '_blueprints_section-0-layout-mode' ] === 'tabbed' || $this->build->blueprint[ '_blueprints_section-0-layout-mode' ] === 'slider') && ('bottom' === $this->build->blueprint[ '_blueprints_navigator-position' ] || 'right' === $this->build->blueprint[ '_blueprints_navigator-position' ])) {
@@ -166,7 +166,6 @@
         self::use_default_query();
 
       }
-
       /** at this point we have the necessary info to populate the navigator. So let's do it! */
       $content_class = self::get_blueprint_content_class();
       $panel_class   = new $content_class($this->build); // This gets the settings for the panels of this content type.
