@@ -13,6 +13,7 @@
       require_once plugin_dir_path(__FILE__) . '/content-types/gallery/class_arc_content_gallery.php';
       require_once plugin_dir_path(__FILE__) . '/content-types/gallery/class_arc_content_gallery.php';
       require_once plugin_dir_path(__FILE__) . '/content-types/nextgen/class_arc_content_nextgen.php';
+      require_once plugin_dir_path(__FILE__) . '/content-types/snippets/class_arc_content_snippets.php';
 
       /** Create additional post types */
       require_once plugin_dir_path(__FILE__) . '/content-types/snippets/arc-cpt-snippets.php';
