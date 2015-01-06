@@ -4,7 +4,7 @@ Tags: content,display,posts,pages,gallery,slider
 Donate link: http://
 Requires at least: 3.5.0
 Tested up to: 4.1.0
-Stable tag: 0.9.1.1
+Stable tag: 0.9.1.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -95,18 +95,30 @@ This is BETA software. So there are many besides these ones!
 * In tabbed navigation, Firefox ignores padding
 
 == Screenshots ==
-1. Architect Panel Designer
-2. Architect Blueprint Designer
-3. Output of various Architect Blueprints
-
+1. Architect Panel Designer showing magazine style article design
+2. Post on front end using magazine style artcile design
+3. Architect Blueprint - Content selection. 
+4. Architect Blueprint - Layout design
+5. Slider example
 
 == Changelog ==
 
 * TODO ADD Method to load preset styles
 
 = 0.9.2 =
+* ADDED: Option when Feature is in content, to show it in the excerpt, content or both.
+* ADDED: Option to only show excerpts when there is an author created one.
+
+* FIXED: Option to make content 100% wide when no feature wasn't working
+
+= 0.9.1.3 =
+* FIXED: Blueprint options screen may have broken with previous release. You may need to reselect Layout Type
+
+= 0.9.1.2 =
 * CHANGED: Replaced textual Layout Types selection with icons
 * CHANGED: Dropped purple and red/blue admin backgrounds
+
+* FIXED: Query transient not always working for non-admins
 
 = 0.9.1.1 =
 * FIXED: Snippets disappeared

@@ -97,7 +97,6 @@
        */
       public function render()
       {
-
         if ($this->field[ 'regular' ] === true) {
           echo '<strong>Regular</strong>: <input id="' . $this->field[ 'id' ] . '-regular" name="' . $this->field[ 'name' ] . '[regular]' . $this->field[ 'name_suffix' ] . '" value="' . $this->value[ 'regular' ] . '" class="redux-spectrum redux-spectrum-init ' . $this->field[ 'class' ] . '"  type="text" data-default-spectrum="' . $this->field[ 'default' ][ 'regular' ] . '" />&nbsp;&nbsp;&nbsp;&nbsp;';
           echo __('Underline', 'redux-framework') . '&nbsp;<select id="' . $this->field[ 'id' ] . '-regular-deco" name="' . $this->field[ 'name' ] . '[regular-deco]' . $this->field[ 'name_suffix' ] . '"  class="redux-links ' . $this->field[ 'class' ] . '" style="width:100px;">';

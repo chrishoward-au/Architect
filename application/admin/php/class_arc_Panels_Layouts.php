@@ -122,13 +122,13 @@
     function panels_description($content)
     {
 
-    $content['arc-message'] = '
+      $content[ 'arc-message' ] = '
       <div class="after-title-help postbox">
         <div class="inside">
           <h4>About Panels</h4>
 
-          <p class="howto">'.
-            __('Architect Panels are where you design the layout of the content, that is, choosing how to display the titles, meta data, featured images, excerpts, content etc.', 'pzarchitect').'</p>
+          <p class="howto">' .
+          __('Architect Panels are where you design the layout of the content, that is, choosing how to display the titles, meta data, featured images, excerpts, content etc.', 'pzarchitect') . '</p>
 
           <p class="howto">Documentation can be found throughout Architect or online at the <a
                 href="http://architect4wp.com/codex-listings" target="_blank">Architect Codex</a></p>
@@ -369,6 +369,22 @@
                       'fill'          => __('Background', 'pzarchitect'),
                   ),
                   'hint'    => array('content' => __('Select the location to display the Feature.', 'pzarchitect'))
+              ),
+              array(
+                  'title'    => __('Feature in', 'pzarchitect'),
+                  'id'       => $prefix . 'feature-in',
+                  'type'     => 'button_set',
+                  'multi'    => true,
+                  'default'  => array('excerpt', 'content'),
+                  'required' => array(
+                      array($prefix . 'feature-location', '!=', 'components'),
+                      array($prefix . 'feature-location', '!=', 'float'),
+                      array($prefix . 'feature-location', '!=', 'fill'),
+                  ),
+                  'options'  => array(
+                      'excerpt' => 'Excerpt',
+                      'content' => 'Content',
+                  ),
               ),
               array(
                   'title'         => __('Number of custom fields', 'pzarchitect'),
@@ -673,6 +689,15 @@
                   'type'    => 'text',
                   'class'   => 'textbox-small',
                   'default' => '[...]',
+              ),
+              array(
+                  'title'    => __('Actual excerpts only', 'pzarchitect'),
+                  'id'       => $prefix . 'manual-excerpts',
+                  'type'     => 'switch',
+                  'on'       => __('Yes', 'pzarchitect'),
+                  'off'      => __('No', 'pzarchitect'),
+                  'default'  => false,
+                  'subtitle' => __('Only display excerpts that are actually entered in the Excerpt field of the post editor', 'pzarchitect')
               ),
               array(
                   'title'   => __('Read More', 'pzarchitect'),
@@ -1216,7 +1241,7 @@
       }
       if (!empty($_architect_options[ 'architect_enable_styling' ])) {
         $defaults = get_option('_architect');
-        $prefix = '_panels_styling_';
+        $prefix   = '_panels_styling_';
 
         $font       = '-font';
         $link       = '-links';
@@ -1266,8 +1291,8 @@
                     'id'       => $prefix . 'panels-load-style',
                     'type'     => 'select',
                     'subtitle' => 'Sorry to tease, but this isn\'t implemented yet.',
-                    'options'  => array('none','dark', 'light'),
-                    'default'=> 'none'
+                    'options'  => array('none', 'dark', 'light'),
+                    'default'  => 'none'
                 ),
                 array(
                     'title'    => __('Panels', 'pzarchitect'),
@@ -1301,16 +1326,16 @@
                     'indent'   => true,
                     'class'    => 'heading',
                     'hint'     => array('content' => 'Class: .hentry'),
-                    'subtitle' => !$this->defaults?(is_array($_architect[ 'architect_config_hentry-selectors' ]) ? 'Classes: ' . implode(', ', $_architect[ 'architect_config_hentry-selectors' ]) : 'Class: ' . $_architect[ 'architect_config_hentry-selectors' ]):''
+                    'subtitle' => !$this->defaults ? (is_array($_architect[ 'architect_config_hentry-selectors' ]) ? 'Classes: ' . implode(', ', $_architect[ 'architect_config_hentry-selectors' ]) : 'Class: ' . $_architect[ 'architect_config_hentry-selectors' ]) : ''
                 ),
                 // id,selectors,defaults
                 // need to grab selectors from options
                 // e.g. $_architect['architect_config_hentry-selectors']
                 // Then we need to get them back later
-                pzarc_redux_bg($prefix . 'hentry' . $background, !$this->defaults?$_architect[ 'architect_config_hentry-selectors' ]:'', $defaults[ $optprefix . 'hentry' . $background ]),
-                pzarc_redux_padding($prefix . 'hentry' . $padding, !$this->defaults?$_architect[ 'architect_config_hentry-selectors' ]:'', $defaults[ $optprefix . 'hentry' . $padding ]),
-                pzarc_redux_margin($prefix . 'hentry' . $margin, !$this->defaults?$_architect[ 'architect_config_hentry-selectors' ]:'', $defaults[ $optprefix . 'hentry' . $margin ]),
-                pzarc_redux_borders($prefix . 'hentry' . $border, !$this->defaults?$_architect[ 'architect_config_hentry-selectors' ]:'', $defaults[ $optprefix . 'hentry' . $border ])
+                pzarc_redux_bg($prefix . 'hentry' . $background, !$this->defaults ? $_architect[ 'architect_config_hentry-selectors' ] : '', $defaults[ $optprefix . 'hentry' . $background ]),
+                pzarc_redux_padding($prefix . 'hentry' . $padding, !$this->defaults ? $_architect[ 'architect_config_hentry-selectors' ] : '', $defaults[ $optprefix . 'hentry' . $padding ]),
+                pzarc_redux_margin($prefix . 'hentry' . $margin, !$this->defaults ? $_architect[ 'architect_config_hentry-selectors' ] : '', $defaults[ $optprefix . 'hentry' . $margin ]),
+                pzarc_redux_borders($prefix . 'hentry' . $border, !$this->defaults ? $_architect[ 'architect_config_hentry-selectors' ] : '', $defaults[ $optprefix . 'hentry' . $border ])
             )
         );
 
@@ -1322,7 +1347,7 @@
             'show_title' => false,
             'icon_class' => 'icon-large',
             'icon'       => 'el-icon' . $font,
-            'desc'       => 'Class: .pzarc_entry-title',
+            'desc'       => 'Class: .entry-title',
             'fields'     => pzarc_fields(
                 pzarc_redux_font($prefix . 'entry-title' . $font, array('.entry-title'), $defaults[ $optprefix . 'entry-title' . $font ]),
                 pzarc_redux_bg($prefix . 'entry-title' . $font . $background, array('.entry-title'), $defaults[ $optprefix . 'entry-title' . $font . $background ]),
@@ -1349,11 +1374,12 @@
             'show_title' => false,
             'icon_class' => 'icon-large',
             'icon'       => 'el-icon-calendar',
-            'desc'       => 'Class: .pzarc_entry_meta',
+            'desc'       => 'Class: .entry_meta',
             'fields'     => pzarc_fields(
                 pzarc_redux_font($prefix . 'entry-meta' . $font, array('.entry-meta'), $defaults[ $optprefix . 'entry-meta' . $font ]),
                 pzarc_redux_bg($prefix . 'entry-meta' . $font . $background, array('.entry-meta'), $defaults[ $optprefix . 'entry-meta' . $font . $background ]),
                 pzarc_redux_padding($prefix . 'entry-meta' . $font . $padding, array('.entry-meta'), $defaults[ $optprefix . 'entry-meta' . $font . $padding ]),
+ //               pzarc_redux_margin($prefix . 'entry-meta' . $font . $margin, array('.entry-meta'), $defaults[ $optprefix . 'entry-meta' . $font . $margin ]),
                 pzarc_redux_links($prefix . 'entry-meta' . $font . $link, array('.entry-meta a'), $defaults[ $optprefix . 'entry-meta' . $font . $link ])
             )
         );
@@ -1367,9 +1393,17 @@
             'icon_class' => 'icon-large',
             'icon'       => 'el-icon-align-left',
             'fields'     => pzarc_fields(
+                array(
+                    'title'  => __('Full content', 'pzarc'),
+                    'id'     => $prefix . 'entry-content',
+                    'type'   => 'section',
+                    'indent' => true,
+                    'class'  => 'heading',
+                ),
                 pzarc_redux_font($prefix . 'entry-content' . $font, array('.entry-content'), $defaults[ $optprefix . 'entry-content' . $font ]),
                 pzarc_redux_bg($prefix . 'entry-content' . $font . $background, array('.entry-content'), $defaults[ $optprefix . 'entry-content' . $font . $background ]),
                 pzarc_redux_padding($prefix . 'entry-content' . $font . $padding, array('.entry-content'), $defaults[ $optprefix . 'entry-content' . $font . $padding ]),
+ //               pzarc_redux_margin($prefix . 'entry-content' . $font . $margin, array('.entry-content'), $defaults[ $optprefix . 'entry-content' . $font . $margin ]),
                 pzarc_redux_links($prefix . 'entry-content' . $font . $link, array('.entry-content a'), $defaults[ $optprefix . 'entry-content' . $font . $link ]),
                 array(
                     'title'  => __('Excerpt', 'pzarc'),
@@ -1381,6 +1415,7 @@
                 pzarc_redux_font($prefix . 'entry-excerpt' . $font, array('.entry-excerpt'), $defaults[ $optprefix . 'entry-excerpt' . $font ]),
                 pzarc_redux_bg($prefix . 'entry-excerpt' . $font . $background, array('.entry-excerpt'), $defaults[ $optprefix . 'entry-excerpt' . $font . $background ]),
                 pzarc_redux_padding($prefix . 'entry-excerpt' . $font . $padding, array('.entry-excerpt'), $defaults[ $optprefix . 'entry-excerpt' . $font . $padding ]),
+//                pzarc_redux_margin($prefix . 'entry-excerpt' . $font . $margin, array('.entry-excerpt'), $defaults[ $optprefix . 'entry-excerpt' . $font . $margin ]),
                 pzarc_redux_links($prefix . 'entry-excerpt' . $font . $link, array('.entry-excerpt a'), $defaults[ $optprefix . 'entry-excerpt' . $font . $link ]),
                 array(
                     'title'  => __('Read more', 'pzarchitect'),
@@ -1396,7 +1431,6 @@
                 pzarc_redux_links($prefix . 'entry-readmore' . $font . $link, array('a.readmore'), $defaults[ $optprefix . 'entry-readmore' . $font . $link ])
             )
         );
-
         /**
          * FEATURED IMAGE
          */
@@ -1589,7 +1623,7 @@
         <span class="pzarc-draggable pzarc-draggable-title" title="Post title" data-idcode=title ><span>This is the title</span></span>
         <span class="pzarc-draggable pzarc-draggable-meta1 pzarc-draggable-meta" title="Meta info 1" data-idcode=meta1 ><span>Jan 1 2013</span></span>
         <span class="pzarc-draggable pzarc-draggable-excerpt" title="Excerpt with featured image" data-idcode=excerpt ><span><img src="' . PZARC_PLUGIN_APP_URL . '/shared/assets/images/sample-image.jpg" style="max-width:20%;padding:2px;" class="pzarc-align none">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam quis justo erat. Cras semper sem hendre...[more]</span></span>
-        <span class="pzarc-draggable pzarc-draggable-content" title="Full post content" data-idcode=content ><span><img src="' . PZARC_PLUGIN_APP_URL . '/shared/assets/images/sample-image.jpg" style="max-width:20%;padding:2px;" class="pzarc-align none"><img src="' . PZARC_PLUGIN_APP_URL . '/shared/assets/images/sample-in-content.jpg" style="max-width:30%;float:left;padding:5px;">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam quis justo erat. <ul><li>&nbsp;•&nbsp;Cras semper sem hendrerit</li><li>&nbsp;•&nbsp;Tortor porta at auctor</li></ul><strong>Lacus consequat</strong><p>Pellentesque pulvinar iaculis tellus in blandit. Suspendisse rhoncus, magna vel eleifend cursus, turpis odio molestie urna, quis posuere eros risus quis neque. </p></span></span>
+        <span class="pzarc-draggable pzarc-draggable-content" title="Full post content" data-idcode=content ><span><img src="' . PZARC_PLUGIN_APP_URL . '/shared/assets/images/sample-image.jpg" style="max-width:20%;padding:2px;" class="pzarc-align none"><img src="' . PZARC_PLUGIN_APP_URL . '/shared/assets/images/sample-in-content.jpg" style="max-width:30%;float:left;padding:5px;">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam quis justo erat. <ul><li>&nbsp;•&nbsp;Cras semper sem hendrerit</li><li>&nbsp;•&nbsp;Tortor porta at auctor</li></ul></span></span>
         <span class="pzarc-draggable pzarc-draggable-image" title="Featured image" data-idcode=image style="max-height: 100px; overflow: hidden;"><span><img src="' . PZARC_PLUGIN_APP_URL . '/shared/assets/images/sample-image.jpg" style="max-width:100%;"></span></span>
         <span class="pzarc-draggable pzarc-draggable-meta2 pzarc-draggable-meta" title="Meta info 2" data-idcode=meta2 ><span>Categories - News, Sport</span></span>
         <span class="pzarc-draggable pzarc-draggable-meta3 pzarc-draggable-meta" title="Meta info 3" data-idcode=meta3 ><span>Comments: 27</span></span>

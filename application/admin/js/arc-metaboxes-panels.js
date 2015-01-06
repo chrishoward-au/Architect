@@ -5,8 +5,8 @@ jQuery( document ).ready( function ()
   /**
    * Set validation. Once Redux gets it working, can remove this.
    */
-  jQuery("input#_panels_settings_short-name" ).attr("required","required");
-  jQuery("input#_panels_settings_short-name" ).attr("pattern",  "[a-zA-Z0-9\-\_]+");
+  jQuery( "input#_panels_settings_short-name" ).attr( "required", "required" );
+  jQuery( "input#_panels_settings_short-name" ).attr( "pattern", "[a-zA-Z0-9\-\_]+" );
 
 
   /** ***********************************************************************************************************************
@@ -75,6 +75,15 @@ jQuery( document ).ready( function ()
     pzarc_update_feature( cell_layout );
     pzarc_update_tabs_to_show( e );
   } );
+  /** ***********************************************************************************************************************/
+  /** FEATURE IN **/
+  jQuery( '#_architect-_panels_design_feature-in' ).on('click',function ( e )
+  {
+    var cell_layout = jQuery.parseJSON( jQuery( 'input#_panels_design_preview-text' ).val() );
+    //jQuery( 'fieldset#_architect-_panels_design_components-to-show input#_panels_design_components-to-show-buttonsetimage' ).attr( 'checked', 'checked' );
+    //jQuery( 'fieldset#_architect-_panels_design_components-to-show label[for="_panels_design_components-to-show-buttonsetimage"]' ).addClass( 'ui-state-active' );
+    pzarc_update_feature( cell_layout );
+  } );
 
   /** ***********************************************************************************************************************/
   /** FEATURE type **/
@@ -138,7 +147,7 @@ jQuery( document ).ready( function ()
   {
     var cell_layout = jQuery.parseJSON( jQuery( 'input#_panels_design_preview-text' ).val() );
     pzarc_update_component_location( cell_layout );
-    pzarc_reposition_components(cell_layout,jQuery( 'fieldset#_architect-_panels_design_components-widths .redux-slider-label' ));
+    pzarc_reposition_components( cell_layout, jQuery( 'fieldset#_architect-_panels_design_components-widths .redux-slider-label' ) );
     pzarc_update_feature( cell_layout );
   } );
 
@@ -155,7 +164,7 @@ jQuery( document ).ready( function ()
   jQuery( 'fieldset#_architect-_panels_design_components-widths .redux-slider-label' ).on( "DOMSubtreeModified", function ()
   {
     var cell_layout = jQuery.parseJSON( jQuery( 'input#_panels_design_preview-text' ).val() );
-    pzarc_reposition_components(cell_layout,this);
+    pzarc_reposition_components( cell_layout, this );
   } );
 
   /** ***********************************************************************************************************************/
@@ -209,7 +218,7 @@ jQuery( document ).ready( function ()
       element_html.image = '<span class="pzarc-draggable pzarc-draggable-image"  title= "Feature" data-idcode=image style="max-height:100px;overflow:hidden;"><span><img src="PZARC_PLUGIN_URL/shared/assets/images/sample-' + jQuery( 'input[name="_architect[_panels_settings_feature-type]"]:checked' ).get( 0 ).value + '.jpg" style="max-width:100%;" class="feature-image-video"/></span></span>';
       element_html.image = element_html.image.replace( /PZARC_PLUGIN_URL/g, plugin_url );
 
-      element_html.content = '<span class="pzarc-draggable pzarc-draggable-content" title= "Full post content"  data-idcode=content style="font-size:13px;"><span><img  src="PZARC_PLUGIN_URL/shared/assets/images/sample-' + jQuery( 'input[name="_architect[_panels_settings_feature-type]"]:checked' ).get( 0 ).value + '.jpg" class="pzarc-align feature-image-video ' + jQuery( "select#_pzarc_layout-excerpt-thumb-cmb-field-0" ).val() + '" style="max-width:20%;"/><img src="PZARC_PLUGIN_URL/shared/assets/images/sample-in-content.jpg" style="max-width:30%;float:left;padding:5px;"/>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam quis justo erat. <ul><li>&nbsp;&bull;&nbsp;Cras semper sem hendrerit</li><li>&nbsp;&bull;&nbsp;Tortor porta at auctor</li></ul><strong>Lacus consequat</strong><p>Pellentesque pulvinar iaculis tellus in blandit. Suspendisse rhoncus, magna vel eleifend cursus, turpis odio molestie urna, quis posuere eros risus quis neque. </p></span></span>';
+      element_html.content = '<span class="pzarc-draggable pzarc-draggable-content" title= "Full post content"  data-idcode=content style="font-size:13px;"><span><img  src="PZARC_PLUGIN_URL/shared/assets/images/sample-' + jQuery( 'input[name="_architect[_panels_settings_feature-type]"]:checked' ).get( 0 ).value + '.jpg" class="pzarc-align feature-image-video ' + jQuery( "select#_pzarc_layout-excerpt-thumb-cmb-field-0" ).val() + '" style="max-width:20%;"/><img src="PZARC_PLUGIN_URL/shared/assets/images/sample-in-content.jpg" style="max-width:30%;float:left;padding:5px;"/>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam quis justo erat. <ul><li>&nbsp;&bull;&nbsp;Cras semper sem hendrerit</li><li>&nbsp;&bull;&nbsp;Tortor porta at auctor</li></ul></span></span>';
       element_html.content = element_html.content.replace( /PZARC_PLUGIN_URL/g, plugin_url );
 
       element_html.excerpt = '<span class="pzarc-draggable pzarc-draggable-excerpt"  title= "Excerpt with featured image" data-idcode=excerpt style="font-size:13px;"><span><img  src="PZARC_PLUGIN_URL/shared/assets/images/sample-' + jQuery( 'input[name="_architect[_panels_settings_feature-type]"]:checked' ).get( 0 ).value + '.jpg" class="pzarc-align feature-image-video ' + jQuery( "select#_pzarc_layout-excerpt-thumb-cmb-field-0" ).val() + '" style="max-width:20%;"/>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam quis justo erat. Cras semper sem hendre...[more]</span></span>';
@@ -384,15 +393,25 @@ jQuery( document ).ready( function ()
         break;
 
       case 'content-left':
-        jQuery( '.pzarc-draggable-excerpt img.pzarc-align' ).removeClass( 'right none' ).addClass( 'left' );
-
-        jQuery( '.pzarc-draggable-content img.pzarc-align' ).removeClass( 'right none' ).addClass( 'left' );
+        if ( jQuery( '#_panels_design_feature-in-buttonsetexcerpt:checked' ).length )
+        {
+          jQuery( '.pzarc-draggable-excerpt img.pzarc-align' ).removeClass( 'right none' ).addClass( 'left' );
+        }
+        if ( jQuery( '#_panels_design_feature-in-buttonsetcontent:checked' ).length )
+        {
+          jQuery( '.pzarc-draggable-content img.pzarc-align' ).removeClass( 'right none' ).addClass( 'left' );
+        }
         break;
 
       case 'content-right':
-        jQuery( '.pzarc-draggable-excerpt img.pzarc-align' ).removeClass( 'left none' ).addClass( 'right' );
-        jQuery( '.pzarc-draggable-content img.pzarc-align' ).removeClass( 'left none' ).addClass( 'right' );
-        break;
+        if (jQuery('#_panels_design_feature-in-buttonsetexcerpt:checked' ).length)
+        {
+          jQuery( '.pzarc-draggable-excerpt img.pzarc-align' ).removeClass( 'left none' ).addClass( 'right' );
+        }
+        if (jQuery('#_panels_design_feature-in-buttonsetcontent:checked' ).length)
+        {
+          jQuery( '.pzarc-draggable-content img.pzarc-align' ).removeClass( 'left none' ).addClass( 'right' );
+        }        break;
 
       case 'float':
         /// TODO: Work out how to make before or after components group/
@@ -653,7 +672,8 @@ jQuery( document ).ready( function ()
     } );
   }
 
-  function pzarc_reposition_components(cell_layout,t){
+  function pzarc_reposition_components( cell_layout, t )
+  {
 
     pzarc_update_components_container_width( cell_layout );
 

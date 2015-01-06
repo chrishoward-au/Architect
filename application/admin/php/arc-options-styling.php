@@ -340,7 +340,6 @@
                 pzarc_redux_borders($prefix . 'entry-title-borders', array('.entry-title')),
             ),
         );
-
         $this->sections[ ] = array(
             'title'      => 'Meta',
             'show_title' => false,
@@ -362,6 +361,7 @@
                 pzarc_redux_font($prefix . 'entry-meta-font', array('.entry-meta')),
                 pzarc_redux_bg($prefix . 'entry-meta-font-background', array('.entry-meta')),
                 pzarc_redux_padding($prefix . 'entry-meta-font-padding', array('.entry-meta')),
+//                pzarc_redux_margin($prefix . 'entry-meta-font-margin', array('.entry-meta')),
                 pzarc_redux_links($prefix . 'entry-meta-font-links', array('.entry-meta a')),
             )
         );
@@ -376,7 +376,7 @@
                     'title'   => __('CSS selectors', 'pzarc'),
                     'id'      => $prefix . 'entry-content-selectors',
                     'type'    => 'text',
-                    'default' => '.entry-content, .entry-excerpt',
+                    'default' => '.entry-content',
                     'hint'    => array(
                         'title'   => 'Change CSS class',
                         'content' => 'Change this class only if your theme uses different class names'
@@ -385,6 +385,7 @@
                 pzarc_redux_font($prefix . 'entry-content-font', array('.entry-content')),
                 pzarc_redux_bg($prefix . 'entry-content-font-background', array('.entry-content')),
                 pzarc_redux_padding($prefix . 'entry-content-font-padding', array('.entry-content')),
+ //               pzarc_redux_margin($prefix . 'entry-content-font-margin', array('.entry-content')),
                 pzarc_redux_links($prefix . 'entry-content-font-links', array('.entry-content a')),
                 array(
                     'title'  => __('Excerpt', 'pzarc'),
@@ -406,6 +407,7 @@
                 pzarc_redux_font($prefix . 'entry-excerpt-font', array('.entry-excerpt')),
                 pzarc_redux_bg($prefix . 'entry-excerpt-font-background', array('.entry-excerpt')),
                 pzarc_redux_padding($prefix . 'entry-excerpt-font-padding', array('.entry-excerpt')),
+  //              pzarc_redux_margin($prefix . 'entry-excerpt-font-margin', array('.entry-excerpt')),
                 pzarc_redux_links($prefix . 'entry-excerpt-font-links', array('.entry-excerpt a')),
                 array(
                     'title'  => __('Read more', 'pzarc'),
@@ -709,8 +711,8 @@
                     'id'       => $prefix . 'navigator-selectors',
                     'type'     => 'text',
                     'readonly' => true,
-                                        'default'  => '.pzarc-navigator, .arc-slider-nav',
-                   // 'default'  => '.pzarc-navigator',
+                    'default'  => '.pzarc-navigator, .arc-slider-nav',
+                    // 'default'  => '.pzarc-navigator',
                 ),
                 pzarc_redux_bg($prefix . 'navigator-background', array('.pzarc-navigator', '.arc-slider-nav')),
                 pzarc_redux_padding($prefix . 'navigator-padding', array('.pzarc-navigator', '.arc-slider-nav')),
@@ -785,8 +787,8 @@
                 pzarc_redux_borders($prefix . 'navigator-items-active-borders', array('.pzarc-navigator .arc-slider-slide-nav-item.active ')),
             ),
         );
-        $thisSection = 'accordion-titles';
-        $primaryClass = '.pzarc-accordion.title';
+        $thisSection       = 'accordion-titles';
+        $primaryClass      = '.pzarc-accordion.title';
         $this->sections[ ] = array(
             'id'         => 'accordion-css',
             'title'      => 'Accordion',
@@ -796,57 +798,57 @@
             'fields'     => array(
                 array(
                     'title'  => __('Titles', 'pzarchitect'),
-                    'id'     => $prefix . $thisSection.'-css-heading',
+                    'id'     => $prefix . $thisSection . '-css-heading',
                     'type'   => 'section',
                     'indent' => true,
 
                 ),
                 array(
                     'title'    => __('CSS selectors', 'pzarc'),
-                    'id'       => $prefix . $thisSection.'-selectors',
+                    'id'       => $prefix . $thisSection . '-selectors',
                     'type'     => 'text',
                     'readonly' => true,
                     'default'  => $primaryClass,
                 ),
-                pzarc_redux_font($prefix . $thisSection.'-font', array($primaryClass), null),
-                pzarc_redux_bg($prefix . $thisSection.'-background', array($primaryClass)),
-                pzarc_redux_padding($prefix . $thisSection.'-padding', array($primaryClass)),
-                pzarc_redux_margin($prefix . $thisSection.'-margins', array($primaryClass)),
-                pzarc_redux_borders($prefix . $thisSection.'-borders', array($primaryClass)),
+                pzarc_redux_font($prefix . $thisSection . '-font', array($primaryClass), null),
+                pzarc_redux_bg($prefix . $thisSection . '-background', array($primaryClass)),
+                pzarc_redux_padding($prefix . $thisSection . '-padding', array($primaryClass)),
+                pzarc_redux_margin($prefix . $thisSection . '-margins', array($primaryClass)),
+                pzarc_redux_borders($prefix . $thisSection . '-borders', array($primaryClass)),
                 array(
                     'title'  => __('Open', 'pzarchitect'),
-                    'id'     => $prefix . $thisSection.'-open-css-heading',
+                    'id'     => $prefix . $thisSection . '-open-css-heading',
                     'type'   => 'section',
                     'indent' => true,
 
                 ),
                 array(
                     'title'    => __('CSS selectors', 'pzarc'),
-                    'id'       => $prefix . $thisSection.'-open-selectors',
+                    'id'       => $prefix . $thisSection . '-open-selectors',
                     'type'     => 'text',
                     'readonly' => true,
-                    'default'  => $primaryClass.'.open',
+                    'default'  => $primaryClass . '.open',
                 ),
-                pzarc_redux_font($prefix . $thisSection.'-open-font', array($primaryClass.'.open '), null),
-                pzarc_redux_bg($prefix . $thisSection.'-open-background', array($primaryClass.'.open ')),
-                pzarc_redux_borders($prefix . $thisSection.'-open-borders', array($primaryClass.'.open ')),
+                pzarc_redux_font($prefix . $thisSection . '-open-font', array($primaryClass . '.open '), null),
+                pzarc_redux_bg($prefix . $thisSection . '-open-background', array($primaryClass . '.open ')),
+                pzarc_redux_borders($prefix . $thisSection . '-open-borders', array($primaryClass . '.open ')),
                 array(
                     'title'  => __('Hover', 'pzarchitect'),
-                    'id'     => $prefix . $thisSection.'-hover-css-heading',
+                    'id'     => $prefix . $thisSection . '-hover-css-heading',
                     'type'   => 'section',
                     'indent' => true,
 
                 ),
                 array(
                     'title'    => __('CSS selectors', 'pzarc'),
-                    'id'       => $prefix . $thisSection.'-hover-selectors',
+                    'id'       => $prefix . $thisSection . '-hover-selectors',
                     'type'     => 'text',
                     'readonly' => true,
-                    'default'  => $primaryClass.':hover',
+                    'default'  => $primaryClass . ':hover',
                 ),
-                pzarc_redux_font($prefix . $thisSection.'-hover-font', array($primaryClass.':hover '), null),
-                pzarc_redux_bg($prefix . $thisSection.'-hover-background', array($primaryClass.':hover ')),
-                pzarc_redux_borders($prefix . $thisSection.'-hover-borders', array($primaryClass.':hover ')),
+                pzarc_redux_font($prefix . $thisSection . '-hover-font', array($primaryClass . ':hover '), null),
+                pzarc_redux_bg($prefix . $thisSection . '-hover-background', array($primaryClass . ':hover ')),
+                pzarc_redux_borders($prefix . $thisSection . '-hover-borders', array($primaryClass . ':hover ')),
             ),
         );
         $this->sections[ ] = array(

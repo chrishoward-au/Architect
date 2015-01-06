@@ -265,6 +265,7 @@
                 <button data-tab="#how">Usage</button>
                 <button data-tab="#help">Support</button>
                 <button data-tab="#shout">Shoutouts</button>
+                <button data-tab="#presets">Presets</button>
             </div>
             <div class="tabby tabs-content">
                 <div class="tabs-pane active" id="quick">
@@ -373,6 +374,12 @@
                         </li>
                     </ul>
                 </div>
+                <div class="tabs-pane " id="presets">
+                    <h2>Presets</h2>
+                    This is still to to!
+                    <p>Download preset Panels and Blueprints. <a href="#">Link</a></p>
+                </div>
+
             </div>
 
 

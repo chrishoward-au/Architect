@@ -208,6 +208,9 @@
           $pkeys[ 'style' ] = str_replace('-', '', substr($pkey, $splitter + 1));
           $pkeys[ 'id' ]    = substr($pkey, 0, $splitter);
 
+//          if (strpos($pkeys['id'],'content')) {
+//            die(var_dump($pkeys, $value, $key));
+//          }
           if (!in_array($pkeys['id'],array('custom','panels-load'))) {
             // Filter out old selector names hanging arouind in existing panels
             if (isset($_architect[ 'architect_config_' . $pkeys[ 'id' ] . '-selectors' ])) {

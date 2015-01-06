@@ -532,7 +532,8 @@
             'orderby'          => 'title',
             'order'            => 'ASC',
             'post_type'        => 'arc-panels',
-            'suppress_filters' => true);
+            'suppress_filters' => true,
+            'post_status'      => 'publish');
 
         $pzarc_panels       = get_posts($args);
         $pzarc_panels_array = array();
@@ -612,21 +613,41 @@
               'img' => PZARC_PLUGIN_APP_URL . 'shared/assets/images/metaboxes/layouts-accordion.png'
           ),
       );
-      $modesx[ 1 ] = $modesx[ 0 ];
+      $modesx[ 1 ] = array(
+          'basic'     => array(
+              'alt' => 'Grid/Single',
+              'img' => PZARC_PLUGIN_APP_URL . 'shared/assets/images/metaboxes/layouts-grid.png'
+          ),
+          'masonry'   => array(
+              'alt' => 'Masonry',
+              'img' => PZARC_PLUGIN_APP_URL . 'shared/assets/images/metaboxes/layouts-masonry.png'
+          ),
+          'table'     => array(
+              'alt' => 'Tabular',
+              'img' => PZARC_PLUGIN_APP_URL . 'shared/assets/images/metaboxes/layouts-tabular.png'
+          ),
+          'accordion' => array(
+              'alt' => 'Accordion',
+              'img' => PZARC_PLUGIN_APP_URL . 'shared/assets/images/metaboxes/layouts-accordion.png'
+          ),
+      );
+      $desc[ 0 ]   = 'Grid/Single, Slider, Tabbed, Masonry, Tabular, Accordion';
+      $desc[ 1 ]   = 'Grid/Single, Masonry, Tabular, Accordion';
       for ($i = 0; $i < 3; $i++) {
         $sections[ '_section' . ($i + 1) ] = array(
             'title'      => __('Section ' . ($i + 1), 'pzarchitect'),
             'show_title' => true,
             'icon_class' => 'icon-large',
             'icon'       => $icons[ $i ],
-            'desc'       => __('Blueprints can display up to three sections. Only section 1 can be used for Sliders or Tabbed. If it is, the other sections are not available.') . ' <a href="' . PZARC_CODEX . '-listings/" target=_blank class="pzarc-codex" title="View tutorials"><span class="dashicons dashicons-welcome-learn-more size-small"></span></a>',
+            'desc'       => __('Sections allow different layouts but use the same content selection. That is, section two continues displaying the content from where section 1 finished. Likewise section 3, continues from where section 2 finished. If you want different content selections, you will need to create separate blueprints.', 'pzarchitect') . '<br><br>' .
+                __('Blueprints can display up to three sections. Only section 1 can be used for Sliders or Tabbed. If it is, the other sections are not available.') . ' <a href="' . PZARC_CODEX . '-listings/" target=_blank class="pzarc-codex" title="View tutorials"><span class="dashicons dashicons-welcome-learn-more size-small"></span></a>',
             'fields'     => array(
                 array(
                     'title'   => 'Layout type',
                     'id'      => $prefix . 'section-' . $i . '-layout-mode',
                     'type'    => 'image_select',
-                    'default' => 'outside',
-                    'desc'    => 'Grid/Single, Slider, Tabbed, Masonry, Tabular, Accordion',
+                    'default' => 'basic',
+                    'desc'    => $desc[ (int)($i > 0) ],
                     'height'  => 64,
                     'options' => $modesx[ (int)($i > 0) ],
                     //                ),

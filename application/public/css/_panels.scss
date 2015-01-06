@@ -34,6 +34,9 @@
     hyphens: auto;
     &.nothumb {
  //     width: 100%; TODO: WTF? Why is this breakking shtuff?
+      &.maxwidth {
+        width:100%;
+      }
     }
   }
 

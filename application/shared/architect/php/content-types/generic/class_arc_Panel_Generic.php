@@ -310,7 +310,11 @@
 
     public function get_excerpt(&$post)
     {
-      $this->data[ 'excerpt' ] = apply_filters('the_excerpt', get_the_excerpt());
+      if (!empty($this->section[ '_panels_design_manual-excerpts']) && !has_excerpt()) {
+        $this->data[ 'excerpt' ] = '';
+      } else {
+        $this->data[ 'excerpt' ] = apply_filters('the_excerpt', get_the_excerpt());
+      }
     }
 
 
@@ -424,7 +428,7 @@
     public function render_content($component, $content_type, $panel_def, $rsid, $layout_mode = false)
     {
       $panel_def[ $component ] = str_replace('{{content}}', $this->data[ 'content' ], $panel_def[ $component ]);
-      if ($this->section[ '_panels_design_feature-location' ] === 'content-left' || $this->section[ '_panels_design_feature-location' ] === 'content-right') {
+      if ($this->section[ '_panels_design_feature-location' ] === 'content-left' || $this->section[ '_panels_design_feature-location' ] === 'content-right' && in_array('content',$this->section[ '_panels_design_feature-in' ])) {
         if (!empty($this->data[ 'image' ][ 'image' ])) {
           $panel_def[ $component ] = str_replace('{{image-in-content}}', $panel_def[ 'image' ], $panel_def[ $component ]);
 
@@ -457,9 +461,13 @@
 //          }
         }
       }
-      if (empty($this->data[ 'image' ][ 'image' ]) && $this->section[ '_panels_design_maximize-content' ]) {
+      if (empty($this->data[ 'image' ][ 'image' ])) {
         //TODO: Add an option to set if width spreads
-        $panel_def[ $component ] = str_replace('{{nothumb}}', 'nothumb', $panel_def[ $component ]);
+        if (!empty($this->section[ '_panels_design_maximize-content' ])) {
+          $panel_def[ $component ] = str_replace('{{nothumb}}', 'nothumb maxwidth', $panel_def[ $component ]);
+        } else {
+          $panel_def[ $component ] = str_replace('{{nothumb}}', 'nothumb', $panel_def[ $component ]);
+        }
       }
 
       return self::render_generics($component, $content_type, $panel_def[ $component ], $layout_mode);
@@ -469,7 +477,7 @@
     {
       $panel_def[ $component ] = str_replace('{{excerpt}}', $this->data[ 'excerpt' ], $panel_def[ $component ]);
 
-      if ($this->section[ '_panels_design_feature-location' ] === 'content-left' || $this->section[ '_panels_design_feature-location' ] === 'content-right') {
+      if ($this->section[ '_panels_design_feature-location' ] === 'content-left' || $this->section[ '_panels_design_feature-location' ] === 'content-right' && in_array('excerpt',$this->section[ '_panels_design_feature-in' ])) {
         if (!empty($this->data[ 'image' ][ 'image' ])) {
           $panel_def[ $component ] = str_replace('{{image-in-content}}', $panel_def[ 'image' ], $panel_def[ $component ]);
 
@@ -496,9 +504,13 @@
           }
         }
       }
-      if (empty($this->data[ 'image' ][ 'image' ]) && $this->section[ '_panels_design_maximize-content' ]) {
+      if (empty($this->data[ 'image' ][ 'image' ])) {
         //TODO: Add an option to set if width spreads
-        $panel_def[ $component ] = str_replace('{{nothumb}}', 'nothumb', $panel_def[ $component ]);
+        if (!empty($this->section[ '_panels_design_maximize-content' ])) {
+          $panel_def[ $component ] = str_replace('{{nothumb}}', 'nothumb maxwidth', $panel_def[ $component ]);
+        } else {
+          $panel_def[ $component ] = str_replace('{{nothumb}}', 'nothumb', $panel_def[ $component ]);
+        }
       }
 
 //_panels_design_thumb-position

@@ -98,6 +98,9 @@
       -webkit-hyphens: auto;
       -moz-hyphens: auto;
       hyphens: auto; }
+      .pzarchitect .pzarc-panel .entry-excerpt.nothumb.maxwidth,
+      .pzarchitect .pzarc-panel .entry-content.nothumb.maxwidth {
+        width: 100%; }
     .pzarchitect .pzarc-panel .entry-excerpt {
       float: left; }
     .pzarchitect .pzarc-panel .entry-thumbnail {

@@ -314,7 +314,10 @@ jQuery( document ).ready( function ()
     pzarc_update_usage_info( jQuery( 'input#_blueprints_short-name' ) );
 
     pzarc_show_navtype();
-    process_tabs(jQuery('#_architect-_blueprints_section-0-layout-mode :checked' ).get(0 ).value);
+    var layout_mode = jQuery('#_architect-_blueprints_section-0-layout-mode :checked' );
+    if (layout_mode.length>0) {
+      process_tabs(layout_mode.get(0 ).value);
+    }
     //Initialize top tabs
     jQuery( ".redux-sidebar li#_section1_box_redux-_architect-metabox-layout-settings_section_group_li" ).find( 'a' ).trigger( "click" );
     jQuery( ".redux-sidebar li#_general_box_redux-_architect-metabox-content-selections_section_group_li" ).find( 'a' ).trigger( "click" );

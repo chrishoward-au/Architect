@@ -376,6 +376,10 @@
     // generate correct whosit
     $pzarc_func = 'pzarc_style_' . $keys[ 'style' ];
     $pzarc_css  = '';
+//    if ($keys['id']=='entry-content') {
+//      pzdebug($keys);
+//      die();
+//    }
     foreach ($keys[ 'classes' ] as $class) {
       $pzarc_css .= (function_exists($pzarc_func) ? call_user_func($pzarc_func, $parentClass . ' ' . $class, $value) : '');
       if (!function_exists($pzarc_func)) {
