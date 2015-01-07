@@ -746,12 +746,14 @@
   }
 
   // Testing function.
-    add_filter( 'the_content', 'cv_display_random_imgs_home' );
-    function cv_display_random_imgs_home( $content ) {
-      $custom_content = '1WTF'.$content;
-      // Theoretically, this shouldn't run in most instances coz Architect is not the main loop. Template tags or a specific action could be the exception.
-      if ( is_main_query() ) {
-        $custom_content .= '2WTF';
-      }
-      return $custom_content;
-    }
+  // NOTE: If defaults chosen, then will be main query!!
+//    add_filter( 'the_content', 'cv_display_random_imgs_home' );
+//    function cv_display_random_imgs_home( $content ) {
+//      $custom_content = '1WTF'.$content;
+//      // Theoretically, this shouldn't run in most instances coz Architect is not the main loop. Template tags or a specific action could be the exception.
+//      if ( is_main_query() ) {
+//        $custom_content .= '2WTF';
+//      }
+//      var_dump(is_main_query());
+//      return $custom_content;
+//    }

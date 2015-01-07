@@ -247,15 +247,15 @@
                     'id'       => 'architect_default_shortcode_blueprint',
                     'type'     => 'select',
                     'options'  => pzarc_get_posts_in_post_type(),
-                    'subtitle' => 'If you omit the blueprint name from a shortcode, it will use the one selected here. Useful for quick conversion of WP galleries by simply renaming gallery to architect in the shortcode.',
+                    'subtitle' => __('If you omit the blueprint name from a shortcode, it will use the one selected here. Useful for quick conversion of WP galleries by simply renaming gallery to architect in the shortcode.', 'pzarchitect'),
                 ),
                 array(
                     'title'    => __('Replace WP Galleries with Blueprint', 'pzarchitect'),
                     'id'       => 'architect_replace_wpgalleries',
                     'type'     => 'select',
                     'options'  => pzarc_get_posts_in_post_type(),
-                    'subtitle' => 'Select a Blueprint to use for <strong>all</strong> WP gallery shortcodes.',
-                    'desc'     => 'Make sure this Blueprint is using Galleries as its Content Source!'
+                    'subtitle' => __('Select a Blueprint to use for <strong>all</strong> WP gallery shortcodes.', 'pzarchitect'),
+                    'desc'     => __('Make sure this Blueprint is using Galleries as its Content Source!', 'pzarchitect')
                 ),
                 array(
                     'title' => __('Mods', 'pzarchitect'),
@@ -267,32 +267,33 @@
                     'id'       => 'architect_mod-video-fields',
                     'type'     => 'checkbox',
                     'subtitle' => __('Add a video field to content types to optionally use as the Feature.', 'pzarchitect'),
-                    'options'  => array('post' => 'Posts', 'page' => 'Pages', 'pz_snippets' => 'Snippets'),
-                    'default'  => array('post'=>0,'page'=>0,'pz_snippets'=>1)
+                    'options'  => array('post'        => __('Posts', 'pzarchitect'),
+                                        'page'        => __('Pages', 'pzarchitect'),
+                                        'pz_snippets' => __('Snippets', 'pzarchitect')),
+                    'default'  => array('post' => 0, 'page' => 0, 'pz_snippets' => 1)
                 ),
                 array(
                     'title' => __('Styling', 'pzarchitect'),
                     'id'    => 'architect_stylings_section',
                     'type'  => 'section',
                 ),
-
                 array(
                     'title'    => __('Enable styling settings', 'pzarchitect'),
                     'id'       => 'architect_enable_styling',
                     'type'     => 'switch',
-                    'subtitle' => 'Turn this off if you want to manage styling from your own CSS stylesheets or only from the Headway Visual Editor Design Mode.',
+                    'subtitle' => __('Turn this off if you want to manage styling from your own CSS stylesheets or only from the Headway Visual Editor Design Mode.', 'pzarchitect'),
                     'default'  => true
                 ),
                 array(
-                    'title'    => __('Typography units', 'pzarchitect'),
-                    'id'       => 'architect_typography_units',
-                    'type'     => 'button_set',
-                    'options'  => array(
-                        'px'         => 'px',
-                        'em'        => 'em',
-                        'rem'   => 'rem',
+                    'title'   => __('Typography units', 'pzarchitect'),
+                    'id'      => 'architect_typography_units',
+                    'type'    => 'button_set',
+                    'options' => array(
+                        'px'  => 'px',
+                        'em'  => 'em',
+                        'rem' => 'rem',
                     ),
-                    'default'  => 'px'
+                    'default' => 'px'
                 ),
                 // TODO: This requires lots of bollocksing to make sure all traces are fully removed. A good excuse to make extensibility work!
                 //                array(
@@ -307,8 +308,8 @@
                     'title'    => __('Add Headway Content Block class', 'pzarchitect'),
                     'id'       => 'architect_hw-content-class',
                     'type'     => 'switch',
-                    'on'       => 'Yes',
-                    'off'      => 'No',
+                    'on'       => __('Yes', 'pzarchitect'),
+                    'off'      => __('No', 'pzarchitect'),
                     'default'  => false,
                     'subtitle' => __('This will add the class <strong>block-type-content</strong> to the panels, which enables them to inherit the stylings for the Content block. However, this can make styling in the Visual Editor Design Mode a little confusing, as hovering over an element will show it as a Content Block element', 'pzarchitect')
 
@@ -317,8 +318,8 @@
                     'title'    => __('Use Architect Headway CSS from Design Mode', 'pzarchitect'),
                     'id'       => 'architect_use-hw-css',
                     'type'     => 'switch',
-                    'on'       => 'Yes',
-                    'off'      => 'No',
+                    'on'       => __('Yes', 'pzarchitect'),
+                    'off'      => __('No', 'pzarchitect'),
                     'default'  => true,
                     'subtitle' => __('Use the stylings you configure for Architect in the Headway Visual Editor Design Mode.', 'pzarchitect')
 
@@ -332,10 +333,10 @@
                     'title'    => __('Enable admin background image', 'pzarchitect'),
                     'id'       => 'architect_enable_bgimage',
                     'type'     => 'switch',
-                    'subtitle' => 'Displays a background image on the Architect admin pages',
+                    'subtitle' => __('Displays a background image on the Architect admin pages', 'pzarchitect'),
                     'default'  => false,
-                    'on'       => 'Yes',
-                    'off'      => 'No'
+                    'on'       => __('Yes', 'pzarchitect'),
+                    'off'      => __('No', 'pzarchitect')
                 ),
                 array(
                     'title'    => __('Choose background image', 'pzarchitect'),
@@ -343,11 +344,11 @@
                     'type'     => 'button_set',
                     'required' => array('architect_enable_bgimage', 'equals', true),
                     'options'  => array(
-                        'blue'         => 'Blue',
-                        'green'        => 'Green',
-                        'ocean-blue'   => 'Ocean/Blue',
-                        'orange-green' => 'Orange/Green',
-                        'pink'         => 'Pink',
+                        'blue'         => __('Blue','pzarchitect'),
+                        'green'        => __('Green','pzarchitect'),
+                        'ocean-blue'   => __('Ocean/Blue','pzarchitect'),
+                        'orange-green' => __('Orange/Green','pzarchitect'),
+                        'pink'         => __('Pink','pzarchitect'),
                     ),
                     'default'  => 'ocean-blue'
                 ),
@@ -396,10 +397,10 @@
                     'title'    => __('Create and use retina images', 'pzarchitect'),
                     'id'       => 'architect_enable-retina-images',
                     'type'     => 'switch',
-                    'subtitle' => __('If enabled, when images are created, a second high version to display on retina screens will also be created and then displayed as required. NOTE: This will make your site load slower on retina devices.','pzarchitect'),
+                    'subtitle' => __('If enabled, when images are created, a second high version to display on retina screens will also be created and then displayed as required. NOTE: This will make your site load slower on retina devices.', 'pzarchitect'),
                     'default'  => true,
-                    'on'       => 'Yes',
-                    'off'      => 'No'
+                    'on'       => __('Yes', 'pzarchitect'),
+                    'off'      => __('No', 'pzarchitect')
                 ),
             )
         );
@@ -412,28 +413,28 @@
                     'title'    => __('Categories archive pages title', 'pzarchitect'),
                     'id'       => 'architect_language-categories-archive-pages-title',
                     'type'     => 'text',
-                    'subtitle' => 'Enter a title to appear at the top of Categories archives pages',
+                    'subtitle' => __('Enter a title to appear at the top of Categories archives pages','pzarchitect'),
                     'default'  => 'Posts in Category: '
                 ),
                 array(
                     'title'    => __('Tags archive pages title', 'pzarchitect'),
                     'id'       => 'architect_language-tags-archive-pages-title',
                     'type'     => 'text',
-                    'subtitle' => 'Enter a title to appear at the top of Tags archives pages',
+                    'subtitle' => __('Enter a title to appear at the top of Tags archives pages','pzarchitect'),
                     'default'  => 'Posts in Tag: '
                 ),
                 array(
                     'title'    => __('Months archive pages title', 'pzarchitect'),
                     'id'       => 'architect_language-months-archive-pages-title',
                     'type'     => 'text',
-                    'subtitle' => 'Enter a title to appear at the top of Months archives pages',
+                    'subtitle' => __('Enter a title to appear at the top of Months archives pages','pzarchitect'),
                     'default'  => 'Posts in Month: '
                 ),
                 array(
                     'title'    => __('Custom taxonomies archive pages title', 'pzarchitect'),
                     'id'       => 'architect_language-custom-archive-pages-title',
                     'type'     => 'text',
-                    'subtitle' => 'Enter a title to appear at the top of Custom taxonomies archives pages',
+                    'subtitle' => __('Enter a title to appear at the top of Custom taxonomies archives pages','pzarchitect'),
                     'default'  => 'Posts in: '
                 ),
             )
@@ -493,7 +494,7 @@
           // TYPICAL -> Change these values as you need/desire
           'opt_name'           => '_architect_options',
           // This is where your data is stored in the database and also becomes your global variable name.
-          'display_name'       => 'Architect Options',
+          'display_name'       => __('Architect Options','pzarchitect'),
           // Name that appears at the top of your panel
           'display_version'    => 'Architect v' . PZARC_VERSION,
           // Version that appears at the top of your panel
@@ -501,8 +502,8 @@
           //Specify if the admin menu should appear or not. Options: menu or submenu (Under appearance only)
           'allow_sub_menu'     => false,
           // Show the sections below the admin menu item or not
-          'menu_title'         => __('<span class="dashicons dashicons-admin-settings"></span>Options', 'pzarc'),
-          'page'               => __('Architect Options', 'pzarc'),
+          'menu_title'         => __('<span class="dashicons dashicons-admin-settings"></span>Options', 'pzarchitect'),
+          'page'               => __('Architect Options', 'pzarchitect'),
           'google_api_key'     => 'Xq9o3CdQFHKr+47vQr6eO4EUYLtlEyTe',
           // Must be defined to add google fonts to the typography module
           'global_variable'    => '',

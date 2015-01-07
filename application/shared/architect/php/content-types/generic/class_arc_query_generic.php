@@ -137,38 +137,37 @@
     public function get_custom_query() {
 // Get any existing copy of our transient data
 
-//      if ( false == ( $custom_query = get_transient( 'pzarc_custom_query_'.$this->build->blueprint['_blueprints_short-name'] ) )  && !current_user_can( 'manage_options' ) ) {
-//        // It wasn't there, so regenerate the data and save the transient
-//        $custom_query = new WP_Query($this->query_options);
-//
-//        set_transient( 'pzarc_custom_query_'.$this->build->blueprint['_blueprints_short-name'], $custom_query, PZARC_TRANSIENTS_KEEP );
-//
-//      } elseif (current_user_can( 'manage_options' )) {
-//        // if is admin
-//        $custom_query = new WP_Query($this->query_options);
-//      } else {
-//        // Will use transient value from first check
-//      }
-//      return $custom_query;
-
-      global $wp_query;
-//      // 0.9.0.2 TODO: This scares me! Test thoroughly that it's okay to use $wp_query. The big problem is if something else changes it midstream. And then resets to the main query!
-//      // Previously all these were $custom_query
-//      // If transient not set and not admin
-      if ( false == ( $wp_query = get_transient( 'pzarc_custom_query_'.$this->build->blueprint['_blueprints_short-name'] ) )  && !current_user_can( 'manage_options' ) ) {
+      if ( false == ( $custom_query = get_transient( 'pzarc_custom_query_'.$this->build->blueprint['_blueprints_short-name'] ) )  && !current_user_can( 'manage_options' ) ) {
         // It wasn't there, so regenerate the data and save the transient
-        $wp_query = new WP_Query($this->query_options);
+        $custom_query = new WP_Query($this->query_options);
 
-        set_transient( 'pzarc_custom_query_'.$this->build->blueprint['_blueprints_short-name'], $wp_query, PZARC_TRANSIENTS_KEEP );
+        set_transient( 'pzarc_custom_query_'.$this->build->blueprint['_blueprints_short-name'], $custom_query, PZARC_TRANSIENTS_KEEP );
 
       } elseif (current_user_can( 'manage_options' )) {
         // if is admin
-        $wp_query = new WP_Query($this->query_options);
+        $custom_query = new WP_Query($this->query_options);
       } else {
         // Will use transient value from first check
       }
-      /* Changed to this approach coz the other broke WPML */
-//      $wp_query = $custom_query;
+
+      global $wp_query;
+//      /* Changed to this approach coz the other broke WPML */
+      $wp_query = $custom_query;
+////      // 0.9.0.2 TODO: This scares me! Test thoroughly that it's okay to use $wp_query. The big problem is if something else changes it midstream. And then resets to the main query!
+////      // Previously all these were $custom_query
+////      // If transient not set and not admin
+//      if ( false == ( $wp_query = get_transient( 'pzarc_custom_query_'.$this->build->blueprint['_blueprints_short-name'] ) )  && !current_user_can( 'manage_options' ) ) {
+//        // It wasn't there, so regenerate the data and save the transient
+//        $wp_query = new WP_Query($this->query_options);
+//
+//        set_transient( 'pzarc_custom_query_'.$this->build->blueprint['_blueprints_short-name'], $wp_query, PZARC_TRANSIENTS_KEEP );
+//
+//      } elseif (current_user_can( 'manage_options' )) {
+//        // if is admin
+//        $wp_query = new WP_Query($this->query_options);
+//      } else {
+//        // Will use transient value from first check
+//      }
       return $wp_query;
     }
 

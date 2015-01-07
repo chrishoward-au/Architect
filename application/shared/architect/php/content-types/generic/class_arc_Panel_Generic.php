@@ -78,7 +78,7 @@
       $panel_def[ 'email' ]      = '<span class="byline email"><span class="author vcard"><a class="url fn n" href="mailto:{{authoremail}}" title="Email {{authorname}}" rel="author">{{authoremail}}</a></span></span>';
       //     $panel_def[ 'image' ]       = '<figure class="entry-thumbnail {{incontent}}">{{postlink}}<img width="{{width}}" src="{{imgsrc}}" class="attachment-post-thumbnail wp-post-image" alt="{{alttext}}">{{closepostlink}}{{captioncode}}</figure>';
       $panel_def[ 'image' ]   = '{{figopen}} class="entry-thumbnail {{incontent}} {{centred}} {{nofloat}} {{location}}">{{postlink}}{{image}}{{closelink}}{{captioncode}}{{figclose}}';
-      $panel_def[ 'bgimage' ] = '<figure class="entry-bgimage pzarc-bg-image {{trim-scale}}">{{bgimage}}</figure>';
+      $panel_def[ 'bgimage' ] = '<figure class="entry-bgimage pzarc-bg-image {{trim-scale}}">{{postlink}}{{bgimage}}{{closelink}}</figure>';
       $panel_def[ 'caption' ] = '<figcaption class="caption">{{caption}}</figcaption>';
       $panel_def[ 'content' ] = '<{{div}} class="entry-content {{nothumb}}">{{image-in-content}}{{content}}</{{div}}>';
       $panel_def[ 'custom1' ] = '<{{div}} class="entry-customfieldgroup entry-customfieldgroup-1">{{custom1innards}}</{{div}}>';

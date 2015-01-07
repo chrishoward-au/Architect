@@ -720,8 +720,8 @@
                     'title'    => __('Limit panels (content)', 'pzarchitect'),
                     'id'       => $prefix . 'section-' . $i . '-panels-limited',
                     'type'     => 'switch',
-                    'on'       => 'Yes',
-                    'off'      => 'No',
+                    'on'       => __('Yes', 'pzarchitect'),
+                    'off'      => __('No', 'pzarchitect'),
                     'default'  => true,
                     'subtitle' => 'Each panel displays content from the selected content type.'
                 ),

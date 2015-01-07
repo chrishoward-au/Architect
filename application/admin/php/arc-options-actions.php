@@ -274,18 +274,18 @@
                       'multi'   => true,
                       'default' => '',
                       'options' => array(
-                          'all'         => 'All',
-                          'home'        => 'Home',
-                          'single-post' => 'Single Post',
-                          'single-page' => 'Single page',
-                          'blog'        => 'Blog page',
-                          'catergories' => 'Categories',
-                          'tags'        => 'Tags',
-                          'dates'       => 'Dates',
-                          'authors'     => 'Authors',
-                          'search'      => 'Search',
-                          '404'         => '404',
-                          'specific'    => 'Specific'
+                          'all'         => __('All','pzarchitect'),
+                          'home'        => __('Home','pzarchitect'),
+                          'single-post' => __('Single Post','pzarchitect'),
+                          'single-page' => __('Single page','pzarchitect'),
+                          'blog'        => __('Blog page','pzarchitect'),
+                          'catergories' => __('Categories','pzarchitect'),
+                          'tags'        => __('Tags','pzarchitect'),
+                          'dates'       => __('Dates','pzarchitect'),
+                          'authors'     => __('Authors','pzarchitect'),
+                          'search'      => __('Search','pzarchitect'),
+                          '404'         => __('404','pzarchitect'),
+                          'specific'    => __('Specific','pzarchitect')
                       )
                   ),
                   array(
@@ -340,7 +340,7 @@
           // TYPICAL -> Change these values as you need/desire
           'opt_name'           => '_architect_actions',
           // This is where your data is stored in the database and also becomes your global variable name.
-          'display_name'       => 'Actions Editor',
+          'display_name'       => __('Actions Editor','pzarchitect'),
           // Name that appears at the top of your panel
           'display_version'    => 'Architect v' . PZARC_VERSION,
           // Version that appears at the top of your panel
@@ -348,8 +348,8 @@
           //Specify if the admin menu should appear or not. Options: menu or submenu (Under appearance only)
           'allow_sub_menu'     => false,
           // Show the sections below the admin menu item or not
-          'menu_title'         => __('<span class="dashicons dashicons-migrate"></span>Actions Editor', 'pzarc'),
-          'page'               => __('Actions Editor', 'pzarc'),
+          'menu_title'         => __('<span class="dashicons dashicons-migrate"></span>Actions Editor', 'pzarchitect'),
+          'page'               => __('Actions Editor', 'pzarchitect'),
           'google_api_key'     => 'Xq9o3CdQFHKr+47vQr6eO4EUYLtlEyTe',
           // Must be defined to add google fonts to the typography module
           'global_variable'    => '',

@@ -49,8 +49,7 @@
     // new wp_filesystem
     // create file named with id e.g. pzarc-cell-layout-123.css
     // Or should we connect this to the template? Potentially there'll be less panel layouts than templates tho
-    if ('all' === $postid || $screen->id == 'arc-panels' || $screen->id == 'arc-blueprints' || $post->post_type === 'arc-panels' || $post->post_type === 'arc-blueprints') {
-
+    if (!empty($screen) && 'all' === $postid || $screen->id == 'arc-panels' || $screen->id == 'arc-blueprints' || $post->post_type === 'arc-panels' || $post->post_type === 'arc-blueprints') {
 
       $url = wp_nonce_url('post.php?post=' . $postid . '&action=edit', basename(__FILE__));
 
