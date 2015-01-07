@@ -100,6 +100,9 @@
       }
 
       $pzarc_css_cache = maybe_unserialize(get_option('pzarc_css'));
+//      var_dump($pzarc_css_cache[ 'blueprints' ]);
+//      var_dump($pzarc_css_cache[ 'panels' ]);
+
       $pzarc_css       = "/* Blueprints */\n" . implode(" \n", $pzarc_css_cache[ 'blueprints' ]) . " \n/* Panels */\n" . implode(" \n", $pzarc_css_cache[ 'panels' ]);
 
       // by this point, the $wp_filesystem global should be working, so let's use it to create a file
@@ -163,7 +166,7 @@
 
         /** Save css to options cache */
         $pzarc_css_cache = maybe_unserialize(get_option('pzarc_css'));
-        // We have to delete it coz we want to use the 'no' otpion
+        // We have to delete it coz we want to use the 'no' option
         delete_option('pzarc_css');
         $pzarc_css_cache[ 'panels' ][ $pzarc_panels[ '_panels_settings_short-name' ] ] = pzarc_compress($pzarc_contents);
         add_option('pzarc_css', maybe_serialize($pzarc_css_cache), null, 'no');

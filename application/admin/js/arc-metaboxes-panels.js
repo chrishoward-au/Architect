@@ -3,10 +3,10 @@ jQuery( document ).ready( function ()
   "use strict";
 
   /**
-   * Set validation. Once Redux gets it working, can remove this.
+   * Set validation on panel shortname. Once Redux gets  working, can remove this.
    */
-  jQuery( "input#_panels_settings_short-name" ).attr( "required", "required" );
-  jQuery( "input#_panels_settings_short-name" ).attr( "pattern", "[a-zA-Z0-9\-\_]+" );
+  jQuery( "input#_panels_settings_short-name-text" ).attr( "required", "required" );
+  jQuery( "input#_panels_settings_short-name-text" ).attr( "pattern", "[a-zA-Z0-9\-\_]+" );
 
 
   /** ***********************************************************************************************************************

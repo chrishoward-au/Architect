@@ -111,6 +111,7 @@ This is BETA software. So there are many besides these ones!
 
 * FIXED: Option to make content 100% wide when no feature wasn't working
 * FIXED: WPML compatibility issue
+* FIXED: Validation of Paenl and Blueprint short names had stopped working
 
 = 0.9.1.3 =
 * FIXED: Blueprint options screen may have broken with previous release. You may need to reselect Layout Type
