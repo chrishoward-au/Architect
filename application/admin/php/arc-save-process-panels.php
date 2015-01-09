@@ -11,7 +11,7 @@
     $pzarc_contents .= '/* This is the css for panel ' . $pzarc_panels[ '_panels_settings_short-name' ] . '*/' . $nl;
 
     // Step thru each field looking for ones to format
-    $class_prefix = 'body.pzarchitect .pzarc-panel_' . $pzarc_panels[ '_panels_settings_short-name' ];
+    $class_prefix = '.pzarc-panel_' . $pzarc_panels[ '_panels_settings_short-name' ];
 
     $toshow = json_decode($pzarc_panels[ '_panels_design_preview' ], true);
 
@@ -207,7 +207,6 @@
 
           $pkeys[ 'style' ] = str_replace('-', '', substr($pkey, $splitter + 1));
           $pkeys[ 'id' ]    = substr($pkey, 0, $splitter);
-
 //          if (strpos($pkeys['id'],'content')) {
 //            die(var_dump($pkeys, $value, $key));
 //          }
@@ -216,7 +215,7 @@
             if (isset($_architect[ 'architect_config_' . $pkeys[ 'id' ] . '-selectors' ])) {
 
               $pkeys[ 'classes' ] = (is_array($_architect[ 'architect_config_' . $pkeys[ 'id' ] . '-selectors' ]) ? $_architect[ 'architect_config_' . $pkeys[ 'id' ] . '-selectors' ] : array('0' => $_architect[ 'architect_config_' . $pkeys[ 'id' ] . '-selectors' ]));
-              $pzarc_contents .= pzarc_get_styling('panel', $pkeys, $value, $class_prefix.'', $pkeys[ 'classes' ]);
+              $pzarc_contents .= pzarc_get_styling('panel', $pkeys, $value, $class_prefix.($pkeys['id']==='components'?'':' > .pzarc-components'), $pkeys[ 'classes' ]);
             }
           } elseif ($pkeys['id']==='custom'){
             $pzarc_contents .= $value;
@@ -234,9 +233,9 @@
 
     if (!empty($toshow[ 'image' ][ 'show' ])) {
       if ('fill' === $pzarc_panels[ '_panels_design_feature-location' ]) {
-        $pzarc_contents .= $class_prefix . '.using-bgimages .pzarc-components{' . $pzarc_tb . ':' . $pzarc_components_nudge_y . '%;' . $pzarc_lr . ':' . $pzarc_components_nudge_x . '%;width:' . $pzarc_components_width . '%;}';
+        $pzarc_contents .= $class_prefix . '.using-bgimages > .pzarc-components{' . $pzarc_tb . ':' . $pzarc_components_nudge_y . '%;' . $pzarc_lr . ':' . $pzarc_components_nudge_x . '%;width:' . $pzarc_components_width . '%;}';
       } else {
-        $pzarc_contents .= $class_prefix . ' .pzarc-components{' . $pzarc_tb . ':' . $pzarc_components_nudge_y . '%;' . $pzarc_lr . ':' . $pzarc_components_nudge_x . '%;width:' . $pzarc_components_width . '%;}';
+        $pzarc_contents .= $class_prefix . ' >.pzarc-components{' . $pzarc_tb . ':' . $pzarc_components_nudge_y . '%;' . $pzarc_lr . ':' . $pzarc_components_nudge_x . '%;width:' . $pzarc_components_width . '%;}';
       }
     }
 //    if ('align' === $pzarc_panels[ '_panels_design_background-position' ]) {

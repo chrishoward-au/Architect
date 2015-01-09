@@ -63,7 +63,7 @@
 
         wp_enqueue_style('pzarc-admin-panels-css', PZARC_PLUGIN_APP_URL . '/admin/css/arc-admin-panels.css');
 
-        wp_enqueue_script('jquery-pzarc-metaboxes-panels', PZARC_PLUGIN_APP_URL . '/admin/js/arc-metaboxes-panels.js', array('jquery'), null, false);
+        wp_enqueue_script('jquery-pzarc-metaboxes-panels', PZARC_PLUGIN_APP_URL . '/admin/js/arc-metaboxes-panels.js', array('jquery'), null, true);
       }
     }
 
@@ -245,7 +245,7 @@
                   'subtitle' => __('Letters, numbers, dashes only', 'pzarchitect'),
                   'hint'     => array('content' => __('A short name for this panel layout to identify it.', 'pzarchitect')),
                   'type'     => 'text',
-                  'validate' => 'not_empty'
+                  'validate' => 'not_empty',
               ),
               //TODO: Make validation check illegal characters
               array(

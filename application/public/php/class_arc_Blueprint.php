@@ -27,21 +27,25 @@
       self::get_blueprint();
       if (empty($this->blueprint['err_msg'])) {
         for ($i = 1; $i <= 3; $i++) {
-          $this->blueprint[ 'section_object' ][ $i ] =
-              arc_SectionFactory::create($i,
-                                         $this->blueprint[ 'section' ][ ($i - 1) ],
-                                         $this->blueprint[ '_blueprints_content-source' ],
-                                         $this->blueprint[ '_blueprints_pagination' ],
-                                         $this->blueprint[ '_blueprints_section-' . ($i - 1) . '-layout-mode' ],
-                                         'slick', // Possible Future use
-                                         $this->blueprint[ '_blueprints_section-' . ($i - 1) . '-title' ],
-                                         $this->blueprint[ '_blueprints_section-' . ($i - 1) . '-table-column-titles' ]
-              );
+          if (!empty($this->blueprint[ '_blueprints_section-' . ($i - 1) . '-panel-layout' ])) {
+            $this->blueprint[ 'section_object' ][ $i ] =
+                arc_SectionFactory::create($i,
+                                           $this->blueprint[ 'section' ][ ($i - 1) ],
+                                           $this->blueprint[ '_blueprints_content-source' ],
+                                           $this->blueprint[ '_blueprints_pagination' ],
+                                           $this->blueprint[ '_blueprints_section-' . ($i - 1) . '-layout-mode' ],
+                                           'slick', // Possible Future use
+                                           $this->blueprint[ '_blueprints_section-' . ($i - 1) . '-title' ],
+                                           $this->blueprint[ '_blueprints_section-' . ($i - 1) . '-table-column-titles' ],
+                                           $this->blueprint[ 'section' ][ ($i - 1) ]['section-panel-settings']['_panels_settings_short-name']
 
+                );
+          }
 
         }
       }
 
+      wp_enqueue_style('pzarc_css_blueprint_'.$this->name);
     }
 
 

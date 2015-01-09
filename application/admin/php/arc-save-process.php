@@ -103,19 +103,32 @@
 //      var_dump($pzarc_css_cache[ 'blueprints' ]);
 //      var_dump($pzarc_css_cache[ 'panels' ]);
 
-      $pzarc_css       = "/* Blueprints */\n" . implode(" \n", $pzarc_css_cache[ 'blueprints' ]) . " \n/* Panels */\n" . implode(" \n", $pzarc_css_cache[ 'panels' ]);
+//      $pzarc_css       = "/* Blueprints */\n" . implode(" \n", $pzarc_css_cache[ 'blueprints' ]) . " \n/* Panels */\n" . implode(" \n", $pzarc_css_cache[ 'panels' ]);
 
       // by this point, the $wp_filesystem global should be working, so let's use it to create a file
       global $wp_filesystem;
-      if (!$wp_filesystem->put_contents(
-          $filename,
-          $pzarc_css,
-          FS_CHMOD_FILE // predefined mode settings for WP files
-      )
-      ) {
-        echo '<p class="error message">Error saving css cache file! Please check the permissions on the WP Uploads folder.</p>';
+      foreach ($pzarc_css_cache['blueprints'] as $k=>$v) {
+        $filename = PZARC_CACHE_PATH . '/pzarc_blueprint_'.$k.'.css';
+        if (!empty($k) && !$wp_filesystem->put_contents(
+            $filename,
+            "/* Blueprint '.$k.'*/\n" .  $v,
+            FS_CHMOD_FILE // predefined mode settings for WP files
+        )
+        ) {
+          echo '<p class="error message">Error saving css cache file! Please check the permissions on the WP Uploads folder.</p>';
+        }
       }
-
+      foreach ($pzarc_css_cache['panels'] as $k=>$v) {
+        $filename = PZARC_CACHE_PATH . '/pzarc_panel_'.$k.'.css';
+        if (!empty($k) && !$wp_filesystem->put_contents(
+                $filename,
+                "/* Panel '.$k.'*/\n" .  $v,
+                FS_CHMOD_FILE // predefined mode settings for WP files
+            )
+        ) {
+          echo '<p class="error message">Error saving css cache file! Please check the permissions on the WP Uploads folder.</p>';
+        }
+      }
       // And finally, let's flush the BFI image cache
       if ((isset($screen->id) && isset($post->post_type)) && ($screen->id == 'arc-panels' || $post->post_type === 'arc-panels') && function_exists('bfi_flush_image_cache')) {
         bfi_flush_image_cache();
@@ -232,19 +245,14 @@
   function pzarc_process_spacing($properties)
   {
     $spacing_css = '';
-//  $units = (!isset($property['units'])?'%':$property['units']);
-    //   var_dump($property);
     foreach ($properties as $key => $value) {
+      // Only process values!
       if ($key != 'units') {
         $iszero   = ($value === 0 || $value === '0');
         $isnotset = $value === '';
         $propval  = $key . ':' . $value;
         $propzero = $key . ':0;';
-//      if (!isset($property['units'])) {
-//        $spacing_css .= ($iszero ? $propzero :($isnotset ?null: $propval .$units.';'));
-//      } else {
         $spacing_css .= ($iszero ? $propzero : ($isnotset ? null : $propval . ';'));
-//      }
       }
     }
 
@@ -350,7 +358,7 @@
     $is_empty = true;
     foreach ($properties as $key => $value) {
 //    var_dump(!in_array($key,$exclude) , !empty($value));
-      if (!in_array($key, $exclude) && !empty($value)) {
+      if (!in_array($key, $exclude) && strlen($value)>0) {
         $is_empty = false;
         break;
       }
@@ -370,25 +378,15 @@
   function pzarc_get_styling($source, $keys, $value, $parentClass)
   {
 
-    if ('blueprint' === $source) {
-//      var_dump($source, $keys, $value, $parentClass);
-    }
-
-    //Need to do the above switch for Panels
     // generate correct whosit
     $pzarc_func = 'pzarc_style_' . $keys[ 'style' ];
     $pzarc_css  = '';
-//    if ($keys['id']=='entry-content') {
-//      pzdebug($keys);
-//      die();
-//    }
     foreach ($keys[ 'classes' ] as $class) {
       $pzarc_css .= (function_exists($pzarc_func) ? call_user_func($pzarc_func, $parentClass . ' ' . $class, $value) : '');
       if (!function_exists($pzarc_func)) {
         print 'Missing function ' . $pzarc_func;
         var_dump($parentClass);
       }
-
     }
 
     return $pzarc_css;
@@ -403,6 +401,7 @@
 
   function pzarc_style_padding($class, $value)
   {
+//    var_Dump(pzarc_is_empty_vals($value, array('units')),$value);
     return (!pzarc_is_empty_vals($value, array('units')) ? $class . ' {' . pzarc_process_spacing($value) . ';}' . "\n" : null);
   }
 

@@ -9,9 +9,9 @@
 
   class arc_SectionFactory
   {
-    public static function create($number, $section, $source, $navtype, $layout_mode, $slider_type = null, $section_title = null, $table_titles = null)
+    public static function create($number, $section, $source, $navtype, $layout_mode, $slider_type = null, $section_title = null, $table_titles = null, $panel_name = null)
     {
-      return new arc_Section($number, $section, $source, $navtype, $layout_mode, $slider_type, $section_title, $table_titles);
+      return new arc_Section($number, $section, $source, $navtype, $layout_mode, $slider_type, $section_title, $table_titles, $panel_name);
     }
 
   }
@@ -42,28 +42,31 @@
      * @param      $table_accordion_titles
      * @internal param $blueprint
      */
-    public function __construct($number, $section_panel, $content_source, $navtype, $layout_mode, $slider_type = null, $section_title = null, $table_accordion_titles = array())
+    public function __construct($number, $section_panel, $content_source, $navtype, $layout_mode, $slider_type = null, $section_title = null, $table_accordion_titles = array(), $panel_name = null)
     {
 
-
-      $this->section_number = $number;
-      $this->section        = $section_panel;
-      $this->source         = $content_source;
-      $this->navtype        = $navtype;
-      $this->layout_mode    = $layout_mode;
-      $this->section_title  = $section_title;
-      $this->slider_type    = $slider_type;
-      $this->rsid           = 'rsid' . (rand(1, 9999) * rand(10000, 99999));
+      $this->section_number         = $number;
+      $this->section                = $section_panel;
+      $this->panel_name             = $panel_name;
+      $this->source                 = $content_source;
+      $this->navtype                = $navtype;
+      $this->layout_mode            = $layout_mode;
+      $this->section_title          = $section_title;
+      $this->slider_type            = $slider_type;
+      $this->rsid                   = 'rsid' . (rand(1, 9999) * rand(10000, 99999));
       $this->table_accordion_titles = $table_accordion_titles;
+
+      wp_enqueue_style('pzarc_css_panel_' . $this->panel_name);
 
       if ('table' === $this->layout_mode) {
         $this->table_accordion_titles = $table_accordion_titles;
       }
-      add_action('wp_print_footer_scripts',array($this,'extra_scripts'));
+      add_action('wp_print_footer_scripts', array($this, 'extra_scripts'));
     }
 
 
-    function extra_scripts(){
+    function extra_scripts()
+    {
       // This is a much nicer way than creating files!!! Wonder where else I can use it?
 
       // Tabular scripts
@@ -98,7 +101,7 @@
       }
 
       $isotope      = '';
-      $accordion = '';
+      $accordion    = '';
       $layout_class = 'tiles';
       switch ($this->layout_mode) {
 
@@ -113,7 +116,7 @@
 
         case 'accordion':
           $layout_class = 'accordion';
-          $accordion = ' data-collapse="accordion"';
+          $accordion    = ' data-collapse="accordion"';
           wp_enqueue_script('js-jquery-collapse');
           break;
 
@@ -128,7 +131,7 @@
       // TODO: Might need to change js-isotope to masonry - chekc impact tho
       // TODO Accordion
 
-      echo '<' . ('table' !== $this->layout_mode ? 'div' : 'table') . ' id="' . $this->rsid . '" class="' . $layout_class . ' pzarc-section pzarc-section_' . $this->section_number . ' pzarc-section-using-panel_' . $this->section[ 'section-panel-settings' ][ '_panels_settings_short-name' ] . $this->slider[ 'wrapper' ] . '"' . $isotope . $accordion.'>';
+      echo '<' . ('table' !== $this->layout_mode ? 'div' : 'table') . ' id="' . $this->rsid . '" class="' . $layout_class . ' pzarc-section pzarc-section_' . $this->section_number . ' pzarc-section-using-panel_' . $this->section[ 'section-panel-settings' ][ '_panels_settings_short-name' ] . $this->slider[ 'wrapper' ] . '"' . $isotope . $accordion . '>';
 
       // Table heading stuff
       if ('table' === $this->layout_mode) {
@@ -146,8 +149,8 @@
 
         $i = 0;
         // If any titles are missing, the remainder are blanked
-        $this->table_accordion_titles   = (is_array($this->table_accordion_titles)?$this->table_accordion_titles:array($this->table_accordion_titles));
-        $this->table_accordion_titles = array_pad($this->table_accordion_titles,count($widths),'');
+        $this->table_accordion_titles = (is_array($this->table_accordion_titles) ? $this->table_accordion_titles : array($this->table_accordion_titles));
+        $this->table_accordion_titles = array_pad($this->table_accordion_titles, count($widths), '');
 
         foreach ($this->table_accordion_titles as $title) {
           echo '<th>' . $title . '</th>';
@@ -156,7 +159,7 @@
       }
 
       // Masonry stuff
-      if ('masonry'===$this->layout_mode) {
+      if ('masonry' === $this->layout_mode) {
         echo '<div class="grid-sizer"></div><div class="gutter-sizer"></div>';
 
       }
@@ -256,13 +259,13 @@
       // TODO: Probably use jQuery Collapse for accordions
 
       /** ACCORDION TITLES */
-      if ('accordion'===$this->layout_mode) {
+      if ('accordion' === $this->layout_mode) {
         $accordion_title = $post->post_title;
-        if (!empty($this->table_accordion_titles) && isset($this->table_accordion_titles[$panel_def])) {
-          $accordion_title = do_shortcode($this->table_accordion_titles[$panel_number]);
+        if (!empty($this->table_accordion_titles) && isset($this->table_accordion_titles[ $panel_def ])) {
+          $accordion_title = do_shortcode($this->table_accordion_titles[ $panel_number ]);
         }
         //'_blueprint_section-' . $this->section_number . '-accordion-titles'
-        echo '<div class="pzarc-accordion title '.($panel_number===1?'open':'close').'">'.$accordion_title.'</div>';
+        echo '<div class="pzarc-accordion title ' . ($panel_number === 1 ? 'open' : 'close') . '">' . $accordion_title . '</div>';
       }
 
 
