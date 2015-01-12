@@ -73,7 +73,7 @@
     $return_array = array(
         'title'           => __('Font', 'pzarchitect'),
         'id'              => $id,
- //       'output'          => $selectors,
+        //       'output'          => $selectors,
         'type'            => 'typography',
         'text-decoration' => true,
         'font-variant'    => true,
@@ -140,7 +140,7 @@
 
   }
 
-  function pzarc_redux_margin($id, $selectors, $defaults = '')
+  function pzarc_redux_margin($id, $selectors, $defaults = '', $limits = 'tblr')
   {
     return array(
         'title'   => __('Margins', 'pzarchitect'),
@@ -150,6 +150,10 @@
         'type'    => 'spacing',
         'units'   => array('%', 'px', 'em'),
         'default' => $defaults,
+        'top'     => (strpos($limits, 't') !== false),
+        'bottom'  => (strpos($limits, 'b') !== false),
+        'left'    => (strpos($limits, 'l') !== false),
+        'right'   => (strpos($limits, 'r') !== false)
     );
 
   }
@@ -410,8 +414,10 @@
 
   }
 
-  function pzarc_get_wp_post_images(){
-    $results=array('todo'=>'TODO!!!');
+  function pzarc_get_wp_post_images()
+  {
+    $results = array('todo' => 'TODO!!!');
+
     return $results;
   }
 
@@ -723,37 +729,38 @@
   function pzarc_maths_sum($values)
   {
     $result = 0;
-    $vtype ='';
-    switch (true){
-      case strpos($values[1],'px'):
-        $vtype= 'px';
+    $vtype  = '';
+    switch (true) {
+      case strpos($values[ 1 ], 'px'):
+        $vtype = 'px';
         break;
-      case strpos($values[1],'rem'):
-        $vtype= 'rem';
+      case strpos($values[ 1 ], 'rem'):
+        $vtype = 'rem';
         break;
-      case strpos($values[1],'%'):
-        $vtype= '%';
+      case strpos($values[ 1 ], '%'):
+        $vtype = '%';
         break;
-      case strpos($values[1],'em'):
-        $vtype= 'em';
+      case strpos($values[ 1 ], 'em'):
+        $vtype = 'em';
         break;
     }
     foreach ($values as $v) {
-      $vclean = str_replace(array('%','px','em','rem'), '',$v);
-      $result +=  $vclean;
+      $vclean = str_replace(array('%', 'px', 'em', 'rem'), '', $v);
+      $result += $vclean;
     }
-    return array('result'=>$result,'type'=>$vtype);
+
+    return array('result' => $result, 'type' => $vtype);
   }
 
   // Testing function.
   // NOTE: If defaults chosen, then will be main query!!
-//    add_filter( 'the_content', 'cv_display_random_imgs_home' );
-//    function cv_display_random_imgs_home( $content ) {
-//      $custom_content = '1WTF'.$content;
-//      // Theoretically, this shouldn't run in most instances coz Architect is not the main loop. Template tags or a specific action could be the exception.
-//      if ( is_main_query() ) {
-//        $custom_content .= '2WTF';
-//      }
-//      var_dump(is_main_query());
-//      return $custom_content;
-//    }
+  //    add_filter( 'the_content', 'cv_display_random_imgs_home' );
+  //    function cv_display_random_imgs_home( $content ) {
+  //      $custom_content = '1WTF'.$content;
+  //      // Theoretically, this shouldn't run in most instances coz Architect is not the main loop. Template tags or a specific action could be the exception.
+  //      if ( is_main_query() ) {
+  //        $custom_content .= '2WTF';
+  //      }
+  //      var_dump(is_main_query());
+  //      return $custom_content;
+  //    }

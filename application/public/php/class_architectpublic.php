@@ -156,8 +156,9 @@
       $content_source = $registry->get('content_source');
       if ($this->build->blueprint[ '_blueprints_content-source' ] === 'defaults' && !empty($this->build->blueprint['_content_defaults_defaults-override'])){
         global $wp_query;
-        $this->build->blueprint[ '_blueprints_content-source' ] =$wp_query->posts[0]->post_type;
+        $this->build->blueprint[ '_blueprints_content-source' ] = $wp_query->posts[0]->post_type;
       }
+
       if ($this->build->blueprint[ '_blueprints_content-source' ] != 'defaults' && array_key_exists($this->build->blueprint[ '_blueprints_content-source' ], $content_source)) {
 
         $source_query_class = 'arc_query_' . $this->build->blueprint[ '_blueprints_content-source' ];
@@ -482,7 +483,6 @@
         }
       }
       $prefix = $content_types[ $this->build->blueprint[ '_blueprints_content-source' ] ];
-
       // Get values to use in criteria
       foreach ($this->build->blueprint as $key => $value) {
         if (strpos($key, $prefix) === 0) {

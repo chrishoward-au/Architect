@@ -1081,16 +1081,16 @@
                       'required' => array($prefix . 'cfield-' . $i . '-field-type', '=', 'date'),
                   ),
                   array(
-                      'id'       => $prefix . 'cfield-' . $i . '-number-decimals',
-                      'title'    => 'Decimals',
-                      'type'     => 'spinner',
-                      'default'  => 0,
+                      'id'            => $prefix . 'cfield-' . $i . '-number-decimals',
+                      'title'         => 'Decimals',
+                      'type'          => 'spinner',
+                      'default'       => 0,
                       'min'           => '0',
                       'max'           => '100',
                       'step'          => '1',
                       'display_value' => 'label',
-                      'subtitle' => __('Number of decimal places.', 'pzarchitect'),
-                      'required' => array($prefix . 'cfield-' . $i . '-field-type', '=', 'number'),
+                      'subtitle'      => __('Number of decimal places.', 'pzarchitect'),
+                      'required'      => array($prefix . 'cfield-' . $i . '-field-type', '=', 'number'),
                   ),
                   array(
                       'id'       => $prefix . 'cfield-' . $i . '-number-decimal-char',
@@ -1379,7 +1379,7 @@
                 pzarc_redux_font($prefix . 'entry-title' . $font, array('.entry-title'), $defaults[ $optprefix . 'entry-title' . $font ]),
                 pzarc_redux_bg($prefix . 'entry-title' . $font . $background, array('.entry-title'), $defaults[ $optprefix . 'entry-title' . $font . $background ]),
                 pzarc_redux_padding($prefix . 'entry-title' . $font . $padding, array('.entry-title'), $defaults[ $optprefix . 'entry-title' . $font . $padding ]),
-                pzarc_redux_margin($prefix . 'entry-title' . $font . $margin, array('.entry-title'), $defaults[ $optprefix . 'entry-title' . $font . $margin ]),
+                pzarc_redux_margin($prefix . 'entry-title' . $font . $margin, array('.entry-title'), $defaults[ $optprefix . 'entry-title' . $font . $margin ], 'tb'),
                 pzarc_redux_borders($prefix . 'entry-title' . $border, array('.entry-title'), $defaults[ $optprefix . 'entry-title' . $border ]),
                 pzarc_redux_links($prefix . 'entry-title' . $font . $link, array('.entry-title a'), $defaults[ $optprefix . 'entry-title' . $font . $link ])
 //            array(
@@ -1406,7 +1406,7 @@
                 pzarc_redux_font($prefix . 'entry-meta' . $font, array('.entry-meta'), $defaults[ $optprefix . 'entry-meta' . $font ]),
                 pzarc_redux_bg($prefix . 'entry-meta' . $font . $background, array('.entry-meta'), $defaults[ $optprefix . 'entry-meta' . $font . $background ]),
                 pzarc_redux_padding($prefix . 'entry-meta' . $font . $padding, array('.entry-meta'), $defaults[ $optprefix . 'entry-meta' . $font . $padding ]),
-                //               pzarc_redux_margin($prefix . 'entry-meta' . $font . $margin, array('.entry-meta'), $defaults[ $optprefix . 'entry-meta' . $font . $margin ]),
+                pzarc_redux_margin($prefix . 'entry-meta' . $font . $margin, array('.entry-meta'), $defaults[ $optprefix . 'entry-meta' . $font . $margin ], 'tb'),
                 pzarc_redux_links($prefix . 'entry-meta' . $font . $link, array('.entry-meta a'), $defaults[ $optprefix . 'entry-meta' . $font . $link ])
             )
         );
@@ -1430,7 +1430,7 @@
                 pzarc_redux_font($prefix . 'entry-content' . $font, array('.entry-content'), $defaults[ $optprefix . 'entry-content' . $font ]),
                 pzarc_redux_bg($prefix . 'entry-content' . $font . $background, array('.entry-content'), $defaults[ $optprefix . 'entry-content' . $font . $background ]),
                 pzarc_redux_padding($prefix . 'entry-content' . $font . $padding, array('.entry-content'), $defaults[ $optprefix . 'entry-content' . $font . $padding ]),
-                //               pzarc_redux_margin($prefix . 'entry-content' . $font . $margin, array('.entry-content'), $defaults[ $optprefix . 'entry-content' . $font . $margin ]),
+                pzarc_redux_margin($prefix . 'entry-content' . $font . $margin, array('.entry-content'), $defaults[ $optprefix . 'entry-content' . $font . $margin ], 'tb'),
                 pzarc_redux_links($prefix . 'entry-content' . $font . $link, array('.entry-content a'), $defaults[ $optprefix . 'entry-content' . $font . $link ]),
                 array(
                     'title'  => __('Excerpt', 'pzarc'),
@@ -1509,6 +1509,19 @@
                     'type'    => 'spacing',
                     'units'   => array('px', '%'),
                     'default' => $defaults[ $optprefix . 'entry-image' . $padding ]
+                    //    'default' => $defaults[ $optprefix . 'image_defaults_entry-image-caption-defaults' ],
+                ),
+                array(
+                    'title'   => __('Margin', 'pzarchitect'),
+                    'id'      => $prefix . 'entry-image' . $margin,
+                    'mode'    => 'margin',
+                    'type'    => 'spacing',
+                    'units'   => array('px', '%'),
+                    'default' => $defaults[ $optprefix . 'entry-image' . $margin ],
+                    'top'     => true,
+                    'bottom'  => true,
+                    'left'    => false,
+                    'right'   => false
                     //    'default' => $defaults[ $optprefix . 'image_defaults_entry-image-caption-defaults' ],
                 ),
                 array(
