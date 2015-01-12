@@ -49,15 +49,15 @@
 
       //@TODO: need a bit of screen dependency on this?
 
-      require_once PZARC_PLUGIN_APP_PATH . '/admin/php/class_arc_Panels_Layouts.php';
-      require_once PZARC_PLUGIN_APP_PATH . '/admin/php/class_arc_Blueprints_Layouts.php';
+      require_once PZARC_PLUGIN_APP_PATH . '/admin/php/class_arc_panels_layouts.php';
+      require_once PZARC_PLUGIN_APP_PATH . '/admin/php/class_arc_blueprints_layouts.php';
       require_once PZARC_PLUGIN_APP_PATH . '/admin/php/arc-save-process.php';
 
 
       //TODO:     require_once PZARC_PLUGIN_PATH . '/admin/arc-widget.php';
 
       // This one is really only needed on posts, pages and snippets, so could conditionalise its load
-      require_once PZARC_PLUGIN_APP_PATH . '/admin/php/class_arc_Misc_Metaboxes.php';
+      require_once PZARC_PLUGIN_APP_PATH . '/admin/php/class_arc_misc_metaboxes.php';
       require_once PZARC_PLUGIN_APP_PATH . '/shared/includes/php/redux-custom-fields/loader.php';
       require_once PZARC_PLUGIN_APP_PATH . '/shared/includes/php/redux-extensions/loader.php';
 
@@ -70,7 +70,7 @@
       require_once PZARC_PLUGIN_APP_PATH . '/admin/php/arc-options-actions.php';
 
       // TODO: this needs to be dumberized so can work on dev defined panels and content. But why is these here anyway??
-//      require_once PZARC_PLUGIN_APP_PATH . '/shared/architect/php/content-types/generic/class_arc_Panel_Generic.php';
+//      require_once PZARC_PLUGIN_APP_PATH . '/shared/architect/php/content-types/generic/class_arc_panel_generic.php';
 
 
       require_once(PZARC_PLUGIN_APP_PATH . '/shared/includes/php/BFI-thumb-forked/BFI_Thumb.php');
@@ -81,7 +81,7 @@
 
     function missing_redux_admin_notice()
     {
-      echo '<div id="message" class="error"><p><strong>'.__('One final step in installing ARCHITECT.').'</strong><br>'.__('It cannot function without the Redux Framework plugin. You need to install and/or activate Redux.').'<br>'.__('Redux is the backbone of Architect, providing all the necessary code libraries for Architect\'s fields and options.').'<br>'.__('There should be another message with a link to make installing and activating Redux easy. If you can\'t find it, contact PizazzWP support.').'</p></div>';
+      echo '<div id="message" class="error"><p><strong>' . __('One final step in installing ARCHITECT.') . '</strong><br>' . __('It cannot function without the Redux Framework plugin. You need to install and/or activate Redux.') . '<br>' . __('Redux is the backbone of Architect, providing all the necessary code libraries for Architect\'s fields and options.') . '<br>' . __('There should be another message with a link to make installing and activating Redux easy. If you can\'t find it, contact PizazzWP support.') . '</p></div>';
     }
 
 
@@ -105,6 +105,7 @@
             $classes .= ' arc-bgimage arc-bg-' . $arc_bg;
           }
           $classes .= ' ' . $screen->post_type;
+
           break;
       }
 
@@ -129,7 +130,7 @@
         // We shouldn't need this anymore
 //        wp_enqueue_style('pzarc-jqueryui-css', PZARC_PLUGIN_APP_URL . '/shared/includes/js/jquery-ui-1.10.2.custom/css/pz_architect/jquery-ui-1.10.2.custom.min.css');
 
-        wp_enqueue_script('jquery-pzarc-metaboxes', PZARC_PLUGIN_APP_URL . '/admin/js/arc-metaboxes.js', array('jquery'),false);
+        wp_enqueue_script('jquery-pzarc-metaboxes', PZARC_PLUGIN_APP_URL . '/admin/js/arc-metaboxes.js', array('jquery'), false);
 
 
         // We shouldn't need this anymore
@@ -137,8 +138,10 @@
 //        wp_enqueue_script('pzarc-validation-engine-js-lang', PZARC_PLUGIN_APP_URL . '/shared/includes/js/jQuery-Validation-Engine/js/languages/jquery.validationEngine-en.js', array('jquery'));
 //        wp_enqueue_script('pzarc-validation-engine-js', PZARC_PLUGIN_APP_URL . '/shared/includes/js/jQuery-Validation-Engine/js/jquery.validationEngine.js', array('jquery'));
 //        wp_enqueue_style('pzarc-validation-engine-css', PZARC_PLUGIN_APP_URL . '/shared/includes/js/jQuery-Validation-Engine/css/validationEngine.jquery.css');
+        add_filter('post_row_actions', 'pzarc_duplicate_post_link', 10, 2);
+        add_filter('page_row_actions', 'pzarc_duplicate_post_link', 10, 2);
       }
-      if ('architect_page_pzarc_support'===$screen->id) {
+      if ('architect_page_pzarc_support' === $screen->id) {
         wp_enqueue_script('js-classlist', PZARC_PLUGIN_APP_URL . '/shared/includes/js/tabby/dist/js/classList.min.js', array('jquery'));
         wp_enqueue_script('js-tabby', PZARC_PLUGIN_APP_URL . '/shared/includes/js/tabby/dist/js/tabby.min.js', array('jquery'));
         wp_enqueue_style('css-tabby', PZARC_PLUGIN_APP_URL . '/shared/includes/js/tabby/dist/css/tabby.min.css');
@@ -179,7 +182,6 @@
     }
 
 
-
     function pzarc_tools()
     {
       global $title;
@@ -201,36 +203,36 @@
 						<p>Import single or multiple blueprints and panels</p>
 						<h3>Duplicate</h3>
 						<p>Duplicate single or multiple blueprints and panels</p>-->
-						<h3>'.__('Rebuild Architect CSS cache').'</h3>
-						<p>'.__('Sometimes the CSS cache file may not exist or may even become scrambled and layouts will not look right. If so, simply click the Rebuild button and it will be recreated. If the problem persists, contact Pizazz Support at support@pizazzwp.com.').'</p>
+						<h3>' . __('Rebuild Architect CSS cache') . '</h3>
+						<p>' . __('Sometimes the CSS cache file may not exist or may even become scrambled and layouts will not look right. If so, simply click the Rebuild button and it will be recreated. If the problem persists, contact Pizazz Support at support@pizazzwp.com.') . '</p>
 						<form action="admin.php?page=pzarc_tools" method="post">';
       wp_nonce_field('rebuild-architect-css-cache');
-      echo '<button class="button-primary" type="submit" name="rebuildarchitectcss" value="'.__('Rebuild Architect CSS Cache').'"><span class="dashicons dashicons-admin-appearance" style="color:white;font-size:22px;vertical-align:text-bottom"></span>'.__('Rebuild Architect CSS Cache').'</button>
+      echo '<button class="button-primary" type="submit" name="rebuildarchitectcss" value="' . __('Rebuild Architect CSS Cache') . '"><span class="dashicons dashicons-admin-appearance" style="color:white;font-size:22px;vertical-align:text-bottom"></span>' . __('Rebuild Architect CSS Cache') . '</button>
         </form>';
 
       if (isset($_POST[ 'rebuildarchitectcss' ]) && check_admin_referer('rebuild-architect-css-cache')) {
         require_once(PZARC_PLUGIN_APP_PATH . '/admin/php/arc-save-process.php');
         save_arc_layouts('all', null, true);
-        echo '<br><div id="message" class="updated"><p>'.__('Architect CSS cache has been rebuilt. Your site should look awesome again!').'</p>
-        <p>'.__('If your site is using a cache plugin or service, clear that cache too.').'</p></div>';
+        echo '<br><div id="message" class="updated"><p>' . __('Architect CSS cache has been rebuilt. Your site should look awesome again!') . '</p>
+        <p>' . __('If your site is using a cache plugin or service, clear that cache too.') . '</p></div>';
       }
 
       echo '<hr style="margin-top:20px;border-color:#eee;border-style:solid;"/>';
       if (function_exists('bfi_flush_image_cache')) {
-        echo '<h3>'.__('Clear Architect images cache').'</h3>
+        echo '<h3>' . __('Clear Architect images cache') . '</h3>
 
-    <p>'.__('If you update or change images in any posts,sometimes the image cache may get out-of-sync. In that case, you can refresh the thumbs image cache to ensure your site visitors are seeing the correct images.').'</p>
+    <p>' . __('If you update or change images in any posts,sometimes the image cache may get out-of-sync. In that case, you can refresh the thumbs image cache to ensure your site visitors are seeing the correct images.') . '</p>
 
-    <p>'.__('Please note: Refreshing the cache causes no problems other than the next person who visits your site may have to wait a little longer as the cache images get recreated.').' <strong>'.__('No images in any post will be affected').'</strong>. </p>
+    <p>' . __('Please note: Refreshing the cache causes no problems other than the next person who visits your site may have to wait a little longer as the cache images get recreated.') . ' <strong>' . __('No images in any post will be affected') . '</strong>. </p>
 
     <form action="admin.php?page=pzarc_tools" method="post">';
         wp_nonce_field('flush-thumb-cache');
-        echo '<button class="button-primary" type="submit" name="flushbficache" value="'.__('Empty Architect image cache').'"><span class="dashicons dashicons-images-alt2" style="color:white;font-size:22px;vertical-align:text-bottom"></span>'.__('Empty Architect image cache').'</button>
+        echo '<button class="button-primary" type="submit" name="flushbficache" value="' . __('Empty Architect image cache') . '"><span class="dashicons dashicons-images-alt2" style="color:white;font-size:22px;vertical-align:text-bottom"></span>' . __('Empty Architect image cache') . '</button>
     </form>
     <hr style="margin-top:20px;border-color:#eee;border-style:solid;"/>';
         if (isset($_POST[ 'flushbficache' ]) && check_admin_referer('flush-thumb-cache')) {
           bfi_flush_image_cache();
-          echo '<div id="message" class="updated"><p>'.__('Architect image cache cleared. It will be recreated next time someone vists your site.').'</p></div>';
+          echo '<div id="message" class="updated"><p>' . __('Architect image cache cleared. It will be recreated next time someone vists your site.') . '</p></div>';
         }
 
       }
@@ -257,93 +259,93 @@
             <h2>' . $title . '</h2>
 
             <div class="tabby tabs">
-                <button data-tab="#quick" class="first active">'.__('Quick start').'</button>
-                <button data-tab="#what" >'.__('What is Architect').'</button>
-                <button data-tab="#how">'.__('Usage').'</button>
-                <button data-tab="#help">'.__('Support').'</button>
-                <button data-tab="#shout">'.__(''.__('Shoutouts').'').'</button>
-                <button data-tab="#presets">'.__('Presets').'</button>
+                <button data-tab="#quick" class="first active">' . __('Quick start') . '</button>
+                <button data-tab="#what" >' . __('What is Architect') . '</button>
+                <button data-tab="#how">' . __('Usage') . '</button>
+                <button data-tab="#help">' . __('Support') . '</button>
+                <button data-tab="#shout">' . __('' . __('Shoutouts') . '') . '</button>
+                <button data-tab="#presets">' . __('Presets') . '</button>
             </div>
             <div class="tabby tabs-content">
                 <div class="tabs-pane active" id="quick">
-                    <h2>'.__('Quick start').'</h2>
+                    <h2>' . __('Quick start') . '</h2>
                     <div style="background:#f2f2f2;border:1px solid #e2e2e2;padding:10px;border-radius:3px;max-width:800px;font-size:14px;">
                     <ol>
-                    <li><strong>'.__('Create a Panel').'</strong></li>
-                    <ol style="list-style-type:lower-roman"><li>'.__('Go to <em>Architect > Panels</em> and create a basic Panel. Make sure to give it a title and a short name.').'</li>
-                        <li>'.__('Leave all the other defaults for now. <em>Publish/Update</em> that.').'</li></ol>
-                    <li><strong>'.__('Create a Blueprint').'</strong></li>
+                    <li><strong>' . __('Create a Panel') . '</strong></li>
+                    <ol style="list-style-type:lower-roman"><li>' . __('Go to <em>Architect > Panels</em> and create a basic Panel. Make sure to give it a title and a short name.') . '</li>
+                        <li>' . __('Leave all the other defaults for now. <em>Publish/Update</em> that.') . '</li></ol>
+                    <li><strong>' . __('Create a Blueprint') . '</strong></li>
                     <ol style="list-style-type:lower-roman">
-                        <li>'.__('Go to <em>Architect > Blueprints</em> and create a Blueprint. Give it a <em>Title</em> and <em>Short Name</em> too, and in <em>Section 1</em> tab, under <em>Panels Layout</em>, select your Panel you just created').'</li>
-                        <li>'.__('Change <em>Limit panels (content)</em> to no so we get a lot of posts').'</li>
-                        <li>'.__('Click the <em>Panels Content</em> button and for the <em>Settings, Content Source</em>, choose <em>Posts</em>').'</li>
-                        <li>'.__('Click <em>Publish/Update</em>.').'</li>
+                        <li>' . __('Go to <em>Architect > Blueprints</em> and create a Blueprint. Give it a <em>Title</em> and <em>Short Name</em> too, and in <em>Section 1</em> tab, under <em>Panels Layout</em>, select your Panel you just created') . '</li>
+                        <li>' . __('Change <em>Limit panels (content)</em> to no so we get a lot of posts') . '</li>
+                        <li>' . __('Click the <em>Panels Content</em> button and for the <em>Settings, Content Source</em>, choose <em>Posts</em>') . '</li>
+                        <li>' . __('Click <em>Publish/Update</em>.') . '</li>
                         </ol>
-                    <li><strong>'.__('Display the Blueprint').'</strong></li>
+                    <li><strong>' . __('Display the Blueprint') . '</strong></li>
                     <ol style="list-style-type:lower-roman">
-                        <li>'.__('If you are using <strong>Headway</strong>, then go to the Headway Visual Editor, select a layout to show and draw an Architect block on it and select the Blueprint and Save.').'<br>
-                        '.__('For <strong>other themes</strong>, the quickest way to test is insert an Architect shortcode on a page.').'<br>'.__('The form is <strong>[architect <em>blueprint-shortname</em>]</strong> where <em>blueprint-shortname</em> is the Short Name of the Blueprint to show').'
+                        <li>' . __('If you are using <strong>Headway</strong>, then go to the Headway Visual Editor, select a layout to show and draw an Architect block on it and select the Blueprint and Save.') . '<br>
+                        ' . __('For <strong>other themes</strong>, the quickest way to test is insert an Architect shortcode on a page.') . '<br>' . __('The form is <strong>[architect <em>blueprint-shortname</em>]</strong> where <em>blueprint-shortname</em> is the Short Name of the Blueprint to show') . '
                         </li>
-                        <li>'.__('Load the page and you should see a 3x grid of posts.').'</li></ol>
+                        <li>' . __('Load the page and you should see a 3x grid of posts.') . '</li></ol>
                         </ol>
                         </div>
-                        <h3>'.__('Video version').'</h3>
+                        <h3>' . __('Video version') . '</h3>
                         <div style="max-width:800px;"><iframe src="//fast.wistia.net/embed/iframe/46fxmn8h0l?videoFoam=true" allowtransparency="true" frameborder="0" scrolling="no" class="wistia_embed" name="wistia_embed" allowfullscreen mozallowfullscreen webkitallowfullscreen oallowfullscreen msallowfullscreen width="720" height="405"></iframe><script src="//fast.wistia.net/assets/external/iframe-api-v1.js"></script></div>
-                        <p>'.__('Style wise, it may not look that great yet. To tidy it up, start exploring the Styling settings for Panels and Blueprints').'</p>
-                        <p>'.__('To make a <strong>slideshow</strong>, set the <em>Navigation</em> type to <em>Navigator</em>').'</p>
-                        <p>'.__('There are a lot of settings in Architect that have all sorts of affects on your layouts and designs. Explore, experiment and have fun!').'</p>
-                        <p>'.__('For more detailed help, visit').' <a href="http://architect4wp.com/codex-listings" target="_blank">'.__('documentation at architect4wp.com').'</a></p>
+                        <p>' . __('Style wise, it may not look that great yet. To tidy it up, start exploring the Styling settings for Panels and Blueprints') . '</p>
+                        <p>' . __('To make a <strong>slideshow</strong>, set the <em>Navigation</em> type to <em>Navigator</em>') . '</p>
+                        <p>' . __('There are a lot of settings in Architect that have all sorts of affects on your layouts and designs. Explore, experiment and have fun!') . '</p>
+                        <p>' . __('For more detailed help, visit') . ' <a href="http://architect4wp.com/codex-listings" target="_blank">' . __('documentation at architect4wp.com') . '</a></p>
                 </div>
                 <div class="tabs-pane" id="what">
-                    <h2>'.__('What is Architect').'</h2>
-                    <p>'.__('Is it a slider? Is it a gallery? Is it a grid layout? Yes! It\'s all these and more.').'</p>
-                    <p>'.__('Fed up with a plethora of plugins that all seem to do the same thing, but in different ways? Me too. That\'s why I created Architect. I was guilty too. I had four plugins: ExcerptsPlus, GalleryPlus, SliderPlus and TabsPlus providing four different ways to display your content.').'</p>
-                    <p>'.__('Architect enables you to easily design complex content layouts, such as magazine layouts, sliders, galleries and tabbed content.').'</p>
-                    <p>'.__('And probably the most amazing thing... with Architect, your layouts are transportable. Change your theme without losing your content layouts. And they\'ll even pick up a lot of the formatting of your new theme if it uses standard WordPress classes although, you may need to tweak the styling a little for different themes.').'</p>
+                    <h2>' . __('What is Architect') . '</h2>
+                    <p>' . __('Is it a slider? Is it a gallery? Is it a grid layout? Yes! It\'s all these and more.') . '</p>
+                    <p>' . __('Fed up with a plethora of plugins that all seem to do the same thing, but in different ways? Me too. That\'s why I created Architect. I was guilty too. I had four plugins: ExcerptsPlus, GalleryPlus, SliderPlus and TabsPlus providing four different ways to display your content.') . '</p>
+                    <p>' . __('Architect enables you to easily design complex content layouts, such as magazine layouts, sliders, galleries and tabbed content.') . '</p>
+                    <p>' . __('And probably the most amazing thing... with Architect, your layouts are transportable. Change your theme without losing your content layouts. And they\'ll even pick up a lot of the formatting of your new theme if it uses standard WordPress classes although, you may need to tweak the styling a little for different themes.') . '</p>
 
-                    <p>'.__('At first it might be a little confusing about what to setup in Panels and what to do in Blueprints. Here\'s an overview:').'</p>
+                    <p>' . __('At first it might be a little confusing about what to setup in Panels and what to do in Blueprints. Here\'s an overview:') . '</p>
                     <p><img src="' . PZARC_PLUGIN_URL . '/documentation/assets/images/how-architect-works.jpg" style="display:block;max-width:100%;" />
                     </p>
 
-                    <h3>'.__('Panels').'</h3>
+                    <h3>' . __('Panels') . '</h3>
                     <ul>
-                        <li>'.__('Panels define the layout of the individual content which can be displayed one or many times in a layout. Panels can also be re-used in multiple Blueprints').'</li>
+                        <li>' . __('Panels define the layout of the individual content which can be displayed one or many times in a layout. Panels can also be re-used in multiple Blueprints') . '</li>
                     </ul>
                     <ul>
-                        <li>'.__('Individual content layout - titles, text, images, meta info').'</li>
-                        <li>'.__('Content styling').'</li>
+                        <li>' . __('Individual content layout - titles, text, images, meta info') . '</li>
+                        <li>' . __('Content styling') . '</li>
                     </ul>
-                    <h3>'.__('Blueprints').'</h3>
+                    <h3>' . __('Blueprints') . '</h3>
                     <ul>
-                        <li>'.__('A Blueprint encompasses the overall content selection, design, layout and navigation. It can contain up to three Sections, each section displaying a Panel layout one or multiple times. This allows you to easily create a layout that, for example, might show a single post followed by a grid of excerpts. Within the Blueprint you can also include navigation, which can be pagination type, or a navigator type.').'</li>
+                        <li>' . __('A Blueprint encompasses the overall content selection, design, layout and navigation. It can contain up to three Sections, each section displaying a Panel layout one or multiple times. This allows you to easily create a layout that, for example, might show a single post followed by a grid of excerpts. Within the Blueprint you can also include navigation, which can be pagination type, or a navigator type.') . '</li>
                     </ul>
                     <ul>
-                        <li>'.__('Overall layout').'</li>
-                        <li>'.__('content source').'</li>
-                        <li>'.__('Navigation').'</li>
+                        <li>' . __('Overall layout') . '</li>
+                        <li>' . __('content source') . '</li>
+                        <li>' . __('Navigation') . '</li>
                     </ul>
-                    <p>'.__('Below is a wireframe example of how a Blueprint is structured').'</p>
+                    <p>' . __('Below is a wireframe example of how a Blueprint is structured') . '</p>
                     <p><img src="' . PZARC_PLUGIN_APP_URL . '/shared/assets/images/help/arc-layout.jpg" style="display:block;max-width:100%" />
                     </p>
                 </div>
                 <div class="tabs-pane " id="how">
-                    <h2>'.__('Usage').'</h2>
+                    <h2>' . __('Usage') . '</h2>
 
-                    <p>'.__('For example, using shortcodes, you might have:').'</p>
-                    <p style="font-weight:bold">[architect blueprint="'.__('blog-page-layout').'"]</p>
-                    <p style="font-weight:bold">[architect blueprint="'.__('thumb-gallery').'" ids="321,456,987,123,654,789"]</p>
+                    <p>' . __('For example, using shortcodes, you might have:') . '</p>
+                    <p style="font-weight:bold">[architect blueprint="' . __('blog-page-layout') . '"]</p>
+                    <p style="font-weight:bold">[architect blueprint="' . __('thumb-gallery') . '" ids="321,456,987,123,654,789"]</p>
 
                     <p>Or a template tag</p>
-                    <p style="font-weight:bold">pzarchitect(\''.__('blog-page-layout').'\')</p>
-                    <p style="font-weight:bold">pzarchitect(\''.__('thumb-gallery').'\', \'321,456,987,123,654,789\')</p>
+                    <p style="font-weight:bold">pzarchitect(\'' . __('blog-page-layout') . '\')</p>
+                    <p style="font-weight:bold">pzarchitect(\'' . __('thumb-gallery') . '\', \'321,456,987,123,654,789\')</p>
                 </div>
                 <div class="tabs-pane " id="help">
-                    <h2>'.__('Support').'</h2>
-                    <h4>'.__('Currently installed version').': ' . PZARC_VERSION . '</h4>
+                    <h2>' . __('Support') . '</h2>
+                    <h4>' . __('Currently installed version') . ': ' . PZARC_VERSION . '</h4>
                 </div>
                 <div class="tabs-pane " id="shout">
-                    <h2>'.__('Shoutouts').'</h2>
-                    <p>'.__('A lot of the magic in Architect is powered by third-party code libraries who deserve much credit for the awesomeness they bring to Architect:').'</p>
+                    <h2>' . __('Shoutouts') . '</h2>
+                    <p>' . __('A lot of the magic in Architect is powered by third-party code libraries who deserve much credit for the awesomeness they bring to Architect:') . '</p>
                     <ul class="shoutout">
                         <li><a href="http://reduxframework.com" target=_blank alt="Redux Options Framework">Redux Options Framework</a>
                         </li>
@@ -372,7 +374,7 @@
                     </ul>
                 </div>
                 <div class="tabs-pane " id="presets">
-                    <h2>'.__('Presets').'</h2>
+                    <h2>' . __('Presets') . '</h2>
                     This is still to to!
                     <p>Download preset Panels and Blueprints. <a href="#">Link</a></p>
                 </div>
@@ -394,3 +396,132 @@
 
   $pzarcadmin = new ArchitectAdmin();
 
+
+  /*
+   * Function creates post duplicate as a draft and redirects then to the edit post screen
+   */
+  function pzarc_duplicate_post_as_draft()
+  {
+    global $wpdb;
+    if (!(isset($_GET[ 'post' ]) || isset($_POST[ 'post' ]) || (isset($_REQUEST[ 'action' ]) && 'pzarc_duplicate_post_as_draft' == $_REQUEST[ 'action' ]))) {
+      wp_die(__('No post to duplicate has been supplied!','pzarchitect'));
+    }
+
+    /*
+     * get the original post id
+     */
+    $post_id = (isset($_GET[ 'post' ]) ? $_GET[ 'post' ] : $_POST[ 'post' ]);
+    /*
+     * and all the original post data then
+     */
+    $post = get_post($post_id);
+
+    /*
+     * if you don't want current user to be the new post author,
+     * then change next couple of lines to this: $new_post_author = $post->post_author;
+     */
+    $current_user    = wp_get_current_user();
+    $new_post_author = $current_user->ID;
+
+    /*
+     * if post data exists, create the post duplicate
+     */
+    if (isset($post) && $post != null) {
+
+
+      // Get the next slug name
+      $post_exists = array();
+      $args        = array(
+          'post_status' => array('publish', 'draft'),
+          'post_type'   => $post->post_type,
+      );
+      $i           = 1;
+      do {
+        $new_slug       = $post->post_name . '-' . $i++;
+        $args[ 'name' ] = $new_slug;
+        $post_exists    = get_posts($args);
+      } while (!empty($post_exists));
+
+
+      /*
+       * new post data array
+       */
+      $args = array(
+          'comment_status' => $post->comment_status,
+          'ping_status'    => $post->ping_status,
+          'post_author'    => $new_post_author,
+          'post_content'   => $post->post_content,
+          'post_excerpt'   => $post->post_excerpt,
+          'post_name'      => $new_slug,
+          'post_parent'    => $post->post_parent,
+          'post_password'  => $post->post_password,
+          'post_status'    => 'draft',
+          'post_title'     => __('(DUPLICATE) ','pzarchitect') . $post->post_title,
+          'post_type'      => $post->post_type,
+          'to_ping'        => $post->to_ping,
+          'menu_order'     => $post->menu_order
+      );
+
+      /*
+       * insert the post by wp_insert_post() function
+       */
+      $new_post_id = wp_insert_post($args);
+
+      /*
+       * get all current post terms ad set them to the new post draft
+       */
+      $taxonomies = get_object_taxonomies($post->post_type); // returns array of taxonomy names for post type, ex array("category", "post_tag");
+      foreach ($taxonomies as $taxonomy) {
+        $post_terms = wp_get_object_terms($post_id, $taxonomy, array('fields' => 'slugs'));
+        wp_set_object_terms($new_post_id, $post_terms, $taxonomy, false);
+      }
+
+      /*
+       * duplicate all post meta
+       */
+      $post_meta_infos = $wpdb->get_results("SELECT meta_key, meta_value FROM $wpdb->postmeta WHERE post_id=$post_id");
+      if (count($post_meta_infos) != 0) {
+        $sql_query = "INSERT INTO $wpdb->postmeta (post_id, meta_key, meta_value) ";
+        foreach ($post_meta_infos as $meta_info) {
+          $meta_key = $meta_info->meta_key;
+          if ($meta_key === '_panels_settings_short-name' || $meta_key === '_blueprints_short-name') {
+            $meta_value = '';
+          } else {
+            $meta_value = addslashes($meta_info->meta_value);
+          }
+
+          $sql_query_sel[ ] = "SELECT $new_post_id, '$meta_key', '$meta_value'";
+        }
+        $sql_query .= implode(" UNION ALL ", $sql_query_sel);
+        $wpdb->query($sql_query);
+      }
+
+
+      /*
+       * finally, redirect to the edit post screen for the new draft
+       */
+//      wp_redirect( admin_url( 'post.php?action=edit&post=' . $new_post_id ) );
+      wp_redirect(admin_url('edit.php?post_type=' . $post->post_type));
+
+      exit;
+    } else {
+      wp_die('Post creation failed, could not find original post: ' . $post_id);
+    }
+  }
+
+  add_action('admin_action_pzarc_duplicate_post_as_draft', 'pzarc_duplicate_post_as_draft');
+
+  /*
+   * Add the duplicate link to action list for post_row_actions
+   */
+  function pzarc_duplicate_post_link($actions, $post)
+  {
+    if (current_user_can('edit_posts')) {
+      $actions[ 'duplicate' ] = '<a href="admin.php?action=pzarc_duplicate_post_as_draft&amp;post=' . $post->ID . '" title="'.__('Duplicate this item','pzarchitect').'" rel="permalink">'.__('Duplicate','pzarchitect').'</a>';
+    }
+
+    return $actions;
+  }
+  //  add_filter( 'arc-panels_row_actions', 'pzarc_duplicate_post_link', 10, 2 );
+  //  add_filter( 'arc-blueprints_row_actions', 'pzarc_duplicate_post_link', 10, 2 );
+  //  add_filter( 'pz_snippets_row_actions', 'pzarc_duplicate_post_link', 10, 2 );

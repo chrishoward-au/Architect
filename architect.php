@@ -44,7 +44,7 @@
       // Before we go anywhere, make sure dependent plugins are loaded and active.
       require_once PZARC_PLUGIN_APP_PATH . '/shared/architect/php/arc-check-dependencies.php';
       // Need this one to create the Architect widget
-      require_once PZARC_PLUGIN_APP_PATH . '/shared/architect/php/class_arc_Widget.php';
+      require_once PZARC_PLUGIN_APP_PATH . '/shared/architect/php/class_arc_widget.php';
 
       wp_mkdir_p(PZARC_CACHE_PATH);
 
@@ -83,10 +83,10 @@
       add_action('after_setup_theme', array($this, 'register_architect_block'));
 
 
-      require_once PZARC_PLUGIN_APP_PATH . '/shared/architect/php/class_arc_Registry.php';
+      require_once PZARC_PLUGIN_APP_PATH . '/shared/architect/php/class_arc_registry.php';
 
       require_once PZARC_PLUGIN_APP_PATH . '/shared/architect/php/class_arc_set_data.php';
-      require_once PZARC_PLUGIN_APP_PATH . '/shared/architect/php/class_arc_Blueprint_Data.php';
+      require_once PZARC_PLUGIN_APP_PATH . '/shared/architect/php/class_arc_blueprint_data.php';
 
       // Load custom custom types
       require_once PZARC_PLUGIN_APP_PATH . '/shared/architect/php/arc-cpt-panels.php';
@@ -374,6 +374,7 @@
       }
     }
   }
+
 
 //  if ( ! function_exists('pzfaqs') ) {
 //

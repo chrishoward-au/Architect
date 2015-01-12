@@ -233,7 +233,7 @@
 //      require_once PZARC_PLUGIN_APP_PATH . '/admin/php/arc-options-styling.php';
 //      require_once PZARC_PLUGIN_APP_PATH . '/shared/includes/php/redux-extensions/extensions/metaboxes/extension_metaboxes.php';
 
-        require_once PZARC_PLUGIN_APP_PATH . '/public/php/class_ArchitectPublic.php';
+        require_once PZARC_PLUGIN_APP_PATH . '/public/php/class_architectpublic.php';
 //      require_once(PZARC_PLUGIN_APP_PATH . '/shared/includes/php/jo-image-resizer/jo_image_resizer.php');
         require_once(PZARC_PLUGIN_APP_PATH . '/shared/includes/php/BFI-thumb-forked/BFI_Thumb.php');
 

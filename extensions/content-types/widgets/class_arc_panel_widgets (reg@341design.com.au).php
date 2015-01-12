@@ -1,7 +1,7 @@
 <?php
 /**
  * Project pizazzwp-architect.
- * File: class_arc_Panel_Widgets.php
+ * File: class_arc_panel_widgets.php
  * User: chrishoward
  * Date: 20/10/14
  * Time: 9:21 PM

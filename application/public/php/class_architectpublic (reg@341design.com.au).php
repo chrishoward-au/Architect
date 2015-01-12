@@ -42,11 +42,11 @@
     {
       $this->is_shortcode = $is_shortcode;
 
-      require_once(PZARC_PLUGIN_APP_PATH . '/public/php/class_arc_Section.php');
-      require_once(PZARC_PLUGIN_APP_PATH . '/public/php/class_arc_Blueprint.php');
+      require_once(PZARC_PLUGIN_APP_PATH . '/public/php/class_arc_section.php');
+      require_once(PZARC_PLUGIN_APP_PATH . '/public/php/class_arc_blueprint.php');
 
       // Load generics
-      require_once(PZARC_PLUGIN_APP_PATH . '/shared/architect/php/content-types/generic/class_arc_Panel_Generic.php');
+      require_once(PZARC_PLUGIN_APP_PATH . '/shared/architect/php/content-types/generic/class_arc_panel_generic.php');
       require_once(PZARC_PLUGIN_APP_PATH . '/shared/architect/php/content-types/generic/class_arc_query_generic.php');
 
       $this->build = new arc_Blueprint($blueprint);
@@ -68,8 +68,8 @@
       // Good to go. Load all the classes
 
       require_once(PZARC_PLUGIN_APP_PATH . '/shared/architect/php/arc-functions.php');
-      require_once(PZARC_PLUGIN_APP_PATH . '/public/php/class_arc_Navigator.php');
-      require_once(PZARC_PLUGIN_APP_PATH . '/public/php/class_arc_Pagination.php');
+      require_once(PZARC_PLUGIN_APP_PATH . '/public/php/class_arc_navigator.php');
+      require_once(PZARC_PLUGIN_APP_PATH . '/public/php/class_arc_pagination.php');
 
       /** Add navigation.*/
       //  Putting it in an action allows devs to write their own
@@ -539,7 +539,7 @@
       $class          = 'arc_Panel_' . ('defaults' === $this->build->blueprint[ '_blueprints_content-source' ] ? 'defaults' : $post_type);
 
       if (array_key_exists($this->build->blueprint[ '_blueprints_content-source' ], $content_source)) {
-        require_once $content_source[ $this->build->blueprint[ '_blueprints_content-source' ] ] . '/class_arc_Panel_' . ucfirst($post_type) . '.php';
+        require_once $content_source[ $this->build->blueprint[ '_blueprints_content-source' ] ] . '/class_arc_panel_' . strtolower($post_type) . '.php';
       }
 
       return $class;

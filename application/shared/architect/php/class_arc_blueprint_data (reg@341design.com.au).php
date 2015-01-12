@@ -1,7 +1,7 @@
 <?php
   /**
    * Project pizazzwp-architect.
-   * File: class_arc_Blueprint_Data.php
+   * File: class_arc_blueprint_data.php
    * User: chrishoward
    * Date: 13/10/14
    * Time: 5:37 PM

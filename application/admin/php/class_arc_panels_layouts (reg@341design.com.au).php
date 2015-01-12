@@ -335,6 +335,29 @@
           'icon'       => 'el-icon-website',
           'fields'     => array(
               array(
+                  'title'        => 'Panel preview',
+                  'id'           => $prefix . 'preview',
+                  'type'         => 'code',
+                  'readonly'     => false, // Readonly fields can't be written to by code! Weird
+                  'code'         => draw_panel_layout(),
+                  'default_show' => false,
+                  'subtitle'     => 'Drag and drop to reposition and resize components',
+                  'default'      => json_encode(array(
+                                                    'title'   => array('width' => 100, 'show' => true),
+                                                    'meta1'   => array('width' => 100, 'show' => true),
+                                                    'image'   => array('width' => 25, 'show' => true),
+                                                    'excerpt' => array('width' => 75, 'show' => true),
+                                                    //                                            'caption' => array('width' => 100, 'show' => false),
+                                                    'content' => array('width' => 100, 'show' => false),
+                                                    'meta2'   => array('width' => 100, 'show' => false),
+                                                    'meta3'   => array('width' => 100, 'show' => false),
+                                                    'custom1' => array('width' => 100, 'show' => false),
+                                                    'custom2' => array('width' => 100, 'show' => false),
+                                                    'custom3' => array('width' => 100, 'show' => false))),
+                  'hint'         => array('title'   => '',
+                                          'content' => __('Drag and drop to sort the order of your elements. <strong>Heights are fluid in panels, so not indicative of how it will look on the page</strong>.', 'pzarchitect'))
+              ),
+              array(
                   'title'   => __('Components to show', 'pzarchitect'),
                   'id'      => $prefix . 'components-to-show',
                   'type'    => 'button_set',
@@ -409,29 +432,6 @@
                   'class'         => ' percent',
                   'display_value' => 'label',
                   'hint'          => array('content' => __('Set the overall width for the components area. Necessary for left or right positioning of sections', 'pzarchitect')),
-              ),
-              array(
-                  'title'        => 'Panel preview',
-                  'id'           => $prefix . 'preview',
-                  'type'         => 'code',
-                  'readonly'     => false, // Readonly fields can't be written to by code! Weird
-                  'code'         => draw_panel_layout(),
-                  'default_show' => false,
-                  'subtitle'     => 'Drag and drop to reposition and resize components',
-                  'default'      => json_encode(array(
-                                                    'title'   => array('width' => 100, 'show' => true),
-                                                    'meta1'   => array('width' => 100, 'show' => true),
-                                                    'image'   => array('width' => 25, 'show' => true),
-                                                    'excerpt' => array('width' => 75, 'show' => true),
-                                                    //                                            'caption' => array('width' => 100, 'show' => false),
-                                                    'content' => array('width' => 100, 'show' => false),
-                                                    'meta2'   => array('width' => 100, 'show' => false),
-                                                    'meta3'   => array('width' => 100, 'show' => false),
-                                                    'custom1' => array('width' => 100, 'show' => false),
-                                                    'custom2' => array('width' => 100, 'show' => false),
-                                                    'custom3' => array('width' => 100, 'show' => false))),
-                  'hint'         => array('title'   => '',
-                                          'content' => __('Drag and drop to sort the order of your elements. <strong>Heights are fluid in panels, so not indicative of how it will look on the page</strong>.', 'pzarchitect'))
               ),
               array(
                   'title'   => __('Components area position', 'pzarchitect'),
@@ -1069,15 +1069,42 @@
                       'id'      => $prefix . 'cfield-' . $i . '-field-type',
                       'type'    => 'button_set',
                       'default' => 'text',
-                      'options' => array('text' => 'Text', 'image' => 'Image', 'date' => 'Date')
+                      'options' => array('text' => 'Text', 'image' => 'Image', 'date' => 'Date', 'number' => 'Number')
 
                   ),
                   array(
-                      'id'      => $prefix . 'cfield-' . $i . '-date-format',
-                      'title'   => 'Date format',
-                      'type'    => 'text',
-                      'default' => 'l, F j, Y g:i a',
-                      'desc'    => __('See here for information on <a href="http://codex.wordpress.org/Formatting_Date_and_Time" target=_blank>formatting date and time</a>', 'pzarchitect'),
+                      'id'       => $prefix . 'cfield-' . $i . '-date-format',
+                      'title'    => 'Date format',
+                      'type'     => 'text',
+                      'default'  => 'l, F j, Y g:i a',
+                      'desc'     => __('See here for information on <a href="http://codex.wordpress.org/Formatting_Date_and_Time" target=_blank>formatting date and time</a>', 'pzarchitect'),
+                      'required' => array($prefix . 'cfield-' . $i . '-field-type', '=', 'date'),
+                  ),
+                  array(
+                      'id'       => $prefix . 'cfield-' . $i . '-number-decimals',
+                      'title'    => 'Decimals',
+                      'type'     => 'spinner',
+                      'default'  => 0,
+                      'min'           => '0',
+                      'max'           => '100',
+                      'step'          => '1',
+                      'display_value' => 'label',
+                      'subtitle' => __('Number of decimal places.', 'pzarchitect'),
+                      'required' => array($prefix . 'cfield-' . $i . '-field-type', '=', 'number'),
+                  ),
+                  array(
+                      'id'       => $prefix . 'cfield-' . $i . '-number-decimal-char',
+                      'title'    => 'Decimal point  character',
+                      'type'     => 'text',
+                      'default'  => '.',
+                      'required' => array($prefix . 'cfield-' . $i . '-field-type', '=', 'number'),
+                  ),
+                  array(
+                      'id'       => $prefix . 'cfield-' . $i . '-number-thousands-separator',
+                      'title'    => 'Thousands separator',
+                      'type'     => 'text',
+                      'default'  => ',',
+                      'required' => array($prefix . 'cfield-' . $i . '-field-type', '=', 'number'),
                   ),
                   array(
                       'title'    => __('Wrapper tag', 'pzarchitect'),
@@ -1379,7 +1406,7 @@
                 pzarc_redux_font($prefix . 'entry-meta' . $font, array('.entry-meta'), $defaults[ $optprefix . 'entry-meta' . $font ]),
                 pzarc_redux_bg($prefix . 'entry-meta' . $font . $background, array('.entry-meta'), $defaults[ $optprefix . 'entry-meta' . $font . $background ]),
                 pzarc_redux_padding($prefix . 'entry-meta' . $font . $padding, array('.entry-meta'), $defaults[ $optprefix . 'entry-meta' . $font . $padding ]),
- //               pzarc_redux_margin($prefix . 'entry-meta' . $font . $margin, array('.entry-meta'), $defaults[ $optprefix . 'entry-meta' . $font . $margin ]),
+                //               pzarc_redux_margin($prefix . 'entry-meta' . $font . $margin, array('.entry-meta'), $defaults[ $optprefix . 'entry-meta' . $font . $margin ]),
                 pzarc_redux_links($prefix . 'entry-meta' . $font . $link, array('.entry-meta a'), $defaults[ $optprefix . 'entry-meta' . $font . $link ])
             )
         );
@@ -1403,7 +1430,7 @@
                 pzarc_redux_font($prefix . 'entry-content' . $font, array('.entry-content'), $defaults[ $optprefix . 'entry-content' . $font ]),
                 pzarc_redux_bg($prefix . 'entry-content' . $font . $background, array('.entry-content'), $defaults[ $optprefix . 'entry-content' . $font . $background ]),
                 pzarc_redux_padding($prefix . 'entry-content' . $font . $padding, array('.entry-content'), $defaults[ $optprefix . 'entry-content' . $font . $padding ]),
- //               pzarc_redux_margin($prefix . 'entry-content' . $font . $margin, array('.entry-content'), $defaults[ $optprefix . 'entry-content' . $font . $margin ]),
+                //               pzarc_redux_margin($prefix . 'entry-content' . $font . $margin, array('.entry-content'), $defaults[ $optprefix . 'entry-content' . $font . $margin ]),
                 pzarc_redux_links($prefix . 'entry-content' . $font . $link, array('.entry-content a'), $defaults[ $optprefix . 'entry-content' . $font . $link ]),
                 array(
                     'title'  => __('Excerpt', 'pzarc'),

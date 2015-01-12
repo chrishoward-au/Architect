@@ -106,16 +106,20 @@ This is BETA software. So there are many besides these ones!
 * Add method to load preset layouts
 * Add margin stylings for other elements.
 * Make slider easier to setup multiple panels across
+
 == Changelog ==
 
 = 0.9.2 =
 * ADDED: Option when Feature is in content, to show it in the excerpt, content or both.
 * ADDED: Option to only show excerpts when there is an author created one.
+* ADDED: Duplicate button on Panels and Blueprints list screen
+* ADDED: Number type and formatting to custom fields
 
 * FIXED: Option to make content 100% wide when no feature wasn't working
 * FIXED: WPML compatibility issue
 * FIXED: Validation of Panel and Blueprint short names had stopped working
 * FIXED: Issues with CSS specificity that affected Architect Blueprints in shortcodes in other Architect generated content e.g. single posts.
+* FIXED: Bug when server is case sensitive
 
 = 0.9.1.3 =
 * FIXED: Blueprint options screen may have broken with previous release. You may need to reselect Layout Type

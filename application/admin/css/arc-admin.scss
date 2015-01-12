@@ -108,7 +108,7 @@ div.pzarc-dragsource {
 .pzarc-dropzone {
   padding: 0px;
   border: #bbb solid 1px;
-  min-height: 300px;
+  height: 300px;
   box-sizing: border-box;
   background: #ddd url(bg-preview.jpg);
   overflow: hidden;
@@ -984,6 +984,8 @@ body.post-type-arc-panels .redux-main .select_wrapper {
   }
   .qtip-content {
     background:#ffe;
+    font-size:12px;
+    line-height:1.3;
   }
   .qtip-titlebar {
     background:#ee9;
@@ -1411,4 +1413,14 @@ display:none;
 body.arc-blueprints *,
 body.arc-panels * {
   outline:none;
+}
+
+.row-actions span.duplicate {
+background: #F0F7FF;
+border-radius: 3px;
+padding: 3px;
+text-decoration: none;
+}
+.row-actions span.duplicate:hover {
+background:#def;
 }

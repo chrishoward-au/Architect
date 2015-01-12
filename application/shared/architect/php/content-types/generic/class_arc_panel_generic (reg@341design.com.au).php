@@ -20,9 +20,9 @@
     public function initialise_data()
     {
       // Null up everything to prevent warnings later on
-      $this->data[ 'title' ] = null;
-      $this->data[ 'title' ]['title'] = null;
-      $this->data[ 'title' ]['thumb'] = null;
+      $this->data[ 'title' ]            = null;
+      $this->data[ 'title' ][ 'title' ] = null;
+      $this->data[ 'title' ][ 'thumb' ] = null;
 
       $this->data[ 'content' ] = null;
 
@@ -310,13 +310,12 @@
 
     public function get_excerpt(&$post)
     {
-      if (!empty($this->section[ '_panels_design_manual-excerpts']) && !has_excerpt()) {
+      if (!empty($this->section[ '_panels_design_manual-excerpts' ]) && !has_excerpt()) {
         $this->data[ 'excerpt' ] = '';
       } else {
         $this->data[ 'excerpt' ] = apply_filters('the_excerpt', get_the_excerpt());
       }
     }
-
 
 
     public function get_custom(&$post)
@@ -327,20 +326,23 @@
       for ($i = 1; $i <= $cfcount; $i++) {
         // var_dump($this->section);
         // the settings come from section
-        $this->data[ 'cfield' ][ $i ][ 'group' ]       = $this->section[ '_panels_design_cfield-' . $i . '-group' ];
-        $this->data[ 'cfield' ][ $i ][ 'name' ]        = $this->section[ '_panels_design_cfield-' . $i . '-name' ];
-        $this->data[ 'cfield' ][ $i ][ 'field-type' ]  = $this->section[ '_panels_design_cfield-' . $i . '-field-type' ];
-        $this->data[ 'cfield' ][ $i ][ 'date-format' ] = $this->section[ '_panels_design_cfield-' . $i . '-date-format' ];
-        $this->data[ 'cfield' ][ $i ][ 'wrapper-tag' ] = $this->section[ '_panels_design_cfield-' . $i . '-wrapper-tag' ];
-        $this->data[ 'cfield' ][ $i ][ 'class-name' ]  = $this->section[ '_panels_design_cfield-' . $i . '-class-name' ];
-        $this->data[ 'cfield' ][ $i ][ 'link-field' ]  = $this->section[ '_panels_design_cfield-' . $i . '-link-field' ];
-        $this->data[ 'cfield' ][ $i ][ 'prefix-text' ] = $this->section[ '_panels_design_cfield-' . $i . '-prefix-text' ];
-        $params                                        = array('width'  => str_replace($this->section[ '_panels_design_cfield-' . $i . '-ps-images-width' ][ 'units' ], '', $this->section[ '_panels_design_cfield-' . $i . '-ps-images-width' ][ 'width' ]),
-                                                               'height' => str_replace($this->section[ '_panels_design_cfield-' . $i . '-ps-images-height' ][ 'units' ], '', $this->section[ '_panels_design_cfield-' . $i . '-ps-images-height' ][ 'height' ]));
+        $this->data[ 'cfield' ][ $i ][ 'group' ]         = $this->section[ '_panels_design_cfield-' . $i . '-group' ];
+        $this->data[ 'cfield' ][ $i ][ 'name' ]          = $this->section[ '_panels_design_cfield-' . $i . '-name' ];
+        $this->data[ 'cfield' ][ $i ][ 'field-type' ]    = $this->section[ '_panels_design_cfield-' . $i . '-field-type' ];
+        $this->data[ 'cfield' ][ $i ][ 'date-format' ]   = $this->section[ '_panels_design_cfield-' . $i . '-date-format' ];
+        $this->data[ 'cfield' ][ $i ][ 'wrapper-tag' ]   = $this->section[ '_panels_design_cfield-' . $i . '-wrapper-tag' ];
+        $this->data[ 'cfield' ][ $i ][ 'class-name' ]    = $this->section[ '_panels_design_cfield-' . $i . '-class-name' ];
+        $this->data[ 'cfield' ][ $i ][ 'link-field' ]    = $this->section[ '_panels_design_cfield-' . $i . '-link-field' ];
+        $this->data[ 'cfield' ][ $i ][ 'decimals' ]      = $this->section[ '_panels_design_cfield-' . $i . '-number-decimals' ];
+        $this->data[ 'cfield' ][ $i ][ 'decimal-char' ]  = $this->section[ '_panels_design_cfield-' . $i . '-number-decimal-char' ];
+        $this->data[ 'cfield' ][ $i ][ 'thousands-sep' ] = $this->section[ '_panels_design_cfield-' . $i . '-number-thousands-separator' ];
+        $params                                          = array('width'  => str_replace($this->section[ '_panels_design_cfield-' . $i . '-ps-images-width' ][ 'units' ], '', $this->section[ '_panels_design_cfield-' . $i . '-ps-images-width' ][ 'width' ]),
+                                                                 'height' => str_replace($this->section[ '_panels_design_cfield-' . $i . '-ps-images-height' ][ 'units' ], '', $this->section[ '_panels_design_cfield-' . $i . '-ps-images-height' ][ 'height' ]));
 
-        $this->data[ 'cfield' ][ $i ][ 'prefix-image' ] = bfi_thumb($this->section[ '_panels_design_cfield-' . $i . '-prefix-image' ][ 'url' ], $params);
-        $this->data[ 'cfield' ][ $i ][ 'suffix-text' ]  = $this->section[ '_panels_design_cfield-' . $i . '-suffix-text' ];
-        $this->data[ 'cfield' ][ $i ][ 'suffix-image' ] = bfi_thumb($this->section[ '_panels_design_cfield-' . $i . '-suffix-image' ][ 'url' ], $params);
+        $this->data[ 'cfield' ][ $i ][ 'prefix-text' ]  = '<span class="pzarc-prefix-text">' . $this->section[ '_panels_design_cfield-' . $i . '-prefix-text' ] . '</span>';
+        $this->data[ 'cfield' ][ $i ][ 'prefix-image' ] =  bfi_thumb($this->section[ '_panels_design_cfield-' . $i . '-prefix-image' ][ 'url' ], $params) ;
+        $this->data[ 'cfield' ][ $i ][ 'suffix-text' ]  = '<span class="pzarc-suffix-text">' . $this->section[ '_panels_design_cfield-' . $i . '-suffix-text' ] . '</span>';
+        $this->data[ 'cfield' ][ $i ][ 'suffix-image' ] =  bfi_thumb($this->section[ '_panels_design_cfield-' . $i . '-suffix-image' ][ 'url' ], $params) ;
 
         // The content itself comes from post meta
         $this->data[ 'cfield' ][ $i ][ 'value' ] = (!empty($postmeta[ $this->section[ '_panels_design_cfield-' . $i . '-name' ] ]) ? $postmeta[ $this->section[ '_panels_design_cfield-' . $i . '-name' ] ][ 0 ] : null);
@@ -428,7 +430,7 @@
     public function render_content($component, $content_type, $panel_def, $rsid, $layout_mode = false)
     {
       $panel_def[ $component ] = str_replace('{{content}}', $this->data[ 'content' ], $panel_def[ $component ]);
-      if ($this->section[ '_panels_design_feature-location' ] === 'content-left' || $this->section[ '_panels_design_feature-location' ] === 'content-right' && in_array('content',$this->section[ '_panels_design_feature-in' ])) {
+      if ($this->section[ '_panels_design_feature-location' ] === 'content-left' || $this->section[ '_panels_design_feature-location' ] === 'content-right' && in_array('content', $this->section[ '_panels_design_feature-in' ])) {
         if (!empty($this->data[ 'image' ][ 'image' ])) {
           $panel_def[ $component ] = str_replace('{{image-in-content}}', $panel_def[ 'image' ], $panel_def[ $component ]);
 
@@ -477,7 +479,7 @@
     {
       $panel_def[ $component ] = str_replace('{{excerpt}}', $this->data[ 'excerpt' ], $panel_def[ $component ]);
 
-      if ($this->section[ '_panels_design_feature-location' ] === 'content-left' || $this->section[ '_panels_design_feature-location' ] === 'content-right' && in_array('excerpt',$this->section[ '_panels_design_feature-in' ])) {
+      if ($this->section[ '_panels_design_feature-location' ] === 'content-left' || $this->section[ '_panels_design_feature-location' ] === 'content-right' && in_array('excerpt', $this->section[ '_panels_design_feature-in' ])) {
         if (!empty($this->data[ 'image' ][ 'image' ])) {
           $panel_def[ $component ] = str_replace('{{image-in-content}}', $panel_def[ 'image' ], $panel_def[ $component ]);
 
@@ -634,7 +636,6 @@
         $build_field      = '';
         $i                = 1;
         foreach ($this->data[ 'cfield' ] as $k => $v) {
-
           if ($v[ 'group' ] === $component && !empty($v[ 'value' ])) {
             switch ($v[ 'field-type' ]) {
 
@@ -651,10 +652,15 @@
                 $content = '<time datetime="' . $content . '">' . $content . '</time>';
                 break;
 
+              case 'number':
+                $content = number_format($v[ 'value' ], $v[ 'decimals' ], $v[ 'decimal-char' ], $v[ 'thousands-sep' ]);
+                break;
+
               case 'text':
               default:
                 $content = $v[ 'value' ];
                 break;
+
             }
 
             $prefix_image = '';
@@ -743,7 +749,8 @@
     /**
      * Default Loop
      */
-    public function loop( $section_no, &$architect, &$panel_class, $class  ) {
+    public function loop($section_no, &$architect, &$panel_class, $class)
+    {
 
       $this->build     = $architect->build;
       $this->arc_query = $architect->arc_query;
@@ -814,7 +821,7 @@
 
           case 'thumbs':
 
-            $focal_point= array(50,50);
+            $focal_point = array(50, 50);
 
             if ('attachment' === $the_post->post_type) {
 
@@ -828,7 +835,9 @@
 
             } else {
 
-              $thumb = get_the_post_thumbnail($the_post->ID, array(self::get_thumbsize('w'), self::get_thumbsize('h'),'bfi_thumb' => true,
+              $thumb = get_the_post_thumbnail($the_post->ID, array(self::get_thumbsize('w'),
+                                                                   self::get_thumbsize('h'),
+                                                                   'bfi_thumb' => true,
                                                                    'crop'      => $focal_point));
 
             }
@@ -848,12 +857,14 @@
         }
 
       }
+
       return $nav_items;
     }
 
 
     protected
-    function get_thumbsize( $dim
+    function get_thumbsize(
+        $dim
     ) {
 
       // $dim for later development with rectangular thumbs
