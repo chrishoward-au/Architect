@@ -10,6 +10,7 @@
    * Class pzarc_Blueprint
    * Purpose: Creates the blueprint object
    */
+
   class arc_Blueprint
   {
 
@@ -25,6 +26,7 @@
       $this->name = str_replace(array('\'', '\"'), '', $name);
 
       self::get_blueprint();
+
       if (empty($this->blueprint['err_msg'])) {
         for ($i = 1; $i <= 3; $i++) {
           if (!empty($this->blueprint[ '_blueprints_section-' . ($i - 1) . '-panel-layout' ])) {

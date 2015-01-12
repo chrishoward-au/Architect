@@ -374,7 +374,17 @@
                   'height'   => false,
                   'title'    => __('Blueprint max width', 'pzarchitect'),
                   'default'  => array('width' => '100', 'units' => '%'),
-                  'subtitle' => 'Set a max width to stop spillage when the container is larger than you want the Blueprint to be.'
+                  'subtitle' => __('Set a max width to stop spillage when the container is larger than you want the Blueprint to be.','pzarchitect')
+              ),
+              array(
+                  'id'      => $prefix . 'blueprint-align',
+                  'type'    => 'button_set',
+                  'select2' => array('allowClear' => false),
+                  'options' => array('left'   => __('Left', 'pzarchitect'),
+                                     'center' => __('Centre', 'pzarchitect'),
+                                     'right'  => __('Right', 'pzarchitect')),
+                  'title'   => __('Blueprint align', 'pzarchitect'),
+                  'default' => 'center',
               ),
               array(
                   'title'   => 'Page title',
@@ -410,7 +420,15 @@
                   'on'      => 'Yes',
                   'off'     => 'No',
                   'default' => false,
-                  //                 'subtitle' => __('Note: Navigator will only function when one section selected. Pagination effects all sections.<br> <strong>Use Navigator for sliders and tabbed layouts</strong>', 'pzarchitect'),
+              ),
+              array(
+                  'title'    => __('Posts per page', 'pzarchitect'),
+                  'id'       => $prefix . 'pagination-per-page',
+                  'type'     => 'spinner',
+                  'default'  => 1,
+                  'min'      => 1,
+                  'max'      => 99,
+                  'required' => array($prefix . 'pagination', 'equals', true),
               ),
               array(
                   'id'       => $prefix . 'pager',
@@ -717,13 +735,13 @@
                     'options'  => $pzarc_panels_array
                 ),
                 array(
-                    'title'    => __('Limit panels (content)', 'pzarchitect'),
+                    'title'    => __('Limit panels (posts)', 'pzarchitect'),
                     'id'       => $prefix . 'section-' . $i . '-panels-limited',
                     'type'     => 'switch',
                     'on'       => __('Yes', 'pzarchitect'),
                     'off'      => __('No', 'pzarchitect'),
                     'default'  => true,
-                    'subtitle' => 'Each panel displays content from the selected content type.'
+                    'subtitle' => 'Each panel displays a single post from the selected content type.'
                 ),
                 array(
                     'title'    => __('Panels to show', 'pzarchitect'),
@@ -732,12 +750,8 @@
                     'default'  => 1,
                     'min'      => 1,
                     'max'      => 99,
+                    'required'=>array($prefix . 'section-' . $i . '-panels-limited','=',true),
                     'subtitle' => __('This is how many posts will show if Limit enabled above', 'pzarchitect'),
-                    'desc'     => __('If using pagination, this will be the number per page.', 'pzarchitect'),
-                    //                  'required' => array(
-                    //                      array( $prefix . 'section-' . $i . '-panels-limited', '=', true ),
-                    //                      array( $prefix . 'navigation', '!=', 'pagination' ),
-                    //                  )
                 ),
                 array(
                     'id'     => $prefix . 'section-' . $i . '-columns-heading',

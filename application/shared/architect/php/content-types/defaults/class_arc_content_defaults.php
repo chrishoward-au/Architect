@@ -35,6 +35,15 @@
                       'type'     => 'info',
                       'style'    => 'success',
                       'subtitle' => 'When Default is selected, Architect will use whatever the default content for the page. e.g. the home page, category archives, search results etc'
+                  ),
+                  array(
+                      'title'    => __('Override WordPress default settings and filters', 'pzarchitect'),
+                      'id'       => $prefix . 'defaults-override',
+                      'type'     => 'switch',
+                      'on'=>'Yes',
+                      'off'=>'No',
+                      'default'=>false,
+                      'desc' => __('Defaults uses all WordPress default selection conditions. Enable overrides if you want the options in Settings and Filters to be applied.','pzarchitect')
                   )
               )
           )

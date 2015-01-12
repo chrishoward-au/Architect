@@ -28,7 +28,7 @@
   {
 
     public $build;
-    private $arc;
+    private $arc_pagination;
     public $arc_query;
     private $is_shortcode;
     private $criteria = array();
@@ -85,6 +85,7 @@
                                                                                                                'add_navigation'), 10, 1);
       }
 
+
       return false;
     }
 
@@ -116,7 +117,7 @@
       }
       $bp_nav_pos   = $this->build->blueprint[ '_blueprints_navigator-position' ];
       $bp_transtype = $this->build->blueprint[ '_blueprints_transitions-type' ];
-      $this->arc    = array();
+      $this->arc_pagination    = array();
 
       self::set_generic_criteria();
 
@@ -133,27 +134,30 @@
 
           case is_home():
             $content_class             = 'arc_Pagination_' . (!$this->build->blueprint[ '_blueprints_pager' ] ? 'prevnext' : $this->build->blueprint[ '_blueprints_pager' ]);
-            $this->arc[ 'pagination' ] = new $content_class;
+            $this->arc_pagination[ 'pagination' ] = new $content_class;
             break;
 
           case (is_singular()):
             $content_class             = 'arc_Pagination_' . (!$this->build->blueprint[ '_blueprints_pager-single' ] ? 'prevnext' : $this->build->blueprint[ '_blueprints_pager-single' ]);
-            $this->arc[ 'pagination' ] = new $content_class;
+            $this->arc_pagination[ 'pagination' ] = new $content_class;
             break;
 
           case is_archive():
             $content_class             = 'arc_Pagination_' . (!$this->build->blueprint[ '_blueprints_pager-archives' ] ? 'prevnext' : $this->build->blueprint[ '_blueprints_pager-archives' ]);
-            $this->arc[ 'pagination' ] = new $content_class;
+            $this->arc_pagination[ 'pagination' ] = new $content_class;
             break;
 
 
         }
       }
 
-
       /** Build the query */
       $registry       = arc_Registry::getInstance();
       $content_source = $registry->get('content_source');
+      if ($this->build->blueprint[ '_blueprints_content-source' ] === 'defaults' && !empty($this->build->blueprint['_content_defaults_defaults-override'])){
+        global $wp_query;
+        $this->build->blueprint[ '_blueprints_content-source' ] =$wp_query->posts[0]->post_type;
+      }
       if ($this->build->blueprint[ '_blueprints_content-source' ] != 'defaults' && array_key_exists($this->build->blueprint[ '_blueprints_content-source' ], $content_source)) {
 
         $source_query_class = 'arc_query_' . $this->build->blueprint[ '_blueprints_content-source' ];
@@ -166,6 +170,7 @@
         self::use_default_query();
 
       }
+
       /** at this point we have the necessary info to populate the navigator. So let's do it! */
       $content_class = self::get_blueprint_content_class();
       $panel_class   = new $content_class($this->build); // This gets the settings for the panels of this content type.
@@ -231,12 +236,12 @@
 
       /** Display pagination above */
       // As pagination is WP core, devs can modify pagination in the same way PageNavi hooks in
-      if (isset($this->arc[ 'pagination' ])) {
+      if (!empty($this->arc_pagination[ 'pagination' ]) && ($this->build->blueprint[ '_blueprints_pager-location' ] === 'top' || $this->build->blueprint[ '_blueprints_pager-location' ] === 'both')) {
 
         do_action('arc_before_pagination_above');
         do_action('arc_before_pagination_above_' . $bp_shortname);
 
-        $this->arc[ 'pagination' ]->render($this->arc_query, 'nav-above');
+        $this->arc_pagination[ 'pagination' ]->render($this->arc_query, 'nav-above');
 
         do_action('arc_after_pagination_above');
         do_action('arc_after_pagination_above_' . $bp_shortname);
@@ -278,12 +283,12 @@
       //   Todo : setup pagination for single or blog index
 
       /** PAGINATION BELOW  */
-      if (isset($this->arc[ 'pagination' ])) {
+      if (!empty($this->arc_pagination[ 'pagination' ]) && ($this->build->blueprint[ '_blueprints_pager-location' ] === 'bottom' || $this->build->blueprint[ '_blueprints_pager-location' ] === 'both')) {
 
         do_action('arc_before_pagination_below');
         do_action('arc_before_pagination_below_' . $bp_shortname);
 
-        $this->arc[ 'pagination' ]->render($this->arc_query, 'nav-below');
+        $this->arc_pagination[ 'pagination' ]->render($this->arc_query, 'nav-below');
 
         do_action('arc_after_pagination_below');
         do_action('arc_after_pagination_below_' . $bp_shortname);
@@ -338,6 +343,8 @@
         $this->criteria[ 'nopaging' ]       = false;
 
       }
+
+      $this->criteria[ 'per_page' ] = $this->build->blueprint[ '_blueprints_pagination-per-page' ];
 
       // Sticky posts
       $this->criteria[ 'ignore_sticky_posts' ] = !$this->build->blueprint[ '_content_general_sticky' ];
@@ -474,7 +481,7 @@
           $content_types[ $value[ 'blueprint-content' ][ 'type' ] ] = $value[ 'blueprint-content' ][ 'prefix' ];
         }
       }
-      $prefix = $content_types[$this->build->blueprint[ '_blueprints_content-source' ]];
+      $prefix = $content_types[ $this->build->blueprint[ '_blueprints_content-source' ] ];
 
       // Get values to use in criteria
       foreach ($this->build->blueprint as $key => $value) {
@@ -492,7 +499,6 @@
       // WordPress uses the main query for pagination. Need to get our query in there. http://wordpress.stackexchange.com/questions/120407/how-to-fix-pagination-for-custom-loops
       // We'll still use our query, but paging will be picked up from $wp_query. We'll reset $wp_query back after
       // followed every tute under the sun to get it to work otherwise, but nothin!
-
       if (!empty($this->build->blueprint[ '_blueprints_pagination' ])) {
         global $wp_query;
         $wp_query = $this->arc_query;
@@ -509,22 +515,29 @@
     {
       global $wp_query;
       $this->arc_query = $wp_query;
-
-      // This may not do anything since the query may not update!
-      // need to set nopaging too
-      if (!empty($this->build->blueprint[ '_blueprints_pagination' ])) {
-        $this->arc_query->query_vars[ 'nopaging' ] = false;
-      } else {
-        $this->arc_query->query_vars[ 'nopaging' ] = $this->criteria[ 'nopaging' ];
-      }
-      $this->arc_query->query_vars[ 'posts_per_page' ] = $this->criteria[ 'panels_to_show' ];
-
-      $this->arc_query->query_vars[ 'orderby' ] = $this->criteria[ 'orderby' ];
-      $this->arc_query->query_vars[ 'order' ]   = $this->criteria[ 'order' ];
-
-      // TODO Try to get thiks working.
-//      $wp_query = new WP_Query($this->arc_query->query_vars);
+//
+//      // This may not do anything since the query may not update!
+//      // need to set nopaging too
+//      if (!empty($this->build->blueprint[ '_blueprints_pagination' ])) {
+//        $this->arc_query->query_vars[ 'nopaging' ] = false;
+//      } else {
+//        $this->arc_query->query_vars[ 'nopaging' ] = $this->criteria[ 'nopaging' ];
+//      }
+//      $this->arc_query->query_vars[ 'posts_per_page' ] = $this->criteria[ 'per_page' ];
+//      $this->arc_query->query_vars[ 'ignore_sticky_posts' ] = $this->criteria[ 'ignore_sticky_posts' ];
+//      $this->arc_query->query_vars[ 'offset' ] = $this->criteria[ 'offset' ];
+//      $this->arc_query->query_vars[ 'orderby' ] = $this->criteria[ 'orderby' ];
+//      $this->arc_query->query_vars[ 'order' ]   = $this->criteria[ 'order' ];
+//
+//      // TODO Try to get thiks working.
+//      $this->arc_query = new WP_Query($this->arc_query->query_vars);
+//      self::replace_wp_query(); // NOTE: This is only activated on pagination. So should only be used by legitimate post types
     }
+
+    // My function to modify the main query object
+
+// Hook my above function to the pre_get_posts action
+
 
     private function get_blueprint_content_class()
     {

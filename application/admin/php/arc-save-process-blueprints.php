@@ -75,7 +75,20 @@
         }
       }
     }
-    $pzarc_contents .= '.pzarc-blueprint_' . $pzarc_blueprints[ '_blueprints_short-name' ] . ' {max-width:' . $pzarc_blueprints[ '_blueprints_blueprint-width' ][ 'width' ] . ';margin-left:auto;margin-right:auto}' . $nl;
+    switch ($pzarc_blueprints[ '_blueprints_blueprint-align' ]) {
+      case 'right':
+        $bp_align = 'float:right;';
+        break;
+      case 'center':
+        $bp_align = 'margin-left:auto;margin-right:auto;';
+        break;
+      case 'left':
+      default:
+      $bp_align = 'float:left;';
+        break;
+
+    }
+    $pzarc_contents .= '.pzarc-blueprint_' . $pzarc_blueprints[ '_blueprints_short-name' ] . ' {max-width:' . $pzarc_blueprints[ '_blueprints_blueprint-width' ][ 'width' ] . ';' . $bp_align . '}' . $nl;
 
     /** Vertical nav styling  */
     $pzarc_vert_width = str_replace('%', '', $pzarc_blueprints[ '_blueprints_navigator-vertical-width' ][ 'width' ]);

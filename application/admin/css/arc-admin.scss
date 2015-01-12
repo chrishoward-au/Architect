@@ -1424,3 +1424,24 @@ text-decoration: none;
 .row-actions span.duplicate:hover {
 background:#def;
 }
+
+/* Redux fixes */
+.redux-metabox .redux-no-sections.redux-box-side .redux-main input[type=text].redux-dimensions-input,
+.redux-metabox .redux-no-sections.redux-box-side .redux-main input[type=text].spinner-input
+{
+  float:none;
+  display:inline-block;
+}
+.redux-metabox .redux-no-sections.redux-box-side .redux-main input[type=text].redux-dimensions-input
+{
+  width:70px!important;
+}
+.redux-metabox .redux-no-sections.redux-box-side .redux-main input[type=text].spinner-input
+{
+  width:45px!important;
+}
+.redux-box-side .select_wrapper.dimensions-units{
+  float:none;
+  display:inline-block;
+
+}

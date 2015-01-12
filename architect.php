@@ -102,6 +102,7 @@
       // Extensions hook in here
       do_action('arc_load_extensions');
 
+
     }
 
     public function init()
