@@ -22,15 +22,10 @@
 
       $this->defaults = $defaults;
       if (is_admin()) {
-        //     require_once PZARC_PLUGIN_PATH . 'shared/pzarc-custom-field-types.php';
-
-        //  add_action('admin_init', 'pzarc_preview_meta');
-        //   add_action('add_meta_boxes', array($this, 'layouts_meta'));
         add_action('admin_head', array($this, 'cell_layouts_admin_head'));
         add_action('admin_enqueue_scripts', array($this, 'cell_layouts_admin_enqueue'));
         add_filter('manage_arc-panels_posts_columns', array($this, 'add_panel_layout_columns'));
         add_action('manage_arc-panels_posts_custom_column', array($this, 'add_panel_layout_column_content'), 10, 2);
-
 
         add_action("redux/metaboxes/$this->redux_opt_name/boxes", array($this, 'pzarc_panel_tabs'), 10, 1);
         add_action("redux/metaboxes/$this->redux_opt_name/boxes", array($this, 'pzarc_panels_styling'), 10, 1);
@@ -54,7 +49,6 @@
       $screen = get_current_screen();
 
       if ('arc-panels' == $screen->id) {
-        //  var_dump($screen->id);
 
         wp_enqueue_script('jquery-ui-draggable');
         wp_enqueue_script('jquery-ui-droppable');
@@ -125,12 +119,12 @@
       $content[ 'arc-message' ] = '
       <div class="after-title-help postbox">
         <div class="inside">
-          <h4>About Panels</h4>
+          <h4>'.__('About Panels','pzarchitect').'</h4>
 
           <p class="howto">' .
           __('Architect Panels are where you design the layout of the content, that is, choosing how to display the titles, meta data, featured images, excerpts, content etc.', 'pzarchitect') . '</p>
 
-          <p class="howto">Documentation can be found throughout Architect or online at the <a
+          <p class="howto">'.__('Documentation can be found throughout Architect or online at the','pzarchitect').' <a
                 href="http://architect4wp.com/codex-listings" target="_blank">Architect Codex</a></p>
 
         </div>
@@ -141,50 +135,7 @@
 
     }
 
-
-    /* why not use a WP like methodology!
-
-    register_panels('title',$args)'
-    register_criteria('title',$args);
-    register_layout('title',$args);
-
-    */
-
-
-    //add_action("redux/metaboxes/$this->redux_opt_name/boxes", 'pzarc_panels_wizard_metabox');
-    //function pzarc_panels_wizard_metabox($metaboxes)
-    //{
-    //  $prefix        = '_pzarc_';
-    //  $fields        = array(
-    //          array(
-    //                  'title'    => 'Select what style of panel you want to make',
-    //                  'id'      => $prefix . 'wizard',
-    //                  'type'    => 'radio',
-    //                  'default' => 'custom',
-    //                  'hint'    => 'Select one to quickly enable relevant settings, or custom to build your own from scratch with all settings and defaults. Minimize this metabox once you are happy with your selection.',
-    //                  'options' => array(
-    //                          'custom'   => 'Custom',
-    //                          'article'  => 'Article',
-    //                          'blog'     => 'Blog Excerpt',
-    //                          'feature'  => 'Featured Content',
-    //                          'gallery'  => 'Gallery',
-    //                          'magazine' => 'Magazine Excerpt',
-    //                  )
-    //          )
-    //  );
-    //  $metaboxes[ ] = array(
-    //          'title'    => 'What do you want to do?',
-    //          'pages'    => 'arc-panels',
-    //          'context'  => 'normal',
-    //          'priority' => 'high',
-    //          'fields'   => $fields // An array of fields.
-    //  );
-    //
-    //  return $metaboxes;
-    //}
-
     // Load up the metaboxes. Do it all in one hit to easily manage ordering (since order can affect js working)
-
 
     function pzarc_panel_tabs($metaboxes)
     {
@@ -197,8 +148,8 @@
                 'id'      => $prefix . 'tabs',
                 'type'    => 'tabbed',
                 'options' => array(
-                    'design'  => '<span class="icon-large el-icon-website"></span> Design',
-                    'styling' => '<span class="icon-large el-icon-brush"></span> Styling'
+                    'design'  => '<span class="icon-large el-icon-website"></span> '.__('Design','pzarchitect'),
+                    'styling' => '<span class="icon-large el-icon-brush"></span> '.__('Styling','pzarchitect')
                 ),
                 'targets' => array(
                     'design'  => array('panels-design'),
@@ -217,7 +168,7 @@
 
         $metaboxes[ ] = array(
             'id'         => $prefix . 'panel',
-            'title'      => 'Show Panels settings for:',
+            'title'      => __('Show Panels settings for:','pzarchitect'),
             'post_types' => array('arc-panels'),
             'sections'   => $sections,
             'position'   => 'normal',
@@ -262,10 +213,10 @@
                   'default' => 'none',
                   'select2' => array('allowClear' => false),
                   'options' => array(
-                      'none'       => 'None',
-                      'height'     => 'Exact',
-                      'max-height' => 'Max',
-                      'min-height' => 'Min'
+                      'none'       => __('None','pzarchitect'),
+                      'height'     => __('Exact','pzarchitect'),
+                      'max-height' => __('Max','pzarchitect'),
+                      'min-height' => __('Min','pzarchitect')
                   ),
                   'hint'    => array('content' => __('Choose if you want an exact height or not for the panels. If you want totally fluid, choose Min, and a height of 0.', 'pzarchitect'))
               ),
@@ -283,31 +234,11 @@
                   'hint'     => array('content' => __('Set a height for the panel according to the height type you chose.', 'pzarchitect')),
 
               ),
-              //array(
-              //    'title'    => __('Components min height px', 'pzarchitect'),
-              //    'id'       => $prefix . 'components-height',
-              //    'type'     => 'dimensions',
-              //    'width'    => false,
-              //    'units'    => 'px',
-              //    'default'  => array('height' => '100'),
-              //    'hint'     => array('content' => __('This prevents components shrinking too much on resizing of screen.', 'pzarchitect')),
-              //    'required' => array($prefix . 'panel-height-type', 'equals', 'fixed')
-              //),
-              //array(
-              //    'title'    => __('Components min width px', 'pzarchitect'),
-              //    'id'       => $prefix . 'components-width',
-              //    'type'     => 'dimensions',
-              //    'height'    => false,
-              //    'units'    => 'px',
-              //    'default'  => array('false' => '100'),
-              //    'hint'     => array('content' => __('This prevents components shrinking too much on resizing of screen.', 'pzarchitect')),
-              //    'required' => array($prefix . 'panel-height-type', 'equals', 'fixed')
-              //),
           )
       );
       $metaboxes[ ]  = array(
           'id'         => $prefix . 'general-settings',
-          'title'      => 'Panel Settings',
+          'title'      => __('Panel Settings','pzarchitect'),
           'post_types' => array('arc-panels'),
           'sections'   => $sections,
           'position'   => 'side',
@@ -335,13 +266,13 @@
           'icon'       => 'el-icon-website',
           'fields'     => array(
               array(
-                  'title'        => 'Panel preview',
+                  'title'        => __('Panel preview','pzarchitect'),
                   'id'           => $prefix . 'preview',
                   'type'         => 'code',
                   'readonly'     => false, // Readonly fields can't be written to by code! Weird
                   'code'         => draw_panel_layout(),
                   'default_show' => false,
-                  'subtitle'     => 'Drag and drop to reposition and resize components',
+                  'subtitle'     => __('Drag and drop to reposition and resize components','pzarchitect'),
                   'default'      => json_encode(array(
                                                     'title'   => array('width' => 100, 'show' => true),
                                                     'meta1'   => array('width' => 100, 'show' => true),
@@ -365,16 +296,16 @@
                   'width'   => '100%',
                   'default' => array('title', 'excerpt', 'meta1', 'image'),
                   'options' => array(
-                      'title'   => 'Title',
-                      'excerpt' => 'Excerpt',
-                      'content' => 'Content',
-                      'image'   => 'Feature',
-                      'meta1'   => 'Meta1',
-                      'meta2'   => 'Meta2',
-                      'meta3'   => 'Meta3',
-                      'custom1' => 'Custom 1',
-                      'custom2' => 'Custom 2',
-                      'custom3' => 'Custom 3',
+                      'title'   => __('Title','pzarchitect'),
+                      'excerpt' => __('Excerpt','pzarchitect'),
+                      'content' => __('Content','pzarchitect'),
+                      'image'   => __('Feature','pzarchitect'),
+                      'meta1'   => __('Meta1','pzarchitect'),
+                      'meta2'   => __('Meta2','pzarchitect'),
+                      'meta3'   => __('Meta3','pzarchitect'),
+                      'custom1' => __('Custom 1','pzarchitect'),
+                      'custom2' => __('Custom 2','pzarchitect'),
+                      'custom3' => __('Custom 3','pzarchitect'),
                   ),
                   'hint'    => array('content' => __('Select which base components to include in this panel layout.', 'pzarchitect'))
               ),
@@ -405,8 +336,8 @@
                       array($prefix . 'feature-location', '!=', 'fill'),
                   ),
                   'options'  => array(
-                      'excerpt' => 'Excerpt',
-                      'content' => 'Content',
+                      'excerpt' => __('Excerpt','pzarchitect'),
+                      'content' => __('Content','pzarchitect'),
                   ),
               ),
               array(
@@ -419,7 +350,7 @@
                   'step'          => '1',
                   'display_value' => 'label',
                   'subtitle'      => __('Each of the three Custom groups can have multiple custom fields. Enter <strong>total</strong> number of custom fields, click Save/Update', 'pzarchitect'),
-                  'hint'          => array('content' => __('', 'pzarchitect'))
+//                  'hint'          => array('content' => __('', 'pzarchitect'))
               ),
               array(
                   'title'         => __('Components area width %', 'pzarchitect'),
@@ -440,29 +371,14 @@
                   'width'   => '100%',
                   'default' => 'top',
                   'options' => array(
-                      'top'    => 'Top',
-                      'bottom' => 'Bottom',
-                      'left'   => 'Left',
-                      'right'  => 'Right',
+                      'top'    => __('Top','pzarchitect'),
+                      'bottom' => __('Bottom','pzarchitect'),
+                      'left'   => __('Left','pzarchitect'),
+                      'right'  => __('Right','pzarchitect'),
                   ),
                   'hint'    => array('content' => __('Position for all the components as a group. </br>NOTE: If feature is set to align, then components will be below the feature, but not at the bottom of the panel. ', 'pzarchitect')),
                   'desc'    => __('Left/right will only take affect when components area width is less than 100%', 'pzarchitect')
               ),
-              // array(
-              //     'title'   => __('Feature position', 'pzarchitect'),
-              //     'id'      => $prefix . 'feature-position',
-              //     'type'    => 'button_set',
-              //     'width'   => '100%',
-              //     'default' => 'left',
-              //     'required'      => array($prefix . 'feature-location', '=', 'float'),
-              //     'options' => array(
-              //         'top'    => 'Top',
-              //         'bottom' => 'Bottom',
-              //         'left'   => 'Left',
-              //         'right'  => 'Right',
-              //     ),
-              //     'desc'    => __('Some of these are dependent on the componets width and position', 'pzarchitect')
-              // ),
               array(
                   'title'         => __('Nudge components area up/down %', 'pzarchitect'),
                   'id'            => $prefix . 'components-nudge-y',
@@ -473,7 +389,6 @@
                   'step'          => '1',
                   'class'         => ' percent',
                   'required'      => array($prefix . 'feature-location', '=', 'fill'),
-                  'subtitle'      => 'Not sure this is right - as disappears at 80%. Prob something to do with height here. need fixed?',
                   'display_value' => 'label',
                   'hint'          => array('content' => __('Enter percent to move the components area up/down. </br>NOTE: These measurements are percentage of the panel.', 'pzarchitect'))
               ),
@@ -511,8 +426,8 @@
                   'title'   => __('Make headers and footer', 'pzarchitect'),
                   'id'      => $prefix . 'components-headers-footers',
                   'type'    => 'switch',
-                  'on'      => 'Yes',
-                  'off'     => 'No',
+                  'on'      => __('Yes','pzarchitect'),
+                  'off'     => __('No','pzarchitect'),
                   'default' => true,
                   'hint'    => array('content' => __('When, Architect will automatically wrap the header and footer components of the panel in header and footer tags to maintain compatibility with current WP layout trends. However, some layouts, such as tabular, are not suited to using the headers and footers.', 'pzarchitect'))
               ),
@@ -538,23 +453,23 @@
                   'default' => 'none',
                   'class'   => ' horizontal',
                   'desc'    => __('You must set a left margin on titles for bullets to show.', 'pzarchitect'),
-                  'options' => array('none'                 => 'None',
-                                     'disc'                 => 'Disc',
-                                     'circle'               => 'Circle',
-                                     'square'               => 'Square',
-                                     'thumb'                => 'Thumbnail',
-                                     'decimal'              => 'Number',
-                                     'decimal-leading-zero' => 'Number with leading zero',
-                                     'lower-alpha'          => 'Alpha lower',
-                                     'upper-alpha'          => 'Alpha upper',
-                                     'lower-roman'          => 'Roman lower',
-                                     'upper-roman'          => 'Roman upper',
-                                     'lower-greek'          => 'Greek lower',
-                                     'upper-greek'          => 'Greek upper',
-                                     'lower-latin'          => 'Latin lower',
-                                     'upper-latin'          => 'Latin upper',
-                                     'armenian'             => 'Armenian',
-                                     'georgian'             => 'Georgian',
+                  'options' => array('none'                 => __('None','pzarchitect'),
+                                     'disc'                 => __('Disc','pzarchitect'),
+                                     'circle'               => __('Circle','pzarchitect'),
+                                     'square'               => __('Square','pzarchitect'),
+                                     'thumb'                => __('Thumbnail','pzarchitect'),
+                                     'decimal'              => __('Number','pzarchitect'),
+                                     'decimal-leading-zero' => __('Number with leading zero','pzarchitect'),
+                                     'lower-alpha'          => __('Alpha lower','pzarchitect'),
+                                     'upper-alpha'          => __('Alpha upper','pzarchitect'),
+                                     'lower-roman'          => __('Roman lower','pzarchitect'),
+                                     'upper-roman'          => __('Roman upper','pzarchitect'),
+                                     'lower-greek'          => __('Greek lower','pzarchitect'),
+                                     'upper-greek'          => __('Greek upper','pzarchitect'),
+                                     'lower-latin'          => __('Latin lower','pzarchitect'),
+                                     'upper-latin'          => __('Latin upper','pzarchitect'),
+                                     'armenian'             => __('Armenian','pzarchitect'),
+                                     'georgian'             => __('Georgian','pzarchitect'),
                   ),
               ),
               array(
@@ -582,8 +497,8 @@
                   'id'      => $prefix . 'link-titles',
                   //            'cols'    => 4,
                   'type'    => 'switch',
-                  'on'      => 'Yes',
-                  'off'     => 'No',
+                  'on'      => __('Yes','pzarchitect'),
+                  'off'     => __('No','pzarchitect'),
                   'default' => true
 
                   /// can't set defaults on checkboxes!
@@ -595,7 +510,7 @@
        * META
        */
       $sections[ ] = array(
-          'title'      => 'Meta',
+          'title'      => __('Meta','pzarchitect'),
           'show_title' => false,
           'icon_class' => 'icon-large',
           'icon'       => 'el-icon-calendar',
@@ -630,7 +545,7 @@
             ),
             array(
                 'id'      => $prefix . 'meta-date-format',
-                'title'   => 'Date format',
+                'title'   => __('Date format','pzarchitect'),
                 'type'    => 'text',
                 'default' => 'l, F j, Y g:i a',
                 'desc'    => __('See here for information on <a href="http://codex.wordpress.org/Formatting_Date_and_Time" target=_blank>formatting date and time</a>', 'pzarchitect'),
@@ -691,7 +606,7 @@
                   'default' => '[...]',
               ),
               array(
-                  'title'    => __('Actual excerpts only', 'pzarchitect'),
+                  'title'    => __('Display entered excerpts only', 'pzarchitect'),
                   'id'       => $prefix . 'manual-excerpts',
                   'type'     => 'switch',
                   'on'       => __('Yes', 'pzarchitect'),
@@ -718,9 +633,9 @@
                   'title'    => __('Hide Content at breakpoint', 'pzarchitect'),
                   'type'     => 'select',
                   'options'  => array(
-                      'none' => 'None',
-                      '2'    => 'Small screen ' . $_architect_options[ 'architect_breakpoint_2' ][ 'width' ],
-                      '1'    => 'Medium screen ' . $_architect_options[ 'architect_breakpoint_1' ][ 'width' ]
+                      'none' => __('None','pzarchitect'),
+                      '2'    => __('Small screen ','pzarchitect') . $_architect_options[ 'architect_breakpoint_2' ][ 'width' ],
+                      '1'    => __('Medium screen ','pzarchitect') . $_architect_options[ 'architect_breakpoint_1' ][ 'width' ]
                   ),
                   'default'  => 'none',
                   'subtitle' => __('Breakpoints can be changed in Architect Options', 'pzachitect')
@@ -735,7 +650,7 @@
               array(
                   'id'              => $prefix . 'content-font-size-bp1',
                   'title'           => __('Font size - large screen ', 'pzarchitect'),
-                  'subtitle'        => $_architect_options[ 'architect_breakpoint_1' ][ 'width' ] . ' and above',
+                  'subtitle'        => $_architect_options[ 'architect_breakpoint_1' ][ 'width' ] . __(' and above','pzarchitect'),
                   'required'        => array($prefix . 'use-responsive-font-size', 'equals', true),
                   'type'            => 'typography',
                   'text-decoration' => false,
@@ -835,7 +750,7 @@
                   'id'       => '_panels_settings_feature-type',
                   'type'     => 'button_set',
                   'default'  => 'image',
-                  'options'  => array('image' => 'Images', 'video' => 'Videos'),
+                  'options'  => array('image' => __('Images','pzarchitect'), 'video' => __('Videos','pzarchitect')),
                   'subtitle' => __('Choose whether Feature is images or videos.', 'pzarchitect')
               ),
               array(
@@ -856,8 +771,8 @@
                   'title'    => __('Use embedded images/videos', 'pzarchitect'),
                   'id'       => '_panels_settings_use-embedded-images',
                   'type'     => 'switch',
-                  'on'       => 'Yes',
-                  'off'      => 'No',
+                  'on'       => __('Yes','pzarchitect'),
+                  'off'      => __('No','pzarchitect'),
                   'default'  => false,
                   'required' => array('_panels_settings_feature-type', '=', 'image'),
                   'subtitle' => __('Enable this to use the first found attached image in the content if no featured image/video is set.', 'pzarchitect')
@@ -866,25 +781,15 @@
                   'title'    => __('Use retina images', 'pzarchitect'),
                   'id'       => '_panels_settings_use-retina-images',
                   'type'     => 'switch',
-                  'on'       => 'Yes',
-                  'off'      => 'No',
-                  'default'  => true,
+                  'on'       => __('Yes','pzarchitect'),
+                  'off'      => __('No','pzarchitect'),
+                  'default'  => false,
                   'required' => array('_panels_settings_feature-type', '=', 'image'),
-                  'subtitle' => __('If enabled, a retina version of the featured image wil be created and displayed. Ensure the global setting in Architect Options is on as well. NOTE: This will make your site load slower on retina devices, so you may only want consider which panels you have it enabled on.', 'pzarchitect')
+                  'subtitle' => __('If enabled, a retina version of the featured image will be created and displayed. Ensure the global setting in Architect Options is on as well. NOTE: This will make your site load slower on retina devices, so you may only want consider which panels you have it enabled on.', 'pzarchitect')
               ),
-              ///
-              // IMAGE
-              ///
-
-              //          array(
-              //              'id'    => $prefix . 'featured-image-heading',
-              //              'title' => 'Featured Image',
-              //              'type'  => 'section',
-              //              'class' => 'heading',
-              //          ),
               array(
                   'id'       => $prefix . 'image-max-dimensions',
-                  'title'    => 'Maximum dimensions',
+                  'title'    => __('Maximum dimensions','pzarchitect'),
                   'type'     => 'dimensions',
                   'units'    => 'px',
                   'default'  => array('width' => '300', 'height' => '350'),
@@ -893,11 +798,10 @@
               array(
                   'id'             => $prefix . 'image-spacing',
                   'type'           => 'spacing',
-                  //                'output'         => array('.site-header'),
                   'mode'           => 'margin',
                   'units'          => '%',
                   'units_extended' => 'false',
-                  'title'          => __('Margins (%)', 'pzarchitect'),
+                  'title'          => __('Margins', 'pzarchitect'),
                   'default'        => array(
                       'margin-top'    => '1%',
                       'margin-right'  => '1%',
@@ -911,11 +815,11 @@
                   'id'       => $prefix . 'link-image',
                   'type'     => 'button_set',
                   'options'  => array(
-                      'none'     => 'None',
-                      'page'     => 'Post',
-                      'image'    => 'Attachment page',
-                      'original' => 'Lightbox',
-                      'url'      => 'Specific URL'
+                      'none'     => __('None','pzarchitect'),
+                      'page'     => __('Post','pzarchitect'),
+                      'image'    => __('Attachment page','pzarchitect'),
+                      'original' => __('Lightbox','pzarchitect'),
+                      'url'      => __('Specific URL','pzarchitect')
                   ),
                   'default'  => 'page',
                   'required' => array('_panels_settings_feature-type', '=', 'image'),
@@ -947,8 +851,8 @@
                   'title'    => __('Image Captions', 'pzarchitect'),
                   'id'       => $prefix . 'image-captions',
                   'type'     => 'switch',
-                  'on'       => 'Yes',
-                  'off'      => 'No',
+                  'on'       => __('Yes','pzarchitect'),
+                  'off'      => __('No','pzarchitect'),
                   'default'  => false,
                   'required' => array('_panels_settings_feature-type', '=', 'image'),
               ),
@@ -956,77 +860,37 @@
                   'title'    => __('Centre feature', 'pzarchitect'),
                   'id'       => $prefix . 'centre-image',
                   'type'     => 'switch',
-                  'on'       => 'Yes',
-                  'off'      => 'No',
+                  'on'       => __('Yes','pzarchitect'),
+                  'off'      => __('No','pzarchitect'),
                   'default'  => false,
                   'required' => array('_panels_settings_feature-type', '=', 'image'),
-                  'subtitle' => 'Centres the image horizontally. It is best to display it on its own row, and the content to be 100% wide.'
+                  'subtitle' => __('Centres the image horizontally. It is best to display it on its own row, and the content to be 100% wide.','pzarchitect')
               ),
               array(
-                  'title'    => __('Effect on resize', 'pzarchitect'),
+                  'title'    => __('Effect on screen resize', 'pzarchitect'),
                   'id'       => $prefix . 'background-image-resize',
                   'type'     => 'button_set',
                   'required' => array($prefix . 'feature-location', '=', 'fill'),
                   'options'  => array(
                       'trim'  => 'Trim horizontally, retain height',
-                      'scale' => 'Scale Vertically & Horizontally'
+                      'scale' => __('Scale Vertically & Horizontally','pzarchitect')
                   ),
                   'required' => array('_panels_settings_feature-type', '=', 'image'),
                   'default'  => 'trim',
               ),
-              //          array(
-              //              'id'    => $prefix . 'image-processing-heading',
-              //              'title' => __('Image processing', 'pzarchitect'),
-              //              'type'  => 'section',
-              //              'class' => 'heading',
-              //          ),
-              //          array(
-              //              'title'    => __('Convert to JPEG', 'pzarchitect'),
-              //              'id'       => $prefix . 'image-to-jpeg',
-              //              'type'     => 'switch',
-              //              'default'  => false,
-              //              'cols'     => 3,
-              //              'subtitle' => 'Convert all resized images to JPEG format.',
-              //              'hint'     => array('content' => 'Convert all resized images to JPEG format - usually will be smaller.')
-              //          ),
-              //          array(
-              //              'title'   => __('Image resizing method', 'pzarchitect'),
-              //              'id'      => $prefix . 'image-resizing',
-              //              'type'    => 'select',
-              //              'select2' => array('allowClear' => false),
-              //              'default' => 'crop',
-              //              'options' => array(
-              //                  'crop'          => 'Crop width and height to fit',
-              //                  'exact'         => 'Stretch to width and height (Warning: Can distort image)',
-              //                  'portrait'      => 'Crop width, match height',
-              //                  'landscape'     => 'Match width, crop height',
-              //                  'auto'          => 'Fit within width and height',
-              //                  'scaletowidth'  => 'Scale to resize width',
-              //                  'scaletoheight' => 'Scale to resize height',
-              //                  'none'          => 'No cropping, use original. (Use with care!)'
-              //              ),
-              //              'hint'    => array('content' => 'Choose how you want the image resized in respect of its original width and height to the Image Max Height and Width.'),
-              //          ),
-              //          array(
-              //              'id'      => $prefix . 'image-bgcolour',
-              //              'title'   => 'Image background colour',
-              //              'type'    => 'spectrum',
-              //              'default' => '#ffffff',
-              //              'hint'    => array('content' => 'If the cropped image  doesn\'t fill the resize area, fill the space with this colour.')
-              //          ),
-              //          array(
-              //              'id'            => $prefix . 'image-quality',
-              //              'title'         => 'Image quality',
-              //              'type'          => 'slider',
-              //              'display_value' => 'label',
-              //              'default'       => '75',
-              //              'min'           => '20',
-              //              'max'           => '100',
-              //              'step'          => '1',
-              //              'units'         => '%',
-              //              'hint'          => array('content' => 'Quality to use when processing images')
-              //
-              //          ),
+              array(
+                  'id'            => $prefix . 'image-quality',
+                  'title'         => __('Image quality','pzarchitect'),
+                  'type'          => 'slider',
+                  'display_value' => 'label',
+                  'default'       => '75',
+                  'min'           => '20',
+                  'max'           => '100',
+                  'step'          => '1',
+                  'units'         => '%',
+                  'hint'          => array('content' => 'Quality to use when processing images')
+
+              ),
           )
       );
 
@@ -1045,16 +909,16 @@
               'title'      => $cfname,
               'icon_class' => 'icon-large',
               'icon'       => 'el-icon-wrench',
-              'desc'       => 'Note: Only fields with content will show.',
+              'desc'       => __('Note: Only fields with content will show on the Blueprint.','pzarchitect'),
               'fields'     => array(
                   array(
                       'title'   => __('Show in custom field group', 'pzarchitect'),
                       'id'      => $prefix . 'cfield-' . $i . '-group',
                       'type'    => 'button_set',
                       'default' => 'custom1',
-                      'options' => array('custom1' => 'Custom 1',
-                                         'custom2' => 'Custom 2',
-                                         'custom3' => 'Custom 3')
+                      'options' => array('custom1' => __('Custom 1','pzarchitect'),
+                                         'custom2' => __('Custom 2','pzarchitect'),
+                                         'custom3' => __('Custom 3','pzarchitect'))
                   ),
                   array(
                       'title' => __('Field name', 'pzarchitect'),
@@ -1074,15 +938,15 @@
                   ),
                   array(
                       'id'       => $prefix . 'cfield-' . $i . '-date-format',
-                      'title'    => 'Date format',
+                      'title'    => __('Date format','pzarchitect'),
                       'type'     => 'text',
                       'default'  => 'l, F j, Y g:i a',
-                      'desc'     => __('See here for information on <a href="http://codex.wordpress.org/Formatting_Date_and_Time" target=_blank>formatting date and time</a>', 'pzarchitect'),
+                      'desc'     => __('Visit here for information on <a href="http://codex.wordpress.org/Formatting_Date_and_Time" target=_blank>formatting date and time</a>', 'pzarchitect'),
                       'required' => array($prefix . 'cfield-' . $i . '-field-type', '=', 'date'),
                   ),
                   array(
                       'id'            => $prefix . 'cfield-' . $i . '-number-decimals',
-                      'title'         => 'Decimals',
+                      'title'         => __('Decimals','pzarchitect'),
                       'type'          => 'spinner',
                       'default'       => 0,
                       'min'           => '0',
@@ -1094,14 +958,14 @@
                   ),
                   array(
                       'id'       => $prefix . 'cfield-' . $i . '-number-decimal-char',
-                      'title'    => 'Decimal point  character',
+                      'title'    => __('Decimal point character','pzarchitect'),
                       'type'     => 'text',
                       'default'  => '.',
                       'required' => array($prefix . 'cfield-' . $i . '-field-type', '=', 'number'),
                   ),
                   array(
                       'id'       => $prefix . 'cfield-' . $i . '-number-thousands-separator',
-                      'title'    => 'Thousands separator',
+                      'title'    => __('Thousands separator','pzarchitect'),
                       'type'     => 'text',
                       'default'  => ',',
                       'required' => array($prefix . 'cfield-' . $i . '-field-type', '=', 'number'),
@@ -1121,15 +985,14 @@
                           'h4'   => 'h4',
                           'h5'   => 'h5',
                           'h6'   => 'h6',
-                          'none' => 'None'),
-                      'subtitle' => 'Select the wrapper element for this custom field'
+                          'none' => __('None','pzarchitect')),
+                      'subtitle' => __('Select the wrapper element for this custom field','pzarchitect')
 
                   ),
                   array(
                       'id'      => $prefix . 'cfield-' . $i . '-class-name',
-                      'title'   => 'Add class name',
+                      'title'   => __('Add class name','pzarchitect'),
                       'type'    => 'text',
-                      'default' => '',
                   ),
                   array(
                       'title'    => __('Link field', 'pzarchitect'),
@@ -1180,7 +1043,7 @@
         }
       }
       $sections[ ] = array(
-          'title'      => 'Using panels',
+          'title'      => __('Using panels','pzarchitect'),
           'icon_class' => 'icon-large',
           'icon'       => 'el-icon-info-sign',
           'fields'     => array(
@@ -1200,7 +1063,7 @@
       );
 
       $sections[ ] = array(
-          'title'      => 'Help',
+          'title'      => __('Help','pzarchitect'),
           'icon_class' => 'icon-large',
           'icon'       => 'el-icon-question-sign',
           'fields'     => array(
@@ -1208,7 +1071,6 @@
                   'title' => __('Design', 'pzarchitect'),
                   'id'    => $prefix . 'panels-help-design',
                   'type'  => 'info',
-                  //  'class' => 'plain',
                   'desc'  => 'Architect: v' . PZARC_VERSION . '<p>
                               Fiant nulla claritatem processus vulputate quarta. Anteposuerit eodem habent parum id et. Notare mutationem facilisi nulla ut facer.
                               </p>
@@ -1238,7 +1100,7 @@
 
       $metaboxes[ ] = array(
           'id'         => 'panels-design',
-          'title'      => 'Panels Design',
+          'title'      => __('Panels Design','pzarchitect'),
           'post_types' => array('arc-panels'),
           'sections'   => $sections,
           'position'   => 'normal',
@@ -1289,7 +1151,7 @@
 //
 //          'fields'     => array(
         $xsections[ ] = array(
-            'title'      => 'Styling',
+            'title'      => __('Styling','pzarchitect'),
             'show_title' => false,
             'icon_class' => 'icon-large',
             'icon'       => 'el-icon-info-sign',
@@ -1308,19 +1170,19 @@
          * GENERAL
          */
         $sections[ ] = array(
-            'title'      => 'General',
+            'title'      => __('General','pzarchitect'),
             'show_title' => false,
             'icon_class' => 'icon-large',
             'icon'       => 'el-icon-brush',
             'fields'     => pzarc_fields(
-                array(
-                    'title'    => __('Load style'),
-                    'id'       => $prefix . 'panels-load-style',
-                    'type'     => 'select',
-                    'subtitle' => 'Sorry to tease, but this isn\'t implemented yet.',
-                    'options'  => array('none', 'dark', 'light'),
-                    'default'  => 'none'
-                ),
+//                array(
+//                    'title'    => __('Load style'),
+//                    'id'       => $prefix . 'panels-load-style',
+//                    'type'     => 'select',
+//                    'subtitle' => 'Sorry to tease, but this isn\'t implemented yet.',
+//                    'options'  => array('none', 'dark', 'light'),
+//                    'default'  => 'none'
+//                ),
                 array(
                     'title'    => __('Panels', 'pzarchitect'),
                     'id'       => $prefix . 'panels-section',
@@ -1330,7 +1192,6 @@
                     'subtitle' => 'Class: .pzarc-panel',
                     'hint'     => array('content' => 'Class: .pzarc-panel'),
                 ),
-//                pzarc_redux_bg($prefix . 'panels' . $background, pzarc_to_array('%%%', $defaults[ $optprefix . 'panels-selectors' ]), $defaults[ $optprefix . 'panels' . $background ]),
                 pzarc_redux_bg($prefix . 'panels' . $background, '', $defaults[ $optprefix . 'panels' . $background ]),
                 pzarc_redux_padding($prefix . 'panels' . $padding, '', $defaults[ $optprefix . 'panels' . $padding ]),
                 pzarc_redux_borders($prefix . 'panels' . $border, '', $defaults[ $optprefix . 'panels' . $border ]),
@@ -1370,7 +1231,7 @@
          * TITLES
          */
         $sections[ ] = array(
-            'title'      => 'Titles',
+            'title'      => __('Titles','pzarchitect'),
             'show_title' => false,
             'icon_class' => 'icon-large',
             'icon'       => 'el-icon' . $font,
@@ -1382,14 +1243,6 @@
                 pzarc_redux_margin($prefix . 'entry-title' . $font . $margin, array('.entry-title'), $defaults[ $optprefix . 'entry-title' . $font . $margin ], 'tb'),
                 pzarc_redux_borders($prefix . 'entry-title' . $border, array('.entry-title'), $defaults[ $optprefix . 'entry-title' . $border ]),
                 pzarc_redux_links($prefix . 'entry-title' . $font . $link, array('.entry-title a'), $defaults[ $optprefix . 'entry-title' . $font . $link ])
-//            array(
-//                'title'   => __('Other declarations', 'pzarchitect'),
-//                'id'      => $prefix . 'text-other-css',
-//                'type'    => 'ace_editor',
-//                'default' => ".entry-title {\n\n}",
-//                'mode'    => 'css',
-//                'hint'    => array('content' => 'Class: .entry-title'),
-//            )
             ),
         );
 
@@ -1397,7 +1250,7 @@
          * META
          */
         $sections[ ] = array(
-            'title'      => 'Meta',
+            'title'      => __('Meta','pzarchitect'),
             'show_title' => false,
             'icon_class' => 'icon-large',
             'icon'       => 'el-icon-calendar',
@@ -1415,7 +1268,7 @@
          * CONTENT
          */
         $sections[ ] = array(
-            'title'      => 'Content',
+            'title'      => __('Content','pzarchitect'),
             'show_title' => false,
             'icon_class' => 'icon-large',
             'icon'       => 'el-icon-align-left',
@@ -1433,7 +1286,7 @@
                 pzarc_redux_margin($prefix . 'entry-content' . $font . $margin, array('.entry-content'), $defaults[ $optprefix . 'entry-content' . $font . $margin ], 'tb'),
                 pzarc_redux_links($prefix . 'entry-content' . $font . $link, array('.entry-content a'), $defaults[ $optprefix . 'entry-content' . $font . $link ]),
                 array(
-                    'title'  => __('Excerpt', 'pzarc'),
+                    'title'  => __('Excerpt', 'pzarchitect'),
                     'id'     => $prefix . 'entry-excerpt',
                     'type'   => 'section',
                     'indent' => true,
@@ -1462,7 +1315,7 @@
          * FEATURED IMAGE
          */
         $sections[ ] = array(
-            'title'      => 'Entry Featured image',
+            'title'      => __('Entry Featured image','pzarchitect'),
             'show_title' => false,
             'icon_class' => 'icon-large',
             'icon'       => 'el-icon-picture',
@@ -1473,7 +1326,6 @@
                     'type'   => 'section',
                     'indent' => true,
                     'class'  => 'heading',
-                    //          'default' => $defaults[ $optprefix . 'image_defaults_entry-image-defaults' ],
                     'hint'   => array('content' => 'Class: figure.entry-thumbnail'),
                     //     'hint'    => __('Format the entry featured image', 'pzarchitect')
                 ),
@@ -1489,8 +1341,6 @@
                     'preview'               => false,
                     'output'                => array('.pzarc_entry_featured_image'),
                     'default'               => $defaults[ $optprefix . 'entry-image' . $background ]
-
-                    //    'default' => $defaults[ $optprefix . 'image_defaults_entry-image-caption-defaults' ],
                 ),
                 array(
                     'title'   => __('Border', 'pzarchitect'),
@@ -1499,8 +1349,6 @@
                     'all'     => false,
                     'output'  => array('.pzarc_entry_featured_image'),
                     'default' => $defaults[ $optprefix . 'entry-image' . $border ]
-
-                    //    'default' => $defaults[ $optprefix . 'image_defaults_entry-image-caption-defaults' ],
                 ),
                 array(
                     'title'   => __('Padding', 'pzarchitect'),
@@ -1509,7 +1357,6 @@
                     'type'    => 'spacing',
                     'units'   => array('px', '%'),
                     'default' => $defaults[ $optprefix . 'entry-image' . $padding ]
-                    //    'default' => $defaults[ $optprefix . 'image_defaults_entry-image-caption-defaults' ],
                 ),
                 array(
                     'title'   => __('Margin', 'pzarchitect'),
@@ -1522,7 +1369,6 @@
                     'bottom'  => true,
                     'left'    => false,
                     'right'   => false
-                    //    'default' => $defaults[ $optprefix . 'image_defaults_entry-image-caption-defaults' ],
                 ),
                 array(
                     'title'  => __('Caption', 'pzarchitect'),
@@ -1530,11 +1376,9 @@
                     'type'   => 'section',
                     'indent' => true,
                     'class'  => 'heading',
-                    //    'default' => $defaults[ $optprefix . 'image_defaults_entry-image-caption-defaults' ],
                 ),
                 pzarc_redux_font($prefix . 'entry-image-caption' . $font, array('figure.entry-thumbnail span.caption'), $defaults[ $optprefix . 'entry-image-caption' . $font ]),
                 pzarc_redux_bg($prefix . 'entry-image-caption' . $font . $background, array('figure.entry-thumbnail span.caption'), $defaults[ $optprefix . 'entry-image-caption' . $font . $background ]),
-//            pzarc_redux_margin($prefix . 'entry-image-caption'.$font.$margin, array('figure.entry-thumbnail span.caption'), $defaults[ $optprefix . 'entry-image-caption'.$font.$margin ]),
                 pzarc_redux_padding($prefix . 'entry-image-caption' . $font . $padding, array('figure.entry-thumbnail span.caption'), $defaults[ $optprefix . 'entry-image-caption' . $font . $padding ])
             )
         );
@@ -1569,7 +1413,7 @@
          */
         $sections[ ] = array(
             'id'         => 'custom-css',
-            'title'      => 'Custom CSS',
+            'title'      => __('Custom CSS','pzarchitect'),
             'icon_class' => 'icon-large',
             'icon'       => 'el-icon-wrench',
             'fields'     => array(
@@ -1579,7 +1423,7 @@
                     'title'    => __('Custom CSS', 'pzarchitect'),
                     'mode'     => 'css',
                     'default'  => $defaults[ $optprefix . 'custom-css' ],
-                    'subtitle' => 'To apply to this panel design specifically, prepend with class .pzarc-panel_shortname where shortname is the shortname of this panel. Note: underscore before shortname.'
+                    'subtitle' => __('To apply to this panel design specifically, prepend with class .pzarc-panel_shortname where shortname is the shortname of this panel. Note: underscore before shortname.','pzarchitect')
                 ),
             )
         );
@@ -1589,7 +1433,7 @@
          */
         $sections[ ]  = array(
             'id'         => 'styling-help',
-            'title'      => 'Help',
+            'title'      => __('Help','pzarchitect'),
             'icon_class' => 'icon-large',
             'icon'       => 'el-icon-question-sign',
             'fields'     => array(
@@ -1673,7 +1517,7 @@
       </div>
     </div>
     <p class="pzarc-states ">Loading</p>
-    <p class="howto "><strong style="color:#d00;">This is an example only and thus only a <span style="border-bottom: 3px double;">general guide</span> to how the panels will look.</strong></p>
+    <p class="howto "><strong style="color:#d00;">'.__('This is an example only and thus only a <span style="border-bottom: 3px double;">general guide</span> to how the panels will look.','pzarchitect').'</strong></p>
   </div>
   <div class="plugin_url" style="display:none;">' . PZARC_PLUGIN_APP_URL . '</div>
   ';
@@ -1681,18 +1525,4 @@
     return $return_html;
   }
 
-//
-  function draw_css_styles_editor($class)
-  {
-    $return_html = '
-    <div class="pzarc-css-styles-editor">
-    <p>Font  Weight  Size  Decoration  Styles  Color</p>
-    </div>
-    ';
-
-    // if you pass a class, how you gunna make it differentiate different panel?!
-
-
-    return $return_html;
-  }
 
