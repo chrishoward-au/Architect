@@ -715,7 +715,8 @@
                     'default'  => '.pzarc-navigator, .arc-slider-nav',
                     // 'default'  => '.pzarc-navigator',
                 ),
-                pzarc_redux_bg($prefix . 'navigator-background', array('.pzarc-navigator', '.arc-slider-nav')),
+                // TODO Navigator defaults
+                pzarc_redux_bg($prefix . 'navigator-background', array('.pzarc-navigator', '.arc-slider-nav'),'#eee'),
                 pzarc_redux_padding($prefix . 'navigator-padding', array('.pzarc-navigator', '.arc-slider-nav')),
                 pzarc_redux_margin($prefix . 'navigator-margins', array('.pzarc-navigator', '.arc-slider-nav')),
                 pzarc_redux_borders($prefix . 'navigator-borders', array('.pzarc-navigator', '.arc-slider-nav')),

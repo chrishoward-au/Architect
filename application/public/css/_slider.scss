@@ -213,6 +213,9 @@ Pagination Styles
     img {
       vertical-align: middle;
       display: inline;
+      width:auto;
+      height:auto;
+      max-width:100%;
       margin: 2px;
       &:hover {
         box-shadow: 0 0 0 1px #000,

@@ -4,7 +4,7 @@ Tags: content,display,posts,pages,gallery,slider
 Donate link: http://
 Requires at least: 3.5.0
 Tested up to: 4.1.0
-Stable tag: 0.9.2
+Stable tag: 0.9.2.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -86,28 +86,23 @@ As per Headway licencing
 As per Headway licencing
 
 = Support =
-Support for the beta version is available at: [Architect Beta](http://discourse.pizazzwp.com)
 
-For all other Pizazz support, please send an email to support@pizazzwp.com or access the support form in WP Admin> PizazzWP > About & Support
+For support, please send an email to support@pizazzwp.com
 
-= Known issues =
-This is BETA software. So there are many besides these ones!
-* In tabbed navigation, Firefox ignores padding
 
 == Screenshots ==
+
 1. Architect Panel Designer showing magazine style article design
 2. Post on front end using magazine style artcile design
 3. Architect Blueprint - Content selection. 
 4. Architect Blueprint - Layout design
 5. Slider example
 
-== To Do ==
-* Add method to load preset styles
-* Add method to load preset layouts
-* Add margin stylings for other elements.
-* Make slider easier to setup multiple panels across
-
 == Changelog ==
+
+= 0.9.2.1 =
+
+* FIXED: Thumbnails not scaling when theme is Headway
 
 = 0.9.2 =
 * ADDED: Option when Feature is in content, to show it in the excerpt, content or both.

@@ -207,7 +207,7 @@
 						<p>' . __('Sometimes the CSS cache file may not exist or may even become scrambled and layouts will not look right. If so, simply click the Rebuild button and it will be recreated. If the problem persists, contact Pizazz Support at support@pizazzwp.com.') . '</p>
 						<form action="admin.php?page=pzarc_tools" method="post">';
       wp_nonce_field('rebuild-architect-css-cache');
-      echo '<button class="button-primary" type="submit" name="rebuildarchitectcss" value="' . __('Rebuild Architect CSS Cache') . '"><span class="dashicons dashicons-admin-appearance" style="color:white;font-size:22px;vertical-align:text-bottom"></span>' . __('Rebuild Architect CSS Cache') . '</button>
+      echo '<button class="button-primary" style="min-width:100px;" type="submit" name="rebuildarchitectcss" value="' . __('Rebuild Architect CSS Cache') . '">' . __('Rebuild') . '  <span class="dashicons dashicons-admin-appearance" style="margin-left:1%;color:inherit;font-size:22px;vertical-align:text-bottom"></span></button>
         </form>';
 
       if (isset($_POST[ 'rebuildarchitectcss' ]) && check_admin_referer('rebuild-architect-css-cache')) {
@@ -227,7 +227,7 @@
 
     <form action="admin.php?page=pzarc_tools" method="post">';
         wp_nonce_field('flush-thumb-cache');
-        echo '<button class="button-primary" type="submit" name="flushbficache" value="' . __('Empty Architect image cache') . '"><span class="dashicons dashicons-images-alt2" style="color:white;font-size:22px;vertical-align:text-bottom"></span>' . __('Empty Architect image cache') . '</button>
+        echo '<button class="button-primary"  style="min-width:100px;" type="submit" name="flushbficache" value="' . __('Empty Architect image cache') . '">' . __('Clear') . '  <span class="dashicons dashicons-images-alt2" style="margin-left:1%;color:inherit;font-size:22px;vertical-align:text-bottom"></span></button>
     </form>
     <hr style="margin-top:20px;border-color:#eee;border-style:solid;"/>';
         if (isset($_POST[ 'flushbficache' ]) && check_admin_referer('flush-thumb-cache')) {
@@ -331,13 +331,19 @@
                 <div class="tabs-pane " id="how">
                     <h2>' . __('Usage') . '</h2>
 
+                    <h3>'.__('Shortcode','pzarchitect').'</h3>
                     <p>' . __('For example, using shortcodes, you might have:') . '</p>
                     <p style="font-weight:bold">[architect blueprint="' . __('blog-page-layout') . '"]</p>
                     <p style="font-weight:bold">[architect blueprint="' . __('thumb-gallery') . '" ids="321,456,987,123,654,789"]</p>
 
-                    <p>Or a template tag</p>
+                    <h3>'.__('Template tag','pzarchitect').'</h3>
                     <p style="font-weight:bold">pzarchitect(\'' . __('blog-page-layout') . '\')</p>
                     <p style="font-weight:bold">pzarchitect(\'' . __('thumb-gallery') . '\', \'321,456,987,123,654,789\')</p>
+                    <h3>'.__('Widget','pzarchitect').'</h3>
+                    <h3>'.__('Headway Block','pzarchitect').'</h3>
+                    <h3>'.__('Action Hooks','pzarchitect').'</h3>
+                    <h3>'.__('Actions Editor','pzarchitect').'</h3>
+                    <h3>'.__('WP Gallery Shortcode Override','pzarchitect').'</h3>
                 </div>
                 <div class="tabs-pane " id="help">
                     <h2>' . __('Support') . '</h2>
