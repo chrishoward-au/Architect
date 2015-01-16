@@ -355,15 +355,17 @@
    */
   function pzarc_is_empty_vals($properties, $exclude)
   {
+
     $is_empty = true;
-    foreach ($properties as $key => $value) {
+    if (is_array($properties)) {
+      foreach ($properties as $key => $value) {
 //    var_dump(!in_array($key,$exclude) , !empty($value));
-      if (!in_array($key, $exclude) && strlen($value)>0) {
-        $is_empty = false;
-        break;
+        if (!in_array($key, $exclude) && strlen($value) > 0) {
+          $is_empty = false;
+          break;
+        }
       }
     }
-
     return $is_empty;
   }
 

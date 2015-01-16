@@ -1069,28 +1069,13 @@
           'icon'       => 'el-icon-question-sign',
           'fields'     => array(
               array(
-                  'title' => __('Design', 'pzarchitect'),
+                  'title' => __('Videos', 'pzarchitect'),
                   'id'    => $prefix . 'panels-help-design',
                   'type'  => 'info',
-                  'desc'  => 'Architect: v' . PZARC_VERSION . '<p>
-                              Fiant nulla claritatem processus vulputate quarta. Anteposuerit eodem habent parum id et. Notare mutationem facilisi nulla ut facer.
-                              </p>
+                  'desc'  => '<p>'.__('Click a video to open it in a popup window','pzarchitect').'</p><p><a href="//fast.wistia.net/embed/iframe/46fxmn8h0l?popover=true" class="wistia-popover[height=405,playerColor=7b796a,width=720]">'.__('Building and Displaying Your First Architect Project','pzarchitect').'</a>
+<script charset="ISO-8859-1" src="//fast.wistia.com/assets/external/popover-v1.js"></script></p>
 
-                              <p>
-                              Nam minim quis est typi nostrud. Et nunc in legere dignissim decima. Feugiat facilisi nulla lectores quod esse.
-                              </p>
-
-                              <p>
-                              Nostrud ipsum usus nam ut magna. Zzril nobis qui est nonummy in. Nonummy seacula dolore amet ipsum decima.
-                              </p>
-
-                              <p>
-                              Nibh cum lorem iriure laoreet ut. Nihil in vel diam sit iusto. Eorum tempor ea zzril dynamicus consuetudium.
-                              </p>
-
-                              <p>
-                              Ut at consectetuer blandit nibh in.
-                              </p>'
+'
 
               )
           )

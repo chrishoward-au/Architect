@@ -1201,8 +1201,18 @@
                   <h3>How do I make a slider?</h3>
                   <p>In the Navigation option, enable Navigator and then in the Navigator tab, select a Type of bullets, numbers or thumbs. Also, set all Columns to 1 in Section 1</p>
                   <h3>How do I make tabbed layout?</h3>
-                  <p>In the Navigation option, enable Navigator and then in the Navigator tab, select a Type of titles. Also, set all Columns to 1 in Section 1</p>
-            ')
+                  <p>In the Navigation option, enable Navigator and then in the Navigator tab, select a Type of titles. Also, set all Columns to 1 in Section 1</p>            '),
+              array(
+                  'title' => __('Videos', 'pzarchitect'),
+                  'id'    => $prefix . 'panels-help-design',
+                  'type'  => 'info',
+                  'desc'  => '<p>'.__('Click a video to open it in a popup window','pzarchitect').'</p><p><a href="//fast.wistia.net/embed/iframe/46fxmn8h0l?popover=true" class="wistia-popover[height=405,playerColor=7b796a,width=720]">'.__('Building and Displaying Your First Architect Project','pzarchitect').'</a>
+<script charset="ISO-8859-1" src="//fast.wistia.com/assets/external/popover-v1.js"></script></p>
+
+'
+
+              )
+
           )
       );
 

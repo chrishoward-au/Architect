@@ -103,6 +103,7 @@ For support, please send an email to support@pizazzwp.com
 = 0.9.2.1 =
 
 * FIXED: Thumbnails not scaling when theme is Headway
+* FIXED: Panel Design not visible in Panels editing.
 
 = 0.9.2 =
 * ADDED: Option when Feature is in content, to show it in the excerpt, content or both.

@@ -81,7 +81,7 @@
 
     function missing_redux_admin_notice()
     {
-      echo '<div id="message" class="error"><p><strong>' . __('One final step in installing ARCHITECT.') . '</strong><br>' . __('It cannot function without the Redux Framework plugin. You need to install and/or activate Redux.') . '<br>' . __('Redux is the backbone of Architect, providing all the necessary code libraries for Architect\'s fields and options.') . '<br>' . __('There should be another message with a link to make installing and activating Redux easy. If you can\'t find it, contact PizazzWP support.') . '</p></div>';
+      echo '<div id="message" class="error"><h3>'.__('Architect requires Redux Framework','pzarchitect').'</h3><p><strong>' . __('One final step in installing Architect.') . '</strong><br>' . __('It cannot function without the Redux Framework plugin. You need to install and/or activate Redux.') . '<br>' . __('Redux is the backbone of Architect, providing all the necessary code libraries for Architect\'s fields and options.') . '<br>' . __('There should be another message with a link to make installing and activating Redux easy. If you can\'t find it, contact PizazzWP support.') . '</p></div>';
     }
 
 
@@ -290,8 +290,8 @@
                         </ol>
                         </div>
                         <h3>' . __('Video version') . '</h3>
-                        <div style="max-width:800px;"><iframe src="//fast.wistia.net/embed/iframe/46fxmn8h0l?videoFoam=true" allowtransparency="true" frameborder="0" scrolling="no" class="wistia_embed" name="wistia_embed" allowfullscreen mozallowfullscreen webkitallowfullscreen oallowfullscreen msallowfullscreen width="720" height="405"></iframe><script src="//fast.wistia.net/assets/external/iframe-api-v1.js"></script></div>
-                        <p>' . __('Style wise, it may not look that great yet. To tidy it up, start exploring the Styling settings for Panels and Blueprints') . '</p>
+<p><a href="//fast.wistia.net/embed/iframe/46fxmn8h0l?popover=true" class="wistia-popover[height=405,playerColor=7b796a,width=720]"><img src="https://embed-ssl.wistia.com/deliveries/e2faf775bdbbdc76b6480c71883e3813fec5a4ed.jpg?image_play_button=true&image_play_button_color=7b796ae0&image_crop_resized=640x360" alt="" /></a>
+<script charset="ISO-8859-1" src="//fast.wistia.com/assets/external/popover-v1.js"></script></p>                        <p>' . __('Style wise, it may not look that great yet. To tidy it up, start exploring the Styling settings for Panels and Blueprints') . '</p>
                         <p>' . __('To make a <strong>slideshow</strong>, set the <em>Navigation</em> type to <em>Navigator</em>') . '</p>
                         <p>' . __('There are a lot of settings in Architect that have all sorts of affects on your layouts and designs. Explore, experiment and have fun!') . '</p>
                         <p>' . __('For more detailed help, visit') . ' <a href="http://architect4wp.com/codex-listings" target="_blank">' . __('documentation at architect4wp.com') . '</a></p>

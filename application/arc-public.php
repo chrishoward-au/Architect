@@ -17,6 +17,10 @@
 //      wp_register_style('pzarc_css', PZARC_CACHE_URL . 'pzarc_css_cache.css');
       $pzarc_css_cache = maybe_unserialize(get_option('pzarc_css'));
 
+      // No point in proceeding if no blueprints or no panels
+      if (empty($pzarc_css_cache['blueprints']) || empty($pzarc_css_cache['panels'])) {
+        return;
+      }
       foreach ($pzarc_css_cache[ 'blueprints' ] as $k => $v) {
         if (!empty($k)) {
           $filename = PZARC_CACHE_URL . '/pzarc_blueprint_' . $k . '.css';
