@@ -29,8 +29,7 @@
     position: relative;
     /* Added for gridded layout. May break others! Equal height panels*/
     display: block;
-    counter-reset: arc-title-counter;
-    height: 100%; }
+    counter-reset: arc-title-counter; }
     .pzarchitect .pzarc-section.tiles {
       display: block; }
   .pzarchitect h2.pzarc-page-title {

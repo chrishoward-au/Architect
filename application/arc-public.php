@@ -198,10 +198,6 @@
       if (!isset($GLOBALS[ '_architect_options' ])) {
         $GLOBALS[ '_architect_options' ] = get_option('_architect_options', array());
       }
-      // make optional
-      if (!empty($_architect_options[ 'architect_enable-retina-images' ])) {
-        wp_enqueue_script('js-retinajs');
-      }
 
       wp_enqueue_script('js-magnific');
       wp_enqueue_script('js-magnific-arc');

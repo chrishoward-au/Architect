@@ -8,7 +8,7 @@
   /* Added for gridded layout. May break others! Equal height panels*/
   display: block;
   counter-reset: arc-title-counter;
-  height:100%;
+//  height:100%; // TODO: Breaks Genesis. Test without
   &.tiles {
     // This breaks in IE 10. And display:block seems to work anyhows
 //    display: -webkit-box;

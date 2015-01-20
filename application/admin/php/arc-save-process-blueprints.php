@@ -136,8 +136,8 @@
     $panel_id = pzarc_convert_name_to_id($pzarc_blueprints[ '_blueprints_section-' . $i . '-panel-layout' ]);
 
     $pzarc_panels         = get_post_meta($panel_id);
-    $sections_class       = 'body.pzarchitect .pzarc-blueprint_' . $pzarc_blueprints[ '_blueprints_short-name' ] . ' .pzarc-section_' . ($i + 1);
-    $panels_class         = $sections_class . '.pzarc-section-using-panel_' . $pzarc_panels[ '_panels_settings_short-name' ][ 0 ] . ' .pzarc-panel';
+    $sections_class       = 'body.pzarchitect .pzarc-blueprint_' . $pzarc_blueprints[ '_blueprints_short-name' ] . ' > .pzarc-sections  .pzarc-section_' . ($i + 1);
+    $panels_class         = $sections_class . '.pzarc-section-using-panel_' . $pzarc_panels[ '_panels_settings_short-name' ][ 0 ] . ' > .pzarc-panel';
     $pzarc_import_css     = '';
     $pzarc_mediaq_css     = '';
     $pzarc_css            = '';
@@ -209,6 +209,7 @@
     $column_width = ('0' == $hmargin ? 'calc(100%  / ' . $columns . ')' : 'calc(100% / ' . $columns . ' - ' . $hmargin . ')');
     $pzarc_mediaq_css .= $panels_class . ' {width:' . $column_width . ';margin-bottom:' . $pzarc_blueprints[ '_blueprints_section-' . $i . '-panels-margins' ][ 'margin-bottom' ] . ' ;}';
 
+//    pzdebug($pzarc_mediaq_css);
     //  Don't want gutters here iff using masonry layoutt
     switch ($pzarc_blueprints[ '_blueprints_section-' . $i . '-layout-mode' ]) {
 
@@ -220,10 +221,13 @@
       default:
         $pzarc_mediaq_css .= $panels_class . ':nth-child(n) {margin-right: ' . ($hmargin) . ';}';
         $pzarc_mediaq_css .= $panels_class . ':nth-child(' . $columns . 'n) {margin-right: 0;}';
+        break;
 
     }
     //              $pzarc_contents_css .= $classes . ' {width:' . (($column_width)) . '%;margin-bottom:' . $pzarc_blueprints[ '_blueprints_section-' . $i . '-panels-margins']['margin-bottom'] . '%;}';
-    $pzarc_mediaq_css .= $panels_class . ' .grid-sizer { width:' . $column_width . ';}';
+//    pzdebug($pzarc_mediaq_css);
+
+ //   $pzarc_mediaq_css .= $panels_class . ' .grid-sizer { width:' . $column_width . ';}';
     $pzarc_mediaq_css .= '}' . $nl;
 
     return $pzarc_mediaq_css;

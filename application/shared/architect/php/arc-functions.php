@@ -114,7 +114,7 @@
         //        'output'                => $selectors,
         //        'compiler'              => $selectors,
         'type'                  => 'spectrum',
-        'mode'                  => 'backgound-color',
+        'mode'                  => 'background-color',
         'background-image'      => false,
         'background-repeat'     => false,
         'background-size'       => false,
@@ -450,7 +450,7 @@
     return $return;
   }
 
-  function pzarc_get_posts_in_post_type($pzarc_post_type = 'arc-blueprints')
+  function pzarc_get_posts_in_post_type($pzarc_post_type = 'arc-blueprints', $use_shortname = false)
   {
     $args                 = array(
         'posts_per_page'   => -1,
@@ -461,10 +461,25 @@
         'suppress_filters' => true);
     $pzarc_post_types_obj = get_posts($args);
     $pzarc_post_type_list = array();
-    foreach ($pzarc_post_types_obj as $pzarc_post_type_obj) {
-      $pzarc_post_type_list[ $pzarc_post_type_obj->post_name ] = $pzarc_post_type_obj->post_title;
-    }
 
+    foreach ($pzarc_post_types_obj as $pzarc_post_type_obj) {
+
+      if ($use_shortname) {
+
+        if ($pzarc_post_type === 'arc-blueprints') {
+          $use_key = get_post_meta($pzarc_post_type_obj->ID, '_blueprints_short-name', true);
+        } elseif ($pzarc_post_type === 'arc-panels') {
+          $use_key = get_post_meta($pzarc_post_type_obj->ID, '_panels_settings_short-name', true);
+        } else {
+          $use_key = $pzarc_post_type_obj->post_name;
+        }
+
+      } else {
+        $use_key = $pzarc_post_type_obj->post_name;
+      }
+
+      $pzarc_post_type_list[ $use_key ] = $pzarc_post_type_obj->post_title;
+    }
     return $pzarc_post_type_list;
   }
 
@@ -628,13 +643,13 @@
    */
   function pzarc_convert_name_to_id($post_name)
   {
-    global $wpdb;
+    global $wpdb,$_architect_options;
     // We don't want transients used for admins since they may be testing new settings - which won't take!
-    if (!current_user_can('manage_options') && false === ($post_id = get_transient('pzarc_post_name_to_id_' . $post_name))) {
+    if (!empty($_architect_options[ 'architect_enable_query_cache' ]) && !current_user_can('manage_options') && false === ($post_id = get_transient('pzarc_post_name_to_id_' . $post_name))) {
       // It wasn't there, so regenerate the data and save the transient
       $post_id = $wpdb->get_var("SELECT ID FROM $wpdb->posts WHERE post_name = '" . $post_name . "'");
       set_transient('pzarc_post_name_to_id_' . $post_name, $post_id, PZARC_TRANSIENTS_KEEP);
-    } elseif (current_user_can('manage_options')) {
+    } elseif (current_user_can('manage_options') || empty($_architect_options[ 'architect_enable_query_cache' ])) {
       $post_id = $wpdb->get_var("SELECT ID FROM $wpdb->posts WHERE post_name = '" . $post_name . "'");
     }
 

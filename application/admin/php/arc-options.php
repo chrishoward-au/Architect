@@ -232,6 +232,7 @@
 
         // ACTUAL DECLARATION OF SECTIONS
         $current_theme     = wp_get_theme();
+        $blueprints_list   = pzarc_get_posts_in_post_type('arc-blueprints',true);
         $this->sections[ ] = array(
             'title'      => 'General ',
             'show_title' => true,
@@ -246,14 +247,14 @@
                     'title'    => __('Default shortcode blueprint', 'pzarchitect'),
                     'id'       => 'architect_default_shortcode_blueprint',
                     'type'     => 'select',
-                    'options'  => pzarc_get_posts_in_post_type(),
+                    'options'  => $blueprints_list,
                     'subtitle' => __('If you omit the blueprint name from a shortcode, it will use the one selected here. Useful for quick conversion of WP galleries by simply renaming gallery to architect in the shortcode.', 'pzarchitect'),
                 ),
                 array(
                     'title'    => __('Replace WP Galleries with Blueprint', 'pzarchitect'),
                     'id'       => 'architect_replace_wpgalleries',
                     'type'     => 'select',
-                    'options'  => pzarc_get_posts_in_post_type(),
+                    'options'  => $blueprints_list,
                     'subtitle' => __('Select a Blueprint to use for <strong>all</strong> WP gallery shortcodes.', 'pzarchitect'),
                     'desc'     => __('Make sure this Blueprint is using Galleries as its Content Source!', 'pzarchitect')
                 ),
@@ -271,6 +272,13 @@
                                         'page'        => __('Pages', 'pzarchitect'),
                                         'pz_snippets' => __('Snippets', 'pzarchitect')),
                     'default'  => array('post' => 0, 'page' => 0, 'pz_snippets' => 1)
+                ),
+                array(
+                    'title'    => __('Enable query caching', 'pzarchitect'),
+                    'id'       => 'architect_enable_query_cache',
+                    'type'     => 'switch',
+                    'subtitle' => __('Turn this off if you find your Architect Blueprints don\'t show correct posts. This can be caused by other caching plugins or services.', 'pzarchitect'),
+                    'default'  => true
                 ),
                 array(
                     'title' => __('Styling', 'pzarchitect'),

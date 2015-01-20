@@ -1,20 +1,22 @@
 <?php
-/**
- * Project pizazzwp-architect.
- * File: class_arc_query_generic.php
- * User: chrishoward
- * Date: 20/10/14
- * Time: 2:12 AM
- */
 
-  class arc_query_generic {
+  /**
+   * Project pizazzwp-architect.
+   * File: class_arc_query_generic.php
+   * User: chrishoward
+   * Date: 20/10/14
+   * Time: 2:12 AM
+   */
+  class arc_query_generic
+  {
 
     public $query_options = array();
     public $build = array();
     public $criteria = array();
 
-    function __construct($build,$criteria) {
-      $this->build =$build;
+    function __construct($build, $criteria)
+    {
+      $this->build    = $build;
       $this->criteria = $criteria;
     }
 
@@ -29,7 +31,7 @@
       global $paged;
 
       //Paging parameters
-      if (!empty($this->build->blueprint[ '_blueprints_pagination' ] )) {
+      if (!empty($this->build->blueprint[ '_blueprints_pagination' ])) {
 
         // This is meant ot be the magic tonic to make pagination work on static front page. Bah!! Didnt' for me - ever
         // TODO: Ah! It only doesn't work with Headway!
@@ -56,7 +58,7 @@
 
       } else {
 
-        $query[ 'nopaging' ]               = $this->criteria[ 'nopaging' ];
+        $query[ 'nopaging' ]                     = $this->criteria[ 'nopaging' ];
         $this->query_options[ 'posts_per_page' ] = $this->criteria[ 'panels_to_show' ];
 
         $this->query_options[ 'offset' ] = $this->criteria[ 'offset' ];
@@ -107,7 +109,7 @@
 
       /** Specific content filters */
 
-      $this->content_filters($source,$overrides);
+      $this->content_filters($source, $overrides);
 
       // Order. This is always set
       $this->query_options[ 'orderby' ] = $this->criteria[ 'orderby' ];
@@ -132,16 +134,17 @@
      * @return WP_Query
      *
      */
-    public function get_custom_query() {
+    public function get_custom_query()
+    {
 // Get any existing copy of our transient data
-
-      if ( false == ( $custom_query = get_transient( 'pzarc_custom_query_'.$this->build->blueprint['_blueprints_short-name'] ) )  && !current_user_can( 'manage_options' ) ) {
+      global $_architect_options;
+      if (!empty($_architect_options[ 'architect_enable_query_cache' ]) && false == ($custom_query = get_transient('pzarc_custom_query_' . $this->build->blueprint[ '_blueprints_short-name' ])) && !current_user_can('manage_options')) {
         // It wasn't there, so regenerate the data and save the transient
         $custom_query = new WP_Query($this->query_options);
 
-        set_transient( 'pzarc_custom_query_'.$this->build->blueprint['_blueprints_short-name'], $custom_query, PZARC_TRANSIENTS_KEEP );
+        set_transient('pzarc_custom_query_' . $this->build->blueprint[ '_blueprints_short-name' ], $custom_query, PZARC_TRANSIENTS_KEEP);
 
-      } elseif (current_user_can( 'manage_options' )) {
+      } elseif (current_user_can('manage_options') || empty($_architect_options[ 'architect_enable_query_cache' ])) {
         // if is admin
         $custom_query = new WP_Query($this->query_options);
       } else {
@@ -169,14 +172,14 @@
       return $wp_query;
     }
 
-    protected function content_filters($source,$overrides) {
+    protected function content_filters($source, $overrides)
+    {
 
       switch ($source) {
 
         case 'cpt':
           $this->query_options[ 'post_type' ] = $this->build->blueprint[ '_content_cpt_custom-post-type' ];
           break;
-
 
 
       }

@@ -62,6 +62,12 @@
         $this->table_accordion_titles = $table_accordion_titles;
       }
       add_action('wp_print_footer_scripts', array($this, 'extra_scripts'));
+
+
+      if ((empty($_architect_options[ 'architect_enable-retina-images' ]) && !empty($this->section[ 'section-panel-settings' ][ 'section-panel-settings' ])) || (!empty($_architect_options[ 'architect_enable-retina-images' ]) && !empty($this->section[ 'section-panel-settings' ][ 'section-panel-settings' ]))) {
+        wp_enqueue_script('js-retinajs');
+      }
+
     }
 
 
@@ -279,36 +285,6 @@
 
       echo '<' . ('table' !== $this->layout_mode ? 'div' : 'tr') . ' class="pzarc-panel pzarc-panel_' . $settings[ '_panels_settings_short-name' ] . ' pzarc-panel-no_' . $panel_number . $this->slider[ 'slide' ] . $image_in_bg . $odds_evens_bp . $odds_evens_section . $postmeta_classes . '" >';
 
-      // Although this loks back to front, this is determining flow compared to components
-
-      //    var_dump(!empty($toshow[ 'image' ][ 'show' ]) && ($settings[ '_panels_design_components-position' ] == 'bottom' || $settings[ '_panels_design_components-position' ] == 'right'));
-//       $show_image_before_components = (!empty($toshow[ 'image' ][ 'show' ]) && ($settings[ '_panels_design_feature-location' ] !== 'float' && $settings[ '_panels_design_components-position' ] == 'top'));
-
-//       if ($show_image_before_components) {
-
-//         /** Background image */
-//         if ($settings[ '_panels_design_feature-location' ] === 'fill') {
-//           $line_out = $panel_class->render_bgimage('bgimage', $this->source, $panel_def, $this->rsid);
-// //        echo apply_filters("arc_filter_bgimage", self::strip_unused_arctags($line_out), $data[ 'postid' ]);
-//           echo apply_filters("arc_filter_bgimage", self::strip_unused_arctags($line_out), $arc_query->post->ID);
-
-//         }
-//         /** Image outside and before components */
-//         if ($settings[ '_panels_design_feature-location' ] === 'float') {
-
-//           $line_out = $panel_class->render_image('image', $this->source, $panel_def, $this->rsid);
-
-//           if ($toshow[ 'image' ][ 'width' ] === 100) {
-
-//             $line_out = str_replace('{{nofloat}}', 'nofloat', $line_out);
-
-//           }
-
-//           echo apply_filters("arc_filter_outer_image", self::strip_unused_arctags($line_out), $arc_query->post->ID);
-
-
-//         }
-//       }
 
       //TODO: Check this works for all scenarios
       switch ($settings[ '_panels_design_feature-location' ]) {
@@ -316,7 +292,6 @@
         /** Background image */
         case 'fill':
           $line_out = $panel_class->render_bgimage('bgimage', $this->source, $panel_def, $this->rsid);
-//        echo apply_filters("arc_filter_bgimage", self::strip_unused_arctags($line_out), $data[ 'postid' ]);
           echo apply_filters("arc_filter_bgimage", self::strip_unused_arctags($line_out), $postid);
 
           break;
@@ -338,12 +313,36 @@
           break;
       }
 
+      $has_components = false;
+      foreach ($toshow as $k => $v) {
+        switch ($k) {
+          case 'title' :
+          case 'content' :
+          case 'excerpt' :
+          case 'meta1' :
+          case 'meta2' :
+          case 'meta3' :
+          case 'custom1' :
+          case 'custom2' :
+          case 'custom3' :
+            $has_components = !empty($v[ 'show' ]);
+            break;
+          case 'feature':
+            if (!empty($v[ 'show' ]) && $settings[ '_panels_design_feature-location' ] === 'components') {
+              $has_components = true;
+            }
+            break;
+        }
+        if ($has_components) {
+          break;
+        }
+      }
 
       /** Open components wrapper */
-      if ('table' !== $this->layout_mode) {
-
-        echo self::strip_unused_arctags($panel_class->render_wrapper('components-open', $this->source, $panel_def, $this->rsid));
+      if ('table' !== $this->layout_mode && $has_components) {
+          echo self::strip_unused_arctags($panel_class->render_wrapper('components-open', $this->source, $panel_def, $this->rsid));
       }
+
 //var_dump($panel_def);
       /** Components */
       foreach ($toshow as $component_type => $value) {
@@ -368,7 +367,7 @@
 
 
       /** Close components wrapper */
-      if ('table' !== $this->layout_mode) {
+      if ('table' !== $this->layout_mode && $has_components) {
         echo self::strip_unused_arctags($panel_class->render_wrapper('components-close', $this->source, $panel_def, $this->rsid));
       }
       /** Image outside and after components */

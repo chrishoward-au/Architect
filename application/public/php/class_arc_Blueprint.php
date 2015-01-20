@@ -68,13 +68,12 @@
       );
       // TODO: Why do we need this still?
       pzarc_set_defaults();
-      global $_architect;
-      // Get any existing copy of our transient data
-      if ( !current_user_can( 'manage_options' ) && false === ( $blueprint_query = get_transient( 'pzarc_blueprint_query_'.$this->name ) ) ) {
+      global $_architect_options,$_architect;
+      if (!empty($_architect_options[ 'architect_enable_query_cache' ]) &&  !current_user_can( 'manage_options' ) && false === ( $blueprint_query = get_transient( 'pzarc_blueprint_query_'.$this->name ) ) ) {
         // It wasn't there, so regenerate the data and save the transient
         $blueprint_query = new WP_Query($meta_query_args);
         set_transient( 'pzarc_blueprint_query_'.$this->name, $blueprint_query, PZARC_TRANSIENTS_KEEP );
-      } elseif (current_user_can( 'manage_options' )) {
+      } elseif (current_user_can( 'manage_options' ) || empty($_architect_options[ 'architect_enable_query_cache' ])) {
         $blueprint_query = new WP_Query($meta_query_args);
       }
 

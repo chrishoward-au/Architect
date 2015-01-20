@@ -290,9 +290,9 @@
                         </ol>
                         </div>
                         <h3>' . __('Video version') . '</h3>
-<p><a href="//fast.wistia.net/embed/iframe/46fxmn8h0l?popover=true" class="wistia-popover[height=405,playerColor=7b796a,width=720]"><img src="https://embed-ssl.wistia.com/deliveries/e2faf775bdbbdc76b6480c71883e3813fec5a4ed.jpg?image_play_button=true&image_play_button_color=7b796ae0&image_crop_resized=640x360" alt="" /></a>
-<script charset="ISO-8859-1" src="//fast.wistia.com/assets/external/popover-v1.js"></script></p>                        <p>' . __('Style wise, it may not look that great yet. To tidy it up, start exploring the Styling settings for Panels and Blueprints') . '</p>
-                        <p>' . __('To make a <strong>slideshow</strong>, set the <em>Navigation</em> type to <em>Navigator</em>') . '</p>
+                        <p><a href="//fast.wistia.net/embed/iframe/46fxmn8h0l?popover=true" class="wistia-popover[height=405,playerColor=7b796a,width=720]"><img src="'.PZARC_DOCUMENTATION_URL.'/assets/images/quick-start.jpg'.'" alt="Building and Displaying Your First Architect Project"></a>
+<script charset="ISO-8859-1" src="//fast.wistia.com/assets/external/popover-v1.js"></script></p>
+<p>' . __('Style wise, it may not look that great yet. To tidy it up, start exploring the Styling settings for Panels and Blueprints') . '</p>
                         <p>' . __('There are a lot of settings in Architect that have all sorts of affects on your layouts and designs. Explore, experiment and have fun!') . '</p>
                         <p>' . __('For more detailed help, visit') . ' <a href="http://architect4wp.com/codex-listings" target="_blank">' . __('documentation at architect4wp.com') . '</a></p>
                 </div>

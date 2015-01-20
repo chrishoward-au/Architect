@@ -164,12 +164,15 @@
       if ('thumb' === $this->section[ '_panels_design_title-prefix' ]) {
         $thumb_id    = get_post_thumbnail_id();
         $focal_point = get_post_meta($thumb_id, 'pzgp_focal_point', true);
+        if (empty($focal_point)) {
+          $focal_point = get_post_meta(get_the_id(), 'pzgp_focal_point', true);
+        }
         $focal_point = (empty($focal_point) ? array(50, 50) : explode(',', $focal_point));
         if (!empty($thumb_id)) {
           $thumb_prefix                     = wp_get_attachment_image($thumb_id, array($this->section[ '_panels_design_title-thumb-width' ],
                                                                                        $this->section[ '_panels_design_title-thumb-width' ],
                                                                                        'bfi_thumb' => true,
-                                                                                       'crop'      => $focal_point
+                                                                                       'crop'      => (int)$focal_point[ 0 ] . 'x' . (int)$focal_point[ 1 ]
           ));
           $this->data[ 'title' ][ 'thumb' ] = '<span class="pzarc-title-thumb">' . $thumb_prefix . '</span> ';
         } else {
@@ -212,6 +215,9 @@
       /** FEATURED IMAGE */
       $thumb_id    = get_post_thumbnail_id();
       $focal_point = get_post_meta($thumb_id, 'pzgp_focal_point', true);
+      if (empty($focal_point)) {
+        $focal_point = get_post_meta(get_the_id(), 'pzgp_focal_point', true);
+      }
       $focal_point = (empty($focal_point) ? array(50, 50) : explode(',', $focal_point));
 
       if (!$thumb_id && $this->section[ '_panels_settings_use-embedded-images' ]) {
@@ -256,8 +262,12 @@
     public function get_bgimage(&$post)
     {
       /** BACKGROUND IMAGE */
+
       $thumb_id    = get_post_thumbnail_id();
       $focal_point = get_post_meta($thumb_id, 'pzgp_focal_point', true);
+      if (empty($focal_point)) {
+        $focal_point = get_post_meta(get_the_id(), 'pzgp_focal_point', true);
+      }
       $focal_point = (empty($focal_point) ? array(50, 50) : explode(',', $focal_point));
 
       $showbgimage = (has_post_thumbnail()
@@ -340,9 +350,9 @@
                                                                  'height' => str_replace($this->section[ '_panels_design_cfield-' . $i . '-ps-images-height' ][ 'units' ], '', $this->section[ '_panels_design_cfield-' . $i . '-ps-images-height' ][ 'height' ]));
 
         $this->data[ 'cfield' ][ $i ][ 'prefix-text' ]  = '<span class="pzarc-prefix-text">' . $this->section[ '_panels_design_cfield-' . $i . '-prefix-text' ] . '</span>';
-        $this->data[ 'cfield' ][ $i ][ 'prefix-image' ] =  bfi_thumb($this->section[ '_panels_design_cfield-' . $i . '-prefix-image' ][ 'url' ], $params) ;
+        $this->data[ 'cfield' ][ $i ][ 'prefix-image' ] = bfi_thumb($this->section[ '_panels_design_cfield-' . $i . '-prefix-image' ][ 'url' ], $params);
         $this->data[ 'cfield' ][ $i ][ 'suffix-text' ]  = '<span class="pzarc-suffix-text">' . $this->section[ '_panels_design_cfield-' . $i . '-suffix-text' ] . '</span>';
-        $this->data[ 'cfield' ][ $i ][ 'suffix-image' ] =  bfi_thumb($this->section[ '_panels_design_cfield-' . $i . '-suffix-image' ][ 'url' ], $params) ;
+        $this->data[ 'cfield' ][ $i ][ 'suffix-image' ] = bfi_thumb($this->section[ '_panels_design_cfield-' . $i . '-suffix-image' ][ 'url' ], $params);
 
         // The content itself comes from post meta
         $this->data[ 'cfield' ][ $i ][ 'value' ] = (!empty($postmeta[ $this->section[ '_panels_design_cfield-' . $i . '-name' ] ]) ? $postmeta[ $this->section[ '_panels_design_cfield-' . $i . '-name' ] ][ 0 ] : null);
@@ -838,7 +848,7 @@
               $thumb = get_the_post_thumbnail($the_post->ID, array(self::get_thumbsize('w'),
                                                                    self::get_thumbsize('h'),
                                                                    'bfi_thumb' => true,
-                                                                   'crop'      => $focal_point));
+                                                                   'crop'      => (int)$focal_point[ 0 ] . 'x' . (int)$focal_point[ 1 ]));
 
             }
 
@@ -858,6 +868,7 @@
 
       }
 
+//var_dump($nav_items);
       return $nav_items;
     }
 
