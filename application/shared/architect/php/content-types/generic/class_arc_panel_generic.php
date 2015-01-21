@@ -783,7 +783,12 @@
         $section[ $section_no ]->render_panel($panel_def, $i, $class, $panel_class, $this->arc_query);
 
         if ($i++ >= $this->build->blueprint[ '_blueprints_section-' . ($section_no - 1) . '-panels-per-view' ] && !empty($this->build->blueprint[ '_blueprints_section-' . ($section_no - 1) . '-panels-limited' ])) {
-          break;
+          if ($i !== count($this->arc_query->posts)) {
+            break;
+          } else {
+            // it will break anyways!
+            // Without this check, we get weird errors in page builder if limited content and show 1 and default content type.
+          }
 
         }
 

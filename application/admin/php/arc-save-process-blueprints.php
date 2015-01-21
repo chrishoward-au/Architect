@@ -98,7 +98,7 @@
       $nav_class = ($pzarc_blueprints[ '_blueprints_navigator' ] === 'thumbs' ? ' .arc-slider-nav' : ' .pzarc-navigator');
 
       //TODO: when this is vertical, need to test using absolute and top 0, bottom 0 to fill it.
-      if ('left' === $pzarc_blueprints[ '_blueprints_navigator-position' ]) {
+      if (!in_array($pzarc_blueprints[ '_blueprints_navigator' ],array('thumbs','none')) && 'left' === $pzarc_blueprints[ '_blueprints_navigator-position' ]) {
 
         $pzarc_contents .= '
        .pzarchitect.pzarc-blueprint_' . $pzarc_blueprints[ '_blueprints_short-name' ] . $nav_class . ' {width: ' . $pzarc_vert_width . '%;float:left;}
@@ -106,7 +106,7 @@
        .pzarchitect.pzarc-blueprint_' . $pzarc_blueprints[ '_blueprints_short-name' ] . '.nav-navigator button.pager.arrow-left {left:' . ($pzarc_vert_width + 1) . '%;}
       ';
       }
-      if ('right' === $pzarc_blueprints[ '_blueprints_navigator-position' ]) {
+      if (!in_array($pzarc_blueprints[ '_blueprints_navigator' ],array('thumbs','none')) &&'right' === $pzarc_blueprints[ '_blueprints_navigator-position' ]) {
 
         $pzarc_contents .= '
        .pzarchitect.pzarc-blueprint_' . $pzarc_blueprints[ '_blueprints_short-name' ] . $nav_class . ' {width: ' . $pzarc_vert_width . '%;float:right;}

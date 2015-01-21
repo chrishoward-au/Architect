@@ -1148,3 +1148,12 @@ body.arc-panels * {
 .redux-box-side .select_wrapper.dimensions-units {
   float: none;
   display: inline-block; }
+
+#_pzarc_pagebuilder_enabled,
+#_pzarc_pagebuilder_disabled {
+  width: auto; }
+  #_pzarc_pagebuilder_enabled h3,
+  #_pzarc_pagebuilder_disabled h3 {
+    text-align: center;
+    text-transform: capitalize;
+    font-size: 15px; }

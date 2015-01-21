@@ -72,14 +72,26 @@
       require_once(PZARC_PLUGIN_APP_PATH . '/public/php/class_arc_pagination.php');
 
       /** Add navigation.*/
+      $nav_pos = ('thumbs' === $this->build->blueprint[ '_blueprints_navigator' ] && 'top' === $this->build->blueprint[ '_blueprints_navigator-thumbs-position' ]) ? 'tl' : '';
+      $nav_pos = (!in_array($this->build->blueprint[ '_blueprints_navigator' ], array('thumbs',
+                                                                                      'none')) && ('top' === $this->build->blueprint[ '_blueprints_navigator-position' ] || 'left' === $this->build->blueprint[ '_blueprints_navigator-position' ])) ? 'tl' : $nav_pos;
+
       //  Putting it in an action allows devs to write their own
-      if (($this->build->blueprint[ '_blueprints_section-0-layout-mode' ] === 'tabbed' || $this->build->blueprint[ '_blueprints_section-0-layout-mode' ] === 'slider') && ('top' === $this->build->blueprint[ '_blueprints_navigator-position' ] || 'left' === $this->build->blueprint[ '_blueprints_navigator-position' ])) {
+      if (($this->build->blueprint[ '_blueprints_section-0-layout-mode' ] === 'tabbed' || $this->build->blueprint[ '_blueprints_section-0-layout-mode' ] === 'slider')
+          && $nav_pos === 'tl'
+      ) {
 
         add_action('arc_top_left_navigation_' . $this->build->blueprint[ '_blueprints_short-name' ], array(&$this,
                                                                                                            'add_navigation'), 10, 1);
       }
 
-      if (($this->build->blueprint[ '_blueprints_section-0-layout-mode' ] === 'tabbed' || $this->build->blueprint[ '_blueprints_section-0-layout-mode' ] === 'slider') && ('bottom' === $this->build->blueprint[ '_blueprints_navigator-position' ] || 'right' === $this->build->blueprint[ '_blueprints_navigator-position' ])) {
+      $nav_pos = ('thumbs' === $this->build->blueprint[ '_blueprints_navigator' ] && 'bottom' === $this->build->blueprint[ '_blueprints_navigator-thumbs-position' ]) ? 'br' : '';
+      $nav_pos = (!in_array($this->build->blueprint[ '_blueprints_navigator' ], array('thumbs',
+                                                                                      'none')) && ('bottom' === $this->build->blueprint[ '_blueprints_navigator-position' ] || 'right' === $this->build->blueprint[ '_blueprints_navigator-position' ])) ? 'br' : $nav_pos;
+
+      if (($this->build->blueprint[ '_blueprints_section-0-layout-mode' ] === 'tabbed' || $this->build->blueprint[ '_blueprints_section-0-layout-mode' ] === 'slider')
+          && $nav_pos === 'br'
+      ) {
 
         add_action('arc_bottom_right_navigation_' . $this->build->blueprint[ '_blueprints_short-name' ], array(&$this,
                                                                                                                'add_navigation'), 10, 1);
@@ -115,9 +127,9 @@
           $bp_nav_type = 'pagination';
           break;
       }
-      $bp_nav_pos   = $this->build->blueprint[ '_blueprints_navigator-position' ];
-      $bp_transtype = $this->build->blueprint[ '_blueprints_transitions-type' ];
-      $this->arc_pagination    = array();
+      $bp_nav_pos           = ($this->build->blueprint[ '_blueprints_navigator' ] === 'thumbs' ? $this->build->blueprint[ '_blueprints_navigator-thumbs-position' ] : $this->build->blueprint[ '_blueprints_navigator-position' ]);
+      $bp_transtype         = $this->build->blueprint[ '_blueprints_transitions-type' ];
+      $this->arc_pagination = array();
 
       self::set_generic_criteria();
 
@@ -133,17 +145,17 @@
         switch (true) {
 
           case is_home():
-            $content_class             = 'arc_Pagination_' . (!$this->build->blueprint[ '_blueprints_pager' ] ? 'prevnext' : $this->build->blueprint[ '_blueprints_pager' ]);
+            $content_class                        = 'arc_Pagination_' . (!$this->build->blueprint[ '_blueprints_pager' ] ? 'prevnext' : $this->build->blueprint[ '_blueprints_pager' ]);
             $this->arc_pagination[ 'pagination' ] = new $content_class;
             break;
 
           case (is_singular()):
-            $content_class             = 'arc_Pagination_' . (!$this->build->blueprint[ '_blueprints_pager-single' ] ? 'prevnext' : $this->build->blueprint[ '_blueprints_pager-single' ]);
+            $content_class                        = 'arc_Pagination_' . (!$this->build->blueprint[ '_blueprints_pager-single' ] ? 'prevnext' : $this->build->blueprint[ '_blueprints_pager-single' ]);
             $this->arc_pagination[ 'pagination' ] = new $content_class;
             break;
 
           case is_archive():
-            $content_class             = 'arc_Pagination_' . (!$this->build->blueprint[ '_blueprints_pager-archives' ] ? 'prevnext' : $this->build->blueprint[ '_blueprints_pager-archives' ]);
+            $content_class                        = 'arc_Pagination_' . (!$this->build->blueprint[ '_blueprints_pager-archives' ] ? 'prevnext' : $this->build->blueprint[ '_blueprints_pager-archives' ]);
             $this->arc_pagination[ 'pagination' ] = new $content_class;
             break;
 
@@ -154,9 +166,9 @@
       /** Build the query */
       $registry       = arc_Registry::getInstance();
       $content_source = $registry->get('content_source');
-      if ($this->build->blueprint[ '_blueprints_content-source' ] === 'defaults' && !empty($this->build->blueprint['_content_defaults_defaults-override'])){
+      if ($this->build->blueprint[ '_blueprints_content-source' ] === 'defaults' && !empty($this->build->blueprint[ '_content_defaults_defaults-override' ])) {
         global $wp_query;
-        $this->build->blueprint[ '_blueprints_content-source' ] = $wp_query->posts[0]->post_type;
+        $this->build->blueprint[ '_blueprints_content-source' ] = $wp_query->posts[ 0 ]->post_type;
       }
 
       if ($this->build->blueprint[ '_blueprints_content-source' ] != 'defaults' && array_key_exists($this->build->blueprint[ '_blueprints_content-source' ], $content_source)) {
@@ -431,8 +443,11 @@
         $interval    = $this->build->blueprint[ '_blueprints_transitions-interval' ] * 1000;
         $skip_thumbs = $this->build->blueprint[ '_blueprints_navigator-skip-thumbs' ];
         $no_across   = $this->build->blueprint[ '_blueprints_section-0-columns-breakpoint-1' ];
-        $is_vertical = ('left' === $this->build->blueprint[ '_blueprints_navigator-position' ] || 'right' === $this->build->blueprint[ '_blueprints_navigator-position' ]) ? 'true' : 'false';
-        $infinite    = (!empty($this->build->blueprint[ '_blueprints_transitions-infinite' ]) && 'infinite' === $this->build->blueprint[ '_blueprints_transitions-infinite' ]) ? 'true' : 'false';
+
+        $is_vertical = (!in_array($this->build->blueprint[ '_blueprints_navigator' ],array('thumbs',
+                                                                                           'none')) && ('left' === $this->build->blueprint[ '_blueprints_navigator-position' ] || 'right' === $this->build->blueprint[ '_blueprints_navigator-position' ])) ? 'true' : 'false';
+
+        $infinite = (!empty($this->build->blueprint[ '_blueprints_transitions-infinite' ]) && 'infinite' === $this->build->blueprint[ '_blueprints_transitions-infinite' ]) ? 'true' : 'false';
 
         $slider[ 'dataopts' ] = 'data-opts="{#tduration#:' . $duration . ',#tinterval#:' . $interval . ',#tshow#:' . $skip_thumbs . ',#tskip#:' . $skip_thumbs . ',#tisvertical#:' . $is_vertical . ',#tinfinite#:' . $infinite . ',#tacross#:' . $no_across . '}"';
 

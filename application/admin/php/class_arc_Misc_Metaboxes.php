@@ -19,8 +19,10 @@
     function __construct()
     {
       add_action("redux/metaboxes/$this->redux_opt_name/boxes", array($this, "pzarc_add_fvid_metaboxes"), 10, 1);
+      add_action("redux/metaboxes/$this->redux_opt_name/boxes", array($this, "pzarc_add_pagebuilder_metaboxes"), 10, 1);
     }
 
+    /** Featured Video */
 
     function pzarc_add_fvid_metaboxes($metaboxes)
     {
@@ -65,6 +67,44 @@
 
       return $metaboxes;
     }
+
+
+    /** Page builder */
+    function pzarc_add_pagebuilder_metaboxes($metaboxes)
+    {
+      $blueprint_list = pzarc_get_posts_in_post_type('arc-blueprints', true);
+      $boxSections    = array();
+      $boxSections[ ] = array(
+        'title'         => __('Select Blueprints', 'pzarchitect'),
+        'desc'    => __('Drag and drop the Blueprints to appear on this page from Disable to Enabled. Place Blueprints above "Original Content" to show them before the page content, and below to show after the page content.', 'pzarchitect'),
+        'fields' => array(
+            array(
+                'id'      => '_pzarc_pagebuilder',
+                //                'title'   => __('Select Blueprints', 'pzarchitect'),
+                'type'    => 'sorter',
+                'options' => array(
+                    'disabled' => $blueprint_list,
+                    'enabled'  => array('original' => __('Original Content','pzarchitect'))
+                ),
+            ),
+        ),
+      );
+
+      // Declare your metaboxes
+      $metaboxes    = array();
+      $metaboxes[ ] = array(
+          'id'         => 'pzarc_mb-pagebuilder',
+          'title'      => __('Architect Page Builder', 'pzarchitect'),
+          'post_types' => array('page'), // Maybe add post if demand for it. But since every post is different, and no way of passing overrides in page builder, kinda a pain.
+          'position'   => 'normal', // normal, advanced, side
+          'priority'   => 'low', // high, core, default, low - Priorities of placement
+          'sections'   => $boxSections,
+          'sidebar'    => false
+      );
+
+      return $metaboxes;
+    }
+
 
   }
 

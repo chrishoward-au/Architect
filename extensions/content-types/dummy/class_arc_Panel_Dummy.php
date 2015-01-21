@@ -82,7 +82,7 @@
 
     public function get_title(&$post)
     {
-      var_Dump($post);
+//      var_Dump($post);
       if ($this->toshow[ 'title' ][ 'show' ]) {
         $this->data[ 'title' ][ 'title' ] = $post[ 'title' ][ 'title' ];
       }
@@ -195,8 +195,8 @@
 
     }
 
+    public function get_nav_items($blueprints_navigator, &$arc_query, $nav_labels)
 
-    public function get_nav_items($blueprints_navigator,&$arc_query)
     {
       $nav_items = array();
       for ($j = 0; $j < count($arc_query); $j++){

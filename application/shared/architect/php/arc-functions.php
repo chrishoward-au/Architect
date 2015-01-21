@@ -125,7 +125,7 @@
     );
   }
 
-  function pzarc_redux_padding($id, $selectors, $defaults = '')
+  function pzarc_redux_padding($id, $selectors, $defaults = array('units'=>'%'))
   {
 //    var_dump($id, $defaults);
     return array(
@@ -140,7 +140,7 @@
 
   }
 
-  function pzarc_redux_margin($id, $selectors, $defaults = '', $limits = 'tblr')
+  function pzarc_redux_margin($id, $selectors, $defaults = array('units'=>'%'), $limits = 'tblr')
   {
     return array(
         'title'   => __('Margins', 'pzarchitect'),

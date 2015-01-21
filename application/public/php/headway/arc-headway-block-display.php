@@ -188,7 +188,7 @@
       $this->register_block_element(array(
                                         'id'         => 'pzarc-section1',
                                         'name'       => 'Section 1',
-                                        'selector'   => '.use-hw-css .pzarc-section-1',
+                                        'selector'   => '.use-hw-css .pzarc-section_1',
                                         'properties' => array('background',
                                                               'borders',
                                                               'padding',
@@ -200,7 +200,7 @@
       $this->register_block_element(array(
                                         'id'         => 'pzarc-section2',
                                         'name'       => 'Section 2',
-                                        'selector'   => '.use-hw-css .pzarc-section-2',
+                                        'selector'   => '.use-hw-css .pzarc-section_2',
                                         'properties' => array('background',
                                                               'borders',
                                                               'padding',
@@ -212,7 +212,7 @@
       $this->register_block_element(array(
                                         'id'         => 'pzarc-section3',
                                         'name'       => 'Section 3',
-                                        'selector'   => '.use-hw-css .pzarc-section-3',
+                                        'selector'   => '.use-hw-css .pzarc-section_3',
                                         'properties' => array('background',
                                                               'borders',
                                                               'padding',

@@ -96,3 +96,12 @@ h2.pzarc-page-title {
     }
   }
 }
+
+// Hides when content not to show in page builder
+// If the them doesn't have one of these, it won't work.
+.hide-content+article,
+.hide-content+.page,
+.hide-content+.hentry
+{
+  display:none;
+}

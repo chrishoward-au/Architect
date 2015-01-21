@@ -831,15 +831,6 @@
               'alt' => 'Labels',
               'img' => PZARC_PLUGIN_APP_URL . 'shared/assets/images/metaboxes/nav-type-labels.png'
           ),
-          // TODO: Add these beta2
-          //                    'accordion' => array(
-          //                        'alt' => 'Accordion',
-          //                        'img' => PZARC_PLUGIN_APP_URL . 'shared/assets/images/metaboxes/nav-type-accordion.png'
-          //                    ),
-          //                    'buttons'   => array(
-          //                        'alt' => 'Buttons',
-          //                        'img' => PZARC_PLUGIN_APP_URL . 'shared/assets/images/metaboxes/nav-type-buttons.png'
-          //                    ),
           'bullets' => array(
               'alt' => 'Bullets',
               'img' => PZARC_PLUGIN_APP_URL . 'shared/assets/images/metaboxes/nav-type-bullets.png'
@@ -889,7 +880,6 @@
                           'alt' => 'Top',
                           'img' => PZARC_PLUGIN_APP_URL . 'shared/assets/images/metaboxes/nav-pos-top.png'
                       ),
-                      //TODO: beta 2
                       'left'   => array(
                           'alt' => 'Left',
                           'img' => PZARC_PLUGIN_APP_URL . 'shared/assets/images/metaboxes/nav-pos-left.png'
@@ -900,8 +890,29 @@
                       ),
                   ),
                   'required' => array(
-                      array($prefix . 'navigator', '!=', 'accordion'),
+                      array($prefix . 'navigator', '!=', 'thumbs'),
                       array($prefix . 'navigator', '!=', 'none'),
+                  )
+              ),
+              array(
+                  'title'    => 'Position',
+                  'id'       => $prefix . 'navigator-thumbs-position',
+                  'type'     => 'image_select',
+                  'default'  => 'bottom',
+                  'hint'     => array('content' => __('Bottom, top', 'pzarchitect')),
+                  'height'   => 75,
+                  'options'  => array(
+                      'bottom' => array(
+                          'alt' => 'Bottom',
+                          'img' => PZARC_PLUGIN_APP_URL . 'shared/assets/images/metaboxes/nav-pos-bottom.png'
+                      ),
+                      'top'    => array(
+                          'alt' => 'Top',
+                          'img' => PZARC_PLUGIN_APP_URL . 'shared/assets/images/metaboxes/nav-pos-top.png'
+                      ),
+                  ),
+                  'required' => array(
+                      array($prefix . 'navigator', '=', 'thumbs'),
                   )
               ),
               array(
@@ -958,6 +969,7 @@
                   'height'   => false,
                   'units'    => '%',
                   'required' => array(
+                      array($prefix . 'navigator', '!=', 'thumbs'),
                       array($prefix . 'navigator', '!=', 'accordion'),
                       array($prefix . 'navigator', '!=', 'none'),
                       array($prefix . 'navigator-position', '!=', 'top'),

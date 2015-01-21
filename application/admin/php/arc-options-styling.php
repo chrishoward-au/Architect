@@ -335,7 +335,7 @@
                                                                                             'text_decoration' => 'none')),
                 pzarc_redux_bg($prefix . 'entry-title-font-background', array('.entry-title')),
                 pzarc_redux_padding($prefix . 'entry-title-font-padding', array('.entry-title')),
-                pzarc_redux_margin($prefix . 'entry-title-font-margin', array('.entry-title'),null,'tb'),
+                pzarc_redux_margin($prefix . 'entry-title-font-margin', array('.entry-title'), null, 'tb'),
                 pzarc_redux_links($prefix . 'entry-title-font-links', array('.entry-title a')),
                 pzarc_redux_borders($prefix . 'entry-title-borders', array('.entry-title')),
             ),
@@ -361,7 +361,7 @@
                 pzarc_redux_font($prefix . 'entry-meta-font', array('.entry-meta')),
                 pzarc_redux_bg($prefix . 'entry-meta-font-background', array('.entry-meta')),
                 pzarc_redux_padding($prefix . 'entry-meta-font-padding', array('.entry-meta')),
-                pzarc_redux_margin($prefix . 'entry-meta-font-margin', array('.entry-meta'),null,'tb'),
+                pzarc_redux_margin($prefix . 'entry-meta-font-margin', array('.entry-meta'), null, 'tb'),
                 pzarc_redux_links($prefix . 'entry-meta-font-links', array('.entry-meta a')),
             )
         );
@@ -385,7 +385,7 @@
                 pzarc_redux_font($prefix . 'entry-content-font', array('.entry-content')),
                 pzarc_redux_bg($prefix . 'entry-content-font-background', array('.entry-content')),
                 pzarc_redux_padding($prefix . 'entry-content-font-padding', array('.entry-content')),
-                pzarc_redux_margin($prefix . 'entry-content-font-margin', array('.entry-content'),null,'tb'),
+                pzarc_redux_margin($prefix . 'entry-content-font-margin', array('.entry-content'), null, 'tb'),
                 pzarc_redux_links($prefix . 'entry-content-font-links', array('.entry-content a')),
                 array(
                     'title'  => __('Excerpt', 'pzarc'),
@@ -407,7 +407,7 @@
                 pzarc_redux_font($prefix . 'entry-excerpt-font', array('.entry-excerpt')),
                 pzarc_redux_bg($prefix . 'entry-excerpt-font-background', array('.entry-excerpt')),
                 pzarc_redux_padding($prefix . 'entry-excerpt-font-padding', array('.entry-excerpt')),
-                pzarc_redux_margin($prefix . 'entry-excerpt-font-margin', array('.entry-excerpt'),null,'tb'),
+                pzarc_redux_margin($prefix . 'entry-excerpt-font-margin', array('.entry-excerpt'), null, 'tb'),
                 pzarc_redux_links($prefix . 'entry-excerpt-font-links', array('.entry-excerpt a')),
                 array(
                     'title'  => __('Read more', 'pzarc'),
@@ -459,7 +459,7 @@
                 ),
                 pzarc_redux_bg($prefix . 'entry-image-background', array('.entry-thumbnail')),
                 pzarc_redux_padding($prefix . 'entry-image-padding', array('.entry-thumbnail')),
-                pzarc_redux_margin($prefix . 'entry-image-margin', array('.entry-thumbnail'),null,'tb'),
+                pzarc_redux_margin($prefix . 'entry-image-margin', array('.entry-thumbnail'), null, 'tb'),
                 pzarc_redux_borders($prefix . 'entry-image-borders', array('.entry-thumbnail')),
                 array(
                     'title' => __('Caption', 'pzarc'),
@@ -716,8 +716,15 @@
                     // 'default'  => '.pzarc-navigator',
                 ),
                 // TODO Navigator defaults
-                pzarc_redux_bg($prefix . 'navigator-background', array('.pzarc-navigator', '.arc-slider-nav'),'#eee'),
-                pzarc_redux_padding($prefix . 'navigator-padding', array('.pzarc-navigator', '.arc-slider-nav')),
+                pzarc_redux_bg($prefix . 'navigator-background', array('.pzarc-navigator',
+                                                                       '.arc-slider-nav'), array('color' => '#eee')),
+                pzarc_redux_padding($prefix . 'navigator-padding', array('.pzarc-navigator', '.arc-slider-nav'), array(
+                    'padding-top'    => '1%',
+                    'padding-right'  => '1%',
+                    'padding-bottom' => '1%',
+                    'padding-left'   => '1%',
+                    'units'         => '%',
+                )),
                 pzarc_redux_margin($prefix . 'navigator-margins', array('.pzarc-navigator', '.arc-slider-nav')),
                 pzarc_redux_borders($prefix . 'navigator-borders', array('.pzarc-navigator', '.arc-slider-nav')),
                 array(
@@ -736,7 +743,13 @@
                 ),
                 pzarc_redux_font($prefix . 'navigator-items-font', array('.pzarc-navigator .arc-slider-slide-nav-item '), null),
                 pzarc_redux_bg($prefix . 'navigator-items-background', array('.pzarc-navigator .arc-slider-slide-nav-item ')),
-                pzarc_redux_padding($prefix . 'navigator-items-padding', array('.pzarc-navigator .arc-slider-slide-nav-item ')),
+                pzarc_redux_padding($prefix . 'navigator-items-padding', array('.pzarc-navigator .arc-slider-slide-nav-item '), array(
+                    'padding-top'    => '1%',
+                    'padding-right'  => '1%',
+                    'padding-bottom' => '1%',
+                    'padding-left'   => '1%',
+                    'units'         => '%',
+                )),
                 pzarc_redux_margin($prefix . 'navigator-items-margins', array('.pzarc-navigator .arc-slider-slide-nav-item ')),
                 pzarc_redux_borders($prefix . 'navigator-items-borders', array('.pzarc-navigator .arc-slider-slide-nav-item ')),
                 pzarc_redux_border_radius($prefix . 'navigator-items-borderradius', array('.pzarc-navigator .arc-slider-slide-nav-item ')),
@@ -762,7 +775,7 @@
                                                                                                                                                   'text-align',
                                                                                                                                                   'line-height',
                                                                                                                                                   'word-spacing')),
-                pzarc_redux_bg($prefix . 'navigator-items-hover-background', array('.pzarc-navigator .arc-slider-slide-nav-item:hover ')),
+                pzarc_redux_bg($prefix . 'navigator-items-hover-background', array('.pzarc-navigator .arc-slider-slide-nav-item:hover '),array('color'=>'#ddd')),
                 pzarc_redux_borders($prefix . 'navigator-items-hover-borders', array('.pzarc-navigator .arc-slider-slide-nav-item:hover ')),
                 array(
                     'title'  => __('Navigator active item', 'pzarchitect'),
@@ -777,7 +790,7 @@
                     'readonly' => true,
                     'default'  => '.pzarc-navigator .arc-slider-slide-nav-item.active',
                 ),
-                pzarc_redux_font($prefix . 'navigator-items-active-font', array('.pzarc-navigator .arc-slider-slide-nav-item.active '), null, array('letter-spacing',
+                pzarc_redux_font($prefix . 'navigator-items-active-font', array('.pzarc-navigator .arc-slider-slide-nav-item.active '), array('color'=>'#fff'), array('letter-spacing',
                                                                                                                                                     'font-variant',
                                                                                                                                                     'text-transform',
                                                                                                                                                     'font-family',
@@ -785,7 +798,7 @@
                                                                                                                                                     'text-align',
                                                                                                                                                     'line-height',
                                                                                                                                                     'word-spacing')),
-                pzarc_redux_bg($prefix . 'navigator-items-active-background', array('.pzarc-navigator .arc-slider-slide-nav-item.active ')),
+                pzarc_redux_bg($prefix . 'navigator-items-active-background', array('.pzarc-navigator .arc-slider-slide-nav-item.active '),array('color'=>'#555')),
                 pzarc_redux_borders($prefix . 'navigator-items-active-borders', array('.pzarc-navigator .arc-slider-slide-nav-item.active ')),
             ),
         );

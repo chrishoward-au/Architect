@@ -153,7 +153,7 @@
 
       global $wp_query;
 //      /* Changed to this approach coz the other broke WPML */
-      $wp_query = $custom_query;
+      $wp_query = (isset($custom_query)?$custom_query:$wp_query);
 ////      // 0.9.0.2 TODO: This scares me! Test thoroughly that it's okay to use $wp_query. The big problem is if something else changes it midstream. And then resets to the main query!
 ////      // Previously all these were $custom_query
 ////      // If transient not set and not admin

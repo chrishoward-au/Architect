@@ -38,11 +38,14 @@
         echo '<div class="arc-slider-nav arc-slider-container icomoon ' . $this->blueprint[ '_blueprints_navigator' ] . ' has-pager">';
         echo '<button class="pager skip-left icon-btn-style"><span class="icon-' . $skip_left . ' '.$this->blueprint['_blueprints_navigator-skip-button'].'"></span></button>';
         echo '<button class="pager skip-right icon-btn-style"><span class="icon-' . $skip_right . ' '.$this->blueprint['_blueprints_navigator-skip-button']. '"></span></button>';
+        $nav_position = $this->blueprint[ '_blueprints_navigator-thumbs-position' ];
+      } else {
+        $nav_position = $this->blueprint[ '_blueprints_navigator-position' ];
       }
 
       echo '<div class="pzarc-navigator pzarc-navigator-' . $this->blueprint[ '_blueprints_short-name' ] .
           ' ' . $this->blueprint[ '_blueprints_navigator' ] .
-          ' ' . $this->blueprint[ '_blueprints_navigator-position' ] .
+          ' ' . $nav_position .
           ' ' . $this->blueprint[ '_blueprints_navigator-location' ] .
           ' ' . $this->blueprint[ '_blueprints_navigator-align' ] .
           ' ' . $this->blueprint[ '_blueprints_navigator-bullet-shape' ] . '">';
