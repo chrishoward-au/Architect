@@ -1,6 +1,7 @@
 There are five methods to displaying a Blueprint. In order of required technical know-how (easiest first), these are:
 
 -   **Headway Block** : If you are using Headway, simply place the Architect block, and then select the Blueprint to display.
+-   **Page builder** : On WP pages editor, you can add Blueprints to display before or after content using a simple drag and drop interface.
 -   **Widget** : Select Architect widget on WP Admin widgets screen
 -   **Shortcode** : Add *[architect blueprint=“blueprint” ids=“overrides”]* in your content at the point you want the Blueprint to appear.
 -   **Actions editor** : Enter the action name, Blueprint and pages to appear on

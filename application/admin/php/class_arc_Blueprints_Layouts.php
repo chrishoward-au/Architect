@@ -1194,7 +1194,7 @@
                   'type'     => 'raw',
                   'class'    => 'plain',
                   'markdown' => true,
-                  'content'  => file_get_contents(PZARC_DOCUMENTATION_PATH . '/using-blueprints.md'),
+                  'content'  => file_get_contents(PZARC_DOCUMENTATION_PATH .PZARC_LANGUAGE.'/using-blueprints.md'),
                   'pzarchitect')
           )
       );

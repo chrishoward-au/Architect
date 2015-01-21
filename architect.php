@@ -34,6 +34,8 @@
       define('PZARC_DOCUMENTATION_PATH', PZARC_PLUGIN_PATH . 'documentation/');
       define('PZARC_PLUGIN_ASSETS_URL', PZARC_PLUGIN_APP_URL . 'shared/assets/');
       define('PZARC_CACHE', '/arc/');
+      // TODO: Setup and option for changing the language
+      define('PZARC_LANGUAGE','en');
 
       define('PZARC_TRANSIENTS_KEEP', 12 * HOUR_IN_SECONDS);
       $upload_dir = wp_upload_dir();
