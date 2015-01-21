@@ -56,6 +56,7 @@ There are several ways to display Architect Blueprints.
 * Action hooks
 * Actions editor (Built into Architect, all you have to know is the name of the hook you want to use)
 * WP Gallery shortcode override
+* Page builder
 
 == Frequently Asked Questions ==
 = What themes is Architect compatible with =
