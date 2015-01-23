@@ -93,7 +93,7 @@ As per Headway licencing
 ### If I deactivate Architect, will I lose all my Panels and Blueprints ###
 No. We don't delete any of your data. In the future a method will be provided for you to remove all Architect data if you really need to.
 
-### Support ###
+## Support ##
 
 For support, please send an email to support@pizazzwp.com
 
@@ -118,9 +118,12 @@ For support, please send an email to support@pizazzwp.com
 
 ## Changelog ##
 
-### 0.9.3.1 ###
+### 0.9.3.2 ###
+* ADDED: Buttons and forms to directly log support requests.
+
 * CHANGED: Each Blueprint now has a unique ID. This changes with every page refresh, so is for internal code use only. i.e. Don't try and use it with custom CSS
 
+### 0.9.3.1 ###
 * FIXED: Tweaking performance
 * FIXED: Caching issue where some caches may not use updated CSS
 * FIXED: Can now display the same Blueprint slider on the same page and nav will still work. 

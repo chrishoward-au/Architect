@@ -3,7 +3,7 @@ Contributors: chrishoward
 Tags: content,display,posts,pages,gallery,slider,tabs,tabbed,tabular,page builder,widget,hooks
 Requires at least: 3.5.0
 Tested up to: 4.1.0
-Stable tag: 0.9.3.1
+Stable tag: 0.9.3.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Plugin URI: http://architect4wp.com
@@ -108,11 +108,12 @@ For support, please send an email to support@pizazzwp.com
 
 == Changelog ==
 
-= 0.9.3.1 =
+= 0.9.3.2 =
 * ADDED: Buttons and forms to directly log support requests.
 
 * CHANGED: Each Blueprint now has a unique ID. This changes with every page refresh, so is for internal code use only. i.e. Don't try and use it with custom CSS
 
+= 0.9.3.1 =
 * FIXED: Tweaking performance
 * FIXED: Caching issue where some caches may not use updated CSS
 * FIXED: Can now display the same Blueprint slider on the same page and nav will still work. 

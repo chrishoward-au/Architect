@@ -1,0 +1,501 @@
+<h1>Architect: A WP Content Layout Framework</h1>
+
+<p><strong>Contributors:</strong> chrishoward<br/>
+<strong>Tags:</strong> content,display,posts,pages,gallery,slider,tabs,tabbed,tabular,page builder,widget,hooks<br/>
+<strong>Requires at least:</strong> 3.5.0<br/>
+<strong>Tested up to:</strong> 4.1.0<br/>
+<strong>Stable tag:</strong> 0.9.3.1<br/>
+<strong>License:</strong> GPLv2 or later<br/>
+<strong>License URI:</strong> http://www.gnu.org/licenses/gpl-2.0.html<br/>
+<strong>Plugin URI:</strong> http://architect4wp.com</p>
+
+<p>Go beyond the limitations of the layouts in the theme you use, to easily build any content layouts for it. E.g. grids, sliders, lists, galleries etc.</p>
+
+<h2>Description</h2>
+
+<p>Most themes give you great looking layouts for your content, but are usually limited to what that theme provides. Frameworks give you control, but often require getting your hands dirty.</p>
+
+<p>Architect breaks down both those barriers.</p>
+
+<p>What if you love your theme, but just want the content layout of the homepage to be done your way? Architect solves that.</p>
+
+<p>What if you love your theme framework but want an easy way to build the content layouts without having to cut code? Architect solves that.</p>
+
+<p>With Architect you can build the layouts your theme doesn&rsquo;t provide - and all from one plugin. No longer do you need a plugin for sliders, another for magazine grids, another for tabbed content or another for displaying photo galleries.</p>
+
+<h3>How Architect works</h3>
+
+<p>Displaying content with Architect is made of two components: Panels and Blueprints.</p>
+
+<p>Panels allow you design a layout for the content itself.</p>
+
+<p>Blueprints lets you design a layout of how those panels wil be displayed on the page, e.g. grids, sliders etc.</p>
+
+<p>In Blueprints you also choose what content to display - e.g. posts, pages, galleries.</p>
+
+<p>This allows Panels to be easily reusable and cuts down on duplication of effort. You might design a panel that is used in a featured posts slider, but that panel may also be used to display the top story.</p>
+
+<p>You can then display those Blueprints using widgets, shortcodes, action hooks, template tags, Headway blocks and even the WP Gallery shortcode.</p>
+
+<h3>Why use Architect?</h3>
+
+<p>Architect greatly reduces the complexity of designing and developing methods to display your content. For example, if you are using the Twenty Thirteen and decide you want a 3x3 grid of excerpts to display on the home page, you would have to code a page template for that purpose.</p>
+
+<p>With Architect, you code the shell of the page template, but build the rest in Architect and paste one very simple line of code into your page template that calls and displays the Architect Blueprint.</p>
+
+<p>Blueprints can be displayed using widgets and shortcodes as well.</p>
+
+<p>You can even override the design of the WP Gallery shortcode with your own Blueprint.</p>
+
+<h2>Installation</h2>
+
+<ol>
+<li>Install and activate the plugin through the Plugins menu in WordPress.</li>
+</ol>
+
+
+<h2>Usage</h2>
+
+<p>There are several ways to display Architect Blueprints.</p>
+
+<ul>
+<li>Shortcode: [architect blueprint=&ldquo;yourblueprint&rdquo; ids=&ldquo;1,2,3,4,5&rdquo;]</li>
+<li>Template tag: echo pzarchitect(&lsquo;yourblueprint&rsquo;,&lsquo;1,2,3,4,5&rsquo;);</li>
+<li>Widget</li>
+<li>Headway Block</li>
+<li>Action hooks (Insert a hook in your theme page template, then hook Architect to it)</li>
+<li>Actions editor (Built into Architect, all you have to know is the name of the hook you want to use)</li>
+<li>WP Gallery shortcode override</li>
+<li>Page builder</li>
+</ul>
+
+
+<h2>Frequently Asked Questions</h2>
+
+<h3>What themes is Architect compatible with</h3>
+
+<p>Architect should work with any theme but some will take more effort than others, especially in terms of the look and layout. To that end, we provide the means to match CSS classes and create your own panel definitions.</p>
+
+<h3>Is Architect compatible with all plugins</h3>
+
+<p>The short answer is &ldquo;Unlikely&rdquo;. No plugin can hope to be compatible with all other plugins (there are more than 36,000 of them!) but we do aim to be compatible with the more popular ones. We will endeavour to rectify any incompatibilities found; however, it&rsquo;s also not uncommon for the root cause to be the conflicting plugin. Always make sure you are running the latest version of your plugins.</p>
+
+<h3>Is Architect WPML compatible</h3>
+
+<p>Yes. Architect has been succesfully tested with WPML.</p>
+
+<h3>Is Architect one of those &ldquo;page builder&rdquo; plugins I&rsquo;m hearing about</h3>
+
+<p>Architect is much more than a &ldquo;page builder&rdquo;, a popular genre of plugins. It includes a page builder as a method to display your Blueprints but Architect also provides six other ways to display your Blueprints. With Architect, the layouts are built independent of the page. How they are places on the page, and thus the page is built, is up to you. That could be shortcodes, widgets, template tags, action hooks or blocks (Headway).</p>
+
+<h3>Do you provide refunds</h3>
+
+<p>Yes! We&rsquo;re pretty flexible on refunds, allowing 60 days. But we would like you to make sure you&rsquo;ve done everything possible to get Architect to work to your requirements, especially seeking support on our help desk.</p>
+
+<h3>Is Architect for WordPress novices?</h3>
+
+<p>The short answer is &ldquo;No&rdquo;. We advise you get to know the theme you have chosen before embarking on the Architect adventure. Learn about posts, pages, taxonomies, custom post types, shortcodes and other more technical things like page templates, because ultimately, this is the language of Architect.</p>
+
+<h3>Do you have a demo version?</h3>
+
+<p>Yes. A &ldquo;lite&rdquo; version that displays only posts is available on request.</p>
+
+<h3>Does a licence have an expiry</h3>
+
+<p>Yes. 12 months.</p>
+
+<h3>How many sites can I install Architect on?</h3>
+
+<p>As per Headway licencing</p>
+
+<h3>Can I install Architect on client sites using my licence?</h3>
+
+<p>As per Headway licencing</p>
+
+<h3>If I deactivate Architect, will I lose all my Panels and Blueprints</h3>
+
+<p>No. We don&rsquo;t delete any of your data. In the future a method will be provided for you to remove all Architect data if you really need to.</p>
+
+<h2>Support</h2>
+
+<p>For support, please send an email to support@pizazzwp.com</p>
+
+<h2>Screenshots</h2>
+
+<h3>1. Architect Panel Designer showing magazine style article design</h3>
+
+<p><img src="http://ps.w.org/architect:-a-wp-content-layout-framework/assets/screenshot-1.png" alt="1. Architect Panel Designer showing magazine style article design" /></p>
+
+<h3>2. Post on front end using magazine style artcile design</h3>
+
+<p><img src="http://ps.w.org/architect:-a-wp-content-layout-framework/assets/screenshot-2.png" alt="2. Post on front end using magazine style artcile design" /></p>
+
+<h3>3. Architect Blueprint - Content selection.</h3>
+
+<p><img src="http://ps.w.org/architect:-a-wp-content-layout-framework/assets/screenshot-3.png" alt="3. Architect Blueprint - Content selection. " /></p>
+
+<h3>4. Architect Blueprint - Layout design</h3>
+
+<p><img src="http://ps.w.org/architect:-a-wp-content-layout-framework/assets/screenshot-4.png" alt="4. Architect Blueprint - Layout design" /></p>
+
+<h3>5. Slider example</h3>
+
+<p><img src="http://ps.w.org/architect:-a-wp-content-layout-framework/assets/screenshot-5.png" alt="5. Slider example" /></p>
+
+<h2>Changelog</h2>
+
+<h3>0.9.3.2</h3>
+
+<ul>
+<li><p>ADDED: Buttons and forms to directly log support requests.</p></li>
+<li><p>CHANGED: Each Blueprint now has a unique ID. This changes with every page refresh, so is for internal code use only. i.e. Don&rsquo;t try and use it with custom CSS</p></li>
+</ul>
+
+
+<h3>0.9.3.1</h3>
+
+<ul>
+<li>FIXED: Tweaking performance</li>
+<li>FIXED: Caching issue where some caches may not use updated CSS</li>
+<li>FIXED: Can now display the same Blueprint slider on the same page and nav will still work.</li>
+</ul>
+
+
+<h3>0.9.3</h3>
+
+<ul>
+<li><p>ADDED: Page Builder to WP Pages editor screen. This is a simplified way to add Blueprints to a specific page.</p></li>
+<li><p>CHANGED: Removed option for vertical thumbs slider since it&rsquo;s simply not working yet.</p></li>
+</ul>
+
+
+<h3>0.9.2.2</h3>
+
+<ul>
+<li><p>ADDED: Option to turn oiff query caching. Use if other caching is interfering</p></li>
+<li><p>FIXED: Sticky background default colour</p></li>
+<li>FIXED: Removed 100% height from sections coz breaking in some themes. Keep an eye out for dominoes</li>
+<li>FIXED: Masonry picking up wrong layout when in a shortcode</li>
+<li>FIXED: Focal point stopped work coz of get_post_meta quirk</li>
+<li>FIXED: WP Gallery override might look for non-existent gallery.</li>
+</ul>
+
+
+<h3>0.9.2.1</h3>
+
+<ul>
+<li>CHANGED: Rejigged Blueprint options. Pagination is now within Settings.</li>
+<li><p>CHANGED: Rejigged Panels options. Drag abd Drop designer is now first on that screen.</p></li>
+<li><p>FIXED: Thumbnails not scaling when theme is Headway</p></li>
+<li>FIXED: Panel Design not visible in Panels editing.</li>
+</ul>
+
+
+<h3>0.9.2</h3>
+
+<ul>
+<li>ADDED: Option when Feature is in content, to show it in the excerpt, content or both.</li>
+<li>ADDED: Option to only show excerpts when there is an author created one.</li>
+<li>ADDED: Duplicate button on Panels and Blueprints list screen</li>
+<li><p>ADDED: Number type and formatting to custom fields</p></li>
+<li><p>FIXED: Option to make content 100% wide when no feature wasn&rsquo;t working</p></li>
+<li>FIXED: WPML compatibility issue</li>
+<li>FIXED: Validation of Panel and Blueprint short names had stopped working</li>
+<li>FIXED: Issues with CSS specificity that affected Architect Blueprints in shortcodes in other Architect generated content e.g. single posts.</li>
+<li>FIXED: Bug when server is case sensitive</li>
+</ul>
+
+
+<h3>0.9.1.3</h3>
+
+<ul>
+<li>FIXED: Blueprint options screen may have broken with previous release. You may need to reselect Layout Type</li>
+</ul>
+
+
+<h3>0.9.1.2</h3>
+
+<ul>
+<li>CHANGED: Replaced textual Layout Types selection with icons</li>
+<li><p>CHANGED: Dropped purple and red/blue admin backgrounds</p></li>
+<li><p>FIXED: Query transient not always working for non-admins</p></li>
+</ul>
+
+
+<h3>0.9.1.1</h3>
+
+<ul>
+<li>FIXED: Snippets disappeared</li>
+</ul>
+
+
+<h3>0.9.1</h3>
+
+<ul>
+<li>ADDED: Content source type NextGen Gallery</li>
+<li>ADDED: Dimensions options for thumbnails</li>
+<li><p>ADDED: Option for thumb nav skip buttons to be square or circle</p></li>
+<li><p>CHANGED: Sections to use divs for HTML validity</p></li>
+<li>CHANGED: Removed use of flexbox in layout coz of IE10 incompatibility issues.</li>
+<li>CHANGED: Getting Started to Help &amp; Support page</li>
+<li>CHANGED: Layout types now include sliders and tabbed.</li>
+<li>CHANGED: Pagination now its own item in general</li>
+<li>CHANGED: Removed Navigator from general and is now selected when Sliders or Tabbed is layout type</li>
+<li>CHANGED: Panel margins in Blueprints to include units selection. This currently renders Architect not working in IE8 (2% marketshare)</li>
+<li>CHANGED: Only one click to set focal point now</li>
+<li>CHANGED: Special cursor for focal point</li>
+<li><p>CHANGED: Vastly more user friendly content source selection</p></li>
+<li><p>FIXED: Focal point stopped working in Featured Image selector.</p></li>
+<li>FIXED : D.A.R bug in admin metabox tabs where the first ones weren&rsquo;t showing sometimes.</li>
+<li>FIXED: Focal Point accuracy on media viewer</li>
+<li>FIXED: A few small issues in sliders</li>
+</ul>
+
+
+<h3>0.9.0.2</h3>
+
+<ul>
+<li>CHANGED: Custom query overwrites $wp_query. This makes is_main_query() work, but could have other serious consequences.</li>
+</ul>
+
+
+<h3>0.9.0.1</h3>
+
+<ul>
+<li>CHANGED: Blueprint field in Actions Editor to a dropdown</li>
+</ul>
+
+
+<h3>0.9.0</h3>
+
+<ul>
+<li>ADDED: Layout mode Tabular (Many thanks to Matt Davis for this idea)</li>
+<li>ADDED: Layout mode Accordion.</li>
+<li>ADDED: Navigation type Labels which lets you give specific titles.</li>
+<li>ADDED: Option to set typography units as px, em or rem</li>
+<li><p>ADDED: Meta fields, Accordion titles and Navigation Labels can now parse shortcodes. Use shortcodes for any PHP you want to run. In Nav Label shortcodes, use global $pzarc_post_id to get post ID.</p></li>
+<li><p>CHANGED: Refactored to allow easy creation of a Lite version</p></li>
+<li>CHANGED: Option to deactivate wrapping of Panel header/footer components.</li>
+<li><p>CHANGED: Rejigged the layout of the Blueprints settings with Content selection first</p></li>
+<li><p>FIXED: Uses classes from Styling Options as it should have already been doing</p></li>
+<li><p>UPDATED: Spectrum js to 1.5.2 (one of the colour pickers)</p></li>
+</ul>
+
+
+<h3>0.8.8</h3>
+
+<ul>
+<li>CHANGED: Upgraded Slick.js to 1.3.15</li>
+<li>FIXED: Cleaned up a few PHP warnings and notices in WP admin (Thanks, Corey)</li>
+</ul>
+
+
+<h3>0.8.7</h3>
+
+<ul>
+<li>ADDED: Tools menu</li>
+<li>ADDED: Rebuild CSS cache in Tools menu</li>
+<li>ADDED: Quick Start guide to About screen</li>
+<li>ADDED: Lots more help</li>
+<li>ADDED: Styling for active navigator item</li>
+<li>ADDED: Border radius styling to navigator items</li>
+<li>ADDED: Notice to clear CSS cache.</li>
+<li>CHANGED: Removed excess files causing the zip to be so big</li>
+<li>CHANGED: CSS is cached in db and single styles file then created.</li>
+<li>CHANGED: Titles and meta at start of components are now wrapped in a header tag to align with WP methods</li>
+<li>CHANGED: Meta at end of components are now wrapped in a footer tag to align with WP methods</li>
+<li>FIXED: Widgets not using short name</li>
+<li>FIXED: Masonry layout broken by css compression</li>
+<li>FIXED: Background CSS on thumbs nav not applied</li>
+<li><p>FIXED: Font weight not being applied in stylings</p></li>
+<li><p>NOTE: LOTS of work still required on navigator especially thumbs and vertical</p></li>
+</ul>
+
+
+<h3>0.8.6</h3>
+
+<ul>
+<li>CHANGED: Improved js on blueprints admin</li>
+<li>ADDED: Vertical navigator (still being refined)</li>
+<li>ADDED: Option for last slide behaviour</li>
+<li>CHANGED: Hide next/previous arrows on first/last slide</li>
+<li>CHANGED: CSS is now compressed before saving</li>
+</ul>
+
+
+<h3>0.8.5.4</h3>
+
+<ul>
+<li>FIXED: Nav arrows disappearing in slider</li>
+<li>CHANGED: Sliders will use Headway Alternate Title if available</li>
+</ul>
+
+
+<h3>0.8.5.3</h3>
+
+<ul>
+<li>CHANGED: Custom fields show some hidden fields, such as those in Woo Commerce</li>
+</ul>
+
+
+<h3>0.8.5.2</h3>
+
+<ul>
+<li>CHANGED: Using transients to improve performance</li>
+</ul>
+
+
+<h3>0.8.5.1</h3>
+
+<ul>
+<li>ADDED: Option to have no navigator showing when Navigator is navigation type.</li>
+<li>FIXED: Navigator interval being ignored</li>
+<li>FIXED: Navigator Pager clicks affecting all sliders on a page</li>
+</ul>
+
+
+<h3>0.8.5.0</h3>
+
+<ul>
+<li>FIXED: Custom fields not displaying</li>
+<li>FIXED: Dummy content navigator thumbs now match featured image</li>
+<li>CHANGED: Made navs extensible</li>
+</ul>
+
+
+<h3>0.8.4.8</h3>
+
+<ul>
+<li>FIXED: Bug with saving panels giving message about missing functions. Sorry about that!</li>
+<li>CHANGED: Modified how content types are managed to enable extensibility. i.e. you can code up your own content types and plug them into Architect.</li>
+</ul>
+
+
+<h3>0.8.4.7</h3>
+
+<ul>
+<li>UPDATED Redux metaboxes. Seem to display right now.</li>
+</ul>
+
+
+<h3>0.8.4.5</h3>
+
+<ul>
+<li>ADDED: Dummy content type. Seriously!! Now your site doesn&rsquo;t need content to begin development. (Note: it&rsquo;s not yet working with pagination or navigator. These will happen  in time. It won&rsquo;t work with archive type pages and might not ever - dont' know if I&rsquo;ve got enough tricks left up my sleeve!)</li>
+</ul>
+
+
+<h3>0.8.4.3</h3>
+
+<ul>
+<li>ADDED: Automatically generates and uses retina versions of images!</li>
+<li>FIXED: Various bugs in panel designer.</li>
+</ul>
+
+
+<h3>0.8.4</h3>
+
+<ul>
+<li>CHANGED: Image component is now called Feature.</li>
+<li>ADDED: Option to display Video as the Feature</li>
+<li>ADDED: Video code field added to Posts, Pages and Snippets.</li>
+</ul>
+
+
+<h3>0.8.3.1</h3>
+
+<ul>
+<li>FIXED: Notice that would go away</li>
+<li>FIXED: Background images not showing when components position bottom</li>
+<li>CHANGED: Prettied up the panel previewer</li>
+</ul>
+
+
+<h3>0.8.3</h3>
+
+<ul>
+<li>Updated Slick.js slider</li>
+<li>CHANGED: Merged image and background images settings and controls into one making image control vastly easier. HOWEVER, THIS WILL BREAK SOME SETTINGS IN PANELS AND BLUEPRINTS THAT YOU WILL NEED TO FIX UP. A message will show in WP Admin to explain.</li>
+<li>CHANGED: Panel selector in the Blueprints is now panel slug based rather than panel ID. This is necessary for export/import to work smoothly.</li>
+<li>CHANGED: Updated About page with infographic</li>
+</ul>
+
+
+<h3>0.8.1</h3>
+
+<ul>
+<li>Refactored the renderer to be extensible</li>
+</ul>
+
+
+<h3>0.8.0</h3>
+
+<ul>
+<li>PUBLIC BETA</li>
+</ul>
+
+
+<h3>0.7.9.7</h3>
+
+<ul>
+<li>FIXED: Problem where WP keeps thinking Architect needs updating</li>
+</ul>
+
+
+<h3>0.7.9</h3>
+
+<ul>
+<li>FIXED: Nav by thumbs</li>
+<li>FIXED: Responsive content font sizing</li>
+<li>ADDED: Heaps of HW Design Mode stylings</li>
+<li>ADDED: Page title option to HW VE overrides</li>
+</ul>
+
+
+<h3>0.7.8</h3>
+
+<ul>
+<li>ADDED: Headway Visual Editor option for post ID overrides</li>
+<li>ENABLED: Custom taxonomies to show in meta area.</li>
+</ul>
+
+
+<h3>0.7.7</h3>
+
+<ul>
+<li>ENABLED: Lightbox functionality</li>
+</ul>
+
+
+<h3>0.7.6</h3>
+
+<ul>
+<li>FIXED: Left/right alignment of background images</li>
+<li>ENABLED: Excerpt options - length, truncation indicator, link text</li>
+</ul>
+
+
+<h3>0.7.5</h3>
+
+<ul>
+<li>First pre beta</li>
+</ul>
+
+
+<h3>0.6</h3>
+
+<ul>
+<li>Switched to Redux for metaboxes and options pages</li>
+</ul>
+
+
+<h3>0.5</h3>
+
+<ul>
+<li>A new name! Architect</li>
+</ul>
+
+
+<h2>Upgrade Notice</h2>
+
+<p>Various fixes and enhancements. See changelog</p>
