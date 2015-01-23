@@ -36,52 +36,57 @@
       if (!(class_exists('ReduxFramework') || class_exists('ReduxFrameworkPlugin'))) {
         add_action('admin_notices', array($this, 'missing_redux_admin_notice'));
 
+        // TODO: Add an alternativeArchitect Admin screen.
+        add_action('admin_menu', array($this, 'admin_menu_no_redux'));
+        require_once(PZARC_PLUGIN_APP_PATH . '/shared/includes/php/BFI-thumb-forked/BFI_Thumb.php');
+        require_once(PZARC_PLUGIN_APP_PATH . '/shared/includes/php/pzwp-focal-point/pzwp-focal-point.php');
+
         return;
-      }
-      add_action('admin_head', array($this, 'admin_head'));
-      add_action('admin_menu', array($this, 'admin_menu'));
-      add_action('admin_enqueue_scripts', array($this, 'admin_enqueue'));
-      add_filter('admin_body_class', array(&$this, 'add_admin_body_class'));
+      } else {
+        add_action('admin_head', array($this, 'admin_head'));
+        add_action('admin_menu', array($this, 'admin_menu'));
+        add_action('admin_enqueue_scripts', array($this, 'admin_enqueue'));
+        add_filter('admin_body_class', array(&$this, 'add_admin_body_class'));
 
 
-      // TODO: Make up some easily editable panel defs - prob have to be a custom content type
-      //       require_once PZARC_PLUGIN_PATH . '/admin/php/arc-options-def-editor.php';
+        // TODO: Make up some easily editable panel defs - prob have to be a custom content type
+        //       require_once PZARC_PLUGIN_PATH . '/admin/php/arc-options-def-editor.php';
 
-      //@TODO: need a bit of screen dependency on this?
+        //@TODO: need a bit of screen dependency on this?
 
-      require_once PZARC_PLUGIN_APP_PATH . '/admin/php/class_arc_panels_layouts.php';
-      require_once PZARC_PLUGIN_APP_PATH . '/admin/php/class_arc_blueprints_layouts.php';
-      require_once PZARC_PLUGIN_APP_PATH . '/admin/php/arc-save-process.php';
+        require_once PZARC_PLUGIN_APP_PATH . '/admin/php/class_arc_panels_layouts.php';
+        require_once PZARC_PLUGIN_APP_PATH . '/admin/php/class_arc_blueprints_layouts.php';
+        require_once PZARC_PLUGIN_APP_PATH . '/admin/php/arc-save-process.php';
 
 
-      //TODO:     require_once PZARC_PLUGIN_PATH . '/admin/arc-widget.php';
+        //TODO:     require_once PZARC_PLUGIN_PATH . '/admin/arc-widget.php';
 
-      // This one is really only needed on posts, pages and snippets, so could conditionalise its load
-      require_once PZARC_PLUGIN_APP_PATH . '/admin/php/class_arc_misc_metaboxes.php';
-      require_once PZARC_PLUGIN_APP_PATH . '/shared/includes/php/redux-custom-fields/loader.php';
-      require_once PZARC_PLUGIN_APP_PATH . '/shared/includes/php/redux-extensions/loader.php';
+        // This one is really only needed on posts, pages and snippets, so could conditionalise its load
+        require_once PZARC_PLUGIN_APP_PATH . '/admin/php/class_arc_misc_metaboxes.php';
+        require_once PZARC_PLUGIN_APP_PATH . '/shared/includes/php/redux-custom-fields/loader.php';
+        require_once PZARC_PLUGIN_APP_PATH . '/shared/includes/php/redux-extensions/loader.php';
 
-      $misc_metaboxes    = new arc_Misc_metaboxes();
-      $panel_layout      = new arc_Panels_Layouts();
-      $content_blueprint = new arc_Blueprints_Layouts();
+        $misc_metaboxes    = new arc_Misc_metaboxes();
+        $panel_layout      = new arc_Panels_Layouts();
+        $content_blueprint = new arc_Blueprints_Layouts();
 
-      require_once PZARC_PLUGIN_APP_PATH . '/admin/php/arc-options.php';
-      require_once PZARC_PLUGIN_APP_PATH . '/admin/php/arc-options-styling.php';
-      require_once PZARC_PLUGIN_APP_PATH . '/admin/php/arc-options-actions.php';
+        require_once PZARC_PLUGIN_APP_PATH . '/admin/php/arc-options.php';
+        require_once PZARC_PLUGIN_APP_PATH . '/admin/php/arc-options-styling.php';
+        require_once PZARC_PLUGIN_APP_PATH . '/admin/php/arc-options-actions.php';
 
-      // TODO: this needs to be dumberized so can work on dev defined panels and content. But why is these here anyway??
+        // TODO: this needs to be dumberized so can work on dev defined panels and content. But why is these here anyway??
 //      require_once PZARC_PLUGIN_APP_PATH . '/shared/architect/php/content-types/generic/class_arc_panel_generic.php';
 
 
-      require_once(PZARC_PLUGIN_APP_PATH . '/shared/includes/php/BFI-thumb-forked/BFI_Thumb.php');
-      require_once(PZARC_PLUGIN_APP_PATH . '/shared/includes/php/pzwp-focal-point/pzwp-focal-point.php');
+        require_once(PZARC_PLUGIN_APP_PATH . '/shared/includes/php/BFI-thumb-forked/BFI_Thumb.php');
+        require_once(PZARC_PLUGIN_APP_PATH . '/shared/includes/php/pzwp-focal-point/pzwp-focal-point.php');
 
-
+      }
     }
 
     function missing_redux_admin_notice()
     {
-      echo '<div id="message" class="error"><h3>'.__('Architect requires Redux Framework','pzarchitect').'</h3><p><strong>' . __('One final step in installing Architect.') . '</strong><br>' . __('It cannot function without the Redux Framework plugin. You need to install and/or activate Redux.') . '<br>' . __('Redux is the backbone of Architect, providing all the necessary code libraries for Architect\'s fields and options.') . '<br>' . __('There should be another message with a link to make installing and activating Redux easy. If you can\'t find it, contact PizazzWP support.') . '</p></div>';
+      echo '<div id="message" class="error"><h3>' . __('Architect requires Redux Framework', 'pzarchitect') . '</h3><p><strong>' . __('One final step in installing Architect.') . '</strong><br>' . __('It cannot function without the Redux Framework plugin. You need to install and/or activate Redux.') . '<br>' . __('Redux is the backbone of Architect, providing all the necessary code libraries for Architect\'s fields and options.') . '<br>' . __('There should be another message with a link to make installing and activating Redux easy. If you can\'t find it, contact PizazzWP support.') . '</p></div>';
     }
 
 
@@ -105,12 +110,13 @@
             $classes .= ' arc-bgimage arc-bg-' . $arc_bg;
           }
           $classes .= ' ' . $screen->post_type;
-
           break;
       }
 
+
       return $classes;
     }
+
 
     function admin_enqueue($hook)
     {
@@ -146,6 +152,24 @@
         wp_enqueue_script('js-tabby', PZARC_PLUGIN_APP_URL . '/shared/includes/js/tabby/dist/js/tabby.min.js', array('jquery'));
         wp_enqueue_style('css-tabby', PZARC_PLUGIN_APP_URL . '/shared/includes/js/tabby/dist/css/tabby.min.css');
       }
+
+      switch ($screen->id) {
+        case 'architect_page__architect_options':
+        case 'architect_page__architect_styling':
+        case 'architect_page__architect_actions_editor':
+        case 'edit-arc-panels':
+        case 'edit-arc-blueprints':
+        case 'arc-panels':
+        case 'arc-blueprints':
+        case 'architect_page_pzarc_tools':
+        case 'architect_page_pzarc_about':
+
+          wp_enqueue_script('js-freshdesk', 'http://assets.freshdesk.com/widget/freshwidget.js', false, true);
+          wp_enqueue_script('js-freshdesk-support', PZARC_PLUGIN_APP_URL . '/admin/js/freshdesk-support.js', false, true);
+          break;
+      }
+
+
     }
 
     function admin_menu()
@@ -173,6 +197,24 @@
         // Shift those last  to the top
         array_unshift($submenu[ 'pzarc' ], array_pop($submenu[ 'pzarc' ]));
       }
+
+    }
+
+    function admin_menu_no_redux()
+    {
+//      global $pzarc_menu, $pizazzwp_updates;
+//      if (!$pzarc_menu) {
+      //add_menu_page( $page_title,  $menu_title, $capability,   $menu_slug, $function,    $icon_url, $position );
+      $pzarc_menu = add_menu_page('About Architect', 'Architect', 'edit_posts', 'pzarc', 'pzarc_about', PZARC_PLUGIN_APP_URL . 'wp-icon.png');
+//        add_submenu_page(
+//            'pzarc', 'Help & Support', '<span class="dashicons dashicons-editor-help size-small"></span>Help & Support', 'manage_options', 'pzarc_support', array($this,
+//                                                                                                                                                                  'pzarc_support')
+//        );
+//
+//        global $submenu;
+//        // Shift those last  to the top
+//        array_unshift($submenu[ 'pzarc' ], array_pop($submenu[ 'pzarc' ]));
+//      }
 
     }
 
@@ -290,7 +332,7 @@
                         </ol>
                         </div>
                         <h3>' . __('Video version') . '</h3>
-                        <p><a href="//fast.wistia.net/embed/iframe/46fxmn8h0l?popover=true" class="wistia-popover[height=405,playerColor=7b796a,width=720]"><img src="'.PZARC_DOCUMENTATION_URL.'/assets/images/quick-start.jpg'.'" alt="Building and Displaying Your First Architect Project"></a>
+                        <p><a href="//fast.wistia.net/embed/iframe/46fxmn8h0l?popover=true" class="wistia-popover[height=405,playerColor=7b796a,width=720]"><img src="' . PZARC_DOCUMENTATION_URL . '/assets/images/quick-start.jpg' . '" alt="Building and Displaying Your First Architect Project"></a>
 <script charset="ISO-8859-1" src="//fast.wistia.com/assets/external/popover-v1.js"></script></p>
 <p>' . __('Style wise, it may not look that great yet. To tidy it up, start exploring the Styling settings for Panels and Blueprints') . '</p>
                         <p>' . __('There are a lot of settings in Architect that have all sorts of affects on your layouts and designs. Explore, experiment and have fun!') . '</p>
@@ -331,23 +373,30 @@
                 <div class="tabs-pane " id="how">
                     <h2>' . __('Usage') . '</h2>
 
-                    <h3>'.__('Shortcode','pzarchitect').'</h3>
+                    <h3>' . __('Shortcode', 'pzarchitect') . '</h3>
                     <p>' . __('For example, using shortcodes, you might have:') . '</p>
                     <p style="font-weight:bold">[architect blueprint="' . __('blog-page-layout') . '"]</p>
                     <p style="font-weight:bold">[architect blueprint="' . __('thumb-gallery') . '" ids="321,456,987,123,654,789"]</p>
 
-                    <h3>'.__('Template tag','pzarchitect').'</h3>
+                    <h3>' . __('Template tag', 'pzarchitect') . '</h3>
                     <p style="font-weight:bold">pzarchitect(\'' . __('blog-page-layout') . '\')</p>
                     <p style="font-weight:bold">pzarchitect(\'' . __('thumb-gallery') . '\', \'321,456,987,123,654,789\')</p>
-                    <h3>'.__('Widget','pzarchitect').'</h3>
-                    <h3>'.__('Headway Block','pzarchitect').'</h3>
-                    <h3>'.__('Action Hooks','pzarchitect').'</h3>
-                    <h3>'.__('Actions Editor','pzarchitect').'</h3>
-                    <h3>'.__('WP Gallery Shortcode Override','pzarchitect').'</h3>
+                    <h3>' . __('Widget', 'pzarchitect') . '</h3>
+                    <h3>' . __('Headway Block', 'pzarchitect') . '</h3>
+                    <h3>' . __('Action Hooks', 'pzarchitect') . '</h3>
+                    <h3>' . __('Actions Editor', 'pzarchitect') . '</h3>
+                    <h3>' . __('WP Gallery Shortcode Override', 'pzarchitect') . '</h3>
                 </div>
                 <div class="tabs-pane " id="help">
                     <h2>' . __('Support') . '</h2>
                     <h4>' . __('Currently installed version') . ': ' . PZARC_VERSION . '</h4>
+          <script type="text/javascript" src="http://assets.freshdesk.com/widget/freshwidget.js"></script>
+            <style type="text/css" media="screen, projection">
+        @import url(http://assets.freshdesk.com/widget/freshwidget.css);
+            </style>
+            <iframe class="freshwidget-embedded-form" id="freshwidget-embedded-form" src="https://pizazzwp.freshdesk.com/widgets/feedback_widget/new?&widgetType=embedded&formTitle=Submit+a+help+request&screenshot=no&searchArea=no" scrolling="no" height="850px" width="90%" frameborder="0"  style="margin:20px 10px 10px 40px;background:#eee;overflow-y: auto;">
+            </iframe>
+
                 </div>
                 <div class="tabs-pane " id="shout">
                     <h2>' . __('Shoutouts') . '</h2>
@@ -410,7 +459,7 @@
   {
     global $wpdb;
     if (!(isset($_GET[ 'post' ]) || isset($_POST[ 'post' ]) || (isset($_REQUEST[ 'action' ]) && 'pzarc_duplicate_post_as_draft' == $_REQUEST[ 'action' ]))) {
-      wp_die(__('No post to duplicate has been supplied!','pzarchitect'));
+      wp_die(__('No post to duplicate has been supplied!', 'pzarchitect'));
     }
 
     /*
@@ -462,7 +511,7 @@
           'post_parent'    => $post->post_parent,
           'post_password'  => $post->post_password,
           'post_status'    => 'draft',
-          'post_title'     => __('(DUPLICATE) ','pzarchitect') . $post->post_title,
+          'post_title'     => __('(DUPLICATE) ', 'pzarchitect') . $post->post_title,
           'post_type'      => $post->post_type,
           'to_ping'        => $post->to_ping,
           'menu_order'     => $post->menu_order
@@ -523,11 +572,35 @@
   function pzarc_duplicate_post_link($actions, $post)
   {
     if (current_user_can('edit_posts')) {
-      $actions[ 'duplicate' ] = '<a href="admin.php?action=pzarc_duplicate_post_as_draft&amp;post=' . $post->ID . '" title="'.__('Duplicate this item','pzarchitect').'" rel="permalink">'.__('Duplicate','pzarchitect').'</a>';
+      $actions[ 'duplicate' ] = '<a href="admin.php?action=pzarc_duplicate_post_as_draft&amp;post=' . $post->ID . '" title="' . __('Duplicate this item', 'pzarchitect') . '" rel="permalink">' . __('Duplicate', 'pzarchitect') . '</a>';
     }
 
     return $actions;
   }
+
   //  add_filter( 'arc-panels_row_actions', 'pzarc_duplicate_post_link', 10, 2 );
   //  add_filter( 'arc-blueprints_row_actions', 'pzarc_duplicate_post_link', 10, 2 );
   //  add_filter( 'pz_snippets_row_actions', 'pzarc_duplicate_post_link', 10, 2 );
+
+  function pzarc_about()
+  {
+    global $title;
+
+    echo '<div class = "wrap">
+
+			<!--Display Plugin Icon, Header, and Description-->
+			<div class = "icon32" id = "icon-users"><br></div>
+        <div class="pzarc-about-box" style="background:#f9f9f9;padding:20px;border:1px solid #ddd;">
+
+			<h2>' . $title . '</h2>
+			<h3>Architect is installed but not usable accessible WP Admin until Redux is installed/activated.</h3>
+        <script type="text/javascript" src="http://assets.freshdesk.com/widget/freshwidget.js"></script>
+            <style type="text/css" media="screen, projection">
+      @import url(http://assets.freshdesk.com/widget/freshwidget.css);
+            </style>
+            <iframe class="freshwidget-embedded-form" id="freshwidget-embedded-form" src="https://pizazzwp.freshdesk.com/widgets/feedback_widget/new?&widgetType=embedded&formTitle=Submit+a+help+request&screenshot=no&searchArea=no" scrolling="no" height="850px" width="90%" frameborder="0"  style="margin:20px 10px 10px 40px;background:#eee;overflow-y: auto;">
+            </iframe>
+
+			</div></div>';
+
+  }

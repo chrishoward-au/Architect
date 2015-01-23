@@ -467,20 +467,7 @@
   }
 
 
-  /**
-   *
-   * Custom function for the callback referenced above
-
-   */
-  if (!function_exists('redux_my_custom_field')):
-    function redux_my_custom_field($field, $value)
-    {
-      print_r($field);
-      print_r($value);
-    }
-  endif;
-
-  /**
+   /**
    *
    * Custom function for the callback validation referenced above
    **/
@@ -509,17 +496,4 @@
       return $return;
     }
   endif;
-  // Redux tracking
-  if (!function_exists('pzarc_redux_tracking')) {
-    function pzarc_redux_tracking($options)
-    {
-      $opt                                                       = array();
-      $options[ 'DqDE7uzWFMdHsJsRIjveviQBVuE3Q75C03YLUt7rhVw=' ] = true;
 
-      // var_dump($options);
-      return $options;
-    }
-
-    add_filter('redux/tracking/developer', 'pzarc_redux_tracking');
-
-  }

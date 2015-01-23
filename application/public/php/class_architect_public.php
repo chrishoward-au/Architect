@@ -102,6 +102,7 @@
     }
 
 
+
     /**
      * @param $overrides
      * @param $caller
@@ -224,8 +225,16 @@
       $use_hw_css = (!empty($_architect_options[ 'architect_use-hw-css' ]) ? 'use-hw-css' : null);
 
       /** BLUEPRINT */
-      /** OPEN THE HTML  */
-      echo '<div id="pzarc-blueprint_' . $this->build->blueprint[ '_blueprints_short-name' ] . '" class="pzarchitect ' . $use_hw_css . ' pzarc-blueprint pzarc-blueprint_' . $this->build->blueprint[ '_blueprints_short-name' ] . ' nav-' . $bp_nav_type . ' icomoon ' . ($bp_nav_type === 'navigator' ? 'navpos-' . $bp_nav_pos : '') . '">';
+      /**
+       *
+       *
+       * OPEN THE HTML
+       *
+       *
+       *
+       *
+       */
+      echo '<div id="' . $this->build->blueprint[ 'uid' ] . '" class="pzarchitect ' . $use_hw_css . ' pzarc-blueprint pzarc-blueprint_' . $this->build->blueprint[ '_blueprints_short-name' ] . ' nav-' . $bp_nav_type . ' icomoon ' . ($bp_nav_type === 'navigator' ? 'navpos-' . $bp_nav_pos : '') . '">';
 
       /** Page title */
       echo apply_filters('arc_page_title', self::display_page_title($this->build->blueprint[ '_blueprints_page-title' ], array('category' => $_architect_options[ 'architect_language-categories-archive-pages-title' ],
@@ -429,23 +438,25 @@
     {
       $return_val = '';
       if ($bp_nav_type === 'navigator') {
-        $slider                = array();
-        $slider[ 'class' ]     = '';
-        $slider[ 'dataid' ]    = '';
-        $slider[ 'datatype' ]  = '';
+        $slider               = array();
+        $slider[ 'class' ]    = '';
+        $slider[ 'dataid' ]   = '';
+        $slider[ 'datauid' ]  = '';
+        $slider[ 'datatype' ] = '';
+
         $slider[ 'class' ]     = ' arc-slider-container slider arc-slider-container-' . $bp_shortname;
         $slider[ 'dataid' ]    = ' data-sliderid="' . $bp_shortname . '"';
+        $slider[ 'datauid' ]   = ' data-bpuid="' . $this->build->blueprint[ 'uid' ] . '"';
         $slider[ 'datatype' ]  = ' data-navtype="' . $bp_nav_type . '"';
         $slider[ 'datatrans' ] = ' data-transtype="' . $bp_transtype . '"';
-
 
         $duration    = $this->build->blueprint[ '_blueprints_transitions-duration' ] * 1000;
         $interval    = $this->build->blueprint[ '_blueprints_transitions-interval' ] * 1000;
         $skip_thumbs = $this->build->blueprint[ '_blueprints_navigator-skip-thumbs' ];
         $no_across   = $this->build->blueprint[ '_blueprints_section-0-columns-breakpoint-1' ];
 
-        $is_vertical = (!in_array($this->build->blueprint[ '_blueprints_navigator' ],array('thumbs',
-                                                                                           'none')) && ('left' === $this->build->blueprint[ '_blueprints_navigator-position' ] || 'right' === $this->build->blueprint[ '_blueprints_navigator-position' ])) ? 'true' : 'false';
+        $is_vertical = (!in_array($this->build->blueprint[ '_blueprints_navigator' ], array('thumbs',
+                                                                                            'none')) && ('left' === $this->build->blueprint[ '_blueprints_navigator-position' ] || 'right' === $this->build->blueprint[ '_blueprints_navigator-position' ])) ? 'true' : 'false';
 
         $infinite = (!empty($this->build->blueprint[ '_blueprints_transitions-infinite' ]) && 'infinite' === $this->build->blueprint[ '_blueprints_transitions-infinite' ]) ? 'true' : 'false';
 
@@ -456,7 +467,7 @@
           $return_val .= '<button type="button" class="pager arrow-right icon-uniE60D"></button>';
         }
 //          //TODO: Should the bp name be in the class or ID?
-        $return_val .= '<div class="pzarc-sections pzarc-sections_' . $bp_shortname . ' pzarc-is_' . $caller . $slider[ 'class' ] . '"' . $slider[ 'dataid' ] . $slider[ 'datatype' ] . $slider[ 'dataopts' ] . $slider[ 'datatrans' ] . '>';
+        $return_val .= '<div class="pzarc-sections pzarc-sections_' . $bp_shortname . ' pzarc-is_' . $caller . $slider[ 'class' ] . '"' . $slider[ 'dataid' ] . $slider[ 'datauid' ] . $slider[ 'datatype' ] . $slider[ 'dataopts' ] . $slider[ 'datatrans' ] . '>';
       } else {
         $return_val .= '<div class="pzarc-sections pzarc-sections_' . $bp_shortname . ' pzarc-is_' . $caller . '">';
       }

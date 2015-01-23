@@ -1157,3 +1157,6 @@ body.arc-panels * {
     text-align: center;
     text-transform: capitalize;
     font-size: 15px; }
+
+#freshwidget-button {
+  top: 30px; }

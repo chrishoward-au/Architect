@@ -452,6 +452,15 @@
 
   function pzarc_get_posts_in_post_type($pzarc_post_type = 'arc-blueprints', $use_shortname = false)
   {
+//    // No point doing this if not on a screen that can use it.
+// Except it didn't work!
+//    if (!function_exists('get_current_screen')) {
+//      return array();
+//    }
+//    // No point doing this if not on a screen that can use it.
+    if (!is_admin()) {
+      return array();
+    }
     $args                 = array(
         'posts_per_page'   => -1,
         'orderby'          => 'post_title',

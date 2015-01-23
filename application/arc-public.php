@@ -97,7 +97,7 @@
           $filename      = PZARC_CACHE_URL . '/pzarc_blueprint_' . $k . '.css';
           $filename_path = PZARC_CACHE_PATH . '/pzarc_blueprint_' . $k . '.css';
           if (file_exists($filename_path)) {
-            wp_register_style('pzarc_css_blueprint_' . $k, $filename);
+            wp_register_style('pzarc_css_blueprint_' . $k, $filename,false,filemtime($filename_path));
           } else {
             echo '<p class="message-warning">' . __('Oops! Could not find Architect CSS cache file: pzarc_blueprint_', 'pzarchitect') . $k . '.css. ' . __('Please go to WP Admin Architect > Tools and rebuild the CSS cache and try again.', 'pzarchitect') . '</p>';
           }
@@ -109,7 +109,7 @@
           $filename      = PZARC_CACHE_URL . '/pzarc_panel_' . $k . '.css';
           $filename_path = PZARC_CACHE_PATH . '/pzarc_panel_' . $k . '.css';
           if (file_exists($filename_path)) {
-            wp_register_style('pzarc_css_panel_' . $k, $filename);
+            wp_register_style('pzarc_css_panel_' . $k, $filename,false,filemtime($filename_path));
           } else {
             echo '<p class="message-warning">' . __('Oops! Could not find Architect CSS cache file: pzarc_panel_', 'pzarchitect') . $k . '.css. ' . __('Please go to WP Admin Architect > Tools and rebuild the CSS cache and try again.', 'pzarchitect') . '</p>';
           }
@@ -335,9 +335,11 @@
         // might need this... don't know
         if (is_main_query() || in_the_loop() || $caller === 'shortcode') {
         }
-        // Cleanup
-        unset ($architect);
       }
+      // Cleanup
+      remove_all_actions('arc_top_left_navigation_' . $architect->build->blueprint[ '_blueprints_short-name' ]);
+      remove_all_actions('arc_bottom_right_navigation_' . $architect->build->blueprint[ '_blueprints_short-name' ]);
+      unset ($architect);
     }
 
     // Tell WP to resume using the main query just in case we might have accidentally left another query active. (0.9.0.2 This might be our saviour!)

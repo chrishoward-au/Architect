@@ -1,15 +1,18 @@
 <?php
-/**
- * Project pizazzwp-architect.
- * File: arc-cpt-panels.php
- * User: chrishoward
- * Date: 20/10/14
- * Time: 10:45 PM
- */
+  /**
+   * Project pizazzwp-architect.
+   * File: arc-cpt-panels.php
+   * User: chrishoward
+   * Date: 20/10/14
+   * Time: 10:45 PM
+   */
 
   if (!post_type_exists('arc-panels') && !function_exists('create_panels_post_type')) {
-    add_action('init', 'create_panels_post_type');
-
+//    if (is_admin() && !(class_exists('ReduxFramework'))) {
+//      // we don't want to load blueprints type if redux not around
+//    } else {
+      add_action('init', 'create_panels_post_type');
+//    }
     function create_panels_post_type()
     {
       $labels = array(

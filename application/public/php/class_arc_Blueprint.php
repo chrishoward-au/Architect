@@ -25,6 +25,7 @@
       // strip out string text containment characters incase user enters them
       $this->name = str_replace(array('\'', '\"'), '', $name);
 
+
       self::get_blueprint();
 
       if (empty($this->blueprint['err_msg'])) {
@@ -59,6 +60,7 @@
     function get_blueprint()
     {
 
+      $this->blueprint['uid']= 'uid'.time().rand(1000,9999);
       // meed to return a structure for the panels, the content source, the navgation info
       $meta_query_args = array(
           'post_type'    => 'arc-blueprints',
@@ -126,7 +128,7 @@
           = array(
           'section-enable'         => !empty($panel[ 0 ]),
           'section-panel-settings' => $panel[ 1 ],
-          'section-rsid'           => 'rsid' . rand(1000, 9999),
+          'section-rsid'           => 'rsid' . time().rand(1000, 9999),
           'section-panel-slug'     => $this->blueprint[ '_blueprints_section-0-panel-layout' ],
       );
 

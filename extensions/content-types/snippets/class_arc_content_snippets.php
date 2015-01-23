@@ -13,9 +13,9 @@
 
     protected function __construct()
     {
+
       $registry = arc_Registry::getInstance();
       $prefix   = '_content_snippets_';
-
       $settings[ 'blueprint-content' ] = array(
           'type'        => 'snippets',
           'name'        => 'Snippets',

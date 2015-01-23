@@ -8,7 +8,12 @@
  */
 
   if (!post_type_exists('arc-blueprints') && !function_exists('create_blueprints_post_type')) {
-    add_action('init', 'create_blueprints_post_type');
+//    if (is_admin() && !(class_exists('ReduxFramework'))) {
+//      // we don't want to load blueprints type if redux not around
+//    } else {
+      add_action('init', 'create_blueprints_post_type');
+//    }
+
 
     function create_blueprints_post_type()
     {

@@ -274,7 +274,7 @@
                     'default'  => array('post' => 0, 'page' => 0, 'pz_snippets' => 1)
                 ),
                 array(
-                    'title'    => __('Enable query caching', 'pzarchitect'),
+                    'title'    => __('Query caching', 'pzarchitect'),
                     'id'       => 'architect_enable_query_cache',
                     'type'     => 'switch',
                     'subtitle' => __('Turn this off if you find your Architect Blueprints don\'t show correct posts. This can be caused by other caching plugins or services.', 'pzarchitect'),
@@ -286,7 +286,7 @@
                     'type'  => 'section',
                 ),
                 array(
-                    'title'    => __('Enable styling settings', 'pzarchitect'),
+                    'title'    => __('Styling settings', 'pzarchitect'),
                     'id'       => 'architect_enable_styling',
                     'type'     => 'switch',
                     'subtitle' => __('Turn this off if you want to manage styling from your own CSS stylesheets or only from the Headway Visual Editor Design Mode.', 'pzarchitect'),
@@ -628,18 +628,7 @@
     new Redux_Framework_Architect_Options();
 
 
-    /**
-     *
-     * Custom function for the callback referenced above
 
-     */
-    if (!function_exists('redux_my_custom_field')):
-      function redux_my_custom_field($field, $value)
-      {
-        print_r($field);
-        print_r($value);
-      }
-    endif;
 
     /**
      *
@@ -670,6 +659,7 @@
         return $return;
       }
     endif;
+
     // Redux tracking
     if (!function_exists('pzarc_redux_tracking')) {
       function pzarc_redux_tracking($options)
