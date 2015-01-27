@@ -151,9 +151,10 @@
 //    wp_enqueue_style('css-responcss');
 
 
-    if (!(class_exists('ReduxFramework') || class_exists('ReduxFrameworkPlugin'))) {
-      return;
-    }
+    // Front end runs fine without Redux!
+//    if (!(class_exists('ReduxFramework') || class_exists('ReduxFrameworkPlugin'))) {
+//      return;
+//    }
     $actions_options = get_option('_architect_actions');
     $actions         = array();
     $i               = 1;
@@ -165,6 +166,7 @@
         $i++;
       }
     }
+    require_once PZARC_PLUGIN_APP_PATH . '/public/php/class_showblueprint.php';
     foreach ($actions as $k => $v) {
       if (isset($v[ 'architect_actions_' . $k . '_action-name' ]) && isset($v[ 'architect_actions_' . $k . '_blueprint' ])) {
         new showBlueprint($v[ 'architect_actions_' . $k . '_action-name' ], $v[ 'architect_actions_' . $k . '_blueprint' ], 'home');
@@ -315,9 +317,7 @@
           $blueprint = $_architect_options[ 'architect_default_shortcode_blueprint' ];
         }
       }
-      // Ok - how do we id the shortcode?
 
-//      require_once PZARC_PLUGIN_APP_PATH . '/admin/php/arc-options-styling.php';
 //      require_once PZARC_PLUGIN_APP_PATH . '/shared/includes/php/redux-extensions/extensions/metaboxes/extension_metaboxes.php';
 
       require_once PZARC_PLUGIN_APP_PATH . '/public/php/class_architect_public.php';
@@ -337,8 +337,12 @@
         }
       }
       // Cleanup
-      remove_all_actions('arc_top_left_navigation_' . $architect->build->blueprint[ '_blueprints_short-name' ]);
-      remove_all_actions('arc_bottom_right_navigation_' . $architect->build->blueprint[ '_blueprints_short-name' ]);
+      // If Blueprint is none, shortname is not set
+      if (isset($architect->build->blueprint[ '_blueprints_short-name' ])) {
+        remove_all_actions('arc_top_left_navigation_' . $architect->build->blueprint[ '_blueprints_short-name' ]);
+        remove_all_actions('arc_bottom_right_navigation_' . $architect->build->blueprint[ '_blueprints_short-name' ]);
+      }
+
       unset ($architect);
     }
 

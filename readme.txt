@@ -3,12 +3,12 @@ Contributors: chrishoward
 Tags: content,display,posts,pages,gallery,slider,tabs,tabbed,tabular,page builder,widget,hooks
 Requires at least: 3.5.0
 Tested up to: 4.1.0
-Stable tag: 0.9.3.2
+Stable tag: 0.9.3.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Plugin URI: http://architect4wp.com
 
-Go beyond the limitations of the layouts in the theme you use, to easily build any content layouts for it. E.g. grids, sliders, lists, galleries etc.
+Go beyond the limitations of the layouts in the theme you use to easily build any content layouts for it. E.g. grids, sliders, lists, galleries etc.
 
 == Description ==
 Most themes give you great looking layouts for your content, but are usually limited to what that theme provides. Frameworks give you control, but often require getting your hands dirty.
@@ -32,7 +32,7 @@ In Blueprints you also choose what content to display - e.g. posts, pages, galle
 
 This allows Panels to be easily reusable and cuts down on duplication of effort. You might design a panel that is used in a featured posts slider, but that panel may also be used to display the top story.
 
-You can then display those Blueprints using widgets, shortcodes, action hooks, template tags, Headway blocks and even the WP Gallery shortcode.
+You can then display those Blueprints using widgets, shortcodes, action hooks, template tags, page builder, Headway blocks and even the WP Gallery shortcode.
 
 = Why use Architect? =
 Architect greatly reduces the complexity of designing and developing methods to display your content. For example, if you are using the Twenty Thirteen and decide you want a 3x3 grid of excerpts to display on the home page, you would have to code a page template for that purpose.
@@ -108,10 +108,21 @@ For support, please send an email to support@pizazzwp.com
 
 == Changelog ==
 
+= 0.9.3.4 =
+* FIXED: Performance tweaks
+* FIXED: Various small bug fixes and tweaks to help info
+
+= 0.9.3.3 =
+* ADDED: Link for preset Panels and Blueprints in Help & Support
+* CHANGED: Various improvements to inbuilt help
+* FIXED: Various bug fixes and tweaks
+
 = 0.9.3.2 =
 * ADDED: Buttons and forms to directly log support requests.
 
 * CHANGED: Each Blueprint now has a unique ID. This changes with every page refresh, so is for internal code use only. i.e. Don't try and use it with custom CSS
+* CHANGED: Changes to the readme
+
 
 = 0.9.3.1 =
 * FIXED: Tweaking performance
@@ -124,7 +135,7 @@ For support, please send an email to support@pizazzwp.com
 * CHANGED: Removed option for vertical thumbs slider since it's simply not working yet.
 
 = 0.9.2.2 =
-* ADDED: Option to turn oiff query caching. Use if other caching is interfering
+* ADDED: Option to turn off query caching. Use if other caching is interfering
 
 * FIXED: Sticky background default colour
 * FIXED: Removed 100% height from sections coz breaking in some themes. Keep an eye out for dominoes

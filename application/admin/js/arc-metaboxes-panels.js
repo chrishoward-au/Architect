@@ -8,6 +8,8 @@ jQuery( document ).ready( function ()
   jQuery( "input#_panels_settings_short-name-text" ).attr( "required", "required" );
   jQuery( "input#_panels_settings_short-name-text" ).attr( "pattern", "[a-zA-Z0-9\-\_]+" );
 
+  // This is necessary when no tabs to switch with.
+  jQuery('#redux-_architect-metabox-panels-design').show();
 
   /** ***********************************************************************************************************************
    * Update status message and field data

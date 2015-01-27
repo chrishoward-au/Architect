@@ -119,12 +119,12 @@
       $content[ 'arc-message' ] = '
       <div class="after-title-help postbox">
         <div class="inside">
-          <h4>'.__('About Panels','pzarchitect').'</h4>
+          <h4>' . __('About Panels', 'pzarchitect') . '</h4>
 
           <p class="howto">' .
           __('Architect Panels are where you design the layout of the content, that is, choosing how to display the titles, meta data, featured images, excerpts, content etc.', 'pzarchitect') . '</p>
 
-          <p class="howto">'.__('Documentation can be found throughout Architect or online at the','pzarchitect').' <a
+          <p class="howto">' . __('Documentation can be found throughout Architect or online at the', 'pzarchitect') . ' <a
                 href="http://architect4wp.com/codex-listings" target="_blank">Architect Codex</a></p>
 
         </div>
@@ -148,8 +148,8 @@
                 'id'      => $prefix . 'tabs',
                 'type'    => 'tabbed',
                 'options' => array(
-                    'design'  => '<span class="icon-large el-icon-website"></span> '.__('Design','pzarchitect'),
-                    'styling' => '<span class="icon-large el-icon-brush"></span> '.__('Styling','pzarchitect')
+                    'design'  => '<span class="icon-large el-icon-website"></span> ' . __('Design', 'pzarchitect'),
+                    'styling' => '<span class="icon-large el-icon-brush"></span> ' . __('Styling', 'pzarchitect')
                 ),
                 'targets' => array(
                     'design'  => array('panels-design'),
@@ -168,7 +168,7 @@
 
         $metaboxes[ ] = array(
             'id'         => $prefix . 'panel',
-            'title'      => __('Show Panels settings for:','pzarchitect'),
+            'title'      => __('Show Panels settings for:', 'pzarchitect'),
             'post_types' => array('arc-panels'),
             'sections'   => $sections,
             'position'   => 'normal',
@@ -213,10 +213,10 @@
                   'default' => 'none',
                   'select2' => array('allowClear' => false),
                   'options' => array(
-                      'none'       => __('None','pzarchitect'),
-                      'height'     => __('Exact','pzarchitect'),
-                      'max-height' => __('Max','pzarchitect'),
-                      'min-height' => __('Min','pzarchitect')
+                      'none'       => __('None', 'pzarchitect'),
+                      'height'     => __('Exact', 'pzarchitect'),
+                      'max-height' => __('Max', 'pzarchitect'),
+                      'min-height' => __('Min', 'pzarchitect')
                   ),
                   'hint'    => array('content' => __('Choose if you want an exact height or not for the panels. If you want totally fluid, choose Min, and a height of 0.', 'pzarchitect'))
               ),
@@ -238,7 +238,7 @@
       );
       $metaboxes[ ]  = array(
           'id'         => $prefix . 'general-settings',
-          'title'      => __('Panel Settings','pzarchitect'),
+          'title'      => __('Panel Settings', 'pzarchitect'),
           'post_types' => array('arc-panels'),
           'sections'   => $sections,
           'position'   => 'side',
@@ -266,13 +266,13 @@
           'icon'       => 'el-icon-website',
           'fields'     => array(
               array(
-                  'title'        => __('Panel preview','pzarchitect'),
+                  'title'        => __('Panel preview', 'pzarchitect'),
                   'id'           => $prefix . 'preview',
                   'type'         => 'code',
                   'readonly'     => false, // Readonly fields can't be written to by code! Weird
                   'code'         => draw_panel_layout(),
                   'default_show' => false,
-                  'subtitle'     => __('Drag and drop to reposition and resize components','pzarchitect'),
+                  'subtitle'     => __('Drag and drop to reposition and resize components', 'pzarchitect'),
                   'default'      => json_encode(array(
                                                     'title'   => array('width' => 100, 'show' => true),
                                                     'meta1'   => array('width' => 100, 'show' => true),
@@ -296,16 +296,16 @@
                   'width'   => '100%',
                   'default' => array('title', 'excerpt', 'meta1', 'image'),
                   'options' => array(
-                      'title'   => __('Title','pzarchitect'),
-                      'excerpt' => __('Excerpt','pzarchitect'),
-                      'content' => __('Content','pzarchitect'),
-                      'image'   => __('Feature','pzarchitect'),
-                      'meta1'   => __('Meta1','pzarchitect'),
-                      'meta2'   => __('Meta2','pzarchitect'),
-                      'meta3'   => __('Meta3','pzarchitect'),
-                      'custom1' => __('Custom 1','pzarchitect'),
-                      'custom2' => __('Custom 2','pzarchitect'),
-                      'custom3' => __('Custom 3','pzarchitect'),
+                      'title'   => __('Title', 'pzarchitect'),
+                      'excerpt' => __('Excerpt', 'pzarchitect'),
+                      'content' => __('Content', 'pzarchitect'),
+                      'image'   => __('Feature', 'pzarchitect'),
+                      'meta1'   => __('Meta1', 'pzarchitect'),
+                      'meta2'   => __('Meta2', 'pzarchitect'),
+                      'meta3'   => __('Meta3', 'pzarchitect'),
+                      'custom1' => __('Custom 1', 'pzarchitect'),
+                      'custom2' => __('Custom 2', 'pzarchitect'),
+                      'custom3' => __('Custom 3', 'pzarchitect'),
                   ),
                   'hint'    => array('content' => __('Select which base components to include in this panel layout.', 'pzarchitect'))
               ),
@@ -336,8 +336,8 @@
                       array($prefix . 'feature-location', '!=', 'fill'),
                   ),
                   'options'  => array(
-                      'excerpt' => __('Excerpt','pzarchitect'),
-                      'content' => __('Content','pzarchitect'),
+                      'excerpt' => __('Excerpt', 'pzarchitect'),
+                      'content' => __('Content', 'pzarchitect'),
                   ),
               ),
               array(
@@ -350,7 +350,7 @@
                   'step'          => '1',
                   'display_value' => 'label',
                   'subtitle'      => __('Each of the three Custom groups can have multiple custom fields. Enter <strong>total</strong> number of custom fields, click Save/Update', 'pzarchitect'),
-//                  'hint'          => array('content' => __('', 'pzarchitect'))
+                  //                  'hint'          => array('content' => __('', 'pzarchitect'))
               ),
               array(
                   'title'         => __('Components area width %', 'pzarchitect'),
@@ -371,10 +371,10 @@
                   'width'   => '100%',
                   'default' => 'top',
                   'options' => array(
-                      'top'    => __('Top','pzarchitect'),
-                      'bottom' => __('Bottom','pzarchitect'),
-                      'left'   => __('Left','pzarchitect'),
-                      'right'  => __('Right','pzarchitect'),
+                      'top'    => __('Top', 'pzarchitect'),
+                      'bottom' => __('Bottom', 'pzarchitect'),
+                      'left'   => __('Left', 'pzarchitect'),
+                      'right'  => __('Right', 'pzarchitect'),
                   ),
                   'hint'    => array('content' => __('Position for all the components as a group. </br>NOTE: If feature is set to align, then components will be below the feature, but not at the bottom of the panel. ', 'pzarchitect')),
                   'desc'    => __('Left/right will only take affect when components area width is less than 100%', 'pzarchitect')
@@ -426,8 +426,8 @@
                   'title'   => __('Make headers and footer', 'pzarchitect'),
                   'id'      => $prefix . 'components-headers-footers',
                   'type'    => 'switch',
-                  'on'      => __('Yes','pzarchitect'),
-                  'off'     => __('No','pzarchitect'),
+                  'on'      => __('Yes', 'pzarchitect'),
+                  'off'     => __('No', 'pzarchitect'),
                   'default' => true,
                   'hint'    => array('content' => __('When, Architect will automatically wrap the header and footer components of the panel in header and footer tags to maintain compatibility with current WP layout trends. However, some layouts, such as tabular, are not suited to using the headers and footers.', 'pzarchitect'))
               ),
@@ -453,23 +453,23 @@
                   'default' => 'none',
                   'class'   => ' horizontal',
                   'desc'    => __('You must set a left margin on titles for bullets to show.', 'pzarchitect'),
-                  'options' => array('none'                 => __('None','pzarchitect'),
-                                     'disc'                 => __('Disc','pzarchitect'),
-                                     'circle'               => __('Circle','pzarchitect'),
-                                     'square'               => __('Square','pzarchitect'),
-                                     'thumb'                => __('Thumbnail','pzarchitect'),
-                                     'decimal'              => __('Number','pzarchitect'),
-                                     'decimal-leading-zero' => __('Number with leading zero','pzarchitect'),
-                                     'lower-alpha'          => __('Alpha lower','pzarchitect'),
-                                     'upper-alpha'          => __('Alpha upper','pzarchitect'),
-                                     'lower-roman'          => __('Roman lower','pzarchitect'),
-                                     'upper-roman'          => __('Roman upper','pzarchitect'),
-                                     'lower-greek'          => __('Greek lower','pzarchitect'),
-                                     'upper-greek'          => __('Greek upper','pzarchitect'),
-                                     'lower-latin'          => __('Latin lower','pzarchitect'),
-                                     'upper-latin'          => __('Latin upper','pzarchitect'),
-                                     'armenian'             => __('Armenian','pzarchitect'),
-                                     'georgian'             => __('Georgian','pzarchitect'),
+                  'options' => array('none'                 => __('None', 'pzarchitect'),
+                                     'disc'                 => __('Disc', 'pzarchitect'),
+                                     'circle'               => __('Circle', 'pzarchitect'),
+                                     'square'               => __('Square', 'pzarchitect'),
+                                     'thumb'                => __('Thumbnail', 'pzarchitect'),
+                                     'decimal'              => __('Number', 'pzarchitect'),
+                                     'decimal-leading-zero' => __('Number with leading zero', 'pzarchitect'),
+                                     'lower-alpha'          => __('Alpha lower', 'pzarchitect'),
+                                     'upper-alpha'          => __('Alpha upper', 'pzarchitect'),
+                                     'lower-roman'          => __('Roman lower', 'pzarchitect'),
+                                     'upper-roman'          => __('Roman upper', 'pzarchitect'),
+                                     'lower-greek'          => __('Greek lower', 'pzarchitect'),
+                                     'upper-greek'          => __('Greek upper', 'pzarchitect'),
+                                     'lower-latin'          => __('Latin lower', 'pzarchitect'),
+                                     'upper-latin'          => __('Latin upper', 'pzarchitect'),
+                                     'armenian'             => __('Armenian', 'pzarchitect'),
+                                     'georgian'             => __('Georgian', 'pzarchitect'),
                   ),
               ),
               array(
@@ -497,8 +497,8 @@
                   'id'      => $prefix . 'link-titles',
                   //            'cols'    => 4,
                   'type'    => 'switch',
-                  'on'      => __('Yes','pzarchitect'),
-                  'off'     => __('No','pzarchitect'),
+                  'on'      => __('Yes', 'pzarchitect'),
+                  'off'     => __('No', 'pzarchitect'),
                   'default' => true
 
                   /// can't set defaults on checkboxes!
@@ -510,7 +510,7 @@
        * META
        */
       $sections[ ] = array(
-          'title'      => __('Meta','pzarchitect'),
+          'title'      => __('Meta', 'pzarchitect'),
           'show_title' => false,
           'icon_class' => 'icon-large',
           'icon'       => 'el-icon-calendar',
@@ -545,7 +545,7 @@
             ),
             array(
                 'id'      => $prefix . 'meta-date-format',
-                'title'   => __('Date format','pzarchitect'),
+                'title'   => __('Date format', 'pzarchitect'),
                 'type'    => 'text',
                 'default' => 'l, F j, Y g:i a',
                 'desc'    => __('See here for information on <a href="http://codex.wordpress.org/Formatting_Date_and_Time" target=_blank>formatting date and time</a>', 'pzarchitect'),
@@ -633,9 +633,9 @@
                   'title'    => __('Hide Content at breakpoint', 'pzarchitect'),
                   'type'     => 'select',
                   'options'  => array(
-                      'none' => __('None','pzarchitect'),
-                      '2'    => __('Small screen ','pzarchitect') . $_architect_options[ 'architect_breakpoint_2' ][ 'width' ],
-                      '1'    => __('Medium screen ','pzarchitect') . $_architect_options[ 'architect_breakpoint_1' ][ 'width' ]
+                      'none' => __('None', 'pzarchitect'),
+                      '2'    => __('Small screen ', 'pzarchitect') . $_architect_options[ 'architect_breakpoint_2' ][ 'width' ],
+                      '1'    => __('Medium screen ', 'pzarchitect') . $_architect_options[ 'architect_breakpoint_1' ][ 'width' ]
                   ),
                   'default'  => 'none',
                   'subtitle' => __('Breakpoints can be changed in Architect Options', 'pzachitect')
@@ -650,7 +650,7 @@
               array(
                   'id'              => $prefix . 'content-font-size-bp1',
                   'title'           => __('Font size - large screen ', 'pzarchitect'),
-                  'subtitle'        => $_architect_options[ 'architect_breakpoint_1' ][ 'width' ] . __(' and above','pzarchitect'),
+                  'subtitle'        => $_architect_options[ 'architect_breakpoint_1' ][ 'width' ] . __(' and above', 'pzarchitect'),
                   'required'        => array($prefix . 'use-responsive-font-size', 'equals', true),
                   'type'            => 'typography',
                   'text-decoration' => false,
@@ -750,7 +750,7 @@
                   'id'       => '_panels_settings_feature-type',
                   'type'     => 'button_set',
                   'default'  => 'image',
-                  'options'  => array('image' => __('Images','pzarchitect'), 'video' => __('Videos','pzarchitect')),
+                  'options'  => array('image' => __('Images', 'pzarchitect'), 'video' => __('Videos', 'pzarchitect')),
                   'subtitle' => __('Choose whether Feature is images or videos.', 'pzarchitect')
               ),
               array(
@@ -771,8 +771,8 @@
                   'title'    => __('Use embedded images/videos', 'pzarchitect'),
                   'id'       => '_panels_settings_use-embedded-images',
                   'type'     => 'switch',
-                  'on'       => __('Yes','pzarchitect'),
-                  'off'      => __('No','pzarchitect'),
+                  'on'       => __('Yes', 'pzarchitect'),
+                  'off'      => __('No', 'pzarchitect'),
                   'default'  => false,
                   'required' => array('_panels_settings_feature-type', '=', 'image'),
                   'subtitle' => __('Enable this to use the first found attached image in the content if no featured image/video is set.', 'pzarchitect')
@@ -781,15 +781,15 @@
                   'title'    => __('Use retina images', 'pzarchitect'),
                   'id'       => '_panels_settings_use-retina-images',
                   'type'     => 'switch',
-                  'on'       => __('Yes','pzarchitect'),
-                  'off'      => __('No','pzarchitect'),
+                  'on'       => __('Yes', 'pzarchitect'),
+                  'off'      => __('No', 'pzarchitect'),
                   'default'  => false,
                   'required' => array('_panels_settings_feature-type', '=', 'image'),
                   'subtitle' => __('If enabled, a retina version of the featured image will be created and displayed. Ensure the global setting in Architect Options is on as well. NOTE: This will make your site load slower on retina devices, so you may only want consider which panels you have it enabled on.', 'pzarchitect')
               ),
               array(
                   'id'       => $prefix . 'image-max-dimensions',
-                  'title'    => __('Maximum dimensions','pzarchitect'),
+                  'title'    => __('Maximum dimensions', 'pzarchitect'),
                   'type'     => 'dimensions',
                   'units'    => 'px',
                   'default'  => array('width' => '300', 'height' => '350'),
@@ -815,11 +815,11 @@
                   'id'       => $prefix . 'link-image',
                   'type'     => 'button_set',
                   'options'  => array(
-                      'none'     => __('None','pzarchitect'),
-                      'page'     => __('Post','pzarchitect'),
-                      'image'    => __('Attachment page','pzarchitect'),
-                      'original' => __('Lightbox','pzarchitect'),
-                      'url'      => __('Specific URL','pzarchitect')
+                      'none'     => __('None', 'pzarchitect'),
+                      'page'     => __('Post', 'pzarchitect'),
+                      'image'    => __('Attachment page', 'pzarchitect'),
+                      'original' => __('Lightbox', 'pzarchitect'),
+                      'url'      => __('Specific URL', 'pzarchitect')
                   ),
                   'default'  => 'page',
                   'required' => array('_panels_settings_feature-type', '=', 'image'),
@@ -851,8 +851,8 @@
                   'title'    => __('Image Captions', 'pzarchitect'),
                   'id'       => $prefix . 'image-captions',
                   'type'     => 'switch',
-                  'on'       => __('Yes','pzarchitect'),
-                  'off'      => __('No','pzarchitect'),
+                  'on'       => __('Yes', 'pzarchitect'),
+                  'off'      => __('No', 'pzarchitect'),
                   'default'  => false,
                   'required' => array('_panels_settings_feature-type', '=', 'image'),
               ),
@@ -860,11 +860,11 @@
                   'title'    => __('Centre feature', 'pzarchitect'),
                   'id'       => $prefix . 'centre-image',
                   'type'     => 'switch',
-                  'on'       => __('Yes','pzarchitect'),
-                  'off'      => __('No','pzarchitect'),
+                  'on'       => __('Yes', 'pzarchitect'),
+                  'off'      => __('No', 'pzarchitect'),
                   'default'  => false,
                   'required' => array('_panels_settings_feature-type', '=', 'image'),
-                  'subtitle' => __('Centres the image horizontally. It is best to display it on its own row, and the content to be 100% wide.','pzarchitect')
+                  'subtitle' => __('Centres the image horizontally. It is best to display it on its own row, and the content to be 100% wide.', 'pzarchitect')
               ),
               array(
                   'title'    => __('Effect on screen resize', 'pzarchitect'),
@@ -873,14 +873,14 @@
                   'required' => array($prefix . 'feature-location', '=', 'fill'),
                   'options'  => array(
                       'trim'  => 'Trim horizontally, retain height',
-                      'scale' => __('Scale Vertically & Horizontally','pzarchitect')
+                      'scale' => __('Scale Vertically & Horizontally', 'pzarchitect')
                   ),
                   'required' => array('_panels_settings_feature-type', '=', 'image'),
                   'default'  => 'trim',
               ),
               array(
                   'id'            => $prefix . 'image-quality',
-                  'title'         => __('Image quality','pzarchitect'),
+                  'title'         => __('Image quality', 'pzarchitect'),
                   'type'          => 'slider',
                   'display_value' => 'label',
                   'default'       => '75',
@@ -909,24 +909,24 @@
               'title'      => $cfname,
               'icon_class' => 'icon-large',
               'icon'       => 'el-icon-wrench',
-              'desc'       => __('Note: Only fields with content will show on the Blueprint.','pzarchitect'),
+              'desc'       => __('Note: Only fields with content will show on the Blueprint.', 'pzarchitect'),
               'fields'     => array(
                   array(
                       'title'   => __('Show in custom field group', 'pzarchitect'),
                       'id'      => $prefix . 'cfield-' . $i . '-group',
                       'type'    => 'button_set',
                       'default' => 'custom1',
-                      'options' => array('custom1' => __('Custom 1','pzarchitect'),
-                                         'custom2' => __('Custom 2','pzarchitect'),
-                                         'custom3' => __('Custom 3','pzarchitect'))
+                      'options' => array('custom1' => __('Custom 1', 'pzarchitect'),
+                                         'custom2' => __('Custom 2', 'pzarchitect'),
+                                         'custom3' => __('Custom 3', 'pzarchitect'))
                   ),
                   array(
-                      'title' => __('Field name', 'pzarchitect'),
-                      'id'    => $prefix . 'cfield-' . $i . '-name',
-                      'type'  => 'select',
-                      'data'  => 'callback',
-                      'args'  => array('pzarc_get_custom_fields'),
-                      'subtitle'=>__('If a custom field is not shown in the dropdown, it is because it has no data yet.','pzarchitect')
+                      'title'    => __('Field name', 'pzarchitect'),
+                      'id'       => $prefix . 'cfield-' . $i . '-name',
+                      'type'     => 'select',
+                      'data'     => 'callback',
+                      'args'     => array('pzarc_get_custom_fields'),
+                      'subtitle' => __('If a custom field is not shown in the dropdown, it is because it has no data yet.', 'pzarchitect')
 
                   ),
                   array(
@@ -939,7 +939,7 @@
                   ),
                   array(
                       'id'       => $prefix . 'cfield-' . $i . '-date-format',
-                      'title'    => __('Date format','pzarchitect'),
+                      'title'    => __('Date format', 'pzarchitect'),
                       'type'     => 'text',
                       'default'  => 'l, F j, Y g:i a',
                       'desc'     => __('Visit here for information on <a href="http://codex.wordpress.org/Formatting_Date_and_Time" target=_blank>formatting date and time</a>', 'pzarchitect'),
@@ -947,7 +947,7 @@
                   ),
                   array(
                       'id'            => $prefix . 'cfield-' . $i . '-number-decimals',
-                      'title'         => __('Decimals','pzarchitect'),
+                      'title'         => __('Decimals', 'pzarchitect'),
                       'type'          => 'spinner',
                       'default'       => 0,
                       'min'           => '0',
@@ -959,14 +959,14 @@
                   ),
                   array(
                       'id'       => $prefix . 'cfield-' . $i . '-number-decimal-char',
-                      'title'    => __('Decimal point character','pzarchitect'),
+                      'title'    => __('Decimal point character', 'pzarchitect'),
                       'type'     => 'text',
                       'default'  => '.',
                       'required' => array($prefix . 'cfield-' . $i . '-field-type', '=', 'number'),
                   ),
                   array(
                       'id'       => $prefix . 'cfield-' . $i . '-number-thousands-separator',
-                      'title'    => __('Thousands separator','pzarchitect'),
+                      'title'    => __('Thousands separator', 'pzarchitect'),
                       'type'     => 'text',
                       'default'  => ',',
                       'required' => array($prefix . 'cfield-' . $i . '-field-type', '=', 'number'),
@@ -986,14 +986,14 @@
                           'h4'   => 'h4',
                           'h5'   => 'h5',
                           'h6'   => 'h6',
-                          'none' => __('None','pzarchitect')),
-                      'subtitle' => __('Select the wrapper element for this custom field','pzarchitect')
+                          'none' => __('None', 'pzarchitect')),
+                      'subtitle' => __('Select the wrapper element for this custom field', 'pzarchitect')
 
                   ),
                   array(
-                      'id'      => $prefix . 'cfield-' . $i . '-class-name',
-                      'title'   => __('Add class name','pzarchitect'),
-                      'type'    => 'text',
+                      'id'    => $prefix . 'cfield-' . $i . '-class-name',
+                      'title' => __('Add class name', 'pzarchitect'),
+                      'type'  => 'text',
                   ),
                   array(
                       'title'    => __('Link field', 'pzarchitect'),
@@ -1044,7 +1044,7 @@
         }
       }
       $sections[ ] = array(
-          'title'      => __('Using panels','pzarchitect'),
+          'title'      => __('Using panels', 'pzarchitect'),
           'icon_class' => 'icon-large',
           'icon'       => 'el-icon-info-sign',
           'fields'     => array(
@@ -1064,19 +1064,17 @@
       );
 
       $sections[ ] = array(
-          'title'      => __('Help','pzarchitect'),
+          'title'      => __('Help', 'pzarchitect'),
           'icon_class' => 'icon-large',
           'icon'       => 'el-icon-question-sign',
           'fields'     => array(
               array(
-                  'title' => __('Videos', 'pzarchitect'),
-                  'id'    => $prefix . 'panels-help-design',
-                  'type'  => 'info',
-                  'desc'  => '<p>'.__('Click a video to open it in a popup window','pzarchitect').'</p><p><a href="//fast.wistia.net/embed/iframe/46fxmn8h0l?popover=true" class="wistia-popover[height=405,playerColor=7b796a,width=720]">'.__('Building and Displaying Your First Architect Project','pzarchitect').'</a>
-<script charset="ISO-8859-1" src="//fast.wistia.com/assets/external/popover-v1.js"></script></p>
-
-'
-
+                  'title'    => __('Panels videos', 'pzarchitect'),
+                  'id'       => $prefix . 'help-panels-videos',
+                  'type'     => 'raw',
+                  'class'    => 'plain',
+                  'markdown' => false,
+                  'content'  => file_get_contents(PZARC_DOCUMENTATION_PATH . PZARC_LANGUAGE . '/panels-videos.html'),
               )
           )
       );
@@ -1086,7 +1084,7 @@
 
       $metaboxes[ ] = array(
           'id'         => 'panels-design',
-          'title'      => __('Panels Design','pzarchitect'),
+          'title'      => __('Panels Design', 'pzarchitect'),
           'post_types' => array('arc-panels'),
           'sections'   => $sections,
           'position'   => 'normal',
@@ -1137,7 +1135,7 @@
 //
 //          'fields'     => array(
         $xsections[ ] = array(
-            'title'      => __('Styling','pzarchitect'),
+            'title'      => __('Styling', 'pzarchitect'),
             'show_title' => false,
             'icon_class' => 'icon-large',
             'icon'       => 'el-icon-info-sign',
@@ -1156,7 +1154,7 @@
          * GENERAL
          */
         $sections[ ] = array(
-            'title'      => __('General','pzarchitect'),
+            'title'      => __('General', 'pzarchitect'),
             'show_title' => false,
             'icon_class' => 'icon-large',
             'icon'       => 'el-icon-brush',
@@ -1217,7 +1215,7 @@
          * TITLES
          */
         $sections[ ] = array(
-            'title'      => __('Titles','pzarchitect'),
+            'title'      => __('Titles', 'pzarchitect'),
             'show_title' => false,
             'icon_class' => 'icon-large',
             'icon'       => 'el-icon' . $font,
@@ -1236,7 +1234,7 @@
          * META
          */
         $sections[ ] = array(
-            'title'      => __('Meta','pzarchitect'),
+            'title'      => __('Meta', 'pzarchitect'),
             'show_title' => false,
             'icon_class' => 'icon-large',
             'icon'       => 'el-icon-calendar',
@@ -1254,7 +1252,7 @@
          * CONTENT
          */
         $sections[ ] = array(
-            'title'      => __('Content','pzarchitect'),
+            'title'      => __('Content', 'pzarchitect'),
             'show_title' => false,
             'icon_class' => 'icon-large',
             'icon'       => 'el-icon-align-left',
@@ -1301,7 +1299,7 @@
          * FEATURED IMAGE
          */
         $sections[ ] = array(
-            'title'      => __('Entry Featured image','pzarchitect'),
+            'title'      => __('Entry Featured image', 'pzarchitect'),
             'show_title' => false,
             'icon_class' => 'icon-large',
             'icon'       => 'el-icon-picture',
@@ -1399,7 +1397,7 @@
          */
         $sections[ ] = array(
             'id'         => 'custom-css',
-            'title'      => __('Custom CSS','pzarchitect'),
+            'title'      => __('Custom CSS', 'pzarchitect'),
             'icon_class' => 'icon-large',
             'icon'       => 'el-icon-wrench',
             'fields'     => array(
@@ -1409,7 +1407,7 @@
                     'title'    => __('Custom CSS', 'pzarchitect'),
                     'mode'     => 'css',
                     'default'  => $defaults[ $optprefix . 'custom-css' ],
-                    'subtitle' => __('To apply to this panel design specifically, prepend with class .pzarc-panel_shortname where shortname is the shortname of this panel. Note: underscore before shortname.','pzarchitect')
+                    'subtitle' => __('To apply to this panel design specifically, prepend with class .pzarc-panel_shortname where shortname is the shortname of this panel. Note: underscore before shortname.', 'pzarchitect')
                 ),
             )
         );
@@ -1419,7 +1417,7 @@
          */
         $sections[ ]  = array(
             'id'         => 'styling-help',
-            'title'      => __('Help','pzarchitect'),
+            'title'      => __('Help', 'pzarchitect'),
             'icon_class' => 'icon-large',
             'icon'       => 'el-icon-question-sign',
             'fields'     => array(
@@ -1503,7 +1501,7 @@
       </div>
     </div>
     <p class="pzarc-states ">Loading</p>
-    <p class="howto "><strong style="color:#d00;">'.__('This is an example only and thus only a <span style="border-bottom: 3px double;">general guide</span> to how the panels will look.','pzarchitect').'</strong></p>
+    <p class="howto "><strong style="color:#d00;">' . __('This is an example only and thus only a <span style="border-bottom: 3px double;">general guide</span> to how the panels will look.', 'pzarchitect') . '</strong></p>
   </div>
   <div class="plugin_url" style="display:none;">' . PZARC_PLUGIN_APP_URL . '</div>
   ';

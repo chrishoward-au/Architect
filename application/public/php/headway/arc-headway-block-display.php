@@ -24,8 +24,9 @@
         $block[ 'id' ] = HeadwayBlocksData::get_legacy_id($block);
       }
 
-      $blueprint = explode('##', $block[ 'settings' ][ 'pzarc-blueprint' ]);
-
+      if (isset($block[ 'settings' ][ 'pzarc-blueprint' ])) {
+        $blueprint = explode('##', $block[ 'settings' ][ 'pzarc-blueprint' ]);
+      }
 
 //		wp_enqueue_style('pzarc-plugin-styles');
 
@@ -226,12 +227,12 @@
                                         'id'         => 'pzarc-panel',
                                         'name'       => 'Panels',
                                         'selector'   => '.use-hw-css .pzarc-panel',
-//                                        'states'     => array(
-//                                            'Odd within Blueprint'  => '.use-hw-css .pzarc-panel.odd-blueprint-panel',
-//                                            'Even within Blueprint' => '.use-hw-css .pzarc-panel.even-blueprint-panel',
-//                                            'Odd within Section'    => '.use-hw-css .pzarc-panel.odd-section-panel',
-//                                            'Even within Section'   => '.use-hw-css .pzarc-panel.even-section-panel',
-//                                        ),
+                                        //                                        'states'     => array(
+                                        //                                            'Odd within Blueprint'  => '.use-hw-css .pzarc-panel.odd-blueprint-panel',
+                                        //                                            'Even within Blueprint' => '.use-hw-css .pzarc-panel.even-blueprint-panel',
+                                        //                                            'Odd within Section'    => '.use-hw-css .pzarc-panel.odd-section-panel',
+                                        //                                            'Even within Section'   => '.use-hw-css .pzarc-panel.even-section-panel',
+                                        //                                        ),
                                         // Don't allow margins on panels as it messes up layout. Margins must be set in the Blueprint settings
                                         'properties' => array('background',
                                                               'borders',
@@ -358,12 +359,12 @@
                                       ));
 
         $this->register_block_element(array(
-                                          'id'         => 'pzarc-panel-meta-presuff-image'.$i,
-                                          'name'       => 'CFG Prefix/Suffix image '.$i,
-                                          'selector'   => '.use-hw-css .pzarc-panel .entry-customfieldgroup-'.$i.' .pzarc-presuff-image',
+                                          'id'         => 'pzarc-panel-meta-presuff-image' . $i,
+                                          'name'       => 'CFG Prefix/Suffix image ' . $i,
+                                          'selector'   => '.use-hw-css .pzarc-panel .entry-customfieldgroup-' . $i . ' .pzarc-presuff-image',
                                           'states'     => array(
-                                              'Prefix'   => '.use-hw-css .pzarc-panel .entry-customfieldgroup-' . $i . ' .pzarc-presuff-image.prefix-image',
-                                              'Suffix'   => '.use-hw-css .pzarc-panel .entry-customfieldgroup-' . $i . ' .pzarc-presuff-image.suffix-image',
+                                              'Prefix' => '.use-hw-css .pzarc-panel .entry-customfieldgroup-' . $i . ' .pzarc-presuff-image.prefix-image',
+                                              'Suffix' => '.use-hw-css .pzarc-panel .entry-customfieldgroup-' . $i . ' .pzarc-presuff-image.suffix-image',
                                           ),
                                           'properties' => array('background',
                                                                 'borders',
@@ -385,7 +386,7 @@
       $settings  = HeadwayArchitectBlockOptions::get_settings($block);
       $blueprint = explode('##', $settings[ 'pzarc-blueprint' ]);
 
-      echo pzarc($blueprint[ 0 ], $settings[ 'pzarc-overrides-ids' ], 'headway-block',null,$settings);
+      echo pzarc($blueprint[ 0 ], $settings[ 'pzarc-overrides-ids' ], 'headway-block', null, $settings);
 
       return;
 
