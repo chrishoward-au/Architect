@@ -1205,24 +1205,12 @@
           'fields'     => array(
 
               array(
-                  'title' => __('Help designing Blueprints', 'pzarchitect'),
-                  'id'    => $prefix . 'help-layout',
-                  'type'  => 'info',
-                  'class' => 'plain',
-                  'desc'  => '<p>For more help, visit the <a href="http://architect4wp.com/codex-listings" target=_blank>Architect documentation</a></p>
-                  <h3>How do I make a slider?</h3>
-                  <p>In the Navigation option, enable Navigator and then in the Navigator tab, select a Type of bullets, numbers or thumbs. Also, set all Columns to 1 in Section 1</p>
-                  <h3>How do I make tabbed layout?</h3>
-                  <p>In the Navigation option, enable Navigator and then in the Navigator tab, select a Type of titles. Also, set all Columns to 1 in Section 1</p>            '),
-              array(
-                  'title' => __('Videos', 'pzarchitect'),
-                  'id'    => $prefix . 'panels-help-design',
-                  'type'  => 'info',
-                  'desc'  => '<p>'.__('Click a video to open it in a popup window','pzarchitect').'</p><p><a href="//fast.wistia.net/embed/iframe/46fxmn8h0l?popover=true" class="wistia-popover[height=405,playerColor=7b796a,width=720]">'.__('Building and Displaying Your First Architect Project','pzarchitect').'</a>
-<script charset="ISO-8859-1" src="//fast.wistia.com/assets/external/popover-v1.js"></script></p>
-
-'
-
+                  'title'    => __('Blueprints videos', 'pzarchitect'),
+                  'id'       => $prefix . 'help-blueprints-videos',
+                  'type'     => 'raw',
+                  'class'    => 'plain',
+                  'markdown' => false,
+                  'content'  => file_get_contents(PZARC_DOCUMENTATION_PATH . PZARC_LANGUAGE . '/blueprints-videos.html'),
               )
 
           )
@@ -1346,13 +1334,22 @@
                   'id'       => $prefix . 'help-content-selection',
                   'type'     => 'raw',
                   'markdown' => true,
-                  'content'  => 'With Architect Pro you can enable an extra content type called *Snippets*.
+                  'content'  => __('With Architect Pro you can enable an extra content type called *Snippets*.
   These give you a third method of creating content that doesn\'t fit into the post or page types.
 It came about with my own need to create grids of product features. I didn\'t want to fill up pages or posts, so created Snippets for these small content bites.
 You can use them however you like though, e.g Testimonials, FAQs, Features, Contacts, etc.
-                '
+                ','pzarchitect')
 
+              ),
+              array(
+                  'title'    => __('Blueprints videos', 'pzarchitect'),
+                  'id'       => $prefix . 'help-blueprints-videos',
+                  'type'     => 'raw',
+                  'class'    => 'plain',
+                  'markdown' => false,
+                  'content'  => file_get_contents(PZARC_DOCUMENTATION_PATH . PZARC_LANGUAGE . '/blueprints-videos.html'),
               )
+
           )
       );
 

@@ -111,6 +111,7 @@ For support, please send an email to support@pizazzwp.com
 = 0.9.3.4 =
 * FIXED: Performance tweaks
 * FIXED: Various small bug fixes and tweaks to help info
+* ADDED: Help videos popups in Help section of Paenls and Blueprints
 
 = 0.9.3.3 =
 * ADDED: Link for preset Panels and Blueprints in Help & Support
