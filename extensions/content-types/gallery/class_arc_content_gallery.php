@@ -96,6 +96,6 @@
   }
 
 //  //todo:set this up as a proper singleton?
-  $content_posts = arc_content_galleries::getInstance();
+  $content_posts = arc_content_galleries::getInstance('arc_content_galleries');
 
 

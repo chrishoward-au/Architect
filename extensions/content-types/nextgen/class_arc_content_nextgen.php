@@ -48,7 +48,7 @@
   }
 
 //  //todo:set this up as a proper singleton?
-  $content_posts = arc_content_nextgen::getInstance();
+  $content_posts = arc_content_nextgen::getInstance('arc_content_nextgen');
 
 
   function pzarc_get_ngg_galleries()

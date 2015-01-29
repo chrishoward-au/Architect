@@ -3,8 +3,8 @@
   /*
     Plugin Name: Architect
     Plugin URI: http://architect4wp.com
-    Description: Architect is an all-in-one content layout framework to extend your theme. Go beyond the limitations of the theme you use to easily build any content layouts for it. Build your own grids, tabs, sliders, galleries and more with sources such ass posts, pages, galleries, and custom content types. Display using shortcodes, widgets, page builder, Headway blocks, WP action hooks and template tags, and WP Gallery shortcode. Change themes without needing to rebuild your layouts!
-    Version: 0.9.3.4
+    Description: Architect is an all-in-one content layout framework to extend your theme. Go beyond the limitations of the theme you use to easily build any content layouts for it. Build your own grids, tabs, sliders, galleries and more with sources such as posts, pages, galleries, and custom content types. Display using shortcodes, widgets, page builder, Headway blocks, WP action hooks and template tags, and WP Gallery shortcode. Change themes without needing to rebuild your layouts!
+    Version: 1.0.0
     Author: Chris Howard
     Author URI: http://pizazzwp.com
     License: GNU GPL v2
@@ -20,10 +20,11 @@
     function __construct()
     {
 
-      define('PZARC_VERSION', '0.9.3.4');
+      define('PZARC_VERSION', '1.0.0');
       define('PZARC_NAME', 'pzarchitect'); // This is also same as the locale
       define('PZARC_FOLDER', '/pizazzwp-architect');
       define('PZARC_CODEX', 'http://architect4wp.com/codex-listings');
+      define('PZARC_HWREL',false);
 
       define('PZARC_PLUGIN_URL', trailingslashit(plugin_dir_url(__FILE__)));
       define('PZARC_PLUGIN_PATH', trailingslashit(plugin_dir_path(__FILE__)));
@@ -35,7 +36,7 @@
       define('PZARC_PLUGIN_PRESETS_URL', PZARC_PLUGIN_URL . 'presets/');
       define('PZARC_CACHE', '/arc/');
       // TODO: Setup an option for changing the language
-      $language = substr(get_locale(),0,2);
+      $language = substr(get_locale(), 0, 2);
 
       define('PZARC_LANGUAGE', 'en');
 
@@ -89,7 +90,13 @@
 
       require_once PZARC_PLUGIN_APP_PATH . '/shared/architect/php/class_arc_registry.php';
 
-      require_once PZARC_PLUGIN_APP_PATH . '/shared/architect/php/class_arc_set_data.php';
+      if (version_compare(PHP_VERSION, '5.3.0') >= 0) {
+        // include PHP5.3+ code here
+        require_once PZARC_PLUGIN_APP_PATH . '/shared/architect/php/class_arc_set_data.php';
+      } else {
+        // load legacy code here
+        require_once PZARC_PLUGIN_APP_PATH . '/shared/architect/php/class_arc_set_data-legacy.php';
+      }
       require_once PZARC_PLUGIN_APP_PATH . '/shared/architect/php/class_arc_blueprint_data.php';
 
       // Load custom custom types
@@ -137,6 +144,7 @@
       if (defined('PIZAZZ_VERSION')) {
         if (version_compare(PIZAZZ_VERSION, '1.6.3', '<')) {
           die(__('Cannot activate Architect because an out of date version of PizazzWP Libs is active. It needs to be at least version 1.6.3. Deactivate or upgrade it, and try again.', 'pzarchitect'));
+
           return;
         }
 
@@ -245,7 +253,8 @@
     {
 
       wp_enqueue_script('jquery');
-      wp_register_script('js-isotope-v2', PZARC_PLUGIN_APP_URL . '/public/js/isotope.pkgd.min.js');
+      wp_register_script('js-isotope-v2', PZARC_PLUGIN_APP_URL . '/public/js/isotope.pkgd.min.js', array('jquery'), 2, false);
+
 
     }
 
@@ -259,59 +268,26 @@
   $pzarc = new pzArchitect();
 
 
-  if (is_admin()) {
-    add_action('admin_init', 'pzarc_initiate_updater');
-
-    function pzarc_initiate_updater()
-    {
-//    $opt_val = get_option('pizazz_options');
-//    if (class_exists('HeadwayUpdaterAPI') && empty($opt_val['val_update_method']))
-//    {
-//
-//      $updater = new HeadwayUpdaterAPI(array(
-//                                            'slug'						 => 'pzarchitect',
-//                                            'path'						 => plugin_basename(__FILE__),
-//                                            'name'						 => 'Architect',
-//                                            'type'						 => 'block',
-//                                            'current_version'	 => PZARC_VERSION
-//                                       ));
-//    }
-//    else
-//    {
-      require_once('wp-updates-plugin.php');
-      new WPUpdatesPluginUpdater_625('http://wp-updates.com/api/2/plugin', plugin_basename(__FILE__)); //    }
+    if (PZDEBUG) {
+      global $pzstart_time;
+      $pzstart_time = microtime(true);
+      pzdb('start');
     }
 
-
-    /**
-     * Display update notices
-     */
-    @include_once PZARC_DOCUMENTATION_PATH . 'updates/0910.php';
-    @include_once PZARC_DOCUMENTATION_PATH . 'updates/0900.php';
-
-  }
-
-
-  if (PZDEBUG) {
-    global $pzstart_time;
-    $pzstart_time = microtime(true);
-    pzdb('start');
-  }
-
-  function pzdb($pre = null, $var = 'dorkus')
-  {
-    if (PZDEBUG) {
-      static $oldtime;
-      $oldtime = empty($oldtime) ? microtime(true) : $oldtime;
-      $btr     = debug_backtrace();
-      $line    = $btr[ 0 ][ 'line' ];
-      $file    = basename($btr[ 0 ][ 'file' ]);
-      global $pzstart_time;
-      var_dump(strtoupper($pre) . ': ' . $file . ':' . $line . ': ' . round((microtime(true) - $pzstart_time), 5) . 's. Time since last: ' . round(microtime(true) - $oldtime, 5) . 's');
-      $oldtime = microtime(true);
-      if ($var !== 'dorkus') {
-        var_dump($var);
+    function pzdb($pre = null, $var = 'dorkus')
+    {
+      if (PZDEBUG) {
+        static $oldtime;
+        $oldtime = empty($oldtime) ? microtime(true) : $oldtime;
+        $btr     = debug_backtrace();
+        $line    = $btr[ 0 ][ 'line' ];
+        $file    = basename($btr[ 0 ][ 'file' ]);
+        global $pzstart_time;
+        var_dump(strtoupper($pre) . ': ' . $file . ':' . $line . ': ' . round((microtime(true) - $pzstart_time), 5) . 's. Time since last: ' . round(microtime(true) - $oldtime, 5) . 's');
+        $oldtime = microtime(true);
+        if ($var !== 'dorkus') {
+          var_dump($var);
+        }
       }
     }
-  }
 

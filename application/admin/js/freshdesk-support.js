@@ -4,16 +4,21 @@
 
 jQuery( document ).ready( function ()
 {
-  FreshWidget.init( "", {
-    "queryString": "&widgetType=popup&searchArea=no",
-    "widgetType": "popup",
-    "buttonType": "text",
-    "buttonText": "Architect Support",
-    "buttonColor": "white",
-    "buttonBg": "#268fa5",
-    "alignment": "1",
-    "offset": "70%",
-    "formHeight": "500px",
-    "url": "https://pizazzwp.freshdesk.com"
-  } );
+  try
+  {
+    FreshWidget.init( "", {
+      "queryString": "&widgetType=popup&searchArea=no",
+      "widgetType": "popup",
+      "buttonType": "text",
+      "buttonText": "Architect Support",
+      "buttonColor": "white",
+      "buttonBg": "#268fa5",
+      "alignment": "1",
+      "offset": "70%",
+      "formHeight": "500px",
+      "url": "https://pizazzwp.freshdesk.com"
+    } );
+  } catch(e) {
+
+  }
 } );

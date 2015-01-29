@@ -3,7 +3,7 @@ Contributors: chrishoward
 Tags: content,display,posts,pages,gallery,slider,tabs,tabbed,tabular,page builder,widget,hooks
 Requires at least: 3.5.0
 Tested up to: 4.1.0
-Stable tag: 0.9.3.4
+Stable tag: 1.0.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Plugin URI: http://architect4wp.com
@@ -107,6 +107,14 @@ For support, please send an email to support@pizazzwp.com
 5. Slider example
 
 == Changelog ==
+
+= 1.0.0 =
+
+* FIXED: Finally dinky-di fixed the Panels Design not showing if Styling turned off
+* FIXED: More bug fixes and performance tweaks
+* FIXED: Now PHP 5.2 compatible
+
+* CHANGED: Updating system for v1 and Headway compatibility
 
 = 0.9.3.4 =
 * FIXED: Performance tweaks

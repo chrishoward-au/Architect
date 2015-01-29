@@ -50,6 +50,6 @@
   }
 
 //  //todo:set this up as a proper singleton?
-  $content_cpt = arc_content_cpt::getInstance();
+  $content_cpt = arc_content_cpt::getInstance('arc_content_cpt');
 
 

@@ -57,7 +57,7 @@
   }
 
 //  //todo:set this up as a proper singleton?
-  $content_posts = arc_content_dummy::getInstance();
+  $content_posts = arc_content_dummy::getInstance('arc_content_dummy');
 
 
 

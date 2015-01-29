@@ -315,7 +315,7 @@
   }
 
 //  //todo:set this up as a proper singleton?
-  $content_posts = arc_Blueprint_Data::getInstance();
+  $content_posts = arc_Blueprint_Data::getInstance('arc_Blueprint_Data');
 
 
 

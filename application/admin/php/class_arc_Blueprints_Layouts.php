@@ -69,9 +69,10 @@
 
         wp_enqueue_script('jquery-pzarc-metaboxes-blueprints', PZARC_PLUGIN_APP_URL . '/admin/js/arc-metaboxes-blueprints.js', array('jquery'),true);
 
-        wp_enqueue_script('js-isotope-v2');
+        // TODO: We don't need this here??
+       // wp_enqueue_script('js-isotope-v2');
 
-        wp_enqueue_script('js-magnific');
+       // wp_enqueue_script('js-magnific');
 
 
         // wp_enqueue_script('jquery-masonry', PZARC_PLUGIN_URL . 'includes/masonry.pkgd.min.js', array('jquery'));

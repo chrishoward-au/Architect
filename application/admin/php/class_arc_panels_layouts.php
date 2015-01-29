@@ -580,7 +580,7 @@
                   'on'       => __('Yes', 'pzarchitect'),
                   'off'      => __('No', 'pzarchitect'),
                   'default'  => true,
-                  'subtitle' => __('Make excerpt or content 100% width if no featured image', 'pzarchitect')
+                  'subtitle' => __('Make excerpt or content 100% width if no featured image.', 'pzarchitect')
               ),
               array(
                   'id'     => $prefix . 'excerpt-heading',
@@ -763,19 +763,19 @@
                       'respect' => __('Respect focal point', 'pzarchitect'),
                       'centre'  => __('Centre focal point', 'pzarchitect'),
                       'none'    => __('Crop to centre', 'pzarchitect'),
-                      'scale'   => __('Preserve aspect, fit width', 'pzarchitect')
-
+                      'scale'   => __('Preserve aspect, fit width', 'pzarchitect'),
+//                      'shrink'  => __('Shrink', 'pzarchitect')
                   )
               ),
               array(
-                  'title'    => __('Use embedded images/videos', 'pzarchitect'),
+                  'title'    => __('Use embedded images', 'pzarchitect'),
                   'id'       => '_panels_settings_use-embedded-images',
                   'type'     => 'switch',
                   'on'       => __('Yes', 'pzarchitect'),
                   'off'      => __('No', 'pzarchitect'),
                   'default'  => false,
                   'required' => array('_panels_settings_feature-type', '=', 'image'),
-                  'subtitle' => __('Enable this to use the first found attached image in the content if no featured image/video is set.', 'pzarchitect')
+                  'subtitle' => __('Enable this to use the first found attached image in the content if no featured image is set.', 'pzarchitect')
               ),
               array(
                   'title'    => __('Use retina images', 'pzarchitect'),
@@ -787,13 +787,32 @@
                   'required' => array('_panels_settings_feature-type', '=', 'image'),
                   'subtitle' => __('If enabled, a retina version of the featured image will be created and displayed. Ensure the global setting in Architect Options is on as well. NOTE: This will make your site load slower on retina devices, so you may only want consider which panels you have it enabled on.', 'pzarchitect')
               ),
+              // TODO: This will be for proper masonry galleries
+//              array(
+//                  'id'       => $prefix . 'image-shrinkage',
+//                  'title'    => __('Shrink images', 'pzarchitect'),
+//                  'type'     => 'slider',
+//                  'display_value' => 'label',
+//                  'default'       => '100',
+//                  'min'           => '0',
+//                  'max'           => '100',
+//                  'step'          => '5',
+//                  'units'         => '%',
+//                  'required' => array(
+//                      array('_panels_settings_image-focal-point', '=', 'shrink'),
+//                      array('_panels_settings_feature-type', '=', 'image')
+//                  ),
+//              ),
               array(
                   'id'       => $prefix . 'image-max-dimensions',
                   'title'    => __('Maximum dimensions', 'pzarchitect'),
                   'type'     => 'dimensions',
                   'units'    => 'px',
                   'default'  => array('width' => '300', 'height' => '350'),
-                  'required' => array('_panels_settings_feature-type', '=', 'image'),
+                  'required' => array(
+//                      array('_panels_settings_image-focal-point', '!=', 'shrink'),
+                      array('_panels_settings_feature-type', '=', 'image')
+                  ),
               ),
               array(
                   'id'             => $prefix . 'image-spacing',
@@ -803,9 +822,9 @@
                   'units_extended' => 'false',
                   'title'          => __('Margins', 'pzarchitect'),
                   'default'        => array(
-                      'margin-top'    => '1%',
-                      'margin-right'  => '1%',
-                      'margin-bottom' => '1%',
+                      'margin-top'    => '0',
+                      'margin-right'  => '0',
+                      'margin-bottom' => '0',
                       'margin-left'   => '0',
                       'units'         => '%',
                   )
@@ -1268,6 +1287,7 @@
                 pzarc_redux_bg($prefix . 'entry-content' . $font . $background, array('.entry-content'), $defaults[ $optprefix . 'entry-content' . $font . $background ]),
                 pzarc_redux_padding($prefix . 'entry-content' . $font . $padding, array('.entry-content'), $defaults[ $optprefix . 'entry-content' . $font . $padding ]),
                 pzarc_redux_margin($prefix . 'entry-content' . $font . $margin, array('.entry-content'), $defaults[ $optprefix . 'entry-content' . $font . $margin ], 'tb'),
+                pzarc_redux_borders($prefix . 'entry-content' . $border, array('.entry-content'), $defaults[ $optprefix . 'entry-content' . $border ]),
                 pzarc_redux_links($prefix . 'entry-content' . $font . $link, array('.entry-content a'), $defaults[ $optprefix . 'entry-content' . $font . $link ]),
                 array(
                     'title'  => __('Excerpt', 'pzarchitect'),
@@ -1279,7 +1299,8 @@
                 pzarc_redux_font($prefix . 'entry-excerpt' . $font, array('.entry-excerpt'), $defaults[ $optprefix . 'entry-excerpt' . $font ]),
                 pzarc_redux_bg($prefix . 'entry-excerpt' . $font . $background, array('.entry-excerpt'), $defaults[ $optprefix . 'entry-excerpt' . $font . $background ]),
                 pzarc_redux_padding($prefix . 'entry-excerpt' . $font . $padding, array('.entry-excerpt'), $defaults[ $optprefix . 'entry-excerpt' . $font . $padding ]),
-//                pzarc_redux_margin($prefix . 'entry-excerpt' . $font . $margin, array('.entry-excerpt'), $defaults[ $optprefix . 'entry-excerpt' . $font . $margin ]),
+                pzarc_redux_margin($prefix . 'entry-excerpt' . $font . $margin, array('.entry-excerpt'), $defaults[ $optprefix . 'entry-excerpt' . $font . $margin ]),
+                pzarc_redux_borders($prefix . 'entry-excerpt' . $border, array('.entry-excerpt'), $defaults[ $optprefix . 'entry-excerpt' . $border ]),
                 pzarc_redux_links($prefix . 'entry-excerpt' . $font . $link, array('.entry-excerpt a'), $defaults[ $optprefix . 'entry-excerpt' . $font . $link ]),
                 array(
                     'title'  => __('Read more', 'pzarchitect'),

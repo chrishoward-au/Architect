@@ -46,7 +46,7 @@
   }
 
 //  //todo:set this up as a proper singleton?
-  $content_posts = arc_content_pages::getInstance();
+  $content_posts = arc_content_pages::getInstance('arc_content_pages');
 
 
 

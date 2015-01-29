@@ -83,6 +83,7 @@
 
     function open_section()
     {
+      pzdb('open_section');
       if (!empty($this->section[ 'section-panel-settings' ][ '_panels_design_excerpts-word-count' ])) {
         add_filter('excerpt_length', array(&$this, 'set_excerpt_length'), 999);
       }
@@ -116,6 +117,7 @@
 
           // Do we load up the MAsonry here?
           wp_enqueue_script('js-isotope-v2');
+          add_action('init',array($this,'init_scripts'));
           $isotope      = 'data-isotope-options=\'{ "layoutMode": "masonry","itemSelector": ".pzarc-panel","masonry":{"columnWidth":".grid-sizer","gutter":".gutter-sizer"}}\'';
           $layout_class = 'js-isotope';
           break;
@@ -169,6 +171,7 @@
         echo '<div class="grid-sizer"></div><div class="gutter-sizer"></div>';
 
       }
+
     }
 
     /**
@@ -202,6 +205,7 @@
 
       remove_filter('excerpt_length', array(&$this, 'set_excerpt_length'), 999);
       remove_filter('excerpt_more', array(&$this, 'set_excerpt_more'), 999);
+      pzdb('close_section');
 
     }
 
@@ -210,6 +214,8 @@
      */
     public function render_panel($panel_def, $panel_number, $class, $panel_class, &$arc_query)
     {
+      pzdb('top of render panel '.get_the_id());
+
       if (!empty($arc_query->post)) {
         $post   = $arc_query->post;
         $postid = $arc_query->post->ID;
@@ -225,7 +231,9 @@
       $postid   = (empty($postid) ? 'NoID' : $postid);
       $settings = $this->section[ 'section-panel-settings' ];
       $toshow   = json_decode($settings[ '_panels_design_preview' ], true);
+      pzdb('json decode '.get_the_id());
       $panel_class->set_data($post, $toshow, $settings);
+      pzdb('set data '.get_the_id());
 //      $elements = array();
 //
 //      // Massage toshow to be more usable here
@@ -312,6 +320,7 @@
           }
           break;
       }
+      pzdb('after feature before '.get_the_id());
 
       $has_components = false;
       foreach ($toshow as $k => $v) {
@@ -345,6 +354,8 @@
 
 //var_dump($panel_def);
       /** Components */
+
+      pzdb('top of components '.get_the_id());
       foreach ($toshow as $component_type => $value) {
         if ($component_type === 'image' && $settings[ '_panels_design_feature-location' ] !== 'components') {
           $value[ 'show' ] = false;
@@ -364,6 +375,7 @@
         }
 
       }
+      pzdb('bottom of components '.get_the_id());
 
 
       /** Close components wrapper */

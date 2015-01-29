@@ -14,7 +14,9 @@
     {
       // If you create you own construct, remember to include these two lines!
       $this->build = $build;
+      pzdb('arc_panel_generic before initialise');
       self::initialise_data();
+      pzdb('arc_panel_generic after initialise');
     }
 
     public function initialise_data()
@@ -111,33 +113,39 @@
 
       if ($this->toshow[ 'title' ][ 'show' ]) {
         $this->get_title($post);
+        pzdb('after get title');
       }
-
       if ($this->toshow[ 'meta1' ][ 'show' ] ||
           $this->toshow[ 'meta2' ][ 'show' ] ||
           $this->toshow[ 'meta3' ][ 'show' ]
       ) {
         $this->get_meta($post);
+        pzdb('after get meta');
       }
 
       if ($this->toshow[ 'content' ][ 'show' ]) {
         $this->get_content($post);
+        pzdb('after get content');
       }
 
       if ($this->toshow[ 'excerpt' ][ 'show' ]) {
         $this->get_excerpt($post);
+        pzdb('after get excerpt');
       }
 
       if ($this->toshow[ 'image' ][ 'show' ]) {
         switch ($this->section[ '_panels_design_feature-location' ]) {
           case 'fill':
             $this->get_bgimage($post);
+            pzdb('after get bgimage');
             break;
           default:
             $this->get_image($post);
+            pzdb('after get image');
             break;
         }
         $this->get_video($post);
+        pzdb('after get video');
       }
 
       if ($this->toshow[ 'custom1' ][ 'show' ] ||
@@ -145,9 +153,11 @@
           $this->toshow[ 'custom3' ][ 'show' ]
       ) {
         $this->get_custom($post);
+        pzdb('after get custom');
       }
 
       $this->get_miscellanary($post);
+      pzdb('after get misc');
     }
 
     /**
@@ -185,28 +195,42 @@
 
     public function get_meta(&$post)
     {
-      /** META */
-      $this->data[ 'meta' ][ 'datetime' ]        = get_the_date();
-      $this->data[ 'meta' ][ 'fdatetime' ]       = date_i18n($this->section[ '_panels_design_meta-date-format' ], strtotime(get_the_date()));
-      $this->data[ 'meta' ][ 'categorieslinks' ] = get_the_category_list(', ');
-      $this->data[ 'meta' ][ 'categories' ]      = pzarc_tax_string_list(get_the_category(), 'category-', '', ' ');
-      $this->data[ 'meta' ][ 'tagslinks' ]       = get_the_tag_list(null, ', ');
-      $this->data[ 'meta' ][ 'tags' ]            = pzarc_tax_string_list(get_the_tags(), 'tag-', '', ' ');
+      $meta_string = $this->toshow[ 'meta1' ][ 'show' ] ? $this->section[ '_panels_design_meta1-config' ] : '';
+      $meta_string .= $this->toshow[ 'meta2' ][ 'show' ] ? $this->section[ '_panels_design_meta2-config' ] : '';
+      $meta_string .= $this->toshow[ 'meta3' ][ 'show' ] ? $this->section[ '_panels_design_meta3-config' ] : '';
 
-      $this->data[ 'meta' ][ 'authorlink' ] = get_author_posts_url(get_the_author_meta('ID'));
-      $this->data[ 'meta' ][ 'authorname' ] = sanitize_text_field(get_the_author_meta('display_name'));
-      $rawemail                             = sanitize_email(get_the_author_meta('user_email'));
-      $encodedmail                          = '';
-      for ($i = 0; $i < strlen($rawemail); $i++) {
-        $encodedmail .= "&#" . ord($rawemail[ $i ]) . ';';
+      /** META */
+      if (strpos($meta_string, '%date%') !== false) {
+        $this->data[ 'meta' ][ 'datetime' ]  = get_the_date();
+        $this->data[ 'meta' ][ 'fdatetime' ] = date_i18n($this->section[ '_panels_design_meta-date-format' ], strtotime(get_the_date()));
       }
-      $this->data[ 'meta' ][ 'authoremail' ]    = $encodedmail;
+      if (strpos($meta_string, '%categories%') !== false) {
+        $this->data[ 'meta' ][ 'categorieslinks' ] = get_the_category_list(', ');
+        $this->data[ 'meta' ][ 'categories' ]      = pzarc_tax_string_list(get_the_category(), 'category-', '', ' ');
+      }
+      if (strpos($meta_string, '%tags%') !== false) {
+        $this->data[ 'meta' ][ 'tagslinks' ] = get_the_tag_list(null, ', ');
+        $this->data[ 'meta' ][ 'tags' ]      = pzarc_tax_string_list(get_the_tags(), 'tag-', '', ' ');
+      }
+      if (strpos($meta_string, '%author%') !== false) {
+
+        $this->data[ 'meta' ][ 'authorlink' ] = get_author_posts_url(get_the_author_meta('ID'));
+        $this->data[ 'meta' ][ 'authorname' ] = sanitize_text_field(get_the_author_meta('display_name'));
+        $rawemail                             = sanitize_email(get_the_author_meta('user_email'));
+        $encodedmail                          = '';
+        for ($i = 0; $i < strlen($rawemail); $i++) {
+          $encodedmail .= "&#" . ord($rawemail[ $i ]) . ';';
+        }
+        $this->data[ 'meta' ][ 'authoremail' ] = $encodedmail;
+      }
       $this->data[ 'meta' ][ 'comments-count' ] = get_comments_number();
 
       // Extract and find any custom taxonomies - i.e. preceded with ct:
-      $this->data[ 'meta' ][ 'custom' ][ 1 ] = pzarc_get_post_terms(get_the_id(), $this->section[ '_panels_design_meta1-config' ]);
-      $this->data[ 'meta' ][ 'custom' ][ 2 ] = pzarc_get_post_terms(get_the_id(), $this->section[ '_panels_design_meta2-config' ]);
-      $this->data[ 'meta' ][ 'custom' ][ 3 ] = pzarc_get_post_terms(get_the_id(), $this->section[ '_panels_design_meta3-config' ]);
+      if (strpos($meta_string, 'ct:') !== false) {
+        $this->data[ 'meta' ][ 'custom' ][ 1 ] = $this->toshow[ 'meta1' ][ 'show' ] ? pzarc_get_post_terms(get_the_id(), $this->section[ '_panels_design_meta1-config' ]) : '';
+        $this->data[ 'meta' ][ 'custom' ][ 2 ] = $this->toshow[ 'meta2' ][ 'show' ] ? pzarc_get_post_terms(get_the_id(), $this->section[ '_panels_design_meta2-config' ]) : '';
+        $this->data[ 'meta' ][ 'custom' ][ 3 ] = $this->toshow[ 'meta3' ][ 'show' ] ? pzarc_get_post_terms(get_the_id(), $this->section[ '_panels_design_meta3-config' ]) : '';
+      }
     }
 
 
@@ -286,21 +310,27 @@
         $height = (int)str_replace('px', '', $this->section[ '_panels_design_image-max-dimensions' ][ 'height' ]);
       }
 
+      pzdb('pre get image bg');
+
       // Need to grab image again because it uses different dimensions for the bgimge
       $this->data[ 'bgimage' ][ 'thumb' ] = wp_get_attachment_image($thumb_id, array($width,
                                                                                      $height,
                                                                                      'bfi_thumb' => true,
                                                                                      'crop'      => (int)$focal_point[ 0 ] . 'x' . (int)$focal_point[ 1 ] . 'x' . $this->section[ '_panels_settings_image-focal-point' ]
       ));
+      pzdb('post get image bg');
 
       $this->data[ 'bgimage' ][ 'original' ] = wp_get_attachment_image_src($thumb_id, 'full');
+      pzdb('post get original bg');
       preg_match("/(?<=src\\=\")(.)*(?=\" )/uiUs", $this->data[ 'bgimage' ][ 'thumb' ], $results);
       if (isset($results[ 0 ]) && !empty($this->section[ '_panels_settings_use-retina-images' ])) {
         $params = array('width' => ($width * 2), 'height' => ($height * 2));
         // We need the crop to be identical. :/ So how about we just double the size of the image! I'm sure I Saw somewhere that works still. In fact, we have no choice, since the double sized image could be bigger than the original.
         $thumb_2X                           = bfi_thumb($results[ 0 ], $params);
         $this->data[ 'bgimage' ][ 'thumb' ] = str_replace('/>', 'data-at2x="' . $thumb_2X . '" />', $this->data[ 'bgimage' ][ 'thumb' ]);
+        pzdb('after get 2X bg');
       }
+      pzdb('end get bgimage');
     }
 
     public function get_video(&$post)
@@ -427,10 +457,12 @@
       $panel_def[ $component ] = str_replace('{{commentslink}}', $panel_def[ 'comments-link' ], $panel_def[ $component ]);
       $panel_def[ $component ] = str_replace('{{commentscount}}', $this->data[ 'meta' ][ 'comments-count' ], $panel_def[ $component ]);
       $panel_def[ $component ] = str_replace('{{editlink}}', $panel_def[ 'editlink' ], $panel_def[ $component ]);
-      foreach ($this->data[ 'meta' ][ 'custom' ] as $meta) {
-        if (!empty($meta)) {
-          $meta                    = (!is_array($meta) ? explode(',', $meta) : $meta);
-          $panel_def[ $component ] = str_replace('{{ct:' . key($meta) . '}}', $meta[ key($meta) ], $panel_def[ $component ]);
+      if (!empty($this->data[ 'meta' ][ 'custom' ])) {
+        foreach ($this->data[ 'meta' ][ 'custom' ] as $meta) {
+          if (!empty($meta)) {
+            $meta                    = (!is_array($meta) ? explode(',', $meta) : $meta);
+            $panel_def[ $component ] = str_replace('{{ct:' . key($meta) . '}}', $meta[ key($meta) ], $panel_def[ $component ]);
+          }
         }
       }
 
@@ -775,11 +807,13 @@
       $i = 1;
 
       $section[ $section_no ]->open_section();
+      pzdb('pre_generic_loop');
 
       // For custom conetnet such as NGG or RSS, this will look quite different!
       while ($this->arc_query->have_posts()) {
 
         $this->arc_query->the_post();
+//        pzdb('top_of_loop Post:'.get_the_id());
         $section[ $section_no ]->render_panel($panel_def, $i, $class, $panel_class, $this->arc_query);
 
         if ($i++ >= $this->build->blueprint[ '_blueprints_section-' . ($section_no - 1) . '-panels-per-view' ] && !empty($this->build->blueprint[ '_blueprints_section-' . ($section_no - 1) . '-panels-limited' ])) {
@@ -791,8 +825,10 @@
           }
 
         }
+//        pzdb('bottom_of_loop Post:'.get_the_id());
 
       }
+      pzdb('post_generic_loop');
       $section[ $section_no ]->close_section();
 
       // Unsetting causes it to run the destruct, which closes the div. :D

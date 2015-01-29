@@ -2,16 +2,17 @@
 /**
  * Project pizazzwp-architect.
  * File: class_arc_set_data.php
+ * PHPO 5.3+ version
  * User: chrishoward
  * Date: 13/10/14
  * Time: 5:39 PM
  */
 
-  // TODO This doesn't work in PHP 5.2. UGH!
 
 abstract class arc_set_data {
 
-  public static function getInstance()
+  // $caller is not used in 5.3+ version. Is jsut here for compatibility
+  public static function getInstance($caller=null)
   {
     static $instance = null;
     if (null === $instance) {

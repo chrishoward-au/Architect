@@ -386,6 +386,7 @@
                 pzarc_redux_bg($prefix . 'entry-content-font-background', array('.entry-content')),
                 pzarc_redux_padding($prefix . 'entry-content-font-padding', array('.entry-content')),
                 pzarc_redux_margin($prefix . 'entry-content-font-margin', array('.entry-content'), null, 'tb'),
+                pzarc_redux_borders($prefix . 'entry-content-borders', array('.entry-content')),
                 pzarc_redux_links($prefix . 'entry-content-font-links', array('.entry-content a')),
                 array(
                     'title'  => __('Excerpt', 'pzarc'),
@@ -408,6 +409,7 @@
                 pzarc_redux_bg($prefix . 'entry-excerpt-font-background', array('.entry-excerpt')),
                 pzarc_redux_padding($prefix . 'entry-excerpt-font-padding', array('.entry-excerpt')),
                 pzarc_redux_margin($prefix . 'entry-excerpt-font-margin', array('.entry-excerpt'), null, 'tb'),
+                pzarc_redux_borders($prefix . 'entry-excerpt-borders', array('.entry-excerpt')),
                 pzarc_redux_links($prefix . 'entry-excerpt-font-links', array('.entry-excerpt a')),
                 array(
                     'title'  => __('Read more', 'pzarc'),

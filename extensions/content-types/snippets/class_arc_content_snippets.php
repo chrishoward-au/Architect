@@ -55,7 +55,7 @@
   }
 
 //  //todo:set this up as a proper singleton?
-  $content_posts = arc_content_snippets::getInstance();
+  $content_posts = arc_content_snippets::getInstance('arc_content_snippets');
 
 
 

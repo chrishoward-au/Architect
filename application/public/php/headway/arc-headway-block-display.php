@@ -56,6 +56,8 @@
      * */
     static function js_content($block_id, $block, $original_block = null)
     {
+      return null;
+      // TODO: Don't need this
       if (method_exists('HeadwayBlocksData', 'get_legacy_id')) {
         $block[ 'id' ] = HeadwayBlocksData::get_legacy_id($block);
       }
@@ -68,62 +70,21 @@
         return null;
       }
 
-      //$pzarc_sections = !empty($settings['pzarc-sections'])?$settings['pzarc-sections']:array('pzarc-cell-layout'=>'stock1','pzarc-cells-per-row'=>3,'pzarc-number-to-show'=>6);
       $pzarc_sections = (!isset($pzarc_sections[ 0 ])) ? array($pzarc_sections) : $pzarc_sections;
-      //var_dump($pzarc_sections);
 
       $return_js = "jQuery(document).ready(function(){ ";
 
       foreach ($pzarc_sections as $key => $pzarc_section) {
-        // $return_js .= "
-        // 	var section = jQuery('#block-".$block_id." .pzarc_section_".$key."');
-        // 	var cell = jQuery('#block-".$block_id." .pzarc_section_".$key." .pzarc_cell');
-        // 	var gutterWidth = 10;
-        // 	section.masonry({
-        // 		itemSelector: '.pzarc_cell',
-        // 			gutter : gutterWidth,
-        // 			columnWidth: function( containerWidth ) {
-        // 					if (jQuery(window).width() < ".$settings['pzarc-width-tablet-lower']." ) {
-        // 						var columns = ".$pzarc_section['pzarc-cells-per-row-phone'].";
-        // 					} else if (jQuery(window).width() < ".$settings['pzarc-width-tablet-upper']." ) {
-        // 						var columns = ".$pzarc_section['pzarc-cells-per-row-tablet'].";
-        // 					} else {
-        // 						var columns = ".$pzarc_section['pzarc-cells-per-row-desktop'].";
-        // 					}
-        // 					var newWidth = Math.floor((containerWidth - (gutterWidth*(columns-1))) / columns);
-        // 			    return newWidth;
-        // 		  }
-        //  			});
-        // 	";
+       // var_dump($key,$pzarc_section);
         $pzarc_col_width = HeadwayBlocksData::get_block_width($block[ 'id' ]) / $pzarc_section[ 'pzarc-cells-per-row-desktop' ];
 
-        // if (jQuery(window).width() < ".$settings['pzarc-width-tablet-lower']." ) {
-        // 	var columns = ".$pzarc_section['pzarc-cells-per-row-phone'].";
-        // } else if (jQuery(window).width() < ".$settings['pzarc-width-tablet-upper']." ) {
-        // 	var columns = ".$pzarc_section['pzarc-cells-per-row-tablet'].";
-        // } else {
-        // 	var columns = ".$pzarc_section['pzarc-cells-per-row-desktop'].";
-        // }
-        // jQuery(window).smartresize(function() {
-        // 		if (jQuery(window).width() < ".$settings['pzarc-width-tablet-lower']." ) {
-        // 			var columns = ".$pzarc_section['pzarc-cells-per-row-phone'].";
-        // 		} else if (jQuery(window).width() < ".$settings['pzarc-width-tablet-upper']." ) {
-        // 			var columns = ".$pzarc_section['pzarc-cells-per-row-tablet'].";
-        // 		} else {
-        // 			var columns = ".$pzarc_section['pzarc-cells-per-row-desktop'].";
-        // 		}
-        // 		var newWidth = section.width()/columns;
-        // 		cell.css({width: newWidth});
-        // 		console.log(newWidth);
-        // 		console.log(cell.width(),section.width());
-        // 	});
 
         $return_js .= "
-				var section = jQuery('#block-" . $block_id . " .pzarc_section_" . $key . "');
-				var cell = jQuery('#block-" . $block_id . " .pzarc_section_" . $key . " .pzarc_cell');
+				var section = jQuery('#block-" . $block_id . " .pzarc-section_" . $key . "');
+				var cell = jQuery('#block-" . $block_id . " .pzarc-section_" . $key . " .pzarc-panel');
 				section.isotope({
 				  // options
-				  itemSelector : '.pzarc_cell',
+				  itemSelector : '.pzarc-panel',
 				  layoutMode : 'masonry',
 				  masonry : {
 //				  	columnWidth : section.width()/columns,
@@ -135,7 +96,6 @@
       }
 
       $return_js .= "});";
-
       return $return_js;
     }
 

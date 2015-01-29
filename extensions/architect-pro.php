@@ -4,6 +4,35 @@
 
     function pzarcpro_init()
     {
+      if (is_admin()) {
+        add_action('admin_init', 'pzarc_initiate_updater');
+
+        function pzarc_initiate_updater()
+        {
+          // Check on Headway if enabled since it was probably bought there
+          if (class_exists('HeadwayUpdaterAPI') && defined('PZARC_HWREL') && PZARC_HWREL) {
+
+            $updater = new HeadwayUpdaterAPI(array(
+                                                 'slug'            => 'architect',
+                                                 'path'            => plugin_basename(__FILE__),
+                                                 'name'            => 'Architect',
+                                                 'type'            => 'block',
+                                                 'current_version' => PZARC_VERSION
+                                             ));
+          } else {
+            require_once('wp-updates-plugin.php');
+            new WPUpdatesPluginUpdater_429( 'http://wp-updates.com/api/2/plugin', plugin_basename(__FILE__));
+          }
+
+
+          /**
+           * Display update notices
+           */
+//    @include_once PZARC_DOCUMENTATION_PATH . 'updates/1000.php';
+
+        }
+      }
+
 
       /** Content types */
       require_once plugin_dir_path(__FILE__) . '/content-types/dummy/class_arc_content_dummy.php';
