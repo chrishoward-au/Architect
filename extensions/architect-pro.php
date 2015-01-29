@@ -20,7 +20,7 @@
                                                  'current_version' => PZARC_VERSION
                                              ));
           } else {
-            require_once('wp-updates-plugin.php');
+            require_once(PZARC_PLUGIN_PATH.'wp-updates-plugin.php');
             new WPUpdatesPluginUpdater_429( 'http://wp-updates.com/api/2/plugin', plugin_basename(__FILE__));
           }
 

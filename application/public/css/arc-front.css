@@ -346,13 +346,7 @@
   .pzarchitect .tabbed .arc-slider-slide-nav-item {
     min-height: 30px;
     cursor: pointer;
-    background-color: #ddd;
     box-sizing: border-box; }
-    .pzarchitect .tabbed .arc-slider-slide-nav-item.active {
-      background-color: #ccc;
-      color: #000; }
-    .pzarchitect .tabbed .arc-slider-slide-nav-item:hover {
-      background-color: #ccc; }
   .pzarchitect .thumbs .arc-slider-slide-nav-item {
     /* Stylize pagination button: */ }
     .pzarchitect .thumbs .arc-slider-slide-nav-item img {

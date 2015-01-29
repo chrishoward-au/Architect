@@ -182,14 +182,14 @@ Pagination Styles
     //    display: table-cell; // Woot! This fixes height matching and width distribution. Doh! But breaks margins.
     min-height: 30px;
     cursor: pointer;
-    background-color: #ddd;
+//    background-color: #ddd;
     box-sizing: border-box;
     &.active {
-      background-color: #ccc;
-      color: #000;
+//      background-color: #ccc;
+//      color: #000;
     }
     &:hover {
-      background-color: #ccc;
+//      background-color: #ccc;
     }
   }
 }

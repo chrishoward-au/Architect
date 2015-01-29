@@ -696,7 +696,7 @@
 
         /** NAVIGATOR  */
         $this->sections[ ] = array(
-            'title'      => 'Navigator',
+            'title'      => 'Sliders & Tabbed',
             'show_title' => false,
             'icon_class' => 'icon-large',
             'icon'       => 'el-icon-play-circle',

@@ -1502,6 +1502,79 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
                 pzarc_redux_borders($prefix . $thisSection . $border, $this->defaults ? '' : $_architect[ 'architect_config_' . $thisSection . '-selectors' ], $defaults[ $optprefix . $thisSection . $border ])
             ),
         );
+        $thisSection                         = 'navigator';
+        $sections[ '_styling_slidertabbed' ] = array(
+            'title'      => 'Sliders & Tabbed',
+            'show_title' => false,
+            'icon_class' => 'icon-large',
+            'icon'       => 'el-icon-website',
+            'fields'     => array(
+
+                array(
+                    'title'    => __('Navigator container', 'pzarchitect'),
+                    'id'       => $prefix . 'blueprint-nav-container-css-heading',
+                    'type'     => 'section',
+                    'indent'   => true,
+                    'subtitle' => 'Classes: ' . implode(', ', array('.arc-slider-nav', '.pzarc-navigator')),
+
+                ),
+                pzarc_redux_bg($prefix . $thisSection . $background, $_architect[ 'architect_config_' . $thisSection . '-selectors' ], $defaults[ $optprefix . $thisSection . $background ]),
+                pzarc_redux_padding($prefix . $thisSection . $padding, $_architect[ 'architect_config_' . $thisSection . '-selectors' ], $defaults[ $optprefix . $thisSection . $padding ]),
+                pzarc_redux_margin($prefix . $thisSection . $margin, $_architect[ 'architect_config_' . $thisSection . '-selectors' ], $defaults[ $optprefix . $thisSection . $margin ]),
+                pzarc_redux_borders($prefix . $thisSection . $border, $_architect[ 'architect_config_' . $thisSection . '-selectors' ], $defaults[ $optprefix . $thisSection . $border ]),
+                array(
+                    'title'    => __('Navigator items', 'pzarchitect'),
+                    'id'       => $prefix . 'blueprint-nav-items-css-heading',
+                    'type'     => 'section',
+                    'indent'   => true,
+                    'subtitle' => 'Class: ' . implode(', ', array('.pzarc-navigator .arc-slider-slide-nav-item')),
+
+                ),
+                pzarc_redux_font($prefix . $thisSection . '-items' . $font, $_architect[ 'architect_config_' . $thisSection . '-selectors' ], $defaults[ $optprefix . $thisSection . '-items' . $font ]),
+                pzarc_redux_bg($prefix . $thisSection . '-items' . $background, $_architect[ 'architect_config_' . $thisSection . '-selectors' ], $defaults[ $optprefix . $thisSection . '-items' . $background ]),
+                pzarc_redux_padding($prefix . $thisSection . '-items' . $padding, $_architect[ 'architect_config_' . $thisSection . '-selectors' ], $defaults[ $optprefix . $thisSection . '-items' . $padding ]),
+                pzarc_redux_margin($prefix . $thisSection . '-items' . $margin, $_architect[ 'architect_config_' . $thisSection . '-selectors' ], $defaults[ $optprefix . $thisSection . '-items' . $margin ]),
+                pzarc_redux_borders($prefix . $thisSection . '-items' . $border, $_architect[ 'architect_config_' . $thisSection . '-selectors' ], $defaults[ $optprefix . $thisSection . '-items' . $border ]),
+                pzarc_redux_border_radius($prefix . $thisSection . '-items' . $borderradius, $_architect[ 'architect_config_' . $thisSection . '-selectors' ], $defaults[ $optprefix . $thisSection . '-items' . $borderradius ]),
+                array(
+                    'title'    => __('Navigator item hover', 'pzarchitect'),
+                    'id'       => $prefix . 'blueprint-nav-hover-item-css-heading',
+                    'type'     => 'section',
+                    'indent'   => true,
+                    'subtitle' => 'Class: ' . implode(', ', array('.pzarc-navigator .arc-slider-slide-nav-item:hover')),
+
+                ),
+                pzarc_redux_font($prefix . $thisSection . '-items-hover' . $font, $_architect[ 'architect_config_' . $thisSection . '-selectors' ], $defaults[ $optprefix . $thisSection . '-items-hover' . $font ], array('letter-spacing',
+                                                                                                                                                                                                                           'font-variant',
+                                                                                                                                                                                                                           'text-transform',
+                                                                                                                                                                                                                           'font-family',
+                                                                                                                                                                                                                           'font-style',
+                                                                                                                                                                                                                           'text-align',
+                                                                                                                                                                                                                           'line-height',
+                                                                                                                                                                                                                           'word-spacing')),
+                pzarc_redux_bg($prefix . $thisSection . '-items-hover' . $background, $_architect[ 'architect_config_' . $thisSection . '-selectors' ], $defaults[ $optprefix . $thisSection . '-items-hover' . $background ]),
+                pzarc_redux_borders($prefix . $thisSection . '-items-hover' . $border, $_architect[ 'architect_config_' . $thisSection . '-selectors' ], $defaults[ $optprefix . $thisSection . '-items-hover' . $border ]),
+                array(
+                    'title'    => __('Navigator active item', 'pzarchitect'),
+                    'id'       => $prefix . 'blueprint-nav-active-item-css-heading',
+                    'type'     => 'section',
+                    'indent'   => true,
+                    'subtitle' => 'Class: ' . implode(', ', array('.pzarc-navigator .arc-slider-slide-nav-item.active')),
+
+                ),
+                pzarc_redux_font($prefix . $thisSection . '-items-active' . $font, $_architect[ 'architect_config_' . $thisSection . '-selectors' ], $defaults[ $optprefix . $thisSection . '-items-active' . $font ], array('letter-spacing',
+                                                                                                                                                                                                                             'font-variant',
+                                                                                                                                                                                                                             'text-transform',
+                                                                                                                                                                                                                             'font-family',
+                                                                                                                                                                                                                             'font-style',
+                                                                                                                                                                                                                             'text-align',
+                                                                                                                                                                                                                             'line-height',
+                                                                                                                                                                                                                             'word-spacing')),
+                pzarc_redux_bg($prefix . $thisSection . '-items-active' . $background, $_architect[ 'architect_config_' . $thisSection . '-selectors' ], $defaults[ $optprefix . $thisSection . '-items-active' . $background ]),
+                pzarc_redux_borders($prefix . $thisSection . '-items-active' . $border, $_architect[ 'architect_config_' . $thisSection . '-selectors' ], $defaults[ $optprefix . $thisSection . '-items-active' . $border ])
+            ),
+        );
+
         $thisSection                      = 'accordion-titles';
         $sections[ '_styling_accordion' ] = array(
             'id'         => 'accordion-css',
@@ -1589,78 +1662,6 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
             )
         );
 
-        $thisSection                         = 'navigator';
-        $sections[ '_styling_slidertabbed' ] = array(
-            'title'      => 'Sliders & Tabbed',
-            'show_title' => false,
-            'icon_class' => 'icon-large',
-            'icon'       => 'el-icon-website',
-            'fields'     => array(
-
-                array(
-                    'title'    => __('Navigator container', 'pzarchitect'),
-                    'id'       => $prefix . 'blueprint-nav-container-css-heading',
-                    'type'     => 'section',
-                    'indent'   => true,
-                    'subtitle' => 'Classes: ' . implode(', ', array('.arc-slider-nav', '.pzarc-navigator')),
-
-                ),
-                pzarc_redux_bg($prefix . $thisSection . $background, $_architect[ 'architect_config_' . $thisSection . '-selectors' ], $defaults[ $optprefix . $thisSection . $background ]),
-                pzarc_redux_padding($prefix . $thisSection . $padding, $_architect[ 'architect_config_' . $thisSection . '-selectors' ], $defaults[ $optprefix . $thisSection . $padding ]),
-                pzarc_redux_margin($prefix . $thisSection . $margin, $_architect[ 'architect_config_' . $thisSection . '-selectors' ], $defaults[ $optprefix . $thisSection . $margin ]),
-                pzarc_redux_borders($prefix . $thisSection . $border, $_architect[ 'architect_config_' . $thisSection . '-selectors' ], $defaults[ $optprefix . $thisSection . $border ]),
-                array(
-                    'title'    => __('Navigator items', 'pzarchitect'),
-                    'id'       => $prefix . 'blueprint-nav-items-css-heading',
-                    'type'     => 'section',
-                    'indent'   => true,
-                    'subtitle' => 'Class: ' . implode(', ', array('.pzarc-navigator .arc-slider-slide-nav-item')),
-
-                ),
-                pzarc_redux_font($prefix . $thisSection . '-items' . $font, $_architect[ 'architect_config_' . $thisSection . '-selectors' ], $defaults[ $optprefix . $thisSection . '-items' . $font ]),
-                pzarc_redux_bg($prefix . $thisSection . '-items' . $background, $_architect[ 'architect_config_' . $thisSection . '-selectors' ], $defaults[ $optprefix . $thisSection . '-items' . $background ]),
-                pzarc_redux_padding($prefix . $thisSection . '-items' . $padding, $_architect[ 'architect_config_' . $thisSection . '-selectors' ], $defaults[ $optprefix . $thisSection . '-items' . $padding ]),
-                pzarc_redux_margin($prefix . $thisSection . '-items' . $margin, $_architect[ 'architect_config_' . $thisSection . '-selectors' ], $defaults[ $optprefix . $thisSection . '-items' . $margin ]),
-                pzarc_redux_borders($prefix . $thisSection . '-items' . $border, $_architect[ 'architect_config_' . $thisSection . '-selectors' ], $defaults[ $optprefix . $thisSection . '-items' . $border ]),
-                pzarc_redux_border_radius($prefix . $thisSection . '-items' . $borderradius, $_architect[ 'architect_config_' . $thisSection . '-selectors' ], $defaults[ $optprefix . $thisSection . '-items' . $borderradius ]),
-                array(
-                    'title'    => __('Navigator item hover', 'pzarchitect'),
-                    'id'       => $prefix . 'blueprint-nav-hover-item-css-heading',
-                    'type'     => 'section',
-                    'indent'   => true,
-                    'subtitle' => 'Class: ' . implode(', ', array('.pzarc-navigator .arc-slider-slide-nav-item:hover')),
-
-                ),
-                pzarc_redux_font($prefix . $thisSection . '-items-hover' . $font, $_architect[ 'architect_config_' . $thisSection . '-selectors' ], $defaults[ $optprefix . $thisSection . '-items-hover' . $font ], array('letter-spacing',
-                                                                                                                                                                                                                           'font-variant',
-                                                                                                                                                                                                                           'text-transform',
-                                                                                                                                                                                                                           'font-family',
-                                                                                                                                                                                                                           'font-style',
-                                                                                                                                                                                                                           'text-align',
-                                                                                                                                                                                                                           'line-height',
-                                                                                                                                                                                                                           'word-spacing')),
-                pzarc_redux_bg($prefix . $thisSection . '-items-hover' . $background, $_architect[ 'architect_config_' . $thisSection . '-selectors' ], $defaults[ $optprefix . $thisSection . '-items-hover' . $background ]),
-                pzarc_redux_borders($prefix . $thisSection . '-items-hover' . $border, $_architect[ 'architect_config_' . $thisSection . '-selectors' ], $defaults[ $optprefix . $thisSection . '-items-hover' . $border ]),
-                array(
-                    'title'    => __('Navigator active item', 'pzarchitect'),
-                    'id'       => $prefix . 'blueprint-nav-active-item-css-heading',
-                    'type'     => 'section',
-                    'indent'   => true,
-                    'subtitle' => 'Class: ' . implode(', ', array('.pzarc-navigator .arc-slider-slide-nav-item.active')),
-
-                ),
-                pzarc_redux_font($prefix . $thisSection . '-items-active' . $font, $_architect[ 'architect_config_' . $thisSection . '-selectors' ], $defaults[ $optprefix . $thisSection . '-items-active' . $font ], array('letter-spacing',
-                                                                                                                                                                                                                             'font-variant',
-                                                                                                                                                                                                                             'text-transform',
-                                                                                                                                                                                                                             'font-family',
-                                                                                                                                                                                                                             'font-style',
-                                                                                                                                                                                                                             'text-align',
-                                                                                                                                                                                                                             'line-height',
-                                                                                                                                                                                                                             'word-spacing')),
-                pzarc_redux_bg($prefix . $thisSection . '-items-active' . $background, $_architect[ 'architect_config_' . $thisSection . '-selectors' ], $defaults[ $optprefix . $thisSection . '-items-active' . $background ]),
-                pzarc_redux_borders($prefix . $thisSection . '-items-active' . $border, $_architect[ 'architect_config_' . $thisSection . '-selectors' ], $defaults[ $optprefix . $thisSection . '-items-active' . $border ])
-            ),
-        );
 
         $sections[ '_styling_help' ] = array(
             'id'         => 'blueprint-styling-help',
