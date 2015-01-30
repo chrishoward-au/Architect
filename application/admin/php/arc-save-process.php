@@ -95,6 +95,7 @@
           $postid         = $pzarc_blueprint->ID;
           $pzarc_settings = get_post_meta($postid);
           $pzarc_settings = pzarc_flatten_wpinfo($pzarc_settings);
+
           pzarc_create_css($postid, $pzarc_blueprint->post_type, $pzarc_settings);
         }
       }
@@ -161,6 +162,7 @@
     switch ($type) {
       case 'arc-blueprints':
         require_once PZARC_PLUGIN_APP_PATH . '/admin/php/arc-save-process-blueprints.php';
+//        pzdebug($defaults[ '_blueprints' ]);
         $pzarc_blueprints = pzarc_merge_defaults($defaults[ '_blueprints' ], $pzarc_settings);
         $pzarc_contents .= pzarc_create_blueprint_css($pzarc_blueprints, $pzarc_contents, $postid);
 

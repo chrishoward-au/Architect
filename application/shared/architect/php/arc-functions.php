@@ -125,7 +125,7 @@
     );
   }
 
-  function pzarc_redux_padding($id, $selectors, $defaults = array('units'=>'%'))
+  function pzarc_redux_padding($id, $selectors, $defaults = array('units' => '%'))
   {
 //    var_dump($id, $defaults);
     return array(
@@ -140,7 +140,7 @@
 
   }
 
-  function pzarc_redux_margin($id, $selectors, $defaults = array('units'=>'%'), $limits = 'tblr')
+  function pzarc_redux_margin($id, $selectors, $defaults = array('units' => '%'), $limits = 'tblr')
   {
     return array(
         'title'   => __('Margins', 'pzarchitect'),
@@ -190,6 +190,12 @@
 //
 //  }
 
+  /**
+   * @param        $id
+   * @param        $selectors
+   * @param string $defaults
+   * @return array
+   */
   function pzarc_redux_borders($id, $selectors, $defaults = '')
   {
 
@@ -203,6 +209,12 @@
     );
   }
 
+  /**
+   * @param        $id
+   * @param        $selectors
+   * @param string $defaults
+   * @return array
+   */
   function pzarc_redux_border_radius($id, $selectors, $defaults = '')
   {
 
@@ -219,6 +231,10 @@
     );
   }
 
+  /**
+   * pzarc_set_defaults
+   *
+   */
   function pzarc_set_defaults()
   {
     // TODO: Do we really need to call this on the front end??!!
@@ -233,28 +249,23 @@
     global $_architect;
     global $_architect_options;
 
-    // BLUEPRINTS
+    /**
+     * BLUEPRINTS
+     *
+     */
+
     $_architect[ 'defaults' ][ 'blueprints' ] = (!isset($_architect[ 'defaults' ][ 'blueprints' ]) ? array() : $_architect[ 'defaults' ][ 'blueprints' ]);
-    $blueprint_layout_general                 = $blueprints->pzarc_blueprint_layout_general_mb($_architect[ 'defaults' ][ 'blueprints' ]);
-    //  $pzarc_blueprint_content_general                                          = $blueprints->pzarc_blueprint_content_general_mb($_architect[ 'defaults' ][ 'blueprints' ]);
-    $pzarc_blueprint_layout                                                  = $blueprints->pzarc_blueprint_layout_mb($_architect[ 'defaults' ][ 'blueprints' ]);
-    $pzarc_contents_metabox                                                  = $blueprints->pzarc_blueprint_contents_mb($_architect[ 'defaults' ][ 'blueprints' ]);
+
+    $blueprint_layout_general = $blueprints->pzarc_blueprint_layout_general_mb($_architect[ 'defaults' ][ 'blueprints' ]);
+    $blueprint_styling        = $blueprints->pzarc_blueprint_layout_styling_mb($_architect[ 'defaults' ][ 'blueprints' ]);
+    $pzarc_blueprint_layout   = $blueprints->pzarc_blueprint_layout_mb($_architect[ 'defaults' ][ 'blueprints' ]);
+    $pzarc_contents_metabox   = $blueprints->pzarc_blueprint_contents_mb($_architect[ 'defaults' ][ 'blueprints' ]);
+
     $_architect[ 'defaults' ][ 'blueprints' ][ '_blueprint_layout_general' ] = $blueprint_layout_general[ 0 ][ 'sections' ];
-    //   $_architect[ 'defaults' ][ 'blueprints' ][ '_blueprint_content_general' ] = $pzarc_blueprint_content_general[ 0 ][ 'sections' ];
-    $_architect[ 'defaults' ][ 'blueprints' ][ '_blueprint_layout' ] = $pzarc_blueprint_layout[ 0 ][ 'sections' ];
-    $_architect[ 'defaults' ][ 'blueprints' ][ '_contents_metabox' ] = $pzarc_contents_metabox[ 0 ][ 'sections' ];
+    $_architect[ 'defaults' ][ 'blueprints' ][ '_blueprint_stylings' ]       = $blueprint_styling[ 0 ][ 'sections' ];
+    $_architect[ 'defaults' ][ 'blueprints' ][ '_blueprint_layout' ]         = $pzarc_blueprint_layout[ 0 ][ 'sections' ];
+    $_architect[ 'defaults' ][ 'blueprints' ][ '_contents_metabox' ]         = $pzarc_contents_metabox[ 0 ][ 'sections' ];
 
-    // PANELS
-    $_architect[ 'defaults' ][ 'panels' ]                              = (!isset($_architect[ 'defaults' ][ 'panels' ]) ? array() : $_architect[ 'defaults' ][ 'panels' ]);
-    $pzarc_panel_general_settings                                      = $panels->pzarc_panel_general_settings($_architect[ 'defaults' ][ 'panels' ]);
-    $pzarc_panels_design                                               = $panels->pzarc_panels_design($_architect[ 'defaults' ][ 'panels' ]);
-    $pzarc_panels_styling                                              = $panels->pzarc_panels_styling($_architect[ 'defaults' ][ 'panels' ]);
-    $_architect[ 'defaults' ][ 'panels' ][ '_panel_general_settings' ] = $pzarc_panel_general_settings[ 0 ][ 'sections' ];
-    $_architect[ 'defaults' ][ 'panels' ][ '_panels_design' ]          = $pzarc_panels_design[ 0 ][ 'sections' ];
-
-    if (!empty($_architect_options[ 'architect_enable_styling' ])) {
-      $_architect[ 'defaults' ][ 'panels' ][ '_panels_styling' ] = $pzarc_panels_styling[ 0 ][ 'sections' ];
-    }
     foreach ($_architect[ 'defaults' ][ 'blueprints' ] as $key1 => $value1) {
       foreach ($value1 as $key2 => $value2) {
         foreach ($value2 as $key3 => $fields) {
@@ -270,6 +281,23 @@
     }
 
     unset($_architect[ 'defaults' ][ 'blueprints' ]);
+
+    /**
+     * PANELS
+     *
+     */
+    $_architect[ 'defaults' ][ 'panels' ] = (!isset($_architect[ 'defaults' ][ 'panels' ]) ? array() : $_architect[ 'defaults' ][ 'panels' ]);
+
+    $pzarc_panel_general_settings = $panels->pzarc_panel_general_settings($_architect[ 'defaults' ][ 'panels' ]);
+    $pzarc_panels_design          = $panels->pzarc_panels_design($_architect[ 'defaults' ][ 'panels' ]);
+    $pzarc_panels_styling         = $panels->pzarc_panels_styling($_architect[ 'defaults' ][ 'panels' ]);
+
+    $_architect[ 'defaults' ][ 'panels' ][ '_panel_general_settings' ] = $pzarc_panel_general_settings[ 0 ][ 'sections' ];
+    $_architect[ 'defaults' ][ 'panels' ][ '_panels_design' ]          = $pzarc_panels_design[ 0 ][ 'sections' ];
+
+    if (!empty($_architect_options[ 'architect_enable_styling' ])) {
+      $_architect[ 'defaults' ][ 'panels' ][ '_panels_styling' ] = $pzarc_panels_styling[ 0 ][ 'sections' ];
+    }
 
     foreach ($_architect[ 'defaults' ][ 'panels' ] as $key1 => $value1) {
       foreach ($value1 as $key2 => $value2) {
@@ -288,6 +316,11 @@
 
   }
 
+  /**
+   * @param $defaultvs
+   * @param $setvals
+   * @return mixed
+   */
   function pzarc_merge_defaults($defaultvs, $setvals)
   {
 
@@ -489,6 +522,7 @@
 
       $pzarc_post_type_list[ $use_key ] = $pzarc_post_type_obj->post_title;
     }
+
     return $pzarc_post_type_list;
   }
 
@@ -623,7 +657,7 @@
    */
   function pzarc_convert_name_to_id($post_name)
   {
-    global $wpdb,$_architect_options;
+    global $wpdb, $_architect_options;
     // We don't want transients used for admins since they may be testing new settings - which won't take!
     if (!empty($_architect_options[ 'architect_enable_query_cache' ]) && !current_user_can('manage_options') && false === ($post_id = get_transient('pzarc_post_name_to_id_' . $post_name))) {
       // It wasn't there, so regenerate the data and save the transient

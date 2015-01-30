@@ -1,29 +1,27 @@
 <?php
+  /**
+   * Create the Blueprint CSS
+   *
+   * @param $pzarc_blueprints
+   * @param $pzarc_contents
+   * @param $postid
+   * @return string
+   *
+   *
+   */
+
 
   function pzarc_create_blueprint_css($pzarc_blueprints, $pzarc_contents, $postid)
   {
 
     global $_architect;
     global $_architect_options;
-//    // var_dump($_architect_options);
-//    pzarc_set_defaults();
-//    $defaults = $_architect[ 'defaults' ];
 //    // Need to create the file contents
 //    // For each field in stylings, create css
-//    $pzarc_contents = '';
-//
     $nl = "\n";
     $pzarc_contents .= '/* This is the css for blueprint ' . $postid . ' ' . $pzarc_blueprints[ '_blueprints_short-name' ] . '*/' . $nl;
     $pzarc_bp_css = array();
 
-//        $keyss = array_keys($pzarc_blueprints);
-//        foreach ($keyss as $k => $v) {
-//          $keyz[ $k ] = explode('_', $v);
-//          if (empty($keyz[ $k ][ 0 ])) {
-//            unset($keyz[ $k ][ 0 ]);
-//          }
-//        }
-//        //    var_dump($keyz);
 
     // Process the sections
     for ($i = 0; $i < 3; $i++) {
@@ -32,12 +30,10 @@
 
     $pzarc_contents .= $pzarc_bp_css[ 0 ][ 0 ] . $pzarc_bp_css[ 1 ][ 0 ] . $pzarc_bp_css[ 2 ][ 0 ] . $pzarc_bp_css[ 0 ][ 1 ] . $pzarc_bp_css[ 1 ][ 1 ] . $pzarc_bp_css[ 2 ][ 1 ];
 
-
     foreach ($pzarc_blueprints as $key => $value) {
 
 
       // First off process the styling settings, which should be automatable
-
       if (substr_count($key, '_blueprints_styling_') === 1 && !empty($_architect_options[ 'architect_enable_styling' ])) {
         $bpkeys            = array();
         $bpkey             = str_replace('_blueprints_styling_', '', $key);
@@ -50,7 +46,7 @@
         if ('blueprint-custom' === $bpkeys[ 'id' ]) {
           $pzarc_contents .= $value;
         }
-        if (!in_array($bpkeys[ 'id' ], array('blueprint-custom', 'blueprints-load'))) {
+        if (!in_array($bpkeys[ 'id' ], array('blueprint-custom', 'blueprints-load','blueprints-section'))) {
 
           // Filter out old selector names hanging arouind in existing bblueprints
           if (isset($_architect[ 'architect_config_' . $bpkeys[ 'id' ] . '-selectors' ])) {

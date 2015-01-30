@@ -67,12 +67,12 @@
 
         wp_enqueue_style('pzarc-admin-blueprints-css', PZARC_PLUGIN_APP_URL . '/admin/css/arc-admin-blueprints.css');
 
-        wp_enqueue_script('jquery-pzarc-metaboxes-blueprints', PZARC_PLUGIN_APP_URL . '/admin/js/arc-metaboxes-blueprints.js', array('jquery'),true);
+        wp_enqueue_script('jquery-pzarc-metaboxes-blueprints', PZARC_PLUGIN_APP_URL . '/admin/js/arc-metaboxes-blueprints.js', array('jquery'), true);
 
         // TODO: We don't need this here??
-       // wp_enqueue_script('js-isotope-v2');
+        // wp_enqueue_script('js-isotope-v2');
 
-       // wp_enqueue_script('js-magnific');
+        // wp_enqueue_script('js-magnific');
 
 
         // wp_enqueue_script('jquery-masonry', PZARC_PLUGIN_URL . 'includes/masonry.pkgd.min.js', array('jquery'));
@@ -375,7 +375,7 @@
                   'height'   => false,
                   'title'    => __('Blueprint max width', 'pzarchitect'),
                   'default'  => array('width' => '100', 'units' => '%'),
-                  'subtitle' => __('Set a max width to stop spillage when the container is larger than you want the Blueprint to be.','pzarchitect')
+                  'subtitle' => __('Set a max width to stop spillage when the container is larger than you want the Blueprint to be.', 'pzarchitect')
               ),
               array(
                   'id'      => $prefix . 'blueprint-align',
@@ -680,7 +680,7 @@
                     'default'  => 1,
                     'min'      => 1,
                     'max'      => 99,
-                    'required'=>array($prefix . 'section-' . $i . '-panels-limited','=',true),
+                    'required' => array($prefix . 'section-' . $i . '-panels-limited', '=', true),
                     'subtitle' => __('This is how many posts will show if Limit enabled above', 'pzarchitect'),
                 ),
                 array(
@@ -1195,7 +1195,7 @@
                   'type'     => 'raw',
                   'class'    => 'plain',
                   'markdown' => true,
-                  'content'  => file_get_contents(PZARC_DOCUMENTATION_PATH .PZARC_LANGUAGE.'/using-blueprints.md'),
+                  'content'  => file_get_contents(PZARC_DOCUMENTATION_PATH . PZARC_LANGUAGE . '/using-blueprints.md'),
                   'pzarchitect')
           )
       );
@@ -1339,7 +1339,7 @@
   These give you a third method of creating content that doesn\'t fit into the post or page types.
 It came about with my own need to create grids of product features. I didn\'t want to fill up pages or posts, so created Snippets for these small content bites.
 You can use them however you like though, e.g Testimonials, FAQs, Features, Contacts, etc.
-                ','pzarchitect')
+                ', 'pzarchitect')
 
               ),
               array(
@@ -1404,24 +1404,23 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
             'icon_class' => 'icon-large',
             'icon'       => 'el-icon-th-large',
             'fields'     => pzarc_fields(
-                array(
-                    'title'   => __('Load style'),
-                    'id'      => $prefix . 'blueprints-load-style',
-                    'type'    => 'select',
-                    'desc'    => 'Sorry to tease, but this isn\'t implemented yet.',
-                    'options' => array('none', 'dark', 'light'),
-                    'default' => 'none'
-                ),
+//                array(
+//                    'title'   => __('Load style'),
+//                    'id'      => $prefix . 'blueprints-load-style',
+//                    'type'    => 'select',
+//                    'desc'    => 'Sorry to tease, but this isn\'t implemented yet.',
+//                    'options' => array('none', 'dark', 'light'),
+//                    'default' => 'none'
+//                ),
                 array(
                     'title'    => __('Blueprint', 'pzarchitect'),
-                    'id'       => $prefix . 'blueprint-section',
+                    'id'       => $prefix . 'blueprint-section-blueprint',
                     'type'     => 'section',
                     'indent'   => true,
                     'class'    => 'heading',
                     'subtitle' => 'Class: .pzarc-blueprint_{shortname}',
                 ),
 
-                // TODO: Get correct $defaults
                 // TODO: Add shadows
                 pzarc_redux_bg($prefix . $thisSection . $background, $this->defaults ? '' : $_architect[ 'architect_config_' . $thisSection . '-selectors' ], $defaults[ $optprefix . $thisSection . $background ]),
                 pzarc_redux_padding($prefix . $thisSection . $padding, $this->defaults ? '' : $_architect[ 'architect_config_' . $thisSection . '-selectors' ], $defaults[ $optprefix . $thisSection . $background ]),
@@ -1447,7 +1446,6 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
             'desc'       => 'Class: .pzarc-sections_{shortname}',
             'fields'     => pzarc_fields(
 
-            // TODO: Get correct $defaults
             // TODO: Add shadows
             //$prefix . 'hentry' . $background, $_architect[ 'architect_config_hentry-selectors' ], $defaults[ $optprefix . 'hentry' . $background ]
                 pzarc_redux_bg($prefix . $thisSection . $background, $this->defaults ? '' : $_architect[ 'architect_config_' . $thisSection . '-selectors' ], $defaults[ $optprefix . $thisSection . $background ]),
@@ -1460,8 +1458,8 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
                                                          2 => 'el-icon-th',
                                                          3 => 'el-icon-th-list');
 
-        $thisSection                      = 'section_1';
-        $sections[ '_styling_section_1' ] = array(
+        $thisSection                         = 'section_1';
+        $sections[ '_styling_section_1' ]    = array(
             'title'      => 'Section 1',
             'show_title' => false,
             'icon_class' => 'icon-large',
@@ -1474,8 +1472,8 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
                 pzarc_redux_borders($prefix . $thisSection . $border, $this->defaults ? '' : $_architect[ 'architect_config_' . $thisSection . '-selectors' ], $defaults[ $optprefix . $thisSection . $border ])
             ),
         );
-        $thisSection                      = 'section_2';
-        $sections[ '_styling_section_2' ] = array(
+        $thisSection                         = 'section_2';
+        $sections[ '_styling_section_2' ]    = array(
             'title'      => 'Section 2',
             'show_title' => false,
             'icon_class' => 'icon-large',
@@ -1488,8 +1486,8 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
                 pzarc_redux_borders($prefix . $thisSection . $border, $this->defaults ? '' : $_architect[ 'architect_config_' . $thisSection . '-selectors' ], $defaults[ $optprefix . $thisSection . $border ])
             ),
         );
-        $thisSection                      = 'section_3';
-        $sections[ '_styling_section_3' ] = array(
+        $thisSection                         = 'section_3';
+        $sections[ '_styling_section_3' ]    = array(
             'title'      => 'Section 3',
             'show_title' => false,
             'icon_class' => 'icon-large',

@@ -93,6 +93,9 @@ As per Headway licencing agreement
 = If I deactivate Architect, will I lose all my Panels and Blueprints =
 No. We don't delete any of your data. In the future a method will be provided for you to remove all Architect data if you really need to.
 
+== Known issues ==
+* Autoplay slideshows reverse at the end instead of looping back to the start
+
 == Support ==
 
 For support, please send an email to support@pizazzwp.com
@@ -108,7 +111,11 @@ For support, please send an email to support@pizazzwp.com
 
 == Changelog ==
 
+= 1.0.2 =
+* FIXED: Blueprints weren't using default styling
+
 = 1.0.1 =
+* FIXED: Doofus error! i.e. I accidentally removed a path name that then threw a fatal error. :S
 
 = 1.0.0 =
 

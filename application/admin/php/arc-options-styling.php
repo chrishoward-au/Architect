@@ -719,7 +719,7 @@
                 ),
                 // TODO Navigator defaults
                 pzarc_redux_bg($prefix . 'navigator-background', array('.pzarc-navigator',
-                                                                       '.arc-slider-nav'), array('color' => '#eee')),
+                                                                       '.arc-slider-nav'), array('color' => '#eeeeee')),
                 pzarc_redux_padding($prefix . 'navigator-padding', array('.pzarc-navigator', '.arc-slider-nav'), array(
                     'padding-top'    => '1%',
                     'padding-right'  => '1%',
@@ -777,7 +777,7 @@
                                                                                                                                                   'text-align',
                                                                                                                                                   'line-height',
                                                                                                                                                   'word-spacing')),
-                pzarc_redux_bg($prefix . 'navigator-items-hover-background', array('.pzarc-navigator .arc-slider-slide-nav-item:hover '),array('color'=>'#ddd')),
+                pzarc_redux_bg($prefix . 'navigator-items-hover-background', array('.pzarc-navigator .arc-slider-slide-nav-item:hover '),array('color'=>'#dddddd')),
                 pzarc_redux_borders($prefix . 'navigator-items-hover-borders', array('.pzarc-navigator .arc-slider-slide-nav-item:hover ')),
                 array(
                     'title'  => __('Navigator active item', 'pzarchitect'),
@@ -800,7 +800,7 @@
                                                                                                                                                     'text-align',
                                                                                                                                                     'line-height',
                                                                                                                                                     'word-spacing')),
-                pzarc_redux_bg($prefix . 'navigator-items-active-background', array('.pzarc-navigator .arc-slider-slide-nav-item.active '),array('color'=>'#555')),
+                pzarc_redux_bg($prefix . 'navigator-items-active-background', array('.pzarc-navigator .arc-slider-slide-nav-item.active '),array('color'=>'#555555')),
                 pzarc_redux_borders($prefix . 'navigator-items-active-borders', array('.pzarc-navigator .arc-slider-slide-nav-item.active ')),
             ),
         );
