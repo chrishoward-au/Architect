@@ -687,9 +687,9 @@
         $crop[ 0 ] = (!isset($crop[ 0 ]) ? 50 : $crop[ 0 ]);
         $crop[ 1 ] = (!isset($crop[ 1 ]) ? 50 : $crop[ 1 ]);
         $crop[ 2 ] = (!isset($crop[ 2 ]) ? 'center' : $crop[ 2 ]);
-      } elseif (true === $crop) {
+      } elseif (true === $crop || 1 === $crop) {
         $crop = array('50', '50', 'center');
-      } elseif ($crop !== false && !isset($crop[ 2 ])) {
+      } elseif ($crop !== false && !isset($crop[ 2 ]) && is_array($crop)) {
         $crop[ 2 ] = 'respect';
       }
 

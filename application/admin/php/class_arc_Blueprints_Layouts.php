@@ -1344,11 +1344,13 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
               ),
               array(
                   'title'    => __('Blueprints videos', 'pzarchitect'),
+                  'subtitle'=> __('Internet connection required'),
                   'id'       => $prefix . 'help-blueprints-videos',
                   'type'     => 'raw',
                   'class'    => 'plain',
                   'markdown' => false,
-                  'content'  => file_get_contents(PZARC_DOCUMENTATION_PATH . PZARC_LANGUAGE . '/blueprints-videos.html'),
+//                  'content'  => file_get_contents(PZARC_DOCUMENTATION_PATH . PZARC_LANGUAGE . '/blueprints-videos.html'),
+                  'content'=>@file_get_contents('https://s3.amazonaws.com/341public/architect/blueprints-videos.html')
               )
 
           )

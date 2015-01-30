@@ -103,16 +103,19 @@ For support, please send an email to support@pizazzwp.com
 
 == Screenshots ==
 
-1. Architect Panel Designer showing magazine style article design
-2. Post on front end using magazine style article design
-3. Architect Blueprint - Content selection. 
-4. Architect Blueprint - Layout design
-5. Slider example
+1. Architect Blueprint - Layout design
+2. Slider example
 
 == Changelog ==
 
 = 1.0.2 =
+* ADDED: %id% as an option in meta mainly for passing id into shortcodes. e.g. In Woo Commerce: [add_to_cart id="%id%"]
+
+* CHANGED: Trimmed some fat to get zip below 2MB
+
 * FIXED: Blueprints weren't using default styling
+* FIXED: More PHP5.2 errors
+* FIXED: Alignment problem when feature left/right outside components
 
 = 1.0.1 =
 * FIXED: Doofus error! i.e. I accidentally removed a path name that then threw a fatal error. :S

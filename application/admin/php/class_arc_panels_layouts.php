@@ -514,7 +514,8 @@
           'show_title' => false,
           'icon_class' => 'icon-large',
           'icon'       => 'el-icon-calendar',
-          'desc'       => __('Available tags are <span class="pzarc-text-highlight">%author%   %email%   %date%   %categories%   %tags   %commentslink%   %editlink%</span>. For custom taxonomies, prefix with ct:. e.g. To display the Woo Testimonials category, you would use %ct:testimonial-category%.', 'pzarchitect') . '<br><br>' .
+          'desc'       => __('Available tags are <span class="pzarc-text-highlight">%author%   %email%   %date%   %categories%   %tags   %commentslink%   %editlink%   %id%</span>. For custom taxonomies, prefix with ct:. e.g. To display the Woo Testimonials category, you would use %ct:testimonial-category%.', 'pzarchitect') . '<br><br>' .
+              __('Use shortcodes to add custom functions to meta. e.g. [add_to_cart id="%id%"]', 'pzarchitect') . '<br>' .
               __('Note: Enclose any author related text in <span class="pzarc-text-highlight">//</span> to hide it when using excluded authors.', 'pzarchitect') . '<br>' .
               __('Note: The email address will be encoded to prevent automated harvesting by spammers.', 'pzarchitect'),
           'fields'     => array(
@@ -808,7 +809,7 @@
                   'title'    => __('Maximum dimensions', 'pzarchitect'),
                   'type'     => 'dimensions',
                   'units'    => 'px',
-                  'default'  => array('width' => '300', 'height' => '350'),
+                  'default'  => array('width' => '400', 'height' => '300'),
                   'required' => array(
 //                      array('_panels_settings_image-focal-point', '!=', 'shrink'),
                       array('_panels_settings_feature-type', '=', 'image')

@@ -122,9 +122,11 @@
     position: relative;
     &.pzarc-align-left {
       float:left;
+      clear:none;
     }
     &.pzarc-align-right {
       float:right;
+      clear:none;
     }
 
   }

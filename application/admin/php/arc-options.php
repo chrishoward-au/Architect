@@ -352,10 +352,8 @@
                     'type'     => 'button_set',
                     'required' => array('architect_enable_bgimage', 'equals', true),
                     'options'  => array(
-                        'blue'         => __('Blue','pzarchitect'),
                         'green'        => __('Green','pzarchitect'),
                         'ocean-blue'   => __('Ocean/Blue','pzarchitect'),
-                        'orange-green' => __('Orange/Green','pzarchitect'),
                         'pink'         => __('Pink','pzarchitect'),
                     ),
                     'default'  => 'ocean-blue'

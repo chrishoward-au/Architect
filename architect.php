@@ -143,7 +143,7 @@
       /** Check for correct version of Pizazz Libs  */
       if (defined('PIZAZZ_VERSION')) {
         if (version_compare(PIZAZZ_VERSION, '1.6.3', '<')) {
-          die(__('Cannot activate Architect because an out of date version of PizazzWP Libs is active. It needs to be at least version 1.6.3. Deactivate or upgrade it, and try again.', 'pzarchitect'));
+          die(__('Cannot activate Architect because an out of date version of PizazzWP Libs is active. It needs to be at least version 1.6.3. Deactivate or upgrade it, and try again. Here is a manual link if you need it: <a href="https://s3.amazonaws.com/341public/LATEST/pizazzwp-libs.zip">Latest Pizazz Libs</a>', 'pzarchitect'));
 
           return;
         }

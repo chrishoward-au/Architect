@@ -36,14 +36,15 @@
         $this->generator = new LoremIpsumGenerator;
       } else {
         require_once(PZARC_PLUGIN_APP_PATH . '/shared/includes/php/Faker/src/autoload.php');
-        $this->faker = Faker\Factory::create();
+        require_once(trailingslashit(plugin_dir_path(__FILE__)).'faker_53.php');
+        $this->faker =pzarc_faker_53();
       }
     }
-
     public function get_custom_query()
     {
 
       $j = 0;
+      $dummy_query = array();
       $cats = array('abstract',
                     'animals',
                     'business',

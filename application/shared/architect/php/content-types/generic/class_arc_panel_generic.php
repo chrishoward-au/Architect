@@ -38,6 +38,7 @@
       $this->data[ 'image' ][ 'original' ] = null;
       $this->data[ 'video' ][ 'source' ]   = null;
 
+      $this->data[ 'meta' ][ 'id' ]              = null;
       $this->data[ 'meta' ][ 'datetime' ]        = null;
       $this->data[ 'meta' ][ 'fdatetime' ]       = null;
       $this->data[ 'meta' ][ 'categorieslinks' ] = null;
@@ -200,6 +201,9 @@
       $meta_string .= $this->toshow[ 'meta3' ][ 'show' ] ? $this->section[ '_panels_design_meta3-config' ] : '';
 
       /** META */
+      if (strpos($meta_string, '%id%') !== false) {
+        $this->data[ 'meta' ][ 'id' ] = get_the_id();
+      }
       if (strpos($meta_string, '%date%') !== false) {
         $this->data[ 'meta' ][ 'datetime' ]  = get_the_date();
         $this->data[ 'meta' ][ 'fdatetime' ] = date_i18n($this->section[ '_panels_design_meta-date-format' ], strtotime(get_the_date()));
@@ -436,6 +440,7 @@
 
     public function render_meta($component, $content_type, $panel_def, $rsid, $layout_mode = false)
     {
+      $panel_def[ $component ] = str_replace('{{id}}', $this->data[ 'meta' ][ 'id' ], $panel_def[ $component ]);
       $panel_def[ $component ] = str_replace('{{datetime}}', $this->data[ 'meta' ][ 'datetime' ], $panel_def[ $component ]);
       $panel_def[ $component ] = str_replace('{{fdatetime}}', $this->data[ 'meta' ][ 'fdatetime' ], $panel_def[ $component ]);
       $panel_def[ $component ] = str_replace('{{sortable}}', ' data-order="' . strtotime($this->data[ 'meta' ][ 'fdatetime' ]) . '"', $panel_def[ $component ]);
@@ -764,6 +769,7 @@
       $line      = str_replace('{{poststatus}}', $this->data[ 'poststatus' ], $line);
       $line      = str_replace('{{postformat}}', $this->data[ 'postformat' ], $line);
       $line      = str_replace('{{posttype}}', $source, $line);
+
       $pzclasses = 'pzarc-components ';
       $pzclasses .= ($this->section[ '_panels_design_components-position' ] === 'left' || $this->section[ '_panels_design_components-position' ] === 'right') ? 'vertical-content pzarc-align-' . $this->section[ '_panels_design_components-position' ] : '';
 
