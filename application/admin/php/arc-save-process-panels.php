@@ -5,15 +5,15 @@
 
     global $_architect;
     global $_architect_options;
-
+    pzdb('create css top');
     $nl = "\n";
-
     $pzarc_contents .= '/* This is the css for panel ' . $pzarc_panels[ '_panels_settings_short-name' ] . '*/' . $nl;
 
     // Step thru each field looking for ones to format
     $class_prefix = '.pzarc-panel_' . $pzarc_panels[ '_panels_settings_short-name' ];
 
     $toshow = json_decode($pzarc_panels[ '_panels_design_preview' ], true);
+    $feature_in_components = $toshow['image']['show'] && ($pzarc_panels['_panels_design_feature-location' ]!=='float' && $pzarc_panels['_panels_design_feature-location' ]!=='fill' );
 
     $pzarc_components_position = (!empty($pzarc_panels[ '_panels_design_components-position' ]) ? $pzarc_panels[ '_panels_design_components-position' ] : 'top');
     $pzarc_components_nudge_x  = (!empty($pzarc_panels[ '_panels_design_components-nudge-x' ]) ? $pzarc_panels[ '_panels_design_components-nudge-x' ] : 0);
@@ -114,17 +114,17 @@
 
 
           // Don't give thumbnail div a width if it's in the content
-           $margins = pzarc_process_spacing($pzarc_panels[ '_panels_design_image-spacing' ]);
+          $margins = pzarc_process_spacing($pzarc_panels[ '_panels_design_image-spacing' ]);
           $left    = $pzarc_panels[ '_panels_design_image-spacing' ][ 'margin-left' ];
           $left    = preg_replace("/([\\%px])/uiUm", "", $left);
           $right   = $pzarc_panels[ '_panels_design_image-spacing' ][ 'margin-right' ];
           $right   = preg_replace("/([\\%px])/uiUm", "", $right);
 
           if ('float' === $pzarc_panels[ '_panels_design_feature-location' ]) {
-            if ('top'===$pzarc_components_position || 'bottom'===$pzarc_components_position) {
-              $pzarc_contents .= $class_prefix . ' .entry-thumbnail {width:' . (100  - $left - $right) . '%;max-width:' . $pzarc_panels[ '_panels_design_image-max-dimensions' ][ 'width' ] . ';' . $margins . ';}' . $nl;
-            }else {
-              $pzarc_contents .= $class_prefix . ' .entry-thumbnail {width:' . max((100 - $pzarc_components_width - $left - $right), 0) . '%;max-width:' . $pzarc_panels[ '_panels_design_image-max-dimensions' ][ 'width' ] . ';' . $margins . ';float:'.('left'===$pzarc_components_position?'right':'left').'}' . $nl;
+            if ('top' === $pzarc_components_position || 'bottom' === $pzarc_components_position) {
+              $pzarc_contents .= $class_prefix . ' .entry-thumbnail {width:' . (100 - $left - $right) . '%;max-width:' . $pzarc_panels[ '_panels_design_image-max-dimensions' ][ 'width' ] . ';' . $margins . ';}' . $nl;
+            } else {
+              $pzarc_contents .= $class_prefix . ' .entry-thumbnail {width:' . max((100 - $pzarc_components_width - $left - $right), 0) . '%;max-width:' . $pzarc_panels[ '_panels_design_image-max-dimensions' ][ 'width' ] . ';' . $margins . ';float:' . ('left' === $pzarc_components_position ? 'right' : 'left') . '}' . $nl;
 
             }
           } elseif ('fill' === $pzarc_panels[ '_panels_design_feature-location' ] && 'image' === $pzarc_panels[ '_panels_settings_feature-type' ]) {
@@ -179,7 +179,7 @@
          *********************************************************/
 
         case (strpos($key, '_panels_styling') === 0 && !empty($value) && !empty($_architect_options[ 'architect_enable_styling' ])):
-
+          pzdb('styling top');
           $pkeys    = array();
           $pkey     = str_replace('_panels_styling_', '', $key);
           $pkey     = str_replace('-font-', '-', $pkey);
@@ -187,14 +187,22 @@
 
           $pkeys[ 'style' ] = str_replace('-', '', substr($pkey, $splitter + 1));
           $pkeys[ 'id' ]    = substr($pkey, 0, $splitter);
-          if (!in_array($pkeys['id'],array('custom','panels-load'))) {
+          if (!in_array($pkeys[ 'id' ], array('custom', 'panels-load'))) {
             // Filter out old selector names hanging arouind in existing panels
             if (isset($_architect[ 'architect_config_' . $pkeys[ 'id' ] . '-selectors' ])) {
 
               $pkeys[ 'classes' ] = (is_array($_architect[ 'architect_config_' . $pkeys[ 'id' ] . '-selectors' ]) ? $_architect[ 'architect_config_' . $pkeys[ 'id' ] . '-selectors' ] : array('0' => $_architect[ 'architect_config_' . $pkeys[ 'id' ] . '-selectors' ]));
+
+              if (!$feature_in_components && strpos($key,'entry-image')) {
+                $pzarc_contents .= pzarc_get_styling('panel', $pkeys, $value, $class_prefix . ($pkeys[ 'id' ] === 'components' ? '' : ' '), $pkeys[ 'classes' ]);
+
+              } else {
               $pzarc_contents .= pzarc_get_styling('panel', $pkeys, $value, $class_prefix.($pkeys['id']==='components'?'':' > .pzarc-components'), $pkeys[ 'classes' ]);
+
+              }
+
             }
-          } elseif ($pkeys['id']==='custom'){
+          } elseif ($pkeys[ 'id' ] === 'custom') {
             $pzarc_contents .= $value;
           }
           break;

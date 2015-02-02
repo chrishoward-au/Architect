@@ -117,8 +117,11 @@
 
           // Do we load up the MAsonry here?
           wp_enqueue_script('js-isotope-v2');
-          add_action('init',array($this,'init_scripts'));
-          $isotope      = 'data-isotope-options=\'{ "layoutMode": "masonry","itemSelector": ".pzarc-panel","masonry":{"columnWidth":".grid-sizer","gutter":".gutter-sizer"}}\'';
+          wp_enqueue_script('js-imagesloaded');
+          wp_enqueue_script('js-front-isotope');
+//          add_action('init',array($this,'init_scripts'));
+//          $isotope      = 'data-isotope-options=\'{ "layoutMode": "masonry","itemSelector": ".pzarc-panel","masonry":{"columnWidth":".grid-sizer","gutter":".gutter-sizer"}}\'';
+          $isotope= 'data-uid="'.$this->rsid.'"';
           $layout_class = 'js-isotope';
           break;
 
@@ -139,7 +142,8 @@
       // TODO: Might need to change js-isotope to masonry - chekc impact tho
       // TODO Accordion
 
-      echo '<' . ('table' !== $this->layout_mode ? 'div' : 'table') . ' id="' . $this->rsid . '" class="' . $layout_class . ' pzarc-section pzarc-section_' . $this->section_number . ' pzarc-section-using-panel_' . $this->section[ 'section-panel-settings' ][ '_panels_settings_short-name' ] . $this->slider[ 'wrapper' ] . '"' . $isotope . $accordion . '>';
+      echo '<' . ('table' !== $this->layout_mode ? 'div' : 'table') . ' id="' . $this->rsid . '"
+       class="' . $layout_class . ' pzarc-section pzarc-section_' . $this->section_number . ' pzarc-section-using-panel_' . $this->section[ 'section-panel-settings' ][ '_panels_settings_short-name' ] . $this->slider[ 'wrapper' ] . '"' . $isotope . $accordion . '>';
 
       // Table heading stuff
       if ('table' === $this->layout_mode) {

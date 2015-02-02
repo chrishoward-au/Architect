@@ -434,6 +434,9 @@
                 pzarc_redux_links($prefix . 'entry-readmore-font-links', array('a.readmore')),
             )
         );
+        /**
+         * FEATURE
+         */
         $this->sections[ ] = array(
             'title'      => 'Entry Featured image',
             'show_title' => false,
@@ -473,15 +476,15 @@
                     'title'   => __('CSS selectors', 'pzarc'),
                     'id'      => $prefix . 'entry-image-caption-selectors',
                     'type'    => 'text',
-                    'default' => '.entry-thumbnail caption',
+                    'default' => '.entry-thumbnail figcaption.caption',
                     'hint'    => array(
                         'title'   => 'Change CSS class',
                         'content' => 'Change this class only if your theme uses different class names'
                     )
                 ),
-                pzarc_redux_font($prefix . 'entry-image-caption-font', array('.entry-thumbnail caption')),
-                pzarc_redux_bg($prefix . 'entry-image-caption-font-background', array('.entry-thumbnail caption')),
-                pzarc_redux_padding($prefix . 'entry-image-caption-font-padding', array('.entry-thumbnail caption')),
+                pzarc_redux_font($prefix . 'entry-image-caption-font', array('.entry-thumbnail figcaption.caption')),
+                pzarc_redux_bg($prefix . 'entry-image-caption-font-background', array('.entry-thumbnail figcaption.caption')),
+                pzarc_redux_padding($prefix . 'entry-image-caption-font-padding', array('.entry-thumbnail figcaption.caption')),
             )
         );
         $this->sections[ ] = array(

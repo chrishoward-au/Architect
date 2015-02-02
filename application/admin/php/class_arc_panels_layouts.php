@@ -142,6 +142,10 @@
       $prefix   = '_panels_tabs_';
       $sections = array();
       global $_architect_options;
+      if (empty($_architect_options)) {
+        $_architect_options = get_option('_architect_options');
+      }
+
       if (!empty($_architect_options[ 'architect_enable_styling' ])) {
         $fields = array(
             array(
@@ -181,7 +185,7 @@
       }
     }
 
-    function pzarc_panel_general_settings($metaboxes)
+    function pzarc_panel_general_settings($metaboxes,$defaults_only=false)
     {
       $prefix        = '_panels_settings_';
       $sections      = array();
@@ -254,9 +258,13 @@
     /**********
      * Panels Design and Styling
      *********/
-    function pzarc_panels_design($metaboxes)
+    function pzarc_panels_design($metaboxes,$defaults_only=false)
     {
       global $_architect_options;
+      if (empty($_architect_options)) {
+        $_architect_options = get_option('_architect_options');
+      }
+
       $prefix      = '_panels_design_';
       $sections    = array();
       $sections[ ] = array(
@@ -1091,11 +1099,20 @@
               array(
                   'title'    => __('Panels videos', 'pzarchitect'),
                   'id'       => $prefix . 'help-panels-videos',
+                  'subtitle'=> __('Internet connection required'),
                   'type'     => 'raw',
                   'class'    => 'plain',
                   'markdown' => false,
-                  'content'  => file_get_contents(PZARC_DOCUMENTATION_PATH . PZARC_LANGUAGE . '/panels-videos.html'),
-              )
+                  'content'=>($defaults_only?'':@file_get_contents('https://s3.amazonaws.com/341public/architect/panels-videos.html')),
+              ),
+              array(
+                  'title'    => __('Online documentation', 'pzarchitect'),
+                  'id'       => $prefix . 'help-panels-online-docs',
+                  'type'     => 'raw',
+                  'markdown' => false,
+                  'content'  => '<a href="http://architect4wp.com/codex-listings/" target=_blank>'.__('Architect Online Documentation','pzarchitect').'</a><br>'. __('This is a growing resource. Please check back regularly.', 'pzarchitect')
+
+              ),
           )
       );
 
@@ -1123,11 +1140,14 @@
      * @param $metaboxes
      * @return array
      */
-    function pzarc_panels_styling($metaboxes)
+    function pzarc_panels_styling($metaboxes,$defaults_only=false)
     {
 
       global $_architect;
       global $_architect_options;
+      if (empty($_architect_options)) {
+        $_architect_options = get_option('_architect_options');
+      }
 
       if (empty($_architect)) {
         $_architect = get_option('_architect');
@@ -1383,9 +1403,9 @@
                     'indent' => true,
                     'class'  => 'heading',
                 ),
-                pzarc_redux_font($prefix . 'entry-image-caption' . $font, array('figure.entry-thumbnail span.caption'), $defaults[ $optprefix . 'entry-image-caption' . $font ]),
-                pzarc_redux_bg($prefix . 'entry-image-caption' . $font . $background, array('figure.entry-thumbnail span.caption'), $defaults[ $optprefix . 'entry-image-caption' . $font . $background ]),
-                pzarc_redux_padding($prefix . 'entry-image-caption' . $font . $padding, array('figure.entry-thumbnail span.caption'), $defaults[ $optprefix . 'entry-image-caption' . $font . $padding ])
+                pzarc_redux_font($prefix . 'entry-image-caption' . $font, array('figure.entry-thumbnail figcaption.caption'), $defaults[ $optprefix . 'entry-image-caption' . $font ]),
+                pzarc_redux_bg($prefix . 'entry-image-caption' . $font . $background, array('figure.entry-thumbnail figcaption.caption'), $defaults[ $optprefix . 'entry-image-caption' . $font . $background ]),
+                pzarc_redux_padding($prefix . 'entry-image-caption' . $font . $padding, array('figure.entry-thumbnail figcaption.caption'), $defaults[ $optprefix . 'entry-image-caption' . $font . $padding ])
             )
         );
 
@@ -1443,34 +1463,24 @@
             'icon_class' => 'icon-large',
             'icon'       => 'el-icon-question-sign',
             'fields'     => array(
-
                 array(
-                    'title'  => __('Styling', 'pzarchitect'),
-                    'id'     => $prefix . 'panels-help-styling',
-                    'type'   => 'section',
-                    'indent' => true,
-                    //  'class' => 'plain',
-                    'desc'   => '<p>
-                              Fiant nulla claritatem processus vulputate quarta. Anteposuerit eodem habent parum id et. Notare mutationem facilisi nulla ut facer.
-                              </p>
+                    'title'    => __('Panels videos', 'pzarchitect'),
+                    'id'       => $prefix . 'help-styling-videos',
+                    'subtitle'=> __('Internet connection required'),
+                    'type'     => 'raw',
+                    'class'    => 'plain',
+                    'markdown' => false,
+                    'content'=>($defaults_only?'':@file_get_contents('https://s3.amazonaws.com/341public/architect/panels-videos.html')),
+                ),
+                array(
+                    'title'    => __('Online documentation', 'pzarchitect'),
+                    'id'       => $prefix . 'help-styling-online-docs',
+                    'type'     => 'raw',
+                    'markdown' => false,
+                    'content'  => '<a href="http://architect4wp.com/codex-listings/" target=_blank>'.__('Architect Online Documentation','pzarchitect').'</a><br>'. __('This is a growing resource. Please check back regularly.', 'pzarchitect')
 
-                              <p>
-                              Nam minim quis est typi nostrud. Et nunc in legere dignissim decima. Feugiat facilisi nulla lectores quod esse.
-                              </p>
+                ),
 
-                              <p>
-                              Nostrud ipsum usus nam ut magna. Zzril nobis qui est nonummy in. Nonummy seacula dolore amet ipsum decima.
-                              </p>
-
-                              <p>
-                              Nibh cum lorem iriure laoreet ut. Nihil in vel diam sit iusto. Eorum tempor ea zzril dynamicus consuetudium.
-                              </p>
-
-                              <p>
-                              Ut at consectetuer blandit nibh in.
-                              </p>'
-
-                )
             )
         );
         $metaboxes[ ] = array(

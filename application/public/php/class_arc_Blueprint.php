@@ -69,7 +69,7 @@
           'meta_compare' => '='
       );
       // TODO: Why do we need this still?
-      pzarc_set_defaults();
+      pzarc_get_defaults();
       global $_architect_options,$_architect;
       if (!empty($_architect_options[ 'architect_enable_query_cache' ]) &&  !current_user_can( 'manage_options' ) && false === ( $blueprint_query = get_transient( 'pzarc_blueprint_query_'.$this->name ) ) ) {
         // It wasn't there, so regenerate the data and save the transient

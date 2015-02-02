@@ -17,6 +17,7 @@
   add_action('save_post', 'save_arc_layouts', 999, 3);
   function save_arc_layouts($postid, $post, $update)
   {
+    pzdb('SAVE PROCESS TOP');
 //   var_dump($postid,$post, $update);
     // keep an eye on this to be sure it doesn't prevent some saves
     if (!$update) {
@@ -77,11 +78,12 @@
       // Need to create the file contents
 
       if ('all' !== $postid) {
+        pzdb('save process pre get settings');
         $pzarc_settings = get_post_meta($postid);
         $pzarc_settings = pzarc_flatten_wpinfo($pzarc_settings);
+        pzdb('save process pre create css');
         pzarc_create_css($postid, $post->post_type, $pzarc_settings);
       } else {
-        //TODO Code to recreate all panels and blueprints css
         // get the blueprints and panels and step thru each recreating css
         $pzarc_panels = get_posts(array('post_type' => 'arc-panels', 'post_status' => 'publish'));
         foreach ($pzarc_panels as $pzarc_panel) {
@@ -108,8 +110,8 @@
 
       // by this point, the $wp_filesystem global should be working, so let's use it to create a file
       global $wp_filesystem;
-      foreach ($pzarc_css_cache['blueprints'] as $k=>$v) {
-        $filename = PZARC_CACHE_PATH . '/pzarc_blueprint_'.$k.'.css';
+      foreach ($pzarc_css_cache[ 'blueprints' ] as $k => $v) {
+        $filename = PZARC_CACHE_PATH . '/pzarc_blueprint_' . $k . '.css';
         if (!empty($k) && !$wp_filesystem->put_contents(
                 $filename,
                 "/* Blueprint '.$k.'*/\n" . $v,
@@ -119,11 +121,11 @@
           echo '<p class="error message">Error saving css cache file! Please check the permissions on the WP Uploads folder.</p>';
         }
       }
-      foreach ($pzarc_css_cache['panels'] as $k=>$v) {
-        $filename = PZARC_CACHE_PATH . '/pzarc_panel_'.$k.'.css';
+      foreach ($pzarc_css_cache[ 'panels' ] as $k => $v) {
+        $filename = PZARC_CACHE_PATH . '/pzarc_panel_' . $k . '.css';
         if (!empty($k) && !$wp_filesystem->put_contents(
                 $filename,
-                "/* Panel '.$k.'*/\n" .  $v,
+                "/* Panel '.$k.'*/\n" . $v,
                 FS_CHMOD_FILE // predefined mode settings for WP files
             )
         ) {
@@ -152,8 +154,9 @@
 
     global $_architect;
     global $_architect_options;
-
-    pzarc_set_defaults(array('blueprints', 'panels'));
+    pzdb('pre get defaults');
+    pzarc_get_defaults(array('blueprints', 'panels'));
+    pzdb('post get defaults');
     $defaults = $_architect[ 'defaults' ];
     // Need to create the file contents
     // For each field in stylings, create css
@@ -368,6 +371,7 @@
         }
       }
     }
+
     return $is_empty;
   }
 

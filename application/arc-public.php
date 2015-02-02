@@ -56,14 +56,14 @@
           $page_build = get_post_meta(get_the_id(), '_pzarc_pagebuilder', true);
           if (isset($page_build[ 'enabled' ])) {
             $skip = array_key_exists('original', $page_build[ 'enabled' ]);
-            $show_content = $skip;
-            if (!$show_content) {
-        //      echo '</div>  <!-- hide content ->';
-            }
+            // If not skip, then we would have already done it
             if ($skip) {
               foreach ($page_build[ 'enabled' ] as $bpsn => $v) {
+                // Skip until after the Original
                 if (!$skip && $bpsn !== 'placebo' && $bpsn !== 'original') {
                   pzarc_pagebuilder($bpsn);
+                } elseif ($bpsn === 'original'){
+                  $skip = false;
                 }
               }
             }

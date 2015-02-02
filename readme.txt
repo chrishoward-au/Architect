@@ -95,6 +95,7 @@ No. We don't delete any of your data. In the future a method will be provided fo
 
 == Known issues ==
 * Autoplay slideshows reverse at the end instead of looping back to the start
+* Importing Blueprints, you will have to redo filters. This is a limitation of Redux not Architect.
 
 == Support ==
 
@@ -109,13 +110,19 @@ For support, please send an email to support@pizazzwp.com
 == Changelog ==
 
 = 1.0.2 =
-* ADDED: %id% as an option in meta mainly for passing id into shortcodes. e.g. In Woo Commerce: [add_to_cart id="%id%"]
+* ADDED: %id% as an option in meta mainly for passing id into shortcodes - which is really cool! e.g. In Woo Commerce: [add_to_cart id="%id%"]
 
 * CHANGED: Trimmed some fat to get zip below 2MB
+* CHANGED: Upgraded Isotope to v2.1
 
 * FIXED: Blueprints weren't using default styling
 * FIXED: More PHP5.2 errors
 * FIXED: Alignment problem when feature left/right outside components
+* FIXED: Page builder not showing Blueprints that are to appear after the Original Content.
+* FIXED: Styling not applied to images if outside components
+* FIXED: PHP notices generated at activation
+* FIXED: Masonry layout scrambled in Chrome, Safari and Opera when Panels have iamges
+* FIXED: Can now have multipel masonry Blueprints on a page.
 
 = 1.0.1 =
 * FIXED: Doofus error! i.e. I accidentally removed a path name that then threw a fatal error. :S

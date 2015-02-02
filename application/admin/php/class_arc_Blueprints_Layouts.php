@@ -241,12 +241,15 @@
 //}
 
 
-    function pzarc_blueprint_tabs_mb($metaboxes)
+    function pzarc_blueprint_tabs_mb($metaboxes,$defaults_only = false)
     {
       $prefix   = '_blueprint_tabs_';
       $sections = array();
 
       global $_architect_options;
+      if (empty($_architect_options)) {
+        $_architect_options = get_option('_architect_options');
+      }
       $fields = array();
       if (!empty($_architect_options[ 'architect_enable_styling' ])) {
         $fields = array(array(
@@ -344,7 +347,7 @@
      * @param array $metaboxes
      * @return array
      */
-    function pzarc_blueprint_layout_general_mb($metaboxes)
+    function pzarc_blueprint_layout_general_mb($metaboxes,$defaults_only = false)
     {
       $prefix = '_blueprints_';
 
@@ -468,11 +471,14 @@
     /**
      * LAYOUT
      */
-    function pzarc_blueprint_layout_mb($metaboxes)
+    function pzarc_blueprint_layout_mb($metaboxes,$defaults_only = false)
     {
       $prefix   = '_blueprints_';
       $sections = array();
       global $_architect_options;
+      if (empty($_architect_options)) {
+        $_architect_options = get_option('_architect_options');
+      }
       global $pzarc_panels_array;
       if (empty($pzarc_panels_array)) {
         $args = array(
@@ -1195,8 +1201,16 @@
                   'type'     => 'raw',
                   'class'    => 'plain',
                   'markdown' => true,
-                  'content'  => file_get_contents(PZARC_DOCUMENTATION_PATH . PZARC_LANGUAGE . '/using-blueprints.md'),
-                  'pzarchitect')
+                  'content'  => ($defaults_only?'':file_get_contents(PZARC_DOCUMENTATION_PATH . PZARC_LANGUAGE . '/using-blueprints.md')),
+                  'pzarchitect'),
+              array(
+                  'title'    => __('Online documentation', 'pzarchitect'),
+                  'id'       => $prefix . 'help-usingbp-online-docs',
+                  'type'     => 'raw',
+                  'markdown' => false,
+                  'content'  => '<a href="http://architect4wp.com/codex-listings/" target=_blank>'.__('Architect Online Documentation','pzarchitect').'</a><br>'. __('This is a growing resource. Please check back regularly.', 'pzarchitect')
+
+              ),
           )
       );
       $sections[ '_help' ]    = array(
@@ -1208,11 +1222,20 @@
               array(
                   'title'    => __('Blueprints videos', 'pzarchitect'),
                   'id'       => $prefix . 'help-blueprints-videos',
+                  'subtitle'=> __('Internet connection required'),
                   'type'     => 'raw',
                   'class'    => 'plain',
                   'markdown' => false,
-                  'content'  => file_get_contents(PZARC_DOCUMENTATION_PATH . PZARC_LANGUAGE . '/blueprints-videos.html'),
-              )
+                  'content'=>($defaults_only?'':@file_get_contents('https://s3.amazonaws.com/341public/architect/blueprints-videos.html'))
+              ),
+              array(
+                  'title'    => __('Online documentation', 'pzarchitect'),
+                  'id'       => $prefix . 'help-layout-online-docs',
+                  'type'     => 'raw',
+                  'markdown' => false,
+                  'content'  => '<a href="http://architect4wp.com/codex-listings/" target=_blank>'.__('Architect Online Documentation','pzarchitect').'</a><br>'. __('This is a growing resource. Please check back regularly.', 'pzarchitect')
+
+              ),
 
           )
       );
@@ -1259,7 +1282,7 @@
      * @param array $metaboxes
      * @return array
      */
-    function pzarc_blueprint_contents_mb($metaboxes)
+    function pzarc_blueprint_contents_mb($metaboxes,$defaults_only = false)
     {
 
       // TODO: Setup a loop that reads the object containing content type info as appened by the content type classes. Will need a means of letting js know tho.
@@ -1349,9 +1372,16 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
                   'type'     => 'raw',
                   'class'    => 'plain',
                   'markdown' => false,
-//                  'content'  => file_get_contents(PZARC_DOCUMENTATION_PATH . PZARC_LANGUAGE . '/blueprints-videos.html'),
-                  'content'=>@file_get_contents('https://s3.amazonaws.com/341public/architect/blueprints-videos.html')
-              )
+                  'content'=>($defaults_only?'':@file_get_contents('https://s3.amazonaws.com/341public/architect/blueprints-videos.html'))
+              ),
+              array(
+                  'title'    => __('Online documentation', 'pzarchitect'),
+                  'id'       => $prefix . 'help-content-online-docs',
+                  'type'     => 'raw',
+                  'markdown' => false,
+                  'content'  => '<a href="http://architect4wp.com/codex-listings/" target=_blank>'.__('Architect Online Documentation','pzarchitect').'</a><br>'. __('This is a growing resource. Please check back regularly.', 'pzarchitect')
+
+              ),
 
           )
       );
@@ -1376,9 +1406,12 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
      * @param $metaboxes
      * @return array
      */
-    function pzarc_blueprint_layout_styling_mb($metaboxes)
+    function pzarc_blueprint_layout_styling_mb($metaboxes,$defaults_only = false)
     {
       global $_architect_options;
+      if (empty($_architect_options)) {
+        $_architect_options = get_option('_architect_options');
+      }
       if (empty($_architect)) {
         $_architect = get_option('_architect');
       }
@@ -1674,7 +1707,7 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
                     'title'    => __('Blueprint styling', 'pzarchitect'),
                     'id'       => $prefix . 'help',
                     'type'     => 'raw',
-                    'markdown' => true,
+                    'markdown' => false,
                     //  'class' => 'plain',
                     'content'  => '<h3>Adding underlines to hover links</h3>
                             <p>In the Custom CSS field, enter the following CSS</p>
@@ -1683,8 +1716,15 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
                             <h3>Make pager appear outside of panels</h3>
                             <p>If you want the pager to appear outside of the panels instead of over them, set a the sections width less than 100%.</p>
                             '
+                ),
+                array(
+                    'title'    => __('Online documentation', 'pzarchitect'),
+                    'id'       => $prefix . 'help-content-online-docs',
+                    'type'     => 'raw',
+                    'markdown' => false,
+                    'content'  => '<a href="http://architect4wp.com/codex-listings/" target=_blank>'.__('Architect Online Documentation','pzarchitect').'</a><br>'. __('This is a growing resource. Please check back regularly.', 'pzarchitect')
 
-                )
+                ),
             )
         );
         $metaboxes[ ]                = array(

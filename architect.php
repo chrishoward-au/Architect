@@ -152,16 +152,17 @@
 
       TGM_Plugin_Activation::get_instance()->update_dismiss();
 
-      /** Build CSS cache */
 
-      $pzarc_cssblueprint_cache = maybe_unserialize(get_option('pzarc_css'));
-
-      if (!$pzarc_cssblueprint_cache) {
-        add_option('pzarc_css', maybe_serialize(array('blueprints' => array(), 'panels' => array())), null, 'no');
-      }
-      require_once(PZARC_PLUGIN_APP_PATH . '/admin/php/arc-save-process.php');
-
-      save_arc_layouts('all', null, true);
+      // This doesn't seem to work properly when upgrading, so might pull it for now, since it's probably better to use what is already there
+//      /** Build CSS cache */
+//      $pzarc_cssblueprint_cache = maybe_unserialize(get_option('pzarc_css'));
+//
+//      if (!$pzarc_cssblueprint_cache) {
+//        add_option('pzarc_css', maybe_serialize(array('blueprints' => array(), 'panels' => array())), null, 'no');
+//      }
+//      require_once(PZARC_PLUGIN_APP_PATH . '/admin/php/arc-save-process.php');
+//
+//      save_arc_layouts('all', null, true);
     }
 
     public function admin_initialize()
@@ -253,7 +254,9 @@
     {
 
       wp_enqueue_script('jquery');
-      wp_register_script('js-isotope-v2', PZARC_PLUGIN_APP_URL . '/public/js/isotope.pkgd.min.js', array('jquery'), 2, false);
+      wp_register_script('js-isotope-v2', PZARC_PLUGIN_APP_URL . '/public/js/isotope.pkgd.min.js', array('jquery'), 2, true);
+      wp_register_script('js-imagesloaded', PZARC_PLUGIN_APP_URL . '/public/js/imagesloaded.pkgd.min.js', array('jquery'), 2, true);
+      wp_register_script('js-front-isotope', PZARC_PLUGIN_APP_URL . '/public/js/arc-front-isotope.js', array('jquery'), 2, true);
 
 
     }

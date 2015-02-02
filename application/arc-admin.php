@@ -429,6 +429,8 @@
                         </li>
                         <li><a href="http://isotope.metafizzy.co/" target="_blank">Isotope JS</a>
                         </li>
+                        <li><a href="http://imagesloaded.desandro.com/" target="_blank">imagesLoaded</a>
+                        </li>
                         <li><a href="http://dimsemenov.com/plugins/magnific-popup/" target="_blank">Magnific JS</a>
                         </li>
                         <li><a href="http://jqueryui.com/" target="_blank">jQueryUI</a>
