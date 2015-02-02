@@ -18,8 +18,8 @@
      */
     function __construct()
     {
-      add_action("redux/metaboxes/$this->redux_opt_name/boxes", array($this, "pzarc_add_fvid_metaboxes"), 10, 1);
       add_action("redux/metaboxes/$this->redux_opt_name/boxes", array($this, "pzarc_add_pagebuilder_metaboxes"), 10, 1);
+      add_action("redux/metaboxes/$this->redux_opt_name/boxes", array($this, "pzarc_add_fvid_metaboxes"), 10, 1);
     }
 
     /** Featured Video */
@@ -54,7 +54,6 @@
       );
 
       // Declare your metaboxes
-      $metaboxes    = array();
       $metaboxes[ ] = array(
           'id'         => 'pzarc_mb-featured-video',
           'title'      => __('Featured video', 'pzarchitect'),
@@ -91,7 +90,6 @@
       );
 
       // Declare your metaboxes
-      $metaboxes    = array();
       $metaboxes[ ] = array(
           'id'         => 'pzarc_mb-pagebuilder',
           'title'      => __('Architect Page Builder', 'pzarchitect'),

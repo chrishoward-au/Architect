@@ -3,7 +3,7 @@ Contributors: chrishoward
 Tags: content,display,posts,pages,gallery,slider,tabs,tabbed,tabular,page builder,widget,hooks
 Requires at least: 3.5.0
 Tested up to: 4.1.0
-Stable tag: 1.0.2
+Stable tag: 1.0.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Plugin URI: http://architect4wp.com
@@ -108,6 +108,8 @@ For support, please send an email to support@pizazzwp.com
 2. Slider example
 
 == Changelog ==
+= 1.0.3 =
+* FIXED: Missing Featured Video metabox
 
 = 1.0.2 =
 * ADDED: %id% as an option in meta mainly for passing id into shortcodes - which is really cool! e.g. In Woo Commerce: [add_to_cart id="%id%"]
@@ -122,7 +124,7 @@ For support, please send an email to support@pizazzwp.com
 * FIXED: Styling not applied to images if outside components
 * FIXED: PHP notices generated at activation
 * FIXED: Masonry layout scrambled in Chrome, Safari and Opera when Panels have iamges
-* FIXED: Can now have multipel masonry Blueprints on a page.
+* FIXED: Can now have multiple masonry Blueprints on a page.
 
 = 1.0.1 =
 * FIXED: Doofus error! i.e. I accidentally removed a path name that then threw a fatal error. :S
