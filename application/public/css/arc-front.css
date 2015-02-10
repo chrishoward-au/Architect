@@ -31,7 +31,18 @@
     display: block;
     counter-reset: arc-title-counter; }
     .pzarchitect .pzarc-section.tiles {
-      display: block; }
+      display: -webkit-box;
+      display: -moz-box;
+      display: -ms-flexbox;
+      display: -webkit-flex;
+      display: flex;
+      justify-content: flex-start;
+      -webkit-flex-flow: row wrap;
+      -moz-flex-flow: row wrap;
+      /* Unsupported in FF ATOW!! Argh! */
+      flex-flow: row wrap;
+      flex-direction: row;
+      flex-wrap: wrap; }
   .pzarchitect h2.pzarc-page-title {
     font-size: 1.5em;
     line-height: 1.5em; }
@@ -77,8 +88,6 @@
   .pzarchitect .hide-content + .hentry {
     display: none; }
   .pzarchitect .pzarc-panel {
-    min-width: 0px;
-    min-height: 0px;
     /* Remember to remove space between divs to stop inline-block space issue */
     display: inline-block;
     box-sizing: border-box;
@@ -132,7 +141,7 @@
       .pzarchitect .pzarc-panel .entry-thumbnail.pzarc-components-left {
         float: right; }
     .pzarchitect .pzarc-panel .pzarc-title-thumb {
-      display: inline-block;
+      display: inline-flex;
       float: left;
       margin-right: 3px; }
     .pzarchitect .pzarc-panel .pzarc-title-wrap {

@@ -7,115 +7,54 @@
    */
 
 
-  /**
-   * Display Page Builder before the post
-   */
-  function pzarc_add_pagebuilder_before($query_object)
-  {
-    // We only want this to run once. There's probably a more correct way.
-    static $before_state = false;
-    global $in_arc, $post;
-    if (!$in_arc) {
-      if (!$before_state) {
-        global $original_post;
-        $original_post = get_the_id();
-      }
-      if (is_singular() && !$before_state) {
-        $page_build = get_post_meta(get_the_id(), '_pzarc_pagebuilder', true);
-        if (isset($page_build[ 'enabled' ])) {
-          $show_content = array_key_exists('original', $page_build[ 'enabled' ]);
-          foreach ($page_build[ 'enabled' ] as $bpsn => $v) {
-            if ($bpsn !== 'placebo' && $bpsn !== 'original') {
-              pzarc_pagebuilder($bpsn);
-            }
-            if ($bpsn === 'original') {
-              break;
-            }
-          }
-          if (!$show_content) {
-            echo '<span class="hide-content"></span>';
-          }
-        }
-      }
-      $before_state = true;
-      remove_action('loop_start', 'pzarc_add_pagebuilder_before');
-    }
-
-  }
-
-  /**
-   * Display Page Builder after the post
-   */
-  function pzarc_add_pagebuilder_after($query_object)
-  {
-    global $in_arc;
-    if (!$in_arc) {
-      global $original_post;
-      if (get_the_id() === $original_post) {
-        if (is_singular()) {
-          $page_build = get_post_meta(get_the_id(), '_pzarc_pagebuilder', true);
-          if (isset($page_build[ 'enabled' ])) {
-            $skip = array_key_exists('original', $page_build[ 'enabled' ]);
-            // If not skip, then we would have already done it
-            if ($skip) {
-              foreach ($page_build[ 'enabled' ] as $bpsn => $v) {
-                // Skip until after the Original
-                if (!$skip && $bpsn !== 'placebo' && $bpsn !== 'original') {
-                  pzarc_pagebuilder($bpsn);
-                } elseif ($bpsn === 'original'){
-                  $skip = false;
-                }
-              }
-            }
-          }
-        }
-      }
-      $original_post = null;
-      remove_action('loop_end', 'pzarc_add_pagebuilder_after');
-    }
-  }
-
   // How do we do this only on pages needing it?
   add_action('init', 'pzarc_display_init');
+  /**
+   *
+   * pzarc_display_init
+   *
+   */
   function pzarc_display_init()
   {
+    if (is_admin()) {
+      return;
+    }
 
-    if (!is_admin()) {
+    $pzarc_css_cache = maybe_unserialize(get_option('pzarc_css'));
 
-      add_action('loop_start', 'pzarc_add_pagebuilder_before', 10, 99);
-      add_action('loop_end', 'pzarc_add_pagebuilder_after', 10, 99);
+    // No point in proceeding if no blueprints or no panels
+    if (empty($pzarc_css_cache[ 'blueprints' ]) || empty($pzarc_css_cache[ 'panels' ])) {
+      return;
+    }
 
-//      wp_register_style('pzarc_css', PZARC_CACHE_URL . 'pzarc_css_cache.css');
-      $pzarc_css_cache = maybe_unserialize(get_option('pzarc_css'));
+//    add_action('loop_start', 'pzarc_add_pagebuilder_before', 99);
+//    add_action('loop_end', 'pzarc_add_pagebuilder_after', 99);
 
-      // No point in proceeding if no blueprints or no panels
-      if (empty($pzarc_css_cache[ 'blueprints' ]) || empty($pzarc_css_cache[ 'panels' ])) {
-        return;
-      }
-      foreach ($pzarc_css_cache[ 'blueprints' ] as $k => $v) {
-        if (!empty($k)) {
-          $filename      = PZARC_CACHE_URL . '/pzarc_blueprint_' . $k . '.css';
-          $filename_path = PZARC_CACHE_PATH . '/pzarc_blueprint_' . $k . '.css';
-          if (file_exists($filename_path)) {
-            wp_register_style('pzarc_css_blueprint_' . $k, $filename,false,filemtime($filename_path));
-          } else {
-            echo '<p class="message-warning">' . __('Oops! Could not find Architect CSS cache file: pzarc_blueprint_', 'pzarchitect') . $k . '.css. ' . __('Please go to WP Admin Architect > Tools and rebuild the CSS cache and try again.', 'pzarchitect') . '</p>';
-          }
-        }
-      }
-
-      foreach ($pzarc_css_cache[ 'panels' ] as $k => $v) {
-        if (!empty($k)) {
-          $filename      = PZARC_CACHE_URL . '/pzarc_panel_' . $k . '.css';
-          $filename_path = PZARC_CACHE_PATH . '/pzarc_panel_' . $k . '.css';
-          if (file_exists($filename_path)) {
-            wp_register_style('pzarc_css_panel_' . $k, $filename,false,filemtime($filename_path));
-          } else {
-            echo '<p class="message-warning">' . __('Oops! Could not find Architect CSS cache file: pzarc_panel_', 'pzarchitect') . $k . '.css. ' . __('Please go to WP Admin Architect > Tools and rebuild the CSS cache and try again.', 'pzarchitect') . '</p>';
-          }
+    foreach ($pzarc_css_cache[ 'blueprints' ] as $k => $v) {
+      if (!empty($k)) {
+        $filename      = PZARC_CACHE_URL . '/pzarc_blueprint_' . $k . '.css';
+        $filename_path = PZARC_CACHE_PATH . '/pzarc_blueprint_' . $k . '.css';
+        if (file_exists($filename_path)) {
+          wp_register_style('pzarc_css_blueprint_' . $k, $filename, false, filemtime($filename_path));
+        } else {
+          echo '<p class="message-warning">' . __('Oops! Could not find Architect CSS cache file: pzarc_blueprint_', 'pzarchitect') . $k . '.css. ' . __('Please go to WP Admin Architect > Tools and rebuild the CSS cache and try again.', 'pzarchitect') . '</p>';
         }
       }
     }
+
+    foreach ($pzarc_css_cache[ 'panels' ] as $k => $v) {
+      if (!empty($k)) {
+        $filename      = PZARC_CACHE_URL . '/pzarc_panel_' . $k . '.css';
+        $filename_path = PZARC_CACHE_PATH . '/pzarc_panel_' . $k . '.css';
+        if (file_exists($filename_path)) {
+          wp_register_style('pzarc_css_panel_' . $k, $filename, false, filemtime($filename_path));
+        } else {
+          echo '<p class="message-warning">' . __('Oops! Could not find Architect CSS cache file: pzarc_panel_', 'pzarchitect') . $k . '.css. ' . __('Please go to WP Admin Architect > Tools and rebuild the CSS cache and try again.', 'pzarchitect') . '</p>';
+        }
+      }
+    }
+
+    wp_register_style('css-hw-float-fix', PZARC_PLUGIN_APP_URL . '/public/css/arc-hw-fix.css');
 
     // TODO: These seem to be loading late so loading in footer - even the CSS!
     // Retina Js
@@ -143,18 +82,6 @@
     // jQuery Collapse
     wp_register_script('js-jquery-collapse', PZARC_PLUGIN_APP_URL . '/public/js/jQuery-Collapse/src/jquery.collapse.js', array('jquery'), null, true);
 
-    // ResponCSS
-//    wp_register_script('js-responcss', PZARC_PLUGIN_APP_URL . '/shared/includes/css/ResponCSS/js/responcss.js');
-//    wp_register_style('css-responcss', PZARC_PLUGIN_APP_URL . '/shared/includes/css/ResponCSS/css/responcss.css');
-//
-//    wp_enqueue_script('js-responcss');
-//    wp_enqueue_style('css-responcss');
-
-
-    // Front end runs fine without Redux!
-//    if (!(class_exists('ReduxFramework') || class_exists('ReduxFrameworkPlugin'))) {
-//      return;
-//    }
     $actions_options = get_option('_architect_actions');
     $actions         = array();
     $i               = 1;
@@ -172,7 +99,6 @@
         new showBlueprint($v[ 'architect_actions_' . $k . '_action-name' ], $v[ 'architect_actions_' . $k . '_blueprint' ], 'home');
       }
     }
-    //   require_once PZARC_PLUGIN_PATH . '/admin/php/arc-options.php';
 
     // Override WP Gallery if necessary
     global $_architect_options;
@@ -213,22 +139,17 @@
     ob_start();
 
     $pzarc_overrides = !empty($atts[ 'ids' ]) ? $atts[ 'ids' ] : null;
-    // UGH! This is a bit of a mess. Need a better solution
-    // echo '<div class="clearfix"></div>'; // Just need to stop some overlapping when images are bigger than content in post
 
-    do_action("arc_before_{$pzarc_caller}", $pzarc_blueprint, $pzarc_overrides, $pzarc_caller, $tag);
+    do_action("arc_before_shortcode", $pzarc_blueprint, $pzarc_overrides, $pzarc_caller, $tag);
 
-//    var_dump($pzarc_blueprint, $pzarc_overrides, $pzarc_caller);
 
     // The caller is shortcode, and not variable here. It just uses a variable for consistency and documentation
-    do_action("arc_do_{$pzarc_caller}", $pzarc_blueprint, $pzarc_overrides, $pzarc_caller, $tag);
+    do_action("arc_do_shortcode", $pzarc_blueprint, $pzarc_overrides, $pzarc_caller, $tag);
 
-    do_action("arc_after_{$pzarc_caller}", $pzarc_blueprint, $pzarc_overrides, $pzarc_caller, $tag);
+    do_action("arc_after_shortcode", $pzarc_blueprint, $pzarc_overrides, $pzarc_caller, $tag);
 
     $pzout = ob_get_contents();
     ob_end_clean();
-
-//    $pzout = '<div class="pzarc-shortcode pzarc-shortcode-' . $pzarc_blueprint . '">' . $pzout . '</div>';
 
     // Putting thru a filter so devs can do stuff with it
     return apply_filters('arc_filter_shortcode', $pzout, $pzarc_blueprint, $pzarc_overrides, $tag);
@@ -249,9 +170,9 @@
   function pzarchitect($pzarc_blueprint = null, $pzarc_overrides = null)
   {
     $pzarc_caller = 'template_tag';
-    do_action("arc_before_{$pzarc_caller}", $pzarc_blueprint, $pzarc_overrides, $pzarc_caller);
-    do_action("arc_do_{$pzarc_caller}", $pzarc_blueprint, $pzarc_overrides, $pzarc_caller);
-    do_action("arc_after_{$pzarc_caller}", $pzarc_blueprint, $pzarc_overrides, $pzarc_caller);
+    do_action("arc_before_template_tag", $pzarc_blueprint, $pzarc_overrides, $pzarc_caller);
+    do_action("arc_do_template_tag", $pzarc_blueprint, $pzarc_overrides, $pzarc_caller);
+    do_action("arc_after_template_tag", $pzarc_blueprint, $pzarc_overrides, $pzarc_caller);
   }
 
   add_action('arc_do_template_tag', 'pzarc', 10, 3);
@@ -264,9 +185,9 @@
   function pzarc_pagebuilder($pzarc_blueprint = null, $pzarc_overrides = null)
   {
     $pzarc_caller = 'pagebuilder';
-    do_action("arc_before_{$pzarc_caller}", $pzarc_blueprint, $pzarc_overrides, $pzarc_caller);
-    do_action("arc_do_{$pzarc_caller}", $pzarc_blueprint, $pzarc_overrides, $pzarc_caller);
-    do_action("arc_after_{$pzarc_caller}", $pzarc_blueprint, $pzarc_overrides, $pzarc_caller);
+    do_action("arc_before_pagebuilder", $pzarc_blueprint, $pzarc_overrides, $pzarc_caller);
+    do_action("arc_do_pagebuilder", $pzarc_blueprint, $pzarc_overrides, $pzarc_caller);
+    do_action("arc_after_pagebuilder", $pzarc_blueprint, $pzarc_overrides, $pzarc_caller);
   }
 
   add_action('arc_do_pagebuilder', 'pzarc', 10, 3);
@@ -282,7 +203,7 @@
     pzdb('start pzarc');
     global $_architect_options;
     global $in_arc;
-    $in_arc = true;
+    $in_arc = 'yes';
     // Just incase that didn't work... A problem from days of past
     if (!isset($GLOBALS[ '_architect_options' ])) {
       $GLOBALS[ '_architect_options' ] = get_option('_architect_options', array());
@@ -300,7 +221,6 @@
 
     $is_shortcode = ($caller == 'shortcode');
 
-//    var_dump(is_main_query(),$caller);
 
     if (empty($blueprint) && ($is_shortcode && (empty($_architect_options[ 'architect_default_shortcode_blueprint' ])) && empty($_architect_options[ 'architect_replace_wpgalleries' ]))) {
 
@@ -318,14 +238,11 @@
         }
       }
 
-//      require_once PZARC_PLUGIN_APP_PATH . '/shared/includes/php/redux-extensions/extensions/metaboxes/extension_metaboxes.php';
-
       require_once PZARC_PLUGIN_APP_PATH . '/public/php/class_architect_public.php';
-//      require_once(PZARC_PLUGIN_APP_PATH . '/shared/includes/php/jo-image-resizer/jo_image_resizer.php');
       require_once(PZARC_PLUGIN_APP_PATH . '/shared/includes/php/BFI-thumb-forked/BFI_Thumb.php');
 
-
       $architect = new ArchitectPublic($blueprint, $is_shortcode);
+
       // If no errors, let's go!
       if (empty($architect->build->blueprint[ 'err_msg' ])) {
 
@@ -336,6 +253,7 @@
         if (is_main_query() || in_the_loop() || $caller === 'shortcode') {
         }
       }
+
       // Cleanup
       // If Blueprint is none, shortname is not set
       if (isset($architect->build->blueprint[ '_blueprints_short-name' ])) {
@@ -349,7 +267,8 @@
     // Tell WP to resume using the main query just in case we might have accidentally left another query active. (0.9.0.2 This might be our saviour!)
     wp_reset_postdata();
     pzdb('end pzarc');
-    $in_arc = false;
+
+    $in_arc = 'no';
   }
 
 
@@ -362,7 +281,6 @@
   //add_filter('pzarc_comments', 'pzarc_get_comments');
   function pzarc_get_comments($pzarc_content)
   {
-//  pzdebug(get_the_id());
     ob_start();
     comments_template(null, null);
     $pzarc_comments = ob_get_contents();
@@ -388,3 +306,76 @@
     return $classes;
   }
 
+//  /**
+//   * Display Page Builder before the post
+//   */
+//  function pzarc_add_pagebuilder_before($query_object)
+//  {
+//    if (!is_admin()) {
+//      // We only want this to run once. There's probably a more correct way.
+//      static $before_state = false;
+//      // This is coz .hentry is floated which breaks page builder
+//      if (!$before_state) {
+//        global $original_post;
+//        $original_post = get_the_id();
+//      }
+//      wp_enqueue_style('css-hw-float-fix');
+//      global $in_arc, $post;
+//      var_Dump($in_arc);
+//      if ($in_arc === 'no' || !$in_arc) {
+//        if (is_singular() && !$before_state) {
+//          $page_build = get_post_meta(get_the_id(), '_pzarc_pagebuilder', true);
+//          if (isset($page_build[ 'enabled' ])) {
+//            $show_content = array_key_exists('original', $page_build[ 'enabled' ]);
+//            foreach ($page_build[ 'enabled' ] as $bpsn => $v) {
+//              if ($bpsn !== 'placebo' && $bpsn !== 'original') {
+//                pzarc_pagebuilder($bpsn);
+//              }
+//              if ($bpsn === 'original') {
+//                break;
+//              }
+//            }
+//            if (!$show_content) {
+//              echo '<span class="hide-content"></span>';
+//            }
+//          }
+//        }
+//        $before_state = true;
+//        remove_action('loop_start', 'pzarc_add_pagebuilder_before');
+//      }
+//    }
+//  }
+//
+//  /**
+//   * Display Page Builder after the post
+//   */
+//  function pzarc_add_pagebuilder_after($query_object)
+//  {
+//    if (!is_admin()) {
+//      global $in_arc;
+//      if ($in_arc === 'no') {
+//        global $original_post;
+//        if (get_the_id() === $original_post) {
+//          if (is_singular()) {
+//            $page_build = get_post_meta(get_the_id(), '_pzarc_pagebuilder', true);
+//            if (isset($page_build[ 'enabled' ])) {
+//              $skip = array_key_exists('original', $page_build[ 'enabled' ]);
+//              // If not skip, then we would have already done it
+//              if ($skip) {
+//                foreach ($page_build[ 'enabled' ] as $bpsn => $v) {
+//                  // Skip until after the Original
+//                  if (!$skip && $bpsn !== 'placebo' && $bpsn !== 'original') {
+//                    pzarc_pagebuilder($bpsn);
+//                  } elseif ($bpsn === 'original') {
+//                    $skip = false;
+//                  }
+//                }
+//              }
+//            }
+//          }
+//        }
+//        $original_post = null;
+//        remove_action('loop_end', 'pzarc_add_pagebuilder_after');
+//      }
+//    }
+//  }

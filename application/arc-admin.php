@@ -309,6 +309,7 @@
                 <button data-tab="#presets">' . __('Presets', 'pzarchitect') . '</button>
             </div>
             <div class="tabby tabs-content">
+
                 <div class="tabs-pane active" id="quick">
                     <h2>' . __('Quick start') . '</h2>
                     <div style="background:#f2f2f2;border:1px solid #e2e2e2;padding:10px;border-radius:3px;max-width:800px;font-size:14px;">
@@ -318,9 +319,12 @@
                         <li>' . __('Leave all the other defaults for now. <em>Publish/Update</em> that.', 'pzarchitect') . '</li></ol>
                     <li><strong>' . __('Create a Blueprint', 'pzarchitect') . '</strong></li>
                     <ol style="list-style-type:lower-roman">
-                        <li>' . __('Go to <em>Architect > Blueprints</em> and create a Blueprint. Give it a <em>Title</em> and <em>Short Name</em> too, and in <em>Section 1</em> tab, under <em>Panels Layout</em>, select your Panel you just created', 'pzarchitect') . '</li>
-                        <li>' . __('Change <em>Limit panels (content)</em> to no so we get a lot of posts', 'pzarchitect') . '</li>
-                        <li>' . __('Click the <em>Panels Content</em> button and for the <em>Settings, Content Source</em>, choose <em>Posts</em>', 'pzarchitect') . '</li>
+                        <li>' . __('Go to <em>Architect > Blueprints</em> and create a Blueprint. Give it a <em>Title</em> and <em>Short Name</em> too.', 'pzarchitect') . '</li>
+                        <li>' . __('In <em>Source, Content Source</em>, choose <em>Posts</em>', 'pzarchitect') . '</li>
+                        <li>' . __('Click the <em>Blueprint Layout</em> button and in <em>Section 1</em> tab, under <em>Panels Layout</em>, select your Panel you just created', 'pzarchitect') . '</li>
+                        <li>' . __('Leave <em>Layout type</em> on <em>Grid</em>.', 'pzarchitect') . '</li>
+                        <li>' . __('Leave <em>Limit panels (content)</em> on <em>Yes</em> in case your site has zillions', 'pzarchitect') . '</li>
+                        <li>' . __('Set <em>Panels to Show</em> to <em>9</em>', 'pzarchitect') . '</li>
                         <li>' . __('Click <em>Publish/Update</em>.', 'pzarchitect') . '</li>
                         </ol>
                     <li><strong>' . __('Display the Blueprint', 'pzarchitect') . '</strong></li>
@@ -328,16 +332,14 @@
                         <li>' . __('If you are using <strong>Headway</strong>, then go to the Headway Visual Editor, select a layout to show and draw an Architect block on it and select the Blueprint and Save.', 'pzarchitect') . '<br>
                         ' . __('For <strong>other themes</strong>, the quickest way to test is insert an Architect shortcode on a page.', 'pzarchitect') . '<br>' . __('The form is <strong>[architect <em>blueprint-shortname</em>]</strong> where <em>blueprint-shortname</em> is the Short Name of the Blueprint to show', 'pzarchitect') . '
                         </li>
-                        <li>' . __('Load the page and you should see a 3x grid of posts.', 'pzarchitect') . '</li></ol>
+                        <li>' . __('Load the page and you should see a 3x3 grid of posts.', 'pzarchitect') . '</li></ol>
                         </ol>
                         </div>
-                        <h3>' . __('Video version') . '</h3>
-                        <p><a href="//fast.wistia.net/embed/iframe/46fxmn8h0l?popover=true" class="wistia-popover[height=405,playerColor=7b796a,width=720]"><img src="' . PZARC_DOCUMENTATION_URL . '/assets/images/quick-start.jpg' . '" alt="' . __('Building and Displaying Your First Architect Project', 'pzarchitect') . '"></a>
-<script charset="ISO-8859-1" src="//fast.wistia.com/assets/external/popover-v1.js"></script></p>
 <p>' . __('Style wise, it may not look that great yet. To tidy it up, start exploring the Styling settings for Panels and Blueprints', 'pzarchitect') . '</p>
-                        <p>' . __('There are a lot of settings in Architect that have all sorts of affects on your layouts and designs. Explore, experiment and have fun!', 'pzarchitect') . '</p>
+                        <p>' . __('There are a <strong>lot</strong> of settings in Architect that have all sorts of affects on your layouts and designs. Explore, experiment and have fun! For example, try selecting the different Layout Types and see the effect.', 'pzarchitect') . '</p>
                         <p>' . __('For more detailed help, visit', 'pzarchitect') . ' <a href="http://architect4wp.com/codex-listings" target="_blank">' . __('documentation at architect4wp.com', 'pzarchitect') . '</a></p>
                 </div>
+
                 <div class="tabs-pane" id="what">
                     <h2>' . __('What is Architect', 'pzarchitect') . '</h2>
                     <p>' . __('Is it a slider? Is it a gallery? Is it a grid layout? Yes! It\'s all these and more.', 'pzarchitect') . '</p>
@@ -371,6 +373,7 @@
                     </p>
                     <p><strong>' . __('Note: A Blueprint cannot have multiple content selections', 'pzarchitect') . '</strong></p>
                 </div>
+
                 <div class="tabs-pane " id="how">
                     <h2>' . __('Usage') . '</h2>
 
@@ -390,29 +393,41 @@
                     <h3>' . __('Headway Block', 'pzarchitect') . '</h3>
                     Add the Architect Headway blocks in the Headway Visual Editor
                     <h3>' . __('Action Hooks', 'pzarchitect') . '</h3>
-                    <p>If your them had action hooks, you can hook specific Blueprints to them in your functions.php</p>
-                        <p>To use, add this code to your functions.php:</p>
-                        <pre><code>new showBlueprint(’action’, ’blueprint’, ’pageids’);</code></pre>
+                    <p>If your theme had action hooks, you can hook specific Blueprints to them in your functions.php with the following base code:</p>
+                        <pre>new showBlueprint(’action’, ’blueprint’, ’pageids’);</pre>
     <p>action = Action hook to hook into</p>
     <p>blueprint = Blueprint short name to display</p>
     <p>pageids = Override IDs</p>
+                        <p>Here is a a more extensive example that would work with Genesis (if you had those named Blueprints):</p>
+<pre>function gs_init(){
+  if (class_exists(\'showBlueprint\')) {
+    new showBlueprint(\'genesis_before_header\',\'featured-posts-2x4\',\'home\');
+    new showBlueprint(\'genesis_after_header\',\'basic-grid-2x3\',\'home\');
+  }
+}
+add_action(\'init\',\'gs_init\');
+</pre>
 
                     <h3>' . __('Actions Editor', 'pzarchitect') . '</h3>
-
-                    <h3>' . __('Page builder', 'pzarchitect') . '</h3>
+  <p>The Actions Editor is under the Architect menu and is a non-code way to do the same thing as the Action Hooks do.</p>
                     <h3>' . __('WP Gallery Shortcode Override', 'pzarchitect') . '</h3>
+                    <p>You can override all usages of the WP Gallery shortcode with a Blueprint of your own design. The only condition is the Blueprint must be set to use Galleries as the content source.</p>
+                    <p>If you want to change individual Gallery shortcodes, switch to Text mode in the post editor, and replace the the word <em>gallery</em> in the short code with <em>architect</em> followed by the Blueprint short name. Keep the IDs.</p>
                 </div>
+
                 <div class="tabs-pane " id="help">
                     <h2>' . __('Support') . '</h2>
                     <h4>' . __('Currently installed version') . ': ' . PZARC_VERSION . '</h4>
+                    <h3>' . __('Things to try first', 'pzarchitect') . '</h3>
+                    <ul><li>' . __('If Blueprints are not displaying as expected, please try emptying your WP cache if you are using one and then the Architect cache (under Architect > Tools)', 'pzarchitect') . '</li></ul>
           <script type="text/javascript" src="http://assets.freshdesk.com/widget/freshwidget.js"></script>
             <style type="text/css" media="screen, projection">
         @import url(http://assets.freshdesk.com/widget/freshwidget.css);
             </style>
             <iframe class="freshwidget-embedded-form" id="freshwidget-embedded-form" src="https://pizazzwp.freshdesk.com/widgets/feedback_widget/new?&widgetType=embedded&formTitle=Submit+a+help+request&screenshot=no&searchArea=no" scrolling="no" height="850px" width="90%" frameborder="0"  style="margin:20px 10px 10px 40px;background:#eee;overflow-y: auto;">
             </iframe>
-
                 </div>
+
                 <div class="tabs-pane " id="shout">
                     <h2>' . __('Shoutouts', 'pzarchitect') . '</h2>
                     <p>' . __('A lot of the magic in Architect is powered by third-party code libraries who deserve much credit for the awesomeness they bring to Architect:', 'pzarchitect') . '</p>

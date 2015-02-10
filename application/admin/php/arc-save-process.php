@@ -79,20 +79,22 @@
 
       if ('all' !== $postid) {
         pzdb('save process pre get settings');
+        // First off clear the options css cache
         $pzarc_settings = get_post_meta($postid);
         $pzarc_settings = pzarc_flatten_wpinfo($pzarc_settings);
         pzdb('save process pre create css');
         pzarc_create_css($postid, $post->post_type, $pzarc_settings);
       } else {
         // get the blueprints and panels and step thru each recreating css
-        $pzarc_panels = get_posts(array('post_type' => 'arc-panels', 'post_status' => 'publish'));
+        delete_option('pzarc_css');
+        $pzarc_panels = get_posts(array('post_type' => 'arc-panels', 'post_status' => 'publish','numberposts'=>-1));
         foreach ($pzarc_panels as $pzarc_panel) {
           $postid         = $pzarc_panel->ID;
           $pzarc_settings = get_post_meta($postid);
           $pzarc_settings = pzarc_flatten_wpinfo($pzarc_settings);
           pzarc_create_css($postid, $pzarc_panel->post_type, $pzarc_settings);
         }
-        $pzarc_blueprints = get_posts(array('post_type' => 'arc-blueprints', 'post_status' => 'publish'));
+        $pzarc_blueprints = get_posts(array('post_type' => 'arc-blueprints', 'post_status' => 'publish','numberposts'=>-1));
         foreach ($pzarc_blueprints as $pzarc_blueprint) {
           $postid         = $pzarc_blueprint->ID;
           $pzarc_settings = get_post_meta($postid);
@@ -109,6 +111,8 @@
 //      $pzarc_css       = "/* Blueprints */\n" . implode(" \n", $pzarc_css_cache[ 'blueprints' ]) . " \n/* Panels */\n" . implode(" \n", $pzarc_css_cache[ 'panels' ]);
 
       // by this point, the $wp_filesystem global should be working, so let's use it to create a file
+// TODO: Mod this so it only updates the one in $postid
+
       global $wp_filesystem;
       foreach ($pzarc_css_cache[ 'blueprints' ] as $k => $v) {
         $filename = PZARC_CACHE_PATH . '/pzarc_blueprint_' . $k . '.css';
@@ -200,7 +204,6 @@
    */
   function pzarc_process_fonts($classes, $properties)
   {
-
     // TODO: Build support for Google fonts and backup
     $filler = '';
     foreach ($properties as $k => $v) {

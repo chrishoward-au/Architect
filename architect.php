@@ -3,16 +3,24 @@
   /*
     Plugin Name: Architect
     Plugin URI: http://architect4wp.com
-    Description: Architect is an all-in-one content layout framework to extend your theme. Go beyond the limitations of the theme you use to easily build any content layouts for it. Build your own grids, tabs, sliders, galleries and more with sources such as posts, pages, galleries, and custom content types. Display using shortcodes, widgets, page builder, Headway blocks, WP action hooks and template tags, and WP Gallery shortcode. Change themes without needing to rebuild your layouts!
-    Version: 1.0.3
+    Description: Architect is an all-in-one content layout framework to extend your theme. Go beyond the limitations of the theme you use to easily build any content layouts for it. Build your own grids, tabs, sliders, galleries and more with sources such as posts, pages, galleries, and custom content types. Display using shortcodes, widgets, Headway blocks, WP action hooks and template tags, and WP Gallery shortcode. Change themes without needing to rebuild your layouts!
+    Version: 1.0.6
     Author: Chris Howard
     Author URI: http://pizazzwp.com
     License: GNU GPL v2
     Support: support@pizazzwp.com
    */
 
+  if (!defined('ABSPATH')) {
+    exit;
+  } // Exit if accessed directly
 
   define('PZDEBUG', false);
+  if (PZDEBUG) {
+    global $pzstart_time;
+    $pzstart_time = microtime(true);
+    pzdb('start');
+  }
 
   class pzArchitect
   {
@@ -20,11 +28,11 @@
     function __construct()
     {
 
-      define('PZARC_VERSION', '1.0.3');
+      define('PZARC_VERSION', '1.0.6');
       define('PZARC_NAME', 'pzarchitect'); // This is also same as the locale
       define('PZARC_FOLDER', '/pizazzwp-architect');
       define('PZARC_CODEX', 'http://architect4wp.com/codex-listings');
-      define('PZARC_HWREL',false);
+      define('PZARC_HWREL', true);
 
       define('PZARC_PLUGIN_URL', trailingslashit(plugin_dir_url(__FILE__)));
       define('PZARC_PLUGIN_PATH', trailingslashit(plugin_dir_path(__FILE__)));
@@ -48,10 +56,12 @@
       define('PZARC_CACHE_PATH', trailingslashit($upload_dir[ 'basedir' ] . '/cache/pizazzwp/arc'));
 
 
+      pzdb('after dependency check');
       if (is_admin()) {
         // Before we go anywhere, make sure dependent plugins are loaded and active.
         require_once PZARC_PLUGIN_APP_PATH . '/shared/architect/php/arc-check-dependencies.php';
         wp_mkdir_p(PZARC_CACHE_PATH);
+        pzdb('after dependency check');
       }
 
       // Need this one to create the Architect widget
@@ -69,13 +79,16 @@
         add_action('admin_enqueue_scripts', array($this, 'register_admin_scripts'));
         //		add_action( 'init', array( $this, 'admin_initialize' ) );
         require_once PZARC_PLUGIN_APP_PATH . '/arc-admin.php';
+        pzdb('after admin load');
 
       } else {
         // Front end includes, Register site styles and scripts
         add_action('wp_enqueue_scripts', array($this, 'register_plugin_styles'));
         add_action('wp_enqueue_scripts', array($this, 'register_plugin_scripts'));
 
+
         require_once PZARC_PLUGIN_APP_PATH . '/arc-public.php';
+        pzdb('after public  load');
 
       }
 
@@ -107,13 +120,21 @@
       require_once PZARC_PLUGIN_APP_PATH . '/shared/architect/php/content-types/defaults/class_arc_content_defaults.php';
       require_once PZARC_PLUGIN_APP_PATH . '/shared/architect/php/content-types/post/class_arc_content_posts.php';
 
+      pzdb('before architect pro');
+
       // This is a shorthand way of doing an if. When pro isn't present, it's the lite version.
       @include PZARC_PLUGIN_PATH . '/extensions/architect-pro.php';
+      pzdb('after architect pro');
 
       // Extensions hook in here
       do_action('arc_load_extensions');
 
 
+    }
+
+    function __destruct()
+    {
+      pzdb('the end');
     }
 
     public function init()
@@ -271,26 +292,21 @@
   $pzarc = new pzArchitect();
 
 
+  function pzdb($pre = null, $var = 'dorkus')
+  {
     if (PZDEBUG) {
+      static $oldtime;
+      $oldtime = empty($oldtime) ? microtime(true) : $oldtime;
+      $btr     = debug_backtrace();
+      $line    = $btr[ 0 ][ 'line' ];
+      $file    = basename($btr[ 0 ][ 'file' ]);
       global $pzstart_time;
-      $pzstart_time = microtime(true);
-      pzdb('start');
-    }
-
-    function pzdb($pre = null, $var = 'dorkus')
-    {
-      if (PZDEBUG) {
-        static $oldtime;
-        $oldtime = empty($oldtime) ? microtime(true) : $oldtime;
-        $btr     = debug_backtrace();
-        $line    = $btr[ 0 ][ 'line' ];
-        $file    = basename($btr[ 0 ][ 'file' ]);
-        global $pzstart_time;
-        var_dump(strtoupper($pre) . ': ' . $file . ':' . $line . ': ' . round((microtime(true) - $pzstart_time), 5) . 's. Time since last: ' . round(microtime(true) - $oldtime, 5) . 's');
-        $oldtime = microtime(true);
-        if ($var !== 'dorkus') {
-          var_dump($var);
-        }
+      var_dump(strtoupper($pre) . ': ' . $file . ':' . $line . ': ' . round((microtime(true) - $pzstart_time), 5) . 's. Time since last: ' . round(microtime(true) - $oldtime, 5) . 's');
+      $oldtime = microtime(true);
+      if ($var !== 'dorkus') {
+        var_dump($var);
       }
     }
+  }
 
+  pzdb('bottom');

@@ -1,7 +1,7 @@
 // Make sure there's no formatting in this
 .pzarc-panel {
-  min-width: 0px;
-  min-height: 0px;
+//  min-width: 0;
+//  min-height: 0;
   /* Remember to remove space between divs to stop inline-block space issue */
   display: inline-block;
   box-sizing: border-box;
@@ -82,7 +82,8 @@
   }
 
   .pzarc-title-thumb {
-    display:inline-block;
+    // This stops surprise padding below the thumb
+    display:inline-flex;
     float:left;
     margin-right:3px;
   }

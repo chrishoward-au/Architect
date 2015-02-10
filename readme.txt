@@ -1,14 +1,14 @@
 === Architect: A WP Content Layout Framework ===
 Contributors: chrishoward
-Tags: content,display,posts,pages,gallery,slider,tabs,tabbed,tabular,page builder,widget,hooks
+Tags: content,display,posts,pages,gallery,slider,tabs,tabbed,tabular,widget,hooks
 Requires at least: 3.5.0
 Tested up to: 4.1.0
-Stable tag: 1.0.3
+Stable tag: 1.0.6
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Plugin URI: http://architect4wp.com
 
-Go beyond the limitations of the layouts in the theme you use to easily build any content layouts for it. E.g. grids, sliders, lists, galleries etc.
+Go beyond the limitations of the layouts in the theme you use to easily build any content layouts for it. E.g. grids, sliders, lists, galleries, tables etc.
 
 == Description ==
 Most themes give you great looking layouts for your content, but are usually limited to what that theme provides. Frameworks give you control, but often require getting your hands dirty.
@@ -32,7 +32,7 @@ In Blueprints you also choose what content to display - e.g. posts, pages, galle
 
 This allows Panels to be easily reusable and cuts down on duplication of effort. You might design a panel that is used in a featured posts slider, but that panel may also be used to display the top story.
 
-You can then display those Blueprints using widgets, shortcodes, action hooks, template tags, page builder, Headway blocks and even the WP Gallery shortcode.
+You can then display those Blueprints using widgets, shortcodes, action hooks, template tags,  Headway blocks and even the WP Gallery shortcode.
 
 = Why use Architect? =
 Architect greatly reduces the complexity of designing and developing methods to display your content. For example, if you are using the Twenty Thirteen and decide you want a 3x3 grid of excerpts to display on the home page, you would have to code a page template for that purpose.
@@ -56,7 +56,7 @@ There are several ways to display Architect Blueprints.
 * Action hooks (Insert a hook in your theme page template, then hook Architect to it)
 * Actions editor (Built into Architect, all you have to know is the name of the hook you want to use)
 * WP Gallery shortcode override
-* Page builder
+
 
 == Frequently Asked Questions ==
 
@@ -68,9 +68,6 @@ The short answer is "Unlikely". No plugin can hope to be compatible with all oth
 
 = Is Architect WPML compatible =
 Yes. Architect has been successfully tested with WPML.
-
-= Is Architect one of those "page builder" plugins I'm hearing about =
-Architect is much more than a "page builder", a popular genre of plugins. It includes a page builder as a method to display your Blueprints but Architect also provides six other ways to display your Blueprints. With Architect, the layouts are built independent of the page. How they are places on the page, and thus the page is built, is up to you. That could be shortcodes, widgets, template tags, action hooks or blocks (Headway).
 
 = Do you provide refunds =
 Yes! We're pretty flexible on refunds, allowing 60 days. But we would like you to make sure you've done everything possible to get Architect to work to your requirements, especially seeking support on our help desk.
@@ -96,6 +93,8 @@ No. We don't delete any of your data. In the future a method will be provided fo
 == Known issues ==
 * Autoplay slideshows reverse at the end instead of looping back to the start
 * Importing Blueprints, you will have to redo filters. This is a limitation of Redux not Architect.
+* Videos don't autopause when changing slides
+* Retina images currently only generates 2x
 
 == Support ==
 
@@ -108,8 +107,34 @@ For support, please send an email to support@pizazzwp.com
 2. Slider example
 
 == Changelog ==
+= 1.0.6 =
+* FIXED: Retina images weren't being shown. Now both settings must be on to show. Changed defaults to on for local, off for global.
+* CHANGED: Added info on Support tab for testing before contacting support.
+
+= 1.0.5 =
+* FIXED: Notices when adding new Panels and Blueprints on new intalls
+
+First full public release! 
+
+= 1.0.4 =
+* CHANGED: Added a class name arc-nav-thumb to navigation thumbs so Advanced Lazy Load can filter them
+* CHANGED: Updated to Redux Metaboxes 1.3
+
+* FIXED: Sections alignment problems when width in pixels
+* FIXED: Blueprints right alignment problems
+* FIXED: Added classes for page navigator styling to Headway Visual Editor
+* FIXED: Caption styling
+* FIXED: Tabular styling
+* FIXED: Panel styling not applied correctly when feature outside components
+* FIXED: Tightened CSS specificity so themes shouldn't override specific Architect styling
+* FIXED: Bug in the CSS cahce generation that wasn't generating for all Panels and Blueprints
+
+* REMOVED: Page builder! Ugh! Wasn't working when other loops on the page, like recent posts widgets. Will fix before global release.
+
 = 1.0.3 =
 * FIXED: Missing Featured Video metabox
+* FIXED: Another CSS cascade problem. This time with .hentry
+* FIXED: Lightbox not working on background images
 
 = 1.0.2 =
 * ADDED: %id% as an option in meta mainly for passing id into shortcodes - which is really cool! e.g. In Woo Commerce: [add_to_cart id="%id%"]

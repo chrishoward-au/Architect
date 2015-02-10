@@ -792,9 +792,9 @@
                   'type'     => 'switch',
                   'on'       => __('Yes', 'pzarchitect'),
                   'off'      => __('No', 'pzarchitect'),
-                  'default'  => false,
+                  'default'  => true,
                   'required' => array('_panels_settings_feature-type', '=', 'image'),
-                  'subtitle' => __('If enabled, a retina version of the featured image will be created and displayed. Ensure the global setting in Architect Options is on as well. NOTE: This will make your site load slower on retina devices, so you may only want consider which panels you have it enabled on.', 'pzarchitect')
+                  'subtitle' => __('If enabled, a retina version of the featured image will be created and displayed. <strong>Ensure the global setting in Architect Options is on as well</strong>. NOTE: This will make your site load slower on retina devices, so you may only want consider which panels you have it enabled on.', 'pzarchitect')
               ),
               // TODO: This will be for proper masonry galleries
 //              array(
@@ -898,7 +898,6 @@
                   'title'    => __('Effect on screen resize', 'pzarchitect'),
                   'id'       => $prefix . 'background-image-resize',
                   'type'     => 'button_set',
-                  'required' => array($prefix . 'feature-location', '=', 'fill'),
                   'options'  => array(
                       'trim'  => 'Trim horizontally, retain height',
                       'scale' => __('Scale Vertically & Horizontally', 'pzarchitect')
@@ -916,7 +915,8 @@
                   'max'           => '100',
                   'step'          => '1',
                   'units'         => '%',
-                  'hint'          => array('content' => 'Quality to use when processing images')
+                  'hint'          => array('content' => 'Quality to use when processing images'),
+                  'required' => array('_panels_settings_feature-type', '=', 'image'),
 
               ),
           )
@@ -1254,6 +1254,8 @@
         /**
          * TITLES
          */
+        // architect_config_entry-title-font-margin
+
         $sections[ ] = array(
             'title'      => __('Titles', 'pzarchitect'),
             'show_title' => false,
@@ -1403,9 +1405,9 @@
                     'indent' => true,
                     'class'  => 'heading',
                 ),
-                pzarc_redux_font($prefix . 'entry-image-caption' . $font, array('figure.entry-thumbnail figcaption.caption'), $defaults[ $optprefix . 'entry-image-caption' . $font ]),
-                pzarc_redux_bg($prefix . 'entry-image-caption' . $font . $background, array('figure.entry-thumbnail figcaption.caption'), $defaults[ $optprefix . 'entry-image-caption' . $font . $background ]),
-                pzarc_redux_padding($prefix . 'entry-image-caption' . $font . $padding, array('figure.entry-thumbnail figcaption.caption'), $defaults[ $optprefix . 'entry-image-caption' . $font . $padding ])
+                pzarc_redux_font($prefix . 'entry-image-caption' . $font, array('figure.entry-thumbnail .caption'), $defaults[ $optprefix . 'entry-image-caption' . $font ]),
+                pzarc_redux_bg($prefix . 'entry-image-caption' . $font . $background, array('figure.entry-thumbnail .caption'), $defaults[ $optprefix . 'entry-image-caption' . $font . $background ]),
+                pzarc_redux_padding($prefix . 'entry-image-caption' . $font . $padding, array('figure.entry-thumbnail .caption'), $defaults[ $optprefix . 'entry-image-caption' . $font . $padding ])
             )
         );
 

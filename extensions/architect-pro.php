@@ -9,6 +9,7 @@
 
         function pzarc_initiate_updater()
         {
+          // TODO: Try to not run this too mcuh
           // Check on Headway if enabled since it was probably bought there
           if (class_exists('HeadwayUpdaterAPI') && defined('PZARC_HWREL') && PZARC_HWREL) {
 
@@ -20,8 +21,10 @@
                                                  'current_version' => PZARC_VERSION
                                              ));
           } else {
+            // make sure to use correct basename for plugin!
+
             require_once(PZARC_PLUGIN_PATH.'wp-updates-plugin.php');
-            new WPUpdatesPluginUpdater_429( 'http://wp-updates.com/api/2/plugin', plugin_basename(__FILE__));
+            new WPUpdatesPluginUpdater_429( 'http://wp-updates.com/api/2/plugin', 'pizazzwp-architect/architect.php');
           }
 
 
@@ -34,6 +37,7 @@
       }
 
 
+      pzdb('pre content types load');
       /** Content types */
       require_once plugin_dir_path(__FILE__) . '/content-types/dummy/class_arc_content_dummy.php';
       require_once plugin_dir_path(__FILE__) . '/content-types/slide/class_arc_content_slide.php';
@@ -46,6 +50,7 @@
 
       /** Create additional post types */
       require_once plugin_dir_path(__FILE__) . '/content-types/snippets/arc-cpt-snippets.php';
+      pzdb('post content types load');
 
 //  require_once plugin_dir_path( __FILE__ ). '/content-types/rss/class_arc_content_rss.php';
 //  require_once plugin_dir_path( __FILE__ ). '/content-types/widgets/class_arc_content_widgets.php';

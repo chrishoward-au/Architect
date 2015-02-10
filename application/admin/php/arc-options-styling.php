@@ -335,7 +335,7 @@
                                                                                             'text_decoration' => 'none')),
                 pzarc_redux_bg($prefix . 'entry-title-font-background', array('.entry-title')),
                 pzarc_redux_padding($prefix . 'entry-title-font-padding', array('.entry-title')),
-                pzarc_redux_margin($prefix . 'entry-title-font-margin', array('.entry-title'), null, 'tb'),
+                pzarc_redux_margin($prefix . 'entry-title-font-margin', array('.entry-title'), array(), 'tb'),
                 pzarc_redux_links($prefix . 'entry-title-font-links', array('.entry-title a')),
                 pzarc_redux_borders($prefix . 'entry-title-borders', array('.entry-title')),
             ),
@@ -361,7 +361,7 @@
                 pzarc_redux_font($prefix . 'entry-meta-font', array('.entry-meta')),
                 pzarc_redux_bg($prefix . 'entry-meta-font-background', array('.entry-meta')),
                 pzarc_redux_padding($prefix . 'entry-meta-font-padding', array('.entry-meta')),
-                pzarc_redux_margin($prefix . 'entry-meta-font-margin', array('.entry-meta'), null, 'tb'),
+                pzarc_redux_margin($prefix . 'entry-meta-font-margin', array('.entry-meta'), array(), 'tb'),
                 pzarc_redux_links($prefix . 'entry-meta-font-links', array('.entry-meta a')),
             )
         );
@@ -385,7 +385,7 @@
                 pzarc_redux_font($prefix . 'entry-content-font', array('.entry-content')),
                 pzarc_redux_bg($prefix . 'entry-content-font-background', array('.entry-content')),
                 pzarc_redux_padding($prefix . 'entry-content-font-padding', array('.entry-content')),
-                pzarc_redux_margin($prefix . 'entry-content-font-margin', array('.entry-content'), null, 'tb'),
+                pzarc_redux_margin($prefix . 'entry-content-font-margin', array('.entry-content'), array(), 'tb'),
                 pzarc_redux_borders($prefix . 'entry-content-borders', array('.entry-content')),
                 pzarc_redux_links($prefix . 'entry-content-font-links', array('.entry-content a')),
                 array(
@@ -408,7 +408,7 @@
                 pzarc_redux_font($prefix . 'entry-excerpt-font', array('.entry-excerpt')),
                 pzarc_redux_bg($prefix . 'entry-excerpt-font-background', array('.entry-excerpt')),
                 pzarc_redux_padding($prefix . 'entry-excerpt-font-padding', array('.entry-excerpt')),
-                pzarc_redux_margin($prefix . 'entry-excerpt-font-margin', array('.entry-excerpt'), null, 'tb'),
+                pzarc_redux_margin($prefix . 'entry-excerpt-font-margin', array('.entry-excerpt'), array(), 'tb'),
                 pzarc_redux_borders($prefix . 'entry-excerpt-borders', array('.entry-excerpt')),
                 pzarc_redux_links($prefix . 'entry-excerpt-font-links', array('.entry-excerpt a')),
                 array(
@@ -464,7 +464,7 @@
                 ),
                 pzarc_redux_bg($prefix . 'entry-image-background', array('.entry-thumbnail')),
                 pzarc_redux_padding($prefix . 'entry-image-padding', array('.entry-thumbnail')),
-                pzarc_redux_margin($prefix . 'entry-image-margin', array('.entry-thumbnail'), null, 'tb'),
+                pzarc_redux_margin($prefix . 'entry-image-margin', array('.entry-thumbnail'), array(), 'tb'),
                 pzarc_redux_borders($prefix . 'entry-image-borders', array('.entry-thumbnail')),
                 array(
                     'title' => __('Caption', 'pzarc'),
@@ -476,15 +476,15 @@
                     'title'   => __('CSS selectors', 'pzarc'),
                     'id'      => $prefix . 'entry-image-caption-selectors',
                     'type'    => 'text',
-                    'default' => '.entry-thumbnail figcaption.caption',
+                    'default' => '.entry-thumbnail .caption',
                     'hint'    => array(
                         'title'   => 'Change CSS class',
                         'content' => 'Change this class only if your theme uses different class names'
                     )
                 ),
-                pzarc_redux_font($prefix . 'entry-image-caption-font', array('.entry-thumbnail figcaption.caption')),
-                pzarc_redux_bg($prefix . 'entry-image-caption-font-background', array('.entry-thumbnail figcaption.caption')),
-                pzarc_redux_padding($prefix . 'entry-image-caption-font-padding', array('.entry-thumbnail figcaption.caption')),
+                pzarc_redux_font($prefix . 'entry-image-caption-font', array('.entry-thumbnail .caption')),
+                pzarc_redux_bg($prefix . 'entry-image-caption-font-background', array('.entry-thumbnail .caption')),
+                pzarc_redux_padding($prefix . 'entry-image-caption-font-padding', array('.entry-thumbnail .caption')),
             )
         );
         $this->sections[ ] = array(
@@ -746,7 +746,7 @@
                     'readonly' => true,
                     'default'  => '.pzarc-navigator .arc-slider-slide-nav-item',
                 ),
-                pzarc_redux_font($prefix . 'navigator-items-font', array('.pzarc-navigator .arc-slider-slide-nav-item '), null),
+                pzarc_redux_font($prefix . 'navigator-items-font', array('.pzarc-navigator .arc-slider-slide-nav-item '), array()),
                 pzarc_redux_bg($prefix . 'navigator-items-background', array('.pzarc-navigator .arc-slider-slide-nav-item ')),
                 pzarc_redux_padding($prefix . 'navigator-items-padding', array('.pzarc-navigator .arc-slider-slide-nav-item '), array(
                     'padding-top'    => '1%',
@@ -772,7 +772,7 @@
                     'readonly' => true,
                     'default'  => '.pzarc-navigator .arc-slider-slide-nav-item:hover',
                 ),
-                pzarc_redux_font($prefix . 'navigator-items-hover-font', array('.pzarc-navigator .arc-slider-slide-nav-item:hover '), null, array('letter-spacing',
+                pzarc_redux_font($prefix . 'navigator-items-hover-font', array('.pzarc-navigator .arc-slider-slide-nav-item:hover '), array(), array('letter-spacing',
                                                                                                                                                   'font-variant',
                                                                                                                                                   'text-transform',
                                                                                                                                                   'font-family',
@@ -830,7 +830,7 @@
                     'readonly' => true,
                     'default'  => $primaryClass,
                 ),
-                pzarc_redux_font($prefix . $thisSection . '-font', array($primaryClass), null),
+                pzarc_redux_font($prefix . $thisSection . '-font', array($primaryClass), array()),
                 pzarc_redux_bg($prefix . $thisSection . '-background', array($primaryClass)),
                 pzarc_redux_padding($prefix . $thisSection . '-padding', array($primaryClass)),
                 pzarc_redux_margin($prefix . $thisSection . '-margins', array($primaryClass)),
@@ -849,7 +849,7 @@
                     'readonly' => true,
                     'default'  => $primaryClass . '.open',
                 ),
-                pzarc_redux_font($prefix . $thisSection . '-open-font', array($primaryClass . '.open '), null),
+                pzarc_redux_font($prefix . $thisSection . '-open-font', array($primaryClass . '.open '), array()),
                 pzarc_redux_bg($prefix . $thisSection . '-open-background', array($primaryClass . '.open ')),
                 pzarc_redux_borders($prefix . $thisSection . '-open-borders', array($primaryClass . '.open ')),
                 array(
@@ -866,7 +866,7 @@
                     'readonly' => true,
                     'default'  => $primaryClass . ':hover',
                 ),
-                pzarc_redux_font($prefix . $thisSection . '-hover-font', array($primaryClass . ':hover '), null),
+                pzarc_redux_font($prefix . $thisSection . '-hover-font', array($primaryClass . ':hover '), array()),
                 pzarc_redux_bg($prefix . $thisSection . '-hover-background', array($primaryClass . ':hover ')),
                 pzarc_redux_borders($prefix . $thisSection . '-hover-borders', array($primaryClass . ':hover ')),
             ),
@@ -892,7 +892,7 @@
                     'readonly' => true,
                     'default'  => '.pzarc-section.datatables th',
                 ),
-                pzarc_redux_font($prefix . 'tabular-headings-font', array('.pzarc-section.datatables th '), null),
+                pzarc_redux_font($prefix . 'tabular-headings-font', array('.pzarc-section.datatables th '), array()),
                 pzarc_redux_bg($prefix . 'tabular-headings-background', array('.pzarc-section.datatables th ')),
                 pzarc_redux_padding($prefix . 'tabular-headings-padding', array('.pzarc-section.datatables th ')),
                 pzarc_redux_margin($prefix . 'tabular-headings-margins', array('.pzarc-section.datatables th ')),
@@ -911,7 +911,7 @@
                     'readonly' => true,
                     'default'  => '.pzarc-section.datatables .odd-section-panel',
                 ),
-                pzarc_redux_font($prefix . 'tabular-odd-rows-font', array('.pzarc-section.datatables .odd-section-panel '), null),
+                pzarc_redux_font($prefix . 'tabular-odd-rows-font', array('.pzarc-section.datatables .odd-section-panel '), array()),
                 pzarc_redux_bg($prefix . 'tabular-odd-rows-background', array('.pzarc-section.datatables .odd-section-panel ')),
                 pzarc_redux_borders($prefix . 'tabular-odd-rows-borders', array('.pzarc-section.datatables .odd-section-panel ')),
                 array(
@@ -928,7 +928,7 @@
                     'readonly' => true,
                     'default'  => '.pzarc-section.datatables .even-section-panel',
                 ),
-                pzarc_redux_font($prefix . 'tabular-even-rows-font', array('.pzarc-section.datatables .even-section-panel '), null),
+                pzarc_redux_font($prefix . 'tabular-even-rows-font', array('.pzarc-section.datatables .even-section-panel '), array()),
                 pzarc_redux_bg($prefix . 'tabular-even-rows-background', array('.pzarc-section.datatables .even-section-panel ')),
                 pzarc_redux_borders($prefix . 'tabular-even-rows-borders', array('.pzarc-section.datatables .even-section-panel ')),
             )

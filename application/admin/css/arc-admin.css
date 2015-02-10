@@ -739,7 +739,7 @@ span.dashicons {
   vertical-align: top;
   margin-right: 5px;
   font-size: 14px;
-  color: lightsteelblue; }
+  color: #63bdcf; }
 
 a:hover span.dashicons,
 a.current span.dashicons {
@@ -1151,12 +1151,28 @@ body.arc-panels * {
 
 #_pzarc_pagebuilder_enabled,
 #_pzarc_pagebuilder_disabled {
-  width: auto; }
+  width: 100%;
+  margin-bottom: 10px; }
   #_pzarc_pagebuilder_enabled h3,
   #_pzarc_pagebuilder_disabled h3 {
     text-align: center;
     text-transform: capitalize;
-    font-size: 15px; }
+    font-size: 15px;
+    color: #0074A2; }
+  #_pzarc_pagebuilder_enabled li.ui-sortable-helper,
+  #_pzarc_pagebuilder_disabled li.ui-sortable-helper {
+    background: #888;
+    color: #fff; }
+
+ul#_pzarc_pagebuilder_disabled li {
+  display: inline-block;
+  color: #777; }
+
+ul#_pzarc_pagebuilder_enabled li {
+  color: #000;
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto; }
 
 #freshwidget-button {
   top: 30px; }

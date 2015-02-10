@@ -10,19 +10,19 @@
   counter-reset: arc-title-counter;
 //  height:100%; // TODO: Breaks Genesis. Test without
   &.tiles {
-    // This breaks in IE 10. And display:block seems to work anyhows
-//    display: -webkit-box;
-//    display: -moz-box;
-//    display: -ms-flexbox;
-//    display: -webkit-flex;
-//    display: flex;
-//    justify-content: flex-start;
-//    -webkit-flex-flow: row wrap;
-//    -moz-flex-flow: row wrap; /* Unsupported in FF ATOW!! Argh! */
-//    flex-flow: row wrap;
-//    flex-direction: row;
-//    flex-wrap: wrap;
-    display:block;
+    // This breaks in IE 10. And display:block seems to work anyhows except flex gives equal heights!
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    justify-content: flex-start;
+    -webkit-flex-flow: row wrap;
+    -moz-flex-flow: row wrap; /* Unsupported in FF ATOW!! Argh! */
+    flex-flow: row wrap;
+    flex-direction: row;
+    flex-wrap: wrap;
+//    display:block;
   }
   &.js-isotope {
 
@@ -105,3 +105,4 @@ h2.pzarc-page-title {
 {
   display:none;
 }
+

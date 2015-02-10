@@ -1,0 +1,5 @@
+
+/* This is needed by page builder. Not sure if .hentry is ever right aligned. If it is... will need to compensate too*/
+.block-type-content .loop > .hentry {
+  float:none;
+}

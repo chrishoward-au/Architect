@@ -209,7 +209,7 @@
 
           case 'thumbs':
 
-            $thumb        = '<img src="http://lorempixel.com/' . parent::get_thumbsize('w') . '/' . parent::get_thumbsize('h') . '/' . $arc_query[ $j ][ 'image' ][ 'original' ] . '" width="' . parent::get_thumbsize('w') . '" height="' . parent::get_thumbsize('h') . '">';
+            $thumb        = '<img src="http://lorempixel.com/' . parent::get_thumbsize('w') . '/' . parent::get_thumbsize('h') . '/' . $arc_query[ $j ][ 'image' ][ 'original' ] . '" class="arc-nav-thumb" width="' . parent::get_thumbsize('w') . '" height="' . parent::get_thumbsize('h') . '">';
             $nav_items[ ] = '<span class="' . $blueprints_navigator . '">' . $thumb . '</span>';
             break;
 

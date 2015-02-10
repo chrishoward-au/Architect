@@ -63,8 +63,12 @@
       }
       add_action('wp_print_footer_scripts', array($this, 'extra_scripts'));
 
+      // If global is off, then no retina
+      // If global is on, then obey local setting
+      // That is, they both must be on
 
-      if ((empty($_architect_options[ 'architect_enable-retina-images' ]) && !empty($this->section[ 'section-panel-settings' ][ 'section-panel-settings' ])) || (!empty($_architect_options[ 'architect_enable-retina-images' ]) && !empty($this->section[ 'section-panel-settings' ][ 'section-panel-settings' ]))) {
+      global $_architect_options;
+      if (!empty($_architect_options[ 'architect_enable-retina-images' ]) && !empty($this->section[ 'section-panel-settings' ][  '_panels_settings_use-retina-images' ])) {
         wp_enqueue_script('js-retinajs');
       }
 
@@ -293,9 +297,11 @@
 
 
       // Add standard identifying WP classes to the whole panel
+      // TODO: WHY??? Is that what WP does? Aren't they in the article anyways? Temporarily don't do it.
       $postmeta_classes = ' ' . $panel_class->data[ 'posttype' ] . ' type-' . $panel_class->data[ 'posttype' ] . ' status-' . $panel_class->data[ 'poststatus' ] . ' format-' . $panel_class->data[ 'postformat' ] . ' ';
 
-      echo '<' . ('table' !== $this->layout_mode ? 'div' : 'tr') . ' class="pzarc-panel pzarc-panel_' . $settings[ '_panels_settings_short-name' ] . ' pzarc-panel-no_' . $panel_number . $this->slider[ 'slide' ] . $image_in_bg . $odds_evens_bp . $odds_evens_section . $postmeta_classes . '" >';
+//      echo '<' . ('table' !== $this->layout_mode ? 'div' : 'tr') . ' class="pzarc-panel pzarc-panel_' . $settings[ '_panels_settings_short-name' ] . ' pzarc-panel-no_' . $panel_number . $this->slider[ 'slide' ] . $image_in_bg . $odds_evens_bp . $odds_evens_section . $postmeta_classes . '" >';
+      echo '<' . ('table' !== $this->layout_mode ? 'div' : 'tr') . ' class="pzarc-panel pzarc-panel_' . $settings[ '_panels_settings_short-name' ] . ' pzarc-panel-no_' . $panel_number . $this->slider[ 'slide' ] . $image_in_bg . $odds_evens_bp . $odds_evens_section .'" >';
 
 
       //TODO: Check this works for all scenarios

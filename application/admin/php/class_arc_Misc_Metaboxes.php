@@ -18,7 +18,8 @@
      */
     function __construct()
     {
-      add_action("redux/metaboxes/$this->redux_opt_name/boxes", array($this, "pzarc_add_pagebuilder_metaboxes"), 10, 1);
+      // TODO: Get page builder working when more than one loopee on a page. e.g. widget. Otherwise it shows the before before the first one!
+//      add_action("redux/metaboxes/$this->redux_opt_name/boxes", array($this, "pzarc_add_pagebuilder_metaboxes"), 10, 1);
       add_action("redux/metaboxes/$this->redux_opt_name/boxes", array($this, "pzarc_add_fvid_metaboxes"), 10, 1);
     }
 
@@ -72,6 +73,7 @@
     function pzarc_add_pagebuilder_metaboxes($metaboxes)
     {
       $blueprint_list = pzarc_get_posts_in_post_type('arc-blueprints', true);
+      asort($blueprint_list);
       $boxSections    = array();
       $boxSections[ ] = array(
         'title'         => __('Select Blueprints', 'pzarchitect'),
@@ -82,8 +84,8 @@
                 //                'title'   => __('Select Blueprints', 'pzarchitect'),
                 'type'    => 'sorter',
                 'options' => array(
-                    'disabled' => $blueprint_list,
-                    'enabled'  => array('original' => __('Original Content','pzarchitect'))
+                    'enabled'  => array('original' => __('Original Content','pzarchitect')),
+                    'disabled' => $blueprint_list
                 ),
             ),
         ),

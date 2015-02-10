@@ -133,6 +133,18 @@
                                                               'box-shadow',
                                                               'fonts'),
                                     ));
+      $this->register_block_element(array(
+                                        'id'         => 'pzarc-panel-page-navi',
+                                        'name'       => 'Page navigation',
+                                        'selector'   => '.use-hw-css .nav-previous a, .use-hw-css .nav-next a',
+                                        'properties' => array('background',
+                                                              'borders',
+                                                              'padding',
+                                                              'margins',
+                                                              'rounded-corners',
+                                                              'box-shadow',
+                                                              'fonts'),
+                                    ));
       // SECTIONS
       $this->register_block_element(array(
                                         'id'         => 'pzarc-sections',

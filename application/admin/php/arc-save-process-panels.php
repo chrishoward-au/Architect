@@ -10,10 +10,19 @@
     $pzarc_contents .= '/* This is the css for panel ' . $pzarc_panels[ '_panels_settings_short-name' ] . '*/' . $nl;
 
     // Step thru each field looking for ones to format
-    $class_prefix = '.pzarc-panel_' . $pzarc_panels[ '_panels_settings_short-name' ];
+    $class_prefix = 'body.pzarchitect .pzarc-panel_' . $pzarc_panels[ '_panels_settings_short-name' ];
 
-    $toshow = json_decode($pzarc_panels[ '_panels_design_preview' ], true);
-    $feature_in_components = $toshow['image']['show'] && ($pzarc_panels['_panels_design_feature-location' ]!=='float' && $pzarc_panels['_panels_design_feature-location' ]!=='fill' );
+    $toshow                = json_decode($pzarc_panels[ '_panels_design_preview' ], true);
+    $sum_to_show = 0;
+    $checksum = 0;
+    foreach ($toshow as $k => $v) {
+      $sum_to_show += ($v['show']?$v['width']:0);
+      $checksum += (int)$v['show'];
+    }
+    // This is to ensure if there's only one field it will be not be assumed for use in a tabular
+    $sum_to_show = $checksum>1?$sum_to_show:0;
+
+    $feature_in_components = $toshow[ 'image' ][ 'show' ] && ($pzarc_panels[ '_panels_design_feature-location' ] !== 'float' && $pzarc_panels[ '_panels_design_feature-location' ] !== 'fill');
 
     $pzarc_components_position = (!empty($pzarc_panels[ '_panels_design_components-position' ]) ? $pzarc_panels[ '_panels_design_components-position' ] : 'top');
     $pzarc_components_nudge_x  = (!empty($pzarc_panels[ '_panels_design_components-nudge-x' ]) ? $pzarc_panels[ '_panels_design_components-nudge-x' ] : 0);
@@ -192,15 +201,25 @@
             if (isset($_architect[ 'architect_config_' . $pkeys[ 'id' ] . '-selectors' ])) {
 
               $pkeys[ 'classes' ] = (is_array($_architect[ 'architect_config_' . $pkeys[ 'id' ] . '-selectors' ]) ? $_architect[ 'architect_config_' . $pkeys[ 'id' ] . '-selectors' ] : array('0' => $_architect[ 'architect_config_' . $pkeys[ 'id' ] . '-selectors' ]));
-
-              if (!$feature_in_components && strpos($key,'entry-image')) {
-                $pzarc_contents .= pzarc_get_styling('panel', $pkeys, $value, $class_prefix . ($pkeys[ 'id' ] === 'components' ? '' : ' '), $pkeys[ 'classes' ]);
-
-              } else {
-              $pzarc_contents .= pzarc_get_styling('panel', $pkeys, $value, $class_prefix.($pkeys['id']==='components'?'':' > .pzarc-components'), $pkeys[ 'classes' ]);
-
-              }
-
+////var_dump($pkeys[ 'id' ],$key);
+//              switch (true) {
+//                case (!$feature_in_components && ($pkeys[ 'id' ] === 'entry-image' || $pkeys[ 'id' ] === 'entry-image-caption')) :
+//                  $pzarc_contents .= pzarc_get_styling('panel', $pkeys, $value, $class_prefix . ($pkeys[ 'id' ] === 'components' ? '' : ' > '), $pkeys[ 'classes' ]);
+//                  break;
+//                // TODO: This might need sopme refinement
+//                case ($pkeys[ 'id' ] === 'hentry' || $pkeys[ 'id' ] === 'components') :
+//                  $pzarc_contents .= pzarc_get_styling('panel', $pkeys, $value, $class_prefix . ' > ', $pkeys[ 'classes' ]);
+//                  break;
+//                // Probably used in a tabular.
+//                case ($sum_to_show==100 ) :
+//                  $pzarc_contents .= pzarc_get_styling('panel', $pkeys, $value, $class_prefix . ' td  ', $pkeys[ 'classes' ]);
+//                  break;
+//                case ($pkeys[ 'id' ] === 'panels') :
+//                  $pzarc_contents .= pzarc_get_styling('panel', $pkeys, $value, $class_prefix . ' ', $pkeys[ 'classes' ]);
+//                  break;
+//                default:
+                  $pzarc_contents .= pzarc_get_styling('panel', $pkeys, $value, $class_prefix . '  ', $pkeys[ 'classes' ]);
+//              }
             }
           } elseif ($pkeys[ 'id' ] === 'custom') {
             $pzarc_contents .= $value;

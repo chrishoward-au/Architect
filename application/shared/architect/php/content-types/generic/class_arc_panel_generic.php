@@ -53,7 +53,7 @@
       $this->data[ 'postformat' ]                = null;
 
       $this->data[ 'bgimage' ][ 'thumb' ]    = null;
-      $this->data[ 'bgimage' ][ 'original' ] = null;
+     // $this->data[ 'bgimage' ][ 'original' ] = null;
     }
 
     /**
@@ -324,7 +324,7 @@
                                                                                      'crop'      => (int)$focal_point[ 0 ] . 'x' . (int)$focal_point[ 1 ] . 'x' . $this->section[ '_panels_settings_image-focal-point' ]
       ));
       pzdb('post get image bg');
-      $this->data[ 'bgimage' ][ 'original' ] = wp_get_attachment_image_src($thumb_id, 'full');
+      $this->data[ 'image' ][ 'original' ] = wp_get_attachment_image_src($thumb_id, 'full');
       pzdb('post get original bg');
       preg_match("/(?<=src\\=\")(.)*(?=\" )/uiUs", $this->data[ 'bgimage' ][ 'thumb' ], $results);
       if (isset($results[ 0 ]) && !empty($this->section[ '_panels_settings_use-retina-images' ])) {
@@ -900,7 +900,8 @@
             }
 
             $thumb = (empty($thumb) ? '<img src="' . PZARC_PLUGIN_APP_URL . '/shared/assets/images/missing-image.png" width="' . self::get_thumbsize('w') . '" height="' . self::get_thumbsize('h') . '">' : $thumb);
-
+            // Added this class so ca filter it out of Advanced Lazy Load
+            $thumb = preg_replace("/class=\\\"a/uUm", "$0rc-nav-thumb a", $thumb);
             $nav_items[ ] = '<span class="' . $blueprints_navigator . '">' . $thumb . '</span>';
             break;
 
