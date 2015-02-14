@@ -1176,3 +1176,10 @@ ul#_pzarc_pagebuilder_enabled li {
 
 #freshwidget-button {
   top: 30px; }
+
+.arc-pageguide-button {
+  padding: 5px;
+  background: #63bdcf;
+  color: #fff;
+  border-radius: 5px;
+  cursor: pointer; }

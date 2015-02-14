@@ -151,9 +151,12 @@
             array(
                 'id'      => $prefix . 'tabs',
                 'type'    => 'tabbed',
+                'desc'  => '
+                <p>&bull;&nbsp;' . __('<strong style="color:#0074A2;"><em>Panels Design</em></strong> is where you to design the layout of the individual post or page entries', 'pzarchitect') . '</p>
+                <p>&bull;&nbsp;' . __('Panels will inherit your theme\'s styling. Use <strong style="color:#0074A2;"><em>Panels Styling</em></strong> if you need to refine the styling of the Panels', 'pzarchitect') . '</p>',
                 'options' => array(
-                    'design'  => '<span class="icon-large el-icon-website"></span> ' . __('Design', 'pzarchitect'),
-                    'styling' => '<span class="icon-large el-icon-brush"></span> ' . __('Styling', 'pzarchitect')
+                    'design'  => '<span class="icon-large el-icon-website"></span> ' . __('Panels Design', 'pzarchitect'),
+                    'styling' => '<span class="icon-large el-icon-brush"></span> ' . __('Panels Styling', 'pzarchitect')
                 ),
                 'targets' => array(
                     'design'  => array('panels-design'),
@@ -185,7 +188,7 @@
       }
     }
 
-    function pzarc_panel_general_settings($metaboxes,$defaults_only=false)
+    function pzarc_panel_general_settings($metaboxes, $defaults_only = false)
     {
       $prefix        = '_panels_settings_';
       $sections      = array();
@@ -258,7 +261,7 @@
     /**********
      * Panels Design and Styling
      *********/
-    function pzarc_panels_design($metaboxes,$defaults_only=false)
+    function pzarc_panels_design($metaboxes, $defaults_only = false)
     {
       global $_architect_options;
       if (empty($_architect_options)) {
@@ -460,7 +463,6 @@
                   'select2' => array('allowClear' => false),
                   'default' => 'none',
                   'class'   => ' horizontal',
-                  'desc'    => __('You must set a left margin on titles for bullets to show.', 'pzarchitect'),
                   'options' => array('none'                 => __('None', 'pzarchitect'),
                                      'disc'                 => __('Disc', 'pzarchitect'),
                                      'circle'               => __('Circle', 'pzarchitect'),
@@ -481,6 +483,25 @@
                   ),
               ),
               array(
+                  'id'             => $prefix . 'title-margins',
+                  'type'           => 'spacing',
+                  'mode'           => 'margin',
+                  'units'          => '%',
+                  'units_extended' => 'false',
+                  'title'          => __('Title margins', 'pzarchitect'),
+                  'desc'           => __('You must set a left margin on titles for bullets to show.', 'pzarchitect'),
+                  'default'        => array(
+                      'margin-right' => '0',
+                      'margin-left'  => '0',
+                      'units'        => '%',
+                  ),
+                  'top'            => false,
+                  'bottom'         => false,
+                  'left'           => true,
+                  'right'          => true,
+                  'required'       => array('_panels_design_title-prefix', '!=', 'none'),
+              ),
+              array(
                   'title'         => __('Title thumbnail width', 'pzarchitect'),
                   'id'            => $prefix . 'title-thumb-width',
                   'type'          => 'spinner',
@@ -498,7 +519,13 @@
                   'type'     => 'text',
                   'class'    => 'textbox-small',
                   'default'  => '. ',
-                  'required' => array('_panels_design_title-prefix', '!=', 'thumb'),
+                  'required' => array(
+                      array('_panels_design_title-prefix', '!=', 'none'),
+                      array('_panels_design_title-prefix', '!=', 'disc'),
+                      array('_panels_design_title-prefix', '!=', 'circle'),
+                      array('_panels_design_title-prefix', '!=', 'square'),
+                      array('_panels_design_title-prefix', '!=', 'thumb')
+                  )
               ),
               array(
                   'title'   => __('Link titles', 'pzarchitect'),
@@ -507,7 +534,8 @@
                   'type'    => 'switch',
                   'on'      => __('Yes', 'pzarchitect'),
                   'off'     => __('No', 'pzarchitect'),
-                  'default' => true
+                  'default' => true,
+                  'hint'    => array('content' => __('If enabled, clicking on the Title will take the viewer to the post.', 'pzarchitect')),
 
                   /// can't set defaults on checkboxes!
               ),
@@ -773,7 +801,7 @@
                       'centre'  => __('Centre focal point', 'pzarchitect'),
                       'none'    => __('Crop to centre', 'pzarchitect'),
                       'scale'   => __('Preserve aspect, fit width', 'pzarchitect'),
-//                      'shrink'  => __('Shrink', 'pzarchitect')
+                      //                      'shrink'  => __('Shrink', 'pzarchitect')
                   )
               ),
               array(
@@ -797,21 +825,21 @@
                   'subtitle' => __('If enabled, a retina version of the featured image will be created and displayed. <strong>Ensure the global setting in Architect Options is on as well</strong>. NOTE: This will make your site load slower on retina devices, so you may only want consider which panels you have it enabled on.', 'pzarchitect')
               ),
               // TODO: This will be for proper masonry galleries
-//              array(
-//                  'id'       => $prefix . 'image-shrinkage',
-//                  'title'    => __('Shrink images', 'pzarchitect'),
-//                  'type'     => 'slider',
-//                  'display_value' => 'label',
-//                  'default'       => '100',
-//                  'min'           => '0',
-//                  'max'           => '100',
-//                  'step'          => '5',
-//                  'units'         => '%',
-//                  'required' => array(
-//                      array('_panels_settings_image-focal-point', '=', 'shrink'),
-//                      array('_panels_settings_feature-type', '=', 'image')
-//                  ),
-//              ),
+              //              array(
+              //                  'id'       => $prefix . 'image-shrinkage',
+              //                  'title'    => __('Shrink images', 'pzarchitect'),
+              //                  'type'     => 'slider',
+              //                  'display_value' => 'label',
+              //                  'default'       => '100',
+              //                  'min'           => '0',
+              //                  'max'           => '100',
+              //                  'step'          => '5',
+              //                  'units'         => '%',
+              //                  'required' => array(
+              //                      array('_panels_settings_image-focal-point', '=', 'shrink'),
+              //                      array('_panels_settings_feature-type', '=', 'image')
+              //                  ),
+              //              ),
               array(
                   'id'       => $prefix . 'image-max-dimensions',
                   'title'    => __('Maximum dimensions', 'pzarchitect'),
@@ -820,7 +848,7 @@
                   'default'  => array('width' => '400', 'height' => '300'),
                   'required' => array(
 //                      array('_panels_settings_image-focal-point', '!=', 'shrink'),
-                      array('_panels_settings_feature-type', '=', 'image')
+array('_panels_settings_feature-type', '=', 'image')
                   ),
               ),
               array(
@@ -916,7 +944,7 @@
                   'step'          => '1',
                   'units'         => '%',
                   'hint'          => array('content' => 'Quality to use when processing images'),
-                  'required' => array('_panels_settings_feature-type', '=', 'image'),
+                  'required'      => array('_panels_settings_feature-type', '=', 'image'),
 
               ),
           )
@@ -1082,12 +1110,12 @@
                   'id'    => $prefix . 'help-panels-use',
                   'type'  => 'info',
                   'class' => 'plain',
-                  'desc'  => __('<p>To use a Panel, you need to select it to be used by a <strong>Blueprint section</strong></p>
+                  'desc'  => '<p>' . __('To use a Panel, you need to select it to be used by a <strong>Blueprint section</strong> when creating a Blueprint', 'pzarchitect') . '</p>
                 <img src="' . PZARC_PLUGIN_URL . '/documentation/assets/images/arc-using-panels.jpg" style="max-width:100%;">
-                <p>The great thing then is, any Panel can be re-used as often as you like.</p>
-                <h2>Associating content</h2>
-                <p>Content for the Panel is associated in the Blueprint. This may seem unexpected; however, it enables Panels to be re-usable. For instance, if you had an excerpt layout you wanted to use for three different categories - e.g. News, Sport, Finance - you don\'t want to have to create a Panel for each of those.</p>
-            ', 'pzarchitect'))
+                <p>' . __('The great thing then is, any Panel can be re-used as often as you like.', 'pzarchitect') . '</p>
+                <h2>' . __('Associating content', 'pzarchitect') . '</h2>
+                <p>' . __('Content for the Panel is associated in the Blueprint. This may seem unexpected; however, it enables Panels to be re-usable. For instance, if you had an excerpt layout you wanted to use for three different categories - e.g. News, Sport, Finance - you don\'t want to have to create a Panel for each of those.', 'pzarchitect') . '</p>'
+              )
           )
       );
 
@@ -1099,18 +1127,18 @@
               array(
                   'title'    => __('Panels videos', 'pzarchitect'),
                   'id'       => $prefix . 'help-panels-videos',
-                  'subtitle'=> __('Internet connection required'),
+                  'subtitle' => __('Internet connection required'),
                   'type'     => 'raw',
                   'class'    => 'plain',
                   'markdown' => false,
-                  'content'=>($defaults_only?'':@file_get_contents('https://s3.amazonaws.com/341public/architect/panels-videos.html')),
+                  'content'  => ($defaults_only ? '' : @file_get_contents('https://s3.amazonaws.com/341public/architect/panels-videos.html')),
               ),
               array(
                   'title'    => __('Online documentation', 'pzarchitect'),
                   'id'       => $prefix . 'help-panels-online-docs',
                   'type'     => 'raw',
                   'markdown' => false,
-                  'content'  => '<a href="http://architect4wp.com/codex-listings/" target=_blank>'.__('Architect Online Documentation','pzarchitect').'</a><br>'. __('This is a growing resource. Please check back regularly.', 'pzarchitect')
+                  'content'  => '<a href="http://architect4wp.com/codex-listings/" target=_blank>' . __('Architect Online Documentation', 'pzarchitect') . '</a><br>' . __('This is a growing resource. Please check back regularly.', 'pzarchitect')
 
               ),
           )
@@ -1140,7 +1168,7 @@
      * @param $metaboxes
      * @return array
      */
-    function pzarc_panels_styling($metaboxes,$defaults_only=false)
+    function pzarc_panels_styling($metaboxes, $defaults_only = false)
     {
 
       global $_architect;
@@ -1468,18 +1496,18 @@
                 array(
                     'title'    => __('Panels videos', 'pzarchitect'),
                     'id'       => $prefix . 'help-styling-videos',
-                    'subtitle'=> __('Internet connection required'),
+                    'subtitle' => __('Internet connection required'),
                     'type'     => 'raw',
                     'class'    => 'plain',
                     'markdown' => false,
-                    'content'=>($defaults_only?'':@file_get_contents('https://s3.amazonaws.com/341public/architect/panels-videos.html')),
+                    'content'  => ($defaults_only ? '' : @file_get_contents('https://s3.amazonaws.com/341public/architect/panels-videos.html')),
                 ),
                 array(
                     'title'    => __('Online documentation', 'pzarchitect'),
                     'id'       => $prefix . 'help-styling-online-docs',
                     'type'     => 'raw',
                     'markdown' => false,
-                    'content'  => '<a href="http://architect4wp.com/codex-listings/" target=_blank>'.__('Architect Online Documentation','pzarchitect').'</a><br>'. __('This is a growing resource. Please check back regularly.', 'pzarchitect')
+                    'content'  => '<a href="http://architect4wp.com/codex-listings/" target=_blank>' . __('Architect Online Documentation', 'pzarchitect') . '</a><br>' . __('This is a growing resource. Please check back regularly.', 'pzarchitect')
 
                 ),
 

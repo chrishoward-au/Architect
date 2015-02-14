@@ -35,6 +35,8 @@
           $pzarc_panels_array = array(0 => 'No cell layouts. Create some.');
         }
 
+       require_once( PZARC_DOCUMENTATION_PATH.PZARC_LANGUAGE . '/blueprints-pageguide.php');
+
         add_action('admin_head', array($this, 'content_blueprints_admin_head'));
         add_action('admin_enqueue_scripts', array($this, 'content_blueprints_admin_enqueue'));
         add_filter('manage_arc-blueprints_posts_columns', array($this, 'add_blueprint_columns'));
@@ -73,7 +75,20 @@
         // wp_enqueue_script('js-isotope-v2');
 
         // wp_enqueue_script('js-magnific');
+        wp_enqueue_script('jquery-pageguide', PZARC_PLUGIN_APP_URL . 'shared/thirdparty/js/pageguide/pageguide.min.js', array('jquery'),true);
+        wp_enqueue_script('jquery-pageguide-blueprint', PZARC_PLUGIN_APP_URL . 'admin/js/arc-pageguide-blueprint.js',null,true);
+        wp_enqueue_style('css-pageguide', PZARC_PLUGIN_APP_URL . 'shared/thirdparty/js/pageguide/css/pageguide.css');
 
+//        wp_enqueue_style('css-tourist-bootstrap','//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css');
+//        wp_enqueue_style('css-tourist-fa','//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css');
+//
+//        wp_enqueue_script('jquery-tourist', PZARC_PLUGIN_APP_URL . 'shared/thirdparty/js/tourist/tourist.js', array('jquery','backbone'),false);
+//        wp_enqueue_script('jquery-tourist-blueprint', PZARC_PLUGIN_APP_URL . 'admin/js/arc-tourist-blueprint.js',null,false);
+//        wp_enqueue_style('css-tourist', PZARC_PLUGIN_APP_URL . 'shared/thirdparty/js/tourist/tourist.css');
+
+//                wp_enqueue_script('jquery-introjs', PZARC_PLUGIN_APP_URL . 'shared/thirdparty/js/intro.js/intro.js', array('jquery'),true);
+//        wp_enqueue_script('jquery-introjs-blueprint', PZARC_PLUGIN_APP_URL . 'admin/js/arc-introjs-blueprint.js',null,true);
+//        wp_enqueue_style('css-introjs', PZARC_PLUGIN_APP_URL . 'shared/thirdparty/js/intro.js/introjs.css');
 
         // wp_enqueue_script('jquery-masonry', PZARC_PLUGIN_URL . 'includes/masonry.pkgd.min.js', array('jquery'));
 
@@ -255,14 +270,19 @@
         $fields = array(array(
                             'id'      => $prefix . 'tabs',
                             'type'    => 'tabbed',
+                            'desc'  =>
+                '<p>&bull;&nbsp;' . __('<strong style="color:#0074A2;"><em>Blueprint Layout</em></strong> is where you choose which Panel design to use for posts or page, and how you want to lay out those Panels.', 'pzarchitect') . '</p>
+                 <p>&bull;&nbsp;' . __('<strong style="color:#0074A2;"><em>Panels Content</em></strong> is where you select the specific posts or pages to display within this Blueprint\'s Panels. <strong>The one content selection is spread across all sections</strong>', 'pzarchitect') . '</p>
+                 <p>&bull;&nbsp;' . __('Blueprints by default have limited styling. Use <strong style="color:#0074A2;"><em>Blueprint Styling</em></strong> to refine the styling of the Blueprint to match your theme.', 'pzarchitect') . '</p>
+',
                             'options' => array(
-                                'content' => '<span><span class="icon-large el-icon-align-left"></span> Panel Content</span>',
                                 'layout'  => '<span><span class="icon-large el-icon-website"></span> Blueprint Layout</span>',
+                                'content' => '<span><span class="icon-large el-icon-align-left"></span> Panel Content</span>',
                                 'styling' => '<span><span class="icon-large el-icon-brush"></span> Blueprint Styling</span>'
                             ),
                             'targets' => array(
-                                'content' => array('content-selections'),
                                 'layout'  => array('layout-settings'),
+                                'content' => array('content-selections'),
                                 'styling' => array('blueprint-stylings'),
                             )
                         ),
@@ -272,12 +292,12 @@
                             'id'      => $prefix . 'tabs',
                             'type'    => 'tabbed',
                             'options' => array(
-                                'content' => '<span><span class="icon-large el-icon-align-left"></span> Panel Content</span>',
                                 'layout'  => '<span><span class="icon-large el-icon-website"></span> Blueprint Layout</span>',
+                                'content' => '<span><span class="icon-large el-icon-align-left"></span> Panel Content</span>',
                             ),
                             'targets' => array(
-                                'content' => array('content-selections'),
                                 'layout'  => array('layout-settings'),
+                                'content' => array('content-selections'),
                             )
                         ),
         );
@@ -500,7 +520,6 @@
         }
       }
 
-
 //      $sections[ ] = array(
 //          'title'      => __('General settings', 'pzarchitect'),
 //          'show_title' => true,
@@ -594,8 +613,17 @@
             'icon_class' => 'icon-large',
             'icon'       => $icons[ $i ],
             'desc'       => __('Sections allow different layouts but use the same content selection. That is, section two continues displaying the content from where section 1 finished. Likewise section 3, continues from where section 2 finished. If you want different content selections, you will need to create separate blueprints.', 'pzarchitect') . '<br><br>' .
-                __('Blueprints can display up to three sections. Only section 1 can be used for Sliders or Tabbed. If it is, the other sections are not available.') . ' <a href="' . PZARC_CODEX . '-listings/" target=_blank class="pzarc-codex" title="View tutorials"><span class="dashicons dashicons-welcome-learn-more size-small"></span></a>',
+                __('Blueprints can display up to three sections. Only section 1 can be used for Sliders or Tabbed. If it is, the other sections are not available.') . ' <a href="' . PZARC_CODEX . '/" target=_blank class="pzarc-codex" title="View tutorials"><span class="dashicons dashicons-welcome-learn-more size-small"></span></a>',
             'fields'     => array(
+                array(
+                    'id'       => $prefix . 'section-' . $i . '-panel-layout',
+                    'subtitle'=> __('Choose which Panel design to display the content for this Bleuprint.'),
+                    'title'    => __('Panels layout', 'pzarchitect'),
+                    'type'     => 'select',
+                    'validate' => ($i == 0 ? 'not_empty' : null),
+                    'select2'  => array('allowClear' => false),
+                    'options'  => $pzarc_panels_array
+                ),
                 array(
                     'title'   => 'Layout type',
                     'id'      => $prefix . 'section-' . $i . '-layout-mode',
@@ -603,6 +631,7 @@
                     'default' => 'basic',
                     'desc'    => $desc[ (int)($i > 0) ],
                     'height'  => 64,
+                    'required'   => array($prefix . 'section-' . $i . '-panel-layout', 'not_empty_and'),
                     'options' => $modesx[ (int)($i > 0) ],
                     //                ),
                     //                // Layout modes affect section. Navigator types apply to the blueprint
@@ -629,6 +658,7 @@
                     'id'       => $prefix . 'section-' . $i . '-tabular-title',
                     'title'    => __('Section ' . ($i + 1) . ' Tabular', 'pzarchitect'),
                     'type'     => 'section',
+                    'required'   => array($prefix . 'section-' . $i . '-panel-layout', 'not_empty_and'),
                     'indent'   => true,
                     'required' => array($prefix . 'section-' . $i . '-layout-mode', '=', 'table'),
                 ),
@@ -660,15 +690,8 @@
                     'id'     => $prefix . 'section-' . $i . '-panels-heading',
                     'title'  => __('Section ' . ($i + 1) . ' Panels configuration', 'pzarchitect'),
                     'type'   => 'section',
+                    'required'   => array($prefix . 'section-' . $i . '-panel-layout', 'not_empty_and'),
                     'indent' => true,
-                ),
-                array(
-                    'id'       => $prefix . 'section-' . $i . '-panel-layout',
-                    'title'    => __('Panels layout', 'pzarchitect'),
-                    'type'     => 'select',
-                    'validate' => ($i == 0 ? 'not_empty' : null),
-                    'select2'  => array('allowClear' => false),
-                    'options'  => $pzarc_panels_array
                 ),
                 array(
                     'title'    => __('Limit panels (posts)', 'pzarchitect'),
@@ -693,6 +716,7 @@
                     'id'     => $prefix . 'section-' . $i . '-columns-heading',
                     'title'  => __('Section ' . ($i + 1) . ' Columns', 'pzarchitect'),
                     'type'   => 'section',
+                    'required'   => array($prefix . 'section-' . $i . '-panel-layout', 'not_empty_and'),
                     'indent' => true,
                 ),
                 array(
@@ -735,6 +759,7 @@
                     'id'     => $prefix . 'section-' . $i . '-panels-settings-heading',
                     'title'  => __('Section ' . ($i + 1) . ' Panels design extras', 'pzarchitect'),
                     'type'   => 'section',
+                    'required'   => array($prefix . 'section-' . $i . '-panel-layout', 'not_empty_and'),
                     'indent' => true,
                 ),
                 array(
@@ -760,6 +785,7 @@
                     'id'     => $prefix . 'section-' . $i . '-sections-heading',
                     'title'  => __('Section ' . ($i + 1) . ' Section configuration', 'pzarchitect'),
                     'type'   => 'section',
+                    'required'   => array($prefix . 'section-' . $i . '-panel-layout', 'not_empty_and'),
                     'indent' => true,
                 ),
                 array(

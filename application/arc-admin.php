@@ -38,8 +38,8 @@
 
         // TODO: Add an alternativeArchitect Admin screen.
         add_action('admin_menu', array($this, 'admin_menu_no_redux'));
-        require_once(PZARC_PLUGIN_APP_PATH . '/shared/includes/php/BFI-thumb-forked/BFI_Thumb.php');
-        require_once(PZARC_PLUGIN_APP_PATH . '/shared/includes/php/pzwp-focal-point/pzwp-focal-point.php');
+        require_once(PZARC_PLUGIN_APP_PATH . '/shared/thirdparty/php/BFI-thumb-forked/BFI_Thumb.php');
+        require_once(PZARC_PLUGIN_APP_PATH . '/shared/thirdparty/php/pzwp-focal-point/pzwp-focal-point.php');
 
         return;
       } else {
@@ -63,8 +63,8 @@
 
         // This one is really only needed on posts, pages and snippets, so could conditionalise its load
         require_once PZARC_PLUGIN_APP_PATH . '/admin/php/class_arc_misc_metaboxes.php';
-        require_once PZARC_PLUGIN_APP_PATH . '/shared/includes/php/redux-custom-fields/loader.php';
-        require_once PZARC_PLUGIN_APP_PATH . '/shared/includes/php/redux-extensions/loader.php';
+        require_once PZARC_PLUGIN_APP_PATH . '/shared/thirdparty/php/redux-custom-fields/loader.php';
+        require_once PZARC_PLUGIN_APP_PATH . '/shared/thirdparty/php/redux-extensions/loader.php';
 
         $misc_metaboxes    = new arc_Misc_metaboxes();
         $panel_layout      = new arc_Panels_Layouts();
@@ -78,8 +78,8 @@
 //      require_once PZARC_PLUGIN_APP_PATH . '/shared/architect/php/content-types/generic/class_arc_panel_generic.php';
 
 
-        require_once(PZARC_PLUGIN_APP_PATH . '/shared/includes/php/BFI-thumb-forked/BFI_Thumb.php');
-        require_once(PZARC_PLUGIN_APP_PATH . '/shared/includes/php/pzwp-focal-point/pzwp-focal-point.php');
+        require_once(PZARC_PLUGIN_APP_PATH . '/shared/thirdparty/php/BFI-thumb-forked/BFI_Thumb.php');
+        require_once(PZARC_PLUGIN_APP_PATH . '/shared/thirdparty/php/pzwp-focal-point/pzwp-focal-point.php');
 
       }
     }
@@ -134,23 +134,23 @@
 //      wp_enqueue_style('pzarc-block-css', PZARC_PLUGIN_URL . '/admin/css/arc-admin.css');
 
         // We shouldn't need this anymore
-//        wp_enqueue_style('pzarc-jqueryui-css', PZARC_PLUGIN_APP_URL . '/shared/includes/js/jquery-ui-1.10.2.custom/css/pz_architect/jquery-ui-1.10.2.custom.min.css');
+//        wp_enqueue_style('pzarc-jqueryui-css', PZARC_PLUGIN_APP_URL . '/shared/thirdparty/js/jquery-ui-1.10.2.custom/css/pz_architect/jquery-ui-1.10.2.custom.min.css');
 
         wp_enqueue_script('jquery-pzarc-metaboxes', PZARC_PLUGIN_APP_URL . '/admin/js/arc-metaboxes.js', array('jquery'), false);
 
 
         // We shouldn't need this anymore
 
-//        wp_enqueue_script('pzarc-validation-engine-js-lang', PZARC_PLUGIN_APP_URL . '/shared/includes/js/jQuery-Validation-Engine/js/languages/jquery.validationEngine-en.js', array('jquery'));
-//        wp_enqueue_script('pzarc-validation-engine-js', PZARC_PLUGIN_APP_URL . '/shared/includes/js/jQuery-Validation-Engine/js/jquery.validationEngine.js', array('jquery'));
-//        wp_enqueue_style('pzarc-validation-engine-css', PZARC_PLUGIN_APP_URL . '/shared/includes/js/jQuery-Validation-Engine/css/validationEngine.jquery.css');
+//        wp_enqueue_script('pzarc-validation-engine-js-lang', PZARC_PLUGIN_APP_URL . '/shared/thirdparty/js/jQuery-Validation-Engine/js/languages/jquery.validationEngine-en.js', array('jquery'));
+//        wp_enqueue_script('pzarc-validation-engine-js', PZARC_PLUGIN_APP_URL . '/shared/thirdparty/js/jQuery-Validation-Engine/js/jquery.validationEngine.js', array('jquery'));
+//        wp_enqueue_style('pzarc-validation-engine-css', PZARC_PLUGIN_APP_URL . '/shared/thirdparty/js/jQuery-Validation-Engine/css/validationEngine.jquery.css');
         add_filter('post_row_actions', 'pzarc_duplicate_post_link', 10, 2);
         add_filter('page_row_actions', 'pzarc_duplicate_post_link', 10, 2);
       }
       if ('architect_page_pzarc_support' === $screen->id) {
-        wp_enqueue_script('js-classlist', PZARC_PLUGIN_APP_URL . '/shared/includes/js/tabby/dist/js/classList.min.js', array('jquery'));
-        wp_enqueue_script('js-tabby', PZARC_PLUGIN_APP_URL . '/shared/includes/js/tabby/dist/js/tabby.min.js', array('jquery'));
-        wp_enqueue_style('css-tabby', PZARC_PLUGIN_APP_URL . '/shared/includes/js/tabby/dist/css/tabby.min.css');
+        wp_enqueue_script('js-classlist', PZARC_PLUGIN_APP_URL . '/shared/thirdparty/js/tabby/dist/js/classList.min.js', array('jquery'));
+        wp_enqueue_script('js-tabby', PZARC_PLUGIN_APP_URL . '/shared/thirdparty/js/tabby/dist/js/tabby.min.js', array('jquery'));
+        wp_enqueue_style('css-tabby', PZARC_PLUGIN_APP_URL . '/shared/thirdparty/js/tabby/dist/css/tabby.min.css');
       }
 
       switch ($screen->id) {

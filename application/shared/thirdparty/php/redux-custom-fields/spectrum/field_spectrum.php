@@ -129,7 +129,7 @@
 
         wp_enqueue_script(
             'redux-field-spectrum-min-js',
-            PZARC_PLUGIN_APP_URL . '/shared/includes/php/redux-custom-fields/spectrum/vendor/spectrum/min/spectrum-ck.js',
+            PZARC_PLUGIN_APP_URL . '/shared/thirdparty/php/redux-custom-fields/spectrum/vendor/spectrum/min/spectrum-ck.js',
             array('jquery'),
             time(),
             true
@@ -137,14 +137,14 @@
 
         wp_enqueue_style(
             'redux-field-spectrum-min-css',
-            PZARC_PLUGIN_APP_URL . '/shared/includes/php/redux-custom-fields/spectrum/vendor/spectrum/min/spectrum.css',
+            PZARC_PLUGIN_APP_URL . '/shared/thirdparty/php/redux-custom-fields/spectrum/vendor/spectrum/min/spectrum.css',
             time(),
             true
         );
 
         wp_enqueue_script(
             'redux-field-spectrum-js',
-            PZARC_PLUGIN_APP_URL . '/shared/includes/php/redux-custom-fields/spectrum/field_spectrum.js',
+            PZARC_PLUGIN_APP_URL . '/shared/thirdparty/php/redux-custom-fields/spectrum/field_spectrum.js',
             array('jquery'),
             time(),
             true
@@ -152,7 +152,7 @@
 
         wp_enqueue_style(
             'redux-field-spectrum-css',
-            PZARC_PLUGIN_APP_URL . '/shared/includes/php/redux-custom-fields/spectrum/field_spectrum.css',
+            PZARC_PLUGIN_APP_URL . '/shared/thirdparty/php/redux-custom-fields/spectrum/field_spectrum.css',
             time(),
             true
         );

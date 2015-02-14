@@ -237,7 +237,7 @@
     {
 
       wp_enqueue_style('pzarc-admin-styles', PZARC_PLUGIN_APP_URL . '/admin/css/arc-admin.css');
-      wp_register_style('pzarc-jqueryui-css', PZARC_PLUGIN_APP_URL . '/shared/includes/jquery-ui-1.10.2.custom/css/pz_architect/jquery-ui-1.10.2.custom.min.css');
+      wp_register_style('pzarc-jqueryui-css', PZARC_PLUGIN_APP_URL . '/shared/thirdparty/jquery-ui-1.10.2.custom/css/pz_architect/jquery-ui-1.10.2.custom.min.css');
 
     }
 

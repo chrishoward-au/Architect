@@ -36,10 +36,10 @@
       // Ideally we want to use Faker, since it has so many more content types, but it needs PHP 5.3.3, so we'll use LoremIpsum class when less that 5.3.3
       if (PHP_VERSION_ID < 50303) {
         $this->isfaker = false;
-        require_once(PZARC_PLUGIN_APP_PATH . '/shared/includes/php/LoremIpsum.class/LoremIpsum.class.php');
+        require_once(PZARC_PLUGIN_APP_PATH . '/shared/thirdparty/php/LoremIpsum.class/LoremIpsum.class.php');
         $this->generator = new LoremIpsumGenerator;
       } else {
-        require_once(PZARC_PLUGIN_APP_PATH . '/shared/includes/php/Faker/src/autoload.php');
+        require_once(PZARC_PLUGIN_APP_PATH . '/shared/thirdparty/php/Faker/src/autoload.php');
         require_once(trailingslashit(plugin_dir_path(__FILE__)).'faker_53.php');
         $this->faker =pzarc_faker_53();
       }

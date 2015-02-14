@@ -43,6 +43,7 @@
                                            $this->blueprint[ 'section' ][ ($i - 1) ]['section-panel-settings']['_panels_settings_short-name']
 
                 );
+//            var_dump($i,            $this->blueprint[ 'section_object' ][ $i ]);
           }
 
         }

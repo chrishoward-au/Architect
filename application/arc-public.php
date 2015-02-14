@@ -239,7 +239,7 @@
       }
 
       require_once PZARC_PLUGIN_APP_PATH . '/public/php/class_architect_public.php';
-      require_once(PZARC_PLUGIN_APP_PATH . '/shared/includes/php/BFI-thumb-forked/BFI_Thumb.php');
+      require_once(PZARC_PLUGIN_APP_PATH . '/shared/thirdparty/php/BFI-thumb-forked/BFI_Thumb.php');
 
       $architect = new ArchitectPublic($blueprint, $is_shortcode);
 
