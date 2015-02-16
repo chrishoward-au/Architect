@@ -31,7 +31,8 @@
   <!-- Layout -->
   <li class="tlypageguide_bottom" data-tourtarget="#tab-layout">
     <div>'.__('
-      <h3>Blueprint Layout</h3>This is where you choose which Panel design to use for posts or page, and how you want to lay out those Panels.
+      <h3>Blueprint Layout</h3>This is where you choose which Panel layout to use in your posts or page, and how you want to lay out those Panels, whether one or many, and gridded, tabbed, slider, accordion or tabular.
+      <strong><em>Once you have set the Blueprint up, to display it, add the Architect shortcode to a post or page of your choice. e.g. [architect my-blueprint] Replace "my-blueprint" with the shortname you gave yours.</em></strong>
     ','pzarchitect').'</div>
   </li>
   <li class="tlypageguide_bottom" data-tourtarget="#tab-content">
