@@ -458,6 +458,8 @@ add_action(\'init\',\'gs_init\');
                         </li>
                         <li><a href="https://github.com/bfintal/bfi_thumb" target="_blank">BFI Thumbs (modded)</a>
                         </li>
+                        <li><a href="http://tracelytics.github.io/pageguide/" target="_blank">PageGuide</a>
+                        </li>
                     </ul>
                 </div>
                 <div class="tabs-pane " id="presets">

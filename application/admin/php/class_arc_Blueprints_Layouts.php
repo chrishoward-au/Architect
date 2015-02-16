@@ -35,7 +35,6 @@
           $pzarc_panels_array = array(0 => 'No cell layouts. Create some.');
         }
 
-       require_once( PZARC_DOCUMENTATION_PATH.PZARC_LANGUAGE . '/blueprints-pageguide.php');
 
         add_action('admin_head', array($this, 'content_blueprints_admin_head'));
         add_action('admin_enqueue_scripts', array($this, 'content_blueprints_admin_enqueue'));
@@ -65,6 +64,7 @@
     {
       $screen = get_current_screen();
       if ('arc-blueprints' == $screen->id) {
+        require_once( PZARC_DOCUMENTATION_PATH.PZARC_LANGUAGE . '/blueprints-pageguide.php');
 
 
         wp_enqueue_style('pzarc-admin-blueprints-css', PZARC_PLUGIN_APP_URL . '/admin/css/arc-admin-blueprints.css');
@@ -76,7 +76,6 @@
 
         // wp_enqueue_script('js-magnific');
         wp_enqueue_script('jquery-pageguide', PZARC_PLUGIN_APP_URL . 'shared/thirdparty/js/pageguide/pageguide.min.js', array('jquery'),true);
-        wp_enqueue_script('jquery-pageguide-blueprint', PZARC_PLUGIN_APP_URL . 'admin/js/arc-pageguide-blueprint.js',null,true);
         wp_enqueue_style('css-pageguide', PZARC_PLUGIN_APP_URL . 'shared/thirdparty/js/pageguide/css/pageguide.css');
 
 //        wp_enqueue_style('css-tourist-bootstrap','//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css');
@@ -93,6 +92,9 @@
         // wp_enqueue_script('jquery-masonry', PZARC_PLUGIN_URL . 'includes/masonry.pkgd.min.js', array('jquery'));
 
         // wp_enqueue_script('jquery-lorem', PZARC_PLUGIN_URL . 'includes/jquery.lorem.js', array('jquery'));
+      } elseif ('edit-arc-blueprints'===$screen->id) {
+//        require_once( PZARC_DOCUMENTATION_PATH.PZARC_LANGUAGE . '/blueprints-listing-pageguide.php');
+
       }
 //      global $pzcustom_post_types;
 //      $pzcustom_post_types = (get_post_types(array('_builtin' => false, 'public' => true), 'names'));
@@ -631,7 +633,7 @@
                     'default' => 'basic',
                     'desc'    => $desc[ (int)($i > 0) ],
                     'height'  => 64,
-                    'required'   => array($prefix . 'section-' . $i . '-panel-layout', 'not_empty_and'),
+                    'required'   => array($prefix . 'section-' . $i . '-panel-layout', 'not_empty_and',false),
                     'options' => $modesx[ (int)($i > 0) ],
                     //                ),
                     //                // Layout modes affect section. Navigator types apply to the blueprint
@@ -658,7 +660,7 @@
                     'id'       => $prefix . 'section-' . $i . '-tabular-title',
                     'title'    => __('Section ' . ($i + 1) . ' Tabular', 'pzarchitect'),
                     'type'     => 'section',
-                    'required'   => array($prefix . 'section-' . $i . '-panel-layout', 'not_empty_and'),
+                    'required'   => array($prefix . 'section-' . $i . '-panel-layout', 'not_empty_and',false),
                     'indent'   => true,
                     'required' => array($prefix . 'section-' . $i . '-layout-mode', '=', 'table'),
                 ),
@@ -690,11 +692,11 @@
                     'id'     => $prefix . 'section-' . $i . '-panels-heading',
                     'title'  => __('Section ' . ($i + 1) . ' Panels configuration', 'pzarchitect'),
                     'type'   => 'section',
-                    'required'   => array($prefix . 'section-' . $i . '-panel-layout', 'not_empty_and'),
+                    'required'   => array($prefix . 'section-' . $i . '-panel-layout', 'not_empty_and',false),
                     'indent' => true,
                 ),
                 array(
-                    'title'    => __('Limit panels (posts)', 'pzarchitect'),
+                    'title'    => __('Limit panels', 'pzarchitect'),
                     'id'       => $prefix . 'section-' . $i . '-panels-limited',
                     'type'     => 'switch',
                     'on'       => __('Yes', 'pzarchitect'),
@@ -716,7 +718,7 @@
                     'id'     => $prefix . 'section-' . $i . '-columns-heading',
                     'title'  => __('Section ' . ($i + 1) . ' Columns', 'pzarchitect'),
                     'type'   => 'section',
-                    'required'   => array($prefix . 'section-' . $i . '-panel-layout', 'not_empty_and'),
+                    'required'   => array($prefix . 'section-' . $i . '-panel-layout', 'not_empty_and',false),
                     'indent' => true,
                 ),
                 array(
@@ -759,7 +761,7 @@
                     'id'     => $prefix . 'section-' . $i . '-panels-settings-heading',
                     'title'  => __('Section ' . ($i + 1) . ' Panels design extras', 'pzarchitect'),
                     'type'   => 'section',
-                    'required'   => array($prefix . 'section-' . $i . '-panel-layout', 'not_empty_and'),
+                    'required'   => array($prefix . 'section-' . $i . '-panel-layout', 'not_empty_and',false),
                     'indent' => true,
                 ),
                 array(
@@ -785,7 +787,7 @@
                     'id'     => $prefix . 'section-' . $i . '-sections-heading',
                     'title'  => __('Section ' . ($i + 1) . ' Section configuration', 'pzarchitect'),
                     'type'   => 'section',
-                    'required'   => array($prefix . 'section-' . $i . '-panel-layout', 'not_empty_and'),
+                    'required'   => array($prefix . 'section-' . $i . '-panel-layout', 'not_empty_and',false),
                     'indent' => true,
                 ),
                 array(
@@ -856,6 +858,10 @@
           ),
       );
       $slider                      = array(
+          'bullets' => array(
+              'alt' => 'Bullets',
+              'img' => PZARC_PLUGIN_APP_URL . 'shared/assets/images/metaboxes/nav-type-bullets.png'
+          ),
           'tabbed'  => array(
               'alt' => 'Titles',
               'img' => PZARC_PLUGIN_APP_URL . 'shared/assets/images/metaboxes/nav-type-tabbed.png'
@@ -863,10 +869,6 @@
           'labels'  => array(
               'alt' => 'Labels',
               'img' => PZARC_PLUGIN_APP_URL . 'shared/assets/images/metaboxes/nav-type-labels.png'
-          ),
-          'bullets' => array(
-              'alt' => 'Bullets',
-              'img' => PZARC_PLUGIN_APP_URL . 'shared/assets/images/metaboxes/nav-type-bullets.png'
           ),
           'numbers' => array(
               'alt' => 'Numbers',
@@ -892,8 +894,8 @@
                   'id'      => $prefix . 'navigator',
                   'title'   => __('Type', 'pzarchitect'),
                   'type'    => 'image_select',
-                  'default' => 'tabbed',
-                  'hint'    => array('content' => __('Titles, Labels, Bullets, Numbers, Thumbnails or none', 'pzarchitect')),
+                  'default' => 'bullets',
+                  'hint'    => array('content' => __('Bullets,Titles, Labels, Numbers, Thumbnails or none', 'pzarchitect')),
                   'height'  => 75,
                   'options' => $slider
               ),

@@ -49,6 +49,7 @@
       $screen = get_current_screen();
 
       if ('arc-panels' == $screen->id) {
+        require_once( PZARC_DOCUMENTATION_PATH.PZARC_LANGUAGE . '/panels-pageguide.php');
 
         wp_enqueue_script('jquery-ui-draggable');
         wp_enqueue_script('jquery-ui-droppable');
@@ -58,6 +59,10 @@
         wp_enqueue_style('pzarc-admin-panels-css', PZARC_PLUGIN_APP_URL . '/admin/css/arc-admin-panels.css');
 
         wp_enqueue_script('jquery-pzarc-metaboxes-panels', PZARC_PLUGIN_APP_URL . '/admin/js/arc-metaboxes-panels.js', array('jquery'), null, true);
+
+        wp_enqueue_script('jquery-pageguide', PZARC_PLUGIN_APP_URL . 'shared/thirdparty/js/pageguide/pageguide.min.js', array('jquery'),true);
+        wp_enqueue_style('css-pageguide', PZARC_PLUGIN_APP_URL . 'shared/thirdparty/js/pageguide/css/pageguide.css');
+
       }
     }
 
@@ -152,8 +157,9 @@
                 'id'      => $prefix . 'tabs',
                 'type'    => 'tabbed',
                 'desc'  => '
-                <p>&bull;&nbsp;' . __('<strong style="color:#0074A2;"><em>Panels Design</em></strong> is where you to design the layout of the individual post or page entries', 'pzarchitect') . '</p>
-                <p>&bull;&nbsp;' . __('Panels will inherit your theme\'s styling. Use <strong style="color:#0074A2;"><em>Panels Styling</em></strong> if you need to refine the styling of the Panels', 'pzarchitect') . '</p>',
+                <p>' . __('For guided help, click the orange <em>Panels Help</em> button at the top right. You can keep it open and still interact with this page.', 'pzarchitect') . '</p>',
+//                <p>&bull;&nbsp;' . __('<strong style="color:#0074A2;"><em>Panels Design</em></strong> is where you to design the layout of the individual post or page entries', 'pzarchitect') . '</p>
+//                <p>&bull;&nbsp;' . __('Panels will inherit your theme\'s styling. Use <strong style="color:#0074A2;"><em>Panels Styling</em></strong> if you need to refine the styling of the Panels', 'pzarchitect') . '</p>',
                 'options' => array(
                     'design'  => '<span class="icon-large el-icon-website"></span> ' . __('Panels Design', 'pzarchitect'),
                     'styling' => '<span class="icon-large el-icon-brush"></span> ' . __('Panels Styling', 'pzarchitect')
@@ -277,6 +283,27 @@
           'icon'       => 'el-icon-website',
           'fields'     => array(
               array(
+                  'title'   => __('Components to show', 'pzarchitect'),
+                  'id'      => $prefix . 'components-to-show',
+                  'type'    => 'button_set',
+                  'multi'   => true,
+                  'width'   => '100%',
+                  'default' => array('title', 'excerpt', 'meta1', 'image'),
+                  'options' => array(
+                      'title'   => __('Title', 'pzarchitect'),
+                      'excerpt' => __('Excerpt', 'pzarchitect'),
+                      'content' => __('Content', 'pzarchitect'),
+                      'image'   => __('Feature', 'pzarchitect'),
+                      'meta1'   => __('Meta1', 'pzarchitect'),
+                      'meta2'   => __('Meta2', 'pzarchitect'),
+                      'meta3'   => __('Meta3', 'pzarchitect'),
+                      'custom1' => __('Custom 1', 'pzarchitect'),
+                      'custom2' => __('Custom 2', 'pzarchitect'),
+                      'custom3' => __('Custom 3', 'pzarchitect'),
+                  ),
+                  'hint'    => array('content' => __('Select which base components to include in this panel layout.', 'pzarchitect'))
+              ),
+              array(
                   'title'        => __('Panel preview', 'pzarchitect'),
                   'id'           => $prefix . 'preview',
                   'type'         => 'code',
@@ -298,27 +325,6 @@
                                                     'custom3' => array('width' => 100, 'show' => false))),
                   'hint'         => array('title'   => '',
                                           'content' => __('Drag and drop to sort the order of your elements. <strong>Heights are fluid in panels, so not indicative of how it will look on the page</strong>.', 'pzarchitect'))
-              ),
-              array(
-                  'title'   => __('Components to show', 'pzarchitect'),
-                  'id'      => $prefix . 'components-to-show',
-                  'type'    => 'button_set',
-                  'multi'   => true,
-                  'width'   => '100%',
-                  'default' => array('title', 'excerpt', 'meta1', 'image'),
-                  'options' => array(
-                      'title'   => __('Title', 'pzarchitect'),
-                      'excerpt' => __('Excerpt', 'pzarchitect'),
-                      'content' => __('Content', 'pzarchitect'),
-                      'image'   => __('Feature', 'pzarchitect'),
-                      'meta1'   => __('Meta1', 'pzarchitect'),
-                      'meta2'   => __('Meta2', 'pzarchitect'),
-                      'meta3'   => __('Meta3', 'pzarchitect'),
-                      'custom1' => __('Custom 1', 'pzarchitect'),
-                      'custom2' => __('Custom 2', 'pzarchitect'),
-                      'custom3' => __('Custom 3', 'pzarchitect'),
-                  ),
-                  'hint'    => array('content' => __('Select which base components to include in this panel layout.', 'pzarchitect'))
               ),
               array(
                   'title'   => __('Feature location', 'pzarchitect'),
@@ -364,18 +370,6 @@
                   //                  'hint'          => array('content' => __('', 'pzarchitect'))
               ),
               array(
-                  'title'         => __('Components area width %', 'pzarchitect'),
-                  'id'            => $prefix . 'components-widths',
-                  'type'          => 'slider',
-                  'default'       => '100',
-                  'min'           => '1',
-                  'max'           => '100',
-                  'step'          => '1',
-                  'class'         => ' percent',
-                  'display_value' => 'label',
-                  'hint'          => array('content' => __('Set the overall width for the components area. Necessary for left or right positioning of sections', 'pzarchitect')),
-              ),
-              array(
                   'title'   => __('Components area position', 'pzarchitect'),
                   'id'      => $prefix . 'components-position',
                   'type'    => 'button_set',
@@ -389,6 +383,18 @@
                   ),
                   'hint'    => array('content' => __('Position for all the components as a group. </br>NOTE: If feature is set to align, then components will be below the feature, but not at the bottom of the panel. ', 'pzarchitect')),
                   'desc'    => __('Left/right will only take affect when components area width is less than 100%', 'pzarchitect')
+              ),
+              array(
+                  'title'         => __('Components area width %', 'pzarchitect'),
+                  'id'            => $prefix . 'components-widths',
+                  'type'          => 'slider',
+                  'default'       => '100',
+                  'min'           => '1',
+                  'max'           => '100',
+                  'step'          => '1',
+                  'class'         => ' percent',
+                  'display_value' => 'label',
+                  'hint'          => array('content' => __('Set the overall width for the components area. Necessary for left or right positioning of sections', 'pzarchitect')),
               ),
               array(
                   'title'         => __('Nudge components area up/down %', 'pzarchitect'),

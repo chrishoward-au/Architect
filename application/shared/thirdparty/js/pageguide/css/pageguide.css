@@ -8,7 +8,7 @@
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
-  color: #000;
+  color: #000000;
   font-size: 12px;
   font-family: Helvetica, Arial, sans-serif;
 }
@@ -29,7 +29,7 @@
   -o-border-radius: 3px 0 0 3px;
   border-radius: 3px 0 0 3px;
   clear: both;
-  color: #fff;
+  color: #ffffff;
   cursor: pointer;
   display: block;
   float: right;
@@ -73,7 +73,7 @@
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
-  border-left: 1px solid #fff;
+  border-left: 1px solid #ffffff;
   display: block;
   height: 33px;
   line-height: 16px;
@@ -96,7 +96,7 @@
 }
 #tlyPageGuideWrapper .tlypageguide_toggle a {
   bottom: -26px;
-  color: #000;
+  color: #000000;
   opacity: 0;
   position: absolute;
   right: 10px;
@@ -121,13 +121,13 @@
   box-shadow: 0 0 9px 4px rgba(0, 0, 0, 0.4);
   bottom: 0;
   display: none;
-  font-size: 16px;
+  font-size: 14px;
   height: 0;
   margin: 0 5% 0 5%;
   padding: 10px;
   position: fixed;
   width: 90%;
-  z-index: 1000;
+  z-index: 10000;
   overflow-y: auto;
 }
 #tlyPageGuideWrapper #tlyPageGuideMessages span {
@@ -136,7 +136,7 @@
   -moz-border-radius: 3px;
   -o-border-radius: 3px;
   border-radius: 3px;
-  color: #fff;
+  color: #ffffff;
   display: block;
   font-size: 32px;
   height: 46px;
@@ -149,16 +149,43 @@
   width: 50px;
 }
 #tlyPageGuideWrapper #tlyPageGuideMessages .tlypageguide_text {
-  color: #fff;
+  color: #ffffff;
   line-height: 22px;
   margin: 10px 90px 0 120px;
   position: relative;
 }
+#tlyPageGuideWrapper #tlyPageGuideMessages .tlypageguide_text h3 {
+  color: #ff7733;
+  font-size: 15px;
+  margin: 0;
+  padding: 0;
+}
+#tlyPageGuideWrapper #tlyPageGuideMessages .tlypageguide_text em {
+  color: #b7dbff;
+}
+#tlyPageGuideWrapper #tlyPageGuideMessages .tlypageguide_text strong {
+  display: block;
+}
+#tlyPageGuideWrapper #tlyPageGuideMessages .tlypageguide_text strong em {
+  color: #b7dbff;
+  display: block;
+  font-style: normal;
+}
+#tlyPageGuideWrapper #tlyPageGuideMessages .tlypageguide_text strong em:before {
+  content: "Slider Tutorial: ";
+}
+#tlyPageGuideWrapper #tlyPageGuideMessages .tlypageguide_text strong em em {
+  font-style: italic;
+  display: inline;
+}
+#tlyPageGuideWrapper #tlyPageGuideMessages .tlypageguide_text strong em em:before {
+  content: "";
+}
 #tlyPageGuideWrapper #tlyPageGuideMessages .tlypageguide_text a {
-  color: #fff;
+  color: #ffffff;
 }
 #tlyPageGuideWrapper #tlyPageGuideMessages .tlypageguide_text a:hover {
-  color: #fff;
+  color: #ffffff;
 }
 #tlyPageGuideWrapper #tlyPageGuideMessages .tlypageguide_close {
   background: #ff5500;
@@ -166,7 +193,7 @@
   -moz-border-radius: 0 0 3px 3px;
   -o-border-radius: 0 0 3px 3px;
   border-radius: 0 0 3px 3px;
-  color: #fff;
+  color: #ffffff;
   display: block;
   font-size: 11px;
   height: 24px;
@@ -210,7 +237,7 @@
   -o-box-shadow: 6px 4px 5px 0 rgba(0, 0, 0, 0.4);
   box-shadow: 6px 4px 5px 0 rgba(0, 0, 0, 0.4);
   background: rgba(255, 85, 0, 0.9);
-  color: #fff;
+  color: #ffffff;
   right: 0 !important;
 }
 .tlypageguide-open #tlyPageGuideWrapper .tlypageguide_toggle.tlyPageGuideToggleActive a {
@@ -237,12 +264,12 @@
   z-index: 9999;
   width: 95%;
   margin: auto;
-  max-width: 400px;
-  height: 300px;
+  max-width: 600px;
+  height: 400px;
   max-height: 80%;
   background: rgba(0, 0, 0, 0.85);
   padding: 15px 20px;
-  color: #fff;
+  color: #ffffff;
   font-size: 16px;
   line-height: 22px;
   -webkit-box-shadow: 0 0 9px 4px rgba(0, 0, 0, 0.4);
@@ -259,6 +286,16 @@
   -ms-transition: all 0.2s linear;
   transition: all 0.2s linear;
 }
+.tlyPageGuideWelcome h2,
+#tlyPageGuideWelcome h2 {
+  color: inherit;
+  font-size: 20px;
+  font-weight: bold;
+}
+.tlyPageGuideWelcome p,
+#tlyPageGuideWelcome p {
+  font-size: inherit;
+}
 .tlyPageGuideWelcome.open,
 #tlyPageGuideWelcome.open {
   filter: alpha(opacity=95);
@@ -273,14 +310,19 @@
   -moz-border-radius: 3px;
   -o-border-radius: 3px;
   border-radius: 3px;
-  color: #fff;
-  font-size: 22px;
+  color: #ffffff;
+  font-size: 16px;
+  display: inline-block;
   border: 0;
   overflow: hidden;
   text-align: center;
   padding: 5px 10px;
   cursor: pointer;
   font-family: Helvetica, Arial, sans-serif;
+}
+.tlyPageGuideWelcome button p,
+#tlyPageGuideWelcome button p {
+  font-size: inherit;
 }
 #tlyPageGuideOverlay {
   display: none;
@@ -289,7 +331,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: #fff;
+  background: #ffffff;
   z-index: 9998;
   filter: alpha(opacity=0);
   -moz-opacity: 0;
@@ -317,15 +359,23 @@
 .tlypageguide_shadow {
   position: absolute;
   display: none;
-  background-color: rgba(255, 85, 0, 0.1);
-  -webkit-box-shadow: 0 0 1px 1px rgba(147, 0, 119, 0.25);
-  -moz-box-shadow: 0 0 1px 1px rgba(147, 0, 119, 0.25);
-  -o-box-shadow: 0 0 1px 1px rgba(147, 0, 119, 0.25);
-  box-shadow: 0 0 1px 1px rgba(147, 0, 119, 0.25);
+  background-color: rgba(30, 144, 255, 0.08);
+  -webkit-box-shadow: 0 0 1px 1px rgba(30, 144, 255, 0.2);
+  -moz-box-shadow: 0 0 1px 1px rgba(30, 144, 255, 0.2);
+  -o-box-shadow: 0 0 1px 1px rgba(30, 144, 255, 0.2);
+  box-shadow: 0 0 1px 1px rgba(30, 144, 255, 0.2);
+  border-radius: 10px;
   pointer-events: none;
 }
+.tlypageguide_shadow.tlypageguide-active {
+  background-color: rgba(30, 144, 255, 0.03);
+  -webkit-box-shadow: 0 0 1px 1px rgba(255, 85, 0, 0.6);
+  -moz-box-shadow: 0 0 1px 1px rgba(255, 85, 0, 0.6);
+  -o-box-shadow: 0 0 1px 1px rgba(255, 85, 0, 0.6);
+  box-shadow: 0 0 1px 1px rgba(255, 85, 0, 0.6);
+}
 .tlyPageGuideStepIndex {
-  background: rgba(255, 85, 0, 0.3);
+  background: rgba(255, 85, 0, 0.5);
   -webkit-box-shadow: 0 2px 10px 1px rgba(0, 0, 0, 0.4);
   -moz-box-shadow: 0 2px 10px 1px rgba(0, 0, 0, 0.4);
   -o-box-shadow: 0 2px 10px 1px rgba(0, 0, 0, 0.4);
@@ -337,20 +387,21 @@
   transition: min-height, max-height 0.1s ease-in-out;
   cursor: pointer;
   display: block;
-  height: 46px;
-  line-height: 50px;
+  height: 36px;
+  line-height: 38px;
   position: absolute;
   text-align: center;
+  width: 36px;
   z-index: 50000;
   filter: alpha(opacity=100);
   -moz-opacity: 1;
   -khtml-opacity: 1;
   opacity: 1;
   min-height: 15px;
-  max-height: 46px;
+  max-height: 36px;
   pointer-events: all;
-  color: #fff;
-  font-size: 32px;
+  color: #ffffff;
+  font-size: 24px;
   text-decoration: none;
   width: 50px;
 }
@@ -371,7 +422,7 @@
   right: auto;
 }
 .tlyPageGuideStepIndex.tlypageguide_bottom {
-  bottom: -65px;
+  bottom: -52px;
 }
 .tlyPageGuideStepIndex.tlypageguide_bottom:after {
   border-bottom: 15px solid rgba(255, 85, 0, 0.3);
@@ -398,7 +449,7 @@
   top: 0;
 }
 .tlyPageGuideStepIndex.tlypageguide_top {
-  top: -60px;
+  top: -52px;
 }
 .tlyPageGuideStepIndex.tlypageguide_top:after {
   border-top: 15px solid rgba(255, 85, 0, 0.3);

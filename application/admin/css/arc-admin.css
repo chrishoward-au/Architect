@@ -91,7 +91,6 @@ div.pzarc-dragsource {
   border: #bbb solid 1px;
   height: 300px;
   box-sizing: border-box;
-  background: #ddd url(bg-preview.jpg);
   overflow: hidden;
   width: 452px;
   position: relative;
@@ -99,7 +98,7 @@ div.pzarc-dragsource {
 
 .pzarc-content-area {
   position: absolute;
-  background: rgba(0, 0, 0, 0.2);
+  background: rgba(16, 32, 64, 0.25);
   box-sizing: border-box; }
 
 .pzgp-cell-image-behind {
@@ -166,23 +165,25 @@ div.pzarc-dragsource {
 
 #pzarc-custom-pzarc_layout .ui-resizable-e {
   width: 2px;
-  background: #48b;
-  border-right: solid 5px #6ad;
+  background: #eee;
+  border-right: groove 5px #ccc;
   position: absolute;
   right: 0;
   top: 0;
   height: 100%;
-  cursor: e-resize; }
+  cursor: ew-resize; }
 
 .pzarc-draggable {
   float: left;
-  background: rgba(255, 255, 255, 0.9);
+  background: #555;
+  color: #fff;
   min-height: 25px;
   overflow: hidden;
   position: relative; }
 
 .pzarc-draggable:hover {
-  background: #def; }
+  background: #ddd;
+  color: #444; }
 
 .pzarc-draggable:hover img {
   opacity: 0.5; }
@@ -204,7 +205,6 @@ div.pzarc-dragsource {
 .pzarc-draggable-meta3 {
   margin: 0px 0;
   border-radius: 0px;
-  color: #111;
   display: inline-block;
   text-align: left;
   width: 100%; }
