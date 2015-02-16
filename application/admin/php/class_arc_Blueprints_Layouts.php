@@ -272,11 +272,12 @@
         $fields = array(array(
                             'id'      => $prefix . 'tabs',
                             'type'    => 'tabbed',
-                            'desc'  =>
-                '<p>&bull;&nbsp;' . __('<strong style="color:#0074A2;"><em>Blueprint Layout</em></strong> is where you choose which Panel design to use for posts or page, and how you want to lay out those Panels.', 'pzarchitect') . '</p>
-                 <p>&bull;&nbsp;' . __('<strong style="color:#0074A2;"><em>Panels Content</em></strong> is where you select the specific posts or pages to display within this Blueprint\'s Panels. <strong>The one content selection is spread across all sections</strong>', 'pzarchitect') . '</p>
-                 <p>&bull;&nbsp;' . __('Blueprints by default have limited styling. Use <strong style="color:#0074A2;"><em>Blueprint Styling</em></strong> to refine the styling of the Blueprint to match your theme.', 'pzarchitect') . '</p>
-',
+                            'desc'  =>'
+                <p style="color:#ff5500;">' . __('For guided help, click the orange <em>Panels Help</em> button at the top right. You can keep it open and still interact with this page.', 'pzarchitect') . '</p>',
+//                '<p>&bull;&nbsp;' . __('<strong style="color:#0074A2;"><em>Blueprint Layout</em></strong> is where you choose which Panel design to use for posts or page, and how you want to lay out those Panels.', 'pzarchitect') . '</p>
+//                 <p>&bull;&nbsp;' . __('<strong style="color:#0074A2;"><em>Panels Content</em></strong> is where you select the specific posts or pages to display within this Blueprint\'s Panels. <strong>The one content selection is spread across all sections</strong>', 'pzarchitect') . '</p>
+//                 <p>&bull;&nbsp;' . __('Blueprints by default have limited styling. Use <strong style="color:#0074A2;"><em>Blueprint Styling</em></strong> to refine the styling of the Blueprint to match your theme.', 'pzarchitect') . '</p>
+
                             'options' => array(
                                 'layout'  => '<span><span class="icon-large el-icon-website"></span> Blueprint Layout</span>',
                                 'content' => '<span><span class="icon-large el-icon-align-left"></span> Panel Content</span>',

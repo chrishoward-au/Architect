@@ -1,7 +1,7 @@
 <?php
 
   wp_enqueue_script('jquery-pageguide-blueprint', PZARC_PLUGIN_APP_URL . 'admin/js/arc-pageguide-blueprint.js',null,true);
-  add_action('admin_footer', 'arc_blueprints_pageguide_welcome');
+ // add_action('admin_footer', 'arc_blueprints_pageguide_welcome');
 
   function arc_blueprints_pageguide_welcome()
   {
@@ -32,7 +32,7 @@
   <li class="tlypageguide_bottom" data-tourtarget="#tab-layout">
     <div>'.__('
       <h3>Blueprint Layout</h3>This is where you choose which Panel layout to use in your posts or page, and how you want to lay out those Panels, whether one or many, and gridded, tabbed, slider, accordion or tabular.
-      <strong><em>Once you have set the Blueprint up, to display it, add the Architect shortcode to a post or page of your choice. e.g. [architect my-blueprint] Replace "my-blueprint" with the shortname you gave yours.</em></strong>
+      <strong><em>You can now setup your slider Blueprint. Once you are finished, then to display it, add the Architect shortcode to a post or page of your choice. e.g. [architect my-blueprint] Replace "my-blueprint" with the shortname you gave yours.</em></strong>
     ','pzarchitect').'</div>
   </li>
   <li class="tlypageguide_bottom" data-tourtarget="#tab-content">

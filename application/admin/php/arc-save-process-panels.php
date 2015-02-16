@@ -12,15 +12,15 @@
     // Step thru each field looking for ones to format
     $class_prefix = 'body.pzarchitect .pzarc-panel_' . $pzarc_panels[ '_panels_settings_short-name' ];
 
-    $toshow                = json_decode($pzarc_panels[ '_panels_design_preview' ], true);
+    $toshow      = json_decode($pzarc_panels[ '_panels_design_preview' ], true);
     $sum_to_show = 0;
-    $checksum = 0;
+    $checksum    = 0;
     foreach ($toshow as $k => $v) {
-      $sum_to_show += ($v['show']?$v['width']:0);
-      $checksum += (int)$v['show'];
+      $sum_to_show += ($v[ 'show' ] ? $v[ 'width' ] : 0);
+      $checksum += (int)$v[ 'show' ];
     }
     // This is to ensure if there's only one field it will be not be assumed for use in a tabular
-    $sum_to_show = $checksum>1?$sum_to_show:0;
+    $sum_to_show = $checksum > 1 ? $sum_to_show : 0;
 
     $feature_in_components = $toshow[ 'image' ][ 'show' ] && ($pzarc_panels[ '_panels_design_feature-location' ] !== 'float' && $pzarc_panels[ '_panels_design_feature-location' ] !== 'fill');
 
@@ -86,6 +86,7 @@
           $pzarc_right_margin = (!empty($pzarc_panels[ '_panels_design_image-margin-right' ]) ? $pzarc_panels[ '_panels_design_image-margin-right' ] : 0);
           $pzarc_layout       = json_decode($value, true);
 
+          $titles_bullets = '';
           switch ($pzarc_panels[ '_panels_design_title-prefix' ]) {
 
             case 'none':
@@ -96,7 +97,8 @@
             case 'disc':
             case 'circle':
             case 'square':
-              $titles_bullets = 'list-style:' . $pzarc_panels[ '_panels_design_title-prefix' ] . ' outside none;display:list-item;';
+              $title_margins = (int)$pzarc_panels[ '_panels_design_title-margins' ][ 'margin-left' ] + (int)$pzarc_panels[ '_panels_design_title-margins' ][ 'margin-right' ];
+              $titles_bullets = 'list-style:' . $pzarc_panels[ '_panels_design_title-prefix' ] . ' outside none;display:list-item;margin-left:'.$pzarc_panels[ '_panels_design_title-margins' ][ 'margin-left' ].';margin-right:'.$pzarc_panels[ '_panels_design_title-margins' ][ 'margin-right' ].';';
               break;
 
             case 'decimal':
@@ -118,9 +120,14 @@
               break;
           }
 
-          $pzarc_contents .= $class_prefix . ' .entry-title {width:' . $pzarc_layout[ 'title' ][ 'width' ] . '%;' . $titles_bullets . '}' . $nl;
-          $pzarc_contents .= $class_prefix . ' .td-entry-title {width:' . $pzarc_layout[ 'title' ][ 'width' ] . '%;' . $titles_bullets . '}' . $nl;
-
+          if (!empty($title_margins)) {
+            $title_width = 'calc(' . $pzarc_layout[ 'title' ][ 'width' ] . '%' . ' - ' . $title_margins . 'px)';
+            $pzarc_contents .= $class_prefix . ' .entry-title {width:' . $title_width . ';' . $titles_bullets . '}' . $nl;
+            $pzarc_contents .= $class_prefix . ' .td-entry-title {width:' . $title_width . ';' . $titles_bullets . '}' . $nl;
+          } else {
+            $pzarc_contents .= $class_prefix . ' .entry-title {width:' . $pzarc_layout[ 'title' ][ 'width' ] . '%;' . $titles_bullets . '}' . $nl;
+            $pzarc_contents .= $class_prefix . ' .td-entry-title {width:' . $pzarc_layout[ 'title' ][ 'width' ] . '%;' . $titles_bullets . '}' . $nl;
+          }
 
           // Don't give thumbnail div a width if it's in the content
           $margins = pzarc_process_spacing($pzarc_panels[ '_panels_design_image-spacing' ]);
@@ -218,7 +225,7 @@
 //                  $pzarc_contents .= pzarc_get_styling('panel', $pkeys, $value, $class_prefix . ' ', $pkeys[ 'classes' ]);
 //                  break;
 //                default:
-                  $pzarc_contents .= pzarc_get_styling('panel', $pkeys, $value, $class_prefix . '  ', $pkeys[ 'classes' ]);
+              $pzarc_contents .= pzarc_get_styling('panel', $pkeys, $value, $class_prefix . '  ', $pkeys[ 'classes' ]);
 //              }
             }
           } elseif ($pkeys[ 'id' ] === 'custom') {

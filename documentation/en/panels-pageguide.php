@@ -3,7 +3,7 @@
 
   wp_enqueue_script('jquery-pageguide-panels', PZARC_PLUGIN_APP_URL . 'admin/js/arc-pageguide-panels.js',null,true);
 
-  add_action('admin_footer', 'arc_panels_pageguide_welcome');
+  //add_action('admin_footer', 'arc_panels_pageguide_welcome');
 
   function arc_panels_pageguide_welcome()
   {
@@ -33,7 +33,7 @@
 
   <li class="tlypageguide_bottom" data-tourtarget="#tab-design">
     <div>'.__('
-      <h3>Panel Layout</h3>This is where you design the layout of the content of the individual post, pages or other content types.
+      <h3>Panel Layout</h3>This is where you design the layout of the content of the individual post, page or other content type. <strong><em>There is a simple slider tutorial included in the steps of this guide and the one in Blueprints. Simply follow these blue prompts.</em></strong>
     ','pzarchitect').'</div>
   </li>
   <li class="tlypageguide_bottom" data-tourtarget="#tab-styling">
@@ -44,8 +44,8 @@
 
 <!-- General -->
   <li class="tlypageguide_bottom" data-tourtarget="#_architect-_panels_settings_short-name">
-    <div>'.__('<h3>hort name</h3>
-      The Short name is mandatory and is used in the Blueprints to connect back to the Panel. <strong>Your turn: Enter a Short name now</strong>
+    <div>'.__('<h3>Short name</h3>
+      The Short name is mandatory and is used in the Blueprints to connect back to the Panel. <strong>Your turn: Enter a Short name now<em>Enter a Short name for this Panels layout</em></strong>
     ','pzarchitect').'</div>
   </li>
 

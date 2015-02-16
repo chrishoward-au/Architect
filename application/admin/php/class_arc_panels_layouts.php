@@ -157,7 +157,7 @@
                 'id'      => $prefix . 'tabs',
                 'type'    => 'tabbed',
                 'desc'  => '
-                <p>' . __('For guided help, click the orange <em>Panels Help</em> button at the top right. You can keep it open and still interact with this page.', 'pzarchitect') . '</p>',
+                <p style="color:#ff5500;">' . __('For guided help, click the orange <em>Panels Help</em> button at the top right. You can keep it open and still interact with this page.', 'pzarchitect') . '</p>',
 //                <p>&bull;&nbsp;' . __('<strong style="color:#0074A2;"><em>Panels Design</em></strong> is where you to design the layout of the individual post or page entries', 'pzarchitect') . '</p>
 //                <p>&bull;&nbsp;' . __('Panels will inherit your theme\'s styling. Use <strong style="color:#0074A2;"><em>Panels Styling</em></strong> if you need to refine the styling of the Panels', 'pzarchitect') . '</p>',
                 'options' => array(
@@ -492,14 +492,14 @@
                   'id'             => $prefix . 'title-margins',
                   'type'           => 'spacing',
                   'mode'           => 'margin',
-                  'units'          => '%',
+                  'units'          => 'px',
                   'units_extended' => 'false',
                   'title'          => __('Title margins', 'pzarchitect'),
-                  'desc'           => __('You must set a left margin on titles for bullets to show.', 'pzarchitect'),
+                  'desc'           => __('You must set a left margin on titles for bullets to show. This is in pixels', 'pzarchitect'),
                   'default'        => array(
                       'margin-right' => '0',
-                      'margin-left'  => '0',
-                      'units'        => '%',
+                      'margin-left'  => '20',
+                      'units'        => 'px',
                   ),
                   'top'            => false,
                   'bottom'         => false,

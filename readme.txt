@@ -109,10 +109,12 @@ For support, please send an email to support@pizazzwp.com
 == Changelog ==
 = 1.0.7 =
 * ADDED: More help info
+* ADDED: Pageguide based step by step help and tutorial
+* ADDED: Setting for left and right margins in Titles when using bullets
+
 * CHANGED: Panel Layout option is now first setting in Section settings
 * CHANGED: Layout options won't show until a Panel Layout is selected
 * CHANGED: Blueprint Layout is now the first screen when adding a new Blueprint.
-* ADDED: Pageguide based step by step help and tutorial
 
 = 1.0.6 =
 * FIXED: Retina images weren't being shown. Now both settings must be on to show. Changed defaults to on for local, off for global.
