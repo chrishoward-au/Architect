@@ -114,26 +114,30 @@
 // TODO: Mod this so it only updates the one in $postid
 
       global $wp_filesystem;
-      foreach ($pzarc_css_cache[ 'blueprints' ] as $k => $v) {
-        $filename = PZARC_CACHE_PATH . '/pzarc_blueprint_' . $k . '.css';
-        if (!empty($k) && !$wp_filesystem->put_contents(
-                $filename,
-                "/* Blueprint '.$k.'*/\n" . $v,
-                FS_CHMOD_FILE // predefined mode settings for WP files
-            )
-        ) {
-          echo '<p class="error message">Error saving css cache file! Please check the permissions on the WP Uploads folder.</p>';
+      if (isset($pzarc_css_cache[ 'blueprints' ])) {
+        foreach ($pzarc_css_cache[ 'blueprints' ] as $k => $v) {
+          $filename = PZARC_CACHE_PATH . '/pzarc_blueprint_' . $k . '.css';
+          if (!empty($k) && !$wp_filesystem->put_contents(
+                  $filename,
+                  "/* Blueprint '.$k.'*/\n" . $v,
+                  FS_CHMOD_FILE // predefined mode settings for WP files
+              )
+          ) {
+            echo '<p class="error message">Error saving css cache file! Please check the permissions on the WP Uploads folder.</p>';
+          }
         }
       }
-      foreach ($pzarc_css_cache[ 'panels' ] as $k => $v) {
-        $filename = PZARC_CACHE_PATH . '/pzarc_panel_' . $k . '.css';
-        if (!empty($k) && !$wp_filesystem->put_contents(
-                $filename,
-                "/* Panel '.$k.'*/\n" . $v,
-                FS_CHMOD_FILE // predefined mode settings for WP files
-            )
-        ) {
-          echo '<p class="error message">Error saving css cache file! Please check the permissions on the WP Uploads folder.</p>';
+      if (isset($pzarc_css_cache[ 'panels' ])) {
+        foreach ($pzarc_css_cache[ 'panels' ] as $k => $v) {
+          $filename = PZARC_CACHE_PATH . '/pzarc_panel_' . $k . '.css';
+          if (!empty($k) && !$wp_filesystem->put_contents(
+                  $filename,
+                  "/* Panel '.$k.'*/\n" . $v,
+                  FS_CHMOD_FILE // predefined mode settings for WP files
+              )
+          ) {
+            echo '<p class="error message">Error saving css cache file! Please check the permissions on the WP Uploads folder.</p>';
+          }
         }
       }
       // And finally, let's flush the BFI image cache

@@ -123,6 +123,10 @@
       wp_enqueue_style('pzarc-admin-styles');
 //    wp_enqueue_style('pzarc-jqueryui-css');
 
+      wp_register_script('jquery-cookie', PZARC_PLUGIN_APP_URL . 'shared/thirdparty/js/jquery-cookie/jquery.cookie.js', array('jquery'),true);
+      wp_register_script('jquery-pageguide', PZARC_PLUGIN_APP_URL . 'shared/thirdparty/js/pageguide/pageguide.min.js', array('jquery'),true);
+      wp_register_style('css-pageguide', PZARC_PLUGIN_APP_URL . 'shared/thirdparty/js/pageguide/css/pageguide.css');
+
       $screen = get_current_screen();
       if (strpos(('X' . $screen->id), 'arc-') > 0) {
 //			wp_enqueue_script( 'jquery-ui-tabs' );
@@ -169,6 +173,12 @@
           break;
       }
 
+      if ($screen->id === 'edit-arc-blueprints') {
+        require_once( PZARC_DOCUMENTATION_PATH.PZARC_LANGUAGE . '/blueprints-listings-pageguide.php');
+      }
+      if ($screen->id === 'edit-arc-panels') {
+        require_once( PZARC_DOCUMENTATION_PATH.PZARC_LANGUAGE . '/panels-listings-pageguide.php');
+      }
 
     }
 
@@ -286,6 +296,7 @@
     function pzarc_support()
     {
       global $title;
+      require_once( PZARC_DOCUMENTATION_PATH.PZARC_LANGUAGE . '/architect-pageguide.php');
 
       echo '<div class = "wrap">
      <script>
@@ -301,12 +312,12 @@
             <h2>' . $title . '</h2>
 
             <div class="tabby tabs">
-                <button data-tab="#quick" class="first active">' . __('Quick start', 'pzarchitect') . '</button>
-                <button data-tab="#what" >' . __('What is Architect', 'pzarchitect') . '</button>
-                <button data-tab="#how">' . __('Usage', 'pzarchitect') . '</button>
-                <button data-tab="#help">' . __('Support', 'pzarchitect') . '</button>
-                <button data-tab="#shout">' . __('Shoutouts', 'pzarchitect') . '</button>
-                <button data-tab="#presets">' . __('Presets', 'pzarchitect') . '</button>
+                <button class="tabby-quick" data-tab="#quick" class="first active">' . __('Quick start', 'pzarchitect') . '</button>
+                <button class="tabby-what" data-tab="#what" >' . __('What is Architect', 'pzarchitect') . '</button>
+                <button class="tabby-how" data-tab="#how">' . __('Usage', 'pzarchitect') . '</button>
+                <button class="tabby-help" data-tab="#help">' . __('Support', 'pzarchitect') . '</button>
+                <button class="tabby-shout" data-tab="#shout">' . __('Shoutouts', 'pzarchitect') . '</button>
+                <button class="tabby-presets" data-tab="#presets">' . __('Presets', 'pzarchitect') . '</button>
             </div>
             <div class="tabby tabs-content">
 
@@ -337,7 +348,7 @@
                         </div>
 <p>' . __('Style wise, it may not look that great yet. To tidy it up, start exploring the Styling settings for Panels and Blueprints', 'pzarchitect') . '</p>
                         <p>' . __('There are a <strong>lot</strong> of settings in Architect that have all sorts of affects on your layouts and designs. Explore, experiment and have fun! For example, try selecting the different Layout Types and see the effect.', 'pzarchitect') . '</p>
-                        <p>' . __('For more detailed help, visit', 'pzarchitect') . ' <a href="http://architect4wp.com/codex-listings" target="_blank">' . __('documentation at architect4wp.com', 'pzarchitect') . '</a></p>
+                        <p>' . __('For more detailed help, visit', 'pzarchitect') . ' <a href="http://architect4wp.com/codex-listings" target="_blank" class="arc-codex">' . __('documentation at architect4wp.com', 'pzarchitect') . '</a></p>
                 </div>
 
                 <div class="tabs-pane" id="what">
@@ -459,6 +470,8 @@ add_action(\'init\',\'gs_init\');
                         <li><a href="https://github.com/bfintal/bfi_thumb" target="_blank">BFI Thumbs (modded)</a>
                         </li>
                         <li><a href="http://tracelytics.github.io/pageguide/" target="_blank">PageGuide</a>
+                        </li>
+                        <li><a href="https://github.com/carhartl/jquery-cookie" target="_blank">jQuery Cookie</a>
                         </li>
                     </ul>
                 </div>

@@ -1381,9 +1381,10 @@ body .redux-sidebar .redux-group-menu li.active.hasSubSections .active a:after, 
         cursor:pointer;
       }
       &.active {
-        color:#0074a2;
+        color:#fff;
+        background:#0074a2;
         &:hover {
-          background:none;
+          background:#eee;
           color:#0074a2;
           cursor: default;
         }

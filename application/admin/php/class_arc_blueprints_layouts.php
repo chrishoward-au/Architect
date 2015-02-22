@@ -49,7 +49,7 @@
         add_action("redux/metaboxes/$this->redux_opt_name/boxes", array($this, 'pzarc_blueprint_contents_mb'), 10, 1);
         add_action("redux/metaboxes/$this->redux_opt_name/boxes", array($this,
                                                                         'pzarc_blueprint_layout_styling_mb'), 10, 1);
-        add_filter('views_edit-arc-blueprints', array($this, 'blueprints_description'));
+ //       add_filter('views_edit-arc-blueprints', array($this, 'blueprints_description'));
 
 
       }
@@ -75,8 +75,8 @@
         // wp_enqueue_script('js-isotope-v2');
 
         // wp_enqueue_script('js-magnific');
-        wp_enqueue_script('jquery-pageguide', PZARC_PLUGIN_APP_URL . 'shared/thirdparty/js/pageguide/pageguide.min.js', array('jquery'),true);
-        wp_enqueue_style('css-pageguide', PZARC_PLUGIN_APP_URL . 'shared/thirdparty/js/pageguide/css/pageguide.css');
+//        wp_enqueue_script('jquery-pageguide', PZARC_PLUGIN_APP_URL . 'shared/thirdparty/js/pageguide/pageguide.min.js', array('jquery'),true);
+//        wp_enqueue_style('css-pageguide', PZARC_PLUGIN_APP_URL . 'shared/thirdparty/js/pageguide/css/pageguide.css');
 
 //        wp_enqueue_style('css-tourist-bootstrap','//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css');
 //        wp_enqueue_style('css-tourist-fa','//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css');
@@ -273,7 +273,7 @@
                             'id'      => $prefix . 'tabs',
                             'type'    => 'tabbed',
                             'desc'  =>'
-                <p style="color:#ff5500;">' . __('For guided help, click the orange <em>Panels Help</em> button at the top right. You can keep it open and still interact with this page.', 'pzarchitect') . '</p>',
+                <p style="color:#ff5500;">' . __('For guided help, click the orange <em>Blueprints Guide</em> button at the top right. You can keep it open and still interact with this page.', 'pzarchitect') . '</p>',
 //                '<p>&bull;&nbsp;' . __('<strong style="color:#0074A2;"><em>Blueprint Layout</em></strong> is where you choose which Panel design to use for posts or page, and how you want to lay out those Panels.', 'pzarchitect') . '</p>
 //                 <p>&bull;&nbsp;' . __('<strong style="color:#0074A2;"><em>Panels Content</em></strong> is where you select the specific posts or pages to display within this Blueprint\'s Panels. <strong>The one content selection is spread across all sections</strong>', 'pzarchitect') . '</p>
 //                 <p>&bull;&nbsp;' . __('Blueprints by default have limited styling. Use <strong style="color:#0074A2;"><em>Blueprint Styling</em></strong> to refine the styling of the Blueprint to match your theme.', 'pzarchitect') . '</p>
@@ -615,7 +615,7 @@
             'show_title' => true,
             'icon_class' => 'icon-large',
             'icon'       => $icons[ $i ],
-            'desc'       => __('Sections allow different layouts but use the same content selection. That is, section two continues displaying the content from where section 1 finished. Likewise section 3, continues from where section 2 finished. If you want different content selections, you will need to create separate blueprints.', 'pzarchitect') . '<br><br>' .
+            'desc'       =>
                 __('Blueprints can display up to three sections. Only section 1 can be used for Sliders or Tabbed. If it is, the other sections are not available.') . ' <a href="' . PZARC_CODEX . '/" target=_blank class="pzarc-codex" title="View tutorials"><span class="dashicons dashicons-welcome-learn-more size-small"></span></a>',
             'fields'     => array(
                 array(

@@ -1,1 +1,1 @@
-jQuery(document).ready(function(){tl.pg.init({steps_element:"#tlyPageGuide",auto_refresh:!0,pg_caption:'<span class="title">Blueprints Guide</span>',refresh_interval:250,welcome_refresh:!0})});
+jQuery(document).ready(function(){var e=tl.pg.init({steps_element:"#tlyPageGuide",auto_refresh:!0,pg_caption:'<span class="title">Blueprints Guide</span>',refresh_interval:250}),n=jQuery.cookie("blueprints_welcome");"undefined"==typeof n&&(e.open(),jQuery.cookie("blueprints_welcome","seen",9999))});

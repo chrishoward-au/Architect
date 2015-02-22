@@ -279,19 +279,33 @@
 
       /** LOOPS */
       // First loop always executes
-      $panel_class->loop(1, $this, $panel_class, $content_class);
+      if ( !empty($this->build->blueprint[ '_blueprints_section-0-panel-layout' ])) {
+        $panel_class->loop(1, $this, $panel_class, $content_class);
+      } else {
+        echo '<span class="message-error">No Panel set for section 1 in Blueprint: <strong>'.$this->build->blueprint[ '_blueprints_short-name' ].'</strong></span><br>';
+      }
+
+
 
       // Record point is maintained so second loop carries on from first
       if ($do_section_2) {
 
-        $panel_class->loop(2, $this, $panel_class, $content_class);
+        if ( !empty($this->build->blueprint[ '_blueprints_section-1-panel-layout' ])) {
+          $panel_class->loop(2, $this, $panel_class, $content_class);
+        } else {
+          echo '<span class="message-error">No Panel set for section 2 in Blueprint: <strong>'.$this->build->blueprint[ '_blueprints_short-name' ].'</strong></span><br>';
+        }
 
       }
 
       // Record point is maintained so third loop carries on from second
       if ($do_section_3) {
 
-        $panel_class->loop(3, $this, $panel_class, $content_class);
+        if ( !empty($this->build->blueprint[ '_blueprints_section-2-panel-layout' ])) {
+          $panel_class->loop(3, $this, $panel_class, $content_class);
+        } else {
+          echo '<span class="message-error">No Panel set for section 3 in Blueprint: <strong>'.$this->build->blueprint[ '_blueprints_short-name' ].'</strong></span><br>';
+        }
 
       }
 

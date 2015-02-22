@@ -3,7 +3,7 @@ Contributors: chrishoward
 Tags: content,display,posts,pages,gallery,slider,tabs,tabbed,tabular,widget,hooks
 Requires at least: 3.5.0
 Tested up to: 4.1.0
-Stable tag: 1.0.6
+Stable tag: 1.0.8.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Plugin URI: http://architect4wp.com
@@ -107,6 +107,20 @@ For support, please send an email to support@pizazzwp.com
 2. Slider example
 
 == Changelog ==
+= 1.0.8.3 =
+* CHANGED: More work on Page guides
+
+= 1.0.8.2 =
+* CHANGED: Extensive work on Page guides including automatic opening the first time
+
+= 1.0.8.1 =
+* FIXED: PHP errors when creating first Panel.
+
+= 1.0.8 =
+* FIXED: PHP messages when no Panel set
+* CHANGED: Added more help info
+* FIXED: Stupid git problem with filename changes when upper to lower.
+ 
 = 1.0.7 =
 * ADDED: More help info
 * ADDED: Pageguide based step by step help and tutorial
@@ -123,7 +137,6 @@ For support, please send an email to support@pizazzwp.com
 = 1.0.5 =
 * FIXED: Notices when adding new Panels and Blueprints on new intalls
 
-First full public release! 
 
 = 1.0.4 =
 * CHANGED: Added a class name arc-nav-thumb to navigation thumbs so Advanced Lazy Load can filter them

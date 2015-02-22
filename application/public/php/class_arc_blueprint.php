@@ -78,12 +78,15 @@
         set_transient( 'pzarc_blueprint_query_'.$this->name, $blueprint_query, PZARC_TRANSIENTS_KEEP );
       } elseif (current_user_can( 'manage_options' ) || empty($_architect_options[ 'architect_enable_query_cache' ])) {
         $blueprint_query = new WP_Query($meta_query_args);
+      } else {
+        // we need to put comething here!
+
       }
+
 
       if (!isset($blueprint_query->posts[ 0 ]->ID)) {
 
         $this->blueprint = array('err_msg' => '<p class="message-error">Architect Blueprint <strong>' . $this->name . '</strong> not found</p>');
-
         return $this->blueprint;
 
       }

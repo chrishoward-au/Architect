@@ -196,7 +196,7 @@
 
     public function get_meta(&$post)
     {
-      $meta_string = $this->toshow[ 'meta1' ][ 'show' ] ? $this->section[ '_panels_design_meta1-config' ] : '';
+      $meta_string = $this->toshow[ 'meta1' ][ 'show' ] ?  $this->section[ '_panels_design_meta1-config' ] : '';
       $meta_string .= $this->toshow[ 'meta2' ][ 'show' ] ? $this->section[ '_panels_design_meta2-config' ] : '';
       $meta_string .= $this->toshow[ 'meta3' ][ 'show' ] ? $this->section[ '_panels_design_meta3-config' ] : '';
 
@@ -206,7 +206,7 @@
       }
       if (strpos($meta_string, '%date%') !== false) {
         $this->data[ 'meta' ][ 'datetime' ]  = get_the_date();
-        $this->data[ 'meta' ][ 'fdatetime' ] = date_i18n($this->section[ '_panels_design_meta-date-format' ], strtotime(get_the_date()));
+        $this->data[ 'meta' ][ 'fdatetime' ] = date_i18n(strip_tags($this->section[ '_panels_design_meta-date-format' ]), strtotime(get_the_date()));
       }
       if (strpos($meta_string, '%categories%') !== false) {
         $this->data[ 'meta' ][ 'categorieslinks' ] = get_the_category_list(', ');
@@ -471,7 +471,7 @@
         }
       }
 
-      return self::render_generics($component, $content_type, do_shortcode($panel_def[ $component ]), $layout_mode);
+      return self::render_generics($component, $content_type, do_shortcode(strip_tags($panel_def[ $component ],'<p><strong><span><em><br>')), $layout_mode);
     }
 
     public function render_content($component, $content_type, $panel_def, $rsid, $layout_mode = false)

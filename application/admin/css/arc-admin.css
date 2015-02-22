@@ -1102,9 +1102,10 @@ body .redux-sidebar .redux-group-menu li.active.hasSubSections .active a:after, 
       color: #fff;
       cursor: pointer; }
     .tabby.tabs button.active {
-      color: #0074a2; }
+      color: #fff;
+      background: #0074a2; }
       .tabby.tabs button.active:hover {
-        background: none;
+        background: #eee;
         color: #0074a2;
         cursor: default; }
     .tabby.tabs button.first {

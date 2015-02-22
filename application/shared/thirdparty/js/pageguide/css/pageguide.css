@@ -154,9 +154,22 @@
   margin: 10px 90px 0 120px;
   position: relative;
 }
+#tlyPageGuideWrapper #tlyPageGuideMessages .tlypageguide_text p {
+  font-size: inherit;
+}
+#tlyPageGuideWrapper #tlyPageGuideMessages .tlypageguide_text h1 {
+  font-size: 23px;
+  margin: 0 0 10px ;
+}
 #tlyPageGuideWrapper #tlyPageGuideMessages .tlypageguide_text h3 {
   color: #ff7733;
   font-size: 15px;
+  margin: 0;
+  padding: 0;
+}
+#tlyPageGuideWrapper #tlyPageGuideMessages .tlypageguide_text h4 {
+  color: #ff9966;
+  font-size: 14px;
   margin: 0;
   padding: 0;
 }
@@ -423,6 +436,7 @@
 }
 .tlyPageGuideStepIndex.tlypageguide_bottom {
   bottom: -52px;
+  left: 10%;
 }
 .tlyPageGuideStepIndex.tlypageguide_bottom:after {
   border-bottom: 15px solid rgba(255, 85, 0, 0.3);
@@ -432,6 +446,7 @@
 }
 .tlyPageGuideStepIndex.tlypageguide_right {
   right: -65px;
+  top: 10%;
 }
 .tlyPageGuideStepIndex.tlypageguide_right:after {
   border-top: 15px solid rgba(255, 85, 0, 0.3);
@@ -441,6 +456,7 @@
 }
 .tlyPageGuideStepIndex.tlypageguide_left {
   left: -65px;
+  top: 10%;
 }
 .tlyPageGuideStepIndex.tlypageguide_left:after {
   border-top: 15px solid rgba(255, 85, 0, 0.3);
@@ -450,6 +466,7 @@
 }
 .tlyPageGuideStepIndex.tlypageguide_top {
   top: -52px;
+  left: 10%;
 }
 .tlyPageGuideStepIndex.tlypageguide_top:after {
   border-top: 15px solid rgba(255, 85, 0, 0.3);
