@@ -118,12 +118,21 @@
 
       // OVERRIDES
       // currently this is the only bit that really does anything
-      if ($overrides) {
+      if (!empty($overrides['ids'])) {
 
-        $this->query_options[ 'post__in' ]       = explode(',', $overrides);
+        $this->query_options[ 'post__in' ]       = explode(',', $overrides['ids']);
         $this->query_options[ 'posts_per_page' ] = count($this->query_options[ 'post__in' ]);
       }
-
+      if (!empty($overrides['tax']) && !empty($overrides['terms'])) {
+        $this->query_options[ 'tax_query' ] = array(
+            array(
+                'taxonomy' => $overrides['tax'],
+                'field'    => 'slug',
+                'terms'    => explode(',', $overrides['terms']),
+                'operator' => $this->build->blueprint[ '_content_general_tax-op' ]
+            ),
+        );
+      }
 
     }
 
@@ -134,15 +143,18 @@
      * @return WP_Query
      *
      */
-    public function get_custom_query()
+    public function get_custom_query($overrides)
     {
 // Get any existing copy of our transient data
       global $_architect_options;
-      if (!empty($_architect_options[ 'architect_enable_query_cache' ]) && false == ($custom_query = get_transient('pzarc_custom_query_' . $this->build->blueprint[ '_blueprints_short-name' ])) && !current_user_can('manage_options')) {
+
+      $transient_id = 'pzarc_custom_query_' . $this->build->blueprint[ '_blueprints_short-name' ].'_'.(!empty($overrides['terms'])?$overrides['terms']:'' );
+      if (!empty($_architect_options[ 'architect_enable_query_cache' ]) && false == ($custom_query = get_transient($transient_id)) && !current_user_can('manage_options')) {
         // It wasn't there, so regenerate the data and save the transient
+
         $custom_query = new WP_Query($this->query_options);
 
-        set_transient('pzarc_custom_query_' . $this->build->blueprint[ '_blueprints_short-name' ], $custom_query, PZARC_TRANSIENTS_KEEP);
+        set_transient($transient_id, $custom_query, PZARC_TRANSIENTS_KEEP);
 
       } elseif (current_user_can('manage_options') || empty($_architect_options[ 'architect_enable_query_cache' ])) {
         // if is admin

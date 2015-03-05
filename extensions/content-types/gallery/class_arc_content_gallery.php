@@ -37,7 +37,7 @@
                       'hint'    => array('content' => __('Can be overriden by shortcode e.g:<br>[architect blueprint=&quot;mytemplate&quot; ids=&quot;1,2,3,4,5&quot;]', 'pzarchitect')),
                       'options' => array(
                           'images'      => 'Image Gallery',
-                          'ids'         => 'Specific IDs',
+                          'ids'         => 'Media Library',
                           'wpgallery'   => 'WP Galleries',
                           // TODO: Get post images as gallery source working
 //                          'postimages'  => 'Post images',
@@ -49,6 +49,18 @@
                       'id'       => $prefix . 'specific-images',
                       'type'     => 'gallery',
                       'required' => array($prefix . 'gallery-source', 'equals', 'images'),
+                  ),
+                  array(
+                      'title'   => __('Using Media Library', 'pzarchitect'),
+                      'id'      => $prefix . 'media-about',
+                      'type'    => 'info',
+                      'style'    => 'success',
+                      'required' => array($prefix . 'gallery-source', 'equals', 'ids'),
+                      'subtitle' => __('If you select Media Library, you can specify <em>Specific IDs</em> of media library images below.','pzarchitect').'<br><br>'.
+                          __('Alternatively, if you are using a plugin that adds categories to the media library. e.g.','pzarchitect').'<a href="https://wordpress.org/plugins/enhanced-media-library/" target=_blank> Enhanced Media Library</a> '.__('or any of the others in ','pzarchitect').'<a href="https://wordpress.org/plugins/search.php?q=media+library+categories" target=_blank>Wordpress plugins</a>, '.
+                          __('you can filter on those categories.','pzarchitect').'<br><br>'.
+                          __('To do so, in the Blueprints Content > Filter tab, select the media category your chosen plugin uses in Custom Taxonomies, and enter the taxonomy to filter by.','pzarchitect').'<br><br><strong>'.
+                          __('This method creates an extremely user friendly way to create image galleries. All your user has to do is upload the image, tag it in a category, and it will automatically display in the gallery you created with Architect.','pzarchitect').'</strong>'
                   ),
                   array(
                       'title'    => __('Specific IDs', 'pzarchitect'),

@@ -40,7 +40,7 @@
         $this->faker =pzarc_faker_53();
       }
     }
-    public function get_custom_query()
+    public function get_custom_query($overrides)
     {
 
       $j = 0;

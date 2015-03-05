@@ -1,4 +1,8 @@
 <?php
+  global $_architect_options;
+  if (!empty($_architect_options['architect_hide_guides'])) {
+    return;
+  }
 
   wp_enqueue_script('jquery-pageguide');
   wp_enqueue_style('css-pageguide');
@@ -24,6 +28,7 @@
       <p><strong>Your turn: Click on "Add New Panel design" to get started.</strong></p>
     ','pzarchitect').'</div>
   </li>
+
   <li class="tlypageguide_bottom" data-tourtarget="#tlyPageGuideToggles">
     <div>'.__('
 <h3>Page Guide</h3>

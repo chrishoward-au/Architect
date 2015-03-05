@@ -11,7 +11,7 @@
   {
 
     // Replace standard get_custom_qquery with NGG specific one
-    public function get_custom_query()
+    public function get_custom_query($overrides)
     {
 
       $prefix = '_content_nextgen_';

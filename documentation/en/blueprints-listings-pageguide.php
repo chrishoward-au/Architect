@@ -1,4 +1,8 @@
 <?php
+  global $_architect_options;
+  if (!empty($_architect_options['architect_hide_guides'])) {
+    return;
+  }
 
   wp_enqueue_script('jquery-pageguide');
   wp_enqueue_style('css-pageguide');

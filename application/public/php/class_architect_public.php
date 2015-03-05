@@ -89,8 +89,9 @@
       $nav_pos = (!in_array($this->build->blueprint[ '_blueprints_navigator' ], array('thumbs',
                                                                                       'none')) && ('bottom' === $this->build->blueprint[ '_blueprints_navigator-position' ] || 'right' === $this->build->blueprint[ '_blueprints_navigator-position' ])) ? 'br' : $nav_pos;
 
+      // Do the 'none' here to ensure we still load the js even tho no nav bar
       if (($this->build->blueprint[ '_blueprints_section-0-layout-mode' ] === 'tabbed' || $this->build->blueprint[ '_blueprints_section-0-layout-mode' ] === 'slider')
-          && $nav_pos === 'br'
+          && $nav_pos === 'br' || $this->build->blueprint[ '_blueprints_navigator'] ==='none'
       ) {
 
         add_action('arc_bottom_right_navigation_' . $this->build->blueprint[ '_blueprints_short-name' ], array(&$this,
@@ -100,7 +101,6 @@
 
       return false;
     }
-
 
 
     /**
@@ -279,21 +279,20 @@
 
       /** LOOPS */
       // First loop always executes
-      if ( !empty($this->build->blueprint[ '_blueprints_section-0-panel-layout' ])) {
+      if (!empty($this->build->blueprint[ '_blueprints_section-0-panel-layout' ])) {
         $panel_class->loop(1, $this, $panel_class, $content_class);
       } else {
-        echo '<span class="message-error">No Panel set for section 1 in Blueprint: <strong>'.$this->build->blueprint[ '_blueprints_short-name' ].'</strong></span><br>';
+        echo '<span class="message-error">No Panel set for section 1 in Blueprint: <strong>' . $this->build->blueprint[ '_blueprints_short-name' ] . '</strong></span><br>';
       }
-
 
 
       // Record point is maintained so second loop carries on from first
       if ($do_section_2) {
 
-        if ( !empty($this->build->blueprint[ '_blueprints_section-1-panel-layout' ])) {
+        if (!empty($this->build->blueprint[ '_blueprints_section-1-panel-layout' ])) {
           $panel_class->loop(2, $this, $panel_class, $content_class);
         } else {
-          echo '<span class="message-error">No Panel set for section 2 in Blueprint: <strong>'.$this->build->blueprint[ '_blueprints_short-name' ].'</strong></span><br>';
+          echo '<span class="message-error">No Panel set for section 2 in Blueprint: <strong>' . $this->build->blueprint[ '_blueprints_short-name' ] . '</strong></span><br>';
         }
 
       }
@@ -301,10 +300,10 @@
       // Record point is maintained so third loop carries on from second
       if ($do_section_3) {
 
-        if ( !empty($this->build->blueprint[ '_blueprints_section-2-panel-layout' ])) {
+        if (!empty($this->build->blueprint[ '_blueprints_section-2-panel-layout' ])) {
           $panel_class->loop(3, $this, $panel_class, $content_class);
         } else {
-          echo '<span class="message-error">No Panel set for section 3 in Blueprint: <strong>'.$this->build->blueprint[ '_blueprints_short-name' ].'</strong></span><br>';
+          echo '<span class="message-error">No Panel set for section 3 in Blueprint: <strong>' . $this->build->blueprint[ '_blueprints_short-name' ] . '</strong></span><br>';
         }
 
       }
@@ -504,7 +503,7 @@
       //   var_Dump($source_query_class);
       $arc_query_source->build_custom_query_options($overrides);
 
-      $this->arc_query = $arc_query_source->get_custom_query();
+      $this->arc_query = $arc_query_source->get_custom_query($overrides);
       self::replace_wp_query(); // NOTE: This is only activated on pagination. So should only be used by legitimate post types
     }
 
@@ -601,7 +600,6 @@
     // $t is used so third party navs can be written
     function add_navigation(&$t)
     {
-
       $class = 'arc_Navigator_' . $t->build->blueprint[ '_blueprints_navigator' ];
 
       $navigator = new $class($t->build->blueprint, $t->nav_items);

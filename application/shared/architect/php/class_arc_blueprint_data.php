@@ -72,6 +72,17 @@
                       'type'   => 'section',
                       'indent' => false
                   ),
+              )
+          )
+      );
+
+      $settings[ 'pagination' ] = array(
+          'prefix'   => $prefix,
+          'sections' => array(
+              'title'      => 'Pagination',
+              'icon_class' => 'icon-large',
+              'icon'       => 'el-icon-chevron-right',
+              'fields'     => array(
                   array(
                       'title'   => 'Pagination',
                       'id'      => '_blueprints_pagination',
@@ -110,10 +121,10 @@
                       'select2'  => array('allowClear' => false),
                       'default'  => 'prevnext',
                       'options'  => array(
-                          //                    'none'     => 'None',
-                          'prevnext' => 'Previous/Next',
-                          'names'    => 'Post names',
-                          'pagenavi' => 'PageNavi',
+                        //                    'none'     => 'None',
+                        'prevnext' => 'Previous/Next',
+                        'names'    => 'Post names',
+                        'pagenavi' => 'PageNavi',
                       ),
                       'required' => array('_blueprints_pagination', 'equals', true),
                   ),
@@ -124,10 +135,10 @@
                       'select2'  => array('allowClear' => false),
                       'default'  => 'prevnext',
                       'options'  => array(
-                          //                    'none'     => 'None',
-                          'prevnext' => 'Previous/Next',
-                          'names'    => 'Post names',
-                          'pagenavi' => 'PageNavi',
+                        //                    'none'     => 'None',
+                        'prevnext' => 'Previous/Next',
+                        'names'    => 'Post names',
+                        'pagenavi' => 'PageNavi',
                       ),
                       'required' => array('_blueprints_pagination', 'equals', true),
                   ),
@@ -138,18 +149,17 @@
                       'select2'  => array('allowClear' => false),
                       'default'  => 'prevnext',
                       'options'  => array(
-                          //                    'none'     => 'None',
-                          'prevnext' => 'Previous/Next',
-                          'names'    => 'Post names',
-                          'pagenavi' => 'PageNavi',
+                        //                    'none'     => 'None',
+                        'prevnext' => 'Previous/Next',
+                        'names'    => 'Post names',
+                        'pagenavi' => 'PageNavi',
                       ),
                       'required' => array('_blueprints_pagination', 'equals', true),
                   ),
               )
           )
-      );
-
-      /** GENERAL  Filters*/
+    );
+                /** GENERAL  Filters*/
       $prefix = '_content_general_';
 
       $settings[ 'filters' ] = array(

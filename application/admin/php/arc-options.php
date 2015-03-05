@@ -15,6 +15,47 @@
       public $theme;
       public $ReduxFramework;
 
+//      public function __construct() {
+//        if ( ! class_exists( 'ReduxFramework' ) ) {
+//          return;
+//        }
+//        // This is needed. Bah WordPress bugs.  ;)
+//        if ( true == Redux_Helpers::isTheme( __FILE__ ) ) {
+//          pzdebug();
+//          $this->initSettings();
+//        } else {
+//          pzdebug();
+//          add_action( 'plugins_loaded', array( $this, 'initSettings' ), 10 );
+//        }
+//      }
+//      public function initSettings() {
+//        // Just for demo purposes. Not needed per say.
+//        $this->theme = wp_get_theme();
+//        // Set the default arguments
+//        $this->setArguments();
+//        // Set a few help tabs so you can see how it's done
+//        $this->setHelpTabs();
+//        pzdebug();
+//        // Create the sections and fields
+//        $this->setSections();
+//        if ( ! isset( $this->args['opt_name'] ) ) { // No errors please
+//          return;
+//        }
+//        // If Redux is running as a plugin, this will remove the demo notice and links
+//        add_action( 'redux/loaded', array( $this, 'remove_demo' ) );
+//        // Function to test the compiler hook and demo CSS output.
+//        // Above 10 is a priority, but 2 in necessary to include the dynamically generated CSS to be sent to the function.
+//        //add_filter('redux/options/'.$this->args['opt_name'].'/compiler', array( $this, 'compiler_action' ), 10, 3);
+//        // Change the arguments after they've been declared, but before the panel is created
+//        //add_filter('redux/options/'.$this->args['opt_name'].'/args', array( $this, 'change_arguments' ) );
+//        // Change the default value of a field after it's been set, but before it's been useds
+//        //add_filter('redux/options/'.$this->args['opt_name'].'/defaults', array( $this,'change_defaults' ) );
+//        // Dynamically add a section. Can be also used to modify sections/fields
+//        //add_filter('redux/options/' . $this->args['opt_name'] . '/sections', array($this, 'dynamic_section'));
+//        $this->ReduxFramework = new ReduxFramework( $this->sections, $this->args );
+//      }
+
+
       public function __construct()
       {
 
@@ -145,7 +186,6 @@
          * Used within different fields. Simply examples. Search for ACTUAL DECLARATION for field examples
          **/
 
-
         // Background Patterns Reader
         $sample_patterns_path = ReduxFramework::$_dir . '../sample/patterns/';
         $sample_patterns_url  = ReduxFramework::$_url . '../sample/patterns/';
@@ -232,12 +272,60 @@
 
         // ACTUAL DECLARATION OF SECTIONS
         $current_theme     = wp_get_theme();
-        $blueprints_list   = pzarc_get_posts_in_post_type('arc-blueprints',true);
+        global $pzarc_blueprints_list;
+        if (empty($pzarc_blueprints_list)) {
+          $pzarc_blueprints_list   = pzarc_get_posts_in_post_type('arc-blueprints',true);
+
+        }
         $this->sections[ ] = array(
             'title'      => 'General ',
             'show_title' => true,
             'icon'       => 'el-icon-wrench',
             'fields'     => array(
+                array(
+                    'title' => __('Appearance', 'pzarchitect'),
+                    'id'    => 'architect_other_section',
+                    'type'  => 'section',
+                ),
+                array(
+                    'title'    => __('Advanced settings', 'pzarchitect'),
+                    'id'       => 'architect_show_advanced',
+                    'type'     => 'switch',
+                    'subtitle' => __('When enabled, many more settings are available in Panels and Blueprints.', 'pzarchitect'),
+                    'default'  => false,
+                    'on'       => __('Yes', 'pzarchitect'),
+                    'off'      => __('No', 'pzarchitect')
+                ),
+                array(
+                    'title'    => __('Hide page guides and tutorials', 'pzarchitect'),
+                    'id'       => 'architect_hide_guides',
+                    'type'     => 'switch',
+                    //                    'subtitle' => __('Displays a background image on the Architect admin pages', 'pzarchitect'),
+                    'default'  => false,
+                    'on'       => __('Yes', 'pzarchitect'),
+                    'off'      => __('No', 'pzarchitect')
+                ),
+                array(
+                    'title'    => __('Enable admin background image', 'pzarchitect'),
+                    'id'       => 'architect_enable_bgimage',
+                    'type'     => 'switch',
+                    'subtitle' => __('Displays a background image on the Architect admin pages', 'pzarchitect'),
+                    'default'  => false,
+                    'on'       => __('Yes', 'pzarchitect'),
+                    'off'      => __('No', 'pzarchitect')
+                ),
+                array(
+                    'title'    => __('Choose background image', 'pzarchitect'),
+                    'id'       => 'architect_bgimage',
+                    'type'     => 'button_set',
+                    'required' => array('architect_enable_bgimage', 'equals', true),
+                    'options'  => array(
+                        'green'        => __('Green','pzarchitect'),
+                        'ocean-blue'   => __('Ocean/Blue','pzarchitect'),
+                        'pink'         => __('Pink','pzarchitect'),
+                    ),
+                    'default'  => 'ocean-blue'
+                ),
                 array(
                     'title' => __('Shortcodes', 'pzarchitect'),
                     'id'    => 'architect_shortcodes_section',
@@ -247,14 +335,14 @@
                     'title'    => __('Default shortcode blueprint', 'pzarchitect'),
                     'id'       => 'architect_default_shortcode_blueprint',
                     'type'     => 'select',
-                    'options'  => $blueprints_list,
+                    'options'  => $pzarc_blueprints_list,
                     'subtitle' => __('If you omit the blueprint name from a shortcode, it will use the one selected here. Useful for quick conversion of WP galleries by simply renaming gallery to architect in the shortcode.', 'pzarchitect'),
                 ),
                 array(
                     'title'    => __('Replace WP Galleries with Blueprint', 'pzarchitect'),
                     'id'       => 'architect_replace_wpgalleries',
                     'type'     => 'select',
-                    'options'  => $blueprints_list,
+                    'options'  => $pzarc_blueprints_list,
                     'subtitle' => __('Select a Blueprint to use for <strong>all</strong> WP gallery shortcodes.', 'pzarchitect'),
                     'desc'     => __('Make sure this Blueprint is using Galleries as its Content Source!', 'pzarchitect')
                 ),
@@ -318,7 +406,7 @@
                     'type'     => 'switch',
                     'on'       => __('Yes', 'pzarchitect'),
                     'off'      => __('No', 'pzarchitect'),
-                    'default'  => false,
+                    'default'  => true,
                     'subtitle' => __('This will add the class <strong>block-type-content</strong> to the panels, which enables them to inherit the stylings for the Content block. However, this can make styling in the Visual Editor Design Mode a little confusing, as hovering over an element will show it as a Content Block element', 'pzarchitect')
 
                 ) : null),
@@ -332,32 +420,6 @@
                     'subtitle' => __('Use the stylings you configure for Architect in the Headway Visual Editor Design Mode.', 'pzarchitect')
 
                 ) : null),
-                array(
-                    'title' => __('Other', 'pzarchitect'),
-                    'id'    => 'architect_other_section',
-                    'type'  => 'section',
-                ),
-                array(
-                    'title'    => __('Enable admin background image', 'pzarchitect'),
-                    'id'       => 'architect_enable_bgimage',
-                    'type'     => 'switch',
-                    'subtitle' => __('Displays a background image on the Architect admin pages', 'pzarchitect'),
-                    'default'  => false,
-                    'on'       => __('Yes', 'pzarchitect'),
-                    'off'      => __('No', 'pzarchitect')
-                ),
-                array(
-                    'title'    => __('Choose background image', 'pzarchitect'),
-                    'id'       => 'architect_bgimage',
-                    'type'     => 'button_set',
-                    'required' => array('architect_enable_bgimage', 'equals', true),
-                    'options'  => array(
-                        'green'        => __('Green','pzarchitect'),
-                        'ocean-blue'   => __('Ocean/Blue','pzarchitect'),
-                        'pink'         => __('Pink','pzarchitect'),
-                    ),
-                    'default'  => 'ocean-blue'
-                ),
                 //                array(
                 //                    'title'    => __('Custom post def path', 'pzarchitect'),
                 //                    'id'       => 'architect_custom_post_def_path',

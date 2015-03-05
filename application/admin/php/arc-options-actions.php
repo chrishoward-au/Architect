@@ -245,6 +245,12 @@
                 ),
             )
         );
+        global $pzarc_blueprints_list;
+        if (empty($pzarc_blueprints_list)) {
+          $pzarc_blueprints_list   = pzarc_get_posts_in_post_type('arc-blueprints',true);
+
+        }
+
         $actions_options   = get_option('_architect_actions');
         for ($i = 1; $i <= $actions_options[ 'architect_actions_number-of' ]; $i++) {
           $action_title      = (empty($actions_options[ 'architect_actions_' . $i . '_action-name' ]) ? 'Action ' . $i : $actions_options[ 'architect_actions_' . $i . '_action-name' ] . ' ' . $actions_options[ 'architect_actions_' . $i . '_blueprint' ]);
@@ -264,7 +270,8 @@
                       'title'   => __('Blueprint shortname', 'pzarc'),
                       'id'      => $prefix . 'blueprint',
                       'type'    => 'select',
-                      'options' => pzarc_get_blueprints(false),
+//                      'options' => pzarc_get_blueprints(false),
+                      'options' => $pzarc_blueprints_list,
                       'default' => '',
                   ),
                   array(

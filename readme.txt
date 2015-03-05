@@ -2,8 +2,8 @@
 Contributors: chrishoward
 Tags: content,display,posts,pages,gallery,slider,tabs,tabbed,tabular,widget,hooks
 Requires at least: 3.5.0
-Tested up to: 4.1.0
-Stable tag: 1.0.8.2
+Tested up to: 4.2.0
+Stable tag: 1.0.8.8
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Plugin URI: http://architect4wp.com
@@ -107,6 +107,31 @@ For support, please send an email to support@pizazzwp.com
 2. Slider example
 
 == Changelog ==
+
+= 1.0.8.8 =
+* FIXED: Transients not working with terms override
+* DOING: Inbuilt stepped tutorials
+* ADDED: Option to show/hide more advanced settings in Panels.
+* ADDED: [mailto]you@email.com[/mailto] shortcode to obfuscate email addresses.
+
+= 1.0.8.7 =
+* CHANGED: In Galleries content, changed Specific IDs to Media Library and added message explaining how to use media categories plugins
+* ADDED: Option to shortcodes to include taxonomy and terms as overrides. eg [architect mygallery tax="media_category" terms="people"]
+* ADDED: Option to widget to override taxonomy and terms
+
+= 1.0.8.6 =
+* CHANGED: Debug constant
+* FIXED: Rare warning for undefined titles
+
+= 1.0.8.5 =
+* FIXED: Various PHP notices
+* FIXED: Sliders broken if no navigation chosen
+* CHANGED: Stylings added for accordions and tabular
+
+
+= 1.0.8.4 =
+* FIXED: Meta fields not being wrapped in class since added strip_tags.
+
 = 1.0.8.3 =
 * CHANGED: More work on Page guides
 

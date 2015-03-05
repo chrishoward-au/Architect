@@ -17,7 +17,7 @@
       if ($source === 'gallery') {
 
         $prefix         = '_content_galleries_';
-        $gallery_source = !empty($overrides) ? 'ids' : $this->build->blueprint[ $prefix . 'gallery-source' ];
+        $gallery_source = !empty($overrides['ids']) ? 'ids' : $this->build->blueprint[ $prefix . 'gallery-source' ];
 
         if ($gallery_source === 'galleryplus' || $gallery_source === 'wpgallery') {
           if ($gallery_source === 'galleryplus') {
@@ -37,9 +37,9 @@
 
         } elseif ($gallery_source === 'images' || $gallery_source === 'ids') {
           if ($gallery_source === 'images') {
-            $ids = !empty($overrides) ? $overrides : $this->criteria[ $prefix . 'specific-images' ];
+            $ids = !empty($overrides['ids']) ? $overrides['ids'] : $this->criteria[ $prefix . 'specific-images' ];
           } else {
-            $ids = !empty($overrides) ? $overrides : $this->criteria[ $prefix . 'specific-ids' ];
+            $ids = !empty($overrides['ids']) ? $overrides['ids'] : $this->criteria[ $prefix . 'specific-ids' ];
           }
           $this->query_options[ 'post_type' ]           = 'attachment';
           $this->query_options[ 'post__in' ]            = (!empty($ids) ? explode(',', $ids) : null);

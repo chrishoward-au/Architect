@@ -399,8 +399,8 @@
     foreach ($keys[ 'classes' ] as $class) {
       $pzarc_css .= (function_exists($pzarc_func) ? call_user_func($pzarc_func, $parentClass . ' ' . $class, $value) : '');
       if (!function_exists($pzarc_func)) {
-        print 'Missing function ' . $pzarc_func;
-        var_dump($parentClass);
+        //print 'Missing function ' . $pzarc_func;
+        pzdb($pzarc_func);
       }
     }
 

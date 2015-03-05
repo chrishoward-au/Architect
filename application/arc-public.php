@@ -124,21 +124,24 @@
   {
     $pzarc_caller    = 'shortcode';
     $pzarc_blueprint = '';
+    $pzarc_overrides = null;
 
     if (!empty($atts[ 'blueprint' ])) {
 
       $pzarc_blueprint = $atts[ 'blueprint' ];
+      $pzarc_overrides = $atts;
+      array_shift($pzarc_overrides);
 
     } elseif (!empty($atts[ 0 ])) {
-
       $pzarc_blueprint = $atts[ 0 ];
-
+      $pzarc_overrides = $atts;
+      array_shift($pzarc_overrides);
     }
+
 
     // Need to capture the output so we can get it to appear where the shortcode actually is
     ob_start();
 
-    $pzarc_overrides = !empty($atts[ 'ids' ]) ? $atts[ 'ids' ] : null;
 
     do_action("arc_before_shortcode", $pzarc_blueprint, $pzarc_overrides, $pzarc_caller, $tag);
 

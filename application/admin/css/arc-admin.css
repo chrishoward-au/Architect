@@ -1188,3 +1188,6 @@ ul#_pzarc_pagebuilder_enabled li {
 #_architect-_panels_tabs_tabs,
 #_architect-_blueprint_tabs_tabs {
   padding-bottom: 0 !important; }
+
+body.arc-beginner .arc-field-advanced {
+  display: none !important; }

@@ -113,6 +113,12 @@
           break;
       }
 
+      global $_architect_options;
+      if (!empty($_architect_options['architect_show_advanced'])) {
+        $classes .= ' arc-advanced';
+      } else {
+        $classes .= ' arc-beginner';
+      }
 
       return $classes;
     }

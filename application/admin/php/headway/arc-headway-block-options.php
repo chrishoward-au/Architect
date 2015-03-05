@@ -67,8 +67,14 @@
     static function pzarc_build($block, $just_defaults)
     {
       if (!$just_defaults) {
-        $pzarc_blueprints = pzarc_get_blueprints(true);
-        $pzarc_blueprints = array_merge(array('none' => 'Select blueprint'), $pzarc_blueprints);
+        global $pzarc_blueprints_list;
+        if (empty($pzarc_blueprints_list)) {
+          $pzarc_blueprints_list   = pzarc_get_posts_in_post_type('arc-blueprints',true);
+
+        }
+
+        $pzarc_blueprints_list = pzarc_get_blueprints(true);
+        $pzarc_blueprints = array_merge(array('none' => 'Select blueprint'), $pzarc_blueprints_list);
       } else {
         $pzarc_blueprints = array();
 

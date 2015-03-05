@@ -1,5 +1,9 @@
 <?php
 
+  global $_architect_options;
+  if (!empty($_architect_options['architect_hide_guides'])) {
+    return;
+  }
   wp_enqueue_script('jquery-pageguide');
   wp_enqueue_style('css-pageguide');
   wp_enqueue_script('jquery-cookie');
@@ -12,7 +16,7 @@
   {
     echo '
 <ul style="display:none;" id="tlyPageGuide" data-tourtitle="Getting started with Panels">
-  <li class="tlypageguide_left" data-tourtarget="#tlyPageGuideToggles">
+  <li class="tlypageguide_left" data-tourtarget="#tlyPageGuideToggles :nth-child(1)">
     <div>' . __('
       <h1>Welcome to the Architect Panel Designer!</h1>
       <strong><em>There is a simple slider tutorial included in the steps of this guide and the one in Blueprints. Simply follow these blue prompts.</em></strong>
@@ -72,7 +76,7 @@ The <em>Feature location</em> allows you to choose where in the Panel to display
     ', 'pzarchitect') . '</div>
   </li>
   <li class="tlypageguide_left" data-tourtarget="#_architect-_panels_design_components-widths">
-    <div>' . __('<h3>Components are width</h3>Generally the components group is 100% of the Panel when its position is either top or bottom; however when you set the components to be left or right, you will need to reduce their width.
+    <div>' . __('<h3>Components area width</h3>Generally the components group is 100% of the Panel when its position is either top or bottom; however when you set the components to be left or right, you will need to reduce their width.
 <strong>Your turn: Drag the slider back and forth and watch the components area shrink and expand. <em>Set the <em>Components area width</em> to 100%</em></strong>
     ', 'pzarchitect') . '</div>
   </li>
@@ -82,7 +86,7 @@ The <em>Feature location</em> allows you to choose where in the Panel to display
     ', 'pzarchitect') . '</div>
   </li>
   <li class="tlypageguide_left" data-tourtarget="#_architect-_panels_design_components-nudge-x">
-    <div>' . __('<h3>Nudege components area left/right</h3>Generally the components group is 100% of the Panel when its position is either top or bottom; however when you set the components to be left or right, you will need to reduce their width.
+    <div>' . __('<h3>Nudge components area left/right</h3>Generally the components group is 100% of the Panel when its position is either top or bottom; however when you set the components to be left or right, you will need to reduce their width.
 <strong>Your turn: Drag the slider back and forth and watch the components area shrink and expand.</strong>
     ', 'pzarchitect') . '</div>
   </li>
@@ -175,20 +179,151 @@ The <em>Feature location</em> allows you to choose where in the Panel to display
 
   }
 
-  function derf_derf_derf()
+//  add_action('admin_footer', 'arc_panels_pageguide_tute1');
+  function arc_panels_pageguide_tute1()
   {
     echo '
-  <li class="tlypageguide_left" data-tourtarget="#">
-    <div>' . __('<h3></h3>
+<ul style="display:none;" id="tlyPageGuideTute1" data-tourtitle="Building an excerpts Panel">
+  <li class="tlypageguide_top" data-tourtarget="#titlewrap">
+    <div>' . __('
+      <h1>Tutorial 1: Building an excerpts Panel</h1>
+      Sorry, this one is yet to be done.
     ', 'pzarchitect') . '</div>
   </li>
-  <li class="tlypageguide_left" data-tourtarget="#">
-    <div>' . __('<h3></h3>
-    ', 'pzarchitect') . '</div>
-  </li>
-  <li class="tlypageguide_left" data-tourtarget="#">
-    <div>' . __('<h3></h3>
-    ', 'pzarchitect') . '</div>
-  </li>
+</ul>
 ';
+
+
+  }
+
+//  add_action('admin_footer', 'arc_panels_pageguide_tute2');
+  function arc_panels_pageguide_tute2()
+  {
+    echo '
+<ul style="display:none;" id="tlyPageGuideTute2" data-tourtitle="Building a slideshow Panel">
+  <li class="tlypageguide_top" data-tourtarget="#titlewrap">
+    <div>' . __('
+      <h3>Title</h3>
+      Like any WordPress post type, the Title is the first thing you need to enter. This is used to identify Panels when you select them in Blueprints.
+      <p><strong><em>Enter a title now for your slider Panel</em></strong></p>
+    ', 'pzarchitect') . '</div>
+  </li>
+
+
+<!-- General -->
+  <li class="tlypageguide_left" data-tourtarget="#_architect-_panels_settings_short-name">
+    <div>' . __('<h3>Short name</h3>
+      <strong><em>Enter a Short name for the slider Panels layout</em></strong>
+    ', 'pzarchitect') . '</div>
+  </li>
+
+  <!-- Design -->
+
+  <li class="tlypageguide_left" data-tourtarget="#_architect-_panels_design_components-to-show">
+    <div>' . __('<h3>Components to show</h3>
+     <strong><em>Enable Title, Excerpt and Feature only.</em></strong>
+    ', 'pzarchitect') . '</div>
+  </li>
+  <li class="tlypageguide_left" data-tourtarget="#_architect-_panels_design_preview">
+    <div>' . __('<h3>Panel preview</h3>
+<strong><em>Resize Title and Excerpt to 100% wide</em></strong>
+Don\'t worry about the size of the Feature, the next step take care of that.
+
+    ', 'pzarchitect') . '</div>
+  </li>
+  <li class="tlypageguide_left" data-tourtarget="#_architect-_panels_design_feature-location">
+    <div>' . __('<h3>Feature location</h3>
+We want the Feature to fill the Panel.
+<strong><em>Set the Feature to the Background.</em></strong>
+
+    ', 'pzarchitect') . '</div>
+  </li>
+  <li class="tlypageguide_left" data-tourtarget="#_architect-_panels_design_components-position">
+    <div>' . __('<h3>Components area position</h3>
+    <strong><em>Set the <em>Components area position</em> to Bottom</em>
+    ', 'pzarchitect') . '</div>
+  </li>
+  <li class="tlypageguide_left" data-tourtarget="#_architect-_panels_design_components-widths">
+    <div>' . __('<h3>Components area width</h3>
+<strong><em>Set the <em>Components area width</em> to 100%</em></strong>
+    ', 'pzarchitect') . '</div>
+  </li>
+  <li class="tlypageguide_left" data-tourtarget="#_architect-_panels_design_components-nudge-y">
+    <div>' . __('<h3>Nudge components area up/down</h3>
+<strong><em>Set <em>Nudge components are up/down</em> to 10%</em></strong>
+    <p>Switch to the <em>Featured Images/Videos</em> tab on the left.</p>
+
+    ', 'pzarchitect') . '</div>
+  </li>
+
+
+
+  <!-- Features -->
+  <li class="tlypageguide_left" data-tourtarget="#_architect-_panels_settings_feature-type">
+    <div>' . __('<h3>Feature Type</h3>
+<strong><em>Set the Feature Type to Images</em></strong>
+
+    ', 'pzarchitect') . '</div>
+  </li>
+  <li class="tlypageguide_left" data-tourtarget="#_architect-_panels_settings_image-focal-point">
+    <div>' . __('<h3>Image cropping</h3>
+<p>Cropping and image can cause undesired results. The most common being heads chopped off people because the code to crop the image used an arbitrary point on the image to crop from.</p>
+<p>With Architect, this can be avoided by taking advantage of the "Respect Focal Point" functionality. This begins by setting a focal point when you upload your image.</p>
+<p><a href="http://architect4wp.com/codex/setting-and-using-focal-points/" target="_blank">View the tutorial on setting Focal Points</a></p>
+    ', 'pzarchitect') . '</div>
+  </li>
+  <li class="tlypageguide_left" data-tourtarget="#_architect-_panels_settings_use-retina-images">
+    <div>' . __('<h3>Use retina images</h3>
+<p>If enabled, Architect will create double sized images for retina display. These will only be shown on retina screens. Currently Architect only creates images for @2x but will in the near future support @3x.</p>
+ <strong>Ensure the global setting in Architect Options is on as well</strong>.
+ <p>NOTE: This will make your site load slower on retina devices, so you may only want consider which panels you have it enabled on.</p>', 'pzarchitect') . '</div>
+  </li>
+  <li class="tlypageguide_left" data-tourtarget="#_architect-_panels_design_image-max-dimensions">
+    <div>' . __('<h3>Maximum image dimensions</h3>
+<p>When setting the Maximum dimensions, it is important to set these to what you expect the maximum size they will ever been seen at. When only displaying one Panel across, this is pretty easy to know.</p>
+<p>However, when using a grid of multiple columns, the image could be larger at a lower breakpoint than a higher one, so you will have to consider this. </p>
+<p>If this is a Panel is to be used in a full screen width Blueprint, you maximum width will need to be at least as large as the commonest largest desktop - i.e. around 2600px.</p>
+<p>In the future, Architect will support different Maximum dimensions for the different breakpoints.</p>
+<p>Setting the Maximum dimensions too low will make the images smaller than the area set for Features. Setting it higher than necessary, will make for slower loading of the page than it should.</p>
+    ', 'pzarchitect') . '</div>
+  </li>
+  <li class="tlypageguide_left" data-tourtarget="#_architect-_panels_design_background-image-resize">
+    <div>' . __('<h3>Effect on screen resize</h3>
+<p>If the image can\'t be displayed fully within its container element, this setting controls how it is then treated.</p>
+<p><em>Trim horizontally, retain height</em> will centre the image in the container, keep the same height, but any overflow left or right will be hidden.</p>
+<p><em>Scale vertically and horizontally</em> will shrink the image to fit the width of the container, maintaining its proportions.</p>
+    ', 'pzarchitect') . '</div>
+  </li>
+  <li class="tlypageguide_left" data-tourtarget="#_architect-_panels_design_link-image">
+    <div>' . __('<h3>Link to</h3>
+<em>None</em> Clicking the image will do nothing.<br>
+<em>Post</em> Clicking the image will take the reader to the corresponding post.<br>
+<em>Attachment page</em> This will open the attachment page for the image, which is like a post page, but only shows the attachment.<br>
+<em>Lightbox</em> This will open the image in a full screen popup.<br>
+<em>Specific URL</em> This sets ALL images to a single URL you specify below.<br>
+    ', 'pzarchitect') . '</div>
+  </li>
+</ul>
+<!-- Put some space sin so info box doesn\'t cover steps -->
+<!-- This is only needed once per page -->
+<br><br><br><br>
+<br><br><br><br>
+';
+
+
+  }
+ // add_action('admin_footer', 'arc_panels_pageguide_tute3');
+  function arc_panels_pageguide_tute3()
+  {
+    echo '
+<ul style="display:none;" id="tlyPageGuideTute3" data-tourtitle="Building a Panel for an image gallery">
+  <li class="tlypageguide_top" data-tourtarget="#titlewrap">
+    <div>' . __('
+      <h1>Tutorial 3: Building a Panel for an image gallery</h1>
+    ', 'pzarchitect') . '</div>
+  </li>
+</ul>
+';
+
+
   }

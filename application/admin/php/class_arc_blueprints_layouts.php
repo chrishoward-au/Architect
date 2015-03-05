@@ -709,7 +709,7 @@
                     'title'    => __('Panels to show', 'pzarchitect'),
                     'id'       => $prefix . 'section-' . $i . '-panels-per-view',
                     'type'     => 'spinner',
-                    'default'  => 1,
+                    'default'  => 6,
                     'min'      => 1,
                     'max'      => 99,
                     'required' => array($prefix . 'section-' . $i . '-panels-limited', '=', true),
@@ -729,7 +729,7 @@
                     'hint'          => array('title'   => __('Columns wide screen', 'pzarchitect'),
                                              'content' => __('Number of columns or panels across on a wide screen as set in the breakpoints options. <br><br>In sliders, this will be the number across.', 'pzarchitect')),
                     'type'          => 'slider',
-                    'default'       => 3,
+                    'default'       => 1,
                     'min'           => 1,
                     'max'           => 10,
                     'display_value' => 'label'
@@ -741,7 +741,7 @@
                     'hint'          => array('title'   => __('Columns medium screen', 'pzarchitect'),
                                              'content' => __('Number of columns or panels across on a medium screen as set in the breakpoints options', 'pzarchitect')),
                     'type'          => 'slider',
-                    'default'       => 2,
+                    'default'       => 1,
                     'min'           => 1,
                     'max'           => 10,
                     'display_value' => 'label'
@@ -1372,6 +1372,7 @@
       }
       /** FILTERS */
       $sections[ '_settings' ] = $blueprint_content_common[ 0 ][ 'settings' ][ 'sections' ];
+      $sections[ '_pagination' ] = $blueprint_content_common[ 0 ][ 'pagination' ][ 'sections' ];
       $sections[ '_filters' ]  = $blueprint_content_common[ 0 ][ 'filters' ][ 'sections' ];
 
 

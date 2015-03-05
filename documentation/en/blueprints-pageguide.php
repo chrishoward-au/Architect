@@ -1,5 +1,10 @@
 <?php
 
+  global $_architect_options;
+  if (!empty($_architect_options['architect_hide_guides'])) {
+    return;
+  }
+
   wp_enqueue_script('jquery-pageguide');
   wp_enqueue_style('css-pageguide');
   wp_enqueue_script('jquery-cookie');
@@ -11,7 +16,7 @@
   function arc_blueprints_pageguide_layouts()
   {
     echo '
-<ul style="display:none;" id="tlyPageGuide" data-tourtitle="Important Blueprint settings">
+<ul style="display:none;" id="tlyPageGuide" data-tourtitle="Getting started with Blueprints">
 
   <li class="tlypageguide_left" data-tourtarget="#tlyPageGuideToggles">
     <div>'.__('
@@ -111,9 +116,11 @@ Note: Only Section 1 can contain Sliders and Tabbed. <strong>Your turn: Select o
   </li>
 
   <!-- Contents -->
-  <li class="tlypageguide_bottom" data-tourtarget="#_architect-_blueprints_content-source">
+  <li class="tlypageguide_left" data-tourtarget="#_architect-_blueprints_content-source">
     <div>'.__('
-        This is where you choose the source of the content to show in the Panels. This source is applied to all three sections in the Blueprint (if you are using the second or third).<strong><em>Choose the Dummy content source</em></strong>.
+        This is where you choose the source of the content to show in the Panels. This source is applied to all three sections in the Blueprint (if you are using the second or third).
+        <strong>Your turn: Click through the different Content sources noting how the selection options change on this tab.</strong>
+        <strong><em>Select the <em>Dummy</em> content source</em></strong>
     ','pzarchitect').'</div>
   </li>
 

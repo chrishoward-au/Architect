@@ -283,7 +283,7 @@
       /** ACCORDION TITLES */
       if ('accordion' === $this->layout_mode) {
         $accordion_title = $post->post_title;
-        if (!empty($this->table_accordion_titles) && isset($this->table_accordion_titles[ $panel_def ])) {
+        if (isset($this->table_accordion_titles) && !empty($this->table_accordion_titles) && isset($this->table_accordion_titles[ $panel_def ])) {
           $accordion_title = do_shortcode($this->table_accordion_titles[ $panel_number ]);
         }
         //'_blueprint_section-' . $this->section_number . '-accordion-titles'

@@ -261,12 +261,12 @@
 
     $_architect[ 'defaults' ][ 'blueprints' ] = (!isset($_architect[ 'defaults' ][ 'blueprints' ]) ? array() : $_architect[ 'defaults' ][ 'blueprints' ]);
     $blueprint_layout_general                 = $blueprints->pzarc_blueprint_layout_general_mb($_architect[ 'defaults' ][ 'blueprints' ], true);
-    $blueprint_styling                        = $blueprints->pzarc_blueprint_layout_styling_mb($_architect[ 'defaults' ][ 'blueprints' ], true);
+    $blueprint_styling                        = empty($_architect_options['architect_enable_styling'])?'':$blueprints->pzarc_blueprint_layout_styling_mb($_architect[ 'defaults' ][ 'blueprints' ], true);
     $pzarc_blueprint_layout                   = $blueprints->pzarc_blueprint_layout_mb($_architect[ 'defaults' ][ 'blueprints' ], true);
     $pzarc_contents_metabox                   = $blueprints->pzarc_blueprint_contents_mb($_architect[ 'defaults' ][ 'blueprints' ], true);
 
     $_architect[ 'defaults' ][ 'blueprints' ][ '_blueprint_layout_general' ] = $blueprint_layout_general[ 0 ][ 'sections' ];
-    $_architect[ 'defaults' ][ 'blueprints' ][ '_blueprint_stylings' ]       = $blueprint_styling[ 0 ][ 'sections' ];
+    $_architect[ 'defaults' ][ 'blueprints' ][ '_blueprint_stylings' ]       = empty($blueprint_styling) ? '' : $blueprint_styling[ 0 ][ 'sections' ];
     $_architect[ 'defaults' ][ 'blueprints' ][ '_blueprint_layout' ]         = $pzarc_blueprint_layout[ 0 ][ 'sections' ];
     $_architect[ 'defaults' ][ 'blueprints' ][ '_contents_metabox' ]         = $pzarc_contents_metabox[ 0 ][ 'sections' ];
 
@@ -299,7 +299,7 @@
 
     $pzarc_panel_general_settings = $panels->pzarc_panel_general_settings($_architect[ 'defaults' ][ 'panels' ], true);
     $pzarc_panels_design          = $panels->pzarc_panels_design($_architect[ 'defaults' ][ 'panels' ], true);
-    $pzarc_panels_styling         = $panels->pzarc_panels_styling($_architect[ 'defaults' ][ 'panels' ], true);
+    $pzarc_panels_styling         = empty($_architect_options['architect_enable_styling'])?'':$panels->pzarc_panels_styling($_architect[ 'defaults' ][ 'panels' ], true);
 
     $_architect[ 'defaults' ][ 'panels' ][ '_panel_general_settings' ] = $pzarc_panel_general_settings[ 0 ][ 'sections' ];
     $_architect[ 'defaults' ][ 'panels' ][ '_panels_design' ]          = $pzarc_panels_design[ 0 ][ 'sections' ];
@@ -537,6 +537,30 @@
     return $pzarc_post_type_list;
   }
 
+  // TODO: This is a sorta duplicate of pzarc_get_posts_in_type. Fix it one day.
+  function pzarc_get_blueprints($inc_post_id = false)
+  {
+    $query_options    = array(
+        'post_type'      => 'arc-blueprints',
+        'meta_key'       => '_blueprints_short-name',
+        'posts_per_page' => '-1'
+    );
+    $blueprints_query = new WP_Query($query_options);
+    $pzarc_return     = array();
+    while ($blueprints_query->have_posts()) {
+      $blueprints_query->next_post();
+      $the_panel_meta = get_post_meta($blueprints_query->post->ID);
+      $bpid           = $the_panel_meta[ '_blueprints_short-name' ][ 0 ] . ($inc_post_id ? '##' . $blueprints_query->post->ID : '');
+      // This caused an error with the WooCommerce 2.3
+      //     $pzarc_return[ $bpid ] = get_the_title($blueprints_query->post->ID);
+      $pzarc_return[ $bpid ] = $blueprints_query->post->post_title;
+    };
+    asort($pzarc_return);
+    wp_reset_postdata();
+
+    return $pzarc_return;
+  }
+
   function pzarc_array_to_options_list($source_arr, $selected)
   {
     foreach ($source_arr as $key => $value) {
@@ -744,27 +768,6 @@
     return 'Shortcode test';
   }
 
-  // TODO: This is a sorta duplicate of pzarc_get_posts_in_type. Fix it one day.
-  function pzarc_get_blueprints($inc_post_id = false)
-  {
-    $query_options    = array(
-        'post_type'      => 'arc-blueprints',
-        'meta_key'       => '_blueprints_short-name',
-        'posts_per_page' => '-1'
-    );
-    $blueprints_query = new WP_Query($query_options);
-    $pzarc_return     = array();
-    while ($blueprints_query->have_posts()) {
-      $blueprints_query->next_post();
-      $the_panel_meta        = get_post_meta($blueprints_query->post->ID);
-      $bpid                  = $the_panel_meta[ '_blueprints_short-name' ][ 0 ] . ($inc_post_id ? '##' . $blueprints_query->post->ID : '');
-      $pzarc_return[ $bpid ] = get_the_title($blueprints_query->post->ID);
-    };
-    asort($pzarc_return);
-    wp_reset_postdata();
-
-    return $pzarc_return;
-  }
 
   function pzarc_maths_sum($values)
   {
@@ -791,6 +794,24 @@
 
     return array('result' => $result, 'type' => $vtype);
   }
+
+  function pzarc_mail_encode($atts,$rawemail,$tag) {
+    $s_email = sanitize_email($rawemail);
+    $encodedmail                          = '';
+    for ($i = 0; $i < strlen($s_email); $i++) {
+      $encodedmail .= "&#" . ord($s_email[ $i ]) . ';';
+    }
+    if (isset($atts[0])) {
+      return '<a href="mailto:'.$encodedmail.'">'.$encodedmail.'</a>';
+    } else {
+      return $encodedmail;
+    }
+  }
+
+  if (!shortcode_exists('mailto')) {
+    add_shortcode('mailto','pzarc_mail_encode');
+  }
+   add_shortcode('pzmailto','pzarc_mail_encode');
 
   // Testing function.
   // NOTE: If defaults chosen, then will be main query!!

@@ -192,7 +192,12 @@ if ( ! class_exists( 'TGM_Plugin_Activation' ) ) {
 
         }
 
-        /**
+      public function __destruct() {
+        pzdb('tgm destruct');
+
+      }
+
+      /**
          * Initialise the interactions between this class and WordPress.
          *
          * Hooks in three new methods for the class: admin_menu, notices and styles.
@@ -1022,6 +1027,7 @@ if ( ! class_exists( 'TGM_Plugin_Activation' ) ) {
             return self::$instance;
 
         }
+
 
     }
 

@@ -73,7 +73,7 @@
 
   function pzarc_get_ngg_gallery($gid,$block) {
     
-var_dump($gid,$block);
+//var_dump($gid,$block);
     if (method_exists('HeadwayBlocksData', 'get_legacy_id')) {
       $block[ 'id' ] = HeadwayBlocksData::get_legacy_id($block);
     }

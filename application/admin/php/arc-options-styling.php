@@ -61,9 +61,9 @@
       function compiler_action($options, $css)
       {
         echo "<h1>The compiler hook has run!";
-        var_dump($options); //Option values
-//
-        var_dump($css); // Compiler selector CSS values  compiler => array( CSS SELECTORS )
+//        var_dump($options); //Option values
+////
+//        var_dump($css); // Compiler selector CSS values  compiler => array( CSS SELECTORS )
 
         // Demo of how to use the dynamic CSS and write your own static CSS file
         $filename = PZARC_CACHE_PATH . '/arc-dynamic-styles' . '.css';
@@ -830,9 +830,9 @@
                     'readonly' => true,
                     'default'  => $primaryClass,
                 ),
-                pzarc_redux_font($prefix . $thisSection . '-font', array($primaryClass), array()),
-                pzarc_redux_bg($prefix . $thisSection . '-background', array($primaryClass)),
-                pzarc_redux_padding($prefix . $thisSection . '-padding', array($primaryClass)),
+                pzarc_redux_font($prefix . $thisSection . '-font', array($primaryClass), array(),array('color'=>'#777777')),
+                pzarc_redux_bg($prefix . $thisSection . '-background', array($primaryClass),array('color'=>'#cccccc')),
+                pzarc_redux_padding($prefix . $thisSection . '-padding', array($primaryClass),array('padding-left'=>'1','units'=>'%')),
                 pzarc_redux_margin($prefix . $thisSection . '-margins', array($primaryClass)),
                 pzarc_redux_borders($prefix . $thisSection . '-borders', array($primaryClass)),
                 array(
@@ -849,8 +849,8 @@
                     'readonly' => true,
                     'default'  => $primaryClass . '.open',
                 ),
-                pzarc_redux_font($prefix . $thisSection . '-open-font', array($primaryClass . '.open '), array()),
-                pzarc_redux_bg($prefix . $thisSection . '-open-background', array($primaryClass . '.open ')),
+                pzarc_redux_font($prefix . $thisSection . '-open-font', array($primaryClass . '.open '), array('color'=>'#ffffff')),
+                pzarc_redux_bg($prefix . $thisSection . '-open-background', array($primaryClass . '.open '),array('color'=>'#555555')),
                 pzarc_redux_borders($prefix . $thisSection . '-open-borders', array($primaryClass . '.open ')),
                 array(
                     'title'  => __('Hover', 'pzarchitect'),
@@ -866,8 +866,8 @@
                     'readonly' => true,
                     'default'  => $primaryClass . ':hover',
                 ),
-                pzarc_redux_font($prefix . $thisSection . '-hover-font', array($primaryClass . ':hover '), array()),
-                pzarc_redux_bg($prefix . $thisSection . '-hover-background', array($primaryClass . ':hover ')),
+                pzarc_redux_font($prefix . $thisSection . '-hover-font', array($primaryClass . ':hover '),array('color'=>'#ffffff')),
+                pzarc_redux_bg($prefix . $thisSection . '-hover-background', array($primaryClass . ':hover '),array('color'=>'#999999')),
                 pzarc_redux_borders($prefix . $thisSection . '-hover-borders', array($primaryClass . ':hover ')),
             ),
         );
@@ -892,8 +892,8 @@
                     'readonly' => true,
                     'default'  => '.pzarc-section.datatables th',
                 ),
-                pzarc_redux_font($prefix . 'tabular-headings-font', array('.pzarc-section.datatables th '), array()),
-                pzarc_redux_bg($prefix . 'tabular-headings-background', array('.pzarc-section.datatables th ')),
+                pzarc_redux_font($prefix . 'tabular-headings-font', array('.pzarc-section.datatables th '),array('color'=>'#ffffff')),
+                pzarc_redux_bg($prefix . 'tabular-headings-background', array('.pzarc-section.datatables th '),array('color'=>'#555555')),
                 pzarc_redux_padding($prefix . 'tabular-headings-padding', array('.pzarc-section.datatables th ')),
                 pzarc_redux_margin($prefix . 'tabular-headings-margins', array('.pzarc-section.datatables th ')),
                 pzarc_redux_borders($prefix . 'tabular-headings-borders', array('.pzarc-section.datatables th ')),
