@@ -270,8 +270,8 @@
 
       }
 
-      do_action('arc_before_sections');
-      do_action('arc_before_sections_' . $bp_shortname);
+      do_action('arc_before_section');
+      do_action('arc_before_section_' . $bp_shortname);
 
       /** Sections opening HTML*/
       echo self::get_sections_opener($bp_shortname, $bp_nav_type, $caller, $bp_transtype);
@@ -286,33 +286,11 @@
       }
 
 
-      // Record point is maintained so second loop carries on from first
-      if ($do_section_2) {
-
-        if (!empty($this->build->blueprint[ '_blueprints_section-1-panel-layout' ])) {
-          $panel_class->loop(2, $this, $panel_class, $content_class);
-        } else {
-          echo '<span class="message-error">No Panel set for section 2 in Blueprint: <strong>' . $this->build->blueprint[ '_blueprints_short-name' ] . '</strong></span><br>';
-        }
-
-      }
-
-      // Record point is maintained so third loop carries on from second
-      if ($do_section_3) {
-
-        if (!empty($this->build->blueprint[ '_blueprints_section-2-panel-layout' ])) {
-          $panel_class->loop(3, $this, $panel_class, $content_class);
-        } else {
-          echo '<span class="message-error">No Panel set for section 3 in Blueprint: <strong>' . $this->build->blueprint[ '_blueprints_short-name' ] . '</strong></span><br>';
-        }
-
-      }
-
-      // End loops
+      // End loop
       echo '</div> <!-- end blueprint sections -->';
 
-      do_action('arc_after_sections');
-      do_action('arc_after_sections_' . $bp_shortname);
+      do_action('arc_after_section');
+      do_action('arc_after_section_' . $bp_shortname);
 
       // Don't allow pagination on pages it doesn't work on!
       //   Todo : setup pagination for single or blog index

@@ -55,7 +55,7 @@
         //@TODO: need a bit of screen dependency on this?
 
         require_once PZARC_PLUGIN_APP_PATH . '/admin/php/class_arc_panels_layouts.php';
-        require_once PZARC_PLUGIN_APP_PATH . '/admin/php/class_arc_blueprints_layouts.php';
+        require_once PZARC_PLUGIN_APP_PATH . '/admin/php/class_arc_blueprints_designer.php';
         require_once PZARC_PLUGIN_APP_PATH . '/admin/php/arc-save-process.php';
 
 
@@ -68,7 +68,7 @@
 
         $misc_metaboxes    = new arc_Misc_metaboxes();
         $panel_layout      = new arc_Panels_Layouts();
-        $content_blueprint = new arc_Blueprints_Layouts();
+        $content_blueprint = new arc_Blueprints_Designer();
 
         require_once PZARC_PLUGIN_APP_PATH . '/admin/php/arc-options.php';
         require_once PZARC_PLUGIN_APP_PATH . '/admin/php/arc-options-styling.php';

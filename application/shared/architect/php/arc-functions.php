@@ -243,8 +243,8 @@
     // TODO: Remove this once Dovy fixes MB defaults... or maybe not...
     // Actually, $_architect doesn't populate if it's not here
     require_once PZARC_PLUGIN_APP_PATH . '/admin/php/class_arc_panels_layouts.php';
-    require_once PZARC_PLUGIN_APP_PATH . '/admin/php/class_arc_blueprints_layouts.php';
-    $blueprints = new arc_Blueprints_Layouts('defaults');
+    require_once PZARC_PLUGIN_APP_PATH . '/admin/php/class_arc_blueprints_designer.php';
+    $blueprints = new arc_Blueprints_Designer('defaults');
     $panels     = new arc_Panels_Layouts('defaults');
 
     global $_architect;

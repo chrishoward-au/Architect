@@ -116,7 +116,7 @@
       *************************************/
       $panel_id   = pzarc_convert_name_to_id($this->blueprint[ '_blueprints_section-0-panel-layout' ]);
       $panel[ 0 ] = get_post_meta($panel_id);
-
+// TODO: START HERE. WITH PANELS IN BLUEPRINTS, THERE CAN BE NO SECTIONS.YET ONE OF THE BEAUTIIES OF SECTIONS IS WHEN YOU NEED TO CONTINUE. WITHOUT IT YOU'LL NEED TO USE SKIP POSTS
       $panel[ 1 ] = !$panel[ 0 ] ? array() : pzarc_flatten_wpinfo($panel[ 0 ]);
 
       if (!empty($panel[ 0 ])) {
@@ -143,64 +143,6 @@
         return $this->blueprint;
 
       }
-
-      /** Add panel settings for Section 2
-      *************************************/
-      if(!empty($this->blueprint[ '_blueprints_section-1-panel-layout' ])) {
-        $panel_id   = pzarc_convert_name_to_id($this->blueprint[ '_blueprints_section-1-panel-layout' ]);
-        $panel[ 0 ] = get_post_meta($panel_id);
-
-        $panel[ 2 ] = !$panel[ 0 ] ? array() : pzarc_flatten_wpinfo($panel[ 0 ]);
-
-        if (!empty($panel[ 0 ])) {
-          foreach ($_architect[ 'defaults' ][ '_panels' ] as $key => $value) {
-
-            if (strpos($key, '_panel') === 0 && !isset($panel[ 2 ][ $key ])) {
-              $panel[ 2 ][ $key ] = maybe_unserialize($value);
-            };
-
-          }
-        }
-      } else {
-        $panel[2] = '';
-      }
-      $this->blueprint[ 'section' ][ 1 ]
-          = array(
-          'section-enable'         => !empty($panel[ 0 ]),
-          'section-panel-settings' => $panel[ 2 ],
-          'section-rsid'           => 'rsid' . rand(1000, 9999),
-          'section-panel-slug'     => $this->blueprint[ '_blueprints_section-1-panel-layout' ],
-
-      );
-
-      /** Add panel settings for Section 3
-       *************************************/
-      if ($this->blueprint[ '_blueprints_section-2-panel-layout' ]) {
-      $panel_id   = pzarc_convert_name_to_id($this->blueprint[ '_blueprints_section-2-panel-layout' ]);
-      $panel[ 0 ] = get_post_meta($panel_id);
-
-      $panel[ 3 ] = !$panel[ 0 ] ? array() : pzarc_flatten_wpinfo($panel[ 0 ]);
-
-      if (!empty($panel[ 0 ])) {
-        foreach ($_architect[ 'defaults' ][ '_panels' ] as $key => $value) {
-
-          if (strpos($key, '_panel') === 0 && !isset($panel[ 3 ][ $key ])) {
-            $panel[ 3 ][ $key ] = maybe_unserialize($value);
-          };
-
-        }
-      }
-      } else {
-        $panel[3] = '';
-      }
-      $this->blueprint[ 'section' ][ 2 ]
-          = array(
-          'section-enable'         => !empty($panel[ 0 ]),
-          'section-panel-settings' => $panel[ 3 ],
-          'section-rsid'           => 'rsid' . rand(1000, 9999),
-          'section-panel-slug'     => $this->blueprint[ '_blueprints_section-2-panel-layout' ],
-
-      );
 
       unset($panel);
 
