@@ -3,7 +3,7 @@
   /*
     Plugin Name: Architect
     Plugin URI: http://architect4wp.com
-    Description: Architect is an all-in-one content layout framework to extend your theme. Go beyond the limitations of the theme you use to easily build any content layouts for it. Build your own grids, tabs, sliders, galleries, accordions or tabular with sources such as posts, pages, galleries, and custom content types. Display using shortcodes, widgets, Headway blocks, WP action hooks and template tags, and WP Gallery shortcode. Change themes without needing to rebuild your layouts!
+    Description: Architect is an all-in-one content layout builder. Go beyond the limitations of the theme you use to easily design and build any content layouts for it. Build your own sliders, tabs, sliders, galleries, accordions or tabular with sources such as posts, pages, galleries, and custom content types. Display using shortcodes, widgets, Headway blocks, WP action hooks and template tags, and WP Gallery shortcode. Change themes without needing to rebuild your layouts! Architect is not a page builder; rather, it is a content layout builder. Those content layouts can then be used to help build pages.
     Version: 1.0.8.8
     Author: Chris Howard
     Author URI: http://pizazzwp.com

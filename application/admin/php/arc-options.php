@@ -673,8 +673,8 @@
           } else {
             $v = str_replace("-", "_", $this->args[ 'opt_name' ]);
           }
-          $this->args[ 'intro_text' ]
-              = sprintf(__('<p>On this page you can setup specific blueprints to display at specific points in your page\'s display. This is done using WordPress action hooks. Although WordPress provides many, the ones that work best for content display will be those included in the theme you are using. Review your theme and/or its documentation.</p>', 'pzarchitect'), $v);
+//          $this->args[ 'intro_text' ]
+//              = sprintf(__('<p>On this page you can setup specific blueprints to display at specific points in your page\'s display. This is done using WordPress action hooks. Although WordPress provides many, the ones that work best for content display will be those included in the theme you are using. Review your theme and/or its documentation.</p>', 'pzarchitect'), $v);
         } else {
 //          $this->args[ 'intro_text' ]
 //              = __('<p>This text is displayed above the options panel. It isn\'t required, but more info is always better! The intro_text field accepts all HTML.</p>', 'pzarchitect');

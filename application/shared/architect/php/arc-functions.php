@@ -242,89 +242,91 @@
 
     // TODO: Remove this once Dovy fixes MB defaults... or maybe not...
     // Actually, $_architect doesn't populate if it's not here
-    require_once PZARC_PLUGIN_APP_PATH . '/admin/php/class_arc_panels_layouts.php';
+//    require_once PZARC_PLUGIN_APP_PATH . '/admin/php/class_arc_panels_layouts.php';
     require_once PZARC_PLUGIN_APP_PATH . '/admin/php/class_arc_blueprints_designer.php';
     $blueprints = new arc_Blueprints_Designer('defaults');
-    $panels     = new arc_Panels_Layouts('defaults');
+//    $panels     = new arc_Panels_Layouts('defaults');
 
     global $_architect;
     global $_architect_options;
-
-    /**
-     * BLUEPRINTS
-     *
-     */
-    pzdb('pre get blueprints defaults');
+    if (!isset($_architect[ 'defaults' ])) {
+      /**
+       * BLUEPRINTS
+       *
+       */
+      pzdb('pre get blueprints defaults');
 //    if ($use_cache) {
 //
 //    } else {
 
-    $_architect[ 'defaults' ][ 'blueprints' ] = (!isset($_architect[ 'defaults' ][ 'blueprints' ]) ? array() : $_architect[ 'defaults' ][ 'blueprints' ]);
-    $blueprint_layout_general                 = $blueprints->pzarc_blueprint_layout_general_mb($_architect[ 'defaults' ][ 'blueprints' ], true);
-    $blueprint_styling                        = empty($_architect_options['architect_enable_styling'])?'':$blueprints->pzarc_blueprint_layout_styling_mb($_architect[ 'defaults' ][ 'blueprints' ], true);
-    $pzarc_blueprint_layout                   = $blueprints->pzarc_blueprint_layout_mb($_architect[ 'defaults' ][ 'blueprints' ], true);
-    $pzarc_contents_metabox                   = $blueprints->pzarc_blueprint_contents_mb($_architect[ 'defaults' ][ 'blueprints' ], true);
+      $_architect[ 'defaults' ][ 'blueprints' ] = (!isset($_architect[ 'defaults' ][ 'blueprints' ]) ? array() : $_architect[ 'defaults' ][ 'blueprints' ]);
 
-    $_architect[ 'defaults' ][ 'blueprints' ][ '_blueprint_layout_general' ] = $blueprint_layout_general[ 0 ][ 'sections' ];
-    $_architect[ 'defaults' ][ 'blueprints' ][ '_blueprint_stylings' ]       = empty($blueprint_styling) ? '' : $blueprint_styling[ 0 ][ 'sections' ];
-    $_architect[ 'defaults' ][ 'blueprints' ][ '_blueprint_layout' ]         = $pzarc_blueprint_layout[ 0 ][ 'sections' ];
-    $_architect[ 'defaults' ][ 'blueprints' ][ '_contents_metabox' ]         = $pzarc_contents_metabox[ 0 ][ 'sections' ];
+      $blueprint_layout_general                 = $blueprints->pzarc_blueprint_layout_general_mb($_architect[ 'defaults' ][ 'blueprints' ], true);
+      $blueprint_styling                        = empty($_architect_options[ 'architect_enable_styling' ]) ? '' : $blueprints->pzarc_blueprint_layout_styling_mb($_architect[ 'defaults' ][ 'blueprints' ], true);
+      $pzarc_blueprint_layout                   = $blueprints->pzarc_blueprint_layout_mb($_architect[ 'defaults' ][ 'blueprints' ], true);
+      $pzarc_contents_metabox                   = $blueprints->pzarc_blueprint_contents_mb($_architect[ 'defaults' ][ 'blueprints' ], true);
 
-    // Apply the defaults
-    foreach ($_architect[ 'defaults' ][ 'blueprints' ] as $key1 => $value1) {
-      if (!empty($value1)) {
-        foreach ($value1 as $key2 => $value2) {
-          foreach ($value2 as $key3 => $fields) {
-            if (is_array($fields)) {
-              foreach ($fields as $key4 => $field) {
-                if (isset($field[ 'id' ])) {
-                  $_architect[ 'defaults' ][ '_blueprints' ][ $field[ 'id' ] ] = (empty($field[ 'default' ]) ? '' : $field[ 'default' ]);
+      $_architect[ 'defaults' ][ 'blueprints' ][ '_blueprint_layout_general' ] = $blueprint_layout_general[ 0 ][ 'sections' ];
+      $_architect[ 'defaults' ][ 'blueprints' ][ '_blueprint_stylings' ]       = empty($blueprint_styling) ? '' : $blueprint_styling[ 0 ][ 'sections' ];
+      $_architect[ 'defaults' ][ 'blueprints' ][ '_blueprint_layout' ]         = $pzarc_blueprint_layout[ 0 ][ 'sections' ];
+      $_architect[ 'defaults' ][ 'blueprints' ][ '_contents_metabox' ]         = $pzarc_contents_metabox[ 0 ][ 'sections' ];
+
+      // Apply the defaults
+      foreach ($_architect[ 'defaults' ][ 'blueprints' ] as $key1 => $value1) {
+        if (!empty($value1)) {
+          foreach ($value1 as $key2 => $value2) {
+            foreach ($value2 as $key3 => $fields) {
+              if (is_array($fields)) {
+                foreach ($fields as $key4 => $field) {
+                  if (isset($field[ 'id' ])) {
+                    $_architect[ 'defaults' ][ '_blueprints' ][ $field[ 'id' ] ] = (empty($field[ 'default' ]) ? '' : $field[ 'default' ]);
+                  }
                 }
               }
             }
           }
         }
       }
-    }
 
-    unset($_architect[ 'defaults' ][ 'blueprints' ]);
+      unset($_architect[ 'defaults' ][ 'blueprints' ]);
 //    }
 
-    /**
-     * PANELS
-     *
-     */
-    pzdb('pre get panels defaults');
-    $_architect[ 'defaults' ][ 'panels' ] = (!isset($_architect[ 'defaults' ][ 'panels' ]) ? array() : $_architect[ 'defaults' ][ 'panels' ]);
+      /**
+       * PANELS
+       *
+       */
+      pzdb('pre get panels defaults');
+      $_architect[ 'defaults' ][ 'panels' ] = (!isset($_architect[ 'defaults' ][ 'panels' ]) ? array() : $_architect[ 'defaults' ][ 'panels' ]);
 
-    $pzarc_panel_general_settings = $panels->pzarc_panel_general_settings($_architect[ 'defaults' ][ 'panels' ], true);
-    $pzarc_panels_design          = $panels->pzarc_panels_design($_architect[ 'defaults' ][ 'panels' ], true);
-    $pzarc_panels_styling         = empty($_architect_options['architect_enable_styling'])?'':$panels->pzarc_panels_styling($_architect[ 'defaults' ][ 'panels' ], true);
+//      $pzarc_panel_general_settings = $blueprints->pzarc_panel_general_settings($_architect[ 'defaults' ][ 'panels' ], true);
+      $pzarc_panels_design          = $blueprints->pzarc_panels_design($_architect[ 'defaults' ][ 'panels' ], true);
+      $pzarc_panels_styling         = empty($_architect_options[ 'architect_enable_styling' ]) ? '' : $blueprints->pzarc_panels_styling($_architect[ 'defaults' ][ 'panels' ], true);
 
-    $_architect[ 'defaults' ][ 'panels' ][ '_panel_general_settings' ] = $pzarc_panel_general_settings[ 0 ][ 'sections' ];
-    $_architect[ 'defaults' ][ 'panels' ][ '_panels_design' ]          = $pzarc_panels_design[ 0 ][ 'sections' ];
+ //     $_architect[ 'defaults' ][ 'panels' ][ '_panel_general_settings' ] = $pzarc_panel_general_settings[ 0 ][ 'sections' ];
+      $_architect[ 'defaults' ][ 'panels' ][ '_panels_design' ]          = $pzarc_panels_design[ 0 ][ 'sections' ];
 
-    if (!empty($_architect_options[ 'architect_enable_styling' ])) {
-      $_architect[ 'defaults' ][ 'panels' ][ '_panels_styling' ] = $pzarc_panels_styling[ 0 ][ 'sections' ];
-    }
+      if (!empty($_architect_options[ 'architect_enable_styling' ])) {
+        $_architect[ 'defaults' ][ 'panels' ][ '_panels_styling' ] = $pzarc_panels_styling[ 0 ][ 'sections' ];
+      }
 
-    foreach ($_architect[ 'defaults' ][ 'panels' ] as $key1 => $value1) {
-      if (!empty($value1)) {
-        foreach ($value1 as $key2 => $value2) {
-          foreach ($value2 as $key3 => $fields) {
-            if (is_array($fields)) {
-              foreach ($fields as $key4 => $field) {
-                if (isset($field[ 'id' ])) {
-                  $_architect[ 'defaults' ][ '_panels' ][ $field[ 'id' ] ] = (empty($field[ 'default' ]) ? '' : $field[ 'default' ]);
+      foreach ($_architect[ 'defaults' ][ 'panels' ] as $key1 => $value1) {
+        if (!empty($value1)) {
+          foreach ($value1 as $key2 => $value2) {
+            foreach ($value2 as $key3 => $fields) {
+              if (is_array($fields)) {
+                foreach ($fields as $key4 => $field) {
+                  if (isset($field[ 'id' ])) {
+                    $_architect[ 'defaults' ][ '_panels' ][ $field[ 'id' ] ] = (empty($field[ 'default' ]) ? '' : $field[ 'default' ]);
+                  }
                 }
               }
             }
           }
         }
       }
+      unset($_architect[ 'defaults' ][ 'panels' ]);
+      pzdb('bottom get defaults');
     }
-    unset($_architect[ 'defaults' ][ 'panels' ]);
-    pzdb('bottom get defaults');
   }
 
   /**
@@ -652,11 +654,11 @@
    *
    ***********************/
 
-  function pzarc_flatten_wpinfo($array_in)
+  function pzarc_flatten_wpinfo($array_in, $strip = null)
   {
     $array_out = array();
     foreach ($array_in as $key => $value) {
-      if ($key == '_edit_lock' || $key == '_edit_last') {
+      if ($key == '_edit_lock' || $key == '_edit_last' || strpos($key, $strip) !== false) {
         continue;
       }
       if (is_array($value)) {
@@ -795,23 +797,24 @@
     return array('result' => $result, 'type' => $vtype);
   }
 
-  function pzarc_mail_encode($atts,$rawemail,$tag) {
-    $s_email = sanitize_email($rawemail);
-    $encodedmail                          = '';
+  function pzarc_mail_encode($atts, $rawemail, $tag)
+  {
+    $s_email     = sanitize_email($rawemail);
+    $encodedmail = '';
     for ($i = 0; $i < strlen($s_email); $i++) {
       $encodedmail .= "&#" . ord($s_email[ $i ]) . ';';
     }
-    if (isset($atts[0])) {
-      return '<a href="mailto:'.$encodedmail.'">'.$encodedmail.'</a>';
+    if (isset($atts[ 0 ])) {
+      return '<a href="mailto:' . $encodedmail . '">' . $encodedmail . '</a>';
     } else {
       return $encodedmail;
     }
   }
 
   if (!shortcode_exists('mailto')) {
-    add_shortcode('mailto','pzarc_mail_encode');
+    add_shortcode('mailto', 'pzarc_mail_encode');
   }
-   add_shortcode('pzmailto','pzarc_mail_encode');
+  add_shortcode('pzmailto', 'pzarc_mail_encode');
 
   // Testing function.
   // NOTE: If defaults chosen, then will be main query!!

@@ -222,6 +222,7 @@
      */
     public function render_panel($panel_def, $panel_number, $class, $panel_class, &$arc_query)
     {
+//      var_dump($panel_number, $class, $panel_class);
       pzdb('top of render panel '.get_the_id());
 
       if (!empty($arc_query->post)) {

@@ -42,18 +42,6 @@
       }
     }
 
-    foreach ($pzarc_css_cache[ 'panels' ] as $k => $v) {
-      if (!empty($k)) {
-        $filename      = PZARC_CACHE_URL . '/pzarc_panel_' . $k . '.css';
-        $filename_path = PZARC_CACHE_PATH . '/pzarc_panel_' . $k . '.css';
-        if (file_exists($filename_path)) {
-          wp_register_style('pzarc_css_panel_' . $k, $filename, false, filemtime($filename_path));
-        } else {
-          echo '<p class="message-warning">' . __('Oops! Could not find Architect CSS cache file: pzarc_panel_', 'pzarchitect') . $k . '.css. ' . __('Please go to WP Admin Architect > Tools and rebuild the CSS cache and try again.', 'pzarchitect') . '</p>';
-        }
-      }
-    }
-
     wp_register_style('css-hw-float-fix', PZARC_PLUGIN_APP_URL . '/public/css/arc-hw-fix.css');
 
     // TODO: These seem to be loading late so loading in footer - even the CSS!

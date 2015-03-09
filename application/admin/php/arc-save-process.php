@@ -87,13 +87,13 @@
       } else {
         // get the blueprints and panels and step thru each recreating css
         delete_option('pzarc_css');
-        $pzarc_panels = get_posts(array('post_type' => 'arc-panels', 'post_status' => 'publish','numberposts'=>-1));
-        foreach ($pzarc_panels as $pzarc_panel) {
-          $postid         = $pzarc_panel->ID;
-          $pzarc_settings = get_post_meta($postid);
-          $pzarc_settings = pzarc_flatten_wpinfo($pzarc_settings);
-          pzarc_create_css($postid, $pzarc_panel->post_type, $pzarc_settings);
-        }
+//        $pzarc_panels = get_posts(array('post_type' => 'arc-panels', 'post_status' => 'publish','numberposts'=>-1));
+//        foreach ($pzarc_panels as $pzarc_panel) {
+//          $postid         = $pzarc_panel->ID;
+//          $pzarc_settings = get_post_meta($postid);
+//          $pzarc_settings = pzarc_flatten_wpinfo($pzarc_settings);
+//          pzarc_create_css($postid, $pzarc_panel->post_type, $pzarc_settings);
+//        }
         $pzarc_blueprints = get_posts(array('post_type' => 'arc-blueprints', 'post_status' => 'publish','numberposts'=>-1));
         foreach ($pzarc_blueprints as $pzarc_blueprint) {
           $postid         = $pzarc_blueprint->ID;
@@ -127,19 +127,19 @@
           }
         }
       }
-      if (isset($pzarc_css_cache[ 'panels' ])) {
-        foreach ($pzarc_css_cache[ 'panels' ] as $k => $v) {
-          $filename = PZARC_CACHE_PATH . '/pzarc_panel_' . $k . '.css';
-          if (!empty($k) && !$wp_filesystem->put_contents(
-                  $filename,
-                  "/* Panel '.$k.'*/\n" . $v,
-                  FS_CHMOD_FILE // predefined mode settings for WP files
-              )
-          ) {
-            echo '<p class="error message">Error saving css cache file! Please check the permissions on the WP Uploads folder.</p>';
-          }
-        }
-      }
+//      if (isset($pzarc_css_cache[ 'panels' ])) {
+//        foreach ($pzarc_css_cache[ 'panels' ] as $k => $v) {
+//          $filename = PZARC_CACHE_PATH . '/pzarc_panel_' . $k . '.css';
+//          if (!empty($k) && !$wp_filesystem->put_contents(
+//                  $filename,
+//                  "/* Panel '.$k.'*/\n" . $v,
+//                  FS_CHMOD_FILE // predefined mode settings for WP files
+//              )
+//          ) {
+//            echo '<p class="error message">Error saving css cache file! Please check the permissions on the WP Uploads folder.</p>';
+//          }
+//        }
+//      }
       // And finally, let's flush the BFI image cache
       if ((isset($screen->id) && isset($post->post_type)) && ($screen->id == 'arc-panels' || $post->post_type === 'arc-panels') && function_exists('bfi_flush_image_cache')) {
         bfi_flush_image_cache();
@@ -185,18 +185,18 @@
         add_option('pzarc_css', maybe_serialize($pzarc_css_cache), null, 'no');
         break;
 
-      case 'arc-panels':
-        require_once PZARC_PLUGIN_APP_PATH . '/admin/php/arc-save-process-panels.php';
-        $pzarc_panels = pzarc_merge_defaults($defaults[ '_panels' ], $pzarc_settings);
-        $pzarc_contents .= pzarc_create_panels_css($pzarc_panels, $pzarc_contents, $postid);
-
-        /** Save css to options cache */
-        $pzarc_css_cache = maybe_unserialize(get_option('pzarc_css'));
-        // We have to delete it coz we want to use the 'no' option
-        delete_option('pzarc_css');
-        $pzarc_css_cache[ 'panels' ][ $pzarc_panels[ '_panels_settings_short-name' ] ] = pzarc_compress($pzarc_contents);
-        add_option('pzarc_css', maybe_serialize($pzarc_css_cache), null, 'no');
-        break;
+//      case 'arc-panels':
+//        require_once PZARC_PLUGIN_APP_PATH . '/admin/php/arc-save-process-panels.php';
+//        $pzarc_panels = pzarc_merge_defaults($defaults[ '_panels' ], $pzarc_settings);
+//        $pzarc_contents .= pzarc_create_panels_css($pzarc_panels, $pzarc_contents, $postid);
+//
+//        /** Save css to options cache */
+//        $pzarc_css_cache = maybe_unserialize(get_option('pzarc_css'));
+//        // We have to delete it coz we want to use the 'no' option
+//        delete_option('pzarc_css');
+//        $pzarc_css_cache[ 'panels' ][ $pzarc_panels[ '_panels_settings_short-name' ] ] = pzarc_compress($pzarc_contents);
+//        add_option('pzarc_css', maybe_serialize($pzarc_css_cache), null, 'no');
+//        break;
     }
 
   }

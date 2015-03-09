@@ -10,7 +10,6 @@
    * Class pzarc_Blueprint
    * Purpose: Creates the blueprint object
    */
-
   class arc_Blueprint
   {
 
@@ -28,28 +27,30 @@
 
       self::get_blueprint();
 
-      if (empty($this->blueprint['err_msg'])) {
-        for ($i = 1; $i <= 3; $i++) {
-          if (!empty($this->blueprint[ '_blueprints_section-' . ($i - 1) . '-panel-layout' ])) {
-            $this->blueprint[ 'section_object' ][ $i ] =
-                arc_SectionFactory::create($i,
-                                           $this->blueprint[ 'section' ][ ($i - 1) ],
-                                           $this->blueprint[ '_blueprints_content-source' ],
-                                           $this->blueprint[ '_blueprints_pagination' ],
-                                           $this->blueprint[ '_blueprints_section-' . ($i - 1) . '-layout-mode' ],
-                                           'slick', // Possible Future use
-                                           $this->blueprint[ '_blueprints_section-' . ($i - 1) . '-title' ],
-                                           $this->blueprint[ '_blueprints_section-' . ($i - 1) . '-table-column-titles' ],
-                                           $this->blueprint[ 'section' ][ ($i - 1) ]['section-panel-settings']['_panels_settings_short-name']
+      if (empty($this->blueprint[ 'err_msg' ])) {
+//        for ($i = 1; $i <= 3; $i++) {
+        $i = 1;
 
-                );
+//          if (!empty($this->blueprint[ '_blueprints_section-' . ($i - 1) . '-panel-layout' ])) {
+        $this->blueprint[ 'section_object' ][ $i ] =
+            arc_SectionFactory::create($i,
+                                       $this->blueprint[ 'section' ][ ($i - 1) ],
+                                       $this->blueprint[ '_blueprints_content-source' ],
+                                       $this->blueprint[ '_blueprints_pagination' ],
+                                       $this->blueprint[ '_blueprints_section-' . ($i - 1) . '-layout-mode' ],
+                                       'slick', // Possible Future use
+                                       $this->blueprint[ '_blueprints_section-' . ($i - 1) . '-title' ],
+                                       $this->blueprint[ '_blueprints_section-' . ($i - 1) . '-table-column-titles' ],
+                                       $this->blueprint[ 'section' ][ ($i - 1) ][ 'section-panel-settings' ][ '_panels_settings_short-name' ]
+
+            );
 //            var_dump($i,            $this->blueprint[ 'section_object' ][ $i ]);
-          }
-
-        }
       }
 
-      wp_enqueue_style('pzarc_css_blueprint_'.$this->name);
+      //      }
+      //}
+
+      wp_enqueue_style('pzarc_css_blueprint_' . $this->name);
     }
 
 
@@ -61,7 +62,6 @@
     function get_blueprint()
     {
 
-      $this->blueprint['uid']= 'uid'.time().rand(1000,9999);
       // meed to return a structure for the panels, the content source, the navgation info
       $meta_query_args = array(
           'post_type'    => 'arc-blueprints',
@@ -69,14 +69,21 @@
           'meta_value'   => $this->name,
           'meta_compare' => '='
       );
-      // TODO: Why do we need this still?
+      $bp              = get_posts($meta_query_args);
+      $this->bp        = pzarc_flatten_wpinfo(get_post_meta($bp[ 0 ]->ID));
+      // TODO: Why do we need this still? Yes! Because Redux doesn't store defaults
       pzarc_get_defaults();
-      global $_architect_options,$_architect;
-      if (!empty($_architect_options[ 'architect_enable_query_cache' ]) &&  !current_user_can( 'manage_options' ) && false === ( $blueprint_query = get_transient( 'pzarc_blueprint_query_'.$this->name ) ) ) {
+
+      global $_architect_options, $_architect;
+      $this->blueprint = array_replace_recursive($_architect[ 'defaults' ][ '_blueprints' ], $this->bp);
+
+      $this->blueprint[ 'uid' ] = 'uid' . time() . rand(1000, 9999);
+
+      if (!empty($_architect_options[ 'architect_enable_query_cache' ]) && !current_user_can('manage_options') && false === ($blueprint_query = get_transient('pzarc_blueprint_query_' . $this->name))) {
         // It wasn't there, so regenerate the data and save the transient
         $blueprint_query = new WP_Query($meta_query_args);
-        set_transient( 'pzarc_blueprint_query_'.$this->name, $blueprint_query, PZARC_TRANSIENTS_KEEP );
-      } elseif (current_user_can( 'manage_options' ) || empty($_architect_options[ 'architect_enable_query_cache' ])) {
+        set_transient('pzarc_blueprint_query_' . $this->name, $blueprint_query, PZARC_TRANSIENTS_KEEP);
+      } elseif (current_user_can('manage_options') || empty($_architect_options[ 'architect_enable_query_cache' ])) {
         $blueprint_query = new WP_Query($meta_query_args);
       } else {
         // we need to put comething here!
@@ -87,6 +94,7 @@
       if (!isset($blueprint_query->posts[ 0 ]->ID)) {
 
         $this->blueprint = array('err_msg' => '<p class="message-error">Architect Blueprint <strong>' . $this->name . '</strong> not found</p>');
+
         return $this->blueprint;
 
       }
@@ -112,38 +120,27 @@
 
       }
 
-      /** Add panel settings for Section 1
-      *************************************/
-      $panel_id   = pzarc_convert_name_to_id($this->blueprint[ '_blueprints_section-0-panel-layout' ]);
-      $panel[ 0 ] = get_post_meta($panel_id);
-// TODO: START HERE. WITH PANELS IN BLUEPRINTS, THERE CAN BE NO SECTIONS.YET ONE OF THE BEAUTIIES OF SECTIONS IS WHEN YOU NEED TO CONTINUE. WITHOUT IT YOU'LL NEED TO USE SKIP POSTS
-      $panel[ 1 ] = !$panel[ 0 ] ? array() : pzarc_flatten_wpinfo($panel[ 0 ]);
+//      /** Add panel settings for Section 1
+//      *************************************/
 
-      if (!empty($panel[ 0 ])) {
-        foreach ($_architect[ 'defaults' ][ '_panels' ] as $key => $value) {
+// TODO: START HERE. WITH PANELS IN BLUEPRINTS, THERE CAN BE NO SECTIONS.
+// YET ONE OF THE BEAUTIIES OF SECTIONS IS WHEN YOU NEED TO CONTINUE. WITHOUT IT YOU'LL NEED TO USE SKIP POSTS
+      $panel[ 1 ] = array();
+      foreach ($this->blueprint as $key => $value) {
 
-          if (strpos($key, '_panel') === 0 && !isset($panel[ 1 ][ $key ])) {
-            $panel[ 1 ][ $key ] = maybe_unserialize($value);
-          };
+        if (strpos($key, '_panel') === 0 && !isset($panel[ 1 ][ $key ])) {
+          $panel[ 1 ][ $key ] = maybe_unserialize($value);
+        };
 
-        }
       }
+
       $this->blueprint[ 'section' ][ 0 ]
           = array(
-          'section-enable'         => !empty($panel[ 0 ]),
+          'section-enable'         => true,
           'section-panel-settings' => $panel[ 1 ],
-          'section-rsid'           => 'rsid' . time().rand(1000, 9999),
-          'section-panel-slug'     => $this->blueprint[ '_blueprints_section-0-panel-layout' ],
+          'section-rsid'           => 'rsid' . time() . rand(1000, 9999),
+          'section-panel-slug'     => 'bp-panel',
       );
-
-      if (!$panel[ 0 ]) {
-
-        $this->blueprint = array('err_msg' => '<p class="message-error">No Panel Layout assigned.</p>');
-
-        return $this->blueprint;
-
-      }
-
       unset($panel);
 
       return true;
