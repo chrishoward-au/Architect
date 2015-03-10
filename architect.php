@@ -4,7 +4,7 @@
     Plugin Name: Architect
     Plugin URI: http://architect4wp.com
     Description: Architect is an all-in-one content layout builder. Go beyond the limitations of the theme you use to easily design and build any content layouts for it. Build your own sliders, tabs, sliders, galleries, accordions or tabular with sources such as posts, pages, galleries, and custom content types. Display using shortcodes, widgets, Headway blocks, WP action hooks and template tags, and WP Gallery shortcode. Change themes without needing to rebuild your layouts! Architect is not a page builder; rather, it is a content layout builder. Those content layouts can then be used to help build pages.
-    Version: 1.0.8.8
+    Version: 1.1.0
     Author: Chris Howard
     Author URI: http://pizazzwp.com
     License: GNU GPL v2
@@ -27,7 +27,7 @@
     function __construct()
     {
 
-      define('PZARC_VERSION', '1.0.8.8');
+      define('PZARC_VERSION', '1.1.0');
       define('PZARC_NAME', 'pzarchitect'); // This is also same as the locale
       define('PZARC_FOLDER', '/pizazzwp-architect');
       define('PZARC_CODEX', 'http://architect4wp.com/codex-listings');
@@ -61,6 +61,7 @@
         // Before we go anywhere, make sure dependent plugins are loaded and active.
         require_once PZARC_PLUGIN_APP_PATH . '/shared/architect/php/arc-check-dependencies.php';
         wp_mkdir_p(PZARC_CACHE_PATH);
+        // Why the heck doesn't this work when it's in initialise?
         pzdb('after dependency check');
       }
 
@@ -79,6 +80,7 @@
         add_action('admin_enqueue_scripts', array($this, 'register_admin_scripts'));
         //		add_action( 'init', array( $this, 'admin_initialize' ) );
         require_once PZARC_PLUGIN_APP_PATH . '/arc-admin.php';
+
         pzdb('after admin load');
 
       } else {
@@ -113,7 +115,11 @@
       require_once PZARC_PLUGIN_APP_PATH . '/shared/architect/php/class_arc_blueprint_data.php';
 
       // Load custom custom types
-      require_once PZARC_PLUGIN_APP_PATH . '/shared/architect/php/arc-cpt-panels.php';
+if(is_admin()) {
+  require_once PZARC_PLUGIN_APP_PATH . '/shared/architect/php/arc-cpt-panels.php';
+  self::update();
+
+}
       require_once PZARC_PLUGIN_APP_PATH . '/shared/architect/php/arc-cpt-blueprints.php';
 
       // Load all the builtin post types
@@ -170,9 +176,9 @@
         }
 
       }
-
       TGM_Plugin_Activation::get_instance()->update_dismiss();
 
+ //     self::update();
 
       // This doesn't seem to work properly when upgrading, so might pull it for now, since it's probably better to use what is already there
 //      /** Build CSS cache */
@@ -284,6 +290,23 @@
 
 // end register_plugin_scripts
 
+    private static function update() {
+      update_option( 'architect_db_version', '1.0.9' );
+      $current_db_version = get_option( 'architect_db_version' );
+      $db_updates         = array(
+          '1.1.0' => 'updates/architect-1100.php',
+      );
+
+      foreach ( $db_updates as $version => $updater ) {
+        if ( version_compare( $current_db_version, $version, '<' ) ) {
+          include( $updater );
+          update_option( 'architect_db_version', $version );
+        }
+      }
+
+      update_option( 'architect_db_version', PZARC_VERSION );
+    }
+
 
   }
 
@@ -308,5 +331,7 @@
       }
     }
   }
+
+
 
   pzdb('bottom');

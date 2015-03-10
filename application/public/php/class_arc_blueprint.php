@@ -76,7 +76,6 @@
 
       global $_architect_options, $_architect;
       $this->blueprint = array_replace_recursive($_architect[ 'defaults' ][ '_blueprints' ], $this->bp);
-
       $this->blueprint[ 'uid' ] = 'uid' . time() . rand(1000, 9999);
 
       if (!empty($_architect_options[ 'architect_enable_query_cache' ]) && !current_user_can('manage_options') && false === ($blueprint_query = get_transient('pzarc_blueprint_query_' . $this->name))) {

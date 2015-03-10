@@ -29,6 +29,13 @@
 
   }
 
+  /**
+   * @param $tax
+   * @param $prefix
+   * @param $suffix
+   * @param $separator
+   * @return string
+   */
   function pzarc_tax_string_list($tax, $prefix, $suffix, $separator)
   {
     $list  = '';
@@ -43,6 +50,10 @@
     return $list;
   }
 
+  /**
+   * @param $array
+   * @return array
+   */
   function pzarc_squish($array)
   {
     $return_array = array();
@@ -53,7 +64,12 @@
     return $return_array;
   }
 
-
+  /**
+   * @param $start
+   * @param $end
+   * @param $source
+   * @return mixed
+   */
   function pzarc_get_string($start, $end, $source)
   {
 
@@ -63,6 +79,13 @@
 
   }
 
+  /**
+   * @param        $id
+   * @param        $selectors
+   * @param string $defaults
+   * @param array  $exclude
+   * @return array
+   */
   function pzarc_redux_font($id, $selectors, $defaults = '', $exclude = array())
   {
 //var_dump($exclude,in_array('font-family',$exclude),in_array('color',$exclude),!array_search('font-family',$exclude));
@@ -106,6 +129,12 @@
   }
 
 
+  /**
+   * @param       $id
+   * @param null  $selectors
+   * @param array $defaults
+   * @return array
+   */
   function pzarc_redux_bg($id, $selectors = null, $defaults = array('color' => ''))
   {
     return array(
@@ -125,6 +154,12 @@
     );
   }
 
+  /**
+   * @param       $id
+   * @param       $selectors
+   * @param array $defaults
+   * @return array
+   */
   function pzarc_redux_padding($id, $selectors, $defaults = array('units' => '%'))
   {
 //    var_dump($id, $defaults);
@@ -140,6 +175,13 @@
 
   }
 
+  /**
+   * @param        $id
+   * @param        $selectors
+   * @param array  $defaults
+   * @param string $limits
+   * @return array
+   */
   function pzarc_redux_margin($id, $selectors, $defaults = array('units' => '%'), $limits = 'tblr')
   {
     return array(
@@ -158,6 +200,12 @@
 
   }
 
+  /**
+   * @param       $id
+   * @param       $selectors
+   * @param array $defaults
+   * @return array
+   */
   function pzarc_redux_links($id, $selectors, $defaults = array())
   {
     return
@@ -288,7 +336,6 @@
         }
       }
 
-      unset($_architect[ 'defaults' ][ 'blueprints' ]);
 //    }
 
       /**
@@ -316,7 +363,7 @@
               if (is_array($fields)) {
                 foreach ($fields as $key4 => $field) {
                   if (isset($field[ 'id' ])) {
-                    $_architect[ 'defaults' ][ '_panels' ][ $field[ 'id' ] ] = (empty($field[ 'default' ]) ? '' : $field[ 'default' ]);
+                    $_architect[ 'defaults' ][ '_blueprints' ][ $field[ 'id' ] ] = (empty($field[ 'default' ]) ? '' : $field[ 'default' ]);
                   }
                 }
               }
@@ -324,8 +371,12 @@
           }
         }
       }
-      unset($_architect[ 'defaults' ][ 'panels' ]);
       pzdb('bottom get defaults');
+
+      //  Unset the temporary blueprints field
+      unset($_architect[ 'defaults' ][ 'blueprints' ]);
+      //  Unset the temporary panels field
+      unset($_architect[ 'defaults' ][ 'panels' ]);
     }
   }
 
@@ -348,6 +399,11 @@
 
   // For testing actions
 //add_action('arc_after_title','pzarc_action_test',10,3);
+  /**
+   * @param $component
+   * @param $panelno
+   * @param $postid
+   */
   function pzarc_action_test($component, $panelno, $postid)
   {
     echo '<h2>Action run:' . current_action() . '</h2>';
@@ -356,12 +412,23 @@
 
   // For testing filters
 //add_filter('arc_filter_excerpt','pzarc_filter_test',10,2);
+  /**
+   * @param $stuff
+   * @param $postid
+   * @return string
+   */
   function pzarc_filter_test($stuff, $postid)
   {
     return $stuff . '--more stuff added by filter--' . $postid;
   }
 
   //add_filter('arc_filter_shortcode', 'pzarc_scf_test', 10, 3);
+  /**
+   * @param $content
+   * @param $blueprint
+   * @param $overrides
+   * @return string
+   */
   function pzarc_scf_test($content, $blueprint, $overrides)
   {
     return '<div class="pzarc-shortcode-debug" style="background:#fff4f4;border:solid 1px #c99;box-sizing: border-box;"><h3>Start shortcode blueprint ' . $blueprint . ' with ' . count($overrides) . ' overrides</h3>' . $content . '<h3>End blueprint ' . $blueprint . '</h3>';
@@ -379,6 +446,9 @@
     return (is_array($var) ? $var : explode($delimiter, (string)$var));
   }
 
+  /**
+   * @return array
+   */
   function pzarc_fields()
   {
     $arg_list = func_get_args();
@@ -397,6 +467,9 @@
   }
 
   add_action('xloop_start', 'pzarc_top_of_loop', 10, 1);
+  /**
+   * @param $the_query
+   */
   function pzarc_top_of_loop(&$the_query)
   {
 
@@ -407,6 +480,9 @@
   }
 
   add_action('xloop_end', 'pzarc_bottom_of_loop');
+  /**
+   *
+   */
   function pzarc_bottom_of_loop()
   {
     if (is_main_query()) {
@@ -414,7 +490,9 @@
     }
   }
 
-
+  /**
+   * @return array|null
+   */
   function pzarc_get_gp_galleries()
   {
     $post_types = get_post_types();
@@ -436,6 +514,9 @@
     return $results;
   }
 
+  /**
+   * @return array
+   */
   function pzarc_get_wp_galleries()
   {
 
@@ -460,6 +541,9 @@
 
   }
 
+  /**
+   * @return array
+   */
   function pzarc_get_wp_post_images()
   {
     $results = array('todo' => 'TODO!!!');
@@ -467,6 +551,11 @@
     return $results;
   }
 
+  /**
+   * @param bool $inc_all
+   * @param int  $min_level
+   * @return array
+   */
   function pzarc_get_authors($inc_all = true, $min_level = 1)
   {
     // user_level 1 = contributor
@@ -496,6 +585,11 @@
     return $return;
   }
 
+  /**
+   * @param string $pzarc_post_type
+   * @param bool   $use_shortname
+   * @return array
+   */
   function pzarc_get_posts_in_post_type($pzarc_post_type = 'arc-blueprints', $use_shortname = false)
   {
 //    // No point doing this if not on a screen that can use it.
@@ -540,6 +634,10 @@
   }
 
   // TODO: This is a sorta duplicate of pzarc_get_posts_in_type. Fix it one day.
+  /**
+   * @param bool $inc_post_id
+   * @return array
+   */
   function pzarc_get_blueprints($inc_post_id = false)
   {
     $query_options    = array(
@@ -563,6 +661,10 @@
     return $pzarc_return;
   }
 
+  /**
+   * @param $source_arr
+   * @param $selected
+   */
   function pzarc_array_to_options_list($source_arr, $selected)
   {
     foreach ($source_arr as $key => $value) {
@@ -570,6 +672,9 @@
     }
   }
 
+  /**
+   * @return array
+   */
   function pzarc_get_custom_fields()
   {
     global $wpdb;
@@ -641,7 +746,10 @@
     return $pzep_custom_fields;
   }
 
-
+  /**
+   * @param $text
+   * @param $type
+   */
   function pzarc_msg($text, $type)
   {
     echo '<div class="message-' . $type . '">' . $text . '</div>';
@@ -670,6 +778,11 @@
     return $array_out;
   }
 
+  /**
+   * @param $post_id
+   * @param $meta_string
+   * @return array
+   */
   function pzarc_get_post_terms($post_id, $meta_string)
   {
     $post_tax_terms = array();
@@ -708,6 +821,10 @@
     return $post_id;
   }
 
+  /**
+   * @param $vcode
+   * @return false|string
+   */
   function pzarc_process_video($vcode)
   {
 
@@ -765,12 +882,19 @@
   }
 
   add_shortcode('pztestsc', 'pzarc_test_shortcode');
+  /**
+   * @param $atts
+   * @return string
+   */
   function pzarc_test_shortcode($atts)
   {
     return 'Shortcode test';
   }
 
-
+  /**
+   * @param $values
+   * @return array
+   */
   function pzarc_maths_sum($values)
   {
     $result = 0;
@@ -797,6 +921,12 @@
     return array('result' => $result, 'type' => $vtype);
   }
 
+  /**
+   * @param $atts
+   * @param $rawemail
+   * @param $tag
+   * @return string
+   */
   function pzarc_mail_encode($atts, $rawemail, $tag)
   {
     $s_email     = sanitize_email($rawemail);

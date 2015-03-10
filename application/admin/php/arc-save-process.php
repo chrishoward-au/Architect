@@ -82,8 +82,12 @@
         // First off clear the options css cache
         $pzarc_settings = get_post_meta($postid);
         $pzarc_settings = pzarc_flatten_wpinfo($pzarc_settings);
+        pzarc_get_defaults();
+        global  $_architect;
+        $pzarc_bp_settings = array_replace_recursive($_architect[ 'defaults' ][ '_blueprints' ], $pzarc_settings);
+
         pzdb('save process pre create css');
-        pzarc_create_css($postid, $post->post_type, $pzarc_settings);
+        pzarc_create_css($postid, $post->post_type, $pzarc_bp_settings);
       } else {
         // get the blueprints and panels and step thru each recreating css
         delete_option('pzarc_css');
@@ -99,8 +103,12 @@
           $postid         = $pzarc_blueprint->ID;
           $pzarc_settings = get_post_meta($postid);
           $pzarc_settings = pzarc_flatten_wpinfo($pzarc_settings);
+          pzarc_get_defaults();
+          global  $_architect;
+          $pzarc_bp_settings = array_replace_recursive($_architect[ 'defaults' ][ '_blueprints' ], $pzarc_settings);
 
-          pzarc_create_css($postid, $pzarc_blueprint->post_type, $pzarc_settings);
+
+          pzarc_create_css($postid, $pzarc_blueprint->post_type, $pzarc_bp_settings);
         }
       }
 

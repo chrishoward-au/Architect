@@ -10,7 +10,7 @@
     $pzarc_contents .= '/* This is the css for panel ' . $pzarc_panels[ '_panels_settings_short-name' ] . '*/' . $nl;
 
     // Step thru each field looking for ones to format
-    $class_prefix = 'body.pzarchitect .pzarc-panel_' . $pzarc_panels[ '_panels_settings_short-name' ];
+    $class_prefix = 'body.pzarchitect .pzarc-panel_legacy_panel_class';
 
     $toshow      = json_decode($pzarc_panels[ '_panels_design_preview' ], true);
     $sum_to_show = 0;
