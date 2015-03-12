@@ -19,6 +19,7 @@ jQuery( document ).ready( function ()
    */
   function pzarc_update_status( cell_layout )
   {
+    console.log(event.timeStamp);
     var showing = "";
     jQuery.each( cell_layout, function ( index, value )
     {
@@ -47,6 +48,7 @@ jQuery( document ).ready( function ()
       features_row.show();
 
     }
+    console.log(event.timeStamp);
 
   }
 
@@ -60,9 +62,9 @@ jQuery( document ).ready( function ()
 
 
   // Get the current order and widths from the hidden text field attached to preview layout box
-  var cell_layout = jQuery.parseJSON( jQuery( 'input#_panels_design_preview-text' ).val() );
 
-  pzarc_update_status( cell_layout );
+  var initial_cell_layout = get_cell_layout();
+  pzarc_update_status(initial_cell_layout );
   //jQuery( 'input[name="_architect[_panels_design_thumb-position]"]' ).on( 'change', function ()
   //{
   //    var buttonClicked = this.value;
@@ -74,7 +76,7 @@ jQuery( document ).ready( function ()
   /** FEATURE LOCATION **/
   jQuery( 'input[name="_architect[_panels_design_feature-location]"]' ).on( 'click', function ( e )
   {
-    var cell_layout = jQuery.parseJSON( jQuery( 'input#_panels_design_preview-text' ).val() );
+    var cell_layout = get_cell_layout();
     //jQuery( 'fieldset#_architect-_panels_design_components-to-show input#_panels_design_components-to-show-buttonsetimage' ).attr( 'checked', 'checked' );
     //jQuery( 'fieldset#_architect-_panels_design_components-to-show label[for="_panels_design_components-to-show-buttonsetimage"]' ).addClass( 'ui-state-active' );
     pzarc_update_feature( cell_layout );
@@ -84,7 +86,7 @@ jQuery( document ).ready( function ()
   /** FEATURE IN **/
   jQuery( '#_architect-_panels_design_feature-in' ).on('click',function ( e )
   {
-    var cell_layout = jQuery.parseJSON( jQuery( 'input#_panels_design_preview-text' ).val() );
+    var cell_layout = get_cell_layout();
     //jQuery( 'fieldset#_architect-_panels_design_components-to-show input#_panels_design_components-to-show-buttonsetimage' ).attr( 'checked', 'checked' );
     //jQuery( 'fieldset#_architect-_panels_design_components-to-show label[for="_panels_design_components-to-show-buttonsetimage"]' ).addClass( 'ui-state-active' );
     pzarc_update_feature( cell_layout );
@@ -140,7 +142,7 @@ jQuery( document ).ready( function ()
         }
         break;
     }
-    var cell_layout = jQuery.parseJSON( jQuery( 'input#_panels_design_preview-text' ).val() );
+    var cell_layout = get_cell_layout();
     pzarc_update_component_visibility( cell_layout, e );
     pzarc_update_tabs_to_show( e );
   } );
@@ -150,7 +152,7 @@ jQuery( document ).ready( function ()
   /** COMPONENTS POSITION **/
   jQuery( 'input[name="_architect[_panels_design_components-position]"]' ).on( 'click', function ()
   {
-    var cell_layout = jQuery.parseJSON( jQuery( 'input#_panels_design_preview-text' ).val() );
+    var cell_layout = get_cell_layout();
     pzarc_update_component_location( cell_layout );
     pzarc_reposition_components( cell_layout, jQuery( 'fieldset#_architect-_panels_design_components-widths .redux-slider-label' ) );
     pzarc_update_feature( cell_layout );
@@ -160,7 +162,7 @@ jQuery( document ).ready( function ()
   /** PANEL HEIGHT TYPE **/
   jQuery( 'input[name="_architect[panels_settingds_panel-height-type]"]' ).on( 'click', function ()
   {
-    // var cell_layout = jQuery.parseJSON( jQuery( 'input#_panels_design_preview-text' ).val() );
+    // var cell_layout = get_cell_layout();
   } );
 
 
@@ -168,7 +170,7 @@ jQuery( document ).ready( function ()
   /** COMPONENTS WIDTH**/
   jQuery( 'fieldset#_architect-_panels_design_components-widths .redux-slider-label' ).on( "DOMSubtreeModified", function ()
   {
-    var cell_layout = jQuery.parseJSON( jQuery( 'input#_panels_design_preview-text' ).val() );
+    var cell_layout = get_cell_layout();
     pzarc_reposition_components( cell_layout, this );
   } );
 
@@ -176,7 +178,7 @@ jQuery( document ).ready( function ()
   /** COMPONENTS NUDGE X **/
   jQuery( 'fieldset#_architect-_panels_design_components-nudge-x .redux-slider-label' ).on( "DOMSubtreeModified", function ()
   {
-    var cell_layout = jQuery.parseJSON( jQuery( 'input#_panels_design_preview-text' ).val() );
+    var cell_layout = get_cell_layout();
     pzarc_update_components_nudge( cell_layout );
   } );
 
@@ -184,12 +186,12 @@ jQuery( document ).ready( function ()
   /** COMPONENTS NUDGE Y **/
   jQuery( 'fieldset#_architect-_panels_design_components-nudge-y  .redux-slider-label' ).on( "DOMSubtreeModified", function ()
   {
-    var cell_layout = jQuery.parseJSON( jQuery( 'input#_panels_design_preview-text' ).val() );
+    var cell_layout = get_cell_layout();
     pzarc_update_components_nudge( cell_layout );
   } );
 
   /************************************************************************************************************************
-   * sort
+   * SORT
    */
   jQuery( ".pzarc-dropzone .pzarc-content-area" ).sortable( {
     cursor: "move",
@@ -203,7 +205,7 @@ jQuery( document ).ready( function ()
     },
     update: function ()
     {
-      var cell_layout = jQuery.parseJSON( jQuery( 'input#_panels_design_preview-text' ).val() );
+      var cell_layout = get_cell_layout();
       cell_layout = pzarc_resort_components( cell_layout );
       pzarc_update_status( cell_layout );
     },
@@ -235,19 +237,27 @@ jQuery( document ).ready( function ()
       element_html.custom2 = '<span class="pzarc-draggable pzarc-draggable-custom2 pzarc-draggable-meta"  title= "Custom field 2" data-idcode=custom2 style="font-size:11px;"><span>Custom content group 2</span></span>';
       element_html.custom3 = '<span class="pzarc-draggable pzarc-draggable-custom3 pzarc-draggable-meta"  title= "Custom field 3" data-idcode=custom3 style="font-size:11px;"><span>Custom content group 3</span></span>';
 
-      var cell_layout = jQuery.parseJSON( jQuery( 'input#_panels_design_preview-text' ).val() );
+      var cells_layout = get_cell_layout();
 
       jQuery( ".pzarc-content-area.sortable" ).html( '' );
-      jQuery.each( cell_layout, function ( index )
+      jQuery.each( cells_layout, function ( index )
       {
         jQuery( ".pzarc-content-area.sortable" ).append( element_html[index] );
       } );
+      console.log(event.timeStamp);
+      var cell_layout = get_cell_layout();
+      console.log(event.timeStamp);
       pzarc_update_component_location( cell_layout );
-      pzarc_update_components_container_width( cell_layout );
-      pzarc_update_components_nudge( cell_layout );
+      console.log(event.timeStamp);
+      pzarc_update_components_container_width(  );
+      console.log(event.timeStamp);
+      pzarc_update_components_nudge(  );
+      console.log(event.timeStamp);
       pzarc_update_component_visibility( cell_layout );
+      console.log(event.timeStamp);
 //            pzarc_update_feature( cell_layout );
       pzarc_update_status( cell_layout );
+      console.log(event.timeStamp);
     }
   } );
 
@@ -279,7 +289,7 @@ jQuery( document ).ready( function ()
     var zone = jQuery( t ).data( "idcode" );
     var components_width = jQuery( '.pzarc-content-area' ).width();
     var new_width = Math.floor( (jQuery( t ).width() / components_width) * 100 );
-    var cell_layout = jQuery.parseJSON( jQuery( 'input#_panels_design_preview-text' ).val() );
+    var cell_layout = get_cell_layout();
     cell_layout = pzarc_update_component_width( cell_layout, zone, new_width );
     pzarc_update_status( cell_layout );
     // Resizable makes it a px. Reset it to %
@@ -327,9 +337,13 @@ jQuery( document ).ready( function ()
         }
       }
     } );
+    console.log(event.timeStamp);
     pzarc_update_feature_type( jQuery( 'input[name="_architect[_panels_settings_feature-type]"]:checked' ).get( 0 ).value );
+    console.log(event.timeStamp);
     pzarc_update_feature( cell_layout );
+    console.log(event.timeStamp);
     pzarc_update_status( cell_layout );
+    console.log(event.timeStamp);
     return cell_layout;
   }
 
@@ -354,6 +368,7 @@ jQuery( document ).ready( function ()
     // Because this function is called in different ways,we reget the value of feature location
     jQuery( 'input[name="_architect[_panels_design_feature-location]"]' ).each( function ()
     {
+      console.log(event.timeStamp);
       if ( this.checked )
       {
         featureLocation = this.value;
@@ -499,6 +514,7 @@ jQuery( document ).ready( function ()
         break;
     }
     pzarc_update_status( cell_layout );
+    console.log(event.timeStamp);
   }
 
   function pzarc_update_component_location( cell_layout )
@@ -552,6 +568,7 @@ jQuery( document ).ready( function ()
         break;
     }
     pzarc_update_status( cell_layout );
+    console.log(event.timeStamp);
   }
 
   function pzarc_update_components_container_width()
@@ -601,6 +618,7 @@ jQuery( document ).ready( function ()
     {
       jQuery( '.pzarc-content-area' ).css( 'marginLeft', nudgexy[0] + '%' ).css( 'marginBottom', nudgexy[1] + '%' );
     }
+    console.log(event.timeStamp);
   }
 
 
@@ -655,6 +673,7 @@ jQuery( document ).ready( function ()
 
       }
     } );
+    console.log(event.timeStamp);
 
   }
 
@@ -675,6 +694,7 @@ jQuery( document ).ready( function ()
         this.src = this.src.replace( /sample-image.jpg/g, "sample-video.jpg" );
       }
     } );
+    console.log(event.timeStamp);
   }
 
   function pzarc_reposition_components( cell_layout, t )
@@ -721,8 +741,15 @@ jQuery( document ).ready( function ()
       jQuery( '.pzarc-content-area' ).css( 'position', 'absolute' );
 
     }
-    console.log( 'check' )
+    console.log(event.timeStamp);
 
+  }
+  function get_cell_layout() {
+    console.log(event.timeStamp);
+    var cell_layout_serialized = jQuery( '#_panels_design_preview-text' ).val();
+    var cell_layout = jQuery.parseJSON( cell_layout_serialized );
+    console.log(event.timeStamp);
+    return cell_layout;
   }
 
 } )

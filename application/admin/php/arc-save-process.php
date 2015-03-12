@@ -218,43 +218,44 @@
   {
     // TODO: Build support for Google fonts and backup
     $filler = '';
-    foreach ($properties as $k => $v) {
-      // Need to only process specific properties
-      // This is to add quoties around fonts that don't have them
-      switch ($k) {
-        case (!empty($v) && $k == 'font-family'):
-          $ff    = explode(', ', $v);
-          $fonts = '';
-          foreach ($ff as $key => $font) {
-            if (strpos($font, ' ') > 0 && strpos($font, '\'') === false) {
-              $fonts .= '"' . $font . '"';
-            } else {
-              $fonts .= $font;
-            }
+    if (!empty($properties) && is_array($properties)) {
+      foreach ($properties as $k => $v) {
+        // Need to only process specific properties
+        // This is to add quoties around fonts that don't have them
+        switch ($k) {
+          case (!empty($v) && $k == 'font-family'):
+            $ff    = explode(', ', $v);
+            $fonts = '';
+            foreach ($ff as $key => $font) {
+              if (strpos($font, ' ') > 0 && strpos($font, '\'') === false) {
+                $fonts .= '"' . $font . '"';
+              } else {
+                $fonts .= $font;
+              }
 
-            if ($key != count($ff) - 1) {
-              $fonts .= ', ';
+              if ($key != count($ff) - 1) {
+                $fonts .= ', ';
+              }
             }
-          }
-          $filler .= $k . ':' . $fonts . ';';
-          break;
-        case (!empty($v) && $k == 'font-style'):
-        case (!empty($v) && $v !== 'px' && $k == 'font-size'):
-        case (!empty($v) && $k == 'font-variant'):
-        case (!empty($v) && $k == 'text-align'):
-        case (!empty($v) && $k == 'font-weight'):
-        case (!empty($v) && $k == 'text-transform'):
-        case (!empty($v) && $k == 'text-decoration'):
-        case (!empty($v) && $v !== 'px' && $k == 'line-height'):
-        case (!empty($v) && $v !== 'px' && $k == 'word-spacing'):
-        case (!empty($v) && $v !== 'px' && $k == 'letter-spacing'):
-        case (!empty($v) && $k == 'color'):
-          $filler .= $k . ':' . $v . ';';
-          break;
+            $filler .= $k . ':' . $fonts . ';';
+            break;
+          case (!empty($v) && $k == 'font-style'):
+          case (!empty($v) && $v !== 'px' && $k == 'font-size'):
+          case (!empty($v) && $k == 'font-variant'):
+          case (!empty($v) && $k == 'text-align'):
+          case (!empty($v) && $k == 'font-weight'):
+          case (!empty($v) && $k == 'text-transform'):
+          case (!empty($v) && $k == 'text-decoration'):
+          case (!empty($v) && $v !== 'px' && $k == 'line-height'):
+          case (!empty($v) && $v !== 'px' && $k == 'word-spacing'):
+          case (!empty($v) && $v !== 'px' && $k == 'letter-spacing'):
+          case (!empty($v) && $k == 'color'):
+            $filler .= $k . ':' . $v . ';';
+            break;
 
+        }
       }
     }
-
     return (!empty($filler) ? $classes . '{' . $filler . '}' : null);
   }
 
@@ -265,17 +266,19 @@
   function pzarc_process_spacing($properties)
   {
     $spacing_css = '';
-    foreach ($properties as $key => $value) {
-      // Only process values!
-      if ($key != 'units') {
-        $iszero   = ($value === 0 || $value === '0');
-        $isnotset = $value === '';
-        $propval  = $key . ':' . $value;
-        $propzero = $key . ':0;';
-        $spacing_css .= ($iszero ? $propzero : ($isnotset ? null : $propval . ';'));
+
+    if (!empty($properties) && is_array($properties)) {
+      foreach ($properties as $key => $value) {
+        // Only process values!
+        if ($key != 'units') {
+          $iszero   = ($value === 0 || $value === '0');
+          $isnotset = $value === '';
+          $propval  = $key . ':' . $value;
+          $propzero = $key . ':0;';
+          $spacing_css .= ($iszero ? $propzero : ($isnotset ? null : $propval . ';'));
+        }
       }
     }
-
     return $spacing_css;
   }
 
@@ -287,22 +290,27 @@
   function pzarc_process_borders($classes, $properties)
   {
     $borders_css = '';
+    if (!empty($properties)) {
 
-    $borders_css .= ($properties[ 'border-top' ] !== '' ? 'border-top:' . $properties[ 'border-top' ] : '');
-    $borders_css .= ($properties[ 'border-top' ] !== '' && $properties[ 'border-top' ] !== '0' ? ' ' . $properties[ 'border-style' ] . ' ' . $properties[ 'border-color' ] . ';' : ';');
-    $borders_css .= ($properties[ 'border-right' ] !== '' ? 'border-right:' . $properties[ 'border-right' ] : '');
-    $borders_css .= ($properties[ 'border-right' ] !== '' && $properties[ 'border-right' ] !== '0' ? ' ' . $properties[ 'border-style' ] . ' ' . $properties[ 'border-color' ] . ';' : ';');
-    $borders_css .= ($properties[ 'border-bottom' ] !== '' ? 'border-bottom:' . $properties[ 'border-bottom' ] : '');
-    $borders_css .= ($properties[ 'border-bottom' ] !== '' && $properties[ 'border-bottom' ] !== '0' ? ' ' . $properties[ 'border-style' ] . ' ' . $properties[ 'border-color' ] . ';' : ';');
-    $borders_css .= ($properties[ 'border-left' ] !== '' ? 'border-left:' . $properties[ 'border-left' ] : '');
-    $borders_css .= ($properties[ 'border-left' ] !== '' && $properties[ 'border-left' ] !== '0' ? ' ' . $properties[ 'border-style' ] . ' ' . $properties[ 'border-color' ] . ';' : ';');
+      $borders_css .= ($properties[ 'border-top' ] !== '' ? 'border-top:' . $properties[ 'border-top' ] : '');
+      $borders_css .= ($properties[ 'border-top' ] !== '' && $properties[ 'border-top' ] !== '0' ? ' ' . $properties[ 'border-style' ] . ' ' . $properties[ 'border-color' ] . ';' : ';');
+      $borders_css .= ($properties[ 'border-right' ] !== '' ? 'border-right:' . $properties[ 'border-right' ] : '');
+      $borders_css .= ($properties[ 'border-right' ] !== '' && $properties[ 'border-right' ] !== '0' ? ' ' . $properties[ 'border-style' ] . ' ' . $properties[ 'border-color' ] . ';' : ';');
+      $borders_css .= ($properties[ 'border-bottom' ] !== '' ? 'border-bottom:' . $properties[ 'border-bottom' ] : '');
+      $borders_css .= ($properties[ 'border-bottom' ] !== '' && $properties[ 'border-bottom' ] !== '0' ? ' ' . $properties[ 'border-style' ] . ' ' . $properties[ 'border-color' ] . ';' : ';');
+      $borders_css .= ($properties[ 'border-left' ] !== '' ? 'border-left:' . $properties[ 'border-left' ] : '');
+      $borders_css .= ($properties[ 'border-left' ] !== '' && $properties[ 'border-left' ] !== '0' ? ' ' . $properties[ 'border-style' ] . ' ' . $properties[ 'border-color' ] . ';' : ';');
 
-    return $classes . '{' . $borders_css . '}';
+      return $classes . '{' . $borders_css . '}';
+    } else {
+      return null;
+    }
   }
 
   function pzarc_process_border_radius($classes, $properties)
   {
     $borders_css = '';
+    if (!empty($properties)) {
 
     $borders_css .= (!empty($properties[ 'border-top' ]) ? 'border-top-left-radius:' . $properties[ 'border-top' ] . ';' : '');
     $borders_css .= (!empty($properties[ 'border-right' ]) ? 'border-top-right-radius:' . $properties[ 'border-right' ] . ';' : '');
@@ -310,6 +318,9 @@
     $borders_css .= (!empty($properties[ 'border-left' ]) ? 'border-bottom-right-radius:' . $properties[ 'border-left' ] . ';' : '');
 
     return $classes . '{' . $borders_css . '}';
+    } else {
+      return null;
+    }
   }
 
   /**
@@ -321,6 +332,7 @@
   {
     // TODO: Should Default use inherit?
     $links_css = '';
+    if (!empty($properties)) {
     if (!empty($properties[ 'regular' ]) || strtolower($properties[ 'regular-deco' ]) !== 'default') {
       $links_css .= $classes . ' a {';
       $links_css .= (!empty($properties[ 'regular' ]) ? 'color:' . $properties[ 'regular' ] . ';' : '');
@@ -350,6 +362,9 @@
     }
 
     return $links_css;
+    } else {
+      return null;
+    }
   }
 
   function pzarc_process_background($classes, $properties)
@@ -357,6 +372,7 @@
     // Currently not used
     $pzarc_bg_css = '';
     // Could come from one of two methods
+    if (!empty($properties)) {
     if (!empty($properties[ 'color' ])) {
       $pzarc_bg_css .= $classes . ' {background-color:' . $properties[ 'color' ] . ';}';
     }
@@ -365,6 +381,9 @@
     }
 
     return $pzarc_bg_css;
+    } else {
+      return null;
+    }
   }
 
 

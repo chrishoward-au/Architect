@@ -24,8 +24,8 @@
       add_action('manage_arc-blueprints_posts_custom_column', array($this, 'add_blueprint_column_content'), 10, 2);
 
       add_action("redux/metaboxes/$this->redux_opt_name/boxes", array($this, 'pzarc_blueprint_tabs_mb'), 10, 1);
-      add_action("redux/metaboxes/$this->redux_opt_name/boxes", array($this,
-                                                                      'pzarc_blueprint_presets'), 10, 1);
+//      add_action("redux/metaboxes/$this->redux_opt_name/boxes", array($this,
+//                                                                      'pzarc_blueprint_presets'), 10, 1);
       add_action("redux/metaboxes/$this->redux_opt_name/boxes", array($this,
                                                                       'pzarc_blueprint_layout_general_mb'), 10, 1);
       add_action("redux/metaboxes/$this->redux_opt_name/boxes", array($this, 'pzarc_blueprint_layout_mb'), 10, 1);
@@ -90,8 +90,8 @@
           '_blueprints_short-name'     => __('Blueprint short name', 'pzarchitect'),
           '_blueprints_description'    => __('Description', 'pzarchitect'),
           '_blueprints_content-source' => __('Content source', 'pzarchitect'),
-          'layout'                     => __('Layout type', 'pzarchitect'),
-          'id'                         => __('ID', 'pzarchitect'),
+          'layout'                     => __('Type', 'pzarchitect'),
+//          'id'                         => __('ID', 'pzarchitect'),
       );
 
       return array_merge($pzarc_front, $pzarc_insert, $pzarc_back);
@@ -172,22 +172,22 @@
             array(
                 'id'      => $prefix . 'tabs',
                 'type'    => 'tabbed',
-                'desc'    => '
-                <p style="color:#ff5500;">' . __('MAKE A METHOD TO LOAD A PRESET. IT WOULD WORK JUST LIKE DUPLICATE.', 'pzarchitect') . '</p>Blueprints bring everything together - the styling, layout and content - and tell WordPress what and how to show it on the page.',
-                //                '<p>&bull;&nbsp;' . __('<strong style="color:#0074A2;"><em>Blueprint Layout</em></strong> is where you choose which Panel design to use for posts or page, and how you want to lay out those Panels.', 'pzarchitect') . '</p>
-                //                 <p>&bull;&nbsp;' . __('<strong style="color:#0074A2;"><em>Panels Content</em></strong> is where you select the specific posts or pages to display within this Blueprint\'s Panels. <strong>The one content selection is spread across all sections</strong>', 'pzarchitect') . '</p>
-                //                 <p>&bull;&nbsp;' . __('Blueprints by default have limited styling. Use <strong style="color:#0074A2;"><em>Blueprint Styling</em></strong> to refine the styling of the Blueprint to match your theme.', 'pzarchitect') . '</p>
+//                'desc'    => '
+////                <p style="color:#ff5500;">' . __('MAKE A METHOD TO LOAD A PRESET. IT WOULD WORK JUST LIKE DUPLICATE.', 'pzarchitect') . '</p>Blueprints bring everything together - the styling, layout and content - and tell WordPress what and how to show it on the page.',
+//                //                '<p>&bull;&nbsp;' . __('<strong style="color:#0074A2;"><em>Blueprint Layout</em></strong> is where you choose which Panel design to use for posts or page, and how you want to lay out those Panels.', 'pzarchitect') . '</p>
+//                //                 <p>&bull;&nbsp;' . __('<strong style="color:#0074A2;"><em>Panels Content</em></strong> is where you select the specific posts or pages to display within this Blueprint\'s Panels. <strong>The one content selection is spread across all sections</strong>', 'pzarchitect') . '</p>
+//                //                 <p>&bull;&nbsp;' . __('Blueprints by default have limited styling. Use <strong style="color:#0074A2;"><em>Blueprint Styling</em></strong> to refine the styling of the Blueprint to match your theme.', 'pzarchitect') . '</p>
 
                 'options' => array(
-                    'presets'         => '<span>Presets</span>',
-                    'layout'          => '<span><span class="stepno">1</span> Blueprint Layout</span>',
+//                    'presets'         => '<span>Presets</span>',
+                    'layout'          => '<span><span class="stepno">1</span> Blueprint Design</span>',
                     'content'         => '<span><span class="stepno">2</span> Content Selection</span>',
                     'panels'          => '<span><span class="stepno">3</span> Content Layout</span>',
                     'styling'         => '<span><span class="stepno">4</span> Blueprint Styling</span>',
                     'content_styling' => '<span><span class="stepno">5</span> Content Styling</span>'
                 ),
                 'targets' => array(
-                    'presets'         => array('presets'),
+//                    'presets'         => array('presets'),
                     'layout'          => array('layout-settings'),
                     'content'         => array('content-selections'),
                     'panels'          => array('panels-design'),
@@ -232,7 +232,7 @@
                 'id'      => $prefix . 'tabs',
                 'type'    => 'tabbed',
                 'options' => array(
-                    'layout'  => '<span><span class="stepno">1</span> Blueprint Layout</span>',
+                    'layout'  => '<span><span class="stepno">1</span> Blueprint Design</span>',
                     'content' => '<span><span class="stepno">2</span> Content Selection</span>',
                     'panels'  => '<span><span class="stepno">3</span> Content Design</span>',
                 ),
@@ -366,14 +366,6 @@
                   'default' => 'center',
               ),
               array(
-                  'title'   => 'Page title',
-                  'id'      => $prefix . 'page-title',
-                  'type'    => 'switch',
-                  'on'      => 'Yes',
-                  'off'     => 'No',
-                  'default' => false
-              ),
-              array(
                   'title'   => __('Show advanced settings', 'pzarchitect'),
                   'id'      => 'show_advanced',
                   'type'    => 'switch',
@@ -381,6 +373,14 @@
                   'default' => $_architect_options[ 'architect_show_advanced' ],
                   'on'      => __('Yes', 'pzarchitect'),
                   'off'     => __('No', 'pzarchitect')
+              ),
+              array(
+                  'title'   => 'Page title',
+                  'id'      => $prefix . 'page-title',
+                  'type'    => 'switch',
+                  'on'      => 'Yes',
+                  'off'     => 'No',
+                  'default' => false
               ),
               array(
                   'title'    => __('Panel Height Type', 'pzarchitect'),
@@ -529,33 +529,33 @@
       $desc[ 1 ]   = 'Grid/Single, Masonry, Tabular, Accordion';
       for ($i = 0; $i < 1; $i++) {
         $sections[ '_section' . ($i + 1) ] = array(
-            'title'      => __('Section ' . ($i + 1), 'pzarchitect'),
+            'title'      => __('Design', 'pzarchitect'),
             'show_title' => true,
             'icon_class' => 'icon-large',
             'icon'       => $icons[ $i ],
             'fields'     => array(
                 array(
-                    'title'   => 'Layout type',
+                    'title'   => 'Type',
                     'id'      => $prefix . 'section-' . $i . '-layout-mode',
                     'type'    => 'image_select',
                     'default' => 'basic',
                     'desc'    => $desc[ (int)($i > 0) ],
                     'height'  => 64,
                     'options' => $modesx[ (int)($i > 0) ],
-                    'hint'    => array('title'   => 'Layout types',
-                                       'content' => __('<strong>Basic</strong> is for flat layouts like single posts, blog excerpts and magazine grids.<br>
-<br><strong>Masonry</strong> is like Basic but formats for a Pinterest-like layout.<br>
+                    'hint'    => array('title'   => 'Types',
+                                       'content' => __('<strong>Basic</strong> is for flat designs like single posts, blog excerpts and magazine grids.<br>
+<br><strong>Masonry</strong> is like Basic but formats for a Pinterest-like design.<br>
 <br><strong>Slider</strong> for making sliders like featured posts, image slideshows etc.<br>
-<br><strong>Tabbed</strong> for tabbed layouts.<br>
+<br><strong>Tabbed</strong> for tabbed designs.<br>
 <br><strong>Tabular</strong> displays the content in a table, and applies extra controls.<br>
-<br><em>Note: To use Tabular, make sure your Content Design is in a table-like layout - that is, all fields on a single row</em><br>
-<br><strong>Accordion</strong> for a vertical Accordion layout. i.e. posts in a single column.<br>
+<br><em>Note: To use Tabular, make sure your Content Layout is in a table-like design - that is, all fields on a single row</em><br>
+<br><strong>Accordion</strong> for a vertical Accordion design. i.e. posts in a single column.<br>
 ',
                                                        'pzarchitect')),
                 ),
                 array(
                     'id'       => $prefix . 'section-' . $i . '-tabular-title',
-                    'title'    => __('Section ' . ($i + 1) . ' Tabular', 'pzarchitect'),
+                    'title'    => __('Tabular', 'pzarchitect'),
                     'type'     => 'section',
                     'indent'   => true,
                     'required' => array($prefix . 'section-' . $i . '-layout-mode', '=', 'table'),
@@ -570,7 +570,7 @@
                 ),
                 array(
                     'id'       => $prefix . 'section-' . $i . '-accordion-title',
-                    'title'    => __('Section ' . ($i + 1) . ' Accordion', 'pzarchitect'),
+                    'title'    => __('Accordion', 'pzarchitect'),
                     'type'     => 'section',
                     'indent'   => true,
                     'required' => array($prefix . 'section-' . $i . '-layout-mode', '=', 'accordion'),
@@ -586,7 +586,7 @@
                 ),
                 array(
                     'id'     => $prefix . 'section-' . $i . '-panels-heading',
-                    'title'  => __('Section ' . ($i + 1) . ' Posts configuration', 'pzarchitect'),
+                    'title'  => __('Posts configuration', 'pzarchitect'),
                     'type'   => 'section',
                     'indent' => true,
                 ),
@@ -610,7 +610,7 @@
                 ),
                 array(
                     'id'     => $prefix . 'section-' . $i . '-columns-heading',
-                    'title'  => __('Section ' . ($i + 1) . ' Columns', 'pzarchitect'),
+                    'title'  => __('Columns', 'pzarchitect'),
                     'type'   => 'section',
                     'indent' => true,
                 ),
@@ -702,12 +702,12 @@
                     'title'   => __('Align', 'pzarchitect'),
                     'default' => 'center',
                 ),
-                array(
-                    'id'       => $prefix . 'section-' . $i . '-panel-layout',
-                    'title'    => __('Panels layout (discontinued)', 'pzarchitect'),
-                    'type'     => 'text',
-                    'readonly' => true,
-                ),
+//                array(
+//                    'id'       => $prefix . 'section-' . $i . '-panel-layout',
+//                    'title'    => __('Panels layout (discontinued)', 'pzarchitect'),
+//                    'type'     => 'text',
+//                    'readonly' => true,
+//                ),
 
             )
 
@@ -1116,13 +1116,20 @@
                   'content'  => '<a href="http://architect4wp.com/codex-listings/" target=_blank>' . __('Architect Online Documentation', 'pzarchitect') . '</a><br>' . __('This is a growing resource. Please check back regularly.', 'pzarchitect')
 
               ),
+              array(
+                  'title'    => __('Data', 'pzarchitect'),
+                  'id'       => $prefix . 'help-data',
+                  'type'     => 'code',
+                  'code'  => show_meta()
+
+              ),
 
           )
       );
 
       $metaboxes[ ] = array(
           'id'         => 'layout-settings',
-          'title'      => 'Blueprint Layout',
+          'title'      => 'Blueprint Design: Choose and setup the overall design ',
           'post_types' => array('arc-blueprints'),
           'sections'   => $sections,
           'position'   => 'normal',
@@ -1249,7 +1256,7 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
 
       $metaboxes[ ] = array(
           'id'         => 'content-selections',
-          'title'      => 'Content Selection',
+          'title'      => 'Content Selection: Choose which posts, pages or other content to display',
           'post_types' => array('arc-blueprints'),
           'sections'   => $sections,
           'position'   => 'normal',
@@ -1295,7 +1302,7 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
         $thisSection = 'blueprint';
 
         $sections[ '_styling_general' ]          = array(
-            'title'      => 'General',
+            'title'      => 'Blueprint General Styling',
             'show_title' => false,
             'icon_class' => 'icon-large',
             'icon'       => 'el-icon-th-large',
@@ -1618,7 +1625,7 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
       $prefix      = '_panels_design_';
       $sections    = array();
       $sections[ ] = array(
-          'title'      => __('Post layout designer', 'pzarchitect'),
+          'title'      => __('Content Layout ', 'pzarchitect'),
           'show_title' => false,
           'icon_class' => 'icon-large',
           'icon'       => 'el-icon-website',
@@ -1647,7 +1654,7 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
                                       'content' => __('Select which base components to include in this post\'s layout.', 'pzarchitect'))
               ),
               array(
-                  'title'        => __('Post layout', 'pzarchitect'),
+                  'title'        => __('Layout', 'pzarchitect'),
                   'id'           => $prefix . 'preview',
                   'type'         => 'code',
                   'readonly'     => false, // Readonly fields can't be written to by code! Weird
@@ -2512,8 +2519,8 @@ array('_panels_settings_feature-type', '=', 'image')
 
       $metaboxes[ ] = array(
           'id'         => 'panels-design',
-          'title'      => __('Post layout design', 'pzarchitect'),
-          'post_types' => array('arc-panels', 'arc-blueprints'),
+          'title'      => __('Content Layout: Setup the layout of the content itself.', 'pzarchitect'),
+          'post_types' => array('arc-blueprints'),
           'sections'   => $sections,
           'position'   => 'normal',
           'priority'   => 'low',
@@ -2584,7 +2591,7 @@ array('_panels_settings_feature-type', '=', 'image')
          * GENERAL
          */
         $sections[ ] = array(
-            'title'      => __('General', 'pzarchitect'),
+            'title'      => __('Content General Styling', 'pzarchitect'),
             'show_title' => false,
             'icon_class' => 'icon-large',
             'icon'       => 'el-icon-brush',
@@ -2878,7 +2885,7 @@ array('_panels_settings_feature-type', '=', 'image')
         $metaboxes[ ] = array(
             'id'         => 'panels-styling',
             'title'      => 'Content Styling',
-            'post_types' => array('arc-panels', 'arc-blueprints'),
+            'post_types' => array('arc-blueprints'),
             'sections'   => $sections,
             'position'   => 'normal',
             'priority'   => 'low',
@@ -2921,6 +2928,17 @@ array('_panels_settings_feature-type', '=', 'image')
     return $return_html;
   }
 
+  function show_meta(){
+    $return_html = '2301';
+    $meta = get_post_meta(2301);
+    if ($meta) {
+
+      foreach ($meta as $key => $value) {
+        $return_html .= '<p>' . $key . ' : ' . $value[0] . '</p>';
+      }
+    }
+    return $return_html;
+  }
   /**
    * [draw_panel_layout description]
    * @return [type] [description]

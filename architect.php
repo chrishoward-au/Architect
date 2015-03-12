@@ -291,7 +291,7 @@ if(is_admin()) {
 // end register_plugin_scripts
 
     private static function update() {
-      update_option( 'architect_db_version', '1.0.9' );
+     //update_option( 'architect_db_version', '1.0.9' );
       $current_db_version = get_option( 'architect_db_version' );
       $db_updates         = array(
           '1.1.0' => 'updates/architect-1100.php',
