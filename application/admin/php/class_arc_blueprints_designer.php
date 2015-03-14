@@ -23,18 +23,19 @@
       add_filter('manage_arc-blueprints_posts_columns', array($this, 'add_blueprint_columns'));
       add_action('manage_arc-blueprints_posts_custom_column', array($this, 'add_blueprint_column_content'), 10, 2);
 
-      add_action("redux/metaboxes/$this->redux_opt_name/boxes", array($this, 'pzarc_blueprint_tabs_mb'), 10, 1);
+      add_action("redux/metaboxes/$this->redux_opt_name/boxes", array($this, 'pzarc_mb_blueprint_tabs'), 10, 1);
 //      add_action("redux/metaboxes/$this->redux_opt_name/boxes", array($this,
-//                                                                      'pzarc_blueprint_presets'), 10, 1);
+//                                                                      'pzarc_mb_blueprint_presets'), 10, 1);
       add_action("redux/metaboxes/$this->redux_opt_name/boxes", array($this,
-                                                                      'pzarc_blueprint_layout_general_mb'), 10, 1);
-      add_action("redux/metaboxes/$this->redux_opt_name/boxes", array($this, 'pzarc_blueprint_layout_mb'), 10, 1);
-      add_action("redux/metaboxes/$this->redux_opt_name/boxes", array($this, 'pzarc_panels_design'), 10, 1);
-      add_action("redux/metaboxes/$this->redux_opt_name/boxes", array($this, 'pzarc_blueprint_contents_mb'), 10, 1);
+                                                                      'pzarc_mb_blueprint_general_settings'), 10, 1);
+      add_action("redux/metaboxes/$this->redux_opt_name/boxes", array($this, 'pzarc_mb_blueprint_design'), 10, 1);
+      add_action("redux/metaboxes/$this->redux_opt_name/boxes", array($this, 'pzarc_mb_panels_layout'), 10, 1);
       add_action("redux/metaboxes/$this->redux_opt_name/boxes", array($this,
-                                                                      'pzarc_blueprint_layout_styling_mb'), 10, 1);
+                                                                      'pzarc_mb_blueprint_content_selection'), 10, 1);
       add_action("redux/metaboxes/$this->redux_opt_name/boxes", array($this,
-                                                                      'pzarc_panels_styling'), 10, 1);
+                                                                      'pzarc_mb_blueprint_styling'), 10, 1);
+      add_action("redux/metaboxes/$this->redux_opt_name/boxes", array($this,
+                                                                      'pzarc_mb_panels_styling'), 10, 1);
       //       add_filter('views_edit-arc-blueprints', array($this, 'blueprints_description'));
 
 
@@ -91,7 +92,7 @@
           '_blueprints_description'    => __('Description', 'pzarchitect'),
           '_blueprints_content-source' => __('Content source', 'pzarchitect'),
           'layout'                     => __('Type', 'pzarchitect'),
-//          'id'                         => __('ID', 'pzarchitect'),
+          //          'id'                         => __('ID', 'pzarchitect'),
       );
 
       return array_merge($pzarc_front, $pzarc_insert, $pzarc_back);
@@ -157,7 +158,7 @@
      */
 
 
-    function pzarc_blueprint_tabs_mb($metaboxes, $defaults_only = false)
+    function pzarc_mb_blueprint_tabs($metaboxes, $defaults_only = false)
     {
       $prefix   = '_blueprint_tabs_';
       $sections = array();
@@ -172,27 +173,27 @@
             array(
                 'id'      => $prefix . 'tabs',
                 'type'    => 'tabbed',
-//                'desc'    => '
-////                <p style="color:#ff5500;">' . __('MAKE A METHOD TO LOAD A PRESET. IT WOULD WORK JUST LIKE DUPLICATE.', 'pzarchitect') . '</p>Blueprints bring everything together - the styling, layout and content - and tell WordPress what and how to show it on the page.',
-//                //                '<p>&bull;&nbsp;' . __('<strong style="color:#0074A2;"><em>Blueprint Layout</em></strong> is where you choose which Panel design to use for posts or page, and how you want to lay out those Panels.', 'pzarchitect') . '</p>
-//                //                 <p>&bull;&nbsp;' . __('<strong style="color:#0074A2;"><em>Panels Content</em></strong> is where you select the specific posts or pages to display within this Blueprint\'s Panels. <strong>The one content selection is spread across all sections</strong>', 'pzarchitect') . '</p>
-//                //                 <p>&bull;&nbsp;' . __('Blueprints by default have limited styling. Use <strong style="color:#0074A2;"><em>Blueprint Styling</em></strong> to refine the styling of the Blueprint to match your theme.', 'pzarchitect') . '</p>
+                //                'desc'    => '
+                ////                <p style="color:#ff5500;">' . __('MAKE A METHOD TO LOAD A PRESET. IT WOULD WORK JUST LIKE DUPLICATE.', 'pzarchitect') . '</p>Blueprints bring everything together - the styling, layout and content - and tell WordPress what and how to show it on the page.',
+                //                //                '<p>&bull;&nbsp;' . __('<strong style="color:#0074A2;"><em>Blueprint Layout</em></strong> is where you choose which Panel design to use for posts or page, and how you want to lay out those Panels.', 'pzarchitect') . '</p>
+                //                //                 <p>&bull;&nbsp;' . __('<strong style="color:#0074A2;"><em>Panels Content</em></strong> is where you select the specific posts or pages to display within this Blueprint\'s Panels. <strong>The one content selection is spread across all sections</strong>', 'pzarchitect') . '</p>
+                //                //                 <p>&bull;&nbsp;' . __('Blueprints by default have limited styling. Use <strong style="color:#0074A2;"><em>Blueprint Styling</em></strong> to refine the styling of the Blueprint to match your theme.', 'pzarchitect') . '</p>
 
                 'options' => array(
-//                    'presets'         => '<span>Presets</span>',
                     'layout'          => '<span><span class="stepno">1</span> Blueprint Design</span>',
                     'content'         => '<span><span class="stepno">2</span> Content Selection</span>',
                     'panels'          => '<span><span class="stepno">3</span> Content Layout</span>',
-                    'styling'         => '<span><span class="stepno">4</span> Blueprint Styling</span>',
-                    'content_styling' => '<span><span class="stepno">5</span> Content Styling</span>'
+                    'content_styling' => '<span><span class="stepno">4</span> Content Styling</span>',
+                    'styling'         => '<span><span class="stepno">5</span> Blueprint Styling</span>',
+                    //                    'presets'         => '<span>Presets</span>',
                 ),
                 'targets' => array(
-//                    'presets'         => array('presets'),
                     'layout'          => array('layout-settings'),
                     'content'         => array('content-selections'),
                     'panels'          => array('panels-design'),
-                    'styling'         => array('blueprint-stylings'),
                     'content_styling' => array('panels-styling'),
+                    'styling'         => array('blueprint-stylings'),
+//                    'presets'         => array('presets'),
                 )
             ),
             //            array(
@@ -267,29 +268,29 @@
       return $metaboxes;
     }
 
-    function pzarc_blueprint_presets($metaboxes, $defaults_only = false)
+    function pzarc_mb_blueprint_presets($metaboxes, $defaults_only = false)
     {
       $fields = array(
           array(
               'id'      => '_presets_choose',
               'title'   => 'Choose a preset (optional)',
               'type'    => 'button_set',
-              'default'=>'none',
+              'default' => 'none',
               'options' => array(
-                'none'=>'None',
+                  'none'    => 'None',
                   'slider1' => 'Featured posts slider',
                   'slider2' => 'Gallery carousel',
                   'slider3' => 'Full width image slider',
                   'slider4' => 'Featured videos',
               ),
           ),
-              array(
-                  'id'      => '_presets_apply',
-                  'title'   => 'Apply preset',
-                  'type'    => 'switch',
+          array(
+              'id'    => '_presets_apply',
+              'title' => 'Apply preset',
+              'type'  => 'switch',
 
 
-              )
+          )
       );
 
       $sections[ ]  = array(
@@ -321,7 +322,7 @@
      * @param array $metaboxes
      * @return array
      */
-    function pzarc_blueprint_layout_general_mb($metaboxes, $defaults_only = false)
+    function pzarc_mb_blueprint_general_settings($metaboxes, $defaults_only = false)
     {
       $prefix = '_blueprints_';
       global $_architect_options;
@@ -405,7 +406,7 @@
     /**
      * LAYOUT
      */
-    function pzarc_blueprint_layout_mb($metaboxes, $defaults_only = false)
+    function pzarc_mb_blueprint_design($metaboxes, $defaults_only = false)
     {
       $prefix   = '_blueprints_';
       $sections = array();
@@ -495,9 +496,9 @@
         $sections[ '_section' . ($i + 1) ] = array(
             'title'      => __('Design', 'pzarchitect'),
             'show_title' => true,
-            'desc'=> '<p class="arc-important-admin-message">'.__('Each post in WordPress is - in a coding context - displayed in its own box. In Architect we call that box a <strong>Panel</strong>. So when you see the term Panel, it means an individual post layout.
+            'desc'       => '<p class="arc-important-admin-message">' . __('Each post in WordPress is - in a coding context - displayed in its own box. In Architect we call that box a <strong>Panel</strong>. So when you see the term Panel, it means an individual post layout.
             <br>Panels can be laid out beside each other as in grids, masonry and tabular; or layered as in sliders, tabbed and accordions
-            <br>Note: The term Posts is used but refers generically to any WordPress post type or custom post type.','pzarchitect').'</p>',
+            <br>Note: The term Posts is used but refers generically to any WordPress post type or custom post type.', 'pzarchitect') . '</p>',
             'icon_class' => 'icon-large',
             'icon'       => $icons[ $i ],
             'fields'     => array(
@@ -678,39 +679,43 @@
                     //'subtitle' => __('Right, bottom', 'pzarchitect')
                     //    'hint'  => array('content' => __('Set the vertical gutter width as a percentage of the section width. The gutter is the gap between adjoining elements', 'pzarchitect'))
                 ),
+                // For the time being the container is not used and its values are defaulted.
+                /// It's kept  here for possible future use
+                //                array(
+                //                    'id'     => $prefix . 'section-' . $i . '-sections-heading',
+                //                    'title'  => __('Container configuration', 'pzarchitect'),
+                //                    'type'   => 'section',
+                //                    'desc'   => __('With in the Blueprint, xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'),
+                //                    'indent' => true,
+                //                ),
                 array(
-                    'id'     => $prefix . 'section-' . $i . '-sections-heading',
-                    'title'  => __('Container configuration', 'pzarchitect'),
-                    'type'   => 'section',
-                    'desc'   => __('With in the Blueprint, xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'),
-                    'indent' => true,
-                ),
-                array(
-                    'id'      => $prefix . 'sections-width' . $i,
-                    'type'    => 'dimensions',
+                    'id'       => $prefix . 'sections-width' . $i,
+                    'type'     => 'dimensions',
                     //               'mode'    => array('width' => true, 'height' => false),
-                    'units'   => array('%', 'px'),
-                    'width'   => true,
-                    'height'  => false,
-                    'title'   => __('Width', 'pzarchitect'),
-                    'default' => array('width' => '100', 'units' => '%'),
+                    'units'    => array('%', 'px'),
+                    'width'    => true,
+                    'height'   => false,
+                    'title'    => __('Width', 'pzarchitect'),
+                    'required' => array('_blueprints_section-0-layout-mode', '=', 'future'),
+                    'default'  => array('width' => '100', 'units' => '%'),
                 ),
                 array(
-                    'id'      => $prefix . 'sections-align' . $i,
-                    'type'    => 'button_set',
-                    'select2' => array('allowClear' => false),
-                    'options' => array('left'   => __('Left', 'pzarchitect'),
-                                       'center' => __('Centre', 'pzarchitect'),
-                                       'right'  => __('Right', 'pzarchitect')),
-                    'title'   => __('Align', 'pzarchitect'),
-                    'default' => 'center',
+                    'id'       => $prefix . 'sections-align' . $i,
+                    'type'     => 'button_set',
+                    'select2'  => array('allowClear' => false),
+                    'options'  => array('left'   => __('Left', 'pzarchitect'),
+                                        'center' => __('Centre', 'pzarchitect'),
+                                        'right'  => __('Right', 'pzarchitect')),
+                    'title'    => __('Align', 'pzarchitect'),
+                    'default'  => 'center',
+                    'required' => array('_blueprints_section-0-layout-mode', '=', 'future'),
                 ),
-//                array(
-//                    'id'       => $prefix . 'section-' . $i . '-panel-layout',
-//                    'title'    => __('Panels layout (discontinued)', 'pzarchitect'),
-//                    'type'     => 'text',
-//                    'readonly' => true,
-//                ),
+                //                array(
+                //                    'id'       => $prefix . 'section-' . $i . '-panel-layout',
+                //                    'title'    => __('Panels layout (discontinued)', 'pzarchitect'),
+                //                    'type'     => 'text',
+                //                    'readonly' => true,
+                //                ),
 
             )
 
@@ -770,6 +775,18 @@
                   'hint'    => array('content' => __('Bullets,Titles, Labels, Numbers, Thumbnails or none', 'pzarchitect')),
                   'height'  => 75,
                   'options' => $slider
+              ),
+              array(
+                  'title'      => 'Labels',
+                  'id'         => $prefix . 'navigator-labels',
+                  'type'       => 'multi_text',
+                  'show_empty' => false,
+                  'add_text'   => 'Add a label',
+                  'default'    => 'Label name',
+                  'required'   => array(
+                      array($prefix . 'navigator', 'equals', 'labels'),
+                  ),
+                  'subtitle'   => 'One label per panel. Labels only work for a fixed number of panels'
               ),
               array(
                   'title'    => 'Position',
@@ -882,18 +899,6 @@
                       array($prefix . 'navigator-position', '!=', 'top'),
                       array($prefix . 'navigator-position', '!=', 'bottom')
                   )
-              ),
-              array(
-                  'title'      => 'Labels',
-                  'id'         => $prefix . 'navigator-labels',
-                  'type'       => 'multi_text',
-                  'show_empty' => false,
-                  'add_text'   => 'Add a label',
-                  'default'    => 'Label name',
-                  'required'   => array(
-                      array($prefix . 'navigator', 'equals', 'labels'),
-                  ),
-                  'subtitle'   => 'One label per post etc.'
               ),
               array(
                   'title'    => 'Bullet shape',
@@ -1072,84 +1077,84 @@
       );
 
       $sections[ '_pagination' ] = array(
-              'title'      => 'Pagination',
-              'icon_class' => 'icon-large',
-              'icon'       => 'el-icon-chevron-right',
-              'fields'     => array(
-                  array(
-                      'title'   => 'Pagination',
-                      'id'      => '_blueprints_pagination',
-                      'type'    => 'switch',
-                      'on'      => 'Yes',
-                      'off'     => 'No',
-                      'default' => false,
-                      'desc'=>__('If your content type is Defaults and you choose to enable overrides, pagination will likely mess up if this Blueprint is displayed on the standard WP blog page.','pzarchitect')
+          'title'      => 'Pagination',
+          'icon_class' => 'icon-large',
+          'icon'       => 'el-icon-chevron-right',
+          'fields'     => array(
+              array(
+                  'title'   => 'Pagination',
+                  'id'      => '_blueprints_pagination',
+                  'type'    => 'switch',
+                  'on'      => 'Yes',
+                  'off'     => 'No',
+                  'default' => false,
+                  'desc'    => __('If your content type is Defaults and you choose to enable overrides, pagination will likely mess up if this Blueprint is displayed on the standard WP blog page.', 'pzarchitect')
+              ),
+              array(
+                  'title'    => __('Posts per page', 'pzarchitect'),
+                  'id'       => '_blueprints_pagination-per-page',
+                  'type'     => 'spinner',
+                  'default'  => 1,
+                  'min'      => 1,
+                  'max'      => 99,
+                  'required' => array('_blueprints_pagination', 'equals', true),
+              ),
+              array(
+                  'id'       => '_blueprints_pager-location',
+                  'title'    => __('Pagination location', 'pzarchitect'),
+                  'type'     => 'select',
+                  'select2'  => array('allowClear' => false),
+                  'default'  => 'bottom',
+                  'options'  => array(
+                      'bottom' => 'Bottom',
+                      'top'    => 'Top',
+                      'both'   => 'Both'
                   ),
-                  array(
-                      'title'    => __('Posts per page', 'pzarchitect'),
-                      'id'       => '_blueprints_pagination-per-page',
-                      'type'     => 'spinner',
-                      'default'  => 1,
-                      'min'      => 1,
-                      'max'      => 99,
-                      'required' => array('_blueprints_pagination', 'equals', true),
+                  'required' => array('_blueprints_pagination', 'equals', true),
+              ),
+              array(
+                  'id'       => '_blueprints_pager',
+                  'title'    => __('Blog Pagination', 'pzarchitect'),
+                  'type'     => 'select',
+                  'select2'  => array('allowClear' => false),
+                  'default'  => 'prevnext',
+                  'options'  => array(
+                    //                    'none'     => 'None',
+                    'prevnext' => 'Previous/Next',
+                    'names'    => 'Post names',
+                    'pagenavi' => 'PageNavi',
                   ),
-                  array(
-                      'id'       => '_blueprints_pager-location',
-                      'title'    => __('Pagination location', 'pzarchitect'),
-                      'type'     => 'select',
-                      'select2'  => array('allowClear' => false),
-                      'default'  => 'bottom',
-                      'options'  => array(
-                          'bottom' => 'Bottom',
-                          'top'    => 'Top',
-                          'both'   => 'Both'
-                      ),
-                      'required' => array('_blueprints_pagination', 'equals', true),
+                  'required' => array('_blueprints_pagination', 'equals', true),
+              ),
+              array(
+                  'id'       => '_blueprints_pager-single',
+                  'title'    => __('Single Post Pagination', 'pzarchitect'),
+                  'type'     => 'select',
+                  'select2'  => array('allowClear' => false),
+                  'default'  => 'prevnext',
+                  'options'  => array(
+                    //                    'none'     => 'None',
+                    'prevnext' => 'Previous/Next',
+                    'names'    => 'Post names',
+                    'pagenavi' => 'PageNavi',
                   ),
-                  array(
-                      'id'       => '_blueprints_pager',
-                      'title'    => __('Blog Pagination', 'pzarchitect'),
-                      'type'     => 'select',
-                      'select2'  => array('allowClear' => false),
-                      'default'  => 'prevnext',
-                      'options'  => array(
-                        //                    'none'     => 'None',
-                        'prevnext' => 'Previous/Next',
-                        'names'    => 'Post names',
-                        'pagenavi' => 'PageNavi',
-                      ),
-                      'required' => array('_blueprints_pagination', 'equals', true),
+                  'required' => array('_blueprints_pagination', 'equals', true),
+              ),
+              array(
+                  'id'       => '_blueprints_pager-archives',
+                  'title'    => __('Archives Pagination', 'pzarchitect'),
+                  'type'     => 'select',
+                  'select2'  => array('allowClear' => false),
+                  'default'  => 'prevnext',
+                  'options'  => array(
+                    //                    'none'     => 'None',
+                    'prevnext' => 'Previous/Next',
+                    'names'    => 'Post names',
+                    'pagenavi' => 'PageNavi',
                   ),
-                  array(
-                      'id'       => '_blueprints_pager-single',
-                      'title'    => __('Single Post Pagination', 'pzarchitect'),
-                      'type'     => 'select',
-                      'select2'  => array('allowClear' => false),
-                      'default'  => 'prevnext',
-                      'options'  => array(
-                        //                    'none'     => 'None',
-                        'prevnext' => 'Previous/Next',
-                        'names'    => 'Post names',
-                        'pagenavi' => 'PageNavi',
-                      ),
-                      'required' => array('_blueprints_pagination', 'equals', true),
-                  ),
-                  array(
-                      'id'       => '_blueprints_pager-archives',
-                      'title'    => __('Archives Pagination', 'pzarchitect'),
-                      'type'     => 'select',
-                      'select2'  => array('allowClear' => false),
-                      'default'  => 'prevnext',
-                      'options'  => array(
-                        //                    'none'     => 'None',
-                        'prevnext' => 'Previous/Next',
-                        'names'    => 'Post names',
-                        'pagenavi' => 'PageNavi',
-                      ),
-                      'required' => array('_blueprints_pagination', 'equals', true),
-                  ),
-              )
+                  'required' => array('_blueprints_pagination', 'equals', true),
+              ),
+          )
       );
 
       $sections[ '_usingbp' ] = array(
@@ -1200,9 +1205,9 @@
 
               ),
               array(
-                  'title'    => __('Data', 'pzarchitect'),
-                  'id'       => $prefix . 'help-data',
-                  'type'     => 'code',
+                  'title' => __('Data', 'pzarchitect'),
+                  'id'    => $prefix . 'help-data',
+                  'type'  => 'code',
                   'code'  => show_meta()
 
               ),
@@ -1232,7 +1237,7 @@
      * @param array $metaboxes
      * @return array
      */
-    function pzarc_blueprint_contents_mb($metaboxes, $defaults_only = false)
+    function pzarc_mb_blueprint_content_selection($metaboxes, $defaults_only = false)
     {
 
       // TODO: Setup a loop that reads the object containing content type info as appened by the content type classes. Will need a means of letting js know tho.
@@ -1292,9 +1297,9 @@
         }
       }
       /** FILTERS */
-      $sections[ '_settings' ]   = $blueprint_content_common[ 0 ][ 'settings' ][ 'sections' ];
+      $sections[ '_settings' ] = $blueprint_content_common[ 0 ][ 'settings' ][ 'sections' ];
 //      $sections[ '_pagination' ] = $blueprint_content_common[ 0 ][ 'pagination' ][ 'sections' ];
-      $sections[ '_filters' ]    = $blueprint_content_common[ 0 ][ 'filters' ][ 'sections' ];
+      $sections[ '_filters' ] = $blueprint_content_common[ 0 ][ 'filters' ][ 'sections' ];
 
 
       $prefix                      = '_content_help_';
@@ -1357,7 +1362,7 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
      * @param $metaboxes
      * @return array
      */
-    function pzarc_blueprint_layout_styling_mb($metaboxes, $defaults_only = false)
+    function pzarc_mb_blueprint_styling($metaboxes, $defaults_only = false)
     {
       global $_architect_options;
       if (empty($_architect_options)) {
@@ -1698,7 +1703,7 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
       return $metaboxes;
     }
 
-    function pzarc_panels_design($metaboxes, $defaults_only = false)
+    function pzarc_mb_panels_layout($metaboxes, $defaults_only = false)
     {
       global $_architect_options;
       if (empty($_architect_options)) {
@@ -2130,7 +2135,7 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
                   'type'     => 'section',
                   'indent'   => true,
                   'required' => array('show_advanced', 'equals', true),
-                  'class'    => 'heading',
+                  //                  'class'    => 'heading',
               ),
               array(
                   'id'       => $prefix . 'responsive-hide-content',
@@ -2620,7 +2625,7 @@ array('_panels_settings_feature-type', '=', 'image')
      * @param $metaboxes
      * @return array
      */
-    function pzarc_panels_styling($metaboxes, $defaults_only = false)
+    function pzarc_mb_panels_styling($metaboxes, $defaults_only = false)
     {
 
       global $_architect;
@@ -3011,17 +3016,20 @@ array('_panels_settings_feature-type', '=', 'image')
     return $return_html;
   }
 
-  function show_meta(){
+  function show_meta()
+  {
     $return_html = '2301';
-    $meta = get_post_meta(2301);
+    $meta        = get_post_meta(2301);
     if ($meta) {
 
       foreach ($meta as $key => $value) {
-        $return_html .= '<p>' . $key . ' : ' . $value[0] . '</p>';
+        $return_html .= '<p>' . $key . ' : ' . $value[ 0 ] . '</p>';
       }
     }
+
     return $return_html;
   }
+
   /**
    * [draw_panel_layout description]
    * @return [type] [description]

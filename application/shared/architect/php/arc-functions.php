@@ -309,10 +309,10 @@
 
       $_architect[ 'defaults' ][ 'blueprints' ] = (!isset($_architect[ 'defaults' ][ 'blueprints' ]) ? array() : $_architect[ 'defaults' ][ 'blueprints' ]);
 
-      $blueprint_layout_general                 = $blueprints->pzarc_blueprint_layout_general_mb($_architect[ 'defaults' ][ 'blueprints' ], true);
-      $blueprint_styling                        = empty($_architect_options[ 'architect_enable_styling' ]) || $exclude_styling? '' : $blueprints->pzarc_blueprint_layout_styling_mb($_architect[ 'defaults' ][ 'blueprints' ], true);
-      $pzarc_blueprint_layout                   = $blueprints->pzarc_blueprint_layout_mb($_architect[ 'defaults' ][ 'blueprints' ], true);
-      $pzarc_contents_metabox                   = $blueprints->pzarc_blueprint_contents_mb($_architect[ 'defaults' ][ 'blueprints' ], true);
+      $blueprint_layout_general                 = $blueprints->pzarc_mb_blueprint_general_settings($_architect[ 'defaults' ][ 'blueprints' ], true);
+      $blueprint_styling                        = empty($_architect_options[ 'architect_enable_styling' ]) || $exclude_styling? '' : $blueprints->pzarc_mb_blueprint_styling($_architect[ 'defaults' ][ 'blueprints' ], true);
+      $pzarc_blueprint_layout                   = $blueprints->pzarc_mb_blueprint_design($_architect[ 'defaults' ][ 'blueprints' ], true);
+      $pzarc_contents_metabox                   = $blueprints->pzarc_mb_blueprint_content_selection($_architect[ 'defaults' ][ 'blueprints' ], true);
 
       $_architect[ 'defaults' ][ 'blueprints' ][ '_blueprint_layout_general' ] = $blueprint_layout_general[ 0 ][ 'sections' ];
       $_architect[ 'defaults' ][ 'blueprints' ][ '_blueprint_stylings' ]       = empty($blueprint_styling) ? '' : $blueprint_styling[ 0 ][ 'sections' ];
@@ -346,8 +346,8 @@
       $_architect[ 'defaults' ][ 'panels' ] = (!isset($_architect[ 'defaults' ][ 'panels' ]) ? array() : $_architect[ 'defaults' ][ 'panels' ]);
 
 //      $pzarc_panel_general_settings = $blueprints->pzarc_panel_general_settings($_architect[ 'defaults' ][ 'panels' ], true);
-      $pzarc_panels_design          = $blueprints->pzarc_panels_design($_architect[ 'defaults' ][ 'panels' ], true);
-      $pzarc_panels_styling         = empty($_architect_options[ 'architect_enable_styling' ]) || $exclude_styling ? '' : $blueprints->pzarc_panels_styling($_architect[ 'defaults' ][ 'panels' ], true);
+      $pzarc_panels_design          = $blueprints->pzarc_mb_panels_layout($_architect[ 'defaults' ][ 'panels' ], true);
+      $pzarc_panels_styling         = empty($_architect_options[ 'architect_enable_styling' ]) || $exclude_styling ? '' : $blueprints->pzarc_mb_panels_styling($_architect[ 'defaults' ][ 'panels' ], true);
 
  //     $_architect[ 'defaults' ][ 'panels' ][ '_panel_general_settings' ] = $pzarc_panel_general_settings[ 0 ][ 'sections' ];
       $_architect[ 'defaults' ][ 'panels' ][ '_panels_design' ]          = $pzarc_panels_design[ 0 ][ 'sections' ];
