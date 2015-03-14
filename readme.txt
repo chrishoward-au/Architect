@@ -108,7 +108,8 @@ For support, please send an email to support@pizazzwp.com
 
 == Changelog ==
 = 1.1trd =
-* GOAL: Combine Panels and Blueprints screen. Remove sections. Simplify. Improve workflow.
+* CHANGED: Combine Panels and Blueprints screen. Remove sections. Simplify. Improve workflow.
+* CHANGED: Blueprints listing screen sorted by title
 
 = 1.0.8.8 =
 * FIXED: Transients not working with terms override

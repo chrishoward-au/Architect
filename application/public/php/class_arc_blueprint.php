@@ -44,6 +44,7 @@
                                        $this->blueprint[ 'section' ][ ($i - 1) ][ 'section-panel-settings' ][ '_panels_settings_short-name' ]
 
             );
+        unset($this->blueprint[ 'section' ]);
 //            var_dump($i,            $this->blueprint[ 'section_object' ][ $i ]);
       }
 
@@ -71,11 +72,13 @@
       );
       $bp              = get_posts($meta_query_args);
       $this->bp        = pzarc_flatten_wpinfo(get_post_meta($bp[ 0 ]->ID));
+
       // TODO: Why do we need this still? Yes! Because Redux doesn't store defaults
-      pzarc_get_defaults();
+      // True excludes styling
+      pzarc_get_defaults(true);
 
       global $_architect_options, $_architect;
-      $this->blueprint = array_replace_recursive($_architect[ 'defaults' ][ '_blueprints' ], $this->bp);
+      $this->blueprint          = array_replace_recursive($_architect[ 'defaults' ][ '_blueprints' ], $this->bp);
       $this->blueprint[ 'uid' ] = 'uid' . time() . rand(1000, 9999);
 
       if (!empty($_architect_options[ 'architect_enable_query_cache' ]) && !current_user_can('manage_options') && false === ($blueprint_query = get_transient('pzarc_blueprint_query_' . $this->name))) {
@@ -103,10 +106,8 @@
       $blueprint_info = get_post_meta($blueprint_query->posts[ 0 ]->ID);
       foreach ($blueprint_info as $key => $value) {
 
-        if ('_edit_lock' !== $key && '_edit_last' !== $key) {
-
-          $this->blueprint[ $key ] = maybe_unserialize($blueprint_info[ $key ][ 0 ]);
-
+        if ('_edit_lock' !== $key && '_edit_last' !== $key && strpos($key,'_blueprints_styling_') !== 0) {
+              $this->blueprint[ $key ] = maybe_unserialize($value[ 0 ]);
         }
 
       }
@@ -114,7 +115,7 @@
       /** Add the default values except for the styling ones **/
       foreach ($_architect[ 'defaults' ][ '_blueprints' ] as $key => $value) {
         if ((strpos($key, '_blueprints_') === 0 || strpos($key, '_content_') === 0) && !isset($this->blueprint[ $key ])) {
-          $this->blueprint[ $key ] = maybe_unserialize($value);
+          $this->blueprint['panels'][ $key ] = maybe_unserialize($value);
         };
 
       }
@@ -127,8 +128,9 @@
       $panel[ 1 ] = array();
       foreach ($this->blueprint as $key => $value) {
 
-        if (strpos($key, '_panel') === 0 && !isset($panel[ 1 ][ $key ])) {
+        if (strpos($key, '_panel') === 0 && !isset($panel[ 1 ][ $key ]) && strpos($key,'_panels_styling_') !== 0) {
           $panel[ 1 ][ $key ] = maybe_unserialize($value);
+          unset($this->blueprint[ $key ]);
         };
 
       }
@@ -141,7 +143,7 @@
           'section-panel-slug'     => 'bp-panel',
       );
       unset($panel);
-
+      unset($this->bp);
       return true;
     }
 

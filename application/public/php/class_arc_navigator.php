@@ -18,9 +18,10 @@
 
     function __construct($blueprint, $navitems)
     {
+
       // Enqueue registered scripts and styles
       // TODO: make optional
-      wp_enqueue_script('js-arc-front-slickjs');
+     wp_enqueue_script('js-arc-front-slickjs');
       wp_enqueue_script('js-slickjs');
       wp_enqueue_style('css-slickjs');
       wp_enqueue_style('css-icomoon-arrows');

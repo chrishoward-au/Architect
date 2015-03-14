@@ -1405,11 +1405,12 @@ a.pzarc-codex {
   text-decoration: none;
 }
 
-x#redux-_architect-metabox-panels-design,
+// Hide all sections except Blueprint Layouts initially
+#redux-_architect-metabox-panels-design,
 #redux-_architect-metabox-panels-styling,
 #redux-_architect-metabox-blueprint-stylings,
 #redux-_architect-metabox-layout-settings,
-x#redux-_architect-metabox-content-selections {
+#redux-_architect-metabox-content-selections {
   display: none;
 }
 
@@ -1510,6 +1511,9 @@ body.arc-beginner .arc-field-advanced {
   font-weight:bold;
 }
 
+.arc-important-admin-message {
+  color:tomato;
+}
 
 //#tab-presets {
 //  &.active {

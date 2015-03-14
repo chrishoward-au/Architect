@@ -47,6 +47,5 @@
           $this->query_options[ 'ignore_sticky_posts' ] = true;
         }
       }
-
     }
   }

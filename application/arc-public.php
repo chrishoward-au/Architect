@@ -19,11 +19,9 @@
     if (is_admin()) {
       return;
     }
-
     $pzarc_css_cache = maybe_unserialize(get_option('pzarc_css'));
-
     // No point in proceeding if no blueprints or no panels
-    if (empty($pzarc_css_cache[ 'blueprints' ]) || empty($pzarc_css_cache[ 'panels' ])) {
+    if (empty($pzarc_css_cache[ 'blueprints' ])) {
       return;
     }
 
@@ -96,7 +94,6 @@
       $GLOBALS[ '_architect_options' ] = get_option('_architect_options', array());
     }
     if (!empty($_architect_options[ 'architect_replace_wpgalleries' ])) {
-
       remove_shortcode('gallery');
       add_shortcode('gallery', 'pzarc_shortcode');
 
@@ -233,7 +230,7 @@
       require_once(PZARC_PLUGIN_APP_PATH . '/shared/thirdparty/php/BFI-thumb-forked/BFI_Thumb.php');
 
       $architect = new ArchitectPublic($blueprint, $is_shortcode);
-
+//var_dump($architect);
       // If no errors, let's go!
       if (empty($architect->build->blueprint[ 'err_msg' ])) {
 

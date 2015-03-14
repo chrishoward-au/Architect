@@ -52,8 +52,8 @@
       $this->data[ 'permalink' ]                 = null;
       $this->data[ 'postformat' ]                = null;
 
-      $this->data[ 'bgimage' ][ 'thumb' ]    = null;
-     // $this->data[ 'bgimage' ][ 'original' ] = null;
+      $this->data[ 'bgimage' ][ 'thumb' ] = null;
+      // $this->data[ 'bgimage' ][ 'original' ] = null;
     }
 
     /**
@@ -196,7 +196,7 @@
 
     public function get_meta(&$post)
     {
-      $meta_string = $this->toshow[ 'meta1' ][ 'show' ] ?  $this->section[ '_panels_design_meta1-config' ] : '';
+      $meta_string = $this->toshow[ 'meta1' ][ 'show' ] ? $this->section[ '_panels_design_meta1-config' ] : '';
       $meta_string .= $this->toshow[ 'meta2' ][ 'show' ] ? $this->section[ '_panels_design_meta2-config' ] : '';
       $meta_string .= $this->toshow[ 'meta3' ][ 'show' ] ? $this->section[ '_panels_design_meta3-config' ] : '';
 
@@ -267,10 +267,10 @@
       // TODO: Add all the focal point stuff to all the post types images and bgimages
       // Easiest to do via a reusable function or all this stuff could be done once!!!!!!!!!
       // could pass $this->data thru a filter
-      $this->data[ 'image' ][ 'image' ]    = wp_get_attachment_image($thumb_id, array($width,
-                                                                                      $height,
-                                                                                      'bfi_thumb' => true,
-                                                                                      'crop'      => (int)$focal_point[ 0 ] . 'x' . (int)$focal_point[ 1 ] . 'x' . $this->section[ '_panels_settings_image-focal-point' ]
+      $this->data[ 'image' ][ 'image' ] = wp_get_attachment_image($thumb_id, array($width,
+                                                                                   $height,
+                                                                                   'bfi_thumb' => true,
+                                                                                   'crop'      => (int)$focal_point[ 0 ] . 'x' . (int)$focal_point[ 1 ] . 'x' . $this->section[ '_panels_settings_image-focal-point' ]
 
       ));
 
@@ -760,15 +760,15 @@
     {
       //todo: make sure source is actual WP valid eg. soemthings might be attachment
       // Do any generic replacements
-      $line      = str_replace('{{postid}}', $this->data[ 'postid' ], $line);
-      $line      = str_replace('{{title}}', $this->data[ 'title' ][ 'title' ], $line);
-      $line      = str_replace('{{permalink}}', $this->data[ 'permalink' ], $line);
-      $line      = str_replace('{{closelink}}', '</a>', $line);
-      $line      = str_replace('{{categories}}', $this->data[ 'meta' ][ 'categories' ], $line);
-      $line      = str_replace('{{tags}}', $this->data[ 'meta' ][ 'tags' ], $line);
-      $line      = str_replace('{{poststatus}}', $this->data[ 'poststatus' ], $line);
-      $line      = str_replace('{{postformat}}', $this->data[ 'postformat' ], $line);
-      $line      = str_replace('{{posttype}}', $source, $line);
+      $line = str_replace('{{postid}}', $this->data[ 'postid' ], $line);
+      $line = str_replace('{{title}}', $this->data[ 'title' ][ 'title' ], $line);
+      $line = str_replace('{{permalink}}', $this->data[ 'permalink' ], $line);
+      $line = str_replace('{{closelink}}', '</a>', $line);
+      $line = str_replace('{{categories}}', $this->data[ 'meta' ][ 'categories' ], $line);
+      $line = str_replace('{{tags}}', $this->data[ 'meta' ][ 'tags' ], $line);
+      $line = str_replace('{{poststatus}}', $this->data[ 'poststatus' ], $line);
+      $line = str_replace('{{postformat}}', $this->data[ 'postformat' ], $line);
+      $line = str_replace('{{posttype}}', $source, $line);
 
       $pzclasses = 'pzarc-components ';
       $pzclasses .= ($this->section[ '_panels_design_components-position' ] === 'left' || $this->section[ '_panels_design_components-position' ] === 'right') ? 'vertical-content pzarc-align-' . $this->section[ '_panels_design_components-position' ] : '';
@@ -799,10 +799,8 @@
      */
     public function loop($section_no, &$architect, &$panel_class, $class)
     {
-
-      $this->build     = $architect->build;
-      $this->arc_query = $architect->arc_query;
-
+      $this->build            = $architect->build;
+      $this->arc_query        = $architect->arc_query;
       $section[ $section_no ] = $this->build->blueprint[ 'section_object' ][ $section_no ];
 
       $panel_def = $panel_class->panel_def();
@@ -817,7 +815,6 @@
 
       // For custom conetnet such as NGG or RSS, this will look quite different!
       while ($this->arc_query->have_posts()) {
-
         $this->arc_query->the_post();
 //        pzdb('top_of_loop Post:'.get_the_id());
         $section[ $section_no ]->render_panel($panel_def, $i, $class, $panel_class, $this->arc_query);
@@ -901,7 +898,7 @@
 
             $thumb = (empty($thumb) ? '<img src="' . PZARC_PLUGIN_APP_URL . '/shared/assets/images/missing-image.png" width="' . self::get_thumbsize('w') . '" height="' . self::get_thumbsize('h') . '">' : $thumb);
             // Added this class so ca filter it out of Advanced Lazy Load
-            $thumb = preg_replace("/class=\\\"a/uUm", "$0rc-nav-thumb a", $thumb);
+            $thumb        = preg_replace("/class=\\\"a/uUm", "$0rc-nav-thumb a", $thumb);
             $nav_items[ ] = '<span class="' . $blueprints_navigator . '">' . $thumb . '</span>';
             break;
 
@@ -921,10 +918,12 @@
     }
 
 
-    protected
-    function get_thumbsize(
-        $dim
-    ) {
+    /**
+     * @param $dim
+     * @return int|mixed
+     */
+    protected function get_thumbsize($dim)
+    {
 
       // $dim for later development with rectangular thumbs
       $thumbsize = 60;
@@ -960,7 +959,7 @@
       foreach ($meta as $key => $value) {
         $i = $key + 1;
 //        $meta[ $key ]             = preg_replace('/%(\\w*)%/u', '{{$1}}', (!empty($section_panel_settings[ '_panels_design_meta' . $i . '-config' ]) ? $section_panel_settings[ '_panels_design_meta' . $i . '-config' ] : null));
-        $first_pass               = preg_replace('/%(\\w|[\\:\\-])*%/uiUmx', '{{$0}}', (!empty($section_panel_settings[ '_panels_design_meta' . $i . '-config' ]) ? strip_tags($section_panel_settings[ '_panels_design_meta' . $i . '-config' ],'<p><span><br><strong><em>') : null));
+        $first_pass               = preg_replace('/%(\\w|[\\:\\-])*%/uiUmx', '{{$0}}', (!empty($section_panel_settings[ '_panels_design_meta' . $i . '-config' ]) ? strip_tags($section_panel_settings[ '_panels_design_meta' . $i . '-config' ], '<p><span><br><strong><em>') : null));
         $meta[ $key ]             = preg_replace("/%(.*)%/uiUmx", "$1", $first_pass);
         $panel_def[ 'meta' . $i ] = str_replace('{{meta' . $i . 'innards}}', $meta[ $key ], $panel_def[ 'meta' . $i ]);
         $panel_def[ 'meta' . $i ] = str_replace('{{date}}', $panel_def[ 'datetime' ], $panel_def[ 'meta' . $i ]);

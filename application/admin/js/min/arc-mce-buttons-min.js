@@ -1,0 +1,1 @@
+!function($){tinymce.PluginManager.add("pushortcodes",function(t){var o=[];jQuery.each(shortcodes_button,function(t){o.push({text:shortcodes_button[t],value:t})}),t.addButton("pushortcodes",{type:"listbox",text:"Shortcodes",onselect:function(t){var o=t.control._value;tinyMCE.activeEditor.selection.setContent("["+o+"][/"+o+"]")},values:o})})}();

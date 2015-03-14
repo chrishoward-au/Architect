@@ -382,42 +382,6 @@
                   'off'     => 'No',
                   'default' => false
               ),
-              array(
-                  'title'    => __('Panel Height Type', 'pzarchitect'),
-                  'id'       => '_panels_settings_' . 'panel-height-type',
-                  'type'     => 'select',
-                  'default'  => 'none',
-                  //                  'class'=> 'arc-field-advanced' ,
-                  'required' => array('show_advanced', 'equals', true),
-                  'select2'  => array('allowClear' => false),
-                  'options'  => array(
-                      'none'       => __('None', 'pzarchitect'),
-                      'height'     => __('Exact', 'pzarchitect'),
-                      'max-height' => __('Max', 'pzarchitect'),
-                      'min-height' => __('Min', 'pzarchitect')
-                  ),
-                  'hint'     => array('title'   => __('Height type', 'pzarchitect'),
-                                      'content' => __('Choose if you want an exact height or not for the panels. If you want totally fluid, choose Min, and set a height of 0.', 'pzarchitect'))
-              ),
-              // Hmm? How's this gunna sit with the min-height in templates?
-              // We will want to use this for image height cropping when behind.
-
-              array(
-                  'title'    => __('Panel Height px', 'pzarchitect'),
-                  'id'       => '_panels_settings_' . 'panel-height',
-                  'type'     => 'dimensions',
-                  //          'class'=> 'arc-field-advanced' ,
-                  'required' => array(
-                      array('_panels_settings_' . 'panel-height-type', '!=', 'none'),
-                      array('show_advanced', 'equals', true),
-                  ),
-                  'width'    => false,
-                  'units'    => 'px',
-                  'default'  => array('height' => '0'),
-                  'hint'     => array('title'   => __('Height', 'pzarchitect'),
-                                      'content' => __('Set a height in pixels for the panel according to the height type you chose.', 'pzarchitect')),
-
-              ),
 
           )
       );
@@ -531,6 +495,9 @@
         $sections[ '_section' . ($i + 1) ] = array(
             'title'      => __('Design', 'pzarchitect'),
             'show_title' => true,
+            'desc'=> '<p class="arc-important-admin-message">'.__('Each post in WordPress is - in a coding context - displayed in its own box. In Architect we call that box a <strong>Panel</strong>. So when you see the term Panel, it means an individual post layout.
+            <br>Panels can be laid out beside each other as in grids, masonry and tabular; or layered as in sliders, tabbed and accordions
+            <br>Note: The term Posts is used but refers generically to any WordPress post type or custom post type.','pzarchitect').'</p>',
             'icon_class' => 'icon-large',
             'icon'       => $icons[ $i ],
             'fields'     => array(
@@ -543,7 +510,7 @@
                     'height'  => 64,
                     'options' => $modesx[ (int)($i > 0) ],
                     'hint'    => array('title'   => 'Types',
-                                       'content' => __('<strong>Basic</strong> is for flat designs like single posts, blog excerpts and magazine grids.<br>
+                                       'content' => __('<strong>Grid</strong> is for flat designs like single posts, blog excerpts and magazine grids.<br>
 <br><strong>Masonry</strong> is like Basic but formats for a Pinterest-like design.<br>
 <br><strong>Slider</strong> for making sliders like featured posts, image slideshows etc.<br>
 <br><strong>Tabbed</strong> for tabbed designs.<br>
@@ -586,7 +553,7 @@
                 ),
                 array(
                     'id'     => $prefix . 'section-' . $i . '-panels-heading',
-                    'title'  => __('Posts configuration', 'pzarchitect'),
+                    'title'  => __('Number to show', 'pzarchitect'),
                     'type'   => 'section',
                     'indent' => true,
                 ),
@@ -600,7 +567,7 @@
                     'subtitle' => 'Each panel displays a single post from the selected content type.'
                 ),
                 array(
-                    'title'    => __('Number of posts to show', 'pzarchitect'),
+                    'title'    => __('Limit number of posts to show to', 'pzarchitect'),
                     'id'       => $prefix . 'section-' . $i . '-panels-per-view',
                     'type'     => 'spinner',
                     'default'  => 6,
@@ -610,16 +577,16 @@
                 ),
                 array(
                     'id'     => $prefix . 'section-' . $i . '-columns-heading',
-                    'title'  => __('Columns', 'pzarchitect'),
+                    'title'  => __('Panels across', 'pzarchitect'),
                     'type'   => 'section',
                     'indent' => true,
                 ),
                 array(
-                    'title'         => __('Columns wide screen', 'pzarchitect'),
+                    'title'         => __('Wide screen', 'pzarchitect'),
                     'subtitle'      => $_architect_options[ 'architect_breakpoint_1' ][ 'width' ] . ' and above',
                     'id'            => $prefix . 'section-' . $i . '-columns-breakpoint-1',
-                    'hint'          => array('title'   => __('Columns wide screen', 'pzarchitect'),
-                                             'content' => __('Number of columns (posts) across on a wide screen as set in the breakpoints options. <br><br>In sliders, this will be the number across.', 'pzarchitect')),
+                    'hint'          => array('title'   => __('Wide screen', 'pzarchitect'),
+                                             'content' => __('Number of panels across on a wide screen as set in the breakpoints options. <br><br>In sliders, this would usually be one.', 'pzarchitect')),
                     'type'          => 'slider',
                     'default'       => 1,
                     'min'           => 1,
@@ -627,11 +594,11 @@
                     'display_value' => 'label'
                 ),
                 array(
-                    'title'         => __('Columns medium screen', 'pzarchitect'),
+                    'title'         => __('Medium screen', 'pzarchitect'),
                     'subtitle'      => $_architect_options[ 'architect_breakpoint_2' ][ 'width' ] . ' to ' . $_architect_options[ 'architect_breakpoint_1' ][ 'width' ],
                     'id'            => $prefix . 'section-' . $i . '-columns-breakpoint-2',
-                    'hint'          => array('title'   => __('Columns medium screen', 'pzarchitect'),
-                                             'content' => __('Number of columns (posts) across on a medium screen as set in the breakpoints options', 'pzarchitect')),
+                    'hint'          => array('title'   => __('Medium screen', 'pzarchitect'),
+                                             'content' => __('Number of panels across on a medium screen as set in the breakpoints options', 'pzarchitect')),
                     'type'          => 'slider',
                     'default'       => 1,
                     'min'           => 1,
@@ -639,11 +606,11 @@
                     'display_value' => 'label'
                 ),
                 array(
-                    'title'         => __('Columns narrow screen', 'pzarchitect'),
+                    'title'         => __('Narrow screen', 'pzarchitect'),
                     'subtitle'      => $_architect_options[ 'architect_breakpoint_2' ][ 'width' ] . ' and below',
                     'id'            => $prefix . 'section-' . $i . '-columns-breakpoint-3',
-                    'hint'          => array('title'   => __('Columns narrow screen', 'pzarchitect'),
-                                             'content' => __('Number of columns (posts) across on a narrow screen as set in the breakpoints options', 'pzarchitect')),
+                    'hint'          => array('title'   => __('Narrow screen', 'pzarchitect'),
+                                             'content' => __('Number of panels across on a narrow screen as set in the breakpoints options', 'pzarchitect')),
                     'type'          => 'slider',
                     'default'       => 1,
                     'min'           => 1,
@@ -652,12 +619,12 @@
                 ),
                 array(
                     'id'     => $prefix . 'section-' . $i . '-panels-settings-heading',
-                    'title'  => __('Design extras', 'pzarchitect'),
+                    'title'  => __('Panel dimensions', 'pzarchitect'),
                     'type'   => 'section',
                     'indent' => true,
                 ),
                 array(
-                    'title'   => __('Minimum post width', 'pzarchitect'),
+                    'title'   => __('Minimum panel width', 'pzarchitect'),
                     'id'      => $prefix . 'section-' . $i . '-min-panel-width',
                     'type'    => 'dimensions',
                     'height'  => false,
@@ -666,7 +633,43 @@
                     //      'hint'  => array('content' => __('Set the minimum width for panels in this section. This helps with responsive layout', 'pzarchitect'))
                 ),
                 array(
-                    'title'   => __('Post margins', 'pzarchitect'),
+                    'title'    => __('Panel Height Type', 'pzarchitect'),
+                    'id'       => '_panels_settings_' . 'panel-height-type',
+                    'type'     => 'select',
+                    'default'  => 'none',
+                    //                  'class'=> 'arc-field-advanced' ,
+                    'required' => array('show_advanced', 'equals', true),
+                    'select2'  => array('allowClear' => false),
+                    'options'  => array(
+                        'none'       => __('None', 'pzarchitect'),
+                        'height'     => __('Exact', 'pzarchitect'),
+                        'max-height' => __('Max', 'pzarchitect'),
+                        'min-height' => __('Min', 'pzarchitect')
+                    ),
+                    'hint'     => array('title'   => __('Height type', 'pzarchitect'),
+                                        'content' => __('Choose if you want an exact height or not for the panels. If you want totally fluid, choose Min, and set a height of 0.', 'pzarchitect'))
+                ),
+                // Hmm? How's this gunna sit with the min-height in templates?
+                // We will want to use this for image height cropping when behind.
+
+                array(
+                    'title'    => __('Panel Height px', 'pzarchitect'),
+                    'id'       => '_panels_settings_' . 'panel-height',
+                    'type'     => 'dimensions',
+                    //          'class'=> 'arc-field-advanced' ,
+                    'required' => array(
+                        array('_panels_settings_' . 'panel-height-type', '!=', 'none'),
+                        array('show_advanced', 'equals', true),
+                    ),
+                    'width'    => false,
+                    'units'    => 'px',
+                    'default'  => array('height' => '0'),
+                    'hint'     => array('title'   => __('Height', 'pzarchitect'),
+                                        'content' => __('Set a height in pixels for the panel according to the height type you chose.', 'pzarchitect')),
+
+                ),
+                array(
+                    'title'   => __('Panel margins', 'pzarchitect'),
                     'id'      => $prefix . 'section-' . $i . '-panels-margins',
                     'type'    => 'spacing',
                     'units'   => array('%', 'px', 'em'),
@@ -1068,6 +1071,86 @@
           //)
       );
 
+      $sections[ '_pagination' ] = array(
+              'title'      => 'Pagination',
+              'icon_class' => 'icon-large',
+              'icon'       => 'el-icon-chevron-right',
+              'fields'     => array(
+                  array(
+                      'title'   => 'Pagination',
+                      'id'      => '_blueprints_pagination',
+                      'type'    => 'switch',
+                      'on'      => 'Yes',
+                      'off'     => 'No',
+                      'default' => false,
+                      'desc'=>__('If your content type is Defaults and you choose to enable overrides, pagination will likely mess up if this Blueprint is displayed on the standard WP blog page.','pzarchitect')
+                  ),
+                  array(
+                      'title'    => __('Posts per page', 'pzarchitect'),
+                      'id'       => '_blueprints_pagination-per-page',
+                      'type'     => 'spinner',
+                      'default'  => 1,
+                      'min'      => 1,
+                      'max'      => 99,
+                      'required' => array('_blueprints_pagination', 'equals', true),
+                  ),
+                  array(
+                      'id'       => '_blueprints_pager-location',
+                      'title'    => __('Pagination location', 'pzarchitect'),
+                      'type'     => 'select',
+                      'select2'  => array('allowClear' => false),
+                      'default'  => 'bottom',
+                      'options'  => array(
+                          'bottom' => 'Bottom',
+                          'top'    => 'Top',
+                          'both'   => 'Both'
+                      ),
+                      'required' => array('_blueprints_pagination', 'equals', true),
+                  ),
+                  array(
+                      'id'       => '_blueprints_pager',
+                      'title'    => __('Blog Pagination', 'pzarchitect'),
+                      'type'     => 'select',
+                      'select2'  => array('allowClear' => false),
+                      'default'  => 'prevnext',
+                      'options'  => array(
+                        //                    'none'     => 'None',
+                        'prevnext' => 'Previous/Next',
+                        'names'    => 'Post names',
+                        'pagenavi' => 'PageNavi',
+                      ),
+                      'required' => array('_blueprints_pagination', 'equals', true),
+                  ),
+                  array(
+                      'id'       => '_blueprints_pager-single',
+                      'title'    => __('Single Post Pagination', 'pzarchitect'),
+                      'type'     => 'select',
+                      'select2'  => array('allowClear' => false),
+                      'default'  => 'prevnext',
+                      'options'  => array(
+                        //                    'none'     => 'None',
+                        'prevnext' => 'Previous/Next',
+                        'names'    => 'Post names',
+                        'pagenavi' => 'PageNavi',
+                      ),
+                      'required' => array('_blueprints_pagination', 'equals', true),
+                  ),
+                  array(
+                      'id'       => '_blueprints_pager-archives',
+                      'title'    => __('Archives Pagination', 'pzarchitect'),
+                      'type'     => 'select',
+                      'select2'  => array('allowClear' => false),
+                      'default'  => 'prevnext',
+                      'options'  => array(
+                        //                    'none'     => 'None',
+                        'prevnext' => 'Previous/Next',
+                        'names'    => 'Post names',
+                        'pagenavi' => 'PageNavi',
+                      ),
+                      'required' => array('_blueprints_pagination', 'equals', true),
+                  ),
+              )
+      );
 
       $sections[ '_usingbp' ] = array(
           'title'      => 'Using Blueprints',
@@ -1210,7 +1293,7 @@
       }
       /** FILTERS */
       $sections[ '_settings' ]   = $blueprint_content_common[ 0 ][ 'settings' ][ 'sections' ];
-      $sections[ '_pagination' ] = $blueprint_content_common[ 0 ][ 'pagination' ][ 'sections' ];
+//      $sections[ '_pagination' ] = $blueprint_content_common[ 0 ][ 'pagination' ][ 'sections' ];
       $sections[ '_filters' ]    = $blueprint_content_common[ 0 ][ 'filters' ][ 'sections' ];
 
 

@@ -98,7 +98,7 @@
                                                                                                                'add_navigation'), 10, 1);
       }
 
-
+d($this);
       return false;
     }
 
@@ -192,7 +192,6 @@
       if ($bp_nav_type === 'navigator') {
         $this->nav_items = $panel_class->get_nav_items($this->build->blueprint[ '_blueprints_navigator' ], $this->arc_query, $this->build->blueprint[ '_blueprints_navigator-labels' ]);
       }
-
       /** RENDER THE BLUEPRINT */
       self::render_this_architect_blueprint($bp_nav_type, $bp_nav_pos, $bp_shortname, $caller, $bp_transtype, $panel_class, $content_class, $do_section_2, $do_section_3);
 
@@ -279,11 +278,7 @@
 
       /** LOOPS */
       // First loop always executes
-      if (!empty($this->build->blueprint[ '_blueprints_section-0-panel-layout' ])) {
         $panel_class->loop(1, $this, $panel_class, $content_class);
-      } else {
-        echo '<span class="message-error">No Panel set for section 1 in Blueprint: <strong>' . $this->build->blueprint[ '_blueprints_short-name' ] . '</strong></span><br>';
-      }
 
 
       // End loop
@@ -477,11 +472,11 @@
       self::load_criteria();
 
       $arc_query_source = new $source_query_class($this->build, $this->criteria);
-
       //   var_Dump($source_query_class);
       $arc_query_source->build_custom_query_options($overrides);
 
       $this->arc_query = $arc_query_source->get_custom_query($overrides);
+
       self::replace_wp_query(); // NOTE: This is only activated on pagination. So should only be used by legitimate post types
     }
 
@@ -581,7 +576,6 @@
       $class = 'arc_Navigator_' . $t->build->blueprint[ '_blueprints_navigator' ];
 
       $navigator = new $class($t->build->blueprint, $t->nav_items);
-
       if (isset($navigator)) {
 
         $navigator->render();

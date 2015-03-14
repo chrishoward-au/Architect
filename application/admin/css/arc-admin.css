@@ -1115,11 +1115,11 @@ body .redux-sidebar .redux-group-menu li.activeChild.hasSubSections .active a:af
 a.pzarc-codex {
   text-decoration: none; }
 
-x#redux-_architect-metabox-panels-design,
+#redux-_architect-metabox-panels-design,
 #redux-_architect-metabox-panels-styling,
 #redux-_architect-metabox-blueprint-stylings,
 #redux-_architect-metabox-layout-settings,
-x#redux-_architect-metabox-content-selections {
+#redux-_architect-metabox-content-selections {
   display: none; }
 
 body.arc-blueprints *,
@@ -1202,3 +1202,6 @@ body.arc-beginner .arc-field-advanced {
   border-radius: 25px;
   padding: 0 5px;
   font-weight: bold; }
+
+.arc-important-admin-message {
+  color: tomato; }

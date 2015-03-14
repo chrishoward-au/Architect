@@ -283,7 +283,7 @@
    * pzarc_get_defaults
    *
    */
-  function pzarc_get_defaults($use_cache = false)
+  function pzarc_get_defaults($exclude_styling = false)
   {
     pzdb('top get defaults');
     // TODO: Do we really need to call this on the front end??!!
@@ -310,7 +310,7 @@
       $_architect[ 'defaults' ][ 'blueprints' ] = (!isset($_architect[ 'defaults' ][ 'blueprints' ]) ? array() : $_architect[ 'defaults' ][ 'blueprints' ]);
 
       $blueprint_layout_general                 = $blueprints->pzarc_blueprint_layout_general_mb($_architect[ 'defaults' ][ 'blueprints' ], true);
-      $blueprint_styling                        = empty($_architect_options[ 'architect_enable_styling' ]) ? '' : $blueprints->pzarc_blueprint_layout_styling_mb($_architect[ 'defaults' ][ 'blueprints' ], true);
+      $blueprint_styling                        = empty($_architect_options[ 'architect_enable_styling' ]) || $exclude_styling? '' : $blueprints->pzarc_blueprint_layout_styling_mb($_architect[ 'defaults' ][ 'blueprints' ], true);
       $pzarc_blueprint_layout                   = $blueprints->pzarc_blueprint_layout_mb($_architect[ 'defaults' ][ 'blueprints' ], true);
       $pzarc_contents_metabox                   = $blueprints->pzarc_blueprint_contents_mb($_architect[ 'defaults' ][ 'blueprints' ], true);
 
@@ -347,12 +347,12 @@
 
 //      $pzarc_panel_general_settings = $blueprints->pzarc_panel_general_settings($_architect[ 'defaults' ][ 'panels' ], true);
       $pzarc_panels_design          = $blueprints->pzarc_panels_design($_architect[ 'defaults' ][ 'panels' ], true);
-      $pzarc_panels_styling         = empty($_architect_options[ 'architect_enable_styling' ]) ? '' : $blueprints->pzarc_panels_styling($_architect[ 'defaults' ][ 'panels' ], true);
+      $pzarc_panels_styling         = empty($_architect_options[ 'architect_enable_styling' ]) || $exclude_styling ? '' : $blueprints->pzarc_panels_styling($_architect[ 'defaults' ][ 'panels' ], true);
 
  //     $_architect[ 'defaults' ][ 'panels' ][ '_panel_general_settings' ] = $pzarc_panel_general_settings[ 0 ][ 'sections' ];
       $_architect[ 'defaults' ][ 'panels' ][ '_panels_design' ]          = $pzarc_panels_design[ 0 ][ 'sections' ];
 
-      if (!empty($_architect_options[ 'architect_enable_styling' ])) {
+      if (!empty($_architect_options[ 'architect_enable_styling' ]) && !$exclude_styling) {
         $_architect[ 'defaults' ][ 'panels' ][ '_panels_styling' ] = $pzarc_panels_styling[ 0 ][ 'sections' ];
       }
 
@@ -765,16 +765,17 @@
   function pzarc_flatten_wpinfo($array_in, $strip = null)
   {
     $array_out = array();
-    foreach ($array_in as $key => $value) {
-      if ($key == '_edit_lock' || $key == '_edit_last' || strpos($key, $strip) !== false) {
-        continue;
+    if (!empty($array_in)) {
+      foreach ($array_in as $key => $value) {
+        if ($key == '_edit_lock' || $key == '_edit_last' || strpos($key, $strip) !== false) {
+          continue;
+        }
+        if (is_array($value)) {
+          $array_out[ $key ] = $value;
+        }
+        $array_out[ $key ] = maybe_unserialize($value[ 0 ]);
       }
-      if (is_array($value)) {
-        $array_out[ $key ] = $value;
-      }
-      $array_out[ $key ] = maybe_unserialize($value[ 0 ]);
     }
-
     return $array_out;
   }
 

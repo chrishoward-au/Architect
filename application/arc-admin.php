@@ -82,6 +82,7 @@
         require_once(PZARC_PLUGIN_APP_PATH . '/shared/thirdparty/php/pzwp-focal-point/pzwp-focal-point.php');
 
       }
+
     }
 
     function missing_redux_admin_notice()
@@ -146,7 +147,7 @@
         // We shouldn't need this anymore
 //        wp_enqueue_style('pzarc-jqueryui-css', PZARC_PLUGIN_APP_URL . '/shared/thirdparty/js/jquery-ui-1.10.2.custom/css/pz_architect/jquery-ui-1.10.2.custom.min.css');
 
-        wp_enqueue_script('jquery-pzarc-metaboxes', PZARC_PLUGIN_APP_URL . '/admin/js/arc-metaboxes.js', array('jquery'), false);
+        wp_enqueue_script('jquery-pzarc-metaboxes', PZARC_PLUGIN_APP_URL . '/admin/js/arc-metaboxes.js', array('jquery'), true);
 
 
         // We shouldn't need this anymore
@@ -158,8 +159,8 @@
         add_filter('page_row_actions', 'pzarc_duplicate_post_link', 10, 2);
       }
       if ('architect_page_pzarc_support' === $screen->id) {
-        wp_enqueue_script('js-classlist', PZARC_PLUGIN_APP_URL . '/shared/thirdparty/js/tabby/dist/js/classList.min.js', array('jquery'));
-        wp_enqueue_script('js-tabby', PZARC_PLUGIN_APP_URL . '/shared/thirdparty/js/tabby/dist/js/tabby.min.js', array('jquery'));
+        wp_enqueue_script('js-classlist', PZARC_PLUGIN_APP_URL . '/shared/thirdparty/js/tabby/dist/js/classList.min.js', array('jquery'),true);
+        wp_enqueue_script('js-tabby', PZARC_PLUGIN_APP_URL . '/shared/thirdparty/js/tabby/dist/js/tabby.min.js', array('jquery'),true);
         wp_enqueue_style('css-tabby', PZARC_PLUGIN_APP_URL . '/shared/thirdparty/js/tabby/dist/css/tabby.min.css');
       }
 
@@ -186,6 +187,8 @@
         require_once( PZARC_DOCUMENTATION_PATH.PZARC_LANGUAGE . '/panels-listings-pageguide.php');
       }
 
+//      if ($screen post ot page editor)
+//      require_once (PZARC_PLUGIN_APP_PATH.'admin/php/arcMCEButtons.php');
     }
 
     function admin_menu()
@@ -655,4 +658,30 @@ add_action(\'init\',\'gs_init\');
 
 			</div></div>';
 
+  }
+
+  /* Sort posts in wp_list_table by column in ascending or descending order. */
+  function pzarc_blueprints_order($query){
+    /*
+        Set post types.
+        _builtin => true returns WordPress default post types.
+        _builtin => false returns custom registered post types.
+    */
+    $post_types = get_post_types(array(), 'names');
+    /* The current post type. */
+    $post_type = $query->get('post_type');
+    /* Check post types. */
+    if(in_array($post_type, $post_types) && $post_type === 'arc-blueprints'){
+      /* Post Column: e.g. title */
+      if($query->get('orderby') == ''){
+        $query->set('orderby', 'title');
+      }
+      /* Post Order: ASC / DESC */
+      if($query->get('order') == ''){
+        $query->set('order', 'ASC');
+      }
+    }
+  }
+  if(is_admin()){
+    add_action('pre_get_posts', 'pzarc_blueprints_order');
   }

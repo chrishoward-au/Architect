@@ -9,8 +9,9 @@
 
   class arc_SectionFactory
   {
-    public static function create($number, $section, $source, $navtype, $layout_mode, $slider_type = null, $section_title = null, $table_titles = null, $panel_name = null)
+    public static function create($number, $section, $source, $navtype, $layout_mode, $slider_type = null, $section_title = null, $table_titles = null, $panel_name = 'legacy-panel')
     {
+  //    var_dump($number, $section, $source, $navtype, $layout_mode, $slider_type, $section_title, $table_titles, $panel_name);
       return new arc_Section($number, $section, $source, $navtype, $layout_mode, $slider_type, $section_title, $table_titles, $panel_name);
     }
 
@@ -44,7 +45,6 @@
      */
     public function __construct($number, $section_panel, $content_source, $navtype, $layout_mode, $slider_type = null, $section_title = null, $table_accordion_titles = array(), $panel_name = null)
     {
-
       $this->section_number         = $number;
       $this->section                = $section_panel;
       $this->panel_name             = $panel_name;
