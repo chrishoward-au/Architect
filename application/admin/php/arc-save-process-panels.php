@@ -7,10 +7,10 @@
     global $_architect_options;
     pzdb('create css top');
     $nl = "\n";
-    $pzarc_contents .= '/* This is the css for panel ' . $pzarc_panels[ '_panels_settings_short-name' ] . '*/' . $nl;
+    $pzarc_contents .= '/* This is the css for panels of blueprint ' . $pzarc_panels[ '_panels_settings_short-name' ] . '*/' . $nl;
 
     // Step thru each field looking for ones to format
-    $class_prefix = 'body.pzarchitect .pzarc-panel_legacy_panel_class';
+    $class_prefix = 'body.pzarchitect .pzarc-panel_' . $pzarc_panels[ '_blueprints_short-name' ] ;
 
     $toshow      = json_decode($pzarc_panels[ '_panels_design_preview' ], true);
     $sum_to_show = 0;

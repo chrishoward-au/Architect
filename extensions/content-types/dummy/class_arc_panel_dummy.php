@@ -171,7 +171,7 @@
       $panel_def = $panel_class->panel_def();
 
       // Setup meta tags
-      $panel_def = self::build_header_footer_meta_groups($panel_def, $this->build->blueprint[ 'section' ][ ($section_no - 1) ][ 'section-panel-settings' ]);
+      $panel_def = self::build_meta_header_footer_groups($panel_def, $section[ $section_no ]->section['section-panel-settings' ]);
 
       //   var_dump(esc_html($panel_def));
 

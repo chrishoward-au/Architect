@@ -17,7 +17,7 @@ li.arc-message {
   margin: 0 0 20px 0; }
 
 #pzarc-custom-pzarc_layout-cell-preview {
-  width: 452px;
+  width: 562px;
   border-radius: 3px 3px 0 0;
   box-shadow: 0 0 10px #aaa;
   margin-bottom: 10px; }
@@ -92,7 +92,7 @@ div.pzarc-dragsource {
   height: 300px;
   box-sizing: border-box;
   overflow: hidden;
-  width: 452px;
+  width: 562px;
   position: relative;
   background-position: 100%; }
 
@@ -1207,20 +1207,22 @@ body.arc-beginner .arc-field-advanced {
   color: tomato; }
 
 #tab-presets {
-  border-bottom: solid 4px #673AB7; }
+  border-bottom: solid 4px #673ab7; }
   #tab-presets.active {
-    background: #673AB7; }
+    background: #673ab7; }
     #tab-presets.active span.stepno {
-      color: #673AB7; }
+      color: #673ab7; }
   #tab-presets:hover {
-    background: fade(#673AB7, 10%); }
+    background: fade(#673ab7, 10%); }
     #tab-presets:hover span.stepno {
       color: inherit; }
     #tab-presets:hover.active span.stepno {
-      color: #673AB7; }
+      color: #673ab7; }
 
 #redux-_architect-metabox-presets h3.redux-hndle {
-  border-bottom: solid 4px #673AB7 !important; }
+  border-bottom: solid 4px #673ab7 !important; }
+#redux-_architect-metabox-presets .redux-container {
+  background: #FFEBEE; }
 
 #tab-layout {
   border-bottom: solid 4px #3f51b5; }
@@ -1237,6 +1239,8 @@ body.arc-beginner .arc-field-advanced {
 
 #redux-_architect-metabox-layout-settings h3.redux-hndle {
   border-bottom: solid 4px #3f51b5 !important; }
+#redux-_architect-metabox-layout-settings .redux-container {
+  background: #E8EAF6; }
 
 #tab-panels {
   border-bottom: solid 4px #ff9800; }
@@ -1253,6 +1257,8 @@ body.arc-beginner .arc-field-advanced {
 
 #redux-_architect-metabox-panels-design h3.redux-hndle {
   border-bottom: solid 4px #ff9800 !important; }
+#redux-_architect-metabox-panels-design .redux-container {
+  background: #FFF3E0; }
 
 #tab-content {
   border-bottom: solid 4px #f44336; }
@@ -1269,6 +1275,8 @@ body.arc-beginner .arc-field-advanced {
 
 #redux-_architect-metabox-content-selections h3.redux-hndle {
   border-bottom: solid 4px #f44336 !important; }
+#redux-_architect-metabox-content-selections .redux-container {
+  background: #FFEBEE; }
 
 #tab-styling {
   border-bottom: solid 4px #2196f3; }
@@ -1285,6 +1293,8 @@ body.arc-beginner .arc-field-advanced {
 
 #redux-_architect-metabox-blueprint-stylings h3.redux-hndle {
   border-bottom: solid 4px #2196f3 !important; }
+#redux-_architect-metabox-blueprint-stylings .redux-container {
+  background: #E3F2FD; }
 
 #tab-content_styling {
   border-bottom: solid 4px #8bc34a; }
@@ -1301,3 +1311,13 @@ body.arc-beginner .arc-field-advanced {
 
 #redux-_architect-metabox-panels-styling h3.redux-hndle {
   border-bottom: solid 4px #8bc34a !important; }
+#redux-_architect-metabox-panels-styling .redux-container {
+  background: #F1F8E9; }
+
+a.arc-important-button {
+  color: #fff;
+  background: #f44336;
+  padding: 10px;
+  border-radius: 5px; }
+  a.arc-important-button:hover {
+    background: #ea1c0d; }

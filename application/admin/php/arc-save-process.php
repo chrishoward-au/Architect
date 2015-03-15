@@ -171,7 +171,7 @@
     global $_architect;
     global $_architect_options;
     pzdb('pre get defaults');
-    pzarc_get_defaults(array('blueprints', 'panels'));
+    pzarc_get_defaults(false);
     pzdb('post get defaults');
     $defaults = $_architect[ 'defaults' ];
     // Need to create the file contents
@@ -182,7 +182,17 @@
       case 'arc-blueprints':
         require_once PZARC_PLUGIN_APP_PATH . '/admin/php/arc-save-process-blueprints.php';
 //        pzdebug($defaults[ '_blueprints' ]);
-        $pzarc_blueprints = pzarc_merge_defaults($defaults[ '_blueprints' ], $pzarc_settings);
+
+
+//        $pzarc_blueprints = pzarc_merge_defaults($defaults[ '_blueprints' ], $pzarc_settings);
+        $pzarc_blueprints         = array_replace_recursive($_architect[ 'defaults' ][ '_blueprints' ], $pzarc_settings);
+//        foreach ($_architect[ 'defaults' ][ '_blueprints' ] as $key => $value) {
+//          if ((strpos($key, '_blueprints_') === 0 || strpos($key, '_content_') === 0) && !isset($pzarc_blueprints[ $key ])) {
+//            $pzarc_blueprints['panels'][ $key ] = maybe_unserialize($value);
+//          };
+//
+//        }
+
         $pzarc_contents .= pzarc_create_blueprint_css($pzarc_blueprints, $pzarc_contents, $postid);
 
         /** Save css to options cache */

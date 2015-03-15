@@ -41,7 +41,7 @@
                                        'slick', // Possible Future use
                                        $this->blueprint[ '_blueprints_section-' . ($i - 1) . '-title' ],
                                        $this->blueprint[ '_blueprints_section-' . ($i - 1) . '-table-column-titles' ],
-                                       $this->blueprint[ 'section' ][ ($i - 1) ][ 'section-panel-settings' ][ '_panels_settings_short-name' ]
+                                       $this->blueprint[ '_blueprints_short-name' ]
 
             );
         unset($this->blueprint[ 'section' ]);

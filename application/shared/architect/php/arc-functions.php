@@ -959,3 +959,10 @@
   //      var_dump(is_main_query());
   //      return $custom_content;
   //    }
+
+  // Just incase
+  if (!function_exists('d')) {
+    function d($var) {
+      // do nothing incase a d() left behind
+    }
+  }

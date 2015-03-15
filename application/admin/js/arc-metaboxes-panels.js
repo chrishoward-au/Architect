@@ -271,7 +271,7 @@ jQuery( document ).ready( function ()
     containment: "parent",
     grid: [4, 1],
     minWidth: 10,
-    maxWidth: 450,
+    maxWidth: 560,
     autoHide: true,
     resize: function ()
     {
@@ -455,7 +455,7 @@ jQuery( document ).ready( function ()
               'left': ''
             } );
             jQuery( '.pzarc-dropzone .pzgp-cell-image-behind' ).css( {
-              'width': (450 - zonesWidth) + 'px',
+              'width': (560 - zonesWidth) + 'px',
               'left': '',
               'right': '0',
               'top': '',
@@ -470,7 +470,7 @@ jQuery( document ).ready( function ()
               'left': ''
             } );
             jQuery( '.pzarc-dropzone .pzgp-cell-image-behind' ).css( {
-              'width': (450 - zonesWidth) + 'px',
+              'width': (560 - zonesWidth) + 'px',
               'right': '',
               'left': '0',
               'top': '',

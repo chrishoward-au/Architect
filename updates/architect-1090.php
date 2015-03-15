@@ -1,7 +1,7 @@
 <?php
   /**
    * Project pizazzwp-architect.
-   * File: architect-1100.php
+   * File: architect-1090.php
    * User: chrishoward
    * Date: 9/03/15
    * Time: 8:55 PM
@@ -9,7 +9,7 @@
 
 
   add_action('admin_notices', 'pzarc_admin_notice_1100');
-  function pzarc_admin_notice_1100()
+  function pzarc_admin_notice_1090()
   {
     if (current_user_can('install_plugins')) {
 
@@ -18,14 +18,18 @@
       /* Check that the user hasn't already clicked to ignore the message */
       if (!get_user_meta($user_id, 'pzarc_ignore_notice_v1100')) {
         echo '<div class="message updated highlight"><p>';
-        printf(__('<h3>Architect v1.1.0</h3>
+        printf(__('<h3>Architect v1.0.9</h3>
 <strong>This verson is a major change in workflow. Therefore it also updates the database so old Architect Blueprints will still work.</strong>
 Please check your Blueprints to ensure they are still displaying correctly.
-<h4>New features in 1.1.0</h4>
+
+<h4>New features in 1.0.9</h4>
 <ul>
 <li>&bull; Panels design is now a part of Blueprints design</li>
+<li>&bull; Blueprints listing sorted alphabetically</li>
 </ul>
- <p><a href="mailto:support@pizazzwp.com">Support</a> |<a href="%1$s">Hide Notice</a>'), '?pzarc_nag_ignore_v1100=0');
+<strong style="color:tomato">If you are updating Architect from v1.0.8.x or earlier, please got to the Architect Tools menu and rebuild CSS</strong>
+<p style="margin:20px 0;"><a class="arc-important-button" href="%1$s">Go to Tools</a></p>
+ <p><a href="mailto:support@pizazzwp.com">Email support</a> '), 'admin.php?page=pzarc_tools');
 
         echo "</p>
 </div>";
@@ -33,17 +37,6 @@ Please check your Blueprints to ensure they are still displaying correctly.
     }
   }
 
-  add_action('admin_init', 'pzarc_nag_ignore_1100');
-
-  function pzarc_nag_ignore_1100()
-  {
-    global $current_user;
-    $user_id = $current_user->ID;
-    /* If user clicks to ignore the notice, add that to their user meta */
-    if (isset($_GET[ 'pzarc_nag_ignore_v1100' ]) && '0' == $_GET[ 'pzarc_nag_ignore_v090' ]) {
-      add_user_meta($user_id, 'pzarc_ignore_notice_v1100', 'true', true);
-    }
-  }
 
 // Merge Panels into Blueprints
   $args       = array('posts_per_page' => -1, 'post_type' => 'arc-blueprints');
@@ -68,4 +61,7 @@ Please check your Blueprints to ensure they are still displaying correctly.
       }
     }
     // Need a reset so can run again.
+
+    // Now update the css
+
   }

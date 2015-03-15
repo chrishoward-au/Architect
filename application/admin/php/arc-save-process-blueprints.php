@@ -126,12 +126,9 @@
   function pzarc_process_bp_sections(&$pzarc_blueprints, $i, $nl, &$_architect_options)
   {
 //    var_dump(array_keys($pzarc_blueprints));
-    if (empty($pzarc_blueprints[ '_blueprints_section-' . $i . '-panel-layout' ])) {
-      return array(null, null);
-    }
     $specificity_class = 'body.pzarchitect ';
     $sections_class       = $specificity_class.'.pzarc-blueprint_' . $pzarc_blueprints[ '_blueprints_short-name' ] . ' > .pzarc-sections  .pzarc-section_' . ($i + 1);
-    $panels_class         = $sections_class . '.pzarc-section-using-panel_legacy_panel_class > .pzarc-panel';
+    $panels_class         = $sections_class . '.pzarc-section-using-' . $pzarc_blueprints[ '_blueprints_short-name' ] . ' > .pzarc-panel';
     $pzarc_mediaq_css     = '';
     $pzarc_sections_align = '';
 
@@ -198,7 +195,7 @@
 //        $pzarc_height_type = (empty($pzarc_panels[ '_panels_settings_panel-height-type' ])?'min-height':$pzarc_panels[ '_panels_settings_panel-height-type' ]);
 //        $pzarc_mediaq_css .= '.pzarchitect .arc-slider-container.arc-slider-container-' . $pzarc_blueprints[ '_blueprints_short-name' ] . ' {'.$pzarc_panels[ '_panels_settings_panel-height-type' ].':' . $pzarc_panel_height . ';}' . $nl;
 
-    $pzarc_css .= pzarc_create_panels_css($pzarc_blueprints, $pzarc_css, $pzarc_blueprints['id']);
+    $pzarc_css .= pzarc_create_panels_css($pzarc_blueprints, $pzarc_css);
 
 
     return  $pzarc_css;
@@ -254,7 +251,7 @@
    * @param $postid
    * @return string
    */
-  function pzarc_create_panels_css(&$pzarc_panels, $pzarc_contents, $postid)
+  function pzarc_create_panels_css(&$pzarc_panels, $pzarc_contents)
   {
 
     global $_architect;
@@ -263,7 +260,7 @@
     $nl = "\n";
 
     // Step thru each field looking for ones to format
-    $class_prefix = 'body.pzarchitect .pzarc-panel_legacy_panel_class';
+    $class_prefix = 'body.pzarchitect .pzarc-panel_' . $pzarc_panels[ '_blueprints_short-name' ];
 
     $toshow      = json_decode($pzarc_panels[ '_panels_design_preview' ], true);
     $sum_to_show = 0;

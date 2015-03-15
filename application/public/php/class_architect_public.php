@@ -98,7 +98,6 @@
                                                                                                                'add_navigation'), 10, 1);
       }
 
-d($this);
       return false;
     }
 
