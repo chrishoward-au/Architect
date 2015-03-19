@@ -9,10 +9,10 @@
 
   class arc_SectionFactory
   {
-    public static function create($number, $section, $source, $navtype, $layout_mode, $slider_type = null, $section_title = null, $table_titles = null, $panel_name = 'legacy-panel')
+    public static function create($number, $section, $source, $navtype, $layout_mode, $slider_type = null, $table_titles = null, $panel_name = 'legacy-panel')
     {
   //    var_dump($number, $section, $source, $navtype, $layout_mode, $slider_type, $section_title, $table_titles, $panel_name);
-      return new arc_Section($number, $section, $source, $navtype, $layout_mode, $slider_type, $section_title, $table_titles, $panel_name);
+      return new arc_Section($number, $section, $source, $navtype, $layout_mode, $slider_type, $table_titles, $panel_name);
     }
 
   }
@@ -43,7 +43,7 @@
      * @param      $table_accordion_titles
      * @internal param $blueprint
      */
-    public function __construct($number, $section_panel, $content_source, $navtype, $layout_mode, $slider_type = null, $section_title = null, $table_accordion_titles = array(), $panel_name = null)
+    public function __construct($number, $section_panel, $content_source, $navtype, $layout_mode, $slider_type = null, $table_accordion_titles = array(), $panel_name = null)
     {
       $this->section_number         = $number;
       $this->section                = $section_panel;
@@ -51,7 +51,6 @@
       $this->source                 = $content_source;
       $this->navtype                = $navtype;
       $this->layout_mode            = $layout_mode;
-      $this->section_title          = $section_title;
       $this->slider_type            = $slider_type;
       $this->rsid                   = 'rsid' . (rand(1, 9999) * rand(10000, 99999));
       $this->table_accordion_titles = $table_accordion_titles;
@@ -104,12 +103,6 @@
           : array('wrapper' => '',
                   'slide'   => '');
 
-      if (!empty($this->section_title)) {
-
-        // TODO: Neeed to process %% tags in title.
-        echo '<div class="pzarc-section-title pzarc-section-title-' . $this->section_number . '"><h3>' . $this->section_title . '</h3></div>';
-
-      }
 
       $isotope      = '';
       $accordion    = '';
@@ -292,9 +285,8 @@
       }
 
 
-      $odds_evens_section = ($panel_number % 2 ? ' odd-section-panel' : ' even-section-panel');
       static $panel_count = 1;
-      $odds_evens_bp = ($panel_count++ % 2 ? ' odd-blueprint-panel' : ' even-blueprint-panel');
+      $odds_evens_bp = ($panel_count++ % 2 ? ' odd-panel' : ' even-panel');
 
 
       // Add standard identifying WP classes to the whole panel
@@ -302,7 +294,7 @@
       $postmeta_classes = ' ' . $panel_class->data[ 'posttype' ] . ' type-' . $panel_class->data[ 'posttype' ] . ' status-' . $panel_class->data[ 'poststatus' ] . ' format-' . $panel_class->data[ 'postformat' ] . ' ';
 
 //      echo '<' . ('table' !== $this->layout_mode ? 'div' : 'tr') . ' class="pzarc-panel pzarc-panel_' . $settings[ '_panels_settings_short-name' ] . ' pzarc-panel-no_' . $panel_number . $this->slider[ 'slide' ] . $image_in_bg . $odds_evens_bp . $odds_evens_section . $postmeta_classes . '" >';
-      echo '<' . ('table' !== $this->layout_mode ? 'div' : 'tr') . ' class="pzarc-panel pzarc-panel_' . $this->panel_name . ' pzarc-panel-no_' . $panel_number . $this->slider[ 'slide' ] . $image_in_bg . $odds_evens_bp . $odds_evens_section .'" >';
+      echo '<' . ('table' !== $this->layout_mode ? 'div' : 'tr') . ' class="pzarc-panel pzarc-panel_' . $this->panel_name . ' pzarc-panel-no_' . $panel_number . $this->slider[ 'slide' ] . $image_in_bg . $odds_evens_bp .'" >';
 
 
       //TODO: Check this works for all scenarios

@@ -25,14 +25,14 @@
   }
 
 // Don't duplicate me!
-  if (!class_exists('ReduxFramework_extension_metaboxes')) {
+  if (!class_exists('ReduxFramework_extension_metaboxes_arc')) {
 
     /**
      * Main ReduxFramework customizer extension class
      *
      * @since       1.0.0
      */
-    class ReduxFramework_extension_metaboxes
+    class ReduxFramework_extension_metaboxes_arc
     {
 
       static $version = "1.2.9";
@@ -60,7 +60,6 @@
       {
 
         $this->parent = $parent;
-
 
         $this->parent->extensions[ 'metaboxes' ] = $this;
 
@@ -116,7 +115,6 @@
         if (empty($this->boxes)) {
           return; // Don't do it! There's nothing here.
         }
-
         $this->base_url = 'http://' . $_SERVER[ "HTTP_HOST" ] . $_SERVER[ "REQUEST_URI" ];
         $this->post_id  = $this->url_to_postid('http://' . $_SERVER[ "HTTP_HOST" ] . $_SERVER[ "REQUEST_URI" ]);
         if (is_admin() && isset($_GET[ 'post_type' ]) && !empty($_GET[ 'post_type' ])) {
@@ -697,7 +695,12 @@
             parse_str($query, $query_vars);
             $query = array();
             foreach ((array)$query_vars as $key => $value) {
-              if (in_array($key, $wp->public_query_vars)) {
+              /**
+               * Hacky fix by Chris Howard
+               *
+               * is_array added
+               */
+              if (is_array($wp->public_query_vars) && in_array($key, $wp->public_query_vars)) {
                 $query[ $key ] = $value;
               }
             }
@@ -739,33 +742,40 @@
                 $post_type_query_vars[ $t->query_var ] = $post_type;
               }
             }
+            /**
+             * Hacky fix by Chris Howard
+             *
+             * is_array added
+             */
 
-            foreach ($wp->public_query_vars as $wpvar) {
-              if (isset($wp->extra_query_vars[ $wpvar ])) {
-                $query[ $wpvar ] = $wp->extra_query_vars[ $wpvar ];
-              } elseif (isset($_POST[ $wpvar ])) {
-                $query[ $wpvar ] = $_POST[ $wpvar ];
-              } elseif (isset($_GET[ $wpvar ])) {
-                $query[ $wpvar ] = $_GET[ $wpvar ];
-              } elseif (isset($query_vars[ $wpvar ])) {
-                $query[ $wpvar ] = $query_vars[ $wpvar ];
-              }
-
-
-              if (!empty($query[ $wpvar ])) {
-                if (!is_array($query[ $wpvar ])) {
-                  $query[ $wpvar ] = (string)$query[ $wpvar ];
-                } else {
-                  foreach ($query[ $wpvar ] as $vkey => $v) {
-                    if (!is_object($v)) {
-                      $query[ $wpvar ][ $vkey ] = (string)$v;
-                    }
-                  }
+            if (is_array($wp->public_query_vars)) {
+              foreach ($wp->public_query_vars as $wpvar) {
+                if (isset($wp->extra_query_vars[ $wpvar ])) {
+                  $query[ $wpvar ] = $wp->extra_query_vars[ $wpvar ];
+                } elseif (isset($_POST[ $wpvar ])) {
+                  $query[ $wpvar ] = $_POST[ $wpvar ];
+                } elseif (isset($_GET[ $wpvar ])) {
+                  $query[ $wpvar ] = $_GET[ $wpvar ];
+                } elseif (isset($query_vars[ $wpvar ])) {
+                  $query[ $wpvar ] = $query_vars[ $wpvar ];
                 }
 
-                if (isset($post_type_query_vars[ $wpvar ])) {
-                  $query[ 'post_type' ] = $post_type_query_vars[ $wpvar ];
-                  $query[ 'name' ]      = $query[ $wpvar ];
+
+                if (!empty($query[ $wpvar ])) {
+                  if (!is_array($query[ $wpvar ])) {
+                    $query[ $wpvar ] = (string)$query[ $wpvar ];
+                  } else {
+                    foreach ($query[ $wpvar ] as $vkey => $v) {
+                      if (!is_object($v)) {
+                        $query[ $wpvar ][ $vkey ] = (string)$v;
+                      }
+                    }
+                  }
+
+                  if (isset($post_type_query_vars[ $wpvar ])) {
+                    $query[ 'post_type' ] = $post_type_query_vars[ $wpvar ];
+                    $query[ 'name' ]      = $query[ $wpvar ];
+                  }
                 }
               }
             }

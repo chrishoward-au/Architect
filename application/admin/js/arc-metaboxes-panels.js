@@ -19,7 +19,7 @@ jQuery( document ).ready( function ()
    */
   function pzarc_update_status( cell_layout )
   {
-    console.log(event.timeStamp);
+    ////console.log(event.timeStamp);
     var showing = "";
     jQuery.each( cell_layout, function ( index, value )
     {
@@ -48,7 +48,7 @@ jQuery( document ).ready( function ()
       features_row.show();
 
     }
-    console.log(event.timeStamp);
+    //console.log(event.timeStamp);
 
   }
 
@@ -244,20 +244,20 @@ jQuery( document ).ready( function ()
       {
         jQuery( ".pzarc-content-area.sortable" ).append( element_html[index] );
       } );
-      console.log(event.timeStamp);
+      //console.log(event.timeStamp);
       var cell_layout = get_cell_layout();
-      console.log(event.timeStamp);
+      //console.log(event.timeStamp);
       pzarc_update_component_location( cell_layout );
-      console.log(event.timeStamp);
+      //console.log(event.timeStamp);
       pzarc_update_components_container_width(  );
-      console.log(event.timeStamp);
+      //console.log(event.timeStamp);
       pzarc_update_components_nudge(  );
-      console.log(event.timeStamp);
+      //console.log(event.timeStamp);
       pzarc_update_component_visibility( cell_layout );
-      console.log(event.timeStamp);
+      //console.log(event.timeStamp);
 //            pzarc_update_feature( cell_layout );
       pzarc_update_status( cell_layout );
-      console.log(event.timeStamp);
+      //console.log(event.timeStamp);
     }
   } );
 
@@ -337,13 +337,13 @@ jQuery( document ).ready( function ()
         }
       }
     } );
-    console.log(event.timeStamp);
+    //console.log(event.timeStamp);
     pzarc_update_feature_type( jQuery( 'input[name="_architect[_panels_settings_feature-type]"]:checked' ).get( 0 ).value );
-    console.log(event.timeStamp);
+    //console.log(event.timeStamp);
     pzarc_update_feature( cell_layout );
-    console.log(event.timeStamp);
+    //console.log(event.timeStamp);
     pzarc_update_status( cell_layout );
-    console.log(event.timeStamp);
+    //console.log(event.timeStamp);
     return cell_layout;
   }
 
@@ -368,7 +368,7 @@ jQuery( document ).ready( function ()
     // Because this function is called in different ways,we reget the value of feature location
     jQuery( 'input[name="_architect[_panels_design_feature-location]"]' ).each( function ()
     {
-      console.log(event.timeStamp);
+      //console.log(event.timeStamp);
       if ( this.checked )
       {
         featureLocation = this.value;
@@ -514,7 +514,7 @@ jQuery( document ).ready( function ()
         break;
     }
     pzarc_update_status( cell_layout );
-    console.log(event.timeStamp);
+    //console.log(event.timeStamp);
   }
 
   function pzarc_update_component_location( cell_layout )
@@ -568,7 +568,7 @@ jQuery( document ).ready( function ()
         break;
     }
     pzarc_update_status( cell_layout );
-    console.log(event.timeStamp);
+    //console.log(event.timeStamp);
   }
 
   function pzarc_update_components_container_width()
@@ -618,7 +618,7 @@ jQuery( document ).ready( function ()
     {
       jQuery( '.pzarc-content-area' ).css( 'marginLeft', nudgexy[0] + '%' ).css( 'marginBottom', nudgexy[1] + '%' );
     }
-    console.log(event.timeStamp);
+    //console.log(event.timeStamp);
   }
 
 
@@ -673,7 +673,7 @@ jQuery( document ).ready( function ()
 
       }
     } );
-    console.log(event.timeStamp);
+    //console.log(event.timeStamp);
 
   }
 
@@ -694,7 +694,7 @@ jQuery( document ).ready( function ()
         this.src = this.src.replace( /sample-image.jpg/g, "sample-video.jpg" );
       }
     } );
-    console.log(event.timeStamp);
+    //console.log(event.timeStamp);
   }
 
   function pzarc_reposition_components( cell_layout, t )
@@ -741,14 +741,14 @@ jQuery( document ).ready( function ()
       jQuery( '.pzarc-content-area' ).css( 'position', 'absolute' );
 
     }
-    console.log(event.timeStamp);
+    //console.log(event.timeStamp);
 
   }
   function get_cell_layout() {
-    console.log(event.timeStamp);
+    //console.log(event.timeStamp);
     var cell_layout_serialized = jQuery( '#_panels_design_preview-text' ).val();
     var cell_layout = jQuery.parseJSON( cell_layout_serialized );
-    console.log(event.timeStamp);
+    //console.log(event.timeStamp);
     return cell_layout;
   }
 

@@ -262,6 +262,10 @@
     // Step thru each field looking for ones to format
     $class_prefix = 'body.pzarchitect .pzarc-panel_' . $pzarc_panels[ '_blueprints_short-name' ];
 
+    // DANGER WILL ROBINSON!
+    // json_decode on different enviroments converts UTF-8 data in different ways. I end up getting on of values '240.00' locally and '240' on production - massive dissaster. Morover if conversion fails string get's returned as NULL
+    // http://stackoverflow.com/questions/1869091/convert-array-to-object-php
+
     $toshow      = json_decode($pzarc_panels[ '_panels_design_preview' ], true);
     $sum_to_show = 0;
     $checksum    = 0;

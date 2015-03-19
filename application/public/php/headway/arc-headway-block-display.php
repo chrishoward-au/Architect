@@ -75,7 +75,7 @@
       $return_js = "jQuery(document).ready(function(){ ";
 
       foreach ($pzarc_sections as $key => $pzarc_section) {
-       // var_dump($key,$pzarc_section);
+        // var_dump($key,$pzarc_section);
         $pzarc_col_width = HeadwayBlocksData::get_block_width($block[ 'id' ]) / $pzarc_section[ 'pzarc-cells-per-row-desktop' ];
 
 
@@ -96,6 +96,7 @@
       }
 
       $return_js .= "});";
+
       return $return_js;
     }
 
@@ -107,12 +108,12 @@
                                         'id'         => 'pzarc-blueprint',
                                         'name'       => 'Blueprint container',
                                         'selector'   => '.use-hw-css.pzarc-blueprint',
-                                        'states'     => array(
-                                            'Links'   => '.use-hw-css.pzarc-blueprint a',
-                                            'Hover'   => '.use-hw-css.pzarc-blueprint a:hover',
-                                            'Clicked' => '.use-hw-css.pzarc-blueprint a:active',
-                                            'Visited' => '.use-hw-css.pzarc-blueprint a:visited'
-                                        ),
+                                        //                                        'states'     => array(
+                                        //                                            'Links'   => '.use-hw-css.pzarc-blueprint a',
+                                        //                                            'Hover'   => '.use-hw-css.pzarc-blueprint a:hover',
+                                        //                                            'Clicked' => '.use-hw-css.pzarc-blueprint a:active',
+                                        //                                            'Visited' => '.use-hw-css.pzarc-blueprint a:visited'
+                                        //                                        ),
                                         'properties' => array('background',
                                                               'borders',
                                                               'padding',
@@ -199,12 +200,10 @@
                                         'id'         => 'pzarc-panel',
                                         'name'       => 'Panels',
                                         'selector'   => '.use-hw-css .pzarc-panel',
-                                        //                                        'states'     => array(
-                                        //                                            'Odd within Blueprint'  => '.use-hw-css .pzarc-panel.odd-blueprint-panel',
-                                        //                                            'Even within Blueprint' => '.use-hw-css .pzarc-panel.even-blueprint-panel',
-                                        //                                            'Odd within Section'    => '.use-hw-css .pzarc-panel.odd-section-panel',
-                                        //                                            'Even within Section'   => '.use-hw-css .pzarc-panel.even-section-panel',
-                                        //                                        ),
+                                        'states'     => array(
+                                            'Odd'  => '.use-hw-css .pzarc-panel.odd-panel',
+                                            'Even' => '.use-hw-css .pzarc-panel.even-panel',
+                                        ),
                                         // Don't allow margins on panels as it messes up layout. Margins must be set in the Blueprint settings
                                         'properties' => array('background',
                                                               'borders',
@@ -216,9 +215,8 @@
       $this->register_block_element(array(
                                         'id'         => 'pzarc-panel-entry-title',
                                         'name'       => 'Entry title',
-                                        'selector'   => '.use-hw-css .pzarc-panel .entry-title, .pzarc-panel .entry-title:before',
+                                        'selector'   => '.use-hw-css .pzarc-panel .entry-title, .pzarc-panel .entry-title:before,.use-hw-css .pzarc-panel .entry-title a, .use-hw-css .pzarc-panel .entry-title:before a',
                                         'states'     => array(
-                                            'Links'   => '.use-hw-css .pzarc-panel .entry-title a, .use-hw-css .pzarc-panel .entry-title:before a',
                                             'Hover'   => '.use-hw-css .pzarc-panel .entry-title a:hover, .use-hw-css .pzarc-panel .entry-title:before a:hover',
                                             'Clicked' => '.use-hw-css .pzarc-panel .entry-title a:active, .use-hw-css .pzarc-panel .entry-title:before a:active',
                                             'Visited' => '.use-hw-css .pzarc-panel .entry-title a:visited, .use-hw-css .pzarc-panel .entry-title:before a:visited'
@@ -358,7 +356,10 @@
       $settings  = HeadwayArchitectBlockOptions::get_settings($block);
       $blueprint = explode('##', $settings[ 'pzarc-blueprint' ]);
 
-      echo pzarc($blueprint[ 0 ], $settings[ 'pzarc-overrides-ids' ], 'headway-block', null, $settings);
+      if (function_exists('pzarc')) {
+        echo pzarc($blueprint[ 0 ], $settings[ 'pzarc-overrides-ids' ], 'headway-block', null, $settings);
+
+      }
 
       return;
 

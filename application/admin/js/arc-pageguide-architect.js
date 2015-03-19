@@ -10,11 +10,11 @@ jQuery( document ).ready( function ()
         pg_caption: '<span class="title">Architect Guide</span>',
         refresh_interval: 250          }
   );
-  var architect_welcome = jQuery.cookie('architect_welcome');
-  if (typeof architect_welcome === "undefined") {
-    architect_pg.open();
-    jQuery.cookie('architect_welcome','seen',9999);
-  }
+  //var architect_welcome = jQuery.cookie('architect_welcome');
+  //if (typeof architect_welcome === "undefined") {
+  //  architect_pg.open();
+  //  jQuery.cookie('architect_welcome','seen',9999);
+  //}
 } );
 
 

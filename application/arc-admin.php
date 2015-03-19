@@ -1,9 +1,8 @@
 <?php
 
   $redux_opt_name = '_architect';
-
   function pzarc_removeReduxDemoModeLink()
-  { // Be sure to rename this function to something more unique
+  { // Be sure to rename this function to something  unique
     if (class_exists('ReduxFrameworkPlugin')) {
       remove_filter('plugin_row_meta', array(ReduxFrameworkPlugin::get_instance(), 'plugin_metalinks'), null, 2);
     }
@@ -14,19 +13,29 @@
 
   add_action('init', 'pzarc_removeReduxDemoModeLink');
 
+
+  /**
+   * Class ArchitectAdmin
+   */
   class ArchitectAdmin
   {
 
+    /**
+     *
+     */
     function __construct()
     {
       /*
        * Create the layouts custom post type
        */
-
+global $arc_presets_data;
 //      add_action('plugins_loaded', array($this, 'init'));
       add_action('plugins_loaded', array($this, 'init'));
     }
 
+    /**
+     *
+     */
     function init()
     {
       // @TODO: verify this blocks non admins!
@@ -54,7 +63,6 @@
 
         //@TODO: need a bit of screen dependency on this?
 
- //       require_once PZARC_PLUGIN_APP_PATH . '/admin/php/class_arc_panels_layouts.php';
         require_once PZARC_PLUGIN_APP_PATH . '/admin/php/class_arc_blueprints_designer.php';
         require_once PZARC_PLUGIN_APP_PATH . '/admin/php/arc-save-process.php';
 
@@ -66,7 +74,7 @@
         require_once PZARC_PLUGIN_APP_PATH . '/shared/thirdparty/php/redux-custom-fields/loader.php';
         require_once PZARC_PLUGIN_APP_PATH . '/shared/thirdparty/php/redux-extensions/loader.php';
 
-        $misc_metaboxes    = new arc_Misc_metaboxes();
+        $misc_metaboxes = new arc_Misc_metaboxes();
 //        $panel_layout      = new arc_Panels_Layouts();
         $content_blueprint = new arc_Blueprints_Designer();
 
@@ -115,7 +123,7 @@
       }
 
       global $_architect_options;
-      if (!empty($_architect_options['architect_show_advanced'])) {
+      if (!empty($_architect_options[ 'architect_show_advanced' ])) {
         $classes .= ' arc-advanced';
       } else {
         $classes .= ' arc-beginner';
@@ -130,8 +138,8 @@
       wp_enqueue_style('pzarc-admin-styles');
 //    wp_enqueue_style('pzarc-jqueryui-css');
 
-      wp_register_script('jquery-cookie', PZARC_PLUGIN_APP_URL . 'shared/thirdparty/js/jquery-cookie/jquery.cookie.js', array('jquery'),true);
-      wp_register_script('jquery-pageguide', PZARC_PLUGIN_APP_URL . 'shared/thirdparty/js/pageguide/pageguide.min.js', array('jquery'),true);
+      wp_register_script('jquery-cookie', PZARC_PLUGIN_APP_URL . 'shared/thirdparty/js/jquery-cookie/jquery.cookie.js', array('jquery'), true);
+      wp_register_script('jquery-pageguide', PZARC_PLUGIN_APP_URL . 'shared/thirdparty/js/pageguide/pageguide.min.js', array('jquery'), true);
       wp_register_style('css-pageguide', PZARC_PLUGIN_APP_URL . 'shared/thirdparty/js/pageguide/css/pageguide.css');
 
       $screen = get_current_screen();
@@ -157,10 +165,13 @@
 //        wp_enqueue_style('pzarc-validation-engine-css', PZARC_PLUGIN_APP_URL . '/shared/thirdparty/js/jQuery-Validation-Engine/css/validationEngine.jquery.css');
         add_filter('post_row_actions', 'pzarc_duplicate_post_link', 10, 2);
         add_filter('page_row_actions', 'pzarc_duplicate_post_link', 10, 2);
+        add_filter('post_row_actions', 'pzarc_export_preset_link', 10, 3);
+        add_filter('page_row_actions', 'pzarc_export_preset_link', 10, 3);
       }
-      if ('architect_page_pzarc_support' === $screen->id) {
-        wp_enqueue_script('js-classlist', PZARC_PLUGIN_APP_URL . '/shared/thirdparty/js/tabby/dist/js/classList.min.js', array('jquery'),true);
-        wp_enqueue_script('js-tabby', PZARC_PLUGIN_APP_URL . '/shared/thirdparty/js/tabby/dist/js/tabby.min.js', array('jquery'),true);
+      if ('architect_page_pzarc_support' === $screen->id || 'edit-arc-blueprints'===$screen->id) {
+        wp_enqueue_script('js-classlist', PZARC_PLUGIN_APP_URL . '/shared/thirdparty/js/tabby/dist/js/classList.min.js', array('jquery'), true);
+        wp_enqueue_script('js-tabby', PZARC_PLUGIN_APP_URL . '/shared/thirdparty/js/tabby/dist/js/tabby.min.js', array('jquery'), true);
+        wp_enqueue_script('js-tabby-arc', PZARC_PLUGIN_APP_URL . '/admin/js/arc-tabby.js', array('jquery'), true);
         wp_enqueue_style('css-tabby', PZARC_PLUGIN_APP_URL . '/shared/thirdparty/js/tabby/dist/css/tabby.min.css');
       }
 
@@ -181,10 +192,10 @@
       }
 
       if ($screen->id === 'edit-arc-blueprints') {
-        require_once( PZARC_DOCUMENTATION_PATH.PZARC_LANGUAGE . '/blueprints-listings-pageguide.php');
+        require_once(PZARC_DOCUMENTATION_PATH . PZARC_LANGUAGE . '/blueprints-listings-pageguide.php');
       }
       if ($screen->id === 'edit-arc-panels') {
-        require_once( PZARC_DOCUMENTATION_PATH.PZARC_LANGUAGE . '/panels-listings-pageguide.php');
+        require_once(PZARC_DOCUMENTATION_PATH . PZARC_LANGUAGE . '/panels-listings-pageguide.php');
       }
 
 //      if ($screen post ot page editor)
@@ -305,7 +316,7 @@
     function pzarc_support()
     {
       global $title;
-      require_once( PZARC_DOCUMENTATION_PATH.PZARC_LANGUAGE . '/architect-pageguide.php');
+      require_once(PZARC_DOCUMENTATION_PATH . PZARC_LANGUAGE . '/architect-pageguide.php');
 
       echo '<div class = "wrap">
      <script>
@@ -334,18 +345,7 @@
                     <h2>' . __('Quick start') . '</h2>
                     <div style="background:#f2f2f2;border:1px solid #e2e2e2;padding:10px;border-radius:3px;max-width:800px;font-size:14px;">
                     <ol>
-                    <li><strong>' . __('Create a Panel', 'pzarchitect') . '</strong></li>
-                    <ol style="list-style-type:lower-roman"><li>' . __('Go to <em>Architect > Panels</em> and create a basic Panel. Make sure to give it a title and a short name.', 'pzarchitect') . '</li>
-                        <li>' . __('Leave all the other defaults for now. <em>Publish/Update</em> that.', 'pzarchitect') . '</li></ol>
-                    <li><strong>' . __('Create a Blueprint', 'pzarchitect') . '</strong></li>
                     <ol style="list-style-type:lower-roman">
-                        <li>' . __('Go to <em>Architect > Blueprints</em> and create a Blueprint. Give it a <em>Title</em> and <em>Short Name</em> too.', 'pzarchitect') . '</li>
-                        <li>' . __('In <em>Source, Content Source</em>, choose <em>Posts</em>', 'pzarchitect') . '</li>
-                        <li>' . __('Click the <em>Blueprint Layout</em> button and in <em>Section 1</em> tab, under <em>Panels Layout</em>, select your Panel you just created', 'pzarchitect') . '</li>
-                        <li>' . __('Leave <em>Layout type</em> on <em>Grid</em>.', 'pzarchitect') . '</li>
-                        <li>' . __('Leave <em>Limit panels (content)</em> on <em>Yes</em> in case your site has zillions', 'pzarchitect') . '</li>
-                        <li>' . __('Set <em>Panels to Show</em> to <em>9</em>', 'pzarchitect') . '</li>
-                        <li>' . __('Click <em>Publish/Update</em>.', 'pzarchitect') . '</li>
                         </ol>
                     <li><strong>' . __('Display the Blueprint', 'pzarchitect') . '</strong></li>
                     <ol style="list-style-type:lower-roman">
@@ -367,31 +367,6 @@
                     <p>' . __('Architect enables you to easily design complex content layouts, such as magazine layouts, sliders, galleries and tabbed content.', 'pzarchitect') . '</p>
                     <p>' . __('And probably the most amazing thing... with Architect, your layouts are transportable. Change your theme without losing your content layouts. And they\'ll even pick up a lot of the formatting of your new theme if it uses standard WordPress classes although, you may need to tweak the styling a little for different themes.', 'pzarchitect') . '</p>
 
-                    <p>' . __('At first it might be a little confusing about what to setup in Panels and what to do in Blueprints. Here\'s an overview:', 'pzarchitect') . '</p>
-                    <p><img src="' . PZARC_PLUGIN_URL . '/documentation/assets/images/how-architect-works.jpg" style="display:block;max-width:100%;" />
-                    </p>
-
-                    <h3>' . __('Panels') . '</h3>
-                    <ul>
-                        <li>' . __('Panels define the layout of the individual content which can be displayed one or many times in a layout. Panels can also be re-used in multiple Blueprints', 'pzarchitect') . '</li>
-                    </ul>
-                    <ul>
-                        <li>' . __('Individual content layout - titles, text, images, meta info', 'pzarchitect') . '</li>
-                        <li>' . __('Content styling', 'pzarchitect') . '</li>
-                    </ul>
-                    <h3>' . __('Blueprints', 'pzarchitect') . '</h3>
-                    <ul>
-                        <li>' . __('A Blueprint encompasses the overall content selection, design, layout and navigation. It can contain up to three Sections, each section displaying a Panel layout one or multiple times. This allows you to easily create a layout that, for example, might show a single post followed by a grid of excerpts. Within the Blueprint you can also include navigation, which can be pagination type, or a navigator type.', 'pzarchitect') . '</li>
-                    </ul>
-                    <ul>
-                        <li>' . __('Overall layout', 'pzarchitect') . '</li>
-                        <li>' . __('content source', 'pzarchitect') . '</li>
-                        <li>' . __('Navigation', 'pzarchitect') . '</li>
-                    </ul>
-                    <p>' . __('Below is a wireframe example of how a Blueprint is structured', 'pzarchitect') . '</p>
-                    <p><img src="' . PZARC_PLUGIN_APP_URL . '/shared/assets/images/help/arc-layout.jpg" style="display:block;max-width:100%" />
-                    </p>
-                    <p><strong>' . __('Note: A Blueprint cannot have multiple content selections', 'pzarchitect') . '</strong></p>
                 </div>
 
                 <div class="tabs-pane " id="how">
@@ -621,13 +596,75 @@ add_action(\'init\',\'gs_init\');
 
   add_action('admin_action_pzarc_duplicate_post_as_draft', 'pzarc_duplicate_post_as_draft');
 
-  /*
+  /**
    * Add the duplicate link to action list for post_row_actions
    */
   function pzarc_duplicate_post_link($actions, $post)
   {
-    if (current_user_can('edit_posts')) {
+    $screen = get_current_screen();
+    if (current_user_can('edit_posts') && $screen->id === 'edit-arc-blueprints') {
       $actions[ 'duplicate' ] = '<a href="admin.php?action=pzarc_duplicate_post_as_draft&amp;post=' . $post->ID . '" title="' . __('Duplicate this item', 'pzarchitect') . '" rel="permalink">' . __('Duplicate', 'pzarchitect') . '</a>';
+    }
+
+    return $actions;
+  }
+
+  /**
+   * Functions for exporting a preset
+   */
+  add_action('admin_action_pzarc_export_blueprint', 'pzarc_export_blueprint');
+
+  /**
+   * pzarc_export_blueprint
+   */
+  function pzarc_export_blueprint()
+  {
+    global $wpdb;
+    if (!(isset($_GET[ 'post' ]) || isset($_POST[ 'post' ]) || (isset($_REQUEST[ 'action' ]) && 'pzarc_export_blueprint' == $_REQUEST[ 'action' ]))) {
+      wp_die(__('No post to export has been supplied!', 'pzarchitect'));
+    }
+
+    /*
+     * get the original post id
+     */
+    $post_id = (isset($_GET[ 'post' ]) ? $_GET[ 'post' ] : $_POST[ 'post' ]);
+    /*
+     * and all the original post data then
+     */
+    $post = get_post($post_id);
+
+    /*
+     * if you don't want current user to be the new post author,
+     * then change next couple of lines to this: $new_post_author = $post->post_author;
+     */
+    $current_user    = wp_get_current_user();
+    $new_post_author = $current_user->ID;
+
+    /*
+     * if post data exists, create the post duplicate
+     */
+    if (isset($post) && $post != null) {
+      $arc_exp_post['post'] = json_encode($post);
+      $arc_post_meta        = get_post_meta($post->ID);
+      $arc_exp_post['meta'] = json_encode($arc_post_meta);
+      $arc_exp_post['title'] = $post->post_title;
+      $arc_exp_post['bptype']=(empty($arc_post_meta['_blueprints_section-0-layout-mode'])?'basic':$arc_post_meta['_blueprints_section-0-layout-mode'][0]);
+      update_option('arc-export-to-preset',$arc_exp_post);
+      wp_redirect(admin_url('edit.php?post_type=' . $post->post_type));
+      exit;
+    }
+  }
+
+  /**
+   * @param $actions
+   * @param $post
+   * @return mixed
+   */
+  function pzarc_export_preset_link($actions, $post)
+  {
+    $screen = get_current_screen();
+    if (current_user_can('edit_posts') && $screen->id === 'edit-arc-blueprints') {
+      $actions[ 'export' ] = '<a href="admin.php?action=pzarc_export_blueprint&amp;post=' . $post->ID . '" title="' . __('Export', 'pzarchitect') . '" rel="permalink">' . __('Export', 'pzarchitect') . '</a>';
     }
 
     return $actions;
@@ -661,7 +698,8 @@ add_action(\'init\',\'gs_init\');
   }
 
   /* Sort posts in wp_list_table by column in ascending or descending order. */
-  function pzarc_blueprints_order($query){
+  function pzarc_blueprints_order($query)
+  {
     /*
         Set post types.
         _builtin => true returns WordPress default post types.
@@ -671,17 +709,19 @@ add_action(\'init\',\'gs_init\');
     /* The current post type. */
     $post_type = $query->get('post_type');
     /* Check post types. */
-    if(in_array($post_type, $post_types) && $post_type === 'arc-blueprints'){
+    if (in_array($post_type, $post_types) && $post_type === 'arc-blueprints') {
       /* Post Column: e.g. title */
-      if($query->get('orderby') == ''){
+      if ($query->get('orderby') == '') {
         $query->set('orderby', 'title');
       }
       /* Post Order: ASC / DESC */
-      if($query->get('order') == ''){
+      if ($query->get('order') == '') {
         $query->set('order', 'ASC');
       }
     }
   }
-  if(is_admin()){
+
+  if (is_admin()) {
     add_action('pre_get_posts', 'pzarc_blueprints_order');
   }
+

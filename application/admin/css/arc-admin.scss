@@ -1,4 +1,6 @@
 // THIS IS THE SCSS VERSION
+$highlight: #0074a2;
+$border-radius: 3px;
 
 .message.error.highlight {
   background: #fee;
@@ -1018,7 +1020,7 @@ body.post-type-arc-panels .redux-main .select_wrapper {
 
 #poststuff h3.redux-section-title,
 .metabox-holder h3.redux-section-title {
-  color: #0074a2;
+  color: $highlight;
   font-size: 20px;
   padding-left: 0;
 }
@@ -1320,7 +1322,7 @@ span.bold {
   border: solid 1px #aaa;
   border-radius: 3px;
   h4 {
-    color: #0074a2;
+    color: $highlight;
   }
 }
 
@@ -1383,10 +1385,10 @@ body .redux-sidebar .redux-group-menu li.activeChild.hasSubSections .active a:af
       }
       &.active {
         color: #fff;
-        background: #0074a2;
+        background: $highlight;
         &:hover {
           background: #eee;
-          color: #0074a2;
+          color: $highlight;
           cursor: default;
         }
       }
@@ -1459,7 +1461,7 @@ body.arc-panels * {
     text-align: center;
     text-transform: capitalize;
     font-size: 15px;
-    color: #0074a2;
+    color: $highlight;
   }
   li.ui-sortable-helper {
     background: #888;
@@ -1507,7 +1509,7 @@ body.arc-beginner .arc-field-advanced {
 
 #_architect-_blueprint_tabs_tabs span.stepno {
   background: none;
-  color: #0074a2;
+  color: $highlight;
   border-radius: 25px;
   padding: 0 5px;
   font-weight: bold;
@@ -1525,26 +1527,33 @@ $blue: #2196f3;
 $indigo: #3f51b5;
 $violet: #673ab7;
 
-$red-50:#FFEBEE;
-$orange-50:#FFF3E0;
-$green-50:#F1F8E9;
-$blue-50:#E3F2FD;
-$indigo-50:#E8EAF6;
-$violet-50:#FFEBEE;
+$red-50: #ffebee;
+$orange-50: #fff3e0;
+$green-50: #f1f8e9;
+$blue-50: #e3f2fd;
+$indigo-50: #e8eaf6;
+$violet-50: #ffebee;
 
-$lightest:40%;
-$darker:10%;
+$red-900: #b71c1c;
+$orange-900: #e65100;
+$green-900: #33691e;
+$blue-900: #0d47a1;
+$indigo-900: #1a237e;
+$violet-900: #311b92;
+
+$lightest: 40%;
+$darker: 10%;
 
 #tab-presets {
   border-bottom: solid 4px $violet;
   &.active {
-    background: $violet;
+    background: $violet-900;
     span.stepno {
       color: $violet;
     }
   }
   &:hover {
-    background: fade($violet, $darker);
+    background: $violet-900;
     span.stepno {
       color: inherit;
     }
@@ -1559,22 +1568,23 @@ $darker:10%;
 #redux-_architect-metabox-presets {
   h3.redux-hndle {
     border-bottom: solid 4px $violet !important;
+    // background: $violet-900 !important;
   }
   .redux-container {
-    background: $violet-50;
+    background: #fff;
   }
 }
 
 #tab-layout {
   border-bottom: solid 4px $indigo;
   &.active {
-    background: $indigo;
+    background: $indigo-900;
     span.stepno {
       color: $indigo;
     }
   }
   &:hover {
-    background: darken($indigo, $darker);
+    background: $indigo-900;
     span.stepno {
       color: inherit;
     }
@@ -1589,6 +1599,7 @@ $darker:10%;
 #redux-_architect-metabox-layout-settings {
   h3.redux-hndle {
     border-bottom: solid 4px $indigo !important;
+    // background: $indigo-900 !important;
   }
   .redux-container {
     background: $indigo-50;
@@ -1599,13 +1610,13 @@ $darker:10%;
 #tab-panels {
   border-bottom: solid 4px $orange;
   &.active {
-    background: $orange;
+    background: $orange-900;
     span.stepno {
       color: $orange;
     }
   }
   &:hover {
-    background: darken($orange, $darker);
+    background: $orange-900;
     span.stepno {
       color: inherit;
     }
@@ -1620,6 +1631,7 @@ $darker:10%;
 #redux-_architect-metabox-panels-design {
   h3.redux-hndle {
     border-bottom: solid 4px $orange !important;
+    // background: $orange-900 !important;
   }
   .redux-container {
     background: $orange-50;
@@ -1631,13 +1643,13 @@ $darker:10%;
 #tab-content {
   border-bottom: solid 4px $red;
   &.active {
-    background: $red;
+    background: $red-900;
     span.stepno {
       color: $red;
     }
   }
   &:hover {
-    background: darken($red, $darker);
+    background: $red-900;
     span.stepno {
       color: inherit;
     }
@@ -1652,6 +1664,7 @@ $darker:10%;
 #redux-_architect-metabox-content-selections {
   h3.redux-hndle {
     border-bottom: solid 4px $red !important;
+    // background: $red-900 !important;
   }
   .redux-container {
     background: $red-50;
@@ -1662,14 +1675,14 @@ $darker:10%;
 #tab-styling {
   border-bottom: solid 4px $blue;
   &.active {
-    background: $blue;
+    background: $blue-900;
     span.stepno {
       color: $blue;
     }
 
   }
   &:hover {
-    background: darken($blue, $darker);
+    background: $blue-900;
     span.stepno {
       color: inherit;
     }
@@ -1684,6 +1697,7 @@ $darker:10%;
 #redux-_architect-metabox-blueprint-stylings {
   h3.redux-hndle {
     border-bottom: solid 4px $blue !important;
+    // background: $blue-900 !important;
   }
   .redux-container {
     background: $blue-50;
@@ -1694,13 +1708,13 @@ $darker:10%;
 #tab-content_styling {
   border-bottom: solid 4px $green;
   &.active {
-    background: $green;
+    background: $green-900;
     span.stepno {
       color: $green;
     }
   }
   &:hover {
-    background: darken($green, $darker);
+    background: $green-900;
     span.stepno {
       color: inherit;
     }
@@ -1715,6 +1729,7 @@ $darker:10%;
 #redux-_architect-metabox-panels-styling {
   h3.redux-hndle {
     border-bottom: solid 4px $green !important;
+    // background: $green-900 !important;
   }
   .redux-container {
     background: $green-50;
@@ -1728,7 +1743,161 @@ a.arc-important-button {
   padding: 10px;
   border-radius: 5px;
   &:hover {
-    background: darken($red, $darker);
+    background: $red-900;
+  }
+}
+
+// Presets
+
+li.arc-message {
+  .arc-presets-link {
+    padding: 8px 12px;
+    color: #fff;
+    background: $highlight;
+    border-radius: 3px;
+    &:hover {
+      color: #fff;
+      background: darken($highlight, 10%);
+    }
+  }
+}
+
+.arc-presets-overlay {
+  top: 0;
+  bottom: 0;
+  width: 100%;
+  background: #fff;
+  position: fixed;
+  z-index: 99999;
+  opacity: 0.5;
+}
+
+.arc-presets-selector {
+  display: none;
+  border-radius: $border-radius;
+  top: 50px;
+  left: 20%;
+  position: absolute;
+  background: #777;
+  height: 500px;
+  width: 800px;
+  box-shadow: 0 0 30px black;
+  z-index: 100000;
+  h2.heading {
+    width: 100%;
+    color: #fff;
+    background: #333;
+    box-sizing: border-box;
+    border-top-left-radius: $border-radius;
+    border-top-right-radius: $border-radius;
+    padding: 10px;
+    font-size: 18px;
+    cursor: move;
+    margin: 0;
+  }
+  .tabs {
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0;
+    border: none;
+    button {
+      color: #eee;
+      background: #999;
+      margin: 2px 2px 0 2px;
+      padding: 10px;
+      border: none;
+      border-top-left-radius: $border-radius;
+      border-top-right-radius: $border-radius;
+      border-bottom-left-radius: 0;
+      border-bottom-right-radius: 0;
+      &:hover {
+        cursor: pointer;
+        background: #aaa;
+        color: #fff;
+      }
+      &.active {
+        background: #f3f3f3;
+        color: $highlight;
+      }
+    }
+  }
+  p {
+    padding: 5px 10px;
+    color: #fff;
+    &.footer {
+      width: 60%;
+    }
+  }
+  .container {
+    height: 350px;
+    background: #f3f3f3;
+    width: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+    overflow-x: auto;
+    overflow-y: hidden;
+    white-space: nowrap;
+    .grids {
+    }
+    span {
+      display: inline-block;
+      text-align: center;
+      label {
+        p {
+          color: $highlight;
+          padding: 0;
+        }
+        input {
+          display: none;
+          + img {
+            border: solid 3px transparent;
+            max-height: 250px;
+            margin-right: 10px;
+            &:hover {
+              border: solid 3px lighten($highlight, 20%);
+            }
+          }
+          &:checked + img {
+            border: solid 3px $highlight;
+          }
+        }
+      }
+    }
+  }
+  .buttons {
+    position: absolute;
+    bottom: 23px;
+    right: 0px;
+    .arc-button-presets {
+      padding: 8px;
+      text-decoration: none;
+      color: #fff;
+      background: $highlight;
+      margin-right: 5px;
+      border-radius: 5px;
+      &:hover {
+        color: #fff;
+        background: darken($highlight, 5%);
+      }
+
+    }
+  }
+}
+
+.arc-export-data {
+  width: 600px;
+  padding: 10px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  white-space: normal;
+  form {
+    width: 100%;
+  }
+  textarea {
+    resize: none;
+    background: #eee;
+
   }
 }
 

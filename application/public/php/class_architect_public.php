@@ -91,7 +91,7 @@
 
       // Do the 'none' here to ensure we still load the js even tho no nav bar
       if (($this->build->blueprint[ '_blueprints_section-0-layout-mode' ] === 'tabbed' || $this->build->blueprint[ '_blueprints_section-0-layout-mode' ] === 'slider')
-          && $nav_pos === 'br' || $this->build->blueprint[ '_blueprints_navigator'] ==='none'
+          && $nav_pos === 'br' || $this->build->blueprint[ '_blueprints_navigator' ] === 'none'
       ) {
 
         add_action('arc_bottom_right_navigation_' . $this->build->blueprint[ '_blueprints_short-name' ], array(&$this,
@@ -133,9 +133,6 @@
 
       self::set_generic_criteria();
 
-      // Set vars to identify if we need to display sections 2 and 3.
-      $do_section_2 = ($this->build->blueprint[ '_blueprints_section-1-enable' ] && $bp_nav_type != 'navigator');
-      $do_section_3 = ($this->build->blueprint[ '_blueprints_section-2-enable' ] && $bp_nav_type != 'navigator');
 
       // TODO: Are all these 'self's too un-oop?
       // Get pagination
@@ -192,7 +189,7 @@
         $this->nav_items = $panel_class->get_nav_items($this->build->blueprint[ '_blueprints_navigator' ], $this->arc_query, $this->build->blueprint[ '_blueprints_navigator-labels' ]);
       }
       /** RENDER THE BLUEPRINT */
-      self::render_this_architect_blueprint($bp_nav_type, $bp_nav_pos, $bp_shortname, $caller, $bp_transtype, $panel_class, $content_class, $do_section_2, $do_section_3);
+      self::render_this_architect_blueprint($bp_nav_type, $bp_nav_pos, $bp_shortname, $caller, $bp_transtype, $panel_class, $content_class);
 
       /** Set our original query back. */
       wp_reset_postdata(); // Pretty sure this goes here... Not after the query reassignment
@@ -212,7 +209,7 @@
      * @param $do_section_2
      * @param $do_section_3
      */
-    private function render_this_architect_blueprint($bp_nav_type, $bp_nav_pos, $bp_shortname, $caller, $bp_transtype, $panel_class, $content_class, $do_section_2, $do_section_3)
+    private function render_this_architect_blueprint($bp_nav_type, $bp_nav_pos, $bp_shortname, $caller, $bp_transtype, $panel_class, $content_class)
     {
       // TODO: Show or hide blueprint if no content
 
@@ -268,8 +265,8 @@
 
       }
 
-      do_action('arc_before_section');
-      do_action('arc_before_section_' . $bp_shortname);
+      do_action('arc_before_panels_wrapper');
+      do_action('arc_before_panels_wrapper_' . $bp_shortname);
 
       /** Sections opening HTML*/
       echo self::get_sections_opener($bp_shortname, $bp_nav_type, $caller, $bp_transtype);
@@ -277,14 +274,14 @@
 
       /** LOOPS */
       // First loop always executes
-        $panel_class->loop(1, $this, $panel_class, $content_class);
+      $panel_class->loop(1, $this, $panel_class, $content_class);
 
 
       // End loop
       echo '</div> <!-- end blueprint sections -->';
 
-      do_action('arc_after_section');
-      do_action('arc_after_section_' . $bp_shortname);
+      do_action('arc_after_panels_wrapper');
+      do_action('arc_after_panels_wrapper_' . $bp_shortname);
 
       // Don't allow pagination on pages it doesn't work on!
       //   Todo : setup pagination for single or blog index
@@ -332,9 +329,7 @@
       // Technically we don't need to do this, but it just makes things neater and easier to read.
 
       // Set posts to show
-      $limited = ((int)$this->build->blueprint[ '_blueprints_section-1-enable' ] * (int)$this->build->blueprint[ '_blueprints_section-1-panels-limited' ])
-          || ((int)$this->build->blueprint[ '_blueprints_section-2-enable' ] * (int)$this->build->blueprint[ '_blueprints_section-2-panels-limited' ])
-          || (int)$this->build->blueprint[ '_blueprints_section-0-panels-limited' ];
+      $limited = (int)$this->build->blueprint[ '_blueprints_section-0-panels-limited' ];
 
       if (!$limited) {
 
@@ -343,10 +338,7 @@
 
       } else {
 
-        $this->criteria[ 'panels_to_show' ] =
-            $this->build->blueprint[ '_blueprints_section-0-panels-per-view' ] +
-            ((int)$this->build->blueprint[ '_blueprints_section-1-enable' ] * $this->build->blueprint[ '_blueprints_section-1-panels-per-view' ]) +
-            ((int)$this->build->blueprint[ '_blueprints_section-2-enable' ] * $this->build->blueprint[ '_blueprints_section-2-panels-per-view' ]);
+        $this->criteria[ 'panels_to_show' ] = $this->build->blueprint[ '_blueprints_section-0-panels-per-view' ];
         $this->criteria[ 'nopaging' ]       = false;
 
       }

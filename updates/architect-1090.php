@@ -19,49 +19,53 @@
       if (!get_user_meta($user_id, 'pzarc_ignore_notice_v1100')) {
         echo '<div class="message updated highlight"><p>';
         printf(__('<h3>Architect v1.0.9</h3>
-<strong>This verson is a major change in workflow. Therefore it also updates the database so old Architect Blueprints will still work.</strong>
-Please check your Blueprints to ensure they are still displaying correctly.
-
-<h4>New features in 1.0.9</h4>
-<ul>
-<li>&bull; Panels design is now a part of Blueprints design</li>
-<li>&bull; Blueprints listing sorted alphabetically</li>
-</ul>
-<strong style="color:tomato">If you are updating Architect from v1.0.8.x or earlier, please got to the Architect Tools menu and rebuild CSS</strong>
-<p style="margin:20px 0;"><a class="arc-important-button" href="%1$s">Go to Tools</a></p>
- <p><a href="mailto:support@pizazzwp.com">Email support</a> '), 'admin.php?page=pzarc_tools');
+        <strong>This version is a major change in workflow. Therefore it also updates the database so old Architect Blueprints will still work.</strong>
+        Please check your Blueprints to ensure they are still displaying correctly. Note: If you had any custom css that specifically styled panels by their panel short name, you will need to change that.
+<p><strong>Multiple sections are no longer available</strong>If you were using them, create Blueprint for each of your number 2 and 3 sections</p>
+        <h4>New features in 1.0.9</h4>
+        <ul>
+        <li>&bull; Panels design is now a part of Blueprints design</li>
+        <li>&bull; Blueprints listing sorted alphabetically</li>
+        </ul>
+        <strong style="color:tomato">If you are updating Architect from v1.0.8.x or earlier, please got to the Architect Tools menu and rebuild CSS</strong>
+        <p style="margin:20px 0;"><a class="arc-important-button" href="%1$s">Go to Tools</a></p>
+         <p><a href="mailto:support@pizazzwp.com">Email support</a> '), 'admin.php?page=pzarc_tools');
 
         echo "</p>
-</div>";
+        </div>";
       }
     }
   }
 
 
 // Merge Panels into Blueprints
-  $args       = array('posts_per_page' => -1, 'post_type' => 'arc-blueprints');
-  $blueprints = get_posts($args);
-  foreach ($blueprints as $k => $blueprint) {
-    $bp_meta = get_post_meta($blueprint->ID);
-    // It uses the slug!
-    $args = array('posts_per_page' => -1,
-                  'post_type'      => 'arc-panels',
-                  'name'      => $bp_meta[ '_blueprints_section-0-panel-layout' ][ 0 ]);
+  update_1090();
+  function update_1090()
+  {
+    $args       = array('posts_per_page' => -1, 'post_type' => 'arc-blueprints');
+    $blueprints = get_posts($args);
+    foreach ($blueprints as $k => $blueprint) {
+      $bp_meta = get_post_meta($blueprint->ID);
+      // It uses the slug!
+      $args = array('posts_per_page' => -1,
+                    'post_type'      => 'arc-panels',
+                    'name'           => $bp_meta[ '_blueprints_section-0-panel-layout' ][ 0 ]);
 
-    $bp_panel      = get_posts($args);
-    $bp_panel_meta = get_post_meta($bp_panel[ 0 ]->ID);
+      $bp_panel      = get_posts($args);
+      $bp_panel_meta = get_post_meta($bp_panel[ 0 ]->ID);
 
-    if (!empty($bp_panel_meta)) {
-      foreach ($bp_panel_meta as $key => $value) {
-        if ('_edit_lock' !== $key && '_edit_last' !== $key) {
-          // Delete the key first to be sure no weird shtuff happens
-          delete_post_meta($blueprint->ID,$key);
-          update_post_meta($blueprint->ID,$key,maybe_unserialize($value[0]));
+      if (!empty($bp_panel_meta)) {
+        foreach ($bp_panel_meta as $key => $value) {
+          if ('_edit_lock' !== $key && '_edit_last' !== $key) {
+            // Delete the key first to be sure no weird shtuff happens
+            delete_post_meta($blueprint->ID, $key);
+            update_post_meta($blueprint->ID, $key, maybe_unserialize($value[ 0 ]));
+          }
         }
       }
+      // Need a reset so can run again.
+
+      // Now update the css - except that didn't work so had to tell them to manually do so.
+
     }
-    // Need a reset so can run again.
-
-    // Now update the css
-
   }

@@ -611,91 +611,91 @@
                 )
             )
         );
-        $this->sections[ ] = array(
-            'title'      => 'Sections wrapper',
-            'show_title' => false,
-            'icon_class' => 'icon-large',
-            'icon'       => 'el-icon-check-empty',
-            'subsection' => true,
-            'fields'     => pzarc_fields(
-                array(
-                    'title'    => __('CSS selectors', 'pzarc'),
-                    'id'       => $prefix . 'sections-selectors',
-                    'type'     => 'text',
-                    'readonly' => true,
-                    'default'  => '.pzarc-sections_{shortname}',
-                ),
-
-                // TODO: Get correct $defaults
-                // TODO: Add shadows
-                pzarc_redux_bg($prefix . 'sections-background', array('.pzarc-sections')),
-                pzarc_redux_padding($prefix . 'sections-padding', array('.pzarc-sections')),
-                pzarc_redux_margin($prefix . 'sections-margins', array('.pzarc-sections')),
-                pzarc_redux_borders($prefix . 'sections-borders', array('.pzarc-sections'))
-            )
-        );
-        $icons             = array(1 => 'el-icon-align-left', 2 => 'el-icon-th', 3 => 'el-icon-align-justify');
-
-        $this->sections[ ] = array(
-            'title'      => 'Section 1',
-            'show_title' => false,
-            'icon_class' => 'icon-large',
-            'icon'       => $icons[ 1 ],
-            'subsection' => true,
-            'fields'     => array(
-                array(
-                    'title'    => __('CSS selectors', 'pzarc'),
-                    'id'       => $prefix . 'section_1-selectors',
-                    'type'     => 'text',
-                    'readonly' => true,
-                    'default'  => '.pzarc-section_1',
-                ),
-                pzarc_redux_bg($prefix . 'section_1-background', array('.pzarc-section_1')),
-                pzarc_redux_padding($prefix . 'section_1-padding', array('.pzarc-section_1')),
-                pzarc_redux_margin($prefix . 'section_1-margins', array('.pzarc-section_1')),
-                pzarc_redux_borders($prefix . 'section_1-borders', array('.pzarc-section_1')),
-            ),
-        );
-        $this->sections[ ] = array(
-            'title'      => 'Section 2',
-            'show_title' => false,
-            'icon_class' => 'icon-large',
-            'icon'       => $icons[ 2 ],
-            'subsection' => true,
-            'fields'     => array(
-                array(
-                    'title'    => __('CSS selectors', 'pzarc'),
-                    'id'       => $prefix . 'section_2-selectors',
-                    'type'     => 'text',
-                    'readonly' => true,
-                    'default'  => '.pzarc-section_2',
-                ),
-                pzarc_redux_bg($prefix . 'section_2-background', array('.pzarc-section_2')),
-                pzarc_redux_padding($prefix . 'section_2-padding', array('.pzarc-section_2')),
-                pzarc_redux_margin($prefix . 'section_2-margins', array('.pzarc-section_2')),
-                pzarc_redux_borders($prefix . 'section_2-borders', array('.pzarc-section_2')),
-            ),
-        );
-        $this->sections[ ] = array(
-            'title'      => 'Section 3',
-            'show_title' => false,
-            'icon_class' => 'icon-large',
-            'icon'       => $icons[ 3 ],
-            'subsection' => true,
-            'fields'     => array(
-                array(
-                    'title'    => __('CSS selectors', 'pzarc'),
-                    'id'       => $prefix . 'section_3-selectors',
-                    'type'     => 'text',
-                    'readonly' => true,
-                    'default'  => '.pzarc-section_3',
-                ),
-                pzarc_redux_bg($prefix . 'section_3-background', array('.pzarc-section_3')),
-                pzarc_redux_padding($prefix . 'section_3-padding', array('.pzarc-section_3')),
-                pzarc_redux_margin($prefix . 'section_3-margins', array('.pzarc-section_3')),
-                pzarc_redux_borders($prefix . 'section_3-borders', array('.pzarc-section_3')),
-            ),
-        );
+//        $this->sections[ ] = array(
+//            'title'      => 'Sections wrapper',
+//            'show_title' => false,
+//            'icon_class' => 'icon-large',
+//            'icon'       => 'el-icon-check-empty',
+//            'subsection' => true,
+//            'fields'     => pzarc_fields(
+//                array(
+//                    'title'    => __('CSS selectors', 'pzarc'),
+//                    'id'       => $prefix . 'sections-selectors',
+//                    'type'     => 'text',
+//                    'readonly' => true,
+//                    'default'  => '.pzarc-sections_{shortname}',
+//                ),
+//
+//                // TODO: Get correct $defaults
+//                // TODO: Add shadows
+//                pzarc_redux_bg($prefix . 'sections-background', array('.pzarc-sections')),
+//                pzarc_redux_padding($prefix . 'sections-padding', array('.pzarc-sections')),
+//                pzarc_redux_margin($prefix . 'sections-margins', array('.pzarc-sections')),
+//                pzarc_redux_borders($prefix . 'sections-borders', array('.pzarc-sections'))
+//            )
+//        );
+//        $icons             = array(1 => 'el-icon-align-left', 2 => 'el-icon-th', 3 => 'el-icon-align-justify');
+//
+//        $this->sections[ ] = array(
+//            'title'      => 'Section 1',
+//            'show_title' => false,
+//            'icon_class' => 'icon-large',
+//            'icon'       => $icons[ 1 ],
+//            'subsection' => true,
+//            'fields'     => array(
+//                array(
+//                    'title'    => __('CSS selectors', 'pzarc'),
+//                    'id'       => $prefix . 'section_1-selectors',
+//                    'type'     => 'text',
+//                    'readonly' => true,
+//                    'default'  => '.pzarc-section_1',
+//                ),
+//                pzarc_redux_bg($prefix . 'section_1-background', array('.pzarc-section_1')),
+//                pzarc_redux_padding($prefix . 'section_1-padding', array('.pzarc-section_1')),
+//                pzarc_redux_margin($prefix . 'section_1-margins', array('.pzarc-section_1')),
+//                pzarc_redux_borders($prefix . 'section_1-borders', array('.pzarc-section_1')),
+//            ),
+//        );
+//        $this->sections[ ] = array(
+//            'title'      => 'Section 2',
+//            'show_title' => false,
+//            'icon_class' => 'icon-large',
+//            'icon'       => $icons[ 2 ],
+//            'subsection' => true,
+//            'fields'     => array(
+//                array(
+//                    'title'    => __('CSS selectors', 'pzarc'),
+//                    'id'       => $prefix . 'section_2-selectors',
+//                    'type'     => 'text',
+//                    'readonly' => true,
+//                    'default'  => '.pzarc-section_2',
+//                ),
+//                pzarc_redux_bg($prefix . 'section_2-background', array('.pzarc-section_2')),
+//                pzarc_redux_padding($prefix . 'section_2-padding', array('.pzarc-section_2')),
+//                pzarc_redux_margin($prefix . 'section_2-margins', array('.pzarc-section_2')),
+//                pzarc_redux_borders($prefix . 'section_2-borders', array('.pzarc-section_2')),
+//            ),
+//        );
+//        $this->sections[ ] = array(
+//            'title'      => 'Section 3',
+//            'show_title' => false,
+//            'icon_class' => 'icon-large',
+//            'icon'       => $icons[ 3 ],
+//            'subsection' => true,
+//            'fields'     => array(
+//                array(
+//                    'title'    => __('CSS selectors', 'pzarc'),
+//                    'id'       => $prefix . 'section_3-selectors',
+//                    'type'     => 'text',
+//                    'readonly' => true,
+//                    'default'  => '.pzarc-section_3',
+//                ),
+//                pzarc_redux_bg($prefix . 'section_3-background', array('.pzarc-section_3')),
+//                pzarc_redux_padding($prefix . 'section_3-padding', array('.pzarc-section_3')),
+//                pzarc_redux_margin($prefix . 'section_3-margins', array('.pzarc-section_3')),
+//                pzarc_redux_borders($prefix . 'section_3-borders', array('.pzarc-section_3')),
+//            ),
+//        );
 
         /** NAVIGATOR  */
         $this->sections[ ] = array(
