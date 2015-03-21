@@ -3,7 +3,7 @@ Contributors: chrishoward
 Tags: content,display,posts,pages,gallery,slider,tabs,tabbed,tabular,widget,hooks
 Requires at least: 3.5.0
 Tested up to: 4.2.0
-Stable tag: 1.0.9.3
+Stable tag: 1.0.9.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Plugin URI: http://architect4wp.com
@@ -112,6 +112,9 @@ For support, please send an email to support@pizazzwp.com
 * CHANGED: Blueprints listing screen sorted by title
 * ADDED: Presets selector functionality
 * ADDED: Export Blueprint
+* CHANGED: Yay! Inadvertently sped up opening and saving Blueprints by HEAPS! Probably was the external help links to Wistia and Amazon.
+* ADDED: Page builder!!
+* ADDED Styling and section titles to page builder
 
 = 1.0.8.8 =
 * FIXED: Transients not working with terms override

@@ -86,7 +86,7 @@
               'label'   => __('Blueprint', 'pzpzarc'),
               'default' => 'none',
               'options' => $pzarc_blueprints,
-              'tooltip' => __('Choose a set of layouts for the cells in this section. Layouts are created in WP admin in the PizazzWP > Architect Layouts menu', 'pzarchitect')
+              'tooltip' => __('Choose a Blueprint to display', 'pzarchitect')
           ),
 
 

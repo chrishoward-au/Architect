@@ -62,25 +62,26 @@ global $arc_presets_data;
         //       require_once PZARC_PLUGIN_PATH . '/admin/php/arc-options-def-editor.php';
 
         //@TODO: need a bit of screen dependency on this?
+        require_once(PZARC_PLUGIN_APP_PATH.'admin/php/class_arcBuilderAdmin.php');
 
-        require_once PZARC_PLUGIN_APP_PATH . '/admin/php/class_arc_blueprints_designer.php';
-        require_once PZARC_PLUGIN_APP_PATH . '/admin/php/arc-save-process.php';
+        require_once PZARC_PLUGIN_APP_PATH . 'admin/php/class_arc_blueprints_designer.php';
+        require_once PZARC_PLUGIN_APP_PATH . 'admin/php/arc-save-process.php';
 
 
         //TODO:     require_once PZARC_PLUGIN_PATH . '/admin/arc-widget.php';
 
         // This one is really only needed on posts, pages and snippets, so could conditionalise its load
-        require_once PZARC_PLUGIN_APP_PATH . '/admin/php/class_arc_misc_metaboxes.php';
-        require_once PZARC_PLUGIN_APP_PATH . '/shared/thirdparty/php/redux-custom-fields/loader.php';
-        require_once PZARC_PLUGIN_APP_PATH . '/shared/thirdparty/php/redux-extensions/loader.php';
+        require_once PZARC_PLUGIN_APP_PATH . 'admin/php/class_arc_misc_metaboxes.php';
+        require_once PZARC_PLUGIN_APP_PATH . 'shared/thirdparty/php/redux-custom-fields/loader.php';
+        require_once PZARC_PLUGIN_APP_PATH . 'shared/thirdparty/php/redux-extensions/loader.php';
 
         $misc_metaboxes = new arc_Misc_metaboxes();
 //        $panel_layout      = new arc_Panels_Layouts();
         $content_blueprint = new arc_Blueprints_Designer();
 
-        require_once PZARC_PLUGIN_APP_PATH . '/admin/php/arc-options.php';
-        require_once PZARC_PLUGIN_APP_PATH . '/admin/php/arc-options-styling.php';
-        require_once PZARC_PLUGIN_APP_PATH . '/admin/php/arc-options-actions.php';
+        require_once PZARC_PLUGIN_APP_PATH . 'admin/php/arc-options.php';
+        require_once PZARC_PLUGIN_APP_PATH . 'admin/php/arc-options-styling.php';
+        require_once PZARC_PLUGIN_APP_PATH . 'admin/php/arc-options-actions.php';
 
         // TODO: this needs to be dumberized so can work on dev defined panels and content. But why is these here anyway??
 //      require_once PZARC_PLUGIN_APP_PATH . '/shared/architect/php/content-types/generic/class_arc_panel_generic.php';
@@ -337,7 +338,6 @@ global $arc_presets_data;
                 <button class="tabby-how" data-tab="#how">' . __('Usage', 'pzarchitect') . '</button>
                 <button class="tabby-help" data-tab="#help">' . __('Support', 'pzarchitect') . '</button>
                 <button class="tabby-shout" data-tab="#shout">' . __('Shoutouts', 'pzarchitect') . '</button>
-                <button class="tabby-presets" data-tab="#presets">' . __('Presets', 'pzarchitect') . '</button>
             </div>
             <div class="tabby tabs-content">
 
@@ -458,10 +458,6 @@ add_action(\'init\',\'gs_init\');
                         <li><a href="https://github.com/carhartl/jquery-cookie" target="_blank">jQuery Cookie</a>
                         </li>
                     </ul>
-                </div>
-                <div class="tabs-pane " id="presets">
-                    <h2>' . __('Presets') . '</h2>
-                    <p>' . __('Right click and save to download preset ', 'pzarchitect') . '<a href="' . PZARC_PLUGIN_PRESETS_URL . 'architectexamples.xml">' . __('Panels and Blueprints', 'pzarchitect') . '</a>. ' . __('And then add them using <em>WP > Tools > Import</em> to add them to your site.', 'pzarchitect') . '</p>
                 </div>
 
             </div>

@@ -33,8 +33,8 @@ jQuery( document ).ready( function ()
   jQuery('.arc-preset-item').on('change',function(){
 
     var post_name = jQuery(this ).find('input').val();
-    jQuery('.arc-button-presets.styled' ).attr('href','admin.php?action=pzarc_new_from_preset&name='+post_name+'&type=styled');
-    jQuery('.arc-button-presets.unstyled' ).attr('href','admin.php?action=pzarc_new_from_preset&name='+post_name+'&type=unstyled');
+    jQuery('.arc-button-presets.styled' ).attr('href','admin.php?action=pzarc_new_from_preset&name='+post_name+'&type=styled' ).removeClass('disabled');
+    jQuery('.arc-button-presets.unstyled' ).attr('href','admin.php?action=pzarc_new_from_preset&name='+post_name+'&type=unstyled').removeClass('disabled');
   })
   function update_presets_buttons() {
 

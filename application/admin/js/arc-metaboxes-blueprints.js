@@ -174,10 +174,6 @@ jQuery( document ).ready( function ()
     jQuery('#_tabular_box_redux-_architect-metabox-layout-settings_section_group_li' ).hide();
     jQuery('#_accordion_box_redux-_architect-metabox-layout-settings_section_group_li' ).hide();
 
-    jQuery( ".redux-sidebar li#_section2_box_redux-_architect-metabox-layout-settings_section_group_li" ).toggle( jQuery( "fieldset#_architect-_blueprints_section-1-enable" ).find( 'input' ).val() === "1" );
-    jQuery( ".redux-sidebar li#_section3_box_redux-_architect-metabox-layout-settings_section_group_li" ).toggle( jQuery( "fieldset#_architect-_blueprints_section-2-enable" ).find( 'input' ).val() === "1" );
-    jQuery( "fieldset#_architect-_blueprints_section-1-enable" ).toggle( true ).parent().toggle(true);
-    jQuery( "fieldset#_architect-_blueprints_section-2-enable" ).toggle(  true ).parent().toggle(true);
     jQuery( "fieldset#_architect-_blueprints_pagination" ).toggle(  true ).parent().toggle(true);
     jQuery( "fieldset#_architect-_blueprints_pager" ).toggle(  true ).parent().toggle(true);
     jQuery( "fieldset#_architect-_blueprints_pager-single" ).toggle(  true ).parent().toggle(true);
@@ -191,8 +187,6 @@ jQuery( document ).ready( function ()
         jQuery('#_slidertabbed_box_redux-_architect-metabox-layout-settings_section_group_li' ).show();
         jQuery('#_section2_box_redux-_architect-metabox-layout-settings_section_group_li' ).hide();
         jQuery('#_section3_box_redux-_architect-metabox-layout-settings_section_group_li' ).hide();
-        jQuery( "fieldset#_architect-_blueprints_section-1-enable" ).toggle( false ).parent().toggle(false);
-        jQuery( "fieldset#_architect-_blueprints_section-2-enable" ).toggle(  false ).parent().toggle(false);
         jQuery( "fieldset#_architect-_blueprints_pagination" ).toggle(  false ).parent().toggle(false);
         jQuery( "fieldset#_architect-_blueprints_pager" ).toggle(  false ).parent().toggle(false);
         jQuery( "fieldset#_architect-_blueprints_pager-single" ).toggle(  false ).parent().toggle(false);
@@ -305,8 +299,6 @@ jQuery( document ).ready( function ()
 //    });
 //        }
 
-    jQuery( ".redux-sidebar li#_section2_box_redux-_architect-metabox-layout-settings_section_group_li" ).toggle( jQuery( "fieldset#_architect-_blueprints_section-1-enable" ).find( 'input' ).val() === "1" );
-    jQuery( ".redux-sidebar li#_section3_box_redux-_architect-metabox-layout-settings_section_group_li" ).toggle( jQuery( "fieldset#_architect-_blueprints_section-2-enable" ).find( 'input' ).val() === "1" );
 
     // This updates the shortname help text the explains how to use the shortcode
     jQuery( 'input#_blueprints_short-name' ).change( function ()
@@ -342,7 +334,6 @@ jQuery( document ).ready( function ()
     pzarc_update_cell_margin( i, jQuery( 'input#_blueprints_section-' + i + '-panels-vert-margin' ) );
     pzarc_update_cell_across( i, jQuery( 'input#_blueprints_section-' + i + '-columns' ) );
     pzarc_update_min_width( i, jQuery( 'input#_blueprints_section-' + i + '-min-panel-width' ) );
-    pzarc_show_hide_section( i );
   }
 
 //

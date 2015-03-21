@@ -406,7 +406,7 @@
                     'type'     => 'switch',
                     'on'       => __('Yes', 'pzarchitect'),
                     'off'      => __('No', 'pzarchitect'),
-                    'default'  => true,
+                    'default'  => false,
                     'subtitle' => __('This will add the class <strong>block-type-content</strong> to the panels, which enables them to inherit the stylings for the Content block. However, this can make styling in the Visual Editor Design Mode a little confusing, as hovering over an element will show it as a Content Block element', 'pzarchitect')
 
                 ) : null),

@@ -1168,10 +1168,12 @@ body.arc-panels * {
 
 ul#_pzarc_pagebuilder_disabled li {
   display: inline-block;
-  color: #777; }
+  color: #555;
+  background: #bbb; }
 
 ul#_pzarc_pagebuilder_enabled li {
-  color: #000;
+  color: #fff;
+  background: #0074a2;
   width: 80%;
   margin-left: auto;
   margin-right: auto; }
@@ -1426,6 +1428,8 @@ li.arc-message .arc-presets-link {
       background: #0074a2;
       margin-right: 5px;
       border-radius: 5px; }
+      .arc-presets-selector .buttons .arc-button-presets.disabled {
+        visibility: hidden; }
       .arc-presets-selector .buttons .arc-button-presets:hover {
         color: #fff;
         background: #006289; }

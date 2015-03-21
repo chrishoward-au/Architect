@@ -5,15 +5,15 @@ http://wp-updates.com
 v2.0
 
 Example Usage:
-require_once('wp-updates-plugin.php');
+require_once('wp-updates-plugin_429.php');
 new WPUpdatesPluginUpdater_429( 'http://wp-updates.com/api/2/plugin', plugin_basename(__FILE__) );
 */
 
-if( !class_exists('WPUpdatesPluginUpdater_429') ) {
-    class WPUpdatesPluginUpdater_429 {
+if( !class_exists('WPUpdatesPluginUpdater_625') ) {
+    class WPUpdatesPluginUpdater_625 {
     
     	var $api_url;
-    	var $plugin_id = 429;
+    	var $plugin_id = 625;
     	var $plugin_path;
     	var $plugin_slug;
     	var $license_key;

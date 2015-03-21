@@ -153,8 +153,8 @@
            </div>
            <p class="footer">All Presets use Dummy Content by default. Please change to the content of your choice after loading the chosen Preset.</p>
            <div class="buttons">
-            <a class="arc-button-presets styled" href="javascript:void(0);">Use styled</a>
-            <a class="arc-button-presets unstyled" href="javascript:void(0);">Use unstyled</a>
+            <a class="arc-button-presets styled disabled" href="javascript:void(0);">Use styled</a>
+            <a class="arc-button-presets unstyled disabled" href="javascript:void(0);">Use unstyled</a>
             <a class="arc-button-presets close" href="javascript:void(0);">Cancel</a>
           </div>
           </div>
@@ -177,7 +177,7 @@
       $pzarc_front  = array_slice($columns, 0, 2);
       $pzarc_back   = array_slice($columns, 2);
       $pzarc_insert = array(
-          '_blueprints_short-name'     => __('Blueprint short name', 'pzarchitect'),
+          '_blueprints_short-name'     => __('Shortcode ID', 'pzarchitect'),
           '_blueprints_description'    => __('Description', 'pzarchitect'),
           '_blueprints_content-source' => __('Content source', 'pzarchitect'),
           'layout'                     => __('Type', 'pzarchitect'),
@@ -429,9 +429,9 @@
           'fields' => array(
               array(
                   'id'       => $prefix . 'short-name',
-                  'title'    => __('Blueprint Short Name', 'pzarchitect') . '<span class="pzarc-required el-icon-star" title="Required"></span>',
+                  'title'    => __('Blueprint Shortcode ID', 'pzarchitect') . '<span class="pzarc-required el-icon-star" title="Required"></span>',
                   'type'     => 'text',
-                  'hint'     => array('title'   => 'Blueprint Short Name',
+                  'hint'     => array('title'   => 'Blueprint Shortcode ID',
                                       'content' => '<strong>' . __('Letters, numbers, dashes only. ', 'pzarchitect') . '</strong>' . __('Use this in shortcodes and template tags', 'pzarchitect')),
                   //TODO: Write acomprehensive little help dialog here
                   'validate' => 'not_empty'

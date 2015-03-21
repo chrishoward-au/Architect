@@ -25,8 +25,8 @@
       return;
     }
 
-//    add_action('loop_start', 'pzarc_add_pagebuilder_before', 99);
-//    add_action('loop_end', 'pzarc_add_pagebuilder_after', 99);
+    require_once(PZARC_PLUGIN_APP_PATH.'public/php/class_arcBuilder.php');
+    new arcBuilder;
 
     foreach ($pzarc_css_cache[ 'blueprints' ] as $k => $v) {
       if (!empty($k)) {
@@ -173,9 +173,9 @@
   function pzarc_pagebuilder($pzarc_blueprint = null, $pzarc_overrides = null)
   {
     $pzarc_caller = 'pagebuilder';
-    do_action("arc_before_pagebuilder", $pzarc_blueprint, $pzarc_overrides, $pzarc_caller);
+//    do_action("arc_before_pagebuilder", $pzarc_blueprint, $pzarc_overrides, $pzarc_caller);
     do_action("arc_do_pagebuilder", $pzarc_blueprint, $pzarc_overrides, $pzarc_caller);
-    do_action("arc_after_pagebuilder", $pzarc_blueprint, $pzarc_overrides, $pzarc_caller);
+//    do_action("arc_after_pagebuilder", $pzarc_blueprint, $pzarc_overrides, $pzarc_caller);
   }
 
   add_action('arc_do_pagebuilder', 'pzarc', 10, 3);
@@ -294,76 +294,103 @@
     return $classes;
   }
 
-//  /**
-//   * Display Page Builder before the post
-//   */
-//  function pzarc_add_pagebuilder_before($query_object)
-//  {
-//    if (!is_admin()) {
-//      // We only want this to run once. There's probably a more correct way.
-//      static $before_state = false;
-//      // This is coz .hentry is floated which breaks page builder
-//      if (!$before_state) {
-//        global $original_post;
-//        $original_post = get_the_id();
-//      }
-//      wp_enqueue_style('css-hw-float-fix');
-//      global $in_arc, $post;
-//      var_Dump($in_arc);
-//      if ($in_arc === 'no' || !$in_arc) {
-//        if (is_singular() && !$before_state) {
-//          $page_build = get_post_meta(get_the_id(), '_pzarc_pagebuilder', true);
-//          if (isset($page_build[ 'enabled' ])) {
-//            $show_content = array_key_exists('original', $page_build[ 'enabled' ]);
-//            foreach ($page_build[ 'enabled' ] as $bpsn => $v) {
-//              if ($bpsn !== 'placebo' && $bpsn !== 'original') {
-//                pzarc_pagebuilder($bpsn);
-//              }
-//              if ($bpsn === 'original') {
-//                break;
-//              }
-//            }
-//            if (!$show_content) {
-//              echo '<span class="hide-content"></span>';
-//            }
-//          }
-//        }
-//        $before_state = true;
-//        remove_action('loop_start', 'pzarc_add_pagebuilder_before');
-//      }
-//    }
-//  }
-//
-//  /**
-//   * Display Page Builder after the post
-//   */
-//  function pzarc_add_pagebuilder_after($query_object)
-//  {
-//    if (!is_admin()) {
-//      global $in_arc;
-//      if ($in_arc === 'no') {
-//        global $original_post;
-//        if (get_the_id() === $original_post) {
-//          if (is_singular()) {
-//            $page_build = get_post_meta(get_the_id(), '_pzarc_pagebuilder', true);
-//            if (isset($page_build[ 'enabled' ])) {
-//              $skip = array_key_exists('original', $page_build[ 'enabled' ]);
-//              // If not skip, then we would have already done it
-//              if ($skip) {
-//                foreach ($page_build[ 'enabled' ] as $bpsn => $v) {
-//                  // Skip until after the Original
-//                  if (!$skip && $bpsn !== 'placebo' && $bpsn !== 'original') {
-//                    pzarc_pagebuilder($bpsn);
-//                  } elseif ($bpsn === 'original') {
-//                    $skip = false;
-//                  }
-//                }
-//              }
-//            }
-//          }
-//        }
-//        $original_post = null;
-//        remove_action('loop_end', 'pzarc_add_pagebuilder_after');
-//      }
-//    }
-//  }
+
+
+  /**
+   * Display Page Builder after the post
+   */
+  //  function pzarc_add_pagebuilder_after($query_object)
+  //  {
+  //    if (!is_admin()) {
+  //
+  //      $page_build = get_post_meta(get_the_id(), '_pzarc_pagebuilder', true);
+  //      if (isset($page_build[ 'enabled' ])) {
+  //        $show_content = array_key_exists('original', $page_build[ 'enabled' ]);
+  //        if ($show_content) {
+  //          $past_content = false;
+  //          foreach ($page_build[ 'enabled' ] as $bpsn => $v) {
+  //            if ($past_content) {
+  //              pzarc_pagebuilder($bpsn);
+  //            }
+  //            $past_content = ($bpsn === 'original');
+  //          }
+  //        }
+  //      }
+  //    }
+  //  }
+  //
+  //  /**
+  //   * Display Page Builder before the post
+  //   */
+  //  function xpzarc_add_pagebuilder_before($query_object)
+  //  {
+  //    if (!is_admin()) {
+  //      // We only want this to run once. There's probably a more correct way.
+  //      static $before_state = false;
+  //      // This is coz .hentry is floated which breaks page builder
+  //      if (!$before_state) {
+  //        global $original_post;
+  //        $original_post = get_the_id();
+  //      }
+  //      wp_enqueue_style('css-hw-float-fix');
+  //      global $in_arc, $post;
+  //      var_Dump($in_arc);
+  //      if ($in_arc === 'no' || !$in_arc) {
+  //        if (is_singular() && !$before_state) {
+  //          $page_build = get_post_meta(get_the_id(), '_pzarc_pagebuilder', true);
+  //          var_dump($page_build);
+  //          if (isset($page_build[ 'enabled' ])) {
+  //            $show_content = array_key_exists('original', $page_build[ 'enabled' ]);
+  //            foreach ($page_build[ 'enabled' ] as $bpsn => $v) {
+  //              if ($bpsn !== 'placebo' && $bpsn !== 'original') {
+  //                pzarc_pagebuilder($bpsn);
+  //              }
+  //              if ($bpsn === 'original') {
+  //                break;
+  //              }
+  //            }
+  //            if (!$show_content) {
+  //              echo '<span class="hide-content"></span>';
+  //            }
+  //          }
+  //        }
+  //        $before_state = true;
+  //        remove_action('pzarc_template_before_content', 'pzarc_add_pagebuilder_before');
+  //      }
+  //    }
+  //  }
+  //
+  //  /**
+  //   * Display Page Builder after the post
+  //   */
+  //  function xpzarc_add_pagebuilder_after($query_object)
+  //  {
+  //
+  //    if (!is_admin()) {
+  //      global $in_arc;
+  //      if ($in_arc === 'no') {
+  //        global $original_post;
+  //        if (get_the_id() === $original_post) {
+  //          if (is_singular()) {
+  //            $page_build = get_post_meta(get_the_id(), '_pzarc_pagebuilder', true);
+  //            if (isset($page_build[ 'enabled' ])) {
+  //              $skip = array_key_exists('original', $page_build[ 'enabled' ]);
+  //              // If not skip, then we would have already done it
+  //              if ($skip) {
+  //                foreach ($page_build[ 'enabled' ] as $bpsn => $v) {
+  //                  // Skip until after the Original
+  //                  if (!$skip && $bpsn !== 'placebo' && $bpsn !== 'original') {
+  //                    pzarc_pagebuilder($bpsn);
+  //                  } elseif ($bpsn === 'original') {
+  //                    $skip = false;
+  //                  }
+  //                }
+  //              }
+  //            }
+  //          }
+  //        }
+  //        $original_post = null;
+  //        remove_action('pzarc_template_after_content', 'pzarc_add_pagebuilder_after');
+  //      }
+  //    }
+  //  }

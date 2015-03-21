@@ -4,7 +4,7 @@
     Plugin Name: Architect
     Plugin URI: http://architect4wp.com
     Description: Architect is an all-in-one content layout builder. Go beyond the limitations of the theme you use to easily design and build any content layouts for it. Build the things that display your content. Build your own sliders, grids, tabs, galleries, accordions or tabular with sources such as posts, pages, galleries, and custom content types. Display using shortcodes, widgets, Headway blocks, WP action hooks and template tags, and WP Gallery shortcode. Change themes without needing to rebuild your layouts! Architect is *not* a page builder; rather, it is a content layout builder. Those content layouts can then be used to help add to your pages.
-    Version: 1.0.9.3
+    Version: 1.0.9.4 (beta)
     Author: Chris Howard
     Author URI: http://pizazzwp.com
     License: GNU GPL v2
@@ -28,12 +28,13 @@
     function __construct()
     {
 
-      define('PZARC_VERSION', '1.0.9.3');
+      define('PZARC_VERSION', '1.0.9.4');
       define('PZARC_NAME', 'pzarchitect'); // This is also same as the locale
       define('PZARC_FOLDER', '/pizazzwp-architect');
       define('PZARC_CODEX', 'http://architect4wp.com/codex-listings');
 
       define('PZARC_HWREL', false);
+      define ('PZARC_BETA', true);
 
       define('PZARC_PLUGIN_URL', trailingslashit(plugin_dir_url(__FILE__)));
       define('PZARC_PLUGIN_PATH', trailingslashit(plugin_dir_path(__FILE__)));
@@ -116,16 +117,20 @@
       require_once PZARC_PLUGIN_APP_PATH . '/shared/architect/php/class_arc_blueprint_data.php';
 
       // Load custom custom types
-if(is_admin()) {
-  require_once PZARC_PLUGIN_APP_PATH . '/shared/architect/php/arc-cpt-panels.php';
-  self::update();
+      if (is_admin()) {
+        require_once PZARC_PLUGIN_APP_PATH . '/shared/architect/php/arc-cpt-panels.php';
+        self::update();
 
-}
+      }
       require_once PZARC_PLUGIN_APP_PATH . '/shared/architect/php/arc-cpt-blueprints.php';
 
       // Load all the builtin post types
       require_once PZARC_PLUGIN_APP_PATH . '/shared/architect/php/content-types/defaults/class_arc_content_defaults.php';
       require_once PZARC_PLUGIN_APP_PATH . '/shared/architect/php/content-types/post/class_arc_content_posts.php';
+      require_once PZARC_PLUGIN_APP_PATH . '/shared/architect/php/content-types/dummy/class_arc_content_dummy.php';
+
+      // Load Architect page templater
+      require_once PZARC_PLUGIN_APP_PATH . '/admin/php/class_arcPageTemplater.php';
 
       pzdb('before architect pro');
 
@@ -180,10 +185,10 @@ if(is_admin()) {
       if (!class_exists('TGM_Plugin_Activation')) {
         require_once PZARC_PLUGIN_APP_PATH . '/shared/architect/php/arc-check-dependencies.php';
       }
-        TGM_Plugin_Activation::get_instance()->update_dismiss();
+      TGM_Plugin_Activation::get_instance()->update_dismiss();
 
 
- //     self::update();
+      //     self::update();
 
       // This doesn't seem to work properly when upgrading, so might pull it for now, since it's probably better to use what is already there
 //      /** Build CSS cache */
@@ -295,20 +300,21 @@ if(is_admin()) {
 
 // end register_plugin_scripts
 
-    private static function update() {
-      $current_db_version = get_option( 'architect_db_version' );
+    private static function update()
+    {
+      $current_db_version = get_option('architect_db_version');
       $db_updates         = array(
           '1.0.9.0' => 'updates/architect-1090.php',
       );
 
-      foreach ( $db_updates as $version => $updater ) {
-        if ( version_compare( $current_db_version, $version, '<' ) ) {
-          include( $updater );
-          update_option( 'architect_db_version', $version );
+      foreach ($db_updates as $version => $updater) {
+        if (version_compare($current_db_version, $version, '<')) {
+          include($updater);
+          update_option('architect_db_version', $version);
         }
       }
 
-      update_option( 'architect_db_version', PZARC_VERSION );
+      update_option('architect_db_version', PZARC_VERSION);
     }
 
 
@@ -335,7 +341,6 @@ if(is_admin()) {
       }
     }
   }
-
 
 
   pzdb('bottom');

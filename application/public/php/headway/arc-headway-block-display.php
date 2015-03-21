@@ -213,6 +213,18 @@
                                                               'fonts'),
                                     ));
       $this->register_block_element(array(
+                                        'id'         => 'pzarc-panel-components',
+                                        'name'       => 'Components group',
+                                        'selector'   => '.use-hw-css .pzarc-panel .pzarc-components, .use-hw-css .pzarc-panel .hentry',
+                                        // Don't allow margins on panels as it messes up layout. Margins must be set in the Blueprint settings
+                                        'properties' => array('background',
+                                                              'borders',
+                                                              'padding',
+                                                              'rounded-corners',
+                                                              'box-shadow',
+                                                              'fonts'),
+                                    ));
+      $this->register_block_element(array(
                                         'id'         => 'pzarc-panel-entry-title',
                                         'name'       => 'Entry title',
                                         'selector'   => '.use-hw-css .pzarc-panel .entry-title, .pzarc-panel .entry-title:before,.use-hw-css .pzarc-panel .entry-title a, .use-hw-css .pzarc-panel .entry-title:before a',
@@ -234,7 +246,7 @@
       $this->register_block_element(array(
                                         'id'         => 'pzarc-panel-entry-content',
                                         'name'       => 'Entry content',
-                                        'selector'   => '.use-hw-css .pzarc-panel .entry-content, .pzarc-panel .entry-excerpt',
+                                        'selector'   => '.use-hw-css .pzarc-panel .entry-content, .use-hw-css .pzarc-panel .entry-excerpt',
                                         'states'     => array(
                                             'Links'   => '.use-hw-css .pzarc-panel .entry-content a, .use-hw-css .pzarc-panel .entry-excerpt a',
                                             'Hover'   => '.use-hw-css .pzarc-panel .entry-content a:hover, .use-hw-css .pzarc-panel .entry-excerpt a:hover',
