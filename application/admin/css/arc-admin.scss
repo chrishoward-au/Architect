@@ -1782,7 +1782,7 @@ li.arc-message {
   left: 20%;
   position: absolute;
   background: #777;
-  height: 500px;
+  height: 550px;
   width: 800px;
   box-shadow: 0 0 30px black;
   z-index: 100000;
@@ -1833,7 +1833,7 @@ li.arc-message {
     }
   }
   .container {
-    height: 350px;
+    height: 400px;
     background: #f3f3f3;
     width: 100%;
     padding: 20px;
@@ -1848,8 +1848,20 @@ li.arc-message {
       text-align: center;
       label {
         p {
-          color: $highlight;
+          color: #555;
           padding: 0;
+          margin:3px 0;
+          &.arc-preset-title {
+            font-weight:bold;
+            font-size:13px;
+            color:$highlight;
+          }
+          &.arc-preset-designer{
+            font-size:11px;
+          }
+          &.arc-preset-description {
+            font-size:12px;
+          }
         }
         input {
           display: none;
@@ -1907,3 +1919,6 @@ li.arc-message {
   }
 }
 
+// Redux fixes
+//.redux-main .input-append {position:relative;}
+//.redux-main .input-append .add-on {position: absolute;}

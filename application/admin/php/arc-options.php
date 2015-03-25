@@ -271,10 +271,10 @@
 
 
         // ACTUAL DECLARATION OF SECTIONS
-        $current_theme     = wp_get_theme();
+        $current_theme = wp_get_theme();
         global $pzarc_blueprints_list;
         if (empty($pzarc_blueprints_list)) {
-          $pzarc_blueprints_list   = pzarc_get_posts_in_post_type('arc-blueprints',true);
+          $pzarc_blueprints_list = pzarc_get_posts_in_post_type('arc-blueprints', true);
 
         }
         $this->sections[ ] = array(
@@ -284,26 +284,17 @@
             'fields'     => array(
                 array(
                     'title' => __('Appearance', 'pzarchitect'),
-                    'id'    => 'architect_other_section',
+                    'id'    => 'architect_appearance_section',
                     'type'  => 'section',
                 ),
                 array(
-                    'title'    => __('Advanced settings', 'pzarchitect'),
-                    'id'       => 'architect_show_advanced',
-                    'type'     => 'switch',
-                    'subtitle' => __('When enabled, many more settings are available in Panels and Blueprints.', 'pzarchitect'),
-                    'default'  => false,
-                    'on'       => __('Yes', 'pzarchitect'),
-                    'off'      => __('No', 'pzarchitect')
-                ),
-                array(
-                    'title'    => __('Hide page guides and tutorials', 'pzarchitect'),
-                    'id'       => 'architect_hide_guides',
-                    'type'     => 'switch',
+                    'title'   => __('Hide page guides and tutorials', 'pzarchitect'),
+                    'id'      => 'architect_hide_guides',
+                    'type'    => 'switch',
                     //                    'subtitle' => __('Displays a background image on the Architect admin pages', 'pzarchitect'),
-                    'default'  => false,
-                    'on'       => __('Yes', 'pzarchitect'),
-                    'off'      => __('No', 'pzarchitect')
+                    'default' => false,
+                    'on'      => __('Yes', 'pzarchitect'),
+                    'off'     => __('No', 'pzarchitect')
                 ),
                 array(
                     'title'    => __('Enable admin background image', 'pzarchitect'),
@@ -320,9 +311,9 @@
                     'type'     => 'button_set',
                     'required' => array('architect_enable_bgimage', 'equals', true),
                     'options'  => array(
-                        'green'        => __('Green','pzarchitect'),
-                        'ocean-blue'   => __('Ocean/Blue','pzarchitect'),
-                        'pink'         => __('Pink','pzarchitect'),
+                        'green'      => __('Green', 'pzarchitect'),
+                        'ocean-blue' => __('Ocean/Blue', 'pzarchitect'),
+                        'pink'       => __('Pink', 'pzarchitect'),
                     ),
                     'default'  => 'ocean-blue'
                 ),
@@ -420,6 +411,29 @@
                     'subtitle' => __('Use the stylings you configure for Architect in the Headway Visual Editor Design Mode.', 'pzarchitect')
 
                 ) : null),
+                array(
+                    'title' => __('Other', 'pzarchitect'),
+                    'id'    => 'architect_other_section',
+                    'type'  => 'section',
+                ),
+                array(
+                    'title'    => __('Enable beta features', 'pzarchitect'),
+                    'id'       => 'architect_enable_beta',
+                    'type'     => 'switch',
+                    'subtitle' => __('This will enable features that are working but not fully complete. Use at your own risk!', 'pzarchitect'),
+                    'default'  => false,
+                    'on'       => __('Yes', 'pzarchitect'),
+                    'off'      => __('No', 'pzarchitect')
+                ),
+                array(
+                    'title'    => __('Beta features', 'pzarchitect'),
+                    'id'       => 'architect_beta_features',
+                    'type'     => 'info',
+                    'required' => array('architect_enable_beta', 'equals', true),
+                    'icon'     => 'el-icon-warning-sign',
+                    'style'    => 'critical',
+                    'subtitle' => 'Animation of components group. Currently not able to control when the animation runs. Look for the setting in the Content Layout designer.'
+                ),
                 //                array(
                 //                    'title'    => __('Custom post def path', 'pzarchitect'),
                 //                    'id'       => 'architect_custom_post_def_path',
@@ -481,28 +495,28 @@
                     'title'    => __('Categories archive pages title', 'pzarchitect'),
                     'id'       => 'architect_language-categories-archive-pages-title',
                     'type'     => 'text',
-                    'subtitle' => __('Enter a title to appear at the top of Categories archives pages','pzarchitect'),
+                    'subtitle' => __('Enter a title to appear at the top of Categories archives pages', 'pzarchitect'),
                     'default'  => 'Posts in Category: '
                 ),
                 array(
                     'title'    => __('Tags archive pages title', 'pzarchitect'),
                     'id'       => 'architect_language-tags-archive-pages-title',
                     'type'     => 'text',
-                    'subtitle' => __('Enter a title to appear at the top of Tags archives pages','pzarchitect'),
+                    'subtitle' => __('Enter a title to appear at the top of Tags archives pages', 'pzarchitect'),
                     'default'  => 'Posts in Tag: '
                 ),
                 array(
                     'title'    => __('Months archive pages title', 'pzarchitect'),
                     'id'       => 'architect_language-months-archive-pages-title',
                     'type'     => 'text',
-                    'subtitle' => __('Enter a title to appear at the top of Months archives pages','pzarchitect'),
+                    'subtitle' => __('Enter a title to appear at the top of Months archives pages', 'pzarchitect'),
                     'default'  => 'Posts in Month: '
                 ),
                 array(
                     'title'    => __('Custom taxonomies archive pages title', 'pzarchitect'),
                     'id'       => 'architect_language-custom-archive-pages-title',
                     'type'     => 'text',
-                    'subtitle' => __('Enter a title to appear at the top of Custom taxonomies archives pages','pzarchitect'),
+                    'subtitle' => __('Enter a title to appear at the top of Custom taxonomies archives pages', 'pzarchitect'),
                     'default'  => 'Posts in: '
                 ),
             )
@@ -562,7 +576,7 @@
           // TYPICAL -> Change these values as you need/desire
           'opt_name'           => '_architect_options',
           // This is where your data is stored in the database and also becomes your global variable name.
-          'display_name'       => __('Architect Options','pzarchitect'),
+          'display_name'       => __('Architect Options', 'pzarchitect'),
           // Name that appears at the top of your panel
           'display_version'    => 'Architect v' . PZARC_VERSION,
           // Version that appears at the top of your panel
@@ -686,8 +700,6 @@
     }
 
     new Redux_Framework_Architect_Options();
-
-
 
 
     /**

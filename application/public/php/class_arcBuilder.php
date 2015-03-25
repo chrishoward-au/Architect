@@ -59,12 +59,25 @@
     function css()
     {
       $this->build = array(
-          'margins'    => get_post_meta(get_the_id(), '_pzarc_pagebuilder_margins', true),
-          'padding'    => get_post_meta(get_the_id(), '_pzarc_pagebuilder_padding', true),
-          'background' => get_post_meta(get_the_id(), '_pzarc_pagebuilder_background', true),
+          'width'       => get_post_meta(get_the_id(), '_pzarc_pagebuilder_width', true),
+          'float'       => get_post_meta(get_the_id(), '_pzarc_pagebuilder_float', true),
+          'margins'     => get_post_meta(get_the_id(), '_pzarc_pagebuilder_margins', true),
+          'padding'     => get_post_meta(get_the_id(), '_pzarc_pagebuilder_padding', true),
+          'background'  => get_post_meta(get_the_id(), '_pzarc_pagebuilder_background', true),
           'titles_typo' => get_post_meta(get_the_id(), '_pzarc_pagebuilder_titles_typography', true)
       );
-      $css = '.pzarc_builder {';
+      $css         = '.pzarc_builder {';
+
+      //WIDTH
+      $css .= $this->build[ 'width' ][ 'width' ] ? 'width:' . $this->build[ 'width' ][ 'width' ] . ';' : null;
+
+      // Float
+      if ($this->build[ 'float' ] === 'centre') {
+        $this->build[ 'margins' ][ 'margin-left' ]  = 'auto';
+        $this->build[ 'margins' ][ 'margin-right' ] = 'auto';
+      } else {
+        $css .= $this->build[ 'float' ] ? 'float:' . $this->build[ 'float' ] . ';' : null;
+      }
 
       // Margins
       $css .= $this->build[ 'margins' ][ 'margin-top' ] ? 'margin-top:' . $this->build[ 'margins' ][ 'margin-top' ] . ';' : null;
@@ -81,12 +94,12 @@
       // Background
       $css .= $this->build[ 'background' ][ 'background-color' ] ? 'background-color:' . $this->build[ 'background' ][ 'background-color' ] . ';' : null;
 
-      $titles = pzarc_style_font('.arc-builder-section-title',$this->build['titles_typo']);
+      $titles = pzarc_style_font('.arc-builder-section-title', $this->build[ 'titles_typo' ]);
 
       $css .= '}';
-      if ($css !== '.pzarc_builder {}') {
-        echo '<style id="architect-builder" type="text/css">' . $css .$titles. '</style>';
-      }
+//      if ($css !== '.pzarc_builder {}') {
+      echo '<style id="architect-builder" type="text/css">' . $css . $titles . '</style>';
+//      }
     }
 
   }

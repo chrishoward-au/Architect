@@ -229,8 +229,8 @@
        *
        *
        */
-      echo '<div id="' . $this->build->blueprint[ 'uid' ] . '" class="pzarchitect ' . $use_hw_css . ' pzarc-blueprint pzarc-blueprint_' . $this->build->blueprint[ '_blueprints_short-name' ] . ' nav-' . $bp_nav_type . ' icomoon ' . ($bp_nav_type === 'navigator' ? 'navpos-' . $bp_nav_pos : '') . '">';
 
+      echo '<div id="' . $this->build->blueprint[ 'uid' ] . '" class="pzarchitect ' . $use_hw_css . ' pzarc-blueprint pzarc-blueprint_' . $this->build->blueprint[ '_blueprints_short-name' ] . ' nav-' . $bp_nav_type . ' icomoon ' . ($bp_nav_type === 'navigator' ? 'navpos-' . $bp_nav_pos : '') . '">';
       /** Page title */
       echo apply_filters('arc_page_title', self::display_page_title($this->build->blueprint[ '_blueprints_page-title' ], array('category' => $_architect_options[ 'architect_language-categories-archive-pages-title' ],
                                                                                                                                'tag'      => $_architect_options[ 'architect_language-tags-archive-pages-title' ],

@@ -468,12 +468,14 @@
 
           $pkeys[ 'style' ] = str_replace('-', '', substr($pkey, $splitter + 1));
           $pkeys[ 'id' ]    = substr($pkey, 0, $splitter);
+//          var_dump($key,$pkeys[ 'id' ]);
+//var_dump(array_keys($_architect));
           if (!in_array($pkeys[ 'id' ], array('custom', 'panels-load'))) {
             // Filter out old selector names hanging arouind in existing panels
             if (isset($_architect[ 'architect_config_' . $pkeys[ 'id' ] . '-selectors' ])) {
 
               $pkeys[ 'classes' ] = (is_array($_architect[ 'architect_config_' . $pkeys[ 'id' ] . '-selectors' ]) ? $_architect[ 'architect_config_' . $pkeys[ 'id' ] . '-selectors' ] : array('0' => $_architect[ 'architect_config_' . $pkeys[ 'id' ] . '-selectors' ]));
-////var_dump($pkeys[ 'id' ],$key);
+//var_dump($pkeys);
 //              switch (true) {
 //                case (!$feature_in_components && ($pkeys[ 'id' ] === 'entry-image' || $pkeys[ 'id' ] === 'entry-image-caption')) :
 //                  $pzarc_contents .= pzarc_get_styling('panel', $pkeys, $value, $class_prefix . ($pkeys[ 'id' ] === 'components' ? '' : ' > '), $pkeys[ 'classes' ]);

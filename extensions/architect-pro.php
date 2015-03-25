@@ -4,7 +4,7 @@
 
     function pzarcpro_init()
     {
-      if (is_admin()  &&  (!defined('PZARC_BETA') || !PZARC_BETA)) {
+      if (is_admin() ) {
         add_action('admin_init', 'pzarc_initiate_updater');
       }
 
@@ -58,7 +58,7 @@
         require_once(PZARC_PLUGIN_PATH.'wp-updates-plugin_429.php');
         new WPUpdatesPluginUpdater_429( 'http://wp-updates.com/api/2/plugin', 'pizazzwp-architect/architect.php');
       } else {
-        require_once(PZARC_PLUGIN_PATH.'wp-updates-plugin_429.php');
+        require_once(PZARC_PLUGIN_PATH.'wp-updates-plugin_625.php');
         new WPUpdatesPluginUpdater_625( 'http://wp-updates.com/api/2/plugin', 'pizazzwp-architect/architect.php');
 
       }

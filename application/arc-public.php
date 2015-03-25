@@ -28,18 +28,6 @@
     require_once(PZARC_PLUGIN_APP_PATH.'public/php/class_arcBuilder.php');
     new arcBuilder;
 
-    foreach ($pzarc_css_cache[ 'blueprints' ] as $k => $v) {
-      if (!empty($k)) {
-        $filename      = PZARC_CACHE_URL . '/pzarc_blueprint_' . $k . '.css';
-        $filename_path = PZARC_CACHE_PATH . '/pzarc_blueprint_' . $k . '.css';
-        if (file_exists($filename_path)) {
-          wp_register_style('pzarc_css_blueprint_' . $k, $filename, false, filemtime($filename_path));
-        } else {
-          echo '<p class="message-warning">' . __('Oops! Could not find Architect CSS cache file: pzarc_blueprint_', 'pzarchitect') . $k . '.css. ' . __('Please go to WP Admin Architect > Tools and rebuild the CSS cache and try again.', 'pzarchitect') . '</p>';
-        }
-      }
-    }
-
     wp_register_style('css-hw-float-fix', PZARC_PLUGIN_APP_URL . '/public/css/arc-hw-fix.css');
 
     // TODO: These seem to be loading late so loading in footer - even the CSS!
@@ -60,6 +48,9 @@
 
     //icomoon
     wp_register_style('css-icomoon-arrows', PZARC_PLUGIN_APP_URL . '/shared/assets/fonts/icomoon/im-style.css');
+
+    //AnimateCSS
+    wp_register_style('css-animate', PZARC_PLUGIN_APP_URL . '/public/css/animate.min.css');
 
     // DataTables
     wp_register_script('js-datatables', PZARC_PLUGIN_APP_URL . '/public/js/DataTables/media/js/jquery.dataTables.min.js', array('jquery'), null, true);
@@ -189,6 +180,11 @@
   function pzarc($blueprint = null, $overrides = null, $caller, $tag = null, $additional_overrides = null)
   {
     pzdb('start pzarc');
+    $filename      = PZARC_CACHE_URL . '/pzarc_blueprint_' . $blueprint . '.css';
+    $filename_path = PZARC_CACHE_PATH . '/pzarc_blueprint_' . $blueprint . '.css';
+    wp_enqueue_style('pzarc_css_blueprint_' . $blueprint, $filename, false, filemtime($filename_path));
+
+
     global $_architect_options;
     global $in_arc;
     $in_arc = 'yes';
@@ -290,6 +286,7 @@
       $classes[ ] = 'pzarchitect';
     }
 
+    $classes[] = 'theme-'.get_stylesheet();
     // return the $classes array
     return $classes;
   }

@@ -71,6 +71,8 @@
         wp_enqueue_script('jquery-pzarc-blueprints-presets', PZARC_PLUGIN_APP_URL . '/admin/js/arc-blueprints-presets.js', array('jquery',
                                                                                                                                  'jquery-ui-draggable',
         ), true);
+//        wp_enqueue_script('jquery-echo-js', PZARC_PLUGIN_APP_URL . '/admin/js/echo.js', array('jquery'), true);
+        wp_enqueue_script('jquery-lazy', PZARC_PLUGIN_APP_URL . '/admin/js/jquery.lazy.min.js', array('jquery'), true);
 
       }
     }
@@ -177,7 +179,7 @@
       $pzarc_front  = array_slice($columns, 0, 2);
       $pzarc_back   = array_slice($columns, 2);
       $pzarc_insert = array(
-          '_blueprints_short-name'     => __('Shortcode ID', 'pzarchitect'),
+          '_blueprints_short-name'     => __('Shortname', 'pzarchitect'),
           '_blueprints_description'    => __('Description', 'pzarchitect'),
           '_blueprints_content-source' => __('Content source', 'pzarchitect'),
           'layout'                     => __('Type', 'pzarchitect'),
@@ -429,11 +431,11 @@
           'fields' => array(
               array(
                   'id'       => $prefix . 'short-name',
-                  'title'    => __('Blueprint Shortcode ID', 'pzarchitect') . '<span class="pzarc-required el-icon-star" title="Required"></span>',
+                  'title'    => __('Blueprint Short Name', 'pzarchitect') . '<span class="pzarc-required el-icon-star" title="Required"></span>',
                   'type'     => 'text',
-                  'hint'     => array('title'   => 'Blueprint Shortcode ID',
-                                      'content' => '<strong>' . __('Letters, numbers, dashes only. ', 'pzarchitect') . '</strong>' . __('Use this in shortcodes and template tags', 'pzarchitect')),
-                  //TODO: Write acomprehensive little help dialog here
+                  'hint'     => array('title'   => 'Blueprint Short Name',
+                                      'content' => '<strong>' . __('Letters, numbers, dashes only. ', 'pzarchitect') . '</strong>' . __('Use this in shortcodes, template tags, and CSS classes', 'pzarchitect')),
+                  //TODO: Write  acomprehensive little help dialog here
                   'validate' => 'not_empty'
               ),
               array(
@@ -701,7 +703,7 @@
                     //'required' => array('show_advanced', 'equals', true),
                     'select2' => array('allowClear' => false),
                     'options' => array(
-                        'none'       => __('None', 'pzarchitect'),
+                        'none'       => __('Fluid', 'pzarchitect'),
                         'height'     => __('Exact', 'pzarchitect'),
                         'max-height' => __('Max', 'pzarchitect'),
                         'min-height' => __('Min', 'pzarchitect')
@@ -740,32 +742,32 @@
                 ),
                 // For the time being the container is not used and its values are defaulted.
                 /// It's kept  here for possible future use
-                array(
-                    'id'     => $prefix . 'section-' . $i . '-sections-heading',
-                    'title'  => __('Panels wrapper', 'pzarchitect'),
-                    'type'   => 'section',
-                    'indent' => true,
-                ),
-                array(
-                    'id'      => $prefix . 'sections-width' . $i,
-                    'type'    => 'dimensions',
-                    //               'mode'    => array('width' => true, 'height' => false),
-                    'units'   => array('%', 'px'),
-                    'width'   => true,
-                    'height'  => false,
-                    'title'   => __('Width', 'pzarchitect'),
-                    'default' => array('width' => '100', 'units' => '%'),
-                ),
-                array(
-                    'id'      => $prefix . 'sections-align' . $i,
-                    'type'    => 'button_set',
-                    'select2' => array('allowClear' => false),
-                    'options' => array('left'   => __('Left', 'pzarchitect'),
-                                       'center' => __('Centre', 'pzarchitect'),
-                                       'right'  => __('Right', 'pzarchitect')),
-                    'title'   => __('Align', 'pzarchitect'),
-                    'default' => 'center',
-                ),
+                //                array(
+                //                    'id'     => $prefix . 'section-' . $i . '-sections-heading',
+                //                    'title'  => __('Panels wrapper', 'pzarchitect'),
+                //                    'type'   => 'section',
+                //                    'indent' => true,
+                //                ),
+                //                array(
+                //                    'id'      => $prefix . 'sections-width' . $i,
+                //                    'type'    => 'dimensions',
+                //                    //               'mode'    => array('width' => true, 'height' => false),
+                //                    'units'   => array('%', 'px'),
+                //                    'width'   => true,
+                //                    'height'  => false,
+                //                    'title'   => __('Width', 'pzarchitect'),
+                //                    'default' => array('width' => '100', 'units' => '%'),
+                //                ),
+                //                array(
+                //                    'id'      => $prefix . 'sections-align' . $i,
+                //                    'type'    => 'button_set',
+                //                    'select2' => array('allowClear' => false),
+                //                    'options' => array('left'   => __('Left', 'pzarchitect'),
+                //                                       'center' => __('Centre', 'pzarchitect'),
+                //                                       'right'  => __('Right', 'pzarchitect')),
+                //                    'title'   => __('Align', 'pzarchitect'),
+                //                    'default' => 'center',
+                //                ),
                 array(
                     'id'     => $prefix . 'section-' . $i . '-blueprint-settings-heading',
                     'title'  => __('Blueprint settings', 'pzarchitect'),
@@ -1257,6 +1259,12 @@
           )
       );
 
+//      $file_contents          = file_get_contents(PZARC_DOCUMENTATION_PATH . PZARC_LANGUAGE . '/using-blueprints.md');
+      $ch = curl_init(PZARC_DOCUMENTATION_PATH . PZARC_LANGUAGE . '/using-blueprints.md');
+      curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+      $file_contents = curl_exec($ch);
+      curl_close($ch);
+
       $sections[ '_usingbp' ] = array(
           'title'      => 'Using Blueprints',
           'icon_class' => 'icon-large',
@@ -1269,7 +1277,7 @@
                   'type'     => 'raw',
                   'class'    => 'plain',
                   'markdown' => true,
-                  'content'  => ($defaults_only ? '' : file_get_contents(PZARC_DOCUMENTATION_PATH . PZARC_LANGUAGE . '/using-blueprints.md')),
+                  'content'  => ($defaults_only ? '' : $file_contents),
                   'pzarchitect'),
               array(
                   'title'    => __('Online documentation', 'pzarchitect'),
@@ -1810,6 +1818,11 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
         $_architect_options = get_option('_architect_options');
       }
 
+      $animation_options = array('none'=>'None');
+      $animations = explode(',','bounce,bounceIn,bounceInDown,bounceInLeft,bounceInRight,bounceInUp,bounceOut,bounceOutDown,bounceOutLeft,bounceOutRight,bounceOutUp,fadeIn,fadeInDown,fadeInDownBig,fadeInLeft,fadeInLeftBig,fadeInRight,fadeInRightBig,fadeInUp,fadeInUpBig,fadeOut,fadeOutDown,fadeOutDownBig,fadeOutLeft,fadeOutLeftBig,fadeOutRight,fadeOutRightBig,fadeOutUp,fadeOutUpBig,flash,flipInX,flipInY,flipOutX,flipOutY,hinge,lightSpeedIn,lightSpeedOut,pulse,rollIn,rollOut,rotateIn,rotateInDownLeft,rotateInDownRight,rotateInUpLeft,rotateInUpRight,rotateOut,rotateOutDownLeft,rotateOutDownRight,rotateOutUpLeft,rotateOutUpRight,rubberBand,shake,slideInDown,slideInLeft,slideInRight,slideInUp,slideOutDown,slideOutLeft,slideOutRight,slideOutUp,swing,tada,wobble,zoomIn,zoomInDown,zoomInLeft,zoomInRight,zoomInUp,zoomOut,zoomOutDown,zoomOutLeft,zoomOutRight,zoomOutUp');
+      foreach ($animations as $animation) {
+        $animation_options[$animation]=$animation;
+      }
       $prefix      = '_panels_design_';
       $sections    = array();
       $sections[ ] = array(
@@ -2009,6 +2022,18 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
                   'hint'    => array('title'   => __('Make header and footer', 'pzarchitect'),
                                      'content' => __('When enabled, Architect will automatically wrap the header and footer components of the post layout in header and footer tags to maintain compatibility with current WP layout trends.<br><br>However, some layouts, such as tabular, are not suited to using the headers and footers.', 'pzarchitect'))
               ),
+              ((!empty($_architect_options['architect_enable_beta']))?
+              // TODO: Work on this
+              array(
+                  'title'    => __('Animate components group', 'pzarchitect'),
+                  'id'       => $prefix . 'animate-components',
+                  'type'     => 'select',
+                  'options'  => $animation_options,
+                  'select2' => array('allowClear' => false),
+                  'default'  => 'none',
+                  'subtitle' => __('Add the components group to the screen via an animation', 'pzazrchitect'),
+                  'desc'=>'<a href="http://daneden.github.io/animate.css" target=_blank>Visit Animate.CSS for demonstrations</a>'
+              ):null),
 
           )
       );
@@ -2419,20 +2444,21 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
                   'id'       => $prefix . 'image-max-dimensions',
                   'title'    => __('Maximum dimensions', 'pzarchitect'),
                   'type'     => 'dimensions',
+                  'desc'     => __('The displayed width of the image is determined by it\'s size in the Content Layout designer. This setting is used limit the size of the image used.', 'pzarchitect'),
                   'units'    => 'px',
                   'default'  => array('width' => '400', 'height' => '300'),
                   'required' => array(
-//                      array('_panels_settings_image-focal-point', '!=', 'shrink'),
-array('_panels_settings_feature-type', '=', 'image')
+                      array('_panels_settings_feature-type', '=', 'image')
                   ),
               ),
               array(
                   'title'    => __('Effect on screen resize', 'pzarchitect'),
                   'id'       => $prefix . 'background-image-resize',
                   'type'     => 'button_set',
+                  'subtitle' => __('Scale Vertically & Horizontally ', 'pzarchitect') . '<br>' . __('Trim horizontally, fill height', 'pzarchitect'),
                   'options'  => array(
-                      'scale' => __('Scale Vertically & Horizontally', 'pzarchitect'),
-                      'trim'  => __('Trim horizontally, retain height', 'pzarchitect')
+                      'scale' => __('Scale', 'pzarchitect'),
+                      'trim'  => __('Trim', 'pzarchitect')
                   ),
                   'required' => array(
                     //array('show_advanced', 'equals', true),
@@ -2464,11 +2490,12 @@ array('_panels_settings_feature-type', '=', 'image')
                       'page'     => __('Post', 'pzarchitect'),
                       'image'    => __('Attachment page', 'pzarchitect'),
                       'original' => __('Lightbox', 'pzarchitect'),
-                      'url'      => __('Specific URL', 'pzarchitect')
+                      'url'      => __('Specific URL', 'pzarchitect'),
+                      // 'destination-url'=> __('Destination URL','pzarchtiect')
                   ),
                   'default'  => 'page',
                   'required' => array('_panels_settings_feature-type', '=', 'image'),
-                  'subtitle' => __('The behaviour when a viewer clicks on the image', 'pzazrchitect')
+                  'subtitle' => __('Set what happens when a viewer clicks on the image', 'pzazrchitect')
               ),
               array(
                   'title'    => __('Specific URL', 'pzarchitect'),
@@ -2883,7 +2910,7 @@ array(
          * CONTENT
          */
         $sections[ ] = array(
-            'title'      => __('Body', 'pzarchitect'),
+            'title'      => __('Body/Excerpt', 'pzarchitect'),
             'show_title' => false,
             'icon_class' => 'icon-large',
             'icon'       => 'el-icon-align-left',
@@ -2902,6 +2929,28 @@ array(
                 pzarc_redux_borders($prefix . 'entry-content' . $border, array('.entry-content'), $defaults[ $optprefix . 'entry-content' . $border ]),
                 pzarc_redux_links($prefix . 'entry-content' . $font . $link, array('.entry-content a'), $defaults[ $optprefix . 'entry-content' . $font . $link ]),
                 array(
+                    'title'  => __('Content paragraphs', 'pzarc'),
+                    'id'     => $prefix . 'entry-content-p',
+                    'desc'   => 'Class: .entry-content p',
+                    'type'   => 'section',
+                    'indent' => true,
+                    'class'  => 'heading',
+                ),
+                pzarc_redux_font($prefix . 'entry-contentp' . $font, array('.entry-content'), $defaults[ $optprefix . 'entry-content' . $font ], array('letter-spacing',
+                                                                                                                                                       'font-variant',
+                                                                                                                                                       'text-transform',
+                                                                                                                                                       'font-family',
+                                                                                                                                                       'font-style',
+                                                                                                                                                       'text-align',
+                                                                                                                                                       'font-size',
+                                                                                                                                                       'text-decoration',
+                                                                                                                                                       'color',
+                                                                                                                                                       'font-weight',
+                                                                                                                                                       'word-spacing',
+                                                                                                                                                       'preview')),
+                pzarc_redux_padding($prefix . 'entry-contentp' . $font . $padding, array('.entry-content p'), $defaults[ $optprefix . 'entry-contentp' . $font . $padding ]),
+                pzarc_redux_margin($prefix . 'entry-contentp' . $font . $margin, array('.entry-content p'), $defaults[ $optprefix . 'entry-contentp' . $font . $margin ]),
+                array(
                     'title'  => __('Excerpt', 'pzarchitect'),
                     'id'     => $prefix . 'entry-excerpt',
                     'type'   => 'section',
@@ -2914,6 +2963,28 @@ array(
                 pzarc_redux_margin($prefix . 'entry-excerpt' . $font . $margin, array('.entry-excerpt'), $defaults[ $optprefix . 'entry-excerpt' . $font . $margin ]),
                 pzarc_redux_borders($prefix . 'entry-excerpt' . $border, array('.entry-excerpt'), $defaults[ $optprefix . 'entry-excerpt' . $border ]),
                 pzarc_redux_links($prefix . 'entry-excerpt' . $font . $link, array('.entry-excerpt a'), $defaults[ $optprefix . 'entry-excerpt' . $font . $link ]),
+                array(
+                    'title'  => __('Excerpt paragraphs', 'pzarc'),
+                    'id'     => $prefix . 'entry-excerptp',
+                    'desc'   => 'Class: .entry-excerpt p',
+                    'type'   => 'section',
+                    'indent' => true,
+                    'class'  => 'heading',
+                ),
+                pzarc_redux_font($prefix . 'entry-excerptp' . $font, array('.entry-excerpt'), $defaults[ $optprefix . 'entry-excerpt' . $font ], array('letter-spacing',
+                                                                                                                                                       'font-variant',
+                                                                                                                                                       'text-transform',
+                                                                                                                                                       'font-family',
+                                                                                                                                                       'font-style',
+                                                                                                                                                       'text-align',
+                                                                                                                                                       'font-size',
+                                                                                                                                                       'text-decoration',
+                                                                                                                                                       'color',
+                                                                                                                                                       'font-weight',
+                                                                                                                                                       'word-spacing',
+                                                                                                                                                       'preview')),
+                pzarc_redux_padding($prefix . 'entry-excerptp' . $font . $padding, array('.entry-excerpt p'), $defaults[ $optprefix . 'entry-excerptp' . $font . $padding ]),
+                pzarc_redux_margin($prefix . 'entry-excerptp' . $font . $margin, array('.entry-excerpt p'), $defaults[ $optprefix . 'entry-excerptp' . $font . $margin ]),
                 array(
                     'title'  => __('Read more', 'pzarchitect'),
                     'id'     => $prefix . 'entry-readmore',
@@ -2932,7 +3003,7 @@ array(
          * FEATURED IMAGE
          */
         $sections[ ] = array(
-            'title'      => __('Entry Featured image', 'pzarchitect'),
+            'title'      => __('Featured image', 'pzarchitect'),
             'show_title' => false,
             'icon_class' => 'icon-large',
             'icon'       => 'el-icon-picture',
@@ -3223,15 +3294,16 @@ array(
 
 
       // Get the next slug name
-      $args        = array(
-          'post_status' => array('publish', 'draft'),
-          'post_type'   => 'arc-blueprints',
-          'posts_per_page'=>1
+      $args                  = array(
+          'post_status'    => array('publish', 'draft'),
+          'post_type'      => 'arc-blueprints',
+          'posts_per_page' => 1
       );
-      $last_post = get_posts($args);
-      $new_slug       = str_replace('_','-',$preset_name) . '-' . ($last_post[0]->ID+1);
+      $last_post             = get_posts($args);
       $preset[ 'post' ]      = json_decode($arc_preset_data[ 'post' ]);
-      $preset[ 'post_meta' ] = json_decode($arc_preset_data[ 'meta' ],true);
+      $preset[ 'post_meta' ] = json_decode($arc_preset_data[ 'meta' ], true);
+      $new_slug              = sanitize_title($preset[ 'post' ]->post_title) . '-' . ($last_post[ 0 ]->ID + 1);
+
       /*
        * new post data array
        */
@@ -3245,7 +3317,7 @@ array(
           'post_parent'    => $preset[ 'post' ]->post_parent,
           'post_password'  => $preset[ 'post' ]->post_password,
           'post_status'    => 'draft',
-          'post_title'     => 'A new '.$process_type.' Blueprint using preset : '.$preset[ 'post' ]->post_title,
+          'post_title'     => 'A new ' . $process_type . ' Blueprint using preset : ' . $preset[ 'post' ]->post_title,
           'post_type'      => $preset[ 'post' ]->post_type,
           'to_ping'        => $preset[ 'post' ]->to_ping,
           'menu_order'     => $preset[ 'post' ]->menu_order
@@ -3269,20 +3341,20 @@ array(
        * duplicate all post meta
        */
       if (count($preset[ 'post_meta' ]) != 0) {
-        $sql_query = "INSERT INTO $wpdb->postmeta (post_id, meta_key, meta_value) ";
+        $sql_query     = "INSERT INTO $wpdb->postmeta (post_id, meta_key, meta_value) ";
         $sql_query_sel = array();
         foreach ($preset[ 'post_meta' ] as $meta_key => $value) {
           if ($meta_key === '_blueprints_short-name') {
-            $meta_value = $new_slug;
+            $meta_value = $value[ 0 ] . '-' . $new_post_id;
           } else {
             if ($process_type === 'unstyled') {
               // Just done it this way for speed.
               if (strpos($meta_key, '_styling_') === false) {
-                $meta_value = addslashes($value[0]);
+                $meta_value = addslashes($value[ 0 ]);
               }
 
             } else {
-              $meta_value = addslashes($value[0]);
+              $meta_value = addslashes($value[ 0 ]);
             }
           }
 
@@ -3296,7 +3368,7 @@ array(
       /*
        * finally, redirect to the edit post screen for the new draft
        */
-      wp_redirect( admin_url( 'post.php?action=edit&post=' . $new_post_id ) );
+      wp_redirect(admin_url('post.php?action=edit&post=' . $new_post_id));
 //      wp_redirect(admin_url('edit.php?post_type=' . $preset[ 'post' ]->post_type));
 
       exit;

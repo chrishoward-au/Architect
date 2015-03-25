@@ -1349,7 +1349,7 @@ li.arc-message .arc-presets-link {
   left: 20%;
   position: absolute;
   background: #777;
-  height: 500px;
+  height: 550px;
   width: 800px;
   box-shadow: 0 0 30px black;
   z-index: 100000; }
@@ -1393,7 +1393,7 @@ li.arc-message .arc-presets-link {
     .arc-presets-selector p.footer {
       width: 60%; }
   .arc-presets-selector .container {
-    height: 350px;
+    height: 400px;
     background: #f3f3f3;
     width: 100%;
     padding: 20px;
@@ -1405,8 +1405,17 @@ li.arc-message .arc-presets-link {
       display: inline-block;
       text-align: center; }
       .arc-presets-selector .container span label p {
-        color: #0074a2;
-        padding: 0; }
+        color: #555;
+        padding: 0;
+        margin: 3px 0; }
+        .arc-presets-selector .container span label p.arc-preset-title {
+          font-weight: bold;
+          font-size: 13px;
+          color: #0074a2; }
+        .arc-presets-selector .container span label p.arc-preset-designer {
+          font-size: 11px; }
+        .arc-presets-selector .container span label p.arc-preset-description {
+          font-size: 12px; }
       .arc-presets-selector .container span label input {
         display: none; }
         .arc-presets-selector .container span label input + img {

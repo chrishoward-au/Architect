@@ -457,6 +457,11 @@ add_action(\'init\',\'gs_init\');
                         </li>
                         <li><a href="https://github.com/carhartl/jquery-cookie" target="_blank">jQuery Cookie</a>
                         </li>
+                        <li><a href="http://www.wpexplorer.com/author/harri/" target="_blank">Page template tutorial on WP Explorer by Harri Bell-Thomas which made the Builder possible.</a>
+                        </li>
+                        <li><a href="http://jquery.eisbehr.de/lazy/" target="_blank">Lazy</a> Used to lazy load images in the Preset Selector.
+                        </li>
+
                     </ul>
                 </div>
 

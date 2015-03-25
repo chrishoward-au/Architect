@@ -68,8 +68,28 @@
               array(
                   'id'     => '_pzarc_pagebuilder_styling-section-start',
                   'type'   => 'section',
-                  'title'  => __('Styling', 'pzarchitect'),
+                  'title'  => __('Builder container styling', 'pzarchitect'),
                   'indent' => true
+              ),
+              array(
+                  'title'   => __('Width', 'pzarchitect'),
+                  'id'      => '_pzarc_pagebuilder_width',
+                  'type'    => 'dimensions',
+                  'height'  => false,
+                  'default' => array('width' => '100%'),
+                  'units'   => array('%', 'px', 'em')
+              ),
+              array(
+                  'id'      => '_pzarc_pagebuilder_float',
+                  'type'    => 'select',
+
+                  'options' => array(
+                      'left'  => __('Left', 'pzarchitect'),
+                      'centre'  => __('Centre', 'pzarchitect'),
+                      'right' => __('Right', 'pzarchitect')
+                  ),
+                  'title'   => __('Float', 'pzarchitect'),
+                  'subtitle'=> __('When set to centre, left and right margins will always be ignored.')
               ),
               array(
                   'id'             => '_pzarc_pagebuilder_margins',
@@ -100,6 +120,7 @@
                     'preview'               => false,
                     'transparent'           => false
               ),
+
               array(
                   'id'          => '_pzarc_pagebuilder_titles_typography',
                   'type'        => 'typography',

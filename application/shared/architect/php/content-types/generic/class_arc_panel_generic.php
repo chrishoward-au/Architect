@@ -121,7 +121,6 @@
           $this->toshow[ 'meta3' ][ 'show' ]
       ) {
         $this->get_meta($post);
-d($this->toshow);
         pzdb('after get meta');
       }
 
@@ -773,6 +772,8 @@ d($this->toshow);
 
       $pzclasses = 'pzarc-components ';
       $pzclasses .= ($this->section[ '_panels_design_components-position' ] === 'left' || $this->section[ '_panels_design_components-position' ] === 'right') ? 'vertical-content pzarc-align-' . $this->section[ '_panels_design_components-position' ] : '';
+
+      $pzclasses .= $this->section[ '_panels_design_animate-components' ] !== 'none'?' animated '.$this->section[ '_panels_design_animate-components' ]:'';
 
       $line = str_replace('{{pzclasses}}', $pzclasses, $line);
 

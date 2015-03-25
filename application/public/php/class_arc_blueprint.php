@@ -50,8 +50,10 @@
 
       //      }
       //}
+      if ($this->blueprint[ 'section_object' ][ $i ]->section['section-panel-settings']['_panels_design_animate-components'] !== 'none') {
+        wp_enqueue_style('css-animate');
+      }
 
-      wp_enqueue_style('pzarc_css_blueprint_' . $this->name);
     }
 
 

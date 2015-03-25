@@ -111,8 +111,13 @@
       if ($this->toshow[ 'image' ][ 'show' ] && $this->section[ '_panels_design_feature-location' ] !== 'fill') {
         $width                               = (int)str_replace('px', '', $this->section[ '_panels_design_image-max-dimensions' ][ 'width' ]);
         $height                              = (int)str_replace('px', '', $this->section[ '_panels_design_image-max-dimensions' ][ 'height' ]);
-        $imageURL                            = 'http://lorempixel.com/' . $width . '/' . $height . '/' . $post[ 'image' ][ 'original' ];
-        $this->data[ 'image' ][ 'image' ]    = '<img src="' . $imageURL . '">';
+        if (!empty($post[ 'image' ][ 'original' ])) {
+          $imageURL = 'http://lorempixel.com/' . $width . '/' . $height . '/' . $post[ 'image' ][ 'original' ];
+          $this->data[ 'image' ][ 'image' ]    = '<img src="' . $imageURL . '">';
+        } else {
+          $imageURL =PZARC_PLUGIN_APP_URL.'public/assets/blank-sky.jpg';
+          $this->data[ 'image' ][ 'image' ]    = '<img src="' . $imageURL . '" width='.$width.' height='.$height.' style="width:'.$width.'px;height:'.$height.'px;">';
+        }
         $this->data[ 'image' ][ 'original' ] = $imageURL;
         $this->data[ 'image' ][ 'caption' ]  = $post[ 'image' ][ 'caption' ];
       }
@@ -124,8 +129,13 @@
       if ($this->toshow[ 'image' ][ 'show' ] && $this->section[ '_panels_design_feature-location' ] === 'fill') {
         $width                                 = (int)str_replace('px', '', $this->section[ '_panels_design_image-max-dimensions' ][ 'width' ]);
         $height                                = (int)str_replace('px', '', $this->section[ '_panels_design_image-max-dimensions' ][ 'height' ]);
-        $imageURL                              = 'http://lorempixel.com/' . $width . '/' . $height . '/' . $post[ 'image' ][ 'original' ];
-        $this->data[ 'bgimage' ][ 'thumb' ]    = '<img src="' . $imageURL . '">';
+        if (!empty($post[ 'image' ][ 'original' ])) {
+          $imageURL = 'http://lorempixel.com/' . $width . '/' . $height . '/' . $post[ 'image' ][ 'original' ];
+          $this->data[ 'bgimage' ][ 'thumb' ]    = '<img src="' . $imageURL . '">';
+        } else {
+          $imageURL =PZARC_PLUGIN_APP_URL.'public/assets/blank-sky.jpg';
+          $this->data[ 'bgimage' ][ 'thumb' ]    = '<img src="' . $imageURL . '" width='.$width.' height='.$height.' style="width:'.$width.'px;height:'.$height.'px;">';
+        }
         $this->data[ 'bgimage' ][ 'original' ] = $imageURL;
         $this->data[ 'bgimage' ][ 'caption' ]  = $post[ 'image' ][ 'caption' ];
       }
