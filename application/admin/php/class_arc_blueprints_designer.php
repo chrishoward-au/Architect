@@ -612,7 +612,7 @@
                     'show_empty' => false,
                     'add_text'   => 'Add a title',
                     'required'   => array($prefix . 'section-' . $i . '-layout-mode', '=', 'accordion'),
-                    'subtitle'   => 'None to use post titles'
+                    'subtitle'   => 'Optional. Leave as none to use post titles'
                 ),
                 array(
                     'id'     => $prefix . 'section-' . $i . '-panels-heading',

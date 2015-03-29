@@ -26,7 +26,10 @@
     padding: 20px; }
   .pzarchitect .pzarc-blueprint {
     position: relative; }
+  .pzarchitect .pzarc-sections {
+    box-sizing: border-box; }
   .pzarchitect .pzarc-section {
+    box-sizing: border-box;
     position: relative;
     /* Added for gridded layout. May break others! Equal height panels*/
     display: block;
@@ -241,6 +244,8 @@
       padding: 1%; }
   .pzarchitect tr.pzarc-panel {
     display: table-row; }
+    .pzarchitect tr.pzarc-panel h1.entry-title {
+      width: 100% !important; }
   .pzarchitect table {
     border-collapse: collapse; }
     .pzarchitect table thead {

@@ -257,6 +257,9 @@
 
 tr.pzarc-panel {
   display: table-row;
+  h1.entry-title {
+    width:100%!important;
+  }
 }
 
 table {
