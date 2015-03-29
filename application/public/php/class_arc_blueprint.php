@@ -50,7 +50,8 @@
 
       //      }
       //}
-      if ($this->blueprint[ 'section_object' ][ $i ]->section['section-panel-settings']['_panels_design_animate-components'] !== 'none') {
+      $animate = (!empty($this->blueprint[ 'section_object' ][ $i ]->section[ 'section-panel-settings' ][ '_panels_design_animate-components' ])?$this->blueprint[ 'section_object' ][ $i ]->section[ 'section-panel-settings' ][ '_panels_design_animate-components' ]:'none');
+      if ($animate !== 'none') {
         wp_enqueue_style('css-animate');
       }
 
@@ -83,11 +84,11 @@
       $this->blueprint          = array_replace_recursive($_architect[ 'defaults' ][ '_blueprints' ], $this->bp);
       $this->blueprint[ 'uid' ] = 'uid' . time() . rand(1000, 9999);
 
-      if (!empty($_architect_options[ 'architect_enable_query_cache' ]) && !current_user_can('manage_options') && false === ($blueprint_query = get_transient('pzarc_blueprint_query_' . $this->name))) {
+      if (!empty($_architect_options[ 'architect_enable_query_cache' ]) && (!current_user_can('manage_options') || !current_user_can('edit_others_pages')) && false === ($blueprint_query = get_transient('pzarc_blueprint_query_' . $this->name))) {
         // It wasn't there, so regenerate the data and save the transient
         $blueprint_query = new WP_Query($meta_query_args);
         set_transient('pzarc_blueprint_query_' . $this->name, $blueprint_query, PZARC_TRANSIENTS_KEEP);
-      } elseif (current_user_can('manage_options') || empty($_architect_options[ 'architect_enable_query_cache' ])) {
+      } elseif (current_user_can('edit_others_pages') || empty($_architect_options[ 'architect_enable_query_cache' ])) {
         $blueprint_query = new WP_Query($meta_query_args);
       } else {
         // we need to put comething here!

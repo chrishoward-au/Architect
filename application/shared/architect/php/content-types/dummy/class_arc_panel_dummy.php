@@ -40,8 +40,8 @@
         $this->generator = new LoremIpsumGenerator;
       } else {
         require_once(PZARC_PLUGIN_APP_PATH . '/shared/thirdparty/php/Faker/src/autoload.php');
-        require_once(trailingslashit(plugin_dir_path(__FILE__)).'faker_53.php');
-        $this->faker =pzarc_faker_53();
+        require_once(trailingslashit(plugin_dir_path(__FILE__)) . 'faker_53.php');
+        $this->faker = pzarc_faker_53();
       }
     }
 
@@ -109,14 +109,47 @@
     {
       /** Image */
       if ($this->toshow[ 'image' ][ 'show' ] && $this->section[ '_panels_design_feature-location' ] !== 'fill') {
-        $width                               = (int)str_replace('px', '', $this->section[ '_panels_design_image-max-dimensions' ][ 'width' ]);
-        $height                              = (int)str_replace('px', '', $this->section[ '_panels_design_image-max-dimensions' ][ 'height' ]);
+        $width  = (int)str_replace('px', '', $this->section[ '_panels_design_image-max-dimensions' ][ 'width' ]);
+        $height = (int)str_replace('px', '', $this->section[ '_panels_design_image-max-dimensions' ][ 'height' ]);
+
         if (!empty($post[ 'image' ][ 'original' ])) {
-          $imageURL = 'http://lorempixel.com/' . $width . '/' . $height . '/' . $post[ 'image' ][ 'original' ];
-          $this->data[ 'image' ][ 'image' ]    = '<img src="' . $imageURL . '">';
+          $image_source = empty($this->build->blueprint[ '_content_dummy_image-source' ])?'lorempixel':$this->build->blueprint[ '_content_dummy_image-source' ];
+          $text_colour =empty($this->build->blueprint[ '_content_dummy_text-colour' ])?'fff':str_replace('#','',$this->build->blueprint[ '_content_dummy_text-colour' ]);
+          $bg_colour =empty($this->build->blueprint[ '_content_dummy_bg-colour' ])?'bbb':str_replace('#','',$this->build->blueprint[ '_content_dummy_bg-colour' ]);
+
+          switch ($image_source) {
+            case 'dummyimage':
+              $imageURL = 'http://dummyimage.com/' . $width . 'x' . $height.'/'.$bg_colour.'/'.$text_colour;
+              break;
+            case 'placeimg':
+              $imageURL = 'http://placeimg.com/' . $width . '/' . $height .'/any/'.rand(0,9999);
+              break;
+            case 'placeimg-animals':
+              $imageURL = 'http://placeimg.com/' . $width . '/' . $height .'/animals/'.rand(0,9999);
+              break;
+            case 'placeimg-architecture':
+              $imageURL = 'http://placeimg.com/' . $width . '/' . $height .'/arch/'.rand(0,9999);
+              break;
+            case 'placeimg-nature':
+              $imageURL = 'http://placeimg.com/' . $width . '/' . $height .'/nature/'.rand(0,9999);
+              break;
+            case 'placeimg-people':
+              $imageURL = 'http://placeimg.com/' . $width . '/' . $height .'/people/'.rand(0,9999);
+              break;
+            case 'placeimg-tech':
+              $imageURL = 'http://placeimg.com/' . $width . '/' . $height .'/tech/'.rand(0,9999);
+              break;
+            case 'lorempixel':
+              $imageURL = 'http://lorempixel.com/' . $width . '/' . $height . '/' . $post[ 'image' ][ 'original' ];
+              break;
+            default:
+              $imageURL = 'http://lorempixel.com/' . $width . '/' . $height . '/' . $post[ 'image' ][ 'original' ];
+
+          }
+          $this->data[ 'image' ][ 'image' ] = '<img src="' . $imageURL . '">';
         } else {
-          $imageURL =PZARC_PLUGIN_APP_URL.'public/assets/blank-sky.jpg';
-          $this->data[ 'image' ][ 'image' ]    = '<img src="' . $imageURL . '" width='.$width.' height='.$height.' style="width:'.$width.'px;height:'.$height.'px;">';
+          $imageURL                         = PZARC_PLUGIN_APP_URL . 'public/assets/blank-sky.jpg';
+          $this->data[ 'image' ][ 'image' ] = '<img src="' . $imageURL . '" width=' . $width . ' height=' . $height . ' style="width:' . $width . 'px;height:' . $height . 'px;">';
         }
         $this->data[ 'image' ][ 'original' ] = $imageURL;
         $this->data[ 'image' ][ 'caption' ]  = $post[ 'image' ][ 'caption' ];
@@ -127,14 +160,46 @@
     {
       /** Image */
       if ($this->toshow[ 'image' ][ 'show' ] && $this->section[ '_panels_design_feature-location' ] === 'fill') {
-        $width                                 = (int)str_replace('px', '', $this->section[ '_panels_design_image-max-dimensions' ][ 'width' ]);
-        $height                                = (int)str_replace('px', '', $this->section[ '_panels_design_image-max-dimensions' ][ 'height' ]);
+        $width  = (int)str_replace('px', '', $this->section[ '_panels_design_image-max-dimensions' ][ 'width' ]);
+        $height = (int)str_replace('px', '', $this->section[ '_panels_design_image-max-dimensions' ][ 'height' ]);
         if (!empty($post[ 'image' ][ 'original' ])) {
-          $imageURL = 'http://lorempixel.com/' . $width . '/' . $height . '/' . $post[ 'image' ][ 'original' ];
-          $this->data[ 'bgimage' ][ 'thumb' ]    = '<img src="' . $imageURL . '">';
+          $image_source = empty($this->build->blueprint[ '_content_dummy_image-source' ])?'lorempixel':$this->build->blueprint[ '_content_dummy_image-source' ];
+          $text_colour =empty($this->build->blueprint[ '_content_dummy_text-colour' ])?'fff':str_replace('#','',$this->build->blueprint[ '_content_dummy_text-colour' ]);
+          $bg_colour =empty($this->build->blueprint[ '_content_dummy_bg-colour' ])?'bbb':str_replace('#','',$this->build->blueprint[ '_content_dummy_bg-colour' ]);
+
+          switch ($image_source) {
+            case 'dummyimage':
+              $imageURL = 'http://dummyimage.com/' . $width . 'x' . $height.'/'.$bg_colour.'/'.$text_colour;
+              break;
+            case 'placeimg':
+              $imageURL = 'http://placeimg.com/' . $width . '/' . $height .'/any/'.rand(0,9999);
+              break;
+            case 'placeimg-animals':
+              $imageURL = 'http://placeimg.com/' . $width . '/' . $height .'/animals/'.rand(0,9999);
+              break;
+            case 'placeimg-architecture':
+              $imageURL = 'http://placeimg.com/' . $width . '/' . $height .'/arch/'.rand(0,9999);
+              break;
+            case 'placeimg-nature':
+              $imageURL = 'http://placeimg.com/' . $width . '/' . $height .'/nature/'.rand(0,9999);
+              break;
+            case 'placeimg-people':
+              $imageURL = 'http://placeimg.com/' . $width . '/' . $height .'/people/'.rand(0,9999);
+              break;
+            case 'placeimg-tech':
+              $imageURL = 'http://placeimg.com/' . $width . '/' . $height .'/tech/'.rand(0,9999);
+              break;
+            case 'lorempixel':
+              $imageURL = 'http://lorempixel.com/' . $width . '/' . $height . '/' . $post[ 'image' ][ 'original' ];
+              break;
+            default:
+              $imageURL = 'http://lorempixel.com/' . $width . '/' . $height . '/' . $post[ 'image' ][ 'original' ];
+
+          }
+          $this->data[ 'bgimage' ][ 'thumb' ] = '<img src="' . $imageURL . '">';
         } else {
-          $imageURL =PZARC_PLUGIN_APP_URL.'public/assets/blank-sky.jpg';
-          $this->data[ 'bgimage' ][ 'thumb' ]    = '<img src="' . $imageURL . '" width='.$width.' height='.$height.' style="width:'.$width.'px;height:'.$height.'px;">';
+          $imageURL                           = PZARC_PLUGIN_APP_URL . 'public/assets/blank-sky.jpg';
+          $this->data[ 'bgimage' ][ 'thumb' ] = '<img src="' . $imageURL . '" width=' . $width . ' height=' . $height . ' style="width:' . $width . 'px;height:' . $height . 'px;">';
         }
         $this->data[ 'bgimage' ][ 'original' ] = $imageURL;
         $this->data[ 'bgimage' ][ 'caption' ]  = $post[ 'image' ][ 'caption' ];
@@ -181,7 +246,7 @@
       $panel_def = $panel_class->panel_def();
 
       // Setup meta tags
-      $panel_def = self::build_meta_header_footer_groups($panel_def, $section[ $section_no ]->section['section-panel-settings' ]);
+      $panel_def = self::build_meta_header_footer_groups($panel_def, $section[ $section_no ]->section[ 'section-panel-settings' ]);
 
       //   var_dump(esc_html($panel_def));
 
@@ -207,10 +272,9 @@
     }
 
     public function get_nav_items($blueprints_navigator, &$arc_query, $nav_labels)
-
     {
       $nav_items = array();
-      for ($j = 0; $j < count($arc_query); $j++){
+      for ($j = 0; $j < count($arc_query); $j++) {
         switch ($blueprints_navigator) {
 
           case 'tabbed':

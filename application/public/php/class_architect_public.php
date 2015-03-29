@@ -118,9 +118,10 @@
       // Shorthand some vars
       $bp_shortname = $this->build->blueprint[ '_blueprints_short-name' ];
       $bp_nav_type  = 'none';
+     $bp_type = $this->build->blueprint[ '_blueprints_section-0-layout-mode' ];
       switch (true) {
-        case $this->build->blueprint[ '_blueprints_section-0-layout-mode' ] === 'slider':
-        case  $this->build->blueprint[ '_blueprints_section-0-layout-mode' ] === 'tabbed':
+        case $bp_type === 'slider':
+        case  $bp_type === 'tabbed':
           $bp_nav_type = 'navigator';
           break;
         case !empty($this->build->blueprint[ '_blueprints_pagination' ]):
@@ -189,7 +190,7 @@
         $this->nav_items = $panel_class->get_nav_items($this->build->blueprint[ '_blueprints_navigator' ], $this->arc_query, $this->build->blueprint[ '_blueprints_navigator-labels' ]);
       }
       /** RENDER THE BLUEPRINT */
-      self::render_this_architect_blueprint($bp_nav_type, $bp_nav_pos, $bp_shortname, $caller, $bp_transtype, $panel_class, $content_class);
+      self::render_this_architect_blueprint($bp_nav_type, $bp_nav_pos, $bp_shortname, $caller, $bp_transtype, $panel_class, $content_class,$bp_type);
 
       /** Set our original query back. */
       wp_reset_postdata(); // Pretty sure this goes here... Not after the query reassignment
@@ -209,7 +210,7 @@
      * @param $do_section_2
      * @param $do_section_3
      */
-    private function render_this_architect_blueprint($bp_nav_type, $bp_nav_pos, $bp_shortname, $caller, $bp_transtype, $panel_class, $content_class)
+    private function render_this_architect_blueprint($bp_nav_type, $bp_nav_pos, $bp_shortname, $caller, $bp_transtype, $panel_class, $content_class,$blueprint_type)
     {
       // TODO: Show or hide blueprint if no content
 
@@ -230,7 +231,7 @@
        *
        */
 
-      echo '<div id="' . $this->build->blueprint[ 'uid' ] . '" class="pzarchitect ' . $use_hw_css . ' pzarc-blueprint pzarc-blueprint_' . $this->build->blueprint[ '_blueprints_short-name' ] . ' nav-' . $bp_nav_type . ' icomoon ' . ($bp_nav_type === 'navigator' ? 'navpos-' . $bp_nav_pos : '') . '">';
+      echo '<div id="pzarc-blueprint_' . $this->build->blueprint[ '_blueprints_short-name' ].'" class="' . $this->build->blueprint[ 'uid' ] . ' pzarchitect layout-' . $blueprint_type.' '.$use_hw_css . ' pzarc-blueprint pzarc-blueprint_' . $this->build->blueprint[ '_blueprints_short-name' ] . ' nav-' . $bp_nav_type . ' icomoon ' . ($bp_nav_type === 'navigator' ? 'navpos-' . $bp_nav_pos : '') . '">';
       /** Page title */
       echo apply_filters('arc_page_title', self::display_page_title($this->build->blueprint[ '_blueprints_page-title' ], array('category' => $_architect_options[ 'architect_language-categories-archive-pages-title' ],
                                                                                                                                'tag'      => $_architect_options[ 'architect_language-tags-archive-pages-title' ],
@@ -439,7 +440,7 @@
 
         $slider[ 'dataopts' ] = 'data-opts="{#tduration#:' . $duration . ',#tinterval#:' . $interval . ',#tshow#:' . $skip_thumbs . ',#tskip#:' . $skip_thumbs . ',#tisvertical#:' . $is_vertical . ',#tinfinite#:' . $infinite . ',#tacross#:' . $no_across . '}"';
 
-        if ('hover' === $this->build->blueprint[ '_blueprints_navigator-pager' ] && 'navigator' === $bp_nav_type) {
+        if ('hover' === $this->build->blueprint[ '_blueprints_navigator-pager' ] && 'slider'===$this->build->blueprint[ '_blueprints_section-0-layout-mode']) {
           $return_val .= '<button type="button" class="pager arrow-left icon-arrow-left4 hide"></button>';
           $return_val .= '<button type="button" class="pager arrow-right icon-uniE60D"></button>';
         }

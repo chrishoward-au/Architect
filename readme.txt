@@ -3,7 +3,7 @@ Contributors: chrishoward
 Tags: content,display,posts,pages,gallery,slider,tabs,tabbed,tabular,widget,hooks
 Requires at least: 3.5.0
 Tested up to: 4.2.0
-Stable tag: 1.0.9.7
+Stable tag: 1.0.9.12
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Plugin URI: http://architect4wp.com
@@ -110,6 +110,12 @@ For support, please send an email to support@pizazzwp.com
 * CHANGED: Improved Blueprint CSS loading
 * CHANGED: Images in Preset selector now don't load until it is opened. Which is going to be really handy if they get hosted online.
 * ADDED: Styling for body and excerpt paragraphs 
+* CHANGED: Architect can now be used by Editor level users.
+* FIXED: Various small bugs on new installs and others
+* CHANGED: More options for dummy images
+* CHANGED: Limited materials design palette in custom colour picker
+* ADDED: Option to select different placeholder image source for Dummy content
+
 
 = 1.0.8.8 =
 * FIXED: Transients not working with terms override

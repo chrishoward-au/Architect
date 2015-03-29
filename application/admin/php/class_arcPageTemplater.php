@@ -70,7 +70,7 @@
 
       // Add your templates to this array.
       $this->templates = array(
-          'arc_page_template.php'     => 'Architect Page Builder',
+          'arc_page_template.php'     => 'Architect Builder',
       );
 
     }

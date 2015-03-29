@@ -148,6 +148,8 @@
         $settings = $this->section[ 'section-panel-settings' ];
         $toshow   = json_decode($settings[ '_panels_design_preview' ], true);
         $widths   = array();
+
+        // Set the column widths to the widths set for the components
         foreach ($toshow as $k => $v) {
           if ($v[ 'show' ]) {
             echo '<col style="width:' . $v[ 'width' ] . '%;">';
@@ -276,7 +278,8 @@
 
       /** ACCORDION TITLES */
       if ('accordion' === $this->layout_mode) {
-        $accordion_title = $post->post_title;
+        //This is a Dummy content specific hack fix
+        $accordion_title = isset($post['title']['title'])?$post['title']['title']:$post->post_title;
         if (isset($this->table_accordion_titles) && !empty($this->table_accordion_titles) && isset($this->table_accordion_titles[ $panel_def ])) {
           $accordion_title = do_shortcode($this->table_accordion_titles[ $panel_number ]);
         }

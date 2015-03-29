@@ -309,10 +309,10 @@
 
       $_architect[ 'defaults' ][ 'blueprints' ] = (!isset($_architect[ 'defaults' ][ 'blueprints' ]) ? array() : $_architect[ 'defaults' ][ 'blueprints' ]);
 
-      $blueprint_layout_general                 = $blueprints->pzarc_mb_blueprint_general_settings($_architect[ 'defaults' ][ 'blueprints' ], true);
-      $blueprint_styling                        = empty($_architect_options[ 'architect_enable_styling' ]) || $exclude_styling? '' : $blueprints->pzarc_mb_blueprint_styling($_architect[ 'defaults' ][ 'blueprints' ], true);
-      $pzarc_blueprint_layout                   = $blueprints->pzarc_mb_blueprint_design($_architect[ 'defaults' ][ 'blueprints' ], true);
-      $pzarc_contents_metabox                   = $blueprints->pzarc_mb_blueprint_content_selection($_architect[ 'defaults' ][ 'blueprints' ], true);
+      $blueprint_layout_general = $blueprints->pzarc_mb_blueprint_general_settings($_architect[ 'defaults' ][ 'blueprints' ], true);
+      $blueprint_styling        = empty($_architect_options[ 'architect_enable_styling' ]) || $exclude_styling ? '' : $blueprints->pzarc_mb_blueprint_styling($_architect[ 'defaults' ][ 'blueprints' ], true);
+      $pzarc_blueprint_layout   = $blueprints->pzarc_mb_blueprint_design($_architect[ 'defaults' ][ 'blueprints' ], true);
+      $pzarc_contents_metabox   = $blueprints->pzarc_mb_blueprint_content_selection($_architect[ 'defaults' ][ 'blueprints' ], true);
 
       $_architect[ 'defaults' ][ 'blueprints' ][ '_blueprint_layout_general' ] = $blueprint_layout_general[ 0 ][ 'sections' ];
       $_architect[ 'defaults' ][ 'blueprints' ][ '_blueprint_stylings' ]       = empty($blueprint_styling) ? '' : $blueprint_styling[ 0 ][ 'sections' ];
@@ -346,11 +346,11 @@
       $_architect[ 'defaults' ][ 'panels' ] = (!isset($_architect[ 'defaults' ][ 'panels' ]) ? array() : $_architect[ 'defaults' ][ 'panels' ]);
 
 //      $pzarc_panel_general_settings = $blueprints->pzarc_panel_general_settings($_architect[ 'defaults' ][ 'panels' ], true);
-      $pzarc_panels_design          = $blueprints->pzarc_mb_panels_layout($_architect[ 'defaults' ][ 'panels' ], true);
-      $pzarc_panels_styling         = empty($_architect_options[ 'architect_enable_styling' ]) || $exclude_styling ? '' : $blueprints->pzarc_mb_panels_styling($_architect[ 'defaults' ][ 'panels' ], true);
+      $pzarc_panels_design  = $blueprints->pzarc_mb_panels_layout($_architect[ 'defaults' ][ 'panels' ], true);
+      $pzarc_panels_styling = empty($_architect_options[ 'architect_enable_styling' ]) || $exclude_styling ? '' : $blueprints->pzarc_mb_panels_styling($_architect[ 'defaults' ][ 'panels' ], true);
 
- //     $_architect[ 'defaults' ][ 'panels' ][ '_panel_general_settings' ] = $pzarc_panel_general_settings[ 0 ][ 'sections' ];
-      $_architect[ 'defaults' ][ 'panels' ][ '_panels_design' ]          = $pzarc_panels_design[ 0 ][ 'sections' ];
+      //     $_architect[ 'defaults' ][ 'panels' ][ '_panel_general_settings' ] = $pzarc_panel_general_settings[ 0 ][ 'sections' ];
+      $_architect[ 'defaults' ][ 'panels' ][ '_panels_design' ] = $pzarc_panels_design[ 0 ][ 'sections' ];
 
       if (!empty($_architect_options[ 'architect_enable_styling' ]) && !$exclude_styling) {
         $_architect[ 'defaults' ][ 'panels' ][ '_panels_styling' ] = $pzarc_panels_styling[ 0 ][ 'sections' ];
@@ -776,6 +776,7 @@
         $array_out[ $key ] = maybe_unserialize($value[ 0 ]);
       }
     }
+
     return $array_out;
   }
 
@@ -810,11 +811,11 @@
   {
     global $wpdb, $_architect_options;
     // We don't want transients used for admins since they may be testing new settings - which won't take!
-    if (!empty($_architect_options[ 'architect_enable_query_cache' ]) && !current_user_can('manage_options') && false === ($post_id = get_transient('pzarc_post_name_to_id_' . $post_name))) {
+    if (!empty($_architect_options[ 'architect_enable_query_cache' ]) && (!current_user_can('manage_options') ||!current_user_can('edit_others_pages')) && false === ($post_id = get_transient('pzarc_post_name_to_id_' . $post_name))) {
       // It wasn't there, so regenerate the data and save the transient
       $post_id = $wpdb->get_var("SELECT ID FROM $wpdb->posts WHERE post_name = '" . $post_name . "'");
       set_transient('pzarc_post_name_to_id_' . $post_name, $post_id, PZARC_TRANSIENTS_KEEP);
-    } elseif (current_user_can('manage_options') || empty($_architect_options[ 'architect_enable_query_cache' ])) {
+    } elseif (current_user_can('edit_others_pages') || empty($_architect_options[ 'architect_enable_query_cache' ])) {
       $post_id = $wpdb->get_var("SELECT ID FROM $wpdb->posts WHERE post_name = '" . $post_name . "'");
     }
 
@@ -962,7 +963,8 @@
 
   // Just incase
   if (!function_exists('d')) {
-    function d($var) {
+    function d($var)
+    {
       // do nothing incase a d() left behind
     }
   }
@@ -1014,6 +1016,7 @@
         }
       }
     }
+
     return (!empty($filler) ? $classes . '{' . $filler . '}' : null);
   }
 
@@ -1037,6 +1040,7 @@
         }
       }
     }
+
     return $spacing_css;
   }
 
@@ -1242,4 +1246,21 @@
     $value = trim($value);
 
     return (!empty($value) ? $class . $value : null);
+  }
+
+  if (!function_exists('pzifempty')) {
+
+    /**
+     *
+     * Checks value if empty which includes exists, and returns null or return value. Otherwise returns the value
+     * @param      $var
+     * @param null $return
+     * @return null
+     */
+// Actually this doesn't work!!!! Coz PHP won't pass a var unchecked. So still get a warnign if not set.
+    function pzifempty($var, $return = null)
+    {
+      return (empty($var) ? $return : $var);
+    }
+
   }

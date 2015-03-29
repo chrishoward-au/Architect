@@ -149,14 +149,14 @@
       global $_architect_options;
 
       $transient_id = 'pzarc_custom_query_' . $this->build->blueprint[ '_blueprints_short-name' ].'_'.(!empty($overrides['terms'])?$overrides['terms']:'' );
-      if (!empty($_architect_options[ 'architect_enable_query_cache' ]) && false == ($custom_query = get_transient($transient_id)) && !current_user_can('manage_options')) {
+      if (!empty($_architect_options[ 'architect_enable_query_cache' ]) && false == ($custom_query = get_transient($transient_id)) && (!current_user_can('manage_options') || !current_user_can('edit_others_pages'))) {
         // It wasn't there, so regenerate the data and save the transient
 
         $custom_query = new WP_Query($this->query_options);
 
         set_transient($transient_id, $custom_query, PZARC_TRANSIENTS_KEEP);
 
-      } elseif (current_user_can('manage_options') || empty($_architect_options[ 'architect_enable_query_cache' ])) {
+      } elseif (current_user_can('edit_others_pages') || empty($_architect_options[ 'architect_enable_query_cache' ])) {
         // if is admin
         $custom_query = new WP_Query($this->query_options);
       } else {

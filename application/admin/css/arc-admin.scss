@@ -26,7 +26,6 @@ $violet-900: #311b92;
 $lightest: 40%;
 $darker: 10%;
 
-
 .message.error.highlight {
   background: #fee;
 }
@@ -51,7 +50,7 @@ li.arc-message {
 }
 
 #pzarc-custom-pzarc_layout-cell-preview {
-  width: 562px;
+  width: 452px;
   border-radius: 3px 3px 0 0;
   box-shadow: 0 0 10px #aaa;
   margin-bottom: 10px;
@@ -139,7 +138,7 @@ div.pzarc-dragsource {
   box-sizing: border-box;
   //background: #ddd url(bg-preview.jpg);
   overflow: hidden;
-  width: 562px;
+  width: 452px;
   position: relative;
   background-position: 100%;
 }
@@ -1480,7 +1479,7 @@ body.arc-panels * {
 
 #_pzarc_pagebuilder_enabled,
 #_pzarc_pagebuilder_disabled {
-  width: 100%;
+  width: 80%;
   margin-bottom: 10px;
   h3 {
     text-align: center;
@@ -1497,12 +1496,13 @@ body.arc-panels * {
 ul#_pzarc_pagebuilder_disabled li {
   display: inline-block;
   color: #555;
-  background:#bbb;
+  background: #bbb;
+  margin: 0 2px;
 }
 
 ul#_pzarc_pagebuilder_enabled li {
   color: #fff;
-  background:$highlight;
+  background: $highlight;
   width: 80%;
   margin-left: auto;
   margin-right: auto;
@@ -1545,7 +1545,6 @@ body.arc-beginner .arc-field-advanced {
 .arc-important-admin-message {
   color: tomato;
 }
-
 
 #tab-presets {
   border-bottom: solid 4px $violet;
@@ -1846,21 +1845,22 @@ li.arc-message {
     span {
       display: inline-block;
       text-align: center;
+      vertical-align:top;
       label {
         p {
           color: #555;
           padding: 0;
-          margin:3px 0;
+          margin: 3px 0;
           &.arc-preset-title {
-            font-weight:bold;
-            font-size:13px;
-            color:$highlight;
+            font-weight: bold;
+            font-size: 13px;
+            color: $highlight;
           }
-          &.arc-preset-designer{
-            font-size:11px;
+          &.arc-preset-designer {
+            font-size: 11px;
           }
           &.arc-preset-description {
-            font-size:12px;
+            font-size: 12px;
           }
         }
         input {
@@ -1892,7 +1892,7 @@ li.arc-message {
       margin-right: 5px;
       border-radius: 5px;
       &.disabled {
-        visibility:hidden;
+        visibility: hidden;
       }
       &:hover {
         color: #fff;
@@ -1922,3 +1922,24 @@ li.arc-message {
 // Redux fixes
 //.redux-main .input-append {position:relative;}
 //.redux-main .input-append .add-on {position: absolute;}
+
+// Fixes for Comments Plugin
+.redux-sidebar {
+  menu, ol, ul {
+    padding:inherit;
+  }
+}
+.redux-main {
+  fieldset {
+    border: none;
+    margin: 0;
+  }
+  button,
+  input,
+  select,
+  textarea {
+    font-size: 14px;
+    font-family: inherit;
+  }
+
+}

@@ -24,7 +24,7 @@
     // Process the sections
     $i=0;
       $pzarc_bp_css[ $i ] = pzarc_process_bp_sections($pzarc_blueprints, $i, $nl, $_architect_options);
-    $specificity_class = 'body.pzarchitect ';
+    $specificity_class = 'body.pzarchitect #pzarc-blueprint_'.$pzarc_blueprints[ '_blueprints_short-name' ];
 
     $pzarc_contents .= $pzarc_bp_css[ $i ];
 
@@ -164,27 +164,27 @@
       } else {
         $pzarc_width_val = (str_replace($pzarc_blueprints[ '_blueprints_sections-width' . $i ][ 'units' ], '', $pzarc_blueprints[ '_blueprints_sections-width' . $i ][ 'width' ]));
       }
-      switch ($pzarc_blueprints[ '_blueprints_sections-align' . $i ]) {
-        case 'left':
-          $pzarc_sections_align = 'left:0;';
-          break;
-        case 'centre':
-        case 'center':
-          if ($pzarc_blueprints[ '_blueprints_sections-width' . $i ][ 'units' ] === '%') {
-            $pzarc_sections_align = 'left:' . ($pzarc_width_val / 2) . $pzarc_blueprints[ '_blueprints_sections-width' . $i ][ 'units' ];
-          } else {
-            $pzarc_sections_align = 'margin-left:auto;margin-right:auto;';
-
-          }
-          break;
-        case 'right':
-          if ($pzarc_blueprints[ '_blueprints_sections-width' . $i ][ 'units' ] === '%') {
-            $pzarc_sections_align = 'left:' . $pzarc_width_val . $pzarc_blueprints[ '_blueprints_sections-width' . $i ][ 'units' ];
-          } else {
-            $pzarc_sections_align = 'right: calc(-100% + '.$pzarc_width_val.'px);';
-          }
-          break;
-      }
+//      switch ($pzarc_blueprints[ '_blueprints_sections-align' . $i ]) {
+//        case 'left':
+//          $pzarc_sections_align = 'left:0;';
+//          break;
+//        case 'centre':
+//        case 'center':
+//          if ($pzarc_blueprints[ '_blueprints_sections-width' . $i ][ 'units' ] === '%') {
+//            $pzarc_sections_align = 'left:' . ($pzarc_width_val / 2) . $pzarc_blueprints[ '_blueprints_sections-width' . $i ][ 'units' ];
+//          } else {
+//            $pzarc_sections_align = 'margin-left:auto;margin-right:auto;';
+//
+//          }
+//          break;
+//        case 'right':
+//          if ($pzarc_blueprints[ '_blueprints_sections-width' . $i ][ 'units' ] === '%') {
+//            $pzarc_sections_align = 'left:' . $pzarc_width_val . $pzarc_blueprints[ '_blueprints_sections-width' . $i ][ 'units' ];
+//          } else {
+//            $pzarc_sections_align = 'right: calc(-100% + '.$pzarc_width_val.'px);';
+//          }
+//          break;
+//      }
       $pzarc_css = $pzarc_mediaq_css;
       $pzarc_css .= $sections_class . ' {width:' . $pzarc_blueprints[ '_blueprints_sections-width' . $i ][ 'width' ] . ';' . $pzarc_sections_align . '}';
 

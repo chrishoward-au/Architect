@@ -17,7 +17,7 @@ li.arc-message {
   margin: 0 0 20px 0; }
 
 #pzarc-custom-pzarc_layout-cell-preview {
-  width: 562px;
+  width: 452px;
   border-radius: 3px 3px 0 0;
   box-shadow: 0 0 10px #aaa;
   margin-bottom: 10px; }
@@ -92,7 +92,7 @@ div.pzarc-dragsource {
   height: 300px;
   box-sizing: border-box;
   overflow: hidden;
-  width: 562px;
+  width: 452px;
   position: relative;
   background-position: 100%; }
 
@@ -1153,7 +1153,7 @@ body.arc-panels * {
 
 #_pzarc_pagebuilder_enabled,
 #_pzarc_pagebuilder_disabled {
-  width: 100%;
+  width: 80%;
   margin-bottom: 10px; }
   #_pzarc_pagebuilder_enabled h3,
   #_pzarc_pagebuilder_disabled h3 {
@@ -1169,7 +1169,8 @@ body.arc-panels * {
 ul#_pzarc_pagebuilder_disabled li {
   display: inline-block;
   color: #555;
-  background: #bbb; }
+  background: #bbb;
+  margin: 0 2px; }
 
 ul#_pzarc_pagebuilder_enabled li {
   color: #fff;
@@ -1403,7 +1404,8 @@ li.arc-message .arc-presets-link {
     white-space: nowrap; }
     .arc-presets-selector .container span {
       display: inline-block;
-      text-align: center; }
+      text-align: center;
+      vertical-align: top; }
       .arc-presets-selector .container span label p {
         color: #555;
         padding: 0;
@@ -1454,3 +1456,16 @@ li.arc-message .arc-presets-link {
   .arc-export-data textarea {
     resize: none;
     background: #eee; }
+
+.redux-sidebar menu, .redux-sidebar ol, .redux-sidebar ul {
+  padding: inherit; }
+
+.redux-main fieldset {
+  border: none;
+  margin: 0; }
+.redux-main button,
+.redux-main input,
+.redux-main select,
+.redux-main textarea {
+  font-size: 14px;
+  font-family: inherit; }

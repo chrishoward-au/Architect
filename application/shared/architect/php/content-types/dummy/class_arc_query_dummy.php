@@ -44,7 +44,6 @@
     public function get_custom_query($overrides)
     {
 
-      $j           = 0;
       $dummy_query = array();
       $cats        = array('abstract',
                            'animals',
@@ -59,21 +58,31 @@
                            'sports',
                            'technics',
                            'transport');
+      $j           = rand(1,count($cats))-1;
 
-      $picno = rand(1, 10);
 
       $ch = curl_init('http://lorempixel.com');
       curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
       $is_online = (curl_exec($ch) != false);
       curl_close($ch);
 
+
       $trim_length = $this->build->blueprint[ 'section_object' ][ 1 ]->section[ 'section-panel-settings' ][ '_panels_design_excerpts-word-count' ];
+      $readmore = $this->build->blueprint[ 'section_object' ][ 1 ]->section[ 'section-panel-settings' ][ '_panels_design_readmore-truncation-indicator' ].' <a href="#" class="moretag readmore">'.$this->build->blueprint[ 'section_object' ][ 1 ]->section[ 'section-panel-settings' ][ '_panels_design_readmore-text' ].'</a>';
       $no_per_page = ($this->query_options[ 'posts_per_page' ] < 1 ? $this->build->blueprint[ '_content_dummy_dummy-record-count' ] : $this->query_options[ 'posts_per_page' ]);
       for ($i = 0; $i < $no_per_page; $i++) {
+        $picno = rand(1, 10);
 
         $dummy_query[ $i ][ 'title' ][ 'title' ] = ($this->isfaker ? $this->faker->sentence() : ucfirst($this->generator->getContent(rand(3, 8), 'plain', false)));
-        $dummy_query[ $i ][ 'content' ]          = apply_filters('the_content', ($this->isfaker ? $this->faker->realText() : ucfirst($this->generator->getContent(rand(400, 800), 'html', false))));
-        $dummy_query[ $i ][ 'excerpt' ]          = apply_filters('the_excerpt', ($this->isfaker ? $this->faker->realText(5 * $trim_length) : ucfirst($this->generator->getContent(rand(10, $trim_length), 'text', false))) . '... <a href="#" class="moretag readmore">[Read more]</a>');
+        $pcount = rand(1,6);
+        $paragraphs = '';
+        if ($this->isfaker) {
+          for ($x=0;$x<$pcount;$x++) {
+            $paragraphs .= '<p>'.$this->faker->realText(rand(200, 500)).'</p>';
+          }
+        }
+        $dummy_query[ $i ][ 'content' ]          = apply_filters('the_content', ($this->isfaker ? $paragraphs : ucfirst($this->generator->getContent(rand(400, 800), 'html', false))));
+        $dummy_query[ $i ][ 'excerpt' ]          = apply_filters('the_excerpt', ($this->isfaker ? $this->faker->realText(5 * $trim_length) : ucfirst($this->generator->getContent(rand(10, $trim_length), 'text', false))) . $readmore);
 
         // We could cache these but writes are expensive and time consuming. So we'll just use fat thumbs instead.
         // Maybe get Faker to add specific pic number then we could cut a smaller thumb
@@ -82,9 +91,8 @@
 
 
         $dummy_query[ $i ][ 'image' ][ 'original' ] = ($is_online)?$cats[ $j ] . '/' . $picno:'';
-
         $dummy_query[ $i ][ 'image' ][ 'caption' ]        = ($this->isfaker ? $this->faker->sentence() : 'caption');
-        $j                                                = (++$j > count($cats) ? 0 : $j);
+        $j                                                = (++$j > (count($cats)-1) ? 0 : $j);
         $thedate                                          = ($this->isfaker ? $this->faker->date() : time());
         $dummy_query[ $i ][ 'meta' ][ 'datetime' ]        = $thedate;
         $dummy_query[ $i ][ 'meta' ][ 'fdatetime' ]       = date_i18n(get_option('date_format'), strtotime($thedate));

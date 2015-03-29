@@ -34,6 +34,12 @@
               '<p style="color:tomato;">' . __('NOTE: For these Blueprints to show, you <strong>must</strong> set the Template to <strong>Architect Builder</strong> in the Page Attributes settings at the right.', 'pzarchitect') . '</p>',
           'fields' => array(
               array(
+                  'id'     => '_pzarc_pagebuilder_layout',
+                  'type'   => 'section',
+                  'title'  => __('Blueprints', 'pzarchitect'),
+                  'indent' => true
+              ),
+              array(
                   'id'      => '_pzarc_pagebuilder',
                   'type'    => 'sorter',
                   'options' => array(
@@ -66,9 +72,41 @@
 
               ),
               array(
+                  'id'     => '_pzarc_pagebuilder_wrapper_styling-section-start',
+                  'type'   => 'section',
+                  'title'  => __('Builder wrapper formatting', 'pzarchitect'),
+                  'indent' => true
+              ),
+              array(
+                  'title'   => __('Width', 'pzarchitect'),
+                  'id'      => '_pzarc_pagebuilder_wrapper-width',
+                  'type'    => 'dimensions',
+                  'height'  => false,
+                  'default' => array('width' => '100%','units'=>'%'),
+                  'units'   => array('%', 'px', 'em')
+              ),
+              array(
+                  'id'      => '_pzarc_pagebuilder_wrapper-float',
+                  'type'    => 'select',
+                  'options' => array(
+                      'left'  => __('Left', 'pzarchitect'),
+                      'right' => __('Right', 'pzarchitect')
+                  ),
+                  'default'=>'left',
+                  'title'   => __('Float', 'pzarchitect'),
+              ),
+              array(
+                  'id'             => '_pzarc_pagebuilder_wrapper-margins',
+                  'type'           => 'spacing',
+                  'mode'           => 'margin',
+                  'units'          => array('%', 'px', 'em'),
+                  'units_extended' => 'false',
+                  'title'          => __('Margins', 'pzarchitect'),
+              ),
+              array(
                   'id'     => '_pzarc_pagebuilder_styling-section-start',
                   'type'   => 'section',
-                  'title'  => __('Builder container styling', 'pzarchitect'),
+                  'title'  => __('Blueprints wrapper formatting', 'pzarchitect'),
                   'indent' => true
               ),
               array(
@@ -76,13 +114,12 @@
                   'id'      => '_pzarc_pagebuilder_width',
                   'type'    => 'dimensions',
                   'height'  => false,
-                  'default' => array('width' => '100%'),
+                  'default' => array('width' => '100%','units'=>'%'),
                   'units'   => array('%', 'px', 'em')
               ),
               array(
                   'id'      => '_pzarc_pagebuilder_float',
                   'type'    => 'select',
-
                   'options' => array(
                       'left'  => __('Left', 'pzarchitect'),
                       'centre'  => __('Centre', 'pzarchitect'),

@@ -25,6 +25,7 @@
       return;
     }
 
+
     require_once(PZARC_PLUGIN_APP_PATH.'public/php/class_arcBuilder.php');
     new arcBuilder;
 
@@ -37,7 +38,7 @@
 
 
     // Slick
-    wp_register_script('js-arc-front-slickjs', PZARC_PLUGIN_APP_URL . '/public/js/min/arc-front-slick-min.js', array('jquery'), null, true);
+    wp_register_script('js-arc-front-slickjs', PZARC_PLUGIN_APP_URL . '/public/js/arc-front-slick.js', array('jquery'), null, true);
     wp_register_script('js-slickjs', PZARC_PLUGIN_APP_URL . '/public/js/slick/slick/slick.min.js', array('jquery'), null, true);
     wp_register_style('css-slickjs', PZARC_PLUGIN_APP_URL . '/public/js/slick/slick/slick.css');
 
@@ -182,8 +183,11 @@
     pzdb('start pzarc');
     $filename      = PZARC_CACHE_URL . '/pzarc_blueprint_' . $blueprint . '.css';
     $filename_path = PZARC_CACHE_PATH . '/pzarc_blueprint_' . $blueprint . '.css';
-    wp_enqueue_style('pzarc_css_blueprint_' . $blueprint, $filename, false, filemtime($filename_path));
-
+    if (file_exists($filename_path)) {
+      wp_enqueue_style('pzarc_css_blueprint_' . $blueprint, $filename, false, filemtime($filename_path));
+    } else {
+      //how do we tell the developer without an horrid message on the front end?
+    }
 
     global $_architect_options;
     global $in_arc;

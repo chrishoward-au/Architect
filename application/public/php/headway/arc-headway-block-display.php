@@ -149,7 +149,7 @@
       // SECTIONS
       $this->register_block_element(array(
                                         'id'         => 'pzarc-sections',
-                                        'name'       => 'Sections',
+                                        'name'       => 'Panels wrapper',
                                         'selector'   => '.use-hw-css .pzarc-sections',
                                         'properties' => array('background',
                                                               'borders',
@@ -159,42 +159,42 @@
                                                               'box-shadow',
                                                               'fonts'),
                                     ));
-      $this->register_block_element(array(
-                                        'id'         => 'pzarc-section1',
-                                        'name'       => 'Section 1',
-                                        'selector'   => '.use-hw-css .pzarc-section_1',
-                                        'properties' => array('background',
-                                                              'borders',
-                                                              'padding',
-                                                              'margins',
-                                                              'rounded-corners',
-                                                              'box-shadow',
-                                                              'fonts'),
-                                    ));
-      $this->register_block_element(array(
-                                        'id'         => 'pzarc-section2',
-                                        'name'       => 'Section 2',
-                                        'selector'   => '.use-hw-css .pzarc-section_2',
-                                        'properties' => array('background',
-                                                              'borders',
-                                                              'padding',
-                                                              'margins',
-                                                              'rounded-corners',
-                                                              'box-shadow',
-                                                              'fonts'),
-                                    ));
-      $this->register_block_element(array(
-                                        'id'         => 'pzarc-section3',
-                                        'name'       => 'Section 3',
-                                        'selector'   => '.use-hw-css .pzarc-section_3',
-                                        'properties' => array('background',
-                                                              'borders',
-                                                              'padding',
-                                                              'margins',
-                                                              'rounded-corners',
-                                                              'box-shadow',
-                                                              'fonts'),
-                                    ));
+//      $this->register_block_element(array(
+//                                        'id'         => 'pzarc-section1',
+//                                        'name'       => 'Section 1',
+//                                        'selector'   => '.use-hw-css .pzarc-section_1',
+//                                        'properties' => array('background',
+//                                                              'borders',
+//                                                              'padding',
+//                                                              'margins',
+//                                                              'rounded-corners',
+//                                                              'box-shadow',
+//                                                              'fonts'),
+//                                    ));
+//      $this->register_block_element(array(
+//                                        'id'         => 'pzarc-section2',
+//                                        'name'       => 'Section 2',
+//                                        'selector'   => '.use-hw-css .pzarc-section_2',
+//                                        'properties' => array('background',
+//                                                              'borders',
+//                                                              'padding',
+//                                                              'margins',
+//                                                              'rounded-corners',
+//                                                              'box-shadow',
+//                                                              'fonts'),
+//                                    ));
+//      $this->register_block_element(array(
+//                                        'id'         => 'pzarc-section3',
+//                                        'name'       => 'Section 3',
+//                                        'selector'   => '.use-hw-css .pzarc-section_3',
+//                                        'properties' => array('background',
+//                                                              'borders',
+//                                                              'padding',
+//                                                              'margins',
+//                                                              'rounded-corners',
+//                                                              'box-shadow',
+//                                                              'fonts'),
+//                                    ));
       // PANELS
       $this->register_block_element(array(
                                         'id'         => 'pzarc-panel',
@@ -224,6 +224,9 @@
                                                               'box-shadow',
                                                               'fonts'),
                                     ));
+
+
+
       $this->register_block_element(array(
                                         'id'         => 'pzarc-panel-entry-title',
                                         'name'       => 'Entry title',
@@ -241,6 +244,7 @@
                                                               'box-shadow',
                                                               'fonts'),
                                     ));
+
 
 
       $this->register_block_element(array(

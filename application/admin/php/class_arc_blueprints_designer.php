@@ -149,7 +149,7 @@
           . '</div>
            <div class="tabs-pane" id="tabular">' .
 
-          $presets_html[ 'tabular' ]
+          $presets_html[ 'table' ]
 
           . '</div>
            </div>
@@ -433,6 +433,7 @@
                   'id'       => $prefix . 'short-name',
                   'title'    => __('Blueprint Short Name', 'pzarchitect') . '<span class="pzarc-required el-icon-star" title="Required"></span>',
                   'type'     => 'text',
+                  'subtitle'=>__('Letters, numbers, dashes only. ', 'pzarchitect') . '</strong>' . __('Use this in shortcodes, template tags, and CSS classes', 'pzarchitect'),
                   'hint'     => array('title'   => 'Blueprint Short Name',
                                       'content' => '<strong>' . __('Letters, numbers, dashes only. ', 'pzarchitect') . '</strong>' . __('Use this in shortcodes, template tags, and CSS classes', 'pzarchitect')),
                   //TODO: Write  acomprehensive little help dialog here
@@ -636,6 +637,7 @@
                     'min'      => 1,
                     'max'      => 99,
                     'subtitle' => __('This is how many posts will show if Limit enabled above', 'pzarchitect'),
+                    'required'=> array($prefix . 'section-' . $i . '-panels-limited','equals',true)
                 ),
                 array(
                     'id'     => $prefix . 'section-' . $i . '-columns-heading',
@@ -1113,15 +1115,20 @@
                   'id'       => $prefix . 'section-transitions-heading',
                   'type'     => 'section',
                   'indent'   => true,
-                  'required' => array($prefix . 'section-0-layout-mode', '=', 'slider'),
+                  'required' => array(
+                      array($prefix . 'section-0-layout-mode', '!=', 'basic'),
+                      array($prefix . 'section-0-layout-mode', '!=', 'masonry'),
+                      array($prefix . 'section-0-layout-mode', '!=', 'tabular'),
+                      array($prefix . 'section-0-layout-mode', '!=', 'accordion'),
+                  ),
               ),
               array(
                   'title'    => 'Type',
                   'id'       => $prefix . 'transitions-type',
                   'type'     => 'button_set',
-                  'default'  => 'slide',
+                  'default'  => 'fade',
                   //              'select2' => array('allowClear' => false),
-                  'required' => array($prefix . 'section-0-layout-mode', '=', 'slider'),
+                  'required'      => array($prefix . 'section-0-layout-mode', '=', 'slider'),
                   'options'  => array(
                       'fade'  => 'Fade',
                       'slide' => 'Slide',
@@ -1141,7 +1148,12 @@
                   'hint'          => array('content' => __('Time taken for the transition to display', 'pzarchitect')),
                   'default'       => 2,
                   'display_value' => 'label',
-                  'required'      => array($prefix . 'section-0-layout-mode', '=', 'slider'),
+                  'required' => array(
+                      array($prefix . 'section-0-layout-mode', '!=', 'basic'),
+                      array($prefix . 'section-0-layout-mode', '!=', 'masonry'),
+                      array($prefix . 'section-0-layout-mode', '!=', 'tabular'),
+                      array($prefix . 'section-0-layout-mode', '!=', 'accordion'),
+                  ),
               ),
               array(
                   'title'         => 'Interval (seconds)',
@@ -1149,7 +1161,7 @@
                   'type'          => 'slider',
                   'resolution'    => 0.1,
                   'step'          => 0.5,
-                  'default'       => 5,
+                  'default'       => 0,
                   'min'           => 0,
                   'max'           => 60,
                   'display_value' => 'label',
@@ -1268,7 +1280,7 @@
       $sections[ '_usingbp' ] = array(
           'title'      => 'Using Blueprints',
           'icon_class' => 'icon-large',
-          'icon'       => 'el-icon-info-sign',
+          'icon'       => 'el-icon-info-circle',
           'fields'     => array(
 
               array(
@@ -1536,23 +1548,23 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
                 )
             )
         );
-//        $thisSection                             = 'sections';
-//        $sections[ '_styling_sections_wrapper' ] = array(
-//            'title'      => 'Sections wrapper',
-//            'show_title' => false,
-//            'icon_class' => 'icon-large',
-//            'icon'       => 'el-icon-check-empty',
-//            'desc'       => 'Class: .pzarc-sections_{shortname}',
-//            'fields'     => pzarc_fields(
-//
-//            // TODO: Add shadows
-//            //$prefix . 'hentry' . $background, $_architect[ 'architect_config_hentry-selectors' ], $defaults[ $optprefix . 'hentry' . $background ]
-//                pzarc_redux_bg($prefix . $thisSection . $background, $this->defaults ? '' : $_architect[ 'architect_config_' . $thisSection . '-selectors' ], $defaults[ $optprefix . $thisSection . $background ]),
-//                pzarc_redux_padding($prefix . $thisSection . $padding, $this->defaults ? '' : $_architect[ 'architect_config_' . $thisSection . '-selectors' ], $defaults[ $optprefix . $thisSection . $padding ]),
-//                pzarc_redux_margin($prefix . $thisSection . $margin, $this->defaults ? '' : $_architect[ 'architect_config_' . $thisSection . '-selectors' ], $defaults[ $optprefix . $thisSection . $margin ]),
-//                pzarc_redux_borders($prefix . $thisSection . $border, $this->defaults ? '' : $_architect[ 'architect_config_' . $thisSection . '-selectors' ], $defaults[ $optprefix . $thisSection . $border ])
-//            )
-//        );
+        $thisSection                             = 'sections';
+        $sections[ '_styling_sections_wrapper' ] = array(
+            'title'      => 'Panels wrapper',
+            'show_title' => false,
+            'icon_class' => 'icon-large',
+            'icon'       => 'el-icon-check-empty',
+            'desc'       => 'Class: .pzarc-sections_{shortname}',
+            'fields'     => pzarc_fields(
+
+            // TODO: Add shadows
+            //$prefix . 'hentry' . $background, $_architect[ 'architect_config_hentry-selectors' ], $defaults[ $optprefix . 'hentry' . $background ]
+                pzarc_redux_bg($prefix . $thisSection . $background, $this->defaults ? '' : $_architect[ 'architect_config_' . $thisSection . '-selectors' ], $defaults[ $optprefix . $thisSection . $background ]),
+                pzarc_redux_padding($prefix . $thisSection . $padding, $this->defaults ? '' : $_architect[ 'architect_config_' . $thisSection . '-selectors' ], $defaults[ $optprefix . $thisSection . $padding ]),
+                pzarc_redux_margin($prefix . $thisSection . $margin, $this->defaults ? '' : $_architect[ 'architect_config_' . $thisSection . '-selectors' ], $defaults[ $optprefix . $thisSection . $margin ]),
+                pzarc_redux_borders($prefix . $thisSection . $border, $this->defaults ? '' : $_architect[ 'architect_config_' . $thisSection . '-selectors' ], $defaults[ $optprefix . $thisSection . $border ])
+            )
+        );
 //        $icons                                   = array(1 => 'el-icon-align-left',
 //                                                         2 => 'el-icon-th',
 //                                                         3 => 'el-icon-th-list');
@@ -1818,10 +1830,10 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
         $_architect_options = get_option('_architect_options');
       }
 
-      $animation_options = array('none'=>'None');
-      $animations = explode(',','bounce,bounceIn,bounceInDown,bounceInLeft,bounceInRight,bounceInUp,bounceOut,bounceOutDown,bounceOutLeft,bounceOutRight,bounceOutUp,fadeIn,fadeInDown,fadeInDownBig,fadeInLeft,fadeInLeftBig,fadeInRight,fadeInRightBig,fadeInUp,fadeInUpBig,fadeOut,fadeOutDown,fadeOutDownBig,fadeOutLeft,fadeOutLeftBig,fadeOutRight,fadeOutRightBig,fadeOutUp,fadeOutUpBig,flash,flipInX,flipInY,flipOutX,flipOutY,hinge,lightSpeedIn,lightSpeedOut,pulse,rollIn,rollOut,rotateIn,rotateInDownLeft,rotateInDownRight,rotateInUpLeft,rotateInUpRight,rotateOut,rotateOutDownLeft,rotateOutDownRight,rotateOutUpLeft,rotateOutUpRight,rubberBand,shake,slideInDown,slideInLeft,slideInRight,slideInUp,slideOutDown,slideOutLeft,slideOutRight,slideOutUp,swing,tada,wobble,zoomIn,zoomInDown,zoomInLeft,zoomInRight,zoomInUp,zoomOut,zoomOutDown,zoomOutLeft,zoomOutRight,zoomOutUp');
+      $animation_options = array('none' => 'None');
+      $animations        = explode(',', 'bounce,bounceIn,bounceInDown,bounceInLeft,bounceInRight,bounceInUp,bounceOut,bounceOutDown,bounceOutLeft,bounceOutRight,bounceOutUp,fadeIn,fadeInDown,fadeInDownBig,fadeInLeft,fadeInLeftBig,fadeInRight,fadeInRightBig,fadeInUp,fadeInUpBig,fadeOut,fadeOutDown,fadeOutDownBig,fadeOutLeft,fadeOutLeftBig,fadeOutRight,fadeOutRightBig,fadeOutUp,fadeOutUpBig,flash,flipInX,flipInY,flipOutX,flipOutY,hinge,lightSpeedIn,lightSpeedOut,pulse,rollIn,rollOut,rotateIn,rotateInDownLeft,rotateInDownRight,rotateInUpLeft,rotateInUpRight,rotateOut,rotateOutDownLeft,rotateOutDownRight,rotateOutUpLeft,rotateOutUpRight,rubberBand,shake,slideInDown,slideInLeft,slideInRight,slideInUp,slideOutDown,slideOutLeft,slideOutRight,slideOutUp,swing,tada,wobble,zoomIn,zoomInDown,zoomInLeft,zoomInRight,zoomInUp,zoomOut,zoomOutDown,zoomOutLeft,zoomOutRight,zoomOutUp');
       foreach ($animations as $animation) {
-        $animation_options[$animation]=$animation;
+        $animation_options[ $animation ] = $animation;
       }
       $prefix      = '_panels_design_';
       $sections    = array();
@@ -2022,18 +2034,18 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
                   'hint'    => array('title'   => __('Make header and footer', 'pzarchitect'),
                                      'content' => __('When enabled, Architect will automatically wrap the header and footer components of the post layout in header and footer tags to maintain compatibility with current WP layout trends.<br><br>However, some layouts, such as tabular, are not suited to using the headers and footers.', 'pzarchitect'))
               ),
-              ((!empty($_architect_options['architect_enable_beta']))?
-              // TODO: Work on this
-              array(
-                  'title'    => __('Animate components group', 'pzarchitect'),
-                  'id'       => $prefix . 'animate-components',
-                  'type'     => 'select',
-                  'options'  => $animation_options,
-                  'select2' => array('allowClear' => false),
-                  'default'  => 'none',
-                  'subtitle' => __('Add the components group to the screen via an animation', 'pzazrchitect'),
-                  'desc'=>'<a href="http://daneden.github.io/animate.css" target=_blank>Visit Animate.CSS for demonstrations</a>'
-              ):null),
+              ((defined('PZARC_TESTER') && PZARC_TESTER) ?
+                // TODO: Work on this
+                  array(
+                      'title'    => __('Animate components group', 'pzarchitect'),
+                      'id'       => $prefix . 'animate-components',
+                      'type'     => 'select',
+                      'options'  => $animation_options,
+                      'select2'  => array('allowClear' => false),
+                      'default'  => 'none',
+                      'subtitle' => __('Add the components group to the screen via an animation', 'pzazrchitect'),
+                      'desc'     => '<a href="http://daneden.github.io/animate.css" target=_blank>Visit Animate.CSS for demonstrations</a>'
+                  ) : null),
 
           )
       );
@@ -2942,7 +2954,6 @@ array(
                                                                                                                                                        'font-family',
                                                                                                                                                        'font-style',
                                                                                                                                                        'text-align',
-                                                                                                                                                       'font-size',
                                                                                                                                                        'text-decoration',
                                                                                                                                                        'color',
                                                                                                                                                        'font-weight',
@@ -2971,13 +2982,12 @@ array(
                     'indent' => true,
                     'class'  => 'heading',
                 ),
-                pzarc_redux_font($prefix . 'entry-excerptp' . $font, array('.entry-excerpt'), $defaults[ $optprefix . 'entry-excerpt' . $font ], array('letter-spacing',
+                pzarc_redux_font($prefix . 'entry-excerptp' . $font, array('.entry-excerpt p'), $defaults[ $optprefix . 'entry-excerptp' . $font ], array('letter-spacing',
                                                                                                                                                        'font-variant',
                                                                                                                                                        'text-transform',
                                                                                                                                                        'font-family',
                                                                                                                                                        'font-style',
                                                                                                                                                        'text-align',
-                                                                                                                                                       'font-size',
                                                                                                                                                        'text-decoration',
                                                                                                                                                        'color',
                                                                                                                                                        'font-weight',
@@ -3299,10 +3309,11 @@ array(
           'post_type'      => 'arc-blueprints',
           'posts_per_page' => 1
       );
-      $last_post             = get_posts($args);
+      $last_blueprint             = get_posts($args);
+      $next_id               = (isset($last_blueprint[ 0 ]->ID) ? $last_blueprint[ 0 ]->ID + 1 : '1');
       $preset[ 'post' ]      = json_decode($arc_preset_data[ 'post' ]);
       $preset[ 'post_meta' ] = json_decode($arc_preset_data[ 'meta' ], true);
-      $new_slug              = sanitize_title($preset[ 'post' ]->post_title) . '-' . ($last_post[ 0 ]->ID + 1);
+      $new_slug              = sanitize_title($preset[ 'post' ]->post_title) . '-' . ($next_id);
 
       /*
        * new post data array

@@ -28,7 +28,7 @@
       /*
        * Create the layouts custom post type
        */
-global $arc_presets_data;
+      global $arc_presets_data;
 //      add_action('plugins_loaded', array($this, 'init'));
       add_action('plugins_loaded', array($this, 'init'));
     }
@@ -39,7 +39,7 @@ global $arc_presets_data;
     function init()
     {
       // @TODO: verify this blocks non admins!
-      if (!is_admin() || !current_user_can('edit_theme_options')) {
+      if (!is_admin() || !current_user_can('edit_others_pages')) {
         return;
       }
       if (!(class_exists('ReduxFramework') || class_exists('ReduxFrameworkPlugin'))) {
@@ -62,7 +62,7 @@ global $arc_presets_data;
         //       require_once PZARC_PLUGIN_PATH . '/admin/php/arc-options-def-editor.php';
 
         //@TODO: need a bit of screen dependency on this?
-        require_once(PZARC_PLUGIN_APP_PATH.'admin/php/class_arcBuilderAdmin.php');
+        require_once(PZARC_PLUGIN_APP_PATH . 'admin/php/class_arcBuilderAdmin.php');
 
         require_once PZARC_PLUGIN_APP_PATH . 'admin/php/class_arc_blueprints_designer.php';
         require_once PZARC_PLUGIN_APP_PATH . 'admin/php/arc-save-process.php';
@@ -169,7 +169,7 @@ global $arc_presets_data;
         add_filter('post_row_actions', 'pzarc_export_preset_link', 10, 3);
         add_filter('page_row_actions', 'pzarc_export_preset_link', 10, 3);
       }
-      if ('architect_page_pzarc_support' === $screen->id || 'edit-arc-blueprints'===$screen->id) {
+      if ('architect_page_pzarc_support' === $screen->id || 'edit-arc-blueprints' === $screen->id) {
         wp_enqueue_script('js-classlist', PZARC_PLUGIN_APP_URL . '/shared/thirdparty/js/tabby/dist/js/classList.min.js', array('jquery'), true);
         wp_enqueue_script('js-tabby', PZARC_PLUGIN_APP_URL . '/shared/thirdparty/js/tabby/dist/js/tabby.min.js', array('jquery'), true);
         wp_enqueue_script('js-tabby-arc', PZARC_PLUGIN_APP_URL . '/admin/js/arc-tabby.js', array('jquery'), true);
@@ -216,11 +216,11 @@ global $arc_presets_data;
 //				'pzarc', 'Styling', 'Styling', 'manage_options', 'pzarc_styling', array( $this, 'pzarc_styling' )
 //			);
         add_submenu_page(
-            'pzarc', __('Tools', 'pzarchitect'), '<span class="dashicons dashicons-hammer size-small"></span>' . __('Tools', 'pzarchitect'), 'manage_options', 'pzarc_tools', array($this,
+            'pzarc', __('Tools', 'pzarchitect'), '<span class="dashicons dashicons-hammer size-small"></span>' . __('Tools', 'pzarchitect'), 'edit_others_pages', 'pzarc_tools', array($this,
                                                                                                                                                                                     'pzarc_tools')
         );
         add_submenu_page(
-            'pzarc', __('Help & Support', 'pzarchitect'), '<span class="dashicons dashicons-editor-help size-small"></span>' . __('Help & Support', 'pzarchitect'), 'manage_options', 'pzarc_support', array($this,
+            'pzarc', __('Help & Support', 'pzarchitect'), '<span class="dashicons dashicons-editor-help size-small"></span>' . __('Help & Support', 'pzarchitect'), 'edit_others_pages', 'pzarc_support', array($this,
                                                                                                                                                                                                              'pzarc_support')
         );
 
@@ -344,16 +344,31 @@ global $arc_presets_data;
                 <div class="tabs-pane active" id="quick">
                     <h2>' . __('Quick start') . '</h2>
                     <div style="background:#f2f2f2;border:1px solid #e2e2e2;padding:10px;border-radius:3px;max-width:800px;font-size:14px;">
-                    <ol>
+                    <ul>
+                    <li><strong>' . __('New Blueprint using a Preset', 'pzarchitect') . '</strong></li>
                     <ol style="list-style-type:lower-roman">
+                        <li>' . __('From the <em>Architect</em> > <em>Blueprints</em> listing, click the button that says <em>Create a new Blueprint from a Preset design</em>', 'pzarchitect') . '</li>
+                        <li>' . __('', 'pzarchitect') . '</li>
+                        <li>' . __('', 'pzarchitect') . '</li>
+                        <li>' . __('', 'pzarchitect') . '</li>
+                                                </ol>
+
+                    <li><strong>' . __('Design a Blueprint - simple 3x3 grid', 'pzarchitect') . '</strong></li>
+                    <ol style="list-style-type:lower-roman">
+                        <li>' . __('', 'pzarchitect') . '</li>
+                        <li>' . __('', 'pzarchitect') . '</li>
+                        <li>' . __('', 'pzarchitect') . '</li>
                         </ol>
+
                     <li><strong>' . __('Display the Blueprint', 'pzarchitect') . '</strong></li>
                     <ol style="list-style-type:lower-roman">
                         <li>' . __('If you are using <strong>Headway</strong>, then go to the Headway Visual Editor, select a layout to show and draw an Architect block on it and select the Blueprint and Save.', 'pzarchitect') . '<br>
                         ' . __('For <strong>other themes</strong>, the quickest way to test is insert an Architect shortcode on a page.', 'pzarchitect') . '<br>' . __('The form is <strong>[architect <em>blueprint-shortname</em>]</strong> where <em>blueprint-shortname</em> is the Short Name of the Blueprint to show', 'pzarchitect') . '
                         </li>
-                        <li>' . __('Load the page and you should see a 3x3 grid of posts.', 'pzarchitect') . '</li></ol>
+                        <li>' . __('Load the page and you should see a 3x3 grid of posts.', 'pzarchitect') . '</li>
                         </ol>
+
+                        </ul>
                         </div>
 <p>' . __('Style wise, it may not look that great yet. To tidy it up, start exploring the Styling settings for Panels and Blueprints', 'pzarchitect') . '</p>
                         <p>' . __('There are a <strong>lot</strong> of settings in Architect that have all sorts of affects on your layouts and designs. Explore, experiment and have fun! For example, try selecting the different Layout Types and see the effect.', 'pzarchitect') . '</p>
@@ -645,12 +660,12 @@ add_action(\'init\',\'gs_init\');
      * if post data exists, create the post duplicate
      */
     if (isset($post) && $post != null) {
-      $arc_exp_post['post'] = json_encode($post);
-      $arc_post_meta        = get_post_meta($post->ID);
-      $arc_exp_post['meta'] = json_encode($arc_post_meta);
-      $arc_exp_post['title'] = $post->post_title;
-      $arc_exp_post['bptype']=(empty($arc_post_meta['_blueprints_section-0-layout-mode'])?'basic':$arc_post_meta['_blueprints_section-0-layout-mode'][0]);
-      update_option('arc-export-to-preset',$arc_exp_post);
+      $arc_exp_post[ 'post' ]   = json_encode($post);
+      $arc_post_meta            = get_post_meta($post->ID);
+      $arc_exp_post[ 'meta' ]   = json_encode($arc_post_meta);
+      $arc_exp_post[ 'title' ]  = $post->post_title;
+      $arc_exp_post[ 'bptype' ] = (empty($arc_post_meta[ '_blueprints_section-0-layout-mode' ]) ? 'basic' : $arc_post_meta[ '_blueprints_section-0-layout-mode' ][ 0 ]);
+      update_option('arc-export-to-preset', $arc_exp_post);
       wp_redirect(admin_url('edit.php?post_type=' . $post->post_type));
       exit;
     }

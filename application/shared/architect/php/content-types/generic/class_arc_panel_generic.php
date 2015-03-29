@@ -773,7 +773,7 @@
       $pzclasses = 'pzarc-components ';
       $pzclasses .= ($this->section[ '_panels_design_components-position' ] === 'left' || $this->section[ '_panels_design_components-position' ] === 'right') ? 'vertical-content pzarc-align-' . $this->section[ '_panels_design_components-position' ] : '';
 
-      $pzclasses .= $this->section[ '_panels_design_animate-components' ] !== 'none'?' animated '.$this->section[ '_panels_design_animate-components' ]:'';
+      $pzclasses .= !empty($this->section[ '_panels_design_animate-components' ]) && $this->section[ '_panels_design_animate-components' ] !== 'none'?' animated '.$this->section[ '_panels_design_animate-components' ]:'';
 
       $line = str_replace('{{pzclasses}}', $pzclasses, $line);
 

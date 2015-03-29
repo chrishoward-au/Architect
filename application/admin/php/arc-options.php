@@ -411,29 +411,29 @@
                     'subtitle' => __('Use the stylings you configure for Architect in the Headway Visual Editor Design Mode.', 'pzarchitect')
 
                 ) : null),
-                array(
-                    'title' => __('Other', 'pzarchitect'),
-                    'id'    => 'architect_other_section',
-                    'type'  => 'section',
-                ),
-                array(
-                    'title'    => __('Enable beta features', 'pzarchitect'),
-                    'id'       => 'architect_enable_beta',
-                    'type'     => 'switch',
-                    'subtitle' => __('This will enable features that are working but not fully complete. Use at your own risk!', 'pzarchitect'),
-                    'default'  => false,
-                    'on'       => __('Yes', 'pzarchitect'),
-                    'off'      => __('No', 'pzarchitect')
-                ),
-                array(
-                    'title'    => __('Beta features', 'pzarchitect'),
-                    'id'       => 'architect_beta_features',
-                    'type'     => 'info',
-                    'required' => array('architect_enable_beta', 'equals', true),
-                    'icon'     => 'el-icon-warning-sign',
-                    'style'    => 'critical',
-                    'subtitle' => 'Animation of components group. Currently not able to control when the animation runs. Look for the setting in the Content Layout designer.'
-                ),
+//                array(
+//                    'title' => __('Other', 'pzarchitect'),
+//                    'id'    => 'architect_other_section',
+//                    'type'  => 'section',
+//                ),
+//                array(
+//                    'title'    => __('Enable beta features', 'pzarchitect'),
+//                    'id'       => 'architect_enable_beta',
+//                    'type'     => 'switch',
+//                    'subtitle' => __('This will enable features that are working but not fully complete. Use at your own risk!', 'pzarchitect'),
+//                    'default'  => false,
+//                    'on'       => __('Yes', 'pzarchitect'),
+//                    'off'      => __('No', 'pzarchitect')
+//                ),
+//                array(
+//                    'title'    => __('Beta features', 'pzarchitect'),
+//                    'id'       => 'architect_beta_features',
+//                    'type'     => 'info',
+//                    'required' => array('architect_enable_beta', 'equals', true),
+//                    'icon'     => 'el-icon-warning-sign',
+//                    'style'    => 'critical',
+//                    'subtitle' => 'Animation of components group. Currently not able to control when the animation runs. Look for the setting in the Content Layout designer.'
+//                ),
                 //                array(
                 //                    'title'    => __('Custom post def path', 'pzarchitect'),
                 //                    'id'       => 'architect_custom_post_def_path',
