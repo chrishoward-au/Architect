@@ -3,7 +3,7 @@ Contributors: chrishoward
 Tags: content,display,posts,pages,gallery,slider,tabs,tabbed,tabular,widget,hooks
 Requires at least: 3.5.0
 Tested up to: 4.2.0
-Stable tag: 1.0.9.12
+Stable tag: 1.1.0.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Plugin URI: http://architect4wp.com
@@ -91,31 +91,36 @@ For support, please send an email to support@pizazzwp.com
 1. Architect Blueprint - Layout design
 2. Slider example
 
+
 == Changelog ==
-= 1.0.9.x =
+
+= 1.1.0 =
+* ADDED: Presets Selector
+* ADDED: Architect builder
+* ADDED: Export Blueprint
+* ADDED: Architect shortcode selector for post and page editor.
+* ADDED: Option for posts with no image to use lorempixel.
+* ADDED: Styling for body and excerpt paragraphs 
+* ADDED: Option to select different placeholder image source for Dummy content
+* ADDED: Greyscale option for dummy images
+* ADDED: Categories for dummy images
+* ADDED: Option to not apply Trim oer Scale to background images for those who want to CSS this themselves
+
 * CHANGED: Combine Panels and Blueprints screen. Remove sections. Simplify. Improve workflow.
 * CHANGED: Blueprints listing screen sorted by title
-* ADDED: Presets selector functionality
-* ADDED: Export Blueprint
 * CHANGED: Yay! Inadvertently sped up opening and saving Blueprints by HEAPS! Probably was the external help links to Wistia and Amazon.
-* ADDED: Page builder!!
-* ADDED Styling and section titles to page builder
-* FIXED: Issue with servers that have allow_url_fopen disabled
 * CHANGED: Set some default stylings sizing and spacing to make blank blueprints a little more visually appealing.
-* ADDED: Width and alignment settings to Builder.
-* FIXED: Excerpt trimming with dummy content
-* ADDED: More presets
-* FIXED: Stupid bug in presets where it was multi-selecting. (Chris the Coder, coding all nigh'; found a bug that made him cry; Once the bug was coded away; Chris the Coder dropped a freakin' expletive!) 
-* FIXED: Broken image in dummy content when offline. Now uses a nice sky blue placeholder image.
 * CHANGED: Improved Blueprint CSS loading
 * CHANGED: Images in Preset selector now don't load until it is opened. Which is going to be really handy if they get hosted online.
-* ADDED: Styling for body and excerpt paragraphs 
 * CHANGED: Architect can now be used by Editor level users.
-* FIXED: Various small bugs on new installs and others
 * CHANGED: More options for dummy images
 * CHANGED: Limited materials design palette in custom colour picker
-* ADDED: Option to select different placeholder image source for Dummy content
 
+* FIXED: Various small bugs on new installs and others
+* FIXED: Excerpt trimming with dummy content
+* FIXED: Stupid bug in presets where it was multi-selecting. (Chris the Coder, coding all nigh'; found a bug that made him cry; Once the bug was coded away; Chris the Coder dropped a freakin' expletive!) 
+* FIXED: Broken image in dummy content when offline. Now uses a nice sky blue placeholder image.
+* FIXED: Issue with servers that have allow_url_fopen disabled
 
 = 1.0.8.8 =
 * FIXED: Transients not working with terms override

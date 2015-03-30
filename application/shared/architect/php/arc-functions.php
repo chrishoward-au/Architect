@@ -94,8 +94,9 @@
     global $_architect_options;
     $units        = isset($_architect_options[ 'architect_typography_units' ]) ? $_architect_options[ 'architect_typography_units' ] : 'px';
     $return_array = array(
-        'title'           => __('Font', 'pzarchitect'),
+        'title'           => __('Typography', 'pzarchitect'),
         'id'              => $id,
+        'subtitle'=>__('You can change the typogrpahy units to px,em or rem in Architect > Options','pzarchitect'),
         //       'output'          => $selectors,
         'type'            => 'typography',
         'text-decoration' => true,

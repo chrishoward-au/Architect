@@ -285,6 +285,38 @@
       $image                              = get_post($thumb_id);
       $this->data[ 'image' ][ 'caption' ] = $image->post_excerpt;
 
+      //Use lorempixel
+      if (empty($this->data[ 'image' ]['image']) && !empty($this->section[ '_panels_design_use-filler-image-source' ]) && 'none'!==$this->section[ '_panels_design_use-filler-image-source' ]) {
+        $ch = curl_init('http://lorempixel.com');
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        $cexec=curl_exec($ch);
+        $cinfo = curl_getinfo($ch);
+        $is_offline = ($cexec == false || $cinfo['http_code']==302);
+        curl_close($ch);
+
+
+        $cats        = array('abstract',
+                             'animals',
+                             'business',
+                             'cats',
+                             'city',
+                             'food',
+                             'nightlife',
+                             'fashion',
+                             'people',
+                             'nature',
+                             'sports',
+                             'technics',
+                             'transport');
+        $lorempixel_category = in_array($this->section[ '_panels_design_use-filler-image-source' ],$cats)?$this->section[ '_panels_design_use-filler-image-source' ]:$cats[rand(0,count($cats)-1)];
+        $imageURL = 'http://lorempixel.com/' .  $width . '/' . $height . '/' .$lorempixel_category.'/'.rand(1,10);
+//        $imageURL = 'http://lorempixel.com/' . $image_grey . $width . '/' . $height . '/' . $post[ 'image' ][ 'original' ];
+        $this->data[ 'image' ][ 'image' ] = !$is_offline?'<img src="' . $imageURL . '" >':'';
+        $this->data[ 'image' ][ 'original' ] = !$is_offline?array($imageURL,$width,$height,false):false;
+        $this->data[ 'image' ][ 'caption' ]  = '';
+
+      }
+
 
     }
 
@@ -335,6 +367,39 @@
         pzdb('after get 2X bg');
       }
       pzdb('end get bgimage');
+
+      //Use lorempixel
+      if (empty($this->data[ 'bgimage' ]['thumb']) && !empty($this->section[ '_panels_design_use-filler-image-source' ]) && 'none'!==$this->section[ '_panels_design_use-filler-image-source' ]) {
+        $ch = curl_init('http://lorempixel.com');
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        $cexec=curl_exec($ch);
+        $cinfo = curl_getinfo($ch);
+        $is_offline = ($cexec == false || $cinfo['http_code']==302);
+        curl_close($ch);
+
+
+        $cats        = array('abstract',
+                             'animals',
+                             'business',
+                             'cats',
+                             'city',
+                             'food',
+                             'nightlife',
+                             'fashion',
+                             'people',
+                             'nature',
+                             'sports',
+                             'technics',
+                             'transport');
+        $lorempixel_category = in_array($this->section[ '_panels_design_use-filler-image-source' ],$cats)?$this->section[ '_panels_design_use-filler-image-source' ]:$cats[rand(0,count($cats)-1)];
+        $imageURL = 'http://lorempixel.com/' .  $width . '/' . $height . '/' .$lorempixel_category.'/'.rand(1,10);
+//        $imageURL = 'http://lorempixel.com/' . $image_grey . $width . '/' . $height . '/' . $post[ 'image' ][ 'original' ];
+        $this->data[ 'bgimage' ][ 'thumb' ] = !$is_offline?'<img src="' . $imageURL . '" >':'';
+        $this->data[ 'image' ][ 'original' ] = !$is_offline?array($imageURL,$width,$height,false):false;
+        $this->data[ 'image' ][ 'caption' ]  = '';
+
+      }
+
     }
 
     public function get_video(&$post)

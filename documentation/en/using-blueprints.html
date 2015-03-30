@@ -1,9 +1,10 @@
-<p>There are five methods to displaying a Blueprint. In order of required technical know-how (easiest first), these are:</p>
+<p>There are seven methods to displaying a Blueprint. In order of required technical know-how (easiest first), these are:</p>
 
 <ul>
 <li><strong>Headway Block</strong> : If you are using Headway, simply place the Architect block, and then select the Blueprint to display.</li>
 <li><strong>Widget</strong> : Select Architect widget on WP Admin widgets screen</li>
-<li><strong>Shortcode</strong> : Add <em>[architect blueprint=“blueprint” ids=“overrides”]</em> in your content at the point you want the Blueprint to appear.</li>
+<li><strong>Shortcode</strong> : Place your cursor in the body content where you want the Blueprint to appear, and select it from the dropdown at the top of the editor. Alternatively, add <em>[architect blueprint=“blueprint” ids=“overrides”]</em> in your content at the point you want the Blueprint to appear.</li>
+<li><strong>Architect Builder</strong>: The Architect Builder appears on the WP Page Editor screen. It provides a simple drag and drop interface for arrange Blueprints. You do have to change the page <em>Template</em> in <em>Page Attributes</em> box to <em>Architect Builder</em></li>
 <li><strong>Actions editor</strong> : Enter the action name, Blueprint and pages to appear on</li>
 <li><strong>Action call</strong> : Add <em>new showBlueprint(’action’, ’blueprint’, ’pageids’);</em> to your functions.php. It should be in a function added to init action, and should be conditional on class_exists showBlueprint</li>
 <li><strong>Template tag</strong> : Add <em>pzarchitect(’blueprint’);</em> to your template at the point you want the Blueprint to appear</li>

@@ -63,11 +63,13 @@
 
       $ch = curl_init('http://lorempixel.com');
       curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-      $is_online = (curl_exec($ch) != false);
+      $cexec=curl_exec($ch);
+      $cinfo = curl_getinfo($ch);
+      $is_offline = ($cexec == false || $cinfo['http_code']==302);
       curl_close($ch);
 
-
       $trim_length = $this->build->blueprint[ 'section_object' ][ 1 ]->section[ 'section-panel-settings' ][ '_panels_design_excerpts-word-count' ];
+      $image_source = empty($this->build->blueprint[ '_content_dummy_image-source' ])?'lorempixel':$this->build->blueprint[ '_content_dummy_image-source' ];
       $readmore = $this->build->blueprint[ 'section_object' ][ 1 ]->section[ 'section-panel-settings' ][ '_panels_design_readmore-truncation-indicator' ].' <a href="#" class="moretag readmore">'.$this->build->blueprint[ 'section_object' ][ 1 ]->section[ 'section-panel-settings' ][ '_panels_design_readmore-text' ].'</a>';
       $no_per_page = ($this->query_options[ 'posts_per_page' ] < 1 ? $this->build->blueprint[ '_content_dummy_dummy-record-count' ] : $this->query_options[ 'posts_per_page' ]);
       for ($i = 0; $i < $no_per_page; $i++) {
@@ -90,7 +92,13 @@
 
 
 
-        $dummy_query[ $i ][ 'image' ][ 'original' ] = ($is_online)?$cats[ $j ] . '/' . $picno:'';
+        if (in_array($image_source,$cats)) {
+          $dummy_query[ $i ][ 'image' ][ 'original' ] = (!$is_offline)?$image_source . '/' . $picno:'offline';
+
+        } else {
+          $dummy_query[ $i ][ 'image' ][ 'original' ] = (!$is_offline)?$cats[ $j ] . '/' . $picno:'offline';
+
+        }
         $dummy_query[ $i ][ 'image' ][ 'caption' ]        = ($this->isfaker ? $this->faker->sentence() : 'caption');
         $j                                                = (++$j > (count($cats)-1) ? 0 : $j);
         $thedate                                          = ($this->isfaker ? $this->faker->date() : time());

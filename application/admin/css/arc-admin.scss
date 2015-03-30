@@ -2,23 +2,23 @@
 $highlight: #0074a2;
 $border-radius: 3px;
 // Materials Design colours
-$red: #f44336;
-$orange: #ff9800;
+$red: #E91E63;
+$orange: #FFC107;
 $green: #8bc34a;
 $blue: #2196f3;
 $indigo: #3f51b5;
 $violet: #673ab7;
 
-$red-50: #ffebee;
-$orange-50: #fff3e0;
+$red-50: #FCE4EC;
+$orange-50: #FFF8E1;
 $green-50: #f1f8e9;
 $blue-50: #e3f2fd;
 $indigo-50: #e8eaf6;
 $violet-50: #ffebee;
 
-$red-900: #b71c1c;
-$orange-900: #e65100;
-$green-900: #33691e;
+$red-900: #880E4F;
+$orange-900: #FF6F00;
+$green-900: #689F38;
 $blue-900: #0d47a1;
 $indigo-900: #1a237e;
 $violet-900: #311b92;
@@ -1942,4 +1942,54 @@ li.arc-message {
     font-family: inherit;
   }
 
+}
+.arc-info-boxes {
+  max-width:1060px;
+  display:flex;
+  flex-wrap: wrap;
+  strong {
+    color:tomato;
+  }
+  em {
+    font-weight: bold;
+  }
+.arc-info {
+//  max-width: 45%;
+//  min-width:45%;
+  margin: 1%;
+  padding: 1%;
+  box-sizing: border-box;
+  border-top: solid 1px #fff;
+  border-left: solid 1px #fff;
+  border-bottom: solid 1px #eee;
+  border-right: solid 1px #eee;
+  background: #f6f6f6;
+  display: inline-block;
+  vertical-align: top;
+  border-radius: 3px;
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0.5);
+  &.col1 {
+    width:92%;
+  }
+  &.col2 {
+    width:45%;
+  }
+
+  h3 {
+    color: $highlight;
+  }
+  span {
+    font-size: 48px;
+    width: 52px;
+    height: 52px;
+    vertical-align: middle;
+    color: tomato;
+  }
+  ul {
+    margin-left: 20px;
+  }
+  li {
+    list-style-type: disc;
+  }
+}
 }

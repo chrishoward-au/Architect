@@ -161,6 +161,11 @@
   font-size: 23px;
   margin: 0 0 10px ;
 }
+#tlyPageGuideWrapper #tlyPageGuideMessages .tlypageguide_text h2 {
+  color: #77aacc;
+  font-weight: bold;
+  margin: 0 0 5px ;
+}
 #tlyPageGuideWrapper #tlyPageGuideMessages .tlypageguide_text h3 {
   color: #ff7733;
   font-size: 15px;
@@ -185,7 +190,7 @@
   font-style: normal;
 }
 #tlyPageGuideWrapper #tlyPageGuideMessages .tlypageguide_text strong em:before {
-  content: "Slider Tutorial: ";
+  content: "";
 }
 #tlyPageGuideWrapper #tlyPageGuideMessages .tlypageguide_text strong em em {
   font-style: italic;

@@ -196,6 +196,8 @@
 //                                                              'fonts'),
 //                                    ));
       // PANELS
+      // Don't allow margins on panels as it messes up layout. Margins must be set in the Blueprint settings
+
       $this->register_block_element(array(
                                         'id'         => 'pzarc-panel',
                                         'name'       => 'Panels',
@@ -204,7 +206,6 @@
                                             'Odd'  => '.use-hw-css .pzarc-panel.odd-panel',
                                             'Even' => '.use-hw-css .pzarc-panel.even-panel',
                                         ),
-                                        // Don't allow margins on panels as it messes up layout. Margins must be set in the Blueprint settings
                                         'properties' => array('background',
                                                               'borders',
                                                               'padding',
@@ -212,11 +213,11 @@
                                                               'box-shadow',
                                                               'fonts'),
                                     ));
+      // Don't allow margins on panels as it messes up layout. Margins must be set in the Blueprint settings
       $this->register_block_element(array(
                                         'id'         => 'pzarc-panel-components',
                                         'name'       => 'Components group',
                                         'selector'   => '.use-hw-css .pzarc-panel .pzarc-components, .use-hw-css .pzarc-panel .hentry',
-                                        // Don't allow margins on panels as it messes up layout. Margins must be set in the Blueprint settings
                                         'properties' => array('background',
                                                               'borders',
                                                               'padding',
@@ -228,9 +229,9 @@
 
 
       $this->register_block_element(array(
-                                        'id'         => 'pzarc-panel-entry-title',
+                                        'id'         => 'pzarc-panel-entry-titlefuck',
                                         'name'       => 'Entry title',
-                                        'selector'   => '.use-hw-css .pzarc-panel .entry-title, .pzarc-panel .entry-title:before,.use-hw-css .pzarc-panel .entry-title a, .use-hw-css .pzarc-panel .entry-title:before a',
+                                        'selector'   => '.use-hw-css .pzarc-panel .entry-title, .pzarc-panel .entry-title:before, .use-hw-css .pzarc-panel .entry-title a, .use-hw-css .pzarc-panel .entry-title:before a',
                                         'states'     => array(
                                             'Hover'   => '.use-hw-css .pzarc-panel .entry-title a:hover, .use-hw-css .pzarc-panel .entry-title:before a:hover',
                                             'Clicked' => '.use-hw-css .pzarc-panel .entry-title a:active, .use-hw-css .pzarc-panel .entry-title:before a:active',

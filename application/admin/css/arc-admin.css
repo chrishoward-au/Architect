@@ -1246,40 +1246,40 @@ body.arc-beginner .arc-field-advanced {
   background: #e8eaf6; }
 
 #tab-panels {
-  border-bottom: solid 4px #ff9800; }
+  border-bottom: solid 4px #FFC107; }
   #tab-panels.active {
-    background: #e65100; }
+    background: #FF6F00; }
     #tab-panels.active span.stepno {
-      color: #ff9800; }
+      color: #FFC107; }
   #tab-panels:hover {
-    background: #e65100; }
+    background: #FF6F00; }
     #tab-panels:hover span.stepno {
       color: inherit; }
     #tab-panels:hover.active span.stepno {
-      color: #ff9800; }
+      color: #FFC107; }
 
 #redux-_architect-metabox-panels-design h3.redux-hndle {
-  border-bottom: solid 4px #ff9800 !important; }
+  border-bottom: solid 4px #FFC107 !important; }
 #redux-_architect-metabox-panels-design .redux-container {
-  background: #fff3e0; }
+  background: #FFF8E1; }
 
 #tab-content {
-  border-bottom: solid 4px #f44336; }
+  border-bottom: solid 4px #E91E63; }
   #tab-content.active {
-    background: #b71c1c; }
+    background: #880E4F; }
     #tab-content.active span.stepno {
-      color: #f44336; }
+      color: #E91E63; }
   #tab-content:hover {
-    background: #b71c1c; }
+    background: #880E4F; }
     #tab-content:hover span.stepno {
       color: inherit; }
     #tab-content:hover.active span.stepno {
-      color: #f44336; }
+      color: #E91E63; }
 
 #redux-_architect-metabox-content-selections h3.redux-hndle {
-  border-bottom: solid 4px #f44336 !important; }
+  border-bottom: solid 4px #E91E63 !important; }
 #redux-_architect-metabox-content-selections .redux-container {
-  background: #ffebee; }
+  background: #FCE4EC; }
 
 #tab-styling {
   border-bottom: solid 4px #2196f3; }
@@ -1302,11 +1302,11 @@ body.arc-beginner .arc-field-advanced {
 #tab-content_styling {
   border-bottom: solid 4px #8bc34a; }
   #tab-content_styling.active {
-    background: #33691e; }
+    background: #689F38; }
     #tab-content_styling.active span.stepno {
       color: #8bc34a; }
   #tab-content_styling:hover {
-    background: #33691e; }
+    background: #689F38; }
     #tab-content_styling:hover span.stepno {
       color: inherit; }
     #tab-content_styling:hover.active span.stepno {
@@ -1319,11 +1319,11 @@ body.arc-beginner .arc-field-advanced {
 
 a.arc-important-button {
   color: #fff;
-  background: #f44336;
+  background: #E91E63;
   padding: 10px;
   border-radius: 5px; }
   a.arc-important-button:hover {
-    background: #b71c1c; }
+    background: #880E4F; }
 
 li.arc-message .arc-presets-link {
   padding: 8px 12px;
@@ -1469,3 +1469,41 @@ li.arc-message .arc-presets-link {
 .redux-main textarea {
   font-size: 14px;
   font-family: inherit; }
+
+.arc-info-boxes {
+  max-width: 1060px;
+  display: flex;
+  flex-wrap: wrap; }
+  .arc-info-boxes strong {
+    color: tomato; }
+  .arc-info-boxes em {
+    font-weight: bold; }
+  .arc-info-boxes .arc-info {
+    margin: 1%;
+    padding: 1%;
+    box-sizing: border-box;
+    border-top: solid 1px #fff;
+    border-left: solid 1px #fff;
+    border-bottom: solid 1px #eee;
+    border-right: solid 1px #eee;
+    background: #f6f6f6;
+    display: inline-block;
+    vertical-align: top;
+    border-radius: 3px;
+    box-shadow: 0 0 1px rgba(0, 0, 0, 0.5); }
+    .arc-info-boxes .arc-info.col1 {
+      width: 92%; }
+    .arc-info-boxes .arc-info.col2 {
+      width: 45%; }
+    .arc-info-boxes .arc-info h3 {
+      color: #0074a2; }
+    .arc-info-boxes .arc-info span {
+      font-size: 48px;
+      width: 52px;
+      height: 52px;
+      vertical-align: middle;
+      color: tomato; }
+    .arc-info-boxes .arc-info ul {
+      margin-left: 20px; }
+    .arc-info-boxes .arc-info li {
+      list-style-type: disc; }

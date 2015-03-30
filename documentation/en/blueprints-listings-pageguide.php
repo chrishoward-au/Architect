@@ -20,24 +20,38 @@
   <li class="tlypageguide_bottom" data-tourtarget="h2">
     <div>'.__('
       <h1>Welcome to the Architect Blueprints!</h1>
-<h3>About Blueprints</h3>
+        <h3>About Blueprints</h3>
 
-<p>Architect Blueprints are where you build the overall layouts to display. In Blueprints, you select a Panel, what content will appear in the panels, and how you want to lay them out.</p>
+        <p>Architect Blueprints are where you build the overall layouts to display.</p>
 
-<p>Documentation can be found throughout Architect or online at the <a href="'.PZARC_CODEX.'" targer="_blank">Architect Codex</a></p>
-      <strong><em>Also, there is a simple slider tutorial included in the steps of this Blueprint designer guide which follows on from the one in the Panels designer guide. Simply follow these blue prompts.</em></strong>
-    ','pzarchitect').'</div>
+        <p>Documentation can be found throughout Architect or online at the <a href="'.PZARC_CODEX.'" targer="_blank">Architect Codex</a></p>
+              <strong><em>Also, there is a simple slider tutorial included in the steps of this Blueprint designer guide.</em></strong>
+            ','pzarchitect').'</div>
   </li>
+
+
   <li class="tlypageguide_bottom" data-tourtarget="#tlyPageGuideToggles">
     <div>'.__('
-<h3>Page Guide</h3>
-<p>The Page Guide button appears on many screens within Architect. It provides additional help and guidance. Click it to open or close it.</p>
+      <h3>Page Guide</h3>
+      <p>The Page Guide button appears on many screens within Architect. It provides additional help and guidance. Click it to open or close it.</p>
     ','pzarchitect').'</div>
   </li>
-  <li class="tlypageguide_bottom" data-tourtarget="#_blueprints_short-name">
+
+
+         <li class="tlypageguide_bottom" data-tourtarget=".arc-presets-link">
     <div>'.__('
-<h3>Blueprints short name</h3>
-<p>The Blueprints short name is used in the Blueprints shortcode. e.g. [architect my-blueprint]</p>
+      <h3>Preset Selector</h3>
+      <p>Architect comes with more than a dozen pre-built Blueprints with preset layouts and stylings in the six layout types: Slider, Grid, Masonry, Tabular, Tabbed and Accordion.</p>
+      <p>Open the Preset Selector to choose a one, which can be created with or without its preset stylings.</p>
+    ','pzarchitect').'</div>
+  </li>
+
+
+         <li class="tlypageguide_bottom" data-tourtarget="#_blueprints_short-name">
+    <div>'.__('
+      <h3>Blueprints short name</h3>
+      <p>The Blueprints short name is used in the Blueprints shortcode. e.g. [architect my-blueprint]</p>
+      <p>It is also used as the primary CSS ID, e.g. #pzarc-blueprint_my-bluperint</p>
     ','pzarchitect').'</div>
   </li>
 

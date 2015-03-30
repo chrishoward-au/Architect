@@ -28,7 +28,7 @@ jQuery( document ).ready( function ()
         index = ('image' === index) ? 'feature' : index;
         var component_width = value.width;
         var feature_location = jQuery( 'input[name="_architect[_panels_design_feature-location]"]:checked' );
-        component_width = 'fill' === feature_location.val() ? '100' : component_width;
+        component_width = ('fill' === feature_location.val() && index=='feature') ? '100' : component_width;
         showing = showing + " <strong>" + index + ":</strong> " + component_width + "% &nbsp;&nbsp;&nbsp;";
       }
     } );

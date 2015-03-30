@@ -168,11 +168,16 @@ jQuery( document ).ready( function ()
     process_tabs(layout_type);
   });
 
+  /**
+   *
+   * @param layout_mode
+   */
   function process_tabs(layout_mode) {
     // First off reset everything hidden or visible
     jQuery('#_slidertabbed_box_redux-_architect-metabox-layout-settings_section_group_li' ).hide();
     jQuery('#_tabular_box_redux-_architect-metabox-layout-settings_section_group_li' ).hide();
     jQuery('#_accordion_box_redux-_architect-metabox-layout-settings_section_group_li' ).hide();
+    jQuery('#_pagination_box_redux-_architect-metabox-layout-settings_section_group_li' ).hide();
 
     jQuery( "fieldset#_architect-_blueprints_pagination" ).toggle(  true ).parent().toggle(true);
     jQuery( "fieldset#_architect-_blueprints_pager" ).toggle(  true ).parent().toggle(true);
@@ -181,6 +186,11 @@ jQuery( document ).ready( function ()
     jQuery( "fieldset#_architect-_blueprints_pager-location" ).toggle(  true ).parent().toggle(true);
 
     switch (layout_mode){
+
+      case 'basic':
+      case 'masonry':
+        jQuery('#_pagination_box_redux-_architect-metabox-layout-settings_section_group_li' ).show();
+        break;
 
       case 'slider':
       case 'tabbed':
@@ -446,6 +456,17 @@ jQuery( document ).ready( function ()
     jQuery( '.item-blueprint-wireframe-preview' ).trigger( 'click' );
 
   }
+
+  //_pagination_box_redux-_architect-metabox-layout-settings_section_group_li
+  //_architect-_blueprints_section-0-layout-mode
+  //jQuery('#_architect-_blueprints_section-0-layout-mode ' ).on('click',function(){
+  //  var layoutType = (jQuery(this ).find('input:checked' ).val());
+  //  jQuery('#_pagination_box_redux-_architect-metabox-layout-settings_section_group_li' ).hide();
+  //  if (layoutType==='basic' || layoutType==='masonry') {
+  //    jQuery('#_pagination_box_redux-_architect-metabox-layout-settings_section_group_li' ).show();
+  //  }
+  //
+  //});
 
 } );
 
