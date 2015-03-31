@@ -1,4 +1,30 @@
 // THIS IS THE SCSS VERSION
+$highlight: #0074a2;
+$border-radius: 3px;
+// Materials Design colours
+$red: #E91E63;
+$orange: #FFC107;
+$green: #8bc34a;
+$blue: #2196f3;
+$indigo: #3f51b5;
+$violet: #673ab7;
+
+$red-50: #FCE4EC;
+$orange-50: #FFF8E1;
+$green-50: #f1f8e9;
+$blue-50: #e3f2fd;
+$indigo-50: #e8eaf6;
+$violet-50: #ffebee;
+
+$red-900: #880E4F;
+$orange-900: #FF6F00;
+$green-900: #689F38;
+$blue-900: #0d47a1;
+$indigo-900: #1a237e;
+$violet-900: #311b92;
+
+$lightest: 40%;
+$darker: 10%;
 
 .message.error.highlight {
   background: #fee;
@@ -212,7 +238,7 @@ div.pzarc-dragsource {
 .pzarc-draggable {
   float: left;
   background: #555;
-  color:#fff;
+  color: #fff;
   min-height: 25px;
   overflow: hidden;
   position: relative;
@@ -220,7 +246,7 @@ div.pzarc-dragsource {
 
 .pzarc-draggable:hover {
   background: #ddd;
-  color:#444;
+  color: #444;
 }
 
 .pzarc-draggable:hover img {
@@ -984,12 +1010,12 @@ body.post-type-arc-panels .redux-main .select_wrapper {
     padding: 10px 10px 10px 0;
   }
   .qtip-content {
-    background:#ffe;
-    font-size:12px;
-    line-height:1.3;
+    background: #ffe;
+    font-size: 12px;
+    line-height: 1.3;
   }
   .qtip-titlebar {
-    background:#ee9;
+    background: #ee9;
     font-weight: bold;
   }
   .redux-main .redux-field-container {
@@ -1018,7 +1044,7 @@ body.post-type-arc-panels .redux-main .select_wrapper {
 
 #poststuff h3.redux-section-title,
 .metabox-holder h3.redux-section-title {
-  color: #0074a2;
+  color: $highlight;
   font-size: 20px;
   padding-left: 0;
 }
@@ -1320,7 +1346,7 @@ span.bold {
   border: solid 1px #aaa;
   border-radius: 3px;
   h4 {
-    color: #0074a2;
+    color: $highlight;
   }
 }
 
@@ -1344,7 +1370,8 @@ body .redux-sidebar .redux-group-menu li.activeChild.hasSubSections a {
   background: #333 !important
 }
 
-body .redux-sidebar .redux-group-menu li.active.hasSubSections .active a:after, body .redux-sidebar .redux-group-menu li.activeChild.hasSubSections .active a:after {
+body .redux-sidebar .redux-group-menu li.active.hasSubSections .active a:after,
+body .redux-sidebar .redux-group-menu li.activeChild.hasSubSections .active a:after {
   border-right-color: #777 !important;
 }
 
@@ -1363,29 +1390,29 @@ body .redux-sidebar .redux-group-menu li.active.hasSubSections .active a:after, 
 
 .tabby {
   &.tabs {
-    margin-top:10px;
-    border-bottom:1px solid #ddd;
-    outline:none;
+    margin-top: 10px;
+    border-bottom: 1px solid #ddd;
+    outline: none;
     button {
-      background:none;
-      border:1px solid #ddd;
-      border-bottom:none;
+      background: none;
+      border: 1px solid #ddd;
+      border-bottom: none;
       border-top-left-radius: 3px;
       border-bottom-right-radius: 3px;
-      font-size:15px;
-      padding:10px;
-      color:#777;
+      font-size: 15px;
+      padding: 10px;
+      color: #777;
       &:hover {
-        background:tomato;
-        color:#fff;
-        cursor:pointer;
+        background: tomato;
+        color: #fff;
+        cursor: pointer;
       }
       &.active {
-        color:#fff;
-        background:#0074a2;
+        color: #fff;
+        background: $highlight;
         &:hover {
-          background:#eee;
-          color:#0074a2;
+          background: #eee;
+          color: $highlight;
           cursor: default;
         }
       }
@@ -1403,97 +1430,566 @@ body .redux-sidebar .redux-group-menu li.active.hasSubSections .active a:after, 
 a.pzarc-codex {
   text-decoration: none;
 }
-x#redux-_architect-metabox-panels-design,
+
+// Hide all sections except Blueprint Layouts initially
+#redux-_architect-metabox-panels-design,
 #redux-_architect-metabox-panels-styling,
 #redux-_architect-metabox-blueprint-stylings,
 #redux-_architect-metabox-layout-settings,
-x#redux-_architect-metabox-content-selections
-{
-display:none;
+#redux-_architect-metabox-content-selections {
+  display: none;
 }
 
 body.arc-blueprints *,
 body.arc-panels * {
-  outline:none;
+  outline: none;
 }
 
 .row-actions span.duplicate {
-background: #F0F7FF;
-border-radius: 3px;
-padding: 3px;
-text-decoration: none;
+  background: #f0f7ff;
+  border-radius: 3px;
+  padding: 3px;
+  text-decoration: none;
 }
+
 .row-actions span.duplicate:hover {
-background:#def;
+  background: #def;
 }
 
 /* Redux fixes */
 .redux-metabox .redux-no-sections.redux-box-side .redux-main input[type=text].redux-dimensions-input,
-.redux-metabox .redux-no-sections.redux-box-side .redux-main input[type=text].spinner-input
-{
-  float:none;
-  display:inline-block;
+.redux-metabox .redux-no-sections.redux-box-side .redux-main input[type=text].spinner-input {
+  float: none;
+  display: inline-block;
 }
-.redux-metabox .redux-no-sections.redux-box-side .redux-main input[type=text].redux-dimensions-input
-{
-  width:70px!important;
+
+.redux-metabox .redux-no-sections.redux-box-side .redux-main input[type=text].redux-dimensions-input {
+  width: 70px !important;
 }
-.redux-metabox .redux-no-sections.redux-box-side .redux-main input[type=text].spinner-input
-{
-  width:45px!important;
+
+.redux-metabox .redux-no-sections.redux-box-side .redux-main input[type=text].spinner-input {
+  width: 45px !important;
 }
-.redux-box-side .select_wrapper.dimensions-units{
-  float:none;
-  display:inline-block;
+
+.redux-box-side .select_wrapper.dimensions-units {
+  float: none;
+  display: inline-block;
 
 }
+
 #_pzarc_pagebuilder_enabled,
 #_pzarc_pagebuilder_disabled {
-  width:100%;
-  margin-bottom:10px;
+  width: 80%;
+  margin-bottom: 10px;
   h3 {
-    text-align:center;
-    text-transform:capitalize;
-    font-size:15px;
-    color:#0074A2;
+    text-align: center;
+    text-transform: capitalize;
+    font-size: 15px;
+    color: $highlight;
   }
   li.ui-sortable-helper {
-    background:#888;
-    color:#fff;
+    background: #888;
+    color: #fff;
   }
 }
+
 ul#_pzarc_pagebuilder_disabled li {
-  display:inline-block;
-  color:#777
+  display: inline-block;
+  color: #555;
+  background: #bbb;
+  margin: 0 2px;
 }
 
 ul#_pzarc_pagebuilder_enabled li {
-  color:#000;
-  width:80%;
-  margin-left:auto;
-  margin-right:auto;
+  color: #fff;
+  background: $highlight;
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
 
 }
 
 #freshwidget-button {
-  top:30px;
+  top: 30px;
 }
 
 .arc-pageguide-button {
-  padding:5px;
-  background:#63bdcf;
-  color:#fff;
-  border-radius:5px;
-  cursor:pointer;
+  padding: 5px;
+  background: #63bdcf;
+  color: #fff;
+  border-radius: 5px;
+  cursor: pointer;
 }
 
 #_architect-_panels_tabs_tabs,
-#_architect-_blueprint_tabs_tabs
-{
-  padding-bottom:0!important;
+#_architect-_blueprint_tabs_tabs {
+  padding-bottom: 0 !important;
 }
 
+body.arc-beginner .arc-field-advanced {
+  display: none !important;
+}
 
-body.arc-beginner .arc-field-advanced  {
-  display:none!important;
+#_architect-_blueprint_tabs_tabs .active span.stepno {
+  background: #fff;
+}
+
+#_architect-_blueprint_tabs_tabs span.stepno {
+  background: none;
+  color: $highlight;
+  border-radius: 25px;
+  padding: 0 5px;
+  font-weight: bold;
+}
+
+.arc-important-admin-message {
+  color: tomato;
+}
+
+#tab-presets {
+  border-bottom: solid 4px $violet;
+  &.active {
+    background: $violet-900;
+    span.stepno {
+      color: $violet;
+    }
+  }
+  &:hover {
+    background: $violet-900;
+    span.stepno {
+      color: inherit;
+    }
+    &.active {
+      span.stepno {
+        color: $violet
+      }
+    }
+  }
+}
+
+#redux-_architect-metabox-presets {
+  h3.redux-hndle {
+    border-bottom: solid 4px $violet !important;
+    // background: $violet-900 !important;
+  }
+  .redux-container {
+    background: #fff;
+  }
+}
+
+#tab-layout {
+  border-bottom: solid 4px $indigo;
+  &.active {
+    background: $indigo-900;
+    span.stepno {
+      color: $indigo;
+    }
+  }
+  &:hover {
+    background: $indigo-900;
+    span.stepno {
+      color: inherit;
+    }
+    &.active {
+      span.stepno {
+        color: $indigo
+      }
+    }
+  }
+}
+
+#redux-_architect-metabox-layout-settings {
+  h3.redux-hndle {
+    border-bottom: solid 4px $indigo !important;
+    // background: $indigo-900 !important;
+  }
+  .redux-container {
+    background: $indigo-50;
+  }
+}
+
+// Panels design
+#tab-panels {
+  border-bottom: solid 4px $orange;
+  &.active {
+    background: $orange-900;
+    span.stepno {
+      color: $orange;
+    }
+  }
+  &:hover {
+    background: $orange-900;
+    span.stepno {
+      color: inherit;
+    }
+    &.active {
+      span.stepno {
+        color: $orange
+      }
+    }
+  }
+}
+
+#redux-_architect-metabox-panels-design {
+  h3.redux-hndle {
+    border-bottom: solid 4px $orange !important;
+    // background: $orange-900 !important;
+  }
+  .redux-container {
+    background: $orange-50;
+  }
+
+}
+
+// Content selection
+#tab-content {
+  border-bottom: solid 4px $red;
+  &.active {
+    background: $red-900;
+    span.stepno {
+      color: $red;
+    }
+  }
+  &:hover {
+    background: $red-900;
+    span.stepno {
+      color: inherit;
+    }
+    &.active {
+      span.stepno {
+        color: $red
+      }
+    }
+  }
+}
+
+#redux-_architect-metabox-content-selections {
+  h3.redux-hndle {
+    border-bottom: solid 4px $red !important;
+    // background: $red-900 !important;
+  }
+  .redux-container {
+    background: $red-50;
+  }
+}
+
+// Blueprint Styling
+#tab-styling {
+  border-bottom: solid 4px $blue;
+  &.active {
+    background: $blue-900;
+    span.stepno {
+      color: $blue;
+    }
+
+  }
+  &:hover {
+    background: $blue-900;
+    span.stepno {
+      color: inherit;
+    }
+    &.active {
+      span.stepno {
+        color: $blue
+      }
+    }
+  }
+}
+
+#redux-_architect-metabox-blueprint-stylings {
+  h3.redux-hndle {
+    border-bottom: solid 4px $blue !important;
+    // background: $blue-900 !important;
+  }
+  .redux-container {
+    background: $blue-50;
+  }
+}
+
+// Content styling
+#tab-content_styling {
+  border-bottom: solid 4px $green;
+  &.active {
+    background: $green-900;
+    span.stepno {
+      color: $green;
+    }
+  }
+  &:hover {
+    background: $green-900;
+    span.stepno {
+      color: inherit;
+    }
+    &.active {
+      span.stepno {
+        color: $green
+      }
+    }
+  }
+}
+
+#redux-_architect-metabox-panels-styling {
+  h3.redux-hndle {
+    border-bottom: solid 4px $green !important;
+    // background: $green-900 !important;
+  }
+  .redux-container {
+    background: $green-50;
+  }
+}
+
+//
+a.arc-important-button {
+  color: #fff;
+  background: $red;
+  padding: 10px;
+  border-radius: 5px;
+  &:hover {
+    background: $red-900;
+  }
+}
+
+// Presets
+
+li.arc-message {
+  .arc-presets-link {
+    padding: 8px 12px;
+    color: #fff;
+    background: $highlight;
+    border-radius: 3px;
+    &:hover {
+      color: #fff;
+      background: darken($highlight, 10%);
+    }
+  }
+}
+
+.arc-presets-overlay {
+  top: 0;
+  bottom: 0;
+  width: 100%;
+  background: #fff;
+  position: fixed;
+  z-index: 99999;
+  opacity: 0.5;
+}
+
+.arc-presets-selector {
+  display: none;
+  border-radius: $border-radius;
+  top: 50px;
+  left: 20%;
+  position: absolute;
+  background: #777;
+  height: 550px;
+  width: 800px;
+  box-shadow: 0 0 30px black;
+  z-index: 100000;
+  h2.heading {
+    width: 100%;
+    color: #fff;
+    background: #333;
+    box-sizing: border-box;
+    border-top-left-radius: $border-radius;
+    border-top-right-radius: $border-radius;
+    padding: 10px;
+    font-size: 18px;
+    cursor: move;
+    margin: 0;
+  }
+  .tabs {
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0;
+    border: none;
+    button {
+      color: #eee;
+      background: #999;
+      margin: 2px 2px 0 2px;
+      padding: 10px;
+      border: none;
+      border-top-left-radius: $border-radius;
+      border-top-right-radius: $border-radius;
+      border-bottom-left-radius: 0;
+      border-bottom-right-radius: 0;
+      &:hover {
+        cursor: pointer;
+        background: #aaa;
+        color: #fff;
+      }
+      &.active {
+        background: #f3f3f3;
+        color: $highlight;
+      }
+    }
+  }
+  p {
+    padding: 5px 10px;
+    color: #fff;
+    &.footer {
+      width: 60%;
+    }
+  }
+  .container {
+    height: 400px;
+    background: #f3f3f3;
+    width: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+    overflow-x: auto;
+    overflow-y: hidden;
+    white-space: nowrap;
+    .grids {
+    }
+    span {
+      display: inline-block;
+      text-align: center;
+      vertical-align:top;
+      label {
+        p {
+          color: #555;
+          padding: 0;
+          margin: 3px 0;
+          &.arc-preset-title {
+            font-weight: bold;
+            font-size: 13px;
+            color: $highlight;
+          }
+          &.arc-preset-designer {
+            font-size: 11px;
+          }
+          &.arc-preset-description {
+            font-size: 12px;
+          }
+        }
+        input {
+          display: none;
+          + img {
+            border: solid 3px transparent;
+            max-height: 250px;
+            margin-right: 10px;
+            &:hover {
+              border: solid 3px lighten($highlight, 20%);
+            }
+          }
+          &:checked + img {
+            border: solid 3px $highlight;
+          }
+        }
+      }
+    }
+  }
+  .buttons {
+    position: absolute;
+    bottom: 23px;
+    right: 0px;
+    .arc-button-presets {
+      padding: 8px;
+      text-decoration: none;
+      color: #fff;
+      background: $highlight;
+      margin-right: 5px;
+      border-radius: 5px;
+      &.disabled {
+        visibility: hidden;
+      }
+      &:hover {
+        color: #fff;
+        background: darken($highlight, 5%);
+      }
+
+    }
+  }
+}
+
+.arc-export-data {
+  width: 600px;
+  padding: 10px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  white-space: normal;
+  form {
+    width: 100%;
+  }
+  textarea {
+    resize: none;
+    background: #eee;
+
+  }
+}
+
+// Redux fixes
+//.redux-main .input-append {position:relative;}
+//.redux-main .input-append .add-on {position: absolute;}
+
+// Fixes for Comments Plugin
+.redux-sidebar {
+  menu, ol, ul {
+    padding:inherit;
+  }
+}
+.redux-main {
+  fieldset {
+    border: none;
+    margin: 0;
+  }
+  button,
+  input,
+  select,
+  textarea {
+    font-size: 14px;
+    font-family: inherit;
+  }
+
+}
+.arc-info-boxes {
+  max-width:1060px;
+  display:flex;
+  flex-wrap: wrap;
+  strong {
+    color:tomato;
+  }
+  em {
+    font-weight: bold;
+  }
+.arc-info {
+//  max-width: 45%;
+//  min-width:45%;
+  margin: 1%;
+  padding: 1%;
+  box-sizing: border-box;
+  border-top: solid 1px #fff;
+  border-left: solid 1px #fff;
+  border-bottom: solid 1px #eee;
+  border-right: solid 1px #eee;
+  background: #f6f6f6;
+  display: inline-block;
+  vertical-align: top;
+  border-radius: 3px;
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0.5);
+  &.col1 {
+    width:92%;
+  }
+  &.col2 {
+    width:45%;
+  }
+
+  h3 {
+    color: $highlight;
+  }
+  span {
+    font-size: 48px;
+    width: 52px;
+    height: 52px;
+    vertical-align: middle;
+    color: tomato;
+  }
+  ul {
+    margin-left: 20px;
+  }
+  li {
+    list-style-type: disc;
+  }
+}
 }

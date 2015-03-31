@@ -4,36 +4,8 @@
 
     function pzarcpro_init()
     {
-      if (is_admin()) {
+      if (is_admin() ) {
         add_action('admin_init', 'pzarc_initiate_updater');
-
-        function pzarc_initiate_updater()
-        {
-          // TODO: Try to not run this too mcuh
-          // Check on Headway if enabled since it was probably bought there
-          if (class_exists('HeadwayUpdaterAPI') && defined('PZARC_HWREL') && PZARC_HWREL) {
-
-            $updater = new HeadwayUpdaterAPI(array(
-                                                 'slug'            => 'architect',
-                                                 'path'            => plugin_basename(__FILE__),
-                                                 'name'            => 'Architect',
-                                                 'type'            => 'block',
-                                                 'current_version' => PZARC_VERSION
-                                             ));
-          } else {
-            // make sure to use correct basename for plugin!
-
-            require_once(PZARC_PLUGIN_PATH.'wp-updates-plugin.php');
-            new WPUpdatesPluginUpdater_429( 'http://wp-updates.com/api/2/plugin', 'pizazzwp-architect/architect.php');
-          }
-
-
-          /**
-           * Display update notices
-           */
-//    @include_once PZARC_DOCUMENTATION_PATH . 'updates/1000.php';
-
-        }
       }
 
 
@@ -41,7 +13,6 @@
       /** Content types */
       require_once plugin_dir_path(__FILE__) . '/content-types/page/class_arc_content_pages.php';
       require_once plugin_dir_path(__FILE__) . '/content-types/gallery/class_arc_content_gallery.php';
-      require_once plugin_dir_path(__FILE__) . '/content-types/dummy/class_arc_content_dummy.php';
       require_once plugin_dir_path(__FILE__) . '/content-types/snippets/class_arc_content_snippets.php';
       require_once plugin_dir_path(__FILE__) . '/content-types/slide/class_arc_content_slide.php';
       require_once plugin_dir_path(__FILE__) . '/content-types/nextgen/class_arc_content_nextgen.php';
@@ -67,7 +38,42 @@
 
     }
 
-   add_action('arc_load_extensions','pzarcpro_init');
+  function pzarc_initiate_updater()
+  {
+    // TODO: Try to not run this too mcuh
+    // Check on Headway if enabled since it was probably bought there
+    if (class_exists('HeadwayUpdaterAPI') && defined('PZARC_HWREL') && PZARC_HWREL) {
+
+      $updater = new HeadwayUpdaterAPI(array(
+                                           'slug'            => 'architect',
+                                           'path'            => plugin_basename(__FILE__),
+                                           'name'            => 'Architect',
+                                           'type'            => 'block',
+                                           'current_version' => PZARC_VERSION
+                                       ));
+    } else {
+      // make sure to use correct basename for plugin!
+
+      if (!defined('PZARC_BETA') && !PZARC_BETA) {
+        require_once(PZARC_PLUGIN_PATH.'wp-updates-plugin_429.php');
+        new WPUpdatesPluginUpdater_429( 'http://wp-updates.com/api/2/plugin', 'pizazzwp-architect/architect.php');
+      } else {
+        require_once(PZARC_PLUGIN_PATH.'wp-updates-plugin_625.php');
+        new WPUpdatesPluginUpdater_625( 'http://wp-updates.com/api/2/plugin', 'pizazzwp-architect/architect.php');
+
+      }
+    }
+
+
+    /**
+     * Display update notices
+     */
+//    @include_once PZARC_DOCUMENTATION_PATH . 'updates/1000.php';
+
+  }
+
+
+  add_action('arc_load_extensions', 'pzarcpro_init');
 //  }
 
 

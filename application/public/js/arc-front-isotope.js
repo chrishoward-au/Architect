@@ -19,7 +19,7 @@ jQuery( document ).ready( function ()
       $container.isotope( {
         // options
         layoutMode: 'masonry',
-        itemSelector: '#' + arcIsotopeID + ' .pzarc-panel',
+        itemSelector: '.' + arcIsotopeID + ' .pzarc-panel',
         masonry: {
           columnWidth: '.grid-sizer',
           gutter: '.gutter-sizer'

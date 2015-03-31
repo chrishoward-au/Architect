@@ -66,99 +66,16 @@
                       'off'     => 'No',
                       'default' => false,
                   ),
-                  array(
-                      'title'  => __('Pagination', 'pzarchitect'),
-                      'id'     => $prefix . 'pagination-heading-start',
-                      'type'   => 'section',
-                      'indent' => false
-                  ),
+//                  array(
+//                      'title'  => __('Pagination', 'pzarchitect'),
+//                      'id'     => $prefix . 'pagination-heading-start',
+//                      'type'   => 'section',
+//                      'indent' => false
+//                  ),
               )
           )
       );
 
-      $settings[ 'pagination' ] = array(
-          'prefix'   => $prefix,
-          'sections' => array(
-              'title'      => 'Pagination',
-              'icon_class' => 'icon-large',
-              'icon'       => 'el-icon-chevron-right',
-              'fields'     => array(
-                  array(
-                      'title'   => 'Pagination',
-                      'id'      => '_blueprints_pagination',
-                      'type'    => 'switch',
-                      'on'      => 'Yes',
-                      'off'     => 'No',
-                      'default' => false,
-                      'desc'=>__('If your content type is Defaults and you choose to enable overrides, pagination will likely mess up if this Blueprint is displayed on the standard WP blog page.','pzarchitect')
-                  ),
-                  array(
-                      'title'    => __('Posts per page', 'pzarchitect'),
-                      'id'       => '_blueprints_pagination-per-page',
-                      'type'     => 'spinner',
-                      'default'  => 1,
-                      'min'      => 1,
-                      'max'      => 99,
-                      'required' => array('_blueprints_pagination', 'equals', true),
-                  ),
-                  array(
-                      'id'       => '_blueprints_pager-location',
-                      'title'    => __('Pagination location', 'pzarchitect'),
-                      'type'     => 'select',
-                      'select2'  => array('allowClear' => false),
-                      'default'  => 'bottom',
-                      'options'  => array(
-                          'bottom' => 'Bottom',
-                          'top'    => 'Top',
-                          'both'   => 'Both'
-                      ),
-                      'required' => array('_blueprints_pagination', 'equals', true),
-                  ),
-                  array(
-                      'id'       => '_blueprints_pager',
-                      'title'    => __('Blog Pagination', 'pzarchitect'),
-                      'type'     => 'select',
-                      'select2'  => array('allowClear' => false),
-                      'default'  => 'prevnext',
-                      'options'  => array(
-                        //                    'none'     => 'None',
-                        'prevnext' => 'Previous/Next',
-                        'names'    => 'Post names',
-                        'pagenavi' => 'PageNavi',
-                      ),
-                      'required' => array('_blueprints_pagination', 'equals', true),
-                  ),
-                  array(
-                      'id'       => '_blueprints_pager-single',
-                      'title'    => __('Single Post Pagination', 'pzarchitect'),
-                      'type'     => 'select',
-                      'select2'  => array('allowClear' => false),
-                      'default'  => 'prevnext',
-                      'options'  => array(
-                        //                    'none'     => 'None',
-                        'prevnext' => 'Previous/Next',
-                        'names'    => 'Post names',
-                        'pagenavi' => 'PageNavi',
-                      ),
-                      'required' => array('_blueprints_pagination', 'equals', true),
-                  ),
-                  array(
-                      'id'       => '_blueprints_pager-archives',
-                      'title'    => __('Archives Pagination', 'pzarchitect'),
-                      'type'     => 'select',
-                      'select2'  => array('allowClear' => false),
-                      'default'  => 'prevnext',
-                      'options'  => array(
-                        //                    'none'     => 'None',
-                        'prevnext' => 'Previous/Next',
-                        'names'    => 'Post names',
-                        'pagenavi' => 'PageNavi',
-                      ),
-                      'required' => array('_blueprints_pagination', 'equals', true),
-                  ),
-              )
-          )
-    );
                 /** GENERAL  Filters*/
       $prefix = '_content_general_';
 

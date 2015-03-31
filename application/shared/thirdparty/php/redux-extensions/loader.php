@@ -6,7 +6,7 @@
 if(!function_exists('redux_register_custom_extension_loader')) :
 	function redux_register_custom_extension_loader($ReduxFramework) {
 		$path = dirname( __FILE__ ) . '/extensions/';
-		$folders = scandir( $path, 1 );		   
+		$folders = scandir( $path, 1 );
 		foreach($folders as $folder) {
 			if ($folder === '.' or $folder === '..' or !is_dir($path . $folder) ) {
 				continue;	

@@ -112,8 +112,12 @@
     vertical-align: top;
     box-sizing: border-box;
   }
-  .entry-thumbnail img {
-    vertical-align: text-top;
+  .entry-thumbnail {
+    img {
+// Changed 1.0.9.12... hopefully no repercussions...
+//      vertical-align: text-top;
+      vertical-align: top;
+    }
   }
 
   .entry-customfieldgroup {
@@ -253,6 +257,9 @@
 
 tr.pzarc-panel {
   display: table-row;
+  h1.entry-title {
+    width:100%!important;
+  }
 }
 
 table {

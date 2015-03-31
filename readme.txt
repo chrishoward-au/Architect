@@ -3,7 +3,7 @@ Contributors: chrishoward
 Tags: content,display,posts,pages,gallery,slider,tabs,tabbed,tabular,widget,hooks
 Requires at least: 3.5.0
 Tested up to: 4.2.0
-Stable tag: 1.0.8.8
+Stable tag: 1.1.0.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Plugin URI: http://architect4wp.com
@@ -21,18 +21,6 @@ What if you love your theme framework but want an easy way to build the content 
 
 With Architect you can build the layouts your theme doesn't provide - and all from one plugin. No longer do you need a plugin for sliders, another for magazine grids, another for tabbed content or another for displaying photo galleries.
 
-= How Architect works =
-Displaying content with Architect is made of two components: Panels and Blueprints.
-
-Panels allow you design a layout for the content itself.
-
-Blueprints lets you design a layout of how those panels wil be displayed on the page, e.g. grids, sliders etc.
-
-In Blueprints you also choose what content to display - e.g. posts, pages, galleries.
-
-This allows Panels to be easily reusable and cuts down on duplication of effort. You might design a panel that is used in a featured posts slider, but that panel may also be used to display the top story.
-
-You can then display those Blueprints using widgets, shortcodes, action hooks, template tags,  Headway blocks and even the WP Gallery shortcode.
 
 = Why use Architect? =
 Architect greatly reduces the complexity of designing and developing methods to display your content. For example, if you are using the Twenty Thirteen and decide you want a 3x3 grid of excerpts to display on the home page, you would have to code a page template for that purpose.
@@ -72,9 +60,6 @@ Yes. Architect has been successfully tested with WPML.
 = Do you provide refunds =
 Yes! We're pretty flexible on refunds, allowing 60 days. But we would like you to make sure you've done everything possible to get Architect to work to your requirements, especially seeking support on our help desk.
 
-= Is Architect for WordPress novices? =
-The short answer is "No". We advise you get to know the theme you have chosen before embarking on the Architect adventure. Learn about posts, pages, taxonomies, custom post types, shortcodes and other more technical things like page templates, because ultimately, this is the language of Architect.
-
 = Do you have a demo version? =
 Yes. A "lite" version that displays only posts is available on request to support@pizazzwp.com
 
@@ -106,7 +91,36 @@ For support, please send an email to support@pizazzwp.com
 1. Architect Blueprint - Layout design
 2. Slider example
 
+
 == Changelog ==
+
+= 1.1.0 =
+* ADDED: Presets Selector
+* ADDED: Architect builder
+* ADDED: Export Blueprint
+* ADDED: Architect shortcode selector for post and page editor.
+* ADDED: Option for posts with no image to use lorempixel.
+* ADDED: Styling for body and excerpt paragraphs 
+* ADDED: Option to select different placeholder image source for Dummy content
+* ADDED: Greyscale option for dummy images
+* ADDED: Categories for dummy images
+* ADDED: Option to not apply Trim oer Scale to background images for those who want to CSS this themselves
+
+* CHANGED: Combine Panels and Blueprints screen. Remove sections. Simplify. Improve workflow.
+* CHANGED: Blueprints listing screen sorted by title
+* CHANGED: Yay! Inadvertently sped up opening and saving Blueprints by HEAPS! Probably was the external help links to Wistia and Amazon.
+* CHANGED: Set some default stylings sizing and spacing to make blank blueprints a little more visually appealing.
+* CHANGED: Improved Blueprint CSS loading
+* CHANGED: Images in Preset selector now don't load until it is opened. Which is going to be really handy if they get hosted online.
+* CHANGED: Architect can now be used by Editor level users.
+* CHANGED: More options for dummy images
+* CHANGED: Limited materials design palette in custom colour picker
+
+* FIXED: Various small bugs on new installs and others
+* FIXED: Excerpt trimming with dummy content
+* FIXED: Stupid bug in presets where it was multi-selecting. (Chris the Coder, coding all nigh'; found a bug that made him cry; Once the bug was coded away; Chris the Coder dropped a freakin' expletive!) 
+* FIXED: Broken image in dummy content when offline. Now uses a nice sky blue placeholder image.
+* FIXED: Issue with servers that have allow_url_fopen disabled
 
 = 1.0.8.8 =
 * FIXED: Transients not working with terms override

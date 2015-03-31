@@ -29,6 +29,13 @@
 
   }
 
+  /**
+   * @param $tax
+   * @param $prefix
+   * @param $suffix
+   * @param $separator
+   * @return string
+   */
   function pzarc_tax_string_list($tax, $prefix, $suffix, $separator)
   {
     $list  = '';
@@ -43,6 +50,10 @@
     return $list;
   }
 
+  /**
+   * @param $array
+   * @return array
+   */
   function pzarc_squish($array)
   {
     $return_array = array();
@@ -53,7 +64,12 @@
     return $return_array;
   }
 
-
+  /**
+   * @param $start
+   * @param $end
+   * @param $source
+   * @return mixed
+   */
   function pzarc_get_string($start, $end, $source)
   {
 
@@ -63,6 +79,13 @@
 
   }
 
+  /**
+   * @param        $id
+   * @param        $selectors
+   * @param string $defaults
+   * @param array  $exclude
+   * @return array
+   */
   function pzarc_redux_font($id, $selectors, $defaults = '', $exclude = array())
   {
 //var_dump($exclude,in_array('font-family',$exclude),in_array('color',$exclude),!array_search('font-family',$exclude));
@@ -71,8 +94,9 @@
     global $_architect_options;
     $units        = isset($_architect_options[ 'architect_typography_units' ]) ? $_architect_options[ 'architect_typography_units' ] : 'px';
     $return_array = array(
-        'title'           => __('Font', 'pzarchitect'),
+        'title'           => __('Typography', 'pzarchitect'),
         'id'              => $id,
+        'subtitle'=>__('You can change the typogrpahy units to px,em or rem in Architect > Options','pzarchitect'),
         //       'output'          => $selectors,
         'type'            => 'typography',
         'text-decoration' => true,
@@ -106,6 +130,12 @@
   }
 
 
+  /**
+   * @param       $id
+   * @param null  $selectors
+   * @param array $defaults
+   * @return array
+   */
   function pzarc_redux_bg($id, $selectors = null, $defaults = array('color' => ''))
   {
     return array(
@@ -125,6 +155,12 @@
     );
   }
 
+  /**
+   * @param       $id
+   * @param       $selectors
+   * @param array $defaults
+   * @return array
+   */
   function pzarc_redux_padding($id, $selectors, $defaults = array('units' => '%'))
   {
 //    var_dump($id, $defaults);
@@ -140,6 +176,13 @@
 
   }
 
+  /**
+   * @param        $id
+   * @param        $selectors
+   * @param array  $defaults
+   * @param string $limits
+   * @return array
+   */
   function pzarc_redux_margin($id, $selectors, $defaults = array('units' => '%'), $limits = 'tblr')
   {
     return array(
@@ -158,6 +201,12 @@
 
   }
 
+  /**
+   * @param       $id
+   * @param       $selectors
+   * @param array $defaults
+   * @return array
+   */
   function pzarc_redux_links($id, $selectors, $defaults = array())
   {
     return
@@ -235,96 +284,101 @@
    * pzarc_get_defaults
    *
    */
-  function pzarc_get_defaults($use_cache = false)
+  function pzarc_get_defaults($exclude_styling = false)
   {
     pzdb('top get defaults');
     // TODO: Do we really need to call this on the front end??!!
 
     // TODO: Remove this once Dovy fixes MB defaults... or maybe not...
     // Actually, $_architect doesn't populate if it's not here
-    require_once PZARC_PLUGIN_APP_PATH . '/admin/php/class_arc_panels_layouts.php';
-    require_once PZARC_PLUGIN_APP_PATH . '/admin/php/class_arc_blueprints_layouts.php';
-    $blueprints = new arc_Blueprints_Layouts('defaults');
-    $panels     = new arc_Panels_Layouts('defaults');
+//    require_once PZARC_PLUGIN_APP_PATH . '/admin/php/class_arc_panels_layouts.php';
+    require_once PZARC_PLUGIN_APP_PATH . '/admin/php/class_arc_blueprints_designer.php';
+    $blueprints = new arc_Blueprints_Designer('defaults');
+//    $panels     = new arc_Panels_Layouts('defaults');
 
     global $_architect;
     global $_architect_options;
-
-    /**
-     * BLUEPRINTS
-     *
-     */
-    pzdb('pre get blueprints defaults');
+    if (!isset($_architect[ 'defaults' ])) {
+      /**
+       * BLUEPRINTS
+       *
+       */
+      pzdb('pre get blueprints defaults');
 //    if ($use_cache) {
 //
 //    } else {
 
-    $_architect[ 'defaults' ][ 'blueprints' ] = (!isset($_architect[ 'defaults' ][ 'blueprints' ]) ? array() : $_architect[ 'defaults' ][ 'blueprints' ]);
-    $blueprint_layout_general                 = $blueprints->pzarc_blueprint_layout_general_mb($_architect[ 'defaults' ][ 'blueprints' ], true);
-    $blueprint_styling                        = empty($_architect_options['architect_enable_styling'])?'':$blueprints->pzarc_blueprint_layout_styling_mb($_architect[ 'defaults' ][ 'blueprints' ], true);
-    $pzarc_blueprint_layout                   = $blueprints->pzarc_blueprint_layout_mb($_architect[ 'defaults' ][ 'blueprints' ], true);
-    $pzarc_contents_metabox                   = $blueprints->pzarc_blueprint_contents_mb($_architect[ 'defaults' ][ 'blueprints' ], true);
+      $_architect[ 'defaults' ][ 'blueprints' ] = (!isset($_architect[ 'defaults' ][ 'blueprints' ]) ? array() : $_architect[ 'defaults' ][ 'blueprints' ]);
 
-    $_architect[ 'defaults' ][ 'blueprints' ][ '_blueprint_layout_general' ] = $blueprint_layout_general[ 0 ][ 'sections' ];
-    $_architect[ 'defaults' ][ 'blueprints' ][ '_blueprint_stylings' ]       = empty($blueprint_styling) ? '' : $blueprint_styling[ 0 ][ 'sections' ];
-    $_architect[ 'defaults' ][ 'blueprints' ][ '_blueprint_layout' ]         = $pzarc_blueprint_layout[ 0 ][ 'sections' ];
-    $_architect[ 'defaults' ][ 'blueprints' ][ '_contents_metabox' ]         = $pzarc_contents_metabox[ 0 ][ 'sections' ];
+      $blueprint_layout_general = $blueprints->pzarc_mb_blueprint_general_settings($_architect[ 'defaults' ][ 'blueprints' ], true);
+      $blueprint_styling        = empty($_architect_options[ 'architect_enable_styling' ]) || $exclude_styling ? '' : $blueprints->pzarc_mb_blueprint_styling($_architect[ 'defaults' ][ 'blueprints' ], true);
+      $pzarc_blueprint_layout   = $blueprints->pzarc_mb_blueprint_design($_architect[ 'defaults' ][ 'blueprints' ], true);
+      $pzarc_contents_metabox   = $blueprints->pzarc_mb_blueprint_content_selection($_architect[ 'defaults' ][ 'blueprints' ], true);
 
-    // Apply the defaults
-    foreach ($_architect[ 'defaults' ][ 'blueprints' ] as $key1 => $value1) {
-      if (!empty($value1)) {
-        foreach ($value1 as $key2 => $value2) {
-          foreach ($value2 as $key3 => $fields) {
-            if (is_array($fields)) {
-              foreach ($fields as $key4 => $field) {
-                if (isset($field[ 'id' ])) {
-                  $_architect[ 'defaults' ][ '_blueprints' ][ $field[ 'id' ] ] = (empty($field[ 'default' ]) ? '' : $field[ 'default' ]);
+      $_architect[ 'defaults' ][ 'blueprints' ][ '_blueprint_layout_general' ] = $blueprint_layout_general[ 0 ][ 'sections' ];
+      $_architect[ 'defaults' ][ 'blueprints' ][ '_blueprint_stylings' ]       = empty($blueprint_styling) ? '' : $blueprint_styling[ 0 ][ 'sections' ];
+      $_architect[ 'defaults' ][ 'blueprints' ][ '_blueprint_layout' ]         = $pzarc_blueprint_layout[ 0 ][ 'sections' ];
+      $_architect[ 'defaults' ][ 'blueprints' ][ '_contents_metabox' ]         = $pzarc_contents_metabox[ 0 ][ 'sections' ];
+
+      // Apply the defaults
+      foreach ($_architect[ 'defaults' ][ 'blueprints' ] as $key1 => $value1) {
+        if (!empty($value1)) {
+          foreach ($value1 as $key2 => $value2) {
+            foreach ($value2 as $key3 => $fields) {
+              if (is_array($fields)) {
+                foreach ($fields as $key4 => $field) {
+                  if (isset($field[ 'id' ])) {
+                    $_architect[ 'defaults' ][ '_blueprints' ][ $field[ 'id' ] ] = (empty($field[ 'default' ]) ? '' : $field[ 'default' ]);
+                  }
                 }
               }
             }
           }
         }
       }
-    }
 
-    unset($_architect[ 'defaults' ][ 'blueprints' ]);
 //    }
 
-    /**
-     * PANELS
-     *
-     */
-    pzdb('pre get panels defaults');
-    $_architect[ 'defaults' ][ 'panels' ] = (!isset($_architect[ 'defaults' ][ 'panels' ]) ? array() : $_architect[ 'defaults' ][ 'panels' ]);
+      /**
+       * PANELS
+       *
+       */
+      pzdb('pre get panels defaults');
+      $_architect[ 'defaults' ][ 'panels' ] = (!isset($_architect[ 'defaults' ][ 'panels' ]) ? array() : $_architect[ 'defaults' ][ 'panels' ]);
 
-    $pzarc_panel_general_settings = $panels->pzarc_panel_general_settings($_architect[ 'defaults' ][ 'panels' ], true);
-    $pzarc_panels_design          = $panels->pzarc_panels_design($_architect[ 'defaults' ][ 'panels' ], true);
-    $pzarc_panels_styling         = empty($_architect_options['architect_enable_styling'])?'':$panels->pzarc_panels_styling($_architect[ 'defaults' ][ 'panels' ], true);
+//      $pzarc_panel_general_settings = $blueprints->pzarc_panel_general_settings($_architect[ 'defaults' ][ 'panels' ], true);
+      $pzarc_panels_design  = $blueprints->pzarc_mb_panels_layout($_architect[ 'defaults' ][ 'panels' ], true);
+      $pzarc_panels_styling = empty($_architect_options[ 'architect_enable_styling' ]) || $exclude_styling ? '' : $blueprints->pzarc_mb_panels_styling($_architect[ 'defaults' ][ 'panels' ], true);
 
-    $_architect[ 'defaults' ][ 'panels' ][ '_panel_general_settings' ] = $pzarc_panel_general_settings[ 0 ][ 'sections' ];
-    $_architect[ 'defaults' ][ 'panels' ][ '_panels_design' ]          = $pzarc_panels_design[ 0 ][ 'sections' ];
+      //     $_architect[ 'defaults' ][ 'panels' ][ '_panel_general_settings' ] = $pzarc_panel_general_settings[ 0 ][ 'sections' ];
+      $_architect[ 'defaults' ][ 'panels' ][ '_panels_design' ] = $pzarc_panels_design[ 0 ][ 'sections' ];
 
-    if (!empty($_architect_options[ 'architect_enable_styling' ])) {
-      $_architect[ 'defaults' ][ 'panels' ][ '_panels_styling' ] = $pzarc_panels_styling[ 0 ][ 'sections' ];
-    }
+      if (!empty($_architect_options[ 'architect_enable_styling' ]) && !$exclude_styling) {
+        $_architect[ 'defaults' ][ 'panels' ][ '_panels_styling' ] = $pzarc_panels_styling[ 0 ][ 'sections' ];
+      }
 
-    foreach ($_architect[ 'defaults' ][ 'panels' ] as $key1 => $value1) {
-      if (!empty($value1)) {
-        foreach ($value1 as $key2 => $value2) {
-          foreach ($value2 as $key3 => $fields) {
-            if (is_array($fields)) {
-              foreach ($fields as $key4 => $field) {
-                if (isset($field[ 'id' ])) {
-                  $_architect[ 'defaults' ][ '_panels' ][ $field[ 'id' ] ] = (empty($field[ 'default' ]) ? '' : $field[ 'default' ]);
+      foreach ($_architect[ 'defaults' ][ 'panels' ] as $key1 => $value1) {
+        if (!empty($value1)) {
+          foreach ($value1 as $key2 => $value2) {
+            foreach ($value2 as $key3 => $fields) {
+              if (is_array($fields)) {
+                foreach ($fields as $key4 => $field) {
+                  if (isset($field[ 'id' ])) {
+                    $_architect[ 'defaults' ][ '_blueprints' ][ $field[ 'id' ] ] = (empty($field[ 'default' ]) ? '' : $field[ 'default' ]);
+                  }
                 }
               }
             }
           }
         }
       }
+      pzdb('bottom get defaults');
+
+      //  Unset the temporary blueprints field
+      unset($_architect[ 'defaults' ][ 'blueprints' ]);
+      //  Unset the temporary panels field
+      unset($_architect[ 'defaults' ][ 'panels' ]);
     }
-    unset($_architect[ 'defaults' ][ 'panels' ]);
-    pzdb('bottom get defaults');
   }
 
   /**
@@ -346,6 +400,11 @@
 
   // For testing actions
 //add_action('arc_after_title','pzarc_action_test',10,3);
+  /**
+   * @param $component
+   * @param $panelno
+   * @param $postid
+   */
   function pzarc_action_test($component, $panelno, $postid)
   {
     echo '<h2>Action run:' . current_action() . '</h2>';
@@ -354,12 +413,23 @@
 
   // For testing filters
 //add_filter('arc_filter_excerpt','pzarc_filter_test',10,2);
+  /**
+   * @param $stuff
+   * @param $postid
+   * @return string
+   */
   function pzarc_filter_test($stuff, $postid)
   {
     return $stuff . '--more stuff added by filter--' . $postid;
   }
 
   //add_filter('arc_filter_shortcode', 'pzarc_scf_test', 10, 3);
+  /**
+   * @param $content
+   * @param $blueprint
+   * @param $overrides
+   * @return string
+   */
   function pzarc_scf_test($content, $blueprint, $overrides)
   {
     return '<div class="pzarc-shortcode-debug" style="background:#fff4f4;border:solid 1px #c99;box-sizing: border-box;"><h3>Start shortcode blueprint ' . $blueprint . ' with ' . count($overrides) . ' overrides</h3>' . $content . '<h3>End blueprint ' . $blueprint . '</h3>';
@@ -377,6 +447,9 @@
     return (is_array($var) ? $var : explode($delimiter, (string)$var));
   }
 
+  /**
+   * @return array
+   */
   function pzarc_fields()
   {
     $arg_list = func_get_args();
@@ -395,6 +468,9 @@
   }
 
   add_action('xloop_start', 'pzarc_top_of_loop', 10, 1);
+  /**
+   * @param $the_query
+   */
   function pzarc_top_of_loop(&$the_query)
   {
 
@@ -405,6 +481,9 @@
   }
 
   add_action('xloop_end', 'pzarc_bottom_of_loop');
+  /**
+   *
+   */
   function pzarc_bottom_of_loop()
   {
     if (is_main_query()) {
@@ -412,7 +491,9 @@
     }
   }
 
-
+  /**
+   * @return array|null
+   */
   function pzarc_get_gp_galleries()
   {
     $post_types = get_post_types();
@@ -434,6 +515,9 @@
     return $results;
   }
 
+  /**
+   * @return array
+   */
   function pzarc_get_wp_galleries()
   {
 
@@ -458,6 +542,9 @@
 
   }
 
+  /**
+   * @return array
+   */
   function pzarc_get_wp_post_images()
   {
     $results = array('todo' => 'TODO!!!');
@@ -465,6 +552,11 @@
     return $results;
   }
 
+  /**
+   * @param bool $inc_all
+   * @param int  $min_level
+   * @return array
+   */
   function pzarc_get_authors($inc_all = true, $min_level = 1)
   {
     // user_level 1 = contributor
@@ -494,6 +586,11 @@
     return $return;
   }
 
+  /**
+   * @param string $pzarc_post_type
+   * @param bool   $use_shortname
+   * @return array
+   */
   function pzarc_get_posts_in_post_type($pzarc_post_type = 'arc-blueprints', $use_shortname = false)
   {
 //    // No point doing this if not on a screen that can use it.
@@ -538,6 +635,10 @@
   }
 
   // TODO: This is a sorta duplicate of pzarc_get_posts_in_type. Fix it one day.
+  /**
+   * @param bool $inc_post_id
+   * @return array
+   */
   function pzarc_get_blueprints($inc_post_id = false)
   {
     $query_options    = array(
@@ -561,6 +662,10 @@
     return $pzarc_return;
   }
 
+  /**
+   * @param $source_arr
+   * @param $selected
+   */
   function pzarc_array_to_options_list($source_arr, $selected)
   {
     foreach ($source_arr as $key => $value) {
@@ -568,6 +673,9 @@
     }
   }
 
+  /**
+   * @return array
+   */
   function pzarc_get_custom_fields()
   {
     global $wpdb;
@@ -639,7 +747,10 @@
     return $pzep_custom_fields;
   }
 
-
+  /**
+   * @param $text
+   * @param $type
+   */
   function pzarc_msg($text, $type)
   {
     echo '<div class="message-' . $type . '">' . $text . '</div>';
@@ -652,22 +763,29 @@
    *
    ***********************/
 
-  function pzarc_flatten_wpinfo($array_in)
+  function pzarc_flatten_wpinfo($array_in, $strip = null)
   {
     $array_out = array();
-    foreach ($array_in as $key => $value) {
-      if ($key == '_edit_lock' || $key == '_edit_last') {
-        continue;
+    if (!empty($array_in)) {
+      foreach ($array_in as $key => $value) {
+        if ($key == '_edit_lock' || $key == '_edit_last' || strpos($key, $strip) !== false) {
+          continue;
+        }
+        if (is_array($value)) {
+          $array_out[ $key ] = $value;
+        }
+        $array_out[ $key ] = maybe_unserialize($value[ 0 ]);
       }
-      if (is_array($value)) {
-        $array_out[ $key ] = $value;
-      }
-      $array_out[ $key ] = maybe_unserialize($value[ 0 ]);
     }
 
     return $array_out;
   }
 
+  /**
+   * @param $post_id
+   * @param $meta_string
+   * @return array
+   */
   function pzarc_get_post_terms($post_id, $meta_string)
   {
     $post_tax_terms = array();
@@ -694,11 +812,11 @@
   {
     global $wpdb, $_architect_options;
     // We don't want transients used for admins since they may be testing new settings - which won't take!
-    if (!empty($_architect_options[ 'architect_enable_query_cache' ]) && !current_user_can('manage_options') && false === ($post_id = get_transient('pzarc_post_name_to_id_' . $post_name))) {
+    if (!empty($_architect_options[ 'architect_enable_query_cache' ]) && (!current_user_can('manage_options') ||!current_user_can('edit_others_pages')) && false === ($post_id = get_transient('pzarc_post_name_to_id_' . $post_name))) {
       // It wasn't there, so regenerate the data and save the transient
       $post_id = $wpdb->get_var("SELECT ID FROM $wpdb->posts WHERE post_name = '" . $post_name . "'");
       set_transient('pzarc_post_name_to_id_' . $post_name, $post_id, PZARC_TRANSIENTS_KEEP);
-    } elseif (current_user_can('manage_options') || empty($_architect_options[ 'architect_enable_query_cache' ])) {
+    } elseif (current_user_can('edit_others_pages') || empty($_architect_options[ 'architect_enable_query_cache' ])) {
       $post_id = $wpdb->get_var("SELECT ID FROM $wpdb->posts WHERE post_name = '" . $post_name . "'");
     }
 
@@ -706,6 +824,10 @@
     return $post_id;
   }
 
+  /**
+   * @param $vcode
+   * @return false|string
+   */
   function pzarc_process_video($vcode)
   {
 
@@ -763,12 +885,19 @@
   }
 
   add_shortcode('pztestsc', 'pzarc_test_shortcode');
+  /**
+   * @param $atts
+   * @return string
+   */
   function pzarc_test_shortcode($atts)
   {
     return 'Shortcode test';
   }
 
-
+  /**
+   * @param $values
+   * @return array
+   */
   function pzarc_maths_sum($values)
   {
     $result = 0;
@@ -795,23 +924,30 @@
     return array('result' => $result, 'type' => $vtype);
   }
 
-  function pzarc_mail_encode($atts,$rawemail,$tag) {
-    $s_email = sanitize_email($rawemail);
-    $encodedmail                          = '';
+  /**
+   * @param $atts
+   * @param $rawemail
+   * @param $tag
+   * @return string
+   */
+  function pzarc_mail_encode($atts, $rawemail, $tag)
+  {
+    $s_email     = sanitize_email($rawemail);
+    $encodedmail = '';
     for ($i = 0; $i < strlen($s_email); $i++) {
       $encodedmail .= "&#" . ord($s_email[ $i ]) . ';';
     }
-    if (isset($atts[0])) {
-      return '<a href="mailto:'.$encodedmail.'">'.$encodedmail.'</a>';
+    if (isset($atts[ 0 ])) {
+      return '<a href="mailto:' . $encodedmail . '">' . $encodedmail . '</a>';
     } else {
       return $encodedmail;
     }
   }
 
   if (!shortcode_exists('mailto')) {
-    add_shortcode('mailto','pzarc_mail_encode');
+    add_shortcode('mailto', 'pzarc_mail_encode');
   }
-   add_shortcode('pzmailto','pzarc_mail_encode');
+  add_shortcode('pzmailto', 'pzarc_mail_encode');
 
   // Testing function.
   // NOTE: If defaults chosen, then will be main query!!
@@ -825,3 +961,307 @@
   //      var_dump(is_main_query());
   //      return $custom_content;
   //    }
+
+  // Just incase
+  if (!function_exists('d')) {
+    function d($var)
+    {
+      // do nothing incase a d() left behind
+    }
+  }
+
+  /**
+   * @param $classes
+   * @param $properties
+   * @return null|string
+   */
+  function pzarc_process_fonts($classes, $properties)
+  {
+    // TODO: Build support for Google fonts and backup
+    $filler = '';
+    if (!empty($properties) && is_array($properties)) {
+      foreach ($properties as $k => $v) {
+        // Need to only process specific properties
+        // This is to add quoties around fonts that don't have them
+        switch ($k) {
+          case (!empty($v) && $k == 'font-family'):
+            $ff    = explode(', ', $v);
+            $fonts = '';
+            foreach ($ff as $key => $font) {
+              if (strpos($font, ' ') > 0 && strpos($font, '\'') === false) {
+                $fonts .= '"' . $font . '"';
+              } else {
+                $fonts .= $font;
+              }
+
+              if ($key != count($ff) - 1) {
+                $fonts .= ', ';
+              }
+            }
+            $filler .= $k . ':' . $fonts . ';';
+            break;
+          case (!empty($v) && $k == 'font-style'):
+          case (!empty($v) && $v !== 'px' && $k == 'font-size'):
+          case (!empty($v) && $k == 'font-variant'):
+          case (!empty($v) && $k == 'text-align'):
+          case (!empty($v) && $k == 'font-weight'):
+          case (!empty($v) && $k == 'text-transform'):
+          case (!empty($v) && $k == 'text-decoration'):
+          case (!empty($v) && $v !== 'px' && $k == 'line-height'):
+          case (!empty($v) && $v !== 'px' && $k == 'word-spacing'):
+          case (!empty($v) && $v !== 'px' && $k == 'letter-spacing'):
+          case (!empty($v) && $k == 'color'):
+            $filler .= $k . ':' . $v . ';';
+            break;
+
+        }
+      }
+    }
+
+    return (!empty($filler) ? $classes . '{' . $filler . '}' : null);
+  }
+
+  /**
+   * @param $properties
+   * @return string
+   */
+  function pzarc_process_spacing($properties)
+  {
+    $spacing_css = '';
+
+    if (!empty($properties) && is_array($properties)) {
+      foreach ($properties as $key => $value) {
+        // Only process values!
+        if ($key != 'units') {
+          $iszero   = ($value === 0 || $value === '0');
+          $isnotset = $value === '';
+          $propval  = $key . ':' . $value;
+          $propzero = $key . ':0;';
+          $spacing_css .= ($iszero ? $propzero : ($isnotset ? null : $propval . ';'));
+        }
+      }
+    }
+
+    return $spacing_css;
+  }
+
+  /**
+   * @param $classes
+   * @param $properties
+   * @return string
+   */
+  function pzarc_process_borders($classes, $properties)
+  {
+    $borders_css = '';
+    if (!empty($properties)) {
+
+      $borders_css .= ($properties[ 'border-top' ] !== '' ? 'border-top:' . $properties[ 'border-top' ] : '');
+      $borders_css .= ($properties[ 'border-top' ] !== '' && $properties[ 'border-top' ] !== '0' ? ' ' . $properties[ 'border-style' ] . ' ' . $properties[ 'border-color' ] . ';' : ';');
+      $borders_css .= ($properties[ 'border-right' ] !== '' ? 'border-right:' . $properties[ 'border-right' ] : '');
+      $borders_css .= ($properties[ 'border-right' ] !== '' && $properties[ 'border-right' ] !== '0' ? ' ' . $properties[ 'border-style' ] . ' ' . $properties[ 'border-color' ] . ';' : ';');
+      $borders_css .= ($properties[ 'border-bottom' ] !== '' ? 'border-bottom:' . $properties[ 'border-bottom' ] : '');
+      $borders_css .= ($properties[ 'border-bottom' ] !== '' && $properties[ 'border-bottom' ] !== '0' ? ' ' . $properties[ 'border-style' ] . ' ' . $properties[ 'border-color' ] . ';' : ';');
+      $borders_css .= ($properties[ 'border-left' ] !== '' ? 'border-left:' . $properties[ 'border-left' ] : '');
+      $borders_css .= ($properties[ 'border-left' ] !== '' && $properties[ 'border-left' ] !== '0' ? ' ' . $properties[ 'border-style' ] . ' ' . $properties[ 'border-color' ] . ';' : ';');
+
+      return $classes . '{' . $borders_css . '}';
+    } else {
+      return null;
+    }
+  }
+
+  function pzarc_process_border_radius($classes, $properties)
+  {
+    $borders_css = '';
+    if (!empty($properties)) {
+
+      $borders_css .= (!empty($properties[ 'border-top' ]) ? 'border-top-left-radius:' . $properties[ 'border-top' ] . ';' : '');
+      $borders_css .= (!empty($properties[ 'border-right' ]) ? 'border-top-right-radius:' . $properties[ 'border-right' ] . ';' : '');
+      $borders_css .= (!empty($properties[ 'border-bottom' ]) ? 'border-bottom-left-radius:' . $properties[ 'border-bottom' ] . ';' : '');
+      $borders_css .= (!empty($properties[ 'border-left' ]) ? 'border-bottom-right-radius:' . $properties[ 'border-left' ] . ';' : '');
+
+      return $classes . '{' . $borders_css . '}';
+    } else {
+      return null;
+    }
+  }
+
+  /**
+   * @param $classes
+   * @param $properties
+   * @return string
+   */
+  function pzarc_process_links($classes, $properties, $nl)
+  {
+    // TODO: Should Default use inherit?
+    $links_css = '';
+    if (!empty($properties)) {
+      if (!empty($properties[ 'regular' ]) || strtolower($properties[ 'regular-deco' ]) !== 'default') {
+        $links_css .= $classes . ' a {';
+        $links_css .= (!empty($properties[ 'regular' ]) ? 'color:' . $properties[ 'regular' ] . ';' : '');
+        $links_css .= (strtolower($properties[ 'regular-deco' ]) !== 'default' ? 'text-decoration:' . strtolower($properties[ 'regular-deco' ]) . ';' : '');
+        $links_css .= '}' . $nl;
+      }
+
+      if (!empty($properties[ 'hover' ]) || strtolower($properties[ 'hover-deco' ]) !== 'default') {
+        $links_css .= $classes . ' a:hover {';
+        $links_css .= (!empty($properties[ 'hover' ]) ? 'color:' . $properties[ 'hover' ] . ';' : '');
+        $links_css .= (strtolower($properties[ 'hover-deco' ]) !== 'default' ? 'text-decoration:' . strtolower($properties[ 'hover-deco' ]) . ';' : '');
+        $links_css .= '}' . $nl;
+      }
+
+      if (!empty($properties[ 'active' ]) || strtolower($properties[ 'active-deco' ]) !== 'default') {
+        $links_css .= $classes . ' a:active {';
+        $links_css .= (!empty($properties[ 'active' ]) ? 'color:' . $properties[ 'active' ] . ';' : '');
+        $links_css .= (strtolower($properties[ 'active-deco' ]) !== 'default' ? 'text-decoration:' . strtolower($properties[ 'active-deco' ]) . ';' : '');
+        $links_css .= '}' . $nl;
+      }
+
+      if (!empty($properties[ 'visited' ]) || (isset($properties[ 'visited-deco' ]) && strtolower($properties[ 'visited-deco' ]) !== 'default')) {
+        $links_css .= $classes . ' a:visited {';
+        $links_css .= (!empty($properties[ 'visited' ]) ? 'color:' . $properties[ 'visited' ] . ';' : '');
+        $links_css .= (strtolower($properties[ 'visited-deco' ]) !== 'default' ? 'text-decoration:' . strtolower($properties[ 'visited-deco' ]) . ';' : '');
+        $links_css .= '}' . $nl;
+      }
+
+      return $links_css;
+    } else {
+      return null;
+    }
+  }
+
+  function pzarc_process_background($classes, $properties)
+  {
+    // Currently not used
+    $pzarc_bg_css = '';
+    // Could come from one of two methods
+    if (!empty($properties)) {
+      if (!empty($properties[ 'color' ])) {
+        $pzarc_bg_css .= $classes . ' {background-color:' . $properties[ 'color' ] . ';}';
+      }
+      if (!empty($properties[ 'background-color' ])) {
+        $pzarc_bg_css .= $classes . ' {background-color:' . $properties[ 'background-color' ] . ';}';
+      }
+
+      return $pzarc_bg_css;
+    } else {
+      return null;
+    }
+  }
+
+
+  /**
+   * @param $properties
+   * @param $exclude
+   * @return bool
+   */
+  function pzarc_is_empty_vals($properties, $exclude)
+  {
+
+    $is_empty = true;
+    if (is_array($properties)) {
+      foreach ($properties as $key => $value) {
+//    var_dump(!in_array($key,$exclude) , !empty($value));
+        if (!in_array($key, $exclude) && strlen($value) > 0) {
+          $is_empty = false;
+          break;
+        }
+      }
+    }
+
+    return $is_empty;
+  }
+
+  // TODO: If this was all a class it could be extensible!
+  /**
+   * @param $source
+   * @param $keys
+   * @param $value
+   * @param $parentClass
+   * @return mixed|string
+   */
+  function pzarc_get_styling($source, $keys, $value, $parentClass)
+  {
+
+    // generate correct whosit
+    $pzarc_func = 'pzarc_style_' . $keys[ 'style' ];
+    $pzarc_css  = '';
+    foreach ($keys[ 'classes' ] as $class) {
+      $pzarc_css .= (function_exists($pzarc_func) ? call_user_func($pzarc_func, $parentClass . ' ' . $class, $value) : '');
+      if (!function_exists($pzarc_func)) {
+        //print 'Missing function ' . $pzarc_func;
+        pzdb($pzarc_func);
+      }
+    }
+
+    return $pzarc_css;
+  }
+
+  function pzarc_style_background($class, $value)
+  {
+
+    return (!empty($value[ 'color' ]) ? $class . ' {background-color:' . $value[ 'color' ] . ';}' . "\n" : null);
+
+  }
+
+  function pzarc_style_padding($class, $value)
+  {
+//    var_Dump(pzarc_is_empty_vals($value, array('units')),$value);
+    return (!pzarc_is_empty_vals($value, array('units')) ? $class . ' {' . pzarc_process_spacing($value) . ';}' . "\n" : null);
+  }
+
+  function pzarc_style_margin($class, $value)
+  {
+    return (!pzarc_is_empty_vals($value, array('units')) ? $class . ' {' . pzarc_process_spacing($value) . ';}' . "\n" : null);
+  }
+
+  // *cough!* Hack. TODO: Fix it!
+  function pzarc_style_margins($class, $value)
+  {
+    return (!pzarc_is_empty_vals($value, array('units')) ? $class . ' {' . pzarc_process_spacing($value) . ';}' . "\n" : null);
+  }
+
+  function pzarc_style_borders($class, $value)
+  {
+    return pzarc_process_borders($class, $value) . "\n";
+  }
+
+  function pzarc_style_borderradius($class, $value)
+  {
+    return pzarc_process_border_radius($class, $value) . "\n";
+  }
+
+  function pzarc_style_links($class, $value)
+  {
+    return pzarc_process_links($class, $value, "\n") . "\n";
+  }
+
+  function pzarc_style_font($class, $value)
+  {
+    return pzarc_process_fonts($class, $value) . "\n";
+  }
+
+  function pzarc_style_css($class, $value)
+  {
+    // PHP doesn't like trim used inline
+    $value = trim($value);
+
+    return (!empty($value) ? $class . $value : null);
+  }
+
+  if (!function_exists('pzifempty')) {
+
+    /**
+     *
+     * Checks value if empty which includes exists, and returns null or return value. Otherwise returns the value
+     * @param      $var
+     * @param null $return
+     * @return null
+     */
+// Actually this doesn't work!!!! Coz PHP won't pass a var unchecked. So still get a warnign if not set.
+    function pzifempty($var, $return = null)
+    {
+      return (empty($var) ? $return : $var);
+    }
+
+  }

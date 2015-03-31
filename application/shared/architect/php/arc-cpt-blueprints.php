@@ -18,23 +18,23 @@
     function create_blueprints_post_type()
     {
       $labels = array(
-          'name'               => _x('Blueprints', 'post type general name'),
-          'singular_name'      => _x('Blueprint', 'post type singular name'),
-          'add_new'            => __('Add New Blueprint'),
-          'add_new_item'       => __('Add New Blueprint'),
-          'edit_item'          => __('Edit Blueprint'),
-          'new_item'           => __('New Blueprint'),
-          'view_item'          => __('View Blueprint'),
-          'search_items'       => __('Search Blueprints'),
-          'not_found'          => __('No Blueprints found'),
-          'not_found_in_trash' => __('No Blueprints found in Trash'),
+          'name'               => _x('Blueprints', 'post type general name','pzarchitect'),
+          'singular_name'      => _x('Blueprint', 'post type singular name','pzarchitect'),
+          'add_new'            => __('Add new blank Blueprint','pzarchitect','pzarchitect'),
+          'add_new_item'       => __('Add new blank Blueprint','pzarchitect'),
+          'edit_item'          => __('Edit Blueprint','pzarchitect'),
+          'new_item'           => __('New Blueprint','pzarchitect'),
+          'view_item'          => __('View Blueprint','pzarchitect'),
+          'search_items'       => __('Search Blueprints','pzarchitect'),
+          'not_found'          => __('No Blueprints found','pzarchitect'),
+          'not_found_in_trash' => __('No Blueprints found in Trash','pzarchitect'),
           'parent_item_colon'  => '',
-          'menu_name'          => _x('<span class="dashicons dashicons-welcome-widgets-menus"></span>Blueprints', 'pzarc-blueprint-designer'),
+          'menu_name'          => _x('<span class="dashicons dashicons-welcome-widgets-menus"></span>Blueprints', 'pzarc-blueprint-designer','pzarchitect'),
       );
 
       $args = array(
           'labels'              => $labels,
-          'description'         => __('Architect Blueprints are used to create reusable layout Blueprints for use in your Architect blocks, widgets, shortcodes and WP template tags. These are made up of panels, sections, criteria and navigation'),
+          'description'         => __('Architect Blueprints are used to create reusable layout Blueprints for use in your Architect blocks, widgets, shortcodes and WP template tags.','pzarchitect'),
           'public'              => false,
           'publicly_queryable'  => false,
           'show_ui'             => true,

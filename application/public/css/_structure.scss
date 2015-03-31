@@ -2,8 +2,11 @@
 .pzarc-blueprint {
   position: relative;
 }
-
+.pzarc-sections {
+  box-sizing: border-box;
+}
 .pzarc-section {
+  box-sizing:border-box;
   position: relative;
   /* Added for gridded layout. May break others! Equal height panels*/
   display: block;

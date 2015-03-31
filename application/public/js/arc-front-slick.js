@@ -22,7 +22,7 @@ jQuery( document ).ready( function ()
     var arcBPUID = jQuery( this ).attr( 'data-bpuid' );
     var arcSlickTrans = jQuery( this ).attr( 'data-transtype' ) === 'fade';
     var arcSlickOpts = (jQuery( this ).attr( 'data-opts' ));
-    var arcUniqueID = '#' + arcBPUID;
+    var arcUniqueID = '.' + arcBPUID;
 
     if ( null !== arcSlickID && null !== arcSlickOpts )
     {
