@@ -2,13 +2,12 @@
 
   /** OPTIONS */
 
-  if (!(class_exists('ReduxFramework') || class_exists('ReduxFrameworkPlugin'))) {
+  if ( ! ( class_exists( 'ReduxFramework' ) || class_exists( 'ReduxFrameworkPlugin' ) ) ) {
     return;
   }
 
-  if (!class_exists("Redux_Framework_Architect_Options")) {
-    class Redux_Framework_Architect_Options
-    {
+  if ( ! class_exists( "Redux_Framework_Architect_Options" ) ) {
+    class Redux_Framework_Architect_Options {
 
       public $args = array();
       public $sections = array();
@@ -56,8 +55,7 @@
 //      }
 
 
-      public function __construct()
-      {
+      public function __construct() {
 
         // Set the default arguments
         $this->setArguments();
@@ -68,7 +66,7 @@
         // Create the sections and fields
         $this->setSections();
 
-        if (!isset($this->args[ 'opt_name' ])) { // No errors please
+        if ( ! isset( $this->args[ 'opt_name' ] ) ) { // No errors please
           return;
         }
 
@@ -76,7 +74,10 @@
         //add_action( 'redux/plugin/hooks', array( $this, 'remove_demo' ) );
 
         // Function to test the compiler hook and demo CSS output.
-        add_filter('redux/options/' . $this->args[ 'opt_name' ] . '/compiler', array($this, 'compiler_action'), 10, 2);
+        add_filter( 'redux/options/' . $this->args[ 'opt_name' ] . '/compiler', array(
+          $this,
+          'compiler_action'
+        ), 10, 2 );
         // Above 10 is a priority, but 2 in necessary to include the dynamically generated CSS to be sent to the function.
 
         // Change the arguments after they've been declared, but before the panel is created
@@ -89,7 +90,7 @@
         // add_filter('redux/options/' . $this->args[ 'opt_name' ] . '/sections', array($this, 'dynamic_section'));
 //        global $wp_filter;
 //                pzdebug((array_keys($wp_filter)));
-        $this->ReduxFramework = new ReduxFramework($this->sections, $this->args);
+        $this->ReduxFramework = new ReduxFramework( $this->sections, $this->args );
 
       }
 
@@ -100,8 +101,7 @@
        * It only runs if a field  set with compiler=>true is changed.
        **/
 
-      function compiler_action($options, $css)
-      {
+      function compiler_action( $options, $css ) {
 //        echo "<h1>The compiler hook has run!";
 //        var_dump($options); //Option values
 //
@@ -113,16 +113,16 @@
         $filename = PZARC_CACHE_PATH . '/arc-dynamic-styles' . '.css';
         //  var_dump($filename);
         global $wp_filesystem;
-        if (empty($wp_filesystem)) {
-          require_once(ABSPATH . '/wp-admin/includes/file.php');
+        if ( empty( $wp_filesystem ) ) {
+          require_once( ABSPATH . '/wp-admin/includes/file.php' );
           WP_Filesystem();
         }
 
-        if ($wp_filesystem) {
+        if ( $wp_filesystem ) {
           $wp_filesystem->put_contents(
-              $filename,
-              $css,
-              FS_CHMOD_FILE // predefined mode settings for WP files
+            $filename,
+            $css,
+            FS_CHMOD_FILE // predefined mode settings for WP files
           );
         }
 
@@ -158,8 +158,7 @@
        * Filter hook for filtering the args. Good for child themes to override or add to the args array. Can also be used in other functions.
        **/
 
-      function change_arguments($args)
-      {
+      function change_arguments( $args ) {
         //$args['dev_mode'] = true;
 
         return $args;
@@ -171,16 +170,14 @@
        * Filter hook for filtering the default value of any given field. Very useful in development mode.
        **/
 
-      function change_defaults($defaults)
-      {
+      function change_defaults( $defaults ) {
         $defaults[ 'str_replace' ] = "Testing filter hook!";
 
         return $defaults;
       }
 
 
-      public function setSections()
-      {
+      public function setSections() {
 
         /**
          * Used within different fields. Simply examples. Search for ACTUAL DECLARATION for field examples
@@ -191,17 +188,17 @@
         $sample_patterns_url  = ReduxFramework::$_url . '../sample/patterns/';
         $sample_patterns      = array();
 
-        if (is_dir($sample_patterns_path)) :
+        if ( is_dir( $sample_patterns_path ) ) :
 
-          if ($sample_patterns_dir = opendir($sample_patterns_path)) :
+          if ( $sample_patterns_dir = opendir( $sample_patterns_path ) ) :
             $sample_patterns = array();
 
-            while (($sample_patterns_file = readdir($sample_patterns_dir)) !== false) {
+            while ( ( $sample_patterns_file = readdir( $sample_patterns_dir ) ) !== false ) {
 
-              if (stristr($sample_patterns_file, '.png') !== false || stristr($sample_patterns_file, '.jpg') !== false) {
-                $name               = explode(".", $sample_patterns_file);
-                $name               = str_replace('.' . end($name), '', $sample_patterns_file);
-                $sample_patterns[ ] = array('alt' => $name, 'img' => $sample_patterns_url . $sample_patterns_file);
+              if ( stristr( $sample_patterns_file, '.png' ) !== false || stristr( $sample_patterns_file, '.jpg' ) !== false ) {
+                $name               = explode( ".", $sample_patterns_file );
+                $name               = str_replace( '.' . end( $name ), '', $sample_patterns_file );
+                $sample_patterns[ ] = array( 'alt' => $name, 'img' => $sample_patterns_url . $sample_patterns_file );
               }
             }
           endif;
@@ -211,42 +208,42 @@
 
         $ct          = wp_get_theme();
         $this->theme = $ct;
-        $item_name   = $this->theme->get('Name');
+        $item_name   = $this->theme->get( 'Name' );
         $tags        = $this->theme->Tags;
         $screenshot  = $this->theme->get_screenshot();
         $class       = $screenshot ? 'has-screenshot' : '';
 
         $customize_title
-            = sprintf(__('Customize &#8220;%s&#8221;', 'pzarchitect'), $this->theme->display('Name'));
+          = sprintf( __( 'Customize &#8220;%s&#8221;', 'pzarchitect' ), $this->theme->display( 'Name' ) );
 
         ?>
-        <div id="current-theme" class="<?php echo esc_attr($class); ?>">
-          <?php if ($screenshot) : ?>
-            <?php if (current_user_can('edit_theme_options')) : ?>
+        <div id="current-theme" class="<?php echo esc_attr( $class ); ?>">
+          <?php if ( $screenshot ) : ?>
+            <?php if ( current_user_can( 'edit_theme_options' ) ) : ?>
               <a href="<?php echo wp_customize_url(); ?>" class="load-customize hide-if-no-customize"
-                 title="<?php echo esc_attr($customize_title); ?>">
-                <img src="<?php echo esc_url($screenshot); ?>" alt="<?php esc_attr_e('Current theme preview'); ?>"/>
+                 title="<?php echo esc_attr( $customize_title ); ?>">
+                <img src="<?php echo esc_url( $screenshot ); ?>" alt="<?php esc_attr_e( 'Current theme preview' ); ?>"/>
               </a>
             <?php endif; ?>
-            <img class="hide-if-customize" src="<?php echo esc_url($screenshot); ?>"
-                 alt="<?php esc_attr_e('Current theme preview'); ?>"/>
+            <img class="hide-if-customize" src="<?php echo esc_url( $screenshot ); ?>"
+                 alt="<?php esc_attr_e( 'Current theme preview' ); ?>"/>
           <?php endif; ?>
 
           <h4>
-            <?php echo $this->theme->display('Name'); ?>
+            <?php echo $this->theme->display( 'Name' ); ?>
           </h4>
 
           <div>
             <ul class="theme-info">
-              <li><?php printf(__('By %s', 'pzarchitect'), $this->theme->display('Author')); ?></li>
-              <li><?php printf(__('Version %s', 'pzarchitect'), $this->theme->display('Version')); ?></li>
-              <li><?php echo '<strong>' . __('Tags', 'pzarchitect') . ':</strong> '; ?><?php printf($this->theme->display('Tags')); ?></li>
+              <li><?php printf( __( 'By %s', 'pzarchitect' ), $this->theme->display( 'Author' ) ); ?></li>
+              <li><?php printf( __( 'Version %s', 'pzarchitect' ), $this->theme->display( 'Version' ) ); ?></li>
+              <li><?php echo '<strong>' . __( 'Tags', 'pzarchitect' ) . ':</strong> '; ?><?php printf( $this->theme->display( 'Tags' ) ); ?></li>
             </ul>
-            <p class="theme-description"><?php echo $this->theme->display('Description'); ?></p>
-            <?php if ($this->theme->parent()) {
-              printf(' <p class="howto">' . __('This <a href="%1$s">child theme</a> requires its parent theme, %2$s.') . '</p>',
-                     __('http://codex.wordpress.org/Child_Themes', 'pzarchitect'),
-                     $this->theme->parent()->display('Name'));
+            <p class="theme-description"><?php echo $this->theme->display( 'Description' ); ?></p>
+            <?php if ( $this->theme->parent() ) {
+              printf( ' <p class="howto">' . __( 'This <a href="%1$s">child theme</a> requires its parent theme, %2$s.' ) . '</p>',
+                      __( 'http://codex.wordpress.org/Child_Themes', 'pzarchitect' ),
+                      $this->theme->parent()->display( 'Name' ) );
             } ?>
 
           </div>
@@ -259,267 +256,270 @@
         ob_end_clean();
 
         $sampleHTML = '';
-        if (file_exists(dirname(__FILE__) . '/info-html.html')) {
+        if ( file_exists( dirname( __FILE__ ) . '/info-html.html' ) ) {
           /** @global WP_Filesystem_Direct $wp_filesystem */
           global $wp_filesystem;
-          if (empty($wp_filesystem)) {
-            require_once(ABSPATH . '/wp-admin/includes/file.php');
+          if ( empty( $wp_filesystem ) ) {
+            require_once( ABSPATH . '/wp-admin/includes/file.php' );
             WP_Filesystem();
           }
-          $sampleHTML = $wp_filesystem->get_contents(dirname(__FILE__) . '/info-html.html');
+          $sampleHTML = $wp_filesystem->get_contents( dirname( __FILE__ ) . '/info-html.html' );
         }
 
 
         // ACTUAL DECLARATION OF SECTIONS
         $current_theme = wp_get_theme();
         global $pzarc_blueprints_list;
-        if (empty($pzarc_blueprints_list)) {
-          $pzarc_blueprints_list = pzarc_get_posts_in_post_type('arc-blueprints', true);
+        if ( empty( $pzarc_blueprints_list ) ) {
+          $pzarc_blueprints_list = pzarc_get_posts_in_post_type( 'arc-blueprints', true );
 
         }
+
         $this->sections[ ] = array(
-            'title'      => 'General ',
-            'show_title' => true,
-            'icon'       => 'el-icon-wrench',
-            'fields'     => array(
-                array(
-                    'title' => __('Appearance', 'pzarchitect'),
-                    'id'    => 'architect_appearance_section',
-                    'type'  => 'section',
-                ),
-                array(
-                    'title'   => __('Hide page guides and tutorials', 'pzarchitect'),
-                    'id'      => 'architect_hide_guides',
-                    'type'    => 'switch',
-                    //                    'subtitle' => __('Displays a background image on the Architect admin pages', 'pzarchitect'),
-                    'default' => false,
-                    'on'      => __('Yes', 'pzarchitect'),
-                    'off'     => __('No', 'pzarchitect')
-                ),
-                array(
-                    'title'    => __('Enable admin background image', 'pzarchitect'),
-                    'id'       => 'architect_enable_bgimage',
-                    'type'     => 'switch',
-                    'subtitle' => __('Displays a background image on the Architect admin pages', 'pzarchitect'),
-                    'default'  => false,
-                    'on'       => __('Yes', 'pzarchitect'),
-                    'off'      => __('No', 'pzarchitect')
-                ),
-                array(
-                    'title'    => __('Choose background image', 'pzarchitect'),
-                    'id'       => 'architect_bgimage',
-                    'type'     => 'button_set',
-                    'required' => array('architect_enable_bgimage', 'equals', true),
-                    'options'  => array(
-                        'green'      => __('Green', 'pzarchitect'),
-                        'ocean-blue' => __('Ocean/Blue', 'pzarchitect'),
-                        'pink'       => __('Pink', 'pzarchitect'),
-                    ),
-                    'default'  => 'ocean-blue'
-                ),
-                array(
-                    'title' => __('Shortcodes', 'pzarchitect'),
-                    'id'    => 'architect_shortcodes_section',
-                    'type'  => 'section',
-                ),
-                array(
-                    'title'    => __('Default shortcode blueprint', 'pzarchitect'),
-                    'id'       => 'architect_default_shortcode_blueprint',
-                    'type'     => 'select',
-                    'options'  => $pzarc_blueprints_list,
-                    'subtitle' => __('If you omit the blueprint name from a shortcode, it will use the one selected here. Useful for quick conversion of WP galleries by simply renaming gallery to architect in the shortcode.', 'pzarchitect'),
-                ),
-                array(
-                    'title'    => __('Replace WP Galleries with Blueprint', 'pzarchitect'),
-                    'id'       => 'architect_replace_wpgalleries',
-                    'type'     => 'select',
-                    'options'  => $pzarc_blueprints_list,
-                    'subtitle' => __('Select a Blueprint to use for <strong>all</strong> WP gallery shortcodes.', 'pzarchitect'),
-                    'desc'     => __('Make sure this Blueprint is using Galleries as its Content Source!', 'pzarchitect')
-                ),
-                array(
-                    'title' => __('Mods', 'pzarchitect'),
-                    'id'    => 'architect_mods_section',
-                    'type'  => 'section',
-                ),
-                array(
-                    'title'    => __('Feature Video field', 'pzarchitect'),
-                    'id'       => 'architect_mod-video-fields',
-                    'type'     => 'checkbox',
-                    'subtitle' => __('Add a video field to content types to optionally use as the Feature.', 'pzarchitect'),
-                    'options'  => array('post'        => __('Posts', 'pzarchitect'),
-                                        'page'        => __('Pages', 'pzarchitect'),
-                                        'pz_snippets' => __('Snippets', 'pzarchitect')),
-                    'default'  => array('post' => 0, 'page' => 0, 'pz_snippets' => 1)
-                ),
-                array(
-                    'title'    => __('Query caching', 'pzarchitect'),
-                    'id'       => 'architect_enable_query_cache',
-                    'type'     => 'switch',
-                    'subtitle' => __('Turn this off if you find your Architect Blueprints don\'t show correct posts. This can be caused by other caching plugins or services.', 'pzarchitect'),
-                    'default'  => true
-                ),
-                array(
-                    'title' => __('Styling', 'pzarchitect'),
-                    'id'    => 'architect_stylings_section',
-                    'type'  => 'section',
-                ),
-                array(
-                    'title'    => __('Styling settings', 'pzarchitect'),
-                    'id'       => 'architect_enable_styling',
-                    'type'     => 'switch',
-                    'subtitle' => __('Turn this off if you want to manage styling from your own CSS stylesheets or only from the Headway Visual Editor Design Mode.', 'pzarchitect'),
-                    'default'  => true
-                ),
-                array(
-                    'title'   => __('Typography units', 'pzarchitect'),
-                    'id'      => 'architect_typography_units',
-                    'type'    => 'button_set',
-                    'options' => array(
-                        'px'  => 'px',
-                        'em'  => 'em',
-                        'rem' => 'rem',
-                    ),
-                    'default' => 'px'
-                ),
-                // TODO: This requires lots of bollocksing to make sure all traces are fully removed. A good excuse to make extensibility work!
-                //                array(
-                //                    'title'    => __('Disable Snippets content type', 'pzarchitect'),
-                //                    'id'       => 'architect_disable_snippets',
-                //                    'type'     => 'switch',
-                //                    'subtitle' => 'Turn off this if you won\'t need the Snippets content type.',
-                //                    'default'  => false
-                //                ),
-                // TODO : Create lots of content types - FAQs, Testimonials, Features, Contacts
-                ('headway' == $current_theme->stylesheet ? array(
-                    'title'    => __('Add Headway Content Block class', 'pzarchitect'),
-                    'id'       => 'architect_hw-content-class',
-                    'type'     => 'switch',
-                    'on'       => __('Yes', 'pzarchitect'),
-                    'off'      => __('No', 'pzarchitect'),
-                    'default'  => false,
-                    'subtitle' => __('This will add the class <strong>block-type-content</strong> to the panels, which enables them to inherit the stylings for the Content block. However, this can make styling in the Visual Editor Design Mode a little confusing, as hovering over an element will show it as a Content Block element', 'pzarchitect')
+          'title'      => __( 'General ', 'pzarchitect' ),
+          'show_title' => true,
+          'icon'       => 'el-icon-wrench',
+          'fields'     => array(
+            array(
+              'title' => __( 'Appearance', 'pzarchitect' ),
+              'id'    => 'architect_appearance_section',
+              'type'  => 'section',
+            ),
+            array(
+              'title'   => __( 'Hide page guides and tutorials', 'pzarchitect' ),
+              'id'      => 'architect_hide_guides',
+              'type'    => 'switch',
+              //                    'subtitle' => __('Displays a background image on the Architect admin pages', 'pzarchitect'),
+              'default' => false,
+              'on'      => __( 'Yes', 'pzarchitect' ),
+              'off'     => __( 'No', 'pzarchitect' )
+            ),
+            array(
+              'title'    => __( 'Enable admin background image', 'pzarchitect' ),
+              'id'       => 'architect_enable_bgimage',
+              'type'     => 'switch',
+              'subtitle' => __( 'Displays a background image on the Architect admin pages', 'pzarchitect' ),
+              'default'  => false,
+              'on'       => __( 'Yes', 'pzarchitect' ),
+              'off'      => __( 'No', 'pzarchitect' )
+            ),
+            array(
+              'title'    => __( 'Choose background image', 'pzarchitect' ),
+              'id'       => 'architect_bgimage',
+              'type'     => 'button_set',
+              'required' => array( 'architect_enable_bgimage', 'equals', true ),
+              'options'  => array(
+                'green'      => __( 'Green', 'pzarchitect' ),
+                'ocean-blue' => __( 'Ocean/Blue', 'pzarchitect' ),
+                'pink'       => __( 'Pink', 'pzarchitect' ),
+              ),
+              'default'  => 'ocean-blue'
+            ),
+            array(
+              'title' => __( 'Shortcodes', 'pzarchitect' ),
+              'id'    => 'architect_shortcodes_section',
+              'type'  => 'section',
+            ),
+            array(
+              'title'    => __( 'Default shortcode blueprint', 'pzarchitect' ),
+              'id'       => 'architect_default_shortcode_blueprint',
+              'type'     => 'select',
+              'options'  => $pzarc_blueprints_list,
+              'subtitle' => __( 'If you omit the blueprint name from a shortcode, it will use the one selected here. Useful for quick conversion of WP galleries by simply renaming gallery to architect in the shortcode.', 'pzarchitect' ),
+            ),
+            array(
+              'title'    => __( 'Replace WP Galleries with Blueprint', 'pzarchitect' ),
+              'id'       => 'architect_replace_wpgalleries',
+              'type'     => 'select',
+              'options'  => $pzarc_blueprints_list,
+              'subtitle' => __( 'Select a Blueprint to use for <strong>all</strong> WP gallery shortcodes.', 'pzarchitect' ),
+              'desc'     => __( 'Make sure this Blueprint is using Galleries as its Content Source!', 'pzarchitect' )
+            ),
+            array(
+              'title' => __( 'Mods', 'pzarchitect' ),
+              'id'    => 'architect_mods_section',
+              'type'  => 'section',
+            ),
+            array(
+              'title'    => __( 'Feature Video field', 'pzarchitect' ),
+              'id'       => 'architect_mod-video-fields',
+              'type'     => 'checkbox',
+              'subtitle' => __( 'Add a video field to content types to optionally use as the Feature.', 'pzarchitect' ),
+              'options'  => array(
+                'post'        => __( 'Posts', 'pzarchitect' ),
+                'page'        => __( 'Pages', 'pzarchitect' ),
+                'pz_snippets' => __( 'Snippets', 'pzarchitect' )
+              ),
+              'default'  => array( 'post' => 0, 'page' => 0, 'pz_snippets' => 1 )
+            ),
+            array(
+              'title'    => __( 'Query caching', 'pzarchitect' ),
+              'id'       => 'architect_enable_query_cache',
+              'type'     => 'switch',
+              'subtitle' => __( 'Turn this off if you find your Architect Blueprints don\'t show correct posts. This can be caused by other caching plugins or services.', 'pzarchitect' ),
+              'default'  => true
+            ),
+            array(
+              'title' => __( 'Styling', 'pzarchitect' ),
+              'id'    => 'architect_stylings_section',
+              'type'  => 'section',
+            ),
+            array(
+              'title'    => __( 'Styling settings', 'pzarchitect' ),
+              'id'       => 'architect_enable_styling',
+              'type'     => 'switch',
+              'subtitle' => __( 'Turn this off if you want to manage styling from your own CSS stylesheets or only from the Headway Visual Editor Design Mode.', 'pzarchitect' ),
+              'default'  => true
+            ),
+            array(
+              'title'   => __( 'Typography units', 'pzarchitect' ),
+              'id'      => 'architect_typography_units',
+              'type'    => 'button_set',
+              'options' => array(
+                'px'  => 'px',
+                'em'  => 'em',
+                'rem' => 'rem',
+              ),
+              'default' => 'px'
+            ),
+            // TODO: This requires lots of bollocksing to make sure all traces are fully removed. A good excuse to make extensibility work!
+            //                array(
+            //                    'title'    => __('Disable Snippets content type', 'pzarchitect'),
+            //                    'id'       => 'architect_disable_snippets',
+            //                    'type'     => 'switch',
+            //                    'subtitle' => 'Turn off this if you won\'t need the Snippets content type.',
+            //                    'default'  => false
+            //                ),
+            // TODO : Create lots of content types - FAQs, Testimonials, Features, Contacts
+            ( 'headway' == $current_theme->stylesheet ? array(
+              'title'    => __( 'Add Headway Content Block class', 'pzarchitect' ),
+              'id'       => 'architect_hw-content-class',
+              'type'     => 'switch',
+              'on'       => __( 'Yes', 'pzarchitect' ),
+              'off'      => __( 'No', 'pzarchitect' ),
+              'default'  => false,
+              'subtitle' => __( 'This will add the class <strong>block-type-content</strong> to the panels, which enables them to inherit the stylings for the Content block. However, this can make styling in the Visual Editor Design Mode a little confusing, as hovering over an element will show it as a Content Block element', 'pzarchitect' )
 
-                ) : null),
-                ('headway' == $current_theme->stylesheet ? array(
-                    'title'    => __('Use Architect Headway CSS from Design Mode', 'pzarchitect'),
-                    'id'       => 'architect_use-hw-css',
-                    'type'     => 'switch',
-                    'on'       => __('Yes', 'pzarchitect'),
-                    'off'      => __('No', 'pzarchitect'),
-                    'default'  => true,
-                    'subtitle' => __('Use the stylings you configure for Architect in the Headway Visual Editor Design Mode.', 'pzarchitect')
+            ) : null ),
+            ( 'headway' == $current_theme->stylesheet ? array(
+              'title'    => __( 'Use Architect Headway CSS from Design Mode', 'pzarchitect' ),
+              'id'       => 'architect_use-hw-css',
+              'type'     => 'switch',
+              'on'       => __( 'Yes', 'pzarchitect' ),
+              'off'      => __( 'No', 'pzarchitect' ),
+              'default'  => true,
+              'subtitle' => __( 'Use the stylings you configure for Architect in the Headway Visual Editor Design Mode.', 'pzarchitect' )
 
-                ) : null),
-//                array(
-//                    'title' => __('Other', 'pzarchitect'),
-//                    'id'    => 'architect_other_section',
-//                    'type'  => 'section',
-//                ),
-//                array(
-//                    'title'    => __('Enable beta features', 'pzarchitect'),
-//                    'id'       => 'architect_enable_beta',
-//                    'type'     => 'switch',
-//                    'subtitle' => __('This will enable features that are working but not fully complete. Use at your own risk!', 'pzarchitect'),
-//                    'default'  => false,
-//                    'on'       => __('Yes', 'pzarchitect'),
-//                    'off'      => __('No', 'pzarchitect')
-//                ),
-//                array(
-//                    'title'    => __('Beta features', 'pzarchitect'),
-//                    'id'       => 'architect_beta_features',
-//                    'type'     => 'info',
-//                    'required' => array('architect_enable_beta', 'equals', true),
-//                    'icon'     => 'el-icon-warning-sign',
-//                    'style'    => 'critical',
-//                    'subtitle' => 'Animation of components group. Currently not able to control when the animation runs. Look for the setting in the Content Layout designer.'
-//                ),
-                //                array(
-                //                    'title'    => __('Custom post def path', 'pzarchitect'),
-                //                    'id'       => 'architect_custom_post_def_path',
-                //                    'type'     => 'text',
-                //                    'validate' => 'url',
-                //                    'default'  => '',
-                //                ),
-            )
+            ) : null ),
+            //                array(
+            //                    'title' => __('Other', 'pzarchitect'),
+            //                    'id'    => 'architect_other_section',
+            //                    'type'  => 'section',
+            //                ),
+            //                array(
+            //                    'title'    => __('Enable beta features', 'pzarchitect'),
+            //                    'id'       => 'architect_enable_beta',
+            //                    'type'     => 'switch',
+            //                    'subtitle' => __('This will enable features that are working but not fully complete. Use at your own risk!', 'pzarchitect'),
+            //                    'default'  => false,
+            //                    'on'       => __('Yes', 'pzarchitect'),
+            //                    'off'      => __('No', 'pzarchitect')
+            //                ),
+            //                array(
+            //                    'title'    => __('Beta features', 'pzarchitect'),
+            //                    'id'       => 'architect_beta_features',
+            //                    'type'     => 'info',
+            //                    'required' => array('architect_enable_beta', 'equals', true),
+            //                    'icon'     => 'el-icon-warning-sign',
+            //                    'style'    => 'critical',
+            //                    'subtitle' => 'Animation of components group. Currently not able to control when the animation runs. Look for the setting in the Content Layout designer.'
+            //                ),
+            //                array(
+            //                    'title'    => __('Custom post def path', 'pzarchitect'),
+            //                    'id'       => 'architect_custom_post_def_path',
+            //                    'type'     => 'text',
+            //                    'validate' => 'url',
+            //                    'default'  => '',
+            //                ),
+          )
         );
         $this->sections[ ] = array(
-            'title'      => 'Responsive ',
-            'show_title' => true,
-            'icon'       => 'el-icon-laptop',
-            'fields'     => array(
-                array(
-                    'title'    => __('Breakpoints', 'pzarchitect'),
-                    'id'       => 'architect_breakpoint_section',
-                    'type'     => 'section',
-                    'subtitle' => __('Architect lets you set some arbitrary breakpoints for responsive design. Responsive design, however, is a lot more complicated than a handful of breakpoints! It is affected by devices, content, containers and so on. To provide support for all of that would severely overwhelm Architect\'s settings. For example, for every font styling, it would need to be set for every scenario. The breakpoints are therefore used on a limited range of options. If you want to get serious with responsive design, you will have to write a lot of custom css', 'pzarchitect')
-                ),
-                array(
-                    'title'   => __('Wide screen breakpoint', 'pzarchitect'),
-                    'id'      => 'architect_breakpoint_1',
-                    'type'    => 'dimensions',
-                    'height'  => false,
-                    'units'   => 'px',
-                    'default' => array('width' => '960'),
-                ),
-                array(
-                    'title'   => __('Medium screen breakpoint', 'pzarchitect'),
-                    'id'      => 'architect_breakpoint_2',
-                    'type'    => 'dimensions',
-                    'height'  => false,
-                    'units'   => 'px',
-                    'default' => array('width' => '640'),
-                ),
-                array(
-                    'title' => __('Images', 'pzarchitect'),
-                    'id'    => 'architect_responsive-images_section',
-                    'type'  => 'section',
-                ),
-                array(
-                    'title'    => __('Create and use retina images', 'pzarchitect'),
-                    'id'       => 'architect_enable-retina-images',
-                    'type'     => 'switch',
-                    'subtitle' => __('If enabled, when images are created, a second high version to display on retina screens will also be created and then displayed as required. This can be turned off for specific Panels. NOTE: This will make your site load slower on retina devices.', 'pzarchitect'),
-                    'default'  => false,
-                    'on'       => __('Yes', 'pzarchitect'),
-                    'off'      => __('No', 'pzarchitect')
-                ),
-            )
+          'title'      => 'Responsive ',
+          'show_title' => true,
+          'icon'       => 'el-icon-laptop',
+          'fields'     => array(
+            array(
+              'title'    => __( 'Breakpoints', 'pzarchitect' ),
+              'id'       => 'architect_breakpoint_section',
+              'type'     => 'section',
+              'subtitle' => __( 'Architect lets you set some arbitrary breakpoints for responsive design. Responsive design, however, is a lot more complicated than a handful of breakpoints! It is affected by devices, content, containers and so on. To provide support for all of that would severely overwhelm Architect\'s settings. For example, for every font styling, it would need to be set for every scenario. The breakpoints are therefore used on a limited range of options. If you want to get serious with responsive design, you will have to write a lot of custom css', 'pzarchitect' )
+            ),
+            array(
+              'title'   => __( 'Wide screen breakpoint', 'pzarchitect' ),
+              'id'      => 'architect_breakpoint_1',
+              'type'    => 'dimensions',
+              'height'  => false,
+              'units'   => 'px',
+              'default' => array( 'width' => '960' ),
+            ),
+            array(
+              'title'   => __( 'Medium screen breakpoint', 'pzarchitect' ),
+              'id'      => 'architect_breakpoint_2',
+              'type'    => 'dimensions',
+              'height'  => false,
+              'units'   => 'px',
+              'default' => array( 'width' => '640' ),
+            ),
+            array(
+              'title' => __( 'Images', 'pzarchitect' ),
+              'id'    => 'architect_responsive-images_section',
+              'type'  => 'section',
+            ),
+            array(
+              'title'    => __( 'Create and use retina images', 'pzarchitect' ),
+              'id'       => 'architect_enable-retina-images',
+              'type'     => 'switch',
+              'subtitle' => __( 'If enabled, when images are created, a second high version to display on retina screens will also be created and then displayed as required. This can be turned off for specific Panels. NOTE: This will make your site load slower on retina devices.', 'pzarchitect' ),
+              'default'  => false,
+              'on'       => __( 'Yes', 'pzarchitect' ),
+              'off'      => __( 'No', 'pzarchitect' )
+            ),
+          )
         );
         $this->sections[ ] = array(
-            'title'      => 'Language ',
-            'show_title' => true,
-            'icon'       => 'el-icon-globe',
-            'fields'     => array(
-                array(
-                    'title'    => __('Categories archive pages title', 'pzarchitect'),
-                    'id'       => 'architect_language-categories-archive-pages-title',
-                    'type'     => 'text',
-                    'subtitle' => __('Enter a title to appear at the top of Categories archives pages', 'pzarchitect'),
-                    'default'  => 'Posts in Category: '
-                ),
-                array(
-                    'title'    => __('Tags archive pages title', 'pzarchitect'),
-                    'id'       => 'architect_language-tags-archive-pages-title',
-                    'type'     => 'text',
-                    'subtitle' => __('Enter a title to appear at the top of Tags archives pages', 'pzarchitect'),
-                    'default'  => 'Posts in Tag: '
-                ),
-                array(
-                    'title'    => __('Months archive pages title', 'pzarchitect'),
-                    'id'       => 'architect_language-months-archive-pages-title',
-                    'type'     => 'text',
-                    'subtitle' => __('Enter a title to appear at the top of Months archives pages', 'pzarchitect'),
-                    'default'  => 'Posts in Month: '
-                ),
-                array(
-                    'title'    => __('Custom taxonomies archive pages title', 'pzarchitect'),
-                    'id'       => 'architect_language-custom-archive-pages-title',
-                    'type'     => 'text',
-                    'subtitle' => __('Enter a title to appear at the top of Custom taxonomies archives pages', 'pzarchitect'),
-                    'default'  => 'Posts in: '
-                ),
-            )
+          'title'      => 'Language ',
+          'show_title' => true,
+          'icon'       => 'el-icon-globe',
+          'fields'     => array(
+            array(
+              'title'    => __( 'Categories archive pages title', 'pzarchitect' ),
+              'id'       => 'architect_language-categories-archive-pages-title',
+              'type'     => 'text',
+              'subtitle' => __( 'Enter a title to appear at the top of Categories archives pages', 'pzarchitect' ),
+              'default'  => 'Posts in Category: '
+            ),
+            array(
+              'title'    => __( 'Tags archive pages title', 'pzarchitect' ),
+              'id'       => 'architect_language-tags-archive-pages-title',
+              'type'     => 'text',
+              'subtitle' => __( 'Enter a title to appear at the top of Tags archives pages', 'pzarchitect' ),
+              'default'  => 'Posts in Tag: '
+            ),
+            array(
+              'title'    => __( 'Months archive pages title', 'pzarchitect' ),
+              'id'       => 'architect_language-months-archive-pages-title',
+              'type'     => 'text',
+              'subtitle' => __( 'Enter a title to appear at the top of Months archives pages', 'pzarchitect' ),
+              'default'  => 'Posts in Month: '
+            ),
+            array(
+              'title'    => __( 'Custom taxonomies archive pages title', 'pzarchitect' ),
+              'id'       => 'architect_language-custom-archive-pages-title',
+              'type'     => 'text',
+              'subtitle' => __( 'Enter a title to appear at the top of Custom taxonomies archives pages', 'pzarchitect' ),
+              'default'  => 'Posts in: '
+            ),
+          )
         );
 //        $this->sections[ ] = array(
 //            'title'      => 'Custom CSS',
@@ -536,27 +536,27 @@
 //                )
 //            )
 //        );
+        
       }
 
-      public function setHelpTabs()
-      {
+      public function setHelpTabs() {
 
         // Custom page help tabs, displayed using the help API. Tabs are shown in order of definition.
         $this->args[ 'help_tabs' ][ ] = array(
-            'id'      => 'redux-opts-1',
-            'title'   => __('Theme Information 1', 'pzarchitect'),
-            'content' => __('<p>This is the tab content, HTML is allowed.</p>', 'pzarchitect')
+          'id'      => 'redux-opts-1',
+          'title'   => __( 'Theme Information 1', 'pzarchitect' ),
+          'content' => __( '<p>This is the tab content, HTML is allowed.</p>', 'pzarchitect' )
         );
 
         $this->args[ 'help_tabs' ][ ] = array(
-            'id'      => 'redux-opts-2',
-            'title'   => __('Theme Information 2', 'pzarchitect'),
-            'content' => __('<p>This is the tab content, HTML is allowed.</p>', 'pzarchitect')
+          'id'      => 'redux-opts-2',
+          'title'   => __( 'Theme Information 2', 'pzarchitect' ),
+          'content' => __( '<p>This is the tab content, HTML is allowed.</p>', 'pzarchitect' )
         );
 
         // Set the help sidebar
         $this->args[ 'help_sidebar' ]
-            = __('<p>This is the sidebar content, HTML is allowed.</p>', 'pzarchitect');
+          = __( '<p>This is the sidebar content, HTML is allowed.</p>', 'pzarchitect' );
 
       }
 
@@ -566,8 +566,7 @@
        * All the possible arguments for Redux.
        * For full documentation on arguments, please refer to: https://github.com/ReduxFramework/ReduxFramework/wiki/Arguments
        **/
-      public function setArguments()
-      {
+      public function setArguments() {
 
         $theme = wp_get_theme(); // For use with some settings. Not necessary.
 
@@ -576,7 +575,7 @@
           // TYPICAL -> Change these values as you need/desire
           'opt_name'           => '_architect_options',
           // This is where your data is stored in the database and also becomes your global variable name.
-          'display_name'       => __('Architect Options', 'pzarchitect'),
+          'display_name'       => __( 'Architect Options', 'pzarchitect' ),
           // Name that appears at the top of your panel
           'display_version'    => 'Architect v' . PZARC_VERSION,
           // Version that appears at the top of your panel
@@ -584,8 +583,8 @@
           //Specify if the admin menu should appear or not. Options: menu or submenu (Under appearance only)
           'allow_sub_menu'     => false,
           // Show the sections below the admin menu item or not
-          'menu_title'         => __('<span class="dashicons dashicons-admin-settings"></span>Options', 'pzarchitect'),
-          'page'               => __('Architect Options', 'pzarchitect'),
+          'menu_title'         => __( '<span class="dashicons dashicons-admin-settings"></span>Options', 'pzarchitect' ),
+          'page'               => __( 'Architect Options', 'pzarchitect' ),
           'google_api_key'     => 'Xq9o3CdQFHKr+47vQr6eO4EUYLtlEyTe',
           // Must be defined to add google fonts to the typography module
           'global_variable'    => '',
@@ -641,32 +640,32 @@
           'help_tabs'          => array(),
           'help_sidebar'       => '',
           'hints'              => array(
-              'icon'          => 'icon-question-sign',
-              'icon_position' => 'right',
-              'icon_color'    => 'lightgray',
-              'icon_size'     => 'normal',
-              'tip_style'     => array(
-                  'color'   => 'yellow',
-                  'shadow'  => true,
-                  'rounded' => false,
-                  'style'   => '',
+            'icon'          => 'icon-question-sign',
+            'icon_position' => 'right',
+            'icon_color'    => 'lightgray',
+            'icon_size'     => 'normal',
+            'tip_style'     => array(
+              'color'   => 'yellow',
+              'shadow'  => true,
+              'rounded' => false,
+              'style'   => '',
+            ),
+            'tip_position'  => array(
+              'my' => 'top right',
+              'at' => 'bottom left',
+            ),
+            'tip_effect'    => array(
+              'show' => array(
+                'effect'   => 'show',
+                'duration' => '300',
+                'event'    => 'mouseover',
               ),
-              'tip_position'  => array(
-                  'my' => 'top right',
-                  'at' => 'bottom left',
+              'hide' => array(
+                'effect'   => 'show',
+                'duration' => '300',
+                'event'    => 'click mouseleave',
               ),
-              'tip_effect'    => array(
-                  'show' => array(
-                      'effect'   => 'show',
-                      'duration' => '300',
-                      'event'    => 'mouseover',
-                  ),
-                  'hide' => array(
-                      'effect'   => 'show',
-                      'duration' => '300',
-                      'event'    => 'click mouseleave',
-                  ),
-              ),
+            ),
           )
           // __( '', $this->args['domain'] );
         );
@@ -674,18 +673,18 @@
 
         // SOCIAL ICONS -> Setup custom links in the footer for quick links in your panel footer icons.
         $this->args[ 'share_icons' ][ ] = array(
-            'url'   => 'http://twitter.com/pizazzwp',
-            'title' => 'Follow us on Twitter',
-            'icon'  => 'el-icon-twitter'
+          'url'   => 'http://twitter.com/pizazzwp',
+          'title' => 'Follow us on Twitter',
+          'icon'  => 'el-icon-twitter'
         );
 
 
         // Panel Intro text -> before the form
-        if (!isset($this->args[ 'global_variable' ]) || $this->args[ 'global_variable' ] !== false) {
-          if (!empty($this->args[ 'global_variable' ])) {
+        if ( ! isset( $this->args[ 'global_variable' ] ) || $this->args[ 'global_variable' ] !== false ) {
+          if ( ! empty( $this->args[ 'global_variable' ] ) ) {
             $v = $this->args[ 'global_variable' ];
           } else {
-            $v = str_replace("-", "_", $this->args[ 'opt_name' ]);
+            $v = str_replace( "-", "_", $this->args[ 'opt_name' ] );
           }
 //          $this->args[ 'intro_text' ]
 //              = sprintf(__('<p>On this page you can setup specific blueprints to display at specific points in your page\'s display. This is done using WordPress action hooks. Although WordPress provides many, the ones that work best for content display will be those included in the theme you are using. Review your theme and/or its documentation.</p>', 'pzarchitect'), $v);
@@ -706,9 +705,8 @@
      *
      * Custom function for the callback validation referenced above
      **/
-    if (!function_exists('redux_validate_callback_function')):
-      function redux_validate_callback_function($field, $value, $existing_value)
-      {
+    if ( ! function_exists( 'redux_validate_callback_function' ) ):
+      function redux_validate_callback_function( $field, $value, $existing_value ) {
         $error = false;
         $value = 'just testing';
         /*
@@ -724,7 +722,7 @@
         */
 
         $return[ 'value' ] = $value;
-        if ($error == true) {
+        if ( $error == true ) {
           $return[ 'error' ] = $field;
         }
 
@@ -733,9 +731,8 @@
     endif;
 
     // Redux tracking
-    if (!function_exists('pzarc_redux_tracking')) {
-      function pzarc_redux_tracking($options)
-      {
+    if ( ! function_exists( 'pzarc_redux_tracking' ) ) {
+      function pzarc_redux_tracking( $options ) {
         $opt                                                       = array();
         $options[ 'DqDE7uzWFMdHsJsRIjveviQBVuE3Q75C03YLUt7rhVw=' ] = true;
 
@@ -743,7 +740,7 @@
         return $options;
       }
 
-      add_filter('redux/tracking/developer', 'pzarc_redux_tracking');
+      add_filter( 'redux/tracking/developer', 'pzarc_redux_tracking' );
 
     }
   }
