@@ -1028,11 +1028,11 @@
                     'theme'    => 'chrome',
                     'compiler' => true,
                     'default'  => '
-.pzarchitect p {word-break:normal;margin:0;padding-top:0;}
-/* You can add theme specific formatting. Prefix the stylesheeet nam with body.theme- do remember to include your blueprint name if you want to limit it to this blueprint only .pzarc-blueprint_yourblueprint*/
-body.theme-twentythirteen .pzarc-blueprint_YOURBLUEPRINT{}
-body.theme-twentyfourteen_YOURBLUEPRINT {}
-body.theme-twentyfifteen_YOURBLUEPRINT .hentry {margin:0;}
+MYBLUEPRINT p {word-break:normal;margin:0;padding-top:0;}
+/* You can add theme specific formatting. Prefix the stylesheeet nam with body.theme- do remember to include MYBLUEPRINT if you want to limit it to this blueprint only*/
+body.theme-twentythirteen MYBLUEPRINT{}
+body.theme-twentyfourteen MYBLUEPRINT {}
+body.theme-twentyfifteen MYBLUEPRINT .hentry {margin:0;}
 '
                 ),
             )

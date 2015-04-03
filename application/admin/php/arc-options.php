@@ -284,6 +284,7 @@
               'title' => __( 'Appearance', 'pzarchitect' ),
               'id'    => 'architect_appearance_section',
               'type'  => 'section',
+              'indent'=>true,
             ),
             array(
               'title'   => __( 'Hide page guides and tutorials', 'pzarchitect' ),
@@ -316,9 +317,15 @@
               'default'  => 'ocean-blue'
             ),
             array(
+              'id'    => 'architect_appearance_end-section',
+              'type'  => 'section',
+              'indent'=>false,
+            ),
+            array(
               'title' => __( 'Shortcodes', 'pzarchitect' ),
               'id'    => 'architect_shortcodes_section',
               'type'  => 'section',
+              'indent'=>true,
             ),
             array(
               'title'    => __( 'Default shortcode blueprint', 'pzarchitect' ),
@@ -336,9 +343,26 @@
               'desc'     => __( 'Make sure this Blueprint is using Galleries as its Content Source!', 'pzarchitect' )
             ),
             array(
-              'title' => __( 'Mods', 'pzarchitect' ),
+              'id'    => 'architect_shortcodes_end-section',
+              'type'  => 'section',
+              'indent'=>false,
+            ),
+            array(
+              'title' => __( 'Enhancements', 'pzarchitect' ),
               'id'    => 'architect_mods_section',
               'type'  => 'section',
+              'indent'=>true,
+            ),
+            array(
+              'title'    => __( 'Additional content types', 'pzarchitect' ),
+              'id'       => 'architect_add-content-types',
+              'type'     => 'checkbox',
+//              'subtitle' => __( 'Add a video field to content types to optionally use as the Feature.', 'pzarchitect' ),
+              'options'  => array(
+                'pz_snippets' => __( 'Snippets', 'pzarchitect' ),
+                'pz_testimonials' => __( 'Testimonials', 'pzarchitect' )
+              ),
+              'default'  => array( 'pz_testimonials' =>1, 'pz_snippets' => 1 )
             ),
             array(
               'title'    => __( 'Feature Video field', 'pzarchitect' ),
@@ -360,9 +384,15 @@
               'default'  => true
             ),
             array(
+              'id'    => 'architect_mods_end-section',
+              'type'  => 'section',
+              'indent'=>false,
+            ),
+            array(
               'title' => __( 'Styling', 'pzarchitect' ),
               'id'    => 'architect_stylings_section',
               'type'  => 'section',
+              'indent'=>true,
             ),
             array(
               'title'    => __( 'Styling settings', 'pzarchitect' ),
@@ -411,6 +441,11 @@
               'subtitle' => __( 'Use the stylings you configure for Architect in the Headway Visual Editor Design Mode.', 'pzarchitect' )
 
             ) : null ),
+            array(
+              'id'    => 'architect_stylings_end-section',
+              'type'  => 'section',
+              'indent'=>false,
+            ),
             //                array(
             //                    'title' => __('Other', 'pzarchitect'),
             //                    'id'    => 'architect_other_section',
@@ -452,6 +487,7 @@
               'title'    => __( 'Breakpoints', 'pzarchitect' ),
               'id'       => 'architect_breakpoint_section',
               'type'     => 'section',
+              'indent'=>true,
               'subtitle' => __( 'Architect lets you set some arbitrary breakpoints for responsive design. Responsive design, however, is a lot more complicated than a handful of breakpoints! It is affected by devices, content, containers and so on. To provide support for all of that would severely overwhelm Architect\'s settings. For example, for every font styling, it would need to be set for every scenario. The breakpoints are therefore used on a limited range of options. If you want to get serious with responsive design, you will have to write a lot of custom css', 'pzarchitect' )
             ),
             array(
@@ -471,9 +507,15 @@
               'default' => array( 'width' => '640' ),
             ),
             array(
+              'id'    => 'architect_responsive-images_end-section',
+              'type'  => 'section',
+              'indent'=>false,
+            ),
+            array(
               'title' => __( 'Images', 'pzarchitect' ),
               'id'    => 'architect_responsive-images_section',
               'type'  => 'section',
+              'indent'=>true,
             ),
             array(
               'title'    => __( 'Create and use retina images', 'pzarchitect' ),
@@ -483,6 +525,11 @@
               'default'  => false,
               'on'       => __( 'Yes', 'pzarchitect' ),
               'off'      => __( 'No', 'pzarchitect' )
+            ),
+            array(
+              'id'    => 'architect_responsive-images_end-section',
+              'type'  => 'section',
+              'indent'=>false,
             ),
           )
         );
@@ -675,7 +722,7 @@
         $this->args[ 'share_icons' ][ ] = array(
           'url'   => 'http://twitter.com/pizazzwp',
           'title' => 'Follow us on Twitter',
-          'icon'  => 'el-icon-twitter'
+          'icon'  => 'el el-twitter'
         );
 
 

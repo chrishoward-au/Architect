@@ -2,7 +2,12 @@ jQuery( document ).ready( function ()
 {
     "use strict";
 
-    // Active form validation
+//  jQuery("input#pzarc_testimonial-url" ).attr("required","required");
+  jQuery('body.pz_testimonials #title-prompt-text' ).text('Person\'s Name')
+  jQuery("input#pzarc_testimonial-url" ).attr("pattern",  "https?://.+");
+
+
+  // Active form validation
   //  jQuery( "#post" ).validationEngine();
 
 //	jQuery('.pzucd-meta-boxes').tabs({});

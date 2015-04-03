@@ -1301,7 +1301,7 @@
 //        'icon_class' => 'icon-large',
 //        'icon'       => 'el-icon-info-sign',
 //        'fields'     => array(
-      $sections[ '_help' ]    = array(
+      $sections[ '_help' ] = array(
         'title'      => 'Help',
         'icon_class' => 'icon-large',
         'icon'       => 'el-icon-question-sign',
@@ -1571,7 +1571,8 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
               'id'       => $prefix . 'blueprint-custom-css',
               'type'     => 'ace_editor',
               'mode'     => 'css',
-              'subtitle' => __( 'This can be any CSS you\'d like to add to a page this blueprint is displayed on. It will ONLY load on the pages this blueprint is shown on, so will only impact those pages. However, if you have multiple blueprints on a page, this CSS could affect or be overriden by ther blueprints\' custom CSS.', 'pzarchitect' ),
+              'subtitle' => __( 'As a shorthand, you can prefix your CSS class with MYBLUEPRINT and Architect will substitute the correct class for this Blueprint. e.g. MYBLUEPRINT {border-radius:5px;}', 'pzarchitect' )
+//              'subtitle' => __( 'This can be any CSS you\'d like to add to a page this blueprint is displayed on. It will ONLY load on the pages this blueprint is shown on, so will only impact those pages. However, if you have multiple blueprints on a page, this CSS could affect or be overriden by ther blueprints\' custom CSS.', 'pzarchitect' ),
               //                'hint'  => array('content' => __('This is can be any CSS you\'d like to add to a page this blueprint is displayed on. It will ONLY load on the pages this blueprint is shown on, so will only impact those pages. However, if you have multiple blueprints on a page, this CSS could affect or be overriden by ther blueprints\' custom CSS.', 'pzarchitect')),
             )
           )
@@ -2611,7 +2612,6 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
               array( $prefix . 'link-image', 'equals', 'url' ),
               array( '_panels_settings_feature-type', '=', 'image' )
             ),
-            'validate' => 'url',
             'subtitle' => __( 'Enter the text that appears when the user hovers over the link', 'pzazrchitect' )
           ),
           array(
@@ -2736,10 +2736,10 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
                 'title'    => __( 'Wrapper tag', 'pzarchitect' ),
                 'id'       => $prefix . 'cfield-' . $i . '-wrapper-tag',
                 'type'     => 'select',
-                'default'  => 'p',
+                'default'  => 'div',
                 'options'  => array(
-                  'p'    => 'p',
                   'div'  => 'div',
+                  'p'    => 'p',
                   'span' => 'span',
                   'h1'   => 'h1',
                   'h2'   => 'h2',
@@ -2747,7 +2747,6 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
                   'h4'   => 'h4',
                   'h5'   => 'h5',
                   'h6'   => 'h6',
-                  'none' => __( 'None', 'pzarchitect' )
                 ),
                 'subtitle' => __( 'Select the wrapper element for this custom field', 'pzarchitect' )
 
@@ -3009,7 +3008,7 @@ array(
          * CONTENT
          */
         $sections[ ] = array(
-          'title'      => __( 'Body/Excerpt', 'pzarchitect' ),
+          'title'      => __( 'Body content', 'pzarchitect' ),
           'show_title' => false,
           'icon_class' => 'icon-large',
           'icon'       => 'el-icon-align-left',
@@ -3049,7 +3048,16 @@ array(
               'preview'
             ) ),
             pzarc_redux_padding( $prefix . 'entry-contentp' . $font . $padding, array( '.entry-content p' ), $defaults[ $optprefix . 'entry-contentp' . $font . $padding ] ),
-            pzarc_redux_margin( $prefix . 'entry-contentp' . $font . $margin, array( '.entry-content p' ), $defaults[ $optprefix . 'entry-contentp' . $font . $margin ] ),
+            pzarc_redux_margin( $prefix . 'entry-contentp' . $font . $margin, array( '.entry-content p' ), $defaults[ $optprefix . 'entry-contentp' . $font . $margin ] )
+          )
+        );
+
+        $sections[ ] = array(
+          'title'      => __( 'Excerpts', 'pzarchitect' ),
+          'show_title' => false,
+          'icon_class' => 'icon-large',
+          'icon'       => 'el-icon-align-left',
+          'fields'     => pzarc_fields(
             array(
               'title'  => __( 'Excerpt', 'pzarchitect' ),
               'id'     => $prefix . 'entry-excerpt',
@@ -3212,7 +3220,7 @@ array(
               'title'    => __( 'Custom CSS', 'pzarchitect' ),
               'mode'     => 'css',
               'default'  => $defaults[ $optprefix . 'custom-css' ],
-              'subtitle' => __( 'To apply to this panel design specifically, prepend with class .pzarc-panel_shortname where shortname is the shortname of this panel. Note: underscore before shortname.', 'pzarchitect' )
+              'subtitle' => __( 'As a shorthand, you can prefix your CSS class with MYBLUEPRINT and Architect will substitute the correct class for this Blueprint. e.g. MYBLUEPRINT .entry-content{border-radius:5px;}', 'pzarchitect' )
             ),
           )
         );

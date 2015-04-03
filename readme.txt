@@ -3,7 +3,7 @@ Contributors: chrishoward
 Tags: content,display,posts,pages,gallery,slider,tabs,tabbed,tabular,widget,hooks
 Requires at least: 3.5.0
 Tested up to: 4.2.0
-Stable tag: 1.1.0.0
+Stable tag: 1.1.1.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Plugin URI: http://architect4wp.com
@@ -93,6 +93,16 @@ For support, please send an email to support@pizazzwp.com
 
 
 == Changelog ==
+
+= 1.1.1 =
+* ADDED: Testimonials content type
+* ADDED: More presets. Spruced up some existing presets
+* ADDED: Option to turn off additional content types: Snippets, Testimonials and any future ones.
+* FIXED: Various small tweaks and fixes
+* CHANGED: Split the Body/Excerpt styling page into two tabs
+* CHANGED Using the simple prefix MYBLUEPRINT in the custom CSS fields of the Styling options, Architect will automatically substitute the correct class
+* FIXED: Custom field wrapper tag now applies to the actual field, not its contents
+* FIXED: Conflict with Redux 3.5
 
 = 1.1.0 =
 * ADDED: Presets Selector

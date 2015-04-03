@@ -184,13 +184,16 @@
 
       /** at this point we have the necessary info to populate the navigator. So let's do it! */
       $content_class = self::get_blueprint_content_class();
-      $panel_class   = new $content_class($this->build); // This gets the settings for the panels of this content type.
+      if (class_exists($content_class)) {
+        $panel_class = new $content_class( $this->build ); // This gets the settings for the panels of this content type.
 
-      if ($bp_nav_type === 'navigator') {
-        $this->nav_items = $panel_class->get_nav_items($this->build->blueprint[ '_blueprints_navigator' ], $this->arc_query, $this->build->blueprint[ '_blueprints_navigator-labels' ]);
+        if ( $bp_nav_type === 'navigator' ) {
+          $this->nav_items = $panel_class->get_nav_items( $this->build->blueprint[ '_blueprints_navigator' ], $this->arc_query, $this->build->blueprint[ '_blueprints_navigator-labels' ] );
+        }
+        /** RENDER THE BLUEPRINT */
+        self::render_this_architect_blueprint( $bp_nav_type, $bp_nav_pos, $bp_shortname, $caller, $bp_transtype, $panel_class, $content_class, $bp_type );
+
       }
-      /** RENDER THE BLUEPRINT */
-      self::render_this_architect_blueprint($bp_nav_type, $bp_nav_pos, $bp_shortname, $caller, $bp_transtype, $panel_class, $content_class,$bp_type);
 
       /** Set our original query back. */
       wp_reset_postdata(); // Pretty sure this goes here... Not after the query reassignment

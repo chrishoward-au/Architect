@@ -42,7 +42,7 @@
           $bpkeys[ 'id' ] = 'arc-slider-nav';
         }
         if ( 'blueprint-custom' === $bpkeys[ 'id' ] ) {
-          $pzarc_contents .= $value;
+          $pzarc_contents .= str_replace(array('MYBLUEPRINT','YOURBLUEPRINT'),$specificity_class,$value);
         }
         if ( ! in_array( $bpkeys[ 'id' ], array( 'blueprint-custom', 'blueprints-load', 'blueprints-section' ) ) ) {
 
@@ -504,7 +504,7 @@
 //              }
             }
           } elseif ( $pkeys[ 'id' ] === 'custom' ) {
-            $pzarc_contents .= $value;
+            $pzarc_contents .= str_replace(array('MYBLUEPRINT','YOURBLUEPRINT'),$class_prefix,$value);
           }
           break;
       }

@@ -22,6 +22,11 @@
 
       // Grids
       $this->presets[ ] = array(
+        'data'     => PZARC_PLUGIN_URL . 'presets/preset-grid-glossy-magazine.txt',
+        'image'    => PZARC_PLUGIN_URL . 'presets/preset-grid-glossy-magazine.jpg',
+        'designer' => 'Chris Howard'
+      );
+      $this->presets[ ] = array(
           'data'     => PZARC_PLUGIN_URL . 'presets/preset-magazine-grid.txt',
           'image'    => PZARC_PLUGIN_URL . 'presets/preset-magazine-grid.jpg',
           'designer' => 'Chris Howard'
@@ -35,6 +40,11 @@
           'data'     => PZARC_PLUGIN_URL . 'presets/preset-grid-single-page.txt',
           'image'    => PZARC_PLUGIN_URL . 'presets/preset-grid-single-page.jpg',
           'designer' => 'Chris Howard'
+      );
+      $this->presets[ ] = array(
+        'data'     => PZARC_PLUGIN_URL . 'presets/preset-grid-testimonials.txt',
+        'image'    => PZARC_PLUGIN_URL . 'presets/preset-grid-testimonials.jpg',
+        'designer' => 'Chris Howard'
       );
       $this->presets[ ] = array(
           'data'     => PZARC_PLUGIN_URL . 'presets/preset-grid-thumb-gallery.txt',
