@@ -3,7 +3,7 @@ Contributors: chrishoward
 Tags: content,display,posts,pages,gallery,slider,tabs,tabbed,tabular,widget,hooks
 Requires at least: 3.5.0
 Tested up to: 4.2.0
-Stable tag: 1.1.1.0
+Stable tag: 1.1.3.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Plugin URI: http://architect4wp.com
@@ -93,6 +93,13 @@ For support, please send an email to support@pizazzwp.com
 
 
 == Changelog ==
+
+
+= 1.1.3.x =
+* Testing licence key works
+
+= 1.1.2 =
+* ADDED: Licence key support for purchases from PizazzWP
 
 = 1.1.1 =
 * ADDED: Testimonials content type
