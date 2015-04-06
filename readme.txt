@@ -3,7 +3,7 @@ Contributors: chrishoward
 Tags: content,display,posts,pages,gallery,slider,tabs,tabbed,tabular,widget,hooks
 Requires at least: 3.5.0
 Tested up to: 4.2.0
-Stable tag: 1.1.3.4
+Stable tag: 1.1.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Plugin URI: http://architect4wp.com
@@ -95,11 +95,12 @@ For support, please send an email to support@pizazzwp.com
 == Changelog ==
 
 
-= 1.1.3.x =
-* Testing licence key works
+= 1.1.3 =
+* CHANGED: Blueprints are hidden until rendered. This is because their CSS loads at the bottom of the page (since it enqueues mid page) and can cause an ugly unstyled moment otherwise.
+* FIXED: Wrong classes for featured image in Headway
 
 = 1.1.2 =
-* ADDED: Licence key support for purchases from PizazzWP
+* FIXED: Rare install error about .sass-cache
 
 = 1.1.1 =
 * ADDED: Testimonials content type

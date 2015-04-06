@@ -1,3 +1,6 @@
+## 1.1.2 : 4 April 2015 
+* FIXED: Rare install error about .sass-cache
+
 ## 1.1.1  : 2 April 2015
 * ADDED: Testimonials content type
 * ADDED: More presets. Spruced up some existing presets

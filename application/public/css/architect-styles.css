@@ -1,0 +1,3 @@
+/* Because blueprint specific styles get loaded in the foot, we have this one for a little help */
+
+.pzarc-blueprint {display:none;}

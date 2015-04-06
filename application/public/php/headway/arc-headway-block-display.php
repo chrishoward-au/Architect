@@ -271,7 +271,7 @@
       $this->register_block_element(array(
                                         'id'         => 'pzarc-panel-figure',
                                         'name'       => 'Featured Image',
-                                        'selector'   => '.use-hw-css .pzarc-panel figure.entry-thumbnail',
+                                        'selector'   => '.use-hw-css .pzarc-panel figure.entry-thumbnail img',
                                         'properties' => array('background',
                                                               'borders',
                                                               'padding',
@@ -291,16 +291,16 @@
                                                               'box-shadow',
                                                               'fonts'),
                                     ));
-      $this->register_block_element(array(
-                                        'id'         => 'pzarc-panel-backgroundimage',
-                                        'name'       => 'Background image',
-                                        'selector'   => '.use-hw-css .pzarc-panel figure.entry-thumbnail',
-                                        'properties' => array('borders',
-                                                              'padding',
-                                                              'margins',
-                                                              'rounded-corners',
-                                                              'box-shadow'),
-                                    ));
+//      $this->register_block_element(array(
+//                                        'id'         => 'pzarc-panel-backgroundimage',
+//                                        'name'       => 'Background image',
+//                                        'selector'   => '.use-hw-css .pzarc-panel figure.entry-thumbnail',
+//                                        'properties' => array('borders',
+//                                                              'padding',
+//                                                              'margins',
+//                                                              'rounded-corners',
+//                                                              'box-shadow'),
+//                                    ));
       //META
       for ($i = 1; $i <= 3; $i++) {
         $this->register_block_element(array(

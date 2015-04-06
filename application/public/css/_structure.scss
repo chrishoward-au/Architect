@@ -1,6 +1,7 @@
 // MAKE SURE NO FORMATTING OF GENERIC ELEMENTS
 .pzarc-blueprint {
   position: relative;
+  display:block; // Show the block again - since it's been hidden while it's rendering!
 }
 .pzarc-sections {
   box-sizing: border-box;

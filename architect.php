@@ -4,7 +4,7 @@
     Plugin Name: Architect
     Plugin URI: http://architect4wp.com
     Description: Architect is an all-in-one content layout builder. Go beyond the limitations of the theme you use to easily design and build any content layouts for it. Build the things that display your content. Build your own sliders, grids, tabs, galleries, accordions or tabular with sources such as posts, pages, galleries, and custom content types. Display using shortcodes, widgets, Headway blocks, WP action hooks and template tags, and WP Gallery shortcode. Change themes without needing to rebuild your layouts! Architect is *not* a page builder; rather, it is a content layout builder. Those content layouts can then be used to help add to your pages.
-    Version: 1.1.3.4
+    Version: 1.1.3
     Author: Chris Howard
     Author URI: http://pizazzwp.com
     License: GNU GPL v2
@@ -28,12 +28,12 @@
     function __construct()
     {
 
-      define('PZARC_VERSION', '1.1.3.4');
+      define('PZARC_VERSION', '1.1.3');
       define('PZARC_NAME', 'pzarchitect'); // This is also same as the locale
       define('PZARC_FOLDER', '/pizazzwp-architect');
       define('PZARC_CODEX', 'http://architect4wp.com/codex-listings');
 
-      define('PZARC_HWREL', false);
+      define('PZARC_HWREL', true);
       define ('PZARC_BETA', false);
 
       define('PZARC_PLUGIN_URL', trailingslashit(plugin_dir_url(__FILE__)));
@@ -275,6 +275,7 @@
     public function register_plugin_styles()
     {
 
+      wp_enqueue_style(PZARC_NAME . '-styles', PZARC_PLUGIN_APP_URL . '/public/css/architect-styles.css');
       wp_register_style(PZARC_NAME . '-plugin-styles', PZARC_PLUGIN_APP_URL . '/public/css/arc-front.css');
       // Need this for custom CSS in styling options
       if (file_exists(PZARC_CACHE_PATH . 'arc-dynamic-styles.css')) {
