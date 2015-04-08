@@ -32,7 +32,7 @@
                       'id'      => $prefix . 'specific-testimonials',
                       'type'    => 'select',
                       'select2' => array('allowClear' => true),
-                      'options' => pzarc_get_posts_in_post_type('pz_testimonials'),
+                      'options' => pzarc_get_posts_in_post_type('pz_testimonials','id'),
                       'multi'   => true,
                       'default' => array()
                   ),

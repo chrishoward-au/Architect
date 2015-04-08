@@ -13,6 +13,9 @@ class arc_query_testimonials extends arc_query_generic{
   {
 
     $this->query_options[ 'post_type' ] = 'pz_testimonials';
+    if (!empty($this->criteria['_content_testimonials_specific-testimonials'])) {
+      $this->query_options[ 'post__in' ]       = $this->criteria['_content_testimonials_specific-testimonials'];
+    }
   }
 
 } 

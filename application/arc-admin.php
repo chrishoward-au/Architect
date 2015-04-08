@@ -13,12 +13,12 @@
   add_action( 'init', 'pzarc_removeReduxDemoModeLink' );
 
 
-  /**
+  /*********************************************
    * Class ArchitectAdmin
    */
   class ArchitectAdmin {
 
-    /**
+    /*********************************************
      *
      */
     function __construct() {
@@ -30,7 +30,7 @@
       add_action( 'plugins_loaded', array( $this, 'init' ) );
     }
 
-    /**
+    /*********************************************
      *
      */
     function init() {
@@ -90,11 +90,19 @@
 
     }
 
+    /*********************************************
+     * 
+     */
     function missing_redux_admin_notice() {
       echo '<div id="message" class="error"><h3>' . __( 'Architect requires Redux Framework', 'pzarchitect' ) . '</h3><p><strong>' . __( 'One final step in installing Architect.', 'pzarchitect' ) . '</strong><br>' . __( 'It cannot function without the Redux Framework plugin. You need to install and/or activate Redux.', 'pzarchitect' ) . '<br>' . __( 'Redux is the backbone of Architect, providing all the necessary code libraries for Architect\'s fields and options.', 'pzarchitect' ) . '<br>' . __( 'There should be another message with a link to make installing and activating Redux easy. If you can\'t find it, contact PizazzWP support.', 'pzarchitect' ) . '</p></div>';
     }
 
 
+    /*********************************************
+     * @param $classes
+     *
+     * @return string
+     */
     function add_admin_body_class( $classes ) {
       $screen = get_current_screen();
 
@@ -128,6 +136,9 @@
     }
 
 
+    /*********************************************
+     * @param $hook
+     */
     function admin_enqueue( $hook ) {
       wp_enqueue_style( 'pzarc-admin-styles' );
 //    wp_enqueue_style('pzarc-jqueryui-css');
@@ -196,6 +207,9 @@
 //      require_once (PZARC_PLUGIN_APP_PATH.'admin/php/arcMCEButtons.php');
     }
 
+    /*********************************************
+     * 
+     */
     function admin_menu() {
       global $pzarc_menu, $pizazzwp_updates;
       if ( ! $pzarc_menu ) {
@@ -227,6 +241,9 @@
 
     }
 
+    /*********************************************
+     * 
+     */
     function admin_menu_no_redux() {
 //      global $pzarc_menu, $pizazzwp_updates;
 //      if (!$pzarc_menu) {
@@ -244,11 +261,17 @@
 
     }
 
+    /*********************************************
+     * 
+     */
     function admin_head() {
 
     }
 
 
+    /*********************************************
+     * 
+     */
     function pzarc_tools() {
       global $title;
 
@@ -307,6 +330,9 @@
       ';
     }
 
+    /*********************************************
+     * 
+     */
     function pzarc_support() {
       global $title;
 //      require_once(PZARC_DOCUMENTATION_PATH . PZARC_LANGUAGE . '/architect-pageguide.php');
@@ -568,7 +594,7 @@ add_action(\'init\',\'gs_init\');
   $pzarcadmin = new ArchitectAdmin();
 
 
-  /*
+  /*********************************************
    * Function creates post duplicate as a draft and redirects then to the edit post screen
    */
   function pzarc_duplicate_post_as_draft() {
@@ -681,7 +707,7 @@ add_action(\'init\',\'gs_init\');
 
   add_action( 'admin_action_pzarc_duplicate_post_as_draft', 'pzarc_duplicate_post_as_draft' );
 
-  /**
+  /*********************************************
    * Add the duplicate link to action list for post_row_actions
    */
   function pzarc_duplicate_post_link( $actions, $post ) {
@@ -693,12 +719,12 @@ add_action(\'init\',\'gs_init\');
     return $actions;
   }
 
-  /**
+  /*********************************************
    * Functions for exporting a preset
    */
   add_action( 'admin_action_pzarc_export_blueprint', 'pzarc_export_blueprint' );
 
-  /**
+  /*********************************************
    * pzarc_export_blueprint
    */
   function pzarc_export_blueprint() {
@@ -738,7 +764,7 @@ add_action(\'init\',\'gs_init\');
     }
   }
 
-  /**
+  /*********************************************
    * @param $actions
    * @param $post
    *
@@ -779,7 +805,9 @@ add_action(\'init\',\'gs_init\');
 
   }
 
-  /* Sort posts in wp_list_table by column in ascending or descending order. */
+  /*********************************************
+   * Sort posts in wp_list_table by column in ascending or descending order. 
+   */
   function pzarc_blueprints_order( $query ) {
     /*
         Set post types.
@@ -810,7 +838,7 @@ add_action(\'init\',\'gs_init\');
   //http://wpsnipp.com/index.php/functions-php/update-automatically-create-media_buttons-for-shortcode-selection/
   add_action( 'media_buttons', 'pzarc_add_sc_select', 11 );
 
-  /**
+  /*********************************************
    *
    */
   function pzarc_add_sc_select() {
@@ -832,7 +860,7 @@ add_action(\'init\',\'gs_init\');
   }
 
   add_action( 'admin_head', 'pzarc_button_js' );
-  /**
+  /*********************************************
    *
    */
   function pzarc_button_js() {

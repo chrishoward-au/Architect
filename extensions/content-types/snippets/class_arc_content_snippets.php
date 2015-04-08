@@ -32,7 +32,7 @@
                       'id'      => $prefix . 'specific-snippets',
                       'type'    => 'select',
                       'select2' => array('allowClear' => true),
-                      'options' => pzarc_get_posts_in_post_type('pz_snippets'),
+                      'options' => pzarc_get_posts_in_post_type('pz_snippets','id'),
                       'multi'   => true,
                       'default' => array()
                   ),

@@ -1,0 +1,1 @@
+jQuery(document).ready(function(){new WOW({boxClass:"pzarc-wow",animateClass:"animated"}).init()});

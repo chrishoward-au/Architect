@@ -33,7 +33,7 @@
       define('PZARC_FOLDER', '/pizazzwp-architect');
       define('PZARC_CODEX', 'http://architect4wp.com/codex-listings');
 
-      define('PZARC_HWREL', true);
+      define('PZARC_HWREL', false);
       define ('PZARC_BETA', false);
 
       define('PZARC_PLUGIN_URL', trailingslashit(plugin_dir_url(__FILE__)));

@@ -44,6 +44,9 @@
       ), 10, 1 );
       add_filter( 'views_edit-arc-blueprints', array( $this, 'blueprints_description' ) );
 
+      if ( defined( 'PZARC_TESTER' ) && PZARC_TESTER ) {
+        add_action( "redux/metaboxes/$this->redux_opt_name/boxes", array( $this, 'pzarc_mb_animation' ), 10, 1 );
+      }
 
     }
 
@@ -268,19 +271,12 @@
           array(
             'id'      => $prefix . 'tabs',
             'type'    => 'tabbed',
-            //                'desc'    => '
-            ////                <p style="color:#ff5500;">' . __('MAKE A METHOD TO LOAD A PRESET. IT WOULD WORK JUST LIKE DUPLICATE.', 'pzarchitect') . '</p>Blueprints bring everything together - the styling, layout and content - and tell WordPress what and how to show it on the page.',
-            //                //                '<p>&bull;&nbsp;' . __('<strong style="color:#0074A2;"><em>Blueprint Layout</em></strong> is where you choose which Panel design to use for posts or page, and how you want to lay out those Panels.', 'pzarchitect') . '</p>
-            //                //                 <p>&bull;&nbsp;' . __('<strong style="color:#0074A2;"><em>Panels Content</em></strong> is where you select the specific posts or pages to display within this Blueprint\'s Panels. <strong>The one content selection is spread across all sections</strong>', 'pzarchitect') . '</p>
-            //                //                 <p>&bull;&nbsp;' . __('Blueprints by default have limited styling. Use <strong style="color:#0074A2;"><em>Blueprint Styling</em></strong> to refine the styling of the Blueprint to match your theme.', 'pzarchitect') . '</p>
-
             'options' => array(
-//                                     'presets'         => '<span>Presets</span>',
-'layout'          => '<span><span class="stepno">1</span> Blueprint Design</span>',
-'content'         => '<span><span class="stepno">2</span> Content Selection</span>',
-'panels'          => '<span><span class="stepno">3</span> Content Layout</span>',
-'content_styling' => '<span><span class="stepno">4</span> Content Styling</span>',
-'styling'         => '<span><span class="stepno">5</span> Blueprint Styling</span>',
+              'layout'          => '<span><span class="stepno">1</span> <i class="el el-th"></i> Blueprint Design</span>',
+              'content'         => '<span><span class="stepno">2</span> <i class="el el-filter"></i> Content Selection</span>',
+              'panels'          => '<span><span class="stepno">3</span> <i class="el el-website"></i> Content Layout</span>',
+              'content_styling' => '<span><span class="stepno">4</span> <i class="el el-brush"></i> Content Styling</span>',
+              'styling'         => '<span><span class="stepno">5</span> <i class="el el-brush"></i> Blueprint Styling</span>',
             ),
             'targets' => array(
               'layout'          => array( 'layout-settings' ),
@@ -291,37 +287,8 @@
               //                    'presets'         => array('presets'),
             )
           ),
-          //            array(
-          //                'id'       => $prefix . 'info-blueprint-layout',
-          //                'type'     => 'info',
-          //                'subtitle' => __('about blueprint layout', 'pzarchitect'),
-          //                'required'=> array( $prefix . 'tabs','=','layout')
-          //            ),
-          //            array(
-          //                'id'       => $prefix . 'info-content-celection',
-          //                'type'     => 'info',
-          //                'subtitle' => __('about content-selection', 'pzarchitect'),
-          //                'required'=> array( $prefix . 'tabs','=','content')
-          //            ),
-          //            array(
-          //                'id'       => $prefix . 'info-content-layout',
-          //                'type'     => 'info',
-          //                'subtitle' => __('about content layout layout', 'pzarchitect'),
-          //                'required'=> array( $prefix . 'tabs','=','panels')
-          //            ),
-          //            array(
-          //                'id'       => $prefix . 'info-blueprint-styling',
-          //                'type'     => 'info',
-          //                'subtitle' => __('about blueprint styling', 'pzarchitect'),
-          //                'required'=> array( $prefix . 'tabs','=','styling')
-          //            ),
-          //            array(
-          //                'id'       => $prefix . 'info-content-styling',
-          //                'type'     => 'info',
-          //                'subtitle' => __('about content styling', 'pzarchitect'),
-          //                'required'=> array( $prefix . 'tabs','=','content_stylings')
-          //            )
         );
+
       } else {
         $fields = array(
           array(
@@ -341,6 +308,10 @@
         );
 
 
+      }
+      if ( defined( 'PZARC_TESTER' ) && PZARC_TESTER ) {
+        $fields[ 0 ][ 'options' ][ 'animation' ] = '<span><i class="el el-film"></i> Animation</span>';
+        $fields[ 0 ][ 'targets' ][ 'animation' ] = array( 'animations' );
       }
       $sections[ ]  = array(
         //          'title'      => __('General Settings', 'pzarchitect'),
@@ -1572,7 +1543,7 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
               'type'     => 'ace_editor',
               'mode'     => 'css',
               'subtitle' => __( 'As a shorthand, you can prefix your CSS class with MYBLUEPRINT and Architect will substitute the correct class for this Blueprint. e.g. MYBLUEPRINT {border-radius:5px;}', 'pzarchitect' )
-//              'subtitle' => __( 'This can be any CSS you\'d like to add to a page this blueprint is displayed on. It will ONLY load on the pages this blueprint is shown on, so will only impact those pages. However, if you have multiple blueprints on a page, this CSS could affect or be overriden by ther blueprints\' custom CSS.', 'pzarchitect' ),
+              //              'subtitle' => __( 'This can be any CSS you\'d like to add to a page this blueprint is displayed on. It will ONLY load on the pages this blueprint is shown on, so will only impact those pages. However, if you have multiple blueprints on a page, this CSS could affect or be overriden by ther blueprints\' custom CSS.', 'pzarchitect' ),
               //                'hint'  => array('content' => __('This is can be any CSS you\'d like to add to a page this blueprint is displayed on. It will ONLY load on the pages this blueprint is shown on, so will only impact those pages. However, if you have multiple blueprints on a page, this CSS could affect or be overriden by ther blueprints\' custom CSS.', 'pzarchitect')),
             )
           )
@@ -1862,11 +1833,6 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
         $_architect_options = get_option( '_architect_options' );
       }
 
-      $animation_options = array( 'none' => 'None' );
-      $animations        = explode( ',', 'bounce,bounceIn,bounceInDown,bounceInLeft,bounceInRight,bounceInUp,bounceOut,bounceOutDown,bounceOutLeft,bounceOutRight,bounceOutUp,fadeIn,fadeInDown,fadeInDownBig,fadeInLeft,fadeInLeftBig,fadeInRight,fadeInRightBig,fadeInUp,fadeInUpBig,fadeOut,fadeOutDown,fadeOutDownBig,fadeOutLeft,fadeOutLeftBig,fadeOutRight,fadeOutRightBig,fadeOutUp,fadeOutUpBig,flash,flipInX,flipInY,flipOutX,flipOutY,hinge,lightSpeedIn,lightSpeedOut,pulse,rollIn,rollOut,rotateIn,rotateInDownLeft,rotateInDownRight,rotateInUpLeft,rotateInUpRight,rotateOut,rotateOutDownLeft,rotateOutDownRight,rotateOutUpLeft,rotateOutUpRight,rubberBand,shake,slideInDown,slideInLeft,slideInRight,slideInUp,slideOutDown,slideOutLeft,slideOutRight,slideOutUp,swing,tada,wobble,zoomIn,zoomInDown,zoomInLeft,zoomInRight,zoomInUp,zoomOut,zoomOutDown,zoomOutLeft,zoomOutRight,zoomOutUp' );
-      foreach ( $animations as $animation ) {
-        $animation_options[ $animation ] = $animation;
-      }
       $prefix      = '_panels_design_';
       $sections    = array();
       $sections[ ] = array(
@@ -2089,19 +2055,6 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
               'content' => __( 'When enabled, Architect will automatically wrap the header and footer components of the post layout in header and footer tags to maintain compatibility with current WP layout trends.<br><br>However, some layouts, such as tabular, are not suited to using the headers and footers.', 'pzarchitect' )
             )
           ),
-          ( ( defined( 'PZARC_TESTER' ) && PZARC_TESTER ) ?
-            // TODO: Work on this
-            array(
-              'title'    => __( 'Animate components group', 'pzarchitect' ),
-              'id'       => $prefix . 'animate-components',
-              'type'     => 'select',
-              'options'  => $animation_options,
-              'select2'  => array( 'allowClear' => false ),
-              'default'  => 'none',
-              'subtitle' => __( 'Add the components group to the screen via an animation', 'pzazrchitect' ),
-              'desc'     => '<a href="http://daneden.github.io/animate.css" target=_blank>Visit Animate.CSS for demonstrations</a>'
-            ) : null ),
-
         )
       );
 
@@ -3275,6 +3228,189 @@ array(
       }
 
       return $metaboxes;
+    }
+
+    function pzarc_mb_animation( $metaboxes, $defaults_only = false ) {
+      global $_architect_options;
+      if ( empty( $_architect_options ) ) {
+        $_architect_options = get_option( '_architect_options' );
+      }
+
+      $animations = explode( ',', 'bounce,bounceIn,bounceInDown,bounceInLeft,bounceInRight,bounceInUp,bounceOut,bounceOutDown,bounceOutLeft,bounceOutRight,bounceOutUp,fadeIn,fadeInDown,fadeInDownBig,fadeInLeft,fadeInLeftBig,fadeInRight,fadeInRightBig,fadeInUp,fadeInUpBig,fadeOut,fadeOutDown,fadeOutDownBig,fadeOutLeft,fadeOutLeftBig,fadeOutRight,fadeOutRightBig,fadeOutUp,fadeOutUpBig,flash,flipInX,flipInY,flipOutX,flipOutY,hinge,lightSpeedIn,lightSpeedOut,pulse,rollIn,rollOut,rotateIn,rotateInDownLeft,rotateInDownRight,rotateInUpLeft,rotateInUpRight,rotateOut,rotateOutDownLeft,rotateOutDownRight,rotateOutUpLeft,rotateOutUpRight,rubberBand,shake,slideInDown,slideInLeft,slideInRight,slideInUp,slideOutDown,slideOutLeft,slideOutRight,slideOutUp,swing,tada,wobble,zoomIn,zoomInDown,zoomInLeft,zoomInRight,zoomInUp,zoomOut,zoomOutDown,zoomOutLeft,zoomOutRight,zoomOutUp' );
+      foreach ( $animations as $animation ) {
+        $animation_options[ $animation ] = $animation;
+      }
+      $prefix                  = '_animation_';
+      $sections                = array();
+      $sections[ '_sequence' ] = array(
+        'title'      => __( 'Sequence', 'pzarchitect' ),
+        'show_title' => false,
+        'icon_class' => 'icon-large',
+        'icon'       => 'el-icon-random',
+        'fields'     => array(
+          array(
+            'id'      => $prefix . 'sequence',
+            'type'    => 'sorter',
+            'title'   => 'Animation order',
+            'desc'    => 'Drag and drop to activate and arrange the order of the components animation',
+            'options' => array(
+              'disabled' => array(
+                'panels'  => 'Panels',
+                'titles'  => 'Titles',
+                'meta'    => 'Meta',
+                'content' => 'Body/Excerpt',
+                'feature' => 'Featured image',
+                'custom'  => 'Custom fields'
+              ),
+              'enabled'  => array(),
+            ),
+          ),
+        ),
+      );
+      $sections[ '_panels' ]   = array(
+        'title'      => __( 'Panels ', 'pzarchitect' ),
+        'show_title' => false,
+        'icon_class' => 'icon-large',
+        'icon'       => 'el-icon-th-large',
+        'desc'       => '<a href="http://daneden.github.io/animate.css" target=_blank>Visit Animate.CSS for demonstrations</a>',
+        'fields'     => self::animation_fields( $prefix . 'panel', $animation_options )
+      );
+      $sections[ '_titles' ]   = array(
+        'title'      => __( 'Titles ', 'pzarchitect' ),
+        'show_title' => false,
+        'icon_class' => 'icon-large',
+        'icon'       => 'el-icon-font',
+        'desc'       => '<a href="http://daneden.github.io/animate.css" target=_blank>Visit Animate.CSS for demonstrations</a>',
+        'fields'     => self::animation_fields( $prefix . 'title', $animation_options )
+      );
+      $sections[ '_meta' ]     = array(
+        'title'      => __( 'Meta groups', 'pzarchitect' ),
+        'show_title' => false,
+        'icon_class' => 'icon-large',
+        'icon'       => 'el-icon-calendar',
+        'desc'       => '<a href="http://daneden.github.io/animate.css" target=_blank>Visit Animate.CSS for demonstrations</a>',
+        'fields'     => pzarc_fields( self::animation_fields( $prefix . 'meta1', $animation_options, 'Meta 1' ), self::animation_fields( $prefix . 'meta2', $animation_options, 'Meta 2' ), self::animation_fields( $prefix . 'meta3', $animation_options, 'Meta 3' ) )
+
+      );
+      $sections[ '_content' ]  = array(
+        'title'      => __( 'Body/Excerpt', 'pzarchitect' ),
+        'show_title' => false,
+        'icon_class' => 'icon-large',
+        'icon'       => 'el-icon-align-left',
+        'desc'       => '<a href="http://daneden.github.io/animate.css" target=_blank>Visit Animate.CSS for demonstrations</a>',
+        'fields'     => self::animation_fields( $prefix . 'content', $animation_options )
+      );
+      $sections[ '_feature' ]  = array(
+        'title'      => __( 'Featured image', 'pzarchitect' ),
+        'show_title' => false,
+        'icon_class' => 'icon-large',
+        'icon'       => 'el-icon-picture',
+        'desc'       => '<a href="http://daneden.github.io/animate.css" target=_blank>Visit Animate.CSS for demonstrations</a>',
+        'fields'     => self::animation_fields( $prefix . 'feature', $animation_options )
+      );
+      $sections[ '_custom' ]   = array(
+        'title'      => __( 'Custom field groups ', 'pzarchitect' ),
+        'show_title' => false,
+        'icon_class' => 'icon-large',
+        'icon'       => 'el-icon-wrench',
+        'desc'       => '<a href="http://daneden.github.io/animate.css" target=_blank>Visit Animate.CSS for demonstrations</a>',
+        'fields'     => pzarc_fields( self::animation_fields( $prefix . 'customfield1', $animation_options, 'Custom Field 1' ), self::animation_fields( $prefix . 'customfield2', $animation_options, 'Custom Field 2' ), self::animation_fields( $prefix . 'customfield3', $animation_options, 'Custom Field 2' ) )
+
+      );
+      $metaboxes[ ]            = array(
+        'id'         => 'animation',
+        'title'      => 'Animation',
+        'post_types' => array( 'arc-blueprints' ),
+        'sections'   => $sections,
+        'position'   => 'normal',
+        'priority'   => 'low',
+        'sidebar'    => true
+
+      );
+
+      //pzdebug($metaboxes);
+
+//        foreach ($metaboxes as $k => $v) {
+//          var_dump($v['id'],$v['post_types']);
+//        }
+
+
+      return $metaboxes;
+    }
+
+    private function animation_fields( $component = null, $animation_options = array(), $section_title = null ) {
+
+      $fields = array(
+        ( $section_title ?
+          array(
+            'title'  => $section_title,
+            'id'     => $component . 'start-section',
+            'type'   => 'section',
+            'indent' => true,
+          ) : null ),
+        array(
+          'title'   => __( 'Enable animation', 'pzarchitect' ),
+          'id'      => $component . '-enable',
+          'type'    => 'switch',
+          'default' => false,
+          'on'      => __( 'Yes', 'pzarchitect' ),
+          'off'     => __( 'No', 'pzarchitect' )
+        ),
+        array(
+          'title'    => __( 'Animation', 'pzarchitect' ),
+          'id'       => $component . '-animation',
+          'type'     => 'select',
+          'options'  => $animation_options,
+          'select2'  => array( 'allowClear' => false ),
+          'default'  => 'none',
+          'required' => array( $component . '-enable', 'equals', true ),
+        ),
+        array(
+          'title'    => __( 'Duration', 'pzarchitect' ),
+          'id'       => $component . '-duration',
+          'type'     => 'slider',
+          'required' => array( $component . '-enable', 'equals', true ),
+          'default'  => 0.5,
+          'min'      => 0,
+          'step'     => 0.1,
+          'max'      => 10,
+          'resolution'=>0.1
+        ),
+        array(
+          'title'    => __( 'Delay', 'pzarchitect' ),
+          'id'       => $component . '-delay',
+          'type'     => 'slider',
+          'required' => array( $component . '-enable', 'equals', true ),
+          'default'  => 0,
+          'min'      => 0,
+          'step'     => 0.1,
+          'max'      => 20,
+          'resolution'=>0.1
+        ),
+        array(
+          'title'    => __( 'Synchronization', 'pzarchitect' ),
+          'id'       => $component . '-sync',
+          'type'     => 'button_set',
+          'default'  => 'serial',
+          'required' => array( $component . '-enable', 'equals', true ),
+          'subtitle' => __( 'Where there are multiple posts, should animations for this component type happen simultaneously or consecutively', 'pzarchitect' ),
+          'options'  => array(
+            'serial'   => __( 'Consecutively', 'pzarchitect' ),
+            'parallel' => __( 'Simultaneously', 'pzarchitect' ),
+            'random'   => __( 'Randomly', 'pzarchitect' )
+          )
+        ),
+        ( $section_title ?
+          array(
+            'id'     => $component . 'end-section',
+            'type'   => 'section',
+            'indent' => false,
+          ) : null ),
+
+
+      );
+
+      return $fields;
     }
 
     private static function arc_has_export_data() {

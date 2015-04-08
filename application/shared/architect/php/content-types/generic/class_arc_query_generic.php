@@ -111,10 +111,13 @@
 
       $this->content_filters($source, $overrides);
 
+      if (!empty($this->criteria['_content_posts_specific-posts'])) {
+        $this->query_options[ 'post__in' ]       = $this->criteria['_content_posts_specific-posts'];
+      }
+
       // Order. This is always set
       $this->query_options[ 'orderby' ] = $this->criteria[ 'orderby' ];
       $this->query_options[ 'order' ]   = $this->criteria[ 'order' ];
-
 
       // OVERRIDES
       // currently this is the only bit that really does anything
@@ -186,7 +189,7 @@
 
     protected function content_filters($source, $overrides)
     {
-
+//TODO: this function isn't called by $this->content_filters above. Only child ones are. Need to resolve!
       switch ($source) {
 
         case 'cpt':
@@ -195,6 +198,7 @@
 
 
       }
+
 
 
     }

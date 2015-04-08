@@ -614,7 +614,7 @@
 
     foreach ($pzarc_post_types_obj as $pzarc_post_type_obj) {
 
-      if ($use_shortname) {
+      if ($use_shortname===true) {
 
         if ($pzarc_post_type === 'arc-blueprints') {
           $use_key = get_post_meta($pzarc_post_type_obj->ID, '_blueprints_short-name', true);
@@ -624,7 +624,9 @@
           $use_key = $pzarc_post_type_obj->post_name;
         }
 
-      } else {
+      } elseif ($use_shortname === 'id') {
+        $use_key = $pzarc_post_type_obj->ID;
+      } else  {
         $use_key = $pzarc_post_type_obj->post_name;
       }
 

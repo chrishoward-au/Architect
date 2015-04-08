@@ -13,6 +13,10 @@ class arc_query_slide extends arc_query_generic{
   {
 
     $this->query_options[ 'post_type' ] = 'pzsp-slides';
+    if (!empty($this->criteria['_content_slides_specific-slides'])) {
+      $this->query_options[ 'post__in' ]       = $this->criteria['_content_slides_specific-slides'];
+    }
+
   }
 
 } 

@@ -1,3 +1,9 @@
+## 1.1.3 : 7 April 2015
+* CHANGED: Blueprints are hidden until rendered. This is because their CSS loads at the bottom of the page (since it enqueues mid page) and can cause an ugly unstyled moment otherwise.
+* FIXED: Wrong classes for featured image in Headway
+* FIXED: Specific selection of posts, pages, snippets, slides, testimonials wasn't working
+* FIXED: Usability issues in Content Layout drag & drop when Feature Location set to "Outside Components"
+
 ## 1.1.2 : 4 April 2015 
 * FIXED: Rare install error about .sass-cache
 

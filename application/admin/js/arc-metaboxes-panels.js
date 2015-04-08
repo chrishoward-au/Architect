@@ -398,7 +398,9 @@ jQuery( document ).ready( function ()
           'right': '',
           'bottom': '',
           'width': '100%',
-          'height': 'auto'
+          'height': 'auto',
+          'position':'absolute'
+
         } );
         // jQuery( '.pzarc-dropzone .pzgp-cell-image-behind img' ).css( {
         //     'height': '300px',
@@ -452,14 +454,17 @@ jQuery( document ).ready( function ()
             jQuery( '.pzarc-dropzone .pzgp-cell-image-behind img' ).css( {
               'height': 'auto',
               'width': '100%',
-              'left': ''
+              'left': '',
+              'position':'relative'
             } );
             jQuery( '.pzarc-dropzone .pzgp-cell-image-behind' ).css( {
               'width': (450 - zonesWidth) + 'px',
               'left': '',
               'right': '0',
               'top': '',
-              'bottom': ''
+              'bottom': '',
+              'position':'relative'
+
             } );
             break;
 
@@ -467,44 +472,56 @@ jQuery( document ).ready( function ()
             jQuery( '.pzarc-dropzone .pzgp-cell-image-behind img' ).css( {
               'height': 'auto',
               'width': '100%',
-              'left': ''
+              'left': '',
+              'position':'relative'
+
             } );
             jQuery( '.pzarc-dropzone .pzgp-cell-image-behind' ).css( {
               'width': (450 - zonesWidth) + 'px',
               'right': '',
               'left': '0',
               'top': '',
-              'bottom': ''
+              'bottom': '',
+              'position':'relative'
+
             } );
             break;
 
           case 'top':
             jQuery( '.pzarc-dropzone .pzgp-cell-image-behind img' ).css( {
               'width': '100%',
-              'height': '',
-              'left': ''
+              'height': '150px',
+              'left': '',
+              'position':'relative'
+
             } );
             jQuery( '.pzarc-dropzone .pzgp-cell-image-behind' ).css( {
               'top': zonesHeight + 'px',
               'right': '',
               'left': '',
               'bottom': '',
-              'width': '100%'
+              'width': '100%',
+              'position':'relative'
+
             } );
             break;
 
           case 'bottom':
             jQuery( '.pzarc-dropzone .pzgp-cell-image-behind img' ).css( {
               'width': '100%',
-              'height': '',
-              'left': ''
+              'height': '150px',
+              'left': '',
+              'position':'relative'
+
             } );
             jQuery( '.pzarc-dropzone .pzgp-cell-image-behind' ).css( {
               'bottom': zonesHeight + 'px',
               'right': '',
               'top': '0',
               'left': '',
-              'width': '100%'
+              'width': '100%',
+              'position':'relative'
+
             } );
             break;
         }

@@ -3,7 +3,7 @@ Contributors: chrishoward
 Tags: content,display,posts,pages,gallery,slider,tabs,tabbed,tabular,widget,hooks
 Requires at least: 3.5.0
 Tested up to: 4.2.0
-Stable tag: 1.1.2
+Stable tag: 1.1.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Plugin URI: http://architect4wp.com
@@ -98,6 +98,8 @@ For support, please send an email to support@pizazzwp.com
 = 1.1.3 =
 * CHANGED: Blueprints are hidden until rendered. This is because their CSS loads at the bottom of the page (since it enqueues mid page) and can cause an ugly unstyled moment otherwise.
 * FIXED: Wrong classes for featured image in Headway
+* FIXED: Specific selection of posts, pages, snippets, slides, testimonials wasn't working
+* FIXED: Usability issues in Content Layout drag & drop when Feature Location set to "Outside Components"
 
 = 1.1.2 =
 * FIXED: Rare install error about .sass-cache

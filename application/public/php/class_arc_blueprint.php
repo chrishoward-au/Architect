@@ -50,11 +50,15 @@
 
       //      }
       //}
-      $animate = (!empty($this->blueprint[ 'section_object' ][ $i ]->section[ 'section-panel-settings' ][ '_panels_design_animate-components' ])?$this->blueprint[ 'section_object' ][ $i ]->section[ 'section-panel-settings' ][ '_panels_design_animate-components' ]:'none');
-      if ($animate !== 'none') {
-        wp_enqueue_style('css-animate');
-      }
 
+      // TODO: Fix this up later
+      if ( defined( 'PZARC_TESTER' ) && PZARC_TESTER ) {
+
+        $animate = ( ! empty( $this->blueprint[ 'section_object' ][ $i ]->section[ 'section-panel-settings' ][ '_panels_design_animate-components' ] ) ? $this->blueprint[ 'section_object' ][ $i ]->section[ 'section-panel-settings' ][ '_panels_design_animate-components' ] : 'none' );
+        if ( $animate !== 'none' ) {
+          wp_enqueue_style( 'css-animate' );
+        }
+      }
     }
 
 

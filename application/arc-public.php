@@ -76,6 +76,11 @@
     // jQuery Collapse
     wp_register_script( 'js-jquery-collapse', PZARC_PLUGIN_APP_URL . '/public/js/jQuery-Collapse/src/jquery.collapse.js', array( 'jquery' ), null, true );
 
+    if ( defined( 'PZARC_TESTER' ) && PZARC_TESTER ) {
+
+      wp_enqueue_script( 'wowjs', PZARC_PLUGIN_APP_URL . 'public/js/WOW/wow.js', array(), null, true );
+    }
+
     $actions_options = get_option( '_architect_actions' );
     $actions         = array();
     $i               = 1;
@@ -157,7 +162,7 @@
    *
    ***********************/
   function pzarchitect( $pzarc_blueprint = null, $pzarc_overrides = null ) {
-    $pzarc_caller    = 'template_tag';
+    $pzarc_caller = 'template_tag';
     do_action( "arc_before_template_tag", $pzarc_blueprint, $pzarc_overrides, $pzarc_caller );
     do_action( "arc_do_template_tag", $pzarc_blueprint, $pzarc_overrides, $pzarc_caller );
     do_action( "arc_after_template_tag", $pzarc_blueprint, $pzarc_overrides, $pzarc_caller );
@@ -170,7 +175,7 @@
    *
    ***********************/
   function pzarc_pagebuilder( $pzarc_blueprint = null, $pzarc_overrides = null ) {
-    $pzarc_caller    = 'pagebuilder';
+    $pzarc_caller = 'pagebuilder';
 //    do_action("arc_before_pagebuilder", $pzarc_blueprint, $pzarc_overrides, $pzarc_caller);
     do_action( "arc_do_pagebuilder", $pzarc_blueprint, $pzarc_overrides, $pzarc_caller );
 //    do_action("arc_after_pagebuilder", $pzarc_blueprint, $pzarc_overrides, $pzarc_caller);
@@ -203,6 +208,12 @@
       $GLOBALS[ '_architect_options' ] = get_option( '_architect_options', array() );
     }
 
+    if ( defined( 'PZARC_TESTER' ) && PZARC_TESTER ) {
+
+      wp_enqueue_script( 'wow-front', PZARC_PLUGIN_APP_URL . 'public/js/arc-front-wow.js', '', '', false );
+      wp_enqueue_style( 'animates-css', PZARC_PLUGIN_APP_URL . 'public/css/animate.min.css', '', '', false );
+
+    }
     wp_enqueue_script( 'js-magnific' );
     wp_enqueue_script( 'js-magnific-arc' );
     wp_enqueue_style( 'css-magnific' );

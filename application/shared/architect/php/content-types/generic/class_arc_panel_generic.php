@@ -1,7 +1,6 @@
 <?php
 
-  class arc_Panel_Generic
-  {
+  class arc_Panel_Generic {
     public $data = array();
     public $toshow = array();
     public $section = array();
@@ -10,17 +9,15 @@
     public $build;
     public $arc_query;
 
-    public function __construct(&$build)
-    {
+    public function __construct( &$build ) {
       // If you create you own construct, remember to include these two lines!
       $this->build = $build;
-      pzdb('arc_panel_generic before initialise');
+      pzdb( 'arc_panel_generic before initialise' );
       self::initialise_data();
-      pzdb('arc_panel_generic after initialise');
+      pzdb( 'arc_panel_generic after initialise' );
     }
 
-    public function initialise_data()
-    {
+    public function initialise_data() {
       // Null up everything to prevent warnings later on
       $this->data[ 'title' ]            = null;
       $this->data[ 'title' ][ 'title' ] = null;
@@ -62,17 +59,16 @@
      * Defines the standard panel definition. Overwrite with own as necessary. See gallery post type for example
      *
      */
-    public function panel_def()
-    {
+    public function panel_def() {
       //TODO: Need to get a way to always wrap components in pzarc-compenents div.Problem is...dev has to create definition correctly.
-      $panel_def[ 'components-open' ]  = '<article id="post-{{postid}}" class="{{mimic-block-type}} post-{{postid}} {{posttype}} type-{{posttype}} status-{{poststatus}} format-{{postformat}} hentry {{categories}} {{tags}} {{pzclasses}}">';
+      $panel_def[ 'components-open' ]  = '<article id="post-{{postid}}" class="{{animationclass}} {{mimic-block-type}} post-{{postid}} {{posttype}} type-{{posttype}} status-{{poststatus}} format-{{postformat}} hentry {{categories}} {{tags}} {{pzclasses}}" {{animationdata}}>';
       $panel_def[ 'components-close' ] = '</article>';
       $panel_def[ 'postlink' ]         = '<a href="{{permalink}}" title="{{title}}">';
       //     $panel_def[ 'header' ]           = '<header class="entry-header">{{headerinnards}}</header>';
-      $panel_def[ 'title' ] = '{{h1open}} class="entry-title">{{postlink}}{{title}}{{closepostlink}}{{h1close}}';
-      $panel_def[ 'meta1' ] = '<{{div}} class="entry-meta entry-meta1" {{sortable}}>{{meta1innards}}</{{div}}>';
-      $panel_def[ 'meta2' ] = '<{{div}} class="entry-meta entry-meta2" {{sortable}}>{{meta2innards}}</{{div}}>';
-      $panel_def[ 'meta3' ] = '<{{div}} class="entry-meta entry-meta3" {{sortable}}>{{meta3innards}}</{{div}}>';
+      $panel_def[ 'title' ] = '{{h1open}} class="{{animationclass}} entry-title" {{animationdata}}>{{postlink}}{{title}}{{closepostlink}}{{h1close}}';
+      $panel_def[ 'meta1' ] = '<{{div}} class="{{animationclass}} entry-meta entry-meta1" {{sortable}} {{animationdata}}>{{meta1innards}}</{{div}}>';
+      $panel_def[ 'meta2' ] = '<{{div}} class="{{animationclass}} entry-meta entry-meta2" {{sortable}} {{animationdata}}>{{meta2innards}}</{{div}}>';
+      $panel_def[ 'meta3' ] = '<{{div}} class="{{animationclass}} entry-meta entry-meta3" {{sortable}} {{animationdata}}>{{meta3innards}}</{{div}}>';
       // TODO Make this only used in tables
       $panel_def[ 'datetime' ]   = '<span class="entry-date"><a href="{{permalink}}" ><time class="entry-date" datetime="{{datetime}}">{{fdatetime}}</time></a></span>';
       $panel_def[ 'categories' ] = '<span class="categories-links">{{categorieslinks}}</span>';
@@ -80,16 +76,16 @@
       $panel_def[ 'author' ]     = '<span class="byline"><span class="author vcard"><a class="url fn n" href="{{authorlink}}" title="View all posts by {{authorname}}" rel="author">{{authorname}}</a></span></span>';
       $panel_def[ 'email' ]      = '<span class="byline email"><span class="author vcard"><a class="url fn n" href="mailto:{{authoremail}}" title="Email {{authorname}}" rel="author">{{authoremail}}</a></span></span>';
       //     $panel_def[ 'image' ]       = '<figure class="entry-thumbnail {{incontent}}">{{postlink}}<img width="{{width}}" src="{{imgsrc}}" class="attachment-post-thumbnail wp-post-image" alt="{{alttext}}">{{closepostlink}}{{captioncode}}</figure>';
-      $panel_def[ 'image' ]   = '{{figopen}} class="entry-thumbnail {{incontent}} {{centred}} {{nofloat}} {{location}}">{{postlink}}{{image}}{{closelink}}{{captioncode}}{{figclose}}';
-      $panel_def[ 'bgimage' ] = '<figure class="entry-bgimage pzarc-bg-image {{trim-scale}}">{{postlink}}{{bgimage}}{{closelink}}</figure>';
+      $panel_def[ 'image' ]   = '{{figopen}} class="{{animationclass}} entry-thumbnail {{incontent}} {{centred}} {{nofloat}} {{location}}" {{animationdata}}>{{postlink}}{{image}}{{closelink}}{{captioncode}}{{figclose}}';
+      $panel_def[ 'bgimage' ] = '<figure class="{{animationclass}} entry-bgimage pzarc-bg-image {{trim-scale}}" {{animationdata}}>{{postlink}}{{bgimage}}{{closelink}}</figure>';
       $panel_def[ 'caption' ] = '<figcaption class="caption">{{caption}}</figcaption>';
-      $panel_def[ 'content' ] = '<{{div}} class="entry-content {{nothumb}}">{{image-in-content}}{{content}}</{{div}}>';
-      $panel_def[ 'custom1' ] = '<{{div}} class="entry-customfieldgroup entry-customfieldgroup-1">{{custom1innards}}</{{div}}>';
-      $panel_def[ 'custom2' ] = '<{{div}} class="entry-customfieldgroup entry-customfieldgroup-2">{{custom2innards}}</{{div}}>';
-      $panel_def[ 'custom3' ] = '<{{div}} class="entry-customfieldgroup entry-customfieldgroup-3">{{custom3innards}}</{{div}}>';
+      $panel_def[ 'content' ] = '<{{div}} class="{{animationclass}} entry-content {{nothumb}}" {{animationdata}}>{{image-in-content}}{{content}}</{{div}}>';
+      $panel_def[ 'custom1' ] = '<{{div}} class="{{animationclass}} entry-customfieldgroup entry-customfieldgroup-1" {{animationdata}}>{{custom1innards}}</{{div}}>';
+      $panel_def[ 'custom2' ] = '<{{div}} class="{{animationclass}} entry-customfieldgroup entry-customfieldgroup-2" {{animationdata}}>{{custom2innards}}</{{div}}>';
+      $panel_def[ 'custom3' ] = '<{{div}} class="{{animationclass}} entry-customfieldgroup entry-customfieldgroup-3" {{animationdata}}>{{custom3innards}}</{{div}}>';
       $panel_def[ 'cfield' ]  = '<{{cfieldwrapper}} class="entry-customfield entry-customfield-{{cfieldname}} entry-customfield-{{cfieldnumber}}">{{cfieldcontent}}</{{cfieldwrapper}}>';
 //      $panel_def[ 'footer' ]        = '<footer class="entry-footer">{{footerinnards}}</footer>';
-      $panel_def[ 'excerpt' ]       = '<{{div}} class="entry-excerpt {{nothumb}}">{{image-in-content}}{{excerpt}}</{{div}}>';
+      $panel_def[ 'excerpt' ]       = '<{{div}} class="{{animationclass}} entry-excerpt {{nothumb}}" {{animationdata}}>{{image-in-content}}{{excerpt}}</{{div}}>';
       $panel_def[ 'feature' ]       = '{{feature}}';
       $panel_def[ 'editlink' ]      = '<span class="edit-link"><a class="post-edit-link" href="{{permalink}}" title="Edit post {{title}}">Edit</a></span>';
       $panel_def[ 'comments-link' ] = '<span class="comments-link"><a href="{{permalink}}/#comments" title="Comment on {{title}}">Comments: {{commentscount}}</a></span>';
@@ -106,85 +102,84 @@
     }
 
 
-    public function set_data(&$post, &$toshow, &$section)
-    {
+    public function set_data( &$post, &$toshow, &$section ) {
 //      var_dump(get_The_id(),$post->ID);
       $this->section = $section;
       $this->toshow  = $toshow;
 
-      if ($this->toshow[ 'title' ][ 'show' ]) {
-        $this->get_title($post);
-        pzdb('after get title');
+      if ( $this->toshow[ 'title' ][ 'show' ] ) {
+        $this->get_title( $post );
+        pzdb( 'after get title' );
       }
-      if ($this->toshow[ 'meta1' ][ 'show' ] ||
-          $this->toshow[ 'meta2' ][ 'show' ] ||
-          $this->toshow[ 'meta3' ][ 'show' ]
+      if ( $this->toshow[ 'meta1' ][ 'show' ] ||
+           $this->toshow[ 'meta2' ][ 'show' ] ||
+           $this->toshow[ 'meta3' ][ 'show' ]
       ) {
-        $this->get_meta($post);
-        pzdb('after get meta');
+        $this->get_meta( $post );
+        pzdb( 'after get meta' );
       }
 
-      if ($this->toshow[ 'content' ][ 'show' ]) {
-        $this->get_content($post);
-        pzdb('after get content');
+      if ( $this->toshow[ 'content' ][ 'show' ] ) {
+        $this->get_content( $post );
+        pzdb( 'after get content' );
       }
 
-      if ($this->toshow[ 'excerpt' ][ 'show' ]) {
-        $this->get_excerpt($post);
-        pzdb('after get excerpt');
+      if ( $this->toshow[ 'excerpt' ][ 'show' ] ) {
+        $this->get_excerpt( $post );
+        pzdb( 'after get excerpt' );
       }
 
-      if ($this->toshow[ 'image' ][ 'show' ]) {
-        switch ($this->section[ '_panels_design_feature-location' ]) {
+      if ( $this->toshow[ 'image' ][ 'show' ] ) {
+        switch ( $this->section[ '_panels_design_feature-location' ] ) {
           case 'fill':
-            $this->get_bgimage($post);
-            pzdb('after get bgimage');
+            $this->get_bgimage( $post );
+            pzdb( 'after get bgimage' );
             break;
           default:
-            $this->get_image($post);
-            pzdb('after get image');
+            $this->get_image( $post );
+            pzdb( 'after get image' );
             break;
         }
-        $this->get_video($post);
-        pzdb('after get video');
+        $this->get_video( $post );
+        pzdb( 'after get video' );
       }
 
-      if ($this->toshow[ 'custom1' ][ 'show' ] ||
-          $this->toshow[ 'custom2' ][ 'show' ] ||
-          $this->toshow[ 'custom3' ][ 'show' ]
+      if ( $this->toshow[ 'custom1' ][ 'show' ] ||
+           $this->toshow[ 'custom2' ][ 'show' ] ||
+           $this->toshow[ 'custom3' ][ 'show' ]
       ) {
-        $this->get_custom($post);
-        pzdb('after get custom');
+        $this->get_custom( $post );
+        pzdb( 'after get custom' );
       }
 
-      $this->get_miscellanary($post);
-      pzdb('after get misc');
+      $this->get_miscellanary( $post );
+      pzdb( 'after get misc' );
     }
 
     /**
      * @param $post
      */
-    public function get_title(&$post)
-    {
+    public function get_title( &$post ) {
       /** TITLE */
-      if (('slider' === $this->build->blueprint[ '_blueprints_section-0-layout-mode' ] || 'tabbed' === $this->build->blueprint[ '_blueprints_section-0-layout-mode' ]) && class_exists('HeadwayLayoutOption') && (true == ($alt_title = HeadwayLayoutOption::get($post->ID, 'alternate-title', false, true)))) {
+      if ( ( 'slider' === $this->build->blueprint[ '_blueprints_section-0-layout-mode' ] || 'tabbed' === $this->build->blueprint[ '_blueprints_section-0-layout-mode' ] ) && class_exists( 'HeadwayLayoutOption' ) && ( true == ( $alt_title = HeadwayLayoutOption::get( $post->ID, 'alternate-title', false, true ) ) ) ) {
         $this->data[ 'title' ][ 'title' ] = $alt_title;
       } else {
         $this->data[ 'title' ][ 'title' ] = get_the_title();
       }
-      if ('thumb' === $this->section[ '_panels_design_title-prefix' ]) {
+      if ( 'thumb' === $this->section[ '_panels_design_title-prefix' ] ) {
         $thumb_id    = get_post_thumbnail_id();
-        $focal_point = get_post_meta($thumb_id, 'pzgp_focal_point', true);
-        if (empty($focal_point)) {
-          $focal_point = get_post_meta(get_the_id(), 'pzgp_focal_point', true);
+        $focal_point = get_post_meta( $thumb_id, 'pzgp_focal_point', true );
+        if ( empty( $focal_point ) ) {
+          $focal_point = get_post_meta( get_the_id(), 'pzgp_focal_point', true );
         }
-        $focal_point = (empty($focal_point) ? array(50, 50) : explode(',', $focal_point));
-        if (!empty($thumb_id)) {
-          $thumb_prefix                     = wp_get_attachment_image($thumb_id, array($this->section[ '_panels_design_title-thumb-width' ],
-                                                                                       $this->section[ '_panels_design_title-thumb-width' ],
-                                                                                       'bfi_thumb' => true,
-                                                                                       'crop'      => (int)$focal_point[ 0 ] . 'x' . (int)$focal_point[ 1 ]
-          ));
+        $focal_point = ( empty( $focal_point ) ? array( 50, 50 ) : explode( ',', $focal_point ) );
+        if ( ! empty( $thumb_id ) ) {
+          $thumb_prefix                     = wp_get_attachment_image( $thumb_id, array(
+            $this->section[ '_panels_design_title-thumb-width' ],
+            $this->section[ '_panels_design_title-thumb-width' ],
+            'bfi_thumb' => true,
+            'crop'      => (int) $focal_point[ 0 ] . 'x' . (int) $focal_point[ 1 ]
+          ) );
           $this->data[ 'title' ][ 'thumb' ] = '<span class="pzarc-title-thumb">' . $thumb_prefix . '</span> ';
         } else {
           $this->data[ 'title' ][ 'thumb' ] = '<span class="pzarc-title-thumb" style="width:' . $this->section[ '_panels_design_title-thumb-width' ] . 'px;height:' . $this->section[ '_panels_design_title-thumb-width' ] . 'px;"></span> ';
@@ -194,64 +189,62 @@
 
     }
 
-    public function get_meta(&$post)
-    {
+    public function get_meta( &$post ) {
       $meta_string = $this->toshow[ 'meta1' ][ 'show' ] ? $this->section[ '_panels_design_meta1-config' ] : '';
       $meta_string .= $this->toshow[ 'meta2' ][ 'show' ] ? $this->section[ '_panels_design_meta2-config' ] : '';
       $meta_string .= $this->toshow[ 'meta3' ][ 'show' ] ? $this->section[ '_panels_design_meta3-config' ] : '';
 
       /** META */
-      if (strpos($meta_string, '%id%') !== false) {
+      if ( strpos( $meta_string, '%id%' ) !== false ) {
         $this->data[ 'meta' ][ 'id' ] = get_the_id();
       }
-      if (strpos($meta_string, '%date%') !== false) {
+      if ( strpos( $meta_string, '%date%' ) !== false ) {
         $this->data[ 'meta' ][ 'datetime' ]  = get_the_date();
-        $this->data[ 'meta' ][ 'fdatetime' ] = date_i18n(strip_tags($this->section[ '_panels_design_meta-date-format' ]), strtotime(get_the_date()));
+        $this->data[ 'meta' ][ 'fdatetime' ] = date_i18n( strip_tags( $this->section[ '_panels_design_meta-date-format' ] ), strtotime( get_the_date() ) );
       }
-      if (strpos($meta_string, '%categories%') !== false) {
-        $this->data[ 'meta' ][ 'categorieslinks' ] = get_the_category_list(', ');
-        $this->data[ 'meta' ][ 'categories' ]      = pzarc_tax_string_list(get_the_category(), 'category-', '', ' ');
+      if ( strpos( $meta_string, '%categories%' ) !== false ) {
+        $this->data[ 'meta' ][ 'categorieslinks' ] = get_the_category_list( ', ' );
+        $this->data[ 'meta' ][ 'categories' ]      = pzarc_tax_string_list( get_the_category(), 'category-', '', ' ' );
       }
-      if (strpos($meta_string, '%tags%') !== false) {
-        $this->data[ 'meta' ][ 'tagslinks' ] = get_the_tag_list(null, ', ');
-        $this->data[ 'meta' ][ 'tags' ]      = pzarc_tax_string_list(get_the_tags(), 'tag-', '', ' ');
+      if ( strpos( $meta_string, '%tags%' ) !== false ) {
+        $this->data[ 'meta' ][ 'tagslinks' ] = get_the_tag_list( null, ', ' );
+        $this->data[ 'meta' ][ 'tags' ]      = pzarc_tax_string_list( get_the_tags(), 'tag-', '', ' ' );
       }
-      if (strpos($meta_string, '%author%') !== false) {
+      if ( strpos( $meta_string, '%author%' ) !== false ) {
 
-        $this->data[ 'meta' ][ 'authorlink' ] = get_author_posts_url(get_the_author_meta('ID'));
-        $this->data[ 'meta' ][ 'authorname' ] = sanitize_text_field(get_the_author_meta('display_name'));
-        $rawemail                             = sanitize_email(get_the_author_meta('user_email'));
+        $this->data[ 'meta' ][ 'authorlink' ] = get_author_posts_url( get_the_author_meta( 'ID' ) );
+        $this->data[ 'meta' ][ 'authorname' ] = sanitize_text_field( get_the_author_meta( 'display_name' ) );
+        $rawemail                             = sanitize_email( get_the_author_meta( 'user_email' ) );
         $encodedmail                          = '';
-        for ($i = 0; $i < strlen($rawemail); $i++) {
-          $encodedmail .= "&#" . ord($rawemail[ $i ]) . ';';
+        for ( $i = 0; $i < strlen( $rawemail ); $i ++ ) {
+          $encodedmail .= "&#" . ord( $rawemail[ $i ] ) . ';';
         }
         $this->data[ 'meta' ][ 'authoremail' ] = $encodedmail;
       }
       $this->data[ 'meta' ][ 'comments-count' ] = get_comments_number();
 
       // Extract and find any custom taxonomies - i.e. preceded with ct:
-      if (strpos($meta_string, 'ct:') !== false) {
-        $this->data[ 'meta' ][ 'custom' ][ 1 ] = $this->toshow[ 'meta1' ][ 'show' ] ? pzarc_get_post_terms(get_the_id(), $this->section[ '_panels_design_meta1-config' ]) : '';
-        $this->data[ 'meta' ][ 'custom' ][ 2 ] = $this->toshow[ 'meta2' ][ 'show' ] ? pzarc_get_post_terms(get_the_id(), $this->section[ '_panels_design_meta2-config' ]) : '';
-        $this->data[ 'meta' ][ 'custom' ][ 3 ] = $this->toshow[ 'meta3' ][ 'show' ] ? pzarc_get_post_terms(get_the_id(), $this->section[ '_panels_design_meta3-config' ]) : '';
+      if ( strpos( $meta_string, 'ct:' ) !== false ) {
+        $this->data[ 'meta' ][ 'custom' ][ 1 ] = $this->toshow[ 'meta1' ][ 'show' ] ? pzarc_get_post_terms( get_the_id(), $this->section[ '_panels_design_meta1-config' ] ) : '';
+        $this->data[ 'meta' ][ 'custom' ][ 2 ] = $this->toshow[ 'meta2' ][ 'show' ] ? pzarc_get_post_terms( get_the_id(), $this->section[ '_panels_design_meta2-config' ] ) : '';
+        $this->data[ 'meta' ][ 'custom' ][ 3 ] = $this->toshow[ 'meta3' ][ 'show' ] ? pzarc_get_post_terms( get_the_id(), $this->section[ '_panels_design_meta3-config' ] ) : '';
       }
     }
 
 
-    public function get_image(&$post)
-    {
+    public function get_image( &$post ) {
       /** FEATURED IMAGE */
       $thumb_id    = get_post_thumbnail_id();
-      $focal_point = get_post_meta($thumb_id, 'pzgp_focal_point', true);
-      if (empty($focal_point)) {
-        $focal_point = get_post_meta(get_the_id(), 'pzgp_focal_point', true);
+      $focal_point = get_post_meta( $thumb_id, 'pzgp_focal_point', true );
+      if ( empty( $focal_point ) ) {
+        $focal_point = get_post_meta( get_the_id(), 'pzgp_focal_point', true );
       }
-      $focal_point = (empty($focal_point) ? array(50, 50) : explode(',', $focal_point));
+      $focal_point = ( empty( $focal_point ) ? array( 50, 50 ) : explode( ',', $focal_point ) );
 
-      if (!$thumb_id && $this->section[ '_panels_settings_use-embedded-images' ]) {
+      if ( ! $thumb_id && $this->section[ '_panels_settings_use-embedded-images' ] ) {
         //TODO: Changed to more reliable check if image is in the content?
-        preg_match("/(?<=wp-image-)(\\d)*/uimx", get_the_content(), $matches);
-        $thumb_id = (!empty($matches[ 0 ]) ? $matches[ 0 ] : false);
+        preg_match( "/(?<=wp-image-)(\\d)*/uimx", get_the_content(), $matches );
+        $thumb_id = ( ! empty( $matches[ 0 ] ) ? $matches[ 0 ] : false );
       }
 
 
@@ -261,58 +254,61 @@
       //        }
       // BFI
 
-      $width  = (int)str_replace('px', '', $this->section[ '_panels_design_image-max-dimensions' ][ 'width' ]);
-      $height = (int)str_replace('px', '', $this->section[ '_panels_design_image-max-dimensions' ][ 'height' ]);
+      $width  = (int) str_replace( 'px', '', $this->section[ '_panels_design_image-max-dimensions' ][ 'width' ] );
+      $height = (int) str_replace( 'px', '', $this->section[ '_panels_design_image-max-dimensions' ][ 'height' ] );
 
       // TODO: Add all the focal point stuff to all the post types images and bgimages
       // Easiest to do via a reusable function or all this stuff could be done once!!!!!!!!!
       // could pass $this->data thru a filter
-      $this->data[ 'image' ][ 'image' ] = wp_get_attachment_image($thumb_id, array($width,
-                                                                                   $height,
-                                                                                   'bfi_thumb' => true,
-                                                                                   'crop'      => (int)$focal_point[ 0 ] . 'x' . (int)$focal_point[ 1 ] . 'x' . $this->section[ '_panels_settings_image-focal-point' ]
+      $this->data[ 'image' ][ 'image' ] = wp_get_attachment_image( $thumb_id, array(
+        $width,
+        $height,
+        'bfi_thumb' => true,
+        'crop'      => (int) $focal_point[ 0 ] . 'x' . (int) $focal_point[ 1 ] . 'x' . $this->section[ '_panels_settings_image-focal-point' ]
 
-      ));
+      ) );
 
-      $this->data[ 'image' ][ 'original' ] = wp_get_attachment_image_src($thumb_id, 'full');
-      preg_match("/(?<=src\\=\")(.)*(?=\" )/uiUs", $this->data[ 'image' ][ 'image' ], $results);
-      if (isset($results[ 0 ]) && !empty($this->section[ '_panels_settings_use-retina-images' ])) {
-        $params = array('width' => ($width * 2), 'height' => ($height * 2));
+      $this->data[ 'image' ][ 'original' ] = wp_get_attachment_image_src( $thumb_id, 'full' );
+      preg_match( "/(?<=src\\=\")(.)*(?=\" )/uiUs", $this->data[ 'image' ][ 'image' ], $results );
+      if ( isset( $results[ 0 ] ) && ! empty( $this->section[ '_panels_settings_use-retina-images' ] ) ) {
+        $params = array( 'width' => ( $width * 2 ), 'height' => ( $height * 2 ) );
         // We need the crop to be identical. :/ So how about we just double the size of the image! I'm sure I Saw somewhere that works still.
-        $thumb_2X                         = bfi_thumb($results[ 0 ], $params);
-        $this->data[ 'image' ][ 'image' ] = str_replace('/>', 'data-at2x="' . $thumb_2X . '" />', $this->data[ 'image' ][ 'image' ]);
+        $thumb_2X                         = bfi_thumb( $results[ 0 ], $params );
+        $this->data[ 'image' ][ 'image' ] = str_replace( '/>', 'data-at2x="' . $thumb_2X . '" />', $this->data[ 'image' ][ 'image' ] );
       }
-      $image                              = get_post($thumb_id);
+      $image                              = get_post( $thumb_id );
       $this->data[ 'image' ][ 'caption' ] = $image->post_excerpt;
 
       //Use lorempixel
-      if (empty($this->data[ 'image' ]['image']) && !empty($this->section[ '_panels_design_use-filler-image-source' ]) && 'none'!==$this->section[ '_panels_design_use-filler-image-source' ]) {
-        $ch = curl_init('http://lorempixel.com');
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        $cexec=curl_exec($ch);
-        $cinfo = curl_getinfo($ch);
-        $is_offline = ($cexec == false || $cinfo['http_code']==302);
-        curl_close($ch);
+      if ( empty( $this->data[ 'image' ][ 'image' ] ) && ! empty( $this->section[ '_panels_design_use-filler-image-source' ] ) && 'none' !== $this->section[ '_panels_design_use-filler-image-source' ] ) {
+        $ch = curl_init( 'http://lorempixel.com' );
+        curl_setopt( $ch, CURLOPT_RETURNTRANSFER, true );
+        $cexec      = curl_exec( $ch );
+        $cinfo      = curl_getinfo( $ch );
+        $is_offline = ( $cexec == false || $cinfo[ 'http_code' ] == 302 );
+        curl_close( $ch );
 
 
-        $cats        = array('abstract',
-                             'animals',
-                             'business',
-                             'cats',
-                             'city',
-                             'food',
-                             'nightlife',
-                             'fashion',
-                             'people',
-                             'nature',
-                             'sports',
-                             'technics',
-                             'transport');
-        $lorempixel_category = in_array($this->section[ '_panels_design_use-filler-image-source' ],$cats)?$this->section[ '_panels_design_use-filler-image-source' ]:$cats[rand(0,count($cats)-1)];
-        $imageURL = 'http://lorempixel.com/' .  $width . '/' . $height . '/' .$lorempixel_category.'/'.rand(1,10);
+        $cats                = array(
+          'abstract',
+          'animals',
+          'business',
+          'cats',
+          'city',
+          'food',
+          'nightlife',
+          'fashion',
+          'people',
+          'nature',
+          'sports',
+          'technics',
+          'transport'
+        );
+        $lorempixel_category = in_array( $this->section[ '_panels_design_use-filler-image-source' ], $cats ) ? $this->section[ '_panels_design_use-filler-image-source' ] : $cats[ rand( 0, count( $cats ) - 1 ) ];
+        $imageURL            = 'http://lorempixel.com/' . $width . '/' . $height . '/' . $lorempixel_category . '/' . rand( 1, 10 );
 //        $imageURL = 'http://lorempixel.com/' . $image_grey . $width . '/' . $height . '/' . $post[ 'image' ][ 'original' ];
-        $this->data[ 'image' ][ 'image' ] = !$is_offline?'<img src="' . $imageURL . '" >':'';
-        $this->data[ 'image' ][ 'original' ] = !$is_offline?array($imageURL,$width,$height,false):false;
+        $this->data[ 'image' ][ 'image' ]    = ! $is_offline ? '<img src="' . $imageURL . '" >' : '';
+        $this->data[ 'image' ][ 'original' ] = ! $is_offline ? array( $imageURL, $width, $height, false ) : false;
         $this->data[ 'image' ][ 'caption' ]  = '';
 
       }
@@ -320,119 +316,117 @@
 
     }
 
-    public function get_bgimage(&$post)
-    {
+    public function get_bgimage( &$post ) {
       /** BACKGROUND IMAGE */
 
       $thumb_id    = get_post_thumbnail_id();
-      $focal_point = get_post_meta($thumb_id, 'pzgp_focal_point', true);
-      if (empty($focal_point)) {
-        $focal_point = get_post_meta(get_the_id(), 'pzgp_focal_point', true);
+      $focal_point = get_post_meta( $thumb_id, 'pzgp_focal_point', true );
+      if ( empty( $focal_point ) ) {
+        $focal_point = get_post_meta( get_the_id(), 'pzgp_focal_point', true );
       }
-      $focal_point = (empty($focal_point) ? array(50, 50) : explode(',', $focal_point));
+      $focal_point = ( empty( $focal_point ) ? array( 50, 50 ) : explode( ',', $focal_point ) );
 
-      $showbgimage = (has_post_thumbnail()
-              && $this->section[ '_panels_design_feature-location' ] === 'fill'
-              && ($this->section[ '_panels_design_components-position' ] == 'top' || $this->section[ '_panels_design_components-position' ] == 'left'))
-          || ($this->section[ '_panels_design_feature-location' ] === 'fill'
-              && ($this->section[ '_panels_design_components-position' ] == 'bottom' || $this->section[ '_panels_design_components-position' ] == 'right'));
+      $showbgimage = ( has_post_thumbnail()
+                       && $this->section[ '_panels_design_feature-location' ] === 'fill'
+                       && ( $this->section[ '_panels_design_components-position' ] == 'top' || $this->section[ '_panels_design_components-position' ] == 'left' ) )
+                     || ( $this->section[ '_panels_design_feature-location' ] === 'fill'
+                          && ( $this->section[ '_panels_design_components-position' ] == 'bottom' || $this->section[ '_panels_design_components-position' ] == 'right' ) );
       // Need to setup for break points.
 
       //  TODO: data-imagesrcs ="1,2,3", data-breakpoints="1,2,3". Then use js to change src.
-      $width = (int)str_replace('px', '', $this->section[ '_panels_design_image-max-dimensions' ][ 'width' ]);
+      $width = (int) str_replace( 'px', '', $this->section[ '_panels_design_image-max-dimensions' ][ 'width' ] );
       // TODO: Should this just choose the greater? Or could that be too stupid if  someone puts a very large max-height?
-      if ($this->section[ '_panels_settings_panel-height-type' ] === 'height') {
-        $height = (int)str_replace('px', '', $this->section[ '_panels_settings_panel-height' ][ 'height' ]);
+      if ( $this->section[ '_panels_settings_panel-height-type' ] === 'height' ) {
+        $height = (int) str_replace( 'px', '', $this->section[ '_panels_settings_panel-height' ][ 'height' ] );
       } else {
-        $height = (int)str_replace('px', '', $this->section[ '_panels_design_image-max-dimensions' ][ 'height' ]);
+        $height = (int) str_replace( 'px', '', $this->section[ '_panels_design_image-max-dimensions' ][ 'height' ] );
       }
 
-      pzdb('pre get image bg');
+      pzdb( 'pre get image bg' );
 
       // Need to grab image again because it uses different dimensions for the bgimge
-      $this->data[ 'bgimage' ][ 'thumb' ] = wp_get_attachment_image($thumb_id, array($width,
-                                                                                     $height,
-                                                                                     'bfi_thumb' => true,
-                                                                                     'crop'      => (int)$focal_point[ 0 ] . 'x' . (int)$focal_point[ 1 ] . 'x' . $this->section[ '_panels_settings_image-focal-point' ]
-      ));
-      pzdb('post get image bg');
-      $this->data[ 'image' ][ 'original' ] = wp_get_attachment_image_src($thumb_id, 'full');
-      pzdb('post get original bg');
-      preg_match("/(?<=src\\=\")(.)*(?=\" )/uiUs", $this->data[ 'bgimage' ][ 'thumb' ], $results);
-      if (isset($results[ 0 ]) && !empty($this->section[ '_panels_settings_use-retina-images' ])) {
-        $params = array('width' => ($width * 2), 'height' => ($height * 2));
+      $this->data[ 'bgimage' ][ 'thumb' ] = wp_get_attachment_image( $thumb_id, array(
+        $width,
+        $height,
+        'bfi_thumb' => true,
+        'crop'      => (int) $focal_point[ 0 ] . 'x' . (int) $focal_point[ 1 ] . 'x' . $this->section[ '_panels_settings_image-focal-point' ]
+      ) );
+      pzdb( 'post get image bg' );
+      $this->data[ 'image' ][ 'original' ] = wp_get_attachment_image_src( $thumb_id, 'full' );
+      pzdb( 'post get original bg' );
+      preg_match( "/(?<=src\\=\")(.)*(?=\" )/uiUs", $this->data[ 'bgimage' ][ 'thumb' ], $results );
+      if ( isset( $results[ 0 ] ) && ! empty( $this->section[ '_panels_settings_use-retina-images' ] ) ) {
+        $params = array( 'width' => ( $width * 2 ), 'height' => ( $height * 2 ) );
         // We need the crop to be identical. :/ So how about we just double the size of the image! I'm sure I Saw somewhere that works still. In fact, we have no choice, since the double sized image could be bigger than the original.
-        $thumb_2X                           = bfi_thumb($results[ 0 ], $params);
-        $this->data[ 'bgimage' ][ 'thumb' ] = str_replace('/>', 'data-at2x="' . $thumb_2X . '" />', $this->data[ 'bgimage' ][ 'thumb' ]);
-        pzdb('after get 2X bg');
+        $thumb_2X                           = bfi_thumb( $results[ 0 ], $params );
+        $this->data[ 'bgimage' ][ 'thumb' ] = str_replace( '/>', 'data-at2x="' . $thumb_2X . '" />', $this->data[ 'bgimage' ][ 'thumb' ] );
+        pzdb( 'after get 2X bg' );
       }
-      pzdb('end get bgimage');
+      pzdb( 'end get bgimage' );
 
       //Use lorempixel
-      if (empty($this->data[ 'bgimage' ]['thumb']) && !empty($this->section[ '_panels_design_use-filler-image-source' ]) && 'none'!==$this->section[ '_panels_design_use-filler-image-source' ]) {
-        $ch = curl_init('http://lorempixel.com');
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        $cexec=curl_exec($ch);
-        $cinfo = curl_getinfo($ch);
-        $is_offline = ($cexec == false || $cinfo['http_code']==302);
-        curl_close($ch);
+      if ( empty( $this->data[ 'bgimage' ][ 'thumb' ] ) && ! empty( $this->section[ '_panels_design_use-filler-image-source' ] ) && 'none' !== $this->section[ '_panels_design_use-filler-image-source' ] ) {
+        $ch = curl_init( 'http://lorempixel.com' );
+        curl_setopt( $ch, CURLOPT_RETURNTRANSFER, true );
+        $cexec      = curl_exec( $ch );
+        $cinfo      = curl_getinfo( $ch );
+        $is_offline = ( $cexec == false || $cinfo[ 'http_code' ] == 302 );
+        curl_close( $ch );
 
 
-        $cats        = array('abstract',
-                             'animals',
-                             'business',
-                             'cats',
-                             'city',
-                             'food',
-                             'nightlife',
-                             'fashion',
-                             'people',
-                             'nature',
-                             'sports',
-                             'technics',
-                             'transport');
-        $lorempixel_category = in_array($this->section[ '_panels_design_use-filler-image-source' ],$cats)?$this->section[ '_panels_design_use-filler-image-source' ]:$cats[rand(0,count($cats)-1)];
-        $imageURL = 'http://lorempixel.com/' .  $width . '/' . $height . '/' .$lorempixel_category.'/'.rand(1,10);
+        $cats                = array(
+          'abstract',
+          'animals',
+          'business',
+          'cats',
+          'city',
+          'food',
+          'nightlife',
+          'fashion',
+          'people',
+          'nature',
+          'sports',
+          'technics',
+          'transport'
+        );
+        $lorempixel_category = in_array( $this->section[ '_panels_design_use-filler-image-source' ], $cats ) ? $this->section[ '_panels_design_use-filler-image-source' ] : $cats[ rand( 0, count( $cats ) - 1 ) ];
+        $imageURL            = 'http://lorempixel.com/' . $width . '/' . $height . '/' . $lorempixel_category . '/' . rand( 1, 10 );
 //        $imageURL = 'http://lorempixel.com/' . $image_grey . $width . '/' . $height . '/' . $post[ 'image' ][ 'original' ];
-        $this->data[ 'bgimage' ][ 'thumb' ] = !$is_offline?'<img src="' . $imageURL . '" >':'';
-        $this->data[ 'image' ][ 'original' ] = !$is_offline?array($imageURL,$width,$height,false):false;
+        $this->data[ 'bgimage' ][ 'thumb' ]  = ! $is_offline ? '<img src="' . $imageURL . '" >' : '';
+        $this->data[ 'image' ][ 'original' ] = ! $is_offline ? array( $imageURL, $width, $height, false ) : false;
         $this->data[ 'image' ][ 'caption' ]  = '';
 
       }
 
     }
 
-    public function get_video(&$post)
-    {
-      $video_source = (is_object($post) ? get_post_meta($post->ID, 'pzarc_features-video', true) : '');
-      if (!empty($this->section[ '_panels_settings_use-embedded-images' ]) && empty($video_source)) {
+    public function get_video( &$post ) {
+      $video_source = ( is_object( $post ) ? get_post_meta( $post->ID, 'pzarc_features-video', true ) : '' );
+      if ( ! empty( $this->section[ '_panels_settings_use-embedded-images' ] ) && empty( $video_source ) ) {
         $video_source = '[video]';
       }
-      $this->data[ 'video' ][ 'source' ] = pzarc_process_video($video_source);
+      $this->data[ 'video' ][ 'source' ] = pzarc_process_video( $video_source );
     }
 
-    public function get_content(&$post)
-    {
+    public function get_content( &$post ) {
       /** CONTENT */
-      $this->data[ 'content' ] = apply_filters('the_content', get_the_content());
+      $this->data[ 'content' ] = apply_filters( 'the_content', get_the_content() );
     }
 
-    public function get_excerpt(&$post)
-    {
-      if (!empty($this->section[ '_panels_design_manual-excerpts' ]) && !has_excerpt()) {
+    public function get_excerpt( &$post ) {
+      if ( ! empty( $this->section[ '_panels_design_manual-excerpts' ] ) && ! has_excerpt() ) {
         $this->data[ 'excerpt' ] = '';
       } else {
-        $this->data[ 'excerpt' ] = apply_filters('the_excerpt', get_the_excerpt());
+        $this->data[ 'excerpt' ] = apply_filters( 'the_excerpt', get_the_excerpt() );
       }
     }
 
 
-    public function get_custom(&$post)
-    {
+    public function get_custom( &$post ) {
       /** CUSTOM FIELDS **/
-      $postmeta = get_post_meta(get_the_ID());
+      $postmeta = get_post_meta( get_the_ID() );
       $cfcount  = $this->section[ '_panels_design_custom-fields-count' ];
-      for ($i = 1; $i <= $cfcount; $i++) {
+      for ( $i = 1; $i <= $cfcount; $i ++ ) {
         // var_dump($this->section);
         // the settings come from section
         $this->data[ 'cfield' ][ $i ][ 'group' ]         = $this->section[ '_panels_design_cfield-' . $i . '-group' ];
@@ -445,19 +439,21 @@
         $this->data[ 'cfield' ][ $i ][ 'decimals' ]      = $this->section[ '_panels_design_cfield-' . $i . '-number-decimals' ];
         $this->data[ 'cfield' ][ $i ][ 'decimal-char' ]  = $this->section[ '_panels_design_cfield-' . $i . '-number-decimal-char' ];
         $this->data[ 'cfield' ][ $i ][ 'thousands-sep' ] = $this->section[ '_panels_design_cfield-' . $i . '-number-thousands-separator' ];
-        $params                                          = array('width'  => str_replace($this->section[ '_panels_design_cfield-' . $i . '-ps-images-width' ][ 'units' ], '', $this->section[ '_panels_design_cfield-' . $i . '-ps-images-width' ][ 'width' ]),
-                                                                 'height' => str_replace($this->section[ '_panels_design_cfield-' . $i . '-ps-images-height' ][ 'units' ], '', $this->section[ '_panels_design_cfield-' . $i . '-ps-images-height' ][ 'height' ]));
+        $params                                          = array(
+          'width'  => str_replace( $this->section[ '_panels_design_cfield-' . $i . '-ps-images-width' ][ 'units' ], '', $this->section[ '_panels_design_cfield-' . $i . '-ps-images-width' ][ 'width' ] ),
+          'height' => str_replace( $this->section[ '_panels_design_cfield-' . $i . '-ps-images-height' ][ 'units' ], '', $this->section[ '_panels_design_cfield-' . $i . '-ps-images-height' ][ 'height' ] )
+        );
 
         $this->data[ 'cfield' ][ $i ][ 'prefix-text' ]  = '<span class="pzarc-prefix-text">' . $this->section[ '_panels_design_cfield-' . $i . '-prefix-text' ] . '</span>';
-        $this->data[ 'cfield' ][ $i ][ 'prefix-image' ] = bfi_thumb($this->section[ '_panels_design_cfield-' . $i . '-prefix-image' ][ 'url' ], $params);
+        $this->data[ 'cfield' ][ $i ][ 'prefix-image' ] = bfi_thumb( $this->section[ '_panels_design_cfield-' . $i . '-prefix-image' ][ 'url' ], $params );
         $this->data[ 'cfield' ][ $i ][ 'suffix-text' ]  = '<span class="pzarc-suffix-text">' . $this->section[ '_panels_design_cfield-' . $i . '-suffix-text' ] . '</span>';
-        $this->data[ 'cfield' ][ $i ][ 'suffix-image' ] = bfi_thumb($this->section[ '_panels_design_cfield-' . $i . '-suffix-image' ][ 'url' ], $params);
+        $this->data[ 'cfield' ][ $i ][ 'suffix-image' ] = bfi_thumb( $this->section[ '_panels_design_cfield-' . $i . '-suffix-image' ][ 'url' ], $params );
 
         // The content itself comes from post meta
-        $this->data[ 'cfield' ][ $i ][ 'value' ] = (!empty($postmeta[ $this->section[ '_panels_design_cfield-' . $i . '-name' ] ]) ? $postmeta[ $this->section[ '_panels_design_cfield-' . $i . '-name' ] ][ 0 ] : null);
+        $this->data[ 'cfield' ][ $i ][ 'value' ] = ( ! empty( $postmeta[ $this->section[ '_panels_design_cfield-' . $i . '-name' ] ] ) ? $postmeta[ $this->section[ '_panels_design_cfield-' . $i . '-name' ] ][ 0 ] : null );
         // TODO:Bet this doesn't work!
-        if (!empty($this->section[ '_panels_design_cfield-' . $i . '-link-field' ])) {
-          $this->data[ 'cfield' ][ $i ][ 'link-field' ] = (!empty($postmeta[ $this->section[ '_panels_design_cfield-' . $i . '-link-field' ] ]) ? $postmeta[ $this->section[ '_panels_design_cfield-' . $i . '-link-field' ] ][ 0 ] : null);
+        if ( ! empty( $this->section[ '_panels_design_cfield-' . $i . '-link-field' ] ) ) {
+          $this->data[ 'cfield' ][ $i ][ 'link-field' ] = ( ! empty( $postmeta[ $this->section[ '_panels_design_cfield-' . $i . '-link-field' ] ] ) ? $postmeta[ $this->section[ '_panels_design_cfield-' . $i . '-link-field' ] ][ 0 ] : null );
         }
 
         // TODO : Add other attributes
@@ -465,17 +461,16 @@
 
     }
 
-    public function get_miscellanary(&$post)
-    {
+    public function get_miscellanary( &$post ) {
       global $_architect_options;
-      $this->data[ 'inherit-hw-block-type' ] = (!empty($_architect_options[ 'architect_hw-content-class' ]) ? 'block-type-content ' : '');
+      $this->data[ 'inherit-hw-block-type' ] = ( ! empty( $_architect_options[ 'architect_hw-content-class' ] ) ? 'block-type-content ' : '' );
 
       $this->data[ 'postid' ]      = get_the_ID();
       $this->data[ 'poststatus' ]  = get_post_status();
       $this->data[ 'posttype' ]    = get_post_type();
       $this->data[ 'permalink' ]   = get_the_permalink();
       $post_format                 = get_post_format();
-      $this->data [ 'postformat' ] = (empty($post_format) ? 'standard' : $post_format);
+      $this->data [ 'postformat' ] = ( empty( $post_format ) ? 'standard' : $post_format );
 
     }
     /****************************************
@@ -486,86 +481,89 @@
      * Begin rendering
      ***************************************/
 
-    public function render_title($component, $content_type, $panel_def, $rsid, $layout_mode = false)
-    {
+    public function render_title( $component, $content_type, $panel_def, $rsid, $layout_mode = false ) {
 //      var_dump($this->data);
-      if ('thumb' === $this->section[ '_panels_design_title-prefix' ]) {
-        $panel_def[ $component ] = str_replace('{{title}}', $this->data[ 'title' ][ 'thumb' ] . '<span class="pzarc-title-wrap">' . $this->data[ 'title' ][ 'title' ] . '</span>', $panel_def[ $component ]);
+      if ( 'thumb' === $this->section[ '_panels_design_title-prefix' ] ) {
+        $panel_def[ $component ] = str_replace( '{{title}}', $this->data[ 'title' ][ 'thumb' ] . '<span class="pzarc-title-wrap">' . $this->data[ 'title' ][ 'title' ] . '</span>', $panel_def[ $component ] );
       } else {
-        $panel_def[ $component ] = str_replace('{{title}}', $this->data[ 'title' ][ 'title' ], $panel_def[ $component ]);
+        $panel_def[ $component ] = str_replace( '{{title}}', $this->data[ 'title' ][ 'title' ], $panel_def[ $component ] );
       }
-      if ($this->section[ '_panels_design_link-titles' ]) {
-        $panel_def[ $component ] = str_replace('{{postlink}}', $panel_def[ 'postlink' ], $panel_def[ $component ]);
-        $panel_def[ $component ] = str_replace('{{closepostlink}}', '</a>', $panel_def[ $component ]);
+      if ( $this->section[ '_panels_design_link-titles' ] ) {
+        $panel_def[ $component ] = str_replace( '{{postlink}}', $panel_def[ 'postlink' ], $panel_def[ $component ] );
+        $panel_def[ $component ] = str_replace( '{{closepostlink}}', '</a>', $panel_def[ $component ] );
       }
+      static $pno = 0;
+      $panel_def[$component] = self::process_animation('title',$panel_def[$component],$pno++);
 
-      return self::render_generics($component, $content_type, $panel_def[ $component ], $layout_mode);
+      return self::render_generics( $component, $content_type, $panel_def[ $component ], $layout_mode );
 
     }
 
-    public function render_meta($component, $content_type, $panel_def, $rsid, $layout_mode = false)
-    {
-      $panel_def[ $component ] = str_replace('{{id}}', $this->data[ 'meta' ][ 'id' ], $panel_def[ $component ]);
-      $panel_def[ $component ] = str_replace('{{datetime}}', $this->data[ 'meta' ][ 'datetime' ], $panel_def[ $component ]);
-      $panel_def[ $component ] = str_replace('{{fdatetime}}', $this->data[ 'meta' ][ 'fdatetime' ], $panel_def[ $component ]);
-      $panel_def[ $component ] = str_replace('{{sortable}}', ' data-order="' . strtotime($this->data[ 'meta' ][ 'fdatetime' ]) . '"', $panel_def[ $component ]);
+    public function render_meta( $component, $content_type, $panel_def, $rsid, $layout_mode = false ) {
+      $panel_def[ $component ] = str_replace( '{{id}}', $this->data[ 'meta' ][ 'id' ], $panel_def[ $component ] );
+      $panel_def[ $component ] = str_replace( '{{datetime}}', $this->data[ 'meta' ][ 'datetime' ], $panel_def[ $component ] );
+      $panel_def[ $component ] = str_replace( '{{fdatetime}}', $this->data[ 'meta' ][ 'fdatetime' ], $panel_def[ $component ] );
+      $panel_def[ $component ] = str_replace( '{{sortable}}', ' data-order="' . strtotime( $this->data[ 'meta' ][ 'fdatetime' ] ) . '"', $panel_def[ $component ] );
 
-      if (empty($this->section[ '_panels_design_excluded-authors' ]) || !in_array(get_the_author_meta('ID'), $this->section[ '_panels_design_excluded-authors' ])) {
+      if ( empty( $this->section[ '_panels_design_excluded-authors' ] ) || ! in_array( get_the_author_meta( 'ID' ), $this->section[ '_panels_design_excluded-authors' ] ) ) {
         //Remove text indicators
-        $panel_def[ $component ] = str_replace('//', '', $panel_def[ $component ]);
-        $panel_def[ $component ] = str_replace('{{authorname}}', $this->data[ 'meta' ][ 'authorname' ], $panel_def[ $component ]);
-        $panel_def[ $component ] = str_replace('{{authorlink}}', $this->data[ 'meta' ][ 'authorlink' ], $panel_def[ $component ]);
-        $panel_def[ $component ] = str_replace('{{authoremail}}', $this->data[ 'meta' ][ 'authoremail' ], $panel_def[ $component ]);
+        $panel_def[ $component ] = str_replace( '//', '', $panel_def[ $component ] );
+        $panel_def[ $component ] = str_replace( '{{authorname}}', $this->data[ 'meta' ][ 'authorname' ], $panel_def[ $component ] );
+        $panel_def[ $component ] = str_replace( '{{authorlink}}', $this->data[ 'meta' ][ 'authorlink' ], $panel_def[ $component ] );
+        $panel_def[ $component ] = str_replace( '{{authoremail}}', $this->data[ 'meta' ][ 'authoremail' ], $panel_def[ $component ] );
       } else {
         // Removed unused text and indicators
-        $panel_def[ $component ] = preg_replace("/\\/\\/(.)*\\/\\//uiUm", "", $panel_def[ $component ]);
+        $panel_def[ $component ] = preg_replace( "/\\/\\/(.)*\\/\\//uiUm", "", $panel_def[ $component ] );
       }
-      $panel_def[ $component ] = str_replace('{{categories}}', $this->data[ 'meta' ][ 'categories' ], $panel_def[ $component ]);
-      $panel_def[ $component ] = str_replace('{{categorieslinks}}', $this->data[ 'meta' ][ 'categorieslinks' ], $panel_def[ $component ]);
-      $panel_def[ $component ] = str_replace('{{tags}}', $this->data[ 'meta' ][ 'tags' ], $panel_def[ $component ]);
-      $panel_def[ $component ] = str_replace('{{tagslinks}}', $this->data[ 'meta' ][ 'tagslinks' ], $panel_def[ $component ]);
-      $panel_def[ $component ] = str_replace('{{commentslink}}', $panel_def[ 'comments-link' ], $panel_def[ $component ]);
-      $panel_def[ $component ] = str_replace('{{commentscount}}', $this->data[ 'meta' ][ 'comments-count' ], $panel_def[ $component ]);
-      $panel_def[ $component ] = str_replace('{{editlink}}', $panel_def[ 'editlink' ], $panel_def[ $component ]);
-      if (!empty($this->data[ 'meta' ][ 'custom' ])) {
-        foreach ($this->data[ 'meta' ][ 'custom' ] as $meta) {
-          if (!empty($meta)) {
-            $meta                    = (!is_array($meta) ? explode(',', $meta) : $meta);
-            $panel_def[ $component ] = str_replace('{{ct:' . key($meta) . '}}', $meta[ key($meta) ], $panel_def[ $component ]);
+      $panel_def[ $component ] = str_replace( '{{categories}}', $this->data[ 'meta' ][ 'categories' ], $panel_def[ $component ] );
+      $panel_def[ $component ] = str_replace( '{{categorieslinks}}', $this->data[ 'meta' ][ 'categorieslinks' ], $panel_def[ $component ] );
+      $panel_def[ $component ] = str_replace( '{{tags}}', $this->data[ 'meta' ][ 'tags' ], $panel_def[ $component ] );
+      $panel_def[ $component ] = str_replace( '{{tagslinks}}', $this->data[ 'meta' ][ 'tagslinks' ], $panel_def[ $component ] );
+      $panel_def[ $component ] = str_replace( '{{commentslink}}', $panel_def[ 'comments-link' ], $panel_def[ $component ] );
+      $panel_def[ $component ] = str_replace( '{{commentscount}}', $this->data[ 'meta' ][ 'comments-count' ], $panel_def[ $component ] );
+      $panel_def[ $component ] = str_replace( '{{editlink}}', $panel_def[ 'editlink' ], $panel_def[ $component ] );
+      if ( ! empty( $this->data[ 'meta' ][ 'custom' ] ) ) {
+        foreach ( $this->data[ 'meta' ][ 'custom' ] as $meta ) {
+          if ( ! empty( $meta ) ) {
+            $meta                    = ( ! is_array( $meta ) ? explode( ',', $meta ) : $meta );
+            $panel_def[ $component ] = str_replace( '{{ct:' . key( $meta ) . '}}', $meta[ key( $meta ) ], $panel_def[ $component ] );
           }
         }
       }
+      static $pno = 0;
+      $panel_def[$component] = self::process_animation('meta1',$panel_def[$component],$pno);
+      $panel_def[$component] = self::process_animation('meta2',$panel_def[$component],$pno);
+      $panel_def[$component] = self::process_animation('meta3',$panel_def[$component],$pno++);
 
-      return self::render_generics($component, $content_type, do_shortcode($panel_def[ $component ]), $layout_mode);
+      return self::render_generics( $component, $content_type, do_shortcode( $panel_def[ $component ] ), $layout_mode );
     }
 
-    public function render_content($component, $content_type, $panel_def, $rsid, $layout_mode = false)
-    {
-      $panel_def[ $component ] = str_replace('{{content}}', $this->data[ 'content' ], $panel_def[ $component ]);
-      if ($this->section[ '_panels_design_feature-location' ] === 'content-left' || $this->section[ '_panels_design_feature-location' ] === 'content-right' && in_array('content', $this->section[ '_panels_design_feature-in' ])) {
-        if (!empty($this->data[ 'image' ][ 'image' ])) {
-          $panel_def[ $component ] = str_replace('{{image-in-content}}', $panel_def[ 'image' ], $panel_def[ $component ]);
+    public function render_content( $component, $content_type, $panel_def, $rsid, $layout_mode = false ) {
+      $panel_def[ $component ] = str_replace( '{{content}}', $this->data[ 'content' ], $panel_def[ $component ] );
+      if ( $this->section[ '_panels_design_feature-location' ] === 'content-left' || $this->section[ '_panels_design_feature-location' ] === 'content-right' && in_array( 'content', $this->section[ '_panels_design_feature-in' ] ) ) {
+        if ( ! empty( $this->data[ 'image' ][ 'image' ] ) ) {
+          $panel_def[ $component ] = str_replace( '{{image-in-content}}', $panel_def[ 'image' ], $panel_def[ $component ] );
 
-          if ($this->section[ '_panels_design_image-captions' ]) {
-            $panel_def[ $component ] = str_replace('{{captioncode}}', '<span class="caption">' . $this->data[ 'image' ][ 'caption' ] . '</span>', $panel_def[ $component ]);
+          if ( $this->section[ '_panels_design_image-captions' ] ) {
+            $panel_def[ $component ] = str_replace( '{{captioncode}}', '<span class="caption">' . $this->data[ 'image' ][ 'caption' ] . '</span>', $panel_def[ $component ] );
           }
 
-          $panel_def[ $component ] = str_replace('{{image}}', $this->data[ 'image' ][ 'image' ], $panel_def[ $component ]);
-          $panel_def[ $component ] = str_replace('{{incontent}}', 'in-content-thumb', $panel_def[ $component ]);
+          $panel_def[ $component ] = str_replace( '{{image}}', $this->data[ 'image' ][ 'image' ], $panel_def[ $component ] );
+          $panel_def[ $component ] = str_replace( '{{incontent}}', 'in-content-thumb', $panel_def[ $component ] );
 
-          if ('none' !== $this->section[ '_panels_design_link-image' ]) {
+          if ( 'none' !== $this->section[ '_panels_design_link-image' ] ) {
             $link = '';
-            switch ($this->section[ '_panels_design_link-image' ]) {
+            switch ( $this->section[ '_panels_design_link-image' ] ) {
               case 'page':
               case 'url':
-                $link = ('url' === $this->section[ '_panels_design_link-image' ]) ? '<a href="' . $this->section[ '_panels_design_link-image-url' ] . '" title="' . $this->section[ '_panels_design_link-image-url-tooltip' ] . '">' : $panel_def[ 'postlink' ];
+                $link = ( 'url' === $this->section[ '_panels_design_link-image' ] ) ? '<a href="' . $this->section[ '_panels_design_link-image-url' ] . '" title="' . $this->section[ '_panels_design_link-image-url-tooltip' ] . '">' : $panel_def[ 'postlink' ];
                 break;
               case 'original':
                 $link = '<a class="lightbox lightbox-' . $rsid . '" href="' . $this->data[ 'image' ][ 'original' ][ 0 ] . '" title="' . $this->data[ 'title' ][ 'title' ] . '">';
                 break;
             }
-            $panel_def[ $component ] = str_replace('{{postlink}}', $link, $panel_def[ $component ]);
-            $panel_def[ $component ] = str_replace('{{closepostlink}}', '</a>', $panel_def[ $component ]);
+            $panel_def[ $component ] = str_replace( '{{postlink}}', $link, $panel_def[ $component ] );
+            $panel_def[ $component ] = str_replace( '{{closepostlink}}', '</a>', $panel_def[ $component ] );
           }
 
 
@@ -575,115 +573,119 @@
 //          }
         }
       }
-      if (empty($this->data[ 'image' ][ 'image' ])) {
+      if ( empty( $this->data[ 'image' ][ 'image' ] ) ) {
         //TODO: Add an option to set if width spreads
-        if (!empty($this->section[ '_panels_design_maximize-content' ])) {
-          $panel_def[ $component ] = str_replace('{{nothumb}}', 'nothumb maxwidth', $panel_def[ $component ]);
+        if ( ! empty( $this->section[ '_panels_design_maximize-content' ] ) ) {
+          $panel_def[ $component ] = str_replace( '{{nothumb}}', 'nothumb maxwidth', $panel_def[ $component ] );
         } else {
-          $panel_def[ $component ] = str_replace('{{nothumb}}', 'nothumb', $panel_def[ $component ]);
+          $panel_def[ $component ] = str_replace( '{{nothumb}}', 'nothumb', $panel_def[ $component ] );
         }
       }
+      static $pno = 0;
+      $panel_def[$component] = self::process_animation('content',$panel_def[$component],$pno++);
 
-      return self::render_generics($component, $content_type, $panel_def[ $component ], $layout_mode);
+      return self::render_generics( $component, $content_type, $panel_def[ $component ], $layout_mode );
     }
 
-    public function render_excerpt($component, $content_type, $panel_def, $rsid, $layout_mode = false)
-    {
-      $panel_def[ $component ] = str_replace('{{excerpt}}', $this->data[ 'excerpt' ], $panel_def[ $component ]);
+    public function render_excerpt( $component, $content_type, $panel_def, $rsid, $layout_mode = false ) {
+      $panel_def[ $component ] = str_replace( '{{excerpt}}', $this->data[ 'excerpt' ], $panel_def[ $component ] );
 
-      if ($this->section[ '_panels_design_feature-location' ] === 'content-left' || $this->section[ '_panels_design_feature-location' ] === 'content-right' && in_array('excerpt', $this->section[ '_panels_design_feature-in' ])) {
-        if (!empty($this->data[ 'image' ][ 'image' ])) {
-          $panel_def[ $component ] = str_replace('{{image-in-content}}', $panel_def[ 'image' ], $panel_def[ $component ]);
+      if ( $this->section[ '_panels_design_feature-location' ] === 'content-left' || $this->section[ '_panels_design_feature-location' ] === 'content-right' && in_array( 'excerpt', $this->section[ '_panels_design_feature-in' ] ) ) {
+        if ( ! empty( $this->data[ 'image' ][ 'image' ] ) ) {
+          $panel_def[ $component ] = str_replace( '{{image-in-content}}', $panel_def[ 'image' ], $panel_def[ $component ] );
 
-          if ($this->section[ '_panels_design_image-captions' ]) {
-            $panel_def[ $component ] = str_replace('{{captioncode}}', '<span class="caption">' . $this->data[ 'image' ][ 'caption' ] . '</span>', $panel_def[ $component ]);
+          if ( $this->section[ '_panels_design_image-captions' ] ) {
+            $panel_def[ $component ] = str_replace( '{{captioncode}}', '<span class="caption">' . $this->data[ 'image' ][ 'caption' ] . '</span>', $panel_def[ $component ] );
           }
 
-          $panel_def[ $component ] = str_replace('{{image}}', $this->data[ 'image' ][ 'image' ], $panel_def[ $component ]);
-          $panel_def[ $component ] = str_replace('{{incontent}}', 'in-content-thumb', $panel_def[ $component ]);
+          $panel_def[ $component ] = str_replace( '{{image}}', $this->data[ 'image' ][ 'image' ], $panel_def[ $component ] );
+          $panel_def[ $component ] = str_replace( '{{incontent}}', 'in-content-thumb', $panel_def[ $component ] );
 
-          if ('none' !== $this->section[ '_panels_design_link-image' ]) {
+          if ( 'none' !== $this->section[ '_panels_design_link-image' ] ) {
             $link = '';
-            switch ($this->section[ '_panels_design_link-image' ]) {
+            switch ( $this->section[ '_panels_design_link-image' ] ) {
               case 'page':
               case 'url':
-                $link = ('url' === $this->section[ '_panels_design_link-image' ]) ? '<a href="' . $this->section[ '_panels_design_link-image-url' ] . '" title="' . $this->section[ '_panels_design_link-image-url-tooltip' ] . '">' : $panel_def[ 'postlink' ];
+                $link = ( 'url' === $this->section[ '_panels_design_link-image' ] ) ? '<a href="' . $this->section[ '_panels_design_link-image-url' ] . '" title="' . $this->section[ '_panels_design_link-image-url-tooltip' ] . '">' : $panel_def[ 'postlink' ];
                 break;
               case 'original':
                 $link = '<a class="lightbox lightbox-' . $rsid . '" href="' . $this->data[ 'image' ][ 'original' ][ 0 ] . '" title="' . $this->data[ 'title' ][ 'title' ] . '">';
                 break;
             }
-            $panel_def[ $component ] = str_replace('{{postlink}}', $link, $panel_def[ $component ]);
-            $panel_def[ $component ] = str_replace('{{closepostlink}}', '</a>', $panel_def[ $component ]);
+            $panel_def[ $component ] = str_replace( '{{postlink}}', $link, $panel_def[ $component ] );
+            $panel_def[ $component ] = str_replace( '{{closepostlink}}', '</a>', $panel_def[ $component ] );
           }
         }
       }
-      if (empty($this->data[ 'image' ][ 'image' ])) {
+      if ( empty( $this->data[ 'image' ][ 'image' ] ) ) {
         //TODO: Add an option to set if width spreads
-        if (!empty($this->section[ '_panels_design_maximize-content' ])) {
-          $panel_def[ $component ] = str_replace('{{nothumb}}', 'nothumb maxwidth', $panel_def[ $component ]);
+        if ( ! empty( $this->section[ '_panels_design_maximize-content' ] ) ) {
+          $panel_def[ $component ] = str_replace( '{{nothumb}}', 'nothumb maxwidth', $panel_def[ $component ] );
         } else {
-          $panel_def[ $component ] = str_replace('{{nothumb}}', 'nothumb', $panel_def[ $component ]);
+          $panel_def[ $component ] = str_replace( '{{nothumb}}', 'nothumb', $panel_def[ $component ] );
         }
       }
 
 //_panels_design_thumb-position
 
+      static $pno = 0;
+      $panel_def[$component] = self::process_animation('content',$panel_def[$component],$pno++);
 
-      return self::render_generics($component, $content_type, $panel_def[ $component ], $layout_mode);
+      return self::render_generics( $component, $content_type, $panel_def[ $component ], $layout_mode );
     }
 
     /**
      * render_image()
+     *
      * @param      $component
      * @param      $content_type
      * @param      $panel_def
      * @param      $rsid
      * @param bool $layout_mode
+     *
      * @return mixed
      */
-    public function render_image($component, $content_type, $panel_def, $rsid, $layout_mode = false)
-    {
-      if ('video' === $this->section[ '_panels_settings_feature-type' ]) {
-        $panel_def[ $component ] = str_replace('{{image}}', $this->data[ 'video' ][ 'source' ], $panel_def[ $component ]);
+    public function render_image( $component, $content_type, $panel_def, $rsid, $layout_mode = false ) {
+      if ( 'video' === $this->section[ '_panels_settings_feature-type' ] ) {
+        $panel_def[ $component ] = str_replace( '{{image}}', $this->data[ 'video' ][ 'source' ], $panel_def[ $component ] );
 
       } else {
-        if ('none' !== $this->section[ '_panels_design_link-image' ]) {
+        if ( 'none' !== $this->section[ '_panels_design_link-image' ] ) {
           $link = '';
-          switch ($this->section[ '_panels_design_link-image' ]) {
+          switch ( $this->section[ '_panels_design_link-image' ] ) {
             case 'page':
             case 'url':
-              $link = ('url' === $this->section[ '_panels_design_link-image' ]) ? '<a href="' . $this->section[ '_panels_design_link-image-url' ] . '" title="' . $this->section[ '_panels_design_link-image-url-tooltip' ] . '">' : $panel_def[ 'postlink' ];
+              $link = ( 'url' === $this->section[ '_panels_design_link-image' ] ) ? '<a href="' . $this->section[ '_panels_design_link-image-url' ] . '" title="' . $this->section[ '_panels_design_link-image-url-tooltip' ] . '">' : $panel_def[ 'postlink' ];
               break;
             case 'original':
               $link = '<a class="lightbox lightbox-' . $rsid . '" href="' . $this->data[ 'image' ][ 'original' ][ 0 ] . '" title="' . $this->data[ 'title' ][ 'title' ] . '">';
               break;
           }
-          $panel_def[ $component ] = str_replace('{{postlink}}', $link, $panel_def[ $component ]);
-          $panel_def[ $component ] = str_replace('{{closepostlink}}', '</a>', $panel_def[ $component ]);
+          $panel_def[ $component ] = str_replace( '{{postlink}}', $link, $panel_def[ $component ] );
+          $panel_def[ $component ] = str_replace( '{{closepostlink}}', '</a>', $panel_def[ $component ] );
         }
 
 
-        if ($this->section[ '_panels_design_image-captions' ]) {
-          $caption                 = str_replace('{{caption}}', $this->data[ 'image' ][ 'caption' ], $panel_def[ 'caption' ]);
-          $panel_def[ $component ] = str_replace('{{captioncode}}', $caption, $panel_def[ $component ]);
+        if ( $this->section[ '_panels_design_image-captions' ] ) {
+          $caption                 = str_replace( '{{caption}}', $this->data[ 'image' ][ 'caption' ], $panel_def[ 'caption' ] );
+          $panel_def[ $component ] = str_replace( '{{captioncode}}', $caption, $panel_def[ $component ] );
         }
 
-        $panel_def[ $component ] = str_replace('{{image}}', $this->data[ 'image' ][ 'image' ], $panel_def[ $component ]);
+        $panel_def[ $component ] = str_replace( '{{image}}', $this->data[ 'image' ][ 'image' ], $panel_def[ $component ] );
 
-        if (!empty($this->section[ '_panels_design_centre-image' ])) {
-          $panel_def[ $component ] = str_replace('{{centred}}', 'centred', $panel_def[ $component ]);
+        if ( ! empty( $this->section[ '_panels_design_centre-image' ] ) ) {
+          $panel_def[ $component ] = str_replace( '{{centred}}', 'centred', $panel_def[ $component ] );
         }
-        if ('float' === $this->section[ '_panels_design_feature-location' ]) {
-          $panel_def[ $component ] = str_replace('{{location}}', 'pzarc-components-' . $this->section[ '_panels_design_components-position' ], $panel_def[ $component ]);
+        if ( 'float' === $this->section[ '_panels_design_feature-location' ] ) {
+          $panel_def[ $component ] = str_replace( '{{location}}', 'pzarc-components-' . $this->section[ '_panels_design_components-position' ], $panel_def[ $component ] );
 
         }
 
-        switch (true) {
-          case (empty($this->data[ 'image' ][ 'image' ]) && 'table' === $layout_mode) :
+        switch ( true ) {
+          case ( empty( $this->data[ 'image' ][ 'image' ] ) && 'table' === $layout_mode ) :
             $panel_def[ $component ] = '<td class="td-entry-thumbnail"></td>';
             break;
-          case (empty($this->data[ 'image' ][ 'image' ])) :
+          case ( empty( $this->data[ 'image' ][ 'image' ] ) ) :
             $panel_def[ $component ] = '';
             break;
         }
@@ -693,71 +695,87 @@
 //      foreach ($this->data[ 'image' ] as $key => $value) {
 //        $template[ $type ] = str_replace('{{' . $key . '}}', $value, $template[ $type ]);
 //      }
+      static $pno = 0;
+      $panel_def[$component] = self::process_animation('feature',$panel_def[$component],$pno++);
 
-      return self::render_generics($component, $content_type, $panel_def[ $component ], $layout_mode);
+      return self::render_generics( $component, $content_type, $panel_def[ $component ], $layout_mode );
     }
 
 
     public
     function render_bgimage(
-        $component, $content_type, $panel_def, $rsid, $layout_mode = false
+      $component, $content_type, $panel_def, $rsid, $layout_mode = false
     ) {
-      if ('video' === $this->section[ '_panels_settings_feature-type' ]) {
-        $panel_def[ $component ] = str_replace('{{bgimage}}', $this->data[ 'video' ][ 'source' ], $panel_def[ $component ]);
+      if ( 'video' === $this->section[ '_panels_settings_feature-type' ] ) {
+        $panel_def[ $component ] = str_replace( '{{bgimage}}', $this->data[ 'video' ][ 'source' ], $panel_def[ $component ] );
 
       } else {
 
-        if (!empty($this->data[ 'bgimage' ][ 'thumb' ])) {
-          $panel_def[ $component ] = str_replace('{{bgimage}}', $this->data[ 'bgimage' ][ 'thumb' ], $panel_def[ $component ]);
+        if ( ! empty( $this->data[ 'bgimage' ][ 'thumb' ] ) ) {
+          $panel_def[ $component ] = str_replace( '{{bgimage}}', $this->data[ 'bgimage' ][ 'thumb' ], $panel_def[ $component ] );
         } else {
           // Gotta fill the background with something, else it collapses
           $width  = $this->section[ '_panels_design_image-max-dimensions' ][ 'width' ];
           $height = $this->section[ '_panels_design_image-max-dimensions' ][ 'height' ];
 
           $fakethumb               = '<div class="pzarc-fakethumb" style="width:' . $width . ';height:' . $height . ';"></div>';
-          $panel_def[ $component ] = str_replace('{{bgimage}}', $fakethumb, $panel_def[ $component ]);
+          $panel_def[ $component ] = str_replace( '{{bgimage}}', $fakethumb, $panel_def[ $component ] );
 
         }
-        $panel_def[ $component ] = str_replace('{{trim-scale}}', ' ' . $this->section[ '_panels_design_feature-location' ] . ' ' . $this->section[ '_panels_design_background-image-resize' ], $panel_def[ $component ]);
-        if ('none' !== $this->section[ '_panels_design_link-image' ]) {
+        $panel_def[ $component ] = str_replace( '{{trim-scale}}', ' ' . $this->section[ '_panels_design_feature-location' ] . ' ' . $this->section[ '_panels_design_background-image-resize' ], $panel_def[ $component ] );
+        if ( 'none' !== $this->section[ '_panels_design_link-image' ] ) {
           $link = '';
-          switch ($this->section[ '_panels_design_link-image' ]) {
+          switch ( $this->section[ '_panels_design_link-image' ] ) {
             case 'page':
             case 'url':
-              $link = ('url' === $this->section[ '_panels_design_link-image' ]) ? '<a href="' . $this->section[ '_panels_design_link-image-url' ] . '" title="' . $this->section[ '_panels_design_link-image-url-tooltip' ] . '">' : $panel_def[ 'postlink' ];
+              $link = ( 'url' === $this->section[ '_panels_design_link-image' ] ) ? '<a href="' . $this->section[ '_panels_design_link-image-url' ] . '" title="' . $this->section[ '_panels_design_link-image-url-tooltip' ] . '">' : $panel_def[ 'postlink' ];
               break;
             case 'original':
               $link = '<a class="lightbox lightbox-' . $rsid . '" href="' . $this->data[ 'image' ][ 'original' ][ 0 ] . '" title="' . $this->data[ 'title' ][ 'title' ] . '">';
               break;
           }
-          $panel_def[ $component ] = str_replace('{{postlink}}', $link, $panel_def[ $component ]);
-          $panel_def[ $component ] = str_replace('{{closepostlink}}', '</a>', $panel_def[ $component ]);
+          $panel_def[ $component ] = str_replace( '{{postlink}}', $link, $panel_def[ $component ] );
+          $panel_def[ $component ] = str_replace( '{{closepostlink}}', '</a>', $panel_def[ $component ] );
         }
       }
 
-      return self::render_generics($component, $content_type, $panel_def[ $component ], $layout_mode);
+
+      static $pno = 0;
+      $panel_def[$component] = self::process_animation('feature',$panel_def[$component],$pno++);
+
+      return self::render_generics( $component, $content_type, $panel_def[ $component ], $layout_mode );
+    }
+
+    private function process_animation($ani_component,$panel_def_component,$pno) {
+      if ( ! empty( $this->build->blueprint[ '_animation_'.$ani_component.'-enable' ] ) ) {
+        $animation_classes       = 'pzarc-wow animated ' . $this->build->blueprint[ '_animation_'.$ani_component.'-animation' ] . ' ';
+        $animation_data          = 'data-wow-duration="' . $this->build->blueprint[ '_animation_'.$ani_component.'-duration' ] . 's" data-wow-delay="' . ( $this->build->blueprint[ '_animation_'.$ani_component.'-delay' ] + ( $this->build->blueprint[ '_animation_'.$ani_component.'-duration' ] * $pno ) ) . 's" ';
+        $panel_def_component  = str_replace( '{{animationclass}}', $animation_classes, $panel_def_component  );
+        $panel_def_component  = str_replace( '{{animationdata}}', $animation_data, $panel_def_component  );
+      }
+      return $panel_def_component;
     }
 
     public
     function render_custom(
-        $component, $content_type, $panel_def, $rsid, $layout_mode = false
+      $component, $content_type, $panel_def, $rsid, $layout_mode = false
     ) {
       // Show each custom field in this group
-      if (!empty($this->data[ 'cfield' ])) {
+      if ( ! empty( $this->data[ 'cfield' ] ) ) {
         $panel_def_cfield = $panel_def[ 'cfield' ];
         $build_field      = '';
         $i                = 1;
-        foreach ($this->data[ 'cfield' ] as $k => $v) {
-          if ($v[ 'group' ] === $component && !empty($v[ 'value' ])) {
-            switch ($v[ 'field-type' ]) {
+        foreach ( $this->data[ 'cfield' ] as $k => $v ) {
+          if ( $v[ 'group' ] === $component && ! empty( $v[ 'value' ] ) ) {
+            switch ( $v[ 'field-type' ] ) {
 
               case 'image':
-                $content = '<img src="' . bfi_thumb($v[ 'value' ]) . '">';
+                $content = '<img src="' . bfi_thumb( $v[ 'value' ] ) . '">';
                 break;
 
               case 'date':
-                if (is_numeric($v[ 'value' ])) {
-                  $content = date($v[ 'date-format' ], $v[ 'value' ]);
+                if ( is_numeric( $v[ 'value' ] ) ) {
+                  $content = date( $v[ 'date-format' ], $v[ 'value' ] );
                 } else {
                   $content = $v[ 'value' ];
                 }
@@ -765,7 +783,7 @@
                 break;
 
               case 'number':
-                $content = number_format($v[ 'value' ], $v[ 'decimals' ], $v[ 'decimal-char' ], $v[ 'thousands-sep' ]);
+                $content = number_format( $v[ 'value' ], $v[ 'decimals' ], $v[ 'decimal-char' ], $v[ 'thousands-sep' ] );
                 break;
 
               case 'text':
@@ -777,17 +795,17 @@
 
             $prefix_image = '';
             $suffix_image = '';
-            if (!empty($v[ 'prefix-image' ])) {
+            if ( ! empty( $v[ 'prefix-image' ] ) ) {
               $prefix_image = '<img src="' . $v[ 'prefix-image' ] . '" class="pzarc-presuff-image prefix-image">';
             }
-            if (!empty($v[ 'suffix-image' ])) {
+            if ( ! empty( $v[ 'suffix-image' ] ) ) {
               $suffix_image = '<img src="' . $v[ 'suffix-image' ] . '" class="pzarc-presuff-image suffix-image">';
             }
 
 
             $content = $prefix_image . $v[ 'prefix-text' ] . $content . $v[ 'suffix-text' ] . $suffix_image;
 
-            if (!empty($v[ 'link-field' ])) {
+            if ( ! empty( $v[ 'link-field' ] ) ) {
               $content = '<a href="' . $v[ 'link-field' ] . '">' . $content . '</a>';
             }
 
@@ -797,67 +815,72 @@
 //            }
 
             // TODO: Should apply filters here?
-            $panel_def_cfield = str_replace('{{cfieldwrapper}}', $v[ 'wrapper-tag' ], $panel_def_cfield);
-            $panel_def_cfield = str_replace('{{cfieldcontent}}', $content, $panel_def_cfield);
-            $panel_def_cfield = str_replace('{{cfieldname}}', $v[ 'name' ], $panel_def_cfield);
-            $panel_def_cfield = str_replace('{{cfieldnumber}}', $k, $panel_def_cfield);
+            $panel_def_cfield = str_replace( '{{cfieldwrapper}}', $v[ 'wrapper-tag' ], $panel_def_cfield );
+            $panel_def_cfield = str_replace( '{{cfieldcontent}}', $content, $panel_def_cfield );
+            $panel_def_cfield = str_replace( '{{cfieldname}}', $v[ 'name' ], $panel_def_cfield );
+            $panel_def_cfield = str_replace( '{{cfieldnumber}}', $k, $panel_def_cfield );
 
             $build_field .= $panel_def_cfield;
           }
           $panel_def_cfield = $panel_def[ 'cfield' ];
         }
-        $panel_def[ $component ] = str_replace('{{' . $component . 'innards}}', $build_field, $panel_def[ $component ]);
+        $panel_def[ $component ] = str_replace( '{{' . $component . 'innards}}', $build_field, $panel_def[ $component ] );
       } else {
         $panel_def[ $component ] = '';
       }
+      static $pno = 0;
+      $panel_def[$component] = self::process_animation('customfield1',$panel_def[$component],$pno);
+      $panel_def[$component] = self::process_animation('customfield2',$panel_def[$component],$pno);
+      $panel_def[$component] = self::process_animation('customfield3',$panel_def[$component],$pno++);
 
-      return self::render_generics($component, $content_type, $panel_def[ $component ], $layout_mode);
+      return self::render_generics( $component, $content_type, $panel_def[ $component ], $layout_mode );
 
     }
 
-    public function render_wrapper($component, $content_type, $panel_def, $rsid, $layout_mode = false)
-    {
-      $panel_def[ $component ] = str_replace('{{mimic-block-type}}', $this->data[ 'inherit-hw-block-type' ], $panel_def[ $component ]);
+    public function render_wrapper( $component, $content_type, $panel_def, $rsid, $layout_mode = false ) {
+      $panel_def[ $component ] = str_replace( '{{mimic-block-type}}', $this->data[ 'inherit-hw-block-type' ], $panel_def[ $component ] );
 
-      return self::render_generics($component, $content_type, $panel_def[ $component ], $layout_mode);
+      return self::render_generics( $component, $content_type, $panel_def[ $component ], $layout_mode );
     }
 
-    public function render_generics($component, $source, $line, $layout_mode)
-    {
+    public function render_generics( $component, $source, $line, $layout_mode ) {
       //todo: make sure source is actual WP valid eg. soemthings might be attachment
       // Do any generic replacements
-      $line = str_replace('{{postid}}', $this->data[ 'postid' ], $line);
-      $line = str_replace('{{title}}', $this->data[ 'title' ][ 'title' ], $line);
-      $line = str_replace('{{permalink}}', $this->data[ 'permalink' ], $line);
-      $line = str_replace('{{closelink}}', '</a>', $line);
-      $line = str_replace('{{categories}}', $this->data[ 'meta' ][ 'categories' ], $line);
-      $line = str_replace('{{tags}}', $this->data[ 'meta' ][ 'tags' ], $line);
-      $line = str_replace('{{poststatus}}', $this->data[ 'poststatus' ], $line);
-      $line = str_replace('{{postformat}}', $this->data[ 'postformat' ], $line);
-      $line = str_replace('{{posttype}}', $source, $line);
+      $line = str_replace( '{{postid}}', $this->data[ 'postid' ], $line );
+      $line = str_replace( '{{title}}', $this->data[ 'title' ][ 'title' ], $line );
+      $line = str_replace( '{{permalink}}', $this->data[ 'permalink' ], $line );
+      $line = str_replace( '{{closelink}}', '</a>', $line );
+      $line = str_replace( '{{categories}}', $this->data[ 'meta' ][ 'categories' ], $line );
+      $line = str_replace( '{{tags}}', $this->data[ 'meta' ][ 'tags' ], $line );
+      $line = str_replace( '{{poststatus}}', $this->data[ 'poststatus' ], $line );
+      $line = str_replace( '{{postformat}}', $this->data[ 'postformat' ], $line );
+      $line = str_replace( '{{posttype}}', $source, $line );
 
       $pzclasses = 'pzarc-components ';
-      $pzclasses .= ($this->section[ '_panels_design_components-position' ] === 'left' || $this->section[ '_panels_design_components-position' ] === 'right') ? 'vertical-content pzarc-align-' . $this->section[ '_panels_design_components-position' ] : '';
+      $pzclasses .= ( $this->section[ '_panels_design_components-position' ] === 'left' || $this->section[ '_panels_design_components-position' ] === 'right' ) ? 'vertical-content pzarc-align-' . $this->section[ '_panels_design_components-position' ] : '';
 
-      $pzclasses .= !empty($this->section[ '_panels_design_animate-components' ]) && $this->section[ '_panels_design_animate-components' ] !== 'none'?' animated '.$this->section[ '_panels_design_animate-components' ]:'';
+      $pzclasses .= ! empty( $this->section[ '_panels_design_animate-components' ] ) && $this->section[ '_panels_design_animate-components' ] !== 'none' ? ' animated ' . $this->section[ '_panels_design_animate-components' ] : '';
 
-      $line = str_replace('{{pzclasses}}', $pzclasses, $line);
+      $line = str_replace( '{{pzclasses}}', $pzclasses, $line );
 
-      if ('table' === $layout_mode) {
-        $line = str_replace('{{div}}', 'td', $line);
-        $line = str_replace('{{h1open}}', '<td class="td-entry-title"><h1 ', $line);
-        $line = str_replace('{{h1close}}', '</h1></td>', $line);
-        $line = str_replace('{{figopen}}', '<td class="td-entry-thumbnail"><figure ', $line);
-        $line = str_replace('{{figclose}}', '</figure></td>', $line);
+      if ( 'table' === $layout_mode ) {
+        $line = str_replace( '{{div}}', 'td', $line );
+        $line = str_replace( '{{h1open}}', '<td class="td-entry-title"><h1 ', $line );
+        $line = str_replace( '{{h1close}}', '</h1></td>', $line );
+        $line = str_replace( '{{figopen}}', '<td class="td-entry-thumbnail"><figure ', $line );
+        $line = str_replace( '{{figclose}}', '</figure></td>', $line );
       } else {
-        $line = str_replace('{{div}}', 'div', $line);
-        $line = str_replace('{{h1open}}', '<h1 ', $line);
-        $line = str_replace('{{h1close}}', '</h1>', $line);
-        $line = str_replace('{{figopen}}', '<figure ', $line);
-        $line = str_replace('{{figclose}}', '</figure>', $line);
+        $line = str_replace( '{{div}}', 'div', $line );
+        $line = str_replace( '{{h1open}}', '<h1 ', $line );
+        $line = str_replace( '{{h1close}}', '</h1>', $line );
+        $line = str_replace( '{{figopen}}', '<figure ', $line );
+        $line = str_replace( '{{figclose}}', '</figure>', $line );
 
       }
-
+      if ('components-open'===$component) {
+        static $pno = 0;
+        $line = self::process_animation( 'panel', $line, $pno ++ );
+      }
       return $line;
     }
 
@@ -865,8 +888,7 @@
     /**
      * Default Loop
      */
-    public function loop($section_no, &$architect, &$panel_class, $class)
-    {
+    public function loop( $section_no, &$architect, &$panel_class, $class ) {
       $this->build            = $architect->build;
       $this->arc_query        = $architect->arc_query;
       $section[ $section_no ] = $this->build->blueprint[ 'section_object' ][ $section_no ];
@@ -874,21 +896,21 @@
       $panel_def = $panel_class->panel_def();
 
       // Setup meta tags
-      $panel_def = self::build_meta_header_footer_groups($panel_def, $section[ $section_no ]->section['section-panel-settings' ]);
+      $panel_def = self::build_meta_header_footer_groups( $panel_def, $section[ $section_no ]->section[ 'section-panel-settings' ] );
 
       $i = 1;
 
       $section[ $section_no ]->open_section();
-      pzdb('pre_generic_loop');
+      pzdb( 'pre_generic_loop' );
 
       // For custom conetnet such as NGG or RSS, this will look quite different!
-      while ($this->arc_query->have_posts()) {
+      while ( $this->arc_query->have_posts() ) {
         $this->arc_query->the_post();
 //        pzdb('top_of_loop Post:'.get_the_id());
-        $section[ $section_no ]->render_panel($panel_def, $i, $class, $panel_class, $this->arc_query);
+        $section[ $section_no ]->render_panel( $panel_def, $i, $class, $panel_class, $this->arc_query );
 
-        if ($i++ >= $this->build->blueprint[ '_blueprints_section-' . ($section_no - 1) . '-panels-per-view' ] && !empty($this->build->blueprint[ '_blueprints_section-' . ($section_no - 1) . '-panels-limited' ])) {
-          if ($i !== count($this->arc_query->posts)) {
+        if ( $i ++ >= $this->build->blueprint[ '_blueprints_section-' . ( $section_no - 1 ) . '-panels-per-view' ] && ! empty( $this->build->blueprint[ '_blueprints_section-' . ( $section_no - 1 ) . '-panels-limited' ] ) ) {
+          if ( $i !== count( $this->arc_query->posts ) ) {
             break;
           } else {
             // it will break anyways!
@@ -899,28 +921,27 @@
 //        pzdb('bottom_of_loop Post:'.get_the_id());
 
       }
-      pzdb('post_generic_loop');
+      pzdb( 'post_generic_loop' );
       $section[ $section_no ]->close_section();
 
       // Unsetting causes it to run the destruct, which closes the div. :D
-      unset($section[ $section_no ]);
+      unset( $section[ $section_no ] );
 
     }
 
     /**
      * get_nav_items
      */
-    public function get_nav_items($blueprints_navigator, &$arc_query, $nav_labels)
-    {
+    public function get_nav_items( $blueprints_navigator, &$arc_query, $nav_labels ) {
       // We shouldn't have to pass arc_query! And we don't need to in this one, but for some unsolved reason in arc_Panel_Dummy, we do. So for consistency, doing it here too.
       $nav_items = array();
       $i         = 0;
-      foreach ($arc_query->posts as $the_post) {
+      foreach ( $arc_query->posts as $the_post ) {
 
-        switch ($blueprints_navigator) {
+        switch ( $blueprints_navigator ) {
 
           case 'tabbed':
-            if (class_exists('HeadwayLayoutOption') && (true == ($alt_title = HeadwayLayoutOption::get($the_post->ID, 'alternate-title', false, true)))) {
+            if ( class_exists( 'HeadwayLayoutOption' ) && ( true == ( $alt_title = HeadwayLayoutOption::get( $the_post->ID, 'alternate-title', false, true ) ) ) ) {
               $post_title = $alt_title;
             } else {
               $post_title = $the_post->post_title;
@@ -932,41 +953,44 @@
           case 'labels':
             global $pzarc_post_id;
             $pzarc_post_id = $the_post->ID;
-            if (isset($nav_labels[ $i ])) {
-              $label = do_shortcode($nav_labels[ $i ]);
+            if ( isset( $nav_labels[ $i ] ) ) {
+              $label = do_shortcode( $nav_labels[ $i ] );
             } else {
               $label = 1 + $i;
             }
             $nav_items[ ] = '<span class="' . $blueprints_navigator . '">' . $label . '</span>';
-            $i++;
+            $i ++;
             break;
 
           case 'thumbs':
 
-            $focal_point = array(50, 50);
+            $focal_point = array( 50, 50 );
 
-            if ('attachment' === $the_post->post_type) {
+            if ( 'attachment' === $the_post->post_type ) {
 
               // TODO: Will need to change this to use the thumb dimensions set in the blueprint viasmall , medium, large
-              $thumb = wp_get_attachment_image($the_post->ID, array(self::get_thumbsize('w'),
-                                                                    self::get_thumbsize('h'),
-                                                                    'bfi_thumb' => true,
-                                                                    'crop'      => (int)$focal_point[ 0 ] . 'x' . (int)$focal_point[ 1 ]
-                                                            )
+              $thumb = wp_get_attachment_image( $the_post->ID, array(
+                                                               self::get_thumbsize( 'w' ),
+                                                               self::get_thumbsize( 'h' ),
+                                                               'bfi_thumb' => true,
+                                                               'crop'      => (int) $focal_point[ 0 ] . 'x' . (int) $focal_point[ 1 ]
+                                                             )
               );
 
             } else {
 
-              $thumb = get_the_post_thumbnail($the_post->ID, array(self::get_thumbsize('w'),
-                                                                   self::get_thumbsize('h'),
-                                                                   'bfi_thumb' => true,
-                                                                   'crop'      => (int)$focal_point[ 0 ] . 'x' . (int)$focal_point[ 1 ]));
+              $thumb = get_the_post_thumbnail( $the_post->ID, array(
+                self::get_thumbsize( 'w' ),
+                self::get_thumbsize( 'h' ),
+                'bfi_thumb' => true,
+                'crop'      => (int) $focal_point[ 0 ] . 'x' . (int) $focal_point[ 1 ]
+              ) );
 
             }
 
-            $thumb = (empty($thumb) ? '<img src="' . PZARC_PLUGIN_APP_URL . '/shared/assets/images/missing-image.png" width="' . self::get_thumbsize('w') . '" height="' . self::get_thumbsize('h') . '">' : $thumb);
+            $thumb = ( empty( $thumb ) ? '<img src="' . PZARC_PLUGIN_APP_URL . '/shared/assets/images/missing-image.png" width="' . self::get_thumbsize( 'w' ) . '" height="' . self::get_thumbsize( 'h' ) . '">' : $thumb );
             // Added this class so ca filter it out of Advanced Lazy Load
-            $thumb        = preg_replace("/class=\\\"a/uUm", "$0rc-nav-thumb a", $thumb);
+            $thumb        = preg_replace( "/class=\\\"a/uUm", "$0rc-nav-thumb a", $thumb );
             $nav_items[ ] = '<span class="' . $blueprints_navigator . '">' . $thumb . '</span>';
             break;
 
@@ -988,18 +1012,18 @@
 
     /**
      * @param $dim
+     *
      * @return int|mixed
      */
-    protected function get_thumbsize($dim)
-    {
+    protected function get_thumbsize( $dim ) {
 
       // $dim for later development with rectangular thumbs
       $thumbsize = 60;
-      if (!empty($this->build->blueprint[ '_blueprints_navigator-thumb-dimensions' ][ 'width' ]) && $dim === 'w') {
-        $thumbsize = str_replace(array('px'), '', $this->build->blueprint[ '_blueprints_navigator-thumb-dimensions' ][ 'width' ]);
+      if ( ! empty( $this->build->blueprint[ '_blueprints_navigator-thumb-dimensions' ][ 'width' ] ) && $dim === 'w' ) {
+        $thumbsize = str_replace( array( 'px' ), '', $this->build->blueprint[ '_blueprints_navigator-thumb-dimensions' ][ 'width' ] );
 
-      } elseif (!empty($this->build->blueprint[ '_blueprints_navigator-thumb-dimensions' ][ 'height' ]) && $dim === 'h') {
-        $thumbsize = str_replace(array('px'), '', $this->build->blueprint[ '_blueprints_navigator-thumb-dimensions' ][ 'height' ]);
+      } elseif ( ! empty( $this->build->blueprint[ '_blueprints_navigator-thumb-dimensions' ][ 'height' ] ) && $dim === 'h' ) {
+        $thumbsize = str_replace( array( 'px' ), '', $this->build->blueprint[ '_blueprints_navigator-thumb-dimensions' ][ 'height' ] );
       }
 
       return $thumbsize;
@@ -1013,6 +1037,7 @@
      *
      * @param $panel_def
      * @param $section_panel_settings
+     *
      * @return mixed
      *
      * Returns:
@@ -1020,59 +1045,59 @@
      *************************************************/
     public
     function build_meta_header_footer_groups(
-        $panel_def, $section_panel_settings
+      $panel_def, $section_panel_settings
     ) {
-      d($section_panel_settings);
+      d( $section_panel_settings );
       //replace meta1innards etc
-      $meta = array_pad(array(), 3, null);
-      foreach ($meta as $key => $value) {
+      $meta = array_pad( array(), 3, null );
+      foreach ( $meta as $key => $value ) {
         $i = $key + 1;
 //        $meta[ $key ]             = preg_replace('/%(\\w*)%/u', '{{$1}}', (!empty($section_panel_settings[ '_panels_design_meta' . $i . '-config' ]) ? $section_panel_settings[ '_panels_design_meta' . $i . '-config' ] : null));
-        $first_pass               = preg_replace('/%(\\w|[\\:\\-])*%/uiUmx', '{{$0}}', (!empty($section_panel_settings[ '_panels_design_meta' . $i . '-config' ]) ? strip_tags($section_panel_settings[ '_panels_design_meta' . $i . '-config' ], '<p><span><br><strong><em>') : null));
-        $meta[ $key ]             = preg_replace("/%(.*)%/uiUmx", "$1", $first_pass);
-        $panel_def[ 'meta' . $i ] = str_replace('{{meta' . $i . 'innards}}', $meta[ $key ], $panel_def[ 'meta' . $i ]);
-        $panel_def[ 'meta' . $i ] = str_replace('{{date}}', $panel_def[ 'datetime' ], $panel_def[ 'meta' . $i ]);
-        $panel_def[ 'meta' . $i ] = str_replace('{{author}}', $panel_def[ 'author' ], $panel_def[ 'meta' . $i ]);
-        $panel_def[ 'meta' . $i ] = str_replace('{{email}}', $panel_def[ 'email' ], $panel_def[ 'meta' . $i ]);
-        $panel_def[ 'meta' . $i ] = str_replace('{{categories}}', $panel_def[ 'categories' ], $panel_def[ 'meta' . $i ]);
-        $panel_def[ 'meta' . $i ] = str_replace('{{tags}}', $panel_def[ 'tags' ], $panel_def[ 'meta' . $i ]);
+        $first_pass               = preg_replace( '/%(\\w|[\\:\\-])*%/uiUmx', '{{$0}}', ( ! empty( $section_panel_settings[ '_panels_design_meta' . $i . '-config' ] ) ? strip_tags( $section_panel_settings[ '_panels_design_meta' . $i . '-config' ], '<p><span><br><strong><em>' ) : null ) );
+        $meta[ $key ]             = preg_replace( "/%(.*)%/uiUmx", "$1", $first_pass );
+        $panel_def[ 'meta' . $i ] = str_replace( '{{meta' . $i . 'innards}}', $meta[ $key ], $panel_def[ 'meta' . $i ] );
+        $panel_def[ 'meta' . $i ] = str_replace( '{{date}}', $panel_def[ 'datetime' ], $panel_def[ 'meta' . $i ] );
+        $panel_def[ 'meta' . $i ] = str_replace( '{{author}}', $panel_def[ 'author' ], $panel_def[ 'meta' . $i ] );
+        $panel_def[ 'meta' . $i ] = str_replace( '{{email}}', $panel_def[ 'email' ], $panel_def[ 'meta' . $i ] );
+        $panel_def[ 'meta' . $i ] = str_replace( '{{categories}}', $panel_def[ 'categories' ], $panel_def[ 'meta' . $i ] );
+        $panel_def[ 'meta' . $i ] = str_replace( '{{tags}}', $panel_def[ 'tags' ], $panel_def[ 'meta' . $i ] );
 // TODO: This maybe meant to be editlink
 //        $panel_def[ 'meta' . $i ] = str_replace('{{edit}}', $panel_def[ 'edit' ], $panel_def[ 'meta' . $i ]);
       }
 
 
-      $panel_layout = json_decode($section_panel_settings[ '_panels_design_preview' ], true);
+      $panel_layout = json_decode( $section_panel_settings[ '_panels_design_preview' ], true );
 
       $header_state  = false;
       $footer_state  = false;
       $seen_all_body = 0;
       $last_hf_key   = '';
 
-      $max_body = (int)$panel_layout[ 'excerpt' ][ 'show' ]
-          + (int)$panel_layout[ 'content' ][ 'show' ]
-          + (int)$panel_layout[ 'custom1' ][ 'show' ]
-          + (int)$panel_layout[ 'custom2' ][ 'show' ]
-          + (int)$panel_layout[ 'custom3' ][ 'show' ]
-          + ((int)$panel_layout[ 'image' ][ 'show' ] * (int)($section_panel_settings[ '_panels_design_feature-location' ] === 'components'));
+      $max_body = (int) $panel_layout[ 'excerpt' ][ 'show' ]
+                  + (int) $panel_layout[ 'content' ][ 'show' ]
+                  + (int) $panel_layout[ 'custom1' ][ 'show' ]
+                  + (int) $panel_layout[ 'custom2' ][ 'show' ]
+                  + (int) $panel_layout[ 'custom3' ][ 'show' ]
+                  + ( (int) $panel_layout[ 'image' ][ 'show' ] * (int) ( $section_panel_settings[ '_panels_design_feature-location' ] === 'components' ) );
 
-      $header_open  = empty($section_panel_settings[ '_panel_designs_components-headers-footers' ]) ? '' : '<header class="entry-header">';
-      $footer_open  = empty($section_panel_settings[ '_panel_designs_components-headers-footers' ]) ? '' : '<footer class="entry-header">';
-      $header_close = empty($section_panel_settings[ '_panel_designs_components-headers-footers' ]) ? '' : '</header>';
-      $footer_close = empty($section_panel_settings[ '_panel_designs_components-headers-footers' ]) ? '' : '</footer>';
+      $header_open  = empty( $section_panel_settings[ '_panel_designs_components-headers-footers' ] ) ? '' : '<header class="entry-header">';
+      $footer_open  = empty( $section_panel_settings[ '_panel_designs_components-headers-footers' ] ) ? '' : '<footer class="entry-header">';
+      $header_close = empty( $section_panel_settings[ '_panel_designs_components-headers-footers' ] ) ? '' : '</header>';
+      $footer_close = empty( $section_panel_settings[ '_panel_designs_components-headers-footers' ] ) ? '' : '</footer>';
 
-      foreach ((array)$panel_layout as $key => $value) {
-        if ($value[ 'show' ]) {
-          if (($key === 'title' || $key === 'meta1' || $key == 'meta2' || $key === 'meta3')) {
+      foreach ( (array) $panel_layout as $key => $value ) {
+        if ( $value[ 'show' ] ) {
+          if ( ( $key === 'title' || $key === 'meta1' || $key == 'meta2' || $key === 'meta3' ) ) {
             $last_hf_key = $key;
           }
-          switch (true) {
+          switch ( true ) {
 
-            case ($key === 'title' || $key === 'meta1' || $key == 'meta2' || $key === 'meta3') && !$header_state && !$footer_state:
+            case ( $key === 'title' || $key === 'meta1' || $key == 'meta2' || $key === 'meta3' ) && ! $header_state && ! $footer_state:
               $header_state      = 'open';
               $panel_def[ $key ] = $header_open . $panel_def[ $key ];
               break;
 
-            case ($key === 'meta1' || $key === 'meta2' || $key === 'meta3') && $seen_all_body === $max_body && !$footer_state && $header_state === 'closed':
+            case ( $key === 'meta1' || $key === 'meta2' || $key === 'meta3' ) && $seen_all_body === $max_body && ! $footer_state && $header_state === 'closed':
               $panel_def[ $key ] = $footer_open . $panel_def[ $key ];
               $footer_state      = 'open';
               break;
@@ -1082,23 +1107,23 @@
             case $key === 'custom1':
             case $key === 'custom2':
             case $key === 'custom3':
-            case $key === 'image' && ($section_panel_settings[ '_panels_design_feature-location' ] === 'components'):
+            case $key === 'image' && ( $section_panel_settings[ '_panels_design_feature-location' ] === 'components' ):
               // TODO: We need to work out a method of wrapping content in a div that copes with some content eg images not always being there.
-              if ($header_state === 'open') {
+              if ( $header_state === 'open' ) {
                 $header_state = 'closed';
                 $panel_def[ $last_hf_key ] .= $header_close;
               }
-              $seen_all_body++; // Once we've seen all the body, any meta will be for footer
+              $seen_all_body ++; // Once we've seen all the body, any meta will be for footer
               break;
           }
         }
 
 
       }
-      if ($header_state === 'open') {
+      if ( $header_state === 'open' ) {
         $panel_def[ $last_hf_key ] = $panel_def[ $last_hf_key ] . $header_close;
       }
-      if ($footer_state === 'open') {
+      if ( $footer_state === 'open' ) {
         $panel_def[ $last_hf_key ] = $panel_def[ $last_hf_key ] . $footer_close;
       }
 
