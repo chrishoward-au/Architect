@@ -94,6 +94,8 @@ For support, please send an email to support@pizazzwp.com
 
 == Changelog ==
 
+= 1.1.4 =
+* FIXED: Titles not selectable for styling in the Headway Visual Editor Design Mode
 
 = 1.1.3 =
 * CHANGED: Blueprints are hidden until rendered. This is because their CSS loads at the bottom of the page (since it enqueues mid page) and can cause an ugly unstyled moment otherwise.
