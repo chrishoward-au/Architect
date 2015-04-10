@@ -279,10 +279,15 @@
       /** ACCORDION TITLES */
       if ('accordion' === $this->layout_mode) {
         //This is a Dummy content specific hack fix
-        $accordion_title = isset($post['title']['title'])?$post['title']['title']:$post->post_title;
-        if (isset($this->table_accordion_titles) && !empty($this->table_accordion_titles) && isset($this->table_accordion_titles[ $panel_def ])) {
-          $accordion_title = do_shortcode($this->table_accordion_titles[ $panel_number ]);
+        if (is_array($post)){
+          $accordion_title = (isset($this->table_accordion_titles[$panel_number-1]))?$this->table_accordion_titles[$panel_number-1]:$post['title']['title'];
+        } else {
+          $accordion_title = (isset($this->table_accordion_titles[$panel_number-1]))?$this->table_accordion_titles[$panel_number-1]:$post->post_title;
         }
+//        $accordion_title = isset($post['title']['title'])?$post['title']['title']:$post->post_title;
+//        if (isset($this->table_accordion_titles) && !empty($this->table_accordion_titles) && isset($this->table_accordion_titles[ $panel_def ])) {
+//          $accordion_title = do_shortcode($this->table_accordion_titles[ $panel_number ]);
+//        }
         //'_blueprint_section-' . $this->section_number . '-accordion-titles'
         echo '<div class="pzarc-accordion title ' . ($panel_number === 1 ? 'open' : 'close') . '">' . $accordion_title . '</div>';
       }

@@ -690,7 +690,7 @@
 
           'show_import_export' => true,
           // REMOVE
-          'system_info'        => true,
+          'system_info'        => false,
           // REMOVE
 
           'help_tabs'          => array(),

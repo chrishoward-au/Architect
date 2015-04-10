@@ -30,6 +30,16 @@
       if (empty($this->blueprint[ 'err_msg' ])) {
 //        for ($i = 1; $i <= 3; $i++) {
         $i = 1;
+        switch($this->blueprint[ '_blueprints_section-' . ($i - 1) . '-layout-mode' ]) {
+          case 'table':
+            $titles = $this->blueprint[ '_blueprints_section-' . ($i - 1) . '-table-column-titles' ];
+            break;
+          case 'accordion':
+            $titles = $this->blueprint[ '_blueprints_section-' . ($i - 1) . '-accordion-titles' ];
+            break;
+          default:
+            $titles='';
+        }
 
 //          if (!empty($this->blueprint[ '_blueprints_section-' . ($i - 1) . '-panel-layout' ])) {
         $this->blueprint[ 'section_object' ][ $i ] =
@@ -40,7 +50,7 @@
                                        $this->blueprint[ '_blueprints_section-' . ($i - 1) . '-layout-mode' ],
                                        'slick', // Possible Future use
 //                                       $this->blueprint[ '_blueprints_section-' . ($i - 1) . '-title' ],
-                                       $this->blueprint[ '_blueprints_section-' . ($i - 1) . '-table-column-titles' ],
+                                       $titles,
                                        $this->blueprint[ '_blueprints_short-name' ]
 
             );

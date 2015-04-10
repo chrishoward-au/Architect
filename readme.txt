@@ -3,7 +3,7 @@ Contributors: chrishoward
 Tags: content,display,posts,pages,gallery,slider,tabs,tabbed,tabular,widget,hooks
 Requires at least: 3.5.0
 Tested up to: 4.2.0
-Stable tag: 1.1.4
+Stable tag: 1.1.5
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Plugin URI: http://architect4wp.com
@@ -93,6 +93,9 @@ For support, please send an email to support@pizazzwp.com
 
 
 == Changelog ==
+
+= 1.1.5 =
+* FIXED: Nothing showing for Accordions except when content is Dummy
 
 = 1.1.4 =
 * FIXED: Titles not selectable for styling in the Headway Visual Editor Design Mode
