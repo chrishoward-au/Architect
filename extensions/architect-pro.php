@@ -70,8 +70,8 @@
           $GLOBALS[ '_architect_options' ] = get_option( '_architect_options', array() );
         }
 //        if ( ! empty( $_architect_options[ 'architect_licence_key' ] ) ) {
-          require_once( PZARC_PLUGIN_PATH . 'wp-updates-plugin_429.php' );
-        new WPUpdatesPluginUpdater_429( 'http://wp-updates.com/api/2/plugin', 'pizazzwp-architect/architect.php');
+        require_once( PZARC_PLUGIN_PATH . 'wp-updates-plugin_429.php' );
+//        new WPUpdatesPluginUpdater_429( 'http://wp-updates.com/api/2/plugin', 'pizazzwp-architect/architect.php' );
         new WPUpdatesPluginUpdater_429( 'http://wp-updates.com/api/2/plugin', 'pizazzwp-architect/architect.php', $_architect_options[ 'architect_licence_key' ] );
 //        }
       } else {

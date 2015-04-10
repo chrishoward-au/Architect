@@ -624,8 +624,8 @@
           $use_key = $pzarc_post_type_obj->post_name;
         }
 
-      } elseif ($use_shortname === 'id') {
-        $use_key = $pzarc_post_type_obj->ID;
+      } elseif ($use_shortname === 'id-slug') {
+        $use_key = $pzarc_post_type_obj->ID.':'.$pzarc_post_type_obj->post_name;
       } else  {
         $use_key = $pzarc_post_type_obj->post_name;
       }

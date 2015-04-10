@@ -3,7 +3,7 @@ Contributors: chrishoward
 Tags: content,display,posts,pages,gallery,slider,tabs,tabbed,tabular,widget,hooks
 Requires at least: 3.5.0
 Tested up to: 4.2.0
-Stable tag: 1.1.3
+Stable tag: 1.1.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Plugin URI: http://architect4wp.com
@@ -96,6 +96,8 @@ For support, please send an email to support@pizazzwp.com
 
 = 1.1.4 =
 * FIXED: Titles not selectable for styling in the Headway Visual Editor Design Mode
+* CHANGED: Spaces are stripped from css file name - just in case the short name validator allowed them
+* ADDED: Licencing for purchases from PizazzWP direct
 
 = 1.1.3 =
 * CHANGED: Blueprints are hidden until rendered. This is because their CSS loads at the bottom of the page (since it enqueues mid page) and can cause an ugly unstyled moment otherwise.

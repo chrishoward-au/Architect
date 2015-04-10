@@ -119,14 +119,14 @@
           $blueprints = $pzarc_css_cache[ 'blueprints' ];
         }
         foreach ($blueprints as $k => $v) {
-          $filename = PZARC_CACHE_PATH . '/pzarc_blueprint_' . $k . '.css';
+          $filename = str_replace(' ','',PZARC_CACHE_PATH . 'pzarc_blueprint_' . $k . '.css');
           if (!empty($k) && !$wp_filesystem->put_contents(
                   $filename,
                   "/* Blueprint '.$k.'*/\n" . $v,
                   FS_CHMOD_FILE // predefined mode settings for WP files
               )
           ) {
-            echo '<p class="error message">Error saving css cache file! Please check the permissions on the WP Uploads folder.</p>';
+            echo '<p class="error message">Error saving css cache file for Blueprint '.$k.'! Please check the permissions on the WP Uploads folder.</p>';
           }
         }
       }

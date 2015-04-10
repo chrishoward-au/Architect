@@ -91,7 +91,7 @@
     }
 
     /*********************************************
-     * 
+     *
      */
     function missing_redux_admin_notice() {
       echo '<div id="message" class="error"><h3>' . __( 'Architect requires Redux Framework', 'pzarchitect' ) . '</h3><p><strong>' . __( 'One final step in installing Architect.', 'pzarchitect' ) . '</strong><br>' . __( 'It cannot function without the Redux Framework plugin. You need to install and/or activate Redux.', 'pzarchitect' ) . '<br>' . __( 'Redux is the backbone of Architect, providing all the necessary code libraries for Architect\'s fields and options.', 'pzarchitect' ) . '<br>' . __( 'There should be another message with a link to make installing and activating Redux easy. If you can\'t find it, contact PizazzWP support.', 'pzarchitect' ) . '</p></div>';
@@ -208,7 +208,7 @@
     }
 
     /*********************************************
-     * 
+     *
      */
     function admin_menu() {
       global $pzarc_menu, $pizazzwp_updates;
@@ -242,7 +242,7 @@
     }
 
     /*********************************************
-     * 
+     *
      */
     function admin_menu_no_redux() {
 //      global $pzarc_menu, $pizazzwp_updates;
@@ -262,7 +262,7 @@
     }
 
     /*********************************************
-     * 
+     *
      */
     function admin_head() {
 
@@ -270,7 +270,7 @@
 
 
     /*********************************************
-     * 
+     *
      */
     function pzarc_tools() {
       global $title;
@@ -331,7 +331,7 @@
     }
 
     /*********************************************
-     * 
+     *
      */
     function pzarc_support() {
       global $title;
@@ -501,7 +501,9 @@ add_action(\'init\',\'gs_init\');
                         <p>' . __( 'For <strong>community and peer-to-peer support</strong>, visit the', 'pzarchitect' ) . ' <a href="http://architect4wp.helprace.com" target="_blank" class="arc-codex">' . __( 'Architect Community', 'pzarchitect' ) . '</a></p>
                         <p>' . __( 'For <strong>technical support</strong>, either fill out the form below or email', 'pzarchitect' ) . ' <a href="mailto://support@pizazzwp.com" target="_blank" class="arc-codex">' . __( 'support@pizazzwp.com', 'pzarchitect' ) . '</a></p>
                     <h3>' . __( 'Things to try first', 'pzarchitect' ) . '</h3>
-                    <ul><li>' . __( 'If Blueprints are not displaying as expected, please try emptying your WP cache if you are using one and then the Architect cache (under <em>Architect</em> > <em>Tools</em>)', 'pzarchitect' ) . '</li></ul>
+                    <ul><li>' . __( 'If Blueprints are not displaying as expected, please try emptying your WP cache if you are using one and then the Architect cache (under <em>Architect</em> > <em>Tools</em>)', 'pzarchitect' ) . '</li>
+                    <li>' . __( 'If things just aren\'t working, e.g. nothing displays, the page is broken - then try deactivating all other plugins. If that fixes things, reactivate one at a time until you identify the conflict, then let us know what the plugin is.', 'pzarchitect' ) . '</li>
+                    </ul>
               </div>
               </div>
               <h2>Submit a help request directly</h2>
@@ -806,7 +808,7 @@ add_action(\'init\',\'gs_init\');
   }
 
   /*********************************************
-   * Sort posts in wp_list_table by column in ascending or descending order. 
+   * Sort posts in wp_list_table by column in ascending or descending order.
    */
   function pzarc_blueprints_order( $query ) {
     /*
@@ -845,7 +847,7 @@ add_action(\'init\',\'gs_init\');
 
     $screen   = get_current_screen();
     $user_can = current_user_can( 'edit_others_posts' );
-      if ( $user_can && ( $screen->post_type === 'page' || $screen->post_type === 'post' )) {
+    if ( $user_can && ( $screen->post_type === 'page' || $screen->post_type === 'post' ) ) {
       $blueprint_list = pzarc_get_posts_in_post_type( 'arc-blueprints', true );
 
       echo '&nbsp;<select id="arc-select" class="arc-dropdown" style="font-size:small;"><option>Insert Architect Blueprint</option>';
