@@ -89,8 +89,7 @@
       );
       $bp              = get_posts($meta_query_args);
       $this->bp        = pzarc_flatten_wpinfo(get_post_meta($bp[ 0 ]->ID));
-
-      // TODO: Why do we need this still? Yes! Because Redux doesn't store defaults
+      // Do we need this still? Yes! Because Redux doesn't store defaults
       // True excludes styling
       pzarc_get_defaults(true);
 

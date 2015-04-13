@@ -353,6 +353,7 @@
             <div class="tabby tabs">
                 <button class="tabby-quick first active" data-tab="#quick">' . __( 'Getting started', 'pzarchitect' ) . '</button>
                 <button class="tabby-how" data-tab="#how">' . __( 'Usage', 'pzarchitect' ) . '</button>
+                <button class="tabby-latest" data-tab="#latest">' . __( 'Latest news', 'pzarchitect' ) . '</button>
                 <button class="tabby-help" data-tab="#help">' . __( 'Support', 'pzarchitect' ) . '</button>
                 <button class="tabby-shout" data-tab="#shout">' . __( 'Shoutouts', 'pzarchitect' ) . '</button>
             </div>
@@ -492,6 +493,61 @@ add_action(\'init\',\'gs_init\');
                     </div>
                 </div>
                 </div>
+
+
+                <div class="tabs-pane " id="latest">
+                  <h2>' . __( 'Latest News' ) . '</h2>
+                  <div class="arc-info-boxes">
+                    <div class="arc-info col1">';
+                      include_once( ABSPATH . WPINC . '/feed.php' );
+
+              //      add_filter( 'wp_feed_cache_transient_lifetime' , 'return_10' );
+                    $rss = fetch_feed( 'http://pizazzwp.com/category/architect/feed' );
+              //      remove_filter( 'wp_feed_cache_transient_lifetime' , 'return_10' );
+              //      var_dump($rss);
+                    if ( ! is_wp_error( $rss ) )  // Checks that the object is created correctly
+                      // Figure out how many total items there are, but limit it to 5.
+                    {
+                      $maxitems = $rss->get_item_quantity( 5 );
+
+                      // Build an array of all the items, starting with element 0 (first element).
+                      $rss_items = $rss->get_items( 0, $maxitems );
+
+
+                      echo '<div class="postbox pzwp_blog" style="width:68%;float:left;">
+                                      <h3 class="handle" style="line-height:30px;padding-left:10px;">Latest Architect News</h3>
+                                      <ul class="inside">';
+                      if ( $maxitems == 0 ) {
+                        echo '<li>No items.</li>';
+                      } else // Loop through each feed item and display each item as a hyperlink.
+                      {
+                        foreach ( $rss_items as $item ) :
+                          echo '<li>
+                                  <h4 style="font-size:15px;"><a href=' . esc_url( $item->get_permalink() ) . '
+                                                                 title=' . esc_html( $item->get_title() ) . '
+                                                                 target=_blank>
+                                      ' . esc_html( $item->get_title() ) . '</a></h4>
+
+                                  <p style="line-height:0;font-style:italic">' . $item->get_date( 'j F Y' ) . '</p>
+
+                                  <p>' . $item->get_description() . '<a
+                                      href="' . esc_url( $item->get_permalink() ) . '" target=_blank>
+                                      Continue reading</a></p>
+                                </li>';
+                        endforeach;
+                      }
+
+                      echo '     </ul>
+                      </div>';
+                    } else {
+                      echo "There was a problem accessing the news feed. As WP caches feeds for 12 hours, you won't be able to check again for a while.";
+                    }
+
+                 echo '</div>
+                  </div>
+                </div>
+
+
                 <div class="tabs-pane " id="help">
                     <h2>' . __( 'Support' ) . '</h2>
                     <div class="arc-info-boxes">
@@ -504,8 +560,8 @@ add_action(\'init\',\'gs_init\');
                     <ul><li>' . __( 'If Blueprints are not displaying as expected, please try emptying your WP cache if you are using one and then the Architect cache (under <em>Architect</em> > <em>Tools</em>)', 'pzarchitect' ) . '</li>
                     <li>' . __( 'If things just aren\'t working, e.g. nothing displays, the page is broken - then try deactivating all other plugins. If that fixes things, reactivate one at a time until you identify the conflict, then let us know what the plugin is.', 'pzarchitect' ) . '</li>
                     </ul>
-              </div>
-              </div>
+                    </div>
+                    </div>
               <h2>Submit a help request directly</h2>
                                   <div class="arc-info-boxes">
                     <div class="arc-info col1">
@@ -516,8 +572,8 @@ add_action(\'init\',\'gs_init\');
             </style>
             <iframe class="freshwidget-embedded-form" id="freshwidget-embedded-form" src="https://pizazzwp.freshdesk.com/widgets/feedback_widget/new?&widgetType=embedded&formTitle=&screenshot=no&searchArea=no" scrolling="no" height="850px" width="90%" frameborder="0"  style="margin:20px 10px 10px 40px;background:#eee;overflow-y: auto;">
             </iframe>
-</div>
-</div>
+                </div>
+           </div>
 
                 </div>
 
@@ -878,4 +934,9 @@ add_action(\'init\',\'gs_init\');
            });
         });
         </script>';
+  }
+
+  function return_10( $seconds ) {
+    // change the default feed cache recreation period to 2 hours
+    return 10;
   }

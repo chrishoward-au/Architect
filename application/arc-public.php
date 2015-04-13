@@ -35,13 +35,14 @@
       return;
     }
     // Register all the scripts in case it solves the late loading!
-    foreach ( $pzarc_css_cache[ 'blueprints' ] as $blueprint => $v ) {
-      $filename      = PZARC_CACHE_URL . '/pzarc_blueprint_' . $blueprint . '.css';
-      $filename_path = PZARC_CACHE_PATH . '/pzarc_blueprint_' . $blueprint . '.css';
+//    foreach ( $pzarc_css_cache[ 'blueprints' ] as $blueprint => $v ) {
+//      $filename      = PZARC_CACHE_URL . '/pzarc_blueprint_' . $blueprint . '.css';
+//      $filename_path = PZARC_CACHE_PATH . '/pzarc_blueprint_' . $blueprint . '.css';
+//      // Keep the timestamp or caching get messed up.
 //      wp_register_style('pzarc_css_blueprint_' . $blueprint, $filename, false, filemtime($filename_path));
-      wp_register_style( 'pzarc_css_blueprint_' . $blueprint, $filename, false );
-//      var_dump($blueprint);
-    }
+//    }
+
+
     require_once( PZARC_PLUGIN_APP_PATH . 'public/php/class_arcBuilder.php' );
     new arcBuilder;
 
@@ -190,12 +191,11 @@
    ******************************/
   function pzarc( $blueprint = null, $overrides = null, $caller, $tag = null, $additional_overrides = null ) {
     pzdb( 'start pzarc' );
+    // Shortcodes will load these late. TODO Should search for shortcode in page
     $filename      = PZARC_CACHE_URL . '/pzarc_blueprint_' . $blueprint . '.css';
     $filename_path = PZARC_CACHE_PATH . '/pzarc_blueprint_' . $blueprint . '.css';
     if ( file_exists( $filename_path ) ) {
-//      wp_enqueue_style('pzarc_css_blueprint_' . $blueprint, $filename, false, filemtime($filename_path));
-      wp_enqueue_style( 'pzarc_css_blueprint_' . $blueprint );
-//      add_action('wp_print_styles',$blueprint);
+      wp_enqueue_style('pzarc_css_blueprint_' . $blueprint, $filename, false, filemtime($filename_path));
     } else {
       //how do we tell the developer without an horrid message on the front end?
     }

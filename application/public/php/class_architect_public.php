@@ -370,7 +370,7 @@
     }
 
     /**
-     * display_page_title
+     * display Archives page_title
      * @param $display_title
      * @param $title_override
      * @return null|string
@@ -379,8 +379,9 @@
     {
       if (!empty($display_title) || !empty($this->build->blueprint[ 'additional_overrides' ][ 'pzarc-overrides-page-title' ])) {
         $title = '';
+        global $wp_the_query;
         switch (true) {
-          case is_category() :
+          case is_category():
             $title = single_cat_title(__($title_override[ 'category' ], 'pzarchitect'), false);
             break;
           case is_tag() :
@@ -392,13 +393,26 @@
           case is_tax() :
             $title = single_term_title(__($title_override[ 'custom' ], 'pzarchitect'), false);
             break;
-          case is_single() :
-          case is_singular() :
+          case $wp_the_query->is_category:
+            $title = pzarc_term_title(__($title_override[ 'category' ], 'pzarchitect'),$wp_the_query->tax_query);
+            break;
+          case $wp_the_query->is_tag :
+            $title = pzarc_term_title(__($title_override[ 'tag' ], 'pzarchitect'),$wp_the_query->tax_query);
+            break;
+          case $wp_the_query->is_month :
+            $title = pzarc_term_title(__($title_override[ 'month' ], 'pzarchitect'),$wp_the_query->tax_query);
+            break;
+          case $wp_the_query->is_tax :
+            $title = pzarc_term_title(__($title_override[ 'custom' ], 'pzarchitect'),$wp_the_query->tax_query);
+            break;
+          case is_single()  || $wp_the_query->is_single:
+          case is_singular()  || $wp_the_query->is_singular:
             $title = single_post_title(null, false);
             break;
         }
+
         if ($title) {
-          return '<h2 class="pzarc-page-title">' . $title . '</h2>';
+          return '<h1 class="pzarc-page-title">' . esc_attr($title) . '</h1>';
         }
       }
 

@@ -46,6 +46,7 @@
                                         'excerpt',
                                         'comments',
                                         'revisions',
+                                        'custom-fields',
                                         'post-formats',
                                         'page-attributes')
       );

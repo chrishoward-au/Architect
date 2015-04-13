@@ -238,7 +238,7 @@
           if ( ! empty( $post_meta[ '_blueprints_section-0-layout-mode' ][ 0 ] ) ) {
             echo '1: ' . ucfirst( $post_meta[ '_blueprints_section-0-layout-mode' ][ 0 ] );
           } else {
-            echo '1: Basic';
+            echo '1: Grid';
           }
           if ( ! empty( $post_meta[ '_blueprints_section-0-layout-mode' ][ 0 ] ) && ! empty( $post_meta[ '_blueprints_section-1-layout-mode' ][ 0 ] ) ) {
             echo '<br>' . '2: ' . ucfirst( $post_meta[ '_blueprints_section-1-layout-mode' ][ 0 ] );
@@ -797,12 +797,13 @@
             //                  'off'     => __('No', 'pzarchitect')
             //              ),
             array(
-              'title'   => 'Page title',
-              'id'      => $prefix . 'page-title',
-              'type'    => 'switch',
-              'on'      => 'Yes',
-              'off'     => 'No',
-              'default' => false
+              'title'    => 'Page title',
+              'id'       => $prefix . 'page-title',
+              'type'     => 'switch',
+              'subtitle' => __( 'Show page title on single and archive pages', 'pzarchitect' ),
+              'on'       => 'Yes',
+              'off'      => 'No',
+              'default'  => false
             ),
             //                array(
             //                    'id'       => $prefix . 'section-' . $i . '-panel-layout',
@@ -1508,7 +1509,7 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
 
         $thisSection = 'blueprint';
 
-        $sections[ '_styling_general' ]          = array(
+        $sections[ '_styling_general' ] = array(
           'title'      => 'Blueprint General Styling',
           'show_title' => false,
           'icon_class' => 'icon-large',
@@ -1538,6 +1539,17 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
             pzarc_redux_borders( $prefix . $thisSection . $border, $this->defaults ? '' : $_architect[ 'architect_config_' . $thisSection . '-selectors' ], $defaults[ $optprefix . $thisSection . $background ] ),
             pzarc_redux_links( $prefix . $thisSection . $link, $this->defaults ? '' : $_architect[ 'architect_config_' . $thisSection . '-selectors' ], $defaults[ $optprefix . $thisSection . $background ] ),
             array(
+              'id'     => $prefix . 'blueprint-end-section-blueprint',
+              'type'   => 'section',
+              'indent' => false,
+            ),
+            array(
+              'title'  => __( 'Custom CSS', 'pzarchitect' ),
+              'id'     => $prefix . 'blueprint-section-blueprint-custom-css',
+              'type'   => 'section',
+              'indent' => false,
+            ),
+            array(
               'title'    => __( 'Custom CSS', 'pzarchitect' ),
               'id'       => $prefix . 'blueprint-custom-css',
               'type'     => 'ace_editor',
@@ -1548,6 +1560,37 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
             )
           )
         );
+
+        $thisSection                 = 'page';
+        $sections[ '_styling_page' ] = array(
+          'title'      => 'Page',
+          'show_title' => false,
+          'icon_class' => 'icon-large',
+          'icon'       => 'el-icon-file',
+          'fields'     => pzarc_fields(
+            array(
+              'title'    => __( 'Page title', 'pzarchitect' ),
+              'id'       => $prefix . 'blueprint-section-page-title',
+              'type'     => 'section',
+              'indent'   => true,
+              'class'    => 'heading',
+              'subtitle' => 'Class: .pzarc-page-title',
+            ),
+            pzarc_redux_font( $prefix . $thisSection . '_page-title' . $font, $this->defaults ? '' : $_architect[ 'architect_config_' . $thisSection . '_page-title' . '-selectors' ], $defaults[ $optprefix . $thisSection . '_page-title' . $font ] ),
+            pzarc_redux_bg( $prefix . $thisSection . '_page-title' . $background, $this->defaults ? '' : $_architect[ 'architect_config_' . $thisSection . '_page-title' . '-selectors' ], $defaults[ $optprefix . $thisSection . '_page-title' . $background ] ),
+            pzarc_redux_padding( $prefix . $thisSection . '_page-title' . $padding, $this->defaults ? '' : $_architect[ 'architect_config_' . $thisSection . '_page-title' . '-selectors' ], $defaults[ $optprefix . $thisSection . '_page-title' . $background ] ),
+            pzarc_redux_margin( $prefix . $thisSection . '_page-title' . $margin, $this->defaults ? '' : $_architect[ 'architect_config_' . $thisSection . '_page-title' . '-selectors' ], $defaults[ $optprefix . $thisSection . '_page-title' . $background ] ),
+            pzarc_redux_borders( $prefix . $thisSection . '_page-title' . $border, $this->defaults ? '' : $_architect[ 'architect_config_' . $thisSection . '_page-title' . '-selectors' ], $defaults[ $optprefix . $thisSection . '_page-title' . $background ] ),
+            pzarc_redux_links( $prefix . $thisSection . '_page-title' . $link, $this->defaults ? '' : $_architect[ 'architect_config_' . $thisSection . '_page-title' . '-selectors' ], $defaults[ $optprefix . $thisSection . '_page-title' . $background ] ),
+            array(
+              'id'     => $prefix . 'blueprint-end-section-page-title',
+              'type'   => 'section',
+              'indent' => false,
+            )
+          )
+        );
+
+
         $thisSection                             = 'sections';
         $sections[ '_styling_sections_wrapper' ] = array(
           'title'      => 'Panels wrapper',
@@ -2615,6 +2658,8 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
         $thispostmeta = get_post_meta( $_GET[ 'post' ] );
         $cfcount      = ( ! empty( $thispostmeta[ '_panels_design_custom-fields-count' ][ 0 ] ) ? $thispostmeta[ '_panels_design_custom-fields-count' ][ 0 ] : 0 );
 
+        $pzarc_custom_fields = pzarc_get_custom_fields();
+
         for ( $i = 1; $i <= $cfcount; $i ++ ) {
           $cfname      = 'Custom field ' . $i . ( ! empty( $thispostmeta[ '_panels_design_cfield-' . $i . '-name' ][ 0 ] ) ? ': <br>' . $thispostmeta[ '_panels_design_cfield-' . $i . '-name' ][ 0 ] : '' );
           $sections[ ] = array(
@@ -2638,8 +2683,9 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
                 'title'    => __( 'Field name', 'pzarchitect' ),
                 'id'       => $prefix . 'cfield-' . $i . '-name',
                 'type'     => 'select',
-                'data'     => 'callback',
-                'args'     => array( 'pzarc_get_custom_fields' ),
+                //                'data'     => 'callback',
+                //                'args'     => array( 'pzarc_get_custom_fields' ),
+                'options'  => $pzarc_custom_fields,
                 'subtitle' => __( 'If a custom field is not shown in the dropdown, it is because it has no data yet.', 'pzarchitect' )
 
               ),
@@ -2713,8 +2759,9 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
                 'title'    => __( 'Link field', 'pzarchitect' ),
                 'id'       => $prefix . 'cfield-' . $i . '-link-field',
                 'type'     => 'select',
-                'data'     => 'callback',
-                'args'     => array( 'pzarc_get_custom_fields' ),
+                //                'data'     => 'callback',
+                //                'args'     => array( 'pzarc_get_custom_fields' ),
+                'options'  => $pzarc_custom_fields,
                 'subtitle' => 'Select a custom field that contains URLs you want to use as the link',
               ),
               array(
@@ -3366,26 +3413,26 @@ array(
           'required' => array( $component . '-enable', 'equals', true ),
         ),
         array(
-          'title'    => __( 'Duration', 'pzarchitect' ),
-          'id'       => $component . '-duration',
-          'type'     => 'slider',
-          'required' => array( $component . '-enable', 'equals', true ),
-          'default'  => 0.5,
-          'min'      => 0,
-          'step'     => 0.1,
-          'max'      => 10,
-          'resolution'=>0.1
+          'title'      => __( 'Duration', 'pzarchitect' ),
+          'id'         => $component . '-duration',
+          'type'       => 'slider',
+          'required'   => array( $component . '-enable', 'equals', true ),
+          'default'    => 0.5,
+          'min'        => 0,
+          'step'       => 0.1,
+          'max'        => 10,
+          'resolution' => 0.1
         ),
         array(
-          'title'    => __( 'Delay', 'pzarchitect' ),
-          'id'       => $component . '-delay',
-          'type'     => 'slider',
-          'required' => array( $component . '-enable', 'equals', true ),
-          'default'  => 0,
-          'min'      => 0,
-          'step'     => 0.1,
-          'max'      => 20,
-          'resolution'=>0.1
+          'title'      => __( 'Delay', 'pzarchitect' ),
+          'id'         => $component . '-delay',
+          'type'       => 'slider',
+          'required'   => array( $component . '-enable', 'equals', true ),
+          'default'    => 0,
+          'min'        => 0,
+          'step'       => 0.1,
+          'max'        => 20,
+          'resolution' => 0.1
         ),
         array(
           'title'    => __( 'Synchronization', 'pzarchitect' ),

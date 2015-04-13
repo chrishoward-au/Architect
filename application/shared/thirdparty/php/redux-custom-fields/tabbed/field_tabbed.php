@@ -63,6 +63,7 @@ if (!class_exists('ReduxFramework_tabbed'))
 
         echo '<ul class="' . $this->field[ 'data_class' ] . '">';
          $i = 0;
+  //      var_dump($this->current_tab,$this->field,$this->value);
         foreach ($this->field[ 'options' ] as $k => $v)
         {
           $targets = array();
@@ -72,7 +73,7 @@ if (!class_exists('ReduxFramework_tabbed'))
           // #redux-_architect-metabox-panels-design
           echo '<li id="tab-'.strtolower($k).'" data-targets="'.implode(',',$targets).'" '.($i++==0?'class="active"':null).'>';
 //          echo '<label for="' . $this->field[ 'id' ] . '_' . array_search($k, array_keys($this->field[ 'options' ])) . '">';
-//          echo '<input type="radio" class="radio ' . $this->field[ 'class' ] . '" id="' . $this->field[ 'id' ] . '_' . array_search($k, array_keys($this->field[ 'options' ])) . '" name="' . $this->field[ 'name' ] . $this->field[ 'name_suffix' ] . '" value="' . $k . '" ' . checked($this->value, $k, false) . '/>';
+ //         echo '<input style="visibility:hidden;" type="radio" class="radio ' . $this->field[ 'class' ] . '" id="' . $this->field[ 'id' ] . '_' . array_search($k, array_keys($this->field[ 'options' ])) . '" name="' . $this->field[ 'name' ] . $this->field[ 'name_suffix' ] . '" value="' . $k . '" ' . checked($this->value, $k, false) . '/>';
           echo ' <span>' . $v . '</span>';
 //          echo '</label>';
           echo '</li>';

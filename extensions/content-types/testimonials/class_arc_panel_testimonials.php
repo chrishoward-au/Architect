@@ -6,16 +6,49 @@
    * Date: 29/04/2014
    * Time: 12:16 PM
    */
+  class arc_Panel_testimonials extends arc_Panel_Generic {
 
+    function __construct() {
+      self::init_data();
 
-  class arc_Panel_testimonials extends arc_Panel_Generic
-  {
-    /*
-     * Snippets are very much like posts or pages, so we've used the same code. This may evolve - and we'll certainly regret having to duplicate stuff sometimes!
-     */
+      add_filter( 'pzarc_panel_def', array( $this, 'extend_panel_def' ) );
+    }
 
-//    private $data;
+    function extend_panel_def( $panel_def ) {
+      $panel_def[ 'company' ]  = '{{company}}';
+      $panel_def[ 'position' ] = '{{position}}';
 
+      // We don't want these filters applied to every occurrence of the plugin on the page!
+      remove_filter( 'pzarc_panel_def', array( $this, 'extend_panel_def' ) );
+
+      return $panel_def;
+    }
+
+    function init_data() {
+      // set initial values
+      $this->data[ 'company' ]  = null;
+      $this->data[ 'position' ] = null;
+      $this->data[ 'url' ]      = null;
+
+    }
+
+    function get_company() {
+
+    }
+
+    function get_position() {
+
+    }
+
+    // Renders are called by the arc_section
+    function render_company() {
+
+      $panel_def['company']="My company";
+    }
+
+    function render_position() {
+
+    }
   }
 
 

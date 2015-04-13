@@ -14,25 +14,32 @@
 
     global $_architect;
     global $_architect_options;
+
 //    // Need to create the file contents
 //    // For each field in stylings, create css
     $nl = "\n";
-    $pzarc_contents .= '/* This is the css for blueprint ' . $postid . ' ' . $pzarc_blueprints[ '_blueprints_short-name' ] . '*/' . $nl;
+   // $pzarc_contents .= '/* This is the css for blueprint ' . $postid . ' ' . $pzarc_blueprints[ '_blueprints_short-name' ] . '*/' . $nl;
     $pzarc_bp_css = array();
 
 
     // Process the sections
     $i                  = 0;
+    $pzarc_contents .= '{{fontface}}';
+    global $pzarc_fontface;
+    $pzarc_fontface = '';
     $pzarc_bp_css[ $i ] = pzarc_process_bp_sections( $pzarc_blueprints, $i, $nl, $_architect_options );
     $specificity_class  = 'body.pzarchitect #pzarc-blueprint_' . $pzarc_blueprints[ '_blueprints_short-name' ];
 
     $pzarc_contents .= $pzarc_bp_css[ $i ];
+
 
     foreach ( $pzarc_blueprints as $key => $value ) {
 
 
       // First off process the styling settings, which should be automatable
       if ( substr_count( $key, '_blueprints_styling_' ) === 1 && ! empty( $_architect_options[ 'architect_enable_styling' ] ) ) {
+
+        $pzarc_fontface .= strpos($key,'font')?pzarc_check_googlefont($value):'';
         $bpkeys            = array();
         $bpkey             = str_replace( '_blueprints_styling_', '', $key );
         $bpkeys[ 'style' ] = substr( $bpkey, strrpos( $bpkey, "-" ) + 1 );;
@@ -42,7 +49,7 @@
           $bpkeys[ 'id' ] = 'arc-slider-nav';
         }
         if ( 'blueprint-custom' === $bpkeys[ 'id' ] ) {
-          $pzarc_contents .= str_replace(array('MYBLUEPRINT','YOURBLUEPRINT'),$specificity_class,$value);
+          $pzarc_contents .= str_replace( array( 'MYBLUEPRINT', 'YOURBLUEPRINT' ), $specificity_class, $value );
         }
         if ( ! in_array( $bpkeys[ 'id' ], array( 'blueprint-custom', 'blueprints-load', 'blueprints-section' ) ) ) {
 
@@ -116,7 +123,7 @@
       ';
       }
     }
-
+    $pzarc_contents = str_replace('{{fontface}}',$pzarc_fontface,$pzarc_contents);
     return $pzarc_contents;
   }
 
@@ -132,8 +139,8 @@
    *   */
   function pzarc_process_bp_sections( &$pzarc_blueprints, $i, $nl, &$_architect_options ) {
 //    var_dump(array_keys($pzarc_blueprints));
-    $specificity_class    = 'body.pzarchitect #pzarc-blueprint_'.$pzarc_blueprints[ '_blueprints_short-name' ];
-    $sections_class       = $specificity_class  . ' > .pzarc-sections  .pzarc-section_' . ( $i + 1 );
+    $specificity_class    = 'body.pzarchitect #pzarc-blueprint_' . $pzarc_blueprints[ '_blueprints_short-name' ];
+    $sections_class       = $specificity_class . ' > .pzarc-sections  .pzarc-section_' . ( $i + 1 );
     $panels_class         = $sections_class . ' .pzarc-panel';
     $pzarc_mediaq_css     = '';
     $pzarc_sections_align = '';
@@ -268,7 +275,7 @@
     $nl = "\n";
 
     // Step thru each field looking for ones to format
-    $class_prefix = 'body.pzarchitect #pzarc-blueprint_' . $pzarc_panels[ '_blueprints_short-name' ].' .pzarc-panel';
+    $class_prefix = 'body.pzarchitect #pzarc-blueprint_' . $pzarc_panels[ '_blueprints_short-name' ] . ' .pzarc-panel';
 
     // DANGER WILL ROBINSON!
     // json_decode on different enviroments converts UTF-8 data in different ways. I end up getting on of values '240.00' locally and '240' on production - massive dissaster. Morover if conversion fails string get's returned as NULL
@@ -476,35 +483,17 @@
 
           $pkeys[ 'style' ] = str_replace( '-', '', substr( $pkey, $splitter + 1 ) );
           $pkeys[ 'id' ]    = substr( $pkey, 0, $splitter );
-//          var_dump($key,$pkeys[ 'id' ]);
-//var_dump(array_keys($_architect));
+          global $pzarc_fontface;
+          $pzarc_fontface .= strpos($pkey,'font')?pzarc_check_googlefont($value):'';
           if ( ! in_array( $pkeys[ 'id' ], array( 'custom', 'panels-load' ) ) ) {
             // Filter out old selector names hanging arouind in existing panels
             if ( isset( $_architect[ 'architect_config_' . $pkeys[ 'id' ] . '-selectors' ] ) ) {
 
               $pkeys[ 'classes' ] = ( is_array( $_architect[ 'architect_config_' . $pkeys[ 'id' ] . '-selectors' ] ) ? $_architect[ 'architect_config_' . $pkeys[ 'id' ] . '-selectors' ] : array( '0' => $_architect[ 'architect_config_' . $pkeys[ 'id' ] . '-selectors' ] ) );
-//var_dump($pkeys);
-//              switch (true) {
-//                case (!$feature_in_components && ($pkeys[ 'id' ] === 'entry-image' || $pkeys[ 'id' ] === 'entry-image-caption')) :
-//                  $pzarc_contents .= pzarc_get_styling('panel', $pkeys, $value, $class_prefix . ($pkeys[ 'id' ] === 'components' ? '' : ' > '), $pkeys[ 'classes' ]);
-//                  break;
-//                // TODO: This might need sopme refinement
-//                case ($pkeys[ 'id' ] === 'hentry' || $pkeys[ 'id' ] === 'components') :
-//                  $pzarc_contents .= pzarc_get_styling('panel', $pkeys, $value, $class_prefix . ' > ', $pkeys[ 'classes' ]);
-//                  break;
-//                // Probably used in a tabular.
-//                case ($sum_to_show==100 ) :
-//                  $pzarc_contents .= pzarc_get_styling('panel', $pkeys, $value, $class_prefix . ' td  ', $pkeys[ 'classes' ]);
-//                  break;
-//                case ($pkeys[ 'id' ] === 'panels') :
-//                  $pzarc_contents .= pzarc_get_styling('panel', $pkeys, $value, $class_prefix . ' ', $pkeys[ 'classes' ]);
-//                  break;
-//                default:
               $pzarc_contents .= pzarc_get_styling( 'panel', $pkeys, $value, $class_prefix . '  ', $pkeys[ 'classes' ] );
-//              }
             }
           } elseif ( $pkeys[ 'id' ] === 'custom' ) {
-            $pzarc_contents .= str_replace(array('MYBLUEPRINT','YOURBLUEPRINT'),$class_prefix,$value);
+            $pzarc_contents .= str_replace( array( 'MYBLUEPRINT', 'YOURBLUEPRINT' ), $class_prefix, $value );
           }
           break;
       }

@@ -691,6 +691,42 @@
             )
         );
         $this->sections[ ] = array(
+          'title'      => 'Page',
+          'show_title' => false,
+          'icon_class' => 'icon-large',
+          'icon'       => 'el-icon-file',
+          'subsection' => true,
+          'fields'     => pzarc_fields(
+            array(
+              'title'  => __('Page title', 'pzarchitect'),
+              'id'     => $prefix . 'page-title-section',
+              'type'   => 'section',
+              'indent' => true,
+              'class'  => 'heading',
+            ),
+            array(
+              'title'    => __('CSS selectors', 'pzarc'),
+              'id'       => $prefix . 'page_page-title-selectors',
+              'type'     => 'text',
+              'readonly' => true,
+              'default'  => '.pzarc-page-title',
+            ),
+
+            // TODO: Get correct $defaults
+            // TODO: Add shadows
+            pzarc_redux_font($prefix . 'page_page-title-font', array('.pzarc-page-title')),
+            pzarc_redux_bg($prefix . 'page_page-title-background', array('.pzarc-page-title')),
+            pzarc_redux_padding($prefix . 'page_page-title-padding', array('.pzarc-page-title')),
+            pzarc_redux_margin($prefix . 'page_page-title-margins', array('.pzarc-page-title')),
+            pzarc_redux_borders($prefix . 'page_page-title-borders', array('.pzarc-page-title')),
+            array(
+              'id'     => $prefix . 'page-title-end-section',
+              'type'   => 'section',
+              'indent' => false,
+            )
+          )
+        );
+        $this->sections[ ] = array(
             'title'      => 'Panels wrapper',
             'show_title' => false,
             'icon_class' => 'icon-large',

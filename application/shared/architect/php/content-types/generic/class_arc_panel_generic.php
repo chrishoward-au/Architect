@@ -51,6 +51,7 @@
 
       $this->data[ 'bgimage' ][ 'thumb' ] = null;
       // $this->data[ 'bgimage' ][ 'original' ] = null;
+      $this->data = apply_filters('pzarc_init_data',$this->data);
     }
 
     /**
@@ -98,6 +99,9 @@
       // $panel_def[ 'datetime' ]      = '<span class="date"><a href="{{permalink}}" title="{{title}}" rel="bookmark"><time class="entry-date" datetime="{{datetime}}">{{fdatetime}}</time></a></span>';
       // oops should be using this for featured image
 
+      $panel_def = apply_filters('pzarc_panel_def',$panel_def);
+      // a bit of housekeeping incase third parties don't remove their filters
+      remove_all_filters('pzarc_panel_def');
       return $panel_def;
     }
 
@@ -154,6 +158,9 @@
 
       $this->get_miscellanary( $post );
       pzdb( 'after get misc' );
+
+      // Allow other plugins to do their data set and get here.
+      do_action('pzarc_set_data');
     }
 
     /**
@@ -1006,7 +1013,7 @@
       }
 
 //var_dump($nav_items);
-      return $nav_items;
+      return apply_filters('pzarc_nav_items',$nav_items);
     }
 
 

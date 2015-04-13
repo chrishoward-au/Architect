@@ -122,7 +122,7 @@
           $filename = str_replace(' ','',PZARC_CACHE_PATH . 'pzarc_blueprint_' . $k . '.css');
           if (!empty($k) && !$wp_filesystem->put_contents(
                   $filename,
-                  "/* Blueprint '.$k.'*/\n" . $v,
+                  $v,
                   FS_CHMOD_FILE // predefined mode settings for WP files
               )
           ) {
@@ -175,6 +175,5 @@
         break;
 
     }
-
   }
 

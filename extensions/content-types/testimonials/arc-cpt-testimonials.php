@@ -44,6 +44,7 @@
                                         'author',
                                         'thumbnail',
                                         'excerpt',
+                                        'custom-fields',
                                         'revisions',
           )
       );
