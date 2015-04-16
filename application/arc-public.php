@@ -13,11 +13,11 @@
   add_shortcode( 'pzarc', 'pzarc_shortcode' ); // Old version
   add_shortcode( 'pzarchitect', 'pzarc_shortcode' ); // alternate version
   // I still don't understand why this works!! One day, maybe I will
-  add_action( 'arc_do_shortcode', 'pzarc', 10, 4 );
+  add_action( 'arc_do_shortcode', 'pzarc', 10, 6);
 
   add_filter( 'body_class', 'add_pzarc_class' );
-  add_action( 'arc_do_pagebuilder', 'pzarc', 10, 3 );
-  add_action( 'arc_do_template_tag', 'pzarc', 10, 3 );
+  add_action( 'arc_do_pagebuilder', 'pzarc', 10,3);
+  add_action( 'arc_do_template_tag', 'pzarc', 10, 5 );
 
   // How do we do this only on pages needing it?
   /**
@@ -35,6 +35,7 @@
       return;
     }
     // Register all the scripts in case it solves the late loading!
+    // It didn't
 //    foreach ( $pzarc_css_cache[ 'blueprints' ] as $blueprint => $v ) {
 //      $filename      = PZARC_CACHE_URL . '/pzarc_blueprint_' . $blueprint . '.css';
 //      $filename_path = PZARC_CACHE_PATH . '/pzarc_blueprint_' . $blueprint . '.css';
@@ -136,6 +137,9 @@
       array_shift( $pzarc_overrides );
     }
 
+    $tablet_bp = isset($atts['tablet'])?$atts['tablet']:null;
+    $phone_bp = isset($atts['phone'])?$atts['phone']:null;
+
     // Need to capture the output so we can get it to appear where the shortcode actually is
     ob_start();
 
@@ -144,7 +148,7 @@
 
 
     // The caller is shortcode, and not variable here. It just uses a variable for consistency and documentation
-    do_action( "arc_do_shortcode", $pzarc_blueprint, $pzarc_overrides, $pzarc_caller, $tag );
+    do_action( "arc_do_shortcode", $pzarc_blueprint, $pzarc_overrides, $pzarc_caller, $tag, $tablet_bp,$phone_bp );
 
     do_action( "arc_after_shortcode", $pzarc_blueprint, $pzarc_overrides, $pzarc_caller, $tag );
 
@@ -162,10 +166,10 @@
    * Template tag
    *
    ***********************/
-  function pzarchitect( $pzarc_blueprint = null, $pzarc_overrides = null ) {
+  function pzarchitect( $pzarc_blueprint = null, $pzarc_overrides = null,$tablet_bp=null,$phone_bp=null ) {
     $pzarc_caller = 'template_tag';
     do_action( "arc_before_template_tag", $pzarc_blueprint, $pzarc_overrides, $pzarc_caller );
-    do_action( "arc_do_template_tag", $pzarc_blueprint, $pzarc_overrides, $pzarc_caller );
+    do_action( "arc_do_template_tag", $pzarc_blueprint, $pzarc_overrides, $pzarc_caller, $tablet_bp,$phone_bp );
     do_action( "arc_after_template_tag", $pzarc_blueprint, $pzarc_overrides, $pzarc_caller );
   }
 
@@ -175,10 +179,10 @@
    * Page builder
    *
    ***********************/
-  function pzarc_pagebuilder( $pzarc_blueprint = null, $pzarc_overrides = null ) {
+  function pzarc_pagebuilder( $pzarc_blueprint = null) {
     $pzarc_caller = 'pagebuilder';
 //    do_action("arc_before_pagebuilder", $pzarc_blueprint, $pzarc_overrides, $pzarc_caller);
-    do_action( "arc_do_pagebuilder", $pzarc_blueprint, $pzarc_overrides, $pzarc_caller );
+    do_action( "arc_do_pagebuilder", $pzarc_blueprint,null, $pzarc_caller );
 //    do_action("arc_after_pagebuilder", $pzarc_blueprint, $pzarc_overrides, $pzarc_caller);
   }
 
@@ -189,13 +193,35 @@
    * Overrides is a list of ids
    *
    ******************************/
-  function pzarc( $blueprint = null, $overrides = null, $caller, $tag = null, $additional_overrides = null ) {
+  function pzarc( $blueprint = null, $overrides = null, $caller, $tag = null, $additional_overrides = null, $tablet_bp = null, $phone_bp = null ) {
     pzdb( 'start pzarc' );
+
+    require_once( PZARC_PLUGIN_APP_PATH . '/shared/thirdparty/php/Mobile-Detect/Mobile_Detect.php' );
+    $detect = new Mobile_Detect;
+
+    switch ( true ) {
+      case ( $detect->isMobile() && ! $detect->isTablet() ):
+        // Phone
+        $blueprint = !empty($phone_bp)?$phone_bp:$blueprint;
+        break;
+      case ( $detect->isTablet() ):
+        // Tablet
+        $blueprint = !empty($tablet_bp)?$tablet_bp:$blueprint;
+        break;
+      default:
+        // Desktop or other weird thing
+        $blueprint = $blueprint;
+        break;
+    }
+
+    if ('show-none'===$blueprint) {
+      return;
+    }
     // Shortcodes will load these late. TODO Should search for shortcode in page
     $filename      = PZARC_CACHE_URL . '/pzarc_blueprint_' . $blueprint . '.css';
     $filename_path = PZARC_CACHE_PATH . '/pzarc_blueprint_' . $blueprint . '.css';
     if ( file_exists( $filename_path ) ) {
-      wp_enqueue_style('pzarc_css_blueprint_' . $blueprint, $filename, false, filemtime($filename_path));
+      wp_enqueue_style( 'pzarc_css_blueprint_' . $blueprint, $filename, false, filemtime( $filename_path ) );
     } else {
       //how do we tell the developer without an horrid message on the front end?
     }

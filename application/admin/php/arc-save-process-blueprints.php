@@ -124,7 +124,7 @@
       }
     }
     $pzarc_contents = str_replace('{{fontface}}',$pzarc_fontface,$pzarc_contents);
-    return $pzarc_contents;
+    return apply_filters('pzarc_blueprint_css',$pzarc_contents);
   }
 
 

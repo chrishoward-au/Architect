@@ -391,9 +391,11 @@
       global $wp_query;
       $settings  = HeadwayArchitectBlockOptions::get_settings( $block );
       $blueprint = explode( '##', $settings[ 'pzarc-blueprint' ] );
+      $blueprint_tablet = explode( '##', $settings[ 'pzarc-blueprint-tablet' ] );
+      $blueprint_phone = explode( '##', $settings[ 'pzarc-blueprint-phone' ] );
 
       if ( function_exists( 'pzarc' ) ) {
-        echo pzarc( $blueprint[ 0 ], $settings[ 'pzarc-overrides-ids' ], 'headway-block', null, $settings );
+        echo pzarc( $blueprint[ 0 ], $settings[ 'pzarc-overrides-ids' ], 'headway-block', null, $settings,$blueprint_tablet[0],$blueprint_phone[0] );
 
       }
 

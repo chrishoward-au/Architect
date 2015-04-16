@@ -44,9 +44,6 @@
       ), 10, 1 );
       add_filter( 'views_edit-arc-blueprints', array( $this, 'blueprints_description' ) );
 
-      if ( defined( 'PZARC_TESTER' ) && PZARC_TESTER ) {
-        add_action( "redux/metaboxes/$this->redux_opt_name/boxes", array( $this, 'pzarc_mb_animation' ), 10, 1 );
-      }
 
     }
 
@@ -309,10 +306,9 @@
 
 
       }
-      if ( defined( 'PZARC_TESTER' ) && PZARC_TESTER ) {
-        $fields[ 0 ][ 'options' ][ 'animation' ] = '<span><i class="el el-film"></i> Animation</span>';
-        $fields[ 0 ][ 'targets' ][ 'animation' ] = array( 'animations' );
-      }
+
+      $fields = apply_filters('pzarc_editor_tabs',$fields);
+
       $sections[ ]  = array(
         //          'title'      => __('General Settings', 'pzarchitect'),
         'show_title' => true,
@@ -422,6 +418,22 @@
             'type'  => 'textarea',
             'rows'  => 2,
             'hint'  => array( 'content' => __( 'A short description to help you or others know what this Blueprint is for', 'pzarchitect' ) ),
+          ),
+          array(
+            'title'   => __( 'Intended Device', 'pzarchitect' ),
+            'id'      => '_blueprint_device',
+            'type'    => 'button_set',
+            'subtitle' => __( 'Choose the device you intend to display this Blueprint on. This is currently for information purposes only. That is, so anyone else working with this Blueprint is aware of why it is configured the way it is.', 'pzarchitect' ),
+            'default' => '',
+            'options' => array(
+              ''       => __( 'Any', 'pzarchitect' ),
+              'tablet'     => __( 'Tablet', 'pzarchitect' ),
+              'phone' => __( 'Phone', 'pzarchitect' ),
+            ),
+            'hint'    => array(
+              'title'   => __( 'Device', 'pzarchitect' ),
+              'content' => __( 'Choose the device you intend to display this Blueprint on. This is currently for information purposes only. That is, co anyone else working with this Blueprint is aware.', 'pzarchitect' )
+            )
           ),
         )
       );
@@ -623,6 +635,7 @@
               'type'   => 'section',
               'indent' => true,
             ),
+
             array(
               'title'         => __( 'Wide screen', 'pzarchitect' ),
               'subtitle'      => $_architect_options[ 'architect_breakpoint_1' ][ 'width' ] . ' and above',
@@ -665,6 +678,7 @@
               'max'           => 10,
               'display_value' => 'label'
             ),
+
             array(
               'id'     => $prefix . 'section-' . $i . '-panels-settings-heading',
               'title'  => __( 'Panel dimensions', 'pzarchitect' ),
@@ -804,6 +818,12 @@
               'on'       => 'Yes',
               'off'      => 'No',
               'default'  => false
+            ),
+            array(
+              'title'    => 'Blueprint display title',
+              'id'       => $prefix . 'blueprint-title',
+              'type'     => 'text',
+              'subtitle' => __( 'Enter a title to display above the Blueprint', 'pzarchitect' ),
             ),
             //                array(
             //                    'id'       => $prefix . 'section-' . $i . '-panel-layout',
@@ -1941,7 +1961,8 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
             'type'     => 'button_set',
             'default'  => 'image',
             'options'  => array( 'image' => __( 'Images', 'pzarchitect' ), 'video' => __( 'Videos', 'pzarchitect' ) ),
-            'subtitle' => __( 'Choose whether Feature is images or videos.', 'pzarchitect' )
+            'subtitle' => __( 'Choose whether Feature is images or videos.', 'pzarchitect' ),
+            'required' => array( $prefix . 'components-to-show', 'contains', 'image' ),
           ),
           array(
             'title'    => __( 'Feature location', 'pzarchitect' ),
@@ -1949,6 +1970,7 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
             'width'    => '100%',
             'type'     => 'button_set',
             'default'  => 'components',
+            'required' => array( $prefix . 'components-to-show', 'contains', 'image' ),
             'subtitle' => 'Use Background when you need the image to fill the post layout.',
             'options'  => array(
               'components'    => __( 'In Components Group', 'pzarchitect' ),
@@ -1993,6 +2015,8 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
             'max'           => '999',
             'step'          => '1',
             'display_value' => 'label',
+            'required' => array( $prefix . 'components-to-show', 'contains', 'custom' ),
+
             'subtitle'      => __( 'Each of the three Custom groups can have multiple custom fields. Enter the <strong>total</strong> number of custom fields, click Save/Update', 'pzarchitect' ),
             'hint'          => array(
               'title'   => __( 'Number of custom fields', 'pzarchitect' ),
@@ -3277,188 +3301,6 @@ array(
       return $metaboxes;
     }
 
-    function pzarc_mb_animation( $metaboxes, $defaults_only = false ) {
-      global $_architect_options;
-      if ( empty( $_architect_options ) ) {
-        $_architect_options = get_option( '_architect_options' );
-      }
-
-      $animations = explode( ',', 'bounce,bounceIn,bounceInDown,bounceInLeft,bounceInRight,bounceInUp,bounceOut,bounceOutDown,bounceOutLeft,bounceOutRight,bounceOutUp,fadeIn,fadeInDown,fadeInDownBig,fadeInLeft,fadeInLeftBig,fadeInRight,fadeInRightBig,fadeInUp,fadeInUpBig,fadeOut,fadeOutDown,fadeOutDownBig,fadeOutLeft,fadeOutLeftBig,fadeOutRight,fadeOutRightBig,fadeOutUp,fadeOutUpBig,flash,flipInX,flipInY,flipOutX,flipOutY,hinge,lightSpeedIn,lightSpeedOut,pulse,rollIn,rollOut,rotateIn,rotateInDownLeft,rotateInDownRight,rotateInUpLeft,rotateInUpRight,rotateOut,rotateOutDownLeft,rotateOutDownRight,rotateOutUpLeft,rotateOutUpRight,rubberBand,shake,slideInDown,slideInLeft,slideInRight,slideInUp,slideOutDown,slideOutLeft,slideOutRight,slideOutUp,swing,tada,wobble,zoomIn,zoomInDown,zoomInLeft,zoomInRight,zoomInUp,zoomOut,zoomOutDown,zoomOutLeft,zoomOutRight,zoomOutUp' );
-      foreach ( $animations as $animation ) {
-        $animation_options[ $animation ] = $animation;
-      }
-      $prefix                  = '_animation_';
-      $sections                = array();
-      $sections[ '_sequence' ] = array(
-        'title'      => __( 'Sequence', 'pzarchitect' ),
-        'show_title' => false,
-        'icon_class' => 'icon-large',
-        'icon'       => 'el-icon-random',
-        'fields'     => array(
-          array(
-            'id'      => $prefix . 'sequence',
-            'type'    => 'sorter',
-            'title'   => 'Animation order',
-            'desc'    => 'Drag and drop to activate and arrange the order of the components animation',
-            'options' => array(
-              'disabled' => array(
-                'panels'  => 'Panels',
-                'titles'  => 'Titles',
-                'meta'    => 'Meta',
-                'content' => 'Body/Excerpt',
-                'feature' => 'Featured image',
-                'custom'  => 'Custom fields'
-              ),
-              'enabled'  => array(),
-            ),
-          ),
-        ),
-      );
-      $sections[ '_panels' ]   = array(
-        'title'      => __( 'Panels ', 'pzarchitect' ),
-        'show_title' => false,
-        'icon_class' => 'icon-large',
-        'icon'       => 'el-icon-th-large',
-        'desc'       => '<a href="http://daneden.github.io/animate.css" target=_blank>Visit Animate.CSS for demonstrations</a>',
-        'fields'     => self::animation_fields( $prefix . 'panel', $animation_options )
-      );
-      $sections[ '_titles' ]   = array(
-        'title'      => __( 'Titles ', 'pzarchitect' ),
-        'show_title' => false,
-        'icon_class' => 'icon-large',
-        'icon'       => 'el-icon-font',
-        'desc'       => '<a href="http://daneden.github.io/animate.css" target=_blank>Visit Animate.CSS for demonstrations</a>',
-        'fields'     => self::animation_fields( $prefix . 'title', $animation_options )
-      );
-      $sections[ '_meta' ]     = array(
-        'title'      => __( 'Meta groups', 'pzarchitect' ),
-        'show_title' => false,
-        'icon_class' => 'icon-large',
-        'icon'       => 'el-icon-calendar',
-        'desc'       => '<a href="http://daneden.github.io/animate.css" target=_blank>Visit Animate.CSS for demonstrations</a>',
-        'fields'     => pzarc_fields( self::animation_fields( $prefix . 'meta1', $animation_options, 'Meta 1' ), self::animation_fields( $prefix . 'meta2', $animation_options, 'Meta 2' ), self::animation_fields( $prefix . 'meta3', $animation_options, 'Meta 3' ) )
-
-      );
-      $sections[ '_content' ]  = array(
-        'title'      => __( 'Body/Excerpt', 'pzarchitect' ),
-        'show_title' => false,
-        'icon_class' => 'icon-large',
-        'icon'       => 'el-icon-align-left',
-        'desc'       => '<a href="http://daneden.github.io/animate.css" target=_blank>Visit Animate.CSS for demonstrations</a>',
-        'fields'     => self::animation_fields( $prefix . 'content', $animation_options )
-      );
-      $sections[ '_feature' ]  = array(
-        'title'      => __( 'Featured image', 'pzarchitect' ),
-        'show_title' => false,
-        'icon_class' => 'icon-large',
-        'icon'       => 'el-icon-picture',
-        'desc'       => '<a href="http://daneden.github.io/animate.css" target=_blank>Visit Animate.CSS for demonstrations</a>',
-        'fields'     => self::animation_fields( $prefix . 'feature', $animation_options )
-      );
-      $sections[ '_custom' ]   = array(
-        'title'      => __( 'Custom field groups ', 'pzarchitect' ),
-        'show_title' => false,
-        'icon_class' => 'icon-large',
-        'icon'       => 'el-icon-wrench',
-        'desc'       => '<a href="http://daneden.github.io/animate.css" target=_blank>Visit Animate.CSS for demonstrations</a>',
-        'fields'     => pzarc_fields( self::animation_fields( $prefix . 'customfield1', $animation_options, 'Custom Field 1' ), self::animation_fields( $prefix . 'customfield2', $animation_options, 'Custom Field 2' ), self::animation_fields( $prefix . 'customfield3', $animation_options, 'Custom Field 2' ) )
-
-      );
-      $metaboxes[ ]            = array(
-        'id'         => 'animation',
-        'title'      => 'Animation',
-        'post_types' => array( 'arc-blueprints' ),
-        'sections'   => $sections,
-        'position'   => 'normal',
-        'priority'   => 'low',
-        'sidebar'    => true
-
-      );
-
-      //pzdebug($metaboxes);
-
-//        foreach ($metaboxes as $k => $v) {
-//          var_dump($v['id'],$v['post_types']);
-//        }
-
-
-      return $metaboxes;
-    }
-
-    private function animation_fields( $component = null, $animation_options = array(), $section_title = null ) {
-
-      $fields = array(
-        ( $section_title ?
-          array(
-            'title'  => $section_title,
-            'id'     => $component . 'start-section',
-            'type'   => 'section',
-            'indent' => true,
-          ) : null ),
-        array(
-          'title'   => __( 'Enable animation', 'pzarchitect' ),
-          'id'      => $component . '-enable',
-          'type'    => 'switch',
-          'default' => false,
-          'on'      => __( 'Yes', 'pzarchitect' ),
-          'off'     => __( 'No', 'pzarchitect' )
-        ),
-        array(
-          'title'    => __( 'Animation', 'pzarchitect' ),
-          'id'       => $component . '-animation',
-          'type'     => 'select',
-          'options'  => $animation_options,
-          'select2'  => array( 'allowClear' => false ),
-          'default'  => 'none',
-          'required' => array( $component . '-enable', 'equals', true ),
-        ),
-        array(
-          'title'      => __( 'Duration', 'pzarchitect' ),
-          'id'         => $component . '-duration',
-          'type'       => 'slider',
-          'required'   => array( $component . '-enable', 'equals', true ),
-          'default'    => 0.5,
-          'min'        => 0,
-          'step'       => 0.1,
-          'max'        => 10,
-          'resolution' => 0.1
-        ),
-        array(
-          'title'      => __( 'Delay', 'pzarchitect' ),
-          'id'         => $component . '-delay',
-          'type'       => 'slider',
-          'required'   => array( $component . '-enable', 'equals', true ),
-          'default'    => 0,
-          'min'        => 0,
-          'step'       => 0.1,
-          'max'        => 20,
-          'resolution' => 0.1
-        ),
-        array(
-          'title'    => __( 'Synchronization', 'pzarchitect' ),
-          'id'       => $component . '-sync',
-          'type'     => 'button_set',
-          'default'  => 'serial',
-          'required' => array( $component . '-enable', 'equals', true ),
-          'subtitle' => __( 'Where there are multiple posts, should animations for this component type happen simultaneously or consecutively', 'pzarchitect' ),
-          'options'  => array(
-            'serial'   => __( 'Consecutively', 'pzarchitect' ),
-            'parallel' => __( 'Simultaneously', 'pzarchitect' ),
-            'random'   => __( 'Randomly', 'pzarchitect' )
-          )
-        ),
-        ( $section_title ?
-          array(
-            'id'     => $component . 'end-section',
-            'type'   => 'section',
-            'indent' => false,
-          ) : null ),
-
-
-      );
-
-      return $fields;
-    }
 
     private static function arc_has_export_data() {
       $export_data = get_option( 'arc-export-to-preset' );

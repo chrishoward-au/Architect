@@ -2,12 +2,14 @@
 
   /**
    * Project pizazzwp-architect.
-   * File: class_arc_content_posts.php
+   * File: class_arc_content_testimonials.php
    * User: chrishoward
    * Date: 11/10/14
    * Time: 10:19 PM
    */
   // Add content info to the registry
+  // This manages all the other files required
+
   class arc_content_testimonials  extends arc_set_data// Singleton
   {
 

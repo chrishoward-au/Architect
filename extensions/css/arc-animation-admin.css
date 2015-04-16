@@ -1,0 +1,17 @@
+#tab-animation {
+  border-bottom: solid 4px #FF5722; }
+  #tab-animation.active {
+    background: #BF360C; }
+    #tab-animation.active span.stepno {
+      color: #FF5722; }
+  #tab-animation:hover {
+    background: #BF360C; }
+    #tab-animation:hover span.stepno {
+      color: inherit; }
+    #tab-animation:hover.active span.stepno {
+      color: #FF5722; }
+
+#redux-_architect-metabox-animation h3.redux-hndle {
+  border-bottom: solid 4px #FF5722 !important; }
+#redux-_architect-metabox-animation .redux-container {
+  background: #FBE9E7; }

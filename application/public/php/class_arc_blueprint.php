@@ -88,28 +88,31 @@
           'meta_compare' => '='
       );
       $bp              = get_posts($meta_query_args);
-      $this->bp        = pzarc_flatten_wpinfo(get_post_meta($bp[ 0 ]->ID));
-      // Do we need this still? Yes! Because Redux doesn't store defaults
-      // True excludes styling
-      pzarc_get_defaults(true);
+      if (isset($bp[ 0 ])) {
+        $this->bp = pzarc_flatten_wpinfo( get_post_meta( $bp[ 0 ]->ID ) );
+        // Do we need this still? Yes! Because Redux doesn't store defaults
+        // True excludes styling
+        pzarc_get_defaults( true );
 
-      global $_architect_options, $_architect;
-      $this->blueprint          = array_replace_recursive($_architect[ 'defaults' ][ '_blueprints' ], $this->bp);
-      $this->blueprint[ 'uid' ] = 'uid' . time() . rand(1000, 9999);
+        global $_architect_options, $_architect;
+        $this->blueprint          = array_replace_recursive( $_architect[ 'defaults' ][ '_blueprints' ], $this->bp );
+        $this->blueprint[ 'uid' ] = 'uid' . time() . rand( 1000, 9999 );
 
-      if (!empty($_architect_options[ 'architect_enable_query_cache' ]) && (!current_user_can('manage_options') || !current_user_can('edit_others_pages')) && false === ($blueprint_query = get_transient('pzarc_blueprint_query_' . $this->name))) {
-        // It wasn't there, so regenerate the data and save the transient
-        $blueprint_query = new WP_Query($meta_query_args);
-        set_transient('pzarc_blueprint_query_' . $this->name, $blueprint_query, PZARC_TRANSIENTS_KEEP);
-      } elseif (current_user_can('edit_others_pages') || empty($_architect_options[ 'architect_enable_query_cache' ])) {
-        $blueprint_query = new WP_Query($meta_query_args);
-      } else {
-        // we need to put comething here!
+//        if ( ! empty( $_architect_options[ 'architect_enable_query_cache' ] ) && ( ! current_user_can( 'manage_options' ) || ! current_user_can( 'edit_others_pages' ) ) && false === ( $blueprint_query = get_transient( 'pzarc_blueprint_query_' . $this->name ) ) ) {
+          // It wasn't there, so regenerate the data and save the transient
+          $blueprint_query = new WP_Query( $meta_query_args );
+//          set_transient( 'pzarc_blueprint_query_' . $this->name, $blueprint_query, PZARC_TRANSIENTS_KEEP );
+//        } elseif ( current_user_can( 'edit_others_pages' ) || empty( $_architect_options[ 'architect_enable_query_cache' ] ) ) {
+//          $blueprint_query = new WP_Query( $meta_query_args );
+//        } else {
+//          // we need to put something here!
+//
+//        }
+
 
       }
 
-
-      if (!isset($blueprint_query->posts[ 0 ]->ID)) {
+      if (!isset($bp[ 0 ]) || !isset($blueprint_query->posts[ 0 ]->ID)) {
 
         $this->blueprint = array('err_msg' => '<p class="message-error">Architect Blueprint <strong>' . $this->name . '</strong> not found</p>');
 

@@ -51,7 +51,9 @@
 
       $this->data[ 'bgimage' ][ 'thumb' ] = null;
       // $this->data[ 'bgimage' ][ 'original' ] = null;
+
       $this->data = apply_filters('pzarc_init_data',$this->data);
+
     }
 
     /**
@@ -62,14 +64,14 @@
      */
     public function panel_def() {
       //TODO: Need to get a way to always wrap components in pzarc-compenents div.Problem is...dev has to create definition correctly.
-      $panel_def[ 'components-open' ]  = '<article id="post-{{postid}}" class="{{animationclass}} {{mimic-block-type}} post-{{postid}} {{posttype}} type-{{posttype}} status-{{poststatus}} format-{{postformat}} hentry {{categories}} {{tags}} {{pzclasses}}" {{animationdata}}>';
+      $panel_def[ 'components-open' ]  = '<article id="post-{{postid}}" class="{{extensionclass}} {{mimic-block-type}} post-{{postid}} {{posttype}} type-{{posttype}} status-{{poststatus}} format-{{postformat}} hentry {{categories}} {{tags}} {{pzclasses}}" {{extensiondata}}>';
       $panel_def[ 'components-close' ] = '</article>';
       $panel_def[ 'postlink' ]         = '<a href="{{permalink}}" title="{{title}}">';
       //     $panel_def[ 'header' ]           = '<header class="entry-header">{{headerinnards}}</header>';
-      $panel_def[ 'title' ] = '{{h1open}} class="{{animationclass}} entry-title" {{animationdata}}>{{postlink}}{{title}}{{closepostlink}}{{h1close}}';
-      $panel_def[ 'meta1' ] = '<{{div}} class="{{animationclass}} entry-meta entry-meta1" {{sortable}} {{animationdata}}>{{meta1innards}}</{{div}}>';
-      $panel_def[ 'meta2' ] = '<{{div}} class="{{animationclass}} entry-meta entry-meta2" {{sortable}} {{animationdata}}>{{meta2innards}}</{{div}}>';
-      $panel_def[ 'meta3' ] = '<{{div}} class="{{animationclass}} entry-meta entry-meta3" {{sortable}} {{animationdata}}>{{meta3innards}}</{{div}}>';
+      $panel_def[ 'title' ] = '{{h1open}} class="{{extensionclass}} entry-title" {{extensiondata}}>{{postlink}}{{title}}{{closepostlink}}{{h1close}}';
+      $panel_def[ 'meta1' ] = '<{{div}} class="{{extensionclass}} entry-meta entry-meta1" {{sortable}} {{extensiondata}}>{{meta1innards}}</{{div}}>';
+      $panel_def[ 'meta2' ] = '<{{div}} class="{{extensionclass}} entry-meta entry-meta2" {{sortable}} {{extensiondata}}>{{meta2innards}}</{{div}}>';
+      $panel_def[ 'meta3' ] = '<{{div}} class="{{extensionclass}} entry-meta entry-meta3" {{sortable}} {{extensiondata}}>{{meta3innards}}</{{div}}>';
       // TODO Make this only used in tables
       $panel_def[ 'datetime' ]   = '<span class="entry-date"><a href="{{permalink}}" ><time class="entry-date" datetime="{{datetime}}">{{fdatetime}}</time></a></span>';
       $panel_def[ 'categories' ] = '<span class="categories-links">{{categorieslinks}}</span>';
@@ -77,16 +79,16 @@
       $panel_def[ 'author' ]     = '<span class="byline"><span class="author vcard"><a class="url fn n" href="{{authorlink}}" title="View all posts by {{authorname}}" rel="author">{{authorname}}</a></span></span>';
       $panel_def[ 'email' ]      = '<span class="byline email"><span class="author vcard"><a class="url fn n" href="mailto:{{authoremail}}" title="Email {{authorname}}" rel="author">{{authoremail}}</a></span></span>';
       //     $panel_def[ 'image' ]       = '<figure class="entry-thumbnail {{incontent}}">{{postlink}}<img width="{{width}}" src="{{imgsrc}}" class="attachment-post-thumbnail wp-post-image" alt="{{alttext}}">{{closepostlink}}{{captioncode}}</figure>';
-      $panel_def[ 'image' ]   = '{{figopen}} class="{{animationclass}} entry-thumbnail {{incontent}} {{centred}} {{nofloat}} {{location}}" {{animationdata}}>{{postlink}}{{image}}{{closelink}}{{captioncode}}{{figclose}}';
-      $panel_def[ 'bgimage' ] = '<figure class="{{animationclass}} entry-bgimage pzarc-bg-image {{trim-scale}}" {{animationdata}}>{{postlink}}{{bgimage}}{{closelink}}</figure>';
+      $panel_def[ 'image' ]   = '{{figopen}} class="{{extensionclass}} entry-thumbnail {{incontent}} {{centred}} {{nofloat}} {{location}}" {{extensiondata}}>{{postlink}}{{image}}{{closelink}}{{captioncode}}{{figclose}}';
+      $panel_def[ 'bgimage' ] = '<figure class="{{extensionclass}} entry-bgimage pzarc-bg-image {{trim-scale}}" {{extensiondata}}>{{postlink}}{{bgimage}}{{closelink}}</figure>';
       $panel_def[ 'caption' ] = '<figcaption class="caption">{{caption}}</figcaption>';
-      $panel_def[ 'content' ] = '<{{div}} class="{{animationclass}} entry-content {{nothumb}}" {{animationdata}}>{{image-in-content}}{{content}}</{{div}}>';
-      $panel_def[ 'custom1' ] = '<{{div}} class="{{animationclass}} entry-customfieldgroup entry-customfieldgroup-1" {{animationdata}}>{{custom1innards}}</{{div}}>';
-      $panel_def[ 'custom2' ] = '<{{div}} class="{{animationclass}} entry-customfieldgroup entry-customfieldgroup-2" {{animationdata}}>{{custom2innards}}</{{div}}>';
-      $panel_def[ 'custom3' ] = '<{{div}} class="{{animationclass}} entry-customfieldgroup entry-customfieldgroup-3" {{animationdata}}>{{custom3innards}}</{{div}}>';
+      $panel_def[ 'content' ] = '<{{div}} class="{{extensionclass}} entry-content {{nothumb}}" {{extensiondata}}>{{image-in-content}}{{content}}</{{div}}>';
+      $panel_def[ 'custom1' ] = '<{{div}} class="{{extensionclass}} entry-customfieldgroup entry-customfieldgroup-1" {{extensiondata}}>{{custom1innards}}</{{div}}>';
+      $panel_def[ 'custom2' ] = '<{{div}} class="{{extensionclass}} entry-customfieldgroup entry-customfieldgroup-2" {{extensiondata}}>{{custom2innards}}</{{div}}>';
+      $panel_def[ 'custom3' ] = '<{{div}} class="{{extensionclass}} entry-customfieldgroup entry-customfieldgroup-3" {{extensiondata}}>{{custom3innards}}</{{div}}>';
       $panel_def[ 'cfield' ]  = '<{{cfieldwrapper}} class="entry-customfield entry-customfield-{{cfieldname}} entry-customfield-{{cfieldnumber}}">{{cfieldcontent}}</{{cfieldwrapper}}>';
 //      $panel_def[ 'footer' ]        = '<footer class="entry-footer">{{footerinnards}}</footer>';
-      $panel_def[ 'excerpt' ]       = '<{{div}} class="{{animationclass}} entry-excerpt {{nothumb}}" {{animationdata}}>{{image-in-content}}{{excerpt}}</{{div}}>';
+      $panel_def[ 'excerpt' ]       = '<{{div}} class="{{extensionclass}} entry-excerpt {{nothumb}}" {{extensiondata}}>{{image-in-content}}{{excerpt}}</{{div}}>';
       $panel_def[ 'feature' ]       = '{{feature}}';
       $panel_def[ 'editlink' ]      = '<span class="edit-link"><a class="post-edit-link" href="{{permalink}}" title="Edit post {{title}}">Edit</a></span>';
       $panel_def[ 'comments-link' ] = '<span class="comments-link"><a href="{{permalink}}/#comments" title="Comment on {{title}}">Comments: {{commentscount}}</a></span>';
@@ -100,8 +102,10 @@
       // oops should be using this for featured image
 
       $panel_def = apply_filters('pzarc_panel_def',$panel_def);
+
       // a bit of housekeeping incase third parties don't remove their filters
       remove_all_filters('pzarc_panel_def');
+
       return $panel_def;
     }
 
@@ -284,7 +288,8 @@
         $this->data[ 'image' ][ 'image' ] = str_replace( '/>', 'data-at2x="' . $thumb_2X . '" />', $this->data[ 'image' ][ 'image' ] );
       }
       $image                              = get_post( $thumb_id );
-      $this->data[ 'image' ][ 'caption' ] = $image->post_excerpt;
+
+      $this->data[ 'image' ][ 'caption' ] = is_object($image)?$image->post_excerpt:'';
 
       //Use lorempixel
       if ( empty( $this->data[ 'image' ][ 'image' ] ) && ! empty( $this->section[ '_panels_design_use-filler-image-source' ] ) && 'none' !== $this->section[ '_panels_design_use-filler-image-source' ] ) {
@@ -501,7 +506,6 @@
       }
       static $pno = 0;
       $panel_def[$component] = self::process_animation('title',$panel_def[$component],$pno++);
-
       return self::render_generics( $component, $content_type, $panel_def[ $component ], $layout_mode );
 
     }
@@ -747,13 +751,16 @@
       }
 
 
+      // we shoudl filte rthis then we can do stuff to itwith add ons.
       static $pno = 0;
       $panel_def[$component] = self::process_animation('feature',$panel_def[$component],$pno++);
 
       return self::render_generics( $component, $content_type, $panel_def[ $component ], $layout_mode );
     }
 
+    // need to build this out into separate using actions
     private function process_animation($ani_component,$panel_def_component,$pno) {
+      return $panel_def_component;
       if ( ! empty( $this->build->blueprint[ '_animation_'.$ani_component.'-enable' ] ) ) {
         $animation_classes       = 'pzarc-wow animated ' . $this->build->blueprint[ '_animation_'.$ani_component.'-animation' ] . ' ';
         $animation_data          = 'data-wow-duration="' . $this->build->blueprint[ '_animation_'.$ani_component.'-duration' ] . 's" data-wow-delay="' . ( $this->build->blueprint[ '_animation_'.$ani_component.'-delay' ] + ( $this->build->blueprint[ '_animation_'.$ani_component.'-duration' ] * $pno ) ) . 's" ';
@@ -851,6 +858,10 @@
     }
 
     public function render_generics( $component, $source, $line, $layout_mode ) {
+
+      // Devs can plugin here. Filter must return $line value
+      $line = apply_filters('pzarc_render_'.$component,$component, $source, $line, $layout_mode);
+
       //todo: make sure source is actual WP valid eg. soemthings might be attachment
       // Do any generic replacements
       $line = str_replace( '{{postid}}', $this->data[ 'postid' ], $line );

@@ -18,11 +18,15 @@
      */
     function __construct()
     {
-      wp_enqueue_script( 'jquery-pzarc-metaboxes', PZARC_PLUGIN_APP_URL . '/admin/js/arc-metaboxes.js', array( 'jquery' ), true );
+      add_action('admin_init',array($this,'init'));
       add_action("redux/metaboxes/$this->redux_opt_name/boxes", array($this, "pzarc_add_fvid_metaboxes"), 10, 1);
       add_action("redux/metaboxes/$this->redux_opt_name/boxes", array($this, "pzarc_add_testimonials_metaboxes"), 10, 1);
     }
 
+    function init() {
+      wp_enqueue_script( 'jquery-pzarc-metaboxes', PZARC_PLUGIN_APP_URL . '/admin/js/arc-metaboxes.js', array( 'jquery' ), true );
+
+    }
     /** Featured Video */
 
     function pzarc_add_fvid_metaboxes($metaboxes)

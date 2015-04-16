@@ -40,6 +40,13 @@
      */
     public function __construct($blueprint, $is_shortcode)
     {
+
+      // Might use this for transients to check last DB change
+      //      global $wpdb;
+      //      $newest = $wpdb->get_row("select post_modified from $wpdb->posts
+      //where post_type in ('page', 'post') and post_status = 'publish' order by post_modified desc");
+      //      var_dump(mysql2date('m/d/Y h:m:s',$newest->post_modified));
+
       $this->is_shortcode = $is_shortcode;
 
       require_once(PZARC_PLUGIN_APP_PATH . '/public/php/class_arc_section.php');

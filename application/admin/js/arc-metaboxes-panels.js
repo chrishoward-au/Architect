@@ -35,19 +35,19 @@ jQuery( document ).ready( function ()
     jQuery( "p.pzarc-states" ).html( showing );
     jQuery( 'input#_panels_design_preview-text' ).val( JSON.stringify( cell_layout ) );
 
-    var pztarget = jQuery( 'fieldset#_architect-_panels_design_components-to-show input#_panels_design_components-to-show-buttonsetimage' );
-    var features_row = jQuery( "fieldset#_architect-_panels_design_feature-location" ).parentsUntil( 'tbody' );
-    //   console.log(jQuery( pztarget ).attr( 'checked' ) );
-    if ( 'checked' !== jQuery( pztarget ).attr( 'checked' ) )
-    {
-      features_row.hide();
-
-    }
-    else
-    {
-      features_row.show();
-
-    }
+    //var pztarget = jQuery( 'fieldset#_architect-_panels_design_components-to-show input#_panels_design_components-to-show-buttonsetimage' );
+    //var features_row = jQuery( "fieldset#_architect-_panels_design_feature-location" ).parentsUntil( 'tbody' );
+    ////   console.log(jQuery( pztarget ).attr( 'checked' ) );
+    //if ( 'checked' !== jQuery( pztarget ).attr( 'checked' ) )
+    //{
+    //  features_row.hide();
+    //
+    //}
+    //else
+    //{
+    //  features_row.show();
+    //
+    //}
     //console.log(event.timeStamp);
 
   }

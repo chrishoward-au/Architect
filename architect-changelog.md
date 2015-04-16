@@ -1,3 +1,21 @@
+## 1.1.6 : 12 April 2015
+* ADDED: Additional filters and hooks for developers
+* ADDED: News feed to Help & Support
+* FIXED: Blueprint CSS may have been overly persistent on some caching systems.
+* CHANGED: Some text and help info for greater clarity
+* FIXED: Archive titles not displaying
+* ADDED: Styling for page titles in Blueprint Styling > Page
+* FIXED: Google fonts not rendering
+* ADDED: Wordpress custom fields settings to Snippets and Testimonials
+
+## 1.1.5 
+* FIXED: Nothing showing for Accordions except when content is Dummy
+
+## 1.1.4 
+* FIXED: Titles not selectable for styling in the Headway Visual Editor Design Mode
+* CHANGED: Spaces are stripped from css file name - just in case the short name validator allowed them
+* ADDED: Licencing for purchases from PizazzWP direct
+
 ## 1.1.3 : 7 April 2015
 * CHANGED: Blueprints are hidden until rendered. This is because their CSS loads at the bottom of the page (since it enqueues mid page) and can cause an ugly unstyled moment otherwise.
 * FIXED: Wrong classes for featured image in Headway

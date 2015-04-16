@@ -16,6 +16,9 @@
     require_once plugin_dir_path( __FILE__ ) . '/content-types/nextgen/class_arc_content_nextgen.php';
     require_once plugin_dir_path( __FILE__ ) . '/content-types/cpt/class_arc_content_cpt.php';
 
+    /** Load additional functionality */
+    require_once plugin_dir_path( __FILE__ ) . '/functions/arc-animation-admin.php';
+
     /** Create additional post types */
     global $_architect_options;
     if ( ! isset( $GLOBALS[ '_architect_options' ] ) ) {
@@ -31,6 +34,9 @@
       require_once plugin_dir_path( __FILE__ ) . '/content-types/testimonials/class_arc_content_testimonials.php';
       require_once plugin_dir_path( __FILE__ ) . '/content-types/testimonials/arc-cpt-testimonials.php';
     }
+
+
+
     pzdb( 'post content types load' );
 
 //  require_once plugin_dir_path( __FILE__ ). '/content-types/rss/class_arc_content_rss.php';
@@ -72,7 +78,8 @@
 //        if ( ! empty( $_architect_options[ 'architect_licence_key' ] ) ) {
         require_once( PZARC_PLUGIN_PATH . 'wp-updates-plugin_429.php' );
 //        new WPUpdatesPluginUpdater_429( 'http://wp-updates.com/api/2/plugin', 'pizazzwp-architect/architect.php' );
-        new WPUpdatesPluginUpdater_429( 'http://wp-updates.com/api/2/plugin', 'pizazzwp-architect/architect.php', $_architect_options[ 'architect_licence_key' ] );
+        $licence_key = isset($_architect_options[ 'architect_licence_key' ])?$_architect_options[ 'architect_licence_key' ]:'';
+        new WPUpdatesPluginUpdater_429( 'http://wp-updates.com/api/2/plugin', 'pizazzwp-architect/architect.php', $licence_key );
 //        }
       } else {
         // BETA UPDATES

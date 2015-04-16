@@ -285,10 +285,60 @@
                 'type'        => 'password',
                 'username'    => false,
                 'title'       => __( 'Architect Licence Key' ),
+                'hint'=> array('content','This is the key for purchases direct from hte PizazzWP shop. For purchases from Headway Extend, add their key in Headway > Options','pzarchitect'),
                 'placeholder' => array(
                   'password' => 'Enter your Architect licence key'
                 )
               ) : null ),
+            array(
+              'title'  => __( 'Styling', 'pzarchitect' ),
+              'id'     => 'architect_stylings_section',
+              'type'   => 'section',
+              'indent' => true,
+            ),
+            array(
+              'title'    => __( 'Use Architect styling', 'pzarchitect' ),
+              'id'       => 'architect_enable_styling',
+              'type'     => 'switch',
+              'subtitle' => __( 'Turn this off if you want to manage styling from your own CSS stylesheets or only from the Headway Visual Editor Design Mode.', 'pzarchitect' ),
+              'default'  => true
+            ),
+            array(
+              'title'   => __( 'Typography units', 'pzarchitect' ),
+              'id'      => 'architect_typography_units',
+              'type'    => 'button_set',
+              'options' => array(
+                'px'  => 'px',
+                'em'  => 'em',
+                'rem' => 'rem',
+              ),
+              'default' => 'px'
+            ),
+            ( 'headway' == $current_theme->stylesheet ? array(
+              'title'    => __( 'Add Headway Content Block class', 'pzarchitect' ),
+              'id'       => 'architect_hw-content-class',
+              'type'     => 'switch',
+              'on'       => __( 'Yes', 'pzarchitect' ),
+              'off'      => __( 'No', 'pzarchitect' ),
+              'default'  => false,
+              'subtitle' => __( 'This will add the class <strong>block-type-content</strong> to the panels, which enables them to inherit the stylings for the Content block. However, this can make styling in the Visual Editor Design Mode a little confusing, as hovering over an element will show it as a Content Block element', 'pzarchitect' )
+
+            ) : null ),
+            ( 'headway' == $current_theme->stylesheet ? array(
+              'title'    => __( 'Use Architect Headway CSS from Design Mode', 'pzarchitect' ),
+              'id'       => 'architect_use-hw-css',
+              'type'     => 'switch',
+              'on'       => __( 'Yes', 'pzarchitect' ),
+              'off'      => __( 'No', 'pzarchitect' ),
+              'default'  => true,
+              'subtitle' => __( 'Use the stylings you configure for Architect in the Headway Visual Editor Design Mode.', 'pzarchitect' )
+
+            ) : null ),
+            array(
+              'id'     => 'architect_stylings_end-section',
+              'type'   => 'section',
+              'indent' => false,
+            ),
             array(
               'title'  => __( 'Appearance', 'pzarchitect' ),
               'id'     => 'architect_appearance_section',
@@ -385,73 +435,15 @@
               ),
               'default'  => array( 'post' => 0, 'page' => 0, 'pz_snippets' => 1 )
             ),
-            array(
-              'title'    => __( 'Query caching', 'pzarchitect' ),
-              'id'       => 'architect_enable_query_cache',
-              'type'     => 'switch',
-              'subtitle' => __( 'Turn this off if you find your Architect Blueprints don\'t show correct posts. This can be caused by other caching plugins or services.', 'pzarchitect' ),
-              'default'  => true
-            ),
+//            array(
+//              'title'    => __( 'Query caching', 'pzarchitect' ),
+//              'id'       => 'architect_enable_query_cache',
+//              'type'     => 'switch',
+//              'subtitle' => __( 'Turn this off if you find your Architect Blueprints don\'t show correct posts. This can be caused by other caching plugins or services.', 'pzarchitect' ),
+//              'default'  => true
+//            ),
             array(
               'id'     => 'architect_mods_end-section',
-              'type'   => 'section',
-              'indent' => false,
-            ),
-            array(
-              'title'  => __( 'Styling', 'pzarchitect' ),
-              'id'     => 'architect_stylings_section',
-              'type'   => 'section',
-              'indent' => true,
-            ),
-            array(
-              'title'    => __( 'Styling settings', 'pzarchitect' ),
-              'id'       => 'architect_enable_styling',
-              'type'     => 'switch',
-              'subtitle' => __( 'Turn this off if you want to manage styling from your own CSS stylesheets or only from the Headway Visual Editor Design Mode.', 'pzarchitect' ),
-              'default'  => true
-            ),
-            array(
-              'title'   => __( 'Typography units', 'pzarchitect' ),
-              'id'      => 'architect_typography_units',
-              'type'    => 'button_set',
-              'options' => array(
-                'px'  => 'px',
-                'em'  => 'em',
-                'rem' => 'rem',
-              ),
-              'default' => 'px'
-            ),
-            // TODO: This requires lots of bollocksing to make sure all traces are fully removed. A good excuse to make extensibility work!
-            //                array(
-            //                    'title'    => __('Disable Snippets content type', 'pzarchitect'),
-            //                    'id'       => 'architect_disable_snippets',
-            //                    'type'     => 'switch',
-            //                    'subtitle' => 'Turn off this if you won\'t need the Snippets content type.',
-            //                    'default'  => false
-            //                ),
-            // TODO : Create lots of content types - FAQs, Testimonials, Features, Contacts
-            ( 'headway' == $current_theme->stylesheet ? array(
-              'title'    => __( 'Add Headway Content Block class', 'pzarchitect' ),
-              'id'       => 'architect_hw-content-class',
-              'type'     => 'switch',
-              'on'       => __( 'Yes', 'pzarchitect' ),
-              'off'      => __( 'No', 'pzarchitect' ),
-              'default'  => false,
-              'subtitle' => __( 'This will add the class <strong>block-type-content</strong> to the panels, which enables them to inherit the stylings for the Content block. However, this can make styling in the Visual Editor Design Mode a little confusing, as hovering over an element will show it as a Content Block element', 'pzarchitect' )
-
-            ) : null ),
-            ( 'headway' == $current_theme->stylesheet ? array(
-              'title'    => __( 'Use Architect Headway CSS from Design Mode', 'pzarchitect' ),
-              'id'       => 'architect_use-hw-css',
-              'type'     => 'switch',
-              'on'       => __( 'Yes', 'pzarchitect' ),
-              'off'      => __( 'No', 'pzarchitect' ),
-              'default'  => true,
-              'subtitle' => __( 'Use the stylings you configure for Architect in the Headway Visual Editor Design Mode.', 'pzarchitect' )
-
-            ) : null ),
-            array(
-              'id'     => 'architect_stylings_end-section',
               'type'   => 'section',
               'indent' => false,
             ),
@@ -491,13 +483,13 @@
           'title'      => 'Responsive ',
           'show_title' => true,
           'icon'       => 'el-icon-laptop',
+          'desc' => __( 'Architect lets you set some arbitrary breakpoints for responsive design. Responsive design, however, is a lot more complicated than a handful of breakpoints! It is affected by devices, content, containers and so on. To provide support for all of that would severely overwhelm Architect\'s settings. For example, for every font styling, it would need to be set for every scenario. The breakpoints are therefore used on a limited range of options. If you want to get serious with responsive design, you will have to write a lot of custom css', 'pzarchitect' ),
           'fields'     => array(
             array(
               'title'    => __( 'Breakpoints', 'pzarchitect' ),
               'id'       => 'architect_breakpoint_section',
               'type'     => 'section',
               'indent'   => true,
-              'subtitle' => __( 'Architect lets you set some arbitrary breakpoints for responsive design. Responsive design, however, is a lot more complicated than a handful of breakpoints! It is affected by devices, content, containers and so on. To provide support for all of that would severely overwhelm Architect\'s settings. For example, for every font styling, it would need to be set for every scenario. The breakpoints are therefore used on a limited range of options. If you want to get serious with responsive design, you will have to write a lot of custom css', 'pzarchitect' )
             ),
             array(
               'title'   => __( 'Wide screen breakpoint', 'pzarchitect' ),
@@ -516,10 +508,69 @@
               'default' => array( 'width' => '640' ),
             ),
             array(
-              'id'     => 'architect_responsive-images_end-section',
+              'id'     => 'architect_responsive-end-section',
               'type'   => 'section',
               'indent' => false,
             ),
+
+//            array(
+//              'title'    => __( 'Phone Breakpoints', 'pzarchitect' ),
+//              'id'       => 'architect_breakpoint_section_phone',
+//              'type'     => 'section',
+//              'indent'   => true,
+//            ),
+//            array(
+//              'title'   => __( 'Wide screen breakpoint', 'pzarchitect' ),
+//              'id'      => 'architect_breakpoint_1_phone',
+//              'type'    => 'dimensions',
+//              'height'  => false,
+//              'units'   => 'px',
+//              'default' => array( 'width' => '480' ),
+//            ),
+//            array(
+//              'title'   => __( 'Medium screen breakpoint', 'pzarchitect' ),
+//              'id'      => 'architect_breakpoint_2_phone',
+//              'type'    => 'dimensions',
+//              'height'  => false,
+//              'units'   => 'px',
+//              'default' => array( 'width' => '320' ),
+//            ),
+//            array(
+//              'id'     => 'architect_responsive-end-section_phone',
+//              'type'   => 'section',
+//              'indent' => false,
+//            ),
+//
+//            array(
+//              'title'    => __( 'Tablet Breakpoints', 'pzarchitect' ),
+//              'id'       => 'architect_breakpoint_section_tablet',
+//              'type'     => 'section',
+//              'indent'   => true,
+//            ),
+//            array(
+//              'title'   => __( 'Wide screen breakpoint', 'pzarchitect' ),
+//              'id'      => 'architect_breakpoint_1_tablet',
+//              'type'    => 'dimensions',
+//              'height'  => false,
+//              'units'   => 'px',
+//              'default' => array( 'width' => '1024' ),
+//            ),
+//            array(
+//              'title'   => __( 'Medium screen breakpoint', 'pzarchitect' ),
+//              'id'      => 'architect_breakpoint_2_tablet',
+//              'type'    => 'dimensions',
+//              'height'  => false,
+//              'units'   => 'px',
+//              'default' => array( 'width' => '768' ),
+//            ),
+//            array(
+//              'id'     => 'architect_responsive-end-section_tablet',
+//              'type'   => 'section',
+//              'indent' => false,
+//            ),
+
+
+
             array(
               'title'  => __( 'Images', 'pzarchitect' ),
               'id'     => 'architect_responsive-images_section',

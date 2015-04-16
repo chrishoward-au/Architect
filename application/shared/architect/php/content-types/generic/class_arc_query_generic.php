@@ -151,20 +151,22 @@
 // Get any existing copy of our transient data
       global $_architect_options;
 
-      $transient_id = 'pzarc_custom_query_' . $this->build->blueprint[ '_blueprints_short-name' ].'_'.(!empty($overrides['terms'])?$overrides['terms']:'' );
-      if (!empty($_architect_options[ 'architect_enable_query_cache' ]) && false == ($custom_query = get_transient($transient_id)) && (!current_user_can('manage_options') || !current_user_can('edit_others_pages'))) {
-        // It wasn't there, so regenerate the data and save the transient
-
+      // Otto says don't use transients for this type of scenario
+      //http://webdevstudios.com/2014/12/04/using-transients-with-wordpress-to-cache-all-the-things/
+//      $transient_id = 'pzarc_custom_query_' . $this->build->blueprint[ '_blueprints_short-name' ].'_'.(!empty($overrides['terms'])?$overrides['terms']:'' );
+//      if (!empty($_architect_options[ 'architect_enable_query_cache' ]) && false == ($custom_query = get_transient($transient_id)) && (!current_user_can('manage_options') || !current_user_can('edit_others_pages'))) {
+//        // It wasn't there, so regenerate the data and save the transient
+//
+//        $custom_query = new WP_Query($this->query_options);
+//
+//        set_transient($transient_id, $custom_query, PZARC_TRANSIENTS_KEEP);
+//
+//      } elseif (current_user_can('edit_others_pages') || empty($_architect_options[ 'architect_enable_query_cache' ])) {
+//        // if is admin
         $custom_query = new WP_Query($this->query_options);
-
-        set_transient($transient_id, $custom_query, PZARC_TRANSIENTS_KEEP);
-
-      } elseif (current_user_can('edit_others_pages') || empty($_architect_options[ 'architect_enable_query_cache' ])) {
-        // if is admin
-        $custom_query = new WP_Query($this->query_options);
-      } else {
-        // Will use transient value from first check
-      }
+//      } else {
+//        // Will use transient value from first check
+//      }
 
       global $wp_query;
 //      /* Changed to this approach coz the other broke WPML */

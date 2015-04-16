@@ -71,10 +71,11 @@
         if (empty($pzarc_blueprints_list)) {
           $pzarc_blueprints_list   = pzarc_get_posts_in_post_type('arc-blueprints',true);
 
+
         }
 
         $pzarc_blueprints_list = pzarc_get_blueprints(true);
-        $pzarc_blueprints = array_merge(array('none' => 'Select blueprint'), $pzarc_blueprints_list);
+        $pzarc_blueprints = array_merge(array('none' => 'Select blueprint'), $pzarc_blueprints_list,array('show-none' => 'DO NOT SHOW ANY BLUEPRINT'));
       } else {
         $pzarc_blueprints = array();
 
@@ -87,6 +88,22 @@
               'default' => 'none',
               'options' => $pzarc_blueprints,
               'tooltip' => __('Choose a Blueprint to display', 'pzarchitect')
+          ),
+          'pzarc-blueprint-tablet' => array(
+            'type'    => 'select',
+            'name'    => 'pzarc-blueprint-tablet',
+            'label'   => __('Blueprint Tablet (optional)', 'pzpzarc'),
+            'default' => 'none',
+            'options' => $pzarc_blueprints,
+            'tooltip' => __('Choose a Blueprint to display on tablets', 'pzarchitect')
+          ),
+          'pzarc-blueprint-phone' => array(
+            'type'    => 'select',
+            'name'    => 'pzarc-blueprint-phone',
+            'label'   => __('Blueprint Phone (optional)', 'pzpzarc'),
+            'default' => 'none',
+            'options' => $pzarc_blueprints,
+            'tooltip' => __('Choose a Blueprint to display on phones', 'pzarchitect')
           ),
 
 

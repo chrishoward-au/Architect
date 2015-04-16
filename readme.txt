@@ -3,7 +3,7 @@ Contributors: chrishoward
 Tags: content,display,posts,pages,gallery,slider,tabs,tabbed,tabular,widget,hooks
 Requires at least: 3.5.0
 Tested up to: 4.2.0
-Stable tag: 1.1.6
+Stable tag: 1.1.7
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Plugin URI: http://architect4wp.com
@@ -93,7 +93,12 @@ For support, please send an email to support@pizazzwp.com
 
 == Changelog ==
 
-= 1.1.6 =
+= 1.1.7 : =
+* ADDED: Sysinfo to Tools menu
+* FIXED: Some PHP notices
+* CHANGED Block, shortcode, template tag, builder and widget to support different  blocks per device type: Desktop, Tablet, Phone.
+
+= 1.1.6 : 12 April 2015=
 * ADDED: Additional filters and hooks for developers
 * ADDED: News feed to Help & Support
 * FIXED: Blueprint CSS may have been overly persistent on some caching systems.
