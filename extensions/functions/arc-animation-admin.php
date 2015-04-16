@@ -218,4 +218,4 @@
 
 
   }
- new arcAnimation();
+ new arcAnimationAdmin();

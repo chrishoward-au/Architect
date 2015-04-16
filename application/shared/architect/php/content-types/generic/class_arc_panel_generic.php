@@ -504,8 +504,6 @@
         $panel_def[ $component ] = str_replace( '{{postlink}}', $panel_def[ 'postlink' ], $panel_def[ $component ] );
         $panel_def[ $component ] = str_replace( '{{closepostlink}}', '</a>', $panel_def[ $component ] );
       }
-      static $pno = 0;
-      $panel_def[$component] = self::process_animation('title',$panel_def[$component],$pno++);
       return self::render_generics( $component, $content_type, $panel_def[ $component ], $layout_mode );
 
     }
@@ -541,10 +539,6 @@
           }
         }
       }
-      static $pno = 0;
-      $panel_def[$component] = self::process_animation('meta1',$panel_def[$component],$pno);
-      $panel_def[$component] = self::process_animation('meta2',$panel_def[$component],$pno);
-      $panel_def[$component] = self::process_animation('meta3',$panel_def[$component],$pno++);
 
       return self::render_generics( $component, $content_type, do_shortcode( $panel_def[ $component ] ), $layout_mode );
     }
@@ -592,8 +586,6 @@
           $panel_def[ $component ] = str_replace( '{{nothumb}}', 'nothumb', $panel_def[ $component ] );
         }
       }
-      static $pno = 0;
-      $panel_def[$component] = self::process_animation('content',$panel_def[$component],$pno++);
 
       return self::render_generics( $component, $content_type, $panel_def[ $component ], $layout_mode );
     }
@@ -639,8 +631,6 @@
 
 //_panels_design_thumb-position
 
-      static $pno = 0;
-      $panel_def[$component] = self::process_animation('content',$panel_def[$component],$pno++);
 
       return self::render_generics( $component, $content_type, $panel_def[ $component ], $layout_mode );
     }
@@ -706,8 +696,6 @@
 //      foreach ($this->data[ 'image' ] as $key => $value) {
 //        $template[ $type ] = str_replace('{{' . $key . '}}', $value, $template[ $type ]);
 //      }
-      static $pno = 0;
-      $panel_def[$component] = self::process_animation('feature',$panel_def[$component],$pno++);
 
       return self::render_generics( $component, $content_type, $panel_def[ $component ], $layout_mode );
     }
@@ -752,23 +740,10 @@
 
 
       // we shoudl filte rthis then we can do stuff to itwith add ons.
-      static $pno = 0;
-      $panel_def[$component] = self::process_animation('feature',$panel_def[$component],$pno++);
 
       return self::render_generics( $component, $content_type, $panel_def[ $component ], $layout_mode );
     }
 
-    // need to build this out into separate using actions
-    private function process_animation($ani_component,$panel_def_component,$pno) {
-      return $panel_def_component;
-      if ( ! empty( $this->build->blueprint[ '_animation_'.$ani_component.'-enable' ] ) ) {
-        $animation_classes       = 'pzarc-wow animated ' . $this->build->blueprint[ '_animation_'.$ani_component.'-animation' ] . ' ';
-        $animation_data          = 'data-wow-duration="' . $this->build->blueprint[ '_animation_'.$ani_component.'-duration' ] . 's" data-wow-delay="' . ( $this->build->blueprint[ '_animation_'.$ani_component.'-delay' ] + ( $this->build->blueprint[ '_animation_'.$ani_component.'-duration' ] * $pno ) ) . 's" ';
-        $panel_def_component  = str_replace( '{{animationclass}}', $animation_classes, $panel_def_component  );
-        $panel_def_component  = str_replace( '{{animationdata}}', $animation_data, $panel_def_component  );
-      }
-      return $panel_def_component;
-    }
 
     public
     function render_custom(
@@ -842,11 +817,6 @@
       } else {
         $panel_def[ $component ] = '';
       }
-      static $pno = 0;
-      $panel_def[$component] = self::process_animation('customfield1',$panel_def[$component],$pno);
-      $panel_def[$component] = self::process_animation('customfield2',$panel_def[$component],$pno);
-      $panel_def[$component] = self::process_animation('customfield3',$panel_def[$component],$pno++);
-
       return self::render_generics( $component, $content_type, $panel_def[ $component ], $layout_mode );
 
     }
@@ -860,7 +830,7 @@
     public function render_generics( $component, $source, $line, $layout_mode ) {
 
       // Devs can plugin here. Filter must return $line value
-      $line = apply_filters('pzarc_render_'.$component,$component, $source, $line, $layout_mode);
+      $line = apply_filters('pzarc_render_'.$component,$line, $component, $source, $layout_mode);
 
       //todo: make sure source is actual WP valid eg. soemthings might be attachment
       // Do any generic replacements
@@ -877,8 +847,6 @@
       $pzclasses = 'pzarc-components ';
       $pzclasses .= ( $this->section[ '_panels_design_components-position' ] === 'left' || $this->section[ '_panels_design_components-position' ] === 'right' ) ? 'vertical-content pzarc-align-' . $this->section[ '_panels_design_components-position' ] : '';
 
-      $pzclasses .= ! empty( $this->section[ '_panels_design_animate-components' ] ) && $this->section[ '_panels_design_animate-components' ] !== 'none' ? ' animated ' . $this->section[ '_panels_design_animate-components' ] : '';
-
       $line = str_replace( '{{pzclasses}}', $pzclasses, $line );
 
       if ( 'table' === $layout_mode ) {
@@ -894,10 +862,6 @@
         $line = str_replace( '{{figopen}}', '<figure ', $line );
         $line = str_replace( '{{figclose}}', '</figure>', $line );
 
-      }
-      if ('components-open'===$component) {
-        static $pno = 0;
-        $line = self::process_animation( 'panel', $line, $pno ++ );
       }
       return $line;
     }

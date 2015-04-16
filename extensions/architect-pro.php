@@ -17,8 +17,11 @@
     require_once plugin_dir_path( __FILE__ ) . '/content-types/cpt/class_arc_content_cpt.php';
 
     /** Load additional functionality */
-    require_once plugin_dir_path( __FILE__ ) . '/functions/arc-animation-admin.php';
-
+    if (is_admin()) {
+      require_once plugin_dir_path( __FILE__ ) . '/functions/arc-animation-admin.php';
+    } else {
+      require_once plugin_dir_path( __FILE__ ) . '/functions/arc-animation-public.php';
+    }
     /** Create additional post types */
     global $_architect_options;
     if ( ! isset( $GLOBALS[ '_architect_options' ] ) ) {
