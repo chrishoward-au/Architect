@@ -68,8 +68,6 @@
     //icomoon
     wp_register_style( 'css-icomoon-arrows', PZARC_PLUGIN_APP_URL . '/shared/assets/fonts/icomoon/im-style.css' );
 
-    //AnimateCSS
-    wp_register_style( 'css-animate', PZARC_PLUGIN_APP_URL . '/public/css/animate.min.css' );
 
     // DataTables
     wp_register_script( 'js-datatables', PZARC_PLUGIN_APP_URL . '/public/js/DataTables/media/js/jquery.dataTables.min.js', array( 'jquery' ), null, true );
@@ -78,10 +76,6 @@
     // jQuery Collapse
     wp_register_script( 'js-jquery-collapse', PZARC_PLUGIN_APP_URL . '/public/js/jQuery-Collapse/src/jquery.collapse.js', array( 'jquery' ), null, true );
 
-    if ( defined( 'PZARC_TESTER' ) && PZARC_TESTER ) {
-
-      wp_enqueue_script( 'wowjs', PZARC_PLUGIN_APP_URL . 'public/js/WOW/wow.js', array(), null, true );
-    }
 
     $actions_options = get_option( '_architect_actions' );
     $actions         = array();
@@ -234,12 +228,6 @@
       $GLOBALS[ '_architect_options' ] = get_option( '_architect_options', array() );
     }
 
-    if ( defined( 'PZARC_TESTER' ) && PZARC_TESTER ) {
-
-      wp_enqueue_script( 'wow-front', PZARC_PLUGIN_APP_URL . 'public/js/arc-front-wow.js', '', '', false );
-      wp_enqueue_style( 'animates-css', PZARC_PLUGIN_APP_URL . 'public/css/animate.min.css', '', '', false );
-
-    }
     wp_enqueue_script( 'js-magnific' );
     wp_enqueue_script( 'js-magnific-arc' );
     wp_enqueue_style( 'css-magnific' );

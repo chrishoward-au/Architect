@@ -50,7 +50,8 @@
     // new wp_filesystem
     // create file named with id e.g. pzarc-cell-layout-123.css
     // Or should we connect this to the template? Potentially there'll be less panel layouts than templates tho
-    if (!empty($screen) && 'all' === $postid || $screen->id == 'arc-panels' || $screen->id == 'arc-blueprints' || $post->post_type === 'arc-panels' || $post->post_type === 'arc-blueprints') {
+
+    if (!empty($screen) && ('all' === $postid || $screen->id == 'arc-panels' || $screen->id == 'arc-blueprints' || $post->post_type === 'arc-panels' || $post->post_type === 'arc-blueprints')) {
 
       $url = wp_nonce_url('post.php?post=' . $postid . '&action=edit', basename(__FILE__));
 
@@ -135,6 +136,7 @@
         bfi_flush_image_cache();
       }
     }
+  //  die( 'You have left the building' );
   }
 
   /**
@@ -148,6 +150,7 @@
    */
   function pzarc_create_css($postid, $type = null, $pzarc_settings)
   {
+  //  var_Dump($pzarc_settings);
     global $_architect;
     global $_architect_options;
     pzdb('pre get defaults');

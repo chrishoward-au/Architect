@@ -302,7 +302,8 @@
       $postmeta_classes = ' ' . $panel_class->data[ 'posttype' ] . ' type-' . $panel_class->data[ 'posttype' ] . ' status-' . $panel_class->data[ 'poststatus' ] . ' format-' . $panel_class->data[ 'postformat' ] . ' ';
 
 //      echo '<' . ('table' !== $this->layout_mode ? 'div' : 'tr') . ' class="pzarc-panel pzarc-panel_' . $settings[ '_panels_settings_short-name' ] . ' pzarc-panel-no_' . $panel_number . $this->slider[ 'slide' ] . $image_in_bg . $odds_evens_bp . $odds_evens_section . $postmeta_classes . '" >';
-      echo '<' . ('table' !== $this->layout_mode ? 'div' : 'tr') . ' class="pzarc-panel pzarc-panel_' . $this->panel_name . ' pzarc-panel-no_' . $panel_number . $this->slider[ 'slide' ] . $image_in_bg . $odds_evens_bp .'" >';
+      $classes = 'pzarc-panel pzarc-panel_' . $this->panel_name . ' pzarc-panel-no_' . $panel_number . $this->slider[ 'slide' ] . $image_in_bg . $odds_evens_bp;
+      echo '<' . ('table' !== $this->layout_mode ? 'div' : 'tr') . ' class="'.apply_filters('pzarc-extend-panel-classes',$classes,$this->blueprint) .'" '.apply_filters('pzarc-extend-panel-data','',$this->blueprint).'>';
 
 
       //TODO: Check this works for all scenarios

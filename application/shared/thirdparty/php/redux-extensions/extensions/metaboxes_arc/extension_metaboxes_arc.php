@@ -1218,6 +1218,7 @@
           return $post_id;
         }
 
+
         $meta = $this->get_meta($post_id);
 
         $nonce = $_POST[ 'redux_metaboxes_meta_nonce' ];

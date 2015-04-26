@@ -274,18 +274,22 @@
           $pzarc_blueprints_list = pzarc_get_posts_in_post_type( 'arc-blueprints', true );
 
         }
-        $this->sections[ ] = array(
+        $this->sections[ '_general'] = array(
           'title'      => __( 'General ', 'pzarchitect' ),
           'show_title' => true,
           'icon'       => 'el-icon-wrench',
           'fields'     => array(
-            ( !(( defined( 'PZARC_HWREL' ) && PZARC_HWREL )) ?
+            ( ! ( ( defined( 'PZARC_HWREL' ) && PZARC_HWREL ) ) ?
               array(
                 'id'          => 'architect_licence_key',
                 'type'        => 'password',
                 'username'    => false,
                 'title'       => __( 'Architect Licence Key' ),
-                'hint'=> array('content','This is the key for purchases direct from hte PizazzWP shop. For purchases from Headway Extend, add their key in Headway > Options','pzarchitect'),
+                'hint'        => array(
+                  'content',
+                  'This is the key for purchases direct from hte PizazzWP shop. For purchases from Headway Extend, add their key in Headway > Options',
+                  'pzarchitect'
+                ),
                 'placeholder' => array(
                   'password' => 'Enter your Architect licence key'
                 )
@@ -435,41 +439,60 @@
               ),
               'default'  => array( 'post' => 0, 'page' => 0, 'pz_snippets' => 1 )
             ),
-//            array(
-//              'title'    => __( 'Query caching', 'pzarchitect' ),
-//              'id'       => 'architect_enable_query_cache',
-//              'type'     => 'switch',
-//              'subtitle' => __( 'Turn this off if you find your Architect Blueprints don\'t show correct posts. This can be caused by other caching plugins or services.', 'pzarchitect' ),
-//              'default'  => true
-//            ),
+            //            array(
+            //              'title'    => __( 'Query caching', 'pzarchitect' ),
+            //              'id'       => 'architect_enable_query_cache',
+            //              'type'     => 'switch',
+            //              'subtitle' => __( 'Turn this off if you find your Architect Blueprints don\'t show correct posts. This can be caused by other caching plugins or services.', 'pzarchitect' ),
+            //              'default'  => true
+            //            ),
             array(
               'id'     => 'architect_mods_end-section',
               'type'   => 'section',
               'indent' => false,
             ),
-            //                array(
-            //                    'title' => __('Other', 'pzarchitect'),
-            //                    'id'    => 'architect_other_section',
-            //                    'type'  => 'section',
-            //                ),
-            //                array(
-            //                    'title'    => __('Enable beta features', 'pzarchitect'),
-            //                    'id'       => 'architect_enable_beta',
-            //                    'type'     => 'switch',
-            //                    'subtitle' => __('This will enable features that are working but not fully complete. Use at your own risk!', 'pzarchitect'),
-            //                    'default'  => false,
-            //                    'on'       => __('Yes', 'pzarchitect'),
-            //                    'off'      => __('No', 'pzarchitect')
-            //                ),
-            //                array(
-            //                    'title'    => __('Beta features', 'pzarchitect'),
-            //                    'id'       => 'architect_beta_features',
-            //                    'type'     => 'info',
-            //                    'required' => array('architect_enable_beta', 'equals', true),
-            //                    'icon'     => 'el-icon-warning-sign',
-            //                    'style'    => 'critical',
-            //                    'subtitle' => 'Animation of components group. Currently not able to control when the animation runs. Look for the setting in the Content Layout designer.'
-            //                ),
+            array(
+              'title'  => __( 'Other', 'pzarchitect' ),
+              'id'     => 'architect_other_section',
+              'type'   => 'section',
+              'indent' => true
+            ),
+            array(
+              'title'    => __( 'Exclude hidden custom fields', 'pzarchitect' ),
+              'id'       => 'architect_exclude_hidden_custom',
+              'type'     => 'switch',
+              'desc' => __( 'Many plugins have custom fields that are hidden because you don\'t need to access them. Some however, like WooCommerce, make their fields hidden anyway. If you want to shorten the custom field drop downs and are not using a plugin that you need hidden fields from, then enable this.', 'pzarchitect' ),
+              'default'  => false,
+              'on'       => __( 'Yes', 'pzarchitect' ),
+              'off'      => __( 'No', 'pzarchitect' )
+            ),
+            array(
+              'title'    => __( 'Remove Architect Support button', 'pzarchitect' ),
+              'id'       => 'architect_remove_support_button',
+              'type'     => 'switch',
+              'desc' => __( 'If you don\'t want the Architect Support button appearing on every screen (it can slow down loading), then enable this. You can still access the support form in Architect> Help & Support > Support.', 'pzarchitect' ),
+              'default'  => false,
+              'on'       => __( 'Yes', 'pzarchitect' ),
+              'off'      => __( 'No', 'pzarchitect' )
+            ),
+            array(
+              'title'    => __( 'Enable beta features', 'pzarchitect' ),
+              'id'       => 'architect_enable_beta',
+              'type'     => 'switch',
+              'desc' => __( 'This will enable features that are working but not fully complete. Use at your own risk!', 'pzarchitect' ),
+              'default'  => false,
+              'on'       => __( 'Yes', 'pzarchitect' ),
+              'off'      => __( 'No', 'pzarchitect' )
+            ),
+            array(
+              'title'    => __( 'Beta features', 'pzarchitect' ),
+              'id'       => 'architect_beta_features',
+              'type'     => 'info',
+              'required' => array( 'architect_enable_beta', 'equals', true ),
+              'icon'  => 'el-icon-info-sign',
+              'style'    => 'critical',
+              'subtitle' => 'No beta features currently available.'
+            ),
             //                array(
             //                    'title'    => __('Custom post def path', 'pzarchitect'),
             //                    'id'       => 'architect_custom_post_def_path',
@@ -477,19 +500,24 @@
             //                    'validate' => 'url',
             //                    'default'  => '',
             //                ),
+            array(
+              'id'     => 'architect_other_section_end',
+              'type'   => 'section',
+              'indent' => false
+            ),
           )
         );
-        $this->sections[ ] = array(
+        $this->sections[ '_responsive'] = array(
           'title'      => 'Responsive ',
           'show_title' => true,
           'icon'       => 'el-icon-laptop',
-          'desc' => __( 'Architect lets you set some arbitrary breakpoints for responsive design. Responsive design, however, is a lot more complicated than a handful of breakpoints! It is affected by devices, content, containers and so on. To provide support for all of that would severely overwhelm Architect\'s settings. For example, for every font styling, it would need to be set for every scenario. The breakpoints are therefore used on a limited range of options. If you want to get serious with responsive design, you will have to write a lot of custom css', 'pzarchitect' ),
+          'desc'       => __( 'Architect lets you set some arbitrary breakpoints for responsive design. Responsive design, however, is a lot more complicated than a handful of breakpoints! It is affected by devices, content, containers and so on. To provide support for all of that would severely overwhelm Architect\'s settings. For example, for every font styling, it would need to be set for every scenario. The breakpoints are therefore used on a limited range of options. If you want to get serious with responsive design, you will have to write a lot of custom css', 'pzarchitect' ),
           'fields'     => array(
             array(
-              'title'    => __( 'Breakpoints', 'pzarchitect' ),
-              'id'       => 'architect_breakpoint_section',
-              'type'     => 'section',
-              'indent'   => true,
+              'title'  => __( 'Breakpoints', 'pzarchitect' ),
+              'id'     => 'architect_breakpoint_section',
+              'type'   => 'section',
+              'indent' => true,
             ),
             array(
               'title'   => __( 'Wide screen breakpoint', 'pzarchitect' ),
@@ -512,63 +540,61 @@
               'type'   => 'section',
               'indent' => false,
             ),
-
-//            array(
-//              'title'    => __( 'Phone Breakpoints', 'pzarchitect' ),
-//              'id'       => 'architect_breakpoint_section_phone',
-//              'type'     => 'section',
-//              'indent'   => true,
-//            ),
-//            array(
-//              'title'   => __( 'Wide screen breakpoint', 'pzarchitect' ),
-//              'id'      => 'architect_breakpoint_1_phone',
-//              'type'    => 'dimensions',
-//              'height'  => false,
-//              'units'   => 'px',
-//              'default' => array( 'width' => '480' ),
-//            ),
-//            array(
-//              'title'   => __( 'Medium screen breakpoint', 'pzarchitect' ),
-//              'id'      => 'architect_breakpoint_2_phone',
-//              'type'    => 'dimensions',
-//              'height'  => false,
-//              'units'   => 'px',
-//              'default' => array( 'width' => '320' ),
-//            ),
-//            array(
-//              'id'     => 'architect_responsive-end-section_phone',
-//              'type'   => 'section',
-//              'indent' => false,
-//            ),
-//
-//            array(
-//              'title'    => __( 'Tablet Breakpoints', 'pzarchitect' ),
-//              'id'       => 'architect_breakpoint_section_tablet',
-//              'type'     => 'section',
-//              'indent'   => true,
-//            ),
-//            array(
-//              'title'   => __( 'Wide screen breakpoint', 'pzarchitect' ),
-//              'id'      => 'architect_breakpoint_1_tablet',
-//              'type'    => 'dimensions',
-//              'height'  => false,
-//              'units'   => 'px',
-//              'default' => array( 'width' => '1024' ),
-//            ),
-//            array(
-//              'title'   => __( 'Medium screen breakpoint', 'pzarchitect' ),
-//              'id'      => 'architect_breakpoint_2_tablet',
-//              'type'    => 'dimensions',
-//              'height'  => false,
-//              'units'   => 'px',
-//              'default' => array( 'width' => '768' ),
-//            ),
-//            array(
-//              'id'     => 'architect_responsive-end-section_tablet',
-//              'type'   => 'section',
-//              'indent' => false,
-//            ),
-
+            //            array(
+            //              'title'    => __( 'Phone Breakpoints', 'pzarchitect' ),
+            //              'id'       => 'architect_breakpoint_section_phone',
+            //              'type'     => 'section',
+            //              'indent'   => true,
+            //            ),
+            //            array(
+            //              'title'   => __( 'Wide screen breakpoint', 'pzarchitect' ),
+            //              'id'      => 'architect_breakpoint_1_phone',
+            //              'type'    => 'dimensions',
+            //              'height'  => false,
+            //              'units'   => 'px',
+            //              'default' => array( 'width' => '480' ),
+            //            ),
+            //            array(
+            //              'title'   => __( 'Medium screen breakpoint', 'pzarchitect' ),
+            //              'id'      => 'architect_breakpoint_2_phone',
+            //              'type'    => 'dimensions',
+            //              'height'  => false,
+            //              'units'   => 'px',
+            //              'default' => array( 'width' => '320' ),
+            //            ),
+            //            array(
+            //              'id'     => 'architect_responsive-end-section_phone',
+            //              'type'   => 'section',
+            //              'indent' => false,
+            //            ),
+            //
+            //            array(
+            //              'title'    => __( 'Tablet Breakpoints', 'pzarchitect' ),
+            //              'id'       => 'architect_breakpoint_section_tablet',
+            //              'type'     => 'section',
+            //              'indent'   => true,
+            //            ),
+            //            array(
+            //              'title'   => __( 'Wide screen breakpoint', 'pzarchitect' ),
+            //              'id'      => 'architect_breakpoint_1_tablet',
+            //              'type'    => 'dimensions',
+            //              'height'  => false,
+            //              'units'   => 'px',
+            //              'default' => array( 'width' => '1024' ),
+            //            ),
+            //            array(
+            //              'title'   => __( 'Medium screen breakpoint', 'pzarchitect' ),
+            //              'id'      => 'architect_breakpoint_2_tablet',
+            //              'type'    => 'dimensions',
+            //              'height'  => false,
+            //              'units'   => 'px',
+            //              'default' => array( 'width' => '768' ),
+            //            ),
+            //            array(
+            //              'id'     => 'architect_responsive-end-section_tablet',
+            //              'type'   => 'section',
+            //              'indent' => false,
+            //            ),
 
 
             array(
@@ -593,7 +619,7 @@
             ),
           )
         );
-        $this->sections[ ] = array(
+        $this->sections[ '_language'] = array(
           'title'      => 'Language ',
           'show_title' => true,
           'icon'       => 'el-icon-globe',
@@ -643,6 +669,7 @@
 //                )
 //            )
 //        );
+        $this->sections = apply_filters('pzarc-extend-options',$this->sections);
 
       }
 

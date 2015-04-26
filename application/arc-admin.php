@@ -28,6 +28,9 @@
       global $arc_presets_data;
 //      add_action('plugins_loaded', array($this, 'init'));
       add_action( 'plugins_loaded', array( $this, 'init' ) );
+
+      add_action( 'after_setup_theme', 'pzarc_initiate_updater' );
+
     }
 
     /*********************************************
@@ -53,6 +56,7 @@
       } else {
         add_action( 'admin_head', array( $this, 'admin_head' ) );
         add_action( 'admin_menu', array( $this, 'admin_menu' ) );
+
         add_action( 'admin_enqueue_scripts', array( $this, 'admin_enqueue' ) );
         add_filter( 'admin_body_class', array( &$this, 'add_admin_body_class' ) );
 
@@ -164,6 +168,7 @@
 //        wp_enqueue_style('pzarc-jqueryui-css', PZARC_PLUGIN_APP_URL . '/shared/thirdparty/js/jquery-ui-1.10.2.custom/css/pz_architect/jquery-ui-1.10.2.custom.min.css');
 
         wp_enqueue_script( 'jquery-pzarc-metaboxes', PZARC_PLUGIN_APP_URL . '/admin/js/arc-metaboxes.js', array( 'jquery' ), true );
+//        wp_enqueue_script( 'js-validator-arc', PZARC_PLUGIN_APP_URL . '/shared/thirdparty/js/jQuery-Form-Validator/form-validator/jquery.form-validator.min.js', array( 'jquery' ), true );
 
 
         // We shouldn't need this anymore
@@ -187,15 +192,20 @@
         case 'architect_page__architect_options':
         case 'architect_page__architect_styling':
         case 'architect_page__architect_actions_editor':
-        case 'edit-arc-panels':
         case 'edit-arc-blueprints':
-        case 'arc-panels':
         case 'arc-blueprints':
         case 'architect_page_pzarc_tools':
         case 'architect_page_pzarc_about':
 
-          wp_enqueue_script( 'js-freshdesk', 'http://assets.freshdesk.com/widget/freshwidget.js', false, true );
-          wp_enqueue_script( 'js-freshdesk-support', PZARC_PLUGIN_APP_URL . '/admin/js/freshdesk-support.js', false, true );
+          global $_architect_options;
+          if ( ! isset( $GLOBALS[ '_architect_options' ] ) ) {
+            $GLOBALS[ '_architect_options' ] = get_option( '_architect_options', array() );
+          }
+          if (empty($_architect_options['architect_remove_support_button'])) {
+            wp_enqueue_script( 'js-freshdesk', 'http://assets.freshdesk.com/widget/freshwidget.js', false, true );
+            wp_enqueue_script( 'js-freshdesk-support', PZARC_PLUGIN_APP_URL . '/admin/js/freshdesk-support.js', false, true );
+
+          }
           break;
       }
 
@@ -217,7 +227,10 @@
       global $pzarc_menu, $pizazzwp_updates;
       if ( ! $pzarc_menu ) {
         //add_menu_page( $page_title,  $menu_title, $capability,   $menu_slug, $function,    $icon_url, $position );
-        $pzarc_menu = add_menu_page( __( 'Getting started', 'pzarchitect' ), 'Architect', 'edit_posts', 'pzarc', 'pzarc_about', PZARC_PLUGIN_APP_URL . 'wp-icon.png' );
+        $licence 	= get_option( 'edd_architect_license_key' );
+        $status 	= get_option( 'edd_architect_license_status' );
+        $vers = ( $status !== false && $status == 'valid' ) ?'':'Lite';
+        $pzarc_menu = add_menu_page( __( 'Getting started', 'pzarchitect' ), 'Architect '.$vers, 'edit_posts', 'pzarc', 'pzarc_about', PZARC_PLUGIN_APP_URL . 'wp-icon.png' );
         // add_submenu_page( $parent_slug, $page_title, $menu_title, $capability, $menu_slug, $function );
 
         // Don't need this as it's carried in the layouts already
@@ -413,8 +426,8 @@
                     <div class="arc-info col1">
 
                         <p>' . __( 'For more detailed help, visit', 'pzarchitect' ) . ' <a href="http://architect4wp.com/codex-listings" target="_blank" class="arc-codex">' . __( 'Architect documentation at architect4wp.com', 'pzarchitect' ) . '</a></p>
-                        <p>' . __( 'For <strong>community and peer-to-peer support</strong>, visit the', 'pzarchitect' ) . ' <a href="http://architect4wp.helprace.com" target="_blank" class="arc-codex">' . __( 'Architect Community', 'pzarchitect' ) . '</a></p>
                         <p>' . __( 'For <strong>technical support</strong>, email', 'pzarchitect' ) . ' <a href="mailto://support@pizazzwp.com" target="_blank" class="arc-codex">' . __( 'support@pizazzwp.com', 'pzarchitect' ) . '</a></p>
+                        <p>' . __( 'For <strong>community and peer-to-peer support</strong>, visit the', 'pzarchitect' ) . ' <a href="https://pizazzwp.freshdesk.com/support/discussions" target="_blank" class="arc-codex">' . __( 'Architect Community', 'pzarchitect' ) . '</a></p>
                     </div>
                     </div>
 
@@ -557,8 +570,8 @@ add_action(\'init\',\'gs_init\');
                     <div class="arc-info col1">
                     <h4>' . __( 'Currently installed version' ) . ': ' . PZARC_VERSION . '</h4>
                         <p>' . __( 'For more detailed help, visit', 'pzarchitect' ) . ' <a href="http://architect4wp.com/codex-listings" target="_blank" class="arc-codex">' . __( 'Architect documentation at architect4wp.com', 'pzarchitect' ) . '</a></p>
-                        <p>' . __( 'For <strong>community and peer-to-peer support</strong>, visit the', 'pzarchitect' ) . ' <a href="http://architect4wp.helprace.com" target="_blank" class="arc-codex">' . __( 'Architect Community', 'pzarchitect' ) . '</a></p>
                         <p>' . __( 'For <strong>technical support</strong>, either fill out the form below or email', 'pzarchitect' ) . ' <a href="mailto://support@pizazzwp.com" target="_blank" class="arc-codex">' . __( 'support@pizazzwp.com', 'pzarchitect' ) . '</a></p>
+                        <p>' . __( 'For <strong>community and peer-to-peer support</strong>, visit the', 'pzarchitect' ) . ' <a href="https://pizazzwp.freshdesk.com/support/discussions" target="_blank" class="arc-codex">' . __( 'Architect Community', 'pzarchitect' ) . '</a></p>
                     <h3>' . __( 'Things to try first', 'pzarchitect' ) . '</h3>
                     <ul><li>' . __( 'If Blueprints are not displaying as expected, please try emptying your WP cache if you are using one and then the Architect cache (under <em>Architect</em> > <em>Tools</em>)', 'pzarchitect' ) . '</li>
                     <li>' . __( 'If things just aren\'t working, e.g. nothing displays, the page is broken - then try deactivating all other plugins. If that fixes things, reactivate one at a time until you identify the conflict, then let us know what the plugin is.', 'pzarchitect' ) . '</li>
@@ -943,3 +956,33 @@ add_action(\'init\',\'gs_init\');
         </script>';
   }
 
+  function pzarc_initiate_updater() {
+    // TODO: Try to not run this too mcuh
+    // Check on Headway if enabled since it was probably bought there
+    if ( class_exists( 'HeadwayUpdaterAPI' ) && defined( 'PZARC_HWREL' ) && PZARC_HWREL ) {
+
+      $updater = new HeadwayUpdaterAPI( array(
+                                          'slug'            => 'architect',
+                                          'path'            => plugin_basename( __FILE__ ),
+                                          'name'            => 'Architect',
+                                          'type'            => 'block',
+                                          'current_version' => PZARC_VERSION
+                                        ) );
+    } else {
+      if ( ! defined( 'PZARC_BETA' ) || ! PZARC_BETA ) {
+        require_once(  PZARC_PLUGIN_APP_PATH . 'admin/php/edd-architect-plugin.php' );
+      } else {
+        // BETA UPDATES
+//        require_once( PZARC_PLUGIN_PATH . 'wp-updates-plugin_625.php' );
+//        new WPUpdatesPluginUpdater_625( 'http://wp-updates.com/api/2/plugin', 'pizazzwp-architect/architect.php' );
+
+      }
+    }
+
+
+    /**
+     * Display update notices
+     */
+//    @include_once PZARC_DOCUMENTATION_PATH . 'updates/1000.php';
+
+  }

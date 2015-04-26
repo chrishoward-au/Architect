@@ -15,3 +15,19 @@
   border-bottom: solid 4px #FF5722 !important; }
 #redux-_architect-metabox-animation .redux-container {
   background: #FBE9E7; }
+
+#redux-_architect-metabox-animation {
+  display: none; }
+  #redux-_architect-metabox-animation .animation-demo {
+    width: 30%;
+    margin: 0 auto;
+    font-size: 18px;
+    font-weight: bold;
+    background: #8bc34a;
+    color: #fff;
+    text-align: center; }
+
+#_architect-_animation_sequence ul {
+  display: flex;
+  flex-wrap: wrap;
+  flex-flow: column; }

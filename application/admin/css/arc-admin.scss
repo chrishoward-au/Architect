@@ -232,7 +232,7 @@ div.pzarc-dragsource {
   right: 0;
   top: 0;
   height: 100%;
-  cursor: ew-resize;
+  cursor: col-resize;
 }
 
 .pzarc-draggable {
@@ -2028,3 +2028,18 @@ body.post-type-arc-blueprints {
     background-repeat: no-repeat;
   }
 }
+
+
+body.arc-advanced,
+body.arc-beginner {
+  .redux-notice-field {
+    background:#f3f3f3;
+    &.redux-critical {
+      background: #FFEBEE;
+    }
+    &.redux-success {
+      background:#F1F8E9;
+    }
+  }
+}
+

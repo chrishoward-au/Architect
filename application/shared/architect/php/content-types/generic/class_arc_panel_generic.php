@@ -463,6 +463,9 @@
 
         // The content itself comes from post meta
         $this->data[ 'cfield' ][ $i ][ 'value' ] = ( ! empty( $postmeta[ $this->section[ '_panels_design_cfield-' . $i . '-name' ] ] ) ? $postmeta[ $this->section[ '_panels_design_cfield-' . $i . '-name' ] ][ 0 ] : null );
+        if (is_Array(maybe_unserialize($this->data[ 'cfield' ][ $i ][ 'value' ]))) {
+          $this->data[ 'cfield' ][ $i ][ 'value' ] = implode(',',maybe_unserialize($this->data[ 'cfield' ][ $i ][ 'value' ]));
+        }
         // TODO:Bet this doesn't work!
         if ( ! empty( $this->section[ '_panels_design_cfield-' . $i . '-link-field' ] ) ) {
           $this->data[ 'cfield' ][ $i ][ 'link-field' ] = ( ! empty( $postmeta[ $this->section[ '_panels_design_cfield-' . $i . '-link-field' ] ] ) ? $postmeta[ $this->section[ '_panels_design_cfield-' . $i . '-link-field' ] ][ 0 ] : null );
@@ -830,7 +833,8 @@
     public function render_generics( $component, $source, $line, $layout_mode ) {
 
       // Devs can plugin here. Filter must return $line value
-      $line = apply_filters('pzarc_render_'.$component,$line, $component, $source, $layout_mode);
+      $line = apply_filters('pzarc_render_components',$line, $component, $source, $layout_mode);
+
 
       //todo: make sure source is actual WP valid eg. soemthings might be attachment
       // Do any generic replacements

@@ -18,15 +18,14 @@
 //    // Need to create the file contents
 //    // For each field in stylings, create css
     $nl = "\n";
-   // $pzarc_contents .= '/* This is the css for blueprint ' . $postid . ' ' . $pzarc_blueprints[ '_blueprints_short-name' ] . '*/' . $nl;
+    // $pzarc_contents .= '/* This is the css for blueprint ' . $postid . ' ' . $pzarc_blueprints[ '_blueprints_short-name' ] . '*/' . $nl;
     $pzarc_bp_css = array();
 
-
     // Process the sections
-    $i                  = 0;
+    $i = 0;
     $pzarc_contents .= '{{fontface}}';
     global $pzarc_fontface;
-    $pzarc_fontface = '';
+    $pzarc_fontface     = '';
     $pzarc_bp_css[ $i ] = pzarc_process_bp_sections( $pzarc_blueprints, $i, $nl, $_architect_options );
     $specificity_class  = 'body.pzarchitect #pzarc-blueprint_' . $pzarc_blueprints[ '_blueprints_short-name' ];
 
@@ -39,7 +38,7 @@
       // First off process the styling settings, which should be automatable
       if ( substr_count( $key, '_blueprints_styling_' ) === 1 && ! empty( $_architect_options[ 'architect_enable_styling' ] ) ) {
 
-        $pzarc_fontface .= strpos($key,'font')?pzarc_check_googlefont($value):'';
+        $pzarc_fontface .= strpos( $key, 'font' ) ? pzarc_check_googlefont( $value ) : '';
         $bpkeys            = array();
         $bpkey             = str_replace( '_blueprints_styling_', '', $key );
         $bpkeys[ 'style' ] = substr( $bpkey, strrpos( $bpkey, "-" ) + 1 );;
@@ -49,7 +48,7 @@
           $bpkeys[ 'id' ] = 'arc-slider-nav';
         }
         if ( 'blueprint-custom' === $bpkeys[ 'id' ] ) {
-          $pzarc_contents .= str_replace( array( 'MYBLUEPRINT', 'YOURBLUEPRINT' ), $specificity_class, $value );
+          $pzarc_contents .= str_replace( array( 'MYBLUEPRINT', 'MYPANELS'), $specificity_class, $value );
         }
         if ( ! in_array( $bpkeys[ 'id' ], array( 'blueprint-custom', 'blueprints-load', 'blueprints-section' ) ) ) {
 
@@ -123,8 +122,9 @@
       ';
       }
     }
-    $pzarc_contents = str_replace('{{fontface}}',$pzarc_fontface,$pzarc_contents);
-    return apply_filters('pzarc_blueprint_css',$pzarc_contents);
+    $pzarc_contents = str_replace( '{{fontface}}', $pzarc_fontface, $pzarc_contents );
+
+    return apply_filters( 'pzarc_blueprint_css', $pzarc_contents );
   }
 
 
@@ -147,12 +147,18 @@
 
 //      $hmargin = str_replace('%', '', $pzarc_blueprints[ '_blueprints_section-' . $i . '-panels-margins' ][ 'margin-right' ]);
 //      $hmargin = $pzarc_blueprints[ '_blueprints_section-' . $i . '-panels-margins' ][ 'margin-right' ];
-    $hmargin_value = pzarc_maths_sum( array(
-                                        $pzarc_blueprints[ '_blueprints_section-' . $i . '-panels-margins' ][ 'margin-left' ],
-                                        $pzarc_blueprints[ '_blueprints_section-' . $i . '-panels-margins' ][ 'margin-right' ]
-                                      ) );
+//    $hmargin_value = pzarc_maths_sum( array(
+//                                        $pzarc_blueprints[ '_blueprints_section-' . $i . '-panels-margins' ][ 'margin-left' ],
+//                                        $pzarc_blueprints[ '_blueprints_section-' . $i . '-panels-margins' ][ 'margin-right' ]
+//                                      ) );
 
-    $hmargin = ( $hmargin_value[ 'result' ] / 2 ) . $hmargin_value[ 'type' ];
+    // WHY DID WE DIVIDE BY TWO????
+    // WHY DO WE EVEN HAVE THIS???
+//    $hmargin = ( $hmargin_value[ 'result' ] / 2 ) . $hmargin_value[ 'type' ];
+
+//    $lmargin = floatval($pzarc_blueprints[ '_blueprints_section-' . $i . '-panels-margins' ][ 'margin-left' ]);
+//    $rmargin = floatval($pzarc_blueprints[ '_blueprints_section-' . $i . '-panels-margins' ][ 'margin-right' ]);
+//    $margin_units = $pzarc_blueprints[ '_blueprints_section-' . $i . '-panels-margins' ]['units'];
 
     $em_width[ 1 ] = ( str_replace( 'px', '', $_architect_options[ 'architect_breakpoint_1' ][ 'width' ] ) / 16 );
     $em_width[ 2 ] = ( str_replace( 'px', '', $_architect_options[ 'architect_breakpoint_2' ][ 'width' ] ) / 16 );
@@ -160,25 +166,28 @@
     /** Large */
     $columns                 = intval( $pzarc_blueprints[ '_blueprints_section-' . $i . '-columns-breakpoint-1' ] );
     $pzarc_mediaq_opener_css = '@media all and (min-width:' . $em_width[ 1 ] . 'em) {';
-    $pzarc_mediaq_css .= pzarc_breakpoint_css( $pzarc_mediaq_opener_css, $pzarc_blueprints, $i, $pzarc_mediaq_css, $columns, $panels_class, $hmargin, $nl );
+//    $pzarc_mediaq_css .= pzarc_breakpoint_css( $pzarc_mediaq_opener_css, $pzarc_blueprints, $i, $pzarc_mediaq_css, $columns, $panels_class, $hmargin, $nl );
+    $pzarc_mediaq_css .= pzarc_breakpoint_css( $pzarc_mediaq_opener_css, $pzarc_blueprints, $i, $pzarc_mediaq_css, $columns, $panels_class, $nl );
 
 
     /** Medium */
     $columns                 = intval( $pzarc_blueprints[ '_blueprints_section-' . $i . '-columns-breakpoint-2' ] );
     $pzarc_mediaq_opener_css = '@media all and (min-width: ' . $em_width[ 2 ] . 'em) and (max-width: ' . ( $em_width[ 1 ] - 0.1 ) . 'em) {';
-    $pzarc_mediaq_css .= pzarc_breakpoint_css( $pzarc_mediaq_opener_css, $pzarc_blueprints, $i, $pzarc_mediaq_css, $columns, $panels_class, $hmargin, $nl );
+//    $pzarc_mediaq_css .= pzarc_breakpoint_css( $pzarc_mediaq_opener_css, $pzarc_blueprints, $i, $pzarc_mediaq_css, $columns, $panels_class, $hmargin, $nl );
+    $pzarc_mediaq_css .= pzarc_breakpoint_css( $pzarc_mediaq_opener_css, $pzarc_blueprints, $i, $pzarc_mediaq_css, $columns, $panels_class, $nl );
 
     /** Small */
     $columns                 = intval( $pzarc_blueprints[ '_blueprints_section-' . $i . '-columns-breakpoint-3' ] );
     $pzarc_mediaq_opener_css = '@media all and (max-width: ' . ( $em_width[ 2 ] - 0.1 ) . 'em) {';
-    $pzarc_mediaq_css .= pzarc_breakpoint_css( $pzarc_mediaq_opener_css, $pzarc_blueprints, $i, $pzarc_mediaq_css, $columns, $panels_class, $hmargin, $nl );
+//    $pzarc_mediaq_css .= pzarc_breakpoint_css( $pzarc_mediaq_opener_css, $pzarc_blueprints, $i, $pzarc_mediaq_css, $columns, $panels_class, $hmargin, $nl );
+    $pzarc_mediaq_css .= pzarc_breakpoint_css( $pzarc_mediaq_opener_css, $pzarc_blueprints, $i, $pzarc_mediaq_css, $columns, $panels_class, $nl );
 
 
-    if ( $pzarc_blueprints[ '_blueprints_sections-width' . $i ][ 'units' ] === '%' ) {
-      $pzarc_width_val = ( 100 - str_replace( $pzarc_blueprints[ '_blueprints_sections-width' . $i ][ 'units' ], '', $pzarc_blueprints[ '_blueprints_sections-width' . $i ][ 'width' ] ) );
-    } else {
-      $pzarc_width_val = ( str_replace( $pzarc_blueprints[ '_blueprints_sections-width' . $i ][ 'units' ], '', $pzarc_blueprints[ '_blueprints_sections-width' . $i ][ 'width' ] ) );
-    }
+//    if ( $pzarc_blueprints[ '_blueprints_sections-width' . $i ][ 'units' ] === '%' ) {
+//      $pzarc_width_val = ( 100 - str_replace( $pzarc_blueprints[ '_blueprints_sections-width' . $i ][ 'units' ], '', $pzarc_blueprints[ '_blueprints_sections-width' . $i ][ 'width' ] ) );
+//    } else {
+//      $pzarc_width_val = ( str_replace( $pzarc_blueprints[ '_blueprints_sections-width' . $i ][ 'units' ], '', $pzarc_blueprints[ '_blueprints_sections-width' . $i ][ 'width' ] ) );
+//    }
 //      switch ($pzarc_blueprints[ '_blueprints_sections-align' . $i ]) {
 //        case 'left':
 //          $pzarc_sections_align = 'left:0;';
@@ -201,7 +210,7 @@
 //          break;
 //      }
     $pzarc_css = $pzarc_mediaq_css;
-    $pzarc_css .= $sections_class . ' {width:' . $pzarc_blueprints[ '_blueprints_sections-width' . $i ][ 'width' ] . ';' . $pzarc_sections_align . '}';
+    //   $pzarc_css .= $sections_class . ' {width:' . $pzarc_blueprints[ '_blueprints_sections-width' . $i ][ 'width' ] . ';' . $pzarc_sections_align . '}';
 
     // Can't do this!! OTherwise would have to regenerate all blueprints on panel save
 ////        // TODO: do we have to use the bg image height instead if it is set??
@@ -228,25 +237,35 @@
    *
    * @return string
    */
-  function pzarc_breakpoint_css( $pzarc_mediaq_opener_css, &$pzarc_blueprints, $i, $pzarc_mediaq_css, $columns, $panels_class, $hmargin, $nl ) {
+  function pzarc_breakpoint_css( $pzarc_mediaq_opener_css, &$pzarc_blueprints, $i, $pzarc_mediaq_css, $columns, $panels_class, $nl ) {
 
     $pzarc_mediaq_css .= $pzarc_mediaq_opener_css;
 //  $column_width = (100 - ($hmargin * ($columns - 1))) / $columns.'%';
     // Calc allows us to do crazy maths like 25% -3px
-    $column_width = ( '0' == $hmargin ? 'calc(100%  / ' . $columns . ')' : 'calc(100% / ' . $columns . ' - ' . $hmargin . ')' );
-    $pzarc_mediaq_css .= $panels_class . ' {width:' . $column_width . ';margin-bottom:' . $pzarc_blueprints[ '_blueprints_section-' . $i . '-panels-margins' ][ 'margin-bottom' ] . ' ;}';
+    $lmargin = floatval($pzarc_blueprints[ '_blueprints_section-' . $i . '-panels-margins' ][ 'margin-left' ]);
+    $rmargin = floatval($pzarc_blueprints[ '_blueprints_section-' . $i . '-panels-margins' ][ 'margin-right' ]);
+    $margin_units = $pzarc_blueprints[ '_blueprints_section-' . $i . '-panels-margins' ]['units'];
+
+    // Default units are %
+    $hmargin = ($lmargin+$rmargin).(empty($margin_units)?'%':$margin_units);
+    $column_width = ( 0 == ($lmargin+$rmargin) ? 'calc(100%  / ' . $columns . ')' : 'calc(100% / ' . $columns . ' - ' . $hmargin . ')' );
+
+    $panels_margins = pzarc_process_spacing($pzarc_blueprints[ '_blueprints_section-' . $i . '-panels-margins' ]);
+
+    $pzarc_mediaq_css .= $panels_class . ' {width:' . $column_width . ';'.$panels_margins . ' ;}';
 
 //    pzdebug($pzarc_mediaq_css);
     //  Don't want gutters here iff using masonry layoutt
-    switch ( $pzarc_blueprints[ '_blueprints_section-' . $i . '-layout-mode' ] ) {
+    switch ( true ) {
 
-      case 'masonry':
+      case 'masonry' === $pzarc_blueprints[ '_blueprints_section-' . $i . '-layout-mode' ]:
         $pzarc_mediaq_css .= str_replace( '.pzarc-panel', '', $panels_class . ' .gutter-sizer {width: ' . ( $hmargin ) . ';}' );
         $pzarc_mediaq_css .= str_replace( '.pzarc-panel', '', $panels_class . ' .grid-sizer { width:' . $column_width . ';}' );
         break;
-
+      case 'basic' === $pzarc_blueprints[ '_blueprints_section-' . $i . '-layout-mode' ] && ! empty( $pzarc_blueprints[ '_blueprints_section-' . $i . '-layout-mode' ] ):
+        break;
       default:
-        $pzarc_mediaq_css .= $panels_class . ':nth-child(n) {margin-right: ' . ( $hmargin ) . ';}';
+  //      $pzarc_mediaq_css .= $panels_class . ':nth-child(n) {margin-right: ' . ( $rmargin ) .$margin_units. ';}';
         $pzarc_mediaq_css .= $panels_class . ':nth-child(' . $columns . 'n) {margin-right: 0;}';
         break;
 
@@ -273,7 +292,7 @@
     global $_architect_options;
     pzdb( 'create panel css top' );
     $nl = "\n";
-
+//var_dump($pzarc_panels);
     // Step thru each field looking for ones to format
     $class_prefix = 'body.pzarchitect #pzarc-blueprint_' . $pzarc_panels[ '_blueprints_short-name' ] . ' .pzarc-panel';
 
@@ -476,25 +495,31 @@
 
         case ( strpos( $key, '_panels_styling' ) === 0 && ! empty( $value ) && ! empty( $_architect_options[ 'architect_enable_styling' ] ) ):
           pzdb( 'styling top' );
-          $pkeys    = array();
-          $pkey     = str_replace( '_panels_styling_', '', $key );
-          $pkey     = str_replace( '-font-', '-', $pkey );
-          $splitter = ( substr_count( $pkey, '-font-' ) === 1 ? strrpos( $pkey, '-font-' ) : strrpos( $pkey, '-' ) );
-
+          $pkeys            = array();
+          $pkey             = str_replace( '_panels_styling_', '', $key );
+          $pkey             = str_replace( '-font-', '-', $pkey );
+          $splitter         = ( substr_count( $pkey, '-font-' ) === 1 ? strrpos( $pkey, '-font-' ) : strrpos( $pkey, '-' ) );
           $pkeys[ 'style' ] = str_replace( '-', '', substr( $pkey, $splitter + 1 ) );
           $pkeys[ 'id' ]    = substr( $pkey, 0, $splitter );
           global $pzarc_fontface;
-          $pzarc_fontface .= strpos($pkey,'font')?pzarc_check_googlefont($value):'';
-          if ( ! in_array( $pkeys[ 'id' ], array( 'custom', 'panels-load' ) ) ) {
+          $pzarc_fontface .= strpos( $pkey, 'font' ) ? pzarc_check_googlefont( $value ) : '';
+//          if ( ! in_array( $pkeys[ 'id' ], array( 'custom', 'panels-load' ) ) ) {
             // Filter out old selector names hanging arouind in existing panels
-            if ( isset( $_architect[ 'architect_config_' . $pkeys[ 'id' ] . '-selectors' ] ) ) {
-
-              $pkeys[ 'classes' ] = ( is_array( $_architect[ 'architect_config_' . $pkeys[ 'id' ] . '-selectors' ] ) ? $_architect[ 'architect_config_' . $pkeys[ 'id' ] . '-selectors' ] : array( '0' => $_architect[ 'architect_config_' . $pkeys[ 'id' ] . '-selectors' ] ) );
-              $pzarc_contents .= pzarc_get_styling( 'panel', $pkeys, $value, $class_prefix . '  ', $pkeys[ 'classes' ] );
+            switch ( true ) {
+              case (strpos($pkeys['id'],'entry-customfield-')===0) :
+                $pkeys['classes'] = array('0'=>'.'.$pkeys['id']);
+                $pzarc_contents .= pzarc_get_styling( 'panel', $pkeys, $value, $class_prefix . ' ', $pkeys[ 'classes' ] );
+                break;
+              case ( isset( $_architect[ 'architect_config_' . $pkeys[ 'id' ] . '-selectors' ] ) ) :
+                $pkeys[ 'classes' ] = ( is_array( $_architect[ 'architect_config_' . $pkeys[ 'id' ] . '-selectors' ] ) ? $_architect[ 'architect_config_' . $pkeys[ 'id' ] . '-selectors' ] : array( '0' => $_architect[ 'architect_config_' . $pkeys[ 'id' ] . '-selectors' ] ) );
+                $pzarc_contents .= pzarc_get_styling( 'panel', $pkeys, $value, $class_prefix . ' ', $pkeys[ 'classes' ] );
+             //   var_dump($pkeys,pzarc_get_styling( 'panel', $pkeys, $value, $class_prefix . ' ', $pkeys[ 'classes' ] ));
+                break;
+              case ( $pkeys[ 'id' ] === 'custom' ) :
+                $pzarc_contents .= str_replace( array( 'MYBLUEPRINT','MYPANELS'), $class_prefix, $value );
+                break;
             }
-          } elseif ( $pkeys[ 'id' ] === 'custom' ) {
-            $pzarc_contents .= str_replace( array( 'MYBLUEPRINT', 'YOURBLUEPRINT' ), $class_prefix, $value );
-          }
+  //        }
           break;
       }
     }

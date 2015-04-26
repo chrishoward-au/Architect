@@ -98,6 +98,7 @@
       'title'           => __( 'Typography', 'pzarchitect' ),
       'id'              => $id,
       'subtitle'        => __( 'You can change the typography units to px,em or rem in Architect > Options', 'pzarchitect' ),
+      'desc'            => __( 'Tip: If you set the typography line height to less than 3, Architect will use it as a multiplier of the font size.e.g. line-height:1.5.', 'pzarchitect' ),
       //       'output'          => $selectors,
       'type'            => 'typography',
       'text-decoration' => true,
@@ -164,7 +165,6 @@
    * @return array
    */
   function pzarc_redux_padding( $id, $selectors, $defaults = array( 'units' => '%' ) ) {
-//    var_dump($id, $defaults);
     return array(
       'title'   => __( 'Padding', 'pzarchitect' ),
       'id'      => $id,
@@ -284,6 +284,8 @@
   /**
    * pzarc_get_defaults
    *
+   * This doesn't need to return anything becuase it is populating the global variable
+   *
    */
   function pzarc_get_defaults( $exclude_styling = false ) {
     pzdb( 'top get defaults' );
@@ -345,7 +347,7 @@
        */
       pzdb( 'pre get panels defaults' );
       $_architect[ 'defaults' ][ 'panels' ] = ( ! isset( $_architect[ 'defaults' ][ 'panels' ] ) ? array() : $_architect[ 'defaults' ][ 'panels' ] );
-
+//var_dump($_architect);
 //      $pzarc_panel_general_settings = $blueprints->pzarc_panel_general_settings($_architect[ 'defaults' ][ 'panels' ], true);
       $pzarc_panels_design  = $blueprints->pzarc_mb_panels_layout( $_architect[ 'defaults' ][ 'panels' ], true );
       $pzarc_panels_styling = empty( $_architect_options[ 'architect_enable_styling' ] ) || $exclude_styling ? '' : $blueprints->pzarc_mb_panels_styling( $_architect[ 'defaults' ][ 'panels' ], true );
@@ -356,7 +358,6 @@
       if ( ! empty( $_architect_options[ 'architect_enable_styling' ] ) && ! $exclude_styling ) {
         $_architect[ 'defaults' ][ 'panels' ][ '_panels_styling' ] = $pzarc_panels_styling[ 0 ][ 'sections' ];
       }
-
       foreach ( $_architect[ 'defaults' ][ 'panels' ] as $key1 => $value1 ) {
         if ( ! empty( $value1 ) ) {
           foreach ( $value1 as $key2 => $value2 ) {
@@ -675,13 +676,22 @@
   function pzarc_get_custom_fields() {
     global $wpdb;
 
-    //Get custom fields
-    // This is only able to get custom fields that have been used! ugh!
+    global $_architect_options;
+
+    if (!empty($_architect_options['architect_exclude_hidden_custom'])) {
+      $pzep_cf_list = $wpdb->get_results(
+        "SELECT DISTINCT meta_key FROM $wpdb->postmeta HAVING meta_key NOT LIKE '\_%' ORDER BY meta_key"
+      );
+
+    } else {
+      //Get custom fields
+      // This is only able to get custom fields that have been used! ugh!
 //    if ( false === ( $pzep_cf_list = get_transient( 'pzarc_custom_fields' ) ) ) {
-    // It wasn't there, so regenerate the data and save the transient
-    $pzep_cf_list = $wpdb->get_results(
-      "SELECT DISTINCT meta_key FROM $wpdb->postmeta ORDER BY meta_key"
-    );
+      // It wasn't there, so regenerate the data and save the transient
+      $pzep_cf_list = $wpdb->get_results(
+        "SELECT DISTINCT meta_key FROM $wpdb->postmeta ORDER BY meta_key"
+      );
+    }
     //    set_transient( 'pzarc_custom_fields', $pzep_cf_list, 0*PZARC_TRANSIENTS_KEEP );
     // }
 
@@ -1005,7 +1015,6 @@
    * @return null|string
    */
   function pzarc_process_fonts( $classes, $properties ) {
-    // TODO: Build support for Google fonts and backup
     $filler = '';
     if ( ! empty( $properties ) && is_array( $properties ) ) {
       foreach ( $properties as $k => $v ) {
@@ -1037,10 +1046,16 @@
           case ( ! empty( $v ) && $k == 'font-weight' ):
           case ( ! empty( $v ) && $k == 'text-transform' ):
           case ( ! empty( $v ) && $k == 'text-decoration' ):
-          case ( ! empty( $v ) && $v !== 'px' && $k == 'line-height' ):
           case ( ! empty( $v ) && $v !== 'px' && $k == 'word-spacing' ):
           case ( ! empty( $v ) && $v !== 'px' && $k == 'letter-spacing' ):
           case ( ! empty( $v ) && $k == 'color' ):
+            $filler .= $k . ':' . $v . ';';
+            break;
+
+          case ( ! empty( $v ) && $v !== 'px' && $k == 'line-height' && (float) $v < 3 ):
+            $filler .= $k . ':' . ( (float) $v ) . ';';
+            break;
+          case ( ! empty( $v ) && $v !== 'px' && $k == 'line-height' ):
             $filler .= $k . ':' . $v . ';';
             break;
 
@@ -1058,8 +1073,8 @@
    */
   function pzarc_process_spacing( $properties ) {
     $spacing_css = '';
-
     if ( ! empty( $properties ) && is_array( $properties ) ) {
+  //    var_dump($properties);
       foreach ( $properties as $key => $value ) {
         // Only process values!
         if ( $key != 'units' ) {
@@ -1071,7 +1086,6 @@
         }
       }
     }
-
     return $spacing_css;
   }
 
@@ -1082,17 +1096,27 @@
    * @return string
    */
   function pzarc_process_borders( $classes, $properties ) {
-    $borders_css = '';
-    if ( ! empty( $properties ) ) {
+    $borders_css  = '';
+    // This is to fix Redux making borders zero all the time
+    $dodgy_values = array(
+      'border-top'    => '0',
+      'border-right'  => '0',
+      'border-bottom' => '0',
+      'border-left'   => '0',
+      'border-style'  => 'solid',
+      'border-color'  => ''
+    );
 
-      $borders_css .= ( $properties[ 'border-top' ] !== '' ? 'border-top:' . $properties[ 'border-top' ] : '' );
-      $borders_css .= ( $properties[ 'border-top' ] !== '' && $properties[ 'border-top' ] !== '0' ? ' ' . $properties[ 'border-style' ] . ' ' . $properties[ 'border-color' ] . ';' : ';' );
-      $borders_css .= ( $properties[ 'border-right' ] !== '' ? 'border-right:' . $properties[ 'border-right' ] : '' );
-      $borders_css .= ( $properties[ 'border-right' ] !== '' && $properties[ 'border-right' ] !== '0' ? ' ' . $properties[ 'border-style' ] . ' ' . $properties[ 'border-color' ] . ';' : ';' );
-      $borders_css .= ( $properties[ 'border-bottom' ] !== '' ? 'border-bottom:' . $properties[ 'border-bottom' ] : '' );
-      $borders_css .= ( $properties[ 'border-bottom' ] !== '' && $properties[ 'border-bottom' ] !== '0' ? ' ' . $properties[ 'border-style' ] . ' ' . $properties[ 'border-color' ] . ';' : ';' );
-      $borders_css .= ( $properties[ 'border-left' ] !== '' ? 'border-left:' . $properties[ 'border-left' ] : '' );
-      $borders_css .= ( $properties[ 'border-left' ] !== '' && $properties[ 'border-left' ] !== '0' ? ' ' . $properties[ 'border-style' ] . ' ' . $properties[ 'border-color' ] . ';' : ';' );
+    if ( ! empty( $properties ) && $properties!=$dodgy_values) {
+
+      $borders_css .= ( !empty($properties[ 'border-top' ]) ? 'border-top:' . $properties[ 'border-top' ] : '' );
+      $borders_css .= ( !empty($properties[ 'border-top' ]) && $properties[ 'border-top' ] !== '0' ? ' ' . $properties[ 'border-style' ] . ' ' . $properties[ 'border-color' ] . ';' : ';' );
+      $borders_css .= ( !empty($properties[ 'border-right' ]) ? 'border-right:' . $properties[ 'border-right' ] : '' );
+      $borders_css .= ( !empty($properties[ 'border-right' ]) && $properties[ 'border-right' ] !== '0' ? ' ' . $properties[ 'border-style' ] . ' ' . $properties[ 'border-color' ] . ';' : ';' );
+      $borders_css .= ( !empty($properties[ 'border-bottom' ]) ? 'border-bottom:' . $properties[ 'border-bottom' ] : '' );
+      $borders_css .= ( !empty($properties[ 'border-bottom' ]) && $properties[ 'border-bottom' ] !== '0' ? ' ' . $properties[ 'border-style' ] . ' ' . $properties[ 'border-color' ] . ';' : ';' );
+      $borders_css .= ( !empty($properties[ 'border-left' ]) ? 'border-left:' . $properties[ 'border-left' ] : '' );
+      $borders_css .= ( !empty($properties[ 'border-left' ]) && $properties[ 'border-left' ] !== '0' ? ' ' . $properties[ 'border-style' ] . ' ' . $properties[ 'border-color' ] . ';' : ';' );
 
       return $classes . '{' . $borders_css . '}';
     } else {
@@ -1125,28 +1149,28 @@
     // TODO: Should Default use inherit?
     $links_css = '';
     if ( ! empty( $properties ) ) {
-      if ( ! empty( $properties[ 'regular' ] ) || strtolower( $properties[ 'regular-deco' ] ) !== 'default' ) {
+      if ( ! empty( $properties[ 'regular' ] )  || ( !empty($properties[ 'regular-deco' ]) && strtolower( $properties[ 'regular-deco' ] ) !== 'default') ) {
         $links_css .= $classes . ' a {';
         $links_css .= ( ! empty( $properties[ 'regular' ] ) ? 'color:' . $properties[ 'regular' ] . ';' : '' );
         $links_css .= ( strtolower( $properties[ 'regular-deco' ] ) !== 'default' ? 'text-decoration:' . strtolower( $properties[ 'regular-deco' ] ) . ';' : '' );
         $links_css .= '}' . $nl;
       }
 
-      if ( ! empty( $properties[ 'hover' ] ) || strtolower( $properties[ 'hover-deco' ] ) !== 'default' ) {
+      if ( ! empty( $properties[ 'hover' ] )  || (!empty($properties[ 'hover-deco' ]) && strtolower( $properties[ 'hover-deco' ] ) !== 'default' )) {
         $links_css .= $classes . ' a:hover {';
         $links_css .= ( ! empty( $properties[ 'hover' ] ) ? 'color:' . $properties[ 'hover' ] . ';' : '' );
         $links_css .= ( strtolower( $properties[ 'hover-deco' ] ) !== 'default' ? 'text-decoration:' . strtolower( $properties[ 'hover-deco' ] ) . ';' : '' );
         $links_css .= '}' . $nl;
       }
 
-      if ( ! empty( $properties[ 'active' ] ) || strtolower( $properties[ 'active-deco' ] ) !== 'default' ) {
+      if ( ! empty( $properties[ 'active' ] )   || (!empty($properties[ 'active-deco' ]) && strtolower( $properties[ 'active-deco' ] ) !== 'default' )) {
         $links_css .= $classes . ' a:active {';
         $links_css .= ( ! empty( $properties[ 'active' ] ) ? 'color:' . $properties[ 'active' ] . ';' : '' );
         $links_css .= ( strtolower( $properties[ 'active-deco' ] ) !== 'default' ? 'text-decoration:' . strtolower( $properties[ 'active-deco' ] ) . ';' : '' );
         $links_css .= '}' . $nl;
       }
 
-      if ( ! empty( $properties[ 'visited' ] ) || ( isset( $properties[ 'visited-deco' ] ) && strtolower( $properties[ 'visited-deco' ] ) !== 'default' ) ) {
+      if ( ! empty( $properties[ 'visited' ] )   || ( !empty( $properties[ 'visited-deco' ] ) && strtolower( $properties[ 'visited-deco' ] ) !== 'default' ) ) {
         $links_css .= $classes . ' a:visited {';
         $links_css .= ( ! empty( $properties[ 'visited' ] ) ? 'color:' . $properties[ 'visited' ] . ';' : '' );
         $links_css .= ( strtolower( $properties[ 'visited-deco' ] ) !== 'default' ? 'text-decoration:' . strtolower( $properties[ 'visited-deco' ] ) . ';' : '' );
@@ -1216,6 +1240,9 @@
     $pzarc_css  = '';
     foreach ( $keys[ 'classes' ] as $class ) {
       $pzarc_css .= ( function_exists( $pzarc_func ) ? call_user_func( $pzarc_func, $parentClass . ' ' . $class, $value ) : '' );
+      if ($pzarc_func=='pzarc_style_padding') {
+   //     var_dump($pzarc_css);
+      }
       if ( ! function_exists( $pzarc_func ) ) {
         //print 'Missing function ' . $pzarc_func;
         pzdb( $pzarc_func );
@@ -1233,6 +1260,7 @@
 
   function pzarc_style_padding( $class, $value ) {
 //    var_Dump(pzarc_is_empty_vals($value, array('units')),$value);
+ //   var_dump($class,$value);
     return ( ! pzarc_is_empty_vals( $value, array( 'units' ) ) ? $class . ' {' . pzarc_process_spacing( $value ) . ';}' . "\n" : null );
   }
 
@@ -1320,9 +1348,10 @@
         "Verdana, Geneva, sans-serif"                          => "Verdana, Geneva, sans-serif",
       );
 
-    $return_val ='';
-    if (!empty($properties['font-family']) && !in_array($properties['font-family'],$redux_standard_fonts)) {
-      $return_val= '@import url(//fonts.googleapis.com/css?family='.str_replace(' ','+',$properties['font-family']).');';
+    $return_val = '';
+    if ( ! empty( $properties[ 'font-family' ] ) && ! in_array( $properties[ 'font-family' ], $redux_standard_fonts ) ) {
+      $return_val = '@import url(//fonts.googleapis.com/css?family=' . str_replace( ' ', '+', $properties[ 'font-family' ] ) . ');';
     }
+
     return $return_val;
   }

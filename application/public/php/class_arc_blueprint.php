@@ -61,14 +61,9 @@
       //      }
       //}
 
-      // TODO: Fix this up later
-      if ( defined( 'PZARC_TESTER' ) && PZARC_TESTER ) {
+      // Let others add ther own defaults
+      $this->blueprint = apply_filters('pzarc-load-blueprint',$this->blueprint);
 
-        $animate = ( ! empty( $this->blueprint[ 'section_object' ][ $i ]->section[ 'section-panel-settings' ][ '_panels_design_animate-components' ] ) ? $this->blueprint[ 'section_object' ][ $i ]->section[ 'section-panel-settings' ][ '_panels_design_animate-components' ] : 'none' );
-        if ( $animate !== 'none' ) {
-          wp_enqueue_style( 'css-animate' );
-        }
-      }
     }
 
 

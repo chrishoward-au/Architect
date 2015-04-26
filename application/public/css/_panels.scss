@@ -9,6 +9,9 @@
   position: relative;
   overflow: hidden;
 
+  &.pzarc-wow {
+    visibility:hidden;
+  }
   // Footer and header floating to top of components. This CSS is needed but why is it even necessary?
   header.entry-header,
   footer.entry-footer {

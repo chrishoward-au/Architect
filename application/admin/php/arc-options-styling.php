@@ -418,16 +418,7 @@
                         'content' => 'Change this class only if your theme uses different class names'
                     )
                 ),
-                pzarc_redux_font($prefix . 'entry-contentp-font', array('.entry-content p'), array('line-height' => '24px'),array('letter-spacing',
-                                                                                                                                   'font-variant',
-                                                                                                                                   'text-transform',
-                                                                                                                                   'font-family',
-                                                                                                                                   'font-style',
-                                                                                                                                   'text-align',
-                                                                                                                                   'text-decoration',
-                                                                                                                                   'color',
-                                                                                                                                   'font-weight',
-                                                                                                                                   'word-spacing','preview')),
+                pzarc_redux_font($prefix . 'entry-contentp-font', array('.entry-content p'), array('line-height' => '24px')),
                 pzarc_redux_padding($prefix . 'entry-contentp-font-padding', array('.entry-content p'),array('padding-top'=>'0')),
                 pzarc_redux_margin($prefix . 'entry-contentp-font-margin', array('.entry-content p'),array('margin-top'=>'0')),
                 array(
@@ -472,16 +463,7 @@
                         'content' => 'Change this class only if your theme uses different class names'
                     )
                 ),
-                pzarc_redux_font($prefix . 'entry-excerptp-font', array('.entry-excerpt p'), array('line-height' => '22px'),array('letter-spacing',
-                                                                                                                                   'font-variant',
-                                                                                                                                   'text-transform',
-                                                                                                                                   'font-family',
-                                                                                                                                   'font-style',
-                                                                                                                                   'text-align',
-                                                                                                                                   'text-decoration',
-                                                                                                                                   'color',
-                                                                                                                                   'font-weight',
-                                                                                                                                   'word-spacing','preview')),
+                pzarc_redux_font($prefix . 'entry-excerptp-font', array('.entry-excerpt p'), array('line-height' => '22px')),
                 pzarc_redux_padding($prefix . 'entry-excerptp-font-padding', array('.entry-excerpt p'),array('padding-top'=>'0')),
                 pzarc_redux_margin($prefix . 'entry-excerptp-font-margin', array('.entry-excerpt p'),array('margin-top'=>'0')),
                 array(
@@ -562,81 +544,81 @@
                 pzarc_redux_padding($prefix . 'entry-image-caption-font-padding', array('.entry-thumbnail .caption')),
             )
         );
-        $this->sections[ ] = array(
-            'title'      => 'Custom fields group 1',
-            'show_title' => false,
-            'icon_class' => 'icon-large',
-            'icon'       => 'el-icon-asterisk',
-            'subsection' => true,
-            'fields'     => array(
-                array(
-                    'title'    => __('CSS selectors', 'pzarc'),
-                    'id'       => $prefix . 'entry-customfield-1-selectors',
-                    'type'     => 'text',
-                    'readonly' => true,
-                    'default'  => '.entry-customfieldgroup-1',
-                    'hint'     => array(
-                        'title'   => 'Change CSS class',
-                        'content' => 'Change this class only if your theme uses different class names'
-                    )
-                ),
-                pzarc_redux_font($prefix . 'entry-cfield1-font', array('.entry-customfieldgroup-1'), array('line-height' => '22px',
-                                                                                                           'font-size'   => '14px')),
-                pzarc_redux_bg($prefix . 'entry-cfield1-font-background', array('.entry-customfieldgroup-1')),
-                pzarc_redux_padding($prefix . 'entry-cfield1-font-padding', array('.entry-customfieldgroup-1')),
-                pzarc_redux_links($prefix . 'entry-cfield1-font-links', array('.entry-customfieldgroup-1 a')),
-            )
-        );
-        $this->sections[ ] = array(
-            'title'      => 'Custom fields group 2',
-            'show_title' => false,
-            'icon_class' => 'icon-large',
-            'icon'       => 'el-icon-asterisk',
-            'subsection' => true,
-            'fields'     => array(
-                array(
-                    'title'    => __('CSS selectors', 'pzarc'),
-                    'id'       => $prefix . 'entry-customfield-2-selectors',
-                    'type'     => 'text',
-                    'readonly' => true,
-                    'default'  => '.entry-cfield2',
-                    'hint'     => array(
-                        'title'   => 'Change CSS class',
-                        'content' => 'Change this class only if your theme uses different class names'
-                    )
-                ),
-                pzarc_redux_font($prefix . 'entry-cfield2-font', array('.entry-customfieldgroup-2'), array('line-height' => '22px',
-                                                                                                           'font-size'   => '14px')),
-                pzarc_redux_bg($prefix . 'entry-cfield2-font-background', array('.entry-customfieldgroup-2')),
-                pzarc_redux_padding($prefix . 'entry-cfield2-font-padding', array('.entry-customfieldgroup-2')),
-                pzarc_redux_links($prefix . 'entry-cfield2-font-links', array('.entry-customfieldgroup-2 a')),
-            )
-        );
-        $this->sections[ ] = array(
-            'title'      => 'Custom fields group 3',
-            'show_title' => false,
-            'icon_class' => 'icon-large',
-            'icon'       => 'el-icon-asterisk',
-            'subsection' => true,
-            'fields'     => array(
-                array(
-                    'title'    => __('CSS selectors', 'pzarc'),
-                    'id'       => $prefix . 'entry-customfield-3-selectors',
-                    'type'     => 'text',
-                    'readonly' => true,
-                    'default'  => '.entry-cfield3',
-                    'hint'     => array(
-                        'title'   => 'Change CSS class',
-                        'content' => 'Change this class only if your theme uses different class names'
-                    )
-                ),
-                pzarc_redux_font($prefix . 'entry-cfield3-font', array('.entry-customfieldgroup-3'), array('line-height' => '22px',
-                                                                                                           'font-size'   => '14px')),
-                pzarc_redux_bg($prefix . 'entry-cfield3-font-background', array('.entry-customfieldgroup-3')),
-                pzarc_redux_padding($prefix . 'entry-cfield3-font-padding', array('.entry-customfieldgroup-3')),
-                pzarc_redux_links($prefix . 'entry-cfield3-font-links', array('.entry-customfieldgroup-3 a')),
-            )
-        );
+//        $this->sections[ ] = array(
+//            'title'      => 'Custom fields group 1',
+//            'show_title' => false,
+//            'icon_class' => 'icon-large',
+//            'icon'       => 'el-icon-asterisk',
+//            'subsection' => true,
+//            'fields'     => array(
+//                array(
+//                    'title'    => __('CSS selectors', 'pzarc'),
+//                    'id'       => $prefix . 'entry-customfield-1-selectors',
+//                    'type'     => 'text',
+//                    'readonly' => true,
+//                    'default'  => '.entry-customfieldgroup-1',
+//                    'hint'     => array(
+//                        'title'   => 'Change CSS class',
+//                        'content' => 'Change this class only if your theme uses different class names'
+//                    )
+//                ),
+//                pzarc_redux_font($prefix . 'entry-cfield1-font', array('.entry-customfieldgroup-1'), array('line-height' => '22px',
+//                                                                                                           'font-size'   => '14px')),
+//                pzarc_redux_bg($prefix . 'entry-cfield1-font-background', array('.entry-customfieldgroup-1')),
+//                pzarc_redux_padding($prefix . 'entry-cfield1-font-padding', array('.entry-customfieldgroup-1')),
+//                pzarc_redux_links($prefix . 'entry-cfield1-font-links', array('.entry-customfieldgroup-1 a')),
+//            )
+//        );
+//        $this->sections[ ] = array(
+//            'title'      => 'Custom fields group 2',
+//            'show_title' => false,
+//            'icon_class' => 'icon-large',
+//            'icon'       => 'el-icon-asterisk',
+//            'subsection' => true,
+//            'fields'     => array(
+//                array(
+//                    'title'    => __('CSS selectors', 'pzarc'),
+//                    'id'       => $prefix . 'entry-customfield-2-selectors',
+//                    'type'     => 'text',
+//                    'readonly' => true,
+//                    'default'  => '.entry-cfield2',
+//                    'hint'     => array(
+//                        'title'   => 'Change CSS class',
+//                        'content' => 'Change this class only if your theme uses different class names'
+//                    )
+//                ),
+//                pzarc_redux_font($prefix . 'entry-cfield2-font', array('.entry-customfieldgroup-2'), array('line-height' => '22px',
+//                                                                                                           'font-size'   => '14px')),
+//                pzarc_redux_bg($prefix . 'entry-cfield2-font-background', array('.entry-customfieldgroup-2')),
+//                pzarc_redux_padding($prefix . 'entry-cfield2-font-padding', array('.entry-customfieldgroup-2')),
+//                pzarc_redux_links($prefix . 'entry-cfield2-font-links', array('.entry-customfieldgroup-2 a')),
+//            )
+//        );
+//        $this->sections[ ] = array(
+//            'title'      => 'Custom fields group 3',
+//            'show_title' => false,
+//            'icon_class' => 'icon-large',
+//            'icon'       => 'el-icon-asterisk',
+//            'subsection' => true,
+//            'fields'     => array(
+//                array(
+//                    'title'    => __('CSS selectors', 'pzarc'),
+//                    'id'       => $prefix . 'entry-customfield-3-selectors',
+//                    'type'     => 'text',
+//                    'readonly' => true,
+//                    'default'  => '.entry-cfield3',
+//                    'hint'     => array(
+//                        'title'   => 'Change CSS class',
+//                        'content' => 'Change this class only if your theme uses different class names'
+//                    )
+//                ),
+//                pzarc_redux_font($prefix . 'entry-cfield3-font', array('.entry-customfieldgroup-3'), array('line-height' => '22px',
+//                                                                                                           'font-size'   => '14px')),
+//                pzarc_redux_bg($prefix . 'entry-cfield3-font-background', array('.entry-customfieldgroup-3')),
+//                pzarc_redux_padding($prefix . 'entry-cfield3-font-padding', array('.entry-customfieldgroup-3')),
+//                pzarc_redux_links($prefix . 'entry-cfield3-font-links', array('.entry-customfieldgroup-3 a')),
+//            )
+//        );
 
         /*********************************
          * *********************************
@@ -1065,7 +1047,6 @@
                     'compiler' => true,
                     'default'  => '
 MYBLUEPRINT p {word-break:normal;margin:0;padding-top:0;}
-/* You can add theme specific formatting. Prefix the stylesheeet nam with body.theme- do remember to include MYBLUEPRINT if you want to limit it to this blueprint only*/
 body.theme-twentythirteen MYBLUEPRINT{}
 body.theme-twentyfourteen MYBLUEPRINT {}
 body.theme-twentyfifteen MYBLUEPRINT .hentry {margin:0;}

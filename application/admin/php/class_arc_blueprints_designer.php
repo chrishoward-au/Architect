@@ -257,7 +257,6 @@
     function pzarc_mb_blueprint_tabs( $metaboxes, $defaults_only = false ) {
       $prefix   = '_blueprint_tabs_';
       $sections = array();
-
       global $_architect_options;
       if ( empty( $_architect_options ) ) {
         $_architect_options = get_option( '_architect_options' );
@@ -307,7 +306,7 @@
 
       }
 
-      $fields = apply_filters('pzarc_editor_tabs',$fields);
+      $fields = apply_filters( 'pzarc_editor_tabs', $fields );
 
       $sections[ ]  = array(
         //          'title'      => __('General Settings', 'pzarchitect'),
@@ -397,7 +396,13 @@
     function pzarc_mb_blueprint_general_settings( $metaboxes, $defaults_only = false ) {
       $prefix = '_blueprints_';
       global $_architect_options;
+      $cfwarn=false;
+      if ( ! empty( $_GET[ 'post' ] ) ) {
+        $thispostmeta = get_post_meta( $_GET[ 'post' ] );
+        $cfcount      = ( ! empty( $thispostmeta[ '_panels_design_custom-fields-count' ][ 0 ] ) ? $thispostmeta[ '_panels_design_custom-fields-count' ][ 0 ] : 0 );
+        $cfwarn = (ini_get('max_input_vars')<=1000 && $cfcount>0);
 
+      }
       $sections[ ]  = array(
         'fields' => array(
           array(
@@ -420,20 +425,29 @@
             'hint'  => array( 'content' => __( 'A short description to help you or others know what this Blueprint is for', 'pzarchitect' ) ),
           ),
           array(
-            'title'   => __( 'Intended Device', 'pzarchitect' ),
-            'id'      => '_blueprint_device',
-            'type'    => 'button_set',
+            'title'    => __( 'Intended Device', 'pzarchitect' ),
+            'id'       => '_blueprint_device',
+            'type'     => 'button_set',
             'subtitle' => __( 'Choose the device you intend to display this Blueprint on. This is currently for information purposes only. That is, so anyone else working with this Blueprint is aware of why it is configured the way it is.', 'pzarchitect' ),
-            'default' => '',
-            'options' => array(
+            'default'  => '',
+            'options'  => array(
               ''       => __( 'Any', 'pzarchitect' ),
-              'tablet'     => __( 'Tablet', 'pzarchitect' ),
-              'phone' => __( 'Phone', 'pzarchitect' ),
+              'tablet' => __( 'Tablet', 'pzarchitect' ),
+              'phone'  => __( 'Phone', 'pzarchitect' ),
             ),
-            'hint'    => array(
+            'hint'     => array(
               'title'   => __( 'Device', 'pzarchitect' ),
               'content' => __( 'Choose the device you intend to display this Blueprint on. This is currently for information purposes only. That is, co anyone else working with this Blueprint is aware.', 'pzarchitect' )
             )
+          ),
+          array(
+            'id'    => $prefix . 'input-vars-message',
+            'title' => __( 'Custom fields', 'pzarchitect' ),
+            'type'  => 'info',
+            'style'=> ($cfwarn?'critical':'normal'),
+            'required'=>array('_panels_design_components-to-show','contains','custom'),
+            'desc'=>__('If you add custom fields to a Blueprint it adds many more fields to the form. <strong>This can cause some fields not to save</strong>. Please read this post by Woo Themes for solutions:','pzarchitect').'<br><a href="http://docs.woothemes.com/document/problems-with-large-amounts-of-data-not-saving-variations-rates-etc/" target=_blank>Problems with large amounts of data not saving</a><br>Your max_input_vars setting is: '.ini_get('max_input_vars'),
+
           ),
         )
       );
@@ -635,7 +649,6 @@
               'type'   => 'section',
               'indent' => true,
             ),
-
             array(
               'title'         => __( 'Wide screen', 'pzarchitect' ),
               'subtitle'      => $_architect_options[ 'architect_breakpoint_1' ][ 'width' ] . ' and above',
@@ -664,6 +677,16 @@
               'max'           => 10,
               'display_value' => 'label'
             ),
+            //            (PZARC_TESTER?array(
+            //              'title'    => __( 'Enable horizontal scrolling', 'pzarchitect' ),
+            //              'id'       => $prefix . 'section-' . $i . '-columns-breakpoint-2-scroll',
+            //              'type'     => 'switch',
+            //              'on'       => __( 'Yes', 'pzarchitect' ),
+            //              'off'      => __( 'No', 'pzarchitect' ),
+            //              'required'   => array( $prefix . 'section-' . $i . '-layout-mode', '=', 'basic' ),
+            //              'default'  => true,
+            //              'subtitle' => __('Turn this grid into a horizontal scroller at '.$_architect_options[ 'architect_breakpoint_2' ][ 'width' ] . ' to ' . $_architect_options[ 'architect_breakpoint_1' ][ 'width' ],'pzarchitect'),
+            //            ):null),
             array(
               'title'         => __( 'Narrow screen', 'pzarchitect' ),
               'subtitle'      => $_architect_options[ 'architect_breakpoint_2' ][ 'width' ] . ' and below',
@@ -678,6 +701,16 @@
               'max'           => 10,
               'display_value' => 'label'
             ),
+            //            (PZARC_TESTER?array(
+            //              'title'    => __( 'Enable horizontal scrolling', 'pzarchitect' ),
+            //              'id'       => $prefix . 'section-' . $i . '-columns-breakpoint-3-scroll',
+            //              'type'     => 'switch',
+            //              'on'       => __( 'Yes', 'pzarchitect' ),
+            //              'off'      => __( 'No', 'pzarchitect' ),
+            //              'required'   => array( $prefix . 'section-' . $i . '-layout-mode', '=', 'basic' ),
+            //              'default'  => true,
+            //              'subtitle' => __('Turn this grid into a horizontal scroller at '.$_architect_options[ 'architect_breakpoint_2' ][ 'width' ] . ' and below','pzarchitect'),
+            //            ):null),
 
             array(
               'id'     => $prefix . 'section-' . $i . '-panels-settings-heading',
@@ -740,7 +773,11 @@
               'type'    => 'spacing',
               'units'   => array( '%', 'px', 'em' ),
               'mode'    => 'margin',
-              'default' => array( 'right' => '0', 'bottom' => '0', 'left' => '0', 'top' => '0' ),
+              'default' => array( 'margin-right'  => '0',
+                                  'margin-bottom' => '0',
+                                  'margin-left'   => '0',
+                                  'margin-top'    => '0'
+              ),
               //'subtitle' => __('Right, bottom', 'pzarchitect')
               //    'hint'  => array('content' => __('Set the vertical gutter width as a percentage of the section width. The gutter is the gap between adjoining elements', 'pzarchitect'))
             ),
@@ -1201,6 +1238,7 @@
         //)
       );
 
+      /** PAGINATION  */
       $sections[ '_pagination' ] = array(
         'title'      => 'Pagination',
         'icon_class' => 'icon-large',
@@ -1214,6 +1252,13 @@
             'off'     => 'No',
             'default' => false,
             'desc'    => __( 'If your content type is Defaults and you choose to enable overrides, pagination will likely mess up if this Blueprint is displayed on the standard WP blog page.', 'pzarchitect' )
+          ),
+          array(
+            'title'  => __( 'Settings', 'pzarchitect' ),
+            'id'     => '_blueprint_pagination-settings-section',
+            'type'   => 'section',
+            'indent' => true,
+            'required' => array( '_blueprints_pagination', 'equals', true ),
           ),
           array(
             'title'    => __( 'Posts per page', 'pzarchitect' ),
@@ -1235,7 +1280,6 @@
               'top'    => 'Top',
               'both'   => 'Both'
             ),
-            'required' => array( '_blueprints_pagination', 'equals', true ),
           ),
           array(
             'id'       => '_blueprints_pager',
@@ -1249,7 +1293,6 @@
               'names'    => 'Post names',
               'pagenavi' => 'PageNavi',
             ),
-            'required' => array( '_blueprints_pagination', 'equals', true ),
           ),
           array(
             'id'       => '_blueprints_pager-single',
@@ -1263,7 +1306,6 @@
               'names'    => 'Post names',
               'pagenavi' => 'PageNavi',
             ),
-            'required' => array( '_blueprints_pagination', 'equals', true ),
           ),
           array(
             'id'       => '_blueprints_pager-archives',
@@ -1277,6 +1319,23 @@
               'names'    => 'Post names',
               'pagenavi' => 'PageNavi',
             ),
+          ),
+          array(
+            'id'       => '_blueprints_pager-custom-prev',
+            'title'    => __( 'Custom text for Previous', 'pzarchitect' ),
+            'type'     => 'text',
+            'default'  => null,
+          ),
+          array(
+            'id'       => '_blueprints_pager-custom-next',
+            'title'    => __( 'Custom text for Next', 'pzarchitect' ),
+            'type'     => 'text',
+            'default'  => null,
+          ),
+          array(
+            'id'     => '_blueprint_pagination-settings-section-end',
+            'type'   => 'section',
+            'indent' => false,
             'required' => array( '_blueprints_pagination', 'equals', true ),
           ),
         )
@@ -1562,22 +1621,23 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
               'id'     => $prefix . 'blueprint-end-section-blueprint',
               'type'   => 'section',
               'indent' => false,
-            ),
-            array(
-              'title'  => __( 'Custom CSS', 'pzarchitect' ),
-              'id'     => $prefix . 'blueprint-section-blueprint-custom-css',
-              'type'   => 'section',
-              'indent' => false,
-            ),
-            array(
-              'title'    => __( 'Custom CSS', 'pzarchitect' ),
-              'id'       => $prefix . 'blueprint-custom-css',
-              'type'     => 'ace_editor',
-              'mode'     => 'css',
-              'subtitle' => __( 'As a shorthand, you can prefix your CSS class with MYBLUEPRINT and Architect will substitute the correct class for this Blueprint. e.g. MYBLUEPRINT {border-radius:5px;}', 'pzarchitect' )
-              //              'subtitle' => __( 'This can be any CSS you\'d like to add to a page this blueprint is displayed on. It will ONLY load on the pages this blueprint is shown on, so will only impact those pages. However, if you have multiple blueprints on a page, this CSS could affect or be overriden by ther blueprints\' custom CSS.', 'pzarchitect' ),
-              //                'hint'  => array('content' => __('This is can be any CSS you\'d like to add to a page this blueprint is displayed on. It will ONLY load on the pages this blueprint is shown on, so will only impact those pages. However, if you have multiple blueprints on a page, this CSS could affect or be overriden by ther blueprints\' custom CSS.', 'pzarchitect')),
             )
+//            array(
+//              'title'  => __( 'Custom CSS', 'pzarchitect' ),
+//              'id'     => $prefix . 'blueprint-section-blueprint-custom-css',
+//              'type'   => 'section',
+//              'indent' => true,
+//            )
+//            array(
+//              'title'    => __( 'Custom CSS', 'pzarchitect' ),
+//              'id'       => $prefix . 'blueprint-custom-css',
+//              'options'	=>	array('minLines'=> 25),
+//              'type'     => 'ace_editor',
+//              'mode'     => 'css',
+//              'subtitle' => __( 'As a shorthand, you can prefix your CSS class with MYBLUEPRINT and Architect will substitute the correct class for this Blueprint. e.g. MYBLUEPRINT {border-radius:5px;}', 'pzarchitect' )
+//              //              'subtitle' => __( 'This can be any CSS you\'d like to add to a page this blueprint is displayed on. It will ONLY load on the pages this blueprint is shown on, so will only impact those pages. However, if you have multiple blueprints on a page, this CSS could affect or be overriden by ther blueprints\' custom CSS.', 'pzarchitect' ),
+//              //                'hint'  => array('content' => __('This is can be any CSS you\'d like to add to a page this blueprint is displayed on. It will ONLY load on the pages this blueprint is shown on, so will only impact those pages. However, if you have multiple blueprints on a page, this CSS could affect or be overriden by ther blueprints\' custom CSS.', 'pzarchitect')),
+//            )
           )
         );
 
@@ -1838,6 +1898,26 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
           )
         );
 
+        /**
+         * CUSTOM CSS
+         */
+        $sections[ '_bp_custom_css' ] = array(
+          'id'         => 'bp-custom-css',
+          'title'      => __( 'Custom CSS', 'pzarchitect' ),
+          'icon_class' => 'icon-large',
+          'icon'       => 'el-icon-wrench',
+          'fields'     => array(
+            array(
+              'id'       => $prefix . 'blueprint-custom-css',
+              'type'     => 'ace_editor',
+              'title'    => __( 'Custom CSS', 'pzarchitect' ),
+              'mode'     => 'css',
+              'options'  => array( 'minLines' => 25 ),
+              'subtitle' => __( 'As a shorthand, you can prefix your CSS class with MYBLUEPRINT and Architect will substitute the correct class for this Blueprint. e.g. MYBLUEPRINT {border-radius:5px;}', 'pzarchitect' )
+            ),
+          )
+        );
+
 
         $sections[ '_styling_help' ] = array(
           'id'         => 'blueprint-styling-help',
@@ -1909,7 +1989,6 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
             'id'       => $prefix . 'components-to-show',
             'type'     => 'button_set',
             'multi'    => true,
-            'width'    => '100%',
             'subtitle' => __( 'Feature can be either the Featured Image of the post, or the Featured Video (added by Architect).', 'pzarchitect' ),
             'default'  => array( 'title', 'excerpt', 'meta1', 'image' ),
             'options'  => array(
@@ -2015,8 +2094,7 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
             'max'           => '999',
             'step'          => '1',
             'display_value' => 'label',
-            'required' => array( $prefix . 'components-to-show', 'contains', 'custom' ),
-
+            'required'      => array( $prefix . 'components-to-show', 'contains', 'custom' ),
             'subtitle'      => __( 'Each of the three Custom groups can have multiple custom fields. Enter the <strong>total</strong> number of custom fields, click Save/Update', 'pzarchitect' ),
             'hint'          => array(
               'title'   => __( 'Number of custom fields', 'pzarchitect' ),
@@ -2774,11 +2852,12 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
                 'subtitle' => __( 'Select the wrapper element for this custom field', 'pzarchitect' )
 
               ),
-              array(
-                'id'    => $prefix . 'cfield-' . $i . '-class-name',
-                'title' => __( 'Add class name', 'pzarchitect' ),
-                'type'  => 'text',
-              ),
+              // THis wasn't being added, plus we know the name of the field
+              //              array(
+              //                'id'    => $prefix . 'cfield-' . $i . '-class-name',
+              //                'title' => __( 'Add class name', 'pzarchitect' ),
+              //                'type'  => 'text',
+              //              ),
               array(
                 'title'    => __( 'Link field', 'pzarchitect' ),
                 'id'       => $prefix . 'cfield-' . $i . '-link-field',
@@ -3058,19 +3137,7 @@ array(
               'indent' => true,
               'class'  => 'heading',
             ),
-            pzarc_redux_font( $prefix . 'entry-contentp' . $font, array( '.entry-content' ), $defaults[ $optprefix . 'entry-content' . $font ], array(
-              'letter-spacing',
-              'font-variant',
-              'text-transform',
-              'font-family',
-              'font-style',
-              'text-align',
-              'text-decoration',
-              'color',
-              'font-weight',
-              'word-spacing',
-              'preview'
-            ) ),
+            pzarc_redux_font( $prefix . 'entry-contentp' . $font, array( '.entry-content' ), $defaults[ $optprefix . 'entry-content' . $font ] ),
             pzarc_redux_padding( $prefix . 'entry-contentp' . $font . $padding, array( '.entry-content p' ), $defaults[ $optprefix . 'entry-contentp' . $font . $padding ] ),
             pzarc_redux_margin( $prefix . 'entry-contentp' . $font . $margin, array( '.entry-content p' ), $defaults[ $optprefix . 'entry-contentp' . $font . $margin ] )
           )
@@ -3092,7 +3159,7 @@ array(
             pzarc_redux_font( $prefix . 'entry-excerpt' . $font, array( '.entry-excerpt' ), $defaults[ $optprefix . 'entry-excerpt' . $font ] ),
             pzarc_redux_bg( $prefix . 'entry-excerpt' . $font . $background, array( '.entry-excerpt' ), $defaults[ $optprefix . 'entry-excerpt' . $font . $background ] ),
             pzarc_redux_padding( $prefix . 'entry-excerpt' . $font . $padding, array( '.entry-excerpt' ), $defaults[ $optprefix . 'entry-excerpt' . $font . $padding ] ),
-            pzarc_redux_margin( $prefix . 'entry-excerpt' . $font . $margin, array( '.entry-excerpt' ), $defaults[ $optprefix . 'entry-excerpt' . $font . $margin ] ),
+            pzarc_redux_margin( $prefix . 'entry-excerpt' . $font . $margin, array( '.entry-excerpt' ), $defaults[ $optprefix . 'entry-excerpt' . $font . $margin ], 'tb' ),
             pzarc_redux_borders( $prefix . 'entry-excerpt' . $border, array( '.entry-excerpt' ), $defaults[ $optprefix . 'entry-excerpt' . $border ] ),
             pzarc_redux_links( $prefix . 'entry-excerpt' . $font . $link, array( '.entry-excerpt a' ), $defaults[ $optprefix . 'entry-excerpt' . $font . $link ] ),
             array(
@@ -3103,19 +3170,7 @@ array(
               'indent' => true,
               'class'  => 'heading',
             ),
-            pzarc_redux_font( $prefix . 'entry-excerptp' . $font, array( '.entry-excerpt p' ), $defaults[ $optprefix . 'entry-excerptp' . $font ], array(
-              'letter-spacing',
-              'font-variant',
-              'text-transform',
-              'font-family',
-              'font-style',
-              'text-align',
-              'text-decoration',
-              'color',
-              'font-weight',
-              'word-spacing',
-              'preview'
-            ) ),
+            pzarc_redux_font( $prefix . 'entry-excerptp' . $font, array( '.entry-excerpt p' ), $defaults[ $optprefix . 'entry-excerptp' . $font ] ),
             pzarc_redux_padding( $prefix . 'entry-excerptp' . $font . $padding, array( '.entry-excerpt p' ), $defaults[ $optprefix . 'entry-excerptp' . $font . $padding ] ),
             pzarc_redux_margin( $prefix . 'entry-excerptp' . $font . $margin, array( '.entry-excerpt p' ), $defaults[ $optprefix . 'entry-excerptp' . $font . $margin ] ),
             array(
@@ -3216,13 +3271,13 @@ array(
               'title'      => $cfname,
               'show_title' => false,
               'icon_class' => 'icon-large',
-              'icon'       => 'el-icon' . $font,
+              'icon'       => 'el-icon-wrench-alt',
               'desc'       => 'Class: .entry-customfield-' . $i,
               'fields'     => pzarc_fields(
                 pzarc_redux_font( $prefix . 'entry-customfield-' . $i . '' . $font, array( '.entry-customfield-' . $i . '' ) ),
                 pzarc_redux_bg( $prefix . 'entry-customfield-' . $i . '' . $font . $background, array( '.entry-customfield-' . $i . '' ) ),
                 pzarc_redux_padding( $prefix . 'entry-customfield-' . $i . '' . $font . $padding, array( '.entry-customfield-' . $i . '' ) ),
-                pzarc_redux_margin( $prefix . 'entry-customfield-' . $i . '' . $font . $margin, array( '.entry-customfield-' . $i . '' ) ),
+                pzarc_redux_margin( $prefix . 'entry-customfield-' . $i . '' . $font . $margin, array( '.entry-customfield-' . $i . '' ), null, 'tb' ),
                 pzarc_redux_borders( $prefix . 'entry-customfield-' . $i . '' . $border, array( '.entry-customfield-' . $i . '' ) ),
                 pzarc_redux_links( $prefix . 'entry-customfield-' . $i . '' . $font . $link, array( '.entry-customfield-' . $i . ' a' ) )
               ),
@@ -3243,8 +3298,9 @@ array(
               'type'     => 'ace_editor',
               'title'    => __( 'Custom CSS', 'pzarchitect' ),
               'mode'     => 'css',
+              'options'  => array( 'minLines' => 25 ),
               'default'  => $defaults[ $optprefix . 'custom-css' ],
-              'subtitle' => __( 'As a shorthand, you can prefix your CSS class with MYBLUEPRINT and Architect will substitute the correct class for this Blueprint. e.g. MYBLUEPRINT .entry-content{border-radius:5px;}', 'pzarchitect' )
+              'subtitle' => __( 'As a shorthand, you can prefix your CSS class with MYBLUEPRINT or MYPANELS and Architect will substitute the correct class for this Blueprint. e.g. MYPANELS .entry-content{border-radius:5px;}', 'pzarchitect' )
             ),
           )
         );

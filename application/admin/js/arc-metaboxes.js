@@ -6,7 +6,6 @@ jQuery( document ).ready( function ()
   jQuery('body.pz_testimonials #title-prompt-text' ).text('Person\'s Name')
   jQuery("input#pzarc_testimonial-url" ).attr("pattern",  "https?://.+");
 
-
   // Active form validation
   //  jQuery( "#post" ).validationEngine();
 
@@ -40,7 +39,6 @@ jQuery( document ).ready( function ()
 //            className: 'architect-tips'
 //        } );
 //    }
-
 
 
 } );

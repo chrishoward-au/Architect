@@ -3,7 +3,7 @@ Contributors: chrishoward
 Tags: content,display,posts,pages,gallery,slider,tabs,tabbed,tabular,widget,hooks
 Requires at least: 3.5.0
 Tested up to: 4.2.0
-Stable tag: 1.1.7
+Stable tag: 1.1.7.5
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Plugin URI: http://architect4wp.com
@@ -93,10 +93,25 @@ For support, please send an email to support@pizazzwp.com
 
 == Changelog ==
 
-= 1.1.7 : =
+= 1.1.7.x : =
+* ADDING: EDD licencing
+* ADDED: First support of Animation. Doesn't respond to sliding yet.
 * ADDED: Sysinfo to Tools menu
-* FIXED: Some PHP notices
+* ADDED: Option for custom previous/next text for pagination
+
 * CHANGED Block, shortcode, template tag, builder and widget to support different  blocks per device type: Desktop, Tablet, Phone.
+* CHANGED: Typography to treat line heights less than three as multipliers, not absolutes.
+
+* FIXED: Some PHP notices
+* FIXED: Custom fields styling pretty much didn't work!
+* FIXED: Blueprints custom CSS went missing
+* FIXED: Some issues with panels margins not applying
+* FIXED: Some incorrect text in pagination links
+* FIXED: Errors if trying to use pagination wth dummy content.
+
+* UPDATED: TGM Library to v2.4.1 with XSS vulnerability fix
+
+* REMOVED: Custom field group styling defaults since they're so variable and thus just clutter
 
 = 1.1.6 : 12 April 2015=
 * ADDED: Additional filters and hooks for developers
