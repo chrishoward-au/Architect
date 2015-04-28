@@ -969,14 +969,7 @@ add_action(\'init\',\'gs_init\');
                                           'current_version' => PZARC_VERSION
                                         ) );
     } else {
-      if ( ! defined( 'PZARC_BETA' ) || ! PZARC_BETA ) {
         require_once(  PZARC_PLUGIN_APP_PATH . 'admin/php/edd-architect-plugin.php' );
-      } else {
-        // BETA UPDATES
-//        require_once( PZARC_PLUGIN_PATH . 'wp-updates-plugin_625.php' );
-//        new WPUpdatesPluginUpdater_625( 'http://wp-updates.com/api/2/plugin', 'pizazzwp-architect/architect.php' );
-
-      }
     }
 
 

@@ -22,7 +22,7 @@
 //  }
 //  if ( ! empty( $_architect_options[ 'architect_licence_key' ] ) ) {}
     // setup the updater
-    $edd_updater = new EDD_SL_Plugin_Updater( EDD_ARCHITECT_STORE_URL, __FILE__, array(
+    $edd_updater = new EDD_SL_Plugin_Updater( EDD_ARCHITECT_STORE_URL, PZARC_PLUGIN_PATH.'architect.php', array(
                                                                        'version'   => PZARC_VERSION,
                                                                        // current version number
                                                                        'license'   => $license_key,
@@ -45,7 +45,9 @@
    *************************************/
 
   function edd_architect_licence_menu() {
-    add_submenu_page( 'pzarc', __( 'Licence', 'pzarchitect' ), '<span class="dashicons dashicons-admin-network size-small"></span>' . __( 'Licence', 'pzarchitect' ), 'manage_options', 'architect-licence', 'edd_architect_licence_page' );
+    if (!( class_exists( 'HeadwayUpdaterAPI' ) && defined( 'PZARC_HWREL' ) && PZARC_HWREL )) {
+      add_submenu_page( 'pzarc', __( 'Licence', 'pzarchitect' ), '<span class="dashicons dashicons-admin-network size-small"></span>' . __( 'Licence', 'pzarchitect' ), 'manage_options', 'architect-licence', 'edd_architect_licence_page' );
+    }
   }
   add_action( 'admin_menu', 'edd_architect_licence_menu' );
 
@@ -53,6 +55,7 @@
   function edd_architect_licence_page() {
     $license = get_option( 'edd_architect_license_key' );
     $status  = get_option( 'edd_architect_license_status' );
+    $edd_state = get_option('edd_architect_license_state');
     ?>
     <div class="wrap">
     <h2><?php _e( 'Architect Licence Options', 'pzarchitect' ); ?></h2>
@@ -80,15 +83,18 @@
             </th>
             <td>
               <?php if ( $status !== false && $status == 'valid' ) { ?>
-                <span style="color:green;"><?php _e( 'active' ); ?></span>
                 <?php wp_nonce_field( 'edd_architect_nonce', 'edd_architect_nonce' ); ?>
                 <input type="submit" class="button-secondary" name="edd_license_deactivate"
                        value="<?php _e( 'Deactivate License' ); ?>"/>
+                <span style="color:green;">&nbsp;<?php _e( 'Active' ); ?></span>
               <?php } else {
                 wp_nonce_field( 'edd_architect_nonce', 'edd_architect_nonce' ); ?>
                 <input type="submit" class="button-secondary" name="edd_license_activate"
                        value="<?php _e( 'Activate License' ); ?>"/>
-              <?php } ?>
+              <?php }
+                echo "<p>".$edd_state."</p>";
+              ?>
+
             </td>
           </tr>
         <?php } ?>
@@ -145,9 +151,9 @@
       );
 
       // Call the custom API.
-      $response = wp_remote_get( esc_url(add_query_arg( $api_params, EDD_ARCHITECT_STORE_URL ), array( 'timeout'   => 15,
+      $response = wp_remote_get( add_query_arg( $api_params, EDD_ARCHITECT_STORE_URL ), array( 'timeout'   => 15,
                                                                                                'sslverify' => false
-      ) ));
+      ) );
 
       // make sure the response came back okay
       if ( is_wp_error( $response ) ) {
@@ -160,6 +166,12 @@
       // $license_data->license will be either "valid" or "invalid"
 
       update_option( 'edd_architect_license_status', $license_data->license );
+
+      if ($license_data->success) {
+        update_option('edd_architect_license_state', "Remaining activations: ".$license_data->activations_left);
+      } else {
+        update_option('edd_architect_license_state',"Activation failed with message: ".ucfirst(str_replace('_', ' ', $license_data->error)).'. Licence limit: '.$license_data->license_limit);
+      }
 
     }
   }
@@ -195,9 +207,9 @@
       );
 
       // Call the custom API.
-      $response = wp_remote_get( esc_url(add_query_arg( $api_params, EDD_ARCHITECT_STORE_URL ), array( 'timeout'   => 15,
+      $response = wp_remote_get( add_query_arg( $api_params, EDD_ARCHITECT_STORE_URL ), array( 'timeout'   => 15,
                                                                                                'sslverify' => false
-      ) ));
+      ) );
 
       // make sure the response came back okay
       if ( is_wp_error( $response ) ) {
@@ -240,10 +252,9 @@
     );
 
     // Call the custom API.
-    $response = wp_remote_get( esc_url(add_query_arg( $api_params, EDD_ARCHITECT_STORE_URL ), array( 'timeout'   => 15,
+    $response = wp_remote_get( add_query_arg( $api_params, EDD_ARCHITECT_STORE_URL ), array( 'timeout'   => 15,
                                                                                              'sslverify' => false
-    ) ));
-
+    ) );
 
     if ( is_wp_error( $response ) ) {
       return false;

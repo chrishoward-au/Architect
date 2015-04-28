@@ -279,21 +279,6 @@
           'show_title' => true,
           'icon'       => 'el-icon-wrench',
           'fields'     => array(
-            ( ! ( ( defined( 'PZARC_HWREL' ) && PZARC_HWREL ) ) ?
-              array(
-                'id'          => 'architect_licence_key',
-                'type'        => 'password',
-                'username'    => false,
-                'title'       => __( 'Architect Licence Key' ),
-                'hint'        => array(
-                  'content',
-                  'This is the key for purchases direct from hte PizazzWP shop. For purchases from Headway Extend, add their key in Headway > Options',
-                  'pzarchitect'
-                ),
-                'placeholder' => array(
-                  'password' => 'Enter your Architect licence key'
-                )
-              ) : null ),
             array(
               'title'  => __( 'Styling', 'pzarchitect' ),
               'id'     => 'architect_stylings_section',

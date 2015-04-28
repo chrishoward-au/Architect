@@ -3,7 +3,7 @@ Contributors: chrishoward
 Tags: content,display,posts,pages,gallery,slider,tabs,tabbed,tabular,widget,hooks
 Requires at least: 3.5.0
 Tested up to: 4.2.0
-Stable tag: 1.1.7.5
+Stable tag: 1.1.7.7
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Plugin URI: http://architect4wp.com
@@ -93,13 +93,13 @@ For support, please send an email to support@pizazzwp.com
 
 == Changelog ==
 
-= 1.1.7.x : =
-* ADDING: EDD licencing
-* ADDED: First support of Animation. Doesn't respond to sliding yet.
+= 1.2.0 : 28 April 2015 =
+* ADDED: Animation of components. Doesn't react to sliding yet.
+* ADDED: Block, shortcode, template tag, builder and widget now support different Blueprints per device type: Desktop/any, Tablet, Phone.
 * ADDED: Sysinfo to Tools menu
 * ADDED: Option for custom previous/next text for pagination
+* ADDED: EDD licencing for purchases direct from Pizazz
 
-* CHANGED Block, shortcode, template tag, builder and widget to support different  blocks per device type: Desktop, Tablet, Phone.
 * CHANGED: Typography to treat line heights less than three as multipliers, not absolutes.
 
 * FIXED: Some PHP notices
@@ -113,25 +113,27 @@ For support, please send an email to support@pizazzwp.com
 
 * REMOVED: Custom field group styling defaults since they're so variable and thus just clutter
 
-= 1.1.6 : 12 April 2015=
+= 1.1.6 =
 * ADDED: Additional filters and hooks for developers
 * ADDED: News feed to Help & Support
-* FIXED: Blueprint CSS may have been overly persistent on some caching systems.
-* CHANGED: Some text and help info for greater clarity
-* FIXED: Archive titles not displaying
-* ADDED: Styling for page titles in Blueprint Styling > Page
-* FIXED: Google fonts not rendering
 * ADDED: Wordpress custom fields settings to Snippets and Testimonials
+* ADDED: Styling for page titles in Blueprint Styling > Page
+
+* CHANGED: Some text and help info for greater clarity
+
+* FIXED: Blueprint CSS may have been overly persistent on some caching systems.
+* FIXED: Archive titles not displaying
+* FIXED: Google fonts not rendering
 
 = 1.1.5 =
 * FIXED: Nothing showing for Accordions except when content is Dummy
 
 = 1.1.4 =
-* FIXED: Titles not selectable for styling in the Headway Visual Editor Design Mode
 * CHANGED: Spaces are stripped from css file name - just in case the short name validator allowed them
-* ADDED: Licencing for purchases from PizazzWP direct
 
-= 1.1.3 =
+* FIXED: Titles not selectable for styling in the Headway Visual Editor Design Mode
+
+= 1.1.3 : 7 April 2015=
 * CHANGED: Blueprints are hidden until rendered. This is because their CSS loads at the bottom of the page (since it enqueues mid page) and can cause an ugly unstyled moment otherwise.
 * FIXED: Wrong classes for featured image in Headway
 * FIXED: Specific selection of posts, pages, snippets, slides, testimonials wasn't working

@@ -19,6 +19,9 @@
    * @version     1.2.9
    */
 
+  /**
+   * THIS IS THE CHRIS HOWARD MODIFIED VERSION
+   */
 // Exit if accessed directly
   if (!defined('ABSPATH')) {
     exit;

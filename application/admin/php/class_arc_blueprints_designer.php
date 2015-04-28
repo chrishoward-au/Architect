@@ -397,13 +397,14 @@
       $prefix = '_blueprints_';
       global $_architect_options;
       $cfwarn=false;
+      $animation_state = $_architect_options['architect_animation-enable'];
       if ( ! empty( $_GET[ 'post' ] ) ) {
         $thispostmeta = get_post_meta( $_GET[ 'post' ] );
         $cfcount      = ( ! empty( $thispostmeta[ '_panels_design_custom-fields-count' ][ 0 ] ) ? $thispostmeta[ '_panels_design_custom-fields-count' ][ 0 ] : 0 );
-        $cfwarn = (ini_get('max_input_vars')<=1000 && $cfcount>0);
+        $cfwarn = (ini_get('max_input_vars')<=1000 && ($cfcount>0 || $animation_state));
 
       }
-      $sections[ ]  = array(
+      $sections[ '_general_bp']  = array(
         'fields' => array(
           array(
             'id'       => $prefix . 'short-name',
@@ -440,17 +441,28 @@
               'content' => __( 'Choose the device you intend to display this Blueprint on. This is currently for information purposes only. That is, co anyone else working with this Blueprint is aware.', 'pzarchitect' )
             )
           ),
-          array(
-            'id'    => $prefix . 'input-vars-message',
-            'title' => __( 'Custom fields', 'pzarchitect' ),
-            'type'  => 'info',
-            'style'=> ($cfwarn?'critical':'normal'),
-            'required'=>array('_panels_design_components-to-show','contains','custom'),
-            'desc'=>__('If you add custom fields to a Blueprint it adds many more fields to the form. <strong>This can cause some fields not to save</strong>. Please read this post by Woo Themes for solutions:','pzarchitect').'<br><a href="http://docs.woothemes.com/document/problems-with-large-amounts-of-data-not-saving-variations-rates-etc/" target=_blank>Problems with large amounts of data not saving</a><br>Your max_input_vars setting is: '.ini_get('max_input_vars'),
-
-          ),
         )
       );
+      if ($cfwarn) {
+      $sections['_general_bp']['fields'][]= array(
+          'id'    => $prefix . 'input-vars-message',
+          'title' => __( 'Custom fields', 'pzarchitect' ),
+          'type'  => 'info',
+          'style'=> ($cfwarn?'critical':'normal'),
+          'required'=>array('_panels_design_components-to-show','contains','custom'),
+          'desc'=>__('If you add custom fields to a Blueprint it adds many more fields to the form. <strong>This can cause some fields not to save</strong>. Please read this post by Woo Themes for solutions:','pzarchitect').'<br><a href="http://docs.woothemes.com/document/problems-with-large-amounts-of-data-not-saving-variations-rates-etc/" target=_blank>Problems with large amounts of data not saving</a><br>Your max_input_vars setting is: '.ini_get('max_input_vars'),
+
+        );
+
+      }
+      if (!$animation_state) {
+      $sections['_general_bp']['fields'][]=array(
+          'id'    => $prefix . 'animation-message',
+          'title' => __( 'Animation', 'pzarchitect' ),
+          'type'  => 'info',
+          'desc'=>__('To use Animation settings, first enable Animation in <em>Architect</em> > <em>Options</em> > <em>Animation</em>.','pzarchitect'),
+        );
+      }
       $metaboxes[ ] = array(
         'id'         => $prefix . 'layout-general-settings',
         'title'      => 'General Settings',

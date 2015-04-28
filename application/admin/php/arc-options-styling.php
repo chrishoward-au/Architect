@@ -1117,11 +1117,11 @@ body.theme-twentyfifteen MYBLUEPRINT .hentry {margin:0;}
       }
 
 
-      /**
+      /***********************************************************
        *
        * All the possible arguments for Redux.
        * For full documentation on arguments, please refer to: https://github.com/ReduxFramework/ReduxFramework/wiki/Arguments
-       **/
+       *******************************************/
       public function setArguments()
       {
 
