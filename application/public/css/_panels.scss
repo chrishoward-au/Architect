@@ -1,304 +1,306 @@
 // Make sure there's no formatting in this
-.pzarc-panel {
-  //  min-width: 0;
-  //  min-height: 0;
-  /* Remember to remove space between divs to stop inline-block space issue */
-  display: inline-block;
-  box-sizing: border-box;
-  vertical-align: top;
-  position: relative;
-  overflow: hidden;
+.pzarchitect {
+  .pzarc-panel {
+    //  min-width: 0;
+    //  min-height: 0;
+    /* Remember to remove space between divs to stop inline-block space issue */
+    display: inline-block;
+    box-sizing: border-box;
+    vertical-align: top;
+    position: relative;
+    overflow: hidden;
 
-  &.pzarc-wow {
-    visibility:hidden;
-  }
-  // Footer and header floating to top of components. This CSS is needed but why is it even necessary?
-  header.entry-header,
-  footer.entry-footer {
-    float: left;
-    width: 100%;
-  }
+    &.pzarc-wow {
+      visibility: hidden;
+    }
+    // Footer and header floating to top of components. This CSS is needed but why is it even necessary?
+    header.entry-header,
+    footer.entry-footer {
+      float: left;
+      width: 100%;
+    }
 
-  .entry-image {
-    max-width: 100%;
-    display: block;
-  }
+    .entry-image {
+      max-width: 100%;
+      display: block;
+    }
 
-  .entry-excerpt,
-  .entry-content {
-/*    -ms-word-break: break-all;
-    word-break: break-all;
+    .entry-excerpt,
+    .entry-content {
+      /*    -ms-word-break: break-all;
+          word-break: break-all;
 
-    /* Non standard for webkit */
-   /* word-break: break-word;
+          /* Non standard for webkit */
+      /* word-break: break-word;
 
-    -webkit-hyphens: auto;
-    -moz-hyphens: auto;
-    hyphens: auto;
-    */
-    word-break:break-word;
-    word-wrap:break-word;
-    &.nothumb {
-      //     width: 100%; TODO: WTF? Why is this breakking shtuff?
-      &.maxwidth {
-        width: 100%;
+       -webkit-hyphens: auto;
+       -moz-hyphens: auto;
+       hyphens: auto;
+       */
+      word-break: break-word;
+      word-wrap: break-word;
+      &.nothumb {
+        //     width: 100%; TODO: WTF? Why is this breakking shtuff?
+        &.maxwidth {
+          width: 100%;
+        }
       }
     }
-  }
 
-  img.entry-image {
-  }
+    img.entry-image {
+    }
 
-  .entry-content {
-  }
+    .entry-content {
+    }
 
-  .entry-excerpt {
-    float: left;
-  }
+    .entry-excerpt {
+      float: left;
+    }
 
-  .entry-thumbnail {
-    float: left;
+    .entry-thumbnail {
+      float: left;
 
-    img {
+      img {
+        max-width: 100%;
+        height: auto;
+      }
+      &.object-fit_fill {
+        object-fit: fill
+      }
+      &.object-fit_contain {
+        object-fit: contain
+      }
+      &.object-fit_cover {
+        object-fit: cover
+      }
+      &.object-fit_none {
+        object-fit: none
+      }
+      &.object-fit_scale-down {
+        object-fit: scale-down
+      }
+      &.centred {
+        float: none;
+        margin: 0 auto;
+        text-align: center;
+      }
+      .caption {
+        display: block;
+      }
+      &.pzarc-components-right {
+        float: left;
+      }
+      &.pzarc-components-left {
+        float: right;
+      }
+    }
+
+    .entry-title {
+    }
+
+    .pzarc-title-thumb {
+      // This stops surprise padding below the thumb
+      display: inline-flex;
+      float: left;
+      margin-right: 3px;
+    }
+
+    .pzarc-title-wrap {
+      vertical-align: middle;
+    }
+
+    .entry-title,
+    .entry-excerpt,
+    .entry-thumbnail,
+    .entry-content,
+    .entry-meta {
+      display: block;
+      float: left;
+      vertical-align: top;
+      box-sizing: border-box;
+    }
+    .entry-thumbnail {
+      img {
+        // Changed 1.0.9.12... hopefully no repercussions...
+        //      vertical-align: text-top;
+        vertical-align: top;
+      }
+    }
+
+    .entry-customfieldgroup {
+      display: block;
+      float: left;
+    }
+
+    .vertical-content {
+      top: 0;
+      bottom: 0;
+      height: 100%;
+    }
+
+    .pzarc-components {
+      box-sizing: border-box;
+      overflow: hidden;
+      position: relative;
+      &.pzarc-align-left {
+        float: left;
+        clear: none;
+      }
+      &.pzarc-align-right {
+        float: right;
+        clear: none;
+      }
+
+    }
+
+    //when the bgimage is set to align, still use absolute as it sticks in the page flow!!
+    figure.pzarc-bg-image {
+      margin: 0;
+      padding: 0;
       max-width: 100%;
       height: auto;
-    }
-    &.object-fit_fill {
-      object-fit: fill
-    }
-    &.object-fit_contain {
-      object-fit: contain
-    }
-    &.object-fit_cover {
-      object-fit: cover
-    }
-    &.object-fit_none {
-      object-fit: none
-    }
-    &.object-fit_scale-down {
-      object-fit: scale-down
-    }
-    &.centred {
-      float: none;
-      margin: 0 auto;
-      text-align: center;
-    }
-    .caption {
-      display: block;
-    }
-    &.pzarc-components-right {
-      float: left;
-    }
-    &.pzarc-components-left {
-      float: right;
-    }
-  }
+      z-index: 0;
+      overflow: hidden;
+      position: relative;
 
-  .entry-title {
-  }
+      img {
+        display: block;
+        height: auto;
+      }
 
-  .pzarc-title-thumb {
-    // This stops surprise padding below the thumb
-    display: inline-flex;
-    float: left;
-    margin-right: 3px;
-  }
-
-  .pzarc-title-wrap {
-    vertical-align: middle;
-  }
-
-  .entry-title,
-  .entry-excerpt,
-  .entry-thumbnail,
-  .entry-content,
-  .entry-meta {
-    display: block;
-    float: left;
-    vertical-align: top;
-    box-sizing: border-box;
-  }
-  .entry-thumbnail {
-    img {
-// Changed 1.0.9.12... hopefully no repercussions...
-//      vertical-align: text-top;
-      vertical-align: top;
-    }
-  }
-
-  .entry-customfieldgroup {
-    display: block;
-    float: left;
-  }
-
-  .vertical-content {
-    top: 0;
-    bottom: 0;
-    height: 100%;
-  }
-
-  .pzarc-components {
-    box-sizing: border-box;
-    overflow: hidden;
-    position: relative;
-    &.pzarc-align-left {
-      float: left;
-      clear: none;
-    }
-    &.pzarc-align-right {
-      float: right;
-      clear: none;
-    }
-
-  }
-
-  //when the bgimage is set to align, still use absolute as it sticks in the page flow!!
-  figure.pzarc-bg-image {
-    margin: 0;
-    padding: 0;
-    max-width: 100%;
-    height: auto;
-    z-index: 0;
-    overflow: hidden;
-    position: relative;
-
-    img {
-      display: block;
-      height: auto;
-    }
-
-    &.fill {
-      &.trim {
-        max-width: none;
-        display: inline-block;
-        right: -50%;
-        overflow: visible;
-        //This fixes the inline-block adding a gap below the image
-        vertical-align: text-top;
-
-        img {
+      &.fill {
+        &.trim {
           max-width: none;
-          position: relative;
-          left: -50%;
+          display: inline-block;
+          right: -50%;
+          overflow: visible;
+          //This fixes the inline-block adding a gap below the image
+          vertical-align: text-top;
+
+          img {
+            max-width: none;
+            position: relative;
+            left: -50%;
+          }
+        }
+
+        &.scale img {
+          max-width: 100%;
         }
       }
 
-      &.scale img {
-        max-width: 100%;
-      }
-    }
-
-    &.align {
-      //      position: relative;
-      top: 0;
-      &.scale {
-        max-width: none;
-      }
-      &.scale img {
-        max-width: 100%;
-      }
-    }
-
-  }
-  &.using-bgimages {
-    .pzarc-components {
-      position: absolute;
-      z-index: 1;
-    }
-
-    > figure {
-      position: relative;
-      //top: 0;
-      //left: 0;
-      z-index: 0;
-    }
-  }
-  &.using-aligned-bgimages {
-    .pzarc-components {
-      position: relative;
-      z-index: 1;
-    }
-
-    > figure {
-      position: absolute;
-      //top: 0;
-      //left: 0;
-      z-index: 0;
-      img {
-        max-width: none;
+      &.align {
+        //      position: relative;
+        top: 0;
+        &.scale {
+          max-width: none;
+        }
+        &.scale img {
+          max-width: 100%;
+        }
       }
 
     }
-  }
+    &.using-bgimages {
+      .pzarc-components {
+        position: absolute;
+        z-index: 1;
+      }
 
-  .pzarc-presuff-image {
-    vertical-align: middle;
-  }
-  .lightbox img {
-    cursor: zoom-in;
-    cursor: -webkit-zoom-in;
-  }
+      > figure {
+        position: relative;
+        //top: 0;
+        //left: 0;
+        z-index: 0;
+      }
+    }
+    &.using-aligned-bgimages {
+      .pzarc-components {
+        position: relative;
+        z-index: 1;
+      }
 
-  td.td-entry-title,
-  td.entry-meta,
-  td.entry-content,
-  td.entry-excerpt,
-  td.td-entry-thumbnail {
-    display: table-cell;
-    float: none;
-    line-height: initial;
-    text-align: initial;
-    vertical-align: top;
-    border-top: initial;
-  }
-  td.td-entry-title h1.entry-title,
-  td.td-entry-thumbnail figure.entry-thumbnail {
-    width: 100%;
-  }
-  // TODO: This won't be neeeed after stylings added
-  td {
-    padding: 1%;
-  }
-}
+      > figure {
+        position: absolute;
+        //top: 0;
+        //left: 0;
+        z-index: 0;
+        img {
+          max-width: none;
+        }
 
-tr.pzarc-panel {
-  display: table-row;
-  h1.entry-title {
-    width:100%!important;
-  }
-}
+      }
+    }
 
-table {
-  border-collapse: collapse;
-  thead {
-    background: #eee;
-  }
-}
+    .pzarc-presuff-image {
+      vertical-align: middle;
+    }
+    .lightbox img {
+      cursor: zoom-in;
+      cursor: -webkit-zoom-in;
+    }
 
-.pzarc-accordion.title {
-
-  a {
-    color: inherit;
-    text-decoration: none;
-    display: block;
-    &:after {
-      font-family:sans-serif;
-      font-size:12px;
-      content: "◄";
-      float:right;
-      margin-right:10px;
+    td.td-entry-title,
+    td.entry-meta,
+    td.entry-content,
+    td.entry-excerpt,
+    td.td-entry-thumbnail {
+      display: table-cell;
+      float: none;
+      line-height: initial;
+      text-align: initial;
+      vertical-align: top;
+      border-top: initial;
+    }
+    td.td-entry-title h1.entry-title,
+    td.td-entry-thumbnail figure.entry-thumbnail {
+      width: 100%;
+    }
+    // TODO: This won't be neeeed after stylings added
+    td {
+      padding: 1%;
     }
   }
 
-  &:hover a {
-    color: inherit;
-    text-decoration: none;
+  tr.pzarc-panel {
+    display: table-row;
+    h1.entry-title {
+      width: 100% !important;
+    }
   }
 
-  &.open a {
-    &:after {
-      content: "▼";
-      font-size:8px;
+  table {
+    border-collapse: collapse;
+    thead {
+      background: #eee;
+    }
+  }
+
+  .pzarc-accordion.title {
+
+    a {
+      color: inherit;
+      text-decoration: none;
+      display: block;
+      &:after {
+        font-family: sans-serif;
+        font-size: 12px;
+        content: "◄";
+        float: right;
+        margin-right: 10px;
+      }
+    }
+
+    &:hover a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    &.open a {
+      &:after {
+        content: "▼";
+        font-size: 8px;
+      }
     }
   }
 }

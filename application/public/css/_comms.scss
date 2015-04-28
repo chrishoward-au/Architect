@@ -1,17 +1,19 @@
-.message-warning {
-  background: $warningbg;
-  color: $warningfg;
-  border: solid $base-border-width $warningfg;
-  padding: $base-gap;
-}
+.pzarchitect {
+  .message-warning {
+    background: $warningbg;
+    color: $warningfg;
+    border: solid $base-border-width $warningfg;
+    padding: $base-gap;
+  }
 
-.message-error {
-  font-size: $base-font-size*1.6;
-  font-family: sans-serif;
-  color: $oopsfg;
-  background: $oopsbg;
-  border: $base-border-width solid $oopsfg;
-  display: inline-block;
-  margin: $base-gap 0;
-  padding: $base-gap*2;
+  .message-error {
+    font-size: $base-font-size*1.6;
+    font-family: sans-serif;
+    color: $oopsfg;
+    background: $oopsbg;
+    border: $base-border-width solid $oopsfg;
+    display: inline-block;
+    margin: $base-gap 0;
+    padding: $base-gap*2;
+  }
 }

@@ -98,11 +98,10 @@
         'icon'       => 'el-icon-adjust-alt',
         'fields'     => array(
           array(
-            'title'   => __( 'Animate Panels or Content', 'pzarchitect' ),
+            'title'   => __( 'Animate', 'pzarchitect' ),
             'id'      => $prefix . 'target',
             'type'    => 'button_set',
             'default' => 'panels',
-            //            'subtitle' => __( '', 'pzarchitect' ),
             'options' => array(
               'panels' => __( 'Panels', 'pzarchitect' ),
               'fields' => __( 'Content', 'pzarchitect' ),
@@ -162,6 +161,7 @@
         'show_title' => false,
         'icon_class' => 'icon-large',
         'icon'       => 'el-icon-th-large',
+        'desc' => __( 'Some animations are not as suitable for panels. For example, use fadeInLeftBig rather than slideInLeft', 'pzarchitect' ),
         'fields'     => array(
           array(
             'id'       => $prefix . 'panels-demo',

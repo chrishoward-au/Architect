@@ -1,470 +1,470 @@
-.msie .pzarc-navigator {
-  height: 0;
-}
-
-.pzarc-navigator {
-  //absolute if over content
-  //position: absolute;
-  left: 0;
-  text-align: center;
-  //bottom: 5px; Not sure why this was here but messed with IE.
-  z-index: 1;
-  display: block;
-  // TODO: Verify this doesn't scramble other displays!
-  // width:100%; Prob better if user sets width and margin
-  &.tabbed {
-    // TODO: Can we live without this??? MS 10 probs won't like it.
-    display: -ms-flex; // This gives a nice even layout and full height tabs
-    display: -webkit-flex; // This gives a nice even layout and full height tabs
-    display: flex; // This gives a nice even layout and full height tabs
-    flex-direction: row;
-    &.vertical {
-      flex-direction: column;
-    }
+.pzarchitect {
+  .msie .pzarc-navigator {
+    height: 0;
   }
-  &.outside {
-    &.top {
-      position: relative;
-      z-index: 1;
-      top: 0px;
-      bottom: initial;
-    }
-    &.bottom {
-      bottom: 0px;
-      top: initial;
-    }
 
-  }
-  &.inside {
-    position: absolute;
+  .pzarc-navigator {
+    //absolute if over content
+    //position: absolute;
+    left: 0;
+    text-align: center;
+    //bottom: 5px; Not sure why this was here but messed with IE.
     z-index: 1;
-    &.top {
-      top: 15px;
-      bottom: initial;
+    display: block;
+    // TODO: Verify this doesn't scramble other displays!
+    // width:100%; Prob better if user sets width and margin
+    &.tabbed {
+      // TODO: Can we live without this??? MS 10 probs won't like it.
+      display: -ms-flex; // This gives a nice even layout and full height tabs
+      display: -webkit-flex; // This gives a nice even layout and full height tabs
+      display: flex; // This gives a nice even layout and full height tabs
+      flex-direction: row;
+      &.vertical {
+        flex-direction: column;
+      }
     }
-    &.bottom {
-      bottom: 15px;
-      top: initial;
+    &.outside {
+      &.top {
+        position: relative;
+        z-index: 1;
+        top: 0px;
+        bottom: initial;
+      }
+      &.bottom {
+        bottom: 0px;
+        top: initial;
+      }
+
+    }
+    &.inside {
+      position: absolute;
+      z-index: 1;
+      &.top {
+        top: 15px;
+        bottom: initial;
+      }
+      &.bottom {
+        bottom: 15px;
+        top: initial;
+      }
     }
   }
-}
 
-/* ===============================================================
-  Your custom styles, here you need to specify container's and slide's
-  sizes, pagination, etc.
+  /* ===============================================================
+    Your custom styles, here you need to specify container's and slide's
+    sizes, pagination, etc.
+    ================================================================*/
+
+  .arc-slider-slide-active {
+    /* Specific active slide styling: */
+
+  }
+
+  .arc-slider-slide-visible {
+    /* Specific visible slide styling: */
+
+  }
+
+  /* ===============================================================
+  Pagination Styles
   ================================================================*/
-
-.arc-slider-slide-active {
-  /* Specific active slide styling: */
-
-}
-
-.arc-slider-slide-visible {
-  /* Specific visible slide styling: */
-
-}
-
-/* ===============================================================
-Pagination Styles
-================================================================*/
-.navpos-left,
-.navpos-right {
-  .arc-slider-slide-nav-item {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-  }
-  .pzarc-navigator {
-    height: 100%;
-    display: block;
-    top: 0;
-  }
-
-  .pzarc-sections {
-    display: block;
-    top: 0;
-  }
-
-}
-
-.navpos-right {
-  .pzarc-navigator {
-    right: 0;
-  }
-}
-
-.navpos-top,
-.navpos-bottom {
-  .arc-slider-slide-nav-item {
-    display: inline-block;
-    margin: 0 3px;
-  }
-  .has-pager .thumbs.pzarc-navigator {
-    // Centre it
-    width: 80%;
-    left: 10%;
-  }
-  .arc-slider-container {
-    /* Specify slider's Size: */
-
-    padding: 0;
-    .arc-slider-slide {
-      /* Specify Slides's Size: */
-
-      // width: 320px;
+  .navpos-left,
+  .navpos-right {
+    .arc-slider-slide-nav-item {
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .pzarc-navigator {
       height: 100%;
-      //margin: 0 !important;
+      display: block;
+      top: 0;
+    }
+
+    .pzarc-sections {
+      display: block;
+      top: 0;
+    }
+
+  }
+
+  .navpos-right {
+    .pzarc-navigator {
+      right: 0;
     }
   }
+
+  .navpos-top,
+  .navpos-bottom {
+    .arc-slider-slide-nav-item {
+      display: inline-block;
+      margin: 0 3px;
+    }
+    .has-pager .thumbs.pzarc-navigator {
+      // Centre it
+      width: 80%;
+      left: 10%;
+    }
+    .arc-slider-container {
+      /* Specify slider's Size: */
+
+      padding: 0;
+      .arc-slider-slide {
+        /* Specify Slides's Size: */
+
+        // width: 320px;
+        height: 100%;
+        //margin: 0 !important;
+      }
+    }
     .left {
-     // left: 15px;
+      // left: 15px;
       text-align: left;
       right: initial;
- //     width: 10%;
+      //     width: 10%;
 
     }
     .right {
-     // right: 15px;
+      // right: 15px;
       text-align: right;
       left: initial;
- //     width: 10%;
+      //     width: 10%;
     }
 
-}
+  }
 
-.bullets {
-  .arc-slider-slide-nav-item {
-    /* Stylize pagination button: */
-    width: 15px;
-    height: 15px;
-    background: #999;
-    box-shadow: 0px 1px 2px #555 inset;
-    cursor: pointer;
-    &.small {
-      width: 12px !important;
-      height: 12px;
-      padding: 0!important;
-
-    }
-    &.medium {
-      width: 15px !important;
+  .bullets {
+    .arc-slider-slide-nav-item {
+      /* Stylize pagination button: */
+      width: 15px;
       height: 15px;
-      padding: 0!important;
+      background: #999;
+      box-shadow: 0px 1px 2px #555 inset;
+      cursor: pointer;
+      &.small {
+        width: 12px !important;
+        height: 12px;
+        padding: 0 !important;
 
-    }
-    &.large {
-      width: 18px !important;
-      height: 18px;
-      padding: 0!important;
+      }
+      &.medium {
+        width: 15px !important;
+        height: 15px;
+        padding: 0 !important;
 
-    }
-    &:hover {
-      background: #ccc;
-    }
-    &.active {
-      /* Specific active button style: */
-      background: #fff;
-    }
-  }
-  &.circle .arc-slider-slide-nav-item {
-    border-radius: 15px;
-  }
-  &.square .arc-slider-slide-nav-item {
-    border-radius: 1px;
-    border-bottom: 1px solid #999;
-  }
+      }
+      &.large {
+        width: 18px !important;
+        height: 18px;
+        padding: 0 !important;
 
-}
-
-.tabbed {
-  .arc-slider-slide-nav-item {
-    // TODO: Move styling to defaults
-    //    display: table-cell; // Woot! This fixes height matching and width distribution. Doh! But breaks margins.
-    min-height: 30px;
-    cursor: pointer;
-//    background-color: #ddd;
-    box-sizing: border-box;
-    &.active {
-//      background-color: #ccc;
-//      color: #000;
-    }
-    &:hover {
-//      background-color: #ccc;
-    }
-  }
-}
-
-// this doesn't work coz then heights aren't flexible
-//.layout-tabbed {
-//  .slick-slider {
-//    height:100%!important
-//  }
-//}
-
-.thumbs {
-  .arc-slider-slide-nav-item {
-    /* Stylize pagination button: */
-    //        display: table-cell; // Woot! This fixes height matching and width distribution
-    //        min-height: 30px;
-    //        cursor: pointer;
-    //        padding: 10px;
-    //        margin:0;
-    //        background: rgba(0, 0, 0, 0.05);
-    //        border: 1px solid rgba(255, 255, 255, 0.5);
-    //        border-top: none;
-    //        border-bottom: none;
-    //        text-decoration: none;
-    //        font-family: sans-serif;
-    //        box-sizing:border-box;
-
-    img {
-      vertical-align: middle;
-      display: inline;
-      width:auto;
-      height:auto;
-      max-width:100%;
-      margin: 2px;
+      }
       &:hover {
-        box-shadow: 0 0 0 1px #000,
-        0 0 0 2px #fff;
+        background: #ccc;
+      }
+      &.active {
+        /* Specific active button style: */
+        background: #fff;
       }
     }
-    &.active img {
-      box-shadow:
-      0 0 0 1px #fff,
-      0 0 0 2px #000;
+    &.circle .arc-slider-slide-nav-item {
+      border-radius: 15px;
+    }
+    &.square .arc-slider-slide-nav-item {
+      border-radius: 1px;
+      border-bottom: 1px solid #999;
+    }
+
+  }
+
+  .tabbed {
+    .arc-slider-slide-nav-item {
+      // TODO: Move styling to defaults
+      //    display: table-cell; // Woot! This fixes height matching and width distribution. Doh! But breaks margins.
+      min-height: 30px;
+      cursor: pointer;
+      //    background-color: #ddd;
+      box-sizing: border-box;
+      &.active {
+        //      background-color: #ccc;
+        //      color: #000;
+      }
+      &:hover {
+        //      background-color: #ccc;
+      }
+    }
+  }
+
+  // this doesn't work coz then heights aren't flexible
+  //.layout-tabbed {
+  //  .slick-slider {
+  //    height:100%!important
+  //  }
+  //}
+
+  .thumbs {
+    .arc-slider-slide-nav-item {
+      /* Stylize pagination button: */
+      //        display: table-cell; // Woot! This fixes height matching and width distribution
+      //        min-height: 30px;
+      //        cursor: pointer;
+      //        padding: 10px;
+      //        margin:0;
+      //        background: rgba(0, 0, 0, 0.05);
+      //        border: 1px solid rgba(255, 255, 255, 0.5);
+      //        border-top: none;
+      //        border-bottom: none;
+      //        text-decoration: none;
+      //        font-family: sans-serif;
+      //        box-sizing:border-box;
+
+      img {
+        vertical-align: middle;
+        display: inline;
+        width: auto;
+        height: auto;
+        max-width: 100%;
+        margin: 2px;
+        &:hover {
+          box-shadow: 0 0 0 1px #000,
+          0 0 0 2px #fff;
+        }
+      }
+      &.active img {
+        box-shadow: 0 0 0 1px #fff,
+        0 0 0 2px #000;
+
+      }
+    }
+    span.dashicons {
+      font-size: 3em;
+      display: inline-table;
 
     }
   }
-  span.dashicons {
-    font-size: 3em;
-    display: inline-table;
 
-  }
-}
-
-.numbers {
-  .arc-slider-slide-nav-item {
-    font-size: 28px;
-    font-family: sans-serif;
-    font-weight: bold;
-    padding: 5px;
-    color: #999;
-    line-height: 1;
-    &.small {
-      font-size: 22px;
-    }
-    &.medium {
+  .numbers {
+    .arc-slider-slide-nav-item {
       font-size: 28px;
+      font-family: sans-serif;
+      font-weight: bold;
+      padding: 5px;
+      color: #999;
+      line-height: 1;
+      &.small {
+        font-size: 22px;
+      }
+      &.medium {
+        font-size: 28px;
 
-    }
-    &.large {
-      font-size: 34px;
+      }
+      &.large {
+        font-size: 34px;
 
-    }
-    &:hover {
-      color: #ccc;
-    }
-    &.active {
-      /* Specific active button style: */
-      color: #fff;
-    }
-  }
-
-}
-
-.arc-slider-slide-nav-item {
-  cursor: pointer;
-
-}
-
-.arc-slider-slide-nav-item-visible {
-  /* Specific style for nav buttons for visible panels: */
-  // background:#eee;
-}
-
-// This tells the pzarchitect class it's a navigator style block
-.nav-navigator {
-  overflow: hidden;
-  button.pager {
-    position: absolute;
-    top: 50%;
-    margin-top: -20px;
-    border-radius: 3px;
-    padding: 5px;
-    z-index: 2;
-    display: none;
-    font-family: icomoon;
-    font-size: 32px;
-    color: #fff;
-    text-decoration: none;
-    text-align: center;
-    background: rgba(0, 0, 0, 0.3);
-
-    // Uses icons defined in im-style.css.
-    &:focus {
-      outline: none;
-    }
-    &.arrow-left {
-      left: 1%;
-    }
-    &.arrow-right {
-      right: 1%;
-    }
-  }
-
-  &:hover {
-    .arrow-right,
-    .arrow-left {
-      display: block;
-      &.hide {
-        display: none;
+      }
+      &:hover {
+        color: #ccc;
+      }
+      &.active {
+        /* Specific active button style: */
+        color: #fff;
       }
     }
+
   }
 
-}
+  .arc-slider-slide-nav-item {
+    cursor: pointer;
 
-.arc-slider-nav {
-  //max-height: 80px; // removed for now, but prob needed //TODO Verify this wasn't for IE!!!
-  width: 100%;
-  position: relative;
-  &:hover {
-    .skip-right,
-    .skip-left {
-      display: block;
-    }
   }
-  // TODO: Replace this with multiple icon font arrows.
-  button.pager {
-    position: absolute;
-    top: 50%;
-    margin-top: -15px;
-    padding: 0;
-    z-index: 2;
-    text-decoration: none;
-    display: none;
-    background: none;
-    &:hover {
-      display: block;
-    }
-    span {
-      vertical-align: middle;
-      margin: 0;
-      padding: 2px;
-      position: relative;
-      width: 25px;
-      height: 25px;
-      border-radius: 30px;
-      font-size: 19px;
-      display: block;
+
+  .arc-slider-slide-nav-item-visible {
+    /* Specific style for nav buttons for visible panels: */
+    // background:#eee;
+  }
+
+  // This tells the pzarchitect class it's a navigator style block
+  .nav-navigator {
+    overflow: hidden;
+    button.pager {
+      position: absolute;
+      top: 50%;
+      margin-top: -20px;
+      border-radius: 3px;
+      padding: 5px;
+      z-index: 2;
+      display: none;
+      font-family: icomoon;
+      font-size: 32px;
       color: #fff;
+      text-decoration: none;
+      text-align: center;
       background: rgba(0, 0, 0, 0.3);
-      &.circle{
-        border-radius:30px;
+
+      // Uses icons defined in im-style.css.
+      &:focus {
+        outline: none;
       }
-      &.square {
-        border-radius:2px;
+      &.arrow-left {
+        left: 1%;
+      }
+      &.arrow-right {
+        right: 1%;
       }
     }
-    &.skip-left {
-      left: 5px;
+
+    &:hover {
+      .arrow-right,
+      .arrow-left {
+        display: block;
+        &.hide {
+          display: none;
+        }
+      }
+    }
+
+  }
+
+  .arc-slider-nav {
+    //max-height: 80px; // removed for now, but prob needed //TODO Verify this wasn't for IE!!!
+    width: 100%;
+    position: relative;
+    &:hover {
+      .skip-right,
+      .skip-left {
+        display: block;
+      }
+    }
+    // TODO: Replace this with multiple icon font arrows.
+    button.pager {
+      position: absolute;
+      top: 50%;
+      margin-top: -15px;
+      padding: 0;
+      z-index: 2;
+      text-decoration: none;
+      display: none;
+      background: none;
+      &:hover {
+        display: block;
+      }
       span {
-//        left: -4px;
+        vertical-align: middle;
+        margin: 0;
+        padding: 2px;
+        position: relative;
+        width: 25px;
+        height: 25px;
+        border-radius: 30px;
+        font-size: 19px;
+        display: block;
+        color: #fff;
+        background: rgba(0, 0, 0, 0.3);
+        &.circle {
+          border-radius: 30px;
+        }
+        &.square {
+          border-radius: 2px;
+        }
+      }
+      &.skip-left {
+        left: 5px;
+        span {
+          //        left: -4px;
+        }
+      }
+      &.skip-right {
+        right: 5px;
+        span {
+          //        right: -4px;
+        }
       }
     }
-    &.skip-right {
-      right: 5px;
-      span {
-//        right: -4px;
+  }
+
+  .pzarc-navigator.inside {
+    width: 100%;
+    .arc-slider-wrapper {
+      // TODO: Find the right way to do this
+      // width:auto!important;
+      width: 100% !important;
+    }
+
+  }
+
+  .arc-slider-nav .arc-slider-wrapper {
+    margin: 0 auto;
+  }
+
+  .arc-slider-nav span {
+  }
+
+  .arc-slider-nav .arc-slider-wrapper > span:hover {
+    background: rgba(255, 255, 255, 0.3);
+  }
+
+  .arc-slider-nav .arc-slider-slide {
+    max-width: 100px;
+  }
+
+  .arc-slider-nav.thumbs .arc-slider-slide {
+    // max-width: initial;
+    display: inline-block;
+  }
+
+  .arc-slider-nav .arc-slider-slide:first-child span {
+  }
+
+  .arc-slider-nav .arc-slider-slide:last-child span {
+  }
+
+  .slick-prev {
+    left: -30px;
+  }
+  .slick-next {
+    right: -30px;
+  }
+  .slick-prev, .slick-next {
+    width: 28px;
+    height: 28px;
+    &:before {
+      font-size: 28px;
+      padding: 2px;
+      box-sizing: border-box;
+      &.dark {
+        color: #111;
+      }
+      &.light {
+        color: #fff;
       }
     }
   }
-}
 
-.pzarc-navigator.inside {
-  width: 100%;
-  .arc-slider-wrapper {
-    // TODO: Find the right way to do this
-    // width:auto!important;
-    width: 100% !important;
+  ul.slick-dots {
+    left: 0;
   }
 
-}
-
-.arc-slider-nav .arc-slider-wrapper {
-  margin: 0 auto;
-}
-
-.arc-slider-nav span {
-}
-
-.arc-slider-nav .arc-slider-wrapper > span:hover {
-  background: rgba(255, 255, 255, 0.3);
-}
-
-.arc-slider-nav .arc-slider-slide {
-  max-width: 100px;
-}
-
-
-.arc-slider-nav.thumbs .arc-slider-slide {
- // max-width: initial;
-  display: inline-block;
-}
-
-.arc-slider-nav .arc-slider-slide:first-child span {
-}
-
-.arc-slider-nav .arc-slider-slide:last-child span {
-}
-
-.slick-prev {
-  left:-30px;
-}
-.slick-next {
-  right:-30px;
-}
-.slick-prev, .slick-next {
-  width:28px;
-  height:28px;
-  &:before {
-    font-size:28px;
-    padding:2px;
-    box-sizing: border-box;
-    &.dark {
-      color:#111;
-    }
-    &.light {
-      color:#fff;
-    }
+  .slick-slider {
+    margin-bottom: 0;
   }
-}
 
-ul.slick-dots {
-  left: 0;
-}
+  /* This is coz transforms were preventing display of content section */
+  .slick-slide img {
+    -webkit-transform: initial;
+  }
 
-.slick-slider {
-  margin-bottom: 0;
-}
+  // TODO: Use this once multiple slides allowed
+  x.pzarc-panel {
+    opacity: 0.5;
 
-/* This is coz transforms were preventing display of content section */
-.slick-slide img {
-  -webkit-transform: initial;
-}
-
-// TODO: Use this once multiple slides allowed
-x.pzarc-panel {
-  opacity: 0.5;
-
-  &.slick-active.slick-center {
-    opacity: 1;
+    &.slick-active.slick-center {
+      opacity: 1;
+      article {
+        visibility: visible;
+      }
+    }
     article {
-      visibility: visible;
+      visibility: hidden;
     }
-  }
-  article {
-    visibility: hidden;
   }
 }

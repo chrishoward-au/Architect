@@ -1,6 +1,273 @@
 @charset "UTF-8";
 /* Frontend layout */
 /* Any styling defaults should be included in the styling defaults values in options */
+.pzarchitect .message-warning {
+  background: #ffa;
+  color: #aa0;
+  border: solid 1px #aa0;
+  padding: 10px; }
+.pzarchitect .message-error {
+  font-size: 16px;
+  font-family: sans-serif;
+  color: tomato;
+  background: #faf2f5;
+  border: 1px solid tomato;
+  display: inline-block;
+  margin: 10px 0;
+  padding: 20px; }
+
+.pzarchitect.pzarc-blueprint {
+  display: block;
+  position: relative; }
+.pzarchitect .pzarc-sections {
+  box-sizing: border-box; }
+.pzarchitect .pzarc-section {
+  box-sizing: border-box;
+  position: relative;
+  /* Added for gridded layout. May break others! Equal height panels*/
+  display: block;
+  counter-reset: arc-title-counter; }
+  .pzarchitect .pzarc-section.tiles {
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    justify-content: flex-start;
+    -webkit-flex-flow: row wrap;
+    -moz-flex-flow: row wrap;
+    /* Unsupported in FF ATOW!! Argh! */
+    flex-flow: row wrap;
+    flex-direction: row;
+    flex-wrap: wrap; }
+.pzarchitect h2.pzarc-page-title {
+  font-size: 1.5em;
+  line-height: 1.5em; }
+.pzarchitect .pzarc-section-title h3 {
+  font-size: 1.2em;
+  line-height: 1.2em; }
+.pzarchitect .pzarc-pager {
+  display: table;
+  padding: 10px 0;
+  width: 100%; }
+.pzarchitect .pzarc-pager-prev,
+.pzarchitect .pzarc-pager-next {
+  /*font-size:13px;*/
+  /*font-weight:bold;*/
+  /*background: #eee;*/
+  /*padding:10px 5px;*/ }
+.pzarchitect .pzarc-pager-prev {
+  float: left;
+  /*border-top-left-radius: 20px;*/
+  /*border-bottom-left-radius: 20px;*/
+  /*padding-right:10px;*/ }
+.pzarchitect .pzarc-pager-next {
+  float: right;
+  /*border-top-right-radius: 20px;*/
+  /*border-bottom-right-radius: 20px;*/
+  /*padding-left:10px;*/ }
+.pzarchitect .pzarc-blueprint .entry-excerpt.pznothumb,
+.pzarchitect .pzarc-blueprint .entry-content.pznothumb {
+  width: 100%; }
+.pzarchitect .pzarc-align.left {
+  float: left;
+  padding-right: 2%; }
+.pzarchitect .pzarc-align.right {
+  float: right;
+  padding-left: 2%; }
+.pzarchitect .mfp-content .mfp-title {
+  font-weight: bold; }
+  .pzarchitect .mfp-content .mfp-title .caption {
+    font-weight: normal;
+    font-size: smaller; }
+.pzarchitect .hide-content + article,
+.pzarchitect .hide-content + .page,
+.pzarchitect .hide-content + .hentry {
+  display: none; }
+
+.pzarchitect .pzarc-panel {
+  /* Remember to remove space between divs to stop inline-block space issue */
+  display: inline-block;
+  box-sizing: border-box;
+  vertical-align: top;
+  position: relative;
+  overflow: hidden; }
+  .pzarchitect .pzarc-panel.pzarc-wow {
+    visibility: hidden; }
+  .pzarchitect .pzarc-panel header.entry-header,
+  .pzarchitect .pzarc-panel footer.entry-footer {
+    float: left;
+    width: 100%; }
+  .pzarchitect .pzarc-panel .entry-image {
+    max-width: 100%;
+    display: block; }
+  .pzarchitect .pzarc-panel .entry-excerpt,
+  .pzarchitect .pzarc-panel .entry-content {
+      /*    -ms-word-break: break-all;
+          word-break: break-all;
+
+          /* Non standard for webkit */
+      /* word-break: break-word;
+
+       -webkit-hyphens: auto;
+       -moz-hyphens: auto;
+       hyphens: auto;
+       */
+    word-break: break-word;
+    word-wrap: break-word; }
+    .pzarchitect .pzarc-panel .entry-excerpt.nothumb.maxwidth,
+    .pzarchitect .pzarc-panel .entry-content.nothumb.maxwidth {
+      width: 100%; }
+  .pzarchitect .pzarc-panel .entry-excerpt {
+    float: left; }
+  .pzarchitect .pzarc-panel .entry-thumbnail {
+    float: left; }
+    .pzarchitect .pzarc-panel .entry-thumbnail img {
+      max-width: 100%;
+      height: auto; }
+    .pzarchitect .pzarc-panel .entry-thumbnail.object-fit_fill {
+      object-fit: fill; }
+    .pzarchitect .pzarc-panel .entry-thumbnail.object-fit_contain {
+      object-fit: contain; }
+    .pzarchitect .pzarc-panel .entry-thumbnail.object-fit_cover {
+      object-fit: cover; }
+    .pzarchitect .pzarc-panel .entry-thumbnail.object-fit_none {
+      object-fit: none; }
+    .pzarchitect .pzarc-panel .entry-thumbnail.object-fit_scale-down {
+      object-fit: scale-down; }
+    .pzarchitect .pzarc-panel .entry-thumbnail.centred {
+      float: none;
+      margin: 0 auto;
+      text-align: center; }
+    .pzarchitect .pzarc-panel .entry-thumbnail .caption {
+      display: block; }
+    .pzarchitect .pzarc-panel .entry-thumbnail.pzarc-components-right {
+      float: left; }
+    .pzarchitect .pzarc-panel .entry-thumbnail.pzarc-components-left {
+      float: right; }
+  .pzarchitect .pzarc-panel .pzarc-title-thumb {
+    display: inline-flex;
+    float: left;
+    margin-right: 3px; }
+  .pzarchitect .pzarc-panel .pzarc-title-wrap {
+    vertical-align: middle; }
+  .pzarchitect .pzarc-panel .entry-title,
+  .pzarchitect .pzarc-panel .entry-excerpt,
+  .pzarchitect .pzarc-panel .entry-thumbnail,
+  .pzarchitect .pzarc-panel .entry-content,
+  .pzarchitect .pzarc-panel .entry-meta {
+    display: block;
+    float: left;
+    vertical-align: top;
+    box-sizing: border-box; }
+  .pzarchitect .pzarc-panel .entry-thumbnail img {
+    vertical-align: top; }
+  .pzarchitect .pzarc-panel .entry-customfieldgroup {
+    display: block;
+    float: left; }
+  .pzarchitect .pzarc-panel .vertical-content {
+    top: 0;
+    bottom: 0;
+    height: 100%; }
+  .pzarchitect .pzarc-panel .pzarc-components {
+    box-sizing: border-box;
+    overflow: hidden;
+    position: relative; }
+    .pzarchitect .pzarc-panel .pzarc-components.pzarc-align-left {
+      float: left;
+      clear: none; }
+    .pzarchitect .pzarc-panel .pzarc-components.pzarc-align-right {
+      float: right;
+      clear: none; }
+  .pzarchitect .pzarc-panel figure.pzarc-bg-image {
+    margin: 0;
+    padding: 0;
+    max-width: 100%;
+    height: auto;
+    z-index: 0;
+    overflow: hidden;
+    position: relative; }
+    .pzarchitect .pzarc-panel figure.pzarc-bg-image img {
+      display: block;
+      height: auto; }
+    .pzarchitect .pzarc-panel figure.pzarc-bg-image.fill.trim {
+      max-width: none;
+      display: inline-block;
+      right: -50%;
+      overflow: visible;
+      vertical-align: text-top; }
+      .pzarchitect .pzarc-panel figure.pzarc-bg-image.fill.trim img {
+        max-width: none;
+        position: relative;
+        left: -50%; }
+    .pzarchitect .pzarc-panel figure.pzarc-bg-image.fill.scale img {
+      max-width: 100%; }
+    .pzarchitect .pzarc-panel figure.pzarc-bg-image.align {
+      top: 0; }
+      .pzarchitect .pzarc-panel figure.pzarc-bg-image.align.scale {
+        max-width: none; }
+      .pzarchitect .pzarc-panel figure.pzarc-bg-image.align.scale img {
+        max-width: 100%; }
+  .pzarchitect .pzarc-panel.using-bgimages .pzarc-components {
+    position: absolute;
+    z-index: 1; }
+  .pzarchitect .pzarc-panel.using-bgimages > figure {
+    position: relative;
+    z-index: 0; }
+  .pzarchitect .pzarc-panel.using-aligned-bgimages .pzarc-components {
+    position: relative;
+    z-index: 1; }
+  .pzarchitect .pzarc-panel.using-aligned-bgimages > figure {
+    position: absolute;
+    z-index: 0; }
+    .pzarchitect .pzarc-panel.using-aligned-bgimages > figure img {
+      max-width: none; }
+  .pzarchitect .pzarc-panel .pzarc-presuff-image {
+    vertical-align: middle; }
+  .pzarchitect .pzarc-panel .lightbox img {
+    cursor: zoom-in;
+    cursor: -webkit-zoom-in; }
+  .pzarchitect .pzarc-panel td.td-entry-title,
+  .pzarchitect .pzarc-panel td.entry-meta,
+  .pzarchitect .pzarc-panel td.entry-content,
+  .pzarchitect .pzarc-panel td.entry-excerpt,
+  .pzarchitect .pzarc-panel td.td-entry-thumbnail {
+    display: table-cell;
+    float: none;
+    line-height: initial;
+    text-align: initial;
+    vertical-align: top;
+    border-top: initial; }
+  .pzarchitect .pzarc-panel td.td-entry-title h1.entry-title,
+  .pzarchitect .pzarc-panel td.td-entry-thumbnail figure.entry-thumbnail {
+    width: 100%; }
+  .pzarchitect .pzarc-panel td {
+    padding: 1%; }
+.pzarchitect tr.pzarc-panel {
+  display: table-row; }
+  .pzarchitect tr.pzarc-panel h1.entry-title {
+    width: 100% !important; }
+.pzarchitect table {
+  border-collapse: collapse; }
+  .pzarchitect table thead {
+    background: #eee; }
+.pzarchitect .pzarc-accordion.title a {
+  color: inherit;
+  text-decoration: none;
+  display: block; }
+  .pzarchitect .pzarc-accordion.title a:after {
+    font-family: sans-serif;
+    font-size: 12px;
+    content: "◄";
+    float: right;
+    margin-right: 10px; }
+.pzarchitect .pzarc-accordion.title:hover a {
+  color: inherit;
+  text-decoration: none; }
+.pzarchitect .pzarc-accordion.title.open a:after {
+  content: "▼";
+  font-size: 8px; }
+
 .pzarchitect {
   /* ===============================================================
     Your custom styles, here you need to specify container's and slide's
@@ -10,270 +277,6 @@
   Pagination Styles
   ================================================================*/
   /* This is coz transforms were preventing display of content section */ }
-  .pzarchitect .message-warning {
-    background: #ffa;
-    color: #aa0;
-    border: solid 1px #aa0;
-    padding: 10px; }
-  .pzarchitect .message-error {
-    font-size: 16px;
-    font-family: sans-serif;
-    color: tomato;
-    background: #faf2f5;
-    border: 1px solid tomato;
-    display: inline-block;
-    margin: 10px 0;
-    padding: 20px; }
-  .pzarchitect .pzarc-blueprint {
-    position: relative;
-    display: block; }
-  .pzarchitect .pzarc-sections {
-    box-sizing: border-box; }
-  .pzarchitect .pzarc-section {
-    box-sizing: border-box;
-    position: relative;
-    /* Added for gridded layout. May break others! Equal height panels*/
-    display: block;
-    counter-reset: arc-title-counter; }
-    .pzarchitect .pzarc-section.tiles {
-      display: -webkit-box;
-      display: -moz-box;
-      display: -ms-flexbox;
-      display: -webkit-flex;
-      display: flex;
-      justify-content: flex-start;
-      -webkit-flex-flow: row wrap;
-      -moz-flex-flow: row wrap;
-      /* Unsupported in FF ATOW!! Argh! */
-      flex-flow: row wrap;
-      flex-direction: row;
-      flex-wrap: wrap; }
-  .pzarchitect h2.pzarc-page-title {
-    font-size: 1.5em;
-    line-height: 1.5em; }
-  .pzarchitect .pzarc-section-title h3 {
-    font-size: 1.2em;
-    line-height: 1.2em; }
-  .pzarchitect .pzarc-pager {
-    display: table;
-    padding: 10px 0;
-    width: 100%; }
-  .pzarchitect .pzarc-pager-prev,
-  .pzarchitect .pzarc-pager-next {
-    /*font-size:13px;*/
-    /*font-weight:bold;*/
-    /*background: #eee;*/
-    /*padding:10px 5px;*/ }
-  .pzarchitect .pzarc-pager-prev {
-    float: left;
-    /*border-top-left-radius: 20px;*/
-    /*border-bottom-left-radius: 20px;*/
-    /*padding-right:10px;*/ }
-  .pzarchitect .pzarc-pager-next {
-    float: right;
-    /*border-top-right-radius: 20px;*/
-    /*border-bottom-right-radius: 20px;*/
-    /*padding-left:10px;*/ }
-  .pzarchitect .pzarc-blueprint .entry-excerpt.pznothumb,
-  .pzarchitect .pzarc-blueprint .entry-content.pznothumb {
-    width: 100%; }
-  .pzarchitect .pzarc-align.left {
-    float: left;
-    padding-right: 2%; }
-  .pzarchitect .pzarc-align.right {
-    float: right;
-    padding-left: 2%; }
-  .pzarchitect .mfp-content .mfp-title {
-    font-weight: bold; }
-    .pzarchitect .mfp-content .mfp-title .caption {
-      font-weight: normal;
-      font-size: smaller; }
-  .pzarchitect .hide-content + article,
-  .pzarchitect .hide-content + .page,
-  .pzarchitect .hide-content + .hentry {
-    display: none; }
-  .pzarchitect .pzarc-panel {
-    /* Remember to remove space between divs to stop inline-block space issue */
-    display: inline-block;
-    box-sizing: border-box;
-    vertical-align: top;
-    position: relative;
-    overflow: hidden; }
-    .pzarchitect .pzarc-panel.pzarc-wow {
-      visibility: hidden; }
-    .pzarchitect .pzarc-panel header.entry-header,
-    .pzarchitect .pzarc-panel footer.entry-footer {
-      float: left;
-      width: 100%; }
-    .pzarchitect .pzarc-panel .entry-image {
-      max-width: 100%;
-      display: block; }
-    .pzarchitect .pzarc-panel .entry-excerpt,
-    .pzarchitect .pzarc-panel .entry-content {
-      /*    -ms-word-break: break-all;
-          word-break: break-all;
-      
-          /* Non standard for webkit */
-   /* word-break: break-word;
-
-    -webkit-hyphens: auto;
-    -moz-hyphens: auto;
-    hyphens: auto;
-    */
-      word-break: break-word;
-      word-wrap: break-word; }
-      .pzarchitect .pzarc-panel .entry-excerpt.nothumb.maxwidth,
-      .pzarchitect .pzarc-panel .entry-content.nothumb.maxwidth {
-        width: 100%; }
-    .pzarchitect .pzarc-panel .entry-excerpt {
-      float: left; }
-    .pzarchitect .pzarc-panel .entry-thumbnail {
-      float: left; }
-      .pzarchitect .pzarc-panel .entry-thumbnail img {
-        max-width: 100%;
-        height: auto; }
-      .pzarchitect .pzarc-panel .entry-thumbnail.object-fit_fill {
-        object-fit: fill; }
-      .pzarchitect .pzarc-panel .entry-thumbnail.object-fit_contain {
-        object-fit: contain; }
-      .pzarchitect .pzarc-panel .entry-thumbnail.object-fit_cover {
-        object-fit: cover; }
-      .pzarchitect .pzarc-panel .entry-thumbnail.object-fit_none {
-        object-fit: none; }
-      .pzarchitect .pzarc-panel .entry-thumbnail.object-fit_scale-down {
-        object-fit: scale-down; }
-      .pzarchitect .pzarc-panel .entry-thumbnail.centred {
-        float: none;
-        margin: 0 auto;
-        text-align: center; }
-      .pzarchitect .pzarc-panel .entry-thumbnail .caption {
-        display: block; }
-      .pzarchitect .pzarc-panel .entry-thumbnail.pzarc-components-right {
-        float: left; }
-      .pzarchitect .pzarc-panel .entry-thumbnail.pzarc-components-left {
-        float: right; }
-    .pzarchitect .pzarc-panel .pzarc-title-thumb {
-      display: inline-flex;
-      float: left;
-      margin-right: 3px; }
-    .pzarchitect .pzarc-panel .pzarc-title-wrap {
-      vertical-align: middle; }
-    .pzarchitect .pzarc-panel .entry-title,
-    .pzarchitect .pzarc-panel .entry-excerpt,
-    .pzarchitect .pzarc-panel .entry-thumbnail,
-    .pzarchitect .pzarc-panel .entry-content,
-    .pzarchitect .pzarc-panel .entry-meta {
-      display: block;
-      float: left;
-      vertical-align: top;
-      box-sizing: border-box; }
-    .pzarchitect .pzarc-panel .entry-thumbnail img {
-      vertical-align: top; }
-    .pzarchitect .pzarc-panel .entry-customfieldgroup {
-      display: block;
-      float: left; }
-    .pzarchitect .pzarc-panel .vertical-content {
-      top: 0;
-      bottom: 0;
-      height: 100%; }
-    .pzarchitect .pzarc-panel .pzarc-components {
-      box-sizing: border-box;
-      overflow: hidden;
-      position: relative; }
-      .pzarchitect .pzarc-panel .pzarc-components.pzarc-align-left {
-        float: left;
-        clear: none; }
-      .pzarchitect .pzarc-panel .pzarc-components.pzarc-align-right {
-        float: right;
-        clear: none; }
-    .pzarchitect .pzarc-panel figure.pzarc-bg-image {
-      margin: 0;
-      padding: 0;
-      max-width: 100%;
-      height: auto;
-      z-index: 0;
-      overflow: hidden;
-      position: relative; }
-      .pzarchitect .pzarc-panel figure.pzarc-bg-image img {
-        display: block;
-        height: auto; }
-      .pzarchitect .pzarc-panel figure.pzarc-bg-image.fill.trim {
-        max-width: none;
-        display: inline-block;
-        right: -50%;
-        overflow: visible;
-        vertical-align: text-top; }
-        .pzarchitect .pzarc-panel figure.pzarc-bg-image.fill.trim img {
-          max-width: none;
-          position: relative;
-          left: -50%; }
-      .pzarchitect .pzarc-panel figure.pzarc-bg-image.fill.scale img {
-        max-width: 100%; }
-      .pzarchitect .pzarc-panel figure.pzarc-bg-image.align {
-        top: 0; }
-        .pzarchitect .pzarc-panel figure.pzarc-bg-image.align.scale {
-          max-width: none; }
-        .pzarchitect .pzarc-panel figure.pzarc-bg-image.align.scale img {
-          max-width: 100%; }
-    .pzarchitect .pzarc-panel.using-bgimages .pzarc-components {
-      position: absolute;
-      z-index: 1; }
-    .pzarchitect .pzarc-panel.using-bgimages > figure {
-      position: relative;
-      z-index: 0; }
-    .pzarchitect .pzarc-panel.using-aligned-bgimages .pzarc-components {
-      position: relative;
-      z-index: 1; }
-    .pzarchitect .pzarc-panel.using-aligned-bgimages > figure {
-      position: absolute;
-      z-index: 0; }
-      .pzarchitect .pzarc-panel.using-aligned-bgimages > figure img {
-        max-width: none; }
-    .pzarchitect .pzarc-panel .pzarc-presuff-image {
-      vertical-align: middle; }
-    .pzarchitect .pzarc-panel .lightbox img {
-      cursor: zoom-in;
-      cursor: -webkit-zoom-in; }
-    .pzarchitect .pzarc-panel td.td-entry-title,
-    .pzarchitect .pzarc-panel td.entry-meta,
-    .pzarchitect .pzarc-panel td.entry-content,
-    .pzarchitect .pzarc-panel td.entry-excerpt,
-    .pzarchitect .pzarc-panel td.td-entry-thumbnail {
-      display: table-cell;
-      float: none;
-      line-height: initial;
-      text-align: initial;
-      vertical-align: top;
-      border-top: initial; }
-    .pzarchitect .pzarc-panel td.td-entry-title h1.entry-title,
-    .pzarchitect .pzarc-panel td.td-entry-thumbnail figure.entry-thumbnail {
-      width: 100%; }
-    .pzarchitect .pzarc-panel td {
-      padding: 1%; }
-  .pzarchitect tr.pzarc-panel {
-    display: table-row; }
-    .pzarchitect tr.pzarc-panel h1.entry-title {
-      width: 100% !important; }
-  .pzarchitect table {
-    border-collapse: collapse; }
-    .pzarchitect table thead {
-      background: #eee; }
-  .pzarchitect .pzarc-accordion.title a {
-    color: inherit;
-    text-decoration: none;
-    display: block; }
-    .pzarchitect .pzarc-accordion.title a:after {
-      font-family: sans-serif;
-      font-size: 12px;
-      content: "◄";
-      float: right;
-      margin-right: 10px; }
-  .pzarchitect .pzarc-accordion.title:hover a {
-    color: inherit;
-    text-decoration: none; }
-  .pzarchitect .pzarc-accordion.title.open a:after {
-    content: "▼";
-    font-size: 8px; }
   .pzarchitect .msie .pzarc-navigator {
     height: 0; }
   .pzarchitect .pzarc-navigator {

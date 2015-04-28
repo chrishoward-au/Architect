@@ -59,7 +59,11 @@
     ?>
     <div class="wrap">
     <h2><?php _e( 'Architect Licence Options', 'pzarchitect' ); ?></h2>
-
+<?php
+    if ( $status !== false && $status == 'valid' ) {
+      echo 'Until you activate a valid licence, Architect will be the Lite version only. This is limited to just the Default, Dummy and Post content types and Animations are not available.';
+    }
+?>
     <form method="post" action="options.php">
 
       <?php settings_fields( 'edd_architect_license' ); ?>

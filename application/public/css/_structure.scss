@@ -1,112 +1,113 @@
 // MAKE SURE NO FORMATTING OF GENERIC ELEMENTS
-.pzarc-blueprint {
-  position: relative;
-  display:block; // Show the block again - since it's been hidden while it's rendering!
-}
-.pzarc-sections {
-  box-sizing: border-box;
-}
-.pzarc-section {
-  box-sizing:border-box;
-  position: relative;
-  /* Added for gridded layout. May break others! Equal height panels*/
-  display: block;
-  counter-reset: arc-title-counter;
-//  height:100%; // TODO: Breaks Genesis. Test without
-  &.tiles {
-    // This breaks in IE 10. And display:block seems to work anyhows except flex gives equal heights!
-    display: -webkit-box;
-    display: -moz-box;
-    display: -ms-flexbox;
-    display: -webkit-flex;
-    display: flex;
-    justify-content: flex-start;
-    -webkit-flex-flow: row wrap;
-    -moz-flex-flow: row wrap; /* Unsupported in FF ATOW!! Argh! */
-    flex-flow: row wrap;
-    flex-direction: row;
-    flex-wrap: wrap;
-//    display:block;
+.pzarchitect {
+  &.pzarc-blueprint {
+    display: block; // Show the block again - since it's been hidden while it's rendering!
+    position: relative;
   }
-  &.js-isotope {
-
+  .pzarc-sections {
+    box-sizing: border-box;
   }
-}
+  .pzarc-section {
+    box-sizing: border-box;
+    position: relative;
+    /* Added for gridded layout. May break others! Equal height panels*/
+    display: block;
+    counter-reset: arc-title-counter;
+    //  height:100%; // TODO: Breaks Genesis. Test without
+    &.tiles {
+      // This breaks in IE 10. And display:block seems to work anyhows except flex gives equal heights!
+      display: -webkit-box;
+      display: -moz-box;
+      display: -ms-flexbox;
+      display: -webkit-flex;
+      display: flex;
+      justify-content: flex-start;
+      -webkit-flex-flow: row wrap;
+      -moz-flex-flow: row wrap; /* Unsupported in FF ATOW!! Argh! */
+      flex-flow: row wrap;
+      flex-direction: row;
+      flex-wrap: wrap;
+      //    display:block;
+    }
+    &.js-isotope {
 
-//TODO: These two need to go into stylings defaults
-h2.pzarc-page-title {
-  font-size:1.5em;
-  line-height: 1.5em;
-}
-.pzarc-section-title h3{
-  font-size:1.2em;
-  line-height: 1.2em;
-}
-
-.pzarc-pager {
-  display: table;
-  padding: 10px 0;
-  width: 100%;
-}
-
-.pzarc-pager-prev,
-.pzarc-pager-next {
-  /*font-size:13px;*/
-  /*font-weight:bold;*/
-  /*background: #eee;*/
-  /*padding:10px 5px;*/
-}
-
-.pzarc-pager-prev {
-  float: left;
-  /*border-top-left-radius: 20px;*/
-  /*border-bottom-left-radius: 20px;*/
-  /*padding-right:10px;*/
-}
-
-.pzarc-pager-next {
-  float: right;
-  /*border-top-right-radius: 20px;*/
-  /*border-bottom-right-radius: 20px;*/
-  /*padding-left:10px;*/
-}
-
-.pzarc-blueprint .entry-excerpt,
-.pzarc-blueprint .entry-content {
-  &.pznothumb {
-    width: 100%;
-  }
-}
-
-.pzarc-align {
-  &.left {
-    float: left;
-    padding-right: 2%;
-  }
-
-  &.right {
-    float: right;
-    padding-left: 2%;
-  }
-}
-
-// Magnific
-.mfp-content {
-  .mfp-title {
-    font-weight: bold;
-    .caption {
-      font-weight: normal;
-      font-size: smaller;
     }
   }
-}
 
-// Hides when content not to show in page builder
-// If the them doesn't have one of these, it won't work.
-.hide-content+article,
-.hide-content+.page,
-.hide-content+.hentry
-{
-  display:none;
+  //TODO: These two need to go into stylings defaults
+  h2.pzarc-page-title {
+    font-size: 1.5em;
+    line-height: 1.5em;
+  }
+  .pzarc-section-title h3 {
+    font-size: 1.2em;
+    line-height: 1.2em;
+  }
+
+  .pzarc-pager {
+    display: table;
+    padding: 10px 0;
+    width: 100%;
+  }
+
+  .pzarc-pager-prev,
+  .pzarc-pager-next {
+    /*font-size:13px;*/
+    /*font-weight:bold;*/
+    /*background: #eee;*/
+    /*padding:10px 5px;*/
+  }
+
+  .pzarc-pager-prev {
+    float: left;
+    /*border-top-left-radius: 20px;*/
+    /*border-bottom-left-radius: 20px;*/
+    /*padding-right:10px;*/
+  }
+
+  .pzarc-pager-next {
+    float: right;
+    /*border-top-right-radius: 20px;*/
+    /*border-bottom-right-radius: 20px;*/
+    /*padding-left:10px;*/
+  }
+
+  .pzarc-blueprint .entry-excerpt,
+  .pzarc-blueprint .entry-content {
+    &.pznothumb {
+      width: 100%;
+    }
+  }
+
+  .pzarc-align {
+    &.left {
+      float: left;
+      padding-right: 2%;
+    }
+
+    &.right {
+      float: right;
+      padding-left: 2%;
+    }
+  }
+
+  // Magnific
+  .mfp-content {
+    .mfp-title {
+      font-weight: bold;
+      .caption {
+        font-weight: normal;
+        font-size: smaller;
+      }
+    }
+  }
+
+  // Hides when content not to show in page builder
+  // If the them doesn't have one of these, it won't work.
+  .hide-content + article,
+  .hide-content + .page,
+  .hide-content + .hentry {
+    display: none;
+  }
 }
 
