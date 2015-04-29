@@ -229,7 +229,7 @@
         //add_menu_page( $page_title,  $menu_title, $capability,   $menu_slug, $function,    $icon_url, $position );
         $licence 	= get_option( 'edd_architect_license_key' );
         $status 	= get_option( 'edd_architect_license_status' );
-        $vers = ( $status !== false && $status == 'valid' ) ?'':'Lite';
+        $vers = ( (defined('PZARC_HWREL') && PZARC_HWREL) || $status !== false && $status == 'valid' ) ?'':'Lite';
         $pzarc_menu = add_menu_page( __( 'Getting started', 'pzarchitect' ), 'Architect '.$vers, 'edit_posts', 'pzarc', 'pzarc_about', PZARC_PLUGIN_APP_URL . 'wp-icon.png' );
         // add_submenu_page( $parent_slug, $page_title, $menu_title, $capability, $menu_slug, $function );
 

@@ -3,7 +3,7 @@ Contributors: chrishoward
 Tags: content,display,posts,pages,gallery,slider,tabs,tabbed,tabular,widget,hooks
 Requires at least: 3.5.0
 Tested up to: 4.2.0
-Stable tag: 1.1.7.9
+Stable tag: 1.1.7.14
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Plugin URI: http://architect4wp.com
@@ -93,14 +93,17 @@ For support, please send an email to support@pizazzwp.com
 
 == Changelog ==
 
-= 1.2.0 : 28 April 2015 =
+= 1.2.0 : 1 May 2015 =
 * ADDED: Animation of components. Doesn't react to sliding yet.
 * ADDED: Block, shortcode, template tag, builder and widget now support different Blueprints per device type: Desktop/any, Tablet, Phone.
 * ADDED: Sysinfo to Tools menu
 * ADDED: Option for custom previous/next text for pagination
 * ADDED: EDD licencing for purchases direct from Pizazz
+* ADDED: Filter pzarc-add-presets to allow devs to include their own Presets
+* ADDED: Function pzarc_create_blueprint to allow devs to automatically create new Blueprints
 
 * CHANGED: Typography to treat line heights less than three as multipliers, not absolutes.
+
 
 * FIXED: Some PHP notices
 * FIXED: Custom fields styling pretty much didn't work!
@@ -108,7 +111,9 @@ For support, please send an email to support@pizazzwp.com
 * FIXED: Some issues with panels margins not applying
 * FIXED: Some incorrect text in pagination links
 * FIXED: Errors if trying to use pagination wth dummy content.
-* FIXED: CSS sometimes Blueprints get hidden
+* FIXED: Some themes prevented adding the .pzarchitect body class so removed that class from the css
+* FIXED: Featured images not centring when set to centre
+* FIXED: Grabbing all custom fields could be slow. Using a transient which may cause problems of its own! New custom fields may not appear straight away (remembering tho they must contain data first)
 
 * UPDATED: TGM Library to v2.4.1 with XSS vulnerability fix
 

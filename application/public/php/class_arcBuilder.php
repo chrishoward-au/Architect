@@ -13,13 +13,13 @@
 
     function __construct() {
 
-      add_action( 'pzarc_page_template', array( $this, 'build' ), 99 );
+//      add_action( 'pzarc_page_template', array( $this, 'build' ), 99 );
       add_action( 'wp_head', array( $this, 'css' ), 10 );
     }
 
 
     /**
-     * Display Page Builder before the post
+     * Display Page Builder
      */
     function build( $query_object ) {
       $this->build = array(
@@ -75,11 +75,15 @@
   }
 
   function css() {
+
+//    pzdebug();
+//    die();
     // Only want to do this on the Architect Builder template.
     if ( 'arc_page_template.php' !== get_page_template_slug() ) {
       return;
     }
-
+//    pzdebug();
+//die();
     $this->build = array(
       'wrapperwidth'   => get_post_meta( get_the_id(), '_pzarc_pagebuilder_wrapper-width', true ),
       'wrapperfloat'   => get_post_meta( get_the_id(), '_pzarc_pagebuilder_wrapper-float', true ),

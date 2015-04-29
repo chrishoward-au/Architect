@@ -27,7 +27,7 @@
     global $pzarc_fontface;
     $pzarc_fontface     = '';
     $pzarc_bp_css[ $i ] = pzarc_process_bp_sections( $pzarc_blueprints, $i, $nl, $_architect_options );
-    $specificity_class  = 'body.pzarchitect #pzarc-blueprint_' . $pzarc_blueprints[ '_blueprints_short-name' ];
+    $specificity_class  = '#pzarc-blueprint_' . $pzarc_blueprints[ '_blueprints_short-name' ];
 
     $pzarc_contents .= $pzarc_bp_css[ $i ];
 
@@ -139,7 +139,7 @@
    *   */
   function pzarc_process_bp_sections( &$pzarc_blueprints, $i, $nl, &$_architect_options ) {
 //    var_dump(array_keys($pzarc_blueprints));
-    $specificity_class    = 'body.pzarchitect #pzarc-blueprint_' . $pzarc_blueprints[ '_blueprints_short-name' ];
+    $specificity_class    = '#pzarc-blueprint_' . $pzarc_blueprints[ '_blueprints_short-name' ];
     $sections_class       = $specificity_class . ' > .pzarc-sections  .pzarc-section_' . ( $i + 1 );
     $panels_class         = $sections_class . ' .pzarc-panel';
     $pzarc_mediaq_css     = '';
@@ -294,7 +294,7 @@
     $nl = "\n";
 //var_dump($pzarc_panels);
     // Step thru each field looking for ones to format
-    $class_prefix = 'body.pzarchitect #pzarc-blueprint_' . $pzarc_panels[ '_blueprints_short-name' ] . ' .pzarc-panel';
+    $class_prefix = '#pzarc-blueprint_' . $pzarc_panels[ '_blueprints_short-name' ] . ' .pzarc-panel';
 
     // DANGER WILL ROBINSON!
     // json_decode on different enviroments converts UTF-8 data in different ways. I end up getting on of values '240.00' locally and '240' on production - massive dissaster. Morover if conversion fails string get's returned as NULL
@@ -421,7 +421,14 @@
           }
 
           // Don't give thumbnail div a width if it's in the content
-          $margins = pzarc_process_spacing( $pzarc_panels[ '_panels_design_image-spacing' ] );
+          if ($pzarc_panels[ '_panels_design_centre-image' ]) {
+            $margins_arr= $pzarc_panels[ '_panels_design_image-spacing' ];
+            $margins_arr['margin-left']='';
+            $margins_arr['margin-right']='';
+            $margins = pzarc_process_spacing( $margins_arr ).'margin-left:auto;margin-right:auto;';
+          } else {
+            $margins = pzarc_process_spacing( $pzarc_panels[ '_panels_design_image-spacing' ] );
+          }
           $left    = $pzarc_panels[ '_panels_design_image-spacing' ][ 'margin-left' ];
           $left    = preg_replace( "/([\\%px])/uiUm", "", $left );
           $right   = $pzarc_panels[ '_panels_design_image-spacing' ][ 'margin-right' ];

@@ -1,19 +1,22 @@
 # Architect change history 
-### 1.2.0 : 28 April 2015 
-*  ADDED: Block, shortcode, template tag, builder and widget now support different  Blueprints per device type: Desktop, Tablet, Phone.
-*  ADDED: Animation of components. Doesn't react to sliding yet.
-*  ADDED: Sysinfo to Tools menu
-*  ADDED: Option for custom previous/next text for pagination
-*  ADDED: EDD licencing for purchases direct from Pizazz
-*  CHANGED: Typography to treat line heights less than three as multipliers, not absolutes.
-*  FIXED: Some PHP notices
-*  FIXED: Custom fields styling pretty much didn't work!
-*  FIXED: Blueprints custom CSS went missing
-*  FIXED: Some issues with panels margins not applying
-*  FIXED: Some incorrect text in pagination links
-*  FIXED: Errors if trying to use pagination wth dummy content.
-*  UPDATED: TGM Library to v2.4.1 with XSS vulnerability fix
-*  REMOVED: Custom field group styling defaults since they're so variable and thus just clutter
+### 1.2.0 : 1 May 2015 
+* ADDED: Animation of components. Doesn't react to sliding yet.
+* ADDED: Block, shortcode, template tag, builder and widget now support different Blueprints per device type: Desktop/any, Tablet, Phone.
+* ADDED: Sysinfo to Tools menu
+* ADDED: Option for custom previous/next text for pagination
+* ADDED: EDD licencing for purchases direct from Pizazz
+* CHANGED: Typography to treat line heights less than three as multipliers, not absolutes.
+* FIXED: Some PHP notices
+* FIXED: Custom fields styling pretty much didn't work!
+* FIXED: Blueprints custom CSS went missing
+* FIXED: Some issues with panels margins not applying
+* FIXED: Some incorrect text in pagination links
+* FIXED: Errors if trying to use pagination wth dummy content.
+* FIXED: Some themes prevented adding the .pzarchitect body class so removed that class from the css
+* FIXED: Featured images not centring when set to centre
+* FIXED: Grabbing all custom fields could be slow. Using a transient which may cause problems of its own! New custom fields may not appear straight away (remembering tho they must contain data first)
+* UPDATED: TGM Library to v2.4.1 with XSS vulnerability fix
+* REMOVED: Custom field group styling defaults since they're so variable and thus just clutter
 
 ### 1.1.6 
 *  ADDED: Additional filters and hooks for developers

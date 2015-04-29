@@ -78,7 +78,7 @@
               name="' . $this->field[ 'name' ] . '[color]' . $this->field[ 'name_suffix' ] . '"
               id="' . $this->field[ 'id' ] . '-color"
               class="redux-spectrum redux-spectrum-init ' . $this->field[ 'class' ] . '"
-              type="text" value="' . $this->value[ 'color' ] . '"
+              type="text" value="' . (empty($this->value[ 'color' ])?'':$this->value[ 'color' ]) . '"
               data-default-color="' . $this->field[ 'default' ][ 'color' ] . '"
               data-defaultvalue="' . $this->field[ 'default' ][ 'color' ] . '"
               />';

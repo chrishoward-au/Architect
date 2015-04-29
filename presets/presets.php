@@ -126,7 +126,7 @@
 
     function render()
     {
-      self::get_presets();
+      $this->presets = apply_filters( 'pzarc-add-presets', $this->presets );
       $render = array('html' => array('basic'     => '',
                                       'slider'    => '',
                                       'tabbed'    => '',
@@ -165,4 +165,111 @@
       }
       return $render;
     }
+  }
+
+  add_filter('pzarc-add-presets','pzarc_load_presets',10,1);
+
+  function pzarc_load_presets($presets){
+    // Masonry
+    $presets[ ] = array(
+      'data'     => PZARC_PLUGIN_URL . 'presets/preset-pinterest.txt',
+      'image'    => PZARC_PLUGIN_URL . 'presets/preset-pinterest.jpg',
+      'designer' => 'Chris Howard'
+    );
+
+    // Grids
+    $presets[ ] = array(
+      'data'     => PZARC_PLUGIN_URL . 'presets/preset-grid-glossy-magazine.txt',
+      'image'    => PZARC_PLUGIN_URL . 'presets/preset-grid-glossy-magazine.jpg',
+      'designer' => 'Chris Howard'
+    );
+    $presets[ ] = array(
+      'data'     => PZARC_PLUGIN_URL . 'presets/preset-magazine-grid.txt',
+      'image'    => PZARC_PLUGIN_URL . 'presets/preset-magazine-grid.jpg',
+      'designer' => 'Chris Howard'
+    );
+    $presets[ ] = array(
+      'data'     => PZARC_PLUGIN_URL . 'presets/preset-blog-excerpts-3x3.txt',
+      'image'    => PZARC_PLUGIN_URL . 'presets/preset-blog-excerpts-3x3.jpg',
+      'designer' => 'Chris Howard'
+    );
+    $presets[ ] = array(
+      'data'     => PZARC_PLUGIN_URL . 'presets/preset-grid-single-page.txt',
+      'image'    => PZARC_PLUGIN_URL . 'presets/preset-grid-single-page.jpg',
+      'designer' => 'Chris Howard'
+    );
+    $presets[ ] = array(
+      'data'     => PZARC_PLUGIN_URL . 'presets/preset-grid-testimonials.txt',
+      'image'    => PZARC_PLUGIN_URL . 'presets/preset-grid-testimonials.jpg',
+      'designer' => 'Chris Howard'
+    );
+    $presets[ ] = array(
+      'data'     => PZARC_PLUGIN_URL . 'presets/preset-grid-thumb-gallery.txt',
+      'image'    => PZARC_PLUGIN_URL . 'presets/preset-grid-thumb-gallery.jpg',
+      'designer' => 'Chris Howard'
+    );
+    $presets[ ] = array(
+      'data'     => PZARC_PLUGIN_URL . 'presets/preset-grid-recent-posts-small-excerpts.txt',
+      'image'    => PZARC_PLUGIN_URL . 'presets/preset-grid-recent-posts-small-excerpts.jpg',
+      'designer' => 'Chris Howard'
+    );
+
+    // Sliders
+    $presets[ ] = array(
+      'data'     => PZARC_PLUGIN_URL . 'presets/preset-featured-posts-vertical-content.txt',
+      'image'    => PZARC_PLUGIN_URL . 'presets/preset-featured-posts-vertical-content.jpg',
+      'designer' => 'Chris Howard'
+    );
+    $presets[ ] = array(
+      'data'     => PZARC_PLUGIN_URL . 'presets/preset-featured-posts-horizontal-content.txt',
+      'image'    => PZARC_PLUGIN_URL . 'presets/preset-featured-posts-horizontal-content.jpg',
+      'designer' => 'Chris Howard'
+    );
+    $presets[ ] = array(
+      'data'     => PZARC_PLUGIN_URL . 'presets/preset-slider-full-width.txt',
+      'image'    => PZARC_PLUGIN_URL . 'presets/preset-slider-full-width.jpg',
+      'designer' => 'Chris Howard'
+    );
+    $presets[ ] = array(
+      'data'     => PZARC_PLUGIN_URL . 'presets/preset-features-slider-title-nav.txt',
+      'image'    => PZARC_PLUGIN_URL . 'presets/preset-features-slider-title-nav.jpg',
+      'designer' => 'Chris Howard'
+    );
+    $presets[ ] = array(
+      'data'     => PZARC_PLUGIN_URL . 'presets/preset-features-slider-nav-inside.txt',
+      'image'    => PZARC_PLUGIN_URL . 'presets/preset-features-slider-nav-inside.jpg',
+      'designer' => 'Chris Howard'
+    );
+    $presets[ ] = array(
+      'data'     => PZARC_PLUGIN_URL . 'presets/preset-slider-image-slideshow.txt',
+      'image'    => PZARC_PLUGIN_URL . 'presets/preset-slider-image-slideshow.jpg',
+      'designer' => 'Chris Howard'
+    );
+
+    // tabbed
+    $presets[ ] = array(
+      'data'     => PZARC_PLUGIN_URL . 'presets/preset-tabbed-horizontal-top.txt',
+      'image'    => PZARC_PLUGIN_URL . 'presets/preset-tabbed-horizontal-top.jpg',
+      'designer' => 'Chris Howard'
+    );
+    $presets[ ] = array(
+      'data'     => PZARC_PLUGIN_URL . 'presets/preset-tabbed-vertical-left.txt',
+      'image'    => PZARC_PLUGIN_URL . 'presets/preset-tabbed-vertical-left.jpg',
+      'designer' => 'Chris Howard'
+    );
+
+    // tabular
+    $presets[ ] = array(
+      'data'     => PZARC_PLUGIN_URL . 'presets/preset-tabular.txt',
+      'image'    => PZARC_PLUGIN_URL . 'presets/preset-tabular.jpg',
+      'designer' => 'Chris Howard'
+    );
+
+    // accordion
+    $presets[ ] = array(
+      'data'     => PZARC_PLUGIN_URL . 'presets/preset-accordion.txt',
+      'image'    => PZARC_PLUGIN_URL . 'presets/preset-accordion.jpg',
+      'designer' => 'Chris Howard'
+    );
+    return $presets;
   }

@@ -4,7 +4,7 @@
     Plugin Name: Architect
     Plugin URI: http://architect4wp.com
     Description: Architect is an all-in-one content layout builder. <strong>Build your own slider, grid, tabbed, gallery, masonry, accordion or tabular layouts with ANY content source</strong>. Display using shortcodes, widgets, Headway blocks, WP action hooks and template tags, and WP Gallery shortcode.
-    Version: 1.1.7.9
+    Version: 1.1.7.14
     Author: Chris Howard
     Author URI: http://pizazzwp.com
     License: GNU GPL v2
@@ -23,6 +23,7 @@
   }
 
 
+
   class pzArchitect
   {
 
@@ -34,7 +35,7 @@
         define('PZARC_TESTER',(isset($arc_options['architect_enable_beta'])?$arc_options['architect_enable_beta']:false ));
       }
 
-      define('PZARC_VERSION', '1.1.7.9');
+      define('PZARC_VERSION', '1.1.7.14');
       define('PZARC_NAME', 'pzarchitect'); // This is also same as the locale
       define('PZARC_FOLDER', '/pizazzwp-architect');
       define('PZARC_CODEX', 'http://architect4wp.com/codex-listings');
@@ -145,14 +146,13 @@
 
       $status 	= get_option( 'edd_architect_license_status' );
       // TODO: Do this for Headway licence too
-      if( $status !== false && $status == 'valid' ) {
+      if( (defined('PZARC_HWREL') && PZARC_HWREL) || ($status !== false && $status == 'valid' )) {
         @include PZARC_PLUGIN_PATH . '/extensions/architect-pro.php';
       }
       pzdb('after architect pro');
 
       // Extensions hook in here
       do_action('arc_load_extensions');
-
 
     }
 

@@ -678,19 +678,25 @@
 
     global $_architect_options;
 
-    if (!empty($_architect_options['architect_exclude_hidden_custom'])) {
-      $pzep_cf_list = $wpdb->get_results(
-        "SELECT DISTINCT meta_key FROM $wpdb->postmeta HAVING meta_key NOT LIKE '\_%' ORDER BY meta_key"
-      );
-
-    } else {
-      //Get custom fields
-      // This is only able to get custom fields that have been used! ugh!
-//    if ( false === ( $pzep_cf_list = get_transient( 'pzarc_custom_fields' ) ) ) {
+    // WARNING: This may cause problems with missing custom fields
+    if ( false === ( $pzarc_cf_list = get_transient( 'pzarc_cf_list' ) ) ) {
       // It wasn't there, so regenerate the data and save the transient
-      $pzep_cf_list = $wpdb->get_results(
-        "SELECT DISTINCT meta_key FROM $wpdb->postmeta ORDER BY meta_key"
-      );
+
+      if ( ! empty( $_architect_options[ 'architect_exclude_hidden_custom' ] ) ) {
+        $pzarc_cf_list = $wpdb->get_results(
+          "SELECT DISTINCT meta_key FROM $wpdb->postmeta HAVING meta_key NOT LIKE '\_%' ORDER BY meta_key"
+        );
+
+      } else {
+        //Get custom fields
+        // This is only able to get custom fields that have been used! ugh!
+//    if ( false === ( $pzep_cf_list = get_transient( 'pzarc_custom_fields' ) ) ) {
+        // It wasn't there, so regenerate the data and save the transient
+        $pzarc_cf_list = $wpdb->get_results(
+          "SELECT DISTINCT meta_key FROM $wpdb->postmeta ORDER BY meta_key"
+        );
+      }
+      set_transient( 'pzarc_cf_list', $pzarc_cf_list );
     }
     //    set_transient( 'pzarc_custom_fields', $pzep_cf_list, 0*PZARC_TRANSIENTS_KEEP );
     // }
@@ -762,15 +768,15 @@
 
     );
 
-    $pzep_custom_fields = array();
-    foreach ( $pzep_cf_list as $pzep_cf ) {
-      if ( in_array( $pzep_cf->meta_key, $exclude_fields ) === false && ! pzarc_starts_with( $exclude_prefixes, $pzep_cf->meta_key ) ) {
+    $pzarc_custom_fields = array();
+    foreach ( $pzarc_cf_list as $pzarc_cf ) {
+      if ( in_array( $pzarc_cf->meta_key, $exclude_fields ) === false && ! pzarc_starts_with( $exclude_prefixes, $pzarc_cf->meta_key ) ) {
 
-        $pzep_custom_fields[ $pzep_cf->meta_key ] = $pzep_cf->meta_key;
+        $pzarc_custom_fields[ $pzarc_cf->meta_key ] = $pzarc_cf->meta_key;
       }
     }
 
-    return $pzep_custom_fields;
+    return $pzarc_custom_fields;
   }
 
   function pzarc_starts_with( $needles = array(), $haystack = '', $position = 0 ) {
@@ -1074,7 +1080,7 @@
   function pzarc_process_spacing( $properties ) {
     $spacing_css = '';
     if ( ! empty( $properties ) && is_array( $properties ) ) {
-  //    var_dump($properties);
+      //    var_dump($properties);
       foreach ( $properties as $key => $value ) {
         // Only process values!
         if ( $key != 'units' ) {
@@ -1086,6 +1092,7 @@
         }
       }
     }
+
     return $spacing_css;
   }
 
@@ -1096,7 +1103,7 @@
    * @return string
    */
   function pzarc_process_borders( $classes, $properties ) {
-    $borders_css  = '';
+    $borders_css = '';
     // This is to fix Redux making borders zero all the time
     $dodgy_values = array(
       'border-top'    => '0',
@@ -1107,16 +1114,16 @@
       'border-color'  => ''
     );
 
-    if ( ! empty( $properties ) && $properties!=$dodgy_values) {
+    if ( ! empty( $properties ) && $properties != $dodgy_values ) {
 
-      $borders_css .= ( !empty($properties[ 'border-top' ]) ? 'border-top:' . $properties[ 'border-top' ] : '' );
-      $borders_css .= ( !empty($properties[ 'border-top' ]) && $properties[ 'border-top' ] !== '0' ? ' ' . $properties[ 'border-style' ] . ' ' . $properties[ 'border-color' ] . ';' : ';' );
-      $borders_css .= ( !empty($properties[ 'border-right' ]) ? 'border-right:' . $properties[ 'border-right' ] : '' );
-      $borders_css .= ( !empty($properties[ 'border-right' ]) && $properties[ 'border-right' ] !== '0' ? ' ' . $properties[ 'border-style' ] . ' ' . $properties[ 'border-color' ] . ';' : ';' );
-      $borders_css .= ( !empty($properties[ 'border-bottom' ]) ? 'border-bottom:' . $properties[ 'border-bottom' ] : '' );
-      $borders_css .= ( !empty($properties[ 'border-bottom' ]) && $properties[ 'border-bottom' ] !== '0' ? ' ' . $properties[ 'border-style' ] . ' ' . $properties[ 'border-color' ] . ';' : ';' );
-      $borders_css .= ( !empty($properties[ 'border-left' ]) ? 'border-left:' . $properties[ 'border-left' ] : '' );
-      $borders_css .= ( !empty($properties[ 'border-left' ]) && $properties[ 'border-left' ] !== '0' ? ' ' . $properties[ 'border-style' ] . ' ' . $properties[ 'border-color' ] . ';' : ';' );
+      $borders_css .= ( ! empty( $properties[ 'border-top' ] ) ? 'border-top:' . $properties[ 'border-top' ] : '' );
+      $borders_css .= ( ! empty( $properties[ 'border-top' ] ) && $properties[ 'border-top' ] !== '0' ? ' ' . $properties[ 'border-style' ] . ' ' . $properties[ 'border-color' ] . ';' : ';' );
+      $borders_css .= ( ! empty( $properties[ 'border-right' ] ) ? 'border-right:' . $properties[ 'border-right' ] : '' );
+      $borders_css .= ( ! empty( $properties[ 'border-right' ] ) && $properties[ 'border-right' ] !== '0' ? ' ' . $properties[ 'border-style' ] . ' ' . $properties[ 'border-color' ] . ';' : ';' );
+      $borders_css .= ( ! empty( $properties[ 'border-bottom' ] ) ? 'border-bottom:' . $properties[ 'border-bottom' ] : '' );
+      $borders_css .= ( ! empty( $properties[ 'border-bottom' ] ) && $properties[ 'border-bottom' ] !== '0' ? ' ' . $properties[ 'border-style' ] . ' ' . $properties[ 'border-color' ] . ';' : ';' );
+      $borders_css .= ( ! empty( $properties[ 'border-left' ] ) ? 'border-left:' . $properties[ 'border-left' ] : '' );
+      $borders_css .= ( ! empty( $properties[ 'border-left' ] ) && $properties[ 'border-left' ] !== '0' ? ' ' . $properties[ 'border-style' ] . ' ' . $properties[ 'border-color' ] . ';' : ';' );
 
       return $classes . '{' . $borders_css . '}';
     } else {
@@ -1149,28 +1156,28 @@
     // TODO: Should Default use inherit?
     $links_css = '';
     if ( ! empty( $properties ) ) {
-      if ( ! empty( $properties[ 'regular' ] )  || ( !empty($properties[ 'regular-deco' ]) && strtolower( $properties[ 'regular-deco' ] ) !== 'default') ) {
+      if ( ! empty( $properties[ 'regular' ] ) || ( ! empty( $properties[ 'regular-deco' ] ) && strtolower( $properties[ 'regular-deco' ] ) !== 'default' ) ) {
         $links_css .= $classes . ' a {';
         $links_css .= ( ! empty( $properties[ 'regular' ] ) ? 'color:' . $properties[ 'regular' ] . ';' : '' );
         $links_css .= ( strtolower( $properties[ 'regular-deco' ] ) !== 'default' ? 'text-decoration:' . strtolower( $properties[ 'regular-deco' ] ) . ';' : '' );
         $links_css .= '}' . $nl;
       }
 
-      if ( ! empty( $properties[ 'hover' ] )  || (!empty($properties[ 'hover-deco' ]) && strtolower( $properties[ 'hover-deco' ] ) !== 'default' )) {
+      if ( ! empty( $properties[ 'hover' ] ) || ( ! empty( $properties[ 'hover-deco' ] ) && strtolower( $properties[ 'hover-deco' ] ) !== 'default' ) ) {
         $links_css .= $classes . ' a:hover {';
         $links_css .= ( ! empty( $properties[ 'hover' ] ) ? 'color:' . $properties[ 'hover' ] . ';' : '' );
         $links_css .= ( strtolower( $properties[ 'hover-deco' ] ) !== 'default' ? 'text-decoration:' . strtolower( $properties[ 'hover-deco' ] ) . ';' : '' );
         $links_css .= '}' . $nl;
       }
 
-      if ( ! empty( $properties[ 'active' ] )   || (!empty($properties[ 'active-deco' ]) && strtolower( $properties[ 'active-deco' ] ) !== 'default' )) {
+      if ( ! empty( $properties[ 'active' ] ) || ( ! empty( $properties[ 'active-deco' ] ) && strtolower( $properties[ 'active-deco' ] ) !== 'default' ) ) {
         $links_css .= $classes . ' a:active {';
         $links_css .= ( ! empty( $properties[ 'active' ] ) ? 'color:' . $properties[ 'active' ] . ';' : '' );
         $links_css .= ( strtolower( $properties[ 'active-deco' ] ) !== 'default' ? 'text-decoration:' . strtolower( $properties[ 'active-deco' ] ) . ';' : '' );
         $links_css .= '}' . $nl;
       }
 
-      if ( ! empty( $properties[ 'visited' ] )   || ( !empty( $properties[ 'visited-deco' ] ) && strtolower( $properties[ 'visited-deco' ] ) !== 'default' ) ) {
+      if ( ! empty( $properties[ 'visited' ] ) || ( ! empty( $properties[ 'visited-deco' ] ) && strtolower( $properties[ 'visited-deco' ] ) !== 'default' ) ) {
         $links_css .= $classes . ' a:visited {';
         $links_css .= ( ! empty( $properties[ 'visited' ] ) ? 'color:' . $properties[ 'visited' ] . ';' : '' );
         $links_css .= ( strtolower( $properties[ 'visited-deco' ] ) !== 'default' ? 'text-decoration:' . strtolower( $properties[ 'visited-deco' ] ) . ';' : '' );
@@ -1240,8 +1247,8 @@
     $pzarc_css  = '';
     foreach ( $keys[ 'classes' ] as $class ) {
       $pzarc_css .= ( function_exists( $pzarc_func ) ? call_user_func( $pzarc_func, $parentClass . ' ' . $class, $value ) : '' );
-      if ($pzarc_func=='pzarc_style_padding') {
-   //     var_dump($pzarc_css);
+      if ( $pzarc_func == 'pzarc_style_padding' ) {
+        //     var_dump($pzarc_css);
       }
       if ( ! function_exists( $pzarc_func ) ) {
         //print 'Missing function ' . $pzarc_func;
@@ -1260,7 +1267,7 @@
 
   function pzarc_style_padding( $class, $value ) {
 //    var_Dump(pzarc_is_empty_vals($value, array('units')),$value);
- //   var_dump($class,$value);
+    //   var_dump($class,$value);
     return ( ! pzarc_is_empty_vals( $value, array( 'units' ) ) ? $class . ' {' . pzarc_process_spacing( $value ) . ';}' . "\n" : null );
   }
 
@@ -1354,4 +1361,139 @@
     }
 
     return $return_val;
+  }
+
+
+  /**
+   * @param      $arc_preset_data : json_decode($file_contents, true)
+   * @param      $preset_name
+   * @param      $process_type : styled or unstyled
+   * @param null $alt_slug : Specify for codetically added blueprints
+   * @param null $alt_title : Specify for codetically added blueprints
+   */
+  function pzarc_create_blueprint( $arc_preset_data, $preset_name, $process_type, $alt_slug = null, $alt_title = null ) {
+    global $wpdb;
+
+    /*
+     * if you don't want current user to be the new post author,
+     * then change next couple of lines to this: $new_post_author = $post->post_author;
+     */
+    $current_user    = wp_get_current_user();
+    $new_post_author = $current_user->ID;
+
+    /*
+     * if post data exists, create the post duplicate
+     */
+    if ( ! empty( $preset_name ) ) {
+
+
+      // Get the next slug name
+      $args                  = array(
+        'post_status'    => array( 'publish', 'draft' ),
+        'post_type'      => 'arc-blueprints',
+        'posts_per_page' => 1
+      );
+      $last_blueprint        = get_posts( $args );
+      $next_id               = ( isset( $last_blueprint[ 0 ]->ID ) ? $last_blueprint[ 0 ]->ID + 1 : '1' );
+      $preset[ 'post' ]      = json_decode( $arc_preset_data[ 'post' ] );
+      $preset[ 'post_meta' ] = json_decode( $arc_preset_data[ 'meta' ], true );
+      $new_slug              = sanitize_title( $preset[ 'post' ]->post_title ) . '-' . ( $next_id );
+
+      /*
+       * new post data array
+       */
+      $args = array(
+        'comment_status' => $preset[ 'post' ]->comment_status,
+        'ping_status'    => $preset[ 'post' ]->ping_status,
+        'post_author'    => $new_post_author,
+        'post_content'   => $preset[ 'post' ]->post_content,
+        'post_excerpt'   => $preset[ 'post' ]->post_excerpt,
+        'post_name'      => $alt_slug ? $alt_slug : $new_slug,
+        'post_parent'    => $preset[ 'post' ]->post_parent,
+        'post_password'  => $preset[ 'post' ]->post_password,
+        'post_status'    => $alt_slug ? 'publish' : 'draft',
+        'post_title'     => $alt_title ? $alt_title : 'A new ' . $preset[ 'bptype' ] . ' Blueprint using preset : ' . $preset[ 'post' ]->post_title,
+        'post_type'      => $preset[ 'post' ]->post_type,
+        'to_ping'        => $preset[ 'post' ]->to_ping,
+        'menu_order'     => $preset[ 'post' ]->menu_order
+      );
+
+      /*
+       * insert the post by wp_insert_post() function
+       */
+      $new_post_id = wp_insert_post( $args );
+
+      /*
+       * get all current post terms ad set them to the new post draft
+       */
+//      $taxonomies = get_object_taxonomies($pre->post_type); // returns array of taxonomy names for post type, ex array("category", "post_tag");
+//      foreach ($taxonomies as $taxonomy) {
+//        $post_terms = wp_get_object_terms($preset_name, $taxonomy, array('fields' => 'slugs'));
+//        wp_set_object_terms($new_post_id, $post_terms, $taxonomy, false);
+//      }
+
+      /*
+       * duplicate all post meta
+       */
+      if ( count( $preset[ 'post_meta' ] ) != 0 ) {
+        $sql_query     = "INSERT INTO $wpdb->postmeta (post_id, meta_key, meta_value) ";
+        $sql_query_sel = array();
+        foreach ( $preset[ 'post_meta' ] as $meta_key => $value ) {
+          if ( $meta_key === '_blueprints_short-name' ) {
+            $meta_value = $value[ 0 ] . '-' . $new_post_id;
+          } else {
+            if ( $process_type === 'unstyled' ) {
+              // Just done it this way for speed.
+              if ( strpos( $meta_key, '_styling_' ) === false ) {
+                $meta_value = addslashes( $value[ 0 ] );
+              }
+
+            } else {
+              $meta_value = addslashes( $value[ 0 ] );
+            }
+          }
+
+          $sql_query_sel[ ] = "SELECT $new_post_id, '$meta_key', '$meta_value'";
+        }
+        $sql_query .= implode( " UNION ALL ", $sql_query_sel );
+        $wpdb->query( $sql_query );
+      }
+
+
+      /*
+       * finally, redirect to the edit post screen for the new draft
+       */
+      if ( ! $alt_slug ) {
+        wp_redirect( admin_url( 'post.php?action=edit&post=' . $new_post_id ) );
+        exit;
+      }
+//      } else {
+//        wp_redirect(admin_url('edit.php?post_type=' . $preset[ 'post' ]->post_type));
+//      }
+
+    } else {
+      wp_die( 'Post creation failed, could not find original post: ' . $preset_name );
+    }
+
+  }
+
+  function example_import() {
+
+    //myfile.txt is a txt file containing the data generated from the Blueprint export
+    $bpexpfile = 'http://mysite.com/path/to/myfile.txt';
+
+    $ch = curl_init( $bpexpfile );
+    curl_setopt( $ch, CURLOPT_RETURNTRANSFER, true );
+    $file_contents = curl_exec( $ch );
+    curl_close( $ch );
+
+    $arc_preset_data = json_decode( $file_contents, true );
+
+    $preset_name  = 'anything'; // This is not relevant for code generated blueprints; however, it cannot be blank
+    $process_type = 'styled'; //This can be styled or unstyled
+    $alt_slug     = 'SLUGMNAME FOR NEW BLUEPRINT';
+    $alt_title    = 'TITLE FOR NEW BLUEPRINT';
+
+    pzarc_create_blueprint( $arc_preset_data, $preset_name, $process_type, $alt_slug, $alt_title );
+
   }

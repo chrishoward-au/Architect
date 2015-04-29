@@ -124,6 +124,7 @@
                 <button class="tabby-masonry" data-tab="#masonry">' . __( 'Masonry', 'pzarchitect' ) . '</button>
                 <button class="tabby-accordion" data-tab="#accordion">' . __( 'Accordion', 'pzarchitect' ) . '</button>
                 <button class="tabby-tabular" data-tab="#tabular">' . __( 'Tabular', 'pzarchitect' ) . '</button>
+                <button class="tabby-custom" data-tab="#custom">' . __( 'Custom', 'pzarchitect' ) . '</button>
             </div>
 
            <div class="tabby tabs-content container">
@@ -396,15 +397,15 @@
     function pzarc_mb_blueprint_general_settings( $metaboxes, $defaults_only = false ) {
       $prefix = '_blueprints_';
       global $_architect_options;
-      $cfwarn=false;
-      $animation_state = $_architect_options['architect_animation-enable'];
+      $cfwarn          = false;
+      $animation_state = $_architect_options[ 'architect_animation-enable' ];
       if ( ! empty( $_GET[ 'post' ] ) ) {
         $thispostmeta = get_post_meta( $_GET[ 'post' ] );
         $cfcount      = ( ! empty( $thispostmeta[ '_panels_design_custom-fields-count' ][ 0 ] ) ? $thispostmeta[ '_panels_design_custom-fields-count' ][ 0 ] : 0 );
-        $cfwarn = (ini_get('max_input_vars')<=1000 && ($cfcount>0 || $animation_state));
+        $cfwarn       = ( ini_get( 'max_input_vars' ) <= 1000 && ( $cfcount > 0 || $animation_state ) );
 
       }
-      $sections[ '_general_bp']  = array(
+      $sections[ '_general_bp' ] = array(
         'fields' => array(
           array(
             'id'       => $prefix . 'short-name',
@@ -425,44 +426,48 @@
             'rows'  => 2,
             'hint'  => array( 'content' => __( 'A short description to help you or others know what this Blueprint is for', 'pzarchitect' ) ),
           ),
-          array(
-            'title'    => __( 'Intended Device', 'pzarchitect' ),
-            'id'       => '_blueprint_device',
-            'type'     => 'button_set',
-            'subtitle' => __( 'Choose the device you intend to display this Blueprint on. This is currently for information purposes only. That is, so anyone else working with this Blueprint is aware of why it is configured the way it is.', 'pzarchitect' ),
-            'default'  => '',
-            'options'  => array(
-              ''       => __( 'Any', 'pzarchitect' ),
-              'tablet' => __( 'Tablet', 'pzarchitect' ),
-              'phone'  => __( 'Phone', 'pzarchitect' ),
-            ),
-            'hint'     => array(
-              'title'   => __( 'Device', 'pzarchitect' ),
-              'content' => __( 'Choose the device you intend to display this Blueprint on. This is currently for information purposes only. That is, co anyone else working with this Blueprint is aware.', 'pzarchitect' )
-            )
-          ),
         )
       );
-      if ($cfwarn) {
-      $sections['_general_bp']['fields'][]= array(
-          'id'    => $prefix . 'input-vars-message',
-          'title' => __( 'Custom fields', 'pzarchitect' ),
-          'type'  => 'info',
-          'style'=> ($cfwarn?'critical':'normal'),
-          'required'=>array('_panels_design_components-to-show','contains','custom'),
-          'desc'=>__('If you add custom fields to a Blueprint it adds many more fields to the form. <strong>This can cause some fields not to save</strong>. Please read this post by Woo Themes for solutions:','pzarchitect').'<br><a href="http://docs.woothemes.com/document/problems-with-large-amounts-of-data-not-saving-variations-rates-etc/" target=_blank>Problems with large amounts of data not saving</a><br>Your max_input_vars setting is: '.ini_get('max_input_vars'),
+      if ( $cfwarn ) {
+        $sections[ '_general_bp' ][ 'fields' ][ ] = array(
+          'id'       => $prefix . 'input-vars-message',
+          'title'    => __( 'Custom fields', 'pzarchitect' ),
+          'type'     => 'info',
+          'style'    => ( $cfwarn ? 'critical' : 'normal' ),
+          'required' => array( '_panels_design_components-to-show', 'contains', 'custom' ),
+          'desc'     => __( 'If you add custom fields to a Blueprint it adds many more fields to the form. <strong>This can cause some fields not to save</strong>. Please read this post by Woo Themes for solutions:', 'pzarchitect' ) . '<br><a href="http://docs.woothemes.com/document/problems-with-large-amounts-of-data-not-saving-variations-rates-etc/" target=_blank>Problems with large amounts of data not saving</a><br>Your max_input_vars setting is: ' . ini_get( 'max_input_vars' ),
 
         );
 
       }
-      if (!$animation_state) {
-      $sections['_general_bp']['fields'][]=array(
+      if ( ! $animation_state ) {
+        $sections[ '_general_bp' ][ 'fields' ][ ] = array(
           'id'    => $prefix . 'animation-message',
           'title' => __( 'Animation', 'pzarchitect' ),
           'type'  => 'info',
-          'desc'=>__('To use Animation settings, first enable Animation in <em>Architect</em> > <em>Options</em> > <em>Animation</em>.','pzarchitect'),
+          'desc'  => __( 'To use Animation settings, first enable Animation in <em>Architect</em> > <em>Options</em> > <em>Animation</em>.', 'pzarchitect' ),
         );
       }
+
+      $sections[ '_general_bp' ][ 'fields' ][ ] =
+        array(
+          'title'    => __( 'Intended Device', 'pzarchitect' ),
+          'id'       => '_blueprint_device',
+          'type'     => 'button_set',
+          'subtitle' => __( 'Choose the device you intend to display this Blueprint on. This is currently for information purposes only. That is, so anyone else working with this Blueprint is aware of why it is configured the way it is.', 'pzarchitect' ),
+          'default'  => '',
+          'options'  => array(
+            ''       => __( 'Any', 'pzarchitect' ),
+            'tablet' => __( 'Tablet', 'pzarchitect' ),
+            'phone'  => __( 'Phone', 'pzarchitect' ),
+          ),
+          'hint'     => array(
+            'title'   => __( 'Device', 'pzarchitect' ),
+            'content' => __( 'Choose the device you intend to display this Blueprint on. This is currently for information purposes only. That is, co anyone else working with this Blueprint is aware.', 'pzarchitect' )
+          )
+        );
+
+
       $metaboxes[ ] = array(
         'id'         => $prefix . 'layout-general-settings',
         'title'      => 'General Settings',
@@ -785,10 +790,11 @@
               'type'    => 'spacing',
               'units'   => array( '%', 'px', 'em' ),
               'mode'    => 'margin',
-              'default' => array( 'margin-right'  => '0',
-                                  'margin-bottom' => '0',
-                                  'margin-left'   => '0',
-                                  'margin-top'    => '0'
+              'default' => array(
+                'margin-right'  => '0',
+                'margin-bottom' => '0',
+                'margin-left'   => '0',
+                'margin-top'    => '0'
               ),
               //'subtitle' => __('Right, bottom', 'pzarchitect')
               //    'hint'  => array('content' => __('Set the vertical gutter width as a percentage of the section width. The gutter is the gap between adjoining elements', 'pzarchitect'))
@@ -1266,10 +1272,10 @@
             'desc'    => __( 'If your content type is Defaults and you choose to enable overrides, pagination will likely mess up if this Blueprint is displayed on the standard WP blog page.', 'pzarchitect' )
           ),
           array(
-            'title'  => __( 'Settings', 'pzarchitect' ),
-            'id'     => '_blueprint_pagination-settings-section',
-            'type'   => 'section',
-            'indent' => true,
+            'title'    => __( 'Settings', 'pzarchitect' ),
+            'id'       => '_blueprint_pagination-settings-section',
+            'type'     => 'section',
+            'indent'   => true,
             'required' => array( '_blueprints_pagination', 'equals', true ),
           ),
           array(
@@ -1282,24 +1288,24 @@
             'required' => array( '_blueprints_pagination', 'equals', true ),
           ),
           array(
-            'id'       => '_blueprints_pager-location',
-            'title'    => __( 'Pagination location', 'pzarchitect' ),
-            'type'     => 'select',
-            'select2'  => array( 'allowClear' => false ),
-            'default'  => 'bottom',
-            'options'  => array(
+            'id'      => '_blueprints_pager-location',
+            'title'   => __( 'Pagination location', 'pzarchitect' ),
+            'type'    => 'select',
+            'select2' => array( 'allowClear' => false ),
+            'default' => 'bottom',
+            'options' => array(
               'bottom' => 'Bottom',
               'top'    => 'Top',
               'both'   => 'Both'
             ),
           ),
           array(
-            'id'       => '_blueprints_pager',
-            'title'    => __( 'Blog Pagination', 'pzarchitect' ),
-            'type'     => 'select',
-            'select2'  => array( 'allowClear' => false ),
-            'default'  => 'prevnext',
-            'options'  => array(
+            'id'      => '_blueprints_pager',
+            'title'   => __( 'Blog Pagination', 'pzarchitect' ),
+            'type'    => 'select',
+            'select2' => array( 'allowClear' => false ),
+            'default' => 'prevnext',
+            'options' => array(
               //                    'none'     => 'None',
               'prevnext' => 'Previous/Next',
               'names'    => 'Post names',
@@ -1307,12 +1313,12 @@
             ),
           ),
           array(
-            'id'       => '_blueprints_pager-single',
-            'title'    => __( 'Single Post Pagination', 'pzarchitect' ),
-            'type'     => 'select',
-            'select2'  => array( 'allowClear' => false ),
-            'default'  => 'prevnext',
-            'options'  => array(
+            'id'      => '_blueprints_pager-single',
+            'title'   => __( 'Single Post Pagination', 'pzarchitect' ),
+            'type'    => 'select',
+            'select2' => array( 'allowClear' => false ),
+            'default' => 'prevnext',
+            'options' => array(
               //                    'none'     => 'None',
               'prevnext' => 'Previous/Next',
               'names'    => 'Post names',
@@ -1320,12 +1326,12 @@
             ),
           ),
           array(
-            'id'       => '_blueprints_pager-archives',
-            'title'    => __( 'Archives Pagination', 'pzarchitect' ),
-            'type'     => 'select',
-            'select2'  => array( 'allowClear' => false ),
-            'default'  => 'prevnext',
-            'options'  => array(
+            'id'      => '_blueprints_pager-archives',
+            'title'   => __( 'Archives Pagination', 'pzarchitect' ),
+            'type'    => 'select',
+            'select2' => array( 'allowClear' => false ),
+            'default' => 'prevnext',
+            'options' => array(
               //                    'none'     => 'None',
               'prevnext' => 'Previous/Next',
               'names'    => 'Post names',
@@ -1333,21 +1339,21 @@
             ),
           ),
           array(
-            'id'       => '_blueprints_pager-custom-prev',
-            'title'    => __( 'Custom text for Previous', 'pzarchitect' ),
-            'type'     => 'text',
-            'default'  => null,
+            'id'      => '_blueprints_pager-custom-prev',
+            'title'   => __( 'Custom text for Previous', 'pzarchitect' ),
+            'type'    => 'text',
+            'default' => null,
           ),
           array(
-            'id'       => '_blueprints_pager-custom-next',
-            'title'    => __( 'Custom text for Next', 'pzarchitect' ),
-            'type'     => 'text',
-            'default'  => null,
+            'id'      => '_blueprints_pager-custom-next',
+            'title'   => __( 'Custom text for Next', 'pzarchitect' ),
+            'type'    => 'text',
+            'default' => null,
           ),
           array(
-            'id'     => '_blueprint_pagination-settings-section-end',
-            'type'   => 'section',
-            'indent' => false,
+            'id'       => '_blueprint_pagination-settings-section-end',
+            'type'     => 'section',
+            'indent'   => false,
             'required' => array( '_blueprints_pagination', 'equals', true ),
           ),
         )
@@ -3456,7 +3462,6 @@ array(
    * Function creates post duplicate as a draft and redirects then to the edit post screen
    */
   function pzarc_new_from_preset() {
-    global $wpdb;
     // How do we add some security?
     if ( ! ( isset( $_GET[ 'name' ] ) || isset( $_POST[ 'name' ] ) || ( isset( $_REQUEST[ 'action' ] ) && 'pzarc_new_from_preset' == $_REQUEST[ 'action' ] ) ) ) {
       wp_die();
@@ -3476,102 +3481,7 @@ array(
     $presets_array   = $presets->render();
     $arc_preset_data = $presets_array[ 'data' ][ $preset_name ];
 
-    /*
-     * if you don't want current user to be the new post author,
-     * then change next couple of lines to this: $new_post_author = $post->post_author;
-     */
-    $current_user    = wp_get_current_user();
-    $new_post_author = $current_user->ID;
-
-    /*
-     * if post data exists, create the post duplicate
-     */
-    if ( ! empty( $preset_name ) ) {
-
-
-      // Get the next slug name
-      $args                  = array(
-        'post_status'    => array( 'publish', 'draft' ),
-        'post_type'      => 'arc-blueprints',
-        'posts_per_page' => 1
-      );
-      $last_blueprint        = get_posts( $args );
-      $next_id               = ( isset( $last_blueprint[ 0 ]->ID ) ? $last_blueprint[ 0 ]->ID + 1 : '1' );
-      $preset[ 'post' ]      = json_decode( $arc_preset_data[ 'post' ] );
-      $preset[ 'post_meta' ] = json_decode( $arc_preset_data[ 'meta' ], true );
-      $new_slug              = sanitize_title( $preset[ 'post' ]->post_title ) . '-' . ( $next_id );
-
-      /*
-       * new post data array
-       */
-      $args = array(
-        'comment_status' => $preset[ 'post' ]->comment_status,
-        'ping_status'    => $preset[ 'post' ]->ping_status,
-        'post_author'    => $new_post_author,
-        'post_content'   => $preset[ 'post' ]->post_content,
-        'post_excerpt'   => $preset[ 'post' ]->post_excerpt,
-        'post_name'      => $new_slug,
-        'post_parent'    => $preset[ 'post' ]->post_parent,
-        'post_password'  => $preset[ 'post' ]->post_password,
-        'post_status'    => 'draft',
-        'post_title'     => 'A new ' . $process_type . ' Blueprint using preset : ' . $preset[ 'post' ]->post_title,
-        'post_type'      => $preset[ 'post' ]->post_type,
-        'to_ping'        => $preset[ 'post' ]->to_ping,
-        'menu_order'     => $preset[ 'post' ]->menu_order
-      );
-
-      /*
-       * insert the post by wp_insert_post() function
-       */
-      $new_post_id = wp_insert_post( $args );
-
-      /*
-       * get all current post terms ad set them to the new post draft
-       */
-//      $taxonomies = get_object_taxonomies($pre->post_type); // returns array of taxonomy names for post type, ex array("category", "post_tag");
-//      foreach ($taxonomies as $taxonomy) {
-//        $post_terms = wp_get_object_terms($preset_name, $taxonomy, array('fields' => 'slugs'));
-//        wp_set_object_terms($new_post_id, $post_terms, $taxonomy, false);
-//      }
-
-      /*
-       * duplicate all post meta
-       */
-      if ( count( $preset[ 'post_meta' ] ) != 0 ) {
-        $sql_query     = "INSERT INTO $wpdb->postmeta (post_id, meta_key, meta_value) ";
-        $sql_query_sel = array();
-        foreach ( $preset[ 'post_meta' ] as $meta_key => $value ) {
-          if ( $meta_key === '_blueprints_short-name' ) {
-            $meta_value = $value[ 0 ] . '-' . $new_post_id;
-          } else {
-            if ( $process_type === 'unstyled' ) {
-              // Just done it this way for speed.
-              if ( strpos( $meta_key, '_styling_' ) === false ) {
-                $meta_value = addslashes( $value[ 0 ] );
-              }
-
-            } else {
-              $meta_value = addslashes( $value[ 0 ] );
-            }
-          }
-
-          $sql_query_sel[ ] = "SELECT $new_post_id, '$meta_key', '$meta_value'";
-        }
-        $sql_query .= implode( " UNION ALL ", $sql_query_sel );
-        $wpdb->query( $sql_query );
-      }
-
-
-      /*
-       * finally, redirect to the edit post screen for the new draft
-       */
-      wp_redirect( admin_url( 'post.php?action=edit&post=' . $new_post_id ) );
-//      wp_redirect(admin_url('edit.php?post_type=' . $preset[ 'post' ]->post_type));
-
-      exit;
-    } else {
-      wp_die( 'Post creation failed, could not find original post: ' . $preset_name );
-    }
+    pzarc_create_blueprint($arc_preset_data,$preset_name,$process_type,null,null);
   }
 
   add_action( 'admin_action_pzarc_new_from_preset', 'pzarc_new_from_preset' );

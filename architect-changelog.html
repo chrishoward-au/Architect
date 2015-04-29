@@ -1,10 +1,10 @@
 <h1>Architect change history</h1>
 
-<h3>1.2.0 : 28 April 2015</h3>
+<h3>1.2.0 : 1 May 2015</h3>
 
 <ul>
-<li>ADDED: Block, shortcode, template tag, builder and widget now support different  Blueprints per device type: Desktop, Tablet, Phone.</li>
 <li>ADDED: Animation of components. Doesn&rsquo;t react to sliding yet.</li>
+<li>ADDED: Block, shortcode, template tag, builder and widget now support different Blueprints per device type: Desktop/any, Tablet, Phone.</li>
 <li>ADDED: Sysinfo to Tools menu</li>
 <li>ADDED: Option for custom previous/next text for pagination</li>
 <li>ADDED: EDD licencing for purchases direct from Pizazz</li>
@@ -15,6 +15,9 @@
 <li>FIXED: Some issues with panels margins not applying</li>
 <li>FIXED: Some incorrect text in pagination links</li>
 <li>FIXED: Errors if trying to use pagination wth dummy content.</li>
+<li>FIXED: Some themes prevented adding the .pzarchitect body class so removed that class from the css</li>
+<li>FIXED: Featured images not centring when set to centre</li>
+<li>FIXED: Grabbing all custom fields could be slow. Using a transient which may cause problems of its own! New custom fields may not appear straight away (remembering tho they must contain data first)</li>
 <li>UPDATED: TGM Library to v2.4.1 with XSS vulnerability fix</li>
 <li>REMOVED: Custom field group styling defaults since they&rsquo;re so variable and thus just clutter</li>
 </ul>

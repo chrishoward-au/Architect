@@ -14,8 +14,8 @@
   add_shortcode( 'pzarchitect', 'pzarc_shortcode' ); // alternate version
   // I still don't understand why this works!! One day, maybe I will
   add_action( 'arc_do_shortcode', 'pzarc', 10, 6);
-
   add_filter( 'body_class', 'add_pzarc_class' );
+
   add_action( 'arc_do_pagebuilder', 'pzarc', 10,3);
   add_action( 'arc_do_template_tag', 'pzarc', 10, 5 );
 
@@ -44,8 +44,6 @@
 //    }
 
 
-    require_once( PZARC_PLUGIN_APP_PATH . 'public/php/class_arcBuilder.php' );
-    new arcBuilder;
 
     wp_register_style( 'css-hw-float-fix', PZARC_PLUGIN_APP_URL . '/public/css/arc-hw-fix.css' );
 
