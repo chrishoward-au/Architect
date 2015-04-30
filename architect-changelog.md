@@ -5,6 +5,8 @@
 * ADDED: Sysinfo to Tools menu
 * ADDED: Option for custom previous/next text for pagination
 * ADDED: EDD licencing for purchases direct from Pizazz
+* ADDED: Filter pzarc-add-presets to allow devs to include their own Presets
+* ADDED: Function pzarc_create_blueprint to allow devs to automatically create new Blueprints
 * CHANGED: Typography to treat line heights less than three as multipliers, not absolutes.
 * FIXED: Some PHP notices
 * FIXED: Custom fields styling pretty much didn't work!
@@ -15,6 +17,7 @@
 * FIXED: Some themes prevented adding the .pzarchitect body class so removed that class from the css
 * FIXED: Featured images not centring when set to centre
 * FIXED: Grabbing all custom fields could be slow. Using a transient which may cause problems of its own! New custom fields may not appear straight away (remembering tho they must contain data first)
+* FIXED: Various minor tweaks and fixes
 * UPDATED: TGM Library to v2.4.1 with XSS vulnerability fix
 * REMOVED: Custom field group styling defaults since they're so variable and thus just clutter
 

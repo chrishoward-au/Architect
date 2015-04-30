@@ -2,8 +2,8 @@
 Contributors: chrishoward
 Tags: content,display,posts,pages,gallery,slider,tabs,tabbed,tabular,widget,hooks
 Requires at least: 3.5.0
-Tested up to: 4.2.0
-Stable tag: 1.1.7.14
+Tested up to: 4.2.1
+Stable tag: 1.1.8.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Plugin URI: http://architect4wp.com
@@ -103,7 +103,7 @@ For support, please send an email to support@pizazzwp.com
 * ADDED: Function pzarc_create_blueprint to allow devs to automatically create new Blueprints
 
 * CHANGED: Typography to treat line heights less than three as multipliers, not absolutes.
-
+* CHANGED: Architect will run in Lite mode if no valid licence from either Headway Extend store or Pizazz shop is active
 
 * FIXED: Some PHP notices
 * FIXED: Custom fields styling pretty much didn't work!
@@ -114,6 +114,7 @@ For support, please send an email to support@pizazzwp.com
 * FIXED: Some themes prevented adding the .pzarchitect body class so removed that class from the css
 * FIXED: Featured images not centring when set to centre
 * FIXED: Grabbing all custom fields could be slow. Using a transient which may cause problems of its own! New custom fields may not appear straight away (remembering tho they must contain data first)
+* FIXED: Various minor tweaks and fixes
 
 * UPDATED: TGM Library to v2.4.1 with XSS vulnerability fix
 

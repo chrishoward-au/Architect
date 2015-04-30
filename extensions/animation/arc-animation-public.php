@@ -70,6 +70,8 @@
       if ( $this->blueprint[ '_animation_target' ] === 'panels' ) {
         return $line;
       }
+      $ppp = empty($this->blueprint[ '_blueprints_section-0-panels-limited' ])?get_option('posts_per_page'):$this->blueprint[ '_blueprints_section-0-panels-per-view' ];
+
       $ani_component = $component;
       switch ( true ) {
         case 'excerpt' === $component:
@@ -89,21 +91,21 @@
             $delay = 0;
             break;
           case 'random':
-            $delay = rand( 0, $this->blueprint[ '_blueprints_section-0-panels-per-view' ] );
+            $delay = rand( 0, $ppp );
             break;
 
         }
 
         $offset = 0;
         if ( $this->blueprint[ '_animation_sequence-sync' ] == 'serial' ) {
-          $offset = array_search( $ani_component, $this->blueprint[ '_animation_sequence' ] ) * $this->blueprint[ '_animation_' . $ani_component . '-duration' ] * $this->blueprint[ '_blueprints_section-0-panels-per-view' ];
+          $offset = array_search( $ani_component, $this->blueprint[ '_animation_sequence' ] ) * $this->blueprint[ '_animation_' . $ani_component . '-duration' ] * $ppp;
           //      var_dump($offset,$delay);
         }
         $animation_classes           = 'pzarc-wow ' . $this->blueprint[ '_animation_' . $ani_component . '-animation' ] . ' ';
         $animation_data              = 'data-wow-duration="' . $this->blueprint[ '_animation_' . $ani_component . '-duration' ] . 's" data-wow-delay="' . ( $delay + $offset ) . 's" ';
         $line                        = str_replace( '{{extensionclass}}', '{{extensionclass}} ' . $animation_classes, $line );
         $line                        = str_replace( '{{extensiondata}}', '{{extensiondata}}' . $animation_data, $line );
-        $this->pno[ $ani_component ] = $this->pno[ $ani_component ] + 1 > $this->blueprint[ '_blueprints_section-0-panels-per-view' ] ? 0 : $this->pno[ $ani_component ] + 1;
+        $this->pno[ $ani_component ] = $this->pno[ $ani_component ] + 1 > $ppp ? 0 : $this->pno[ $ani_component ] + 1;
       }
 
 
@@ -138,24 +140,23 @@
       if ( $this->blueprint[ '_animation_target' ] !== 'panels' ) {
         return $data;
       }
+      $ppp = empty($this->blueprint[ '_blueprints_section-0-panels-limited' ])?get_option('posts_per_page'):$this->blueprint[ '_blueprints_section-0-panels-per-view' ];
       $delay = 0;
       switch ( $this->blueprint[ '_animation_panels-sync' ] ) {
         case 'serial':
           $delay = ( $this->blueprint[ '_animation_panels-delay' ] + ( $this->blueprint[ '_animation_panels-duration' ] * $this->pno[ 'panels' ] * ( 1 - $this->blueprint[ '_animation_panels-overlap' ] / 100 ) ) );
-//          var_dump($this->blueprint[ '_animation_panels-delay' ] + ( $this->blueprint[ '_animation_panels-duration' ] * $this->pno[ 'panels' ] * (1 - $this->blueprint[ '_animation_panels-overlap' ]/100) ));
-//          var_dump($this->blueprint[ '_animation_panels-delay' ] , $this->blueprint[ '_animation_panels-duration' ] , $this->pno[ 'panels' ] , (1 - $this->blueprint[ '_animation_panels-overlap' ]/100) );
           break;
         case 'parallel':
           $delay = 0;
           break;
         case 'random':
-          $delay = rand( 0, $this->blueprint[ '_blueprints_section-0-panels-per-view' ] );
+          $delay = rand( 0, $ppp );
           break;
 
       }
       $offset = 0;
       $data .= 'data-wow-duration="' . $this->blueprint[ '_animation_panels-duration' ] . 's" data-wow-delay="' . ( $delay + $offset ) . 's" ';
-      $this->pno[ 'panels' ] = $this->pno[ 'panels' ] + 1 > $this->blueprint[ '_blueprints_section-0-panels-per-view' ] ? 0 : $this->pno[ 'panels' ] + 1;
+      $this->pno[ 'panels' ] = $this->pno[ 'panels' ] + 1 > $ppp ? 0 : $this->pno[ 'panels' ] + 1;
 
       return $data;
     }

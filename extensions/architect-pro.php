@@ -6,7 +6,6 @@
 
     pzdb( 'pre content types load' );
     /** Content types */
-    require_once plugin_dir_path( __FILE__ ) . '/content-types/page/class_arc_content_pages.php';
     require_once plugin_dir_path( __FILE__ ) . '/content-types/gallery/class_arc_content_gallery.php';
     require_once plugin_dir_path( __FILE__ ) . '/content-types/slide/class_arc_content_slide.php';
     require_once plugin_dir_path( __FILE__ ) . '/content-types/nextgen/class_arc_content_nextgen.php';
