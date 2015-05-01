@@ -84,7 +84,8 @@
       $animation_options = array();
 //      $animations        = explode( ',', 'bounce,bounceIn,bounceInDown,bounceInLeft,bounceInRight,bounceInUp,bounceOut,bounceOutDown,bounceOutLeft,bounceOutRight,bounceOutUp,fadeIn,fadeInDown,fadeInDownBig,fadeInLeft,fadeInLeftBig,fadeInRight,fadeInRightBig,fadeInUp,fadeInUpBig,fadeOut,fadeOutDown,fadeOutDownBig,fadeOutLeft,fadeOutLeftBig,fadeOutRight,fadeOutRightBig,fadeOutUp,fadeOutUpBig,flash,flipInX,flipInY,flipOutX,flipOutY,hinge,lightSpeedIn,lightSpeedOut,pulse,rollIn,rollOut,rotateIn,rotateInDownLeft,rotateInDownRight,rotateInUpLeft,rotateInUpRight,rotateOut,rotateOutDownLeft,rotateOutDownRight,rotateOutUpLeft,rotateOutUpRight,rubberBand,shake,slideInDown,slideInLeft,slideInRight,slideInUp,slideOutDown,slideOutLeft,slideOutRight,slideOutUp,swing,tada,wobble,zoomIn,zoomInDown,zoomInLeft,zoomInRight,zoomInUp,zoomOut,zoomOutDown,zoomOutLeft,zoomOutRight,zoomOutUp' );
 
-      $animations = explode( ',', 'bounce,bounceIn,bounceInDown,bounceInLeft,bounceInRight,bounceInUp,fadeIn,fadeInDown,fadeInDownBig,fadeInLeft,fadeInLeftBig,fadeInRight,fadeInRightBig,fadeInUp,fadeInUpBig,flash,flipInX,flipInY,hinge,lightSpeedIn,pulse,rollIn,rotateIn,rotateInDownLeft,rotateInDownRight,rotateInUpLeft,rotateInUpRight,rubberBand,shake,slideInDown,slideInLeft,slideInRight,slideInUp,swing,tada,wobble,zoomIn,zoomInDown,zoomInLeft,zoomInRight,zoomInUp' );
+      // These are all the inbound animations. The outbound ones can be set later for slides.
+      $animations = explode( ',', 'bounce,bounceIn,bounceInDown,bounceInLeft,bounceInRight,bounceInUp,fadeIn,fadeInDown,fadeInDownBig,fadeInLeft,fadeInLeftBig,fadeInRight,fadeInRightBig,fadeInUp,fadeInUpBig,flash,flipInX,flipInY,lightSpeedIn,pulse,rollIn,rotateIn,rotateInDownLeft,rotateInDownRight,rotateInUpLeft,rotateInUpRight,rubberBand,shake,slideInDown,slideInLeft,slideInRight,slideInUp,swing,tada,wobble,zoomIn,zoomInDown,zoomInLeft,zoomInRight,zoomInUp' );
 
       foreach ( $animations as $animation ) {
         $animation_options[ $animation ] = $animation;
@@ -96,6 +97,7 @@
         'show_title' => false,
         'icon_class' => 'icon-large',
         'icon'       => 'el-icon-adjust-alt',
+        'desc'=>__('Architect provides a lot of control over animation. In testing, I found if you try and do too much, it\'s quite easy for this to get very confusing and hard to follow what and why is happening during the playing of the animations. So I would suggest the old rule: <strong>Keep it simple</strong>.'),
         'fields'     => array(
           array(
             'title'   => __( 'Animate', 'pzarchitect' ),
@@ -142,7 +144,7 @@
             'id'       => $prefix . 'sequence-sync',
             'type'     => 'button_set',
             'default'  => 'serial',
-            'subtitle' => __( ' Set whether content animation should happen in the order set or simultaneously. This does not affect the individual synchronization', 'pzarchitect' ),
+            'subtitle' => __( ' Set whether content animation should happen in the order set (e.g. all the titles, then all the images) or simultaneously. This does not affect the individual synchronization', 'pzarchitect' ),
             'options'  => array(
               'serial'   => __( 'As ordered', 'pzarchitect' ),
               'parallel' => __( 'Simultaneously', 'pzarchitect' ),
@@ -289,7 +291,7 @@
         'show_title' => false,
         'icon_class' => 'icon-large',
         'icon'       => 'el-icon-wrench',
-        'fields'     => pzarc_fields( self::animation_fields( $prefix . 'customfieldgroup1', $animation_options, 'Custom Field Group 1', 'custom1' ), self::animation_fields( $prefix . 'customfieldgroup2', $animation_options, 'Custom Field Group 2', 'custom2' ), self::animation_fields( $prefix . 'customfield3group', $animation_options, 'Custom Field Group 3', 'custom3' ) )
+        'fields'     => pzarc_fields( self::animation_fields( $prefix . 'custom1', $animation_options, 'Custom Field Group 1', 'custom1' ), self::animation_fields( $prefix . 'custom2', $animation_options, 'Custom Field Group 2', 'custom2' ), self::animation_fields( $prefix . 'custom3', $animation_options, 'Custom Field Group 3', 'custom3' ) )
 
       );
       $metaboxes[ ]           = array(

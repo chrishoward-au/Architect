@@ -25,7 +25,7 @@
         <p>Visit the <a href=""http://architect4wp.com/codex-listings/" target=_blank>Architect Documentation</a> for tutorials on using each</p>
         <p><strong style="color:tomato">If you are updating Architect from an older version, please got to the Architect Tools menu and rebuild CSS, and then if you have a cache plugin or service, clear it.</strong>&nbsp;
         <a href="'.site_url('/wp-admin/admin.php?page=pzarc_tools').'">Go to Tools</a></p>
-        <p><a href="https://s3.amazonaws.com/341public/LATEST/Pizazz-versions/Architect/architect-changelog.html" target="_blank">View full change history</a> |<a href="%1$s">Hide Notice</a>','pzarchitect'), '?pzarc_nag_ignore_v1200=0');
+        <p><a href="https://s3.amazonaws.com/341public/LATEST/Architect/architect-changelog.html" target="_blank">View full change log</a> |<a href="%1$s">Hide Notice</a>','pzarchitect'), '?pzarc_nag_ignore_v1200=0');
 
         echo "
         </div>";

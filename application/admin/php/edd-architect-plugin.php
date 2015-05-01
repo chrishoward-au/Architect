@@ -1,6 +1,4 @@
 <?php
-  $hw_opts = get_option('headway_option_group_general');
-  var_dump($hw_opts['license-status-architect']);
 
 
 // this is the URL our updater / license checker pings. This should be the URL of the site with EDD installed
@@ -24,7 +22,7 @@
 //  }
 //  if ( ! empty( $_architect_options[ 'architect_licence_key' ] ) ) {}
     // setup the updater
-    $edd_updater = new EDD_SL_Plugin_Updater( EDD_ARCHITECT_STORE_URL, PZARC_PLUGIN_PATH.'architect.php', array(
+    $edd_updater = new EDD_SL_Plugin_Updater( EDD_ARCHITECT_STORE_URL, PZARC_PLUGIN_PATH . 'architect.php', array(
                                                                        'version'   => PZARC_VERSION,
                                                                        // current version number
                                                                        'license'   => $license_key,
@@ -47,29 +45,31 @@
    *************************************/
 
   function edd_architect_licence_menu() {
-    $hw_opts = get_option('headway_option_group_general');
-var_dump($hw_opts['license-status-architect']);
-    die();
-    if ( $hw_opts['license-status-architect']!='valid' ) {
+    $hw_opts = get_option( 'headway_option_group_general' );
+    if (  empty( $hw_opts[ 'license-status-architect' ] ) || $hw_opts[ 'license-status-architect' ] != 'valid' ) {
+
       add_submenu_page( 'pzarc', __( 'Licence', 'pzarchitect' ), '<span class="dashicons dashicons-admin-network size-small"></span>' . __( 'Licence', 'pzarchitect' ), 'manage_options', 'architect-licence', 'edd_architect_licence_page' );
     }
   }
+
   add_action( 'admin_menu', 'edd_architect_licence_menu' );
 
 
   function edd_architect_licence_page() {
-    $license = get_option( 'edd_architect_license_key' );
-    $status  = get_option( 'edd_architect_license_status' );
-    $edd_state = get_option('edd_architect_license_state');
+    $license   = get_option( 'edd_architect_license_key' );
+    $status    = get_option( 'edd_architect_license_status' );
+    $edd_state = get_option( 'edd_architect_license_state' );
     ?>
     <div class="wrap">
     <h2><?php _e( 'Architect Licence Options', 'pzarchitect' ); ?></h2>
-    <p>Note: This page is for licences purchases from the PizazzWP shop. For licences purchased from the Headway Extend store, enter those in the <em>Headway</em> > <em>Options</em> screen</p>
-<?php
-    if ( $status !== false && $status == 'valid' ) {
-      echo 'Until you activate a valid licence, Architect will be the Lite version only. This is limited to just the Default, Dummy and Post content types and Animations are not available.';
-    }
-?>
+
+    <p>Note: This page is for licences purchases from the PizazzWP shop. For licences purchased from the Headway Extend
+      store, enter those in the <em>Headway</em> > <em>Options</em> screen</p>
+    <?php
+      if ( $status !== false && $status == 'valid' ) {
+        echo 'Until you activate a valid licence, Architect will be the Lite version only. This is limited to just the Default, Dummy and Post content types and Animations are not available.';
+      }
+    ?>
     <form method="post" action="options.php">
 
       <?php settings_fields( 'edd_architect_license' ); ?>
@@ -102,7 +102,7 @@ var_dump($hw_opts['license-status-architect']);
                 <input type="submit" class="button-secondary" name="edd_license_activate"
                        value="<?php _e( 'Activate License' ); ?>"/>
               <?php }
-                echo "<p>".$edd_state."</p>";
+                echo "<p>" . $edd_state . "</p>";
               ?>
 
             </td>
@@ -161,8 +161,9 @@ var_dump($hw_opts['license-status-architect']);
       );
 
       // Call the custom API.
-      $response = wp_remote_get( add_query_arg( $api_params, EDD_ARCHITECT_STORE_URL ), array( 'timeout'   => 15,
-                                                                                               'sslverify' => false
+      $response = wp_remote_get( add_query_arg( $api_params, EDD_ARCHITECT_STORE_URL ), array(
+        'timeout'   => 15,
+        'sslverify' => false
       ) );
 
       // make sure the response came back okay
@@ -177,10 +178,10 @@ var_dump($hw_opts['license-status-architect']);
 
       update_option( 'edd_architect_license_status', $license_data->license );
 
-      if ($license_data->success) {
-        update_option('edd_architect_license_state', "Remaining activations: ".$license_data->activations_left);
+      if ( $license_data->success ) {
+        update_option( 'edd_architect_license_state', "Remaining activations: " . $license_data->activations_left );
       } else {
-        update_option('edd_architect_license_state',"Activation failed with message: ".ucfirst(str_replace('_', ' ', $license_data->error)).'. Licence limit: '.$license_data->license_limit);
+        update_option( 'edd_architect_license_state', "Activation failed with message: " . ucfirst( str_replace( '_', ' ', $license_data->error ) ) . '. Licence limit: ' . $license_data->license_limit );
       }
 
     }
@@ -217,8 +218,9 @@ var_dump($hw_opts['license-status-architect']);
       );
 
       // Call the custom API.
-      $response = wp_remote_get( add_query_arg( $api_params, EDD_ARCHITECT_STORE_URL ), array( 'timeout'   => 15,
-                                                                                               'sslverify' => false
+      $response = wp_remote_get( add_query_arg( $api_params, EDD_ARCHITECT_STORE_URL ), array(
+        'timeout'   => 15,
+        'sslverify' => false
       ) );
 
       // make sure the response came back okay
@@ -262,8 +264,9 @@ var_dump($hw_opts['license-status-architect']);
     );
 
     // Call the custom API.
-    $response = wp_remote_get( add_query_arg( $api_params, EDD_ARCHITECT_STORE_URL ), array( 'timeout'   => 15,
-                                                                                             'sslverify' => false
+    $response = wp_remote_get( add_query_arg( $api_params, EDD_ARCHITECT_STORE_URL ), array(
+      'timeout'   => 15,
+      'sslverify' => false
     ) );
 
     if ( is_wp_error( $response ) ) {

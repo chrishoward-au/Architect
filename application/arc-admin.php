@@ -230,7 +230,7 @@
         $status  = get_option( 'edd_architect_license_status' );
         $hw_opts = get_option( 'headway_option_group_general' );
 
-        $vers       = ( ( defined( 'PZARC_HWREL' ) && PZARC_HWREL && !empty($hw_opts['license-status-architect']) && $hw_opts[ 'license-status-architect' ] == 'valid' ) || $status !== false && $status == 'valid' ) ? '' : 'Lite';
+        $vers       = ( ( !empty($hw_opts['license-status-architect']) && $hw_opts[ 'license-status-architect' ] == 'valid' ) || $status !== false && $status == 'valid' ) ? '' : 'Lite';
         $pzarc_menu = add_menu_page( __( 'Getting started', 'pzarchitect' ), 'Architect ' . $vers, 'edit_posts', 'pzarc', 'pzarc_about', PZARC_PLUGIN_APP_URL . 'wp-icon.png' );
         // add_submenu_page( $parent_slug, $page_title, $menu_title, $capability, $menu_slug, $function );
 
@@ -369,7 +369,7 @@
       $status  = get_option( 'edd_architect_license_status' );
       $hw_opts = get_option( 'headway_option_group_general' );
 
-      $lite = ( ( defined( 'PZARC_HWREL' ) && PZARC_HWREL && !empty($hw_opts['license-status-architect']) && $hw_opts[ 'license-status-architect' ] == 'valid' ) || $status !== false && $status == 'valid' ) ? false : true;
+      $lite = ( ( !empty($hw_opts['license-status-architect']) && $hw_opts[ 'license-status-architect' ] == 'valid' ) || $status !== false && $status == 'valid' ) ? false : true;
 
       if ( $lite ) {
         echo '<h3 style="color:#0074A2">Architect Lite</h3>
@@ -969,7 +969,10 @@ add_action(\'init\',\'gs_init\');
   function pzarc_initiate_updater() {
     // TODO: Try to not run this too mcuh
     // Check on Headway if enabled since it was probably bought there
-    if ( class_exists( 'HeadwayUpdaterAPI' ) && defined( 'PZARC_HWREL' ) && PZARC_HWREL ) {
+    $status 	= get_option( 'edd_architect_license_status' );
+
+    // Checks for HW and that we havem't already activated a Pizazz licence
+    if ( class_exists( 'HeadwayUpdaterAPI' ) && !($status !== false && $status == 'valid' )) {
 
       $updater = new HeadwayUpdaterAPI( array(
                                           'slug'            => 'architect',
@@ -978,9 +981,10 @@ add_action(\'init\',\'gs_init\');
                                           'type'            => 'block',
                                           'current_version' => PZARC_VERSION
                                         ) );
-    } else {
-      require_once( PZARC_PLUGIN_APP_PATH . 'admin/php/edd-architect-plugin.php' );
     }
+
+      require_once( PZARC_PLUGIN_APP_PATH . 'admin/php/edd-architect-plugin.php' );
+
 
 
     /**

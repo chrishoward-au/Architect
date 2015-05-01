@@ -3,7 +3,7 @@ Contributors: chrishoward
 Tags: content,display,posts,pages,gallery,slider,tabs,tabbed,tabular,widget,hooks
 Requires at least: 3.5.0
 Tested up to: 4.2.1
-Stable tag: 1.1.8.1
+Stable tag: 1.1.8.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Plugin URI: http://architect4wp.com
@@ -115,6 +115,8 @@ For support, please send an email to support@pizazzwp.com
 * FIXED: Featured images not centring when set to centre
 * FIXED: Grabbing all custom fields could be slow. Using a transient which may cause problems of its own! New custom fields may not appear straight away (remembering tho they must contain data first)
 * FIXED: Various minor tweaks and fixes
+* FIXED: Licence system now works for both Pizazz shop and Headway store from the one file
+* FIXED: Animation not working on custom field groups
 
 * UPDATED: TGM Library to v2.4.1 with XSS vulnerability fix
 

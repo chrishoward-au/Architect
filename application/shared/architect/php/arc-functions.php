@@ -94,6 +94,8 @@
 //'architect_typography_units'
     global $_architect_options;
     $units        = isset( $_architect_options[ 'architect_typography_units' ] ) ? $_architect_options[ 'architect_typography_units' ] : 'px';
+    $extra_fonts = file_exists(content_url('extra-fonts.css'))?content_url('extra-fonts.css'):null;
+
     $return_array = array(
       'title'           => __( 'Typography', 'pzarchitect' ),
       'id'              => $id,
@@ -121,6 +123,7 @@
       'letter-spacing'  => true,
       'units'           => $units,
       'default'         => $defaults,
+      'ext-font-css' =>  $extra_fonts
     );
     foreach ( $return_array as $k => $v ) {
       if ( in_array( $k, $exclude ) ) {
