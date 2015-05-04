@@ -30,7 +30,7 @@
       $boxSections[ ] = array(
         'desc'   =>
           '<p>' . __( 'Drag and drop the Blueprints to appear on this page from Disable to Enabled. To show this page\'s own content, use a single page type Blueprint. The comments option is a built in.', 'pzarchitect' ) . '</p>' .
-          '<p style="color:tomato;">' . __( 'NOTE: For these Blueprints to show, you <strong>must</strong> set the Template to <strong>Architect Builder</strong> in the Page Attributes settings at the right.', 'pzarchitect' ) . '</p>',
+          '<p style="color:tomato;">' . __( 'NOTE: For these Blueprints to show, you <strong>must</strong> set the Template to <strong>Architect Builder</strong> in the <strong>Page Attributes</strong> settings at the right.', 'pzarchitect' ) . '</p>',
         'fields' => array(
 
 

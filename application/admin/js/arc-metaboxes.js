@@ -1,10 +1,30 @@
 jQuery( document ).ready( function ()
 {
-    "use strict";
+  "use strict";
 
 //  jQuery("input#pzarc_testimonial-url" ).attr("required","required");
   jQuery('body.pz_testimonials #title-prompt-text' ).text('Person\'s Name')
   jQuery("input#pzarc_testimonial-url" ).attr("pattern",  "https?://.+");
+
+
+
+  if (jQuery('#page_template :selected').val()==='arc_page_template.php'){
+    jQuery('#redux-_architect-metabox-pzarc_mb-pagebuilder' ).removeClass('closed');
+    jQuery.redux.initFields();
+  } else {
+    jQuery('#redux-_architect-metabox-pzarc_mb-pagebuilder' ).addClass('closed');
+  }
+
+  jQuery('#page_template' ).on('change',function(){
+    if (jQuery(this).find(':selected').val()==='arc_page_template.php') {
+      jQuery('#redux-_architect-metabox-pzarc_mb-pagebuilder' ).removeClass('closed');
+      jQuery.redux.initFields();
+    } else {
+      jQuery('#redux-_architect-metabox-pzarc_mb-pagebuilder' ).addClass('closed');
+    }
+
+  });
+
 
   // Active form validation
   //  jQuery( "#post" ).validationEngine();
@@ -39,6 +59,5 @@ jQuery( document ).ready( function ()
 //            className: 'architect-tips'
 //        } );
 //    }
-
 
 } );

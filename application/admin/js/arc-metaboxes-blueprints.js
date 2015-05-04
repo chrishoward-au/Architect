@@ -267,47 +267,6 @@ jQuery( document ).ready( function ()
    */
   function init()
   {
-    // Setup section wireframe
-
-//        pzarc_refresh_blueprint_layout( 0 );
-//        pzarc_refresh_blueprint_layout( 1 );
-//        pzarc_refresh_blueprint_layout( 2 );
-//
-//        var navtype = jQuery( 'fieldset#_architect-_blueprints_navigation input:checked' ).val();
-//        console.log( navtype );
-//        jQuery( "#pzarc-navigator-preview .pzarc-sections" ).hide();
-//        if ( navtype !== "none" )
-//        {
-//            var np = jQuery( ".pzarc-section-" + navtype ).get( 0 );
-//            jQuery( np ).show();
-//        }
-//        pzarc_update_usage_info( jQuery( "input#_blueprints_short-name-text" ));
-//
-//        for ( var i = 0; i < 3; i++ )
-//        {
-//            jQuery( 'input#_blueprints_section-' + i + '-panels-vert-margin' ).change( function ()
-//            {
-//                //console.log(this.id.substr(20,1));
-//                pzarc_refresh_blueprint_layout( this.id.substr( 20, 1 ) );
-//            } );
-//            jQuery( 'input#_blueprints_section-' + i + '-panels-per-view' ).change( function ()
-//            {
-//                pzarc_refresh_blueprint_layout( this.id.substr( 20, 1 ) );
-//            } );
-////            jQuery( 'input#_blueprints_section-' + i + '-panels-per-view' ).change( function ()
-////            {
-////                pzarc_refresh_blueprint_layout( this.id.substr( 20, 1 ) );
-////            } );
-//            jQuery( 'input#_blueprints_section-' + i + '-min-panel-width' ).change( function ()
-//            {
-//                pzarc_refresh_blueprint_layout( this.id.substr( 20, 1 ) );
-//            } );
-
-// ---   jQuery('#_pzarc_' + i + '-blueprint-section-enable-cmb-field-0').change(function () {
-//      var x = this.id.substr(20,1);
-//      pzarc_show_hide_section(x);
-//    });
-//        }
 
 
     // This updates the shortname help text the explains how to use the shortcode
@@ -324,13 +283,25 @@ jQuery( document ).ready( function ()
       process_tabs(layout_mode.get(0 ).value);
     }
     //Initialize top tabs
-    jQuery( ".redux-sidebar li#_section1_box_redux-_architect-metabox-layout-settings_section_group_li" ).find( 'a' ).trigger( "click" );
-    jQuery( ".redux-sidebar li#_general_box_redux-_architect-metabox-content-selections_section_group_li" ).find( 'a' ).trigger( "click" );
+    //jQuery( ".redux-sidebar li#_section1_box_redux-_architect-metabox-layout-settings_section_group_li" ).find( 'a' ).trigger( "click" );
+    //jQuery( ".redux-sidebar li#_general_box_redux-_architect-metabox-content-selections_section_group_li" ).find( 'a' ).trigger( "click" );
 //    jQuery( ".redux-sidebar li#_section1_box_redux-_architect-metabox-layout-settings_section_group_li" ).find( 'a' ).trigger( "click" );
+
+    var prev_active = localStorage.getItem("arc_current_tab");
+    if (prev_active) {
+      jQuery(prev_active ).trigger('click',function(){
+        console.log(this);
+      });
+    }
+
+    // This does bugger all yet!
+    var prev_sidetab = JSON.parse(localStorage.getItem("arc_current_sidetab"));
+    for (var i = 0; i < prev_sidetab.length; i++) {
+      jQuery(prev_sidetab[i]).click();
+    }
 
   }
 
-  init();
 
 
   /**
@@ -468,13 +439,32 @@ jQuery( document ).ready( function ()
   //
   //});
 
+  jQuery("input#publish" ).on('click',function(){
+    var current_tab = jQuery('#_architect-_blueprint_tabs_tabs ul li.active' ).attr('id');
+    localStorage.setItem("arc_current_tab", '#'+current_tab);
+    var current_sidetab = jQuery('.redux-group-tab-link-li.active');
+    var current_sidetabs =[] ;
+    jQuery(current_sidetab ).each(function(){
+      current_sidetabs.push('#'+jQuery(this).attr('id'));
+    })
+
+    localStorage.setItem("arc_current_sidetab", JSON.stringify(current_sidetabs));
+
+  });
+
+  init();
+
 } );
 
 
 jQuery( window ).load( function ()
 {
-  if ( jQuery( '#0_box_redux-_architect-metabox-layout-settings_section_group_li.active' ).length === 0 )
-  {
-    jQuery( '#0_box_redux-_architect-metabox-layout-settings_section_group_li' ).find( 'a' ).trigger( 'click' );
-  }
+
+
+
+  //if ( jQuery( '#0_box_redux-_architect-metabox-layout-settings_section_group_li.active' ).length === 0 )
+  //{
+  //  jQuery( '#0_box_redux-_architect-metabox-layout-settings_section_group_li' ).find( 'a' ).trigger( 'click' );
+  //}
+
 } );

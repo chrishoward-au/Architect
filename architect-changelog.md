@@ -1,5 +1,5 @@
 # Architect change history 
-### 1.2.0 : 1 May 2015 
+### 1.2.0 : 4 May 2015 
 * ADDED: Animation of components. Doesn't react to sliding yet.
 * ADDED: Block, shortcode, template tag, builder and widget now support different Blueprints per device type: Desktop/any, Tablet, Phone.
 * ADDED: Sysinfo to Tools menu
@@ -9,6 +9,7 @@
 * ADDED: Function pzarc_create_blueprint to allow devs to automatically create new Blueprints
 * CHANGED: Typography to treat line heights less than three as multipliers, not absolutes.
 * CHANGED: Architect will run in Lite mode if no valid licence from either Headway Extend store or Pizazz shop is active
+* CHANGED: Architect Builder is hidden if its page template is not selected
 * FIXED: Some PHP notices
 * FIXED: Custom fields styling pretty much didn't work!
 * FIXED: Blueprints custom CSS went missing
@@ -20,9 +21,13 @@
 * FIXED: Grabbing all custom fields could be slow. Using a transient which may cause problems of its own! New custom fields may not appear straight away (remembering tho they must contain data first)
 * FIXED: Various minor tweaks and fixes
 * FIXED: Licence system now works for both Pizazz shop and Headway store from the one file
+* FIXED: Animation not working on custom field groups
+* FIXED: Adaptive not displaying from shortcodes
+* FIXED: Component animation runs panel-by-panel
+* FIXED: Fields not rendering correctly in Blueprint editor
 * UPDATED: TGM Library to v2.4.1 with XSS vulnerability fix
-* REMOVED: Custom field group styling defaults since they're so variable and thus just clutter
 
+* REMOVED: Custom field group styling defaults since they're so variable and thus just clutter
 ### 1.1.6 
 *  ADDED: Additional filters and hooks for developers
 *  ADDED: News feed to Help & Support

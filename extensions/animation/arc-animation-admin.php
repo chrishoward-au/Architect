@@ -97,8 +97,13 @@
         'show_title' => false,
         'icon_class' => 'icon-large',
         'icon'       => 'el-icon-adjust-alt',
-        'desc'=>__('Architect provides a lot of control over animation. In testing, I found if you try and do too much, it\'s quite easy for this to get very confusing and hard to follow what and why is happening during the playing of the animations. So I would suggest the old rule: <strong>Keep it simple</strong>.'),
+        'desc'=>__('Architect provides a lot of control over animation. In testing, I found if you try and do too much, it\'s quite easy for this to get very confusing and hard to follow what and why is happening during the playing of the animations. So I would suggest the old rule: <strong>Keep it simple</strong>.<p>Note: Using Masonry and Animation together can and will likely interfere with each other, producing unwanted results.</p>'),
         'fields'     => array(
+          array(
+            'id'     => $prefix . '-caveats',
+            'type'   => 'info',
+            'desc'=>__('<p>Animations activate when the element they are attached to becomes visible on the screen and after any delay set for them.</p><p>When setting the synchronization as Consecutive the delay used is the accumulation of the durations of the preceding animations. Thus, the last one could trigger some 30 seconds after the first one. If you need to scroll to see additional posts and their animations, the animations will obey the first rule i.e. you might be waiting 30 seconds for that last animation <strong>after it becomes visible</strong>, not after the first one!</p><p>Considering all this, it\'s not a good idea to use the Consecutive sync when you have many animations being performed and may posts the viewer has to scroll to see.</p><p>In that situation, it\'s better to use the simultaneous sync with an optional short delay on each element or use a high overlap, of 70% or more.</p><p>Animations do require a lot of trial and error to find what works. But most of all <strong>keep it simple</strong>!</p><br>','pzarchitect')
+          ),
           array(
             'title'   => __( 'Animate', 'pzarchitect' ),
             'id'      => $prefix . 'target',
@@ -109,6 +114,16 @@
               'fields' => __( 'Content', 'pzarchitect' ),
             )
           ),
+//          array(
+//            'title'      => __( 'Trigger point', 'pzarchitect' ),
+//            'id'         => $prefix . 'trigger-point',
+//            'type'       => 'spinner',
+//            'subtitle'=>__('When scrolling, this is how far from the bottom of the screen the animation triggers','pzarchitect'),
+//            'default'    => 0,
+//            'min'        => 0,
+//            'step'       => 1,
+//            'max'        => 1000,
+//          ),
           array(
             'title'    => 'Content sequence',
             'id'       => $prefix . 'content-sequence-start-section',
@@ -139,17 +154,18 @@
             ),
             'default'  => array(),
           ),
-          array(
-            'title'    => __( 'Content synchronization', 'pzarchitect' ),
-            'id'       => $prefix . 'sequence-sync',
-            'type'     => 'button_set',
-            'default'  => 'serial',
-            'subtitle' => __( ' Set whether content animation should happen in the order set (e.g. all the titles, then all the images) or simultaneously. This does not affect the individual synchronization', 'pzarchitect' ),
-            'options'  => array(
-              'serial'   => __( 'As ordered', 'pzarchitect' ),
-              'parallel' => __( 'Simultaneously', 'pzarchitect' ),
-            )
-          ),
+
+          //          array(
+//            'title'    => __( 'Content synchronization', 'pzarchitect' ),
+//            'id'       => $prefix . 'sequence-sync',
+//            'type'     => 'button_set',
+//            'default'  => 'serial-panel',
+//            'subtitle' => __( ' Set whether content animation should happen in the order of the panels  or simultaneously. This does not affect the individual synchronization', 'pzarchitect' ),
+//            'options'  => array(
+//              'serial'   => __( 'Consecutively', 'pzarchitect' ),
+//              'parallel' => __( 'Simultaneously', 'pzarchitect' ),
+//            )
+//          ),
           array(
             'id'     => $prefix . 'conntent-sequence-end-section',
             'type'   => 'section',
@@ -201,13 +217,13 @@
             'type'    => 'select',
             'class'   => 'js--animations ' . $prefix . 'panels',
             'options' => $animation_options,
-            'select2' => array( 'allowClear' => false ),
             'default' => 'none',
           ),
           array(
             'title'      => __( 'Duration', 'pzarchitect' ),
             'id'         => $prefix . 'panels-duration',
             'type'       => 'slider',
+            'subtitle'=>__('This is how long the animation runs for each panel','pzarchitect'),
             'default'    => 1,
             'min'        => 0,
             'step'       => 0.1,
@@ -218,6 +234,7 @@
             'title'      => __( 'Delay', 'pzarchitect' ),
             'id'         => $prefix . 'panels-delay',
             'type'       => 'slider',
+            'subtitle'=>__('This is the delay before the animation begins. For consecutive it is applied to the first only, for simultaneous, it is applied to each','pzarchitect'),
             'default'    => 1,
             'min'        => 0,
             'step'       => 0.1,
@@ -234,17 +251,18 @@
               'serial'   => __( 'Consecutively', 'pzarchitect' ),
               'parallel' => __( 'Simultaneously', 'pzarchitect' ),
               'random'   => __( 'Randomly', 'pzarchitect' )
-            )
+            ),
+            'desc'=>__('In consecutive, the delay is only applied to the first occurrence. In simultaneous, it is applied to each','pzarchitect'),
           ),
           array(
             'title'      => __( 'Overlap (%)', 'pzarchitect' ),
-            'subtitle'   => __( 'An overlap of zero will wait until the previous animation completes, an over lap of 50 will wait until it is half completed' ),
+            'subtitle'   => __( 'E.g. An overlap of zero will wait until the previous animation completes, an over lap of 50 will wait until the previous animation is half completed.' ),
             'id'         => $prefix . 'panels-overlap',
             'type'       => 'slider',
             'required'   => array( $prefix . 'panels-sync', '=', 'serial' ),
             'default'    => 50,
             'min'        => 0,
-            'step'       => 1,
+            'step'       => 5,
             'max'        => 100,
             'resolution' => 1
           ),
@@ -344,13 +362,13 @@
           'type'    => 'select',
           'class'   => 'js--animations ' . $component,
           'options' => $animation_options,
-          'select2' => array( 'allowClear' => false ),
           'default' => 'none',
         ),
         array(
           'title'      => __( 'Duration', 'pzarchitect' ),
           'id'         => $component . '-duration',
           'type'       => 'slider',
+          'subtitle'=>__('This is how long the animation runs for this component','pzarchitect'),
           'default'    => 1,
           'min'        => 0,
           'step'       => 0.1,
@@ -361,7 +379,8 @@
           'title'      => __( 'Delay', 'pzarchitect' ),
           'id'         => $component . '-delay',
           'type'       => 'slider',
-          'default'    => 1,
+          'subtitle'=>__('This is the delay before the animation begins. For consecutive it is applied to the first only, for simultaneous, it is applied to each.','pzarchitect'),
+          'default'    => 0,
           'min'        => 0,
           'step'       => 0.1,
           'max'        => 20,
@@ -373,6 +392,7 @@
           'type'     => 'button_set',
           'default'  => 'serial',
           'subtitle' => __( 'Where there are multiple posts, should animations for this component type happen simultaneously or consecutively', 'pzarchitect' ),
+          'desc'=>__('In consecutive, the delay is only applied to the first occurrence. In simultaneous, it is applied to each.','pzarchitect'),
           'options'  => array(
             'serial'   => __( 'Consecutively', 'pzarchitect' ),
             'parallel' => __( 'Simultaneously', 'pzarchitect' ),
@@ -385,12 +405,13 @@
           'id'         => $component . '-overlap',
           'type'       => 'slider',
           'required'   => array( $component . '-sync', '=', 'serial' ),
-          'default'    => 50,
+          'default'    => 75,
           'min'        => 0,
-          'step'       => 1,
+          'step'       => 5,
           'max'        => 100,
           'resolution' => 1
         ),
+
         ( $section_title ?
           array(
             'id'     => $component . 'end-section',

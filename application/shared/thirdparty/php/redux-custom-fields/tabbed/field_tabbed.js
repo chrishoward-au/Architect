@@ -22,6 +22,7 @@
         jQuery( targets ).each( function ()
         {
           jQuery( this ).show();
+          jQuery.redux.initFields();
         } );
 
         console.log( targets );
@@ -59,6 +60,7 @@
     {
 //            console.log("Show: ",this);
       jQuery( this ).show();
+      jQuery.redux.initFields();
     } );
     jQuery( targets ).each( function ()
     {

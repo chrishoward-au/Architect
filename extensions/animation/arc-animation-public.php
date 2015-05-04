@@ -10,7 +10,9 @@
   class arcAnimationPublic {
 
     public $pno = array();
+    public $offset = array();
     public $blueprint;
+    public $running_duration =0;
 
     function __construct() {
       add_action( 'init', array( $this, 'init' ) );
@@ -44,34 +46,15 @@
         }
       }
       foreach ( $blueprint[ '_animation_sequence' ] as $value ) {
-        $this->pno[ $value ] = 0;
+        $this->pno[ $value ]    = 0;
+        $this->offset[ $value ] = 0;
       }
       $this->pno[ 'panels' ] = 0;
       $this->blueprint       = $blueprint;
-
       return $blueprint;
     }
 
-//    static $pno = 0;
-//  $panel_def[$component] = self::process_animation('meta1',$panel_def[$component],$pno);
-//  $panel_def[$component] = self::process_animation('meta2',$panel_def[$component],$pno);
-//  $panel_def[$component] = self::process_animation('meta3',$panel_def[$component],$pno++);
-
-//  $pzclasses .= ! empty( $this->section[ '_panels_design_animate-components' ] ) && $this->section[ '_panels_design_animate-components' ] !== 'none' ? ' animated ' . $this->section[ '_panels_design_animate-components' ] : '';
-//  if ('components-open'===$component) {
-//    static $pno = 0;
-//  $line = self::process_animation( 'panel', $line, $pno ++ );
-//  }
-
-
-//    private function process_animation( $ani_component, $panel_def_component, $pno, &$blueprint ) {
-    function process_animation( $line, $component, $source, $layout_mode ) {
-
-      if ( $this->blueprint[ '_animation_target' ] === 'panels' ) {
-        return $line;
-      }
-      $ppp = empty($this->blueprint[ '_blueprints_section-0-panels-limited' ])?get_option('posts_per_page'):$this->blueprint[ '_blueprints_section-0-panels-per-view' ];
-
+    function process_component_name($component) {
       $ani_component = $component;
       switch ( true ) {
         case 'excerpt' === $component:
@@ -81,28 +64,42 @@
           $ani_component = 'feature';
           break;
       }
+      return $ani_component;
+    }
+
+    function process_animation( $line, $component, $source, $layout_mode ) {
+
+      if ( $this->blueprint[ '_animation_target' ] === 'panels' ) {
+        return $line;
+      }
+      $ppp = empty( $this->blueprint[ '_blueprints_section-0-panels-limited' ] ) ? get_option( 'posts_per_page' ) : $this->blueprint[ '_blueprints_section-0-panels-per-view' ];
+
+      $ani_component = self::process_component_name($component);
       if ( in_array( $ani_component, $this->blueprint[ '_animation_sequence' ] ) ) {
         $delay = 0;
-        switch ( $this->blueprint[ '_animation_' . $ani_component . '-sync' ] ) {
-          case 'serial':
-            $delay = ( $this->blueprint[ '_animation_' . $ani_component . '-delay' ] + ( $this->blueprint[ '_animation_' . $ani_component . '-duration' ] * $this->pno[ $ani_component ] * ( 1 - $this->blueprint[ '_animation_' . $ani_component . '-overlap' ] / 100 ) ) );
+
+        // Component sync in component order (e.g all the titles first, then all the features)
+ //       $serial_components_snyc = array_search( $ani_component, $this->blueprint[ '_animation_sequence' ] ) * $this->blueprint[ '_animation_' . $ani_component . '-duration' ] * $ppp;
+
+        switch ( true ) {
+
+          case 'serial'==$this->blueprint[ '_animation_' . $ani_component . '-sync' ] :
+            $delay= $this->running_duration+($this->blueprint[ '_animation_' . $ani_component . '-delay' ]* ($this->pno[ $ani_component ]===0));
+            $this->running_duration += ($this->blueprint[ '_animation_' . $ani_component . '-duration' ]*( 1 - $this->blueprint[ '_animation_' . $ani_component . '-overlap' ] / 100 ) )+($this->blueprint[ '_animation_' . $ani_component . '-delay' ]* ($this->pno[ $ani_component ]===0));
             break;
-          case 'parallel':
-            $delay = 0;
+
+          case 'parallel'==$this->blueprint[ '_animation_' . $ani_component . '-sync' ]:
+            $delay = $this->blueprint[ '_animation_' . $ani_component . '-delay' ];
             break;
-          case 'random':
+
+          case 'random'==$this->blueprint[ '_animation_' . $ani_component . '-sync' ]:
             $delay = rand( 0, $ppp );
             break;
 
         }
 
-        $offset = 0;
-        if ( $this->blueprint[ '_animation_sequence-sync' ] == 'serial' ) {
-          $offset = array_search( $ani_component, $this->blueprint[ '_animation_sequence' ] ) * $this->blueprint[ '_animation_' . $ani_component . '-duration' ] * $ppp;
-          //      var_dump($offset,$delay);
-        }
         $animation_classes           = 'pzarc-wow ' . $this->blueprint[ '_animation_' . $ani_component . '-animation' ] . ' ';
-        $animation_data              = 'data-wow-duration="' . $this->blueprint[ '_animation_' . $ani_component . '-duration' ] . 's" data-wow-delay="' . ( $delay + $offset ) . 's" ';
+        $animation_data              = 'data-wow-duration="' . $this->blueprint[ '_animation_' . $ani_component . '-duration' ] . 's" data-wow-delay="' . ( $delay + $this->offset[ $ani_component ] ) . 's"';
         $line                        = str_replace( '{{extensionclass}}', '{{extensionclass}} ' . $animation_classes, $line );
         $line                        = str_replace( '{{extensiondata}}', '{{extensiondata}}' . $animation_data, $line );
         $this->pno[ $ani_component ] = $this->pno[ $ani_component ] + 1 > $ppp ? 0 : $this->pno[ $ani_component ] + 1;
@@ -118,7 +115,7 @@
       }
       static $counter = 1;
       static $this_blueprint = '';
-      $this_blueprint = empty($this_blueprint)?$this->blueprint[ '_blueprints_short-name' ]:$this_blueprint;
+      $this_blueprint = empty( $this_blueprint ) ? $this->blueprint[ '_blueprints_short-name' ] : $this_blueprint;
       if ( $counter % 2 == 0 ) {
         $classes .= ' pzarc-wow ' . $this->blueprint[ '_animation_panels-animation-alt' ];
 
@@ -140,14 +137,14 @@
       if ( $this->blueprint[ '_animation_target' ] !== 'panels' ) {
         return $data;
       }
-      $ppp = empty($this->blueprint[ '_blueprints_section-0-panels-limited' ])?get_option('posts_per_page'):$this->blueprint[ '_blueprints_section-0-panels-per-view' ];
+      $ppp   = empty( $this->blueprint[ '_blueprints_section-0-panels-limited' ] ) ? get_option( 'posts_per_page' ) : $this->blueprint[ '_blueprints_section-0-panels-per-view' ];
       $delay = 0;
       switch ( $this->blueprint[ '_animation_panels-sync' ] ) {
         case 'serial':
           $delay = ( $this->blueprint[ '_animation_panels-delay' ] + ( $this->blueprint[ '_animation_panels-duration' ] * $this->pno[ 'panels' ] * ( 1 - $this->blueprint[ '_animation_panels-overlap' ] / 100 ) ) );
           break;
         case 'parallel':
-          $delay = 0;
+          $delay = $this->blueprint[ '_animation_panels-delay' ];
           break;
         case 'random':
           $delay = rand( 0, $ppp );

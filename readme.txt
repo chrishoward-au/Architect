@@ -3,7 +3,7 @@ Contributors: chrishoward
 Tags: content,display,posts,pages,gallery,slider,tabs,tabbed,tabular,widget,hooks
 Requires at least: 3.5.0
 Tested up to: 4.2.1
-Stable tag: 1.1.8.3
+Stable tag: 1.2.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Plugin URI: http://architect4wp.com
@@ -104,6 +104,7 @@ For support, please send an email to support@pizazzwp.com
 
 * CHANGED: Typography to treat line heights less than three as multipliers, not absolutes.
 * CHANGED: Architect will run in Lite mode if no valid licence from either Headway Extend store or Pizazz shop is active
+* CHANGED: Architect Builder is hidden if its page template is not selected
 
 * FIXED: Some PHP notices
 * FIXED: Custom fields styling pretty much didn't work!
@@ -117,6 +118,9 @@ For support, please send an email to support@pizazzwp.com
 * FIXED: Various minor tweaks and fixes
 * FIXED: Licence system now works for both Pizazz shop and Headway store from the one file
 * FIXED: Animation not working on custom field groups
+* FIXED: Adaptive not displaying from shortcodes
+* FIXED: Component animation runs panel-by-panel
+* FIXED: Fields not rendering correctly in Blueprint editor
 
 * UPDATED: TGM Library to v2.4.1 with XSS vulnerability fix
 

@@ -13,11 +13,11 @@
   add_shortcode( 'pzarc', 'pzarc_shortcode' ); // Old version
   add_shortcode( 'pzarchitect', 'pzarc_shortcode' ); // alternate version
   // I still don't understand why this works!! One day, maybe I will
-  add_action( 'arc_do_shortcode', 'pzarc', 10, 6);
+  add_action( 'arc_do_shortcode', 'pzarc', 10, 7);
   add_filter( 'body_class', 'add_pzarc_class' );
 
-  add_action( 'arc_do_pagebuilder', 'pzarc', 10,3);
-  add_action( 'arc_do_template_tag', 'pzarc', 10, 5 );
+  add_action( 'arc_do_pagebuilder', 'pzarc', 10,7);
+  add_action( 'arc_do_template_tag', 'pzarc', 10, 7 );
 
   // How do we do this only on pages needing it?
   /**
@@ -120,17 +120,16 @@
     if ( ! empty( $atts[ 'blueprint' ] ) ) {
 
       $pzarc_blueprint = $atts[ 'blueprint' ];
-      $pzarc_overrides = $atts;
-      array_shift( $pzarc_overrides );
 
     } elseif ( ! empty( $atts[ 0 ] ) ) {
       $pzarc_blueprint = $atts[ 0 ];
-      $pzarc_overrides = $atts;
-      array_shift( $pzarc_overrides );
     }
 
+    $pzarc_overrides = isset($atts['ids'])?array('ids'=>$atts['ids']):null;
     $tablet_bp = isset($atts['tablet'])?$atts['tablet']:null;
     $phone_bp = isset($atts['phone'])?$atts['phone']:null;
+    $tag=null;
+    $additional_overrides = null;
 
     // Need to capture the output so we can get it to appear where the shortcode actually is
     ob_start();
@@ -140,7 +139,7 @@
 
 
     // The caller is shortcode, and not variable here. It just uses a variable for consistency and documentation
-    do_action( "arc_do_shortcode", $pzarc_blueprint, $pzarc_overrides, $pzarc_caller, $tag, $tablet_bp,$phone_bp );
+    do_action( "arc_do_shortcode", $pzarc_blueprint, $pzarc_overrides, $pzarc_caller, $tag, $additional_overrides,$tablet_bp,$phone_bp );
 
     do_action( "arc_after_shortcode", $pzarc_blueprint, $pzarc_overrides, $pzarc_caller, $tag );
 
@@ -160,8 +159,10 @@
    ***********************/
   function pzarchitect( $pzarc_blueprint = null, $pzarc_overrides = null,$tablet_bp=null,$phone_bp=null ) {
     $pzarc_caller = 'template_tag';
+    $tag=null;
+    $additional_overrides = null;
     do_action( "arc_before_template_tag", $pzarc_blueprint, $pzarc_overrides, $pzarc_caller );
-    do_action( "arc_do_template_tag", $pzarc_blueprint, $pzarc_overrides, $pzarc_caller, $tablet_bp,$phone_bp );
+    do_action( "arc_do_template_tag", $pzarc_blueprint, $pzarc_overrides, $pzarc_caller, $tag, $additional_overrides,$tablet_bp,$phone_bp );
     do_action( "arc_after_template_tag", $pzarc_blueprint, $pzarc_overrides, $pzarc_caller );
   }
 
@@ -173,8 +174,13 @@
    ***********************/
   function pzarc_pagebuilder( $pzarc_blueprint = null) {
     $pzarc_caller = 'pagebuilder';
+    $tag=null;
+    $additional_overrides = null;
+    $tablet_bp = null;
+    $phone_bp=null;
+//TODO: Need to fix this up so it uses these right
 //    do_action("arc_before_pagebuilder", $pzarc_blueprint, $pzarc_overrides, $pzarc_caller);
-    do_action( "arc_do_pagebuilder", $pzarc_blueprint,null, $pzarc_caller );
+    do_action( "arc_do_pagebuilder", $pzarc_blueprint,null, $pzarc_caller,$tag, $additional_overrides,$tablet_bp,$phone_bp  );
 //    do_action("arc_after_pagebuilder", $pzarc_blueprint, $pzarc_overrides, $pzarc_caller);
   }
 
@@ -190,19 +196,23 @@
 
     require_once( PZARC_PLUGIN_APP_PATH . '/shared/thirdparty/php/Mobile-Detect/Mobile_Detect.php' );
     $detect = new Mobile_Detect;
+    $device = 'not set';
 
     switch ( true ) {
       case ( $detect->isMobile() && ! $detect->isTablet() ):
         // Phone
         $blueprint = !empty($phone_bp)?$phone_bp:$blueprint;
+        $device='phone';
         break;
       case ( $detect->isTablet() ):
         // Tablet
         $blueprint = !empty($tablet_bp)?$tablet_bp:$blueprint;
+        $device='tablet';
         break;
       default:
         // Desktop or other weird thing
         $blueprint = $blueprint;
+        $device='desktop';
         break;
     }
 
