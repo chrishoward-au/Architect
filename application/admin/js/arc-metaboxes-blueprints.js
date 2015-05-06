@@ -296,10 +296,13 @@ jQuery( document ).ready( function ()
 
     // This does bugger all yet!
     var prev_sidetab = JSON.parse(localStorage.getItem("arc_current_sidetab"));
-    for (var i = 0; i < prev_sidetab.length; i++) {
-      jQuery(prev_sidetab[i]).click();
+    if (prev_sidetab)
+    {
+      for ( var i = 0; i < prev_sidetab.length; i++ )
+      {
+        jQuery( prev_sidetab[i] ).click();
+      }
     }
-
   }
 
 

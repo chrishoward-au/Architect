@@ -207,7 +207,6 @@
             'type'    => 'select',
             'class'   => 'js--animations ' . $prefix . 'panels',
             'options' => $animation_options,
-            'select2' => array( 'allowClear' => false ),
             'default' => 'none',
           ),
           array(
