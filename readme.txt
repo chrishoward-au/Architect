@@ -3,7 +3,7 @@ Contributors: chrishoward
 Tags: content,display,posts,pages,gallery,slider,tabs,tabbed,tabular,widget,hooks
 Requires at least: 3.5.0
 Tested up to: 4.2.1
-Stable tag: 1.2.1
+Stable tag: 1.2.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Plugin URI: http://architect4wp.com
@@ -93,7 +93,10 @@ For support, please send an email to support@pizazzwp.com
 
 == Changelog ==
 
-= 1.2.1 : 6 May 2015 =
+= 1.2.2  =
+* FIXED: Animation errors if no animations set for content
+
+= 1.2.1  =
 * FIXED: Blueprints not found message when using block display with no blueprints set for phone and tablet and viewing on tablet or phone
 
 = 1.2.0 : 4 May 2015 =

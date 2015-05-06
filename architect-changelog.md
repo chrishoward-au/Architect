@@ -1,4 +1,10 @@
 # Architect change history 
+### 1.2.2  
+* FIXED: Animation errors if no animations set for content
+
+### 1.2.1 : 6 May 2015 
+* FIXED: Blueprints not found message when using block display with no blueprints set for phone and tablet and viewing on tablet or phone
+
 ### 1.2.0 : 4 May 2015 
 * ADDED: Animation of components. Doesn't react to sliding yet.
 * ADDED: Block, shortcode, template tag, builder and widget now support different Blueprints per device type: Desktop/any, Tablet, Phone.
