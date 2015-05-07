@@ -198,13 +198,13 @@
       $content_class = self::get_blueprint_content_class();
       if ( class_exists( $content_class ) ) {
         $panel_class = new $content_class( $this->build ); // This gets the settings for the panels of this content type.
-
         if ( $bp_nav_type === 'navigator' ) {
           $this->nav_items = $panel_class->get_nav_items( $this->build->blueprint[ '_blueprints_navigator' ], $this->arc_query, $this->build->blueprint[ '_blueprints_navigator-labels' ] );
         }
         /** RENDER THE BLUEPRINT */
+pzdb('pre render');
         self::render_this_architect_blueprint( $bp_nav_type, $bp_nav_pos, $bp_shortname, $caller, $bp_transtype, $panel_class, $content_class, $bp_type );
-
+pzdb('post render');
       }
 
       /** Set our original query back. */
@@ -245,8 +245,10 @@
        *
        */
 
+      pzdb('top blueprint html');
       echo '<div id="pzarc-blueprint_' . $this->build->blueprint[ '_blueprints_short-name' ] . '" class="' . $this->build->blueprint[ 'uid' ] . ' pzarchitect layout-' . $blueprint_type . ' ' . $use_hw_css . ' pzarc-blueprint pzarc-blueprint_' . $this->build->blueprint[ '_blueprints_short-name' ] . ' nav-' . $bp_nav_type . ' icomoon ' . ( $bp_nav_type === 'navigator' ? 'navpos-' . $bp_nav_pos : '' ) . '">';
       /** Page title */
+      pzdb('after blueprint open');
       echo apply_filters( 'arc_page_title', self::display_page_title( $this->build->blueprint[ '_blueprints_page-title' ], array(
         'category' => $_architect_options[ 'architect_language-categories-archive-pages-title' ],
         'tag'      => $_architect_options[ 'architect_language-tags-archive-pages-title' ],
@@ -254,7 +256,7 @@
         'custom'   => $_architect_options[ 'architect_language-custom-archive-pages-title' ]
       ) ) );
 
-
+pzdb();
       /** NAVIGATION TOP/LEFT */
       // These are the slider and tabbed controls
       do_action( 'arc_before_navigation_top_left' );
@@ -266,7 +268,7 @@
       do_action( 'arc_after_navigation_top_left' );
       do_action( 'arc_after_navigation_top_left_' . $bp_shortname );
 
-
+pzdb();
       /** Display pagination above */
       // As pagination is WP core, devs can modify pagination in the same way PageNavi hooks in
       if ( ! empty( $this->arc_pagination[ 'pagination' ] ) && ( $this->build->blueprint[ '_blueprints_pager-location' ] === 'top' || $this->build->blueprint[ '_blueprints_pager-location' ] === 'both' ) ) {
@@ -283,15 +285,18 @@
 
       do_action( 'arc_before_panels_wrapper' );
       do_action( 'arc_before_panels_wrapper_' . $bp_shortname );
+      pzdb();
 
       /** Sections opening HTML*/
       echo self::get_sections_opener( $bp_shortname, $bp_nav_type, $caller, $bp_transtype );
 
+      pzdb();
 
       /** LOOPS */
       // First loop always executes
       $panel_class->loop( 1, $this, $panel_class, $content_class );
 
+      pzdb();
 
       // End loop
       echo '</div> <!-- end blueprint sections -->';
@@ -314,11 +319,13 @@
         do_action( 'arc_after_pagination_below_' . $bp_shortname );
 
       }
+      pzdb();
 
       /** NAVIGATION BOTTOM OR RIGHT */
       // These are the slider and tabbed controls
       do_action( 'arc_after_navigation' );
       do_action( 'arc_after_navigation_' . $bp_shortname );
+      pzdb();
 
       // Devs can hook in with their own navigation
       do_action_ref_array( 'arc_bottom_right_navigation_' . $bp_shortname, array( &$this ) );
@@ -327,6 +334,7 @@
       do_action( 'arc_after_navigation_' . $bp_shortname );
 
       echo '</div> <!-- end pzarchitect blueprint ' . $this->build->blueprint[ '_blueprints_short-name' ] . '-->';
+      pzdb('end blueprint html');
 
       do_action( 'arc_after_architect' );
       do_action( 'arc_after_architect_' . $bp_shortname );
@@ -389,6 +397,7 @@
      * @return null|string
      */
     private function display_page_title( $display_title, $title_override ) {
+      pzdb('page title');
       if ( ! empty( $display_title ) || ! empty( $this->build->blueprint[ 'additional_overrides' ][ 'pzarc-overrides-page-title' ] ) ) {
         $title = '';
         global $wp_the_query;
@@ -578,13 +587,12 @@
 
       //TODO: oops! Need to get default content type when defaults chosen.
       $post_type = ( empty( $this->build->blueprint[ '_blueprints_content-source' ] ) ? ( empty( $this->arc_query->queried_object->post_type ) ? 'post' : $this->arc_query->queried_object->post_type ) : $this->build->blueprint[ '_blueprints_content-source' ] );
-
       $registry = arc_Registry::getInstance();
 
       // Build the query
       $content_source = $registry->get( 'content_source' );
       $class          = 'arc_Panel_' . ( 'defaults' === $this->build->blueprint[ '_blueprints_content-source' ] ? 'defaults' : $post_type );
-
+pzdb($post_type);
       if ( array_key_exists( $this->build->blueprint[ '_blueprints_content-source' ], $content_source ) ) {
         require_once $content_source[ $this->build->blueprint[ '_blueprints_content-source' ] ] . '/class_arc_panel_' . strtolower( $post_type ) . '.php';
       }

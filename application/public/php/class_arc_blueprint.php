@@ -63,7 +63,7 @@
 
       // Let others add ther own defaults
       $this->blueprint = apply_filters('pzarc-load-blueprint',$this->blueprint);
-
+pzdb('bottom of blueprint construct');
     }
 
 
@@ -74,7 +74,7 @@
      */
     function get_blueprint()
     {
-
+pzdb('top get blueprint');
       // meed to return a structure for the panels, the content source, the navgation info
       $meta_query_args = array(
           'post_type'    => 'arc-blueprints',

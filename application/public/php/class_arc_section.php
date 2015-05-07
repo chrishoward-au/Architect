@@ -54,7 +54,7 @@
       $this->slider_type            = $slider_type;
       $this->rsid                   = 'rsid' . (rand(1, 9999) * rand(10000, 99999));
       $this->table_accordion_titles = $table_accordion_titles;
-
+pzdb('construct section');
  //     wp_enqueue_style('pzarc_css_panel_' . $this->panel_name);
 
       if ('table' === $this->layout_mode) {

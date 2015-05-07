@@ -12,6 +12,7 @@
 
     protected function content_filters($source, $overrides)
     {
+      pzdb('pages content filters');
       $this->query_options[ 'post_type' ] = 'page';
       if (!empty($this->criteria['_content_pages_specific-pages'])) {
         $this->query_options[ 'post__in' ]       = $this->criteria['_content_pages_specific-pages'];
