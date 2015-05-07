@@ -3,7 +3,7 @@ Contributors: chrishoward
 Tags: content,display,posts,pages,gallery,slider,tabs,tabbed,tabular,widget,hooks
 Requires at least: 3.5.0
 Tested up to: 4.2.1
-Stable tag: 1.2.2
+Stable tag: 1.2.5
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Plugin URI: http://architect4wp.com
@@ -92,6 +92,23 @@ For support, please send an email to support@pizazzwp.com
 2. Slider example
 
 == Changelog ==
+
+= 1.2.5 =
+* ADDED: Option to exclude specific posts
+* ADDED: Option to exclude specific pages
+* ADDED: Option to exclude current post
+* ADDED: Option to exclude current page
+* FIXED: Post selector only showing 5 posts
+* FIXED: White screen error when saving in EDD 
+* FIXED: Fatal error on activating 1.2.4
+
+= 1.2.4 =
+* FIXED: Animations stopped working at 1.2.2
+* FIXED: Background images not animating
+* ADDED: Cache automatically clears after installing Architect update
+
+= 1.2.3 =
+* ADDED: Option to exclude margins from outer grid panels
 
 = 1.2.2  =
 * FIXED: Animation errors if no animations set for content

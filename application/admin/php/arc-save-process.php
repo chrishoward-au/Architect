@@ -23,6 +23,10 @@
     if (!$update) {
       return;
     }
+    // If get_current_Screen doesn't exist we really are in the wrong place!
+    if (!function_exists('get_current_screen') && $postid !== 'all') {
+      return;
+    }
     $screen = ('all' === $postid ? 'refresh-cache' : get_current_screen());
     /*
      * $screen:

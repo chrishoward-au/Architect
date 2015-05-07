@@ -247,7 +247,13 @@
     $margin_units = $pzarc_blueprints[ '_blueprints_section-' . $i . '-panels-margins' ]['units'];
 
     // Default units are %
-    $hmargin = ($lmargin+$rmargin).(empty($margin_units)?'%':$margin_units);
+    if (!empty($pzarc_blueprints['_blueprints_section-' . $i . '-panels-margins-guttered']) && 'basic' === $pzarc_blueprints[ '_blueprints_section-' . $i . '-layout-mode' ] && ! empty( $pzarc_blueprints[ '_blueprints_section-' . $i . '-layout-mode' ] )) {
+      $hmargin = (($lmargin+$rmargin)*($columns-1)/$columns).(empty($margin_units)?'%':$margin_units);
+// 15px 15px 3c.... 15+15*2/3 = 20px instead of 30px
+    } else {
+      $hmargin = ($lmargin+$rmargin).(empty($margin_units)?'%':$margin_units);
+
+    }
     $column_width = ( 0 == ($lmargin+$rmargin) ? 'calc(100%  / ' . $columns . ')' : 'calc(100% / ' . $columns . ' - ' . $hmargin . ')' );
 
     $panels_margins = pzarc_process_spacing($pzarc_blueprints[ '_blueprints_section-' . $i . '-panels-margins' ]);
@@ -263,12 +269,17 @@
         $pzarc_mediaq_css .= str_replace( '.pzarc-panel', '', $panels_class . ' .grid-sizer { width:' . $column_width . ';}' );
         break;
       case 'basic' === $pzarc_blueprints[ '_blueprints_section-' . $i . '-layout-mode' ] && ! empty( $pzarc_blueprints[ '_blueprints_section-' . $i . '-layout-mode' ] ):
+        if (!empty($pzarc_blueprints['_blueprints_section-' . $i . '-panels-margins-guttered'])) {
+          $pzarc_mediaq_css .= $panels_class . ':nth-child(-n+' .  $columns  . ') {margin-top: 0;}';
+//          $pzarc_mediaq_css .= $panels_class . ':nth-last-child(-n+' .  $columns  . ') {margin-bottom: 0;}'; // this only works for perfect grids
+          $pzarc_mediaq_css .= $panels_class . ':nth-child(' . $columns . 'n-' . ( $columns - 1 ) . ') {margin-left: 0;}';
+          $pzarc_mediaq_css .= $panels_class . ':nth-child(' . $columns . 'n) {margin-right: 0;}';
+        }
         break;
       default:
   //      $pzarc_mediaq_css .= $panels_class . ':nth-child(n) {margin-right: ' . ( $rmargin ) .$margin_units. ';}';
         $pzarc_mediaq_css .= $panels_class . ':nth-child(' . $columns . 'n) {margin-right: 0;}';
         break;
-
     }
     //              $pzarc_contents_css .= $classes . ' {width:' . (($column_width)) . '%;margin-bottom:' . $pzarc_blueprints[ '_blueprints_section-' . $i . '-panels-margins']['margin-bottom'] . '%;}';
 //    pzdebug($pzarc_mediaq_css);

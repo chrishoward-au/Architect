@@ -12,12 +12,12 @@
     public $pno = array();
     public $offset = array();
     public $blueprint;
-    public $running_duration =0;
+    public $running_duration = 0;
 
     function __construct() {
       add_action( 'init', array( $this, 'init' ) );
       add_filter( 'pzarc_render_components', array( $this, 'process_animation' ), 10, 4 );
-      add_filter( 'pzarc-load-blueprint', array( $this, 'load_blueprint' ),10,1 );
+      add_filter( 'pzarc-load-blueprint', array( $this, 'load_blueprint' ), 10, 1 );
       add_filter( 'pzarc-extend-panel-classes', array( $this, 'add_classes' ), 10, 2 );
       add_filter( 'pzarc-extend-panel-data', array( $this, 'add_data' ), 10, 2 );
 
@@ -33,68 +33,70 @@
     }
 
     function load_blueprint( $blueprint ) {
-      if (!empty($blueprint['animation_sequence'])) {
-        $animation          = new arcAnimationAdmin( true );
-        $metaboxes          = array();
-        $animation_settings = $animation->pzarc_mb_animation( $metaboxes, true );
+      $animation          = new arcAnimationAdmin( true );
+      $metaboxes          = array();
+      $animation_settings = $animation->pzarc_mb_animation( $metaboxes, true );
 
-        // Load the defaults
-        foreach ( $animation_settings[ 0 ][ 'sections' ] as $section ) {
-          foreach ( $section[ 'fields' ] as $field ) {
-            if ( isset( $field[ 'default' ] ) && ! isset( $blueprint[ $field[ 'id' ] ] ) ) {
-              $blueprint[ $field[ 'id' ] ] = $field[ 'default' ];
-            }
+      // Load the defaults
+      foreach ( $animation_settings[ 0 ][ 'sections' ] as $section ) {
+        foreach ( $section[ 'fields' ] as $field ) {
+          if ( isset( $field[ 'default' ] ) && ! isset( $blueprint[ $field[ 'id' ] ] ) ) {
+            $blueprint[ $field[ 'id' ] ] = $field[ 'default' ];
           }
         }
+      }
+      if ( ! empty( $blueprint[ '_animation_sequence' ] ) ) {
         foreach ( $blueprint[ '_animation_sequence' ] as $value ) {
           $this->pno[ $value ]    = 0;
           $this->offset[ $value ] = 0;
         }
-        $this->pno[ 'panels' ] = 0;
-        $this->blueprint       = $blueprint;
       }
+      $this->pno[ 'panels' ] = 0;
+      $this->blueprint       = $blueprint;
+
       return $blueprint;
     }
 
-    function process_component_name($component) {
+    function process_component_name( $component ) {
       $ani_component = $component;
       switch ( true ) {
         case 'excerpt' === $component:
           $ani_component = 'content';
           break;
         case 'image' === $component:
+        case 'bgimage' === $component:
           $ani_component = 'feature';
           break;
       }
+
       return $ani_component;
     }
 
     function process_animation( $line, $component, $source, $layout_mode ) {
-
-      if ( $this->blueprint[ '_animation_target' ] === 'panels' || empty($blueprint['animation_sequence'])) {
+      if ( $this->blueprint[ '_animation_target' ] === 'panels' || empty($this->blueprint[ '_animation_sequence' ]) ) {
         return $line;
       }
       $ppp = empty( $this->blueprint[ '_blueprints_section-0-panels-limited' ] ) ? get_option( 'posts_per_page' ) : $this->blueprint[ '_blueprints_section-0-panels-per-view' ];
-
-      $ani_component = self::process_component_name($component);
+//var_dump($ani_component,$component);
+      $ani_component = self::process_component_name( $component );
       if ( in_array( $ani_component, $this->blueprint[ '_animation_sequence' ] ) ) {
         $delay = 0;
 
         // Component sync in component order (e.g all the titles first, then all the features)
- //       $serial_components_snyc = array_search( $ani_component, $this->blueprint[ '_animation_sequence' ] ) * $this->blueprint[ '_animation_' . $ani_component . '-duration' ] * $ppp;
+        //       $serial_components_snyc = array_search( $ani_component, $this->blueprint[ '_animation_sequence' ] ) * $this->blueprint[ '_animation_' . $ani_component . '-duration' ] * $ppp;
 
         switch ( true ) {
 
-          case 'serial'==$this->blueprint[ '_animation_' . $ani_component . '-sync' ] :
-            $delay= $this->running_duration+($this->blueprint[ '_animation_' . $ani_component . '-delay' ]* ($this->pno[ $ani_component ]===0));
-            $this->running_duration += ($this->blueprint[ '_animation_' . $ani_component . '-duration' ]*( 1 - $this->blueprint[ '_animation_' . $ani_component . '-overlap' ] / 100 ) )+($this->blueprint[ '_animation_' . $ani_component . '-delay' ]* ($this->pno[ $ani_component ]===0));
+          case 'serial' == $this->blueprint[ '_animation_' . $ani_component . '-sync' ] :
+            $delay = $this->running_duration + ( $this->blueprint[ '_animation_' . $ani_component . '-delay' ] * ( $this->pno[ $ani_component ] === 0 ) );
+            $this->running_duration += ( $this->blueprint[ '_animation_' . $ani_component . '-duration' ] * ( 1 - $this->blueprint[ '_animation_' . $ani_component . '-overlap' ] / 100 ) ) + ( $this->blueprint[ '_animation_' . $ani_component . '-delay' ] * ( $this->pno[ $ani_component ] === 0 ) );
             break;
 
-          case 'parallel'==$this->blueprint[ '_animation_' . $ani_component . '-sync' ]:
+          case 'parallel' == $this->blueprint[ '_animation_' . $ani_component . '-sync' ]:
             $delay = $this->blueprint[ '_animation_' . $ani_component . '-delay' ];
             break;
 
-          case 'random'==$this->blueprint[ '_animation_' . $ani_component . '-sync' ]:
+          case 'random' == $this->blueprint[ '_animation_' . $ani_component . '-sync' ]:
             $delay = rand( 0, $ppp );
             break;
 

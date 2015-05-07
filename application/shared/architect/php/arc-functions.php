@@ -93,8 +93,8 @@
     // TODO: Change font size to a range and use flowtype.js
 //'architect_typography_units'
     global $_architect_options;
-    $units        = isset( $_architect_options[ 'architect_typography_units' ] ) ? $_architect_options[ 'architect_typography_units' ] : 'px';
-    $extra_fonts = file_exists(content_url('extra-fonts.css'))?content_url('extra-fonts.css'):null;
+    $units       = isset( $_architect_options[ 'architect_typography_units' ] ) ? $_architect_options[ 'architect_typography_units' ] : 'px';
+    $extra_fonts = file_exists( content_url( 'extra-fonts.css' ) ) ? content_url( 'extra-fonts.css' ) : null;
 
     $return_array = array(
       'title'           => __( 'Typography', 'pzarchitect' ),
@@ -123,7 +123,7 @@
       'letter-spacing'  => true,
       'units'           => $units,
       'default'         => $defaults,
-      'ext-font-css' =>  $extra_fonts
+      'ext-font-css'    => $extra_fonts
     );
     foreach ( $return_array as $k => $v ) {
       if ( in_array( $k, $exclude ) ) {
@@ -1498,5 +1498,23 @@
     $alt_title    = 'TITLE FOR NEW BLUEPRINT';
 
     pzarc_create_blueprint( $arc_preset_data, $preset_name, $process_type, $alt_slug, $alt_title );
+
+  }
+
+  function pzarc_rebuild() {
+    if ( ! is_admin() ) {
+      return;
+    }
+    // This doesn't seem to work properly when upgrading, so might pull it for now, since it's probably better to use what is already there
+    /** Build CSS cache */
+    $pzarc_cssblueprint_cache = maybe_unserialize( get_option( 'pzarc_css' ) );
+
+    if ( ! $pzarc_cssblueprint_cache ) {
+      add_option( 'pzarc_css', maybe_serialize( array( 'blueprints' => array(), 'panels' => array() ) ), null, 'no' );
+    }
+    require_once( PZARC_PLUGIN_APP_PATH . '/admin/php/arc-save-process.php' );
+
+    save_arc_layouts( 'all', null, true );
+    update_option( 'pzarc-run-rebuild', false );
 
   }

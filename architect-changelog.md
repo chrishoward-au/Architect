@@ -1,8 +1,15 @@
 # Architect change history 
+### 1.2.4 
+* FIXED: Animations stopped working at 1.2.2
+* FIXED: Background images not animating
+
+### 1.2.3 
+* ADDED: Option to exclude margins from outer grid panels
+
 ### 1.2.2  
 * FIXED: Animation errors if no animations set for content
 
-### 1.2.1 : 6 May 2015 
+### 1.2.1 
 * FIXED: Blueprints not found message when using block display with no blueprints set for phone and tablet and viewing on tablet or phone
 
 ### 1.2.0 : 4 May 2015 

@@ -33,8 +33,27 @@
                       'id'      => $prefix . 'specific-posts',
                       'type'    => 'select',
                       'select2' => array('allowClear' => true),
+                      'args' => array('posts_per_page'=>'-1'),
                       'data'    => 'posts',
                       'multi'   => true
+                  ),
+                  array(
+                    'title'   => __('Exclude posts', 'pzarchitect'),
+                    'id'      => $prefix . 'exclude-posts',
+                    'type'    => 'select',
+                    'select2' => array('allowClear' => true),
+                    'args' => array('posts_per_page'=>'-1'),
+                    'data'    => 'posts',
+                    'multi'   => true
+                  ),
+                  array(
+                    'title'    => __( 'Exclude current post', 'pzarchitect' ),
+                    'id'       => $prefix . 'exclude-current-post',
+                    'type'     => 'switch',
+                    'on'       => __( 'Yes', 'pzarchitect' ),
+                    'off'      => __( 'No', 'pzarchitect' ),
+                    'default'  => false,
+                    'subtitle' => __('If this Blueprint is displayed on a post page, exclude that post from Blueprint','pzarchitect')
                   ),
               )
           )

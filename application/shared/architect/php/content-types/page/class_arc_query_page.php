@@ -12,11 +12,23 @@
 
     protected function content_filters($source, $overrides)
     {
-
       $this->query_options[ 'post_type' ] = 'page';
       if (!empty($this->criteria['_content_pages_specific-pages'])) {
         $this->query_options[ 'post__in' ]       = $this->criteria['_content_pages_specific-pages'];
       }
 
+      $exclude=array();
+      if (!empty($this->build->blueprint[ '_content_pages_exclude-pages' ])) {
+        if ( ! is_array( $this->build->blueprint[ '_content_pages_exclude-pages' ] ) ) {
+          $exclude = implode( ',', $this->build->blueprint[ '_content_pages_exclude-pages' ] );
+        } else {
+          $exclude = $this->build->blueprint[ '_content_pages_exclude-pages' ];
+        }
+      }
+      if (!empty($this->build->blueprint[ '_content_pages_exclude-current-page' ])){
+        $exclude[]=get_the_ID();
+      }
+      $this->query_options['post__not_in']=$exclude;
     }
+
   }

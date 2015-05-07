@@ -636,6 +636,11 @@
               'subtitle'   => 'Optional. Leave as none to use post titles'
             ),
             array(
+              'id'     => $prefix . 'section-' . $i . '-accordion-section-end',
+              'type'   => 'section',
+              'indent' => false,
+            ),
+            array(
               'id'     => $prefix . 'section-' . $i . '-panels-heading',
               'title'  => __( 'Number to show', 'pzarchitect' ),
               'type'   => 'section',
@@ -799,6 +804,17 @@
               //'subtitle' => __('Right, bottom', 'pzarchitect')
               //    'hint'  => array('content' => __('Set the vertical gutter width as a percentage of the section width. The gutter is the gap between adjoining elements', 'pzarchitect'))
             ),
+            array(
+              'id'      =>  $prefix . 'section-' . $i . '-panels-margins-guttered',
+              'type'     => 'switch',
+              'on'       => __( 'Yes', 'pzarchitect' ),
+              'off'      => __( 'No', 'pzarchitect' ),
+              'default'  => true,
+              'title'   => __( 'Exclude top/left/right margins on outer panels', 'pzarchitect' ),
+              'required'   => array( $prefix . 'section-' . $i . '-layout-mode', '=', 'basic' ),
+            ),
+
+
             // For the time being the container is not used and its values are defaulted.
             /// It's kept  here for possible future use
             //                array(

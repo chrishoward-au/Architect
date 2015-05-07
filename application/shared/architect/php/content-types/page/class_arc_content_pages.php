@@ -31,9 +31,28 @@
                       'title'   => __('Specific pages', 'pzarchitect'),
                       'id'      => $prefix . 'specific-pages',
                       'type'    => 'select',
+                      'args' => array('posts_per_page'=>'-1'),
                       'select2' => array('allowClear' => true),
                       'data'    => 'pages',
                       'multi'   => true
+                  ),
+                  array(
+                    'title'   => __('Exclude pages', 'pzarchitect'),
+                    'id'      => $prefix . 'exclude-pages',
+                    'type'    => 'select',
+                    'select2' => array('allowClear' => true),
+                    'args' => array('posts_per_page'=>'-1'),
+                    'data'    => 'pages',
+                    'multi'   => true
+                  ),
+                  array(
+                    'title'    => __( 'Exclude current page', 'pzarchitect' ),
+                    'id'       => $prefix . 'exclude-current-page',
+                    'type'     => 'switch',
+                    'on'       => __( 'Yes', 'pzarchitect' ),
+                    'off'      => __( 'No', 'pzarchitect' ),
+                    'default'  => false,
+                    'subtitle' => __('If this Blueprint is displayed on a page, exclude that page from the Blueprint display','pzarchitect')
                   ),
               )
           )
