@@ -453,6 +453,9 @@
                       <p><strong>[architect ' . __( 'blog-page-layout' ) . ']</strong></p>
                       <p><strong>[architect blueprint="' . __( 'blog-page-layout' ) . '"]</strong></p>
                       <p><strong>[architect blueprint="' . __( 'thumb-gallery' ) . '" ids="321,456,987,123,654,789"]</strong></p>
+                      <p>Since version 1.2, you can now specify Blueprints to show on phones and/or tablets. For eaxmple:</p>
+                      <p><strong>[architect' . __( 'blog-page-layout' ) . '  phone="' . __( 'blog-page-layout-phone' ) . '"  tablet="' . __( 'blog-page-layout-tablet' ) . '" ]</strong></p>
+
                       <p>' . __( '<em>ids</em> are the specific post, page etc IDs and are used to override the defined selection for the Blueprint', 'pzarchitect' ) . '</p>
                     </div>
 
@@ -579,6 +582,7 @@ add_action(\'init\',\'gs_init\');
                     <div class="arc-info-boxes">
                     <div class="arc-info col1">
                     <h4>' . __( 'Currently installed version' ) . ': ' . PZARC_VERSION . '</h4>
+                    <p>You can download this version anytime directly from: <a href="https://s3.amazonaws.com/341public/LATEST/Architect/pizazzwp-architect-'.str_replace('.','',PZARC_VERSION).'.zip">Version '.PZARC_VERSION.'</a></p>
                         <p>' . __( 'For more detailed help, visit', 'pzarchitect' ) . ' <a href="http://architect4wp.com/codex-listings" target="_blank" class="arc-codex">' . __( 'Architect documentation at architect4wp.com', 'pzarchitect' ) . '</a></p>
                         <p>' . __( 'For <strong>technical support</strong>, either fill out the form below or email', 'pzarchitect' ) . ' <a href="mailto://support@pizazzwp.com" target="_blank" class="arc-codex">' . __( 'support@pizazzwp.com', 'pzarchitect' ) . '</a></p>
                         <p>' . __( 'For <strong>community and peer-to-peer support</strong>, visit the', 'pzarchitect' ) . ' <a href="https://pizazzwp.freshdesk.com/support/discussions" target="_blank" class="arc-codex">' . __( 'Architect Community', 'pzarchitect' ) . '</a></p>

@@ -28,12 +28,12 @@
 
       $settings[ 'blueprint-content' ] = array(
           'type'        => 'slide',
-          'name'        => 'Slides',
+          'name'        => 'SliderPlus Slides',
           'panel_class' => 'arc_panel_Slides',
           'prefix'      => $prefix,
           // These are the sections to display on the admin metabox. We also use them to get default values.
           'sections'    => array(
-              'title'      => 'Slides',
+              'title'      => 'SliderPlus Slides',
               'icon_class' => 'icon-large',
               'icon'       => 'el-icon-video',
               'fields'     => array(

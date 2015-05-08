@@ -232,6 +232,7 @@ pzdb('construct section');
         $postid = 'NoID';
 
       }
+//      var_dump($arc_query->post);
       $postid   = (empty($postid) ? 'NoID' : $postid);
       $settings = $this->section[ 'section-panel-settings' ];
       $toshow   = json_decode($settings[ '_panels_design_preview' ], true);
@@ -289,7 +290,7 @@ pzdb('construct section');
 //          $accordion_title = do_shortcode($this->table_accordion_titles[ $panel_number ]);
 //        }
         //'_blueprint_section-' . $this->section_number . '-accordion-titles'
-        echo '<div class="pzarc-accordion title ' . ($panel_number === 1 ? 'open' : 'close') . '">' . $accordion_title . '</div>';
+        echo '<div class="pzarc-accordion title ' . (($panel_number === 1 && !empty($this->blueprint['_blueprints_accordion-closed'])) ? 'open' : 'close') . '">' . $accordion_title . '</div>';
       }
 
 

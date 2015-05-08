@@ -1,4 +1,15 @@
 # Architect change history 
+Direct download: [pizazzwp-architect-125.zip](https://s3.amazonaws.com/341public/LATEST/Architect/pizazzwp-architect-125.zip)
+
+### 1.2.5 
+* ADDED: Option to exclude specific posts
+* ADDED: Option to exclude specific pages
+* ADDED: Option to exclude current post
+* ADDED: Option to exclude current page
+* FIXED: Post selector only showing 5 posts
+* FIXED: White screen error when saving in EDD 
+* FIXED: Fatal error on activating 1.2.4
+
 ### 1.2.4 
 * FIXED: Animations stopped working at 1.2.2
 * FIXED: Background images not animating

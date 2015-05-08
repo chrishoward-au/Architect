@@ -125,6 +125,10 @@
     .pzarchitect .pzarc-panel .entry-thumbnail img {
       max-width: 100%;
       height: auto; }
+      .pzarchitect .pzarc-panel .entry-thumbnail img.fullscreen {
+        max-width: none;
+        width: auto;
+        height: 100vh; }
     .pzarchitect .pzarc-panel .entry-thumbnail.object-fit_fill {
       object-fit: fill; }
     .pzarchitect .pzarc-panel .entry-thumbnail.object-fit_contain {
@@ -190,6 +194,10 @@
     .pzarchitect .pzarc-panel figure.pzarc-bg-image img {
       display: block;
       height: auto; }
+      .pzarchitect .pzarc-panel figure.pzarc-bg-image img.fullscreen {
+        max-width: none;
+        width: auto;
+        height: 100vh; }
     .pzarchitect .pzarc-panel figure.pzarc-bg-image.fill.trim {
       max-width: none;
       display: inline-block;

@@ -627,6 +627,15 @@
               'required' => array( $prefix . 'section-' . $i . '-layout-mode', '=', 'accordion' ),
             ),
             array(
+              'title'    => __( 'Accordion closed', 'pzarchitect' ),
+              'id'       => $prefix . 'accordion-closed',
+              'type'     => 'switch',
+              'on'       => __( 'Yes', 'pzarchitect' ),
+              'off'      => __( 'No', 'pzarchitect' ),
+              'default'  => false,
+              'subtitle' => __( 'When enabled, accordions will be closed on startup.', 'pzarchitect' )
+            ),
+            array(
               'id'         => $prefix . 'section-' . $i . '-accordion-titles',
               'title'      => __( 'Accordion titles', 'pzarchitect' ),
               'type'       => 'multi_text',
@@ -805,16 +814,14 @@
               //    'hint'  => array('content' => __('Set the vertical gutter width as a percentage of the section width. The gutter is the gap between adjoining elements', 'pzarchitect'))
             ),
             array(
-              'id'      =>  $prefix . 'section-' . $i . '-panels-margins-guttered',
+              'id'       => $prefix . 'section-' . $i . '-panels-margins-guttered',
               'type'     => 'switch',
               'on'       => __( 'Yes', 'pzarchitect' ),
               'off'      => __( 'No', 'pzarchitect' ),
               'default'  => true,
-              'title'   => __( 'Exclude top/left/right margins on outer panels', 'pzarchitect' ),
-              'required'   => array( $prefix . 'section-' . $i . '-layout-mode', '=', 'basic' ),
+              'title'    => __( 'Exclude top/left/right margins on outer panels', 'pzarchitect' ),
+              'required' => array( $prefix . 'section-' . $i . '-layout-mode', '=', 'basic' ),
             ),
-
-
             // For the time being the container is not used and its values are defaulted.
             /// It's kept  here for possible future use
             //                array(
@@ -2670,15 +2677,28 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
             'id'       => $prefix . 'image-max-dimensions',
             'title'    => __( 'Maximum dimensions', 'pzarchitect' ),
             'type'     => 'dimensions',
-            'desc'     => __( 'The displayed width of the image is determined by it\'s size in the Content Layout designer. This setting is used limit the size of the image used.', 'pzarchitect' ),
+            'desc'     => __( 'The displayed width of the image is determined by it\'s size in the Content Layout designer. This setting is used limit the size of the image created and used.', 'pzarchitect' ),
             'units'    => 'px',
             'default'  => array( 'width' => '400', 'height' => '300' ),
             'required' => array(
               array( '_panels_settings_feature-type', '=', 'image' )
             ),
           ),
+          //          array(
+          //            'title'    => __( 'Fill screen', 'pzarchitect' ),
+          //            'id'       => $prefix . 'fill-screen',
+          //            'type'     => 'switch',
+          //            'on'       => __( 'Yes', 'pzarchitect' ),
+          //            'off'      => __( 'No', 'pzarchitect' ),
+          //            'default'  => false,
+          //            'required' => array(
+          //              //array('show_advanced', 'equals', true),
+          //              array( '_panels_settings_feature-type', '=', 'image' ),
+          //            ),
+          //            'subtitle' => __( 'When enabled, featured images will fill the whole screen.', 'pzarchitect' )
+          //          ),
           array(
-            'title'    => __( 'Effect on screen resize', 'pzarchitect' ),
+            'title'    => __( 'Background images effect on screen resize', 'pzarchitect' ),
             'id'       => $prefix . 'background-image-resize',
             'type'     => 'button_set',
             'subtitle' => __( 'Scale Vertically & Horizontally ', 'pzarchitect' ) . '<br>' . __( 'Trim horizontally, fill height', 'pzarchitect' ) . '<br>' . __( 'None uses default image sizing settings', 'pzarchitect' ),
@@ -3112,7 +3132,7 @@ array(
           'show_title' => false,
           'icon_class' => 'icon-large',
           'icon'       => 'el-icon' . $font,
-          'desc'       => 'Class: .entry-title',
+          'desc'       => 'Class: .entry-title<br><strong style="color:tomato">' . __( 'Note: If your Titles are linked, you will need to set their colour in the Links section', 'pzarchitect' ) . '</strong>',
           'fields'     => pzarc_fields(
             pzarc_redux_font( $prefix . 'entry-title' . $font, array( '.entry-title' ), $defaults[ $optprefix . 'entry-title' . $font ] ),
             pzarc_redux_bg( $prefix . 'entry-title' . $font . $background, array( '.entry-title' ), $defaults[ $optprefix . 'entry-title' . $font . $background ] ),
@@ -3149,6 +3169,7 @@ array(
           'show_title' => false,
           'icon_class' => 'icon-large',
           'icon'       => 'el-icon-align-left',
+          'desc'       => 'Class: .entry-content<br><strong style="color:tomato">' . __( 'Note: If your theme styles .entry-content and .entry-content p separately, you may need to style both there too', 'pzarchitect' ) . '</strong>',
           'fields'     => pzarc_fields(
             array(
               'title'  => __( 'Full content', 'pzarc' ),
@@ -3182,6 +3203,7 @@ array(
           'show_title' => false,
           'icon_class' => 'icon-large',
           'icon'       => 'el-icon-align-left',
+          'desc'       => 'Class: .entry-excerpt<br><strong style="color:tomato">' . __( 'Note: If your theme styles .entry-excerpt and .entry-excerpt p separately, you may need to style both there too', 'pzarchitect' ) . '</strong>',
           'fields'     => pzarc_fields(
             array(
               'title'  => __( 'Excerpt', 'pzarchitect' ),
@@ -3497,7 +3519,7 @@ array(
     $presets_array   = $presets->render();
     $arc_preset_data = $presets_array[ 'data' ][ $preset_name ];
 
-    pzarc_create_blueprint($arc_preset_data,$preset_name,$process_type,null,null);
+    pzarc_create_blueprint( $arc_preset_data, $preset_name, $process_type, null, null );
   }
 
   add_action( 'admin_action_pzarc_new_from_preset', 'pzarc_new_from_preset' );

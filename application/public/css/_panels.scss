@@ -63,6 +63,11 @@
       img {
         max-width: 100%;
         height: auto;
+        &.fullscreen{
+          max-width:none;
+          width:auto;
+          height:100vh;
+        }
       }
       &.object-fit_fill {
         object-fit: fill
@@ -166,6 +171,12 @@
       img {
         display: block;
         height: auto;
+        &.fullscreen{
+          max-width:none;
+          width:auto;
+          height:100vh;
+        }
+
       }
 
       &.fill {
