@@ -95,6 +95,7 @@ For support, please send an email to support@pizazzwp.com
 
 = 1.2.6 =
 * ADDED: Option to have accordions closed on startup
+* CHANGED: Licence check on WPMS using Headway to align with Headway
 
 = 1.2.5 =
 * ADDED: Option to exclude specific posts

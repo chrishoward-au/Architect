@@ -23,7 +23,7 @@
         <p><strong>Animation</strong> allows you to animate the various components of each panel - e.g. the title, featured image, content etc. Animation was requested before Architect was first released and now it\'s here! In this first version there are still limitations and it doesn\'t work well with sliders (yet!) but you are going to be able to do some pretty cool and eye catching animations with your content.</p>
         <p><strong>Adaptive</strong> means you can now choose what Blueprints display on what device type: Phone, tablet or desktop and others. No longer will you have to try to responsively squeeze a desktop layout into a phone screen. You can now design specifically for the phone, then set what Blueprints to use for each device. Or you can just still use one for all devices.</p>
         <p>Visit the <a href=""http://architect4wp.com/codex-listings/" target=_blank>Architect Documentation</a> for tutorials on using each</p>
-        <p><strong style="color:tomato">If you are updating Architect from an older version, please got to the Architect Tools menu and rebuild CSS, and then if you have a cache plugin or service, clear it.</strong>&nbsp;
+        <p><strong class="arc-important">If you are updating Architect from an older version, please got to the Architect Tools menu and rebuild CSS, and then if you have a cache plugin or service, clear it.</strong>&nbsp;
         <a href="'.site_url('/wp-admin/admin.php?page=pzarc_tools').'">Go to Tools</a></p>
         <p><a href="https://s3.amazonaws.com/341public/LATEST/Architect/architect-changelog.html" target="_blank">View full change log</a> |<a href="%1$s">Hide Notice</a>','pzarchitect'), '?pzarc_nag_ignore_v1200=0');
 

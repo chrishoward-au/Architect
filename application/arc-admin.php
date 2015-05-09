@@ -228,8 +228,15 @@
       if ( ! $pzarc_menu ) {
         //add_menu_page( $page_title,  $menu_title, $capability,   $menu_slug, $function,    $icon_url, $position );
         $status  = get_option( 'edd_architect_license_status' );
-        $hw_opts = get_option( 'headway_option_group_general' );
+        $pzarc_current_theme = wp_get_theme();
+        if ( $pzarc_current_theme->get('Name') === 'Headway Base' ) {
 
+          if ( is_multisite() ) {
+            $hw_opts = get_blog_option( 1, 'headway_option_group_general' );
+          } else {
+            $hw_opts = get_option( 'headway_option_group_general' );
+          }
+        }
         $vers       = ( ( !empty($hw_opts['license-status-architect']) && $hw_opts[ 'license-status-architect' ] == 'valid' ) || $status !== false && $status == 'valid' ) ? '' : 'Lite';
         $pzarc_menu = add_menu_page( __( 'Getting started', 'pzarchitect' ), 'Architect ' . $vers, 'edit_posts', 'pzarc', 'pzarc_about', PZARC_PLUGIN_APP_URL . 'wp-icon.png' );
         // add_submenu_page( $parent_slug, $page_title, $menu_title, $capability, $menu_slug, $function );
@@ -367,13 +374,21 @@
 
             <h2>' . $title . '</h2>';
       $status  = get_option( 'edd_architect_license_status' );
-      $hw_opts = get_option( 'headway_option_group_general' );
+      $pzarc_current_theme = wp_get_theme();
+      if ( $pzarc_current_theme->get('Name') === 'Headway Base' ) {
+
+        if ( is_multisite() ) {
+          $hw_opts = get_blog_option( 1, 'headway_option_group_general' );
+        } else {
+          $hw_opts = get_option( 'headway_option_group_general' );
+        }
+      }
 
       $lite = ( ( !empty($hw_opts['license-status-architect']) && $hw_opts[ 'license-status-architect' ] == 'valid' ) || $status !== false && $status == 'valid' ) ? false : true;
 
       if ( $lite ) {
         echo '<h3 style="color:#0074A2">Architect Lite</h3>
-        <p style="color:tomato;font-weight:bold;">You are running Architect without activating a licence, therefore it is in Lite mode. Cool features you are missing out on are: Animations and access to all content types, including Galleries, Snippets, NextGen, Testimonials and custom post types</p>
+        <p class="arc-important" style="font-weight:bold;">You are running Architect without activating a licence, therefore it is in Lite mode. Cool features you are missing out on are: Animations and access to all content types, including Galleries, Snippets, NextGen, Testimonials and custom post types</p>
 ';
       }
       echo ' <div class="tabby tabs">

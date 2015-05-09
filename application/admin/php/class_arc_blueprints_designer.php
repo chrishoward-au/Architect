@@ -3132,7 +3132,7 @@ array(
           'show_title' => false,
           'icon_class' => 'icon-large',
           'icon'       => 'el-icon' . $font,
-          'desc'       => 'Class: .entry-title<br><strong style="color:tomato">' . __( 'Note: If your Titles are linked, you will need to set their colour in the Links section', 'pzarchitect' ) . '</strong>',
+          'desc'       => 'Class: .entry-title<br><strong class="arc-important">' . __( 'Note: If your Titles are linked, you will need to set their colour in the Links section', 'pzarchitect' ) . '</strong>',
           'fields'     => pzarc_fields(
             pzarc_redux_font( $prefix . 'entry-title' . $font, array( '.entry-title' ), $defaults[ $optprefix . 'entry-title' . $font ] ),
             pzarc_redux_bg( $prefix . 'entry-title' . $font . $background, array( '.entry-title' ), $defaults[ $optprefix . 'entry-title' . $font . $background ] ),
@@ -3169,7 +3169,7 @@ array(
           'show_title' => false,
           'icon_class' => 'icon-large',
           'icon'       => 'el-icon-align-left',
-          'desc'       => 'Class: .entry-content<br><strong style="color:tomato">' . __( 'Note: If your theme styles .entry-content and .entry-content p separately, you may need to style both there too', 'pzarchitect' ) . '</strong>',
+          'desc'       => 'Class: .entry-content<br><strong class="arc-important">' . __( 'Note: If your theme styles .entry-content and .entry-content p separately, you may need to style both there too', 'pzarchitect' ) . '</strong>',
           'fields'     => pzarc_fields(
             array(
               'title'  => __( 'Full content', 'pzarc' ),
@@ -3203,7 +3203,7 @@ array(
           'show_title' => false,
           'icon_class' => 'icon-large',
           'icon'       => 'el-icon-align-left',
-          'desc'       => 'Class: .entry-excerpt<br><strong style="color:tomato">' . __( 'Note: If your theme styles .entry-excerpt and .entry-excerpt p separately, you may need to style both there too', 'pzarchitect' ) . '</strong>',
+          'desc'       => 'Class: .entry-excerpt<br><strong class="arc-important">' . __( 'Note: If your theme styles .entry-excerpt and .entry-excerpt p separately, you may need to style both there too', 'pzarchitect' ) . '</strong>',
           'fields'     => pzarc_fields(
             array(
               'title'  => __( 'Excerpt', 'pzarchitect' ),

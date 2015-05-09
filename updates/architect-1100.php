@@ -34,7 +34,7 @@
         <li>&bull; Architect Builder for easily arranging Blueprints on a page</li>
         <li>&bull; Shortcode generator for inserting Architect shortcodes in posts and pages</li>
         </ul>
-        <strong style="color:tomato">If you are updating Architect from v1.0.8.x or earlier, please got to the Architect Tools menu and rebuild CSS</strong>
+        <strong class="arc-important">If you are updating Architect from v1.0.8.x or earlier, please got to the Architect Tools menu and rebuild CSS</strong>
         <p style="margin:20px 0;"><a class="arc-important-button" href="%1$s">Go to Tools</a></p>
          <p><a href="mailto:support@pizazzwp.com">Email support</a> '), 'admin.php?page=pzarc_tools');
 

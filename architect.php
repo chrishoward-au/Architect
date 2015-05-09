@@ -142,9 +142,22 @@
       pzdb( 'before architect pro' );
 
       // This is a shorthand way of doing an if. When pro isn't present, it's the lite version.
+      $pzarc_current_theme = wp_get_theme();
 
-      $status  = get_option( 'edd_architect_license_status' );
-      $hw_opts = get_option( 'headway_option_group_general' );
+      $status = false;
+      $hw_opts = null;
+      if ( $pzarc_current_theme->get('Name') === 'Headway Base' ) {
+        if ( is_multisite() ) {
+          $hw_opts = get_blog_option( 1, 'headway_option_group_general' );
+
+        } else {
+          $hw_opts = get_option( 'headway_option_group_general' );
+        }
+
+      } else {
+        $status = get_option( 'edd_architect_license_status' );
+
+      }
       if ( ( ! empty( $hw_opts[ 'license-status-architect' ] ) && $hw_opts[ 'license-status-architect' ] == 'valid' ) || ( $status !== false && $status == 'valid' ) ) {
         @include PZARC_PLUGIN_PATH . '/extensions/architect-pro.php';
       }

@@ -45,7 +45,16 @@
    *************************************/
 
   function edd_architect_licence_menu() {
-    $hw_opts = get_option( 'headway_option_group_general' );
+    $pzarc_current_theme = wp_get_theme();
+    $hw_opts=array();
+    if ( $pzarc_current_theme->get('Name') === 'Headway Base' ) {
+
+      if ( is_multisite() ) {
+        $hw_opts = get_blog_option( 1, 'headway_option_group_general' );
+      } else {
+        $hw_opts = get_option( 'headway_option_group_general' );
+      }
+    }
     if (  empty( $hw_opts[ 'license-status-architect' ] ) || $hw_opts[ 'license-status-architect' ] != 'valid' ) {
 
       add_submenu_page( 'pzarc', __( 'Licence', 'pzarchitect' ), '<span class="dashicons dashicons-admin-network size-small"></span>' . __( 'Licence', 'pzarchitect' ), 'manage_options', 'architect-licence', 'edd_architect_licence_page' );
@@ -63,11 +72,11 @@
     <div class="wrap">
     <h2><?php _e( 'Architect Licence Options', 'pzarchitect' ); ?></h2>
 
-    <p>Note: This page is for licences purchases from the PizazzWP shop. For licences purchased from the Headway Extend
+    <p class="arc-important">Note: <strong>This page is for licences purchased from the PizazzWP shop</strong>. For licences purchased from the Headway Extend
       store, enter those in the <em>Headway</em> > <em>Options</em> screen</p>
     <?php
-      if ( $status !== false && $status == 'valid' ) {
-        echo 'Until you activate a valid licence, Architect will be the Lite version only. This is limited to just the Default, Dummy and Post content types and Animations are not available.';
+      if ( $status === false || $status !== 'valid' ) {
+        echo '<div class="message updated">Until you activate a valid licence, Architect will be the Lite version only. Limitations include: No galleries, NextGen or custom post types, and no animations.</div>';
       }
     ?>
     <form method="post" action="options.php">
