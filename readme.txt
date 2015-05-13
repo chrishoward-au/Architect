@@ -3,7 +3,7 @@ Contributors: chrishoward
 Tags: content,display,posts,pages,gallery,slider,tabs,tabbed,tabular,widget,hooks
 Requires at least: 3.5.0
 Tested up to: 4.2.1
-Stable tag: 1.2.6
+Stable tag: 1.2.7
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Plugin URI: http://architect4wp.com
@@ -93,9 +93,14 @@ For support, please send an email to support@pizazzwp.com
 
 == Changelog ==
 
+= 1.2.7 =
+* CHANGED: Custom taxonomy terms selection is now a drop down populated with terms of the custom taxonomy.
+* ADDED: Option to use alternate lightbox
+* FIXED: whitescreen error when saving if PHP less than 5.3
+
 = 1.2.6 =
 * ADDED: Option to have accordions closed on startup
-* CHANGED: Licence check on WPMS using Headway to align with Headway
+* CHANGED: Licence check on WPMS using Headway to align with Headway validation system
 
 = 1.2.5 =
 * ADDED: Option to exclude specific posts

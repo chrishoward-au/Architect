@@ -66,7 +66,7 @@
 
   function edd_architect_licence_page() {
     $license   = get_option( 'edd_architect_license_key' );
-    $status    = get_option( 'edd_architect_license_status' );
+    $pzarc_status    = get_option( 'edd_architect_license_status' );
     $edd_state = get_option( 'edd_architect_license_state' );
     ?>
     <div class="wrap">
@@ -75,8 +75,14 @@
     <p class="arc-important">Note: <strong>This page is for licences purchased from the PizazzWP shop</strong>. For licences purchased from the Headway Extend
       store, enter those in the <em>Headway</em> > <em>Options</em> screen</p>
     <?php
-      if ( $status === false || $status !== 'valid' ) {
-        echo '<div class="message updated">Until you activate a valid licence, Architect will be the Lite version only. Limitations include: No galleries, NextGen or custom post types, and no animations.</div>';
+      if ( $pzarc_status === false || $pzarc_status !== 'valid' ) {
+        echo ' <div class="arc-info-boxes">
+                    <div class="arc-info col1">';
+        echo '<h3 style="color:#0074A2">Architect Lite</h3>
+        <p class="arc-important" style="font-weight:bold;">You are running Architect without activating a licence, therefore it is in Lite mode. Cool features you are missing out on are: Animations and access to all content types, including Galleries, Snippets, NextGen, Testimonials and custom post types</p>
+        <p style="font-weight:bold;">If you need to purchase a licence, you can do so at the <a href="http://shop.pizazzwp.com/downloads/architect/" target="_blank">PizazzWP Shop</a>.</p>
+        <p>Otherwise, enter and activate your licence from the Pizazz Shop licence below or on Headway > Options if you bought from Headway , </p>
+</div></div>';
       }
     ?>
     <form method="post" action="options.php">
@@ -101,7 +107,7 @@
               <?php _e( 'Activate License' ); ?>
             </th>
             <td>
-              <?php if ( $status !== false && $status == 'valid' ) { ?>
+              <?php if ( $pzarc_status !== false && $pzarc_status == 'valid' ) { ?>
                 <?php wp_nonce_field( 'edd_architect_nonce', 'edd_architect_nonce' ); ?>
                 <input type="submit" class="button-secondary" name="edd_license_deactivate"
                        value="<?php _e( 'Deactivate License' ); ?>"/>

@@ -1,5 +1,12 @@
 # Architect change history 
-Direct download: [pizazzwp-architect-125.zip](https://s3.amazonaws.com/341public/LATEST/Architect/pizazzwp-architect-125.zip)
+Direct download: [pizazzwp-architect-127.zip](https://s3.amazonaws.com/341public/LATEST/Architect/pizazzwp-architect-127.zip)
+
+### 1.2.7 
+* CHANGED: Custom taxonomy terms selection is now a drop down populated with terms of the custom taxonomy.
+
+### 1.2.6 
+* ADDED: Option to have accordions closed on startup
+* CHANGED: Licence check on WPMS using Headway to align with Headway validation system
 
 ### 1.2.5 
 * ADDED: Option to exclude specific posts

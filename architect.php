@@ -4,7 +4,7 @@
     Plugin Name: Architect
     Plugin URI: http://architect4wp.com
     Description: Architect is an all-in-one content layout builder. <strong>Build your own slider, grid, tabbed, gallery, masonry, accordion or tabular layouts with ANY content source</strong>. Display using shortcodes, widgets, Headway blocks, WP action hooks and template tags, and WP Gallery shortcode.
-    Version: 1.2.6
+    Version: 1.2.7
     Author: Chris Howard
     Author URI: http://pizazzwp.com
     License: GNU GPL v2
@@ -32,7 +32,7 @@
         define( 'PZARC_TESTER', ( isset( $arc_options[ 'architect_enable_beta' ] ) ? $arc_options[ 'architect_enable_beta' ] : false ) );
       }
 
-      define( 'PZARC_VERSION', '1.2.6' );
+      define( 'PZARC_VERSION', '1.2.7' );
       define( 'PZARC_NAME', 'pzarchitect' ); // This is also same as the locale
       define( 'PZARC_FOLDER', '/pizazzwp-architect' );
       define( 'PZARC_CODEX', 'http://architect4wp.com/codex-listings' );
@@ -144,7 +144,7 @@
       // This is a shorthand way of doing an if. When pro isn't present, it's the lite version.
       $pzarc_current_theme = wp_get_theme();
 
-      $status = false;
+      $pzarc_status = false;
       $hw_opts = null;
       if ( $pzarc_current_theme->get('Name') === 'Headway Base' ) {
         if ( is_multisite() ) {
@@ -155,10 +155,10 @@
         }
 
       } else {
-        $status = get_option( 'edd_architect_license_status' );
+        $pzarc_status = get_option( 'edd_architect_license_status' );
 
       }
-      if ( ( ! empty( $hw_opts[ 'license-status-architect' ] ) && $hw_opts[ 'license-status-architect' ] == 'valid' ) || ( $status !== false && $status == 'valid' ) ) {
+      if ( ( ! empty( $hw_opts[ 'license-status-architect' ] ) && $hw_opts[ 'license-status-architect' ] == 'valid' ) || ( $pzarc_status !== false && $pzarc_status == 'valid' ) ) {
         @include PZARC_PLUGIN_PATH . '/extensions/architect-pro.php';
       }
       pzdb( 'after architect pro' );

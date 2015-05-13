@@ -227,7 +227,7 @@
       global $pzarc_menu, $pizazzwp_updates;
       if ( ! $pzarc_menu ) {
         //add_menu_page( $page_title,  $menu_title, $capability,   $menu_slug, $function,    $icon_url, $position );
-        $status  = get_option( 'edd_architect_license_status' );
+        $pzarc_status  = get_option( 'edd_architect_license_status' );
         $pzarc_current_theme = wp_get_theme();
         if ( $pzarc_current_theme->get('Name') === 'Headway Base' ) {
 
@@ -237,7 +237,7 @@
             $hw_opts = get_option( 'headway_option_group_general' );
           }
         }
-        $vers       = ( ( !empty($hw_opts['license-status-architect']) && $hw_opts[ 'license-status-architect' ] == 'valid' ) || $status !== false && $status == 'valid' ) ? '' : 'Lite';
+        $vers       = ( ( !empty($hw_opts['license-status-architect']) && $hw_opts[ 'license-status-architect' ] == 'valid' ) || $pzarc_status !== false && $pzarc_status == 'valid' ) ? '' : 'Lite';
         $pzarc_menu = add_menu_page( __( 'Getting started', 'pzarchitect' ), 'Architect ' . $vers, 'edit_posts', 'pzarc', 'pzarc_about', PZARC_PLUGIN_APP_URL . 'wp-icon.png' );
         // add_submenu_page( $parent_slug, $page_title, $menu_title, $capability, $menu_slug, $function );
 
@@ -373,7 +373,7 @@
         <div class="pzarc-about-box" style="background:#f9f9f9;padding:20px;border:1px solid #ddd;">
 
             <h2>' . $title . '</h2>';
-      $status  = get_option( 'edd_architect_license_status' );
+      $pzarc_status  = get_option( 'edd_architect_license_status' );
       $pzarc_current_theme = wp_get_theme();
       if ( $pzarc_current_theme->get('Name') === 'Headway Base' ) {
 
@@ -384,12 +384,15 @@
         }
       }
 
-      $lite = ( ( !empty($hw_opts['license-status-architect']) && $hw_opts[ 'license-status-architect' ] == 'valid' ) || $status !== false && $status == 'valid' ) ? false : true;
+      $lite = ( ( !empty($hw_opts['license-status-architect']) && $hw_opts[ 'license-status-architect' ] == 'valid' ) || $pzarc_status !== false && $pzarc_status == 'valid' ) ? false : true;
 
       if ( $lite ) {
+       echo ' <div class="arc-info-boxes">
+                    <div class="arc-info col1">';
         echo '<h3 style="color:#0074A2">Architect Lite</h3>
         <p class="arc-important" style="font-weight:bold;">You are running Architect without activating a licence, therefore it is in Lite mode. Cool features you are missing out on are: Animations and access to all content types, including Galleries, Snippets, NextGen, Testimonials and custom post types</p>
-';
+        <p style="font-weight:bold;">To get all the extra goodness of Architect, you can purchase it from the <a href="http://shop.pizazzwp.com/downloads/architect/" target="_blank">PizazzWP Shop</a></p>
+</div></div>';
       }
       echo ' <div class="tabby tabs">
                 <button class="tabby-quick first active" data-tab="#quick">' . __( 'Getting started', 'pzarchitect' ) . '</button>
@@ -988,10 +991,10 @@ add_action(\'init\',\'gs_init\');
   function pzarc_initiate_updater() {
     // TODO: Try to not run this too mcuh
     // Check on Headway if enabled since it was probably bought there
-    $status 	= get_option( 'edd_architect_license_status' );
+    $pzarc_status 	= get_option( 'edd_architect_license_status' );
 
     // Checks for HW and that we havem't already activated a Pizazz licence
-    if ( class_exists( 'HeadwayUpdaterAPI' ) && !($status !== false && $status == 'valid' )) {
+    if ( class_exists( 'HeadwayUpdaterAPI' ) && !($pzarc_status !== false && $pzarc_status == 'valid' )) {
 
       $updater = new HeadwayUpdaterAPI( array(
                                           'slug'            => 'architect',

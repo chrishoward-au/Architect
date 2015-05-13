@@ -2746,6 +2746,16 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
             'subtitle' => __( 'Set what happens when a viewer clicks on the image', 'pzazrchitect' )
           ),
           array(
+            'title'    => __( 'Use alternate lightbox', 'pzarchitect' ),
+            'id'       => $prefix . 'alternate-lightbox',
+            'type'     => 'switch',
+            'on'       => __( 'Yes', 'pzarchitect' ),
+            'off'      => __( 'No', 'pzarchitect' ),
+            'default'  => false,
+            'required' => array( $prefix . 'link-image', '=', 'original' ),
+            'subtitle'=>__('This adds rel="lightbox" to image links. Your lightbox plugin needs to support that (most do).','pzarchitect')
+          ),
+          array(
             'title'    => __( 'Specific URL', 'pzarchitect' ),
             'id'       => $prefix . 'link-image-url',
             'type'     => 'text',
@@ -2839,7 +2849,7 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
                 'title'    => __( 'Field name', 'pzarchitect' ),
                 'id'       => $prefix . 'cfield-' . $i . '-name',
                 'type'     => 'select',
-                //                'data'     => 'callback',
+                //                lightbox     => 'callback',
                 //                'args'     => array( 'pzarc_get_custom_fields' ),
                 'options'  => $pzarc_custom_fields,
                 'subtitle' => __( 'If a custom field is not shown in the dropdown, it is because it has no data yet.', 'pzarchitect' )

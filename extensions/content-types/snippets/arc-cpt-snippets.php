@@ -79,7 +79,6 @@
                             'rewrite' => array( 'slug' => 'pzsnippetscat' ),
                         )
       );
-
       // Create custom category taxonomy for Snippets
       $labels = array(
           'name' => _x( 'Snippet tags', 'taxonomy general name' ),

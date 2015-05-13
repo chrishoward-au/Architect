@@ -101,7 +101,7 @@
             array(
                 'taxonomy' => $this->build->blueprint[ '_content_general_other-tax' ],
                 'field'    => 'slug',
-                'terms'    => explode(',', $this->build->blueprint[ '_content_general_other-tax-tags' ]),
+                'terms'    => $this->build->blueprint[ '_content_general_other-tax-tags' ],
                 'operator' => $this->build->blueprint[ '_content_general_tax-op' ]
             ),
         );

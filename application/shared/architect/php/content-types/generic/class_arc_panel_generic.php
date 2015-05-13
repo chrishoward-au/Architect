@@ -52,7 +52,7 @@
       $this->data[ 'bgimage' ][ 'thumb' ] = null;
       // $this->data[ 'bgimage' ][ 'original' ] = null;
 
-      $this->data = apply_filters('pzarc_init_data',$this->data);
+      $this->data = apply_filters( 'pzarc_init_data', $this->data );
 
     }
 
@@ -101,10 +101,10 @@
       // $panel_def[ 'datetime' ]      = '<span class="date"><a href="{{permalink}}" title="{{title}}" rel="bookmark"><time class="entry-date" datetime="{{datetime}}">{{fdatetime}}</time></a></span>';
       // oops should be using this for featured image
 
-      $panel_def = apply_filters('pzarc_panel_def',$panel_def);
+      $panel_def = apply_filters( 'pzarc_panel_def', $panel_def );
 
       // a bit of housekeeping incase third parties don't remove their filters
-      remove_all_filters('pzarc_panel_def');
+      remove_all_filters( 'pzarc_panel_def' );
 
       return $panel_def;
     }
@@ -164,7 +164,7 @@
       pzdb( 'after get misc' );
 
       // Allow other plugins to do their data set and get here.
-      do_action('pzarc_set_data');
+      do_action( 'pzarc_set_data' );
     }
 
     /**
@@ -287,9 +287,9 @@
         $thumb_2X                         = bfi_thumb( $results[ 0 ], $params );
         $this->data[ 'image' ][ 'image' ] = str_replace( '/>', 'data-at2x="' . $thumb_2X . '" />', $this->data[ 'image' ][ 'image' ] );
       }
-      $image                              = get_post( $thumb_id );
+      $image = get_post( $thumb_id );
 
-      $this->data[ 'image' ][ 'caption' ] = is_object($image)?$image->post_excerpt:'';
+      $this->data[ 'image' ][ 'caption' ] = is_object( $image ) ? $image->post_excerpt : '';
 
       //Use lorempixel
       if ( empty( $this->data[ 'image' ][ 'image' ] ) && ! empty( $this->section[ '_panels_design_use-filler-image-source' ] ) && 'none' !== $this->section[ '_panels_design_use-filler-image-source' ] ) {
@@ -463,8 +463,8 @@
 
         // The content itself comes from post meta
         $this->data[ 'cfield' ][ $i ][ 'value' ] = ( ! empty( $postmeta[ $this->section[ '_panels_design_cfield-' . $i . '-name' ] ] ) ? $postmeta[ $this->section[ '_panels_design_cfield-' . $i . '-name' ] ][ 0 ] : null );
-        if (is_Array(maybe_unserialize($this->data[ 'cfield' ][ $i ][ 'value' ]))) {
-          $this->data[ 'cfield' ][ $i ][ 'value' ] = implode(',',maybe_unserialize($this->data[ 'cfield' ][ $i ][ 'value' ]));
+        if ( is_Array( maybe_unserialize( $this->data[ 'cfield' ][ $i ][ 'value' ] ) ) ) {
+          $this->data[ 'cfield' ][ $i ][ 'value' ] = implode( ',', maybe_unserialize( $this->data[ 'cfield' ][ $i ][ 'value' ] ) );
         }
         // TODO:Bet this doesn't work!
         if ( ! empty( $this->section[ '_panels_design_cfield-' . $i . '-link-field' ] ) ) {
@@ -507,6 +507,7 @@
         $panel_def[ $component ] = str_replace( '{{postlink}}', $panel_def[ 'postlink' ], $panel_def[ $component ] );
         $panel_def[ $component ] = str_replace( '{{closepostlink}}', '</a>', $panel_def[ $component ] );
       }
+
       return self::render_generics( $component, $content_type, $panel_def[ $component ], $layout_mode );
 
     }
@@ -567,7 +568,11 @@
                 $link = ( 'url' === $this->section[ '_panels_design_link-image' ] ) ? '<a href="' . $this->section[ '_panels_design_link-image-url' ] . '" title="' . $this->section[ '_panels_design_link-image-url-tooltip' ] . '">' : $panel_def[ 'postlink' ];
                 break;
               case 'original':
-                $link = '<a class="lightbox lightbox-' . $rsid . '" href="' . $this->data[ 'image' ][ 'original' ][ 0 ] . '" title="' . $this->data[ 'title' ][ 'title' ] . '">';
+                if ( empty( $this->section[ '_panels_design_alternate-lightbox' ] ) ) {
+                  $link = '<a class="lightbox lightbox-' . $rsid . '" href="' . $this->data[ 'image' ][ 'original' ][ 0 ] . '" title="' . $this->data[ 'title' ][ 'title' ] . '" >';
+                } else {
+                  $link = '<a class="lightbox-' . $rsid . '" href="' . $this->data[ 'image' ][ 'original' ][ 0 ] . '" title="' . $this->data[ 'title' ][ 'title' ] . '" rel="lightbox">';
+                }
                 break;
             }
             $panel_def[ $component ] = str_replace( '{{postlink}}', $link, $panel_def[ $component ] );
@@ -615,7 +620,11 @@
                 $link = ( 'url' === $this->section[ '_panels_design_link-image' ] ) ? '<a href="' . $this->section[ '_panels_design_link-image-url' ] . '" title="' . $this->section[ '_panels_design_link-image-url-tooltip' ] . '">' : $panel_def[ 'postlink' ];
                 break;
               case 'original':
-                $link = '<a class="lightbox lightbox-' . $rsid . '" href="' . $this->data[ 'image' ][ 'original' ][ 0 ] . '" title="' . $this->data[ 'title' ][ 'title' ] . '">';
+                if ( empty( $this->section[ '_panels_design_alternate-lightbox' ] ) ) {
+                  $link = '<a class="lightbox lightbox-' . $rsid . '" href="' . $this->data[ 'image' ][ 'original' ][ 0 ] . '" title="' . $this->data[ 'title' ][ 'title' ] . '" >';
+                } else {
+                  $link = '<a class="lightbox-' . $rsid . '" href="' . $this->data[ 'image' ][ 'original' ][ 0 ] . '" title="' . $this->data[ 'title' ][ 'title' ] . '" rel="lightbox">';
+                }
                 break;
             }
             $panel_def[ $component ] = str_replace( '{{postlink}}', $link, $panel_def[ $component ] );
@@ -662,7 +671,11 @@
               $link = ( 'url' === $this->section[ '_panels_design_link-image' ] ) ? '<a href="' . $this->section[ '_panels_design_link-image-url' ] . '" title="' . $this->section[ '_panels_design_link-image-url-tooltip' ] . '">' : $panel_def[ 'postlink' ];
               break;
             case 'original':
-              $link = '<a class="lightbox lightbox-' . $rsid . '" href="' . $this->data[ 'image' ][ 'original' ][ 0 ] . '" title="' . $this->data[ 'title' ][ 'title' ] . '">';
+              if ( empty( $this->section[ '_panels_design_alternate-lightbox' ] ) ) {
+                $link = '<a class="lightbox lightbox-' . $rsid . '" href="' . $this->data[ 'image' ][ 'original' ][ 0 ] . '" title="' . $this->data[ 'title' ][ 'title' ] . '" >';
+              } else {
+                $link = '<a class="lightbox-' . $rsid . '" href="' . $this->data[ 'image' ][ 'original' ][ 0 ] . '" title="' . $this->data[ 'title' ][ 'title' ] . '" rel="lightbox">';
+              }
               break;
           }
           $panel_def[ $component ] = str_replace( '{{postlink}}', $link, $panel_def[ $component ] );
@@ -733,7 +746,11 @@
               $link = ( 'url' === $this->section[ '_panels_design_link-image' ] ) ? '<a href="' . $this->section[ '_panels_design_link-image-url' ] . '" title="' . $this->section[ '_panels_design_link-image-url-tooltip' ] . '">' : $panel_def[ 'postlink' ];
               break;
             case 'original':
-              $link = '<a class="lightbox lightbox-' . $rsid . '" href="' . $this->data[ 'image' ][ 'original' ][ 0 ] . '" title="' . $this->data[ 'title' ][ 'title' ] . '">';
+              if ( empty( $this->section[ '_panels_design_alternate-lightbox' ] ) ) {
+                $link = '<a class="lightbox lightbox-' . $rsid . '" href="' . $this->data[ 'image' ][ 'original' ][ 0 ] . '" title="' . $this->data[ 'title' ][ 'title' ] . '">';
+              } else {
+                $link = '<a class="lightbox-' . $rsid . '" href="' . $this->data[ 'image' ][ 'original' ][ 0 ] . '" title="' . $this->data[ 'title' ][ 'title' ] . '" rel="lightbox">';
+              }
               break;
           }
           $panel_def[ $component ] = str_replace( '{{postlink}}', $link, $panel_def[ $component ] );
@@ -820,6 +837,7 @@
       } else {
         $panel_def[ $component ] = '';
       }
+
       return self::render_generics( $component, $content_type, $panel_def[ $component ], $layout_mode );
 
     }
@@ -833,7 +851,7 @@
     public function render_generics( $component, $source, $line, $layout_mode ) {
 
       // Devs can plugin here. Filter must return $line value
-      $line = apply_filters('pzarc_render_components',$line, $component, $source, $layout_mode);
+      $line = apply_filters( 'pzarc_render_components', $line, $component, $source, $layout_mode );
 
 
       //todo: make sure source is actual WP valid eg. soemthings might be attachment
@@ -867,6 +885,7 @@
         $line = str_replace( '{{figclose}}', '</figure>', $line );
 
       }
+
       return $line;
     }
 
@@ -992,7 +1011,7 @@
       }
 
 //var_dump($nav_items);
-      return apply_filters('pzarc_nav_items',$nav_items);
+      return apply_filters( 'pzarc_nav_items', $nav_items );
     }
 
 
