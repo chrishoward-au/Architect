@@ -30,7 +30,7 @@ jQuery( document ).ready( function ()
       // Nothing worked. Need a substitute character (#) for string quotes
       arcSlickOpts = arcSlickOpts.replace( /#/g, '"' );
       var arcSlickOptsObj = JSON.parse( arcSlickOpts );
-
+console.log(arcSlickOptsObj);
       var beforeChange = function ( slider, i, newIndex )
       {
         update_nav( newIndex, arcSlickNav );

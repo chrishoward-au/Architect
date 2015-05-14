@@ -569,6 +569,10 @@
                 break;
               case 'original':
                 if ( empty( $this->section[ '_panels_design_alternate-lightbox' ] ) ) {
+                  wp_enqueue_script( 'js-magnific' );
+                  wp_enqueue_script( 'js-magnific-arc' );
+                  wp_enqueue_style( 'css-magnific' );
+
                   $link = '<a class="lightbox lightbox-' . $rsid . '" href="' . $this->data[ 'image' ][ 'original' ][ 0 ] . '" title="' . $this->data[ 'title' ][ 'title' ] . '" >';
                 } else {
                   $link = '<a class="lightbox-' . $rsid . '" href="' . $this->data[ 'image' ][ 'original' ][ 0 ] . '" title="' . $this->data[ 'title' ][ 'title' ] . '" rel="lightbox">';
@@ -621,6 +625,10 @@
                 break;
               case 'original':
                 if ( empty( $this->section[ '_panels_design_alternate-lightbox' ] ) ) {
+                  wp_enqueue_script( 'js-magnific' );
+                  wp_enqueue_script( 'js-magnific-arc' );
+                  wp_enqueue_style( 'css-magnific' );
+
                   $link = '<a class="lightbox lightbox-' . $rsid . '" href="' . $this->data[ 'image' ][ 'original' ][ 0 ] . '" title="' . $this->data[ 'title' ][ 'title' ] . '" >';
                 } else {
                   $link = '<a class="lightbox-' . $rsid . '" href="' . $this->data[ 'image' ][ 'original' ][ 0 ] . '" title="' . $this->data[ 'title' ][ 'title' ] . '" rel="lightbox">';
@@ -672,6 +680,10 @@
               break;
             case 'original':
               if ( empty( $this->section[ '_panels_design_alternate-lightbox' ] ) ) {
+                wp_enqueue_script( 'js-magnific' );
+                wp_enqueue_script( 'js-magnific-arc' );
+                wp_enqueue_style( 'css-magnific' );
+
                 $link = '<a class="lightbox lightbox-' . $rsid . '" href="' . $this->data[ 'image' ][ 'original' ][ 0 ] . '" title="' . $this->data[ 'title' ][ 'title' ] . '" >';
               } else {
                 $link = '<a class="lightbox-' . $rsid . '" href="' . $this->data[ 'image' ][ 'original' ][ 0 ] . '" title="' . $this->data[ 'title' ][ 'title' ] . '" rel="lightbox">';
@@ -747,6 +759,10 @@
               break;
             case 'original':
               if ( empty( $this->section[ '_panels_design_alternate-lightbox' ] ) ) {
+                wp_enqueue_script( 'js-magnific' );
+                wp_enqueue_script( 'js-magnific-arc' );
+                wp_enqueue_style( 'css-magnific' );
+
                 $link = '<a class="lightbox lightbox-' . $rsid . '" href="' . $this->data[ 'image' ][ 'original' ][ 0 ] . '" title="' . $this->data[ 'title' ][ 'title' ] . '">';
               } else {
                 $link = '<a class="lightbox-' . $rsid . '" href="' . $this->data[ 'image' ][ 'original' ][ 0 ] . '" title="' . $this->data[ 'title' ][ 'title' ] . '" rel="lightbox">';

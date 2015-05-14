@@ -470,7 +470,6 @@ pzdb();
         $interval    = $this->build->blueprint[ '_blueprints_transitions-interval' ] * 1000;
         $skip_thumbs = $this->build->blueprint[ '_blueprints_navigator-skip-thumbs' ];
         $no_across   = $this->build->blueprint[ '_blueprints_section-0-columns-breakpoint-1' ];
-
         $is_vertical = ( ! in_array( $this->build->blueprint[ '_blueprints_navigator' ], array(
             'thumbs',
             'none'

@@ -236,10 +236,6 @@
       $GLOBALS[ '_architect_options' ] = get_option( '_architect_options', array() );
     }
 
-    wp_enqueue_script( 'js-magnific' );
-    wp_enqueue_script( 'js-magnific-arc' );
-    wp_enqueue_style( 'css-magnific' );
-
 
     wp_enqueue_style( PZARC_NAME . '-plugin-styles' );
     wp_enqueue_style( PZARC_NAME . '-dynamic-styles' );
