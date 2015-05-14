@@ -1,8 +1,16 @@
 # Architect change history 
-Direct download: [pizazzwp-architect-127.zip](https://s3.amazonaws.com/341public/LATEST/Architect/pizazzwp-architect-127.zip)
 
-### 1.2.7 
+## 1.2.9 : 14 May 2015 
+* FIXED: Date formatting for dummy content
+
+### 1.2.8
+* FIXED: Licence check error stopping pro features loading
+* FIXED: Inbuilt lightbox still loading when alternate selected.
+
+### 1.2.7
 * CHANGED: Custom taxonomy terms selection is now a drop down populated with terms of the custom taxonomy.
+* ADDED: Option to use alternate lightbox
+* FIXED: whitescreen error when saving if PHP less than 5.3
 
 ### 1.2.6 
 * ADDED: Option to have accordions closed on startup
@@ -30,7 +38,7 @@ Direct download: [pizazzwp-architect-127.zip](https://s3.amazonaws.com/341public
 ### 1.2.1 
 * FIXED: Blueprints not found message when using block display with no blueprints set for phone and tablet and viewing on tablet or phone
 
-### 1.2.0 : 4 May 2015 
+## 1.2.0 : 4 May 2015 
 * ADDED: Animation of components. Doesn't react to sliding yet.
 * ADDED: Block, shortcode, template tag, builder and widget now support different Blueprints per device type: Desktop/any, Tablet, Phone.
 * ADDED: Sysinfo to Tools menu
