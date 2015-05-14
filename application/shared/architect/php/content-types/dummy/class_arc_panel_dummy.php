@@ -162,7 +162,7 @@
            $this->toshow[ 'meta3' ][ 'show' ]
       ) {
         $this->data[ 'meta' ][ 'datetime' ]        = $post[ 'meta' ][ 'datetime' ];
-        $this->data[ 'meta' ][ 'fdatetime' ]       = $post[ 'meta' ][ 'fdatetime' ];
+        $this->data[ 'meta' ][ 'fdatetime' ]       = date_i18n( strip_tags( $this->section[ '_panels_design_meta-date-format' ] ), strtotime($post[ 'meta' ][ 'fdatetime' ]));
         $this->data[ 'meta' ][ 'categorieslinks' ] = $post[ 'meta' ][ 'categorieslinks' ];
         $this->data[ 'meta' ][ 'categories' ]      = $post[ 'meta' ][ 'categories' ];
         $this->data[ 'meta' ][ 'tagslinks' ]       = $post[ 'meta' ][ 'tagslinks' ];

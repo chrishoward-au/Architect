@@ -84,10 +84,10 @@
           'pzarc-blueprint' => array(
               'type'    => 'select',
               'name'    => 'pzarc-blueprint',
-              'label'   => __('Blueprint', 'pzpzarc'),
+              'label'   => __('Blueprint (required)', 'pzpzarc'),
               'default' => 'none',
               'options' => $pzarc_blueprints,
-              'tooltip' => __('Choose a Blueprint to display', 'pzarchitect')
+              'tooltip' => __('Choose a Blueprint to display on all devices (except when overridden by the phone or tablet Blueprint)', 'pzarchitect')
           ),
           'pzarc-blueprint-tablet' => array(
             'type'    => 'select',

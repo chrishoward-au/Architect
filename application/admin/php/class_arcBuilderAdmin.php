@@ -63,6 +63,7 @@
             'type'     => 'select',
             'multi'    => true,
             'sortable' => true,
+            'subtitle'=> __('This is the default Blueprint used on any device except when overridden by the phone or tablet Blueprints','pzarchitect'),
             'options'  => $blueprint_list
           ),
           array(
