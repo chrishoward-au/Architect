@@ -93,6 +93,9 @@ For support, please send an email to support@pizazzwp.com
 
 == Changelog ==
 
+= 1.3.0 =
+* FIXED: Excerpts not going 100% wide when no thumb image
+
 = 1.2.9 : 14 May 2015 =
 * FIXED: Date formatting for dummy content
 

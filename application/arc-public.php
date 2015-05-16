@@ -13,10 +13,10 @@
   add_shortcode( 'pzarc', 'pzarc_shortcode' ); // Old version
   add_shortcode( 'pzarchitect', 'pzarc_shortcode' ); // alternate version
   // I still don't understand why this works!! One day, maybe I will
-  add_action( 'arc_do_shortcode', 'pzarc', 10, 7);
+  add_action( 'arc_do_shortcode', 'pzarc', 10, 7 );
   add_filter( 'body_class', 'add_pzarc_class' );
 
-  add_action( 'arc_do_pagebuilder', 'pzarc', 10,7);
+  add_action( 'arc_do_pagebuilder', 'pzarc', 10, 7 );
   add_action( 'arc_do_template_tag', 'pzarc', 10, 7 );
 
   // How do we do this only on pages needing it?
@@ -44,7 +44,6 @@
 //    }
 
 
-
     wp_register_style( 'css-hw-float-fix', PZARC_PLUGIN_APP_URL . '/public/css/arc-hw-fix.css' );
 
     // TODO: These seem to be loading late so loading in footer - even the CSS!
@@ -52,11 +51,6 @@
     // Using hacked version which only supports data-at2x attribute
     wp_register_script( 'js-retinajs', PZARC_PLUGIN_APP_URL . '/public/js/retinajs/retina.js' );
 
-
-    // Slick
-    wp_register_script( 'js-arc-front-slickjs', PZARC_PLUGIN_APP_URL . '/public/js/arc-front-slick.js', array( 'jquery' ), null, true );
-    wp_register_script( 'js-slickjs', PZARC_PLUGIN_APP_URL . '/public/js/slick/slick/slick.min.js', array( 'jquery' ), null, true );
-    wp_register_style( 'css-slickjs', PZARC_PLUGIN_APP_URL . '/public/js/slick/slick/slick.css' );
 
     // Magnific
     wp_register_script( 'js-magnific-arc', PZARC_PLUGIN_APP_URL . '/public/js/arc-front-magnific.js', array( 'jquery' ), null, true );
@@ -125,10 +119,10 @@
       $pzarc_blueprint = $atts[ 0 ];
     }
 
-    $pzarc_overrides = isset($atts['ids'])?array('ids'=>$atts['ids']):null;
-    $tablet_bp = isset($atts['tablet'])?$atts['tablet']:null;
-    $phone_bp = isset($atts['phone'])?$atts['phone']:null;
-    $tag=null;
+    $pzarc_overrides      = isset( $atts[ 'ids' ] ) ? array( 'ids' => $atts[ 'ids' ] ) : null;
+    $tablet_bp            = isset( $atts[ 'tablet' ] ) ? $atts[ 'tablet' ] : null;
+    $phone_bp             = isset( $atts[ 'phone' ] ) ? $atts[ 'phone' ] : null;
+    $tag                  = null;
     $additional_overrides = null;
 
     // Need to capture the output so we can get it to appear where the shortcode actually is
@@ -139,7 +133,7 @@
 
 
     // The caller is shortcode, and not variable here. It just uses a variable for consistency and documentation
-    do_action( "arc_do_shortcode", $pzarc_blueprint, $pzarc_overrides, $pzarc_caller, $tag, $additional_overrides,$tablet_bp,$phone_bp );
+    do_action( "arc_do_shortcode", $pzarc_blueprint, $pzarc_overrides, $pzarc_caller, $tag, $additional_overrides, $tablet_bp, $phone_bp );
 
     do_action( "arc_after_shortcode", $pzarc_blueprint, $pzarc_overrides, $pzarc_caller, $tag );
 
@@ -157,12 +151,12 @@
    * Template tag
    *
    ***********************/
-  function pzarchitect( $pzarc_blueprint = null, $pzarc_overrides = null,$tablet_bp=null,$phone_bp=null ) {
-    $pzarc_caller = 'template_tag';
-    $tag=null;
+  function pzarchitect( $pzarc_blueprint = null, $pzarc_overrides = null, $tablet_bp = null, $phone_bp = null ) {
+    $pzarc_caller         = 'template_tag';
+    $tag                  = null;
     $additional_overrides = null;
     do_action( "arc_before_template_tag", $pzarc_blueprint, $pzarc_overrides, $pzarc_caller );
-    do_action( "arc_do_template_tag", $pzarc_blueprint, $pzarc_overrides, $pzarc_caller, $tag, $additional_overrides,$tablet_bp,$phone_bp );
+    do_action( "arc_do_template_tag", $pzarc_blueprint, $pzarc_overrides, $pzarc_caller, $tag, $additional_overrides, $tablet_bp, $phone_bp );
     do_action( "arc_after_template_tag", $pzarc_blueprint, $pzarc_overrides, $pzarc_caller );
   }
 
@@ -172,15 +166,15 @@
    * Page builder
    *
    ***********************/
-  function pzarc_pagebuilder( $pzarc_blueprint = null) {
-    $pzarc_caller = 'pagebuilder';
-    $tag=null;
+  function pzarc_pagebuilder( $pzarc_blueprint = null ) {
+    $pzarc_caller         = 'pagebuilder';
+    $tag                  = null;
     $additional_overrides = null;
-    $tablet_bp = null;
-    $phone_bp=null;
+    $tablet_bp            = null;
+    $phone_bp             = null;
 //TODO: Need to fix this up so it uses these right
 //    do_action("arc_before_pagebuilder", $pzarc_blueprint, $pzarc_overrides, $pzarc_caller);
-    do_action( "arc_do_pagebuilder", $pzarc_blueprint,null, $pzarc_caller,$tag, $additional_overrides,$tablet_bp,$phone_bp  );
+    do_action( "arc_do_pagebuilder", $pzarc_blueprint, null, $pzarc_caller, $tag, $additional_overrides, $tablet_bp, $phone_bp );
 //    do_action("arc_after_pagebuilder", $pzarc_blueprint, $pzarc_overrides, $pzarc_caller);
   }
 
@@ -201,22 +195,22 @@
     switch ( true ) {
       case ( $detect->isMobile() && ! $detect->isTablet() ):
         // Phone
-        $blueprint = !empty($phone_bp)?$phone_bp:$blueprint;
-        $device='phone';
+        $blueprint = ! empty( $phone_bp ) ? $phone_bp : $blueprint;
+        $device    = 'phone';
         break;
       case ( $detect->isTablet() ):
         // Tablet
-        $blueprint = !empty($tablet_bp)?$tablet_bp:$blueprint;
-        $device='tablet';
+        $blueprint = ! empty( $tablet_bp ) ? $tablet_bp : $blueprint;
+        $device    = 'tablet';
         break;
       default:
         // Desktop or other weird thing
         $blueprint = $blueprint;
-        $device='desktop';
+        $device    = 'desktop';
         break;
     }
 
-    if ('show-none'===$blueprint) {
+    if ( 'show-none' === $blueprint ) {
       return;
     }
     // Shortcodes will load these late. TODO Should search for shortcode in page
@@ -269,6 +263,21 @@
       // If no errors, let's go!
       if ( empty( $architect->build->blueprint[ 'err_msg' ] ) ) {
 
+        if ( $architect->build->blueprint[ '_blueprints_section-0-layout-mode' ] === 'slider' ) {
+          if (!empty($architect->build->blueprint[ '_blueprints_slider-engine' ])) {
+            $registry     = arc_Registry::getInstance();
+            $slider_types = (array) $registry->get( 'slider_types' );
+            foreach ( $slider_types as $st ) {
+
+              if ( $st[ 'name' ] === $architect->build->blueprint[ '_blueprints_slider-engine' ] ) {
+                require_once( $st[ 'public' ] );
+                break;
+              }
+            }
+          } else {
+            require_once(PZARC_PLUGIN_PATH. '/extensions/sliders/slick/arc-slick-public.php');
+          }
+        }
         /** This is it! **/
         $architect->build_blueprint( $overrides, $caller, $additional_overrides );
 

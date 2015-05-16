@@ -117,7 +117,7 @@
     word-wrap: break-word; }
     .pzarchitect .pzarc-panel .entry-excerpt.nothumb.maxwidth,
     .pzarchitect .pzarc-panel .entry-content.nothumb.maxwidth {
-      width: 100%; }
+      width: 100% !important; }
   .pzarchitect .pzarc-panel .entry-excerpt {
     float: left; }
   .pzarchitect .pzarc-panel .entry-thumbnail {

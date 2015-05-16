@@ -54,7 +54,9 @@
       require_once( PZARC_PLUGIN_APP_PATH . '/shared/architect/php/content-types/generic/class_arc_panel_generic.php' );
       require_once( PZARC_PLUGIN_APP_PATH . '/shared/architect/php/content-types/generic/class_arc_query_generic.php' );
 
+      /** This is the first point we have all the Blueprint data */
       $this->build = new arc_Blueprint( $blueprint );
+
 
       if ( isset( $this->build->blueprint[ '_blueprints_content-source' ] ) && $this->build->blueprint[ '_blueprints_content-source' ] == 'defaults' && $this->is_shortcode ) {
 
@@ -75,6 +77,17 @@
       require_once( PZARC_PLUGIN_APP_PATH . '/shared/architect/php/arc-functions.php' );
       require_once( PZARC_PLUGIN_APP_PATH . '/public/php/class_arc_navigator.php' );
       require_once( PZARC_PLUGIN_APP_PATH . '/public/php/class_arc_pagination.php' );
+
+      /** If it's a slider, create its stuff */
+      if ($this->build->blueprint) {
+        // load slider
+        // Later we'll get this from the registry
+//        require_once(PZARC_PLUGIN_PATH. '/extensions/sliders/slick/arc-slick-public.php');
+      }
+
+
+
+
 
       /** Add navigation.*/
       $nav_pos = ( 'thumbs' === $this->build->blueprint[ '_blueprints_navigator' ] && 'top' === $this->build->blueprint[ '_blueprints_navigator-thumbs-position' ] ) ? 'tl' : '';
@@ -456,35 +469,18 @@ pzdb();
       if ( $bp_nav_type === 'navigator' ) {
         $slider               = array();
         $slider[ 'class' ]    = '';
-        $slider[ 'dataid' ]   = '';
-        $slider[ 'datauid' ]  = '';
-        $slider[ 'datatype' ] = '';
+        $slider[ 'data' ]    = '';
 
-        $slider[ 'class' ]     = ' arc-slider-container slider arc-slider-container-' . $bp_shortname;
-        $slider[ 'dataid' ]    = ' data-sliderid="' . $bp_shortname . '"';
-        $slider[ 'datauid' ]   = ' data-bpuid="' . $this->build->blueprint[ 'uid' ] . '"';
-        $slider[ 'datatype' ]  = ' data-navtype="' . $bp_nav_type . '"';
-        $slider[ 'datatrans' ] = ' data-transtype="' . $bp_transtype . '"';
 
-        $duration    = $this->build->blueprint[ '_blueprints_transitions-duration' ] * 1000;
-        $interval    = $this->build->blueprint[ '_blueprints_transitions-interval' ] * 1000;
-        $skip_thumbs = $this->build->blueprint[ '_blueprints_navigator-skip-thumbs' ];
-        $no_across   = $this->build->blueprint[ '_blueprints_section-0-columns-breakpoint-1' ];
-        $is_vertical = ( ! in_array( $this->build->blueprint[ '_blueprints_navigator' ], array(
-            'thumbs',
-            'none'
-          ) ) && ( 'left' === $this->build->blueprint[ '_blueprints_navigator-position' ] || 'right' === $this->build->blueprint[ '_blueprints_navigator-position' ] ) ) ? 'true' : 'false';
-
-        $infinite = ( ! empty( $this->build->blueprint[ '_blueprints_transitions-infinite' ] ) && 'infinite' === $this->build->blueprint[ '_blueprints_transitions-infinite' ] ) ? 'true' : 'false';
-
-        $slider[ 'dataopts' ] = 'data-opts="{#tduration#:' . $duration . ',#tinterval#:' . $interval . ',#tshow#:' . $skip_thumbs . ',#tskip#:' . $skip_thumbs . ',#tisvertical#:' . $is_vertical . ',#tinfinite#:' . $infinite . ',#tacross#:' . $no_across . '}"';
+        $slider = apply_filters('arc-set-slider-data',$slider,$this->build->blueprint);
 
         if ( 'hover' === $this->build->blueprint[ '_blueprints_navigator-pager' ] && 'slider' === $this->build->blueprint[ '_blueprints_section-0-layout-mode' ] ) {
-          $return_val .= '<button type="button" class="pager arrow-left icon-arrow-left4 hide"></button>';
-          $return_val .= '<button type="button" class="pager arrow-right icon-uniE60D"></button>';
+
+          $return_val = apply_filters('arc-add-hover-buttons',$return_val,$this->build->blueprint);
+
         }
 //          //TODO: Should the bp name be in the class or ID?
-        $return_val .= '<div class="pzarc-sections pzarc-sections_' . $bp_shortname . ' pzarc-is_' . $caller . $slider[ 'class' ] . '"' . $slider[ 'dataid' ] . $slider[ 'datauid' ] . $slider[ 'datatype' ] . $slider[ 'dataopts' ] . $slider[ 'datatrans' ] . '>';
+        $return_val .= '<div class="pzarc-sections pzarc-sections_' . $bp_shortname . ' pzarc-is_' . $caller . $slider[ 'class' ] . '"' . $slider['data'] . '>';
       } else {
         $return_val .= '<div class="pzarc-sections pzarc-sections_' . $bp_shortname . ' pzarc-is_' . $caller . '">';
       }
@@ -601,19 +597,23 @@ pzdb($post_type);
 
     // $t is used so third party navs can be written
     function add_navigation( &$t ) {
+
       $class = 'arc_Navigator_' . $t->build->blueprint[ '_blueprints_navigator' ];
 
-      $navigator = new $class( $t->build->blueprint, $t->nav_items );
-      if ( isset( $navigator ) ) {
+      $class = apply_filters( 'arc-navigator-class', $class, $t->build->blueprint );
 
-        $navigator->render();
+      if ( class_exists( $class ) ) {
+        $navigator = new $class( $t->build->blueprint, $t->nav_items );
+        if ( isset( $navigator ) ) {
+
+          $navigator->render();
+
+        }
+
+        unset( $navigator );
 
       }
-
-      unset( $navigator );
-
     }
-
 
   }
 

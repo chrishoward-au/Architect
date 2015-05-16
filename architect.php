@@ -139,6 +139,7 @@
       // Load Architect page templater
       require_once PZARC_PLUGIN_APP_PATH . '/admin/php/class_arcPageTemplater.php';
 
+
       pzdb( 'before architect pro' );
 
       // This is a shorthand way of doing an if. When pro isn't present, it's the lite version.
@@ -163,6 +164,10 @@
 
       // Extensions hook in here
       do_action( 'arc_load_extensions' );
+
+      require_once(PZARC_PLUGIN_PATH. '/extensions/sliders/slick/arc-slick-init.php');
+      require_once(PZARC_PLUGIN_PATH. '/extensions/sliders/slick15/arc-slick15-init.php');
+
 
       // Rebuiild cache if instructed
 

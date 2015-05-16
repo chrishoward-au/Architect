@@ -31,6 +31,7 @@
 
       add_action( 'after_setup_theme', 'pzarc_initiate_updater' );
 
+
     }
 
     /*********************************************

@@ -44,6 +44,16 @@
       ), 10, 1 );
       add_filter( 'views_edit-arc-blueprints', array( $this, 'blueprints_description' ) );
 
+      // load extra stuffs
+      // Grab the extra slider types from the registry
+      $registry = arc_Registry::getInstance();
+      $slider_types = (array) $registry->get( 'slider_types' );
+      foreach ($slider_types as $st) {
+
+        require_once($st['admin']);
+
+      }
+
 
     }
 
@@ -916,7 +926,10 @@
       }
 
 
-      /** SLIDER  */
+      /**
+       *
+       * SLIDER
+       */
       $tabbed                      = array(
         'tabbed' => array(
           'alt' => 'Titles',
@@ -960,6 +973,15 @@
         'icon'       => 'el-icon-website',
         //          'desc'       => 'When the navigation type is set to navigator, presentation will always be in a slider form. You can have multiple navigators on a page, thus multiple sliders.',
         'fields'     => array(
+          array(
+            'id'      => $prefix . 'slider-engine',
+            'title'   => __( 'Slider Engine', 'pzarchitect' ),
+            'type'    => 'button_set',
+            'default' => 'slick',
+            'options' => apply_filters('arc-slider-engine',array('slick'=>'Slick')),
+            'required' => array( $prefix . 'section-0-layout-mode', '=', 'slider' ),
+
+          ),
           array(
             'id'      => $prefix . 'navigator',
             'title'   => __( 'Type', 'pzarchitect' ),
@@ -1278,6 +1300,8 @@
         //            ),
         //)
       );
+
+      $sections[ '_slidertabbed' ] = apply_filters('arc-extend-slider-settings',$sections[ '_slidertabbed' ]);
 
       /** PAGINATION  */
       $sections[ '_pagination' ] = array(

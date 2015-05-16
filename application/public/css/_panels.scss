@@ -42,7 +42,7 @@
       &.nothumb {
         //     width: 100%; TODO: WTF? Why is this breakking shtuff?
         &.maxwidth {
-          width: 100%;
+          width: 100%!important; // Need an important to override the specificity of IDs
         }
       }
     }

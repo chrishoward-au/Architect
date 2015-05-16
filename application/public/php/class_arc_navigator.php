@@ -6,25 +6,18 @@
    * Date: 25/04/2014
    * Time: 9:11 PM
    */
-
-
-  class arc_Navigator
-  {
+  class arc_Navigator {
 
     protected $nav_types = '';
     protected $blueprint = '';
     protected $navitems = array();
     protected $sizing = 'medium';
 
-    function __construct($blueprint, $navitems)
-    {
+    function __construct( $blueprint, $navitems ) {
 
       // Enqueue registered scripts and styles
       // TODO: make optional
-     wp_enqueue_script('js-arc-front-slickjs');
-      wp_enqueue_script('js-slickjs');
-      wp_enqueue_style('css-slickjs');
-      wp_enqueue_style('css-icomoon-arrows');
+      wp_enqueue_style( 'css-icomoon-arrows' );
 
       $this->blueprint = $blueprint;
       $this->navitems  = $navitems;
@@ -32,60 +25,60 @@
 
 //      $skip_left  = $this->blueprint[ '_blueprints_navigator-skip-left' ];
 //      $skip_right = $this->blueprint[ '_blueprints_navigator-skip-right' ];
-      $skip_left  = 'backward';
-      $skip_right = 'forward';
 
-      if ('thumbs' === $this->blueprint[ '_blueprints_navigator' ]) {
-        echo '<div class="arc-slider-nav arc-slider-container icomoon ' . $this->blueprint[ '_blueprints_navigator' ] . ' has-pager">';
-        echo '<button class="pager skip-left icon-btn-style"><span class="icon-' . $skip_left . ' '.$this->blueprint['_blueprints_navigator-skip-button'].'"></span></button>';
-        echo '<button class="pager skip-right icon-btn-style"><span class="icon-' . $skip_right . ' '.$this->blueprint['_blueprints_navigator-skip-button']. '"></span></button>';
+
+      $skipper_nav = '';
+      if ( 'thumbs' === $this->blueprint[ '_blueprints_navigator' ] ) {
         $nav_position = $this->blueprint[ '_blueprints_navigator-thumbs-position' ];
       } else {
         $nav_position = $this->blueprint[ '_blueprints_navigator-position' ];
       }
 
+      echo apply_filters( 'arc-navigation-skipper', $skipper_nav,$this->blueprint );
+
+      $custom_classes =$this->blueprint[ '_blueprints_navigator-bullet-shape' ];
+      $custom_classes = apply_filters('arc-navigator-custom-classes',$custom_classes,$this->blueprint);
+
       echo '<div class="pzarc-navigator pzarc-navigator-' . $this->blueprint[ '_blueprints_short-name' ] .
-          ' ' . $this->blueprint[ '_blueprints_navigator' ] .
-          ' ' . $nav_position .
-          ' ' . $this->blueprint[ '_blueprints_navigator-location' ] .
-          ' ' . $this->blueprint[ '_blueprints_navigator-align' ] .
-          ' ' . $this->blueprint[ '_blueprints_navigator-bullet-shape' ] . '">';
+           ' ' . $this->blueprint[ '_blueprints_navigator' ] .
+           ' ' . $nav_position .
+           ' ' . $this->blueprint[ '_blueprints_navigator-location' ] .
+           ' ' . $this->blueprint[ '_blueprints_navigator-align' ] .
+           ' ' . $custom_classes . '">';
 
     }
 
-    function render()
-    {
+    function render() {
     }
 
-    function __destruct()
-    {
-      if ('thumbs' === $this->blueprint[ '_blueprints_navigator' ]) {
-        echo '</div><!-- end thumbs nav --></div><!-- End pzarc-navigator -->';
+
+    function __destruct() {
+     $close='';
+      if ( 'thumbs' === $this->blueprint[ '_blueprints_navigator' ] ) {
+        $close .= '</div><!-- end thumbs nav --></div><!-- End pzarc-navigator -->';
       } else {
-        echo '</div><!-- End pzarc-navigator -->';
+        $close.= '</div><!-- End pzarc-navigator -->';
       }
+      echo apply_filters('arc-nav-close',$close,$this->blueprint);
     }
   }
 
   /**
    * Class arc_Navigator_Tabbed
    */
-  class arc_Navigator_Tabbed extends arc_Navigator
-  {
-    function _construct()
-    {
+  class arc_Navigator_Tabbed extends arc_Navigator {
+    function _construct() {
       $this->nav_types[ ] = __CLASS__;
     }
 
-    function render()
-    {
+    function render() {
 
       $i = 1;
-      foreach ($this->navitems as $nav_item) {
-        $active = ($i === 1 ? ' active' : '');
+      foreach ( $this->navitems as $nav_item ) {
+        $active = ( $i === 1 ? ' active' : '' );
 
         echo '<span class="arc-slider-slide arc-slider-slide-nav-item' . $active . '" data-index="' . $i . '">' . $nav_item . '</span>';
-        $i++;
+        $i ++;
       }
     }
 
@@ -94,22 +87,19 @@
   /**
    * Class arc_Navigator_Labels
    */
-  class arc_Navigator_Labels extends arc_Navigator
-  {
-    function _construct()
-    {
+  class arc_Navigator_Labels extends arc_Navigator {
+    function _construct() {
       $this->nav_types[ ] = __CLASS__;
     }
 
-    function render()
-    {
+    function render() {
 
       $i = 1;
-      foreach ($this->navitems as $nav_item) {
-        $active = ($i === 1 ? ' active' : '');
+      foreach ( $this->navitems as $nav_item ) {
+        $active = ( $i === 1 ? ' active' : '' );
 
         echo '<span class="arc-slider-slide arc-slider-slide-nav-item' . $active . '" data-index="' . $i . '">' . $nav_item . '</span>';
-        $i++;
+        $i ++;
       }
     }
 
@@ -119,16 +109,13 @@
   /**
    * Class arc_Navigator_Buttons
    */
-  class arc_Navigator_Buttons extends arc_Navigator
-  {
-    function _construct()
-    {
+  class arc_Navigator_Buttons extends arc_Navigator {
+    function _construct() {
       $this->nav_types[ ] = __CLASS__;
 
     }
 
-    function render()
-    {
+    function render() {
       echo '<h2><< < [] >></h2>';
     }
 
@@ -137,20 +124,17 @@
   /**
    * Class arc_Navigator_Bullets
    */
-  class arc_Navigator_Bullets extends arc_Navigator
-  {
-    function _construct()
-    {
+  class arc_Navigator_Bullets extends arc_Navigator {
+    function _construct() {
       $this->nav_types[ ] = __CLASS__;
 
     }
 
-    function render()
-    {
+    function render() {
       $i = 1;
-      foreach ($this->navitems as $nav_item) {
-        $active = ($i === 1 ? ' active' : '');
-        echo '<span class="arc-slider-slide-nav-item' . $this->sizing . $active . '" data-index="' . $i++ . '"></span>';
+      foreach ( $this->navitems as $nav_item ) {
+        $active = ( $i === 1 ? ' active' : '' );
+        echo '<span class="arc-slider-slide-nav-item' . $this->sizing . $active . '" data-index="' . $i ++ . '"></span>';
       }
     }
 
@@ -159,20 +143,17 @@
   /**
    * Class arc_Navigator_Numbers
    */
-  class arc_Navigator_Numbers extends arc_Navigator
-  {
-    function _construct()
-    {
+  class arc_Navigator_Numbers extends arc_Navigator {
+    function _construct() {
       $this->nav_types[ ] = __CLASS__;
 
     }
 
-    function render()
-    {
+    function render() {
       $i = 1;
-      foreach ($this->navitems as $nav_item) {
-        $active = ($i === 1 ? ' active' : '');
-        echo '<span class="arc-slider-slide-nav-item' . $this->sizing . $active . '" data-index="' . $i . '">' . $i++ . '</span>';
+      foreach ( $this->navitems as $nav_item ) {
+        $active = ( $i === 1 ? ' active' : '' );
+        echo '<span class="arc-slider-slide-nav-item' . $this->sizing . $active . '" data-index="' . $i . '">' . $i ++ . '</span>';
       }
     }
 
@@ -181,16 +162,13 @@
   /**
    * Class arc_Navigator_None
    */
-  class arc_Navigator_None extends arc_Navigator
-  {
-    function _construct()
-    {
+  class arc_Navigator_None extends arc_Navigator {
+    function _construct() {
       $this->nav_types[ ] = __CLASS__;
 
     }
 
-    function render()
-    {
+    function render() {
     }
 
   }
@@ -198,22 +176,23 @@
   /**
    * Class arc_Navigator_Thumbs
    */
-  class arc_Navigator_Thumbs extends arc_Navigator
-  {
-    function _construct()
-    {
+  class arc_Navigator_Thumbs extends arc_Navigator {
+    function _construct() {
       $this->nav_types[ ] = __CLASS__;
 
     }
 
-    function render()
-    {
+    function render() {
       $i = 1;
-      foreach ($this->navitems as $nav_item) {
-        $active = ($i === 1 ? ' active' : '');
-        echo '<div class="arc-slider-slide arc-slider-slide-nav-item' . $this->sizing . $active . '" data-index="' . $i . '">' . $nav_item . '</div>';
-        $i++;
+      $nav_html = '';
+      foreach ( $this->navitems as $nav_item ) {
+        $active = ( $i === 1 ? ' active' : '' );
+        $nav_html .= '<div class="arc-slider-slide arc-slider-slide-nav-item' . $this->sizing . $active . '" data-index="' . $i . '">' . $nav_item . '</div>';
+        $i ++;
       }
+
+      echo $nav_html;
     }
+
 
   }
