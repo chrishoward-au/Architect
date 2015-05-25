@@ -13,13 +13,11 @@
 
   function pzarc_slick_slider_data( $slider, $blueprint ) {
 
-    // Slick
-    wp_register_script( 'js-arc-front-slickjs', PZARC_PLUGIN_URL . '/extensions/sliders/slick/arc-front-slick.js', array( 'jquery' ), null, true );
-    wp_register_script( 'js-slickjs', PZARC_PLUGIN_URL . '/extensions/sliders/slick/slick/slick/slick.min.js', array( 'jquery' ), null, true );
-    wp_register_style( 'css-slickjs', PZARC_PLUGIN_URL . '/extensions/sliders/slick/slick/slick/slick.css' );
+
     wp_enqueue_script( 'js-arc-front-slickjs' );
     wp_enqueue_script( 'js-slickjs' );
     wp_enqueue_style( 'css-slickjs' );
+    wp_enqueue_style( 'css-arcslick' );
 
     $bp_transtype = $blueprint[ '_blueprints_transitions-type' ];
     $bp_shortname = $blueprint[ '_blueprints_short-name' ];
@@ -107,4 +105,16 @@
     }
 
 
+  }
+
+
+  add_filter('arc-nav-close','pzarc_slick_nav_close',10,2);
+  function pzarc_slick_nav_close($close,$blueprint){
+    // Slick nav needs an extra div
+    if ( 'thumbs' === $blueprint[ '_blueprints_navigator' ] ) {
+      $close = '</div><!-- end thumbs nav --></div><!-- End pzarc-navigator -->';
+    } else {
+      $close= '</div><!-- End pzarc-navigator -->';
+    }
+    return $close;
   }

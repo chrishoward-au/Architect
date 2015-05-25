@@ -476,11 +476,17 @@
             'content' => __( 'Choose the device you intend to display this Blueprint on. This is currently for information purposes only. That is, co anyone else working with this Blueprint is aware.', 'pzarchitect' )
           )
         );
+      $sections[ '_general_bp' ][ 'fields' ][ ] = array(
+        'id'    => $prefix . 'animation-message',
+        'type'  => 'section',
+        'indent'=>false,
+        'subtitle'  => 'Architect v'.PZARC_VERSION,
+      );
 
 
       $metaboxes[ ] = array(
         'id'         => $prefix . 'layout-general-settings',
-        'title'      => 'General Settings',
+        'title'      => 'General Settings ',
         'post_types' => array( 'arc-blueprints' ),
         'sections'   => $sections,
         'position'   => 'side',
@@ -598,8 +604,8 @@
               'id'      => $prefix . 'section-' . $i . '-layout-mode',
               'type'    => 'image_select',
               'default' => 'basic',
-              'desc'    => $desc[ (int) ( $i > 0 ) ],
-              'height'  => 64,
+              'subtitle'    => $desc[ (int) ( $i > 0 ) ],
+              'height'  => 80,
               'options' => $modesx[ (int) ( $i > 0 ) ],
               'hint'    => array(
                 'title'   => 'Types',
@@ -906,6 +912,16 @@
               'on'       => 'Yes',
               'off'      => 'No',
               'default'  => false
+            ),
+            array(
+              'title'    => 'Hide archive title prefix',
+              'id'       => $prefix . 'hide-archive-title-prefix',
+              'type'     => 'switch',
+              'subtitle' => __( 'When on an Archive page, hide the archive prefix from Architect > Options > Language', 'pzarchitect' ),
+              'on'       => 'Yes',
+              'off'      => 'No',
+              'default'  => false,
+              'required' => array($prefix . 'page-title', '=',true)
             ),
             array(
               'title'    => 'Blueprint display title',

@@ -3,7 +3,7 @@ Contributors: chrishoward
 Tags: content,display,posts,pages,gallery,slider,tabs,tabbed,tabular,widget,hooks
 Requires at least: 3.5.0
 Tested up to: 4.2.1
-Stable tag: 1.2.9
+Stable tag: 1.2.11
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Plugin URI: http://architect4wp.com
@@ -21,6 +21,7 @@ What if you love your theme framework but want an easy way to build the content 
 
 With Architect you can build the layouts your theme doesn't provide - and all from one plugin. No longer do you need a plugin for sliders, another for magazine grids, another for tabbed content or another for displaying photo galleries.
 
+Also, to ease maintenance and improve performance, it's best to minimize the number of plugins on your site. Architect helps that by replacing several plugins with one.
 
 = Why use Architect? =
 Architect greatly reduces the complexity of designing and developing methods to display your content. For example, if you are using the Twenty Thirteen and decide you want a 3x3 grid of excerpts to display on the home page, you would have to code a page template for that purpose.
@@ -93,8 +94,18 @@ For support, please send an email to support@pizazzwp.com
 
 == Changelog ==
 
-= 1.3.0 =
+= 1.2.11 =
+* ADDED: Sorting options of None and Specified. Specified uses the order of images in a gallery, or the order of specifically selected posts or pages
+* CHANGED: Specific posts and pages can be manually ordered
+* CHANGED: Icons for the layout type selector
+* CHANGED: Licence owner name now displays on licence screen 
+* ADDED: Option to activate the Architect Builder on WP Pages editor. Off by default
+
+= 1.2.10 : 22 May 2015 =
 * FIXED: Excerpts not going 100% wide when no thumb image
+* CHANGED: Refactored sliders so devs can use their own
+* ADDED: Option to hide archive prefix text when showing page title on an archive page
+* CHANGED: If Architect is installed on a Headway themed site, Architect's own styling will be turned off as the default.
 
 = 1.2.9 : 14 May 2015 =
 * FIXED: Date formatting for dummy content

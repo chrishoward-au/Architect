@@ -12,10 +12,13 @@
 
     function __construct() {
       if ( is_admin() ) {
-        add_action( "redux/metaboxes/$this->redux_opt_name/boxes", array(
-          $this,
-          "pzarc_add_pagebuilder_metaboxes"
-        ), 10, 1 );
+        global $_architect_options;
+        if (!empty($_architect_options[ 'architect_use-builder' ])) {
+          add_action("redux/metaboxes/$this->redux_opt_name/boxes", array(
+              $this,
+              "pzarc_add_pagebuilder_metaboxes"
+          ), 10, 1);
+        }
       }
     }
 

@@ -53,12 +53,7 @@
 
 
     function __destruct() {
-     $close='';
-      if ( 'thumbs' === $this->blueprint[ '_blueprints_navigator' ] ) {
-        $close .= '</div><!-- end thumbs nav --></div><!-- End pzarc-navigator -->';
-      } else {
-        $close.= '</div><!-- End pzarc-navigator -->';
-      }
+     $close='</div><!-- end pzarc navigator -->';
       echo apply_filters('arc-nav-close',$close,$this->blueprint);
     }
   }

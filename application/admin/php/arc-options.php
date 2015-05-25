@@ -274,6 +274,9 @@
           $pzarc_blueprints_list = pzarc_get_posts_in_post_type( 'arc-blueprints', true );
 
         }
+
+
+        $is_hw = ( $current_theme->get('Name') === 'Headway Base' ) ;
         $this->sections[ '_general'] = array(
           'title'      => __( 'General ', 'pzarchitect' ),
           'show_title' => true,
@@ -290,7 +293,7 @@
               'id'       => 'architect_enable_styling',
               'type'     => 'switch',
               'subtitle' => __( 'Turn this off if you want to manage styling from your own CSS stylesheets or only from the Headway Visual Editor Design Mode.', 'pzarchitect' ),
-              'default'  => true
+              'default'  => !$is_hw
             ),
             array(
               'title'   => __( 'Typography units', 'pzarchitect' ),
@@ -303,7 +306,7 @@
               ),
               'default' => 'px'
             ),
-            ( 'headway' == $current_theme->stylesheet ? array(
+            ( $is_hw ? array(
               'title'    => __( 'Add Headway Content Block class', 'pzarchitect' ),
               'id'       => 'architect_hw-content-class',
               'type'     => 'switch',
@@ -313,13 +316,13 @@
               'subtitle' => __( 'This will add the class <strong>block-type-content</strong> to the panels, which enables them to inherit the stylings for the Content block. However, this can make styling in the Visual Editor Design Mode a little confusing, as hovering over an element will show it as a Content Block element', 'pzarchitect' )
 
             ) : null ),
-            ( 'headway' == $current_theme->stylesheet ? array(
+            ( $is_hw ? array(
               'title'    => __( 'Use Architect Headway CSS from Design Mode', 'pzarchitect' ),
               'id'       => 'architect_use-hw-css',
               'type'     => 'switch',
               'on'       => __( 'Yes', 'pzarchitect' ),
               'off'      => __( 'No', 'pzarchitect' ),
-              'default'  => true,
+              'default'  => $is_hw,
               'subtitle' => __( 'Use the stylings you configure for Architect in the Headway Visual Editor Design Mode.', 'pzarchitect' )
 
             ) : null ),
@@ -400,6 +403,16 @@
               'id'     => 'architect_mods_section',
               'type'   => 'section',
               'indent' => true,
+            ),
+             array(
+                'title'    => __( 'Activate Architect Builder on Pages editor', 'pzarchitect' ),
+                'id'       => 'architect_use-builder',
+                'type'     => 'switch',
+                'on'       => __( 'Yes', 'pzarchitect' ),
+                'off'      => __( 'No', 'pzarchitect' ),
+                'default'  => !$is_hw,
+                'subtitle' => __( '.', 'pzarchitect' )
+
             ),
             array(
               'title'   => __( 'Additional content types', 'pzarchitect' ),

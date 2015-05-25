@@ -68,6 +68,7 @@
     $license   = get_option( 'edd_architect_license_key' );
     $pzarc_status    = get_option( 'edd_architect_license_status' );
     $edd_state = get_option( 'edd_architect_license_state' );
+    $edd_name = get_option( 'edd_architect_license_name' );
     ?>
     <div class="wrap">
     <h2><?php _e( 'Architect Licence Options', 'pzarchitect' ); ?></h2>
@@ -93,7 +94,7 @@
         <tbody>
         <tr valign="top">
           <th scope="row" valign="top">
-            <?php _e( 'License Key' ); ?>
+            <?php _e( 'Licence Key' ); ?>
           </th>
           <td>
             <input id="edd_architect_license_key" name="edd_architect_license_key" type="text" class="regular-text"
@@ -104,20 +105,26 @@
         <?php if ( false !== $license ) { ?>
           <tr valign="top">
             <th scope="row" valign="top">
-              <?php _e( 'Activate License' ); ?>
+              <?php _e( 'Activate Licence' ); ?>
             </th>
             <td>
               <?php if ( $pzarc_status !== false && $pzarc_status == 'valid' ) { ?>
                 <?php wp_nonce_field( 'edd_architect_nonce', 'edd_architect_nonce' ); ?>
                 <input type="submit" class="button-secondary" name="edd_license_deactivate"
-                       value="<?php _e( 'Deactivate License' ); ?>"/>
-                <span style="color:green;">&nbsp;<?php _e( 'Active' ); ?></span>
+                       value="<?php _e( 'Deactivate Licence' ); ?>"/>
+
               <?php } else {
                 wp_nonce_field( 'edd_architect_nonce', 'edd_architect_nonce' ); ?>
                 <input type="submit" class="button-secondary" name="edd_license_activate"
-                       value="<?php _e( 'Activate License' ); ?>"/>
+                       value="<?php _e( 'Activate Licence' ); ?>"/>
               <?php }
-                echo "<p>" . $edd_state . "</p>";
+                if  ( $pzarc_status !== false && $pzarc_status == 'valid' ) {
+                  echo '<div style="background:white;border:1px solid #bbb;border-radius:3px;padding:5px 10px 10px 10px;width:250px;margin-top:20px;">';
+                  echo '<p style="color:green;">'. __( 'Active','pzarchitect' ).'</p>';
+                  echo "<p>" . $edd_name . "</p>";
+                  echo "<p>" . $edd_state . "</p>";
+                  echo '</div>';
+                }
               ?>
 
             </td>
@@ -192,11 +199,12 @@
       // $license_data->license will be either "valid" or "invalid"
 
       update_option( 'edd_architect_license_status', $license_data->license );
-
       if ( $license_data->success ) {
-        update_option( 'edd_architect_license_state', "Remaining activations: " . $license_data->activations_left );
+        update_option( 'edd_architect_license_state', '<strong>'.__("Remaining activations: ",'pzarchitect').'</strong>' . $license_data->activations_left );
+        update_option( 'edd_architect_license_name', '<strong>'.__('Licence owner: ','pzarchitect').'</strong>'.$license_data->customer_name );
       } else {
         update_option( 'edd_architect_license_state', "Activation failed with message: " . ucfirst( str_replace( '_', ' ', $license_data->error ) ) . '. Licence limit: ' . $license_data->license_limit );
+        update_option( 'edd_architect_license_name', '' );
       }
 
     }
@@ -246,9 +254,12 @@
       // decode the license data
       $license_data = json_decode( wp_remote_retrieve_body( $response ) );
 
+
       // $license_data->license will be either "deactivated" or "failed"
       if ( $license_data->license == 'deactivated' ) {
         delete_option( 'edd_architect_license_status' );
+        delete_option( 'edd_architect_license_state' );
+        delete_option( 'edd_architect_license_name' );
       }
 
     }

@@ -41,6 +41,7 @@
           } else {
             $ids = !empty($overrides['ids']) ? $overrides['ids'] : $this->criteria[ $prefix . 'specific-ids' ];
           }
+
           $this->query_options[ 'post_type' ]           = 'attachment';
           $this->query_options[ 'post__in' ]            = (!empty($ids) ? explode(',', $ids) : null);
           $this->query_options[ 'post_status' ]         = array('publish', 'inherit', 'private');

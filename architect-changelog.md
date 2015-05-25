@@ -1,5 +1,11 @@
 # Architect change history 
 
+## 1.2.10  : 22 May 2015
+* FIXED: Excerpts not going 100% wide when no thumb image
+* CHANGED: Refactored sliders so devs can use their own
+* ADDED: Option to hide archive prefix text when showing page title on an archive page
+* CHANGED: If Architect is installed on a Headway themed site, Architect's own styling will be turned off as the default.
+
 ## 1.2.9 : 14 May 2015 
 * FIXED: Date formatting for dummy content
 

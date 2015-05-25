@@ -35,7 +35,9 @@
                       'select2' => array('allowClear' => true),
                       'args' => array('posts_per_page'=>'-1'),
                       'data'    => 'posts',
-                      'multi'   => true
+                      'multi'   => true,
+                      'sortable'=>true,
+                      'subtitle'=>__('Select then drag and drop to order. Be sure to set Order By in Settings to Specified.','pzarchitect'),
                   ),
                   array(
                     'title'   => __('Exclude posts', 'pzarchitect'),

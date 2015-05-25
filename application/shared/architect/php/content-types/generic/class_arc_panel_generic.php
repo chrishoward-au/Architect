@@ -446,7 +446,7 @@
         $this->data[ 'cfield' ][ $i ][ 'field-type' ]    = $this->section[ '_panels_design_cfield-' . $i . '-field-type' ];
         $this->data[ 'cfield' ][ $i ][ 'date-format' ]   = $this->section[ '_panels_design_cfield-' . $i . '-date-format' ];
         $this->data[ 'cfield' ][ $i ][ 'wrapper-tag' ]   = $this->section[ '_panels_design_cfield-' . $i . '-wrapper-tag' ];
-        $this->data[ 'cfield' ][ $i ][ 'class-name' ]    = $this->section[ '_panels_design_cfield-' . $i . '-class-name' ];
+        $this->data[ 'cfield' ][ $i ][ 'class-name' ]    = isset($this->section[ '_panels_design_cfield-' . $i . '-class-name' ])?$this->section[ '_panels_design_cfield-' . $i . '-class-name' ]:'';
         $this->data[ 'cfield' ][ $i ][ 'link-field' ]    = $this->section[ '_panels_design_cfield-' . $i . '-link-field' ];
         $this->data[ 'cfield' ][ $i ][ 'decimals' ]      = $this->section[ '_panels_design_cfield-' . $i . '-number-decimals' ];
         $this->data[ 'cfield' ][ $i ][ 'decimal-char' ]  = $this->section[ '_panels_design_cfield-' . $i . '-number-decimal-char' ];

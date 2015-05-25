@@ -413,31 +413,32 @@ pzdb();
       pzdb('page title');
       if ( ! empty( $display_title ) || ! empty( $this->build->blueprint[ 'additional_overrides' ][ 'pzarc-overrides-page-title' ] ) ) {
         $title = '';
+        $inc_prefix = empty($this->build->blueprint['_blueprints_hide-archive-title-prefix']);
         global $wp_the_query;
         switch ( true ) {
           case is_category():
-            $title = single_cat_title( __( $title_override[ 'category' ], 'pzarchitect' ), false );
+            $title = single_cat_title( __( $inc_prefix?$title_override[ 'category' ]:'', 'pzarchitect' ), false );
             break;
           case is_tag() :
-            $title = single_tag_title( __( $title_override[ 'tag' ], 'pzarchitect' ), false );
+            $title = single_tag_title( __( $inc_prefix?$title_override[ 'tag' ]:'', 'pzarchitect' ), false );
             break;
           case is_month() :
-            $title = single_month_title( __( $title_override[ 'month' ], 'pzarchitect' ), false );
+            $title = single_month_title( __( $inc_prefix?$title_override[ 'month' ]:'', 'pzarchitect' ), false );
             break;
           case is_tax() :
-            $title = single_term_title( __( $title_override[ 'custom' ], 'pzarchitect' ), false );
+            $title = single_term_title( __( $inc_prefix?$title_override[ 'custom' ]:'', 'pzarchitect' ), false );
             break;
           case $wp_the_query->is_category:
-            $title = pzarc_term_title( __( $title_override[ 'category' ], 'pzarchitect' ), $wp_the_query->tax_query );
+            $title = pzarc_term_title( __( $inc_prefix?$title_override[ 'category' ]:'', 'pzarchitect' ), $wp_the_query->tax_query );
             break;
           case $wp_the_query->is_tag :
-            $title = pzarc_term_title( __( $title_override[ 'tag' ], 'pzarchitect' ), $wp_the_query->tax_query );
+            $title = pzarc_term_title( __( $inc_prefix?$title_override[ 'tag' ]:'', 'pzarchitect' ), $wp_the_query->tax_query );
             break;
           case $wp_the_query->is_month :
-            $title = pzarc_term_title( __( $title_override[ 'month' ], 'pzarchitect' ), $wp_the_query->tax_query );
+            $title = pzarc_term_title( __( $inc_prefix?$title_override[ 'month' ]:'', 'pzarchitect' ), $wp_the_query->tax_query );
             break;
           case $wp_the_query->is_tax :
-            $title = pzarc_term_title( __( $title_override[ 'custom' ], 'pzarchitect' ), $wp_the_query->tax_query );
+            $title = pzarc_term_title( __( $inc_prefix?$title_override[ 'custom' ]:'', 'pzarchitect' ), $wp_the_query->tax_query );
             break;
           case is_single() || $wp_the_query->is_single:
           case is_singular() || $wp_the_query->is_singular:
@@ -502,7 +503,6 @@ pzdb();
       $arc_query_source->build_custom_query_options( $overrides );
 
       $this->arc_query = $arc_query_source->get_custom_query( $overrides );
-
       self::replace_wp_query(); // NOTE: This is only activated on pagination. So should only be used by legitimate post types
     }
 
