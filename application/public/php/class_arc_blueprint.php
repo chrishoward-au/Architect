@@ -30,7 +30,7 @@
       if (empty($this->blueprint[ 'err_msg' ])) {
 //        for ($i = 1; $i <= 3; $i++) {
         $i = 1;
-        switch($this->blueprint[ '_blueprints_section-' . ($i - 1) . '-layout-mode' ]) {
+        switch ($this->blueprint[ '_blueprints_section-' . ($i - 1) . '-layout-mode' ]) {
           case 'table':
             $titles = $this->blueprint[ '_blueprints_section-' . ($i - 1) . '-table-column-titles' ];
             break;
@@ -38,20 +38,20 @@
             $titles = $this->blueprint[ '_blueprints_section-' . ($i - 1) . '-accordion-titles' ];
             break;
           default:
-            $titles='';
+            $titles = '';
         }
-
 //          if (!empty($this->blueprint[ '_blueprints_section-' . ($i - 1) . '-panel-layout' ])) {
         $this->blueprint[ 'section_object' ][ $i ] =
             arc_SectionFactory::create($i,
                                        $this->blueprint[ 'section' ][ ($i - 1) ],
                                        $this->blueprint[ '_blueprints_content-source' ],
-                                       $this->blueprint[ '_blueprints_pagination' ],
+                                       $this->blueprint[ '_blueprints_navigator' ],
                                        $this->blueprint[ '_blueprints_section-' . ($i - 1) . '-layout-mode' ],
-                                       'slick', // Possible Future use
+                (!empty($this->blueprint[ '_blueprints_slider-engine' ]) ? $this->blueprint[ '_blueprints_slider-engine' ] : 'slick'), // Possible Future use
 //                                       $this->blueprint[ '_blueprints_section-' . ($i - 1) . '-title' ],
                                        $titles,
-                                       $this->blueprint[ '_blueprints_short-name' ]
+                                       $this->blueprint[ '_blueprints_short-name' ],
+                                       $this->blueprint
 
             );
         unset($this->blueprint[ 'section' ]);
@@ -62,8 +62,8 @@
       //}
 
       // Let others add ther own defaults
-      $this->blueprint = apply_filters('pzarc-load-blueprint',$this->blueprint);
-pzdb('bottom of blueprint construct');
+      $this->blueprint = apply_filters('pzarc-load-blueprint', $this->blueprint);
+      pzdb('bottom of blueprint construct');
     }
 
 
@@ -74,7 +74,7 @@ pzdb('bottom of blueprint construct');
      */
     function get_blueprint()
     {
-pzdb('top get blueprint');
+      pzdb('top get blueprint');
       // meed to return a structure for the panels, the content source, the navgation info
       $meta_query_args = array(
           'post_type'    => 'arc-blueprints',
@@ -84,18 +84,18 @@ pzdb('top get blueprint');
       );
       $bp              = get_posts($meta_query_args);
       if (isset($bp[ 0 ])) {
-        $this->bp = pzarc_flatten_wpinfo( get_post_meta( $bp[ 0 ]->ID ) );
+        $this->bp = pzarc_flatten_wpinfo(get_post_meta($bp[ 0 ]->ID));
         // Do we need this still? Yes! Because Redux doesn't store defaults
         // True excludes styling
-        pzarc_get_defaults( true );
+        pzarc_get_defaults(true);
 
         global $_architect_options, $_architect;
-        $this->blueprint          = array_replace_recursive( $_architect[ 'defaults' ][ '_blueprints' ], $this->bp );
-        $this->blueprint[ 'uid' ] = 'uid' . time() . rand( 1000, 9999 );
+        $this->blueprint          = array_replace_recursive($_architect[ 'defaults' ][ '_blueprints' ], $this->bp);
+        $this->blueprint[ 'uid' ] = 'uid' . time() . rand(1000, 9999);
 
 //        if ( ! empty( $_architect_options[ 'architect_enable_query_cache' ] ) && ( ! current_user_can( 'manage_options' ) || ! current_user_can( 'edit_others_pages' ) ) && false === ( $blueprint_query = get_transient( 'pzarc_blueprint_query_' . $this->name ) ) ) {
-          // It wasn't there, so regenerate the data and save the transient
-          $blueprint_query = new WP_Query( $meta_query_args );
+        // It wasn't there, so regenerate the data and save the transient
+        $blueprint_query = new WP_Query($meta_query_args);
 //          set_transient( 'pzarc_blueprint_query_' . $this->name, $blueprint_query, PZARC_TRANSIENTS_KEEP );
 //        } elseif ( current_user_can( 'edit_others_pages' ) || empty( $_architect_options[ 'architect_enable_query_cache' ] ) ) {
 //          $blueprint_query = new WP_Query( $meta_query_args );
@@ -120,8 +120,8 @@ pzdb('top get blueprint');
       $blueprint_info = get_post_meta($blueprint_query->posts[ 0 ]->ID);
       foreach ($blueprint_info as $key => $value) {
 
-        if ('_edit_lock' !== $key && '_edit_last' !== $key && strpos($key,'_blueprints_styling_') !== 0) {
-              $this->blueprint[ $key ] = maybe_unserialize($value[ 0 ]);
+        if ('_edit_lock' !== $key && '_edit_last' !== $key && strpos($key, '_blueprints_styling_') !== 0) {
+          $this->blueprint[ $key ] = maybe_unserialize($value[ 0 ]);
         }
 
       }
@@ -129,7 +129,7 @@ pzdb('top get blueprint');
       /** Add the default values except for the styling ones **/
       foreach ($_architect[ 'defaults' ][ '_blueprints' ] as $key => $value) {
         if ((strpos($key, '_blueprints_') === 0 || strpos($key, '_content_') === 0) && !isset($this->blueprint[ $key ])) {
-          $this->blueprint['panels'][ $key ] = maybe_unserialize($value);
+          $this->blueprint[ 'panels' ][ $key ] = maybe_unserialize($value);
         };
 
       }
@@ -142,7 +142,7 @@ pzdb('top get blueprint');
       $panel[ 1 ] = array();
       foreach ($this->blueprint as $key => $value) {
 
-        if (strpos($key, '_panel') === 0 && !isset($panel[ 1 ][ $key ]) && strpos($key,'_panels_styling_') !== 0) {
+        if (strpos($key, '_panel') === 0 && !isset($panel[ 1 ][ $key ]) && strpos($key, '_panels_styling_') !== 0) {
           $panel[ 1 ][ $key ] = maybe_unserialize($value);
           unset($this->blueprint[ $key ]);
         };
@@ -158,6 +158,7 @@ pzdb('top get blueprint');
       );
       unset($panel);
       unset($this->bp);
+
       return true;
     }
 

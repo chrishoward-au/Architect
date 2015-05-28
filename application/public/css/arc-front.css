@@ -203,7 +203,7 @@
       display: inline-block;
       right: -50%;
       overflow: visible;
-      vertical-align: text-top; }
+      vertical-align: top; }
       .pzarchitect .pzarc-panel figure.pzarc-bg-image.fill.trim img {
         max-width: none;
         position: relative;
@@ -439,7 +439,7 @@
       border-radius: 3px;
       padding: 5px;
       z-index: 2;
-      display: none;
+      display: none !important;
       font-family: icomoon;
       font-size: 32px;
       color: #fff;
@@ -454,7 +454,7 @@
         right: 1%; }
     .pzarchitect .nav-navigator:hover .arrow-right,
     .pzarchitect .nav-navigator:hover .arrow-left {
-      display: block; }
+      display: block !important; }
       .pzarchitect .nav-navigator:hover .arrow-right.hide,
       .pzarchitect .nav-navigator:hover .arrow-left.hide {
         display: none; }
@@ -463,7 +463,7 @@
     position: relative; }
     .pzarchitect .arc-slider-nav:hover .skip-right,
     .pzarchitect .arc-slider-nav:hover .skip-left {
-      display: block; }
+      display: block !important; }
     .pzarchitect .arc-slider-nav button.pager {
       position: absolute;
       top: 50%;

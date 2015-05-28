@@ -27,24 +27,39 @@
       'required' => array( '_blueprints_slider-engine', '=', 'slick15' ),
     );
     $settings['fields'][] =
-                  array(
-                      'title'   => __('Go to after last slide', 'pzarchitect'),
-                      'id'      => $prefix . 'slick15-infinite',
-                      'type'    => 'button_set',
-                      'options' => array(
-                          'infinite' => 'First',
-                          'reverse'  => 'Previous'),
-                      'default' => 'infinite',
-                      'hint'    => array('content' => __('Loop back to the first slide after reaching the last one or reverse direction to previous slide', 'pzarchitect')),
-                  );
+        array(
+            'title'   => __('Options', 'pzarchitect'),
+            'id'      => $prefix . 'extra-options',
+            'type'    => 'button_set',
+            'multi'=>true,
+            'default' => array('infinite','pause','adaptive'),
+            'options' => array('infinite'=>'Infinite loop','pause'=>'Pause on hover','adaptive'=>'Adaptive height')
+        );
 
-    $settings['fields'][] =
-                array(
-                    'title'   => 'Pause on hover',
-                    'id'      => $prefix . 'slick15-pause-on-hover',
-                    'type'    => 'switch',
-                    'default' => true,
-                );
+//    $settings['fields'][] =
+//                  array(
+//                      'title'   => __('Infinite loop', 'pzarchitect'),
+//                      'id'      => $prefix . 'infinite',
+//                      'type'    => 'switch',
+//                      'default' => true,
+//                      'hint'    => array('content' => __('Loop back to the first slide after reaching the last one', 'pzarchitect')),
+//                  );
+//
+//    $settings['fields'][] =
+//                array(
+//                    'title'   => 'Pause on hover',
+//                    'id'      => $prefix . 'pause-on-hover',
+//                    'type'    => 'switch',
+//                    'default' => true,
+//                );
+//
+//    $settings['fields'][] =
+//        array(
+//            'title'   => 'Adaptive height',
+//            'id'      => $prefix . 'adaptive-height',
+//            'type'    => 'switch',
+//            'default' => true,
+//        );
 
     $settings['fields'][] = array(
       'id'       => $prefix . 'section-slick15-close',

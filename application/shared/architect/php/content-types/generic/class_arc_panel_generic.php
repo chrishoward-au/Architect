@@ -700,6 +700,13 @@
           $panel_def[ $component ] = str_replace( '{{captioncode}}', $caption, $panel_def[ $component ] );
         }
 
+        if ($this->section['_panels_settings_image-focal-point']==='scale_height') {
+          $this->data[ 'image' ][ 'image' ] = preg_replace("/width=\"(\\d)*\"\\s/uiUmx", "",$this->data[ 'image' ][ 'image' ]);
+        }
+        if ($this->section['_panels_settings_image-focal-point']==='scale') {
+          $this->data[ 'image' ][ 'image' ] = preg_replace("/height=\"(\\d)*\"\\s/uiUmx", "",$this->data[ 'image' ][ 'image' ]);
+        }
+
         $panel_def[ $component ] = str_replace( '{{image}}', $this->data[ 'image' ][ 'image' ], $panel_def[ $component ] );
 
         if ( ! empty( $this->section[ '_panels_design_centre-image' ] ) ) {
@@ -739,6 +746,12 @@
       } else {
 
         if ( ! empty( $this->data[ 'bgimage' ][ 'thumb' ] ) ) {
+          if ($this->section['_panels_settings_image-focal-point']==='scale_height') {
+            $this->data[ 'bgimage' ][ 'thumb' ] = preg_replace("/width=\"(\\d)*\"\\s/uiUmx", "",$this->data[ 'bgimage' ][ 'thumb' ]);
+          }
+          if ($this->section['_panels_settings_image-focal-point']==='scale') {
+            $this->data[ 'bgimage' ][ 'thumb' ] = preg_replace("/height=\"(\\d)*\"\\s/uiUmx", "",$this->data[ 'bgimage' ][ 'thumb' ]);
+          }
           $panel_def[ $component ] = str_replace( '{{bgimage}}', $this->data[ 'bgimage' ][ 'thumb' ], $panel_def[ $component ] );
         } else {
           // Gotta fill the background with something, else it collapses

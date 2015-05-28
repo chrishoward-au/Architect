@@ -94,6 +94,11 @@ For support, please send an email to support@pizazzwp.com
 
 == Changelog ==
 
+= 1.2.12 =
+* FIXED: Image cache not clearing when saving Blueprints
+* ADDED: Cropping option "Preserve aspect, fit to height"
+* FIXED: Images no resizing correctly for the "Preserve aspect" options.
+
 = 1.2.11 =
 * ADDED: Sorting options of None and Specified. Specified uses the order of images in a gallery, or the order of specifically selected posts or pages
 * CHANGED: Specific posts and pages can be manually ordered

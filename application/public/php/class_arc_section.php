@@ -9,10 +9,10 @@
 
   class arc_SectionFactory
   {
-    public static function create($number, $section, $source, $navtype, $layout_mode, $slider_type = null, $table_titles = null, $panel_name = 'legacy-panel')
+    public static function create($number, $section, $source, $navtype, $layout_mode, $slider_type = null, $table_titles = null, $panel_name = 'legacy-panel', &$blueprint)
     {
-  //    var_dump($number, $section, $source, $navtype, $layout_mode, $slider_type, $section_title, $table_titles, $panel_name);
-      return new arc_Section($number, $section, $source, $navtype, $layout_mode, $slider_type, $table_titles, $panel_name);
+      //    var_dump($number, $section, $source, $navtype, $layout_mode, $slider_type, $section_title, $table_titles, $panel_name);
+      return new arc_Section($number, $section, $source, $navtype, $layout_mode, $slider_type, $table_titles, $panel_name,$blueprint);
     }
 
   }
@@ -43,7 +43,7 @@
      * @param      $table_accordion_titles
      * @internal param $blueprint
      */
-    public function __construct($number, $section_panel, $content_source, $navtype, $layout_mode, $slider_type = null, $table_accordion_titles = array(), $panel_name = null)
+    public function __construct($number, $section_panel, $content_source, $navtype, $layout_mode, $slider_type = null, $table_accordion_titles = array(), $panel_name = null, &$blueprint)
     {
       $this->section_number         = $number;
       $this->section                = $section_panel;
@@ -54,8 +54,9 @@
       $this->slider_type            = $slider_type;
       $this->rsid                   = 'rsid' . (rand(1, 9999) * rand(10000, 99999));
       $this->table_accordion_titles = $table_accordion_titles;
-pzdb('construct section');
- //     wp_enqueue_style('pzarc_css_panel_' . $this->panel_name);
+      $this->blueprint              = $blueprint;
+      pzdb('construct section');
+      //     wp_enqueue_style('pzarc_css_panel_' . $this->panel_name);
 
       if ('table' === $this->layout_mode) {
         $this->table_accordion_titles = $table_accordion_titles;
@@ -67,7 +68,7 @@ pzdb('construct section');
       // That is, they both must be on
 
       global $_architect_options;
-      if (!empty($_architect_options[ 'architect_enable-retina-images' ]) && !empty($this->section[ 'section-panel-settings' ][  '_panels_settings_use-retina-images' ])) {
+      if (!empty($_architect_options[ 'architect_enable-retina-images' ]) && !empty($this->section[ 'section-panel-settings' ][ '_panels_settings_use-retina-images' ])) {
         wp_enqueue_script('js-retinajs');
       }
 
@@ -97,7 +98,7 @@ pzdb('construct section');
 
       do_action("arc_before_section_{$this->section_number}");
 
-      $this->slider = ($this->section_number === 1 && $this->navtype === 'navigator')
+      $this->slider = ($this->section_number === 1 && ($this->navtype === 'navigator'))
           ? array('wrapper' => ' arc-slider-wrapper',
                   'slide'   => ' arc-slider-slide')
           : array('wrapper' => '',
@@ -118,7 +119,7 @@ pzdb('construct section');
           wp_enqueue_script('js-front-isotope');
 //          add_action('init',array($this,'init_scripts'));
 //          $isotope      = 'data-isotope-options=\'{ "layoutMode": "masonry","itemSelector": ".pzarc-panel","masonry":{"columnWidth":".grid-sizer","gutter":".gutter-sizer"}}\'';
-          $isotope= 'data-uid="'.$this->rsid.'"';
+          $isotope      = 'data-uid="' . $this->rsid . '"';
           $layout_class = 'js-isotope';
           break;
 
@@ -139,8 +140,17 @@ pzdb('construct section');
       // TODO: Might need to change js-isotope to masonry - chekc impact tho
       // TODO Accordion
 
+      $slider            = array();
+      $slider[ 'class' ] = '';
+      $slider[ 'data' ]  = '';
+
+
+      if (($this->layout_mode === 'slider' || $this->layout_mode === 'tabbed') &&  (!empty($this->blueprint['_blueprints_slider-engine']) && $this->blueprint['_blueprints_slider-engine']!=='slick')) {
+        $slider = apply_filters('arc-set-slider-data', $slider, $this->blueprint);
+
+      }
       echo '<' . ('table' !== $this->layout_mode ? 'div' : 'table') . ' id="' . $this->rsid . '"
-       class="' . $layout_class . ' pzarc-section pzarc-section_' . $this->section_number . ' pzarc-section-using-' . $this->panel_name . '"' . $isotope . $accordion . '>';
+       class="' . $layout_class . ' pzarc-section pzarc-section_' . $this->section_number . ' pzarc-section-using-' . $this->panel_name . ' ' . $slider[ 'class' ] . '"' . $isotope . $accordion . ' ' . $slider[ 'data' ] . '>';
 
       // Table heading stuff
       if ('table' === $this->layout_mode) {
@@ -218,7 +228,7 @@ pzdb('construct section');
     public function render_panel($panel_def, $panel_number, $class, $panel_class, &$arc_query)
     {
 //      var_dump($panel_number, $class, $panel_class);
-      pzdb('top of render panel '.get_the_id());
+      pzdb('top of render panel ' . get_the_id());
 
       if (!empty($arc_query->post)) {
         $post   = $arc_query->post;
@@ -236,9 +246,9 @@ pzdb('construct section');
       $postid   = (empty($postid) ? 'NoID' : $postid);
       $settings = $this->section[ 'section-panel-settings' ];
       $toshow   = json_decode($settings[ '_panels_design_preview' ], true);
-      pzdb('json decode '.get_the_id());
+      pzdb('json decode ' . get_the_id());
       $panel_class->set_data($post, $toshow, $settings);
-      pzdb('set data '.get_the_id());
+      pzdb('set data ' . get_the_id());
 //      $elements = array();
 //
 //      // Massage toshow to be more usable here
@@ -280,17 +290,17 @@ pzdb('construct section');
       /** ACCORDION TITLES */
       if ('accordion' === $this->layout_mode) {
         //This is a Dummy content specific hack fix
-        if (is_array($post)){
-          $accordion_title = (isset($this->table_accordion_titles[$panel_number-1]))?$this->table_accordion_titles[$panel_number-1]:$post['title']['title'];
+        if (is_array($post)) {
+          $accordion_title = (isset($this->table_accordion_titles[ $panel_number - 1 ])) ? $this->table_accordion_titles[ $panel_number - 1 ] : $post[ 'title' ][ 'title' ];
         } else {
-          $accordion_title = (isset($this->table_accordion_titles[$panel_number-1]))?$this->table_accordion_titles[$panel_number-1]:$post->post_title;
+          $accordion_title = (isset($this->table_accordion_titles[ $panel_number - 1 ])) ? $this->table_accordion_titles[ $panel_number - 1 ] : $post->post_title;
         }
 //        $accordion_title = isset($post['title']['title'])?$post['title']['title']:$post->post_title;
 //        if (isset($this->table_accordion_titles) && !empty($this->table_accordion_titles) && isset($this->table_accordion_titles[ $panel_def ])) {
 //          $accordion_title = do_shortcode($this->table_accordion_titles[ $panel_number ]);
 //        }
         //'_blueprint_section-' . $this->section_number . '-accordion-titles'
-        echo '<div class="pzarc-accordion title ' . (($panel_number === 1 && !empty($this->blueprint['_blueprints_accordion-closed'])) ? 'open' : 'close') . '">' . $accordion_title . '</div>';
+        echo '<div class="pzarc-accordion title ' . (($panel_number === 1 && !empty($this->blueprint[ '_blueprints_accordion-closed' ])) ? 'open' : 'close') . '">' . $accordion_title . '</div>';
       }
 
 
@@ -304,7 +314,7 @@ pzdb('construct section');
 
 //      echo '<' . ('table' !== $this->layout_mode ? 'div' : 'tr') . ' class="pzarc-panel pzarc-panel_' . $settings[ '_panels_settings_short-name' ] . ' pzarc-panel-no_' . $panel_number . $this->slider[ 'slide' ] . $image_in_bg . $odds_evens_bp . $odds_evens_section . $postmeta_classes . '" >';
       $classes = 'pzarc-panel pzarc-panel_' . $this->panel_name . ' pzarc-panel-no_' . $panel_number . $this->slider[ 'slide' ] . $image_in_bg . $odds_evens_bp;
-      echo '<' . ('table' !== $this->layout_mode ? 'div' : 'tr') . ' class="'.apply_filters('pzarc-extend-panel-classes',$classes,$this->blueprint) .'" '.apply_filters('pzarc-extend-panel-data','',$this->blueprint).'>';
+      echo '<' . ('table' !== $this->layout_mode ? 'div' : 'tr') . ' class="' . apply_filters('pzarc-extend-panel-classes', $classes, $this->blueprint) . '" ' . apply_filters('pzarc-extend-panel-data', '', $this->blueprint) . '>';
 
 
       //TODO: Check this works for all scenarios
@@ -333,7 +343,7 @@ pzdb('construct section');
           }
           break;
       }
-      pzdb('after feature before '.get_the_id());
+      pzdb('after feature before ' . get_the_id());
 
       $has_components = false;
       foreach ($toshow as $k => $v) {
@@ -362,13 +372,13 @@ pzdb('construct section');
 
       /** Open components wrapper */
       if ('table' !== $this->layout_mode && $has_components) {
-          echo self::strip_unused_arctags($panel_class->render_wrapper('components-open', $this->source, $panel_def, $this->rsid));
+        echo self::strip_unused_arctags($panel_class->render_wrapper('components-open', $this->source, $panel_def, $this->rsid));
       }
 
 //var_dump($panel_def);
       /** Components */
 
-      pzdb('top of components '.get_the_id());
+      pzdb('top of components ' . get_the_id());
       foreach ($toshow as $component_type => $value) {
         if ($component_type === 'image' && $settings[ '_panels_design_feature-location' ] !== 'components') {
           $value[ 'show' ] = false;
@@ -388,7 +398,7 @@ pzdb('construct section');
         }
 
       }
-      pzdb('bottom of components '.get_the_id());
+      pzdb('bottom of components ' . get_the_id());
 
 
       /** Close components wrapper */

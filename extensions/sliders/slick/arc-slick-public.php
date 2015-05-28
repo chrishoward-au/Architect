@@ -13,6 +13,11 @@
 
   function pzarc_slick_slider_data( $slider, $blueprint ) {
 
+    // Slick
+    wp_register_script( 'js-arc-front-slickjs', PZARC_PLUGIN_URL . '/extensions/sliders/slick/arc-front-slick.js', array( 'jquery' ), null, true );
+    wp_register_script( 'js-slickjs', PZARC_PLUGIN_URL . '/extensions/sliders/slick/slick/slick/slick.min.js', array( 'jquery' ), null, true );
+    wp_register_style( 'css-slickjs', PZARC_PLUGIN_URL . '/extensions/sliders/slick/slick/slick/slick.css' );
+    wp_register_style( 'css-arcslick', PZARC_PLUGIN_URL . '/extensions/sliders/slick/arc-slick.css' );
 
     wp_enqueue_script( 'js-arc-front-slickjs' );
     wp_enqueue_script( 'js-slickjs' );

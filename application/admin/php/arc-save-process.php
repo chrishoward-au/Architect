@@ -136,7 +136,7 @@
         }
       }
       // And finally, let's flush the BFI image cache
-      if ((isset($screen->id) && isset($post->post_type)) && ($screen->id == 'arc-panels' || $post->post_type === 'arc-panels') && function_exists('bfi_flush_image_cache')) {
+      if ((isset($screen->id) && isset($post->post_type)) && ($screen->id == 'arc-blueprints' || $post->post_type === 'arc-blueprints') && function_exists('bfi_flush_image_cache')) {
         bfi_flush_image_cache();
       }
     }
