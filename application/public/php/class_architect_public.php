@@ -269,6 +269,9 @@ pzdb('post render');
         'custom'   => $_architect_options[ 'architect_language-custom-archive-pages-title' ]
       ) ) );
 
+      if (!empty($this->build->blueprint['_blueprints_blueprint-title'])) {
+        echo apply_filters('arc-blueprint-title', '<h2 class="pzarc-blueprint-title">' . esc_html($this->build->blueprint[ '_blueprints_blueprint-title' ]) . '</h2>');
+      }
 pzdb();
       /** NAVIGATION TOP/LEFT */
       // These are the slider and tabbed controls

@@ -1374,7 +1374,7 @@
    * @param null $alt_slug : Specify for codetically added blueprints
    * @param null $alt_title : Specify for codetically added blueprints
    */
-  function pzarc_create_blueprint( $arc_preset_data, $preset_name, $process_type, $alt_slug = null, $alt_title = null ) {
+  function pzarc_create_blueprint( $arc_preset_data, $preset_name, $process_type, $alt_slug = null, $alt_title = null,$unique_shortname=true ) {
     global $wpdb;
 
     /*
@@ -1443,7 +1443,7 @@
         $sql_query_sel = array();
         foreach ( $preset[ 'post_meta' ] as $meta_key => $value ) {
           if ( $meta_key === '_blueprints_short-name' ) {
-            $meta_value = $value[ 0 ] . '-' . $new_post_id;
+            $meta_value = $value[ 0 ]. ($unique_shortname? '-' . $new_post_id:'');
           } else {
             if ( $process_type === 'unstyled' ) {
               // Just done it this way for speed.

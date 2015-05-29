@@ -3,7 +3,7 @@ Contributors: chrishoward
 Tags: content,display,posts,pages,gallery,slider,tabs,tabbed,tabular,widget,hooks
 Requires at least: 3.5.0
 Tested up to: 4.2.1
-Stable tag: 1.2.11
+Stable tag: 1.2.12
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Plugin URI: http://architect4wp.com
@@ -94,13 +94,17 @@ For support, please send an email to support@pizazzwp.com
 
 == Changelog ==
 
+= 1.2.12 =
+* FIXED: Skip buttons showing on tabbed layout
+* CHANGED: Create blueprint function allows option to preserve shortname
+* FIXED: Blueprint title not being displayed
+
 = 1.2.11 =
 * ADDED: Sorting options of None and Specified. Specified uses the order of images in a gallery, or the order of specifically selected posts or pages
 * CHANGED: Specific posts and pages can be manually ordered
 * CHANGED: Icons for the layout type selector
 * CHANGED: Licence owner name now displays on licence screen 
 * ADDED: Option to activate the Architect Builder on WP Pages editor. Off by default
-* FIXED: Skip buttons showing on tabbed layout
 
 = 1.2.10 : 22 May 2015 =
 * FIXED: Excerpts not going 100% wide when no thumb image
