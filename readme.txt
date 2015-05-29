@@ -100,6 +100,7 @@ For support, please send an email to support@pizazzwp.com
 * CHANGED: Icons for the layout type selector
 * CHANGED: Licence owner name now displays on licence screen 
 * ADDED: Option to activate the Architect Builder on WP Pages editor. Off by default
+* FIXED: Skip buttons showing on tabbed layout
 
 = 1.2.10 : 22 May 2015 =
 * FIXED: Excerpts not going 100% wide when no thumb image
