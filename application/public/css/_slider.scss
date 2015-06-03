@@ -293,7 +293,7 @@
       border-radius: 3px;
       padding: 5px;
       z-index: 2;
-      display: none;
+      display: none!important;
       font-family: icomoon;
       font-size: 32px;
       color: #fff;
@@ -316,7 +316,7 @@
     &:hover {
       .arrow-right,
       .arrow-left {
-        display: block;
+        display: block!important;
         &.hide {
           display: none;
         }
@@ -332,7 +332,7 @@
     &:hover {
       .skip-right,
       .skip-left {
-        display: block;
+        display: block!important;
       }
     }
     // TODO: Replace this with multiple icon font arrows.

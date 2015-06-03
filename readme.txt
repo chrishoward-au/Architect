@@ -3,7 +3,7 @@ Contributors: chrishoward
 Tags: content,display,posts,pages,gallery,slider,tabs,tabbed,tabular,widget,hooks
 Requires at least: 3.5.0
 Tested up to: 4.2.1
-Stable tag: 1.2.12
+Stable tag: 1.2.13
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Plugin URI: http://architect4wp.com
@@ -93,6 +93,11 @@ For support, please send an email to support@pizazzwp.com
 2. Slider example
 
 == Changelog ==
+
+= 1.2.13 =
+* FIXED: Image cache not clearing when saving Blueprints
+* ADDED: Cropping option "Preserve aspect, fit to height"
+* FIXED: Images no resizing correctly for the "Preserve aspect" options.
 
 = 1.2.12 =
 * FIXED: Skip buttons showing on tabbed layout

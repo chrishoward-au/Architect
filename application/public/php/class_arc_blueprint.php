@@ -46,12 +46,13 @@
             arc_SectionFactory::create($i,
                                        $this->blueprint[ 'section' ][ ($i - 1) ],
                                        $this->blueprint[ '_blueprints_content-source' ],
-                                       $this->blueprint[ '_blueprints_pagination' ],
+                                       $this->blueprint[ '_blueprints_navigator' ],
                                        $this->blueprint[ '_blueprints_section-' . ($i - 1) . '-layout-mode' ],
-                                       'slick', // Possible Future use
+                (!empty($this->blueprint[ '_blueprints_slider-engine' ]) ? $this->blueprint[ '_blueprints_slider-engine' ] : 'slick'), // Possible Future use
 //                                       $this->blueprint[ '_blueprints_section-' . ($i - 1) . '-title' ],
                                        $titles,
-                                       $this->blueprint[ '_blueprints_short-name' ]
+                                       $this->blueprint[ '_blueprints_short-name' ],
+                                       $this->blueprint
 
             );
         unset($this->blueprint[ 'section' ]);

@@ -982,6 +982,7 @@
           'img' => PZARC_PLUGIN_APP_URL . 'shared/assets/images/metaboxes/nav-type-none.png'
         ),
       );
+      $transitions = array('fade' => 'Fade', 'slide' => 'Slide');
       $sections[ '_slidertabbed' ] = array(
         'title'      => __( 'Sliders & Tabbed', 'pzarchitect' ),
         'show_title' => true,
@@ -1256,13 +1257,7 @@
             'default'  => 'fade',
             //              'select2' => array('allowClear' => false),
             'required' => array( $prefix . 'section-0-layout-mode', '=', 'slider' ),
-            'options'  => array(
-              'fade'  => 'Fade',
-              'slide' => 'Slide',
-              //                  'swipe'  => 'Swipe',
-              //                  'rotate' => 'Rotate',
-              //                  'flip'   => 'Flip'
-            )
+            'options'  =>  apply_filters('arc-transitions',$transitions)
           ),
           array(
             'title'         => 'Duration (seconds)',

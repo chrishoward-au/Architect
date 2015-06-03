@@ -732,26 +732,48 @@
           break;
 
 
-        // TODO: Make scale work
         case 'scale':
 
           $w_size = $dest_h / $orig_h * $orig_w;
           $h_size = $dest_w / $orig_w * $orig_h;
-// var_dump($w_size,$h_size,$dest_w,$dest_h);
-          if ($w_size > $dest_w) {
-            $new_w = $dest_w;
+
+
+          if ($w_size < $dest_w) {
+//            $new_w = $dest_w;
             $new_h = $h_size;
           }
 
-          if ($h_size > $dest_h) {
+          if ($h_size < $dest_h) {
             $new_w = $w_size;
-            $new_h = $dest_h;
+//            $new_h = $dest_h;
           }
-
-          //        var_dump($new_w,$new_h);
 
           $crop_w    = $orig_w;
           $crop_h    = $orig_h;
+
+          $ideal_s_x = 0;
+          $ideal_s_y = 0;
+          break;
+
+        case 'scale_height':
+
+          $w_size = $dest_h / $orig_h * $orig_w;
+          $h_size = $dest_w / $orig_w * $orig_h;
+
+//          if ($w_size < $dest_w) {
+            $new_w = $w_size;
+//            $new_h = $h_size;
+//          }
+
+//          if ($h_size > $dest_h) {
+//            $new_w = $w_size;
+            $new_h = $dest_h;
+//          }
+
+
+          $crop_w    = $orig_w;
+          $crop_h    = $orig_h;
+
           $ideal_s_x = 0;
           $ideal_s_y = 0;
           break;

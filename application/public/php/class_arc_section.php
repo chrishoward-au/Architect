@@ -9,10 +9,10 @@
 
   class arc_SectionFactory
   {
-    public static function create($number, $section, $source, $navtype, $layout_mode, $slider_type = null, $table_titles = null, $panel_name = 'legacy-panel')
+    public static function create($number, $section, $source, $navtype, $layout_mode, $slider_type = null, $table_titles = null, $panel_name = 'legacy-panel', &$blueprint)
     {
-  //    var_dump($number, $section, $source, $navtype, $layout_mode, $slider_type, $section_title, $table_titles, $panel_name);
-      return new arc_Section($number, $section, $source, $navtype, $layout_mode, $slider_type, $table_titles, $panel_name);
+      //    var_dump($number, $section, $source, $navtype, $layout_mode, $slider_type, $section_title, $table_titles, $panel_name);
+      return new arc_Section($number, $section, $source, $navtype, $layout_mode, $slider_type, $table_titles, $panel_name,$blueprint);
     }
 
   }
@@ -43,7 +43,7 @@
      * @param      $table_accordion_titles
      * @internal param $blueprint
      */
-    public function __construct($number, $section_panel, $content_source, $navtype, $layout_mode, $slider_type = null, $table_accordion_titles = array(), $panel_name = null)
+    public function __construct($number, $section_panel, $content_source, $navtype, $layout_mode, $slider_type = null, $table_accordion_titles = array(), $panel_name = null, &$blueprint)
     {
       $this->section_number         = $number;
       $this->section                = $section_panel;
@@ -54,8 +54,9 @@
       $this->slider_type            = $slider_type;
       $this->rsid                   = 'rsid' . (rand(1, 9999) * rand(10000, 99999));
       $this->table_accordion_titles = $table_accordion_titles;
-pzdb('construct section');
- //     wp_enqueue_style('pzarc_css_panel_' . $this->panel_name);
+      $this->blueprint              = $blueprint;
+      pzdb('construct section');
+      //     wp_enqueue_style('pzarc_css_panel_' . $this->panel_name);
 
       if ('table' === $this->layout_mode) {
         $this->table_accordion_titles = $table_accordion_titles;
@@ -139,8 +140,17 @@ pzdb('construct section');
       // TODO: Might need to change js-isotope to masonry - chekc impact tho
       // TODO Accordion
 
+      $slider            = array();
+      $slider[ 'class' ] = '';
+      $slider[ 'data' ]  = '';
+
+
+      if (($this->layout_mode === 'slider' || $this->layout_mode === 'tabbed') &&  (!empty($this->blueprint['_blueprints_slider-engine']) && $this->blueprint['_blueprints_slider-engine']!=='slick')) {
+        $slider = apply_filters('arc-set-slider-data', $slider, $this->blueprint);
+
+      }
       echo '<' . ('table' !== $this->layout_mode ? 'div' : 'table') . ' id="' . $this->rsid . '"
-       class="' . $layout_class . ' pzarc-section pzarc-section_' . $this->section_number . ' pzarc-section-using-' . $this->panel_name . '"' . $isotope . $accordion . '>';
+       class="' . $layout_class . ' pzarc-section pzarc-section_' . $this->section_number . ' pzarc-section-using-' . $this->panel_name . ' ' . $slider[ 'class' ] . '"' . $isotope . $accordion . ' ' . $slider[ 'data' ] . '>';
 
       // Table heading stuff
       if ('table' === $this->layout_mode) {

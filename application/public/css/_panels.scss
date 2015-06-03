@@ -186,7 +186,8 @@
           right: -50%;
           overflow: visible;
           //This fixes the inline-block adding a gap below the image
-          vertical-align: text-top;
+          vertical-align: top;
+//          vertical-align: text-top; // changed at version 1.2.12
 
           img {
             max-width: none;
