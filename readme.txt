@@ -98,6 +98,8 @@ For support, please send an email to support@pizazzwp.com
 * FIXED: Skip buttons showing on tabbed layout
 * CHANGED: Create blueprint function allows option to preserve shortname
 * FIXED: Blueprint title not being displayed
+* FIXED: Removed possible mobile detect lib conflict
+* FIXED: Title not being added to image link attributes when Title not shown.
 
 = 1.2.11 =
 * ADDED: Sorting options of None and Specified. Specified uses the order of images in a gallery, or the order of specifically selected posts or pages

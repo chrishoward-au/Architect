@@ -1,5 +1,19 @@
 # Architect change history 
 
+## 1.2.12 : 2 June 2015
+* FIXED: Skip buttons showing on tabbed layout
+* CHANGED: Create blueprint function allows option to preserve shortname
+* FIXED: Blueprint title not being displayed
+* FIXED: Removed possible mobile detect lib conflict
+* FIXED: Title not being added to image link attributes when Title not shown.
+
+## 1.2.11 =
+* ADDED: Sorting options of None and Specified. Specified uses the order of images in a gallery, or the order of specifically selected posts or pages
+* CHANGED: Specific posts and pages can be manually ordered
+* CHANGED: Icons for the layout type selector
+* CHANGED: Licence owner name now displays on licence screen 
+* ADDED: Option to activate the Architect Builder on WP Pages editor. Off by default
+
 ## 1.2.10  : 22 May 2015
 * FIXED: Excerpts not going 100% wide when no thumb image
 * CHANGED: Refactored sliders so devs can use their own

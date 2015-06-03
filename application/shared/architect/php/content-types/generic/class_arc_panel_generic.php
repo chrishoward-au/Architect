@@ -115,10 +115,11 @@
       $this->section = $section;
       $this->toshow  = $toshow;
 
-      if ( $this->toshow[ 'title' ][ 'show' ] ) {
+//      if ( $this->toshow[ 'title' ][ 'show' ] ) {
+      // We always need the title  for images
         $this->get_title( $post );
         pzdb( 'after get title' );
-      }
+//      }
       if ( $this->toshow[ 'meta1' ][ 'show' ] ||
            $this->toshow[ 'meta2' ][ 'show' ] ||
            $this->toshow[ 'meta3' ][ 'show' ]
@@ -683,7 +684,6 @@
                 wp_enqueue_script( 'js-magnific' );
                 wp_enqueue_script( 'js-magnific-arc' );
                 wp_enqueue_style( 'css-magnific' );
-
                 $link = '<a class="lightbox lightbox-' . $rsid . '" href="' . $this->data[ 'image' ][ 'original' ][ 0 ] . '" title="' . $this->data[ 'title' ][ 'title' ] . '" >';
               } else {
                 $link = '<a class="lightbox-' . $rsid . '" href="' . $this->data[ 'image' ][ 'original' ][ 0 ] . '" title="' . $this->data[ 'title' ][ 'title' ] . '" rel="lightbox">';

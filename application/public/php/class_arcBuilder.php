@@ -30,7 +30,9 @@
         'titles_tag'         => get_post_meta( get_the_id(), '_pzarc_pagebuilder_titles_tag', true ),
       );
 
-      require_once( PZARC_PLUGIN_APP_PATH . '/shared/thirdparty/php/Mobile-Detect/Mobile_Detect.php' );
+      if (!class_exists('Mobile_Detect')) {
+        require_once(PZARC_PLUGIN_APP_PATH . '/shared/thirdparty/php/Mobile-Detect/Mobile_Detect.php');
+      }
       $detect = new Mobile_Detect;
 
       switch ( true ) {

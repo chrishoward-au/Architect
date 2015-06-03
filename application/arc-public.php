@@ -193,7 +193,9 @@
   function pzarc( $blueprint = null, $overrides = null, $caller, $tag = null, $additional_overrides = null, $tablet_bp = null, $phone_bp = null ) {
     pzdb( 'start pzarc' );
 
-    require_once( PZARC_PLUGIN_APP_PATH . '/shared/thirdparty/php/Mobile-Detect/Mobile_Detect.php' );
+    if (!class_exists('Mobile_Detect')) {
+      require_once(PZARC_PLUGIN_APP_PATH . '/shared/thirdparty/php/Mobile-Detect/Mobile_Detect.php');
+    }
     $detect = new Mobile_Detect;
     $device = 'not set';
 

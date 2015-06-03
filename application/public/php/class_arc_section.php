@@ -406,7 +406,6 @@ pzdb('construct section');
       }
 
       echo '</' . ('table' !== $this->layout_mode ? 'div' : 'tr') . '>'; //close panel
-
       do_action('arc_after_panel_close');
 
       //  echo '</div>'; // close panel wrapper
