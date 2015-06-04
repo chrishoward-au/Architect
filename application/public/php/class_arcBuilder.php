@@ -30,7 +30,9 @@
         'titles_tag'         => get_post_meta( get_the_id(), '_pzarc_pagebuilder_titles_tag', true ),
       );
 
-      require_once( PZARC_PLUGIN_APP_PATH . '/shared/thirdparty/php/Mobile-Detect/Mobile_Detect.php' );
+      if (!class_exists('Mobile_Detect')) {
+        require_once(PZARC_PLUGIN_APP_PATH . '/shared/thirdparty/php/Mobile-Detect/Mobile_Detect.php');
+      }
       $detect = new Mobile_Detect;
 
       switch ( true ) {
@@ -79,7 +81,7 @@
 //    pzdebug();
 //    die();
     // Only want to do this on the Architect Builder template.
-    if ( 'arc_page_template.php' !== get_page_template_slug() ) {
+    if ( 'arc_page_template.php' !== get_page_template_slug() && 'arc_page_template_no_sidebars.php' !== get_page_template_slug()) {
       return;
     }
 //    pzdebug();

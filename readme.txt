@@ -3,7 +3,7 @@ Contributors: chrishoward
 Tags: content,display,posts,pages,gallery,slider,tabs,tabbed,tabular,widget,hooks
 Requires at least: 3.5.0
 Tested up to: 4.2.1
-Stable tag: 1.2.11
+Stable tag: 1.2.13
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Plugin URI: http://architect4wp.com
@@ -94,10 +94,18 @@ For support, please send an email to support@pizazzwp.com
 
 == Changelog ==
 
-= 1.2.12 =
+= 1.2.13 =
 * FIXED: Image cache not clearing when saving Blueprints
 * ADDED: Cropping option "Preserve aspect, fit to height"
 * FIXED: Images no resizing correctly for the "Preserve aspect" options.
+* ADDED: Architect Builder page template with no sidebars
+
+= 1.2.12 =
+* FIXED: Skip buttons showing on tabbed layout
+* CHANGED: Create blueprint function allows option to preserve shortname
+* FIXED: Blueprint title not being displayed
+* FIXED: Removed possible mobile detect lib conflict
+* FIXED: Title not being added to image link attributes when Title not shown.
 
 = 1.2.11 =
 * ADDED: Sorting options of None and Specified. Specified uses the order of images in a gallery, or the order of specifically selected posts or pages

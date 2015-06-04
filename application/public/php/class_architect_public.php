@@ -270,6 +270,9 @@ pzdb('post render');
       ) ) );
       echo apply_filters( 'arc_blueprint_title', '<h2 class="arc-blueprint-title">'. $this->build->blueprint[ '_blueprints_blueprint-title' ].'</h2>');
 
+      if (!empty($this->build->blueprint['_blueprints_blueprint-title'])) {
+        echo apply_filters('arc-blueprint-title', '<h2 class="pzarc-blueprint-title">' . esc_html($this->build->blueprint[ '_blueprints_blueprint-title' ]) . '</h2>');
+      }
 pzdb();
       /** NAVIGATION TOP/LEFT */
       // These are the slider and tabbed controls

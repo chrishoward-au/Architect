@@ -134,6 +134,20 @@
                                        ),
                                      ) );
       $this->register_block_element( array(
+                                         'id'         => 'pzarc-blueprint-title',
+                                         'name'       => 'Blueprint title',
+                                         'selector'   => '.use-hw-css h2.pzarc-blueprint-title',
+                                         'properties' => array(
+                                             'background',
+                                             'borders',
+                                             'padding',
+                                             'margins',
+                                             'rounded-corners',
+                                             'box-shadow',
+                                             'fonts'
+                                         ),
+                                     ) );
+      $this->register_block_element( array(
                                        'id'         => 'pzarc-panel-page-navi',
                                        'name'       => 'Page navigation',
                                        'selector'   => '.use-hw-css .nav-previous a, .use-hw-css .nav-next a',

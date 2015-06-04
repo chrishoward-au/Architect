@@ -115,10 +115,11 @@
       $this->section = $section;
       $this->toshow  = $toshow;
 
-      if ( $this->toshow[ 'title' ][ 'show' ] ) {
+//      if ( $this->toshow[ 'title' ][ 'show' ] ) {
+      // We always need the title  for images
         $this->get_title( $post );
         pzdb( 'after get title' );
-      }
+//      }
       if ( $this->toshow[ 'meta1' ][ 'show' ] ||
            $this->toshow[ 'meta2' ][ 'show' ] ||
            $this->toshow[ 'meta3' ][ 'show' ]

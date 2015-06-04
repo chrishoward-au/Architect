@@ -60,6 +60,11 @@
     //icomoon
     wp_register_style( 'css-icomoon-arrows', PZARC_PLUGIN_APP_URL . '/shared/assets/fonts/icomoon/im-style.css' );
 
+// Slick
+  //  wp_register_script( 'js-arc-front-slickjs', PZARC_PLUGIN_URL . '/extensions/sliders/slick/arc-front-slick.js', array( 'jquery' ), null, true );
+  //  wp_register_script( 'js-slickjs', PZARC_PLUGIN_URL . '/extensions/sliders/slick/slick/slick/slick.min.js', array( 'jquery' ), null, true );
+  //  wp_register_style( 'css-slickjs', PZARC_PLUGIN_URL . '/extensions/sliders/slick/slick/slick/slick.css' );
+  //  wp_register_style( 'css-arcslick', PZARC_PLUGIN_URL . '/extensions/sliders/slick/arc-slick.css' );
 
     // DataTables
     wp_register_script( 'js-datatables', PZARC_PLUGIN_APP_URL . '/public/js/DataTables/media/js/jquery.dataTables.min.js', array( 'jquery' ), null, true );
@@ -188,7 +193,9 @@
   function pzarc( $blueprint = null, $overrides = null, $caller, $tag = null, $additional_overrides = null, $tablet_bp = null, $phone_bp = null ) {
     pzdb( 'start pzarc' );
 
-    require_once( PZARC_PLUGIN_APP_PATH . '/shared/thirdparty/php/Mobile-Detect/Mobile_Detect.php' );
+    if (!class_exists('Mobile_Detect')) {
+      require_once(PZARC_PLUGIN_APP_PATH . '/shared/thirdparty/php/Mobile-Detect/Mobile_Detect.php');
+    }
     $detect = new Mobile_Detect;
     $device = 'not set';
 
@@ -263,7 +270,7 @@
       // If no errors, let's go!
       if ( empty( $architect->build->blueprint[ 'err_msg' ] ) ) {
 
-        if ( $architect->build->blueprint[ '_blueprints_section-0-layout-mode' ] === 'slider' ) {
+        if ( $architect->build->blueprint[ '_blueprints_section-0-layout-mode' ] === 'slider' || $architect->build->blueprint[ '_blueprints_section-0-layout-mode' ] === 'tabbed' ) {
           if (!empty($architect->build->blueprint[ '_blueprints_slider-engine' ])) {
             $registry     = arc_Registry::getInstance();
             $slider_types = (array) $registry->get( 'slider_types' );
