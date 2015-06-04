@@ -81,7 +81,7 @@
 //    pzdebug();
 //    die();
     // Only want to do this on the Architect Builder template.
-    if ( 'arc_page_template.php' !== get_page_template_slug() ) {
+    if ( 'arc_page_template.php' !== get_page_template_slug() && 'arc_page_template_no_sidebars.php' !== get_page_template_slug()) {
       return;
     }
 //    pzdebug();

@@ -2618,236 +2618,239 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
        * FEATURE IMAGES
        ***************************/
       $sections[ ] = array(
-        'title'      => 'Featured Images/Videos',
-        'icon_class' => 'icon-large',
-        'icon'       => 'el-icon-picture',
-        'subtitle'   => __( 'Left and right margins are included in the image width in the designer. e.g if Feature width is 25% and right margin is 3%, Feature width will be adjusted to 22%', 'pzarchitect' ),
-        'fields'     => array(
-          array(
-            'title'    => __( 'Image cropping', 'pzarchitect' ),
-            'id'       => '_panels_settings_image-focal-point',
-            'type'     => 'select',
-            'default'  => 'respect',
-            'required' => array( '_panels_settings_feature-type', '=', 'image' ),
-            'options'  => array(
-              'respect' => __( 'Respect focal point', 'pzarchitect' ),
-              'centre'  => __( 'Centre focal point', 'pzarchitect' ),
-              'none'    => __( 'Crop to centre', 'pzarchitect' ),
-              'scale'   => __( 'Preserve aspect, fit width', 'pzarchitect' ),
-              //                      'shrink'  => __('Shrink', 'pzarchitect')
-            )
-          ),
-          array(
-            'title'    => __( 'Use embedded images', 'pzarchitect' ),
-            'id'       => '_panels_settings_use-embedded-images',
-            'type'     => 'switch',
-            'on'       => __( 'Yes', 'pzarchitect' ),
-            'off'      => __( 'No', 'pzarchitect' ),
-            'default'  => false,
-            'required' => array(
-              //array('show_advanced', 'equals', true),
-              array( '_panels_settings_feature-type', '=', 'image' ),
-            ),
-            'subtitle' => __( 'Enable this to use the first found attached image in the body of the post if no featured image is set.', 'pzarchitect' )
-          ),
-          array(
-            'title'    => __( 'Use retina images', 'pzarchitect' ),
-            'id'       => '_panels_settings_use-retina-images',
-            'type'     => 'switch',
-            'on'       => __( 'Yes', 'pzarchitect' ),
-            'off'      => __( 'No', 'pzarchitect' ),
-            'default'  => true,
-            'required' => array(
-              //array('show_advanced', 'equals', true),
-              array( '_panels_settings_feature-type', '=', 'image' ),
-            ),
-            'hint'     => array(
-              'title'   => __( 'Use retina images', 'pzarchitect' ),
-              'content' => __( 'If enabled, a retina version of the featured image will be created and displayed. <strong>Ensure the global setting in Architect Options is on as well</strong>. NOTE: This will make your site load slower on retina devices, so you may only want consider which panels you have it enabled on.', 'pzarchitect' )
-            )
-          ),
-          array(
-            'title'    => __( 'Filler image', 'pzarchitect' ),
-            'id'       => $prefix . 'use-filler-image-source',
-            'type'     => 'select',
-            'default'  => 'none',
-            'subtitle' => __( 'Use a filler image from lorempixel if post has no image.', 'pzarchitect' ),
-            'options'  => array(
-              'none'       => 'None',
-              'lorempixel' => __( 'Random Picture', 'pzarchitect' ),
-              'abstract'   => ucfirst( 'abstract' ),
-              'animals'    => ucfirst( 'animals' ),
-              'business'   => ucfirst( 'business' ),
-              'cats'       => ucfirst( 'cats' ),
-              'city'       => ucfirst( 'city' ),
-              'food'       => ucfirst( 'food' ),
-              'nightlife'  => ucfirst( 'nightlife' ),
-              'fashion'    => ucfirst( 'fashion' ),
-              'people'     => ucfirst( 'people' ),
-              'nature'     => ucfirst( 'nature' ),
-              'sports'     => ucfirst( 'sports' ),
-              'technics'   => ucfirst( 'transport' ),
-            ),
-            'required' => array(
-              array( '_panels_settings_feature-type', '=', 'image' ),
-            ),
-          ),
-          // TODO: This will be for proper masonry galleries
-          //              array(
-          //                  'id'       => $prefix . 'image-shrinkage',
-          //                  'title'    => __('Shrink images', 'pzarchitect'),
-          //                  'type'     => 'slider',
-          //                  'display_value' => 'label',
-          //                  'default'       => '100',
-          //                  'min'           => '0',
-          //                  'max'           => '100',
-          //                  'step'          => '5',
-          //                  'units'         => '%',
-          //                  'required' => array(
-          //                      array('_panels_settings_image-focal-point', '=', 'shrink'),
-          //                      array('_panels_settings_feature-type', '=', 'image')
-          //                  ),
-          //              ),
-          array(
-            'id'       => $prefix . 'image-max-dimensions',
-            'title'    => __( 'Maximum dimensions', 'pzarchitect' ),
-            'type'     => 'dimensions',
-            'desc'     => __( 'The displayed width of the image is determined by it\'s size in the Content Layout designer. This setting is used limit the size of the image created and used.', 'pzarchitect' ),
-            'units'    => 'px',
-            'default'  => array( 'width' => '400', 'height' => '300' ),
-            'required' => array(
-              array( '_panels_settings_feature-type', '=', 'image' )
-            ),
-          ),
-          //          array(
-          //            'title'    => __( 'Fill screen', 'pzarchitect' ),
-          //            'id'       => $prefix . 'fill-screen',
-          //            'type'     => 'switch',
-          //            'on'       => __( 'Yes', 'pzarchitect' ),
-          //            'off'      => __( 'No', 'pzarchitect' ),
-          //            'default'  => false,
-          //            'required' => array(
-          //              //array('show_advanced', 'equals', true),
-          //              array( '_panels_settings_feature-type', '=', 'image' ),
-          //            ),
-          //            'subtitle' => __( 'When enabled, featured images will fill the whole screen.', 'pzarchitect' )
-          //          ),
-          array(
-            'title'    => __( 'Background images effect on screen resize', 'pzarchitect' ),
-            'id'       => $prefix . 'background-image-resize',
-            'type'     => 'button_set',
-            'subtitle' => __( 'Scale Vertically & Horizontally ', 'pzarchitect' ) . '<br>' . __( 'Trim horizontally, fill height', 'pzarchitect' ) . '<br>' . __( 'None uses default image sizing settings', 'pzarchitect' ),
-            'options'  => array(
-              'scale'            => __( 'Scale', 'pzarchitect' ),
-              'trim'             => __( 'Trim', 'pzarchitect' ),
-              'no-resize-effect' => __( 'None', 'pzarchitect' )
-            ),
-            'required' => array(
-              //array('show_advanced', 'equals', true),
-              array( '_panels_settings_feature-type', '=', 'image' ),
-              array( '_panels_design_feature-location', '=', 'fill' ),
-            ),
-            'default'  => 'scale',
-          ),
-          array(
-            'id'             => $prefix . 'image-spacing',
-            'type'           => 'spacing',
-            'mode'           => 'margin',
-            'units'          => '%',
-            'units_extended' => 'false',
-            'title'          => __( 'Margins', 'pzarchitect' ),
-            'default'        => array(
-              'margin-top'    => '0',
-              'margin-right'  => '0',
-              'margin-bottom' => '0',
-              'margin-left'   => '0',
-              'units'         => '%',
-            )
-          ),
-          array(
-            'title'    => __( 'Link to', 'pzarchitect' ),
-            'id'       => $prefix . 'link-image',
-            'type'     => 'button_set',
-            'options'  => array(
-              'none'     => __( 'None', 'pzarchitect' ),
-              'page'     => __( 'Post', 'pzarchitect' ),
-              'image'    => __( 'Attachment page', 'pzarchitect' ),
-              'original' => __( 'Lightbox', 'pzarchitect' ),
-              'url'      => __( 'Specific URL', 'pzarchitect' ),
-              // 'destination-url'=> __('Destination URL','pzarchtiect')
-            ),
-            'default'  => 'page',
-            'required' => array( '_panels_settings_feature-type', '=', 'image' ),
-            'subtitle' => __( 'Set what happens when a viewer clicks on the image', 'pzazrchitect' )
-          ),
-          array(
-            'title'    => __( 'Use alternate lightbox', 'pzarchitect' ),
-            'id'       => $prefix . 'alternate-lightbox',
-            'type'     => 'switch',
-            'on'       => __( 'Yes', 'pzarchitect' ),
-            'off'      => __( 'No', 'pzarchitect' ),
-            'default'  => false,
-            'required' => array( $prefix . 'link-image', '=', 'original' ),
-            'subtitle'=>__('This adds rel="lightbox" to image links. Your lightbox plugin needs to support that (most do).','pzarchitect')
-          ),
-          array(
-            'title'    => __( 'Specific URL', 'pzarchitect' ),
-            'id'       => $prefix . 'link-image-url',
-            'type'     => 'text',
-            'required' => array(
-              array( $prefix . 'link-image', 'equals', 'url' ),
-              array( '_panels_settings_feature-type', '=', 'image' )
-            ),
-            'validate' => 'url',
-            'subtitle' => __( 'Enter the URL that all images will link to', 'pzazrchitect' )
-          ),
-          array(
-            'title'    => __( 'Specific URL tooltip', 'pzarchitect' ),
-            'id'       => $prefix . 'link-image-url-tooltip',
-            'type'     => 'text',
-            'required' => array(
-              array( $prefix . 'link-image', 'equals', 'url' ),
-              array( '_panels_settings_feature-type', '=', 'image' )
-            ),
-            'subtitle' => __( 'Enter the text that appears when the user hovers over the link', 'pzazrchitect' )
-          ),
-          array(
-            'title'    => __( 'Image Captions', 'pzarchitect' ),
-            'id'       => $prefix . 'image-captions',
-            'type'     => 'switch',
-            'on'       => __( 'Yes', 'pzarchitect' ),
-            'off'      => __( 'No', 'pzarchitect' ),
-            'default'  => false,
-            'required' => array( '_panels_settings_feature-type', '=', 'image' ),
-          ),
-          array(
-            'title'    => __( 'Centre feature', 'pzarchitect' ),
-            'id'       => $prefix . 'centre-image',
-            'type'     => 'switch',
-            'on'       => __( 'Yes', 'pzarchitect' ),
-            'off'      => __( 'No', 'pzarchitect' ),
-            'default'  => false,
-            'required' => array(
-              //array('show_advanced', 'equals', true),
-              array( '_panels_settings_feature-type', '=', 'image' ),
-            ),
-            'subtitle' => __( 'Centres the image horizontally. It is best to display it on its own row, and the other components to be 100% wide.', 'pzarchitect' )
-          ),
-          //              array(
-          //                  'id'            => $prefix . 'image-quality',
-          //                  'title'         => __('Image quality', 'pzarchitect'),
-          //                  'type'          => 'slider',
-          //                  'display_value' => 'label',
-          //                  'default'       => '75',
-          //                  'min'           => '20',
-          //                  'max'           => '100',
-          //                  'step'          => '1',
-          //                  'units'         => '%',
-          //                  'hint'          => array('content' => 'Quality to use when processing images'),
-          //                  'required'      => array('_panels_settings_feature-type', '=', 'image'),
-          //
-          //              ),
-        )
+          'title'      => 'Featured Images/Videos',
+          'icon_class' => 'icon-large',
+          'icon'       => 'el-icon-picture',
+          'subtitle'   => __('Left and right margins are included in the image width in the designer. e.g if Feature width is 25% and right margin is 3%, Feature width will be adjusted to 22%', 'pzarchitect'),
+          'fields'     => array(
+              array(
+                  'title'    => __('Image cropping', 'pzarchitect'),
+                  'id'       => '_panels_settings_image-focal-point',
+                  'type'     => 'select',
+                  'default'  => 'respect',
+                  'select2'  => array('allowClear' => false),
+                  'required' => array('_panels_settings_feature-type', '=', 'image'),
+                  'options'  => array(
+                      'respect'      => __('Respect focal point', 'pzarchitect'),
+                      'centre'       => __('Centre focal point', 'pzarchitect'),
+                      'none'         => __('Crop to centre', 'pzarchitect'),
+                      'scale'        => __('Preserve aspect, fit to width', 'pzarchitect'),
+                      'scale_height' => __('Preserve aspect, fit to height', 'pzarchitect'),
+                      //                      'shrink'  => __('Shrink', 'pzarchitect')
+                  )
+              ),
+              array(
+                  'title'    => __('Use embedded images', 'pzarchitect'),
+                  'id'       => '_panels_settings_use-embedded-images',
+                  'type'     => 'switch',
+                  'on'       => __('Yes', 'pzarchitect'),
+                  'off'      => __('No', 'pzarchitect'),
+                  'default'  => false,
+                  'required' => array(
+                    //array('show_advanced', 'equals', true),
+                    array('_panels_settings_feature-type', '=', 'image'),
+                  ),
+                  'subtitle' => __('Enable this to use the first found attached image in the body of the post if no featured image is set.', 'pzarchitect')
+              ),
+              array(
+                  'title'    => __('Use retina images', 'pzarchitect'),
+                  'id'       => '_panels_settings_use-retina-images',
+                  'type'     => 'switch',
+                  'on'       => __('Yes', 'pzarchitect'),
+                  'off'      => __('No', 'pzarchitect'),
+                  'default'  => true,
+                  'required' => array(
+                    //array('show_advanced', 'equals', true),
+                    array('_panels_settings_feature-type', '=', 'image'),
+                  ),
+                  'hint'     => array(
+                      'title'   => __('Use retina images', 'pzarchitect'),
+                      'content' => __('If enabled, a retina version of the featured image will be created and displayed. <strong>Ensure the global setting in Architect Options is on as well</strong>. NOTE: This will make your site load slower on retina devices, so you may only want consider which panels you have it enabled on.', 'pzarchitect')
+                  )
+              ),
+              array(
+                  'title'    => __('Filler image', 'pzarchitect'),
+                  'id'       => $prefix . 'use-filler-image-source',
+                  'type'     => 'select',
+                  'select2'  => array('allowClear' => false),
+                  'default'  => 'none',
+                  'subtitle' => __('Use a filler image from lorempixel if post has no image.', 'pzarchitect'),
+                  'options'  => array(
+                      'none'       => 'None',
+                      'lorempixel' => __('Random Picture', 'pzarchitect'),
+                      'abstract'   => ucfirst('abstract'),
+                      'animals'    => ucfirst('animals'),
+                      'business'   => ucfirst('business'),
+                      'cats'       => ucfirst('cats'),
+                      'city'       => ucfirst('city'),
+                      'food'       => ucfirst('food'),
+                      'nightlife'  => ucfirst('nightlife'),
+                      'fashion'    => ucfirst('fashion'),
+                      'people'     => ucfirst('people'),
+                      'nature'     => ucfirst('nature'),
+                      'sports'     => ucfirst('sports'),
+                      'technics'   => ucfirst('transport'),
+                  ),
+                  'required' => array(
+                      array('_panels_settings_feature-type', '=', 'image'),
+                  ),
+              ),
+              // TODO: This will be for proper masonry galleries
+              //              array(
+              //                  'id'       => $prefix . 'image-shrinkage',
+              //                  'title'    => __('Shrink images', 'pzarchitect'),
+              //                  'type'     => 'slider',
+              //                  'display_value' => 'label',
+              //                  'default'       => '100',
+              //                  'min'           => '0',
+              //                  'max'           => '100',
+              //                  'step'          => '5',
+              //                  'units'         => '%',
+              //                  'required' => array(
+              //                      array('_panels_settings_image-focal-point', '=', 'shrink'),
+              //                      array('_panels_settings_feature-type', '=', 'image')
+              //                  ),
+              //              ),
+              array(
+                  'id'       => $prefix . 'image-max-dimensions',
+                  'title'    => __('Maximum dimensions', 'pzarchitect'),
+                  'type'     => 'dimensions',
+                  'desc'     => __('The displayed width of the image is determined by it\'s size in the Content Layout designer. This setting is used limit the size of the image created and used.', 'pzarchitect'),
+                  'units'    => 'px',
+                  'default'  => array('width' => '400', 'height' => '300'),
+                  'required' => array(
+                      array('_panels_settings_feature-type', '=', 'image')
+                  ),
+              ),
+              //          array(
+              //            'title'    => __( 'Fill screen', 'pzarchitect' ),
+              //            'id'       => $prefix . 'fill-screen',
+              //            'type'     => 'switch',
+              //            'on'       => __( 'Yes', 'pzarchitect' ),
+              //            'off'      => __( 'No', 'pzarchitect' ),
+              //            'default'  => false,
+              //            'required' => array(
+              //              //array('show_advanced', 'equals', true),
+              //              array( '_panels_settings_feature-type', '=', 'image' ),
+              //            ),
+              //            'subtitle' => __( 'When enabled, featured images will fill the whole screen.', 'pzarchitect' )
+              //          ),
+              array(
+                  'title'    => __('Background images effect on screen resize', 'pzarchitect'),
+                  'id'       => $prefix . 'background-image-resize',
+                  'type'     => 'button_set',
+                  'subtitle' => __('Scale Vertically & Horizontally ', 'pzarchitect') . '<br>' . __('Trim horizontally, fill height', 'pzarchitect') . '<br>' . __('None uses default image sizing settings', 'pzarchitect'),
+                  'options'  => array(
+                      'scale'            => __('Scale', 'pzarchitect'),
+                      'trim'             => __('Trim', 'pzarchitect'),
+                      'no-resize-effect' => __('None', 'pzarchitect')
+                  ),
+                  'required' => array(
+                    //array('show_advanced', 'equals', true),
+                    array('_panels_settings_feature-type', '=', 'image'),
+                    array('_panels_design_feature-location', '=', 'fill'),
+                  ),
+                  'default'  => 'scale',
+              ),
+              array(
+                  'id'             => $prefix . 'image-spacing',
+                  'type'           => 'spacing',
+                  'mode'           => 'margin',
+                  'units'          => '%',
+                  'units_extended' => 'false',
+                  'title'          => __('Margins', 'pzarchitect'),
+                  'default'        => array(
+                      'margin-top'    => '0',
+                      'margin-right'  => '0',
+                      'margin-bottom' => '0',
+                      'margin-left'   => '0',
+                      'units'         => '%',
+                  )
+              ),
+              array(
+                  'title'    => __('Link to', 'pzarchitect'),
+                  'id'       => $prefix . 'link-image',
+                  'type'     => 'button_set',
+                  'options'  => array(
+                      'none'     => __('None', 'pzarchitect'),
+                      'page'     => __('Post', 'pzarchitect'),
+                      'image'    => __('Attachment page', 'pzarchitect'),
+                      'original' => __('Lightbox', 'pzarchitect'),
+                      'url'      => __('Specific URL', 'pzarchitect'),
+                      // 'destination-url'=> __('Destination URL','pzarchtiect')
+                  ),
+                  'default'  => 'page',
+                  'required' => array('_panels_settings_feature-type', '=', 'image'),
+                  'subtitle' => __('Set what happens when a viewer clicks on the image', 'pzazrchitect')
+              ),
+              array(
+                  'title'    => __('Use alternate lightbox', 'pzarchitect'),
+                  'id'       => $prefix . 'alternate-lightbox',
+                  'type'     => 'switch',
+                  'on'       => __('Yes', 'pzarchitect'),
+                  'off'      => __('No', 'pzarchitect'),
+                  'default'  => false,
+                  'required' => array($prefix . 'link-image', '=', 'original'),
+                  'subtitle' => __('This adds rel="lightbox" to image links. Your lightbox plugin needs to support that (most do).', 'pzarchitect')
+              ),
+              array(
+                  'title'    => __('Specific URL', 'pzarchitect'),
+                  'id'       => $prefix . 'link-image-url',
+                  'type'     => 'text',
+                  'required' => array(
+                      array($prefix . 'link-image', 'equals', 'url'),
+                      array('_panels_settings_feature-type', '=', 'image')
+                  ),
+                  'validate' => 'url',
+                  'subtitle' => __('Enter the URL that all images will link to', 'pzazrchitect')
+              ),
+              array(
+                  'title'    => __('Specific URL tooltip', 'pzarchitect'),
+                  'id'       => $prefix . 'link-image-url-tooltip',
+                  'type'     => 'text',
+                  'required' => array(
+                      array($prefix . 'link-image', 'equals', 'url'),
+                      array('_panels_settings_feature-type', '=', 'image')
+                  ),
+                  'subtitle' => __('Enter the text that appears when the user hovers over the link', 'pzazrchitect')
+              ),
+              array(
+                  'title'    => __('Image Captions', 'pzarchitect'),
+                  'id'       => $prefix . 'image-captions',
+                  'type'     => 'switch',
+                  'on'       => __('Yes', 'pzarchitect'),
+                  'off'      => __('No', 'pzarchitect'),
+                  'default'  => false,
+                  'required' => array('_panels_settings_feature-type', '=', 'image'),
+              ),
+              array(
+                  'title'    => __('Centre feature', 'pzarchitect'),
+                  'id'       => $prefix . 'centre-image',
+                  'type'     => 'switch',
+                  'on'       => __('Yes', 'pzarchitect'),
+                  'off'      => __('No', 'pzarchitect'),
+                  'default'  => false,
+                  'required' => array(
+                    //array('show_advanced', 'equals', true),
+                    array('_panels_settings_feature-type', '=', 'image'),
+                  ),
+                  'subtitle' => __('Centres the image horizontally. It is best to display it on its own row, and the other components to be 100% wide.', 'pzarchitect')
+              ),
+              //              array(
+              //                  'id'            => $prefix . 'image-quality',
+              //                  'title'         => __('Image quality', 'pzarchitect'),
+              //                  'type'          => 'slider',
+              //                  'display_value' => 'label',
+              //                  'default'       => '75',
+              //                  'min'           => '20',
+              //                  'max'           => '100',
+              //                  'step'          => '1',
+              //                  'units'         => '%',
+              //                  'hint'          => array('content' => 'Quality to use when processing images'),
+              //                  'required'      => array('_panels_settings_feature-type', '=', 'image'),
+              //
+              //              ),
+          )
       );
 
 

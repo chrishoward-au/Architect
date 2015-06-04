@@ -98,6 +98,7 @@ For support, please send an email to support@pizazzwp.com
 * FIXED: Image cache not clearing when saving Blueprints
 * ADDED: Cropping option "Preserve aspect, fit to height"
 * FIXED: Images no resizing correctly for the "Preserve aspect" options.
+* ADDED: Architect Builder page template with no sidebars
 
 = 1.2.12 =
 * FIXED: Skip buttons showing on tabbed layout

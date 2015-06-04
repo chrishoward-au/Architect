@@ -14,6 +14,11 @@
   function pzarc_slick_slider_data($slider, $blueprint)
   {
 
+    // Slick
+    wp_register_script( 'js-arc-front-slickjs', PZARC_PLUGIN_URL . '/extensions/sliders/slick/arc-front-slick.js', array( 'jquery' ), null, true );
+    wp_register_script( 'js-slickjs', PZARC_PLUGIN_URL . '/extensions/sliders/slick/slick/slick/slick.min.js', array( 'jquery' ), null, true );
+    wp_register_style( 'css-slickjs', PZARC_PLUGIN_URL . '/extensions/sliders/slick/slick/slick/slick.css' );
+    wp_register_style( 'css-arcslick', PZARC_PLUGIN_URL . '/extensions/sliders/slick/arc-slick.css' );
 
     wp_enqueue_script('js-arc-front-slickjs');
     wp_enqueue_script('js-slickjs');
@@ -55,7 +60,7 @@
   add_filter('arc-navigation-skipper', 'pzarc_slick_nav_skipper', 10, 2);
   function pzarc_slick_nav_skipper($hover_nav, $blueprint)
   {
-    if ($blueprint[ '_blueprints_section-0-layout-mode' ] === 'slider') {
+    if ($blueprint[ '_blueprints_section-0-layout-mode' ] === 'slider' && $blueprint[ '_blueprints_navigator']==='thumbs') {
       $skip_left  = 'backward';
       $skip_right = 'forward';
       $hover_nav .= '<div class="arc-slider-nav arc-slider-container icomoon ' . $blueprint[ '_blueprints_navigator' ] . ' has-pager">';
