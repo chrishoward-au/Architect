@@ -268,7 +268,6 @@ pzdb('post render');
         'month'    => $_architect_options[ 'architect_language-tags-archive-pages-title' ],
         'custom'   => $_architect_options[ 'architect_language-custom-archive-pages-title' ]
       ) ) );
-      echo apply_filters( 'arc_blueprint_title', '<h2 class="arc-blueprint-title">'. $this->build->blueprint[ '_blueprints_blueprint-title' ].'</h2>');
 
       if (!empty($this->build->blueprint['_blueprints_blueprint-title'])) {
         echo apply_filters('arc-blueprint-title', '<h2 class="pzarc-blueprint-title">' . esc_html($this->build->blueprint[ '_blueprints_blueprint-title' ]) . '</h2>');
