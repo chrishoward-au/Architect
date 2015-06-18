@@ -13,6 +13,15 @@
       color: #111; }
     .pzarchitect .slick-prev:before.light, .pzarchitect .slick-next:before.light {
       color: #fff; }
+.pzarchitect .layout-tabbed .pzarc-navigator .slick-track {
+  width: auto !important;
+  display: inline-block; }
+.pzarchitect .layout-slider .labels .slick-track,
+.pzarchitect .layout-slider .titles .slick-track,
+.pzarchitect .layout-slider .bullets .slick-track,
+.pzarchitect .layout-slider .numbers .slick-track {
+  width: auto !important;
+  display: inline-block; }
 .pzarchitect ul.slick-dots {
   left: 0; }
 .pzarchitect .slick-slider {

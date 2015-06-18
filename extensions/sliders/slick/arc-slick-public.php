@@ -60,7 +60,7 @@
   add_filter('arc-navigation-skipper', 'pzarc_slick_nav_skipper', 10, 2);
   function pzarc_slick_nav_skipper($hover_nav, $blueprint)
   {
-    if ($blueprint[ '_blueprints_section-0-layout-mode' ] === 'slider' && $blueprint[ '_blueprints_navigator']==='thumbs') {
+    if ($blueprint[ '_blueprints_section-0-layout-mode' ] === 'slider' && $blueprint[ '_blueprints_navigator']==='thumbs' && $blueprint[ '_blueprints_navigator-skip-button']!=='none') {
       $skip_left  = 'backward';
       $skip_right = 'forward';
       $hover_nav .= '<div class="arc-slider-nav arc-slider-container icomoon ' . $blueprint[ '_blueprints_navigator' ] . ' has-pager">';

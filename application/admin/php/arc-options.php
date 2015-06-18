@@ -404,6 +404,16 @@
               'type'   => 'section',
               'indent' => true,
             ),
+//            array(
+//                'title'    => __( 'Use Focal Point', 'pzarchitect' ),
+//                'id'       => 'architect_use-focal-point',
+//                'type'     => 'switch',
+//                'on'       => __( 'Yes', 'pzarchitect' ),
+//                'off'      => __( 'No', 'pzarchitect' ),
+//                'default'  => true,
+//                'subtitle' => __( 'If you do not need the focal point feature, you can turn it off.', 'pzarchitect' )
+//
+//            ),
              array(
                 'title'    => __( 'Activate Architect Builder on Pages editor', 'pzarchitect' ),
                 'id'       => 'architect_use-builder',
@@ -411,7 +421,7 @@
                 'on'       => __( 'Yes', 'pzarchitect' ),
                 'off'      => __( 'No', 'pzarchitect' ),
                 'default'  => !$is_hw,
-                'subtitle' => __( '.', 'pzarchitect' )
+                'subtitle' => __( '', 'pzarchitect' )
 
             ),
             array(
@@ -772,7 +782,7 @@
           'help_tabs'          => array(),
           'help_sidebar'       => '',
           'hints'              => array(
-            'icon'          => 'icon-question-sign',
+            'icon'          => 'el el-question-sign',
             'icon_position' => 'right',
             'icon_color'    => 'lightgray',
             'icon_size'     => 'normal',

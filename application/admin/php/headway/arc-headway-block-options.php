@@ -114,7 +114,19 @@
 
     static function pzarc_custom($block, $just_defaults)
     {
+      $taxonomy_list = array();
       if (!$just_defaults) {
+        $taxonomy_list  = get_taxonomies( array(
+                                              'public'   => true,
+                                              '_builtin' => false
+
+                                          ) );
+        foreach ( $taxonomy_list as $k => $v ) {
+          $tax_obj             = get_taxonomy( $k );
+          $taxonomy_list[ $k ] = $tax_obj->labels->name;
+        }
+        $extras        = array( 0 => '', 'category' => 'Categories', 'post_tag' => 'Tags' );
+        $taxonomy_list = $extras + $taxonomy_list;
       }
       $settings = array(
           'pzarc-overrides-ids' => array(
@@ -123,6 +135,21 @@
               'label'   => __('IDs', 'pzpzarc'),
               'default' => '',
               'tooltip' => __('Enter  comma separated list of IDs of content to display instead of the Blueprint\'s preset', 'pzarchitect')
+          ),
+          'pzarc-overrides-taxonomy' => array(
+              'type'    => 'select',
+              'name'    => 'pzarc-overrides-taxonomy',
+              'label'   => __('Taxonomy', 'pzpzarc'),
+              'default' => '',
+              'tooltip' => __('', 'pzarchitect'),
+              'options'=>$taxonomy_list
+          ),
+          'pzarc-overrides-terms' => array(
+              'type'    => 'text',
+              'name'    => 'pzarc-overrides-terms',
+              'label'   => __('Terms', 'pzpzarc'),
+              'default' => '',
+              'tooltip' => __('Enter taxonomy terms as a comma separated list. This is the WP slug name of the term.', 'pzarchitect')
           ),
           'pzarc-overrides-page-title' => array(
               'type'    => 'checkbox',

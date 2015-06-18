@@ -16,6 +16,10 @@
   margin: 10px 0;
   padding: 20px; }
 
+.pzarchitect a.button, .pzarchitect button, .pzarchitect html input[type="button"], .pzarchitect input[type="reset"], .pzarchitect input[type="submit"] {
+  border: none;
+  box-shadow: none;
+  text-shadow: none; }
 .pzarchitect.pzarc-blueprint {
   display: block;
   position: relative; }
@@ -101,6 +105,13 @@
   .pzarchitect .pzarc-panel .entry-image {
     max-width: 100%;
     display: block; }
+  .pzarchitect .pzarc-panel .pzarc-panel-overlay {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 99; }
   .pzarchitect .pzarc-panel .entry-excerpt,
   .pzarchitect .pzarc-panel .entry-content {
       /*    -ms-word-break: break-all;
@@ -414,7 +425,8 @@
     font-weight: bold;
     padding: 5px;
     color: #999;
-    line-height: 1; }
+    line-height: 1;
+    text-align: center; }
     .pzarchitect .numbers .arc-slider-slide-nav-item.small {
       font-size: 22px; }
     .pzarchitect .numbers .arc-slider-slide-nav-item.medium {

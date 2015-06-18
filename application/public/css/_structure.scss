@@ -1,5 +1,11 @@
 // MAKE SURE NO FORMATTING OF GENERIC ELEMENTS
 .pzarchitect {
+  a.button, button, html input[type="button"], input[type="reset"], input[type="submit"]
+  {
+    border:none;
+    box-shadow:none;
+    text-shadow: none;
+  }
   &.pzarc-blueprint {
     display: block; // Show the block again - since it's been hidden while it's rendering!
     position: relative;

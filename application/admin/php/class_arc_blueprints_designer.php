@@ -600,7 +600,7 @@
           'icon'       => $icons[ $i ],
           'fields'     => array(
             array(
-              'title'   => 'Type',
+              'title'   => 'Layout type',
               'id'      => $prefix . 'section-' . $i . '-layout-mode',
               'type'    => 'image_select',
               'default' => 'basic',
@@ -608,7 +608,7 @@
               'height'  => 80,
               'options' => $modesx[ (int) ( $i > 0 ) ],
               'hint'    => array(
-                'title'   => 'Types',
+                'title'   => 'Layout types',
                 'content' => __( '<strong>Grid</strong> is for flat designs like single posts, blog excerpts and magazine grids.<br>
 <br><strong>Masonry</strong> is like Basic but formats for a Pinterest-like design.<br>
 <br><strong>Slider</strong> for making sliders like featured posts, image slideshows etc.<br>
@@ -996,8 +996,12 @@
             'type'    => 'button_set',
             'default' => 'slick',
             'options' => apply_filters('arc-slider-engine',array('slick'=>'Slick')),
-            'required' => array( $prefix . 'section-0-layout-mode', '=', 'slider' ),
-
+            'required' => array(
+                array( $prefix . 'section-0-layout-mode', '!=', 'basic' ),
+                array( $prefix . 'section-0-layout-mode', '!=', 'masonry' ),
+                array( $prefix . 'section-0-layout-mode', '!=', 'accordion' ),
+                array( $prefix . 'section-0-layout-mode', '!=', 'table' ),
+            )
           ),
           array(
             'id'      => $prefix . 'navigator',
@@ -1171,13 +1175,14 @@
             )
           ),
           array(
-            'title'    => 'Pager',
+            'title'    => 'Slide Pager',
             'id'       => $prefix . 'navigator-pager',
             'type'     => 'button_set',
             'default'  => 'hover',
             'options'  => array(
               'none'  => 'None',
               'hover' => 'Hover',
+
               /// TODO: Add inline pager to nav
               //                      'inline' => 'Inline with navigator',
               //                      'both'   => 'Both'
@@ -1211,28 +1216,35 @@
           //                                )
           //          ),
           array(
-            'title'    => 'Thumb skip button',
+            'title'    => 'Navigation skip button',
             'id'       => $prefix . 'navigator-skip-button',
             'type'     => 'button_set',
             'default'  => 'circle',
             'options'  => array(
-              'circle' => __( 'Circle', 'pzarchitect' ),
+                'none' => __( 'None', 'pzarchitect' ),
+                'circle' => __( 'Circle', 'pzarchitect' ),
               'square' => __( 'Square', 'pzarchitect' ),
             ),
             'required' => array(
-              array( $prefix . 'navigator', '=', 'thumbs' ),
+                array( $prefix . 'section-0-layout-mode', '=', 'slider' ),
+                array( $prefix . 'navigator', '!=', 'bullets' ),
+                array( $prefix . 'navigator', '!=', 'numbers' ),
+                array( $prefix . 'navigator', '!=', 'none' ),
             )
           ),
           array(
             'id'       => $prefix . 'navigator-skip-thumbs',
-            'title'    => __( 'Number of thumbnails', 'pzarchitect' ),
+            'title'    => __( 'Number of nav items visible', 'pzarchitect' ),
             'type'     => 'spinner',
             'default'  => 5,
             'min'      => 1,
             'max'      => 100,
-            'subtitle' => __( 'Number of thumbnails to show at once in the navigator. This is also the number of thumbs skipped by by the navigator forward and back buttons', 'pzarchitect' ),
+            'subtitle' => __( 'Number of navigation to show at once in the navigator. This is also the number of items skipped by by the navigator forward and back buttons', 'pzarchitect' ),
             'required' => array(
-              array( $prefix . 'navigator', 'equals', 'thumbs' ),
+                array( $prefix . 'section-0-layout-mode', '=', 'slider' ),
+                array( $prefix . 'navigator', '!=', 'bullets' ),
+                array( $prefix . 'navigator', '!=', 'numbers' ),
+                array( $prefix . 'navigator', '!=', 'none' ),
             )
           ),
           /** TRANSITIONS
@@ -1313,6 +1325,40 @@
       );
 
       $sections[ '_slidertabbed' ] = apply_filters('arc-extend-slider-settings',$sections[ '_slidertabbed' ]);
+
+      $sections[ '_masonry' ] = array(
+          'title'      => __('Masonry','pzarchitect'),
+          'icon_class' => 'icon-large',
+          'icon'       => 'el-icon-chevron-right',
+          'fields'     => array(
+              array(
+                  'title'   => __('Features','pzarchitect'),
+                  'id'      => '_blueprints_masonry-features',
+                  'type'    => 'button_set',
+                  'multi'=>true,
+                  'options'=> array(
+                    'override-columns'=>__('Override columns','pzarchitect'),
+                    'infinite-scroll'=>__('Infinite scroll','pzarchitect'),
+                    'filtering'=>__('Filtering','pzarchitect'),
+                    'sorting'=>__('Sorting','pzarchitect')
+                  ),
+                  'desc'    => __( '', 'pzarchitect' )
+              ),
+              array(
+                  'title'    => __( 'Panel width (px)', 'pzarchitect' ),
+                  'id'       => '_blueprint_masonry-panel-width',
+                  'type'     => 'text',
+                  'default' => '200',
+                  // TODO: Remember to do this!
+                  'subtitle'=>__('If zero, panels will have a fluid width based on the image. Works best with scaled images.','pzarchitect'),
+                  'required' => array( '_blueprints_masonry-features', 'contains', 'override-columns' ),
+              ),
+              // Infinite scroll options: Show progress
+              // Filtering: Choose taxonomies
+              // Sorting: Choose what on (title, date, cat, tag) and order
+          )
+      );
+      $sections[ '_masonry' ] = apply_filters('arc-extend-masonry-settings',$sections[ '_masonry' ]);
 
       /** PAGINATION  */
       $sections[ '_pagination' ] = array(
@@ -2275,6 +2321,18 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
               'title'   => __( 'Make header and footer', 'pzarchitect' ),
               'content' => __( 'When enabled, Architect will automatically wrap the header and footer components of the post layout in header and footer tags to maintain compatibility with current WP layout trends.<br><br>However, some layouts, such as tabular, are not suited to using the headers and footers.', 'pzarchitect' )
             )
+          ),
+          array(
+              'title'   => __( 'Link whole panel', 'pzarchitect' ),
+              'id'      => $prefix . 'link-panel',
+              //            'cols'    => 4,
+              'type'    => 'switch',
+              'on'      => __( 'Yes', 'pzarchitect' ),
+              'off'     => __( 'No', 'pzarchitect' ),
+              'default' => false,
+              'hint'    => array( 'title'=>'Link whole panel','content' => __( 'If enabled, clicking anywhere on the panel will take the viewer to the post. Note: No other links within the panel will work.', 'pzarchitect' ) ),
+
+              /// can't set defaults on checkboxes!
           ),
         )
       );

@@ -3,7 +3,7 @@ Contributors: chrishoward
 Tags: content,display,posts,pages,gallery,slider,tabs,tabbed,tabular,widget,hooks
 Requires at least: 3.5.0
 Tested up to: 4.2.1
-Stable tag: 1.2.13
+Stable tag: 1.2.14
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Plugin URI: http://architect4wp.com
@@ -94,11 +94,21 @@ For support, please send an email to support@pizazzwp.com
 
 == Changelog ==
 
+= 1.2.15 =
+* CHANGED: Defaults for nav item padding to 2px as % values causing problems with updated Slick and Firefox ignores the top and bottom when %
+* CHANGED: Sliders with Titles or Labels nav can now have more than will show - i.e. like thumbs, they'll scroll
+
+= 1.2.14 =
+* CHANGED: Option for nav skipper now includes None
+* ADDED: Option to make each whole panel link to the post or page.
+* ADDED: Options to shortcode and block to override taxonomy and terms. In shortcode eg: [architect myblueprint tax="category" terms="uncategorized"]
+
 = 1.2.13 =
 * FIXED: Image cache not clearing when saving Blueprints
 * ADDED: Cropping option "Preserve aspect, fit to height"
 * FIXED: Images no resizing correctly for the "Preserve aspect" options.
 * ADDED: Architect Builder page template with no sidebars
+* FIXED: Notice when displaying Testimonials
 
 = 1.2.12 =
 * FIXED: Skip buttons showing on tabbed layout

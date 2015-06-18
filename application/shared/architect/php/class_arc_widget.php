@@ -91,7 +91,7 @@
       }
 //      pzdebug();
       $blueprint_list = pzarc_get_posts_in_post_type();
-      $blueprint_list = array_merge( $blueprint_list,array('show-none' => 'DO NOT SHOW ANY BLUEPRINT') );
+      $blueprint_list = array_merge( array('none'=>'None'),$blueprint_list,array('show-none' => 'DO NOT SHOW ANY BLUEPRINT') );
       $blank_array    = array( 'none' => '' );
       $taxonomy_list  = get_taxonomies( array(
                                           'public'   => true,

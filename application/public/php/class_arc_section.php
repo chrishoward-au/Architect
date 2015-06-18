@@ -316,6 +316,10 @@
       $classes = 'pzarc-panel pzarc-panel_' . $this->panel_name . ' pzarc-panel-no_' . $panel_number . $this->slider[ 'slide' ] . $image_in_bg . $odds_evens_bp;
       echo '<' . ('table' !== $this->layout_mode ? 'div' : 'tr') . ' class="' . apply_filters('pzarc-extend-panel-classes', $classes, $this->blueprint) . '" ' . apply_filters('pzarc-extend-panel-data', '', $this->blueprint) . '>';
 
+    //
+      if (!empty($settings['_panels_design_link-panel'])) {
+        echo '<a href="' . apply_filters('pzarc-overlay-permalink',get_the_permalink()) . '" class="pzarc-panel-overlay"></a>';
+      }
 
       //TODO: Check this works for all scenarios
       switch ($settings[ '_panels_design_feature-location' ]) {

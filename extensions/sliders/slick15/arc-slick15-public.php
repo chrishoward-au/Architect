@@ -16,12 +16,12 @@
     wp_register_script('js-arc-front-slick15js', PZARC_PLUGIN_URL . '/extensions/sliders/slick15/arc-front-slick15b.js', array('jquery'), null, true);
     wp_register_script('js-slick15js', PZARC_PLUGIN_URL . '/extensions/sliders/slick15/slick-1.5.5/slick/slick.min.js', array('jquery'), null, true);
     wp_register_style('css-slick15js', PZARC_PLUGIN_URL . '/extensions/sliders/slick15/slick-1.5.5/slick/slick.css');
-    //  wp_register_style('css-arcslick15', PZARC_PLUGIN_URL . '/extensions/sliders/slick15/arc-slick15.css');
+    wp_register_style('css-arcslick15', PZARC_PLUGIN_URL . '/extensions/sliders/slick15/arc-slick15.css');
 
     wp_enqueue_script('js-arc-front-slick15js');
     wp_enqueue_script('js-slick15js');
     wp_enqueue_style('css-slick15js');
-    // wp_enqueue_style('css-arcslick15');
+    wp_enqueue_style('css-arcslick15');
 
     // Setup the slides
     $pzarc_slick_data = '{';
@@ -35,9 +35,9 @@
     $pzarc_slick_data .= ', "vertical":false'; //this goes a bit weird if enabled
     $pzarc_slick_data .= ', "draggable":' . ($blueprint[ '_blueprints_transitions-type' ] === 'slide' ? 'true' : 'false'); // Draggable i
     $pzarc_slick_data .= ', "infinite":' . (in_array('infinite', $blueprint[ '_slick15_extra-options' ]) ? 'true' : 'false');
-    $pzarc_slick_data .= ', "prevArrow":"#pzarc-blueprint_' . $blueprint[ '_blueprints_short-name' ] . ' .pager.arrow-left"';
-    $pzarc_slick_data .= ', "nextArrow":"#pzarc-blueprint_' . $blueprint[ '_blueprints_short-name' ] . ' .pager.arrow-right"';
-    $pzarc_slick_data .= ', "asNavFor":".pzarc-navigator-' . $blueprint[ '_blueprints_short-name' ] . '"';
+    $pzarc_slick_data .= ', "prevArrow":".'.$blueprint['uid'].' .pager.arrow-left"';
+    $pzarc_slick_data .= ', "nextArrow":".'.$blueprint['uid'].' .pager.arrow-right"';
+    $pzarc_slick_data .= ', "asNavFor":".'.$blueprint['uid'].' .pzarc-navigator-' . $blueprint[ '_blueprints_short-name' ] . '"';
     $pzarc_slick_data .= '}';
 
     $slider[ 'data' ] = 'data-slick=\'' . $pzarc_slick_data . '\'';
@@ -45,7 +45,7 @@
 
     $pzarchitect_slider_scripts = isset($pzarchitect_slider_scripts) ? $pzarchitect_slider_scripts : '';
 
-    $pzarchitect_slider_scripts .= 'jQuery(".pzarc-section-using-' . $blueprint[ '_blueprints_short-name' ] . '").slick()';
+    $pzarchitect_slider_scripts .= 'jQuery(".'.$blueprint['uid'].' .pzarc-section-using-' . $blueprint[ '_blueprints_short-name' ] . '").slick()';
     $pzarchitect_slider_scripts .= '.on("beforeChange", function(event, slick, currentSlide, nextSlide){
         jQuery(this).find(".pzarc-panel").removeClass("active");
         jQuery(this).find("[data-slick-index=\""+nextSlide+"\"]").addClass("active");
@@ -56,29 +56,33 @@
     if ($blueprint[ '_blueprints_navigator' ] !== 'none') {
       $navs_items_toshow = $blueprint[ '_blueprints_navigator-skip-thumbs' ];
       $navs_items_toskip = $blueprint[ '_blueprints_navigator-skip-thumbs' ];
-      $nav_skipper       = true;
+      $nav_skipper       = ($blueprint[ '_blueprints_navigator-skip-button' ] !== 'none');
+      $nav_var_width       = 'false';
       switch (true) {
         case $blueprint[ '_blueprints_navigator' ] === 'bullets':
         case $blueprint[ '_blueprints_navigator' ] === 'numbers':
           $navs_items_toshow = (!empty($blueprint[ '_blueprints_section-0-panels-limited' ]) ? $blueprint[ '_blueprints_section-0-panels-per-view' ] : 10);
           $navs_items_toskip = 1;
           $nav_skipper       = false;
+          $nav_var_width = 'true';
           break;
         case in_array($blueprint['_blueprints_navigator-location'],array('left',array('right'))):
           $nav_skipper = false;
           break;
       }
-      $pzarchitect_slider_scripts .= 'jQuery(".pzarc-navigator-' . $blueprint[ '_blueprints_short-name' ] . '").slick({';
-      $pzarchitect_slider_scripts .= '  asNavFor:".pzarc-section-using-' . $blueprint[ '_blueprints_short-name' ] . '"';
+
+      $pzarchitect_slider_scripts .= 'jQuery(".'.$blueprint['uid'].' .pzarc-navigator-' . $blueprint[ '_blueprints_short-name' ] . '").slick({';
+      $pzarchitect_slider_scripts .= '  asNavFor:".'.$blueprint['uid'].' .pzarc-section-using-' . $blueprint[ '_blueprints_short-name' ] . '"';
       $pzarchitect_slider_scripts .= ', slidesToShow:' . $navs_items_toshow;
       $pzarchitect_slider_scripts .= ', slidesToScroll:' . $navs_items_toskip;
       $pzarchitect_slider_scripts .= ', focusOnSelect:true';
       $pzarchitect_slider_scripts .= ', centerMode:false';
       $pzarchitect_slider_scripts .= ', infinite:false';
+      $pzarchitect_slider_scripts .= ', variableWidth:'.$nav_var_width;
 
       if ($nav_skipper) {
-        $pzarchitect_slider_scripts .= ', prevArrow:"#pzarc-blueprint_' . $blueprint[ '_blueprints_short-name' ] . ' .pager.skip-left"';
-        $pzarchitect_slider_scripts .= ', nextArrow:"#pzarc-blueprint_' . $blueprint[ '_blueprints_short-name' ] . ' .pager.skip-right"';
+        $pzarchitect_slider_scripts .= ', prevArrow:".'.$blueprint['uid'].' .pager.skip-left"';
+        $pzarchitect_slider_scripts .= ', nextArrow:".'.$blueprint['uid'].' .pager.skip-right"';
       } else {
         $pzarchitect_slider_scripts .= ', prevArrow:false';
         $pzarchitect_slider_scripts .= ', nextArrow:false';
@@ -89,10 +93,10 @@
 //        jQuery(this).find(".arc-slider-slide-nav-item").removeClass("active");
 //      })';
 
-// TODO Why isn't this doing anything for numbers?
+// TODO Why isn't this doing anything for numbers and bullets?
       $pzarchitect_slider_scripts .= '.on("afterChange", function(event, slick, currentSlide){
         var realCurrent = jQuery("#pzarc-blueprint_' . $blueprint[ '_blueprints_short-name' ] . ' .pzarc-panel.active").attr("data-slick-index");
-        jQuery("#pzarc-blueprint_' . $blueprint[ '_blueprints_short-name' ] . ' .pzarc-navigator .active").removeClass("active");
+        jQuery(".'.$blueprint['uid'].' .pzarc-navigator .active").removeClass("active");
         console.log(currentSlide, realCurrent,this);
         jQuery(this).find("[data-slick-index=\""+realCurrent+"\"]").addClass("active");
       });';
@@ -105,7 +109,7 @@
   add_filter('arc-navigation-skipper', 'pzarc_slick15_nav_skipper', 10, 2);
   function pzarc_slick15_nav_skipper($hover_nav, $blueprint)
   {
-    if (in_array($blueprint[ '_blueprints_navigator' ], array('slider'))) {
+    if ($blueprint[ '_blueprints_section-0-layout-mode' ] === 'slider' && $blueprint[ '_blueprints_navigator-skip-button']!=='none' && !in_array($blueprint[ '_blueprints_navigator'],array('none','numbers','bullets'))) {
       $skip_left  = 'backward';
       $skip_right = 'forward';
       $hover_nav .= '<div class="arc-slider-nav arc-slider-container icomoon ' . $blueprint[ '_blueprints_navigator' ] . ' has-pager">';

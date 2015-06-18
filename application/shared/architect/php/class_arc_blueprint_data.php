@@ -58,7 +58,7 @@
                       'max'     => 9999,
                       'step'    => 1,
                       'default' => 0,
-                      'desc'    => __('Note: Skipping breaks pagination. This is a known WordPress issue.', 'pzarchitect'),
+                      'desc'    => __('Note: Skipping breaks pagination. This is a known WordPress issue. Also, skipping does not work if no post limit set. Again a WP limitation. Use a high number of posts to show as a workaround', 'pzarchitect'),
                   ),
                   array(
                       'title'   => __('Sticky posts first', 'pzarchitect'),

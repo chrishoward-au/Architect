@@ -8,8 +8,13 @@
    */
   class arc_Panel_testimonials extends arc_Panel_Generic {
 
-    function __construct() {
+    function __construct(&$build) {
+
+      $this->build = $build;
+      parent::initialise_data();
+
       self::init_data();
+
 
       add_filter( 'pzarc_panel_def', array( $this, 'extend_panel_def' ) );
     }

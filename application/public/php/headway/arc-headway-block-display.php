@@ -412,8 +412,10 @@
       $blueprint_tablet[0] = $blueprint_tablet[0]==='none'?null:$blueprint_tablet[0];
       $blueprint_phone[0] = $blueprint_phone[0]==='none'?null:$blueprint_phone[0];
 
+      $pzarc_overrides = array( 'ids' => $settings[ 'pzarc-overrides-ids' ], 'tax' => $settings[ 'pzarc-overrides-taxonomy' ], 'terms' => $settings[ 'pzarc-overrides-terms' ] );
+
       if ( function_exists( 'pzarc' ) ) {
-        echo pzarc( $blueprint[ 0 ], $settings[ 'pzarc-overrides-ids' ], 'headway-block', null, $settings,$blueprint_tablet[0],$blueprint_phone[0] );
+        echo pzarc( $blueprint[ 0 ], $pzarc_overrides, 'headway-block', null, $settings,$blueprint_tablet[0],$blueprint_phone[0] );
 
       }
 

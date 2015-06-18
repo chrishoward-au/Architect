@@ -21,6 +21,24 @@
     }
   }
 
+  .layout-tabbed {
+    .pzarc-navigator {
+      .slick-track {
+        width: auto !important;
+        display: inline-block;
+      }
+    }
+  }
+  .layout-slider {
+      .labels .slick-track,
+      .titles .slick-track,
+      .bullets .slick-track,
+      .numbers .slick-track
+      {
+        width: auto !important;
+        display: inline-block;
+      }
+  }
   ul.slick-dots {
     left: 0;
   }

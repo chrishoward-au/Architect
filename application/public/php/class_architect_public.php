@@ -349,7 +349,7 @@ pzdb();
       do_action( 'arc_after_navigation' );
       do_action( 'arc_after_navigation_' . $bp_shortname );
 
-      echo '</div> <!-- end pzarchitect blueprint ' . $this->build->blueprint[ '_blueprints_short-name' ] . '-->';
+      echo '</div> <!-- end pzarchitect blueprint ' . $this->build->blueprint[ '_blueprints_short-name' ] . ' v'.PZARC_VERSION.' -->';
       pzdb('end blueprint html');
 
       do_action( 'arc_after_architect' );
