@@ -34,6 +34,16 @@
         $nav_position = $this->blueprint[ '_blueprints_navigator-position' ];
       }
 
+//      $hover_nav .= '<div class="arc-slider-nav arc-slider-container icomoon ' . $blueprint[ '_blueprints_navigator' ] . ' has-pager">';
+
+      // We need an extra div container for the nav otherwise slick treats the skip buttons as nav items!
+      // And that's why we have the extra close div
+
+      $open= '<div class="arc-slider-nav arc-slider-container icomoon ' . $blueprint[ '_blueprints_navigator' ] . ' has-pager">';
+
+      // Not all sliders will work this way, so we pass it thru a filter in case
+      echo apply_filters('arc-open-nav-container',$open,$this->blueprint);
+
       echo apply_filters( 'arc-navigation-skipper', $skipper_nav,$this->blueprint );
 
       $custom_classes =$this->blueprint[ '_blueprints_navigator-bullet-shape' ];
@@ -43,7 +53,7 @@
            ' ' . $this->blueprint[ '_blueprints_navigator' ] .
            ' ' . $nav_position .
            ' ' . $this->blueprint[ '_blueprints_navigator-location' ] .
-           ' ' . $this->blueprint[ '_blueprints_navigator-align' ] .
+           ' nav-align-' . $this->blueprint[ '_blueprints_navigator-align' ] .
            ' ' . $custom_classes . '">';
 
     }
@@ -53,8 +63,8 @@
 
 
     function __destruct() {
-     $close='</div><!-- end pzarc navigator -->';
-      echo apply_filters('arc-nav-close',$close,$this->blueprint);
+      echo '</div><!-- End pzarc-navigator -->';
+      echo apply_filters('arc-close-nav-container','</div><!-- end nav container -->',$this->blueprint);
     }
   }
 
@@ -72,7 +82,7 @@
       foreach ( $this->navitems as $nav_item ) {
         $active = ( $i === 1 ? ' active' : '' );
 
-        echo '<span class="arc-slider-slide arc-slider-slide-nav-item' . $active . '" data-index="' . $i . '">' . $nav_item . '</span>';
+        echo '<div class="arc-slider-slide arc-slider-slide-nav-item' . $active . '" data-index="' . $i . '">' . $nav_item . '</div>';
         $i ++;
       }
     }
@@ -93,7 +103,7 @@
       foreach ( $this->navitems as $nav_item ) {
         $active = ( $i === 1 ? ' active' : '' );
 
-        echo '<span class="arc-slider-slide arc-slider-slide-nav-item' . $active . '" data-index="' . $i . '">' . $nav_item . '</span>';
+        echo '<div class="arc-slider-slide arc-slider-slide-nav-item' . $active . '" data-index="' . $i . '">' . $nav_item . '</div>';
         $i ++;
       }
     }
@@ -129,7 +139,7 @@
       $i = 1;
       foreach ( $this->navitems as $nav_item ) {
         $active = ( $i === 1 ? ' active' : '' );
-        echo '<span class="arc-slider-slide-nav-item' . $this->sizing . $active . '" data-index="' . $i ++ . '"></span>';
+        echo '<div class="arc-slider-slide-nav-item' . $this->sizing . $active . '" data-index="' . $i ++ . '"></div>';
       }
     }
 
@@ -148,7 +158,7 @@
       $i = 1;
       foreach ( $this->navitems as $nav_item ) {
         $active = ( $i === 1 ? ' active' : '' );
-        echo '<span class="arc-slider-slide-nav-item' . $this->sizing . $active . '" data-index="' . $i . '">' . $i ++ . '</span>';
+        echo '<div class="arc-slider-slide arc-slider-slide-nav-item' . $this->sizing . $active . '" data-index="' . $i . '">' . $i ++ . '</div>';
       }
     }
 

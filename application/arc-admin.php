@@ -230,7 +230,7 @@
         //add_menu_page( $page_title,  $menu_title, $capability,   $menu_slug, $function,    $icon_url, $position );
         $pzarc_status  = get_option( 'edd_architect_license_status' );
         $pzarc_current_theme = wp_get_theme();
-        if ( $pzarc_current_theme->get('Name') === 'Headway Base' ) {
+        if ( ($pzarc_current_theme->get('Name') === 'Headway Base' || $pzarc_current_theme->get('Template')=='headway') ) {
 
           if ( is_multisite() ) {
             $hw_opts = get_blog_option( 1, 'headway_option_group_general' );
@@ -376,7 +376,7 @@
             <h2>' . $title . '</h2>';
       $pzarc_status  = get_option( 'edd_architect_license_status' );
       $pzarc_current_theme = wp_get_theme();
-      if ( $pzarc_current_theme->get('Name') === 'Headway Base' ) {
+      if ( ($pzarc_current_theme->get('Name') === 'Headway Base' || $pzarc_current_theme->get('Template')=='headway') ) {
 
         if ( is_multisite() ) {
           $hw_opts = get_blog_option( 1, 'headway_option_group_general' );

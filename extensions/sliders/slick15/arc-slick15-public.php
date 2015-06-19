@@ -35,9 +35,9 @@
     $pzarc_slick_data .= ', "vertical":false'; //this goes a bit weird if enabled
     $pzarc_slick_data .= ', "draggable":' . ($blueprint[ '_blueprints_transitions-type' ] === 'slide' ? 'true' : 'false'); // Draggable i
     $pzarc_slick_data .= ', "infinite":' . (in_array('infinite', $blueprint[ '_slick15_extra-options' ]) ? 'true' : 'false');
-    $pzarc_slick_data .= ', "prevArrow":".'.$blueprint['uid'].' .pager.arrow-left"';
-    $pzarc_slick_data .= ', "nextArrow":".'.$blueprint['uid'].' .pager.arrow-right"';
-    $pzarc_slick_data .= ', "asNavFor":".'.$blueprint['uid'].' .pzarc-navigator-' . $blueprint[ '_blueprints_short-name' ] . '"';
+    $pzarc_slick_data .= ', "prevArrow":".' . $blueprint[ 'uid' ] . ' .pager.arrow-left"';
+    $pzarc_slick_data .= ', "nextArrow":".' . $blueprint[ 'uid' ] . ' .pager.arrow-right"';
+    $pzarc_slick_data .= ', "asNavFor":".' . $blueprint[ 'uid' ] . ' .pzarc-navigator-' . $blueprint[ '_blueprints_short-name' ] . '"';
     $pzarc_slick_data .= '}';
 
     $slider[ 'data' ] = 'data-slick=\'' . $pzarc_slick_data . '\'';
@@ -45,11 +45,18 @@
 
     $pzarchitect_slider_scripts = isset($pzarchitect_slider_scripts) ? $pzarchitect_slider_scripts : '';
 
-    $pzarchitect_slider_scripts .= 'jQuery(".'.$blueprint['uid'].' .pzarc-section-using-' . $blueprint[ '_blueprints_short-name' ] . '").slick()';
+    $pzarchitect_slider_scripts .= 'jQuery(".' . $blueprint[ 'uid' ] . ' .pzarc-section-using-' . $blueprint[ '_blueprints_short-name' ] . '").slick()';
     $pzarchitect_slider_scripts .= '.on("beforeChange", function(event, slick, currentSlide, nextSlide){
         jQuery(this).find(".pzarc-panel").removeClass("active");
         jQuery(this).find("[data-slick-index=\""+nextSlide+"\"]").addClass("active");
       })';
+    $pzarchitect_slider_scripts .= '.on("afterChange", function(event, slick, currentSlide){
+        var realCurrent = jQuery("#pzarc-blueprint_' . $blueprint[ '_blueprints_short-name' ] . ' .pzarc-panel.active").attr("data-slick-index");
+        jQuery(".' . $blueprint[ 'uid' ] . ' .pzarc-navigator .active").removeClass("active");
+        console.log(currentSlide, realCurrent);
+        jQuery(".' . $blueprint[ 'uid' ] . ' .pzarc-navigator").find("[data-slick-index=\""+realCurrent+"\"]").addClass("active");
+      });';
+
     $pzarchitect_slider_scripts .= "\n";
 
     // Setup the Navigator
@@ -57,32 +64,36 @@
       $navs_items_toshow = $blueprint[ '_blueprints_navigator-skip-thumbs' ];
       $navs_items_toskip = $blueprint[ '_blueprints_navigator-skip-thumbs' ];
       $nav_skipper       = ($blueprint[ '_blueprints_navigator-skip-button' ] !== 'none');
-      $nav_var_width       = 'false';
+      $nav_var_width     = 'false';
       switch (true) {
         case $blueprint[ '_blueprints_navigator' ] === 'bullets':
         case $blueprint[ '_blueprints_navigator' ] === 'numbers':
+        case $blueprint[ '_blueprints_navigator' ] === 'tabbed':
+        case $blueprint[ '_blueprints_navigator' ] === 'labels':
           $navs_items_toshow = (!empty($blueprint[ '_blueprints_section-0-panels-limited' ]) ? $blueprint[ '_blueprints_section-0-panels-per-view' ] : 10);
           $navs_items_toskip = 1;
           $nav_skipper       = false;
-          $nav_var_width = 'true';
+          $nav_var_width     = 'true';
           break;
-        case in_array($blueprint['_blueprints_navigator-location'],array('left',array('right'))):
+        case in_array($blueprint[ '_blueprints_navigator-location' ], array('left', array('right'))):
           $nav_skipper = false;
           break;
       }
 
-      $pzarchitect_slider_scripts .= 'jQuery(".'.$blueprint['uid'].' .pzarc-navigator-' . $blueprint[ '_blueprints_short-name' ] . '").slick({';
-      $pzarchitect_slider_scripts .= '  asNavFor:".'.$blueprint['uid'].' .pzarc-section-using-' . $blueprint[ '_blueprints_short-name' ] . '"';
+      $pzarchitect_slider_scripts .= 'jQuery(".' . $blueprint[ 'uid' ] . ' .pzarc-navigator-' . $blueprint[ '_blueprints_short-name' ] . '").slick({';
+      $pzarchitect_slider_scripts .= '  asNavFor:".' . $blueprint[ 'uid' ] . ' .pzarc-section-using-' . $blueprint[ '_blueprints_short-name' ] . '"';
       $pzarchitect_slider_scripts .= ', slidesToShow:' . $navs_items_toshow;
       $pzarchitect_slider_scripts .= ', slidesToScroll:' . $navs_items_toskip;
       $pzarchitect_slider_scripts .= ', focusOnSelect:true';
       $pzarchitect_slider_scripts .= ', centerMode:false';
       $pzarchitect_slider_scripts .= ', infinite:false';
-      $pzarchitect_slider_scripts .= ', variableWidth:'.$nav_var_width;
+      $pzarchitect_slider_scripts .= ', useCSS:false';
+      $pzarchitect_slider_scripts .= ',adaptiveHeight:true';
+      $pzarchitect_slider_scripts .= ', variableWidth:' . $nav_var_width;
 
       if ($nav_skipper) {
-        $pzarchitect_slider_scripts .= ', prevArrow:".'.$blueprint['uid'].' .pager.skip-left"';
-        $pzarchitect_slider_scripts .= ', nextArrow:".'.$blueprint['uid'].' .pager.skip-right"';
+        $pzarchitect_slider_scripts .= ', prevArrow:".' . $blueprint[ 'uid' ] . ' .pager.skip-left"';
+        $pzarchitect_slider_scripts .= ', nextArrow:".' . $blueprint[ 'uid' ] . ' .pager.skip-right"';
       } else {
         $pzarchitect_slider_scripts .= ', prevArrow:false';
         $pzarchitect_slider_scripts .= ', nextArrow:false';
@@ -94,12 +105,12 @@
 //      })';
 
 // TODO Why isn't this doing anything for numbers and bullets?
-      $pzarchitect_slider_scripts .= '.on("afterChange", function(event, slick, currentSlide){
-        var realCurrent = jQuery("#pzarc-blueprint_' . $blueprint[ '_blueprints_short-name' ] . ' .pzarc-panel.active").attr("data-slick-index");
-        jQuery(".'.$blueprint['uid'].' .pzarc-navigator .active").removeClass("active");
-        console.log(currentSlide, realCurrent,this);
-        jQuery(this).find("[data-slick-index=\""+realCurrent+"\"]").addClass("active");
-      });';
+//      $pzarchitect_slider_scripts .= '.on("afterChange", function(event, slick, currentSlide){
+//        var realCurrent = jQuery("#pzarc-blueprint_' . $blueprint[ '_blueprints_short-name' ] . ' .pzarc-panel.active").attr("data-slick-index");
+//        jQuery(".'.$blueprint['uid'].' .pzarc-navigator .active").removeClass("active");
+//        console.log(currentSlide, realCurrent,this);
+//        jQuery(this).find("[data-slick-index=\""+realCurrent+"\"]").addClass("active");
+//      });';
       $pzarchitect_slider_scripts .= "\n";
     }
 
@@ -109,12 +120,24 @@
   add_filter('arc-navigation-skipper', 'pzarc_slick15_nav_skipper', 10, 2);
   function pzarc_slick15_nav_skipper($hover_nav, $blueprint)
   {
-    if ($blueprint[ '_blueprints_section-0-layout-mode' ] === 'slider' && $blueprint[ '_blueprints_navigator-skip-button']!=='none' && !in_array($blueprint[ '_blueprints_navigator'],array('none','numbers','bullets'))) {
+    if ($blueprint[ '_blueprints_section-0-layout-mode' ] === 'slider'
+        && $blueprint[ '_blueprints_navigator-skip-button' ] !== 'none'
+        && !in_array($blueprint[ '_blueprints_navigator' ], array('none',
+                                                                  'numbers',
+                                                                  'bullets',
+                                                                  'tabbed',
+                                                                  'labels'))
+        && !in_array($blueprint[ '_blueprints_navigator-position' ], array('none',
+                                                                           'right',
+                                                                           'left'))
+    ) {
       $skip_left  = 'backward';
       $skip_right = 'forward';
-      $hover_nav .= '<div class="arc-slider-nav arc-slider-container icomoon ' . $blueprint[ '_blueprints_navigator' ] . ' has-pager">';
+      // open the nav
+
       $hover_nav .= '<button class="pager skip-left icon-btn-style"><span class="icon-' . $skip_left . ' ' . $blueprint[ '_blueprints_navigator-skip-button' ] . '"></span></button>';
       $hover_nav .= '<button class="pager skip-right icon-btn-style"><span class="icon-' . $skip_right . ' ' . $blueprint[ '_blueprints_navigator-skip-button' ] . '"></span></button>';
+
     }
 
     return $hover_nav;
@@ -123,23 +146,28 @@
   add_filter('arc-navigator-class', 'pzarc_set_nav15_class', 10, 2);
   function pzarc_set_nav15_class($class, $blueprint)
   {
-    if ($blueprint[ '_blueprints_navigator' ] === 'thumbs') {
-      // Use cusotm thumbs
-      $class = 'arc_Navigator_Slick15_Thumbs';
+    switch ($blueprint[ '_blueprints_navigator' ]) {
 
-    } else {
-      $class = 'arc_Navigator_' . $blueprint[ '_blueprints_navigator' ];
+      case 'thumbs':
+        // Use custom thumbs
+        // This is exactly the same as the one in the default navigator and is just provided as an example
+        $class = 'arc_Navigator_Slick15_Thumbs';
+        break;
+
+      default:
+        $class = 'arc_Navigator_' . $blueprint[ '_blueprints_navigator' ];
 
     }
 
     return $class;
   }
 
+  // This is exactly the same as the one in the default navigator and is just provided as an example
   class arc_Navigator_Slick15_Thumbs extends arc_Navigator
   {
     function _construct()
     {
-      $this->nav_types[ ] = __CLASS__;
+      $this->nav_types[] = __CLASS__;
 
     }
 
@@ -182,16 +210,3 @@
     unset($pzarchitect_slider_scripts);
   }
 
-
-  add_filter('arc-nav-close', 'pzarc_slick15_nav_close', 10, 2);
-  function pzarc_slick15_nav_close($close, $blueprint)
-  {
-    // Slick nav needs an extra div
-    if ('thumbs' === $blueprint[ '_blueprints_navigator' ]) {
-      $close = '</div><!-- end thumbs nav --></div><!-- End pzarc-navigator -->';
-    } else {
-      $close = '</div><!-- End pzarc-navigator -->';
-    }
-
-    return $close;
-  }

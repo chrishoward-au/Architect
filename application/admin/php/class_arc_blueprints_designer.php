@@ -1110,7 +1110,8 @@
             'options'  => array(
               'left'   => 'Left',
               'center' => 'Centre',
-              'right'  => 'Right'
+              'right'  => 'Right',
+              'justify'  => 'Justified'
             ),
             'required' => array(
               array( $prefix . 'navigator', '!=', 'accordion' ),
@@ -1162,6 +1163,8 @@
             'required' => array(
               array( $prefix . 'navigator', '!=', 'none' ),
               array( $prefix . 'navigator', '!=', 'thumbs' ),
+              array( $prefix . 'navigator', '!=', 'tabbed' ),
+              array( $prefix . 'navigator', '!=', 'labels' ),
             )
           ),
           array(
@@ -1227,9 +1230,7 @@
             ),
             'required' => array(
                 array( $prefix . 'section-0-layout-mode', '=', 'slider' ),
-                array( $prefix . 'navigator', '!=', 'bullets' ),
-                array( $prefix . 'navigator', '!=', 'numbers' ),
-                array( $prefix . 'navigator', '!=', 'none' ),
+                array( $prefix . 'navigator', '=', 'thumbs' ),
             )
           ),
           array(
@@ -1242,9 +1243,7 @@
             'subtitle' => __( 'Number of navigation to show at once in the navigator. This is also the number of items skipped by by the navigator forward and back buttons', 'pzarchitect' ),
             'required' => array(
                 array( $prefix . 'section-0-layout-mode', '=', 'slider' ),
-                array( $prefix . 'navigator', '!=', 'bullets' ),
-                array( $prefix . 'navigator', '!=', 'numbers' ),
-                array( $prefix . 'navigator', '!=', 'none' ),
+                array( $prefix . 'navigator', '=', 'thumbs' ),
             )
           ),
           /** TRANSITIONS
@@ -1326,39 +1325,39 @@
 
       $sections[ '_slidertabbed' ] = apply_filters('arc-extend-slider-settings',$sections[ '_slidertabbed' ]);
 
-      $sections[ '_masonry' ] = array(
-          'title'      => __('Masonry','pzarchitect'),
-          'icon_class' => 'icon-large',
-          'icon'       => 'el-icon-chevron-right',
-          'fields'     => array(
-              array(
-                  'title'   => __('Features','pzarchitect'),
-                  'id'      => '_blueprints_masonry-features',
-                  'type'    => 'button_set',
-                  'multi'=>true,
-                  'options'=> array(
-                    'override-columns'=>__('Override columns','pzarchitect'),
-                    'infinite-scroll'=>__('Infinite scroll','pzarchitect'),
-                    'filtering'=>__('Filtering','pzarchitect'),
-                    'sorting'=>__('Sorting','pzarchitect')
-                  ),
-                  'desc'    => __( '', 'pzarchitect' )
-              ),
-              array(
-                  'title'    => __( 'Panel width (px)', 'pzarchitect' ),
-                  'id'       => '_blueprint_masonry-panel-width',
-                  'type'     => 'text',
-                  'default' => '200',
-                  // TODO: Remember to do this!
-                  'subtitle'=>__('If zero, panels will have a fluid width based on the image. Works best with scaled images.','pzarchitect'),
-                  'required' => array( '_blueprints_masonry-features', 'contains', 'override-columns' ),
-              ),
-              // Infinite scroll options: Show progress
-              // Filtering: Choose taxonomies
-              // Sorting: Choose what on (title, date, cat, tag) and order
-          )
-      );
-      $sections[ '_masonry' ] = apply_filters('arc-extend-masonry-settings',$sections[ '_masonry' ]);
+//      $sections[ '_masonry' ] = array(
+//          'title'      => __('Masonry','pzarchitect'),
+//          'icon_class' => 'icon-large',
+//          'icon'       => 'el-icon-chevron-right',
+//          'fields'     => array(
+//              array(
+//                  'title'   => __('Features','pzarchitect'),
+//                  'id'      => '_blueprints_masonry-features',
+//                  'type'    => 'button_set',
+//                  'multi'=>true,
+//                  'options'=> array(
+//                    'override-columns'=>__('Override columns','pzarchitect'),
+//                    'infinite-scroll'=>__('Infinite scroll','pzarchitect'),
+//                    'filtering'=>__('Filtering','pzarchitect'),
+//                    'sorting'=>__('Sorting','pzarchitect')
+//                  ),
+//                  'desc'    => __( '', 'pzarchitect' )
+//              ),
+//              array(
+//                  'title'    => __( 'Panel width (px)', 'pzarchitect' ),
+//                  'id'       => '_blueprint_masonry-panel-width',
+//                  'type'     => 'text',
+//                  'default' => '200',
+//                  // TODO: Remember to do this!
+//                  'subtitle'=>__('If zero, panels will have a fluid width based on the image. Works best with scaled images.','pzarchitect'),
+//                  'required' => array( '_blueprints_masonry-features', 'contains', 'override-columns' ),
+//              ),
+//              // Infinite scroll options: Show progress
+//              // Filtering: Choose taxonomies
+//              // Sorting: Choose what on (title, date, cat, tag) and order
+//          )
+//      );
+//      $sections[ '_masonry' ] = apply_filters('arc-extend-masonry-settings',$sections[ '_masonry' ]);
 
       /** PAGINATION  */
       $sections[ '_pagination' ] = array(
@@ -1873,7 +1872,7 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
 
             ),
             pzarc_redux_bg( $prefix . $thisSection . $background, $_architect[ 'architect_config_' . $thisSection . '-selectors' ], $defaults[ $optprefix . $thisSection . $background ] ),
-            pzarc_redux_padding( $prefix . $thisSection . $padding, $_architect[ 'architect_config_' . $thisSection . '-selectors' ], $defaults[ $optprefix . $thisSection . $padding ] ),
+            pzarc_redux_padding( $prefix . $thisSection . $padding, $_architect[ 'architect_config_' . $thisSection . '-selectors' ], $defaults[ $optprefix . $thisSection . $padding ]),
             pzarc_redux_margin( $prefix . $thisSection . $margin, $_architect[ 'architect_config_' . $thisSection . '-selectors' ], $defaults[ $optprefix . $thisSection . $margin ] ),
             pzarc_redux_borders( $prefix . $thisSection . $border, $_architect[ 'architect_config_' . $thisSection . '-selectors' ], $defaults[ $optprefix . $thisSection . $border ] ),
             array(

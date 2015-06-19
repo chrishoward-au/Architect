@@ -63,7 +63,7 @@
     if ($blueprint[ '_blueprints_section-0-layout-mode' ] === 'slider' && $blueprint[ '_blueprints_navigator']==='thumbs' && $blueprint[ '_blueprints_navigator-skip-button']!=='none') {
       $skip_left  = 'backward';
       $skip_right = 'forward';
-      $hover_nav .= '<div class="arc-slider-nav arc-slider-container icomoon ' . $blueprint[ '_blueprints_navigator' ] . ' has-pager">';
+
       $hover_nav .= '<button class="pager skip-left icon-btn-style"><span class="icon-' . $skip_left . ' ' . $blueprint[ '_blueprints_navigator-skip-button' ] . '"></span></button>';
       $hover_nav .= '<button class="pager skip-right icon-btn-style"><span class="icon-' . $skip_right . ' ' . $blueprint[ '_blueprints_navigator-skip-button' ] . '"></span></button>';
     }
@@ -71,22 +71,6 @@
     return $hover_nav;
   }
 
-  add_filter('arc-navigator-class', 'pzarc_set_nav_class', 10, 2);
-// This allows devs to use their own navigator class
-  function pzarc_set_nav_class($class, $blueprint)
-  {
-
-    if ($blueprint[ '_blueprints_navigator' ] === 'thumbs') {
-      // Use cusotm thumbs
-      $class = 'arc_Navigator_Slick_Thumbs';
-
-    } else {
-      $class = 'arc_Navigator_' . $blueprint[ '_blueprints_navigator' ];
-
-    }
-
-    return $class;
-  }
 
   add_filter('arc-add-hover-buttons', 'pzarc_add_hover_buttons', 10, 2);
   function pzarc_add_hover_buttons($return_val, $blueprint)
@@ -97,40 +81,4 @@
     return $return_val;
   }
 
-  class arc_Navigator_Slick_Thumbs extends arc_Navigator
-  {
-    function _construct()
-    {
-      $this->nav_types[ ] = __CLASS__;
 
-    }
-
-    function render()
-    {
-      $i        = 1;
-      $nav_html = '';
-      foreach ($this->navitems as $nav_item) {
-        $active = ($i === 1 ? ' active' : '');
-        $nav_html .= '<div class="arc-slider-slide arc-slider-slide-nav-item' . $this->sizing . $active . '" data-index="' . $i . '" >' . $nav_item . '</div>';
-        $i++;
-      }
-
-      echo $nav_html;
-    }
-
-
-  }
-
-
-  add_filter('arc-nav-close', 'pzarc_slick_nav_close', 10, 2);
-  function pzarc_slick_nav_close($close, $blueprint)
-  {
-    // Slick nav needs an extra div
-    if ('thumbs' === $blueprint[ '_blueprints_navigator' ]) {
-      $close = '</div><!-- end thumbs nav --></div><!-- End pzarc-navigator -->';
-    } else {
-      $close = '</div><!-- End pzarc-navigator -->';
-    }
-
-    return $close;
-  }

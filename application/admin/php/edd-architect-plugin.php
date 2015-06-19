@@ -47,7 +47,7 @@
   function edd_architect_licence_menu() {
     $pzarc_current_theme = wp_get_theme();
     $hw_opts=array();
-    if ( $pzarc_current_theme->get('Name') === 'Headway Base' ) {
+    if ( ($pzarc_current_theme->get('Name') === 'Headway Base' || $pzarc_current_theme->get('Template')=='headway') ) {
 
       if ( is_multisite() ) {
         $hw_opts = get_blog_option( 1, 'headway_option_group_general' );

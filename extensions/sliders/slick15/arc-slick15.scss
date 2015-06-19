@@ -21,24 +21,90 @@
     }
   }
 
+  //.layout-slider,
+  //.layout-tabbed {
+  //  .labels .slick-track,
+  //  .tabbed .slick-track,
+  //  .bullets .slick-track,
+  //  .numbers .slick-track {
+  //    display: block;
+  //  }
+  //}
+
+  .layout-slider,
   .layout-tabbed {
     .pzarc-navigator {
-      .slick-track {
+      &.top:not(.thumbs),
+      &.bottom:not(.thumbs) {
+        .slick-track {
+          width: auto !important;
+          //        display: inline-block;
+          display: -webkit-flex;
+          display: -ms-flexbox;
+          display: flex;
+          //-webkit-flex-wrap: wrap;
+          //-ms-flex-wrap: wrap;
+          //flex-wrap: wrap;
+          vertical-align: middle;
+          transform: translate(0, 0) !important;
+        }
+        .slick-slide {
+          //   height:auto;
+        }
+
+      }
+      &.left,
+      &.right {
+        .slick-track {
+          width: auto !important;
+          display: block;
+        }
+        .slick-slide {
+          //   height:auto;
+        }
+      }
+
+    }
+  }
+
+  .pzarc-navigator:not(.thumbs) {
+    &.top,
+    &.bottom {
+      &.nav-align-center .slick-track {
+        justify-content: center;
+      }
+      &.nav-align-left .slick-track {
+        justify-content: flex-start;
+      }
+      &.nav-align-right .slick-track {
+        justify-content: flex-end;
+      }
+      &.nav-align-justify .slick-track {
+        justify-content: space-between;
+      }
+    }
+    &.left,
+    &.right {
+      .slick-track,
+      .slick-list {
+        height: auto;
         width: auto !important;
-        display: inline-block;
+      }
+    }
+
+  }
+  .pzarc-navigator {
+    &.tabbed,
+    &.labels {
+      &.left,
+      &.right {
+        .arc-slider-slide-nav-item {
+          width: 100% !important;
+        }
       }
     }
   }
-  .layout-slider {
-      .labels .slick-track,
-      .titles .slick-track,
-      .bullets .slick-track,
-      .numbers .slick-track
-      {
-        width: auto !important;
-        display: inline-block;
-      }
-  }
+
   ul.slick-dots {
     left: 0;
   }

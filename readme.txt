@@ -2,8 +2,8 @@
 Contributors: chrishoward
 Tags: content,display,posts,pages,gallery,slider,tabs,tabbed,tabular,widget,hooks
 Requires at least: 3.5.0
-Tested up to: 4.2.1
-Stable tag: 1.2.15
+Tested up to: 4.3
+Stable tag: 1.2.16
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Plugin URI: http://architect4wp.com
@@ -94,9 +94,13 @@ For support, please send an email to support@pizazzwp.com
 
 == Changelog ==
 
+= 1.2.16 =
+* FIXED: Slick 1.5 various problems
+* ADDED: Option for horizontal nav items alignment to justify
+
 = 1.2.15 =
 * CHANGED: Defaults for nav item padding to 2px as % values causing problems with updated Slick and Firefox ignores the top and bottom when %
-* CHANGED: Sliders with Titles or Labels nav can now have more than will show - i.e. like thumbs, they'll scroll
+* FIXED: Licence check now works when Headway child theme being used
 
 = 1.2.14 =
 * CHANGED: Option for nav skipper now includes None

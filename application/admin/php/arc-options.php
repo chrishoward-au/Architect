@@ -276,7 +276,7 @@
         }
 
 
-        $is_hw = ( $current_theme->get('Name') === 'Headway Base' ) ;
+        $is_hw = ( ($current_theme->get('Name') === 'Headway Base' || $current_theme->get('Template')=='headway') ) ;
         $this->sections[ '_general'] = array(
           'title'      => __( 'General ', 'pzarchitect' ),
           'show_title' => true,

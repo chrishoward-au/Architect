@@ -114,6 +114,7 @@
       // by this point, the $wp_filesystem global should be working, so let's use it to create a file
 
       global $wp_filesystem;
+
       if (isset($pzarc_css_cache[ 'blueprints' ])) {
 
         $blueprints = array();

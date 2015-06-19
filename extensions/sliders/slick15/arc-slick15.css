@@ -13,15 +13,35 @@
       color: #111; }
     .pzarchitect .slick-prev:before.light, .pzarchitect .slick-next:before.light {
       color: #fff; }
-.pzarchitect .layout-tabbed .pzarc-navigator .slick-track {
+.pzarchitect .layout-slider .pzarc-navigator.top:not(.thumbs) .slick-track, .pzarchitect .layout-slider .pzarc-navigator.bottom:not(.thumbs) .slick-track,
+.pzarchitect .layout-tabbed .pzarc-navigator.top:not(.thumbs) .slick-track,
+.pzarchitect .layout-tabbed .pzarc-navigator.bottom:not(.thumbs) .slick-track {
   width: auto !important;
-  display: inline-block; }
-.pzarchitect .layout-slider .labels .slick-track,
-.pzarchitect .layout-slider .titles .slick-track,
-.pzarchitect .layout-slider .bullets .slick-track,
-.pzarchitect .layout-slider .numbers .slick-track {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  vertical-align: middle;
+  transform: translate(0, 0) !important; }
+.pzarchitect .layout-slider .pzarc-navigator.left .slick-track, .pzarchitect .layout-slider .pzarc-navigator.right .slick-track,
+.pzarchitect .layout-tabbed .pzarc-navigator.left .slick-track,
+.pzarchitect .layout-tabbed .pzarc-navigator.right .slick-track {
   width: auto !important;
-  display: inline-block; }
+  display: block; }
+.pzarchitect .pzarc-navigator:not(.thumbs).top.nav-align-center .slick-track, .pzarchitect .pzarc-navigator:not(.thumbs).bottom.nav-align-center .slick-track {
+  justify-content: center; }
+.pzarchitect .pzarc-navigator:not(.thumbs).top.nav-align-left .slick-track, .pzarchitect .pzarc-navigator:not(.thumbs).bottom.nav-align-left .slick-track {
+  justify-content: flex-start; }
+.pzarchitect .pzarc-navigator:not(.thumbs).top.nav-align-right .slick-track, .pzarchitect .pzarc-navigator:not(.thumbs).bottom.nav-align-right .slick-track {
+  justify-content: flex-end; }
+.pzarchitect .pzarc-navigator:not(.thumbs).top.nav-align-justify .slick-track, .pzarchitect .pzarc-navigator:not(.thumbs).bottom.nav-align-justify .slick-track {
+  justify-content: space-between; }
+.pzarchitect .pzarc-navigator:not(.thumbs).left .slick-track,
+.pzarchitect .pzarc-navigator:not(.thumbs).left .slick-list, .pzarchitect .pzarc-navigator:not(.thumbs).right .slick-track,
+.pzarchitect .pzarc-navigator:not(.thumbs).right .slick-list {
+  height: auto;
+  width: auto !important; }
+.pzarchitect .pzarc-navigator.tabbed.left .arc-slider-slide-nav-item, .pzarchitect .pzarc-navigator.tabbed.right .arc-slider-slide-nav-item, .pzarchitect .pzarc-navigator.labels.left .arc-slider-slide-nav-item, .pzarchitect .pzarc-navigator.labels.right .arc-slider-slide-nav-item {
+  width: 100% !important; }
 .pzarchitect ul.slick-dots {
   left: 0; }
 .pzarchitect .slick-slider {
