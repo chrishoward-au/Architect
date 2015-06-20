@@ -166,11 +166,7 @@
       // Extensions hook in here
       do_action( 'arc_load_extensions' );
 
-      require_once(PZARC_PLUGIN_PATH. '/extensions/sliders/slick/arc-slick-init.php');
-      if (defined('PZARC_TESTER') && PZARC_TESTER) {
-        require_once(PZARC_PLUGIN_PATH. '/extensions/sliders/slick15/arc-slick15-init.php');
-
-      }
+     require_once(PZARC_PLUGIN_PATH. '/extensions/sliders/slick15/arc-slick15-init.php');
 
 
       // Rebuiild cache if instructed

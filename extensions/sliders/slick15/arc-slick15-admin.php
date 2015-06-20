@@ -9,7 +9,7 @@
 
   add_filter('arc-slider-engine','pzarc_slick15');
   function pzarc_slick15($sliders){
-    $sliders['slick15']='Slick 1.5';
+    $sliders['slick']='Slick 1.5';
     return $sliders;
   }
 
@@ -24,7 +24,7 @@
       'id'       => $prefix . 'section-slick15-heading',
       'type'     => 'section',
       'indent'   => true,
-      'required' => array( '_blueprints_slider-engine', '=', 'slick15' ),
+      'required' => array( '_blueprints_slider-engine', '=', 'slick' ),
     );
     $settings['fields'][] =
         array(
@@ -36,36 +36,12 @@
             'options' => array('infinite'=>'Infinite loop','pause'=>'Pause on hover','adaptive'=>'Adaptive height')
         );
 
-//    $settings['fields'][] =
-//                  array(
-//                      'title'   => __('Infinite loop', 'pzarchitect'),
-//                      'id'      => $prefix . 'infinite',
-//                      'type'    => 'switch',
-//                      'default' => true,
-//                      'hint'    => array('content' => __('Loop back to the first slide after reaching the last one', 'pzarchitect')),
-//                  );
-//
-//    $settings['fields'][] =
-//                array(
-//                    'title'   => 'Pause on hover',
-//                    'id'      => $prefix . 'pause-on-hover',
-//                    'type'    => 'switch',
-//                    'default' => true,
-//                );
-//
-//    $settings['fields'][] =
-//        array(
-//            'title'   => 'Adaptive height',
-//            'id'      => $prefix . 'adaptive-height',
-//            'type'    => 'switch',
-//            'default' => true,
-//        );
 
     $settings['fields'][] = array(
       'id'       => $prefix . 'section-slick15-close',
       'type'     => 'section',
       'indent'   => false,
-      'required' => array( '_blueprints_slider-engine', '=', 'slick15' ),
+      'required' => array( '_blueprints_slider-engine', '=', 'slick' ),
     );
 
     return $settings;

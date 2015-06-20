@@ -8,7 +8,7 @@
  */
 
   $settings = array(
-    'name'=>'slick15',
+    'name'=>'slick',
       'admin'  => PZARC_PLUGIN_PATH . '/extensions/sliders/slick15/arc-slick15-admin.php',
       'public' => PZARC_PLUGIN_PATH . '/extensions/sliders/slick15/arc-slick15-public.php'
   );
