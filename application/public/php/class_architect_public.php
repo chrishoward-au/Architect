@@ -476,10 +476,6 @@ pzdb();
         $slider[ 'data' ]    = '';
 
 
-        // TODO: Remove this eventually
-        if (empty($this->build->blueprint['_blueprints_slider-engine']) || $this->build->blueprint['_blueprints_slider-engine']==='slick') {
-          $slider = apply_filters('arc-set-slider-data', $slider, $this->build->blueprint);
-        }
         if ( 'hover' === $this->build->blueprint[ '_blueprints_navigator-pager' ] && 'slider' === $this->build->blueprint[ '_blueprints_section-0-layout-mode' ] ) {
 
           $return_val = apply_filters('arc-add-hover-buttons',$return_val,$this->build->blueprint);

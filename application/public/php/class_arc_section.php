@@ -145,7 +145,7 @@
       $slider[ 'data' ]  = '';
 
 
-      if (($this->layout_mode === 'slider' || $this->layout_mode === 'tabbed') &&  (!empty($this->blueprint['_blueprints_slider-engine']) && $this->blueprint['_blueprints_slider-engine']!=='slick')) {
+      if (($this->layout_mode === 'slider' || $this->layout_mode === 'tabbed') &&  (!empty($this->blueprint['_blueprints_slider-engine']))) {
         $slider = apply_filters('arc-set-slider-data', $slider, $this->blueprint);
 
       }
