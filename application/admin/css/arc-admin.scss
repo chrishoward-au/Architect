@@ -1479,8 +1479,7 @@ body.arc-panels * {
 
 #_architect-_pzarc_pagebuilder_any,
 #_architect-_pzarc_pagebuilder_phones,
-#_architect-_pzarc_pagebuilder_tablets
-{
+#_architect-_pzarc_pagebuilder_tablets {
   ul {
     display: flex;
     flex-wrap: wrap;
@@ -2013,6 +2012,27 @@ li.arc-message {
   }
 }
 
+.pzarc-help-section {
+  a.pzarc-button-primary {
+    margin: 0 0 5px 0;
+    display: block;
+    padding: 5px;
+    border-radius: 2px;
+    text-decoration: none;
+    width: 12em;
+    &:hover {
+      background: tomato;
+      color: #fff;
+    }
+  }
+  i {
+    background: $highlight;
+    color: #fff;
+    padding: 5px;
+    border-radius: 50px;
+  }
+}
+
 body.post-type-arc-blueprints {
   input:required:invalid,
   input:focus:invalid {
@@ -2029,16 +2049,15 @@ body.post-type-arc-blueprints {
   }
 }
 
-
 body.arc-advanced,
 body.arc-beginner {
   .redux-notice-field {
-    background:#f3f3f3;
+    background: #f3f3f3;
     &.redux-critical {
-      background: #FFEBEE;
+      background: #ffebee;
     }
     &.redux-success {
-      background:#F1F8E9;
+      background: #f1f8e9;
     }
   }
 }

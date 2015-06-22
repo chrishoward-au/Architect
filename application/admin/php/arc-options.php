@@ -474,15 +474,15 @@
               'on'       => __( 'Yes', 'pzarchitect' ),
               'off'      => __( 'No', 'pzarchitect' )
             ),
-            array(
-              'title'    => __( 'Remove Architect Support button', 'pzarchitect' ),
-              'id'       => 'architect_remove_support_button',
-              'type'     => 'switch',
-              'desc' => __( 'If you don\'t want the Architect Support button appearing on every screen (it can slow down loading), then enable this. You can still access the support form in Architect> Help & Support > Support.', 'pzarchitect' ),
-              'default'  => false,
-              'on'       => __( 'Yes', 'pzarchitect' ),
-              'off'      => __( 'No', 'pzarchitect' )
-            ),
+//            array(
+//              'title'    => __( 'Remove Architect Support button', 'pzarchitect' ),
+//              'id'       => 'architect_remove_support_button',
+//              'type'     => 'switch',
+//              'desc' => __( 'If you don\'t want the Architect Support button appearing on every screen (it can slow down loading), then enable this. You can still access the support form in Architect> Help & Support > Support.', 'pzarchitect' ),
+//              'default'  => false,
+//              'on'       => __( 'Yes', 'pzarchitect' ),
+//              'off'      => __( 'No', 'pzarchitect' )
+//            ),
             array(
               'title'    => __( 'Enable beta features', 'pzarchitect' ),
               'id'       => 'architect_enable_beta',

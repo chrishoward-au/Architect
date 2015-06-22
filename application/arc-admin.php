@@ -202,11 +202,11 @@
           if ( ! isset( $GLOBALS[ '_architect_options' ] ) ) {
             $GLOBALS[ '_architect_options' ] = get_option( '_architect_options', array() );
           }
-          if ( empty( $_architect_options[ 'architect_remove_support_button' ] ) ) {
-            wp_enqueue_script( 'js-freshdesk', 'http://assets.freshdesk.com/widget/freshwidget.js', false, true );
-            wp_enqueue_script( 'js-freshdesk-support', PZARC_PLUGIN_APP_URL . '/admin/js/freshdesk-support.js', false, true );
-
-          }
+//          if ( empty( $_architect_options[ 'architect_remove_support_button' ] ) ) {
+//            wp_enqueue_script( 'js-freshdesk', 'http://assets.freshdesk.com/widget/freshwidget.js', false, true );
+//            wp_enqueue_script( 'js-freshdesk-support', PZARC_PLUGIN_APP_URL . '/admin/js/freshdesk-support.js', false, true );
+//
+//          }
           break;
       }
 

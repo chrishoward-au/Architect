@@ -20,7 +20,7 @@
 
     $settings['fields'][] =
     array(
-      'title'    => __( 'Slick 1.5', 'pzarchitect' ),
+      'title'    => __( 'Slick', 'pzarchitect' ),
       'id'       => $prefix . 'section-slick15-heading',
       'type'     => 'section',
       'indent'   => true,

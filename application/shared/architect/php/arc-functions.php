@@ -682,7 +682,8 @@
     global $_architect_options;
 
     // WARNING: This may cause problems with missing custom fields
-    if ( false === ( $pzarc_cf_list = get_transient( 'pzarc_cf_list' ) ) ) {
+    // And it did!! FFS!!
+//    if ( false === ( $pzarc_cf_list = get_transient( 'pzarc_cf_list' ) ) ) {
       // It wasn't there, so regenerate the data and save the transient
 
       if ( ! empty( $_architect_options[ 'architect_exclude_hidden_custom' ] ) ) {
@@ -699,8 +700,8 @@
           "SELECT DISTINCT meta_key FROM $wpdb->postmeta ORDER BY meta_key"
         );
       }
-      set_transient( 'pzarc_cf_list', $pzarc_cf_list );
-    }
+    //  set_transient( 'pzarc_cf_list', $pzarc_cf_list );
+  //  }
     //    set_transient( 'pzarc_custom_fields', $pzep_cf_list, 0*PZARC_TRANSIENTS_KEEP );
     // }
 
@@ -765,6 +766,7 @@
       '_oembed',
       '_publicize',
       '_thumbnail',
+      '_slick',
       'pzgp',
       'field_'
 
@@ -778,7 +780,6 @@
         $pzarc_custom_fields[ $pzarc_cf->meta_key ] = $pzarc_cf->meta_key;
       }
     }
-
     return $pzarc_custom_fields;
   }
 
