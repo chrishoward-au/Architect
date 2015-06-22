@@ -40,7 +40,7 @@
           array(
             'id'     => '_pzarc_pagebuilder_layout',
             'type'   => 'section',
-            'subtitle' => __( 'Select the Blueprints to show and drag & drop to re-order them. These are optional.' , 'pzarchtiect' ),
+            'subtitle' => __( 'Select the Blueprints to show and drag & drop to re-order them. These are optional.' , 'pzarchitect' ),
             'title'  => __( 'Blueprints', 'pzarchitect' ),
             'indent' => true
           ),

@@ -97,7 +97,12 @@
         switch ($blueprints_navigator) {
 
           case 'tabbed':
-            $nav_items[ ] = '<span class="' . $blueprints_navigator . '">' . $arc_query[ $j ][ 'title' ][ 'title' ] . '</span>';
+            $post_title = $arc_query[ $j ][ 'title' ][ 'title' ];
+            if (!empty($nav_title_len) && strlen($post_title)>$nav_title_len) {
+              $post_title = trim(substr($post_title,0,($nav_title_len-1))).'&hellip;';
+            }
+
+            $nav_items[ ] = '<span class="' . $blueprints_navigator . '">' . $post_title . '</span>';
             break;
 
           case 'thumbs':

@@ -288,18 +288,17 @@
       if (empty($architect->build->blueprint[ 'err_msg' ])) {
 
         if ($architect->build->blueprint[ '_blueprints_section-0-layout-mode' ] === 'slider' || $architect->build->blueprint[ '_blueprints_section-0-layout-mode' ] === 'tabbed') {
-          if (!empty($architect->build->blueprint[ '_blueprints_slider-engine' ])) {
-            $registry     = arc_Registry::getInstance();
-            $slider_types = (array)$registry->get('slider_types');
-            foreach ($slider_types as $st) {
 
-              if ($st[ 'name' ] === $architect->build->blueprint[ '_blueprints_slider-engine' ]) {
-                require_once($st[ 'public' ]);
-                break;
-              }
+          $slider_engine = empty($architect->build->blueprint[ '_blueprints_slider-engine' ]) || $architect->build->blueprint[ '_blueprints_slider-engine' ]==='slick15' ?'slick': $architect->build->blueprint[ '_blueprints_slider-engine' ] ;
+
+          $registry     = arc_Registry::getInstance();
+          $slider_types = (array)$registry->get('slider_types');
+          foreach ($slider_types as $st) {
+
+            if ($st[ 'name' ] === $slider_engine) {
+              require_once($st[ 'public' ]);
+              break;
             }
-          } else {
-            require_once(PZARC_PLUGIN_PATH . '/extensions/sliders/slick/arc-slick-public.php');
           }
         }
         /** This is it! **/

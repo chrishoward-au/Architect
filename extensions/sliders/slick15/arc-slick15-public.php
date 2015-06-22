@@ -54,7 +54,6 @@
     $pzarchitect_slider_scripts .= '.on("afterChange", function(event, slick, currentSlide){
         var realCurrent = jQuery("#pzarc-blueprint_' . $blueprint[ '_blueprints_short-name' ] . ' .pzarc-panel.active").attr("data-slick-index");
         jQuery(".' . $blueprint[ 'uid' ] . ' .pzarc-navigator .active").removeClass("active");
-        console.log(currentSlide, realCurrent);
         jQuery(".' . $blueprint[ 'uid' ] . ' .pzarc-navigator").find("[data-slick-index=\""+realCurrent+"\"]").addClass("active");
       });';
 
@@ -88,7 +87,7 @@
       $pzarchitect_slider_scripts .= ', focusOnSelect:true';
       $pzarchitect_slider_scripts .= ', centerMode:false';
       $pzarchitect_slider_scripts .= ', infinite:false';
-      $pzarchitect_slider_scripts .= ', useCSS:false';
+      //$pzarchitect_slider_scripts .= ', useCSS:false';
       $pzarchitect_slider_scripts .= ',adaptiveHeight:true';
       $pzarchitect_slider_scripts .= ', variableWidth:' . $nav_var_width;
 

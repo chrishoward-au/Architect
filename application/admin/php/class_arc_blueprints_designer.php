@@ -487,21 +487,21 @@
               )
           );
       $sections[ '_general_bp' ][ 'fields' ][] = array(
-        'title'=>'Getting help',
-          'id'       => $prefix . 'help-info',
-          'type'     => 'raw',
-          'indent'   => false,
+          'title'   => 'Getting help',
+          'id'      => $prefix . 'help-info',
+          'type'    => 'raw',
+          'indent'  => false,
           'content' => '<div class="pzarc-help-section">
                         <a class="pzarc-button-primary" href="http://architect4wp.com/codex-listings/" target="_blank">
                         <i class="el el-book"></i>
-                        Documentation</a>
+                        Documentation</a><br>
                         <a class="pzarc-button-primary" href="https://pizazzwp.freshdesk.com/support/discussions" target="_blank">
                         <i class="el el-group"></i>
-                        Community support</a>
+                        Community support</a><br>
                         <a class="pzarc-button-primary" href="https://pizazzwp.freshdesk.com/support/tickets/new" target="_blank">
                         <i class="el el-wrench"></i>
                         Tech support</a>
-                        <p style="font-size:0.8em;">Architect v' . PZARC_VERSION.'</p>
+                        <p style="font-size:0.8em;">Architect v' . PZARC_VERSION . '</p>
                         </div>',
       );
 
@@ -1014,34 +1014,6 @@
           //          'desc'       => 'When the navigation type is set to navigator, presentation will always be in a slider form. You can have multiple navigators on a page, thus multiple sliders.',
           'fields'     => array(
               array(
-                  'title'    => __('Tabs', 'pzarchitect'),
-                  'id'       => $prefix . 'section-tabs-heading',
-                  'type'     => 'section',
-                  'indent'   => true,
-                  'required' => array(
-                      array($prefix . 'section-0-layout-mode', '=', 'tabbed'),
-                  ),
-              ),
-              array(
-                  'title'   => 'Tab width',
-                  'id'      => $prefix . 'tabbed-tab-width',
-                  'type'    => 'button_set',
-                  'default' => 'fluid',
-                  'options' => array(
-                      'fluid' => 'Fluid',
-                      'even'  => 'Even',
-                      'fixed' => 'Fixed'
-                  )
-              ),
-              array(
-                  'id'       => $prefix . 'section-tabs-end',
-                  'type'     => 'section',
-                  'indent'   => false,
-                  'required' => array(
-                      array($prefix . 'section-0-layout-mode', '=', 'tabbed'),
-                  ),
-              ),
-              array(
                   'id'       => $prefix . 'slider-engine',
                   'title'    => __('Slider engine', 'pzarchitect'),
                   'type'     => 'button_set',
@@ -1052,7 +1024,9 @@
                       array($prefix . 'section-0-layout-mode', '!=', 'masonry'),
                       array($prefix . 'section-0-layout-mode', '!=', 'accordion'),
                       array($prefix . 'section-0-layout-mode', '!=', 'table'),
-                  )
+                  ),
+                  'hint'     => array('title'   => __('Slider engine', 'pzarchitect'),
+                                      'content' => __('Sliders and Tabbed are controlled by a slider engine. Developers can add their own', 'pzarchitect'))
               ),
               array(
                   'id'      => $prefix . 'navigator',
@@ -1062,6 +1036,21 @@
                   'hint'    => array('content' => __('Bullets,Titles, Labels, Numbers, Thumbnails or none', 'pzarchitect')),
                   'height'  => 75,
                   'options' => $slider
+              ),
+              array(
+                  'title'    => __('Titles & Labels', 'pzarchitect'),
+                  'id'       => $prefix . 'section-navtabs-heading',
+                  'type'     => 'section',
+                  'indent'   => true,
+                  'required' => array(
+                      array($prefix . 'navigator', '!=', 'buttons'),
+                      array($prefix . 'navigator', '!=', 'numbers'),
+                      array($prefix . 'navigator', '!=', 'bullets'),
+                      array($prefix . 'navigator', '!=', 'thumbs'),
+                      array($prefix . 'navigator', '!=', 'none'),
+                      array($prefix . 'navigator-position', '!=', 'left'),
+                      array($prefix . 'navigator-position', '!=', 'right')
+                  ),
               ),
               array(
                   'title'      => 'Labels',
@@ -1074,6 +1063,79 @@
                       array($prefix . 'navigator', 'equals', 'labels'),
                   ),
                   'subtitle'   => 'One label per panel. Labels only work for a fixed number of panels'
+              ),
+              array(
+                  'title'   => 'Width type',
+                  'id'      => $prefix . 'navtabs-width-type',
+                  'type'    => 'button_set',
+                  'default' => 'fluid',
+                  'options' => array(
+                      'fluid' => 'Fluid',
+                      'even'  => 'Even',
+                      'fixed' => 'Fixed'
+                  ),
+                  'hint'    => array('title'   => __('Tab width type', 'pzarchitect'),
+                                     'content' => __('Fluid: Adjusts to the width of the content<br>Even: Distributes evenly across the width of the blueprint<br>Fixed: Set a specific width', 'pzarchitect'))
+              ),
+              array(
+                  'id'       => $prefix . 'navtabs-width',
+                  'type'     => 'dimensions',
+                  'units'    => array('%', 'px', 'em'),
+                  'width'    => true,
+                  'height'   => false,
+                  'title'    => __('Fixed width', 'pzarchitect'),
+                  'default'  => array('width' => '10', 'units' => '%'),
+                  'required' => array(
+                      array($prefix . 'navtabs-width-type', 'contains', 'fixed'),
+                  ),
+              ),
+              array(
+                  'id'       => $prefix . 'navtabs-maxlen',
+                  'type'     => 'spinner',
+                  'title'    => __('Max length (characters)', 'pzarchitect'),
+                  'default'  => 0,
+                  'min'      => 0,
+                  'max'      => 1000,
+                  'subtitle'=>__('0 for no max','pzarchitect')
+              ),
+              array(
+                  'title'   => 'Text wrap',
+                  'id'      => $prefix . 'navtabs-textwrap',
+                  'type'    => 'button_set',
+                  'default' => '',
+                  'options' => array(
+                      ''=>'Default',
+                      'wraplines'=>'Wrap lines',
+                      'break-word'  => 'Break word',
+                      'nowrap'=>'No wrap'
+                  ),
+              ),
+              array(
+                  'title'   => 'Text overflow',
+                  'id'      => $prefix . 'navtabs-textoverflow',
+                  'type'    => 'button_set',
+                  'default' => '',
+                  'required'=>array($prefix . 'navtabs-textwrap','!=','break-word'),
+                  'options' => array(
+                      ''=>'Default',
+                      'visible'=>'Visible',
+                      'hidden-ellipses'  => 'Hidden with ellipses',
+                      'hidden-clip'=>'Hidden with clipping'
+                  ),
+              ),
+              array(
+                  'id'       => $prefix . 'section-navtabs-end',
+                  'type'     => 'section',
+                  'indent'   => false,
+                  'required' => array(
+                      array($prefix . 'section-0-layout-mode', '=', 'tabbed'),
+                  ),
+              ),
+              array(
+                  'title'  => __('Layout', 'pzarchitect'),
+                  'id'     => $prefix . 'section-navlayout-heading',
+                  'type'   => 'section',
+                  'indent' => true,
               ),
               array(
                   'title'    => 'Position',
@@ -1295,6 +1357,11 @@
                       array($prefix . 'section-0-layout-mode', '=', 'slider'),
                       array($prefix . 'navigator', '=', 'thumbs'),
                   )
+              ),
+              array(
+                  'id'     => $prefix . 'section-navlayout-end',
+                  'type'   => 'section',
+                  'indent' => false,
               ),
               /** TRANSITIONS
                ******************/
@@ -2888,7 +2955,7 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
                       'image'    => __('Attachment page', 'pzarchitect'),
                       'original' => __('Lightbox', 'pzarchitect'),
                       'url'      => __('Specific URL', 'pzarchitect'),
-                      // 'destination-url'=> __('Destination URL','pzarchtiect')
+                      // 'destination-url'=> __('Destination URL','pzarchitect')
                   ),
                   'default'  => 'page',
                   'required' => array('_panels_settings_feature-type', '=', 'image'),

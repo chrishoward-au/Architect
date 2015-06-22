@@ -967,7 +967,7 @@
     /**
      * get_nav_items
      */
-    public function get_nav_items( $blueprints_navigator, &$arc_query, $nav_labels ) {
+    public function get_nav_items( $blueprints_navigator, &$arc_query, $nav_labels,$nav_title_len= 0) {
       // We shouldn't have to pass arc_query! And we don't need to in this one, but for some unsolved reason in arc_Panel_Dummy, we do. So for consistency, doing it here too.
       $nav_items = array();
       $i         = 0;
@@ -981,6 +981,10 @@
             } else {
               $post_title = $the_post->post_title;
             }
+            if (!empty($nav_title_len) && strlen($post_title)>$nav_title_len) {
+              $post_title = trim(substr($post_title,0,($nav_title_len-1))).'&hellip;';
+            }
+
 
             $nav_items[ ] = '<span class="' . $blueprints_navigator . '">' . $post_title . '</span>';
             break;

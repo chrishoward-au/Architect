@@ -1521,20 +1521,22 @@ li.arc-message .arc-presets-link {
       list-style-type: disc; }
 
 .pzarc-help-section a.pzarc-button-primary {
-  margin: 0 0 5px 0;
-  display: block;
+  margin: 0 0 2px 0;
+  display: inline-block;
   padding: 5px;
   border-radius: 2px;
   text-decoration: none;
-  width: 12em; }
+  width: 12em;
+  font-size: 0.9em; }
   .pzarc-help-section a.pzarc-button-primary:hover {
     background: tomato;
     color: #fff; }
 .pzarc-help-section i {
-  background: #0074a2;
-  color: #fff;
+  color: tomato;
+  background: #fff;
   padding: 5px;
-  border-radius: 50px; }
+  border-radius: 50px;
+  border: 1px solid currentColor; }
 
 body.post-type-arc-blueprints input:required:invalid,
 body.post-type-arc-blueprints input:focus:invalid {

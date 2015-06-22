@@ -47,7 +47,7 @@
                                        $this->blueprint[ '_blueprints_content-source' ],
                                        $this->blueprint[ '_blueprints_navigator' ],
                                        $this->blueprint[ '_blueprints_section-' . ($i - 1) . '-layout-mode' ],
-                (!empty($this->blueprint[ '_blueprints_slider-engine' ]) ? $this->blueprint[ '_blueprints_slider-engine' ] : 'slick'), // Possible Future use
+                                       (empty($this->blueprint[ '_blueprints_slider-engine' ])|| $this->blueprint[ '_blueprints_slider-engine' ]==='slick15' ? 'slick':$this->blueprint[ '_blueprints_slider-engine' ]), // Possible Future use
 //                                       $this->blueprint[ '_blueprints_section-' . ($i - 1) . '-title' ],
                                        $titles,
                                        $this->blueprint[ '_blueprints_short-name' ],
