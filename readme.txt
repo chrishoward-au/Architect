@@ -94,59 +94,41 @@ For support, please send an email to support@pizazzwp.com
 == Changelog ==
 
 = 1.3.0 25 June 2015 =
-
-= 1.2.19 =
-* CHANGED: If no alternate animation set for Panels, will use the primary
-* CHANGED: Animations now can be turned off without having to unset their options
+* ADDED: Option to activate the Architect Builder on WP Pages editor. Off by default
 * ADDED: More links to documentation, forums and support
-* FIXED: Slider navigation div showing when no nav and slick error
-* FIXED: Slick error when no nav
-* CHANGED: Simplified default title when creating a Blueprint from a Preset
-* CHANGED: Included classes in nav items to uniquely identify them
 * ADDED: Option to thumbs nav for continuous row of thumbs
-* UPGRADED: WOW.js to v1.1.2
-
-= 1.2.18 =
-* CHANGED: Links to support are now within the Blueprint editor
 * ADDED: Several new options to titles and labels in navigator
-
-= 1.2.17 =
-* FIXED: Some custom fields not showing in dropdown (because of transients)
-
-= 1.2.16 =
-* FIXED: Slick 1.5 various problems
 * ADDED: Option for horizontal nav items alignment to justify
-
-= 1.2.15 =
-* CHANGED: Defaults for nav item padding to 2px as % values causing problems with updated Slick and Firefox ignores the top and bottom when %
-* FIXED: Licence check now works when Headway child theme being used
-
-= 1.2.14 =
-* CHANGED: Option for nav skipper now includes None
 * ADDED: Option to make each whole panel link to the post or page.
 * ADDED: Options to shortcode and block to override taxonomy and terms. In shortcode eg: [architect myblueprint tax="category" terms="uncategorized"]
-* UPGRADED: Slider engine, Slick, to version 1.5. This fixes several problems, including: autoplay will loop to beginning after the last slide; Blueprints will no longer start at the largest height of slides in it; carousels now work (set columns to multiple).
-
-= 1.2.13 =
-* FIXED: Image cache not clearing when saving Blueprints
-* ADDED: Cropping option "Preserve aspect, fit to height"
-* FIXED: Images no resizing correctly for the "Preserve aspect" options.
 * ADDED: Architect Builder page template with no sidebars
-* FIXED: Notice when displaying Testimonials
-
-= 1.2.12 =
-* FIXED: Skip buttons showing on tabbed layout
-* CHANGED: Create blueprint function allows option to preserve shortname
-* FIXED: Blueprint title not being displayed
-* FIXED: Removed possible mobile detect lib conflict
-* FIXED: Title not being added to image link attributes when Title not shown.
-
-= 1.2.11 =
+* ADDED: Cropping option "Preserve aspect, fit to height"
 * ADDED: Sorting options of None and Specified. Specified uses the order of images in a gallery, or the order of specifically selected posts or pages
+* CHANGED: If no alternate animation set for Panels, will use the primary
+* CHANGED: Animations now can be turned off without having to unset their options
+* CHANGED: Simplified default title when creating a Blueprint from a Preset
+* CHANGED: Included classes in nav items to uniquely identify them
+* CHANGED: Links to support are now within the Blueprint editor
+* CHANGED: Defaults for nav item padding to 2px as % values causing problems with updated Slick and Firefox ignores the top and bottom when %
+* CHANGED: Option for nav skipper now includes None
+* CHANGED: Create blueprint function allows option to preserve shortname
 * CHANGED: Specific posts and pages can be manually ordered
 * CHANGED: Icons for the layout type selector
 * CHANGED: Licence owner name now displays on licence screen 
-* ADDED: Option to activate the Architect Builder on WP Pages editor. Off by default
+* FIXED: Slider navigation div showing when no nav and slick error
+* FIXED: Slick error when no nav
+* FIXED: Some custom fields not showing in dropdown (because of transients)
+* FIXED: Slick 1.5 various problems
+* FIXED: Licence check now works when Headway child theme being used
+* FIXED: Image cache not clearing when saving Blueprints
+* FIXED: Images no resizing correctly for the "Preserve aspect" options.
+* FIXED: Notice when displaying Testimonials
+* FIXED: Skip buttons showing on tabbed layout
+* FIXED: Blueprint title not being displayed
+* FIXED: Removed possible mobile detect lib conflict
+* FIXED: Title not being added to image link attributes when Title not shown.
+* UPGRADED: Slider engine, Slick, to version 1.5. This fixes several problems, including: autoplay will loop to beginning after the last slide; Blueprints will no longer start at the largest height of slides in it; carousels now work (set columns to multiple).
+* UPGRADED: WOW.js to v1.1.2
 
 = 1.2.10 : 22 May 2015 =
 * FIXED: Excerpts not going 100% wide when no thumb image

@@ -6,24 +6,44 @@
 <body>
 <h1 id="architectchangehistory">Architect change history</h1>
 
-<h2 id="1.2.12:2june2015">1.2.12 : 2 June 2015</h2>
+<h2 id="1.3.025june2015">1.3.0 25 June 2015</h2>
 
 <ul>
-<li>FIXED: Skip buttons showing on tabbed layout</li>
-<li>CHANGED: Create blueprint function allows option to preserve shortname</li>
-<li>FIXED: Blueprint title not being displayed</li>
-<li>FIXED: Removed possible mobile detect lib conflict</li>
-<li>FIXED: Title not being added to image link attributes when Title not shown.</li>
-</ul>
-
-<h2 id="1.2.11">1.2.11 =</h2>
-
-<ul>
+<li>ADDED: Option to activate the Architect Builder on WP Pages editor. Off by default</li>
+<li>ADDED: More links to documentation, forums and support</li>
+<li>ADDED: Option to thumbs nav for continuous row of thumbs</li>
+<li>ADDED: Several new options to titles and labels in navigator</li>
+<li>ADDED: Option for horizontal nav items alignment to justify</li>
+<li>ADDED: Option to make each whole panel link to the post or page.</li>
+<li>ADDED: Options to shortcode and block to override taxonomy and terms. In shortcode eg: [architect myblueprint tax=&#8220;category&#8221; terms=&#8220;uncategorized&#8221;]</li>
+<li>ADDED: Architect Builder page template with no sidebars</li>
+<li>ADDED: Cropping option &#8220;Preserve aspect, fit to height&#8221;</li>
 <li>ADDED: Sorting options of None and Specified. Specified uses the order of images in a gallery, or the order of specifically selected posts or pages</li>
+<li>CHANGED: If no alternate animation set for Panels, will use the primary</li>
+<li>CHANGED: Animations now can be turned off without having to unset their options</li>
+<li>CHANGED: Simplified default title when creating a Blueprint from a Preset</li>
+<li>CHANGED: Included classes in nav items to uniquely identify them</li>
+<li>CHANGED: Links to support are now within the Blueprint editor</li>
+<li>CHANGED: Defaults for nav item padding to 2px as % values causing problems with updated Slick and Firefox ignores the top and bottom when %</li>
+<li>CHANGED: Option for nav skipper now includes None</li>
+<li>CHANGED: Create blueprint function allows option to preserve shortname</li>
 <li>CHANGED: Specific posts and pages can be manually ordered</li>
 <li>CHANGED: Icons for the layout type selector</li>
 <li>CHANGED: Licence owner name now displays on licence screen</li>
-<li>ADDED: Option to activate the Architect Builder on WP Pages editor. Off by default</li>
+<li>FIXED: Slider navigation div showing when no nav and slick error</li>
+<li>FIXED: Slick error when no nav</li>
+<li>FIXED: Some custom fields not showing in dropdown (because of transients)</li>
+<li>FIXED: Slick 1.5 various problems</li>
+<li>FIXED: Licence check now works when Headway child theme being used</li>
+<li>FIXED: Image cache not clearing when saving Blueprints</li>
+<li>FIXED: Images no resizing correctly for the &#8220;Preserve aspect&#8221; options.</li>
+<li>FIXED: Notice when displaying Testimonials</li>
+<li>FIXED: Skip buttons showing on tabbed layout</li>
+<li>FIXED: Blueprint title not being displayed</li>
+<li>FIXED: Removed possible mobile detect lib conflict</li>
+<li>FIXED: Title not being added to image link attributes when Title not shown.</li>
+<li>UPGRADED: Slider engine, Slick, to version 1.5. This fixes several problems, including: autoplay will loop to beginning after the last slide; Blueprints will no longer start at the largest height of slides in it; carousels now work (set columns to multiple).</li>
+<li>UPGRADED: WOW.js to v1.1.2</li>
 </ul>
 
 <h2 id="1.2.10:22may2015">1.2.10 : 22 May 2015</h2>
