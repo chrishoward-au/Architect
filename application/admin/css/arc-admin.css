@@ -1520,23 +1520,30 @@ li.arc-message .arc-presets-link {
     .arc-info-boxes .arc-info li {
       list-style-type: disc; }
 
-.pzarc-help-section a.pzarc-button-primary {
+.pzarc-help-section a.pzarc-button-help {
   margin: 0 0 2px 0;
   display: inline-block;
-  padding: 5px;
+  padding: 5px 10px 5px 5px;
   border-radius: 2px;
   text-decoration: none;
-  width: 12em;
+  width: auto;
   font-size: 0.9em; }
-  .pzarc-help-section a.pzarc-button-primary:hover {
+  .pzarc-help-section a.pzarc-button-help:hover {
     background: tomato;
     color: #fff; }
-.pzarc-help-section i {
+    .pzarc-help-section a.pzarc-button-help:hover span {
+      color: tomato;
+      background: #fff; }
+.pzarc-help-section span {
   color: tomato;
   background: #fff;
   padding: 5px;
   border-radius: 50px;
-  border: 1px solid currentColor; }
+  border: 1px solid currentColor;
+  vertical-align: middle; }
+  .pzarc-help-section span:before {
+    vertical-align: middle;
+    font-size: 15px; }
 
 body.post-type-arc-blueprints input:required:invalid,
 body.post-type-arc-blueprints input:focus:invalid {

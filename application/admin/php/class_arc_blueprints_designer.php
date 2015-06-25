@@ -118,9 +118,17 @@
       <div class="after-title-help postbox">
 
         <div class="inside">
-          <p class="howto">' . __('Documentation can be found throughout Architect or online at the', 'pzarchitect') . ' <a
-                href="http://architect4wp.com/codex-listings" target="_blank">Architect Codex</a></p>
-
+<div class="pzarc-help-section">
+                        <a class="pzarc-button-help" href="http://architect4wp.com/codex-listings/" target="_blank">
+                        <span class="dashicons dashicons-book"></span>
+                        Documentation</a>&nbsp;
+                        <a class="pzarc-button-help" href="https://pizazzwp.freshdesk.com/support/discussions" target="_blank">
+                        <span class="dashicons dashicons-groups"></span>
+                        Community support</a>&nbsp;
+                        <a class="pzarc-button-help" href="https://pizazzwp.freshdesk.com/support/tickets/new" target="_blank">
+                        <span class="dashicons dashicons-admin-tools"></span>
+                        Tech support</a>
+                        </div>
           <p class="howto"><a class="arc-presets-link" href="javascript:void(0);">' . __('Create a new Blueprint from a Preset design', 'pzarchitect') . '</a></p>
           ' .
 
@@ -492,15 +500,16 @@
           'type'    => 'raw',
           'indent'  => false,
           'content' => '<div class="pzarc-help-section">
-                        <a class="pzarc-button-primary" href="http://architect4wp.com/codex-listings/" target="_blank">
-                        <i class="el el-book"></i>
+                        <a class="pzarc-button-help" href="http://architect4wp.com/codex-listings/" target="_blank">
+                        <span class="dashicons dashicons-book"></span>
                         Documentation</a><br>
-                        <a class="pzarc-button-primary" href="https://pizazzwp.freshdesk.com/support/discussions" target="_blank">
-                        <i class="el el-group"></i>
+                        <a class="pzarc-button-help" href="https://pizazzwp.freshdesk.com/support/discussions" target="_blank">
+                        <span class="dashicons dashicons-groups"></span>
                         Community support</a><br>
-                        <a class="pzarc-button-primary" href="https://pizazzwp.freshdesk.com/support/tickets/new" target="_blank">
-                        <i class="el el-wrench"></i>
+                        <a class="pzarc-button-help" href="https://pizazzwp.freshdesk.com/support/tickets/new" target="_blank">
+                        <span class="dashicons dashicons-admin-tools"></span>
                         Tech support</a>
+                        </div>
                         <p style="font-size:0.8em;">Architect v' . PZARC_VERSION . '</p>
                         </div>',
       );
@@ -967,7 +976,7 @@
 
       /**
        *
-       * SLIDER
+       * SLIDERS & TABBED
        */
       $tabbed                      = array(
           'tabbed' => array(
@@ -1347,12 +1356,26 @@
               ),
               array(
                   'id'       => $prefix . 'navigator-skip-thumbs',
-                  'title'    => __('Number of nav items visible', 'pzarchitect'),
+                  'title'    => __('Number of thumbs visible', 'pzarchitect'),
                   'type'     => 'spinner',
                   'default'  => 5,
                   'min'      => 1,
                   'max'      => 100,
-                  'subtitle' => __('Number of navigation to show at once in the navigator. This is also the number of items skipped by by the navigator forward and back buttons', 'pzarchitect'),
+                  'hint' => array('title'=>__('Number of thumbs visible','pzarchitect'),'content'=>__('Number of thumbs to fully show at once in the navigator. If Continuous is enabled, partial thumbs will additionally be shown left and right of the full thumbs.', 'pzarchitect')),
+                  'required' => array(
+                      array($prefix . 'section-0-layout-mode', '=', 'slider'),
+                      array($prefix . 'navigator', '=', 'thumbs'),
+                  )
+              ),
+              array(
+                  'title'    => 'Continuous thumbs',
+                  'id'       => $prefix . 'navigator-continuous',
+                  'type'     => 'button_set',
+                  'default'  => 'continuous',
+                  'options'  => array(
+                      'off'   => __('No', 'pzarchitect'),
+                      'continuous' => __('Yes', 'pzarchitect'),
+                  ),
                   'required' => array(
                       array($prefix . 'section-0-layout-mode', '=', 'slider'),
                       array($prefix . 'navigator', '=', 'thumbs'),
@@ -1383,6 +1406,7 @@
                   'id'       => $prefix . 'transitions-type',
                   'type'     => 'button_set',
                   'default'  => 'fade',
+                  'subtitle'=>__('When transition is set to fade, slides are not draggable','pzarchitect'),
                   //              'select2' => array('allowClear' => false),
                   'required' => array($prefix . 'section-0-layout-mode', '=', 'slider'),
                   'options'  => apply_filters('arc-transitions', $transitions)
@@ -2250,6 +2274,22 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
                   )
               ),
               array(
+                  'title'         => __('Number of custom fields', 'pzarchitect'),
+                  'id'            => $prefix . 'custom-fields-count',
+                  'type'          => 'spinner',
+                  'default'       => 0,
+                  'min'           => '0',
+                  'max'           => '999',
+                  'step'          => '1',
+                  'display_value' => 'label',
+                  'required'      => array($prefix . 'components-to-show', 'contains', 'custom'),
+                  'subtitle'      => __('Each of the three Custom groups can have multiple custom fields. Enter the <strong>total</strong> number of custom fields, click Save/Update', 'pzarchitect'),
+                  'hint'          => array(
+                      'title'   => __('Number of custom fields', 'pzarchitect'),
+                      'content' => __('After selecting upto three custom field groups, you now need to set the total number of custom fields you will be displaying so Architect can create the settings tabs for each one.<br><br><strong>You will need to Publish/Update to see those new tabs.</strong>', 'pzarchitect')
+                  )
+              ),
+              array(
                   'title'        => __('Layout', 'pzarchitect'),
                   'id'           => $prefix . 'preview',
                   'type'         => 'code',
@@ -2324,22 +2364,6 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
                   'hint'     => array(
                       'title'   => __('Feature in', 'pzarchitect'),
                       'content' => __('Set whether to display the Feature in the Excerpt, the Body or both. The default is both.<br><br> If you are using the Excerpt in full layouts as an introduction paragraph, this is one example of when you would turn off the Feature for the Excerpt.', 'pzarchitect')
-                  )
-              ),
-              array(
-                  'title'         => __('Number of custom fields', 'pzarchitect'),
-                  'id'            => $prefix . 'custom-fields-count',
-                  'type'          => 'spinner',
-                  'default'       => 0,
-                  'min'           => '0',
-                  'max'           => '999',
-                  'step'          => '1',
-                  'display_value' => 'label',
-                  'required'      => array($prefix . 'components-to-show', 'contains', 'custom'),
-                  'subtitle'      => __('Each of the three Custom groups can have multiple custom fields. Enter the <strong>total</strong> number of custom fields, click Save/Update', 'pzarchitect'),
-                  'hint'          => array(
-                      'title'   => __('Number of custom fields', 'pzarchitect'),
-                      'content' => __('After selecting upto three custom field groups, you now need to set the total number of custom fields you will be displaying so Architect can create the settings tabs for each one.<br><br><strong>You will need to Publish/Update to see those new tabs.</strong>', 'pzarchitect')
                   )
               ),
               array(

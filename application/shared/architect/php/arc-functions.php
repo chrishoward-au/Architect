@@ -1416,7 +1416,7 @@
         'post_parent'    => $preset[ 'post' ]->post_parent,
         'post_password'  => $preset[ 'post' ]->post_password,
         'post_status'    => $alt_slug ? 'publish' : 'draft',
-        'post_title'     => $alt_title ? $alt_title : 'A new ' . $preset[ 'bptype' ] . ' Blueprint using preset : ' . $preset[ 'post' ]->post_title,
+        'post_title'     => $alt_title ? $alt_title : '(New) ' . $preset[ 'post' ]->post_title,
         'post_type'      => $preset[ 'post' ]->post_type,
         'to_ping'        => $preset[ 'post' ]->to_ping,
         'menu_order'     => $preset[ 'post' ]->menu_order

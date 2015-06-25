@@ -13,10 +13,10 @@
   function pzarc_slick_slider15_data($slider, $blueprint)
   {
     // Slick
-    wp_register_script('js-arc-front-slick15js', PZARC_PLUGIN_URL . '/extensions/sliders/slick15/arc-front-slick15b.js', array('jquery'), null, true);
-    wp_register_script('js-slick15js', PZARC_PLUGIN_URL . '/extensions/sliders/slick15/slick-1.5.5/slick/slick.min.js', array('jquery'), null, true);
-    wp_register_style('css-slick15js', PZARC_PLUGIN_URL . '/extensions/sliders/slick15/slick-1.5.5/slick/slick.css');
-    wp_register_style('css-arcslick15', PZARC_PLUGIN_URL . '/extensions/sliders/slick15/arc-slick15.css');
+    wp_register_script('js-arc-front-slick15js', PZARC_PLUGIN_URL . '/extensions-inc/sliders/slick15/arc-front-slick15b.js', array('jquery'), null, true);
+    wp_register_script('js-slick15js', PZARC_PLUGIN_URL . '/extensions-inc/sliders/slick15/slick-1.5.5/slick/slick.min.js', array('jquery'), null, true);
+    wp_register_style('css-slick15js', PZARC_PLUGIN_URL . '/extensions-inc/sliders/slick15/slick-1.5.5/slick/slick.css');
+    wp_register_style('css-arcslick15', PZARC_PLUGIN_URL . '/extensions-inc/sliders/slick15/arc-slick15.css');
 
     wp_enqueue_script('js-arc-front-slick15js');
     wp_enqueue_script('js-slick15js');
@@ -37,7 +37,9 @@
     $pzarc_slick_data .= ', "infinite":' . (!isset($blueprint[ '_slick15_extra-options' ]) || in_array('infinite', $blueprint[ '_slick15_extra-options' ]) ? 'true' : 'false');
     $pzarc_slick_data .= ', "prevArrow":".' . $blueprint[ 'uid' ] . ' .pager.arrow-left"';
     $pzarc_slick_data .= ', "nextArrow":".' . $blueprint[ 'uid' ] . ' .pager.arrow-right"';
-    $pzarc_slick_data .= ', "asNavFor":".' . $blueprint[ 'uid' ] . ' .pzarc-navigator-' . $blueprint[ '_blueprints_short-name' ] . '"';
+    if ($blueprint[ '_blueprints_navigator' ] !== 'none') {
+      $pzarc_slick_data .= ', "asNavFor":".' . $blueprint[ 'uid' ] . ' .pzarc-navigator-' . $blueprint[ '_blueprints_short-name' ] . '"';
+    }
     $pzarc_slick_data .= '}';
 
     $slider[ 'data' ] = 'data-slick=\'' . $pzarc_slick_data . '\'';
@@ -59,12 +61,16 @@
 
     $pzarchitect_slider_scripts .= "\n";
 
-    // Setup the Navigator
+    /**
+     * Setup the Navigator
+     */
+
     if ($blueprint[ '_blueprints_navigator' ] !== 'none') {
       $navs_items_toshow = $blueprint[ '_blueprints_navigator-skip-thumbs' ];
       $navs_items_toskip = $blueprint[ '_blueprints_navigator-skip-thumbs' ];
       $nav_skipper       = ($blueprint[ '_blueprints_navigator-skip-button' ] !== 'none');
       $nav_var_width     = 'false';
+      $nav_continuous = ((!empty($blueprint[ '_blueprints_navigator-continuous' ]) && $blueprint[ '_blueprints_navigator-continuous' ]==='continuous') ? 'true' : 'false');
       switch (true) {
         case $blueprint[ '_blueprints_navigator' ] === 'bullets':
         case $blueprint[ '_blueprints_navigator' ] === 'numbers':
@@ -74,9 +80,11 @@
           $navs_items_toskip = 1;
           $nav_skipper       = false;
           $nav_var_width     = 'true';
+          $nav_continuous ='false';
           break;
         case in_array($blueprint[ '_blueprints_navigator-location' ], array('left', array('right'))):
           $nav_skipper = false;
+          $nav_continuous ='false';
           break;
       }
 
@@ -85,8 +93,10 @@
       $pzarchitect_slider_scripts .= ', slidesToShow:' . $navs_items_toshow;
       $pzarchitect_slider_scripts .= ', slidesToScroll:' . $navs_items_toskip;
       $pzarchitect_slider_scripts .= ', focusOnSelect:true';
-      $pzarchitect_slider_scripts .= ', centerMode:false';
-      $pzarchitect_slider_scripts .= ', infinite:false';
+      $pzarchitect_slider_scripts .= ', centerMode:'.$nav_continuous;
+      $pzarchitect_slider_scripts .= ', draggable:true';
+      $pzarchitect_slider_scripts .= ', infinite:'.$nav_continuous;
+//      $pzarchitect_slider_scripts .= ', arrows:true';
       //$pzarchitect_slider_scripts .= ', useCSS:false';
       $pzarchitect_slider_scripts .= ',adaptiveHeight:true';
       $pzarchitect_slider_scripts .= ', variableWidth:' . $nav_var_width;
@@ -177,7 +187,7 @@
       $nav_html = '';
       foreach ($this->navitems as $nav_item) {
         $active = ($i === 1 ? ' active' : '');
-        $nav_html .= '<div class="arc-slider-slide arc-slider-slide-nav-item' . $this->sizing . $active . '" data-index="' . $i . '" >' . $nav_item . '</div>';
+        $nav_html .= '<div class="arc-slider-slide arc-slider-slide-nav-item' . $this->sizing . $active . ' arc-navitem-'.$i.' arc-navitem-'.sanitize_title($nav_item).'" data-index="' . $i . '" >' . $nav_item . '</div>';
         $i++;
       }
 

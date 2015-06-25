@@ -108,8 +108,9 @@
             'title'   => __( 'Animate', 'pzarchitect' ),
             'id'      => $prefix . 'target',
             'type'    => 'button_set',
-            'default' => 'panels',
+            'default' => 'off',
             'options' => array(
+              'off' => __( 'Off', 'pzarchitect' ),
               'panels' => __( 'Panels', 'pzarchitect' ),
               'fields' => __( 'Content', 'pzarchitect' ),
             )

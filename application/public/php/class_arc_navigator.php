@@ -25,6 +25,9 @@
       $this->navitems  = $navitems;
       $this->sizing    = ' ' . $this->blueprint[ '_blueprints_navigator-sizing' ];
 
+      if ($this->blueprint[ '_blueprints_navigator' ] === 'none') {
+        return;
+      }
 //      $skip_left  = $this->blueprint[ '_blueprints_navigator-skip-left' ];
 //      $skip_right = $this->blueprint[ '_blueprints_navigator-skip-right' ];
 
@@ -67,8 +70,11 @@
 
     function __destruct()
     {
-      echo '</div><!-- End pzarc-navigator -->';
-      echo apply_filters('arc-close-nav-container', '</div><!-- end nav container -->', $this->blueprint);
+      if ($this->blueprint[ '_blueprints_navigator' ] !== 'none') {
+
+        echo '</div><!-- End pzarc-navigator -->';
+        echo apply_filters('arc-close-nav-container', '</div><!-- end nav container -->', $this->blueprint);
+      }
     }
   }
 
@@ -130,11 +136,12 @@
         }
       }
 
-
       $styles = $styles?' style="'.$styles.'"':$styles;
       foreach ($this->navitems as $nav_item) {
         $active = ($i === 1 ? ' active' : '');
-        echo '<div class="arc-slider-slide arc-slider-slide-nav-item' . $active . '" data-index="' . $i . '" '.$styles.'>' . $nav_item . '</div>';
+        echo '<div class="arc-slider-slide arc-slider-slide-nav-item' . $active . ' arc-navitem-'.$i.' arc-navitem-'.sanitize_title($nav_item).'" data-index="' . $i . '" '.$styles.'>';
+        echo $nav_item;
+        echo '</div>';
         $i++;
       }
     }
@@ -158,7 +165,7 @@
       foreach ($this->navitems as $nav_item) {
         $active = ($i === 1 ? ' active' : '');
 
-        echo '<div class="arc-slider-slide arc-slider-slide-nav-item' . $active . '" data-index="' . $i . '">' . $nav_item . '</div>';
+        echo '<div class="arc-slider-slide arc-slider-slide-nav-item' . $active . ' arc-navitem-'.$i.' arc-navitem-'.sanitize_title($nav_item).'" data-index="' . $i . '">' . $nav_item . '</div>';
         $i++;
       }
     }
@@ -200,7 +207,7 @@
       $i = 1;
       foreach ($this->navitems as $nav_item) {
         $active = ($i === 1 ? ' active' : '');
-        echo '<div class="arc-slider-slide-nav-item' . $this->sizing . $active . '" data-index="' . $i++ . '"></div>';
+        echo '<div class="arc-slider-slide-nav-item' . $this->sizing . $active . ' arc-navitem-'.$i.' arc-navitem-'.sanitize_title($nav_item).'" data-index="' . $i++ . '"></div>';
       }
     }
 
@@ -222,7 +229,7 @@
       $i = 1;
       foreach ($this->navitems as $nav_item) {
         $active = ($i === 1 ? ' active' : '');
-        echo '<div class="arc-slider-slide arc-slider-slide-nav-item' . $this->sizing . $active . '" data-index="' . $i . '">' . $i++ . '</div>';
+        echo '<div class="arc-slider-slide arc-slider-slide-nav-item' . $this->sizing . $active . ' arc-navitem-'.$i.' arc-navitem-'.sanitize_title($nav_item).'" data-index="' . $i . '">' . $i++ . '</div>';
       }
     }
 
@@ -262,7 +269,7 @@
       $nav_html = '';
       foreach ($this->navitems as $nav_item) {
         $active = ($i === 1 ? ' active' : '');
-        $nav_html .= '<div class="arc-slider-slide arc-slider-slide-nav-item' . $this->sizing . $active . '" data-index="' . $i . '">' . $nav_item . '</div>';
+        $nav_html .= '<div class="arc-slider-slide arc-slider-slide-nav-item' . $this->sizing . $active . ' arc-navitem-'.$i.' arc-navitem-'.sanitize_title($nav_item).'" data-index="' . $i . '">' . $nav_item . '</div>';
         $i++;
       }
 

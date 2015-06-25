@@ -373,7 +373,21 @@
         </div>
         <div class="pzarc-about-box" style="background:#f9f9f9;padding:20px;border:1px solid #ddd;">
 
-            <h2>' . $title . '</h2>';
+            <h2>' . $title . '</h2>
+            <div class="pzarc-help-section">
+                        <a class="pzarc-button-help" href="http://architect4wp.com/codex-listings/" target="_blank">
+                        <span class="dashicons dashicons-book"></span>
+                        Documentation</a>&nbsp;
+                        <a class="pzarc-button-help" href="https://pizazzwp.freshdesk.com/support/discussions" target="_blank">
+                        <span class="dashicons dashicons-groups"></span>
+                        Community support</a>&nbsp;
+                        <a class="pzarc-button-help" href="https://pizazzwp.freshdesk.com/support/tickets/new" target="_blank">
+                        <span class="dashicons dashicons-admin-tools"></span>
+                        Tech support</a>
+                        </div>
+
+            ';
+
       $pzarc_status  = get_option( 'edd_architect_license_status' );
       $pzarc_current_theme = wp_get_theme();
       if ( ($pzarc_current_theme->get('Name') === 'Headway Base' || $pzarc_current_theme->get('Template')=='headway') ) {

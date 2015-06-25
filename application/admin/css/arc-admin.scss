@@ -2013,25 +2013,34 @@ li.arc-message {
 }
 
 .pzarc-help-section {
-  a.pzarc-button-primary {
+  a.pzarc-button-help {
     margin: 0 0 2px 0;
     display: inline-block;
-    padding: 5px;
+    padding: 5px 10px 5px 5px;
     border-radius: 2px;
     text-decoration: none;
-    width: 12em;
+    width: auto;
     font-size:0.9em;
     &:hover {
       background: tomato;
       color: #fff;
+      span {
+        color: tomato;
+        background: #fff;
+      }
     }
   }
-  i {
+  span {
     color: tomato;
     background: #fff;
     padding: 5px;
     border-radius: 50px;
     border:1px solid currentColor;
+    vertical-align: middle;
+    &:before {
+      vertical-align: middle;
+      font-size:15px;
+    }
   }
 }
 

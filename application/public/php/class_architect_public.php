@@ -82,7 +82,7 @@
       if ($this->build->blueprint) {
         // load slider
         // Later we'll get this from the registry
-//        require_once(PZARC_PLUGIN_PATH. '/extensions/sliders/slick/arc-slick-public.php');
+//        require_once(PZARC_PLUGIN_PATH. '/extensions-inc/sliders/slick/arc-slick-public.php');
       }
 
 

@@ -73,7 +73,7 @@
     }
 
     function process_animation( $line, $component, $source, $layout_mode ) {
-      if ( $this->blueprint[ '_animation_target' ] === 'panels' || empty($this->blueprint[ '_animation_sequence' ]) ) {
+      if ( $this->blueprint[ '_animation_target' ] !== 'fields' || empty($this->blueprint[ '_animation_sequence' ]) ) {
         return $line;
       }
       $ppp = empty( $this->blueprint[ '_blueprints_section-0-panels-limited' ] ) ? get_option( 'posts_per_page' ) : $this->blueprint[ '_blueprints_section-0-panels-per-view' ];

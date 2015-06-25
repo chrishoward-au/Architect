@@ -9,8 +9,8 @@
 
   $settings = array(
     'name'=>'slick',
-      'admin'  => PZARC_PLUGIN_PATH . '/extensions/sliders/slick15/arc-slick15-admin.php',
-      'public' => PZARC_PLUGIN_PATH . '/extensions/sliders/slick15/arc-slick15-public.php'
+      'admin'  => PZARC_PLUGIN_PATH . '/extensions-inc/sliders/slick15/arc-slick15-admin.php',
+      'public' => PZARC_PLUGIN_PATH . '/extensions-inc/sliders/slick15/arc-slick15-public.php'
   );
   $registry = arc_Registry::getInstance();
   $registry->set( 'slider_types', $settings );

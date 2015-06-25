@@ -276,8 +276,10 @@
           $pzarc_mediaq_css .= $panels_class . ':nth-child(' . $columns . 'n) {margin-right: 0;}';
         }
         break;
+      case 'slider' === $pzarc_blueprints[ '_blueprints_section-' . $i . '-layout-mode' ]:
+              //$pzarc_mediaq_css .= $panels_class . ':nth-child(n) {margin-right: ' . ( $rmargin ) .$margin_units. ';}';
+        break;
       default:
-  //      $pzarc_mediaq_css .= $panels_class . ':nth-child(n) {margin-right: ' . ( $rmargin ) .$margin_units. ';}';
         $pzarc_mediaq_css .= $panels_class . ':nth-child(' . $columns . 'n) {margin-right: 0;}';
         break;
     }

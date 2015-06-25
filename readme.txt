@@ -3,7 +3,7 @@ Contributors: chrishoward
 Tags: content,display,posts,pages,gallery,slider,tabs,tabbed,tabular,widget,hooks
 Requires at least: 3.5.0
 Tested up to: 4.3
-Stable tag: 1.2.18
+Stable tag: 1.3.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Plugin URI: http://architect4wp.com
@@ -77,7 +77,6 @@ As per Headway licencing agreement
 No. We don't delete any of your data. In the future a method will be provided for you to remove all Architect data if you really need to.
 
 == Known issues ==
-* Autoplay slideshows reverse at the end instead of looping back to the start
 * Importing Blueprints, you will have to redo filters. This is a limitation of Redux not Architect.
 * Videos don't autopause when changing slides
 * Retina images currently only generates 2x
@@ -93,6 +92,19 @@ For support, please send an email to support@pizazzwp.com
 2. Slider example
 
 == Changelog ==
+
+= 1.3.0 25 June 2015 =
+
+= 1.2.19 =
+* CHANGED: If no alternate animation set for Panels, will use the primary
+* CHANGED: Animations now can be turned off without having to unset their options
+* ADDED: More links to documentation, forums and support
+* FIXED: Slider navigation div showing when no nav and slick error
+* FIXED: Slick error when no nav
+* CHANGED: Simplified default title when creating a Blueprint from a Preset
+* CHANGED: Included classes in nav items to uniquely identify them
+* ADDED: Option to thumbs nav for continuous row of thumbs
+* UPGRADED: WOW.js to v1.1.2
 
 = 1.2.18 =
 * CHANGED: Links to support are now within the Blueprint editor
@@ -113,6 +125,7 @@ For support, please send an email to support@pizazzwp.com
 * CHANGED: Option for nav skipper now includes None
 * ADDED: Option to make each whole panel link to the post or page.
 * ADDED: Options to shortcode and block to override taxonomy and terms. In shortcode eg: [architect myblueprint tax="category" terms="uncategorized"]
+* UPGRADED: Slider engine, Slick, to version 1.5. This fixes several problems, including: autoplay will loop to beginning after the last slide; Blueprints will no longer start at the largest height of slides in it; carousels now work (set columns to multiple).
 
 = 1.2.13 =
 * FIXED: Image cache not clearing when saving Blueprints
