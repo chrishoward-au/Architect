@@ -464,16 +464,6 @@
                     <p>If you know the names of the action hooks in your theme, the Actions Editor allows you to hook into them without any coding.</p>
                     </div>
                     </div>
-                                    <h2>More help</h2>
-                    <div class="arc-info-boxes">
-                    <div class="arc-info col1">
-
-                        <p>' . __( 'For more detailed help, visit', 'pzarchitect' ) . ' <a href="http://architect4wp.com/codex-listings" target="_blank" class="arc-codex">' . __( 'Architect documentation at architect4wp.com', 'pzarchitect' ) . '</a></p>
-                        <p>' . __( 'For <strong>technical support</strong>, email', 'pzarchitect' ) . ' <a href="mailto://support@pizazzwp.com" target="_blank" class="arc-codex">' . __( 'support@pizazzwp.com', 'pzarchitect' ) . '</a></p>
-                        <p>' . __( 'For <strong>community and peer-to-peer support</strong>, visit the', 'pzarchitect' ) . ' <a href="https://pizazzwp.freshdesk.com/support/discussions" target="_blank" class="arc-codex">' . __( 'Architect Community', 'pzarchitect' ) . '</a></p>
-                    </div>
-                    </div>
-
                 </div>
 
 

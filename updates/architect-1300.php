@@ -23,8 +23,20 @@
         <p>The most significant of those is an upgrade of the slider engine which has fixed several quirks and has now made carousel layouts work plus slideshows adapt correctly to the height of individual slides.</p>
         <ul>
         <li style="font-weight:bold;color:red;">Please check all sliders and tabbed layouts still display as expected. If not, edit their Blueprint and resave.</li>
-        <li style="font-weight:bold;color:red;">With the change of default animations to Off, you will need to  set any Panels based animations back on.</li>
+        <li style="font-weight:bold;color:red;">With the change of default animation state to Off, you will need to set any Panels based animations back on.</li>
+        <li style="font-weight:bold;color:red;">Double check any custom CSS on Sliders & Tabbed navigation.</li>
         </ul>
+                        <div>
+                        <a class="pzarc-button-help" href="http://architect4wp.com/codex-listings/" target="_blank">
+                        <span class="dashicons dashicons-book"></span>
+                        Documentation</a>&nbsp;
+                        <a class="pzarc-button-help" href="https://pizazzwp.freshdesk.com/support/discussions" target="_blank">
+                        <span class="dashicons dashicons-groups"></span>
+                        Community support</a>&nbsp;
+                        <a class="pzarc-button-help" href="https://pizazzwp.freshdesk.com/support/tickets/new" target="_blank">
+                        <span class="dashicons dashicons-admin-tools"></span>
+                        Tech support</a>
+                        </div>
         <p><a href="https://s3.amazonaws.com/341public/LATEST/Architect/architect-changelog.html" target="_blank">View full change log</a> |<a href="%1$s">Hide Notice</a>','pzarchitect'), '?pzarc_nag_ignore_v1300=0');
 
         echo "

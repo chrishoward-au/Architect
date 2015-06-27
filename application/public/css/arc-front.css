@@ -135,7 +135,8 @@
     float: left; }
     .pzarchitect .pzarc-panel .entry-thumbnail img {
       max-width: 100%;
-      height: auto; }
+      height: auto;
+      width: auto; }
       .pzarchitect .pzarc-panel .entry-thumbnail img.fullscreen {
         max-width: none;
         width: auto;

@@ -127,6 +127,7 @@ For support, please send an email to support@pizazzwp.com
 * FIXED: Blueprint title not being displayed
 * FIXED: Removed possible mobile detect lib conflict
 * FIXED: Title not being added to image link attributes when Title not shown.
+* FIXED: Bug sometimes where rotating a device would make images disappear
 * UPGRADED: Slider engine, Slick, to version 1.5. This fixes several problems, including: autoplay will loop to beginning after the last slide; Blueprints will no longer start at the largest height of slides in it; carousels now work (set columns to multiple).
 * UPGRADED: WOW.js to v1.1.2
 

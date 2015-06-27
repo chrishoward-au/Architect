@@ -71,6 +71,7 @@
       img {
         max-width: 100%;
         height: auto;
+        width:auto; // Added v1.3 to fix screen rotation problem
         &.fullscreen{
           max-width:none;
           width:auto;
