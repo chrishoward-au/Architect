@@ -19,13 +19,6 @@
       $prefix = '_content_slides_';
 
       /** Slides */
-      $slides_obj = get_posts(array('post_type' => 'pzsp-slides'));
-      //var_dump($slides_obj);
-      $slides = array();
-      foreach ($slides_obj as $key => $value) {
-        $slides[ $value->ID ] = $value->post_title;
-      }
-
       $settings[ 'blueprint-content' ] = array(
           'type'        => 'slide',
           'name'        => 'SliderPlus Slides',
@@ -43,7 +36,9 @@
                       'type'    => 'select',
                       'select2' => array('allowClear' => true),
                       'multi'   => true,
-                      'options' => $slides
+                      'data'=>'callback',
+                      'args'=>array('pzarc_get_slides')
+
                   ),
               )
           )
@@ -59,4 +54,20 @@
   $content_posts = arc_content_slide::getInstance('arc_content_slide');
 
 
-
+function pzarc_get_slides(){
+  $args                 = array(
+      'posts_per_page'   => -1,
+      'orderby'          => 'post_title',
+      'order'            => 'ASC',
+      'post_type'        => 'pzsp-slides',
+      'post_status'      => 'publish',
+      'suppress_filters' => true
+  );
+  $slides_obj = get_posts($args);
+  //var_dump($slides_obj);
+  $slides = array();
+  foreach ($slides_obj as $key => $value) {
+    $slides[ $value->ID ] = $value->post_title;
+  }
+  return $slides;
+}

@@ -442,39 +442,40 @@
       for ( $i = 1; $i <= $cfcount; $i ++ ) {
         // var_dump($this->section);
         // the settings come from section
-        $this->data[ 'cfield' ][ $i ][ 'group' ]         = $this->section[ '_panels_design_cfield-' . $i . '-group' ];
-        $this->data[ 'cfield' ][ $i ][ 'name' ]          = $this->section[ '_panels_design_cfield-' . $i . '-name' ];
-        $this->data[ 'cfield' ][ $i ][ 'field-type' ]    = $this->section[ '_panels_design_cfield-' . $i . '-field-type' ];
-        $this->data[ 'cfield' ][ $i ][ 'date-format' ]   = $this->section[ '_panels_design_cfield-' . $i . '-date-format' ];
-        $this->data[ 'cfield' ][ $i ][ 'wrapper-tag' ]   = $this->section[ '_panels_design_cfield-' . $i . '-wrapper-tag' ];
-        $this->data[ 'cfield' ][ $i ][ 'class-name' ]    = isset($this->section[ '_panels_design_cfield-' . $i . '-class-name' ])?$this->section[ '_panels_design_cfield-' . $i . '-class-name' ]:'';
-        $this->data[ 'cfield' ][ $i ][ 'link-field' ]    = $this->section[ '_panels_design_cfield-' . $i . '-link-field' ];
-        $this->data[ 'cfield' ][ $i ][ 'decimals' ]      = $this->section[ '_panels_design_cfield-' . $i . '-number-decimals' ];
-        $this->data[ 'cfield' ][ $i ][ 'decimal-char' ]  = $this->section[ '_panels_design_cfield-' . $i . '-number-decimal-char' ];
-        $this->data[ 'cfield' ][ $i ][ 'thousands-sep' ] = $this->section[ '_panels_design_cfield-' . $i . '-number-thousands-separator' ];
-        $params                                          = array(
-          'width'  => str_replace( $this->section[ '_panels_design_cfield-' . $i . '-ps-images-width' ][ 'units' ], '', $this->section[ '_panels_design_cfield-' . $i . '-ps-images-width' ][ 'width' ] ),
-          'height' => str_replace( $this->section[ '_panels_design_cfield-' . $i . '-ps-images-height' ][ 'units' ], '', $this->section[ '_panels_design_cfield-' . $i . '-ps-images-height' ][ 'height' ] )
-        );
+        if (!empty($this->section[ '_panels_design_cfield-' . $i . '-name' ])) {
+          $this->data[ 'cfield' ][ $i ][ 'group' ]         = $this->section[ '_panels_design_cfield-' . $i . '-group' ];
+          $this->data[ 'cfield' ][ $i ][ 'name' ]          = $this->section[ '_panels_design_cfield-' . $i . '-name' ];
+          $this->data[ 'cfield' ][ $i ][ 'field-type' ]    = $this->section[ '_panels_design_cfield-' . $i . '-field-type' ];
+          $this->data[ 'cfield' ][ $i ][ 'date-format' ]   = $this->section[ '_panels_design_cfield-' . $i . '-date-format' ];
+          $this->data[ 'cfield' ][ $i ][ 'wrapper-tag' ]   = $this->section[ '_panels_design_cfield-' . $i . '-wrapper-tag' ];
+          $this->data[ 'cfield' ][ $i ][ 'class-name' ]    = isset($this->section[ '_panels_design_cfield-' . $i . '-class-name' ]) ? $this->section[ '_panels_design_cfield-' . $i . '-class-name' ] : '';
+          $this->data[ 'cfield' ][ $i ][ 'link-field' ]    = $this->section[ '_panels_design_cfield-' . $i . '-link-field' ];
+          $this->data[ 'cfield' ][ $i ][ 'decimals' ]      = $this->section[ '_panels_design_cfield-' . $i . '-number-decimals' ];
+          $this->data[ 'cfield' ][ $i ][ 'decimal-char' ]  = $this->section[ '_panels_design_cfield-' . $i . '-number-decimal-char' ];
+          $this->data[ 'cfield' ][ $i ][ 'thousands-sep' ] = $this->section[ '_panels_design_cfield-' . $i . '-number-thousands-separator' ];
+          $params                                          = array(
+              'width'  => str_replace($this->section[ '_panels_design_cfield-' . $i . '-ps-images-width' ][ 'units' ], '', $this->section[ '_panels_design_cfield-' . $i . '-ps-images-width' ][ 'width' ]),
+              'height' => str_replace($this->section[ '_panels_design_cfield-' . $i . '-ps-images-height' ][ 'units' ], '', $this->section[ '_panels_design_cfield-' . $i . '-ps-images-height' ][ 'height' ])
+          );
 
-        $this->data[ 'cfield' ][ $i ][ 'prefix-text' ]  = '<span class="pzarc-prefix-text">' . $this->section[ '_panels_design_cfield-' . $i . '-prefix-text' ] . '</span>';
-        $this->data[ 'cfield' ][ $i ][ 'prefix-image' ] = bfi_thumb( $this->section[ '_panels_design_cfield-' . $i . '-prefix-image' ][ 'url' ], $params );
-        $this->data[ 'cfield' ][ $i ][ 'suffix-text' ]  = '<span class="pzarc-suffix-text">' . $this->section[ '_panels_design_cfield-' . $i . '-suffix-text' ] . '</span>';
-        $this->data[ 'cfield' ][ $i ][ 'suffix-image' ] = bfi_thumb( $this->section[ '_panels_design_cfield-' . $i . '-suffix-image' ][ 'url' ], $params );
+          $this->data[ 'cfield' ][ $i ][ 'prefix-text' ]  = '<span class="pzarc-prefix-text">' . $this->section[ '_panels_design_cfield-' . $i . '-prefix-text' ] . '</span>';
+          $this->data[ 'cfield' ][ $i ][ 'prefix-image' ] = bfi_thumb($this->section[ '_panels_design_cfield-' . $i . '-prefix-image' ][ 'url' ], $params);
+          $this->data[ 'cfield' ][ $i ][ 'suffix-text' ]  = '<span class="pzarc-suffix-text">' . $this->section[ '_panels_design_cfield-' . $i . '-suffix-text' ] . '</span>';
+          $this->data[ 'cfield' ][ $i ][ 'suffix-image' ] = bfi_thumb($this->section[ '_panels_design_cfield-' . $i . '-suffix-image' ][ 'url' ], $params);
 
-        // The content itself comes from post meta
-        $this->data[ 'cfield' ][ $i ][ 'value' ] = ( ! empty( $postmeta[ $this->section[ '_panels_design_cfield-' . $i . '-name' ] ] ) ? $postmeta[ $this->section[ '_panels_design_cfield-' . $i . '-name' ] ][ 0 ] : null );
-        if ( is_Array( maybe_unserialize( $this->data[ 'cfield' ][ $i ][ 'value' ] ) ) ) {
-          $this->data[ 'cfield' ][ $i ][ 'value' ] = implode( ',', maybe_unserialize( $this->data[ 'cfield' ][ $i ][ 'value' ] ) );
+          // The content itself comes from post meta
+          $this->data[ 'cfield' ][ $i ][ 'value' ] = (!empty($postmeta[ $this->section[ '_panels_design_cfield-' . $i . '-name' ] ]) ? $postmeta[ $this->section[ '_panels_design_cfield-' . $i . '-name' ] ][ 0 ] : null);
+          if (is_Array(maybe_unserialize($this->data[ 'cfield' ][ $i ][ 'value' ]))) {
+            $this->data[ 'cfield' ][ $i ][ 'value' ] = implode(',', maybe_unserialize($this->data[ 'cfield' ][ $i ][ 'value' ]));
+          }
+          // TODO:Bet this doesn't work!
+          if (!empty($this->section[ '_panels_design_cfield-' . $i . '-link-field' ])) {
+            $this->data[ 'cfield' ][ $i ][ 'link-field' ] = (!empty($postmeta[ $this->section[ '_panels_design_cfield-' . $i . '-link-field' ] ]) ? $postmeta[ $this->section[ '_panels_design_cfield-' . $i . '-link-field' ] ][ 0 ] : null);
+          }
+
+          // TODO : Add other attributes
         }
-        // TODO:Bet this doesn't work!
-        if ( ! empty( $this->section[ '_panels_design_cfield-' . $i . '-link-field' ] ) ) {
-          $this->data[ 'cfield' ][ $i ][ 'link-field' ] = ( ! empty( $postmeta[ $this->section[ '_panels_design_cfield-' . $i . '-link-field' ] ] ) ? $postmeta[ $this->section[ '_panels_design_cfield-' . $i . '-link-field' ] ][ 0 ] : null );
-        }
-
-        // TODO : Add other attributes
       }
-
     }
 
     public function get_miscellanary( &$post ) {

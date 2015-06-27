@@ -35,6 +35,7 @@
 
         // This is meant ot be the magic tonic to make pagination work on static front page. Bah!! Didnt' for me - ever
         // TODO: Ah! It only doesn't work with Headway!
+        // TODO: Ah! It only doesn't work with Headway!
         if (get_query_var('paged')) {
 
           $paged = get_query_var('paged');
@@ -48,8 +49,6 @@
           $paged = 1;
 
         }
-// TODO: WTF IS THIS?! Surely just some debugging left behind!
-//        query_posts('posts_per_page=3&paged=' . $paged);
 
 //        $this->query_options[ 'nopaging' ]       = false;
         $this->query_options[ 'posts_per_page' ] = $this->criteria[ 'per_page' ];
