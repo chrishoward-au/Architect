@@ -248,6 +248,7 @@
       /** FEATURED IMAGE */
       $thumb_id    = get_post_thumbnail_id();
       $focal_point = get_post_meta( $thumb_id, 'pzgp_focal_point', true );
+      var_dump($thumb_id,$focal_point);
       if ( empty( $focal_point ) ) {
         $focal_point = get_post_meta( get_the_id(), 'pzgp_focal_point', true );
       }
@@ -334,6 +335,8 @@
 
       $thumb_id    = get_post_thumbnail_id();
       $focal_point = get_post_meta( $thumb_id, 'pzgp_focal_point', true );
+
+      // If the post is already passing the attachment,the above won't work so we need to use the post id
       if ( empty( $focal_point ) ) {
         $focal_point = get_post_meta( get_the_id(), 'pzgp_focal_point', true );
       }
@@ -1004,11 +1007,25 @@
 
           case 'thumbs':
 
-            $focal_point = array( 50, 50 );
+            $thumb_id    = get_post_thumbnail_id($the_post->ID);
+            $focal_point = get_post_meta( $thumb_id);
+
+            // Usually the post will be the attachment, so won't have a thumb id!
+            if ( empty( $focal_point ) ) {
+              $focal_point = get_post_meta( $the_post->ID, 'pzgp_focal_point', true );
+            }
+            $focal_point = ( empty( $focal_point ) ? array( 50, 50 ) : explode( ',', $focal_point ) );
+            if ( ! $thumb_id && !empty($this->build->blueprint['section_object'][1]->section['section-panel-settings'][ '_panels_settings_use-embedded-images' ])) {
+              //TODO: Changed to more reliable check if image is in the content?
+              preg_match( "/(?<=wp-image-)(\\d)*/uimx", get_the_content(), $matches );
+              $thumb_id = ( ! empty( $matches[ 0 ] ) ? $matches[ 0 ] : false );
+            }
+
+          //  $focal_point = array( 50, 50 );
+
 
             if ( 'attachment' === $the_post->post_type ) {
 
-              // TODO: Will need to change this to use the thumb dimensions set in the blueprint viasmall , medium, large
               $thumb = wp_get_attachment_image( $the_post->ID, array(
                                                                self::get_thumbsize( 'w' ),
                                                                self::get_thumbsize( 'h' ),

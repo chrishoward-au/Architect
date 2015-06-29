@@ -2,39 +2,10 @@
  * Created by chrishoward on 16/03/15.
  */
 
-var overlay='<div class="arc-presets-overlay"></div>';
 jQuery( document ).ready( function ()
 {
   "use strict";
 
-  var arc_presets_selector = jQuery( ".arc-presets-selector" ).detach();
-  jQuery('#wpwrap' ).append(arc_presets_selector);
-  jQuery( 'a.arc-presets-link' ).on( 'click', function ()
-  {
-    jQuery("img.jqlazy").lazy({
-      attribute:"data-lazysrc",
-      bind: "event",
-      effect: "fadeIn",
-      effectTime: 500
-    });
-    jQuery('html' ).append(overlay);
-    jQuery( 'a.arc-button-presets.close, .arc-presets-overlay' ).on( 'click', function ()
-    {
-      arc_close_presets();
-    } );
-    jQuery( ".arc-presets-selector" ).show();
-    return false;
-  } );
-
-
-  jQuery( ".arc-presets-selector" ).draggable({ handle: "h2" });
-
-
-  function arc_close_presets(){
-    jQuery('.arc-presets-overlay' ).remove();
-    jQuery( ".arc-presets-selector" ).hide();
-
-  }
 
   jQuery('.arc-preset-item').on('change',function(){
 
@@ -43,7 +14,26 @@ jQuery( document ).ready( function ()
     jQuery('.arc-button-presets.unstyled' ).attr('href','admin.php?action=pzarc_new_from_preset&name='+post_name+'&type=unstyled').removeClass('disabled');
   });
 
+  var architect_presets = jQuery.cookie('architect_presets');
+  if (typeof architect_presets === "undefined" || architect_presets === "open") {
+    jQuery('.arc-presets-selector .heading' ).addClass('open').removeClass('closed' );
+    jQuery('.arc-presets-selector' ).addClass('open').removeClass('closed' );
+  } else {
+    jQuery('.arc-presets-selector .heading' ).removeClass('open').addClass('closed');
+    jQuery('.arc-presets-selector' ).removeClass('open' ).addClass('closed');
 
+  }
 
+jQuery('.arc-presets-selector .heading' ).on('click',function(){
+  if (jQuery(this ).hasClass('open')) {
+    jQuery(this ).removeClass('open').addClass('closed');
+    jQuery('.arc-presets-selector' ).removeClass('open' ).addClass('closed');
+    jQuery.cookie('architect_presets','closed',9999);
+  } else {
+    jQuery(this ).addClass('open').removeClass('closed' );
+    jQuery('.arc-presets-selector' ).addClass('open').removeClass('closed' );
+    jQuery.cookie('architect_presets','open',9999);
+  }
+});
 
 } );

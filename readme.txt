@@ -3,7 +3,7 @@ Contributors: chrishoward
 Tags: content,display,posts,pages,gallery,slider,tabs,tabbed,tabular,widget,hooks
 Requires at least: 3.5.0
 Tested up to: 4.3
-Stable tag: 1.3.1
+Stable tag: 1.3.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Plugin URI: http://architect4wp.com
@@ -93,6 +93,14 @@ For support, please send an email to support@pizazzwp.com
 
 == Changelog ==
 
+= 1.3.3 =
+* FIXED: Thumbnails in navigator not using Focal Point
+* CHANGED: Preset selector is always visible
+* CHANGED: Small visual changes to Preset selector
+ 
+= 1.3.2 =
+* FIXED: Turned off debugging code accidentally left on in EDD which prevented Manage WP remote updates from working.
+ 
 = 1.3.1 =
 * FIXED: Errors if custom fields set to display but not setup in Architect
 * FIXED: get_posts called too early in Slide content type causing error in Marketplace plugin

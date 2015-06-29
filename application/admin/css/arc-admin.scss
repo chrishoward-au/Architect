@@ -1780,27 +1780,12 @@ li.arc-message {
   }
 }
 
-.arc-presets-overlay {
-  top: 0;
-  bottom: 0;
-  width: 100%;
-  background: #fff;
-  position: fixed;
-  z-index: 99999;
-  opacity: 0.5;
-}
-
 .arc-presets-selector {
-  display: none;
   border-radius: $border-radius;
-  top: 50px;
-  left: 20%;
-  position: absolute;
+  position: relative;
   background: #777;
-  height: 550px;
-  width: 800px;
-  box-shadow: 0 0 30px black;
-  z-index: 100000;
+  height: auto;
+  box-shadow: 0 0 5px rgba(0,0,0,0.3);
   h2.heading {
     width: 100%;
     color: #fff;
@@ -1809,9 +1794,19 @@ li.arc-message {
     border-top-left-radius: $border-radius;
     border-top-right-radius: $border-radius;
     padding: 10px;
-    font-size: 18px;
-    cursor: move;
+    font-size: 17px;
+    cursor:pointer;
     margin: 0;
+    &.closed:after {
+      content:"◄";
+      font-size: 12px;
+      float:right;
+    }
+    &.open:after {
+      content:"▼";
+      font-size:8px;
+      float:right;
+    }
   }
   .tabs {
     display: block;
@@ -1845,10 +1840,10 @@ li.arc-message {
     color: #fff;
     &.footer {
       width: 60%;
+      white-space: normal;
     }
   }
   .container {
-    height: 400px;
     background: #f3f3f3;
     width: 100%;
     padding: 20px;
@@ -1862,6 +1857,13 @@ li.arc-message {
       display: inline-block;
       text-align: center;
       vertical-align: top;
+      max-width:200px;
+      padding:5px 10px;
+      background: #e7e7e7;
+      white-space:normal;
+      &:hover {
+        background:#fff;
+      }
       label {
         p {
           color: #555;
@@ -1869,28 +1871,26 @@ li.arc-message {
           margin: 3px 0;
           &.arc-preset-title {
             font-weight: bold;
-            font-size: 13px;
+            font-size: 12px;
             color: $highlight;
           }
           &.arc-preset-designer {
-            font-size: 11px;
+            font-size: 10px;
           }
           &.arc-preset-description {
-            font-size: 12px;
+            font-size: 11px;
           }
         }
         input {
           display: none;
           + img {
             border: solid 3px transparent;
-            max-height: 250px;
+            max-width:100%;
+            height:auto;
             margin-right: 10px;
-            &:hover {
-              border: solid 3px lighten($highlight, 20%);
-            }
           }
           &:checked + img {
-            border: solid 3px $highlight;
+            border: solid 3px lighten($highlight, 20%);
           }
         }
       }
@@ -1898,7 +1898,7 @@ li.arc-message {
   }
   .buttons {
     position: absolute;
-    bottom: 23px;
+    bottom: 7px;
     right: 0px;
     .arc-button-presets {
       padding: 8px;
@@ -1915,6 +1915,14 @@ li.arc-message {
         background: darken($highlight, 5%);
       }
 
+    }
+  }
+
+  &.closed {
+    .tabby,
+    .footer,
+    .buttons {
+      display:none;
     }
   }
 }

@@ -129,7 +129,6 @@
                         <span class="dashicons dashicons-admin-tools"></span>
                         Tech support</a>
                         </div>
-          <p class="howto"><a class="arc-presets-link" href="javascript:void(0);">' . __('Create a new Blueprint from a Preset design', 'pzarchitect') . '</a></p>
           ' .
 
           self::arc_has_export_data()
@@ -138,8 +137,8 @@
           '
           <!-- Presets selector -->
           <!-- Display none to be sure -->
-          <div class="arc-presets-selector" style="display:none;">
-           <h2 class="heading">Architect Blueprints: Preset selector</h2>
+          <div class="arc-presets-selector closed">
+           <h2 class="heading closed">Architect Blueprints: Preset selector</h2>
            <div class="tabby tabs">
                 <button class="tabby-sliders first active" data-tab="#sliders">' . __('Sliders', 'pzarchitect') . '</button>
                 <button class="tabby-grids" data-tab="#grids" >' . __('Grids', 'pzarchitect') . '</button>

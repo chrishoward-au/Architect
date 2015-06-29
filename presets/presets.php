@@ -153,7 +153,7 @@
           <span>
             <label class="arc-preset-item ' . $file_data[ 'bptype' ] . '" for="element_' . $file_data[ 'bptype' ] . '_' . $preset_post[ 'post_name' ] . '">
               <input id="element_' . $file_data[ 'bptype' ] . '_' . $preset_post[ 'post_name' ] . '" name="architect_preset_selector" class="element radio" type="radio" value="' . $file_data[ 'bptype' ] . '_' . $preset_post[ 'post_name' ] . '">
-              <img class="jqlazy" src="'.$blank_gif.'" data-lazysrc="' . esc_attr($values[ 'image' ]) . '" style="min-height:250px;">
+              <img src="' . esc_attr($values[ 'image' ]) . '">
               <p class="arc-preset-title">' . ($file_data['title']) . '</p>
               <p class="arc-preset-designer">Designed by: ' . esc_html($values[ 'designer' ]) . '</p>
               <p class="arc-preset-description">'.$description.'</p>

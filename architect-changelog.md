@@ -1,5 +1,12 @@
 # Architect change history 
 
+## 1.3.2 : 27 June 2015
+* FIXED: Turned off debugging code accidentally left on in EDD caller which prevented Manage WP remote updates from working.
+ 
+## 1.3.1
+* FIXED: Errors if custom fields set to display but not setup in Architect
+* FIXED: get_posts called too early in Slide content type causing error in Marketplace plugin
+
 ## 1.3.0 25 June 2015
 * ADDED: Option to activate the Architect Builder on WP Pages editor. Off by default
 * ADDED: More links to documentation, forums and support

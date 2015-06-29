@@ -1,3 +1,4 @@
+@charset "UTF-8";
 .message.error.highlight {
   background: #fee; }
 
@@ -1346,26 +1347,12 @@ li.arc-message .arc-presets-link {
     color: #fff;
     background: #004f6f; }
 
-.arc-presets-overlay {
-  top: 0;
-  bottom: 0;
-  width: 100%;
-  background: #fff;
-  position: fixed;
-  z-index: 99999;
-  opacity: 0.5; }
-
 .arc-presets-selector {
-  display: none;
   border-radius: 3px;
-  top: 50px;
-  left: 20%;
-  position: absolute;
+  position: relative;
   background: #777;
-  height: 550px;
-  width: 800px;
-  box-shadow: 0 0 30px black;
-  z-index: 100000; }
+  height: auto;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3); }
   .arc-presets-selector h2.heading {
     width: 100%;
     color: #fff;
@@ -1374,9 +1361,17 @@ li.arc-message .arc-presets-link {
     border-top-left-radius: 3px;
     border-top-right-radius: 3px;
     padding: 10px;
-    font-size: 18px;
-    cursor: move;
+    font-size: 17px;
+    cursor: pointer;
     margin: 0; }
+    .arc-presets-selector h2.heading.closed:after {
+      content: "◄";
+      font-size: 12px;
+      float: right; }
+    .arc-presets-selector h2.heading.open:after {
+      content: "▼";
+      font-size: 8px;
+      float: right; }
   .arc-presets-selector .tabs {
     display: block;
     width: 100%;
@@ -1404,9 +1399,9 @@ li.arc-message .arc-presets-link {
     padding: 5px 10px;
     color: #fff; }
     .arc-presets-selector p.footer {
-      width: 60%; }
+      width: 60%;
+      white-space: normal; }
   .arc-presets-selector .container {
-    height: 400px;
     background: #f3f3f3;
     width: 100%;
     padding: 20px;
@@ -1417,32 +1412,37 @@ li.arc-message .arc-presets-link {
     .arc-presets-selector .container span {
       display: inline-block;
       text-align: center;
-      vertical-align: top; }
+      vertical-align: top;
+      max-width: 200px;
+      padding: 5px 10px;
+      background: #e7e7e7;
+      white-space: normal; }
+      .arc-presets-selector .container span:hover {
+        background: #fff; }
       .arc-presets-selector .container span label p {
         color: #555;
         padding: 0;
         margin: 3px 0; }
         .arc-presets-selector .container span label p.arc-preset-title {
           font-weight: bold;
-          font-size: 13px;
+          font-size: 12px;
           color: #0074a2; }
         .arc-presets-selector .container span label p.arc-preset-designer {
-          font-size: 11px; }
+          font-size: 10px; }
         .arc-presets-selector .container span label p.arc-preset-description {
-          font-size: 12px; }
+          font-size: 11px; }
       .arc-presets-selector .container span label input {
         display: none; }
         .arc-presets-selector .container span label input + img {
           border: solid 3px transparent;
-          max-height: 250px;
+          max-width: 100%;
+          height: auto;
           margin-right: 10px; }
-          .arc-presets-selector .container span label input + img:hover {
-            border: solid 3px #09b9ff; }
         .arc-presets-selector .container span label input:checked + img {
-          border: solid 3px #0074a2; }
+          border: solid 3px #09b9ff; }
   .arc-presets-selector .buttons {
     position: absolute;
-    bottom: 23px;
+    bottom: 7px;
     right: 0px; }
     .arc-presets-selector .buttons .arc-button-presets {
       padding: 8px;
@@ -1456,6 +1456,10 @@ li.arc-message .arc-presets-link {
       .arc-presets-selector .buttons .arc-button-presets:hover {
         color: #fff;
         background: #006289; }
+  .arc-presets-selector.closed .tabby,
+  .arc-presets-selector.closed .footer,
+  .arc-presets-selector.closed .buttons {
+    display: none; }
 
 .arc-export-data {
   width: 600px;
