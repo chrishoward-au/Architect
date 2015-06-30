@@ -248,7 +248,6 @@
       /** FEATURED IMAGE */
       $thumb_id    = get_post_thumbnail_id();
       $focal_point = get_post_meta( $thumb_id, 'pzgp_focal_point', true );
-      var_dump($thumb_id,$focal_point);
       if ( empty( $focal_point ) ) {
         $focal_point = get_post_meta( get_the_id(), 'pzgp_focal_point', true );
       }
@@ -508,6 +507,7 @@
       } else {
         $panel_def[ $component ] = str_replace( '{{title}}', $this->data[ 'title' ][ 'title' ], $panel_def[ $component ] );
       }
+
       if ( $this->section[ '_panels_design_link-titles' ] ) {
         $panel_def[ $component ] = str_replace( '{{postlink}}', $panel_def[ 'postlink' ], $panel_def[ $component ] );
         $panel_def[ $component ] = str_replace( '{{closepostlink}}', '</a>', $panel_def[ $component ] );
@@ -913,13 +913,13 @@
         $line = str_replace( '{{figclose}}', '</figure></td>', $line );
       } else {
         $line = str_replace( '{{div}}', 'div', $line );
-        $line = str_replace( '{{h1open}}', '<h1 ', $line );
-        $line = str_replace( '{{h1close}}', '</h1>', $line );
+        $title_tag = !empty($this->section['_panels_design_title-wrapper-tag'])?$this->section['_panels_design_title-wrapper-tag']:'h1';
+        $line = str_replace( '{{h1open}}', '<'.$title_tag.' ', $line );
+        $line = str_replace( '{{h1close}}', '</'.$title_tag.'>', $line );
         $line = str_replace( '{{figopen}}', '<figure ', $line );
         $line = str_replace( '{{figclose}}', '</figure>', $line );
 
       }
-
       return $line;
     }
 

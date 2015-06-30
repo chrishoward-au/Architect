@@ -2575,6 +2575,24 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
 
                   /// can't set defaults on checkboxes!
               ),
+              array(
+                  'title'    => __('Wrapper tag', 'pzarchitect'),
+                  'id'       => $prefix . 'title-wrapper-tag',
+                  'type'     => 'select',
+                  'default'  => 'h1',
+                  'options'  => array(
+                      'h1'   => 'h1',
+                      'h2'   => 'h2',
+                      'h3'   => 'h3',
+                      'h4'   => 'h4',
+                      'h5'   => 'h5',
+                      'h6'   => 'h6',
+                      'p'    => 'p',
+                      'span' => 'span',
+                  ),
+                  'subtitle' => __('Select the wrapper element for the title field', 'pzarchitect')
+
+              ),
           )
       );
 

@@ -97,6 +97,7 @@ For support, please send an email to support@pizazzwp.com
 * FIXED: Thumbnails in navigator not using Focal Point
 * CHANGED: Preset selector is always visible
 * CHANGED: Small visual changes to Preset selector
+* ADDED: Option to set HTML tag for post titles
  
 = 1.3.2 =
 * FIXED: Turned off debugging code accidentally left on in EDD which prevented Manage WP remote updates from working.
