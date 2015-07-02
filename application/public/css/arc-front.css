@@ -37,6 +37,7 @@
     display: -ms-flexbox;
     display: -webkit-flex;
     display: flex;
+    -webkit-justify-content: flex-start;
     justify-content: flex-start;
     -webkit-flex-flow: row wrap;
     -moz-flex-flow: row wrap;

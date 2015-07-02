@@ -3,7 +3,7 @@ Contributors: chrishoward
 Tags: content,display,posts,pages,gallery,slider,tabs,tabbed,tabular,widget,hooks
 Requires at least: 3.5.0
 Tested up to: 4.3
-Stable tag: 1.3.2
+Stable tag: 1.3.5
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Plugin URI: http://architect4wp.com
@@ -92,6 +92,13 @@ For support, please send an email to support@pizazzwp.com
 2. Slider example
 
 == Changelog ==
+
+= 1.3.5 =
+* FIXED: Dummy images not working with lightbox
+* FIXED: NextGen images not working with lightbox
+
+= 1.3.4 =
+* FIXED: Nav align needed -webkit-justify-content rules for Safari
 
 = 1.3.3 =
 * FIXED: Thumbnails in navigator not using Focal Point

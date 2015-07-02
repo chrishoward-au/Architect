@@ -24,7 +24,7 @@
       $height = (int)str_replace('px', '', $this->section[ '_panels_design_image-max-dimensions' ][ 'height' ]);
 
       $this->data[ 'image' ]['thumb'] = '<img src="'.bfi_thumb($post['image_url'],array('width' => $width, 'height' => $height )).'">';
-      $this->data[ 'image' ]['original'] = '<img src="'.$post['image_url'].'">';
+      $this->data[ 'image' ]['original'][0] = $post['image_url'];
       $this->data[ 'image' ]['caption'] = $post['excerpt'];
 
     }
@@ -34,9 +34,8 @@
       $width  = (int)str_replace('px', '', $this->section[ '_panels_design_image-max-dimensions' ][ 'width' ]);
       $height = (int)str_replace('px', '', $this->section[ '_panels_design_image-max-dimensions' ][ 'height' ]);
 
-
       $this->data[ 'bgimage' ]['thumb'] = '<img src="'.bfi_thumb($post['image_url'],array('width' => $width, 'height' => $height )).'">';
-      $this->data[ 'bgimage' ]['original'] = '<img src="'.$post['image_url'].'">';
+      $this->data[ 'image' ]['original'][0] = $post['image_url'];
 //      var_dump($this->data['bgimage'],array('width' => $width, 'height' => $height ));
     }
 

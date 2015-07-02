@@ -113,15 +113,18 @@
 
           if ( 'dummyimage' === $image_source ) {
             $imageURL = 'http://dummyimage.com/' . $width . 'x' . $height . '/' . $bg_colour . '/' . $text_colour;
+            $origimageURL = 'http://dummyimage.com/' . (3*$width) . 'x' . (3*$height) . '/' . $bg_colour . '/' . $text_colour;
+
           } else {
             $imageURL = 'http://lorempixel.com/' . $image_grey . $width . '/' . $height . '/' . $post[ 'image' ][ 'original' ];
+            $origimageURL = 'http://lorempixel.com/' . $image_grey . (3*$width) . '/' . (3*$height) . '/' . $post[ 'image' ][ 'original' ];
           }
           $this->data[ 'image' ][ 'image' ] = '<img src="' . $imageURL . '">';
         } else {
           $imageURL                         = PZARC_PLUGIN_APP_URL . 'public/assets/blank-sky.jpg';
           $this->data[ 'image' ][ 'image' ] = '<img src="' . $imageURL . '" width=' . $width . ' height=' . $height . ' style="width:' . $width . 'px;height:' . $height . 'px;">';
         }
-        $this->data[ 'image' ][ 'original' ] = $imageURL;
+        $this->data[ 'image' ][ 'original' ][0] = $origimageURL;
         $this->data[ 'image' ][ 'caption' ]  = $post[ 'image' ][ 'caption' ];
       }
     }

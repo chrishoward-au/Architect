@@ -180,6 +180,11 @@
           $presets_html[ 'table' ]
 
           . '</div>
+           <div class="tabs-pane" id="custom">' .
+
+          (!empty($presets_html[ 'custom' ])?$presets_html[ 'custom' ]:'')
+
+          . '</div>
            </div>
            <p class="footer">All Presets use Dummy Content by default. Please change to the content of your choice after loading the chosen Preset.</p>
            <div class="buttons">

@@ -97,7 +97,7 @@
       $pzarchitect_slider_scripts .= ', draggable:true';
       $pzarchitect_slider_scripts .= ', infinite:'.$nav_continuous;
 //      $pzarchitect_slider_scripts .= ', arrows:true';
-      //$pzarchitect_slider_scripts .= ', useCSS:false';
+      $pzarchitect_slider_scripts .= ', useCSS:false';
       $pzarchitect_slider_scripts .= ',adaptiveHeight:true';
       $pzarchitect_slider_scripts .= ', variableWidth:' . $nav_var_width;
 

@@ -111,7 +111,6 @@
 
 
     public function set_data( &$post, &$toshow, &$section ) {
-//      var_dump(get_The_id(),$post->ID);
       $this->section = $section;
       $this->toshow  = $toshow;
 
@@ -254,7 +253,7 @@
       $focal_point = ( empty( $focal_point ) ? array( 50, 50 ) : explode( ',', $focal_point ) );
 
       if ( ! $thumb_id && $this->section[ '_panels_settings_use-embedded-images' ] ) {
-        //TODO: Changed to more reliable check if image is in the content?
+        //TODO: Change to more reliable check if image is in the content?
         preg_match( "/(?<=wp-image-)(\\d)*/uimx", get_the_content(), $matches );
         $thumb_id = ( ! empty( $matches[ 0 ] ) ? $matches[ 0 ] : false );
       }
@@ -442,7 +441,6 @@
       $postmeta = get_post_meta( get_the_ID() );
       $cfcount  = $this->section[ '_panels_design_custom-fields-count' ];
       for ( $i = 1; $i <= $cfcount; $i ++ ) {
-        // var_dump($this->section);
         // the settings come from section
         if (!empty($this->section[ '_panels_design_cfield-' . $i . '-name' ])) {
           $this->data[ 'cfield' ][ $i ][ 'group' ]         = $this->section[ '_panels_design_cfield-' . $i . '-group' ];
@@ -501,7 +499,6 @@
      ***************************************/
 
     public function render_title( $component, $content_type, $panel_def, $rsid, $layout_mode = false ) {
-//      var_dump($this->data);
       if ( 'thumb' === $this->section[ '_panels_design_title-prefix' ] ) {
         $panel_def[ $component ] = str_replace( '{{title}}', $this->data[ 'title' ][ 'thumb' ] . '<span class="pzarc-title-wrap">' . $this->data[ 'title' ][ 'title' ] . '</span>', $panel_def[ $component ] );
       } else {
@@ -578,9 +575,9 @@
                   wp_enqueue_script( 'js-magnific-arc' );
                   wp_enqueue_style( 'css-magnific' );
 
-                  $link = '<a class="lightbox lightbox-' . $rsid . '" href="' . $this->data[ 'image' ][ 'original' ][ 0 ] . '" title="' . $this->data[ 'title' ][ 'title' ] . '" >';
+                  $link = '<a class="lightbox lightbox-' . $rsid . ' incontent" href="' . $this->data[ 'image' ][ 'original' ][ 0 ] . '" title="' . $this->data[ 'title' ][ 'title' ] . '" >';
                 } else {
-                  $link = '<a class="lightbox-' . $rsid . '" href="' . $this->data[ 'image' ][ 'original' ][ 0 ] . '" title="' . $this->data[ 'title' ][ 'title' ] . '" rel="lightbox">';
+                  $link = '<a class="lightbox-' . $rsid . ' incontent" href="' . $this->data[ 'image' ][ 'original' ][ 0 ] . '" title="' . $this->data[ 'title' ][ 'title' ] . '" rel="lightbox">';
                 }
                 break;
             }
@@ -633,10 +630,9 @@
                   wp_enqueue_script( 'js-magnific' );
                   wp_enqueue_script( 'js-magnific-arc' );
                   wp_enqueue_style( 'css-magnific' );
-
-                  $link = '<a class="lightbox lightbox-' . $rsid . '" href="' . $this->data[ 'image' ][ 'original' ][ 0 ] . '" title="' . $this->data[ 'title' ][ 'title' ] . '" >';
+                  $link = '<a class="lightbox lightbox-' . $rsid . ' inexcerpt" href="' . $this->data[ 'image' ][ 'original' ][ 0 ] . '" title="' . $this->data[ 'title' ][ 'title' ] . '" >';
                 } else {
-                  $link = '<a class="lightbox-' . $rsid . '" href="' . $this->data[ 'image' ][ 'original' ][ 0 ] . '" title="' . $this->data[ 'title' ][ 'title' ] . '" rel="lightbox">';
+                  $link = '<a class="lightbox-' . $rsid . ' inexcerpt" href="' . $this->data[ 'image' ][ 'original' ][ 0 ] . '" title="' . $this->data[ 'title' ][ 'title' ] . '" rel="lightbox">';
                 }
                 break;
             }
@@ -689,9 +685,9 @@
                 wp_enqueue_script( 'js-magnific-arc' );
                 wp_enqueue_style( 'css-magnific' );
 
-                $link = '<a class="lightbox lightbox-' . $rsid . '" href="' . $this->data[ 'image' ][ 'original' ][ 0 ] . '" title="' . $this->data[ 'title' ][ 'title' ] . '" >';
+                $link = '<a class="lightbox lightbox-' . $rsid . ' inimage" href="' . $this->data[ 'image' ][ 'original' ][ 0 ] . '" title="' . $this->data[ 'title' ][ 'title' ] . '" >';
               } else {
-                $link = '<a class="lightbox-' . $rsid . '" href="' . $this->data[ 'image' ][ 'original' ][ 0 ] . '" title="' . $this->data[ 'title' ][ 'title' ] . '" rel="lightbox">';
+                $link = '<a class="lightbox-' . $rsid . ' inimage" href="' . $this->data[ 'image' ][ 'original' ][ 0 ] . '" title="' . $this->data[ 'title' ][ 'title' ] . '" rel="lightbox">';
               }
               break;
           }
@@ -781,9 +777,9 @@
                 wp_enqueue_script( 'js-magnific-arc' );
                 wp_enqueue_style( 'css-magnific' );
 
-                $link = '<a class="lightbox lightbox-' . $rsid . '" href="' . $this->data[ 'image' ][ 'original' ][ 0 ] . '" title="' . $this->data[ 'title' ][ 'title' ] . '">';
+                $link = '<a class="lightbox lightbox-' . $rsid . ' inbackg" href="' . $this->data[ 'image' ][ 'original' ][ 0 ] . '" title="' . $this->data[ 'title' ][ 'title' ] . '">';
               } else {
-                $link = '<a class="lightbox-' . $rsid . '" href="' . $this->data[ 'image' ][ 'original' ][ 0 ] . '" title="' . $this->data[ 'title' ][ 'title' ] . '" rel="lightbox">';
+                $link = '<a class="lightbox-' . $rsid . ' inbackg" href="' . $this->data[ 'image' ][ 'original' ][ 0 ] . '" title="' . $this->data[ 'title' ][ 'title' ] . '" rel="lightbox">';
               }
               break;
           }
@@ -1062,7 +1058,6 @@
 
       }
 
-//var_dump($nav_items);
       return apply_filters( 'pzarc_nav_items', $nav_items );
     }
 
