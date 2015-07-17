@@ -3,7 +3,7 @@ Contributors: chrishoward
 Tags: content,display,posts,pages,gallery,slider,tabs,tabbed,tabular,widget,hooks
 Requires at least: 3.5.0
 Tested up to: 4.3
-Stable tag: 1.3.5
+Stable tag: 1.3.6
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Plugin URI: http://architect4wp.com
@@ -92,6 +92,14 @@ For support, please send an email to support@pizazzwp.com
 2. Slider example
 
 == Changelog ==
+
+= 1.3.6 =
+* CHANGED: Added messages when licence activation fails in the Architect licence activation screen
+* ADDED: Check for custom Blueprint Presets in uploads folder /pizazzwp/architect/presets
+* ADDED: Blueprint Preset importing
+* CHANGED: Column order in Blueprints listing
+* FIXED: Sliders now respond to RTL
+* FIXED: Accordions will display open/close indicator on left on RTL sites.
 
 = 1.3.5 =
 * FIXED: Dummy images not working with lightbox

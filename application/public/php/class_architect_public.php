@@ -253,13 +253,15 @@ pzdb('post render');
        *
        * OPEN THE HTML
        *
+       * THIS IS WHERE IT BEGINS
+       *
        *
        *
        *
        */
 
       pzdb('top blueprint html');
-      echo '<div id="pzarc-blueprint_' . $this->build->blueprint[ '_blueprints_short-name' ] . '" class="' . $this->build->blueprint[ 'uid' ] . ' pzarchitect layout-' . $blueprint_type . ' ' . $use_hw_css . ' pzarc-blueprint pzarc-blueprint_' . $this->build->blueprint[ '_blueprints_short-name' ] . ' nav-' . $bp_nav_type . ' icomoon ' . ( $bp_nav_type === 'navigator' ? 'navpos-' . $bp_nav_pos : '' ) . '">';
+      echo '<div id="pzarc-blueprint_' . $this->build->blueprint[ '_blueprints_short-name' ] . '" class="' . $this->build->blueprint[ 'uid' ] . ' pzarchitect layout-' . $blueprint_type . ' ' . $use_hw_css . ' pzarc-blueprint pzarc-blueprint_' . $this->build->blueprint[ '_blueprints_short-name' ] . ' nav-' . $bp_nav_type . ' icomoon ' . ( $bp_nav_type === 'navigator' ? 'navpos-' . $bp_nav_pos : '' ) . (is_rtl()?' rtl':' ltr').'">';
       /** Page title */
       pzdb('after blueprint open');
       echo apply_filters( 'arc_page_title', self::display_page_title( $this->build->blueprint[ '_blueprints_page-title' ], array(

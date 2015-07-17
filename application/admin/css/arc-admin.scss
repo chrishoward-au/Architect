@@ -937,7 +937,7 @@ body.arc-bgimage {
 
 }
 
-span.dashicons {
+#toplevel_page_pzarc span.dashicons {
   font-family: "dashicons";
   vertical-align: top;
   margin-right: 5px;
@@ -1560,6 +1560,18 @@ body.arc-beginner .arc-field-advanced {
 
 .arc-important {
   color: tomato;
+  &.extra {
+    background:tomato;
+    color: #fff;
+    padding:5px;
+    border-radius:3px;
+    box-shadow:0 0 1px #fff;
+    display:inline-block;
+    strong {
+      color:#97e7ff;
+      border-bottom: double 3px currentColor;
+    }
+  }
 }
 
 #tab-presets {
@@ -2048,6 +2060,8 @@ li.arc-message {
     &:before {
       vertical-align: middle;
       font-size:15px;
+      display:inline-block;;
+      margin-top:-6px;
     }
   }
 }
@@ -2081,3 +2095,12 @@ body.arc-beginner {
   }
 }
 
+.arc-installed-presets {
+  background:#eee;
+  padding:1px 10px;
+  border-radius:3px;
+  ul {
+    list-style:disc;
+    margin-left:20px;
+  }
+}

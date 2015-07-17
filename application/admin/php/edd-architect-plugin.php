@@ -23,14 +23,14 @@
 //  if ( ! empty( $_architect_options[ 'architect_licence_key' ] ) ) {}
     // setup the updater
     $edd_updater = new EDD_SL_Plugin_Updater( EDD_ARCHITECT_STORE_URL, PZARC_PLUGIN_PATH . 'architect.php', array(
-                                                                       'version'   => PZARC_VERSION,
-                                                                       // current version number
-                                                                       'license'   => $license_key,
-                                                                       // license key (used get_option above to retrieve from DB)
-                                                                       'item_name' => EDD_ARCHITECT_ITEM_NAME,
-                                                                       // name of this plugin
-                                                                       'author'    => 'Chris Howard'
-                                                                       // author of this plugin
+                                                                         'version'   => PZARC_VERSION,
+                                                                         // current version number
+                                                                         'license'   => $license_key,
+                                                                         // license key (used get_option above to retrieve from DB)
+                                                                         'item_name' => EDD_ARCHITECT_ITEM_NAME,
+                                                                         // name of this plugin
+                                                                         'author'    => 'Chris Howard'
+                                                                         // author of this plugin
                                                                      )
     );
   }
@@ -69,11 +69,14 @@
     $pzarc_status    = get_option( 'edd_architect_license_status' );
     $edd_state = get_option( 'edd_architect_license_state' );
     $edd_name = get_option( 'edd_architect_license_name' );
+    $edd_activation = get_option( 'edd_architect_license_activation' );
+    $edd_rem_activations = get_option( 'edd_architect_license_remaining_activations' );
+    $edd_licence_limit = get_option( 'edd_architect_license_limit' );
     ?>
     <div class="wrap">
     <h2><?php _e( 'Architect Licence Options', 'pzarchitect' ); ?></h2>
 
-    <p class="arc-important">Note: <strong>This page is for licences purchased from the PizazzWP shop</strong>. For licences purchased from the Headway Extend
+    <p class="arc-important extra">Note: This page is for licences purchased from the <strong>PizazzWP shop</strong>. For licences purchased from the <strong>Headway Extend</strong>
       store, enter those in the <em>Headway</em> > <em>Options</em> screen</p>
     <?php
       if ( $pzarc_status === false || $pzarc_status !== 'valid' ) {
@@ -124,6 +127,13 @@
                   echo "<p>" . $edd_name . "</p>";
                   echo "<p>" . $edd_state . "</p>";
                   echo '</div>';
+                } elseif ($edd_activation==='Failed'){
+                  echo '<p class="arc-important">Activation failed</p>';
+                  echo '<p>(Did you click <em>Save Changes</em> before activating?)</p>';
+                  echo "<p>Reason: " . $edd_state . "</p>";
+                  if ($edd_state === 'Invalid licence key') {
+                    echo '<p>If licence was purchased from Headway Extend, please enter it in <em>Headway</em> > <em>Options</em></p>';
+                  }
                 }
               ?>
 
@@ -135,7 +145,7 @@
       <?php submit_button(); ?>
 
     </form>
-  <?php
+    <?php
   }
 
   function edd_architect_register_option() {
@@ -176,16 +186,16 @@
 
       // data to send in our API request
       $api_params = array(
-        'edd_action' => 'activate_license',
-        'license'    => $license,
-        'item_name'  => urlencode( EDD_ARCHITECT_ITEM_NAME ), // the name of our product in EDD
-        'url'        => home_url()
+          'edd_action' => 'activate_license',
+          'license'    => $license,
+          'item_name'  => urlencode( EDD_ARCHITECT_ITEM_NAME ), // the name of our product in EDD
+          'url'        => home_url()
       );
 
       // Call the custom API.
       $response = wp_remote_get( add_query_arg( $api_params, EDD_ARCHITECT_STORE_URL ), array(
-        'timeout'   => 15,
-        'sslverify' => false
+          'timeout'   => 15,
+          'sslverify' => false
       ) );
 
       // make sure the response came back okay
@@ -196,16 +206,44 @@
       // decode the license data
       $license_data = json_decode( wp_remote_retrieve_body( $response ) );
 
-      // $license_data->license will be either "valid" or "invalid"
+//      object(stdClass)[426]
+//  public 'success' => boolean false
+//  public 'error' => string 'missing' (length=7)
+//  public 'license_limit' => boolean false
+//  public 'site_count' => int 0
+//  public 'expires' => boolean false
+//  public 'activations_left' => string 'unlimited' (length=9)
+//  public 'license' => string 'invalid' (length=7)
+//  public 'item_name' => string 'Architect' (length=9)
+//  public 'payment_id' => boolean false
+//  public 'customer_name' => string ' ' (length=1)
+//  public 'customer_email' => null
 
+//      public 'success' => boolean false
+//  public 'error' => string 'no_activations_left' (length=19)
+//  public 'max_sites' => int 1
+//  public 'license_limit' => int 1
+//  public 'site_count' => int 1
+//  public 'expires' => string '2016-05-26 10:47:50' (length=19)
+//  public 'activations_left' => int 0
+//  public 'license' => string 'invalid' (length=7)
+//  public 'item_name' => string 'Architect' (length=9)
+
+      // $license_data->license will be either "valid" or "invalid"
+//var_dump($license_data,$license);
+//      die();
       update_option( 'edd_architect_license_status', $license_data->license );
       if ( $license_data->success ) {
         update_option( 'edd_architect_license_state', '<strong>'.__("Remaining activations: ",'pzarchitect').'</strong>' . $license_data->activations_left );
         update_option( 'edd_architect_license_name', '<strong>'.__('Licence owner: ','pzarchitect').'</strong>'.$license_data->customer_name );
+        update_option( 'edd_architect_license_activation', 'Success' );
       } else {
-        update_option( 'edd_architect_license_state', "Activation failed with message: " . ucfirst( str_replace( '_', ' ', $license_data->error ) ) . '. Licence limit: ' . $license_data->license_limit );
+        update_option( 'edd_architect_license_state', ($license_data->error=='missing' && !empty($license)?'Invalid licence key':ucfirst( str_replace( '_', ' ', $license_data->error ) ) ));
         update_option( 'edd_architect_license_name', '' );
+        update_option( 'edd_architect_license_activation', 'Failed' );
       }
+      update_option('edd_architect_license_remaining_activations',$license_data->activations_left);
+      update_option('edd_architect_license_limit',$license_data->licence_limit);
 
     }
   }
@@ -234,16 +272,16 @@
 
       // data to send in our API request
       $api_params = array(
-        'edd_action' => 'deactivate_license',
-        'license'    => $license,
-        'item_name'  => urlencode( EDD_ARCHITECT_ITEM_NAME ), // the name of our product in EDD
-        'url'        => home_url()
+          'edd_action' => 'deactivate_license',
+          'license'    => $license,
+          'item_name'  => urlencode( EDD_ARCHITECT_ITEM_NAME ), // the name of our product in EDD
+          'url'        => home_url()
       );
 
       // Call the custom API.
       $response = wp_remote_get( add_query_arg( $api_params, EDD_ARCHITECT_STORE_URL ), array(
-        'timeout'   => 15,
-        'sslverify' => false
+          'timeout'   => 15,
+          'sslverify' => false
       ) );
 
       // make sure the response came back okay
@@ -260,6 +298,9 @@
         delete_option( 'edd_architect_license_status' );
         delete_option( 'edd_architect_license_state' );
         delete_option( 'edd_architect_license_name' );
+        delete_option( 'edd_architect_license_activation' );
+        delete_option('edd_architect_license_remaining_activations');
+        delete_option('edd_architect_license_limit');
       }
 
     }
@@ -283,16 +324,16 @@
     $license = trim( get_option( 'edd_architect_license_key' ) );
 
     $api_params = array(
-      'edd_action' => 'check_license',
-      'license'    => $license,
-      'item_name'  => urlencode( EDD_ARCHITECT_ITEM_NAME ),
-      'url'        => home_url()
+        'edd_action' => 'check_license',
+        'license'    => $license,
+        'item_name'  => urlencode( EDD_ARCHITECT_ITEM_NAME ),
+        'url'        => home_url()
     );
 
     // Call the custom API.
     $response = wp_remote_get( add_query_arg( $api_params, EDD_ARCHITECT_STORE_URL ), array(
-      'timeout'   => 15,
-      'sslverify' => false
+        'timeout'   => 15,
+        'sslverify' => false
     ) );
 
     if ( is_wp_error( $response ) ) {

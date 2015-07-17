@@ -14,6 +14,9 @@
     public function get_custom_query($overrides)
     {
 
+      if (!class_exists('nggdb')) {
+        return null;
+      }
       $prefix = '_content_nextgen_';
 
       $gallery_source = $this->build->blueprint[ $prefix . 'nggallery' ];

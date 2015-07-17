@@ -735,7 +735,7 @@ body.arc-bgimage.post-type-arc-blueprints #poststuff h3.redux-hndle,
 body.arc-bgimage.post-type-arc-blueprints .metabox-holder h3.redux-hndle {
   background: rgba(0, 0, 0, 0.7); }
 
-span.dashicons {
+#toplevel_page_pzarc span.dashicons {
   font-family: "dashicons";
   vertical-align: top;
   margin-right: 5px;
@@ -1221,6 +1221,16 @@ body.arc-beginner .arc-field-advanced {
 
 .arc-important {
   color: tomato; }
+  .arc-important.extra {
+    background: tomato;
+    color: #fff;
+    padding: 5px;
+    border-radius: 3px;
+    box-shadow: 0 0 1px #fff;
+    display: inline-block; }
+    .arc-important.extra strong {
+      color: #97e7ff;
+      border-bottom: double 3px currentColor; }
 
 #tab-presets {
   border-bottom: solid 4px #673ab7; }
@@ -1547,7 +1557,9 @@ li.arc-message .arc-presets-link {
   vertical-align: middle; }
   .pzarc-help-section span:before {
     vertical-align: middle;
-    font-size: 15px; }
+    font-size: 15px;
+    display: inline-block;
+    margin-top: -6px; }
 
 body.post-type-arc-blueprints input:required:invalid,
 body.post-type-arc-blueprints input:focus:invalid {
@@ -1570,3 +1582,11 @@ body.arc-beginner .redux-notice-field {
   body.arc-advanced .redux-notice-field.redux-success,
   body.arc-beginner .redux-notice-field.redux-success {
     background: #f1f8e9; }
+
+.arc-installed-presets {
+  background: #eee;
+  padding: 1px 10px;
+  border-radius: 3px; }
+  .arc-installed-presets ul {
+    list-style: disc;
+    margin-left: 20px; }

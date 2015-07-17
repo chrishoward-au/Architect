@@ -146,51 +146,24 @@
                 <button class="tabby-masonry" data-tab="#masonry">' . __('Masonry', 'pzarchitect') . '</button>
                 <button class="tabby-accordion" data-tab="#accordion">' . __('Accordion', 'pzarchitect') . '</button>
                 <button class="tabby-tabular" data-tab="#tabular">' . __('Tabular', 'pzarchitect') . '</button>
-                <button class="tabby-custom" data-tab="#custom">' . __('Custom', 'pzarchitect') . '</button>
+                <button class="tabby-custom" data-tab="#import">' . __('Import', 'pzarchitect') . '</button>
             </div>
 
            <div class="tabby tabs-content container">
-           <div class="tabs-pane active" id="sliders">' .
-
-          $presets_html[ 'slider' ]
-
-          . '</div>
-           <div class="tabs-pane" id="grids">' .
-
-          $presets_html[ 'basic' ]
-
-          . '</div>
-           <div class="tabs-pane" id="tabbed">' .
-
-          $presets_html[ 'tabbed' ]
-
-          . '</div>
-           <div class="tabs-pane" id="masonry">' .
-
-          $presets_html[ 'masonry' ]
-
-          . '</div>
-           <div class="tabs-pane" id="accordion">' .
-
-          $presets_html[ 'accordion' ]
-
-          . '</div>
-           <div class="tabs-pane" id="tabular">' .
-
-          $presets_html[ 'table' ]
-
-          . '</div>
-           <div class="tabs-pane" id="custom">' .
-
-          (!empty($presets_html[ 'custom' ])?$presets_html[ 'custom' ]:'')
-
-          . '</div>
+           <div class="tabs-pane active" id="sliders">' . $presets_html[ 'slider' ] . '</div>
+           <div class="tabs-pane" id="grids">' . $presets_html[ 'basic' ] . '</div>
+           <div class="tabs-pane" id="tabbed">' . $presets_html[ 'tabbed' ] . '</div>
+           <div class="tabs-pane" id="masonry">' . $presets_html[ 'masonry' ] . '</div>
+           <div class="tabs-pane" id="accordion">' . $presets_html[ 'accordion' ] . '</div>
+           <div class="tabs-pane" id="tabular">' . $presets_html[ 'table' ] . '</div>
+           <div class="tabs-pane" id="import">
+                If you have Presets to import, do so in the Architect > Tools page
+           </div>
            </div>
            <p class="footer">All Presets use Dummy Content by default. Please change to the content of your choice after loading the chosen Preset.</p>
            <div class="buttons">
             <a class="arc-button-presets styled disabled" href="javascript:void(0);">Use styled</a>
             <a class="arc-button-presets unstyled disabled" href="javascript:void(0);">Use unstyled</a>
-            <a class="arc-button-presets close" href="javascript:void(0);">Cancel</a>
           </div>
           </div>
         </div>
@@ -214,9 +187,9 @@
       $pzarc_back   = array_slice($columns, 2);
       $pzarc_insert = array(
           '_blueprints_short-name'     => __('Shortname', 'pzarchitect'),
-          '_blueprints_description'    => __('Description', 'pzarchitect'),
+          'layout-type'                => __('Type', 'pzarchitect'),
           '_blueprints_content-source' => __('Content source', 'pzarchitect'),
-          'layout'                     => __('Type', 'pzarchitect'),
+          '_blueprints_description'    => __('Description', 'pzarchitect'),
           //          'id'                         => __('ID', 'pzarchitect'),
       );
 
@@ -261,18 +234,18 @@
           echo $content_source;
           break;
 
-        case 'layout':
+        case 'layout-type':
           if (!empty($post_meta[ '_blueprints_section-0-layout-mode' ][ 0 ])) {
-            echo '1: ' . ucfirst($post_meta[ '_blueprints_section-0-layout-mode' ][ 0 ]);
+            echo ucfirst($post_meta[ '_blueprints_section-0-layout-mode' ][ 0 ]);
           } else {
-            echo '1: Grid';
+            echo 'Grid';
           }
-          if (!empty($post_meta[ '_blueprints_section-0-layout-mode' ][ 0 ]) && !empty($post_meta[ '_blueprints_section-1-layout-mode' ][ 0 ])) {
-            echo '<br>' . '2: ' . ucfirst($post_meta[ '_blueprints_section-1-layout-mode' ][ 0 ]);
-          }
-          if ((!empty($post_meta[ '_blueprints_section-0-layout-mode' ][ 0 ]) || !empty($post_meta[ '_blueprints_section-1-layout-mode' ][ 0 ])) && !empty($post_meta[ '_blueprints_section-2-layout-mode' ])) {
-            echo '<br>' . '3: ' . ucfirst($post_meta[ '_blueprints_section-2-layout-mode' ][ 0 ]);
-          }
+//          if (!empty($post_meta[ '_blueprints_section-0-layout-mode' ][ 0 ]) && !empty($post_meta[ '_blueprints_section-1-layout-mode' ][ 0 ])) {
+//            echo '<br>' . '2: ' . ucfirst($post_meta[ '_blueprints_section-1-layout-mode' ][ 0 ]);
+//          }
+//          if ((!empty($post_meta[ '_blueprints_section-0-layout-mode' ][ 0 ]) || !empty($post_meta[ '_blueprints_section-1-layout-mode' ][ 0 ])) && !empty($post_meta[ '_blueprints_section-2-layout-mode' ])) {
+//            echo '<br>' . '3: ' . ucfirst($post_meta[ '_blueprints_section-2-layout-mode' ][ 0 ]);
+//          }
           break;
       }
     }
@@ -1109,7 +1082,7 @@
                   'default'  => 0,
                   'min'      => 0,
                   'max'      => 1000,
-                  'subtitle'=>__('0 for no max','pzarchitect')
+                  'subtitle' => __('0 for no max', 'pzarchitect')
               ),
               array(
                   'title'   => 'Text wrap',
@@ -1117,23 +1090,23 @@
                   'type'    => 'button_set',
                   'default' => '',
                   'options' => array(
-                      ''=>'Default',
-                      'wraplines'=>'Wrap lines',
-                      'break-word'  => 'Break word',
-                      'nowrap'=>'No wrap'
+                      ''           => 'Default',
+                      'wraplines'  => 'Wrap lines',
+                      'break-word' => 'Break word',
+                      'nowrap'     => 'No wrap'
                   ),
               ),
               array(
-                  'title'   => 'Text overflow',
-                  'id'      => $prefix . 'navtabs-textoverflow',
-                  'type'    => 'button_set',
-                  'default' => '',
-                  'required'=>array($prefix . 'navtabs-textwrap','!=','break-word'),
-                  'options' => array(
-                      ''=>'Default',
-                      'visible'=>'Visible',
-                      'hidden-ellipses'  => 'Hidden with ellipses',
-                      'hidden-clip'=>'Hidden with clipping'
+                  'title'    => 'Text overflow',
+                  'id'       => $prefix . 'navtabs-textoverflow',
+                  'type'     => 'button_set',
+                  'default'  => '',
+                  'required' => array($prefix . 'navtabs-textwrap', '!=', 'break-word'),
+                  'options'  => array(
+                      ''                => 'Default',
+                      'visible'         => 'Visible',
+                      'hidden-ellipses' => 'Hidden with ellipses',
+                      'hidden-clip'     => 'Hidden with clipping'
                   ),
               ),
               array(
@@ -1365,7 +1338,8 @@
                   'default'  => 5,
                   'min'      => 1,
                   'max'      => 100,
-                  'hint' => array('title'=>__('Number of thumbs visible','pzarchitect'),'content'=>__('Number of thumbs to fully show at once in the navigator. If Continuous is enabled, partial thumbs will additionally be shown left and right of the full thumbs.', 'pzarchitect')),
+                  'hint'     => array('title'   => __('Number of thumbs visible', 'pzarchitect'),
+                                      'content' => __('Number of thumbs to fully show at once in the navigator. If Continuous is enabled, partial thumbs will additionally be shown left and right of the full thumbs.', 'pzarchitect')),
                   'required' => array(
                       array($prefix . 'section-0-layout-mode', '=', 'slider'),
                       array($prefix . 'navigator', '=', 'thumbs'),
@@ -1377,7 +1351,7 @@
                   'type'     => 'button_set',
                   'default'  => 'continuous',
                   'options'  => array(
-                      'off'   => __('No', 'pzarchitect'),
+                      'off'        => __('No', 'pzarchitect'),
                       'continuous' => __('Yes', 'pzarchitect'),
                   ),
                   'required' => array(
@@ -1410,7 +1384,7 @@
                   'id'       => $prefix . 'transitions-type',
                   'type'     => 'button_set',
                   'default'  => 'fade',
-                  'subtitle'=>__('When transition is set to fade, slides are not draggable','pzarchitect'),
+                  'subtitle' => __('When transition is set to fade, slides are not draggable', 'pzarchitect'),
                   //              'select2' => array('allowClear' => false),
                   'required' => array($prefix . 'section-0-layout-mode', '=', 'slider'),
                   'options'  => apply_filters('arc-transitions', $transitions)
@@ -3229,6 +3203,14 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
                       'default' => array('height' => '32px'),
                       'units'   => 'px'
                   ),
+//                  array(
+//                      'title'   => __('Prefix/suffix inside link', 'pzarchitect'),
+//                      'id'      => $prefix . 'cfield-' . $i . '-ps-in-link',
+//                      'type'    => 'button_set',
+//                      'multi'   => true,
+//                      'options' => array('prefix' => 'Prefix', 'suffix' => 'Suffix'),
+//                      'required'=>array($prefix . 'cfield-' . $i . '-link-field','not_empty_and',null)
+//                  ),
               )
           );
         }
@@ -3694,7 +3676,8 @@ array(
         $title = $export_data[ 'title' ];
         delete_option('arc-export-to-preset');
 
-        return '<h4>Export data for Blueprint:' . $title . '</h4><p>Copy and paste the export data to its own file.</p><form><pre class="arc-export-data"><textarea rows="10" cols="70">' . json_encode($export_data) . '</textarea></pre></form>';
+// TODO Tutorials on saving exports and creating Presets.
+        return '<h4>Export data for Blueprint:' . $title . '</h4><p>Copy and paste the export data to its own file with a txt extension. You can then import it on another site in the Architect > Tools page. Or you can use it as the basis of a Preset that you may give away or sell.</p><form><pre class="arc-export-data"><textarea rows="10" cols="70">' . json_encode($export_data) . '</textarea></pre></form>';
       } else {
         return '';
       }
@@ -3772,32 +3755,5 @@ array(
     return $return_html;
   }
 
-
-  /*
-   * Function creates post duplicate as a draft and redirects then to the edit post screen
-   */
-  function pzarc_new_from_preset()
-  {
-    // How do we add some security?
-    if (!(isset($_GET[ 'name' ]) || isset($_POST[ 'name' ]) || (isset($_REQUEST[ 'action' ]) && 'pzarc_new_from_preset' == $_REQUEST[ 'action' ]))) {
-      wp_die();
-    }
-
-    /*
-     * get the original post name
-     */
-    $preset_name  = (isset($_GET[ 'name' ]) ? $_GET[ 'name' ] : $_POST[ 'name' ]);
-    $process_type = (isset($_GET[ 'type' ]) ? $_GET[ 'type' ] : $_POST[ 'type' ]);
-    /*
-     * and all the original post data then
-     */
-
-    require_once PZARC_PLUGIN_PATH . 'presets/presets.php';
-    $presets         = new arcPresetsLoader();
-    $presets_array   = $presets->render();
-    $arc_preset_data = $presets_array[ 'data' ][ $preset_name ];
-
-    pzarc_create_blueprint($arc_preset_data, $preset_name, $process_type, null, null);
-  }
 
   add_action('admin_action_pzarc_new_from_preset', 'pzarc_new_from_preset');

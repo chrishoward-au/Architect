@@ -23,6 +23,8 @@
     wp_enqueue_style('css-slick15js');
     wp_enqueue_style('css-arcslick15');
 
+    $is_rtl = is_rtl()?'true':'false';
+
     // Setup the slides
     $pzarc_slick_data = '{';
     $pzarc_slick_data .= ' "fade": ' . ($blueprint[ '_blueprints_transitions-type' ] === 'fade' ? 'true' : 'false');
@@ -33,10 +35,12 @@
     $pzarc_slick_data .= ', "adaptiveHeight":' . (!isset($blueprint[ '_slick15_extra-options' ]) || in_array('adaptive', $blueprint[ '_slick15_extra-options' ]) ? 'true' : 'false');
     $pzarc_slick_data .= ', "pauseOnHover":' . (!isset($blueprint[ '_slick15_extra-options' ]) || in_array('pause', $blueprint[ '_slick15_extra-options' ]) ? 'true' : 'false');
     $pzarc_slick_data .= ', "vertical":false'; //this goes a bit weird if enabled
+    $pzarc_slick_data .= ', "rtl":'.$is_rtl;
     $pzarc_slick_data .= ', "draggable":' . ($blueprint[ '_blueprints_transitions-type' ] === 'slide' ? 'true' : 'false'); // Draggable i
     $pzarc_slick_data .= ', "infinite":' . (!isset($blueprint[ '_slick15_extra-options' ]) || in_array('infinite', $blueprint[ '_slick15_extra-options' ]) ? 'true' : 'false');
     $pzarc_slick_data .= ', "prevArrow":".' . $blueprint[ 'uid' ] . ' .pager.arrow-left"';
     $pzarc_slick_data .= ', "nextArrow":".' . $blueprint[ 'uid' ] . ' .pager.arrow-right"';
+
     if ($blueprint[ '_blueprints_navigator' ] !== 'none') {
       $pzarc_slick_data .= ', "asNavFor":".' . $blueprint[ 'uid' ] . ' .pzarc-navigator-' . $blueprint[ '_blueprints_short-name' ] . '"';
     }
@@ -98,6 +102,7 @@
       $pzarchitect_slider_scripts .= ', infinite:'.$nav_continuous;
 //      $pzarchitect_slider_scripts .= ', arrows:true';
       $pzarchitect_slider_scripts .= ', useCSS:false';
+      $pzarchitect_slider_scripts .= ', rtl:'.$is_rtl;
       $pzarchitect_slider_scripts .= ',adaptiveHeight:true';
       $pzarchitect_slider_scripts .= ', variableWidth:' . $nav_var_width;
 

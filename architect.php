@@ -4,7 +4,7 @@
     Plugin Name: Architect
     Plugin URI: http://architect4wp.com
     Description: Architect is an all-in-one content layout builder. <strong>Build your own slider, grid, tabbed, gallery, masonry, accordion or tabular layouts with ANY content source</strong>. Display using shortcodes, widgets, Headway blocks, WP action hooks and template tags, and WP Gallery shortcode.
-    Version: 1.3.5
+    Version: 1.3.6
     Author: Chris Howard
     Author URI: http://pizazzwp.com
     License: GNU GPL v2
@@ -32,7 +32,7 @@
         define( 'PZARC_TESTER', ( isset( $arc_options[ 'architect_enable_beta' ] ) ? $arc_options[ 'architect_enable_beta' ] : false ) );
       }
 
-      define( 'PZARC_VERSION', '1.3.5' );
+      define( 'PZARC_VERSION', '1.3.6' );
       define( 'PZARC_NAME', 'pzarchitect' ); // This is also same as the locale
       define( 'PZARC_FOLDER', '/pizazzwp-architect' );
       define( 'PZARC_CODEX', 'http://architect4wp.com/codex-listings' );
@@ -48,6 +48,10 @@
       define( 'PZARC_PLUGIN_ASSETS_URL', PZARC_PLUGIN_APP_URL . 'shared/assets/' );
       define( 'PZARC_PLUGIN_PRESETS_URL', PZARC_PLUGIN_URL . 'presets/' );
       define( 'PZARC_CACHE', '/arc/' );
+      $pzarc_uploads=wp_upload_dir();
+      define('PZARC_PRESETS_PATH',$pzarc_uploads['basedir'].'/pizazzwp/architect/presets');
+      define('PZARC_PRESETS_URL',$pzarc_uploads['baseurl'].'/pizazzwp/architect/presets');
+
       // TODO: Setup an option for changing the language
       $language = substr( get_locale(), 0, 2 );
 
@@ -159,6 +163,7 @@
 
       }
       if ( ( ! empty( $hw_opts[ 'license-status-architect' ] ) && $hw_opts[ 'license-status-architect' ] == 'valid' ) || ( $pzarc_status !== false && $pzarc_status == 'valid' ) ) {
+        define('PZARC_PRO',true);
         @include PZARC_PLUGIN_PATH . '/extensions/architect-pro.php';
       }
       pzdb( 'after architect pro' );
