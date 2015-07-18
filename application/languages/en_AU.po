@@ -1,0 +1,3664 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Architect\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-07-18 13:19+1000\n"
+"PO-Revision-Date: 2015-07-18 13:22+1000\n"
+"Last-Translator: \n"
+"Language-Team: Chris Howard <support@pizazzwp.com>\n"
+"Language: en_AU\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-KeywordsList: __;_e\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Generator: Poedit 1.8.2\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-SearchPath-0: ..\n"
+
+#: ../admin/php/EDD_SL_Plugin_Updater.php:178
+#, php-format
+msgid ""
+"There is a new version of %1$s available. <a target=\"_blank\" class="
+"\"thickbox\" href=\"%2$s\">View version %3$s details</a>."
+msgstr ""
+
+#: ../admin/php/EDD_SL_Plugin_Updater.php:185
+#, php-format
+msgid ""
+"There is a new version of %1$s available. <a target=\"_blank\" class="
+"\"thickbox\" href=\"%2$s\">View version %3$s details</a> or <a href=\"%4$s"
+"\">update now</a>."
+msgstr ""
+
+#: ../admin/php/EDD_SL_Plugin_Updater.php:325
+msgid "You do not have permission to install plugin updates"
+msgstr ""
+
+#: ../admin/php/EDD_SL_Plugin_Updater.php:325
+msgid "Error"
+msgstr ""
+
+#: ../admin/php/arc-options-actions.php:178
+#: ../admin/php/arc-options-def-editor.php:177
+#: ../admin/php/arc-options-styling.php:180 ../admin/php/arc-options.php:217
+#, php-format
+msgid "Customize &#8220;%s&#8221;"
+msgstr ""
+
+#: ../admin/php/arc-options-actions.php:199
+#: ../admin/php/arc-options-def-editor.php:198
+#: ../admin/php/arc-options-styling.php:201 ../admin/php/arc-options.php:238
+#, php-format
+msgid "By %s"
+msgstr ""
+
+#: ../admin/php/arc-options-actions.php:200
+#: ../admin/php/arc-options-def-editor.php:199
+#: ../admin/php/arc-options-styling.php:202 ../admin/php/arc-options.php:239
+#, php-format
+msgid "Version %s"
+msgstr ""
+
+#: ../admin/php/arc-options-actions.php:201
+#: ../admin/php/arc-options-actions.php:290
+#: ../admin/php/arc-options-def-editor.php:200
+#: ../admin/php/arc-options-def-editor.php:311
+#: ../admin/php/arc-options-styling.php:203 ../admin/php/arc-options.php:240
+#: ../admin/php/class_arc_blueprints_designer.php:2609
+#: ../shared/architect/php/class_arc_blueprint_data.php:139
+#: ../shared/architect/php/class_arc_blueprint_data.php:146
+msgid "Tags"
+msgstr ""
+
+#: ../admin/php/arc-options-actions.php:205
+#: ../admin/php/arc-options-def-editor.php:204
+#: ../admin/php/arc-options-styling.php:207 ../admin/php/arc-options.php:244
+#, php-format
+msgid "This <a href=\"%1$s\">child theme</a> requires its parent theme, %2$s."
+msgstr ""
+
+#: ../admin/php/arc-options-actions.php:206
+#: ../admin/php/arc-options-def-editor.php:205
+#: ../admin/php/arc-options-styling.php:208 ../admin/php/arc-options.php:245
+msgid "http://codex.wordpress.org/Child_Themes"
+msgstr ""
+
+#: ../admin/php/arc-options-actions.php:238
+msgid "Number of Actions"
+msgstr ""
+
+#: ../admin/php/arc-options-actions.php:264
+msgid "Action Name"
+msgstr ""
+
+#: ../admin/php/arc-options-actions.php:270
+msgid "Blueprint shortname"
+msgstr ""
+
+#: ../admin/php/arc-options-actions.php:278
+msgid "Page IDs"
+msgstr ""
+
+#: ../admin/php/arc-options-actions.php:284
+msgid "All"
+msgstr ""
+
+#: ../admin/php/arc-options-actions.php:285
+msgid "Home"
+msgstr ""
+
+#: ../admin/php/arc-options-actions.php:286
+msgid "Single Post"
+msgstr ""
+
+#: ../admin/php/arc-options-actions.php:287
+msgid "Single page"
+msgstr ""
+
+#: ../admin/php/arc-options-actions.php:288
+msgid "Blog page"
+msgstr ""
+
+#: ../admin/php/arc-options-actions.php:289
+#: ../admin/php/arc-options-def-editor.php:304
+#: ../admin/php/class_arc_blueprints_designer.php:2609
+#: ../shared/architect/php/class_arc_blueprint_data.php:92
+msgid "Categories"
+msgstr ""
+
+#: ../admin/php/arc-options-actions.php:291
+msgid "Dates"
+msgstr ""
+
+#: ../admin/php/arc-options-actions.php:292
+#: ../shared/architect/php/class_arc_blueprint_data.php:230
+msgid "Authors"
+msgstr ""
+
+#: ../admin/php/arc-options-actions.php:293
+msgid "Search"
+msgstr ""
+
+#: ../admin/php/arc-options-actions.php:294
+msgid "404"
+msgstr ""
+
+#: ../admin/php/arc-options-actions.php:295
+msgid "Specific"
+msgstr ""
+
+#: ../admin/php/arc-options-actions.php:299
+msgid "Specific page IDs"
+msgstr ""
+
+#: ../admin/php/arc-options-actions.php:318
+#: ../admin/php/arc-options-def-editor.php:407
+#: ../admin/php/arc-options-styling.php:1103 ../admin/php/arc-options.php:689
+msgid "Theme Information 1"
+msgstr ""
+
+#: ../admin/php/arc-options-actions.php:319
+#: ../admin/php/arc-options-actions.php:325
+#: ../admin/php/arc-options-def-editor.php:408
+#: ../admin/php/arc-options-def-editor.php:414
+#: ../admin/php/arc-options-styling.php:1104
+#: ../admin/php/arc-options-styling.php:1110 ../admin/php/arc-options.php:690
+#: ../admin/php/arc-options.php:696
+msgid "<p>This is the tab content, HTML is allowed.</p>"
+msgstr ""
+
+#: ../admin/php/arc-options-actions.php:324
+#: ../admin/php/arc-options-def-editor.php:413
+#: ../admin/php/arc-options-styling.php:1109 ../admin/php/arc-options.php:695
+msgid "Theme Information 2"
+msgstr ""
+
+#: ../admin/php/arc-options-actions.php:330
+#: ../admin/php/arc-options-def-editor.php:419
+#: ../admin/php/arc-options-styling.php:1115 ../admin/php/arc-options.php:701
+msgid "<p>This is the sidebar content, HTML is allowed.</p>"
+msgstr ""
+
+#: ../admin/php/arc-options-actions.php:350
+#: ../admin/php/arc-options-actions.php:359 ../arc-admin.php:593
+msgid "Actions Editor"
+msgstr ""
+
+#: ../admin/php/arc-options-actions.php:358
+msgid "<span class=\"dashicons dashicons-migrate\"></span>Actions Editor"
+msgstr ""
+
+#: ../admin/php/arc-options-actions.php:462
+msgid ""
+"<p>On this page you can setup specific blueprints to display at specific "
+"points in your page's display. This is done using WordPress action hooks. "
+"Although WordPress provides many, the ones that work best for content "
+"display will be those included in the theme you are using. Review your theme "
+"and/or its documentation.</p>"
+msgstr ""
+
+#: ../admin/php/arc-options-def-editor.php:262
+msgid "Definition Name"
+msgstr ""
+
+#: ../admin/php/arc-options-def-editor.php:269
+msgid "Panel open"
+msgstr ""
+
+#: ../admin/php/arc-options-def-editor.php:276
+msgid "Header"
+msgstr ""
+
+#: ../admin/php/arc-options-def-editor.php:283
+#: ../admin/php/class_arc_blueprints_designer.php:2239
+msgid "Title"
+msgstr ""
+
+#: ../admin/php/arc-options-def-editor.php:290
+msgid "Meta area 1"
+msgstr ""
+
+#: ../admin/php/arc-options-def-editor.php:297
+msgid "Date/Time"
+msgstr ""
+
+#: ../admin/php/arc-options-def-editor.php:318
+msgid "Author"
+msgstr ""
+
+#: ../admin/php/arc-options-def-editor.php:325
+#: ../admin/php/arc-options-styling.php:503
+#: ../admin/php/class_arc_blueprints_designer.php:3512
+msgid "Image"
+msgstr ""
+
+#: ../admin/php/arc-options-def-editor.php:332
+msgid "Content"
+msgstr ""
+
+#: ../admin/php/arc-options-def-editor.php:339
+#: ../admin/php/arc-options-styling.php:425
+#: ../admin/php/class_arc_blueprints_designer.php:2240
+#: ../admin/php/class_arc_blueprints_designer.php:2340
+#: ../admin/php/class_arc_blueprints_designer.php:3465
+msgid "Excerpt"
+msgstr ""
+
+#: ../admin/php/arc-options-def-editor.php:346
+msgid "feature"
+msgstr ""
+
+#: ../admin/php/arc-options-def-editor.php:353
+msgid "footer"
+msgstr ""
+
+#: ../admin/php/arc-options-def-editor.php:360
+msgid "Panel close"
+msgstr ""
+
+#: ../admin/php/arc-options-def-editor.php:376
+#: ../admin/php/arc-options-def-editor.php:448
+msgid "Panel Definitions Editor"
+msgstr ""
+
+#: ../admin/php/arc-options-def-editor.php:447
+msgid "<span class=\"dashicons dashicons-edit\"></span>Panel Definitions"
+msgstr ""
+
+#: ../admin/php/arc-options-def-editor.php:551
+#: ../admin/php/arc-options-styling.php:1247
+msgid ""
+"<p>On this page you can configure default CSS styling as well as indicating "
+"the classes it applies to.</p>"
+msgstr ""
+
+#: ../admin/php/arc-options-styling.php:252
+#: ../admin/php/class_arc_blueprints_designer.php:3338
+msgid "Panels"
+msgstr ""
+
+#: ../admin/php/arc-options-styling.php:260
+#: ../admin/php/arc-options-styling.php:283
+#: ../admin/php/arc-options-styling.php:307
+#: ../admin/php/arc-options-styling.php:328
+#: ../admin/php/arc-options-styling.php:356
+#: ../admin/php/arc-options-styling.php:387
+#: ../admin/php/arc-options-styling.php:412
+#: ../admin/php/arc-options-styling.php:432
+#: ../admin/php/arc-options-styling.php:457
+#: ../admin/php/arc-options-styling.php:477
+#: ../admin/php/arc-options-styling.php:511
+#: ../admin/php/arc-options-styling.php:531
+#: ../admin/php/arc-options-styling.php:650
+#: ../admin/php/arc-options-styling.php:690
+#: ../admin/php/arc-options-styling.php:719
+#: ../admin/php/arc-options-styling.php:813
+#: ../admin/php/arc-options-styling.php:840
+#: ../admin/php/arc-options-styling.php:866
+#: ../admin/php/arc-options-styling.php:889
+#: ../admin/php/arc-options-styling.php:924
+#: ../admin/php/arc-options-styling.php:944
+#: ../admin/php/arc-options-styling.php:961
+#: ../admin/php/arc-options-styling.php:987
+#: ../admin/php/arc-options-styling.php:1006
+#: ../admin/php/arc-options-styling.php:1022
+msgid "CSS selectors"
+msgstr ""
+
+#: ../admin/php/arc-options-styling.php:274
+#: ../admin/php/class_arc_blueprints_designer.php:3350
+msgid "Components group"
+msgstr ""
+
+#: ../admin/php/arc-options-styling.php:301
+#: ../admin/php/class_arc_blueprints_designer.php:3362
+msgid "Entry"
+msgstr ""
+
+#: ../admin/php/arc-options-styling.php:380
+#: ../admin/php/class_arc_blueprints_designer.php:2241
+#: ../admin/php/class_arc_blueprints_designer.php:2341
+msgid "Body"
+msgstr ""
+
+#: ../admin/php/arc-options-styling.php:404
+msgid "Body paragraphs"
+msgstr ""
+
+#: ../admin/php/arc-options-styling.php:449
+#: ../admin/php/class_arc_blueprints_designer.php:3478
+msgid "Excerpt paragraphs"
+msgstr ""
+
+#: ../admin/php/arc-options-styling.php:470
+#: ../admin/php/class_arc_blueprints_designer.php:2696
+#: ../admin/php/class_arc_blueprints_designer.php:3489
+msgid "Read more"
+msgstr ""
+
+#: ../admin/php/arc-options-styling.php:525
+#: ../admin/php/class_arc_blueprints_designer.php:3562
+msgid "Caption"
+msgstr ""
+
+#: ../admin/php/arc-options-styling.php:643
+#: ../admin/php/class_arc_blueprints_designer.php:1849
+msgid "Blueprint"
+msgstr ""
+
+#: ../admin/php/arc-options-styling.php:666
+#: ../admin/php/arc-options-styling.php:1043
+#: ../admin/php/class_arc_blueprints_designer.php:2149
+#: ../admin/php/class_arc_blueprints_designer.php:2156
+#: ../admin/php/class_arc_blueprints_designer.php:3604
+#: ../admin/php/class_arc_blueprints_designer.php:3611
+msgid "Custom CSS"
+msgstr ""
+
+#: ../admin/php/arc-options-styling.php:670
+msgid ""
+"This can be any CSS you'd like to add to a page this blueprint is displayed "
+"on. It will ONLY load on the pages this blueprint is shown on, so will only "
+"impact those pages. However, if you have multiple blueprints on a page, this "
+"CSS could affect or be overriden by ther blueprints' custom CSS."
+msgstr ""
+
+#: ../admin/php/arc-options-styling.php:683
+#: ../admin/php/class_arc_blueprints_designer.php:1895
+msgid "Page title"
+msgstr ""
+
+#: ../admin/php/arc-options-styling.php:807
+#: ../admin/php/class_arc_blueprints_designer.php:1989
+msgid "Navigator container"
+msgstr ""
+
+#: ../admin/php/arc-options-styling.php:833
+#: ../admin/php/class_arc_blueprints_designer.php:2001
+msgid "Navigator items"
+msgstr ""
+
+#: ../admin/php/arc-options-styling.php:859
+#: ../admin/php/class_arc_blueprints_designer.php:2015
+msgid "Navigator item hover"
+msgstr ""
+
+#: ../admin/php/arc-options-styling.php:883
+#: ../admin/php/class_arc_blueprints_designer.php:2035
+msgid "Navigator active item"
+msgstr ""
+
+#: ../admin/php/arc-options-styling.php:917
+#: ../admin/php/class_arc_blueprints_designer.php:2065
+#: ../admin/php/class_arc_blueprints_designer.php:3387
+msgid "Titles"
+msgstr ""
+
+#: ../admin/php/arc-options-styling.php:937
+#: ../admin/php/class_arc_blueprints_designer.php:2078
+msgid "Open"
+msgstr ""
+
+#: ../admin/php/arc-options-styling.php:954
+#: ../admin/php/class_arc_blueprints_designer.php:2088
+msgid "Hover"
+msgstr ""
+
+#: ../admin/php/arc-options-styling.php:980
+#: ../admin/php/class_arc_blueprints_designer.php:2107
+msgid "Headings"
+msgstr ""
+
+#: ../admin/php/arc-options-styling.php:999
+#: ../admin/php/class_arc_blueprints_designer.php:2120
+msgid "Odd rows"
+msgstr ""
+
+#: ../admin/php/arc-options-styling.php:1016
+#: ../admin/php/class_arc_blueprints_designer.php:2131
+msgid "Even rows"
+msgstr ""
+
+#: ../admin/php/arc-options-styling.php:1044
+msgid ""
+"Enter any custom CSS at all here and it will be loaded with each page. Use "
+"wisely!"
+msgstr ""
+
+#: ../admin/php/arc-options-styling.php:1066
+#: ../admin/php/class_arc_blueprints_designer.php:603
+msgid "Design"
+msgstr ""
+
+#: ../admin/php/arc-options-styling.php:1143
+msgid ""
+"<span class=\"dashicons dashicons-admin-appearance\"></span>Styling Defaults"
+msgstr ""
+
+#: ../admin/php/arc-options-styling.php:1144
+msgid "Architect Styling"
+msgstr ""
+
+#: ../admin/php/arc-options.php:281
+msgid "General "
+msgstr ""
+
+#: ../admin/php/arc-options.php:286
+#: ../admin/php/class_arc_blueprints_designer.php:3305
+msgid "Styling"
+msgstr ""
+
+#: ../admin/php/arc-options.php:292
+msgid "Use Architect styling"
+msgstr ""
+
+#: ../admin/php/arc-options.php:295
+msgid ""
+"Turn this off if you want to manage styling from your own CSS stylesheets or "
+"only from the Headway Visual Editor Design Mode."
+msgstr ""
+
+#: ../admin/php/arc-options.php:299
+msgid "Typography units"
+msgstr ""
+
+#: ../admin/php/arc-options.php:310
+msgid "Add Headway Content Block class"
+msgstr ""
+
+#: ../admin/php/arc-options.php:313 ../admin/php/arc-options.php:323
+#: ../admin/php/arc-options.php:346 ../admin/php/arc-options.php:355
+#: ../admin/php/arc-options.php:421 ../admin/php/arc-options.php:474
+#: ../admin/php/arc-options.php:492 ../admin/php/arc-options.php:620
+#: ../admin/php/class_arc_blueprints_designer.php:658
+#: ../admin/php/class_arc_blueprints_designer.php:687
+#: ../admin/php/class_arc_blueprints_designer.php:845
+#: ../admin/php/class_arc_blueprints_designer.php:1356
+#: ../admin/php/class_arc_blueprints_designer.php:2437
+#: ../admin/php/class_arc_blueprints_designer.php:2452
+#: ../admin/php/class_arc_blueprints_designer.php:2551
+#: ../admin/php/class_arc_blueprints_designer.php:2652
+#: ../admin/php/class_arc_blueprints_designer.php:2685
+#: ../admin/php/class_arc_blueprints_designer.php:2845
+#: ../admin/php/class_arc_blueprints_designer.php:2858
+#: ../admin/php/class_arc_blueprints_designer.php:2989
+#: ../admin/php/class_arc_blueprints_designer.php:3020
+#: ../admin/php/class_arc_blueprints_designer.php:3029
+#: ../shared/architect/php/content-types/page/class_arc_content_pages.php:54
+#: ../shared/architect/php/content-types/post/class_arc_content_posts.php:55
+#: ../shared/thirdparty/php/WordPress-SysInfo/views/admin.php:64
+#: ../shared/thirdparty/php/WordPress-SysInfo/views/admin.php:66
+#: ../shared/thirdparty/php/WordPress-SysInfo/views/admin.php:67
+#: ../shared/thirdparty/php/WordPress-SysInfo/views/admin.php:68
+msgid "Yes"
+msgstr ""
+
+#: ../admin/php/arc-options.php:314 ../admin/php/arc-options.php:324
+#: ../admin/php/arc-options.php:347 ../admin/php/arc-options.php:356
+#: ../admin/php/arc-options.php:422 ../admin/php/arc-options.php:475
+#: ../admin/php/arc-options.php:493 ../admin/php/arc-options.php:621
+#: ../admin/php/class_arc_blueprints_designer.php:659
+#: ../admin/php/class_arc_blueprints_designer.php:688
+#: ../admin/php/class_arc_blueprints_designer.php:846
+#: ../admin/php/class_arc_blueprints_designer.php:1355
+#: ../admin/php/class_arc_blueprints_designer.php:2438
+#: ../admin/php/class_arc_blueprints_designer.php:2453
+#: ../admin/php/class_arc_blueprints_designer.php:2552
+#: ../admin/php/class_arc_blueprints_designer.php:2653
+#: ../admin/php/class_arc_blueprints_designer.php:2686
+#: ../admin/php/class_arc_blueprints_designer.php:2846
+#: ../admin/php/class_arc_blueprints_designer.php:2859
+#: ../admin/php/class_arc_blueprints_designer.php:2990
+#: ../admin/php/class_arc_blueprints_designer.php:3021
+#: ../admin/php/class_arc_blueprints_designer.php:3030
+#: ../shared/architect/php/content-types/page/class_arc_content_pages.php:55
+#: ../shared/architect/php/content-types/post/class_arc_content_posts.php:56
+#: ../shared/thirdparty/php/WordPress-SysInfo/views/admin.php:64
+#: ../shared/thirdparty/php/WordPress-SysInfo/views/admin.php:66
+#: ../shared/thirdparty/php/WordPress-SysInfo/views/admin.php:67
+#: ../shared/thirdparty/php/WordPress-SysInfo/views/admin.php:68
+msgid "No"
+msgstr ""
+
+#: ../admin/php/arc-options.php:316
+msgid ""
+"This will add the class <strong>block-type-content</strong> to the panels, "
+"which enables them to inherit the stylings for the Content block. However, "
+"this can make styling in the Visual Editor Design Mode a little confusing, "
+"as hovering over an element will show it as a Content Block element"
+msgstr ""
+
+#: ../admin/php/arc-options.php:320
+msgid "Use Architect Headway CSS from Design Mode"
+msgstr ""
+
+#: ../admin/php/arc-options.php:326
+msgid ""
+"Use the stylings you configure for Architect in the Headway Visual Editor "
+"Design Mode."
+msgstr ""
+
+#: ../admin/php/arc-options.php:335
+msgid "Appearance"
+msgstr ""
+
+#: ../admin/php/arc-options.php:341
+msgid "Hide page guides and tutorials"
+msgstr ""
+
+#: ../admin/php/arc-options.php:350
+msgid "Enable admin background image"
+msgstr ""
+
+#: ../admin/php/arc-options.php:353
+msgid "Displays a background image on the Architect admin pages"
+msgstr ""
+
+#: ../admin/php/arc-options.php:359
+msgid "Choose background image"
+msgstr ""
+
+#: ../admin/php/arc-options.php:364
+msgid "Green"
+msgstr ""
+
+#: ../admin/php/arc-options.php:365
+msgid "Ocean/Blue"
+msgstr ""
+
+#: ../admin/php/arc-options.php:366
+msgid "Pink"
+msgstr ""
+
+#: ../admin/php/arc-options.php:376
+msgid "Shortcodes"
+msgstr ""
+
+#: ../admin/php/arc-options.php:382
+msgid "Default shortcode blueprint"
+msgstr ""
+
+#: ../admin/php/arc-options.php:386
+msgid ""
+"If you omit the blueprint name from a shortcode, it will use the one "
+"selected here. Useful for quick conversion of WP galleries by simply "
+"renaming gallery to architect in the shortcode."
+msgstr ""
+
+#: ../admin/php/arc-options.php:389
+msgid "Replace WP Galleries with Blueprint"
+msgstr ""
+
+#: ../admin/php/arc-options.php:393
+msgid ""
+"Select a Blueprint to use for <strong>all</strong> WP gallery shortcodes."
+msgstr ""
+
+#: ../admin/php/arc-options.php:394
+msgid "Make sure this Blueprint is using Galleries as its Content Source!"
+msgstr ""
+
+#: ../admin/php/arc-options.php:402
+msgid "Enhancements"
+msgstr ""
+
+#: ../admin/php/arc-options.php:418
+msgid "Activate Architect Builder on Pages editor"
+msgstr ""
+
+#: ../admin/php/arc-options.php:428
+msgid "Additional content types"
+msgstr ""
+
+#: ../admin/php/arc-options.php:433 ../admin/php/arc-options.php:446
+#: ../admin/php/class_arc_blueprints_designer.php:1753
+msgid "Snippets"
+msgstr ""
+
+#: ../admin/php/arc-options.php:434
+msgid "Testimonials"
+msgstr ""
+
+#: ../admin/php/arc-options.php:439
+msgid "Feature Video field"
+msgstr ""
+
+#: ../admin/php/arc-options.php:442
+msgid "Add a video field to content types to optionally use as the Feature."
+msgstr ""
+
+#: ../admin/php/arc-options.php:444
+msgid "Posts"
+msgstr ""
+
+#: ../admin/php/arc-options.php:445
+msgid "Pages"
+msgstr ""
+
+#: ../admin/php/arc-options.php:463
+msgid "Other"
+msgstr ""
+
+#: ../admin/php/arc-options.php:469
+msgid "Exclude hidden custom fields"
+msgstr ""
+
+#: ../admin/php/arc-options.php:472
+msgid ""
+"Many plugins have custom fields that are hidden because you don't need to "
+"access them. Some however, like WooCommerce, make their fields hidden "
+"anyway. If you want to shorten the custom field drop downs and are not using "
+"a plugin that you need hidden fields from, then enable this."
+msgstr ""
+
+#: ../admin/php/arc-options.php:487
+msgid "Enable beta features"
+msgstr ""
+
+#: ../admin/php/arc-options.php:490
+msgid ""
+"This will enable features that are working but not fully complete. Use at "
+"your own risk!"
+msgstr ""
+
+#: ../admin/php/arc-options.php:496
+msgid "Beta features"
+msgstr ""
+
+#: ../admin/php/arc-options.php:522
+msgid ""
+"Architect lets you set some arbitrary breakpoints for responsive design. "
+"Responsive design, however, is a lot more complicated than a handful of "
+"breakpoints! It is affected by devices, content, containers and so on. To "
+"provide support for all of that would severely overwhelm Architect's "
+"settings. For example, for every font styling, it would need to be set for "
+"every scenario. The breakpoints are therefore used on a limited range of "
+"options. If you want to get serious with responsive design, you will have to "
+"write a lot of custom css"
+msgstr ""
+
+#: ../admin/php/arc-options.php:525
+msgid "Breakpoints"
+msgstr ""
+
+#: ../admin/php/arc-options.php:531
+msgid "Wide screen breakpoint"
+msgstr ""
+
+#: ../admin/php/arc-options.php:539
+msgid "Medium screen breakpoint"
+msgstr ""
+
+#: ../admin/php/arc-options.php:609
+#: ../admin/php/class_arc_blueprints_designer.php:2302
+msgid "Images"
+msgstr ""
+
+#: ../admin/php/arc-options.php:615
+msgid "Create and use retina images"
+msgstr ""
+
+#: ../admin/php/arc-options.php:618
+msgid ""
+"If enabled, when images are created, a second high version to display on "
+"retina screens will also be created and then displayed as required. This can "
+"be turned off for specific Panels. NOTE: This will make your site load "
+"slower on retina devices."
+msgstr ""
+
+#: ../admin/php/arc-options.php:636
+msgid "Categories archive pages title"
+msgstr ""
+
+#: ../admin/php/arc-options.php:639
+msgid "Enter a title to appear at the top of Categories archives pages"
+msgstr ""
+
+#: ../admin/php/arc-options.php:643
+msgid "Tags archive pages title"
+msgstr ""
+
+#: ../admin/php/arc-options.php:646
+msgid "Enter a title to appear at the top of Tags archives pages"
+msgstr ""
+
+#: ../admin/php/arc-options.php:650
+msgid "Months archive pages title"
+msgstr ""
+
+#: ../admin/php/arc-options.php:653
+msgid "Enter a title to appear at the top of Months archives pages"
+msgstr ""
+
+#: ../admin/php/arc-options.php:657
+msgid "Custom taxonomies archive pages title"
+msgstr ""
+
+#: ../admin/php/arc-options.php:660
+msgid "Enter a title to appear at the top of Custom taxonomies archives pages"
+msgstr ""
+
+#: ../admin/php/arc-options.php:720 ../admin/php/arc-options.php:729
+msgid "Architect Options"
+msgstr ""
+
+#: ../admin/php/arc-options.php:728
+msgid "<span class=\"dashicons dashicons-admin-settings\"></span>Options"
+msgstr ""
+
+#: ../admin/php/class_arcBuilderAdmin.php:30
+msgid "Comments"
+msgstr ""
+
+#: ../admin/php/class_arcBuilderAdmin.php:35
+msgid ""
+"Drag and drop the Blueprints to appear on this page from Disable to Enabled. "
+"To show this page's own content, use a single page type Blueprint. The "
+"comments option is a built in."
+msgstr ""
+
+#: ../admin/php/class_arcBuilderAdmin.php:36
+msgid ""
+"NOTE: For these Blueprints to show, you <strong>must</strong> set the "
+"Template to <strong>Architect Builder</strong> in the <strong>Page "
+"Attributes</strong> settings at the right."
+msgstr ""
+
+#: ../admin/php/class_arcBuilderAdmin.php:43
+msgid ""
+"Select the Blueprints to show and drag & drop to re-order them. These are "
+"optional."
+msgstr ""
+
+#: ../admin/php/class_arcBuilderAdmin.php:44
+msgid "Blueprints"
+msgstr ""
+
+#: ../admin/php/class_arcBuilderAdmin.php:64
+msgid "Show Blueprints for: Any device"
+msgstr ""
+
+#: ../admin/php/class_arcBuilderAdmin.php:69
+msgid ""
+"This is the default Blueprint used on any device except when overridden by "
+"the phone or tablet Blueprints"
+msgstr ""
+
+#: ../admin/php/class_arcBuilderAdmin.php:73
+msgid "Show Blueprints for: Phones"
+msgstr ""
+
+#: ../admin/php/class_arcBuilderAdmin.php:81
+msgid "Show Blueprints for: Tablets"
+msgstr ""
+
+#: ../admin/php/class_arcBuilderAdmin.php:107
+msgid "Builder wrapper formatting"
+msgstr ""
+
+#: ../admin/php/class_arcBuilderAdmin.php:111
+#: ../admin/php/class_arcBuilderAdmin.php:143
+msgid "Width"
+msgstr ""
+
+#: ../admin/php/class_arcBuilderAdmin.php:122
+#: ../admin/php/class_arcBuilderAdmin.php:154
+#: ../admin/php/class_arc_blueprints_designer.php:901
+#: ../admin/php/class_arc_blueprints_designer.php:2357
+msgid "Left"
+msgstr ""
+
+#: ../admin/php/class_arcBuilderAdmin.php:123
+#: ../admin/php/class_arcBuilderAdmin.php:156
+#: ../admin/php/class_arc_blueprints_designer.php:903
+#: ../admin/php/class_arc_blueprints_designer.php:2358
+msgid "Right"
+msgstr ""
+
+#: ../admin/php/class_arcBuilderAdmin.php:126
+#: ../admin/php/class_arcBuilderAdmin.php:158
+msgid "Float"
+msgstr ""
+
+#: ../admin/php/class_arcBuilderAdmin.php:134
+#: ../admin/php/class_arcBuilderAdmin.php:167
+#: ../admin/php/class_arc_blueprints_designer.php:2960
+#: ../shared/architect/php/arc-functions.php:201
+msgid "Margins"
+msgstr ""
+
+#: ../admin/php/class_arcBuilderAdmin.php:139
+msgid "Blueprints wrapper formatting"
+msgstr ""
+
+#: ../admin/php/class_arcBuilderAdmin.php:155
+#: ../admin/php/class_arc_blueprints_designer.php:902
+msgid "Centre"
+msgstr ""
+
+#: ../admin/php/class_arcBuilderAdmin.php:159
+msgid "When set to centre, left and right margins will always be ignored."
+msgstr ""
+
+#: ../admin/php/class_arcBuilderAdmin.php:175
+#: ../admin/php/class_arc_blueprints_designer.php:3542
+#: ../shared/architect/php/arc-functions.php:179
+msgid "Padding"
+msgstr ""
+
+#: ../admin/php/class_arcBuilderAdmin.php:180
+#: ../admin/php/class_arc_blueprints_designer.php:2319
+#: ../admin/php/class_arc_blueprints_designer.php:3521
+#: ../shared/architect/php/arc-functions.php:153
+msgid "Background"
+msgstr ""
+
+#: ../admin/php/class_arcBuilderAdmin.php:205 ../arc-admin.php:607
+msgid "Architect Builder"
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:143
+msgid "Sliders"
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:144
+msgid "Grids"
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:145
+#: ../admin/php/class_arc_blueprints_designer.php:530
+msgid "Tabbed"
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:146
+#: ../admin/php/class_arc_blueprints_designer.php:531
+#: ../admin/php/class_arc_blueprints_designer.php:544
+msgid "Masonry"
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:147
+#: ../admin/php/class_arc_blueprints_designer.php:533
+#: ../admin/php/class_arc_blueprints_designer.php:546
+#: ../admin/php/class_arc_blueprints_designer.php:649
+msgid "Accordion"
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:148
+#: ../admin/php/class_arc_blueprints_designer.php:532
+#: ../admin/php/class_arc_blueprints_designer.php:545
+#: ../admin/php/class_arc_blueprints_designer.php:634
+msgid "Tabular"
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:149 ../arc-admin.php:393
+msgid "Import"
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:189
+msgid "Shortname"
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:190
+#: ../admin/php/class_arc_blueprints_designer.php:1020
+#: ../shared/thirdparty/php/class-tgm-plugin-activation.php:1386
+msgid "Type"
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:191
+#: ../admin/php/class_arc_blueprints_designer.php:1714
+msgid "Content source"
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:192
+#: ../admin/php/class_arc_blueprints_designer.php:429
+msgid "Description"
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:324
+msgid "Steps:"
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:417
+msgid "Blueprint Short Name"
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:419
+#: ../admin/php/class_arc_blueprints_designer.php:422
+msgid "Letters, numbers, dashes only. "
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:419
+#: ../admin/php/class_arc_blueprints_designer.php:422
+msgid "Use this in shortcodes, template tags, and CSS classes"
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:432
+msgid ""
+"A short description to help you or others know what this Blueprint is for"
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:439
+msgid "Custom fields"
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:443
+msgid ""
+"If you add custom fields to a Blueprint it adds many more fields to the "
+"form. <strong>This can cause some fields not to save</strong>. Please read "
+"this post by Woo Themes for solutions:"
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:451
+msgid "Animation"
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:453
+msgid ""
+"To use Animation settings, first enable Animation in <em>Architect</em> > "
+"<em>Options</em> > <em>Animation</em>."
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:459
+msgid "Intended Device"
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:462
+msgid ""
+"Choose the device you intend to display this Blueprint on. This is currently "
+"for information purposes only. That is, so anyone else working with this "
+"Blueprint is aware of why it is configured the way it is."
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:465
+msgid "Any"
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:466
+msgid "Tablet"
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:467
+msgid "Phone"
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:470
+msgid "Device"
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:471
+msgid ""
+"Choose the device you intend to display this Blueprint on. This is currently "
+"for information purposes only. That is, co anyone else working with this "
+"Blueprint is aware."
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:528
+msgid "Basic"
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:529
+msgid "Slider"
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:543
+msgid "Grid/Single"
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:605
+msgid ""
+"Each post in WordPress is - in a coding context - displayed in its own box. "
+"In Architect we call that box a <strong>Panel</strong>. So when you see the "
+"term Panel, it means an individual post layout.\n"
+"            <br>Panels can be laid out beside each other as in grids, "
+"masonry and tabular; or layered as in sliders, tabbed and accordions\n"
+"            <br>Note: The term Posts is used but refers generically to any "
+"WordPress post type or custom post type."
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:621
+msgid ""
+"<strong>Grid</strong> is for flat designs like single posts, blog excerpts "
+"and magazine grids.<br>\n"
+"<br><strong>Masonry</strong> is like Basic but formats for a Pinterest-like "
+"design.<br>\n"
+"<br><strong>Slider</strong> for making sliders like featured posts, image "
+"slideshows etc.<br>\n"
+"<br><strong>Tabbed</strong> for tabbed designs.<br>\n"
+"<br><strong>Tabular</strong> displays the content in a table, and applies "
+"extra controls.<br>\n"
+"<br><em>Note: To use Tabular, make sure your Content Layout is in a table-"
+"like design - that is, all fields on a single row</em><br>\n"
+"<br><strong>Accordion</strong> for a vertical Accordion design. i.e. posts "
+"in a single column.<br>\n"
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:641
+msgid "Table column titles"
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:655
+msgid "Accordion closed"
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:661
+msgid "When enabled, accordions will be closed on startup."
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:665
+msgid "Accordion titles"
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:679
+msgid "Number to show"
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:684
+msgid "Limit posts"
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:690
+msgid "Each panel displays a single post from the selected content type."
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:691
+msgid "Architect Lite is always limited to a maximum of 15 posts/pages"
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:694
+msgid "Limit number of posts to show to"
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:700
+msgid "This is how many posts will show if Limit enabled above"
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:705
+msgid "Panels across"
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:710
+#: ../admin/php/class_arc_blueprints_designer.php:714
+msgid "Wide screen"
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:715
+msgid ""
+"Number of panels across on a wide screen as set in the breakpoints options. "
+"<br><br>In sliders, this would usually be one."
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:724
+#: ../admin/php/class_arc_blueprints_designer.php:728
+msgid "Medium screen"
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:729
+msgid ""
+"Number of panels across on a medium screen as set in the breakpoints options"
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:748
+#: ../admin/php/class_arc_blueprints_designer.php:752
+msgid "Narrow screen"
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:753
+msgid ""
+"Number of panels across on a narrow screen as set in the breakpoints options"
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:774
+msgid "Panel dimensions"
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:779
+msgid "Minimum panel width"
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:788
+msgid "Panel Height Type"
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:796
+msgid "Fluid"
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:797
+msgid "Exact"
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:798
+msgid "Max"
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:799
+msgid "Min"
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:802
+msgid "Height type"
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:803
+msgid ""
+"Choose if you want an exact height or not for the panels. If you want "
+"totally fluid, choose Min, and set a height of 0."
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:810
+msgid "Panel Height px"
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:822
+msgid "Height"
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:823
+msgid ""
+"Set a height in pixels for the panel according to the height type you chose."
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:828
+msgid "Panel margins"
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:848
+msgid "Exclude top/left/right margins on outer panels"
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:881
+msgid "Blueprint settings"
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:892
+msgid "Blueprint max width"
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:894
+msgid ""
+"Set a max width to stop spillage when the container is larger than you want "
+"the Blueprint to be."
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:905
+msgid "Blueprint align"
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:921
+msgid "Show page title on single and archive pages"
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:930
+msgid ""
+"When on an Archive page, hide the archive prefix from Architect > Options > "
+"Language"
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:940
+msgid "Enter a title to display above the Blueprint"
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:997
+msgid "Sliders & Tabbed"
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:1005
+#: ../admin/php/class_arc_blueprints_designer.php:1015
+msgid "Slider engine"
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:1016
+msgid ""
+"Sliders and Tabbed are controlled by a slider engine. Developers can add "
+"their own"
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:1023
+msgid "Bullets,Titles, Labels, Numbers, Thumbnails or none"
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:1028
+msgid "Titles & Labels"
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:1064
+msgid "Tab width type"
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:1065
+msgid ""
+"Fluid: Adjusts to the width of the content<br>Even: Distributes evenly "
+"across the width of the blueprint<br>Fixed: Set a specific width"
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:1073
+msgid "Fixed width"
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:1082
+msgid "Max length (characters)"
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:1086
+msgid "0 for no max"
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:1122
+#: ../admin/php/class_arc_blueprints_designer.php:2272
+#: ../shared/thirdparty/php/redux-extensions/config.php:338
+msgid "Layout"
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:1132
+msgid "Bottom, top,left, right"
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:1162
+msgid "Bottom, top"
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:1181
+msgid ""
+"Select whether navigator should appear over the content area, or outside of "
+"it"
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:1326
+#: ../admin/php/class_arc_blueprints_designer.php:2482
+#: ../admin/php/class_arc_blueprints_designer.php:2712
+#: ../admin/php/class_arc_blueprints_designer.php:2945
+#: ../admin/php/class_arc_blueprints_designer.php:2974
+msgid "None"
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:1327
+#: ../admin/php/class_arc_blueprints_designer.php:2484
+msgid "Circle"
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:1328
+#: ../admin/php/class_arc_blueprints_designer.php:2485
+msgid "Square"
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:1337
+#: ../admin/php/class_arc_blueprints_designer.php:1342
+msgid "Number of thumbs visible"
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:1343
+msgid ""
+"Number of thumbs to fully show at once in the navigator. If Continuous is "
+"enabled, partial thumbs will additionally be shown left and right of the "
+"full thumbs."
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:1372
+msgid "Transitions"
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:1388
+msgid "When transition is set to fade, slides are not draggable"
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:1401
+msgid "Time taken for the transition to display"
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:1421
+msgid "Set to zero to disable autoplay"
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:1422
+msgid ""
+"Time slide is shown with no transitions active. Set to zero to disable "
+"autoplay"
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:1495
+msgid ""
+"If your content type is Defaults and you choose to enable overrides, "
+"pagination will likely mess up if this Blueprint is displayed on the "
+"standard WP blog page."
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:1498
+msgid "Settings"
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:1505
+msgid "Posts per page"
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:1515
+msgid "Pagination location"
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:1527
+msgid "Blog Pagination"
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:1540
+msgid "Single Post Pagination"
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:1553
+msgid "Archives Pagination"
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:1566
+msgid "Custom text for Previous"
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:1572
+msgid "Custom text for Next"
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:1603
+msgid "Displaying Blueprints"
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:1612
+#: ../admin/php/class_arc_blueprints_designer.php:1774
+#: ../admin/php/class_arc_blueprints_designer.php:2187
+#: ../admin/php/class_arc_blueprints_designer.php:3235
+#: ../admin/php/class_arc_blueprints_designer.php:3639
+msgid "Online documentation"
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:1616
+#: ../admin/php/class_arc_blueprints_designer.php:1778
+#: ../admin/php/class_arc_blueprints_designer.php:2191
+#: ../admin/php/class_arc_blueprints_designer.php:3239
+#: ../admin/php/class_arc_blueprints_designer.php:3643
+msgid "Architect Online Documentation"
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:1616
+#: ../admin/php/class_arc_blueprints_designer.php:1778
+#: ../admin/php/class_arc_blueprints_designer.php:2191
+#: ../admin/php/class_arc_blueprints_designer.php:3239
+#: ../admin/php/class_arc_blueprints_designer.php:3643
+msgid "This is a growing resource. Please check back regularly."
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:1757
+msgid ""
+"With Architect Pro you can enable an extra content type called *Snippets*.\n"
+"  These give you a third method of creating content that doesn't fit into "
+"the post or page types.\n"
+"It came about with my own need to create grids of product features. I didn't "
+"want to fill up pages or posts, so created Snippets for these small content "
+"bites.\n"
+"You can use them however you like though, e.g Testimonials, FAQs, Features, "
+"Contacts, etc.\n"
+"                "
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:2159
+msgid ""
+"As a shorthand, you can prefix your CSS class with MYBLUEPRINT and Architect "
+"will substitute the correct class for this Blueprint. e.g. MYBLUEPRINT "
+"{border-radius:5px;}"
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:2173
+msgid "Blueprint styling"
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:2226
+msgid "Content Layout "
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:2232
+#: ../admin/php/class_arc_blueprints_designer.php:2251
+msgid "Components to show"
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:2236
+msgid ""
+"Feature can be either the Featured Image of the post, or the Featured Video "
+"(added by Architect)."
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:2242
+msgid "Feature"
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:2243
+msgid "Meta1"
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:2244
+msgid "Meta2"
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:2245
+msgid "Meta3"
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:2246
+#: ../admin/php/class_arc_blueprints_designer.php:3080
+msgid "Custom 1"
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:2247
+#: ../admin/php/class_arc_blueprints_designer.php:3081
+msgid "Custom 2"
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:2248
+#: ../admin/php/class_arc_blueprints_designer.php:3082
+msgid "Custom 3"
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:2252
+msgid "Select which base components to include in this post's layout."
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:2256
+#: ../admin/php/class_arc_blueprints_designer.php:2267
+msgid "Number of custom fields"
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:2265
+msgid ""
+"Each of the three Custom groups can have multiple custom fields. Enter the "
+"<strong>total</strong> number of custom fields, click Save/Update"
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:2268
+msgid ""
+"After selecting upto three custom field groups, you now need to set the "
+"total number of custom fields you will be displaying so Architect can create "
+"the settings tabs for each one.<br><br><strong>You will need to Publish/"
+"Update to see those new tabs.</strong>"
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:2278
+msgid "Drag and drop to reposition and resize components"
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:2293
+msgid "Post layout"
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:2294
+msgid ""
+"Drag and drop to sort the order of your elements. <strong>Heights are fluid, "
+"so not indicative of how it will look on the page</strong>."
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:2298
+msgid "Feature type"
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:2302
+msgid "Videos"
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:2303
+msgid "Choose whether Feature is images or videos."
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:2307
+#: ../admin/php/class_arc_blueprints_designer.php:2322
+msgid "Feature location"
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:2315
+msgid "In Components Group"
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:2316
+msgid "Outside components"
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:2317
+msgid "In body/excerpt left"
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:2318
+msgid "In body/excerpt right"
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:2323
+msgid "Select where within the post layout you want to display the Feature."
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:2327
+#: ../admin/php/class_arc_blueprints_designer.php:2344
+msgid "Feature in"
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:2345
+msgid ""
+"Set whether to display the Feature in the Excerpt, the Body or both. The "
+"default is both.<br><br> If you are using the Excerpt in full layouts as an "
+"introduction paragraph, this is one example of when you would turn off the "
+"Feature for the Excerpt."
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:2349
+#: ../admin/php/class_arc_blueprints_designer.php:2361
+msgid "Components area position"
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:2355
+msgid "Top"
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:2356
+msgid "Bottom"
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:2362
+msgid "Position for all the components as a group."
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:2364
+msgid ""
+"Left/right will only take affect when components area width is less than 100%"
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:2367
+msgid "Components area width %"
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:2377
+msgid "Components area width"
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:2378
+msgid ""
+"Set the overall width for the components area. Necessary for left or right "
+"positioning of sections"
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:2382
+msgid "Nudge components area up/down %"
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:2393
+msgid "Nudge components are up/down"
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:2394
+msgid ""
+"Enter percent to move the components area up/down. </br<br>NOTE: These "
+"measurements are percentage of the post layout."
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:2398
+msgid "Nudge components area left/right %"
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:2409
+msgid "Nudge components are left/right"
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:2410
+msgid ""
+"Enter percent to move the components area left/right. </br><br>NOTE: These "
+"measurements are percentage of the post layout."
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:2414
+msgid "Feature as thumbnail width %"
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:2429
+msgid "Feature as thumbnail width"
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:2430
+msgid ""
+"When you have set the featured image to appear in the body/excerpt, this "
+"determines its width."
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:2434
+#: ../admin/php/class_arc_blueprints_designer.php:2443
+msgid "Make header and footer"
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:2444
+msgid ""
+"When enabled, Architect will automatically wrap the header and footer "
+"components of the post layout in header and footer tags to maintain "
+"compatibility with current WP layout trends.<br><br>However, some layouts, "
+"such as tabular, are not suited to using the headers and footers."
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:2448
+msgid "Link whole panel"
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:2456
+msgid ""
+"If enabled, clicking anywhere on the panel will take the viewer to the post. "
+"Note: No other links within the panel will work."
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:2474
+msgid "Title prefix"
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:2483
+msgid "Disc"
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:2486
+msgid "Thumbnail"
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:2487
+msgid "Number"
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:2488
+msgid "Number with leading zero"
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:2489
+msgid "Alpha lower"
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:2490
+msgid "Alpha upper"
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:2491
+msgid "Roman lower"
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:2492
+msgid "Roman upper"
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:2493
+msgid "Greek lower"
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:2494
+msgid "Greek upper"
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:2495
+msgid "Latin lower"
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:2496
+msgid "Latin upper"
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:2497
+msgid "Armenian"
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:2498
+msgid "Georgian"
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:2507
+msgid "Title margins"
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:2508
+msgid ""
+"You must set a left margin on titles for bullets to show. This is in pixels"
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:2521
+msgid "Title thumbnail width"
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:2533
+msgid "Prefix separator"
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:2547
+msgid "Link titles"
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:2554
+msgid "If enabled, clicking on the Title will take the viewer to the post."
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:2559
+#: ../admin/php/class_arc_blueprints_designer.php:3138
+msgid "Wrapper tag"
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:2573
+msgid "Select the wrapper element for the title field"
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:2583
+#: ../admin/php/class_arc_blueprints_designer.php:3406
+msgid "Meta"
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:2587
+msgid ""
+"Available tags are <span class=\"pzarc-text-highlight\">%author%,   %email"
+"%,   %date%,   %categories%,   %tags,   %commentslink%,   %editlink%,   %id"
+"%</span>. For custom taxonomies, prefix with ct:. e.g. To display the Woo "
+"Testimonials category, you would use %ct:testimonial-category%."
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:2588
+msgid "Allowed HTML tags:"
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:2589
+msgid ""
+"Use shortcodes to add custom functions to meta. e.g. [add_to_cart id=\"%id%"
+"\"]"
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:2590
+msgid ""
+"Note: Enclose any author related text in <span class=\"pzarc-text-highlight"
+"\">//</span> to hide it when using excluded authors."
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:2591
+msgid ""
+"Note: The email address will be encoded to prevent automated harvesting by "
+"spammers."
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:2597
+msgid "Meta1 config"
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:2605
+msgid "Meta2 config"
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:2612
+msgid "Meta3 config"
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:2620
+#: ../admin/php/class_arc_blueprints_designer.php:3105
+msgid "Date format"
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:2623
+msgid ""
+"See here for information on <a href=\"http://codex.wordpress.org/"
+"Formatting_Date_and_Time\" target=_blank>formatting date and time</a>"
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:2626
+msgid "Excluded authors"
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:2634
+msgid ""
+"Select any authors here you want to exclude from showing when the %author% "
+"or %email% tag is used."
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:2644
+msgid "Body/excerpt"
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:2649
+msgid "Maximize body"
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:2656
+msgid "Make excerpt or body 100% width if no featured image."
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:2660
+#: ../admin/php/class_arc_blueprints_designer.php:3458
+msgid "Excerpts"
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:2667
+msgid "Excerpt length (words)"
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:2675
+msgid "Truncation indicator"
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:2682
+msgid "Display entered excerpts only"
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:2689
+msgid ""
+"Only display excerpts that are actually entered in the Excerpt field of the "
+"post editor"
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:2692
+msgid "Read More"
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:2700
+msgid "Responsive"
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:2708
+msgid "Hide Body at breakpoint"
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:2713
+msgid "Small screen "
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:2714
+msgid "Medium screen "
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:2717
+msgid "Breakpoints can be changed in Architect Options"
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:2720
+msgid "Use responsive font sizes"
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:2725
+msgid "Enabling this will override all other CSS for body/excerpt text"
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:2729
+msgid "Font size - large screen "
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:2730
+msgid " and above"
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:2754
+msgid "Font size - medium screen "
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:2779
+msgid "Font size - small screen "
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:2823
+msgid ""
+"Left and right margins are included in the image width in the designer. e.g "
+"if Feature width is 25% and right margin is 3%, Feature width will be "
+"adjusted to 22%"
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:2826
+msgid "Image cropping"
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:2833
+msgid "Respect focal point"
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:2834
+msgid "Centre focal point"
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:2835
+msgid "Crop to centre"
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:2836
+msgid "Preserve aspect, fit to width"
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:2837
+msgid "Preserve aspect, fit to height"
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:2842
+msgid "Use embedded images"
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:2852
+msgid ""
+"Enable this to use the first found attached image in the body of the post if "
+"no featured image is set."
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:2855
+#: ../admin/php/class_arc_blueprints_designer.php:2866
+msgid "Use retina images"
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:2867
+msgid ""
+"If enabled, a retina version of the featured image will be created and "
+"displayed. <strong>Ensure the global setting in Architect Options is on as "
+"well</strong>. NOTE: This will make your site load slower on retina devices, "
+"so you may only want consider which panels you have it enabled on."
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:2871
+msgid "Filler image"
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:2876
+msgid "Use a filler image from lorempixel if post has no image."
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:2879
+#: ../shared/architect/php/content-types/dummy/class_arc_content_dummy.php:53
+msgid "Random Picture"
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:2915
+msgid "Maximum dimensions"
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:2917
+msgid ""
+"The displayed width of the image is determined by it's size in the Content "
+"Layout designer. This setting is used limit the size of the image created "
+"and used."
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:2938
+msgid "Background images effect on screen resize"
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:2941
+msgid "Scale Vertically & Horizontally "
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:2941
+msgid "Trim horizontally, fill height"
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:2941
+msgid "None uses default image sizing settings"
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:2943
+msgid "Scale"
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:2944
+msgid "Trim"
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:2970
+msgid "Link to"
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:2975
+msgid "Post"
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:2976
+msgid "Attachment page"
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:2977
+msgid "Lightbox"
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:2978
+#: ../admin/php/class_arc_blueprints_designer.php:2996
+msgid "Specific URL"
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:2983
+msgid "Set what happens when a viewer clicks on the image"
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:2986
+msgid "Use alternate lightbox"
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:2993
+msgid ""
+"This adds rel=\"lightbox\" to image links. Your lightbox plugin needs to "
+"support that (most do)."
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:3004
+msgid "Enter the URL that all images will link to"
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:3007
+msgid "Specific URL tooltip"
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:3014
+msgid "Enter the text that appears when the user hovers over the link"
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:3017
+msgid "Image Captions"
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:3026
+msgid "Centre feature"
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:3036
+msgid ""
+"Centres the image horizontally. It is best to display it on its own row, and "
+"the other components to be 100% wide."
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:3072
+msgid "Note: Only fields with content will show on the Blueprint."
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:3075
+msgid "Show in custom field group"
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:3086
+msgid "Field name"
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:3092
+msgid ""
+"If a custom field is not shown in the dropdown, it is because it has no data "
+"yet."
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:3096
+msgid "Field type"
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:3108
+msgid ""
+"Visit here for information on <a href=\"http://codex.wordpress.org/"
+"Formatting_Date_and_Time\" target=_blank>formatting date and time</a>"
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:3113
+msgid "Decimals"
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:3120
+msgid "Number of decimal places."
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:3125
+msgid "Decimal point character"
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:3132
+msgid "Thousands separator"
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:3153
+msgid "Select the wrapper element for this custom field"
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:3163
+msgid "Link field"
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:3172
+msgid "Prefix text"
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:3177
+msgid "Prefix image"
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:3182
+msgid "Suffix text"
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:3187
+msgid "Suffix image"
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:3192
+msgid "Prefix/suffix images width"
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:3200
+msgid "Prefix/suffix images height"
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:3221
+#: ../admin/php/class_arc_blueprints_designer.php:3625
+msgid "Help"
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:3250
+msgid "Content Layout: Setup the layout of the content itself."
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:3311
+msgid "Styling Panels"
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:3314
+msgid "To style panels..."
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:3324
+msgid "Content General Styling"
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:3391
+msgid ""
+"Note: If your Titles are linked, you will need to set their colour in the "
+"Links section"
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:3424
+msgid "Body content"
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:3428
+msgid ""
+"Note: If your theme styles .entry-content and .entry-content p separately, "
+"you may need to style both there too"
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:3431
+msgid "Full content"
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:3444
+msgid "Content paragraphs"
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:3462
+msgid ""
+"Note: If your theme styles .entry-excerpt and .entry-excerpt p separately, "
+"you may need to style both there too"
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:3506
+msgid "Featured image"
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:3534
+#: ../shared/architect/php/arc-functions.php:266
+msgid "Border"
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:3550
+msgid "Margin"
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:3615
+msgid ""
+"As a shorthand, you can prefix your CSS class with MYBLUEPRINT or MYPANELS "
+"and Architect will substitute the correct class for this Blueprint. e.g. "
+"MYPANELS .entry-content{border-radius:5px;}"
+msgstr ""
+
+#: ../admin/php/class_arc_blueprints_designer.php:3751
+msgid ""
+"This is an example only and thus only a <span style=\"border-bottom: 3px "
+"double;\">general guide</span> to how the panels will look."
+msgstr ""
+
+#: ../admin/php/class_arc_misc_metaboxes.php:53
+msgid "Code"
+msgstr ""
+
+#: ../admin/php/class_arc_misc_metaboxes.php:54
+msgid "Enter the URL, embed code or a video shortcode."
+msgstr ""
+
+#: ../admin/php/class_arc_misc_metaboxes.php:64
+msgid "Featured video"
+msgstr ""
+
+#: ../admin/php/class_arc_misc_metaboxes.php:86
+msgid "Company name"
+msgstr ""
+
+#: ../admin/php/class_arc_misc_metaboxes.php:91
+msgid "Position"
+msgstr ""
+
+#: ../admin/php/class_arc_misc_metaboxes.php:96
+msgid "Web address"
+msgstr ""
+
+#: ../admin/php/class_arc_misc_metaboxes.php:98
+msgid "Please include http:// or https://"
+msgstr ""
+
+#: ../admin/php/class_arc_misc_metaboxes.php:107
+msgid "Extra Information"
+msgstr ""
+
+#: ../admin/php/edd-architect-plugin.php:60
+msgid "Licence"
+msgstr ""
+
+#: ../admin/php/edd-architect-plugin.php:77
+msgid "Architect Licence Options"
+msgstr ""
+
+#: ../admin/php/edd-architect-plugin.php:100
+msgid "Licence Key"
+msgstr ""
+
+#: ../admin/php/edd-architect-plugin.php:105
+msgid "Enter your license key"
+msgstr ""
+
+#: ../admin/php/edd-architect-plugin.php:111
+#: ../admin/php/edd-architect-plugin.php:122
+msgid "Activate Licence"
+msgstr ""
+
+#: ../admin/php/edd-architect-plugin.php:117
+msgid "Deactivate Licence"
+msgstr ""
+
+#: ../admin/php/edd-architect-plugin.php:126
+msgid "Active"
+msgstr ""
+
+#: ../admin/php/edd-architect-plugin.php:237
+msgid "Remaining activations: "
+msgstr ""
+
+#: ../admin/php/edd-architect-plugin.php:238
+msgid "Licence owner: "
+msgstr ""
+
+#: ../admin/php/headway/arc-headway-block-options.php:87
+msgid "Blueprint (required)"
+msgstr ""
+
+#: ../admin/php/headway/arc-headway-block-options.php:90
+msgid ""
+"Choose a Blueprint to display on all devices (except when overridden by the "
+"phone or tablet Blueprint)"
+msgstr ""
+
+#: ../admin/php/headway/arc-headway-block-options.php:95
+msgid "Blueprint Tablet (optional)"
+msgstr ""
+
+#: ../admin/php/headway/arc-headway-block-options.php:98
+msgid "Choose a Blueprint to display on tablets"
+msgstr ""
+
+#: ../admin/php/headway/arc-headway-block-options.php:103
+msgid "Blueprint Phone (optional)"
+msgstr ""
+
+#: ../admin/php/headway/arc-headway-block-options.php:106
+msgid "Choose a Blueprint to display on phones"
+msgstr ""
+
+#: ../admin/php/headway/arc-headway-block-options.php:135
+msgid "IDs"
+msgstr ""
+
+#: ../admin/php/headway/arc-headway-block-options.php:137
+msgid ""
+"Enter  comma separated list of IDs of content to display instead of the "
+"Blueprint's preset"
+msgstr ""
+
+#: ../admin/php/headway/arc-headway-block-options.php:142
+#: ../shared/architect/php/class_arc_widget.php:157
+msgid "Taxonomy"
+msgstr ""
+
+#: ../admin/php/headway/arc-headway-block-options.php:150
+msgid "Terms"
+msgstr ""
+
+#: ../admin/php/headway/arc-headway-block-options.php:152
+msgid ""
+"Enter taxonomy terms as a comma separated list. This is the WP slug name of "
+"the term."
+msgstr ""
+
+#: ../admin/php/headway/arc-headway-block-options.php:157
+msgid "Show page title"
+msgstr ""
+
+#: ../arc-admin.php:110
+msgid "Architect requires Redux Framework"
+msgstr ""
+
+#: ../arc-admin.php:110
+msgid "One final step in installing Architect."
+msgstr ""
+
+#: ../arc-admin.php:110
+msgid ""
+"It cannot function without the Redux Framework plugin. You need to install "
+"and/or activate Redux."
+msgstr ""
+
+#: ../arc-admin.php:110
+msgid ""
+"Redux is the backbone of Architect, providing all the necessary code "
+"libraries for Architect's fields and options."
+msgstr ""
+
+#: ../arc-admin.php:110
+msgid ""
+"There should be another message with a link to make installing and "
+"activating Redux easy. If you can't find it, contact PizazzWP support."
+msgstr ""
+
+#: ../arc-admin.php:247 ../arc-admin.php:479
+msgid "Getting started"
+msgstr ""
+
+#: ../arc-admin.php:255
+msgid "Tools"
+msgstr ""
+
+#: ../arc-admin.php:261
+msgid "Help & Support"
+msgstr ""
+
+#: ../arc-admin.php:333
+msgid "Rebuild Architect CSS cache"
+msgstr ""
+
+#: ../arc-admin.php:334
+msgid ""
+"Sometimes the CSS cache file may not exist or may even become scrambled and "
+"layouts will not look right. If so, simply click the Rebuild button and it "
+"will be recreated. If the problem persists, contact Pizazz Support at "
+"<strong>support@pizazzwp.com</strong>."
+msgstr ""
+
+#: ../arc-admin.php:337
+msgid "Rebuild Architect CSS Cache"
+msgstr ""
+
+#: ../arc-admin.php:337
+msgid "Rebuild"
+msgstr ""
+
+#: ../arc-admin.php:343
+msgid ""
+"Architect CSS cache has been rebuilt. Your site should look awesome again!"
+msgstr ""
+
+#: ../arc-admin.php:344
+msgid "If your site is using a cache plugin or service, clear that cache too."
+msgstr ""
+
+#: ../arc-admin.php:352
+msgid "Clear Architect images cache"
+msgstr ""
+
+#: ../arc-admin.php:354
+msgid ""
+"If you update or change images in any posts,sometimes the image cache may "
+"get out-of-sync. In that case, you can refresh the thumbs image cache to "
+"ensure your site visitors are seeing the correct images."
+msgstr ""
+
+#: ../arc-admin.php:356
+msgid ""
+"Please note: Refreshing the cache causes no problems other than the next "
+"person who visits your site may have to wait a little longer as the cache "
+"images get recreated."
+msgstr ""
+
+#: ../arc-admin.php:356
+msgid "No images in any post will be affected"
+msgstr ""
+
+#: ../arc-admin.php:360
+msgid "Empty Architect image cache"
+msgstr ""
+
+#: ../arc-admin.php:360
+msgid "Clear"
+msgstr ""
+
+#: ../arc-admin.php:365
+msgid ""
+"Architect image cache cleared. It will be recreated next time someone vists "
+"your site."
+msgstr ""
+
+#: ../arc-admin.php:375
+msgid "Import Blueprint or Preset"
+msgstr ""
+
+#: ../arc-admin.php:384
+msgid ""
+"<strong>Blueprints</strong>: If you have a <strong>Blueprint</strong> in a ."
+"txt format, you may import it by uploading it here. The new Blueprint will "
+"then be opened ready for editing. Blueprint export files can be created from "
+"context menu on the Blueprint listing."
+msgstr ""
+
+#: ../arc-admin.php:385
+msgid ""
+"<strong>Presets</strong>: If you have a <strong>Preset</strong> in a .zip "
+"format, you may import it by uploading it here. It will then appear in the "
+"Blueprints, Preset Selector"
+msgstr ""
+
+#: ../arc-admin.php:389
+msgid "Select Blueprint .txt file or Preset zip file"
+msgstr ""
+
+#: ../arc-admin.php:399
+msgid "A Preset with that name already exists."
+msgstr ""
+
+#: ../arc-admin.php:410
+msgid "No file specified."
+msgstr ""
+
+#: ../arc-admin.php:413
+msgid "File must be a txt or zip file."
+msgstr ""
+
+#: ../arc-admin.php:480 ../arc-admin.php:537
+msgid "Usage"
+msgstr ""
+
+#: ../arc-admin.php:481
+msgid "Latest news"
+msgstr ""
+
+#: ../arc-admin.php:482 ../arc-admin.php:670
+msgid "Support"
+msgstr ""
+
+#: ../arc-admin.php:483 ../arc-admin.php:703
+msgid "Shoutouts"
+msgstr ""
+
+#: ../arc-admin.php:493
+msgid ""
+"From the <em>Architect</em> > <em>Blueprints</em> listing, click the button "
+"that says <em>Create a new Blueprint from a Preset design</em>"
+msgstr ""
+
+#: ../arc-admin.php:494
+msgid "Browse the various Presets and select one to use"
+msgstr ""
+
+#: ../arc-admin.php:495
+msgid ""
+"To create a new Blueprint with the Preset's inbuilt styles, click <em>Use "
+"styled</em>"
+msgstr ""
+
+#: ../arc-admin.php:496
+msgid ""
+"To create a new Blueprint without any inbuilt styles, click <em>Use "
+"unstyled</em>. Note, the Blueprint when dispalyed will inherit some styling "
+"from your theme."
+msgstr ""
+
+#: ../arc-admin.php:497
+msgid ""
+"Change the <em>Title</em> and <em>Blueprint Short name</em> to whatever is "
+"suitable"
+msgstr ""
+
+#: ../arc-admin.php:498
+msgid "Click <em>Update</em> to save."
+msgstr ""
+
+#: ../arc-admin.php:499
+msgid ""
+"Within a WordPres page or post, add the shortcode <strong>[architect "
+"yourblueprint]</strong> where <em>yourblueprint</em> is the <em>Shortname</"
+"em> you gave the Blueprint."
+msgstr ""
+
+#: ../arc-admin.php:500
+msgid ""
+"Click <em>Update</em> to save and visit that page on your site to see your "
+"awesome Architect Blueprint displayed."
+msgstr ""
+
+#: ../arc-admin.php:504
+msgid "Overview"
+msgstr ""
+
+#: ../arc-admin.php:540
+msgid "Shortcode"
+msgstr ""
+
+#: ../arc-admin.php:541
+msgid ""
+"For example, using shortcodes, you can use any of the following formats:"
+msgstr ""
+
+#: ../arc-admin.php:542 ../arc-admin.php:543 ../arc-admin.php:546
+#: ../arc-admin.php:555
+msgid "blog-page-layout"
+msgstr ""
+
+#: ../arc-admin.php:544 ../arc-admin.php:556
+msgid "thumb-gallery"
+msgstr ""
+
+#: ../arc-admin.php:546
+msgid "blog-page-layout-phone"
+msgstr ""
+
+#: ../arc-admin.php:546
+msgid "blog-page-layout-tablet"
+msgstr ""
+
+#: ../arc-admin.php:548
+msgid ""
+"<em>ids</em> are the specific post, page etc IDs and are used to override "
+"the defined selection for the Blueprint"
+msgstr ""
+
+#: ../arc-admin.php:553
+msgid "Template tag"
+msgstr ""
+
+#: ../arc-admin.php:554
+msgid ""
+"Template tags are inserted in your page templates and the first parameter is "
+"the Blueprint short name, and the optional second one is a list of IDs to "
+"override the defaults."
+msgstr ""
+
+#: ../arc-admin.php:561
+msgid "Widget"
+msgstr ""
+
+#: ../arc-admin.php:567
+msgid "Headway Block"
+msgstr ""
+
+#: ../arc-admin.php:573
+msgid "Action Hooks"
+msgstr ""
+
+#: ../arc-admin.php:599
+msgid "WP Gallery Shortcode Override"
+msgstr ""
+
+#: ../arc-admin.php:617
+msgid "Latest News"
+msgstr ""
+
+#: ../arc-admin.php:673
+msgid "Currently installed version"
+msgstr ""
+
+#: ../arc-admin.php:677
+msgid "For more detailed help, visit"
+msgstr ""
+
+#: ../arc-admin.php:677
+msgid "Architect documentation at architect4wp.com"
+msgstr ""
+
+#: ../arc-admin.php:678
+msgid ""
+"For <strong>technical support</strong>, either fill out the form below or "
+"email"
+msgstr ""
+
+#: ../arc-admin.php:678
+msgid "support@pizazzwp.com"
+msgstr ""
+
+#: ../arc-admin.php:679
+msgid "For <strong>community and peer-to-peer support</strong>, visit the"
+msgstr ""
+
+#: ../arc-admin.php:679
+msgid "Architect Community"
+msgstr ""
+
+#: ../arc-admin.php:680
+msgid "Things to try first"
+msgstr ""
+
+#: ../arc-admin.php:681
+msgid ""
+"If Blueprints are not displaying as expected, please try emptying your WP "
+"cache if you are using one and then the Architect cache (under "
+"<em>Architect</em> > <em>Tools</em>)"
+msgstr ""
+
+#: ../arc-admin.php:682
+msgid ""
+"If things just aren't working, e.g. nothing displays, the page is broken - "
+"then try deactivating all other plugins. If that fixes things, reactivate "
+"one at a time until you identify the conflict, then let us know what the "
+"plugin is."
+msgstr ""
+
+#: ../arc-admin.php:707
+msgid ""
+"A lot of the magic in Architect is powered by third-party code libraries who "
+"deserve much credit for the awesomeness they bring to Architect:"
+msgstr ""
+
+#: ../arc-admin.php:788
+msgid "No post to duplicate has been supplied!"
+msgstr ""
+
+#: ../arc-admin.php:840
+msgid "(DUPLICATE) "
+msgstr ""
+
+#: ../arc-admin.php:902
+msgid "Duplicate this item"
+msgstr ""
+
+#: ../arc-admin.php:902
+msgid "Duplicate"
+msgstr ""
+
+#: ../arc-admin.php:920
+msgid "No post to export has been supplied!"
+msgstr ""
+
+#: ../arc-admin.php:964
+msgid "Export"
+msgstr ""
+
+#: ../public/php/class_arc_pagination.php:27
+#: ../public/php/class_arc_pagination.php:78
+msgid "Previous post link"
+msgstr ""
+
+#: ../public/php/class_arc_pagination.php:28
+#: ../public/php/class_arc_pagination.php:79
+msgid "Next post link"
+msgstr ""
+
+#: ../public/php/class_arc_pagination.php:65
+msgid "Older"
+msgstr ""
+
+#: ../public/php/class_arc_pagination.php:66
+msgid "Newer"
+msgstr ""
+
+#: ../public/php/class_arc_pagination.php:71
+msgid "<span class=\"meta-nav\">&larr;</span> "
+msgstr ""
+
+#: ../public/php/class_arc_pagination.php:73
+msgid " <span class=\"meta-nav\">&rarr;</span>"
+msgstr ""
+
+#: ../shared/architect/php/arc-check-dependencies.php:70
+#: ../shared/thirdparty/php/class-tgm-plugin-activation.php:161
+msgid "Install Required Plugins"
+msgstr ""
+
+#: ../shared/architect/php/arc-check-dependencies.php:71
+#: ../shared/thirdparty/php/class-tgm-plugin-activation.php:162
+msgid "Install Plugins"
+msgstr ""
+
+#: ../shared/architect/php/arc-check-dependencies.php:72
+#: ../shared/thirdparty/php/class-tgm-plugin-activation.php:163
+#, php-format
+msgid "Installing Plugin: %s"
+msgstr ""
+
+#: ../shared/architect/php/arc-check-dependencies.php:73
+msgid "Something went wrong with the plugin API."
+msgstr ""
+
+#: ../shared/architect/php/arc-check-dependencies.php:84
+#: ../shared/thirdparty/php/class-tgm-plugin-activation.php:175
+msgid "Return to Required Plugins Installer"
+msgstr ""
+
+#: ../shared/architect/php/arc-check-dependencies.php:85
+#: ../shared/thirdparty/php/class-tgm-plugin-activation.php:177
+#: ../shared/thirdparty/php/class-tgm-plugin-activation.php:1952
+msgid "Plugin activated successfully."
+msgstr ""
+
+#: ../shared/architect/php/arc-check-dependencies.php:86
+#, php-format
+msgid "All plugins installed and activated successfully. %s"
+msgstr ""
+
+#: ../shared/architect/php/arc-cpt-blueprints.php:23
+#: ../shared/architect/php/arc-cpt-blueprints.php:24
+msgid "Add new blank Blueprint"
+msgstr ""
+
+#: ../shared/architect/php/arc-cpt-blueprints.php:25
+msgid "Edit Blueprint"
+msgstr ""
+
+#: ../shared/architect/php/arc-cpt-blueprints.php:26
+msgid "New Blueprint"
+msgstr ""
+
+#: ../shared/architect/php/arc-cpt-blueprints.php:27
+msgid "View Blueprint"
+msgstr ""
+
+#: ../shared/architect/php/arc-cpt-blueprints.php:28
+msgid "Search Blueprints"
+msgstr ""
+
+#: ../shared/architect/php/arc-cpt-blueprints.php:29
+msgid "No Blueprints found"
+msgstr ""
+
+#: ../shared/architect/php/arc-cpt-blueprints.php:30
+msgid "No Blueprints found in Trash"
+msgstr ""
+
+#: ../shared/architect/php/arc-cpt-blueprints.php:37
+msgid ""
+"Architect Blueprints are used to create reusable layout Blueprints for use "
+"in your Architect blocks, widgets, shortcodes and WP template tags."
+msgstr ""
+
+#: ../shared/architect/php/arc-cpt-panels.php:21
+#: ../shared/architect/php/arc-cpt-panels.php:22
+msgid "Add New Panel design"
+msgstr ""
+
+#: ../shared/architect/php/arc-cpt-panels.php:23
+msgid "Edit Panel design"
+msgstr ""
+
+#: ../shared/architect/php/arc-cpt-panels.php:24
+msgid "New Panel design"
+msgstr ""
+
+#: ../shared/architect/php/arc-cpt-panels.php:25
+msgid "View Panel design"
+msgstr ""
+
+#: ../shared/architect/php/arc-cpt-panels.php:26
+msgid "Search Panel designs"
+msgstr ""
+
+#: ../shared/architect/php/arc-cpt-panels.php:27
+msgid "No Panel designs found"
+msgstr ""
+
+#: ../shared/architect/php/arc-cpt-panels.php:28
+msgid "No Panel designs found in Trash"
+msgstr ""
+
+#: ../shared/architect/php/arc-cpt-panels.php:35
+msgid ""
+"Architect Panels are used to create reusable panel designs for use in your "
+"Architect blocks, widgets, shortcodes and WP template tags"
+msgstr ""
+
+#: ../shared/architect/php/arc-functions.php:105
+#: ../shared/thirdparty/php/redux-extensions/config.php:262
+#: ../shared/thirdparty/php/redux-extensions/config.php:290
+msgid "Typography"
+msgstr ""
+
+#: ../shared/architect/php/arc-functions.php:107
+msgid ""
+"You can change the typography units to px,em or rem in Architect > Options"
+msgstr ""
+
+#: ../shared/architect/php/arc-functions.php:108
+msgid ""
+"Tip: If you set the typography line height to less than 3, Architect will "
+"use it as a multiplier of the font size.e.g. line-height:1.5."
+msgstr ""
+
+#: ../shared/architect/php/arc-functions.php:227
+msgid "Links"
+msgstr ""
+
+#: ../shared/architect/php/arc-functions.php:286
+msgid "Border Radius"
+msgstr ""
+
+#: ../shared/architect/php/arc-functions.php:287
+msgid "TopLeft, TopRight, BottomLeft, BottomRight"
+msgstr ""
+
+#: ../shared/architect/php/arc-functions.php:1683
+msgid "Preset installed! Go to the Blueprints Preset Selector to use it."
+msgstr ""
+
+#: ../shared/architect/php/arc-functions.php:1685
+msgid ""
+"Preset uploaded but failed to unzip. Please check your folder permissions."
+msgstr ""
+
+#: ../shared/architect/php/class_arc_blueprint_data.php:28
+msgid "Order by"
+msgstr ""
+
+#: ../shared/architect/php/class_arc_blueprint_data.php:44
+msgid "Order direction"
+msgstr ""
+
+#: ../shared/architect/php/class_arc_blueprint_data.php:54
+msgid "Skip N posts"
+msgstr ""
+
+#: ../shared/architect/php/class_arc_blueprint_data.php:61
+msgid ""
+"Note: Skipping breaks pagination. This is a known WordPress issue. Also, "
+"skipping does not work if no post limit set. Again a WP limitation. Use a "
+"high number of posts to show as a workaround"
+msgstr ""
+
+#: ../shared/architect/php/class_arc_blueprint_data.php:64
+msgid "Sticky posts first"
+msgstr ""
+
+#: ../shared/architect/php/class_arc_blueprint_data.php:87
+msgid "Filters"
+msgstr ""
+
+#: ../shared/architect/php/class_arc_blueprint_data.php:99
+msgid "Include categories"
+msgstr ""
+
+#: ../shared/architect/php/class_arc_blueprint_data.php:108
+msgid "In ANY or ALL categories"
+msgstr ""
+
+#: ../shared/architect/php/class_arc_blueprint_data.php:116
+msgid "Exclude categories"
+msgstr ""
+
+#: ../shared/architect/php/class_arc_blueprint_data.php:125
+msgid "Include sub-categories on archives"
+msgstr ""
+
+#: ../shared/architect/php/class_arc_blueprint_data.php:154
+msgid "Exclude tags"
+msgstr ""
+
+#: ../shared/architect/php/class_arc_blueprint_data.php:167
+msgid "Custom taxonomies"
+msgstr ""
+
+#: ../shared/architect/php/class_arc_blueprint_data.php:176
+msgid "Other taxonomies"
+msgstr ""
+
+#: ../shared/architect/php/class_arc_blueprint_data.php:184
+msgid "Other taxonomy terms"
+msgstr ""
+
+#: ../shared/architect/php/class_arc_blueprint_data.php:191
+msgid "Select terms to filter by in the chosen custom taxonomy"
+msgstr ""
+
+#: ../shared/architect/php/class_arc_blueprint_data.php:192
+msgid ""
+"To populate this dropdown, select the Custom Taxonomy above, then Publish or "
+"Update this Blueprint"
+msgstr ""
+
+#: ../shared/architect/php/class_arc_blueprint_data.php:195
+msgid "Taxonomies operator"
+msgstr ""
+
+#: ../shared/architect/php/class_arc_blueprint_data.php:200
+msgid "Display posts containing all, any or none of the taxonomies"
+msgstr ""
+
+#: ../shared/architect/php/class_arc_blueprint_data.php:223
+msgid "Others"
+msgstr ""
+
+#: ../shared/architect/php/class_arc_widget.php:17
+msgid "Architect blueprint"
+msgstr ""
+
+#: ../shared/architect/php/class_arc_widget.php:20
+msgid "Display an Architect blueprint"
+msgstr ""
+
+#: ../shared/architect/php/class_arc_widget.php:59
+msgid "New title"
+msgstr ""
+
+#: ../shared/architect/php/class_arc_widget.php:112
+msgid "Title:"
+msgstr ""
+
+#: ../shared/architect/php/class_arc_widget.php:121
+msgid "Blueprint (any device):"
+msgstr ""
+
+#: ../shared/architect/php/class_arc_widget.php:130
+msgid "Blueprint (phone):"
+msgstr ""
+
+#: ../shared/architect/php/class_arc_widget.php:139
+msgid "Blueprint (tablet):"
+msgstr ""
+
+#: ../shared/architect/php/class_arc_widget.php:150
+msgid "Specific IDs (comma separated)"
+msgstr ""
+
+#: ../shared/architect/php/class_arc_widget.php:166
+msgid "Terms (comma separated)"
+msgstr ""
+
+#: ../shared/architect/php/content-types/defaults/class_arc_content_defaults.php:33
+msgid "Default Content"
+msgstr ""
+
+#: ../shared/architect/php/content-types/defaults/class_arc_content_defaults.php:40
+msgid "Override WordPress default settings and filters"
+msgstr ""
+
+#: ../shared/architect/php/content-types/defaults/class_arc_content_defaults.php:46
+msgid ""
+"Defaults uses all WordPress default selection conditions. Enable overrides "
+"if you want the options in Settings and Filters to be applied."
+msgstr ""
+
+#: ../shared/architect/php/content-types/dummy/class_arc_content_dummy.php:30
+msgid "Dummy Content"
+msgstr ""
+
+#: ../shared/architect/php/content-types/dummy/class_arc_content_dummy.php:34
+msgid ""
+"The dummy content is automagically generated for you to help plan and test "
+"design when the site has no content."
+msgstr ""
+
+#: ../shared/architect/php/content-types/dummy/class_arc_content_dummy.php:37
+msgid "Number of dummy records"
+msgstr ""
+
+#: ../shared/architect/php/content-types/dummy/class_arc_content_dummy.php:44
+msgid "Number of dummy records to simulate"
+msgstr ""
+
+#: ../shared/architect/php/content-types/dummy/class_arc_content_dummy.php:47
+msgid "Dummy image type"
+msgstr ""
+
+#: ../shared/architect/php/content-types/dummy/class_arc_content_dummy.php:54
+msgid "Place holder"
+msgstr ""
+
+#: ../shared/architect/php/content-types/dummy/class_arc_content_dummy.php:70
+msgid "Greyscale"
+msgstr ""
+
+#: ../shared/architect/php/content-types/dummy/class_arc_content_dummy.php:79
+msgid "Text colour"
+msgstr ""
+
+#: ../shared/architect/php/content-types/dummy/class_arc_content_dummy.php:88
+msgid "Background Colour"
+msgstr ""
+
+#: ../shared/architect/php/content-types/page/class_arc_content_pages.php:31
+msgid "Specific pages"
+msgstr ""
+
+#: ../shared/architect/php/content-types/page/class_arc_content_pages.php:39
+#: ../shared/architect/php/content-types/post/class_arc_content_posts.php:40
+msgid ""
+"Select then drag and drop to order. Be sure to set Order By in Settings to "
+"Specified."
+msgstr ""
+
+#: ../shared/architect/php/content-types/page/class_arc_content_pages.php:42
+msgid "Exclude pages"
+msgstr ""
+
+#: ../shared/architect/php/content-types/page/class_arc_content_pages.php:51
+msgid "Exclude current page"
+msgstr ""
+
+#: ../shared/architect/php/content-types/page/class_arc_content_pages.php:57
+msgid ""
+"If this Blueprint is displayed on a page, exclude that page from the "
+"Blueprint display"
+msgstr ""
+
+#: ../shared/architect/php/content-types/post/class_arc_content_posts.php:32
+msgid "Specific posts"
+msgstr ""
+
+#: ../shared/architect/php/content-types/post/class_arc_content_posts.php:43
+msgid "Exclude posts"
+msgstr ""
+
+#: ../shared/architect/php/content-types/post/class_arc_content_posts.php:52
+msgid "Exclude current post"
+msgstr ""
+
+#: ../shared/architect/php/content-types/post/class_arc_content_posts.php:58
+msgid ""
+"If this Blueprint is displayed on a post page, exclude that post from "
+"Blueprint"
+msgstr ""
+
+#: ../shared/thirdparty/php/BFI-thumb-forked/BFI_Thumb.php:130
+msgid ""
+"The server does not have ImageMagick or GD installed and/or enabled! Any of "
+"these includes are required for WordPress to be able to resize images. "
+"Please contact your server administrator to enable this before continuing."
+msgstr ""
+
+#: ../shared/thirdparty/php/BFI-thumb-forked/BFI_Thumb.php:254
+msgid "Image rotate failed."
+msgstr ""
+
+#: ../shared/thirdparty/php/BFI-thumb-forked/BFI_Thumb.php:278
+msgid "Image opacity change failed."
+msgstr ""
+
+#: ../shared/thirdparty/php/BFI-thumb-forked/BFI_Thumb.php:364
+msgid "Image color change failed."
+msgstr ""
+
+#: ../shared/thirdparty/php/BFI-thumb-forked/BFI_Thumb.php:382
+msgid "Image grayscale failed."
+msgstr ""
+
+#: ../shared/thirdparty/php/BFI-thumb-forked/BFI_Thumb.php:400
+msgid "Image negate failed."
+msgstr ""
+
+#: ../shared/thirdparty/php/BFI-thumb-forked/BFI_Thumb.php:880
+msgid "You do not have sufficient permissions to access this page."
+msgstr ""
+
+#: ../shared/thirdparty/php/WordPress-SysInfo/sysinfo.php:177
+#: ../shared/thirdparty/php/WordPress-SysInfo/sysinfo.php:178
+msgid "SysInfo"
+msgstr ""
+
+#: ../shared/thirdparty/php/WordPress-SysInfo/sysinfo.php:224
+msgid "View"
+msgstr ""
+
+#: ../shared/thirdparty/php/WordPress-SysInfo/views/admin.php:30
+msgid " SysInfo"
+msgstr ""
+
+#: ../shared/thirdparty/php/WordPress-SysInfo/views/admin.php:37
+msgid "System Information"
+msgstr ""
+
+#: ../shared/thirdparty/php/WordPress-SysInfo/views/admin.php:43
+msgid "PHP Info"
+msgstr ""
+
+#: ../shared/thirdparty/php/WordPress-SysInfo/views/admin.php:49
+msgid "WordPress Version:"
+msgstr ""
+
+#: ../shared/thirdparty/php/WordPress-SysInfo/views/admin.php:50
+msgid "PHP Version:"
+msgstr ""
+
+#: ../shared/thirdparty/php/WordPress-SysInfo/views/admin.php:51
+msgid "MySQL Version:"
+msgstr ""
+
+#: ../shared/thirdparty/php/WordPress-SysInfo/views/admin.php:52
+msgid "Web Server:"
+msgstr ""
+
+#: ../shared/thirdparty/php/WordPress-SysInfo/views/admin.php:54
+msgid "WordPress URL:"
+msgstr ""
+
+#: ../shared/thirdparty/php/WordPress-SysInfo/views/admin.php:55
+msgid "Home URL: "
+msgstr ""
+
+#: ../shared/thirdparty/php/WordPress-SysInfo/views/admin.php:57
+msgid "Content Directory:"
+msgstr ""
+
+#: ../shared/thirdparty/php/WordPress-SysInfo/views/admin.php:58
+msgid "Content URL:"
+msgstr ""
+
+#: ../shared/thirdparty/php/WordPress-SysInfo/views/admin.php:59
+msgid "Plugins Directory:"
+msgstr ""
+
+#: ../shared/thirdparty/php/WordPress-SysInfo/views/admin.php:60
+msgid "Plugins URL:"
+msgstr ""
+
+#: ../shared/thirdparty/php/WordPress-SysInfo/views/admin.php:61
+msgid "Uploads Directory:"
+msgstr ""
+
+#: ../shared/thirdparty/php/WordPress-SysInfo/views/admin.php:63
+msgid "Cookie Domain:"
+msgstr ""
+
+#: ../shared/thirdparty/php/WordPress-SysInfo/views/admin.php:63
+#: ../shared/thirdparty/php/WordPress-SysInfo/views/admin.php:80
+#: ../shared/thirdparty/php/WordPress-SysInfo/views/admin.php:81
+#: ../shared/thirdparty/php/WordPress-SysInfo/views/admin.php:82
+#: ../shared/thirdparty/php/WordPress-SysInfo/views/admin.php:83
+#: ../shared/thirdparty/php/WordPress-SysInfo/views/admin.php:84
+msgid "Disabled"
+msgstr ""
+
+#: ../shared/thirdparty/php/WordPress-SysInfo/views/admin.php:63
+#: ../shared/thirdparty/php/WordPress-SysInfo/views/admin.php:80
+#: ../shared/thirdparty/php/WordPress-SysInfo/views/admin.php:81
+#: ../shared/thirdparty/php/WordPress-SysInfo/views/admin.php:82
+#: ../shared/thirdparty/php/WordPress-SysInfo/views/admin.php:83
+#: ../shared/thirdparty/php/WordPress-SysInfo/views/admin.php:84
+msgid "Not set"
+msgstr ""
+
+#: ../shared/thirdparty/php/WordPress-SysInfo/views/admin.php:64
+msgid "Multi-Site Active:"
+msgstr ""
+
+#: ../shared/thirdparty/php/WordPress-SysInfo/views/admin.php:66
+msgid "PHP cURL Support:"
+msgstr ""
+
+#: ../shared/thirdparty/php/WordPress-SysInfo/views/admin.php:67
+msgid "PHP GD Support:"
+msgstr ""
+
+#: ../shared/thirdparty/php/WordPress-SysInfo/views/admin.php:68
+msgid "PHP ImgMagick Support:"
+msgstr ""
+
+#: ../shared/thirdparty/php/WordPress-SysInfo/views/admin.php:69
+msgid "PHP Memory Limit:"
+msgstr ""
+
+#: ../shared/thirdparty/php/WordPress-SysInfo/views/admin.php:70
+msgid "PHP Memory Usage:"
+msgstr ""
+
+#: ../shared/thirdparty/php/WordPress-SysInfo/views/admin.php:71
+msgid "PHP Post Max Size:"
+msgstr ""
+
+#: ../shared/thirdparty/php/WordPress-SysInfo/views/admin.php:72
+msgid "PHP Upload Max Size:"
+msgstr ""
+
+#: ../shared/thirdparty/php/WordPress-SysInfo/views/admin.php:73
+msgid "PHP Max Input Vars:"
+msgstr ""
+
+#: ../shared/thirdparty/php/WordPress-SysInfo/views/admin.php:75
+msgid "WP Options Count:"
+msgstr ""
+
+#: ../shared/thirdparty/php/WordPress-SysInfo/views/admin.php:76
+msgid "WP Options Size:"
+msgstr ""
+
+#: ../shared/thirdparty/php/WordPress-SysInfo/views/admin.php:77
+msgid "WP Options Transients:"
+msgstr ""
+
+#: ../shared/thirdparty/php/WordPress-SysInfo/views/admin.php:80
+#: ../shared/thirdparty/php/WordPress-SysInfo/views/admin.php:81
+#: ../shared/thirdparty/php/WordPress-SysInfo/views/admin.php:82
+msgid "Enabled"
+msgstr ""
+
+#: ../shared/thirdparty/php/WordPress-SysInfo/views/admin.php:86
+msgid "Operating System:"
+msgstr ""
+
+#: ../shared/thirdparty/php/WordPress-SysInfo/views/admin.php:87
+msgid "Browser:"
+msgstr ""
+
+#: ../shared/thirdparty/php/WordPress-SysInfo/views/admin.php:88
+msgid "User Agent:"
+msgstr ""
+
+#: ../shared/thirdparty/php/WordPress-SysInfo/views/admin.php:90
+msgid "ARCHITECT:"
+msgstr ""
+
+#: ../shared/thirdparty/php/WordPress-SysInfo/views/admin.php:92
+msgid "Number of Blueprints:"
+msgstr ""
+
+#: ../shared/thirdparty/php/WordPress-SysInfo/views/admin.php:93
+msgid "Styling enabled:"
+msgstr ""
+
+#: ../shared/thirdparty/php/WordPress-SysInfo/views/admin.php:94
+msgid "All custom fields:"
+msgstr ""
+
+#: ../shared/thirdparty/php/WordPress-SysInfo/views/admin.php:95
+msgid "Beta enabled:"
+msgstr ""
+
+#: ../shared/thirdparty/php/WordPress-SysInfo/views/admin.php:97
+msgid "ACTIVE THEME:"
+msgstr ""
+
+#: ../shared/thirdparty/php/WordPress-SysInfo/views/admin.php:102
+msgid "ACTIVE PLUGINS:"
+msgstr ""
+
+#: ../shared/thirdparty/php/class-tgm-plugin-activation.php:164
+msgid "Something went wrong."
+msgstr ""
+
+#: ../shared/thirdparty/php/class-tgm-plugin-activation.php:176
+msgid "Return to the dashboard"
+msgstr ""
+
+#: ../shared/thirdparty/php/class-tgm-plugin-activation.php:178
+msgid "The following plugin was activated successfully:"
+msgstr ""
+
+#: ../shared/thirdparty/php/class-tgm-plugin-activation.php:179
+#, php-format
+msgid "All plugins installed and activated successfully. %1$s"
+msgstr ""
+
+#: ../shared/thirdparty/php/class-tgm-plugin-activation.php:180
+msgid "Dismiss this notice"
+msgstr ""
+
+#: ../shared/thirdparty/php/class-tgm-plugin-activation.php:536
+#: ../shared/thirdparty/php/class-tgm-plugin-activation.php:2169
+msgid "Return to the Dashboard"
+msgstr ""
+
+#: ../shared/thirdparty/php/class-tgm-plugin-activation.php:1171
+msgid "Private Repository"
+msgstr ""
+
+#: ../shared/thirdparty/php/class-tgm-plugin-activation.php:1174
+msgid "Pre-Packaged"
+msgstr ""
+
+#: ../shared/thirdparty/php/class-tgm-plugin-activation.php:1179
+msgid "WordPress Repository"
+msgstr ""
+
+#: ../shared/thirdparty/php/class-tgm-plugin-activation.php:1182
+msgid "Required"
+msgstr ""
+
+#: ../shared/thirdparty/php/class-tgm-plugin-activation.php:1182
+msgid "Recommended"
+msgstr ""
+
+#: ../shared/thirdparty/php/class-tgm-plugin-activation.php:1185
+msgid "Not Installed"
+msgstr ""
+
+#: ../shared/thirdparty/php/class-tgm-plugin-activation.php:1187
+msgid "Installed But Not Activated"
+msgstr ""
+
+#: ../shared/thirdparty/php/class-tgm-plugin-activation.php:1292
+#: ../shared/thirdparty/php/class-tgm-plugin-activation.php:1405
+msgid "Install"
+msgstr ""
+
+#: ../shared/thirdparty/php/class-tgm-plugin-activation.php:1316
+#: ../shared/thirdparty/php/class-tgm-plugin-activation.php:1406
+msgid "Activate"
+msgstr ""
+
+#: ../shared/thirdparty/php/class-tgm-plugin-activation.php:1368
+#, php-format
+msgid ""
+"No plugins to install or activate. <a href=\"%1$s\" title=\"Return to the "
+"Dashboard\">Return to the Dashboard</a>"
+msgstr ""
+
+#: ../shared/thirdparty/php/class-tgm-plugin-activation.php:1384
+msgid "Plugin"
+msgstr ""
+
+#: ../shared/thirdparty/php/class-tgm-plugin-activation.php:1385
+msgid "Source"
+msgstr ""
+
+#: ../shared/thirdparty/php/class-tgm-plugin-activation.php:1387
+msgid "Status"
+msgstr ""
+
+#: ../shared/thirdparty/php/class-tgm-plugin-activation.php:1935
+msgid "Install package not available."
+msgstr ""
+
+#: ../shared/thirdparty/php/class-tgm-plugin-activation.php:1936
+#, php-format
+msgid "Downloading install package from <span class=\"code\">%s</span>&#8230;"
+msgstr ""
+
+#: ../shared/thirdparty/php/class-tgm-plugin-activation.php:1937
+msgid "Unpacking the package&#8230;"
+msgstr ""
+
+#: ../shared/thirdparty/php/class-tgm-plugin-activation.php:1938
+msgid "Installing the plugin&#8230;"
+msgstr ""
+
+#: ../shared/thirdparty/php/class-tgm-plugin-activation.php:1939
+msgid "Plugin install failed."
+msgstr ""
+
+#: ../shared/thirdparty/php/class-tgm-plugin-activation.php:1940
+msgid "Plugin installed successfully."
+msgstr ""
+
+#: ../shared/thirdparty/php/class-tgm-plugin-activation.php:1951
+msgid "Plugin activation failed."
+msgstr ""
+
+#: ../shared/thirdparty/php/class-tgm-plugin-activation.php:2065
+msgid ""
+"The installation and activation process is starting. This process may take a "
+"while on some hosts, so please be patient."
+msgstr ""
+
+#: ../shared/thirdparty/php/class-tgm-plugin-activation.php:2066
+#, php-format
+msgid "%1$s installed and activated successfully."
+msgstr ""
+
+#: ../shared/thirdparty/php/class-tgm-plugin-activation.php:2066
+#: ../shared/thirdparty/php/class-tgm-plugin-activation.php:2075
+msgid "Show Details"
+msgstr ""
+
+#: ../shared/thirdparty/php/class-tgm-plugin-activation.php:2066
+#: ../shared/thirdparty/php/class-tgm-plugin-activation.php:2075
+msgid "Hide Details"
+msgstr ""
+
+#: ../shared/thirdparty/php/class-tgm-plugin-activation.php:2067
+msgid "All installations and activations have been completed."
+msgstr ""
+
+#: ../shared/thirdparty/php/class-tgm-plugin-activation.php:2068
+#, php-format
+msgid "Installing and Activating Plugin %1$s (%2$d/%3$d)"
+msgstr ""
+
+#: ../shared/thirdparty/php/class-tgm-plugin-activation.php:2072
+msgid ""
+"The installation process is starting. This process may take a while on some "
+"hosts, so please be patient."
+msgstr ""
+
+#: ../shared/thirdparty/php/class-tgm-plugin-activation.php:2073
+#, php-format
+msgid "An error occurred while installing %1$s: <strong>%2$s</strong>."
+msgstr ""
+
+#: ../shared/thirdparty/php/class-tgm-plugin-activation.php:2074
+#, php-format
+msgid "The installation of %1$s failed."
+msgstr ""
+
+#: ../shared/thirdparty/php/class-tgm-plugin-activation.php:2075
+#, php-format
+msgid "%1$s installed successfully."
+msgstr ""
+
+#: ../shared/thirdparty/php/class-tgm-plugin-activation.php:2076
+msgid "All installations have been completed."
+msgstr ""
+
+#: ../shared/thirdparty/php/class-tgm-plugin-activation.php:2077
+#, php-format
+msgid "Installing Plugin %1$s (%2$d/%3$d)"
+msgstr ""
+
+#: ../shared/thirdparty/php/pzwp-focal-point/pzwp-focal-point.php:30
+msgid "Focal Point"
+msgstr ""
+
+#: ../shared/thirdparty/php/pzwp-focal-point/pzwp-focal-point.php:32
+msgid ""
+"Supported plugins will use this point to ensure more reliable cropping - e."
+"g. without chopped off heads."
+msgstr ""
+
+#: ../shared/thirdparty/php/pzwp-focal-point/pzwp-focal-point.php:33
+msgid "Click on the image to set its focal point."
+msgstr ""
+
+#: ../shared/thirdparty/php/redux-custom-fields/links/field_links.php:102
+#: ../shared/thirdparty/php/redux-custom-fields/links/field_links.php:112
+#: ../shared/thirdparty/php/redux-custom-fields/links/field_links.php:122
+#: ../shared/thirdparty/php/redux-custom-fields/links/field_links.php:132
+msgid "Underline"
+msgstr ""
+
+#: ../shared/thirdparty/php/redux-extensions/config.php:12
+msgid "Products"
+msgstr ""
+
+#: ../shared/thirdparty/php/redux-extensions/config.php:13
+msgid "Product"
+msgstr ""
+
+#: ../shared/thirdparty/php/redux-extensions/config.php:28
+msgid "Home Settings"
+msgstr ""
+
+#: ../shared/thirdparty/php/redux-extensions/config.php:35
+msgid "Web Fonts"
+msgstr ""
+
+#: ../shared/thirdparty/php/redux-extensions/config.php:38
+#: ../shared/thirdparty/php/redux-extensions/config.php:55
+msgid "Basic media uploader with disabled URL input field."
+msgstr ""
+
+#: ../shared/thirdparty/php/redux-extensions/config.php:39
+#: ../shared/thirdparty/php/redux-extensions/config.php:56
+#: ../shared/thirdparty/php/redux-extensions/config.php:69
+#: ../shared/thirdparty/php/redux-extensions/config.php:77
+msgid "Upload any media using the WordPress native uploader"
+msgstr ""
+
+#: ../shared/thirdparty/php/redux-extensions/config.php:44
+msgid "Media Options"
+msgstr ""
+
+#: ../shared/thirdparty/php/redux-extensions/config.php:45
+msgid "With the \"section\" field you can create indent option sections."
+msgstr ""
+
+#: ../shared/thirdparty/php/redux-extensions/config.php:52
+msgid "Media w/ URL"
+msgstr ""
+
+#: ../shared/thirdparty/php/redux-extensions/config.php:67
+msgid "Media w/o URL"
+msgstr ""
+
+#: ../shared/thirdparty/php/redux-extensions/config.php:68
+#: ../shared/thirdparty/php/redux-extensions/config.php:76
+msgid ""
+"This represents the minimalistic view. It does not have the preview box or "
+"the display URL in an input box. "
+msgstr ""
+
+#: ../shared/thirdparty/php/redux-extensions/config.php:75
+msgid "Media No Preview"
+msgstr ""
+
+#: ../shared/thirdparty/php/redux-extensions/config.php:82
+msgid "Add/Edit Gallery"
+msgstr ""
+
+#: ../shared/thirdparty/php/redux-extensions/config.php:83
+msgid ""
+"Create a new Gallery by selecting existing or uploading new images using the "
+"WordPress native uploader"
+msgstr ""
+
+#: ../shared/thirdparty/php/redux-extensions/config.php:84
+msgid "This is the description field, again good for additional info."
+msgstr ""
+
+#: ../shared/thirdparty/php/redux-extensions/config.php:89
+msgid "JQuery UI Slider Example 1"
+msgstr ""
+
+#: ../shared/thirdparty/php/redux-extensions/config.php:90
+msgid ""
+"JQuery UI slider description. Min: 1, max: 500, step: 3, default value: 45"
+msgstr ""
+
+#: ../shared/thirdparty/php/redux-extensions/config.php:100
+msgid "JQuery UI Slider Example 2 w/ Steps (5)"
+msgstr ""
+
+#: ../shared/thirdparty/php/redux-extensions/config.php:101
+msgid ""
+"JQuery UI slider description. Min: 0, max: 300, step: 5, default value: 75"
+msgstr ""
+
+#: ../shared/thirdparty/php/redux-extensions/config.php:110
+msgid "JQuery UI Spinner Example 1"
+msgstr ""
+
+#: ../shared/thirdparty/php/redux-extensions/config.php:111
+msgid ""
+"JQuery UI spinner description. Min:20, max: 100, step:20, default value: 40"
+msgstr ""
+
+#: ../shared/thirdparty/php/redux-extensions/config.php:121
+msgid "Switch On"
+msgstr ""
+
+#: ../shared/thirdparty/php/redux-extensions/config.php:122
+#: ../shared/thirdparty/php/redux-extensions/config.php:130
+msgid "Look, it's on!"
+msgstr ""
+
+#: ../shared/thirdparty/php/redux-extensions/config.php:129
+msgid "Switch Off"
+msgstr ""
+
+#: ../shared/thirdparty/php/redux-extensions/config.php:139
+msgid "Home Layout"
+msgstr ""
+
+#: ../shared/thirdparty/php/redux-extensions/config.php:140
+msgid ""
+"Redux Framework was created with the developer in mind. It allows for any "
+"theme developer to have an advanced theme panel with most of the features a "
+"developer would need. For more information check out the Github repo at: <a "
+"href=\"https://github.com/ReduxFramework/Redux-Framework\">https://github."
+"com/ReduxFramework/Redux-Framework</a>"
+msgstr ""
+
+#: ../shared/thirdparty/php/redux-extensions/config.php:166
+#: ../shared/thirdparty/php/redux-extensions/config.php:173
+msgid "Slides Options"
+msgstr ""
+
+#: ../shared/thirdparty/php/redux-extensions/config.php:167
+#: ../shared/thirdparty/php/redux-extensions/config.php:174
+msgid "Unlimited slides with drag and drop sortings."
+msgstr ""
+
+#: ../shared/thirdparty/php/redux-extensions/config.php:168
+#: ../shared/thirdparty/php/redux-extensions/config.php:244
+msgid ""
+"This field will store all slides values into a multidimensional array to use "
+"into a foreach loop."
+msgstr ""
+
+#: ../shared/thirdparty/php/redux-extensions/config.php:250
+msgid "Preset"
+msgstr ""
+
+#: ../shared/thirdparty/php/redux-extensions/config.php:251
+#: ../shared/thirdparty/php/redux-extensions/config.php:253
+msgid ""
+"This allows you to set a json string or array to override multiple "
+"preferences in your theme."
+msgstr ""
+
+#: ../shared/thirdparty/php/redux-extensions/config.php:278
+#: ../shared/thirdparty/php/redux-extensions/config.php:306
+msgid "Typography option with each property can be called individually."
+msgstr ""
+
+#: ../shared/thirdparty/php/redux-extensions/config.php:323
+msgid "Cool Options"
+msgstr ""
+
+#: ../shared/thirdparty/php/redux-extensions/config.php:339
+msgid ""
+"Select main content and sidebar arrangement. Choose between 1, 2 or 3 column "
+"layout."
+msgstr ""
+
+#: ../shared/thirdparty/php/redux-extensions/config.php:355
+#: ../shared/thirdparty/php/redux-extensions/config.php:382
+msgid "Sidebar"
+msgstr ""
+
+#: ../shared/thirdparty/php/redux-extensions/config.php:393
+msgid "Page Options"
+msgstr ""
+
+#: ../shared/thirdparty/php/redux-extensions/extensions/metaboxes_arc/extension_metaboxes_arc.php:935
+msgid "Options"
+msgstr ""
+
+#: ../shared/thirdparty/php/redux-extensions/extensions/metaboxes_arc/extension_metaboxes_arc.php:1091
+msgid "Settings Imported!"
+msgstr ""
+
+#: ../shared/thirdparty/php/redux-extensions/extensions/metaboxes_arc/extension_metaboxes_arc.php:1094
+msgid "Settings have changed, you should save them!"
+msgstr ""
+
+#: ../shared/thirdparty/php/redux-extensions/extensions/metaboxes_arc/extension_metaboxes_arc.php:1098
+#: ../shared/thirdparty/php/redux-extensions/extensions/metaboxes_arc/extension_metaboxes_arc.php:1386
+msgid "error(s) were found!"
+msgstr ""
+
+#: ../shared/thirdparty/php/redux-extensions/extensions/metaboxes_arc/extension_metaboxes_arc.php:1101
+msgid "warning(s) were found!"
+msgstr ""
+
+#: ../shared/thirdparty/php/redux-extensions/extensions/metaboxes_arc/extension_metaboxes_arc.php:1105
+msgid "Expand"
+msgstr ""
+
+#: ../shared/thirdparty/php/redux-extensions/extensions/metaboxes_arc/extension_metaboxes_arc.php:1391
+msgid "warnings(s) were found!"
+msgstr ""

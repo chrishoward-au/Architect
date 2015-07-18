@@ -4,7 +4,7 @@
     Plugin Name: Architect
     Plugin URI: http://architect4wp.com
     Description: Architect is an all-in-one content layout builder. <strong>Build your own slider, grid, tabbed, gallery, masonry, accordion or tabular layouts with ANY content source</strong>. Display using shortcodes, widgets, Headway blocks, WP action hooks and template tags, and WP Gallery shortcode.
-    Version: 1.3.6
+    Version: 1.3.7
     Author: Chris Howard
     Author URI: http://pizazzwp.com
     License: GNU GPL v2
@@ -32,7 +32,7 @@
         define( 'PZARC_TESTER', ( isset( $arc_options[ 'architect_enable_beta' ] ) ? $arc_options[ 'architect_enable_beta' ] : false ) );
       }
 
-      define( 'PZARC_VERSION', '1.3.6' );
+      define( 'PZARC_VERSION', '1.3.7' );
       define( 'PZARC_NAME', 'pzarchitect' ); // This is also same as the locale
       define( 'PZARC_FOLDER', '/pizazzwp-architect' );
       define( 'PZARC_CODEX', 'http://architect4wp.com/codex-listings' );
@@ -48,9 +48,19 @@
       define( 'PZARC_PLUGIN_ASSETS_URL', PZARC_PLUGIN_APP_URL . 'shared/assets/' );
       define( 'PZARC_PLUGIN_PRESETS_URL', PZARC_PLUGIN_URL . 'presets/' );
       define( 'PZARC_CACHE', '/arc/' );
-      $pzarc_uploads=wp_upload_dir();
-      define('PZARC_PRESETS_PATH',$pzarc_uploads['basedir'].'/pizazzwp/architect/presets');
-      define('PZARC_PRESETS_URL',$pzarc_uploads['baseurl'].'/pizazzwp/architect/presets');
+
+      $upload_dir = wp_upload_dir();
+      if (substr(home_url(),0,5)==='https' &&  substr($upload_dir['baseurl'],0,5)==='http:') {
+        $upload_dir['baseurl']=str_replace('http:','https:',$upload_dir['baseurl']);
+      }
+      define('PZARC_UPLOADS_BASEPATH',$upload_dir['basedir']);
+      define('PZARC_UPLOADS_BASEURL',$upload_dir['baseurl']);
+
+      define('PZARC_PRESETS_PATH',PZARC_UPLOADS_BASEPATH.'/pizazzwp/architect/presets/');
+      define('PZARC_PRESETS_URL',PZARC_UPLOADS_BASEURL.'/pizazzwp/architect/presets/');
+
+      define( 'PZARC_CACHE_URL',  PZARC_UPLOADS_BASEURL . '/cache/pizazzwp/arc/'  );
+      define( 'PZARC_CACHE_PATH',  PZARC_UPLOADS_BASEPATH . '/cache/pizazzwp/arc/'  );
 
       // TODO: Setup an option for changing the language
       $language = substr( get_locale(), 0, 2 );
@@ -58,11 +68,7 @@
       define( 'PZARC_LANGUAGE', 'en' );
 
       define( 'PZARC_TRANSIENTS_KEEP', 12 * HOUR_IN_SECONDS );
-      $upload_dir = wp_upload_dir();
 
-      // TODO: why isn't this using myfiles folder?
-      define( 'PZARC_CACHE_URL', trailingslashit( $upload_dir[ 'baseurl' ] . '/cache/pizazzwp/arc' ) );
-      define( 'PZARC_CACHE_PATH', trailingslashit( $upload_dir[ 'basedir' ] . '/cache/pizazzwp/arc' ) );
 
 
       pzdb( 'after dependency check' );
@@ -261,7 +267,8 @@
       $domain = PZARC_NAME;
       $locale = apply_filters( 'plugin_locale', get_locale(), $domain );
       load_textdomain( $domain, WP_LANG_DIR . '/' . $domain . '/' . $domain . '-' . $locale . '.mo' );
-      load_plugin_textdomain( $domain, false, dirname( plugin_basename( __FILE__ ) ) . '/languages/' );
+    //  var_dump(WP_LANG_DIR . '/' . $domain . '/' . $domain . '-' . $locale . '.mo',dirname( plugin_basename( __FILE__ ) ) . '/application/languages/');
+      load_plugin_textdomain( $domain, false, dirname( plugin_basename( __FILE__ ) ) . '/application/languages/' );
     }
 
 // end plugin_textdomain

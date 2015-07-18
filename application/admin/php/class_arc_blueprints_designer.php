@@ -333,60 +333,60 @@
       return $metaboxes;
     }
 
-    function pzarc_mb_blueprint_presets($metaboxes, $defaults_only = false)
-    {
-      $fields = array(
-          array(
-              'id'      => '_presets_choose',
-              'title'   => 'Choose a preset (optional)',
-              'type'    => 'image_select',
-              'default' => 'none',
-              'height'  => '200px',
-              'options' => array(
-                  'none'                    => array(
-                      'alt' => 'Build your own',
-                      'img' => PZARC_PLUGIN_APP_URL . 'shared/assets/images/metaboxes/presets-none.png'
-                  ),
-                  'featured-posts-slider'   => array(
-                      'alt' => 'Featured Posts Slider',
-                      'img' => PZARC_PLUGIN_APP_URL . 'shared/assets/images/metaboxes/preset-featured-posts-slider.jpg'
-                  ),
-                  'gallery-carousel'        => array(
-                      'alt' => 'Gallery carousel',
-                      'img' => PZARC_PLUGIN_APP_URL . 'shared/assets/images/metaboxes/preset-gallery-carousel.jpg'
-                  ),
-                  'full-width-image-slider' => array(
-                      'alt' => 'Full width image slider',
-                      'img' => PZARC_PLUGIN_APP_URL . 'shared/assets/images/metaboxes/presets-full-width-image-slider.png'
-                  ),
-                  'featured-video'          => array(
-                      'alt' => 'Featured videos',
-                      'img' => PZARC_PLUGIN_APP_URL . 'shared/assets/images/metaboxes/presets-featured-video.png'
-                  ),
-              ),
-          ),
-      );
-
-      $sections[]  = array(
-        //          'title'      => __('General Settings', 'pzarchitect'),
-        'show_title' => true,
-        'icon_class' => 'icon-large',
-        'icon'       => 'el-icon-home',
-        'fields'     => $fields
-      );
-      $metaboxes[] = array(
-          'id'         => 'presets',
-          'title'      => __('Presets', 'pzarchitect'),
-          'post_types' => array('arc-blueprints'),
-          'sections'   => $sections,
-          'position'   => 'normal',
-          'priority'   => 'low',
-          'sidebar'    => false
-
-      );
-
-      return $metaboxes;
-    }
+//    function pzarc_mb_blueprint_presets($metaboxes, $defaults_only = false)
+//    {
+//      $fields = array(
+//          array(
+//              'id'      => '_presets_choose',
+//              'title'   => 'Choose a preset (optional)',
+//              'type'    => 'image_select',
+//              'default' => 'none',
+//              'height'  => '200px',
+//              'options' => array(
+//                  'none'                    => array(
+//                      'alt' => 'Build your own',
+//                      'img' => PZARC_PLUGIN_APP_URL . 'shared/assets/images/metaboxes/presets-none.png'
+//                  ),
+//                  'featured-posts-slider'   => array(
+//                      'alt' => 'Featured Posts Slider',
+//                      'img' => PZARC_PLUGIN_APP_URL . 'shared/assets/images/metaboxes/preset-featured-posts-slider.jpg'
+//                  ),
+//                  'gallery-carousel'        => array(
+//                      'alt' => 'Gallery carousel',
+//                      'img' => PZARC_PLUGIN_APP_URL . 'shared/assets/images/metaboxes/preset-gallery-carousel.jpg'
+//                  ),
+//                  'full-width-image-slider' => array(
+//                      'alt' => 'Full width image slider',
+//                      'img' => PZARC_PLUGIN_APP_URL . 'shared/assets/images/metaboxes/presets-full-width-image-slider.png'
+//                  ),
+//                  'featured-video'          => array(
+//                      'alt' => 'Featured videos',
+//                      'img' => PZARC_PLUGIN_APP_URL . 'shared/assets/images/metaboxes/presets-featured-video.png'
+//                  ),
+//              ),
+//          ),
+//      );
+//
+//      $sections[]  = array(
+//        //          'title'      => __('General Settings', 'pzarchitect'),
+//        'show_title' => true,
+//        'icon_class' => 'icon-large',
+//        'icon'       => 'el-icon-home',
+//        'fields'     => $fields
+//      );
+//      $metaboxes[] = array(
+//          'id'         => 'presets',
+//          'title'      => __('Presets', 'pzarchitect'),
+//          'post_types' => array('arc-blueprints'),
+//          'sections'   => $sections,
+//          'position'   => 'normal',
+//          'priority'   => 'low',
+//          'sidebar'    => false
+//
+//      );
+//
+//      return $metaboxes;
+//    }
 
 
     // TODO: ADD FILTER OPTION FOR RELATED POSTS
@@ -687,7 +687,8 @@
                     'on'       => __('Yes', 'pzarchitect'),
                     'off'      => __('No', 'pzarchitect'),
                     'default'  => true,
-                    'subtitle' => 'Each panel displays a single post from the selected content type.'
+                    'subtitle' => __('Each panel displays a single post from the selected content type.','pzarchitect'),
+                    'description'=>(!defined('PZARC_PRO')?'<br><strong>'.__('Architect Lite is always limited to a maximum of 15 posts/pages','pzarchitect').'</strong>':'')
                 ),
                 array(
                     'title'    => __('Limit number of posts to show to', 'pzarchitect'),

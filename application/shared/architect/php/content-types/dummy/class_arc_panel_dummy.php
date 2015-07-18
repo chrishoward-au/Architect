@@ -204,7 +204,8 @@
 
       // Does this work for non
       $section[ $section_no ]->open_section();
-      for ( $j = 0; $j < count( $this->arc_query ); $j ++ ) {
+      $post_count = (defined('PZARC_PRO')?count( $this->arc_query ):15);
+      for ( $j = 0; $j < $post_count; $j ++ ) {
 
         $section[ $section_no ]->render_panel( $panel_def, $i, $class, $panel_class, $this->arc_query );
 

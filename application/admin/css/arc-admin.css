@@ -1590,3 +1590,10 @@ body.arc-beginner .redux-notice-field {
   .arc-installed-presets ul {
     list-style: disc;
     margin-left: 20px; }
+
+.headway-page .license-key-input-table .title:after {
+  content: "Only enter licence keys purchased from Headway here. Licences purchased from other developers should be entered on their plugin's licence page";
+  display: block;
+  font-size: 12px;
+  margin-top: 10px;
+  color: tomato; }

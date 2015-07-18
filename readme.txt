@@ -3,7 +3,7 @@ Contributors: chrishoward
 Tags: content,display,posts,pages,gallery,slider,tabs,tabbed,tabular,widget,hooks
 Requires at least: 3.5.0
 Tested up to: 4.3
-Stable tag: 1.3.6
+Stable tag: 1.3.7
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Plugin URI: http://architect4wp.com
@@ -93,6 +93,12 @@ For support, please send an email to support@pizazzwp.com
 
 == Changelog ==
 
+= 1.3.7 =
+* FIXED: Error with uploads url not being https sometimes
+* CHANGED: Tweaks to Lite version and messages
+* CHANGED: Message on Headway Options page to only put HW purchased licences there.
+* CHANGED: Much tidying up of files reduced zip size.
+
 = 1.3.6 =
 * CHANGED: Added messages when licence activation fails in the Architect licence activation screen
 * ADDED: Check for custom Blueprint Presets in uploads folder /pizazzwp/architect/presets
@@ -110,7 +116,7 @@ For support, please send an email to support@pizazzwp.com
 
 = 1.3.3 =
 * FIXED: Thumbnails in navigator not using Focal Point
-* CHANGED: Preset selector is always visible
+* CHANGED: Preset selector is now always visible
 * CHANGED: Small visual changes to Preset selector
 * ADDED: Option to set HTML tag for post titles
  

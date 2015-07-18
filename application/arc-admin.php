@@ -189,7 +189,7 @@
         add_filter('post_row_actions', 'pzarc_export_preset_link', 10, 3);
         add_filter('page_row_actions', 'pzarc_export_preset_link', 10, 3);
       }
-      if ('architect_page_pzarc_support' === $screen->id || 'edit-arc-blueprints' === $screen->id) {
+      if ('architect-lite_page_pzarc_support' === $screen->id || 'architect_page_pzarc_support' === $screen->id || 'edit-arc-blueprints' === $screen->id) {
         wp_enqueue_script('js-classlist', PZARC_PLUGIN_APP_URL . '/shared/thirdparty/js/tabby/dist/js/classList.min.js', array('jquery'), true);
         wp_enqueue_script('js-tabby', PZARC_PLUGIN_APP_URL . '/shared/thirdparty/js/tabby/dist/js/tabby.min.js', array('jquery'), true);
         wp_enqueue_script('js-tabby-arc', PZARC_PLUGIN_APP_URL . '/admin/js/arc-tabby.js', array('jquery'), true);
@@ -219,9 +219,6 @@
 
       if ($screen->id === 'edit-arc-blueprints') {
         require_once(PZARC_DOCUMENTATION_PATH . PZARC_LANGUAGE . '/blueprints-listings-pageguide.php');
-      }
-      if ($screen->id === 'edit-arc-panels') {
-        require_once(PZARC_DOCUMENTATION_PATH . PZARC_LANGUAGE . '/panels-listings-pageguide.php');
       }
 
 //      if ($screen post ot page editor)
@@ -372,7 +369,7 @@
       /**
        * Import presets
        */
-      if (defined('PZARC_PRO') && PZARC_PRO==true && wp_mkdir_p(PZARC_PRESETS_PATH)) {
+      if (defined('PZARC_PRO') && PZARC_PRO == true && wp_mkdir_p(PZARC_PRESETS_PATH)) {
         $pzarc_custom_presets = pzarc_tidy_dir(scandir(PZARC_PRESETS_PATH));
         // TODO: add existing presets with option to delete (custom) or hide (builtin)
         echo '<h3>' . __('Import Blueprint or Preset', 'pzarchitect') . '</h3>';
@@ -402,11 +399,11 @@
               echo '<div id="message" class="error"><p>' . __('A Preset with that name already exists.', 'pzarchitect') . '</p></div>';
               break;
             case (!empty($_FILES[ 'txtorzip' ][ 'name' ]) && (substr($_FILES[ 'txtorzip' ][ 'name' ], -4, 4) === '.zip')):
-              pzarc_upload_file($_FILES[ 'txtorzip' ],'preset');
+              pzarc_upload_file($_FILES[ 'txtorzip' ], 'preset');
               break;
             case (!empty($_FILES[ 'txtorzip' ][ 'name' ]) && (substr($_FILES[ 'txtorzip' ][ 'name' ], -4, 4) === '.txt')):
               var_dump($_FILES[ 'txtorzip' ][ 'name' ]);
-              pzarc_upload_file($_FILES[ 'txtorzip' ],'blueprint');
+              pzarc_upload_file($_FILES[ 'txtorzip' ], 'blueprint');
               // todo: add method of styled or unstyled
               break;
             case empty($_FILES[ 'txtorzip' ][ 'name' ]):
@@ -673,9 +670,11 @@ add_action(\'init\',\'gs_init\');
                     <h2>' . __('Support') . '</h2>
                     <div class="arc-info-boxes">
                     <div class="arc-info col1">
-                    <h4>' . __('Currently installed version') . ': ' . PZARC_VERSION . '</h4>
-                    <p>You can download this version anytime directly from: <a href="https://s3.amazonaws.com/341public/LATEST/Architect/pizazzwp-architect-' . str_replace('.', '', PZARC_VERSION) . '.zip">Version ' . PZARC_VERSION . '</a></p>
-                        <p>' . __('For more detailed help, visit', 'pzarchitect') . ' <a href="http://architect4wp.com/codex-listings" target="_blank" class="arc-codex">' . __('Architect documentation at architect4wp.com', 'pzarchitect') . '</a></p>
+                    <h4>' . __('Currently installed version') . ': ' . PZARC_VERSION . '</h4>';
+      if (!$lite) {
+        echo '<p>You can download this version anytime directly from: <a href="https://s3.amazonaws.com/341public/LATEST/Architect/pizazzwp-architect-' . str_replace('.', '', PZARC_VERSION) . '.zip">Version ' . PZARC_VERSION . '</a></p>';
+      }
+                echo '<p>' . __('For more detailed help, visit', 'pzarchitect') . ' <a href="http://architect4wp.com/codex-listings" target="_blank" class="arc-codex">' . __('Architect documentation at architect4wp.com', 'pzarchitect') . '</a></p>
                         <p>' . __('For <strong>technical support</strong>, either fill out the form below or email', 'pzarchitect') . ' <a href="mailto://support@pizazzwp.com" target="_blank" class="arc-codex">' . __('support@pizazzwp.com', 'pzarchitect') . '</a></p>
                         <p>' . __('For <strong>community and peer-to-peer support</strong>, visit the', 'pzarchitect') . ' <a href="https://pizazzwp.freshdesk.com/support/discussions" target="_blank" class="arc-codex">' . __('Architect Community', 'pzarchitect') . '</a></p>
                     <h3>' . __('Things to try first', 'pzarchitect') . '</h3>
@@ -683,8 +682,9 @@ add_action(\'init\',\'gs_init\');
                     <li>' . __('If things just aren\'t working, e.g. nothing displays, the page is broken - then try deactivating all other plugins. If that fixes things, reactivate one at a time until you identify the conflict, then let us know what the plugin is.', 'pzarchitect') . '</li>
                     </ul>
                     </div>
-                    </div>
-              <h2>Submit a help request directly</h2>
+                    </div>';
+      if (!$lite) {
+        echo '      <h2>Submit a help request directly</h2>
                                   <div class="arc-info-boxes">
                     <div class="arc-info col1">
 
@@ -695,9 +695,9 @@ add_action(\'init\',\'gs_init\');
             <iframe class="freshwidget-embedded-form" id="freshwidget-embedded-form" src="https://pizazzwp.freshdesk.com/widgets/feedback_widget/new?&widgetType=embedded&formTitle=&screenshot=no&searchArea=no" scrolling="no" height="850px" width="90%" frameborder="0"  style="margin:20px 10px 10px 40px;background:#eee;overflow-y: auto;">
             </iframe>
                 </div>
-           </div>
-
-                </div>
+           </div>';
+      }
+echo '                </div>
 
                 <div class="tabs-pane " id="shout">
                     <h2>' . __('Shoutouts', 'pzarchitect') . '</h2>

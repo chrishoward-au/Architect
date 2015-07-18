@@ -939,7 +939,10 @@
       pzdb( 'pre_generic_loop' );
 
       // For custom conetnet such as NGG or RSS, this will look quite different!
-      while ( $this->arc_query->have_posts() ) {
+      $loopmax = (defined('PZARC_PRO')?999999999:15);
+      $loopcount = 0;
+
+      while ( $this->arc_query->have_posts() && $loopcount++ < $loopmax) {
         $this->arc_query->the_post();
 //        pzdb('top_of_loop Post:'.get_the_id());
         $section[ $section_no ]->render_panel( $panel_def, $i, $class, $panel_class, $this->arc_query );
