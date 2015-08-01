@@ -52,7 +52,7 @@
       $this->data[ 'bgimage' ][ 'thumb' ] = null;
       // $this->data[ 'bgimage' ][ 'original' ] = null;
 
-      $this->data = apply_filters( 'pzarc_init_data', $this->data );
+      $this->data = apply_filters('arc_init_data', $this->data );
 
     }
 
@@ -101,7 +101,7 @@
       // $panel_def[ 'datetime' ]      = '<span class="date"><a href="{{permalink}}" title="{{title}}" rel="bookmark"><time class="entry-date" datetime="{{datetime}}">{{fdatetime}}</time></a></span>';
       // oops should be using this for featured image
 
-      $panel_def = apply_filters( 'pzarc_panel_def', $panel_def );
+      $panel_def = apply_filters('arc_panel_def', $panel_def );
 
       // a bit of housekeeping incase third parties don't remove their filters
       remove_all_filters( 'pzarc_panel_def' );
@@ -164,7 +164,7 @@
       pzdb( 'after get misc' );
 
       // Allow other plugins to do their data set and get here.
-      do_action( 'pzarc_set_data' );
+      do_action('arc_set_data' );
     }
 
     /**
@@ -812,6 +812,10 @@
                 $content = '<img src="' . bfi_thumb( $v[ 'value' ] ) . '">';
                 break;
 
+              case 'embed':
+                $content = wp_oembed_get($v[ 'value' ]);
+                break;
+
               case 'date':
                 if ( is_numeric( $v[ 'value' ] ) ) {
                   $content = date( $v[ 'date-format' ], $v[ 'value' ] );
@@ -881,7 +885,7 @@
     public function render_generics( $component, $source, $line, $layout_mode ) {
 
       // Devs can plugin here. Filter must return $line value
-      $line = apply_filters( 'pzarc_render_components', $line, $component, $source, $layout_mode );
+      $line = apply_filters('arc_render_components', $line, $component, $source, $layout_mode );
 
 
       //todo: make sure source is actual WP valid eg. soemthings might be attachment
@@ -1061,7 +1065,7 @@
 
       }
 
-      return apply_filters( 'pzarc_nav_items', $nav_items );
+      return apply_filters('arc_nav_items', $nav_items );
     }
 
 

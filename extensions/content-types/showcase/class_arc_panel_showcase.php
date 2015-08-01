@@ -6,7 +6,7 @@
    * Date: 29/04/2014
    * Time: 12:16 PM
    */
-  class arc_Panel_testimonials extends arc_Panel_Generic {
+  class arc_Panel_showcases extends arc_Panel_Generic {
 
     function __construct(&$build) {
 
@@ -20,8 +20,7 @@
     }
 
     function extend_panel_def( $panel_def ) {
-      $panel_def[ 'company' ]  = '{{company}}';
-      $panel_def[ 'position' ] = '{{position}}';
+      $panel_def[ 'website' ]  = '{{website}}';
 
       // We don't want these filters applied to every occurrence of the plugin on the page!
       remove_filter( 'pzarc_panel_def', array( $this, 'extend_panel_def' ) );
@@ -31,9 +30,8 @@
 
     function init_data() {
       // set initial values
-      $this->data[ 'company' ]  = null;
-      $this->data[ 'position' ] = null;
-      $this->data[ 'url' ]      = null;
+      $this->data[ 'website' ]  = null;
+      $this->data[ 'weburl' ]      = null;
 
     }
 
@@ -48,7 +46,7 @@
     // Renders are called by the arc_section
     function render_company() {
 
-      $panel_def['company']="My company";
+      $panel_def['website']="A website";
     }
 
     function render_position() {

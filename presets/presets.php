@@ -126,7 +126,7 @@
 
     function render()
     {
-      $this->presets = apply_filters('pzarc-add-presets', $this->presets);
+      $this->presets = apply_filters('arc-add-presets', $this->presets);
       $render        = array('html' => array('basic'     => '',
                                              'slider'    => '',
                                              'tabbed'    => '',
@@ -169,7 +169,7 @@
     }
   }
 
-  add_filter('pzarc-add-presets', 'pzarc_load_presets', 10, 1);
+  add_filter('arc-add-presets', 'pzarc_load_presets', 10, 1);
 
   function pzarc_load_presets($presets)
   {
@@ -278,7 +278,7 @@
     return $presets;
   }
 
-  add_filter('pzarc-add-presets', 'pzarc_load_custom_presets', 10, 1);
+  add_filter('arc-add-presets', 'pzarc_load_custom_presets', 10, 1);
 
   function pzarc_load_custom_presets($presets)
   {

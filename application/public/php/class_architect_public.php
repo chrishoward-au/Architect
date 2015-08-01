@@ -242,7 +242,7 @@ pzdb('post render');
       // TODO: Show or hide blueprint if no content
 
       do_action( 'arc_before_architect' );
-      do_action( 'arc_before_architect_' . $bp_shortname );
+      do_action( "arc_before_architect_{$bp_shortname}" );
 
       global $_architect_options;
       $use_hw_css = ( ! empty( $_architect_options[ 'architect_use-hw-css' ] ) ? 'use-hw-css' : null );
@@ -272,19 +272,21 @@ pzdb('post render');
       ) ) );
 
       if (!empty($this->build->blueprint['_blueprints_blueprint-title'])) {
-        echo apply_filters('arc-blueprint-title', '<h2 class="pzarc-blueprint-title">' . esc_html($this->build->blueprint[ '_blueprints_blueprint-title' ]) . '</h2>');
+        $bptitle_open_tag= '<h2 class="pzarc-blueprint-title">';
+        $bptitle_close_tag = '</h2>';
+        echo apply_filters('arc-blueprint-title',$bptitle_open_tag . esc_html($this->build->blueprint[ '_blueprints_blueprint-title' ]) . $bptitle_close_tag);
       }
 pzdb();
       /** NAVIGATION TOP/LEFT */
       // These are the slider and tabbed controls
       do_action( 'arc_before_navigation_top_left' );
-      do_action( 'arc_before_navigation_top_left_' . $bp_shortname );
+      do_action( "arc_before_navigation_top_left_{$bp_shortname}" );
 
       // Devs can hook in with their own navigation
-      do_action_ref_array( 'arc_top_left_navigation_' . $bp_shortname, array( &$this ) );
+      do_action_ref_array( "arc_top_left_navigation_{$bp_shortname}", array( &$this ) );
 
       do_action( 'arc_after_navigation_top_left' );
-      do_action( 'arc_after_navigation_top_left_' . $bp_shortname );
+      do_action( "arc_after_navigation_top_left_{$bp_shortname}" );
 
 pzdb();
       /** Display pagination above */
@@ -292,17 +294,17 @@ pzdb();
       if ( ! empty( $this->arc_pagination[ 'pagination' ] ) && ( $this->build->blueprint[ '_blueprints_pager-location' ] === 'top' || $this->build->blueprint[ '_blueprints_pager-location' ] === 'both' ) ) {
 
         do_action( 'arc_before_pagination_above' );
-        do_action( 'arc_before_pagination_above_' . $bp_shortname );
+        do_action( "arc_before_pagination_above_{$bp_shortname}" );
 
         $this->arc_pagination[ 'pagination' ]->render( $this->arc_query, 'nav-above', $this->build->blueprint );
 
         do_action( 'arc_after_pagination_above' );
-        do_action( 'arc_after_pagination_above_' . $bp_shortname );
+        do_action( "arc_after_pagination_above_{$bp_shortname}" );
 
       }
 
       do_action( 'arc_before_panels_wrapper' );
-      do_action( 'arc_before_panels_wrapper_' . $bp_shortname );
+      do_action( "arc_before_panels_wrapper_{$bp_shortname}" );
       pzdb();
 
       /** Sections opening HTML*/
@@ -320,7 +322,7 @@ pzdb();
       echo '</div> <!-- end blueprint sections -->';
 
       do_action( 'arc_after_panels_wrapper' );
-      do_action( 'arc_after_panels_wrapper_' . $bp_shortname );
+      do_action( "arc_after_panels_wrapper_{$bp_shortname}" );
 
       // Don't allow pagination on pages it doesn't work on!
       //   Todo : setup pagination for single or blog index
@@ -329,12 +331,12 @@ pzdb();
       if ( ! empty( $this->arc_pagination[ 'pagination' ] ) && ( $this->build->blueprint[ '_blueprints_pager-location' ] === 'bottom' || $this->build->blueprint[ '_blueprints_pager-location' ] === 'both' ) ) {
 
         do_action( 'arc_before_pagination_below' );
-        do_action( 'arc_before_pagination_below_' . $bp_shortname );
+        do_action( "arc_before_pagination_below_{$bp_shortname}" );
 
         $this->arc_pagination[ 'pagination' ]->render( $this->arc_query, 'nav-below', $this->build->blueprint );
 
         do_action( 'arc_after_pagination_below' );
-        do_action( 'arc_after_pagination_below_' . $bp_shortname );
+        do_action( "arc_after_pagination_below_{$bp_shortname}" );
 
       }
       pzdb();
@@ -342,20 +344,20 @@ pzdb();
       /** NAVIGATION BOTTOM OR RIGHT */
       // These are the slider and tabbed controls
       do_action( 'arc_after_navigation' );
-      do_action( 'arc_after_navigation_' . $bp_shortname );
+      do_action( "arc_after_navigation_{$bp_shortname}" );
       pzdb();
 
       // Devs can hook in with their own navigation
-      do_action_ref_array( 'arc_bottom_right_navigation_' . $bp_shortname, array( &$this ) );
+      do_action_ref_array( "arc_bottom_right_navigation_{$bp_shortname}", array( &$this ) );
 
       do_action( 'arc_after_navigation' );
-      do_action( 'arc_after_navigation_' . $bp_shortname );
+      do_action( "arc_after_navigation_{$bp_shortname}" );
 
       echo '</div> <!-- end pzarchitect blueprint ' . $this->build->blueprint[ '_blueprints_short-name' ] . ' v'.PZARC_VERSION.' -->';
       pzdb('end blueprint html');
 
       do_action( 'arc_after_architect' );
-      do_action( 'arc_after_architect_' . $bp_shortname );
+      do_action( "arc_after_architect_{$bp_shortname}" );
 
     }
 

@@ -310,7 +310,7 @@
 
       }
 
-      $fields = apply_filters('pzarc_editor_tabs', $fields);
+      $fields = apply_filters('arc_editor_tabs', $fields);
 
       $sections[]  = array(
         //          'title'      => __('General Settings', 'pzarchitect'),
@@ -681,14 +681,14 @@
                     'indent' => true,
                 ),
                 array(
-                    'title'    => __('Limit posts', 'pzarchitect'),
-                    'id'       => $prefix . 'section-' . $i . '-panels-limited',
-                    'type'     => 'switch',
-                    'on'       => __('Yes', 'pzarchitect'),
-                    'off'      => __('No', 'pzarchitect'),
-                    'default'  => true,
-                    'subtitle' => __('Each panel displays a single post from the selected content type.','pzarchitect'),
-                    'description'=>(!defined('PZARC_PRO')?'<br><strong>'.__('Architect Lite is always limited to a maximum of 15 posts/pages','pzarchitect').'</strong>':'')
+                    'title'       => __('Limit posts', 'pzarchitect'),
+                    'id'          => $prefix . 'section-' . $i . '-panels-limited',
+                    'type'        => 'switch',
+                    'on'          => __('Yes', 'pzarchitect'),
+                    'off'         => __('No', 'pzarchitect'),
+                    'default'     => true,
+                    'subtitle'    => __('Each panel displays a single post from the selected content type.', 'pzarchitect'),
+                    'description' => (!defined('PZARC_PRO') ? '<br><strong>' . __('Architect Lite is always limited to a maximum of 15 posts/pages', 'pzarchitect') . '</strong>' : '')
                 ),
                 array(
                     'title'    => __('Limit number of posts to show to', 'pzarchitect'),
@@ -2257,9 +2257,9 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
                   'id'            => $prefix . 'custom-fields-count',
                   'type'          => 'spinner',
                   'default'       => 0,
-                  'min'           => '0',
-                  'max'           => '999',
-                  'step'          => '1',
+                  'min'           => 0,
+                  'max'           => 999,
+                  'step'          => 1,
                   'display_value' => 'label',
                   'required'      => array($prefix . 'components-to-show', 'contains', 'custom'),
                   'subtitle'      => __('Each of the three Custom groups can have multiple custom fields. Enter the <strong>total</strong> number of custom fields, click Save/Update', 'pzarchitect'),
@@ -2324,6 +2324,42 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
                   )
               ),
               array(
+                  'title'    => __('Feature align', 'pzarchitect'),
+                  'id'       => $prefix . 'feature-float',
+                  'type'     => 'button_set',
+                  'default'  => 'default',
+                  'required' => array(
+                      array($prefix . 'components-to-show', 'contains', 'image'),
+                      array($prefix . 'feature-location', '=', 'components'),
+                  ),
+                  'subtitle' => __('Float the feature left or right to help close gaps between images and other components.', 'pzarchitect'),
+                  'options'  => array(
+                      'default' => __('Default', 'pzarchitect'),
+                      'left'    => __('Left', 'pzarchitect'),
+                      'right'   => __('Right', 'pzarchitect'),
+                  ),
+              ),
+              array(
+                  'title'    => __('Alternate features position', 'pzarchitect'),
+                  'id'       => $prefix . 'alternate-feature-position',
+                  'type'     => 'button_set',
+                  'default'  => 'off',
+                  'required' => array(
+                      array($prefix . 'feature-location', '!=', 'fill'),
+                      array($prefix . 'feature-location', '!=', 'components'),
+                      array($prefix . 'components-position', '!=', 'top'),
+                      array($prefix . 'components-position', '!=', 'bottom'),
+                  ),
+                  'options'  => array(
+                      'off' => __('No', 'pzarchitect'),
+                      'on'  => __('Yes', 'pzarchitect'),
+                  ),
+                  'hint'     => array(
+                      'title'   => __('Alternate features position', 'pzarchitect'),
+                      'content' => __('Alternate the features position left/right for each post.', 'pzarchitect')
+                  ),
+              ),
+              array(
                   'title'    => __('Feature in', 'pzarchitect'),
                   'id'       => $prefix . 'feature-in',
                   'type'     => 'button_set',
@@ -2367,10 +2403,10 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
                   'title'         => __('Components area width %', 'pzarchitect'),
                   'id'            => $prefix . 'components-widths',
                   'type'          => 'slider',
-                  'default'       => '100',
-                  'min'           => '1',
-                  'max'           => '100',
-                  'step'          => '1',
+                  'default'       => 100,
+                  'min'           => 1,
+                  'max'           => 100,
+                  'step'          => 1,
                   'class'         => ' percent',
                   'display_value' => 'label',
                   'hint'          => array(
@@ -2382,10 +2418,10 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
                   'title'         => __('Nudge components area up/down %', 'pzarchitect'),
                   'id'            => $prefix . 'components-nudge-y',
                   'type'          => 'slider',
-                  'default'       => '0',
-                  'min'           => '0',
-                  'max'           => '100',
-                  'step'          => '1',
+                  'default'       => 0,
+                  'min'           => 0,
+                  'max'           => 100,
+                  'step'          => 1,
                   'class'         => ' percent',
                   'required'      => array($prefix . 'feature-location', '=', 'fill'),
                   'display_value' => 'label',
@@ -2398,10 +2434,10 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
                   'title'         => __('Nudge components area left/right %', 'pzarchitect'),
                   'id'            => $prefix . 'components-nudge-x',
                   'type'          => 'slider',
-                  'default'       => '0',
-                  'min'           => '0',
-                  'max'           => '100',
-                  'step'          => '1',
+                  'default'       => 0,
+                  'min'           => 0,
+                  'max'           => 100,
+                  'step'          => 1,
                   'class'         => ' percent',
                   'required'      => array($prefix . 'feature-location', '=', 'fill'),
                   'display_value' => 'label',
@@ -2414,10 +2450,10 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
                   'title'         => __('Feature as thumbnail width %', 'pzarchitect'),
                   'id'            => $prefix . 'thumb-width',
                   'type'          => 'slider',
-                  'default'       => '15',
-                  'min'           => '5',
-                  'max'           => '100',
-                  'step'          => '1',
+                  'default'       => 15,
+                  'min'           => 5,
+                  'max'           => 100,
+                  'step'          => 1,
                   'class'         => ' percent',
                   'required'      => array(
                       array($prefix . 'feature-location', '!=', 'fill'),
@@ -2521,10 +2557,10 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
                   'title'         => __('Title thumbnail width', 'pzarchitect'),
                   'id'            => $prefix . 'title-thumb-width',
                   'type'          => 'spinner',
-                  'default'       => '32',
-                  'min'           => '8',
-                  'max'           => '1000',
-                  'step'          => '1',
+                  'default'       => 32,
+                  'min'           => 8,
+                  'max'           => 1000,
+                  'step'          => 1,
                   'display_value' => 'label',
                   'required'      => array('_panels_design_title-prefix', '=', 'thumb'),
                   'hint'          => array('content' => __('', 'pzarchitect')),
@@ -2568,7 +2604,7 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
                       'h5'   => 'h5',
                       'h6'   => 'h6',
                       'p'    => 'p',
-                      'span' => 'span',
+                      'span' => 'span'
                   ),
                   'subtitle' => __('Select the wrapper element for the title field', 'pzarchitect')
 
@@ -2584,7 +2620,7 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
           'show_title' => false,
           'icon_class' => 'icon-large',
           'icon'       => 'el-icon-calendar',
-          'desc'       => __('Available tags are <span class="pzarc-text-highlight">%author%,   %email%,   %date%,   %categories%,   %tags,   %commentslink%,   %editlink%,   %id%</span>. For custom taxonomies, prefix with ct:. e.g. To display the Woo Testimonials category, you would use %ct:testimonial-category%.', 'pzarchitect') . '<br>' .
+          'desc'       => __('Available tags are <span class="pzarc-text-highlight">%author%,   %email%,   %date%,   %categories%,   %tags,   %commentslink%,   %editlink%,   %id%</span>. For custom taxonomies, prefix with ct:. e.g. To display the Woo Testimonials category, you would use %ct:testimonial-category%. Or to display WooCommerce product category, use: %ct:product_cat%', 'pzarchitect') . '<br>' .
               __('Allowed HTML tags:', 'pzarchitect') . ' p, br, span, strong & em<br><br>' .
               __('Use shortcodes to add custom functions to meta. e.g. [add_to_cart id="%id%"]', 'pzarchitect') . '<br>' .
               __('Note: Enclose any author related text in <span class="pzarc-text-highlight">//</span> to hide it when using excluded authors.', 'pzarchitect') . '<br>' .
@@ -2667,9 +2703,9 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
                   'title'   => __('Excerpt length (words)', 'pzarchitect'),
                   'type'    => 'spinner',
                   'default' => 55,
-                  'min'     => '1',
-                  'max'     => '9999',
-                  'step'    => '1',
+                  'min'     => 1,
+                  'max'     => 9999,
+                  'step'    => 1,
               ),
               array(
                   'title'   => __('Truncation indicator', 'pzarchitect'),
@@ -2900,10 +2936,10 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
               //                  'title'    => __('Shrink images', 'pzarchitect'),
               //                  'type'     => 'slider',
               //                  'display_value' => 'label',
-              //                  'default'       => '100',
-              //                  'min'           => '0',
-              //                  'max'           => '100',
-              //                  'step'          => '5',
+              //                  'default'       => 100,
+              //                  'min'           => 0,
+              //                  'max'           => 100,
+              //                  'step'          => 5,
               //                  'units'         => '%',
               //                  'required' => array(
               //                      array('_panels_settings_image-focal-point', '=', 'shrink'),
@@ -2957,7 +2993,7 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
                   'mode'           => 'margin',
                   'units'          => '%',
                   'units_extended' => 'false',
-                  'title'          => __('Margins', 'pzarchitect'),
+                  'title'          => __('Margins (%)', 'pzarchitect'),
                   'default'        => array(
                       'margin-top'    => '0',
                       'margin-right'  => '0',
@@ -3040,10 +3076,10 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
               //                  'title'         => __('Image quality', 'pzarchitect'),
               //                  'type'          => 'slider',
               //                  'display_value' => 'label',
-              //                  'default'       => '75',
-              //                  'min'           => '20',
-              //                  'max'           => '100',
-              //                  'step'          => '1',
+              //                  'default'       => 75,
+              //                  'min'           => 20,
+              //                  'max'           => 100,
+              //                  'step'          => 1,
               //                  'units'         => '%',
               //                  'hint'          => array('content' => 'Quality to use when processing images'),
               //                  'required'      => array('_panels_settings_feature-type', '=', 'image'),
@@ -3061,162 +3097,168 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
         $thispostmeta = get_post_meta($_GET[ 'post' ]);
         $cfcount      = (!empty($thispostmeta[ '_panels_design_custom-fields-count' ][ 0 ]) ? $thispostmeta[ '_panels_design_custom-fields-count' ][ 0 ] : 0);
 
-        $pzarc_custom_fields = pzarc_get_custom_fields();
+        if ($cfcount) {
 
-        for ($i = 1; $i <= $cfcount; $i++) {
-          $cfname     = 'Custom field ' . $i . (!empty($thispostmeta[ '_panels_design_cfield-' . $i . '-name' ][ 0 ]) ? ': <br>' . $thispostmeta[ '_panels_design_cfield-' . $i . '-name' ][ 0 ] : '');
-          $sections[] = array(
-              'title'      => $cfname,
-              'icon_class' => 'icon-large',
-              'icon'       => 'el-icon-wrench',
-              'desc'       => __('Note: Only fields with content will show on the Blueprint.', 'pzarchitect'),
-              'fields'     => array(
-                  array(
-                      'title'   => __('Show in custom field group', 'pzarchitect'),
-                      'id'      => $prefix . 'cfield-' . $i . '-group',
-                      'type'    => 'button_set',
-                      'default' => 'custom1',
-                      'options' => array(
-                          'custom1' => __('Custom 1', 'pzarchitect'),
-                          'custom2' => __('Custom 2', 'pzarchitect'),
-                          'custom3' => __('Custom 3', 'pzarchitect')
-                      )
-                  ),
-                  array(
-                      'title'    => __('Field name', 'pzarchitect'),
-                      'id'       => $prefix . 'cfield-' . $i . '-name',
-                      'type'     => 'select',
-                      //                lightbox     => 'callback',
-                      //                'args'     => array( 'pzarc_get_custom_fields' ),
-                      'options'  => $pzarc_custom_fields,
-                      'subtitle' => __('If a custom field is not shown in the dropdown, it is because it has no data yet.', 'pzarchitect')
+          $pzarc_custom_fields = pzarc_get_custom_fields();
 
-                  ),
-                  array(
-                      'title'   => __('Field type', 'pzarchitect'),
-                      'id'      => $prefix . 'cfield-' . $i . '-field-type',
-                      'type'    => 'button_set',
-                      'default' => 'text',
-                      'options' => array('text' => 'Text', 'image' => 'Image', 'date' => 'Date', 'number' => 'Number')
+          for ($i = 1; $i <= $cfcount; $i++) {
+            $cfname     = 'Custom field ' . $i . (!empty($thispostmeta[ '_panels_design_cfield-' . $i . '-name' ][ 0 ]) ? ': <br>' . $thispostmeta[ '_panels_design_cfield-' . $i . '-name' ][ 0 ] : '');
+            $sections[] = array(
+                'title'      => $cfname,
+                'icon_class' => 'icon-large',
+                'icon'       => 'el-icon-wrench',
+                'desc'       => __('Note: Only fields with content will show on the Blueprint.', 'pzarchitect'),
+                'fields'     => array(
+                    array(
+                        'title'   => __('Show in custom field group', 'pzarchitect'),
+                        'id'      => $prefix . 'cfield-' . $i . '-group',
+                        'type'    => 'button_set',
+                        'default' => 'custom1',
+                        'options' => array(
+                            'custom1' => __('Custom 1', 'pzarchitect'),
+                            'custom2' => __('Custom 2', 'pzarchitect'),
+                            'custom3' => __('Custom 3', 'pzarchitect')
+                        )
+                    ),
+                    array(
+                        'title'    => __('Field name', 'pzarchitect'),
+                        'id'       => $prefix . 'cfield-' . $i . '-name',
+                        'type'     => 'select',
+                        //                lightbox     => 'callback',
+                        //                'args'     => array( 'pzarc_get_custom_fields' ),
+                        'options'  => $pzarc_custom_fields,
+                        'subtitle' => __('If a custom field is not shown in the dropdown, it is because it has no data yet.', 'pzarchitect')
 
-                  ),
-                  array(
-                      'id'       => $prefix . 'cfield-' . $i . '-date-format',
-                      'title'    => __('Date format', 'pzarchitect'),
-                      'type'     => 'text',
-                      'default'  => 'l, F j, Y g:i a',
-                      'desc'     => __('Visit here for information on <a href="http://codex.wordpress.org/Formatting_Date_and_Time" target=_blank>formatting date and time</a>', 'pzarchitect'),
-                      'required' => array($prefix . 'cfield-' . $i . '-field-type', '=', 'date'),
-                  ),
-                  array(
-                      'id'            => $prefix . 'cfield-' . $i . '-number-decimals',
-                      'title'         => __('Decimals', 'pzarchitect'),
-                      'type'          => 'spinner',
-                      'default'       => 0,
-                      'min'           => '0',
-                      'max'           => '100',
-                      'step'          => '1',
-                      'display_value' => 'label',
-                      'subtitle'      => __('Number of decimal places.', 'pzarchitect'),
-                      'required'      => array($prefix . 'cfield-' . $i . '-field-type', '=', 'number'),
-                  ),
-                  array(
-                      'id'       => $prefix . 'cfield-' . $i . '-number-decimal-char',
-                      'title'    => __('Decimal point character', 'pzarchitect'),
-                      'type'     => 'text',
-                      'default'  => '.',
-                      'required' => array($prefix . 'cfield-' . $i . '-field-type', '=', 'number'),
-                  ),
-                  array(
-                      'id'       => $prefix . 'cfield-' . $i . '-number-thousands-separator',
-                      'title'    => __('Thousands separator', 'pzarchitect'),
-                      'type'     => 'text',
-                      'default'  => ',',
-                      'required' => array($prefix . 'cfield-' . $i . '-field-type', '=', 'number'),
-                  ),
-                  array(
-                      'title'    => __('Wrapper tag', 'pzarchitect'),
-                      'id'       => $prefix . 'cfield-' . $i . '-wrapper-tag',
-                      'type'     => 'select',
-                      'default'  => 'div',
-                      'options'  => array(
-                          'div'  => 'div',
-                          'p'    => 'p',
-                          'span' => 'span',
-                          'h1'   => 'h1',
-                          'h2'   => 'h2',
-                          'h3'   => 'h3',
-                          'h4'   => 'h4',
-                          'h5'   => 'h5',
-                          'h6'   => 'h6',
-                      ),
-                      'subtitle' => __('Select the wrapper element for this custom field', 'pzarchitect')
+                    ),
+                    array(
+                        'title'   => __('Field type', 'pzarchitect'),
+                        'id'      => $prefix . 'cfield-' . $i . '-field-type',
+                        'type'    => 'button_set',
+                        'default' => 'text',
+                        'options' => array('text'   => 'Text',
+                                           'image'  => 'Image',
+                                           'date'   => 'Date',
+                                           'number' => 'Number',
+                                           'embed'  => 'Embed URL')
 
-                  ),
-                  // THis wasn't being added, plus we know the name of the field
-                  //              array(
-                  //                'id'    => $prefix . 'cfield-' . $i . '-class-name',
-                  //                'title' => __( 'Add class name', 'pzarchitect' ),
-                  //                'type'  => 'text',
-                  //              ),
-                  array(
-                      'title'    => __('Link field', 'pzarchitect'),
-                      'id'       => $prefix . 'cfield-' . $i . '-link-field',
-                      'type'     => 'select',
-                      //                'data'     => 'callback',
-                      //                'args'     => array( 'pzarc_get_custom_fields' ),
-                      'options'  => $pzarc_custom_fields,
-                      'subtitle' => 'Select a custom field that contains URLs you want to use as the link',
-                  ),
-                  array(
-                      'title' => __('Prefix text', 'pzarchitect'),
-                      'id'    => $prefix . 'cfield-' . $i . '-prefix-text',
-                      'type'  => 'text',
-                  ),
-                  array(
-                      'title' => __('Prefix image', 'pzarchitect'),
-                      'id'    => $prefix . 'cfield-' . $i . '-prefix-image',
-                      'type'  => 'media',
-                  ),
-                  array(
-                      'title' => __('Suffix text', 'pzarchitect'),
-                      'id'    => $prefix . 'cfield-' . $i . '-suffix-text',
-                      'type'  => 'text',
-                  ),
-                  array(
-                      'title' => __('Suffix image', 'pzarchitect'),
-                      'id'    => $prefix . 'cfield-' . $i . '-suffix-image',
-                      'type'  => 'media',
-                  ),
-                  array(
-                      'title'   => __('Prefix/suffix images width', 'pzarchitect'),
-                      'id'      => $prefix . 'cfield-' . $i . '-ps-images-width',
-                      'type'    => 'dimensions',
-                      'height'  => false,
-                      'default' => array('width' => '32px'),
-                      'units'   => 'px'
-                  ),
-                  array(
-                      'title'   => __('Prefix/suffix images height', 'pzarchitect'),
-                      'id'      => $prefix . 'cfield-' . $i . '-ps-images-height',
-                      'type'    => 'dimensions',
-                      'width'   => false,
-                      'default' => array('height' => '32px'),
-                      'units'   => 'px'
-                  ),
-//                  array(
-//                      'title'   => __('Prefix/suffix inside link', 'pzarchitect'),
-//                      'id'      => $prefix . 'cfield-' . $i . '-ps-in-link',
-//                      'type'    => 'button_set',
-//                      'multi'   => true,
-//                      'options' => array('prefix' => 'Prefix', 'suffix' => 'Suffix'),
-//                      'required'=>array($prefix . 'cfield-' . $i . '-link-field','not_empty_and',null)
-//                  ),
-              )
-          );
+                    ),
+                    array(
+                        'id'       => $prefix . 'cfield-' . $i . '-date-format',
+                        'title'    => __('Date format', 'pzarchitect'),
+                        'type'     => 'text',
+                        'default'  => 'l, F j, Y g:i a',
+                        'desc'     => __('Visit here for information on <a href="http://codex.wordpress.org/Formatting_Date_and_Time" target=_blank>formatting date and time</a>', 'pzarchitect'),
+                        'required' => array($prefix . 'cfield-' . $i . '-field-type', '=', 'date'),
+                    ),
+                    array(
+                        'id'            => $prefix . 'cfield-' . $i . '-number-decimals',
+                        'title'         => __('Decimals', 'pzarchitect'),
+                        'type'          => 'spinner',
+                        'default'       => 0,
+                        'min'           => 0,
+                        'max'           => 100,
+                        'step'          => 1,
+                        'display_value' => 'label',
+                        'subtitle'      => __('Number of decimal places.', 'pzarchitect'),
+                        'required'      => array($prefix . 'cfield-' . $i . '-field-type', '=', 'number'),
+                    ),
+                    array(
+                        'id'       => $prefix . 'cfield-' . $i . '-number-decimal-char',
+                        'title'    => __('Decimal point character', 'pzarchitect'),
+                        'type'     => 'text',
+                        'default'  => '.',
+                        'required' => array($prefix . 'cfield-' . $i . '-field-type', '=', 'number'),
+                    ),
+                    array(
+                        'id'       => $prefix . 'cfield-' . $i . '-number-thousands-separator',
+                        'title'    => __('Thousands separator', 'pzarchitect'),
+                        'type'     => 'text',
+                        'default'  => ',',
+                        'required' => array($prefix . 'cfield-' . $i . '-field-type', '=', 'number'),
+                    ),
+                    array(
+                        'title'    => __('Wrapper tag', 'pzarchitect'),
+                        'id'       => $prefix . 'cfield-' . $i . '-wrapper-tag',
+                        'type'     => 'select',
+                        'default'  => 'div',
+                        'options'  => array(
+                            'div'  => 'div',
+                            'p'    => 'p',
+                            'span' => 'span',
+                            'h1'   => 'h1',
+                            'h2'   => 'h2',
+                            'h3'   => 'h3',
+                            'h4'   => 'h4',
+                            'h5'   => 'h5',
+                            'h6'   => 'h6',
+                        ),
+                        'subtitle' => __('Select the wrapper element for this custom field', 'pzarchitect')
+
+                    ),
+                    // THis wasn't being added, plus we know the name of the field
+                    //              array(
+                    //                'id'    => $prefix . 'cfield-' . $i . '-class-name',
+                    //                'title' => __( 'Add class name', 'pzarchitect' ),
+                    //                'type'  => 'text',
+                    //              ),
+                    array(
+                        'title'    => __('Link field', 'pzarchitect'),
+                        'id'       => $prefix . 'cfield-' . $i . '-link-field',
+                        'type'     => 'select',
+                        //                'data'     => 'callback',
+                        //                'args'     => array( 'pzarc_get_custom_fields' ),
+                        'options'  => $pzarc_custom_fields,
+                        'subtitle' => 'Select a custom field that contains URLs you want to use as the link',
+                    ),
+                    array(
+                        'title' => __('Prefix text', 'pzarchitect'),
+                        'id'    => $prefix . 'cfield-' . $i . '-prefix-text',
+                        'type'  => 'text',
+                    ),
+                    array(
+                        'title' => __('Prefix image', 'pzarchitect'),
+                        'id'    => $prefix . 'cfield-' . $i . '-prefix-image',
+                        'type'  => 'media',
+                    ),
+                    array(
+                        'title' => __('Suffix text', 'pzarchitect'),
+                        'id'    => $prefix . 'cfield-' . $i . '-suffix-text',
+                        'type'  => 'text',
+                    ),
+                    array(
+                        'title' => __('Suffix image', 'pzarchitect'),
+                        'id'    => $prefix . 'cfield-' . $i . '-suffix-image',
+                        'type'  => 'media',
+                    ),
+                    array(
+                        'title'   => __('Prefix/suffix images width', 'pzarchitect'),
+                        'id'      => $prefix . 'cfield-' . $i . '-ps-images-width',
+                        'type'    => 'dimensions',
+                        'height'  => false,
+                        'default' => array('width' => '32px'),
+                        'units'   => 'px'
+                    ),
+                    array(
+                        'title'   => __('Prefix/suffix images height', 'pzarchitect'),
+                        'id'      => $prefix . 'cfield-' . $i . '-ps-images-height',
+                        'type'    => 'dimensions',
+                        'width'   => false,
+                        'default' => array('height' => '32px'),
+                        'units'   => 'px'
+                    ),
+                    //                  array(
+                    //                      'title'   => __('Prefix/suffix inside link', 'pzarchitect'),
+                    //                      'id'      => $prefix . 'cfield-' . $i . '-ps-in-link',
+                    //                      'type'    => 'button_set',
+                    //                      'multi'   => true,
+                    //                      'options' => array('prefix' => 'Prefix', 'suffix' => 'Suffix'),
+                    //                      'required'=>array($prefix . 'cfield-' . $i . '-link-field','not_empty_and',null)
+                    //                  ),
+                )
+            );
+          }
         }
       }
-
       $sections[] = array(
           'title'      => __('Help', 'pzarchitect'),
           'icon_class' => 'icon-large',

@@ -2,7 +2,7 @@
 
   /**
    * Project pizazzwp-architect.
-   * File: class_arc_content_testimonials.php
+   * File: class_arc_content_showcases.php
    * User: chrishoward
    * Date: 11/10/14
    * Time: 10:19 PM
@@ -10,31 +10,31 @@
   // Add content info to the registry
   // This manages all the other files required
 
-  class arc_content_testimonials  extends arc_set_data// Singleton
+  class arc_content_showcases  extends arc_set_data// Singleton
   {
 
     protected function __construct()
     {
 
       $registry = arc_Registry::getInstance();
-      $prefix   = '_content_testimonials_';
+      $prefix   = '_content_showcases_';
       $settings[ 'blueprint-content' ] = array(
-          'type'        => 'testimonials',
-          'name'        => 'Testimonials',
-          'panel_class' => 'arc_panel_Testimonials',
+          'type'        => 'showcases',
+          'name'        => 'Showcases',
+          'panel_class' => 'arc_panel_Showcases',
           'prefix'      => $prefix,
           // These are the sections to display on the admin metabox. We also use them to get default values.
           'sections'    => array(
-              'title'      => 'Testimonials',
+              'title'      => 'Showcases',
               'icon_class' => 'icon-large',
               'icon'       => 'el-icon-file',
               'fields'     => array(
                   array(
-                      'title'   => __('Specific testimonials', 'pzarchitect'),
-                      'id'      => $prefix . 'specific-testimonials',
+                      'title'   => __('Specific sites', 'pzarchitect'),
+                      'id'      => $prefix . 'specific-showcases',
                       'type'    => 'select',
                       'select2' => array('allowClear' => true),
-                      'options' => pzarc_get_posts_in_post_type('pz_testimonials','id-slug'),
+                      'options' => pzarc_get_posts_in_post_type('pz_showcases','id-slug'),
                       'multi'   => true,
                       'default' => array()
                   ),
@@ -44,10 +44,10 @@
 
       // This has to be post_type
       $registry->set('post_types', $settings);
-      $registry->set('content_source',array('testimonials'=>plugin_dir_path(__FILE__)));
+      $registry->set('content_source',array('showcases'=>plugin_dir_path(__FILE__)));
 
-      add_action("redux/metaboxes/_architect/boxes", array($this, "pzarc_add_testimonials_metaboxes"), 10, 1);
-
+      add_action("redux/metaboxes/_architect/boxes", array($this, "pzarc_add_showcases_metaboxes"), 10, 1);
+      
     }
 
     private function __clone()
@@ -58,7 +58,8 @@
     {
     }
 
-    function pzarc_add_testimonials_metaboxes($metaboxes)
+
+    function pzarc_add_showcases_metaboxes($metaboxes)
     {
       // Declare your sections
       global $_architect_options;
@@ -68,17 +69,13 @@
         //'icon'          => 'el-icon-home', // Only used with metabox position normal or advanced
         'fields' => array(
             array(
-                'id'    => 'pzarc_testimonial-company',
-                'title' => __('Company name', 'pzarchitect'),
+                'id'    => 'pzarc_showcase-site',
+                'title' => __('Web site name', 'pzarchitect'),
+                'subtitle'=>__('If blank, the Site title will be used'),
                 'type'  => 'text',
             ),
             array(
-                'id'    => 'pzarc_testimonial-position',
-                'title' => __('Position', 'pzarchitect'),
-                'type'  => 'text',
-            ),
-            array(
-                'id'    => 'pzarc_testimonial-url',
+                'id'    => 'pzarc_showcase-url',
                 'title' => __('Web address', 'pzarchitect'),
                 'type'  => 'text',
                 'subtitle'=>__('Please include http:// or https://'),
@@ -89,9 +86,9 @@
 
       // Declare your metaboxes
       $metaboxes[ ] = array(
-          'id'         => 'pzarc_mb-testimonials',
-          'title'      => __('Testimonial Information', 'pzarchitect'),
-          'post_types' => array('pz_testimonials'),
+          'id'         => 'pzarc_mb-showcase',
+          'title'      => __('Site Information', 'pzarchitect'),
+          'post_types' => array('pz_showcases'),
           'position'   => 'side', // normal, advanced, side
           'priority'   => 'default', // high, core, default, low - Priorities of placement
           'sections'   => $boxSections,
@@ -100,9 +97,10 @@
 
       return $metaboxes;
     }
-
-
   }
 
 //  //todo:set this up as a proper singleton?
-  $content_posts = arc_content_testimonials::getInstance('arc_content_testimonials');
+  $content_posts = arc_content_showcases::getInstance('arc_content_showcases');
+
+
+

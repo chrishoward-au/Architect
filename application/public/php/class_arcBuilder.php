@@ -13,7 +13,7 @@
 
     function __construct() {
 
-//      add_action( 'pzarc_page_template', array( $this, 'build' ), 99 );
+//      add_action('arc_page_template', array( $this, 'build' ), 99 );
       add_action( 'wp_head', array( $this, 'css' ), 10 );
     }
 

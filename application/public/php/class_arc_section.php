@@ -173,8 +173,9 @@
         $this->table_accordion_titles = (is_array($this->table_accordion_titles) ? $this->table_accordion_titles : array($this->table_accordion_titles));
         $this->table_accordion_titles = array_pad($this->table_accordion_titles, count($widths), '');
 
+        $i =0;
         foreach ($this->table_accordion_titles as $title) {
-          echo '<th>' . $title . '</th>';
+          echo '<th style="width:' . $widths[$i++] . '%;">' . $title . '</th>';
         }
         echo '</tr></thead>';
       }
@@ -261,11 +262,11 @@
       $line_out = $panel_def;
 
       // We do want to provide actions so want to use the sequence
-      do_action('arc_before_panel_open_a');
+      do_action('arc_before_panel_open_action');
       $nav_item[ $panel_number ] = null;
       // This is for adding nav items to each panel. Used by navs like accordions
       // Although we could do it already, we want to kepp it in the nav class for extensibility
-      echo apply_filters('arc_before_panel_open_f', $nav_item[ $panel_number ]);
+      echo apply_filters('arc_before_panel_open_filter', $nav_item[ $panel_number ]);
 
       // TODO: What's this??
       //       echo '<div class="js-isotope pzarc-section pzarc-section-' . $key . '" data-isotope-options=\'{ "layoutMode": "'.$pzarc_section_info['section-layout-mode'].'","itemSelector": ".pzarc-panel" }\'>';
@@ -314,11 +315,11 @@
 
 //      echo '<' . ('table' !== $this->layout_mode ? 'div' : 'tr') . ' class="pzarc-panel pzarc-panel_' . $settings[ '_panels_settings_short-name' ] . ' pzarc-panel-no_' . $panel_number . $this->slider[ 'slide' ] . $image_in_bg . $odds_evens_bp . $odds_evens_section . $postmeta_classes . '" >';
       $classes = 'pzarc-panel pzarc-panel_' . $this->panel_name . ' pzarc-panel-no_' . $panel_number . $this->slider[ 'slide' ] . $image_in_bg . $odds_evens_bp;
-      echo '<' . ('table' !== $this->layout_mode ? 'div' : 'tr') . ' class="' . apply_filters('pzarc-extend-panel-classes', $classes, $this->blueprint) . '" ' . apply_filters('pzarc-extend-panel-data', '', $this->blueprint) . '>';
+      echo '<' . ('table' !== $this->layout_mode ? 'div' : 'tr') . ' class="' . apply_filters('arc-extend-panel-classes', $classes, $this->blueprint) . '" ' . apply_filters('arc-extend-panel-data', '', $this->blueprint) . '>';
 
     //
       if (!empty($settings['_panels_design_link-panel'])) {
-        echo '<a href="' . apply_filters('pzarc-overlay-permalink',get_the_permalink()) . '" class="pzarc-panel-overlay"></a>';
+        echo '<a href="' . apply_filters('arc-overlay-permalink',get_the_permalink()) . '" class="pzarc-panel-overlay"></a>';
       }
 
       //TODO: Check this works for all scenarios

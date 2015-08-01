@@ -32,7 +32,7 @@ jQuery( document ).ready( function ()
         showing = showing + " <strong>" + index + ":</strong> " + component_width + "% &nbsp;&nbsp;&nbsp;";
       }
     } );
-    jQuery( "p.pzarc-states" ).html( showing );
+    jQuery( "p.pzarc-states" ).html( 'Order: '+showing );
     jQuery( 'input#_panels_design_preview-text' ).val( JSON.stringify( cell_layout ) );
 
     //var pztarget = jQuery( 'fieldset#_architect-_panels_design_components-to-show input#_panels_design_components-to-show-buttonsetimage' );
@@ -85,6 +85,16 @@ jQuery( document ).ready( function ()
   /** ***********************************************************************************************************************/
   /** FEATURE IN **/
   jQuery( '#_architect-_panels_design_feature-in' ).on('click',function ( e )
+  {
+    var cell_layout = get_cell_layout();
+    //jQuery( 'fieldset#_architect-_panels_design_components-to-show input#_panels_design_components-to-show-buttonsetimage' ).attr( 'checked', 'checked' );
+    //jQuery( 'fieldset#_architect-_panels_design_components-to-show label[for="_panels_design_components-to-show-buttonsetimage"]' ).addClass( 'ui-state-active' );
+    pzarc_update_feature( cell_layout );
+  } );
+
+  /** ***********************************************************************************************************************/
+  /** FEATURE FLOAT **/
+  jQuery( '#_architect-_panels_design_feature-float' ).on('click',function ( e )
   {
     var cell_layout = get_cell_layout();
     //jQuery( 'fieldset#_architect-_panels_design_components-to-show input#_panels_design_components-to-show-buttonsetimage' ).attr( 'checked', 'checked' );
@@ -378,7 +388,9 @@ jQuery( document ).ready( function ()
     // Resets
     jQuery( '.pzarc-draggable-excerpt img.pzarc-align' ).addClass( 'none' ).removeClass( 'left right' );
     jQuery( '.pzarc-draggable-content img.pzarc-align' ).addClass( 'none' ).removeClass( 'left right' );
-    jQuery( '.pzarc-dropzone .pzgp-cell-image-behind' ).html( '' );
+    jQuery( '.pzarc-draggable-image' ).removeClass( 'left right' );
+    var imgBhnd = jQuery( '.pzarc-dropzone .pzgp-cell-image-behind' );
+    imgBhnd.html( '' );
     jQuery( '.pzarc-draggable-image' ).hide();
     var isFeatureOn = jQuery( 'input#_panels_design_components-to-show-buttonsetimage' ).prop( 'checked' );
     if ( !isFeatureOn )
@@ -391,8 +403,8 @@ jQuery( document ).ready( function ()
     {
 
       case ('fill'):
-        jQuery( '.pzarc-dropzone .pzgp-cell-image-behind' ).html( '<img  class="feature-image-video" src="' + plugin_url + '/shared/assets/images/sample-' + jQuery( 'input[name="_architect[_panels_settings_feature-type]"]:checked' ).get( 0 ).value + '.jpg"/>' );
-        jQuery( '.pzarc-dropzone .pzgp-cell-image-behind' ).css( {
+        imgBhnd.html( '<img  class="feature-image-video" src="' + plugin_url + '/shared/assets/images/sample-' + jQuery( 'input[name="_architect[_panels_settings_feature-type]"]:checked' ).get( 0 ).value + '.jpg"/>' );
+        imgBhnd.css( {
           'left': '0',
           'top': '0',
           'right': '',
@@ -412,6 +424,9 @@ jQuery( document ).ready( function ()
 
       case 'components':
         jQuery( '.pzarc-draggable-image' ).show();
+        if ( jQuery( '#_panels_design_feature-float-buttonsetright:checked' ).length ) {
+          jQuery( '.pzarc-draggable-image' ).addClass('right');
+        }
         break;
 
       case 'content-left':
@@ -437,7 +452,7 @@ jQuery( document ).ready( function ()
 
       case 'float':
         /// TODO: Work out how to make before or after components group/
-        jQuery( '.pzarc-dropzone .pzgp-cell-image-behind' ).html( '<img  class="feature-image-video" src="' + plugin_url + 'shared/assets/images/sample-' + jQuery( 'input[name="_architect[_panels_settings_feature-type]"]:checked' ).get( 0 ).value + '.jpg"/>' );
+        imgBhnd.html( '<img  class="feature-image-video" src="' + plugin_url + 'shared/assets/images/sample-' + jQuery( 'input[name="_architect[_panels_settings_feature-type]"]:checked' ).get( 0 ).value + '.jpg"/>' );
         var zonesWidth = jQuery( '.pzarc-content-area' ).get( 0 ).clientWidth;
         var zonesHeight = jQuery( '.pzarc-content-area' ).get( 0 ).clientHeight;
         var sections_position = 'top';
@@ -448,54 +463,55 @@ jQuery( document ).ready( function ()
             sections_position = this.value;
           }
         } );
+        var imgBhndImg = jQuery( '.pzarc-dropzone .pzgp-cell-image-behind img' );
         switch (sections_position)
         {
           case 'left':
-            jQuery( '.pzarc-dropzone .pzgp-cell-image-behind img' ).css( {
+            imgBhndImg.css( {
               'height': 'auto',
               'width': '100%',
               'left': '',
               'position':'relative'
             } );
-            jQuery( '.pzarc-dropzone .pzgp-cell-image-behind' ).css( {
+            imgBhnd.css( {
               'width': (450 - zonesWidth) + 'px',
               'left': '',
               'right': '0',
               'top': '',
               'bottom': '',
-              'position':'relative'
+              'position':'absolute'
 
             } );
             break;
 
           case 'right':
-            jQuery( '.pzarc-dropzone .pzgp-cell-image-behind img' ).css( {
+            imgBhndImg.css( {
               'height': 'auto',
               'width': '100%',
               'left': '',
               'position':'relative'
 
             } );
-            jQuery( '.pzarc-dropzone .pzgp-cell-image-behind' ).css( {
+            imgBhnd.css( {
               'width': (450 - zonesWidth) + 'px',
               'right': '',
               'left': '0',
               'top': '',
               'bottom': '',
-              'position':'relative'
+              'position':'absolute'
 
             } );
             break;
 
           case 'top':
-            jQuery( '.pzarc-dropzone .pzgp-cell-image-behind img' ).css( {
+            imgBhndImg.css( {
               'width': '100%',
               'height': '150px',
               'left': '',
               'position':'relative'
 
             } );
-            jQuery( '.pzarc-dropzone .pzgp-cell-image-behind' ).css( {
+            imgBhnd.css( {
               'top': zonesHeight + 'px',
               'right': '',
               'left': '',
@@ -507,14 +523,14 @@ jQuery( document ).ready( function ()
             break;
 
           case 'bottom':
-            jQuery( '.pzarc-dropzone .pzgp-cell-image-behind img' ).css( {
+            imgBhndImg.css( {
               'width': '100%',
               'height': '150px',
               'left': '',
               'position':'relative'
 
             } );
-            jQuery( '.pzarc-dropzone .pzgp-cell-image-behind' ).css( {
+            imgBhnd.css( {
               'bottom': zonesHeight + 'px',
               'right': '',
               'top': '0',
@@ -527,7 +543,7 @@ jQuery( document ).ready( function ()
         }
         break;
       case 'none':
-        jQuery( '.pzarc-dropzone .pzgp-cell-image-behind' ).html( '' );
+        imgBhnd.html( '' );
         break;
     }
     pzarc_update_status( cell_layout );

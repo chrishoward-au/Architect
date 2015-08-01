@@ -16,10 +16,10 @@
 
     function __construct() {
       add_action( 'init', array( $this, 'init' ) );
-      add_filter( 'pzarc_render_components', array( $this, 'process_animation' ), 10, 4 );
-      add_filter( 'pzarc-load-blueprint', array( $this, 'load_blueprint' ), 10, 1 );
-      add_filter( 'pzarc-extend-panel-classes', array( $this, 'add_classes' ), 10, 2 );
-      add_filter( 'pzarc-extend-panel-data', array( $this, 'add_data' ), 10, 2 );
+      add_filter('arc_render_components', array( $this, 'process_animation' ), 10, 4 );
+      add_filter('arc-load-blueprint', array( $this, 'load_blueprint' ), 10, 1 );
+      add_filter('arc-extend-panel-classes', array( $this, 'add_classes' ), 10, 2 );
+      add_filter('arc-extend-panel-data', array( $this, 'add_data' ), 10, 2 );
 
     }
 

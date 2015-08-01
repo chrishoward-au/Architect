@@ -1,3 +1,4 @@
+$version: "1.4.0";
 // THIS IS THE SCSS VERSION
 $highlight: #0074a2;
 $border-radius: 3px;
@@ -105,6 +106,7 @@ body span.pzarc-shortname {
 .pzarc-align.none {
   display: none;
 }
+
 
 .row-pzarc_layout-title-width,
 .row-pzarc_layout-excerpt-width,
@@ -275,6 +277,9 @@ div.pzarc-dragsource {
   display: inline-block;
   text-align: left;
   width: 100%;
+}
+.pzarc-draggable-image.right {
+  float:right;
 }
 
 #pzarc_pzarc-panels-id ul#pzarc-meta-nav li.pzarc-meta-tab-title a span.pzarc_show_labels {
@@ -706,13 +711,13 @@ body.screen-arc-panels {
   }
 }
 
-body.screen-arc-blueprints,
-body.screen-arc-contents,
-body.screen-arc-panels {
-  #submitdiv {
-    display: none;
-  }
-}
+//body.screen-arc-blueprints,
+//body.screen-arc-contents,
+//body.screen-arc-panels {
+//  #submitdiv {
+//    display: none;
+//  }
+//}
 
 /*  End settings styling */
 
@@ -1181,8 +1186,20 @@ body .redux-container {
   }
 }
 
-#adminmenu li.toplevel_page_pzarc .wp-menu-image img {
-  opacity: 1;
+#adminmenu li.toplevel_page_pzarc {
+  .wp-menu-image img {
+    opacity: 1;
+  }
+  .wp-menu-name:after {
+    content: $version;
+    opacity:0;
+    font-size:10px;
+    padding-left:5px;
+  }
+  .wp-menu-name:hover:after {
+    opacity:0.6;
+  }
+
 }
 
 /*#redux-_architect-metabox-blueprint_tabs_blueprints {*/
@@ -1561,14 +1578,14 @@ body.arc-beginner .arc-field-advanced {
 .arc-important {
   color: tomato;
   &.extra {
-    background:tomato;
+    background: tomato;
     color: #fff;
-    padding:5px;
-    border-radius:3px;
-    box-shadow:0 0 1px #fff;
-    display:inline-block;
+    padding: 5px;
+    border-radius: 3px;
+    box-shadow: 0 0 1px #fff;
+    display: inline-block;
     strong {
-      color:#97e7ff;
+      color: #97e7ff;
       border-bottom: double 3px currentColor;
     }
   }
@@ -1797,7 +1814,7 @@ li.arc-message {
   position: relative;
   background: #777;
   height: auto;
-  box-shadow: 0 0 5px rgba(0,0,0,0.3);
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
   h2.heading {
     width: 100%;
     color: #fff;
@@ -1807,17 +1824,17 @@ li.arc-message {
     border-top-right-radius: $border-radius;
     padding: 10px;
     font-size: 17px;
-    cursor:pointer;
+    cursor: pointer;
     margin: 0;
     &.closed:after {
-      content:"◄";
+      content: "◄";
       font-size: 12px;
-      float:right;
+      float: right;
     }
     &.open:after {
-      content:"▼";
-      font-size:8px;
-      float:right;
+      content: "▼";
+      font-size: 8px;
+      float: right;
     }
   }
   .tabs {
@@ -1869,12 +1886,12 @@ li.arc-message {
       display: inline-block;
       text-align: center;
       vertical-align: top;
-      max-width:200px;
-      padding:5px 10px;
+      max-width: 200px;
+      padding: 5px 10px;
       background: #e7e7e7;
-      white-space:normal;
+      white-space: normal;
       &:hover {
-        background:#fff;
+        background: #fff;
       }
       label {
         p {
@@ -1897,8 +1914,8 @@ li.arc-message {
           display: none;
           + img {
             border: solid 3px transparent;
-            max-width:100%;
-            height:auto;
+            max-width: 100%;
+            height: auto;
             margin-right: 10px;
           }
           &:checked + img {
@@ -1934,7 +1951,7 @@ li.arc-message {
     .tabby,
     .footer,
     .buttons {
-      display:none;
+      display: none;
     }
   }
 }
@@ -2040,7 +2057,7 @@ li.arc-message {
     border-radius: 2px;
     text-decoration: none;
     width: auto;
-    font-size:0.9em;
+    font-size: 0.9em;
     &:hover {
       background: tomato;
       color: #fff;
@@ -2055,13 +2072,13 @@ li.arc-message {
     background: #fff;
     padding: 5px;
     border-radius: 50px;
-    border:1px solid currentColor;
+    border: 1px solid currentColor;
     vertical-align: middle;
     &:before {
       vertical-align: middle;
-      font-size:15px;
-      display:inline-block;;
-      margin-top:-6px;
+      font-size: 15px;
+      display: inline-block;;
+      margin-top: -6px;
     }
   }
 }
@@ -2096,12 +2113,12 @@ body.arc-beginner {
 }
 
 .arc-installed-presets {
-  background:#eee;
-  padding:1px 10px;
-  border-radius:3px;
+  background: #eee;
+  padding: 1px 10px;
+  border-radius: 3px;
   ul {
-    list-style:disc;
-    margin-left:20px;
+    list-style: disc;
+    margin-left: 20px;
   }
 }
 
@@ -2112,3 +2129,4 @@ body.arc-beginner {
   margin-top: 10px;
   color: tomato;
 }
+

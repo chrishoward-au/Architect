@@ -6,7 +6,6 @@
    * Date: 29/04/2014
    * Time: 12:16 PM
    */
-
   // TODO: These should also definethe content filtering menu in Blueprints options... :/ Or is this meant to be in the class_arc_content_xxxx
 
   class arc_Panel_nextgen extends arc_Panel_Generic
@@ -15,7 +14,7 @@
 
     function get_title(&$post)
     {
-      $this->data['title']['title'] = $post['title'];
+      $this->data[ 'title' ][ 'title' ] = $post[ 'title' ];
     }
 
     function get_image(&$post)
@@ -23,9 +22,10 @@
       $width  = (int)str_replace('px', '', $this->section[ '_panels_design_image-max-dimensions' ][ 'width' ]);
       $height = (int)str_replace('px', '', $this->section[ '_panels_design_image-max-dimensions' ][ 'height' ]);
 
-      $this->data[ 'image' ]['thumb'] = '<img src="'.bfi_thumb($post['image_url'],array('width' => $width, 'height' => $height )).'">';
-      $this->data[ 'image' ]['original'][0] = $post['image_url'];
-      $this->data[ 'image' ]['caption'] = $post['excerpt'];
+      $this->data[ 'image' ][ 'thumb' ]         = '<img src="' . bfi_thumb($post[ 'image_url' ], array('width'  => $width,
+                                                                                                       'height' => $height)) . '">';
+      $this->data[ 'image' ][ 'original' ][ 0 ] = $post[ 'image_url' ];
+      $this->data[ 'image' ][ 'caption' ]       = $post[ 'excerpt' ];
 
     }
 
@@ -33,21 +33,39 @@
     {
       $width  = (int)str_replace('px', '', $this->section[ '_panels_design_image-max-dimensions' ][ 'width' ]);
       $height = (int)str_replace('px', '', $this->section[ '_panels_design_image-max-dimensions' ][ 'height' ]);
-
-      $this->data[ 'bgimage' ]['thumb'] = '<img src="'.bfi_thumb($post['image_url'],array('width' => $width, 'height' => $height )).'">';
-      $this->data[ 'image' ]['original'][0] = $post['image_url'];
+      $max_wh = $this->build->blueprint['section_object'][1]->section['section-panel-settings']['_panels_design_image-max-dimensions'];
+      switch ($this->build->blueprint['section_object'][1]->section['section-panel-settings'][ '_panels_settings_image-focal-point' ]) {
+        case 'scale':
+          $wh = 'width="' . $max_wh[ 'width' ] . '"';
+          break;
+        case 'scale_height':
+          $wh = 'height="' . $max_wh[ 'height' ] . '"';
+          break;
+        default:
+        case 'respect':
+        case 'centre':
+        case 'none':
+          $wh = 'width="' . $max_wh[ 'width' ] . '"';
+          $wh .= ' height="' . $max_wh[ 'height' ] . '"';
+          break;
+      }
+      $this->data[ 'bgimage' ][ 'thumb' ]       = '<img ' . $wh . ' src="' . bfi_thumb($post[ 'image_url' ], array('width'  => $width,
+                                                                                                                   'height' => $height,
+                                                                                                                   'crop' =>'50x50x'.$this->build->blueprint['section_object'][1]->section['section-panel-settings'][ '_panels_settings_image-focal-point' ]
+          )) . '">';
+      $this->data[ 'image' ][ 'original' ][ 0 ] = $post[ 'image_url' ];
 //      var_dump($this->data['bgimage'],array('width' => $width, 'height' => $height ));
     }
 
     public function get_content(&$post)
     {
       /** CONTENT */
-      $this->data[ 'content' ] = $post['content'];
+      $this->data[ 'content' ] = $post[ 'content' ];
     }
 
     public function get_excerpt(&$post)
     {
-      $this->data[ 'excerpt' ] = $post['excerpt'];
+      $this->data[ 'excerpt' ] = $post[ 'excerpt' ];
     }
 
     /**
@@ -64,7 +82,7 @@
       $panel_def = $panel_class->panel_def();
 
       // Setup meta tags
-      $panel_def = self::build_meta_header_footer_groups($panel_def, $section[ $section_no ]->section['section-panel-settings' ]);
+      $panel_def = self::build_meta_header_footer_groups($panel_def, $section[ $section_no ]->section[ 'section-panel-settings' ]);
 
       //   var_dump(esc_html($panel_def));
 
@@ -89,32 +107,32 @@
 
     }
 
-    public function get_nav_items($blueprints_navigator,&$arc_query)
+    public function get_nav_items($blueprints_navigator, &$arc_query)
     {
       $nav_items = array();
-      for ($j = 0; $j < count($arc_query); $j++){
+      for ($j = 0; $j < count($arc_query); $j++) {
         switch ($blueprints_navigator) {
 
           case 'tabbed':
             $post_title = $arc_query[ $j ][ 'title' ][ 'title' ];
-            if (!empty($nav_title_len) && strlen($post_title)>$nav_title_len) {
-              $post_title = trim(substr($post_title,0,($nav_title_len-1))).'&hellip;';
+            if (!empty($nav_title_len) && strlen($post_title) > $nav_title_len) {
+              $post_title = trim(substr($post_title, 0, ($nav_title_len - 1))) . '&hellip;';
             }
 
-            $nav_items[ ] = '<span class="' . $blueprints_navigator . '">' . $post_title . '</span>';
+            $nav_items[] = '<span class="' . $blueprints_navigator . '">' . $post_title . '</span>';
             break;
 
           case 'thumbs':
 
-            $thumb        = '<img src="'.$arc_query[$j]['thumb_url'] . '" width="' . parent::get_thumbsize('w') . '" height="' . parent::get_thumbsize('h') . '">';
-            $nav_items[ ] = '<span class="' . $blueprints_navigator . '">' . $thumb . '</span>';
+            $thumb       = '<img src="' . $arc_query[ $j ][ 'thumb_url' ] . '" width="' . parent::get_thumbsize('w') . '" height="' . parent::get_thumbsize('h') . '">';
+            $nav_items[] = '<span class="' . $blueprints_navigator . '">' . $thumb . '</span>';
             break;
 
           case 'bullets':
           case 'numbers':
           case 'buttons':
             //No need for content on these
-            $nav_items[ ] = '';
+            $nav_items[] = '';
             break;
 
         }

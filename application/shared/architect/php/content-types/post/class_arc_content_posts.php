@@ -17,50 +17,92 @@
 
       $prefix = '_content_posts_';
 
-      $settings[ 'blueprint-content' ] = array(
-          'type'        => 'post',
-          'name'        => 'Posts',
-          'panel_class' => 'arc_panel_Posts',
-          'prefix'      => $prefix,
-          // These are the sections to display on the admin metabox. We also use them to get default values.
-          'sections'    => array(
-              'title'      => 'Posts',
-              'icon_class' => 'icon-large',
-              'icon'       => 'el-icon-list',
-              'fields'     => array(
-                  array(
-                      'title'   => __('Specific posts', 'pzarchitect'),
-                      'id'      => $prefix . 'specific-posts',
-                      'type'    => 'select',
-                      'select2' => array('allowClear' => true),
-                      'args' => array('posts_per_page'=>'-1'),
-                      'data'    => 'posts',
-                      'multi'   => true,
-                      'sortable'=>true,
-                      'subtitle'=>__('Select then drag and drop to order. Be sure to set Order By in Settings to Specified.','pzarchitect'),
-                  ),
-                  array(
-                    'title'   => __('Exclude posts', 'pzarchitect'),
-                    'id'      => $prefix . 'exclude-posts',
-                    'type'    => 'select',
-                    'select2' => array('allowClear' => true),
-                    'args' => array('posts_per_page'=>'-1'),
-                    'data'    => 'posts',
-                    'multi'   => true
-                  ),
-                  array(
-                    'title'    => __( 'Exclude current post', 'pzarchitect' ),
-                    'id'       => $prefix . 'exclude-current-post',
-                    'type'     => 'switch',
-                    'on'       => __( 'Yes', 'pzarchitect' ),
-                    'off'      => __( 'No', 'pzarchitect' ),
-                    'default'  => false,
-                    'subtitle' => __('If this Blueprint is displayed on a post page, exclude that post from Blueprint','pzarchitect')
-                  ),
-              )
-          )
-      );
+      global $_architect_options;
+      if (empty($_architect_options)) {
+        $_architect_options = get_option('_architect_options');
+      }
 
+      if (empty($_architect_options['architect_post-specific-id-dropdown'])) {
+        $settings[ 'blueprint-content' ] = array(
+            'type'        => 'post',
+            'name'        => 'Posts',
+            'panel_class' => 'arc_panel_Posts',
+            'prefix'      => $prefix,
+            // These are the sections to display on the admin metabox. We also use them to get default values.
+            'sections'    => array(
+                'title'      => 'Posts',
+                'icon_class' => 'icon-large',
+                'icon'       => 'el-icon-list',
+                'fields'     => array(
+                    array(
+                        'title'    => __('Specific posts', 'pzarchitect'),
+                        'id'       => $prefix . 'specific-posts',
+                        'type'     => 'select',
+                        'select2'  => array('allowClear' => true),
+                        'args'     => array('posts_per_page' => '-1'),
+                        'data'     => 'posts',
+                        'multi'    => true,
+                        'sortable' => true,
+                        'subtitle' => __('Select then drag and drop to order. Be sure to set Order By in Settings to Specified.', 'pzarchitect'),
+                    ),
+                    array(
+                        'title'   => __('Exclude posts', 'pzarchitect'),
+                        'id'      => $prefix . 'exclude-posts',
+                        'type'    => 'select',
+                        'select2' => array('allowClear' => true),
+                        'args'    => array('posts_per_page' => '-1'),
+                        'data'    => 'posts',
+                        'multi'   => true
+                    ),
+                    array(
+                        'title'    => __('Exclude current post', 'pzarchitect'),
+                        'id'       => $prefix . 'exclude-current-post',
+                        'type'     => 'switch',
+                        'on'       => __('Yes', 'pzarchitect'),
+                        'off'      => __('No', 'pzarchitect'),
+                        'default'  => false,
+                        'subtitle' => __('If this Blueprint is displayed on a post page, exclude that post from Blueprint', 'pzarchitect')
+                    ),
+                )
+            )
+        );
+      } else {
+        $settings[ 'blueprint-content' ] = array(
+            'type'        => 'post',
+            'name'        => 'Posts',
+            'panel_class' => 'arc_panel_Posts',
+            'prefix'      => $prefix,
+            // These are the sections to display on the admin metabox. We also use them to get default values.
+            'sections'    => array(
+                'title'      => 'Posts',
+                'icon_class' => 'icon-large',
+                'icon'       => 'el-icon-list',
+                'fields'     => array(
+                    array(
+                        'title'    => __('Specific posts', 'pzarchitect'),
+                        'id'       => $prefix . 'specific-posts',
+                        'type'     => 'text',
+                        'subtitle' => __('Enter a comma separated list of post IDs. Be sure to set Order By in Settings to Specified.', 'pzarchitect'),
+                    ),
+                    array(
+                        'title'   => __('Exclude posts', 'pzarchitect'),
+                        'id'      => $prefix . 'exclude-posts',
+                        'type'    => 'text',
+                    ),
+                    array(
+                        'title'    => __('Exclude current post', 'pzarchitect'),
+                        'id'       => $prefix . 'exclude-current-post',
+                        'type'     => 'switch',
+                        'on'       => __('Yes', 'pzarchitect'),
+                        'off'      => __('No', 'pzarchitect'),
+                        'default'  => false,
+                        'subtitle' => __('If this Blueprint is displayed on a post page, exclude that post from Blueprint', 'pzarchitect')
+                    ),
+                )
+            )
+        );
+
+      }
       // This has to be post_types
       $registry->set('post_types', $settings);
       $registry->set('content_source',array('post'=>plugin_dir_path(__FILE__)));

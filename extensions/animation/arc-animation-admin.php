@@ -16,11 +16,11 @@
         $GLOBALS[ '_architect_options' ] = get_option( '_architect_options', array() );
       }
 
-      add_filter( 'pzarc-extend-options', array( $this, 'options' ) );
+      add_filter('arc-extend-options', array( $this, 'options' ) );
 
       if ( ! empty( $_architect_options[ 'architect_animation-enable' ] ) ) {
         add_action( "redux/metaboxes/_architect/boxes", array( $this, 'pzarc_mb_animation' ), 10, 1 );
-        add_filter( 'pzarc_editor_tabs', array( $this, 'add_editor_tabs' ) );
+        add_filter('arc_editor_tabs', array( $this, 'add_editor_tabs' ) );
         add_action( 'admin_init', array( $this, 'admin_init' ) );
       }
     }

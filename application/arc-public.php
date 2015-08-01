@@ -61,11 +61,8 @@
     //icomoon
     wp_register_style('css-icomoon-arrows', PZARC_PLUGIN_APP_URL . '/shared/assets/fonts/icomoon/im-style.css');
 
-// Slick
-    //  wp_register_script( 'js-arc-front-slickjs', PZARC_PLUGIN_URL . '/extensions-inc/sliders/slick/arc-front-slick.js', array( 'jquery' ), null, true );
-    //  wp_register_script( 'js-slickjs', PZARC_PLUGIN_URL . '/extensions-inc/sliders/slick/slick/slick/slick.min.js', array( 'jquery' ), null, true );
-    //  wp_register_style( 'css-slickjs', PZARC_PLUGIN_URL . '/extensions-inc/sliders/slick/slick/slick/slick.css' );
-    //  wp_register_style( 'css-arcslick', PZARC_PLUGIN_URL . '/extensions-inc/sliders/slick/arc-slick.css' );
+// Percentify Margins
+  //  wp_enqueue_script( 'js-arc-percentifymargins', PZARC_PLUGIN_APP_URL . '/public/js/marginsPercentify.js', array( 'jquery' ), null, true );
 
     // DataTables
     wp_register_script('js-datatables', PZARC_PLUGIN_APP_URL . '/public/js/DataTables/media/js/jquery.dataTables.min.js', array('jquery'), null, true);
@@ -148,13 +145,13 @@
     ob_start();
 
 
-    do_action("arc_before_shortcode", $pzarc_blueprint, $pzarc_overrides, $pzarc_caller, $tag);
+    do_action('arc_before_shortcode', $pzarc_blueprint, $pzarc_overrides, $pzarc_caller, $tag);
 
 
     // The caller is shortcode, and not variable here. It just uses a variable for consistency and documentation
-    do_action("arc_do_shortcode", $pzarc_blueprint, $pzarc_overrides, $pzarc_caller, $tag, $additional_overrides, $tablet_bp, $phone_bp);
+    do_action('arc_do_shortcode', $pzarc_blueprint, $pzarc_overrides, $pzarc_caller, $tag, $additional_overrides, $tablet_bp, $phone_bp);
 
-    do_action("arc_after_shortcode", $pzarc_blueprint, $pzarc_overrides, $pzarc_caller, $tag);
+    do_action('arc_after_shortcode', $pzarc_blueprint, $pzarc_overrides, $pzarc_caller, $tag);
 
     $pzout = ob_get_contents();
     ob_end_clean();
@@ -175,9 +172,9 @@
     $pzarc_caller         = 'template_tag';
     $tag                  = null;
     $additional_overrides = null;
-    do_action("arc_before_template_tag", $pzarc_blueprint, $pzarc_overrides, $pzarc_caller);
-    do_action("arc_do_template_tag", $pzarc_blueprint, $pzarc_overrides, $pzarc_caller, $tag, $additional_overrides, $tablet_bp, $phone_bp);
-    do_action("arc_after_template_tag", $pzarc_blueprint, $pzarc_overrides, $pzarc_caller);
+    do_action('arc_before_template_tag', $pzarc_blueprint, $pzarc_overrides, $pzarc_caller);
+    do_action('arc_do_template_tag', $pzarc_blueprint, $pzarc_overrides, $pzarc_caller, $tag, $additional_overrides, $tablet_bp, $phone_bp);
+    do_action('arc_after_template_tag', $pzarc_blueprint, $pzarc_overrides, $pzarc_caller);
   }
 
 
@@ -194,9 +191,9 @@
     $tablet_bp            = null;
     $phone_bp             = null;
 //TODO: Need to fix this up so it uses these right
-//    do_action("arc_before_pagebuilder", $pzarc_blueprint, $pzarc_overrides, $pzarc_caller);
-    do_action("arc_do_pagebuilder", $pzarc_blueprint, null, $pzarc_caller, $tag, $additional_overrides, $tablet_bp, $phone_bp);
-//    do_action("arc_after_pagebuilder", $pzarc_blueprint, $pzarc_overrides, $pzarc_caller);
+//    do_action('arc_before_pagebuilder', $pzarc_blueprint, $pzarc_overrides, $pzarc_caller);
+    do_action('arc_do_pagebuilder', $pzarc_blueprint, null, $pzarc_caller, $tag, $additional_overrides, $tablet_bp, $phone_bp);
+//    do_action('arc_after_pagebuilder', $pzarc_blueprint, $pzarc_overrides, $pzarc_caller);
   }
 
 
@@ -333,7 +330,7 @@
    * Capture and append the comments display
    *
    ********************************************/
-  //add_filter('pzarc_comments', 'pzarc_get_comments');
+  //add_filter('arc_comments', 'pzarc_get_comments');
   function pzarc_get_comments($pzarc_content)
   {
     ob_start();

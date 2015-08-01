@@ -272,6 +272,10 @@
   border-collapse: collapse; }
   .pzarchitect table thead {
     background: #eee; }
+  .pzarchitect table.datatables tbody,
+  .pzarchitect table.datatables thead {
+    display: table;
+    width: 100%; }
 .pzarchitect .rtl .pzarc-accordion.title a:after {
   content: "►";
   float: left;

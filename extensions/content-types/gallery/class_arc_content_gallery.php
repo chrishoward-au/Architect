@@ -16,7 +16,10 @@
     {
       $registry = arc_Registry::getInstance();
       $prefix   = '_content_galleries_';
-
+        global $_architect_options;
+        if (empty($_architect_options)) {
+            $_architect_options = get_option('_architect_options');
+        }
       $settings[ 'blueprint-content' ] = array(
           'type'        => 'gallery',
           'name'        => 'Galleries',
@@ -69,7 +72,8 @@
                       'subtitle' => 'Enter a comma separated list of image ids',
                       'required' => array($prefix . 'gallery-source', 'equals', 'ids')
                   ),
-                  array(
+                  (empty($_architect_options['architect_post-specific-id-dropdown'])?
+                      array(
                       'title'    => __('WP Gallery', 'pzarchitect'),
                       'id'       => $prefix . 'wp-post-gallery',
                       'type'     => 'select',
@@ -77,6 +81,15 @@
                       'args'     => array('pzarc_get_wp_galleries'),
                       'subtitle' => 'Select a post with a gallery',
                       'required' => array($prefix . 'gallery-source', 'equals', 'wpgallery')
+                  ):
+                      array(
+                          'title'    => __('ID of post with the gallery', 'pzarchitect'),
+                          'id'       => $prefix . 'wp-post-gallery',
+                          'type'     => 'text',
+                          'subtitle' => __('Enter the ID of the post with the gallery to display','pzarchitect'),
+                          'required' => array($prefix . 'gallery-source', 'equals', 'wpgallery')
+
+                      )
                   ),
                   // TODO: Get post images as gallery source working
 //                  array(

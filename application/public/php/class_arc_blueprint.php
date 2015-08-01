@@ -62,7 +62,7 @@
       //}
 
       // Let others add ther own defaults
-      $this->blueprint = apply_filters('pzarc-load-blueprint', $this->blueprint);
+      $this->blueprint = apply_filters('arc-load-blueprint', $this->blueprint);
       pzdb('bottom of blueprint construct');
     }
 

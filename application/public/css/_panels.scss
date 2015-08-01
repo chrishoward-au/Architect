@@ -295,6 +295,13 @@
     thead {
       background: #eee;
     }
+    &.datatables {
+      tbody,
+      thead {
+        display:table;
+        width:100%;
+      }
+    }
   }
 
   .rtl {

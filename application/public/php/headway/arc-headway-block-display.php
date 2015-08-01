@@ -215,6 +215,7 @@
       // PANELS
       // Don't allow margins on panels as it messes up layout. Margins must be set in the Blueprint settings
 
+
       $this->register_block_element( array(
                                        'id'         => 'pzarc-panel',
                                        'name'       => 'Panels',
@@ -395,6 +396,27 @@
                                            'fonts'
                                          ),
                                        ) );
+
+        // Nav
+        $this->register_block_element( array(
+                                           'id'         => 'pzarc-accordion',
+                                           'name'       => 'Accordion titles',
+                                           'selector'   => '.use-hw-css .pzarc-accordion.title',
+                                           'states'     => array(
+                                               'Close'  => '.use-hw-css .pzarc-accordion.title.close',
+                                               'Open' => '.use-hw-css .pzarc-accordion.title.open',
+                                               'Hover' => '.use-hw-css .pzarc-accordion.title:hover',
+                                           ),
+                                           'properties' => array(
+                                               'background',
+                                               'borders',
+                                               'padding',
+                                               'rounded-corners',
+                                               'box-shadow',
+                                               'fonts'
+                                           ),
+                                       ) );
+
       }
     }
 

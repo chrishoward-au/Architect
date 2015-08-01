@@ -19,7 +19,7 @@
 
     <?php
       $pzarc_builder->build(null);
-//      do_action('pzarc_page_template');
+//      do_action('arc_page_template');
     ?>
   </main><!-- .site-main -->
 </div><!-- .content-area -->

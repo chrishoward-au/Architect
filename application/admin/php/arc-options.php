@@ -431,9 +431,10 @@
               //              'subtitle' => __( 'Add a video field to content types to optionally use as the Feature.', 'pzarchitect' ),
               'options' => array(
                 'pz_snippets'     => __( 'Snippets', 'pzarchitect' ),
-                'pz_testimonials' => __( 'Testimonials', 'pzarchitect' )
+                'pz_testimonials' => __( 'Testimonials', 'pzarchitect' ),
+//                'pz_showcases' => __( 'Showcases', 'pzarchitect' )
               ),
-              'default' => array( 'pz_testimonials' => 1, 'pz_snippets' => 1 )
+              'default' => array( 'pz_testimonials' => 1, 'pz_snippets' => 1,'pz_showcases' => 1 )
             ),
             array(
               'title'    => __( 'Feature Video field', 'pzarchitect' ),
@@ -473,6 +474,15 @@
               'default'  => false,
               'on'       => __( 'Yes', 'pzarchitect' ),
               'off'      => __( 'No', 'pzarchitect' )
+            ),
+            array(
+                'title'    => __( 'Turn off dropdowns of post lists', 'pzarchitect' ),
+                'id'       => 'architect_post-specific-id-dropdown',
+                'type'     => 'switch',
+                'desc' => __( 'This will replace post list dropdowns with text fields where you\'ll need to enter specific IDs. This is required if you have 1000s of posts as populating the dropdowns will kill memory and the Blueprint editor won\'t fully load.', 'pzarchitect' ),
+                'default'  => false,
+                'on'       => __( 'Yes', 'pzarchitect' ),
+                'off'      => __( 'No', 'pzarchitect' )
             ),
 //            array(
 //              'title'    => __( 'Remove Architect Support button', 'pzarchitect' ),
@@ -677,7 +687,7 @@
 //                )
 //            )
 //        );
-        $this->sections = apply_filters('pzarc-extend-options',$this->sections);
+        $this->sections = apply_filters('arc-extend-options',$this->sections);
 
       }
 

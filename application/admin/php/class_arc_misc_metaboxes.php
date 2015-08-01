@@ -20,7 +20,6 @@
     {
       add_action('admin_init',array($this,'init'));
       add_action("redux/metaboxes/$this->redux_opt_name/boxes", array($this, "pzarc_add_fvid_metaboxes"), 10, 1);
-      add_action("redux/metaboxes/$this->redux_opt_name/boxes", array($this, "pzarc_add_testimonials_metaboxes"), 10, 1);
     }
 
     function init() {
@@ -72,48 +71,6 @@
       return $metaboxes;
     }
 
-    function pzarc_add_testimonials_metaboxes($metaboxes)
-    {
-      // Declare your sections
-      global $_architect_options;
-      $boxSections    = array();
-      $boxSections[ ] = array(
-        //'title'         => __('General Settings', 'pzarchitect'),
-        //'icon'          => 'el-icon-home', // Only used with metabox position normal or advanced
-        'fields' => array(
-          array(
-            'id'    => 'pzarc_testimonial-company',
-            'title' => __('Company name', 'pzarchitect'),
-            'type'  => 'text',
-          ),
-          array(
-            'id'    => 'pzarc_testimonial-position',
-            'title' => __('Position', 'pzarchitect'),
-            'type'  => 'text',
-          ),
-          array(
-            'id'    => 'pzarc_testimonial-url',
-            'title' => __('Web address', 'pzarchitect'),
-            'type'  => 'text',
-            'subtitle'=>__('Please include http:// or https://'),
-            'validate' => 'url'
-          ),
-        ),
-      );
-
-      // Declare your metaboxes
-      $metaboxes[ ] = array(
-        'id'         => 'pzarc_mb-featured-video',
-        'title'      => __('Extra Information', 'pzarchitect'),
-        'post_types' => array('pz_testimonials'),
-        'position'   => 'side', // normal, advanced, side
-        'priority'   => 'default', // high, core, default, low - Priorities of placement
-        'sections'   => $boxSections,
-        'sidebar'    => false
-      );
-
-      return $metaboxes;
-    }
 
 
 

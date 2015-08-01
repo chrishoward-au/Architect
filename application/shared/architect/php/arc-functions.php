@@ -540,24 +540,24 @@
    */
   function pzarc_get_wp_galleries()
   {
-
-    // Get galleries in posts and pages
-    $args    = array(
-        'post_type'   => array('post', 'page'),
-        'numberposts' => -1,
-        'post_status' => null,
-        'post_parent' => null
-    );
-    $albums  = get_posts($args);
+      // Get galleries in posts and pages
     $results = array();
-    if ($albums) {
-      foreach ($albums as $post) {
-        setup_postdata($post);
-        if (get_post_gallery($post->ID)) {
-          $results[ $post->ID ] = substr(get_the_title($post->ID), 0, 60);
+
+    $args    = array(
+          'post_type'   => array('post', 'page'),
+          'numberposts' => -1,
+          'post_status' => 'publish',
+          'post_parent' => null
+      );
+      $albums  = get_posts($args);
+      if ($albums) {
+        foreach ($albums as $post) {
+          setup_postdata($post);
+          if (get_post_gallery($post->ID)) {
+            $results[ $post->ID ] = substr(get_the_title($post->ID), 0, 60);
+          }
         }
       }
-    }
 
     return $results;
 
@@ -877,7 +877,7 @@
     preg_match_all("/(?<=\\%)(ct\\:)(.*)(?=\\%)/uiUmx", $meta_string, $matches);
     for ($i = 1; $i <= $meta_custom; $i++) {
       if (taxonomy_exists($matches[ 2 ][ $i - 1 ])) {
-        $post_tax_terms = array($matches[ 2 ][ $i - 1 ] => get_the_term_list($post_id, $matches[ 2 ][ $i - 1 ]));
+        $post_tax_terms = array($matches[ 2 ][ $i - 1 ] => get_the_term_list($post_id, $matches[ 2 ][ $i - 1 ],null,', ',null));
       }
     }
 

@@ -124,7 +124,7 @@
     }
     $pzarc_contents = str_replace( '{{fontface}}', $pzarc_fontface, $pzarc_contents );
 
-    return apply_filters( 'pzarc_blueprint_css', $pzarc_contents );
+    return apply_filters('arc_blueprint_css', $pzarc_contents );
   }
 
 
@@ -485,15 +485,39 @@
 
             $margins = pzarc_process_spacing( $pzarc_panels[ '_panels_design_image-spacing' ] );
             $twidth  = $pzarc_panels[ '_panels_design_thumb-width' ] - ( str_replace( '%', '', $pzarc_panels[ '_panels_design_image-spacing' ][ 'margin-left' ] ) + str_replace( '%', '', $pzarc_panels[ '_panels_design_image-spacing' ][ 'margin-right' ] ) );
-            $float   = $value === 'content-left' ? 'left' : 'right';
-            $pzarc_contents .= $class_prefix . ' .in-content-thumb {width:' . $twidth . '%;float:' . $float . '!important;' . $margins . '}' . $nl;
+            $float   = ($value === 'content-left') ? 'left' : 'right';
+            $pzarc_contents .= $class_prefix . ' .in-content-thumb {width:' . $twidth . '%;' . $margins . '}' . $nl;
+            if ($pzarc_panels['_panels_design_alternate-feature-position']==='on') {
+              $pzarc_contents .= $class_prefix . '.odd-panel .in-content-thumb {float:' . $float . ';}' . $nl;
+              $float   = ($value === 'content-left') ? 'right' : 'left';
+              $pzarc_contents .= $class_prefix . '.even-panel .in-content-thumb {float:' . $float . ';}' . $nl;
+            } else {
+              $pzarc_contents .= $class_prefix . ' .in-content-thumb {float:' . $float . '!important;}' . $nl;
+            }
           }
+
+          if ( $value === 'components' &&  $pzarc_panels[ '_panels_design_feature-float' ] !== 'default') {
+                $pzarc_contents .= $class_prefix . ' .entry-thumbnail {float:' . $pzarc_panels[ '_panels_design_feature-float' ] . ';}' . $nl;
+            }
 
           if ( $value === 'fill' ) {
 
           }
 
           if ( $value === 'float' ) {
+            if ($pzarc_panels['_panels_design_alternate-feature-position']==='on') {
+              switch ($pzarc_panels['_panels_design_components-position'] ){
+                case 'left':
+                  $pzarc_contents .= $class_prefix . '.even-panel .entry-thumbnail {float:left;}' . $nl;
+                  break;
+                case 'right':
+                  $pzarc_contents .= $class_prefix . '.even-panel .entry-thumbnail {float:right;}' . $nl;
+                  $pzarc_contents .= $class_prefix . '.even-panel .pzarc-components {float:left;}' . $nl;
+                  break;
+              }
+
+            } else {
+            }
 
           }
           break;
@@ -508,6 +532,7 @@
 
           }
           break;
+
 
         /********************************************************
          *    PANELS STYLING
