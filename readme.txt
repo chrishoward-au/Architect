@@ -3,7 +3,7 @@ Contributors: chrishoward
 Tags: content,display,posts,pages,gallery,slider,tabs,tabbed,tabular,widget,hooks
 Requires at least: 3.5.0
 Tested up to: 4.3
-Stable tag: 1.4.0
+Stable tag: 1.4.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Plugin URI: http://architect4wp.com
@@ -92,15 +92,23 @@ For support, please send an email to support@pizazzwp.com
 2. Slider example
 
 == Changelog ==
+= 1.4.3 =
+* FIXED: Wording of accordions option that controls if it's open or closed at startup
 
-= 1.4.0 : 28 July 2015 =
+= 1.4.2 : 5 August 2015 =
+* CHANGED: BFI Thumbs options page removed (it isa duplicate of the Refresh Cache in Architect > Options)
+
+= 1.4.1 : 4 August 2015 =
+* FIXED: Possible security risk with SysInfo library
+
+= 1.4.0 : 3 August 2015 =
 * ADDED: Option to alternate feature left/right when outside components
 * ADDED: Option to float feature left/right when in components to close up space
 * ADDED: Option to make a custom field display as an embedded url. E.g. YouTube link displays as video
 * ADDED: Option to not use a dropdown for post lists. A text field is used instead where you then need to enter a specific ID(s). Required when lots of posts that kill the memory loading into the dropdown array. This affects the Posts and Galleries content sources only.
 * CHANGED: All actions and filters prefixes changed from 'pzarc' to 'arc'
 * CHANGED: Message on update now - finally! - says Blueprint updated
-* FIXED: Scaling crops not working when NextGen galleries 
+* FIXED: Scaled cropping not working when using NextGen galleries 
 
 = 1.3.7 =
 * ADDED: Accordion title styling to Headway Design Mode

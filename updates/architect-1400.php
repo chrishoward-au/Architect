@@ -23,8 +23,8 @@
         <p>The most significant of those are:</p>
         <ul style="list-style:disc;margin-left:20px;">
         <li>Preset Selector is now always visible (tho can be minimized)</li>
-        <li>You can import Blueprints and Presets</li>
-        <li>Option in Content Layout to alternate the Feature left/right when location is <em>Outside Components</em></li>
+        <li>You can make your own Presets. See <a href="http://architect4wp.com/codex/architect-making-your-own-presets/" target="_blank">this tutorial</a> to get started</li>
+        <li>Option in Content Layout to alternate the Feature left/right when location is <em>Outside Components</em>. See <a href="http://architect4wp.com/codex/making-a-grid-using-the-alternating-feature-option/" target="_blank">this tutorial</a> to get started</li>
         </ul>
                         <div>
                         <a class="pzarc-button-help" href="http://architect4wp.com/codex-listings/" target="_blank">

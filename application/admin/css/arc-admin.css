@@ -563,11 +563,6 @@ body.screen-arc-panels #normal-sortables select {
   -moz-appearance: none;
   appearance: none; }
 
-body.screen-arc-blueprints #submitdiv,
-body.screen-arc-contents #submitdiv,
-body.screen-arc-panels #submitdiv {
-  display: none; }
-
 /*  End settings styling */
 .pzarc-states {
   text-transform: capitalize;
@@ -934,7 +929,7 @@ body .redux-container .redux-main .redux-section-field.redux-field.heading h3 {
 #adminmenu li.toplevel_page_pzarc .wp-menu-image img {
   opacity: 1; }
 #adminmenu li.toplevel_page_pzarc .wp-menu-name:after {
-  content: "1.4.0";
+  content: "1.4.3";
   opacity: 0;
   font-size: 10px;
   padding-left: 5px; }

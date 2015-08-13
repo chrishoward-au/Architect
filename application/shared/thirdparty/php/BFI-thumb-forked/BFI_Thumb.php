@@ -869,8 +869,9 @@
 
   }
 
-  add_action('admin_menu', 'bfi_add_options_pages');
-
+  if (!class_exists('ArchitectAdmin')) {
+    add_action('admin_menu', 'bfi_add_options_pages');
+  }
   /**
    * bfi_thumbs_settings
    */

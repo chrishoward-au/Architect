@@ -1,11 +1,17 @@
 # Architect change history 
 
-## 1.4.0 : 28 July 2015 
+## 1.4.1 : 4 August  2015
+* FIXED: Possible security risk with SysInfo library
+
+## 1.4.0 : 3 August 2015 
 * ADDED: Option to alternate feature left/right when outside components
 * ADDED: Option to float feature left/right when in components to close up space
 * ADDED: Option to make a custom field display as an embedded url. E.g. YouTube link displays as video
 * ADDED: Option to not use a dropdown for post lists. A text field is used instead where you then need to enter a specific ID(s). Required when lots of posts that kill the memory loading into the dropdown array. This affects the Posts and Galleries content sources only.
 * CHANGED: All actions and filters prefixes changed from 'pzarc' to 'arc'
+*  CHANGED: Message on update now - finally! - says Blueprint updated
+* FIXED: Scaled cropping not working when using NextGen galleries 
+
 
 ## 1.3.7 
 * ADDED: Accordion title styling to Headway Design Mode

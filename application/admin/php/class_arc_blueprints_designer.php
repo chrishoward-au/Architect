@@ -652,13 +652,13 @@
                     'required' => array($prefix . 'section-' . $i . '-layout-mode', '=', 'accordion'),
                 ),
                 array(
-                    'title'    => __('Accordion closed', 'pzarchitect'),
+                    'title'    => __('Accordion open', 'pzarchitect'),
                     'id'       => $prefix . 'accordion-closed',
                     'type'     => 'switch',
                     'on'       => __('Yes', 'pzarchitect'),
                     'off'      => __('No', 'pzarchitect'),
                     'default'  => false,
-                    'subtitle' => __('When enabled, accordions will be closed on startup.', 'pzarchitect')
+                    'subtitle' => __('Turn off to have accordion closed on startup.', 'pzarchitect')
                 ),
                 array(
                     'id'         => $prefix . 'section-' . $i . '-accordion-titles',
