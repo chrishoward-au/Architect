@@ -94,6 +94,8 @@ For support, please send an email to support@pizazzwp.com
 == Changelog ==
 = 1.4.3 =
 * FIXED: Wording of accordions option that controls if it's open or closed at startup
+* CHANGED: Installed Presets list on Tools page not shown if empty
+* FIXED: Problems with Defaults content source not displaying correct content when Overrides enabled
 
 = 1.4.2 : 5 August 2015 =
 * CHANGED: BFI Thumbs options page removed (it isa duplicate of the Refresh Cache in Architect > Options)

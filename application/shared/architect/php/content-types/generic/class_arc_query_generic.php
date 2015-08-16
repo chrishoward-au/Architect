@@ -22,10 +22,13 @@
 
     public function build_custom_query_options($overrides)
     {
+      // Make sure we're using the original post type for the page
+      if ($this->build->blueprint[ '_blueprints_content-source' ]==='defaults') {
+        $this->query_options=$this->build->blueprint[ 'original_query_vars' ];
+      }
 
       // TODO: need to scrape this down to just a generic one for built in post types
       // Probably should make this extensible
-
       //build the new query
       $source = $this->build->blueprint[ '_blueprints_content-source' ];
       global $paged;
