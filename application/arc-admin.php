@@ -373,14 +373,16 @@
         $pzarc_custom_presets = pzarc_tidy_dir(scandir(PZARC_PRESETS_PATH));
         // TODO: add existing presets with option to delete (custom) or hide (builtin)
         echo '<h3>' . __('Import Blueprint or Preset', 'pzarchitect') . '</h3>';
-        echo '<div class="arc-installed-presets"><h4>Currently installed additional Presets</h4>';
-        echo '<ul>';
-        foreach ($pzarc_custom_presets as $f) {
-          if (is_dir(PZARC_PRESETS_PATH . '/' . $f)) {
-            echo '<li>' . ucwords($f) . '</li>';
+        if (count($pzarc_custom_presets)>0) {
+          echo '<div class="arc-installed-presets"><h4>Currently installed additional Presets</h4>';
+          echo '<ul>';
+          foreach ($pzarc_custom_presets as $f) {
+            if (is_dir(PZARC_PRESETS_PATH . '/' . $f)) {
+              echo '<li>' . ucwords($f) . '</li>';
+            }
           }
+          echo '</ul></div>';
         }
-        echo '</ul></div>';
         echo '<p>' . __('<strong>Blueprints</strong>: If you have a <strong>Blueprint</strong> in a .txt format, you may import it by uploading it here. The new Blueprint will then be opened ready for editing. Blueprint export files can be created from context menu on the Blueprint listing.') . '</p>';
         echo '<p>' . __('<strong>Presets</strong>: If you have a <strong>Preset</strong> in a .zip format, you may import it by uploading it here. It will then appear in the Blueprints, Preset Selector') . '</p>
       <div class="pzarc-upload-preset">
