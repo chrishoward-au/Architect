@@ -32,6 +32,7 @@
     private $is_shortcode;
     private $criteria = array();
     private $nav_items = array();
+    private $content_source = null;
 
     /**
      * @param $blueprint
@@ -189,16 +190,18 @@
       /** Build the query */
       $registry       = arc_Registry::getInstance();
       $content_source = $registry->get( 'content_source' );
+
+      // Setup original query vars that can then be used by custom query when Defaults
+      $this->build->blueprint[ 'original_content-source' ] = $this->build->blueprint[ '_blueprints_content-source' ];
       if ( $this->build->blueprint[ '_blueprints_content-source' ] === 'defaults' && ! empty( $this->build->blueprint[ '_content_defaults_defaults-override' ] ) ) {
         global $wp_query;
-        $this->build->blueprint[ '_blueprints_content-source' ] = $wp_query->posts[ 0 ]->post_type;
+        $this->build->blueprint[ 'original_query_vars' ] = $wp_query->query_vars;
       }
 
-      if ( $this->build->blueprint[ '_blueprints_content-source' ] != 'defaults' && array_key_exists( $this->build->blueprint[ '_blueprints_content-source' ], $content_source ) ) {
+      if ( array_key_exists( $this->build->blueprint[ '_blueprints_content-source' ], $content_source ) ) {
 
         $source_query_class = 'arc_query_' . $this->build->blueprint[ '_blueprints_content-source' ];
         require_once( $content_source[ $this->build->blueprint[ '_blueprints_content-source' ] ] . '/class_' . $source_query_class . '.php' );
-        $source_query_class = 'arc_query_' . $this->build->blueprint[ '_blueprints_content-source' ];
         self::use_custom_query( $overrides, $source_query_class );
 
       } else {
@@ -209,6 +212,7 @@
 
       /** at this point we have the necessary info to populate the navigator. So let's do it! */
       $content_class = self::get_blueprint_content_class();
+//      pzdebug($content_class);
       if ( class_exists( $content_class ) ) {
         $panel_class = new $content_class( $this->build ); // This gets the settings for the panels of this content type.
         if ( $bp_nav_type === 'navigator' ) {
@@ -240,7 +244,6 @@ pzdb('post render');
      */
     private function render_this_architect_blueprint( $bp_nav_type, $bp_nav_pos, $bp_shortname, $caller, $bp_transtype, $panel_class, $content_class, $blueprint_type ) {
       // TODO: Show or hide blueprint if no content
-
       do_action( 'arc_before_architect' );
       do_action( "arc_before_architect_{$bp_shortname}" );
 
@@ -592,11 +595,11 @@ pzdb();
       // Build the query
       $content_source = $registry->get( 'content_source' );
       $class          = 'arc_Panel_' . ( 'defaults' === $this->build->blueprint[ '_blueprints_content-source' ] ? 'defaults' : $post_type );
+//      $class          = 'arc_Panel_' . ( 'defaults' === $this->build->blueprint[ '_blueprints_content-source' ]|| $this->content_source === 'defaults' ? 'defaults' : $post_type );
 pzdb($post_type);
       if ( array_key_exists( $this->build->blueprint[ '_blueprints_content-source' ], $content_source ) ) {
         require_once $content_source[ $this->build->blueprint[ '_blueprints_content-source' ] ] . '/class_arc_panel_' . strtolower( $post_type ) . '.php';
       }
-
       return $class;
     }
 
