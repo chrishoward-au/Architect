@@ -3,7 +3,7 @@ Contributors: chrishoward
 Tags: content,display,posts,pages,gallery,slider,tabs,tabbed,tabular,widget,hooks
 Requires at least: 3.5.0
 Tested up to: 4.3
-Stable tag: 1.4.3
+Stable tag: 1.4.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Plugin URI: http://architect4wp.com
@@ -92,6 +92,9 @@ For support, please send an email to support@pizazzwp.com
 2. Slider example
 
 == Changelog ==
+= 1.4.4 =
+* FIXED: Snippets selector not sortable
+
 = 1.4.3 =
 * FIXED: Wording of accordions option that controls if it's open or closed at startup
 * CHANGED: Installed Presets list on Tools page not shown if empty

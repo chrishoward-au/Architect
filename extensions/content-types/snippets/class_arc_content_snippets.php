@@ -34,6 +34,7 @@
                       'select2' => array('allowClear' => true),
                       'options' => pzarc_get_posts_in_post_type('pz_snippets','id-slug'),
                       'multi'   => true,
+                      'sortable'=>true,
                       'default' => array()
                   ),
               )
