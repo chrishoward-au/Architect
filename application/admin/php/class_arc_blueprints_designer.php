@@ -160,7 +160,9 @@
                 If you have Presets to import, do so in the Architect > Tools page
            </div>
            </div>
-           <p class="footer">All Presets use Dummy Content by default. Please change to the content of your choice after loading the chosen Preset.</p>
+           <p class="footer">• All Presets use Dummy Content by default. Please change to the content of your choice after loading the chosen Preset.<br>
+           • If <em>Use Architect styling</em> is turned off in Architect > Options, styling will not show.
+           </p>
            <div class="buttons">
             <a class="arc-button-presets styled disabled" href="javascript:void(0);">Use styled</a>
             <a class="arc-button-presets unstyled disabled" href="javascript:void(0);">Use unstyled</a>
