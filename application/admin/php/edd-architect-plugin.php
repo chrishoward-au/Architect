@@ -150,12 +150,12 @@
 
   function edd_architect_register_option() {
     // creates our settings in the options table
-    register_setting( 'edd_architect_license', 'edd_architect_license_key', 'edd_sanitize_license' );
+    register_setting( 'edd_architect_license', 'edd_architect_license_key', 'edd_architect_sanitize_license' );
   }
 
   add_action( 'admin_init', 'edd_architect_register_option' );
 
-  function edd_sanitize_license( $new ) {
+  function edd_architect_sanitize_license( $new ) {
     $old = get_option( 'edd_architect_license_key' );
     if ( $old && $old != $new ) {
       delete_option( 'edd_architect_license_status' ); // new license has been entered, so must reactivate

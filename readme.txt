@@ -3,7 +3,7 @@ Contributors: chrishoward
 Tags: content,display,posts,pages,gallery,slider,tabs,tabbed,tabular,widget,hooks
 Requires at least: 3.5.0
 Tested up to: 4.3
-Stable tag: 1.4.4
+Stable tag: 1.4.5
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Plugin URI: http://architect4wp.com
@@ -73,7 +73,7 @@ As per Headway licencing agreement
 = Can I install Architect on client sites using my licence? =
 As per Headway licencing agreement
 
-= If I deactivate Architect, will I lose all my Panels and Blueprints =
+= If I deactivate Architect, will I lose all my Blueprints =
 No. We don't delete any of your data. In the future a method will be provided for you to remove all Architect data if you really need to.
 
 == Known issues ==
@@ -92,6 +92,11 @@ For support, please send an email to support@pizazzwp.com
 2. Slider example
 
 == Changelog ==
+
+= 1.4.5 =
+* CHANGED: Added a message to Presets selector to explain "Use styled" won't be styled if "Use Architect styling" is turned off.
+* FIXED: function name conflict in EDD module
+
 = 1.4.4 =
 * FIXED: Snippets selector not sortable
 
