@@ -96,6 +96,8 @@ For support, please send an email to support@pizazzwp.com
 = 1.4.5 =
 * CHANGED: Added a message to Presets selector to explain "Use styled" won't be styled if "Use Architect styling" is turned off.
 * FIXED: function name conflict in EDD module
+* ADDED: Showcase custom post type
+* ADDED: Options in custom fields to use the post title or no field (allowing the use of just the prefix and suffix. Useful with links where you want a generic link text)
 
 = 1.4.4 =
 * FIXED: Snippets selector not sortable

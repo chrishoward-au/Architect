@@ -706,7 +706,7 @@
   /**
    * @return array
    */
-  function pzarc_get_custom_fields()
+  function pzarc_get_custom_fields($pzarc_custom_fields = array())
   {
     global $wpdb;
 
@@ -747,7 +747,7 @@
         'post_date',
         'post_date_gmt',
         'post_content',
-        'post_title',
+       'post_title',
         'post_excerpt',
         'post_status',
         'comment_status',
@@ -804,7 +804,6 @@
 
     );
 
-    $pzarc_custom_fields = array();
     foreach ($pzarc_cf_list as $pzarc_cf) {
       if (in_array($pzarc_cf->meta_key, $exclude_fields) === false && !pzarc_starts_with($exclude_prefixes, $pzarc_cf->meta_key)) {
 

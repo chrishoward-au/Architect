@@ -463,8 +463,16 @@
           $this->data[ 'cfield' ][ $i ][ 'suffix-text' ]  = '<span class="pzarc-suffix-text">' . $this->section[ '_panels_design_cfield-' . $i . '-suffix-text' ] . '</span>';
           $this->data[ 'cfield' ][ $i ][ 'suffix-image' ] = bfi_thumb($this->section[ '_panels_design_cfield-' . $i . '-suffix-image' ][ 'url' ], $params);
 
-          // The content itself comes from post meta
-          $this->data[ 'cfield' ][ $i ][ 'value' ] = (!empty($postmeta[ $this->section[ '_panels_design_cfield-' . $i . '-name' ] ]) ? $postmeta[ $this->section[ '_panels_design_cfield-' . $i . '-name' ] ][ 0 ] : null);
+          // The content itself comes from post meta or post title
+
+          if ($this->section[ '_panels_design_cfield-' . $i . '-name' ]==='post_title') {
+            $this->data[ 'cfield' ][ $i ][ 'value' ] = $post->post_title;
+
+          }elseif ($this->section[ '_panels_design_cfield-' . $i . '-name' ]==='use_empty') {
+              $this->data[ 'cfield' ][ $i ][ 'value' ] = '';
+          } else {
+            $this->data[ 'cfield' ][ $i ][ 'value' ] = (!empty($postmeta[ $this->section[ '_panels_design_cfield-' . $i . '-name' ] ]) ? $postmeta[ $this->section[ '_panels_design_cfield-' . $i . '-name' ] ][ 0 ] : null);
+          }
           if (is_Array(maybe_unserialize($this->data[ 'cfield' ][ $i ][ 'value' ]))) {
             $this->data[ 'cfield' ][ $i ][ 'value' ] = implode(',', maybe_unserialize($this->data[ 'cfield' ][ $i ][ 'value' ]));
           }
@@ -805,7 +813,7 @@
         $build_field      = '';
         $i                = 1;
         foreach ( $this->data[ 'cfield' ] as $k => $v ) {
-          if ( $v[ 'group' ] === $component && ! empty( $v[ 'value' ] ) ) {
+          if ( $v[ 'group' ] === $component && (!empty( $v[ 'value' ] ) || $v['name']==='use_empty') ) {
             switch ( $v[ 'field-type' ] ) {
 
               case 'image':
