@@ -98,6 +98,7 @@ For support, please send an email to support@pizazzwp.com
 * FIXED: function name conflict in EDD module
 * ADDED: Showcase custom post type
 * ADDED: Options in custom fields to use the post title or no field (allowing the use of just the prefix and suffix. Useful with links where you want a generic link text)
+* ADDED: Category and tag columns to Snippets, Testimonials and Showcases listing screens.
 
 = 1.4.4 =
 * FIXED: Snippets selector not sortable

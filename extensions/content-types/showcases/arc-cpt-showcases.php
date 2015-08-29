@@ -1,11 +1,11 @@
 <?php
-/**
- * Project pizazzwp-architect.
- * File: arc-cpt-showcases.php
- * User: chrishoward
- * Date: 20/10/14
- * Time: 10:40 PM
- */
+  /**
+   * Project pizazzwp-architect.
+   * File: arc-cpt-showcases.php
+   * User: chrishoward
+   * Date: 20/10/14
+   * Time: 10:40 PM
+   */
 
   if (!post_type_exists('pz_showcases') && !function_exists('pz_create_showcases_post_type')) {
     add_action('init', 'pz_create_showcases_post_type');
@@ -14,8 +14,8 @@
       $labels = array(
           'name'               => _x('Showcases', 'post type general name'),
           'singular_name'      => _x('Showcase', 'post type singular name'),
-          'add_new'            => _x('Add New Showcase item', 'gallery'),
-          'add_new_item'       => __('Add New Showcase item'),
+          'add_new'            => _x('Add Showcase item', 'gallery'),
+          'add_new_item'       => __('Add Showcase item'),
           'edit_item'          => __('Edit Showcase item'),
           'new_item'           => __('New Showcase item'),
           'view_item'          => __('View Showcase item'),
@@ -54,55 +54,94 @@
 
       // Create custom category taxonomy for Showcases
       $labels = array(
-          'name' => _x( 'Showcase categories', 'taxonomy general name' ),
-          'singular_name' => _x( 'Showcase category', 'taxonomy singular name' ),
-          'search_items' =>  __( 'Search Showcase categories' ),
-          'all_items' => __( 'All Showcase categories' ),
-          'parent_item' => __( 'Parent Showcase category' ),
-          'parent_item_colon' => __( 'Parent Showcase category:' ),
-          'edit_item' => __( 'Edit Showcase category' ),
-          'update_item' => __( 'Update Showcase category' ),
-          'add_new_item' => __( 'Add New Showcase category' ),
-          'new_item_name' => __( 'New Showcase category name' ),
-          'menu_name' => __( 'Showcase Categories' ),
+          'name'              => _x('Showcase categories', 'taxonomy general name'),
+          'singular_name'     => _x('Showcase category', 'taxonomy singular name'),
+          'search_items'      => __('Search Showcase categories'),
+          'all_items'         => __('All Showcase categories'),
+          'parent_item'       => __('Parent Showcase category'),
+          'parent_item_colon' => __('Parent Showcase category:'),
+          'edit_item'         => __('Edit Showcase category'),
+          'update_item'       => __('Update Showcase category'),
+          'add_new_item'      => __('Add New Showcase category'),
+          'new_item_name'     => __('New Showcase category name'),
+          'menu_name'         => __('Showcase Categories'),
       );
 
       register_taxonomy('pz_showcase_cat',
                         array('pz_showcases'),
                         array(
                             'hierarchical' => true,
-                            'labels' => $labels,
-                            'show_ui' => true,
-                            'query_var' => true,
-                            'rewrite' => array( 'slug' => 'pzshowcasescat' ),
+                            'labels'       => $labels,
+                            'show_ui'      => true,
+                            'query_var'    => true,
+                            'rewrite'      => array('slug' => 'pzshowcasescat'),
                         )
       );
 
       // Create custom category taxonomy for Showcases
       $labels = array(
-          'name' => _x( 'Showcase tags', 'taxonomy general name' ),
-          'singular_name' => _x( 'Showcase tag', 'taxonomy singular name' ),
-          'search_items' =>  __( 'Search Showcase tags' ),
-          'all_items' => __( 'All Showcase tags' ),
-          'parent_item' => __( 'Parent Showcase tag' ),
-          'parent_item_colon' => __( 'Parent Showcase tag:' ),
-          'edit_item' => __( 'Edit Showcase tag' ),
-          'update_item' => __( 'Update Showcase tag' ),
-          'add_new_item' => __( 'Add New Showcase tag' ),
-          'new_item_name' => __( 'New Showcase tag name' ),
-          'menu_name' => __( 'Showcase Tags' ),
+          'name'              => _x('Showcase tags', 'taxonomy general name'),
+          'singular_name'     => _x('Showcase tag', 'taxonomy singular name'),
+          'search_items'      => __('Search Showcase tags'),
+          'all_items'         => __('All Showcase tags'),
+          'parent_item'       => __('Parent Showcase tag'),
+          'parent_item_colon' => __('Parent Showcase tag:'),
+          'edit_item'         => __('Edit Showcase tag'),
+          'update_item'       => __('Update Showcase tag'),
+          'add_new_item'      => __('Add New Showcase tag'),
+          'new_item_name'     => __('New Showcase tag name'),
+          'menu_name'         => __('Showcase Tags'),
       );
 
       register_taxonomy('pz_showcase_tag',
                         array('pz_showcases'),
                         array(
                             'hierarchical' => false,
-                            'labels' => $labels,
-                            'show_ui' => true,
-                            'query_var' => true,
-                            'rewrite' => array( 'slug' => 'pzshowcasestag' ),
+                            'labels'       => $labels,
+                            'show_ui'      => true,
+                            'query_var'    => true,
+                            'rewrite'      => array('slug' => 'pzshowcasestag'),
                         )
       );
 
+    }
+
+    add_filter('manage_pz_showcases_posts_columns', 'add_showcases_columns');
+    add_action('manage_pz_showcases_posts_custom_column', 'add_showcases_column_content', 10, 2);
+
+    function add_showcases_columns($columns)
+    {
+      $pzarc_front = array_slice($columns, 0, 2);
+      $pzarc_back  = array_slice($columns, 2);
+      $pzarc_insert = array(
+          'pz_showcase_cat' => __('Categories', 'pzarchitect'),
+          'pz_showcase_tag' => __('Tags', 'pzarchitect'),
+          'pzarc_showcase-year' => __('Year of Work', 'pzarchitect'),
+      );
+
+      return array_merge($pzarc_front, $pzarc_insert, $pzarc_back);
+    }
+
+    /**
+    *
+     * @param [type] $column  [description]
+     * @param [type] $post_id [description]
+     */
+    function add_showcases_column_content($column, $post_id)
+    {
+
+      switch ($column) {
+        case 'pzarc_showcase-year':
+          $post_meta = get_post_meta($post_id);
+          if (isset($post_meta[ $column ])) {
+            echo $post_meta[ $column ][ 0 ];
+          }
+          break;
+        case 'pz_showcase_cat':
+        case 'pz_showcase_tag':
+          $post_terms = get_the_term_list($post_id,$column,null,', ',null);
+          echo $post_terms;
+          break;
+      }
     }
   }

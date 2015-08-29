@@ -860,6 +860,9 @@
               $content = '<a href="' . $v[ 'link-field' ] . '">' . $content . '</a>';
             }
 
+            if ( $v['name']==='use_empty' && empty( $v[ 'link-field' ] ) ) {
+              $content ='';
+            }
 //            if ('none' !== $v[ 'wrapper-tag' ]) {
 //              $class_name = !empty($v[ 'class-name' ]) ? ' class="' . $v[ 'class-name' ] . '"' : null;
 //              $content    = '<' . $v[ 'wrapper-tag' ] . $class_name . '>' . $content . '</' . $v[ 'wrapper-tag' ] . '>';
