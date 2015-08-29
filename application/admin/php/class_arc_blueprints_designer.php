@@ -3101,7 +3101,7 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
 
         if ($cfcount) {
 
-          $pzarc_custom_fields = pzarc_get_custom_fields();
+          $pzarc_custom_fields = pzarc_get_custom_fields(array('use_empty'=>'No field. Use prefix and suffix only','post_title'=>'Post Title'));
 
           for ($i = 1; $i <= $cfcount; $i++) {
             $cfname     = 'Custom field ' . $i . (!empty($thispostmeta[ '_panels_design_cfield-' . $i . '-name' ][ 0 ]) ? ': <br>' . $thispostmeta[ '_panels_design_cfield-' . $i . '-name' ][ 0 ] : '');

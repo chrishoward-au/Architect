@@ -69,17 +69,17 @@
         //'icon'          => 'el-icon-home', // Only used with metabox position normal or advanced
         'fields' => array(
             array(
-                'id'    => 'pzarc_showcase-site',
-                'title' => __('Web site name', 'pzarchitect'),
-                'subtitle'=>__('If blank, the Site title will be used'),
-                'type'  => 'text',
-            ),
-            array(
                 'id'    => 'pzarc_showcase-url',
                 'title' => __('Web address', 'pzarchitect'),
                 'type'  => 'text',
-                'subtitle'=>__('Please include http:// or https://'),
+                'subtitle'=>__('Please include http:// or https://','pzarchitect'),
                 'validate' => 'url'
+            ),
+            array(
+                'id'    => 'pzarc_showcase-year',
+                'title' => __('Year of work', 'pzarchitect'),
+                'subtitle'=>__('Enter the year the work was created','pzarchitect'),
+                'type'  => 'text',
             ),
         ),
       );
@@ -87,7 +87,7 @@
       // Declare your metaboxes
       $metaboxes[ ] = array(
           'id'         => 'pzarc_mb-showcase',
-          'title'      => __('Site Information', 'pzarchitect'),
+          'title'      => __('Item Information', 'pzarchitect'),
           'post_types' => array('pz_showcases'),
           'position'   => 'side', // normal, advanced, side
           'priority'   => 'default', // high, core, default, low - Priorities of placement

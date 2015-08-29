@@ -32,10 +32,10 @@
       require_once plugin_dir_path( __FILE__ ) . '/content-types/testimonials/arc-cpt-testimonials.php';
     }
 
-//    if ( ! isset( $_architect_options[ 'architect_add-content-types' ][ 'pz_showcases' ] ) || $_architect_options[ 'architect_add-content-types' ][ 'pz_showcases' ] == 1 ) {
-//      require_once plugin_dir_path( __FILE__ ) . '/content-types/showcase/class_arc_content_showcase.php';
-//      require_once plugin_dir_path( __FILE__ ) . '/content-types/showcase/arc-cpt-showcase.php';
-//    }
+    if ( ! isset( $_architect_options[ 'architect_add-content-types' ][ 'pz_showcases' ] ) || $_architect_options[ 'architect_add-content-types' ][ 'pz_showcases' ] == 1 ) {
+      require_once plugin_dir_path( __FILE__ ) . '/content-types/showcases/class_arc_content_showcases.php';
+      require_once plugin_dir_path( __FILE__ ) . '/content-types/showcases/arc-cpt-showcases.php';
+    }
 
     pzdb( 'post content types load' );
 

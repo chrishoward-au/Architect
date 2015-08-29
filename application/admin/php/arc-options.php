@@ -432,7 +432,7 @@
               'options' => array(
                 'pz_snippets'     => __( 'Snippets', 'pzarchitect' ),
                 'pz_testimonials' => __( 'Testimonials', 'pzarchitect' ),
-//                'pz_showcases' => __( 'Showcases', 'pzarchitect' )
+                'pz_showcases' => __( 'Showcases', 'pzarchitect' )
               ),
               'default' => array( 'pz_testimonials' => 1, 'pz_snippets' => 1,'pz_showcases' => 1 )
             ),
