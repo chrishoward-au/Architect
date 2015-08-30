@@ -3,7 +3,7 @@ Contributors: chrishoward
 Tags: content,display,posts,pages,gallery,slider,tabs,tabbed,tabular,widget,hooks
 Requires at least: 3.5.0
 Tested up to: 4.3
-Stable tag: 1.4.5
+Stable tag: 1.4.6
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Plugin URI: http://architect4wp.com
@@ -92,6 +92,11 @@ For support, please send an email to support@pizazzwp.com
 2. Slider example
 
 == Changelog ==
+= 1.4.6 =
+* FIXED: Make Header and Footers option doing nothing!
+* FIXED: Panels min width doing nothing!
+* ADDED: Option for fixed with panels. In conjunction with flexbox, this allows full width grids that nicely space
+* ADDED: Option for panels justification when using fixed width panels.
 
 = 1.4.5 =
 * CHANGED: Added a message to Presets selector to explain "Use styled" won't be styled if "Use Architect styling" is turned off.

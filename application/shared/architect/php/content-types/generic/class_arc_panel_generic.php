@@ -1150,10 +1150,10 @@
                   + (int) $panel_layout[ 'custom3' ][ 'show' ]
                   + ( (int) $panel_layout[ 'image' ][ 'show' ] * (int) ( $section_panel_settings[ '_panels_design_feature-location' ] === 'components' ) );
 
-      $header_open  = empty( $section_panel_settings[ '_panel_designs_components-headers-footers' ] ) ? '' : '<header class="entry-header">';
-      $footer_open  = empty( $section_panel_settings[ '_panel_designs_components-headers-footers' ] ) ? '' : '<footer class="entry-header">';
-      $header_close = empty( $section_panel_settings[ '_panel_designs_components-headers-footers' ] ) ? '' : '</header>';
-      $footer_close = empty( $section_panel_settings[ '_panel_designs_components-headers-footers' ] ) ? '' : '</footer>';
+      $header_open  = empty( $section_panel_settings[ '_panels_design_components-headers-footers' ] ) ? '' : '<header class="entry-header">';
+      $footer_open  = empty( $section_panel_settings[ '_panels_design_components-headers-footers' ] ) ? '' : '<footer class="entry-header">';
+      $header_close = empty( $section_panel_settings[ '_panels_design_components-headers-footers' ] ) ? '' : '</header>';
+      $footer_close = empty( $section_panel_settings[ '_panels_design_components-headers-footers' ] ) ? '' : '</footer>';
 
       foreach ( (array) $panel_layout as $key => $value ) {
         if ( $value[ 'show' ] ) {

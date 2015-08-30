@@ -703,10 +703,50 @@
                     'required' => array($prefix . 'section-' . $i . '-panels-limited', 'equals', true)
                 ),
                 array(
-                    'id'     => $prefix . 'section-' . $i . '-columns-heading',
-                    'title'  => __('Panels across', 'pzarchitect'),
-                    'type'   => 'section',
-                    'indent' => true,
+                    'title'   => __('Fixed width panels', 'pzarchitect'),
+                    'id'      => $prefix . 'section-' . $i . '-panels-fixed-width',
+                    'type'    => 'switch',
+                    'on'      => __('Yes', 'pzarchitect'),
+                    'off'     => __('No', 'pzarchitect'),
+                    'default' => false,
+                ),
+                array(
+                    'title'    => __('Justify panels', 'pzarchitect'),
+                    'id'       => $prefix . 'section-' . $i . '-panels-fixed-width-justify',
+                    'type'     => 'button_set',
+                    'options'  => array(
+                        'justify-content: flex-start;'    => 'Start',
+                        'justify-content: flex-end;'      => 'End',
+                        'justify-content: center;'        => 'Centre',
+                        'justify-content: space-between;' => 'Space between',
+                        'justify-content: space-around;'  => 'Space around',
+                    ),
+                    'default'  => 'justify-content: space-between;',
+                    'required' => array(
+                        array($prefix . 'section-' . $i . '-panels-fixed-width', 'equals', true),
+                        array($prefix . 'section-0-layout-mode', '=', 'basic')
+                    ),
+                    'subtitle'=>__('These are the standard Flexbox justification options','pzarchitect')
+                ),
+                array(
+                    'title'   => __('Stretch panels to fill', 'pzarchitect'),
+                    'id'      => $prefix . 'section-' . $i . '-panels-fixed-width-fill',
+                    'type'    => 'switch',
+                    'on'      => __('Yes', 'pzarchitect'),
+                    'off'     => __('No', 'pzarchitect'),
+                    'subtitle'=>__('Stretches panels to fill all available space per row, except margins.','pzarchitect'),
+                    'default' => false,
+                    'required' => array(
+                        array($prefix . 'section-' . $i . '-panels-fixed-width', 'equals', true),
+                        array($prefix . 'section-0-layout-mode', '=', 'basic')
+                    ),
+                ),
+                array(
+                    'id'       => $prefix . 'section-' . $i . '-columns-heading',
+                    'title'    => __('Panels across', 'pzarchitect'),
+                    'type'     => 'section',
+                    'indent'   => true,
+                    'required' => array($prefix . 'section-' . $i . '-panels-fixed-width', 'equals', false)
                 ),
                 array(
                     'title'         => __('Wide screen', 'pzarchitect'),
@@ -736,16 +776,6 @@
                     'max'           => 10,
                     'display_value' => 'label'
                 ),
-                //            (PZARC_TESTER?array(
-                //              'title'    => __( 'Enable horizontal scrolling', 'pzarchitect' ),
-                //              'id'       => $prefix . 'section-' . $i . '-columns-breakpoint-2-scroll',
-                //              'type'     => 'switch',
-                //              'on'       => __( 'Yes', 'pzarchitect' ),
-                //              'off'      => __( 'No', 'pzarchitect' ),
-                //              'required'   => array( $prefix . 'section-' . $i . '-layout-mode', '=', 'basic' ),
-                //              'default'  => true,
-                //              'subtitle' => __('Turn this grid into a horizontal scroller at '.$_architect_options[ 'architect_breakpoint_2' ][ 'width' ] . ' to ' . $_architect_options[ 'architect_breakpoint_1' ][ 'width' ],'pzarchitect'),
-                //            ):null),
                 array(
                     'title'         => __('Narrow screen', 'pzarchitect'),
                     'subtitle'      => $_architect_options[ 'architect_breakpoint_2' ][ 'width' ] . ' and below',
@@ -760,17 +790,58 @@
                     'max'           => 10,
                     'display_value' => 'label'
                 ),
-                //            (PZARC_TESTER?array(
-                //              'title'    => __( 'Enable horizontal scrolling', 'pzarchitect' ),
-                //              'id'       => $prefix . 'section-' . $i . '-columns-breakpoint-3-scroll',
-                //              'type'     => 'switch',
-                //              'on'       => __( 'Yes', 'pzarchitect' ),
-                //              'off'      => __( 'No', 'pzarchitect' ),
-                //              'required'   => array( $prefix . 'section-' . $i . '-layout-mode', '=', 'basic' ),
-                //              'default'  => true,
-                //              'subtitle' => __('Turn this grid into a horizontal scroller at '.$_architect_options[ 'architect_breakpoint_2' ][ 'width' ] . ' and below','pzarchitect'),
-                //            ):null),
-
+                array(
+                    'id'       => $prefix . 'section-' . $i . '-panel-width-heading',
+                    'title'    => __('Panel width (px)', 'pzarchitect'),
+                    'type'     => 'section',
+                    'indent'   => true,
+                    'required' => array($prefix . 'section-' . $i . '-panels-fixed-width', 'equals', true)
+                ),
+                array(
+                    'title'         => __('Wide screen', 'pzarchitect'),
+                    'subtitle'      => $_architect_options[ 'architect_breakpoint_1' ][ 'width' ] . ' and above',
+                    'id'            => $prefix . 'section-' . $i . '-panel-width-breakpoint-1',
+                    'hint'          => array(
+                        'title'   => __('Wide screen', 'pzarchitect'),
+                        'content' => __('Width of the panels on wide screens', 'pzarchitect')
+                    ),
+                    'type'          => 'spinner',
+                    'default'       => 450,
+                    'min'           => 1,
+                    'step'          => 1,
+                    'max'           => 99999,
+                    'display_value' => 'label'
+                ),
+                array(
+                    'title'         => __('Medium screen', 'pzarchitect'),
+                    'subtitle'      => $_architect_options[ 'architect_breakpoint_2' ][ 'width' ] . ' to ' . $_architect_options[ 'architect_breakpoint_1' ][ 'width' ],
+                    'id'            => $prefix . 'section-' . $i . '-panel-width-breakpoint-2',
+                    'hint'          => array(
+                        'title'   => __('Medium screen', 'pzarchitect'),
+                        'content' => __('Width of the panels on mediium screens', 'pzarchitect')
+                    ),
+                    'type'          => 'spinner',
+                    'default'       => 350,
+                    'min'           => 1,
+                    'step'          => 1,
+                    'max'           => 99999,
+                    'display_value' => 'label'
+                ),
+                array(
+                    'title'         => __('Narrow screen', 'pzarchitect'),
+                    'subtitle'      => $_architect_options[ 'architect_breakpoint_2' ][ 'width' ] . ' and below',
+                    'id'            => $prefix . 'section-' . $i . '-panel-width-breakpoint-3',
+                    'hint'          => array(
+                        'title'   => __('Narrow screen', 'pzarchitect'),
+                        'content' => __('Panel width narrow screen', 'pzarchitect')
+                    ),
+                    'type'          => 'spinner',
+                    'default'       => 320,
+                    'min'           => 1,
+                    'max'           => 99999,
+                    'step'          => 1,
+                    'display_value' => 'label'
+                ),
                 array(
                     'id'     => $prefix . 'section-' . $i . '-panels-settings-heading',
                     'title'  => __('Panel dimensions', 'pzarchitect'),
@@ -3101,7 +3172,8 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
 
         if ($cfcount) {
 
-          $pzarc_custom_fields = pzarc_get_custom_fields(array('use_empty'=>'No field. Use prefix and suffix only','post_title'=>'Post Title'));
+          $pzarc_custom_fields = pzarc_get_custom_fields(array('use_empty'  => 'No field. Use prefix and suffix only',
+                                                               'post_title' => 'Post Title'));
 
           for ($i = 1; $i <= $cfcount; $i++) {
             $cfname     = 'Custom field ' . $i . (!empty($thispostmeta[ '_panels_design_cfield-' . $i . '-name' ][ 0 ]) ? ': <br>' . $thispostmeta[ '_panels_design_cfield-' . $i . '-name' ][ 0 ] : '');
