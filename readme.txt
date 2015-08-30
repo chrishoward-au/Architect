@@ -92,7 +92,7 @@ For support, please send an email to support@pizazzwp.com
 2. Slider example
 
 == Changelog ==
-= 1.4.6 =
+= 1.4.6 : 30-August-2015 =
 * FIXED: Make Header and Footers option doing nothing!
 * FIXED: Panels min width doing nothing!
 * ADDED: Option for fixed with panels. In conjunction with flexbox, this allows full width grids that nicely space
@@ -114,7 +114,7 @@ For support, please send an email to support@pizazzwp.com
 * FIXED: Problems with Defaults content source not displaying correct content when Overrides enabled
 
 = 1.4.2 : 5 August 2015 =
-* CHANGED: BFI Thumbs options page removed (it isa duplicate of the Refresh Cache in Architect > Options)
+* CHANGED: BFI Thumbs options page removed (it is a duplicate of the Refresh Cache in Architect > Options)
 
 = 1.4.1 : 4 August 2015 =
 * FIXED: Possible security risk with SysInfo library

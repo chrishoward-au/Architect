@@ -1,5 +1,29 @@
 # Architect change history 
 
+## 1.4.6 : 30-August-2015 
+* FIXED: Make Header and Footers option doing nothing!
+* FIXED: Panels min width doing nothing!
+* ADDED: Option for fixed with panels. In conjunction with flexbox, this allows full width grids that nicely space
+* ADDED: Option for panels justification when using fixed width panels.
+
+## 1.4.5 
+* CHANGED: Added a message to Presets selector to explain "Use styled" won't be styled if "Use Architect styling" is turned off.
+* FIXED: function name conflict in EDD module
+* ADDED: Showcase custom post type
+* ADDED: Options in custom fields to use the post title or no field (allowing the use of just the prefix and suffix. Useful with links where you want a generic link text)
+* ADDED: Category and tag columns to Snippets, Testimonials and Showcases listing screens.
+
+## 1.4.4 
+* FIXED: Snippets selector not sortable
+
+## 1.4.3 
+* FIXED: Wording of accordions option that controls if it's open or closed at startup
+* CHANGED: Installed Presets list on Tools page not shown if empty
+* FIXED: Problems with Defaults content source not displaying correct content when Overrides enabled
+
+## 1.4.2 : 5 August 2015 
+* CHANGED: BFI Thumbs options page removed (it is a duplicate of the Refresh Cache in Architect > Options)
+
 ## 1.4.1 : 4 August  2015
 * FIXED: Possible security risk with SysInfo library
 
