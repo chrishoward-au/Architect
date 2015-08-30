@@ -711,37 +711,6 @@
                     'default' => false,
                 ),
                 array(
-                    'title'    => __('Justify panels', 'pzarchitect'),
-                    'id'       => $prefix . 'section-' . $i . '-panels-fixed-width-justify',
-                    'type'     => 'button_set',
-                    'options'  => array(
-                        'justify-content: flex-start;'    => 'Start',
-                        'justify-content: flex-end;'      => 'End',
-                        'justify-content: center;'        => 'Centre',
-                        'justify-content: space-between;' => 'Space between',
-                        'justify-content: space-around;'  => 'Space around',
-                    ),
-                    'default'  => 'justify-content: space-between;',
-                    'required' => array(
-                        array($prefix . 'section-' . $i . '-panels-fixed-width', 'equals', true),
-                        array($prefix . 'section-0-layout-mode', '=', 'basic')
-                    ),
-                    'subtitle'=>__('These are the standard Flexbox justification options','pzarchitect')
-                ),
-                array(
-                    'title'   => __('Stretch panels to fill', 'pzarchitect'),
-                    'id'      => $prefix . 'section-' . $i . '-panels-fixed-width-fill',
-                    'type'    => 'switch',
-                    'on'      => __('Yes', 'pzarchitect'),
-                    'off'     => __('No', 'pzarchitect'),
-                    'subtitle'=>__('Stretches panels to fill all available space per row, except margins.','pzarchitect'),
-                    'default' => false,
-                    'required' => array(
-                        array($prefix . 'section-' . $i . '-panels-fixed-width', 'equals', true),
-                        array($prefix . 'section-0-layout-mode', '=', 'basic')
-                    ),
-                ),
-                array(
                     'id'       => $prefix . 'section-' . $i . '-columns-heading',
                     'title'    => __('Panels across', 'pzarchitect'),
                     'type'     => 'section',
@@ -842,6 +811,39 @@
                     'step'          => 1,
                     'display_value' => 'label'
                 ),
+                array(
+                    'title'    => __('Justify panels', 'pzarchitect'),
+                    'id'       => $prefix . 'section-' . $i . '-panels-fixed-width-justify',
+                    'type'     => 'button_set',
+                    'options'  => array(
+                        'justify-content: flex-start;'    => 'Start',
+                        'justify-content: flex-end;'      => 'End',
+                        'justify-content: center;'        => 'Centre',
+                        'justify-content: space-between;' => 'Space between',
+                        'justify-content: space-around;'  => 'Space around',
+                    ),
+                    'default'  => 'justify-content: space-between;',
+                    'required' => array(
+                        array($prefix . 'section-' . $i . '-panels-fixed-width', 'equals', true),
+                        array($prefix . 'section-0-layout-mode', '=', 'basic')
+                    ),
+                    'subtitle'=>__('These are the standard Flexbox justification options','pzarchitect')
+                ),
+                array(
+                    'title'   => __('Stretch panels to fill', 'pzarchitect'),
+                    'id'      => $prefix . 'section-' . $i . '-panels-fixed-width-fill',
+                    'type'    => 'switch',
+                    'on'      => __('Yes', 'pzarchitect'),
+                    'off'     => __('No', 'pzarchitect'),
+                    'subtitle'=>__('Stretches panels to fill all available space per row, except margins.','pzarchitect'),
+                    'default' => false,
+                    'required' => array(
+                        array($prefix . 'section-' . $i . '-panels-fixed-width', 'equals', true),
+                        array($prefix . 'section-0-layout-mode', '=', 'basic')
+                    ),
+                ),
+
+
                 array(
                     'id'     => $prefix . 'section-' . $i . '-panels-settings-heading',
                     'title'  => __('Panel dimensions', 'pzarchitect'),
