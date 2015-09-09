@@ -10,6 +10,7 @@
   add_action('wp_head', 'pzarc_display_init');
 
   add_shortcode('architect', 'pzarc_shortcode');
+  add_shortcode('architectsc', 'pzarc_shortcode'); // Shortcake version coz shortcake doesn't support positional attributes
   add_shortcode('pzarc', 'pzarc_shortcode'); // Old version
   add_shortcode('pzarchitect', 'pzarc_shortcode'); // alternate version
   // I still don't understand why this works!! One day, maybe I will
@@ -111,6 +112,9 @@
    ***********************/
   function pzarc_shortcode($atts, $content = null, $tag)
   {
+//    if (is_admin()){
+//      return '<img src="'.PZARC_PLUGIN_URL.'/assets/architect-logo-final-logo-only.svg" width=32 height=32>';
+//    }
     $pzarc_caller    = 'shortcode';
     $pzarc_blueprint = '';
     $pzarc_overrides = null;

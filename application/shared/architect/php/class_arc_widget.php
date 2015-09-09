@@ -93,18 +93,7 @@
       $blueprint_list = pzarc_get_posts_in_post_type();
       $blueprint_list = array_merge( array('none'=>'None'),$blueprint_list,array('show-none' => 'DO NOT SHOW ANY BLUEPRINT') );
       $blank_array    = array( 'none' => '' );
-      $taxonomy_list  = get_taxonomies( array(
-                                          'public'   => true,
-                                          '_builtin' => false
-
-                                        ) );
-      foreach ( $taxonomy_list as $k => $v ) {
-        $tax_obj             = get_taxonomy( $k );
-        $taxonomy_list[ $k ] = $tax_obj->labels->name;
-      }
-      $extras        = array( 0 => '', 'category' => 'Categories', 'post_tag' => 'Tags' );
-      $taxonomy_list = $extras + $taxonomy_list;
-
+      $taxonomy_list = pzarc_get_taxonomies(true);
 
 // Widget admin form
       ?>

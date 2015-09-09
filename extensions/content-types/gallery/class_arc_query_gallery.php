@@ -25,16 +25,17 @@
           } else {
             $gallery_post = get_post($this->build->blueprint[ $prefix . 'wp-post-gallery' ]);
           }
-          preg_match_all('/' . get_shortcode_regex() . '/s', $gallery_post->post_content, $matches);
-          if (isset($matches[ 0 ][ 0 ])) {
-            preg_match("/(?<=ids=\")([\\d,\\,])*/u", $matches[ 0 ][ 0 ], $ids);
+          if (!empty($gallery_post)) {
+            preg_match_all('/' . get_shortcode_regex() . '/s', $gallery_post->post_content, $matches);
+            if (isset($matches[ 0 ][ 0 ])) {
+              preg_match("/(?<=ids=\")([\\d,\\,])*/u", $matches[ 0 ][ 0 ], $ids);
 
-            $this->query_options[ 'post_type' ]           = 'attachment';
-            $this->query_options[ 'post__in' ]            = explode(',', $ids[ 0 ]);
-            $this->query_options[ 'post_status' ]         = array('publish', 'inherit', 'private');
-            $this->query_options[ 'ignore_sticky_posts' ] = true;
+              $this->query_options[ 'post_type' ]           = 'attachment';
+              $this->query_options[ 'post__in' ]            = explode(',', $ids[ 0 ]);
+              $this->query_options[ 'post_status' ]         = array('publish', 'inherit', 'private');
+              $this->query_options[ 'ignore_sticky_posts' ] = true;
+            }
           }
-
         } elseif ($gallery_source === 'images' || $gallery_source === 'ids') {
           if ($gallery_source === 'images') {
             $ids = !empty($overrides['ids']) ? $overrides['ids'] : $this->criteria[ $prefix . 'specific-images' ];

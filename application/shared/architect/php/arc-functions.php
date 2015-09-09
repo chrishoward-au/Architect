@@ -1775,3 +1775,19 @@
       // todo: pop an error msg
     }
   }
+
+  function pzarc_get_taxonomies($catstags=true) {
+    $taxonomy_list  = get_taxonomies( array(
+                                          'public'   => true,
+                                          '_builtin' => false
+
+                                      ) );
+  //  var_dump($taxonomy_list);
+    foreach ( $taxonomy_list as $k => $v ) {
+      $tax_obj             = get_taxonomy( $k );
+      $taxonomy_list[ $k ] = $tax_obj->labels->name;
+    }
+    $extras        = array( 0 => '', 'category' => 'Categories', 'post_tag' => 'Tags' );
+    $taxonomy_list = $catstags?$extras + $taxonomy_list:$taxonomy_list;
+    return $taxonomy_list;
+  }

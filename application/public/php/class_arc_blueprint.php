@@ -76,12 +76,20 @@
     {
       pzdb('top get blueprint');
       // meed to return a structure for the panels, the content source, the navgation info
-      $meta_query_args = array(
-          'post_type'    => 'arc-blueprints',
-          'meta_key'     => '_blueprints_short-name',
-          'meta_value'   => $this->name,
-          'meta_compare' => '='
-      );
+      // This is added to support Shortcake which returns an ID rather than the shortname
+      if (is_numeric($this->name)) {
+        $meta_query_args = array(
+            'post_type'    => 'arc-blueprints',
+            'include'   => $this->name,
+        );
+      } else {
+        $meta_query_args = array(
+            'post_type'    => 'arc-blueprints',
+            'meta_key'     => '_blueprints_short-name',
+            'meta_value'   => $this->name,
+            'meta_compare' => '='
+        );
+      }
       $bp              = get_posts($meta_query_args);
       if (isset($bp[ 0 ])) {
         $this->bp = pzarc_flatten_wpinfo(get_post_meta($bp[ 0 ]->ID));

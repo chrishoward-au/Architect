@@ -22,7 +22,7 @@
 //  }
 //  if ( ! empty( $_architect_options[ 'architect_licence_key' ] ) ) {}
     // setup the updater
-    $edd_updater = new EDD_SL_Plugin_Updater( EDD_ARCHITECT_STORE_URL, PZARC_PLUGIN_PATH . 'architect.php', array(
+    $edd_updater = new EDD_SL_Plugin_Updater( EDD_ARCHITECT_STORE_URL, PZARC_PLUGIN_FILE, array(
                                                                          'version'   => PZARC_VERSION,
                                                                          // current version number
                                                                          'license'   => $license_key,

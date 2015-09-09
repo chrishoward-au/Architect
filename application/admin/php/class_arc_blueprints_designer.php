@@ -775,7 +775,7 @@
                         'content' => __('Width of the panels on wide screens', 'pzarchitect')
                     ),
                     'type'          => 'spinner',
-                    'default'       => 450,
+                    'default'       => 250,
                     'min'           => 1,
                     'step'          => 1,
                     'max'           => 99999,

@@ -4,7 +4,7 @@
     Plugin Name: Architect
     Plugin URI: http://architect4wp.com
     Description: Architect is an all-in-one content layout builder. <strong>Build your own slider, grid, tabbed, gallery, masonry, accordion or tabular layouts with ANY content source</strong>. Display using shortcodes, widgets, Headway blocks, WP action hooks and template tags, and WP Gallery shortcode.
-    Version: 1.4.6
+    Version: 1.4.7
     Author: Chris Howard
     Author URI: http://pizazzwp.com
     License: GNU GPL v2
@@ -36,7 +36,7 @@
        * REMEMBER TO UPDATE VERSION IN arc-admin.scss
        * REMEMBER TO UPDATE VERSION IN arc-admin.scss
        */
-      define( 'PZARC_VERSION', '1.4.6' );
+      define( 'PZARC_VERSION', '1.4.7' );
       /**
        * REMEMBER TO UPDATE VERSION IN arc-admin.scss
        * REMEMBER TO UPDATE VERSION IN arc-admin.scss
@@ -49,6 +49,7 @@
 
       define( 'PZARC_PLUGIN_URL', trailingslashit( plugin_dir_url( __FILE__ ) ) );
       define( 'PZARC_PLUGIN_PATH', trailingslashit( plugin_dir_path( __FILE__ ) ) );
+      define( 'PZARC_PLUGIN_FILE',__FILE__);
       define( 'PZARC_PLUGIN_APP_URL', PZARC_PLUGIN_URL . 'application/' );
       define( 'PZARC_PLUGIN_APP_PATH', PZARC_PLUGIN_PATH . 'application/' );
       define( 'PZARC_DOCUMENTATION_URL', PZARC_PLUGIN_URL . 'documentation/' );
@@ -286,7 +287,7 @@
      */
     public function register_admin_styles() {
 
-      wp_enqueue_style( 'pzarc-admin-styles', PZARC_PLUGIN_APP_URL . '/admin/css/arc-admin.css' );
+      wp_enqueue_style( 'pzarc-admin-styles', PZARC_PLUGIN_APP_URL . '/admin/css/arc-admin.css',false,PZARC_VERSION );
       wp_register_style( 'pzarc-jqueryui-css', PZARC_PLUGIN_APP_URL . '/shared/thirdparty/jquery-ui-1.10.2.custom/css/pz_architect/jquery-ui-1.10.2.custom.min.css' );
 //wp_enqueue_style('fontawesome','//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css');
     }
@@ -307,11 +308,11 @@
      */
     public function register_plugin_styles() {
 
-      wp_enqueue_style( PZARC_NAME . '-styles', PZARC_PLUGIN_APP_URL . '/public/css/architect-styles.css' );
-      wp_register_style( PZARC_NAME . '-plugin-styles', PZARC_PLUGIN_APP_URL . '/public/css/arc-front.css' );
+      wp_enqueue_style( PZARC_NAME . '-styles', PZARC_PLUGIN_APP_URL . '/public/css/architect-styles.css',false,PZARC_VERSION );
+      wp_register_style( PZARC_NAME . '-plugin-styles', PZARC_PLUGIN_APP_URL . '/public/css/arc-front.css',false,PZARC_VERSION );
       // Need this for custom CSS in styling options
       if ( file_exists( PZARC_CACHE_PATH . 'arc-dynamic-styles.css' ) ) {
-        wp_register_style( PZARC_NAME . '-dynamic-styles', PZARC_CACHE_URL . 'arc-dynamic-styles.css' );
+        wp_register_style( PZARC_NAME . '-dynamic-styles', PZARC_CACHE_URL . 'arc-dynamic-styles.css',false,PZARC_VERSION );
       }
     }
 

@@ -2,8 +2,8 @@
 Contributors: chrishoward
 Tags: content,display,posts,pages,gallery,slider,tabs,tabbed,tabular,widget,hooks
 Requires at least: 3.5.0
-Tested up to: 4.3
-Stable tag: 1.4.6
+Tested up to: 4.4
+Stable tag: 1.4.7
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Plugin URI: http://architect4wp.com
@@ -92,6 +92,10 @@ For support, please send an email to support@pizazzwp.com
 2. Slider example
 
 == Changelog ==
+= 1.4.7 : 4 Sept 2015 =
+* ADDED: Support for Shortcake a user friendly shortcode tool. Install the Shortcake (Shortcode UI) plugin and then click Add Media in Posts etc, then Insert Post Element and select the Architect Blueprint. For compatibility, there is a specific Shortcake shortcode, [architectsc]
+* FIXED: Bug where if a WP gallery used in Blueprint content source no longer existed, an error would display
+
 = 1.4.6 : 30-August-2015 =
 * FIXED: Make Header and Footers option doing nothing!
 * FIXED: Panels min width doing nothing!

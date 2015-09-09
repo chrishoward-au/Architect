@@ -1,5 +1,10 @@
 # Architect change history 
 
+
+## 1.4.7 : 4 Sept 2015 
+* ADDED: Support for Shortcake a user friendly shortcode tool. Install the Shortcake (Shortcode UI) plugin and then click Add Media in Posts etc, then Insert Post Element and select the Architect Blueprint. For compatibility, there is a specific Shortcake shortcode, [architectsc]
+* FIXED: Bug where if a WP gallery used in Blueprint content source no longer existed, an error would display
+
 ## 1.4.6 : 30-August-2015 
 * FIXED: Make Header and Footers option doing nothing!
 * FIXED: Panels min width doing nothing!

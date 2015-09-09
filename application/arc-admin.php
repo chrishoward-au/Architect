@@ -373,7 +373,7 @@
         $pzarc_custom_presets = pzarc_tidy_dir(scandir(PZARC_PRESETS_PATH));
         // TODO: add existing presets with option to delete (custom) or hide (builtin)
         echo '<h3>' . __('Import Blueprint or Preset', 'pzarchitect') . '</h3>';
-        if (count($pzarc_custom_presets)>0) {
+        if (count($pzarc_custom_presets) > 0) {
           echo '<div class="arc-installed-presets"><h4>Currently installed additional Presets</h4>';
           echo '<ul>';
           foreach ($pzarc_custom_presets as $f) {
@@ -676,7 +676,7 @@ add_action(\'init\',\'gs_init\');
       if (!$lite) {
         echo '<p>You can download this version anytime directly from: <a href="https://s3.amazonaws.com/341public/LATEST/Architect/pizazzwp-architect-' . str_replace('.', '', PZARC_VERSION) . '.zip">Version ' . PZARC_VERSION . '</a></p>';
       }
-                echo '<p>' . __('For more detailed help, visit', 'pzarchitect') . ' <a href="http://architect4wp.com/codex-listings" target="_blank" class="arc-codex">' . __('Architect documentation at architect4wp.com', 'pzarchitect') . '</a></p>
+      echo '<p>' . __('For more detailed help, visit', 'pzarchitect') . ' <a href="http://architect4wp.com/codex-listings" target="_blank" class="arc-codex">' . __('Architect documentation at architect4wp.com', 'pzarchitect') . '</a></p>
                         <p>' . __('For <strong>technical support</strong>, either fill out the form below or email', 'pzarchitect') . ' <a href="mailto://support@pizazzwp.com" target="_blank" class="arc-codex">' . __('support@pizazzwp.com', 'pzarchitect') . '</a></p>
                         <p>' . __('For <strong>community and peer-to-peer support</strong>, visit the', 'pzarchitect') . ' <a href="https://pizazzwp.freshdesk.com/support/discussions" target="_blank" class="arc-codex">' . __('Architect Community', 'pzarchitect') . '</a></p>
                     <h3>' . __('Things to try first', 'pzarchitect') . '</h3>
@@ -699,7 +699,7 @@ add_action(\'init\',\'gs_init\');
                 </div>
            </div>';
       }
-echo '                </div>
+      echo '                </div>
 
                 <div class="tabs-pane " id="shout">
                     <h2>' . __('Shoutouts', 'pzarchitect') . '</h2>
@@ -1044,7 +1044,7 @@ echo '                </div>
       echo '&nbsp;<select id="arc-select" class="arc-dropdown" style="font-size:small;"><option>Insert Architect Blueprint</option>';
       $shortcodes_list = '';
       foreach ($blueprint_list as $key => $val) {
-        $shortcodes_list .= '<option value="[architect ' . $key . ']">' . $val . '</option>';
+        $shortcodes_list .= '<option value="' . $key . '">' . $val . '</option>';
       }
 
       echo $shortcodes_list;
@@ -1058,19 +1058,21 @@ echo '                </div>
    */
   function pzarc_button_js()
   {
-    echo '<script type="text/javascript">
+    echo "<script type='text/javascript'>
         jQuery(document).ready(function(){
-           jQuery("#arc-select").change(function() {
-           $selected=jQuery("#arc-select :selected").val();
-           if ($selected !=="Insert Architect Blueprint"){
-            send_to_editor($selected);
+           jQuery('#arc-select').change(function() {
+           selected=jQuery('#arc-select :selected').val();
+           if (selected !=='Insert Architect Blueprint'){
+           var shortcode = '[architect blueprint=\"'+selected+'\"]';
+            send_to_editor(shortcode);
             }
-            jQuery("#arc-select>option:eq(0)").prop("selected", true);
+            jQuery('#arc-select>option:eq(0)').prop('selected', true);
            return false;
            });
         });
-        </script>';
+        </script>";
   }
+
 
   function pzarc_initiate_updater()
   {
@@ -1100,27 +1102,120 @@ echo '                </div>
 
   }
 
-  function pzarc_set_messages($messages) {
+  function pzarc_set_messages($messages)
+  {
     global $post, $post_ID;
-    $post_type = get_post_type( $post_ID );
+    $post_type = get_post_type($post_ID);
 
-    $obj = get_post_type_object($post_type);
+    $obj      = get_post_type_object($post_type);
     $singular = $obj->labels->singular_name;
 
-    $messages[$post_type] = array(
-        0 => '', // Unused. Messages start at index 1.
-        1 => (!in_array($post_type, array('arc-blueprints','pz_testimonials','pz_snippets'))?sprintf( __($singular.' updated. <a href="%s">View '.strtolower($singular).'</a>','pzarchitect'), esc_url( get_permalink($post_ID) ) ):__($singular .' updated','pzarchitect')),
-        2 => __('Custom field updated.'),
-        3 => __('Custom field deleted.'),
-        4 => __($singular.' updated.'),
-        5 => isset($_GET['revision']) ? sprintf( __($singular.' restored to revision from %s'), wp_post_revision_title( (int) $_GET['revision'], false ) ) : false,
-        6 => (!in_array($post_type, array('arc-blueprints','pz_testimonials','pz_snippets'))?sprintf( __($singular.' published. <a href="%s">View '.strtolower($singular).'</a>'), esc_url( get_permalink($post_ID) ) ):__($singular .' published','pzarchitect')),
-        7 => __('Page saved.'),
-        8 => sprintf( __($singular.' submitted. <a target="_blank" href="%s">Preview '.strtolower($singular).'</a>'), esc_url( add_query_arg( 'preview', 'true', get_permalink($post_ID) ) ) ),
-        9 => sprintf( __($singular.' scheduled for: <strong>%1$s</strong>. <a target="_blank" href="%2$s">Preview '.strtolower($singular).'</a>'), date_i18n( __( 'M j, Y @ G:i' ), strtotime( $post->post_date ) ), esc_url( get_permalink($post_ID) ) ),
-        10 => (!in_array($post_type, array('arc-blueprints','pz_testimonials','pz_snippets'))?sprintf( __($singular.' draft updated. <a target="_blank" href="%s">Preview '.strtolower($singular).'</a>'), esc_url( add_query_arg( 'preview', 'true', get_permalink($post_ID) ) ) ):__($singular .' draft updated','pzarchitect')),
+    $messages[ $post_type ] = array(
+        0  => '', // Unused. Messages start at index 1.
+        1  => (!in_array($post_type, array('arc-blueprints',
+                                           'pz_testimonials',
+                                           'pz_snippets')) ? sprintf(__($singular . ' updated. <a href="%s">View ' . strtolower($singular) . '</a>', 'pzarchitect'), esc_url(get_permalink($post_ID))) : __($singular . ' updated', 'pzarchitect')),
+        2  => __('Custom field updated.'),
+        3  => __('Custom field deleted.'),
+        4  => __($singular . ' updated.'),
+        5  => isset($_GET[ 'revision' ]) ? sprintf(__($singular . ' restored to revision from %s'), wp_post_revision_title((int)$_GET[ 'revision' ], false)) : false,
+        6  => (!in_array($post_type, array('arc-blueprints',
+                                           'pz_testimonials',
+                                           'pz_snippets')) ? sprintf(__($singular . ' published. <a href="%s">View ' . strtolower($singular) . '</a>'), esc_url(get_permalink($post_ID))) : __($singular . ' published', 'pzarchitect')),
+        7  => __('Page saved.'),
+        8  => sprintf(__($singular . ' submitted. <a target="_blank" href="%s">Preview ' . strtolower($singular) . '</a>'), esc_url(add_query_arg('preview', 'true', get_permalink($post_ID)))),
+        9  => sprintf(__($singular . ' scheduled for: <strong>%1$s</strong>. <a target="_blank" href="%2$s">Preview ' . strtolower($singular) . '</a>'), date_i18n(__('M j, Y @ G:i'), strtotime($post->post_date)), esc_url(get_permalink($post_ID))),
+        10 => (!in_array($post_type, array('arc-blueprints',
+                                           'pz_testimonials',
+                                           'pz_snippets')) ? sprintf(__($singular . ' draft updated. <a target="_blank" href="%s">Preview ' . strtolower($singular) . '</a>'), esc_url(add_query_arg('preview', 'true', get_permalink($post_ID)))) : __($singular . ' draft updated', 'pzarchitect')),
     );
+
     return $messages;
   }
 
-  add_filter('post_updated_messages', 'pzarc_set_messages' );
+  add_filter('post_updated_messages', 'pzarc_set_messages');
+
+
+  // SHORTCAKE
+  add_action('register_shortcode_ui', function () {
+
+    if (!function_exists('shortcode_ui_register_for_shortcode')) {
+//      add_action('admin_notices', function () {
+//        if (current_user_can('activate_plugins')) {
+//          echo '<div class="error message"><p>Shortcode UI plugin must be active for Shortcode UI Example plugin to function.</p></div>';
+//        }
+//      });
+
+      return;
+    }
+
+    shortcode_ui_register_for_shortcode('architectsc', array(
+        'label' => 'Architect',
+    ));
+
+
+    /**
+     * Register a UI for the Shortcode.
+     * Pass the shortcode tag (string)
+     * and an array or args.
+     */
+    $pzarc_blueprints=array_merge(array('none'=>'None'),pzarc_get_blueprints(),array('show-none'=>'DO NOT SHOW ANY BLUEPRINT'));
+    shortcode_ui_register_for_shortcode(
+        'architectsc',
+        array(
+
+          // Display label. String. Required.
+          'label'         => __('Architect Blueprint','pzarchitect'),
+          // Icon/attachment for shortcode. Optional. src or dashicons-$icon. Defaults to carrot.
+          'listItemImage' => '<img src="'.PZARC_PLUGIN_URL.'/assets/architect-logo-final-logo-only.svg">',
+
+          // Visibility
+          //         'post_type'     => array( 'post','page' ),
+
+          // Available shortcode attributes and default values. Required. Array.
+          // Attribute model expects 'attr', 'type' and 'label'
+          // Supported field types: text, checkbox, textarea, radio, select, email, url, number, and date.
+          'attrs'         => array(
+
+              array(
+                  'label' => __('Blueprint - any device','pzarchitect'),
+                  'attr'  => 'blueprint',
+                  'type'  => 'select',
+                  'options' => $pzarc_blueprints,
+              ),
+              array(
+                  'label' => __('Blueprint - tablet (optional)','pzarchitect'),
+                  'attr'  => 'tablet',
+                  'type'  => 'select',
+                  'options' => $pzarc_blueprints,
+              ),
+              array(
+                  'label' => __('Blueprint - phone (optional)','pzarchitect'),
+                  'attr'  => 'phone',
+                  'type'  => 'select',
+                  'options' => $pzarc_blueprints,
+              ),
+              array(
+                  'label' => __('Specific IDs (optional)','pzarchitect'),
+                  'attr'  => 'ids',
+                  'type'  => 'text',
+                  'description'=>__('Comma separated post, page, snippets, etc ids','pzarchitect')
+              ),
+              array(
+                  'label' => __('Taxonomy (optional)','pzarchitect'),
+                  'attr'  => 'tax',
+                  'type'  => 'select',
+                  'options'=>pzarc_get_taxonomies(true)
+              ),
+              array(
+                  'label' => __('Term IDs (optional)','pzarchitect'),
+                  'attr'  => 'terms',
+                  'type'  => 'text',
+                  'description'=>__('Comma separated term ids from the chosen taxonomy','pzarchitect')
+              ),
+          ),
+
+        )
+    );
+
+  });
