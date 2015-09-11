@@ -2987,6 +2987,7 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
                   'subtitle' => __('Use a filler image from lorempixel if post has no image.', 'pzarchitect'),
                   'options'  => array(
                       'none'       => 'None',
+                      'specific'       => 'Custom specific image',
                       'lorempixel' => __('Random Picture', 'pzarchitect'),
                       'abstract'   => ucfirst('abstract'),
                       'animals'    => ucfirst('animals'),
@@ -3005,6 +3006,15 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
                       array('_panels_settings_feature-type', '=', 'image'),
                   ),
               ),
+              array(
+                  'id'       => $prefix . 'use-filler-image-source-specific',
+                  'type'     => 'media',
+                  'title'    => __('Specific filler image', 'pzarchitect'),
+                  'subtitle'     => __('This single image will display for all posts with no featured image.', 'pzarchitect'),
+                  'required' => array($prefix . 'use-filler-image-source' ,'=','specific'),
+                  'library_filter'=>array('jpg','jpeg','png')
+              ),
+
               // TODO: This will be for proper masonry galleries
               //              array(
               //                  'id'       => $prefix . 'image-shrinkage',
