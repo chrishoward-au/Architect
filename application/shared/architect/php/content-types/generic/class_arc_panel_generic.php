@@ -292,7 +292,10 @@
       $this->data[ 'image' ][ 'caption' ] = is_object( $image ) ? $image->post_excerpt : '';
 
       //Use lorempixel
-      if ( empty( $this->data[ 'image' ][ 'image' ] ) && ! empty( $this->section[ '_panels_design_use-filler-image-source' ] ) && 'none' !== $this->section[ '_panels_design_use-filler-image-source' ] ) {
+      if ( empty( $this->data[ 'image' ][ 'image' ] )
+          && ! empty( $this->section[ '_panels_design_use-filler-image-source' ] )
+          && 'none' !== $this->section[ '_panels_design_use-filler-image-source' ]
+          && 'specific' !== $this->section[ '_panels_design_use-filler-image-source' ]) {
         $ch = curl_init( 'http://lorempixel.com' );
         curl_setopt( $ch, CURLOPT_RETURNTRANSFER, true );
         $cexec      = curl_exec( $ch );
@@ -324,7 +327,15 @@
         $this->data[ 'image' ][ 'caption' ]  = '';
 
       }
-
+      // TODO: Add retina for this maybe. Tho client side retina may fix anyway
+      if ( empty( $this->data[ 'image' ][ 'image' ] )
+          && 'specific' === $this->section[ '_panels_design_use-filler-image-source' ]
+          && !empty($this->section[ '_panels_design_use-filler-image-source-specific' ]['url'])) {
+        $imageURL            = bfi_thumb($this->section[ '_panels_design_use-filler-image-source-specific' ]['url'],array('width'=>$width,'height'=>$height));
+        $this->data[ 'image' ][ 'image' ]    = '<img src="' . $imageURL . '" >';
+        $this->data[ 'image' ][ 'original' ] = array( $imageURL, $width, $height, false );
+        $this->data[ 'image' ][ 'caption' ]  = '';
+      }
 
     }
 
@@ -379,7 +390,10 @@
       pzdb( 'end get bgimage' );
 
       //Use lorempixel
-      if ( empty( $this->data[ 'bgimage' ][ 'thumb' ] ) && ! empty( $this->section[ '_panels_design_use-filler-image-source' ] ) && 'none' !== $this->section[ '_panels_design_use-filler-image-source' ] ) {
+      if ( empty( $this->data[ 'bgimage' ][ 'thumb' ] )
+          && ! empty( $this->section[ '_panels_design_use-filler-image-source' ] )
+          && 'none' !== $this->section[ '_panels_design_use-filler-image-source' ]
+          && 'specific' !== $this->section[ '_panels_design_use-filler-image-source' ]) {
         $ch = curl_init( 'http://lorempixel.com' );
         curl_setopt( $ch, CURLOPT_RETURNTRANSFER, true );
         $cexec      = curl_exec( $ch );
@@ -410,6 +424,14 @@
         $this->data[ 'image' ][ 'original' ] = ! $is_offline ? array( $imageURL, $width, $height, false ) : false;
         $this->data[ 'image' ][ 'caption' ]  = '';
 
+      }
+      if ( empty( $this->data[ 'image' ][ 'image' ] )
+          && 'specific' === $this->section[ '_panels_design_use-filler-image-source' ]
+          && !empty($this->section[ '_panels_design_use-filler-image-source-specific' ]['url'])) {
+        $imageURL            = bfi_thumb($this->section[ '_panels_design_use-filler-image-source-specific' ]['url'],array('width'=>$width,'height'=>$height));
+        $this->data[ 'bgimage' ][ 'image' ]    = '<img src="' . $imageURL . '" >';
+        $this->data[ 'image' ][ 'original' ] = array( $imageURL, $width, $height, false );
+        $this->data[ 'image' ][ 'caption' ]  = '';
       }
 
     }
