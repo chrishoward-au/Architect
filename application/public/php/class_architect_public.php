@@ -193,9 +193,22 @@
 
       // Setup original query vars that can then be used by custom query when Defaults
       $this->build->blueprint[ 'original_content-source' ] = $this->build->blueprint[ '_blueprints_content-source' ];
-      if ( $this->build->blueprint[ '_blueprints_content-source' ] === 'defaults' && ! empty( $this->build->blueprint[ '_content_defaults_defaults-override' ] ) ) {
+      if ( $this->build->blueprint[ '_blueprints_content-source' ] === 'defaults'  ) {
+//      if ( $this->build->blueprint[ '_blueprints_content-source' ] === 'defaults' && ! empty( $this->build->blueprint[ '_content_defaults_defaults-override' ] ) ) {
         global $wp_query;
         $this->build->blueprint[ 'original_query_vars' ] = $wp_query->query_vars;
+        if (empty($wp_query->query_vars['post_type'])){
+          if (!empty($wp_query->queried_object->post_type)) {
+            $this->build->blueprint[ 'original_query_vars' ][ 'post_type' ] = $wp_query->queried_object->post_type;
+          } else {
+            $this->build->blueprint[ 'original_query_vars' ][ 'post_type' ] =get_post_type();
+          }
+        }
+        foreach ($this->build->blueprint[ 'original_query_vars' ] as $kq=>$vq) {
+          if (empty($vq)) {
+            unset($this->build->blueprint[ 'original_query_vars' ][$kq]);
+          }
+        }
       }
 
       if ( array_key_exists( $this->build->blueprint[ '_blueprints_content-source' ], $content_source ) ) {
@@ -212,7 +225,6 @@
 
       /** at this point we have the necessary info to populate the navigator. So let's do it! */
       $content_class = self::get_blueprint_content_class();
-//      pzdebug($content_class);
       if ( class_exists( $content_class ) ) {
         $panel_class = new $content_class( $this->build ); // This gets the settings for the panels of this content type.
         if ( $bp_nav_type === 'navigator' ) {

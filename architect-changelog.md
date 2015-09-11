@@ -1,5 +1,7 @@
 # Architect change history 
 
+## 1.4.8 : 9 Sept 2015 
+* FIXED: Change at v1.4.3 broke single post display when using Defaults as content source.
 
 ## 1.4.7 : 4 Sept 2015 
 * ADDED: Support for Shortcake a user friendly shortcode tool. Install the Shortcake (Shortcode UI) plugin and then click Add Media in Posts etc, then Insert Post Element and select the Architect Blueprint. For compatibility, there is a specific Shortcake shortcode, [architectsc]

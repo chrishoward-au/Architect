@@ -23,8 +23,24 @@
     public function build_custom_query_options($overrides)
     {
       // Make sure we're using the original post type for the page
-      if ($this->build->blueprint[ '_blueprints_content-source' ]==='defaults') {
+      if ($this->build->blueprint[ '_blueprints_content-source' ]==='defaults' ) {
         $this->query_options=$this->build->blueprint[ 'original_query_vars' ];
+        // Save time doing all the stuff below if it's not needed!
+        if (empty( $this->build->blueprint[ '_content_defaults_defaults-override' ] )) {
+          return;
+        }
+        // Don't want the default page names as it prevents cats etc...
+        switch (true) {
+          case !empty($this->criteria[ 'category__in' ]):
+          case !empty($this->criteria[ 'tag__in' ]):
+          case !empty($this->criteria[ 'category__not__in' ]):
+          case !empty($this->criteria[ 'tag__not__in' ]):
+          case !empty($this->criteria[ '_content_general_other-tax-tag' ]):
+            unset($this->query_options['pagename']);
+            unset($this->query_options['name']);
+            break;
+        }
+
       }
 
       // TODO: need to scrape this down to just a generic one for built in post types
@@ -63,7 +79,9 @@
         $query[ 'nopaging' ]                     = $this->criteria[ 'nopaging' ];
         $this->query_options[ 'posts_per_page' ] = $this->criteria[ 'panels_to_show' ];
 
-        $this->query_options[ 'offset' ] = $this->criteria[ 'offset' ];
+        if (!empty($this->criteria[ 'offset' ])) {
+          $this->query_options[ 'offset' ] = $this->criteria[ 'offset' ];
+        }
       }
 
       // these two break paging yes?
@@ -76,7 +94,6 @@
 
       /** General content filters */
       $cat_ids = $this->criteria[ 'category__in' ];
-//      var_dump(get_the_category(),is_category());
 
       // TODO: This doesn't work right yet
 //      if ($this->build->blueprint[ '_content_general_sub-cats' ]  && is_category()) {
