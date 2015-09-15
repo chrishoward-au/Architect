@@ -13,6 +13,9 @@
 
     /** Load additional functionality */
 
+    // Sudo slider
+    require_once plugin_dir_path(__FILE__) . '/sliders/sudo-slider/arc-sudo-init.php';
+
     // Animation add on
     require_once plugin_dir_path( __FILE__ ) . '/animation/arc-animation.php';
 
