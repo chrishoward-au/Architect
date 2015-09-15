@@ -58,7 +58,11 @@
                       'max'     => 9999,
                       'step'    => 1,
                       'default' => 0,
-                      'desc'    => __('Note: Skipping breaks pagination. This is a known WordPress issue. Also, skipping does not work if no post limit set. Again a WP limitation. Use a high number of posts to show as a workaround', 'pzarchitect'),
+                      'desc'    => '<strong style="color:tomato;">'.__('Note: Skipping breaks pagination. This is a known WordPress issue. Also, skipping does not work if no post limit set. Again a WP limitation. Use a high number of posts to show as a workaround', 'pzarchitect').'</strong>',
+//                      'required'=>array(
+//                          array('_blueprints_pagination-per-page','=',false),
+////                          array('_blueprints_section-0-panels-limited','=',false),
+//                      )
                   ),
                   array(
                       'title'   => __('Sticky posts first', 'pzarchitect'),
