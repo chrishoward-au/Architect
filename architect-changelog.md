@@ -1,5 +1,15 @@
 # Architect change history 
 
+## 1.4.9 : 16 Sept 2015 =
+* FIXED: Pages instead of posts showing on Blog index
+* CHANGED: Default posts per page for pagination to value set in WP Settings > Reading
+ 
+## 1.4.8.2 =
+* ADDED: Option for specific filler image (thanks Cemil!)
+
+## 1.4.8.1 =
+* FIXED: Error displaying in Headway Visual Editor Design Mode when Defaults was content source.
+
 ## 1.4.8 : 9 Sept 2015 
 * FIXED: Change at v1.4.3 broke single post display when using Defaults as content source.
 

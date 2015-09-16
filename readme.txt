@@ -93,8 +93,8 @@ For support, please send an email to support@pizazzwp.com
 
 == Changelog ==
 
-= 1.4.9 =
-* FIXED: Pages not posts showing on Blog index
+= 1.4.9 : 16 Sept 2015 =
+* FIXED: Pages instead of posts showing on Blog index
 * CHANGED: Default posts per page for pagination to value set in WP Settings > Reading
  
 = 1.4.8.2 =
