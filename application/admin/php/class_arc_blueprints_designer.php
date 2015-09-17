@@ -680,7 +680,7 @@
                 ),
                 array(
                     'id'     => $prefix . 'section-' . $i . '-panels-heading',
-                    'title'  => __('Number to show', 'pzarchitect'),
+                    'title'  => __('General panels settings', 'pzarchitect'),
                     'type'   => 'section',
                     'indent' => true,
                 ),
@@ -1605,7 +1605,7 @@
                   'title'    => __('Posts per page', 'pzarchitect'),
                   'id'       => '_blueprints_pagination-per-page',
                   'type'     => 'spinner',
-                  'default'  => 1,
+                  'default'  => get_option('posts_per_page'),
                   'min'      => 1,
                   'max'      => 99,
                   'required' => array('_blueprints_pagination', 'equals', true),

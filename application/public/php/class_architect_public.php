@@ -81,7 +81,7 @@
       require_once(PZARC_PLUGIN_APP_PATH . '/public/php/class_arc_navigator.php');
       require_once(PZARC_PLUGIN_APP_PATH . '/public/php/class_arc_pagination.php');
 
-      if ('masonry'===$this->build->blueprint['_blueprints_section-0-layout-mode']) {
+      if ('masonry' === $this->build->blueprint[ '_blueprints_section-0-layout-mode' ]) {
         require_once(PZARC_PLUGIN_APP_PATH . '/public/php/class_arc_masonry.php');
         new arc_masonry($this->build->blueprint);
       }
@@ -202,26 +202,33 @@
 //      if ( $this->build->blueprint[ '_blueprints_content-source' ] === 'defaults' && ! empty( $this->build->blueprint[ '_content_defaults_defaults-override' ] ) ) {
         global $wp_query;
         $this->build->blueprint[ 'original_query_vars' ] = $wp_query->query_vars;
-        if (empty($wp_query->query_vars[ 'post_type' ])) {
+        if (empty($wp_query->query_vars[ 'post_type' ]) && ($this->build->blueprint[ '_blueprints_content-source' ] !== 'defaults')) {
           if (!empty($wp_query->queried_object->post_type)) {
             $this->build->blueprint[ 'original_query_vars' ][ 'post_type' ] = $wp_query->queried_object->post_type;
           } else {
             $this->build->blueprint[ 'original_query_vars' ][ 'post_type' ] = get_post_type();
           }
         }
-        foreach ($this->build->blueprint[ 'original_query_vars' ] as $kq => $vq) {
-          if (empty($vq)) {
-            unset($this->build->blueprint[ 'original_query_vars' ][ $kq ]);
-          }
-        }
+//        foreach ($this->build->blueprint[ 'original_query_vars' ] as $kq => $vq) {
+//          if (empty($vq)) {
+//            unset($this->build->blueprint[ 'original_query_vars' ][ $kq ]);
+//          }
+//        }
       }
 
       if (array_key_exists($this->build->blueprint[ '_blueprints_content-source' ], $content_source)) {
 
         $source_query_class = 'arc_query_' . $this->build->blueprint[ '_blueprints_content-source' ];
         require_once($content_source[ $this->build->blueprint[ '_blueprints_content-source' ] ] . '/class_' . $source_query_class . '.php');
-        self::use_custom_query($overrides, $source_query_class);
-
+        global $wp_query;
+        if ($this->build->blueprint[ '_blueprints_content-source' ] === 'defaults') {
+          self::use_default_query();
+          if (!empty($this->build->blueprint[ '_content_defaults_defaults-override' ])) {
+            self::use_custom_query($overrides, $source_query_class);
+          }
+        } else {
+          self::use_custom_query($overrides, $source_query_class);
+        }
       } else {
 
         self::use_default_query();

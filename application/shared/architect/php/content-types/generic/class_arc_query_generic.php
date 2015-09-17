@@ -23,12 +23,9 @@
     public function build_custom_query_options($overrides)
     {
       // Make sure we're using the original post type for the page
+//      var_dump($this->build->blueprint[ '_blueprints_content-source' ],$this->build->blueprint[ '_content_defaults_defaults-override' ],get_the_ID());
       if ($this->build->blueprint[ '_blueprints_content-source' ]==='defaults' ) {
         $this->query_options=$this->build->blueprint[ 'original_query_vars' ];
-        // Save time doing all the stuff below if it's not needed!
-        if (empty( $this->build->blueprint[ '_content_defaults_defaults-override' ] )) {
-          return;
-        }
         // Don't want the default page names as it prevents cats etc...
         switch (true) {
           case !empty($this->criteria[ 'category__in' ]):
@@ -155,7 +152,8 @@
             ),
         );
       }
-    }
+
+    } //EOF
 
     /**
      *
