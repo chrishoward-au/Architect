@@ -33,8 +33,9 @@
     .pzarchitect.pzarc-blueprint .button-group.sort-by-button-group, .pzarchitect.pzarc-blueprint .button-group.sort-order-button-group {
       display: inline-block; }
     .pzarchitect.pzarc-blueprint .button-group button {
-      margin-right: 5px; }
-      .pzarchitect.pzarc-blueprint .button-group button.current {
+      margin-right: 5px;
+      margin-bottom: 5px; }
+      .pzarchitect.pzarc-blueprint .button-group button.current, .pzarchitect.pzarc-blueprint .button-group button.active {
         background: #0d47a1;
         color: white; }
 .pzarchitect .pzarc-sections {

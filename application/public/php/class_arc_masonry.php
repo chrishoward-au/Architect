@@ -17,6 +17,7 @@
       //var_dump($blueprint);
       add_action('arc_masonry_controls_' . $this->blueprint[ '_blueprints_short-name' ], array($this, 'sorting'));
       add_action('arc_masonry_controls_' . $this->blueprint[ '_blueprints_short-name' ], array($this, 'filtering'));
+      add_action('arc-extend-panel-classes_' . $this->blueprint[ '_blueprints_short-name' ], array($this, 'filtering_classes'),10,2);
       add_action('wp_print_footer_scripts', array($this, 'js'));
     }
 
@@ -47,22 +48,38 @@
 
     function filtering() {
       // Need to do this for each taxonomy
-      $terms = pzarc_get_terms('category',array('hide_empty'=>true));
+      if (!empty($this->blueprint['_blueprints_masonry-filtering'])) {
+        foreach ($this->blueprint[ '_blueprints_masonry-filtering' ] as $tax) {
+          $terms = pzarc_get_terms($tax, array('hide_empty' => true));
 
-      var_Dump($terms);
-     echo '
+          echo '
      <div class="button-group filter-button-group">
-     <label>'.__('Filters','pzarchitect').': </label>
-  <button data-filter="*" class="current">'.__('Show all','pzarchitect').'</button>
-  <button data-filter=".metal">metal</button>
-  <button data-filter=".transition">transition</button>
-  <button data-filter=".alkali, .alkaline-earth">alkali & alkaline-earth</button>
-  <button data-filter=":not(.transition)">not transition</button>
-  <button data-filter=".metal:not(.transition)">metal but not transition</button>
-</div>
+     <label>'. __('Filter by ', 'pzarchitect') . ucwords(str_replace(array('_','-'),' ',$tax)) . ': </label>
+
+  <button data-filter="*" class="showall active" data-filter-group="'.$tax.'">' . __('Clear', 'pzarchitect') . '</button>';
+          foreach ($terms as $class => $name) {
+            echo '<button data-filter=".'.$tax.'-'.$class.'">'.$name.'</button>';
+          }
+echo '</div>
      ';
+        }
+      }
     }
 
+    function filtering_classes($classes,$blueprint) {
+      if (!empty($this->blueprint['_blueprints_masonry-filtering'])) {
+        $classes .= ' ';
+        foreach ($this->blueprint[ '_blueprints_masonry-filtering' ] as $tax) {
+          $terms = get_the_terms(get_the_id(),$tax);
+          if (!empty($terms)) {
+            foreach ($terms as $term_obj) {
+              $classes .= $tax . '-' . $term_obj->slug . ' ';
+            }
+          }
+        }
+      }
+      return $classes;
+    }
     function js()
     {
       $blueprint = $this->blueprint[ '_blueprints_short-name' ];
@@ -86,10 +103,10 @@
       }
       $sort_data = $sort_data ? substr($sort_data, 0, -1) : $sort_data;
 
-      echo "<script type='text/javascript' id='masonry-{$blueprint}'>
+      $script =  "<script type='text/javascript' id='masonry-{$blueprint}'>
         // init Isotope
-        (function($){
-            var container = jQuery( '.pzarc-section-using-{$blueprint}' );
+        (function($){";
+      $script .=  "    var container = jQuery( '.pzarc-section-using-{$blueprint}' );
                var arcIsotopeID = jQuery( container ).attr( 'data-uid' );
               jQuery(container).imagesLoaded( function ()
               {
@@ -126,11 +143,42 @@
           var sortByValue = $('#pzarc-blueprint_{$blueprint} .sort-by-button-group .current').attr('data-sort-by');
           console.log(sortOrderValue, sortByValue);
           container.isotope({ sortByValue: sortByValue, sortAscending: sortOrderValue });
-        });
+        });";
 
-      })(jQuery);
+      $script .= "jQuery('.filter-button-group').on( 'click', 'button', function() {
+          if (jQuery(this).hasClass('showall')) {
+            jQuery('.filter-button-group').removeClass('active');
+          } else {
+            jQuery('.filter-button-group .showall').removeClass('active');
+          }
+
+          if (jQuery(this).hasClass('active')) {
+            jQuery(this).removeClass('active');
+          } else {
+            jQuery(this).addClass('active');
+          }
+
+          var t = jQuery('.filter-button-group .active');
+          console.log(t);
+          var filterValue = concatValues(t);
+          container.isotope({ filter: filterValue });
+      });
+
+      function concatValues( t ) {
+    //  console.log(t);
+         var value = '';
+         jQuery(t).each(function(){
+          console.log(jQuery(this).attr('data-filter'));
+          value += jQuery(this).attr('data-filter');
+         });
+        return value;
+        };
+      ";
+
+      $script .= "})(jQuery);
       </script>";
 
+      echo $script;
 
     }
   }

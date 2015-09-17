@@ -1781,7 +1781,7 @@
     return pzarc_get_taxonomies(true,false);
   }
 
-  function pzarc_get_taxonomies($catstags,$has_blank) {
+  function pzarc_get_taxonomies($catstags=true,$has_blank=true) {
     $taxonomy_list  = get_taxonomies( array(
                                           'public'   => true,
                                           '_builtin' => false

@@ -315,7 +315,7 @@
 
 //      echo '<' . ('table' !== $this->layout_mode ? 'div' : 'tr') . ' class="pzarc-panel pzarc-panel_' . $settings[ '_panels_settings_short-name' ] . ' pzarc-panel-no_' . $panel_number . $this->slider[ 'slide' ] . $image_in_bg . $odds_evens_bp . $odds_evens_section . $postmeta_classes . '" >';
       $classes = 'pzarc-panel pzarc-panel_' . $this->panel_name . ' pzarc-panel-no_' . $panel_number . $this->slider[ 'slide' ] . $image_in_bg . $odds_evens_bp;
-      echo '<' . ('table' !== $this->layout_mode ? 'div' : 'tr') . ' class="' . apply_filters('arc-extend-panel-classes', $classes, $this->blueprint) . '" ' . apply_filters('arc-extend-panel-data', '', $this->blueprint) . ' data-masonry-sort="'.rand(1,1000).'">';
+      echo '<' . ('table' !== $this->layout_mode ? 'div' : 'tr') . ' class="' . apply_filters('arc-extend-panel-classes', $classes, $this->blueprint) . ' '.apply_filters('arc-extend-panel-classes_'.$this->panel_name, '', $this->blueprint) . '" ' . apply_filters('arc-extend-panel-data', '', $this->blueprint) . '">';
 
     //
       if (!empty($settings['_panels_design_link-panel'])) {

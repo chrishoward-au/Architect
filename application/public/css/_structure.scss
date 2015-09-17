@@ -24,7 +24,9 @@
       }
       button {
         margin-right:5px;
-        &.current {
+        margin-bottom:5px;
+        &.current,
+        &.active {
           background:#0d47a1;
           color:white;
         }
