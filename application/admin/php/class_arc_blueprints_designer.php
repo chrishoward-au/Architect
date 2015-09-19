@@ -1538,23 +1538,24 @@
                   'type'    => 'button_set',
                   'multi'   => true,
                   'options' => array(
-                      'infinite-scroll' => __('Infinite scroll', 'pzarchitect'),
+                    // Infinite scroll requires a method to load next set, so would would best leveraging off pagination -maybe... And that is a lot harder!
+                    // Waypoints provides infinite scroll support.
+//                      'infinite-scroll' => __('Infinite scroll', 'pzarchitect'),
                       'filtering'       => __('Filtering', 'pzarchitect'),
                       'sorting'         => __('Sorting', 'pzarchitect')
                   ),
                   'desc'    => __('', 'pzarchitect')
               ),
-              array(
-                  'title'    => __('Panel width (px)', 'pzarchitect'),
-                  'id'       => $prefix . 'masonry-panel-width',
-                  'type'     => 'text',
-                  'default'  => '200',
-                  // TODO: Remember to do this!
-                  'subtitle' => __('If zero, panels will have a fluid width based on the image. Works best with scaled images.', 'pzarchitect'),
-                  'required' => array($prefix . 'masonry-features', 'contains', 'override-columns'),
-              ),
+//              array(
+//                  'title'    => __('Panel width (px)', 'pzarchitect'),
+//                  'id'       => $prefix . 'masonry-panel-width',
+//                  'type'     => 'text',
+//                  'default'  => '200',
+//                  // TODO: Remember to do this!
+//                  'subtitle' => __('If zero, panels will have a fluid width based on the image. Works best with scaled images.', 'pzarchitect'),
+//                  'required' => array($prefix . 'masonry-features', 'contains', 'override-columns'),
+//              ),
               // Infinite scroll options: Show progress
-              // Filtering: Choose taxonomies
               array(
                   'title'    => __('Filtering', 'pzarchitect'),
                   'id'       => $prefix . 'masonry-filtering',
