@@ -81,6 +81,11 @@
       require_once(PZARC_PLUGIN_APP_PATH . '/public/php/class_arc_navigator.php');
       require_once(PZARC_PLUGIN_APP_PATH . '/public/php/class_arc_pagination.php');
 
+      if ('masonry' === $this->build->blueprint[ '_blueprints_section-0-layout-mode' ]) {
+        require_once(PZARC_PLUGIN_APP_PATH . '/public/php/class_arc_masonry.php');
+        new arc_masonry($this->build->blueprint);
+      }
+
       /** If it's a slider, create its stuff */
       if ($this->build->blueprint) {
         // load slider
@@ -218,7 +223,7 @@
         global $wp_query;
         if ($this->build->blueprint[ '_blueprints_content-source' ] === 'defaults') {
           self::use_default_query();
-          if (!empty( $this->build->blueprint[ '_content_defaults_defaults-override' ] )) {
+          if (!empty($this->build->blueprint[ '_content_defaults_defaults-override' ])) {
             self::use_custom_query($overrides, $source_query_class);
           }
         } else {
@@ -325,6 +330,8 @@
         do_action("arc_after_pagination_above_{$bp_shortname}");
 
       }
+
+      do_action("arc_masonry_controls_{$bp_shortname}");
 
       do_action('arc_before_panels_wrapper');
       do_action("arc_before_panels_wrapper_{$bp_shortname}");
@@ -587,7 +594,6 @@
      */
     private function use_default_query()
     {
-
       global $wp_query;
       $this->arc_query = $wp_query;
 //

@@ -54,6 +54,11 @@
     wp_register_script('js-retinajs', PZARC_PLUGIN_APP_URL . '/public/js/retinajs/retina.js');
 
 
+    // Waypoints
+    // Infinite scroll requires a method to load next set, so would would best leveraging off pagination -maybe... And that is a lot harder!
+    // Waypoints provides infinite scroll support.
+//    wp_register_script('js-waypoints', PZARC_PLUGIN_APP_URL . '/public/js/waypoints/jquery.waypoints.min.js');
+
     // Magnific
     wp_register_script('js-magnific-arc', PZARC_PLUGIN_APP_URL . '/public/js/arc-front-magnific.js', array('jquery'), null, true);
     wp_register_script('js-magnific', PZARC_PLUGIN_APP_URL . '/public/js/Magnific-Popup/jquery.magnific-popup.min.js', array('jquery'), null, true);
