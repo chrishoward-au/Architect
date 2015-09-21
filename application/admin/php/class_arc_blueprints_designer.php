@@ -2721,7 +2721,7 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
           'show_title' => false,
           'icon_class' => 'icon-large',
           'icon'       => 'el-icon-calendar',
-          'desc'       => __('Available tags are <span class="pzarc-text-highlight">%author%,   %email%,   %date%,   %categories%,   %tags,   %commentslink%,   %editlink%,   %id%</span>. For custom taxonomies, prefix with ct:. e.g. To display the Woo Testimonials category, you would use %ct:testimonial-category%. Or to display WooCommerce product category, use: %ct:product_cat%', 'pzarchitect') . '<br>' .
+          'desc'       => __('Available tags are <span class="pzarc-text-highlight">%author%, %email%,   %date%,   %categories%,   %tags,   %commentslink%,   %editlink%,   %id%</span>. For custom taxonomies, prefix with ct:. e.g. To display the Woo Testimonials category, you would use %ct:testimonial-category%. Or to display WooCommerce product category, use: %ct:product_cat%', 'pzarchitect') . '<br>' .
               __('Allowed HTML tags:', 'pzarchitect') . ' p, br, span, strong & em<br><br>' .
               __('Use shortcodes to add custom functions to meta. e.g. [add_to_cart id="%id%"]', 'pzarchitect') . '<br>' .
               __('Note: Enclose any author related text in <span class="pzarc-text-highlight">//</span> to hide it when using excluded authors.', 'pzarchitect') . '<br>' .
@@ -2769,6 +2769,23 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
                 //TODO: Findout how to pass parameters. currently that is doing nothing!
                 'args'     => array('pzarc_get_authors', array(false, 0)),
                 'subtitle' => __('Select any authors here you want to exclude from showing when the %author% or %email% tag is used.', 'pzarchitect')
+            ),
+            array(
+                'title'    => __('Author avatar', 'pzarchitect'),
+                'id'       => $prefix . 'avatar',
+                'type'     => 'button_set',
+                'default'=>'none',
+                'options'=>array('none'=>__('None','pzarchitect'),'before'=>__('Before','pzarchitect'),'after'=>__('After','pzarchitect')),
+            ),
+            array(
+                'title'    => __('Avatar size', 'pzarchitect'),
+                'id'       => $prefix . 'avatar-size',
+                'type'     => 'spinner',
+                'default'=>32,
+                'min'     => 1,
+                'max'     => 256,
+                'step'    => 1,
+                'subtitle' => __('Width and height of avatar if displayed.', 'pzarchitect')
             ),
           )
       );

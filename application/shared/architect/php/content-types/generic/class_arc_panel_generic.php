@@ -41,6 +41,8 @@
       $this->data[ 'meta' ][ 'categorieslinks' ] = null;
       $this->data[ 'meta' ][ 'tagslinks' ]       = null;
       $this->data[ 'meta' ][ 'authorlink' ]      = null;
+      $this->data[ 'meta' ][ 'avatara' ]         = null;
+      $this->data[ 'meta' ][ 'avatarb' ]         = null;
       $this->data[ 'meta' ][ 'authorname' ]      = null;
       $this->data[ 'meta' ][ 'authoremail' ]     = null;
       $this->data[ 'meta' ][ 'comments-count' ]  = null;
@@ -76,7 +78,7 @@
       $panel_def[ 'datetime' ]   = '<span class="entry-date"><a href="{{permalink}}" ><time class="entry-date" datetime="{{datetime}}">{{fdatetime}}</time></a></span>';
       $panel_def[ 'categories' ] = '<span class="categories-links">{{categorieslinks}}</span>';
       $panel_def[ 'tags' ]       = '<span class="tags-links">{{tagslinks}}</span>';
-      $panel_def[ 'author' ]     = '<span class="byline"><span class="author vcard"><a class="url fn n" href="{{authorlink}}" title="View all posts by {{authorname}}" rel="author">{{authorname}}</a></span></span>';
+      $panel_def[ 'author' ]     = '<span class="byline"><span class="author vcard"><a class="url fn n" href="{{authorlink}}" title="View all posts by {{authorname}}" rel="author">{{avatarb}}{{authorname}}{{avatara}}</a></span></span>';
       $panel_def[ 'email' ]      = '<span class="byline email"><span class="author vcard"><a class="url fn n" href="mailto:{{authoremail}}" title="Email {{authorname}}" rel="author">{{authoremail}}</a></span></span>';
       //     $panel_def[ 'image' ]       = '<figure class="entry-thumbnail {{incontent}}">{{postlink}}<img width="{{width}}" src="{{imgsrc}}" class="attachment-post-thumbnail wp-post-image" alt="{{alttext}}">{{closepostlink}}{{captioncode}}</figure>';
       $panel_def[ 'image' ]   = '{{figopen}} class="{{extensionclass}} entry-thumbnail {{incontent}} {{centred}} {{nofloat}} {{location}}" {{extensiondata}}>{{postlink}}{{image}}{{closelink}}{{captioncode}}{{figclose}}';
@@ -231,6 +233,13 @@
           $encodedmail .= "&#" . ord( $rawemail[ $i ] ) . ';';
         }
         $this->data[ 'meta' ][ 'authoremail' ] = $encodedmail;
+      }
+      if ( !empty($this->section['_panels_design_avatar']) && $this->section['_panels_design_avatar'] !== 'none') {
+        if ($this->section['_panels_design_avatar']==='before') {
+          $this->data[ 'meta' ][ 'avatarb' ] = get_avatar(get_the_author_meta('ID'), (!empty($this->section[ '_panels_design_avatar-size' ]) ? $this->section[ '_panels_design_avatar-size' ] : 96));
+        } else {
+          $this->data[ 'meta' ][ 'avatara' ] = get_avatar(get_the_author_meta('ID'), (!empty($this->section[ '_panels_design_avatar-size' ]) ? $this->section[ '_panels_design_avatar-size' ] : 96));
+        }
       }
       $this->data[ 'meta' ][ 'comments-count' ] = get_comments_number();
 
@@ -556,6 +565,8 @@
         $panel_def[ $component ] = str_replace( '{{authorname}}', $this->data[ 'meta' ][ 'authorname' ], $panel_def[ $component ] );
         $panel_def[ $component ] = str_replace( '{{authorlink}}', $this->data[ 'meta' ][ 'authorlink' ], $panel_def[ $component ] );
         $panel_def[ $component ] = str_replace( '{{authoremail}}', $this->data[ 'meta' ][ 'authoremail' ], $panel_def[ $component ] );
+        $panel_def[ $component ] = str_replace( '{{avatara}}', $this->data[ 'meta' ][ 'avatara' ], $panel_def[ $component ] );
+        $panel_def[ $component ] = str_replace( '{{avatarb}}', $this->data[ 'meta' ][ 'avatarb' ], $panel_def[ $component ] );
       } else {
         // Removed unused text and indicators
         $panel_def[ $component ] = preg_replace( "/\\/\\/(.)*\\/\\//uiUm", "", $panel_def[ $component ] );

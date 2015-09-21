@@ -192,6 +192,12 @@
     float: left;
     vertical-align: top;
     box-sizing: border-box; }
+    .pzarchitect .pzarc-panel .entry-title img.avatar,
+    .pzarchitect .pzarc-panel .entry-excerpt img.avatar,
+    .pzarchitect .pzarc-panel .entry-thumbnail img.avatar,
+    .pzarchitect .pzarc-panel .entry-content img.avatar,
+    .pzarchitect .pzarc-panel .entry-meta img.avatar {
+      vertical-align: middle; }
   .pzarchitect .pzarc-panel .entry-thumbnail img {
     vertical-align: top; }
   .pzarchitect .pzarc-panel .entry-customfieldgroup {
