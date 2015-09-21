@@ -6,6 +6,7 @@
     public $content_types;
     public $redux_opt_name = '_architect';
     public $defaults = false;
+    public $custom_fields = array();
 
 
     /**
@@ -56,6 +57,7 @@
 
       }
 
+      $this->custom_fields = pzarc_get_custom_fields();
 
     }
 
@@ -678,7 +680,7 @@
                 ),
                 array(
                     'id'     => $prefix . 'section-' . $i . '-panels-heading',
-                    'title'  => __('Number to show', 'pzarchitect'),
+                    'title'  => __('General panels settings', 'pzarchitect'),
                     'type'   => 'section',
                     'indent' => true,
                 ),
@@ -827,23 +829,21 @@
                         array($prefix . 'section-' . $i . '-panels-fixed-width', 'equals', true),
                         array($prefix . 'section-0-layout-mode', '=', 'basic')
                     ),
-                    'subtitle'=>__('These are the standard Flexbox justification options','pzarchitect')
+                    'subtitle' => __('These are the standard Flexbox justification options', 'pzarchitect')
                 ),
                 array(
-                    'title'   => __('Stretch panels to fill', 'pzarchitect'),
-                    'id'      => $prefix . 'section-' . $i . '-panels-fixed-width-fill',
-                    'type'    => 'switch',
-                    'on'      => __('Yes', 'pzarchitect'),
-                    'off'     => __('No', 'pzarchitect'),
-                    'subtitle'=>__('Stretches panels to fill all available space per row, except margins.','pzarchitect'),
-                    'default' => false,
+                    'title'    => __('Stretch panels to fill', 'pzarchitect'),
+                    'id'       => $prefix . 'section-' . $i . '-panels-fixed-width-fill',
+                    'type'     => 'switch',
+                    'on'       => __('Yes', 'pzarchitect'),
+                    'off'      => __('No', 'pzarchitect'),
+                    'subtitle' => __('Stretches panels to fill all available space per row, except margins.', 'pzarchitect'),
+                    'default'  => false,
                     'required' => array(
                         array($prefix . 'section-' . $i . '-panels-fixed-width', 'equals', true),
                         array($prefix . 'section-0-layout-mode', '=', 'basic')
                     ),
                 ),
-
-
                 array(
                     'id'     => $prefix . 'section-' . $i . '-panels-settings-heading',
                     'title'  => __('Panel dimensions', 'pzarchitect'),
@@ -1520,39 +1520,65 @@
 
       $sections[ '_slidertabbed' ] = apply_filters('arc-extend-slider-settings', $sections[ '_slidertabbed' ]);
 
-//      $sections[ '_masonry' ] = array(
-//          'title'      => __('Masonry','pzarchitect'),
-//          'icon_class' => 'icon-large',
-//          'icon'       => 'el-icon-chevron-right',
-//          'fields'     => array(
+      /**
+       * MASONRY
+       */
+      $sort_fields            = apply_filters('arc_masonry_sorting',array_merge(array('random'=>__('Random','pzarchitect'),
+                                                  '.entry-title'  => __('Title', 'pzarchitect'),
+                                                  '[data-order]'   => __('Date', 'pzarchitect'),
+                                                  '.author' => __('Author', 'pzarchitect'))));
+      $sections[ '_masonry' ] = array(
+          'title'      => __('Masonry', 'pzarchitect'),
+          'icon_class' => 'icon-large',
+          //      'icon'       => 'el-icon-chevron-right',
+          'fields'     => array(
+              array(
+                  'title'   => __('Features', 'pzarchitect'),
+                  'id'      => '_blueprints_masonry-features',
+                  'type'    => 'button_set',
+                  'multi'   => true,
+                  'options' => array(
+                    // Infinite scroll requires a method to load next set, so would would best leveraging off pagination -maybe... And that is a lot harder!
+                    // Waypoints provides infinite scroll support.
+//                      'infinite-scroll' => __('Infinite scroll', 'pzarchitect'),
+                      'filtering'       => __('Filtering', 'pzarchitect'),
+                      'sorting'         => __('Sorting', 'pzarchitect')
+                  ),
+                  'desc'    => __('', 'pzarchitect')
+              ),
 //              array(
-//                  'title'   => __('Features','pzarchitect'),
-//                  'id'      => '_blueprints_masonry-features',
-//                  'type'    => 'button_set',
-//                  'multi'=>true,
-//                  'options'=> array(
-//                    'override-columns'=>__('Override columns','pzarchitect'),
-//                    'infinite-scroll'=>__('Infinite scroll','pzarchitect'),
-//                    'filtering'=>__('Filtering','pzarchitect'),
-//                    'sorting'=>__('Sorting','pzarchitect')
-//                  ),
-//                  'desc'    => __( '', 'pzarchitect' )
-//              ),
-//              array(
-//                  'title'    => __( 'Panel width (px)', 'pzarchitect' ),
-//                  'id'       => '_blueprint_masonry-panel-width',
+//                  'title'    => __('Panel width (px)', 'pzarchitect'),
+//                  'id'       => $prefix . 'masonry-panel-width',
 //                  'type'     => 'text',
-//                  'default' => '200',
+//                  'default'  => '200',
 //                  // TODO: Remember to do this!
-//                  'subtitle'=>__('If zero, panels will have a fluid width based on the image. Works best with scaled images.','pzarchitect'),
-//                  'required' => array( '_blueprints_masonry-features', 'contains', 'override-columns' ),
+//                  'subtitle' => __('If zero, panels will have a fluid width based on the image. Works best with scaled images.', 'pzarchitect'),
+//                  'required' => array($prefix . 'masonry-features', 'contains', 'override-columns'),
 //              ),
-//              // Infinite scroll options: Show progress
-//              // Filtering: Choose taxonomies
-//              // Sorting: Choose what on (title, date, cat, tag) and order
-//          )
-//      );
-//      $sections[ '_masonry' ] = apply_filters('arc-extend-masonry-settings',$sections[ '_masonry' ]);
+              // Infinite scroll options: Show progress
+              array(
+                  'title'    => __('Filtering', 'pzarchitect'),
+                  'id'       => $prefix . 'masonry-filtering',
+                  'type'     => 'select',
+                  'multi'    => true,
+                  'data'     => 'callback',
+                  'args'     => array('pzarc_get_taxonomies_ctb'),
+                  'required' => array($prefix . 'masonry-features', 'contains', 'filtering'),
+                  'desc'=>__('It is up to YOU to ensure the taxonomies match the content','pzarchitect')
+              ),
+              // Sorting: Choose what on (title, date, cat, tag) and order
+              array(
+                  'title'    => __('Sort fields', 'pzarchitect'),
+                  'id'       => $prefix . 'masonry-sort-fields',
+                  'type'     => 'select',
+                  'multi'    => true,
+                  'options'  => $sort_fields,
+                  'required' => array($prefix . 'masonry-features', 'contains', 'sorting'),
+                  'desc'=>__('It is up to YOU to ensure the sort fields are available in the Blueprint','pzarchitect')
+              )
+          )
+      );
+      $sections[ '_masonry' ] = apply_filters('arc-extend-masonry-settings', $sections[ '_masonry' ]);
 
       /** PAGINATION  */
       $sections[ '_pagination' ] = array(
@@ -1580,7 +1606,7 @@
                   'title'    => __('Posts per page', 'pzarchitect'),
                   'id'       => '_blueprints_pagination-per-page',
                   'type'     => 'spinner',
-                  'default'  => 1,
+                  'default'  => get_option('posts_per_page'),
                   'min'      => 1,
                   'max'      => 99,
                   'required' => array('_blueprints_pagination', 'equals', true),
@@ -2695,7 +2721,7 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
           'show_title' => false,
           'icon_class' => 'icon-large',
           'icon'       => 'el-icon-calendar',
-          'desc'       => __('Available tags are <span class="pzarc-text-highlight">%author%,   %email%,   %date%,   %categories%,   %tags,   %commentslink%,   %editlink%,   %id%</span>. For custom taxonomies, prefix with ct:. e.g. To display the Woo Testimonials category, you would use %ct:testimonial-category%. Or to display WooCommerce product category, use: %ct:product_cat%', 'pzarchitect') . '<br>' .
+          'desc'       => __('Available tags are <span class="pzarc-text-highlight">%author%, %email%,   %date%,   %categories%,   %tags,   %commentslink%,   %editlink%,   %id%</span>. For custom taxonomies, prefix with ct:. e.g. To display the Woo Testimonials category, you would use %ct:testimonial-category%. Or to display WooCommerce product category, use: %ct:product_cat%', 'pzarchitect') . '<br>' .
               __('Allowed HTML tags:', 'pzarchitect') . ' p, br, span, strong & em<br><br>' .
               __('Use shortcodes to add custom functions to meta. e.g. [add_to_cart id="%id%"]', 'pzarchitect') . '<br>' .
               __('Note: Enclose any author related text in <span class="pzarc-text-highlight">//</span> to hide it when using excluded authors.', 'pzarchitect') . '<br>' .
@@ -2743,6 +2769,23 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
                 //TODO: Findout how to pass parameters. currently that is doing nothing!
                 'args'     => array('pzarc_get_authors', array(false, 0)),
                 'subtitle' => __('Select any authors here you want to exclude from showing when the %author% or %email% tag is used.', 'pzarchitect')
+            ),
+            array(
+                'title'    => __('Author avatar', 'pzarchitect'),
+                'id'       => $prefix . 'avatar',
+                'type'     => 'button_set',
+                'default'=>'none',
+                'options'=>array('none'=>__('None','pzarchitect'),'before'=>__('Before','pzarchitect'),'after'=>__('After','pzarchitect')),
+            ),
+            array(
+                'title'    => __('Avatar size', 'pzarchitect'),
+                'id'       => $prefix . 'avatar-size',
+                'type'     => 'spinner',
+                'default'=>32,
+                'min'     => 1,
+                'max'     => 256,
+                'step'    => 1,
+                'subtitle' => __('Width and height of avatar if displayed.', 'pzarchitect')
             ),
           )
       );
@@ -2987,7 +3030,7 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
                   'subtitle' => __('Use a filler image from lorempixel if post has no image.', 'pzarchitect'),
                   'options'  => array(
                       'none'       => 'None',
-                      'specific'       => 'Custom specific image',
+                      'specific'   => 'Custom specific image',
                       'lorempixel' => __('Random Picture', 'pzarchitect'),
                       'abstract'   => ucfirst('abstract'),
                       'animals'    => ucfirst('animals'),
@@ -3007,14 +3050,13 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
                   ),
               ),
               array(
-                  'id'       => $prefix . 'use-filler-image-source-specific',
-                  'type'     => 'media',
-                  'title'    => __('Specific filler image', 'pzarchitect'),
-                  'subtitle'     => __('This single image will display for all posts with no featured image.', 'pzarchitect'),
-                  'required' => array($prefix . 'use-filler-image-source' ,'=','specific'),
-                  'library_filter'=>array('jpg','jpeg','png')
+                  'id'             => $prefix . 'use-filler-image-source-specific',
+                  'type'           => 'media',
+                  'title'          => __('Specific filler image', 'pzarchitect'),
+                  'subtitle'       => __('This single image will display for all posts with no featured image.', 'pzarchitect'),
+                  'required'       => array($prefix . 'use-filler-image-source', '=', 'specific'),
+                  'library_filter' => array('jpg', 'jpeg', 'png')
               ),
-
               // TODO: This will be for proper masonry galleries
               //              array(
               //                  'id'       => $prefix . 'image-shrinkage',
@@ -3184,8 +3226,8 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
 
         if ($cfcount) {
 
-          $pzarc_custom_fields = pzarc_get_custom_fields(array('use_empty'  => 'No field. Use prefix and suffix only',
-                                                               'post_title' => 'Post Title'));
+          $pzarc_custom_fields = array_merge(array('use_empty'  => 'No field. Use prefix and suffix only',
+                                                   'post_title' => 'Post Title'), $this->custom_fields);
 
           for ($i = 1; $i <= $cfcount; $i++) {
             $cfname     = 'Custom field ' . $i . (!empty($thispostmeta[ '_panels_design_cfield-' . $i . '-name' ][ 0 ]) ? ': <br>' . $thispostmeta[ '_panels_design_cfield-' . $i . '-name' ][ 0 ] : '');
@@ -3293,7 +3335,7 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
                         'type'     => 'select',
                         //                'data'     => 'callback',
                         //                'args'     => array( 'pzarc_get_custom_fields' ),
-                        'options'  => $pzarc_custom_fields,
+                        'options'  => $this->custom_fields,
                         'subtitle' => 'Select a custom field that contains URLs you want to use as the link',
                     ),
                     array(
@@ -3541,7 +3583,18 @@ array(
                 pzarc_redux_bg($prefix . 'entry-meta' . $font . $background, array('.entry-meta'), $defaults[ $optprefix . 'entry-meta' . $font . $background ]),
                 pzarc_redux_padding($prefix . 'entry-meta' . $font . $padding, array('.entry-meta'), $defaults[ $optprefix . 'entry-meta' . $font . $padding ]),
                 pzarc_redux_margin($prefix . 'entry-meta' . $font . $margin, array('.entry-meta'), $defaults[ $optprefix . 'entry-meta' . $font . $margin ], 'tb'),
-                pzarc_redux_links($prefix . 'entry-meta' . $font . $link, array('.entry-meta a'), $defaults[ $optprefix . 'entry-meta' . $font . $link ])
+                pzarc_redux_links($prefix . 'entry-meta' . $font . $link, array('.entry-meta a'), $defaults[ $optprefix . 'entry-meta' . $font . $link ]),
+                array(
+                    'title'  => __('Author avatar', 'pzarc'),
+                    'id'     => $prefix . 'author-avatar',
+                    'desc'   => 'Class: .author img.avatar',
+                    'type'   => 'section',
+                    'indent' => true,
+                    'class'  => 'heading',
+                ),
+                pzarc_redux_margin($prefix . 'author-avatar' .  $margin,
+                                   array('.author img.avatar'),
+                                   $defaults[ $optprefix . 'author-avatar' . $margin ])
             )
         );
 

@@ -3,7 +3,7 @@ Contributors: chrishoward
 Tags: content,display,posts,pages,gallery,slider,tabs,tabbed,tabular,widget,hooks
 Requires at least: 3.5.0
 Tested up to: 4.4
-Stable tag: 1.4.8.2
+Stable tag: 1.4.9.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Plugin URI: http://architect4wp.com
@@ -92,6 +92,23 @@ For support, please send an email to support@pizazzwp.com
 2. Slider example
 
 == Changelog ==
+
+= 1.4.9.3 =
+* ADDED: Option to display author avatars
+* FIXED: A few bugs and styling in Masonry filtering and sorting.
+
+= 1.4.9.2 =
+* ADDED: Support for filtering and sorting in masonry layouts!!
+
+= 1.4.9.1 =
+* CHANGED: Tidied up and compressed images (using tinypng.com). Saved 300KB in zip file!
+* CHANGED: Tightened specificity of panels class to minimize conflicts in nested blueprints (e.g. content blueprint with a shortcode blueprint within)
+* FIXED: Transition speed not working
+
+= 1.4.9 : 16 Sept 2015 =
+* FIXED: Pages instead of posts showing on Blog index
+* CHANGED: Default posts per page for pagination to value set in WP Settings > Reading
+ 
 = 1.4.8.2 =
 * ADDED: Option for specific filler image (thanks Cemil!)
 

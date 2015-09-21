@@ -178,7 +178,9 @@ jQuery( document ).ready( function ()
     jQuery('#_tabular_box_redux-_architect-metabox-layout-settings_section_group_li' ).hide();
     jQuery('#_accordion_box_redux-_architect-metabox-layout-settings_section_group_li' ).hide();
     jQuery('#_pagination_box_redux-_architect-metabox-layout-settings_section_group_li' ).hide();
+    jQuery('#_masonry_box_redux-_architect-metabox-layout-settings_section_group_li' ).hide();
 
+    jQuery( "fieldset#_architect-_blueprints_masonry" ).toggle(  true ).parent().toggle(true);
     jQuery( "fieldset#_architect-_blueprints_pagination" ).toggle(  true ).parent().toggle(true);
     jQuery( "fieldset#_architect-_blueprints_pager" ).toggle(  true ).parent().toggle(true);
     jQuery( "fieldset#_architect-_blueprints_pager-single" ).toggle(  true ).parent().toggle(true);
@@ -188,8 +190,11 @@ jQuery( document ).ready( function ()
     switch (layout_mode){
 
       case 'basic':
+        jQuery('#_pagination_box_redux-_architect-metabox-layout-settings_section_group_li' ).show();
+        break;
       case 'masonry':
         jQuery('#_pagination_box_redux-_architect-metabox-layout-settings_section_group_li' ).show();
+        jQuery('#_masonry_box_redux-_architect-metabox-layout-settings_section_group_li' ).show();
         break;
 
       case 'slider':
@@ -197,6 +202,7 @@ jQuery( document ).ready( function ()
         jQuery('#_slidertabbed_box_redux-_architect-metabox-layout-settings_section_group_li' ).show();
         jQuery('#_section2_box_redux-_architect-metabox-layout-settings_section_group_li' ).hide();
         jQuery('#_section3_box_redux-_architect-metabox-layout-settings_section_group_li' ).hide();
+        jQuery( "fieldset#_architect-_blueprints_masonry" ).toggle(  false ).parent().toggle(false);
         jQuery( "fieldset#_architect-_blueprints_pagination" ).toggle(  false ).parent().toggle(false);
         jQuery( "fieldset#_architect-_blueprints_pager" ).toggle(  false ).parent().toggle(false);
         jQuery( "fieldset#_architect-_blueprints_pager-single" ).toggle(  false ).parent().toggle(false);
