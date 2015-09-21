@@ -32,6 +32,7 @@
     $pzarc_slick_data .= ', "slidesToScroll": ' . $blueprint[ '_blueprints_section-0-columns-breakpoint-1' ];
     $pzarc_slick_data .= ', "autoplay":' . (!empty($blueprint[ '_blueprints_transitions-interval' ]) ? 'true' : 'false');
     $pzarc_slick_data .= ', "autoplaySpeed":' . (!empty($blueprint[ '_blueprints_transitions-interval' ]) ? ($blueprint[ '_blueprints_transitions-interval' ] * 1000) : 0);
+    $pzarc_slick_data .= ', "speed":' . (!empty($blueprint[ '_blueprints_transitions-duration' ]) ? ($blueprint[ '_blueprints_transitions-duration' ] * 1000) : 0);
     $pzarc_slick_data .= ', "adaptiveHeight":' . (!isset($blueprint[ '_slick15_extra-options' ]) || in_array('adaptive', $blueprint[ '_slick15_extra-options' ]) ? 'true' : 'false');
     $pzarc_slick_data .= ', "pauseOnHover":' . (!isset($blueprint[ '_slick15_extra-options' ]) || in_array('pause', $blueprint[ '_slick15_extra-options' ]) ? 'true' : 'false');
     $pzarc_slick_data .= ', "vertical":false'; //this goes a bit weird if enabled

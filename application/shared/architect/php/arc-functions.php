@@ -197,6 +197,7 @@
    */
   function pzarc_redux_margin($id, $selectors, $defaults = array('units' => '%'), $limits = 'tblr')
   {
+ //   var_dump($id);
     return array(
         'title'   => __('Margins', 'pzarchitect'),
         'id'      => $id,
@@ -706,7 +707,7 @@
   /**
    * @return array
    */
-  function pzarc_get_custom_fields()
+  function pzarc_get_custom_fields($pzarc_custom_fields = array())
   {
     global $wpdb;
 
@@ -747,7 +748,7 @@
         'post_date',
         'post_date_gmt',
         'post_content',
-        'post_title',
+       'post_title',
         'post_excerpt',
         'post_status',
         'comment_status',
@@ -804,7 +805,6 @@
 
     );
 
-    $pzarc_custom_fields = array();
     foreach ($pzarc_cf_list as $pzarc_cf) {
       if (in_array($pzarc_cf->meta_key, $exclude_fields) === false && !pzarc_starts_with($exclude_prefixes, $pzarc_cf->meta_key)) {
 
@@ -1775,4 +1775,40 @@
     } else {
       // todo: pop an error msg
     }
+  }
+
+  // Because Redux passing arguments doesn'ty  seem to be working now
+  function pzarc_get_taxonomies_ctb() {
+    return pzarc_get_taxonomies(true,false);
+  }
+
+  function pzarc_get_taxonomies($catstags=true,$has_blank=true) {
+    $taxonomy_list  = get_taxonomies( array(
+                                          'public'   => true,
+                                          '_builtin' => false
+
+                                      ) );
+  //  var_dump($taxonomy_list);
+    foreach ( $taxonomy_list as $k => $v ) {
+      $tax_obj             = get_taxonomy( $k );
+      $taxonomy_list[ $k ] = $tax_obj->labels->name;
+    }
+    $extras        = $has_blank?array( 0 => '', 'category' => 'Categories', 'post_tag' => 'Tags' ):array('category' => 'Categories', 'post_tag' => 'Tags' );
+    $taxonomy_list = $catstags?$extras + $taxonomy_list:$taxonomy_list;
+    return $taxonomy_list;
+  }
+
+  function pzarc_get_terms($taxonomy='',$args=array(),$array=true) {
+
+    $terms = get_terms($taxonomy,$args);
+    if ($array && !empty($terms)) {
+      $term_list = array();
+      foreach ($terms as $k => $v) {
+        $term_list[$v->slug]=$v->name;
+      }
+      $terms = $term_list;
+    }
+      return $terms;
+
+
   }

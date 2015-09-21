@@ -132,6 +132,9 @@
       float: left;
       vertical-align: top;
       box-sizing: border-box;
+      img.avatar {
+        vertical-align: middle;
+      }
     }
     .entry-thumbnail {
       img {

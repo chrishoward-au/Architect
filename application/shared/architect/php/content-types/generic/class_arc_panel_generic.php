@@ -41,6 +41,8 @@
       $this->data[ 'meta' ][ 'categorieslinks' ] = null;
       $this->data[ 'meta' ][ 'tagslinks' ]       = null;
       $this->data[ 'meta' ][ 'authorlink' ]      = null;
+      $this->data[ 'meta' ][ 'avatara' ]         = null;
+      $this->data[ 'meta' ][ 'avatarb' ]         = null;
       $this->data[ 'meta' ][ 'authorname' ]      = null;
       $this->data[ 'meta' ][ 'authoremail' ]     = null;
       $this->data[ 'meta' ][ 'comments-count' ]  = null;
@@ -76,7 +78,7 @@
       $panel_def[ 'datetime' ]   = '<span class="entry-date"><a href="{{permalink}}" ><time class="entry-date" datetime="{{datetime}}">{{fdatetime}}</time></a></span>';
       $panel_def[ 'categories' ] = '<span class="categories-links">{{categorieslinks}}</span>';
       $panel_def[ 'tags' ]       = '<span class="tags-links">{{tagslinks}}</span>';
-      $panel_def[ 'author' ]     = '<span class="byline"><span class="author vcard"><a class="url fn n" href="{{authorlink}}" title="View all posts by {{authorname}}" rel="author">{{authorname}}</a></span></span>';
+      $panel_def[ 'author' ]     = '<span class="byline"><span class="author vcard"><a class="url fn n" href="{{authorlink}}" title="View all posts by {{authorname}}" rel="author">{{avatarb}}{{authorname}}{{avatara}}</a></span></span>';
       $panel_def[ 'email' ]      = '<span class="byline email"><span class="author vcard"><a class="url fn n" href="mailto:{{authoremail}}" title="Email {{authorname}}" rel="author">{{authoremail}}</a></span></span>';
       //     $panel_def[ 'image' ]       = '<figure class="entry-thumbnail {{incontent}}">{{postlink}}<img width="{{width}}" src="{{imgsrc}}" class="attachment-post-thumbnail wp-post-image" alt="{{alttext}}">{{closepostlink}}{{captioncode}}</figure>';
       $panel_def[ 'image' ]   = '{{figopen}} class="{{extensionclass}} entry-thumbnail {{incontent}} {{centred}} {{nofloat}} {{location}}" {{extensiondata}}>{{postlink}}{{image}}{{closelink}}{{captioncode}}{{figclose}}';
@@ -232,6 +234,13 @@
         }
         $this->data[ 'meta' ][ 'authoremail' ] = $encodedmail;
       }
+      if ( !empty($this->section['_panels_design_avatar']) && $this->section['_panels_design_avatar'] !== 'none') {
+        if ($this->section['_panels_design_avatar']==='before') {
+          $this->data[ 'meta' ][ 'avatarb' ] = get_avatar(get_the_author_meta('ID'), (!empty($this->section[ '_panels_design_avatar-size' ]) ? $this->section[ '_panels_design_avatar-size' ] : 96));
+        } else {
+          $this->data[ 'meta' ][ 'avatara' ] = get_avatar(get_the_author_meta('ID'), (!empty($this->section[ '_panels_design_avatar-size' ]) ? $this->section[ '_panels_design_avatar-size' ] : 96));
+        }
+      }
       $this->data[ 'meta' ][ 'comments-count' ] = get_comments_number();
 
       // Extract and find any custom taxonomies - i.e. preceded with ct:
@@ -292,7 +301,10 @@
       $this->data[ 'image' ][ 'caption' ] = is_object( $image ) ? $image->post_excerpt : '';
 
       //Use lorempixel
-      if ( empty( $this->data[ 'image' ][ 'image' ] ) && ! empty( $this->section[ '_panels_design_use-filler-image-source' ] ) && 'none' !== $this->section[ '_panels_design_use-filler-image-source' ] ) {
+      if ( empty( $this->data[ 'image' ][ 'image' ] )
+          && ! empty( $this->section[ '_panels_design_use-filler-image-source' ] )
+          && 'none' !== $this->section[ '_panels_design_use-filler-image-source' ]
+          && 'specific' !== $this->section[ '_panels_design_use-filler-image-source' ]) {
         $ch = curl_init( 'http://lorempixel.com' );
         curl_setopt( $ch, CURLOPT_RETURNTRANSFER, true );
         $cexec      = curl_exec( $ch );
@@ -324,7 +336,15 @@
         $this->data[ 'image' ][ 'caption' ]  = '';
 
       }
-
+      // TODO: Add retina for this maybe. Tho client side retina may fix anyway
+      if ( empty( $this->data[ 'image' ][ 'image' ] )
+          && 'specific' === $this->section[ '_panels_design_use-filler-image-source' ]
+          && !empty($this->section[ '_panels_design_use-filler-image-source-specific' ]['url'])) {
+        $imageURL            = bfi_thumb($this->section[ '_panels_design_use-filler-image-source-specific' ]['url'],array('width'=>$width,'height'=>$height));
+        $this->data[ 'image' ][ 'image' ]    = '<img src="' . $imageURL . '" >';
+        $this->data[ 'image' ][ 'original' ] = array( $imageURL, $width, $height, false );
+        $this->data[ 'image' ][ 'caption' ]  = '';
+      }
 
     }
 
@@ -379,7 +399,10 @@
       pzdb( 'end get bgimage' );
 
       //Use lorempixel
-      if ( empty( $this->data[ 'bgimage' ][ 'thumb' ] ) && ! empty( $this->section[ '_panels_design_use-filler-image-source' ] ) && 'none' !== $this->section[ '_panels_design_use-filler-image-source' ] ) {
+      if ( empty( $this->data[ 'bgimage' ][ 'thumb' ] )
+          && ! empty( $this->section[ '_panels_design_use-filler-image-source' ] )
+          && 'none' !== $this->section[ '_panels_design_use-filler-image-source' ]
+          && 'specific' !== $this->section[ '_panels_design_use-filler-image-source' ]) {
         $ch = curl_init( 'http://lorempixel.com' );
         curl_setopt( $ch, CURLOPT_RETURNTRANSFER, true );
         $cexec      = curl_exec( $ch );
@@ -410,6 +433,14 @@
         $this->data[ 'image' ][ 'original' ] = ! $is_offline ? array( $imageURL, $width, $height, false ) : false;
         $this->data[ 'image' ][ 'caption' ]  = '';
 
+      }
+      if ( empty( $this->data[ 'image' ][ 'image' ] )
+          && 'specific' === $this->section[ '_panels_design_use-filler-image-source' ]
+          && !empty($this->section[ '_panels_design_use-filler-image-source-specific' ]['url'])) {
+        $imageURL            = bfi_thumb($this->section[ '_panels_design_use-filler-image-source-specific' ]['url'],array('width'=>$width,'height'=>$height));
+        $this->data[ 'bgimage' ][ 'image' ]    = '<img src="' . $imageURL . '" >';
+        $this->data[ 'image' ][ 'original' ] = array( $imageURL, $width, $height, false );
+        $this->data[ 'image' ][ 'caption' ]  = '';
       }
 
     }
@@ -463,8 +494,16 @@
           $this->data[ 'cfield' ][ $i ][ 'suffix-text' ]  = '<span class="pzarc-suffix-text">' . $this->section[ '_panels_design_cfield-' . $i . '-suffix-text' ] . '</span>';
           $this->data[ 'cfield' ][ $i ][ 'suffix-image' ] = bfi_thumb($this->section[ '_panels_design_cfield-' . $i . '-suffix-image' ][ 'url' ], $params);
 
-          // The content itself comes from post meta
-          $this->data[ 'cfield' ][ $i ][ 'value' ] = (!empty($postmeta[ $this->section[ '_panels_design_cfield-' . $i . '-name' ] ]) ? $postmeta[ $this->section[ '_panels_design_cfield-' . $i . '-name' ] ][ 0 ] : null);
+          // The content itself comes from post meta or post title
+
+          if ($this->section[ '_panels_design_cfield-' . $i . '-name' ]==='post_title') {
+            $this->data[ 'cfield' ][ $i ][ 'value' ] = $post->post_title;
+
+          }elseif ($this->section[ '_panels_design_cfield-' . $i . '-name' ]==='use_empty') {
+              $this->data[ 'cfield' ][ $i ][ 'value' ] = '';
+          } else {
+            $this->data[ 'cfield' ][ $i ][ 'value' ] = (!empty($postmeta[ $this->section[ '_panels_design_cfield-' . $i . '-name' ] ]) ? $postmeta[ $this->section[ '_panels_design_cfield-' . $i . '-name' ] ][ 0 ] : null);
+          }
           if (is_Array(maybe_unserialize($this->data[ 'cfield' ][ $i ][ 'value' ]))) {
             $this->data[ 'cfield' ][ $i ][ 'value' ] = implode(',', maybe_unserialize($this->data[ 'cfield' ][ $i ][ 'value' ]));
           }
@@ -526,6 +565,8 @@
         $panel_def[ $component ] = str_replace( '{{authorname}}', $this->data[ 'meta' ][ 'authorname' ], $panel_def[ $component ] );
         $panel_def[ $component ] = str_replace( '{{authorlink}}', $this->data[ 'meta' ][ 'authorlink' ], $panel_def[ $component ] );
         $panel_def[ $component ] = str_replace( '{{authoremail}}', $this->data[ 'meta' ][ 'authoremail' ], $panel_def[ $component ] );
+        $panel_def[ $component ] = str_replace( '{{avatara}}', $this->data[ 'meta' ][ 'avatara' ], $panel_def[ $component ] );
+        $panel_def[ $component ] = str_replace( '{{avatarb}}', $this->data[ 'meta' ][ 'avatarb' ], $panel_def[ $component ] );
       } else {
         // Removed unused text and indicators
         $panel_def[ $component ] = preg_replace( "/\\/\\/(.)*\\/\\//uiUm", "", $panel_def[ $component ] );
@@ -805,7 +846,7 @@
         $build_field      = '';
         $i                = 1;
         foreach ( $this->data[ 'cfield' ] as $k => $v ) {
-          if ( $v[ 'group' ] === $component && ! empty( $v[ 'value' ] ) ) {
+          if ( $v[ 'group' ] === $component && (!empty( $v[ 'value' ] ) || $v['name']==='use_empty') ) {
             switch ( $v[ 'field-type' ] ) {
 
               case 'image':
@@ -852,6 +893,9 @@
               $content = '<a href="' . $v[ 'link-field' ] . '">' . $content . '</a>';
             }
 
+            if ( $v['name']==='use_empty' && empty( $v[ 'link-field' ] ) ) {
+              $content ='';
+            }
 //            if ('none' !== $v[ 'wrapper-tag' ]) {
 //              $class_name = !empty($v[ 'class-name' ]) ? ' class="' . $v[ 'class-name' ] . '"' : null;
 //              $content    = '<' . $v[ 'wrapper-tag' ] . $class_name . '>' . $content . '</' . $v[ 'wrapper-tag' ] . '>';
@@ -1139,10 +1183,10 @@
                   + (int) $panel_layout[ 'custom3' ][ 'show' ]
                   + ( (int) $panel_layout[ 'image' ][ 'show' ] * (int) ( $section_panel_settings[ '_panels_design_feature-location' ] === 'components' ) );
 
-      $header_open  = empty( $section_panel_settings[ '_panel_designs_components-headers-footers' ] ) ? '' : '<header class="entry-header">';
-      $footer_open  = empty( $section_panel_settings[ '_panel_designs_components-headers-footers' ] ) ? '' : '<footer class="entry-header">';
-      $header_close = empty( $section_panel_settings[ '_panel_designs_components-headers-footers' ] ) ? '' : '</header>';
-      $footer_close = empty( $section_panel_settings[ '_panel_designs_components-headers-footers' ] ) ? '' : '</footer>';
+      $header_open  = empty( $section_panel_settings[ '_panels_design_components-headers-footers' ] ) ? '' : '<header class="entry-header">';
+      $footer_open  = empty( $section_panel_settings[ '_panels_design_components-headers-footers' ] ) ? '' : '<footer class="entry-header">';
+      $header_close = empty( $section_panel_settings[ '_panels_design_components-headers-footers' ] ) ? '' : '</header>';
+      $footer_close = empty( $section_panel_settings[ '_panels_design_components-headers-footers' ] ) ? '' : '</footer>';
 
       foreach ( (array) $panel_layout as $key => $value ) {
         if ( $value[ 'show' ] ) {

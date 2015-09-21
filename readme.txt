@@ -2,8 +2,8 @@
 Contributors: chrishoward
 Tags: content,display,posts,pages,gallery,slider,tabs,tabbed,tabular,widget,hooks
 Requires at least: 3.5.0
-Tested up to: 4.3
-Stable tag: 1.4.3
+Tested up to: 4.4
+Stable tag: 1.4.9.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Plugin URI: http://architect4wp.com
@@ -73,7 +73,7 @@ As per Headway licencing agreement
 = Can I install Architect on client sites using my licence? =
 As per Headway licencing agreement
 
-= If I deactivate Architect, will I lose all my Panels and Blueprints =
+= If I deactivate Architect, will I lose all my Blueprints =
 No. We don't delete any of your data. In the future a method will be provided for you to remove all Architect data if you really need to.
 
 == Known issues ==
@@ -92,11 +92,59 @@ For support, please send an email to support@pizazzwp.com
 2. Slider example
 
 == Changelog ==
+
+= 1.4.9.3 =
+* ADDED: Option to display author avatars
+* FIXED: A few bugs and styling in Masonry filtering and sorting.
+
+= 1.4.9.2 =
+* ADDED: Support for filtering and sorting in masonry layouts!!
+
+= 1.4.9.1 =
+* CHANGED: Tidied up and compressed images (using tinypng.com). Saved 300KB in zip file!
+* CHANGED: Tightened specificity of panels class to minimize conflicts in nested blueprints (e.g. content blueprint with a shortcode blueprint within)
+* FIXED: Transition speed not working
+
+= 1.4.9 : 16 Sept 2015 =
+* FIXED: Pages instead of posts showing on Blog index
+* CHANGED: Default posts per page for pagination to value set in WP Settings > Reading
+ 
+= 1.4.8.2 =
+* ADDED: Option for specific filler image (thanks Cemil!)
+
+= 1.4.8.1 =
+* FIXED: Error displaying in Headway Visual Editor Design Mode when Defaults was content source.
+
+= 1.4.8 : 9 Sept 2015 =
+* FIXED: Change at v1.4.3 broke single post display when using Defaults as content source.
+
+= 1.4.7 : 4 Sept 2015 =
+* ADDED: Support for Shortcake a user friendly shortcode tool. Install the Shortcake (Shortcode UI) plugin and then click Add Media in Posts etc, then Insert Post Element and select the Architect Blueprint. For compatibility, there is a specific Shortcake shortcode, [architectsc]
+* FIXED: Bug where if a WP gallery used in Blueprint content source no longer existed, an error would display
+
+= 1.4.6 : 30-August-2015 =
+* FIXED: Make Header and Footers option doing nothing!
+* FIXED: Panels min width doing nothing!
+* ADDED: Option for fixed with panels. In conjunction with flexbox, this allows full width grids that nicely space
+* ADDED: Option for panels justification when using fixed width panels.
+
+= 1.4.5 =
+* CHANGED: Added a message to Presets selector to explain "Use styled" won't be styled if "Use Architect styling" is turned off.
+* FIXED: function name conflict in EDD module
+* ADDED: Showcase custom post type
+* ADDED: Options in custom fields to use the post title or no field (allowing the use of just the prefix and suffix. Useful with links where you want a generic link text)
+* ADDED: Category and tag columns to Snippets, Testimonials and Showcases listing screens.
+
+= 1.4.4 =
+* FIXED: Snippets selector not sortable
+
 = 1.4.3 =
 * FIXED: Wording of accordions option that controls if it's open or closed at startup
+* CHANGED: Installed Presets list on Tools page not shown if empty
+* FIXED: Problems with Defaults content source not displaying correct content when Overrides enabled
 
 = 1.4.2 : 5 August 2015 =
-* CHANGED: BFI Thumbs options page removed (it isa duplicate of the Refresh Cache in Architect > Options)
+* CHANGED: BFI Thumbs options page removed (it is a duplicate of the Refresh Cache in Architect > Options)
 
 = 1.4.1 : 4 August 2015 =
 * FIXED: Possible security risk with SysInfo library

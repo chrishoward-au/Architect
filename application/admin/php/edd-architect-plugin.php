@@ -22,7 +22,7 @@
 //  }
 //  if ( ! empty( $_architect_options[ 'architect_licence_key' ] ) ) {}
     // setup the updater
-    $edd_updater = new EDD_SL_Plugin_Updater( EDD_ARCHITECT_STORE_URL, PZARC_PLUGIN_PATH . 'architect.php', array(
+    $edd_updater = new EDD_SL_Plugin_Updater( EDD_ARCHITECT_STORE_URL, PZARC_PLUGIN_FILE, array(
                                                                          'version'   => PZARC_VERSION,
                                                                          // current version number
                                                                          'license'   => $license_key,
@@ -150,12 +150,12 @@
 
   function edd_architect_register_option() {
     // creates our settings in the options table
-    register_setting( 'edd_architect_license', 'edd_architect_license_key', 'edd_sanitize_license' );
+    register_setting( 'edd_architect_license', 'edd_architect_license_key', 'edd_architect_sanitize_license' );
   }
 
   add_action( 'admin_init', 'edd_architect_register_option' );
 
-  function edd_sanitize_license( $new ) {
+  function edd_architect_sanitize_license( $new ) {
     $old = get_option( 'edd_architect_license_key' );
     if ( $old && $old != $new ) {
       delete_option( 'edd_architect_license_status' ); // new license has been entered, so must reactivate

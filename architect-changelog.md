@@ -1,5 +1,46 @@
 # Architect change history 
 
+## 1.4.9 : 16 Sept 2015 =
+* FIXED: Pages instead of posts showing on Blog index
+* CHANGED: Default posts per page for pagination to value set in WP Settings > Reading
+ 
+## 1.4.8.2 =
+* ADDED: Option for specific filler image (thanks Cemil!)
+
+## 1.4.8.1 =
+* FIXED: Error displaying in Headway Visual Editor Design Mode when Defaults was content source.
+
+## 1.4.8 : 9 Sept 2015 
+* FIXED: Change at v1.4.3 broke single post display when using Defaults as content source.
+
+## 1.4.7 : 4 Sept 2015 
+* ADDED: Support for Shortcake a user friendly shortcode tool. Install the Shortcake (Shortcode UI) plugin and then click Add Media in Posts etc, then Insert Post Element and select the Architect Blueprint. For compatibility, there is a specific Shortcake shortcode, [architectsc]
+* FIXED: Bug where if a WP gallery used in Blueprint content source no longer existed, an error would display
+
+## 1.4.6 : 30-August-2015 
+* FIXED: Make Header and Footers option doing nothing!
+* FIXED: Panels min width doing nothing!
+* ADDED: Option for fixed with panels. In conjunction with flexbox, this allows full width grids that nicely space
+* ADDED: Option for panels justification when using fixed width panels.
+
+## 1.4.5 
+* CHANGED: Added a message to Presets selector to explain "Use styled" won't be styled if "Use Architect styling" is turned off.
+* FIXED: function name conflict in EDD module
+* ADDED: Showcase custom post type
+* ADDED: Options in custom fields to use the post title or no field (allowing the use of just the prefix and suffix. Useful with links where you want a generic link text)
+* ADDED: Category and tag columns to Snippets, Testimonials and Showcases listing screens.
+
+## 1.4.4 
+* FIXED: Snippets selector not sortable
+
+## 1.4.3 
+* FIXED: Wording of accordions option that controls if it's open or closed at startup
+* CHANGED: Installed Presets list on Tools page not shown if empty
+* FIXED: Problems with Defaults content source not displaying correct content when Overrides enabled
+
+## 1.4.2 : 5 August 2015 
+* CHANGED: BFI Thumbs options page removed (it is a duplicate of the Refresh Cache in Architect > Options)
+
 ## 1.4.1 : 4 August  2015
 * FIXED: Possible security risk with SysInfo library
 

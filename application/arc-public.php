@@ -10,6 +10,7 @@
   add_action('wp_head', 'pzarc_display_init');
 
   add_shortcode('architect', 'pzarc_shortcode');
+  add_shortcode('architectsc', 'pzarc_shortcode'); // Shortcake version coz shortcake doesn't support positional attributes
   add_shortcode('pzarc', 'pzarc_shortcode'); // Old version
   add_shortcode('pzarchitect', 'pzarc_shortcode'); // alternate version
   // I still don't understand why this works!! One day, maybe I will
@@ -52,6 +53,11 @@
     // Using hacked version which only supports data-at2x attribute
     wp_register_script('js-retinajs', PZARC_PLUGIN_APP_URL . '/public/js/retinajs/retina.js');
 
+
+    // Waypoints
+    // Infinite scroll requires a method to load next set, so would would best leveraging off pagination -maybe... And that is a lot harder!
+    // Waypoints provides infinite scroll support.
+//    wp_register_script('js-waypoints', PZARC_PLUGIN_APP_URL . '/public/js/waypoints/jquery.waypoints.min.js');
 
     // Magnific
     wp_register_script('js-magnific-arc', PZARC_PLUGIN_APP_URL . '/public/js/arc-front-magnific.js', array('jquery'), null, true);
@@ -111,6 +117,9 @@
    ***********************/
   function pzarc_shortcode($atts, $content = null, $tag)
   {
+//    if (is_admin()){
+//      return '<img src="'.PZARC_PLUGIN_URL.'/assets/architect-logo-final-logo-only.svg" width=32 height=32>';
+//    }
     $pzarc_caller    = 'shortcode';
     $pzarc_blueprint = '';
     $pzarc_overrides = null;

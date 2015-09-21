@@ -106,6 +106,40 @@
       );
 
     }
+
+    add_filter('manage_pz_snippets_posts_columns', 'add_snippets_columns');
+    add_action('manage_pz_snippets_posts_custom_column', 'add_snippets_column_content', 10, 2);
+
+    function add_snippets_columns($columns)
+    {
+      $pzarc_front = array_slice($columns, 0, 2);
+      $pzarc_back  = array_slice($columns, 2);
+      $pzarc_insert = array(
+          'pz_snippet_cat' => __('Snippet Categories', 'pzarchitect'),
+          'pz_snippet_tag' => __('Snippet Tags', 'pzarchitect'),
+      );
+
+      return array_merge($pzarc_front, $pzarc_insert, $pzarc_back);
+    }
+
+    /**
+     *
+     * @param [type] $column  [description]
+     * @param [type] $post_id [description]
+     */
+    function add_snippets_column_content($column, $post_id)
+    {
+
+      switch ($column) {
+        case 'pz_snippet_cat':
+        case 'pz_snippet_tag':
+          $post_terms = get_the_term_list($post_id,$column,null,', ',null);
+          echo $post_terms;
+          break;
+
+      }
+    }
+
   }
 
 // function add_custom_types_to_tax( $query ) {

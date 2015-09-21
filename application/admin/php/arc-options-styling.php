@@ -349,7 +349,7 @@
             'show_title' => false,
             'icon_class' => 'icon-large',
             'icon'       => 'el-icon-calendar',
-            'desc'       => 'Class: .pzarc_entry_meta',
+            'desc'       => 'Class: .entry-meta',
             'subsection' => true,
             'fields'     => array(
                 array(
@@ -367,6 +367,17 @@
                 pzarc_redux_padding($prefix . 'entry-meta-font-padding', array('.entry-meta')),
                 pzarc_redux_margin($prefix . 'entry-meta-font-margin', array('.entry-meta'), array(), 'tb'),
                 pzarc_redux_links($prefix . 'entry-meta-font-links', array('.entry-meta a')),
+                array(
+                    'title'   => __('CSS selectors', 'pzarc'),
+                    'id'      => $prefix . 'author-avatar-selectors',
+                    'type'    => 'text',
+                    'default' => '.author img.avatar',
+                    'hint'    => array(
+                        'title'   => 'Change CSS class',
+                        'content' => 'Change this class only if your theme uses different class names'
+                    )
+                ),
+                pzarc_redux_margin($prefix . 'author-avatar-margin', array('.author img.avatar'), array()),
             )
         );
         $this->sections[ ] = array(
