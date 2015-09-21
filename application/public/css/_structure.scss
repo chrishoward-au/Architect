@@ -25,6 +25,11 @@
       button {
         margin-right:5px;
         margin-bottom:5px;
+        &.showall {
+          background:tomato;
+          color:white;
+
+        }
         &.current,
         &.active {
           background:#0d47a1;

@@ -197,6 +197,7 @@
    */
   function pzarc_redux_margin($id, $selectors, $defaults = array('units' => '%'), $limits = 'tblr')
   {
+ //   var_dump($id);
     return array(
         'title'   => __('Margins', 'pzarchitect'),
         'id'      => $id,

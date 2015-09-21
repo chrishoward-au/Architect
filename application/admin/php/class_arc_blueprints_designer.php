@@ -3583,7 +3583,18 @@ array(
                 pzarc_redux_bg($prefix . 'entry-meta' . $font . $background, array('.entry-meta'), $defaults[ $optprefix . 'entry-meta' . $font . $background ]),
                 pzarc_redux_padding($prefix . 'entry-meta' . $font . $padding, array('.entry-meta'), $defaults[ $optprefix . 'entry-meta' . $font . $padding ]),
                 pzarc_redux_margin($prefix . 'entry-meta' . $font . $margin, array('.entry-meta'), $defaults[ $optprefix . 'entry-meta' . $font . $margin ], 'tb'),
-                pzarc_redux_links($prefix . 'entry-meta' . $font . $link, array('.entry-meta a'), $defaults[ $optprefix . 'entry-meta' . $font . $link ])
+                pzarc_redux_links($prefix . 'entry-meta' . $font . $link, array('.entry-meta a'), $defaults[ $optprefix . 'entry-meta' . $font . $link ]),
+                array(
+                    'title'  => __('Author avatar', 'pzarc'),
+                    'id'     => $prefix . 'author-avatar',
+                    'desc'   => 'Class: .author img.avatar',
+                    'type'   => 'section',
+                    'indent' => true,
+                    'class'  => 'heading',
+                ),
+                pzarc_redux_margin($prefix . 'author-avatar' .  $margin,
+                                   array('.author img.avatar'),
+                                   $defaults[ $optprefix . 'author-avatar' . $margin ])
             )
         );
 
