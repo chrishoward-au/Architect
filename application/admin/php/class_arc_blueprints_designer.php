@@ -2683,12 +2683,23 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
               array(
                   'title'   => __('Link titles', 'pzarchitect'),
                   'id'      => $prefix . 'link-titles',
-                  //            'cols'    => 4,
                   'type'    => 'switch',
                   'on'      => __('Yes', 'pzarchitect'),
                   'off'     => __('No', 'pzarchitect'),
                   'default' => true,
                   'hint'    => array('content' => __('If enabled, clicking on the Title will take the viewer to the post.', 'pzarchitect')),
+
+                  /// can't set defaults on checkboxes!
+              ),
+              array(
+                  'title'   => __('Use Headway alternate titles', 'pzarchitect'),
+                  'subtitle'=> __('Headway theme only','pzarchitect'),
+                  'id'      => $prefix . 'alternate-titles',
+                  'type'    => 'switch',
+                  'on'      => __('Yes', 'pzarchitect'),
+                  'off'     => __('No', 'pzarchitect'),
+                  'default' => true,
+                  'hint'    => array('content' => __('If enabled, this will display the Headway alternative title if set. Note: If you change from Headway to another theme, this may still be displayed.', 'pzarchitect')),
 
                   /// can't set defaults on checkboxes!
               ),

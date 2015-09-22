@@ -174,7 +174,7 @@
      */
     public function get_title( &$post ) {
       /** TITLE */
-      if ( ( 'slider' === $this->build->blueprint[ '_blueprints_section-0-layout-mode' ] || 'tabbed' === $this->build->blueprint[ '_blueprints_section-0-layout-mode' ] ) && class_exists( 'HeadwayLayoutOption' ) && ( true == ( $alt_title = HeadwayLayoutOption::get( $post->ID, 'alternate-title', false, true ) ) ) ) {
+      if ( class_exists( 'HeadwayLayoutOption' ) && !empty($this->section[ '_panels_design_alternate-titles' ]) && ( true == ( $alt_title = HeadwayLayoutOption::get( $post->ID, 'alternate-title', false, true ) ) ) ) {
         $this->data[ 'title' ][ 'title' ] = $alt_title;
       } else {
         $this->data[ 'title' ][ 'title' ] = get_the_title();
