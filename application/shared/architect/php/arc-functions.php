@@ -234,6 +234,23 @@
 
   }
 
+  function pzarc_get_taxterms($pzarc_taxes = null) {
+    global $pzarc_masonry_filter_taxes;
+    $return_terms =  array();
+    $pzarc_taxes = $pzarc_taxes?$pzarc_taxes:$pzarc_masonry_filter_taxes;
+    if ($pzarc_taxes) {
+      foreach ($pzarc_taxes as $pzarc_tax) {
+        $pzarc_terms = get_terms($pzarc_tax);
+        if (!empty($pzarc_terms)) {
+          foreach ($pzarc_terms as $k => $v) {
+            $return_terms[ ucwords(str_replace(array('-','_'),' ',$pzarc_tax)) ][ $v->term_id ] = $v->name;
+          }
+        }
+      }
+    }
+    return $return_terms;
+  }
+
 //  function pzarc_redux_links_dec($id, $selectors, $defaults = '')
 //  {
 //    return array(
