@@ -15,7 +15,7 @@
     // sudo
 //    wp_register_script('js-arc-front-sudojs', PZARC_PLUGIN_URL . '/extensions-inc/sliders/sudo/arc-front-sudo.js', array('jquery'), null, true);
     wp_register_script('js-sudojs', PZARC_PLUGIN_URL . '/extensions/sliders/sudo-slider/sudoslider/js/jquery.sudoSlider.min.js', array('jquery'), null, true);
-    wp_register_style('css-sudojs', PZARC_PLUGIN_URL . '/extensions/sliders/sudo-slider/sudoslider/css/lib/styles.css');
+    wp_register_style('css-sudojs', PZARC_PLUGIN_URL . '/extensions/sliders/sudo-slider/sudoslider/css/style.css');
 //    wp_register_style('css-arcsudo', PZARC_PLUGIN_URL . '/extensions-inc/sliders/sudo/arc-sudo.css');
 
     wp_enqueue_script('js-arc-front-sudojs');
@@ -94,7 +94,7 @@
           break;
       }
 
-      $pzarchitect_slider_scripts .= 'jQuery(".' . $blueprint[ 'uid' ] . ' .pzarc-navigator-' . $blueprint[ '_blueprints_short-name' ] . '").sudo({';
+      $pzarchitect_slider_scripts .= 'jQuery(".' . $blueprint[ 'uid' ] . ' .pzarc-navigator-' . $blueprint[ '_blueprints_short-name' ] . '").sudoSlider({';
       $pzarchitect_slider_scripts .= '  asNavFor:".' . $blueprint[ 'uid' ] . ' .pzarc-section-using-' . $blueprint[ '_blueprints_short-name' ] . '"';
       $pzarchitect_slider_scripts .= ', slidesToShow:' . $navs_items_toshow;
       $pzarchitect_slider_scripts .= ', slidesToScroll:' . $navs_items_toskip;
@@ -134,7 +134,7 @@
     return $slider;
   }
 
-  add_filter('arc-navigation-skipper', 'pzarc_sudo_nav_skipper', 10, 2);
+//  add_filter('arc-navigation-skipper', 'pzarc_sudo_nav_skipper', 10, 2);
   function pzarc_sudo_nav_skipper($hover_nav, $blueprint)
   {
     if ($blueprint[ '_blueprints_section-0-layout-mode' ] === 'slider'
@@ -160,8 +160,8 @@
     return $hover_nav;
   }
 
-  add_filter('arc-navigator-class', 'pzarc_set_nav15_class', 10, 2);
-  function pzarc_set_nav15_class($class, $blueprint)
+//  add_filter('arc-navigator-class', 'pzarc_set_nav_sudo_class', 10, 2);
+  function pzarc_set_nav_sudo_class($class, $blueprint)
   {
     switch ($blueprint[ '_blueprints_navigator' ]) {
 
