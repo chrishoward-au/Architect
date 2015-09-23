@@ -307,7 +307,7 @@
                 'options' => array(
                     'layout'  => '<span><span class="stepno">1</span> Blueprint Design</span>',
                     'content' => '<span><span class="stepno">2</span> Content Selection</span>',
-                    'panels'  => '<span><span class="stepno">3</span> Content Design</span>',
+                    'panels'  => '<span><span class="stepno">3</span> Content Layout</span>',
                 ),
                 'targets' => array(
                     'layout'  => array('layout-settings'),
@@ -1775,6 +1775,20 @@
           'icon_class' => 'icon-large',
           'icon'       => 'el-icon-question-sign',
           'fields'     => array(
+              array(
+                  'title'    => __('Enabling styling tabs', 'pzarchitect'),
+                  'id'       => $prefix . 'help-usingbp-styling-tabs',
+                  'type'     => 'raw',
+                  'markdown' => false,
+                  'content'  => __('If you are using <strong>Headway</strong>, the Architect styling tabs are off by default. They can be enabled in Architect > Options > Use Architect Styling. Styling applied in the Headway Visual Editor will still be used, but the Architect styling will take precedence.', 'pzarchitect')
+              ),
+              array(
+                  'title'    => __('Enabling animation tab', 'pzarchitect'),
+                  'id'       => $prefix . 'help-usingbp-animation-tabs',
+                  'type'     => 'raw',
+                  'markdown' => false,
+                  'content'  => __('Animation is off by default. It can be enabled in Architect > Animation > Enable Animation', 'pzarchitect')
+              ),
 
               array(
                   'title'    => __('Displaying Blueprints', 'pzarchitect'),
