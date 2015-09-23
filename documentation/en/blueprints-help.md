@@ -1,1 +1,0 @@
-It is highly recommended to install the Duplicate Post plugin
