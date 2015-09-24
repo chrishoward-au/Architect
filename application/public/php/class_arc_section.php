@@ -12,7 +12,7 @@
     public static function create($number, $section, $source, $navtype, $layout_mode, $slider_type = null, $table_titles = null, $panel_name = 'legacy-panel', &$blueprint)
     {
       //    var_dump($number, $section, $source, $navtype, $layout_mode, $slider_type, $section_title, $table_titles, $panel_name);
-      return new arc_Section($number, $section, $source, $navtype, $layout_mode, $slider_type, $table_titles, $panel_name,$blueprint);
+      return new arc_Section($number, $section, $source, $navtype, $layout_mode, $slider_type, $table_titles, $panel_name, $blueprint);
     }
 
   }
@@ -31,6 +31,7 @@
     private $slider_type;
     private $rsid;
     private $table_accordion_titles;
+    public $panel_number;
 
     /**
      * @param      $number
@@ -71,6 +72,9 @@
       if (!empty($_architect_options[ 'architect_enable-retina-images' ]) && !empty($this->section[ 'section-panel-settings' ][ '_panels_settings_use-retina-images' ])) {
         wp_enqueue_script('js-retinajs');
       }
+
+      add_shortcode('arcshare', array($this, 'pzarc_share_shortcode'));
+
 
     }
 
@@ -144,7 +148,7 @@
       $slider[ 'class' ] = '';
       $slider[ 'data' ]  = '';
 
-      if (($this->layout_mode === 'slider' || $this->layout_mode === 'tabbed') ) {
+      if (($this->layout_mode === 'slider' || $this->layout_mode === 'tabbed')) {
 
         $slider = apply_filters('arc-set-slider-data', $slider, $this->blueprint);
 
@@ -163,7 +167,7 @@
         foreach ($toshow as $k => $v) {
           if ($v[ 'show' ]) {
             echo '<col style="width:' . $v[ 'width' ] . '%;">';
-            $widths[ ] = $v[ 'width' ];
+            $widths[] = $v[ 'width' ];
           }
         }
         echo '<thead><tr>';
@@ -173,9 +177,9 @@
         $this->table_accordion_titles = (is_array($this->table_accordion_titles) ? $this->table_accordion_titles : array($this->table_accordion_titles));
         $this->table_accordion_titles = array_pad($this->table_accordion_titles, count($widths), '');
 
-        $i =0;
+        $i = 0;
         foreach ($this->table_accordion_titles as $title) {
-          echo '<th style="width:' . $widths[$i++] . '%;">' . $title . '</th>';
+          echo '<th style="width:' . $widths[ $i++ ] . '%;">' . $title . '</th>';
         }
         echo '</tr></thead>';
       }
@@ -230,7 +234,7 @@
     {
 //      var_dump($panel_number, $class, $panel_class);
       pzdb('top of render panel ' . get_the_id());
-
+      $this->panel_number = $panel_number;
       if (!empty($arc_query->post)) {
         $post   = $arc_query->post;
         $postid = $arc_query->post->ID;
@@ -312,14 +316,13 @@
       // Add standard identifying WP classes to the whole panel
       // TODO: WHY??? Is that what WP does? Aren't they in the article anyways? Temporarily don't do it.
       $postmeta_classes = ' ' . $panel_class->data[ 'posttype' ] . ' type-' . $panel_class->data[ 'posttype' ] . ' status-' . $panel_class->data[ 'poststatus' ] . ' format-' . $panel_class->data[ 'postformat' ] . ' ';
-
 //      echo '<' . ('table' !== $this->layout_mode ? 'div' : 'tr') . ' class="pzarc-panel pzarc-panel_' . $settings[ '_panels_settings_short-name' ] . ' pzarc-panel-no_' . $panel_number . $this->slider[ 'slide' ] . $image_in_bg . $odds_evens_bp . $odds_evens_section . $postmeta_classes . '" >';
       $classes = 'pzarc-panel pzarc-panel_' . $this->panel_name . ' pzarc-panel-no_' . $panel_number . $this->slider[ 'slide' ] . $image_in_bg . $odds_evens_bp;
-      echo '<' . ('table' !== $this->layout_mode ? 'div' : 'tr') . ' class="' . apply_filters('arc-extend-panel-classes', $classes, $this->blueprint) . ' '.apply_filters('arc-extend-panel-classes_'.$this->panel_name, '', $this->blueprint) . '" ' . apply_filters('arc-extend-panel-data', '', $this->blueprint) . '">';
+      echo '<' . ('table' !== $this->layout_mode ? 'div' : 'tr') . ' id="bp' . $this->blueprint[ 'blueprint-id' ] . '_' . $panel_number . '" class="' . apply_filters('arc-extend-panel-classes', $classes, $this->blueprint) . ' ' . apply_filters('arc-extend-panel-classes_' . $this->panel_name, '', $this->blueprint) . '" ' . apply_filters('arc-extend-panel-data', '', $this->blueprint) . '">';
 
-    //
-      if (!empty($settings['_panels_design_link-panel'])) {
-        echo '<a href="' . apply_filters('arc-overlay-permalink',get_the_permalink()) . '" class="pzarc-panel-overlay"></a>';
+      //
+      if (!empty($settings[ '_panels_design_link-panel' ])) {
+        echo '<a href="' . apply_filters('arc-overlay-permalink', get_the_permalink()) . '" class="pzarc-panel-overlay"></a>';
       }
 
       //TODO: Check this works for all scenarios
@@ -451,6 +454,36 @@
 
     }
 
+    function pzarc_share_shortcode($atts, $content = null)
+    {
+      $share_url  = 'bp' . $this->blueprint[ 'blueprint-id' ] . '_' . $this->panel_number;
+      $share_link = '';
+      $styles     = '';
+      $message    = (!empty($atts[ 'message' ]) ? $atts[ 'message' ] : __('Check this out: ', 'pzarchitect'));
+      $styles .= !empty($atts[ 'colour' ]) ? 'color:' . $atts[ 'colour' ] . ';' : '';
+      $styles .= !empty($atts[ 'color' ]) ? 'color:' . $atts[ 'color' ] . ';' : '';
+      $styles .= !empty($atts[ 'size' ]) ? 'height:' . $atts[ 'size' ] . 'px;width:' . $atts[ 'size' ] . 'px;font-size:' . $atts[ 'size' ] . 'px;' : '';
+      $styles = $styles ? 'style="' . $styles . '"' : '';
+      foreach ($atts as $v) {
+        switch ($v) {
+          case 'twitter':
+            $share_link .= '<a class="arc-twitter-share-button" href="https://twitter.com/intent/tweet?text=' . $message . $this->blueprint[ 'parent-page-url' ] . '%23' . $share_url . '" target=_blank title="' . __('Share on Twitter', 'pzarchitect') . '"><span class="dashicons dashicons-twitter" ' . $styles . '></span></a> ';
+            break;
+          //https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fwww.bordermail.com.au%2Fstory%2F2981852%2F2015-hot-100-vote-for-your-favourite%2F%23slide%3D1
+          case'facebook':
+            $share_link .= '<a class="arc-facebook-share-button" href="https://www.facebook.com/sharer/sharer.php?u=' . $message . $this->blueprint[ 'parent-page-url' ] . '%23' . $share_url . '" target=_blank title="' . __('Share on Facebook', 'pzarchitect') . '"><span class="dashicons dashicons-facebook" ' . $styles . '></span></a> ';
+            break;
+          case 'link':
+            $share_link .= '<a class="arc-link-share-button" href="' . $this->blueprint[ 'parent-page-url' ] . '#' . $share_url . '" target=_blank title="' . __('Direct link', 'pzarchitect') . '"><span class="dashicons dashicons-admin-links" ' . $styles . '></span></a> ';
+            break;
+          case'email':
+            $share_link .= '<a class="arc-email-share-button" href="mailto:?subject=' . str_replace(':', '', $message) . '&body=' . $message . $this->blueprint[ 'parent-page-url' ] . '#' . $share_url . '" title="' . __('Share by email', 'pzarchitect') . '"><span class="dashicons dashicons-email" ' . $styles . '></span></a> ';
+            break;
+        }
+      }
+
+      return $share_link;
+    }
   }
 
   //EOC arc_Section

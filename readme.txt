@@ -93,6 +93,9 @@ For support, please send an email to support@pizazzwp.com
 
 == Changelog ==
 
+= 1.4.9.6 =
+* ADDED: arcshare shortcode for sharing links to each specific panel.
+ 
 = 1.4.9.4 =
 * ADDED: Option to use Headway alternative titles. On by default.
 

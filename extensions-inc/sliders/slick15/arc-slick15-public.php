@@ -226,7 +226,3 @@
     unset($pzarchitect_slider_scripts);
   }
 
-  add_shortcode('arcslide','pzarc_slick15_share_shortcode');
- function pzarc_slick15_share_shortcode($atts,$content=null){
-   return "Need to add slide id and blueprint to link. so need this to be in the class";
- }
