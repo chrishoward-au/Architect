@@ -50,6 +50,8 @@
         ), 10, 1);
 
         add_filter('views_edit-arc-blueprints', array($this, 'blueprints_description'));
+
+ //       add_action('admin_init',array($this,'admin_init'));
         // Grab the extra slider types from the registry
 
         $registry     = arc_Registry::getInstance();
@@ -67,6 +69,9 @@
       }
     }
 
+    public function admin_init(){
+//      add_filter('_arc_add_tax_titles','pzarc_get_tax_titles',10,1);
+    }
     /**
      * [content_blueprints_admin_enqueue description]
      *
@@ -1535,11 +1540,11 @@
                                                                       array('Custom Fields'=>$this->custom_fields)
                                                         )
       );
-      if (is_admin() && !empty($_GET[ 'post' ])) {
-        global $pzarc_masonry_filter_taxes;
-        $pzarc_masonry_filter_taxes =maybe_unserialize($this->postmeta[$prefix . 'masonry-filtering'][0]);
+//      global $pzarc_masonry_filter_taxes;
+      if (is_admin() && !empty($_GET[ 'post' ]) &&!empty($this->postmeta[$prefix . 'masonry-filtering'])) {
+        $pzarc_masonry_filter_taxes =  apply_filters('_arc_add_tax_titles',maybe_unserialize($this->postmeta[$prefix . 'masonry-filtering'][0]));
       } else {
-        $pzarc_masonry_filter_taxes = '';
+        $pzarc_masonry_filter_taxes = array();
       }
       $sections[ '_masonry' ] = array(
           'title'      => __('Masonry', 'pzarchitect'),
@@ -1570,64 +1575,6 @@
               //                  'required' => array($prefix . 'masonry-features', 'contains', 'override-columns'),
               //              ),
               // Infinite scroll options: Show progress
-              array(
-                  'title'    => __('Filtering', 'pzarchitect'),
-                  'id'       => $prefix . 'masonry-filtering-section-open',
-                  'type'     => 'section',
-                  'required' => array($prefix . 'masonry-features', 'contains', 'filtering'),
-                  'indent'    => true,
-              ),
-              array(
-                  'title'    => __('Taxonomies', 'pzarchitect'),
-                  'id'       => $prefix . 'masonry-filtering',
-                  'type'     => 'select',
-                  'multi'    => true,
-                  'data'     => 'callback',
-                  'args'     => array('pzarc_get_taxonomies_ctb'),
-                  'required' => array($prefix . 'masonry-features', 'contains', 'filtering'),
-                  'desc'     => __('It is up to YOU to ensure the taxonomies match the content', 'pzarchitect')
-              ),
-              array(
-                  'title'    => __('Limit ', 'pzarchitect'),
-                  'id'       => '_blueprints_masonry-filtering-limit',
-                  'type'     => 'button_set',
-                  'default'  => 'none',
-                  'options'  => array(
-                      'none'    => __('None', 'pzarchitect'),
-                      'include' => __('Include', 'pzarchitect'),
-                      'exclude' => __('Exclude', 'pzarchitect')
-                  ),
-                  'required' => array($prefix . 'masonry-features', 'contains', 'filtering'),
-                  'subtitle' => __('Control what terms are shown.', 'pzarchitect'),
-                  'desc'     => __('After setting this, publish/update to show the selections', 'pzarchitect'),
-              ),
-              array(
-                  'title'    => __('Inclusions/Exclusions', 'pzarchitect'),
-                  'id'       => '_blueprints_masonry-filtering-incexc',
-                  'type'     => 'select',
-                  'multi'    => true,
-                  'data'=>'callback',
-                  'default'  => false,
-                  'required' => array($prefix . 'masonry-filtering-limit', '!=', 'none'),
-                  'args'  => array('pzarc_get_taxterms')
-              ),
-              array(
-                  'title'    => __('Allow multiple', 'pzarchitect'),
-                  'id'       => '_blueprints_masonry-filtering-allow-multiple',
-                  'type'     => 'button_set',
-                  'default'  => 'multiple',
-                  'options'  => array(
-                      'multiple' => __('Yes', 'pzarchitect'),
-                      'single'   => __('No', 'pzarchitect')
-                  ),
-                  'required' => array($prefix . 'masonry-features', 'contains', 'filtering'),
-                  'subtitle' => __('Allow multiple filters to be selected by site users. Note: Multiple selected filters narrow the selection shown. Therefore ensure content is well tagged for best results.', 'pzarchitect')
-              ),
-              array(
-                  'id'       => $prefix . 'masonry-filtering-section-close',
-                  'type'     => 'section',
-                  'indent'    => false,
-              ),
               // Sorting: Choose what on (title, date, cat, tag) and order
               array(
                   'title'    => __('Sorting', 'pzarchitect'),
@@ -1650,8 +1597,84 @@
                   'type'     => 'section',
                   'indent'    => false,
               ),
+              //filtering
+              array(
+                  'title'    => __('Filtering', 'pzarchitect'),
+                  'id'       => $prefix . 'masonry-filtering-section-open',
+                  'type'     => 'section',
+                  'required' => array($prefix . 'masonry-features', 'contains', 'filtering'),
+                  'indent'    => true,
+              ),
+              array(
+                  'title'    => __('Taxonomies', 'pzarchitect'),
+                  'id'       => $prefix . 'masonry-filtering',
+                  'type'     => 'select',
+                  'multi'    => true,
+                  'data'     => 'callback',
+                  'args'     => array('pzarc_get_taxonomies_ctb'),
+                  'required' => array($prefix . 'masonry-features', 'contains', 'filtering'),
+                  'desc'     => __('It is up to YOU to ensure the taxonomies match the content', 'pzarchitect'),
+                  'subtitle'     => __('Note: You will have to publish/update to show the Taxonomy filters below', 'pzarchitect'),
+              ),
+              array(
+                  'title'    => __('Allow multiple filter terms', 'pzarchitect'),
+                  'id'       => '_blueprints_masonry-filtering-allow-multiple',
+                  'type'     => 'button_set',
+                  'default'  => 'multiple',
+                  'options'  => array(
+                      'multiple' => __('Yes', 'pzarchitect'),
+                      'single'   => __('No', 'pzarchitect')
+                  ),
+                  'required' => array($prefix . 'masonry-features', 'contains', 'filtering'),
+                  'subtitle' => __('Allow multiple filters to be selected by site users. Note: Multiple selected filters narrow the selection shown. Therefore, ensure content is well tagged for best results.', 'pzarchitect')
+              ),
           )
       );
+
+      foreach ($pzarc_masonry_filter_taxes as $pzarc_tax) {
+        $sections[ '_masonry' ]['fields'][]=          array(
+            'title'    => __('Filter on ', 'pzarchitect').ucwords(str_replace(array('_','-'),' ',$pzarc_tax)),
+            'id'       => $prefix . 'masonry-filtering-section-open-'.$pzarc_tax,
+            'type'     => 'section',
+            'required' => array($prefix . 'masonry-features', 'contains', 'filtering'),
+            'indent'    => true,
+        );
+        $sections[ '_masonry' ]['fields'][]=              array(
+            'title'    => __('Limit ', 'pzarchitect'),
+            'id'       => '_blueprints_masonry-filtering-limit-'.$pzarc_tax,
+            'type'     => 'button_set',
+            'default'  => 'none',
+            'options'  => array(
+                'none'    => __('None', 'pzarchitect'),
+                'include' => __('Include', 'pzarchitect'),
+                'exclude' => __('Exclude', 'pzarchitect')
+            ),
+            'required' => array($prefix . 'masonry-features', 'contains', 'filtering'),
+            'subtitle' => __('Control what terms are shown.', 'pzarchitect'),
+        );
+        $sections[ '_masonry' ]['fields'][]=                        array(
+                  'title'    => __('Inclusions/Exclusions', 'pzarchitect'),
+                  'id'       => '_blueprints_masonry-filtering-incexc-'.$pzarc_tax,
+                  'type'     => 'select',
+                  'multi'    => true,
+                  'data'=>'terms',
+                  'default'  => false,
+                  'required' => array($prefix . 'masonry-filtering-limit-'.$pzarc_tax, '!=', 'none'),
+                  'args'  => array('taxonomies'=>$pzarc_tax,'hide_empty'=>false)
+              );
+        $sections[ '_masonry' ]['fields'][]=                $sections[ '_masonry' ]['fields'][]=              array(
+            'id'       => $prefix . 'masonry-filtering-section-close-'.$pzarc_tax,
+            'type'     => 'section',
+            'indent'    => false,
+        );
+
+      }
+      $sections[ '_masonry' ]['fields'][]=              array(
+          'id'       => $prefix . 'masonry-filtering-section-close',
+          'type'     => 'section',
+          'indent'    => false,
+      );
+
       $sections[ '_masonry' ] = apply_filters('arc-extend-masonry-settings', $sections[ '_masonry' ]);
 
       /** PAGINATION  */

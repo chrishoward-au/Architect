@@ -88,7 +88,7 @@
       $panel_def[ 'custom1' ] = '<{{div}} class="{{extensionclass}} entry-customfieldgroup entry-customfieldgroup-1" {{extensiondata}}>{{custom1innards}}</{{div}}>';
       $panel_def[ 'custom2' ] = '<{{div}} class="{{extensionclass}} entry-customfieldgroup entry-customfieldgroup-2" {{extensiondata}}>{{custom2innards}}</{{div}}>';
       $panel_def[ 'custom3' ] = '<{{div}} class="{{extensionclass}} entry-customfieldgroup entry-customfieldgroup-3" {{extensiondata}}>{{custom3innards}}</{{div}}>';
-      $panel_def[ 'cfield' ]  = '<{{cfieldwrapper}} class="entry-customfield entry-customfield-{{cfieldname}} entry-customfield-{{cfieldnumber}}">{{cfieldcontent}}</{{cfieldwrapper}}>';
+      $panel_def[ 'cfield' ]  = '<{{cfieldwrapper}} class="entry-customfield entry-customfield-{{cfieldname}} {{cfieldname}} entry-customfield-{{cfieldnumber}}">{{cfieldcontent}}</{{cfieldwrapper}}>';
 //      $panel_def[ 'footer' ]        = '<footer class="entry-footer">{{footerinnards}}</footer>';
       $panel_def[ 'excerpt' ]       = '<{{div}} class="{{extensionclass}} entry-excerpt {{nothumb}}" {{extensiondata}}>{{image-in-content}}{{excerpt}}</{{div}}>';
       $panel_def[ 'feature' ]       = '{{feature}}';

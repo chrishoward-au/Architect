@@ -55,12 +55,12 @@
       // Need to do this for each taxonomy
       $i = 1;
       foreach ($this->blueprint[ '_blueprints_masonry-filtering' ] as $tax) {
-        switch ($this->blueprint[ '_blueprints_masonry-filtering-limit' ]) {
+        switch ($this->blueprint[ '_blueprints_masonry-filtering-limit-'.$tax ]) {
           case 'include':
-            $terms = pzarc_get_terms($tax, array('hide_empty' => true,'include'=>$this->blueprint['_blueprints_masonry-filtering-incexc']));
+            $terms = pzarc_get_terms($tax, array('hide_empty' => true,'include'=>$this->blueprint['_blueprints_masonry-filtering-incexc-'.$tax]));
             break;
           case 'exclude':
-            $terms = pzarc_get_terms($tax, array('hide_empty' => true,'exclude'=>$this->blueprint['_blueprints_masonry-filtering-incexc']));
+            $terms = pzarc_get_terms($tax, array('hide_empty' => true,'exclude'=>$this->blueprint['_blueprints_masonry-filtering-incexc-'.$tax]));
             break;
           default:
           case 'none':
@@ -113,6 +113,7 @@
               'random':
                 break;
               default:
+                $v=strpos($v,'.')!==0&&strpos($v,'#')!==0?'.'.$v:$v;
                 $sort_data .= "{$s}:'{$v}',";
             }
           }

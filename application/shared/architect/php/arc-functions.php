@@ -234,22 +234,23 @@
 
   }
 
-  function pzarc_get_taxterms($pzarc_taxes = null) {
-    global $pzarc_masonry_filter_taxes;
-    $return_terms =  array();
-    $pzarc_taxes = $pzarc_taxes?$pzarc_taxes:$pzarc_masonry_filter_taxes;
-    if ($pzarc_taxes) {
-      foreach ($pzarc_taxes as $pzarc_tax) {
-        $pzarc_terms = get_terms($pzarc_tax);
-        if (!empty($pzarc_terms)) {
-          foreach ($pzarc_terms as $k => $v) {
-            $return_terms[ ucwords(str_replace(array('-','_'),' ',$pzarc_tax)) ][ $v->term_id ] = $v->name;
-          }
-        }
-      }
-    }
-    return $return_terms;
-  }
+//  function pzarc_get_taxterms($pzarc_taxes = null) {
+//    global $pzarc_masonry_filter_taxes,$tax_slug;
+//    var_dump($pzarc_masonry_filter_taxes,$tax_slug);
+//    $return_terms =  array();
+////    $pzarc_taxes = $pzarc_taxes?$pzarc_taxes:$pzarc_masonry_filter_taxes;
+////    if ($pzarc_taxes) {
+////      foreach ($pzarc_taxes as $pzarc_tax) {
+//        $pzarc_terms = get_terms($tax_slug);
+//        if (!empty($pzarc_terms)) {
+//          foreach ($pzarc_terms as $k => $v) {
+//            $return_terms[ ucwords(str_replace(array('-','_'),' ',$tax_slug)) ][ $v->term_id ] = $v->name;
+//          }
+//        }
+////      }
+////    }
+//    return $return_terms;
+//  }
 
 //  function pzarc_redux_links_dec($id, $selectors, $defaults = '')
 //  {
@@ -1791,6 +1792,17 @@
       pzarc_create_blueprint($arc_preset_data, $preset_name, $process_type, $alt_slug, $alt_title);
     } else {
       // todo: pop an error msg
+    }
+  }
+
+  // Unused until can find a way to make this load before Blueprints editor
+  function pzarc_set_tax_titles($pzarc_tax='') {
+    global $pzarc_taxonomy_list;
+    $pzarc_taxonomy_list=array();
+    $pzarc_taxes=get_taxonomies(array('public'=>true));
+    foreach ($pzarc_taxes as $k => $v) {
+      $pzarc_tax = get_taxonomy($k);
+      $pzarc_taxonomy_list[$k]=$pzarc_tax->labels->name;
     }
   }
 
