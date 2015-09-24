@@ -23,62 +23,77 @@
         add_action('arc-extend-panel-classes_' . $this->blueprint[ '_blueprints_short-name' ], array($this,
                                                                                                      'filtering_classes'), 10, 2);
       }
-        add_action('wp_print_footer_scripts', array($this, 'js'));
+      add_action('wp_print_footer_scripts', array($this, 'js'));
     }
 
     function sorting()
     {
 
 
-        // TODO: Setupo registry for each so developer can define
-        echo '<div class="arc-sort-buttons"><div class="button-group sort-by-button-group">
+      // TODO: Setupo registry for each so developer can define
+      echo '<div class="arc-sort-buttons"><div class="button-group sort-by-button-group">
             <label>' . __('Sort by', 'pzarchitect') . ': </label>
             <button class="current" data-sort-by="original-order">' . __('Default', 'pzarchitect') . '</button>';
-        foreach ($this->blueprint[ '_blueprints_masonry-sort-fields' ] as $k => $v) {
-          $sv = str_replace(array('[', ']', '.'), '', $v);
-          $sk = str_replace(array('-', '_', ' '), '', $sv);
-          $sv = str_replace(array('-', '_'), ' ', $sv);
-          $sv = ($v == '[data-order]') ? 'Date' : $sv;
-          echo '<button data-sort-by="' . $sk . '">' . ucwords($sv) . '</button>';
-        }
-        echo '</div>';
-        echo '<div class="button-group sort-order-button-group">
+      foreach ($this->blueprint[ '_blueprints_masonry-sort-fields' ] as $k => $v) {
+        $sv = str_replace(array('[', ']', '.'), '', $v);
+        $sk = str_replace(array('-', '_', ' '), '', $sv);
+        $sv = str_replace(array('-', '_'), ' ', $sv);
+        $sv = ($v == '[data-order]') ? 'Date' : $sv;
+        echo '<button data-sort-by="' . $sk . '">' . ucwords($sv) . '</button>';
+      }
+      echo '</div>';
+      echo '<div class="button-group sort-order-button-group">
             <label>' . __('Order', 'pzarchitect') . ': </label>
             <button class="current" data-sort-order="true">' . __('Ascending', 'pzarchitect') . '</button>
             <button data-sort-order="false">' . __('Descending', 'pzarchitect') . '</button>';
 
-        echo '</div></div>';
+      echo '</div></div>';
     }
 
-    function filtering() {
+    function filtering()
+    {
       // Need to do this for each taxonomy
       $i = 1;
       foreach ($this->blueprint[ '_blueprints_masonry-filtering' ] as $tax) {
-        $terms = pzarc_get_terms($tax, array('hide_empty' => true));
-        echo '<div class="button-group filter-button-group">
-        <label>'. __('Filter by ', 'pzarchitect') . ucwords(str_replace(array('_','-'),' ',$tax)) . ': </label>';
-        foreach ($terms as $class => $name) {
-          echo '<button data-filter=".'.$tax.'-'.$class.'">'.$name.'</button>';
+        switch ($this->blueprint[ '_blueprints_masonry-filtering-limit-'.$tax ]) {
+          case 'include':
+            $terms = pzarc_get_terms($tax, array('hide_empty' => true,'include'=>$this->blueprint['_blueprints_masonry-filtering-incexc-'.$tax]));
+            break;
+          case 'exclude':
+            $terms = pzarc_get_terms($tax, array('hide_empty' => true,'exclude'=>$this->blueprint['_blueprints_masonry-filtering-incexc-'.$tax]));
+            break;
+          default:
+          case 'none':
+            $terms = pzarc_get_terms($tax, array('hide_empty' => true));
+            break;
         }
-        if ($i++ === count($this->blueprint[ '_blueprints_masonry-filtering' ])) {
+        echo '<div class="button-group filter-button-group">
+        <label>' . __('Filter by ', 'pzarchitect') . ucwords(str_replace(array('_', '-'), ' ', $tax)) . ': </label>';
+        foreach ($terms as $class => $name) {
+          echo '<button data-filter=".' . $tax . '-' . $class . '">' . $name . '</button>';
+        }
+        if ((empty($this->blueprint[ '_blueprints_masonry-filtering-allow-multiple' ]) || $this->blueprint[ '_blueprints_masonry-filtering-allow-multiple' ] === 'multiple') && $i++ === count($this->blueprint[ '_blueprints_masonry-filtering' ])) {
           echo '<p><button data-filter="*" class="showall" data-filter-group="all">' . __('Clear all', 'pzarchitect') . '</button></p>';
         }
         echo '</div>';
       }
     }
 
-    function filtering_classes($classes,$blueprint) {
-        $classes .= ' ';
-        foreach ($this->blueprint[ '_blueprints_masonry-filtering' ] as $tax) {
-          $terms = get_the_terms(get_the_id(),$tax);
-          if (!empty($terms)) {
-            foreach ($terms as $term_obj) {
-              $classes .= $tax . '-' . $term_obj->slug . ' ';
-            }
+    function filtering_classes($classes, $blueprint)
+    {
+      $classes .= ' ';
+      foreach ($this->blueprint[ '_blueprints_masonry-filtering' ] as $tax) {
+        $terms = get_the_terms(get_the_id(), $tax);
+        if (!empty($terms)) {
+          foreach ($terms as $term_obj) {
+            $classes .= $tax . '-' . $term_obj->slug . ' ';
           }
         }
+      }
+
       return $classes;
     }
+
     function js()
     {
       $blueprint = $this->blueprint[ '_blueprints_short-name' ];
@@ -98,17 +113,18 @@
               'random':
                 break;
               default:
+                $v=strpos($v,'.')!==0&&strpos($v,'#')!==0?'.'.$v:$v;
                 $sort_data .= "{$s}:'{$v}',";
             }
           }
         }
       }
-        $sort_data = $sort_data ? substr($sort_data, 0, -1) : $sort_data;
-
-        $script = "<script type='text/javascript' id='masonry-{$blueprint}'>
+      $sort_data = $sort_data ? substr($sort_data, 0, -1) : $sort_data;
+      $script    = "<script type='text/javascript' id='masonry-{$blueprint}'>
         // init Isotope
         (function($){";
-        $script .= "    var container = jQuery( '.pzarc-section-using-{$blueprint}' );
+      $script .= "var allowMultiple=" . (empty($this->blueprint[ '_blueprints_masonry-filtering-allow-multiple' ]) || $this->blueprint[ '_blueprints_masonry-filtering-allow-multiple' ] === 'multiple' ? 'true' : 'false') . ";";
+      $script .= "    var container = jQuery( '.pzarc-section-using-{$blueprint}' );
                var arcIsotopeID = jQuery( container ).attr( 'data-uid' );
               jQuery(container).imagesLoaded( function ()
               {
@@ -144,7 +160,7 @@
           container.isotope({ sortByValue: sortByValue, sortAscending: sortOrderValue });
         });";
 
-        $script .= "jQuery('.filter-button-group').on( 'click', 'button', function() {
+      $script .= "jQuery('.filter-button-group').on( 'click', 'button', function() {
           if (jQuery(this).hasClass('showall')) {
             jQuery('.filter-button-group .active').removeClass('active');
           } else {
@@ -154,6 +170,9 @@
           if (jQuery(this).hasClass('active')) {
             jQuery(this).removeClass('active');
           } else {
+            if (!allowMultiple) {
+              jQuery('.filter-button-group .active').removeClass('active');
+            }
             jQuery(this).addClass('active');
           }
 
@@ -169,18 +188,23 @@
           if ('*'=== dataFilter) {
             value = '*';
           } else {
-            value += dataFilter;
+            if (allowMultiple) {
+              value += dataFilter;
+            } else {
+              value=dataFilter;
+            }
+          console.log(value,allowMultiple);
           }
          });
         return value;
         };
       ";
 
-        $script .= "})(jQuery);
+      $script .= "})(jQuery);
       </script>";
 
-        echo $script;
+      echo $script;
 
-      }
+    }
 
   }
