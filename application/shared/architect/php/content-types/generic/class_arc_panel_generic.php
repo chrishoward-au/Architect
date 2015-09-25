@@ -46,6 +46,7 @@
       $this->data[ 'meta' ][ 'authorname' ]      = null;
       $this->data[ 'meta' ][ 'authoremail' ]     = null;
       $this->data[ 'meta' ][ 'comments-count' ]  = null;
+      $this->data[ 'cfield' ]                    = null;
       $this->data[ 'postid' ]                    = null;
       $this->data[ 'poststatus' ]                = null;
       $this->data[ 'permalink' ]                 = null;
@@ -88,7 +89,7 @@
       $panel_def[ 'custom1' ] = '<{{div}} class="{{extensionclass}} entry-customfieldgroup entry-customfieldgroup-1" {{extensiondata}}>{{custom1innards}}</{{div}}>';
       $panel_def[ 'custom2' ] = '<{{div}} class="{{extensionclass}} entry-customfieldgroup entry-customfieldgroup-2" {{extensiondata}}>{{custom2innards}}</{{div}}>';
       $panel_def[ 'custom3' ] = '<{{div}} class="{{extensionclass}} entry-customfieldgroup entry-customfieldgroup-3" {{extensiondata}}>{{custom3innards}}</{{div}}>';
-      $panel_def[ 'cfield' ]  = '<{{cfieldwrapper}} class="entry-customfield entry-customfield-{{cfieldname}} entry-customfield-{{cfieldnumber}}">{{cfieldcontent}}</{{cfieldwrapper}}>';
+      $panel_def[ 'cfield' ]  = '<{{cfieldwrapper}} class="entry-customfield entry-customfield-{{cfieldname}} {{cfieldname}} entry-customfield-{{cfieldnumber}}" {{cfielddata}}>{{cfieldcontent}}</{{cfieldwrapper}}>';
 //      $panel_def[ 'footer' ]        = '<footer class="entry-footer">{{footerinnards}}</footer>';
       $panel_def[ 'excerpt' ]       = '<{{div}} class="{{extensionclass}} entry-excerpt {{nothumb}}" {{extensiondata}}>{{image-in-content}}{{excerpt}}</{{div}}>';
       $panel_def[ 'feature' ]       = '{{feature}}';
@@ -513,6 +514,17 @@
             $this->data[ 'cfield' ][ $i ][ 'link-field' ] = (!empty($postmeta[ $this->section[ '_panels_design_cfield-' . $i . '-link-field' ] ]) ? $postmeta[ $this->section[ '_panels_design_cfield-' . $i . '-link-field' ] ][ 0 ] : null);
           }
 
+          if ($this->section[ '_panels_design_cfield-' . $i . '-field-type' ]==='date') {
+            $cfdate = strtotime( $this->data[ 'cfield' ][ $i ][ 'value' ] ) ; //convert field value to date
+            $cfdate = empty($cfdate)?'000000':$cfdate;
+            $this->data[ 'cfield' ][$i]['data']="data-sort='{$cfdate}'";
+          }
+
+          if ($this->section[ '_panels_design_cfield-' . $i . '-field-type' ]==='number') {
+            $cfnumeric = @number_format( $this->data[ 'cfield' ][ $i ][ 'value' ], $this->data[ 'cfield' ][ $i ][ 'decimals' ], $this->data[ 'cfield' ][ $i ][ 'decimal-char' ], $this->data[ 'cfield' ][ $i ][ 'thousands-sep' ]);
+            $cfnumeric = empty($cfnumeric)?'00.00':$cfnumeric;
+            $this->data[ 'cfield' ][$i]['data']="data-sort='{$cfnumeric}'";
+          }
           // TODO : Add other attributes
         }
       }
@@ -582,8 +594,14 @@
       if ( ! empty( $this->data[ 'meta' ][ 'custom' ] ) ) {
         foreach ( $this->data[ 'meta' ][ 'custom' ] as $meta ) {
           if ( ! empty( $meta ) ) {
-            $meta                    = ( ! is_array( $meta ) ? explode( ',', $meta ) : $meta );
-            $panel_def[ $component ] = str_replace( '{{ct:' . key( $meta ) . '}}', $meta[ key( $meta ) ], $panel_def[ $component ] );
+            foreach($meta as $meta_tax) {
+              foreach($meta_tax as $km=>$vm) {
+                if ($vm) {
+                  $vm                      = (is_array($vm) ? explode(',', $vm) : $vm);
+                  $panel_def[ $component ] = str_replace('{{ct:' . $km . '}}', $vm, $panel_def[ $component ]);
+                }
+              }
+            }
           }
         }
       }
@@ -868,7 +886,7 @@
                 break;
 
               case 'number':
-                $content = number_format( $v[ 'value' ], $v[ 'decimals' ], $v[ 'decimal-char' ], $v[ 'thousands-sep' ] );
+                $content = @number_format($v[ 'value' ], $v[ 'decimals' ], $v[ 'decimal-char' ], $v[ 'thousands-sep' ]);
                 break;
 
               case 'text':
@@ -907,6 +925,9 @@
             $panel_def_cfield = str_replace( '{{cfieldcontent}}', $content, $panel_def_cfield );
             $panel_def_cfield = str_replace( '{{cfieldname}}', $v[ 'name' ], $panel_def_cfield );
             $panel_def_cfield = str_replace( '{{cfieldnumber}}', $k, $panel_def_cfield );
+            if (!empty($v['data'])) {
+              $panel_def_cfield = str_replace('{{cfielddata}}', $v[ 'data' ], $panel_def_cfield);
+            }
 
             $build_field .= $panel_def_cfield;
           }
