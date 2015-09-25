@@ -1593,6 +1593,24 @@
                   'desc'     => __('It is up to YOU to ensure the sort fields are available in the Blueprint', 'pzarchitect')
               ),
               array(
+                  'title'    => __('Numeric sort fields', 'pzarchitect'),
+                  'id'       => $prefix . 'masonry-sort-fields-numeric',
+                  'type'     => 'select',
+                  'multi'    => true,
+                  'options'  => $sort_fields,
+                  'required' => array($prefix . 'masonry-features', 'contains', 'sorting'),
+                  'subtitle'     => __('Select which of the above fields are numeric', 'pzarchitect')
+              ),
+              array(
+                  'title'    => __('Date sort fields', 'pzarchitect'),
+                  'id'       => $prefix . 'masonry-sort-fields-date',
+                  'type'     => 'select',
+                  'multi'    => true,
+                  'options'  => $sort_fields,
+                  'required' => array($prefix . 'masonry-features', 'contains', 'sorting'),
+                  'subtitle'     => __('Select which of the above fields contain dates', 'pzarchitect')
+              ),
+              array(
                   'id'       => $prefix . 'masonry-sorting-section-close',
                   'type'     => 'section',
                   'indent'    => false,

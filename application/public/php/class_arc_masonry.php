@@ -55,12 +55,14 @@
       // Need to do this for each taxonomy
       $i = 1;
       foreach ($this->blueprint[ '_blueprints_masonry-filtering' ] as $tax) {
-        switch ($this->blueprint[ '_blueprints_masonry-filtering-limit-'.$tax ]) {
+        switch ($this->blueprint[ '_blueprints_masonry-filtering-limit-' . $tax ]) {
           case 'include':
-            $terms = pzarc_get_terms($tax, array('hide_empty' => true,'include'=>$this->blueprint['_blueprints_masonry-filtering-incexc-'.$tax]));
+            $terms = pzarc_get_terms($tax, array('hide_empty' => true,
+                                                 'include'    => $this->blueprint[ '_blueprints_masonry-filtering-incexc-' . $tax ]));
             break;
           case 'exclude':
-            $terms = pzarc_get_terms($tax, array('hide_empty' => true,'exclude'=>$this->blueprint['_blueprints_masonry-filtering-incexc-'.$tax]));
+            $terms = pzarc_get_terms($tax, array('hide_empty' => true,
+                                                 'exclude'    => $this->blueprint[ '_blueprints_masonry-filtering-incexc-' . $tax ]));
             break;
           default:
           case 'none':
@@ -113,8 +115,18 @@
               'random':
                 break;
               default:
-                $v=strpos($v,'.')!==0&&strpos($v,'#')!==0?'.'.$v:$v;
-                $sort_data .= "{$s}:'{$v}',";
+                if (!empty($this->blueprint[ '_blueprints_masonry-sort-fields-numeric' ]) && in_array($v, $this->blueprint[ '_blueprints_masonry-sort-fields-numeric' ])) {
+                  $v = '[data-sort]';
+//                  $v = "function (elem) {return parseFloat(elem.find('.".$v."').text().attr('data-sort'));}";
+                  $sort_data .= "{$s}:'{$v}',";
+                } elseif (!empty($this->blueprint[ '_blueprints_masonry-sort-fields-date' ]) && in_array($v, $this->blueprint[ '_blueprints_masonry-sort-fields-date' ])) {
+                  $v = '[data-sort]';
+//                  $v = "function (elem) {return Date.parse(elem.find('.".$v."').text().attr('data-sort'));}";
+                  $sort_data .= "{$s}:'{$v}',";
+                } else {
+                  $v = strpos($v, '.') !== 0 && strpos($v, '#') !== 0 ? '.' . $v : $v;
+                  $sort_data .= "{$s}:'{$v}',";
+                }
             }
           }
         }
@@ -149,6 +161,7 @@
           jQuery(this).addClass('current');
           var sortByValue = $(this).attr('data-sort-by');
           var sortOrderValue = ($('#pzarc-blueprint_{$blueprint} .sort-order-button-group .current').attr('data-sort-order')=='true');
+          console.log(sortByValue);
           container.isotope({ sortBy: sortByValue, sortAscending: sortOrderValue });
         });
 
