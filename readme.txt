@@ -95,6 +95,7 @@ For support, please send an email to support@pizazzwp.com
 
 = 1.4.9.5 =
 * ADDED: Masonry inclusions/exclusions for filtering
+* FIXED: Only first custom taxonomy showing in meta fields
 
 = 1.4.9.4 =
 * ADDED: Option to use Headway alternative titles. On by default.

@@ -895,10 +895,9 @@
     preg_match_all("/(?<=\\%)(ct\\:)(.*)(?=\\%)/uiUmx", $meta_string, $matches);
     for ($i = 1; $i <= $meta_custom; $i++) {
       if (taxonomy_exists($matches[ 2 ][ $i - 1 ])) {
-        $post_tax_terms = array($matches[ 2 ][ $i - 1 ] => get_the_term_list($post_id, $matches[ 2 ][ $i - 1 ],null,', ',null));
+        $post_tax_terms[] = array($matches[ 2 ][ $i - 1 ] => get_the_term_list($post_id, $matches[ 2 ][ $i - 1 ],null,', ',null));
       }
     }
-
     return $post_tax_terms;
   }
 
