@@ -55,29 +55,31 @@
       // Need to do this for each taxonomy
       $i = 1;
       foreach ($this->blueprint[ '_blueprints_masonry-filtering' ] as $tax) {
-        switch ($this->blueprint[ '_blueprints_masonry-filtering-limit-' . $tax ]) {
-          case 'include':
-            $terms = pzarc_get_terms($tax, array('hide_empty' => true,
-                                                 'include'    => $this->blueprint[ '_blueprints_masonry-filtering-incexc-' . $tax ]));
-            break;
-          case 'exclude':
-            $terms = pzarc_get_terms($tax, array('hide_empty' => true,
-                                                 'exclude'    => $this->blueprint[ '_blueprints_masonry-filtering-incexc-' . $tax ]));
-            break;
-          default:
-          case 'none':
-            $terms = pzarc_get_terms($tax, array('hide_empty' => true));
-            break;
-        }
-        echo '<div class="button-group filter-button-group">
+        if (!empty($this->blueprint[ '_blueprints_masonry-filtering-limit-' . $tax ])) {
+          switch ($this->blueprint[ '_blueprints_masonry-filtering-limit-' . $tax ]) {
+            case 'include':
+              $terms = pzarc_get_terms($tax, array('hide_empty' => true,
+                                                   'include'    => $this->blueprint[ '_blueprints_masonry-filtering-incexc-' . $tax ]));
+              break;
+            case 'exclude':
+              $terms = pzarc_get_terms($tax, array('hide_empty' => true,
+                                                   'exclude'    => $this->blueprint[ '_blueprints_masonry-filtering-incexc-' . $tax ]));
+              break;
+            default:
+            case 'none':
+              $terms = pzarc_get_terms($tax, array('hide_empty' => true));
+              break;
+          }
+          echo '<div class="button-group filter-button-group">
         <label>' . __('Filter by ', 'pzarchitect') . ucwords(str_replace(array('_', '-'), ' ', $tax)) . ': </label>';
-        foreach ($terms as $class => $name) {
-          echo '<button data-filter=".' . $tax . '-' . $class . '">' . $name . '</button>';
+          foreach ($terms as $class => $name) {
+            echo '<button data-filter=".' . $tax . '-' . $class . '">' . $name . '</button>';
+          }
+          if ((empty($this->blueprint[ '_blueprints_masonry-filtering-allow-multiple' ]) || $this->blueprint[ '_blueprints_masonry-filtering-allow-multiple' ] === 'multiple') && $i++ === count($this->blueprint[ '_blueprints_masonry-filtering' ])) {
+            echo '<p><button data-filter="*" class="showall" data-filter-group="all">' . __('Clear all', 'pzarchitect') . '</button></p>';
+          }
+          echo '</div>';
         }
-        if ((empty($this->blueprint[ '_blueprints_masonry-filtering-allow-multiple' ]) || $this->blueprint[ '_blueprints_masonry-filtering-allow-multiple' ] === 'multiple') && $i++ === count($this->blueprint[ '_blueprints_masonry-filtering' ])) {
-          echo '<p><button data-filter="*" class="showall" data-filter-group="all">' . __('Clear all', 'pzarchitect') . '</button></p>';
-        }
-        echo '</div>';
       }
     }
 
