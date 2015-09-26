@@ -95,6 +95,7 @@ For support, please send an email to support@pizazzwp.com
 
 = 1.4.9.6 =
 * ADDED: arcshare shortcode for sharing links to each specific panel.
+* ADDED: Means to goto a share link's specific panel in a slider. Much more work than it should have been though!
 
 = 1.4.9.5 =
 * ADDED: Masonry inclusions/exclusions for filtering

@@ -73,7 +73,7 @@
         wp_enqueue_script('js-retinajs');
       }
 
-      add_shortcode('arcshare', array($this, 'pzarc_share_shortcode'));
+      add_shortcode('arcshare', array($this, 'arcshare_shortcode'));
 
 
     }
@@ -108,6 +108,8 @@
           : array('wrapper' => '',
                   'slide'   => '');
 
+
+      wp_enqueue_script('js-front');
 
       $isotope      = '';
       $accordion    = '';
@@ -318,7 +320,7 @@
       $postmeta_classes = ' ' . $panel_class->data[ 'posttype' ] . ' type-' . $panel_class->data[ 'posttype' ] . ' status-' . $panel_class->data[ 'poststatus' ] . ' format-' . $panel_class->data[ 'postformat' ] . ' ';
 //      echo '<' . ('table' !== $this->layout_mode ? 'div' : 'tr') . ' class="pzarc-panel pzarc-panel_' . $settings[ '_panels_settings_short-name' ] . ' pzarc-panel-no_' . $panel_number . $this->slider[ 'slide' ] . $image_in_bg . $odds_evens_bp . $odds_evens_section . $postmeta_classes . '" >';
       $classes = 'pzarc-panel pzarc-panel_' . $this->panel_name . ' pzarc-panel-no_' . $panel_number . $this->slider[ 'slide' ] . $image_in_bg . $odds_evens_bp;
-      echo '<' . ('table' !== $this->layout_mode ? 'div' : 'tr') . ' id="bp' . $this->blueprint[ 'blueprint-id' ] . '_' . $panel_number . '" class="' . apply_filters('arc-extend-panel-classes', $classes, $this->blueprint) . ' ' . apply_filters('arc-extend-panel-classes_' . $this->panel_name, '', $this->blueprint) . '" ' . apply_filters('arc-extend-panel-data', '', $this->blueprint) . '">';
+      echo '<' . ('table' !== $this->layout_mode ? 'div' : 'tr') . ' id="bp' . $this->blueprint[ 'blueprint-id' ] . '-' . $panel_number . '" class="' . apply_filters('arc-extend-panel-classes', $classes, $this->blueprint) . ' ' . apply_filters('arc-extend-panel-classes_' . $this->panel_name, '', $this->blueprint) . '" ' . apply_filters('arc-extend-panel-data', '', $this->blueprint) . '">';
 
       //
       if (!empty($settings[ '_panels_design_link-panel' ])) {
@@ -454,9 +456,9 @@
 
     }
 
-    function pzarc_share_shortcode($atts, $content = null)
+    function arcshare_shortcode($atts, $content = null)
     {
-      $share_url  = 'bp' . $this->blueprint[ 'blueprint-id' ] . '_' . $this->panel_number;
+      $share_url  = 'bp' . $this->blueprint[ 'blueprint-id' ] . '-' . $this->panel_number;
       $share_link = '';
       $styles     = '';
       $message    = (!empty($atts[ 'message' ]) ? $atts[ 'message' ] : __('Check this out: ', 'pzarchitect'));
@@ -474,7 +476,7 @@
             $share_link .= '<a class="arc-facebook-share-button" href="https://www.facebook.com/sharer/sharer.php?u=' . $message . $this->blueprint[ 'parent-page-url' ] . '%23' . $share_url . '" target=_blank title="' . __('Share on Facebook', 'pzarchitect') . '"><span class="dashicons dashicons-facebook" ' . $styles . '></span></a> ';
             break;
           case 'link':
-            $share_link .= '<a class="arc-link-share-button" href="' . $this->blueprint[ 'parent-page-url' ] . '#' . $share_url . '" target=_blank title="' . __('Direct link', 'pzarchitect') . '"><span class="dashicons dashicons-admin-links" ' . $styles . '></span></a> ';
+            $share_link .= '<a class="arc-link-share-button" href="' . $this->blueprint[ 'parent-page-url' ] . '#' . $share_url . '" title="' . __('Direct link', 'pzarchitect') . '"><span class="dashicons dashicons-admin-links" ' . $styles . '></span></a> ';
             break;
           case'email':
             $share_link .= '<a class="arc-email-share-button" href="mailto:?subject=' . str_replace(':', '', $message) . '&body=' . $message . $this->blueprint[ 'parent-page-url' ] . '#' . $share_url . '" title="' . __('Share by email', 'pzarchitect') . '"><span class="dashicons dashicons-email" ' . $styles . '></span></a> ';
