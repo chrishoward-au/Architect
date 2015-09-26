@@ -119,7 +119,6 @@
               default:
                 if (!empty($this->blueprint[ '_blueprints_masonry-sort-fields-numeric' ]) && in_array($v, $this->blueprint[ '_blueprints_masonry-sort-fields-numeric' ])) {
 //                  $v = '[data-sort-numeric]';
-                  var_dump($v);
                 $v = "function (elem) {return parseFloat(jQuery(elem).find('.{$v}').attr('data-sort-numeric'));}";
                   $sort_data .= "{$s}:{$v},";
                 } elseif (!empty($this->blueprint[ '_blueprints_masonry-sort-fields-date' ]) && in_array($v, $this->blueprint[ '_blueprints_masonry-sort-fields-date' ])) {

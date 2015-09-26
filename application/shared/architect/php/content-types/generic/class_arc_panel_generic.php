@@ -523,7 +523,7 @@
           if ($this->section[ '_panels_design_cfield-' . $i . '-field-type' ]==='number') {
             $cfnumeric = @number_format( $this->data[ 'cfield' ][ $i ][ 'value' ], $this->data[ 'cfield' ][ $i ][ 'decimals' ], '', '');
             $cfnumeric = empty($cfnumeric)?'0000':$cfnumeric;
-            $this->data[ 'cfield' ][$i]['data']="data-sort-numeric='0000000000{$cfnumeric}'";
+            $this->data[ 'cfield' ][$i]['data']="data-sort-numeric='{$cfnumeric}'";
           }
           // TODO : Add other attributes
         }
