@@ -1138,7 +1138,8 @@ add_action(\'init\',\'gs_init\');
 
 
   // SHORTCAKE
-  add_action('register_shortcode_ui', function () {
+  add_action('register_shortcode_ui', 'pzarc_register_shortcake_shortcode');
+  function pzarc_register_shortcake_shortcode()  {
 
     if (!function_exists('shortcode_ui_register_for_shortcode')) {
 //      add_action('admin_notices', function () {
@@ -1160,16 +1161,15 @@ add_action(\'init\',\'gs_init\');
      * Pass the shortcode tag (string)
      * and an array or args.
      */
-    $pzarc_blueprints=array_merge(array('none'=>'None'),pzarc_get_blueprints(),array('show-none'=>'DO NOT SHOW ANY BLUEPRINT'));
+    $pzarc_blueprints = array_merge(array('none' => 'None'), pzarc_get_blueprints(), array('show-none' => 'DO NOT SHOW ANY BLUEPRINT'));
     shortcode_ui_register_for_shortcode(
         'architectsc',
         array(
 
           // Display label. String. Required.
-          'label'         => __('Architect Blueprint','pzarchitect'),
+          'label'         => __('Architect Blueprint', 'pzarchitect'),
           // Icon/attachment for shortcode. Optional. src or dashicons-$icon. Defaults to carrot.
-          'listItemImage' => '<img src="'.PZARC_PLUGIN_URL.'/assets/architect-logo-final-logo-only.svg">',
-
+          'listItemImage' => '<img src="' . PZARC_PLUGIN_URL . '/assets/architect-logo-final-logo-only.svg">',
           // Visibility
           //         'post_type'     => array( 'post','page' ),
 
@@ -1179,44 +1179,44 @@ add_action(\'init\',\'gs_init\');
           'attrs'         => array(
 
               array(
-                  'label' => __('Blueprint - any device','pzarchitect'),
-                  'attr'  => 'blueprint',
-                  'type'  => 'select',
+                  'label'   => __('Blueprint - any device', 'pzarchitect'),
+                  'attr'    => 'blueprint',
+                  'type'    => 'select',
                   'options' => $pzarc_blueprints,
               ),
               array(
-                  'label' => __('Blueprint - tablet (optional)','pzarchitect'),
-                  'attr'  => 'tablet',
-                  'type'  => 'select',
+                  'label'   => __('Blueprint - tablet (optional)', 'pzarchitect'),
+                  'attr'    => 'tablet',
+                  'type'    => 'select',
                   'options' => $pzarc_blueprints,
               ),
               array(
-                  'label' => __('Blueprint - phone (optional)','pzarchitect'),
-                  'attr'  => 'phone',
-                  'type'  => 'select',
+                  'label'   => __('Blueprint - phone (optional)', 'pzarchitect'),
+                  'attr'    => 'phone',
+                  'type'    => 'select',
                   'options' => $pzarc_blueprints,
               ),
               array(
-                  'label' => __('Specific IDs (optional)','pzarchitect'),
-                  'attr'  => 'ids',
-                  'type'  => 'text',
-                  'description'=>__('Comma separated post, page, snippets, etc ids','pzarchitect')
+                  'label'       => __('Specific IDs (optional)', 'pzarchitect'),
+                  'attr'        => 'ids',
+                  'type'        => 'text',
+                  'description' => __('Comma separated post, page, snippets, etc ids', 'pzarchitect')
               ),
               array(
-                  'label' => __('Taxonomy (optional)','pzarchitect'),
-                  'attr'  => 'tax',
-                  'type'  => 'select',
-                  'options'=>pzarc_get_taxonomies(true)
+                  'label'   => __('Taxonomy (optional)', 'pzarchitect'),
+                  'attr'    => 'tax',
+                  'type'    => 'select',
+                  'options' => pzarc_get_taxonomies(true)
               ),
               array(
-                  'label' => __('Term IDs (optional)','pzarchitect'),
-                  'attr'  => 'terms',
-                  'type'  => 'text',
-                  'description'=>__('Comma separated term ids from the chosen taxonomy','pzarchitect')
+                  'label'       => __('Term IDs (optional)', 'pzarchitect'),
+                  'attr'        => 'terms',
+                  'type'        => 'text',
+                  'description' => __('Comma separated term ids from the chosen taxonomy', 'pzarchitect')
               ),
           ),
 
         )
     );
 
-  });
+  };

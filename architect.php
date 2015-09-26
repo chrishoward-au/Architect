@@ -325,7 +325,7 @@
 
       wp_enqueue_script( 'jquery' );
       wp_register_script( 'js-front', PZARC_PLUGIN_APP_URL . '/public/js/arc-front.js', array( 'jquery' ), 2, true );
-      wp_register_script( 'js-isotope-v2', PZARC_PLUGIN_APP_URL . '/public/js/isotope.pkgd.js', array( 'jquery' ), 2, true );
+      wp_register_script( 'js-isotope-v2', PZARC_PLUGIN_APP_URL . '/public/js/isotope.pkgd.min.js', array( 'jquery' ), 2, true );
       wp_register_script( 'js-imagesloaded', PZARC_PLUGIN_APP_URL . '/public/js/imagesloaded.pkgd.min.js', array( 'jquery' ), 2, true );
       wp_register_script( 'js-front-isotope', PZARC_PLUGIN_APP_URL . '/public/js/arc-front-isotope.js', array( 'jquery' ), 2, true );
 
