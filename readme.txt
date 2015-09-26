@@ -3,7 +3,7 @@ Contributors: chrishoward
 Tags: content,display,posts,pages,gallery,slider,tabs,tabbed,tabular,widget,hooks
 Requires at least: 3.5.0
 Tested up to: 4.4
-Stable tag: 1.4.9.5
+Stable tag: 1.4.9.6
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Plugin URI: http://architect4wp.com
@@ -92,6 +92,10 @@ For support, please send an email to support@pizazzwp.com
 2. Slider example
 
 == Changelog ==
+
+= 1.4.9.6 =
+* ADDED: arcshare shortcode for sharing links to each specific panel.
+* ADDED: Means to goto a share link's specific panel in a slider. Much more work than it should have been though!
 
 = 1.4.9.5 =
 * ADDED: Masonry inclusions/exclusions for filtering

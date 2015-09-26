@@ -211,6 +211,7 @@
       /** META */
       if ( strpos( $meta_string, '%id%' ) !== false ) {
         $this->data[ 'meta' ][ 'id' ] = get_the_id();
+        $this->data[ 'meta' ][ 'id' ] .= ' blueprint='.$this->build->blueprint['blueprint-id'];
       }
       if ( strpos( $meta_string, '%date%' ) !== false ) {
         $this->data[ 'meta' ][ 'datetime' ]  = get_the_date();

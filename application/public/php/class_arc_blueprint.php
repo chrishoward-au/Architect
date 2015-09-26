@@ -26,6 +26,7 @@
 
 
       self::get_blueprint();
+      $this->blueprint['parent-page-url']=get_the_permalink();
 
       if (empty($this->blueprint[ 'err_msg' ])) {
 //        for ($i = 1; $i <= 3; $i++) {
@@ -124,7 +125,8 @@
       }
 
       $this->blueprint[ 'blueprint-id' ] = $blueprint_query->posts[ 0 ]->ID;
-
+      global $arc_blueprint_id;
+      $arc_blueprint_id = $this->blueprint[ 'blueprint-id' ];
       $blueprint_info = get_post_meta($blueprint_query->posts[ 0 ]->ID);
       foreach ($blueprint_info as $key => $value) {
 

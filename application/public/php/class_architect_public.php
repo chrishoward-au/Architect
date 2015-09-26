@@ -41,7 +41,6 @@
      */
     public function __construct($blueprint, $is_shortcode)
     {
-
       // Might use this for transients to check last DB change
       //      global $wpdb;
       //      $newest = $wpdb->get_row("select post_modified from $wpdb->posts
@@ -274,7 +273,6 @@
 
       global $_architect_options;
       $use_hw_css = (!empty($_architect_options[ 'architect_use-hw-css' ]) ? 'use-hw-css' : null);
-
       /** BLUEPRINT */
       /**
        *
