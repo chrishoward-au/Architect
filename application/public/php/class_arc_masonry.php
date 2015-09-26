@@ -118,13 +118,14 @@
                 break;
               default:
                 if (!empty($this->blueprint[ '_blueprints_masonry-sort-fields-numeric' ]) && in_array($v, $this->blueprint[ '_blueprints_masonry-sort-fields-numeric' ])) {
-                  $v = '[data-sort]';
-//                  $v = "function (elem) {return parseFloat(elem.find('.".$v."').text().attr('data-sort'));}";
-                  $sort_data .= "{$s}:'{$v}',";
+//                  $v = '[data-sort-numeric]';
+                  var_dump($v);
+                $v = "function (elem) {return parseFloat(jQuery(elem).find('.{$v}').attr('data-sort-numeric'));}";
+                  $sort_data .= "{$s}:{$v},";
                 } elseif (!empty($this->blueprint[ '_blueprints_masonry-sort-fields-date' ]) && in_array($v, $this->blueprint[ '_blueprints_masonry-sort-fields-date' ])) {
-                  $v = '[data-sort]';
-//                  $v = "function (elem) {return Date.parse(elem.find('.".$v."').text().attr('data-sort'));}";
-                  $sort_data .= "{$s}:'{$v}',";
+    //              $v = '[data-sort-date]';
+                  $v = 'function (elem) {return Date.parse(jQuery(elem).find(".'.$v.'").attr("data-sort-date"));}';
+                  $sort_data .= "{$s}:{$v},";
                 } else {
                   $v = strpos($v, '.') !== 0 && strpos($v, '#') !== 0 ? '.' . $v : $v;
                   $sort_data .= "{$s}:'{$v}',";
@@ -164,6 +165,7 @@
           var sortByValue = $(this).attr('data-sort-by');
           var sortOrderValue = ($('#pzarc-blueprint_{$blueprint} .sort-order-button-group .current').attr('data-sort-order')=='true');
           console.log(sortByValue);
+          console.log(($('#pzarc-blueprint_{$blueprint}').find('._price').attr('data-sort-numeric')));
           container.isotope({ sortBy: sortByValue, sortAscending: sortOrderValue });
         });
 
