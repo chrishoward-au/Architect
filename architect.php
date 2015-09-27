@@ -156,8 +156,11 @@
       require_once PZARC_PLUGIN_APP_PATH . '/shared/architect/php/content-types/dummy/class_arc_content_dummy.php';
 
       // Load Architect page templater
-      require_once PZARC_PLUGIN_APP_PATH . '/admin/php/class_arcPageTemplater.php';
-
+      $pzarc_use_page_templater = get_option('architect_use-builder');
+//      var_dump($pzarc_use_page_templater);
+//      if ($pzarc_use_page_templater) {
+        require_once PZARC_PLUGIN_APP_PATH . '/admin/php/class_arcPageTemplater.php';
+//      }
 
       pzdb( 'before architect pro' );
 
