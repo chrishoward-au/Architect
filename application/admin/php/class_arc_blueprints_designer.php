@@ -1549,7 +1549,7 @@
       $sections[ '_masonry' ] = array(
           'title'      => __('Masonry', 'pzarchitect'),
           'icon_class' => 'icon-large',
-          //      'icon'       => 'el-icon-chevron-right',
+          'icon'       => 'el-icon-th',
           'fields'     => array(
               array(
                   'title'   => __('Features', 'pzarchitect'),
@@ -1590,6 +1590,7 @@
                   'multi'    => true,
                   'options'  => $sort_fields,
                   'required' => array($prefix . 'masonry-features', 'contains', 'sorting'),
+                  'subtitle'=> __('Some plugins, such as Woo Commerce, you need to use the field beginning with an underscore','pzarchtiect'),
                   'desc'     => __('It is up to YOU to ensure the sort fields are available in the Blueprint', 'pzarchitect')
               ),
               array(
@@ -2286,6 +2287,72 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
             ),
         );
 
+        $thisSection                      = 'masonry';
+        $sections[ '_styling_masonry' ] = array(
+            'id'         => 'masonry-css',
+            'title'      => 'Masonry',
+            'icon_class' => 'icon-large',
+            'icon'       => 'el-icon-th',
+            'fields'     => array(
+                array(
+                    'title'    => __('Filtering and sorting section', 'pzarchitect'),
+                    'id'       => $prefix . 'blueprint-masonry-css-heading',
+                    'type'     => 'section',
+                    'indent'   => true,
+                    'subtitle' => 'Class: ' . $_architect[ 'architect_config_' . $thisSection . '-selectors' ]
+
+                ),
+                pzarc_redux_font($prefix . $thisSection . $font, $this->defaults ? '' : $_architect[ 'architect_config_' . $thisSection . '-selectors' ], $defaults[ $optprefix . $thisSection . $font ]),
+                pzarc_redux_bg($prefix . $thisSection . $background, $this->defaults ? '' : $_architect[ 'architect_config_' . $thisSection . '-selectors' ], $defaults[ $optprefix . $thisSection . $background ]),
+                pzarc_redux_padding($prefix . $thisSection . $padding, $this->defaults ? '' : $_architect[ 'architect_config_' . $thisSection . '-selectors' ], $defaults[ $optprefix . $thisSection . $padding ]),
+                pzarc_redux_margin($prefix . $thisSection . $margin, $this->defaults ? '' : $_architect[ 'architect_config_' . $thisSection . '-selectors' ], $defaults[ $optprefix . $thisSection . $margin ]),
+                pzarc_redux_borders($prefix . $thisSection . $border, $this->defaults ? '' : $_architect[ 'architect_config_' . $thisSection . '-selectors' ], $defaults[ $optprefix . $thisSection . $border ]),
+                array(
+                    'title'    => __('Buttons', 'pzarchitect'),
+                    'id'       => $prefix . 'blueprint-masonry-buttons-css-heading',
+                    'type'     => 'section',
+                    'indent'   => true,
+                    'subtitle' => 'Class: ' . $_architect[ 'architect_config_' . $thisSection . '-buttons-selectors' ]
+
+                ),
+                pzarc_redux_font($prefix . $thisSection. '-buttons' . $font, $this->defaults ? '' : $_architect[ 'architect_config_' . $thisSection . '-buttons-selectors' ], $defaults[ $optprefix . $thisSection . '-buttons'. $font ]),
+                pzarc_redux_bg($prefix . $thisSection. '-buttons' . $background, $this->defaults ? '' : $_architect[ 'architect_config_' . $thisSection . '-buttons-selectors' ], $defaults[ $optprefix . $thisSection . '-buttons'. $background ]),
+                pzarc_redux_padding($prefix . $thisSection. '-buttons' . $padding, $this->defaults ? '' : $_architect[ 'architect_config_' . $thisSection . '-buttons-selectors' ], $defaults[ $optprefix . $thisSection . '-buttons'. $padding ]),
+                pzarc_redux_margin($prefix . $thisSection. '-buttons' . $margin, $this->defaults ? '' : $_architect[ 'architect_config_' . $thisSection . '-buttons-selectors' ], $defaults[ $optprefix . $thisSection . '-buttons'. $margin ]),
+                pzarc_redux_borders($prefix . $thisSection. '-buttons' . $border, $this->defaults ? '' : $_architect[ 'architect_config_' . $thisSection . '-buttons-selectors' ], $defaults[ $optprefix . $thisSection . '-buttons'. $border ]),
+                array(
+                    'title'    => __('Selected', 'pzarchitect'),
+                    'id'       => $prefix . 'blueprint-masonry-selected-css-heading',
+                    'type'     => 'section',
+                    'indent'   => true,
+                    'subtitle' => 'Class: ' . $_architect[ 'architect_config_' . $thisSection . '-selected-selectors' ]
+                ),
+                pzarc_redux_font($prefix . $thisSection . '-selected' . $font, $this->defaults ? '' : $_architect[ 'architect_config_' . $thisSection . '-selected-selectors' ], $defaults[ $optprefix . $thisSection . '-selected' . $font ]),
+                pzarc_redux_bg($prefix . $thisSection . '-selected' . $background, $this->defaults ? '' : $_architect[ 'architect_config_' . $thisSection . '-selected-selectors' ], $defaults[ $optprefix . $thisSection . '-selected' . $background ]),
+                pzarc_redux_borders($prefix . $thisSection . '-selected' . $border, $this->defaults ? '' : $_architect[ 'architect_config_' . $thisSection . '-selected-selectors' ], $defaults[ $optprefix . $thisSection . '-selected' . $border ]),
+                array(
+                    'title'    => __('Hover', 'pzarchitect'),
+                    'id'       => $prefix . 'blueprint-hover-css-heading',
+                    'type'     => 'section',
+                    'indent'   => true,
+                    'subtitle' => 'Class: ' . $_architect[ 'architect_config_' . $thisSection . '-hover-selectors' ]
+                ),
+                pzarc_redux_font($prefix . $thisSection . '-hover' . $font, $this->defaults ? '' : $_architect[ 'architect_config_' . $thisSection . '-clear-selectors' ], $defaults[ $optprefix . $thisSection . '-hover' . $font ]),
+                pzarc_redux_bg($prefix . $thisSection . '-hover' . $background, $this->defaults ? '' : $_architect[ 'architect_config_' . $thisSection . '-clear-selectors' ], $defaults[ $optprefix . $thisSection . '-hover' . $background ]),
+                pzarc_redux_borders($prefix . $thisSection . '-hover' . $border, $this->defaults ? '' : $_architect[ 'architect_config_' . $thisSection . '-clear-selectors' ], $defaults[ $optprefix . $thisSection . '-hover' . $border ]),
+                array(
+                    'title'    => __('Clear button', 'pzarchitect'),
+                    'id'       => $prefix . 'blueprint-clear-css-heading',
+                    'type'     => 'section',
+                    'indent'   => true,
+                    'subtitle' => 'Class: ' . $_architect[ 'architect_config_' . $thisSection . '-clear-selectors' ]
+                ),
+                pzarc_redux_font($prefix . $thisSection . '-clear' . $font, $this->defaults ? '' : $_architect[ 'architect_config_' . $thisSection . '-clear-selectors' ], $defaults[ $optprefix . $thisSection . '-clear' . $font ]),
+                pzarc_redux_bg($prefix . $thisSection . '-clear' . $background, $this->defaults ? '' : $_architect[ 'architect_config_' . $thisSection . '-clear-selectors' ], $defaults[ $optprefix . $thisSection . '-clear' . $background ]),
+                pzarc_redux_borders($prefix . $thisSection . '-clear' . $border, $this->defaults ? '' : $_architect[ 'architect_config_' . $thisSection . '-clear-selectors' ], $defaults[ $optprefix . $thisSection . '-clear' . $border ]),
+            ),
+        );
+
         $thisSection                      = 'accordion-titles';
         $sections[ '_styling_accordion' ] = array(
             'id'         => 'accordion-css',
@@ -2494,7 +2561,8 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
                   'step'          => 1,
                   'display_value' => 'label',
                   'required'      => array($prefix . 'components-to-show', 'contains', 'custom'),
-                  'subtitle'      => __('Each of the three Custom groups can have multiple custom fields. Enter the <strong>total</strong> number of custom fields, click Save/Update', 'pzarchitect'),
+                  'subtitle'      => __('Each of the three Custom groups can have multiple custom fields. Enter the <strong>total</strong> number of custom fields, click Publish/Update', 'pzarchitect'),
+                  'desc' => __('When you change this number, click Publish/Update to update Custom Fields tabs at left','pzarchitect'),
                   'hint'          => array(
                       'title'   => __('Number of custom fields', 'pzarchitect'),
                       'content' => __('After selecting upto three custom field groups, you now need to set the total number of custom fields you will be displaying so Architect can create the settings tabs for each one.<br><br><strong>You will need to Publish/Update to see those new tabs.</strong>', 'pzarchitect')

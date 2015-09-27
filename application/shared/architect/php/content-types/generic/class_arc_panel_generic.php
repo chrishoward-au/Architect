@@ -515,7 +515,7 @@
           }
 
           if ($this->section[ '_panels_design_cfield-' . $i . '-field-type' ]==='date') {
-            $cfdate = strtotime( $this->data[ 'cfield' ][ $i ][ 'value' ] ) ; //convert field value to date
+            $cfdate = is_numeric($this->data[ 'cfield' ][ $i ][ 'value' ])?$this->data[ 'cfield' ][ $i ][ 'value' ]:strtotime( $this->data[ 'cfield' ][ $i ][ 'value' ] ) ; //convert field value to date
             $cfdate = empty($cfdate)?'000000':$cfdate;
             $this->data[ 'cfield' ][$i]['data']="data-sort-date='{$cfdate}'";
           }
