@@ -64,7 +64,12 @@
       '."\n\n";
 
     $pzarchitect_slider_scripts .= "\n\n".'var slick'.$blueprint[ 'blueprint-id' ].' = jQuery(".' . $blueprint[ 'uid' ] . ' .pzarc-section-using-' . $blueprint[ '_blueprints_short-name' ] . '");
-    slick'.$blueprint[ 'blueprint-id' ].'.slick({initialSlide:startPanel});
+
+    if (startPanel>0) {
+      slick'.$blueprint[ 'blueprint-id' ].'.slick({initialSlide:startPanel});
+    }else{
+     slick'.$blueprint[ 'blueprint-id' ].'.slick();
+    }
         '."\n\n";
 
 
@@ -119,7 +124,7 @@
       }
       nav'.$blueprint[ 'blueprint-id' ].'.slick({';
       $pzarchitect_slider_scripts .= '  asNavFor:".' . $blueprint[ 'uid' ] . ' .pzarc-section-using-' . $blueprint[ '_blueprints_short-name' ] . '"';
-      $pzarchitect_slider_scripts .= ', initialSlide:startPanel';
+//      $pzarchitect_slider_scripts .= ', initialSlide:startPanel';
       $pzarchitect_slider_scripts .= ', slidesToShow:' . $navs_items_toshow;
       $pzarchitect_slider_scripts .= ', slidesToScroll:' . $navs_items_toskip;
       $pzarchitect_slider_scripts .= ', focusOnSelect:true';
