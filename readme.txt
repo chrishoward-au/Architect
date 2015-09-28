@@ -3,7 +3,7 @@ Contributors: chrishoward
 Tags: content,display,posts,pages,gallery,slider,tabs,tabbed,tabular,widget,hooks
 Requires at least: 3.5.0
 Tested up to: 4.4
-Stable tag: 1.4.9.6
+Stable tag: 1.5.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Plugin URI: http://architect4wp.com
@@ -93,28 +93,16 @@ For support, please send an email to support@pizazzwp.com
 
 == Changelog ==
 
-= 1.4.9.6 =
-* ADDED: arcshare shortcode for sharing links to each specific panel.
-* ADDED: Means to goto a share link's specific panel in a slider. Much more work than it should have been though!
-* FIXED: Masonry sorting on numeric and date custom fields now working
-
-= 1.4.9.5 =
-* ADDED: Masonry inclusions/exclusions for filtering
-* FIXED: Only first custom taxonomy showing in meta fields
-
-= 1.4.9.4 =
-* ADDED: Option to use Headway alternative titles. On by default.
-
-= 1.4.9.3 =
-* ADDED: Option to display author avatars
-* FIXED: A few bugs and styling in Masonry filtering and sorting.
-
-= 1.4.9.2 =
+= 1.5.0 : 27 Sept 2015=
 * ADDED: Support for filtering and sorting in masonry layouts!!
-
-= 1.4.9.1 =
+* ADDED: Option to use Headway alternative titles. On by default.
+* ADDED: Option to display author avatars
+* ADDED: [arcshare] shortcode for sharing links to each specific panel. (This will be used in a future update to share links to specific slides)
 * CHANGED: Tidied up and compressed images (using tinypng.com). Saved 300KB in zip file!
 * CHANGED: Tightened specificity of panels class to minimize conflicts in nested blueprints (e.g. content blueprint with a shortcode blueprint within)
+* FIXED: Masonry sorting on numeric and date custom fields now working
+* FIXED: Only first custom taxonomy showing in meta fields
+* FIXED: A few bugs and styling in Masonry filtering and sorting.
 * FIXED: Transition speed not working
 
 = 1.4.9 : 16 Sept 2015 =

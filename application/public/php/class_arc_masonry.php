@@ -169,6 +169,7 @@
                 container.isotope('updateSortData').isotope();
               } );
 
+
         // sort items on button click
         jQuery('.sort-by-button-group').on( 'click', 'button', function() {
           jQuery('.sort-by-button-group').find('.selected').removeClass('selected');
