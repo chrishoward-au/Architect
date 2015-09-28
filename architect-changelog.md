@@ -1,13 +1,26 @@
 # Architect change history 
 
-## 1.4.9 : 16 Sept 2015 =
+## 1.5.0 : 27 Sept 2015
+* ADDED: Option to use Headway alternative titles. On by default.
+* ADDED: Option to display author avatars
+* ADDED: Support for filtering and sorting in masonry layouts!!
+* ADDED: Masonry inclusions/exclusions for filtering
+* ADDED: [arcshare] shortcode for sharing links to each specific panel.  (This will be used in a future update to share links to specific slides)
+* CHANGED: Tidied up and compressed images (using tinypng.com). Saved 300KB in zip file!
+* CHANGED: Tightened specificity of panels class to minimize conflicts in nested blueprints (e.g. content blueprint with a shortcode blueprint within)
+* FIXED: Masonry sorting on numeric and date custom fields now working
+* FIXED: Only first custom taxonomy showing in meta fields
+* FIXED: A few bugs and styling in Masonry filtering and sorting.
+* FIXED: Transition speed not working
+
+## 1.4.9 : 16 Sept 2015
 * FIXED: Pages instead of posts showing on Blog index
 * CHANGED: Default posts per page for pagination to value set in WP Settings > Reading
  
-## 1.4.8.2 =
+## 1.4.8.2 
 * ADDED: Option for specific filler image (thanks Cemil!)
 
-## 1.4.8.1 =
+## 1.4.8.1
 * FIXED: Error displaying in Headway Visual Editor Design Mode when Defaults was content source.
 
 ## 1.4.8 : 9 Sept 2015 
