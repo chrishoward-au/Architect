@@ -52,8 +52,24 @@
 
     $pzarchitect_slider_scripts = isset($pzarchitect_slider_scripts) ? $pzarchitect_slider_scripts : '';
 
+    $pzarchitect_slider_scripts .= '
+          var gotoPanel = localStorage.getItem("gotoPanel");
+          var gotoBlueprint = localStorage.getItem("gotoBlueprint");
+          var startPanel = "0";
+          if (gotoPanel>0 && gotoBlueprint.length>0) {
+              startPanel = gotoPanel-1;
+          }
+        localStorage.setItem("gotoBlueprint","");
+        localStorage.setItem("gotoPanel","0");
+      '."\n\n";
+
     $pzarchitect_slider_scripts .= "\n\n".'var slick'.$blueprint[ 'blueprint-id' ].' = jQuery(".' . $blueprint[ 'uid' ] . ' .pzarc-section-using-' . $blueprint[ '_blueprints_short-name' ] . '");
-    slick'.$blueprint[ 'blueprint-id' ].'.slick();
+
+    if (startPanel>0) {
+      slick'.$blueprint[ 'blueprint-id' ].'.slick({initialSlide:startPanel});
+    }else{
+     slick'.$blueprint[ 'blueprint-id' ].'.slick();
+    }
         '."\n\n";
 
 
@@ -101,8 +117,14 @@
 
       $pzarchitect_slider_scripts .= '
       var nav'.$blueprint[ 'blueprint-id' ].' = jQuery(".' . $blueprint[ 'uid' ] . ' .pzarc-navigator-' . $blueprint[ '_blueprints_short-name' ] . '");
+      if (startPanel>0) {
+        jQuery(nav'.$blueprint[ 'blueprint-id' ].').find(".arc-slider-slide-nav-item.active").removeClass("active");
+        jQuery(nav'.$blueprint[ 'blueprint-id' ].').find(".arc-navitem-"+(startPanel+1)).addClass("active");
+
+      }
       nav'.$blueprint[ 'blueprint-id' ].'.slick({';
       $pzarchitect_slider_scripts .= '  asNavFor:".' . $blueprint[ 'uid' ] . ' .pzarc-section-using-' . $blueprint[ '_blueprints_short-name' ] . '"';
+//      $pzarchitect_slider_scripts .= ', initialSlide:startPanel';
       $pzarchitect_slider_scripts .= ', slidesToShow:' . $navs_items_toshow;
       $pzarchitect_slider_scripts .= ', slidesToScroll:' . $navs_items_toskip;
       $pzarchitect_slider_scripts .= ', focusOnSelect:true';

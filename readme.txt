@@ -97,7 +97,8 @@ For support, please send an email to support@pizazzwp.com
 * ADDED: Support for filtering and sorting in masonry layouts!!
 * ADDED: Option to use Headway alternative titles. On by default.
 * ADDED: Option to display author avatars
-* ADDED: [arcshare] shortcode for sharing links to each specific panel. (This will be used in a future update to share links to specific slides)
+* ADDED: [arcshare] shortcode for sharing links to each specific panel.
+* ADDED: Links to specific slides using link from arcshare shortcode
 * CHANGED: Tidied up and compressed images (using tinypng.com). Saved 300KB in zip file!
 * CHANGED: Tightened specificity of panels class to minimize conflicts in nested blueprints (e.g. content blueprint with a shortcode blueprint within)
 * FIXED: Masonry sorting on numeric and date custom fields now working
