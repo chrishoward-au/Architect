@@ -21,7 +21,11 @@
         printf(__('<h1>Architect v1.5.0</h1>
         <h3>Architect 1.5 is a small update with a big new feature!</h3>
         <p>You can now provide sorting and filtering options on masonry layouts. Importantly, it works with custom content (such as Woo Commerce). This opens up many possibilities for more user friendly site interaction.</p>
-        <p>Demo</p>
+        <p>Demo: <a href="http://demos.architect4wp.com/features/custom-content/" target="_blank" title="Woo Commerce products with sorting and filtering">Woo Commerce products with sorting and filtering</a></p>
+        <p>Tutorial: </p>
+        <p>The other new feature is you can share links to a specific slide in a slide show.</p>
+        <p>Tutorial:</p>
+
                         <div>
                         <a class="pzarc-button-help" href="http://architect4wp.com/codex-listings/" target="_blank">
                         <span class="dashicons dashicons-book"></span>

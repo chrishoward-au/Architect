@@ -459,6 +459,19 @@
         );
 
       }
+
+
+      $current_theme = wp_get_theme();
+      $is_hw = ( ($current_theme->get('Name') === 'Headway Base' || $current_theme->get('Template')=='headway') ) ;
+
+      if ($is_hw && !$_architect_options['architect_enable_styling']) {
+        $sections[ '_general_bp' ][ 'fields' ][] = array(
+            'id'    => $prefix . 'headway-styling-message',
+            'title' => __('Headway and Styling', 'pzarchitect'),
+            'type'  => 'info',
+            'desc'  => __('When using Headway, the Architect Styling tabs will not show unless you enable <em>Architect</em> > <em>Options</em> > <em>Use Architect Styling</em>. Note: Architect styling will take precedence over Headway styling.', 'pzarchitect'),
+        );
+      }
       if (!$animation_state) {
         $sections[ '_general_bp' ][ 'fields' ][] = array(
             'id'    => $prefix . 'animation-message',
@@ -2921,6 +2934,89 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
                   ),
                   'subtitle' => __('Select the wrapper element for the title field', 'pzarchitect')
 
+              ),
+              array(
+                  'title'    => __('Use responsive font sizes', 'pzarchitect'),
+                  'id'       => $prefix . 'use-responsive-font-size-title',
+                  'type'     => 'switch',
+                  'default'  => false,
+                  //'required' => array('show_advanced', 'equals', true),
+                  'subtitle' => __('Enabling this will override all other CSS title sizing', 'pzarchitect')
+              ),
+              array(
+                  'id'              => $prefix . 'title-font-size-bp1',
+                  'title'           => __('Font size - large screen ', 'pzarchitect'),
+                  'subtitle'        => $_architect_options[ 'architect_breakpoint_1' ][ 'width' ] . __(' and above', 'pzarchitect'),
+                  'required'        => array($prefix . 'use-responsive-font-size-title', 'equals', true),
+                  'type'            => 'typography',
+                  'text-decoration' => false,
+                  'font-variant'    => false,
+                  'text-transform'  => false,
+                  'font-family'     => false,
+                  'font-size'       => true,
+                  'font-weight'     => false,
+                  'font-style'      => false,
+                  'font-backup'     => false,
+                  'google'          => false,
+                  'subsets'         => false,
+                  'custom_fonts'    => false,
+                  'text-align'      => false,
+                  //'text-shadow'       => false, // false
+                  'color'           => false,
+                  'preview'         => false,
+                  'line-height'     => true,
+                  'word-spacing'    => false,
+                  'letter-spacing'  => false,
+              ),
+              array(
+                  'id'              => $prefix . 'title-font-size-bp2',
+                  'title'           => __('Font size - medium screen ', 'pzarchitect'),
+                  'subtitle'        => $_architect_options[ 'architect_breakpoint_2' ][ 'width' ] . ' to ' . $_architect_options[ 'architect_breakpoint_1' ][ 'width' ],
+                  'required'        => array($prefix . 'use-responsive-font-size-title', 'equals', true),
+                  'type'            => 'typography',
+                  'text-decoration' => false,
+                  'font-variant'    => false,
+                  'text-transform'  => false,
+                  'font-family'     => false,
+                  'font-size'       => true,
+                  'font-weight'     => false,
+                  'font-style'      => false,
+                  'font-backup'     => false,
+                  'google'          => false,
+                  'subsets'         => false,
+                  'custom_fonts'    => false,
+                  'text-align'      => false,
+                  //'text-shadow'       => false, // false
+                  'color'           => false,
+                  'preview'         => false,
+                  'line-height'     => true,
+                  'word-spacing'    => false,
+                  'letter-spacing'  => false,
+              ),
+              array(
+                  'id'              => $prefix . 'title-font-size-bp3',
+                  'title'           => __('Font size - small screen ', 'pzarchitect'),
+                  'subtitle'        => $_architect_options[ 'architect_breakpoint_2' ][ 'width' ] . ' and below',
+                  'required'        => array($prefix . 'use-responsive-font-size-title', 'equals', true),
+                  'type'            => 'typography',
+                  'text-decoration' => false,
+                  'font-variant'    => false,
+                  'text-transform'  => false,
+                  'font-family'     => false,
+                  'font-size'       => true,
+                  'font-weight'     => false,
+                  'font-style'      => false,
+                  'font-backup'     => false,
+                  'google'          => false,
+                  'subsets'         => false,
+                  'custom_fonts'    => false,
+                  'text-align'      => false,
+                  //'text-shadow'       => false, // false
+                  'color'           => false,
+                  'preview'         => false,
+                  'line-height'     => true,
+                  'word-spacing'    => false,
+                  'letter-spacing'  => false,
               ),
           )
       );

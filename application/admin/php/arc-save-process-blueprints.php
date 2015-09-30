@@ -372,7 +372,26 @@
 
           break;
 
+
         // TODO: Lazy ass! Work outhow to do this in case statement!
+        // Titles responsive fonts
+        case ($key == '_panels_design_title-font-size-bp1' && !empty($pzarc_panels[ '_panels_design_title-font-size-bp1' ]) && !empty($pzarc_panels[ '_panels_design_use-responsive-font-size-title' ])):
+          $em_width = (int)str_replace('px', '', $_architect_options[ 'architect_breakpoint_1' ][ 'width' ]) / 16;
+          $pzarc_contents .= '@media (min-width: ' . $em_width . 'em) { ' . $class_prefix . ' .entry-title {font-size:' . $pzarc_panels[ '_panels_design_title-font-size-bp1' ][ 'font-size' ] . '!important;line-height:' . $pzarc_panels[ '_panels_design_title-font-size-bp1' ][ 'line-height' ] . ';!important}}' . $nl;
+          break;
+
+        case ($key == '_panels_design_title-font-size-bp2' && !empty($pzarc_panels[ '_panels_design_title-font-size-bp2' ]) && !empty($pzarc_panels[ '_panels_design_use-responsive-font-size-title' ])):
+          $em_widthU = (int)str_replace('px', '', $_architect_options[ 'architect_breakpoint_1' ][ 'width' ]) / 16;
+          $em_widthL = (int)str_replace('px', '', $_architect_options[ 'architect_breakpoint_2' ][ 'width' ]) / 16;
+          $pzarc_contents .= '@media (min-width: ' . $em_widthL . 'em) and (max-width: ' . $em_widthU . 'em) { ' . $class_prefix . ' .entry-title {font-size:' . $pzarc_panels[ '_panels_design_title-font-size-bp2' ][ 'font-size' ] . '!important;line-height:' . $pzarc_panels[ '_panels_design_title-font-size-bp2' ][ 'line-height' ] . '!important;}}' . $nl;
+          break;
+
+        case ($key == '_panels_design_title-font-size-bp3' && !empty($pzarc_panels[ '_panels_design_title-font-size-bp3' ]) && !empty($pzarc_panels[ '_panels_design_use-responsive-font-size-title' ])):
+          $em_width = (int)str_replace('px', '', $_architect_options[ 'architect_breakpoint_2' ][ 'width' ]) / 16;
+          $pzarc_contents .= '@media (max-width: ' . $em_width . 'em) { ' . $class_prefix . ' .entry-title {font-size:' . $pzarc_panels[ '_panels_design_title-font-size-bp3' ][ 'font-size' ] . '!important;line-height:' . $pzarc_panels[ '_panels_design_title-font-size-bp3' ][ 'line-height' ] . '!important;}}' . $nl;
+
+          break;
+        // Content responsive fonts
         case ($key == '_panels_design_content-font-size-bp1' && !empty($pzarc_panels[ '_panels_design_content-font-size-bp1' ]) && !empty($pzarc_panels[ '_panels_design_use-responsive-font-size' ])):
 
           $em_width = (int)str_replace('px', '', $_architect_options[ 'architect_breakpoint_1' ][ 'width' ]) / 16;
@@ -386,7 +405,7 @@
           $em_widthU = (int)str_replace('px', '', $_architect_options[ 'architect_breakpoint_1' ][ 'width' ]) / 16;
           $em_widthL = (int)str_replace('px', '', $_architect_options[ 'architect_breakpoint_2' ][ 'width' ]) / 16;
 
-          $pzarc_contents .= '@media (min-width: ' . $em_widthL . 'em and max-width: ' . $em_widthU . 'em) { ' . $class_prefix . ' .entry-content, ' . $class_prefix . ' .entry-excerpt {font-size:' . $pzarc_panels[ '_panels_design_content-font-size-bp2' ][ 'font-size' ] . '!important;line-height:' . $pzarc_panels[ '_panels_design_content-font-size-bp2' ][ 'line-height' ] . '!important;}}' . $nl;
+          $pzarc_contents .= '@media (min-width: ' . $em_widthL . 'em) and (max-width: ' . $em_widthU . 'em) { ' . $class_prefix . ' .entry-content, ' . $class_prefix . ' .entry-excerpt {font-size:' . $pzarc_panels[ '_panels_design_content-font-size-bp2' ][ 'font-size' ] . '!important;line-height:' . $pzarc_panels[ '_panels_design_content-font-size-bp2' ][ 'line-height' ] . '!important;}}' . $nl;
 
           break;
 

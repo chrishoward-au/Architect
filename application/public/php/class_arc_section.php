@@ -254,7 +254,7 @@
       $settings = $this->section[ 'section-panel-settings' ];
       $toshow   = json_decode($settings[ '_panels_design_preview' ], true);
       pzdb('json decode ' . get_the_id());
-      $panel_class->set_data($post, $toshow, $settings);
+      $panel_class->set_data($post, $toshow, $settings,$panel_number);
       pzdb('set data ' . get_the_id());
 //      $elements = array();
 //

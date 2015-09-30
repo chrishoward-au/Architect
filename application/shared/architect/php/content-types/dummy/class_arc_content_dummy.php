@@ -52,6 +52,7 @@
               'options' => array(
                 'lorempixel' => __('Random Picture','pzarchitect'),
                 'dummyimage' => __('Place holder','pzarchitect'),
+                'specific'=>__('Custom specific image','pzarchitect'),
                 'abstract'   => ucfirst( 'abstract' ),
                 'animals'    => ucfirst( 'animals' ),
                 'business'   => ucfirst( 'business' ),
@@ -65,6 +66,14 @@
                 'sports'           => ucfirst( 'sports' ),
                 'technics'           => ucfirst( 'transport' ),
               )
+            ),
+            array(
+                'id'             => $prefix . 'use-dummy-image-source-specific',
+                'type'           => 'gallery',
+                'title'          => __('Specific filler images', 'pzarchitect'),
+                'subtitle'       => __('Selected images will be used for dummy posts in this Blueprint.', 'pzarchitect'),
+                'required'       => array($prefix . 'image-source', '=', 'specific'),
+                'library_filter' => array('jpg', 'jpeg', 'png')
             ),
             array(
               'title'   => __( 'Greyscale', 'pzarchitect' ),
