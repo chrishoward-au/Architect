@@ -1601,7 +1601,7 @@
                   'id'       => $prefix . 'masonry-sort-fields',
                   'type'     => 'select',
                   'multi'    => true,
-                  'sortable' => true,
+//                  'sortable' => true, //when enabled, it breaks coz $sort_Fields is a multilevel array
                   'options'  => $sort_fields,
                   'required' => array($prefix . 'masonry-features', 'contains', 'sorting'),
                   'subtitle'=> __('Some plugins, such as Woo Commerce, you need to use the field beginning with an underscore','pzarchtiect'),
@@ -1612,18 +1612,18 @@
                   'id'       => $prefix . 'masonry-sort-fields-numeric',
                   'type'     => 'select',
                   'multi'    => true,
-                  'options'  => $sort_fields,
+                  'options'  => $this->custom_fields,
                   'required' => array($prefix . 'masonry-features', 'contains', 'sorting'),
-                  'subtitle'     => __('Select which of the above fields are numeric', 'pzarchitect')
+                  'subtitle'     => __('Select which of the above custom fields are numeric', 'pzarchitect')
               ),
               array(
                   'title'    => __('Date sort fields', 'pzarchitect'),
                   'id'       => $prefix . 'masonry-sort-fields-date',
                   'type'     => 'select',
                   'multi'    => true,
-                  'options'  => $sort_fields,
+                  'options'  => $this->custom_fields,
                   'required' => array($prefix . 'masonry-features', 'contains', 'sorting'),
-                  'subtitle'     => __('Select which of the above fields contain dates', 'pzarchitect')
+                  'subtitle'     => __('Select which of the above custom fields contain dates', 'pzarchitect')
               ),
               array(
                   'id'       => $prefix . 'masonry-sorting-section-close',

@@ -98,7 +98,7 @@
         $classes .= ' ';
         foreach ($this->blueprint[ '_blueprints_masonry-filtering' ] as $tax) {
           $terms = get_the_terms(get_the_id(), $tax);
-          if (!empty($terms)) {
+          if (!empty($terms) && !isset($terms->errors)) {
             foreach ($terms as $term_obj) {
               $classes .= $tax . '-' . $term_obj->slug . ' ';
             }

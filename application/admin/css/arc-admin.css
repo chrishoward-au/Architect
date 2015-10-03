@@ -41,10 +41,12 @@ body span.pzarc-shortname {
 	right:0;
 }
 */
+.arc-updates ul,
 .pzarc-infobox ul {
   margin-left: 15px;
   line-height: 1; }
 
+.arc-updates li,
 .pzarc-infobox li {
   list-style-type: disc; }
 

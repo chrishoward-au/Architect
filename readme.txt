@@ -93,22 +93,25 @@ For support, please send an email to support@pizazzwp.com
 
 == Changelog ==
 
-= 1.5.0 : 30 Sept 2015=
-* ADDED: Support for filtering and sorting in masonry layouts!!
+= 1.5.0 : 3 Oct 2015=
+* ADDED: Support for filtering and sorting in masonry layouts!! (Thanks, Jamie!)
 * ADDED: Option to use Headway alternative titles. On by default.
-* ADDED: Option to display author avatars
+* ADDED: Option to display author avatars (Thanks Courtney!)
 * ADDED: [arcshare] shortcode for sharing links to each specific panel.
 * ADDED: Links to specific slides using link from arcshare shortcode
 * ADDED: Message on Blueprint editor for Headway users about Architect styling.
-* ADDED: Option for responsive font sizes on titles
-* ADDED: Option to Dummy content to use your own set of images
+* ADDED: Option for responsive font sizes on titles (Thanks, Chiara!)
+* ADDED: Option to set Dummy content to use your own set of images (Thanks, Jeremy!)
+* ---
 * CHANGED: Tidied up and compressed images (using tinypng.com). Saved 300KB in zip file!
 * CHANGED: Tightened specificity of panels class to minimize conflicts in nested blueprints (e.g. content blueprint with a shortcode blueprint within)
+* ---
 * FIXED: Masonry sorting on numeric and date custom fields now working
 * FIXED: Only first custom taxonomy showing in meta fields
 * FIXED: A few bugs and styling in Masonry filtering and sorting.
 * FIXED: Transition speed not working
 * FIXED: Bug where responsive font sizes for content not working for medium breakpoint
+* FIXED: Errors in filters and sorting if chosen custom post type deactivated
 
 = 1.4.9 : 16 Sept 2015 =
 * FIXED: Pages instead of posts showing on Blog index

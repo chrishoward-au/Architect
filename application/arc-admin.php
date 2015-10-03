@@ -499,7 +499,7 @@
                         <li>' . __('To create a new Blueprint without any inbuilt styles, click <em>Use unstyled</em>. Note, the Blueprint when dispalyed will inherit some styling from your theme.', 'pzarchitect') . '</li>
                         <li>' . __('Change the <em>Title</em> and <em>Blueprint Short name</em> to whatever is suitable', 'pzarchitect') . '</li>
                         <li>' . __('Click <em>Update</em> to save.', 'pzarchitect') . '</li>
-                        <li>' . __('Within a WordPres page or post, add the shortcode <strong>[architect yourblueprint]</strong> where <em>yourblueprint</em> is the <em>Shortname</em> you gave the Blueprint.', 'pzarchitect') . '</li>
+                        <li>' . __('Within a WordPress page or post, add the shortcode <strong>[architect yourblueprint]</strong> or <strong>[architect blueprint="yourblueprint"]</strong> where <em>yourblueprint</em> is the <em>Shortname</em> you gave the Blueprint.', 'pzarchitect') . '</li>
                         <li>' . __('Click <em>Update</em> to save and visit that page on your site to see your awesome Architect Blueprint displayed.', 'pzarchitect') . '</li>
                     </ol>
                     </div>

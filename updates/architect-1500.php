@@ -17,14 +17,21 @@
       $user_id = $current_user->ID;
       /* Check that the user hasn't already clicked to ignore the message */
       if (!get_user_meta($user_id, 'pzarc_ignore_notice_v1500')) {
-        echo '<div class="message updated highlight"><p>';
+        echo '<div class="message updated highlight arc-updates"><p>';
         printf(__('<h1>Architect v1.5.0</h1>
-        <h3>Architect 1.5 is a small update with a big new feature!</h3>
-        <p>You can now provide sorting and filtering options on masonry layouts. Importantly, it works with custom content (such as Woo Commerce). This opens up many possibilities for more user friendly site interaction.</p>
+        <h3>Architect 1.5 is several small improvements with a big new feature!</h3>
+        <p>You can now provide sorting and filtering options on masonry layouts. Importantly, it works with custom content (such as Woo Commerce). This opens up many possibilities for more user friendly site interaction. Thanks to Jamie, support guru at Headway, for requesting this feature.</p>
         <p>Demo: <a href="http://demos.architect4wp.com/features/custom-content/" target="_blank" title="Woo Commerce products with sorting and filtering">Woo Commerce products with sorting and filtering</a></p>
-        <p>Tutorial: </p>
-        <p>The other new feature is you can share links to a specific slide in a slide show.</p>
-        <p>Tutorial:</p>
+        <p>Tutorial: <a href="http://architect4wp.com/codex/architect-using-masonry-filtering-and-sorting/" target="_blank">Using filtering and sorting in Masonry layouts</a></p>
+        <p>Another new feature is you can share links to a specific slide in a slide show.</p>
+        <p>Tutorial: <a href="http://architect4wp.com/codex/architect-sharing-blueprint-slides-with-the-arcshare-shortcode/" target="_blank">Sharing slides using the archsare shortcode</a></p>
+        <p>Other features to look for are:</p>
+        <ul>
+          <li>Added option to use Headway alternative titles. (In Title settings. On by default)</li>
+          <li>Added option to display author avatars (under Meta settings)</li>
+          <li>Added option for responsive font sizes on titles (In Titles settings)</li>
+          <li>Added option to Dummy content to use your own set of images (In Dummy Content source)</li>
+        </ul>
 
                         <div>
                         <a class="pzarc-button-help" href="http://architect4wp.com/codex-listings/" target="_blank">
