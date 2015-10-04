@@ -41,7 +41,6 @@
      */
     public function __construct($blueprint, $is_shortcode)
     {
-
       // Might use this for transients to check last DB change
       //      global $wpdb;
       //      $newest = $wpdb->get_row("select post_modified from $wpdb->posts
@@ -274,7 +273,6 @@
 
       global $_architect_options;
       $use_hw_css = (!empty($_architect_options[ 'architect_use-hw-css' ]) ? 'use-hw-css' : null);
-
       /** BLUEPRINT */
       /**
        *
@@ -289,6 +287,7 @@
        */
 
       pzdb('top blueprint html');
+      echo '<!-- Blueprint '.$this->build->blueprint[ '_blueprints_short-name' ].' -->';
       echo '<div id="pzarc-blueprint_' . $this->build->blueprint[ '_blueprints_short-name' ] . '" class="' . $this->build->blueprint[ 'uid' ] . ' pzarchitect layout-' . $blueprint_type . ' ' . $use_hw_css . ' pzarc-blueprint pzarc-blueprint_' . $this->build->blueprint[ '_blueprints_short-name' ] . ' nav-' . $bp_nav_type . ' icomoon ' . ($bp_nav_type === 'navigator' ? 'navpos-' . $bp_nav_pos : '') . (is_rtl() ? ' rtl' : ' ltr') . '">';
       /** Page title */
       pzdb('after blueprint open');

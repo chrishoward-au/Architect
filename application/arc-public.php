@@ -108,6 +108,8 @@
       add_shortcode('gallery', 'pzarc_shortcode');
 
     }
+
+
   }
 
   /***********************

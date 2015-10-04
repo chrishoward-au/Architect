@@ -9,31 +9,24 @@
   &.pzarc-blueprint {
     display: block; // Show the block again - since it's been hidden while it's rendering!
     position: relative;
-    .arc-sort-buttons {
-      display:block;
-    }
-    .button-group {
-      label {
-        font-family: Helvetica, Arial, sans-serif;
-        font-weight: bold;
+    .arc-sorting-and-filtering {
+      .arc-sort-buttons {
+        display: block;
       }
-      padding:5px;
-      &.sort-by-button-group,
-      &.sort-order-button-group {
-        display:inline-block;
-      }
-      button {
-        margin-right:5px;
-        margin-bottom:5px;
-        &.showall {
-          background:tomato;
-          color:white;
-
+      .button-group {
+        label {
         }
-        &.current,
-        &.active {
-          background:#0d47a1;
-          color:white;
+        padding: 5px;
+        &.sort-by-button-group,
+        &.sort-order-button-group {
+          display: inline-block;
+        }
+        button {
+          &.showall {
+          }
+          &.current,
+          &.active {
+          }
         }
       }
     }

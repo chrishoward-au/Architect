@@ -41,10 +41,12 @@ body span.pzarc-shortname {
 	right:0;
 }
 */
+.arc-updates ul,
 .pzarc-infobox ul {
   margin-left: 15px;
   line-height: 1; }
 
+.arc-updates li,
 .pzarc-infobox li {
   list-style-type: disc; }
 
@@ -929,7 +931,7 @@ body .redux-container .redux-main .redux-section-field.redux-field.heading h3 {
 #adminmenu li.toplevel_page_pzarc .wp-menu-image img {
   opacity: 1; }
 #adminmenu li.toplevel_page_pzarc .wp-menu-name:after {
-  content: "1.4.9.3";
+  content: "1.5.0";
   opacity: 0;
   font-size: 10px;
   padding-left: 5px; }

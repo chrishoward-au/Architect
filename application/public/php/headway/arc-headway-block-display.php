@@ -97,7 +97,7 @@
     }
 
     function setup_elements() {
-
+//better add the hw stuff!
       // BLUEPRINT
       $this->register_block_element( array(
                                        'id'         => 'pzarc-blueprint',
@@ -406,6 +406,37 @@
                                                'Close'  => '.use-hw-css .pzarc-accordion.title.close',
                                                'Open' => '.use-hw-css .pzarc-accordion.title.open',
                                                'Hover' => '.use-hw-css .pzarc-accordion.title:hover',
+                                           ),
+                                           'properties' => array(
+                                               'background',
+                                               'borders',
+                                               'padding',
+                                               'rounded-corners',
+                                               'box-shadow',
+                                               'fonts'
+                                           ),
+                                       ) );
+        $this->register_block_element( array(
+                                           'id'         => 'pzarc-masonry-fs-group',
+                                           'name'       => 'Masonry filtering and sorting section',
+                                           'selector'   => '.use-hw-css .arc-filtering-and-sorting',
+                                           'properties' => array(
+                                               'background',
+                                               'borders',
+                                               'padding',
+                                               'rounded-corners',
+                                               'box-shadow',
+                                               'fonts'
+                                           ),
+                                       ) );
+        $this->register_block_element( array(
+                                           'id'         => 'pzarc-masonry-buttons',
+                                           'name'       => 'Masonry  filtering and sorting buttons',
+                                           'selector'   => '.use-hw-css .arc-masonry-buttons button',
+                                           'states'     => array(
+                                               'Selected'  => '.use-hw-css .arc-masonry-buttons button.selected',
+                                               'Hover' => '.use-hw-css .arc-masonry-buttons button:hover',
+                                               'Clear' => '.use-hw-css .arc-masonry-buttons button.showall',
                                            ),
                                            'properties' => array(
                                                'background',
