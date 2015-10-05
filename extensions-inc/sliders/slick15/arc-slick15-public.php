@@ -250,8 +250,11 @@
     global $pzarchitect_slider_scripts;
     if (!empty($pzarchitect_slider_scripts)) {
       echo '<script type="text/javascript" id="architect-slick15">';
+      echo '(function($){';
       echo $pzarchitect_slider_scripts;
+      echo '})(jQuery);';
       echo '</script>';
+
     }
     // Make sure this isn't acidentally saved in any way
     unset($pzarchitect_slider_scripts);

@@ -3,7 +3,7 @@ Contributors: chrishoward
 Tags: content,display,posts,pages,gallery,slider,tabs,tabbed,tabular,widget,hooks
 Requires at least: 3.5.0
 Tested up to: 4.4
-Stable tag: 1.5.0
+Stable tag: 1.5.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Plugin URI: http://architect4wp.com
@@ -92,6 +92,10 @@ For support, please send an email to support@pizazzwp.com
 2. Slider example
 
 == Changelog ==
+
+= 1.5.1 =
+* FIXED: CSS not loading when using a Blueprint to override WP Gallery.
+* FIXED: Slideshow jQuery loading wrong sometimes
 
 = 1.5.0 : 3 Oct 2015=
 * ADDED: Support for filtering and sorting in masonry layouts!! (Thanks, Jamie!)
