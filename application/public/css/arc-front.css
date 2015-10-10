@@ -105,6 +105,8 @@
   overflow: hidden; }
   .pzarchitect .pzarc-panel.pzarc-wow {
     visibility: hidden; }
+  .pzarchitect .pzarc-panel.arc-layout-slider {
+    visibility: hidden; }
   .pzarchitect .pzarc-panel header.entry-header,
   .pzarchitect .pzarc-panel footer.entry-footer {
     float: left;

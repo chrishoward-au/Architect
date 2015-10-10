@@ -319,7 +319,13 @@
       // TODO: WHY??? Is that what WP does? Aren't they in the article anyways? Temporarily don't do it.
       $postmeta_classes = ' ' . $panel_class->data[ 'posttype' ] . ' type-' . $panel_class->data[ 'posttype' ] . ' status-' . $panel_class->data[ 'poststatus' ] . ' format-' . $panel_class->data[ 'postformat' ] . ' ';
 //      echo '<' . ('table' !== $this->layout_mode ? 'div' : 'tr') . ' class="pzarc-panel pzarc-panel_' . $settings[ '_panels_settings_short-name' ] . ' pzarc-panel-no_' . $panel_number . $this->slider[ 'slide' ] . $image_in_bg . $odds_evens_bp . $odds_evens_section . $postmeta_classes . '" >';
-      $classes = 'pzarc-panel pzarc-panel_' . $this->panel_name . ' pzarc-panel-no_' . $panel_number . $this->slider[ 'slide' ] . $image_in_bg . $odds_evens_bp;
+      $classes = 'pzarc-panel pzarc-panel_' . $this->panel_name . ' pzarc-panel-no_' . $panel_number . $this->slider[ 'slide' ] . $image_in_bg . $odds_evens_bp.' arc-layout-'.$this->layout_mode;
+
+      /**********************************************************************************************************************************
+       *
+       * Open the Panel div
+       *
+       **********************************************************************************************************************************/
       echo '<' . ('table' !== $this->layout_mode ? 'div' : 'tr') . ' id="bp' . $this->blueprint[ 'blueprint-id' ] . '-' . $panel_number . '" class="' . apply_filters('arc-extend-panel-classes', $classes, $this->blueprint) . ' ' . apply_filters('arc-extend-panel-classes_' . $this->panel_name, '', $this->blueprint) . '" ' . apply_filters('arc-extend-panel-data', '', $this->blueprint) . '">';
 
       //

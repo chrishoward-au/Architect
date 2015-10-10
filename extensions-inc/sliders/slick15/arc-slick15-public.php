@@ -18,8 +18,8 @@
     wp_register_style('css-slick15js', PZARC_PLUGIN_URL . '/extensions-inc/sliders/slick15/slick-1.5.5/slick/slick.css');
     wp_register_style('css-arcslick15', PZARC_PLUGIN_URL . '/extensions-inc/sliders/slick15/arc-slick15.css');
 
-    wp_enqueue_script('js-arc-front-slick15js');
     wp_enqueue_script('js-slick15js');
+    wp_enqueue_script('js-arc-front-slick15js');
     wp_enqueue_style('css-slick15js');
     wp_enqueue_style('css-arcslick15');
 

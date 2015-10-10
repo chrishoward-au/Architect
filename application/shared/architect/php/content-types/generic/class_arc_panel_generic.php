@@ -968,7 +968,7 @@
         $panel_def[ $component ] = '';
       }
 
-      return self::render_generics($component, $content_type, $panel_def[ $component ], $layout_mode);
+      return self::render_generics($component, $content_type, do_shortcode($panel_def[ $component ]), $layout_mode);
 
     }
 

@@ -1,1 +1,1 @@
-jQuery(document).ready(function(){"use strict"});
+jQuery(document).ready(function(){"use strict";jQuery(".arc-layout-slider").css("visibility","visible")});

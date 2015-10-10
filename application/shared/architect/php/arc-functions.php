@@ -1853,3 +1853,69 @@
 
 
   }
+
+  /**
+   * display Archives page_title
+   *
+   * @param $display_title
+   * @param $title_override
+   *
+   * @return null|string
+   */
+  function pzarc_display_page_title(&$blueprint,&$arcoptions,$tag='h1')
+  {
+    $display_title = $blueprint[ '_blueprints_page-title' ];
+    $title_override = array(
+      'category' => $arcoptions[ 'architect_language-categories-archive-pages-title' ],
+      'tag'      => $arcoptions[ 'architect_language-tags-archive-pages-title' ],
+      'month'    => $arcoptions[ 'architect_language-tags-archive-pages-title' ],
+      'custom'   => $arcoptions[ 'architect_language-custom-archive-pages-title' ]);
+
+    pzdb('page title');
+    if (!empty($display_title) || !empty($blueprint[ 'additional_overrides' ][ 'pzarc-overrides-page-title' ])) {
+      $title      = '';
+      $inc_prefix = empty($blueprint[ '_blueprints_hide-archive-title-prefix' ]);
+
+      /**
+       * Get the original page query global
+       */
+
+      global $wp_the_query;
+      switch (true) {
+        case is_category():
+          $title = single_cat_title(__($inc_prefix ? $title_override[ 'category' ] : '', 'pzarchitect'), false);
+          break;
+        case is_tag() :
+          $title = single_tag_title(__($inc_prefix ? $title_override[ 'tag' ] : '', 'pzarchitect'), false);
+          break;
+        case is_month() :
+          $title = single_month_title(__($inc_prefix ? $title_override[ 'month' ] : '', 'pzarchitect'), false);
+          break;
+        case is_tax() :
+          $title = single_term_title(__($inc_prefix ? $title_override[ 'custom' ] : '', 'pzarchitect'), false);
+          break;
+        case $wp_the_query->is_category:
+          $title = pzarc_term_title(__($inc_prefix ? $title_override[ 'category' ] : '', 'pzarchitect'), $wp_the_query->tax_query);
+          break;
+        case $wp_the_query->is_tag :
+          $title = pzarc_term_title(__($inc_prefix ? $title_override[ 'tag' ] : '', 'pzarchitect'), $wp_the_query->tax_query);
+          break;
+        case $wp_the_query->is_month :
+          $title = pzarc_term_title(__($inc_prefix ? $title_override[ 'month' ] : '', 'pzarchitect'), $wp_the_query->tax_query);
+          break;
+        case $wp_the_query->is_tax :
+          $title = pzarc_term_title(__($inc_prefix ? $title_override[ 'custom' ] : '', 'pzarchitect'), $wp_the_query->tax_query);
+          break;
+        case is_single() || $wp_the_query->is_single:
+        case is_singular() || $wp_the_query->is_singular || $wp_the_query->is_page:
+          $title = single_post_title(null, false);
+          $title = !$title?$wp_the_query->post->post_title:$title;
+          break;
+      }
+      if ($title) {
+        return '<'.$tag.' class="pzarc-page-title">' . esc_attr($title) . '</'.$tag.'>';
+      }
+    }
+
+    return null;
+  }

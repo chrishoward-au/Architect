@@ -93,7 +93,12 @@ For support, please send an email to support@pizazzwp.com
 
 == Changelog ==
 
+todo: add indicator of Pizazzshop, HWExtend or Lite
+
 = 1.5.1 =
+* ADDED: Rendering of shortcodes in custom fields
+* ADDED: Shortcode [arcpagetitle] to display the parent page's title. Use in meta fields.
+* CHANGED: Slides hidden before loading for tidiness. 
 * FIXED: CSS not loading when using a Blueprint to override WP Gallery.
 * FIXED: Slideshow jQuery loading wrong sometimes
 
