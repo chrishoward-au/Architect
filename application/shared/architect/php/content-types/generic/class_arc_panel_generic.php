@@ -302,11 +302,11 @@
 
       $this->data[ 'image' ][ 'original' ] = wp_get_attachment_image_src($thumb_id, 'full');
       preg_match("/(?<=src\\=\")(.)*(?=\" )/uiUs", $this->data[ 'image' ][ 'image' ], $results);
-      if (isset($results[ 0 ]) && !empty($this->section[ '_panels_settings_use-retina-images' ])) {
+      if (isset($results[ 0 ]) && !empty($this->section[ '_panels_settings_use-retina-images' ]) && function_exists('bfi_thumb')) {
         $params = array('width' => ($width * 2), 'height' => ($height * 2));
         // We need the crop to be identical. :/ So how about we just double the size of the image! I'm sure I Saw somewhere that works still.
-        $thumb_2X                         = bfi_thumb($results[ 0 ], $params);
-        $this->data[ 'image' ][ 'image' ] = str_replace('/>', 'data-at2x="' . $thumb_2X . '" />', $this->data[ 'image' ][ 'image' ]);
+          $thumb_2X                         = bfi_thumb($results[ 0 ], $params);
+          $this->data[ 'image' ][ 'image' ] = str_replace('/>', 'data-at2x="' . $thumb_2X . '" />', $this->data[ 'image' ][ 'image' ]);
       }
       $image = get_post($thumb_id);
 
@@ -354,8 +354,12 @@
           && 'specific' === $this->section[ '_panels_design_use-filler-image-source' ]
           && !empty($this->section[ '_panels_design_use-filler-image-source-specific' ][ 'url' ])
       ) {
-        $imageURL                            = bfi_thumb($this->section[ '_panels_design_use-filler-image-source-specific' ][ 'url' ], array('width'  => $width,
-                                                                                                                                             'height' => $height));
+        if (function_exists('bfi_thumb')) {
+          $imageURL = bfi_thumb($this->section[ '_panels_design_use-filler-image-source-specific' ][ 'url' ], array('width'  => $width,
+                                                                                                                    'height' => $height));
+        } else {
+          $imageURL = $this->section[ '_panels_design_use-filler-image-source-specific' ][ 'url' ];
+        }
         $this->data[ 'image' ][ 'image' ]    = '<img src="' . $imageURL . '" >';
         $this->data[ 'image' ][ 'original' ] = array($imageURL, $width, $height, false);
         $this->data[ 'image' ][ 'caption' ]  = '';
@@ -405,13 +409,14 @@
       $this->data[ 'image' ][ 'original' ] = wp_get_attachment_image_src($thumb_id, 'full');
       pzdb('post get original bg');
       preg_match("/(?<=src\\=\")(.)*(?=\" )/uiUs", $this->data[ 'bgimage' ][ 'thumb' ], $results);
-      if (isset($results[ 0 ]) && !empty($this->section[ '_panels_settings_use-retina-images' ])) {
+      if (isset($results[ 0 ]) && !empty($this->section[ '_panels_settings_use-retina-images' ])&& function_exists('bfi_thumb')) {
         $params = array('width' => ($width * 2), 'height' => ($height * 2));
         // We need the crop to be identical. :/ So how about we just double the size of the image! I'm sure I Saw somewhere that works still. In fact, we have no choice, since the double sized image could be bigger than the original.
         $thumb_2X                           = bfi_thumb($results[ 0 ], $params);
         $this->data[ 'bgimage' ][ 'thumb' ] = str_replace('/>', 'data-at2x="' . $thumb_2X . '" />', $this->data[ 'bgimage' ][ 'thumb' ]);
         pzdb('after get 2X bg');
       }
+
       pzdb('end get bgimage');
 
       //Use lorempixel
@@ -455,8 +460,13 @@
           && 'specific' === $this->section[ '_panels_design_use-filler-image-source' ]
           && !empty($this->section[ '_panels_design_use-filler-image-source-specific' ][ 'url' ])
       ) {
-        $imageURL                            = bfi_thumb($this->section[ '_panels_design_use-filler-image-source-specific' ][ 'url' ], array('width'  => $width,
-                                                                                                                                             'height' => $height));
+        if (function_exists('bfi_thumb')) {
+          $imageURL = bfi_thumb($this->section[ '_panels_design_use-filler-image-source-specific' ][ 'url' ], array('width'  => $width,
+                                                                                                                    'height' => $height));
+        } else {
+          $imageURL = $this->section[ '_panels_design_use-filler-image-source-specific' ][ 'url' ];
+        }
+
         $this->data[ 'bgimage' ][ 'image' ]  = '<img src="' . $imageURL . '" >';
         $this->data[ 'image' ][ 'original' ] = array($imageURL, $width, $height, false);
         $this->data[ 'image' ][ 'caption' ]  = '';
@@ -513,9 +523,9 @@
           );
 
           $this->data[ 'cfield' ][ $i ][ 'prefix-text' ]  = '<span class="pzarc-prefix-text">' . $this->section[ '_panels_design_cfield-' . $i . '-prefix-text' ] . '</span>';
-          $this->data[ 'cfield' ][ $i ][ 'prefix-image' ] = bfi_thumb($this->section[ '_panels_design_cfield-' . $i . '-prefix-image' ][ 'url' ], $params);
+          $this->data[ 'cfield' ][ $i ][ 'prefix-image' ] = function_exists('bfi_thumb')?bfi_thumb($this->section[ '_panels_design_cfield-' . $i . '-prefix-image' ][ 'url' ], $params):$this->section[ '_panels_design_cfield-' . $i . '-prefix-image' ][ 'url' ];
           $this->data[ 'cfield' ][ $i ][ 'suffix-text' ]  = '<span class="pzarc-suffix-text">' . $this->section[ '_panels_design_cfield-' . $i . '-suffix-text' ] . '</span>';
-          $this->data[ 'cfield' ][ $i ][ 'suffix-image' ] = bfi_thumb($this->section[ '_panels_design_cfield-' . $i . '-suffix-image' ][ 'url' ], $params);
+          $this->data[ 'cfield' ][ $i ][ 'suffix-image' ] = function_exists('bfi_thumb')?bfi_thumb($this->section[ '_panels_design_cfield-' . $i . '-suffix-image' ][ 'url' ], $params):$this->section[ '_panels_design_cfield-' . $i . '-prefix-image' ][ 'url' ];
 
           // The content itself comes from post meta or post title
 
@@ -899,7 +909,12 @@
             switch ($v[ 'field-type' ]) {
 
               case 'image':
-                $content = '<img src="' . bfi_thumb($v[ 'value' ]) . '">';
+                if (function_exists('bfi_thumb')) {
+
+                  $content = '<img src="' . bfi_thumb($v[ 'value' ]) . '">';
+                } else {
+                  $content = '<img src="' .$v[ 'value' ]. '">';
+                }
                 break;
 
               case 'embed':

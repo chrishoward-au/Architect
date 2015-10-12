@@ -55,9 +55,8 @@
 
         // TODO: Add an alternativeArchitect Admin screen.
         add_action('admin_menu', array($this, 'admin_menu_no_redux'));
-        require_once(PZARC_PLUGIN_APP_PATH . '/shared/thirdparty/php/BFI-thumb-forked/BFI_Thumb.php');
+//        require_once(PZARC_PLUGIN_APP_PATH . '/shared/thirdparty/php/BFI-thumb-forked/BFI_Thumb.php');
         require_once(PZARC_PLUGIN_APP_PATH . '/shared/thirdparty/php/pzwp-focal-point/pzwp-focal-point.php');
-
         return;
       } else {
         add_action('admin_head', array($this, 'admin_head'));
@@ -96,8 +95,8 @@
 //      require_once PZARC_PLUGIN_APP_PATH . '/shared/architect/php/content-types/generic/class_arc_panel_generic.php';
 
 
-        require_once(PZARC_PLUGIN_APP_PATH . '/shared/thirdparty/php/BFI-thumb-forked/BFI_Thumb.php');
-        require_once(PZARC_PLUGIN_APP_PATH . '/shared/thirdparty/php/pzwp-focal-point/pzwp-focal-point.php');
+//          require_once(PZARC_PLUGIN_APP_PATH . '/shared/thirdparty/php/BFI-thumb-forked/BFI_Thumb.php');
+          require_once(PZARC_PLUGIN_APP_PATH . '/shared/thirdparty/php/pzwp-focal-point/pzwp-focal-point.php');
 
       }
 

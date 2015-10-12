@@ -91,7 +91,6 @@
   /*
    * Change the default image editors
    */
-  add_filter('wp_image_editors', 'bfi_wp_image_editor');
 
 // Instead of using the default image editors, use our extended ones
   if (!function_exists('bfi_wp_image_editor')) {
@@ -670,7 +669,6 @@
 // don't use the default resizer since we want to allow resizing to larger sizes (than the original one)
 // Parts are copied from media.php
 // Crop is always applied (just like timthumb)
-  add_filter('image_resize_dimensions', 'bfi_image_resize_dimensions', 10, 6);
   if (!function_exists('bfi_image_resize_dimensions')) {
     function bfi_image_resize_dimensions($payload, $orig_w, $orig_h, $dest_w, $dest_h, $crop = false)
     {
@@ -832,7 +830,6 @@
 // the array, then add your normal $params arguments.
 //
 // e.g. the_post_thumbnail( array( 1024, 400, 'bfi_thumb' => true, 'grayscale' => true ) );
-  add_filter('image_downsize', 'bfi_image_downsize', 1, 3);
   if (!function_exists('bfi_image_downsize')) {
     function bfi_image_downsize($out, $id, $size)
     {
@@ -914,25 +911,4 @@
 
   }
 
-  function bfi_flush_image_cache()
-  {
-    $upload_info = wp_upload_dir();
-    $upload_dir  = $upload_info[ 'basedir' ];
-    if (defined('BFITHUMB_UPLOAD_DIR')) {
-      $upload_dir .= "/" . BFITHUMB_UPLOAD_DIR;
-    } else {
-      $upload_dir .= "/bfi_thumb";
-    }
-    if (!is_dir($upload_dir)) {
-      if (!wp_mkdir_p($upload_dir)) {
-        //     die('Failed to create folders...');
-      }
-    }
-    $cache_files = scandir($upload_dir);
-    foreach ($cache_files as $cache_file) {
-      if ($cache_file !== '.' && $cache_file !== '..') {
-        unlink($upload_dir . '/' . $cache_file);
-      }
-    }
-  }
 
