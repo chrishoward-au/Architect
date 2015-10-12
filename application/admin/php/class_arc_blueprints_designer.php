@@ -3293,10 +3293,18 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
                   'default'  => 'respect',
                   'select2'  => array('allowClear' => false),
                   'required' => array('_panels_settings_feature-type', '=', 'image'),
-                  'options'  => array(
+                  'options' => array(
                       'respect'      => __('Respect focal point', 'pzarchitect'),
                       'centre'       => __('Centre focal point', 'pzarchitect'),
-                      'none'         => __('Crop to centre', 'pzarchitect'),
+//                      'topleft'      => __('Crop to top left', 'pzarchitect'),
+                      'topcentre'    => __('Crop to top centre', 'pzarchitect'),
+//                      'topright'     => __('Crop to top right', 'pzarchitect'),
+//                      'midleft'      => __('Crop to middle left', 'pzarchitect'),
+                      'midcentre'    => __('Crop to middle centre', 'pzarchitect'),
+//                      'midright'     => __('Crop to middle right', 'pzarchitect'),
+//                      'bottomleft'   => __('Crop to bottom left', 'pzarchitect'),
+                      'bottomcentre' => __('Crop to bottom centre', 'pzarchitect'),
+//                      'bottomright'  => __('Crop to bottom right', 'pzarchitect'),
                       'scale'        => __('Preserve aspect, fit to width', 'pzarchitect'),
                       'scale_height' => __('Preserve aspect, fit to height', 'pzarchitect'),
                       //                      'shrink'  => __('Shrink', 'pzarchitect')

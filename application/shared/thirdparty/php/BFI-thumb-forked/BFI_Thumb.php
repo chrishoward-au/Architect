@@ -690,6 +690,44 @@
       } elseif ($crop !== false && !isset($crop[ 2 ]) && is_array($crop)) {
         $crop[ 2 ] = 'respect';
       }
+      switch ($crop[2]) {
+        case 'topleft':
+          $crop[0]=0;
+          $crop[1]=0;
+          break;
+        case 'topcentre':
+          $crop[0]=50;
+          $crop[1]=0;
+          break;
+        case 'topright':
+          $crop[0]=100;
+          $crop[1]=0;
+          break;
+        case 'midleft':
+          $crop[0]=0;
+          $crop[1]=50;
+          break;
+        case 'midcentre':
+          $crop[0]=50;
+          $crop[1]=50;
+          break;
+        case 'midright':
+          $crop[0]=100;
+          $crop[1]=50;
+          break;
+        case 'bottomleft':
+          $crop[0]=0;
+          $crop[1]=100;
+          break;
+        case 'bottomcentre':
+          $crop[0]=50;
+          $crop[1]=100;
+          break;
+        case 'bottomright':
+          $crop[0]=100;
+          $crop[1]=100;
+          break;
+      }
 
 
       $aspect_ratio = $orig_w / $orig_h;
@@ -723,10 +761,51 @@
       // Handle focal point positioning in output image
       switch ($f) {
 
+        case 'topleft':
         case 'none':
           // No focal point. Crop from top left
           $ideal_s_x = 0;
           $ideal_s_y = 0;
+          break;
+
+        case 'topcentre':
+          $ideal_s_x = $x * $orig_w - ($crop_w * 0.5);
+          $ideal_s_y = 0;
+          break;
+
+        case 'topright':
+          $ideal_s_x = $x * $orig_w - ($crop_w * 1);
+          $ideal_s_y = 0;
+          break;
+
+        case 'midleft':
+          $ideal_s_x = 0;
+          $ideal_s_y = $y * $orig_h - ($crop_h * 0.5);
+          break;
+
+        case 'midcentre':
+          $ideal_s_x = $x * $orig_w - ($crop_w * 0.5);
+          $ideal_s_y = $y * $orig_h - ($crop_h * 0.5);
+          break;
+
+        case 'midright':
+          $ideal_s_x = $x * $orig_w - ($crop_w * 1);
+          $ideal_s_y = $y * $orig_h - ($crop_h * 0.5);
+          break;
+
+        case 'bottomleft':
+          $ideal_s_x = 0;
+          $ideal_s_y = $y * $orig_h - ($crop_h * 1);
+          break;
+
+        case 'bottomcentre':
+          $ideal_s_x = $x * $orig_w - ($crop_w * 0.5);
+          $ideal_s_y = $y * $orig_h - ($crop_h * 1);
+          break;
+
+        case 'bottomright':
+          $ideal_s_x = $x * $orig_w - ($crop_w * 1);
+          $ideal_s_y = $y * $orig_h - ($crop_h * 1);
           break;
 
 
@@ -790,7 +869,6 @@
           break;
 
       }
-
       // Ideally we want our x,y crop-focus-point as chosen
       // but to put (for example) the top left corner in the centre of our cropped
       // image we end up with black strips where there isn't enough image on the
@@ -814,7 +892,6 @@
         $s_y = floor($ideal_s_y);
       }
       endif;
-
       // the return array matches the parameters to imagecopyresampled()
       // int dst_x, int dst_y, int src_x, int src_y, int dst_w, int dst_h, int src_w, int src_h
       return array(0, 0, (int)$s_x, (int)$s_y, (int)$new_w, (int)$new_h, (int)$crop_w, (int)$crop_h);
