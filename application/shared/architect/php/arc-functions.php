@@ -1919,3 +1919,25 @@
 
     return null;
   }
+
+  function bfi_flush_image_cache()
+  {
+    $upload_info = wp_upload_dir();
+    $upload_dir  = $upload_info[ 'basedir' ];
+    if (defined('BFITHUMB_UPLOAD_DIR')) {
+      $upload_dir .= "/" . BFITHUMB_UPLOAD_DIR;
+    } else {
+      $upload_dir .= "/bfi_thumb";
+    }
+    if (!is_dir($upload_dir)) {
+      if (!wp_mkdir_p($upload_dir)) {
+        //     die('Failed to create folders...');
+      }
+    }
+    $cache_files = scandir($upload_dir);
+    foreach ($cache_files as $cache_file) {
+      if ($cache_file !== '.' && $cache_file !== '..') {
+        unlink($upload_dir . '/' . $cache_file);
+      }
+    }
+  }
