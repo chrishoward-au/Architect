@@ -87,7 +87,7 @@
       $panel_def[ 'author' ]     = '<span class="byline"><span class="author vcard"><a class="url fn n" href="{{authorlink}}" title="View all posts by {{authorname}}" rel="author">{{avatarb}}{{authorname}}{{avatara}}</a></span></span>';
       $panel_def[ 'email' ]      = '<span class="byline email"><span class="author vcard"><a class="url fn n" href="mailto:{{authoremail}}" title="Email {{authorname}}" rel="author">{{authoremail}}</a></span></span>';
       //     $panel_def[ 'image' ]       = '<figure class="entry-thumbnail {{incontent}}">{{postlink}}<img width="{{width}}" src="{{imgsrc}}" class="attachment-post-thumbnail wp-post-image" alt="{{alttext}}">{{closepostlink}}{{captioncode}}</figure>';
-      $panel_def[ 'image' ]   = '{{figopen}} class="{{extensionclass}} entry-thumbnail {{incontent}} {{centred}} {{nofloat}} {{location}}" {{extensiondata}}>{{postlink}}{{image}}{{closelink}}{{captioncode}}{{figclose}}';
+      $panel_def[ 'image' ]   = '{{figopen}} class="{{extensionclass}} entry-thumbnail {{incontent}} {{centred}} {{nofloat}} {{location}}" {{extensiondata}} {{extrastyling}}>{{postlink}}{{image}}{{closelink}}{{captioncode}}{{figclose}}';
       $panel_def[ 'bgimage' ] = '<figure class="{{extensionclass}} entry-bgimage pzarc-bg-image {{trim-scale}}" {{extensiondata}}>{{postlink}}{{bgimage}}{{closelink}}</figure>';
       $panel_def[ 'caption' ] = '<figcaption class="caption">{{caption}}</figcaption>';
       $panel_def[ 'content' ] = '<{{div}} class="{{extensionclass}} entry-content {{nothumb}}" {{extensiondata}}>{{image-in-content}}{{content}}</{{div}}>';
@@ -816,6 +816,11 @@
         if ('float' === $this->section[ '_panels_design_feature-location' ]) {
           $panel_def[ $component ] = str_replace('{{location}}', 'pzarc-components-' . $this->section[ '_panels_design_components-position' ], $panel_def[ $component ]);
 
+        }
+        if (!empty($this->section['_panels_design_rotate-image'])) {
+          $rot = rand(-50, 50) / 10;
+          // TODO: this is bad! Not dumb at all
+          $panel_def[ $component ] = str_replace('{{extrastyling}}', 'style="transform:rotate(' . $rot . 'deg);"', $panel_def[ $component ]);
         }
 
         switch (true) {
