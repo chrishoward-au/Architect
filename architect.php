@@ -184,6 +184,18 @@
         define('PZARC_PRO',true);
         @include PZARC_PLUGIN_PATH . '/extensions/architect-pro.php';
       }
+
+      switch (true) {
+        case ( ! empty( $hw_opts[ 'license-status-architect' ] ) && $hw_opts[ 'license-status-architect' ] == 'valid' ) && ( $pzarc_status === false || $pzarc_status !== 'valid' ) :
+          define('PZARC_SHOP','(H)');
+          break;
+        case (  $pzarc_status !== false && $pzarc_status === 'valid' ) :
+          define('PZARC_SHOP','(P)');
+          break;
+        default:
+          define('PZARC_SHOP','(L)');
+
+      }
       pzdb( 'after architect pro' );
 
       // Extensions hook in here
