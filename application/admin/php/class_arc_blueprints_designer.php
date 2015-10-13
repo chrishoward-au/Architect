@@ -424,6 +424,18 @@
         $cfwarn  = (ini_get('max_input_vars') <= 1000 && ($cfcount > 0 || $animation_state));
 
       }
+      if ($cfwarn) {
+        $sections[ '_general_bp' ][ 'fields' ][] = array(
+            'id'       => $prefix . 'input-vars-message',
+            'title'    => __('Custom fields', 'pzarchitect'),
+            'type'     => 'info',
+            'style'    => ($cfwarn ? 'critical' : 'normal'),
+            'required' => array('_panels_design_components-to-show', 'contains', 'custom'),
+            'desc'     => __('If you add custom fields to a Blueprint it adds many more fields to the form. <strong>This can cause some fields not to save</strong>. Please read this post by Woo Themes for solutions:', 'pzarchitect') . '<br><a href="http://docs.woothemes.com/document/problems-with-large-amounts-of-data-not-saving-variations-rates-etc/" target=_blank>Problems with large amounts of data not saving</a><br>Your max_input_vars setting is: ' . ini_get('max_input_vars'),
+
+        );
+
+      }
       $sections[ '_general_bp' ] = array(
           'fields' => array(
               array(
@@ -447,18 +459,6 @@
               ),
           )
       );
-      if ($cfwarn) {
-        $sections[ '_general_bp' ][ 'fields' ][] = array(
-            'id'       => $prefix . 'input-vars-message',
-            'title'    => __('Custom fields', 'pzarchitect'),
-            'type'     => 'info',
-            'style'    => ($cfwarn ? 'critical' : 'normal'),
-            'required' => array('_panels_design_components-to-show', 'contains', 'custom'),
-            'desc'     => __('If you add custom fields to a Blueprint it adds many more fields to the form. <strong>This can cause some fields not to save</strong>. Please read this post by Woo Themes for solutions:', 'pzarchitect') . '<br><a href="http://docs.woothemes.com/document/problems-with-large-amounts-of-data-not-saving-variations-rates-etc/" target=_blank>Problems with large amounts of data not saving</a><br>Your max_input_vars setting is: ' . ini_get('max_input_vars'),
-
-        );
-
-      }
 
 
       $current_theme = wp_get_theme();
@@ -3294,8 +3294,8 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
                   'select2'  => array('allowClear' => false),
                   'required' => array('_panels_settings_feature-type', '=', 'image'),
                   'options' => array(
-                      'respect'      => __('Respect focal point', 'pzarchitect'),
-                      'centre'       => __('Centre focal point', 'pzarchitect'),
+                      'respect'      => __('Use focal point', 'pzarchitect'),
+//                      'centre'       => __('Centre focal point', 'pzarchitect'),
 //                      'topleft'      => __('Crop to top left', 'pzarchitect'),
                       'topcentre'    => __('Crop to top centre', 'pzarchitect'),
 //                      'topright'     => __('Crop to top right', 'pzarchitect'),
@@ -3516,6 +3516,19 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
                   ),
                   'subtitle' => __('Centres the image horizontally. It is best to display it on its own row, and the other components to be 100% wide.', 'pzarchitect')
               ),
+//              array(
+//                  'title'    => __('Rotate feature', 'pzarchitect'),
+//                  'id'       => $prefix . 'rotate-image',
+//                  'type'     => 'switch',
+//                  'on'       => __('Yes', 'pzarchitect'),
+//                  'off'      => __('No', 'pzarchitect'),
+//                  'default'  => false,
+//                  'required' => array(
+//                    //array('show_advanced', 'equals', true),
+//                    array('_panels_settings_feature-type', '=', 'image'),
+//                  ),
+//                  'subtitle' => __('Randomly rotates images up to 5 degrees.', 'pzarchitect')
+//              ),
               //              array(
               //                  'id'            => $prefix . 'image-quality',
               //                  'title'         => __('Image quality', 'pzarchitect'),
