@@ -282,10 +282,7 @@
 
     }
 
-    public
-    function get_nav_items(
-        $blueprints_navigator, &$arc_query, $nav_labels
-    ) {
+    public function get_nav_items($blueprints_navigator, &$arc_query, $nav_labels, $nav_title_len = 0) {
       $nav_items = array();
       for ($j = 0; $j < count($arc_query); $j++) {
         switch ($blueprints_navigator) {
