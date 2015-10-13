@@ -93,11 +93,11 @@ For support, please send an email to support@pizazzwp.com
 
 == Changelog ==
 
-todo: add indicator of Pizazzshop, HWExtend or Lite
 
 = 1.5.2 =
 * CHANGED: Thumbs library to load only as required thus fixing conflict with WooCommerce
-* ADDED: More cropping options
+* ADDED: More cropping options Crop to top, centre or bottom
+* FIXED: Various small tweaks and fixes
 
 = 1.5.1 =
 * ADDED: Rendering of shortcodes in custom fields
