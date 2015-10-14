@@ -30,7 +30,22 @@ class arc_query_snippets extends arc_query_generic{
 
       $this->query_options[ 'post__in' ] = $specific_snippets;
     }
+    
+    $exclude=array();
+//    if (!empty($this->criteria[ '_content_snippets_exclude-snippets' ])) {
+//      if ( ! is_array( $this->criteria[ '_content_snippets_exclude-snippets' ] ) ) {
+//        $exclude = implode( ',', $this->criteria[ '_content_snippets_exclude-snippets' ] );
+//      } else {
+//        $exclude = $this->criteria[ '_content_snippets_exclude-snippets' ];
+//      }
+//    }
+    if (!empty($this->criteria[ '_content_snippets_exclude-current-snippet' ])){
+      $exclude[]=get_the_ID();
+    }
+    $this->query_options['post__not_in']=$exclude;
+  
 
-  }
+
+}
 
 } 

@@ -1,4 +1,4 @@
-$version: "1.4.9.4";
+$version: "1.5.3";
 // THIS IS THE SCSS VERSION 
 $highlight: #0074a2;
 $border-radius: 3px;
@@ -77,11 +77,13 @@ body span.pzarc-shortname {
 }
 */
 
+.arc-updates ul,
 .pzarc-infobox ul {
   margin-left: 15px;
   line-height: 1;
 }
 
+.arc-updates li,
 .pzarc-infobox li {
   list-style-type: disc;
 }

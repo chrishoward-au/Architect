@@ -18,8 +18,8 @@
     wp_register_style('css-slick15js', PZARC_PLUGIN_URL . '/extensions-inc/sliders/slick15/slick-1.5.5/slick/slick.css');
     wp_register_style('css-arcslick15', PZARC_PLUGIN_URL . '/extensions-inc/sliders/slick15/arc-slick15.css');
 
-    wp_enqueue_script('js-arc-front-slick15js');
     wp_enqueue_script('js-slick15js');
+    wp_enqueue_script('js-arc-front-slick15js');
     wp_enqueue_style('css-slick15js');
     wp_enqueue_style('css-arcslick15');
 
@@ -48,13 +48,36 @@
     $pzarc_slick_data .= '}';
 
     $slider[ 'data' ] = 'data-slick=\'' . $pzarc_slick_data . '\'';
-
     global $pzarchitect_slider_scripts;
 
     $pzarchitect_slider_scripts = isset($pzarchitect_slider_scripts) ? $pzarchitect_slider_scripts : '';
 
-    $pzarchitect_slider_scripts .= 'jQuery(".' . $blueprint[ 'uid' ] . ' .pzarc-section-using-' . $blueprint[ '_blueprints_short-name' ] . '").slick()';
-    $pzarchitect_slider_scripts .= '.on("beforeChange", function(event, slick, currentSlide, nextSlide){
+    $pzarchitect_slider_scripts .= '
+          var gotoPanel = localStorage.getItem("gotoPanel");
+          var gotoBlueprint = localStorage.getItem("gotoBlueprint");
+          var startPanel = "0";
+          if (gotoPanel>0 && gotoBlueprint.length>0) {
+              startPanel = gotoPanel-1;
+          }
+        localStorage.setItem("gotoBlueprint","");
+        localStorage.setItem("gotoPanel","0");
+        console.log(gotoPanel,gotoBlueprint,startPanel);
+      '."\n\n";
+
+    $pzarchitect_slider_scripts .= "\n\n".'var slick'.$blueprint[ 'blueprint-id' ].' = jQuery(".' . $blueprint[ 'uid' ] . ' .pzarc-section-using-' . $blueprint[ '_blueprints_short-name' ] . '");
+
+    if (startPanel>0) {
+      slick'.$blueprint[ 'blueprint-id' ].'.slick({initialSlide:startPanel});
+    }else{
+     slick'.$blueprint[ 'blueprint-id' ].'.slick();
+    }
+        '."\n\n";
+
+
+//    $pzarchitect_slider_scripts .= ' jQuery(slick'.$blueprint[ 'blueprint-id' ].').slick("slickGoTo",3);
+//      '."\n\n";
+
+    $pzarchitect_slider_scripts .= ' slick'.$blueprint[ 'blueprint-id' ].'.on("beforeChange", function(event, slick, currentSlide, nextSlide){
         jQuery(this).find(".pzarc-panel").removeClass("active");
         jQuery(this).find("[data-slick-index=\""+nextSlide+"\"]").addClass("active");
       })';
@@ -93,8 +116,16 @@
           break;
       }
 
-      $pzarchitect_slider_scripts .= 'jQuery(".' . $blueprint[ 'uid' ] . ' .pzarc-navigator-' . $blueprint[ '_blueprints_short-name' ] . '").slick({';
+      $pzarchitect_slider_scripts .= '
+      var nav'.$blueprint[ 'blueprint-id' ].' = jQuery(".' . $blueprint[ 'uid' ] . ' .pzarc-navigator-' . $blueprint[ '_blueprints_short-name' ] . '");
+      if (startPanel>0) {
+        jQuery(nav'.$blueprint[ 'blueprint-id' ].').find(".arc-slider-slide-nav-item.active").removeClass("active");
+        jQuery(nav'.$blueprint[ 'blueprint-id' ].').find(".arc-navitem-"+(startPanel+1)).addClass("active");
+
+      }
+      nav'.$blueprint[ 'blueprint-id' ].'.slick({';
       $pzarchitect_slider_scripts .= '  asNavFor:".' . $blueprint[ 'uid' ] . ' .pzarc-section-using-' . $blueprint[ '_blueprints_short-name' ] . '"';
+//      $pzarchitect_slider_scripts .= ', initialSlide:startPanel';
       $pzarchitect_slider_scripts .= ', slidesToShow:' . $navs_items_toshow;
       $pzarchitect_slider_scripts .= ', slidesToScroll:' . $navs_items_toskip;
       $pzarchitect_slider_scripts .= ', focusOnSelect:true';
@@ -128,6 +159,7 @@
 //        jQuery(this).find("[data-slick-index=\""+realCurrent+"\"]").addClass("active");
 //      });';
       $pzarchitect_slider_scripts .= "\n";
+
     }
 
     return $slider;
@@ -219,10 +251,13 @@
     global $pzarchitect_slider_scripts;
     if (!empty($pzarchitect_slider_scripts)) {
       echo '<script type="text/javascript" id="architect-slick15">';
+      echo '(function($){';
       echo $pzarchitect_slider_scripts;
+      echo '})(jQuery);';
       echo '</script>';
+
     }
-    // Make sure this isn't acidentally saved in anyway
+    // Make sure this isn't acidentally saved in any way
     unset($pzarchitect_slider_scripts);
   }
 

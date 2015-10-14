@@ -37,6 +37,15 @@
                       'sortable'=>true,
                       'default' => array()
                   ),
+                  array(
+                      'title'    => __( 'Exclude current Snippet', 'pzarchitect' ),
+                      'id'       => $prefix . 'exclude-current-snippet',
+                      'type'     => 'switch',
+                      'on'       => __( 'Yes', 'pzarchitect' ),
+                      'off'      => __( 'No', 'pzarchitect' ),
+                      'default'  => false,
+                      'subtitle' => __('If this Blueprint is displayed on a Snippet page, exclude that Snippet from the Blueprint display','pzarchitect')
+                  ),
               )
           )
       );

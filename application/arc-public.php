@@ -96,7 +96,8 @@
       }
     }
 
-    // Override WP Gallery if necessary
+    // Override WP Gallery shortcode if necessary
+    //
     global $_architect_options;
 
     // Just incase that didn't work... A problem from days of past
@@ -108,6 +109,8 @@
       add_shortcode('gallery', 'pzarc_shortcode');
 
     }
+
+
   }
 
   /***********************
@@ -115,7 +118,7 @@
    * Shortcode
    *
    ***********************/
-  function pzarc_shortcode($atts, $content = null, $tag)
+  function pzarc_shortcode($atts, $content = null, $tag=null)
   {
 //    if (is_admin()){
 //      return '<img src="'.PZARC_PLUGIN_URL.'/assets/architect-logo-final-logo-only.svg" width=32 height=32>';
@@ -130,6 +133,9 @@
 
     } elseif (!empty($atts[ 0 ])) {
       $pzarc_blueprint = $atts[ 0 ];
+    } elseif ($tag==='gallery') {
+      global $_architect_options;
+      $pzarc_blueprint = $_architect_options[ 'architect_replace_wpgalleries' ];
     }
 
     $pzarc_overrides = array();
@@ -287,6 +293,9 @@
 
       require_once PZARC_PLUGIN_APP_PATH . '/public/php/class_architect_public.php';
       require_once(PZARC_PLUGIN_APP_PATH . '/shared/thirdparty/php/BFI-thumb-forked/BFI_Thumb.php');
+      add_filter('wp_image_editors', 'bfi_wp_image_editor');
+      add_filter('image_resize_dimensions', 'bfi_image_resize_dimensions', 10, 6);
+      add_filter('image_downsize', 'bfi_image_downsize', 1, 3);
 
       $architect = new ArchitectPublic($blueprint, $is_shortcode);
 //var_dump($architect);
@@ -328,6 +337,9 @@
     // Tell WP to resume using the main query just in case we might have accidentally left another query active. (0.9.0.2 This might be our saviour!)
     wp_reset_postdata();
     pzdb('end pzarc');
+    remove_filter('wp_image_editors', 'bfi_wp_image_editor');
+    remove_filter('image_resize_dimensions', 'bfi_image_resize_dimensions');
+    remove_filter('image_downsize', 'bfi_image_downsize');
 
     $in_arc = 'no';
   }

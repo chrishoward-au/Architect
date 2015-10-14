@@ -3,8 +3,8 @@
   /*
     Plugin Name: Architect
     Plugin URI: http://architect4wp.com
-    Description: Architect is an all-in-one content layout builder. <strong>Build your own slider, grid, tabbed, gallery, masonry, accordion or tabular layouts with ANY content source</strong>. Display using shortcodes, widgets, Headway blocks, WP action hooks and template tags, and WP Gallery shortcode.
-    Version: 1.4.9.4
+    Description: Architect is multipurpose, all-in-one content layout builder. <strong>Build your own slider, grid, tabbed, gallery, masonry, accordion or tabular layouts with ANY content source</strong>. Display using shortcodes, widgets, Headway blocks, WP action hooks and template tags, and WP Gallery shortcode.
+    Version: 1.5.3
     Author: Chris Howard
     Author URI: http://pizazzwp.com
     License: GNU GPL v2
@@ -36,7 +36,7 @@
        * REMEMBER TO UPDATE VERSION IN arc-admin.scss
        * REMEMBER TO UPDATE VERSION IN arc-admin.scss
        */
-      define( 'PZARC_VERSION', '1.4.9.4' );
+      define( 'PZARC_VERSION', '1.5.3' );
       /**
        * REMEMBER TO UPDATE VERSION IN arc-admin.scss
        * REMEMBER TO UPDATE VERSION IN arc-admin.scss
@@ -156,8 +156,11 @@
       require_once PZARC_PLUGIN_APP_PATH . '/shared/architect/php/content-types/dummy/class_arc_content_dummy.php';
 
       // Load Architect page templater
-      require_once PZARC_PLUGIN_APP_PATH . '/admin/php/class_arcPageTemplater.php';
-
+      $pzarc_use_page_templater = get_option('architect_use-builder');
+//      var_dump($pzarc_use_page_templater);
+//      if ($pzarc_use_page_templater) {
+        require_once PZARC_PLUGIN_APP_PATH . '/admin/php/class_arcPageTemplater.php';
+//      }
 
       pzdb( 'before architect pro' );
 
@@ -180,6 +183,18 @@
       if ( ( ! empty( $hw_opts[ 'license-status-architect' ] ) && $hw_opts[ 'license-status-architect' ] == 'valid' ) || ( $pzarc_status !== false && $pzarc_status == 'valid' ) ) {
         define('PZARC_PRO',true);
         @include PZARC_PLUGIN_PATH . '/extensions/architect-pro.php';
+      }
+
+      switch (true) {
+        case ( ! empty( $hw_opts[ 'license-status-architect' ] ) && $hw_opts[ 'license-status-architect' ] == 'valid' ) && ( $pzarc_status === false || $pzarc_status !== 'valid' ) :
+          define('PZARC_SHOP','(H)');
+          break;
+        case (  $pzarc_status !== false && $pzarc_status === 'valid' ) :
+          define('PZARC_SHOP','(P)');
+          break;
+        default:
+          define('PZARC_SHOP','(L)');
+
       }
       pzdb( 'after architect pro' );
 
@@ -324,9 +339,10 @@
     public function register_plugin_scripts() {
 
       wp_enqueue_script( 'jquery' );
-      wp_register_script( 'js-isotope-v2', PZARC_PLUGIN_APP_URL . '/public/js/isotope.pkgd.min.js', array( 'jquery' ), 2, true );
-      wp_register_script( 'js-imagesloaded', PZARC_PLUGIN_APP_URL . '/public/js/imagesloaded.pkgd.min.js', array( 'jquery' ), 2, true );
-      wp_register_script( 'js-front-isotope', PZARC_PLUGIN_APP_URL . '/public/js/arc-front-isotope.js', array( 'jquery' ), 2, true );
+      wp_register_script( 'js-imagesloaded', PZARC_PLUGIN_APP_URL . '/public/js/imagesloaded.pkgd.min.js', array( 'jquery' ), PZARC_VERSION, true );
+      wp_register_script( 'js-isotope-v2', PZARC_PLUGIN_APP_URL . '/public/js/isotope.pkgd.min.js', array( 'jquery' ), PZARC_VERSION, true );
+      wp_register_script( 'js-front', PZARC_PLUGIN_APP_URL . '/public/js/arc-front.js', array( 'jquery' ), PZARC_VERSION, true );
+      wp_register_script( 'js-front-isotope', PZARC_PLUGIN_APP_URL . '/public/js/arc-front-isotope.js', array( 'jquery' ), PZARC_VERSION, true );
 
 
     }
@@ -340,6 +356,7 @@
         '1.2.0.0' => 'updates/architect-1200.php',
         '1.3.0.0' => 'updates/architect-1300.php',
         '1.4.0.0' => 'updates/architect-1400.php',
+        '1.5.0.0' => 'updates/architect-1500.php',
       );
 
       foreach ( $db_updates as $version => $updater ) {
