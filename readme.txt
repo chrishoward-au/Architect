@@ -3,7 +3,7 @@ Contributors: chrishoward
 Tags: content,display,posts,pages,gallery,slider,tabs,tabbed,tabular,widget,hooks
 Requires at least: 3.5.0
 Tested up to: 4.4
-Stable tag: 1.5.2
+Stable tag: 1.5.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Plugin URI: http://architect4wp.com
@@ -93,6 +93,8 @@ For support, please send an email to support@pizazzwp.com
 
 == Changelog ==
 
+= 1.5.3 =
+* ADDED: Option to exclude current Snippet if a Blueprint displays Snippets on a Snippets page.
 
 = 1.5.2 =
 * CHANGED: Thumbs library to load only as required thus fixing conflict with WooCommerce

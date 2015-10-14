@@ -61,6 +61,7 @@
           }
         localStorage.setItem("gotoBlueprint","");
         localStorage.setItem("gotoPanel","0");
+        console.log(gotoPanel,gotoBlueprint,startPanel);
       '."\n\n";
 
     $pzarchitect_slider_scripts .= "\n\n".'var slick'.$blueprint[ 'blueprint-id' ].' = jQuery(".' . $blueprint[ 'uid' ] . ' .pzarc-section-using-' . $blueprint[ '_blueprints_short-name' ] . '");
