@@ -2284,7 +2284,7 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
                     'id'       => $prefix . 'blueprint-nav-active-item-css-heading',
                     'type'     => 'section',
                     'indent'   => true,
-                    'subtitle' => 'Class: ' . implode(', ', array('.pzarc-navigator .arc-slider-slide-nav-item.active')),
+                    'subtitle' => 'Class: ' . implode(', ', array('.pzarc-navigator .arc-slider-slide-nav-item.active','.pzarc-navigator .arc-slider-slide-nav-item.current')),
 
                 ),
                 pzarc_redux_font($prefix . $thisSection . '-items-active' . $font, $_architect[ 'architect_config_' . $thisSection . '-selectors' ], $defaults[ $optprefix . $thisSection . '-items-active' . $font ], array(
@@ -3393,7 +3393,7 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
               //              ),
               array(
                   'id'       => $prefix . 'image-max-dimensions',
-                  'title'    => __('Maximum dimensions', 'pzarchitect'),
+                  'title'    => __('Limit image dimensions', 'pzarchitect'),
                   'type'     => 'dimensions',
                   'desc'     => __('The displayed width of the image is determined by it\'s size in the Content Layout designer. This setting is used limit the size of the image created and used.', 'pzarchitect'),
                   'units'    => 'px',

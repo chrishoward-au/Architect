@@ -95,6 +95,8 @@ For support, please send an email to support@pizazzwp.com
 
 = 1.5.3 =
 * ADDED: Option to exclude current Snippet if a Blueprint displays Snippets on a Snippets page.
+* UPGRADED: Isotope to v2.2.2
+* FIXED: Extra end div breaking layouts with masonry
 
 = 1.5.2 =
 * CHANGED: Thumbs library to load only as required thus fixing conflict with WooCommerce

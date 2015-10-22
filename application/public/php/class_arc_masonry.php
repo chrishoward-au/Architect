@@ -20,7 +20,7 @@
       add_action('arc_masonry_controls_' . $this->blueprint[ '_blueprints_short-name' ], array($this, 'filtering'));
       add_action('arc-extend-panel-classes_' . $this->blueprint[ '_blueprints_short-name' ], array($this,
                                                                                                    'filtering_classes'), 10, 2);
-      echo '</div>';
+   //   echo '</div>';
       add_action('wp_print_footer_scripts', array($this, 'js'));
     }
 
