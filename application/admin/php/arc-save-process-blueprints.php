@@ -71,8 +71,9 @@
                                                  $bpkeys,
                                                  $value,
 //                                                 $specificity_class.'.pzarchitect.pzarc-blueprint_' . $pzarc_blueprints[ '_blueprints_short-name' ],
-                                                 $specificity_class,
-                                                 $bpkeys[ 'classes' ]);
+                                                 $specificity_class
+             //                                    $bpkeys[ 'classes' ]
+            );
           }
         }
       }
