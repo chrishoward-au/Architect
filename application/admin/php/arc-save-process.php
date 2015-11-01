@@ -141,7 +141,7 @@
         bfi_flush_image_cache();
       }
     }
-  //  die( 'You have left the building' );
+   // die( 'You have left the building' );
   }
 
   /**

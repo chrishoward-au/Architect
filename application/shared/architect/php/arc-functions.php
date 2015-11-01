@@ -634,7 +634,7 @@
    *
    * @return array
    */
-  function pzarc_get_posts_in_post_type($pzarc_post_type = 'arc-blueprints', $use_shortname = false)
+  function pzarc_get_posts_in_post_type($pzarc_post_type = 'arc-blueprints', $use_shortname = false, $override_admin=false)
   {
 //    // No point doing this if not on a screen that can use it.
 // Except it didn't work!
@@ -642,7 +642,7 @@
 //      return array();
 //    }
 //    // No point doing this if not on a screen that can use it.
-    if (!is_admin()) {
+    if (!is_admin() && !$override_admin) {
       return array();
     }
     $args                 = array(
@@ -1318,14 +1318,17 @@
     // generate correct whosit
     $pzarc_func = 'pzarc_style_' . $keys[ 'style' ];
     $pzarc_css  = '';
-    foreach ($keys[ 'classes' ] as $class) {
-      $pzarc_css .= (function_exists($pzarc_func) ? call_user_func($pzarc_func, $parentClass . ' ' . $class, $value) : '');
-      if ($pzarc_func == 'pzarc_style_padding') {
-        //     var_dump($pzarc_css);
-      }
-      if (!function_exists($pzarc_func)) {
-        //print 'Missing function ' . $pzarc_func;
-        pzdb($pzarc_func);
+    foreach ($keys[ 'classes' ] as $class_str) {
+      $class_arr = explode(',',$class_str);
+      foreach ($class_arr as $class) {
+        $pzarc_css .= (function_exists($pzarc_func) ? call_user_func($pzarc_func, $parentClass . ' ' . $class, $value) : '');
+        if ($pzarc_func == 'pzarc_style_padding') {
+          //     var_dump($pzarc_css);
+        }
+        if (!function_exists($pzarc_func)) {
+          //print 'Missing function ' . $pzarc_func;
+          pzdb($pzarc_func);
+        }
       }
     }
 

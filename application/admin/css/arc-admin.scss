@@ -1,4 +1,4 @@
-$version: "1.5.3";
+$version: "1.5.5";
 // THIS IS THE SCSS VERSION 
 $highlight: #0074a2;
 $border-radius: 3px;
@@ -159,7 +159,7 @@ div.pzarc-dragsource {
   overflow: hidden;
 }
 
-.pzgp-cell-image-behind img {
+.pzgp-cell-image-behind img.feature-image-video {
   height: 300px;
   position: relative;
 }

@@ -42,12 +42,19 @@
           display: -webkit-flex;
           display: -ms-flexbox;
           display: flex;
-          //-webkit-flex-wrap: wrap;
-          //-ms-flex-wrap: wrap;
-          //flex-wrap: wrap;
           vertical-align: middle;
           -webkit-transform: translate(0, 0) !important;
           transform: translate(0, 0) !important;
+        }
+        &.tabbed .slick-track {
+          -webkit-flex-wrap: wrap;
+          -ms-flex-wrap: wrap;
+          flex-wrap: wrap;
+          .arc-slider-slide-nav-item {
+            flex-grow:1;
+            //flex-basis:80px;
+            flex-basis:auto;
+          }
         }
         .slick-slide {
           //   height:auto;

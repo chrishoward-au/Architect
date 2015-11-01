@@ -37,6 +37,9 @@
       $this->data[ 'image' ][ 'image' ]    = null;
       $this->data[ 'image' ][ 'caption' ]  = null;
       $this->data[ 'image' ][ 'original' ] = null;
+
+      $this->data[ 'bgimage' ][ 'thumb' ] = null;
+
       $this->data[ 'video' ][ 'source' ]   = null;
 
       $this->data[ 'meta' ][ 'id' ]              = null;
@@ -56,7 +59,6 @@
       $this->data[ 'permalink' ]                 = null;
       $this->data[ 'postformat' ]                = null;
 
-      $this->data[ 'bgimage' ][ 'thumb' ] = null;
       // $this->data[ 'bgimage' ][ 'original' ] = null;
 
       $this->data = apply_filters('arc_init_data', $this->data);
@@ -118,10 +120,10 @@
     }
 
 
-    public function set_data(&$post, &$toshow, &$section,$panel_number)
+    public function set_data(&$post, &$toshow, &$section, $panel_number)
     {
-      $this->section = $section;
-      $this->toshow  = $toshow;
+      $this->section      = $section;
+      $this->toshow       = $toshow;
       $this->panel_number = $panel_number;
 
 //      if ( $this->toshow[ 'title' ][ 'show' ] ) {
@@ -305,8 +307,8 @@
       if (isset($results[ 0 ]) && !empty($this->section[ '_panels_settings_use-retina-images' ]) && function_exists('bfi_thumb')) {
         $params = array('width' => ($width * 2), 'height' => ($height * 2));
         // We need the crop to be identical. :/ So how about we just double the size of the image! I'm sure I Saw somewhere that works still.
-          $thumb_2X                         = bfi_thumb($results[ 0 ], $params);
-          $this->data[ 'image' ][ 'image' ] = str_replace('/>', 'data-at2x="' . $thumb_2X . '" />', $this->data[ 'image' ][ 'image' ]);
+        $thumb_2X                         = bfi_thumb($results[ 0 ], $params);
+        $this->data[ 'image' ][ 'image' ] = str_replace('/>', 'data-at2x="' . $thumb_2X . '" />', $this->data[ 'image' ][ 'image' ]);
       }
       $image = get_post($thumb_id);
 
@@ -409,7 +411,7 @@
       $this->data[ 'image' ][ 'original' ] = wp_get_attachment_image_src($thumb_id, 'full');
       pzdb('post get original bg');
       preg_match("/(?<=src\\=\")(.)*(?=\" )/uiUs", $this->data[ 'bgimage' ][ 'thumb' ], $results);
-      if (isset($results[ 0 ]) && !empty($this->section[ '_panels_settings_use-retina-images' ])&& function_exists('bfi_thumb')) {
+      if (isset($results[ 0 ]) && !empty($this->section[ '_panels_settings_use-retina-images' ]) && function_exists('bfi_thumb')) {
         $params = array('width' => ($width * 2), 'height' => ($height * 2));
         // We need the crop to be identical. :/ So how about we just double the size of the image! I'm sure I Saw somewhere that works still. In fact, we have no choice, since the double sized image could be bigger than the original.
         $thumb_2X                           = bfi_thumb($results[ 0 ], $params);
@@ -456,7 +458,7 @@
         $this->data[ 'image' ][ 'caption' ]  = '';
 
       }
-      if (empty($this->data[ 'image' ][ 'image' ])
+      if (empty($this->data[ 'bgimage' ][ 'thumb' ])
           && 'specific' === $this->section[ '_panels_design_use-filler-image-source' ]
           && !empty($this->section[ '_panels_design_use-filler-image-source-specific' ][ 'url' ])
       ) {
@@ -466,8 +468,7 @@
         } else {
           $imageURL = $this->section[ '_panels_design_use-filler-image-source-specific' ][ 'url' ];
         }
-
-        $this->data[ 'bgimage' ][ 'image' ]  = '<img src="' . $imageURL . '" >';
+        $this->data[ 'bgimage' ][ 'thumb' ]  = '<img src="' . $imageURL . '" >';
         $this->data[ 'image' ][ 'original' ] = array($imageURL, $width, $height, false);
         $this->data[ 'image' ][ 'caption' ]  = '';
       }
@@ -523,9 +524,9 @@
           );
 
           $this->data[ 'cfield' ][ $i ][ 'prefix-text' ]  = '<span class="pzarc-prefix-text">' . $this->section[ '_panels_design_cfield-' . $i . '-prefix-text' ] . '</span>';
-          $this->data[ 'cfield' ][ $i ][ 'prefix-image' ] = function_exists('bfi_thumb')?bfi_thumb($this->section[ '_panels_design_cfield-' . $i . '-prefix-image' ][ 'url' ], $params):$this->section[ '_panels_design_cfield-' . $i . '-prefix-image' ][ 'url' ];
+          $this->data[ 'cfield' ][ $i ][ 'prefix-image' ] = function_exists('bfi_thumb') ? bfi_thumb($this->section[ '_panels_design_cfield-' . $i . '-prefix-image' ][ 'url' ], $params) : $this->section[ '_panels_design_cfield-' . $i . '-prefix-image' ][ 'url' ];
           $this->data[ 'cfield' ][ $i ][ 'suffix-text' ]  = '<span class="pzarc-suffix-text">' . $this->section[ '_panels_design_cfield-' . $i . '-suffix-text' ] . '</span>';
-          $this->data[ 'cfield' ][ $i ][ 'suffix-image' ] = function_exists('bfi_thumb')?bfi_thumb($this->section[ '_panels_design_cfield-' . $i . '-suffix-image' ][ 'url' ], $params):$this->section[ '_panels_design_cfield-' . $i . '-prefix-image' ][ 'url' ];
+          $this->data[ 'cfield' ][ $i ][ 'suffix-image' ] = function_exists('bfi_thumb') ? bfi_thumb($this->section[ '_panels_design_cfield-' . $i . '-suffix-image' ][ 'url' ], $params) : $this->section[ '_panels_design_cfield-' . $i . '-prefix-image' ][ 'url' ];
 
           // The content itself comes from post meta or post title
 
@@ -817,7 +818,7 @@
           $panel_def[ $component ] = str_replace('{{location}}', 'pzarc-components-' . $this->section[ '_panels_design_components-position' ], $panel_def[ $component ]);
 
         }
-        if (!empty($this->section['_panels_design_rotate-image'])) {
+        if (!empty($this->section[ '_panels_design_rotate-image' ])) {
           $rot = rand(-50, 50) / 10;
           // TODO: this is bad! Not dumb at all
           $panel_def[ $component ] = str_replace('{{extrastyling}}', 'style="transform:rotate(' . $rot . 'deg);"', $panel_def[ $component ]);
@@ -918,7 +919,7 @@
 
                   $content = '<img src="' . bfi_thumb($v[ 'value' ]) . '">';
                 } else {
-                  $content = '<img src="' .$v[ 'value' ]. '">';
+                  $content = '<img src="' . $v[ 'value' ] . '">';
                 }
                 break;
 
@@ -1138,7 +1139,9 @@
             if (empty($focal_point)) {
               $focal_point = get_post_meta($the_post->ID, 'pzgp_focal_point', true);
             }
-            $focal_point = (empty($focal_point) ? array(50, 50) : explode(',', $focal_point));
+
+            $focal_point = (empty($focal_point) || !is_string($focal_point) ? array(50,
+                                                                                    50) : explode(',', $focal_point));
             if (!$thumb_id && !empty($this->build->blueprint[ 'section_object' ][ 1 ]->section[ 'section-panel-settings' ][ '_panels_settings_use-embedded-images' ])) {
               //TODO: Changed to more reliable check if image is in the content?
               preg_match("/(?<=wp-image-)(\\d)*/uimx", get_the_content(), $matches);
@@ -1168,9 +1171,23 @@
               ));
 
             }
+            if (empty($thumb)
+                && 'specific' ===$this->build->blueprint['section_object'][1]->section['section-panel-settings'][ '_panels_design_use-filler-image-source' ]
+                && !empty($this->build->blueprint['section_object'][1]->section['section-panel-settings'][ '_panels_design_use-filler-image-source-specific' ][ 'url' ])
+            ) {
+              if (function_exists('bfi_thumb')) {
+                $imageURL = bfi_thumb($this->build->blueprint['section_object'][1]->section['section-panel-settings'][ '_panels_design_use-filler-image-source-specific' ][ 'url' ], array('width'  => self::get_thumbsize('w'),
+                                                                                                                          'height' => self::get_thumbsize('h')));
+              } else {
+                $imageURL = $this->build->blueprint['section_object'][1]->section['section-panel-settings'][ '_panels_design_use-filler-image-source-specific' ][ 'url' ];
+              }
+              $thumb =  '<img src="' . $imageURL.'" width="' . self::get_thumbsize('w') . '" height="' . self::get_thumbsize('h') . '">' ;
+            } elseif (empty($thumb)) {
+              $thumb =  '<img src="' . PZARC_PLUGIN_APP_URL . '/shared/assets/images/missing-image.png" width="' . self::get_thumbsize('w') . '" height="' . self::get_thumbsize('h') . '" style="width:' . self::get_thumbsize('w') . 'px">' ;
 
-            $thumb = (empty($thumb) ? '<img src="' . PZARC_PLUGIN_APP_URL . '/shared/assets/images/missing-image.png" width="' . self::get_thumbsize('w') . '" height="' . self::get_thumbsize('h') . '">' : $thumb);
-            // Added this class so ca filter it out of Advanced Lazy Load
+            }
+
+            // Added this class so can filter it out of Advanced Lazy Load
             $thumb       = preg_replace("/class=\\\"a/uUm", "$0rc-nav-thumb a", $thumb);
             $nav_items[] = '<span class="' . $blueprints_navigator . '">' . $thumb . '</span>';
             break;

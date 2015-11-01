@@ -389,7 +389,7 @@
     .pzarchitect .navpos-top .arc-slider-container .arc-slider-slide,
     .pzarchitect .navpos-bottom .arc-slider-container .arc-slider-slide {
       /* Specify Slides's Size: */
-      height: 100%; }
+      height: auto; }
   .pzarchitect .navpos-top .nav-align-left,
   .pzarchitect .navpos-bottom .nav-align-left {
     text-align: left;

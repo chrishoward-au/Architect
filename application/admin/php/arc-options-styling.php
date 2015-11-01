@@ -905,7 +905,7 @@
                     'id'       => $prefix . 'navigator-items-active-selectors',
                     'type'     => 'text',
                     'readonly' => true,
-                    'default'  => '.pzarc-navigator .arc-slider-slide-nav-item.active',
+                    'default'  => '.pzarc-navigator .arc-slider-slide-nav-item.active, .pzarc-navigator .arc-slider-slide-nav-item.current',
                     'subtitle' => __('Architect also renders .pzarc-navigator .arc-slider-slide-nav-item.current ','pzarchitect')
                 ),
                 pzarc_redux_font($prefix . 'navigator-items-active-font', array('.pzarc-navigator .arc-slider-slide-nav-item.active ','.pzarc-navigator .arc-slider-slide-nav-item.current '), array('color' => '#fff'), array('letter-spacing',

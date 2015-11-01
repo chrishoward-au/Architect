@@ -399,6 +399,23 @@
 
         // Nav
         $this->register_block_element( array(
+                                           'id'         => 'pzarc-nav-items',
+                                           'name'       => 'Navigator items',
+                                           'selector'   => '.use-hw-css .arc-slider-slide-nav-item',
+                                           'states'     => array(
+                                               'Active'  => '.use-hw-css .arc-slider-slide-nav-item.active, .use-hw-css .arc-slider-slide-nav-item.current',
+                                               'Hover' => '.use-hw-css .arc-slider-slide-nav-item:hover',
+                                           ),
+                                           'properties' => array(
+                                               'background',
+                                               'borders',
+                                               'padding',
+                                               'rounded-corners',
+                                               'box-shadow',
+                                               'fonts'
+                                           ),
+                                       ) );
+        $this->register_block_element( array(
                                            'id'         => 'pzarc-accordion',
                                            'name'       => 'Accordion titles',
                                            'selector'   => '.use-hw-css .pzarc-accordion.title',

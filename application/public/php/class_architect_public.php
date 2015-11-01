@@ -162,7 +162,7 @@
           break;
       }
       $bp_nav_pos           = ($this->build->blueprint[ '_blueprints_navigator' ] === 'thumbs' ? $this->build->blueprint[ '_blueprints_navigator-thumbs-position' ] : $this->build->blueprint[ '_blueprints_navigator-position' ]);
-      $bp_transtype         = $this->build->blueprint[ '_blueprints_transitions-type' ];
+      $bp_transtype         = !empty($this->build->blueprint[ '_blueprints_transitions-type' ]) ?$this->build->blueprint[ '_blueprints_transitions-type' ]:'slide';
       $this->arc_pagination = array();
 
       self::set_generic_criteria();

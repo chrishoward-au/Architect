@@ -135,9 +135,6 @@
                         <a class="pzarc-button-help" href="http://architect4wp.com/codex-listings/" target="_blank">
                         <span class="dashicons dashicons-book"></span>
                         Documentation</a>&nbsp;
-                        <a class="pzarc-button-help" href="https://pizazzwp.freshdesk.com/support/discussions" target="_blank">
-                        <span class="dashicons dashicons-groups"></span>
-                        Community support</a>&nbsp;
                         <a class="pzarc-button-help" href="https://pizazzwp.freshdesk.com/support/tickets/new" target="_blank">
                         <span class="dashicons dashicons-admin-tools"></span>
                         Tech support</a>
@@ -507,9 +504,6 @@
                         <a class="pzarc-button-help" href="http://architect4wp.com/codex-listings/" target="_blank">
                         <span class="dashicons dashicons-book"></span>
                         Documentation</a><br>
-                        <a class="pzarc-button-help" href="https://pizazzwp.freshdesk.com/support/discussions" target="_blank">
-                        <span class="dashicons dashicons-groups"></span>
-                        Community support</a><br>
                         <a class="pzarc-button-help" href="https://pizazzwp.freshdesk.com/support/tickets/new" target="_blank">
                         <span class="dashicons dashicons-admin-tools"></span>
                         Tech support</a>
@@ -1090,7 +1084,7 @@
               'img' => PZARC_PLUGIN_APP_URL . 'shared/assets/images/metaboxes/nav-type-none.png'
           ),
       );
-      $transitions                 = array('fade' => 'Fade', 'slide' => 'Slide');
+
       $sections[ '_slidertabbed' ] = array(
           'title'      => __('Sliders & Tabbed', 'pzarchitect'),
           'show_title' => true,
@@ -1119,7 +1113,6 @@
                   'type'    => 'image_select',
                   'default' => 'bullets',
                   'hint'    => array('content' => __('Bullets,Titles, Labels, Numbers, Thumbnails or none', 'pzarchitect')),
-                  'height'  => 75,
                   'options' => $slider
               ),
               array(
@@ -1133,8 +1126,8 @@
                       array($prefix . 'navigator', '!=', 'bullets'),
                       array($prefix . 'navigator', '!=', 'thumbs'),
                       array($prefix . 'navigator', '!=', 'none'),
-                      array($prefix . 'navigator-position', '!=', 'left'),
-                      array($prefix . 'navigator-position', '!=', 'right')
+//                      array($prefix . 'navigator-position', '!=', 'left'),
+//                      array($prefix . 'navigator-position', '!=', 'right')
                   ),
               ),
               array(
@@ -1158,6 +1151,10 @@
                       'fluid' => 'Fluid',
                       'even'  => 'Even',
                       'fixed' => 'Fixed'
+                  ),
+                  'required'=>array(
+                      array($prefix . 'navigator-position', '!=', 'left'),
+                      array($prefix . 'navigator-position', '!=', 'right')
                   ),
                   'hint'    => array('title'   => __('Tab width type', 'pzarchitect'),
                                      'content' => __('Fluid: Adjusts to the width of the content<br>Even: Distributes evenly across the width of the blueprint<br>Fixed: Set a specific width', 'pzarchitect'))
@@ -1327,6 +1324,7 @@
                   'default'  => array('width' => '15%'),
                   'height'   => false,
                   'units'    => '%',
+                  'subtitle'=> __('Note: Set left and right padding on the navigator to zero.','pzarchitect'),
                   'required' => array(
                       array($prefix . 'navigator', '!=', 'thumbs'),
                       array($prefix . 'navigator', '!=', 'accordion'),
@@ -1467,7 +1465,7 @@
                ******************/
 
               array(
-                  'title'    => __('Transitions', 'pzarchitect'),
+                  'title'    => __('Transitions timing', 'pzarchitect'),
                   'id'       => $prefix . 'section-transitions-heading',
                   'type'     => 'section',
                   'indent'   => true,
@@ -1477,16 +1475,6 @@
                       array($prefix . 'section-0-layout-mode', '!=', 'tabular'),
                       array($prefix . 'section-0-layout-mode', '!=', 'accordion'),
                   ),
-              ),
-              array(
-                  'title'    => 'Type',
-                  'id'       => $prefix . 'transitions-type',
-                  'type'     => 'button_set',
-                  'default'  => 'fade',
-                  'subtitle' => __('When transition is set to fade, slides are not draggable', 'pzarchitect'),
-                  //              'select2' => array('allowClear' => false),
-                  'required' => array($prefix . 'section-0-layout-mode', '=', 'slider'),
-                  'options'  => apply_filters('arc-transitions', $transitions)
               ),
               array(
                   'title'         => 'Duration (seconds)',
@@ -2674,6 +2662,27 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
                       'content' => __('Alternate the features position left/right for each post.', 'pzarchitect')
                   ),
               ),
+              // TODO : get this working. Requires a class added to each panel to tell it what which way to align.
+//              array(
+//                  'title'    => __('Alternate count', 'pzarchitect'),
+//                  'id'       => $prefix . 'alternate-feature-count',
+//                  'type'          => 'spinner',
+//                  'default'       => 1,
+//                  'min'           => 1,
+//                  'max'           => 10,
+//                  'step'          => 1,
+//                  'required' => array(
+//                      array($prefix . 'alternate-feature-position', '=', 'on'),
+//                      array($prefix . 'feature-location', '!=', 'fill'),
+//                      array($prefix . 'feature-location', '!=', 'components'),
+//                      array($prefix . 'components-position', '!=', 'top'),
+//                      array($prefix . 'components-position', '!=', 'bottom'),
+//                  ),
+//                  'hint'     => array(
+//                      'title'   => __('Alternate count', 'pzarchitect'),
+//                      'content' => __('Alternate the features position left/right for each post.', 'pzarchitect')
+//                  ),
+//              ),
               array(
                   'title'    => __('Feature in', 'pzarchitect'),
                   'id'       => $prefix . 'feature-in',
@@ -2853,10 +2862,10 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
                   'id'             => $prefix . 'title-margins',
                   'type'           => 'spacing',
                   'mode'           => 'margin',
-                  'units'          => 'px',
+                  'units'          => array('px'),
                   'units_extended' => 'false',
                   'title'          => __('Title margins', 'pzarchitect'),
-                  'desc'           => __('You must set a left margin on titles for bullets to show. This is in pixels', 'pzarchitect'),
+                  'desc'           => __('You must set a left margin on titles for bullets to show.', 'pzarchitect'),
                   'default'        => array(
                       'margin-right' => '0',
                       'margin-left'  => '20',

@@ -35,7 +35,6 @@
 
     foreach ($pzarc_blueprints as $key => $value) {
 
-
       // First off process the styling settings, which should be automatable
       if (substr_count($key, '_blueprints_styling_') === 1 && !empty($_architect_options[ 'architect_enable_styling' ])) {
 
@@ -55,6 +54,7 @@
 
           // Filter out old selector names hanging arouind in existing bblueprints
           if (isset($_architect[ 'architect_config_' . $bpkeys[ 'id' ] . '-selectors' ])) {
+
             $bpkeys[ 'classes' ] = (is_array($_architect[ 'architect_config_' . $bpkeys[ 'id' ] . '-selectors' ]) ? $_architect[ 'architect_config_' . $bpkeys[ 'id' ] . '-selectors' ] : array('0' => $_architect[ 'architect_config_' . $bpkeys[ 'id' ] . '-selectors' ]));
 
             foreach ($bpkeys[ 'classes' ] as $k => $v) {
@@ -91,6 +91,7 @@
         break;
 
     }
+
     $pzarc_contents .= $specificity_class . ' {max-width:' . $pzarc_blueprints[ '_blueprints_blueprint-width' ][ 'width' ] . ';' . $bp_align . '}' . $nl;
 
     /** Vertical nav styling  */
@@ -521,10 +522,12 @@
             $twidth  = $pzarc_panels[ '_panels_design_thumb-width' ] - (str_replace('%', '', $pzarc_panels[ '_panels_design_image-spacing' ][ 'margin-left' ]) + str_replace('%', '', $pzarc_panels[ '_panels_design_image-spacing' ][ 'margin-right' ]));
             $float   = ($value === 'content-left') ? 'left' : 'right';
             $pzarc_contents .= $class_prefix . ' .in-content-thumb {width:' . $twidth . '%;' . $margins . '}' . $nl;
+
             if ($pzarc_panels[ '_panels_design_alternate-feature-position' ] === 'on') {
               $pzarc_contents .= $class_prefix . '.odd-panel .in-content-thumb {float:' . $float . ';}' . $nl;
               $float = ($value === 'content-left') ? 'right' : 'left';
               $pzarc_contents .= $class_prefix . '.even-panel .in-content-thumb {float:' . $float . ';}' . $nl;
+
             } else {
               $pzarc_contents .= $class_prefix . ' .in-content-thumb {float:' . $float . '!important;}' . $nl;
             }

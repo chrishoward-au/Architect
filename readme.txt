@@ -3,7 +3,7 @@ Contributors: chrishoward
 Tags: content,display,posts,pages,gallery,slider,tabs,tabbed,tabular,widget,hooks
 Requires at least: 3.5.0
 Tested up to: 4.4
-Stable tag: 1.5.3
+Stable tag: 1.5.5
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Plugin URI: http://architect4wp.com
@@ -93,10 +93,27 @@ For support, please send an email to support@pizazzwp.com
 
 == Changelog ==
 
+= 1.5.5 =
+* FIXED: Sharing icons not showing for arcshare.
+* UPDATED: Slickjs to 1.5.8
+
+= 1.5.4 =
+* FIXED: Added missing nav items styling to Headway Visual Editor design mode
+
 = 1.5.3 =
 * ADDED: Option to exclude current Snippet if a Blueprint displays Snippets on a Snippets page.
+* CHANGED: Horizontal tabs to wrap, minimum width 80px and use full width when smaller screens.
+* CHANGED: Slick Slider infinite now off by default
+* CHANGED: Moved Slick Slider transition selection to Slick Slider settings
+* CHANGED: Renamed Transitions section to Transitions Timing
 * UPGRADED: Isotope to v2.2.2
 * FIXED: Extra end div breaking layouts with masonry
+* FIXED: Titles bullet margins not working
+* FIXED: Horizontal tabs not equal heights 
+* FIXED: Masonry sorting and filtering showing when not enabled
+* FIXED: "Missing image" thumbnail not sizing correctly.
+* FIXED: Specific filler image not showing when in background
+* FIXED: Layout issue with vertical tabbed preset
 
 = 1.5.2 =
 * CHANGED: Thumbs library to load only as required thus fixing conflict with WooCommerce
