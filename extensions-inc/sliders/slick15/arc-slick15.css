@@ -39,6 +39,9 @@
 .pzarchitect .layout-tabbed .pzarc-navigator.right .slick-track {
   width: auto !important;
   display: block; }
+.pzarchitect .layout-slider .pzarc-navigator.top.tabbed .slick-list,
+.pzarchitect .layout-tabbed .pzarc-navigator.top.tabbed .slick-list {
+  width: 100%; }
 .pzarchitect .pzarc-navigator:not(.thumbs).top.nav-align-center .slick-track, .pzarchitect .pzarc-navigator:not(.thumbs).bottom.nav-align-center .slick-track {
   -webkit-justify-content: center;
   justify-content: center; }

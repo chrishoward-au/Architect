@@ -489,7 +489,7 @@
             break;
           case'email':
             wp_enqueue_style('dashicons');
-            $share_link .= '<a class="arc-email-share-button" href="mailto:?subject=' . str_replace(':', '', $message) . '&body=' . $message . $this->blueprint[ 'parent-page-url' ] . '#' . $share_url . '" title="' . __('Share by email', 'pzarchitect') . '"><span class="dashicons dashicons-email" ' . $styles . '></span></a> ';
+            $share_link .= '<a class="arc-email-share-button" href="mailto:?subject=' . str_replace(':', '', $message) . '&body=' . $message . $this->blueprint[ 'parent-page-url' ] . '%23' . $share_url . '" title="' . __('Share by email', 'pzarchitect') . '"><span class="dashicons dashicons-email" ' . $styles . '></span></a> ';
             break;
         }
       }

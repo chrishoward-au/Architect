@@ -27,7 +27,7 @@
 
     // Setup the slides
     $pzarc_slick_data = '{';
-    $pzarc_slick_data .= ' "fade": ' . (!empty($blueprint[ '_blueprints_transitions-type' ]) && $blueprint[ '_blueprints_transitions-type' ] === 'fade' ? 'true' : 'false');
+    $pzarc_slick_data .= ' "fade": ' . (empty($blueprint[ '_blueprints_transitions-type' ]) || $blueprint[ '_blueprints_transitions-type' ] === 'fade' ? 'true' : 'false');
     $pzarc_slick_data .= ', "slidesToShow": ' . $blueprint[ '_blueprints_section-0-columns-breakpoint-1' ];
     $pzarc_slick_data .= ', "slidesToScroll": ' . $blueprint[ '_blueprints_section-0-columns-breakpoint-1' ];
     $pzarc_slick_data .= ', "autoplay":' . (!empty($blueprint[ '_blueprints_transitions-interval' ]) ? 'true' : 'false');

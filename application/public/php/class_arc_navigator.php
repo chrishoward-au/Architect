@@ -100,7 +100,10 @@
             $styles .= 'width:' . $this->blueprint[ '_blueprints_navtabs-width' ][ 'width' ] . ';';
             break;
           case 'even':
-            $styles .= 'width:' . (100 / count($this->navitems)) . '%;';
+            $margins_compensation = ($this->blueprint[ '_blueprints_navtabs-margins-compensation' ][ 'width' ])?$this->blueprint[ '_blueprints_navtabs-margins-compensation' ][ 'width' ]*count($this->navitems):'0';
+            $margins_compensation .= ($this->blueprint[ '_blueprints_navtabs-margins-compensation' ][ 'units' ])?$this->blueprint[ '_blueprints_navtabs-margins-compensation' ][ 'units' ]:'px';
+            $percent_width = (100 / count($this->navitems)).'%';
+            $styles .= 'width:calc(' .$percent_width.' - '.$margins_compensation  . ');';
             break;
           case 'fluid':
           default:

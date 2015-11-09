@@ -3,7 +3,7 @@ Contributors: chrishoward
 Tags: content,display,posts,pages,gallery,slider,tabs,tabbed,tabular,widget,hooks
 Requires at least: 3.5.0
 Tested up to: 4.4
-Stable tag: 1.5.5
+Stable tag: 1.5.8
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Plugin URI: http://architect4wp.com
@@ -92,6 +92,19 @@ For support, please send an email to support@pizazzwp.com
 2. Slider example
 
 == Changelog ==
+
+= 1.5.8 : 9 Nov 2015 =
+* ADDED: Option to set behaviour of custom field links
+
+= 1.5.7 =
+* CHANGED: Message in Presets Selector about styling is more obvious
+* CHANGED: Thumbs now have title in tooltip
+* CHANGED: Horizontal tabbed left/right margins now defaults to zero.
+* FIXED: Slider fade option stopped working
+
+= 1.5.6 =
+* CHANGED: Excerpts will now process shortcodes. This includes any in image captions and descriptions.
+* ADDED: Option for fixed width tabs to add a margin for compensation 
 
 = 1.5.5 =
 * FIXED: Sharing icons not showing for arcshare.

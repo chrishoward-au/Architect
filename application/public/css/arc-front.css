@@ -378,6 +378,9 @@
   .pzarchitect .navpos-bottom .arc-slider-slide-nav-item {
     display: inline-block;
     margin: 0 3px; }
+  .pzarchitect .navpos-top .tabbed .arc-slider-slide-nav-item,
+  .pzarchitect .navpos-bottom .tabbed .arc-slider-slide-nav-item {
+    margin: 0; }
   .pzarchitect .navpos-top .has-pager .thumbs.pzarc-navigator,
   .pzarchitect .navpos-bottom .has-pager .thumbs.pzarc-navigator {
     width: 80%;

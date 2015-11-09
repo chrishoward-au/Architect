@@ -495,7 +495,7 @@
       if (!empty($this->section[ '_panels_design_manual-excerpts' ]) && !has_excerpt()) {
         $this->data[ 'excerpt' ] = '';
       } else {
-        $this->data[ 'excerpt' ] = apply_filters('the_excerpt', get_the_excerpt());
+        $this->data[ 'excerpt' ] = apply_filters('the_excerpt', do_shortcode(get_the_excerpt()));
       }
     }
 
@@ -515,6 +515,7 @@
           $this->data[ 'cfield' ][ $i ][ 'wrapper-tag' ]   = $this->section[ '_panels_design_cfield-' . $i . '-wrapper-tag' ];
           $this->data[ 'cfield' ][ $i ][ 'class-name' ]    = isset($this->section[ '_panels_design_cfield-' . $i . '-class-name' ]) ? $this->section[ '_panels_design_cfield-' . $i . '-class-name' ] : '';
           $this->data[ 'cfield' ][ $i ][ 'link-field' ]    = $this->section[ '_panels_design_cfield-' . $i . '-link-field' ];
+          $this->data[ 'cfield' ][ $i ][ 'link-behaviour' ]    = isset($this->section[ '_panels_design_cfield-' . $i . '-link-behaviour' ])?$this->section[ '_panels_design_cfield-' . $i . '-link-behaviour' ]:'_self';
           $this->data[ 'cfield' ][ $i ][ 'decimals' ]      = $this->section[ '_panels_design_cfield-' . $i . '-number-decimals' ];
           $this->data[ 'cfield' ][ $i ][ 'decimal-char' ]  = $this->section[ '_panels_design_cfield-' . $i . '-number-decimal-char' ];
           $this->data[ 'cfield' ][ $i ][ 'thousands-sep' ] = $this->section[ '_panels_design_cfield-' . $i . '-number-thousands-separator' ];
@@ -960,7 +961,7 @@
             $content = $prefix_image . $v[ 'prefix-text' ] . $content . $v[ 'suffix-text' ] . $suffix_image;
 
             if (!empty($v[ 'link-field' ])) {
-              $content = '<a href="' . $v[ 'link-field' ] . '">' . $content . '</a>';
+              $content = '<a href="' . $v[ 'link-field' ] . '" target="'.$v[ 'link-behaviour' ].'">' . $content . '</a>';
             }
 
             if ($v[ 'name' ] === 'use_empty' && empty($v[ 'link-field' ])) {
@@ -1189,7 +1190,7 @@
 
             // Added this class so can filter it out of Advanced Lazy Load
             $thumb       = preg_replace("/class=\\\"a/uUm", "$0rc-nav-thumb a", $thumb);
-            $nav_items[] = '<span class="' . $blueprints_navigator . '">' . $thumb . '</span>';
+            $nav_items[] = '<span class="' . $blueprints_navigator . '" title="'.$the_post->post_title.'">' . $thumb . '</span>';
             break;
 
           case 'bullets':

@@ -1,6 +1,54 @@
 # Architect change history 
 
-## 1.5.0 : 3 Oct2015 
+## 1.5.8 : 9 Nov 2015 
+* ADDED: Option to set behaviour of custom field links
+
+## 1.5.7 : 6 Nov 2015
+* CHANGED: Message in Presets Selector about styling is more obvious
+* CHANGED: Thumbs now have title in tooltip
+* CHANGED: Horizontal tabbed left/right margins now defaults to zero.
+* FIXED: Slider fade option stopped working
+
+## 1.5.6 
+* CHANGED: Excerpts will now process shortcodes. This includes any in image captions and descriptions.
+* ADDED: Option for fixed width tabs to add a margin for compensation 
+
+## 1.5.5 : 1 Nov 2015
+* FIXED: Sharing icons not showing for arcshare.
+* UPDATED: Slickjs to 1.5.8
+
+## 1.5.4
+* FIXED: Added missing nav items styling to Headway Visual Editor design mode
+
+## 1.5.3 
+* ADDED: Option to exclude current Snippet if a Blueprint displays Snippets on a Snippets page.
+* CHANGED: Horizontal tabs to wrap, minimum width 80px and use full width when smaller screens.
+* CHANGED: Slick Slider infinite now off by default
+* CHANGED: Moved Slick Slider transition selection to Slick Slider settings
+* CHANGED: Renamed Transitions section to Transitions Timing
+* UPGRADED: Isotope to v2.2.2
+* FIXED: Extra end div breaking layouts with masonry
+* FIXED: Titles bullet margins not working
+* FIXED: Horizontal tabs not equal heights 
+* FIXED: Masonry sorting and filtering showing when not enabled
+* FIXED: "Missing image" thumbnail not sizing correctly.
+* FIXED: Specific filler image not showing when in background
+* FIXED: Layout issue with vertical tabbed preset
+
+## 1.5.2 
+* CHANGED: Thumbs library to load only as required thus fixing conflict with WooCommerce
+* ADDED: More cropping options Crop to top, centre or bottom
+* FIXED: Various small tweaks and fixes
+
+## 1.5.1 
+* ADDED: Rendering of shortcodes in custom fields
+* ADDED: Shortcode [arcpagetitle] to display the parent page's title. Use in meta fields.
+* CHANGED: Slides hidden before loading for tidiness. 
+* FIXED: CSS not loading when using a Blueprint to override WP Gallery.
+* FIXED: Slideshow jQuery loading wrong sometimes
+
+
+## 1.5.0 : 3 Oct 2015 
 * ADDED: Support for filtering and sorting in masonry layouts!! (Thanks, Jamie!)
 * ADDED: Option to use Headway alternative titles. On by default.
 * ADDED: Option to display author avatars (Thanks Courtney!)

@@ -293,6 +293,7 @@
               'id'       => 'architect_enable_styling',
               'type'     => 'switch',
               'subtitle' => __( 'Turn this off if you want to manage styling from your own CSS stylesheets or only from the Headway Visual Editor Design Mode.', 'pzarchitect' ),
+              'desc'=>__('If this is enabled, it will override styling for Blueprints set in your theme or custom CSS.','pzarchitect'),
               'default'  => !$is_hw
             ),
             array(

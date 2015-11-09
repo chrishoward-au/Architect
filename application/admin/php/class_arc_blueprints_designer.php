@@ -124,6 +124,8 @@
 
       // TODO: How can we make this not load until we want it too?
 
+      global $_architect_options;
+      $arc_styling = !empty($_architect_options['architect_enable_styling'])?'arc-styling-on':'arc-styling-off';
       $presets                  = new arcPresetsLoader();
       $presets_array            = $presets->render();
       $presets_html             = $presets_array[ 'html' ];
@@ -170,9 +172,10 @@
                 If you have Presets to import, do so in the Architect > Tools page
            </div>
            </div>
-           <p class="footer">• All Presets use Dummy Content by default. Please change to the content of your choice after loading the chosen Preset.<br>
-           • If <em>Use Architect styling</em> is turned off in Architect > Options, styling will not show.
-           </p>
+           <div class="footer">
+           <p>• All Presets use Dummy Content by default. Please change to the content of your choice after loading the chosen Preset.</p>
+           <p class="'.$arc_styling.'"><em>Use Architect styling</em> is turned off in <em>Architect</em> > <em>Options</em>, therefore styling will not render.</p>
+           </div>
            <div class="buttons">
             <a class="arc-button-presets styled disabled" href="javascript:void(0);">Use styled</a>
             <a class="arc-button-presets unstyled disabled" href="javascript:void(0);">Use unstyled</a>
@@ -1158,6 +1161,19 @@
                   ),
                   'hint'    => array('title'   => __('Tab width type', 'pzarchitect'),
                                      'content' => __('Fluid: Adjusts to the width of the content<br>Even: Distributes evenly across the width of the blueprint<br>Fixed: Set a specific width', 'pzarchitect'))
+              ),
+              array(
+                  'id'       => $prefix . 'navtabs-margins-compensation',
+                  'type'     => 'dimensions',
+                  'units'    => array('%', 'px', 'em'),
+                  'width'    => true,
+                  'height'   => false,
+                  'title'    => __('Margins compensation', 'pzarchitect'),
+                  'default'  => array('width' => '0', 'units' => '%'),
+                  'subtitle'=> __('If you set margins for the tabs anywhere else, enter the sum of the left and right margins and units of a single tab. e.g. if margins are 5px, enter 10px','pzarchitect'),
+                  'required' => array(
+                      array($prefix . 'navtabs-width-type', 'contains', 'even'),
+                  ),
               ),
               array(
                   'id'       => $prefix . 'navtabs-width',
@@ -3038,7 +3054,7 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
           'show_title' => false,
           'icon_class' => 'icon-large',
           'icon'       => 'el-icon-calendar',
-          'desc'       => __('Available tags are <span class="pzarc-text-highlight">%author%, %email%,   %date%,   %categories%,   %tags,   %commentslink%,   %editlink%,   %id%</span>. For custom taxonomies, prefix with ct:. e.g. To display the Woo Testimonials category, you would use %ct:testimonial-category%. Or to display WooCommerce product category, use: %ct:product_cat%', 'pzarchitect') . '<br>' .
+          'desc'       => __('Available tags are <span class="pzarc-text-highlight">%author%, %email%,   %date%,   %categories%,   %tags%,   %commentslink%,   %editlink%,   %id%</span>. For custom taxonomies, prefix with ct:. e.g. To display the Woo Testimonials category, you would use %ct:testimonial-category%. Or to display WooCommerce product category, use: %ct:product_cat%', 'pzarchitect') . '<br>' .
               __('Allowed HTML tags:', 'pzarchitect') . ' p, br, span, strong & em<br><br>' .
               __('Use shortcodes to add custom functions to meta. e.g. [add_to_cart id="%id%"]', 'pzarchitect') . '<br>' .
               __('Note: Enclose any author related text in <span class="pzarc-text-highlight">//</span> to hide it when using excluded authors.', 'pzarchitect') . '<br>' .
@@ -3676,6 +3692,13 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
                         //                'args'     => array( 'pzarc_get_custom_fields' ),
                         'options'  => $this->custom_fields,
                         'subtitle' => 'Select a custom field that contains URLs you want to use as the link',
+                    ),
+                    array(
+                        'title'    => __('Open link in', 'pzarchitect'),
+                        'id'       => $prefix . 'cfield-' . $i . '-link-behaviour',
+                        'type'     => 'button_set',
+                        'default'=>'_self',
+                        'options'  => array('_self'=>__('Same tab','pzarchitect'),'_blank'=>__('New tab','pzarchitect')),
                     ),
                     array(
                         'title' => __('Prefix text', 'pzarchitect'),
