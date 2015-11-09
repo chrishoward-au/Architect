@@ -102,7 +102,8 @@
     {
       /** Excerpt */
       if ($this->toshow[ 'excerpt' ][ 'show' ]) {
-        $this->data[ 'excerpt' ] = apply_filters('the_excerpt', $post[ 'excerpt' ]);
+        //$this->data[ 'excerpt' ] = apply_filters('the_excerpt', $post[ 'excerpt' ]);
+        $this->data[ 'excerpt' ] = $post[ 'excerpt' ];
       }
     }
 
