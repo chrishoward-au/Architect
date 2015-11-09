@@ -93,6 +93,8 @@ For support, please send an email to support@pizazzwp.com
 
 == Changelog ==
 
+* FIXED: Removed content filtering of dummy content as causing an infinite loop in Beaver
+
 = 1.5.8 : 9 Nov 2015 =
 * ADDED: Option to set behaviour of custom field links
 

@@ -83,8 +83,8 @@
             $paragraphs .= '<p>'.$this->faker->realText(rand(200, 500)).'</p>';
           }
         }
-        $dummy_query[ $i ][ 'content' ]          = apply_filters('the_content', ($this->isfaker ? $paragraphs : ucfirst($this->generator->getContent(rand(400, 800), 'html', false))));
-        $dummy_query[ $i ][ 'excerpt' ]          = apply_filters('the_excerpt', ($this->isfaker ? $this->faker->realText(5 * $trim_length) : ucfirst($this->generator->getContent(rand(10, $trim_length), 'text', false))) . $readmore);
+        $dummy_query[ $i ][ 'content' ]          = ($this->isfaker ? $paragraphs : ucfirst($this->generator->getContent(rand(400, 800), 'html', false)));
+        $dummy_query[ $i ][ 'excerpt' ]          = ($this->isfaker ? $this->faker->realText(5 * $trim_length) : ucfirst($this->generator->getContent(rand(10, $trim_length), 'text', false))) . $readmore;
 
         // We could cache these but writes are expensive and time consuming. So we'll just use fat thumbs instead.
         // Maybe get Faker to add specific pic number then we could cut a smaller thumb

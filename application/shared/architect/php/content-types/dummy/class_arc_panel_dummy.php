@@ -93,7 +93,8 @@
     {
       /** CONTENT */
       if ($this->toshow[ 'content' ][ 'show' ]) {
-        $this->data[ 'content' ] = apply_filters('the_content', $post[ 'content' ]);
+        //$this->data[ 'content' ] = apply_filters('the_content', $post[ 'content' ]);
+        $this->data[ 'content' ] = $post[ 'content' ];
       }
     }
 
