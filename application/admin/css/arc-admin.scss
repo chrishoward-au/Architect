@@ -1,4 +1,4 @@
-$version: "1.5.8";
+$version: "1.5.11";
 // THIS IS THE SCSS VERSION
 $highlight: #0074a2;
 $border-radius: 3px;
@@ -635,9 +635,9 @@ body.screen-arc-panels {
 /*body.post-type-arc-panels h3.hndle,*/
 /*body.post-type-arc-blueprints h3.hndle,*/
 /*body.post-type-arc-contents h3.hndle,*/
-/*body.post-type-arc-panels h3.redux-hndle,*/
-/*body.post-type-arc-blueprints h3.redux-hndle,*/
-/*body.post-type-arc-contents h3.redux-hndle*/
+/*body.post-type-arc-panels h3.redux-hndle, h2.hndle,*/
+/*body.post-type-arc-blueprints h3.redux-hndle, h2.hndle,*/
+/*body.post-type-arc-contents h3.redux-hndle, h2.hndle*/
 /*{*/
 /*color: #fff;*/
 /*background: #6d6d6d;*/
@@ -934,10 +934,11 @@ body.arc-bgimage {
         }
       }
     }
-    #poststuff h3.redux-hndle,
-    #poststuff h3.redux-hndle,
-    .metabox-holder h3.redux-hndle {
-      background: rgba(0, 0, 0, 0.7);
+    #poststuff h3.redux-hndle, #poststuff h2.hndle,
+    #poststuff h3.redux-hndle, #poststuff h2.hndle,
+    .metabox-holder h3.redux-hndle, .metabox-holder h2.hndle {
+      background: #222;
+      color: #fff;
     }
 
   }
@@ -1615,8 +1616,10 @@ body.arc-beginner .arc-field-advanced {
 }
 
 #redux-_architect-metabox-presets {
-  h3.redux-hndle {
+  h3.redux-hndle, h2.hndle {
     border-bottom: solid 4px $violet !important;
+    background: #222;
+    color: #fff;
     // background: $violet-900 !important;
   }
   .redux-container {
@@ -1646,9 +1649,11 @@ body.arc-beginner .arc-field-advanced {
 }
 
 #redux-_architect-metabox-layout-settings {
-  h3.redux-hndle {
+  h3.redux-hndle, h2.hndle {
     border-bottom: solid 4px $indigo !important;
-    // background: $indigo-900 !important;
+    background: #222;
+    color: #fff;
+   // background: $indigo-900 !important;
   }
   .redux-container {
     background: $indigo-50;
@@ -1678,8 +1683,10 @@ body.arc-beginner .arc-field-advanced {
 }
 
 #redux-_architect-metabox-panels-design {
-  h3.redux-hndle {
+  h3.redux-hndle, h2.hndle {
     border-bottom: solid 4px $orange !important;
+    background: #222;
+    color: #fff;
     // background: $orange-900 !important;
   }
   .redux-container {
@@ -1711,8 +1718,10 @@ body.arc-beginner .arc-field-advanced {
 }
 
 #redux-_architect-metabox-content-selections {
-  h3.redux-hndle {
+  h3.redux-hndle, h2.hndle {
     border-bottom: solid 4px $red !important;
+    background: #222;
+    color: #fff;
     // background: $red-900 !important;
   }
   .redux-container {
@@ -1744,8 +1753,10 @@ body.arc-beginner .arc-field-advanced {
 }
 
 #redux-_architect-metabox-blueprint-stylings {
-  h3.redux-hndle {
+  h3.redux-hndle, h2.hndle {
     border-bottom: solid 4px $blue !important;
+    background: #222;
+    color: #fff;
     // background: $blue-900 !important;
   }
   .redux-container {
@@ -1776,8 +1787,10 @@ body.arc-beginner .arc-field-advanced {
 }
 
 #redux-_architect-metabox-panels-styling {
-  h3.redux-hndle {
+  h3.redux-hndle, h2.hndle {
     border-bottom: solid 4px $green !important;
+    background: #222;
+    color: #fff;
     // background: $green-900 !important;
   }
   .redux-container {

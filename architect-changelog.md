@@ -1,5 +1,8 @@
 # Architect change history 
 
+## 1.5.9 : 11 Nov 2015 
+* FIXED: Removed content filtering of dummy content as causing an infinite loop in Beaver
+
 ## 1.5.8 : 9 Nov 2015 
 * ADDED: Option to set behaviour of custom field links
 

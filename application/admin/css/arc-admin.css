@@ -499,9 +499,9 @@ body.screen-arc-panels #side-sortables .postbox {
 /*body.post-type-arc-panels h3.hndle,*/
 /*body.post-type-arc-blueprints h3.hndle,*/
 /*body.post-type-arc-contents h3.hndle,*/
-/*body.post-type-arc-panels h3.redux-hndle,*/
-/*body.post-type-arc-blueprints h3.redux-hndle,*/
-/*body.post-type-arc-contents h3.redux-hndle*/
+/*body.post-type-arc-panels h3.redux-hndle, h2.hndle,*/
+/*body.post-type-arc-blueprints h3.redux-hndle, h2.hndle,*/
+/*body.post-type-arc-contents h3.redux-hndle, h2.hndle*/
 /*{*/
 /*color: #fff;*/
 /*background: #6d6d6d;*/
@@ -728,12 +728,13 @@ body.arc-bgimage.post-type-arc-panels .postbox, body.arc-bgimage.post-type-arc-b
   body.arc-bgimage.post-type-arc-panels .postbox .redux-container .redux-group-menu .active a, body.arc-bgimage.post-type-arc-blueprints .postbox .redux-container.redux-has-sections .redux-main,
   body.arc-bgimage.post-type-arc-blueprints .postbox .redux-container .redux-group-menu .active a {
     background: rgba(255, 255, 255, 0.7); }
-body.arc-bgimage.post-type-arc-panels #poststuff h3.redux-hndle,
-body.arc-bgimage.post-type-arc-panels #poststuff h3.redux-hndle,
-body.arc-bgimage.post-type-arc-panels .metabox-holder h3.redux-hndle, body.arc-bgimage.post-type-arc-blueprints #poststuff h3.redux-hndle,
-body.arc-bgimage.post-type-arc-blueprints #poststuff h3.redux-hndle,
-body.arc-bgimage.post-type-arc-blueprints .metabox-holder h3.redux-hndle {
-  background: rgba(0, 0, 0, 0.7); }
+body.arc-bgimage.post-type-arc-panels #poststuff h3.redux-hndle, body.arc-bgimage.post-type-arc-panels #poststuff h2.hndle,
+body.arc-bgimage.post-type-arc-panels #poststuff h3.redux-hndle, body.arc-bgimage.post-type-arc-panels #poststuff h2.hndle,
+body.arc-bgimage.post-type-arc-panels .metabox-holder h3.redux-hndle, body.arc-bgimage.post-type-arc-panels .metabox-holder h2.hndle, body.arc-bgimage.post-type-arc-blueprints #poststuff h3.redux-hndle, body.arc-bgimage.post-type-arc-blueprints #poststuff h2.hndle,
+body.arc-bgimage.post-type-arc-blueprints #poststuff h3.redux-hndle, body.arc-bgimage.post-type-arc-blueprints #poststuff h2.hndle,
+body.arc-bgimage.post-type-arc-blueprints .metabox-holder h3.redux-hndle, body.arc-bgimage.post-type-arc-blueprints .metabox-holder h2.hndle {
+  background: #222;
+  color: #fff; }
 
 #toplevel_page_pzarc span.dashicons {
   font-family: "dashicons";
@@ -931,7 +932,7 @@ body .redux-container .redux-main .redux-section-field.redux-field.heading h3 {
 #adminmenu li.toplevel_page_pzarc .wp-menu-image img {
   opacity: 1; }
 #adminmenu li.toplevel_page_pzarc .wp-menu-name:after {
-  content: "1.5.8";
+  content: "1.5.11";
   opacity: 0;
   font-size: 10px;
   padding-left: 5px; }
@@ -1252,8 +1253,10 @@ body.arc-beginner .arc-field-advanced {
     #tab-presets:hover.active span.stepno {
       color: #673ab7; }
 
-#redux-_architect-metabox-presets h3.redux-hndle {
-  border-bottom: solid 4px #673ab7 !important; }
+#redux-_architect-metabox-presets h3.redux-hndle, #redux-_architect-metabox-presets h2.hndle {
+  border-bottom: solid 4px #673ab7 !important;
+  background: #222;
+  color: #fff; }
 #redux-_architect-metabox-presets .redux-container {
   background: #fff; }
 
@@ -1270,8 +1273,10 @@ body.arc-beginner .arc-field-advanced {
     #tab-layout:hover.active span.stepno {
       color: #3f51b5; }
 
-#redux-_architect-metabox-layout-settings h3.redux-hndle {
-  border-bottom: solid 4px #3f51b5 !important; }
+#redux-_architect-metabox-layout-settings h3.redux-hndle, #redux-_architect-metabox-layout-settings h2.hndle {
+  border-bottom: solid 4px #3f51b5 !important;
+  background: #222;
+  color: #fff; }
 #redux-_architect-metabox-layout-settings .redux-container {
   background: #e8eaf6; }
 
@@ -1288,8 +1293,10 @@ body.arc-beginner .arc-field-advanced {
     #tab-panels:hover.active span.stepno {
       color: #ffc107; }
 
-#redux-_architect-metabox-panels-design h3.redux-hndle {
-  border-bottom: solid 4px #ffc107 !important; }
+#redux-_architect-metabox-panels-design h3.redux-hndle, #redux-_architect-metabox-panels-design h2.hndle {
+  border-bottom: solid 4px #ffc107 !important;
+  background: #222;
+  color: #fff; }
 #redux-_architect-metabox-panels-design .redux-container {
   background: #fff8e1; }
 
@@ -1306,8 +1313,10 @@ body.arc-beginner .arc-field-advanced {
     #tab-content:hover.active span.stepno {
       color: #e91e63; }
 
-#redux-_architect-metabox-content-selections h3.redux-hndle {
-  border-bottom: solid 4px #e91e63 !important; }
+#redux-_architect-metabox-content-selections h3.redux-hndle, #redux-_architect-metabox-content-selections h2.hndle {
+  border-bottom: solid 4px #e91e63 !important;
+  background: #222;
+  color: #fff; }
 #redux-_architect-metabox-content-selections .redux-container {
   background: #fce4ec; }
 
@@ -1324,8 +1333,10 @@ body.arc-beginner .arc-field-advanced {
     #tab-styling:hover.active span.stepno {
       color: #2196f3; }
 
-#redux-_architect-metabox-blueprint-stylings h3.redux-hndle {
-  border-bottom: solid 4px #2196f3 !important; }
+#redux-_architect-metabox-blueprint-stylings h3.redux-hndle, #redux-_architect-metabox-blueprint-stylings h2.hndle {
+  border-bottom: solid 4px #2196f3 !important;
+  background: #222;
+  color: #fff; }
 #redux-_architect-metabox-blueprint-stylings .redux-container {
   background: #e3f2fd; }
 
@@ -1342,8 +1353,10 @@ body.arc-beginner .arc-field-advanced {
     #tab-content_styling:hover.active span.stepno {
       color: #8bc34a; }
 
-#redux-_architect-metabox-panels-styling h3.redux-hndle {
-  border-bottom: solid 4px #8bc34a !important; }
+#redux-_architect-metabox-panels-styling h3.redux-hndle, #redux-_architect-metabox-panels-styling h2.hndle {
+  border-bottom: solid 4px #8bc34a !important;
+  background: #222;
+  color: #fff; }
 #redux-_architect-metabox-panels-styling .redux-container {
   background: #f1f8e9; }
 

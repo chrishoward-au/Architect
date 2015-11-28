@@ -1821,7 +1821,6 @@
     $taxonomy_list = get_taxonomies(array(
                                         'public'   => true,
                                         '_builtin' => false
-
                                     ));
     //  var_dump($taxonomy_list);
     foreach ($taxonomy_list as $k => $v) {

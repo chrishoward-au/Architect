@@ -14,7 +14,7 @@
 
       jQuery( targets ).each( function ()
       {
-        jQuery( this ).find( '.handlediv' ).hide();
+//        jQuery( this ).find( '.handlediv' ).hide();
       } );
 
       if ( jQuery( this ).hasClass( "active" ) )

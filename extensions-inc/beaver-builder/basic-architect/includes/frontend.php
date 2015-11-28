@@ -14,6 +14,7 @@
 <div class="fl-example-text">
     <?php
       var_dump($settings);
-        pzarchitect($settings->blueprint_field);
+      // pzarchitect($pzarc_blueprint = null, $pzarc_overrides = null, $tablet_bp = null, $phone_bp = null)
+        pzarchitect($settings->blueprint_default, null,$settings->blueprint_tablet,$settings->blueprint_phone);
     ?>
 </div>
