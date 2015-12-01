@@ -634,7 +634,7 @@
    *
    * @return array
    */
-  function pzarc_get_posts_in_post_type($pzarc_post_type = 'arc-blueprints', $use_shortname = false, $override_admin=false)
+  function pzarc_get_posts_in_post_type($pzarc_post_type = 'arc-blueprints', $use_shortname = false, $override_admin = false)
   {
 //    // No point doing this if not on a screen that can use it.
 // Except it didn't work!
@@ -1319,7 +1319,7 @@
     $pzarc_func = 'pzarc_style_' . $keys[ 'style' ];
     $pzarc_css  = '';
     foreach ($keys[ 'classes' ] as $class_str) {
-      $class_arr = explode(',',$class_str);
+      $class_arr = explode(',', $class_str);
       foreach ($class_arr as $class) {
         $pzarc_css .= (function_exists($pzarc_func) ? call_user_func($pzarc_func, $parentClass . ' ' . $class, $value) : '');
         if ($pzarc_func == 'pzarc_style_padding') {
@@ -1822,14 +1822,15 @@
                                         'public'   => true,
                                         '_builtin' => false
                                     ));
-    //  var_dump($taxonomy_list);
     foreach ($taxonomy_list as $k => $v) {
       $tax_obj             = get_taxonomy($k);
       $taxonomy_list[ $k ] = $tax_obj->labels->name;
     }
+    // Add the None option if required
     $extras        = $has_blank ? array(0          => '',
                                         'category' => 'Categories',
-                                        'post_tag' => 'Tags') : array('category' => 'Categories', 'post_tag' => 'Tags');
+                                        'post_tag' => 'Tags')
+        : array('category' => 'Categories', 'post_tag' => 'Tags');
     $taxonomy_list = $catstags ? $extras + $taxonomy_list : $taxonomy_list;
 
     return $taxonomy_list;
@@ -1864,14 +1865,14 @@
    *
    * @return null|string
    */
-  function pzarc_display_page_title(&$blueprint,&$arcoptions,$tag='h1')
+  function pzarc_display_page_title(&$blueprint, &$arcoptions, $tag = 'h1')
   {
-    $display_title = $blueprint[ '_blueprints_page-title' ];
+    $display_title  = $blueprint[ '_blueprints_page-title' ];
     $title_override = array(
-      'category' => $arcoptions[ 'architect_language-categories-archive-pages-title' ],
-      'tag'      => $arcoptions[ 'architect_language-tags-archive-pages-title' ],
-      'month'    => $arcoptions[ 'architect_language-tags-archive-pages-title' ],
-      'custom'   => $arcoptions[ 'architect_language-custom-archive-pages-title' ]);
+        'category' => $arcoptions[ 'architect_language-categories-archive-pages-title' ],
+        'tag'      => $arcoptions[ 'architect_language-tags-archive-pages-title' ],
+        'month'    => $arcoptions[ 'architect_language-tags-archive-pages-title' ],
+        'custom'   => $arcoptions[ 'architect_language-custom-archive-pages-title' ]);
 
     pzdb('page title');
     if (!empty($display_title) || !empty($blueprint[ 'additional_overrides' ][ 'pzarc-overrides-page-title' ])) {
@@ -1911,11 +1912,11 @@
         case is_single() || $wp_the_query->is_single:
         case is_singular() || $wp_the_query->is_singular || $wp_the_query->is_page:
           $title = single_post_title(null, false);
-          $title = !$title?$wp_the_query->post->post_title:$title;
+          $title = !$title ? $wp_the_query->post->post_title : $title;
           break;
       }
       if ($title) {
-        return '<'.$tag.' class="pzarc-page-title">' . esc_attr($title) . '</'.$tag.'>';
+        return '<' . $tag . ' class="pzarc-page-title">' . esc_attr($title) . '</' . $tag . '>';
       }
     }
 

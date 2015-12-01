@@ -932,7 +932,7 @@ body .redux-container .redux-main .redux-section-field.redux-field.heading h3 {
 #adminmenu li.toplevel_page_pzarc .wp-menu-image img {
   opacity: 1; }
 #adminmenu li.toplevel_page_pzarc .wp-menu-name:after {
-  content: "1.5.11";
+  content: "1.5.12";
   opacity: 0;
   font-size: 10px;
   padding-left: 5px; }

@@ -1,5 +1,14 @@
 # Architect change history 
 
+## 1.5.12 
+* FIXED: Fluid and fixed width tabs noit working.
+
+## 1.5.11 
+* FIXED: Preset Selector disabled when Page Guide turned off
+
+## 1.5.10 : 20 Nov 2015 
+* FIXED: Conflict with Yoast 3 caused by old Redux hack to counter a Yoast conflict in pre v3 Yoast!
+
 ## 1.5.9 : 11 Nov 2015 
 * FIXED: Removed content filtering of dummy content as causing an infinite loop in Beaver
 

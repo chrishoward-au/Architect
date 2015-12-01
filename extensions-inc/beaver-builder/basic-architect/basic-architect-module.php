@@ -102,6 +102,12 @@
                                                                               'label'   => __('Terms', 'fl-builder'),
                                                                               'default' => '',
                                                                           ),
+                                                                          'override_styling'   => array(
+                                                                              'type'    => 'select',
+                                                                              'label'   => __('Ignore this BLueprint\'s Content styling?', 'pzarchitect'),
+                                                                              'default' => 'no',
+                                                                              'options' => array('yes'=>'Yes','no'=>'No')
+                                                                          ),
                                                                       ),
                                                            )
                                                 )

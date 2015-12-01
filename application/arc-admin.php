@@ -405,7 +405,8 @@
               pzarc_upload_file($_FILES[ 'txtorzip' ], 'preset');
               break;
             case (!empty($_FILES[ 'txtorzip' ][ 'name' ]) && (substr($_FILES[ 'txtorzip' ][ 'name' ], -4, 4) === '.txt')):
-              var_dump($_FILES[ 'txtorzip' ][ 'name' ]);
+
+              //var_dump($_FILES[ 'txtorzip' ][ 'name' ]);
               pzarc_upload_file($_FILES[ 'txtorzip' ], 'blueprint');
               // todo: add method of styled or unstyled
               break;

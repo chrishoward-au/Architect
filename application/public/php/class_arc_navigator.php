@@ -91,28 +91,28 @@
     function render()
     {
 
-      $i = 1;
+      $i      = 1;
       $styles = '';
       // TODO: Make this not inline css
-      if (!empty($this->blueprint[ '_blueprints_navtabs-width-type' ])) {
-        switch ($this->blueprint[ '_blueprints_navtabs-width-type' ]) {
-          case'fixed':
-            $styles .= 'width:' . $this->blueprint[ '_blueprints_navtabs-width' ][ 'width' ] . ';';
-            break;
-          case 'even':
-            $margins_compensation = ($this->blueprint[ '_blueprints_navtabs-margins-compensation' ][ 'width' ])?$this->blueprint[ '_blueprints_navtabs-margins-compensation' ][ 'width' ]*count($this->navitems):'0';
-            $margins_compensation .= ($this->blueprint[ '_blueprints_navtabs-margins-compensation' ][ 'units' ])?$this->blueprint[ '_blueprints_navtabs-margins-compensation' ][ 'units' ]:'px';
-            $percent_width = (100 / count($this->navitems)).'%';
-            $styles .= 'width:calc(' .$percent_width.' - '.$margins_compensation  . ');';
-            break;
-          case 'fluid':
-          default:
-            $styles .= '';
+      $nav_width_type = !empty($this->blueprint[ '_blueprints_navtabs-width-type' ]) ? $this->blueprint[ '_blueprints_navtabs-width-type' ] : '';
 
-        }
+      switch ($nav_width_type) {
+        case'fixed':
+          $styles .= 'width:' . $this->blueprint[ '_blueprints_navtabs-width' ][ 'width' ] . ';';
+          break;
+        case 'even':
+          $margins_compensation = ($this->blueprint[ '_blueprints_navtabs-margins-compensation' ][ 'width' ]) ? $this->blueprint[ '_blueprints_navtabs-margins-compensation' ][ 'width' ] * count($this->navitems) : '0';
+          $margins_compensation .= ($this->blueprint[ '_blueprints_navtabs-margins-compensation' ][ 'units' ]) ? $this->blueprint[ '_blueprints_navtabs-margins-compensation' ][ 'units' ] : 'px';
+          $percent_width = (100 / count($this->navitems)) . '%';
+          $styles .= 'width:calc(' . $percent_width . ' - ' . $margins_compensation . ');';
+          break;
+        case 'fluid':
+        default:
+          $styles .= '';
+
       }
       if (!empty($this->blueprint[ '_blueprints_navtabs-textwrap' ])) {
-        switch($this->blueprint[ '_blueprints_navtabs-textwrap' ]){
+        switch ($this->blueprint[ '_blueprints_navtabs-textwrap' ]) {
           case 'break-word':
             $styles .= 'word-break:break-word;';
             break;
@@ -126,7 +126,7 @@
       }
 
       if (!empty($this->blueprint[ '_blueprints_navtabs-textoverflow' ])) {
-        switch($this->blueprint[ '_blueprints_navtabs-textoverflow' ]){
+        switch ($this->blueprint[ '_blueprints_navtabs-textoverflow' ]) {
           case 'visible':
             $styles .= 'overflow:visible;';
             break;
@@ -139,10 +139,10 @@
         }
       }
 
-      $styles = $styles?' style="'.$styles.'"':$styles;
+      $styles = $styles ? ' style="' . $styles . '"' : $styles;
       foreach ($this->navitems as $nav_item) {
         $active = ($i === 1 ? ' active' : '');
-        echo '<div class="arc-slider-slide arc-slider-slide-nav-item' . $active . ' arc-navitem-'.$i.' arc-navitem-'.sanitize_title($nav_item).'" data-index="' . $i . '" '.$styles.'>';
+        echo '<div class="arc-slider-slide arc-slider-slide-nav-item' . $active . ' arc-navitem-' . $i . ' arc-navitem-' . sanitize_title($nav_item) . ' arc-width-'.$nav_width_type.'" data-index="' . $i . '" ' . $styles . '>';
         echo $nav_item;
         echo '</div>';
         $i++;
@@ -168,7 +168,7 @@
       foreach ($this->navitems as $nav_item) {
         $active = ($i === 1 ? ' active' : '');
 
-        echo '<div class="arc-slider-slide arc-slider-slide-nav-item' . $active . ' arc-navitem-'.$i.' arc-navitem-'.sanitize_title($nav_item).'" data-index="' . $i . '">' . $nav_item . '</div>';
+        echo '<div class="arc-slider-slide arc-slider-slide-nav-item' . $active . ' arc-navitem-' . $i . ' arc-navitem-' . sanitize_title($nav_item) . '" data-index="' . $i . '">' . $nav_item . '</div>';
         $i++;
       }
     }
@@ -210,7 +210,7 @@
       $i = 1;
       foreach ($this->navitems as $nav_item) {
         $active = ($i === 1 ? ' active' : '');
-        echo '<div class="arc-slider-slide-nav-item' . $this->sizing . $active . ' arc-navitem-'.$i.' arc-navitem-'.sanitize_title($nav_item).'" data-index="' . $i++ . '"></div>';
+        echo '<div class="arc-slider-slide-nav-item' . $this->sizing . $active . ' arc-navitem-' . $i . ' arc-navitem-' . sanitize_title($nav_item) . '" data-index="' . $i++ . '"></div>';
       }
     }
 
@@ -232,7 +232,7 @@
       $i = 1;
       foreach ($this->navitems as $nav_item) {
         $active = ($i === 1 ? ' active' : '');
-        echo '<div class="arc-slider-slide arc-slider-slide-nav-item' . $this->sizing . $active . ' arc-navitem-'.$i.' arc-navitem-'.sanitize_title($nav_item).'" data-index="' . $i . '">' . $i++ . '</div>';
+        echo '<div class="arc-slider-slide arc-slider-slide-nav-item' . $this->sizing . $active . ' arc-navitem-' . $i . ' arc-navitem-' . sanitize_title($nav_item) . '" data-index="' . $i . '">' . $i++ . '</div>';
       }
     }
 
@@ -272,7 +272,7 @@
       $nav_html = '';
       foreach ($this->navitems as $nav_item) {
         $active = ($i === 1 ? ' active' : '');
-        $nav_html .= '<div class="arc-slider-slide arc-slider-slide-nav-item' . $this->sizing . $active . ' arc-navitem-'.$i.' arc-navitem-'.sanitize_title($nav_item).'" data-index="' . $i . '">' . $nav_item . '</div>';
+        $nav_html .= '<div class="arc-slider-slide arc-slider-slide-nav-item' . $this->sizing . $active . ' arc-navitem-' . $i . ' arc-navitem-' . sanitize_title($nav_item) . '" data-index="' . $i . '">' . $nav_item . '</div>';
         $i++;
       }
 

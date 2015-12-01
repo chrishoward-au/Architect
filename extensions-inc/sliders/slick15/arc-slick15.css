@@ -34,6 +34,12 @@
   .pzarchitect .layout-tabbed .pzarc-navigator.bottom:not(.thumbs).tabbed .slick-track .arc-slider-slide-nav-item {
     flex-grow: 1;
     flex-basis: auto; }
+    .pzarchitect .layout-slider .pzarc-navigator.top:not(.thumbs).tabbed .slick-track .arc-slider-slide-nav-item.arc-width-fluid, .pzarchitect .layout-slider .pzarc-navigator.top:not(.thumbs).tabbed .slick-track .arc-slider-slide-nav-item.arc-width-fixed, .pzarchitect .layout-slider .pzarc-navigator.bottom:not(.thumbs).tabbed .slick-track .arc-slider-slide-nav-item.arc-width-fluid, .pzarchitect .layout-slider .pzarc-navigator.bottom:not(.thumbs).tabbed .slick-track .arc-slider-slide-nav-item.arc-width-fixed,
+    .pzarchitect .layout-tabbed .pzarc-navigator.top:not(.thumbs).tabbed .slick-track .arc-slider-slide-nav-item.arc-width-fluid,
+    .pzarchitect .layout-tabbed .pzarc-navigator.top:not(.thumbs).tabbed .slick-track .arc-slider-slide-nav-item.arc-width-fixed,
+    .pzarchitect .layout-tabbed .pzarc-navigator.bottom:not(.thumbs).tabbed .slick-track .arc-slider-slide-nav-item.arc-width-fluid,
+    .pzarchitect .layout-tabbed .pzarc-navigator.bottom:not(.thumbs).tabbed .slick-track .arc-slider-slide-nav-item.arc-width-fixed {
+      flex-grow: 0; }
 .pzarchitect .layout-slider .pzarc-navigator.left .slick-track, .pzarchitect .layout-slider .pzarc-navigator.right .slick-track,
 .pzarchitect .layout-tabbed .pzarc-navigator.left .slick-track,
 .pzarchitect .layout-tabbed .pzarc-navigator.right .slick-track {
