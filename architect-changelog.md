@@ -1,5 +1,11 @@
 # Architect change history 
 
+## 1.5.14 
+* FIXED: Rogue space causing warning message
+
+## 1.5.13
+* FIXED: Name conflict in TGMPA
+
 ## 1.5.12 
 * FIXED: Fluid and fixed width tabs noit working.
 
