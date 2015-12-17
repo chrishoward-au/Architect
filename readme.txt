@@ -3,7 +3,7 @@ Contributors: chrishoward
 Tags: content,display,posts,pages,gallery,slider,tabs,tabbed,tabular,widget,hooks
 Requires at least: 3.5.0
 Tested up to: 4.4
-Stable tag: 1.5.14
+Stable tag: 1.5.16
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Plugin URI: http://architect4wp.com
@@ -94,6 +94,13 @@ For support, please send an email to support@pizazzwp.com
 == Changelog ==
 
 TODO: Add a default single post/page Blueprint; Beaver Builder module
+
+= 1.5.15 =
+* ADDED: Affiliates link
+* ADDED: Link to customer dashboard
+
+= 1.5.15 =
+* ADDED: Option to galleries to display all attached images in the primary post/page
 
 = 1.5.14 =
 * FIXED: Rogue space causing warning message
