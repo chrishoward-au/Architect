@@ -1,4 +1,4 @@
-$version: "1.5.14";
+$version: "1.5.15";
 // THIS IS THE SCSS VERSION
 $highlight: #0074a2;
 $border-radius: 3px;
@@ -2104,6 +2104,7 @@ li.arc-message {
       font-size: 15px;
       display: inline-block;;
       margin-top: -6px;
+      box-sizing:border-box;
     }
   }
 }

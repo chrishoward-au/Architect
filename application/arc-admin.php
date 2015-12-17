@@ -248,10 +248,6 @@
         $pzarc_menu = add_menu_page(__('Getting started', 'pzarchitect'), 'Architect ' . $vers, 'edit_posts', 'pzarc', 'pzarc_about', PZARC_PLUGIN_APP_URL . 'wp-icon.png');
         // add_submenu_page( $parent_slug, $page_title, $menu_title, $capability, $menu_slug, $function );
 
-        // Don't need this as it's carried in the layouts already
-//			add_submenu_page(
-//				'pzarc', 'Styling', 'Styling', 'manage_options', 'pzarc_styling', array( $this, 'pzarc_styling' )
-//			);
         add_submenu_page(
             'pzarc', __('Tools', 'pzarchitect'), '<span class="dashicons dashicons-hammer size-small"></span>' . __('Tools', 'pzarchitect'), 'edit_others_pages', 'pzarc_tools', array(
                        $this,
@@ -454,6 +450,12 @@
                         <a class="pzarc-button-help" href="https://pizazzwp.freshdesk.com/support/tickets/new" target="_blank">
                         <span class="dashicons dashicons-admin-tools"></span>
                         Tech support</a>
+                        <a class="pzarc-button-help" href="https://shop.pizazzwp.com/checkout/customer-dashboard/" target="_blank">
+                        <span class="dashicons dashicons-admin-users"></span>
+                        Customer dashboard</a>
+                        <a class="pzarc-button-help" href="https://shop.pizazzwp.com/affiliate-area/" target="_blank">
+                        <span class="dashicons" style="font-size:1.3em">$</span>
+                        Affiliates</a>
                         </div>
 
             ';

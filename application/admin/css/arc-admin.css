@@ -932,7 +932,7 @@ body .redux-container .redux-main .redux-section-field.redux-field.heading h3 {
 #adminmenu li.toplevel_page_pzarc .wp-menu-image img {
   opacity: 1; }
 #adminmenu li.toplevel_page_pzarc .wp-menu-name:after {
-  content: "1.5.14";
+  content: "1.5.15";
   opacity: 0;
   font-size: 10px;
   padding-left: 5px; }
@@ -1587,7 +1587,8 @@ li.arc-message .arc-presets-link {
     vertical-align: middle;
     font-size: 15px;
     display: inline-block;
-    margin-top: -6px; }
+    margin-top: -6px;
+    box-sizing: border-box; }
 
 body.post-type-arc-blueprints input:required:invalid,
 body.post-type-arc-blueprints input:focus:invalid {
