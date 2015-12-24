@@ -3,7 +3,7 @@ Contributors: chrishoward
 Tags: content,display,posts,pages,gallery,slider,tabs,tabbed,tabular,widget,hooks
 Requires at least: 3.5.0
 Tested up to: 4.4
-Stable tag: 1.5.16
+Stable tag: 1.5.17
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Plugin URI: http://architect4wp.com
@@ -95,7 +95,10 @@ For support, please send an email to support@pizazzwp.com
 
 TODO: Add a default single post/page Blueprint; Beaver Builder module
 
-= 1.5.15 =
+= 1.5.17 : 24-Dec-2015 =
+* CHANGED: In Options, "Use Architect styling" is now always enabled by default. Previously was off for Headway users, but that meant Presets were unstyled.
+
+= 1.5.16 =
 * ADDED: Affiliates link
 * ADDED: Link to customer dashboard
 

@@ -121,7 +121,7 @@ div.pzarc-dragsource {
   width: 100%;
   border-radius: 3px; }
 
-/* Will need cell footers to remain compatible with E+ */
+/* Will need cell footers to remain compatible with E+ LOLs! There's a flashback*/
 .pzarc_cell_header,
 .pzarc_cell_footer {
   width: 100%;
@@ -932,7 +932,7 @@ body .redux-container .redux-main .redux-section-field.redux-field.heading h3 {
 #adminmenu li.toplevel_page_pzarc .wp-menu-image img {
   opacity: 1; }
 #adminmenu li.toplevel_page_pzarc .wp-menu-name:after {
-  content: "1.5.16";
+  content: "1.5.17";
   opacity: 0;
   font-size: 10px;
   padding-left: 5px; }
@@ -1163,9 +1163,16 @@ body.arc-panels * {
 #_architect-_pzarc_pagebuilder_any ul,
 #_architect-_pzarc_pagebuilder_phones ul,
 #_architect-_pzarc_pagebuilder_tablets ul {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
   display: flex;
-  flex-wrap: wrap;
-  flex-flow: column; }
+  -webkit-flex-wrap: wrap;
+      -ms-flex-wrap: wrap;
+          flex-wrap: wrap;
+  -webkit-flex-flow: column;
+      -ms-flex-flow: column;
+          flex-flow: column; }
 
 #_pzarc_pagebuilder_enabled,
 #_pzarc_pagebuilder_disabled {
@@ -1183,15 +1190,27 @@ body.arc-panels * {
     color: #fff; }
 
 ul#_pzarc_pagebuilder_disabled {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
   display: flex;
-  flex-wrap: wrap;
-  flex-direction: row; }
+  -webkit-flex-wrap: wrap;
+      -ms-flex-wrap: wrap;
+          flex-wrap: wrap;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: row;
+      -ms-flex-direction: row;
+          flex-direction: row; }
   ul#_pzarc_pagebuilder_disabled li {
     display: inline-block;
     color: #555;
     background: #bbb;
     margin: 0 2px;
-    flex-grow: 1; }
+    -webkit-box-flex: 1;
+    -webkit-flex-grow: 1;
+        -ms-flex-positive: 1;
+            flex-grow: 1; }
 
 ul#_pzarc_pagebuilder_enabled li {
   color: #fff;
@@ -1526,8 +1545,13 @@ li.arc-message .arc-presets-link {
 
 .arc-info-boxes {
   max-width: 1060px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
   display: flex;
-  flex-wrap: wrap; }
+  -webkit-flex-wrap: wrap;
+      -ms-flex-wrap: wrap;
+          flex-wrap: wrap; }
   .arc-info-boxes strong {
     color: tomato; }
   .arc-info-boxes em {

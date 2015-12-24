@@ -294,7 +294,7 @@
               'type'     => 'switch',
               'subtitle' => __( 'Turn this off if you want to manage styling from your own CSS stylesheets or only from the Headway Visual Editor Design Mode.', 'pzarchitect' ),
               'desc'=>__('If this is enabled, it will override styling for Blueprints set in your theme or custom CSS.','pzarchitect'),
-              'default'  => !$is_hw
+              'default'  => true // Re-set to true v1.5.17 as better to tell ppl to turn it off than have them with unstyled presets.
             ),
             array(
               'title'   => __( 'Typography units', 'pzarchitect' ),

@@ -1,4 +1,7 @@
-$version: "1.5.16";
+//  http://bourbon.io/docs/
+@import "bourbon";
+
+$version: "1.5.17";
 // THIS IS THE SCSS VERSION
 $highlight: #0074a2;
 $border-radius: 3px;
@@ -173,7 +176,7 @@ div.pzarc-dragsource {
   border-radius: 3px;
 }
 
-/* Will need cell footers to remain compatible with E+ */
+/* Will need cell footers to remain compatible with E+ LOLs! There's a flashback*/
 
 .pzarc_cell_header,
 .pzarc_cell_footer {

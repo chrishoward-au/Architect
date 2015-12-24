@@ -1,5 +1,15 @@
 # Architect change history 
 
+## 1.5.17 : 24-Dec-2015 =
+* CHANGED: In Options, "Use Architect styling" is now always enabled by default. Previously was off for Headway users, but that meant Presets were unstyled.
+
+## 1.5.16 =
+* ADDED: Affiliates link
+* ADDED: Link to customer dashboard
+
+## 1.5.15 =
+* ADDED: Option to galleries to display all attached images in the primary post/page
+
 ## 1.5.14 
 * FIXED: Rogue space causing warning message
 
