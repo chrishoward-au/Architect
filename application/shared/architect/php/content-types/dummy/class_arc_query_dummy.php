@@ -103,7 +103,7 @@
         $j                                                = (++$j > (count($cats)-1) ? 0 : $j);
         $thedate                                          = ($this->isfaker ? $this->faker->date() : time());
         $dummy_query[ $i ][ 'meta' ][ 'datetime' ]        = $thedate;
-        $dummy_query[ $i ][ 'meta' ][ 'fdatetime' ]       = date_i18n(get_option('date_format'), strtotime($thedate));
+        $dummy_query[ $i ][ 'meta' ][ 'fdatetime' ]       = date_i18n(get_option('date_format'), str_replace(',',' ',strtotime($thedate)));
         $dummy_query[ $i ][ 'meta' ][ 'categorieslinks' ] = ($this->isfaker ? implode(', ', $this->faker->words(2)) : 'cat1,cat2');
         $dummy_query[ $i ][ 'meta' ][ 'categories' ]      = '';
         $dummy_query[ $i ][ 'meta' ][ 'tagslinks' ]       = ($this->isfaker ? implode(', ', $this->faker->words(3)) : 'tag1,tag2,tag3');

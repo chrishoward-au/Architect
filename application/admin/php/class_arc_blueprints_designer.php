@@ -424,7 +424,7 @@
       $prefix = '_blueprints_';
       global $_architect_options;
       $cfwarn          = false;
-      $animation_state = $_architect_options[ 'architect_animation-enable' ];
+      $animation_state = !empty($_architect_options[ 'architect_animation-enable' ])?$_architect_options[ 'architect_animation-enable' ]:false;
       if (is_admin() && !empty($_GET[ 'post' ])) {
         $cfcount = (!empty($this->postmeta[ '_panels_design_custom-fields-count' ][ 0 ]) ? $this->postmeta[ '_panels_design_custom-fields-count' ][ 0 ] : 0);
         $cfwarn  = (ini_get('max_input_vars') <= 1000 && ($cfcount > 0 || $animation_state));

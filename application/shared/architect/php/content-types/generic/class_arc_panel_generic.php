@@ -226,7 +226,7 @@
       }
       if (strpos($meta_string, '%date%') !== false) {
         $this->data[ 'meta' ][ 'datetime' ]  = get_the_date();
-        $this->data[ 'meta' ][ 'fdatetime' ] = date_i18n(strip_tags($this->section[ '_panels_design_meta-date-format' ]), strtotime(get_the_date()));
+        $this->data[ 'meta' ][ 'fdatetime' ] = date_i18n(strip_tags($this->section[ '_panels_design_meta-date-format' ]), str_replace(',',' ',strtotime(get_the_date())));
       }
       if (strpos($meta_string, '%categories%') !== false) {
         $this->data[ 'meta' ][ 'categorieslinks' ] = get_the_category_list(', ');
@@ -548,7 +548,7 @@
           }
 
           if ($this->section[ '_panels_design_cfield-' . $i . '-field-type' ] === 'date') {
-            $cfdate                                 = is_numeric($this->data[ 'cfield' ][ $i ][ 'value' ]) ? $this->data[ 'cfield' ][ $i ][ 'value' ] : strtotime($this->data[ 'cfield' ][ $i ][ 'value' ]); //convert field value to date
+            $cfdate                                 = is_numeric($this->data[ 'cfield' ][ $i ][ 'value' ]) ? $this->data[ 'cfield' ][ $i ][ 'value' ] : str_replace(',',' ',strtotime($this->data[ 'cfield' ][ $i ][ 'value' ])); //convert field value to date
             $cfdate                                 = empty($cfdate) ? '000000' : $cfdate;
             $this->data[ 'cfield' ][ $i ][ 'data' ] = "data-sort-date='{$cfdate}'";
           }
@@ -607,7 +607,7 @@
       $panel_def[ $component ] = str_replace('{{id}}', $this->data[ 'meta' ][ 'id' ], $panel_def[ $component ]);
       $panel_def[ $component ] = str_replace('{{datetime}}', $this->data[ 'meta' ][ 'datetime' ], $panel_def[ $component ]);
       $panel_def[ $component ] = str_replace('{{fdatetime}}', $this->data[ 'meta' ][ 'fdatetime' ], $panel_def[ $component ]);
-      $panel_def[ $component ] = str_replace('{{sortable}}', ' data-order="' . strtotime($this->data[ 'meta' ][ 'fdatetime' ]) . '"', $panel_def[ $component ]);
+      $panel_def[ $component ] = str_replace('{{sortable}}', ' data-order="' . str_replace(',',' ',strtotime($this->data[ 'meta' ][ 'fdatetime' ])) . '"', $panel_def[ $component ]);
 
       if (empty($this->section[ '_panels_design_excluded-authors' ]) || !in_array(get_the_author_meta('ID'), $this->section[ '_panels_design_excluded-authors' ])) {
         //Remove text indicators
