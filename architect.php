@@ -163,7 +163,7 @@
 //      }
 
 
-  //    require_once PZARC_PLUGIN_PATH.'/extensions-inc/beaver-builder/fl-custom-module-architect.php';
+      require_once PZARC_PLUGIN_PATH.'/extensions-inc/beaver-builder/fl-custom-module-architect.php';
       pzdb( 'before architect pro' );
 
 

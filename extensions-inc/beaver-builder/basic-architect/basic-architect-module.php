@@ -28,6 +28,10 @@
                               'enabled'       => true, // Defaults to true and can be omitted.
                           ));
 
+// this is the sort of thing needed... but it needs to be done conditionally depending on blueprint.
+//      $this->add_css('jquery-bxslider');
+//      $this->add_js('jquery-bxslider');
+
     }
   }
 
@@ -46,6 +50,7 @@
                                  'general' =>
                                      array( // Tab
                                             'title'    => __('Blueprints', 'pzarchitect'),  // Tab title
+                                            'description'=>__('Note: If you select a Blueprint that uses sliders, tabbed, masonry, accordion or tabular layouts, this may not render correctly until the page is saved/published.','pzarchitect'),
                                             'sections' =>
                                                 array( // Tab Sections
                                                        'general' =>
@@ -76,41 +81,41 @@
                                                 ),
                                      ),
 
-                                 'overrides' =>
-                                     array( // Tab
-                                            'title'    => __('Overrides', 'pzarchitect'),  // Tab title
-                                            'sections' =>
-                                                array( // Tab Sections
-                                                       'overrides' =>
-                                                           array( // Section
-                                                                  'title'  => __('Set optional overrides', 'pzarchitect'),
-                                                                  'fields' =>
-                                                                      array(
-                                                                          'override_ids'   => array(
-                                                                              'type'    => 'text',
-                                                                              'label'   => __('Specific IDs', 'fl-builder'),
-                                                                              'default' => '',
-                                                                          ),
-                                                                          'override_tax'   => array(
-                                                                              'type'    => 'select',
-                                                                              'label'   => __('Taxonomy', 'fl-builder'),
-                                                                              'default' => '',
-                                                                              'options'=> $taxonomy_list
-                                                                          ),
-                                                                          'override_terms' => array(
-                                                                              'type'    => 'text',
-                                                                              'label'   => __('Terms', 'fl-builder'),
-                                                                              'default' => '',
-                                                                          ),
-                                                                          'override_styling'   => array(
-                                                                              'type'    => 'select',
-                                                                              'label'   => __('Ignore this BLueprint\'s Content styling?', 'pzarchitect'),
-                                                                              'default' => 'no',
-                                                                              'options' => array('yes'=>'Yes','no'=>'No')
-                                                                          ),
-                                                                      ),
-                                                           )
-                                                )
-                                     )
+//                                 'overrides' =>
+//                                     array( // Tab
+//                                            'title'    => __('Overrides', 'pzarchitect'),  // Tab title
+//                                            'sections' =>
+//                                                array( // Tab Sections
+//                                                       'overrides' =>
+//                                                           array( // Section
+//                                                                  'title'  => __('Set optional overrides', 'pzarchitect'),
+//                                                                  'fields' =>
+//                                                                      array(
+//                                                                          'override_ids'   => array(
+//                                                                              'type'    => 'text',
+//                                                                              'label'   => __('Specific IDs', 'pzarchitect'),
+//                                                                              'default' => '',
+//                                                                          ),
+//                                                                          'override_tax'   => array(
+//                                                                              'type'    => 'select',
+//                                                                              'label'   => __('Taxonomy', 'pzarchitect'),
+//                                                                              'default' => '',
+//                                                                              'options'=> $taxonomy_list
+//                                                                          ),
+//                                                                          'override_terms' => array(
+//                                                                              'type'    => 'text',
+//                                                                              'label'   => __('Terms', 'pzarchitect'),
+//                                                                              'default' => '',
+//                                                                          ),
+////                                                                          'override_styling'   => array(
+////                                                                              'type'    => 'select',
+////                                                                              'label'   => __('Ignore this Blueprint\'s Content styling?', 'pzarchitect'),
+////                                                                              'default' => 'no',
+////                                                                              'options' => array('yes'=>'Yes','no'=>'No')
+////                                                                          ),
+//                                                                      ),
+//                                                           )
+//                                                )
+//                                     )
                              )
   );
