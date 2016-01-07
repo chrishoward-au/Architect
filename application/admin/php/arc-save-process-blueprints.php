@@ -269,16 +269,19 @@
 
     $panels_margins = pzarc_process_spacing($pzarc_blueprints[ '_blueprints_section-' . $i . '-panels-margins' ]);
 
-    $pzarc_mediaq_css .= $panels_class . ' {width:' . $column_width . ';' . $panels_margins . ' ;}';
+    if ('masonry' === $pzarc_blueprints[ '_blueprints_section-' . $i . '-layout-mode' ] && !empty($pzarc_blueprints['_blueprints_masonry-features']) && in_array('bidirectional',$pzarc_blueprints['_blueprints_masonry-features'])) {
+      $pzarc_mediaq_css .= $panels_class . ' {width:auto;' . $panels_margins . ' ;}';
+    } else {
+      $pzarc_mediaq_css .= $panels_class . ' {width:' . $column_width . ';' . $panels_margins . ' ;}';
+    }
 
-//    pzdebug($pzarc_mediaq_css);
     //  Don't want gutters here iff using masonry layoutt
     switch (true) {
-
       case 'masonry' === $pzarc_blueprints[ '_blueprints_section-' . $i . '-layout-mode' ]:
         $pzarc_mediaq_css .= str_replace('.pzarc-panel', '', $panels_class . ' .gutter-sizer {width: ' . ($hmargin) . ';}');
         $pzarc_mediaq_css .= str_replace('.pzarc-panel', '', $panels_class . ' .grid-sizer { width:' . $column_width . ';}');
         break;
+
       case 'basic' === $pzarc_blueprints[ '_blueprints_section-' . $i . '-layout-mode' ] && !empty($pzarc_blueprints[ '_blueprints_section-' . $i . '-layout-mode' ]):
         if ($pzarc_blueprints[ '_blueprints_section-0-panels-fixed-width' ]) {
 // don't think we need to do any spiffing??
@@ -291,9 +294,11 @@
           }
         }
         break;
+
       case 'slider' === $pzarc_blueprints[ '_blueprints_section-' . $i . '-layout-mode' ]:
         //$pzarc_mediaq_css .= $panels_class . ':nth-child(n) {margin-right: ' . ( $rmargin ) .$margin_units. ';}';
         break;
+
       default:
         $pzarc_mediaq_css .= $panels_class . ':nth-child(' . $columns . 'n) {margin-right: 0;}';
         break;

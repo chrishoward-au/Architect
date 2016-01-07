@@ -40,7 +40,7 @@
 
       $this->data[ 'bgimage' ][ 'thumb' ] = null;
 
-      $this->data[ 'video' ][ 'source' ]   = null;
+      $this->data[ 'video' ][ 'source' ] = null;
 
       $this->data[ 'meta' ][ 'id' ]              = null;
       $this->data[ 'meta' ][ 'datetime' ]        = null;
@@ -226,7 +226,7 @@
       }
       if (strpos($meta_string, '%date%') !== false) {
         $this->data[ 'meta' ][ 'datetime' ]  = get_the_date();
-        $this->data[ 'meta' ][ 'fdatetime' ] = date_i18n(strip_tags($this->section[ '_panels_design_meta-date-format' ]), str_replace(',',' ',strtotime(get_the_date())));
+        $this->data[ 'meta' ][ 'fdatetime' ] = date_i18n(strip_tags($this->section[ '_panels_design_meta-date-format' ]), str_replace(',', ' ', strtotime(get_the_date())));
       }
       if (strpos($meta_string, '%categories%') !== false) {
         $this->data[ 'meta' ][ 'categorieslinks' ] = get_the_category_list(', ');
@@ -508,18 +508,18 @@
       for ($i = 1; $i <= $cfcount; $i++) {
         // the settings come from section
         if (!empty($this->section[ '_panels_design_cfield-' . $i . '-name' ])) {
-          $this->data[ 'cfield' ][ $i ][ 'group' ]         = $this->section[ '_panels_design_cfield-' . $i . '-group' ];
-          $this->data[ 'cfield' ][ $i ][ 'name' ]          = $this->section[ '_panels_design_cfield-' . $i . '-name' ];
-          $this->data[ 'cfield' ][ $i ][ 'field-type' ]    = $this->section[ '_panels_design_cfield-' . $i . '-field-type' ];
-          $this->data[ 'cfield' ][ $i ][ 'date-format' ]   = $this->section[ '_panels_design_cfield-' . $i . '-date-format' ];
-          $this->data[ 'cfield' ][ $i ][ 'wrapper-tag' ]   = $this->section[ '_panels_design_cfield-' . $i . '-wrapper-tag' ];
-          $this->data[ 'cfield' ][ $i ][ 'class-name' ]    = isset($this->section[ '_panels_design_cfield-' . $i . '-class-name' ]) ? $this->section[ '_panels_design_cfield-' . $i . '-class-name' ] : '';
-          $this->data[ 'cfield' ][ $i ][ 'link-field' ]    = $this->section[ '_panels_design_cfield-' . $i . '-link-field' ];
-          $this->data[ 'cfield' ][ $i ][ 'link-behaviour' ]    = isset($this->section[ '_panels_design_cfield-' . $i . '-link-behaviour' ])?$this->section[ '_panels_design_cfield-' . $i . '-link-behaviour' ]:'_self';
-          $this->data[ 'cfield' ][ $i ][ 'decimals' ]      = $this->section[ '_panels_design_cfield-' . $i . '-number-decimals' ];
-          $this->data[ 'cfield' ][ $i ][ 'decimal-char' ]  = $this->section[ '_panels_design_cfield-' . $i . '-number-decimal-char' ];
-          $this->data[ 'cfield' ][ $i ][ 'thousands-sep' ] = $this->section[ '_panels_design_cfield-' . $i . '-number-thousands-separator' ];
-          $params                                          = array(
+          $this->data[ 'cfield' ][ $i ][ 'group' ]          = $this->section[ '_panels_design_cfield-' . $i . '-group' ];
+          $this->data[ 'cfield' ][ $i ][ 'name' ]           = $this->section[ '_panels_design_cfield-' . $i . '-name' ];
+          $this->data[ 'cfield' ][ $i ][ 'field-type' ]     = $this->section[ '_panels_design_cfield-' . $i . '-field-type' ];
+          $this->data[ 'cfield' ][ $i ][ 'date-format' ]    = $this->section[ '_panels_design_cfield-' . $i . '-date-format' ];
+          $this->data[ 'cfield' ][ $i ][ 'wrapper-tag' ]    = $this->section[ '_panels_design_cfield-' . $i . '-wrapper-tag' ];
+          $this->data[ 'cfield' ][ $i ][ 'class-name' ]     = isset($this->section[ '_panels_design_cfield-' . $i . '-class-name' ]) ? $this->section[ '_panels_design_cfield-' . $i . '-class-name' ] : '';
+          $this->data[ 'cfield' ][ $i ][ 'link-field' ]     = $this->section[ '_panels_design_cfield-' . $i . '-link-field' ];
+          $this->data[ 'cfield' ][ $i ][ 'link-behaviour' ] = isset($this->section[ '_panels_design_cfield-' . $i . '-link-behaviour' ]) ? $this->section[ '_panels_design_cfield-' . $i . '-link-behaviour' ] : '_self';
+          $this->data[ 'cfield' ][ $i ][ 'decimals' ]       = $this->section[ '_panels_design_cfield-' . $i . '-number-decimals' ];
+          $this->data[ 'cfield' ][ $i ][ 'decimal-char' ]   = $this->section[ '_panels_design_cfield-' . $i . '-number-decimal-char' ];
+          $this->data[ 'cfield' ][ $i ][ 'thousands-sep' ]  = $this->section[ '_panels_design_cfield-' . $i . '-number-thousands-separator' ];
+          $params                                           = array(
               'width'  => str_replace($this->section[ '_panels_design_cfield-' . $i . '-ps-images-width' ][ 'units' ], '', $this->section[ '_panels_design_cfield-' . $i . '-ps-images-width' ][ 'width' ]),
               'height' => str_replace($this->section[ '_panels_design_cfield-' . $i . '-ps-images-height' ][ 'units' ], '', $this->section[ '_panels_design_cfield-' . $i . '-ps-images-height' ][ 'height' ])
           );
@@ -548,7 +548,7 @@
           }
 
           if ($this->section[ '_panels_design_cfield-' . $i . '-field-type' ] === 'date') {
-            $cfdate                                 = is_numeric($this->data[ 'cfield' ][ $i ][ 'value' ]) ? $this->data[ 'cfield' ][ $i ][ 'value' ] : str_replace(',',' ',strtotime($this->data[ 'cfield' ][ $i ][ 'value' ])); //convert field value to date
+            $cfdate                                 = is_numeric($this->data[ 'cfield' ][ $i ][ 'value' ]) ? $this->data[ 'cfield' ][ $i ][ 'value' ] : str_replace(',', ' ', strtotime($this->data[ 'cfield' ][ $i ][ 'value' ])); //convert field value to date
             $cfdate                                 = empty($cfdate) ? '000000' : $cfdate;
             $this->data[ 'cfield' ][ $i ][ 'data' ] = "data-sort-date='{$cfdate}'";
           }
@@ -607,7 +607,7 @@
       $panel_def[ $component ] = str_replace('{{id}}', $this->data[ 'meta' ][ 'id' ], $panel_def[ $component ]);
       $panel_def[ $component ] = str_replace('{{datetime}}', $this->data[ 'meta' ][ 'datetime' ], $panel_def[ $component ]);
       $panel_def[ $component ] = str_replace('{{fdatetime}}', $this->data[ 'meta' ][ 'fdatetime' ], $panel_def[ $component ]);
-      $panel_def[ $component ] = str_replace('{{sortable}}', ' data-order="' . str_replace(',',' ',strtotime($this->data[ 'meta' ][ 'fdatetime' ])) . '"', $panel_def[ $component ]);
+      $panel_def[ $component ] = str_replace('{{sortable}}', ' data-order="' . str_replace(',', ' ', strtotime($this->data[ 'meta' ][ 'fdatetime' ])) . '"', $panel_def[ $component ]);
 
       if (empty($this->section[ '_panels_design_excluded-authors' ]) || !in_array(get_the_author_meta('ID'), $this->section[ '_panels_design_excluded-authors' ])) {
         //Remove text indicators
@@ -854,12 +854,13 @@
       } else {
 
         if (!empty($this->data[ 'bgimage' ][ 'thumb' ])) {
-          if ($this->section[ '_panels_settings_image-focal-point' ] === 'scale_height') {
+          if ($this->section[ '_panels_settings_image-focal-point' ] === 'scale_height' || $this->section[ '_panels_settings_image-focal-point' ] === 'shrink') {
             $this->data[ 'bgimage' ][ 'thumb' ] = preg_replace("/width=\"(\\d)*\"\\s/uiUmx", "", $this->data[ 'bgimage' ][ 'thumb' ]);
           }
-          if ($this->section[ '_panels_settings_image-focal-point' ] === 'scale') {
+          if ($this->section[ '_panels_settings_image-focal-point' ] === 'scale' || $this->section[ '_panels_settings_image-focal-point' ] === 'shrink') {
             $this->data[ 'bgimage' ][ 'thumb' ] = preg_replace("/height=\"(\\d)*\"\\s/uiUmx", "", $this->data[ 'bgimage' ][ 'thumb' ]);
           }
+
           $panel_def[ $component ] = str_replace('{{bgimage}}', $this->data[ 'bgimage' ][ 'thumb' ], $panel_def[ $component ]);
         } else {
           // Gotta fill the background with something, else it collapses
@@ -961,7 +962,7 @@
             $content = $prefix_image . $v[ 'prefix-text' ] . $content . $v[ 'suffix-text' ] . $suffix_image;
 
             if (!empty($v[ 'link-field' ])) {
-              $content = '<a href="' . $v[ 'link-field' ] . '" target="'.$v[ 'link-behaviour' ].'">' . $content . '</a>';
+              $content = '<a href="' . $v[ 'link-field' ] . '" target="' . $v[ 'link-behaviour' ] . '">' . $content . '</a>';
             }
 
             if ($v[ 'name' ] === 'use_empty' && empty($v[ 'link-field' ])) {
@@ -1173,24 +1174,24 @@
 
             }
             if (empty($thumb)
-                && 'specific' ===$this->build->blueprint['section_object'][1]->section['section-panel-settings'][ '_panels_design_use-filler-image-source' ]
-                && !empty($this->build->blueprint['section_object'][1]->section['section-panel-settings'][ '_panels_design_use-filler-image-source-specific' ][ 'url' ])
+                && 'specific' === $this->build->blueprint[ 'section_object' ][ 1 ]->section[ 'section-panel-settings' ][ '_panels_design_use-filler-image-source' ]
+                && !empty($this->build->blueprint[ 'section_object' ][ 1 ]->section[ 'section-panel-settings' ][ '_panels_design_use-filler-image-source-specific' ][ 'url' ])
             ) {
               if (function_exists('bfi_thumb')) {
-                $imageURL = bfi_thumb($this->build->blueprint['section_object'][1]->section['section-panel-settings'][ '_panels_design_use-filler-image-source-specific' ][ 'url' ], array('width'  => self::get_thumbsize('w'),
-                                                                                                                          'height' => self::get_thumbsize('h')));
+                $imageURL = bfi_thumb($this->build->blueprint[ 'section_object' ][ 1 ]->section[ 'section-panel-settings' ][ '_panels_design_use-filler-image-source-specific' ][ 'url' ], array('width'  => self::get_thumbsize('w'),
+                                                                                                                                                                                                 'height' => self::get_thumbsize('h')));
               } else {
-                $imageURL = $this->build->blueprint['section_object'][1]->section['section-panel-settings'][ '_panels_design_use-filler-image-source-specific' ][ 'url' ];
+                $imageURL = $this->build->blueprint[ 'section_object' ][ 1 ]->section[ 'section-panel-settings' ][ '_panels_design_use-filler-image-source-specific' ][ 'url' ];
               }
-              $thumb =  '<img src="' . $imageURL.'" width="' . self::get_thumbsize('w') . '" height="' . self::get_thumbsize('h') . '">' ;
+              $thumb = '<img src="' . $imageURL . '" width="' . self::get_thumbsize('w') . '" height="' . self::get_thumbsize('h') . '">';
             } elseif (empty($thumb)) {
-              $thumb =  '<img src="' . PZARC_PLUGIN_APP_URL . '/shared/assets/images/missing-image.png" width="' . self::get_thumbsize('w') . '" height="' . self::get_thumbsize('h') . '" style="width:' . self::get_thumbsize('w') . 'px">' ;
+              $thumb = '<img src="' . PZARC_PLUGIN_APP_URL . '/shared/assets/images/missing-image.png" width="' . self::get_thumbsize('w') . '" height="' . self::get_thumbsize('h') . '" style="width:' . self::get_thumbsize('w') . 'px">';
 
             }
 
             // Added this class so can filter it out of Advanced Lazy Load
             $thumb       = preg_replace("/class=\\\"a/uUm", "$0rc-nav-thumb a", $thumb);
-            $nav_items[] = '<span class="' . $blueprints_navigator . '" title="'.$the_post->post_title.'">' . $thumb . '</span>';
+            $nav_items[] = '<span class="' . $blueprints_navigator . '" title="' . $the_post->post_title . '">' . $thumb . '</span>';
             break;
 
           case 'bullets':

@@ -642,7 +642,7 @@
             'icon'       => $icons[ $i ],
             'fields'     => array(
                 array(
-                    'title'    => 'Layout type',
+                    'title'    => __('Layout type','pzarchitect'),
                     'id'       => $prefix . 'section-' . $i . '-layout-mode',
                     'type'     => 'image_select',
                     'default'  => 'basic',
@@ -1587,7 +1587,8 @@
                     // Waypoints provides infinite scroll support.
                     //                      'infinite-scroll' => __('Infinite scroll', 'pzarchitect'),
                     'filtering' => __('Filtering', 'pzarchitect'),
-                    'sorting'   => __('Sorting', 'pzarchitect')
+                    'sorting'   => __('Sorting', 'pzarchitect'),
+                    'bidirectional'   => __('Packed masonry', 'pzarchitect'),
                   ),
                   'desc'    => __('', 'pzarchitect')
               ),
@@ -1674,6 +1675,15 @@
                   ),
                   'required' => array($prefix . 'masonry-features', 'contains', 'filtering'),
                   'subtitle' => __('Allow multiple filters to be selected by site users. Note: Multiple selected filters narrow the selection shown. Therefore, ensure content is well tagged for best results.', 'pzarchitect')
+              ),
+              //bidirection
+              array(
+                  'title'    => __('Packed masonry', 'pzarchitect'),
+                  'id'       => $prefix . 'masonry-full-section-open',
+                  'type'     => 'section',
+                  'required' => array($prefix . 'masonry-features', 'contains', 'bidirectional'),
+                  'indent'    => true,
+                  'subtitle' => __('In Packed Masonry mode, Panels Across and Fixed Width Panels are ignored. The width and height of each panel is determined by its the image\'s dimensions. Therefore, it is important you choose the Shrink to fit width and height limit option for Image Cropping to get the effect. Packed Masonry has no settings.','pzarchitect')
               ),
           )
       );
@@ -3341,7 +3351,7 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
 //                      'bottomright'  => __('Crop to bottom right', 'pzarchitect'),
                       'scale'        => __('Preserve aspect, fit to width', 'pzarchitect'),
                       'scale_height' => __('Preserve aspect, fit to height', 'pzarchitect'),
-                      //                      'shrink'  => __('Shrink', 'pzarchitect')
+                      'shrink'  => __('Shrink to fit width and height limit', 'pzarchitect')
                   )
               ),
               array(
