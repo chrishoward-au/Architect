@@ -1,5 +1,16 @@
 # Architect change history 
 
+## 1.6.0 : 7-January-2016 
+* ADDED: Beaver Builder module for selecting a Blueprint to display.
+
+## 1.5.19 
+* ADDED: Option to Shrink to fit image limits in Image cropping.
+* ADDED: Packed Masonry option. Works best with image galleries using the above Shrink option.
+* CHANGED: Setting "Feature as thumbnail" width to zero will use image at actual size. This is only valid when feature is shown in the content.
+
+## 1.5.18 
+* FIXED: Sometimes strtotime returns wrong timestamp if there is commas in the date string
+
 ## 1.5.17 : 24-Dec-2015 =
 * CHANGED: In Options, "Use Architect styling" is now always enabled by default. Previously was off for Headway users, but that meant Presets were unstyled.
 
