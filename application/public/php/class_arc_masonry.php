@@ -10,12 +10,14 @@
   class arc_masonry
   {
     public $blueprint;
+    public $layout_mode = 'masonry';
 
     public function __construct(&$blueprint)
     {
       $this->blueprint = $blueprint;
       //var_dump($blueprint);
 
+      $this->layout_mode = (!empty($this->blueprint['_blueprints_masonry-features']) && in_array('bidirectional',$this->blueprint['_blueprints_masonry-features'])?'packery':'masonry');
       add_action('arc_masonry_controls_' . $this->blueprint[ '_blueprints_short-name' ], array($this, 'sorting'));
       add_action('arc_masonry_controls_' . $this->blueprint[ '_blueprints_short-name' ], array($this, 'filtering'));
       add_action('arc-extend-panel-classes_' . $this->blueprint[ '_blueprints_short-name' ], array($this,
@@ -149,6 +151,21 @@
         }
       }
       $sort_data = $sort_data ? substr($sort_data, 0, -1) : $sort_data;
+
+      if ($this->layout_mode == 'packery') {
+        $mode_options = "packery: {
+                          gutter: '.gutter-sizer'
+                        },
+                    ";
+      } else {
+        $mode_options = "masonry: {
+                          columnWidth: '.grid-sizer',
+                          gutter: '.gutter-sizer'
+                        },
+                    ";
+      }
+
+
       $script    = "<script type='text/javascript' id='masonry-{$blueprint}'>
         // init Isotope
         (function($){";
@@ -159,12 +176,9 @@
               {
                 container.isotope( {
                   // options
-                  layoutMode: 'masonry',
+                  layoutMode: '{$this->layout_mode}',
                   itemSelector: '.' + arcIsotopeID + ' .pzarc-panel',
-                  masonry: {
-                    columnWidth: '.grid-sizer',
-                    gutter: '.gutter-sizer'
-                  },
+                  {$mode_options}
                   getSortData: {
                     {$sort_data}
                   }

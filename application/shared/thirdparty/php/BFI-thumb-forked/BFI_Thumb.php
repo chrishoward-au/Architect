@@ -816,13 +816,11 @@
 
 
           if ($w_size < $dest_w) {
-//            $new_w = $dest_w;
             $new_h = $h_size;
           }
 
           if ($h_size < $dest_h) {
             $new_w = $w_size;
-//            $new_h = $dest_h;
           }
 
           $crop_w    = $orig_w;
@@ -859,6 +857,25 @@
           // Try to centre focal point
           $ideal_s_x = $x * $orig_w - ($crop_w * 0.5);
           $ideal_s_y = $y * $orig_h - ($crop_h * 0.5);
+          break;
+
+        case 'shrink':
+
+
+            $new_w = $dest_w;
+            $new_h = ($dest_w/$orig_w)*$orig_h;
+            if ($new_h > $dest_h) {
+                $new_h = $dest_h;
+                $new_w = ($dest_h/$orig_h)*$orig_w;
+            }
+
+          $crop_w    = $orig_w;
+          $crop_h    = $orig_h;
+
+          $ideal_s_x = 0;
+          $ideal_s_y = 0;
+//          var_dump($new_w,$new_h);
+
           break;
 
         default:
