@@ -23,11 +23,31 @@
   vertical-align: middle;
   -webkit-transform: translate(0, 0) !important;
   transform: translate(0, 0) !important; }
+.pzarchitect .layout-slider .pzarc-navigator.top:not(.thumbs).tabbed .slick-track, .pzarchitect .layout-slider .pzarc-navigator.bottom:not(.thumbs).tabbed .slick-track,
+.pzarchitect .layout-tabbed .pzarc-navigator.top:not(.thumbs).tabbed .slick-track,
+.pzarchitect .layout-tabbed .pzarc-navigator.bottom:not(.thumbs).tabbed .slick-track {
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap; }
+  .pzarchitect .layout-slider .pzarc-navigator.top:not(.thumbs).tabbed .slick-track .arc-slider-slide-nav-item, .pzarchitect .layout-slider .pzarc-navigator.bottom:not(.thumbs).tabbed .slick-track .arc-slider-slide-nav-item,
+  .pzarchitect .layout-tabbed .pzarc-navigator.top:not(.thumbs).tabbed .slick-track .arc-slider-slide-nav-item,
+  .pzarchitect .layout-tabbed .pzarc-navigator.bottom:not(.thumbs).tabbed .slick-track .arc-slider-slide-nav-item {
+    flex-grow: 1;
+    flex-basis: auto; }
+    .pzarchitect .layout-slider .pzarc-navigator.top:not(.thumbs).tabbed .slick-track .arc-slider-slide-nav-item.arc-width-fluid, .pzarchitect .layout-slider .pzarc-navigator.top:not(.thumbs).tabbed .slick-track .arc-slider-slide-nav-item.arc-width-fixed, .pzarchitect .layout-slider .pzarc-navigator.bottom:not(.thumbs).tabbed .slick-track .arc-slider-slide-nav-item.arc-width-fluid, .pzarchitect .layout-slider .pzarc-navigator.bottom:not(.thumbs).tabbed .slick-track .arc-slider-slide-nav-item.arc-width-fixed,
+    .pzarchitect .layout-tabbed .pzarc-navigator.top:not(.thumbs).tabbed .slick-track .arc-slider-slide-nav-item.arc-width-fluid,
+    .pzarchitect .layout-tabbed .pzarc-navigator.top:not(.thumbs).tabbed .slick-track .arc-slider-slide-nav-item.arc-width-fixed,
+    .pzarchitect .layout-tabbed .pzarc-navigator.bottom:not(.thumbs).tabbed .slick-track .arc-slider-slide-nav-item.arc-width-fluid,
+    .pzarchitect .layout-tabbed .pzarc-navigator.bottom:not(.thumbs).tabbed .slick-track .arc-slider-slide-nav-item.arc-width-fixed {
+      flex-grow: 0; }
 .pzarchitect .layout-slider .pzarc-navigator.left .slick-track, .pzarchitect .layout-slider .pzarc-navigator.right .slick-track,
 .pzarchitect .layout-tabbed .pzarc-navigator.left .slick-track,
 .pzarchitect .layout-tabbed .pzarc-navigator.right .slick-track {
   width: auto !important;
   display: block; }
+.pzarchitect .layout-slider .pzarc-navigator.top.tabbed .slick-list,
+.pzarchitect .layout-tabbed .pzarc-navigator.top.tabbed .slick-list {
+  width: 100%; }
 .pzarchitect .pzarc-navigator:not(.thumbs).top.nav-align-center .slick-track, .pzarchitect .pzarc-navigator:not(.thumbs).bottom.nav-align-center .slick-track {
   -webkit-justify-content: center;
   justify-content: center; }

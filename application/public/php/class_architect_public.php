@@ -49,6 +49,7 @@
 
       $this->is_shortcode = $is_shortcode;
 
+      require_once PZARC_PLUGIN_APP_PATH . '/public/php/class_arc_shortcodes.php';
       require_once(PZARC_PLUGIN_APP_PATH . '/public/php/class_arc_section.php');
       require_once(PZARC_PLUGIN_APP_PATH . '/public/php/class_arc_blueprint.php');
 
@@ -58,6 +59,8 @@
 
       /** This is the first point we have all the Blueprint data */
       $this->build = new arc_Blueprint($blueprint);
+
+      new arc_shortcodes($this->build);
 
 
       if (isset($this->build->blueprint[ '_blueprints_content-source' ]) && $this->build->blueprint[ '_blueprints_content-source' ] == 'defaults' && $this->is_shortcode) {
@@ -159,7 +162,7 @@
           break;
       }
       $bp_nav_pos           = ($this->build->blueprint[ '_blueprints_navigator' ] === 'thumbs' ? $this->build->blueprint[ '_blueprints_navigator-thumbs-position' ] : $this->build->blueprint[ '_blueprints_navigator-position' ]);
-      $bp_transtype         = $this->build->blueprint[ '_blueprints_transitions-type' ];
+      $bp_transtype         = !empty($this->build->blueprint[ '_blueprints_transitions-type' ]) ?$this->build->blueprint[ '_blueprints_transitions-type' ]:'slide';
       $this->arc_pagination = array();
 
       self::set_generic_criteria();
@@ -291,12 +294,7 @@
       echo '<div id="pzarc-blueprint_' . $this->build->blueprint[ '_blueprints_short-name' ] . '" class="' . $this->build->blueprint[ 'uid' ] . ' pzarchitect layout-' . $blueprint_type . ' ' . $use_hw_css . ' pzarc-blueprint pzarc-blueprint_' . $this->build->blueprint[ '_blueprints_short-name' ] . ' nav-' . $bp_nav_type . ' icomoon ' . ($bp_nav_type === 'navigator' ? 'navpos-' . $bp_nav_pos : '') . (is_rtl() ? ' rtl' : ' ltr') . '">';
       /** Page title */
       pzdb('after blueprint open');
-      echo apply_filters('arc_page_title', self::display_page_title($this->build->blueprint[ '_blueprints_page-title' ], array(
-          'category' => $_architect_options[ 'architect_language-categories-archive-pages-title' ],
-          'tag'      => $_architect_options[ 'architect_language-tags-archive-pages-title' ],
-          'month'    => $_architect_options[ 'architect_language-tags-archive-pages-title' ],
-          'custom'   => $_architect_options[ 'architect_language-custom-archive-pages-title' ]
-      )));
+      echo apply_filters('arc_page_title', pzarc_display_page_title($this->build->blueprint,$_architect_options));
 
       if (!empty($this->build->blueprint[ '_blueprints_blueprint-title' ])) {
         $bptitle_open_tag  = '<h2 class="pzarc-blueprint-title">';
@@ -382,7 +380,7 @@
       do_action('arc_after_navigation');
       do_action("arc_after_navigation_{$bp_shortname}");
 
-      echo '</div> <!-- end pzarchitect blueprint ' . $this->build->blueprint[ '_blueprints_short-name' ] . ' v' . PZARC_VERSION . ' -->';
+      echo '</div> <!-- end pzarchitect blueprint ' . $this->build->blueprint[ '_blueprints_short-name' ] . ' v' . PZARC_VERSION . PZARC_SHOP.' -->';
       pzdb('end blueprint html');
 
       do_action('arc_after_architect');
@@ -438,59 +436,6 @@
 
     }
 
-    /**
-     * display Archives page_title
-     *
-     * @param $display_title
-     * @param $title_override
-     *
-     * @return null|string
-     */
-    private function display_page_title($display_title, $title_override)
-    {
-      pzdb('page title');
-      if (!empty($display_title) || !empty($this->build->blueprint[ 'additional_overrides' ][ 'pzarc-overrides-page-title' ])) {
-        $title      = '';
-        $inc_prefix = empty($this->build->blueprint[ '_blueprints_hide-archive-title-prefix' ]);
-        global $wp_the_query;
-        switch (true) {
-          case is_category():
-            $title = single_cat_title(__($inc_prefix ? $title_override[ 'category' ] : '', 'pzarchitect'), false);
-            break;
-          case is_tag() :
-            $title = single_tag_title(__($inc_prefix ? $title_override[ 'tag' ] : '', 'pzarchitect'), false);
-            break;
-          case is_month() :
-            $title = single_month_title(__($inc_prefix ? $title_override[ 'month' ] : '', 'pzarchitect'), false);
-            break;
-          case is_tax() :
-            $title = single_term_title(__($inc_prefix ? $title_override[ 'custom' ] : '', 'pzarchitect'), false);
-            break;
-          case $wp_the_query->is_category:
-            $title = pzarc_term_title(__($inc_prefix ? $title_override[ 'category' ] : '', 'pzarchitect'), $wp_the_query->tax_query);
-            break;
-          case $wp_the_query->is_tag :
-            $title = pzarc_term_title(__($inc_prefix ? $title_override[ 'tag' ] : '', 'pzarchitect'), $wp_the_query->tax_query);
-            break;
-          case $wp_the_query->is_month :
-            $title = pzarc_term_title(__($inc_prefix ? $title_override[ 'month' ] : '', 'pzarchitect'), $wp_the_query->tax_query);
-            break;
-          case $wp_the_query->is_tax :
-            $title = pzarc_term_title(__($inc_prefix ? $title_override[ 'custom' ] : '', 'pzarchitect'), $wp_the_query->tax_query);
-            break;
-          case is_single() || $wp_the_query->is_single:
-          case is_singular() || $wp_the_query->is_singular:
-            $title = single_post_title(null, false);
-            break;
-        }
-
-        if ($title) {
-          return '<h1 class="pzarc-page-title">' . esc_attr($title) . '</h1>';
-        }
-      }
-
-      return null;
-    }
 
     /**
      *

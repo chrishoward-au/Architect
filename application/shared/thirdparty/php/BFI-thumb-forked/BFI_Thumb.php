@@ -91,7 +91,6 @@
   /*
    * Change the default image editors
    */
-  add_filter('wp_image_editors', 'bfi_wp_image_editor');
 
 // Instead of using the default image editors, use our extended ones
   if (!function_exists('bfi_wp_image_editor')) {
@@ -670,7 +669,6 @@
 // don't use the default resizer since we want to allow resizing to larger sizes (than the original one)
 // Parts are copied from media.php
 // Crop is always applied (just like timthumb)
-  add_filter('image_resize_dimensions', 'bfi_image_resize_dimensions', 10, 6);
   if (!function_exists('bfi_image_resize_dimensions')) {
     function bfi_image_resize_dimensions($payload, $orig_w, $orig_h, $dest_w, $dest_h, $crop = false)
     {
@@ -691,6 +689,44 @@
         $crop = array('50', '50', 'center');
       } elseif ($crop !== false && !isset($crop[ 2 ]) && is_array($crop)) {
         $crop[ 2 ] = 'respect';
+      }
+      switch ($crop[2]) {
+        case 'topleft':
+          $crop[0]=0;
+          $crop[1]=0;
+          break;
+        case 'topcentre':
+          $crop[0]=50;
+          $crop[1]=0;
+          break;
+        case 'topright':
+          $crop[0]=100;
+          $crop[1]=0;
+          break;
+        case 'midleft':
+          $crop[0]=0;
+          $crop[1]=50;
+          break;
+        case 'midcentre':
+          $crop[0]=50;
+          $crop[1]=50;
+          break;
+        case 'midright':
+          $crop[0]=100;
+          $crop[1]=50;
+          break;
+        case 'bottomleft':
+          $crop[0]=0;
+          $crop[1]=100;
+          break;
+        case 'bottomcentre':
+          $crop[0]=50;
+          $crop[1]=100;
+          break;
+        case 'bottomright':
+          $crop[0]=100;
+          $crop[1]=100;
+          break;
       }
 
 
@@ -725,10 +761,51 @@
       // Handle focal point positioning in output image
       switch ($f) {
 
+        case 'topleft':
         case 'none':
           // No focal point. Crop from top left
           $ideal_s_x = 0;
           $ideal_s_y = 0;
+          break;
+
+        case 'topcentre':
+          $ideal_s_x = $x * $orig_w - ($crop_w * 0.5);
+          $ideal_s_y = 0;
+          break;
+
+        case 'topright':
+          $ideal_s_x = $x * $orig_w - ($crop_w * 1);
+          $ideal_s_y = 0;
+          break;
+
+        case 'midleft':
+          $ideal_s_x = 0;
+          $ideal_s_y = $y * $orig_h - ($crop_h * 0.5);
+          break;
+
+        case 'midcentre':
+          $ideal_s_x = $x * $orig_w - ($crop_w * 0.5);
+          $ideal_s_y = $y * $orig_h - ($crop_h * 0.5);
+          break;
+
+        case 'midright':
+          $ideal_s_x = $x * $orig_w - ($crop_w * 1);
+          $ideal_s_y = $y * $orig_h - ($crop_h * 0.5);
+          break;
+
+        case 'bottomleft':
+          $ideal_s_x = 0;
+          $ideal_s_y = $y * $orig_h - ($crop_h * 1);
+          break;
+
+        case 'bottomcentre':
+          $ideal_s_x = $x * $orig_w - ($crop_w * 0.5);
+          $ideal_s_y = $y * $orig_h - ($crop_h * 1);
+          break;
+
+        case 'bottomright':
+          $ideal_s_x = $x * $orig_w - ($crop_w * 1);
+          $ideal_s_y = $y * $orig_h - ($crop_h * 1);
           break;
 
 
@@ -739,13 +816,11 @@
 
 
           if ($w_size < $dest_w) {
-//            $new_w = $dest_w;
             $new_h = $h_size;
           }
 
           if ($h_size < $dest_h) {
             $new_w = $w_size;
-//            $new_h = $dest_h;
           }
 
           $crop_w    = $orig_w;
@@ -784,6 +859,25 @@
           $ideal_s_y = $y * $orig_h - ($crop_h * 0.5);
           break;
 
+        case 'shrink':
+
+
+            $new_w = $dest_w;
+            $new_h = ($dest_w/$orig_w)*$orig_h;
+            if ($new_h > $dest_h) {
+                $new_h = $dest_h;
+                $new_w = ($dest_h/$orig_h)*$orig_w;
+            }
+
+          $crop_w    = $orig_w;
+          $crop_h    = $orig_h;
+
+          $ideal_s_x = 0;
+          $ideal_s_y = 0;
+//          var_dump($new_w,$new_h);
+
+          break;
+
         default:
         case 'respect':
           // Try to maintain relative focal point
@@ -792,7 +886,6 @@
           break;
 
       }
-
       // Ideally we want our x,y crop-focus-point as chosen
       // but to put (for example) the top left corner in the centre of our cropped
       // image we end up with black strips where there isn't enough image on the
@@ -816,7 +909,6 @@
         $s_y = floor($ideal_s_y);
       }
       endif;
-
       // the return array matches the parameters to imagecopyresampled()
       // int dst_x, int dst_y, int src_x, int src_y, int dst_w, int dst_h, int src_w, int src_h
       return array(0, 0, (int)$s_x, (int)$s_y, (int)$new_w, (int)$new_h, (int)$crop_w, (int)$crop_h);
@@ -832,7 +924,6 @@
 // the array, then add your normal $params arguments.
 //
 // e.g. the_post_thumbnail( array( 1024, 400, 'bfi_thumb' => true, 'grayscale' => true ) );
-  add_filter('image_downsize', 'bfi_image_downsize', 1, 3);
   if (!function_exists('bfi_image_downsize')) {
     function bfi_image_downsize($out, $id, $size)
     {
@@ -914,25 +1005,4 @@
 
   }
 
-  function bfi_flush_image_cache()
-  {
-    $upload_info = wp_upload_dir();
-    $upload_dir  = $upload_info[ 'basedir' ];
-    if (defined('BFITHUMB_UPLOAD_DIR')) {
-      $upload_dir .= "/" . BFITHUMB_UPLOAD_DIR;
-    } else {
-      $upload_dir .= "/bfi_thumb";
-    }
-    if (!is_dir($upload_dir)) {
-      if (!wp_mkdir_p($upload_dir)) {
-        //     die('Failed to create folders...');
-      }
-    }
-    $cache_files = scandir($upload_dir);
-    foreach ($cache_files as $cache_file) {
-      if ($cache_file !== '.' && $cache_file !== '..') {
-        unlink($upload_dir . '/' . $cache_file);
-      }
-    }
-  }
 

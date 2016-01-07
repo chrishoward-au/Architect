@@ -93,7 +93,8 @@
     {
       /** CONTENT */
       if ($this->toshow[ 'content' ][ 'show' ]) {
-        $this->data[ 'content' ] = apply_filters('the_content', $post[ 'content' ]);
+        //$this->data[ 'content' ] = apply_filters('the_content', $post[ 'content' ]);
+        $this->data[ 'content' ] = $post[ 'content' ];
       }
     }
 
@@ -101,7 +102,8 @@
     {
       /** Excerpt */
       if ($this->toshow[ 'excerpt' ][ 'show' ]) {
-        $this->data[ 'excerpt' ] = apply_filters('the_excerpt', $post[ 'excerpt' ]);
+        //$this->data[ 'excerpt' ] = apply_filters('the_excerpt', $post[ 'excerpt' ]);
+        $this->data[ 'excerpt' ] = $post[ 'excerpt' ];
       }
     }
 
@@ -222,7 +224,7 @@
           $this->toshow[ 'meta3' ][ 'show' ]
       ) {
         $this->data[ 'meta' ][ 'datetime' ]        = $post[ 'meta' ][ 'datetime' ];
-        $this->data[ 'meta' ][ 'fdatetime' ]       = date_i18n(strip_tags($this->section[ '_panels_design_meta-date-format' ]), strtotime($post[ 'meta' ][ 'fdatetime' ]));
+        $this->data[ 'meta' ][ 'fdatetime' ]       = date_i18n(strip_tags($this->section[ '_panels_design_meta-date-format' ]), str_replace(',',' ',strtotime($post[ 'meta' ][ 'fdatetime' ])));
         $this->data[ 'meta' ][ 'categorieslinks' ] = $post[ 'meta' ][ 'categorieslinks' ];
         $this->data[ 'meta' ][ 'categories' ]      = $post[ 'meta' ][ 'categories' ];
         $this->data[ 'meta' ][ 'tagslinks' ]       = $post[ 'meta' ][ 'tagslinks' ];
@@ -282,10 +284,7 @@
 
     }
 
-    public
-    function get_nav_items(
-        $blueprints_navigator, &$arc_query, $nav_labels
-    ) {
+    public function get_nav_items($blueprints_navigator, &$arc_query, $nav_labels, $nav_title_len = 0) {
       $nav_items = array();
       for ($j = 0; $j < count($arc_query); $j++) {
         switch ($blueprints_navigator) {
@@ -302,7 +301,7 @@
           case 'thumbs':
 
             $thumb       = '<img src="http://lorempixel.com/' . parent::get_thumbsize('w') . '/' . parent::get_thumbsize('h') . '/' . $arc_query[ $j ][ 'image' ][ 'original' ] . '" class="arc-nav-thumb" width="' . parent::get_thumbsize('w') . '" height="' . parent::get_thumbsize('h') . '">';
-            $nav_items[] = '<span class="' . $blueprints_navigator . '">' . $thumb . '</span>';
+            $nav_items[] = '<span class="' . $blueprints_navigator . '" title="'.$arc_query[ $j ][ 'title' ][ 'title' ].'">' . $thumb . '</span>';
             break;
 
           case 'bullets':

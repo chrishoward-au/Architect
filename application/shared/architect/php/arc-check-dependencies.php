@@ -21,7 +21,7 @@
  */
 require_once PZARC_PLUGIN_APP_PATH . '/shared/thirdparty/php/class-tgm-plugin-activation.php';
 
-add_action( 'tgmpa_register', 'my_theme_register_required_plugins' );
+add_action( 'tgmpa_register', 'pzarc_register_required_plugins' );
 /**
  * Register the required plugins for this theme.
  *
@@ -34,7 +34,7 @@ add_action( 'tgmpa_register', 'my_theme_register_required_plugins' );
  * This function is hooked into tgmpa_init, which is fired within the
  * TGM_Plugin_Activation class constructor.
  */
-function my_theme_register_required_plugins() {
+function pzarc_register_required_plugins() {
 
     /**
      * Array of plugin arrays. Required keys are name and slug.

@@ -55,9 +55,8 @@
 
         // TODO: Add an alternativeArchitect Admin screen.
         add_action('admin_menu', array($this, 'admin_menu_no_redux'));
-        require_once(PZARC_PLUGIN_APP_PATH . '/shared/thirdparty/php/BFI-thumb-forked/BFI_Thumb.php');
+//        require_once(PZARC_PLUGIN_APP_PATH . '/shared/thirdparty/php/BFI-thumb-forked/BFI_Thumb.php');
         require_once(PZARC_PLUGIN_APP_PATH . '/shared/thirdparty/php/pzwp-focal-point/pzwp-focal-point.php');
-
         return;
       } else {
         add_action('admin_head', array($this, 'admin_head'));
@@ -96,8 +95,8 @@
 //      require_once PZARC_PLUGIN_APP_PATH . '/shared/architect/php/content-types/generic/class_arc_panel_generic.php';
 
 
-        require_once(PZARC_PLUGIN_APP_PATH . '/shared/thirdparty/php/BFI-thumb-forked/BFI_Thumb.php');
-        require_once(PZARC_PLUGIN_APP_PATH . '/shared/thirdparty/php/pzwp-focal-point/pzwp-focal-point.php');
+//          require_once(PZARC_PLUGIN_APP_PATH . '/shared/thirdparty/php/BFI-thumb-forked/BFI_Thumb.php');
+          require_once(PZARC_PLUGIN_APP_PATH . '/shared/thirdparty/php/pzwp-focal-point/pzwp-focal-point.php');
 
       }
 
@@ -219,6 +218,7 @@
       }
 
       if ($screen->id === 'edit-arc-blueprints') {
+        wp_enqueue_script('jquery-cookie');
         require_once(PZARC_DOCUMENTATION_PATH . PZARC_LANGUAGE . '/blueprints-listings-pageguide.php');
       }
 
@@ -248,10 +248,6 @@
         $pzarc_menu = add_menu_page(__('Getting started', 'pzarchitect'), 'Architect ' . $vers, 'edit_posts', 'pzarc', 'pzarc_about', PZARC_PLUGIN_APP_URL . 'wp-icon.png');
         // add_submenu_page( $parent_slug, $page_title, $menu_title, $capability, $menu_slug, $function );
 
-        // Don't need this as it's carried in the layouts already
-//			add_submenu_page(
-//				'pzarc', 'Styling', 'Styling', 'manage_options', 'pzarc_styling', array( $this, 'pzarc_styling' )
-//			);
         add_submenu_page(
             'pzarc', __('Tools', 'pzarchitect'), '<span class="dashicons dashicons-hammer size-small"></span>' . __('Tools', 'pzarchitect'), 'edit_others_pages', 'pzarc_tools', array(
                        $this,
@@ -405,7 +401,8 @@
               pzarc_upload_file($_FILES[ 'txtorzip' ], 'preset');
               break;
             case (!empty($_FILES[ 'txtorzip' ][ 'name' ]) && (substr($_FILES[ 'txtorzip' ][ 'name' ], -4, 4) === '.txt')):
-              var_dump($_FILES[ 'txtorzip' ][ 'name' ]);
+
+              //var_dump($_FILES[ 'txtorzip' ][ 'name' ]);
               pzarc_upload_file($_FILES[ 'txtorzip' ], 'blueprint');
               // todo: add method of styled or unstyled
               break;
@@ -447,12 +444,18 @@
                         <a class="pzarc-button-help" href="http://architect4wp.com/codex-listings/" target="_blank">
                         <span class="dashicons dashicons-book"></span>
                         Documentation</a>&nbsp;
-                        <a class="pzarc-button-help" href="https://pizazzwp.freshdesk.com/support/discussions" target="_blank">
+                        <!-- <a class="pzarc-button-help" href="https://pizazzwp.freshdesk.com/support/discussions" target="_blank">
                         <span class="dashicons dashicons-groups"></span>
-                        Community support</a>&nbsp;
+                        Community support</a>&nbsp; -->
                         <a class="pzarc-button-help" href="https://pizazzwp.freshdesk.com/support/tickets/new" target="_blank">
                         <span class="dashicons dashicons-admin-tools"></span>
                         Tech support</a>
+                        <a class="pzarc-button-help" href="https://shop.pizazzwp.com/checkout/customer-dashboard/" target="_blank">
+                        <span class="dashicons dashicons-admin-users"></span>
+                        Customer dashboard</a>
+                        <a class="pzarc-button-help" href="https://shop.pizazzwp.com/affiliate-area/" target="_blank">
+                        <span class="dashicons" style="font-size:1.3em">$</span>
+                        Affiliates</a>
                         </div>
 
             ';
@@ -681,7 +684,9 @@ add_action(\'init\',\'gs_init\');
                         <p>' . __('For <strong>technical support</strong>, either fill out the form below or email', 'pzarchitect') . ' <a href="mailto://support@pizazzwp.com" target="_blank" class="arc-codex">' . __('support@pizazzwp.com', 'pzarchitect') . '</a></p>
                         <p>' . __('For <strong>community and peer-to-peer support</strong>, visit the', 'pzarchitect') . ' <a href="https://pizazzwp.freshdesk.com/support/discussions" target="_blank" class="arc-codex">' . __('Architect Community', 'pzarchitect') . '</a></p>
                     <h3>' . __('Things to try first', 'pzarchitect') . '</h3>
-                    <ul><li>' . __('If Blueprints are not displaying as expected, please try emptying your WP cache if you are using one and then the Architect cache (under <em>Architect</em> > <em>Tools</em>)', 'pzarchitect') . '</li>
+                    <ul>
+                  	<li>If updates are not showing, try looking in Dashboard > Updates. If they still don\'t show, try deactivating and reactivating the Architect licence and trying again.</li>
+                    <li>' . __('If Blueprints are not displaying as expected, please try emptying your WP cache if you are using one and then the Architect cache (under <em>Architect</em> > <em>Tools</em>)', 'pzarchitect') . '</li>
                     <li>' . __('If things just aren\'t working, e.g. nothing displays, the page is broken - then try deactivating all other plugins. If that fixes things, reactivate one at a time until you identify the conflict, then let us know what the plugin is.', 'pzarchitect') . '</li>
                     </ul>
                     </div>
@@ -695,7 +700,7 @@ add_action(\'init\',\'gs_init\');
             <style type="text/css" media="screen, projection">
         @import url(http://assets.freshdesk.com/widget/freshwidget.css);
             </style>
-            <iframe class="freshwidget-embedded-form" id="freshwidget-embedded-form" src="https://pizazzwp.freshdesk.com/widgets/feedback_widget/new?&widgetType=embedded&formTitle=&screenshot=no&searchArea=no" scrolling="no" height="850px" width="90%" frameborder="0"  style="margin:20px 10px 10px 40px;background:#eee;overflow-y: auto;">
+            <iframe class="freshwidget-embedded-form" id="freshwidget-embedded-form" src="https://pizazzwp.freshdesk.com/widgets/feedback_widget/new?&widgetType=embedded&formTitle=&screenshot=no&searchArea=no" scrolling="yes" height="1050px" width="90%" frameborder="0"  style="margin:20px 10px 10px 40px;background:#eee;overflow-y: auto;">
             </iframe>
                 </div>
            </div>';

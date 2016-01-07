@@ -905,9 +905,10 @@
                     'id'       => $prefix . 'navigator-items-active-selectors',
                     'type'     => 'text',
                     'readonly' => true,
-                    'default'  => '.pzarc-navigator .arc-slider-slide-nav-item.active',
+                    'default'  => '.pzarc-navigator .arc-slider-slide-nav-item.active, .pzarc-navigator .arc-slider-slide-nav-item.current',
+                    'subtitle' => __('Architect also renders .pzarc-navigator .arc-slider-slide-nav-item.current ','pzarchitect')
                 ),
-                pzarc_redux_font($prefix . 'navigator-items-active-font', array('.pzarc-navigator .arc-slider-slide-nav-item.active '), array('color' => '#fff'), array('letter-spacing',
+                pzarc_redux_font($prefix . 'navigator-items-active-font', array('.pzarc-navigator .arc-slider-slide-nav-item.active ','.pzarc-navigator .arc-slider-slide-nav-item.current '), array('color' => '#fff'), array('letter-spacing',
                                                                                                                                                                         'font-variant',
                                                                                                                                                                         'text-transform',
                                                                                                                                                                         'font-family',
@@ -915,8 +916,8 @@
                                                                                                                                                                         'text-align',
                                                                                                                                                                         'line-height',
                                                                                                                                                                         'word-spacing')),
-                pzarc_redux_bg($prefix . 'navigator-items-active-background', array('.pzarc-navigator .arc-slider-slide-nav-item.active '), array('color' => '#555555')),
-                pzarc_redux_borders($prefix . 'navigator-items-active-borders', array('.pzarc-navigator .arc-slider-slide-nav-item.active ')),
+                pzarc_redux_bg($prefix . 'navigator-items-active-background', array('.pzarc-navigator .arc-slider-slide-nav-item.active ','.pzarc-navigator .arc-slider-slide-nav-item.current '), array('color' => '#555555')),
+                pzarc_redux_borders($prefix . 'navigator-items-active-borders', array('.pzarc-navigator .arc-slider-slide-nav-item.active ','.pzarc-navigator .arc-slider-slide-nav-item.current ')),
             ),
         );
         $thisSection      = 'masonry';

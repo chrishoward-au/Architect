@@ -1,5 +1,8 @@
-$version: "1.5.0";
-// THIS IS THE SCSS VERSION 
+//  http://bourbon.io/docs/
+@import "bourbon";
+
+$version: "1.6.0";
+// THIS IS THE SCSS VERSION
 $highlight: #0074a2;
 $border-radius: 3px;
 // Materials Design colours
@@ -109,7 +112,6 @@ body span.pzarc-shortname {
   display: none;
 }
 
-
 .row-pzarc_layout-title-width,
 .row-pzarc_layout-excerpt-width,
 .row-pzarc_layout-content-width,
@@ -159,7 +161,7 @@ div.pzarc-dragsource {
   overflow: hidden;
 }
 
-.pzgp-cell-image-behind img {
+.pzgp-cell-image-behind img.feature-image-video {
   height: 300px;
   position: relative;
 }
@@ -174,7 +176,7 @@ div.pzarc-dragsource {
   border-radius: 3px;
 }
 
-/* Will need cell footers to remain compatible with E+ */
+/* Will need cell footers to remain compatible with E+ LOLs! There's a flashback*/
 
 .pzarc_cell_header,
 .pzarc_cell_footer {
@@ -280,8 +282,9 @@ div.pzarc-dragsource {
   text-align: left;
   width: 100%;
 }
+
 .pzarc-draggable-image.right {
-  float:right;
+  float: right;
 }
 
 #pzarc_pzarc-panels-id ul#pzarc-meta-nav li.pzarc-meta-tab-title a span.pzarc_show_labels {
@@ -635,9 +638,9 @@ body.screen-arc-panels {
 /*body.post-type-arc-panels h3.hndle,*/
 /*body.post-type-arc-blueprints h3.hndle,*/
 /*body.post-type-arc-contents h3.hndle,*/
-/*body.post-type-arc-panels h3.redux-hndle,*/
-/*body.post-type-arc-blueprints h3.redux-hndle,*/
-/*body.post-type-arc-contents h3.redux-hndle*/
+/*body.post-type-arc-panels h3.redux-hndle, h2.hndle,*/
+/*body.post-type-arc-blueprints h3.redux-hndle, h2.hndle,*/
+/*body.post-type-arc-contents h3.redux-hndle, h2.hndle*/
 /*{*/
 /*color: #fff;*/
 /*background: #6d6d6d;*/
@@ -934,10 +937,11 @@ body.arc-bgimage {
         }
       }
     }
-    #poststuff h3.redux-hndle,
-    #poststuff h3.redux-hndle,
-    .metabox-holder h3.redux-hndle {
-      background: rgba(0, 0, 0, 0.7);
+    #poststuff h3.redux-hndle, #poststuff h2.hndle,
+    #poststuff h3.redux-hndle, #poststuff h2.hndle,
+    .metabox-holder h3.redux-hndle, .metabox-holder h2.hndle {
+      background: #222;
+      color: #fff;
     }
 
   }
@@ -1194,12 +1198,12 @@ body .redux-container {
   }
   .wp-menu-name:after {
     content: $version;
-    opacity:0;
-    font-size:10px;
-    padding-left:5px;
+    opacity: 0;
+    font-size: 10px;
+    padding-left: 5px;
   }
   .wp-menu-name:hover:after {
-    opacity:0.6;
+    opacity: 0.6;
   }
 
 }
@@ -1615,8 +1619,10 @@ body.arc-beginner .arc-field-advanced {
 }
 
 #redux-_architect-metabox-presets {
-  h3.redux-hndle {
+  h3.redux-hndle, h2.hndle {
     border-bottom: solid 4px $violet !important;
+    background: #222;
+    color: #fff;
     // background: $violet-900 !important;
   }
   .redux-container {
@@ -1646,9 +1652,11 @@ body.arc-beginner .arc-field-advanced {
 }
 
 #redux-_architect-metabox-layout-settings {
-  h3.redux-hndle {
+  h3.redux-hndle, h2.hndle {
     border-bottom: solid 4px $indigo !important;
-    // background: $indigo-900 !important;
+    background: #222;
+    color: #fff;
+   // background: $indigo-900 !important;
   }
   .redux-container {
     background: $indigo-50;
@@ -1678,8 +1686,10 @@ body.arc-beginner .arc-field-advanced {
 }
 
 #redux-_architect-metabox-panels-design {
-  h3.redux-hndle {
+  h3.redux-hndle, h2.hndle {
     border-bottom: solid 4px $orange !important;
+    background: #222;
+    color: #fff;
     // background: $orange-900 !important;
   }
   .redux-container {
@@ -1711,8 +1721,10 @@ body.arc-beginner .arc-field-advanced {
 }
 
 #redux-_architect-metabox-content-selections {
-  h3.redux-hndle {
+  h3.redux-hndle, h2.hndle {
     border-bottom: solid 4px $red !important;
+    background: #222;
+    color: #fff;
     // background: $red-900 !important;
   }
   .redux-container {
@@ -1744,8 +1756,10 @@ body.arc-beginner .arc-field-advanced {
 }
 
 #redux-_architect-metabox-blueprint-stylings {
-  h3.redux-hndle {
+  h3.redux-hndle, h2.hndle {
     border-bottom: solid 4px $blue !important;
+    background: #222;
+    color: #fff;
     // background: $blue-900 !important;
   }
   .redux-container {
@@ -1776,8 +1790,10 @@ body.arc-beginner .arc-field-advanced {
 }
 
 #redux-_architect-metabox-panels-styling {
-  h3.redux-hndle {
+  h3.redux-hndle, h2.hndle {
     border-bottom: solid 4px $green !important;
+    background: #222;
+    color: #fff;
     // background: $green-900 !important;
   }
   .redux-container {
@@ -1866,13 +1882,23 @@ li.arc-message {
       }
     }
   }
-  p {
+  .footer {
     padding: 5px 10px;
     color: #fff;
-    &.footer {
-      width: 60%;
-      white-space: normal;
+    width: 60%;
+    white-space: normal;
+    margin: 5px;
+    p.arc-styling-on {
+      display: none;
     }
+    p.arc-styling-off {
+      background: #ffebee;
+      color: #c00;
+      border: solid 1px currentColor;
+      padding: 10px;
+      margin: 5px;
+    }
+
   }
   .container {
     background: #f3f3f3;
@@ -2081,6 +2107,7 @@ li.arc-message {
       font-size: 15px;
       display: inline-block;;
       margin-top: -6px;
+      box-sizing:border-box;
     }
   }
 }

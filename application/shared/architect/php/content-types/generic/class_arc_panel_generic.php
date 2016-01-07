@@ -37,7 +37,10 @@
       $this->data[ 'image' ][ 'image' ]    = null;
       $this->data[ 'image' ][ 'caption' ]  = null;
       $this->data[ 'image' ][ 'original' ] = null;
-      $this->data[ 'video' ][ 'source' ]   = null;
+
+      $this->data[ 'bgimage' ][ 'thumb' ] = null;
+
+      $this->data[ 'video' ][ 'source' ] = null;
 
       $this->data[ 'meta' ][ 'id' ]              = null;
       $this->data[ 'meta' ][ 'datetime' ]        = null;
@@ -56,7 +59,6 @@
       $this->data[ 'permalink' ]                 = null;
       $this->data[ 'postformat' ]                = null;
 
-      $this->data[ 'bgimage' ][ 'thumb' ] = null;
       // $this->data[ 'bgimage' ][ 'original' ] = null;
 
       $this->data = apply_filters('arc_init_data', $this->data);
@@ -87,7 +89,7 @@
       $panel_def[ 'author' ]     = '<span class="byline"><span class="author vcard"><a class="url fn n" href="{{authorlink}}" title="View all posts by {{authorname}}" rel="author">{{avatarb}}{{authorname}}{{avatara}}</a></span></span>';
       $panel_def[ 'email' ]      = '<span class="byline email"><span class="author vcard"><a class="url fn n" href="mailto:{{authoremail}}" title="Email {{authorname}}" rel="author">{{authoremail}}</a></span></span>';
       //     $panel_def[ 'image' ]       = '<figure class="entry-thumbnail {{incontent}}">{{postlink}}<img width="{{width}}" src="{{imgsrc}}" class="attachment-post-thumbnail wp-post-image" alt="{{alttext}}">{{closepostlink}}{{captioncode}}</figure>';
-      $panel_def[ 'image' ]   = '{{figopen}} class="{{extensionclass}} entry-thumbnail {{incontent}} {{centred}} {{nofloat}} {{location}}" {{extensiondata}}>{{postlink}}{{image}}{{closelink}}{{captioncode}}{{figclose}}';
+      $panel_def[ 'image' ]   = '{{figopen}} class="{{extensionclass}} entry-thumbnail {{incontent}} {{centred}} {{nofloat}} {{location}}" {{extensiondata}} {{extrastyling}}>{{postlink}}{{image}}{{closelink}}{{captioncode}}{{figclose}}';
       $panel_def[ 'bgimage' ] = '<figure class="{{extensionclass}} entry-bgimage pzarc-bg-image {{trim-scale}}" {{extensiondata}}>{{postlink}}{{bgimage}}{{closelink}}</figure>';
       $panel_def[ 'caption' ] = '<figcaption class="caption">{{caption}}</figcaption>';
       $panel_def[ 'content' ] = '<{{div}} class="{{extensionclass}} entry-content {{nothumb}}" {{extensiondata}}>{{image-in-content}}{{content}}</{{div}}>';
@@ -118,10 +120,10 @@
     }
 
 
-    public function set_data(&$post, &$toshow, &$section,$panel_number)
+    public function set_data(&$post, &$toshow, &$section, $panel_number)
     {
-      $this->section = $section;
-      $this->toshow  = $toshow;
+      $this->section      = $section;
+      $this->toshow       = $toshow;
       $this->panel_number = $panel_number;
 
 //      if ( $this->toshow[ 'title' ][ 'show' ] ) {
@@ -224,7 +226,7 @@
       }
       if (strpos($meta_string, '%date%') !== false) {
         $this->data[ 'meta' ][ 'datetime' ]  = get_the_date();
-        $this->data[ 'meta' ][ 'fdatetime' ] = date_i18n(strip_tags($this->section[ '_panels_design_meta-date-format' ]), strtotime(get_the_date()));
+        $this->data[ 'meta' ][ 'fdatetime' ] = date_i18n(strip_tags($this->section[ '_panels_design_meta-date-format' ]), str_replace(',', ' ', strtotime(get_the_date())));
       }
       if (strpos($meta_string, '%categories%') !== false) {
         $this->data[ 'meta' ][ 'categorieslinks' ] = get_the_category_list(', ');
@@ -302,7 +304,7 @@
 
       $this->data[ 'image' ][ 'original' ] = wp_get_attachment_image_src($thumb_id, 'full');
       preg_match("/(?<=src\\=\")(.)*(?=\" )/uiUs", $this->data[ 'image' ][ 'image' ], $results);
-      if (isset($results[ 0 ]) && !empty($this->section[ '_panels_settings_use-retina-images' ])) {
+      if (isset($results[ 0 ]) && !empty($this->section[ '_panels_settings_use-retina-images' ]) && function_exists('bfi_thumb')) {
         $params = array('width' => ($width * 2), 'height' => ($height * 2));
         // We need the crop to be identical. :/ So how about we just double the size of the image! I'm sure I Saw somewhere that works still.
         $thumb_2X                         = bfi_thumb($results[ 0 ], $params);
@@ -354,8 +356,12 @@
           && 'specific' === $this->section[ '_panels_design_use-filler-image-source' ]
           && !empty($this->section[ '_panels_design_use-filler-image-source-specific' ][ 'url' ])
       ) {
-        $imageURL                            = bfi_thumb($this->section[ '_panels_design_use-filler-image-source-specific' ][ 'url' ], array('width'  => $width,
-                                                                                                                                             'height' => $height));
+        if (function_exists('bfi_thumb')) {
+          $imageURL = bfi_thumb($this->section[ '_panels_design_use-filler-image-source-specific' ][ 'url' ], array('width'  => $width,
+                                                                                                                    'height' => $height));
+        } else {
+          $imageURL = $this->section[ '_panels_design_use-filler-image-source-specific' ][ 'url' ];
+        }
         $this->data[ 'image' ][ 'image' ]    = '<img src="' . $imageURL . '" >';
         $this->data[ 'image' ][ 'original' ] = array($imageURL, $width, $height, false);
         $this->data[ 'image' ][ 'caption' ]  = '';
@@ -405,13 +411,14 @@
       $this->data[ 'image' ][ 'original' ] = wp_get_attachment_image_src($thumb_id, 'full');
       pzdb('post get original bg');
       preg_match("/(?<=src\\=\")(.)*(?=\" )/uiUs", $this->data[ 'bgimage' ][ 'thumb' ], $results);
-      if (isset($results[ 0 ]) && !empty($this->section[ '_panels_settings_use-retina-images' ])) {
+      if (isset($results[ 0 ]) && !empty($this->section[ '_panels_settings_use-retina-images' ]) && function_exists('bfi_thumb')) {
         $params = array('width' => ($width * 2), 'height' => ($height * 2));
         // We need the crop to be identical. :/ So how about we just double the size of the image! I'm sure I Saw somewhere that works still. In fact, we have no choice, since the double sized image could be bigger than the original.
         $thumb_2X                           = bfi_thumb($results[ 0 ], $params);
         $this->data[ 'bgimage' ][ 'thumb' ] = str_replace('/>', 'data-at2x="' . $thumb_2X . '" />', $this->data[ 'bgimage' ][ 'thumb' ]);
         pzdb('after get 2X bg');
       }
+
       pzdb('end get bgimage');
 
       //Use lorempixel
@@ -451,13 +458,17 @@
         $this->data[ 'image' ][ 'caption' ]  = '';
 
       }
-      if (empty($this->data[ 'image' ][ 'image' ])
+      if (empty($this->data[ 'bgimage' ][ 'thumb' ])
           && 'specific' === $this->section[ '_panels_design_use-filler-image-source' ]
           && !empty($this->section[ '_panels_design_use-filler-image-source-specific' ][ 'url' ])
       ) {
-        $imageURL                            = bfi_thumb($this->section[ '_panels_design_use-filler-image-source-specific' ][ 'url' ], array('width'  => $width,
-                                                                                                                                             'height' => $height));
-        $this->data[ 'bgimage' ][ 'image' ]  = '<img src="' . $imageURL . '" >';
+        if (function_exists('bfi_thumb')) {
+          $imageURL = bfi_thumb($this->section[ '_panels_design_use-filler-image-source-specific' ][ 'url' ], array('width'  => $width,
+                                                                                                                    'height' => $height));
+        } else {
+          $imageURL = $this->section[ '_panels_design_use-filler-image-source-specific' ][ 'url' ];
+        }
+        $this->data[ 'bgimage' ][ 'thumb' ]  = '<img src="' . $imageURL . '" >';
         $this->data[ 'image' ][ 'original' ] = array($imageURL, $width, $height, false);
         $this->data[ 'image' ][ 'caption' ]  = '';
       }
@@ -484,7 +495,7 @@
       if (!empty($this->section[ '_panels_design_manual-excerpts' ]) && !has_excerpt()) {
         $this->data[ 'excerpt' ] = '';
       } else {
-        $this->data[ 'excerpt' ] = apply_filters('the_excerpt', get_the_excerpt());
+        $this->data[ 'excerpt' ] = apply_filters('the_excerpt', do_shortcode(get_the_excerpt()));
       }
     }
 
@@ -497,25 +508,26 @@
       for ($i = 1; $i <= $cfcount; $i++) {
         // the settings come from section
         if (!empty($this->section[ '_panels_design_cfield-' . $i . '-name' ])) {
-          $this->data[ 'cfield' ][ $i ][ 'group' ]         = $this->section[ '_panels_design_cfield-' . $i . '-group' ];
-          $this->data[ 'cfield' ][ $i ][ 'name' ]          = $this->section[ '_panels_design_cfield-' . $i . '-name' ];
-          $this->data[ 'cfield' ][ $i ][ 'field-type' ]    = $this->section[ '_panels_design_cfield-' . $i . '-field-type' ];
-          $this->data[ 'cfield' ][ $i ][ 'date-format' ]   = $this->section[ '_panels_design_cfield-' . $i . '-date-format' ];
-          $this->data[ 'cfield' ][ $i ][ 'wrapper-tag' ]   = $this->section[ '_panels_design_cfield-' . $i . '-wrapper-tag' ];
-          $this->data[ 'cfield' ][ $i ][ 'class-name' ]    = isset($this->section[ '_panels_design_cfield-' . $i . '-class-name' ]) ? $this->section[ '_panels_design_cfield-' . $i . '-class-name' ] : '';
-          $this->data[ 'cfield' ][ $i ][ 'link-field' ]    = $this->section[ '_panels_design_cfield-' . $i . '-link-field' ];
-          $this->data[ 'cfield' ][ $i ][ 'decimals' ]      = $this->section[ '_panels_design_cfield-' . $i . '-number-decimals' ];
-          $this->data[ 'cfield' ][ $i ][ 'decimal-char' ]  = $this->section[ '_panels_design_cfield-' . $i . '-number-decimal-char' ];
-          $this->data[ 'cfield' ][ $i ][ 'thousands-sep' ] = $this->section[ '_panels_design_cfield-' . $i . '-number-thousands-separator' ];
-          $params                                          = array(
+          $this->data[ 'cfield' ][ $i ][ 'group' ]          = $this->section[ '_panels_design_cfield-' . $i . '-group' ];
+          $this->data[ 'cfield' ][ $i ][ 'name' ]           = $this->section[ '_panels_design_cfield-' . $i . '-name' ];
+          $this->data[ 'cfield' ][ $i ][ 'field-type' ]     = $this->section[ '_panels_design_cfield-' . $i . '-field-type' ];
+          $this->data[ 'cfield' ][ $i ][ 'date-format' ]    = $this->section[ '_panels_design_cfield-' . $i . '-date-format' ];
+          $this->data[ 'cfield' ][ $i ][ 'wrapper-tag' ]    = $this->section[ '_panels_design_cfield-' . $i . '-wrapper-tag' ];
+          $this->data[ 'cfield' ][ $i ][ 'class-name' ]     = isset($this->section[ '_panels_design_cfield-' . $i . '-class-name' ]) ? $this->section[ '_panels_design_cfield-' . $i . '-class-name' ] : '';
+          $this->data[ 'cfield' ][ $i ][ 'link-field' ]     = $this->section[ '_panels_design_cfield-' . $i . '-link-field' ];
+          $this->data[ 'cfield' ][ $i ][ 'link-behaviour' ] = isset($this->section[ '_panels_design_cfield-' . $i . '-link-behaviour' ]) ? $this->section[ '_panels_design_cfield-' . $i . '-link-behaviour' ] : '_self';
+          $this->data[ 'cfield' ][ $i ][ 'decimals' ]       = $this->section[ '_panels_design_cfield-' . $i . '-number-decimals' ];
+          $this->data[ 'cfield' ][ $i ][ 'decimal-char' ]   = $this->section[ '_panels_design_cfield-' . $i . '-number-decimal-char' ];
+          $this->data[ 'cfield' ][ $i ][ 'thousands-sep' ]  = $this->section[ '_panels_design_cfield-' . $i . '-number-thousands-separator' ];
+          $params                                           = array(
               'width'  => str_replace($this->section[ '_panels_design_cfield-' . $i . '-ps-images-width' ][ 'units' ], '', $this->section[ '_panels_design_cfield-' . $i . '-ps-images-width' ][ 'width' ]),
               'height' => str_replace($this->section[ '_panels_design_cfield-' . $i . '-ps-images-height' ][ 'units' ], '', $this->section[ '_panels_design_cfield-' . $i . '-ps-images-height' ][ 'height' ])
           );
 
           $this->data[ 'cfield' ][ $i ][ 'prefix-text' ]  = '<span class="pzarc-prefix-text">' . $this->section[ '_panels_design_cfield-' . $i . '-prefix-text' ] . '</span>';
-          $this->data[ 'cfield' ][ $i ][ 'prefix-image' ] = bfi_thumb($this->section[ '_panels_design_cfield-' . $i . '-prefix-image' ][ 'url' ], $params);
+          $this->data[ 'cfield' ][ $i ][ 'prefix-image' ] = function_exists('bfi_thumb') ? bfi_thumb($this->section[ '_panels_design_cfield-' . $i . '-prefix-image' ][ 'url' ], $params) : $this->section[ '_panels_design_cfield-' . $i . '-prefix-image' ][ 'url' ];
           $this->data[ 'cfield' ][ $i ][ 'suffix-text' ]  = '<span class="pzarc-suffix-text">' . $this->section[ '_panels_design_cfield-' . $i . '-suffix-text' ] . '</span>';
-          $this->data[ 'cfield' ][ $i ][ 'suffix-image' ] = bfi_thumb($this->section[ '_panels_design_cfield-' . $i . '-suffix-image' ][ 'url' ], $params);
+          $this->data[ 'cfield' ][ $i ][ 'suffix-image' ] = function_exists('bfi_thumb') ? bfi_thumb($this->section[ '_panels_design_cfield-' . $i . '-suffix-image' ][ 'url' ], $params) : $this->section[ '_panels_design_cfield-' . $i . '-prefix-image' ][ 'url' ];
 
           // The content itself comes from post meta or post title
 
@@ -536,7 +548,7 @@
           }
 
           if ($this->section[ '_panels_design_cfield-' . $i . '-field-type' ] === 'date') {
-            $cfdate                                 = is_numeric($this->data[ 'cfield' ][ $i ][ 'value' ]) ? $this->data[ 'cfield' ][ $i ][ 'value' ] : strtotime($this->data[ 'cfield' ][ $i ][ 'value' ]); //convert field value to date
+            $cfdate                                 = is_numeric($this->data[ 'cfield' ][ $i ][ 'value' ]) ? $this->data[ 'cfield' ][ $i ][ 'value' ] : str_replace(',', ' ', strtotime($this->data[ 'cfield' ][ $i ][ 'value' ])); //convert field value to date
             $cfdate                                 = empty($cfdate) ? '000000' : $cfdate;
             $this->data[ 'cfield' ][ $i ][ 'data' ] = "data-sort-date='{$cfdate}'";
           }
@@ -595,7 +607,7 @@
       $panel_def[ $component ] = str_replace('{{id}}', $this->data[ 'meta' ][ 'id' ], $panel_def[ $component ]);
       $panel_def[ $component ] = str_replace('{{datetime}}', $this->data[ 'meta' ][ 'datetime' ], $panel_def[ $component ]);
       $panel_def[ $component ] = str_replace('{{fdatetime}}', $this->data[ 'meta' ][ 'fdatetime' ], $panel_def[ $component ]);
-      $panel_def[ $component ] = str_replace('{{sortable}}', ' data-order="' . strtotime($this->data[ 'meta' ][ 'fdatetime' ]) . '"', $panel_def[ $component ]);
+      $panel_def[ $component ] = str_replace('{{sortable}}', ' data-order="' . str_replace(',', ' ', strtotime($this->data[ 'meta' ][ 'fdatetime' ])) . '"', $panel_def[ $component ]);
 
       if (empty($this->section[ '_panels_design_excluded-authors' ]) || !in_array(get_the_author_meta('ID'), $this->section[ '_panels_design_excluded-authors' ])) {
         //Remove text indicators
@@ -807,6 +819,11 @@
           $panel_def[ $component ] = str_replace('{{location}}', 'pzarc-components-' . $this->section[ '_panels_design_components-position' ], $panel_def[ $component ]);
 
         }
+        if (!empty($this->section[ '_panels_design_rotate-image' ])) {
+          $rot = rand(-50, 50) / 10;
+          // TODO: this is bad! Not dumb at all
+          $panel_def[ $component ] = str_replace('{{extrastyling}}', 'style="transform:rotate(' . $rot . 'deg);"', $panel_def[ $component ]);
+        }
 
         switch (true) {
           case (empty($this->data[ 'image' ][ 'image' ]) && 'table' === $layout_mode) :
@@ -837,12 +854,13 @@
       } else {
 
         if (!empty($this->data[ 'bgimage' ][ 'thumb' ])) {
-          if ($this->section[ '_panels_settings_image-focal-point' ] === 'scale_height') {
+          if ($this->section[ '_panels_settings_image-focal-point' ] === 'scale_height' || $this->section[ '_panels_settings_image-focal-point' ] === 'shrink') {
             $this->data[ 'bgimage' ][ 'thumb' ] = preg_replace("/width=\"(\\d)*\"\\s/uiUmx", "", $this->data[ 'bgimage' ][ 'thumb' ]);
           }
-          if ($this->section[ '_panels_settings_image-focal-point' ] === 'scale') {
+          if ($this->section[ '_panels_settings_image-focal-point' ] === 'scale' || $this->section[ '_panels_settings_image-focal-point' ] === 'shrink') {
             $this->data[ 'bgimage' ][ 'thumb' ] = preg_replace("/height=\"(\\d)*\"\\s/uiUmx", "", $this->data[ 'bgimage' ][ 'thumb' ]);
           }
+
           $panel_def[ $component ] = str_replace('{{bgimage}}', $this->data[ 'bgimage' ][ 'thumb' ], $panel_def[ $component ]);
         } else {
           // Gotta fill the background with something, else it collapses
@@ -899,7 +917,12 @@
             switch ($v[ 'field-type' ]) {
 
               case 'image':
-                $content = '<img src="' . bfi_thumb($v[ 'value' ]) . '">';
+                if (function_exists('bfi_thumb')) {
+
+                  $content = '<img src="' . bfi_thumb($v[ 'value' ]) . '">';
+                } else {
+                  $content = '<img src="' . $v[ 'value' ] . '">';
+                }
                 break;
 
               case 'embed':
@@ -939,7 +962,7 @@
             $content = $prefix_image . $v[ 'prefix-text' ] . $content . $v[ 'suffix-text' ] . $suffix_image;
 
             if (!empty($v[ 'link-field' ])) {
-              $content = '<a href="' . $v[ 'link-field' ] . '">' . $content . '</a>';
+              $content = '<a href="' . $v[ 'link-field' ] . '" target="' . $v[ 'link-behaviour' ] . '">' . $content . '</a>';
             }
 
             if ($v[ 'name' ] === 'use_empty' && empty($v[ 'link-field' ])) {
@@ -968,7 +991,7 @@
         $panel_def[ $component ] = '';
       }
 
-      return self::render_generics($component, $content_type, $panel_def[ $component ], $layout_mode);
+      return self::render_generics($component, $content_type, do_shortcode($panel_def[ $component ]), $layout_mode);
 
     }
 
@@ -1118,7 +1141,9 @@
             if (empty($focal_point)) {
               $focal_point = get_post_meta($the_post->ID, 'pzgp_focal_point', true);
             }
-            $focal_point = (empty($focal_point) ? array(50, 50) : explode(',', $focal_point));
+
+            $focal_point = (empty($focal_point) || !is_string($focal_point) ? array(50,
+                                                                                    50) : explode(',', $focal_point));
             if (!$thumb_id && !empty($this->build->blueprint[ 'section_object' ][ 1 ]->section[ 'section-panel-settings' ][ '_panels_settings_use-embedded-images' ])) {
               //TODO: Changed to more reliable check if image is in the content?
               preg_match("/(?<=wp-image-)(\\d)*/uimx", get_the_content(), $matches);
@@ -1148,11 +1173,25 @@
               ));
 
             }
+            if (empty($thumb)
+                && 'specific' === $this->build->blueprint[ 'section_object' ][ 1 ]->section[ 'section-panel-settings' ][ '_panels_design_use-filler-image-source' ]
+                && !empty($this->build->blueprint[ 'section_object' ][ 1 ]->section[ 'section-panel-settings' ][ '_panels_design_use-filler-image-source-specific' ][ 'url' ])
+            ) {
+              if (function_exists('bfi_thumb')) {
+                $imageURL = bfi_thumb($this->build->blueprint[ 'section_object' ][ 1 ]->section[ 'section-panel-settings' ][ '_panels_design_use-filler-image-source-specific' ][ 'url' ], array('width'  => self::get_thumbsize('w'),
+                                                                                                                                                                                                 'height' => self::get_thumbsize('h')));
+              } else {
+                $imageURL = $this->build->blueprint[ 'section_object' ][ 1 ]->section[ 'section-panel-settings' ][ '_panels_design_use-filler-image-source-specific' ][ 'url' ];
+              }
+              $thumb = '<img src="' . $imageURL . '" width="' . self::get_thumbsize('w') . '" height="' . self::get_thumbsize('h') . '">';
+            } elseif (empty($thumb)) {
+              $thumb = '<img src="' . PZARC_PLUGIN_APP_URL . '/shared/assets/images/missing-image.png" width="' . self::get_thumbsize('w') . '" height="' . self::get_thumbsize('h') . '" style="width:' . self::get_thumbsize('w') . 'px">';
 
-            $thumb = (empty($thumb) ? '<img src="' . PZARC_PLUGIN_APP_URL . '/shared/assets/images/missing-image.png" width="' . self::get_thumbsize('w') . '" height="' . self::get_thumbsize('h') . '">' : $thumb);
-            // Added this class so ca filter it out of Advanced Lazy Load
+            }
+
+            // Added this class so can filter it out of Advanced Lazy Load
             $thumb       = preg_replace("/class=\\\"a/uUm", "$0rc-nav-thumb a", $thumb);
-            $nav_items[] = '<span class="' . $blueprints_navigator . '">' . $thumb . '</span>';
+            $nav_items[] = '<span class="' . $blueprints_navigator . '" title="' . $the_post->post_title . '">' . $thumb . '</span>';
             break;
 
           case 'bullets':

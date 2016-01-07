@@ -95,9 +95,12 @@
         add_action('admin_enqueue_scripts', array($this, '_enqueue'), 20);
 
         // Fix for wp-seo embedding an old version (RC3) of qtip. Bah.
-        add_action('wp_print_scripts', array($this, 'FIX_wp_seo'), 100);
-        add_action('admin_enqueue_scripts', array($this, 'FIX_wp_seo'), 100);
 
+        // Changed v1.5.10 for compatibility with Yoast 3
+        if (defined('WPSEO_VERSION') && version_compare(WPSEO_VERSION,'3.0.0','lt')) {
+          add_action('wp_print_scripts', array($this, 'FIX_wp_seo'), 100);
+          add_action('admin_enqueue_scripts', array($this, 'FIX_wp_seo'), 100);
+        }
         // Global variable overrides for within loops
         add_action('the_post', array($this, '_loop_start'), 0);
         add_action('loop_end', array($this, '_loop_end'), 0);

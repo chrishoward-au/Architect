@@ -634,7 +634,7 @@
    *
    * @return array
    */
-  function pzarc_get_posts_in_post_type($pzarc_post_type = 'arc-blueprints', $use_shortname = false)
+  function pzarc_get_posts_in_post_type($pzarc_post_type = 'arc-blueprints', $use_shortname = false, $override_admin = false)
   {
 //    // No point doing this if not on a screen that can use it.
 // Except it didn't work!
@@ -642,7 +642,7 @@
 //      return array();
 //    }
 //    // No point doing this if not on a screen that can use it.
-    if (!is_admin()) {
+    if (!is_admin() && !$override_admin) {
       return array();
     }
     $args                 = array(
@@ -1318,14 +1318,17 @@
     // generate correct whosit
     $pzarc_func = 'pzarc_style_' . $keys[ 'style' ];
     $pzarc_css  = '';
-    foreach ($keys[ 'classes' ] as $class) {
-      $pzarc_css .= (function_exists($pzarc_func) ? call_user_func($pzarc_func, $parentClass . ' ' . $class, $value) : '');
-      if ($pzarc_func == 'pzarc_style_padding') {
-        //     var_dump($pzarc_css);
-      }
-      if (!function_exists($pzarc_func)) {
-        //print 'Missing function ' . $pzarc_func;
-        pzdb($pzarc_func);
+    foreach ($keys[ 'classes' ] as $class_str) {
+      $class_arr = explode(',', $class_str);
+      foreach ($class_arr as $class) {
+        $pzarc_css .= (function_exists($pzarc_func) ? call_user_func($pzarc_func, $parentClass . ' ' . $class, $value) : '');
+        if ($pzarc_func == 'pzarc_style_padding') {
+          //     var_dump($pzarc_css);
+        }
+        if (!function_exists($pzarc_func)) {
+          //print 'Missing function ' . $pzarc_func;
+          pzdb($pzarc_func);
+        }
       }
     }
 
@@ -1818,16 +1821,16 @@
     $taxonomy_list = get_taxonomies(array(
                                         'public'   => true,
                                         '_builtin' => false
-
                                     ));
-    //  var_dump($taxonomy_list);
     foreach ($taxonomy_list as $k => $v) {
       $tax_obj             = get_taxonomy($k);
       $taxonomy_list[ $k ] = $tax_obj->labels->name;
     }
+    // Add the None option if required
     $extras        = $has_blank ? array(0          => '',
                                         'category' => 'Categories',
-                                        'post_tag' => 'Tags') : array('category' => 'Categories', 'post_tag' => 'Tags');
+                                        'post_tag' => 'Tags')
+        : array('category' => 'Categories', 'post_tag' => 'Tags');
     $taxonomy_list = $catstags ? $extras + $taxonomy_list : $taxonomy_list;
 
     return $taxonomy_list;
@@ -1852,4 +1855,92 @@
     }
 
 
+  }
+
+  /**
+   * display Archives page_title
+   *
+   * @param $display_title
+   * @param $title_override
+   *
+   * @return null|string
+   */
+  function pzarc_display_page_title(&$blueprint, &$arcoptions, $tag = 'h1')
+  {
+    $display_title  = $blueprint[ '_blueprints_page-title' ];
+    $title_override = array(
+        'category' => $arcoptions[ 'architect_language-categories-archive-pages-title' ],
+        'tag'      => $arcoptions[ 'architect_language-tags-archive-pages-title' ],
+        'month'    => $arcoptions[ 'architect_language-tags-archive-pages-title' ],
+        'custom'   => $arcoptions[ 'architect_language-custom-archive-pages-title' ]);
+
+    pzdb('page title');
+    if (!empty($display_title) || !empty($blueprint[ 'additional_overrides' ][ 'pzarc-overrides-page-title' ])) {
+      $title      = '';
+      $inc_prefix = empty($blueprint[ '_blueprints_hide-archive-title-prefix' ]);
+
+      /**
+       * Get the original page query global
+       */
+
+      global $wp_the_query;
+      switch (true) {
+        case is_category():
+          $title = single_cat_title(__($inc_prefix ? $title_override[ 'category' ] : '', 'pzarchitect'), false);
+          break;
+        case is_tag() :
+          $title = single_tag_title(__($inc_prefix ? $title_override[ 'tag' ] : '', 'pzarchitect'), false);
+          break;
+        case is_month() :
+          $title = single_month_title(__($inc_prefix ? $title_override[ 'month' ] : '', 'pzarchitect'), false);
+          break;
+        case is_tax() :
+          $title = single_term_title(__($inc_prefix ? $title_override[ 'custom' ] : '', 'pzarchitect'), false);
+          break;
+        case $wp_the_query->is_category:
+          $title = pzarc_term_title(__($inc_prefix ? $title_override[ 'category' ] : '', 'pzarchitect'), $wp_the_query->tax_query);
+          break;
+        case $wp_the_query->is_tag :
+          $title = pzarc_term_title(__($inc_prefix ? $title_override[ 'tag' ] : '', 'pzarchitect'), $wp_the_query->tax_query);
+          break;
+        case $wp_the_query->is_month :
+          $title = pzarc_term_title(__($inc_prefix ? $title_override[ 'month' ] : '', 'pzarchitect'), $wp_the_query->tax_query);
+          break;
+        case $wp_the_query->is_tax :
+          $title = pzarc_term_title(__($inc_prefix ? $title_override[ 'custom' ] : '', 'pzarchitect'), $wp_the_query->tax_query);
+          break;
+        case is_single() || $wp_the_query->is_single:
+        case is_singular() || $wp_the_query->is_singular || $wp_the_query->is_page:
+          $title = single_post_title(null, false);
+          $title = !$title ? $wp_the_query->post->post_title : $title;
+          break;
+      }
+      if ($title) {
+        return '<' . $tag . ' class="pzarc-page-title">' . esc_attr($title) . '</' . $tag . '>';
+      }
+    }
+
+    return null;
+  }
+
+  function bfi_flush_image_cache()
+  {
+    $upload_info = wp_upload_dir();
+    $upload_dir  = $upload_info[ 'basedir' ];
+    if (defined('BFITHUMB_UPLOAD_DIR')) {
+      $upload_dir .= "/" . BFITHUMB_UPLOAD_DIR;
+    } else {
+      $upload_dir .= "/bfi_thumb";
+    }
+    if (!is_dir($upload_dir)) {
+      if (!wp_mkdir_p($upload_dir)) {
+        //     die('Failed to create folders...');
+      }
+    }
+    $cache_files = scandir($upload_dir);
+    foreach ($cache_files as $cache_file) {
+      if ($cache_file !== '.' && $cache_file !== '..') {
+        unlink($upload_dir . '/' . $cache_file);
+      }
+    }
   }

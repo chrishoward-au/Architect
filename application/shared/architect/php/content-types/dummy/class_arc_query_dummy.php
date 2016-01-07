@@ -83,8 +83,8 @@
             $paragraphs .= '<p>'.$this->faker->realText(rand(200, 500)).'</p>';
           }
         }
-        $dummy_query[ $i ][ 'content' ]          = apply_filters('the_content', ($this->isfaker ? $paragraphs : ucfirst($this->generator->getContent(rand(400, 800), 'html', false))));
-        $dummy_query[ $i ][ 'excerpt' ]          = apply_filters('the_excerpt', ($this->isfaker ? $this->faker->realText(5 * $trim_length) : ucfirst($this->generator->getContent(rand(10, $trim_length), 'text', false))) . $readmore);
+        $dummy_query[ $i ][ 'content' ]          = ($this->isfaker ? $paragraphs : ucfirst($this->generator->getContent(rand(400, 800), 'html', false)));
+        $dummy_query[ $i ][ 'excerpt' ]          = ($this->isfaker ? $this->faker->realText(5 * $trim_length) : ucfirst($this->generator->getContent(rand(10, $trim_length), 'text', false))) . $readmore;
 
         // We could cache these but writes are expensive and time consuming. So we'll just use fat thumbs instead.
         // Maybe get Faker to add specific pic number then we could cut a smaller thumb
@@ -103,7 +103,7 @@
         $j                                                = (++$j > (count($cats)-1) ? 0 : $j);
         $thedate                                          = ($this->isfaker ? $this->faker->date() : time());
         $dummy_query[ $i ][ 'meta' ][ 'datetime' ]        = $thedate;
-        $dummy_query[ $i ][ 'meta' ][ 'fdatetime' ]       = date_i18n(get_option('date_format'), strtotime($thedate));
+        $dummy_query[ $i ][ 'meta' ][ 'fdatetime' ]       = date_i18n(get_option('date_format'), str_replace(',',' ',strtotime($thedate)));
         $dummy_query[ $i ][ 'meta' ][ 'categorieslinks' ] = ($this->isfaker ? implode(', ', $this->faker->words(2)) : 'cat1,cat2');
         $dummy_query[ $i ][ 'meta' ][ 'categories' ]      = '';
         $dummy_query[ $i ][ 'meta' ][ 'tagslinks' ]       = ($this->isfaker ? implode(', ', $this->faker->words(3)) : 'tag1,tag2,tag3');

@@ -101,6 +101,9 @@
       display: inline-block;
       margin: 0 3px;
     }
+    .tabbed .arc-slider-slide-nav-item {
+      margin: 0;
+    }
     .has-pager .thumbs.pzarc-navigator {
       // Centre it
       width: 80%;
@@ -114,7 +117,8 @@
         /* Specify Slides's Size: */
 
         // width: 320px;
-        height: 100%;
+        height: auto;
+        //height: 100%;
         //margin: 0 !important;
       }
     }

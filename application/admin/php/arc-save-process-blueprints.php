@@ -35,7 +35,6 @@
 
     foreach ($pzarc_blueprints as $key => $value) {
 
-
       // First off process the styling settings, which should be automatable
       if (substr_count($key, '_blueprints_styling_') === 1 && !empty($_architect_options[ 'architect_enable_styling' ])) {
 
@@ -55,6 +54,7 @@
 
           // Filter out old selector names hanging arouind in existing bblueprints
           if (isset($_architect[ 'architect_config_' . $bpkeys[ 'id' ] . '-selectors' ])) {
+
             $bpkeys[ 'classes' ] = (is_array($_architect[ 'architect_config_' . $bpkeys[ 'id' ] . '-selectors' ]) ? $_architect[ 'architect_config_' . $bpkeys[ 'id' ] . '-selectors' ] : array('0' => $_architect[ 'architect_config_' . $bpkeys[ 'id' ] . '-selectors' ]));
 
             foreach ($bpkeys[ 'classes' ] as $k => $v) {
@@ -71,8 +71,9 @@
                                                  $bpkeys,
                                                  $value,
 //                                                 $specificity_class.'.pzarchitect.pzarc-blueprint_' . $pzarc_blueprints[ '_blueprints_short-name' ],
-                                                 $specificity_class,
-                                                 $bpkeys[ 'classes' ]);
+                                                 $specificity_class
+             //                                    $bpkeys[ 'classes' ]
+            );
           }
         }
       }
@@ -90,6 +91,7 @@
         break;
 
     }
+
     $pzarc_contents .= $specificity_class . ' {max-width:' . $pzarc_blueprints[ '_blueprints_blueprint-width' ][ 'width' ] . ';' . $bp_align . '}' . $nl;
 
     /** Vertical nav styling  */
@@ -267,16 +269,19 @@
 
     $panels_margins = pzarc_process_spacing($pzarc_blueprints[ '_blueprints_section-' . $i . '-panels-margins' ]);
 
-    $pzarc_mediaq_css .= $panels_class . ' {width:' . $column_width . ';' . $panels_margins . ' ;}';
+    if ('masonry' === $pzarc_blueprints[ '_blueprints_section-' . $i . '-layout-mode' ] && !empty($pzarc_blueprints['_blueprints_masonry-features']) && in_array('bidirectional',$pzarc_blueprints['_blueprints_masonry-features'])) {
+      $pzarc_mediaq_css .= $panels_class . ' {width:auto;' . $panels_margins . ' ;}';
+    } else {
+      $pzarc_mediaq_css .= $panels_class . ' {width:' . $column_width . ';' . $panels_margins . ' ;}';
+    }
 
-//    pzdebug($pzarc_mediaq_css);
     //  Don't want gutters here iff using masonry layoutt
     switch (true) {
-
       case 'masonry' === $pzarc_blueprints[ '_blueprints_section-' . $i . '-layout-mode' ]:
         $pzarc_mediaq_css .= str_replace('.pzarc-panel', '', $panels_class . ' .gutter-sizer {width: ' . ($hmargin) . ';}');
         $pzarc_mediaq_css .= str_replace('.pzarc-panel', '', $panels_class . ' .grid-sizer { width:' . $column_width . ';}');
         break;
+
       case 'basic' === $pzarc_blueprints[ '_blueprints_section-' . $i . '-layout-mode' ] && !empty($pzarc_blueprints[ '_blueprints_section-' . $i . '-layout-mode' ]):
         if ($pzarc_blueprints[ '_blueprints_section-0-panels-fixed-width' ]) {
 // don't think we need to do any spiffing??
@@ -289,9 +294,11 @@
           }
         }
         break;
+
       case 'slider' === $pzarc_blueprints[ '_blueprints_section-' . $i . '-layout-mode' ]:
         //$pzarc_mediaq_css .= $panels_class . ':nth-child(n) {margin-right: ' . ( $rmargin ) .$margin_units. ';}';
         break;
+
       default:
         $pzarc_mediaq_css .= $panels_class . ':nth-child(' . $columns . 'n) {margin-right: 0;}';
         break;
@@ -517,13 +524,19 @@
           if ($value === 'content-left' || $value === 'content-right') {
 
             $margins = pzarc_process_spacing($pzarc_panels[ '_panels_design_image-spacing' ]);
-            $twidth  = $pzarc_panels[ '_panels_design_thumb-width' ] - (str_replace('%', '', $pzarc_panels[ '_panels_design_image-spacing' ][ 'margin-left' ]) + str_replace('%', '', $pzarc_panels[ '_panels_design_image-spacing' ][ 'margin-right' ]));
+            if ((string)$pzarc_panels[ '_panels_design_thumb-width' ] === '0') {
+              $twidth = 'auto;';
+            } else {
+              $twidth = $pzarc_panels[ '_panels_design_thumb-width' ] - (str_replace('%', '', $pzarc_panels[ '_panels_design_image-spacing' ][ 'margin-left' ]) + str_replace('%', '', $pzarc_panels[ '_panels_design_image-spacing' ][ 'margin-right' ])).'%;';
+            }
             $float   = ($value === 'content-left') ? 'left' : 'right';
-            $pzarc_contents .= $class_prefix . ' .in-content-thumb {width:' . $twidth . '%;' . $margins . '}' . $nl;
+            $pzarc_contents .= $class_prefix . ' .in-content-thumb {width:' . $twidth  . $margins . '}' . $nl;
+
             if ($pzarc_panels[ '_panels_design_alternate-feature-position' ] === 'on') {
               $pzarc_contents .= $class_prefix . '.odd-panel .in-content-thumb {float:' . $float . ';}' . $nl;
               $float = ($value === 'content-left') ? 'right' : 'left';
               $pzarc_contents .= $class_prefix . '.even-panel .in-content-thumb {float:' . $float . ';}' . $nl;
+
             } else {
               $pzarc_contents .= $class_prefix . ' .in-content-thumb {float:' . $float . '!important;}' . $nl;
             }

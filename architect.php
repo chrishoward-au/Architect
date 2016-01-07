@@ -3,8 +3,8 @@
   /*
     Plugin Name: Architect
     Plugin URI: http://architect4wp.com
-    Description: Architect is an all-in-one content layout builder. <strong>Build your own slider, grid, tabbed, gallery, masonry, accordion or tabular layouts with ANY content source</strong>. Display using shortcodes, widgets, Headway blocks, WP action hooks and template tags, and WP Gallery shortcode.
-    Version: 1.5.0
+    Description: Architect is a multipurpose, all-in-one content layout builder. <strong>Build your own slider, grid, tabbed, gallery, masonry, accordion or tabular layouts with ANY content source</strong>. Display using shortcodes, widgets, Headway blocks, WP action hooks and template tags, and WP Gallery shortcode.
+    Version: 1.6.0
     Author: Chris Howard
     Author URI: http://pizazzwp.com
     License: GNU GPL v2
@@ -36,7 +36,7 @@
        * REMEMBER TO UPDATE VERSION IN arc-admin.scss
        * REMEMBER TO UPDATE VERSION IN arc-admin.scss
        */
-      define( 'PZARC_VERSION', '1.5.0' );
+      define( 'PZARC_VERSION', '1.6.0' );
       /**
        * REMEMBER TO UPDATE VERSION IN arc-admin.scss
        * REMEMBER TO UPDATE VERSION IN arc-admin.scss
@@ -162,7 +162,10 @@
         require_once PZARC_PLUGIN_APP_PATH . '/admin/php/class_arcPageTemplater.php';
 //      }
 
+
+      require_once PZARC_PLUGIN_PATH.'/extensions-inc/beaver-builder/fl-custom-module-architect.php';
       pzdb( 'before architect pro' );
+
 
       // This is a shorthand way of doing an if. When pro isn't present, it's the lite version.
       $pzarc_current_theme = wp_get_theme();
@@ -183,6 +186,18 @@
       if ( ( ! empty( $hw_opts[ 'license-status-architect' ] ) && $hw_opts[ 'license-status-architect' ] == 'valid' ) || ( $pzarc_status !== false && $pzarc_status == 'valid' ) ) {
         define('PZARC_PRO',true);
         @include PZARC_PLUGIN_PATH . '/extensions/architect-pro.php';
+      }
+
+      switch (true) {
+        case ( ! empty( $hw_opts[ 'license-status-architect' ] ) && $hw_opts[ 'license-status-architect' ] == 'valid' ) && ( $pzarc_status === false || $pzarc_status !== 'valid' ) :
+          define('PZARC_SHOP','(H)');
+          break;
+        case (  $pzarc_status !== false && $pzarc_status === 'valid' ) :
+          define('PZARC_SHOP','(P)');
+          break;
+        default:
+          define('PZARC_SHOP','(L)');
+
       }
       pzdb( 'after architect pro' );
 
@@ -329,6 +344,7 @@
       wp_enqueue_script( 'jquery' );
       wp_register_script( 'js-imagesloaded', PZARC_PLUGIN_APP_URL . '/public/js/imagesloaded.pkgd.min.js', array( 'jquery' ), PZARC_VERSION, true );
       wp_register_script( 'js-isotope-v2', PZARC_PLUGIN_APP_URL . '/public/js/isotope.pkgd.min.js', array( 'jquery' ), PZARC_VERSION, true );
+      wp_register_script( 'js-isotope-packery', PZARC_PLUGIN_APP_URL . '/public/js/packery-mode.pkgd.min.js', array( 'jquery' ), PZARC_VERSION, true );
       wp_register_script( 'js-front', PZARC_PLUGIN_APP_URL . '/public/js/arc-front.js', array( 'jquery' ), PZARC_VERSION, true );
       wp_register_script( 'js-front-isotope', PZARC_PLUGIN_APP_URL . '/public/js/arc-front-isotope.js', array( 'jquery' ), PZARC_VERSION, true );
 

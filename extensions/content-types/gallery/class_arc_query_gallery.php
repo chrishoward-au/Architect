@@ -13,7 +13,6 @@
     protected function content_filters($source, $overrides)
     {
 
-
       if ($source === 'gallery') {
 
         $prefix         = '_content_galleries_';
@@ -47,7 +46,20 @@
           $this->query_options[ 'post__in' ]            = (!empty($ids) ? explode(',', $ids) : null);
           $this->query_options[ 'post_status' ]         = array('publish', 'inherit', 'private');
           $this->query_options[ 'ignore_sticky_posts' ] = true;
+        } elseif ($gallery_source==='postimages'){
+
+          $attached_images = get_attached_media( 'image',get_the_id() );
+
+          if (!empty($attached_images)) {
+            $this->query_options[ 'post_type' ]           = 'attachment';
+            $this->query_options[ 'post__in' ]            = array_keys(($attached_images));
+            $this->query_options[ 'post_status' ]         = array('publish', 'inherit', 'private');
+            $this->query_options[ 'ignore_sticky_posts' ] = true;
+
+          }
+//          var_dump(get_the_id(),get_the_title(),get_attached_media( 'image' ));
         }
       }
+
     }
   }

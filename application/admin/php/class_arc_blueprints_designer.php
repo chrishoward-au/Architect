@@ -124,6 +124,8 @@
 
       // TODO: How can we make this not load until we want it too?
 
+      global $_architect_options;
+      $arc_styling = !empty($_architect_options['architect_enable_styling'])?'arc-styling-on':'arc-styling-off';
       $presets                  = new arcPresetsLoader();
       $presets_array            = $presets->render();
       $presets_html             = $presets_array[ 'html' ];
@@ -135,12 +137,15 @@
                         <a class="pzarc-button-help" href="http://architect4wp.com/codex-listings/" target="_blank">
                         <span class="dashicons dashicons-book"></span>
                         Documentation</a>&nbsp;
-                        <a class="pzarc-button-help" href="https://pizazzwp.freshdesk.com/support/discussions" target="_blank">
-                        <span class="dashicons dashicons-groups"></span>
-                        Community support</a>&nbsp;
                         <a class="pzarc-button-help" href="https://pizazzwp.freshdesk.com/support/tickets/new" target="_blank">
                         <span class="dashicons dashicons-admin-tools"></span>
                         Tech support</a>
+                        <a class="pzarc-button-help" href="https://shop.pizazzwp.com/checkout/customer-dashboard/" target="_blank">
+                        <span class="dashicons dashicons-admin-users"></span>
+                        Customer dashboard</a>
+                        <a class="pzarc-button-help" href="https://shop.pizazzwp.com/affiliate-area/" target="_blank">
+                        <span class="dashicons" style="font-size:1.3em">$</span>
+                        Affiliates</a>
                         </div>
           ' .
 
@@ -173,9 +178,10 @@
                 If you have Presets to import, do so in the Architect > Tools page
            </div>
            </div>
-           <p class="footer">• All Presets use Dummy Content by default. Please change to the content of your choice after loading the chosen Preset.<br>
-           • If <em>Use Architect styling</em> is turned off in Architect > Options, styling will not show.
-           </p>
+           <div class="footer">
+           <p>• All Presets use Dummy Content by default. Please change to the content of your choice after loading the chosen Preset.</p>
+           <p class="'.$arc_styling.'"><em>Use Architect styling</em> is turned off in <em>Architect</em> > <em>Options</em>, therefore styling will not render.</p>
+           </div>
            <div class="buttons">
             <a class="arc-button-presets styled disabled" href="javascript:void(0);">Use styled</a>
             <a class="arc-button-presets unstyled disabled" href="javascript:void(0);">Use unstyled</a>
@@ -418,10 +424,22 @@
       $prefix = '_blueprints_';
       global $_architect_options;
       $cfwarn          = false;
-      $animation_state = $_architect_options[ 'architect_animation-enable' ];
+      $animation_state = !empty($_architect_options[ 'architect_animation-enable' ])?$_architect_options[ 'architect_animation-enable' ]:false;
       if (is_admin() && !empty($_GET[ 'post' ])) {
         $cfcount = (!empty($this->postmeta[ '_panels_design_custom-fields-count' ][ 0 ]) ? $this->postmeta[ '_panels_design_custom-fields-count' ][ 0 ] : 0);
         $cfwarn  = (ini_get('max_input_vars') <= 1000 && ($cfcount > 0 || $animation_state));
+
+      }
+      if ($cfwarn) {
+        $sections[ '_general_bp' ][ 'fields' ][] = array(
+            'id'       => $prefix . 'input-vars-message',
+            'title'    => __('Custom fields', 'pzarchitect'),
+            'type'     => 'info',
+            'style'    => ($cfwarn ? 'critical' : 'normal'),
+            'required' => array('_panels_design_components-to-show', 'contains', 'custom'),
+            'desc'     => __('If you add custom fields to a Blueprint it adds many more fields to the form. <strong>This can cause some fields not to save</strong>. Please read this post by Woo Themes for solutions:', 'pzarchitect') . '<br><a href="http://docs.woothemes.com/document/problems-with-large-amounts-of-data-not-saving-variations-rates-etc/" target=_blank>Problems with large amounts of data not saving</a><br>Your max_input_vars setting is: ' . ini_get('max_input_vars'),
+
+        );
 
       }
       $sections[ '_general_bp' ] = array(
@@ -447,18 +465,6 @@
               ),
           )
       );
-      if ($cfwarn) {
-        $sections[ '_general_bp' ][ 'fields' ][] = array(
-            'id'       => $prefix . 'input-vars-message',
-            'title'    => __('Custom fields', 'pzarchitect'),
-            'type'     => 'info',
-            'style'    => ($cfwarn ? 'critical' : 'normal'),
-            'required' => array('_panels_design_components-to-show', 'contains', 'custom'),
-            'desc'     => __('If you add custom fields to a Blueprint it adds many more fields to the form. <strong>This can cause some fields not to save</strong>. Please read this post by Woo Themes for solutions:', 'pzarchitect') . '<br><a href="http://docs.woothemes.com/document/problems-with-large-amounts-of-data-not-saving-variations-rates-etc/" target=_blank>Problems with large amounts of data not saving</a><br>Your max_input_vars setting is: ' . ini_get('max_input_vars'),
-
-        );
-
-      }
 
 
       $current_theme = wp_get_theme();
@@ -507,12 +513,12 @@
                         <a class="pzarc-button-help" href="http://architect4wp.com/codex-listings/" target="_blank">
                         <span class="dashicons dashicons-book"></span>
                         Documentation</a><br>
-                        <a class="pzarc-button-help" href="https://pizazzwp.freshdesk.com/support/discussions" target="_blank">
-                        <span class="dashicons dashicons-groups"></span>
-                        Community support</a><br>
                         <a class="pzarc-button-help" href="https://pizazzwp.freshdesk.com/support/tickets/new" target="_blank">
                         <span class="dashicons dashicons-admin-tools"></span>
                         Tech support</a>
+                        <a class="pzarc-button-help" href="https://shop.pizazzwp.com/checkout/customer-dashboard/" target="_blank">
+                        <span class="dashicons dashicons-admin-users"></span>
+                        Customer dashboard</a>
                         </div>
                         <p style="font-size:0.8em;">Architect v' . PZARC_VERSION . '</p>
                         </div>',
@@ -636,7 +642,7 @@
             'icon'       => $icons[ $i ],
             'fields'     => array(
                 array(
-                    'title'    => 'Layout type',
+                    'title'    => __('Layout type','pzarchitect'),
                     'id'       => $prefix . 'section-' . $i . '-layout-mode',
                     'type'     => 'image_select',
                     'default'  => 'basic',
@@ -1090,7 +1096,7 @@
               'img' => PZARC_PLUGIN_APP_URL . 'shared/assets/images/metaboxes/nav-type-none.png'
           ),
       );
-      $transitions                 = array('fade' => 'Fade', 'slide' => 'Slide');
+
       $sections[ '_slidertabbed' ] = array(
           'title'      => __('Sliders & Tabbed', 'pzarchitect'),
           'show_title' => true,
@@ -1119,7 +1125,6 @@
                   'type'    => 'image_select',
                   'default' => 'bullets',
                   'hint'    => array('content' => __('Bullets,Titles, Labels, Numbers, Thumbnails or none', 'pzarchitect')),
-                  'height'  => 75,
                   'options' => $slider
               ),
               array(
@@ -1133,8 +1138,8 @@
                       array($prefix . 'navigator', '!=', 'bullets'),
                       array($prefix . 'navigator', '!=', 'thumbs'),
                       array($prefix . 'navigator', '!=', 'none'),
-                      array($prefix . 'navigator-position', '!=', 'left'),
-                      array($prefix . 'navigator-position', '!=', 'right')
+//                      array($prefix . 'navigator-position', '!=', 'left'),
+//                      array($prefix . 'navigator-position', '!=', 'right')
                   ),
               ),
               array(
@@ -1159,8 +1164,25 @@
                       'even'  => 'Even',
                       'fixed' => 'Fixed'
                   ),
+                  'required'=>array(
+                      array($prefix . 'navigator-position', '!=', 'left'),
+                      array($prefix . 'navigator-position', '!=', 'right')
+                  ),
                   'hint'    => array('title'   => __('Tab width type', 'pzarchitect'),
                                      'content' => __('Fluid: Adjusts to the width of the content<br>Even: Distributes evenly across the width of the blueprint<br>Fixed: Set a specific width', 'pzarchitect'))
+              ),
+              array(
+                  'id'       => $prefix . 'navtabs-margins-compensation',
+                  'type'     => 'dimensions',
+                  'units'    => array('%', 'px', 'em'),
+                  'width'    => true,
+                  'height'   => false,
+                  'title'    => __('Margins compensation', 'pzarchitect'),
+                  'default'  => array('width' => '0', 'units' => '%'),
+                  'subtitle'=> __('If you set margins for the tabs anywhere else, enter the sum of the left and right margins and units of a single tab. e.g. if margins are 5px, enter 10px','pzarchitect'),
+                  'required' => array(
+                      array($prefix . 'navtabs-width-type', 'contains', 'even'),
+                  ),
               ),
               array(
                   'id'       => $prefix . 'navtabs-width',
@@ -1327,6 +1349,7 @@
                   'default'  => array('width' => '15%'),
                   'height'   => false,
                   'units'    => '%',
+                  'subtitle'=> __('Note: Set left and right padding on the navigator to zero.','pzarchitect'),
                   'required' => array(
                       array($prefix . 'navigator', '!=', 'thumbs'),
                       array($prefix . 'navigator', '!=', 'accordion'),
@@ -1467,7 +1490,7 @@
                ******************/
 
               array(
-                  'title'    => __('Transitions', 'pzarchitect'),
+                  'title'    => __('Transitions timing', 'pzarchitect'),
                   'id'       => $prefix . 'section-transitions-heading',
                   'type'     => 'section',
                   'indent'   => true,
@@ -1477,16 +1500,6 @@
                       array($prefix . 'section-0-layout-mode', '!=', 'tabular'),
                       array($prefix . 'section-0-layout-mode', '!=', 'accordion'),
                   ),
-              ),
-              array(
-                  'title'    => 'Type',
-                  'id'       => $prefix . 'transitions-type',
-                  'type'     => 'button_set',
-                  'default'  => 'fade',
-                  'subtitle' => __('When transition is set to fade, slides are not draggable', 'pzarchitect'),
-                  //              'select2' => array('allowClear' => false),
-                  'required' => array($prefix . 'section-0-layout-mode', '=', 'slider'),
-                  'options'  => apply_filters('arc-transitions', $transitions)
               ),
               array(
                   'title'         => 'Duration (seconds)',
@@ -1574,7 +1587,8 @@
                     // Waypoints provides infinite scroll support.
                     //                      'infinite-scroll' => __('Infinite scroll', 'pzarchitect'),
                     'filtering' => __('Filtering', 'pzarchitect'),
-                    'sorting'   => __('Sorting', 'pzarchitect')
+                    'sorting'   => __('Sorting', 'pzarchitect'),
+                    'bidirectional'   => __('Packed masonry', 'pzarchitect'),
                   ),
                   'desc'    => __('', 'pzarchitect')
               ),
@@ -1661,6 +1675,15 @@
                   ),
                   'required' => array($prefix . 'masonry-features', 'contains', 'filtering'),
                   'subtitle' => __('Allow multiple filters to be selected by site users. Note: Multiple selected filters narrow the selection shown. Therefore, ensure content is well tagged for best results.', 'pzarchitect')
+              ),
+              //bidirection
+              array(
+                  'title'    => __('Packed masonry', 'pzarchitect'),
+                  'id'       => $prefix . 'masonry-full-section-open',
+                  'type'     => 'section',
+                  'required' => array($prefix . 'masonry-features', 'contains', 'bidirectional'),
+                  'indent'    => true,
+                  'subtitle' => __('In Packed Masonry mode, Panels Across and Fixed Width Panels are ignored. The width and height of each panel is determined by its the image\'s dimensions. Therefore, it is important you choose the Shrink to fit width and height limit option for Image Cropping to get the effect. Packed Masonry has no settings.','pzarchitect')
               ),
           )
       );
@@ -2284,7 +2307,7 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
                     'id'       => $prefix . 'blueprint-nav-active-item-css-heading',
                     'type'     => 'section',
                     'indent'   => true,
-                    'subtitle' => 'Class: ' . implode(', ', array('.pzarc-navigator .arc-slider-slide-nav-item.active')),
+                    'subtitle' => 'Class: ' . implode(', ', array('.pzarc-navigator .arc-slider-slide-nav-item.active','.pzarc-navigator .arc-slider-slide-nav-item.current')),
 
                 ),
                 pzarc_redux_font($prefix . $thisSection . '-items-active' . $font, $_architect[ 'architect_config_' . $thisSection . '-selectors' ], $defaults[ $optprefix . $thisSection . '-items-active' . $font ], array(
@@ -2674,6 +2697,27 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
                       'content' => __('Alternate the features position left/right for each post.', 'pzarchitect')
                   ),
               ),
+              // TODO : get this working. Requires a class added to each panel to tell it what which way to align.
+//              array(
+//                  'title'    => __('Alternate count', 'pzarchitect'),
+//                  'id'       => $prefix . 'alternate-feature-count',
+//                  'type'          => 'spinner',
+//                  'default'       => 1,
+//                  'min'           => 1,
+//                  'max'           => 10,
+//                  'step'          => 1,
+//                  'required' => array(
+//                      array($prefix . 'alternate-feature-position', '=', 'on'),
+//                      array($prefix . 'feature-location', '!=', 'fill'),
+//                      array($prefix . 'feature-location', '!=', 'components'),
+//                      array($prefix . 'components-position', '!=', 'top'),
+//                      array($prefix . 'components-position', '!=', 'bottom'),
+//                  ),
+//                  'hint'     => array(
+//                      'title'   => __('Alternate count', 'pzarchitect'),
+//                      'content' => __('Alternate the features position left/right for each post.', 'pzarchitect')
+//                  ),
+//              ),
               array(
                   'title'    => __('Feature in', 'pzarchitect'),
                   'id'       => $prefix . 'feature-in',
@@ -2766,7 +2810,7 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
                   'id'            => $prefix . 'thumb-width',
                   'type'          => 'slider',
                   'default'       => 15,
-                  'min'           => 5,
+                  'min'           => 0,
                   'max'           => 100,
                   'step'          => 1,
                   'class'         => ' percent',
@@ -2776,6 +2820,7 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
                       array($prefix . 'feature-location', '!=', 'components'),
                   ),
                   'display_value' => 'label',
+                  'subtitle'=> __('Set to zero to use image at actual size.','pzarchitect'),
                   'hint'          => array(
                       'title'   => __('Feature as thumbnail width', 'pzarchitect'),
                       'content' => __('When you have set the featured image to appear in the body/excerpt, this determines its width.', 'pzarchitect')
@@ -2853,10 +2898,10 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
                   'id'             => $prefix . 'title-margins',
                   'type'           => 'spacing',
                   'mode'           => 'margin',
-                  'units'          => 'px',
+                  'units'          => array('px'),
                   'units_extended' => 'false',
                   'title'          => __('Title margins', 'pzarchitect'),
-                  'desc'           => __('You must set a left margin on titles for bullets to show. This is in pixels', 'pzarchitect'),
+                  'desc'           => __('You must set a left margin on titles for bullets to show.', 'pzarchitect'),
                   'default'        => array(
                       'margin-right' => '0',
                       'margin-left'  => '20',
@@ -3029,7 +3074,7 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
           'show_title' => false,
           'icon_class' => 'icon-large',
           'icon'       => 'el-icon-calendar',
-          'desc'       => __('Available tags are <span class="pzarc-text-highlight">%author%, %email%,   %date%,   %categories%,   %tags,   %commentslink%,   %editlink%,   %id%</span>. For custom taxonomies, prefix with ct:. e.g. To display the Woo Testimonials category, you would use %ct:testimonial-category%. Or to display WooCommerce product category, use: %ct:product_cat%', 'pzarchitect') . '<br>' .
+          'desc'       => __('Available tags are <span class="pzarc-text-highlight">%author%, %email%,   %date%,   %categories%,   %tags%,   %commentslink%,   %editlink%,   %id%</span>. For custom taxonomies, prefix with ct:. e.g. To display the Woo Testimonials category, you would use %ct:testimonial-category%. Or to display WooCommerce product category, use: %ct:product_cat%', 'pzarchitect') . '<br>' .
               __('Allowed HTML tags:', 'pzarchitect') . ' p, br, span, strong & em<br><br>' .
               __('Use shortcodes to add custom functions to meta. e.g. [add_to_cart id="%id%"]', 'pzarchitect') . '<br>' .
               __('Note: Enclose any author related text in <span class="pzarc-text-highlight">//</span> to hide it when using excluded authors.', 'pzarchitect') . '<br>' .
@@ -3293,13 +3338,21 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
                   'default'  => 'respect',
                   'select2'  => array('allowClear' => false),
                   'required' => array('_panels_settings_feature-type', '=', 'image'),
-                  'options'  => array(
-                      'respect'      => __('Respect focal point', 'pzarchitect'),
-                      'centre'       => __('Centre focal point', 'pzarchitect'),
-                      'none'         => __('Crop to centre', 'pzarchitect'),
+                  'options' => array(
+                      'respect'      => __('Use focal point', 'pzarchitect'),
+//                      'centre'       => __('Centre focal point', 'pzarchitect'),
+//                      'topleft'      => __('Crop to top left', 'pzarchitect'),
+                      'topcentre'    => __('Crop to top centre', 'pzarchitect'),
+//                      'topright'     => __('Crop to top right', 'pzarchitect'),
+//                      'midleft'      => __('Crop to middle left', 'pzarchitect'),
+                      'midcentre'    => __('Crop to middle centre', 'pzarchitect'),
+//                      'midright'     => __('Crop to middle right', 'pzarchitect'),
+//                      'bottomleft'   => __('Crop to bottom left', 'pzarchitect'),
+                      'bottomcentre' => __('Crop to bottom centre', 'pzarchitect'),
+//                      'bottomright'  => __('Crop to bottom right', 'pzarchitect'),
                       'scale'        => __('Preserve aspect, fit to width', 'pzarchitect'),
                       'scale_height' => __('Preserve aspect, fit to height', 'pzarchitect'),
-                      //                      'shrink'  => __('Shrink', 'pzarchitect')
+                      'shrink'  => __('Shrink to fit width and height limit', 'pzarchitect')
                   )
               ),
               array(
@@ -3385,7 +3438,7 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
               //              ),
               array(
                   'id'       => $prefix . 'image-max-dimensions',
-                  'title'    => __('Maximum dimensions', 'pzarchitect'),
+                  'title'    => __('Limit image dimensions', 'pzarchitect'),
                   'type'     => 'dimensions',
                   'desc'     => __('The displayed width of the image is determined by it\'s size in the Content Layout designer. This setting is used limit the size of the image created and used.', 'pzarchitect'),
                   'units'    => 'px',
@@ -3508,6 +3561,19 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
                   ),
                   'subtitle' => __('Centres the image horizontally. It is best to display it on its own row, and the other components to be 100% wide.', 'pzarchitect')
               ),
+//              array(
+//                  'title'    => __('Rotate feature', 'pzarchitect'),
+//                  'id'       => $prefix . 'rotate-image',
+//                  'type'     => 'switch',
+//                  'on'       => __('Yes', 'pzarchitect'),
+//                  'off'      => __('No', 'pzarchitect'),
+//                  'default'  => false,
+//                  'required' => array(
+//                    //array('show_advanced', 'equals', true),
+//                    array('_panels_settings_feature-type', '=', 'image'),
+//                  ),
+//                  'subtitle' => __('Randomly rotates images up to 5 degrees.', 'pzarchitect')
+//              ),
               //              array(
               //                  'id'            => $prefix . 'image-quality',
               //                  'title'         => __('Image quality', 'pzarchitect'),
@@ -3646,6 +3712,13 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
                         //                'args'     => array( 'pzarc_get_custom_fields' ),
                         'options'  => $this->custom_fields,
                         'subtitle' => 'Select a custom field that contains URLs you want to use as the link',
+                    ),
+                    array(
+                        'title'    => __('Open link in', 'pzarchitect'),
+                        'id'       => $prefix . 'cfield-' . $i . '-link-behaviour',
+                        'type'     => 'button_set',
+                        'default'=>'_self',
+                        'options'  => array('_self'=>__('Same tab','pzarchitect'),'_blank'=>__('New tab','pzarchitect')),
                     ),
                     array(
                         'title' => __('Prefix text', 'pzarchitect'),

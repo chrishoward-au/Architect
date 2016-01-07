@@ -121,6 +121,7 @@
 
           // Do we load up the MAsonry here?
           wp_enqueue_script('js-isotope-v2');
+          wp_enqueue_script('js-isotope-packery');
           wp_enqueue_script('js-imagesloaded');
           wp_enqueue_script('js-front-isotope');
 //          add_action('init',array($this,'init_scripts'));
@@ -245,7 +246,7 @@
 
         // This happens on non-post types, like dummy content type
         // TODO: Make these something more useful!
-        $post   = $arc_query[ $panel_number - 1 ];
+        $post   = $arc_query[ $this->panel_number - 1 ];
         $postid = 'NoID';
 
       }
@@ -254,7 +255,7 @@
       $settings = $this->section[ 'section-panel-settings' ];
       $toshow   = json_decode($settings[ '_panels_design_preview' ], true);
       pzdb('json decode ' . get_the_id());
-      $panel_class->set_data($post, $toshow, $settings,$panel_number);
+      $panel_class->set_data($post, $toshow, $settings,$this->panel_number);
       pzdb('set data ' . get_the_id());
 //      $elements = array();
 //
@@ -269,10 +270,10 @@
 
       // We do want to provide actions so want to use the sequence
       do_action('arc_before_panel_open_action');
-      $nav_item[ $panel_number ] = null;
+      $nav_item[ $this->panel_number ] = null;
       // This is for adding nav items to each panel. Used by navs like accordions
       // Although we could do it already, we want to kepp it in the nav class for extensibility
-      echo apply_filters('arc_before_panel_open_filter', $nav_item[ $panel_number ]);
+      echo apply_filters('arc_before_panel_open_filter', $nav_item[ $this->panel_number ]);
 
       // TODO: What's this??
       //       echo '<div class="js-isotope pzarc-section pzarc-section-' . $key . '" data-isotope-options=\'{ "layoutMode": "'.$pzarc_section_info['section-layout-mode'].'","itemSelector": ".pzarc-panel" }\'>';
@@ -298,16 +299,16 @@
       if ('accordion' === $this->layout_mode) {
         //This is a Dummy content specific hack fix
         if (is_array($post)) {
-          $accordion_title = (isset($this->table_accordion_titles[ $panel_number - 1 ])) ? $this->table_accordion_titles[ $panel_number - 1 ] : $post[ 'title' ][ 'title' ];
+          $accordion_title = (isset($this->table_accordion_titles[ $this->panel_number - 1 ])) ? $this->table_accordion_titles[ $this->panel_number - 1 ] : $post[ 'title' ][ 'title' ];
         } else {
-          $accordion_title = (isset($this->table_accordion_titles[ $panel_number - 1 ])) ? $this->table_accordion_titles[ $panel_number - 1 ] : $post->post_title;
+          $accordion_title = (isset($this->table_accordion_titles[ $this->panel_number - 1 ])) ? $this->table_accordion_titles[ $this->panel_number - 1 ] : $post->post_title;
         }
 //        $accordion_title = isset($post['title']['title'])?$post['title']['title']:$post->post_title;
 //        if (isset($this->table_accordion_titles) && !empty($this->table_accordion_titles) && isset($this->table_accordion_titles[ $panel_def ])) {
-//          $accordion_title = do_shortcode($this->table_accordion_titles[ $panel_number ]);
+//          $accordion_title = do_shortcode($this->table_accordion_titles[ $this->panel_number ]);
 //        }
         //'_blueprint_section-' . $this->section_number . '-accordion-titles'
-        echo '<div class="pzarc-accordion title ' . (($panel_number === 1 && !empty($this->blueprint[ '_blueprints_accordion-closed' ])) ? 'open' : 'close') . '">' . $accordion_title . '</div>';
+        echo '<div class="pzarc-accordion title ' . (($this->panel_number === 1 && !empty($this->blueprint[ '_blueprints_accordion-closed' ])) ? 'open' : 'close') . '">' . $accordion_title . '</div>';
       }
 
 
@@ -318,9 +319,15 @@
       // Add standard identifying WP classes to the whole panel
       // TODO: WHY??? Is that what WP does? Aren't they in the article anyways? Temporarily don't do it.
       $postmeta_classes = ' ' . $panel_class->data[ 'posttype' ] . ' type-' . $panel_class->data[ 'posttype' ] . ' status-' . $panel_class->data[ 'poststatus' ] . ' format-' . $panel_class->data[ 'postformat' ] . ' ';
-//      echo '<' . ('table' !== $this->layout_mode ? 'div' : 'tr') . ' class="pzarc-panel pzarc-panel_' . $settings[ '_panels_settings_short-name' ] . ' pzarc-panel-no_' . $panel_number . $this->slider[ 'slide' ] . $image_in_bg . $odds_evens_bp . $odds_evens_section . $postmeta_classes . '" >';
-      $classes = 'pzarc-panel pzarc-panel_' . $this->panel_name . ' pzarc-panel-no_' . $panel_number . $this->slider[ 'slide' ] . $image_in_bg . $odds_evens_bp;
-      echo '<' . ('table' !== $this->layout_mode ? 'div' : 'tr') . ' id="bp' . $this->blueprint[ 'blueprint-id' ] . '-' . $panel_number . '" class="' . apply_filters('arc-extend-panel-classes', $classes, $this->blueprint) . ' ' . apply_filters('arc-extend-panel-classes_' . $this->panel_name, '', $this->blueprint) . '" ' . apply_filters('arc-extend-panel-data', '', $this->blueprint) . '">';
+//      echo '<' . ('table' !== $this->layout_mode ? 'div' : 'tr') . ' class="pzarc-panel pzarc-panel_' . $settings[ '_panels_settings_short-name' ] . ' pzarc-panel-no_' . $this->panel_number . $this->slider[ 'slide' ] . $image_in_bg . $odds_evens_bp . $odds_evens_section . $postmeta_classes . '" >';
+      $classes = 'pzarc-panel pzarc-panel_' . $this->panel_name . ' pzarc-panel-no_' . $this->panel_number . $this->slider[ 'slide' ] . $image_in_bg . $odds_evens_bp.' arc-layout-'.$this->layout_mode;
+
+      /**********************************************************************************************************************************
+       *
+       * Open the Panel div
+       *
+       **********************************************************************************************************************************/
+      echo '<' . ('table' !== $this->layout_mode ? 'div' : 'tr') . ' id="bp' . $this->blueprint[ 'blueprint-id' ] . '-' . $this->panel_number . '" class="' . apply_filters('arc-extend-panel-classes', $classes, $this->blueprint) . ' ' . apply_filters('arc-extend-panel-classes_' . $this->panel_name, '', $this->blueprint) . '" ' . apply_filters('arc-extend-panel-data', '', $this->blueprint) . '">';
 
       //
       if (!empty($settings[ '_panels_design_link-panel' ])) {
@@ -396,14 +403,14 @@
         if ($value[ 'show' ]) {
 
           // Send thru some data devs might find useful
-          do_action("arc_before_{$component_type}", $component_type, $panel_number, $postid);
+          do_action("arc_before_{$component_type}", $component_type, $this->panel_number, $postid);
 
           // Make the class name to call - strip numbers from metas and customs
           // We could do this in a concatenation first of all components' templates, and then replace the {{tags}}.... But then we couldn't do the filter on each component. Nor could we as easily make the components extensible
           $method_to_do = strtolower('render_' . str_replace(array('1', '2', '3'), '', ucfirst($component_type)));
           $line_out     = $panel_class->$method_to_do($component_type, $this->source, $panel_def, $this->rsid, $this->layout_mode);
           echo apply_filters("arc_filter_{$component_type}", self::strip_unused_arctags($line_out), $postid);
-          do_action("arc_after_{$component_type}", $component_type, $panel_number, $postid);
+          do_action("arc_after_{$component_type}", $component_type, $this->panel_number, $postid);
 
         }
 
@@ -469,17 +476,21 @@
       foreach ($atts as $v) {
         switch ($v) {
           case 'twitter':
+            wp_enqueue_style('dashicons');
             $share_link .= '<a class="arc-twitter-share-button" href="https://twitter.com/intent/tweet?text=' . $message . $this->blueprint[ 'parent-page-url' ] . '%23' . $share_url . '" target=_blank title="' . __('Share on Twitter', 'pzarchitect') . '"><span class="dashicons dashicons-twitter" ' . $styles . '></span></a> ';
             break;
           //https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fwww.bordermail.com.au%2Fstory%2F2981852%2F2015-hot-100-vote-for-your-favourite%2F%23slide%3D1
           case'facebook':
+            wp_enqueue_style('dashicons');
             $share_link .= '<a class="arc-facebook-share-button" href="https://www.facebook.com/sharer/sharer.php?u=' . $message . $this->blueprint[ 'parent-page-url' ] . '%23' . $share_url . '" target=_blank title="' . __('Share on Facebook', 'pzarchitect') . '"><span class="dashicons dashicons-facebook" ' . $styles . '></span></a> ';
             break;
           case 'link':
+            wp_enqueue_style('dashicons');
             $share_link .= '<a class="arc-link-share-button" href="' . $this->blueprint[ 'parent-page-url' ] . '#' . $share_url . '" title="' . __('Direct link', 'pzarchitect') . '"><span class="dashicons dashicons-admin-links" ' . $styles . '></span></a> ';
             break;
           case'email':
-            $share_link .= '<a class="arc-email-share-button" href="mailto:?subject=' . str_replace(':', '', $message) . '&body=' . $message . $this->blueprint[ 'parent-page-url' ] . '#' . $share_url . '" title="' . __('Share by email', 'pzarchitect') . '"><span class="dashicons dashicons-email" ' . $styles . '></span></a> ';
+            wp_enqueue_style('dashicons');
+            $share_link .= '<a class="arc-email-share-button" href="mailto:?subject=' . str_replace(':', '', $message) . '&body=' . $message . $this->blueprint[ 'parent-page-url' ] . '%23' . $share_url . '" title="' . __('Share by email', 'pzarchitect') . '"><span class="dashicons dashicons-email" ' . $styles . '></span></a> ';
             break;
         }
       }
