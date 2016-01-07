@@ -524,9 +524,13 @@
           if ($value === 'content-left' || $value === 'content-right') {
 
             $margins = pzarc_process_spacing($pzarc_panels[ '_panels_design_image-spacing' ]);
-            $twidth  = $pzarc_panels[ '_panels_design_thumb-width' ] - (str_replace('%', '', $pzarc_panels[ '_panels_design_image-spacing' ][ 'margin-left' ]) + str_replace('%', '', $pzarc_panels[ '_panels_design_image-spacing' ][ 'margin-right' ]));
+            if ((string)$pzarc_panels[ '_panels_design_thumb-width' ] === '0') {
+              $twidth = 'auto;';
+            } else {
+              $twidth = $pzarc_panels[ '_panels_design_thumb-width' ] - (str_replace('%', '', $pzarc_panels[ '_panels_design_image-spacing' ][ 'margin-left' ]) + str_replace('%', '', $pzarc_panels[ '_panels_design_image-spacing' ][ 'margin-right' ])).'%;';
+            }
             $float   = ($value === 'content-left') ? 'left' : 'right';
-            $pzarc_contents .= $class_prefix . ' .in-content-thumb {width:' . $twidth . '%;' . $margins . '}' . $nl;
+            $pzarc_contents .= $class_prefix . ' .in-content-thumb {width:' . $twidth  . $margins . '}' . $nl;
 
             if ($pzarc_panels[ '_panels_design_alternate-feature-position' ] === 'on') {
               $pzarc_contents .= $class_prefix . '.odd-panel .in-content-thumb {float:' . $float . ';}' . $nl;

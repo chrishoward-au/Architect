@@ -97,6 +97,7 @@ TODO: Add a default single post/page Blueprint; Beaver Builder module; Blueprint
 = 1.5.19 =
 * ADDED: Option to Shrink to fit image limits in Image cropping.
 * ADDED: Packed Masonry option. Works best with image galleries using the above Shrink option.
+* CHANGED: Setting "Feature as thumbnail" width to zero will use image at actual size. This is only valid when feature is shown in the content.
 
 = 1.5.18 =
 * FIXED: Sometimes strtotime returns wrong timestamp if there is commas in the date string

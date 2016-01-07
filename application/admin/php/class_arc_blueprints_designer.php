@@ -2810,7 +2810,7 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
                   'id'            => $prefix . 'thumb-width',
                   'type'          => 'slider',
                   'default'       => 15,
-                  'min'           => 5,
+                  'min'           => 0,
                   'max'           => 100,
                   'step'          => 1,
                   'class'         => ' percent',
@@ -2820,6 +2820,7 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
                       array($prefix . 'feature-location', '!=', 'components'),
                   ),
                   'display_value' => 'label',
+                  'subtitle'=> __('Set to zero to use image at actual size.','pzarchitect'),
                   'hint'          => array(
                       'title'   => __('Feature as thumbnail width', 'pzarchitect'),
                       'content' => __('When you have set the featured image to appear in the body/excerpt, this determines its width.', 'pzarchitect')
