@@ -361,6 +361,7 @@
         '1.3.0.0' => 'updates/architect-1300.php',
         '1.4.0.0' => 'updates/architect-1400.php',
         '1.5.0.0' => 'updates/architect-1500.php',
+        '1.6.0.0' => 'updates/architect-1600.php',
       );
 
       foreach ( $db_updates as $version => $updater ) {

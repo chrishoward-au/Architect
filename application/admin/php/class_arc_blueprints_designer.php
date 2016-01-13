@@ -51,7 +51,7 @@
 
         add_filter('views_edit-arc-blueprints', array($this, 'blueprints_description'));
 
- //       add_action('admin_init',array($this,'admin_init'));
+        //       add_action('admin_init',array($this,'admin_init'));
         // Grab the extra slider types from the registry
 
         $registry     = arc_Registry::getInstance();
@@ -69,9 +69,11 @@
       }
     }
 
-    public function admin_init(){
+    public function admin_init()
+    {
 //      add_filter('_arc_add_tax_titles','pzarc_get_tax_titles',10,1);
     }
+
     /**
      * [content_blueprints_admin_enqueue description]
      *
@@ -125,7 +127,7 @@
       // TODO: How can we make this not load until we want it too?
 
       global $_architect_options;
-      $arc_styling = !empty($_architect_options['architect_enable_styling'])?'arc-styling-on':'arc-styling-off';
+      $arc_styling              = !empty($_architect_options[ 'architect_enable_styling' ]) ? 'arc-styling-on' : 'arc-styling-off';
       $presets                  = new arcPresetsLoader();
       $presets_array            = $presets->render();
       $presets_html             = $presets_array[ 'html' ];
@@ -180,7 +182,7 @@
            </div>
            <div class="footer">
            <p>• All Presets use Dummy Content by default. Please change to the content of your choice after loading the chosen Preset.</p>
-           <p class="'.$arc_styling.'"><em>Use Architect styling</em> is turned off in <em>Architect</em> > <em>Options</em>, therefore styling will not render.</p>
+           <p class="' . $arc_styling . '"><em>Use Architect styling</em> is turned off in <em>Architect</em> > <em>Options</em>, therefore styling will not render.</p>
            </div>
            <div class="buttons">
             <a class="arc-button-presets styled disabled" href="javascript:void(0);">Use styled</a>
@@ -424,7 +426,7 @@
       $prefix = '_blueprints_';
       global $_architect_options;
       $cfwarn          = false;
-      $animation_state = !empty($_architect_options[ 'architect_animation-enable' ])?$_architect_options[ 'architect_animation-enable' ]:false;
+      $animation_state = !empty($_architect_options[ 'architect_animation-enable' ]) ? $_architect_options[ 'architect_animation-enable' ] : false;
       if (is_admin() && !empty($_GET[ 'post' ])) {
         $cfcount = (!empty($this->postmeta[ '_panels_design_custom-fields-count' ][ 0 ]) ? $this->postmeta[ '_panels_design_custom-fields-count' ][ 0 ] : 0);
         $cfwarn  = (ini_get('max_input_vars') <= 1000 && ($cfcount > 0 || $animation_state));
@@ -468,9 +470,9 @@
 
 
       $current_theme = wp_get_theme();
-      $is_hw = ( ($current_theme->get('Name') === 'Headway Base' || $current_theme->get('Template')=='headway') ) ;
+      $is_hw         = (($current_theme->get('Name') === 'Headway Base' || $current_theme->get('Template') == 'headway'));
 
-      if ($is_hw && !$_architect_options['architect_enable_styling']) {
+      if ($is_hw && !$_architect_options[ 'architect_enable_styling' ]) {
         $sections[ '_general_bp' ][ 'fields' ][] = array(
             'id'    => $prefix . 'headway-styling-message',
             'title' => __('Headway and Styling', 'pzarchitect'),
@@ -642,7 +644,7 @@
             'icon'       => $icons[ $i ],
             'fields'     => array(
                 array(
-                    'title'    => __('Layout type','pzarchitect'),
+                    'title'    => __('Layout type', 'pzarchitect'),
                     'id'       => $prefix . 'section-' . $i . '-layout-mode',
                     'type'     => 'image_select',
                     'default'  => 'basic',
@@ -1060,7 +1062,7 @@
        *
        * SLIDERS & TABBED
        */
-      $tabbed                      = array(
+      $tabbed = array(
           'tabbed' => array(
               'alt' => 'Titles',
               'img' => PZARC_PLUGIN_APP_URL . 'shared/assets/images/metaboxes/nav-type-tabbed.png'
@@ -1070,7 +1072,7 @@
               'img' => PZARC_PLUGIN_APP_URL . 'shared/assets/images/metaboxes/nav-type-labels.png'
           ),
       );
-      $slider                      = array(
+      $slider = array(
           'bullets' => array(
               'alt' => 'Bullets',
               'img' => PZARC_PLUGIN_APP_URL . 'shared/assets/images/metaboxes/nav-type-bullets.png'
@@ -1138,8 +1140,8 @@
                       array($prefix . 'navigator', '!=', 'bullets'),
                       array($prefix . 'navigator', '!=', 'thumbs'),
                       array($prefix . 'navigator', '!=', 'none'),
-//                      array($prefix . 'navigator-position', '!=', 'left'),
-//                      array($prefix . 'navigator-position', '!=', 'right')
+                      //                      array($prefix . 'navigator-position', '!=', 'left'),
+                      //                      array($prefix . 'navigator-position', '!=', 'right')
                   ),
               ),
               array(
@@ -1155,21 +1157,21 @@
                   'subtitle'   => 'One label per panel. Labels only work for a fixed number of panels'
               ),
               array(
-                  'title'   => 'Width type',
-                  'id'      => $prefix . 'navtabs-width-type',
-                  'type'    => 'button_set',
-                  'default' => 'fluid',
-                  'options' => array(
+                  'title'    => 'Width type',
+                  'id'       => $prefix . 'navtabs-width-type',
+                  'type'     => 'button_set',
+                  'default'  => 'fluid',
+                  'options'  => array(
                       'fluid' => 'Fluid',
                       'even'  => 'Even',
                       'fixed' => 'Fixed'
                   ),
-                  'required'=>array(
+                  'required' => array(
                       array($prefix . 'navigator-position', '!=', 'left'),
                       array($prefix . 'navigator-position', '!=', 'right')
                   ),
-                  'hint'    => array('title'   => __('Tab width type', 'pzarchitect'),
-                                     'content' => __('Fluid: Adjusts to the width of the content<br>Even: Distributes evenly across the width of the blueprint<br>Fixed: Set a specific width', 'pzarchitect'))
+                  'hint'     => array('title'   => __('Tab width type', 'pzarchitect'),
+                                      'content' => __('Fluid: Adjusts to the width of the content<br>Even: Distributes evenly across the width of the blueprint<br>Fixed: Set a specific width', 'pzarchitect'))
               ),
               array(
                   'id'       => $prefix . 'navtabs-margins-compensation',
@@ -1179,7 +1181,7 @@
                   'height'   => false,
                   'title'    => __('Margins compensation', 'pzarchitect'),
                   'default'  => array('width' => '0', 'units' => '%'),
-                  'subtitle'=> __('If you set margins for the tabs anywhere else, enter the sum of the left and right margins and units of a single tab. e.g. if margins are 5px, enter 10px','pzarchitect'),
+                  'subtitle' => __('If you set margins for the tabs anywhere else, enter the sum of the left and right margins and units of a single tab. e.g. if margins are 5px, enter 10px', 'pzarchitect'),
                   'required' => array(
                       array($prefix . 'navtabs-width-type', 'contains', 'even'),
                   ),
@@ -1349,7 +1351,7 @@
                   'default'  => array('width' => '15%'),
                   'height'   => false,
                   'units'    => '%',
-                  'subtitle'=> __('Note: Set left and right padding on the navigator to zero.','pzarchitect'),
+                  'subtitle' => __('Note: Set left and right padding on the navigator to zero.', 'pzarchitect'),
                   'required' => array(
                       array($prefix . 'navigator', '!=', 'thumbs'),
                       array($prefix . 'navigator', '!=', 'accordion'),
@@ -1559,16 +1561,16 @@
       /**
        * MASONRY
        */
-      $sort_fields = apply_filters('arc_masonry_sorting', array_merge(array('Standard'=>array('random'       => __('Random', 'pzarchitect'),
-                                                                            '.entry-title' => __('Title', 'pzarchitect'),
-                                                                            '[data-order]' => __('Date', 'pzarchitect'),
-                                                                            '.author'      => __('Author', 'pzarchitect'))),
-                                                                      array('Custom Fields'=>$this->custom_fields)
+      $sort_fields = apply_filters('arc_masonry_sorting', array_merge(array('Standard' => array('random'       => __('Random', 'pzarchitect'),
+                                                                                                '.entry-title' => __('Title', 'pzarchitect'),
+                                                                                                '[data-order]' => __('Date', 'pzarchitect'),
+                                                                                                '.author'      => __('Author', 'pzarchitect'))),
+                                                                      array('Custom Fields' => $this->custom_fields)
                                                         )
       );
 //      global $pzarc_masonry_filter_taxes;
-      if (is_admin() && !empty($_GET[ 'post' ]) &&!empty($this->postmeta[$prefix . 'masonry-filtering'])) {
-        $pzarc_masonry_filter_taxes =  apply_filters('_arc_add_tax_titles',maybe_unserialize($this->postmeta[$prefix . 'masonry-filtering'][0]));
+      if (is_admin() && !empty($_GET[ 'post' ]) && !empty($this->postmeta[ $prefix . 'masonry-filtering' ])) {
+        $pzarc_masonry_filter_taxes = apply_filters('_arc_add_tax_titles', maybe_unserialize($this->postmeta[ $prefix . 'masonry-filtering' ][ 0 ]));
       } else {
         $pzarc_masonry_filter_taxes = array();
       }
@@ -1586,9 +1588,9 @@
                     // Infinite scroll requires a method to load next set, so would would best leveraging off pagination -maybe... And that is a lot harder!
                     // Waypoints provides infinite scroll support.
                     //                      'infinite-scroll' => __('Infinite scroll', 'pzarchitect'),
-                    'filtering' => __('Filtering', 'pzarchitect'),
-                    'sorting'   => __('Sorting', 'pzarchitect'),
-                    'bidirectional'   => __('Packed masonry', 'pzarchitect'),
+                    'filtering'     => __('Filtering', 'pzarchitect'),
+                    'sorting'       => __('Sorting', 'pzarchitect'),
+                    'bidirectional' => __('Packed masonry', 'pzarchitect'),
                   ),
                   'desc'    => __('', 'pzarchitect')
               ),
@@ -1607,7 +1609,7 @@
                   'title'    => __('Sorting', 'pzarchitect'),
                   'id'       => $prefix . 'masonry-sorting-section-open',
                   'type'     => 'section',
-                  'indent'    => true,
+                  'indent'   => true,
                   'required' => array($prefix . 'masonry-features', 'contains', 'sorting'),
               ),
               array(
@@ -1615,10 +1617,10 @@
                   'id'       => $prefix . 'masonry-sort-fields',
                   'type'     => 'select',
                   'multi'    => true,
-//                  'sortable' => true, //when enabled, it breaks coz $sort_Fields is a multilevel array
+                  //                  'sortable' => true, //when enabled, it breaks coz $sort_Fields is a multilevel array
                   'options'  => $sort_fields,
                   'required' => array($prefix . 'masonry-features', 'contains', 'sorting'),
-                  'subtitle'=> __('Some plugins, such as Woo Commerce, you need to use the field beginning with an underscore','pzarchtiect'),
+                  'subtitle' => __('Some plugins, such as Woo Commerce, you need to use the field beginning with an underscore', 'pzarchtiect'),
                   'desc'     => __('It is up to YOU to ensure the sort fields are available in the Blueprint', 'pzarchitect')
               ),
               array(
@@ -1628,7 +1630,7 @@
                   'multi'    => true,
                   'options'  => $this->custom_fields,
                   'required' => array($prefix . 'masonry-features', 'contains', 'sorting'),
-                  'subtitle'     => __('Select which of the above custom fields are numeric', 'pzarchitect')
+                  'subtitle' => __('Select which of the above custom fields are numeric', 'pzarchitect')
               ),
               array(
                   'title'    => __('Date sort fields', 'pzarchitect'),
@@ -1637,12 +1639,12 @@
                   'multi'    => true,
                   'options'  => $this->custom_fields,
                   'required' => array($prefix . 'masonry-features', 'contains', 'sorting'),
-                  'subtitle'     => __('Select which of the above custom fields contain dates', 'pzarchitect')
+                  'subtitle' => __('Select which of the above custom fields contain dates', 'pzarchitect')
               ),
               array(
-                  'id'       => $prefix . 'masonry-sorting-section-close',
-                  'type'     => 'section',
-                  'indent'    => false,
+                  'id'     => $prefix . 'masonry-sorting-section-close',
+                  'type'   => 'section',
+                  'indent' => false,
               ),
               //filtering
               array(
@@ -1650,7 +1652,7 @@
                   'id'       => $prefix . 'masonry-filtering-section-open',
                   'type'     => 'section',
                   'required' => array($prefix . 'masonry-features', 'contains', 'filtering'),
-                  'indent'    => true,
+                  'indent'   => true,
               ),
               array(
                   'title'    => __('Taxonomies', 'pzarchitect'),
@@ -1662,7 +1664,7 @@
                   'args'     => array('pzarc_get_taxonomies_ctb'),
                   'required' => array($prefix . 'masonry-features', 'contains', 'filtering'),
                   'desc'     => __('It is up to YOU to ensure the taxonomies match the content', 'pzarchitect'),
-                  'subtitle'     => __('Note: You will have to publish/update to show the Taxonomy filters below', 'pzarchitect'),
+                  'subtitle' => __('Note: You will have to publish/update to show the Taxonomy filters below', 'pzarchitect'),
               ),
               array(
                   'title'    => __('Allow multiple filter terms', 'pzarchitect'),
@@ -1682,23 +1684,23 @@
                   'id'       => $prefix . 'masonry-full-section-open',
                   'type'     => 'section',
                   'required' => array($prefix . 'masonry-features', 'contains', 'bidirectional'),
-                  'indent'    => true,
-                  'subtitle' => __('In Packed Masonry mode, Panels Across and Fixed Width Panels are ignored. The width and height of each panel is determined by its the image\'s dimensions. Therefore, it is important you choose the Shrink to fit width and height limit option for Image Cropping to get the effect. Packed Masonry has no settings.','pzarchitect')
+                  'indent'   => true,
+                  'subtitle' => __('In Packed Masonry mode, Panels Across and Fixed Width Panels are ignored. The width and height of each panel is determined by its the image\'s dimensions. Therefore, it is important you choose the Shrink to fit width and height limit option for Image Cropping to get the effect. Packed Masonry has no settings.', 'pzarchitect')
               ),
           )
       );
 
       foreach ($pzarc_masonry_filter_taxes as $pzarc_tax) {
-        $sections[ '_masonry' ]['fields'][]=          array(
-            'title'    => __('Filter on ', 'pzarchitect').ucwords(str_replace(array('_','-'),' ',$pzarc_tax)),
-            'id'       => $prefix . 'masonry-filtering-section-open-'.$pzarc_tax,
+        $sections[ '_masonry' ][ 'fields' ][] = array(
+            'title'    => __('Filter on ', 'pzarchitect') . ucwords(str_replace(array('_', '-'), ' ', $pzarc_tax)),
+            'id'       => $prefix . 'masonry-filtering-section-open-' . $pzarc_tax,
             'type'     => 'section',
             'required' => array($prefix . 'masonry-features', 'contains', 'filtering'),
-            'indent'    => true,
+            'indent'   => true,
         );
-        $sections[ '_masonry' ]['fields'][]=              array(
+        $sections[ '_masonry' ][ 'fields' ][] = array(
             'title'    => __('Limit ', 'pzarchitect'),
-            'id'       => '_blueprints_masonry-filtering-limit-'.$pzarc_tax,
+            'id'       => '_blueprints_masonry-filtering-limit-' . $pzarc_tax,
             'type'     => 'button_set',
             'default'  => 'none',
             'options'  => array(
@@ -1709,27 +1711,27 @@
             'required' => array($prefix . 'masonry-features', 'contains', 'filtering'),
             'subtitle' => __('Control what terms are shown.', 'pzarchitect'),
         );
-        $sections[ '_masonry' ]['fields'][]=                        array(
-                  'title'    => __('Inclusions/Exclusions', 'pzarchitect'),
-                  'id'       => '_blueprints_masonry-filtering-incexc-'.$pzarc_tax,
-                  'type'     => 'select',
-                  'multi'    => true,
-                  'data'=>'terms',
-                  'default'  => false,
-                  'required' => array($prefix . 'masonry-filtering-limit-'.$pzarc_tax, '!=', 'none'),
-                  'args'  => array('taxonomies'=>$pzarc_tax,'hide_empty'=>false)
-              );
-        $sections[ '_masonry' ]['fields'][]=                $sections[ '_masonry' ]['fields'][]=              array(
-            'id'       => $prefix . 'masonry-filtering-section-close-'.$pzarc_tax,
-            'type'     => 'section',
-            'indent'    => false,
+        $sections[ '_masonry' ][ 'fields' ][] = array(
+            'title'    => __('Inclusions/Exclusions', 'pzarchitect'),
+            'id'       => '_blueprints_masonry-filtering-incexc-' . $pzarc_tax,
+            'type'     => 'select',
+            'multi'    => true,
+            'data'     => 'terms',
+            'default'  => false,
+            'required' => array($prefix . 'masonry-filtering-limit-' . $pzarc_tax, '!=', 'none'),
+            'args'     => array('taxonomies' => $pzarc_tax, 'hide_empty' => false)
+        );
+        $sections[ '_masonry' ][ 'fields' ][] = $sections[ '_masonry' ][ 'fields' ][] = array(
+            'id'     => $prefix . 'masonry-filtering-section-close-' . $pzarc_tax,
+            'type'   => 'section',
+            'indent' => false,
         );
 
       }
-      $sections[ '_masonry' ]['fields'][]=              array(
-          'id'       => $prefix . 'masonry-filtering-section-close',
-          'type'     => 'section',
-          'indent'    => false,
+      $sections[ '_masonry' ][ 'fields' ][] = array(
+          'id'     => $prefix . 'masonry-filtering-section-close',
+          'type'   => 'section',
+          'indent' => false,
       );
 
       $sections[ '_masonry' ] = apply_filters('arc-extend-masonry-settings', $sections[ '_masonry' ]);
@@ -2307,7 +2309,8 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
                     'id'       => $prefix . 'blueprint-nav-active-item-css-heading',
                     'type'     => 'section',
                     'indent'   => true,
-                    'subtitle' => 'Class: ' . implode(', ', array('.pzarc-navigator .arc-slider-slide-nav-item.active','.pzarc-navigator .arc-slider-slide-nav-item.current')),
+                    'subtitle' => 'Class: ' . implode(', ', array('.pzarc-navigator .arc-slider-slide-nav-item.active',
+                                                                  '.pzarc-navigator .arc-slider-slide-nav-item.current')),
 
                 ),
                 pzarc_redux_font($prefix . $thisSection . '-items-active' . $font, $_architect[ 'architect_config_' . $thisSection . '-selectors' ], $defaults[ $optprefix . $thisSection . '-items-active' . $font ], array(
@@ -2325,7 +2328,7 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
             ),
         );
 
-        $thisSection                      = 'masonry';
+        $thisSection                    = 'masonry';
         $sections[ '_styling_masonry' ] = array(
             'id'         => 'masonry-css',
             'title'      => 'Masonry',
@@ -2353,11 +2356,11 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
                     'subtitle' => 'Class: ' . $_architect[ 'architect_config_' . $thisSection . '-buttons-selectors' ]
 
                 ),
-                pzarc_redux_font($prefix . $thisSection. '-buttons' . $font, $this->defaults ? '' : $_architect[ 'architect_config_' . $thisSection . '-buttons-selectors' ], $defaults[ $optprefix . $thisSection . '-buttons'. $font ]),
-                pzarc_redux_bg($prefix . $thisSection. '-buttons' . $background, $this->defaults ? '' : $_architect[ 'architect_config_' . $thisSection . '-buttons-selectors' ], $defaults[ $optprefix . $thisSection . '-buttons'. $background ]),
-                pzarc_redux_padding($prefix . $thisSection. '-buttons' . $padding, $this->defaults ? '' : $_architect[ 'architect_config_' . $thisSection . '-buttons-selectors' ], $defaults[ $optprefix . $thisSection . '-buttons'. $padding ]),
-                pzarc_redux_margin($prefix . $thisSection. '-buttons' . $margin, $this->defaults ? '' : $_architect[ 'architect_config_' . $thisSection . '-buttons-selectors' ], $defaults[ $optprefix . $thisSection . '-buttons'. $margin ]),
-                pzarc_redux_borders($prefix . $thisSection. '-buttons' . $border, $this->defaults ? '' : $_architect[ 'architect_config_' . $thisSection . '-buttons-selectors' ], $defaults[ $optprefix . $thisSection . '-buttons'. $border ]),
+                pzarc_redux_font($prefix . $thisSection . '-buttons' . $font, $this->defaults ? '' : $_architect[ 'architect_config_' . $thisSection . '-buttons-selectors' ], $defaults[ $optprefix . $thisSection . '-buttons' . $font ]),
+                pzarc_redux_bg($prefix . $thisSection . '-buttons' . $background, $this->defaults ? '' : $_architect[ 'architect_config_' . $thisSection . '-buttons-selectors' ], $defaults[ $optprefix . $thisSection . '-buttons' . $background ]),
+                pzarc_redux_padding($prefix . $thisSection . '-buttons' . $padding, $this->defaults ? '' : $_architect[ 'architect_config_' . $thisSection . '-buttons-selectors' ], $defaults[ $optprefix . $thisSection . '-buttons' . $padding ]),
+                pzarc_redux_margin($prefix . $thisSection . '-buttons' . $margin, $this->defaults ? '' : $_architect[ 'architect_config_' . $thisSection . '-buttons-selectors' ], $defaults[ $optprefix . $thisSection . '-buttons' . $margin ]),
+                pzarc_redux_borders($prefix . $thisSection . '-buttons' . $border, $this->defaults ? '' : $_architect[ 'architect_config_' . $thisSection . '-buttons-selectors' ], $defaults[ $optprefix . $thisSection . '-buttons' . $border ]),
                 array(
                     'title'    => __('Selected', 'pzarchitect'),
                     'id'       => $prefix . 'blueprint-masonry-selected-css-heading',
@@ -2600,7 +2603,7 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
                   'display_value' => 'label',
                   'required'      => array($prefix . 'components-to-show', 'contains', 'custom'),
                   'subtitle'      => __('Each of the three Custom groups can have multiple custom fields. Enter the <strong>total</strong> number of custom fields, click Publish/Update', 'pzarchitect'),
-                  'desc' => __('When you change this number, click Publish/Update to update Custom Fields tabs at left','pzarchitect'),
+                  'desc'          => __('When you change this number, click Publish/Update to update Custom Fields tabs at left', 'pzarchitect'),
                   'hint'          => array(
                       'title'   => __('Number of custom fields', 'pzarchitect'),
                       'content' => __('After selecting upto three custom field groups, you now need to set the total number of custom fields you will be displaying so Architect can create the settings tabs for each one.<br><br><strong>You will need to Publish/Update to see those new tabs.</strong>', 'pzarchitect')
@@ -2698,26 +2701,26 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
                   ),
               ),
               // TODO : get this working. Requires a class added to each panel to tell it what which way to align.
-//              array(
-//                  'title'    => __('Alternate count', 'pzarchitect'),
-//                  'id'       => $prefix . 'alternate-feature-count',
-//                  'type'          => 'spinner',
-//                  'default'       => 1,
-//                  'min'           => 1,
-//                  'max'           => 10,
-//                  'step'          => 1,
-//                  'required' => array(
-//                      array($prefix . 'alternate-feature-position', '=', 'on'),
-//                      array($prefix . 'feature-location', '!=', 'fill'),
-//                      array($prefix . 'feature-location', '!=', 'components'),
-//                      array($prefix . 'components-position', '!=', 'top'),
-//                      array($prefix . 'components-position', '!=', 'bottom'),
-//                  ),
-//                  'hint'     => array(
-//                      'title'   => __('Alternate count', 'pzarchitect'),
-//                      'content' => __('Alternate the features position left/right for each post.', 'pzarchitect')
-//                  ),
-//              ),
+              //              array(
+              //                  'title'    => __('Alternate count', 'pzarchitect'),
+              //                  'id'       => $prefix . 'alternate-feature-count',
+              //                  'type'          => 'spinner',
+              //                  'default'       => 1,
+              //                  'min'           => 1,
+              //                  'max'           => 10,
+              //                  'step'          => 1,
+              //                  'required' => array(
+              //                      array($prefix . 'alternate-feature-position', '=', 'on'),
+              //                      array($prefix . 'feature-location', '!=', 'fill'),
+              //                      array($prefix . 'feature-location', '!=', 'components'),
+              //                      array($prefix . 'components-position', '!=', 'top'),
+              //                      array($prefix . 'components-position', '!=', 'bottom'),
+              //                  ),
+              //                  'hint'     => array(
+              //                      'title'   => __('Alternate count', 'pzarchitect'),
+              //                      'content' => __('Alternate the features position left/right for each post.', 'pzarchitect')
+              //                  ),
+              //              ),
               array(
                   'title'    => __('Feature in', 'pzarchitect'),
                   'id'       => $prefix . 'feature-in',
@@ -2820,7 +2823,7 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
                       array($prefix . 'feature-location', '!=', 'components'),
                   ),
                   'display_value' => 'label',
-                  'subtitle'=> __('Set to zero to use image at actual size.','pzarchitect'),
+                  'subtitle'      => __('Set to zero to use image at actual size.', 'pzarchitect'),
                   'hint'          => array(
                       'title'   => __('Feature as thumbnail width', 'pzarchitect'),
                       'content' => __('When you have set the featured image to appear in the body/excerpt, this determines its width.', 'pzarchitect')
@@ -3338,21 +3341,21 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
                   'default'  => 'respect',
                   'select2'  => array('allowClear' => false),
                   'required' => array('_panels_settings_feature-type', '=', 'image'),
-                  'options' => array(
+                  'options'  => array(
                       'respect'      => __('Use focal point', 'pzarchitect'),
-//                      'centre'       => __('Centre focal point', 'pzarchitect'),
-//                      'topleft'      => __('Crop to top left', 'pzarchitect'),
+                      //                      'centre'       => __('Centre focal point', 'pzarchitect'),
+                      //                      'topleft'      => __('Crop to top left', 'pzarchitect'),
                       'topcentre'    => __('Crop to top centre', 'pzarchitect'),
-//                      'topright'     => __('Crop to top right', 'pzarchitect'),
-//                      'midleft'      => __('Crop to middle left', 'pzarchitect'),
+                      //                      'topright'     => __('Crop to top right', 'pzarchitect'),
+                      //                      'midleft'      => __('Crop to middle left', 'pzarchitect'),
                       'midcentre'    => __('Crop to middle centre', 'pzarchitect'),
-//                      'midright'     => __('Crop to middle right', 'pzarchitect'),
-//                      'bottomleft'   => __('Crop to bottom left', 'pzarchitect'),
+                      //                      'midright'     => __('Crop to middle right', 'pzarchitect'),
+                      //                      'bottomleft'   => __('Crop to bottom left', 'pzarchitect'),
                       'bottomcentre' => __('Crop to bottom centre', 'pzarchitect'),
-//                      'bottomright'  => __('Crop to bottom right', 'pzarchitect'),
-                      'scale'        => __('Preserve aspect, fit to width', 'pzarchitect'),
-                      'scale_height' => __('Preserve aspect, fit to height', 'pzarchitect'),
-                      'shrink'  => __('Shrink to fit width and height limit', 'pzarchitect')
+                      //                      'bottomright'  => __('Crop to bottom right', 'pzarchitect'),
+                      'scale'        => __('Preserve aspect, fit to width. No cropping', 'pzarchitect'),
+                      'scale_height' => __('Preserve aspect, fit to height. No cropping', 'pzarchitect'),
+                      'shrink'       => __('Scale. Fit to width and height. No cropping', 'pzarchitect')
                   )
               ),
               array(
@@ -3561,19 +3564,19 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
                   ),
                   'subtitle' => __('Centres the image horizontally. It is best to display it on its own row, and the other components to be 100% wide.', 'pzarchitect')
               ),
-//              array(
-//                  'title'    => __('Rotate feature', 'pzarchitect'),
-//                  'id'       => $prefix . 'rotate-image',
-//                  'type'     => 'switch',
-//                  'on'       => __('Yes', 'pzarchitect'),
-//                  'off'      => __('No', 'pzarchitect'),
-//                  'default'  => false,
-//                  'required' => array(
-//                    //array('show_advanced', 'equals', true),
-//                    array('_panels_settings_feature-type', '=', 'image'),
-//                  ),
-//                  'subtitle' => __('Randomly rotates images up to 5 degrees.', 'pzarchitect')
-//              ),
+              //              array(
+              //                  'title'    => __('Rotate feature', 'pzarchitect'),
+              //                  'id'       => $prefix . 'rotate-image',
+              //                  'type'     => 'switch',
+              //                  'on'       => __('Yes', 'pzarchitect'),
+              //                  'off'      => __('No', 'pzarchitect'),
+              //                  'default'  => false,
+              //                  'required' => array(
+              //                    //array('show_advanced', 'equals', true),
+              //                    array('_panels_settings_feature-type', '=', 'image'),
+              //                  ),
+              //                  'subtitle' => __('Randomly rotates images up to 5 degrees.', 'pzarchitect')
+              //              ),
               //              array(
               //                  'id'            => $prefix . 'image-quality',
               //                  'title'         => __('Image quality', 'pzarchitect'),
@@ -3714,11 +3717,12 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
                         'subtitle' => 'Select a custom field that contains URLs you want to use as the link',
                     ),
                     array(
-                        'title'    => __('Open link in', 'pzarchitect'),
-                        'id'       => $prefix . 'cfield-' . $i . '-link-behaviour',
-                        'type'     => 'button_set',
-                        'default'=>'_self',
-                        'options'  => array('_self'=>__('Same tab','pzarchitect'),'_blank'=>__('New tab','pzarchitect')),
+                        'title'   => __('Open link in', 'pzarchitect'),
+                        'id'      => $prefix . 'cfield-' . $i . '-link-behaviour',
+                        'type'    => 'button_set',
+                        'default' => '_self',
+                        'options' => array('_self'  => __('Same tab', 'pzarchitect'),
+                                           '_blank' => __('New tab', 'pzarchitect')),
                     ),
                     array(
                         'title' => __('Prefix text', 'pzarchitect'),
