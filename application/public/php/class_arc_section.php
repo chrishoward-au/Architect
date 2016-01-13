@@ -120,9 +120,9 @@
 //          $isotope = 'data-isotope-options=\'{ "layoutMode": "masonry","itemSelector": ".pzarc-panel","masonry":{"columnWidth":50,"gutter":20}}\'';
 
           // Do we load up the MAsonry here?
+          wp_enqueue_script('js-imagesloaded');
           wp_enqueue_script('js-isotope-v2');
           wp_enqueue_script('js-isotope-packery');
-          wp_enqueue_script('js-imagesloaded');
           wp_enqueue_script('js-front-isotope');
 //          add_action('init',array($this,'init_scripts'));
 //          $isotope      = 'data-isotope-options=\'{ "layoutMode": "masonry","itemSelector": ".pzarc-panel","masonry":{"columnWidth":".grid-sizer","gutter":".gutter-sizer"}}\'';
