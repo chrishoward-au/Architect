@@ -3124,7 +3124,7 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
                 //'required' => array('show_advanced', 'equals', true),
                 //TODO: Findout how to pass parameters. currently that is doing nothing!
                 'args'     => array('pzarc_get_authors', array(false, 0)),
-                'subtitle' => __('Select any authors here you want to exclude from showing when the %author% or %email% tag is used.', 'pzarchitect')
+                'subtitle' => __('Choose any authors here you want to exclude from showing when the %author% or %email% tag is used.', 'pzarchitect')
             ),
             array(
                 'title'   => __('Author avatar', 'pzarchitect'),
@@ -3237,6 +3237,14 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
                   'subtitle' => __('Enabling this will override all other CSS for body/excerpt text', 'pzarchitect')
               ),
               array(
+                  'title'    => __('Scale fonts between breakpoints', 'pzarchitect'),
+                  'id'       => $prefix . 'use-scale-fonts',
+                  'type'     => 'switch',
+                  'default'  => true,
+                  'required'        => array($prefix . 'use-responsive-font-size', 'equals', true),
+                  'subtitle' => __('This makes the fonts scale in size from one breakpoint to the next, rather than suddenly changing at each breakpoint.', 'pzarchitect')
+              ),
+              array(
                   'id'              => $prefix . 'content-font-size-bp1',
                   'title'           => __('Font size - large screen ', 'pzarchitect'),
                   'subtitle'        => $_architect_options[ 'architect_breakpoint_1' ][ 'width' ] . __(' and above', 'pzarchitect'),
@@ -3265,7 +3273,10 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
                   'id'              => $prefix . 'content-font-size-bp2',
                   'title'           => __('Font size - medium screen ', 'pzarchitect'),
                   'subtitle'        => $_architect_options[ 'architect_breakpoint_2' ][ 'width' ] . ' to ' . $_architect_options[ 'architect_breakpoint_1' ][ 'width' ],
-                  'required'        => array($prefix . 'use-responsive-font-size', 'equals', true),
+                  'required'        => array(
+                      array($prefix . 'use-responsive-font-size', 'equals', true),
+                      array($prefix . 'use-scale-fonts', 'equals', false)
+                  ),
                   'type'            => 'typography',
                   'text-decoration' => false,
                   'font-variant'    => false,

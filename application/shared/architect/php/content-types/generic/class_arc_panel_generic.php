@@ -700,7 +700,14 @@
           $panel_def[ $component ] = str_replace('{{nothumb}}', 'nothumb', $panel_def[ $component ]);
         }
       }
-
+      switch (true) {
+        case !empty($this->section[ '_panels_design_use-scale-fonts' ]) && !empty($this->section[ '_panels_design_use-responsive-font-size' ]):
+          $panel_def[ $component ] = str_replace('{{extensionclass}}', ' is-responsive-scaled ', $panel_def[ $component ]);
+          break;
+        case !empty($this->section[ '_panels_design_use-responsive-font-size' ]):
+          $panel_def[ $component ] = str_replace('{{extensionclass}}', ' is-responsive ', $panel_def[ $component ]);
+          break;
+      }
       return self::render_generics($component, $content_type, $panel_def[ $component ], $layout_mode);
     }
 
@@ -752,6 +759,14 @@
       }
 
 //_panels_design_thumb-position
+      switch (true) {
+        case !empty($this->section[ '_panels_design_use-scale-fonts' ]) && !empty($this->section[ '_panels_design_use-responsive-font-size' ]):
+          $panel_def[ $component ] = str_replace('{{extensionclass}}', ' is-responsive-scaled ', $panel_def[ $component ]);
+          break;
+        case !empty($this->section[ '_panels_design_use-responsive-font-size' ]):
+          $panel_def[ $component ] = str_replace('{{extensionclass}}', ' is-responsive ', $panel_def[ $component ]);
+          break;
+      }
 
 
       return self::render_generics($component, $content_type, $panel_def[ $component ], $layout_mode);
