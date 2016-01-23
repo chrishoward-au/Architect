@@ -1990,6 +1990,7 @@
                   //                  'select2'  => array('allowClear' => false),
                   'default'  => 'defaults',
                   'options'  => $content_types,
+                  'desc'=>__('If you want a Blueprint to display the content of the specific post/page/cpt it is to be displayed on, use the Default content source.','pzarchitect'),
                   'subtitle' => (array_key_exists('snippets', $content_types) ? '' : 'Several more content sources supported in Architect Pro version, including Pages, Snippets, Galleries, Custom Post Types and a special Dummy option to display dummy content')
               ),
           )
@@ -3237,7 +3238,7 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
                   'subtitle' => __('Enabling this will override all other CSS for body/excerpt text', 'pzarchitect')
               ),
               array(
-                  'title'    => __('Scale fonts between breakpoints', 'pzarchitect'),
+                  'title'    => __('Fluid fonts', 'pzarchitect'),
                   'id'       => $prefix . 'use-scale-fonts',
                   'type'     => 'switch',
                   'default'  => true,
@@ -3322,6 +3323,28 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
                   'word-spacing'    => false,
                   'letter-spacing'  => false,
               ),
+                          array(
+                              'id'      => $prefix . 'content-font-scale-upper-bp',
+                              'title'   => __('Large screen breakpoint', 'pzarchitect'),
+                              'type'    => 'text',
+                              'default' => 1248,
+                              'subtitle'=>__('Above this window width, no scaling will be done.'),
+                              'required'        => array(
+                                  array($prefix . 'use-responsive-font-size', 'equals', true),
+                                  array($prefix . 'use-scale-fonts', 'equals', true)
+                              ),
+                          ),
+                          array(
+                              'id'      => $prefix . 'content-font-scale-lower-bp',
+                              'title'   => __('Small screen breakpoint', 'pzarchitect'),
+                              'type'    => 'text',
+                              'default' => 360,
+                              'subtitle'=>__('Below this window width, no scaling will be done.'),
+                              'required'        => array(
+                                  array($prefix . 'use-responsive-font-size', 'equals', true),
+                                  array($prefix . 'use-scale-fonts', 'equals', true)
+                              ),
+                          )
               //            array(
               //                'id'      => $prefix . 'content-font-size-range',
               //                'title'   => __('Font size range', 'pzarchitect'),
