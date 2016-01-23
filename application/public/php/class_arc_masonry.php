@@ -17,7 +17,7 @@
       $this->blueprint = $blueprint;
       //var_dump($blueprint);
 
-      $this->layout_mode = (!empty($this->blueprint['_blueprints_masonry-features']) && in_array('bidirectional',$this->blueprint['_blueprints_masonry-features'])?'packery':'masonry');
+      $this->layout_mode = (!empty($this->blueprint[ '_blueprints_masonry-features' ]) && in_array('bidirectional', $this->blueprint[ '_blueprints_masonry-features' ]) ? 'packery' : 'masonry');
       add_action('arc_masonry_controls_' . $this->blueprint[ '_blueprints_short-name' ], array($this, 'sorting'));
       add_action('arc_masonry_controls_' . $this->blueprint[ '_blueprints_short-name' ], array($this, 'filtering'));
       add_action('arc-extend-panel-classes_' . $this->blueprint[ '_blueprints_short-name' ], array($this,
@@ -30,7 +30,7 @@
     {
 
       echo '<div class="arc-filtering-and-sorting">';
-      if (!empty($this->blueprint[ '_blueprints_masonry-sort-fields' ]) && !empty($this->blueprint['_blueprints_masonry-features']) && in_array('sorting',$this->blueprint['_blueprints_masonry-features'])) {
+      if (!empty($this->blueprint[ '_blueprints_masonry-sort-fields' ]) && !empty($this->blueprint[ '_blueprints_masonry-features' ]) && in_array('sorting', $this->blueprint[ '_blueprints_masonry-features' ])) {
 
         // TODO: Setupo registry for each so developer can define
         echo '<div class="arc-sort-buttons"><div class="arc-masonry-buttons button-group sort-by-button-group">
@@ -56,7 +56,7 @@
     function filtering()
     {
       // Need to do this for each taxonomy
-      if (!empty($this->blueprint[ '_blueprints_masonry-filtering' ]) && !empty($this->blueprint['_blueprints_masonry-features']) && in_array('filtering',$this->blueprint['_blueprints_masonry-features'])) {
+      if (!empty($this->blueprint[ '_blueprints_masonry-filtering' ]) && !empty($this->blueprint[ '_blueprints_masonry-features' ]) && in_array('filtering', $this->blueprint[ '_blueprints_masonry-features' ])) {
         $i = 1;
         echo '<div class="arc-filter-buttons">';
         foreach ($this->blueprint[ '_blueprints_masonry-filtering' ] as $tax) {
@@ -99,8 +99,8 @@
       if (!empty($this->blueprint[ '_blueprints_masonry-filtering' ])) {
         $classes .= ' ';
         foreach ($this->blueprint[ '_blueprints_masonry-filtering' ] as $tax) {
-          $tax_exists=get_taxonomy($tax);
-          if (!empty( $tax_exists )){
+          $tax_exists = get_taxonomy($tax);
+          if (!empty($tax_exists)) {
             $terms = get_the_terms(get_the_id(), $tax);
             if (!empty($terms) && !isset($terms->errors)) {
               foreach ($terms as $term_obj) {
@@ -154,7 +154,7 @@
 
       if ($this->layout_mode == 'packery') {
         $mode_options = "packery: {
-                          gutter: '.gutter-sizer'
+                          gutter: '.gutter-sizer',
                         },
                     ";
       } else {
@@ -166,7 +166,9 @@
       }
 
 
-      $script    = "<script type='text/javascript' id='masonry-{$blueprint}'>
+      $transition_duration= '0.2';
+
+      $script = "<script type='text/javascript' id='masonry-{$blueprint}'>
         // init Isotope
         (function($){";
       $script .= "var allowMultiple=" . (empty($this->blueprint[ '_blueprints_masonry-filtering-allow-multiple' ]) || $this->blueprint[ '_blueprints_masonry-filtering-allow-multiple' ] === 'multiple' ? 'true' : 'false') . ";";
@@ -178,12 +180,14 @@
                   // options
                   layoutMode: '{$this->layout_mode}',
                   itemSelector: '.' + arcIsotopeID + ' .pzarc-panel',
+                  transitionDuration: '{$transition_duration}s',
                   {$mode_options}
                   getSortData: {
                     {$sort_data}
                   }
                 } );
-                container.isotope('updateSortData').isotope();
+                container.isotope('updateSortData').isotope('layout');
+
               } );
 
 
