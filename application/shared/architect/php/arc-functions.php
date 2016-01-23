@@ -756,6 +756,7 @@
     // }
 
 //    $pzep_cf_list = $wpdb->get_results(
+    ///// NEver select from wp_* as site might not use wp_ prefix
 //        "SELECT meta_key,post_id,wp_posts.post_type FROM wp_postmeta,wp_posts GROUP BY meta_key HAVING ((meta_key NOT LIKE '\_%' AND meta_key NOT LIKE 'pz%' AND meta_key NOT LIKE 'enclosure%') AND (wp_posts.post_type NOT LIKE 'attachment' AND wp_posts.post_type NOT LIKE 'revision' AND wp_posts.post_type NOT LIKE 'acf' AND wp_posts.post_type NOT LIKE 'arc-%' AND wp_posts.post_type NOT LIKE 'nav_menu_item' AND wp_posts.post_type NOT LIKE 'wp-types%')) ORDER BY meta_key"
 //    );
     //   var_dump($pzep_cf_list);
@@ -1939,8 +1940,9 @@
     }
     $cache_files = scandir($upload_dir);
     foreach ($cache_files as $cache_file) {
-      if ($cache_file !== '.' && $cache_file !== '..') {
+      if (!is_dir($upload_dir . '/' . $cache_file)) {
         unlink($upload_dir . '/' . $cache_file);
       }
     }
   }
+  function return_taxonomies(){$args = array('public'=>true,'_builtin'=>false);$output = 'names';$taxonomies = get_taxonomies($args, $output);return $taxonomies;}
