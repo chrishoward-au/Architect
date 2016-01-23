@@ -164,6 +164,8 @@
 
 
       require_once PZARC_PLUGIN_PATH.'/extensions-inc/beaver-builder/fl-custom-module-architect.php';
+//pro
+
       pzdb( 'before architect pro' );
 
 
@@ -183,9 +185,10 @@
 
 
       }
+
       if ( ( ! empty( $hw_opts[ 'license-status-architect' ] ) && $hw_opts[ 'license-status-architect' ] == 'valid' ) || ( $pzarc_status !== false && $pzarc_status == 'valid' ) ) {
         define('PZARC_PRO',true);
-        @include PZARC_PLUGIN_PATH . '/extensions/architect-pro.php';
+        @include PZARC_PLUGIN_PATH . '/extensions/architect-pro-layout.php';
       }
 
       switch (true) {
@@ -201,10 +204,12 @@
       }
       pzdb( 'after architect pro' );
 
-      // Extensions hook in here
+
+      // Extensions can hook in here
       do_action( 'arc_load_extensions' );
 
-     require_once(PZARC_PLUGIN_PATH. '/extensions-inc/sliders/slick15/arc-slick15-init.php');
+
+      require_once(PZARC_PLUGIN_PATH. '/extensions-inc/sliders/slick15/arc-slick15-init.php');
 
 
       // Rebuiild cache if instructed
@@ -221,6 +226,10 @@
     }
 
     public function init() {
+
+      if ( PZARC_PRO ) {
+        @include PZARC_PLUGIN_PATH . '/extensions/architect-pro-cpt.php';
+      }
 
     }
 
