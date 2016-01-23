@@ -244,6 +244,11 @@
         'designer' => 'Chris Howard'
     );
     $presets[] = array(
+        'data'     => PZARC_PLUGIN_URL . 'presets/preset-slider-image-carousel.txt',
+        'image'    => PZARC_PLUGIN_URL . 'presets/preset-slider-image-carousel.jpg',
+        'designer' => 'Chris Howard'
+    );
+    $presets[] = array(
         'data'     => PZARC_PLUGIN_URL . 'presets/preset-slider-image-slideshow.txt',
         'image'    => PZARC_PLUGIN_URL . 'presets/preset-slider-image-slideshow.jpg',
         'designer' => 'Chris Howard'
