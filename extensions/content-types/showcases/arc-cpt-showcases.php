@@ -8,7 +8,7 @@
    */
 
   if (!post_type_exists('pz_showcases') && !function_exists('pz_create_showcases_post_type')) {
-    add_action('init', 'pz_create_showcases_post_type');
+    // add_action('init', 'pz_create_showcases_post_type');
     function pz_create_showcases_post_type()
     {
       $labels = array(
@@ -144,4 +144,5 @@
           break;
       }
     }
+    pz_create_showcases_post_type();
   }

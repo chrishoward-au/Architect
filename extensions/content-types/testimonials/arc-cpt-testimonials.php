@@ -8,7 +8,7 @@
  */
 
   if (!post_type_exists('pz_testimonials') && !function_exists('pz_create_testimonials_post_type')) {
-    add_action('init', 'pz_create_testimonials_post_type');
+    //add_action('init', 'pz_create_testimonials_post_type');
     function pz_create_testimonials_post_type()
     {
       $labels = array(
@@ -137,6 +137,7 @@
 
       }
     }
+    pz_create_testimonials_post_type();
   }
 
 // function add_custom_types_to_tax( $query ) {

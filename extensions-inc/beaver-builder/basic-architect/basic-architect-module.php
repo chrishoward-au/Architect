@@ -81,41 +81,41 @@
                                                 ),
                                      ),
 
-//                                 'overrides' =>
-//                                     array( // Tab
-//                                            'title'    => __('Overrides', 'pzarchitect'),  // Tab title
-//                                            'sections' =>
-//                                                array( // Tab Sections
-//                                                       'overrides' =>
-//                                                           array( // Section
-//                                                                  'title'  => __('Set optional overrides', 'pzarchitect'),
-//                                                                  'fields' =>
-//                                                                      array(
-//                                                                          'override_ids'   => array(
-//                                                                              'type'    => 'text',
-//                                                                              'label'   => __('Specific IDs', 'pzarchitect'),
-//                                                                              'default' => '',
-//                                                                          ),
-//                                                                          'override_tax'   => array(
+                                 'overrides' =>
+                                     array( // Tab
+                                            'title'    => __('Overrides', 'pzarchitect'),  // Tab title
+                                            'sections' =>
+                                                array( // Tab Sections
+                                                       'overrides' =>
+                                                           array( // Section
+                                                                  'title'  => __('Set optional overrides', 'pzarchitect'),
+                                                                  'fields' =>
+                                                                      array(
+                                                                          'override_ids'   => array(
+                                                                              'type'    => 'text',
+                                                                              'label'   => __('Specific IDs', 'pzarchitect'),
+                                                                              'default' => '',
+                                                                          ),
+                                                                          'override_tax'   => array(
+                                                                              'type'    => 'select',
+                                                                              'label'   => __('Taxonomy', 'pzarchitect'),
+                                                                              'default' => '',
+                                                                              'options'=> return_taxonomies()
+                                                                          ),
+                                                                          'override_terms' => array(
+                                                                              'type'    => 'text',
+                                                                              'label'   => __('Terms', 'pzarchitect'),
+                                                                              'default' => '',
+                                                                          ),
+//                                                                          'override_styling'   => array(
 //                                                                              'type'    => 'select',
-//                                                                              'label'   => __('Taxonomy', 'pzarchitect'),
-//                                                                              'default' => '',
-//                                                                              'options'=> $taxonomy_list
+//                                                                              'label'   => __('Ignore this Blueprint\'s Content styling?', 'pzarchitect'),
+//                                                                              'default' => 'no',
+//                                                                              'options' => array('yes'=>'Yes','no'=>'No')
 //                                                                          ),
-//                                                                          'override_terms' => array(
-//                                                                              'type'    => 'text',
-//                                                                              'label'   => __('Terms', 'pzarchitect'),
-//                                                                              'default' => '',
-//                                                                          ),
-////                                                                          'override_styling'   => array(
-////                                                                              'type'    => 'select',
-////                                                                              'label'   => __('Ignore this Blueprint\'s Content styling?', 'pzarchitect'),
-////                                                                              'default' => 'no',
-////                                                                              'options' => array('yes'=>'Yes','no'=>'No')
-////                                                                          ),
-//                                                                      ),
-//                                                           )
-//                                                )
-//                                     )
+                                                                      ),
+                                                           )
+                                                )
+                                     )
                              )
   );

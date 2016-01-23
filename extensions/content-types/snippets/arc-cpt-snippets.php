@@ -8,7 +8,7 @@
  */
 
   if (!post_type_exists('pz_snippets') && !function_exists('pz_create_snippets_post_type')) {
-    add_action('init', 'pz_create_snippets_post_type');
+    //add_action('init', 'pz_create_snippets_post_type');
     function pz_create_snippets_post_type()
     {
       $labels = array(
@@ -139,6 +139,8 @@
 
       }
     }
+
+    pz_create_snippets_post_type();
 
   }
 
