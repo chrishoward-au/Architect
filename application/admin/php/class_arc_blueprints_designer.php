@@ -1990,6 +1990,7 @@
                   //                  'select2'  => array('allowClear' => false),
                   'default'  => 'defaults',
                   'options'  => $content_types,
+                  'desc'     => __('If you want a Blueprint to display the content of the specific post/page/cpt it is to be displayed on, use the Default content source.', 'pzarchitect'),
                   'subtitle' => (array_key_exists('snippets', $content_types) ? '' : 'Several more content sources supported in Architect Pro version, including Pages, Snippets, Galleries, Custom Post Types and a special Dummy option to display dummy content')
               ),
           )
@@ -2992,6 +2993,14 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
                   'subtitle' => __('Enabling this will override all other CSS title sizing', 'pzarchitect')
               ),
               array(
+                  'title'    => __('Fluid fonts', 'pzarchitect'),
+                  'id'       => $prefix . 'use-scale-fonts-title',
+                  'type'     => 'switch',
+                  'default'  => true,
+                  'required'        => array($prefix . 'use-responsive-font-size-title', 'equals', true),
+                  'subtitle' => __('This makes the fonts scale in size from one breakpoint to the next, rather than suddenly changing at each breakpoint.', 'pzarchitect')
+              ),
+              array(
                   'id'              => $prefix . 'title-font-size-bp1',
                   'title'           => __('Font size - large screen ', 'pzarchitect'),
                   'subtitle'        => $_architect_options[ 'architect_breakpoint_1' ][ 'width' ] . __(' and above', 'pzarchitect'),
@@ -3020,7 +3029,7 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
                   'id'              => $prefix . 'title-font-size-bp2',
                   'title'           => __('Font size - medium screen ', 'pzarchitect'),
                   'subtitle'        => $_architect_options[ 'architect_breakpoint_2' ][ 'width' ] . ' to ' . $_architect_options[ 'architect_breakpoint_1' ][ 'width' ],
-                  'required'        => array($prefix . 'use-responsive-font-size-title', 'equals', true),
+                  'required'        => array(array($prefix . 'use-responsive-font-size-title', 'equals', true),array($prefix . 'use-scale-fonts-title', 'equals', false)),
                   'type'            => 'typography',
                   'text-decoration' => false,
                   'font-variant'    => false,
@@ -3066,6 +3075,29 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
                   'word-spacing'    => false,
                   'letter-spacing'  => false,
               ),
+              array(
+                  'id'       => $prefix . 'title-font-scale-upper-bp',
+                  'title'    => __('Override large screen breakpoint', 'pzarchitect'),
+                  'type'     => 'text',
+                  'default'  => 1280,
+                  'subtitle' => __('Above this window width, no scaling will be done.'),
+                  'required' => array(
+                      array($prefix . 'use-responsive-font-size-title', 'equals', true),
+                      array($prefix . 'use-scale-fonts-title', 'equals', true)
+                  ),
+              ),
+              array(
+                  'id'       => $prefix . 'title-font-scale-lower-bp',
+                  'title'    => __('Override small screen breakpoint', 'pzarchitect'),
+                  'type'     => 'text',
+                  'default'  => 360,
+                  'subtitle' => __('Below this window width, no scaling will be done.'),
+                  'required' => array(
+                      array($prefix . 'use-responsive-font-size-title', 'equals', true),
+                      array($prefix . 'use-scale-fonts-title', 'equals', true)
+                  ),
+              )
+
           )
       );
 
@@ -3124,7 +3156,7 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
                 //'required' => array('show_advanced', 'equals', true),
                 //TODO: Findout how to pass parameters. currently that is doing nothing!
                 'args'     => array('pzarc_get_authors', array(false, 0)),
-                'subtitle' => __('Select any authors here you want to exclude from showing when the %author% or %email% tag is used.', 'pzarchitect')
+                'subtitle' => __('Choose any authors here you want to exclude from showing when the %author% or %email% tag is used.', 'pzarchitect')
             ),
             array(
                 'title'   => __('Author avatar', 'pzarchitect'),
@@ -3237,6 +3269,14 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
                   'subtitle' => __('Enabling this will override all other CSS for body/excerpt text', 'pzarchitect')
               ),
               array(
+                  'title'    => __('Fluid fonts', 'pzarchitect'),
+                  'id'       => $prefix . 'use-scale-fonts',
+                  'type'     => 'switch',
+                  'default'  => true,
+                  'required' => array($prefix . 'use-responsive-font-size', 'equals', true),
+                  'subtitle' => __('This makes the fonts scale in size from one breakpoint to the next, rather than suddenly changing at each breakpoint.', 'pzarchitect')
+              ),
+              array(
                   'id'              => $prefix . 'content-font-size-bp1',
                   'title'           => __('Font size - large screen ', 'pzarchitect'),
                   'subtitle'        => $_architect_options[ 'architect_breakpoint_1' ][ 'width' ] . __(' and above', 'pzarchitect'),
@@ -3265,7 +3305,10 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
                   'id'              => $prefix . 'content-font-size-bp2',
                   'title'           => __('Font size - medium screen ', 'pzarchitect'),
                   'subtitle'        => $_architect_options[ 'architect_breakpoint_2' ][ 'width' ] . ' to ' . $_architect_options[ 'architect_breakpoint_1' ][ 'width' ],
-                  'required'        => array($prefix . 'use-responsive-font-size', 'equals', true),
+                  'required'        => array(
+                      array($prefix . 'use-responsive-font-size', 'equals', true),
+                      array($prefix . 'use-scale-fonts', 'equals', false)
+                  ),
                   'type'            => 'typography',
                   'text-decoration' => false,
                   'font-variant'    => false,
@@ -3311,6 +3354,28 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
                   'word-spacing'    => false,
                   'letter-spacing'  => false,
               ),
+              array(
+                  'id'       => $prefix . 'content-font-scale-upper-bp',
+                  'title'    => __('Override large screen breakpoint', 'pzarchitect'),
+                  'type'     => 'text',
+                  'default'  => 1280,
+                  'subtitle' => __('Above this window width, no scaling will be done.'),
+                  'required' => array(
+                      array($prefix . 'use-responsive-font-size', 'equals', true),
+                      array($prefix . 'use-scale-fonts', 'equals', true)
+                  ),
+              ),
+              array(
+                  'id'       => $prefix . 'content-font-scale-lower-bp',
+                  'title'    => __('Override small screen breakpoint', 'pzarchitect'),
+                  'type'     => 'text',
+                  'default'  => 360,
+                  'subtitle' => __('Below this window width, no scaling will be done.'),
+                  'required' => array(
+                      array($prefix . 'use-responsive-font-size', 'equals', true),
+                      array($prefix . 'use-scale-fonts', 'equals', true)
+                  ),
+              )
               //            array(
               //                'id'      => $prefix . 'content-font-size-range',
               //                'title'   => __('Font size range', 'pzarchitect'),

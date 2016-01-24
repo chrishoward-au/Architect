@@ -380,6 +380,7 @@
           }
           echo '</ul></div>';
         }
+        echo '<p>Tutorial: <a href="http://architect4wp.com/codex/architect-importing-blueprints-and-presets/" target=_blank>Importing Blueprints and Presets</a></p>';
         echo '<p>' . __('<strong>Blueprints</strong>: If you have a <strong>Blueprint</strong> in a .txt format, you may import it by uploading it here. The new Blueprint will then be opened ready for editing. Blueprint export files can be created from context menu on the Blueprint listing.') . '</p>';
         echo '<p>' . __('<strong>Presets</strong>: If you have a <strong>Preset</strong> in a .zip format, you may import it by uploading it here. It will then appear in the Blueprints, Preset Selector') . '</p>
       <div class="pzarc-upload-preset">

@@ -1473,7 +1473,8 @@ li.arc-message .arc-presets-link {
       max-width: 200px;
       padding: 5px 10px;
       background: #e7e7e7;
-      white-space: normal; }
+      white-space: normal;
+      min-height: 280px; }
       .arc-presets-selector .container span:hover {
         background: #fff; }
       .arc-presets-selector .container span label p {

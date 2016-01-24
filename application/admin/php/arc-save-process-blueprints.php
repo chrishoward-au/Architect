@@ -72,7 +72,7 @@
                                                  $value,
 //                                                 $specificity_class.'.pzarchitect.pzarc-blueprint_' . $pzarc_blueprints[ '_blueprints_short-name' ],
                                                  $specificity_class
-             //                                    $bpkeys[ 'classes' ]
+            //                                    $bpkeys[ 'classes' ]
             );
           }
         }
@@ -254,22 +254,24 @@
     // Default units are %
     if (!empty($pzarc_blueprints[ '_blueprints_section-' . $i . '-panels-margins-guttered' ]) && 'basic' === $pzarc_blueprints[ '_blueprints_section-' . $i . '-layout-mode' ] && !empty($pzarc_blueprints[ '_blueprints_section-' . $i . '-layout-mode' ])) {
       $hmargin = (($lmargin + $rmargin) * ($columns - 1) / $columns) . (empty($margin_units) ? '%' : $margin_units);
-// 15px 15px 3c.... 15+15*2/3 = 20px instead of 30px
+        // 15px 15px 3c.... 15+15*2/3 = 20px instead of 30px
     } else {
       $hmargin = ($lmargin + $rmargin) . (empty($margin_units) ? '%' : $margin_units);
-
     }
+
     if ($pzarc_blueprints[ '_blueprints_section-0-panels-fixed-width' ]) {
 
 //      $column_width = ( 0 == ($lmargin+$rmargin) ? $panel_width : $panel_width - intval($hmargin)  ).'px;';
       $column_width = $panel_width . 'px;';
     } else {
-      $column_width = (0 == ($lmargin + $rmargin) ? 'calc(100%  / ' . $columns . ')' : 'calc(100% / ' . $columns . ' - ' . $hmargin . ')');
+      $rpercent = round(100/$columns,2); // Since 1.6.1. IE11 fixes http://cruft.io/posts/percentage-calculations-in-ie/
+      $rhmargin = round((float)$hmargin,0).(empty($margin_units) ? '%' : $margin_units); // Since 1.6.1. IE11 fixes http://caniuse.com/#search=calc
+      $column_width = (0 == ($lmargin + $rmargin) ? 'calc(100%  / ' . $columns . ')' : 'calc( ' . $rpercent . '% - ' . $rhmargin . ')');
     }
 
     $panels_margins = pzarc_process_spacing($pzarc_blueprints[ '_blueprints_section-' . $i . '-panels-margins' ]);
 
-    if ('masonry' === $pzarc_blueprints[ '_blueprints_section-' . $i . '-layout-mode' ] && !empty($pzarc_blueprints['_blueprints_masonry-features']) && in_array('bidirectional',$pzarc_blueprints['_blueprints_masonry-features'])) {
+    if ('masonry' === $pzarc_blueprints[ '_blueprints_section-' . $i . '-layout-mode' ] && !empty($pzarc_blueprints[ '_blueprints_masonry-features' ]) && in_array('bidirectional', $pzarc_blueprints[ '_blueprints_masonry-features' ])) {
       $pzarc_mediaq_css .= $panels_class . ' {width:auto;' . $panels_margins . ' ;}';
     } else {
       $pzarc_mediaq_css .= $panels_class . ' {width:' . $column_width . ';' . $panels_margins . ' ;}';
@@ -328,7 +330,7 @@
     $nl = "\n";
 //var_dump($pzarc_panels);
     // Step thru each field looking for ones to format
-    $class_prefix = '#pzarc-blueprint_' . $pzarc_panels[ '_blueprints_short-name' ] . ' .pzarc-panel_'. $pzarc_panels[ '_blueprints_short-name' ];
+    $class_prefix = '#pzarc-blueprint_' . $pzarc_panels[ '_blueprints_short-name' ] . ' .pzarc-panel_' . $pzarc_panels[ '_blueprints_short-name' ];
 
     // DANGER WILL ROBINSON!
     // json_decode on different enviroments converts UTF-8 data in different ways. I end up getting on of values '240.00' locally and '240' on production - massive dissaster. Morover if conversion fails string get's returned as NULL
@@ -382,46 +384,121 @@
 
         // TODO: Lazy ass! Work outhow to do this in case statement!
         // Titles responsive fonts
+        // BP1
         case ($key == '_panels_design_title-font-size-bp1' && !empty($pzarc_panels[ '_panels_design_title-font-size-bp1' ]) && !empty($pzarc_panels[ '_panels_design_use-responsive-font-size-title' ])):
           $em_width = (int)str_replace('px', '', $_architect_options[ 'architect_breakpoint_1' ][ 'width' ]) / 16;
-          $pzarc_contents .= '@media (min-width: ' . $em_width . 'em) { ' . $class_prefix . ' .entry-title {font-size:' . $pzarc_panels[ '_panels_design_title-font-size-bp1' ][ 'font-size' ] . '!important;line-height:' . $pzarc_panels[ '_panels_design_title-font-size-bp1' ][ 'line-height' ] . ';!important}}' . $nl;
+          if (!empty($pzarc_panels[ '_panels_design_use-scale-fonts-title' ])) {
+            $font_size1 = $pzarc_panels[ '_panels_design_title-font-size-bp1' ][ 'font-size' ];
+            $widthU     = !empty($pzarc_panels[ '_panels_design_title-font-scale-upper-bp' ]) ? (int)$pzarc_panels[ '_panels_design_title-font-scale-upper-bp' ] : 1280;
+            $em_widthU  = $widthU / 16;
+            $pzarc_contents .= '@media (min-width: ' . $em_widthU . 'em) { ' . $class_prefix . ' .entry-title.is-responsive-scaled {font-size:' . $font_size1 . ';line-height:' . $pzarc_panels[ '_panels_design_title-font-size-bp1' ][ 'line-height' ] . ';}}' . $nl;
+          } else {
+            $pzarc_contents .= '@media (min-width: ' . $em_width . 'em) { ' . $class_prefix . ' .entry-title {font-size:' . $pzarc_panels[ '_panels_design_title-font-size-bp1' ][ 'font-size' ] . '!important;line-height:' . $pzarc_panels[ '_panels_design_title-font-size-bp1' ][ 'line-height' ] . ';!important}}' . $nl;
+          }
           break;
 
+        // BP2
         case ($key == '_panels_design_title-font-size-bp2' && !empty($pzarc_panels[ '_panels_design_title-font-size-bp2' ]) && !empty($pzarc_panels[ '_panels_design_use-responsive-font-size-title' ])):
-          $em_widthU = (int)str_replace('px', '', $_architect_options[ 'architect_breakpoint_1' ][ 'width' ]) / 16;
-          $em_widthL = (int)str_replace('px', '', $_architect_options[ 'architect_breakpoint_2' ][ 'width' ]) / 16;
-          $pzarc_contents .= '@media (min-width: ' . $em_widthL . 'em) and (max-width: ' . $em_widthU . 'em) { ' . $class_prefix . ' .entry-title {font-size:' . $pzarc_panels[ '_panels_design_title-font-size-bp2' ][ 'font-size' ] . '!important;line-height:' . $pzarc_panels[ '_panels_design_title-font-size-bp2' ][ 'line-height' ] . '!important;}}' . $nl;
+          if (!empty($pzarc_panels[ '_panels_design_use-scale-fonts-title' ])) {
+            $widthU    = !empty($pzarc_panels[ '_panels_design_title-font-scale-upper-bp' ]) ? (int)$pzarc_panels[ '_panels_design_title-font-scale-upper-bp' ] : 1280;
+            $widthL    = !empty($pzarc_panels[ '_panels_design_title-font-scale-lower-bp' ]) ? (int)$pzarc_panels[ '_panels_design_title-font-scale-lower-bp' ] : 360;
+            $em_widthU = $widthU / 16;
+            $em_widthL = $widthL / 16;
+
+            $font_size1 = (float)$pzarc_panels[ '_panels_design_title-font-size-bp1' ][ 'font-size' ];
+            $font_size2 = (float)$pzarc_panels[ '_panels_design_title-font-size-bp2' ][ 'font-size' ];
+            $font_size3 = (float)$pzarc_panels[ '_panels_design_title-font-size-bp3' ][ 'font-size' ];
+            $font_size  = "calc( {$font_size3}px + ({$font_size1} - {$font_size3}) * ( (100vw - {$widthL}px) / ( {$widthU} - {$widthL}) ))";
+
+            $line_height1 = (float)$pzarc_panels[ '_panels_design_title-font-size-bp1' ][ 'line-height' ];
+            $line_height2 = (float)$pzarc_panels[ '_panels_design_title-font-size-bp2' ][ 'line-height' ];
+            $line_height3 = (float)$pzarc_panels[ '_panels_design_title-font-size-bp3' ][ 'line-height' ];
+            $line_height  = "calc( {$line_height3}px + ({$line_height1} - {$line_height3}) * ( (100vw - {$widthL}px) / ( {$widthU} - {$widthL}) ))";
+
+            $line_heightff = ($line_height1 / $font_size1 + $line_height3 / $font_size3) / 2; // Since 1.6.1 Changed line height to value for firefox. http://caniuse.com/#search=calc
+
+            $pzarc_contents .= '@media (min-width: ' . $em_widthL . 'em) and (max-width: ' . $em_widthU . 'em) { ' . $class_prefix . ' .entry-title.is-responsive-scaled, ' . $class_prefix . ' {font-size:' . $font_size . ';line-height:' . $line_heightff . ';line-height:' . $line_height . ';}}' . $nl;
+          } else {
+            $em_widthU = (int)str_replace('px', '', $_architect_options[ 'architect_breakpoint_1' ][ 'width' ]) / 16;
+            $em_widthL = (int)str_replace('px', '', $_architect_options[ 'architect_breakpoint_2' ][ 'width' ]) / 16;
+            $pzarc_contents .= '@media (min-width: ' . $em_widthL . 'em) and (max-width: ' . $em_widthU . 'em) { ' . $class_prefix . ' .entry-title {font-size:' . $pzarc_panels[ '_panels_design_title-font-size-bp2' ][ 'font-size' ] . '!important;line-height:' . $pzarc_panels[ '_panels_design_title-font-size-bp2' ][ 'line-height' ] . '!important;}}' . $nl;
+          }
           break;
 
+        // BP3
         case ($key == '_panels_design_title-font-size-bp3' && !empty($pzarc_panels[ '_panels_design_title-font-size-bp3' ]) && !empty($pzarc_panels[ '_panels_design_use-responsive-font-size-title' ])):
           $em_width = (int)str_replace('px', '', $_architect_options[ 'architect_breakpoint_2' ][ 'width' ]) / 16;
-          $pzarc_contents .= '@media (max-width: ' . $em_width . 'em) { ' . $class_prefix . ' .entry-title {font-size:' . $pzarc_panels[ '_panels_design_title-font-size-bp3' ][ 'font-size' ] . '!important;line-height:' . $pzarc_panels[ '_panels_design_title-font-size-bp3' ][ 'line-height' ] . '!important;}}' . $nl;
 
+          if (!empty($pzarc_panels[ '_panels_design_use-scale-fonts-title' ])) {
+            $font_size3 = $pzarc_panels[ '_panels_design_title-font-size-bp3' ][ 'font-size' ];
+            $widthL=!empty($pzarc_panels[ '_panels_design_title-font-scale-lower-bp' ])?(int)$pzarc_panels[ '_panels_design_title-font-scale-lower-bp' ]:360;
+            $em_widthL = $widthL / 16;
+            $pzarc_contents .= '@media (max-width: ' . $em_widthL . 'em) { ' . $class_prefix . ' .entry-title.is-responsive-scaled, ' . $class_prefix . ' {font-size:' . $font_size3 . ';line-height:' . $pzarc_panels[ '_panels_design_title-font-size-bp3' ][ 'line-height' ] . ';}}' . $nl;
+          } else {
+            $pzarc_contents .= '@media (max-width: ' . $em_width . 'em) { ' . $class_prefix . ' .entry-title {font-size:' . $pzarc_panels[ '_panels_design_title-font-size-bp3' ][ 'font-size' ] . '!important;line-height:' . $pzarc_panels[ '_panels_design_title-font-size-bp3' ][ 'line-height' ] . '!important;}}' . $nl;
+          }
           break;
+
         // Content responsive fonts
+        // BP1
         case ($key == '_panels_design_content-font-size-bp1' && !empty($pzarc_panels[ '_panels_design_content-font-size-bp1' ]) && !empty($pzarc_panels[ '_panels_design_use-responsive-font-size' ])):
 
           $em_width = (int)str_replace('px', '', $_architect_options[ 'architect_breakpoint_1' ][ 'width' ]) / 16;
 
-          $pzarc_contents .= '@media (min-width: ' . $em_width . 'em) { ' . $class_prefix . ' .entry-content, ' . $class_prefix . ' .entry-excerpt {font-size:' . $pzarc_panels[ '_panels_design_content-font-size-bp1' ][ 'font-size' ] . '!important;line-height:' . $pzarc_panels[ '_panels_design_content-font-size-bp1' ][ 'line-height' ] . ';!important}}' . $nl;
-
+          if (!empty($pzarc_panels[ '_panels_design_use-scale-fonts' ])) {
+            $font_size1 = $pzarc_panels[ '_panels_design_content-font-size-bp1' ][ 'font-size' ];
+            $widthU=!empty($pzarc_panels[ '_panels_design_content-font-scale-upper-bp' ])?(int)$pzarc_panels[ '_panels_design_content-font-scale-upper-bp' ]:1280;
+            $em_widthU = $widthU / 16;
+            $pzarc_contents .= '@media (min-width: ' . $em_widthU . 'em) { ' . $class_prefix . ' .entry-content.is-responsive-scaled, ' . $class_prefix . ' .entry-excerpt.is-responsive-scaled {font-size:' . $font_size1 . ';line-height:' . $pzarc_panels[ '_panels_design_content-font-size-bp1' ][ 'line-height' ] . ';}}' . $nl;
+          }else {
+            $pzarc_contents .= '@media (min-width: ' . $em_width . 'em) { ' . $class_prefix . ' .entry-content.is-responsive, ' . $class_prefix . ' .entry-excerpt.is-responsive {font-size:' . $pzarc_panels[ '_panels_design_content-font-size-bp1' ][ 'font-size' ] . ';line-height:' . $pzarc_panels[ '_panels_design_content-font-size-bp1' ][ 'line-height' ] . ';}}' . $nl;
+          }
           break;
 
+        // BP2
         case ($key == '_panels_design_content-font-size-bp2' && !empty($pzarc_panels[ '_panels_design_content-font-size-bp2' ]) && !empty($pzarc_panels[ '_panels_design_use-responsive-font-size' ])):
 
-          $em_widthU = (int)str_replace('px', '', $_architect_options[ 'architect_breakpoint_1' ][ 'width' ]) / 16;
-          $em_widthL = (int)str_replace('px', '', $_architect_options[ 'architect_breakpoint_2' ][ 'width' ]) / 16;
 
-          $pzarc_contents .= '@media (min-width: ' . $em_widthL . 'em) and (max-width: ' . $em_widthU . 'em) { ' . $class_prefix . ' .entry-content, ' . $class_prefix . ' .entry-excerpt {font-size:' . $pzarc_panels[ '_panels_design_content-font-size-bp2' ][ 'font-size' ] . '!important;line-height:' . $pzarc_panels[ '_panels_design_content-font-size-bp2' ][ 'line-height' ] . '!important;}}' . $nl;
+          if (!empty($pzarc_panels[ '_panels_design_use-scale-fonts' ])) {
+            $widthU=!empty($pzarc_panels[ '_panels_design_content-font-scale-upper-bp' ])?(int)$pzarc_panels[ '_panels_design_content-font-scale-upper-bp' ]:1280;
+            $widthL=!empty($pzarc_panels[ '_panels_design_content-font-scale-lower-bp' ])?(int)$pzarc_panels[ '_panels_design_content-font-scale-lower-bp' ]:360;
+            $em_widthU = $widthU / 16;
+            $em_widthL = $widthL / 16;
 
+            $font_size1 = (float)$pzarc_panels[ '_panels_design_content-font-size-bp1' ][ 'font-size' ];
+            $font_size2 = (float)$pzarc_panels[ '_panels_design_content-font-size-bp2' ][ 'font-size' ];
+            $font_size3 = (float)$pzarc_panels[ '_panels_design_content-font-size-bp3' ][ 'font-size' ];
+            $font_size = "calc( {$font_size3}px + ({$font_size1} - {$font_size3}) * ( (100vw - {$widthL}px) / ( {$widthU} - {$widthL}) ))";
+
+            $line_height1 = (float)$pzarc_panels[ '_panels_design_content-font-size-bp1' ][ 'line-height' ];
+            $line_height2 = (float)$pzarc_panels[ '_panels_design_content-font-size-bp2' ][ 'line-height' ];
+            $line_height3 = (float)$pzarc_panels[ '_panels_design_content-font-size-bp3' ][ 'line-height' ];
+            $line_height = "calc( {$line_height3}px + ({$line_height1} - {$line_height3}) * ( (100vw - {$widthL}px) / ( {$widthU} - {$widthL}) ))";
+
+           $line_heightff = ($line_height1/$font_size1 + $line_height3/$font_size3)/2; // Since 1.6.1 Changed line height to value for firefox. http://caniuse.com/#search=calc
+
+            $pzarc_contents .= '@media (min-width: ' . $em_widthL . 'em) and (max-width: ' . $em_widthU . 'em) { ' . $class_prefix . ' .entry-content.is-responsive-scaled, ' . $class_prefix . ' .entry-excerpt.is-responsive-scaled {font-size:' . $font_size . ';line-height:' . $line_heightff . ';line-height:' . $line_height . ';}}' . $nl;
+          } else {
+            $em_widthU = (int)str_replace('px', '', $_architect_options[ 'architect_breakpoint_1' ][ 'width' ]) / 16;
+            $em_widthL = (int)str_replace('px', '', $_architect_options[ 'architect_breakpoint_2' ][ 'width' ]) / 16;
+            $pzarc_contents .= '@media (min-width: ' . $em_widthL . 'em) and (max-width: ' . $em_widthU . 'em) { ' . $class_prefix . ' .entry-content.is-responsive, ' . $class_prefix . ' .entry-excerpt.is-responsive {font-size:' . $pzarc_panels[ '_panels_design_content-font-size-bp2' ][ 'font-size' ] . ';line-height:' . $pzarc_panels[ '_panels_design_content-font-size-bp2' ][ 'line-height' ] . ';}}' . $nl;
+          }
           break;
 
+        // BP3
         case ($key == '_panels_design_content-font-size-bp3' && !empty($pzarc_panels[ '_panels_design_content-font-size-bp3' ]) && !empty($pzarc_panels[ '_panels_design_use-responsive-font-size' ])):
 
           $em_width = (int)str_replace('px', '', $_architect_options[ 'architect_breakpoint_2' ][ 'width' ]) / 16;
 
-          $pzarc_contents .= '@media (max-width: ' . $em_width . 'em) { ' . $class_prefix . ' .entry-content, ' . $class_prefix . ' .entry-excerpt {font-size:' . $pzarc_panels[ '_panels_design_content-font-size-bp3' ][ 'font-size' ] . '!important;line-height:' . $pzarc_panels[ '_panels_design_content-font-size-bp3' ][ 'line-height' ] . '!important;}}' . $nl;
+          if (!empty($pzarc_panels[ '_panels_design_use-scale-fonts' ])) {
+            $font_size3 = $pzarc_panels[ '_panels_design_content-font-size-bp3' ][ 'font-size' ];
+            $widthL=!empty($pzarc_panels[ '_panels_design_content-font-scale-lower-bp' ])?(int)$pzarc_panels[ '_panels_design_content-font-scale-lower-bp' ]:360;
+            $em_widthL = $widthL / 16;
+            $pzarc_contents .= '@media (max-width: ' . $em_widthL . 'em) { ' . $class_prefix . ' .entry-content.is-responsive-scaled, ' . $class_prefix . ' .entry-excerpt.is-responsive-scaled {font-size:' . $font_size3 . ';line-height:' . $pzarc_panels[ '_panels_design_content-font-size-bp3' ][ 'line-height' ] . ';}}' . $nl;
+          } else {
+            $pzarc_contents .= '@media (max-width: ' . $em_width . 'em) { ' . $class_prefix . ' .entry-content.is-responsive, ' . $class_prefix . ' .entry-excerpt.is-responsive {font-size:' . $pzarc_panels[ '_panels_design_content-font-size-bp3' ][ 'font-size' ] . ';line-height:' . $pzarc_panels[ '_panels_design_content-font-size-bp3' ][ 'line-height' ] . ';}}' . $nl;
 
+          }
           break;
 
 
@@ -527,10 +604,10 @@
             if ((string)$pzarc_panels[ '_panels_design_thumb-width' ] === '0') {
               $twidth = 'auto;';
             } else {
-              $twidth = $pzarc_panels[ '_panels_design_thumb-width' ] - (str_replace('%', '', $pzarc_panels[ '_panels_design_image-spacing' ][ 'margin-left' ]) + str_replace('%', '', $pzarc_panels[ '_panels_design_image-spacing' ][ 'margin-right' ])).'%;';
+              $twidth = $pzarc_panels[ '_panels_design_thumb-width' ] - (str_replace('%', '', $pzarc_panels[ '_panels_design_image-spacing' ][ 'margin-left' ]) + str_replace('%', '', $pzarc_panels[ '_panels_design_image-spacing' ][ 'margin-right' ])) . '%;';
             }
-            $float   = ($value === 'content-left') ? 'left' : 'right';
-            $pzarc_contents .= $class_prefix . ' .in-content-thumb {width:' . $twidth  . $margins . '}' . $nl;
+            $float = ($value === 'content-left') ? 'left' : 'right';
+            $pzarc_contents .= $class_prefix . ' .in-content-thumb {width:' . $twidth . $margins . '}' . $nl;
 
             if ($pzarc_panels[ '_panels_design_alternate-feature-position' ] === 'on') {
               $pzarc_contents .= $class_prefix . '.odd-panel .in-content-thumb {float:' . $float . ';}' . $nl;
