@@ -597,6 +597,14 @@
         $panel_def[ $component ] = str_replace('{{postlink}}', $panel_def[ 'postlink' ], $panel_def[ $component ]);
         $panel_def[ $component ] = str_replace('{{closepostlink}}', '</a>', $panel_def[ $component ]);
       }
+      switch (true) {
+        case !empty($this->section[ '_panels_design_use-scale-fonts-title' ]) && !empty($this->section[ '_panels_design_use-responsive-font-size-title' ]):
+          $panel_def[ $component ] = str_replace('{{extensionclass}}', ' is-responsive-scaled ', $panel_def[ $component ]);
+          break;
+        case !empty($this->section[ '_panels_design_use-responsive-font-size-title' ]):
+          $panel_def[ $component ] = str_replace('{{extensionclass}}', ' is-responsive ', $panel_def[ $component ]);
+          break;
+      }
 
       return self::render_generics($component, $content_type, $panel_def[ $component ], $layout_mode);
 
