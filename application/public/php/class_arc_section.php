@@ -92,6 +92,7 @@
     function open_section()
     {
       pzdb('open_section');
+      // Add the excerpt filters
       if (!empty($this->section[ 'section-panel-settings' ][ '_panels_design_excerpts-word-count' ])) {
         add_filter('excerpt_length', array(&$this, 'set_excerpt_length'), 999);
       }
@@ -207,10 +208,10 @@
 
     function set_excerpt_more($excerpt_more)
     {
-      $new_more = $this->section[ 'section-panel-settings' ][ '_panels_design_readmore-truncation-indicator' ];
-      $new_more .= ($this->section[ 'section-panel-settings' ][ '_panels_design_readmore-text' ] ? '<a href="' . get_the_permalink() . '" class="readmore moretag">' . $this->section[ 'section-panel-settings' ][ '_panels_design_readmore-text' ] . '</a>' : null);
+//      $new_more = $this->section[ 'section-panel-settings' ][ '_panels_design_readmore-truncation-indicator' ];
+//      $new_more .= ($this->section[ 'section-panel-settings' ][ '_panels_design_readmore-text' ] ? '<a href="' . get_the_permalink() . '" class="readmore moretag">' . $this->section[ 'section-panel-settings' ][ '_panels_design_readmore-text' ] . '</a>' : null);
 
-      return $new_more;
+      return pzarc_make_excerpt_more($this->section[ 'section-panel-settings' ]);
 
     }
 

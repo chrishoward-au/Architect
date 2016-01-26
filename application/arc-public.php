@@ -320,8 +320,8 @@
         $architect->build_blueprint($overrides, $caller, $additional_overrides);
 
         // might need this... don't know
-        if (is_main_query() || in_the_loop() || $caller === 'shortcode') {
-        }
+      //        if (is_main_query() || in_the_loop() || $caller === 'shortcode') {
+      //        }
       }
 
       // Cleanup
@@ -335,7 +335,10 @@
     }
 
     // Tell WP to resume using the main query just in case we might have accidentally left another query active. (0.9.0.2 This might be our saviour!)
-    wp_reset_postdata();
+    // Thois is at the end of the build, so shouldnt' be needed again! v1.6.1
+    //    wp_reset_postdata();
+    //    pzdebug('wp_reset_postdata');
+
     pzdb('end pzarc');
     remove_filter('wp_image_editors', 'bfi_wp_image_editor');
     remove_filter('image_resize_dimensions', 'bfi_image_resize_dimensions');

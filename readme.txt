@@ -3,7 +3,7 @@ Contributors: chrishoward
 Tags: content,display,posts,pages,gallery,slider,tabs,tabbed,tabular,widget,hooks
 Requires at least: 3.5.0
 Tested up to: 4.5
-Stable tag: 1.6.1
+Stable tag: 1.7.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Plugin URI: http://architect4wp.com
@@ -85,6 +85,8 @@ No. We don't delete any of your data. In the future a method will be provided fo
 
 For support, please send an email to support@pizazzwp.com
 
+TODO: Add a default single post/page Blueprint;  Blueprint title and pagination styling; Add codex links; Add breakpoints for thumbs
+
 
 == Screenshots ==
 
@@ -93,17 +95,21 @@ For support, please send an email to support@pizazzwp.com
 
 == Changelog ==
 
-TODO: Add a default single post/page Blueprint;  Blueprint title and pagination styling
-= 1.6.1 =
+= 1.7.0 =
 * ADDED: Scaled font sizes for title and content.
 * ADDED: Image Carousel preset the same as on the demos site.
+* ADDED: Excerpt trimming for Characters, Paragraphs, More tag
+* ADDED: Option to remove shortcodes from Excerpts.
 * CHANGED: Masonry transition time is now much faster
 * CHANGED: Included a link to the importing Blueprints and Presets tutorial
 * CHANGED: Small visual changes to Preset Selector
-* FIXED: Minor security issue because of missing index.php
-* FIXED: Cache creation could cause a warning if a directory in the cache.
 * FIXED: Layouts issues with percentages and calcs in Firefox and Internet Explorer 11.
 * FIXED: The way custom post types load. Improves Beaver Builder compatibility
+* FIXED: Problem if Architect called in a WP loop with Defaults as content source
+
+= 1.6.1 =
+* FIXED: Minor security issue because of missing index.php
+* FIXED: Cache creation could cause a warning if a directory in the cache.
 
 = 1.6.0 =
 * ADDED: Beaver Builder module for selecting a Blueprint to display.

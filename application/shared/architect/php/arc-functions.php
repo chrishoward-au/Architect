@@ -915,7 +915,7 @@
   function pzarc_convert_name_to_id($post_name)
   {
     global $wpdb, $_architect_options;
-    // We don't want transients used for admins since they may be testing new settings - which won't take!
+    // We don't want transients used for admins since they may be testing new pzarc_settings - which won't take!
     if (!empty($_architect_options[ 'architect_enable_query_cache' ]) && (!current_user_can('manage_options') || !current_user_can('edit_others_pages')) && false === ($post_id = get_transient('pzarc_post_name_to_id_' . $post_name))) {
       // It wasn't there, so regenerate the data and save the transient
       $post_id = $wpdb->get_var("SELECT ID FROM $wpdb->posts WHERE post_name = '" . $post_name . "'");
@@ -1946,3 +1946,17 @@
     }
   }
   function return_taxonomies(){$args = array('public'=>true,'_builtin'=>false);$output = 'names';$taxonomies = get_taxonomies($args, $output);return $taxonomies;}
+
+  /**
+   * @param $pzarc_settings
+   * @return string
+   * Use in Loop
+   */
+  function pzarc_make_excerpt_more($pzarc_settings)
+  {
+    $new_more = $pzarc_settings[ '_panels_design_readmore-truncation-indicator' ];
+    $new_more .= ($pzarc_settings[ '_panels_design_readmore-text' ] ? '<a href="' . get_the_permalink() . '" class="readmore moretag">' . $pzarc_settings[ '_panels_design_readmore-text' ] . '</a>' : null);
+
+    return $new_more;
+
+  }

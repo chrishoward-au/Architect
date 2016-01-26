@@ -492,16 +492,79 @@
 
     public function get_excerpt(&$post)
     {
-      if (!empty($this->section[ '_panels_design_manual-excerpts' ]) && !has_excerpt()) {
-        $this->data[ 'excerpt' ] = '';
-      } else {
-        $this->data[ 'excerpt' ] = apply_filters('the_excerpt', do_shortcode(get_the_excerpt()));
+      switch (true) {
+
+        case !empty($this->section[ '_panels_design_manual-excerpts' ]) && !has_excerpt():
+          $this->data[ 'excerpt' ] = '';
+          break;
+
+        case !empty($this->section[ '_panels_design_excerpts-trim-type' ]) && $this->section[ '_panels_design_excerpts-trim-type' ] === 'characters':
+          $this->data[ 'excerpt' ] = apply_filters('the_excerpt',substr(wp_strip_all_tags(get_the_content()), 0, $this->section[ '_panels_design_excerpts-word-count' ]).pzarc_make_excerpt_more($this->section));
+          break;
+
+        case !empty($this->section[ '_panels_design_excerpts-trim-type' ]) && $this->section[ '_panels_design_excerpts-trim-type' ] === 'paragraphs':
+          $the_lot = wpautop(get_the_content());
+          if (empty($this->section[ '_panels_design_process-excerpts-shortcodes' ]) || $this->section[ '_panels_design_process-excerpts-shortcodes' ] === 'process') {
+            $the_lot = do_shortcode($the_lot);
+          } else {
+            $the_lot = strip_shortcodes($the_lot);
+          }
+          $the_lot   = str_replace('</p>', '{/EOP/}', $the_lot);
+          $the_lot   = str_replace('<p>', '', $the_lot);
+          $the_lot   = str_replace('{/EOP/}{/EOP/}', '{/EOP/}', $the_lot);
+          $the_paras = explode('{/EOP/}', $the_lot);
+
+          // get rid of any blank ones
+          $the_new_paras = array();
+          foreach ($the_paras as $k => $the_para) {
+            if (!empty($the_para)) {
+              $the_new_paras[] = $the_para;
+            }
+          }
+          $the_paras               = $the_new_paras;
+          $this->data[ 'excerpt' ] = '';
+          $i                       = 1;
+          while ($i <= (int)$this->section[ '_panels_design_excerpts-word-count' ] && $i <= count($the_paras)) {
+            $this->data[ 'excerpt' ] .= '<p>' . $the_paras[ $i - 1 ] . '</p>';
+            $i++;
+          }
+          $this->data[ 'excerpt' ] = apply_filters('the_excerpt',do_shortcode($this->data[ 'excerpt' ]).pzarc_make_excerpt_more($this->section));
+
+          break;
+
+        case
+            !empty($this->section[ '_panels_design_excerpts-trim-type' ]) && $this->section[ '_panels_design_excerpts-trim-type' ] === 'moretag':
+          // More tags are automatically executed on the non-single pages. And no way to override. Pain!
+          //
+          $the_lot = get_extended(get_the_content());
+          if (!empty($the_lot[ 'extended' ])) {
+            $this->data[ 'excerpt' ] = $the_lot[ 'main' ];
+          } else {
+            $this->data[ 'excerpt' ] = get_the_excerpt();
+          }
+          if (empty($this->section[ '_panels_design_process-excerpts-shortcodes' ]) || $this->section[ '_panels_design_process-excerpts-shortcodes' ] === 'process') {
+            $this->data[ 'excerpt' ] = apply_filters('the_excerpt', do_shortcode($this->data[ 'excerpt' ]));
+          } else {
+            $this->data[ 'excerpt' ] = apply_filters('the_excerpt', strip_shortcodes($this->data[ 'excerpt' ]));
+          }
+          break;
+
+        default:
+          $this->data[ 'excerpt' ] = get_the_excerpt();
+          if (empty($this->section[ '_panels_design_process-excerpts-shortcodes' ]) || $this->section[ '_panels_design_process-excerpts-shortcodes' ] === 'process') {
+            $this->data[ 'excerpt' ] = apply_filters('the_excerpt', do_shortcode($this->data[ 'excerpt' ]));
+          } else {
+            $this->data[ 'excerpt' ] = apply_filters('the_excerpt', strip_shortcodes($this->data[ 'excerpt' ]));
+          }
       }
+
     }
 
 
-    public function get_custom(&$post)
-    {
+    public
+    function get_custom(
+        &$post
+    ) {
       /** CUSTOM FIELDS **/
       $postmeta = get_post_meta(get_the_ID());
       $cfcount  = $this->section[ '_panels_design_custom-fields-count' ];
@@ -564,8 +627,10 @@
       }
     }
 
-    public function get_miscellanary(&$post)
-    {
+    public
+    function get_miscellanary(
+        &$post
+    ) {
       global $_architect_options;
       $this->data[ 'inherit-hw-block-type' ] = (!empty($_architect_options[ 'architect_hw-content-class' ]) ? 'block-type-content ' : '');
 
@@ -577,6 +642,7 @@
       $this->data [ 'postformat' ] = (empty($post_format) ? 'standard' : $post_format);
 
     }
+
     /****************************************
      * End of data collect
      ***************************************/
@@ -585,8 +651,10 @@
      * Begin rendering
      ***************************************/
 
-    public function render_title($component, $content_type, $panel_def, $rsid, $layout_mode = false)
-    {
+    public
+    function render_title(
+        $component, $content_type, $panel_def, $rsid, $layout_mode = false
+    ) {
       if ('thumb' === $this->section[ '_panels_design_title-prefix' ]) {
         $panel_def[ $component ] = str_replace('{{title}}', $this->data[ 'title' ][ 'thumb' ] . '<span class="pzarc-title-wrap">' . $this->data[ 'title' ][ 'title' ] . '</span>', $panel_def[ $component ]);
       } else {
@@ -610,8 +678,10 @@
 
     }
 
-    public function render_meta($component, $content_type, $panel_def, $rsid, $layout_mode = false)
-    {
+    public
+    function render_meta(
+        $component, $content_type, $panel_def, $rsid, $layout_mode = false
+    ) {
       $panel_def[ $component ] = str_replace('{{id}}', $this->data[ 'meta' ][ 'id' ], $panel_def[ $component ]);
       $panel_def[ $component ] = str_replace('{{datetime}}', $this->data[ 'meta' ][ 'datetime' ], $panel_def[ $component ]);
       $panel_def[ $component ] = str_replace('{{fdatetime}}', $this->data[ 'meta' ][ 'fdatetime' ], $panel_def[ $component ]);
@@ -656,8 +726,10 @@
       return self::render_generics($component, $content_type, do_shortcode($panel_def[ $component ]), $layout_mode);
     }
 
-    public function render_content($component, $content_type, $panel_def, $rsid, $layout_mode = false)
-    {
+    public
+    function render_content(
+        $component, $content_type, $panel_def, $rsid, $layout_mode = false
+    ) {
       $panel_def[ $component ] = str_replace('{{content}}', $this->data[ 'content' ], $panel_def[ $component ]);
       if ($this->section[ '_panels_design_feature-location' ] === 'content-left' || $this->section[ '_panels_design_feature-location' ] === 'content-right' && in_array('content', $this->section[ '_panels_design_feature-in' ])) {
         if (!empty($this->data[ 'image' ][ 'image' ])) {
@@ -716,11 +788,14 @@
           $panel_def[ $component ] = str_replace('{{extensionclass}}', ' is-responsive ', $panel_def[ $component ]);
           break;
       }
+
       return self::render_generics($component, $content_type, $panel_def[ $component ], $layout_mode);
     }
 
-    public function render_excerpt($component, $content_type, $panel_def, $rsid, $layout_mode = false)
-    {
+    public
+    function render_excerpt(
+        $component, $content_type, $panel_def, $rsid, $layout_mode = false
+    ) {
       $panel_def[ $component ] = str_replace('{{excerpt}}', $this->data[ 'excerpt' ], $panel_def[ $component ]);
 
       if ($this->section[ '_panels_design_feature-location' ] === 'content-left' || $this->section[ '_panels_design_feature-location' ] === 'content-right' && in_array('excerpt', $this->section[ '_panels_design_feature-in' ])) {
@@ -791,8 +866,10 @@
      *
      * @return mixed
      */
-    public function render_image($component, $content_type, $panel_def, $rsid, $layout_mode = false)
-    {
+    public
+    function render_image(
+        $component, $content_type, $panel_def, $rsid, $layout_mode = false
+    ) {
       if ('video' === $this->section[ '_panels_settings_feature-type' ]) {
         $panel_def[ $component ] = str_replace('{{image}}', $this->data[ 'video' ][ 'source' ], $panel_def[ $component ]);
 
@@ -1018,15 +1095,19 @@
 
     }
 
-    public function render_wrapper($component, $content_type, $panel_def, $rsid, $layout_mode = false)
-    {
+    public
+    function render_wrapper(
+        $component, $content_type, $panel_def, $rsid, $layout_mode = false
+    ) {
       $panel_def[ $component ] = str_replace('{{mimic-block-type}}', $this->data[ 'inherit-hw-block-type' ], $panel_def[ $component ]);
 
       return self::render_generics($component, $content_type, $panel_def[ $component ], $layout_mode);
     }
 
-    public function render_generics($component, $source, $line, $layout_mode)
-    {
+    public
+    function render_generics(
+        $component, $source, $line, $layout_mode
+    ) {
 
       // Devs can plugin here. Filter must return $line value
       $line = apply_filters('arc_render_components', $line, $component, $source, $layout_mode);
@@ -1072,8 +1153,10 @@
     /**
      * Default Loop
      */
-    public function loop($section_no, &$architect, &$panel_class, $class)
-    {
+    public
+    function loop(
+        $section_no, &$architect, &$panel_class, $class
+    ) {
       $this->build            = $architect->build;
       $this->arc_query        = $architect->arc_query;
       $section[ $section_no ] = $this->build->blueprint[ 'section_object' ][ $section_no ];
@@ -1092,9 +1175,15 @@
       $loopmax   = (defined('PZARC_PRO') ? 999999999 : 15);
       $loopcount = 0;
 
+      // Weird nudge needed when Arc is called inside a main loop with defaults.
+      if ($this->build->blueprint[ '_blueprints_content-source' ] === 'defaults') {
+        $this->arc_query->have_posts();
+      }
+
       while ($this->arc_query->have_posts() && $loopcount++ < $loopmax) {
+        //  var_dump("You is here");
         $this->arc_query->the_post();
-//        pzdb('top_of_loop Post:'.get_the_id());
+        pzdb('top_of_loop Post:' . get_the_id());
         $section[ $section_no ]->render_panel($panel_def, $i, $class, $panel_class, $this->arc_query);
 
         if ($i++ >= $this->build->blueprint[ '_blueprints_section-' . ($section_no - 1) . '-panels-per-view' ] && !empty($this->build->blueprint[ '_blueprints_section-' . ($section_no - 1) . '-panels-limited' ])) {
@@ -1104,9 +1193,9 @@
             // it will break anyways!
             // Without this check, we get weird errors in page builder if limited content and show 1 and default content type.
           }
-
+          break;
         }
-//        pzdb('bottom_of_loop Post:'.get_the_id());
+        pzdb('bottom_of_loop Post:' . get_the_id());
 
       }
       pzdb('post_generic_loop');
@@ -1120,8 +1209,10 @@
     /**
      * get_nav_items
      */
-    public function get_nav_items($blueprints_navigator, &$arc_query, $nav_labels, $nav_title_len = 0)
-    {
+    public
+    function get_nav_items(
+        $blueprints_navigator, &$arc_query, $nav_labels, $nav_title_len = 0
+    ) {
       // We shouldn't have to pass arc_query! And we don't need to in this one, but for some unsolved reason in arc_Panel_Dummy, we do. So for consistency, doing it here too.
       $nav_items = array();
       $i         = 0;
@@ -1237,8 +1328,10 @@
      *
      * @return int|mixed
      */
-    protected function get_thumbsize($dim)
-    {
+    protected
+    function get_thumbsize(
+        $dim
+    ) {
 
       // $dim for later development with rectangular thumbs
       $thumbsize = 60;

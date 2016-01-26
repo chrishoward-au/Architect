@@ -2997,7 +2997,7 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
                   'id'       => $prefix . 'use-scale-fonts-title',
                   'type'     => 'switch',
                   'default'  => true,
-                  'required'        => array($prefix . 'use-responsive-font-size-title', 'equals', true),
+                  'required' => array($prefix . 'use-responsive-font-size-title', 'equals', true),
                   'subtitle' => __('This makes the fonts scale in size from one breakpoint to the next, rather than suddenly changing at each breakpoint.', 'pzarchitect')
               ),
               array(
@@ -3029,7 +3029,8 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
                   'id'              => $prefix . 'title-font-size-bp2',
                   'title'           => __('Font size - medium screen ', 'pzarchitect'),
                   'subtitle'        => $_architect_options[ 'architect_breakpoint_2' ][ 'width' ] . ' to ' . $_architect_options[ 'architect_breakpoint_1' ][ 'width' ],
-                  'required'        => array(array($prefix . 'use-responsive-font-size-title', 'equals', true),array($prefix . 'use-scale-fonts-title', 'equals', false)),
+                  'required'        => array(array($prefix . 'use-responsive-font-size-title', 'equals', true),
+                                             array($prefix . 'use-scale-fonts-title', 'equals', false)),
                   'type'            => 'typography',
                   'text-decoration' => false,
                   'font-variant'    => false,
@@ -3207,22 +3208,6 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
                   'class'  => 'heading',
               ),
               array(
-                  'id'      => $prefix . 'excerpts-word-count',
-                  'title'   => __('Excerpt length (words)', 'pzarchitect'),
-                  'type'    => 'spinner',
-                  'default' => 55,
-                  'min'     => 1,
-                  'max'     => 9999,
-                  'step'    => 1,
-              ),
-              array(
-                  'title'   => __('Truncation indicator', 'pzarchitect'),
-                  'id'      => $prefix . 'readmore-truncation-indicator',
-                  'type'    => 'text',
-                  'class'   => 'textbox-small',
-                  'default' => '[...]',
-              ),
-              array(
                   'title'    => __('Display entered excerpts only', 'pzarchitect'),
                   'id'       => $prefix . 'manual-excerpts',
                   'type'     => 'switch',
@@ -3230,7 +3215,50 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
                   'off'      => __('No', 'pzarchitect'),
                   'default'  => false,
                   //'required' => array('show_advanced', 'equals', true),
-                  'subtitle' => __('Only display excerpts that are actually entered in the Excerpt field of the post editor', 'pzarchitect')
+                  'subtitle' => __('Only display excerpts that are actually entered in the Excerpt field of the post editor.<br>Entered excerpts retain formatting.', 'pzarchitect')
+              ),
+              array(
+                  'id'      => $prefix . 'excerpts-trim-type',
+                  'title'   => __('Trim excerpts using', 'pzarchitect'),
+                  'type'    => 'button_set',
+                  'default' => 'words',
+                  'options' => array(
+                      'characters' => __('Character', 'pzarchitect'),
+                      'words'      => __('Words', 'pzarchitect'),
+                      'paragraphs' => __('Paragraphs', 'pzarchitect'),
+                      'moretag'    => __('More tag', 'pzarchitect'),
+                  ),
+                  'required'=>array($prefix . 'manual-excerpts','=',false),
+                  'subtitle'=>__('Excerpts trimmed by characters and words do not retain formatting.','pzarchitect')
+              ),
+              array(
+                  'title'    => __('Shortcodes in excerpts', 'pzarchitect'),
+                  'id'       => $prefix . 'process-excerpts-shortcodes',
+                  'type'     => 'button_set',
+                  'options'=> array(
+                  'process'       => __('Process', 'pzarchitect'),
+                  'remove'      => __('Remove', 'pzarchitect'),
+                  ),
+                  'default'  => 'process',
+                  'required'=>array($prefix . 'manual-excerpts','=',false)
+              ),
+              array(
+                  'id'      => $prefix . 'excerpts-word-count',
+                  'title'   => __('Excerpt length', 'pzarchitect'),
+                  'type'    => 'spinner',
+                  'default' => 55,
+                  'min'     => 1,
+                  'max'     => 9999,
+                  'step'    => 1,
+                  'required'=>array($prefix . 'manual-excerpts','=',false)
+              ),
+              array(
+                  'title'   => __('Truncation indicator', 'pzarchitect'),
+                  'id'      => $prefix . 'readmore-truncation-indicator',
+                  'type'    => 'text',
+                  'class'   => 'textbox-small',
+                  'default' => '[...]',
+                  'required'=>array($prefix . 'manual-excerpts','=',false)
               ),
               array(
                   'title'   => __('Read More', 'pzarchitect'),
@@ -3238,6 +3266,7 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
                   'type'    => 'text',
                   'class'   => 'textbox-medium',
                   'default' => __('Read more', 'pzarchitect'),
+                  'required'=>array($prefix . 'manual-excerpts','=',false)
               ),
               array(
                   'id'     => $prefix . 'content-responsive-heading',

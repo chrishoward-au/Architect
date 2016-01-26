@@ -222,7 +222,9 @@
 
         $source_query_class = 'arc_query_' . $this->build->blueprint[ '_blueprints_content-source' ];
         require_once($content_source[ $this->build->blueprint[ '_blueprints_content-source' ] ] . '/class_' . $source_query_class . '.php');
+
         global $wp_query;
+
         if ($this->build->blueprint[ '_blueprints_content-source' ] === 'defaults') {
           self::use_default_query();
           if (!empty($this->build->blueprint[ '_content_defaults_defaults-override' ])) {
@@ -231,6 +233,7 @@
         } else {
           self::use_custom_query($overrides, $source_query_class);
         }
+
       } else {
 
         self::use_default_query();
