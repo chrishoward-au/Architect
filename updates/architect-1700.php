@@ -27,7 +27,7 @@
         <li>New option to remove shortcodes from Excerpts.</li>
         </ul>
         <p>As always there are a few bug fixes and other tweaks that you can read about in the changelog (link below).</p>
-        <p>Also, don\'t forget to checkout my <a href="http://pizazzwp.com/codex/about-codex-documentation-system/" target="_blank">Codex plugin</a>. Codex is for making beautiful step-based documentation.</p>
+        <p><strong>Also, if you haven\'t already, don\'t forget to checkout my <a href="http://pizazzwp.com/codex/about-codex-documentation-system/" target="_blank">Codex plugin</a>. Codex is for making beautiful step-based documentation.</strong></p>
 
                         <div class="pzarc-help-section">
                         <a class="pzarc-button-help" href="http://architect4wp.com/codex-listings/" target="_blank">

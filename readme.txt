@@ -85,7 +85,7 @@ No. We don't delete any of your data. In the future a method will be provided fo
 
 For support, please send an email to support@pizazzwp.com
 
-TODO: Add a default single post/page Blueprint;  Blueprint title and pagination styling; Add codex links; Add breakpoints for thumbs
+TODO: Add a default single post/page Blueprint;  Add codex links;
 
 
 == Screenshots ==
