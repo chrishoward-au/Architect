@@ -260,12 +260,11 @@
     }
 
     if ($pzarc_blueprints[ '_blueprints_section-0-panels-fixed-width' ]) {
-
 //      $column_width = ( 0 == ($lmargin+$rmargin) ? $panel_width : $panel_width - intval($hmargin)  ).'px;';
       $column_width = $panel_width . 'px;';
     } else {
       $rpercent     = round(100 / $columns, 2); // Since 1.6.1. IE11 fixes http://cruft.io/posts/percentage-calculations-in-ie/
-      $rhmargin     = round((float)$hmargin, 0) . (empty($margin_units) ? '%' : $margin_units); // Since 1.6.1. IE11 fixes http://caniuse.com/#search=calc
+      $rhmargin     = round((float)$hmargin, 2) . (empty($margin_units) ? '%' : $margin_units); // Since 1.6.1. IE11 fixes http://caniuse.com/#search=calc // 1.7 upped this to 2 decimals, Should still work in IE...
       $column_width = (0 == ($lmargin + $rmargin) ? 'calc(100%  / ' . $columns . ')' : 'calc( ' . $rpercent . '% - ' . $rhmargin . ')');
     }
 

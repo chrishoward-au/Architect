@@ -104,13 +104,14 @@ TODO: Add a default single post/page Blueprint;  Add codex links;
 * CHANGED: Masonry transition time is now much faster
 * CHANGED: Included a link to the importing Blueprints and Presets tutorial
 * CHANGED: Small visual changes to Preset Selector
-* FIXED: Layouts issues with percentages and calcs in Firefox and Internet Explorer 11.
 * FIXED: The way custom post types load. Improves Beaver Builder compatibility
 * FIXED: Problem if Architect called in a WP loop with Defaults as content source
+* FIXED: Rounding of panels margin needed two decimal places (was 0 in changes in 1.6.1)
 
 = 1.6.1 =
 * FIXED: Minor security issue because of missing index.php
 * FIXED: Cache creation could cause a warning if a directory in the cache.
+* FIXED: Layouts issues with percentages and calcs in Firefox and Internet Explorer 11.
 
 = 1.6.0 =
 * ADDED: Beaver Builder module for selecting a Blueprint to display.
