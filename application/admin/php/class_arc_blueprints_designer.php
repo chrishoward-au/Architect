@@ -3599,11 +3599,12 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
                       'image'    => __('Attachment page', 'pzarchitect'),
                       'original' => __('Lightbox', 'pzarchitect'),
                       'url'      => __('Specific URL', 'pzarchitect'),
-                      // 'destination-url'=> __('Destination URL','pzarchitect')
+                      'destination-url'=> __('Gallery Link URL','pzarchitect')
                   ),
                   'default'  => 'page',
                   'required' => array('_panels_settings_feature-type', '=', 'image'),
-                  'subtitle' => __('Set what happens when a viewer clicks on the image', 'pzazrchitect')
+                  'subtitle' => __('Set what happens when a viewer clicks on the image', 'pzazrchitect'),
+                  'desc'=>__('Gallery Link URL requires the WP Gallery Custom Links plugin','pzarchitect')
               ),
               array(
                   'title'    => __('Use alternate lightbox', 'pzarchitect'),

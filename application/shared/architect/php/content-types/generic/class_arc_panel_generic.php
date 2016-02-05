@@ -37,6 +37,7 @@
       $this->data[ 'image' ][ 'image' ]    = null;
       $this->data[ 'image' ][ 'caption' ]  = null;
       $this->data[ 'image' ][ 'original' ] = null;
+      $this->data[ 'image' ][ 'id' ]       = null;
 
       $this->data[ 'bgimage' ][ 'thumb' ] = null;
 
@@ -267,6 +268,7 @@
 
     public function get_image(&$post)
     {
+
       /** FEATURED IMAGE */
       $thumb_id    = get_post_thumbnail_id();
       $focal_point = get_post_meta($thumb_id, 'pzgp_focal_point', true);
@@ -281,6 +283,10 @@
         $thumb_id = (!empty($matches[ 0 ]) ? $matches[ 0 ] : false);
       }
 
+      if ($post->post_type==='attachment') {
+        $thumb_id= $post->ID;
+      }
+      $this->data[ 'image' ][ 'id' ] = $thumb_id;
 
       //        if (false)
       //        {
@@ -294,6 +300,7 @@
       // TODO: Add all the focal point stuff to all the post types images and bgimages
       // Easiest to do via a reusable function or all this stuff could be done once!!!!!!!!!
       // could pass $this->data thru a filter
+
       $this->data[ 'image' ][ 'image' ] = wp_get_attachment_image($thumb_id, array(
           $width,
           $height,
@@ -366,16 +373,18 @@
         $this->data[ 'image' ][ 'original' ] = array($imageURL, $width, $height, false);
         $this->data[ 'image' ][ 'caption' ]  = '';
       }
-
     }
 
     public function get_bgimage(&$post)
     {
       /** BACKGROUND IMAGE */
 
-      $thumb_id    = get_post_thumbnail_id();
-      $focal_point = get_post_meta($thumb_id, 'pzgp_focal_point', true);
-
+      $thumb_id                      = get_post_thumbnail_id();
+      $focal_point                   = get_post_meta($thumb_id, 'pzgp_focal_point', true);
+      if ($post->post_type==='attachment') {
+        $thumb_id= $post->ID;
+      }
+      $this->data[ 'image' ][ 'id' ] = $thumb_id;
       // If the post is already passing the attachment,the above won't work so we need to use the post id
       if (empty($focal_point)) {
         $focal_point = get_post_meta(get_the_id(), 'pzgp_focal_point', true);
@@ -499,7 +508,7 @@
           break;
 
         case !empty($this->section[ '_panels_design_excerpts-trim-type' ]) && $this->section[ '_panels_design_excerpts-trim-type' ] === 'characters':
-          $this->data[ 'excerpt' ] = apply_filters('the_excerpt',substr(wp_strip_all_tags(get_the_content()), 0, $this->section[ '_panels_design_excerpts-word-count' ]).pzarc_make_excerpt_more($this->section));
+          $this->data[ 'excerpt' ] = apply_filters('the_excerpt', substr(wp_strip_all_tags(get_the_content()), 0, $this->section[ '_panels_design_excerpts-word-count' ]) . pzarc_make_excerpt_more($this->section));
           break;
 
         case !empty($this->section[ '_panels_design_excerpts-trim-type' ]) && $this->section[ '_panels_design_excerpts-trim-type' ] === 'paragraphs':
@@ -528,7 +537,7 @@
             $this->data[ 'excerpt' ] .= '<p>' . $the_paras[ $i - 1 ] . '</p>';
             $i++;
           }
-          $this->data[ 'excerpt' ] = apply_filters('the_excerpt',do_shortcode($this->data[ 'excerpt' ]).pzarc_make_excerpt_more($this->section));
+          $this->data[ 'excerpt' ] = apply_filters('the_excerpt', do_shortcode($this->data[ 'excerpt' ]) . pzarc_make_excerpt_more($this->section));
 
           break;
 
@@ -743,24 +752,7 @@
           $panel_def[ $component ] = str_replace('{{incontent}}', 'in-content-thumb', $panel_def[ $component ]);
 
           if ('none' !== $this->section[ '_panels_design_link-image' ]) {
-            $link = '';
-            switch ($this->section[ '_panels_design_link-image' ]) {
-              case 'page':
-              case 'url':
-                $link = ('url' === $this->section[ '_panels_design_link-image' ]) ? '<a href="' . $this->section[ '_panels_design_link-image-url' ] . '" title="' . $this->section[ '_panels_design_link-image-url-tooltip' ] . '">' : $panel_def[ 'postlink' ];
-                break;
-              case 'original':
-                if (empty($this->section[ '_panels_design_alternate-lightbox' ])) {
-                  wp_enqueue_script('js-magnific');
-                  wp_enqueue_script('js-magnific-arc');
-                  wp_enqueue_style('css-magnific');
-
-                  $link = '<a class="lightbox lightbox-' . $rsid . ' incontent" href="' . $this->data[ 'image' ][ 'original' ][ 0 ] . '" title="' . $this->data[ 'title' ][ 'title' ] . '" >';
-                } else {
-                  $link = '<a class="lightbox-' . $rsid . ' incontent" href="' . $this->data[ 'image' ][ 'original' ][ 0 ] . '" title="' . $this->data[ 'title' ][ 'title' ] . '" rel="lightbox">';
-                }
-                break;
-            }
+            $link                    = self::get_link($rsid, 'incontent', $panel_def[ 'postlink' ]);
             $panel_def[ $component ] = str_replace('{{postlink}}', $link, $panel_def[ $component ]);
             $panel_def[ $component ] = str_replace('{{closepostlink}}', '</a>', $panel_def[ $component ]);
           }
@@ -810,23 +802,7 @@
           $panel_def[ $component ] = str_replace('{{incontent}}', 'in-content-thumb', $panel_def[ $component ]);
 
           if ('none' !== $this->section[ '_panels_design_link-image' ]) {
-            $link = '';
-            switch ($this->section[ '_panels_design_link-image' ]) {
-              case 'page':
-              case 'url':
-                $link = ('url' === $this->section[ '_panels_design_link-image' ]) ? '<a href="' . $this->section[ '_panels_design_link-image-url' ] . '" title="' . $this->section[ '_panels_design_link-image-url-tooltip' ] . '">' : $panel_def[ 'postlink' ];
-                break;
-              case 'original':
-                if (empty($this->section[ '_panels_design_alternate-lightbox' ])) {
-                  wp_enqueue_script('js-magnific');
-                  wp_enqueue_script('js-magnific-arc');
-                  wp_enqueue_style('css-magnific');
-                  $link = '<a class="lightbox lightbox-' . $rsid . ' inexcerpt" href="' . $this->data[ 'image' ][ 'original' ][ 0 ] . '" title="' . $this->data[ 'title' ][ 'title' ] . '" >';
-                } else {
-                  $link = '<a class="lightbox-' . $rsid . ' inexcerpt" href="' . $this->data[ 'image' ][ 'original' ][ 0 ] . '" title="' . $this->data[ 'title' ][ 'title' ] . '" rel="lightbox">';
-                }
-                break;
-            }
+            $link                    = self::get_link($rsid, 'inexcerpt', $panel_def[ 'postlink' ]);
             $panel_def[ $component ] = str_replace('{{postlink}}', $link, $panel_def[ $component ]);
             $panel_def[ $component ] = str_replace('{{closepostlink}}', '</a>', $panel_def[ $component ]);
           }
@@ -875,24 +851,7 @@
 
       } else {
         if ('none' !== $this->section[ '_panels_design_link-image' ]) {
-          $link = '';
-          switch ($this->section[ '_panels_design_link-image' ]) {
-            case 'page':
-            case 'url':
-              $link = ('url' === $this->section[ '_panels_design_link-image' ]) ? '<a href="' . $this->section[ '_panels_design_link-image-url' ] . '" title="' . $this->section[ '_panels_design_link-image-url-tooltip' ] . '">' : $panel_def[ 'postlink' ];
-              break;
-            case 'original':
-              if (empty($this->section[ '_panels_design_alternate-lightbox' ])) {
-                wp_enqueue_script('js-magnific');
-                wp_enqueue_script('js-magnific-arc');
-                wp_enqueue_style('css-magnific');
-
-                $link = '<a class="lightbox lightbox-' . $rsid . ' inimage" href="' . $this->data[ 'image' ][ 'original' ][ 0 ] . '" title="' . $this->data[ 'title' ][ 'title' ] . '" >';
-              } else {
-                $link = '<a class="lightbox-' . $rsid . ' inimage" href="' . $this->data[ 'image' ][ 'original' ][ 0 ] . '" title="' . $this->data[ 'title' ][ 'title' ] . '" rel="lightbox">';
-              }
-              break;
-          }
+          $link                    = self::get_link($rsid, 'inimage', $panel_def[ 'postlink' ]);
           $panel_def[ $component ] = str_replace('{{postlink}}', $link, $panel_def[ $component ]);
           $panel_def[ $component ] = str_replace('{{closepostlink}}', '</a>', $panel_def[ $component ]);
         }
@@ -972,25 +931,9 @@
 
         }
         $panel_def[ $component ] = str_replace('{{trim-scale}}', ' ' . $this->section[ '_panels_design_feature-location' ] . ' ' . $this->section[ '_panels_design_background-image-resize' ], $panel_def[ $component ]);
-        if ('none' !== $this->section[ '_panels_design_link-image' ]) {
-          $link = '';
-          switch ($this->section[ '_panels_design_link-image' ]) {
-            case 'page':
-            case 'url':
-              $link = ('url' === $this->section[ '_panels_design_link-image' ]) ? '<a href="' . $this->section[ '_panels_design_link-image-url' ] . '" title="' . $this->section[ '_panels_design_link-image-url-tooltip' ] . '">' : $panel_def[ 'postlink' ];
-              break;
-            case 'original':
-              if (empty($this->section[ '_panels_design_alternate-lightbox' ])) {
-                wp_enqueue_script('js-magnific');
-                wp_enqueue_script('js-magnific-arc');
-                wp_enqueue_style('css-magnific');
 
-                $link = '<a class="lightbox lightbox-' . $rsid . ' inbackg" href="' . $this->data[ 'image' ][ 'original' ][ 0 ] . '" title="' . $this->data[ 'title' ][ 'title' ] . '">';
-              } else {
-                $link = '<a class="lightbox-' . $rsid . ' inbackg" href="' . $this->data[ 'image' ][ 'original' ][ 0 ] . '" title="' . $this->data[ 'title' ][ 'title' ] . '" rel="lightbox">';
-              }
-              break;
-          }
+        if ('none' !== $this->section[ '_panels_design_link-image' ]) {
+          $link                    = self::get_link($rsid, 'inbackg', $panel_def[ 'postlink' ]);
           $panel_def[ $component ] = str_replace('{{postlink}}', $link, $panel_def[ $component ]);
           $panel_def[ $component ] = str_replace('{{closepostlink}}', '</a>', $panel_def[ $component ]);
         }
@@ -1444,6 +1387,35 @@
       }
 
       return $panel_def;
+    }
+
+    private function get_link($rsid, $location, $postlink)
+    {
+      $link = '';
+      switch ($this->section[ '_panels_design_link-image' ]) {
+        case 'page':
+        case 'url':
+          $link = ('url' === $this->section[ '_panels_design_link-image' ]) ? '<a href="' . $this->section[ '_panels_design_link-image-url' ] . '" title="' . $this->section[ '_panels_design_link-image-url-tooltip' ] . '">' : $postlink;
+          break;
+        case 'destination-url':
+          $destination_url = get_post_meta($this->data[ 'image' ][ 'id' ], '_gallery_link_url', true);
+          $destination_target= get_post_meta($this->data[ 'image' ][ 'id' ], '_gallery_link_target', true);
+          $link = !empty($destination_url) ? '<a href="' . $destination_url . '" title="' . $this->section[ '_panels_design_link-image-url-tooltip' ] . '" '.(!empty($destination_target)?'target='.$destination_target:'').'>' : '';
+          break;
+        case 'original':
+          if (empty($this->section[ '_panels_design_alternate-lightbox' ])) {
+            wp_enqueue_script('js-magnific');
+            wp_enqueue_script('js-magnific-arc');
+            wp_enqueue_style('css-magnific');
+
+            $link = '<a class="lightbox lightbox-' . $rsid . ' ' . $location . '" href="' . $this->data[ 'image' ][ 'original' ][ 0 ] . '" title="' . $this->data[ 'title' ][ 'title' ] . '" >';
+          } else {
+            $link = '<a class="lightbox-' . $rsid . ' ' . $location . '" href="' . $this->data[ 'image' ][ 'original' ][ 0 ] . '" title="' . $this->data[ 'title' ][ 'title' ] . '" rel="lightbox">';
+          }
+          break;
+      }
+
+      return $link;
     }
 
   }

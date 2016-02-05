@@ -100,6 +100,7 @@ TODO: Add a default single post/page Blueprint;  Add codex links;
 * ADDED: Image Carousel preset the same as on the demos site.
 * ADDED: Excerpt trimming for Characters, Paragraphs, More tag
 * ADDED: Option to remove shortcodes from Excerpts.
+* ADDED: Option to link images to a custom link per image. Requires the WP Gallery Custom Links plugin
 * CHANGED: Masonry transition time is now much faster
 * CHANGED: Included a link to the importing Blueprints and Presets tutorial
 * CHANGED: Small visual changes to Preset Selector
