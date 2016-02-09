@@ -82,19 +82,22 @@
     $actions         = array();
     $i               = 1;
     foreach ($actions_options as $k => $v) {
-      if ($k != 'last_tab') {
+      if ($k !== 'last_tab' && $k !== 'architect_actions_number-of') {
         $actions[ $i ][ $k ] = $v;
       }
-      if ($k == 'architect_actions_' . $i . '_pageids') {
+      if ($k === 'architect_actions_' . $i . '_tax-slugs') { // TODO: Need a better way!
         $i++;
       }
     }
     require_once PZARC_PLUGIN_APP_PATH . '/public/php/class_showblueprint.php';
+    $bpactions = array();
     foreach ($actions as $k => $v) {
-      if (isset($v[ 'architect_actions_' . $k . '_action-name' ]) && isset($v[ 'architect_actions_' . $k . '_blueprint' ])) {
-        new showBlueprint($v[ 'architect_actions_' . $k . '_action-name' ], $v[ 'architect_actions_' . $k . '_blueprint' ], 'home');
+      if (!empty($v[ 'architect_actions_' . $k . '_action-name' ]) && !empty($v[ 'architect_actions_' . $k . '_blueprint' ])) {
+        $bpactions[$k] = new showBlueprint($k,$v); // We could pass this in all at once...
       }
     }
+
+    unset($bpactions);
 
     // Override WP Gallery shortcode if necessary
     //

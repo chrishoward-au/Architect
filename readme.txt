@@ -107,6 +107,7 @@ TODO: Add a default single post/page Blueprint;  Add codex links;
 * FIXED: The way custom post types load. Improves Beaver Builder compatibility
 * FIXED: Problem if Architect called in a WP loop with Defaults as content source
 * FIXED: Rounding of panels margin needed two decimal places (was 0 in changes in 1.6.1)
+* FIXED: Actions Editor was showing Blueprints on all pages
 
 = 1.6.1 =
 * FIXED: Minor security issue because of missing index.php
