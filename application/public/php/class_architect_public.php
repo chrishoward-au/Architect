@@ -383,6 +383,13 @@
       do_action('arc_after_navigation');
       do_action("arc_after_navigation_{$bp_shortname}");
 
+      do_action('arc_before_blueprint_footer');
+      if (!empty($this->build->blueprint['_blueprints_footer-text-link'])) {
+        echo '<div class="pzarc-blueprint-footer">';
+        echo do_shortcode(strip_tags($this->build->blueprint['_blueprints_footer-text-link'],'<br><p><a><strong><em><ul><ol><li><pre><code><blockquote>'));
+        echo '</div>';
+      }
+      do_action('arc_after_blueprint_footer');
       echo '</div> <!-- end pzarchitect blueprint ' . $this->build->blueprint[ '_blueprints_short-name' ] . ' v' . PZARC_VERSION . PZARC_SHOP.' -->';
       pzdb('end blueprint html');
 

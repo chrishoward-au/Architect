@@ -29,12 +29,12 @@
     }
 
     .pzarc-panel-overlay {
-      position:absolute;
-      top:0;
-      bottom:0;
-      width:100%;
-      height:100%;
-      z-index:99;
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 99;
     }
     .entry-excerpt,
     .entry-content {
@@ -53,7 +53,7 @@
       &.nothumb {
         //     width: 100%; TODO: WTF? Why is this breakking shtuff?
         &.maxwidth {
-          width: 100%!important; // Need an important to override the specificity of IDs
+          width: 100% !important; // Need an important to override the specificity of IDs
         }
       }
     }
@@ -74,11 +74,12 @@
       img {
         max-width: 100%;
         height: auto;
-        width:auto; // Added v1.3 to fix screen rotation problem
-        &.fullscreen{
-          max-width:none;
-          width:auto;
-          height:100vh;
+        width: auto; // Added v1.3 to fix screen rotation problem
+
+        &.fullscreen {
+          max-width: none;
+          width: auto;
+          height: 100vh;
         }
       }
       &.object-fit_fill {
@@ -100,6 +101,11 @@
         float: none;
         margin: 0 auto;
         text-align: center;
+        img {
+          display:block;
+          margin-left:auto;
+          margin-right:auto;
+        }
       }
       .caption {
         display: block;
@@ -186,10 +192,10 @@
       img {
         display: block;
         height: auto;
-        &.fullscreen{
-          max-width:none;
-          width:auto;
-          height:100vh;
+        &.fullscreen {
+          max-width: none;
+          width: auto;
+          height: 100vh;
         }
 
       }
@@ -202,7 +208,7 @@
           overflow: visible;
           //This fixes the inline-block adding a gap below the image
           vertical-align: top;
-//          vertical-align: text-top; // changed at version 1.2.12
+          //          vertical-align: text-top; // changed at version 1.2.12
 
           img {
             max-width: none;
@@ -287,6 +293,28 @@
     td {
       padding: 1%;
     }
+
+    .pzarc-back, .pzarc-front {
+      position: relative;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      width: auto;
+      height: auto;
+    }
+    .pzarc-front {
+    }
+    .pzarc-back {
+      display: none;
+      overflow-y: auto;
+    }
+    .pzarc-hidden {
+    }
+    .pzarc-close-back {
+      text-align: center;
+      padding: 5px;
+    }
   }
 
   tr.pzarc-panel {
@@ -304,8 +332,8 @@
     &.datatables {
       tbody,
       thead {
-        display:table;
-        width:100%;
+        display: table;
+        width: 100%;
       }
     }
   }

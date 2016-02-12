@@ -80,6 +80,7 @@ No. We don't delete any of your data. In the future a method will be provided fo
 * Importing Blueprints, you will have to redo filters. This is a limitation of Redux not Architect.
 * Videos don't autopause when changing slides
 * Retina images currently only generates 2x
+* Some fields may not save when offline. This is a Redux issue too.
 
 == Support ==
 
@@ -101,9 +102,12 @@ TODO: Add a default single post/page Blueprint;  Add codex links;
 * ADDED: Excerpt trimming for Characters, Paragraphs, More tag
 * ADDED: Option to remove shortcodes from Excerpts.
 * ADDED: Option to link images to a custom link per image. Requires the WP Gallery Custom Links plugin
+* ADDED: Option for Blueprint footer text. Can include limited HTML and shortcodes.
+* ADDED: Option for showing full content without leaving the page.
 * CHANGED: Masonry transition time is now much faster
 * CHANGED: Included a link to the importing Blueprints and Presets tutorial
 * CHANGED: Small visual changes to Preset Selector
+* CHANGED: Tweaked sysinfo
 * FIXED: The way custom post types load. Improves Beaver Builder compatibility
 * FIXED: Problem if Architect called in a WP loop with Defaults as content source
 * FIXED: Rounding of panels margin needed two decimal places (was 0 in changes in 1.6.1)

@@ -1045,6 +1045,12 @@
                     'type'     => 'text',
                     'subtitle' => __('Enter a title to display above the Blueprint', 'pzarchitect'),
                 ),
+                array(
+                    'title'    => 'Blueprint footer text',
+                    'id'       => $prefix . 'footer-text-link',
+                    'type'     => 'text',
+                    'subtitle' => __('Enter text to show at the foot of the Blueprint. You can also enter a shortcode here.', 'pzarchitect'),
+                ),
                 //                array(
                 //                    'id'       => $prefix . 'section-' . $i . '-panel-layout',
                 //                    'title'    => __('Panels layout (discontinued)', 'pzarchitect'),
@@ -1749,7 +1755,7 @@
                   'on'      => 'Yes',
                   'off'     => 'No',
                   'default' => false,
-                  'desc'    => __('If your content type is Defaults and you choose to enable overrides, pagination will likely mess up if this Blueprint is displayed on the standard WP blog page.', 'pzarchitect')
+                  'desc'    => __('If this Blueprint is displaying blog posts on the blog page (thus Defaults is the Content Source) and you choose to enable overrides, pagination will likely mess up.', 'pzarchitect')
               ),
               array(
                   'title'    => __('Settings', 'pzarchitect'),
@@ -1766,6 +1772,7 @@
                   'min'      => 1,
                   'max'      => 99,
                   'required' => array('_blueprints_pagination', 'equals', true),
+                  'desc'=>__('If this Blueprint is displaying blog posts on the blog page (thus Defaults is the Content Source), change WP <em>Settings > Reading > Blog pages show at most</em> to control posts per page','pzarchitect')
               ),
               array(
                   'id'      => '_blueprints_pager-location',
@@ -1990,7 +1997,7 @@
                   //                  'select2'  => array('allowClear' => false),
                   'default'  => 'defaults',
                   'options'  => $content_types,
-                  'desc'     => __('If you want a Blueprint to display the content of the specific post/page/cpt it is to be displayed on, use the Default content source.', 'pzarchitect'),
+                  'desc'     => __('If you want a Blueprint to display the content of the specific post/page/cpt it is to be displayed on, use the Default content source.<br><strong>Select <em>Defaults</em> if this Blueprint will display blog posts on the blog page</strong>', 'pzarchitect'),
                   'subtitle' => (array_key_exists('snippets', $content_types) ? '' : 'Several more content sources supported in Architect Pro version, including Pages, Snippets, Galleries, Custom Post Types and a special Dummy option to display dummy content')
               ),
           )
@@ -3201,6 +3208,19 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
                   'subtitle' => __('Make excerpt or body 100% width if no featured image.', 'pzarchitect')
               ),
               array(
+                  'title'    => __('Action on more click', 'pzarchitect'),
+                  'id'       => $prefix . 'more-click-action',
+                  'type'     => 'button_set',
+                  'options'  => array(
+                      'none'      => __('Default', 'pzarchitect'),
+                      'slidedown' => __('Slide content down', 'pzarchitect'),
+                  ),
+                  'default'  => 'none',
+                  //'required' => array('show_advanced', 'equals', true),
+                  'subtitle' => __('Choose how body content will appear when clicking the more link', 'pzarchitect')
+              ),
+
+              array(
                   'id'     => $prefix . 'excerpt-heading',
                   'title'  => __('Excerpts', 'pzarchitect'),
                   'type'   => 'section',
@@ -3218,55 +3238,55 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
                   'subtitle' => __('Only display excerpts that are actually entered in the Excerpt field of the post editor.<br>Entered excerpts retain formatting.', 'pzarchitect')
               ),
               array(
-                  'id'      => $prefix . 'excerpts-trim-type',
-                  'title'   => __('Trim excerpts using', 'pzarchitect'),
-                  'type'    => 'button_set',
-                  'default' => 'words',
-                  'options' => array(
+                  'id'       => $prefix . 'excerpts-trim-type',
+                  'title'    => __('Trim excerpts using', 'pzarchitect'),
+                  'type'     => 'button_set',
+                  'default'  => 'words',
+                  'options'  => array(
                       'characters' => __('Character', 'pzarchitect'),
                       'words'      => __('Words', 'pzarchitect'),
                       'paragraphs' => __('Paragraphs', 'pzarchitect'),
                       'moretag'    => __('More tag', 'pzarchitect'),
                   ),
-                  'required'=>array($prefix . 'manual-excerpts','=',false),
-                  'subtitle'=>__('Excerpts trimmed by characters and words do not retain formatting.','pzarchitect')
+                  'required' => array($prefix . 'manual-excerpts', '=', false),
+                  'subtitle' => __('Excerpts trimmed by characters and words do not retain formatting.', 'pzarchitect')
               ),
               array(
                   'title'    => __('Shortcodes in excerpts', 'pzarchitect'),
                   'id'       => $prefix . 'process-excerpts-shortcodes',
                   'type'     => 'button_set',
-                  'options'=> array(
-                  'process'       => __('Process', 'pzarchitect'),
-                  'remove'      => __('Remove', 'pzarchitect'),
+                  'options'  => array(
+                      'process' => __('Process', 'pzarchitect'),
+                      'remove'  => __('Remove', 'pzarchitect'),
                   ),
                   'default'  => 'process',
-                  'required'=>array($prefix . 'manual-excerpts','=',false)
+                  'required' => array($prefix . 'manual-excerpts', '=', false)
               ),
               array(
-                  'id'      => $prefix . 'excerpts-word-count',
-                  'title'   => __('Excerpt length', 'pzarchitect'),
-                  'type'    => 'spinner',
-                  'default' => 55,
-                  'min'     => 1,
-                  'max'     => 9999,
-                  'step'    => 1,
-                  'required'=>array($prefix . 'manual-excerpts','=',false)
+                  'id'       => $prefix . 'excerpts-word-count',
+                  'title'    => __('Excerpt length', 'pzarchitect'),
+                  'type'     => 'spinner',
+                  'default'  => 55,
+                  'min'      => 1,
+                  'max'      => 9999,
+                  'step'     => 1,
+                  'required' => array($prefix . 'manual-excerpts', '=', false)
               ),
               array(
-                  'title'   => __('Truncation indicator', 'pzarchitect'),
-                  'id'      => $prefix . 'readmore-truncation-indicator',
-                  'type'    => 'text',
-                  'class'   => 'textbox-small',
-                  'default' => '[...]',
-                  'required'=>array($prefix . 'manual-excerpts','=',false)
+                  'title'    => __('Truncation indicator', 'pzarchitect'),
+                  'id'       => $prefix . 'readmore-truncation-indicator',
+                  'type'     => 'text',
+                  'class'    => 'textbox-small',
+                  'default'  => '[...]',
+                  'required' => array($prefix . 'manual-excerpts', '=', false)
               ),
               array(
-                  'title'   => __('Read More', 'pzarchitect'),
-                  'id'      => $prefix . 'readmore-text',
-                  'type'    => 'text',
-                  'class'   => 'textbox-medium',
-                  'default' => __('Read more', 'pzarchitect'),
-                  'required'=>array($prefix . 'manual-excerpts','=',false)
+                  'title'    => __('Read More', 'pzarchitect'),
+                  'id'       => $prefix . 'readmore-text',
+                  'type'     => 'text',
+                  'class'    => 'textbox-medium',
+                  'default'  => __('Read more', 'pzarchitect'),
+                  'required' => array($prefix . 'manual-excerpts', '=', false)
               ),
               array(
                   'id'     => $prefix . 'content-responsive-heading',
@@ -3594,17 +3614,17 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
                   'id'       => $prefix . 'link-image',
                   'type'     => 'button_set',
                   'options'  => array(
-                      'none'     => __('None', 'pzarchitect'),
-                      'page'     => __('Post', 'pzarchitect'),
-                      'image'    => __('Attachment page', 'pzarchitect'),
-                      'original' => __('Lightbox', 'pzarchitect'),
-                      'url'      => __('Specific URL', 'pzarchitect'),
-                      'destination-url'=> __('Gallery Link URL','pzarchitect')
+                      'none'            => __('None', 'pzarchitect'),
+                      'page'            => __('Post', 'pzarchitect'),
+                      'image'           => __('Attachment page', 'pzarchitect'),
+                      'original'        => __('Lightbox', 'pzarchitect'),
+                      'url'             => __('Specific URL', 'pzarchitect'),
+                      'destination-url' => __('Gallery Link URL', 'pzarchitect')
                   ),
                   'default'  => 'page',
                   'required' => array('_panels_settings_feature-type', '=', 'image'),
                   'subtitle' => __('Set what happens when a viewer clicks on the image', 'pzazrchitect'),
-                  'desc'=>__('Gallery Link URL requires the WP Gallery Custom Links plugin','pzarchitect')
+                  'desc'     => __('Gallery Link URL requires the WP Gallery Custom Links plugin', 'pzarchitect')
               ),
               array(
                   'title'    => __('Use alternate lightbox', 'pzarchitect'),
