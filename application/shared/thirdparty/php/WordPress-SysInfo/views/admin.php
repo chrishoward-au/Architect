@@ -87,11 +87,13 @@ WP_POST_REVISIONS:      <?php echo defined( 'WP_POST_REVISIONS' ) ? WP_POST_REVI
 <?php _e( 'Browser:', 'pzarchitect' ); ?>                <?php echo $browser[ 'name' ] . ' ' . $browser[ 'version' ] . "\n"; ?>
 <?php _e( 'User Agent:', 'pzarchitect' ); ?>             <?php echo $browser[ 'user_agent' ] . "\n"; ?>
 
-<?php _e( 'ARCHITECT:', 'pzarchitect' ); ?>
+<?php _e( 'ARCHITECT ', 'pzarchitect' ); ?>
+<?php echo PZARC_SHOP.':'; ?>
 <?php echo "\n=============\n\r"; ?>
 <?php _e( 'Number of Blueprints:', 'pzarchitect' ); ?>   <?php echo count($blueprints) . "\n"; ?>
 <?php _e( 'Styling enabled:', 'pzarchitect' ); ?>        <?php echo ( ! empty( $_architect_options[ 'architect_enable_styling' ] ) ? 'Yes' : 'No' ) . "\n"; ?>
 <?php _e( 'All custom fields:', 'pzarchitect' ); ?>      <?php echo ( ! empty( $_architect_options[ 'architect_exclude_hidden_custom' ] ) ? 'Yes' : 'No' ) . "\n"; ?>
+<?php _e( 'Animation enabled:', 'pzarchitect' ); ?>      <?php echo ( ! empty( $_architect_options[ 'architect_animation-enable' ] ) ? 'Yes' : 'No' ) . "\n"; ?>
 <?php _e( 'Beta enabled:', 'pzarchitect' ); ?>           <?php echo ( ! empty( $_architect_options[ 'architect_beta_features' ] ) ? 'Yes' : 'No' ) . "\n"; ?>
 
 <?php _e( 'ACTIVE THEME:', 'pzarchitect' ); ?>

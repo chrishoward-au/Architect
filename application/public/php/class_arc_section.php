@@ -334,6 +334,9 @@
       if (!empty($settings[ '_panels_design_link-panel' ])) {
         echo '<a href="' . apply_filters('arc-overlay-permalink', get_the_permalink()) . '" class="pzarc-panel-overlay"></a>';
       }
+      if (!empty($settings[ '_panels_design_more-click-action' ]) && $settings[ '_panels_design_more-click-action' ]!=='none') {
+        echo '<div class="pzarc-front">';
+      }
 
       //TODO: Check this works for all scenarios
       switch ($settings[ '_panels_design_feature-location' ]) {
@@ -431,6 +434,17 @@
         $line_out = $panel_class->render_image('image', $this->source, $panel_def, $this->rsid);
         echo apply_filters("arc_filter_outer_image", self::strip_unused_arctags($line_out), $postid);
 
+      }
+
+      // Close panel
+      if (!empty($settings[ '_panels_design_more-click-action' ]) && $settings[ '_panels_design_more-click-action' ]!=='none') {
+        echo '</div><div class="pzarc-back">';
+        global $post;
+        $panel_class->get_content($post);
+        echo apply_filters('the_title',self::strip_unused_arctags($panel_class->render_title('title', $this->source, $panel_def, $this->rsid)));
+        echo apply_filters('the_content',self::strip_unused_arctags($panel_class->render_content('content', $this->source, $panel_def, $this->rsid)));
+        echo '<p class="pzarc-close-back"><a href="#">Close</a></p>';
+        echo '</div>';
       }
 
       echo '</' . ('table' !== $this->layout_mode ? 'div' : 'tr') . '>'; //close panel

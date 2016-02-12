@@ -1312,7 +1312,7 @@
       foreach ($meta as $key => $value) {
         $i = $key + 1;
 //        $meta[ $key ]             = preg_replace('/%(\\w*)%/u', '{{$1}}', (!empty($section_panel_settings[ '_panels_design_meta' . $i . '-config' ]) ? $section_panel_settings[ '_panels_design_meta' . $i . '-config' ] : null));
-        $first_pass               = preg_replace('/%(\\w|[\\:\\-])*%/uiUmx', '{{$0}}', (!empty($section_panel_settings[ '_panels_design_meta' . $i . '-config' ]) ? strip_tags($section_panel_settings[ '_panels_design_meta' . $i . '-config' ], '<p><span><br><strong><em>') : null));
+        $first_pass               = preg_replace('/%(\\w|[\\:\\-])*%/uiUmx', '{{$0}}', (!empty($section_panel_settings[ '_panels_design_meta' . $i . '-config' ]) ? strip_tags($section_panel_settings[ '_panels_design_meta' . $i . '-config' ], '<p><span><br><strong><em><a>') : null));
         $meta[ $key ]             = preg_replace("/%(.*)%/uiUmx", "$1", $first_pass);
         $panel_def[ 'meta' . $i ] = str_replace('{{meta' . $i . 'innards}}', $meta[ $key ], $panel_def[ 'meta' . $i ]);
         $panel_def[ 'meta' . $i ] = str_replace('{{date}}', $panel_def[ 'datetime' ], $panel_def[ 'meta' . $i ]);

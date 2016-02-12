@@ -342,6 +342,7 @@
       $sum_to_show += ($v[ 'show' ] ? $v[ 'width' ] : 0);
       $checksum += (int)$v[ 'show' ];
     }
+
     // This is to ensure if there's only one field it will be not be assumed for use in a tabular
     $sum_to_show = $checksum > 1 ? $sum_to_show : 0;
 

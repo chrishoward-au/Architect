@@ -26,7 +26,9 @@
         <li>New option for Excerpt trimming for Characters, Paragraphs, More tag. Previously was words only.</li>
         <li>New option to remove shortcodes from Excerpts.</li>
         <li>Images can now link to custom URLs per image. Requires the WP Gallery Custom Links plugin.</li>
-        </ul>
+        <li>Added option for Blueprint footer text. Can include limited HTML and shortcodes.</li>
+        <li>Added option in for showing full content without leaving the page. Look in Content Layout > Body content/excerpt</li>
+                </ul>
         <p>As always there are a few bug fixes and other tweaks that you can read about in the changelog (link below).</p>
         <p><strong>Also, if you haven\'t already, don\'t forget to checkout my <a href="http://pizazzwp.com/codex/about-codex-documentation-system/" target="_blank">Codex plugin</a>. Codex is for making beautiful step-based documentation.</strong></p>
 
