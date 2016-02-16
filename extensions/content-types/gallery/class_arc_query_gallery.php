@@ -30,7 +30,9 @@
               preg_match("/(?<=ids=\")([\\d,\\,])*/u", $matches[ 0 ][ 0 ], $ids);
 
               $this->query_options[ 'post_type' ]           = 'attachment';
-              $this->query_options[ 'post__in' ]            = explode(',', $ids[ 0 ]);
+              if (isset($ids[0])) {
+                $this->query_options[ 'post__in' ] = explode(',', $ids[ 0 ]);
+              }
               $this->query_options[ 'post_status' ]         = array('publish', 'inherit', 'private');
               $this->query_options[ 'ignore_sticky_posts' ] = true;
             }

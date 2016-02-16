@@ -14,8 +14,8 @@
   {
     // Slick
     wp_register_script('js-arc-front-slick15js', PZARC_PLUGIN_URL . '/extensions-inc/sliders/slick15/arc-front-slick15b.js', array('jquery'), null, true);
-    wp_register_script('js-slick15js', PZARC_PLUGIN_URL . '/extensions-inc/sliders/slick15/slick-1.5.8/slick/slick.min.js', array('jquery'), null, true);
-    wp_register_style('css-slick15js', PZARC_PLUGIN_URL . '/extensions-inc/sliders/slick15/slick-1.5.8/slick/slick.css');
+    wp_register_script('js-slick15js', PZARC_PLUGIN_URL . '/extensions-inc/sliders/slick15/slick-1.5.9/slick/slick.min.js', array('jquery'), null, true);
+    wp_register_style('css-slick15js', PZARC_PLUGIN_URL . '/extensions-inc/sliders/slick15/slick-1.5.9/slick/slick.css');
     wp_register_style('css-arcslick15', PZARC_PLUGIN_URL . '/extensions-inc/sliders/slick15/arc-slick15.css');
 
     wp_enqueue_script('js-slick15js');
@@ -65,7 +65,7 @@
       '."\n\n";
 
     $pzarchitect_slider_scripts .= "\n\n".'var slick'.$blueprint[ 'blueprint-id' ].' = jQuery(".' . $blueprint[ 'uid' ] . ' .pzarc-section-using-' . $blueprint[ '_blueprints_short-name' ] . '");
-
+//console.log(slick'.$blueprint[ 'blueprint-id' ].');
     if (startPanel>0) {
       slick'.$blueprint[ 'blueprint-id' ].'.slick({initialSlide:startPanel});
     }else{

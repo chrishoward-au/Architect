@@ -108,10 +108,12 @@ TODO: Add a default single post/page Blueprint;  Add codex links;
 * CHANGED: Included a link to the importing Blueprints and Presets tutorial
 * CHANGED: Small visual changes to Preset Selector
 * CHANGED: Tweaked sysinfo
+* CHANGED: Updated Slick to 1.5.9
 * FIXED: The way custom post types load. Improves Beaver Builder compatibility
 * FIXED: Problem if Architect called in a WP loop with Defaults as content source
 * FIXED: Rounding of panels margin needed two decimal places (was 0 in changes in 1.6.1)
 * FIXED: Actions Editor was showing Blueprints on all pages
+* FIXED: Blueprint PHP notice if no images are selected for Gallery content source
 
 = 1.6.1 =
 * FIXED: Minor security issue because of missing index.php
