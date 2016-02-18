@@ -27,20 +27,28 @@
       localStorage.setItem( "gotoPanel", refs[1] );
     }
   }
+
+  /*
+    Process more click
+   */
   jQuery( '.pzarc-front .readmore' ).on( 'click', function ()
   {
 
-    var theFront = jQuery( this ).parents( '.pzarc-panel' ).find( '.pzarc-front' );
-    var theBack = jQuery( this ).parents( '.pzarc-panel' ).find( '.pzarc-back' );
+    var thePanel = jQuery( this ).parents( '.pzarc-panel' );
+    jQuery(thePanel ).addClass('open');
+    var theFront = jQuery( thePanel ).find( '.pzarc-front' );
+    var theBack = jQuery( thePanel ).find( '.pzarc-back' );
     jQuery( theFront ).slideToggle(function(){jQuery( theBack ).slideToggle();}).addClass( 'pzarc-hidden' );
 
     return false;
   } );
   jQuery( '.pzarc-close-back' ).on( 'click', function ()
   {
-    var theFront = jQuery( this ).parents( '.pzarc-panel' ).find( '.pzarc-front' );
-    var theBack = jQuery( this ).parents( '.pzarc-panel' ).find( '.pzarc-back' );
+    var thePanel = jQuery( this ).parents( '.pzarc-panel' );
+    var theFront = jQuery( thePanel ).find( '.pzarc-front' );
+    var theBack = jQuery( thePanel ).find( '.pzarc-back' );
     jQuery( theBack ).slideToggle(function(){
+      jQuery(thePanel ).removeClass('open');
       jQuery( theFront ).slideToggle().removeClass( 'pzarc-hidden' );
     });
     return false;

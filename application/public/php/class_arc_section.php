@@ -328,13 +328,16 @@
        * Open the Panel div
        *
        **********************************************************************************************************************************/
-      echo '<' . ('table' !== $this->layout_mode ? 'div' : 'tr') . ' id="bp' . $this->blueprint[ 'blueprint-id' ] . '-' . $this->panel_number . '" class="' . apply_filters('arc-extend-panel-classes', $classes, $this->blueprint) . ' ' . apply_filters('arc-extend-panel-classes_' . $this->panel_name, '', $this->blueprint) . '" ' . apply_filters('arc-extend-panel-data', '', $this->blueprint) . '">';
+
+      $moreclick_class = (!empty($settings[ '_panels_design_more-click-action' ]) && $settings[ '_panels_design_more-click-action' ] !== 'none')?' pzarc-'.$settings[ '_panels_design_more-click-action' ].' ':'';
+
+      echo '<' . ('table' !== $this->layout_mode ? 'div' : 'tr') . ' id="bp' . $this->blueprint[ 'blueprint-id' ] . '-' . $this->panel_number . '" class="'. apply_filters('arc-extend-panel-classes', $classes, $this->blueprint) . ' ' . apply_filters('arc-extend-panel-classes_' . $this->panel_name, '', $this->blueprint) .$moreclick_class . '" ' . apply_filters('arc-extend-panel-data', '', $this->blueprint) . '">';
 
       //
       if (!empty($settings[ '_panels_design_link-panel' ])) {
         echo '<a href="' . apply_filters('arc-overlay-permalink', get_the_permalink()) . '" class="pzarc-panel-overlay"></a>';
       }
-      if (!empty($settings[ '_panels_design_more-click-action' ]) && $settings[ '_panels_design_more-click-action' ]!=='none') {
+      if ($moreclick_class) {
         echo '<div class="pzarc-front">';
       }
 
@@ -437,7 +440,7 @@
       }
 
       // Close panel
-      if (!empty($settings[ '_panels_design_more-click-action' ]) && $settings[ '_panels_design_more-click-action' ]!=='none') {
+      if ($moreclick_class) {
         echo '</div><div class="pzarc-back">';
         global $post;
         $panel_class->get_content($post);

@@ -294,6 +294,17 @@
       padding: 1%;
     }
 
+    // moreclick classes
+    &.slidedown {
+      &.open {
+        overflow:visible;
+      }
+    }
+    &.slidedown-fullwidth {
+      &.open {
+        width: 100%;
+      }
+    }
     .pzarc-back, .pzarc-front {
       position: relative;
       top: 0;

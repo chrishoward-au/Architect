@@ -295,11 +295,11 @@
                 'id'      => $prefix . 'tabs',
                 'type'    => 'tabbed',
                 'options' => array(
-                    'layout'          => '<span><span class="stepno">1</span> <i class="el el-th"></i> Blueprint Design</span>',
-                    'content'         => '<span><span class="stepno">2</span> <i class="el el-filter"></i> Content Selection</span>',
-                    'panels'          => '<span><span class="stepno">3</span> <i class="el el-website"></i> Content Layout</span>',
-                    'content_styling' => '<span><span class="stepno">4</span> <i class="el el-brush"></i> Content Styling</span>',
-                    'styling'         => '<span><span class="stepno">5</span> <i class="el el-brush"></i> Blueprint Styling</span>',
+                    'layout'          => '<span><span class="stepno">1</span> <i class="el el-th"></i> <span class="pzarc-tab-title">Blueprint Design</span></span>',
+                    'content'         => '<span><span class="stepno">2</span> <i class="el el-filter"></i> <span class="pzarc-tab-title">Content Selection</span></span>',
+                    'panels'          => '<span><span class="stepno">3</span> <i class="el el-website"></i> <span class="pzarc-tab-title">Content Layout</span></span>',
+                    'content_styling' => '<span><span class="stepno">4</span> <i class="el el-brush"></i> <span class="pzarc-tab-title">Content Styling</span></span>',
+                    'styling'         => '<span><span class="stepno">5</span> <i class="el el-brush"></i> <span class="pzarc-tab-title">Blueprint Styling</span></span>',
                 ),
                 'targets' => array(
                     'layout'          => array('layout-settings'),
@@ -318,9 +318,9 @@
                 'id'      => $prefix . 'tabs',
                 'type'    => 'tabbed',
                 'options' => array(
-                    'layout'  => '<span><span class="stepno">1</span> Blueprint Design</span>',
-                    'content' => '<span><span class="stepno">2</span> Content Selection</span>',
-                    'panels'  => '<span><span class="stepno">3</span> Content Layout</span>',
+                    'layout'  => '<span><span class="stepno">1</span> <span class="pzarc-tab-title">Blueprint Design</span></span>',
+                    'content' => '<span><span class="stepno">2</span> <span class="pzarc-tab-title">Content Selection</span></span>',
+                    'panels'  => '<span><span class="stepno">3</span> <span class="pzarc-tab-title">Content Layout</span></span>',
                 ),
                 'targets' => array(
                     'layout'  => array('layout-settings'),
@@ -3009,7 +3009,7 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
               ),
               array(
                   'id'              => $prefix . 'title-font-size-bp1',
-                  'title'           => __('Font size - large screen ', 'pzarchitect'),
+                  'title'           => __('Maximum font size - large screen ', 'pzarchitect'),
                   'subtitle'        => $_architect_options[ 'architect_breakpoint_1' ][ 'width' ] . __(' and above', 'pzarchitect'),
                   'required'        => array($prefix . 'use-responsive-font-size-title', 'equals', true),
                   'type'            => 'typography',
@@ -3060,7 +3060,7 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
               ),
               array(
                   'id'              => $prefix . 'title-font-size-bp3',
-                  'title'           => __('Font size - small screen ', 'pzarchitect'),
+                  'title'           => __('Minimum font size - small screen ', 'pzarchitect'),
                   'subtitle'        => $_architect_options[ 'architect_breakpoint_2' ][ 'width' ] . ' and below',
                   'required'        => array($prefix . 'use-responsive-font-size-title', 'equals', true),
                   'type'            => 'typography',
@@ -3213,7 +3213,8 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
                   'type'     => 'button_set',
                   'options'  => array(
                       'none'      => __('Default', 'pzarchitect'),
-                      'slidedown' => __('Slide content down', 'pzarchitect'),
+                      'slidedown' => __('Slide down', 'pzarchitect'),
+                      'slidedownfullwidth' => __('Slide down full width', 'pzarchitect'),
                   ),
                   'default'  => 'none',
                   //'required' => array('show_advanced', 'equals', true),
@@ -3327,7 +3328,7 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
               ),
               array(
                   'id'              => $prefix . 'content-font-size-bp1',
-                  'title'           => __('Font size - large screen ', 'pzarchitect'),
+                  'title'           => __('Maximum font size - large screen ', 'pzarchitect'),
                   'subtitle'        => $_architect_options[ 'architect_breakpoint_1' ][ 'width' ] . __(' and above', 'pzarchitect'),
                   'required'        => array($prefix . 'use-responsive-font-size', 'equals', true),
                   'type'            => 'typography',
@@ -3380,7 +3381,7 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
               ),
               array(
                   'id'              => $prefix . 'content-font-size-bp3',
-                  'title'           => __('Font size - small screen ', 'pzarchitect'),
+                  'title'           => __('Minimum font size - small screen ', 'pzarchitect'),
                   'subtitle'        => $_architect_options[ 'architect_breakpoint_2' ][ 'width' ] . ' and below',
                   'required'        => array($prefix . 'use-responsive-font-size', 'equals', true),
                   'type'            => 'typography',
