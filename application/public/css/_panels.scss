@@ -294,14 +294,13 @@
       padding: 1%;
     }
 
-    // moreclick classes
+    // moreclick classes. These often need !important because the specificity doesn't include the panel name
     &.pzarc-slidedown {
-      &.open {
-        overflow:auto;
+      &.pzarc-open {
       }
     }
     &.pzarc-slidedown-fullwidth {
-      &.open {
+      &.pzarc-open {
         width: 100%!important;
       }
     }

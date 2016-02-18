@@ -282,7 +282,7 @@
 
     function pzarc_mb_blueprint_tabs($metaboxes, $defaults_only = false)
     {
-      $prefix   = '_blueprint_tabs_';
+      $prefix   = '_blueprint_tabs_'; // declare prefix
       $sections = array();
       global $_architect_options;
       if (empty($_architect_options)) {
@@ -423,7 +423,7 @@
      */
     function pzarc_mb_blueprint_general_settings($metaboxes, $defaults_only = false)
     {
-      $prefix = '_blueprints_';
+      $prefix = '_blueprints_'; // declare prefix
       global $_architect_options;
       $cfwarn          = false;
       $animation_state = !empty($_architect_options[ 'architect_animation-enable' ]) ? $_architect_options[ 'architect_animation-enable' ] : false;
@@ -549,7 +549,7 @@
      */
     function pzarc_mb_blueprint_design($metaboxes, $defaults_only = false)
     {
-      $prefix   = '_blueprints_';
+      $prefix = '_blueprints_'; // declare prefix
       $sections = array();
       global $_architect_options;
       if (empty($_architect_options)) {
@@ -1772,7 +1772,7 @@
                   'min'      => 1,
                   'max'      => 99,
                   'required' => array('_blueprints_pagination', 'equals', true),
-                  'desc'=>__('If this Blueprint is displaying blog posts on the blog page (thus Defaults is the Content Source), change WP <em>Settings > Reading > Blog pages show at most</em> to control posts per page','pzarchitect')
+                  'desc'     => __('If this Blueprint is displaying blog posts on the blog page (thus Defaults is the Content Source), change WP <em>Settings > Reading > Blog pages show at most</em> to control posts per page', 'pzarchitect')
               ),
               array(
                   'id'      => '_blueprints_pager-location',
@@ -1959,7 +1959,7 @@
     {
 
       // TODO: Setup a loop that reads the object containing content type info as appened by the content type classes. Will need a means of letting js know tho.
-      $prefix   = '_content_general_';
+      $prefix = '_content_general_'; // declare prefix
       $sections = array();
 //    $sections[ ] = array(
 //        'title'      => 'Settings',
@@ -1984,7 +1984,7 @@
       $blueprint_content_common = $registry->get('blueprint-content-common');
 
       // If you add/remove a content type, you have to add/remove it's side tab too
-      $prefix                 = '_content_general_';
+      $prefix = '_content_general_'; // declare prefix
       $sections[ '_general' ] = array(
           'title'      => 'Source',
           'icon_class' => 'icon-large',
@@ -2023,7 +2023,7 @@
       $sections[ '_filters' ] = $blueprint_content_common[ 0 ][ 'filters' ][ 'sections' ];
 
 
-      $prefix                      = '_content_help_';
+      $prefix = '_content_help_'; // declare prefix
       $sections[ '_content_help' ] = array(
           'title'      => 'Help',
           'icon_class' => 'icon-large',
@@ -2096,7 +2096,7 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
       }
       if (!empty($_architect_options[ 'architect_enable_styling' ])) {
         $defaults = get_option('_architect');
-        $prefix   = '_blueprints_styling_';
+        $prefix = '_blueprints_styling_'; // declare prefix
 // TODO: need to get styling to take
         $font         = '-font';
         $link         = '-links';
@@ -2135,23 +2135,52 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
                     'subtitle' => 'Class: .pzarc-blueprint_{shortname}',
                 ),
 
-                // TODO: Add shadows
+                // TODO: Add shadows! Or maybe not!
                 pzarc_redux_bg($prefix . $thisSection . $background, $this->defaults ? '' : $_architect[ 'architect_config_' . $thisSection . '-selectors' ], $defaults[ $optprefix . $thisSection . $background ]),
-                pzarc_redux_padding($prefix . $thisSection . $padding, $this->defaults ? '' : $_architect[ 'architect_config_' . $thisSection . '-selectors' ], $defaults[ $optprefix . $thisSection . $background ]),
-                pzarc_redux_margin($prefix . $thisSection . $margin, $this->defaults ? '' : $_architect[ 'architect_config_' . $thisSection . '-selectors' ], $defaults[ $optprefix . $thisSection . $background ]),
-                pzarc_redux_borders($prefix . $thisSection . $border, $this->defaults ? '' : $_architect[ 'architect_config_' . $thisSection . '-selectors' ], $defaults[ $optprefix . $thisSection . $background ]),
-                pzarc_redux_links($prefix . $thisSection . $link, $this->defaults ? '' : $_architect[ 'architect_config_' . $thisSection . '-selectors' ], $defaults[ $optprefix . $thisSection . $background ]),
+                pzarc_redux_padding($prefix . $thisSection . $padding, $this->defaults ? '' : $_architect[ 'architect_config_' . $thisSection . '-selectors' ], $defaults[ $optprefix . $thisSection . $padding ]),
+                pzarc_redux_margin($prefix . $thisSection . $margin, $this->defaults ? '' : $_architect[ 'architect_config_' . $thisSection . '-selectors' ], $defaults[ $optprefix . $thisSection . $margin ]),
+                pzarc_redux_borders($prefix . $thisSection . $border, $this->defaults ? '' : $_architect[ 'architect_config_' . $thisSection . '-selectors' ], $defaults[ $optprefix . $thisSection . $border ]),
+                pzarc_redux_links($prefix . $thisSection . $link, $this->defaults ? '' : $_architect[ 'architect_config_' . $thisSection . '-selectors' ], $defaults[ $optprefix . $thisSection . $link ]),
                 array(
                     'id'     => $prefix . 'blueprint-end-section-blueprint',
                     'type'   => 'section',
                     'indent' => false,
+                ),
+                array(
+                    'title'    => __('Blueprint title', 'pzarchitect'),
+                    'id'       => $prefix . 'blueprint-section-blueprint-title-css',
+                    'type'     => 'section',
+                    'indent'   => true,
+                    'subtitle' => 'Class: .pzarc-blueprint-title',
+                ),
+                pzarc_redux_font($prefix . $thisSection . '_blueprint-title' . $font, $this->defaults ? '' : $_architect[ 'architect_config_' . $thisSection . '_blueprint-title' . '-selectors' ], $defaults[ $optprefix . $thisSection . '_blueprint-title' . $font ]),
+                pzarc_redux_bg($prefix . $thisSection . '_blueprint-title' . $background, $this->defaults ? '' : $_architect[ 'architect_config_' . $thisSection . '_blueprint-title' . '-selectors' ], $defaults[ $optprefix . $thisSection . '_blueprint-title' . $background ]),
+                pzarc_redux_padding($prefix . $thisSection . '_blueprint-title' . $padding, $this->defaults ? '' : $_architect[ 'architect_config_' . $thisSection . '_blueprint-title' . '-selectors' ], $defaults[ $optprefix . $thisSection . '_blueprint-title' . $padding ]),
+                pzarc_redux_margin($prefix . $thisSection . '_blueprint-title' . $margin, $this->defaults ? '' : $_architect[ 'architect_config_' . $thisSection . '_blueprint-title' . '-selectors' ], $defaults[ $optprefix . $thisSection . '_blueprint-title' . $margin ]),
+                pzarc_redux_borders($prefix . $thisSection . '_blueprint-title' . $border, $this->defaults ? '' : $_architect[ 'architect_config_' . $thisSection . '_blueprint-title' . '-selectors' ], $defaults[ $optprefix . $thisSection . '_blueprint-title' . $border ]),
+                array(
+                    'id'     => $prefix . 'blueprint-end-section-blueprint-title',
+                    'type'   => 'section',
+                    'indent' => false,
+                ),
+                array(
+                    'title'    => __('Blueprint footer', 'pzarchitect'),
+                    'id'       => $prefix . 'blueprint-section-blueprint-footer-css',
+                    'type'     => 'section',
+                    'indent'   => true,
+                    'subtitle' => 'Class: .pzarc-blueprint-footer',
+                ),
+                pzarc_redux_font($prefix . $thisSection . '_blueprint-footer' . $font, $this->defaults ? '' : $_architect[ 'architect_config_' . $thisSection . '_blueprint-footer' . '-selectors' ], $defaults[ $optprefix . $thisSection . '_blueprint-footer' . $font ]),
+                pzarc_redux_bg($prefix . $thisSection . '_blueprint-footer' . $background, $this->defaults ? '' : $_architect[ 'architect_config_' . $thisSection . '_blueprint-footer' . '-selectors' ], $defaults[ $optprefix . $thisSection . '_blueprint-footer' . $background ]),
+                pzarc_redux_padding($prefix . $thisSection . '_blueprint-footer' . $padding, $this->defaults ? '' : $_architect[ 'architect_config_' . $thisSection . '_blueprint-footer' . '-selectors' ], $defaults[ $optprefix . $thisSection . '_blueprint-footer' . $padding ]),
+                pzarc_redux_margin($prefix . $thisSection . '_blueprint-footer' . $margin, $this->defaults ? '' : $_architect[ 'architect_config_' . $thisSection . '_blueprint-footer' . '-selectors' ], $defaults[ $optprefix . $thisSection . '_blueprint-footer' . $margin ]),
+                pzarc_redux_borders($prefix . $thisSection . '_blueprint-footer' . $border, $this->defaults ? '' : $_architect[ 'architect_config_' . $thisSection . '_blueprint-footer' . '-selectors' ], $defaults[ $optprefix . $thisSection . '_blueprint-footer' . $border ]),
+                pzarc_redux_links($prefix . $thisSection . '_blueprint-footer' . $link, $this->defaults ? '' : $_architect[ 'architect_config_' . $thisSection . '_blueprint-footer' . '-selectors' ], $defaults[ $optprefix . $thisSection . '_blueprint-footer' . $link ]),
+                array(
+                    'id'     => $prefix . 'blueprint-end-section-blueprint-footer',
+                    'type'   => 'section',
+                    'indent' => false,
                 )
-//            array(
-//              'title'  => __( 'Custom CSS', 'pzarchitect' ),
-//              'id'     => $prefix . 'blueprint-section-blueprint-custom-css',
-//              'type'   => 'section',
-//              'indent' => true,
-//            )
 //            array(
 //              'title'    => __( 'Custom CSS', 'pzarchitect' ),
 //              'id'       => $prefix . 'blueprint-custom-css',
@@ -2182,10 +2211,9 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
                 ),
                 pzarc_redux_font($prefix . $thisSection . '_page-title' . $font, $this->defaults ? '' : $_architect[ 'architect_config_' . $thisSection . '_page-title' . '-selectors' ], $defaults[ $optprefix . $thisSection . '_page-title' . $font ]),
                 pzarc_redux_bg($prefix . $thisSection . '_page-title' . $background, $this->defaults ? '' : $_architect[ 'architect_config_' . $thisSection . '_page-title' . '-selectors' ], $defaults[ $optprefix . $thisSection . '_page-title' . $background ]),
-                pzarc_redux_padding($prefix . $thisSection . '_page-title' . $padding, $this->defaults ? '' : $_architect[ 'architect_config_' . $thisSection . '_page-title' . '-selectors' ], $defaults[ $optprefix . $thisSection . '_page-title' . $background ]),
-                pzarc_redux_margin($prefix . $thisSection . '_page-title' . $margin, $this->defaults ? '' : $_architect[ 'architect_config_' . $thisSection . '_page-title' . '-selectors' ], $defaults[ $optprefix . $thisSection . '_page-title' . $background ]),
-                pzarc_redux_borders($prefix . $thisSection . '_page-title' . $border, $this->defaults ? '' : $_architect[ 'architect_config_' . $thisSection . '_page-title' . '-selectors' ], $defaults[ $optprefix . $thisSection . '_page-title' . $background ]),
-                pzarc_redux_links($prefix . $thisSection . '_page-title' . $link, $this->defaults ? '' : $_architect[ 'architect_config_' . $thisSection . '_page-title' . '-selectors' ], $defaults[ $optprefix . $thisSection . '_page-title' . $background ]),
+                pzarc_redux_padding($prefix . $thisSection . '_page-title' . $padding, $this->defaults ? '' : $_architect[ 'architect_config_' . $thisSection . '_page-title' . '-selectors' ], $defaults[ $optprefix . $thisSection . '_page-title' . $padding ]),
+                pzarc_redux_margin($prefix . $thisSection . '_page-title' . $margin, $this->defaults ? '' : $_architect[ 'architect_config_' . $thisSection . '_page-title' . '-selectors' ], $defaults[ $optprefix . $thisSection . '_page-title' . $margin ]),
+                pzarc_redux_borders($prefix . $thisSection . '_page-title' . $border, $this->defaults ? '' : $_architect[ 'architect_config_' . $thisSection . '_page-title' . '-selectors' ], $defaults[ $optprefix . $thisSection . '_page-title' . $border ]),
                 array(
                     'id'     => $prefix . 'blueprint-end-section-page-title',
                     'type'   => 'section',
@@ -2568,7 +2596,7 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
         $_architect_options = get_option('_architect_options');
       }
 
-      $prefix     = '_panels_design_';
+      $prefix = '_panels_design_'; // declare prefix
       $sections   = array();
       $sections[] = array(
           'title'      => __('Content Layout ', 'pzarchitect'),
@@ -3212,8 +3240,8 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
                   'id'       => $prefix . 'more-click-action',
                   'type'     => 'button_set',
                   'options'  => array(
-                      'none'      => __('Default', 'pzarchitect'),
-                      'slidedown' => __('Slide down', 'pzarchitect'),
+                      'none'                => __('Default', 'pzarchitect'),
+                      'slidedown'           => __('Slide down', 'pzarchitect'),
                       'slidedown-fullwidth' => __('Slide down full width', 'pzarchitect'),
                   ),
                   'default'  => 'none',
@@ -3953,7 +3981,7 @@ array(
       }
       if (!empty($_architect_options[ 'architect_enable_styling' ])) {
         $defaults = get_option('_architect');
-        $prefix   = '_panels_styling_';
+        $prefix = '_panels_styling_'; // declare prefix
 
         $font       = '-font';
         $link       = '-links';

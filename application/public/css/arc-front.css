@@ -301,9 +301,7 @@
     width: 100%; }
   .pzarchitect .pzarc-panel td {
     padding: 1%; }
-  .pzarchitect .pzarc-panel.pzarc-slidedown.open {
-    overflow: auto; }
-  .pzarchitect .pzarc-panel.pzarc-slidedown-fullwidth.open {
+  .pzarchitect .pzarc-panel.pzarc-slidedown-fullwidth.pzarc-open {
     width: 100% !important; }
   .pzarchitect .pzarc-panel .pzarc-back, .pzarchitect .pzarc-panel .pzarc-front {
     position: relative;

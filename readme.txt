@@ -114,6 +114,8 @@ TODO: Add a default single post/page Blueprint;  Add codex links;
 * FIXED: Rounding of panels margin needed two decimal places (was 0 in changes in 1.6.1)
 * FIXED: Actions Editor was showing Blueprints on all pages
 * FIXED: Blueprint PHP notice if no images are selected for Gallery content source
+* FIXED: Extra quotes mark in div panel opening class
+* FIXED: Some Blueprint styling defaults not showing correct in editor
 
 = 1.6.1 =
 * FIXED: Minor security issue because of missing index.php
@@ -193,7 +195,6 @@ TODO: Add a default single post/page Blueprint;  Add codex links;
 * FIXED: "Missing image" thumbnail not sizing correctly.
 * FIXED: Specific filler image not showing when in background
 * FIXED: Layout issue with vertical tabbed preset
-* FIXED: Extra quotes mark in div panel opening class
 
 = 1.5.2 =
 * CHANGED: Thumbs library to load only as required thus fixing conflict with WooCommerce

@@ -35,7 +35,7 @@
   {
 
     var thePanel = jQuery( this ).parents( '.pzarc-panel' );
-    jQuery(thePanel ).addClass('open');
+    jQuery(thePanel ).addClass('pzarc-open');
     var theFront = jQuery( thePanel ).find( '.pzarc-front' );
     var theBack = jQuery( thePanel ).find( '.pzarc-back' );
     jQuery( theFront ).slideToggle(0,function(){jQuery( theBack ).slideToggle(600);}).addClass( 'pzarc-hidden' );
@@ -48,7 +48,7 @@
     var theFront = jQuery( thePanel ).find( '.pzarc-front' );
     var theBack = jQuery( thePanel ).find( '.pzarc-back' );
     jQuery( theBack ).slideToggle(0,function(){
-      jQuery(thePanel ).removeClass('open');
+      jQuery(thePanel ).removeClass('pzarc-open');
       jQuery( theFront ).slideToggle(600).removeClass( 'pzarc-hidden' );
     });
     return false;

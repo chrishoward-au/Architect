@@ -10,7 +10,7 @@
     public $tab_notices = array();
     public $open_js_callback = '';
 
-    function modify_arguments($args = false)
+    function modify_arguments($args)
     {
       $block = $args[ 'block' ];
       $this->tabs
