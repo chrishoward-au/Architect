@@ -3214,7 +3214,7 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
                   'options'  => array(
                       'none'      => __('Default', 'pzarchitect'),
                       'slidedown' => __('Slide down', 'pzarchitect'),
-                      'slidedownfullwidth' => __('Slide down full width', 'pzarchitect'),
+                      'slidedown-fullwidth' => __('Slide down full width', 'pzarchitect'),
                   ),
                   'default'  => 'none',
                   //'required' => array('show_advanced', 'equals', true),

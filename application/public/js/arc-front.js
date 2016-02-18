@@ -38,7 +38,7 @@
     jQuery(thePanel ).addClass('open');
     var theFront = jQuery( thePanel ).find( '.pzarc-front' );
     var theBack = jQuery( thePanel ).find( '.pzarc-back' );
-    jQuery( theFront ).slideToggle(function(){jQuery( theBack ).slideToggle();}).addClass( 'pzarc-hidden' );
+    jQuery( theFront ).slideToggle(0,function(){jQuery( theBack ).slideToggle(600);}).addClass( 'pzarc-hidden' );
 
     return false;
   } );
@@ -47,9 +47,9 @@
     var thePanel = jQuery( this ).parents( '.pzarc-panel' );
     var theFront = jQuery( thePanel ).find( '.pzarc-front' );
     var theBack = jQuery( thePanel ).find( '.pzarc-back' );
-    jQuery( theBack ).slideToggle(function(){
+    jQuery( theBack ).slideToggle(0,function(){
       jQuery(thePanel ).removeClass('open');
-      jQuery( theFront ).slideToggle().removeClass( 'pzarc-hidden' );
+      jQuery( theFront ).slideToggle(600).removeClass( 'pzarc-hidden' );
     });
     return false;
   } );

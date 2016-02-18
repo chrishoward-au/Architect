@@ -295,14 +295,14 @@
     }
 
     // moreclick classes
-    &.slidedown {
+    &.pzarc-slidedown {
       &.open {
-        overflow:visible;
+        overflow:auto;
       }
     }
-    &.slidedown-fullwidth {
+    &.pzarc-slidedown-fullwidth {
       &.open {
-        width: 100%;
+        width: 100%!important;
       }
     }
     .pzarc-back, .pzarc-front {

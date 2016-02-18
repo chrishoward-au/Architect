@@ -331,7 +331,7 @@
 
       $moreclick_class = (!empty($settings[ '_panels_design_more-click-action' ]) && $settings[ '_panels_design_more-click-action' ] !== 'none')?' pzarc-'.$settings[ '_panels_design_more-click-action' ].' ':'';
 
-      echo '<' . ('table' !== $this->layout_mode ? 'div' : 'tr') . ' id="bp' . $this->blueprint[ 'blueprint-id' ] . '-' . $this->panel_number . '" class="'. apply_filters('arc-extend-panel-classes', $classes, $this->blueprint) . ' ' . apply_filters('arc-extend-panel-classes_' . $this->panel_name, '', $this->blueprint) .$moreclick_class . '" ' . apply_filters('arc-extend-panel-data', '', $this->blueprint) . '">';
+      echo '<' . ('table' !== $this->layout_mode ? 'div' : 'tr') . ' id="bp' . $this->blueprint[ 'blueprint-id' ] . '-' . $this->panel_number . '" class="'. apply_filters('arc-extend-panel-classes', $classes, $this->blueprint) . ' ' . apply_filters('arc-extend-panel-classes_' . $this->panel_name, '', $this->blueprint) .$moreclick_class . '" ' . apply_filters('arc-extend-panel-data', '', $this->blueprint) . '>';
 
       //
       if (!empty($settings[ '_panels_design_link-panel' ])) {
