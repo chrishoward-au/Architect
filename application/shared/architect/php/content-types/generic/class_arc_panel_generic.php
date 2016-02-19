@@ -987,7 +987,7 @@
 
               case 'text':
               default:
-                $content = $v[ 'value' ];
+                $content = wpautop($v[ 'value' ]);
                 break;
 
             }
