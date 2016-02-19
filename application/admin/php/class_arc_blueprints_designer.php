@@ -306,7 +306,7 @@
                   'panels'       => '<span class="pzarc-tab-title">'.__('Panels','pzarchitect').'</span>',
                   'titles'       => '<span class="pzarc-tab-title">'.__('Titles','pzarchitect').'</span>',
                   'meta'         => '<span class="pzarc-tab-title">'.__('Meta','pzarchitect').'</span>',
-                  'features'     => '<span class="pzarc-tab-title">'.__('Featured Image','pzarchitect').'</span>',
+                  'features'     => '<span class="pzarc-tab-title">'.__('Feature','pzarchitect').'</span>',
                   'body'         => '<span class="pzarc-tab-title">'.__('Body/Excerpt','pzarchitect').'</span>',
                   'customfields' => '<span class="pzarc-tab-title">'.__('Custom Fields','pzarchitect').'</span>',
                   //                    'content_styling' => '<span class="pzarc-tab-title">Content Styling</span>',
@@ -3594,6 +3594,15 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
                   'subtitle' => __('Select the wrapper element for the title field', 'pzarchitect')
 
               ),
+          )
+      );
+      $sections[] = array(
+          'title'      => __('Responsive overrides','pzarchitect'),
+          'show_title' => false,
+          'icon_class' => 'icon-large',
+          'icon'       => 'el-icon-screen',
+          'fields'     => array(
+
               array(
                   'title'    => __('Use responsive font sizes', 'pzarchitect'),
                   'id'       => $prefix . 'use-responsive-font-size-title',
@@ -3923,7 +3932,7 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
       $prefix   = '_panels_design_';
       // Settings
       $sections[] = array(
-          'title'      => 'Featured image/video settings',
+          'title'      => 'Feature settings',
           'icon_class' => 'icon-large',
           'icon'       => 'el-icon-adjust-alt',
           'subtitle'   => __('Left and right margins are included in the image width in the designer. e.g if Feature width is 25% and right margin is 3%, Feature width will be adjusted to 22%', 'pzarchitect'),
@@ -4214,7 +4223,7 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
         $optprefix       = 'architect_config_';
 
         $sections[] = array(
-            'title'      => __('Featured image/video styling', 'pzarchitect'),
+            'title'      => __('Feature styling', 'pzarchitect'),
             'show_title' => false,
             'icon_class' => 'icon-large',
             'icon'       => 'el-icon-brush',
@@ -4284,7 +4293,7 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
       }
       $metaboxes[] = array(
           'id'         => 'features-settings',
-          'title'      => __('Feature images/videos settings and stylings.', 'pzarchitect'),
+          'title'      => __('Featured images/videos settings and stylings.', 'pzarchitect'),
           'post_types' => array('arc-blueprints'),
           'sections'   => $sections,
           'position'   => 'normal',
@@ -4431,6 +4440,14 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
                   'default'  => 'none',
                   'subtitle' => __('Breakpoints can be changed in Architect Options', 'pzachitect')
               ),
+          )
+      );
+      $sections[] = array(
+          'title'      => __('Responsive overrides','pzarchitect'),
+          'show_title' => false,
+          'icon_class' => 'icon-large',
+          'icon'       => 'el-icon-screen',
+          'fields'     => array(
               array(
                   'title'    => __('Use responsive font sizes', 'pzarchitect'),
                   'id'       => $prefix . 'use-responsive-font-size',
