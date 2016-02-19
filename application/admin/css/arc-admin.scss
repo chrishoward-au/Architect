@@ -1098,7 +1098,7 @@ body.admin-color-midnight {
 
 .redux-container-tabbed ul,
 .redux-container-tabbed {
-  padding: 0 !important;
+  padding: 0 0 0 5px!important;
   margin: 0;
 }
 
@@ -1463,9 +1463,17 @@ a.pzarc-codex {
 #redux-_architect-metabox-panels-styling,
 #redux-_architect-metabox-blueprint-stylings,
 #redux-_architect-metabox-layout-settings,
-#redux-_architect-metabox-content-selections {
+#redux-_architect-metabox-titles-settings,
+#redux-_architect-metabox-features-settings,
+#redux-_architect-metabox-meta-settings,
+#redux-_architect-metabox-body-settings,
+#redux-_architect-metabox-customfields-settings,
+#redux-_architect-metabox-content-selections
+{
   display: none;
+  border-top:none;
 }
+
 
 body.arc-blueprints *,
 body.arc-panels * {
@@ -1574,15 +1582,27 @@ body.arc-beginner .arc-field-advanced {
 }
 
 #redux-_architect-metabox-_blueprint_tabs_blueprints {
+  &.postbox {
+  }
+  margin-bottom:0;
+  border-bottom:solid 2px #0074A2;
   .hndle, .handlediv {
     display: none;
   }
+  #settings-chooser_box_redux-_architect-metabox-_blueprint_tabs_blueprints_section_group td {
+    padding: 0 !important;
+  }
+}
+
+body.admin-color-midnight #redux-_architect-metabox-_blueprint_tabs_blueprints {
+  border-bottom: #e14d43 2px solid;
 }
 
 .redux-_architect {
   h3.redux-hndle, h2.hndle {
-    background: #222;
-    color: #fff;
+    background: #333;
+    color:#fff;
+    text-shadow: none;
   }
 }
 #_architect-_blueprint_tabs_tabs .active span.stepno {
@@ -1599,6 +1619,7 @@ body.arc-beginner .arc-field-advanced {
 
 #redux-_architect-metabox-_blueprint_tabs_blueprints .redux-main {
   padding:0!important;
+  box-shadow:none;
 }
 
 .arc-important {

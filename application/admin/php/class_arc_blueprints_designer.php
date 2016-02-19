@@ -46,14 +46,14 @@
             $this,
             'pzarc_mb_blueprint_content_selection'
         ), 10, 1);
-        add_action("redux/metaboxes/$this->redux_opt_name/boxes", array(
-            $this,
-            'pzarc_mb_blueprint_styling'
-        ), 10, 1);
-        add_action("redux/metaboxes/$this->redux_opt_name/boxes", array(
-            $this,
-            'pzarc_mb_panels_styling'
-        ), 10, 1);
+//        add_action("redux/metaboxes/$this->redux_opt_name/boxes", array(
+//            $this,
+//            'pzarc_mb_blueprint_styling'
+//        ), 10, 1);
+//        add_action("redux/metaboxes/$this->redux_opt_name/boxes", array(
+//            $this,
+//            'pzarc_mb_panels_styling'
+//        ), 10, 1);
 
         add_filter('views_edit-arc-blueprints', array($this, 'blueprints_description'));
 
@@ -301,14 +301,14 @@
               'id'      => $prefix . 'tabs',
               'type'    => 'tabbed',
               'options' => array(
-                  'layout'       => '<span class="pzarc-tab-title">Blueprint</span>',
-                  'content'      => '<span class="pzarc-tab-title">Source</span>',
-                  'panels'       => '<span class="pzarc-tab-title">Panels</span>',
-                  'titles'       => '<span class="pzarc-tab-title">Titles</span>',
-                  'meta'         => '<span class="pzarc-tab-title">Meta</span>',
-                  'features'     => '<span class="pzarc-tab-title">Featured Image</span>',
-                  'body'         => '<span class="pzarc-tab-title">Body</span>',
-                  'customfields' => '<span class="pzarc-tab-title">Custom Fields</span>',
+                  'layout'       => '<span class="pzarc-tab-title">'.__('Blueprint','pzarchitect').'</span>',
+                  'content'      => '<span class="pzarc-tab-title">'.__('Source','pzarchitect').'</span>',
+                  'panels'       => '<span class="pzarc-tab-title">'.__('Panels','pzarchitect').'</span>',
+                  'titles'       => '<span class="pzarc-tab-title">'.__('Titles','pzarchitect').'</span>',
+                  'meta'         => '<span class="pzarc-tab-title">'.__('Meta','pzarchitect').'</span>',
+                  'features'     => '<span class="pzarc-tab-title">'.__('Featured Image','pzarchitect').'</span>',
+                  'body'         => '<span class="pzarc-tab-title">'.__('Body/Excerpt','pzarchitect').'</span>',
+                  'customfields' => '<span class="pzarc-tab-title">'.__('Custom Fields','pzarchitect').'</span>',
                   //                    'content_styling' => '<span class="pzarc-tab-title">Content Styling</span>',
                   //                    'styling'         => '<span class="pzarc-tab-title">Blueprint Styling</span>',
               ),
@@ -2406,7 +2406,7 @@
 //      );
       $metaboxes[] = array(
           'id'         => 'layout-settings',
-          'title'      => 'Blueprint Design: Choose and setup the overall design ',
+          'title'      => 'Blueprint Design and stylings: Choose and setup the overall design and stylings',
           'post_types' => array('arc-blueprints'),
           'sections'   => $sections,
           'position'   => 'normal',
@@ -2537,7 +2537,7 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
 
       $metaboxes[] = array(
           'id'         => 'content-selections',
-          'title'      => 'Content Selection: Choose which posts, pages or other content to display',
+          'title'      => 'Content Source selection: Choose which posts, pages or other content to display',
           'post_types' => array('arc-blueprints'),
           'sections'   => $sections,
           'position'   => 'normal',
@@ -3106,23 +3106,6 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
                   )
               ),
               array(
-                  'title'         => __('Number of custom fields', 'pzarchitect'),
-                  'id'            => $prefix . 'custom-fields-count',
-                  'type'          => 'spinner',
-                  'default'       => 0,
-                  'min'           => 0,
-                  'max'           => 999,
-                  'step'          => 1,
-                  'display_value' => 'label',
-                  'required'      => array($prefix . 'components-to-show', 'contains', 'custom'),
-                  'subtitle'      => __('Each of the three Custom groups can have multiple custom fields. Enter the <strong>total</strong> number of custom fields, click Publish/Update', 'pzarchitect'),
-                  'desc'          => __('When you change this number, click Publish/Update to update Custom Fields tabs at left', 'pzarchitect'),
-                  'hint'          => array(
-                      'title'   => __('Number of custom fields', 'pzarchitect'),
-                      'content' => __('After selecting upto three custom field groups, you now need to set the total number of custom fields you will be displaying so Architect can create the settings tabs for each one.<br><br><strong>You will need to Publish/Update to see those new tabs.</strong>', 'pzarchitect')
-                  )
-              ),
-              array(
                   'title'        => __('Layout', 'pzarchitect'),
                   'id'           => $prefix . 'preview',
                   'type'         => 'code',
@@ -3460,7 +3443,7 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
 
       $metaboxes[] = array(
           'id'         => 'panels-design',
-          'title'      => __('Content Layout: Setup the layout of the content itself.', 'pzarchitect'),
+          'title'      => __('Content Panels Layout and stylings: Setup the layout of the content itself and panel stylings.', 'pzarchitect'),
           'post_types' => array('arc-blueprints'),
           'sections'   => $sections,
           'position'   => 'normal',
@@ -3764,7 +3747,7 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
       }
       $metaboxes[] = array(
           'id'         => 'titles-settings',
-          'title'      => __('Titles settings.', 'pzarchitect'),
+          'title'      => __('Titles settings and styling.', 'pzarchitect'),
           'post_types' => array('arc-blueprints'),
           'sections'   => $sections,
           'position'   => 'normal',
@@ -3911,7 +3894,7 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
       }
       $metaboxes[] = array(
           'id'         => 'meta-settings',
-          'title'      => __('Meta settings.', 'pzarchitect'),
+          'title'      => __('Meta settings and styling.', 'pzarchitect'),
           'post_types' => array('arc-blueprints'),
           'sections'   => $sections,
           'position'   => 'normal',
@@ -4301,7 +4284,7 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
       }
       $metaboxes[] = array(
           'id'         => 'features-settings',
-          'title'      => __('Feature images/videos settings.', 'pzarchitect'),
+          'title'      => __('Feature images/videos settings and stylings.', 'pzarchitect'),
           'post_types' => array('arc-blueprints'),
           'sections'   => $sections,
           'position'   => 'normal',
@@ -4676,7 +4659,7 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
       }
       $metaboxes[] = array(
           'id'         => 'body-settings',
-          'title'      => __('Body/Excerpt settings.', 'pzarchitect'),
+          'title'      => __('Body/Excerpt settings and stylings.', 'pzarchitect'),
           'post_types' => array('arc-blueprints'),
           'sections'   => $sections,
           'position'   => 'normal',
@@ -4950,7 +4933,7 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
       }
       $metaboxes[] = array(
           'id'         => 'customfields-settings',
-          'title'      => __('Custom fields settings.', 'pzarchitect'),
+          'title'      => __('Custom fields settings and stylings.', 'pzarchitect'),
           'post_types' => array('arc-blueprints'),
           'sections'   => $sections,
           'position'   => 'normal',
