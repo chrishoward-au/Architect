@@ -697,8 +697,10 @@ body.screen-arc-contents {
     background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyNpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNS1jMDE0IDc5LjE1MTQ4MSwgMjAxMy8wMy8xMy0xMjowOToxNSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIChNYWNpbnRvc2gpIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOkVGQzUzN0I1NEY4OTExRTNBNkIyOTc4MDZBQjhCODQwIiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOkVGQzUzN0I2NEY4OTExRTNBNkIyOTc4MDZBQjhCODQwIj4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6QUE2OEJDNjI0QUJDMTFFM0E2QjI5NzgwNkFCOEI4NDAiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6RUZDNTM3QjQ0Rjg5MTFFM0E2QjI5NzgwNkFCOEI4NDAiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz63BXjiAAAAbklEQVR42mL8//8/AyWAcdQArAawA/EfIP6HRT0bVO4vPgPcgLgKqgjZEE4gPgfE1UD8GS4KMgANcwBxx39McBeIjdDVYzMAhmuRNF8GYg1s6vAZAMKtQHwOl2YQJhQLzEAsAMRvR1MiDQ0ACDAAM+fK4wDJEZAAAAAASUVORK5CYII=');
     background-repeat: no-repeat;
     background-position: right;
-    -webkit-appearance: none /* this is required for Webkit browsers */;
-    -moz-appearance: none /* this is not supported currently */;
+    -webkit-appearance: none /* this is required for Webkit browsers */
+  ;
+    -moz-appearance: none /* this is not supported currently */
+  ;
     appearance: none;
   }
 }
@@ -710,8 +712,10 @@ body.screen-arc-panels {
     background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAICAYAAADN5B7xAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyNpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNS1jMDE0IDc5LjE1MTQ4MSwgMjAxMy8wMy8xMy0xMjowOToxNSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIChNYWNpbnRvc2gpIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOjJDRTM0NDA3NkQzNjExRTNCOTczQTIzN0VBMDMxMUM3IiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOjJDRTM0NDA4NkQzNjExRTNCOTczQTIzN0VBMDMxMUM3Ij4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6MkNFMzQ0MDU2RDM2MTFFM0I5NzNBMjM3RUEwMzExQzciIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6MkNFMzQ0MDY2RDM2MTFFM0I5NzNBMjM3RUEwMzExQzciLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz7yBBv7AAAAlUlEQVR42mL8//8/AymA5fDhw5xA+icQY9PJpqen94efn/8vTIARiOOAOBIkCcT/kBSDDDq3Z8+eamdn589wG4B4LRCrAHEtmun3gHgBMzPzZ1zOq4U6C4QvA7EGSHD//v0MIH/CMAuShmYg5gBiTyCOAuIbIMG/f/+ietrBwQGZXwfEfUD8FiYgLCyMooGR1GAFCDAA+9EubKwaKIsAAAAASUVORK5CYII=');
     background-repeat: no-repeat;
     background-position: right;
-    -webkit-appearance: none /* this is required for Webkit browsers */;
-    -moz-appearance: none /* this is not supported currently */;
+    -webkit-appearance: none /* this is required for Webkit browsers */
+  ;
+    -moz-appearance: none /* this is not supported currently */
+  ;
     appearance: none;
   }
 }
@@ -1569,6 +1573,18 @@ body.arc-beginner .arc-field-advanced {
   display: none !important;
 }
 
+#redux-_architect-metabox-_blueprint_tabs_blueprints {
+  .hndle, .handlediv {
+    display: none;
+  }
+}
+
+.redux-_architect {
+  h3.redux-hndle, h2.hndle {
+    background: #222;
+    color: #fff;
+  }
+}
 #_architect-_blueprint_tabs_tabs .active span.stepno {
   background: #fff;
 }
@@ -1579,6 +1595,10 @@ body.arc-beginner .arc-field-advanced {
   border-radius: 25px;
   padding: 0 5px;
   font-weight: bold;
+}
+
+#redux-_architect-metabox-_blueprint_tabs_blueprints .redux-main {
+  padding:0!important;
 }
 
 .arc-important {
@@ -1597,8 +1617,9 @@ body.arc-beginner .arc-field-advanced {
   }
 }
 
+/*
 #tab-presets {
-  border-bottom: solid 4px $violet;
+  // border-bottom: solid 4px $violet;
   &.active {
     background: $violet-900;
     span.stepno {
@@ -1620,7 +1641,7 @@ body.arc-beginner .arc-field-advanced {
 
 #redux-_architect-metabox-presets {
   h3.redux-hndle, h2.hndle {
-    border-bottom: solid 4px $violet !important;
+    // border-bottom: solid 4px $violet !important;
     background: #222;
     color: #fff;
     // background: $violet-900 !important;
@@ -1631,7 +1652,7 @@ body.arc-beginner .arc-field-advanced {
 }
 
 #tab-layout {
-  border-bottom: solid 4px $indigo;
+  // border-bottom: solid 4px $indigo;
   &.active {
     background: $indigo-900;
     span.stepno {
@@ -1639,7 +1660,7 @@ body.arc-beginner .arc-field-advanced {
     }
   }
   &:hover {
-    background: $indigo-900;
+//    background: $indigo-900;
     span.stepno {
       color: inherit;
     }
@@ -1653,10 +1674,10 @@ body.arc-beginner .arc-field-advanced {
 
 #redux-_architect-metabox-layout-settings {
   h3.redux-hndle, h2.hndle {
-    border-bottom: solid 4px $indigo !important;
+    // border-bottom: solid 4px $indigo !important;
     background: #222;
     color: #fff;
-   // background: $indigo-900 !important;
+    // background: $indigo-900 !important;
   }
   .redux-container {
     background: $indigo-50;
@@ -1665,7 +1686,7 @@ body.arc-beginner .arc-field-advanced {
 
 // Panels design
 #tab-panels {
-  border-bottom: solid 4px $orange;
+  // border-bottom: solid 4px $orange;
   &.active {
     background: $orange-900;
     span.stepno {
@@ -1673,7 +1694,7 @@ body.arc-beginner .arc-field-advanced {
     }
   }
   &:hover {
-    background: $orange-900;
+ //   background: $orange-900;
     span.stepno {
       color: inherit;
     }
@@ -1687,7 +1708,7 @@ body.arc-beginner .arc-field-advanced {
 
 #redux-_architect-metabox-panels-design {
   h3.redux-hndle, h2.hndle {
-    border-bottom: solid 4px $orange !important;
+    // border-bottom: solid 4px $orange !important;
     background: #222;
     color: #fff;
     // background: $orange-900 !important;
@@ -1700,7 +1721,7 @@ body.arc-beginner .arc-field-advanced {
 
 // Content selection
 #tab-content {
-  border-bottom: solid 4px $red;
+  // border-bottom: solid 4px $red;
   &.active {
     background: $red-900;
     span.stepno {
@@ -1708,7 +1729,7 @@ body.arc-beginner .arc-field-advanced {
     }
   }
   &:hover {
-    background: $red-900;
+ //   background: $red-900;
     span.stepno {
       color: inherit;
     }
@@ -1722,7 +1743,7 @@ body.arc-beginner .arc-field-advanced {
 
 #redux-_architect-metabox-content-selections {
   h3.redux-hndle, h2.hndle {
-    border-bottom: solid 4px $red !important;
+    // border-bottom: solid 4px $red !important;
     background: #222;
     color: #fff;
     // background: $red-900 !important;
@@ -1734,7 +1755,7 @@ body.arc-beginner .arc-field-advanced {
 
 // Blueprint Styling
 #tab-styling {
-  border-bottom: solid 4px $blue;
+  // border-bottom: solid 4px $blue;
   &.active {
     background: $blue-900;
     span.stepno {
@@ -1757,7 +1778,7 @@ body.arc-beginner .arc-field-advanced {
 
 #redux-_architect-metabox-blueprint-stylings {
   h3.redux-hndle, h2.hndle {
-    border-bottom: solid 4px $blue !important;
+    // border-bottom: solid 4px $blue !important;
     background: #222;
     color: #fff;
     // background: $blue-900 !important;
@@ -1769,7 +1790,7 @@ body.arc-beginner .arc-field-advanced {
 
 // Content styling
 #tab-content_styling {
-  border-bottom: solid 4px $green;
+  // border-bottom: solid 4px $green;
   &.active {
     background: $green-900;
     span.stepno {
@@ -1791,7 +1812,7 @@ body.arc-beginner .arc-field-advanced {
 
 #redux-_architect-metabox-panels-styling {
   h3.redux-hndle, h2.hndle {
-    border-bottom: solid 4px $green !important;
+    //  $green !important;
     background: #222;
     color: #fff;
     // background: $green-900 !important;
@@ -1800,7 +1821,7 @@ body.arc-beginner .arc-field-advanced {
     background: $green-50;
   }
 }
-
+*/
 //
 a.arc-important-button {
   color: #fff;
@@ -1918,7 +1939,7 @@ li.arc-message {
       padding: 5px 10px;
       background: #e7e7e7;
       white-space: normal;
-      min-height:280px;
+      min-height: 280px;
       &:hover {
         background: #fff;
       }
@@ -2108,7 +2129,7 @@ li.arc-message {
       font-size: 15px;
       display: inline-block;;
       margin-top: -6px;
-      box-sizing:border-box;
+      box-sizing: border-box;
     }
   }
 }

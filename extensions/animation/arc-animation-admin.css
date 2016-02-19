@@ -1,16 +1,3 @@
-#tab-animation {
-  border-bottom: solid 4px #FF5722; }
-  #tab-animation.active {
-    background: #BF360C; }
-    #tab-animation.active span.stepno {
-      color: #FF5722; }
-  #tab-animation:hover {
-    background: #BF360C; }
-    #tab-animation:hover span.stepno {
-      color: inherit; }
-    #tab-animation:hover.active span.stepno {
-      color: #FF5722; }
-
 #redux-_architect-metabox-animation h3.redux-hndle {
   border-bottom: solid 4px #FF5722 !important; }
 #redux-_architect-metabox-animation .redux-container {
@@ -28,6 +15,13 @@
     text-align: center; }
 
 #_architect-_animation_sequence ul {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
   display: flex;
-  flex-wrap: wrap;
-  flex-flow: column; }
+  -webkit-flex-wrap: wrap;
+      -ms-flex-wrap: wrap;
+          flex-wrap: wrap;
+  -webkit-flex-flow: column;
+      -ms-flex-flow: column;
+          flex-flow: column; }

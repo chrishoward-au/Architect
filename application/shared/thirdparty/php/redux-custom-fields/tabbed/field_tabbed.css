@@ -1,13 +1,17 @@
+.redux-container-tabbed {
+  padding:0;
+}
 .redux-container-tabbed ul.data-full li {
   display: inline-block;
   line-height: 28px;
   padding:5px 10px;
+
   min-width: 50px;
   width:auto;
   text-align:center;
   margin-right:5px;
-  background:#eee;
-  border-radius:3px;
+  background:#fff;
+  border-radius:1px;
 }
 
 .redux-container-tabbed ul.data-full li:hover {

@@ -667,7 +667,7 @@ jQuery( document ).ready( function ()
       switch (this.target.value)
       {
         case 'title':
-          jQuery( '#1_box_redux-_architect-metabox-panels-design_section_group_li' ).toggle( this.target.checked );
+          jQuery( '#_architect-_blueprint_tabs_tabs #tab-titles' ).toggle(tab_status);
           break;
         case 'meta1':
         case 'meta2':
@@ -677,21 +677,21 @@ jQuery( document ).ready( function ()
           jQuery( 'input#_panels_design_components-to-show-buttonsetmeta2:checked' ).length === 1 ||
           jQuery( 'input#_panels_design_components-to-show-buttonsetmeta3:checked' ).length === 1
           );
-          jQuery( '#2_box_redux-_architect-metabox-panels-design_section_group_li' ).toggle( tab_status );
+          jQuery( '#_architect-_blueprint_tabs_tabs #tab-meta' ).toggle(tab_status);
           break;
         case 'content':
         case 'excerpt':
           tab_status = (
           jQuery( 'input#_panels_design_components-to-show-buttonsetcontent:checked' ).length === 1 ||
           jQuery( 'input#_panels_design_components-to-show-buttonsetexcerpt:checked' ).length === 1);
-          jQuery( '#3_box_redux-_architect-metabox-panels-design_section_group_li' ).toggle( tab_status );
+          jQuery( '#_architect-_blueprint_tabs_tabs #tab-body' ).toggle(tab_status);
           break;
         case 'image':
 
           tab_status = (
           jQuery( 'input#_panels_design_components-to-show-buttonsetimage:checked' ).length === 1
           );
-          jQuery( '#4_box_redux-_architect-metabox-panels-design_section_group_li' ).toggle( tab_status );
+          jQuery( '#_architect-_blueprint_tabs_tabs #tab-features' ).toggle(tab_status);
           break;
         case 'custom1':
         case 'custom2':
@@ -701,7 +701,7 @@ jQuery( document ).ready( function ()
           jQuery( 'input#_panels_design_components-to-show-buttonsetcustom2:checked' ).length === 1 ||
           jQuery( 'input#_panels_design_components-to-show-buttonsetcustom3:checked' ).length === 1
           );
-          jQuery( '#5_box_redux-_architect-metabox-panels-design_section_group_li' ).toggle( tab_status );
+          jQuery( '#_architect-_blueprint_tabs_tabs #tab-customfields' ).toggle(tab_status);
           break;
 
       }
