@@ -227,7 +227,8 @@
       }
       if (strpos($meta_string, '%date%') !== false) {
         $this->data[ 'meta' ][ 'datetime' ]  = get_the_date();
-        $this->data[ 'meta' ][ 'fdatetime' ] = date_i18n(strip_tags($this->section[ '_panels_design_meta-date-format' ]), str_replace(',', ' ', strtotime(get_the_date())));
+//        $this->data[ 'meta' ][ 'fdatetime' ] = date_i18n(strip_tags($this->section[ '_panels_design_meta-date-format' ]), str_replace(',', ' ', strtotime(get_the_date())));
+        $this->data[ 'meta' ][ 'fdatetime' ] = date_i18n(strip_tags($this->section[ '_panels_design_meta-date-format' ]),  strtotime(str_replace(',', ' ',get_the_date())));
       }
       if (strpos($meta_string, '%categories%') !== false) {
         $this->data[ 'meta' ][ 'categorieslinks' ] = get_the_category_list(', ');

@@ -116,6 +116,7 @@ TODO: Add a default single post/page Blueprint;  Add codex links;
 * FIXED: Blueprint PHP notice if no images are selected for Gallery content source
 * FIXED: Extra quotes mark in div panel opening class
 * FIXED: Some Blueprint styling defaults not showing correct in editor
+* FIXED: PHP Warning in date display
 
 = 1.6.1 =
 * FIXED: Minor security issue because of missing index.php
