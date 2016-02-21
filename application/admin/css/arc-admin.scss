@@ -1460,20 +1460,17 @@ a.pzarc-codex {
 
 // Hide all sections except Blueprint Layouts initially
 #redux-_architect-metabox-panels-design,
-#redux-_architect-metabox-panels-styling,
-#redux-_architect-metabox-blueprint-stylings,
 #redux-_architect-metabox-layout-settings,
 #redux-_architect-metabox-titles-settings,
 #redux-_architect-metabox-features-settings,
 #redux-_architect-metabox-meta-settings,
 #redux-_architect-metabox-body-settings,
 #redux-_architect-metabox-customfields-settings,
-#redux-_architect-metabox-content-selections
-{
+#redux-_architect-metabox-content-selections,
+#redux-_architect-metabox-type-settings{
   display: none;
   border-top:none;
 }
-
 
 body.arc-blueprints *,
 body.arc-panels * {

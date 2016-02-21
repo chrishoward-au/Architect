@@ -98,6 +98,9 @@ TODO: Add a default single post/page Blueprint;  Add codex links;
 
 = 1.8.0 =
 * CHANGED: Revamped the layout of the Blueprint editor for improved usability
+* FIXED: When updating a Blueprint, it will now go back to the exact same tab
+* FIXED: When opening a different Blueprint to the previous one it will open at the main tab.
+* FIXED: Missing Max Input Vars message.
 
 = 1.7.0 =
 * ADDED: Image Carousel preset the same as on the demos site.

@@ -227,7 +227,7 @@
 
     public function init() {
 
-      if ( PZARC_PRO ) {
+      if ( defined('PZARC_PRO') && PZARC_PRO ) {
         @include PZARC_PLUGIN_PATH . '/extensions/architect-pro-cpt.php';
       }
 

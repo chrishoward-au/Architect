@@ -346,15 +346,29 @@
 
       $_architect[ 'defaults' ][ 'blueprints' ] = (!isset($_architect[ 'defaults' ][ 'blueprints' ]) ? array() : $_architect[ 'defaults' ][ 'blueprints' ]);
 
-      $blueprint_layout_general = $blueprints->pzarc_mb_blueprint_general_settings($_architect[ 'defaults' ][ 'blueprints' ], true);
-      $blueprint_styling        = empty($_architect_options[ 'architect_enable_styling' ]) || $exclude_styling ? '' : $blueprints->pzarc_mb_blueprint_styling($_architect[ 'defaults' ][ 'blueprints' ], true);
-      $pzarc_blueprint_layout   = $blueprints->pzarc_mb_blueprint_design($_architect[ 'defaults' ][ 'blueprints' ], true);
-      $pzarc_contents_metabox   = $blueprints->pzarc_mb_blueprint_content_selection($_architect[ 'defaults' ][ 'blueprints' ], true);
+      $blueprint_layout_general      = $blueprints->pzarc_mb_blueprint_general_settings($_architect[ 'defaults' ][ 'blueprints' ], true);
+      $blueprint_styling[ 'design' ] = empty($_architect_options[ 'architect_enable_styling' ]) || $exclude_styling ? '' : $blueprints->pzarc_mb_blueprint_design($_architect[ 'defaults' ][ 'blueprints' ], true);
+      $blueprint_styling[ 'types' ]  = empty($_architect_options[ 'architect_enable_styling' ]) || $exclude_styling ? '' : $blueprints->pzarc_mb_blueprint_types($_architect[ 'defaults' ][ 'blueprints' ], true);
+
+      $pzarc_blueprint_layout = $blueprints->pzarc_mb_blueprint_design($_architect[ 'defaults' ][ 'blueprints' ], true);
+      $pzarc_contents_metabox = $blueprints->pzarc_mb_blueprint_content_selection($_architect[ 'defaults' ][ 'blueprints' ], true);
 
       $_architect[ 'defaults' ][ 'blueprints' ][ '_blueprint_layout_general' ] = $blueprint_layout_general[ 0 ][ 'sections' ];
-      $_architect[ 'defaults' ][ 'blueprints' ][ '_blueprint_stylings' ]       = empty($blueprint_styling) ? '' : $blueprint_styling[ 0 ][ 'sections' ];
-      $_architect[ 'defaults' ][ 'blueprints' ][ '_blueprint_layout' ]         = $pzarc_blueprint_layout[ 0 ][ 'sections' ];
-      $_architect[ 'defaults' ][ 'blueprints' ][ '_contents_metabox' ]         = $pzarc_contents_metabox[ 0 ][ 'sections' ];
+
+      $_architect[ 'defaults' ][ 'blueprints' ][ '_blueprint_stylings' ] = array();
+
+      $_architect[ 'defaults' ][ 'blueprints' ][ '_blueprint_stylings' ] = empty($blueprint_styling[ 'design' ][ 0 ][ 'sections' ])
+          ? $_architect[ 'defaults' ][ 'blueprints' ][ '_blueprint_stylings' ]
+          : $blueprint_styling[ 'design' ][ 0 ][ 'sections' ];
+
+      $_architect[ 'defaults' ][ 'blueprints' ][ '_blueprint_stylings' ] = empty($blueprint_styling[ 'types' ][ 0 ][ 'sections' ])
+          ? $_architect[ 'defaults' ][ 'blueprints' ][ '_blueprint_stylings' ]
+          : array_merge($_architect[ 'defaults' ][ 'blueprints' ][ '_blueprint_stylings' ], $blueprint_styling[ 'types' ][ 0 ][ 'sections' ]);
+
+      $_architect[ 'defaults' ][ 'blueprints' ][ '_blueprint_stylings' ] = apply_filters('arc-blueprint-stylings',$_architect[ 'defaults' ][ 'blueprints' ][ '_blueprint_stylings' ]);
+
+      $_architect[ 'defaults' ][ 'blueprints' ][ '_blueprint_layout' ] = $pzarc_blueprint_layout[ 0 ][ 'sections' ];
+      $_architect[ 'defaults' ][ 'blueprints' ][ '_contents_metabox' ] = $pzarc_contents_metabox[ 0 ][ 'sections' ];
 
       // Apply the defaults
       foreach ($_architect[ 'defaults' ][ 'blueprints' ] as $key1 => $value1) {
@@ -383,15 +397,46 @@
       $_architect[ 'defaults' ][ 'panels' ] = (!isset($_architect[ 'defaults' ][ 'panels' ]) ? array() : $_architect[ 'defaults' ][ 'panels' ]);
 //var_dump($_architect);
 //      $pzarc_panel_general_settings = $blueprints->pzarc_panel_general_settings($_architect[ 'defaults' ][ 'panels' ], true);
-      $pzarc_panels_design  = $blueprints->pzarc_mb_panels_layout($_architect[ 'defaults' ][ 'panels' ], true);
-      $pzarc_panels_styling = empty($_architect_options[ 'architect_enable_styling' ]) || $exclude_styling ? '' : $blueprints->pzarc_mb_panels_styling($_architect[ 'defaults' ][ 'panels' ], true);
+      $pzarc_panels_design                    = $blueprints->pzarc_mb_panels_layout($_architect[ 'defaults' ][ 'panels' ], true);
+      $pzarc_panels_styling[ 'panels' ]       = empty($_architect_options[ 'architect_enable_styling' ]) || $exclude_styling ? array() : $blueprints->pzarc_mb_panels_layout($_architect[ 'defaults' ][ 'panels' ], true);
+      $pzarc_panels_styling[ 'titles' ]       = empty($_architect_options[ 'architect_enable_styling' ]) || $exclude_styling ? array() : $blueprints->pzarc_mb_titles_settings($_architect[ 'defaults' ][ 'panels' ], true);
+      $pzarc_panels_styling[ 'meta' ]         = empty($_architect_options[ 'architect_enable_styling' ]) || $exclude_styling ? array() : $blueprints->pzarc_mb_meta_settings($_architect[ 'defaults' ][ 'panels' ], true);
+      $pzarc_panels_styling[ 'features' ]     = empty($_architect_options[ 'architect_enable_styling' ]) || $exclude_styling ? array() : $blueprints->pzarc_mb_features_settings($_architect[ 'defaults' ][ 'panels' ], true);
+      $pzarc_panels_styling[ 'body' ]         = empty($_architect_options[ 'architect_enable_styling' ]) || $exclude_styling ? array() : $blueprints->pzarc_mb_body_settings($_architect[ 'defaults' ][ 'panels' ], true);
+      $pzarc_panels_styling[ 'customfields' ] = empty($_architect_options[ 'architect_enable_styling' ]) || $exclude_styling ? array() : $blueprints->pzarc_mb_customfields_settings($_architect[ 'defaults' ][ 'panels' ], true);
+
 
       //     $_architect[ 'defaults' ][ 'panels' ][ '_panel_general_settings' ] = $pzarc_panel_general_settings[ 0 ][ 'sections' ];
-      $_architect[ 'defaults' ][ 'panels' ][ '_panels_design' ] = $pzarc_panels_design[ 0 ][ 'sections' ];
-
+      $_architect[ 'defaults' ][ 'panels' ][ '_panels_design' ]  = $pzarc_panels_design[ 0 ][ 'sections' ];
+      $_architect[ 'defaults' ][ 'panels' ][ '_panels_styling' ] = array();
       if (!empty($_architect_options[ 'architect_enable_styling' ]) && !$exclude_styling) {
-        $_architect[ 'defaults' ][ 'panels' ][ '_panels_styling' ] = $pzarc_panels_styling[ 0 ][ 'sections' ];
+        $_architect[ 'defaults' ][ 'panels' ][ '_panels_styling' ] = empty($pzarc_panels_styling[ 'panels' ][ 0 ][ 'sections' ])
+            ? $_architect[ 'defaults' ][ 'panels' ][ '_panels_styling' ]
+            : $pzarc_panels_styling[ 'panels' ][ 0 ][ 'sections' ];
+
+        $_architect[ 'defaults' ][ 'panels' ][ '_panels_styling' ] = empty($pzarc_panels_styling[ 'titles' ][ 0 ][ 'sections' ])
+            ? $_architect[ 'defaults' ][ 'panels' ][ '_panels_styling' ]
+            : array_merge($_architect[ 'defaults' ][ 'panels' ][ '_panels_styling' ], $pzarc_panels_styling[ 'titles' ][ 0 ][ 'sections' ]);
+
+        $_architect[ 'defaults' ][ 'panels' ][ '_panels_styling' ] = empty($pzarc_panels_styling[ 'meta' ][ 0 ][ 'sections' ])
+            ? $_architect[ 'defaults' ][ 'panels' ][ '_panels_styling' ]
+            : array_merge($_architect[ 'defaults' ][ 'panels' ][ '_panels_styling' ], $pzarc_panels_styling[ 'meta' ][ 0 ][ 'sections' ]);
+
+        $_architect[ 'defaults' ][ 'panels' ][ '_panels_styling' ] = empty($pzarc_panels_styling[ 'features' ][ 0 ][ 'sections' ])
+            ? $_architect[ 'defaults' ][ 'panels' ][ '_panels_styling' ]
+            : array_merge($_architect[ 'defaults' ][ 'panels' ][ '_panels_styling' ], $pzarc_panels_styling[ 'features' ][ 0 ][ 'sections' ]);
+
+        $_architect[ 'defaults' ][ 'panels' ][ '_panels_styling' ] = empty($pzarc_panels_styling[ 'body' ][ 0 ][ 'sections' ])
+            ? $_architect[ 'defaults' ][ 'panels' ][ '_panels_styling' ]
+            : array_merge($_architect[ 'defaults' ][ 'panels' ][ '_panels_styling' ], $pzarc_panels_styling[ 'body' ][ 0 ][ 'sections' ]);
+
+        $_architect[ 'defaults' ][ 'panels' ][ '_panels_styling' ] = empty($pzarc_panels_styling[ 'customfields' ][ 0 ][ 'sections' ])
+            ? $_architect[ 'defaults' ][ 'panels' ][ '_panels_styling' ]
+            : array_merge($_architect[ 'defaults' ][ 'panels' ][ '_panels_styling' ], $pzarc_panels_styling[ 'customfields' ][ 0 ][ 'sections' ]);
+
       }
+      $_architect[ 'defaults' ][ 'panels' ][ '_panels_styling' ] = apply_filters('arc-panels-stylings',$_architect[ 'defaults' ][ 'panels' ][ '_panels_styling' ]);
+
       foreach ($_architect[ 'defaults' ][ 'panels' ] as $key1 => $value1) {
         if (!empty($value1)) {
           foreach ($value1 as $key2 => $value2) {
@@ -1945,7 +1990,15 @@
       }
     }
   }
-  function return_taxonomies(){$args = array('public'=>true,'_builtin'=>false);$output = 'names';$taxonomies = get_taxonomies($args, $output);return $taxonomies;}
+
+  function return_taxonomies()
+  {
+    $args       = array('public' => true, '_builtin' => false);
+    $output     = 'names';
+    $taxonomies = get_taxonomies($args, $output);
+
+    return $taxonomies;
+  }
 
   /**
    * @param $pzarc_settings
