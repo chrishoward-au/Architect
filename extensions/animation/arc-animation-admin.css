@@ -1,5 +1,8 @@
 #redux-_architect-metabox-animation {
   border-top: none; }
+  #redux-_architect-metabox-animation h2.hndle,
+  #redux-_architect-metabox-animation h3.redux-hndle {
+    border-bottom: solid 4px #FF5722 !important; }
 
 #redux-_architect-metabox-animation {
   display: none; }

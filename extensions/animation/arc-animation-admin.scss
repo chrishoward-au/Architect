@@ -3,35 +3,36 @@ $colour-900: #BF360C;
 $colour-50: #FBE9E7;
 
 //#tab-animation {
-//  border-bottom: solid 4px $colour;
-//  &.active {
-//    background: $colour-900;
-//    span.stepno {
-//      color: $colour;
-//    }
-//  }
-//  &:hover {
-//    background: $colour-900;
-//    span.stepno {
-//      color: inherit;
-//    }
-//    &.active {
-//      span.stepno {
-//        color: $colour
-//      }
-//    }
+  //border-bottom: solid 4px $colour;
+  //&.active {
+  //  background: $colour-900;
+  //  span.stepno {
+  //    color: $colour;
+  //  }
+  //}
+  //&:hover {
+  //  background: $colour-900;
+  //  span.stepno {
+  //    color: inherit;
+  //  }
+    //&.active {
+    //  span.stepno {
+    //    color: $colour
+    //  }
+    //}
 //  }
 //}
 
 #redux-_architect-metabox-animation {
   border-top:none;
-  //h3.redux-hndle {
-  //  border-bottom: solid 4px $colour !important;
-  //  // background: $colour-900 !important;
-  //}
-  //.redux-container {
-  //  background: $colour-50;
-  //}
+  h2.hndle,
+  h3.redux-hndle {
+    border-bottom: solid 4px $colour !important;
+    // background: $colour-900 !important;
+  }
+  .redux-container {
+    //background: $colour-50;
+  }
 }
 
 #redux-_architect-metabox-animation {

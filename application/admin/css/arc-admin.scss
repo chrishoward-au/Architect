@@ -6,21 +6,21 @@ $version: "1.7.0";
 $highlight: #0074a2;
 $border-radius: 3px;
 // Materials Design colours
-$red: #e91e63;
+$red: #E91E63;
 $orange: #ffc107;
 $green: #8bc34a;
 $blue: #2196f3;
 $indigo: #3f51b5;
 $violet: #673ab7;
 
-$red-50: #fce4ec;
+$red-50: #FCE4EC;
 $orange-50: #fff8e1;
 $green-50: #f1f8e9;
 $blue-50: #e3f2fd;
 $indigo-50: #e8eaf6;
 $violet-50: #ffebee;
 
-$red-900: #880e4f;
+$red-900: #880E4F;
 $orange-900: #ff6f00;
 $green-900: #689f38;
 $blue-900: #0d47a1;
@@ -1098,7 +1098,7 @@ body.admin-color-midnight {
 
 .redux-container-tabbed ul,
 .redux-container-tabbed {
-  padding: 0 0 0 5px!important;
+  padding: 0 0 0 5px !important;
   margin: 0;
 }
 
@@ -1467,9 +1467,9 @@ a.pzarc-codex {
 #redux-_architect-metabox-body-settings,
 #redux-_architect-metabox-customfields-settings,
 #redux-_architect-metabox-content-selections,
-#redux-_architect-metabox-type-settings{
+#redux-_architect-metabox-type-settings {
   display: none;
-  border-top:none;
+  border-top: none;
 }
 
 body.arc-blueprints *,
@@ -1581,8 +1581,8 @@ body.arc-beginner .arc-field-advanced {
 #redux-_architect-metabox-_blueprint_tabs_blueprints {
   &.postbox {
   }
-  margin-bottom:0;
-  border-bottom:solid 2px #0074A2;
+  margin-bottom: 0;
+  border-bottom: solid 2px #0074a2;
   .hndle, .handlediv {
     display: none;
   }
@@ -1598,13 +1598,14 @@ body.admin-color-midnight #redux-_architect-metabox-_blueprint_tabs_blueprints {
 .redux-_architect {
   h3.redux-hndle, h2.hndle {
     background: #333;
-    color:#fff;
+    color: #fff;
     text-shadow: none;
   }
   //.redux-container {
   //  background-color:$blue-50;
   //}
 }
+
 #_architect-_blueprint_tabs_tabs .active span.stepno {
   background: #fff;
 }
@@ -1618,8 +1619,8 @@ body.admin-color-midnight #redux-_architect-metabox-_blueprint_tabs_blueprints {
 }
 
 #redux-_architect-metabox-_blueprint_tabs_blueprints .redux-main {
-  padding:0!important;
-  box-shadow:none;
+  padding: 0 !important;
+  box-shadow: none;
 }
 
 .arc-important {
@@ -2201,4 +2202,81 @@ body.arc-beginner {
   margin-top: 10px;
   color: tomato;
 }
+
+// Blueprints
+//#tab-layout:hover,
+//#tab-type:hover {
+//  background: $blue-900;
+//  a {
+//    color: #fff;
+//  }
+//}
+#redux-_architect-metabox-layout-settings,
+#redux-_architect-metabox-type-settings
+{
+  h3.redux-hndle, h2.hndle {
+    border-bottom: solid 4px $blue !important;
+    background: #222;
+    color: #fff;
+  }
+  .redux-container {
+    //background: $blue-50;
+  }
+}
+
+
+// Content
+//#tab-content:hover {
+//  background: $red-900;
+//  a {
+//    color: #fff;
+//  }
+//
+//}
+
+//#tab-panels:hover,
+//#tab-titles:hover,
+//#tab-meta:hover,
+//#tab-features:hover,
+//#tab-body:hover,
+//#tab-customfields:hover {
+//  background: $orange-900;
+//  &.pztabs-unused:hover {
+//    background: transparent;
+//    color: #bbb;
+//  }
+//  color: #fff;
+//}
+
+#redux-_architect-metabox-content-selections{
+  h3.redux-hndle, h2.hndle {
+    border-bottom: solid 4px $red !important;
+    background: #222;
+    color: #fff;
+  }
+  .redux-container {
+    //background: $red-50;
+  }
+
+}
+
+#redux-_architect-metabox-panels-design,
+#redux-_architect-metabox-titles-settings,
+#redux-_architect-metabox-meta-settings,
+#redux-_architect-metabox-features-settings,
+#redux-_architect-metabox-body-settings,
+#redux-_architect-metabox-customfields-settings
+{
+  h3.redux-hndle, h2.hndle {
+    border-bottom: solid 4px $orange !important;
+    background: #222;
+    color: #fff;
+    // background: $blue-900 !important;
+  }
+  .redux-container {
+    //background: $orange-50;
+  }
+
+}
+
 

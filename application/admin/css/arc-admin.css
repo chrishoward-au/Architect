@@ -1243,7 +1243,7 @@ body.arc-beginner .arc-field-advanced {
 
 #redux-_architect-metabox-_blueprint_tabs_blueprints {
   margin-bottom: 0;
-  border-bottom: solid 2px #0074A2; }
+  border-bottom: solid 2px #0074a2; }
   #redux-_architect-metabox-_blueprint_tabs_blueprints .hndle, #redux-_architect-metabox-_blueprint_tabs_blueprints .handlediv {
     display: none; }
   #redux-_architect-metabox-_blueprint_tabs_blueprints #settings-chooser_box_redux-_architect-metabox-_blueprint_tabs_blueprints_section_group td {
@@ -1491,11 +1491,11 @@ body.admin-color-midnight #redux-_architect-metabox-_blueprint_tabs_blueprints {
 */
 a.arc-important-button {
   color: #fff;
-  background: #e91e63;
+  background: #E91E63;
   padding: 10px;
   border-radius: 5px; }
   a.arc-important-button:hover {
-    background: #880e4f; }
+    background: #880E4F; }
 
 li.arc-message .arc-presets-link {
   padding: 8px 12px;
@@ -1761,3 +1761,30 @@ body.arc-beginner .redux-notice-field {
   font-size: 12px;
   margin-top: 10px;
   color: tomato; }
+
+#redux-_architect-metabox-layout-settings h3.redux-hndle, #redux-_architect-metabox-layout-settings h2.hndle,
+#redux-_architect-metabox-type-settings h3.redux-hndle,
+#redux-_architect-metabox-type-settings h2.hndle {
+  border-bottom: solid 4px #2196f3 !important;
+  background: #222;
+  color: #fff; }
+
+#redux-_architect-metabox-content-selections h3.redux-hndle, #redux-_architect-metabox-content-selections h2.hndle {
+  border-bottom: solid 4px #E91E63 !important;
+  background: #222;
+  color: #fff; }
+
+#redux-_architect-metabox-panels-design h3.redux-hndle, #redux-_architect-metabox-panels-design h2.hndle,
+#redux-_architect-metabox-titles-settings h3.redux-hndle,
+#redux-_architect-metabox-titles-settings h2.hndle,
+#redux-_architect-metabox-meta-settings h3.redux-hndle,
+#redux-_architect-metabox-meta-settings h2.hndle,
+#redux-_architect-metabox-features-settings h3.redux-hndle,
+#redux-_architect-metabox-features-settings h2.hndle,
+#redux-_architect-metabox-body-settings h3.redux-hndle,
+#redux-_architect-metabox-body-settings h2.hndle,
+#redux-_architect-metabox-customfields-settings h3.redux-hndle,
+#redux-_architect-metabox-customfields-settings h2.hndle {
+  border-bottom: solid 4px #ffc107 !important;
+  background: #222;
+  color: #fff; }
