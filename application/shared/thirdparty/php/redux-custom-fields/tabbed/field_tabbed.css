@@ -1,13 +1,23 @@
+.redux-container-tabbed {
+  padding:0;
+  background:transparent;
+  border-bottom-color: #0074A2;
+}
+.redux-container-tabbed ul.data-full {
+  padding-left:5px;
+}
 .redux-container-tabbed ul.data-full li {
   display: inline-block;
   line-height: 28px;
   padding:5px 10px;
-  min-width: 50px;
   width:auto;
   text-align:center;
   margin-right:5px;
-  background:#eee;
-  border-radius:3px;
+  background:transparent;
+  color:#555;
+  border-radius:2px 2px 0 0 ;
+  font-size:14px;
+  font-weight:bold;
 }
 
 .redux-container-tabbed ul.data-full li:hover {
@@ -26,11 +36,24 @@ body.admin-color-midnight .redux-container-tabbed ul.data-full li:hover {
   color:#eee;
 }
 
-body.admin-color-midnight .redux-container-tabbed ul.data-full li.active {
-  background:#E14D43;
-  color:#fff;
+body.admin-color-midnight .redux-container-tabbed {
+  border-bottom-color: #e14d43;
 }
+body.admin-color-midnight .redux-container-tabbed   ul.data-full li.active {
+    background:#E14D43;
+    color:#fff;
+  }
+
 
 .size-small {
   width:16px;
+}
+
+.redux-container-tabbed ul.data-full li.pztabs-unused {
+  color:#bbb;
+}
+.redux-container-tabbed ul.data-full li.pztabs-unused:hover {
+  cursor: default;
+  background:transparent;
+  color:#bbb;
 }

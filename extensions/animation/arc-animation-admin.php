@@ -40,7 +40,6 @@
       $sections[ '_animation' ] = array(
         'title'      => 'Animation',
         'show_title' => true,
-        'icon'       => 'el-icon-film',
         'fields'     => array(
           array(
             'title'   => __( 'Enable Animation', 'pzarchitect' ),
@@ -62,7 +61,7 @@
      * @param $fields
      */
     function add_editor_tabs( $fields ) {
-      $fields[ 0 ][ 'options' ][ 'animation' ] = '<span><i class="el el-film"></i> Animation</span>';
+      $fields[ 0 ][ 'options' ][ 'animation' ] = '<span>Animation</span>';
       $fields[ 0 ][ 'targets' ][ 'animation' ] = array( 'animation' );
 
       return $fields;

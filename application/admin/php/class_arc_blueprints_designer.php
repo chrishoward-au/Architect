@@ -35,19 +35,26 @@
             'pzarc_mb_blueprint_general_settings'
         ), 10, 1);
         add_action("redux/metaboxes/$this->redux_opt_name/boxes", array($this, 'pzarc_mb_blueprint_design'), 10, 1);
+        add_action("redux/metaboxes/$this->redux_opt_name/boxes", array($this, 'pzarc_mb_blueprint_types'), 10, 1);
         add_action("redux/metaboxes/$this->redux_opt_name/boxes", array($this, 'pzarc_mb_panels_layout'), 10, 1);
+        add_action("redux/metaboxes/$this->redux_opt_name/boxes", array($this, 'pzarc_mb_titles_settings'), 10, 1);
+        add_action("redux/metaboxes/$this->redux_opt_name/boxes", array($this, 'pzarc_mb_meta_settings'), 10, 1);
+        add_action("redux/metaboxes/$this->redux_opt_name/boxes", array($this, 'pzarc_mb_features_settings'), 10, 1);
+        add_action("redux/metaboxes/$this->redux_opt_name/boxes", array($this, 'pzarc_mb_body_settings'), 10, 1);
+        add_action("redux/metaboxes/$this->redux_opt_name/boxes", array($this,
+                                                                        'pzarc_mb_customfields_settings'), 10, 1);
         add_action("redux/metaboxes/$this->redux_opt_name/boxes", array(
             $this,
             'pzarc_mb_blueprint_content_selection'
         ), 10, 1);
-        add_action("redux/metaboxes/$this->redux_opt_name/boxes", array(
-            $this,
-            'pzarc_mb_blueprint_styling'
-        ), 10, 1);
-        add_action("redux/metaboxes/$this->redux_opt_name/boxes", array(
-            $this,
-            'pzarc_mb_panels_styling'
-        ), 10, 1);
+//        add_action("redux/metaboxes/$this->redux_opt_name/boxes", array(
+//            $this,
+//            'pzarc_mb_blueprint_styling'
+//        ), 10, 1);
+//        add_action("redux/metaboxes/$this->redux_opt_name/boxes", array(
+//            $this,
+//            'pzarc_mb_panels_styling'
+//        ), 10, 1);
 
         add_filter('views_edit-arc-blueprints', array($this, 'blueprints_description'));
 
@@ -289,62 +296,72 @@
         $_architect_options = get_option('_architect_options');
       }
       $fields = array();
-      if (!empty($_architect_options[ 'architect_enable_styling' ])) {
-        $fields = array(
-            array(
-                'id'      => $prefix . 'tabs',
-                'type'    => 'tabbed',
-                'options' => array(
-                    'layout'          => '<span><span class="stepno">1</span> <i class="el el-th"></i> <span class="pzarc-tab-title">Blueprint Design</span></span>',
-                    'content'         => '<span><span class="stepno">2</span> <i class="el el-filter"></i> <span class="pzarc-tab-title">Content Selection</span></span>',
-                    'panels'          => '<span><span class="stepno">3</span> <i class="el el-website"></i> <span class="pzarc-tab-title">Content Layout</span></span>',
-                    'content_styling' => '<span><span class="stepno">4</span> <i class="el el-brush"></i> <span class="pzarc-tab-title">Content Styling</span></span>',
-                    'styling'         => '<span><span class="stepno">5</span> <i class="el el-brush"></i> <span class="pzarc-tab-title">Blueprint Styling</span></span>',
-                ),
-                'targets' => array(
-                    'layout'          => array('layout-settings'),
-                    'content'         => array('content-selections'),
-                    'panels'          => array('panels-design'),
-                    'content_styling' => array('panels-styling'),
-                    'styling'         => array('blueprint-stylings'),
-                    //                    'presets'         => array('presets'),
-                )
-            ),
-        );
+//      if (!empty($_architect_options[ 'architect_enable_styling' ])) {
+      $fields = array(
+          array(
+              'id'      => $prefix . 'tabs',
+              'type'    => 'tabbed',
+              'options' => array(
+                  'layout'       => '<span class="pzarc-tab-title">' . __('Blueprint', 'pzarchitect') . '</span>',
+                  'type'         => '<span class="pzarc-tab-title pzarc-blueprint-type">' . __('', 'pzarchitect') . '</span>',
+                  'content'      => '<span class="pzarc-tab-title">' . __('Source', 'pzarchitect') . '</span>',
+                  'panels'       => '<span class="pzarc-tab-title">' . __('Panels', 'pzarchitect') . '</span>',
+                  'titles'       => '<span class="pzarc-tab-title">' . __('Title', 'pzarchitect') . '</span>',
+                  'meta'         => '<span class="pzarc-tab-title">' . __('Meta', 'pzarchitect') . '</span>',
+                  'features'     => '<span class="pzarc-tab-title">' . __('Feature', 'pzarchitect') . '</span>',
+                  'body'         => '<span class="pzarc-tab-title">' . __('Body/Excerpt', 'pzarchitect') . '</span>',
+                  'customfields' => '<span class="pzarc-tab-title">' . __('Custom Fields', 'pzarchitect') . '</span>',
+                  //                    'content_styling' => '<span class="pzarc-tab-title">Content Styling</span>',
+                  //                    'styling'         => '<span class="pzarc-tab-title">Blueprint Styling</span>',
+              ),
+              'targets' => array(
+                  'layout'       => array('layout-settings'),
+                  'type'         => array('type-settings'),
+                  'content'      => array('content-selections'),
+                  'panels'       => array('panels-design'),
+                  'titles'       => array('titles-settings'),
+                  'meta'         => array('meta-settings'),
+                  'features'     => array('features-settings'),
+                  'body'         => array('body-settings'),
+                  'customfields' => array('customfields-settings'),
+                  //                    'content_styling' => array('panels-styling'),
+                  //                    'styling'         => array('blueprint-stylings'),
+                  //                    'presets'         => array('presets'),
+              )
+          ),
+      );
 
-      } else {
-        $fields = array(
-            array(
-                'id'      => $prefix . 'tabs',
-                'type'    => 'tabbed',
-                'options' => array(
-                    'layout'  => '<span><span class="stepno">1</span> <span class="pzarc-tab-title">Blueprint Design</span></span>',
-                    'content' => '<span><span class="stepno">2</span> <span class="pzarc-tab-title">Content Selection</span></span>',
-                    'panels'  => '<span><span class="stepno">3</span> <span class="pzarc-tab-title">Content Layout</span></span>',
-                ),
-                'targets' => array(
-                    'layout'  => array('layout-settings'),
-                    'content' => array('content-selections'),
-                    'panels'  => array('panels-design'),
-                )
-            ),
-        );
-
-
-      }
+//      } else {
+//        $fields = array(
+//            array(
+//                'id'      => $prefix . 'tabs',
+//                'type'    => 'tabbed',
+//                'options' => array(
+//                    'layout'  => '<span><span class="stepno">1</span> <span class="pzarc-tab-title">Blueprint Design</span></span>',
+//                    'content' => '<span><span class="stepno">2</span> <span class="pzarc-tab-title">Content Selection</span></span>',
+//                    'panels'  => '<span><span class="stepno">3</span> <span class="pzarc-tab-title">Content Layout</span></span>',
+//                ),
+//                'targets' => array(
+//                    'layout'  => array('layout-settings'),
+//                    'content' => array('content-selections'),
+//                    'panels'  => array('panels-design'),
+//                )
+//            ),
+//        );
+//      }
 
       $fields = apply_filters('arc_editor_tabs', $fields);
 
-      $sections[]  = array(
+      $sections[ 'settings-chooser' ] = array(
         //          'title'      => __('General Settings', 'pzarchitect'),
         'show_title' => true,
         'icon_class' => 'icon-large',
         'icon'       => 'el-icon-home',
         'fields'     => $fields
       );
-      $metaboxes[] = array(
+      $metaboxes[]                    = array(
           'id'         => $prefix . 'blueprints',
-          'title'      => __('Steps:', 'pzarchitect'),
+          //'title'      => __('Sections:', 'pzarchitect'),
           'post_types' => array('arc-blueprints'),
           'sections'   => $sections,
           'position'   => 'normal',
@@ -429,19 +446,8 @@
       $animation_state = !empty($_architect_options[ 'architect_animation-enable' ]) ? $_architect_options[ 'architect_animation-enable' ] : false;
       if (is_admin() && !empty($_GET[ 'post' ])) {
         $cfcount = (!empty($this->postmeta[ '_panels_design_custom-fields-count' ][ 0 ]) ? $this->postmeta[ '_panels_design_custom-fields-count' ][ 0 ] : 0);
-        $cfwarn  = (ini_get('max_input_vars') <= 1000 && ($cfcount > 0 || $animation_state));
-
-      }
-      if ($cfwarn) {
-        $sections[ '_general_bp' ][ 'fields' ][] = array(
-            'id'       => $prefix . 'input-vars-message',
-            'title'    => __('Custom fields', 'pzarchitect'),
-            'type'     => 'info',
-            'style'    => ($cfwarn ? 'critical' : 'normal'),
-            'required' => array('_panels_design_components-to-show', 'contains', 'custom'),
-            'desc'     => __('If you add custom fields to a Blueprint it adds many more fields to the form. <strong>This can cause some fields not to save</strong>. Please read this post by Woo Themes for solutions:', 'pzarchitect') . '<br><a href="http://docs.woothemes.com/document/problems-with-large-amounts-of-data-not-saving-variations-rates-etc/" target=_blank>Problems with large amounts of data not saving</a><br>Your max_input_vars setting is: ' . ini_get('max_input_vars'),
-
-        );
+        $max_input_vars = ini_get('max_input_vars');
+        $cfwarn  = (!empty($max_input_vars) && $max_input_vars <= 1000 && ($cfcount > 0 || $animation_state));
 
       }
       $sections[ '_general_bp' ] = array(
@@ -468,6 +474,18 @@
           )
       );
 
+      if ($cfwarn) {
+        $sections[ '_general_bp' ][ 'fields' ][] = array(
+            'id'       => $prefix . 'input-vars-message',
+            'title'    => __('Custom fields', 'pzarchitect'),
+            'type'     => 'info',
+            'style'    => ($cfwarn ? 'critical' : 'normal'),
+            'required' => array('_panels_design_components-to-show', 'contains', 'custom'),
+            'desc'     => __('If you add custom fields to a Blueprint it adds many more fields to the form. <strong>This can cause some fields not to save</strong>. Please read this post by Woo Themes for solutions:', 'pzarchitect') . '<br><a href="http://docs.woothemes.com/document/problems-with-large-amounts-of-data-not-saving-variations-rates-etc/" target=_blank>Problems with large amounts of data not saving</a><br>Your max_input_vars setting is: ' . ini_get('max_input_vars'),
+
+        );
+
+      }
 
       $current_theme = wp_get_theme();
       $is_hw         = (($current_theme->get('Name') === 'Headway Base' || $current_theme->get('Template') == 'headway'));
@@ -533,7 +551,7 @@
           'post_types' => array('arc-blueprints'),
           'sections'   => $sections,
           'position'   => 'side',
-          'priority'   => 'low',
+          'priority'   => 'default',
           'sidebar'    => false
 
       );
@@ -549,16 +567,19 @@
      */
     function pzarc_mb_blueprint_design($metaboxes, $defaults_only = false)
     {
-      $prefix = '_blueprints_'; // declare prefix
+      $prefix   = '_blueprints_'; // declare prefix
       $sections = array();
       global $_architect_options;
       if (empty($_architect_options)) {
         $_architect_options = get_option('_architect_options');
       }
+      if (empty($_architect)) {
+        $_architect = get_option('_architect');
+      }
 
 
       /** SECTIONS */
-      $icons       = array(0 => 'el-icon-align-left', 1 => 'el-icon-th', 2 => 'el-icon-th-list');
+      $icons       = array(0 => 'el-icon-th-large', 1 => 'el-icon-th', 2 => 'el-icon-th-list');
       $modes[ 0 ]  = array(
           'basic'     => __('Basic', 'pzarchitect'),
           'slider'    => __('Slider', 'pzarchitect'),
@@ -663,51 +684,6 @@
 ',
                                         'pzarchitect')
                     ),
-                ),
-                array(
-                    'id'       => $prefix . 'section-' . $i . '-tabular-title',
-                    'title'    => __('Tabular', 'pzarchitect'),
-                    'type'     => 'section',
-                    'indent'   => true,
-                    'required' => array($prefix . 'section-' . $i . '-layout-mode', '=', 'table'),
-                ),
-                array(
-                    'id'         => $prefix . 'section-' . $i . '-table-column-titles',
-                    'title'      => __('Table column titles', 'pzarchitect'),
-                    'type'       => 'multi_text',
-                    'show_empty' => false,
-                    'add_text'   => 'Add a title',
-                    'required'   => array($prefix . 'section-' . $i . '-layout-mode', '=', 'table'),
-                ),
-                array(
-                    'id'       => $prefix . 'section-' . $i . '-accordion-title',
-                    'title'    => __('Accordion', 'pzarchitect'),
-                    'type'     => 'section',
-                    'indent'   => true,
-                    'required' => array($prefix . 'section-' . $i . '-layout-mode', '=', 'accordion'),
-                ),
-                array(
-                    'title'    => __('Accordion open', 'pzarchitect'),
-                    'id'       => $prefix . 'accordion-closed',
-                    'type'     => 'switch',
-                    'on'       => __('Yes', 'pzarchitect'),
-                    'off'      => __('No', 'pzarchitect'),
-                    'default'  => false,
-                    'subtitle' => __('Turn off to have accordion closed on startup.', 'pzarchitect')
-                ),
-                array(
-                    'id'         => $prefix . 'section-' . $i . '-accordion-titles',
-                    'title'      => __('Accordion titles', 'pzarchitect'),
-                    'type'       => 'multi_text',
-                    'show_empty' => false,
-                    'add_text'   => 'Add a title',
-                    'required'   => array($prefix . 'section-' . $i . '-layout-mode', '=', 'accordion'),
-                    'subtitle'   => 'Optional. Leave as none to use post titles'
-                ),
-                array(
-                    'id'     => $prefix . 'section-' . $i . '-accordion-section-end',
-                    'type'   => 'section',
-                    'indent' => false,
                 ),
                 array(
                     'id'     => $prefix . 'section-' . $i . '-panels-heading',
@@ -1063,7 +1039,391 @@
         );
       }
 
+      /**
+       * Styling
+       */
 
+      if (!empty($_architect_options[ 'architect_enable_styling' ])) {
+        $defaults = get_option('_architect');
+        $prefix   = '_blueprints_styling_'; // declare prefix
+// TODO: need to get styling to take
+        $font         = '-font';
+        $link         = '-links';
+        $padding      = '-padding';
+        $margin       = '-margins';
+        $background   = '-background';
+        $border       = '-borders';
+        $borderradius = '-borderradius';
+
+        $stylingSections = array();
+        $optprefix       = 'architect_config_';
+
+        $thisSection = 'blueprint';
+
+        $sections[ '_styling_general' ] = array(
+            'title'      => 'Blueprint styling',
+            'show_title' => false,
+            'icon_class' => 'icon-large',
+            'icon'       => 'el-icon-brush',
+            'fields'     => pzarc_fields(
+//                array(
+//                    'title'   => __('Load style'),
+//                    'id'      => $prefix . 'blueprints-load-style',
+//                    'type'    => 'select',
+//                    'desc'    => 'Sorry to tease, but this isn\'t implemented yet.',
+//                    'options' => array('none', 'dark', 'light'),
+//                    'default' => 'none'
+//                ),
+                array(
+                    'title'    => __('Blueprint', 'pzarchitect'),
+                    'id'       => $prefix . 'blueprint-section-blueprint',
+                    'type'     => 'section',
+                    'indent'   => true,
+                    'class'    => 'heading',
+                    'subtitle' => 'Class: .pzarc-blueprint_{shortname}',
+                ),
+
+                // TODO: Add shadows! Or maybe not!
+                pzarc_redux_bg($prefix . $thisSection . $background, $this->defaults ? '' : $_architect[ 'architect_config_' . $thisSection . '-selectors' ], $defaults[ $optprefix . $thisSection . $background ]),
+                pzarc_redux_padding($prefix . $thisSection . $padding, $this->defaults ? '' : $_architect[ 'architect_config_' . $thisSection . '-selectors' ], $defaults[ $optprefix . $thisSection . $padding ]),
+                pzarc_redux_margin($prefix . $thisSection . $margin, $this->defaults ? '' : $_architect[ 'architect_config_' . $thisSection . '-selectors' ], $defaults[ $optprefix . $thisSection . $margin ]),
+                pzarc_redux_borders($prefix . $thisSection . $border, $this->defaults ? '' : $_architect[ 'architect_config_' . $thisSection . '-selectors' ], $defaults[ $optprefix . $thisSection . $border ]),
+                pzarc_redux_links($prefix . $thisSection . $link, $this->defaults ? '' : $_architect[ 'architect_config_' . $thisSection . '-selectors' ], $defaults[ $optprefix . $thisSection . $link ]),
+                array(
+                    'id'     => $prefix . 'blueprint-end-section-blueprint',
+                    'type'   => 'section',
+                    'indent' => false,
+                ),
+                array(
+                    'title'    => __('Blueprint title', 'pzarchitect'),
+                    'id'       => $prefix . 'blueprint-section-blueprint-title-css',
+                    'type'     => 'section',
+                    'indent'   => true,
+                    'subtitle' => 'Class: .pzarc-blueprint-title',
+                ),
+                pzarc_redux_font($prefix . $thisSection . '_blueprint-title' . $font, $this->defaults ? '' : $_architect[ 'architect_config_' . $thisSection . '_blueprint-title' . '-selectors' ], $defaults[ $optprefix . $thisSection . '_blueprint-title' . $font ]),
+                pzarc_redux_bg($prefix . $thisSection . '_blueprint-title' . $background, $this->defaults ? '' : $_architect[ 'architect_config_' . $thisSection . '_blueprint-title' . '-selectors' ], $defaults[ $optprefix . $thisSection . '_blueprint-title' . $background ]),
+                pzarc_redux_padding($prefix . $thisSection . '_blueprint-title' . $padding, $this->defaults ? '' : $_architect[ 'architect_config_' . $thisSection . '_blueprint-title' . '-selectors' ], $defaults[ $optprefix . $thisSection . '_blueprint-title' . $padding ]),
+                pzarc_redux_margin($prefix . $thisSection . '_blueprint-title' . $margin, $this->defaults ? '' : $_architect[ 'architect_config_' . $thisSection . '_blueprint-title' . '-selectors' ], $defaults[ $optprefix . $thisSection . '_blueprint-title' . $margin ]),
+                pzarc_redux_borders($prefix . $thisSection . '_blueprint-title' . $border, $this->defaults ? '' : $_architect[ 'architect_config_' . $thisSection . '_blueprint-title' . '-selectors' ], $defaults[ $optprefix . $thisSection . '_blueprint-title' . $border ]),
+                array(
+                    'id'     => $prefix . 'blueprint-end-section-blueprint-title',
+                    'type'   => 'section',
+                    'indent' => false,
+                ),
+                array(
+                    'title'    => __('Blueprint footer', 'pzarchitect'),
+                    'id'       => $prefix . 'blueprint-section-blueprint-footer-css',
+                    'type'     => 'section',
+                    'indent'   => true,
+                    'subtitle' => 'Class: .pzarc-blueprint-footer',
+                ),
+                pzarc_redux_font($prefix . $thisSection . '_blueprint-footer' . $font, $this->defaults ? '' : $_architect[ 'architect_config_' . $thisSection . '_blueprint-footer' . '-selectors' ], $defaults[ $optprefix . $thisSection . '_blueprint-footer' . $font ]),
+                pzarc_redux_bg($prefix . $thisSection . '_blueprint-footer' . $background, $this->defaults ? '' : $_architect[ 'architect_config_' . $thisSection . '_blueprint-footer' . '-selectors' ], $defaults[ $optprefix . $thisSection . '_blueprint-footer' . $background ]),
+                pzarc_redux_padding($prefix . $thisSection . '_blueprint-footer' . $padding, $this->defaults ? '' : $_architect[ 'architect_config_' . $thisSection . '_blueprint-footer' . '-selectors' ], $defaults[ $optprefix . $thisSection . '_blueprint-footer' . $padding ]),
+                pzarc_redux_margin($prefix . $thisSection . '_blueprint-footer' . $margin, $this->defaults ? '' : $_architect[ 'architect_config_' . $thisSection . '_blueprint-footer' . '-selectors' ], $defaults[ $optprefix . $thisSection . '_blueprint-footer' . $margin ]),
+                pzarc_redux_borders($prefix . $thisSection . '_blueprint-footer' . $border, $this->defaults ? '' : $_architect[ 'architect_config_' . $thisSection . '_blueprint-footer' . '-selectors' ], $defaults[ $optprefix . $thisSection . '_blueprint-footer' . $border ]),
+                pzarc_redux_links($prefix . $thisSection . '_blueprint-footer' . $link, $this->defaults ? '' : $_architect[ 'architect_config_' . $thisSection . '_blueprint-footer' . '-selectors' ], $defaults[ $optprefix . $thisSection . '_blueprint-footer' . $link ]),
+                array(
+                    'id'     => $prefix . 'blueprint-end-section-blueprint-footer',
+                    'type'   => 'section',
+                    'indent' => false,
+                )
+//            array(
+//              'title'    => __( 'Custom CSS', 'pzarchitect' ),
+//              'id'       => $prefix . 'blueprint-custom-css',
+//              'options'	=>	array('minLines'=> 25),
+//              'type'     => 'ace_editor',
+//              'mode'     => 'css',
+//              'subtitle' => __( 'As a shorthand, you can prefix your CSS class with MYBLUEPRINT and Architect will substitute the correct class for this Blueprint. e.g. MYBLUEPRINT {border-radius:5px;}', 'pzarchitect' )
+//              //              'subtitle' => __( 'This can be any CSS you\'d like to add to a page this blueprint is displayed on. It will ONLY load on the pages this blueprint is shown on, so will only impact those pages. However, if you have multiple blueprints on a page, this CSS could affect or be overriden by ther blueprints\' custom CSS.', 'pzarchitect' ),
+//              //                'hint'  => array('content' => __('This is can be any CSS you\'d like to add to a page this blueprint is displayed on. It will ONLY load on the pages this blueprint is shown on, so will only impact those pages. However, if you have multiple blueprints on a page, this CSS could affect or be overriden by ther blueprints\' custom CSS.', 'pzarchitect')),
+//            )
+            )
+        );
+
+        $thisSection                 = 'page';
+        $sections[ '_styling_page' ] = array(
+            'title'      => 'Page styling',
+            'show_title' => false,
+            'icon_class' => 'icon-large',
+            'icon'       => 'el-icon-file',
+            'fields'     => pzarc_fields(
+                array(
+                    'title'    => __('Page title', 'pzarchitect'),
+                    'id'       => $prefix . 'blueprint-section-page-title',
+                    'type'     => 'section',
+                    'indent'   => true,
+                    'class'    => 'heading',
+                    'subtitle' => 'Class: .pzarc-page-title',
+                ),
+                pzarc_redux_font($prefix . $thisSection . '_page-title' . $font, $this->defaults ? '' : $_architect[ 'architect_config_' . $thisSection . '_page-title' . '-selectors' ], $defaults[ $optprefix . $thisSection . '_page-title' . $font ]),
+                pzarc_redux_bg($prefix . $thisSection . '_page-title' . $background, $this->defaults ? '' : $_architect[ 'architect_config_' . $thisSection . '_page-title' . '-selectors' ], $defaults[ $optprefix . $thisSection . '_page-title' . $background ]),
+                pzarc_redux_padding($prefix . $thisSection . '_page-title' . $padding, $this->defaults ? '' : $_architect[ 'architect_config_' . $thisSection . '_page-title' . '-selectors' ], $defaults[ $optprefix . $thisSection . '_page-title' . $padding ]),
+                pzarc_redux_margin($prefix . $thisSection . '_page-title' . $margin, $this->defaults ? '' : $_architect[ 'architect_config_' . $thisSection . '_page-title' . '-selectors' ], $defaults[ $optprefix . $thisSection . '_page-title' . $margin ]),
+                pzarc_redux_borders($prefix . $thisSection . '_page-title' . $border, $this->defaults ? '' : $_architect[ 'architect_config_' . $thisSection . '_page-title' . '-selectors' ], $defaults[ $optprefix . $thisSection . '_page-title' . $border ]),
+                array(
+                    'id'     => $prefix . 'blueprint-end-section-page-title',
+                    'type'   => 'section',
+                    'indent' => false,
+                )
+            )
+        );
+
+
+        $thisSection                             = 'sections';
+        $sections[ '_styling_sections_wrapper' ] = array(
+            'title'      => 'Panels wrapper styling',
+            'show_title' => false,
+            'icon_class' => 'icon-large',
+            'icon'       => 'el-icon-check-empty',
+            'desc'       => 'Class: .pzarc-sections_{shortname}',
+            'fields'     => pzarc_fields(
+
+            // TODO: Add shadows
+            //$prefix . 'hentry' . $background, $_architect[ 'architect_config_hentry-selectors' ], $defaults[ $optprefix . 'hentry' . $background ]
+                pzarc_redux_bg($prefix . $thisSection . $background, $this->defaults ? '' : $_architect[ 'architect_config_' . $thisSection . '-selectors' ], $defaults[ $optprefix . $thisSection . $background ]),
+                pzarc_redux_padding($prefix . $thisSection . $padding, $this->defaults ? '' : $_architect[ 'architect_config_' . $thisSection . '-selectors' ], $defaults[ $optprefix . $thisSection . $padding ]),
+                pzarc_redux_margin($prefix . $thisSection . $margin, $this->defaults ? '' : $_architect[ 'architect_config_' . $thisSection . '-selectors' ], $defaults[ $optprefix . $thisSection . $margin ]),
+                pzarc_redux_borders($prefix . $thisSection . $border, $this->defaults ? '' : $_architect[ 'architect_config_' . $thisSection . '-selectors' ], $defaults[ $optprefix . $thisSection . $border ])
+            )
+        );
+//        $icons                                   = array(1 => 'el-icon-align-left',
+//                                                         2 => 'el-icon-th',
+//                                                         3 => 'el-icon-th-list');
+//
+//        $thisSection                         = 'section_1';
+//        $sections[ '_styling_section_1' ]    = array(
+//            'title'      => 'Section 1',
+//            'show_title' => false,
+//            'icon_class' => 'icon-large',
+//            'icon'       => $icons[ 1 ],
+//            'desc'       => 'Class: ' . $this->defaults ? '' : $_architect[ 'architect_config_' . $thisSection . '-selectors' ],
+//            'fields'     => array(
+//                pzarc_redux_bg($prefix . $thisSection . $background, $this->defaults ? '' : $_architect[ 'architect_config_' . $thisSection . '-selectors' ], $defaults[ $optprefix . $thisSection . $background ]),
+//                pzarc_redux_padding($prefix . $thisSection . $padding, $this->defaults ? '' : $_architect[ 'architect_config_' . $thisSection . '-selectors' ], $defaults[ $optprefix . $thisSection . $padding ]),
+//                pzarc_redux_margin($prefix . $thisSection . $margin, $this->defaults ? '' : $_architect[ 'architect_config_' . $thisSection . '-selectors' ], $defaults[ $optprefix . $thisSection . $margin ]),
+//                pzarc_redux_borders($prefix . $thisSection . $border, $this->defaults ? '' : $_architect[ 'architect_config_' . $thisSection . '-selectors' ], $defaults[ $optprefix . $thisSection . $border ])
+//            ),
+//        );
+//        $thisSection                         = 'section_2';
+//        $sections[ '_styling_section_2' ]    = array(
+//            'title'      => 'Section 2',
+//            'show_title' => false,
+//            'icon_class' => 'icon-large',
+//            'icon'       => $icons[ 2 ],
+//            'desc'       => 'Class: ' . $this->defaults ? '' : $_architect[ 'architect_config_' . $thisSection . '-selectors' ],
+//            'fields'     => array(
+//                pzarc_redux_bg($prefix . $thisSection . $background, $this->defaults ? '' : $_architect[ 'architect_config_' . $thisSection . '-selectors' ], $defaults[ $optprefix . $thisSection . $background ]),
+//                pzarc_redux_padding($prefix . $thisSection . $padding, $this->defaults ? '' : $_architect[ 'architect_config_' . $thisSection . '-selectors' ], $defaults[ $optprefix . $thisSection . $padding ]),
+//                pzarc_redux_margin($prefix . $thisSection . $margin, $this->defaults ? '' : $_architect[ 'architect_config_' . $thisSection . '-selectors' ], $defaults[ $optprefix . $thisSection . $margin ]),
+//                pzarc_redux_borders($prefix . $thisSection . $border, $this->defaults ? '' : $_architect[ 'architect_config_' . $thisSection . '-selectors' ], $defaults[ $optprefix . $thisSection . $border ])
+//            ),
+//        );
+//        $thisSection                         = 'section_3';
+//        $sections[ '_styling_section_3' ]    = array(
+//            'title'      => 'Section 3',
+//            'show_title' => false,
+//            'icon_class' => 'icon-large',
+//            'icon'       => $icons[ 3 ],
+//            'desc'       => 'Class: ' . $this->defaults ? '' : $_architect[ 'architect_config_' . $thisSection . '-selectors' ],
+//            'fields'     => array(
+//                pzarc_redux_bg($prefix . $thisSection . $background, $this->defaults ? '' : $_architect[ 'architect_config_' . $thisSection . '-selectors' ], $defaults[ $optprefix . $thisSection . $background ]),
+//                pzarc_redux_padding($prefix . $thisSection . $padding, $this->defaults ? '' : $_architect[ 'architect_config_' . $thisSection . '-selectors' ], $defaults[ $optprefix . $thisSection . $padding ]),
+//                pzarc_redux_margin($prefix . $thisSection . $margin, $this->defaults ? '' : $_architect[ 'architect_config_' . $thisSection . '-selectors' ], $defaults[ $optprefix . $thisSection . $margin ]),
+//                pzarc_redux_borders($prefix . $thisSection . $border, $this->defaults ? '' : $_architect[ 'architect_config_' . $thisSection . '-selectors' ], $defaults[ $optprefix . $thisSection . $border ])
+//            ),
+//        );
+
+        /**
+         * CUSTOM CSS
+         */
+        $sections[ '_bp_custom_css' ] = array(
+            'id'         => 'bp-custom-css',
+            'title'      => __('Custom CSS', 'pzarchitect'),
+            'icon_class' => 'icon-large',
+            'icon'       => 'el-icon-wrench',
+            'fields'     => array(
+                array(
+                    'id'       => $prefix . 'blueprint-custom-css',
+                    'type'     => 'ace_editor',
+                    'title'    => __('Custom CSS', 'pzarchitect'),
+                    'mode'     => 'css',
+                    'options'  => array('minLines' => 25),
+                    'subtitle' => __('As a shorthand, you can prefix your CSS class with MYBLUEPRINT and Architect will substitute the correct class for this Blueprint. e.g. MYBLUEPRINT {border-radius:5px;}', 'pzarchitect')
+                ),
+            )
+        );
+      }
+//      $file_contents          = file_get_contents(PZARC_DOCUMENTATION_PATH . PZARC_LANGUAGE . '/using-blueprints.md');
+      $file_contents = '';
+      if (is_admin()) {
+        $ch = curl_init(PZARC_DOCUMENTATION_URL . PZARC_LANGUAGE . '/using-blueprints.md');
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        $file_contents = curl_exec($ch);
+        curl_close($ch);
+      }
+//      $sections[ '_usingbp' ] = array(
+//        'title'      => '.eprints',
+//        'icon_class' => 'icon-large',
+//        'icon'       => 'el-icon-info-sign',
+//        'fields'     => array(
+      $sections[ '_help' ] = array(
+          'title'      => 'Help',
+          'icon_class' => 'icon-large',
+          'icon'       => 'el-icon-question-sign',
+          'fields'     => array(
+              array(
+                  'title'    => __('Enabling styling tabs', 'pzarchitect'),
+                  'id'       => $prefix . 'help-usingbp-styling-tabs',
+                  'type'     => 'raw',
+                  'markdown' => false,
+                  'content'  => __('If you are using <strong>Headway</strong>, the Architect styling tabs are off by default. They can be enabled in Architect > Options > Use Architect Styling. Styling applied in the Headway Visual Editor will still be used, but the Architect styling will take precedence.', 'pzarchitect')
+              ),
+              array(
+                  'title'    => __('Enabling animation tab', 'pzarchitect'),
+                  'id'       => $prefix . 'help-usingbp-animation-tabs',
+                  'type'     => 'raw',
+                  'markdown' => false,
+                  'content'  => __('Animation is off by default. It can be enabled in Architect > Animation > Enable Animation', 'pzarchitect')
+              ),
+
+              array(
+                  'title'    => __('Displaying Blueprints', 'pzarchitect'),
+                  'id'       => $prefix . 'help-blueprints',
+                  'type'     => 'raw',
+                  'class'    => 'plain',
+                  'markdown' => true,
+                  'content'  => ($defaults_only ? '' : $file_contents),
+                  'pzarchitect'
+              ),
+              array(
+                  'title'    => __('Blueprint styling', 'pzarchitect'),
+                  'id'       => $prefix . 'help',
+                  'type'     => 'raw',
+                  'markdown' => false,
+                  //  'class' => 'plain',
+                  'content'  => '<h3>Adding underlines to hover links</h3>
+                            <p>In the Custom CSS field, enter the following CSS</p>
+                            <p>.pzarc-blueprint_SHORTNAME a:hover {text-decoration:underline;}</p>
+                            <p>SHORTNAME = the short name you entered for this blueprint</p>
+                            <h3>Make pager appear outside of panels</h3>
+                            <p>If you want the pager to appear outside of the panels instead of over them, set a the sections width less than 100%.</p>
+                            '
+              ),
+              array(
+                  'title'    => __('Online documentation', 'pzarchitect'),
+                  'id'       => $prefix . 'help-content-online-docs',
+                  'type'     => 'raw',
+                  'markdown' => false,
+                  'content'  => '<a href="http://architect4wp.com/codex-listings/" target=_blank>' . __('Architect Online Documentation', 'pzarchitect') . '</a><br>' . __('This is a growing resource. Please check back regularly.', 'pzarchitect')
+
+              ),
+          )
+      );
+//      $sections[ '_help' ]    = array(
+//        'title'      => 'Help',
+//        'icon_class' => 'icon-large',
+//        'icon'       => 'el-icon-question-sign',
+//        'fields'     => array(
+
+//              array(
+//                  'title'    => __('Blueprints videos', 'pzarchitect'),
+//                  'id'       => $prefix . 'help-blueprints-videos',
+//                  'subtitle' => __('Internet connection required'),
+//                  'type'     => 'raw',
+//                  'class'    => 'plain',
+//                  'markdown' => false,
+//                  'content'  => ($defaults_only ? '' : @file_get_contents('https://s3.amazonaws.com/341public/architect/blueprints-videos.html'))
+//              ),
+//array(
+//  'title'    => __( 'Online documentation', 'pzarchitect' ),
+//  'id'       => $prefix . 'help-layout-online-docs',
+//  'type'     => 'raw',
+//  'markdown' => false,
+//  'content'  => '<a href="http://architect4wp.com/codex-listings/" target=_blank>' . __( 'Architect Online Documentation', 'pzarchitect' ) . '</a><br>' . __( 'This is a growing resource. Please check back regularly.', 'pzarchitect' )
+//
+//),
+//              array(
+//                  'title' => __('Data', 'pzarchitect'),
+//                  'id'    => $prefix . 'help-data',
+//                  'type'  => 'code',
+//                  'code'  => show_meta()
+//
+//              ),
+
+////        )
+//      );
+      $metaboxes[] = array(
+          'id'         => 'layout-settings',
+          'title'      => 'Blueprint Design and stylings: Choose and setup the overall design and stylings',
+          'post_types' => array('arc-blueprints'),
+          'sections'   => $sections,
+          'position'   => 'normal',
+          'priority'   => 'low',
+          'sidebar'    => false
+
+      );
+
+      return $metaboxes;
+    }
+
+
+    function pzarc_mb_blueprint_types($metaboxes, $defaults_only = false)
+    {
+      global $_architect;
+      global $_architect_options;
+      if (empty($_architect_options)) {
+        $_architect_options = get_option('_architect_options');
+      }
+
+      if (empty($_architect)) {
+        $_architect = get_option('_architect');
+      }
+
+      $prefix                   = '_blueprints_'; // declare prefix
+      $sections                 = array();
+      $sections[ '_tabular' ]   = array(
+          'title'      => __('Tabular settings', 'pzarchitect'),
+          'show_title' => true,
+          'icon_class' => 'icon-large',
+          'icon'       => 'el-icon-adjust-alt',
+          //          'desc'       => 'When the navigation type is set to navigator, presentation will always be in a slider form. You can have multiple navigators on a page, thus multiple sliders.',
+          'fields'     => array(
+              array(
+                  'id'         => $prefix . 'section-0-table-column-titles',
+                  'title'      => __('Table column titles', 'pzarchitect'),
+                  'type'       => 'multi_text',
+                  'show_empty' => false,
+                  'add_text'   => 'Add a title',
+              )
+          )
+      );
+      $sections[ '_accordion' ] = array(
+          'title'      => __('Accordion settings', 'pzarchitect'),
+          'show_title' => true,
+          'icon_class' => 'icon-large',
+          'icon'       => 'el-icon-adjust-alt',
+          'fields'     => array(
+              array(
+                  'title'    => __('Accordion open', 'pzarchitect'),
+                  'id'       => $prefix . 'accordion-closed',
+                  'type'     => 'switch',
+                  'on'       => __('Yes', 'pzarchitect'),
+                  'off'      => __('No', 'pzarchitect'),
+                  'default'  => false,
+                  'subtitle' => __('Turn off to have accordion closed on startup.', 'pzarchitect')
+              ),
+              array(
+                  'id'         => $prefix . 'section-0-accordion-titles',
+                  'title'      => __('Accordion titles', 'pzarchitect'),
+                  'type'       => 'multi_text',
+                  'show_empty' => false,
+                  'add_text'   => 'Add a title',
+                  'subtitle'   => 'Optional. Leave as none to use post titles'
+              ),
+          )
+      );
       /**
        *
        * SLIDERS & TABBED
@@ -1106,10 +1466,10 @@
       );
 
       $sections[ '_slidertabbed' ] = array(
-          'title'      => __('Sliders & Tabbed', 'pzarchitect'),
+          'title'      => __('Sliders & Tabbed settings', 'pzarchitect'),
           'show_title' => true,
           'icon_class' => 'icon-large',
-          'icon'       => 'el-icon-website',
+          'icon'       => 'el-icon-adjust-alt',
           //          'desc'       => 'When the navigation type is set to navigator, presentation will always be in a slider form. You can have multiple navigators on a page, thus multiple sliders.',
           'fields'     => array(
               array(
@@ -1581,9 +1941,9 @@
         $pzarc_masonry_filter_taxes = array();
       }
       $sections[ '_masonry' ] = array(
-          'title'      => __('Masonry', 'pzarchitect'),
+          'title'      => __('Masonry settings', 'pzarchitect'),
           'icon_class' => 'icon-large',
-          'icon'       => 'el-icon-th',
+          'icon'       => 'el-icon-adjust-alt',
           'fields'     => array(
               array(
                   'title'   => __('Features', 'pzarchitect'),
@@ -1846,257 +2206,10 @@
           )
       );
 
-//      $file_contents          = file_get_contents(PZARC_DOCUMENTATION_PATH . PZARC_LANGUAGE . '/using-blueprints.md');
-      $file_contents = '';
-      if (is_admin()) {
-        $ch = curl_init(PZARC_DOCUMENTATION_URL . PZARC_LANGUAGE . '/using-blueprints.md');
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        $file_contents = curl_exec($ch);
-        curl_close($ch);
-      }
-//      $sections[ '_usingbp' ] = array(
-//        'title'      => '.eprints',
-//        'icon_class' => 'icon-large',
-//        'icon'       => 'el-icon-info-sign',
-//        'fields'     => array(
-      $sections[ '_help' ] = array(
-          'title'      => 'Help',
-          'icon_class' => 'icon-large',
-          'icon'       => 'el-icon-question-sign',
-          'fields'     => array(
-              array(
-                  'title'    => __('Enabling styling tabs', 'pzarchitect'),
-                  'id'       => $prefix . 'help-usingbp-styling-tabs',
-                  'type'     => 'raw',
-                  'markdown' => false,
-                  'content'  => __('If you are using <strong>Headway</strong>, the Architect styling tabs are off by default. They can be enabled in Architect > Options > Use Architect Styling. Styling applied in the Headway Visual Editor will still be used, but the Architect styling will take precedence.', 'pzarchitect')
-              ),
-              array(
-                  'title'    => __('Enabling animation tab', 'pzarchitect'),
-                  'id'       => $prefix . 'help-usingbp-animation-tabs',
-                  'type'     => 'raw',
-                  'markdown' => false,
-                  'content'  => __('Animation is off by default. It can be enabled in Architect > Animation > Enable Animation', 'pzarchitect')
-              ),
-
-              array(
-                  'title'    => __('Displaying Blueprints', 'pzarchitect'),
-                  'id'       => $prefix . 'help-blueprints',
-                  'type'     => 'raw',
-                  'class'    => 'plain',
-                  'markdown' => true,
-                  'content'  => ($defaults_only ? '' : $file_contents),
-                  'pzarchitect'
-              ),
-              array(
-                  'title'    => __('Online documentation', 'pzarchitect'),
-                  'id'       => $prefix . 'help-usingbp-online-docs',
-                  'type'     => 'raw',
-                  'markdown' => false,
-                  'content'  => '<a href="http://architect4wp.com/codex-listings/" target=_blank>' . __('Architect Online Documentation', 'pzarchitect') . '</a><br>' . __('This is a growing resource. Please check back regularly.', 'pzarchitect')
-
-              ),
-          )
-      );
-//      $sections[ '_help' ]    = array(
-//        'title'      => 'Help',
-//        'icon_class' => 'icon-large',
-//        'icon'       => 'el-icon-question-sign',
-//        'fields'     => array(
-
-//              array(
-//                  'title'    => __('Blueprints videos', 'pzarchitect'),
-//                  'id'       => $prefix . 'help-blueprints-videos',
-//                  'subtitle' => __('Internet connection required'),
-//                  'type'     => 'raw',
-//                  'class'    => 'plain',
-//                  'markdown' => false,
-//                  'content'  => ($defaults_only ? '' : @file_get_contents('https://s3.amazonaws.com/341public/architect/blueprints-videos.html'))
-//              ),
-//array(
-//  'title'    => __( 'Online documentation', 'pzarchitect' ),
-//  'id'       => $prefix . 'help-layout-online-docs',
-//  'type'     => 'raw',
-//  'markdown' => false,
-//  'content'  => '<a href="http://architect4wp.com/codex-listings/" target=_blank>' . __( 'Architect Online Documentation', 'pzarchitect' ) . '</a><br>' . __( 'This is a growing resource. Please check back regularly.', 'pzarchitect' )
-//
-//),
-//              array(
-//                  'title' => __('Data', 'pzarchitect'),
-//                  'id'    => $prefix . 'help-data',
-//                  'type'  => 'code',
-//                  'code'  => show_meta()
-//
-//              ),
-
-////        )
-//      );
-
-      $metaboxes[] = array(
-          'id'         => 'layout-settings',
-          'title'      => 'Blueprint Design: Choose and setup the overall design ',
-          'post_types' => array('arc-blueprints'),
-          'sections'   => $sections,
-          'position'   => 'normal',
-          'priority'   => 'low',
-          'sidebar'    => false
-
-      );
-
-      return $metaboxes;
-    }
-
-
-    /**
-     *
-     * CONTENT
-     *
-     * @param array $metaboxes
-     *
-     * @return array
-     */
-    function pzarc_mb_blueprint_content_selection($metaboxes, $defaults_only = false)
-    {
-
-      // TODO: Setup a loop that reads the object containing content type info as appened by the content type classes. Will need a means of letting js know tho.
-      $prefix = '_content_general_'; // declare prefix
-      $sections = array();
-//    $sections[ ] = array(
-//        'title'      => 'Settings',
-//        'icon_class' => 'icon-large',
-//        'icon'       => 'el-icon-adjust-alt',
-//        'fields'     => array(
-//
-//        )
-//    );
-//
-      /** DISPLAY ALL THE CONTENT TYPES FORMS */
-      $registry = arc_Registry::getInstance();
-
-      $content_types      = array();
-      $content_post_types = (array)$registry->get('post_types');
-      foreach ($content_post_types as $key => $value) {
-        if (isset($value[ 'blueprint-content' ])) {
-          $content_types[ $value[ 'blueprint-content' ][ 'type' ] ] = $value[ 'blueprint-content' ][ 'name' ];
-        }
-      }
-      /** GENERAL  Settings*/
-      $blueprint_content_common = $registry->get('blueprint-content-common');
-
-      // If you add/remove a content type, you have to add/remove it's side tab too
-      $prefix = '_content_general_'; // declare prefix
-      $sections[ '_general' ] = array(
-          'title'      => 'Source',
-          'icon_class' => 'icon-large',
-          'icon'       => 'el-icon-folder',
-          'fields'     => array(
-              array(
-                  'title'    => __('Content source', 'pzarchitect'),
-                  'id'       => '_blueprints_content-source',
-                  'type'     => 'button_set',
-                  //                  'select2'  => array('allowClear' => false),
-                  'default'  => 'defaults',
-                  'options'  => $content_types,
-                  'desc'     => __('If you want a Blueprint to display the content of the specific post/page/cpt it is to be displayed on, use the Default content source.<br><strong>Select <em>Defaults</em> if this Blueprint will display blog posts on the blog page</strong>', 'pzarchitect'),
-                  'subtitle' => (array_key_exists('snippets', $content_types) ? '' : 'Several more content sources supported in Architect Pro version, including Pages, Snippets, Galleries, Custom Post Types and a special Dummy option to display dummy content')
-              ),
-          )
-      );
-
-
-      /** DISPLAY ALL THE CONTENT TYPES FORMS */
-      foreach ($content_post_types as $key => $value) {
-        if (isset($value[ 'blueprint-content' ])) {
-          foreach ($value[ 'blueprint-content' ][ 'sections' ][ 'fields' ] as $k => $v) {
-            $v[ 'required' ][]                    = array(
-                '_blueprints_content-source',
-                'equals',
-                $value[ 'blueprint-content' ][ 'type' ]
-            );
-            $sections[ '_general' ][ 'fields' ][] = $v;
-          }
-        }
-      }
-      /** FILTERS */
-      $sections[ '_settings' ] = $blueprint_content_common[ 0 ][ 'settings' ][ 'sections' ];
-//      $sections[ '_pagination' ] = $blueprint_content_common[ 0 ][ 'pagination' ][ 'sections' ];
-      $sections[ '_filters' ] = $blueprint_content_common[ 0 ][ 'filters' ][ 'sections' ];
-
-
-      $prefix = '_content_help_'; // declare prefix
-      $sections[ '_content_help' ] = array(
-          'title'      => 'Help',
-          'icon_class' => 'icon-large',
-          'icon'       => 'el-icon-question-sign',
-          'fields'     => array(
-
-              array(
-                  'title'    => __('Snippets', 'pzarchitect'),
-                  'id'       => $prefix . 'help-content-selection',
-                  'type'     => 'raw',
-                  'markdown' => true,
-                  'content'  => __('With Architect Pro you can enable an extra content type called *Snippets*.
-  These give you a third method of creating content that doesn\'t fit into the post or page types.
-It came about with my own need to create grids of product features. I didn\'t want to fill up pages or posts, so created Snippets for these small content bites.
-You can use them however you like though, e.g Testimonials, FAQs, Features, Contacts, etc.
-                ', 'pzarchitect')
-
-              ),
-              //              array(
-              //                  'title'    => __('Blueprints videos', 'pzarchitect'),
-              //                  'subtitle' => __('Internet connection required'),
-              //                  'id'       => $prefix . 'help-blueprints-videos',
-              //                  'type'     => 'raw',
-              //                  'class'    => 'plain',
-              //                  'markdown' => false,
-              //                  'content'  => ($defaults_only ? '' : @file_get_contents('https://s3.amazonaws.com/341public/architect/blueprints-videos.html'))
-              //              ),
-              array(
-                  'title'    => __('Online documentation', 'pzarchitect'),
-                  'id'       => $prefix . 'help-content-online-docs',
-                  'type'     => 'raw',
-                  'markdown' => false,
-                  'content'  => '<a href="http://architect4wp.com/codex-listings/" target=_blank>' . __('Architect Online Documentation', 'pzarchitect') . '</a><br>' . __('This is a growing resource. Please check back regularly.', 'pzarchitect')
-
-              ),
-
-          )
-      );
-
-      $metaboxes[] = array(
-          'id'         => 'content-selections',
-          'title'      => 'Content Selection: Choose which posts, pages or other content to display',
-          'post_types' => array('arc-blueprints'),
-          'sections'   => $sections,
-          'position'   => 'normal',
-          'priority'   => 'low',
-          'sidebar'    => false
-
-      );
-
-      return $metaboxes;
-
-    }
-
-    /**
-     * pzarc_blueprint_layout_styling
-     *
-     * @param $metaboxes
-     *
-     * @return array
-     */
-    function pzarc_mb_blueprint_styling($metaboxes, $defaults_only = false)
-    {
-      global $_architect_options;
-      if (empty($_architect_options)) {
-        $_architect_options = get_option('_architect_options');
-      }
-      if (empty($_architect)) {
-        $_architect = get_option('_architect');
-      }
+      //  Styling
       if (!empty($_architect_options[ 'architect_enable_styling' ])) {
         $defaults = get_option('_architect');
-        $prefix = '_blueprints_styling_'; // declare prefix
+        $prefix   = '_blueprints_styling_'; // declare prefix
 // TODO: need to get styling to take
         $font         = '-font';
         $link         = '-links';
@@ -2107,191 +2220,15 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
         $borderradius = '-borderradius';
 
         $stylingSections = array();
-        $sections        = array();
         $optprefix       = 'architect_config_';
 
         $thisSection = 'blueprint';
-
-        $sections[ '_styling_general' ] = array(
-            'title'      => 'Blueprint General Styling',
-            'show_title' => false,
-            'icon_class' => 'icon-large',
-            'icon'       => 'el-icon-th-large',
-            'fields'     => pzarc_fields(
-//                array(
-//                    'title'   => __('Load style'),
-//                    'id'      => $prefix . 'blueprints-load-style',
-//                    'type'    => 'select',
-//                    'desc'    => 'Sorry to tease, but this isn\'t implemented yet.',
-//                    'options' => array('none', 'dark', 'light'),
-//                    'default' => 'none'
-//                ),
-                array(
-                    'title'    => __('Blueprint', 'pzarchitect'),
-                    'id'       => $prefix . 'blueprint-section-blueprint',
-                    'type'     => 'section',
-                    'indent'   => true,
-                    'class'    => 'heading',
-                    'subtitle' => 'Class: .pzarc-blueprint_{shortname}',
-                ),
-
-                // TODO: Add shadows! Or maybe not!
-                pzarc_redux_bg($prefix . $thisSection . $background, $this->defaults ? '' : $_architect[ 'architect_config_' . $thisSection . '-selectors' ], $defaults[ $optprefix . $thisSection . $background ]),
-                pzarc_redux_padding($prefix . $thisSection . $padding, $this->defaults ? '' : $_architect[ 'architect_config_' . $thisSection . '-selectors' ], $defaults[ $optprefix . $thisSection . $padding ]),
-                pzarc_redux_margin($prefix . $thisSection . $margin, $this->defaults ? '' : $_architect[ 'architect_config_' . $thisSection . '-selectors' ], $defaults[ $optprefix . $thisSection . $margin ]),
-                pzarc_redux_borders($prefix . $thisSection . $border, $this->defaults ? '' : $_architect[ 'architect_config_' . $thisSection . '-selectors' ], $defaults[ $optprefix . $thisSection . $border ]),
-                pzarc_redux_links($prefix . $thisSection . $link, $this->defaults ? '' : $_architect[ 'architect_config_' . $thisSection . '-selectors' ], $defaults[ $optprefix . $thisSection . $link ]),
-                array(
-                    'id'     => $prefix . 'blueprint-end-section-blueprint',
-                    'type'   => 'section',
-                    'indent' => false,
-                ),
-                array(
-                    'title'    => __('Blueprint title', 'pzarchitect'),
-                    'id'       => $prefix . 'blueprint-section-blueprint-title-css',
-                    'type'     => 'section',
-                    'indent'   => true,
-                    'subtitle' => 'Class: .pzarc-blueprint-title',
-                ),
-                pzarc_redux_font($prefix . $thisSection . '_blueprint-title' . $font, $this->defaults ? '' : $_architect[ 'architect_config_' . $thisSection . '_blueprint-title' . '-selectors' ], $defaults[ $optprefix . $thisSection . '_blueprint-title' . $font ]),
-                pzarc_redux_bg($prefix . $thisSection . '_blueprint-title' . $background, $this->defaults ? '' : $_architect[ 'architect_config_' . $thisSection . '_blueprint-title' . '-selectors' ], $defaults[ $optprefix . $thisSection . '_blueprint-title' . $background ]),
-                pzarc_redux_padding($prefix . $thisSection . '_blueprint-title' . $padding, $this->defaults ? '' : $_architect[ 'architect_config_' . $thisSection . '_blueprint-title' . '-selectors' ], $defaults[ $optprefix . $thisSection . '_blueprint-title' . $padding ]),
-                pzarc_redux_margin($prefix . $thisSection . '_blueprint-title' . $margin, $this->defaults ? '' : $_architect[ 'architect_config_' . $thisSection . '_blueprint-title' . '-selectors' ], $defaults[ $optprefix . $thisSection . '_blueprint-title' . $margin ]),
-                pzarc_redux_borders($prefix . $thisSection . '_blueprint-title' . $border, $this->defaults ? '' : $_architect[ 'architect_config_' . $thisSection . '_blueprint-title' . '-selectors' ], $defaults[ $optprefix . $thisSection . '_blueprint-title' . $border ]),
-                array(
-                    'id'     => $prefix . 'blueprint-end-section-blueprint-title',
-                    'type'   => 'section',
-                    'indent' => false,
-                ),
-                array(
-                    'title'    => __('Blueprint footer', 'pzarchitect'),
-                    'id'       => $prefix . 'blueprint-section-blueprint-footer-css',
-                    'type'     => 'section',
-                    'indent'   => true,
-                    'subtitle' => 'Class: .pzarc-blueprint-footer',
-                ),
-                pzarc_redux_font($prefix . $thisSection . '_blueprint-footer' . $font, $this->defaults ? '' : $_architect[ 'architect_config_' . $thisSection . '_blueprint-footer' . '-selectors' ], $defaults[ $optprefix . $thisSection . '_blueprint-footer' . $font ]),
-                pzarc_redux_bg($prefix . $thisSection . '_blueprint-footer' . $background, $this->defaults ? '' : $_architect[ 'architect_config_' . $thisSection . '_blueprint-footer' . '-selectors' ], $defaults[ $optprefix . $thisSection . '_blueprint-footer' . $background ]),
-                pzarc_redux_padding($prefix . $thisSection . '_blueprint-footer' . $padding, $this->defaults ? '' : $_architect[ 'architect_config_' . $thisSection . '_blueprint-footer' . '-selectors' ], $defaults[ $optprefix . $thisSection . '_blueprint-footer' . $padding ]),
-                pzarc_redux_margin($prefix . $thisSection . '_blueprint-footer' . $margin, $this->defaults ? '' : $_architect[ 'architect_config_' . $thisSection . '_blueprint-footer' . '-selectors' ], $defaults[ $optprefix . $thisSection . '_blueprint-footer' . $margin ]),
-                pzarc_redux_borders($prefix . $thisSection . '_blueprint-footer' . $border, $this->defaults ? '' : $_architect[ 'architect_config_' . $thisSection . '_blueprint-footer' . '-selectors' ], $defaults[ $optprefix . $thisSection . '_blueprint-footer' . $border ]),
-                pzarc_redux_links($prefix . $thisSection . '_blueprint-footer' . $link, $this->defaults ? '' : $_architect[ 'architect_config_' . $thisSection . '_blueprint-footer' . '-selectors' ], $defaults[ $optprefix . $thisSection . '_blueprint-footer' . $link ]),
-                array(
-                    'id'     => $prefix . 'blueprint-end-section-blueprint-footer',
-                    'type'   => 'section',
-                    'indent' => false,
-                )
-//            array(
-//              'title'    => __( 'Custom CSS', 'pzarchitect' ),
-//              'id'       => $prefix . 'blueprint-custom-css',
-//              'options'	=>	array('minLines'=> 25),
-//              'type'     => 'ace_editor',
-//              'mode'     => 'css',
-//              'subtitle' => __( 'As a shorthand, you can prefix your CSS class with MYBLUEPRINT and Architect will substitute the correct class for this Blueprint. e.g. MYBLUEPRINT {border-radius:5px;}', 'pzarchitect' )
-//              //              'subtitle' => __( 'This can be any CSS you\'d like to add to a page this blueprint is displayed on. It will ONLY load on the pages this blueprint is shown on, so will only impact those pages. However, if you have multiple blueprints on a page, this CSS could affect or be overriden by ther blueprints\' custom CSS.', 'pzarchitect' ),
-//              //                'hint'  => array('content' => __('This is can be any CSS you\'d like to add to a page this blueprint is displayed on. It will ONLY load on the pages this blueprint is shown on, so will only impact those pages. However, if you have multiple blueprints on a page, this CSS could affect or be overriden by ther blueprints\' custom CSS.', 'pzarchitect')),
-//            )
-            )
-        );
-
-        $thisSection                 = 'page';
-        $sections[ '_styling_page' ] = array(
-            'title'      => 'Page',
-            'show_title' => false,
-            'icon_class' => 'icon-large',
-            'icon'       => 'el-icon-file',
-            'fields'     => pzarc_fields(
-                array(
-                    'title'    => __('Page title', 'pzarchitect'),
-                    'id'       => $prefix . 'blueprint-section-page-title',
-                    'type'     => 'section',
-                    'indent'   => true,
-                    'class'    => 'heading',
-                    'subtitle' => 'Class: .pzarc-page-title',
-                ),
-                pzarc_redux_font($prefix . $thisSection . '_page-title' . $font, $this->defaults ? '' : $_architect[ 'architect_config_' . $thisSection . '_page-title' . '-selectors' ], $defaults[ $optprefix . $thisSection . '_page-title' . $font ]),
-                pzarc_redux_bg($prefix . $thisSection . '_page-title' . $background, $this->defaults ? '' : $_architect[ 'architect_config_' . $thisSection . '_page-title' . '-selectors' ], $defaults[ $optprefix . $thisSection . '_page-title' . $background ]),
-                pzarc_redux_padding($prefix . $thisSection . '_page-title' . $padding, $this->defaults ? '' : $_architect[ 'architect_config_' . $thisSection . '_page-title' . '-selectors' ], $defaults[ $optprefix . $thisSection . '_page-title' . $padding ]),
-                pzarc_redux_margin($prefix . $thisSection . '_page-title' . $margin, $this->defaults ? '' : $_architect[ 'architect_config_' . $thisSection . '_page-title' . '-selectors' ], $defaults[ $optprefix . $thisSection . '_page-title' . $margin ]),
-                pzarc_redux_borders($prefix . $thisSection . '_page-title' . $border, $this->defaults ? '' : $_architect[ 'architect_config_' . $thisSection . '_page-title' . '-selectors' ], $defaults[ $optprefix . $thisSection . '_page-title' . $border ]),
-                array(
-                    'id'     => $prefix . 'blueprint-end-section-page-title',
-                    'type'   => 'section',
-                    'indent' => false,
-                )
-            )
-        );
-
-
-        $thisSection                             = 'sections';
-        $sections[ '_styling_sections_wrapper' ] = array(
-            'title'      => 'Panels wrapper',
-            'show_title' => false,
-            'icon_class' => 'icon-large',
-            'icon'       => 'el-icon-check-empty',
-            'desc'       => 'Class: .pzarc-sections_{shortname}',
-            'fields'     => pzarc_fields(
-
-            // TODO: Add shadows
-            //$prefix . 'hentry' . $background, $_architect[ 'architect_config_hentry-selectors' ], $defaults[ $optprefix . 'hentry' . $background ]
-                pzarc_redux_bg($prefix . $thisSection . $background, $this->defaults ? '' : $_architect[ 'architect_config_' . $thisSection . '-selectors' ], $defaults[ $optprefix . $thisSection . $background ]),
-                pzarc_redux_padding($prefix . $thisSection . $padding, $this->defaults ? '' : $_architect[ 'architect_config_' . $thisSection . '-selectors' ], $defaults[ $optprefix . $thisSection . $padding ]),
-                pzarc_redux_margin($prefix . $thisSection . $margin, $this->defaults ? '' : $_architect[ 'architect_config_' . $thisSection . '-selectors' ], $defaults[ $optprefix . $thisSection . $margin ]),
-                pzarc_redux_borders($prefix . $thisSection . $border, $this->defaults ? '' : $_architect[ 'architect_config_' . $thisSection . '-selectors' ], $defaults[ $optprefix . $thisSection . $border ])
-            )
-        );
-//        $icons                                   = array(1 => 'el-icon-align-left',
-//                                                         2 => 'el-icon-th',
-//                                                         3 => 'el-icon-th-list');
-//
-//        $thisSection                         = 'section_1';
-//        $sections[ '_styling_section_1' ]    = array(
-//            'title'      => 'Section 1',
-//            'show_title' => false,
-//            'icon_class' => 'icon-large',
-//            'icon'       => $icons[ 1 ],
-//            'desc'       => 'Class: ' . $this->defaults ? '' : $_architect[ 'architect_config_' . $thisSection . '-selectors' ],
-//            'fields'     => array(
-//                pzarc_redux_bg($prefix . $thisSection . $background, $this->defaults ? '' : $_architect[ 'architect_config_' . $thisSection . '-selectors' ], $defaults[ $optprefix . $thisSection . $background ]),
-//                pzarc_redux_padding($prefix . $thisSection . $padding, $this->defaults ? '' : $_architect[ 'architect_config_' . $thisSection . '-selectors' ], $defaults[ $optprefix . $thisSection . $padding ]),
-//                pzarc_redux_margin($prefix . $thisSection . $margin, $this->defaults ? '' : $_architect[ 'architect_config_' . $thisSection . '-selectors' ], $defaults[ $optprefix . $thisSection . $margin ]),
-//                pzarc_redux_borders($prefix . $thisSection . $border, $this->defaults ? '' : $_architect[ 'architect_config_' . $thisSection . '-selectors' ], $defaults[ $optprefix . $thisSection . $border ])
-//            ),
-//        );
-//        $thisSection                         = 'section_2';
-//        $sections[ '_styling_section_2' ]    = array(
-//            'title'      => 'Section 2',
-//            'show_title' => false,
-//            'icon_class' => 'icon-large',
-//            'icon'       => $icons[ 2 ],
-//            'desc'       => 'Class: ' . $this->defaults ? '' : $_architect[ 'architect_config_' . $thisSection . '-selectors' ],
-//            'fields'     => array(
-//                pzarc_redux_bg($prefix . $thisSection . $background, $this->defaults ? '' : $_architect[ 'architect_config_' . $thisSection . '-selectors' ], $defaults[ $optprefix . $thisSection . $background ]),
-//                pzarc_redux_padding($prefix . $thisSection . $padding, $this->defaults ? '' : $_architect[ 'architect_config_' . $thisSection . '-selectors' ], $defaults[ $optprefix . $thisSection . $padding ]),
-//                pzarc_redux_margin($prefix . $thisSection . $margin, $this->defaults ? '' : $_architect[ 'architect_config_' . $thisSection . '-selectors' ], $defaults[ $optprefix . $thisSection . $margin ]),
-//                pzarc_redux_borders($prefix . $thisSection . $border, $this->defaults ? '' : $_architect[ 'architect_config_' . $thisSection . '-selectors' ], $defaults[ $optprefix . $thisSection . $border ])
-//            ),
-//        );
-//        $thisSection                         = 'section_3';
-//        $sections[ '_styling_section_3' ]    = array(
-//            'title'      => 'Section 3',
-//            'show_title' => false,
-//            'icon_class' => 'icon-large',
-//            'icon'       => $icons[ 3 ],
-//            'desc'       => 'Class: ' . $this->defaults ? '' : $_architect[ 'architect_config_' . $thisSection . '-selectors' ],
-//            'fields'     => array(
-//                pzarc_redux_bg($prefix . $thisSection . $background, $this->defaults ? '' : $_architect[ 'architect_config_' . $thisSection . '-selectors' ], $defaults[ $optprefix . $thisSection . $background ]),
-//                pzarc_redux_padding($prefix . $thisSection . $padding, $this->defaults ? '' : $_architect[ 'architect_config_' . $thisSection . '-selectors' ], $defaults[ $optprefix . $thisSection . $padding ]),
-//                pzarc_redux_margin($prefix . $thisSection . $margin, $this->defaults ? '' : $_architect[ 'architect_config_' . $thisSection . '-selectors' ], $defaults[ $optprefix . $thisSection . $margin ]),
-//                pzarc_redux_borders($prefix . $thisSection . $border, $this->defaults ? '' : $_architect[ 'architect_config_' . $thisSection . '-selectors' ], $defaults[ $optprefix . $thisSection . $border ])
-//            ),
-//        );
         $thisSection                         = 'navigator';
         $sections[ '_styling_slidertabbed' ] = array(
-            'title'      => 'Sliders & Tabbed',
+            'title'      => 'Sliders & Tabbed styling',
             'show_title' => false,
             'icon_class' => 'icon-large',
-            'icon'       => 'el-icon-website',
+            'icon'       => 'el-icon-brush',
             'fields'     => array(
 
                 array(
@@ -2367,9 +2304,9 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
         $thisSection                    = 'masonry';
         $sections[ '_styling_masonry' ] = array(
             'id'         => 'masonry-css',
-            'title'      => 'Masonry',
+            'title'      => 'Masonry styling',
             'icon_class' => 'icon-large',
-            'icon'       => 'el-icon-th',
+            'icon'       => 'el-icon-brush',
             'fields'     => array(
                 array(
                     'title'    => __('Filtering and sorting section', 'pzarchitect'),
@@ -2433,9 +2370,9 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
         $thisSection                      = 'accordion-titles';
         $sections[ '_styling_accordion' ] = array(
             'id'         => 'accordion-css',
-            'title'      => 'Accordion',
+            'title'      => 'Accordion styling',
             'icon_class' => 'icon-large',
-            'icon'       => 'el-icon-lines',
+            'icon'       => 'el-icon-brush',
             'fields'     => array(
                 array(
                     'title'    => __('Titles', 'pzarchitect'),
@@ -2475,9 +2412,9 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
         $thisSection                      = 'tabular';
         $sections[ '_styling_tabular' ]   = array(
             'id'         => 'tabular-css',
-            'title'      => 'Tabular',
+            'title'      => 'Tabular styling',
             'icon_class' => 'icon-large',
-            'icon'       => 'el-icon-th-list',
+            'icon'       => 'el-icon-brush',
             'fields'     => array(
                 array(
                     'title'    => __('Headings', 'pzarchitect'),
@@ -2516,93 +2453,173 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
                 pzarc_redux_borders($prefix . $thisSection . '-even-rows' . $border, $this->defaults ? '' : $_architect[ 'architect_config_' . $thisSection . '-even-rows-selectors' ], $defaults[ $optprefix . $thisSection . '-even-rows' . $border ]),
             )
         );
+    }
+      $metaboxes[] = array(
+          'id'         => 'type-settings',
+          'title'      => 'Additional settings for chosen Blueprint layout',
+          'post_types' => array('arc-blueprints'),
+          'sections'   => $sections,
+          'position'   => 'normal',
+          'priority'   => 'low',
+          'sidebar'    => false
 
-        /**
-         * CUSTOM CSS
-         */
-        $sections[ '_bp_custom_css' ] = array(
-            'id'         => 'bp-custom-css',
-            'title'      => __('Custom CSS', 'pzarchitect'),
-            'icon_class' => 'icon-large',
-            'icon'       => 'el-icon-wrench',
-            'fields'     => array(
-                array(
-                    'id'       => $prefix . 'blueprint-custom-css',
-                    'type'     => 'ace_editor',
-                    'title'    => __('Custom CSS', 'pzarchitect'),
-                    'mode'     => 'css',
-                    'options'  => array('minLines' => 25),
-                    'subtitle' => __('As a shorthand, you can prefix your CSS class with MYBLUEPRINT and Architect will substitute the correct class for this Blueprint. e.g. MYBLUEPRINT {border-radius:5px;}', 'pzarchitect')
-                ),
-            )
-        );
+      );
 
-
-        $sections[ '_styling_help' ] = array(
-            'id'         => 'blueprint-styling-help',
-            'title'      => 'Help',
-            'icon_class' => 'icon-large',
-            'icon'       => 'el-icon-question-sign',
-            'fields'     => array(
-
-                array(
-                    'title'    => __('Blueprint styling', 'pzarchitect'),
-                    'id'       => $prefix . 'help',
-                    'type'     => 'raw',
-                    'markdown' => false,
-                    //  'class' => 'plain',
-                    'content'  => '<h3>Adding underlines to hover links</h3>
-                            <p>In the Custom CSS field, enter the following CSS</p>
-                            <p>.pzarc-blueprint_SHORTNAME a:hover {text-decoration:underline;}</p>
-                            <p>SHORTNAME = the short name you entered for this blueprint</p>
-                            <h3>Make pager appear outside of panels</h3>
-                            <p>If you want the pager to appear outside of the panels instead of over them, set a the sections width less than 100%.</p>
-                            '
-                ),
-                array(
-                    'title'    => __('Online documentation', 'pzarchitect'),
-                    'id'       => $prefix . 'help-content-online-docs',
-                    'type'     => 'raw',
-                    'markdown' => false,
-                    'content'  => '<a href="http://architect4wp.com/codex-listings/" target=_blank>' . __('Architect Online Documentation', 'pzarchitect') . '</a><br>' . __('This is a growing resource. Please check back regularly.', 'pzarchitect')
-
-                ),
-            )
-        );
-        $metaboxes[]                 = array(
-            'id'         => 'blueprint-stylings',
-            'title'      => 'Blueprint Styling',
-            'post_types' => array('arc-blueprints'),
-            'sections'   => $sections,
-            'position'   => 'normal',
-            'priority'   => 'low',
-            'sidebar'    => true
-
-        );
-
-        //pzdebug($metaboxes);
-
-
-      }
-
-      // Still need to return this, even if we did nothing.
       return $metaboxes;
+
+    }
+
+
+    /**
+     *
+     * CONTENT
+     *
+     * @param array $metaboxes
+     *
+     * @return array
+     */
+    function pzarc_mb_blueprint_content_selection($metaboxes, $defaults_only = false)
+    {
+
+      // TODO: Setup a loop that reads the object containing content type info as appened by the content type classes. Will need a means of letting js know tho.
+      $prefix   = '_content_general_'; // declare prefix
+      $sections = array();
+//    $sections[ ] = array(
+//        'title'      => 'Settings',
+//        'icon_class' => 'icon-large',
+//        'icon'       => 'el-icon-adjust-alt',
+//        'fields'     => array(
+//
+//        )
+//    );
+//
+      /** DISPLAY ALL THE CONTENT TYPES FORMS */
+      $registry = arc_Registry::getInstance();
+
+      $content_types      = array();
+      $content_post_types = (array)$registry->get('post_types');
+      foreach ($content_post_types as $key => $value) {
+        if (isset($value[ 'blueprint-content' ])) {
+          $content_types[ $value[ 'blueprint-content' ][ 'type' ] ] = $value[ 'blueprint-content' ][ 'name' ];
+        }
+      }
+      /** GENERAL  Settings*/
+      $blueprint_content_common = $registry->get('blueprint-content-common');
+
+      // If you add/remove a content type, you have to add/remove it's side tab too
+      $prefix                 = '_content_general_'; // declare prefix
+      $sections[ '_general' ] = array(
+          'title'      => 'Source',
+          'icon_class' => 'icon-large',
+          'icon'       => 'el-icon-file',
+          'fields'     => array(
+              array(
+                  'title'    => __('Content source', 'pzarchitect'),
+                  'id'       => '_blueprints_content-source',
+                  'type'     => 'button_set',
+                  //                  'select2'  => array('allowClear' => false),
+                  'default'  => 'defaults',
+                  'options'  => $content_types,
+                  'desc'     => __('If you want a Blueprint to display the content of the specific post/page/cpt it is to be displayed on, use the Default content source.<br><strong>Select <em>Defaults</em> if this Blueprint will display blog posts on the blog page</strong>', 'pzarchitect'),
+                  'subtitle' => (array_key_exists('snippets', $content_types) ? '' : 'Several more content sources supported in Architect Pro version, including Pages, Snippets, Galleries, Custom Post Types and a special Dummy option to display dummy content')
+              ),
+          )
+      );
+
+
+      /** DISPLAY ALL THE CONTENT TYPES FORMS */
+      foreach ($content_post_types as $key => $value) {
+        if (isset($value[ 'blueprint-content' ])) {
+          foreach ($value[ 'blueprint-content' ][ 'sections' ][ 'fields' ] as $k => $v) {
+            $v[ 'required' ][]                    = array(
+                '_blueprints_content-source',
+                'equals',
+                $value[ 'blueprint-content' ][ 'type' ]
+            );
+            $sections[ '_general' ][ 'fields' ][] = $v;
+          }
+        }
+      }
+      /** FILTERS */
+      $sections[ '_settings' ] = $blueprint_content_common[ 0 ][ 'settings' ][ 'sections' ];
+//      $sections[ '_pagination' ] = $blueprint_content_common[ 0 ][ 'pagination' ][ 'sections' ];
+      $sections[ '_filters' ] = $blueprint_content_common[ 0 ][ 'filters' ][ 'sections' ];
+
+
+      $prefix                      = '_content_help_'; // declare prefix
+      $sections[ '_content_help' ] = array(
+          'title'      => 'Help',
+          'icon_class' => 'icon-large',
+          'icon'       => 'el-icon-question-sign',
+          'fields'     => array(
+
+              array(
+                  'title'    => __('Snippets', 'pzarchitect'),
+                  'id'       => $prefix . 'help-content-selection',
+                  'type'     => 'raw',
+                  'markdown' => true,
+                  'content'  => __('With Architect Pro you can enable an extra content type called *Snippets*.
+  These give you a third method of creating content that doesn\'t fit into the post or page types.
+It came about with my own need to create grids of product features. I didn\'t want to fill up pages or posts, so created Snippets for these small content bites.
+You can use them however you like though, e.g Testimonials, FAQs, Features, Contacts, etc.
+                ', 'pzarchitect')
+
+              ),
+              //              array(
+              //                  'title'    => __('Blueprints videos', 'pzarchitect'),
+              //                  'subtitle' => __('Internet connection required'),
+              //                  'id'       => $prefix . 'help-blueprints-videos',
+              //                  'type'     => 'raw',
+              //                  'class'    => 'plain',
+              //                  'markdown' => false,
+              //                  'content'  => ($defaults_only ? '' : @file_get_contents('https://s3.amazonaws.com/341public/architect/blueprints-videos.html'))
+              //              ),
+              array(
+                  'title'    => __('Online documentation', 'pzarchitect'),
+                  'id'       => $prefix . 'help-content-online-docs',
+                  'type'     => 'raw',
+                  'markdown' => false,
+                  'content'  => '<a href="http://architect4wp.com/codex-listings/" target=_blank>' . __('Architect Online Documentation', 'pzarchitect') . '</a><br>' . __('This is a growing resource. Please check back regularly.', 'pzarchitect')
+
+              ),
+
+          )
+      );
+
+      $metaboxes[] = array(
+          'id'         => 'content-selections',
+          'title'      => 'Content Source selection: Choose which posts, pages or other content to display',
+          'post_types' => array('arc-blueprints'),
+          'sections'   => $sections,
+          'position'   => 'normal',
+          'priority'   => 'low',
+          'sidebar'    => false
+
+      );
+
+      return $metaboxes;
+
     }
 
     function pzarc_mb_panels_layout($metaboxes, $defaults_only = false)
     {
+      global $_architect;
       global $_architect_options;
       if (empty($_architect_options)) {
         $_architect_options = get_option('_architect_options');
       }
 
-      $prefix = '_panels_design_'; // declare prefix
+      if (empty($_architect)) {
+        $_architect = get_option('_architect');
+      }
+
+      $prefix     = '_panels_design_'; // declare prefix
       $sections   = array();
       $sections[] = array(
-          'title'      => __('Content Layout ', 'pzarchitect'),
+          'title'      => __('Content Panels Layout ', 'pzarchitect'),
           'show_title' => false,
           'icon_class' => 'icon-large',
-          'icon'       => 'el-icon-website',
+          'icon'       => 'el-icon-adjust-alt',
           'fields'     => array(
               array(
                   'title'    => __('Components to show', 'pzarchitect'),
@@ -2626,23 +2643,6 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
                   'hint'     => array(
                       'title'   => __('Components to show', 'pzarchitect'),
                       'content' => __('Select which base components to include in this post\'s layout.', 'pzarchitect')
-                  )
-              ),
-              array(
-                  'title'         => __('Number of custom fields', 'pzarchitect'),
-                  'id'            => $prefix . 'custom-fields-count',
-                  'type'          => 'spinner',
-                  'default'       => 0,
-                  'min'           => 0,
-                  'max'           => 999,
-                  'step'          => 1,
-                  'display_value' => 'label',
-                  'required'      => array($prefix . 'components-to-show', 'contains', 'custom'),
-                  'subtitle'      => __('Each of the three Custom groups can have multiple custom fields. Enter the <strong>total</strong> number of custom fields, click Publish/Update', 'pzarchitect'),
-                  'desc'          => __('When you change this number, click Publish/Update to update Custom Fields tabs at left', 'pzarchitect'),
-                  'hint'          => array(
-                      'title'   => __('Number of custom fields', 'pzarchitect'),
-                      'content' => __('After selecting upto three custom field groups, you now need to set the total number of custom fields you will be displaying so Architect can create the settings tabs for each one.<br><br><strong>You will need to Publish/Update to see those new tabs.</strong>', 'pzarchitect')
                   )
               ),
               array(
@@ -2670,15 +2670,6 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
                       'title'   => __('Post layout', 'pzarchitect'),
                       'content' => __('Drag and drop to sort the order of your elements. <strong>Heights are fluid, so not indicative of how it will look on the page</strong>.', 'pzarchitect')
                   )
-              ),
-              array(
-                  'title'    => __('Feature type', 'pzarchitect'),
-                  'id'       => '_panels_settings_feature-type',
-                  'type'     => 'button_set',
-                  'default'  => 'image',
-                  'options'  => array('image' => __('Images', 'pzarchitect'), 'video' => __('Videos', 'pzarchitect')),
-                  'subtitle' => __('Choose whether Feature is images or videos.', 'pzarchitect'),
-                  'required' => array($prefix . 'components-to-show', 'contains', 'image'),
               ),
               array(
                   'title'    => __('Feature location', 'pzarchitect'),
@@ -2895,15 +2886,139 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
           )
       );
 
-      /**
-       * TITLES
-       */
+      if (!empty($_architect_options[ 'architect_enable_styling' ])) {
+        $defaults = get_option('_architect');
+        $prefix   = '_panels_styling_'; // declare prefix
+
+        $font       = '-font';
+        $link       = '-links';
+        $padding    = '-padding';
+        $margin     = '-margin';
+        $background = '-background';
+        $border     = '-borders';
+
+        $stylingSections = array();
+        $optprefix       = 'architect_config_';
+
+        $sections[] = array(
+            'title'      => __('Content Panels Styling', 'pzarchitect'),
+            'show_title' => false,
+            'icon_class' => 'icon-large',
+            'icon'       => 'el-icon-brush',
+            'fields'     => pzarc_fields(
+//                array(
+//                    'title'    => __('Load style'),
+//                    'id'       => $prefix . 'panels-load-style',
+//                    'type'     => 'select',
+//                    'subtitle' => 'Sorry to tease, but this isn\'t implemented yet.',
+//                    'options'  => array('none', 'dark', 'light'),
+//                    'default'  => 'none'
+//                ),
+                array(
+                    'title'    => __('Panels', 'pzarchitect'),
+                    'id'       => $prefix . 'panels-section',
+                    'type'     => 'section',
+                    'indent'   => true,
+                    'class'    => 'heading',
+                    'subtitle' => 'Class: .pzarc-panel',
+                    'hint'     => array('content' => 'Class: .pzarc-panel'),
+                ),
+                pzarc_redux_bg($prefix . 'panels' . $background, '', $defaults[ $optprefix . 'panels' . $background ]),
+                pzarc_redux_padding($prefix . 'panels' . $padding, '', $defaults[ $optprefix . 'panels' . $padding ]),
+                pzarc_redux_borders($prefix . 'panels' . $border, '', $defaults[ $optprefix . 'panels' . $border ]),
+                array(
+                    'title'    => __('Components group', 'pzarchitect'),
+                    'id'       => $prefix . 'components-section',
+                    'type'     => 'section',
+                    'indent'   => true,
+                    'class'    => 'heading',
+                    'hint'     => array('content' => 'Class: .pzarc_components'),
+                    'subtitle' => 'Class: .pzarc_components',
+                ),
+                pzarc_redux_bg($prefix . 'components' . $background, array('.pzarc_components'), $defaults[ $optprefix . 'components' . $background ]),
+                pzarc_redux_padding($prefix . 'components' . $padding, array('.pzarc_components'), $defaults[ $optprefix . 'components' . $padding ]),
+                pzarc_redux_borders($prefix . 'components' . $border, array('.pzarc_components'), $defaults[ $optprefix . 'components' . $border ]),
+                array(
+                    'title'    => __('Entry', 'pzarchitect'),
+                    'id'       => $prefix . 'hentry-section',
+                    'type'     => 'section',
+                    'indent'   => true,
+                    'class'    => 'heading',
+                    'hint'     => array('content' => 'Class: .hentry'),
+                    'subtitle' => !$this->defaults ? (is_array($_architect[ 'architect_config_hentry-selectors' ]) ? 'Classes: ' . implode(', ', $_architect[ 'architect_config_hentry-selectors' ]) : 'Class: ' . $_architect[ 'architect_config_hentry-selectors' ]) : ''
+                ),
+                // id,selectors,defaults
+                // need to grab selectors from options
+                // e.g. $_architect['architect_config_hentry-selectors']
+                // Then we need to get them back later
+                pzarc_redux_bg($prefix . 'hentry' . $background, !$this->defaults ? $_architect[ 'architect_config_hentry-selectors' ] : '', $defaults[ $optprefix . 'hentry' . $background ]),
+                pzarc_redux_padding($prefix . 'hentry' . $padding, !$this->defaults ? $_architect[ 'architect_config_hentry-selectors' ] : '', $defaults[ $optprefix . 'hentry' . $padding ]),
+                pzarc_redux_margin($prefix . 'hentry' . $margin, !$this->defaults ? $_architect[ 'architect_config_hentry-selectors' ] : '', $defaults[ $optprefix . 'hentry' . $margin ]),
+                pzarc_redux_borders($prefix . 'hentry' . $border, !$this->defaults ? $_architect[ 'architect_config_hentry-selectors' ] : '', $defaults[ $optprefix . 'hentry' . $border ])
+            )
+        );
+      }
 
       $sections[] = array(
-          'title'      => 'Titles',
+          'id'         => 'custom-css',
+          'title'      => __('Custom CSS', 'pzarchitect'),
+          'icon_class' => 'icon-large',
+          'icon'       => 'el-icon-wrench',
+          'fields'     => array(
+              array(
+                  'id'       => $prefix . 'custom-css',
+                  'type'     => 'ace_editor',
+                  'title'    => __('Custom CSS', 'pzarchitect'),
+                  'mode'     => 'css',
+                  'options'  => array('minLines' => 25),
+                  'default'  => $defaults[ $optprefix . 'custom-css' ],
+                  'subtitle' => __('As a shorthand, you can prefix your CSS class with MYBLUEPRINT or MYPANELS and Architect will substitute the correct class for this Blueprint. e.g. MYPANELS .entry-content{border-radius:5px;}', 'pzarchitect')
+              ),
+          )
+      );
+
+
+      // Create the metaboxes
+
+
+      $metaboxes[] = array(
+          'id'         => 'panels-design',
+          'title'      => __('Content Panels Layout and stylings: Setup the layout of the content itself and panel stylings.', 'pzarchitect'),
+          'post_types' => array('arc-blueprints'),
+          'sections'   => $sections,
+          'position'   => 'normal',
+          'priority'   => 'low',
+          'sidebar'    => false
+
+      );
+
+      return $metaboxes;
+
+    }
+
+    /**
+     * TITLES
+     * @param $metaboxes
+     * @return array
+     */
+    function pzarc_mb_titles_settings($metaboxes, $defaults_only = false)
+    {
+      global $_architect;
+      global $_architect_options;
+      if (empty($_architect_options)) {
+        $_architect_options = get_option('_architect_options');
+      }
+
+      if (empty($_architect)) {
+        $_architect = get_option('_architect');
+      }
+      $prefix     = '_panels_design_';
+      $sections   = array();
+      $sections[] = array(
+          'title'      => 'Titles settings',
           'show_title' => false,
           'icon_class' => 'icon-large',
-          'icon'       => 'el-icon-font',
+          'icon'       => 'el-icon-adjust-alt',
           'fields'     => array(
               array(
                   'title'   => __('Title prefix', 'pzarchitect'),
@@ -3019,6 +3134,15 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
                   'subtitle' => __('Select the wrapper element for the title field', 'pzarchitect')
 
               ),
+          )
+      );
+      $sections[] = array(
+          'title'      => __('Responsive overrides', 'pzarchitect'),
+          'show_title' => false,
+          'icon_class' => 'icon-large',
+          'icon'       => 'el-icon-screen',
+          'fields'     => array(
+
               array(
                   'title'    => __('Use responsive font sizes', 'pzarchitect'),
                   'id'       => $prefix . 'use-responsive-font-size-title',
@@ -3136,15 +3260,75 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
 
           )
       );
-
       /**
-       * META
+       * TITLES
        */
+      // architect_config_entry-title-font-margin
+      if (!empty($_architect_options[ 'architect_enable_styling' ])) {
+        $defaults = get_option('_architect');
+        $prefix   = '_panels_styling_'; // declare prefix
+
+        $font       = '-font';
+        $link       = '-links';
+        $padding    = '-padding';
+        $margin     = '-margin';
+        $background = '-background';
+        $border     = '-borders';
+
+        $stylingSections = array();
+        $optprefix       = 'architect_config_';
+
+        $sections[] = array(
+            'title'      => __('Titles styling', 'pzarchitect'),
+            'show_title' => false,
+            'icon_class' => 'icon-large',
+            'icon'       => 'el-icon-brush',
+            'desc'       => 'Class: .entry-title<br><strong class="arc-important">' . __('Note: If your Titles are linked, you will need to set their colour in the Links section', 'pzarchitect') . '</strong>',
+            'fields'     => pzarc_fields(
+                pzarc_redux_font($prefix . 'entry-title' . $font, array('.entry-title'), $defaults[ $optprefix . 'entry-title' . $font ]),
+                pzarc_redux_bg($prefix . 'entry-title' . $font . $background, array('.entry-title'), $defaults[ $optprefix . 'entry-title' . $font . $background ]),
+                pzarc_redux_padding($prefix . 'entry-title' . $font . $padding, array('.entry-title'), $defaults[ $optprefix . 'entry-title' . $font . $padding ]),
+                pzarc_redux_margin($prefix . 'entry-title' . $font . $margin, array('.entry-title'), $defaults[ $optprefix . 'entry-title' . $font . $margin ], 'tb'),
+                pzarc_redux_borders($prefix . 'entry-title' . $border, array('.entry-title'), $defaults[ $optprefix . 'entry-title' . $border ]),
+                pzarc_redux_links($prefix . 'entry-title' . $font . $link, array('.entry-title a'), $defaults[ $optprefix . 'entry-title' . $font . $link ])
+            ),
+        );
+      }
+      $metaboxes[] = array(
+          'id'         => 'titles-settings',
+          'title'      => __('Titles settings and styling.', 'pzarchitect'),
+          'post_types' => array('arc-blueprints'),
+          'sections'   => $sections,
+          'position'   => 'normal',
+          'priority'   => 'default',
+          'sidebar'    => false
+
+      );
+
+      return $metaboxes;
+
+    }
+
+    function pzarc_mb_meta_settings($metaboxes, $defaults_only = false)
+    {
+      global $_architect;
+      global $_architect_options;
+      if (empty($_architect_options)) {
+        $_architect_options = get_option('_architect_options');
+      }
+
+      if (empty($_architect)) {
+        $_architect = get_option('_architect');
+      }
+
+      $sections = array();
+      $prefix   = '_panels_design_';
+      // Settings
       $sections[] = array(
-          'title'      => __('Meta', 'pzarchitect'),
+          'title'      => __('Meta settings', 'pzarchitect'),
           'show_title' => false,
           'icon_class' => 'icon-large',
-          'icon'       => 'el-icon-calendar',
+          'icon'       => 'el-icon-adjust-alt',
           'desc'       => __('Available tags are <span class="pzarc-text-highlight">%author%, %email%,   %date%,   %categories%,   %tags%,   %commentslink%,   %editlink%,   %id%</span>. For custom taxonomies, prefix with ct:. e.g. To display the Woo Testimonials category, you would use %ct:testimonial-category%. Or to display WooCommerce product category, use: %ct:product_cat%', 'pzarchitect') . '<br>' .
               __('Allowed HTML tags:', 'pzarchitect') . ' p, br, span, strong & em<br><br>' .
               __('Use shortcodes to add custom functions to meta. e.g. [add_to_cart id="%id%"]', 'pzarchitect') . '<br>' .
@@ -3216,267 +3400,92 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
           )
       );
 
-      /**********
-       * Content
-       *********/
-      // EXCERPTS
-      $sections[] = array(
-          'title'      => __('Body/excerpt', 'pzarchitect'),
-          'icon_class' => 'icon-large',
-          'icon'       => 'el-icon-align-left',
-          'fields'     => array(
-              array(
-                  'title'    => __('Maximize body', 'pzarchitect'),
-                  'id'       => $prefix . 'maximize-content',
-                  'type'     => 'switch',
-                  'on'       => __('Yes', 'pzarchitect'),
-                  'off'      => __('No', 'pzarchitect'),
-                  'default'  => true,
-                  //'required' => array('show_advanced', 'equals', true),
-                  'subtitle' => __('Make excerpt or body 100% width if no featured image.', 'pzarchitect')
-              ),
-              array(
-                  'title'    => __('Action on more click', 'pzarchitect'),
-                  'id'       => $prefix . 'more-click-action',
-                  'type'     => 'button_set',
-                  'options'  => array(
-                      'none'                => __('Default', 'pzarchitect'),
-                      'slidedown'           => __('Slide down', 'pzarchitect'),
-                      'slidedown-fullwidth' => __('Slide down full width', 'pzarchitect'),
-                  ),
-                  'default'  => 'none',
-                  //'required' => array('show_advanced', 'equals', true),
-                  'subtitle' => __('Choose how body content will appear when clicking the more link', 'pzarchitect')
-              ),
+      // Stylings
+      if (!empty($_architect_options[ 'architect_enable_styling' ])) {
+        $defaults = get_option('_architect');
+        $prefix   = '_panels_styling_'; // declare prefix
 
-              array(
-                  'id'     => $prefix . 'excerpt-heading',
-                  'title'  => __('Excerpts', 'pzarchitect'),
-                  'type'   => 'section',
-                  'indent' => true,
-                  'class'  => 'heading',
-              ),
-              array(
-                  'title'    => __('Display entered excerpts only', 'pzarchitect'),
-                  'id'       => $prefix . 'manual-excerpts',
-                  'type'     => 'switch',
-                  'on'       => __('Yes', 'pzarchitect'),
-                  'off'      => __('No', 'pzarchitect'),
-                  'default'  => false,
-                  //'required' => array('show_advanced', 'equals', true),
-                  'subtitle' => __('Only display excerpts that are actually entered in the Excerpt field of the post editor.<br>Entered excerpts retain formatting.', 'pzarchitect')
-              ),
-              array(
-                  'id'       => $prefix . 'excerpts-trim-type',
-                  'title'    => __('Trim excerpts using', 'pzarchitect'),
-                  'type'     => 'button_set',
-                  'default'  => 'words',
-                  'options'  => array(
-                      'characters' => __('Character', 'pzarchitect'),
-                      'words'      => __('Words', 'pzarchitect'),
-                      'paragraphs' => __('Paragraphs', 'pzarchitect'),
-                      'moretag'    => __('More tag', 'pzarchitect'),
-                  ),
-                  'required' => array($prefix . 'manual-excerpts', '=', false),
-                  'subtitle' => __('Excerpts trimmed by characters and words do not retain formatting.', 'pzarchitect')
-              ),
-              array(
-                  'title'    => __('Shortcodes in excerpts', 'pzarchitect'),
-                  'id'       => $prefix . 'process-excerpts-shortcodes',
-                  'type'     => 'button_set',
-                  'options'  => array(
-                      'process' => __('Process', 'pzarchitect'),
-                      'remove'  => __('Remove', 'pzarchitect'),
-                  ),
-                  'default'  => 'process',
-                  'required' => array($prefix . 'manual-excerpts', '=', false)
-              ),
-              array(
-                  'id'       => $prefix . 'excerpts-word-count',
-                  'title'    => __('Excerpt length', 'pzarchitect'),
-                  'type'     => 'spinner',
-                  'default'  => 55,
-                  'min'      => 1,
-                  'max'      => 9999,
-                  'step'     => 1,
-                  'required' => array($prefix . 'manual-excerpts', '=', false)
-              ),
-              array(
-                  'title'    => __('Truncation indicator', 'pzarchitect'),
-                  'id'       => $prefix . 'readmore-truncation-indicator',
-                  'type'     => 'text',
-                  'class'    => 'textbox-small',
-                  'default'  => '[...]',
-                  'required' => array($prefix . 'manual-excerpts', '=', false)
-              ),
-              array(
-                  'title'    => __('Read More', 'pzarchitect'),
-                  'id'       => $prefix . 'readmore-text',
-                  'type'     => 'text',
-                  'class'    => 'textbox-medium',
-                  'default'  => __('Read more', 'pzarchitect'),
-                  'required' => array($prefix . 'manual-excerpts', '=', false)
-              ),
-              array(
-                  'id'     => $prefix . 'content-responsive-heading',
-                  'title'  => __('Responsive', 'pzarchitect'),
-                  'type'   => 'section',
-                  'indent' => true,
-                  //'required' => array('show_advanced', 'equals', true),
-                  //                  'class'    => 'heading',
-              ),
-              array(
-                  'id'       => $prefix . 'responsive-hide-content',
-                  'title'    => __('Hide Body at breakpoint', 'pzarchitect'),
-                  'type'     => 'select',
-                  //'required' => array('show_advanced', 'equals', true),
-                  'options'  => array(
-                      'none' => __('None', 'pzarchitect'),
-                      '2'    => __('Small screen ', 'pzarchitect') . $_architect_options[ 'architect_breakpoint_2' ][ 'width' ],
-                      '1'    => __('Medium screen ', 'pzarchitect') . $_architect_options[ 'architect_breakpoint_1' ][ 'width' ]
-                  ),
-                  'default'  => 'none',
-                  'subtitle' => __('Breakpoints can be changed in Architect Options', 'pzachitect')
-              ),
-              array(
-                  'title'    => __('Use responsive font sizes', 'pzarchitect'),
-                  'id'       => $prefix . 'use-responsive-font-size',
-                  'type'     => 'switch',
-                  'default'  => false,
-                  //'required' => array('show_advanced', 'equals', true),
-                  'subtitle' => __('Enabling this will override all other CSS for body/excerpt text', 'pzarchitect')
-              ),
-              array(
-                  'title'    => __('Fluid fonts', 'pzarchitect'),
-                  'id'       => $prefix . 'use-scale-fonts',
-                  'type'     => 'switch',
-                  'default'  => true,
-                  'required' => array($prefix . 'use-responsive-font-size', 'equals', true),
-                  'subtitle' => __('This makes the fonts scale in size from one breakpoint to the next, rather than suddenly changing at each breakpoint.', 'pzarchitect')
-              ),
-              array(
-                  'id'              => $prefix . 'content-font-size-bp1',
-                  'title'           => __('Maximum font size - large screen ', 'pzarchitect'),
-                  'subtitle'        => $_architect_options[ 'architect_breakpoint_1' ][ 'width' ] . __(' and above', 'pzarchitect'),
-                  'required'        => array($prefix . 'use-responsive-font-size', 'equals', true),
-                  'type'            => 'typography',
-                  'text-decoration' => false,
-                  'font-variant'    => false,
-                  'text-transform'  => false,
-                  'font-family'     => false,
-                  'font-size'       => true,
-                  'font-weight'     => false,
-                  'font-style'      => false,
-                  'font-backup'     => false,
-                  'google'          => false,
-                  'subsets'         => false,
-                  'custom_fonts'    => false,
-                  'text-align'      => false,
-                  //'text-shadow'       => false, // false
-                  'color'           => false,
-                  'preview'         => false,
-                  'line-height'     => true,
-                  'word-spacing'    => false,
-                  'letter-spacing'  => false,
-              ),
-              array(
-                  'id'              => $prefix . 'content-font-size-bp2',
-                  'title'           => __('Font size - medium screen ', 'pzarchitect'),
-                  'subtitle'        => $_architect_options[ 'architect_breakpoint_2' ][ 'width' ] . ' to ' . $_architect_options[ 'architect_breakpoint_1' ][ 'width' ],
-                  'required'        => array(
-                      array($prefix . 'use-responsive-font-size', 'equals', true),
-                      array($prefix . 'use-scale-fonts', 'equals', false)
-                  ),
-                  'type'            => 'typography',
-                  'text-decoration' => false,
-                  'font-variant'    => false,
-                  'text-transform'  => false,
-                  'font-family'     => false,
-                  'font-size'       => true,
-                  'font-weight'     => false,
-                  'font-style'      => false,
-                  'font-backup'     => false,
-                  'google'          => false,
-                  'subsets'         => false,
-                  'custom_fonts'    => false,
-                  'text-align'      => false,
-                  //'text-shadow'       => false, // false
-                  'color'           => false,
-                  'preview'         => false,
-                  'line-height'     => true,
-                  'word-spacing'    => false,
-                  'letter-spacing'  => false,
-              ),
-              array(
-                  'id'              => $prefix . 'content-font-size-bp3',
-                  'title'           => __('Minimum font size - small screen ', 'pzarchitect'),
-                  'subtitle'        => $_architect_options[ 'architect_breakpoint_2' ][ 'width' ] . ' and below',
-                  'required'        => array($prefix . 'use-responsive-font-size', 'equals', true),
-                  'type'            => 'typography',
-                  'text-decoration' => false,
-                  'font-variant'    => false,
-                  'text-transform'  => false,
-                  'font-family'     => false,
-                  'font-size'       => true,
-                  'font-weight'     => false,
-                  'font-style'      => false,
-                  'font-backup'     => false,
-                  'google'          => false,
-                  'subsets'         => false,
-                  'custom_fonts'    => false,
-                  'text-align'      => false,
-                  //'text-shadow'       => false, // false
-                  'color'           => false,
-                  'preview'         => false,
-                  'line-height'     => true,
-                  'word-spacing'    => false,
-                  'letter-spacing'  => false,
-              ),
-              array(
-                  'id'       => $prefix . 'content-font-scale-upper-bp',
-                  'title'    => __('Override large screen breakpoint', 'pzarchitect'),
-                  'type'     => 'text',
-                  'default'  => 1280,
-                  'subtitle' => __('Above this window width, no scaling will be done.'),
-                  'required' => array(
-                      array($prefix . 'use-responsive-font-size', 'equals', true),
-                      array($prefix . 'use-scale-fonts', 'equals', true)
-                  ),
-              ),
-              array(
-                  'id'       => $prefix . 'content-font-scale-lower-bp',
-                  'title'    => __('Override small screen breakpoint', 'pzarchitect'),
-                  'type'     => 'text',
-                  'default'  => 360,
-                  'subtitle' => __('Below this window width, no scaling will be done.'),
-                  'required' => array(
-                      array($prefix . 'use-responsive-font-size', 'equals', true),
-                      array($prefix . 'use-scale-fonts', 'equals', true)
-                  ),
-              )
-              //            array(
-              //                'id'      => $prefix . 'content-font-size-range',
-              //                'title'   => __('Font size range', 'pzarchitect'),
-              //                'type'    => 'slider',
-              //                'min'     => 5,
-              //                'max'     => 24,
-              //                'step'    => 1,
-              //                'handles' => 2,
-              //                'default' => array(1=>10,2=>16)
-              //            )
-          )
+        $font       = '-font';
+        $link       = '-links';
+        $padding    = '-padding';
+        $margin     = '-margin';
+        $background = '-background';
+        $border     = '-borders';
 
+        $stylingSections = array();
+        $optprefix       = 'architect_config_';
+
+        $sections[] = array(
+            'title'      => __('Meta styling', 'pzarchitect'),
+            'show_title' => false,
+            'icon_class' => 'icon-large',
+            'icon'       => 'el-icon-brush',
+            'desc'       => 'Class: .entry_meta',
+            'fields'     => pzarc_fields(
+                pzarc_redux_font($prefix . 'entry-meta' . $font, array('.entry-meta'), $defaults[ $optprefix . 'entry-meta' . $font ]),
+                pzarc_redux_bg($prefix . 'entry-meta' . $font . $background, array('.entry-meta'), $defaults[ $optprefix . 'entry-meta' . $font . $background ]),
+                pzarc_redux_padding($prefix . 'entry-meta' . $font . $padding, array('.entry-meta'), $defaults[ $optprefix . 'entry-meta' . $font . $padding ]),
+                pzarc_redux_margin($prefix . 'entry-meta' . $font . $margin, array('.entry-meta'), $defaults[ $optprefix . 'entry-meta' . $font . $margin ], 'tb'),
+                pzarc_redux_links($prefix . 'entry-meta' . $font . $link, array('.entry-meta a'), $defaults[ $optprefix . 'entry-meta' . $font . $link ]),
+                array(
+                    'title'  => __('Author avatar', 'pzarc'),
+                    'id'     => $prefix . 'author-avatar',
+                    'desc'   => 'Class: .author img.avatar',
+                    'type'   => 'section',
+                    'indent' => true,
+                    'class'  => 'heading',
+                ),
+                pzarc_redux_margin($prefix . 'author-avatar' . $margin,
+                                   array('.author img.avatar'),
+                                   $defaults[ $optprefix . 'author-avatar' . $margin ])
+            )
+        );
+      }
+      $metaboxes[] = array(
+          'id'         => 'meta-settings',
+          'title'      => __('Meta settings and styling.', 'pzarchitect'),
+          'post_types' => array('arc-blueprints'),
+          'sections'   => $sections,
+          'position'   => 'normal',
+          'priority'   => 'default',
+          'sidebar'    => false
 
       );
-      /***************************
-       * FEATURE IMAGES
-       ***************************/
+
+      return $metaboxes;
+
+    }
+
+    function pzarc_mb_features_settings($metaboxes, $defaults_only = false)
+    {
+      global $_architect;
+      global $_architect_options;
+      if (empty($_architect_options)) {
+        $_architect_options = get_option('_architect_options');
+      }
+
+      if (empty($_architect)) {
+        $_architect = get_option('_architect');
+      }
+
+      $sections = array();
+      $prefix   = '_panels_design_';
+      // Settings
       $sections[] = array(
-          'title'      => 'Featured Images/Videos',
+          'title'      => 'Feature settings',
           'icon_class' => 'icon-large',
-          'icon'       => 'el-icon-picture',
+          'icon'       => 'el-icon-adjust-alt',
           'subtitle'   => __('Left and right margins are included in the image width in the designer. e.g if Feature width is 25% and right margin is 3%, Feature width will be adjusted to 22%', 'pzarchitect'),
           'fields'     => array(
+              array(
+                  'title'    => __('Feature type', 'pzarchitect'),
+                  'id'       => '_panels_settings_feature-type',
+                  'type'     => 'button_set',
+                  'default'  => 'image',
+                  'options'  => array('image' => __('Images', 'pzarchitect'), 'video' => __('Videos', 'pzarchitect')),
+                  'subtitle' => __('Choose whether Feature is images or videos.', 'pzarchitect'),
+                  'required' => array($prefix . 'components-to-show', 'contains', 'image'),
+              ),
               array(
                   'title'    => __('Image cropping', 'pzarchitect'),
                   'id'       => '_panels_settings_image-focal-point',
@@ -3738,12 +3747,535 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
           )
       );
 
+      // Stylings
+      if (!empty($_architect_options[ 'architect_enable_styling' ])) {
+        $defaults = get_option('_architect');
+        $prefix   = '_panels_styling_'; // declare prefix
 
+        $font       = '-font';
+        $link       = '-links';
+        $padding    = '-padding';
+        $margin     = '-margin';
+        $background = '-background';
+        $border     = '-borders';
+
+        $stylingSections = array();
+        $optprefix       = 'architect_config_';
+
+        $sections[] = array(
+            'title'      => __('Feature styling', 'pzarchitect'),
+            'show_title' => false,
+            'icon_class' => 'icon-large',
+            'icon'       => 'el-icon-brush',
+            'fields'     => pzarc_fields(
+                array(
+                    'title'  => __('Image', 'pzarchitect'),
+                    'id'     => $prefix . 'entry-image',
+                    'type'   => 'section',
+                    'indent' => true,
+                    'class'  => 'heading',
+                    'hint'   => array('content' => 'Class: figure.entry-thumbnail'),
+                    //     'hint'    => __('Format the entry featured image', 'pzarchitect')
+                ),
+                array(
+                    'title'                 => __('Background', 'pzarchitect'),
+                    'id'                    => $prefix . 'entry-image' . $background,
+                    'type'                  => 'spectrum',
+                    'background-image'      => false,
+                    'background-repeat'     => false,
+                    'background-size'       => false,
+                    'background-attachment' => false,
+                    'background-position'   => false,
+                    'preview'               => false,
+                    'output'                => array('.pzarc_entry_featured_image'),
+                    'default'               => $defaults[ $optprefix . 'entry-image' . $background ]
+                ),
+                array(
+                    'title'   => __('Border', 'pzarchitect'),
+                    'id'      => $prefix . 'entry-image' . $border,
+                    'type'    => 'border',
+                    'all'     => false,
+                    'output'  => array('.pzarc_entry_featured_image'),
+                    'default' => $defaults[ $optprefix . 'entry-image' . $border ]
+                ),
+                array(
+                    'title'   => __('Padding', 'pzarchitect'),
+                    'id'      => $prefix . 'entry-image' . $padding,
+                    'mode'    => 'padding',
+                    'type'    => 'spacing',
+                    'units'   => array('px', '%'),
+                    'default' => $defaults[ $optprefix . 'entry-image' . $padding ]
+                ),
+                array(
+                    'title'   => __('Margin', 'pzarchitect'),
+                    'id'      => $prefix . 'entry-image' . $margin,
+                    'mode'    => 'margin',
+                    'type'    => 'spacing',
+                    'units'   => array('px', '%'),
+                    'default' => $defaults[ $optprefix . 'entry-image' . $margin ],
+                    'top'     => true,
+                    'bottom'  => true,
+                    'left'    => false,
+                    'right'   => false
+                ),
+                array(
+                    'title'  => __('Caption', 'pzarchitect'),
+                    'id'     => $prefix . 'entry-image-caption',
+                    'type'   => 'section',
+                    'indent' => true,
+                    'class'  => 'heading',
+                ),
+                pzarc_redux_font($prefix . 'entry-image-caption' . $font, array('figure.entry-thumbnail .caption'), $defaults[ $optprefix . 'entry-image-caption' . $font ]),
+                pzarc_redux_bg($prefix . 'entry-image-caption' . $font . $background, array('figure.entry-thumbnail .caption'), $defaults[ $optprefix . 'entry-image-caption' . $font . $background ]),
+                pzarc_redux_padding($prefix . 'entry-image-caption' . $font . $padding, array('figure.entry-thumbnail .caption'), $defaults[ $optprefix . 'entry-image-caption' . $font . $padding ])
+            )
+        );
+      }
+      $metaboxes[] = array(
+          'id'         => 'features-settings',
+          'title'      => __('Featured images/videos settings and stylings.', 'pzarchitect'),
+          'post_types' => array('arc-blueprints'),
+          'sections'   => $sections,
+          'position'   => 'normal',
+          'priority'   => 'default',
+          'sidebar'    => false
+
+      );
+
+      return $metaboxes;
+
+    }
+
+    function pzarc_mb_body_settings($metaboxes, $defaults_only = false)
+    {
+      global $_architect;
+      global $_architect_options;
+      if (empty($_architect_options)) {
+        $_architect_options = get_option('_architect_options');
+      }
+
+      if (empty($_architect)) {
+        $_architect = get_option('_architect');
+      }
+
+      $sections = array();
+      $prefix   = 'panels_design_';
+
+      // Settings
+      $sections[] = array(
+          'title'      => __('Body/excerpt settings', 'pzarchitect'),
+          'icon_class' => 'icon-large',
+          'icon'       => 'el-icon-adjust-alt',
+          'fields'     => array(
+              array(
+                  'title'    => __('Maximize body', 'pzarchitect'),
+                  'id'       => $prefix . 'maximize-content',
+                  'type'     => 'switch',
+                  'on'       => __('Yes', 'pzarchitect'),
+                  'off'      => __('No', 'pzarchitect'),
+                  'default'  => true,
+                  //'required' => array('show_advanced', 'equals', true),
+                  'subtitle' => __('Make excerpt or body 100% width if no featured image.', 'pzarchitect')
+              ),
+              array(
+                  'title'    => __('Action on more click', 'pzarchitect'),
+                  'id'       => $prefix . 'more-click-action',
+                  'type'     => 'button_set',
+                  'options'  => array(
+                      'none'                => __('Default', 'pzarchitect'),
+                      'slidedown'           => __('Slide down', 'pzarchitect'),
+                      'slidedown-fullwidth' => __('Slide down full width', 'pzarchitect'),
+                  ),
+                  'default'  => 'none',
+                  //'required' => array('show_advanced', 'equals', true),
+                  'subtitle' => __('Choose how body content will appear when clicking the more link', 'pzarchitect')
+              ),
+
+              array(
+                  'id'     => $prefix . 'excerpt-heading',
+                  'title'  => __('Excerpts', 'pzarchitect'),
+                  'type'   => 'section',
+                  'indent' => true,
+                  'class'  => 'heading',
+              ),
+              array(
+                  'title'    => __('Display entered excerpts only', 'pzarchitect'),
+                  'id'       => $prefix . 'manual-excerpts',
+                  'type'     => 'switch',
+                  'on'       => __('Yes', 'pzarchitect'),
+                  'off'      => __('No', 'pzarchitect'),
+                  'default'  => false,
+                  //'required' => array('show_advanced', 'equals', true),
+                  'subtitle' => __('Only display excerpts that are actually entered in the Excerpt field of the post editor.<br>Entered excerpts retain formatting.', 'pzarchitect')
+              ),
+              array(
+                  'id'       => $prefix . 'excerpts-trim-type',
+                  'title'    => __('Trim excerpts using', 'pzarchitect'),
+                  'type'     => 'button_set',
+                  'default'  => 'words',
+                  'options'  => array(
+                      'characters' => __('Character', 'pzarchitect'),
+                      'words'      => __('Words', 'pzarchitect'),
+                      'paragraphs' => __('Paragraphs', 'pzarchitect'),
+                      'moretag'    => __('More tag', 'pzarchitect'),
+                  ),
+                  'required' => array($prefix . 'manual-excerpts', '=', false),
+                  'subtitle' => __('Excerpts trimmed by characters and words do not retain formatting.', 'pzarchitect')
+              ),
+              array(
+                  'title'    => __('Shortcodes in excerpts', 'pzarchitect'),
+                  'id'       => $prefix . 'process-excerpts-shortcodes',
+                  'type'     => 'button_set',
+                  'options'  => array(
+                      'process' => __('Process', 'pzarchitect'),
+                      'remove'  => __('Remove', 'pzarchitect'),
+                  ),
+                  'default'  => 'process',
+                  'required' => array($prefix . 'manual-excerpts', '=', false)
+              ),
+              array(
+                  'id'       => $prefix . 'excerpts-word-count',
+                  'title'    => __('Excerpt length', 'pzarchitect'),
+                  'type'     => 'spinner',
+                  'default'  => 55,
+                  'min'      => 1,
+                  'max'      => 9999,
+                  'step'     => 1,
+                  'required' => array($prefix . 'manual-excerpts', '=', false)
+              ),
+              array(
+                  'title'    => __('Truncation indicator', 'pzarchitect'),
+                  'id'       => $prefix . 'readmore-truncation-indicator',
+                  'type'     => 'text',
+                  'class'    => 'textbox-small',
+                  'default'  => '[...]',
+                  'required' => array($prefix . 'manual-excerpts', '=', false)
+              ),
+              array(
+                  'title'    => __('Read More', 'pzarchitect'),
+                  'id'       => $prefix . 'readmore-text',
+                  'type'     => 'text',
+                  'class'    => 'textbox-medium',
+                  'default'  => __('Read more', 'pzarchitect'),
+                  'required' => array($prefix . 'manual-excerpts', '=', false)
+              ),
+              array(
+                  'id'     => $prefix . 'content-responsive-heading',
+                  'title'  => __('Responsive', 'pzarchitect'),
+                  'type'   => 'section',
+                  'indent' => true,
+                  //'required' => array('show_advanced', 'equals', true),
+                  //                  'class'    => 'heading',
+              ),
+              array(
+                  'id'       => $prefix . 'responsive-hide-content',
+                  'title'    => __('Hide Body at breakpoint', 'pzarchitect'),
+                  'type'     => 'select',
+                  //'required' => array('show_advanced', 'equals', true),
+                  'options'  => array(
+                      'none' => __('None', 'pzarchitect'),
+                      '2'    => __('Small screen ', 'pzarchitect') . $_architect_options[ 'architect_breakpoint_2' ][ 'width' ],
+                      '1'    => __('Medium screen ', 'pzarchitect') . $_architect_options[ 'architect_breakpoint_1' ][ 'width' ]
+                  ),
+                  'default'  => 'none',
+                  'subtitle' => __('Breakpoints can be changed in Architect Options', 'pzachitect')
+              ),
+          )
+      );
+      $sections[] = array(
+          'title'      => __('Responsive overrides', 'pzarchitect'),
+          'show_title' => false,
+          'icon_class' => 'icon-large',
+          'icon'       => 'el-icon-screen',
+          'fields'     => array(
+              array(
+                  'title'    => __('Use responsive font sizes', 'pzarchitect'),
+                  'id'       => $prefix . 'use-responsive-font-size',
+                  'type'     => 'switch',
+                  'default'  => false,
+                  //'required' => array('show_advanced', 'equals', true),
+                  'subtitle' => __('Enabling this will override all other CSS for body/excerpt text', 'pzarchitect')
+              ),
+              array(
+                  'title'    => __('Fluid fonts', 'pzarchitect'),
+                  'id'       => $prefix . 'use-scale-fonts',
+                  'type'     => 'switch',
+                  'default'  => true,
+                  'required' => array($prefix . 'use-responsive-font-size', 'equals', true),
+                  'subtitle' => __('This makes the fonts scale in size from one breakpoint to the next, rather than suddenly changing at each breakpoint.', 'pzarchitect')
+              ),
+              array(
+                  'id'              => $prefix . 'content-font-size-bp1',
+                  'title'           => __('Maximum font size - large screen ', 'pzarchitect'),
+                  'subtitle'        => $_architect_options[ 'architect_breakpoint_1' ][ 'width' ] . __(' and above', 'pzarchitect'),
+                  'required'        => array($prefix . 'use-responsive-font-size', 'equals', true),
+                  'type'            => 'typography',
+                  'text-decoration' => false,
+                  'font-variant'    => false,
+                  'text-transform'  => false,
+                  'font-family'     => false,
+                  'font-size'       => true,
+                  'font-weight'     => false,
+                  'font-style'      => false,
+                  'font-backup'     => false,
+                  'google'          => false,
+                  'subsets'         => false,
+                  'custom_fonts'    => false,
+                  'text-align'      => false,
+                  //'text-shadow'       => false, // false
+                  'color'           => false,
+                  'preview'         => false,
+                  'line-height'     => true,
+                  'word-spacing'    => false,
+                  'letter-spacing'  => false,
+              ),
+              array(
+                  'id'              => $prefix . 'content-font-size-bp2',
+                  'title'           => __('Font size - medium screen ', 'pzarchitect'),
+                  'subtitle'        => $_architect_options[ 'architect_breakpoint_2' ][ 'width' ] . ' to ' . $_architect_options[ 'architect_breakpoint_1' ][ 'width' ],
+                  'required'        => array(
+                      array($prefix . 'use-responsive-font-size', 'equals', true),
+                      array($prefix . 'use-scale-fonts', 'equals', false)
+                  ),
+                  'type'            => 'typography',
+                  'text-decoration' => false,
+                  'font-variant'    => false,
+                  'text-transform'  => false,
+                  'font-family'     => false,
+                  'font-size'       => true,
+                  'font-weight'     => false,
+                  'font-style'      => false,
+                  'font-backup'     => false,
+                  'google'          => false,
+                  'subsets'         => false,
+                  'custom_fonts'    => false,
+                  'text-align'      => false,
+                  //'text-shadow'       => false, // false
+                  'color'           => false,
+                  'preview'         => false,
+                  'line-height'     => true,
+                  'word-spacing'    => false,
+                  'letter-spacing'  => false,
+              ),
+              array(
+                  'id'              => $prefix . 'content-font-size-bp3',
+                  'title'           => __('Minimum font size - small screen ', 'pzarchitect'),
+                  'subtitle'        => $_architect_options[ 'architect_breakpoint_2' ][ 'width' ] . ' and below',
+                  'required'        => array($prefix . 'use-responsive-font-size', 'equals', true),
+                  'type'            => 'typography',
+                  'text-decoration' => false,
+                  'font-variant'    => false,
+                  'text-transform'  => false,
+                  'font-family'     => false,
+                  'font-size'       => true,
+                  'font-weight'     => false,
+                  'font-style'      => false,
+                  'font-backup'     => false,
+                  'google'          => false,
+                  'subsets'         => false,
+                  'custom_fonts'    => false,
+                  'text-align'      => false,
+                  //'text-shadow'       => false, // false
+                  'color'           => false,
+                  'preview'         => false,
+                  'line-height'     => true,
+                  'word-spacing'    => false,
+                  'letter-spacing'  => false,
+              ),
+              array(
+                  'id'       => $prefix . 'content-font-scale-upper-bp',
+                  'title'    => __('Override large screen breakpoint', 'pzarchitect'),
+                  'type'     => 'text',
+                  'default'  => 1280,
+                  'subtitle' => __('Above this window width, no scaling will be done.'),
+                  'required' => array(
+                      array($prefix . 'use-responsive-font-size', 'equals', true),
+                      array($prefix . 'use-scale-fonts', 'equals', true)
+                  ),
+              ),
+              array(
+                  'id'       => $prefix . 'content-font-scale-lower-bp',
+                  'title'    => __('Override small screen breakpoint', 'pzarchitect'),
+                  'type'     => 'text',
+                  'default'  => 360,
+                  'subtitle' => __('Below this window width, no scaling will be done.'),
+                  'required' => array(
+                      array($prefix . 'use-responsive-font-size', 'equals', true),
+                      array($prefix . 'use-scale-fonts', 'equals', true)
+                  ),
+              )
+              //            array(
+              //                'id'      => $prefix . 'content-font-size-range',
+              //                'title'   => __('Font size range', 'pzarchitect'),
+              //                'type'    => 'slider',
+              //                'min'     => 5,
+              //                'max'     => 24,
+              //                'step'    => 1,
+              //                'handles' => 2,
+              //                'default' => array(1=>10,2=>16)
+              //            )
+          )
+
+
+      );
+
+      // Stylings
+      if (!empty($_architect_options[ 'architect_enable_styling' ])) {
+        $defaults = get_option('_architect');
+        $prefix   = '_panels_styling_'; // declare prefix
+
+        $font       = '-font';
+        $link       = '-links';
+        $padding    = '-padding';
+        $margin     = '-margin';
+        $background = '-background';
+        $border     = '-borders';
+
+        $stylingSections = array();
+        $optprefix       = 'architect_config_';
+
+
+        $sections[] = array(
+            'title'      => __('Body content styling', 'pzarchitect'),
+            'show_title' => false,
+            'icon_class' => 'icon-large',
+            'icon'       => 'el-icon-brush',
+            'desc'       => 'Class: .entry-content<br><strong class="arc-important">' . __('Note: If your theme styles .entry-content and .entry-content p separately, you may need to style both there too', 'pzarchitect') . '</strong>',
+            'fields'     => pzarc_fields(
+                array(
+                    'title'  => __('Full content', 'pzarc'),
+                    'id'     => $prefix . 'entry-content',
+                    'type'   => 'section',
+                    'indent' => true,
+                    'class'  => 'heading',
+                ),
+                pzarc_redux_font($prefix . 'entry-content' . $font, array('.entry-content'), $defaults[ $optprefix . 'entry-content' . $font ]),
+                pzarc_redux_bg($prefix . 'entry-content' . $font . $background, array('.entry-content'), $defaults[ $optprefix . 'entry-content' . $font . $background ]),
+                pzarc_redux_padding($prefix . 'entry-content' . $font . $padding, array('.entry-content'), $defaults[ $optprefix . 'entry-content' . $font . $padding ]),
+                pzarc_redux_margin($prefix . 'entry-content' . $font . $margin, array('.entry-content'), $defaults[ $optprefix . 'entry-content' . $font . $margin ], 'tb'),
+                pzarc_redux_borders($prefix . 'entry-content' . $border, array('.entry-content'), $defaults[ $optprefix . 'entry-content' . $border ]),
+                pzarc_redux_links($prefix . 'entry-content' . $font . $link, array('.entry-content a'), $defaults[ $optprefix . 'entry-content' . $font . $link ]),
+                array(
+                    'title'  => __('Content paragraphs', 'pzarc'),
+                    'id'     => $prefix . 'entry-content-p',
+                    'desc'   => 'Class: .entry-content p',
+                    'type'   => 'section',
+                    'indent' => true,
+                    'class'  => 'heading',
+                ),
+                pzarc_redux_font($prefix . 'entry-contentp' . $font, array('.entry-content'), $defaults[ $optprefix . 'entry-content' . $font ]),
+                pzarc_redux_padding($prefix . 'entry-contentp' . $font . $padding, array('.entry-content p'), $defaults[ $optprefix . 'entry-contentp' . $font . $padding ]),
+                pzarc_redux_margin($prefix . 'entry-contentp' . $font . $margin, array('.entry-content p'), $defaults[ $optprefix . 'entry-contentp' . $font . $margin ])
+            )
+        );
+        $sections[] = array(
+            'title'      => __('Excerpts styling', 'pzarchitect'),
+            'show_title' => false,
+            'icon_class' => 'icon-large',
+            'icon'       => 'el-icon-brush',
+            'desc'       => 'Class: .entry-excerpt<br><strong class="arc-important">' . __('Note: If your theme styles .entry-excerpt and .entry-excerpt p separately, you may need to style both there too', 'pzarchitect') . '</strong>',
+            'fields'     => pzarc_fields(
+                array(
+                    'title'  => __('Excerpt', 'pzarchitect'),
+                    'id'     => $prefix . 'entry-excerpt',
+                    'type'   => 'section',
+                    'indent' => true,
+                    'class'  => 'heading',
+                ),
+                pzarc_redux_font($prefix . 'entry-excerpt' . $font, array('.entry-excerpt'), $defaults[ $optprefix . 'entry-excerpt' . $font ]),
+                pzarc_redux_bg($prefix . 'entry-excerpt' . $font . $background, array('.entry-excerpt'), $defaults[ $optprefix . 'entry-excerpt' . $font . $background ]),
+                pzarc_redux_padding($prefix . 'entry-excerpt' . $font . $padding, array('.entry-excerpt'), $defaults[ $optprefix . 'entry-excerpt' . $font . $padding ]),
+                pzarc_redux_margin($prefix . 'entry-excerpt' . $font . $margin, array('.entry-excerpt'), $defaults[ $optprefix . 'entry-excerpt' . $font . $margin ], 'tb'),
+                pzarc_redux_borders($prefix . 'entry-excerpt' . $border, array('.entry-excerpt'), $defaults[ $optprefix . 'entry-excerpt' . $border ]),
+                pzarc_redux_links($prefix . 'entry-excerpt' . $font . $link, array('.entry-excerpt a'), $defaults[ $optprefix . 'entry-excerpt' . $font . $link ]),
+                array(
+                    'title'  => __('Excerpt paragraphs', 'pzarc'),
+                    'id'     => $prefix . 'entry-excerptp',
+                    'desc'   => 'Class: .entry-excerpt p',
+                    'type'   => 'section',
+                    'indent' => true,
+                    'class'  => 'heading',
+                ),
+                pzarc_redux_font($prefix . 'entry-excerptp' . $font, array('.entry-excerpt p'), $defaults[ $optprefix . 'entry-excerptp' . $font ]),
+                pzarc_redux_padding($prefix . 'entry-excerptp' . $font . $padding, array('.entry-excerpt p'), $defaults[ $optprefix . 'entry-excerptp' . $font . $padding ]),
+                pzarc_redux_margin($prefix . 'entry-excerptp' . $font . $margin, array('.entry-excerpt p'), $defaults[ $optprefix . 'entry-excerptp' . $font . $margin ]),
+                array(
+                    'title'  => __('Read more', 'pzarchitect'),
+                    'id'     => $prefix . 'entry-readmore',
+                    'type'   => 'section',
+                    'indent' => true,
+                    'class'  => 'heading',
+                    'hint'   => array('content' => 'Class: a.pzarc_readmore'),
+                ),
+                pzarc_redux_font($prefix . 'entry-readmore' . $font, array('.readmore'), $defaults[ $optprefix . 'entry-readmore' . $font ]),
+                pzarc_redux_bg($prefix . 'entry-readmore' . $font . $background, array('.readmore'), $defaults[ $optprefix . 'entry-readmore' . $font . $background ]),
+                pzarc_redux_padding($prefix . 'entry-readmore' . $font . $padding, array('.readmore'), $defaults[ $optprefix . 'entry-readmore' . $font . $padding ]),
+                pzarc_redux_links($prefix . 'entry-readmore' . $font . $link, array('a.readmore'), $defaults[ $optprefix . 'entry-readmore' . $font . $link ])
+            )
+        );
+      }
+      $metaboxes[] = array(
+          'id'         => 'body-settings',
+          'title'      => __('Body/Excerpt settings and stylings.', 'pzarchitect'),
+          'post_types' => array('arc-blueprints'),
+          'sections'   => $sections,
+          'position'   => 'normal',
+          'priority'   => 'default',
+          'sidebar'    => false
+
+      );
+
+      return $metaboxes;
+
+    }
+
+    function pzarc_mb_customfields_settings($metaboxes, $defaults_only = false)
+    {
+      global $_architect;
+      global $_architect_options;
+      if (empty($_architect_options)) {
+        $_architect_options = get_option('_architect_options');
+      }
+
+      if (empty($_architect)) {
+        $_architect = get_option('_architect');
+      }
+
+      $sections = array();
+      $prefix   = '_panels_design_';
+      // Settings
       /**
        * CUSTOM FIELDS
        * Why are these here even though they are somewhat content related. They're not choosing the content itself. Yes they do limit the usablity of the panel. Partly this came about because of the way WPdoesn't bind custom fields to specific content types.
        */
+      $sections[] = array(
+          'title'      => __('Custom fields general settings', 'pzarchitect'),
+          'show_title' => false,
+          'icon_class' => 'icon-large',
+          'icon'       => 'el-icon-adjust-alt',
+          'fields'     => array(
+              array(
+                  'title'         => __('Number of custom fields', 'pzarchitect'),
+                  'id'            => $prefix . 'custom-fields-count',
+                  'type'          => 'spinner',
+                  'default'       => 0,
+                  'min'           => 0,
+                  'max'           => 999,
+                  'step'          => 1,
+                  'display_value' => 'label',
+                  'required'      => array($prefix . 'components-to-show', 'contains', 'custom'),
+                  'subtitle'      => __('Each of the three Custom groups can have multiple custom fields. Enter the <strong>total</strong> number of custom fields, click Publish/Update', 'pzarchitect'),
+                  'desc'          => __('When you change this number, click Publish/Update to update Custom Fields tabs at left', 'pzarchitect'),
+                  'hint'          => array(
+                      'title'   => __('Number of custom fields', 'pzarchitect'),
+                      'content' => __('After selecting upto three custom field groups, you now need to set the total number of custom fields you will be displaying so Architect can create the settings tabs for each one.<br><br><strong>You will need to Publish/Update to see those new tabs.</strong>', 'pzarchitect')
+                  )
+              ),
+          )
+      );
+
       if (is_admin() && !empty($_GET[ 'post' ])) {
+
         $cfcount = (!empty($this->postmeta[ '_panels_design_custom-fields-count' ][ 0 ]) ? $this->postmeta[ '_panels_design_custom-fields-count' ][ 0 ] : 0);
 
         if ($cfcount) {
@@ -3754,9 +4286,9 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
           for ($i = 1; $i <= $cfcount; $i++) {
             $cfname     = 'Custom field ' . $i . (!empty($this->postmeta[ '_panels_design_cfield-' . $i . '-name' ][ 0 ]) ? ': <br>' . $this->postmeta[ '_panels_design_cfield-' . $i . '-name' ][ 0 ] : '');
             $sections[] = array(
-                'title'      => $cfname,
+                'title'      => $cfname . ' settings',
                 'icon_class' => 'icon-large',
-                'icon'       => 'el-icon-wrench',
+                'icon'       => 'el-icon-adjust-alt',
                 'desc'       => __('Note: Only fields with content will show on the Blueprint.', 'pzarchitect'),
                 'fields'     => array(
                     array(
@@ -3917,71 +4449,11 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
           }
         }
       }
-      $sections[] = array(
-          'title'      => __('Help', 'pzarchitect'),
-          'icon_class' => 'icon-large',
-          'icon'       => 'el-icon-question-sign',
-          'fields'     => array(
-//              array(
-//                  'title'    => __('Panels videos', 'pzarchitect'),
-//                  'id'       => $prefix . 'help-panels-videos',
-//                  'subtitle' => __('Internet connection required'),
-//                  'type'     => 'raw',
-//                  'class'    => 'plain',
-//                  'markdown' => false,
-//                  'content'  => ($defaults_only ? '' : @file_get_contents('https://s3.amazonaws.com/341public/architect/panels-videos.html')),
-//              ),
-array(
-    'title'    => __('Online documentation', 'pzarchitect'),
-    'id'       => $prefix . 'help-panels-online-docs',
-    'type'     => 'raw',
-    'markdown' => false,
-    'content'  => '<a href="http://architect4wp.com/codex-listings/" target=_blank>' . __('Architect Online Documentation', 'pzarchitect') . '</a><br>' . __('This is a growing resource. Please check back regularly.', 'pzarchitect')
 
-),
-          )
-      );
-
-      // Create the metaboxes
-
-
-      $metaboxes[] = array(
-          'id'         => 'panels-design',
-          'title'      => __('Content Layout: Setup the layout of the content itself.', 'pzarchitect'),
-          'post_types' => array('arc-blueprints'),
-          'sections'   => $sections,
-          'position'   => 'normal',
-          'priority'   => 'low',
-          'sidebar'    => false
-
-      );
-
-      return $metaboxes;
-
-    }
-
-    /**
-     * STYLING
-     *
-     * @param $metaboxes
-     *
-     * @return array
-     */
-    function pzarc_mb_panels_styling($metaboxes, $defaults_only = false)
-    {
-
-      global $_architect;
-      global $_architect_options;
-      if (empty($_architect_options)) {
-        $_architect_options = get_option('_architect_options');
-      }
-
-      if (empty($_architect)) {
-        $_architect = get_option('_architect');
-      }
+      // Stylings
       if (!empty($_architect_options[ 'architect_enable_styling' ])) {
         $defaults = get_option('_architect');
-        $prefix = '_panels_styling_'; // declare prefix
+        $prefix   = '_panels_styling_'; // declare prefix
 
         $font       = '-font';
         $link       = '-links';
@@ -3991,309 +4463,18 @@ array(
         $border     = '-borders';
 
         $stylingSections = array();
-        $sections        = array();
         $optprefix       = 'architect_config_';
-//  $stylingSections[ ] = array(
-//          'title'      => 'Styling',
-//          'icon_class' => 'icon-large',
-//          'icon'       => 'el-icon-brush',
-//          'hint' => __('Architect uses standard WordPress class names as much as possible, so your Architect Blueprints will inherit styling from your theme if it uses these. Below you can add your own styling and classes. Enter CSS declarations, such as: background:#123; color:#abc; font-size:1.6em; padding:1%;', 'pzarchitect') . '<br/>' . __('As much as possible, use fluid units (%,em) if you want to ensure maximum responsiveness.', 'pzarchitect') . '<br/>' .
-//                  __('The base font size is 10px. So, for example, to get a font size of 14px, use 1.4em. Even better is using relative ems i.e. rem.'),
-//
-//          'fields'     => array(
-        $xsections[] = array(
-            'title'      => __('Styling', 'pzarchitect'),
-            'show_title' => false,
-            'icon_class' => 'icon-large',
-            'icon'       => 'el-icon-info-sign',
-            'fields'     => array(
-                array(
-                    'title'    => __('Styling Panels', 'pzarchitect'),
-                    'id'       => $prefix . 'styling-panels',
-                    'type'     => 'info',
-                    'subtitle' => __('To style panels...', 'pzarchitect'),
-                )
-
-            )
-        );
-
-        /**
-         * GENERAL
-         */
-        $sections[] = array(
-            'title'      => __('Content General Styling', 'pzarchitect'),
-            'show_title' => false,
-            'icon_class' => 'icon-large',
-            'icon'       => 'el-icon-brush',
-            'fields'     => pzarc_fields(
-//                array(
-//                    'title'    => __('Load style'),
-//                    'id'       => $prefix . 'panels-load-style',
-//                    'type'     => 'select',
-//                    'subtitle' => 'Sorry to tease, but this isn\'t implemented yet.',
-//                    'options'  => array('none', 'dark', 'light'),
-//                    'default'  => 'none'
-//                ),
-                array(
-                    'title'    => __('Panels', 'pzarchitect'),
-                    'id'       => $prefix . 'panels-section',
-                    'type'     => 'section',
-                    'indent'   => true,
-                    'class'    => 'heading',
-                    'subtitle' => 'Class: .pzarc-panel',
-                    'hint'     => array('content' => 'Class: .pzarc-panel'),
-                ),
-                pzarc_redux_bg($prefix . 'panels' . $background, '', $defaults[ $optprefix . 'panels' . $background ]),
-                pzarc_redux_padding($prefix . 'panels' . $padding, '', $defaults[ $optprefix . 'panels' . $padding ]),
-                pzarc_redux_borders($prefix . 'panels' . $border, '', $defaults[ $optprefix . 'panels' . $border ]),
-                array(
-                    'title'    => __('Components group', 'pzarchitect'),
-                    'id'       => $prefix . 'components-section',
-                    'type'     => 'section',
-                    'indent'   => true,
-                    'class'    => 'heading',
-                    'hint'     => array('content' => 'Class: .pzarc_components'),
-                    'subtitle' => 'Class: .pzarc_components',
-                ),
-                pzarc_redux_bg($prefix . 'components' . $background, array('.pzarc_components'), $defaults[ $optprefix . 'components' . $background ]),
-                pzarc_redux_padding($prefix . 'components' . $padding, array('.pzarc_components'), $defaults[ $optprefix . 'components' . $padding ]),
-                pzarc_redux_borders($prefix . 'components' . $border, array('.pzarc_components'), $defaults[ $optprefix . 'components' . $border ]),
-                array(
-                    'title'    => __('Entry', 'pzarchitect'),
-                    'id'       => $prefix . 'hentry-section',
-                    'type'     => 'section',
-                    'indent'   => true,
-                    'class'    => 'heading',
-                    'hint'     => array('content' => 'Class: .hentry'),
-                    'subtitle' => !$this->defaults ? (is_array($_architect[ 'architect_config_hentry-selectors' ]) ? 'Classes: ' . implode(', ', $_architect[ 'architect_config_hentry-selectors' ]) : 'Class: ' . $_architect[ 'architect_config_hentry-selectors' ]) : ''
-                ),
-                // id,selectors,defaults
-                // need to grab selectors from options
-                // e.g. $_architect['architect_config_hentry-selectors']
-                // Then we need to get them back later
-                pzarc_redux_bg($prefix . 'hentry' . $background, !$this->defaults ? $_architect[ 'architect_config_hentry-selectors' ] : '', $defaults[ $optprefix . 'hentry' . $background ]),
-                pzarc_redux_padding($prefix . 'hentry' . $padding, !$this->defaults ? $_architect[ 'architect_config_hentry-selectors' ] : '', $defaults[ $optprefix . 'hentry' . $padding ]),
-                pzarc_redux_margin($prefix . 'hentry' . $margin, !$this->defaults ? $_architect[ 'architect_config_hentry-selectors' ] : '', $defaults[ $optprefix . 'hentry' . $margin ]),
-                pzarc_redux_borders($prefix . 'hentry' . $border, !$this->defaults ? $_architect[ 'architect_config_hentry-selectors' ] : '', $defaults[ $optprefix . 'hentry' . $border ])
-            )
-        );
-
-        /**
-         * TITLES
-         */
-        // architect_config_entry-title-font-margin
-
-        $sections[] = array(
-            'title'      => __('Titles', 'pzarchitect'),
-            'show_title' => false,
-            'icon_class' => 'icon-large',
-            'icon'       => 'el-icon' . $font,
-            'desc'       => 'Class: .entry-title<br><strong class="arc-important">' . __('Note: If your Titles are linked, you will need to set their colour in the Links section', 'pzarchitect') . '</strong>',
-            'fields'     => pzarc_fields(
-                pzarc_redux_font($prefix . 'entry-title' . $font, array('.entry-title'), $defaults[ $optprefix . 'entry-title' . $font ]),
-                pzarc_redux_bg($prefix . 'entry-title' . $font . $background, array('.entry-title'), $defaults[ $optprefix . 'entry-title' . $font . $background ]),
-                pzarc_redux_padding($prefix . 'entry-title' . $font . $padding, array('.entry-title'), $defaults[ $optprefix . 'entry-title' . $font . $padding ]),
-                pzarc_redux_margin($prefix . 'entry-title' . $font . $margin, array('.entry-title'), $defaults[ $optprefix . 'entry-title' . $font . $margin ], 'tb'),
-                pzarc_redux_borders($prefix . 'entry-title' . $border, array('.entry-title'), $defaults[ $optprefix . 'entry-title' . $border ]),
-                pzarc_redux_links($prefix . 'entry-title' . $font . $link, array('.entry-title a'), $defaults[ $optprefix . 'entry-title' . $font . $link ])
-            ),
-        );
-
-        /**
-         * META
-         */
-        $sections[] = array(
-            'title'      => __('Meta', 'pzarchitect'),
-            'show_title' => false,
-            'icon_class' => 'icon-large',
-            'icon'       => 'el-icon-calendar',
-            'desc'       => 'Class: .entry_meta',
-            'fields'     => pzarc_fields(
-                pzarc_redux_font($prefix . 'entry-meta' . $font, array('.entry-meta'), $defaults[ $optprefix . 'entry-meta' . $font ]),
-                pzarc_redux_bg($prefix . 'entry-meta' . $font . $background, array('.entry-meta'), $defaults[ $optprefix . 'entry-meta' . $font . $background ]),
-                pzarc_redux_padding($prefix . 'entry-meta' . $font . $padding, array('.entry-meta'), $defaults[ $optprefix . 'entry-meta' . $font . $padding ]),
-                pzarc_redux_margin($prefix . 'entry-meta' . $font . $margin, array('.entry-meta'), $defaults[ $optprefix . 'entry-meta' . $font . $margin ], 'tb'),
-                pzarc_redux_links($prefix . 'entry-meta' . $font . $link, array('.entry-meta a'), $defaults[ $optprefix . 'entry-meta' . $font . $link ]),
-                array(
-                    'title'  => __('Author avatar', 'pzarc'),
-                    'id'     => $prefix . 'author-avatar',
-                    'desc'   => 'Class: .author img.avatar',
-                    'type'   => 'section',
-                    'indent' => true,
-                    'class'  => 'heading',
-                ),
-                pzarc_redux_margin($prefix . 'author-avatar' . $margin,
-                                   array('.author img.avatar'),
-                                   $defaults[ $optprefix . 'author-avatar' . $margin ])
-            )
-        );
-
-        /**
-         * CONTENT
-         */
-        $sections[] = array(
-            'title'      => __('Body content', 'pzarchitect'),
-            'show_title' => false,
-            'icon_class' => 'icon-large',
-            'icon'       => 'el-icon-align-left',
-            'desc'       => 'Class: .entry-content<br><strong class="arc-important">' . __('Note: If your theme styles .entry-content and .entry-content p separately, you may need to style both there too', 'pzarchitect') . '</strong>',
-            'fields'     => pzarc_fields(
-                array(
-                    'title'  => __('Full content', 'pzarc'),
-                    'id'     => $prefix . 'entry-content',
-                    'type'   => 'section',
-                    'indent' => true,
-                    'class'  => 'heading',
-                ),
-                pzarc_redux_font($prefix . 'entry-content' . $font, array('.entry-content'), $defaults[ $optprefix . 'entry-content' . $font ]),
-                pzarc_redux_bg($prefix . 'entry-content' . $font . $background, array('.entry-content'), $defaults[ $optprefix . 'entry-content' . $font . $background ]),
-                pzarc_redux_padding($prefix . 'entry-content' . $font . $padding, array('.entry-content'), $defaults[ $optprefix . 'entry-content' . $font . $padding ]),
-                pzarc_redux_margin($prefix . 'entry-content' . $font . $margin, array('.entry-content'), $defaults[ $optprefix . 'entry-content' . $font . $margin ], 'tb'),
-                pzarc_redux_borders($prefix . 'entry-content' . $border, array('.entry-content'), $defaults[ $optprefix . 'entry-content' . $border ]),
-                pzarc_redux_links($prefix . 'entry-content' . $font . $link, array('.entry-content a'), $defaults[ $optprefix . 'entry-content' . $font . $link ]),
-                array(
-                    'title'  => __('Content paragraphs', 'pzarc'),
-                    'id'     => $prefix . 'entry-content-p',
-                    'desc'   => 'Class: .entry-content p',
-                    'type'   => 'section',
-                    'indent' => true,
-                    'class'  => 'heading',
-                ),
-                pzarc_redux_font($prefix . 'entry-contentp' . $font, array('.entry-content'), $defaults[ $optprefix . 'entry-content' . $font ]),
-                pzarc_redux_padding($prefix . 'entry-contentp' . $font . $padding, array('.entry-content p'), $defaults[ $optprefix . 'entry-contentp' . $font . $padding ]),
-                pzarc_redux_margin($prefix . 'entry-contentp' . $font . $margin, array('.entry-content p'), $defaults[ $optprefix . 'entry-contentp' . $font . $margin ])
-            )
-        );
-
-        $sections[] = array(
-            'title'      => __('Excerpts', 'pzarchitect'),
-            'show_title' => false,
-            'icon_class' => 'icon-large',
-            'icon'       => 'el-icon-align-left',
-            'desc'       => 'Class: .entry-excerpt<br><strong class="arc-important">' . __('Note: If your theme styles .entry-excerpt and .entry-excerpt p separately, you may need to style both there too', 'pzarchitect') . '</strong>',
-            'fields'     => pzarc_fields(
-                array(
-                    'title'  => __('Excerpt', 'pzarchitect'),
-                    'id'     => $prefix . 'entry-excerpt',
-                    'type'   => 'section',
-                    'indent' => true,
-                    'class'  => 'heading',
-                ),
-                pzarc_redux_font($prefix . 'entry-excerpt' . $font, array('.entry-excerpt'), $defaults[ $optprefix . 'entry-excerpt' . $font ]),
-                pzarc_redux_bg($prefix . 'entry-excerpt' . $font . $background, array('.entry-excerpt'), $defaults[ $optprefix . 'entry-excerpt' . $font . $background ]),
-                pzarc_redux_padding($prefix . 'entry-excerpt' . $font . $padding, array('.entry-excerpt'), $defaults[ $optprefix . 'entry-excerpt' . $font . $padding ]),
-                pzarc_redux_margin($prefix . 'entry-excerpt' . $font . $margin, array('.entry-excerpt'), $defaults[ $optprefix . 'entry-excerpt' . $font . $margin ], 'tb'),
-                pzarc_redux_borders($prefix . 'entry-excerpt' . $border, array('.entry-excerpt'), $defaults[ $optprefix . 'entry-excerpt' . $border ]),
-                pzarc_redux_links($prefix . 'entry-excerpt' . $font . $link, array('.entry-excerpt a'), $defaults[ $optprefix . 'entry-excerpt' . $font . $link ]),
-                array(
-                    'title'  => __('Excerpt paragraphs', 'pzarc'),
-                    'id'     => $prefix . 'entry-excerptp',
-                    'desc'   => 'Class: .entry-excerpt p',
-                    'type'   => 'section',
-                    'indent' => true,
-                    'class'  => 'heading',
-                ),
-                pzarc_redux_font($prefix . 'entry-excerptp' . $font, array('.entry-excerpt p'), $defaults[ $optprefix . 'entry-excerptp' . $font ]),
-                pzarc_redux_padding($prefix . 'entry-excerptp' . $font . $padding, array('.entry-excerpt p'), $defaults[ $optprefix . 'entry-excerptp' . $font . $padding ]),
-                pzarc_redux_margin($prefix . 'entry-excerptp' . $font . $margin, array('.entry-excerpt p'), $defaults[ $optprefix . 'entry-excerptp' . $font . $margin ]),
-                array(
-                    'title'  => __('Read more', 'pzarchitect'),
-                    'id'     => $prefix . 'entry-readmore',
-                    'type'   => 'section',
-                    'indent' => true,
-                    'class'  => 'heading',
-                    'hint'   => array('content' => 'Class: a.pzarc_readmore'),
-                ),
-                pzarc_redux_font($prefix . 'entry-readmore' . $font, array('.readmore'), $defaults[ $optprefix . 'entry-readmore' . $font ]),
-                pzarc_redux_bg($prefix . 'entry-readmore' . $font . $background, array('.readmore'), $defaults[ $optprefix . 'entry-readmore' . $font . $background ]),
-                pzarc_redux_padding($prefix . 'entry-readmore' . $font . $padding, array('.readmore'), $defaults[ $optprefix . 'entry-readmore' . $font . $padding ]),
-                pzarc_redux_links($prefix . 'entry-readmore' . $font . $link, array('a.readmore'), $defaults[ $optprefix . 'entry-readmore' . $font . $link ])
-            )
-        );
-        /**
-         * FEATURED IMAGE
-         */
-        $sections[] = array(
-            'title'      => __('Featured image', 'pzarchitect'),
-            'show_title' => false,
-            'icon_class' => 'icon-large',
-            'icon'       => 'el-icon-picture',
-            'fields'     => pzarc_fields(
-                array(
-                    'title'  => __('Image', 'pzarchitect'),
-                    'id'     => $prefix . 'entry-image',
-                    'type'   => 'section',
-                    'indent' => true,
-                    'class'  => 'heading',
-                    'hint'   => array('content' => 'Class: figure.entry-thumbnail'),
-                    //     'hint'    => __('Format the entry featured image', 'pzarchitect')
-                ),
-                array(
-                    'title'                 => __('Background', 'pzarchitect'),
-                    'id'                    => $prefix . 'entry-image' . $background,
-                    'type'                  => 'spectrum',
-                    'background-image'      => false,
-                    'background-repeat'     => false,
-                    'background-size'       => false,
-                    'background-attachment' => false,
-                    'background-position'   => false,
-                    'preview'               => false,
-                    'output'                => array('.pzarc_entry_featured_image'),
-                    'default'               => $defaults[ $optprefix . 'entry-image' . $background ]
-                ),
-                array(
-                    'title'   => __('Border', 'pzarchitect'),
-                    'id'      => $prefix . 'entry-image' . $border,
-                    'type'    => 'border',
-                    'all'     => false,
-                    'output'  => array('.pzarc_entry_featured_image'),
-                    'default' => $defaults[ $optprefix . 'entry-image' . $border ]
-                ),
-                array(
-                    'title'   => __('Padding', 'pzarchitect'),
-                    'id'      => $prefix . 'entry-image' . $padding,
-                    'mode'    => 'padding',
-                    'type'    => 'spacing',
-                    'units'   => array('px', '%'),
-                    'default' => $defaults[ $optprefix . 'entry-image' . $padding ]
-                ),
-                array(
-                    'title'   => __('Margin', 'pzarchitect'),
-                    'id'      => $prefix . 'entry-image' . $margin,
-                    'mode'    => 'margin',
-                    'type'    => 'spacing',
-                    'units'   => array('px', '%'),
-                    'default' => $defaults[ $optprefix . 'entry-image' . $margin ],
-                    'top'     => true,
-                    'bottom'  => true,
-                    'left'    => false,
-                    'right'   => false
-                ),
-                array(
-                    'title'  => __('Caption', 'pzarchitect'),
-                    'id'     => $prefix . 'entry-image-caption',
-                    'type'   => 'section',
-                    'indent' => true,
-                    'class'  => 'heading',
-                ),
-                pzarc_redux_font($prefix . 'entry-image-caption' . $font, array('figure.entry-thumbnail .caption'), $defaults[ $optprefix . 'entry-image-caption' . $font ]),
-                pzarc_redux_bg($prefix . 'entry-image-caption' . $font . $background, array('figure.entry-thumbnail .caption'), $defaults[ $optprefix . 'entry-image-caption' . $font . $background ]),
-                pzarc_redux_padding($prefix . 'entry-image-caption' . $font . $padding, array('figure.entry-thumbnail .caption'), $defaults[ $optprefix . 'entry-image-caption' . $font . $padding ])
-            )
-        );
-
-        /**
-         * CUSTOM FIELDS
-         */
         if (!empty($_GET[ 'post' ])) {
           $cfcount = (!empty($this->postmeta[ '_panels_design_custom-fields-count' ][ 0 ]) ? $this->postmeta[ '_panels_design_custom-fields-count' ][ 0 ] : 0);
-          for ($i = 1; $i <= $cfcount; $i++) {
+          for ($i = 1;
+               $i <= $cfcount;
+               $i++) {
             $cfname     = 'Custom field ' . $i . (!empty($this->postmeta[ '_panels_design_cfield-' . $i . '-name' ][ 0 ]) ? ': <br>' . $this->postmeta[ '_panels_design_cfield-' . $i . '-name' ][ 0 ] : '');
             $sections[] = array(
-                'title'      => $cfname,
+                'title'      => $cfname . ' styling',
                 'show_title' => false,
                 'icon_class' => 'icon-large',
-                'icon'       => 'el-icon-wrench-alt',
+                'icon'       => 'el-icon-brush',
                 'desc'       => 'Class: .entry-customfield-' . $i,
                 'fields'     => pzarc_fields(
                     pzarc_redux_font($prefix . 'entry-customfield-' . $i . '' . $font, array('.entry-customfield-' . $i . '')),
@@ -4306,81 +4487,25 @@ array(
             );
           }
         }
-        /**
-         * CUSTOM CSS
-         */
-        $sections[] = array(
-            'id'         => 'custom-css',
-            'title'      => __('Custom CSS', 'pzarchitect'),
-            'icon_class' => 'icon-large',
-            'icon'       => 'el-icon-wrench',
-            'fields'     => array(
-                array(
-                    'id'       => $prefix . 'custom-css',
-                    'type'     => 'ace_editor',
-                    'title'    => __('Custom CSS', 'pzarchitect'),
-                    'mode'     => 'css',
-                    'options'  => array('minLines' => 25),
-                    'default'  => $defaults[ $optprefix . 'custom-css' ],
-                    'subtitle' => __('As a shorthand, you can prefix your CSS class with MYBLUEPRINT or MYPANELS and Architect will substitute the correct class for this Blueprint. e.g. MYPANELS .entry-content{border-radius:5px;}', 'pzarchitect')
-                ),
-            )
-        );
-
-        /**
-         * HELP
-         */
-        $sections[]  = array(
-            'id'         => 'styling-help',
-            'title'      => __('Help', 'pzarchitect'),
-            'icon_class' => 'icon-large',
-            'icon'       => 'el-icon-question-sign',
-            'fields'     => array(
-//                array(
-//                    'title'    => __('Panels videos', 'pzarchitect'),
-//                    'id'       => $prefix . 'help-styling-videos',
-//                    'subtitle' => __('Internet connection required'),
-//                    'type'     => 'raw',
-//                    'class'    => 'plain',
-//                    'markdown' => false,
-//                    'content'  => ($defaults_only ? '' : @file_get_contents('https://s3.amazonaws.com/341public/architect/panels-videos.html')),
-//                ),
-array(
-    'title'    => __('Online documentation', 'pzarchitect'),
-    'id'       => $prefix . 'help-styling-online-docs',
-    'type'     => 'raw',
-    'markdown' => false,
-    'content'  => '<a href="http://architect4wp.com/codex-listings/" target=_blank>' . __('Architect Online Documentation', 'pzarchitect') . '</a><br>' . __('This is a growing resource. Please check back regularly.', 'pzarchitect')
-
-),
-
-            )
-        );
-        $metaboxes[] = array(
-            'id'         => 'panels-styling',
-            'title'      => 'Content Styling',
-            'post_types' => array('arc-blueprints'),
-            'sections'   => $sections,
-            'position'   => 'normal',
-            'priority'   => 'low',
-            'sidebar'    => false
-
-        );
-
-        //pzdebug($metaboxes);
-
-//        foreach ($metaboxes as $k => $v) {
-//          var_dump($v['id'],$v['post_types']);
-//        }
-
-
       }
+      $metaboxes[] = array(
+          'id'         => 'customfields-settings',
+          'title'      => __('Custom fields settings and stylings.', 'pzarchitect'),
+          'post_types' => array('arc-blueprints'),
+          'sections'   => $sections,
+          'position'   => 'normal',
+          'priority'   => 'default',
+          'sidebar'    => false
+
+      );
 
       return $metaboxes;
+
     }
 
 
-    private static function arc_has_export_data()
+    private
+    static function arc_has_export_data()
     {
       $export_data = get_option('arc-export-to-preset');
       if (!empty($export_data)) {

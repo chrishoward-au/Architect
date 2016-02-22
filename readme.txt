@@ -96,8 +96,13 @@ TODO: Add a default single post/page Blueprint;  Add codex links;
 
 == Changelog ==
 
+= 1.8.0 =
+* CHANGED: Revamped the layout of the Blueprint editor for improved usability
+* FIXED: When updating a Blueprint, it will now go back to the exact same tab
+* FIXED: When opening a different Blueprint to the previous one it will open at the main tab.
+* FIXED: Missing Max Input Vars message.
+
 = 1.7.0 =
-* ADDED: Scaled font sizes for title and content.
 * ADDED: Image Carousel preset the same as on the demos site.
 * ADDED: Excerpt trimming for Characters, Paragraphs, More tag
 * ADDED: Option to remove shortcodes from Excerpts.

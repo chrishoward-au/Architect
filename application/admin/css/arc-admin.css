@@ -854,7 +854,7 @@ body.admin-color-midnight .metabox-holder h3.redux-section-title {
 */
 .redux-container-tabbed ul,
 .redux-container-tabbed {
-  padding: 0 !important;
+  padding: 0 0 0 5px !important;
   margin: 0; }
 
 .redux-no-sections .redux-main {
@@ -1125,11 +1125,16 @@ a.pzarc-codex {
   text-decoration: none; }
 
 #redux-_architect-metabox-panels-design,
-#redux-_architect-metabox-panels-styling,
-#redux-_architect-metabox-blueprint-stylings,
 #redux-_architect-metabox-layout-settings,
-#redux-_architect-metabox-content-selections {
-  display: none; }
+#redux-_architect-metabox-titles-settings,
+#redux-_architect-metabox-features-settings,
+#redux-_architect-metabox-meta-settings,
+#redux-_architect-metabox-body-settings,
+#redux-_architect-metabox-customfields-settings,
+#redux-_architect-metabox-content-selections,
+#redux-_architect-metabox-type-settings {
+  display: none;
+  border-top: none; }
 
 body.arc-blueprints *,
 body.arc-panels * {
@@ -1236,6 +1241,22 @@ ul#_pzarc_pagebuilder_enabled li {
 body.arc-beginner .arc-field-advanced {
   display: none !important; }
 
+#redux-_architect-metabox-_blueprint_tabs_blueprints {
+  margin-bottom: 0;
+  border-bottom: solid 2px #0074a2; }
+  #redux-_architect-metabox-_blueprint_tabs_blueprints .hndle, #redux-_architect-metabox-_blueprint_tabs_blueprints .handlediv {
+    display: none; }
+  #redux-_architect-metabox-_blueprint_tabs_blueprints #settings-chooser_box_redux-_architect-metabox-_blueprint_tabs_blueprints_section_group td {
+    padding: 0 !important; }
+
+body.admin-color-midnight #redux-_architect-metabox-_blueprint_tabs_blueprints {
+  border-bottom: #e14d43 2px solid; }
+
+.redux-_architect h3.redux-hndle, .redux-_architect h2.hndle {
+  background: #333;
+  color: #fff;
+  text-shadow: none; }
+
 #_architect-_blueprint_tabs_tabs .active span.stepno {
   background: #fff; }
 
@@ -1245,6 +1266,10 @@ body.arc-beginner .arc-field-advanced {
   border-radius: 25px;
   padding: 0 5px;
   font-weight: bold; }
+
+#redux-_architect-metabox-_blueprint_tabs_blueprints .redux-main {
+  padding: 0 !important;
+  box-shadow: none; }
 
 .arc-important {
   color: tomato; }
@@ -1259,133 +1284,218 @@ body.arc-beginner .arc-field-advanced {
       color: #97e7ff;
       border-bottom: double 3px currentColor; }
 
+/*
 #tab-presets {
-  border-bottom: solid 4px #673ab7; }
-  #tab-presets.active {
-    background: #311b92; }
-    #tab-presets.active span.stepno {
-      color: #673ab7; }
-  #tab-presets:hover {
-    background: #311b92; }
-    #tab-presets:hover span.stepno {
-      color: inherit; }
-    #tab-presets:hover.active span.stepno {
-      color: #673ab7; }
+  // border-bottom: solid 4px $violet;
+  &.active {
+    background: $violet-900;
+    span.stepno {
+      color: $violet;
+    }
+  }
+  &:hover {
+    background: $violet-900;
+    span.stepno {
+      color: inherit;
+    }
+    &.active {
+      span.stepno {
+        color: $violet
+      }
+    }
+  }
+}
 
-#redux-_architect-metabox-presets h3.redux-hndle, #redux-_architect-metabox-presets h2.hndle {
-  border-bottom: solid 4px #673ab7 !important;
-  background: #222;
-  color: #fff; }
-#redux-_architect-metabox-presets .redux-container {
-  background: #fff; }
+#redux-_architect-metabox-presets {
+  h3.redux-hndle, h2.hndle {
+    // border-bottom: solid 4px $violet !important;
+    background: #222;
+    color: #fff;
+    // background: $violet-900 !important;
+  }
+  .redux-container {
+    background: #fff;
+  }
+}
 
 #tab-layout {
-  border-bottom: solid 4px #3f51b5; }
-  #tab-layout.active {
-    background: #1a237e; }
-    #tab-layout.active span.stepno {
-      color: #3f51b5; }
-  #tab-layout:hover {
-    background: #1a237e; }
-    #tab-layout:hover span.stepno {
-      color: inherit; }
-    #tab-layout:hover.active span.stepno {
-      color: #3f51b5; }
+  // border-bottom: solid 4px $indigo;
+  &.active {
+    background: $indigo-900;
+    span.stepno {
+      color: $indigo;
+    }
+  }
+  &:hover {
+//    background: $indigo-900;
+    span.stepno {
+      color: inherit;
+    }
+    &.active {
+      span.stepno {
+        color: $indigo
+      }
+    }
+  }
+}
 
-#redux-_architect-metabox-layout-settings h3.redux-hndle, #redux-_architect-metabox-layout-settings h2.hndle {
-  border-bottom: solid 4px #3f51b5 !important;
-  background: #222;
-  color: #fff; }
-#redux-_architect-metabox-layout-settings .redux-container {
-  background: #e8eaf6; }
+#redux-_architect-metabox-layout-settings {
+  h3.redux-hndle, h2.hndle {
+    // border-bottom: solid 4px $indigo !important;
+    background: #222;
+    color: #fff;
+    // background: $indigo-900 !important;
+  }
+  .redux-container {
+    background: $indigo-50;
+  }
+}
 
+// Panels design
 #tab-panels {
-  border-bottom: solid 4px #ffc107; }
-  #tab-panels.active {
-    background: #ff6f00; }
-    #tab-panels.active span.stepno {
-      color: #ffc107; }
-  #tab-panels:hover {
-    background: #ff6f00; }
-    #tab-panels:hover span.stepno {
-      color: inherit; }
-    #tab-panels:hover.active span.stepno {
-      color: #ffc107; }
+  // border-bottom: solid 4px $orange;
+  &.active {
+    background: $orange-900;
+    span.stepno {
+      color: $orange;
+    }
+  }
+  &:hover {
+ //   background: $orange-900;
+    span.stepno {
+      color: inherit;
+    }
+    &.active {
+      span.stepno {
+        color: $orange
+      }
+    }
+  }
+}
 
-#redux-_architect-metabox-panels-design h3.redux-hndle, #redux-_architect-metabox-panels-design h2.hndle {
-  border-bottom: solid 4px #ffc107 !important;
-  background: #222;
-  color: #fff; }
-#redux-_architect-metabox-panels-design .redux-container {
-  background: #fff8e1; }
+#redux-_architect-metabox-panels-design {
+  h3.redux-hndle, h2.hndle {
+    // border-bottom: solid 4px $orange !important;
+    background: #222;
+    color: #fff;
+    // background: $orange-900 !important;
+  }
+  .redux-container {
+    background: $orange-50;
+  }
 
+}
+
+// Content selection
 #tab-content {
-  border-bottom: solid 4px #e91e63; }
-  #tab-content.active {
-    background: #880e4f; }
-    #tab-content.active span.stepno {
-      color: #e91e63; }
-  #tab-content:hover {
-    background: #880e4f; }
-    #tab-content:hover span.stepno {
-      color: inherit; }
-    #tab-content:hover.active span.stepno {
-      color: #e91e63; }
+  // border-bottom: solid 4px $red;
+  &.active {
+    background: $red-900;
+    span.stepno {
+      color: $red;
+    }
+  }
+  &:hover {
+ //   background: $red-900;
+    span.stepno {
+      color: inherit;
+    }
+    &.active {
+      span.stepno {
+        color: $red
+      }
+    }
+  }
+}
 
-#redux-_architect-metabox-content-selections h3.redux-hndle, #redux-_architect-metabox-content-selections h2.hndle {
-  border-bottom: solid 4px #e91e63 !important;
-  background: #222;
-  color: #fff; }
-#redux-_architect-metabox-content-selections .redux-container {
-  background: #fce4ec; }
+#redux-_architect-metabox-content-selections {
+  h3.redux-hndle, h2.hndle {
+    // border-bottom: solid 4px $red !important;
+    background: #222;
+    color: #fff;
+    // background: $red-900 !important;
+  }
+  .redux-container {
+    background: $red-50;
+  }
+}
 
+// Blueprint Styling
 #tab-styling {
-  border-bottom: solid 4px #2196f3; }
-  #tab-styling.active {
-    background: #0d47a1; }
-    #tab-styling.active span.stepno {
-      color: #2196f3; }
-  #tab-styling:hover {
-    background: #0d47a1; }
-    #tab-styling:hover span.stepno {
-      color: inherit; }
-    #tab-styling:hover.active span.stepno {
-      color: #2196f3; }
+  // border-bottom: solid 4px $blue;
+  &.active {
+    background: $blue-900;
+    span.stepno {
+      color: $blue;
+    }
 
-#redux-_architect-metabox-blueprint-stylings h3.redux-hndle, #redux-_architect-metabox-blueprint-stylings h2.hndle {
-  border-bottom: solid 4px #2196f3 !important;
-  background: #222;
-  color: #fff; }
-#redux-_architect-metabox-blueprint-stylings .redux-container {
-  background: #e3f2fd; }
+  }
+  &:hover {
+    background: $blue-900;
+    span.stepno {
+      color: inherit;
+    }
+    &.active {
+      span.stepno {
+        color: $blue
+      }
+    }
+  }
+}
 
+#redux-_architect-metabox-blueprint-stylings {
+  h3.redux-hndle, h2.hndle {
+    // border-bottom: solid 4px $blue !important;
+    background: #222;
+    color: #fff;
+    // background: $blue-900 !important;
+  }
+  .redux-container {
+    background: $blue-50;
+  }
+}
+
+// Content styling
 #tab-content_styling {
-  border-bottom: solid 4px #8bc34a; }
-  #tab-content_styling.active {
-    background: #689f38; }
-    #tab-content_styling.active span.stepno {
-      color: #8bc34a; }
-  #tab-content_styling:hover {
-    background: #689f38; }
-    #tab-content_styling:hover span.stepno {
-      color: inherit; }
-    #tab-content_styling:hover.active span.stepno {
-      color: #8bc34a; }
+  // border-bottom: solid 4px $green;
+  &.active {
+    background: $green-900;
+    span.stepno {
+      color: $green;
+    }
+  }
+  &:hover {
+    background: $green-900;
+    span.stepno {
+      color: inherit;
+    }
+    &.active {
+      span.stepno {
+        color: $green
+      }
+    }
+  }
+}
 
-#redux-_architect-metabox-panels-styling h3.redux-hndle, #redux-_architect-metabox-panels-styling h2.hndle {
-  border-bottom: solid 4px #8bc34a !important;
-  background: #222;
-  color: #fff; }
-#redux-_architect-metabox-panels-styling .redux-container {
-  background: #f1f8e9; }
-
+#redux-_architect-metabox-panels-styling {
+  h3.redux-hndle, h2.hndle {
+    //  $green !important;
+    background: #222;
+    color: #fff;
+    // background: $green-900 !important;
+  }
+  .redux-container {
+    background: $green-50;
+  }
+}
+*/
 a.arc-important-button {
   color: #fff;
-  background: #e91e63;
+  background: #E91E63;
   padding: 10px;
   border-radius: 5px; }
   a.arc-important-button:hover {
-    background: #880e4f; }
+    background: #880E4F; }
 
 li.arc-message .arc-presets-link {
   padding: 8px 12px;
@@ -1651,3 +1761,30 @@ body.arc-beginner .redux-notice-field {
   font-size: 12px;
   margin-top: 10px;
   color: tomato; }
+
+#redux-_architect-metabox-layout-settings h3.redux-hndle, #redux-_architect-metabox-layout-settings h2.hndle,
+#redux-_architect-metabox-type-settings h3.redux-hndle,
+#redux-_architect-metabox-type-settings h2.hndle {
+  border-bottom: solid 4px #2196f3 !important;
+  background: #222;
+  color: #fff; }
+
+#redux-_architect-metabox-content-selections h3.redux-hndle, #redux-_architect-metabox-content-selections h2.hndle {
+  border-bottom: solid 4px #E91E63 !important;
+  background: #222;
+  color: #fff; }
+
+#redux-_architect-metabox-panels-design h3.redux-hndle, #redux-_architect-metabox-panels-design h2.hndle,
+#redux-_architect-metabox-titles-settings h3.redux-hndle,
+#redux-_architect-metabox-titles-settings h2.hndle,
+#redux-_architect-metabox-meta-settings h3.redux-hndle,
+#redux-_architect-metabox-meta-settings h2.hndle,
+#redux-_architect-metabox-features-settings h3.redux-hndle,
+#redux-_architect-metabox-features-settings h2.hndle,
+#redux-_architect-metabox-body-settings h3.redux-hndle,
+#redux-_architect-metabox-body-settings h2.hndle,
+#redux-_architect-metabox-customfields-settings h3.redux-hndle,
+#redux-_architect-metabox-customfields-settings h2.hndle {
+  border-bottom: solid 4px #ffc107 !important;
+  background: #222;
+  color: #fff; }

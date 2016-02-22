@@ -14,6 +14,8 @@ jQuery( document ).ready( function ()
   // This is necessary when no tabs to switch with.
 //  jQuery('#redux-_architect-metabox-panels-design').show();
 
+ pzarc_update_tabs_to_show( jQuery('#_architect-_panels_design_components-to-show .buttonset .buttonset-item') );
+
   /** ***********************************************************************************************************************
    * Update status message and field data
    */
@@ -659,15 +661,33 @@ jQuery( document ).ready( function ()
    * Update tabs to show
    */
 
-  function pzarc_update_tabs_to_show( e )
+  function pzarc_update_tabs_to_show( et )
   {
-    jQuery( e ).each( function ()
+    var tabs = jQuery('#_architect-_blueprint_tabs_tabs');
+    var els;
+    if (undefined === et.target)
+    {
+      els = et;
+    } else {
+       els = et.target;
+    }
+    jQuery( els ).each( function ()
     {
       var tab_status = true;
-      switch (this.target.value)
+      switch (this.value)
       {
         case 'title':
-          jQuery( '#1_box_redux-_architect-metabox-panels-design_section_group_li' ).toggle( this.target.checked );
+          tab_status = (
+              jQuery( 'input#_panels_design_components-to-show-buttonsettitle:checked' ).length === 1
+          );
+//          jQuery(tabs).find('#tab-titles' ).toggle(tab_status);
+
+          var theTabTitles = jQuery( tabs ).find( '#tab-titles' );
+          if (!tab_status) {
+              theTabTitles.addClass('pztabs-unused' ).attr('title','Titles not used in this Blueprint');
+            } else {
+              theTabTitles.removeClass('pztabs-unused' ).removeAttr('title');
+            }
           break;
         case 'meta1':
         case 'meta2':
@@ -677,21 +697,39 @@ jQuery( document ).ready( function ()
           jQuery( 'input#_panels_design_components-to-show-buttonsetmeta2:checked' ).length === 1 ||
           jQuery( 'input#_panels_design_components-to-show-buttonsetmeta3:checked' ).length === 1
           );
-          jQuery( '#2_box_redux-_architect-metabox-panels-design_section_group_li' ).toggle( tab_status );
+      //    jQuery(tabs).find('#tab-meta' ).toggle(tab_status);
+          var theTabMeta = jQuery(tabs).find('#tab-meta' );
+          if (!tab_status) {
+            theTabMeta.addClass('pztabs-unused').attr('title','No meta fields used in this Blueprint');
+          } else {
+            theTabMeta.removeClass('pztabs-unused').removeAttr('title');
+          }
           break;
         case 'content':
         case 'excerpt':
           tab_status = (
           jQuery( 'input#_panels_design_components-to-show-buttonsetcontent:checked' ).length === 1 ||
           jQuery( 'input#_panels_design_components-to-show-buttonsetexcerpt:checked' ).length === 1);
-          jQuery( '#3_box_redux-_architect-metabox-panels-design_section_group_li' ).toggle( tab_status );
+       //   jQuery(tabs).find('#tab-body' ).toggle(tab_status);
+          var theTabBody = jQuery(tabs).find('#tab-body' );
+          if (!tab_status) {
+            theTabBody.addClass('pztabs-unused').attr('title','Body/excerpt not used in this Blueprint');
+          } else {
+            theTabBody.removeClass('pztabs-unused').removeAttr('title');
+          }
           break;
         case 'image':
 
           tab_status = (
           jQuery( 'input#_panels_design_components-to-show-buttonsetimage:checked' ).length === 1
           );
-          jQuery( '#4_box_redux-_architect-metabox-panels-design_section_group_li' ).toggle( tab_status );
+    //      jQuery(tabs).find('#tab-features' ).toggle(tab_status);
+          var theTabFeatures = jQuery(tabs).find('#tab-features' );
+          if (!tab_status) {
+            theTabFeatures.addClass('pztabs-unused').attr('title','Featured image/video not used in this Blueprint');
+          } else {
+            theTabFeatures.removeClass('pztabs-unused').removeAttr('title');
+          }
           break;
         case 'custom1':
         case 'custom2':
@@ -701,7 +739,13 @@ jQuery( document ).ready( function ()
           jQuery( 'input#_panels_design_components-to-show-buttonsetcustom2:checked' ).length === 1 ||
           jQuery( 'input#_panels_design_components-to-show-buttonsetcustom3:checked' ).length === 1
           );
-          jQuery( '#5_box_redux-_architect-metabox-panels-design_section_group_li' ).toggle( tab_status );
+        //  jQuery(tabs).find('#tab-customfields' ).toggle(tab_status);
+          var theTabCustomFields = jQuery(tabs).find('#tab-customfields' );
+          if (!tab_status) {
+            theTabCustomFields.addClass('pztabs-unused').attr('title','No custom fields used in this Blueprint');
+          } else {
+            theTabCustomFields.removeClass('pztabs-unused').removeAttr('title');
+          }
           break;
 
       }
