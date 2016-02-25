@@ -1,13 +1,14 @@
 # Architect change history 
 
-## 1.8.0 : 25 Feb 2016 =
+## 1.8.0 : 25 Feb 2016 
 * CHANGED: Revamped the layout of the Blueprint editor for improved usability
 * CHANGED: Defaults are now saved in a WP option to speed things up a little.
+* CHANGED: Custom field types now include a text type that will add paragraphs
 * FIXED: When updating a Blueprint, it will now go back to the exact same tab
 * FIXED: When opening a different Blueprint to the previous one it will open at the main tab.
 * FIXED: Missing Max Input Vars message.
 
-## 1.7.0 =
+## 1.7.0 
 * ADDED: Image Carousel preset the same as on the demos site.
 * ADDED: Excerpt trimming for Characters, Paragraphs, More tag
 * ADDED: Option to remove shortcodes from Excerpts.
@@ -28,7 +29,7 @@
 * FIXED: Some Blueprint styling defaults not showing correct in editor
 * FIXED: PHP Warning in date display
 
-## 1.6.1 =
+## 1.6.1 
 * FIXED: Minor security issue because of missing index.php
 * FIXED: Cache creation could cause a warning if a directory in the cache.
 * FIXED: Layouts issues with percentages and calcs in Firefox and Internet Explorer 11.
