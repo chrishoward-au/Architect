@@ -4,7 +4,7 @@
     Plugin Name: Architect
     Plugin URI: http://architect4wp.com
     Description: Architect is a multipurpose, all-in-one content layout builder. <strong>Build your own slider, grid, tabbed, gallery, masonry, accordion or tabular layouts with ANY content source</strong>. Display using shortcodes, widgets, Headway blocks, WP action hooks and template tags, and WP Gallery shortcode.
-    Version: 1.7.80
+    Version: 1.8.0
     Author: Chris Howard
     Author URI: http://pizazzwp.com
     License: GNU GPL v2
@@ -36,7 +36,7 @@
        * REMEMBER TO UPDATE VERSION IN arc-admin.scss
        * REMEMBER TO UPDATE VERSION IN arc-admin.scss
        */
-      define( 'PZARC_VERSION', '1.7.0' );
+      define( 'PZARC_VERSION', '1.8.0' );
       /**
        * REMEMBER TO UPDATE VERSION IN arc-admin.scss
        * REMEMBER TO UPDATE VERSION IN arc-admin.scss
@@ -128,6 +128,7 @@
       add_action( 'init', array( $this, 'init' ) );
       add_action( 'after_setup_theme', array( $this, 'register_architect_block' ) );
 
+      add_action("redux/options/_architect/saved",'pzarc_set_defaults',20,2);
 
       require_once PZARC_PLUGIN_APP_PATH . '/shared/architect/php/class_arc_registry.php';
 
@@ -263,7 +264,7 @@
         require_once PZARC_PLUGIN_APP_PATH . '/shared/architect/php/arc-check-dependencies.php';
       }
       TGM_Plugin_Activation::get_instance()->update_dismiss();
-
+       pzarc_set_defaults(); //Run here in case we've added any new fields or changed their defaults.
       update_option( 'pzarc-run-rebuild', true );
 
     }
@@ -314,8 +315,8 @@
      */
     public function register_admin_styles() {
 
-      wp_enqueue_style( 'pzarc-admin-styles', PZARC_PLUGIN_APP_URL . '/admin/css/arc-admin.css',false,PZARC_VERSION );
-      wp_register_style( 'pzarc-jqueryui-css', PZARC_PLUGIN_APP_URL . '/shared/thirdparty/jquery-ui-1.10.2.custom/css/pz_architect/jquery-ui-1.10.2.custom.min.css' );
+      wp_enqueue_style( 'pzarc-admin-styles', PZARC_PLUGIN_APP_URL . '/admin/css/arc-admin.css',false,time() );
+      wp_register_style( 'pzarc-jqueryui-css', PZARC_PLUGIN_APP_URL . '/shared/thirdparty/jquery-ui-1.10.2.custom/css/pz_architect/jquery-ui-1.10.2.custom.min.css',false,PZARC_VERSION );
 //wp_enqueue_style('fontawesome','//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css');
     }
 
@@ -371,7 +372,7 @@
         '1.4.0.0' => 'updates/architect-1400.php',
         '1.5.0.0' => 'updates/architect-1500.php',
         '1.6.0.0' => 'updates/architect-1600.php',
-        '1.7.0.0' => 'updates/architect-1700.php',
+        '1.8.0.0' => 'updates/architect-1800.php',
       );
 
       foreach ( $db_updates as $version => $updater ) {

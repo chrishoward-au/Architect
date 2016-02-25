@@ -79,17 +79,22 @@
 
       // Need to create the file contents
 
-      if ('all' !== $postid) {
+      $pzarc_architect_defaults = maybe_unserialize( get_option( '_architect_defaults' ) );
+      if (empty($pzarc_architect_defaults)) {
+        pzarc_set_defaults();
+        $pzarc_architect_defaults = maybe_unserialize( get_option( '_architect_defaults' ) );
+      }
+      if ( 'all' !== $postid) {
         pzdb('save process pre get settings');
         // First off clear the options css cache
         $pzarc_settings = get_post_meta($postid);
         $pzarc_settings = pzarc_flatten_wpinfo($pzarc_settings);
-        pzarc_get_defaults();
+//        pzarc_get_defaults();
         global $_architect;
-        $pzarc_bp_settings = array_replace_recursive($_architect[ 'defaults' ][ '_blueprints' ], $pzarc_settings);
+        $pzarc_bp_settings = array_replace_recursive( $pzarc_architect_defaults, $pzarc_settings);
 
         pzdb('save process pre create css');
-        pzarc_create_css($postid, $post->post_type, $pzarc_bp_settings);
+        pzarc_create_css($postid, $post->post_type, $pzarc_bp_settings,$pzarc_architect_defaults);
       } else {
         // get the blueprints and panels and step thru each recreating css
         delete_option('pzarc_css');
@@ -102,10 +107,10 @@
           $nextid         = $pzarc_blueprint->ID;
           $pzarc_settings = get_post_meta($nextid);
           $pzarc_settings = pzarc_flatten_wpinfo($pzarc_settings);
-          pzarc_get_defaults();
+          //pzarc_get_defaults();
           global $_architect;
-          $pzarc_bp_settings = array_replace_recursive($_architect[ 'defaults' ][ '_blueprints' ], $pzarc_settings);
-          pzarc_create_css($nextid, $pzarc_blueprint->post_type, $pzarc_bp_settings);
+          $pzarc_bp_settings = array_replace_recursive( $pzarc_architect_defaults, $pzarc_settings);
+          pzarc_create_css($nextid, $pzarc_blueprint->post_type, $pzarc_bp_settings,$pzarc_architect_defaults);
         }
       }
 
@@ -153,15 +158,15 @@
    * @purpose: It is necessary to create the css files as they are imported separately. Redux can't handle that.
    *
    */
-  function pzarc_create_css($postid, $type = null, $pzarc_settings)
+  function pzarc_create_css($postid, $type = null, $pzarc_settings,$pzarc_architect_defaults)
   {
   //  var_Dump($pzarc_settings);
     global $_architect;
     global $_architect_options;
     pzdb('pre get defaults');
-    pzarc_get_defaults(false);
+    //pzarc_get_defaults(false);
     pzdb('post get defaults');
-    $defaults = $_architect[ 'defaults' ];
+    //$defaults = $_architect[ 'defaults' ];
     // Need to create the file contents
     // For each field in stylings, create css
     $pzarc_contents = '';
@@ -170,7 +175,7 @@
       case 'arc-blueprints':
         require_once PZARC_PLUGIN_APP_PATH . '/admin/php/arc-save-process-blueprints.php';
 
-        $pzarc_blueprints = array_replace_recursive($_architect[ 'defaults' ][ '_blueprints' ], $pzarc_settings);
+        $pzarc_blueprints = array_replace_recursive($pzarc_architect_defaults, $pzarc_settings);
 
         $pzarc_contents .= pzarc_create_blueprint_css($pzarc_blueprints, $pzarc_contents, $postid);
 

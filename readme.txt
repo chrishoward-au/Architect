@@ -3,7 +3,7 @@ Contributors: chrishoward
 Tags: content,display,posts,pages,gallery,slider,tabs,tabbed,tabular,widget,hooks
 Requires at least: 3.5.0
 Tested up to: 4.5
-Stable tag: 1.7.0
+Stable tag: 1.8.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Plugin URI: http://architect4wp.com
@@ -96,8 +96,10 @@ TODO: Add a default single post/page Blueprint;  Add codex links;
 
 == Changelog ==
 
-= 1.8.0 =
+= 1.8.0 : 25 Feb 2016 =
 * CHANGED: Revamped the layout of the Blueprint editor for improved usability
+* CHANGED: Defaults are now saved in a WP option to speed things up a little.
+* CHANGED: Default custom field type is formatted text. This adds proper line breaks so may affect some existing Blueprints slightly.
 * FIXED: When updating a Blueprint, it will now go back to the exact same tab
 * FIXED: When opening a different Blueprint to the previous one it will open at the main tab.
 * FIXED: Missing Max Input Vars message.

@@ -1,5 +1,39 @@
 # Architect change history 
 
+## 1.8.0 : 25 Feb 2016 =
+* CHANGED: Revamped the layout of the Blueprint editor for improved usability
+* CHANGED: Defaults are now saved in a WP option to speed things up a little.
+* FIXED: When updating a Blueprint, it will now go back to the exact same tab
+* FIXED: When opening a different Blueprint to the previous one it will open at the main tab.
+* FIXED: Missing Max Input Vars message.
+
+## 1.7.0 =
+* ADDED: Image Carousel preset the same as on the demos site.
+* ADDED: Excerpt trimming for Characters, Paragraphs, More tag
+* ADDED: Option to remove shortcodes from Excerpts.
+* ADDED: Option to link images to a custom link per image. Requires the WP Gallery Custom Links plugin
+* ADDED: Option for Blueprint footer text. Can include limited HTML and shortcodes.
+* ADDED: Option for showing full content without leaving the page.
+* CHANGED: Masonry transition time is now much faster
+* CHANGED: Included a link to the importing Blueprints and Presets tutorial
+* CHANGED: Small visual changes to Preset Selector
+* CHANGED: Tweaked sysinfo
+* CHANGED: Updated Slick to 1.5.9
+* FIXED: The way custom post types load. Improves Beaver Builder compatibility
+* FIXED: Problem if Architect called in a WP loop with Defaults as content source
+* FIXED: Rounding of panels margin needed two decimal places (was 0 in changes in 1.6.1)
+* FIXED: Actions Editor was showing Blueprints on all pages
+* FIXED: Blueprint PHP notice if no images are selected for Gallery content source
+* FIXED: Extra quotes mark in div panel opening class
+* FIXED: Some Blueprint styling defaults not showing correct in editor
+* FIXED: PHP Warning in date display
+
+## 1.6.1 =
+* FIXED: Minor security issue because of missing index.php
+* FIXED: Cache creation could cause a warning if a directory in the cache.
+* FIXED: Layouts issues with percentages and calcs in Firefox and Internet Explorer 11.
+
+
 ## 1.6.0 : 7-January-2016 
 * ADDED: Beaver Builder module for selecting a Blueprint to display.
 

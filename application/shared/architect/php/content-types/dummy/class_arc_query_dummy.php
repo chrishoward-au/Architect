@@ -68,6 +68,8 @@
       $is_offline = ($cexec == false || $cinfo['http_code']==302);
       curl_close($ch);
 
+ //     var_dump($this->build->blueprint);
+   //   var_dump(maybe_unserialize(get_option('_architect_defaults')));
       $trim_length = $this->build->blueprint[ 'section_object' ][ 1 ]->section[ 'section-panel-settings' ][ '_panels_design_excerpts-word-count' ];
       $image_source = empty($this->build->blueprint[ '_content_dummy_image-source' ])?'lorempixel':$this->build->blueprint[ '_content_dummy_image-source' ];
       $readmore = $this->build->blueprint[ 'section_object' ][ 1 ]->section[ 'section-panel-settings' ][ '_panels_design_readmore-truncation-indicator' ].' <a href="#" class="moretag readmore">'.$this->build->blueprint[ 'section_object' ][ 1 ]->section[ 'section-panel-settings' ][ '_panels_design_readmore-text' ].'</a>';
@@ -84,7 +86,7 @@
           }
         }
         $dummy_query[ $i ][ 'content' ]          = ($this->isfaker ? $paragraphs : ucfirst($this->generator->getContent(rand(400, 800), 'html', false)));
-        $dummy_query[ $i ][ 'excerpt' ]          = ($this->isfaker ? $this->faker->realText(5 * $trim_length) : ucfirst($this->generator->getContent(rand(10, $trim_length), 'text', false))) . $readmore;
+        $dummy_query[ $i ][ 'excerpt' ]          = ($this->isfaker ? $this->faker->realText(max(10,5 * $trim_length)) : ucfirst($this->generator->getContent(rand(10, $trim_length), 'text', false))) . $readmore;
 
         // We could cache these but writes are expensive and time consuming. So we'll just use fat thumbs instead.
         // Maybe get Faker to add specific pic number then we could cut a smaller thumb

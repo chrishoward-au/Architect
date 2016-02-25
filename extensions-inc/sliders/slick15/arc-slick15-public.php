@@ -13,10 +13,10 @@
   function pzarc_slick_slider15_data($slider, $blueprint)
   {
     // Slick
-    wp_register_script('js-arc-front-slick15js', PZARC_PLUGIN_URL . '/extensions-inc/sliders/slick15/arc-front-slick15b.js', array('jquery'), null, true);
-    wp_register_script('js-slick15js', PZARC_PLUGIN_URL . '/extensions-inc/sliders/slick15/slick-1.5.9/slick/slick.min.js', array('jquery'), null, true);
-    wp_register_style('css-slick15js', PZARC_PLUGIN_URL . '/extensions-inc/sliders/slick15/slick-1.5.9/slick/slick.css');
-    wp_register_style('css-arcslick15', PZARC_PLUGIN_URL . '/extensions-inc/sliders/slick15/arc-slick15.css');
+    wp_register_script('js-arc-front-slick15js', PZARC_PLUGIN_URL . '/extensions-inc/sliders/slick15/arc-front-slick15b.js', array('jquery'), PZARC_VERSION, true);
+    wp_register_script('js-slick15js', PZARC_PLUGIN_URL . '/extensions-inc/sliders/slick15/slick-1.5.9/slick/slick.min.js', array('jquery'), PZARC_VERSION, true);
+    wp_register_style('css-slick15js', PZARC_PLUGIN_URL . '/extensions-inc/sliders/slick15/slick-1.5.9/slick/slick.css',false,PZARC_VERSION);
+    wp_register_style('css-arcslick15', PZARC_PLUGIN_URL . '/extensions-inc/sliders/slick15/arc-slick15.css',false,PZARC_VERSION);
 
     wp_enqueue_script('js-slick15js');
     wp_enqueue_script('js-arc-front-slick15js');

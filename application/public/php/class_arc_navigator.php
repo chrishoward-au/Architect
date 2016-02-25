@@ -53,7 +53,6 @@
 
       $custom_classes = $this->blueprint[ '_blueprints_navigator-bullet-shape' ];
       $custom_classes = apply_filters('arc-navigator-custom-classes', $custom_classes, $this->blueprint);
-
       echo '<div class="pzarc-navigator pzarc-navigator-' . $this->blueprint[ '_blueprints_short-name' ] .
           ' ' . $this->blueprint[ '_blueprints_navigator' ] .
           ' ' . $nav_position .

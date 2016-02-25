@@ -158,9 +158,9 @@
       wp_enqueue_style('pzarc-admin-styles');
 //    wp_enqueue_style('pzarc-jqueryui-css');
 
-      wp_register_script('jquery-cookie', PZARC_PLUGIN_APP_URL . 'shared/thirdparty/js/jquery-cookie/jquery.cookie.js', array('jquery'), true);
-      wp_register_script('jquery-pageguide', PZARC_PLUGIN_APP_URL . 'shared/thirdparty/js/pageguide/pageguide.min.js', array('jquery'), true);
-      wp_register_style('css-pageguide', PZARC_PLUGIN_APP_URL . 'shared/thirdparty/js/pageguide/css/pageguide.css');
+      wp_register_script('jquery-cookie', PZARC_PLUGIN_APP_URL . 'shared/thirdparty/js/jquery-cookie/jquery.cookie.js', array('jquery'), PZARC_VERSION,true);
+      wp_register_script('jquery-pageguide', PZARC_PLUGIN_APP_URL . 'shared/thirdparty/js/pageguide/pageguide.min.js', array('jquery'), PZARC_VERSION,true);
+      wp_register_style('css-pageguide', PZARC_PLUGIN_APP_URL . 'shared/thirdparty/js/pageguide/css/pageguide.css',false,PZARC_VERSION);
 
       $screen = get_current_screen();
       if (strpos(('X' . $screen->id), 'arc-') > 0) {
@@ -328,7 +328,7 @@
        */
       echo '
 						<h3>' . __('Rebuild Architect CSS cache', 'pzarchitect') . '</h3>
-						<p>' . __('Sometimes the CSS cache file may not exist or may even become scrambled and layouts will not look right. If so, simply click the Rebuild button and it will be recreated. If the problem persists, contact Pizazz Support at <strong>support@pizazzwp.com</strong>.', 'pzarchitect') . '</p>
+						<p>' . __('Sometimes the CSS cache file may not exist or may even become scrambled and layouts will not look right. If so, simply click the Rebuild button and it will be recreated. This also rebuilds the default settings cache. If the problem persists, contact Pizazz Support at <strong>support@pizazzwp.com</strong>.', 'pzarchitect') . '</p>
 						<form action="admin.php?page=pzarc_tools" method="post">';
       wp_nonce_field('rebuild-architect-css-cache');
       echo '<button class="button-primary" style="min-width:100px;" type="submit" name="rebuildarchitectcss" value="' . __('Rebuild Architect CSS Cache') . '">' . __('Rebuild') . '  <span class="dashicons dashicons-admin-appearance" style="margin-left:1%;color:inherit;font-size:22px;vertical-align:text-bottom"></span></button>
@@ -337,6 +337,7 @@
       if (isset($_POST[ 'rebuildarchitectcss' ]) && check_admin_referer('rebuild-architect-css-cache')) {
         require_once(PZARC_PLUGIN_APP_PATH . '/admin/php/arc-save-process.php');
         save_arc_layouts('all', null, true);
+        pzarc_set_defaults();
         echo '<br><div id="message" class="updated"><p>' . __('Architect CSS cache has been rebuilt. Your site should look awesome again!', 'pzarchitect') . '</p>
         <p>' . __('If your site is using a cache plugin or service, clear that cache too.', 'pzarchitect') . '</p></div>';
       }

@@ -986,9 +986,13 @@
                 $content = @number_format($v[ 'value' ], $v[ 'decimals' ], $v[ 'decimal-char' ], $v[ 'thousands-sep' ]);
                 break;
 
+              case 'text-with-paras':
+                $content = wpautop($v[ 'value' ]);
+                break;
+
               case 'text':
               default:
-                $content = wpautop($v[ 'value' ]);
+                $content = $v[ 'value' ];
                 break;
 
             }

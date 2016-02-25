@@ -96,10 +96,17 @@
         $this->bp = pzarc_flatten_wpinfo(get_post_meta($bp[ 0 ]->ID));
         // Do we need this still? Yes! Because Redux doesn't store defaults
         // True excludes styling
-        pzarc_get_defaults(true);
+      // V1.8 Started storing defaults in an option
+     //   pzarc_get_defaults(true);
 
         global $_architect_options, $_architect;
-        $this->blueprint          = array_replace_recursive($_architect[ 'defaults' ][ '_blueprints' ], $this->bp);
+        $pzarc_architect_defaults = maybe_unserialize( get_option( '_architect_defaults' ) );
+        if (empty($pzarc_architect_defaults)) {
+          pzarc_set_defaults();
+          $pzarc_architect_defaults = maybe_unserialize( get_option( '_architect_defaults' ) );
+        }
+        //var_dump($pzarc_architect_defaults);
+        $this->blueprint          = array_replace_recursive($pzarc_architect_defaults, $this->bp);
         $this->blueprint[ 'uid' ] = 'uid' . time() . rand(1000, 9999);
 
 //        if ( ! empty( $_architect_options[ 'architect_enable_query_cache' ] ) && ( ! current_user_can( 'manage_options' ) || ! current_user_can( 'edit_others_pages' ) ) && false === ( $blueprint_query = get_transient( 'pzarc_blueprint_query_' . $this->name ) ) ) {
@@ -137,7 +144,7 @@
       }
 
       /** Add the default values except for the styling ones **/
-      foreach ($_architect[ 'defaults' ][ '_blueprints' ] as $key => $value) {
+      foreach ($pzarc_architect_defaults as $key => $value) {
         if ((strpos($key, '_blueprints_') === 0 || strpos($key, '_content_') === 0) && !isset($this->blueprint[ $key ])) {
           $this->blueprint[ 'panels' ][ $key ] = maybe_unserialize($value);
         };
@@ -146,7 +153,6 @@
 
 //      /** Add panel settings for Section 1
 //      *************************************/
-
 // TODO: START HERE. WITH PANELS IN BLUEPRINTS, THERE CAN BE NO SECTIONS.
 // YET ONE OF THE BEAUTIIES OF SECTIONS IS WHEN YOU NEED TO CONTINUE. WITHOUT IT YOU'LL NEED TO USE SKIP POSTS
       $panel[ 1 ] = array();

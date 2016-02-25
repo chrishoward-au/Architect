@@ -46,7 +46,7 @@
 //    }
 
 
-    wp_register_style('css-hw-float-fix', PZARC_PLUGIN_APP_URL . '/public/css/arc-hw-fix.css');
+    wp_register_style('css-hw-float-fix', PZARC_PLUGIN_APP_URL . '/public/css/arc-hw-fix.css',false,PZARC_VERSION);
 
     // TODO: These seem to be loading late so loading in footer - even the CSS!
     // Retina Js
@@ -60,22 +60,22 @@
 //    wp_register_script('js-waypoints', PZARC_PLUGIN_APP_URL . '/public/js/waypoints/jquery.waypoints.min.js');
 
     // Magnific
-    wp_register_script('js-magnific-arc', PZARC_PLUGIN_APP_URL . '/public/js/arc-front-magnific.js', array('jquery'), null, true);
-    wp_register_script('js-magnific', PZARC_PLUGIN_APP_URL . '/public/js/Magnific-Popup/jquery.magnific-popup.min.js', array('jquery'), null, true);
-    wp_register_style('css-magnific', PZARC_PLUGIN_APP_URL . '/public/js/Magnific-Popup/magnific-popup.css');
+    wp_register_script('js-magnific-arc', PZARC_PLUGIN_APP_URL . '/public/js/arc-front-magnific.js', array('jquery'), PZARC_VERSION, true);
+    wp_register_script('js-magnific', PZARC_PLUGIN_APP_URL . '/public/js/Magnific-Popup/jquery.magnific-popup.min.js', array('jquery'), PZARC_VERSION, true);
+    wp_register_style('css-magnific', PZARC_PLUGIN_APP_URL . '/public/js/Magnific-Popup/magnific-popup.css',false,PZARC_VERSION);
 
     //icomoon
-    wp_register_style('css-icomoon-arrows', PZARC_PLUGIN_APP_URL . '/shared/assets/fonts/icomoon/im-style.css');
+    wp_register_style('css-icomoon-arrows', PZARC_PLUGIN_APP_URL . '/shared/assets/fonts/icomoon/im-style.css',false,PZARC_VERSION);
 
 // Percentify Margins
   //  wp_enqueue_script( 'js-arc-percentifymargins', PZARC_PLUGIN_APP_URL . '/public/js/marginsPercentify.js', array( 'jquery' ), null, true );
 
     // DataTables
-    wp_register_script('js-datatables', PZARC_PLUGIN_APP_URL . '/public/js/DataTables/media/js/jquery.dataTables.min.js', array('jquery'), null, true);
-    wp_register_style('css-datatables', PZARC_PLUGIN_APP_URL . '/public/js/DataTables/media/css/jquery.dataTables.min.css');
+    wp_register_script('js-datatables', PZARC_PLUGIN_APP_URL . '/public/js/DataTables/media/js/jquery.dataTables.min.js', array('jquery'), PZARC_VERSION, true);
+    wp_register_style('css-datatables', PZARC_PLUGIN_APP_URL . '/public/js/DataTables/media/css/jquery.dataTables.min.css',false,PZARC_VERSION);
 
     // jQuery Collapse
-    wp_register_script('js-jquery-collapse', PZARC_PLUGIN_APP_URL . '/public/js/jQuery-Collapse/src/jquery.collapse.js', array('jquery'), null, true);
+    wp_register_script('js-jquery-collapse', PZARC_PLUGIN_APP_URL . '/public/js/jQuery-Collapse/src/jquery.collapse.js', array('jquery'), PZARC_VERSION, true);
 
 
     $actions_options = get_option('_architect_actions');

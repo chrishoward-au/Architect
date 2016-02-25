@@ -88,6 +88,7 @@
       &.nav-align-center .slick-track {
        -webkit-justify-content: center;
         justify-content: center;
+        left:0!important;
       }
       &.nav-align-left .slick-track {
         -webkit-justify-content: flex-start;
@@ -96,10 +97,12 @@
       &.nav-align-right .slick-track {
         -webkit-justify-content: flex-end;
         justify-content: flex-end;
+        left:0!important;
       }
       &.nav-align-justify .slick-track {
         -webkit-justify-content: space-between;
         justify-content: space-between;
+        left:0!important;
       }
     }
     &.left,
