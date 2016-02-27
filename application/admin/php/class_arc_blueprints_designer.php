@@ -94,7 +94,7 @@
     public function content_blueprints_admin_enqueue( $hook ) {
       $screen = get_current_screen();
       if ( 'arc-blueprints' == $screen->id ) {
-   //TODO: Update this for 1.8!
+        //TODO: Update this for 1.8!
         //     require_once( PZARC_DOCUMENTATION_PATH . PZARC_LANGUAGE . '/blueprints-pageguide.php' );
 
         wp_enqueue_script( 'jquery-ui-draggable' );
@@ -491,12 +491,12 @@
       $current_theme = wp_get_theme();
       $is_hw         = ( ( $current_theme->get( 'Name' ) === 'Headway Base' || $current_theme->get( 'Template' ) == 'headway' ) );
 
-      if ( $is_hw && ! $_architect_options[ 'architect_enable_styling' ] ) {
+      if ( ! $_architect_options[ 'architect_enable_styling' ] ) {
         $sections[ '_general_bp' ][ 'fields' ][] = array(
           'id'    => $prefix . 'headway-styling-message',
-          'title' => __( 'Headway and Styling', 'pzarchitect' ),
+          'title' => __( 'Architect Styling', 'pzarchitect' ),
           'type'  => 'info',
-          'desc'  => __( 'When using Headway, the Architect Styling tabs will not show unless you enable <em>Architect</em> > <em>Options</em> > <em>Use Architect Styling</em>. Note: Architect styling will take precedence over Headway styling.', 'pzarchitect' ),
+          'desc'  => __( 'Architect Styling is turned off. You can still style Blueprints using custom CSS, or in the Headway Visual Editor if that is your theme. You can re-enable it in <em>Architect</em> > <em>Options</em> > <em>Use Architect Styling</em>. Note: Architect styling will take precedence.', 'pzarchitect' ),
         );
       }
       if ( ! $animation_state ) {
@@ -2783,25 +2783,25 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
             pzarc_redux_borders( $prefix . 'hentry' . $border, ! $this->defaults ? $_architect[ 'architect_config_hentry-selectors' ] : '', $defaults[ $optprefix . 'hentry' . $border ] )
           )
         );
-      }
 
-      $sections[] = array(
-        'id'         => 'custom-css',
-        'title'      => __( 'Custom CSS', 'pzarchitect' ),
-        'icon_class' => 'icon-large',
-        'icon'       => 'el-icon-wrench',
-        'fields'     => array(
-          array(
-            'id'       => $prefix . 'custom-css',
-            'type'     => 'ace_editor',
-            'title'    => __( 'Custom CSS', 'pzarchitect' ),
-            'mode'     => 'css',
-            'options'  => array( 'minLines' => 25 ),
-            'default'  => $defaults[ $optprefix . 'custom-css' ],
-            'subtitle' => __( 'As a shorthand, you can prefix your CSS class with MYBLUEPRINT or MYPANELS and Architect will substitute the correct class for this Blueprint. e.g. MYPANELS .entry-content{border-radius:5px;}', 'pzarchitect' )
-          ),
-        )
-      );
+        $sections[] = array(
+          'id'         => 'custom-css',
+          'title'      => __( 'Custom CSS', 'pzarchitect' ),
+          'icon_class' => 'icon-large',
+          'icon'       => 'el-icon-wrench',
+          'fields'     => array(
+            array(
+              'id'       => $prefix . 'custom-css',
+              'type'     => 'ace_editor',
+              'title'    => __( 'Custom CSS', 'pzarchitect' ),
+              'mode'     => 'css',
+              'options'  => array( 'minLines' => 25 ),
+              'default'  => $defaults[ $optprefix . 'custom-css' ],
+              'subtitle' => __( 'As a shorthand, you can prefix your CSS class with MYBLUEPRINT or MYPANELS and Architect will substitute the correct class for this Blueprint. e.g. MYPANELS .entry-content{border-radius:5px;}', 'pzarchitect' )
+            ),
+          )
+        );
+      }
 
 
       // Create the metaboxes
@@ -3021,7 +3021,7 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
               array( $prefix . 'use-scale-fonts-title', 'equals', false )
             ),
             'type'            => 'typography',
-            'default'=>array(),
+            'default'         => array(),
             'text-decoration' => false,
             'font-variant'    => false,
             'text-transform'  => false,
@@ -3047,7 +3047,7 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
             'subtitle'        => $_architect_options[ 'architect_breakpoint_2' ][ 'width' ] . ' and below',
             'required'        => array( $prefix . 'use-responsive-font-size-title', 'equals', true ),
             'type'            => 'typography',
-            'default'=>array(),
+            'default'         => array(),
             'text-decoration' => false,
             'font-variant'    => false,
             'text-transform'  => false,
@@ -3203,7 +3203,7 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
             'id'       => $prefix . 'excluded-authors',
             'type'     => 'select',
             'multi'    => true,
-            'default'=>array(),
+            'default'  => array(),
             'data'     => 'callback',
             //'required' => array('show_advanced', 'equals', true),
             //TODO: Findout how to pass parameters. currently that is doing nothing!
@@ -3818,7 +3818,7 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
             'subtitle'        => $_architect_options[ 'architect_breakpoint_1' ][ 'width' ] . __( ' and above', 'pzarchitect' ),
             'required'        => array( $prefix . 'use-responsive-font-size', 'equals', true ),
             'type'            => 'typography',
-            'default'=>array(),
+            'default'         => array(),
             'text-decoration' => false,
             'font-variant'    => false,
             'text-transform'  => false,
@@ -3847,7 +3847,7 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
               array( $prefix . 'use-scale-fonts', 'equals', false )
             ),
             'type'            => 'typography',
-            'default'=>array(),
+            'default'         => array(),
             'text-decoration' => false,
             'font-variant'    => false,
             'text-transform'  => false,
@@ -3873,7 +3873,7 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
             'subtitle'        => $_architect_options[ 'architect_breakpoint_2' ][ 'width' ] . ' and below',
             'required'        => array( $prefix . 'use-responsive-font-size', 'equals', true ),
             'type'            => 'typography',
-            'default'=>array(),
+            'default'         => array(),
             'text-decoration' => false,
             'font-variant'    => false,
             'text-transform'  => false,
@@ -4118,7 +4118,7 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
                   'title'    => __( 'Field name', 'pzarchitect' ),
                   'id'       => $prefix . 'cfield-' . $i . '-name',
                   'type'     => 'select',
-                  'default'=>'',
+                  'default'  => '',
                   //                lightbox     => 'callback',
                   //                'args'     => array( 'pzarc_get_custom_fields' ),
                   'options'  => $pzarc_custom_fields,
@@ -4131,12 +4131,12 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
                   'type'    => 'button_set',
                   'default' => 'text',
                   'options' => array(
-                    'text'   => 'Text',
-                    'text-with-paras'   => 'Text with paragraph breaks',
-                    'image'  => 'Image',
-                    'date'   => 'Date',
-                    'number' => 'Number',
-                    'embed'  => 'Embed URL'
+                    'text'            => 'Text',
+                    'text-with-paras' => 'Text with paragraph breaks',
+                    'image'           => 'Image',
+                    'date'            => 'Date',
+                    'number'          => 'Number',
+                    'embed'           => 'Embed URL'
                   )
 
                 ),
@@ -4203,7 +4203,7 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
                   'title'    => __( 'Link field', 'pzarchitect' ),
                   'id'       => $prefix . 'cfield-' . $i . '-link-field',
                   'type'     => 'select',
-                  'default'=>'',
+                  'default'  => '',
                   //                'data'     => 'callback',
                   //                'args'     => array( 'pzarc_get_custom_fields' ),
                   'options'  => $this->custom_fields,
@@ -4220,28 +4220,28 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
                   ),
                 ),
                 array(
-                  'title' => __( 'Prefix text', 'pzarchitect' ),
-                  'id'    => $prefix . 'cfield-' . $i . '-prefix-text',
-                  'type'  => 'text',
-                  'default'=>'',
+                  'title'   => __( 'Prefix text', 'pzarchitect' ),
+                  'id'      => $prefix . 'cfield-' . $i . '-prefix-text',
+                  'type'    => 'text',
+                  'default' => '',
                 ),
                 array(
-                  'title' => __( 'Prefix image', 'pzarchitect' ),
-                  'id'    => $prefix . 'cfield-' . $i . '-prefix-image',
-                  'type'  => 'media',
-                  'default'=>'',
+                  'title'   => __( 'Prefix image', 'pzarchitect' ),
+                  'id'      => $prefix . 'cfield-' . $i . '-prefix-image',
+                  'type'    => 'media',
+                  'default' => '',
                 ),
                 array(
-                  'title' => __( 'Suffix text', 'pzarchitect' ),
-                  'id'    => $prefix . 'cfield-' . $i . '-suffix-text',
-                  'type'  => 'text',
-                  'default'=>'',
+                  'title'   => __( 'Suffix text', 'pzarchitect' ),
+                  'id'      => $prefix . 'cfield-' . $i . '-suffix-text',
+                  'type'    => 'text',
+                  'default' => '',
                 ),
                 array(
-                  'title' => __( 'Suffix image', 'pzarchitect' ),
-                  'id'    => $prefix . 'cfield-' . $i . '-suffix-image',
-                  'type'  => 'media',
-                  'default'=>'',
+                  'title'   => __( 'Suffix image', 'pzarchitect' ),
+                  'id'      => $prefix . 'cfield-' . $i . '-suffix-image',
+                  'type'    => 'media',
+                  'default' => '',
                 ),
                 array(
                   'title'   => __( 'Prefix/suffix images width', 'pzarchitect' ),

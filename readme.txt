@@ -96,16 +96,19 @@ TODO: Add a default single post/page Blueprint;  Add codex links;
 
 == Changelog ==
 
+
 = 1.8.0 : 25 Feb 2016 =
 * CHANGED: Revamped the layout of the Blueprint editor for improved usability
 * CHANGED: Defaults are now saved in a WP option to speed things up a little.
 * CHANGED: Custom field types now include a text type that will add paragraphs
+* CHANGED: Tweaked the Layout Type icons
 * FIXED: When updating a Blueprint, it will now go back to the exact same tab
 * FIXED: When opening a different Blueprint to the previous one it will open at the main tab.
 * FIXED: Missing Max Input Vars message.
-
+* FIXED: PHP Notices in Blueprint editor when styling turned off
 
 = 1.7.0 =
+* ADDED: Added options for Scaled font sizes for title and content for even better responsive design. Look in Titles > Responsive overrides, and Body/Excerpt > Responsive overrides
 * ADDED: Image Carousel preset the same as on the demos site.
 * ADDED: Excerpt trimming for Characters, Paragraphs, More tag
 * ADDED: Option to remove shortcodes from Excerpts.
