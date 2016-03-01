@@ -75,7 +75,13 @@
 
         }
 
-        $this->custom_fields = pzarc_get_custom_fields();
+        // 1.8.1 Attempting to reduce calls to get custom fields. Generally this should work, but may occasionally miss some fields.
+        $this->custom_fields = get_option( 'architect_custom_fields' );
+        if ( empty( $this->custom_fields ) || ( ( isset( $_GET[ 'post_type' ] ) && $_GET[ 'post_type' ] === 'arc-blueprints' ) ) ) {
+          $this->custom_fields = pzarc_get_custom_fields();
+          update_option( 'architect_custom_fields', $this->custom_fields );
+//          var_dump('Custom fields updated');
+        }
         if ( ! empty( $_GET[ 'post' ] ) ) {
           $this->postmeta = get_post_meta( $_GET[ 'post' ] );
         }
