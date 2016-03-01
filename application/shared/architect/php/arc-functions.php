@@ -731,7 +731,11 @@
 
     if ( ! empty( $_architect_options[ 'architect_exclude_hidden_custom' ] ) ) {
       $pzarc_cf_list = $wpdb->get_results(
-        "SELECT DISTINCT meta_key FROM $wpdb->postmeta HAVING meta_key NOT LIKE '\_%' ORDER BY meta_key"
+//        "SELECT DISTINCT meta_key FROM $wpdb->postmeta HAVING meta_key NOT LIKE '\_%' ORDER BY meta_key"
+        "SELECT DISTINCT meta_key FROM $wpdb->postmeta  HAVING (
+          meta_key NOT LIKE '\_%' AND
+          meta_key NOT LIKE 'pz%'
+          ) ORDER BY meta_key"
       );
 
     } else {
@@ -740,7 +744,14 @@
 //    if ( false === ( $pzep_cf_list = get_transient( 'pzarc_custom_fields' ) ) ) {
       // It wasn't there, so regenerate the data and save the transient
       $pzarc_cf_list = $wpdb->get_results(
-        "SELECT DISTINCT meta_key FROM $wpdb->postmeta ORDER BY meta_key"
+//        "SELECT DISTINCT meta_key FROM $wpdb->postmeta ORDER BY meta_key"
+       "SELECT DISTINCT meta_key FROM $wpdb->postmeta  HAVING (
+          meta_key NOT LIKE '\_blueprints_%' AND
+          meta_key NOT LIKE '\_panels_%' AND
+          meta_key NOT LIKE '\_content_%' AND
+          meta_key NOT LIKE '\_hw%' AND
+          meta_key NOT LIKE 'pz%'
+          ) ORDER BY meta_key"
       );
     }
     //  set_transient( 'pzarc_cf_list', $pzarc_cf_list );
@@ -812,6 +823,7 @@
       '_thumbnail',
       '_slick',
       'pzgp',
+      'pzsp',
       'field_'
 
 
@@ -823,7 +835,6 @@
         $pzarc_custom_fields[ $pzarc_cf->meta_key ] = $pzarc_cf->meta_key;
       }
     }
-
     return $pzarc_custom_fields;
   }
 
