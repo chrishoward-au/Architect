@@ -96,6 +96,8 @@ TODO: Add a default single post/page Blueprint;  Add codex links;
 
 == Changelog ==
 
+= 1.8.1
+* FIXED: Small layout issues in editor screens
 
 = 1.8.0 : 25 Feb 2016 =
 * CHANGED: Revamped the layout of the Blueprint editor for improved usability
