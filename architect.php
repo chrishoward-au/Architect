@@ -22,6 +22,7 @@
     pzdb( 'start' );
   }
 
+  include 'kint/Kint.class.php';
 
   class pzArchitect {
 
@@ -79,7 +80,7 @@
       define( 'PZARC_TRANSIENTS_KEEP', 12 * HOUR_IN_SECONDS );
 
 
-
+//$fred= current_screen();
       pzdb( 'after dependency check' );
 // Maybe we can go without this!
 //      @include plugin_dir_path(__FILE__).'init_headway.php';

@@ -634,6 +634,7 @@
           }
           // TODO : Add other attributes
         }
+   //     var_dump($this->data[ 'cfield' ][ $i ]);
       }
     }
 
