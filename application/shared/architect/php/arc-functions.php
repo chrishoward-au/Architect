@@ -1,5 +1,10 @@
 <?php
 
+  if (! function_exists('d')) {
+    function d($var) {
+      var_dump($var);
+    }
+  }
   if ( ! function_exists( 'pzdebug' ) ) {
 
     //---------------------------------------------------------------------------------------------------
