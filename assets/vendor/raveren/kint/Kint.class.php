@@ -453,7 +453,7 @@ class Kint
             \x07*
 
             # main call to Kint
-            ({$codePattern})
+            {$codePattern}
 
 			# spaces everywhere
             \x07*
@@ -469,13 +469,7 @@ class Kint
 
 		$modifiers  = end( $matches[1] );
 		$assignment = end( $matches[2] );
-		$callToKint = end( $matches[3] );
-		$bracket    = end( $matches[4] );
-
-		if ( empty( $callToKint ) ) {
-			# if a wrapper is misconfigured, don't display the whole file as variable name
-			return array( array(), $modifiers, $callee, $previousCaller, $miniTrace );
-		}
+		$bracket    = end( $matches[3] );
 
 		$modifiers = $modifiers[0];
 		if ( $assignment[1] !== -1 ) {

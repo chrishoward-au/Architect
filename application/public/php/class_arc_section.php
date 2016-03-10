@@ -44,7 +44,7 @@
      * @param      $table_accordion_titles
      * @internal param $blueprint
      */
-    public function __construct($number, $section_panel, $content_source, $navtype, $layout_mode, $slider_type = null, $table_accordion_titles = array(), $panel_name = null, &$blueprint)
+    public function __construct($number, $section_panel, $content_source, $navtype, $layout_mode, $slider_type = null, $table_accordion_titles = array(), $panel_name = null, $blueprint)
     {
       $this->section_number         = $number;
       $this->section                = $section_panel;
@@ -478,7 +478,6 @@
 
     public function __destruct()
     {
-
     }
 
     function arcshare_shortcode($atts, $content = null)
