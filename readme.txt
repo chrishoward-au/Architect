@@ -102,6 +102,7 @@ TODO: Add a default single post/page Blueprint;  Add codex links;
 * FIXED: Testimonials specified order not working
 * TODO: Defaults overriding when max_vars prob
 * FIXED: Masonry filter by message showing Pz when using a PizazzWP tax type.
+* TODO: Add text field for filter labels
 
 = 1.8.1
 * FIXED: Small layout issues in editor screens
