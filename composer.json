@@ -1,0 +1,24 @@
+{
+  "name":"chrishoward",
+  "description":"Architect plugin for WordPress",
+  "type":"project",
+  "authors": [
+    {
+      "name":"chrishoward",
+      "email":"info@341design.com.au"
+    }
+  ],
+  "require-dev": {
+    "raveren/kint": "~1.0",
+    "filp/whoops": "~2.0"
+  },
+  "autoload": {
+    "files":[
+      "application/support/exceptions.php"
+    ]
+  },
+  "config": {
+    "vendor-dir": "assets/vendor"
+  },
+  "minimum-stability:":"dev"
+}

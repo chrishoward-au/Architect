@@ -252,6 +252,19 @@
         self::render_this_architect_blueprint($bp_nav_type, $bp_nav_pos, $bp_shortname, $caller, $bp_transtype, $panel_class, $content_class, $bp_type);
         pzdb('post render');
       }
+      if (isset($_GET['debug'])) {
+        d($this->build);
+        d($wp_query->query_vars);
+// Don't use this in public as it reveals table names
+
+        $result = preg_replace("/(\\w)*\\./uiUs", "****$1.", $wp_query->request);
+        $result =str_replace("****s",'xxx',$result);
+        $result =str_replace("****a",'yyy',$result);
+        $result = preg_replace("/FROM(.)*INNER/uiUs", "FROM xxx INNER", $result);
+        $result = preg_replace("/JOIN(.)*ON/uiUs", "JOIN yyy ON", $result);
+
+        d($result);
+      }
 
       /** Set our original query back. */
       wp_reset_postdata(); // Pretty sure this goes here... Not after the query reassignment

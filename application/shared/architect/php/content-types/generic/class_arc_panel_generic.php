@@ -634,6 +634,7 @@
           }
           // TODO : Add other attributes
         }
+   //     var_dump($this->data[ 'cfield' ][ $i ]);
       }
     }
 
@@ -1311,7 +1312,6 @@
     function build_meta_header_footer_groups(
         $panel_def, $section_panel_settings
     ) {
-      d($section_panel_settings);
       //replace meta1innards etc
       $meta = array_pad(array(), 3, null);
       foreach ($meta as $key => $value) {

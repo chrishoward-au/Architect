@@ -77,8 +77,7 @@
             }
             echo '<div class="arc-masonry-buttons button-group filter-button-group">';
             if (!empty($terms)) {
-              echo '<label>' . __('Filter by ', 'pzarchitect') . ucwords(str_replace(array('_',
-                                                                                           '-'), ' ', $tax)) . ': </label>';
+              echo '<label>' . __('Filter by ', 'pzarchitect') . ucwords(str_replace(array('pz_','_','-'), ' ', $tax)) . ': </label>';
               foreach ($terms as $class => $name) {
                 echo '<button data-filter=".' . $tax . '-' . $class . '">' . $name . '</button>';
               }

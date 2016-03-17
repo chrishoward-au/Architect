@@ -22,7 +22,10 @@
     pzdb( 'start' );
   }
 
-
+  if (!is_admin()) {
+    // just in case forget to remove this
+    @include_once( __DIR__ . '/assets/vendor/autoload.php' );
+  }
   class pzArchitect {
 
     function __construct() {
@@ -79,7 +82,7 @@
       define( 'PZARC_TRANSIENTS_KEEP', 12 * HOUR_IN_SECONDS );
 
 
-
+//$fred= current_screen();
       pzdb( 'after dependency check' );
 // Maybe we can go without this!
 //      @include plugin_dir_path(__FILE__).'init_headway.php';

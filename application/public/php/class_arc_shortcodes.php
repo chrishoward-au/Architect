@@ -10,7 +10,7 @@
 
   class arc_shortcodes
   {
-    public $blueprint;
+    //public $blueprint;
 
     function __construct(&$blueprint) {
       $this->blueprint = $blueprint->blueprint;

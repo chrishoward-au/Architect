@@ -3,7 +3,7 @@ Contributors: chrishoward
 Tags: content,display,posts,pages,gallery,slider,tabs,tabbed,tabular,widget,hooks
 Requires at least: 3.5.0
 Tested up to: 4.5
-Stable tag: 1.8.2
+Stable tag: 1.9.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Plugin URI: http://architect4wp.com
@@ -96,8 +96,13 @@ TODO: Add a default single post/page Blueprint;  Add codex links;
 
 == Changelog ==
 
-= 1.8.2 =
-* ADDED: Message reminding to increase max input vars. This has become necessary as 1.8 added more styling fields - which use a lot of input vars.
+= 1.9.0 =
+* ADDED: Custom field filtering
+* ADDED: Custom field sorting
+* FIXED: Testimonials specified order not working
+* TODO: Defaults overriding when max_vars prob
+* FIXED: Masonry filter by message showing Pz when using a PizazzWP tax type.
+* TODO: Add text field for filter labels
 
 = 1.8.1
 * FIXED: Small layout issues in editor screens
