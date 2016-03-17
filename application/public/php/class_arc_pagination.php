@@ -26,7 +26,6 @@
       }
       $previous = ( ! empty( $blueprint[ '_blueprints_pager-custom-prev' ] ) ? $blueprint[ '_blueprints_pager-custom-prev' ] : __( 'Previous post link', 'pzarchitect' ) );
       $next     = ( ! empty( $blueprint[ '_blueprints_pager-custom-next' ] ) ? $blueprint[ '_blueprints_pager-custom-next' ] : __( 'Next post link', 'pzarchitect' ) );
-
       if ( is_home() || is_archive() ) {
         if ( $the_query->max_num_pages > 1 ) :
           ?>
@@ -73,6 +72,7 @@
               class="nav-next alignright"><?php previous_posts_link( __( $newer . ' <span class="meta-nav">&rarr;</span>', 'pzarchitect' ) ); ?></div>
           </nav>
         <?php
+//TODO: Add new WP style as an option          the_posts_pagination();
         endif;
       } elseif ( is_single() ) {
         $previous = ( ! empty( $blueprint[ '_blueprints_pager-custom-prev' ] ) ? $blueprint[ '_blueprints_pager-custom-prev' ] : __( 'Previous post link', 'pzarchitect' ) );
