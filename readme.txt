@@ -104,6 +104,9 @@ TODO: Add a default single post/page Blueprint;  Add codex links;
 * FIXED: Masonry filter by message showing Pz when using a PizazzWP tax type.
 * TODO: Add text field for filter labels
 
+= 1.8.2 =
+* ADDED: Message reminding to increase max input vars. This has become necessary as 1.8 added more styling fields - which use a lot of input vars.
+
 = 1.8.1
 * FIXED: Small layout issues in editor screens
 
