@@ -1,5 +1,17 @@
 # Architect change history 
 
+## 1.9.0 : 20 March 2016
+* ADDED: Custom field filtering
+* ADDED: Custom field sorting
+* FIXED: Testimonials specified order not working
+* FIXED: Masonry filter by message showing Pz when using a PizazzWP tax type.
+
+## 1.8.2 
+* ADDED: Message reminding to increase max input vars. This has become necessary as 1.8 added more styling fields - which use a lot of input vars.
+
+## 1.8.1
+* FIXED: Small layout issues in editor screens
+
 ## 1.8.0 : 25 Feb 2016 
 * CHANGED: Revamped the layout of the Blueprint editor for improved usability
 * CHANGED: Defaults are now saved in a WP option to speed things up a little.
