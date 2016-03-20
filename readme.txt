@@ -87,6 +87,7 @@ No. We don't delete any of your data. In the future a method will be provided fo
 For support, please send an email to support@pizazzwp.com
 
 TODO: Add a default single post/page Blueprint;  Add codex links;
+TODO: Add text field for filter labels
 
 
 == Screenshots ==
@@ -100,9 +101,7 @@ TODO: Add a default single post/page Blueprint;  Add codex links;
 * ADDED: Custom field filtering
 * ADDED: Custom field sorting
 * FIXED: Testimonials specified order not working
-* TODO: Defaults overriding when max_vars prob
 * FIXED: Masonry filter by message showing Pz when using a PizazzWP tax type.
-* TODO: Add text field for filter labels
 
 = 1.8.2 =
 * ADDED: Message reminding to increase max input vars. This has become necessary as 1.8 added more styling fields - which use a lot of input vars.

@@ -1220,19 +1220,24 @@ add_action(\'init\',\'gs_init\');
     $GLOBALS[ '_architect_options' ] = get_option( '_architect_options', array() );
   }
   $arc_styling = ! empty( $_architect_options[ 'architect_enable_styling' ] ) ? 'arc-styling-on' : 'arc-styling-off';
-  if ( is_admin() && $arc_styling === 'arc-styling-on' && ( ! empty( $_GET[ 'post_type' ] ) && $_GET[ 'post_type' ] === 'arc-blueprints' ) && ( ! empty( $max_input_vars ) && $max_input_vars < 2000 ) ) {
+  if ( is_admin() && $arc_styling === 'arc-styling-on'  && ( ! empty( $max_input_vars ) && $max_input_vars < 2000 ) ) {
     function pzarc_update_max_input_vars() {
-      ?>
-      <div class="notice notice-error" style="background:#fee;">
-        <p><?php echo __( 'To use Architect with all features enabled, you will need to increase PHP\'s default limit on input variables. Your current setting is: ', 'pzarchitect' ) . ini_get( 'max_input_vars' ) . '<br>' . __( '
+      if ( function_exists( 'get_current_screen' ) ) {
+        $screen = get_current_screen();
+        if ( $screen->post_type==='arc-blueprints' ) {
+          ?>
+
+          <div class="notice notice-error" style="background:#fee;">
+            <p><?php echo __( 'To use Architect with all features enabled, you will need to increase PHP\'s default limit on input variables. Your current setting is: ', 'pzarchitect' ) . ini_get( 'max_input_vars' ) . '<br>' . __( '
           Please follow the instructions here.', 'pzarchitect' ) . ' <a href="http://architect4wp.com/codex/fields-not-saving/" target="_blank">Fields not saving</a><br>
                     <strong>If you do not do this, some fields may not save.</strong><br>
                     Apologies for the inconvenience
       '; ?></p>
-      </div>
-      <?php
+          </div>
+          <?php
+        }
+      }
     }
-
 
     add_action( 'admin_notices', 'pzarc_update_max_input_vars' );
   }
