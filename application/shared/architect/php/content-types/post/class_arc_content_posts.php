@@ -106,6 +106,27 @@
       // This has to be post_types
       $registry->set('post_types', $settings);
       $registry->set('content_source',array('post'=>plugin_dir_path(__FILE__)));
+      $registry->set( 'content_tabs',
+                      array(
+                        'posts' => array(
+                          'options' => array(
+                            'titles'       => '<span class="pzarc-tab-title">' . __( 'Title', 'pzarchitect' ) . '</span>',
+                            'meta'         => '<span class="pzarc-tab-title">' . __( 'Meta', 'pzarchitect' ) . '</span>',
+                            'features'     => '<span class="pzarc-tab-title">' . __( 'Feature', 'pzarchitect' ) . '</span>',
+                            'body'         => '<span class="pzarc-tab-title">' . __( 'Body/Excerpt', 'pzarchitect' ) . '</span>',
+                            'customfields' => '<span class="pzarc-tab-title">' . __( 'Custom Fields', 'pzarchitect' ) . '</span>',
+                          ),
+                          'targets' =>
+                            array(
+                              'titles'       => array( 'titles-settings' ),
+                              'meta'         => array( 'meta-settings' ),
+                              'features'     => array( 'features-settings' ),
+                              'body'         => array( 'body-settings' ),
+                              'customfields' => array( 'customfields-settings' ),
+                            )
+                        )
+                      )
+      );
     }
 
   }
