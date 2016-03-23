@@ -7,6 +7,10 @@
     public $defaults = false;
     public $custom_fields = array();
     public $postmeta = null;
+    private $post_info = array();
+    private $component_types;
+    private $component_defaults;
+    private $layout_editor_fields = '{"title","meta1","meta2","meta3","body","excerpt","feature","custom1","custom2","custom3"}';
 
 
     /**
@@ -63,9 +67,30 @@
           update_option( 'architect_custom_fields', $this->custom_fields );
 //          var_dump('Custom fields updated');
         }
-        if ( ! empty( $_GET[ 'post' ] ) ) {
-          $this->postmeta = get_post_meta( $_GET[ 'post' ] );
+
+        if ( array_key_exists( 'post', $_GET ) ) {
+          $this->post_info[ 'id' ]     = $_GET[ 'post' ];
+          $this->postmeta              = get_post_meta( $_GET[ 'post' ] );
+          $this->post_info[ 'source' ] = $this->postmeta[ '_blueprints_content-source' ][ 0 ];
+
+        } else {
+          $this->post_info[ 'id' ]     = - 1;
+          $this->post_info[ 'source' ] = 'defaults';
         }
+        // These can be overridden by plugins
+        $this->component_types    = array(
+          'title'   => __( 'Title', 'pzarchitect' ),
+          'excerpt' => __( 'Excerpt', 'pzarchitect' ),
+          'content' => __( 'Body', 'pzarchitect' ),
+          'image'   => __( 'Feature', 'pzarchitect' ),
+          'meta1'   => __( 'Meta1', 'pzarchitect' ),
+          'meta2'   => __( 'Meta2', 'pzarchitect' ),
+          'meta3'   => __( 'Meta3', 'pzarchitect' ),
+          'custom1' => __( 'Custom 1', 'pzarchitect' ),
+          'custom2' => __( 'Custom 2', 'pzarchitect' ),
+          'custom3' => __( 'Custom 3', 'pzarchitect' ),
+        );
+        $this->component_defaults = array( 'title', 'excerpt', 'meta1', 'image' );
       }
     }
 
@@ -269,7 +294,6 @@
     }
 
 
-
     /**
      * [create_blueprints_post_type description]
      * @return [type] [description]
@@ -285,38 +309,26 @@
       }
       $fields = array();
 //      if (!empty($_architect_options[ 'architect_enable_styling' ])) {
-      $fields = array(
+
+      $registry     = arc_Registry::getInstance();
+      $content_info = $registry->get( 'content_info' );
+      $fields       = array(
         array(
           'id'      => $prefix . 'tabs',
           'type'    => 'tabbed',
           'default' => 'layout',
-          'options' => array(
-            'layout'       => '<span class="pzarc-tab-title">' . __( 'Blueprint', 'pzarchitect' ) . '</span>',
-            'type'         => '<span class="pzarc-tab-title pzarc-blueprint-type">' . __( '', 'pzarchitect' ) . '</span>',
-            'content'      => '<span class="pzarc-tab-title">' . __( 'Source', 'pzarchitect' ) . '</span>',
-            'panels'       => '<span class="pzarc-tab-title">' . __( 'Panels', 'pzarchitect' ) . '</span>',
-            'titles'       => '<span class="pzarc-tab-title">' . __( 'Title', 'pzarchitect' ) . '</span>',
-            'meta'         => '<span class="pzarc-tab-title">' . __( 'Meta', 'pzarchitect' ) . '</span>',
-            'features'     => '<span class="pzarc-tab-title">' . __( 'Feature', 'pzarchitect' ) . '</span>',
-            'body'         => '<span class="pzarc-tab-title">' . __( 'Body/Excerpt', 'pzarchitect' ) . '</span>',
-            'customfields' => '<span class="pzarc-tab-title">' . __( 'Custom Fields', 'pzarchitect' ) . '</span>',
-            //                    'content_styling' => '<span class="pzarc-tab-title">Content Styling</span>',
-            //                    'styling'         => '<span class="pzarc-tab-title">Blueprint Styling</span>',
-          ),
-          'targets' => array(
-            'layout'       => array( 'layout-settings' ),
-            'type'         => array( 'type-settings' ),
-            'content'      => array( 'content-selections' ),
-            'panels'       => array( 'panels-design' ),
-            'titles'       => array( 'titles-settings' ),
-            'meta'         => array( 'meta-settings' ),
-            'features'     => array( 'features-settings' ),
-            'body'         => array( 'body-settings' ),
-            'customfields' => array( 'customfields-settings' ),
-            //                    'content_styling' => array('panels-styling'),
-            //                    'styling'         => array('blueprint-stylings'),
-            //                    'presets'         => array('presets'),
-          )
+          'options' => array_merge( array(
+                                      'layout'  => '<span class="pzarc-tab-title">' . __( 'Blueprint', 'pzarchitect' ) . '</span>',
+                                      'type'    => '<span class="pzarc-tab-title pzarc-blueprint-type">' . __( '', 'pzarchitect' ) . '</span>',
+                                      'content' => '<span class="pzarc-tab-title">' . __( 'Source', 'pzarchitect' ) . '</span>',
+                                      'panels'  => '<span class="pzarc-tab-title">' . __( 'Panels', 'pzarchitect' ) . '</span>',
+                                    ), $content_info[ $this->post_info[ 'source' ] ][ 'options' ] ),
+          'targets' => array_merge( array(
+                                      'layout'  => array( 'layout-settings' ),
+                                      'type'    => array( 'type-settings' ),
+                                      'content' => array( 'content-selections' ),
+                                      'panels'  => array( 'panels-design' ),
+                                    ), $content_info[ $this->post_info[ 'source' ] ][ 'targets' ] )
         ),
       );
 
@@ -451,16 +463,17 @@
 //      $blueprint_content_common = $registry->get( 'blueprint-content-common' );
       $sections[ '_general_bp' ] = array(
         'fields' => array(
-//          array(
-//            'title'    => __( 'Content source', 'pzarchitect' ),
-//            'id'       => '_blueprints_content-source',
-//            'type'     => 'select',
-////            'select2'  => array( 'allowClear' => false ),
-//            'default'  => 'defaults',
-//            'options'  => $content_types,
-//            'desc'     => __( 'If you want a Blueprint to display the content of the specific post/page/cpt it is to be displayed on, use the Default content source.<br><strong>Select <em>Defaults</em> if this Blueprint will display blog posts on the blog page</strong>', 'pzarchitect' ),
-//            'subtitle' => ( array_key_exists( 'snippets', $content_types ) ? '' : 'Several more content sources supported in Architect Pro version, including Pages, Snippets, Galleries, Custom Post Types and a special Dummy option to display dummy content' )
-//          ),
+          //          array(
+          //            'title'    => __( 'Content source', 'pzarchitect' ),
+          //            'id'       => '_blueprints_content-source',
+          //            'type'     => 'select',
+          ////            'select2'  => array( 'allowClear' => false ),
+          //            'default'  => 'defaults',
+          //            'options'  => $content_types,
+          //            'desc'     => __( 'If you want a Blueprint to display the content of the specific post/page/cpt it is to be displayed on, use the Default content source.<br><strong>Select <em>Defaults</em> if this Blueprint will display blog posts on the blog page</strong>', 'pzarchitect' ),
+          //            'subtitle' => ( array_key_exists( 'snippets', $content_types ) ? '' : 'Several more content sources supported in Architect Pro version, including Pages, Snippets, Galleries, Custom Post Types and a special Dummy option to display dummy content' )
+          //          ),
+
           array(
             'id'       => $prefix . 'short-name',
             'title'    => __( 'Blueprint Short Name', 'pzarchitect' ) . '<span class="pzarc-required el-icon-star" title="Required"></span>',
@@ -2349,7 +2362,7 @@
       $prefix   = '_content_general_'; // declare prefix
       $sections = array();
       /** DISPLAY ALL THE CONTENT TYPES FORMS */
-      $registry = arc_Registry::getInstance();
+      $registry           = arc_Registry::getInstance();
       $content_types      = array();
       $content_post_types = (array) $registry->get( 'post_types' );
       foreach ( $content_post_types as $key => $value ) {
@@ -2615,10 +2628,21 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
       if ( empty( $_architect ) ) {
         $_architect = get_option( '_architect' );
       }
+      if ( $this->post_info[ 'source' ] !== 'defaults' ) {
+        $registry     = arc_Registry::getInstance();
+        $content_info = $registry->get( 'content_info' );
+        if ( array_key_exists( 'component_types', $content_info[ $this->post_info[ 'source' ] ] ) ) {
+          $this->component_types      = $content_info[ $this->post_info[ 'source' ] ][ 'component_types' ];
+          $this->component_defaults   = $content_info[ $this->post_info[ 'source' ] ][ 'component_defaults' ];
+          $this->layout_editor_fields = array_key_exists( 'layout_editor_fields', $content_info[ $this->post_info[ 'source' ] ] ) ? $content_info[ $this->post_info[ 'source' ] ] [ 'layout_editor_fields' ] : $this->layout_editor_fields;
+//        d($this->layout_editor);
+//          die();
+        }
 
-      $prefix     = '_panels_design_'; // declare prefix
-      $sections   = array();
-      $sections[] = array(
+      }
+      $prefix        = '_panels_design_'; // declare prefix
+      $sections      = array();
+      $sections[]    = array(
         'title'      => __( 'Content Panels Layout ', 'pzarchitect' ),
         'show_title' => false,
         'icon_class' => 'icon-large',
@@ -2630,19 +2654,8 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
             'type'     => 'button_set',
             'multi'    => true,
             'subtitle' => __( 'Feature can be either the Featured Image of the post, or the Featured Video (added by Architect).', 'pzarchitect' ),
-            'default'  => array( 'title', 'excerpt', 'meta1', 'image' ),
-            'options'  => array(
-              'title'   => __( 'Title', 'pzarchitect' ),
-              'excerpt' => __( 'Excerpt', 'pzarchitect' ),
-              'content' => __( 'Body', 'pzarchitect' ),
-              'image'   => __( 'Feature', 'pzarchitect' ),
-              'meta1'   => __( 'Meta1', 'pzarchitect' ),
-              'meta2'   => __( 'Meta2', 'pzarchitect' ),
-              'meta3'   => __( 'Meta3', 'pzarchitect' ),
-              'custom1' => __( 'Custom 1', 'pzarchitect' ),
-              'custom2' => __( 'Custom 2', 'pzarchitect' ),
-              'custom3' => __( 'Custom 3', 'pzarchitect' ),
-            ),
+            'default'  => $this->component_defaults,
+            'options'  => $this->component_types,
             'hint'     => array(
               'title'   => __( 'Components to show', 'pzarchitect' ),
               'content' => __( 'Select which base components to include in this post\'s layout.', 'pzarchitect' )
@@ -2653,7 +2666,7 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
             'id'           => $prefix . 'preview',
             'type'         => 'code',
             'readonly'     => false, // Readonly fields can't be written to by code! Weird
-            'code'         => draw_panel_layout(),
+            'code'         => draw_panel_layout( apply_filters( 'arc-layout-fields', $this->layout_editor_fields) ),
             'default_show' => false,
             'subtitle'     => __( 'Drag and drop to reposition and resize components', 'pzarchitect' ),
             'default'      => json_encode( array(
@@ -2981,7 +2994,6 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
     }
 
 
-
     private
     static function arc_has_export_data() {
       $export_data = get_option( 'arc-export-to-preset' );
@@ -2998,45 +3010,44 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
   } // EOC
 
 
-  function pzarc_draw_sections_preview() {
-    // Put in a hidden field with the plugin url for use in js
-    $return_html
-      = '
-          <div id="pzarc-blueprint-wireframe">
-            <div id="pzarc-sections-preview-0" class="pzarc-sections pzarc-section-0"></div>
-            <div id="pzarc-sections-preview-1" class="pzarc-sections pzarc-section-1"></div>
-            <div id="pzarc-sections-preview-2" class="pzarc-sections pzarc-section-2"></div>
-            <div id="pzarc-navigator-preview">
-              <div class="pzarc-sections pzarc-section-navigator"><span class="icon-large el-icon-backward"></span> <span class="icon-large el-icon-caret-left"></span> <span class="icon-xlarge el-icon-stop"></span> <span class="icon-xlarge el-icon-stop"></span> <span class="icon-xlarge el-icon-stop"></span> <span class="icon-large el-icon-caret-right"></span> <span class="icon-large el-icon-forward"></span></div>
-              <div class="pzarc-sections pzarc-section-pagination">First Prev 1 2 3 4 ... 15 Next Last</div>
-            </div>
-          </div>
-          <div class="plugin_url" style="display:none;">' . PZARC_PLUGIN_APP_URL . '</div>
-        ';
+//  function pzarc_draw_sections_preview() {
+//    // Put in a hidden field with the plugin url for use in js
+//    $return_html
+//      = '
+//          <div id="pzarc-blueprint-wireframe">
+//            <div id="pzarc-sections-preview-0" class="pzarc-sections pzarc-section-0"></div>
+//            <div id="pzarc-sections-preview-1" class="pzarc-sections pzarc-section-1"></div>
+//            <div id="pzarc-sections-preview-2" class="pzarc-sections pzarc-section-2"></div>
+//            <div id="pzarc-navigator-preview">
+//              <div class="pzarc-sections pzarc-section-navigator"><span class="icon-large el-icon-backward"></span> <span class="icon-large el-icon-caret-left"></span> <span class="icon-xlarge el-icon-stop"></span> <span class="icon-xlarge el-icon-stop"></span> <span class="icon-xlarge el-icon-stop"></span> <span class="icon-large el-icon-caret-right"></span> <span class="icon-large el-icon-forward"></span></div>
+//              <div class="pzarc-sections pzarc-section-pagination">First Prev 1 2 3 4 ... 15 Next Last</div>
+//            </div>
+//          </div>
+//          <div class="plugin_url" style="display:none;">' . PZARC_PLUGIN_APP_URL . '</div>
+//        ';
+//
+//    return $return_html;
+//  }
 
-    return $return_html;
-  }
-
-  function show_meta() {
-    $return_html = '2301';
-    $meta        = get_post_meta( 2301 );
-    if ( $meta ) {
-
-      foreach ( $meta as $key => $value ) {
-        $return_html .= '<p>' . $key . ' : ' . $value[ 0 ] . '</p>';
-      }
-    }
-
-    return $return_html;
-  }
+//  function show_meta() {
+//    $return_html = '2301';
+//    $meta        = get_post_meta( 2301 );
+//    if ( $meta ) {
+//
+//      foreach ( $meta as $key => $value ) {
+//        $return_html .= '<p>' . $key . ' : ' . $value[ 0 ] . '</p>';
+//      }
+//    }
+//
+//    return $return_html;
+//  }
 
   /**
    * [draw_panel_layout description]
    * @return [type] [description]
    */
-  function draw_panel_layout() {
-    $return_html = '';
-
+  function draw_panel_layout( $layout_fields = '' ) {
+    var_dump($layout_fields);
     // Put in a hidden field with the plugin url for use in js
     $return_html
       = '

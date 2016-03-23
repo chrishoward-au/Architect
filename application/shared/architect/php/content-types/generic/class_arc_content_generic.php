@@ -8,7 +8,11 @@
    * Time: 9:39 PM
    */
 
-  /* THIS IS NEVER USED. IT'S JUST HERE AS AN EXAMPLE */
+  /** THIS IS NEVER USED. IT'S JUST HERE AS AN EXAMPLE */
+  /** THIS IS NEVER USED. IT'S JUST HERE AS AN EXAMPLE */
+  /** THIS IS NEVER USED. IT'S JUST HERE AS AN EXAMPLE */
+  /** THIS IS NEVER USED. IT'S JUST HERE AS AN EXAMPLE */
+  /** THIS IS NEVER USED. IT'S JUST HERE AS AN EXAMPLE */
 
   class arc_content_generic extends arc_set_data {
 
@@ -16,7 +20,7 @@
 
       $registry = arc_Registry::getInstance();
       $registry->set( 'content_source', array( 'generic' => plugin_dir_path( __FILE__ ) ) );
-      $registry->set( 'content_tabs',
+      $registry->set( 'content_info',
                       array(
                         'generic' => array(
                           'options' => array(
@@ -37,6 +41,12 @@
                         )
                       )
       );
+      // Load appropriate components
+      require_once PZARC_PLUGIN_APP_PATH.'/shared/architect/php/components/arc_component_titles.php';
+      require_once PZARC_PLUGIN_APP_PATH.'/shared/architect/php/components/arc_component_body.php';
+      require_once PZARC_PLUGIN_APP_PATH.'/shared/architect/php/components/arc_component_meta.php';
+      require_once PZARC_PLUGIN_APP_PATH.'/shared/architect/php/components/arc_component_feature.php';
+      require_once PZARC_PLUGIN_APP_PATH.'/shared/architect/php/components/arc_component_customfields.php';
 
     }
   }

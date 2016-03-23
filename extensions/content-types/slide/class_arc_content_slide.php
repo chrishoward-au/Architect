@@ -47,6 +47,33 @@
       // This has to be post_type
       $registry->set('post_types', $settings);
       $registry->set('content_source',array('slide'=>plugin_dir_path(__FILE__)));
+      $registry->set( 'content_info',
+                      array(
+                        'slide' => array(
+                          'options' => array(
+                            'titles'       => '<span class="pzarc-tab-title">' . __( 'Title', 'pzarchitect' ) . '</span>',
+                            'meta'         => '<span class="pzarc-tab-title">' . __( 'Meta', 'pzarchitect' ) . '</span>',
+                            'features'     => '<span class="pzarc-tab-title">' . __( 'Feature', 'pzarchitect' ) . '</span>',
+                            'body'         => '<span class="pzarc-tab-title">' . __( 'Body/Excerpt', 'pzarchitect' ) . '</span>',
+                            'customfields' => '<span class="pzarc-tab-title">' . __( 'Custom Fields', 'pzarchitect' ) . '</span>',
+                          ),
+                          'targets' =>
+                            array(
+                              'titles'       => array( 'titles-settings' ),
+                              'meta'         => array( 'meta-settings' ),
+                              'features'     => array( 'features-settings' ),
+                              'body'         => array( 'body-settings' ),
+                              'customfields' => array( 'customfields-settings' ),
+                            )
+                        )
+                      )
+      );
+      // Load appropriate components
+      require_once PZARC_PLUGIN_APP_PATH.'/shared/architect/php/components/arc_component_titles.php';
+      require_once PZARC_PLUGIN_APP_PATH.'/shared/architect/php/components/arc_component_body.php';
+      require_once PZARC_PLUGIN_APP_PATH.'/shared/architect/php/components/arc_component_meta.php';
+      require_once PZARC_PLUGIN_APP_PATH.'/shared/architect/php/components/arc_component_feature.php';
+      require_once PZARC_PLUGIN_APP_PATH.'/shared/architect/php/components/arc_component_customfields.php';
     }
   }
 

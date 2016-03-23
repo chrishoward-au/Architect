@@ -91,7 +91,7 @@
                 'default'  => '',
                 //                lightbox     => 'callback',
                 //                'args'     => array( 'pzarc_get_custom_fields' ),
-                'options'  => $pzarc_custom_fields,
+                'options'  => apply_filters('arc_custom_field_list',$pzarc_custom_fields),
                 'subtitle' => __( 'If a custom field is not shown in the dropdown, it is because it has no data yet.', 'pzarchitect' )
 
               ),

@@ -106,7 +106,7 @@
       // This has to be post_types
       $registry->set('post_types', $settings);
       $registry->set('content_source',array('post'=>plugin_dir_path(__FILE__)));
-      $registry->set( 'content_tabs',
+      $registry->set( 'content_info',
                       array(
                         'posts' => array(
                           'options' => array(
@@ -127,6 +127,13 @@
                         )
                       )
       );
+
+      // Load appropriate components
+      require_once PZARC_PLUGIN_APP_PATH.'/shared/architect/php/components/arc_component_titles.php';
+      require_once PZARC_PLUGIN_APP_PATH.'/shared/architect/php/components/arc_component_body.php';
+      require_once PZARC_PLUGIN_APP_PATH.'/shared/architect/php/components/arc_component_meta.php';
+      require_once PZARC_PLUGIN_APP_PATH.'/shared/architect/php/components/arc_component_feature.php';
+      require_once PZARC_PLUGIN_APP_PATH.'/shared/architect/php/components/arc_component_customfields.php';
     }
 
   }

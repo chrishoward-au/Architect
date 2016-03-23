@@ -48,7 +48,7 @@
 <textarea readonly="readonly" wrap="off">
 <?php _e( 'WordPress Version:', 'pzarchitect' ); ?>      <?php echo get_bloginfo( 'version' ) . "\n"; ?>
 <?php _e( 'PHP Version:', 'pzarchitect' ); ?>            <?php echo PHP_VERSION . "\n"; ?>
-<?php _e( 'MySQL Version:', 'pzarchitect' ); ?>          <?php echo mysql_get_server_info() . "\n"; ?>
+<?php //_e( 'MySQL Version:', 'pzarchitect' ); ?>          <?php //echo mysql_get_server_info() . "\n"; ?>
 <?php _e( 'Web Server:', 'pzarchitect' ); ?>             <?php echo $_SERVER[ 'SERVER_SOFTWARE' ] . "\n"; ?>
 
 <?php _e( 'WordPress URL:', 'pzarchitect' ); ?>          <?php echo get_bloginfo( 'wpurl' ) . "\n"; ?>

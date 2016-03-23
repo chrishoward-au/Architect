@@ -35,7 +35,7 @@
       if ( substr( $key, 0, 9 ) === 'metaboxes' ) {
         $this->registry[ $key ] = $value;
       } elseif ( $key === 'content_source'
-        || $key==='content_tabs'
+        || $key==='content_info'
       ) {
         $this->registry[ $key ][ key( $value ) ] = current( $value );
       } else {
