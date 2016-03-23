@@ -1220,11 +1220,11 @@ add_action(\'init\',\'gs_init\');
     $GLOBALS[ '_architect_options' ] = get_option( '_architect_options', array() );
   }
   $arc_styling = ! empty( $_architect_options[ 'architect_enable_styling' ] ) ? 'arc-styling-on' : 'arc-styling-off';
-  if ( is_admin() && $arc_styling === 'arc-styling-on'  && ( ! empty( $max_input_vars ) && $max_input_vars < 2000 ) ) {
+  if ( is_admin() && $arc_styling === 'arc-styling-on' && ( ! empty( $max_input_vars ) && $max_input_vars < 2000 ) ) {
     function pzarc_update_max_input_vars() {
       if ( function_exists( 'get_current_screen' ) ) {
         $screen = get_current_screen();
-        if ( $screen->post_type==='arc-blueprints' ) {
+        if ( $screen->post_type === 'arc-blueprints' ) {
           ?>
 
           <div class="notice notice-error" style="background:#fee;">
@@ -1240,4 +1240,19 @@ add_action(\'init\',\'gs_init\');
     }
 
     add_action( 'admin_notices', 'pzarc_update_max_input_vars' );
+  }
+
+  if ( ! function_exists( 'version_compare' ) || version_compare( PHP_VERSION, '5.6.0', '<' ) ) {
+    function pzarc_update_php() {
+      if ( function_exists( 'get_current_screen' ) ) {
+        $screen = get_current_screen();
+        if ( in_array($screen->id,array('edit-arc-blueprints','architect_page_pzarc_support') )) {
+          echo '<div class="notice notice-error" >
+                 <p><strong>Architect community service announcement:</strong> Your site is running an old and <a href="https://www.wikiwand.com/en/PHP#/Release_history" target="_blank">potentially insecure version of PHP</a>. Please request your host to upgrade you to at least PHP 5.4 but ideally 5.6.</p>
+                </div>';
+        }
+      }
+    }
+
+    add_action( 'admin_notices', 'pzarc_update_php' );
   }
