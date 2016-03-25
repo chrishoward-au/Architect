@@ -22,10 +22,10 @@
     pzdb( 'start' );
   }
 
-  if (!is_admin()) {
-    // just in case forget to remove this
-    @include_once( __DIR__ . '/assets/vendor/autoload.php' );
-  }
+//  if (!is_admin()) {
+//    // just in case forget to remove this
+//    @include_once( __DIR__ . '/assets/vendor/autoload.php' );
+//  }
   class pzArchitect {
 
     function __construct() {
