@@ -97,11 +97,12 @@ TODO: Add text field for filter labels
 
 == Changelog ==
 
-= 1.9.0 =
+= 1.9.0 : 24 March 2016 =
 * ADDED: Custom field filtering
 * ADDED: Custom field sorting
 * FIXED: Testimonials specified order not working
 * FIXED: Masonry filter by message showing Pz when using a PizazzWP tax type.
+* ADDED: Message on Help and Blueprint listings suggesting upgrading PHP if less than 5.4
 
 = 1.8.2 =
 * ADDED: Message reminding to increase max input vars. This has become necessary as 1.8 added more styling fields - which use a lot of input vars.

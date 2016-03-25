@@ -1242,13 +1242,13 @@ add_action(\'init\',\'gs_init\');
     add_action( 'admin_notices', 'pzarc_update_max_input_vars' );
   }
 
-  if ( ! function_exists( 'version_compare' ) || version_compare( PHP_VERSION, '5.6.0', '<' ) ) {
+  if ( ! function_exists( 'version_compare' ) || version_compare( PHP_VERSION, '5.4.0', '<' ) ) {
     function pzarc_update_php() {
       if ( function_exists( 'get_current_screen' ) ) {
         $screen = get_current_screen();
         if ( in_array($screen->id,array('edit-arc-blueprints','architect_page_pzarc_support') )) {
           echo '<div class="notice notice-error" >
-                 <p><strong>Architect community service announcement:</strong> Your site is running an old and <a href="https://www.wikiwand.com/en/PHP#/Release_history" target="_blank">potentially insecure version of PHP</a>. Please request your host to upgrade you to at least PHP 5.4 but ideally 5.6.</p>
+                 <p><strong>Architect community service announcement:</strong> Your site is running PHP '.PHP_VERSION.', a <a href="https://www.wikiwand.com/en/PHP#/Release_history" target="_blank">potentially insecure version of PHP</a>. Please ask your host to upgrade it to at least PHP 5.4 but ideally 5.6.</p>
                 </div>';
         }
       }

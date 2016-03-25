@@ -16,7 +16,7 @@
 
 
       $this->defaults = $defaults;
-
+pzdb('bp_Designer_start');
       // load extra stuffs
       if ( is_admin() ) {
 
@@ -86,6 +86,7 @@
           $this->postmeta = get_post_meta( $_GET[ 'post' ] );
         }
       }
+      pzdb('end: '.__CLASS__.'\\'.__FUNCTION__);
     }
 
     public function admin_init() {
@@ -98,6 +99,7 @@
      * @param  [type] $hook [description]
      */
     public function content_blueprints_admin_enqueue( $hook ) {
+      pzdb(__FUNCTION__);
       $screen = get_current_screen();
       if ( 'arc-blueprints' == $screen->id ) {
         //TODO: Update this for 1.8!
@@ -138,6 +140,7 @@
     }
 
     function blueprints_description( $content ) {
+      pzdb(__FUNCTION__);
       // todo: MAKE SURE ALL PRESETS USE DUMMY CONTENT AND NO FILTERS
 
       // TODO: How can we make this not load until we want it too?
@@ -220,6 +223,7 @@
      * @param [type] $columns [description]
      */
     public function add_blueprint_columns( $columns ) {
+      pzdb(__FUNCTION__);
       unset( $columns[ 'thumbnail' ] );
       $pzarc_front  = array_slice( $columns, 0, 2 );
       $pzarc_back   = array_slice( $columns, 2 );
@@ -241,6 +245,7 @@
      * @param [type] $post_id [description]
      */
     public function add_blueprint_column_content( $column, $post_id ) {
+      pzdb(__FUNCTION__);
 
       $post_meta = get_post_meta( $post_id );
 
@@ -295,6 +300,7 @@
 
 
     function pzarc_mb_blueprint_tabs( $metaboxes, $defaults_only = false ) {
+      pzdb(__FUNCTION__);
       $prefix   = '_blueprint_tabs_'; // declare prefix
       $sections = array();
       global $_architect_options;
@@ -446,6 +452,7 @@
      * @return array
      */
     function pzarc_mb_blueprint_general_settings( $metaboxes, $defaults_only = false ) {
+      pzdb(__FUNCTION__);
       $prefix = '_blueprints_'; // declare prefix
       global $_architect_options;
       $cfwarn          = false;
@@ -573,6 +580,7 @@
      * LAYOUT
      */
     function pzarc_mb_blueprint_design( $metaboxes, $defaults_only = false ) {
+      pzdb(__FUNCTION__);
       $prefix   = '_blueprints_'; // declare prefix
       $sections = array();
       global $_architect_options;
@@ -1239,6 +1247,7 @@
 
 
     function pzarc_mb_blueprint_types( $metaboxes, $defaults_only = false ) {
+      pzdb(__FUNCTION__);
       global $_architect;
       global $_architect_options;
       if ( empty( $_architect_options ) ) {
@@ -2341,6 +2350,7 @@
      * @return array
      */
     function pzarc_mb_blueprint_content_selection( $metaboxes, $defaults_only = false ) {
+      pzdb(__FUNCTION__);
 
       // TODO: Setup a loop that reads the object containing content type info as appened by the content type classes. Will need a means of letting js know tho.
       $prefix   = '_content_general_'; // declare prefix
@@ -2603,6 +2613,7 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
     }
 
     function pzarc_mb_panels_layout( $metaboxes, $defaults_only = false ) {
+      pzdb(__FUNCTION__);
       global $_architect;
       global $_architect_options;
       if ( empty( $_architect_options ) ) {
@@ -2985,6 +2996,7 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
      * @return array
      */
     function pzarc_mb_titles_settings( $metaboxes, $defaults_only = false ) {
+      pzdb(__FUNCTION__);
       global $_architect;
       global $_architect_options;
       if ( empty( $_architect_options ) ) {
@@ -3297,6 +3309,7 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
     }
 
     function pzarc_mb_meta_settings( $metaboxes, $defaults_only = false ) {
+      pzdb(__FUNCTION__);
       global $_architect;
       global $_architect_options;
       if ( empty( $_architect_options ) ) {
@@ -3446,6 +3459,7 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
     }
 
     function pzarc_mb_features_settings( $metaboxes, $defaults_only = false ) {
+      pzdb(__FUNCTION__);
       global $_architect;
       global $_architect_options;
       if ( empty( $_architect_options ) ) {
@@ -3819,6 +3833,7 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
     }
 
     function pzarc_mb_body_settings( $metaboxes, $defaults_only = false ) {
+      pzdb(__FUNCTION__);
       global $_architect;
       global $_architect_options;
       if ( empty( $_architect_options ) ) {
@@ -4196,6 +4211,7 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
     }
 
     function pzarc_mb_customfields_settings( $metaboxes, $defaults_only = false ) {
+      pzdb(__FUNCTION__);
       global $_architect;
       global $_architect_options;
       if ( empty( $_architect_options ) ) {
@@ -4486,6 +4502,7 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
 
     private
     static function arc_has_export_data() {
+      pzdb(__FUNCTION__);
       $export_data = get_option( 'arc-export-to-preset' );
       if ( ! empty( $export_data ) ) {
         $title = $export_data[ 'title' ];
@@ -4501,6 +4518,7 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
 
 
   function pzarc_draw_sections_preview() {
+    pzdb(__FUNCTION__);
     // Put in a hidden field with the plugin url for use in js
     $return_html
       = '
@@ -4520,6 +4538,7 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
   }
 
   function show_meta() {
+    pzdb(__FUNCTION__);
     $return_html = '2301';
     $meta        = get_post_meta( 2301 );
     if ( $meta ) {
@@ -4537,6 +4556,7 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
    * @return [type] [description]
    */
   function draw_panel_layout() {
+    pzdb(__FUNCTION__);
     $return_html = '';
 
     // Put in a hidden field with the plugin url for use in js
