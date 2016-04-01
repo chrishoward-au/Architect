@@ -14,7 +14,8 @@
      */
     function __construct( $defaults = false ) {
 
-
+//global $wp_meta_boxes;
+//      var_dump($wp_meta_boxes);
       $this->defaults = $defaults;
 pzdb('bp_Designer_start');
       // load extra stuffs

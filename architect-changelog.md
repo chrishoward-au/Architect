@@ -1,5 +1,8 @@
 # Architect change history 
 
+## 1.9.1 : 25 March 2016 
+* FIXED: Removed Whoops debugger
+
 ## 1.9.0 : 24 March 2016
 * ADDED: Custom field filtering
 * ADDED: Custom field sorting

@@ -71,6 +71,8 @@
 <?php _e( 'PHP Post Max Size:', 'pzarchitect' ); ?>      <?php echo ini_get( 'post_max_size' ) . "\n"; ?>
 <?php _e( 'PHP Upload Max Size:', 'pzarchitect' ); ?>    <?php echo ini_get( 'upload_max_filesize' ) . "\n"; ?>
 <?php _e( 'PHP Max Input Vars:', 'pzarchitect' ); ?>     <?php echo ini_get( 'max_input_vars' ) . "\n"; ?>
+<?php if (ini_get( 'suhosin.post.max_vars' )) {_e( 'Suhosin Max Input Vars:', 'pzarchitect' ); ?>     <?php echo ini_get( 'suhosin.post.max_vars' ) . "\n";} ?>
+<?php if (ini_get( 'suhosin.request.max_vars' )) {_e( 'Suhosin Request Max Input Vars:', 'pzarchitect' ); ?>     <?php echo ini_get( 'suhosin.request.max_vars' ) . "\n";} ?>
 
 <?php _e( 'WP Options Count:', 'pzarchitect' ); ?>       <?php echo count( $all_options ) . "\n"; ?>
 <?php _e( 'WP Options Size:', 'pzarchitect' ); ?>        <?php echo $all_options_bytes . "kb\n" ?>

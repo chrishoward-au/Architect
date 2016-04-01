@@ -3,7 +3,7 @@ Contributors: chrishoward
 Tags: content,display,posts,pages,gallery,slider,tabs,tabbed,tabular,widget,hooks
 Requires at least: 3.5.0
 Tested up to: 4.5
-Stable tag: 1.9.0
+Stable tag: 1.9.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Plugin URI: http://architect4wp.com
@@ -88,7 +88,7 @@ For support, please send an email to support@pizazzwp.com
 
 TODO: Add a default single post/page Blueprint;  Add codex links;
 TODO: Add text field for filter labels
-
+TODO: cURL support warning
 
 == Screenshots ==
 
@@ -96,6 +96,9 @@ TODO: Add text field for filter labels
 2. Slider example
 
 == Changelog ==
+
+= 1.9.1 : 25 March 2016 =
+* FIXED: Removed Whoops debugger
 
 = 1.9.0 : 24 March 2016 =
 * ADDED: Custom field filtering
