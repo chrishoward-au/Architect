@@ -3,7 +3,7 @@ Contributors: chrishoward
 Tags: content,display,posts,pages,gallery,slider,tabs,tabbed,tabular,widget,hooks
 Requires at least: 3.5.0
 Tested up to: 4.5
-Stable tag: 1.9.0
+Stable tag: 1.9.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Plugin URI: http://architect4wp.com
@@ -88,7 +88,7 @@ For support, please send an email to support@pizazzwp.com
 
 TODO: Add a default single post/page Blueprint;  Add codex links;
 TODO: Add text field for filter labels
-
+TODO: cURL support warning
 
 == Screenshots ==
 
@@ -97,11 +97,15 @@ TODO: Add text field for filter labels
 
 == Changelog ==
 
-= 1.9.0 =
+= 1.9.1 : 25 March 2016 =
+* FIXED: Removed Whoops debugger
+
+= 1.9.0 : 24 March 2016 =
 * ADDED: Custom field filtering
 * ADDED: Custom field sorting
 * FIXED: Testimonials specified order not working
 * FIXED: Masonry filter by message showing Pz when using a PizazzWP tax type.
+* ADDED: Message on Help and Blueprint listings suggesting upgrading PHP if less than 5.4
 
 = 1.8.2 =
 * ADDED: Message reminding to increase max input vars. This has become necessary as 1.8 added more styling fields - which use a lot of input vars.

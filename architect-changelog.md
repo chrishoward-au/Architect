@@ -1,8 +1,12 @@
 # Architect change history 
 
-## 1.9.0 : 20 March 2016
+## 1.9.1 : 25 March 2016 
+* FIXED: Removed Whoops debugger
+
+## 1.9.0 : 24 March 2016
 * ADDED: Custom field filtering
 * ADDED: Custom field sorting
+* ADDED: Message on Help and Blueprint listings suggesting upgrading PHP if less than 5.4
 * FIXED: Testimonials specified order not working
 * FIXED: Masonry filter by message showing Pz when using a PizazzWP tax type.
 

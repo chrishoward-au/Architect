@@ -1215,24 +1215,45 @@ add_action(\'init\',\'gs_init\');
 
   // TODO: We could turn off styling if max input < 1000...
   $max_input_vars = (int) ini_get( 'max_input_vars' );
+  $max_su_input_vars = (int) ini_get( 'suhosin.post.max_vars' );
+  $max_sur_input_vars = (int) ini_get( 'suhosin.request.max_vars' );
   global $_architect_options;
   if ( ! isset( $GLOBALS[ '_architect_options' ] ) ) {
     $GLOBALS[ '_architect_options' ] = get_option( '_architect_options', array() );
   }
   $arc_styling = ! empty( $_architect_options[ 'architect_enable_styling' ] ) ? 'arc-styling-on' : 'arc-styling-off';
-  if ( is_admin() && $arc_styling === 'arc-styling-on'  && ( ! empty( $max_input_vars ) && $max_input_vars < 2000 ) ) {
+  if ( is_admin() && $arc_styling === 'arc-styling-on' && (
+       ( $max_input_vars > 0  && (int) $max_input_vars < 2000 )  ||
+       ( $max_su_input_vars >0  && (int) $max_su_input_vars < 2000 ) ||
+       ( $max_sur_input_vars>0  && (int) $max_sur_input_vars < 2000 )
+    )) {
     function pzarc_update_max_input_vars() {
       if ( function_exists( 'get_current_screen' ) ) {
         $screen = get_current_screen();
-        if ( $screen->post_type==='arc-blueprints' ) {
+        if ( $screen->post_type === 'arc-blueprints' ) {
+          $max_input_vars = (int) ini_get( 'max_input_vars' );
+          $max_su_input_vars = (int) ini_get( 'suhosin.post.max_vars' );
+          $max_sur_input_vars = (int) ini_get( 'suhosin.request.max_vars' );
+
           ?>
 
           <div class="notice notice-error" style="background:#fee;">
-            <p><?php echo __( 'To use Architect with all features enabled, you will need to increase PHP\'s default limit on input variables. Your current setting is: ', 'pzarchitect' ) . ini_get( 'max_input_vars' ) . '<br>' . __( '
-          Please follow the instructions here.', 'pzarchitect' ) . ' <a href="http://architect4wp.com/codex/fields-not-saving/" target="_blank">Fields not saving</a><br>
-                    <strong>If you do not do this, some fields may not save.</strong><br>
-                    Apologies for the inconvenience
-      '; ?></p>
+            <p><?php echo __( 'To use Architect with all features enabled, you will need to increase PHP\'s default limit on input variables.<br>', 'pzarchitect' );
+                          if (( $max_su_input_vars >0  && (int) $max_su_input_vars < 2000 ) || ( $max_sur_input_vars>0  && (int) $max_sur_input_vars < 2000 ))  {
+                            _e('Your current settings are:<br>','pzarchitect');
+                            echo __( 'PHP Max Input Vars: ', 'pzarchitect' ). $max_input_vars . "<br>";
+                            echo __( 'Suhosin Max Input Vars: ', 'pzarchitect' ). $max_su_input_vars . "<br>";
+                            echo __( 'Suhosin Request Max Input Vars: ', 'pzarchitect' ).$max_sur_input_vars . "<br>";
+                            _e( 'Please follow WooCommerce\'s instructions here.', 'pzarchitect' );
+                            echo ' <a href="https://docs.woothemes.com/document/problems-with-large-amounts-of-data-not-saving-variations-rates-etc//" target="_blank">Fields not saving</a><br>';
+                          } else {
+                            _e('Your current setting is:<br>','pzarchitect');
+                            echo __( 'PHP Max Input Vars: ', 'pzarchitect' ). $max_input_vars . "<br>";
+                            _e( 'Please follow the instructions here.', 'pzarchitect' );
+                            echo ' <a href="http://architect4wp.com/codex/fields-not-saving/" target="_blank">Fields not saving</a><br>';
+                          }
+                          _e('<strong>If you do not do this, some fields may not save.</strong><br>
+                                Apologies for the inconvenience','pzarchitect'); ?></p>
           </div>
           <?php
         }
@@ -1240,4 +1261,19 @@ add_action(\'init\',\'gs_init\');
     }
 
     add_action( 'admin_notices', 'pzarc_update_max_input_vars' );
+  }
+
+  if ( ! function_exists( 'version_compare' ) || version_compare( PHP_VERSION, '5.4.0', '<' ) ) {
+    function pzarc_update_php() {
+      if ( function_exists( 'get_current_screen' ) ) {
+        $screen = get_current_screen();
+        if ( in_array($screen->id,array('edit-arc-blueprints','architect_page_pzarc_support') )) {
+          echo '<div class="notice notice-error" >
+                 <p><strong>Architect community service announcement:</strong> Your site is running PHP '.PHP_VERSION.', a <a href="https://www.wikiwand.com/en/PHP#/Release_history" target="_blank">potentially insecure version of PHP</a>. Please ask your host to upgrade it to at least PHP 5.4 but ideally 5.6.</p>
+                </div>';
+        }
+      }
+    }
+
+    add_action( 'admin_notices', 'pzarc_update_php' );
   }
