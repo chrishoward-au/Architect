@@ -79,7 +79,7 @@ $_kintSettings['maxLevels'] = 7;
 
 
 /** @var string name of theme for rich view */
-$_kintSettings['theme'] = 'original';
+$_kintSettings['theme'] = 'solarized-dark';
 
 
 /** @var bool enable detection when Kint is command line. Formats output with whitespace only; does not HTML-escape it */

@@ -9,7 +9,19 @@
     public $postmeta = null;
     private $post_info = array();
     private $component_types;
-    private $component_defaults;
+    private $component_defaults = array( 'title', 'excerpt', 'meta1', 'image' );
+    private $preview_default = array(
+      'title'   => array( 'width' => 100, 'show' => true ),
+      'meta1'   => array( 'width' => 100, 'show' => true ),
+      'image'   => array( 'width' => 25, 'show' => true ),
+      'excerpt' => array( 'width' => 75, 'show' => true ),
+      'content' => array( 'width' => 100, 'show' => false ),
+      'meta2'   => array( 'width' => 100, 'show' => false ),
+      'meta3'   => array( 'width' => 100, 'show' => false ),
+      'custom1' => array( 'width' => 100, 'show' => false ),
+      'custom2' => array( 'width' => 100, 'show' => false ),
+      'custom3' => array( 'width' => 100, 'show' => false )
+    );
     private $layout_editor_fields = '{"title","meta1","meta2","meta3","body","excerpt","feature","custom1","custom2","custom3"}';
 
 
@@ -78,6 +90,7 @@
           $this->post_info[ 'source' ] = 'defaults';
         }
         // These can be overridden by plugins
+        // This is here coz it has functions in it
         $this->component_types    = array(
           'title'   => __( 'Title', 'pzarchitect' ),
           'excerpt' => __( 'Excerpt', 'pzarchitect' ),
@@ -90,7 +103,6 @@
           'custom2' => __( 'Custom 2', 'pzarchitect' ),
           'custom3' => __( 'Custom 3', 'pzarchitect' ),
         );
-        $this->component_defaults = array( 'title', 'excerpt', 'meta1', 'image' );
       }
     }
 
@@ -2634,15 +2646,16 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
         if ( array_key_exists( 'component_types', $content_info[ $this->post_info[ 'source' ] ] ) ) {
           $this->component_types      = $content_info[ $this->post_info[ 'source' ] ][ 'component_types' ];
           $this->component_defaults   = $content_info[ $this->post_info[ 'source' ] ][ 'component_defaults' ];
+          $this->preview_default   = $content_info[ $this->post_info[ 'source' ] ][ 'preview_default' ];
           $this->layout_editor_fields = array_key_exists( 'layout_editor_fields', $content_info[ $this->post_info[ 'source' ] ] ) ? $content_info[ $this->post_info[ 'source' ] ] [ 'layout_editor_fields' ] : $this->layout_editor_fields;
 //        d($this->layout_editor);
 //          die();
         }
 
       }
-      $prefix        = '_panels_design_'; // declare prefix
-      $sections      = array();
-      $sections[]    = array(
+      $prefix     = '_panels_design_'; // declare prefix
+      $sections   = array();
+      $sections[] = array(
         'title'      => __( 'Content Panels Layout ', 'pzarchitect' ),
         'show_title' => false,
         'icon_class' => 'icon-large',
@@ -2666,22 +2679,10 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
             'id'           => $prefix . 'preview',
             'type'         => 'code',
             'readonly'     => false, // Readonly fields can't be written to by code! Weird
-            'code'         => draw_panel_layout( apply_filters( 'arc-layout-fields', $this->layout_editor_fields) ),
+            'code'         => draw_panel_layout( apply_filters( 'arc-layout-fields', $this->layout_editor_fields ) ),
             'default_show' => false,
             'subtitle'     => __( 'Drag and drop to reposition and resize components', 'pzarchitect' ),
-            'default'      => json_encode( array(
-                                             'title'   => array( 'width' => 100, 'show' => true ),
-                                             'meta1'   => array( 'width' => 100, 'show' => true ),
-                                             'image'   => array( 'width' => 25, 'show' => true ),
-                                             'excerpt' => array( 'width' => 75, 'show' => true ),
-                                             //                                            'caption' => array('width' => 100, 'show' => false),
-                                             'content' => array( 'width' => 100, 'show' => false ),
-                                             'meta2'   => array( 'width' => 100, 'show' => false ),
-                                             'meta3'   => array( 'width' => 100, 'show' => false ),
-                                             'custom1' => array( 'width' => 100, 'show' => false ),
-                                             'custom2' => array( 'width' => 100, 'show' => false ),
-                                             'custom3' => array( 'width' => 100, 'show' => false )
-                                           ) ),
+            'default'      => json_encode($this->preview_default),
             'hint'         => array(
               'title'   => __( 'Post layout', 'pzarchitect' ),
               'content' => __( 'Drag and drop to sort the order of your elements. <strong>Heights are fluid, so not indicative of how it will look on the page</strong>.', 'pzarchitect' )
@@ -3047,7 +3048,7 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
    * @return [type] [description]
    */
   function draw_panel_layout( $layout_fields = '' ) {
-    var_dump($layout_fields);
+    //var_dump($layout_fields);
     // Put in a hidden field with the plugin url for use in js
     $return_html
       = '

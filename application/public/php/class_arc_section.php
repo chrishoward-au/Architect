@@ -91,6 +91,7 @@
 
     function open_section()
     {
+      d($this->blueprint);
       pzdb('open_section');
       // Add the excerpt filters
       if (!empty($this->section[ 'section-panel-settings' ][ '_panels_design_excerpts-word-count' ])) {

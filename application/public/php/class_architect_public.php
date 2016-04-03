@@ -36,10 +36,10 @@
     private $content_source = null;
 
     /**
-     * @param $blueprint
+     * @param $blueprint_shortname
      * @param $is_shortcode
      */
-    public function __construct($blueprint, $is_shortcode)
+    public function __construct($blueprint_shortname, $is_shortcode)
     {
       // Might use this for transients to check last DB change
       //      global $wpdb;
@@ -58,7 +58,7 @@
       require_once(PZARC_PLUGIN_APP_PATH . '/shared/architect/php/content-types/generic/class_arc_query_generic.php');
 
       /** This is the first point we have all the Blueprint data */
-      $this->build = new arc_Blueprint($blueprint);
+      $this->build = new arc_Blueprint( $blueprint_shortname,false);
 
       new arc_shortcodes($this->build);
 
