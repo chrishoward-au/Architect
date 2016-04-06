@@ -66,7 +66,6 @@
         // TODO: Make up some easily editable panel defs - prob have to be a custom content type
         //       require_once PZARC_PLUGIN_PATH . '/admin/php/arc-options-def-editor.php';
 
-        //@TODO: need a bit of screen dependency on this?
         require_once( PZARC_PLUGIN_APP_PATH . 'admin/php/class_arcBuilderAdmin.php' );
 
         require_once PZARC_PLUGIN_APP_PATH . 'admin/php/class_arc_blueprints_designer.php';
@@ -96,7 +95,6 @@
         require_once( PZARC_PLUGIN_APP_PATH . '/shared/thirdparty/php/pzwp-focal-point/pzwp-focal-point.php' );
 
       }
-
     }
 
     /*********************************************

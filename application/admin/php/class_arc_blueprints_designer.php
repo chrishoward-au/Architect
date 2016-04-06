@@ -13,14 +13,12 @@
      * [__construct description]
      */
     function __construct( $defaults = false ) {
-
 //global $wp_meta_boxes;
 //      var_dump($wp_meta_boxes);
       $this->defaults = $defaults;
 pzdb('bp_Designer_start');
       // load extra stuffs
       if ( is_admin() ) {
-
         add_action( 'admin_head', array( $this, 'content_blueprints_admin_head' ) );
         add_action( 'admin_enqueue_scripts', array( $this, 'content_blueprints_admin_enqueue' ) );
         add_filter( 'manage_arc-blueprints_posts_columns', array( $this, 'add_blueprint_columns' ) );
@@ -137,7 +135,7 @@ pzdb('bp_Designer_start');
      * [content_blueprints_admin_head description]
      */
     public function content_blueprints_admin_head() {
-
+      $this->screen = get_current_screen();
     }
 
     function blueprints_description( $content ) {
