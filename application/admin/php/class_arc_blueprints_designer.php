@@ -1758,7 +1758,7 @@ pzdb('bp_Designer_start');
             'id'            => $prefix . 'transitions-duration',
             'type'          => 'slider',
             'min'           => 0,
-            'max'           => 5,
+            'max'           => 10,
             'resolution'    => 0.1,
             'step'          => 0.5,
             'hint'          => array( 'content' => __( 'Time taken for the transition to display', 'pzarchitect' ) ),
