@@ -83,8 +83,8 @@
         if ( array_key_exists( 'post', $_GET ) ) {
           $this->post_info[ 'id' ]     = $_GET[ 'post' ];
           $this->postmeta              = get_post_meta( $_GET[ 'post' ] );
-          $this->post_info[ 'source' ] = $this->postmeta[ '_blueprints_content-source' ][ 0 ];
-
+          $this->post_info[ 'source' ] = isset($this->postmeta[ '_blueprints_content-source' ][ 0 ])?$this->postmeta[ '_blueprints_content-source' ][ 0 ]:'defaults';
+          $this->post_info[ 'source' ] .= in_array($this->post_info[ 'source' ],array('post','page'))?'s':''; // A bit of hacking.
         } else {
           $this->post_info[ 'id' ]     = - 1;
           $this->post_info[ 'source' ] = 'defaults';

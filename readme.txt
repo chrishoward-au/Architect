@@ -3,7 +3,7 @@ Contributors: chrishoward
 Tags: content,display,posts,pages,gallery,slider,tabs,tabbed,tabular,widget,hooks
 Requires at least: 3.5.0
 Tested up to: 4.5
-Stable tag: 1.9.1
+Stable tag: 1.10.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Plugin URI: http://architect4wp.com
@@ -96,6 +96,9 @@ TODO: cURL support warning
 2. Slider example
 
 == Changelog ==
+
+= 1.10.0 =
+* CHANGED: Restructured code for easier extensibility
 
 = 1.9.1 : 25 March 2016 =
 * FIXED: Removed Whoops debugger

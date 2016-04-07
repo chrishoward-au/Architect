@@ -14,7 +14,21 @@ jQuery( document ).ready( function ()
   // This is necessary when no tabs to switch with.
 //  jQuery('#redux-_architect-metabox-panels-design').show();
 
- pzarc_update_tabs_to_show( jQuery('#_architect-_panels_design_components-to-show .buttonset .buttonset-item') );
+  jQuery( "fieldset#_architect-_blueprints_content-source" ).on( 'change', function ()
+  {
+    pzarc_update_tabs_to_show( jQuery( '#_architect-_panels_design_components-to-show .buttonset .buttonset-item' ) );
+  });
+
+  pzarc_update_tabs_to_show( jQuery( '#_architect-_panels_design_components-to-show .buttonset .buttonset-item' ) );
+
+  function get_cell_layout()
+  {
+    //console.log(event.timeStamp);
+    var cell_layout_serialized = jQuery( '#_panels_design_preview-text' ).val();
+    var cell_layout = jQuery.parseJSON( cell_layout_serialized );
+    //console.log(event.timeStamp);
+    return cell_layout;
+  }
 
   /** ***********************************************************************************************************************
    * Update status message and field data
@@ -30,11 +44,11 @@ jQuery( document ).ready( function ()
         index = ('image' === index) ? 'feature' : index;
         var component_width = value.width;
         var feature_location = jQuery( 'input[name="_architect[_panels_design_feature-location]"]:checked' );
-        component_width = ('fill' === feature_location.val() && index=='feature') ? '100' : component_width;
+        component_width = ('fill' === feature_location.val() && index == 'feature') ? '100' : component_width;
         showing = showing + " <strong>" + index + ":</strong> " + component_width + "% &nbsp;&nbsp;&nbsp;";
       }
     } );
-    jQuery( "p.pzarc-states" ).html( 'Order: '+showing );
+    jQuery( "p.pzarc-states" ).html( 'Order: ' + showing );
     jQuery( 'input#_panels_design_preview-text' ).val( JSON.stringify( cell_layout ) );
 
     //var pztarget = jQuery( 'fieldset#_architect-_panels_design_components-to-show input#_panels_design_components-to-show-buttonsetimage' );
@@ -66,7 +80,7 @@ jQuery( document ).ready( function ()
   // Get the current order and widths from the hidden text field attached to preview layout box
 
   var initial_cell_layout = get_cell_layout();
-  pzarc_update_status(initial_cell_layout );
+  pzarc_update_status( initial_cell_layout );
   //jQuery( 'input[name="_architect[_panels_design_thumb-position]"]' ).on( 'change', function ()
   //{
   //    var buttonClicked = this.value;
@@ -86,7 +100,7 @@ jQuery( document ).ready( function ()
   } );
   /** ***********************************************************************************************************************/
   /** FEATURE IN **/
-  jQuery( '#_architect-_panels_design_feature-in' ).on('click',function ( e )
+  jQuery( '#_architect-_panels_design_feature-in' ).on( 'click', function ( e )
   {
     var cell_layout = get_cell_layout();
     //jQuery( 'fieldset#_architect-_panels_design_components-to-show input#_panels_design_components-to-show-buttonsetimage' ).attr( 'checked', 'checked' );
@@ -96,7 +110,7 @@ jQuery( document ).ready( function ()
 
   /** ***********************************************************************************************************************/
   /** FEATURE FLOAT **/
-  jQuery( '#_architect-_panels_design_feature-float' ).on('click',function ( e )
+  jQuery( '#_architect-_panels_design_feature-float' ).on( 'click', function ( e )
   {
     var cell_layout = get_cell_layout();
     //jQuery( 'fieldset#_architect-_panels_design_components-to-show input#_panels_design_components-to-show-buttonsetimage' ).attr( 'checked', 'checked' );
@@ -261,9 +275,9 @@ jQuery( document ).ready( function ()
       //console.log(event.timeStamp);
       pzarc_update_component_location( cell_layout );
       //console.log(event.timeStamp);
-      pzarc_update_components_container_width(  );
+      pzarc_update_components_container_width();
       //console.log(event.timeStamp);
-      pzarc_update_components_nudge(  );
+      pzarc_update_components_nudge();
       //console.log(event.timeStamp);
       pzarc_update_component_visibility( cell_layout );
       //console.log(event.timeStamp);
@@ -413,7 +427,7 @@ jQuery( document ).ready( function ()
           'bottom': '',
           'width': '100%',
           'height': 'auto',
-          'position':'absolute'
+          'position': 'absolute'
 
         } );
         // jQuery( '.pzarc-dropzone .pzgp-cell-image-behind img' ).css( {
@@ -426,8 +440,9 @@ jQuery( document ).ready( function ()
 
       case 'components':
         jQuery( '.pzarc-draggable-image' ).show();
-        if ( jQuery( '#_panels_design_feature-float-buttonsetright:checked' ).length ) {
-          jQuery( '.pzarc-draggable-image' ).addClass('right');
+        if ( jQuery( '#_panels_design_feature-float-buttonsetright:checked' ).length )
+        {
+          jQuery( '.pzarc-draggable-image' ).addClass( 'right' );
         }
         break;
 
@@ -443,14 +458,15 @@ jQuery( document ).ready( function ()
         break;
 
       case 'content-right':
-        if (jQuery('#_panels_design_feature-in-buttonsetexcerpt:checked' ).length)
+        if ( jQuery( '#_panels_design_feature-in-buttonsetexcerpt:checked' ).length )
         {
           jQuery( '.pzarc-draggable-excerpt img.pzarc-align' ).removeClass( 'left none' ).addClass( 'right' );
         }
-        if (jQuery('#_panels_design_feature-in-buttonsetcontent:checked' ).length)
+        if ( jQuery( '#_panels_design_feature-in-buttonsetcontent:checked' ).length )
         {
           jQuery( '.pzarc-draggable-content img.pzarc-align' ).removeClass( 'left none' ).addClass( 'right' );
-        }        break;
+        }
+        break;
 
       case 'float':
         /// TODO: Work out how to make before or after components group/
@@ -473,7 +489,7 @@ jQuery( document ).ready( function ()
               'height': 'auto',
               'width': '100%',
               'left': '',
-              'position':'relative'
+              'position': 'relative'
             } );
             imgBhnd.css( {
               'width': (450 - zonesWidth) + 'px',
@@ -481,7 +497,7 @@ jQuery( document ).ready( function ()
               'right': '0',
               'top': '',
               'bottom': '',
-              'position':'absolute'
+              'position': 'absolute'
 
             } );
             break;
@@ -491,7 +507,7 @@ jQuery( document ).ready( function ()
               'height': 'auto',
               'width': '100%',
               'left': '',
-              'position':'relative'
+              'position': 'relative'
 
             } );
             imgBhnd.css( {
@@ -500,7 +516,7 @@ jQuery( document ).ready( function ()
               'left': '0',
               'top': '',
               'bottom': '',
-              'position':'absolute'
+              'position': 'absolute'
 
             } );
             break;
@@ -510,7 +526,7 @@ jQuery( document ).ready( function ()
               'width': '100%',
               'height': '150px',
               'left': '',
-              'position':'relative'
+              'position': 'relative'
 
             } );
             imgBhnd.css( {
@@ -519,7 +535,7 @@ jQuery( document ).ready( function ()
               'left': '',
               'bottom': '',
               'width': '100%',
-              'position':'relative'
+              'position': 'relative'
 
             } );
             break;
@@ -529,7 +545,7 @@ jQuery( document ).ready( function ()
               'width': '100%',
               'height': '150px',
               'left': '',
-              'position':'relative'
+              'position': 'relative'
 
             } );
             imgBhnd.css( {
@@ -538,7 +554,7 @@ jQuery( document ).ready( function ()
               'top': '0',
               'left': '',
               'width': '100%',
-              'position':'relative'
+              'position': 'relative'
 
             } );
             break;
@@ -611,7 +627,7 @@ jQuery( document ).ready( function ()
     /************************************************************************************************************************
      // update components width
      **********************/
-      // TODO: Get Dovy to change sliders to update inout val in real time
+    // TODO: Get Dovy to change sliders to update inout val in real time
     jQuery( '.pzarc-content-area' ).css( 'width', jQuery( 'fieldset#_architect-_panels_design_components-widths .redux-slider-label' ).text() + '%' );
 
 
@@ -659,17 +675,22 @@ jQuery( document ).ready( function ()
 
   /************************************************************************************************************************
    * Update tabs to show
+   * et: elements this
+   *  els : elements
    */
 
   function pzarc_update_tabs_to_show( et )
   {
-    var tabs = jQuery('#_architect-_blueprint_tabs_tabs');
+    console.log(et);
+    var tabs = jQuery( '#_architect-_blueprint_tabs_tabs' );
     var els;
-    if (undefined === et.target)
+    if ( undefined === et.target )
     {
       els = et;
-    } else {
-       els = et.target;
+    }
+    else
+    {
+      els = et.target;
     }
     jQuery( els ).each( function ()
     {
@@ -683,26 +704,32 @@ jQuery( document ).ready( function ()
 //          jQuery(tabs).find('#tab-titles' ).toggle(tab_status);
 
           var theTabTitles = jQuery( tabs ).find( '#tab-titles' );
-          if (!tab_status) {
-              theTabTitles.addClass('pztabs-unused' ).attr('title','Titles not used in this Blueprint');
-            } else {
-              theTabTitles.removeClass('pztabs-unused' ).removeAttr('title');
-            }
+          if ( !tab_status )
+          {
+            theTabTitles.addClass( 'pztabs-unused' ).attr( 'title', 'Titles not used in this Blueprint' );
+          }
+          else
+          {
+            theTabTitles.removeClass( 'pztabs-unused' ).removeAttr( 'title' );
+          }
           break;
         case 'meta1':
         case 'meta2':
         case 'meta3':
           tab_status = (
-          jQuery( 'input#_panels_design_components-to-show-buttonsetmeta1:checked' ).length === 1 ||
-          jQuery( 'input#_panels_design_components-to-show-buttonsetmeta2:checked' ).length === 1 ||
-          jQuery( 'input#_panels_design_components-to-show-buttonsetmeta3:checked' ).length === 1
+              jQuery( 'input#_panels_design_components-to-show-buttonsetmeta1:checked' ).length === 1 ||
+              jQuery( 'input#_panels_design_components-to-show-buttonsetmeta2:checked' ).length === 1 ||
+              jQuery( 'input#_panels_design_components-to-show-buttonsetmeta3:checked' ).length === 1
           );
-      //    jQuery(tabs).find('#tab-meta' ).toggle(tab_status);
-          var theTabMeta = jQuery(tabs).find('#tab-meta' );
-          if (!tab_status) {
-            theTabMeta.addClass('pztabs-unused').attr('title','No meta fields used in this Blueprint');
-          } else {
-            theTabMeta.removeClass('pztabs-unused').removeAttr('title');
+          //    jQuery(tabs).find('#tab-meta' ).toggle(tab_status);
+          var theTabMeta = jQuery( tabs ).find( '#tab-meta' );
+          if ( !tab_status )
+          {
+            theTabMeta.addClass( 'pztabs-unused' ).attr( 'title', 'No meta fields used in this Blueprint' );
+          }
+          else
+          {
+            theTabMeta.removeClass( 'pztabs-unused' ).removeAttr( 'title' );
           }
           break;
         case 'content':
@@ -710,41 +737,50 @@ jQuery( document ).ready( function ()
           tab_status = (
           jQuery( 'input#_panels_design_components-to-show-buttonsetcontent:checked' ).length === 1 ||
           jQuery( 'input#_panels_design_components-to-show-buttonsetexcerpt:checked' ).length === 1);
-       //   jQuery(tabs).find('#tab-body' ).toggle(tab_status);
-          var theTabBody = jQuery(tabs).find('#tab-body' );
-          if (!tab_status) {
-            theTabBody.addClass('pztabs-unused').attr('title','Body/excerpt not used in this Blueprint');
-          } else {
-            theTabBody.removeClass('pztabs-unused').removeAttr('title');
+          //   jQuery(tabs).find('#tab-body' ).toggle(tab_status);
+          var theTabBody = jQuery( tabs ).find( '#tab-body' );
+          if ( !tab_status )
+          {
+            theTabBody.addClass( 'pztabs-unused' ).attr( 'title', 'Body/excerpt not used in this Blueprint' );
+          }
+          else
+          {
+            theTabBody.removeClass( 'pztabs-unused' ).removeAttr( 'title' );
           }
           break;
         case 'image':
 
           tab_status = (
-          jQuery( 'input#_panels_design_components-to-show-buttonsetimage:checked' ).length === 1
+              jQuery( 'input#_panels_design_components-to-show-buttonsetimage:checked' ).length === 1
           );
-    //      jQuery(tabs).find('#tab-features' ).toggle(tab_status);
-          var theTabFeatures = jQuery(tabs).find('#tab-features' );
-          if (!tab_status) {
-            theTabFeatures.addClass('pztabs-unused').attr('title','Featured image/video not used in this Blueprint');
-          } else {
-            theTabFeatures.removeClass('pztabs-unused').removeAttr('title');
+          //      jQuery(tabs).find('#tab-features' ).toggle(tab_status);
+          var theTabFeatures = jQuery( tabs ).find( '#tab-features' );
+          if ( !tab_status )
+          {
+            theTabFeatures.addClass( 'pztabs-unused' ).attr( 'title', 'Featured image/video not used in this Blueprint' );
+          }
+          else
+          {
+            theTabFeatures.removeClass( 'pztabs-unused' ).removeAttr( 'title' );
           }
           break;
         case 'custom1':
         case 'custom2':
         case 'custom3':
           tab_status = (
-          jQuery( 'input#_panels_design_components-to-show-buttonsetcustom1:checked' ).length === 1 ||
-          jQuery( 'input#_panels_design_components-to-show-buttonsetcustom2:checked' ).length === 1 ||
-          jQuery( 'input#_panels_design_components-to-show-buttonsetcustom3:checked' ).length === 1
+              jQuery( 'input#_panels_design_components-to-show-buttonsetcustom1:checked' ).length === 1 ||
+              jQuery( 'input#_panels_design_components-to-show-buttonsetcustom2:checked' ).length === 1 ||
+              jQuery( 'input#_panels_design_components-to-show-buttonsetcustom3:checked' ).length === 1
           );
-        //  jQuery(tabs).find('#tab-customfields' ).toggle(tab_status);
-          var theTabCustomFields = jQuery(tabs).find('#tab-customfields' );
-          if (!tab_status) {
-            theTabCustomFields.addClass('pztabs-unused').attr('title','No custom fields used in this Blueprint');
-          } else {
-            theTabCustomFields.removeClass('pztabs-unused').removeAttr('title');
+          //  jQuery(tabs).find('#tab-customfields' ).toggle(tab_status);
+          var theTabCustomFields = jQuery( tabs ).find( '#tab-customfields' );
+          if ( !tab_status )
+          {
+            theTabCustomFields.addClass( 'pztabs-unused' ).attr( 'title', 'No custom fields used in this Blueprint' );
+          }
+          else
+          {
+            theTabCustomFields.removeClass( 'pztabs-unused' ).removeAttr( 'title' );
           }
           break;
 
@@ -821,13 +857,7 @@ jQuery( document ).ready( function ()
     //console.log(event.timeStamp);
 
   }
-  function get_cell_layout() {
-    //console.log(event.timeStamp);
-    var cell_layout_serialized = jQuery( '#_panels_design_preview-text' ).val();
-    var cell_layout = jQuery.parseJSON( cell_layout_serialized );
-    //console.log(event.timeStamp);
-    return cell_layout;
-  }
+
 
 } )
 ; // End

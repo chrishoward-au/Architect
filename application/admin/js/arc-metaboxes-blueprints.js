@@ -31,6 +31,7 @@ jQuery( document ).ready( function ()
   jQuery( "fieldset#_architect-_blueprints_content-source" ).on( 'change', function ()
   {
     pzarc_show_hide_content_tabs( jQuery( this ).find( ":checked" ).val().trim() );
+    
   } );
 
 
