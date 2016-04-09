@@ -814,6 +814,7 @@
     $exclude_prefixes = array(
       '_blueprints',
       '_panels',
+      'panels_',
       '_animation',
       '_pzarc_pagebuilder',
       '_hw',

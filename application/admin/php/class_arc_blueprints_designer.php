@@ -81,6 +81,7 @@ pzdb('bp_Designer_start');
           update_option( 'architect_custom_fields', $this->custom_fields );
 //          var_dump('Custom fields updated');
         }
+//        $this->custom_fields = apply_filters('arc_custom_field_list',$this->custom_fields);
         if ( ! empty( $_GET[ 'post' ] ) ) {
           $this->postmeta = get_post_meta( $_GET[ 'post' ] );
         }
