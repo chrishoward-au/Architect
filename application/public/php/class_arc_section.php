@@ -232,36 +232,19 @@
     /**
      * @param $panel_def
      */
-    public function render_panel( $panel_def, $panel_number, $class, $panel_class, &$arc_query ) {
-//      var_dump($panel_number, $class, $panel_class);
-      pzdb( 'top of render panel ' . get_the_id() );
+    public function render_panel( $panel_def, $panel_number, $class, $panel_class, &$post, $postid ) {
+      $postid = ( empty( $postid ) ? 'NoID' : $postid );
+      pzdb( 'top of render panel ' . $postid );
       $this->panel_number = $panel_number;
 
-      // What if content source is not CPT?
-      switch ( true ) {
-
-        case ( ! empty( $arc_query->post ) ) :
-          $post   = $arc_query->post;
-          $postid = $arc_query->post->ID;
-          break;
-        case (is_object($arc_query)):
-          break;
-        default:
-          // Then it is an array... maybe...
-          // This happens on non-post types, like dummy content type
-          // TODO: Make these something more useful!
-          $post   = $arc_query[ $this->panel_number - 1 ];
-          $postid = 'NoID';
-
-      }
-
-//      var_dump($arc_query->post);
-      $postid   = ( empty( $postid ) ? 'NoID' : $postid );
+//      $post   = apply_filters( 'arc_set_post', $this->panel_number, $post_data );
+//      $postid = apply_filters( 'arc_set_postid', $this->panel_number, $post_data );
+//d($post);
       $settings = $this->section[ 'section-panel-settings' ];
       $toshow   = json_decode( $settings[ '_panels_design_preview' ], true );
-      pzdb( 'json decode ' . get_the_id() );
+      pzdb( 'json decode ' . $postid );
       $panel_class->set_data( $post, $toshow, $settings, $this->panel_number );
-      pzdb( 'set data ' . get_the_id() );
+      pzdb( 'set data ' . $postid );
 //      $elements = array();
 //
 //      // Massage toshow to be more usable here
@@ -286,40 +269,20 @@
 
       $image_in_bg = ( ! empty( $toshow[ 'image' ][ 'show' ] ) && $settings[ '_panels_design_feature-location' ] === 'fill' ) ? ' using-bgimages' : '';
 
-//      switch ($settings[ '_panels_design_background-position' ]) {
-//
-//        case 'fill':
-//          $image_in_bg = ' using-bgimages';
-//          break;
-//
-//        case 'align':
-//          $image_in_bg = ' using-aligned-bgimages';
-//          break;
-//
-//      }
       // TODO: Added an extra div here to pre-empt the structure needed for accordions. Tho, needs some work as it breaks layout. Maybe conditional
       // TODO: Probably use jQuery Collapse for accordions
 
       /** ACCORDION TITLES */
       if ( 'accordion' === $this->layout_mode ) {
-        //This is a Dummy content specific hack fix
-        if ( is_array( $post ) ) {
-          $accordion_title = ( isset( $this->table_accordion_titles[ $this->panel_number - 1 ] ) ) ? $this->table_accordion_titles[ $this->panel_number - 1 ] : $post[ 'title' ][ 'title' ];
-        } else {
-          $accordion_title = ( isset( $this->table_accordion_titles[ $this->panel_number - 1 ] ) ) ? $this->table_accordion_titles[ $this->panel_number - 1 ] : $post->post_title;
-        }
-//        $accordion_title = isset($post['title']['title'])?$post['title']['title']:$post->post_title;
-//        if (isset($this->table_accordion_titles) && !empty($this->table_accordion_titles) && isset($this->table_accordion_titles[ $panel_def ])) {
-//          $accordion_title = do_shortcode($this->table_accordion_titles[ $this->panel_number ]);
-//        }
-        //'_blueprint_section-' . $this->section_number . '-accordion-titles'
+//        d($post);
+        $accordion_title = ( isset( $this->table_accordion_titles[ $this->panel_number - 1 ] ) )
+          ? $this->table_accordion_titles[ $this->panel_number - 1 ]
+          : $panel_class->set_accordion_title( $post );
         echo '<div class="pzarc-accordion title ' . ( ( $this->panel_number === 1 && ! empty( $this->blueprint[ '_blueprints_accordion-closed' ] ) ) ? 'open' : 'close' ) . '">' . $accordion_title . '</div>';
       }
 
-
       static $panel_count = 1;
       $odds_evens_bp = ( $panel_count ++ % 2 ? ' odd-panel' : ' even-panel' );
-
 
       // Add standard identifying WP classes to the whole panel
       // TODO: WHY??? Is that what WP does? Aren't they in the article anyways? Temporarily don't do it.
@@ -371,29 +334,20 @@
           }
           break;
       }
-      pzdb( 'after feature before ' . get_the_id() );
+      pzdb( 'after feature before ' . $postid );
 
       $has_components = false;
+      // Work out if there are any components to show
       foreach ( $toshow as $k => $v ) {
-        switch ( $k ) {
-          case 'title' :
-          case 'content' :
-          case 'excerpt' :
-          case 'meta1' :
-          case 'meta2' :
-          case 'meta3' :
-          case 'custom1' :
-          case 'custom2' :
-          case 'custom3' :
-            $has_components = ! empty( $v[ 'show' ] );
-            break;
-          case 'feature':
-            if ( ! empty( $v[ 'show' ] ) && $settings[ '_panels_design_feature-location' ] === 'components' ) {
-              $has_components = true;
-            }
-            break;
+        if ( $k === 'feature' ) {
+          if ( ! empty( $v[ 'show' ] ) && $settings[ '_panels_design_feature-location' ] === 'components' ) {
+            $has_components = true;
+          }
+        } else {
+          $has_components = ! empty( $v[ 'show' ] );
         }
-        if ( $has_components ) {
+
+        if ( $has_components ) { // Only need to find the first occurrence
           break;
         }
       }
@@ -406,7 +360,7 @@
 //var_dump($panel_def);
       /** Components */
 
-      pzdb( 'top of components ' . get_the_id() );
+      pzdb( 'top of components ' . $postid );
       foreach ( $toshow as $component_type => $value ) {
         if ( $component_type === 'image' && $settings[ '_panels_design_feature-location' ] !== 'components' ) {
           $value[ 'show' ] = false;
@@ -430,7 +384,7 @@
         }
 
       }
-      pzdb( 'bottom of components ' . get_the_id() );
+      pzdb( 'bottom of components ' . $postid );
 
 
       /** Close components wrapper */

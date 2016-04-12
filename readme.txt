@@ -3,7 +3,7 @@ Contributors: chrishoward
 Tags: content,display,posts,pages,gallery,slider,tabs,tabbed,tabular,widget,hooks
 Requires at least: 3.5.0
 Tested up to: 4.5
-Stable tag: 1.9.1
+Stable tag: 2.0.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Plugin URI: http://architect4wp.com
@@ -96,6 +96,13 @@ TODO: cURL support warning
 2. Slider example
 
 == Changelog ==
+
+= 2.0.0
+* CHANGED: Improved extensibility for custom content.
+* TODO: Architect Prefab
+* TODO: Data dictionary
+* TODO: Variable component types
+* TODO: Change contacts to ZenDesk
 
 = 1.9.1 : 25 March 2016 =
 * FIXED: Removed Whoops debugger

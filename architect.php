@@ -4,7 +4,7 @@
     Plugin Name: Architect
     Plugin URI: http://architect4wp.com
     Description: Architect is a multipurpose, all-in-one content layout builder. <strong>Build your own slider, grid, tabbed, gallery, masonry, accordion or tabular layouts with ANY content source</strong>. Display using shortcodes, widgets, Headway blocks, WP action hooks and template tags, and WP Gallery shortcode.
-    Version: 1.9.1
+    Version: 2.0.0
     Author: Chris Howard
     Author URI: http://pizazzwp.com
     License: GNU GPL v2
@@ -40,7 +40,7 @@
       /**
        * REMEMBER TO UPDATE VERSION IN arc-admin.scss
        */
-      define( 'PZARC_VERSION', '1.9.1' );
+      define( 'PZARC_VERSION', '2.0.0' );
 
       define( 'PZARC_NAME', 'pzarchitect' ); // This is also same as the locale
       define( 'PZARC_FOLDER', '/pizazzwp-architect' );

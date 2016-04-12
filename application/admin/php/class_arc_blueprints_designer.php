@@ -158,7 +158,7 @@ pzdb('bp_Designer_start');
                         <a class="pzarc-button-help" href="http://architect4wp.com/codex-listings/" target="_blank">
                         <span class="dashicons dashicons-book"></span>
                         Documentation</a>&nbsp;
-                        <a class="pzarc-button-help" href="https://pizazzwp.freshdesk.com/support/tickets/new" target="_blank">
+                        <a class="pzarc-button-help" href="https://pizazzwp.zendesk.com/anonymous_requests/new" target="_blank">
                         <span class="dashicons dashicons-admin-tools"></span>
                         Tech support</a>
                         <a class="pzarc-button-help" href="https://shop.pizazzwp.com/checkout/customer-dashboard/" target="_blank">
@@ -547,7 +547,7 @@ pzdb('bp_Designer_start');
                         <a class="pzarc-button-help" href="http://architect4wp.com/codex-listings/" target="_blank">
                         <span class="dashicons dashicons-book"></span>
                         Documentation</a><br>
-                        <a class="pzarc-button-help" href="https://pizazzwp.freshdesk.com/support/tickets/new" target="_blank">
+                        <a class="pzarc-button-help" href="https://pizazzwp.zendesk.com/anonymous_requests/new" target="_blank">
                         <span class="dashicons dashicons-admin-tools"></span>
                         Tech support</a>
                         <a class="pzarc-button-help" href="https://shop.pizazzwp.com/checkout/customer-dashboard/" target="_blank">
@@ -4264,7 +4264,7 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
           $pzarc_custom_fields = array_merge( array(
                                                 'use_empty'  => 'No field. Use prefix and suffix only',
                                                 'post_title' => 'Post Title'
-                                              ), apply_filters('arc_custom_field_list',$this->custom_fields ));
+                                              ), apply_filters('arc_custom_field_list',$this->custom_fields,$this->postmeta[ '_blueprints_content-source' ][ 0 ] ));
 
           for ( $i = 1; $i <= $cfcount; $i ++ ) {
             $cfname     = 'Custom field ' . $i . ( ! empty( $this->postmeta[ '_panels_design_cfield-' . $i . '-name' ][ 0 ] ) ? ': <br>' . $this->postmeta[ '_panels_design_cfield-' . $i . '-name' ][ 0 ] : '' );

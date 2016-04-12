@@ -19,12 +19,13 @@
     public $section;
     public $arc_query;
 
+
     /**
      *
      */
-    public function __construct()
+    public function __construct($build)
     {
-
+      parent::__construct( $build );
       parent::initialise_data();
 
       // Faker requires PHP 5.3.3
@@ -218,6 +219,7 @@
     public function get_meta(
         &$post
     ) {
+      //ddd($post);
       /** META */
       if ($this->toshow[ 'meta1' ][ 'show' ] ||
           $this->toshow[ 'meta2' ][ 'show' ] ||
@@ -269,7 +271,7 @@
       $post_count = (defined('PZARC_PRO') ? count($this->arc_query) : 15);
       for ($j = 0; $j < $post_count; $j++) {
 
-        $section[ $section_no ]->render_panel($panel_def, $i, $class, $panel_class, $this->arc_query);
+        $section[ $section_no ]->render_panel($panel_def, $i, $class, $panel_class, $this->arc_query[$j],'NoID');
 
         if ($i++ >= $this->build->blueprint[ '_blueprints_section-' . ($section_no - 1) . '-panels-per-view' ] && !empty($this->build->blueprint[ '_blueprints_section-' . ($section_no - 1) . '-panels-limited' ])) {
           break;
@@ -317,4 +319,9 @@
       return $nav_items;
 
     }
+
+     function set_accordion_title($post){
+         return $post[ 'title' ][ 'title' ];
+    }
+
   }
