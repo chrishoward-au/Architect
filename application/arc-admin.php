@@ -436,7 +436,7 @@
                         <!-- <a class="pzarc-button-help" href="https://pizazzwp.freshdesk.com/support/discussions" target="_blank">
                         <span class="dashicons dashicons-groups"></span>
                         Community support</a>&nbsp; -->
-                        <a class="pzarc-button-help" href="https://pizazzwp.freshdesk.com/support/tickets/new" target="_blank">
+                        <a class="pzarc-button-help" href="https://pizazzwp.zendesk.com/anonymous_requests/new" target="_blank">
                         <span class="dashicons dashicons-admin-tools"></span>
                         Tech support</a>
                         <a class="pzarc-button-help" href="https://shop.pizazzwp.com/checkout/customer-dashboard/" target="_blank">
@@ -670,8 +670,7 @@ add_action(\'init\',\'gs_init\');
         echo '<p>You can download this version anytime directly from: <a href="https://s3.amazonaws.com/341public/LATEST/Architect/pizazzwp-architect-' . str_replace( '.', '', PZARC_VERSION ) . '.zip">Version ' . PZARC_VERSION . '</a></p>';
       }
       echo '<p>' . __( 'For more detailed help, visit', 'pzarchitect' ) . ' <a href="http://architect4wp.com/codex-listings" target="_blank" class="arc-codex">' . __( 'Architect documentation at architect4wp.com', 'pzarchitect' ) . '</a></p>
-                        <p>' . __( 'For <strong>technical support</strong>, either fill out the form below or email', 'pzarchitect' ) . ' <a href="mailto://support@pizazzwp.com" target="_blank" class="arc-codex">' . __( 'support@pizazzwp.com', 'pzarchitect' ) . '</a></p>
-                        <p>' . __( 'For <strong>community and peer-to-peer support</strong>, visit the', 'pzarchitect' ) . ' <a href="https://pizazzwp.freshdesk.com/support/discussions" target="_blank" class="arc-codex">' . __( 'Architect Community', 'pzarchitect' ) . '</a></p>
+                        <p>' . __( 'For <strong>technical support</strong>, either submit a ticket below or email', 'pzarchitect' ) . ' <a href="mailto://support@pizazzwp.com" target="_blank" class="arc-codex">' . __( 'support@pizazzwp.com', 'pzarchitect' ) . '</a></p>
                     <h3>' . __( 'Things to try first', 'pzarchitect' ) . '</h3>
                     <ul>
                   	<li>If updates are not showing, try looking in Dashboard > Updates. If they still don\'t show, try deactivating and reactivating the Architect licence and trying again.</li>
@@ -681,18 +680,19 @@ add_action(\'init\',\'gs_init\');
                     </div>
                     </div>';
       if ( ! $lite ) {
-        echo '      <h2>Submit a help request directly</h2>
-                                  <div class="arc-info-boxes">
-                    <div class="arc-info col1">
-
-          <script type="text/javascript" src="http://assets.freshdesk.com/widget/freshwidget.js"></script>
-            <style type="text/css" media="screen, projection">
-        @import url(http://assets.freshdesk.com/widget/freshwidget.css);
-            </style>
-            <iframe class="freshwidget-embedded-form" id="freshwidget-embedded-form" src="https://pizazzwp.freshdesk.com/widgets/feedback_widget/new?&widgetType=embedded&formTitle=&screenshot=no&searchArea=no" scrolling="yes" height="1050px" width="90%" frameborder="0"  style="margin:20px 10px 10px 40px;background:#eee;overflow-y: auto;">
-            </iframe>
-                </div>
-           </div>';
+        echo '<a class="button-primary" href="https://pizazzwp.zendesk.com/anonymous_requests/new" target=_blank>Submit a ticket</a>';
+//        echo '      <h2>Submit a help request directly</h2>
+//                                  <div class="arc-info-boxes">
+//                    <div class="arc-info col1">
+//
+//          <script type="text/javascript" src="http://assets.freshdesk.com/widget/freshwidget.js"></script>
+//            <style type="text/css" media="screen, projection">
+//        @import url(http://assets.freshdesk.com/widget/freshwidget.css);
+//            </style>
+//            <iframe class="freshwidget-embedded-form" id="freshwidget-embedded-form" src="https://pizazzwp.freshdesk.com/widgets/feedback_widget/new?&widgetType=embedded&formTitle=&screenshot=no&searchArea=no" scrolling="yes" height="1050px" width="90%" frameborder="0"  style="margin:20px 10px 10px 40px;background:#eee;overflow-y: auto;">
+//            </iframe>
+//                </div>
+//           </div>';
       }
       echo '                </div>
 
@@ -975,13 +975,7 @@ add_action(\'init\',\'gs_init\');
 
 			<h2>' . $title . '</h2>
 			<h3>Architect is installed but not usable accessible WP Admin until Redux is installed/activated.</h3>
-        <script type="text/javascript" src="http://assets.freshdesk.com/widget/freshwidget.js"></script>
-            <style type="text/css" media="screen, projection">
-      @import url(http://assets.freshdesk.com/widget/freshwidget.css);
-            </style>
-            <iframe class="freshwidget-embedded-form" id="freshwidget-embedded-form" src="https://pizazzwp.freshdesk.com/widgets/feedback_widget/new?&widgetType=embedded&formTitle=Submit+a+help+request&screenshot=no&searchArea=no" scrolling="no" height="850px" width="90%" frameborder="0"  style="margin:20px 10px 10px 40px;background:#eee;overflow-y: auto;">
-            </iframe>
-
+        <a class="button-primary" href="https://pizazzwp.zendesk.com/anonymous_requests/new" target=_blank>Submit a ticket</a>
 			</div></div>';
 
   }
