@@ -4377,7 +4377,7 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
                   'default'  => '',
                   //                'data'     => 'callback',
                   //                'args'     => array( 'pzarc_get_custom_fields' ),
-                  'options'  => $this->custom_fields,
+                  'options'  => $pzarc_custom_fields,
                   'subtitle' => 'Select a custom field that contains URLs you want to use as the link',
                 ),
                 array(

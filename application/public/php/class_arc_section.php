@@ -237,22 +237,11 @@
       pzdb( 'top of render panel ' . $postid );
       $this->panel_number = $panel_number;
 
-//      $post   = apply_filters( 'arc_set_post', $this->panel_number, $post_data );
-//      $postid = apply_filters( 'arc_set_postid', $this->panel_number, $post_data );
-//d($post);
       $settings = $this->section[ 'section-panel-settings' ];
       $toshow   = json_decode( $settings[ '_panels_design_preview' ], true );
       pzdb( 'json decode ' . $postid );
       $panel_class->set_data( $post, $toshow, $settings, $this->panel_number );
       pzdb( 'set data ' . $postid );
-//      $elements = array();
-//
-//      // Massage toshow to be more usable here
-//      foreach ($toshow as $k => $v) {
-//        if ($v[ 'show' ]) {
-//          $elements[ ] = array_merge(array('key' => $k), $v);
-//        }
-//      }
 
       $line_out = $panel_def;
 
@@ -274,7 +263,6 @@
 
       /** ACCORDION TITLES */
       if ( 'accordion' === $this->layout_mode ) {
-//        d($post);
         $accordion_title = ( isset( $this->table_accordion_titles[ $this->panel_number - 1 ] ) )
           ? $this->table_accordion_titles[ $this->panel_number - 1 ]
           : $panel_class->set_accordion_title( $post );

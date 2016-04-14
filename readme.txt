@@ -101,8 +101,10 @@ TODO: cURL support warning
 * CHANGED: Improved extensibility for custom content.
 * TODO: Architect Prefab
 * TODO: Data dictionary
-* TODO: Variable component types
-* TODO: Change contacts to ZenDesk
+* TODO: Variable component types :/
+* CHANGED: All contacts now point to ZenDesk
+* TODO Test NextGen
+* TODO: Separate Snippets, Showcases and Testimonials
 
 = 1.9.1 : 25 March 2016 =
 * FIXED: Removed Whoops debugger
