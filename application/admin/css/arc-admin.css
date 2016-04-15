@@ -1788,3 +1788,8 @@ body.arc-beginner .redux-notice-field {
   border-bottom: solid 4px #ffc107 !important;
   background: #222;
   color: #fff; }
+
+.widefat .column-layout-type {
+  width: 60px; }
+.widefat .column-_blueprints_content-source {
+  width: 8em; }

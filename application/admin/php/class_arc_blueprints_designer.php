@@ -16,7 +16,7 @@
 //global $wp_meta_boxes;
 //      var_dump($wp_meta_boxes);
       $this->defaults = $defaults;
-pzdb('bp_Designer_start');
+      pzdb( 'bp_Designer_start' );
       // load extra stuffs
       if ( is_admin() ) {
         add_action( 'admin_head', array( $this, 'content_blueprints_admin_head' ) );
@@ -86,7 +86,7 @@ pzdb('bp_Designer_start');
           $this->postmeta = get_post_meta( $_GET[ 'post' ] );
         }
       }
-      pzdb('end: '.__CLASS__.'\\'.__FUNCTION__);
+      pzdb( 'end: ' . __CLASS__ . '\\' . __FUNCTION__ );
     }
 
     public function admin_init() {
@@ -99,7 +99,7 @@ pzdb('bp_Designer_start');
      * @param  [type] $hook [description]
      */
     public function content_blueprints_admin_enqueue( $hook ) {
-      pzdb(__FUNCTION__);
+      pzdb( __FUNCTION__ );
       $screen = get_current_screen();
       if ( 'arc-blueprints' == $screen->id ) {
         //TODO: Update this for 1.8!
@@ -140,7 +140,7 @@ pzdb('bp_Designer_start');
     }
 
     function blueprints_description( $content ) {
-      pzdb(__FUNCTION__);
+      pzdb( __FUNCTION__ );
       // todo: MAKE SURE ALL PRESETS USE DUMMY CONTENT AND NO FILTERS
 
       // TODO: How can we make this not load until we want it too?
@@ -223,19 +223,23 @@ pzdb('bp_Designer_start');
      * @param [type] $columns [description]
      */
     public function add_blueprint_columns( $columns ) {
-      pzdb(__FUNCTION__);
+      pzdb( __FUNCTION__ );
       unset( $columns[ 'thumbnail' ] );
-      $pzarc_front  = array_slice( $columns, 0, 2 );
-      $pzarc_back   = array_slice( $columns, 2 );
-      $pzarc_insert = array(
+      $pzarc_checkbox    = array_slice( $columns, 0, 1 );
+      $pzarc_front       = array_slice( $columns, 1, 2 );
+      $pzarc_back        = array_slice( $columns, 2 );
+      $pzarc_insert      = array(
         '_blueprints_short-name'     => __( 'Shortname', 'pzarchitect' ),
-        'layout-type'                => __( 'Type', 'pzarchitect' ),
         '_blueprints_content-source' => __( 'Content source', 'pzarchitect' ),
         '_blueprints_description'    => __( 'Description', 'pzarchitect' ),
+        'layout-type'                => __( 'Type', 'pzarchitect' ),
         //          'id'                         => __('ID', 'pzarchitect'),
       );
+      $pzarc_layout_type = array(
+        'layout-type' => __( 'Type', 'pzarchitect' ),
+      );
 
-      return array_merge( $pzarc_front, $pzarc_insert, $pzarc_back );
+      return array_merge( $pzarc_checkbox,$pzarc_layout_type, $pzarc_front, $pzarc_insert, $pzarc_back );
     }
 
     /**
@@ -245,7 +249,7 @@ pzdb('bp_Designer_start');
      * @param [type] $post_id [description]
      */
     public function add_blueprint_column_content( $column, $post_id ) {
-      pzdb(__FUNCTION__);
+      pzdb( __FUNCTION__ );
 
       $post_meta = get_post_meta( $post_id );
 
@@ -277,17 +281,34 @@ pzdb('bp_Designer_start');
           break;
 
         case 'layout-type':
+          $layout_imgs = array(
+            'basic'     => array(
+              'img' => PZARC_PLUGIN_APP_URL . 'shared/assets/images/metaboxes/layouts-grid.png'
+            ),
+            'slider'    => array(
+              'img' => PZARC_PLUGIN_APP_URL . 'shared/assets/images/metaboxes/layouts-slider.png'
+            ),
+            'tabbed'    => array(
+              'img' => PZARC_PLUGIN_APP_URL . 'shared/assets/images/metaboxes/layouts-tabbed.png'
+            ),
+            'masonry'   => array(
+              'img' => PZARC_PLUGIN_APP_URL . 'shared/assets/images/metaboxes/layouts-masonry.png'
+            ),
+            'table'     => array(
+              'img' => PZARC_PLUGIN_APP_URL . 'shared/assets/images/metaboxes/layouts-tabular.png'
+            ),
+            'accordion' => array(
+              'img' => PZARC_PLUGIN_APP_URL . 'shared/assets/images/metaboxes/layouts-accordion.png'
+            ),
+          );
+
           if ( ! empty( $post_meta[ '_blueprints_section-0-layout-mode' ][ 0 ] ) ) {
-            echo ucfirst( $post_meta[ '_blueprints_section-0-layout-mode' ][ 0 ] );
+            $layout_type = ( $post_meta[ '_blueprints_section-0-layout-mode' ][ 0 ] );
           } else {
-            echo 'Grid';
+            $layout_type = 'basic';
           }
-//          if (!empty($post_meta[ '_blueprints_section-0-layout-mode' ][ 0 ]) && !empty($post_meta[ '_blueprints_section-1-layout-mode' ][ 0 ])) {
-//            echo '<br>' . '2: ' . ucfirst($post_meta[ '_blueprints_section-1-layout-mode' ][ 0 ]);
-//          }
-//          if ((!empty($post_meta[ '_blueprints_section-0-layout-mode' ][ 0 ]) || !empty($post_meta[ '_blueprints_section-1-layout-mode' ][ 0 ])) && !empty($post_meta[ '_blueprints_section-2-layout-mode' ])) {
-//            echo '<br>' . '3: ' . ucfirst($post_meta[ '_blueprints_section-2-layout-mode' ][ 0 ]);
-//          }
+          $layout_image = $layout_imgs[ $layout_type ][ 'img' ];
+          echo '<div class="pzarc-layout-type-column"><img src="' . $layout_image . '" width="42"></div>';
           break;
       }
     }
@@ -300,7 +321,7 @@ pzdb('bp_Designer_start');
 
 
     function pzarc_mb_blueprint_tabs( $metaboxes, $defaults_only = false ) {
-      pzdb(__FUNCTION__);
+      pzdb( __FUNCTION__ );
       $prefix   = '_blueprint_tabs_'; // declare prefix
       $sections = array();
       global $_architect_options;
@@ -452,7 +473,7 @@ pzdb('bp_Designer_start');
      * @return array
      */
     function pzarc_mb_blueprint_general_settings( $metaboxes, $defaults_only = false ) {
-      pzdb(__FUNCTION__);
+      pzdb( __FUNCTION__ );
       $prefix = '_blueprints_'; // declare prefix
       global $_architect_options;
       $cfwarn          = false;
@@ -580,7 +601,7 @@ pzdb('bp_Designer_start');
      * LAYOUT
      */
     function pzarc_mb_blueprint_design( $metaboxes, $defaults_only = false ) {
-      pzdb(__FUNCTION__);
+      pzdb( __FUNCTION__ );
       $prefix   = '_blueprints_'; // declare prefix
       $sections = array();
       global $_architect_options;
@@ -1247,7 +1268,7 @@ pzdb('bp_Designer_start');
 
 
     function pzarc_mb_blueprint_types( $metaboxes, $defaults_only = false ) {
-      pzdb(__FUNCTION__);
+      pzdb( __FUNCTION__ );
       global $_architect;
       global $_architect_options;
       if ( empty( $_architect_options ) ) {
@@ -2350,7 +2371,7 @@ pzdb('bp_Designer_start');
      * @return array
      */
     function pzarc_mb_blueprint_content_selection( $metaboxes, $defaults_only = false ) {
-      pzdb(__FUNCTION__);
+      pzdb( __FUNCTION__ );
 
       // TODO: Setup a loop that reads the object containing content type info as appened by the content type classes. Will need a means of letting js know tho.
       $prefix   = '_content_general_'; // declare prefix
@@ -2403,45 +2424,45 @@ pzdb('bp_Designer_start');
         }
       }
       /** FILTERS */
-      $sections[ '_settings' ]               = $blueprint_content_common[ 0 ][ 'settings' ][ 'sections' ];
-      $sections[ '_filters' ]                = $blueprint_content_common[ 0 ][ 'filters' ][ 'sections' ];
+      $sections[ '_settings' ] = $blueprint_content_common[ 0 ][ 'settings' ][ 'sections' ];
+      $sections[ '_filters' ]  = $blueprint_content_common[ 0 ][ 'filters' ][ 'sections' ];
 
       $sections[ '_settings' ][ 'fields' ][] =
-      array(
-        'title'    => __( 'Custom field sort', 'pzarchitect' ),
-        'id'       => $prefix.'sort-section',
-        'type'     => 'section',
-        'indent'   => true,
-        'required' => array( '_content_general_orderby', 'equals', 'custom' )
-      );
-      $sections[ '_settings' ][ 'fields' ][] =
         array(
-          'type'     => 'select',
-          'title'    => 'Custom sort field',
-          'default'  => '',
-          'options'  => $this->custom_fields,
-          'id'       => $prefix . 'custom-sort-key',
+          'title'    => __( 'Custom field sort', 'pzarchitect' ),
+          'id'       => $prefix . 'sort-section',
+          'type'     => 'section',
+          'indent'   => true,
+          'required' => array( '_content_general_orderby', 'equals', 'custom' )
         );
       $sections[ '_settings' ][ 'fields' ][] =
         array(
-          'type'     => 'select',
-          'title'    => 'Custom field type',
-          'default'  => 'CHAR',
-          'options'  => array(
-            'NUMERIC'  => 'Number',
-            'BINARY'   => 'True/false',
-            'CHAR'     => 'Text',
-            'NUMERICDATE'  => 'Numerical date',
-            'DATE'     => 'Date',
-            'DATETIME' => 'Date time',
-            'TIME'     => 'Time',
+          'type'    => 'select',
+          'title'   => 'Custom sort field',
+          'default' => '',
+          'options' => $this->custom_fields,
+          'id'      => $prefix . 'custom-sort-key',
+        );
+      $sections[ '_settings' ][ 'fields' ][] =
+        array(
+          'type'    => 'select',
+          'title'   => 'Custom field type',
+          'default' => 'CHAR',
+          'options' => array(
+            'NUMERIC'     => 'Number',
+            'BINARY'      => 'True/false',
+            'CHAR'        => 'Text',
+            'NUMERICDATE' => 'Numerical date',
+            'DATE'        => 'Date',
+            'DATETIME'    => 'Date time',
+            'TIME'        => 'Time',
           ),
-          'id'       => $prefix . 'custom-sort-key-type',
-          'desc'=>__('Most plugins, such as WooCommerce, will store dates numerically, even though it will appear as a normal date.','pzarchitect')
+          'id'      => $prefix . 'custom-sort-key-type',
+          'desc'    => __( 'Most plugins, such as WooCommerce, will store dates numerically, even though it will appear as a normal date.', 'pzarchitect' )
         );
 
       // Custom fields filtering and sorting
-      $prefix                              = '_content_customfields_'; // declare prefix
+      $prefix = '_content_customfields_'; // declare prefix
 
 
       $sections[ '_content_customfields' ] = array(
@@ -2456,40 +2477,41 @@ pzdb('bp_Designer_start');
             'desc'  => 'A WP install can have dozens and dozens of custom fields, so it\'s up to you to know the custom field name you require.<br><strong style="color:tomato;">It\'s up to you to ensure the chosen field is available to the post type being displayed</strong>.<br> See <a href="https://codex.wordpress.org/Class_Reference/WP_Query#Custom_Field_Parameters" target=_blank>WordPress Codex, Class Reference WP_Query, Custom Field Parameters</a> for detailed usage information. <br>Note: You can do not need to set all three fields. You may use just one, two or all three.',
           ),
           array(
-            'title'=>__('Filter match requirement','pzarchitect'),
-            'id'=>'_blueprints_content-fields-filter-jointype',
-            'type'=>'button_set',
-            'default'=>'AND',
-            'options'=>array('AND'=>'Must match ALL','OR'=>'May match ANY'),
-            'desc'=> __('Each filter is optional. Leave the field empty to ignore it.','pzarchitect')
+            'title'   => __( 'Filter match requirement', 'pzarchitect' ),
+            'id'      => '_blueprints_content-fields-filter-jointype',
+            'type'    => 'button_set',
+            'default' => 'AND',
+            'options' => array( 'AND' => 'Must match ALL', 'OR' => 'May match ANY' ),
+            'desc'    => __( 'Each filter is optional. Leave the field empty to ignore it.', 'pzarchitect' )
           )
-        ));
-      for ($cfi=1;$cfi<=3;$cfi++){
-        $sections[ '_content_customfields' ]['fields'][] =
+        )
+      );
+      for ( $cfi = 1; $cfi <= 3; $cfi ++ ) {
+        $sections[ '_content_customfields' ][ 'fields' ][] =
           array(
-            'title'    => __( 'Filter field '.$cfi, 'pzarchitect' ),
-            'id'       => '_blueprints_content-fields-filter-section'.$cfi,
-            'type'     => 'section',
-            'indent'   => true,
+            'title'  => __( 'Filter field ' . $cfi, 'pzarchitect' ),
+            'id'     => '_blueprints_content-fields-filter-section' . $cfi,
+            'type'   => 'section',
+            'indent' => true,
           );
-        $sections[ '_content_customfields' ]['fields'][] =
+        $sections[ '_content_customfields' ][ 'fields' ][] =
           array(
             'type'     => 'select',
             'title'    => 'Field',
             'subtitle' => __( 'For some plugins, like WooCommerce, the field you need to use is the one beginning with an underscore.', 'pzarchitect' ),
             'default'  => '',
-//            'options'  => array_merge( array( 'title' => 'TITLE', 'date' => 'DATE' ), $this->custom_fields ),
+            //            'options'  => array_merge( array( 'title' => 'TITLE', 'date' => 'DATE' ), $this->custom_fields ),
             'options'  => $this->custom_fields,
-            'id'       => '_blueprints_content-fields-filter-key'.$cfi,
+            'id'       => '_blueprints_content-fields-filter-key' . $cfi,
           );
-        $sections[ '_content_customfields' ]['fields'][] =
+        $sections[ '_content_customfields' ][ 'fields' ][] =
 
           array(
             'type'     => 'select',
             'title'    => 'Field type',
             'subtitle' => 'You need to know how the data is stored. For example, the Types plugin stores dates in the numeric Unix timestamp format. Therefore, you would select Numeric here, and Timestamp for the field value format.',
             'default'  => 'CHAR',
-            'required' => array('_blueprints_content-fields-filter-key'.$cfi,'!=',''),
+            'required' => array( '_blueprints_content-fields-filter-key' . $cfi, '!=', '' ),
             'options'  => array(
               'NUMERIC'  => 'NUMERIC',
               'BINARY'   => 'BINARY',
@@ -2501,25 +2523,25 @@ pzdb('bp_Designer_start');
               'TIME'     => 'TIME',
               'UNSIGNED' => 'UNSIGNED'
             ),
-            'id'       => '_blueprints_content-fields-filter-type'.$cfi,
+            'id'       => '_blueprints_content-fields-filter-type' . $cfi,
           );
-        $sections[ '_content_customfields' ]['fields'][] =
+        $sections[ '_content_customfields' ][ 'fields' ][] =
 
           array(
-            'type'    => 'text',
-            'title'   => 'Filter value',
-            'default' => '',
-            'id'      => '_blueprints_content-fields-filter-value'.$cfi,
-            'required' => array('_blueprints_content-fields-filter-key'.$cfi,'!=',''),
+            'type'     => 'text',
+            'title'    => 'Filter value',
+            'default'  => '',
+            'id'       => '_blueprints_content-fields-filter-value' . $cfi,
+            'required' => array( '_blueprints_content-fields-filter-key' . $cfi, '!=', '' ),
           );
-        $sections[ '_content_customfields' ]['fields'][] =
+        $sections[ '_content_customfields' ][ 'fields' ][] =
 
           array(
             'type'     => 'select',
             'title'    => 'Filter value type',
             'subtitle' => 'Set this to ensure correct matching with the field data type. E.g. For Types the plugin date fields set this to Timestamp, which will convert your Filter value to a timestamp value.',
             'default'  => 'string',
-            'required' => array('_blueprints_content-fields-filter-key'.$cfi,'!=',''),
+            'required' => array( '_blueprints_content-fields-filter-key' . $cfi, '!=', '' ),
             'options'  => array(
               'numeric'   => 'Numeric',
               'binary'    => 'True/False',
@@ -2529,15 +2551,15 @@ pzdb('bp_Designer_start');
               'time'      => 'Time',
               'timestamp' => 'Timestamp'
             ),
-            'id'       => '_blueprints_content-fields-filter-value-type'.$cfi,
+            'id'       => '_blueprints_content-fields-filter-value-type' . $cfi,
           );
-        $sections[ '_content_customfields' ]['fields'][] =
+        $sections[ '_content_customfields' ][ 'fields' ][] =
 
           array(
-            'type'    => 'select',
-            'title'   => 'Field compare',
-            'default' => '=',
-            'options' => array(
+            'type'     => 'select',
+            'title'    => 'Field compare',
+            'default'  => '=',
+            'options'  => array(
               '='           => '=',
               '!='          => '!=',
               '>'           => '>',
@@ -2553,13 +2575,13 @@ pzdb('bp_Designer_start');
               'EXISTS'      => 'EXISTS',
               'NOT EXISTS'  => 'NOT EXISTS'
             ),
-            'required' => array('_blueprints_content-fields-filter-key'.$cfi,'!=',''),
-            'id'      => '_blueprints_content-fields-filter-compare'.$cfi,
+            'required' => array( '_blueprints_content-fields-filter-key' . $cfi, '!=', '' ),
+            'id'       => '_blueprints_content-fields-filter-compare' . $cfi,
           );
-        $sections[ '_content_customfields' ]['fields'][] =
+        $sections[ '_content_customfields' ][ 'fields' ][] =
 
           array(
-            'id'     => '_blueprints_content-fields-filter-section-end'.$cfi,
+            'id'     => '_blueprints_content-fields-filter-section-end' . $cfi,
             'type'   => 'section',
             'indent' => false,
           );
@@ -2613,7 +2635,7 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
     }
 
     function pzarc_mb_panels_layout( $metaboxes, $defaults_only = false ) {
-      pzdb(__FUNCTION__);
+      pzdb( __FUNCTION__ );
       global $_architect;
       global $_architect_options;
       if ( empty( $_architect_options ) ) {
@@ -2996,7 +3018,7 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
      * @return array
      */
     function pzarc_mb_titles_settings( $metaboxes, $defaults_only = false ) {
-      pzdb(__FUNCTION__);
+      pzdb( __FUNCTION__ );
       global $_architect;
       global $_architect_options;
       if ( empty( $_architect_options ) ) {
@@ -3309,7 +3331,7 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
     }
 
     function pzarc_mb_meta_settings( $metaboxes, $defaults_only = false ) {
-      pzdb(__FUNCTION__);
+      pzdb( __FUNCTION__ );
       global $_architect;
       global $_architect_options;
       if ( empty( $_architect_options ) ) {
@@ -3459,7 +3481,7 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
     }
 
     function pzarc_mb_features_settings( $metaboxes, $defaults_only = false ) {
-      pzdb(__FUNCTION__);
+      pzdb( __FUNCTION__ );
       global $_architect;
       global $_architect_options;
       if ( empty( $_architect_options ) ) {
@@ -3833,7 +3855,7 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
     }
 
     function pzarc_mb_body_settings( $metaboxes, $defaults_only = false ) {
-      pzdb(__FUNCTION__);
+      pzdb( __FUNCTION__ );
       global $_architect;
       global $_architect_options;
       if ( empty( $_architect_options ) ) {
@@ -4211,7 +4233,7 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
     }
 
     function pzarc_mb_customfields_settings( $metaboxes, $defaults_only = false ) {
-      pzdb(__FUNCTION__);
+      pzdb( __FUNCTION__ );
       global $_architect;
       global $_architect_options;
       if ( empty( $_architect_options ) ) {
@@ -4264,7 +4286,7 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
           $pzarc_custom_fields = array_merge( array(
                                                 'use_empty'  => 'No field. Use prefix and suffix only',
                                                 'post_title' => 'Post Title'
-                                              ), apply_filters('arc_custom_field_list',$this->custom_fields ));
+                                              ), apply_filters( 'arc_custom_field_list', $this->custom_fields ) );
 
           for ( $i = 1; $i <= $cfcount; $i ++ ) {
             $cfname     = 'Custom field ' . $i . ( ! empty( $this->postmeta[ '_panels_design_cfield-' . $i . '-name' ][ 0 ] ) ? ': <br>' . $this->postmeta[ '_panels_design_cfield-' . $i . '-name' ][ 0 ] : '' );
@@ -4502,7 +4524,7 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
 
     private
     static function arc_has_export_data() {
-      pzdb(__FUNCTION__);
+      pzdb( __FUNCTION__ );
       $export_data = get_option( 'arc-export-to-preset' );
       if ( ! empty( $export_data ) ) {
         $title = $export_data[ 'title' ];
@@ -4518,7 +4540,7 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
 
 
   function pzarc_draw_sections_preview() {
-    pzdb(__FUNCTION__);
+    pzdb( __FUNCTION__ );
     // Put in a hidden field with the plugin url for use in js
     $return_html
       = '
@@ -4538,7 +4560,7 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
   }
 
   function show_meta() {
-    pzdb(__FUNCTION__);
+    pzdb( __FUNCTION__ );
     $return_html = '2301';
     $meta        = get_post_meta( 2301 );
     if ( $meta ) {
@@ -4556,7 +4578,7 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
    * @return [type] [description]
    */
   function draw_panel_layout() {
-    pzdb(__FUNCTION__);
+    pzdb( __FUNCTION__ );
     $return_html = '';
 
     // Put in a hidden field with the plugin url for use in js

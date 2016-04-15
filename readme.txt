@@ -97,6 +97,9 @@ TODO: cURL support warning
 
 == Changelog ==
 
+= 1.9.2 =
+* CHANGED: Blueprint list now indicates layout type with an icon
+
 = 1.9.1 : 25 March 2016 =
 * FIXED: Removed Whoops debugger
 
