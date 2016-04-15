@@ -226,7 +226,7 @@
       pzdb( __FUNCTION__ );
       unset( $columns[ 'thumbnail' ] );
       $pzarc_checkbox    = array_slice( $columns, 0, 1 );
-      $pzarc_front       = array_slice( $columns, 1, 2 );
+      $pzarc_front       = array_slice( $columns, 1, 1 );
       $pzarc_back        = array_slice( $columns, 2 );
       $pzarc_insert      = array(
         '_blueprints_short-name'     => __( 'Shortname', 'pzarchitect' ),
