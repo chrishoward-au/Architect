@@ -3,7 +3,7 @@ Contributors: chrishoward
 Tags: content,display,posts,pages,gallery,slider,tabs,tabbed,tabular,widget,hooks
 Requires at least: 3.5.0
 Tested up to: 4.5
-Stable tag: 1.9.1
+Stable tag: 1.9.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Plugin URI: http://architect4wp.com
@@ -99,6 +99,7 @@ TODO: cURL support warning
 
 = 1.9.2 =
 * CHANGED: Blueprint list now indicates layout type with an icon
+* CHANGED: Finally found a way to get the Blueprint CSS to load in the header
 
 = 1.9.1 : 25 March 2016 =
 * FIXED: Removed Whoops debugger

@@ -255,11 +255,13 @@
 
     // Register Blueprint usage on this page if necessary
     $bp_uses = maybe_unserialize(get_option('arc-blueprint-usage'));
-    if ($bp_uses && array_key_exists(get_the_ID().$blueprint,$bp_uses)) {
+    $pzarc_page_id = pzarc_get_page_id();
+    if ($bp_uses && array_key_exists($pzarc_page_id.$blueprint,$bp_uses)) {
       // Probably don't need to do anything
 
     } else {
-      update_option( 'arc-blueprint-usage', maybe_serialize( array( get_the_ID() . $blueprint => array('id'=>get_the_id(),'bp'=>$blueprint ) ) ));
+      $bp_uses[$pzarc_page_id . $blueprint] =array('id'=>$pzarc_page_id,'bp'=>$blueprint );
+      update_option( 'arc-blueprint-usage', maybe_serialize( $bp_uses ));
 
       // Shortcodes will load these late. TODO Should search for shortcode in page
       $filename      = PZARC_CACHE_URL . '/pzarc_blueprint_' . $blueprint . '.css';
