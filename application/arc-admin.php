@@ -326,6 +326,8 @@
         require_once( PZARC_PLUGIN_APP_PATH . '/admin/php/arc-save-process.php' );
         save_arc_layouts( 'all', null, true );
         pzarc_set_defaults();
+        // Clear the registry of Blueprint usages
+        delete_option( 'arc-blueprint-usage' );
         echo '<br><div id="message" class="updated"><p>' . __( 'Architect CSS cache has been rebuilt. Your site should look awesome again!', 'pzarchitect' ) . '</p>
         <p>' . __( 'If your site is using a cache plugin or service, clear that cache too.', 'pzarchitect' ) . '</p></div>';
       }

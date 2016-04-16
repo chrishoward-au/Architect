@@ -252,15 +252,24 @@
     if ('show-none' === $blueprint) {
       return;
     }
-    // Shortcodes will load these late. TODO Should search for shortcode in page
-    $filename      = PZARC_CACHE_URL . '/pzarc_blueprint_' . $blueprint . '.css';
-    $filename_path = PZARC_CACHE_PATH . '/pzarc_blueprint_' . $blueprint . '.css';
-    if (file_exists($filename_path)) {
-      wp_enqueue_style('pzarc_css_blueprint_' . $blueprint, $filename, false, filemtime($filename_path));
-    } else {
-      //how do we tell the developer without an horrid message on the front end?
-    }
 
+    // Register Blueprint usage on this page if necessary
+    $bp_uses = maybe_unserialize(get_option('arc-blueprint-usage'));
+    if ($bp_uses && array_key_exists(get_the_ID().$blueprint,$bp_uses)) {
+      // Probably don't need to do anything
+
+    } else {
+      update_option( 'arc-blueprint-usage', maybe_serialize( array( get_the_ID() . $blueprint => array('id'=>get_the_id(),'bp'=>$blueprint ) ) ));
+
+      // Shortcodes will load these late. TODO Should search for shortcode in page
+      $filename      = PZARC_CACHE_URL . '/pzarc_blueprint_' . $blueprint . '.css';
+      $filename_path = PZARC_CACHE_PATH . '/pzarc_blueprint_' . $blueprint . '.css';
+      if ( file_exists( $filename_path ) ) {
+        wp_enqueue_style( 'pzarc_css_blueprint_' . $blueprint, $filename, false, filemtime( $filename_path ) );
+      } else {
+        //how do we tell the developer without an horrid message on the front end?
+      }
+    }
     global $_architect_options;
     global $in_arc;
     $in_arc = 'yes';

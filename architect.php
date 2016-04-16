@@ -24,8 +24,9 @@
 
   /** Block this out before distro */
   /** Block this out before distro */
- // if (!is_admin()) {
-    @include_once( __DIR__ . '/assets/vendor/autoload.php' );
+  // if (!is_admin()) {
+  @include_once( __DIR__ . '/assets/vendor/autoload.php' );
+
   //}
 
   class pzArchitect {
@@ -46,11 +47,11 @@
       define( 'PZARC_FOLDER', '/pizazzwp-architect' );
       define( 'PZARC_CODEX', 'http://architect4wp.com/codex-listings' );
 
-      define ( 'PZARC_BETA', false );
+      define( 'PZARC_BETA', false );
 
       define( 'PZARC_PLUGIN_URL', trailingslashit( plugin_dir_url( __FILE__ ) ) );
       define( 'PZARC_PLUGIN_PATH', trailingslashit( plugin_dir_path( __FILE__ ) ) );
-      define( 'PZARC_PLUGIN_FILE',__FILE__);
+      define( 'PZARC_PLUGIN_FILE', __FILE__ );
       define( 'PZARC_PLUGIN_APP_URL', PZARC_PLUGIN_URL . 'application/' );
       define( 'PZARC_PLUGIN_APP_PATH', PZARC_PLUGIN_PATH . 'application/' );
       define( 'PZARC_DOCUMENTATION_URL', PZARC_PLUGIN_URL . 'documentation/' );
@@ -60,17 +61,17 @@
       define( 'PZARC_CACHE', '/arc/' );
 
       $upload_dir = wp_upload_dir();
-      if (substr(home_url(),0,5)==='https' &&  substr($upload_dir['baseurl'],0,5)==='http:') {
-        $upload_dir['baseurl']=str_replace('http:','https:',$upload_dir['baseurl']);
+      if ( substr( home_url(), 0, 5 ) === 'https' && substr( $upload_dir[ 'baseurl' ], 0, 5 ) === 'http:' ) {
+        $upload_dir[ 'baseurl' ] = str_replace( 'http:', 'https:', $upload_dir[ 'baseurl' ] );
       }
-      define('PZARC_UPLOADS_BASEPATH',$upload_dir['basedir']);
-      define('PZARC_UPLOADS_BASEURL',$upload_dir['baseurl']);
+      define( 'PZARC_UPLOADS_BASEPATH', $upload_dir[ 'basedir' ] );
+      define( 'PZARC_UPLOADS_BASEURL', $upload_dir[ 'baseurl' ] );
 
-      define('PZARC_PRESETS_PATH',PZARC_UPLOADS_BASEPATH.'/pizazzwp/architect/presets/');
-      define('PZARC_PRESETS_URL',PZARC_UPLOADS_BASEURL.'/pizazzwp/architect/presets/');
+      define( 'PZARC_PRESETS_PATH', PZARC_UPLOADS_BASEPATH . '/pizazzwp/architect/presets/' );
+      define( 'PZARC_PRESETS_URL', PZARC_UPLOADS_BASEURL . '/pizazzwp/architect/presets/' );
 
-      define( 'PZARC_CACHE_URL',  PZARC_UPLOADS_BASEURL . '/cache/pizazzwp/arc/'  );
-      define( 'PZARC_CACHE_PATH',  PZARC_UPLOADS_BASEPATH . '/cache/pizazzwp/arc/'  );
+      define( 'PZARC_CACHE_URL', PZARC_UPLOADS_BASEURL . '/cache/pizazzwp/arc/' );
+      define( 'PZARC_CACHE_PATH', PZARC_UPLOADS_BASEPATH . '/cache/pizazzwp/arc/' );
 
       // TODO: Setup an option for changing the language
       $language = substr( get_locale(), 0, 2 );
@@ -129,7 +130,7 @@
       add_action( 'init', array( $this, 'init' ) );
       add_action( 'after_setup_theme', array( $this, 'register_architect_block' ) );
 
-      add_action("redux/options/_architect/saved",'pzarc_set_defaults',20,2);
+      add_action( "redux/options/_architect/saved", 'pzarc_set_defaults', 20, 2 );
 
       require_once PZARC_PLUGIN_APP_PATH . '/shared/architect/php/class_arc_registry.php';
 
@@ -158,14 +159,14 @@
       require_once PZARC_PLUGIN_APP_PATH . '/shared/architect/php/content-types/dummy/class_arc_content_dummy.php';
 
       // Load Architect page templater
-      $pzarc_use_page_templater = get_option('architect_use-builder');
+      $pzarc_use_page_templater = get_option( 'architect_use-builder' );
 //      var_dump($pzarc_use_page_templater);
 //      if ($pzarc_use_page_templater) {
-        require_once PZARC_PLUGIN_APP_PATH . '/admin/php/class_arcPageTemplater.php';
+      require_once PZARC_PLUGIN_APP_PATH . '/admin/php/class_arcPageTemplater.php';
 //      }
 
 
-      require_once PZARC_PLUGIN_PATH.'/extensions-inc/beaver-builder/fl-custom-module-architect.php';
+      require_once PZARC_PLUGIN_PATH . '/extensions-inc/beaver-builder/fl-custom-module-architect.php';
 //pro
 
       pzdb( 'before architect pro' );
@@ -174,10 +175,10 @@
       // This is a shorthand way of doing an if. When pro isn't present, it's the lite version.
       $pzarc_current_theme = wp_get_theme();
 
-      $hw_opts = null;
+      $hw_opts      = null;
       $pzarc_status = get_option( 'edd_architect_license_status' );
 
-      if ( ($pzarc_current_theme->get('Name') === 'Headway Base' || $pzarc_current_theme->get('Template')=='headway') && ( $pzarc_status == false || $pzarc_status !== 'valid' )) {
+      if ( ( $pzarc_current_theme->get( 'Name' ) === 'Headway Base' || $pzarc_current_theme->get( 'Template' ) == 'headway' ) && ( $pzarc_status == false || $pzarc_status !== 'valid' ) ) {
         if ( is_multisite() ) {
           $hw_opts = get_blog_option( 1, 'headway_option_group_general' );
 
@@ -189,19 +190,19 @@
       }
 
       if ( ( ! empty( $hw_opts[ 'license-status-architect' ] ) && $hw_opts[ 'license-status-architect' ] == 'valid' ) || ( $pzarc_status !== false && $pzarc_status == 'valid' ) ) {
-        define('PZARC_PRO',true);
+        define( 'PZARC_PRO', true );
         @include PZARC_PLUGIN_PATH . '/extensions/architect-pro-layout.php';
       }
 
-      switch (true) {
+      switch ( true ) {
         case ( ! empty( $hw_opts[ 'license-status-architect' ] ) && $hw_opts[ 'license-status-architect' ] == 'valid' ) && ( $pzarc_status === false || $pzarc_status !== 'valid' ) :
-          define('PZARC_SHOP','(H)');
+          define( 'PZARC_SHOP', '(H)' );
           break;
-        case (  $pzarc_status !== false && $pzarc_status === 'valid' ) :
-          define('PZARC_SHOP','(P)');
+        case ( $pzarc_status !== false && $pzarc_status === 'valid' ) :
+          define( 'PZARC_SHOP', '(P)' );
           break;
         default:
-          define('PZARC_SHOP','(L)');
+          define( 'PZARC_SHOP', '(L)' );
 
       }
       pzdb( 'after architect pro' );
@@ -211,7 +212,7 @@
       do_action( 'arc_load_extensions' );
 
 
-      require_once(PZARC_PLUGIN_PATH. '/extensions-inc/sliders/slick15/arc-slick15-init.php');
+      require_once( PZARC_PLUGIN_PATH . '/extensions-inc/sliders/slick15/arc-slick15-init.php' );
 
 
       // Rebuiild cache if instructed
@@ -229,7 +230,7 @@
 
     public function init() {
 
-      if ( defined('PZARC_PRO') && PZARC_PRO ) {
+      if ( defined( 'PZARC_PRO' ) && PZARC_PRO ) {
         @include PZARC_PLUGIN_PATH . '/extensions/architect-pro-cpt.php';
       }
 
@@ -265,7 +266,7 @@
         require_once PZARC_PLUGIN_APP_PATH . '/shared/architect/php/arc-check-dependencies.php';
       }
       TGM_Plugin_Activation::get_instance()->update_dismiss();
-       pzarc_set_defaults(); //Run here in case we've added any new fields or changed their defaults.
+      pzarc_set_defaults(); //Run here in case we've added any new fields or changed their defaults.
       update_option( 'pzarc-run-rebuild', true );
 
     }
@@ -305,7 +306,7 @@
       $domain = PZARC_NAME;
       $locale = apply_filters( 'plugin_locale', get_locale(), $domain );
       load_textdomain( $domain, WP_LANG_DIR . '/' . $domain . '/' . $domain . '-' . $locale . '.mo' );
-    //  var_dump(WP_LANG_DIR . '/' . $domain . '/' . $domain . '-' . $locale . '.mo',dirname( plugin_basename( __FILE__ ) ) . '/application/languages/');
+      //  var_dump(WP_LANG_DIR . '/' . $domain . '/' . $domain . '-' . $locale . '.mo',dirname( plugin_basename( __FILE__ ) ) . '/application/languages/');
       load_plugin_textdomain( $domain, false, dirname( plugin_basename( __FILE__ ) ) . '/application/languages/' );
     }
 
@@ -316,8 +317,8 @@
      */
     public function register_admin_styles() {
 
-      wp_enqueue_style( 'pzarc-admin-styles', PZARC_PLUGIN_APP_URL . '/admin/css/arc-admin.css',false,time() );
-      wp_register_style( 'pzarc-jqueryui-css', PZARC_PLUGIN_APP_URL . '/shared/thirdparty/jquery-ui-1.10.2.custom/css/pz_architect/jquery-ui-1.10.2.custom.min.css',false,PZARC_VERSION );
+      wp_enqueue_style( 'pzarc-admin-styles', PZARC_PLUGIN_APP_URL . '/admin/css/arc-admin.css', false, time() );
+      wp_register_style( 'pzarc-jqueryui-css', PZARC_PLUGIN_APP_URL . '/shared/thirdparty/jquery-ui-1.10.2.custom/css/pz_architect/jquery-ui-1.10.2.custom.min.css', false, PZARC_VERSION );
 //wp_enqueue_style('fontawesome','//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css');
     }
 
@@ -337,11 +338,28 @@
      */
     public function register_plugin_styles() {
 
-      wp_enqueue_style( PZARC_NAME . '-styles', PZARC_PLUGIN_APP_URL . '/public/css/architect-styles.css',false,PZARC_VERSION );
-      wp_register_style( PZARC_NAME . '-plugin-styles', PZARC_PLUGIN_APP_URL . '/public/css/arc-front.css',false,PZARC_VERSION );
+
+      // Check Blueprint uses registry to see if we need to load css for blueprints on this page.
+      $bp_uses = maybe_unserialize( get_option( 'arc-blueprint-usage' ) );
+      if (is_array($bp_uses)) {
+        $page_id = get_the_ID();
+        foreach ( $bp_uses as $k => $v ) {
+          if ( $v['id'] === $page_id) {
+            $filename      = PZARC_CACHE_URL . '/pzarc_blueprint_' . $v['bp'] . '.css';
+            $filename_path = PZARC_CACHE_PATH . '/pzarc_blueprint_' . $v['bp'] . '.css';
+            if ( file_exists( $filename_path ) ) {
+              wp_enqueue_style( 'pzarc_css_blueprint_' . $v['bp'], $filename, false, filemtime( $filename_path ) );
+            } else {
+              //how do we tell the developer without an horrid message on the front end?
+            }
+          }
+        }
+      }
+      wp_enqueue_style( PZARC_NAME . '-styles', PZARC_PLUGIN_APP_URL . '/public/css/architect-styles.css', false, PZARC_VERSION );
+      wp_register_style( PZARC_NAME . '-plugin-styles', PZARC_PLUGIN_APP_URL . '/public/css/arc-front.css', false, PZARC_VERSION );
       // Need this for custom CSS in styling options
       if ( file_exists( PZARC_CACHE_PATH . 'arc-dynamic-styles.css' ) ) {
-        wp_register_style( PZARC_NAME . '-dynamic-styles', PZARC_CACHE_URL . 'arc-dynamic-styles.css',false,PZARC_VERSION );
+        wp_register_style( PZARC_NAME . '-dynamic-styles', PZARC_CACHE_URL . 'arc-dynamic-styles.css', false, PZARC_VERSION );
       }
     }
 

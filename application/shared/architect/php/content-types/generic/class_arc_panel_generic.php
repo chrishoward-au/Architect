@@ -572,7 +572,7 @@
 
     public function get_custom( &$post ) {
       /** CUSTOM FIELDS **/
-      d($post);
+//      d($post);
       $postmeta = apply_filters('arc_get_custom_data',get_post_meta(get_the_ID()));
       $cfcount  = $this->section[ '_panels_design_custom-fields-count' ];
       for ($i = 1; $i <= $cfcount; $i++) {
@@ -1125,7 +1125,8 @@
       if ($this->build->blueprint[ '_blueprints_content-source' ] === 'defaults') {
         $this->arc_query->have_posts();
       }
-      d($this->arc_query);
+// RESUME: Was doing something here!
+//      d($this->arc_query);
 
       while ($this->arc_query->have_posts() && $loopcount++ < $loopmax) {
         //  var_dump("You is here");
