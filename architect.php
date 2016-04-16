@@ -337,8 +337,25 @@
      */
     public function register_plugin_styles() {
 
-      wp_enqueue_style( PZARC_NAME . '-styles', PZARC_PLUGIN_APP_URL . '/public/css/architect-styles.css',false,PZARC_VERSION );
-      wp_register_style( PZARC_NAME . '-plugin-styles', PZARC_PLUGIN_APP_URL . '/public/css/arc-front.css',false,PZARC_VERSION );
+
+      // Check Blueprint uses registry to see if we need to load css for blueprints on this page.
+      $bp_uses = maybe_unserialize( get_option( 'arc-blueprint-usage' ) );
+      if (is_array($bp_uses)) {
+        $page_id = pzarc_get_page_id();
+        foreach ( $bp_uses as $k => $v ) {
+          if ( $v['id'] === $page_id) {
+            $filename      = PZARC_CACHE_URL . '/pzarc_blueprint_' . $v['bp'] . '.css';
+            $filename_path = PZARC_CACHE_PATH . '/pzarc_blueprint_' . $v['bp'] . '.css';
+            if ( file_exists( $filename_path ) ) {
+              wp_enqueue_style( 'pzarc_css_blueprint_' . $v['bp'], $filename, false, filemtime( $filename_path ) );
+            } else {
+              //how do we tell the developer without an horrid message on the front end?
+            }
+          }
+        }
+      }
+      wp_enqueue_style( PZARC_NAME . '-styles', PZARC_PLUGIN_APP_URL . '/public/css/architect-styles.css', false, PZARC_VERSION );
+      wp_register_style( PZARC_NAME . '-plugin-styles', PZARC_PLUGIN_APP_URL . '/public/css/arc-front.css', false, PZARC_VERSION );
       // Need this for custom CSS in styling options
       if ( file_exists( PZARC_CACHE_PATH . 'arc-dynamic-styles.css' ) ) {
         wp_register_style( PZARC_NAME . '-dynamic-styles', PZARC_CACHE_URL . 'arc-dynamic-styles.css',false,PZARC_VERSION );

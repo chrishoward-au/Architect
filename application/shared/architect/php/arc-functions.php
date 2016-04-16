@@ -1934,3 +1934,7 @@
     return $new_more;
 
   }
+  function pzarc_get_page_id(){
+    global $wp_query;
+    return (isset($wp_query->query_vars['page_id'])?$wp_query->query_vars['page_id']:get_the_ID());
+  }

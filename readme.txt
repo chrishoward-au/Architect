@@ -106,6 +106,9 @@ TODO: cURL support warning
 * TODO Test NextGen
 * TODO: Separate Snippets, Showcases and Testimonials
 
+= 1.9.2 =
+* CHANGED: Blueprint list now indicates layout type with an icon
+* CHANGED: Finally found a way to get the Blueprint CSS to load in the header
 = 1.9.1 : 25 March 2016 =
 * FIXED: Removed Whoops debugger
 

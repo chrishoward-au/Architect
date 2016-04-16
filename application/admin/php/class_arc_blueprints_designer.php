@@ -225,17 +225,20 @@ pzdb('bp_Designer_start');
     public function add_blueprint_columns( $columns ) {
       pzdb(__FUNCTION__);
       unset( $columns[ 'thumbnail' ] );
-      $pzarc_front  = array_slice( $columns, 0, 2 );
-      $pzarc_back   = array_slice( $columns, 2 );
-      $pzarc_insert = array(
+      $pzarc_checkbox    = array_slice( $columns, 0, 1 );
+      $pzarc_front       = array_slice( $columns, 1, 1 );
+      $pzarc_back        = array_slice( $columns, 2 );
+      $pzarc_insert      = array(
         '_blueprints_short-name'     => __( 'Shortname', 'pzarchitect' ),
-        'layout-type'                => __( 'Type', 'pzarchitect' ),
         '_blueprints_content-source' => __( 'Content source', 'pzarchitect' ),
         '_blueprints_description'    => __( 'Description', 'pzarchitect' ),
         //          'id'                         => __('ID', 'pzarchitect'),
       );
+      $pzarc_layout_type = array(
+        'layout-type' => __( 'Type', 'pzarchitect' ),
+      );
 
-      return array_merge( $pzarc_front, $pzarc_insert, $pzarc_back );
+      return array_merge( $pzarc_checkbox,$pzarc_layout_type, $pzarc_front, $pzarc_insert, $pzarc_back );
     }
 
     /**
@@ -277,17 +280,34 @@ pzdb('bp_Designer_start');
           break;
 
         case 'layout-type':
+          $layout_imgs = array(
+            'basic'     => array(
+              'img' => PZARC_PLUGIN_APP_URL . 'shared/assets/images/metaboxes/layouts-grid.png'
+            ),
+            'slider'    => array(
+              'img' => PZARC_PLUGIN_APP_URL . 'shared/assets/images/metaboxes/layouts-slider.png'
+            ),
+            'tabbed'    => array(
+              'img' => PZARC_PLUGIN_APP_URL . 'shared/assets/images/metaboxes/layouts-tabbed.png'
+            ),
+            'masonry'   => array(
+              'img' => PZARC_PLUGIN_APP_URL . 'shared/assets/images/metaboxes/layouts-masonry.png'
+            ),
+            'table'     => array(
+              'img' => PZARC_PLUGIN_APP_URL . 'shared/assets/images/metaboxes/layouts-tabular.png'
+            ),
+            'accordion' => array(
+              'img' => PZARC_PLUGIN_APP_URL . 'shared/assets/images/metaboxes/layouts-accordion.png'
+            ),
+          );
+
           if ( ! empty( $post_meta[ '_blueprints_section-0-layout-mode' ][ 0 ] ) ) {
-            echo ucfirst( $post_meta[ '_blueprints_section-0-layout-mode' ][ 0 ] );
+            $layout_type = ( $post_meta[ '_blueprints_section-0-layout-mode' ][ 0 ] );
           } else {
-            echo 'Grid';
+            $layout_type = 'basic';
           }
-//          if (!empty($post_meta[ '_blueprints_section-0-layout-mode' ][ 0 ]) && !empty($post_meta[ '_blueprints_section-1-layout-mode' ][ 0 ])) {
-//            echo '<br>' . '2: ' . ucfirst($post_meta[ '_blueprints_section-1-layout-mode' ][ 0 ]);
-//          }
-//          if ((!empty($post_meta[ '_blueprints_section-0-layout-mode' ][ 0 ]) || !empty($post_meta[ '_blueprints_section-1-layout-mode' ][ 0 ])) && !empty($post_meta[ '_blueprints_section-2-layout-mode' ])) {
-//            echo '<br>' . '3: ' . ucfirst($post_meta[ '_blueprints_section-2-layout-mode' ][ 0 ]);
-//          }
+          $layout_image = $layout_imgs[ $layout_type ][ 'img' ];
+          echo '<div class="pzarc-layout-type-column"><img src="' . $layout_image . '" width="42"></div>';
           break;
       }
     }
