@@ -24,10 +24,10 @@
 
   /** Block this out before distro */
   /** Block this out before distro */
-  // if (!is_admin()) {
+   if (!is_admin()) {
   @include_once( __DIR__ . '/assets/vendor/autoload.php' );
 
-  //}
+  }
   /**
    * REMEMBER TO UPDATE VERSION IN arc-admin.scss
    */
