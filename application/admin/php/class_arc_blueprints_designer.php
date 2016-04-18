@@ -7,6 +7,7 @@
     public $defaults = false;
     public $custom_fields = array();
     public $postmeta = null;
+    public $source = 'defaults';
 
 
     /**
@@ -84,6 +85,7 @@
 //        $this->custom_fields = apply_filters('arc_custom_field_list',$this->custom_fields);
         if ( ! empty( $_GET[ 'post' ] ) ) {
           $this->postmeta = get_post_meta( $_GET[ 'post' ] );
+          $this->source = $this->postmeta['_blueprints_content-source'][0];
         }
       }
       pzdb( 'end: ' . __CLASS__ . '\\' . __FUNCTION__ );
@@ -4286,7 +4288,7 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
           $pzarc_custom_fields = array_merge( array(
                                                 'use_empty'  => 'No field. Use prefix and suffix only',
                                                 'post_title' => 'Post Title'
-                                              ), apply_filters( 'arc_custom_field_list', $this->custom_fields ) );
+                                              ), apply_filters( 'arc_custom_field_list', $this->custom_fields, $this->source) );
 
           for ( $i = 1; $i <= $cfcount; $i ++ ) {
             $cfname     = 'Custom field ' . $i . ( ! empty( $this->postmeta[ '_panels_design_cfield-' . $i . '-name' ][ 0 ] ) ? ': <br>' . $this->postmeta[ '_panels_design_cfield-' . $i . '-name' ][ 0 ] : '' );
