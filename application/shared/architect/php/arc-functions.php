@@ -1,8 +1,8 @@
 <?php
 
-  if (! function_exists('d')) {
-    function d($var) {
-      var_dump($var);
+  if ( ! function_exists( 'd' ) ) {
+    function d( $var ) {
+      var_dump( $var );
     }
   }
   if ( ! function_exists( 'pzdebug' ) ) {
@@ -314,7 +314,7 @@
    * This doesn't need to return anything because it is populating the global variable
    *
    */
-  function pzarc_set_defaults( $a=false,$b=false ) {
+  function pzarc_set_defaults( $a = false, $b = false ) {
 
     pzdb( 'top get defaults' );
     // gah! Why don't we jsut save this in a options var?!
@@ -349,17 +349,17 @@
       $_architect[ 'defaults' ][ 'blueprints' ] = ( ! isset( $_architect[ 'defaults' ][ 'blueprints' ] ) ? array() : $_architect[ 'defaults' ][ 'blueprints' ] );
       $bpd                                      = array();
 
-      $bpd[ 'layout_general' ]                  = $blueprints->pzarc_mb_blueprint_general_settings( $_architect[ 'defaults' ][ 'blueprints' ], true );
+      $bpd[ 'layout_general' ]                                                 = $blueprints->pzarc_mb_blueprint_general_settings( $_architect[ 'defaults' ][ 'blueprints' ], true );
       $_architect[ 'defaults' ][ 'blueprints' ][ '_blueprint_layout_general' ] = $bpd[ 'layout_general' ][ 0 ][ 'sections' ];
 
-      $bpd[ 'design' ] = $blueprints->pzarc_mb_blueprint_design( $_architect[ 'defaults' ][ 'blueprints' ], true );
-      $_architect[ 'defaults' ][ 'blueprints' ][ '_blueprint_design' ]         = $bpd[ 'design' ][ 0 ][ 'sections' ];
+      $bpd[ 'design' ]                                                 = $blueprints->pzarc_mb_blueprint_design( $_architect[ 'defaults' ][ 'blueprints' ], true );
+      $_architect[ 'defaults' ][ 'blueprints' ][ '_blueprint_design' ] = $bpd[ 'design' ][ 0 ][ 'sections' ];
 
-      $bpd[ 'types' ]  = $blueprints->pzarc_mb_blueprint_types( $_architect[ 'defaults' ][ 'blueprints' ], true );
-      $_architect[ 'defaults' ][ 'blueprints' ][ '_blueprint_types' ]          = $bpd[ 'types' ][ 0 ][ 'sections' ];
+      $bpd[ 'types' ]                                                 = $blueprints->pzarc_mb_blueprint_types( $_architect[ 'defaults' ][ 'blueprints' ], true );
+      $_architect[ 'defaults' ][ 'blueprints' ][ '_blueprint_types' ] = $bpd[ 'types' ][ 0 ][ 'sections' ];
 
-      $bpd[ 'source' ] = $blueprints->pzarc_mb_blueprint_content_selection( $_architect[ 'defaults' ][ 'blueprints' ], true );
-      $_architect[ 'defaults' ][ 'blueprints' ][ '_contents_metabox' ]         = $bpd[ 'source' ][ 0 ][ 'sections' ];
+      $bpd[ 'source' ]                                                 = $blueprints->pzarc_mb_blueprint_content_selection( $_architect[ 'defaults' ][ 'blueprints' ], true );
+      $_architect[ 'defaults' ][ 'blueprints' ][ '_contents_metabox' ] = $bpd[ 'source' ][ 0 ][ 'sections' ];
 
       // Apply the defaults
       foreach ( $_architect[ 'defaults' ][ 'blueprints' ] as $key1 => $value1 ) {
@@ -397,11 +397,11 @@
       $pand[ 'customfields' ] = $blueprints->pzarc_mb_customfields_settings( $_architect[ 'defaults' ][ 'panels' ], true );
 
       //     $_architect[ 'defaults' ][ 'panels' ][ '_panel_general_settings' ] = $pzarc_panel_general_settings[ 0 ][ 'sections' ];
-      $_architect[ 'defaults' ][ 'panels' ][ '_panels_design' ] = $pand[ 'panels' ][ 0 ][ 'sections' ];
-      $_architect[ 'defaults' ][ 'panels' ][ '_panels_titles' ] = $pand[ 'titles' ][ 0 ][ 'sections' ];
-      $_architect[ 'defaults' ][ 'panels' ][ '_panels_meta' ] = $pand[ 'meta' ][ 0 ][ 'sections' ];
-      $_architect[ 'defaults' ][ 'panels' ][ '_panels_features' ] = $pand[ 'features' ][ 0 ][ 'sections' ];
-      $_architect[ 'defaults' ][ 'panels' ][ '_panels_body' ] = $pand[ 'body' ][ 0 ][ 'sections' ];
+      $_architect[ 'defaults' ][ 'panels' ][ '_panels_design' ]       = $pand[ 'panels' ][ 0 ][ 'sections' ];
+      $_architect[ 'defaults' ][ 'panels' ][ '_panels_titles' ]       = $pand[ 'titles' ][ 0 ][ 'sections' ];
+      $_architect[ 'defaults' ][ 'panels' ][ '_panels_meta' ]         = $pand[ 'meta' ][ 0 ][ 'sections' ];
+      $_architect[ 'defaults' ][ 'panels' ][ '_panels_features' ]     = $pand[ 'features' ][ 0 ][ 'sections' ];
+      $_architect[ 'defaults' ][ 'panels' ][ '_panels_body' ]         = $pand[ 'body' ][ 0 ][ 'sections' ];
       $_architect[ 'defaults' ][ 'panels' ][ '_panels_customfields' ] = $pand[ 'customfields' ][ 0 ][ 'sections' ];
 
       foreach ( $_architect[ 'defaults' ][ 'panels' ] as $key1 => $value1 ) {
@@ -421,8 +421,8 @@
       }
       pzdb( 'bottom get defaults' );
 
-      delete_option('_architect_defaults');
-      add_option('_architect_defaults',maybe_serialize($_architect[ 'defaults' ][ '_blueprints' ]));
+      delete_option( '_architect_defaults' );
+      add_option( '_architect_defaults', maybe_serialize( $_architect[ 'defaults' ][ '_blueprints' ] ) );
       //  Unset the temporary blueprints field
       // ???
       unset( $_architect[ 'defaults' ][ 'blueprints' ] );
@@ -643,6 +643,7 @@
 //      return array();
 //    }
 //    // No point doing this if not on a screen that can use it.
+//    var_Dump($override_admin,!$override_admin, !is_admin(),$pzarc_post_type);
     if ( ! is_admin() && ! $override_admin ) {
       return array();
     }
@@ -656,9 +657,9 @@
     );
     $pzarc_post_types_obj = get_posts( $args );
     $pzarc_post_type_list = array();
+   // d( $pzarc_post_type );
 
     foreach ( $pzarc_post_types_obj as $pzarc_post_type_obj ) {
-
       if ( $use_shortname === true ) {
 
         if ( $pzarc_post_type === 'arc-blueprints' ) {
@@ -750,7 +751,7 @@
       // It wasn't there, so regenerate the data and save the transient
       $pzarc_cf_list = $wpdb->get_results(
 //        "SELECT DISTINCT meta_key FROM $wpdb->postmeta ORDER BY meta_key"
-       "SELECT DISTINCT meta_key FROM $wpdb->postmeta  HAVING (
+        "SELECT DISTINCT meta_key FROM $wpdb->postmeta  HAVING (
           meta_key NOT LIKE '\_blueprints_%' AND
           meta_key NOT LIKE '\_panels_%' AND
           meta_key NOT LIKE '\_content_%' AND
@@ -841,6 +842,7 @@
         $pzarc_custom_fields[ $pzarc_cf->meta_key ] = $pzarc_cf->meta_key;
       }
     }
+
     return $pzarc_custom_fields;
   }
 
@@ -1931,7 +1933,34 @@
     return $new_more;
 
   }
-  function pzarc_get_page_id(){
+
+  function pzarc_get_page_id() {
     global $wp_query;
-    return (isset($wp_query->query_vars['page_id'])?$wp_query->query_vars['page_id']:get_the_ID());
+
+    return ( isset( $wp_query->query_vars[ 'page_id' ] ) ? $wp_query->query_vars[ 'page_id' ] : get_the_ID() );
+  }
+
+  function pzarc_get_post_type() {
+
+    if (is_admin()) {
+
+      if ( function_exists( 'get_current_screen' ) ) {
+        $screen = get_current_screen();
+        if ( isset( $screen->post_type ) ) {
+          return $screen->post_type;
+        }
+      }
+
+      if ( isset( $_GET[ 'post_type' ] ) ) {
+        return $_GET[ 'post_type' ];
+      }
+
+      if ( isset( $_GET[ 'post' ] ) ) {
+        $pzarc_post = get_post( $_GET[ 'post' ] );
+        if ( isset( $pzarc_post->post_type ) ) {
+          return $pzarc_post->post_type;
+        }
+      }
+    }
+    return null;
   }
