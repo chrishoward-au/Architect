@@ -23,18 +23,21 @@
     }
 
 //    var_dump($_architect_options);
-    if ( ! isset( $_architect_options[ 'architect_add-content-types' ][ 'pz_snippets' ] ) || $_architect_options[ 'architect_add-content-types' ][ 'pz_snippets' ] == 1 ) {
-      require_once plugin_dir_path(__FILE__) . '/content-types/snippets/class_arc_content_snippets.php';
-    }
+    // TODO: Check this doesn't break front page!
+    if ( !is_admin() || pzarc_get_post_type() === 'arc-blueprints') {
 
-    if ( ! isset( $_architect_options[ 'architect_add-content-types' ][ 'pz_testimonials' ] ) || $_architect_options[ 'architect_add-content-types' ][ 'pz_testimonials' ] == 1 ) {
-      require_once plugin_dir_path( __FILE__ ) . '/content-types/testimonials/class_arc_content_testimonials.php';
-    }
+      if ( ! isset( $_architect_options[ 'architect_add-content-types' ][ 'pz_snippets' ] ) || $_architect_options[ 'architect_add-content-types' ][ 'pz_snippets' ] == 1 ) {
+        require_once plugin_dir_path( __FILE__ ) . '/content-types/snippets/class_arc_content_snippets.php';
+      }
 
-    if ( ! isset( $_architect_options[ 'architect_add-content-types' ][ 'pz_showcases' ] ) || $_architect_options[ 'architect_add-content-types' ][ 'pz_showcases' ] == 1 ) {
-      require_once plugin_dir_path( __FILE__ ) . '/content-types/showcases/class_arc_content_showcases.php';
-    }
+      if ( ! isset( $_architect_options[ 'architect_add-content-types' ][ 'pz_testimonials' ] ) || $_architect_options[ 'architect_add-content-types' ][ 'pz_testimonials' ] == 1 ) {
+        require_once plugin_dir_path( __FILE__ ) . '/content-types/testimonials/class_arc_content_testimonials.php';
+      }
 
+      if ( ! isset( $_architect_options[ 'architect_add-content-types' ][ 'pz_showcases' ] ) || $_architect_options[ 'architect_add-content-types' ][ 'pz_showcases' ] == 1 ) {
+        require_once plugin_dir_path( __FILE__ ) . '/content-types/showcases/class_arc_content_showcases.php';
+      }
+    }
     pzdb( 'post content types load' );
 
 

@@ -82,10 +82,12 @@
           update_option( 'architect_custom_fields', $this->custom_fields );
 //          var_dump('Custom fields updated');
         }
-//        $this->custom_fields = apply_filters('arc_custom_field_list',$this->custom_fields);
-        if ( ! empty( $_GET[ 'post' ] ) ) {
+//        $this->custom_fields = apply_filters('arc_custom_field_list',$this->custom_fields, $this->source);
+        if ( ! empty( $_GET[ 'post' ]) ) {
           $this->postmeta = get_post_meta( $_GET[ 'post' ] );
-          $this->source = $this->postmeta['_blueprints_content-source'][0];
+          if (isset($this->postmeta['_blueprints_content-source'])) {
+            $this->source = $this->postmeta[ '_blueprints_content-source' ][ 0 ];
+          }
         }
       }
       pzdb( 'end: ' . __CLASS__ . '\\' . __FUNCTION__ );

@@ -1030,7 +1030,6 @@ add_action(\'init\',\'gs_init\');
     $user_can = current_user_can( 'edit_others_posts' );
     if ( $user_can && ( $screen->post_type === 'page' || $screen->post_type === 'post' ) ) {
       $blueprint_list = pzarc_get_posts_in_post_type( 'arc-blueprints', true );
-
       echo '&nbsp;<select id="arc-select" class="arc-dropdown" style="font-size:small;"><option>Insert Architect Blueprint</option>';
       $shortcodes_list = '';
       foreach ( $blueprint_list as $key => $val ) {
