@@ -1,8 +1,11 @@
 <?php
 
   if ( ! function_exists( 'd' ) ) {
-    function d( $var ) {
-      var_dump( $var );
+    function d() {
+      $vars = func_get_args();
+      foreach ( $vars as $var ) {
+        var_dump( $var );
+      }
     }
   }
   if ( ! function_exists( 'pzdebug' ) ) {
@@ -1006,35 +1009,35 @@
     return 'Shortcode test';
   }
 
-  /**
-   * @param $values
-   *
-   * @return array
-   */
-  function pzarc_maths_sum( $values ) {
-    $result = 0;
-    $vtype  = '';
-    switch ( true ) {
-      case strpos( $values[ 1 ], 'px' ):
-        $vtype = 'px';
-        break;
-      case strpos( $values[ 1 ], 'rem' ):
-        $vtype = 'rem';
-        break;
-      case strpos( $values[ 1 ], '%' ):
-        $vtype = '%';
-        break;
-      case strpos( $values[ 1 ], 'em' ):
-        $vtype = 'em';
-        break;
-    }
-    foreach ( $values as $v ) {
-      $vclean = str_replace( array( '%', 'px', 'em', 'rem' ), '', $v );
-      $result += $vclean;
-    }
-
-    return array( 'result' => $result, 'type' => $vtype );
-  }
+//  /**
+//   * @param $values
+//   *
+//   * @return array
+//   */
+//  function pzarc_maths_sum( $values ) {
+//    $result = 0;
+//    $vtype  = '';
+//    switch ( true ) {
+//      case strpos( $values[ 1 ], 'px' ):
+//        $vtype = 'px';
+//        break;
+//      case strpos( $values[ 1 ], 'rem' ):
+//        $vtype = 'rem';
+//        break;
+//      case strpos( $values[ 1 ], '%' ):
+//        $vtype = '%';
+//        break;
+//      case strpos( $values[ 1 ], 'em' ):
+//        $vtype = 'em';
+//        break;
+//    }
+//    foreach ( $values as $v ) {
+//      $vclean = str_replace( array( '%', 'px', 'em', 'rem' ), '', $v );
+//      $result += $vclean;
+//    }
+//
+//    return array( 'result' => $result, 'type' => $vtype );
+//  }
 
   /**
    * @param $atts
@@ -1074,12 +1077,6 @@
   //      return $custom_content;
   //    }
 
-  // Just incase
-  if ( ! function_exists( 'd' ) ) {
-    function d( $var ) {
-      // do nothing incase a d() left behind
-    }
-  }
 
   /**
    * @param $classes
