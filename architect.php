@@ -24,8 +24,8 @@
 
   /** Block this out before distro */
   /** Block this out before distro */
-   if (!is_admin()) {
-  @include_once( __DIR__ . '/assets/vendor/autoload.php' );
+  if ( ! is_admin() ) {
+    @include_once( __DIR__ . '/assets/vendor/autoload.php' );
 
   }
   /**
@@ -41,7 +41,7 @@
       define( 'PZARC_PLUGIN_PATH', trailingslashit( plugin_dir_path( __FILE__ ) ) );
       define( 'PZARC_PLUGIN_FILE', __FILE__ );
 
-      require_once PZARC_PLUGIN_PATH .'/application/shared/architect/php/arc-constants.php';
+      require_once PZARC_PLUGIN_PATH . '/application/shared/architect/php/arc-constants.php';
 //$fred= current_screen();
       pzdb( 'after dependency check' );
 // Maybe we can go without this!
@@ -65,22 +65,11 @@
       // Register admin styles and scripts
 
       if ( is_admin() ) {
-        add_action( 'admin_print_styles', array( $this, 'register_admin_styles' ) );
-        add_action( 'admin_enqueue_scripts', array( $this, 'register_admin_scripts' ) );
-        //		add_action( 'init', array( $this, 'admin_initialize' ) );
         require_once PZARC_PLUGIN_APP_PATH . '/arc-admin.php';
-
         pzdb( 'after admin load' );
-
       } else {
-        // Front end includes, Register site styles and scripts
-        add_action( 'wp_enqueue_scripts', array( $this, 'register_plugin_styles' ) );
-        add_action( 'wp_enqueue_scripts', array( $this, 'register_plugin_scripts' ) );
-
-
         require_once PZARC_PLUGIN_APP_PATH . '/arc-public.php';
         pzdb( 'after public  load' );
-
       }
 
       // Register hooks that are fired when the plugin is activated, deactivated, and uninstalled, respectively.
@@ -122,9 +111,9 @@
       // Load Architect page templater
       $pzarc_use_page_templater = get_option( 'architect_use-builder' );
 //      var_dump($pzarc_use_page_templater);
-//      if ($pzarc_use_page_templater) {
-      require_once PZARC_PLUGIN_APP_PATH . '/admin/php/class_arcPageTemplater.php';
-//      }
+      if ( $pzarc_use_page_templater ) {
+        require_once PZARC_PLUGIN_APP_PATH . '/admin/php/class_arcPageTemplater.php';
+      }
 
 
       require_once PZARC_PLUGIN_PATH . '/extensions-inc/beaver-builder/fl-custom-module-architect.php';
@@ -303,14 +292,14 @@
 
       // Check Blueprint uses registry to see if we need to load css for blueprints on this page.
       $bp_uses = maybe_unserialize( get_option( 'arc-blueprint-usage' ) );
-      if (is_array($bp_uses)) {
+      if ( is_array( $bp_uses ) ) {
         $page_id = pzarc_get_page_id();
         foreach ( $bp_uses as $k => $v ) {
-          if ( $v['id'] === $page_id) {
-            $filename      = PZARC_CACHE_URL . '/pzarc_blueprint_' . $v['bp'] . '.css';
-            $filename_path = PZARC_CACHE_PATH . '/pzarc_blueprint_' . $v['bp'] . '.css';
+          if ( $v[ 'id' ] === $page_id ) {
+            $filename      = PZARC_CACHE_URL . '/pzarc_blueprint_' . $v[ 'bp' ] . '.css';
+            $filename_path = PZARC_CACHE_PATH . '/pzarc_blueprint_' . $v[ 'bp' ] . '.css';
             if ( file_exists( $filename_path ) ) {
-              wp_enqueue_style( 'pzarc_css_blueprint_' . $v['bp'], $filename, false, filemtime( $filename_path ) );
+              wp_enqueue_style( 'pzarc_css_blueprint_' . $v[ 'bp' ], $filename, false, filemtime( $filename_path ) );
             } else {
               //how do we tell the developer without an horrid message on the front end?
             }

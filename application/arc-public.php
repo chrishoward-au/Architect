@@ -7,6 +7,10 @@
    */
 
 
+  // Front end includes, Register site styles and scripts
+  add_action( 'wp_enqueue_scripts', array( $this, 'register_plugin_styles' ) );
+  add_action( 'wp_enqueue_scripts', array( $this, 'register_plugin_scripts' ) );
+
   add_action('wp_head', 'pzarc_display_init');
 
   add_shortcode('architect', 'pzarc_shortcode');

@@ -11,6 +11,8 @@
   }
 
   add_action( 'init', 'pzarc_removeReduxDemoModeLink' );
+  add_action( 'admin_print_styles', array( $this, 'register_admin_styles' ) );
+  add_action( 'admin_enqueue_scripts', array( $this, 'register_admin_scripts' ) );
 
 
   /*********************************************
