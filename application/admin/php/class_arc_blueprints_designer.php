@@ -287,22 +287,22 @@
         case 'layout-type':
           $layout_imgs = array(
             'basic'     => array(
-              'img' => PZARC_PLUGIN_APP_URL . 'shared/assets/images/metaboxes/layouts-grid.png'
+              'img' => PZARC_PLUGIN_APP_URL . 'shared/assets/images/metaboxes/layouts-grid.svg'
             ),
             'slider'    => array(
-              'img' => PZARC_PLUGIN_APP_URL . 'shared/assets/images/metaboxes/layouts-slider.png'
+              'img' => PZARC_PLUGIN_APP_URL . 'shared/assets/images/metaboxes/layouts-slider.svg'
             ),
             'tabbed'    => array(
-              'img' => PZARC_PLUGIN_APP_URL . 'shared/assets/images/metaboxes/layouts-tabbed.png'
+              'img' => PZARC_PLUGIN_APP_URL . 'shared/assets/images/metaboxes/layouts-tabbed.svg'
             ),
             'masonry'   => array(
-              'img' => PZARC_PLUGIN_APP_URL . 'shared/assets/images/metaboxes/layouts-masonry.png'
+              'img' => PZARC_PLUGIN_APP_URL . 'shared/assets/images/metaboxes/layouts-masonry.svg'
             ),
             'table'     => array(
-              'img' => PZARC_PLUGIN_APP_URL . 'shared/assets/images/metaboxes/layouts-tabular.png'
+              'img' => PZARC_PLUGIN_APP_URL . 'shared/assets/images/metaboxes/layouts-tabular.svg'
             ),
             'accordion' => array(
-              'img' => PZARC_PLUGIN_APP_URL . 'shared/assets/images/metaboxes/layouts-accordion.png'
+              'img' => PZARC_PLUGIN_APP_URL . 'shared/assets/images/metaboxes/layouts-accordion.svg'
             ),
           );
 
@@ -312,7 +312,7 @@
             $layout_type = 'basic';
           }
           $layout_image = $layout_imgs[ $layout_type ][ 'img' ];
-          echo '<div class="pzarc-layout-type-column"><img src="' . $layout_image . '" width="42"></div>';
+          echo '<div class="pzarc-layout-type-column"><img src="' . $layout_image . '" width="48"></div>';
           break;
       }
     }
@@ -484,9 +484,6 @@
       $animation_state = ! empty( $_architect_options[ 'architect_animation-enable' ] ) ? $_architect_options[ 'architect_animation-enable' ] : false;
       if ( is_admin() && ! empty( $_GET[ 'post' ] ) ) {
         $cfcount        = ( ! empty( $this->postmeta[ '_panels_design_custom-fields-count' ][ 0 ] ) ? $this->postmeta[ '_panels_design_custom-fields-count' ][ 0 ] : 0 );
-        $max_input_vars = ini_get( 'max_input_vars' );
-        $cfwarn         = ( ! empty( $max_input_vars ) && $max_input_vars <= 1000 && ( $cfcount > 0 || $animation_state ) );
-
       }
       $sections[ '_general_bp' ] = array(
         'fields' => array(
@@ -512,19 +509,6 @@
           ),
         )
       );
-
-      if ( $cfwarn ) {
-        $sections[ '_general_bp' ][ 'fields' ][] = array(
-          'id'       => $prefix . 'input-vars-message',
-          'title'    => __( 'Custom fields', 'pzarchitect' ),
-          'type'     => 'info',
-          'style'    => ( $cfwarn ? 'critical' : 'normal' ),
-          'required' => array( '_panels_design_components-to-show', 'contains', 'custom' ),
-          'desc'     => __( 'If you add custom fields to a Blueprint it adds many more fields to the form. <strong>This can cause some fields not to save</strong>. Please read this post by Woo Themes for solutions:', 'pzarchitect' ) . '<br><a href="http://docs.woothemes.com/document/problems-with-large-amounts-of-data-not-saving-variations-rates-etc/" target=_blank>Problems with large amounts of data not saving</a><br>Your max_input_vars setting is: ' . ini_get( 'max_input_vars' ),
-
-        );
-
-      }
 
       $current_theme = wp_get_theme();
       $is_hw         = ( ( $current_theme->get( 'Name' ) === 'Headway Base' || $current_theme->get( 'Template' ) == 'headway' ) );
@@ -650,45 +634,45 @@
       $modesx[ 0 ] = array(
         'basic'     => array(
           'alt' => 'Grid/Single',
-          'img' => PZARC_PLUGIN_APP_URL . 'shared/assets/images/metaboxes/layouts-grid.png'
+          'img' => PZARC_PLUGIN_APP_URL . 'shared/assets/images/metaboxes/layouts-grid.svg'
         ),
         'slider'    => array(
           'alt' => 'Slider',
-          'img' => PZARC_PLUGIN_APP_URL . 'shared/assets/images/metaboxes/layouts-slider.png'
+          'img' => PZARC_PLUGIN_APP_URL . 'shared/assets/images/metaboxes/layouts-slider.svg'
         ),
         'tabbed'    => array(
           'alt' => 'Tabbed',
-          'img' => PZARC_PLUGIN_APP_URL . 'shared/assets/images/metaboxes/layouts-tabbed.png'
+          'img' => PZARC_PLUGIN_APP_URL . 'shared/assets/images/metaboxes/layouts-tabbed.svg'
         ),
         'masonry'   => array(
           'alt' => 'Masonry',
-          'img' => PZARC_PLUGIN_APP_URL . 'shared/assets/images/metaboxes/layouts-masonry.png'
+          'img' => PZARC_PLUGIN_APP_URL . 'shared/assets/images/metaboxes/layouts-masonry.svg'
         ),
         'table'     => array(
           'alt' => 'Tabular',
-          'img' => PZARC_PLUGIN_APP_URL . 'shared/assets/images/metaboxes/layouts-tabular.png'
+          'img' => PZARC_PLUGIN_APP_URL . 'shared/assets/images/metaboxes/layouts-tabular.svg'
         ),
         'accordion' => array(
           'alt' => 'Accordion',
-          'img' => PZARC_PLUGIN_APP_URL . 'shared/assets/images/metaboxes/layouts-accordion.png'
+          'img' => PZARC_PLUGIN_APP_URL . 'shared/assets/images/metaboxes/layouts-accordion.svg'
         ),
       );
       $modesx[ 1 ] = array(
         'basic'     => array(
           'alt' => 'Grid/Single',
-          'img' => PZARC_PLUGIN_APP_URL . 'shared/assets/images/metaboxes/layouts-grid.png'
+          'img' => PZARC_PLUGIN_APP_URL . 'shared/assets/images/metaboxes/layouts-grid.scg'
         ),
         'masonry'   => array(
           'alt' => 'Masonry',
-          'img' => PZARC_PLUGIN_APP_URL . 'shared/assets/images/metaboxes/layouts-masonry.png'
+          'img' => PZARC_PLUGIN_APP_URL . 'shared/assets/images/metaboxes/layouts-masonry.svg'
         ),
         'table'     => array(
           'alt' => 'Tabular',
-          'img' => PZARC_PLUGIN_APP_URL . 'shared/assets/images/metaboxes/layouts-tabular.png'
+          'img' => PZARC_PLUGIN_APP_URL . 'shared/assets/images/metaboxes/layouts-tabular.svg'
         ),
         'accordion' => array(
           'alt' => 'Accordion',
-          'img' => PZARC_PLUGIN_APP_URL . 'shared/assets/images/metaboxes/layouts-accordion.png'
+          'img' => PZARC_PLUGIN_APP_URL . 'shared/assets/images/metaboxes/layouts-accordion.svg'
         ),
       );
       $desc[ 0 ]   = 'Grid/Single, Slider, Tabbed, Masonry, Tabular, Accordion';
@@ -1196,7 +1180,7 @@
       }
 //      $file_contents          = file_get_contents(PZARC_DOCUMENTATION_PATH . PZARC_LANGUAGE . '/using-blueprints.md');
       $file_contents = '';
-      if ( is_admin() ) {
+      if ( is_admin() && function_exists('curl_init')) {
         $ch = curl_init( PZARC_DOCUMENTATION_URL . PZARC_LANGUAGE . '/using-blueprints.md' );
         curl_setopt( $ch, CURLOPT_RETURNTRANSFER, true );
         $file_contents = curl_exec( $ch );

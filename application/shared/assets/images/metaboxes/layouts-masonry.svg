@@ -1,0 +1,36 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="100%" height="100%" viewBox="0 0 512 626" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:1.41421;">
+    <g id="Masonry" transform="matrix(1.00006,0,0,0.967306,6.00979,4.64104)">
+        <g transform="matrix(1.26814,0,0,1.84191,-25.6265,-43.5352)">
+            <rect x="35.811" y="35.435" width="110.802" height="110.802" style="fill:rgb(77,161,179);"/>
+        </g>
+        <g transform="matrix(1.26814,0,0,0.843941,-26.138,217.065)">
+            <rect x="35.811" y="35.435" width="110.802" height="110.802" style="fill:rgb(77,161,179);"/>
+        </g>
+        <g transform="matrix(1.26814,0,0,0.828962,293.99,377.557)">
+            <rect x="35.811" y="35.435" width="110.802" height="110.802" style="fill:rgb(77,161,179);"/>
+        </g>
+        <g transform="matrix(1.26814,0,0,1.22565,-25.3574,319.295)">
+            <rect x="35.811" y="35.435" width="110.802" height="110.802" style="fill:rgb(77,161,179);"/>
+        </g>
+        <g transform="matrix(1.26814,0,0,1.07412,134.109,-16.3281)">
+            <rect x="35.811" y="35.435" width="110.802" height="110.802" style="fill:rgb(77,161,179);"/>
+        </g>
+        <g transform="matrix(1.26814,0,0,1.25523,134.109,117.866)">
+            <rect x="35.811" y="35.435" width="110.802" height="110.802" style="fill:rgb(77,161,179);"/>
+        </g>
+        <g transform="matrix(1.26814,0,0,1.59226,134.109,265.612)">
+            <rect x="35.811" y="35.435" width="110.802" height="110.802" style="fill:rgb(77,161,179);"/>
+        </g>
+        <g transform="matrix(1.26814,0,0,1.38096,294.777,-27.0705)">
+            <rect x="35.811" y="35.435" width="110.802" height="110.802" style="fill:rgb(77,161,179);"/>
+        </g>
+        <g transform="matrix(1.26814,0,0,1.70612,294.777,135.592)">
+            <rect x="35.811" y="35.435" width="110.802" height="110.802" style="fill:rgb(77,161,179);"/>
+        </g>
+        <g transform="matrix(0.999945,0,0,1.0338,-18.3268,47.3463)">
+            <text x="70.927px" y="537.067px" style="font-family:'Arial-BoldMT';font-size:96px;fill:rgb(64,64,64);">Masonry</text>
+        </g>
+    </g>
+</svg>

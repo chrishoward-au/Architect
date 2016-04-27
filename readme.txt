@@ -86,9 +86,6 @@ No. We don't delete any of your data. In the future a method will be provided fo
 
 For support, please send an email to support@pizazzwp.com
 
-TODO: Add a default single post/page Blueprint;  Add codex links;
-TODO: Add text field for filter labels
-TODO: cURL support warning
 
 == Screenshots ==
 
@@ -100,6 +97,12 @@ TODO: cURL support warning
 = 1.9.2 =
 * CHANGED: Blueprint list now indicates layout type with an icon
 * CHANGED: Finally found a way to get the Blueprint CSS to load in the header
+* CHANGED: Various code tweaks
+* UPDATED: Magnific lightbox popup to v1.1
+
+TODO: Add a default single post/page Blueprint;  Add codex links;
+TODO: Add text field for filter labels
+TODO: cURL support warning
 
 = 1.9.1 : 25 March 2016 =
 * FIXED: Removed Whoops debugger

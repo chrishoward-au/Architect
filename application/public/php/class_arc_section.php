@@ -218,7 +218,7 @@
      * close_section
      */
     function close_section() {
-      $derf = '</' . ( 'table' !== $this->layout_mode ? 'div' : 'table' ) . '><!-- End section ' . $this->section_number . ' -->';
+      $derf = '</' . ( 'table' !== $this->layout_mode ? 'div' : 'table' ) . '>';
       //    var_Dump($derf);
       echo $derf;
       do_action( "arc_after_section_{$this->section_number}" );

@@ -1214,7 +1214,7 @@ add_action(\'init\',\'gs_init\');
 
   }
 
-  // TODO: We could turn off styling if max input < 1000...
+  // Redux 3.6 solves this! - or not :(
   $max_input_vars = (int) ini_get( 'max_input_vars' );
   $max_su_input_vars = (int) ini_get( 'suhosin.post.max_vars' );
   $max_sur_input_vars = (int) ini_get( 'suhosin.request.max_vars' );
@@ -1228,7 +1228,10 @@ add_action(\'init\',\'gs_init\');
        ( $max_su_input_vars >0  && (int) $max_su_input_vars < 2000 ) ||
        ( $max_sur_input_vars>0  && (int) $max_sur_input_vars < 2000 )
     )) {
-    function pzarc_update_max_input_vars() {
+    /**
+     * pz_arc_update_max_input_vars
+     */
+    function pz_arc_update_max_input_vars() {
       if ( function_exists( 'get_current_screen' ) ) {
         $screen = get_current_screen();
         if ( $screen->post_type === 'arc-blueprints' ) {
@@ -1261,11 +1264,13 @@ add_action(\'init\',\'gs_init\');
       }
     }
 
-    add_action( 'admin_notices', 'pzarc_update_max_input_vars' );
+    add_action( 'admin_notices', 'pz_arc_update_max_input_vars' );
   }
 
+
+
   if ( ! function_exists( 'version_compare' ) || version_compare( PHP_VERSION, '5.4.0', '<' ) ) {
-    function pzarc_update_php() {
+    function pz_arc_update_php() {
       if ( function_exists( 'get_current_screen' ) ) {
         $screen = get_current_screen();
         if ( in_array($screen->id,array('edit-arc-blueprints','architect_page_pzarc_support') )) {
@@ -1276,5 +1281,21 @@ add_action(\'init\',\'gs_init\');
       }
     }
 
-    add_action( 'admin_notices', 'pzarc_update_php' );
+    add_action( 'admin_notices', 'pz_arc_update_php' );
+  }
+
+  if ( !function_exists( 'curl_init' )) {
+    function pz_arc_curl_reqd() {
+      if ( function_exists( 'get_current_screen' ) ) {
+        $screen = get_current_screen();
+//        d($screen);
+        if ( in_array($screen->id,array('edit-arc-blueprints','architect_page_pzarc_support','arc-blueprints') )) {
+          echo '<div class="notice notice-error" >
+                 <p>Architect requires the PHP cURL extension. Some features will not work without it. Please contact your host and request it to be enabled.</p>
+                </div>';
+        }
+      }
+    }
+
+    add_action( 'admin_notices', 'pz_arc_curl_reqd' );
   }

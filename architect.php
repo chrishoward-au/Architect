@@ -103,6 +103,7 @@
       require_once PZARC_PLUGIN_APP_PATH . '/shared/architect/php/arc-cpt-blueprints.php';
 
       // Load all the builtin post types
+      pzdb( 'Load builtin post types' );
       require_once PZARC_PLUGIN_APP_PATH . '/shared/architect/php/content-types/defaults/class_arc_content_defaults.php';
       require_once PZARC_PLUGIN_APP_PATH . '/shared/architect/php/content-types/post/class_arc_content_posts.php';
       require_once PZARC_PLUGIN_APP_PATH . '/shared/architect/php/content-types/page/class_arc_content_pages.php';
@@ -371,7 +372,8 @@
       $line    = $btr[ 0 ][ 'line' ];
       $file    = basename( $btr[ 0 ][ 'file' ] );
       global $pzstart_time;
-      var_dump( strtoupper( $pre ) . ': ' . $file . ':' . $line . ': ' . round( ( microtime( true ) - $pzstart_time ), 5 ) . 's. Time since last: ' . round( microtime( true ) - $oldtime, 5 ) . 's' );
+//      var_dump( strtoupper( $pre ) . ': ' . $file . ':' . $line . ': ' . round( ( microtime( true ) - $pzstart_time ), 5 ) . 's. Time since last: ' . round( microtime( true ) - $oldtime, 5 ) . 's' );
+      echo "\n<!-- ". strtoupper( $pre ) . ': ' . $file . ':' . $line . ': ' . round( ( microtime( true ) - $pzstart_time ), 5 ) . 's. Time since last: ' . round( microtime( true ) - $oldtime, 5 ) . "s -->\n" ;
       $oldtime = microtime( true );
       if ( $var !== 'dorkus' ) {
         var_dump( $var );

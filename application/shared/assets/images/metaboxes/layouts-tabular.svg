@@ -1,0 +1,25 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="100%" height="100%" viewBox="0 0 512 626" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:1.41421;">
+    <g id="Tabular">
+        <rect x="26.296" y="27.148" width="92.516" height="44.852" style="fill:rgb(144,197,208);"/>
+        <g transform="matrix(1,0,0,8.76955,0,-145.88)">
+            <rect x="26.296" y="27.148" width="92.516" height="44.852" style="fill:rgb(77,161,179);"/>
+        </g>
+        <g transform="matrix(1.45319,0,0,1,313.346,0)">
+            <rect x="26.296" y="27.148" width="92.516" height="44.852" style="fill:rgb(144,197,208);"/>
+        </g>
+        <g transform="matrix(1.45319,0,0,8.76955,313.346,-145.88)">
+            <rect x="26.296" y="27.148" width="92.516" height="44.852" style="fill:rgb(77,161,179);"/>
+        </g>
+        <g transform="matrix(2.08335,0,0,1,83.4962,0)">
+            <rect x="26.296" y="27.148" width="92.516" height="44.852" style="fill:rgb(144,197,208);"/>
+        </g>
+        <g transform="matrix(2.08335,0,0,8.76955,83.4962,-145.88)">
+            <rect x="26.296" y="27.148" width="92.516" height="44.852" style="fill:rgb(77,161,179);"/>
+        </g>
+        <g transform="matrix(1,0,0,1,-12.318,50.4394)">
+            <text x="98.513px" y="537.067px" style="font-family:'Arial-BoldMT';font-size:96px;fill:rgb(64,64,64);">T<tspan x="150.029px 203.42px " y="537.067px 537.067px ">ab</tspan>ular</text>
+        </g>
+    </g>
+</svg>

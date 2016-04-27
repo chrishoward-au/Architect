@@ -362,7 +362,7 @@
       pzdb();
 
       // End loop
-      echo '</div> <!-- end blueprint sections -->';
+      echo '</div>';
 
       do_action('arc_after_panels_wrapper');
       do_action("arc_after_panels_wrapper_{$bp_shortname}");
