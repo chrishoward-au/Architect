@@ -236,7 +236,7 @@
         '_blueprints_short-name'     => __( 'Shortname', 'pzarchitect' ),
         '_blueprints_content-source' => __( 'Content source', 'pzarchitect' ),
         '_blueprints_description'    => __( 'Description', 'pzarchitect' ),
-        'layout-type'                => __( 'Type', 'pzarchitect' ),
+        'used-on'                => __( 'Used on ', 'pzarchitect' ).'<span style="color:#fff;font-size:0.8em;background:#999;border-radius:50px;padding:0 5px;cursor:help;" title="Note: Resets when Architect cache is cleared and rebuilt as pages are displayed.">?</span>',
         //          'id'                         => __('ID', 'pzarchitect'),
       );
       $pzarc_layout_type = array(
@@ -256,7 +256,7 @@
       pzdb( __FUNCTION__ );
 
       $post_meta = get_post_meta( $post_id );
-
+      $bp_uses = maybe_unserialize( get_option( 'arc-blueprint-usage' ) );
 
       switch ( $column ) {
         case 'id':
@@ -284,6 +284,16 @@
           echo $content_source;
           break;
 
+        case 'used-on':
+          if ( is_array( $bp_uses ) ) {
+            foreach ( $bp_uses as $k => $v ) {
+              if ( $v[ 'bp' ] === $post_meta[ '_blueprints_short-name' ][ 0 ] ) {
+                  $uo_post = get_post( $v[ 'id' ] );
+                  echo ucwords( $uo_post->post_type ) . ' : ' . $uo_post->post_title . '<br>';
+              }
+            }
+          }
+          break;
         case 'layout-type':
           $layout_imgs = array(
             'basic'     => array(

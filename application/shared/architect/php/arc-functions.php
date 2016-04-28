@@ -660,7 +660,7 @@
     );
     $pzarc_post_types_obj = get_posts( $args );
     $pzarc_post_type_list = array();
-   // d( $pzarc_post_type );
+    // d( $pzarc_post_type );
 
     foreach ( $pzarc_post_types_obj as $pzarc_post_type_obj ) {
       if ( $use_shortname === true ) {
@@ -1933,13 +1933,25 @@
 
   function pzarc_get_page_id() {
     global $wp_query;
+    $return = get_the_ID();
+    switch ( true ) {
+      case ( isset( $wp_query->query_vars[ 'p' ] ) && $wp_query->query_vars[ 'p' ] === 0 ) :
+        $return =  $wp_query->query_vars[ 'page_id' ] ;
+        break;
+      case ( isset( $wp_query->query_vars[ 'page_id' ] ) && $wp_query->query_vars[ 'page_id' ] === 0 ) :
+        $return =  $wp_query->query_vars[ 'p' ] ;
+        break;
+      case ( isset( $wp_query->query_vars[ 'p' ] ) ):
+        $return =  $wp_query->query_vars[ 'p' ] ;
+        break;
+    }
+  return $return;
 
-    return ( isset( $wp_query->query_vars[ 'page_id' ] ) ? $wp_query->query_vars[ 'page_id' ] : get_the_ID() );
   }
 
   function pzarc_get_post_type() {
 
-    if (is_admin()) {
+    if ( is_admin() ) {
 
       if ( function_exists( 'get_current_screen' ) ) {
         $screen = get_current_screen();
@@ -1959,5 +1971,6 @@
         }
       }
     }
+
     return null;
   }

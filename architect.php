@@ -291,7 +291,7 @@
     public function register_plugin_styles() {
 
 
-      // Check Blueprint uses registry to see if we need to load css for blueprints on this page.
+      /** Check Blueprint uses registry to see if we need to load css for blueprints on this page. */
       $bp_uses = maybe_unserialize( get_option( 'arc-blueprint-usage' ) );
       if ( is_array( $bp_uses ) ) {
         $page_id = pzarc_get_page_id();

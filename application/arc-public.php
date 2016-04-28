@@ -248,7 +248,7 @@
         break;
       default:
         // Desktop or other weird thing
-        $blueprint = $blueprint;
+        $blueprint = $blueprint; // WTF?
         $device    = 'desktop';
         break;
     }
@@ -257,7 +257,7 @@
       return;
     }
 
-    // Register Blueprint usage on this page if necessary
+    /** Register Blueprint usage on this page if necessary */
     $bp_uses = maybe_unserialize(get_option('arc-blueprint-usage'));
     $pzarc_page_id = pzarc_get_page_id();
     if ($bp_uses && array_key_exists($pzarc_page_id.$blueprint,$bp_uses)) {
