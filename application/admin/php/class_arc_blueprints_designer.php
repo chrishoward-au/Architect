@@ -287,7 +287,7 @@
         case 'used-on':
           if ( is_array( $bp_uses ) ) {
             foreach ( $bp_uses as $k => $v ) {
-              if ( $v[ 'bp' ] === $post_meta[ '_blueprints_short-name' ][ 0 ] ) {
+              if ( !empty($post_meta[ '_blueprints_short-name' ][ 0 ]) && $v[ 'bp' ] === $post_meta[ '_blueprints_short-name' ][ 0 ] ) {
                   $uo_post = get_post( $v[ 'id' ] );
                   echo ucwords( $uo_post->post_type ) . ' : ' . $uo_post->post_title . '<br>';
               }
