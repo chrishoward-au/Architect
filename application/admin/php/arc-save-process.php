@@ -124,7 +124,7 @@
 
         $blueprints = array();
 
-        if ('all' !== $postid) {
+        if ('all' !== $postid && isset($pzarc_settings[ '_blueprints_short-name' ])) {
           $blueprints[ $pzarc_settings[ '_blueprints_short-name' ] ] = $pzarc_css_cache[ 'blueprints' ][ $pzarc_settings[ '_blueprints_short-name' ] ];
         } else {
           $blueprints = $pzarc_css_cache[ 'blueprints' ];

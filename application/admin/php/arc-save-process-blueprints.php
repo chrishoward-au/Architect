@@ -249,7 +249,8 @@
     // Calc allows us to do crazy maths like 25% -3px
     $lmargin      = floatval($pzarc_blueprints[ '_blueprints_section-' . $i . '-panels-margins' ][ 'margin-left' ]);
     $rmargin      = floatval($pzarc_blueprints[ '_blueprints_section-' . $i . '-panels-margins' ][ 'margin-right' ]);
-    $margin_units = $pzarc_blueprints[ '_blueprints_section-' . $i . '-panels-margins' ][ 'units' ];
+
+    $margin_units = !empty($pzarc_blueprints[ '_blueprints_section-' . $i . '-panels-margins' ][ 'units' ])?$pzarc_blueprints[ '_blueprints_section-' . $i . '-panels-margins' ][ 'units' ]:'';
 
     // Default units are %
     if (!empty($pzarc_blueprints[ '_blueprints_section-' . $i . '-panels-margins-guttered' ]) && 'basic' === $pzarc_blueprints[ '_blueprints_section-' . $i . '-layout-mode' ] && !empty($pzarc_blueprints[ '_blueprints_section-' . $i . '-layout-mode' ])) {
