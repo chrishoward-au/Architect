@@ -1,5 +1,6 @@
 jQuery( document ).ready( function ()
 {
+  /** No longer used */
   "use strict";
   // This stop error in CodeKit compilation
   /*global console:true */
@@ -22,6 +23,7 @@ jQuery( document ).ready( function ()
     var arcBPUID = jQuery( this ).attr( 'data-bpuid' );
     var arcSlickTrans = jQuery( this ).attr( 'data-transtype' ) === 'fade';
     var arcSlickOpts = (jQuery( this ).attr( 'data-opts' ));
+    console.log(arcSlickOpts);
     var arcUniqueID = '.' + arcBPUID;
 
     if ( null !== arcSlickID && null !== arcSlickOpts )

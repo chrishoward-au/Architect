@@ -85,6 +85,11 @@
         var realCurrent = jQuery("#pzarc-blueprint_' . $blueprint[ '_blueprints_short-name' ] . ' .pzarc-panel.active").attr("data-slick-index");
         jQuery(".' . $blueprint[ 'uid' ] . ' .pzarc-navigator .active").removeClass("active");
         jQuery(".' . $blueprint[ 'uid' ] . ' .pzarc-navigator").find("[data-slick-index=\""+realCurrent+"\"]").addClass("active");
+
+        // Fix for autoplay not stopping if infinite off.
+        if (!jQuery(this).slick("slickGetOption","infinite") && jQuery(this).slick("slickGetOption","autoplay") && (currentSlide+1) === slick.slideCount){
+          jQuery(this).slick("slickSetOption","autoplay",false,true);
+          };
       });';
 
     $pzarchitect_slider_scripts .= "\n";
@@ -161,7 +166,6 @@
       $pzarchitect_slider_scripts .= "\n";
 
     }
-
     return $slider;
   }
 
@@ -250,7 +254,7 @@
     echo '<!-- Architect slider scripts -->';
     global $pzarchitect_slider_scripts;
     if (!empty($pzarchitect_slider_scripts)) {
-      echo '<script type="text/javascript" id="architect-slick15">';
+      echo '<script type="text/javascript" id="architect-slick15-'.rand(100000,999999).'">';
       echo '(function($){';
       echo $pzarchitect_slider_scripts;
       echo '})(jQuery);';
