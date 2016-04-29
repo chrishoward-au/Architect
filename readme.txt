@@ -99,10 +99,13 @@ For support, please send an email to support@pizazzwp.com
 * CHANGED: Finally found a way to get the Blueprint CSS to load in the header
 * CHANGED: Various code tweaks
 * UPDATED: Magnific lightbox popup to v1.1
+* ADDED: Column in Blueprint list showing the pages Blueprints are used on. Requires pages to have been viewed since 1.9.2 update.
+* FIXED: Slider autoplay going backwards if infinite is off
 
 TODO: Add a default single post/page Blueprint;  Add codex links;
 TODO: Add text field for filter labels
-TODO: cURL support warning
+TODO: Add option for custom content within Blueprints
+TODO: Check captions styling
 
 = 1.9.1 : 25 March 2016 =
 * FIXED: Removed Whoops debugger
