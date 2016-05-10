@@ -111,9 +111,10 @@
 
       // Load Architect page templater
       $pzarc_use_page_templater = get_option( 'architect_use-builder' );
-//      var_dump($pzarc_use_page_templater);
-      if ( $pzarc_use_page_templater ) {
-        require_once PZARC_PLUGIN_APP_PATH . '/admin/php/class_arcPageTemplater.php';
+  //    var_dump($pzarc_use_page_templater);
+////
+      if ( $pzarc_use_page_templater && !class_exists('HeadwayDisplay')) {
+   //     require_once PZARC_PLUGIN_APP_PATH . '/admin/php/class_arcPageTemplater.php';
       }
 
 

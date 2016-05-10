@@ -639,7 +639,7 @@
    *
    * @return array
    */
-  function pzarc_get_posts_in_post_type( $pzarc_post_type = 'arc-blueprints', $use_shortname = false, $override_admin = false ) {
+  function pzarc_get_posts_in_post_type( $pzarc_post_type = 'arc-blueprints', $use_shortname = false, $override_admin = false, $append_post_type=false ) {
 //    // No point doing this if not on a screen that can use it.
 // Except it didn't work!
 //    if (!function_exists('get_current_screen')) {
@@ -680,8 +680,10 @@
       } else {
         $use_key = $pzarc_post_type_obj->post_name;
       }
+      $pz_post_type = ucwords(get_post_meta( $pzarc_post_type_obj->ID, '_blueprints_content-source', true ));
+      $pz_post_type = $pz_post_type==='Cpt'?'Custom':$pz_post_type;
 
-      $pzarc_post_type_list[ $use_key ] = $pzarc_post_type_obj->post_title;
+      $pzarc_post_type_list[ $use_key ] = $pzarc_post_type_obj->post_title.($append_post_type?'  ['.($pz_post_type?$pz_post_type:'Defaults').']':'');
     }
 
     return $pzarc_post_type_list;

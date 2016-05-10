@@ -72,11 +72,10 @@
 
 
       // Add your templates to this array.
-      $this->templates = array(
+        $this->templates = array(
           'arc_page_template.php'             => 'Architect Builder',
           'arc_page_template_no_sidebars.php' => 'Architect Builder (No sidebars)',
-      );
-
+        );
     }
 
 

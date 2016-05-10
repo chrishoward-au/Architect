@@ -61,13 +61,13 @@
       $j           = rand(1,count($cats))-1;
 
 
-      $ch = curl_init('http://lorempixel.com');
-      curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-      $cexec=curl_exec($ch);
-      $cinfo = curl_getinfo($ch);
-      $is_offline = ($cexec == false || $cinfo['http_code']==302);
-      curl_close($ch);
-
+//      $ch = curl_init('http://lorempixel.com');
+//      curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+//      $cexec=curl_exec($ch);
+//      $cinfo = curl_getinfo($ch);
+//      $is_offline = ($cexec == false || $cinfo['http_code']==302);
+//      curl_close($ch);
+      $is_offline = is_wp_error(wp_remote_head('http://google.com')); // v1.9.2
  //     var_dump($this->build->blueprint);
    //   var_dump(maybe_unserialize(get_option('_architect_defaults')));
       $trim_length = $this->build->blueprint[ 'section_object' ][ 1 ]->section[ 'section-panel-settings' ][ '_panels_design_excerpts-word-count' ];

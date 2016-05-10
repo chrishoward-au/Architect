@@ -68,8 +68,10 @@
         // TODO: Make up some easily editable panel defs - prob have to be a custom content type
         //       require_once PZARC_PLUGIN_PATH . '/admin/php/arc-options-def-editor.php';
 
-        require_once( PZARC_PLUGIN_APP_PATH . 'admin/php/class_arcBuilderAdmin.php' );
-
+        $pzarc_current_theme = wp_get_theme();
+        if (! ( $pzarc_current_theme->get( 'Name' ) === 'Headway' || $pzarc_current_theme->get( 'Name' ) === 'Headway Base' || $pzarc_current_theme->get( 'Template' ) == 'headway' )) {
+          require_once( PZARC_PLUGIN_APP_PATH . 'admin/php/class_arcBuilderAdmin.php' );
+        }
         require_once PZARC_PLUGIN_APP_PATH . 'admin/php/class_arc_blueprints_designer.php';
         require_once PZARC_PLUGIN_APP_PATH . 'admin/php/arc-save-process.php';
 
@@ -229,7 +231,7 @@
         //add_menu_page( $page_title,  $menu_title, $capability,   $menu_slug, $function,    $icon_url, $position );
         $pzarc_status        = get_option( 'edd_architect_license_status' );
         $pzarc_current_theme = wp_get_theme();
-        if ( ( $pzarc_current_theme->get( 'Name' ) === 'Headway Base' || $pzarc_current_theme->get( 'Template' ) == 'headway' ) ) {
+        if ( ( $pzarc_current_theme->get( 'Name' ) === 'Headway' || $pzarc_current_theme->get( 'Name' ) === 'Headway Base' || $pzarc_current_theme->get( 'Template' ) == 'headway' ) ) {
 
           if ( is_multisite() ) {
             $hw_opts = get_blog_option( 1, 'headway_option_group_general' );
@@ -455,7 +457,7 @@
 
       $pzarc_status        = get_option( 'edd_architect_license_status' );
       $pzarc_current_theme = wp_get_theme();
-      if ( ( $pzarc_current_theme->get( 'Name' ) === 'Headway Base' || $pzarc_current_theme->get( 'Template' ) == 'headway' ) ) {
+      if ( ( $pzarc_current_theme->get( 'Name' ) === 'Headway' || $pzarc_current_theme->get( 'Name' ) === 'Headway Base' || $pzarc_current_theme->get( 'Template' ) == 'headway' ) ) {
 
         if ( is_multisite() ) {
           $hw_opts = get_blog_option( 1, 'headway_option_group_general' );
@@ -1031,7 +1033,7 @@ add_action(\'init\',\'gs_init\');
     $screen   = get_current_screen();
     $user_can = current_user_can( 'edit_others_posts' );
     if ( $user_can && ( $screen->post_type === 'page' || $screen->post_type === 'post' ) ) {
-      $blueprint_list = pzarc_get_posts_in_post_type( 'arc-blueprints', true );
+      $blueprint_list = pzarc_get_posts_in_post_type( 'arc-blueprints', true, false,true );
       echo '&nbsp;<select id="arc-select" class="arc-dropdown" style="font-size:small;"><option>Insert Architect Blueprint</option>';
       $shortcodes_list = '';
       foreach ( $blueprint_list as $key => $val ) {
@@ -1239,27 +1241,33 @@ add_action(\'init\',\'gs_init\');
           $max_su_input_vars = (int) ini_get( 'suhosin.post.max_vars' );
           $max_sur_input_vars = (int) ini_get( 'suhosin.request.max_vars' );
 
-          ?>
+          global $current_user;
+          $user_id = $current_user->ID;
+          /* Check that the user hasn't already clicked to ignore the message */
+          if (!get_user_meta($user_id, 'pzarc_ignore_notice_max_inputs')) {
 
-          <div class="notice notice-error" style="background:#fee;">
-            <p><?php echo __( 'To use Architect with all features enabled, you will need to increase PHP\'s default limit on input variables.<br>', 'pzarchitect' );
-                          if (( $max_su_input_vars >0  && (int) $max_su_input_vars < 2000 ) || ( $max_sur_input_vars>0  && (int) $max_sur_input_vars < 2000 ))  {
-                            _e('Your current settings are:<br>','pzarchitect');
-                            echo __( 'PHP Max Input Vars: ', 'pzarchitect' ). $max_input_vars . "<br>";
-                            echo __( 'Suhosin Max Input Vars: ', 'pzarchitect' ). $max_su_input_vars . "<br>";
-                            echo __( 'Suhosin Request Max Input Vars: ', 'pzarchitect' ).$max_sur_input_vars . "<br>";
-                            _e( 'Please follow WooCommerce\'s instructions here.', 'pzarchitect' );
-                            echo ' <a href="https://docs.woothemes.com/document/problems-with-large-amounts-of-data-not-saving-variations-rates-etc//" target="_blank">Fields not saving</a><br>';
-                          } else {
-                            _e('Your current setting is:<br>','pzarchitect');
-                            echo __( 'PHP Max Input Vars: ', 'pzarchitect' ). $max_input_vars . "<br>";
-                            _e( 'Please follow the instructions here.', 'pzarchitect' );
-                            echo ' <a href="http://architect4wp.com/codex/fields-not-saving/" target="_blank">Fields not saving</a><br>';
-                          }
-                          _e('<strong>If you do not do this, some fields may not save.</strong><br>
-                                Apologies for the inconvenience','pzarchitect'); ?></p>
-          </div>
-          <?php
+            ?>
+
+            <div class="notice notice-error is-dismissible" style="background:#fee;">
+              <p><?php echo __( 'To use Architect with all features enabled, you will need to increase PHP\'s default limit on input variables.<br>', 'pzarchitect' );
+                  if ( ( $max_su_input_vars > 0 && (int) $max_su_input_vars < 2000 ) || ( $max_sur_input_vars > 0 && (int) $max_sur_input_vars < 2000 ) ) {
+                    _e( 'Your current settings are:<br>', 'pzarchitect' );
+                    echo __( 'PHP Max Input Vars: ', 'pzarchitect' ) . $max_input_vars . "<br>";
+                    echo __( 'Suhosin Max Input Vars: ', 'pzarchitect' ) . $max_su_input_vars . "<br>";
+                    echo __( 'Suhosin Request Max Input Vars: ', 'pzarchitect' ) . $max_sur_input_vars . "<br>";
+                    _e( 'Please follow WooCommerce\'s instructions here.', 'pzarchitect' );
+                    echo ' <a href="https://docs.woothemes.com/document/problems-with-large-amounts-of-data-not-saving-variations-rates-etc//" target="_blank">Fields not saving</a><br>';
+                  } else {
+                    _e( 'Your current setting is:<br>', 'pzarchitect' );
+                    echo __( 'PHP Max Input Vars: ', 'pzarchitect' ) . $max_input_vars . "<br>";
+                    _e( 'Please follow the instructions here.', 'pzarchitect' );
+                    echo ' <a href="http://architect4wp.com/codex/fields-not-saving/" target="_blank">Fields not saving</a><br>';
+                  }
+                  _e( '<strong>If you do not do this, some fields may not save.</strong><br>
+                                Apologies for the inconvenience', 'pzarchitect' ); ?></p>
+            </div>
+            <?php
+          }
         }
       }
     }

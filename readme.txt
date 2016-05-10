@@ -2,7 +2,7 @@
 Contributors: chrishoward
 Tags: content,display,posts,pages,gallery,slider,tabs,tabbed,tabular,widget,hooks
 Requires at least: 3.5.0
-Tested up to: 4.5
+Tested up to: 4.6
 Stable tag: 1.9.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -92,20 +92,25 @@ For support, please send an email to support@pizazzwp.com
 1. Architect Blueprint - Layout design
 2. Slider example
 
-== Changelog ==
-
-= 1.9.2 =
-* CHANGED: Blueprint list now indicates layout type with an icon
-* CHANGED: Finally found a way to get the Blueprint CSS to load in the header
-* CHANGED: Various code tweaks
-* UPDATED: Magnific lightbox popup to v1.1
-* ADDED: Column in Blueprint list showing the pages Blueprints are used on. Requires pages to have been viewed since 1.9.2 update.
-* FIXED: Slider autoplay going backwards if infinite is off
-
+== Todo ==
 TODO: Add a default single post/page Blueprint;  Add codex links;
 TODO: Add text field for filter labels
 TODO: Add option for custom content within Blueprints
 TODO: Check captions styling
+TODO: Replace curl with wp_remote_get
+
+== Changelog ==
+
+= 1.9.2 : 9 May 2016 =
+* ADDED: Column in Blueprint list showing the pages Blueprints are used on. Requires pages to have been viewed since 1.9.2 update.
+* CHANGED: Blueprint list now indicates layout type with an icon
+* CHANGED: Finally found a way to get the Blueprint CSS to load in the header
+* CHANGED: Various code tweaks
+* CHANGED: Faster check for online access before using dummy images
+* UPDATED: Magnific lightbox popup to v1.1
+* FIXED: Slider autoplay going backwards if infinite is off
+* FIXED: Hide Revolution Slider metabox on Blueprint editor
+* FIXED: Bug in licence activation might fail with an error
 
 = 1.9.1 : 25 March 2016 =
 * FIXED: Removed Whoops debugger

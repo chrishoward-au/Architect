@@ -47,7 +47,7 @@
   function edd_architect_licence_menu() {
     $pzarc_current_theme = wp_get_theme();
     $hw_opts=array();
-    if ( ($pzarc_current_theme->get('Name') === 'Headway Base' || $pzarc_current_theme->get('Template')=='headway') ) {
+    if ( ( $pzarc_current_theme->get( 'Name' ) === 'Headway' || $pzarc_current_theme->get('Name') === 'Headway Base' || $pzarc_current_theme->get('Template')=='headway') ) {
 
       if ( is_multisite() ) {
         $hw_opts = get_blog_option( 1, 'headway_option_group_general' );
@@ -242,9 +242,12 @@
         update_option( 'edd_architect_license_name', '' );
         update_option( 'edd_architect_license_activation', 'Failed' );
       }
-      update_option('edd_architect_license_remaining_activations',$license_data->activations_left);
-      update_option('edd_architect_license_limit',$license_data->licence_limit);
-
+      if (isset($license_data->activations_left)) {
+        update_option( 'edd_architect_license_remaining_activations', $license_data->activations_left );
+      }
+      if (isset($license_data->licence_limit)) {
+        update_option( 'edd_architect_license_limit', $license_data->licence_limit );
+      }
     }
   }
 

@@ -218,10 +218,11 @@
      * close_section
      */
     function close_section() {
+      do_action('arc_before_section_close');
       $derf = '</' . ( 'table' !== $this->layout_mode ? 'div' : 'table' ) . '>';
       //    var_Dump($derf);
       echo $derf;
-      do_action( "arc_after_section_{$this->section_number}" );
+      do_action( "arc_after_section" );
 
       remove_filter( 'excerpt_length', array( &$this, 'set_excerpt_length' ), 999 );
       remove_filter( 'excerpt_more', array( &$this, 'set_excerpt_more' ), 999 );
@@ -435,6 +436,7 @@
 
       /** Close components wrapper */
       if ( 'table' !== $this->layout_mode && $has_components ) {
+        do_action('arc_before_components_close'); // useful for comments template
         echo self::strip_unused_arctags( $panel_class->render_wrapper( 'components-close', $this->source, $panel_def, $this->rsid ) );
       }
       /** Image outside and after components */
@@ -458,6 +460,7 @@
         echo '</div>';
       }
 
+      do_action('arc_before_panel_close');
       echo '</' . ( 'table' !== $this->layout_mode ? 'div' : 'tr' ) . '>'; //close panel
       do_action( 'arc_after_panel_close' );
 
