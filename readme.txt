@@ -19,7 +19,7 @@ What if you love your theme, but just want the content layout of the homepage to
 
 What if you love your theme framework but want an easy way to build the content layouts without having to cut code? Architect solves that.
 
-With Architect you can build the layouts your theme doesn't provide - and all from one plugin. No longer do you need a plugin for sliders, another for magazine grids, another for tabbed content or another for displaying photo galleries.
+With Architect you can build the layouts your theme does not provide - and all from one plugin. No longer do you need a plugin for sliders, another for magazine grids, another for tabbed content or another for displaying photo galleries.
 
 Also, to ease maintenance and improve performance, it's best to minimize the number of plugins on your site. Architect helps that by replacing several plugins with one.
 
@@ -101,7 +101,7 @@ TODO: Replace curl with wp_remote_get
 
 == Changelog ==
 
-= 1.9.2 : 9 May 2016 =
+= 1.9.2 : 15 May 2016 =
 * ADDED: Column in Blueprint list showing the pages Blueprints are used on. Requires pages to have been viewed since 1.9.2 update.
 * CHANGED: Blueprint list now indicates layout type with an icon
 * CHANGED: Finally found a way to get the Blueprint CSS to load in the header

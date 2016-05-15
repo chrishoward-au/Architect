@@ -1,5 +1,16 @@
 # Architect change history 
 
+## 1.9.2 : 15 May 2016
+* ADDED: Column in Blueprint list showing the pages Blueprints are used on. Requires pages to have been viewed since 1.9.2 update.
+* CHANGED: Blueprint list now indicates layout type with an icon
+* CHANGED: Finally found a way to get the Blueprint CSS to load in the header
+* CHANGED: Various code tweaks
+* CHANGED: Faster check for online access before using dummy images
+* UPDATED: Magnific lightbox popup to v1.1
+* FIXED: Slider autoplay going backwards if infinite is off
+* FIXED: Hide Revolution Slider metabox on Blueprint editor
+* FIXED: Bug in licence activation might fail with an error
+
 ## 1.9.1 : 25 March 2016 
 * FIXED: Removed Whoops debugger
 
