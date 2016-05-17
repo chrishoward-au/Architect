@@ -11,6 +11,8 @@
     require_once plugin_dir_path( __FILE__ ) . '/content-types/nextgen/class_arc_content_nextgen.php';
     require_once plugin_dir_path( __FILE__ ) . '/content-types/cpt/class_arc_content_cpt.php';
 
+    require_once plugin_dir_path( __FILE__ ) . '/content-types/multi/class_arc_content_multi.php';
+
     /** Load additional functionality */
 
     // Animation add on
