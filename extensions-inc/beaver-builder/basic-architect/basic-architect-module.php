@@ -36,8 +36,8 @@
   }
 
   // v1.9.2 changed last param to false from true.
-  $blueprint_list = pzarc_get_posts_in_post_type('arc-blueprints', true, false);
-
+  $blueprint_list = pzarc_get_posts_in_post_type('arc-blueprints', true, true, true);
+//var_dump( $blueprint_list );
   $blueprint_list = array_merge(array('none' => 'None'), $blueprint_list, array('show-none' => 'DO NOT SHOW ANY BLUEPRINT'));
   $blank_array    = array('none' => '');
   $taxonomy_list  = pzarc_get_taxonomies(true);

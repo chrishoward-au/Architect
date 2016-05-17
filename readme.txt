@@ -103,6 +103,8 @@ TODO: Replace curl with wp_remote_get
 
 = 1.9.3 =
 * ADDED: Option in Sources for multiple content types. Using this has limitations, as any filtering or other criteria will apply to all content. For example, if you mix pages and posts, don't filter on categories since no pages will be found.
+* FIXED: Accordions closed styling overridden by Bootstrap styling
+* FIXED: Blueprints not showing in dropdown in Architect Beaver module
 
 = 1.9.2 : 15 May 2016 =
 * ADDED: Column in Blueprint list showing the pages Blueprints are used on. Requires pages to have been viewed since 1.9.2 update.
