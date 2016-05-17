@@ -24,9 +24,9 @@
 
   /** Block this out before distro */
   /** Block this out before distro */
-  if ( ! is_admin() && file_exists ( __DIR__ . '/assets/vendor/autoload.php' )) {
-//    @include_once( __DIR__ . '/assets/vendor/autoload.php' );
-  }
+//  if ( ! is_admin() && file_exists ( __DIR__ . '/assets/vendor/autoload.php' )) {
+////    @include_once( __DIR__ . '/assets/vendor/autoload.php' );
+//  }
   /**
    * REMEMBER TO UPDATE VERSION IN arc-admin.scss
    */

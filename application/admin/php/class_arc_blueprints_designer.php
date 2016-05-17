@@ -2277,8 +2277,9 @@
             pzarc_redux_padding( $prefix . $thisSection . $padding, $this->defaults ? '' : $_architect[ 'architect_config_' . $thisSection . '-selectors' ], $defaults[ $optprefix . $thisSection . $padding ] ),
             pzarc_redux_margin( $prefix . $thisSection . $margin, $this->defaults ? '' : $_architect[ 'architect_config_' . $thisSection . '-selectors' ], $defaults[ $optprefix . $thisSection . $margin ] ),
             pzarc_redux_borders( $prefix . $thisSection . $border, $this->defaults ? '' : $_architect[ 'architect_config_' . $thisSection . '-selectors' ], $defaults[ $optprefix . $thisSection . $border ] ),
+
             array(
-              'title'    => __( 'Open', 'pzarchitect' ),
+              'title'    => __( 'Opened', 'pzarchitect' ),
               'id'       => $prefix . 'blueprint-accordion-open-css-heading',
               'type'     => 'section',
               'indent'   => true,
@@ -2287,6 +2288,17 @@
             pzarc_redux_font( $prefix . $thisSection . '-open' . $font, $this->defaults ? '' : $_architect[ 'architect_config_' . $thisSection . '-open-selectors' ], $defaults[ $optprefix . $thisSection . '-open' . $font ] ),
             pzarc_redux_bg( $prefix . $thisSection . '-open' . $background, $this->defaults ? '' : $_architect[ 'architect_config_' . $thisSection . '-open-selectors' ], $defaults[ $optprefix . $thisSection . '-open' . $background ] ),
             pzarc_redux_borders( $prefix . $thisSection . '-open' . $border, $this->defaults ? '' : $_architect[ 'architect_config_' . $thisSection . '-open-selectors' ], $defaults[ $optprefix . $thisSection . '-open' . $border ] ),
+
+            //            array(
+//              'title'    => __( 'Closed', 'pzarchitect' ),
+//              'id'       => $prefix . 'blueprint-accordion-closed-css-heading',
+//              'type'     => 'section',
+//              'indent'   => true,
+//              'subtitle' => 'Class: ' . $_architect[ 'architect_config_' . $thisSection . '-closed-selectors' ]
+//            ),
+//            pzarc_redux_font( $prefix . $thisSection . '-closed' . $font, $this->defaults ? '' : $_architect[ 'architect_config_' . $thisSection . '-closed-selectors' ], $defaults[ $optprefix . $thisSection . '-closed' . $font ] ),
+//            pzarc_redux_bg( $prefix . $thisSection . '-closed' . $background, $this->defaults ? '' : $_architect[ 'architect_config_' . $thisSection . '-closed-selectors' ], $defaults[ $optprefix . $thisSection . '-closed' . $background ] ),
+//            pzarc_redux_borders( $prefix . $thisSection . '-closed' . $border, $this->defaults ? '' : $_architect[ 'architect_config_' . $thisSection . '-closed-selectors' ], $defaults[ $optprefix . $thisSection . '-closed' . $border ] ),
             array(
               'title'    => __( 'Hover', 'pzarchitect' ),
               'id'       => $prefix . 'blueprint-accordion-hover-css-heading',

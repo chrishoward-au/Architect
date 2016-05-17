@@ -352,6 +352,8 @@
 .pzarchitect .pzarc-accordion.title.open a:after {
   content: "▼";
   font-size: 9px; }
+.pzarchitect .pzarc-accordion.title.close {
+  float: none; }
 
 .pzarchitect {
   /* ===============================================================
