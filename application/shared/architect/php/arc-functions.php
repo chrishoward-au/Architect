@@ -623,6 +623,12 @@
     return $authors;
   }
 
+  function pzarc_get_post_types() {
+    $all_post_types         = array( 'post' => 'Posts', 'page' => 'Pages' );
+    $post_types             = pzarc_get_custom_post_types();
+    return array_merge($all_post_types,$post_types);
+  }
+
   function pzarc_get_custom_post_types() {
     $pzarc_cpts = ( get_post_types( array( '_builtin' => false, 'public' => true ), 'objects' ) );
     $return     = array();

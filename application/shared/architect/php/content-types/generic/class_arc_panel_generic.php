@@ -641,14 +641,13 @@
     ) {
       global $_architect_options;
       $this->data[ 'inherit-hw-block-type' ] = (!empty($_architect_options[ 'architect_hw-content-class' ]) ? 'block-type-content ' : '');
-
       $this->data[ 'postid' ]      = get_the_ID();
       $this->data[ 'poststatus' ]  = get_post_status();
-      $this->data[ 'posttype' ]    = get_post_type();
+//      $this->data[ 'posttype' ]    = get_post_type();
+      $this->data[ 'posttype' ]    = $post->post_type;
       $this->data[ 'permalink' ]   = get_the_permalink();
       $post_format                 = get_post_format();
       $this->data [ 'postformat' ] = (empty($post_format) ? 'standard' : $post_format);
-
     }
 
     /****************************************
@@ -1069,7 +1068,7 @@
       $line = str_replace('{{tags}}', $this->data[ 'meta' ][ 'tags' ], $line);
       $line = str_replace('{{poststatus}}', $this->data[ 'poststatus' ], $line);
       $line = str_replace('{{postformat}}', $this->data[ 'postformat' ], $line);
-      $line = str_replace('{{posttype}}', $source, $line);
+      $line = str_replace('{{posttype}}', $this->data[ 'posttype'] , $line);
 
       $pzclasses = 'pzarc-components ';
       $pzclasses .= ($this->section[ '_panels_design_components-position' ] === 'left' || $this->section[ '_panels_design_components-position' ] === 'right') ? 'vertical-content pzarc-align-' . $this->section[ '_panels_design_components-position' ] : '';

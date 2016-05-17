@@ -3,7 +3,7 @@ Contributors: chrishoward
 Tags: content,display,posts,pages,gallery,slider,tabs,tabbed,tabular,widget,hooks
 Requires at least: 3.5.0
 Tested up to: 4.6
-Stable tag: 1.9.2
+Stable tag: 1.9.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Plugin URI: http://architect4wp.com
@@ -100,6 +100,9 @@ TODO: Check captions styling
 TODO: Replace curl with wp_remote_get
 
 == Changelog ==
+
+= 1.9.3 =
+* ADDED: Option in Sources for multiple content types. Using this has limitations, as any filtering or other criteria will apply to all content. For example, if you mix pages and posts, don't filter on categories since no pages will be found.
 
 = 1.9.2 : 15 May 2016 =
 * ADDED: Column in Blueprint list showing the pages Blueprints are used on. Requires pages to have been viewed since 1.9.2 update.
