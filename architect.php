@@ -113,6 +113,7 @@
   //    var_dump($pzarc_use_page_templater);
 ////
       if ( $pzarc_use_page_templater && !class_exists('HeadwayDisplay')) {
+        // TODO: Get this workign one day
    //     require_once PZARC_PLUGIN_APP_PATH . '/admin/php/class_arcPageTemplater.php';
       }
 

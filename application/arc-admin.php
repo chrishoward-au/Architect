@@ -70,7 +70,8 @@
 
         $pzarc_current_theme = wp_get_theme();
         if (! ( $pzarc_current_theme->get( 'Name' ) === 'Headway' || $pzarc_current_theme->get( 'Name' ) === 'Headway Base' || $pzarc_current_theme->get( 'Template' ) == 'headway' )) {
-          require_once( PZARC_PLUGIN_APP_PATH . 'admin/php/class_arcBuilderAdmin.php' );
+          //  TODO: This needs more work!
+          // require_once( PZARC_PLUGIN_APP_PATH . 'admin/php/class_arcBuilderAdmin.php' );
         }
         require_once PZARC_PLUGIN_APP_PATH . 'admin/php/class_arc_blueprints_designer.php';
         require_once PZARC_PLUGIN_APP_PATH . 'admin/php/arc-save-process.php';

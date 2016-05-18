@@ -645,7 +645,7 @@
    *
    * @return array
    */
-  function pzarc_get_posts_in_post_type( $pzarc_post_type = 'arc-blueprints', $use_shortname = false, $override_admin = false, $append_post_type=false ) {
+  function pzarc_get_posts_in_post_type( $pzarc_post_type = 'arc-blueprints', $use_shortname = false, $override_admin = false, $append_post_type=true ) {
 //    // No point doing this if not on a screen that can use it.
 // Except it didn't work!
 //    if (!function_exists('get_current_screen')) {
