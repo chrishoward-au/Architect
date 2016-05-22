@@ -162,7 +162,6 @@
 
     function render()
     {
-
       $i = 1;
       foreach ($this->navitems as $nav_item) {
         $active = ($i === 1 ? ' active' : '');

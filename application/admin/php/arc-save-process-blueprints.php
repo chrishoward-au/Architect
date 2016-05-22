@@ -222,7 +222,7 @@
 //        $pzarc_height_type = (empty($pzarc_panels[ '_panels_settings_panel-height-type' ])?'min-height':$pzarc_panels[ '_panels_settings_panel-height-type' ]);
 //        $pzarc_mediaq_css .= '.pzarchitect .arc-slider-container.arc-slider-container-' . $pzarc_blueprints[ '_blueprints_short-name' ] . ' {'.$pzarc_panels[ '_panels_settings_panel-height-type' ].':' . $pzarc_panel_height . ';}' . $nl;
 
-    $pzarc_css .= pzarc_create_panels_css($pzarc_blueprints, $pzarc_css);
+        $pzarc_css .= pzarc_create_panels_css($pzarc_blueprints, $pzarc_css);
 
 
     return $pzarc_css;
@@ -448,6 +448,8 @@
 
           if (!empty($pzarc_panels[ '_panels_design_use-scale-fonts' ])) {
             $content_classes = $class_prefix . ' .entry-content.is-responsive-scaled, ' . $class_prefix . ' .entry-excerpt.is-responsive-scaled, ' . $class_prefix . ' .entry-content.is-responsive-scaled p, ' . $class_prefix . ' .entry-excerpt.is-responsive-scaled p';
+//var_Dump($pzarc_panels);
+//            die();
             $font_size1      = $pzarc_panels[ '_panels_design_content-font-size-bp1' ][ 'font-size' ];
             $widthU          = !empty($pzarc_panels[ '_panels_design_content-font-scale-upper-bp' ]) ? (int)$pzarc_panels[ '_panels_design_content-font-scale-upper-bp' ] : 1280;
             $em_widthU       = $widthU / 16;

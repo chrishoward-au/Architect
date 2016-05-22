@@ -1013,8 +1013,10 @@
    *
    * @return string
    */
-  function pzarc_test_shortcode( $atts ) {
-    return 'Shortcode test';
+  function pzarc_test_shortcode( $atts='' ) {
+    global $pzarc_post_id;
+
+    return 'Shortcode test : '.str_replace('%id%',$pzarc_post_id, (is_array($atts)?implode(',',$atts):$atts));
   }
 
 //  /**
