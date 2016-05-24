@@ -11,6 +11,8 @@
     //add_action('init', 'pz_create_testimonials_post_type');
     function pz_create_testimonials_post_type()
     {
+      $architect_options = get_option( '_architect_options' );
+      $rewrite_slug=(array_key_exists('architect_rewrites-testimonials',$architect_options)?esc_html(str_replace( ' ','' ,  $architect_options['architect_rewrites-testimonials'])):'pz_testimonials');
       $labels = array(
           'name'               => _x('Testimonials', 'post type general name'),
           'singular_name'      => _x('Testimonial', 'post type singular name'),
@@ -34,7 +36,7 @@
           //          'show_in_menu'       => 'pzarc',
           'menu_icon'          => 'dashicons-format-chat',
           'query_var'          => true,
-          'rewrite'            => true,
+          'rewrite'            => array('slug'=>$rewrite_slug),
           'capability_type'    => 'post',
           'has_archive'        => true,
           'hierarchical'       => true,

@@ -11,6 +11,8 @@
     //add_action('init', 'pz_create_snippets_post_type');
     function pz_create_snippets_post_type()
     {
+      $architect_options = get_option( '_architect_options' );
+      $rewrite_slug=(array_key_exists('architect_rewrites-snippets',$architect_options)?esc_html(str_replace( ' ','' ,  $architect_options['architect_rewrites-snippets'])):'pz_snippets');
       $labels = array(
           'name'               => _x('Snippets', 'post type general name'),
           'singular_name'      => _x('Snippet', 'post type singular name'),
@@ -33,7 +35,7 @@
           //          'show_in_menu'       => 'pzarc',
           'menu_icon'          => 'dashicons-format-aside',
           'query_var'          => true,
-          'rewrite'            => true,
+          'rewrite'            => array('slug'=>$rewrite_slug),
           'capability_type'    => 'page',
           'has_archive'        => true,
           'hierarchical'       => true,

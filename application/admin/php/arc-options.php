@@ -196,9 +196,12 @@
             while ( ( $sample_patterns_file = readdir( $sample_patterns_dir ) ) !== false ) {
 
               if ( stristr( $sample_patterns_file, '.png' ) !== false || stristr( $sample_patterns_file, '.jpg' ) !== false ) {
-                $name               = explode( ".", $sample_patterns_file );
-                $name               = str_replace( '.' . end( $name ), '', $sample_patterns_file );
-                $sample_patterns[ ] = array( 'alt' => $name, 'img' => $sample_patterns_url . $sample_patterns_file );
+                $name              = explode( ".", $sample_patterns_file );
+                $name              = str_replace( '.' . end( $name ), '', $sample_patterns_file );
+                $sample_patterns[] = array(
+                  'alt' => $name,
+                  'img' => $sample_patterns_url . $sample_patterns_file
+                );
               }
             }
           endif;
@@ -220,12 +223,15 @@
         <div id="current-theme" class="<?php echo esc_attr( $class ); ?>">
           <?php if ( $screenshot ) : ?>
             <?php if ( current_user_can( 'edit_theme_options' ) ) : ?>
-              <a href="<?php echo wp_customize_url(); ?>" class="load-customize hide-if-no-customize"
+              <a href="<?php echo wp_customize_url(); ?>"
+                 class="load-customize hide-if-no-customize"
                  title="<?php echo esc_attr( $customize_title ); ?>">
-                <img src="<?php echo esc_url( $screenshot ); ?>" alt="<?php esc_attr_e( 'Current theme preview' ); ?>"/>
+                <img src="<?php echo esc_url( $screenshot ); ?>"
+                     alt="<?php esc_attr_e( 'Current theme preview' ); ?>"/>
               </a>
             <?php endif; ?>
-            <img class="hide-if-customize" src="<?php echo esc_url( $screenshot ); ?>"
+            <img class="hide-if-customize"
+                 src="<?php echo esc_url( $screenshot ); ?>"
                  alt="<?php esc_attr_e( 'Current theme preview' ); ?>"/>
           <?php endif; ?>
 
@@ -239,7 +245,8 @@
               <li><?php printf( __( 'Version %s', 'pzarchitect' ), $this->theme->display( 'Version' ) ); ?></li>
               <li><?php echo '<strong>' . __( 'Tags', 'pzarchitect' ) . ':</strong> '; ?><?php printf( $this->theme->display( 'Tags' ) ); ?></li>
             </ul>
-            <p class="theme-description"><?php echo $this->theme->display( 'Description' ); ?></p>
+            <p
+              class="theme-description"><?php echo $this->theme->display( 'Description' ); ?></p>
             <?php if ( $this->theme->parent() ) {
               printf( ' <p class="howto">' . __( 'This <a href="%1$s">child theme</a> requires its parent theme, %2$s.' ) . '</p>',
                       __( 'http://codex.wordpress.org/Child_Themes', 'pzarchitect' ),
@@ -276,8 +283,8 @@
         }
 
 
-        $is_hw = ( ($current_theme->get('Name') === 'Headway Base' || $current_theme->get('Template')=='headway') ) ;
-        $this->sections[ '_general'] = array(
+        $is_hw                           = ( ( $current_theme->get( 'Name' ) === 'Headway Base' || $current_theme->get( 'Template' ) == 'headway' ) );
+        $this->sections[ '_general' ]    = array(
           'title'      => __( 'General ', 'pzarchitect' ),
           'show_title' => true,
           'icon'       => 'el-icon-wrench',
@@ -293,8 +300,9 @@
               'id'       => 'architect_enable_styling',
               'type'     => 'switch',
               'subtitle' => __( 'Turn this off if you want to manage styling from your own CSS stylesheets or only from the Headway Visual Editor Design Mode.', 'pzarchitect' ),
-              'desc'=>__('If this is enabled, it will override styling for Blueprints set in your theme or custom CSS.','pzarchitect'),
-              'default'  => true // Re-set to true v1.5.17 as better to tell ppl to turn it off than have them with unstyled presets.
+              'desc'     => __( 'If this is enabled, it will override styling for Blueprints set in your theme or custom CSS.', 'pzarchitect' ),
+              'default'  => true
+              // Re-set to true v1.5.17 as better to tell ppl to turn it off than have them with unstyled presets.
             ),
             array(
               'title'   => __( 'Typography units', 'pzarchitect' ),
@@ -405,24 +413,24 @@
               'type'   => 'section',
               'indent' => true,
             ),
-//            array(
-//                'title'    => __( 'Use Focal Point', 'pzarchitect' ),
-//                'id'       => 'architect_use-focal-point',
-//                'type'     => 'switch',
-//                'on'       => __( 'Yes', 'pzarchitect' ),
-//                'off'      => __( 'No', 'pzarchitect' ),
-//                'default'  => true,
-//                'subtitle' => __( 'If you do not need the focal point feature, you can turn it off.', 'pzarchitect' )
-//
-//            ),
-             array(
-                'title'    => __( 'Activate Architect Builder on Pages editor', 'pzarchitect' ),
-                'id'       => 'architect_use-builder',
-                'type'     => 'switch',
-                'on'       => __( 'Yes', 'pzarchitect' ),
-                'off'      => __( 'No', 'pzarchitect' ),
-                'default'  => !$is_hw,
-                'subtitle' => __( '', 'pzarchitect' )
+            //            array(
+            //                'title'    => __( 'Use Focal Point', 'pzarchitect' ),
+            //                'id'       => 'architect_use-focal-point',
+            //                'type'     => 'switch',
+            //                'on'       => __( 'Yes', 'pzarchitect' ),
+            //                'off'      => __( 'No', 'pzarchitect' ),
+            //                'default'  => true,
+            //                'subtitle' => __( 'If you do not need the focal point feature, you can turn it off.', 'pzarchitect' )
+            //
+            //            ),
+            array(
+              'title'    => __( 'Activate Architect Builder on Pages editor', 'pzarchitect' ),
+              'id'       => 'architect_use-builder',
+              'type'     => 'switch',
+              'on'       => __( 'Yes', 'pzarchitect' ),
+              'off'      => __( 'No', 'pzarchitect' ),
+              'default'  => ! $is_hw,
+              'subtitle' => __( '', 'pzarchitect' )
 
             ),
             array(
@@ -433,9 +441,13 @@
               'options' => array(
                 'pz_snippets'     => __( 'Snippets', 'pzarchitect' ),
                 'pz_testimonials' => __( 'Testimonials', 'pzarchitect' ),
-                'pz_showcases' => __( 'Showcases', 'pzarchitect' )
+                'pz_showcases'    => __( 'Showcases', 'pzarchitect' )
               ),
-              'default' => array( 'pz_testimonials' => 1, 'pz_snippets' => 1,'pz_showcases' => 1 )
+              'default' => array(
+                'pz_testimonials' => 1,
+                'pz_snippets'     => 1,
+                'pz_showcases'    => 1
+              )
             ),
             array(
               'title'    => __( 'Feature Video field', 'pzarchitect' ),
@@ -447,7 +459,11 @@
                 'page'        => __( 'Pages', 'pzarchitect' ),
                 'pz_snippets' => __( 'Snippets', 'pzarchitect' )
               ),
-              'default'  => array( 'post' => 0, 'page' => 0, 'pz_snippets' => 1 )
+              'default'  => array(
+                'post'        => 0,
+                'page'        => 0,
+                'pz_snippets' => 1
+              )
             ),
             //            array(
             //              'title'    => __( 'Query caching', 'pzarchitect' ),
@@ -468,47 +484,47 @@
               'indent' => true
             ),
             array(
-              'title'    => __( 'Exclude hidden custom fields', 'pzarchitect' ),
-              'id'       => 'architect_exclude_hidden_custom',
-              'type'     => 'switch',
-              'desc' => __( 'Many plugins have custom fields that are hidden because you don\'t need to access them. Some however, like WooCommerce, make their fields hidden anyway. If you want to shorten the custom field drop downs and are not using a plugin that you need hidden fields from, then enable this.', 'pzarchitect' ),
-              'default'  => false,
-              'on'       => __( 'Yes', 'pzarchitect' ),
-              'off'      => __( 'No', 'pzarchitect' )
+              'title'   => __( 'Exclude hidden custom fields', 'pzarchitect' ),
+              'id'      => 'architect_exclude_hidden_custom',
+              'type'    => 'switch',
+              'desc'    => __( 'Many plugins have custom fields that are hidden because you don\'t need to access them. Some however, like WooCommerce, make their fields hidden anyway. If you want to shorten the custom field drop downs and are not using a plugin that you need hidden fields from, then enable this.', 'pzarchitect' ),
+              'default' => false,
+              'on'      => __( 'Yes', 'pzarchitect' ),
+              'off'     => __( 'No', 'pzarchitect' )
             ),
             array(
-                'title'    => __( 'Turn off dropdowns of post lists', 'pzarchitect' ),
-                'id'       => 'architect_post-specific-id-dropdown',
-                'type'     => 'switch',
-                'desc' => __( 'This will replace post list dropdowns with text fields where you\'ll need to enter specific IDs. This is required if you have 1000s of posts as populating the dropdowns will kill memory and the Blueprint editor won\'t fully load.', 'pzarchitect' ),
-                'default'  => false,
-                'on'       => __( 'Yes', 'pzarchitect' ),
-                'off'      => __( 'No', 'pzarchitect' )
+              'title'   => __( 'Turn off dropdowns of post lists', 'pzarchitect' ),
+              'id'      => 'architect_post-specific-id-dropdown',
+              'type'    => 'switch',
+              'desc'    => __( 'This will replace post list dropdowns with text fields where you\'ll need to enter specific IDs. This is required if you have 1000s of posts as populating the dropdowns will kill memory and the Blueprint editor won\'t fully load.', 'pzarchitect' ),
+              'default' => false,
+              'on'      => __( 'Yes', 'pzarchitect' ),
+              'off'     => __( 'No', 'pzarchitect' )
             ),
-//            array(
-//              'title'    => __( 'Remove Architect Support button', 'pzarchitect' ),
-//              'id'       => 'architect_remove_support_button',
-//              'type'     => 'switch',
-//              'desc' => __( 'If you don\'t want the Architect Support button appearing on every screen (it can slow down loading), then enable this. You can still access the support form in Architect> Help & Support > Support.', 'pzarchitect' ),
-//              'default'  => false,
-//              'on'       => __( 'Yes', 'pzarchitect' ),
-//              'off'      => __( 'No', 'pzarchitect' )
-//            ),
+            //            array(
+            //              'title'    => __( 'Remove Architect Support button', 'pzarchitect' ),
+            //              'id'       => 'architect_remove_support_button',
+            //              'type'     => 'switch',
+            //              'desc' => __( 'If you don\'t want the Architect Support button appearing on every screen (it can slow down loading), then enable this. You can still access the support form in Architect> Help & Support > Support.', 'pzarchitect' ),
+            //              'default'  => false,
+            //              'on'       => __( 'Yes', 'pzarchitect' ),
+            //              'off'      => __( 'No', 'pzarchitect' )
+            //            ),
             array(
-              'title'    => __( 'Enable beta features', 'pzarchitect' ),
-              'id'       => 'architect_enable_beta',
-              'type'     => 'switch',
-              'desc' => __( 'This will enable features that are working but not fully complete. Use at your own risk!', 'pzarchitect' ),
-              'default'  => false,
-              'on'       => __( 'Yes', 'pzarchitect' ),
-              'off'      => __( 'No', 'pzarchitect' )
+              'title'   => __( 'Enable beta features', 'pzarchitect' ),
+              'id'      => 'architect_enable_beta',
+              'type'    => 'switch',
+              'desc'    => __( 'This will enable features that are working but not fully complete. Use at your own risk!', 'pzarchitect' ),
+              'default' => false,
+              'on'      => __( 'Yes', 'pzarchitect' ),
+              'off'     => __( 'No', 'pzarchitect' )
             ),
             array(
               'title'    => __( 'Beta features', 'pzarchitect' ),
               'id'       => 'architect_beta_features',
               'type'     => 'info',
               'required' => array( 'architect_enable_beta', 'equals', true ),
-              'icon'  => 'el-icon-info-sign',
+              'icon'     => 'el-icon-info-sign',
               'style'    => 'critical',
               'subtitle' => 'No beta features currently available.'
             ),
@@ -526,7 +542,7 @@
             ),
           )
         );
-        $this->sections[ '_responsive'] = array(
+        $this->sections[ '_responsive' ] = array(
           'title'      => 'Responsive ',
           'show_title' => true,
           'icon'       => 'el-icon-laptop',
@@ -638,7 +654,38 @@
             ),
           )
         );
-        $this->sections[ '_language'] = array(
+        $this->sections[ '_rewrites' ]   = array(
+          'title'      => __('Rewrites','pzarchitect'),
+          'show_title' => true,
+          'icon'       => 'el-icon-pencil',
+          'fields'     => array(
+            array(
+              'title'    => __( 'Snippets', 'pzarchitect' ),
+              'id'       => 'architect_rewrites-snippets',
+              'type'     => 'text',
+              'validate' => 'no_special_chars',
+              'default'  => 'pz_snippets',
+              'subtitle'       => __( 'Set what name appears in the URL for Snippets', 'pzarchitect' ),
+            ),
+            array(
+              'title'    => __( 'Testimonials', 'pzarchitect' ),
+              'id'       => 'architect_rewrites-testimonials',
+              'type'     => 'text',
+              'validate' => 'no_special_chars',
+              'default'  => 'pz_testimonials',
+              'subtitle'       => __( 'Set what name appears in the URL for Testimonials', 'pzarchitect' ),
+            ),
+            array(
+              'title'    => __( 'Showcases', 'pzarchitect' ),
+              'id'       => 'architect_rewrites-showcases',
+              'type'     => 'text',
+              'validate' => 'no_special_chars',
+              'default'  => 'pz_showcases',
+              'subtitle'       => __( 'Set what name appears in the URL for Showcases', 'pzarchitect' ),
+            ),
+          )
+        );
+        $this->sections[ '_language' ]   = array(
           'title'      => 'Language ',
           'show_title' => true,
           'icon'       => 'el-icon-globe',
@@ -688,20 +735,20 @@
 //                )
 //            )
 //        );
-        $this->sections = apply_filters('arc-extend-options',$this->sections);
+        $this->sections = apply_filters( 'arc-extend-options', $this->sections );
 
       }
 
       public function setHelpTabs() {
 
         // Custom page help tabs, displayed using the help API. Tabs are shown in order of definition.
-        $this->args[ 'help_tabs' ][ ] = array(
+        $this->args[ 'help_tabs' ][] = array(
           'id'      => 'redux-opts-1',
           'title'   => __( 'Theme Information 1', 'pzarchitect' ),
           'content' => __( '<p>This is the tab content, HTML is allowed.</p>', 'pzarchitect' )
         );
 
-        $this->args[ 'help_tabs' ][ ] = array(
+        $this->args[ 'help_tabs' ][] = array(
           'id'      => 'redux-opts-2',
           'title'   => __( 'Theme Information 2', 'pzarchitect' ),
           'content' => __( '<p>This is the tab content, HTML is allowed.</p>', 'pzarchitect' )
@@ -726,62 +773,62 @@
         $this->args = array(
 
           // TYPICAL -> Change these values as you need/desire
-          'opt_name'           => '_architect_options',
+          'opt_name'         => '_architect_options',
           // This is where your data is stored in the database and also becomes your global variable name.
-          'display_name'       => __( 'Architect Options', 'pzarchitect' ),
+          'display_name'     => __( 'Architect Options', 'pzarchitect' ),
           // Name that appears at the top of your panel
-          'display_version'    => 'Architect v' . PZARC_VERSION,
+          'display_version'  => 'Architect v' . PZARC_VERSION,
           // Version that appears at the top of your panel
-          'menu_type'          => 'submenu',
+          'menu_type'        => 'submenu',
           //Specify if the admin menu should appear or not. Options: menu or submenu (Under appearance only)
-          'allow_sub_menu'     => false,
+          'allow_sub_menu'   => false,
           // Show the sections below the admin menu item or not
-          'menu_title'         => __( '<span class="dashicons dashicons-admin-settings"></span>Options', 'pzarchitect' ),
-          'page'               => __( 'Architect Options', 'pzarchitect' ),
-          'google_api_key'     => 'Xq9o3CdQFHKr+47vQr6eO4EUYLtlEyTe',
+          'menu_title'       => __( '<span class="dashicons dashicons-admin-settings"></span>Options', 'pzarchitect' ),
+          'page'             => __( 'Architect Options', 'pzarchitect' ),
+          'google_api_key'   => 'Xq9o3CdQFHKr+47vQr6eO4EUYLtlEyTe',
           // Must be defined to add google fonts to the typography module
-          'global_variable'    => '',
+          'global_variable'  => '',
           // Set a different name for your global variable other than the opt_name
-          'dev_mode'           => false,
+          'dev_mode'         => false,
           // Show the time the page took to load, etc
-          'customizer'         => false,
+          'customizer'       => false,
           // Enable basic customizer support
 
           // OPTIONAL -> Give you extra features
-          'page_priority'      => null,
+          'page_priority'    => null,
           // Order where the menu appears in the admin area. If there is any conflict, something will not show. Warning.
-          'page_parent'        => 'pzarc',
+          'page_parent'      => 'pzarc',
           // For a full list of options, visit: http://codex.wordpress.org/Function_Reference/add_submenu_page#Parameters
-          'page_permissions'   => 'manage_options',
+          'page_permissions' => 'manage_options',
           // Permissions needed to access the options panel.
-          'menu_icon'          => '',
+          'menu_icon'        => '',
           // Specify a custom URL to an icon
-          'last_tab'           => '',
+          'last_tab'         => '',
           // Force your panel to always open to a specific tab (by id)
-          'page_icon'          => 'icon-themes',
+          'page_icon'        => 'icon-themes',
           // Icon displayed in the admin panel next to your menu_title
-          'page_slug'          => '_architect_options',
+          'page_slug'        => '_architect_options',
           // Page slug used to denote the panel
-          'save_defaults'      => true,
+          'save_defaults'    => true,
           // On load save the defaults to DB before user clicks save or not
-          'default_show'       => false,
+          'default_show'     => false,
           // If true, shows the default value next to each field that is not the default value.
-          'default_mark'       => '',
+          'default_mark'     => '',
           // What to print by the field's title if the value shown is default. Suggested: *
 
 
           // CAREFUL -> These options are for advanced use only
-          'transient_time'     => 60 * MINUTE_IN_SECONDS,
-          'output'             => false,
+          'transient_time'   => 60 * MINUTE_IN_SECONDS,
+          'output'           => false,
           // Global shut-off for dynamic CSS output by the framework. Will also disable google fonts output
-          'output_tag'         => false,
+          'output_tag'       => false,
           // Allows dynamic CSS to be generated for customizer and google fonts, but stops the dynamic CSS from going to the head
           //'domain'             	=> 'redux-framework', // Translation domain key. Don't change this unless you want to retranslate all of Redux.
           //'footer_credit'      	=> '', // Disable the footer credit of Redux. Please leave if you can help it.
 
 
           // FUTURE -> Not in use yet, but reserved or partially implemented. Use at your own risk.
-          'database'           => '',
+          'database'         => '',
           // possible: options, theme_mods, theme_mods_expanded, transient. Not fully functional, warning!
 
 
@@ -790,9 +837,9 @@
           'system_info'        => false,
           // REMOVE
 
-          'help_tabs'          => array(),
-          'help_sidebar'       => '',
-          'hints'              => array(
+          'help_tabs'    => array(),
+          'help_sidebar' => '',
+          'hints'        => array(
             'icon'          => 'el el-question-sign',
             'icon_position' => 'right',
             'icon_color'    => 'lightgray',
@@ -825,7 +872,7 @@
 
 
         // SOCIAL ICONS -> Setup custom links in the footer for quick links in your panel footer icons.
-        $this->args[ 'share_icons' ][ ] = array(
+        $this->args[ 'share_icons' ][] = array(
           'url'   => 'http://twitter.com/pizazzwp',
           'title' => 'Follow us on Twitter',
           'icon'  => 'el el-twitter'
