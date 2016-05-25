@@ -3429,9 +3429,8 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
             'title'    => __( 'Generic email address', 'pzarchitect' ),
             'id'       => $prefix . 'authors-generic-email-address',
             'type'     => 'text',
-            'validate'=>'email',
             'default'  => '',
-            'subtitle' => __( 'Enter a generic email address to use for the above selected roles', 'pzarchitect' )
+            'subtitle' => __( 'Enter a generic email address to use for the above selected roles,  or leave blank for none.', 'pzarchitect' )
           ),
           array(
             'title'    => __( 'Excluded authors', 'pzarchitect' ),
