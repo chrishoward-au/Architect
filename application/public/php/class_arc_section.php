@@ -260,9 +260,9 @@
       $postid   = ( empty( $postid ) ? 'NoID' : $postid );
       $settings = $this->section[ 'section-panel-settings' ];
       $toshow   = json_decode( $settings[ '_panels_design_preview' ], true );
-      pzdb( 'json decode ' . get_the_id() );
+      pzdb( 'json decode ' . get_the_ID() );
       $panel_class->set_data( $post, $toshow, $settings, $this->panel_number );
-      pzdb( 'set data ' . get_the_id() );
+      pzdb( 'set data ' . get_the_ID() );
 //      $elements = array();
 //
 //      // Massage toshow to be more usable here
@@ -407,7 +407,7 @@
 //var_dump($panel_def);
       /** Components */
 
-      pzdb( 'top of components ' . get_the_id() );
+      pzdb( 'top of components ' . get_the_ID() );
       foreach ( $toshow as $component_type => $value ) {
         if ( $component_type === 'image' && $settings[ '_panels_design_feature-location' ] !== 'components' ) {
           $value[ 'show' ] = false;
@@ -419,11 +419,7 @@
 
           // Make the class name to call - strip numbers from metas and customs
           // We could do this in a concatenation first of all components' templates, and then replace the {{tags}}.... But then we couldn't do the filter on each component. Nor could we as easily make the components extensible
-          $method_to_do = strtolower( 'render_' . str_replace( array(
-                                                                 '1',
-                                                                 '2',
-                                                                 '3'
-                                                               ), '', ucfirst( $component_type ) ) );
+          $method_to_do = strtolower( 'render_' . str_replace( array( '1', '2', '3' ), '', ucfirst( $component_type ) ) );
           $line_out     = $panel_class->$method_to_do( $component_type, $this->source, $panel_def, $this->rsid, $this->layout_mode );
           echo apply_filters( "arc_filter_{$component_type}", self::strip_unused_arctags( $line_out ), $postid );
           do_action( "arc_after_{$component_type}", $component_type, $this->panel_number, $postid );
@@ -431,7 +427,7 @@
         }
 
       }
-      pzdb( 'bottom of components ' . get_the_id() );
+      pzdb( 'bottom of components ' . get_the_ID() );
 
 
       /** Close components wrapper */

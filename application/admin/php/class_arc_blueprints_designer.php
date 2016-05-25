@@ -3392,11 +3392,46 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
             'default' => '%commentslink%   %editlink%',
           ),
           array(
+            'title'    => __( 'Dates', 'pzarchitect' ),
+            'id'       => $prefix . 'meta-dates-section-open',
+            'type'     => 'section',
+            'indent'   => true,
+          ),
+
+          array(
             'id'      => $prefix . 'meta-date-format',
             'title'   => __( 'Date format', 'pzarchitect' ),
             'type'    => 'text',
             'default' => 'l, F j, Y g:i a',
             'desc'    => __( 'See here for information on <a href="http://codex.wordpress.org/Formatting_Date_and_Time" target=_blank>formatting date and time</a>', 'pzarchitect' ),
+          ),
+          array(
+            'id'       => $prefix . 'meta-dates-section-close',
+            'type'     => 'section',
+            'indent'   => false,
+          ),
+          array(
+            'title'    => __( 'Authors', 'pzarchitect' ),
+            'id'       => $prefix . 'meta-authors-section-open',
+            'type'     => 'section',
+            'indent'   => true,
+          ),
+          array(
+            'title'    => __( 'Roles with generic emails', 'pzarchitect' ),
+            'id'       => $prefix . 'authors-generic-emails',
+            'type'     => 'select',
+            'multi'    => true,
+            'default'  => array(),
+            'data'     => 'roles',
+            'subtitle' => __( 'Select roles to use a generic email address for (entered below).', 'pzarchitect' )
+          ),
+          array(
+            'title'    => __( 'Generic email address', 'pzarchitect' ),
+            'id'       => $prefix . 'authors-generic-email-address',
+            'type'     => 'text',
+            'validate'=>'email',
+            'default'  => '',
+            'subtitle' => __( 'Enter a generic email address to use for the above selected roles', 'pzarchitect' )
           ),
           array(
             'title'    => __( 'Excluded authors', 'pzarchitect' ),
@@ -3430,6 +3465,11 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
             'max'      => 256,
             'step'     => 1,
             'subtitle' => __( 'Width and height of avatar if displayed.', 'pzarchitect' )
+          ),
+          array(
+            'id'       => $prefix . 'meta-authors-section-close',
+            'type'     => 'section',
+            'indent'   => false,
           ),
         )
       );
