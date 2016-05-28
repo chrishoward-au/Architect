@@ -203,43 +203,47 @@
 
 
         // sort items on button click
-        jQuery('.sort-by-button-group').on( 'click', 'button', function() {
-          jQuery('.sort-by-button-group').find('.selected').removeClass('selected');
+        jQuery('#pzarc-blueprint_{$blueprint} .sort-by-button-group').on( 'click', 'button', function() {
+          jQuery('#pzarc-blueprint_{$blueprint} .sort-by-button-group').find('.selected').removeClass('selected');
           jQuery(this).addClass('selected');
           var sortByValue = $(this).attr('data-sort-by');
           var sortOrderValue = ($('#pzarc-blueprint_{$blueprint} .sort-order-button-group .selected').attr('data-sort-order')=='true');
           container.isotope({ sortBy: sortByValue, sortAscending: sortOrderValue });
         });
 
-        jQuery('.sort-order-button-group').on( 'click', 'button', function() {
-          jQuery('.sort-order-button-group').find('.selected').removeClass('selected');
+        jQuery('#pzarc-blueprint_{$blueprint} .sort-order-button-group').on( 'click', 'button', function() {
+          jQuery('#pzarc-blueprint_{$blueprint} .sort-order-button-group').find('.selected').removeClass('selected');
           jQuery(this).addClass('selected');
           var sortOrderValue = ($(this).attr('data-sort-order')=='true');
           var sortByValue = $('#pzarc-blueprint_{$blueprint} .sort-by-button-group .selected').attr('data-sort-by');
           container.isotope({ sortByValue: sortByValue, sortAscending: sortOrderValue });
         });";
 
-      $script .= "jQuery('.filter-button-group').on( 'click load', 'button', function() {
+      $script .= "jQuery('#pzarc-blueprint_{$blueprint} .filter-button-group').on( 'click', 'button', function() {
           if (jQuery(this).hasClass('showall')) {
-            jQuery('.filter-button-group .selected').removeClass('selected');
+            jQuery('#pzarc-blueprint_{$blueprint} .filter-button-group .selected').removeClass('selected');
           } else {
-            jQuery('.filter-button-group .showall').removeClass('selected');
+            jQuery('#pzarc-blueprint_{$blueprint} .filter-button-group .showall').removeClass('selected');
           }
 
+           console.log('hasClass Selected before',jQuery(this).hasClass('selected'));
+           console.log('this',this);
           if (jQuery(this).hasClass('selected')) {
             jQuery(this).removeClass('selected');
           } else {
             if (!allowMultiple) {
-              jQuery('.filter-button-group .selected').removeClass('selected');
-            }
-           // console.log(this,jQuery(this));
-            jQuery(this).addClass('selected');
-           // console.log(jQuery(this).hasClass('selected'));
-          }
 
-          var t = jQuery('.filter-button-group .selected');
+              jQuery('#pzarc-blueprint_{$blueprint} .filter-button-group .selected').removeClass('selected');
+            }
+            jQuery(this).addClass('selected');
+          }
+           console.log('hasClass Selected after',jQuery(this).hasClass('selected'));
+           console.log('this',this);
+
+          var t = jQuery('#pzarc-blueprint_{$blueprint} .filter-button-group .selected');
           var filterValue = concatValues(t);
           container.isotope({ filter: filterValue });
+
       });
 
       function concatValues( t ) {

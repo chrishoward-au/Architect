@@ -108,6 +108,7 @@ TODO: Replace curl with wp_remote_get
 * CHANGED: Blueprint dropdown lists to default to showing content type too.
 * FIXED: Accordions closed styling overridden by Bootstrap styling
 * FIXED: Blueprints not showing in dropdown in Architect Beaver module
+* FIXED: Filtering and sorting not working when multiple masonry Blueprints on a page.
 
 = 1.9.2 : 15 May 2016 =
 * ADDED: Column in Blueprint list showing the pages Blueprints are used on. Requires pages to have been viewed since 1.9.2 update.
