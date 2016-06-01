@@ -56,6 +56,7 @@
       // Need to do this for each taxonomy
       if ( ! empty( $this->blueprint[ '_blueprints_masonry-filtering' ] ) && ! empty( $this->blueprint[ '_blueprints_masonry-features' ] ) && in_array( 'filtering', $this->blueprint[ '_blueprints_masonry-features' ] ) ) {
         $i = 1;
+        $term_defaults = array();
         echo '<div class="arc-filter-buttons">';
         foreach ( $this->blueprint[ '_blueprints_masonry-filtering' ] as $tax ) {
           if ( ! empty( $this->blueprint[ '_blueprints_masonry-filtering-limit-' . $tax ] ) ) {
@@ -83,6 +84,7 @@
                 'hide_empty' => true,
                 'include'    => $this->blueprint[ '_blueprints_masonry-filtering-default-terms-' . $tax ]
               ) );
+              $term_defaults[$tax] = $defaults;
             }
             echo '<div class="arc-masonry-buttons button-group filter-button-group">';
             if ( ! empty( $terms ) ) {
@@ -92,14 +94,30 @@
                                                                                            '-'
                                                                                          ), ' ', $tax ) ) . ': </label>';
               foreach ( $terms as $class => $name ) {
-                $pre_selected = array_key_exists( $class, $defaults ) ? ' class="selected" ' : '';
+                $pre_selected = '';
+                if (array_key_exists( $class, $defaults )) {
+                  $pre_selected = ' class="selected" ' ;
+                }
                 echo '<button data-filter=".' . $tax . '-' . $class . '" ' . $pre_selected . '>' . $name . '</button>';
               }
             }
-            if ( ( empty( $this->blueprint[ '_blueprints_masonry-filtering-allow-multiple' ] ) || $this->blueprint[ '_blueprints_masonry-filtering-allow-multiple' ] === 'multiple' ) && $i ++ === count( $this->blueprint[ '_blueprints_masonry-filtering' ] ) ) {
-              echo '<p><button data-filter="*" class="showall" data-filter-group="all">' . __( 'Clear all', 'pzarchitect' ) . '</button></p>';
+            if ($i ++ === count( $this->blueprint[ '_blueprints_masonry-filtering' ] )) {
+              echo '<p>';
+              if ( ( empty( $this->blueprint[ '_blueprints_masonry-filtering-allow-multiple' ] ) || $this->blueprint[ '_blueprints_masonry-filtering-allow-multiple' ] === 'multiple' ) ) {
+                echo '<button data-filter="*" class="showall" data-filter-group="all">' . __( 'Clear all', 'pzarchitect' ) . '</button>';
+              }
+              if ( ! empty( $term_defaults ) ) {
+                $term_defaults_set = array();
+                foreach ($term_defaults as $key => $value) {
+                  foreach($value as $k => $v) {
+                    $term_defaults_set[] = $key.'-'.$k;
+                  }
+                }
+                echo '<button class="reset-to-defaults" data-defaults="' .  implode('.',$term_defaults_set)  . '">Defaults</button>';
+              }
+              echo '</p>';
+              echo '</div>';
             }
-            echo '</div>';
           }
         }
         echo '</div>';
@@ -179,9 +197,7 @@
 
       $transition_duration = '0.2';
 
-      $script = "<script type='text/javascript' id='masonry-{$blueprint}'>
-        // init Isotope
-        (function($){";
+      $script = "<script type='text/javascript' id='masonry-{$blueprint}'>(function($){";
       $script .= "var allowMultiple=" . ( empty( $this->blueprint[ '_blueprints_masonry-filtering-allow-multiple' ] ) || $this->blueprint[ '_blueprints_masonry-filtering-allow-multiple' ] === 'multiple' ? 'true' : 'false' ) . ";";
       $script .= "    var container = jQuery( '.pzarc-section-using-{$blueprint}' );
                var arcIsotopeID = jQuery( container ).attr( 'data-uid' );
@@ -219,50 +235,86 @@
           container.isotope({ sortByValue: sortByValue, sortAscending: sortOrderValue });
         });";
 
-      $script .= "jQuery('#pzarc-blueprint_{$blueprint} .filter-button-group').on( 'click', 'button', function() {
-          if (jQuery(this).hasClass('showall')) {
+      $script .= "jQuery('#pzarc-blueprint_{$blueprint} .filter-button-group').on( 'click', 'button', function(e) {
+        setSelected(this,false)
+      });
+
+
+      // Defaults
+      jQuery('#pzarc-blueprint_{$blueprint} .reset-to-defaults').on( 'click', function(e) {
+       setDefaults(this);
+      });
+
+      function setDefaults(defBtn,abc){
+      console.log(249,defBtn,abc);
+      if (abc) {
+        defBtn = abc;
+      } else {
+        defBtn = jQuery(defBtn);
+      }
+      console.log(253,defBtn);
+        jQuery('#pzarc-blueprint_{$blueprint} .filter-button-group .selected').removeClass('selected');
+        console.log(255,jQuery(defBtn).attr('data-defaults'));
+        filterValue = jQuery(defBtn).attr('data-defaults');
+        container.isotope({ filter: '.' + filterValue });
+        defaultsSet = filterValue.split('.');
+        console.log(defaultsSet);
+        for (let taxterm of defaultsSet) {
+          jQuery( '#pzarc-blueprint_{$blueprint} .filter-button-group [data-filter=\".' + taxterm + '\"]').addClass('selected') ;
+          console.log(jQuery( '#pzarc-blueprint_{$blueprint} .filter-button-group [data-filter=\".' + taxterm + '\"]').hasClass('selected')) ;
+        }
+   
+      
+      }
+      
+      function setSelected(t) {
+
+          if (jQuery(t).hasClass('selected')) {
+            jQuery(t).removeClass('selected');
+          } else {
+            if (!allowMultiple) {
+              jQuery('#pzarc-blueprint_{$blueprint} .filter-button-group .selected').removeClass('selected');
+            }
+            jQuery(t).addClass('selected');
+          }
+
+          if (jQuery(t).hasClass('showall')) {
+            // Removes selected from all selected buttons
             jQuery('#pzarc-blueprint_{$blueprint} .filter-button-group .selected').removeClass('selected');
+            jQuery(t).removeClass('selected');
           } else {
             jQuery('#pzarc-blueprint_{$blueprint} .filter-button-group .showall').removeClass('selected');
           }
 
-           console.log('hasClass Selected before',jQuery(this).hasClass('selected'));
-           console.log('this',this);
-          if (jQuery(this).hasClass('selected')) {
-            jQuery(this).removeClass('selected');
+          if (!jQuery(t).hasClass('reset-to-defaults')) {
+            var th = jQuery('#pzarc-blueprint_{$blueprint} .filter-button-group .selected');
+            var filterValue = concatValues(th);
+            console.log('269',filterValue);
+            container.isotope({ filter: filterValue });
           } else {
-            if (!allowMultiple) {
-
-              jQuery('#pzarc-blueprint_{$blueprint} .filter-button-group .selected').removeClass('selected');
-            }
-            jQuery(this).addClass('selected');
-          }
-           console.log('hasClass Selected after',jQuery(this).hasClass('selected'));
-           console.log('this',this);
-
-          var t = jQuery('#pzarc-blueprint_{$blueprint} .filter-button-group .selected');
-          var filterValue = concatValues(t);
-          container.isotope({ filter: filterValue });
-
-      });
-
+            jQuery(t).removeClass('selected');
+         }
+      }
+      
+      
       function concatValues( t ) {
          var value = '';
          jQuery(t).each(function(){
-         var dataFilter = jQuery(this).attr('data-filter');
-          if ('*'=== dataFilter) {
-            value = '*';
-          } else {
-            if (allowMultiple) {
-              value += dataFilter;
+           var dataFilter = jQuery(this).attr('data-filter');
+            if ( '*' === dataFilter ) {
+              value = '*';
             } else {
-              value=dataFilter;
+              if (allowMultiple) {
+                value += dataFilter;
+              } else {
+                value = dataFilter;
+              }
             }
-          // console.log(value,allowMultiple);
-          }
          });
         return value;
         };
+        
+        setDefaults(false,jQuery('#pzarc-blueprint_{$blueprint} .reset-to-defaults'));
       ";
 
       $script .= "})(jQuery);

@@ -2412,7 +2412,7 @@
             pzarc_redux_bg( $prefix . $thisSection . '-hover' . $background, $this->defaults ? '' : $_architect[ 'architect_config_' . $thisSection . '-clear-selectors' ], $defaults[ $optprefix . $thisSection . '-hover' . $background ] ),
             pzarc_redux_borders( $prefix . $thisSection . '-hover' . $border, $this->defaults ? '' : $_architect[ 'architect_config_' . $thisSection . '-clear-selectors' ], $defaults[ $optprefix . $thisSection . '-hover' . $border ] ),
             array(
-              'title'    => __( 'Clear button', 'pzarchitect' ),
+              'title'    => __( 'Clear All and Defaults button', 'pzarchitect' ),
               'id'       => $prefix . 'blueprint-clear-css-heading',
               'type'     => 'section',
               'indent'   => true,
