@@ -242,26 +242,24 @@
 
       // Defaults
       jQuery('#pzarc-blueprint_{$blueprint} .reset-to-defaults').on( 'click', function(e) {
-       setDefaults(this);
+       setDefaults(this,false);
       });
 
-      function setDefaults(defBtn,abc){
-      console.log(249,defBtn,abc);
-      if (abc) {
-        defBtn = abc;
+      function setDefaults(defBtn,onLoad){
+      if (!defBtn && !onLoad.length) {
+       return;
+      }
+      if (onLoad) {
+        defBtn = onLoad;
       } else {
         defBtn = jQuery(defBtn);
       }
-      console.log(253,defBtn);
         jQuery('#pzarc-blueprint_{$blueprint} .filter-button-group .selected').removeClass('selected');
-        console.log(255,jQuery(defBtn).attr('data-defaults'));
         filterValue = jQuery(defBtn).attr('data-defaults');
         container.isotope({ filter: '.' + filterValue });
         defaultsSet = filterValue.split('.');
-        console.log(defaultsSet);
         for (let taxterm of defaultsSet) {
           jQuery( '#pzarc-blueprint_{$blueprint} .filter-button-group [data-filter=\".' + taxterm + '\"]').addClass('selected') ;
-          console.log(jQuery( '#pzarc-blueprint_{$blueprint} .filter-button-group [data-filter=\".' + taxterm + '\"]').hasClass('selected')) ;
         }
    
       
@@ -289,7 +287,6 @@
           if (!jQuery(t).hasClass('reset-to-defaults')) {
             var th = jQuery('#pzarc-blueprint_{$blueprint} .filter-button-group .selected');
             var filterValue = concatValues(th);
-            console.log('269',filterValue);
             container.isotope({ filter: filterValue });
           } else {
             jQuery(t).removeClass('selected');
@@ -312,9 +309,8 @@
             }
          });
         return value;
-        };
-        
-        setDefaults(false,jQuery('#pzarc-blueprint_{$blueprint} .reset-to-defaults'));
+       };
+       setDefaults(false,jQuery('#pzarc-blueprint_{$blueprint} .reset-to-defaults'));
       ";
 
       $script .= "})(jQuery);

@@ -1491,11 +1491,11 @@ body.admin-color-midnight #redux-_architect-metabox-_blueprint_tabs_blueprints {
 */
 a.arc-important-button {
   color: #fff;
-  background: #E91E63;
+  background: #e91e63;
   padding: 10px;
   border-radius: 5px; }
   a.arc-important-button:hover {
-    background: #880E4F; }
+    background: #880e4f; }
 
 li.arc-message .arc-presets-link {
   padding: 8px 12px;
@@ -1770,7 +1770,7 @@ body.arc-beginner .redux-notice-field {
   color: #fff; }
 
 #redux-_architect-metabox-content-selections h3.redux-hndle, #redux-_architect-metabox-content-selections h2.hndle {
-  border-bottom: solid 4px #E91E63 !important;
+  border-bottom: solid 4px #e91e63 !important;
   background: #222;
   color: #fff; }
 
@@ -1793,3 +1793,9 @@ body.arc-beginner .redux-notice-field {
   width: 54px; }
 .widefat .column-_blueprints_content-source {
   width: 8em; }
+
+.pzarc-about-box {
+  background: #f9f9f9;
+  padding: 20px;
+  border: 1px solid #ddd;
+  max-width: 960px; }

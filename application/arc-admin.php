@@ -302,7 +302,7 @@
 
 			<!--Display Plugin Icon, Header, and Description-->
 			<div class = "icon32" id = "icon-users"><br></div>
-        <div class="pzarc-about-box" style="background:#f9f9f9;padding:20px;border:1px solid #ddd;">
+        <div class="pzarc-about-box">
 
 			<h2>' . $title . '</h2>
 			<!-- This is definitely too ambitious for v1!<h3>Builder</h3>
@@ -433,7 +433,7 @@
         <div class="icon32" id="icon-users">
             <br>
         </div>
-        <div class="pzarc-about-box" style="background:#f9f9f9;padding:20px;border:1px solid #ddd;">
+        <div class="pzarc-about-box" >
 
             <h2>' . $title . '</h2>
             <div class="pzarc-help-section">
@@ -978,7 +978,7 @@ add_action(\'init\',\'gs_init\');
 
 			<!--Display Plugin Icon, Header, and Description-->
 			<div class = "icon32" id = "icon-users"><br></div>
-        <div class="pzarc-about-box" style="background:#f9f9f9;padding:20px;border:1px solid #ddd;">
+        <div class="pzarc-about-box" >
 
 			<h2>' . $title . '</h2>
 			<h3>Architect is installed but not usable accessible WP Admin until Redux is installed/activated.</h3>
