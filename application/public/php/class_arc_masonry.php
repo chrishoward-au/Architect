@@ -16,8 +16,14 @@
       //var_dump($blueprint);
 
       $this->layout_mode = ( ! empty( $this->blueprint[ '_blueprints_masonry-features' ] ) && in_array( 'bidirectional', $this->blueprint[ '_blueprints_masonry-features' ] ) ? 'packery' : 'masonry' );
-      add_action( 'arc_masonry_controls_' . $this->blueprint[ '_blueprints_short-name' ], array( $this, 'sorting' ) );
-      add_action( 'arc_masonry_controls_' . $this->blueprint[ '_blueprints_short-name' ], array( $this, 'filtering' ) );
+      add_action( 'arc_masonry_controls_' . $this->blueprint[ '_blueprints_short-name' ], array(
+        $this,
+        'sorting'
+      ) );
+      add_action( 'arc_masonry_controls_' . $this->blueprint[ '_blueprints_short-name' ], array(
+        $this,
+        'filtering'
+      ) );
       add_action( 'arc-extend-panel-classes_' . $this->blueprint[ '_blueprints_short-name' ], array(
         $this,
         'filtering_classes'
@@ -28,12 +34,14 @@
 
     function sorting() {
 
-      echo '<div class="arc-filtering-and-sorting">';
       if ( ! empty( $this->blueprint[ '_blueprints_masonry-sort-fields' ] ) && ! empty( $this->blueprint[ '_blueprints_masonry-features' ] ) && in_array( 'sorting', $this->blueprint[ '_blueprints_masonry-features' ] ) ) {
 
+        global $_architect_options;
+        $sortby_label = ! empty( $_architect_options[ 'architect_language-sorting-label' ] ) ? $_architect_options[ 'architect_language-sorting-label' ] : __( 'Sort by: ', 'pzarchitect' );
+        $order_label  = ! empty( $_architect_options[ 'architect_language-sorting-order-label' ] ) ? $_architect_options[ 'architect_language-sorting-order-label' ] : __( 'Order: ', 'pzarchitect' );
         // TODO: Setupo registry for each so developer can define
         echo '<div class="arc-sort-buttons"><div class="arc-masonry-buttons button-group sort-by-button-group">
-            <label>' . __( 'Sort by', 'pzarchitect' ) . ': </label>
+            <label>' . $sortby_label . ' </label>
             <button class="selected" data-sort-by="original-order">' . __( 'Default', 'pzarchitect' ) . '</button>';
         foreach ( $this->blueprint[ '_blueprints_masonry-sort-fields' ] as $k => $v ) {
           $sv = str_replace( array( '[', ']', '.' ), '', $v );
@@ -44,7 +52,7 @@
         }
         echo '</div>';
         echo '<div class="arc-masonry-buttons button-group sort-order-button-group">
-            <label>' . __( 'Order', 'pzarchitect' ) . ': </label>
+            <label>' . $order_label . ' </label>
             <button class="selected" data-sort-order="true">' . __( 'Ascending', 'pzarchitect' ) . '</button>
             <button data-sort-order="false">' . __( 'Descending', 'pzarchitect' ) . '</button>';
 
@@ -55,7 +63,8 @@
     function filtering() {
       // Need to do this for each taxonomy
       if ( ! empty( $this->blueprint[ '_blueprints_masonry-filtering' ] ) && ! empty( $this->blueprint[ '_blueprints_masonry-features' ] ) && in_array( 'filtering', $this->blueprint[ '_blueprints_masonry-features' ] ) ) {
-        $i = 1;
+        global $_architect_options;
+        $i             = 1;
         $term_defaults = array();
         echo '<div class="arc-filter-buttons">';
         foreach ( $this->blueprint[ '_blueprints_masonry-filtering' ] as $tax ) {
@@ -80,40 +89,44 @@
             }
             $defaults = array();
             if ( $this->blueprint[ '_blueprints_masonry-filtering-set-defaults-' . $tax ] === 'yes' && ! empty( $this->blueprint[ '_blueprints_masonry-filtering-default-terms-' . $tax ] ) ) {
-              $defaults = pzarc_get_terms( $tax, array(
+              $defaults              = pzarc_get_terms( $tax, array(
                 'hide_empty' => true,
                 'include'    => $this->blueprint[ '_blueprints_masonry-filtering-default-terms-' . $tax ]
               ) );
-              $term_defaults[$tax] = $defaults;
+              $term_defaults[ $tax ] = $defaults;
             }
             echo '<div class="arc-masonry-buttons button-group filter-button-group">';
             if ( ! empty( $terms ) ) {
-              echo '<label>' . __( 'Filter by ', 'pzarchitect' ) . ucwords( str_replace( array(
-                                                                                           'pz_',
-                                                                                           '_',
-                                                                                           '-'
-                                                                                         ), ' ', $tax ) ) . ': </label>';
+              $filterby_label = ! empty( $_architect_options[ 'architect_language-filtering-tax-label' ] ) ? $_architect_options[ 'architect_language-filtering-tax-label' ] : __( 'Filter %tax% by: ', 'pzarchitect' );
+
+              echo '<label>' . str_replace( '%tax%', ucwords( str_replace( array(
+                                                                             'pz_',
+                                                                             '_',
+                                                                             '-'
+                                                                           ), ' ', $tax ) ), $filterby_label ) . '</label>';
               foreach ( $terms as $class => $name ) {
                 $pre_selected = '';
-                if (array_key_exists( $class, $defaults )) {
-                  $pre_selected = ' class="selected" ' ;
+                if ( array_key_exists( $class, $defaults ) ) {
+                  $pre_selected = ' class="selected" ';
                 }
                 echo '<button data-filter=".' . $tax . '-' . $class . '" ' . $pre_selected . '>' . $name . '</button>';
               }
             }
-            if ($i ++ === count( $this->blueprint[ '_blueprints_masonry-filtering' ] )) {
+            if ( $i ++ === count( $this->blueprint[ '_blueprints_masonry-filtering' ] ) ) {
               echo '<p>';
               if ( ( empty( $this->blueprint[ '_blueprints_masonry-filtering-allow-multiple' ] ) || $this->blueprint[ '_blueprints_masonry-filtering-allow-multiple' ] === 'multiple' ) ) {
-                echo '<button data-filter="*" class="showall" data-filter-group="all">' . __( 'Clear all', 'pzarchitect' ) . '</button>';
+                $clearall = ! empty( $_architect_options[ 'architect_language-clearall-button' ] ) ? $_architect_options[ 'architect_language-clearall-button' ] : __( 'Clear all', 'pzarchitect' );
+                echo '<button data-filter="*" class="showall" data-filter-group="all">' . $clearall . '</button>';
               }
               if ( ! empty( $term_defaults ) ) {
                 $term_defaults_set = array();
-                foreach ($term_defaults as $key => $value) {
-                  foreach($value as $k => $v) {
-                    $term_defaults_set[] = $key.'-'.$k;
+                foreach ( $term_defaults as $key => $value ) {
+                  foreach ( $value as $k => $v ) {
+                    $term_defaults_set[] = $key . '-' . $k;
                   }
                 }
-                echo '<button class="reset-to-defaults" data-defaults="' .  implode('.',$term_defaults_set)  . '">Defaults</button>';
+                $defaultstext = ! empty( $_architect_options[ 'architect_language-defaults-button' ] ) ? $_architect_options[ 'architect_language-defaults-button' ] : __( 'Defaults', 'pzarchitect' );
+                echo '<button class="reset-to-defaults" data-defaults="' . implode( '.', $term_defaults_set ) . '">' . $defaultstext . '</button>';
               }
               echo '</p>';
               echo '</div>';
@@ -122,7 +135,6 @@
         }
         echo '</div>';
       }
-      echo '</div>'; //close filtering and sorting
     }
 
     function filtering_classes( $classes, $blueprint ) {
@@ -184,139 +196,164 @@
       if ( $this->layout_mode == 'packery' ) {
         $mode_options = "packery: {
                           gutter: '.gutter-sizer',
-                        },
+                        }
                     ";
       } else {
         $mode_options = "masonry: {
                           columnWidth: '.grid-sizer',
                           gutter: '.gutter-sizer'
-                        },
+                        }
                     ";
       }
 
 
-      $transition_duration = '0.2';
+      $transition_duration = ! empty( $this->blueprint[ '_blueprints_masonry-animation-duration' ] ) ? $this->blueprint[ '_blueprints_masonry-animation-duration' ] : 200;
+      $stagger_duration    = ! empty( $this->blueprint[ '_blueprints_masonry-animation-stagger' ] ) ? $this->blueprint[ '_blueprints_masonry-animation-stagger' ] : 20;
+      $allow_multiple      = empty( $this->blueprint[ '_blueprints_masonry-filtering-allow-multiple' ] ) || $this->blueprint[ '_blueprints_masonry-filtering-allow-multiple' ] === 'multiple' ? 'true' : 'false';
+      $blueprint_id        = '#pzarc-blueprint_' . $blueprint;
 
-      $script = "<script type='text/javascript' id='masonry-{$blueprint}'>(function($){";
-      $script .= "var allowMultiple=" . ( empty( $this->blueprint[ '_blueprints_masonry-filtering-allow-multiple' ] ) || $this->blueprint[ '_blueprints_masonry-filtering-allow-multiple' ] === 'multiple' ? 'true' : 'false' ) . ";";
-      $script .= "    var container = jQuery( '.pzarc-section-using-{$blueprint}' );
-               var arcIsotopeID = jQuery( container ).attr( 'data-uid' );
-              jQuery(container).imagesLoaded( function ()
-              {
-                container.isotope( {
-                  // options
-                  layoutMode: '{$this->layout_mode}',
-                  itemSelector: '.' + arcIsotopeID + ' .pzarc-panel',
-                  transitionDuration: '{$transition_duration}s',
-                  {$mode_options}
-                  getSortData: {
-                    {$sort_data}
-                  }
-                } );
-                container.isotope('updateSortData').isotope('layout');
+      echo "
+      <script type='text/javascript' id='masonry-{$blueprint}'>
+       (function($){
+        var allowMultiple={$allow_multiple};;
+        var container = jQuery( '.pzarc-section-using-{$blueprint}' );
+        var arcIsotopeID = jQuery( container ).attr( 'data-uid' );
+        jQuery(container).imagesLoaded( function () {
+          container.isotope( {
+            // options
+            layoutMode: '{$this->layout_mode}',
+            itemSelector: '.' + arcIsotopeID + ' .pzarc-panel',
+            transitionDuration: {$transition_duration},
+            stagger: {$stagger_duration},
+            getSortData: {
+              {$sort_data}
+            },
+            {$mode_options}
+          } );
+          setDefaults(false,jQuery('{$blueprint_id} .reset-to-defaults'));
+          container.isotope('updateSortData').isotope('layout');
+        } );
 
-              } );
 
-
-        // sort items on button click
-        jQuery('#pzarc-blueprint_{$blueprint} .sort-by-button-group').on( 'click', 'button', function() {
-          jQuery('#pzarc-blueprint_{$blueprint} .sort-by-button-group').find('.selected').removeClass('selected');
+        /*
+         * sort items on button click
+         */
+        jQuery('{$blueprint_id} .sort-by-button-group').on( 'click', 'button', function() {
+          jQuery('{$blueprint_id} .sort-by-button-group').find('.selected').removeClass('selected');
           jQuery(this).addClass('selected');
           var sortByValue = $(this).attr('data-sort-by');
-          var sortOrderValue = ($('#pzarc-blueprint_{$blueprint} .sort-order-button-group .selected').attr('data-sort-order')=='true');
-          container.isotope({ sortBy: sortByValue, sortAscending: sortOrderValue });
+          var sortOrderValue = ($('{$blueprint_id} .sort-order-button-group .selected').attr('data-sort-order')=='true');
+          container.isotope({ sortBy: sortByValue, sortAscending: sortOrderValue});
         });
-
-        jQuery('#pzarc-blueprint_{$blueprint} .sort-order-button-group').on( 'click', 'button', function() {
-          jQuery('#pzarc-blueprint_{$blueprint} .sort-order-button-group').find('.selected').removeClass('selected');
+    
+        /*
+        *
+        */
+        jQuery('{$blueprint_id} .sort-order-button-group').on( 'click', 'button', function() {
+          jQuery('{$blueprint_id} .sort-order-button-group').find('.selected').removeClass('selected');
           jQuery(this).addClass('selected');
           var sortOrderValue = ($(this).attr('data-sort-order')=='true');
-          var sortByValue = $('#pzarc-blueprint_{$blueprint} .sort-by-button-group .selected').attr('data-sort-by');
-          container.isotope({ sortByValue: sortByValue, sortAscending: sortOrderValue });
-        });";
+          var sortByValue = $('{$blueprint_id} .sort-by-button-group .selected').attr('data-sort-by');
+          container.isotope({ sortByValue: sortByValue, sortAscending: sortOrderValue});
+        });
 
-      $script .= "jQuery('#pzarc-blueprint_{$blueprint} .filter-button-group').on( 'click', 'button', function(e) {
+      /*
+       * Filter term click
+       */
+      jQuery('{$blueprint_id} .filter-button-group').on( 'click', 'button', function(e) {
         setSelected(this,false)
       });
 
-
-      // Defaults
-      jQuery('#pzarc-blueprint_{$blueprint} .reset-to-defaults').on( 'click', function(e) {
+   
+        /*
+        *  Defaults click
+        */
+      jQuery('{$blueprint_id} .reset-to-defaults').on( 'click', function(e) {
        setDefaults(this,false);
       });
 
+      /*
+      * Set default selection
+      */
       function setDefaults(defBtn,onLoad){
-      if (!defBtn && !onLoad.length) {
-       return;
-      }
-      if (onLoad) {
-        defBtn = onLoad;
-      } else {
-        defBtn = jQuery(defBtn);
-      }
-        jQuery('#pzarc-blueprint_{$blueprint} .filter-button-group .selected').removeClass('selected');
+        if (!defBtn && !onLoad.length) {
+         return;
+        }
+        
+        if (onLoad) {
+          defBtn = onLoad;
+        } else {
+          defBtn = jQuery(defBtn);
+        }
+        jQuery('{$blueprint_id} .filter-button-group .selected').removeClass('selected');
         filterValue = jQuery(defBtn).attr('data-defaults');
         container.isotope({ filter: '.' + filterValue });
+        container.isotope('arrange');
         defaultsSet = filterValue.split('.');
         for (let taxterm of defaultsSet) {
-          jQuery( '#pzarc-blueprint_{$blueprint} .filter-button-group [data-filter=\".' + taxterm + '\"]').addClass('selected') ;
+          jQuery( '{$blueprint_id} .filter-button-group [data-filter=\".' + taxterm + '\"]').addClass('selected') ;
         }
-   
-      
       }
       
+        /*
+        * setSelected
+        */
       function setSelected(t) {
-
-          if (jQuery(t).hasClass('selected')) {
-            jQuery(t).removeClass('selected');
-          } else {
-            if (!allowMultiple) {
-              jQuery('#pzarc-blueprint_{$blueprint} .filter-button-group .selected').removeClass('selected');
-            }
-            jQuery(t).addClass('selected');
+        if (jQuery(t).hasClass('selected')) {
+          jQuery(t).removeClass('selected');
+        } else {
+          if (!allowMultiple) {
+            jQuery('{$blueprint_id} .filter-button-group .selected').removeClass('selected');
           }
+          jQuery(t).addClass('selected');
+        }
 
-          if (jQuery(t).hasClass('showall')) {
-            // Removes selected from all selected buttons
-            jQuery('#pzarc-blueprint_{$blueprint} .filter-button-group .selected').removeClass('selected');
-            jQuery(t).removeClass('selected');
-          } else {
-            jQuery('#pzarc-blueprint_{$blueprint} .filter-button-group .showall').removeClass('selected');
-          }
+        if (jQuery(t).hasClass('showall')) {
+          // Removes selected from all selected buttons
+          jQuery('{$blueprint_id} .filter-button-group .selected').removeClass('selected');
+          jQuery(t).removeClass('selected');
+        } else {
+          jQuery('{$blueprint_id} .filter-button-group .showall').removeClass('selected');
+        }
 
-          if (!jQuery(t).hasClass('reset-to-defaults')) {
-            var th = jQuery('#pzarc-blueprint_{$blueprint} .filter-button-group .selected');
-            var filterValue = concatValues(th);
-            container.isotope({ filter: filterValue });
-          } else {
-            jQuery(t).removeClass('selected');
-         }
+        if (jQuery(t).hasClass('reset-to-defaults')) {
+          jQuery(t).removeClass('selected');
+        } else {
+          var selectedTerms = jQuery('{$blueprint_id} .filter-button-group .selected');
+          var filterValue = concatValues(selectedTerms);
+          console.log(selectedTerms,filterValue);
+          container.isotope({ filter: filterValue });
+       }
       }
       
       
+        /*
+        *
+        */
       function concatValues( t ) {
-         var value = '';
-         jQuery(t).each(function(){
-           var dataFilter = jQuery(this).attr('data-filter');
-            if ( '*' === dataFilter ) {
-              value = '*';
-            } else {
-              if (allowMultiple) {
-                value += dataFilter;
+       var value = '';
+       jQuery(t).each(function(){
+         var dataFilter = jQuery(this).attr('data-filter');
+          if ( '*' === dataFilter ) {
+            value = '*';
+          } else {
+            if (allowMultiple) {
+              if (!value) {
+              value += dataFilter;
               } else {
-                value = dataFilter;
+              value += dataFilter;
               }
+            } else {
+              value = dataFilter;
             }
-         });
-        return value;
-       };
-       setDefaults(false,jQuery('#pzarc-blueprint_{$blueprint} .reset-to-defaults'));
-      ";
+          }
+       });
+       return value;
+     };
 
-      $script .= "})(jQuery);
-      </script>";
+    })(jQuery)
+  </script>";
 
-      echo $script;
 
     }
 

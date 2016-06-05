@@ -1,4 +1,4 @@
-=== Architect: A WP Content Layout Framework ===
+=== Architect: A DIY WP Content Layout Kit ===
 Contributors: chrishoward
 Tags: content,display,posts,pages,gallery,slider,tabs,tabbed,tabular,widget,hooks
 Requires at least: 3.5.0
@@ -98,17 +98,22 @@ TODO: Add text field for filter labels
 TODO: Add option for custom content within Blueprints
 TODO: Check captions styling
 TODO: Replace curl with wp_remote_get
+TODO: Remove shortcode Defaults blocking message.
 
 == Changelog ==
 
 
 = 1.9.3 =
+* ADDED: Option to set default terms selection in Masonry filtering.
 * ADDED: Option in Sources for multiple content types. Using this has limitations, as any filtering or other criteria will apply to all content. For example, if you mix pages and posts, don't filter on categories since no pages will be found.
 * ADDED: Options to change the slug name that appears in the URL of Architect's custom post types - Snippets, Testimonials and Showcases.
 * CHANGED: Blueprint dropdown lists to default to showing content type too.
+* CHANGED: Extended Architect name to Architect DIY Kit
 * FIXED: Accordions closed styling overridden by Bootstrap styling
 * FIXED: Blueprints not showing in dropdown in Architect Beaver module
 * FIXED: Filtering and sorting not working when multiple masonry Blueprints on a page.
+* UPDATED: Masonry library, Isotope, to v3.
+* UPDATED: Masonry library, Packery, to v2.
 
 = 1.9.2 : 15 May 2016 =
 * ADDED: Column in Blueprint list showing the pages Blueprints are used on. Requires pages to have been viewed since 1.9.2 update.

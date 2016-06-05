@@ -144,7 +144,7 @@
   {
 //    var_dump(array_keys($pzarc_blueprints));
     $specificity_class    = '#pzarc-blueprint_' . $pzarc_blueprints[ '_blueprints_short-name' ];
-    $sections_class       = $specificity_class . ' > .pzarc-sections  .pzarc-section_' . ($i + 1);
+    $sections_class       = $specificity_class . '  .pzarc-sections  .pzarc-section_' . ($i + 1); // Removed > coz breaks new masonry features v1.9.3
     $panels_class         = $sections_class . ' .pzarc-panel';
     $pzarc_mediaq_css     = '';
     $pzarc_sections_align = '';

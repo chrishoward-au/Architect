@@ -1914,6 +1914,28 @@
         'icon'       => 'el-icon-adjust-alt',
         'fields'     => array(
           array(
+            'title'    => __( 'Animation duration', 'pzarchitect' ),
+            'id'       => '_blueprints_masonry-animation-duration',
+            'type'     => 'slider',
+            'default'  => 200,
+            'display_value'=>'label',
+            'min'=>0,
+            'max'=>1000,
+            'step'=>10,
+            'subtitle' => __( 'Set the duration in milliseconds of the animation of panels when arranging', 'pzarchitect' )
+          ),
+          array(
+            'title'    => __( 'Stagger animation duration', 'pzarchitect' ),
+            'id'       => '_blueprints_masonry-animation-stagger',
+            'type'     => 'slider',
+            'default'  => 20,
+            'display_value'=>'label',
+            'min'=>0,
+            'max'=>300,
+            'step'=>10,
+            'subtitle' => __( 'Set the delay in milliseconds between the animation of panels when arranging', 'pzarchitect' )
+          ),
+          array(
             'title'   => __( 'Features', 'pzarchitect' ),
             'id'      => '_blueprints_masonry-features',
             'type'    => 'button_set',
@@ -1941,6 +1963,52 @@
             'indent'   => true,
             'subtitle' => __( 'In Packed Masonry mode, Panels Across and Fixed Width Panels are ignored. The width and height of each panel is determined by its the image\'s dimensions. Therefore, it is important you choose the Shrink to fit width and height limit option for Image Cropping to get the effect. Packed Masonry has no settings.', 'pzarchitect' )
           ),
+          array(
+            'id'     => '_blueprints_masonry-packed-section-close',
+            'type'   => 'section',
+            'indent' => false,
+          ),
+          array(
+            'title'    => __( 'Filtering and Sorting Controls', 'pzarchitect' ),
+            'id'       => '_blueprints_masonry-controls-section-open',
+            'type'     => 'section',
+            'required' => array(
+              '_blueprints_masonry-features',
+              'contains',
+              'ing'
+            ),
+            'indent'   => true,
+          ),
+          array(
+            'title'    => __( 'Controls location', 'pzarchitect' ),
+            'id'       => '_blueprints_masonry-filtering-controls-location',
+            'type'     => 'button_set',
+            'default'  => 'top',
+            'options'  => array(
+              'top' => __( 'Top', 'pzarchitect' ),
+              'right' => __( 'Right', 'pzarchitect' ),
+              'bottom' => __( 'Bottom', 'pzarchitect' ),
+              'left'   => __( 'Left', 'pzarchitect' )
+            ),
+            'subtitle' => __( 'Set where you would like to display the filtering and sorting buttons.', 'pzarchitect' )
+          ),
+          array(
+            'title'    => __( 'Controls width', 'pzarchitect' ),
+            'id'       => '_blueprints_masonry-filtering-controls-width',
+            'type'     => 'slider',
+            'default'  => 100,
+            'display_value'=>'label',
+            'min'=>5,
+            'max'=>100,
+            'step'=>5,
+            'subtitle' => __( 'Set the width for the filtering and sorting buttons section.', 'pzarchitect' )
+          ),
+          array(
+            'id'     => '_blueprints_masonry-controls-section-close',
+            'type'   => 'section',
+            'indent' => false,
+          ),
+
           // Infinite scroll options: Show progress
           // Sorting: Choose what on (title, date, cat, tag) and order
           array(

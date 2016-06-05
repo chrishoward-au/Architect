@@ -718,6 +718,36 @@
               'subtitle' => __( 'Enter a title to appear at the top of Custom taxonomies archives pages', 'pzarchitect' ),
               'default'  => 'Posts in: '
             ),
+            array(
+              'title'    => __( 'Masonry filtering taxonomy label', 'pzarchitect' ),
+              'id'       => 'architect_language-filtering-tax-label',
+              'type'     => 'text',
+              'default'  => __('Filter %tax% by: ','pzarchitect')
+            ),
+            array(
+              'title'    => __( 'Masonry sorting label', 'pzarchitect' ),
+              'id'       => 'architect_language-sorting-label',
+              'type'     => 'text',
+              'default'  => __('Sort by:','pzarchitect')
+            ),
+            array(
+              'title'    => __( 'Masonry sorting order label', 'pzarchitect' ),
+              'id'       => 'architect_language-sorting-order-label',
+              'type'     => 'text',
+              'default'  => __('Order:','pzarchitect')
+            ),
+            array(
+              'title'    => __( 'Masonry Clear All button', 'pzarchitect' ),
+              'id'       => 'architect_language-clearall-button',
+              'type'     => 'text',
+              'default'  => __('Clear All','pzarchitect')
+            ),
+            array(
+              'title'    => __( 'Masonry Defaults button', 'pzarchitect' ),
+              'id'       => 'architect_language-defaults-button',
+              'type'     => 'text',
+              'default'  => __('Defaults','pzarchitect')
+            ),
           )
         );
 //        $this->sections[ ] = array(

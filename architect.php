@@ -1,9 +1,9 @@
 <?php
 
   /*
-    Plugin Name: Architect
+    Plugin Name: Architect DIY Kit
     Plugin URI: http://architect4wp.com
-    Description: Architect is a multipurpose, all-in-one content layout builder. <strong>Build your own slider, grid, tabbed, gallery, masonry, accordion or tabular layouts with ANY content source</strong>. Display using shortcodes, widgets, Headway blocks, WP action hooks and template tags, and WP Gallery shortcode.
+    Description: Architect is a multipurpose, all-in-one content layout builder. <strong>Build your own slider, grid, tabbed, gallery, masonry, accordion or tabular layouts with ANY content source</strong>. Display using shortcodes, widgets, Headway blocks, Beaver Builder modules, WP action hooks and template tags, and WP Gallery shortcode.
     Version: 1.9.3
     Author: Chris Howard
     Author URI: http://pizazzwp.com
@@ -325,8 +325,13 @@
 
       wp_enqueue_script( 'jquery' );
       wp_register_script( 'js-imagesloaded', PZARC_PLUGIN_APP_URL . '/public/js/imagesloaded.pkgd.min.js', array( 'jquery' ), PZARC_VERSION, true );
-      wp_register_script( 'js-isotope-v2', PZARC_PLUGIN_APP_URL . '/public/js/isotope.pkgd.min.js', array( 'jquery' ), PZARC_VERSION, true );
-      wp_register_script( 'js-isotope-packery', PZARC_PLUGIN_APP_URL . '/public/js/packery-mode.pkgd.min.js', array( 'jquery' ), PZARC_VERSION, true );
+
+        wp_register_script( 'js-isotope', PZARC_PLUGIN_APP_URL . '/public/js/isotope.pkgd.js', array( 'jquery' ), PZARC_VERSION, true );
+        wp_register_script( 'js-isotope-packery', PZARC_PLUGIN_APP_URL . '/public/js/packery-mode.pkgd.js', array( 'jquery' ), PZARC_VERSION, true );
+
+//        wp_register_script( 'js-isotope', PZARC_PLUGIN_APP_URL . '/public/js/isotope.pkgd.min.js', array( 'jquery' ), PZARC_VERSION, true );
+//        wp_register_script( 'js-isotope-packery', PZARC_PLUGIN_APP_URL . '/public/js/packery-mode.pkgd.min.js', array( 'jquery' ), PZARC_VERSION, true );
+
       wp_register_script( 'js-front', PZARC_PLUGIN_APP_URL . '/public/js/arc-front.js', array( 'jquery' ), PZARC_VERSION, true );
       wp_register_script( 'js-front-isotope', PZARC_PLUGIN_APP_URL . '/public/js/arc-front-isotope.js', array( 'jquery' ), PZARC_VERSION, true );
 
