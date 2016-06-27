@@ -112,6 +112,7 @@ TODO: Remove shortcode Defaults blocking message.
 * FIXED: Accordions closed styling overridden by Bootstrap styling
 * FIXED: Blueprints not showing in dropdown in Architect Beaver module
 * FIXED: Filtering and sorting not working when multiple masonry Blueprints on a page.
+* FIXED: Masonry losing gutter when filtering
 * UPDATED: Masonry library, Isotope, to v3.
 * UPDATED: Masonry library, Packery, to v2.
 

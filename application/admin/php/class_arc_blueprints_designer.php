@@ -1914,10 +1914,10 @@
         'icon'       => 'el-icon-adjust-alt',
         'fields'     => array(
           array(
-            'title'    => __( 'Animation duration', 'pzarchitect' ),
+            'title'    => __( 'Animation duration (ms)', 'pzarchitect' ),
             'id'       => '_blueprints_masonry-animation-duration',
             'type'     => 'slider',
-            'default'  => 200,
+            'default'  => 300,
             'display_value'=>'label',
             'min'=>0,
             'max'=>1000,
@@ -1925,10 +1925,10 @@
             'subtitle' => __( 'Set the duration in milliseconds of the animation of panels when arranging', 'pzarchitect' )
           ),
           array(
-            'title'    => __( 'Stagger animation duration', 'pzarchitect' ),
+            'title'    => __( 'Stagger animation duration (ms)', 'pzarchitect' ),
             'id'       => '_blueprints_masonry-animation-stagger',
             'type'     => 'slider',
-            'default'  => 20,
+            'default'  => 30,
             'display_value'=>'label',
             'min'=>0,
             'max'=>300,
@@ -1993,7 +1993,7 @@
             'subtitle' => __( 'Set where you would like to display the filtering and sorting buttons.', 'pzarchitect' )
           ),
           array(
-            'title'    => __( 'Controls width', 'pzarchitect' ),
+            'title'    => __( 'Controls width (%)', 'pzarchitect' ),
             'id'       => '_blueprints_masonry-filtering-controls-width',
             'type'     => 'slider',
             'default'  => 100,

@@ -193,33 +193,35 @@
       }
       $sort_data = $sort_data ? substr( $sort_data, 0, - 1 ) : $sort_data;
 
+      $blueprint_id = '#pzarc-blueprint_' . $blueprint;
+
       if ( $this->layout_mode == 'packery' ) {
         $mode_options = "packery: {
-                          gutter: '.gutter-sizer',
+                          gutter: '{$blueprint_id} .gutter-sizer'
                         }
                     ";
       } else {
         $mode_options = "masonry: {
-                          columnWidth: '.grid-sizer',
-                          gutter: '.gutter-sizer'
+                          columnWidth: '{$blueprint_id} .grid-sizer',
+                          gutter: '{$blueprint_id} .gutter-sizer'
                         }
                     ";
       }
 
 
-      $transition_duration = ! empty( $this->blueprint[ '_blueprints_masonry-animation-duration' ] ) ? $this->blueprint[ '_blueprints_masonry-animation-duration' ] : 200;
-      $stagger_duration    = ! empty( $this->blueprint[ '_blueprints_masonry-animation-stagger' ] ) ? $this->blueprint[ '_blueprints_masonry-animation-stagger' ] : 20;
+      $transition_duration = ! empty( $this->blueprint[ '_blueprints_masonry-animation-duration' ] ) ? $this->blueprint[ '_blueprints_masonry-animation-duration' ] : 300;
+      $stagger_duration    = ! empty( $this->blueprint[ '_blueprints_masonry-animation-stagger' ] ) ? $this->blueprint[ '_blueprints_masonry-animation-stagger' ] : 30;
       $allow_multiple      = empty( $this->blueprint[ '_blueprints_masonry-filtering-allow-multiple' ] ) || $this->blueprint[ '_blueprints_masonry-filtering-allow-multiple' ] === 'multiple' ? 'true' : 'false';
-      $blueprint_id        = '#pzarc-blueprint_' . $blueprint;
 
       echo "
       <script type='text/javascript' id='masonry-{$blueprint}'>
        (function($){
-        var allowMultiple={$allow_multiple};;
-        var container = jQuery( '.pzarc-section-using-{$blueprint}' );
-        var arcIsotopeID = jQuery( container ).attr( 'data-uid' );
-        jQuery(container).imagesLoaded( function () {
-          container.isotope( {
+        var bpsection = jQuery( '.pzarc-section-using-{$blueprint}' );
+        jQuery(bpsection).imagesLoaded( function () {
+          var allowMultiple={$allow_multiple};
+          var arcIsotopeID = jQuery( bpsection ).attr( 'data-uid' );
+          var defaultsButton = jQuery('{$blueprint_id} .reset-to-defaults');
+          var container = jQuery( bpsection ).isotope( {
             // options
             layoutMode: '{$this->layout_mode}',
             itemSelector: '.' + arcIsotopeID + ' .pzarc-panel',
@@ -230,127 +232,134 @@
             },
             {$mode_options}
           } );
-          setDefaults(false,jQuery('{$blueprint_id} .reset-to-defaults'));
+          setDefaults(false,defaultsButton);
+          setGutterGridOn();
           container.isotope('updateSortData').isotope('layout');
-        } );
 
 
+          /*
+           * sort items on button click
+           */
+          jQuery('{$blueprint_id} .sort-by-button-group').on( 'click', 'button', function() {
+            jQuery('{$blueprint_id} .sort-by-button-group').find('.selected').removeClass('selected');
+            jQuery(this).addClass('selected');
+            var sortByValue = $(this).attr('data-sort-by');
+            var sortOrderValue = ($('{$blueprint_id} .sort-order-button-group .selected').attr('data-sort-order')=='true');
+            setGutterGridOn();
+            container.isotope({ sortBy: sortByValue, sortAscending: sortOrderValue});
+          });
+      
+          /*
+          *
+          */
+          jQuery('{$blueprint_id} .sort-order-button-group').on( 'click', 'button', function() {
+            jQuery('{$blueprint_id} .sort-order-button-group').find('.selected').removeClass('selected');
+            jQuery(this).addClass('selected');
+            var sortOrderValue = ($(this).attr('data-sort-order')=='true');
+            var sortByValue = $('{$blueprint_id} .sort-by-button-group .selected').attr('data-sort-by');
+            setGutterGridOn();
+            container.isotope({ sortByValue: sortByValue, sortAscending: sortOrderValue});
+          });
+  
         /*
-         * sort items on button click
+         * Filter term click
          */
-        jQuery('{$blueprint_id} .sort-by-button-group').on( 'click', 'button', function() {
-          jQuery('{$blueprint_id} .sort-by-button-group').find('.selected').removeClass('selected');
-          jQuery(this).addClass('selected');
-          var sortByValue = $(this).attr('data-sort-by');
-          var sortOrderValue = ($('{$blueprint_id} .sort-order-button-group .selected').attr('data-sort-order')=='true');
-          container.isotope({ sortBy: sortByValue, sortAscending: sortOrderValue});
+        jQuery('{$blueprint_id} .filter-button-group').on( 'click', 'button', function(e) {
+          setSelected(this,false)
         });
-    
-        /*
-        *
-        */
-        jQuery('{$blueprint_id} .sort-order-button-group').on( 'click', 'button', function() {
-          jQuery('{$blueprint_id} .sort-order-button-group').find('.selected').removeClass('selected');
-          jQuery(this).addClass('selected');
-          var sortOrderValue = ($(this).attr('data-sort-order')=='true');
-          var sortByValue = $('{$blueprint_id} .sort-by-button-group .selected').attr('data-sort-by');
-          container.isotope({ sortByValue: sortByValue, sortAscending: sortOrderValue});
+  
+     
+          /*
+          *  Defaults click
+          */
+        defaultsButton.on( 'click', function(e) {
+         setDefaults(this,false);
         });
-
-      /*
-       * Filter term click
-       */
-      jQuery('{$blueprint_id} .filter-button-group').on( 'click', 'button', function(e) {
-        setSelected(this,false)
-      });
-
-   
+  
         /*
-        *  Defaults click
+        * Set default selection
         */
-      jQuery('{$blueprint_id} .reset-to-defaults').on( 'click', function(e) {
-       setDefaults(this,false);
-      });
-
-      /*
-      * Set default selection
-      */
-      function setDefaults(defBtn,onLoad){
-        if (!defBtn && !onLoad.length) {
-         return;
+        function setDefaults(defBtn,onLoad){
+          if (!defBtn && !onLoad.length) {
+           return;
+          }
+          
+          if (onLoad) {
+            defBtn = onLoad;
+          } else {
+            defBtn = jQuery(defBtn);
+          }
+          jQuery('{$blueprint_id} .filter-button-group .selected').removeClass('selected');
+          filterValue = jQuery(defBtn).attr('data-defaults');
+            setGutterGridOn();
+          container.isotope({ filter: '.' + filterValue });
+          defaultsSet = filterValue.split('.');
+          for (let taxterm of defaultsSet) {
+            jQuery( '{$blueprint_id} .filter-button-group [data-filter=\".' + taxterm + '\"]').addClass('selected') ;
+          }
         }
         
-        if (onLoad) {
-          defBtn = onLoad;
-        } else {
-          defBtn = jQuery(defBtn);
-        }
-        jQuery('{$blueprint_id} .filter-button-group .selected').removeClass('selected');
-        filterValue = jQuery(defBtn).attr('data-defaults');
-        container.isotope({ filter: '.' + filterValue });
-        container.isotope('arrange');
-        defaultsSet = filterValue.split('.');
-        for (let taxterm of defaultsSet) {
-          jQuery( '{$blueprint_id} .filter-button-group [data-filter=\".' + taxterm + '\"]').addClass('selected') ;
-        }
-      }
-      
-        /*
-        * setSelected
-        */
-      function setSelected(t) {
-        if (jQuery(t).hasClass('selected')) {
-          jQuery(t).removeClass('selected');
-        } else {
-          if (!allowMultiple) {
-            jQuery('{$blueprint_id} .filter-button-group .selected').removeClass('selected');
-          }
-          jQuery(t).addClass('selected');
-        }
-
-        if (jQuery(t).hasClass('showall')) {
-          // Removes selected from all selected buttons
-          jQuery('{$blueprint_id} .filter-button-group .selected').removeClass('selected');
-          jQuery(t).removeClass('selected');
-        } else {
-          jQuery('{$blueprint_id} .filter-button-group .showall').removeClass('selected');
-        }
-
-        if (jQuery(t).hasClass('reset-to-defaults')) {
-          jQuery(t).removeClass('selected');
-        } else {
-          var selectedTerms = jQuery('{$blueprint_id} .filter-button-group .selected');
-          var filterValue = concatValues(selectedTerms);
-          console.log(selectedTerms,filterValue);
-          container.isotope({ filter: filterValue });
-       }
-      }
-      
-      
-        /*
-        *
-        */
-      function concatValues( t ) {
-       var value = '';
-       jQuery(t).each(function(){
-         var dataFilter = jQuery(this).attr('data-filter');
-          if ( '*' === dataFilter ) {
-            value = '*';
+          /*
+          * setSelected
+          */
+        function setSelected(t) {
+          if (jQuery(t).hasClass('selected')) {
+            jQuery(t).removeClass('selected');
           } else {
-            if (allowMultiple) {
-              if (!value) {
-              value += dataFilter;
-              } else {
-              value += dataFilter;
-              }
-            } else {
-              value = dataFilter;
+            if (!allowMultiple) {
+              jQuery('{$blueprint_id} .filter-button-group .selected').removeClass('selected');
             }
+            jQuery(t).addClass('selected');
           }
-       });
-       return value;
-     };
-
+  
+          if (jQuery(t).hasClass('showall')) {
+            // Removes selected from all selected buttons
+            jQuery('{$blueprint_id} .filter-button-group .selected').removeClass('selected');
+            jQuery(t).removeClass('selected');
+          } else {
+            jQuery('{$blueprint_id} .filter-button-group .showall').removeClass('selected');
+          }
+  
+          if (jQuery(t).hasClass('reset-to-defaults')) {
+            jQuery(t).removeClass('selected');
+          } else {
+            var selectedTerms = jQuery('{$blueprint_id} .filter-button-group .selected');
+            var filterValue = concatValues(selectedTerms);
+            setGutterGridOn();
+            container.isotope({ filter: filterValue });
+         }
+        }
+        
+        
+          /*
+          *
+          */
+        function concatValues( t ) {
+         var value = '';
+         jQuery(t).each(function(){
+           var dataFilter = jQuery(this).attr('data-filter');
+            if ( '*' === dataFilter ) {
+              value = '*';
+            } else {
+              if (allowMultiple) {
+                value += dataFilter;
+              } else {
+                value = dataFilter;
+              }
+            }
+         });
+         return value;
+       }
+       
+       /*
+       * Masonry keep setting grid size to display:none, and then that makes gutter zero.
+        */
+       function setGutterGridOn() {
+        jQuery('{$blueprint_id} .grid-sizer').css('display','block');
+        jQuery('{$blueprint_id} .gutter-sizer').css('display','block');
+       }
+       
+     });  // images loaded
     })(jQuery)
   </script>";
 

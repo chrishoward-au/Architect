@@ -39,6 +39,7 @@
      * @param $is_shortcode
      */
     public function __construct( $blueprint, $is_shortcode ) {
+      echo '<div class="thewhoelshebang">';
       // Might use this for transients to check last DB change
       //      global $wpdb;
       //      $newest = $wpdb->get_row("select post_modified from $wpdb->posts
@@ -132,6 +133,10 @@
       return false;
     }
 
+    public function __destruct() {
+      // TODO: Implement __destruct() method.
+      echo '</div>'; // End of the whole shebang
+    }
 
     /**
      * @param $overrides
@@ -502,10 +507,10 @@
           $return_val = apply_filters( 'arc-add-hover-buttons', $return_val, $this->build->blueprint );
 
         }
-//          //TODO: Should the bp name be in the class or ID?
-        $return_val .= '<div class="pzarc-sections pzarc-sections_' . $bp_shortname . ' pzarc-is_' . $caller . $slider[ 'class' ] . '"' . $slider[ 'data' ] . '>';
+        // ID is used by infinite scroll. v1.9.3
+        $return_val .= '<div id="pzarc-sections_' . $bp_shortname . '" class="pzarc-sections pzarc-sections_' . $bp_shortname . ' pzarc-is_' . $caller . $slider[ 'class' ] . '"' . $slider[ 'data' ] . '>';
       } else {
-        $return_val .= '<div class="pzarc-sections pzarc-sections_' . $bp_shortname . ' pzarc-is_' . $caller . '">';
+        $return_val .= '<div id="pzarc-sections_' . $bp_shortname . '" class="pzarc-sections pzarc-sections_' . $bp_shortname . ' pzarc-is_' . $caller . '">';
       }
 
       return $return_val;
