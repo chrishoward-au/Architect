@@ -81,6 +81,7 @@ No. We don't delete any of your data. In the future a method will be provided fo
 * Videos don't autopause when changing slides
 * Retina images currently only generates 2x
 * Some fields may not save when offline. This is a Redux issue too.
+* Architect not compatible with JetPack Photon
 
 == Support ==
 
@@ -94,12 +95,13 @@ For support, please send an email to support@pizazzwp.com
 
 == Todo ==
 TODO: Add a default single post/page Blueprint;  Add codex links;
-TODO: Add text field for filter labels
 TODO: Add option for custom content within Blueprints
 TODO: Check captions styling
 TODO: Replace curl with wp_remote_get
 TODO: Remove shortcode Defaults blocking message.
 
+TODO: Add description option to archive pages
+TODO: Fix images cropping on iPhone
 == Changelog ==
 
 
@@ -107,12 +109,14 @@ TODO: Remove shortcode Defaults blocking message.
 * ADDED: Option to set default terms selection in Masonry filtering.
 * ADDED: Option in Sources for multiple content types. Using this has limitations, as any filtering or other criteria will apply to all content. For example, if you mix pages and posts, don't filter on categories since no pages will be found.
 * ADDED: Options to change the slug name that appears in the URL of Architect's custom post types - Snippets, Testimonials and Showcases.
+* ADDED: Text field for filter labels
 * CHANGED: Blueprint dropdown lists to default to showing content type too.
 * CHANGED: Extended Architect name to Architect DIY Kit
 * FIXED: Accordions closed styling overridden by Bootstrap styling
 * FIXED: Blueprints not showing in dropdown in Architect Beaver module
 * FIXED: Filtering and sorting not working when multiple masonry Blueprints on a page.
 * FIXED: Masonry losing gutter when filtering
+* FIXED: Actions Editor not displaying Blueprints on tablets
 * UPDATED: Masonry library, Isotope, to v3.
 * UPDATED: Masonry library, Packery, to v2.
 

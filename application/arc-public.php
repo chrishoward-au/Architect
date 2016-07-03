@@ -191,11 +191,13 @@
   }
 
 
-  /***********************
-   *
+  /**
    * Template tag
-   *
-   ***********************/
+   * @param null $pzarc_blueprint
+   * @param null $pzarc_overrides
+   * @param null $tablet_bp
+   * @param null $phone_bp
+   */
   function pzarchitect( $pzarc_blueprint = null, $pzarc_overrides = null, $tablet_bp = null, $phone_bp = null ) {
     $pzarc_caller         = 'template_tag';
     $tag                  = null;

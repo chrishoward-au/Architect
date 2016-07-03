@@ -20,7 +20,6 @@
     function __construct($name)
     {
       // name is slug, need to get short name
-
       // strip out string text containment characters incase user enters them
       $this->name = str_replace(array('\'', '\"'), '', $name);
 
@@ -75,6 +74,9 @@
      */
     function get_blueprint()
     {
+      global $_architect_options, $_architect;
+      $pzarc_architect_defaults = maybe_unserialize( get_option( '_architect_defaults' ) );
+
       pzdb('top get blueprint');
       // meed to return a structure for the panels, the content source, the navgation info
       // This is added to support Shortcake which returns an ID rather than the shortname
@@ -92,6 +94,7 @@
         );
       }
       $bp              = get_posts($meta_query_args);
+      $blueprint_query = null;
       if (isset($bp[ 0 ])) {
         $this->bp = pzarc_flatten_wpinfo(get_post_meta($bp[ 0 ]->ID));
         // Do we need this still? Yes! Because Redux doesn't store defaults
@@ -99,8 +102,6 @@
       // V1.8 Started storing defaults in an option
      //   pzarc_get_defaults(true);
 
-        global $_architect_options, $_architect;
-        $pzarc_architect_defaults = maybe_unserialize( get_option( '_architect_defaults' ) );
         if (empty($pzarc_architect_defaults)) {
           pzarc_set_defaults();
           $pzarc_architect_defaults = maybe_unserialize( get_option( '_architect_defaults' ) );
