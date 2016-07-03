@@ -1077,6 +1077,15 @@
               'required' => array( $prefix . 'page-title', '=', true )
             ),
             array(
+              'title'    => 'Show archive description',
+              'id'       => $prefix . 'show-archive-description',
+              'type'     => 'switch',
+              'subtitle' => __( 'When on an Archive page, choose to show or not archive description', 'pzarchitect' ),
+              'on'       => 'Yes',
+              'off'      => 'No',
+              'default'  => false,
+            ),
+            array(
               'title'    => 'Blueprint display title',
               'id'       => $prefix . 'blueprint-title',
               'type'     => 'text',

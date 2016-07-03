@@ -313,6 +313,7 @@
       /** Page title */
       pzdb( 'after blueprint open' );
       echo apply_filters( 'arc_page_title', pzarc_display_page_title( $this->build->blueprint, $_architect_options ) );
+      echo apply_filters( 'arc_archive_desc', pzarc_display_archive_description( $this->build->blueprint ) );
 
       if ( ! empty( $this->build->blueprint[ '_blueprints_blueprint-title' ] ) ) {
         $bptitle_open_tag  = '<h2 class="pzarc-blueprint-title">';

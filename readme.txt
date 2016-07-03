@@ -110,6 +110,7 @@ TODO: Fix images cropping on iPhone
 * ADDED: Option in Sources for multiple content types. Using this has limitations, as any filtering or other criteria will apply to all content. For example, if you mix pages and posts, don't filter on categories since no pages will be found.
 * ADDED: Options to change the slug name that appears in the URL of Architect's custom post types - Snippets, Testimonials and Showcases.
 * ADDED: Text field for filter labels
+* ADDED: Option to display of archive descriptions.
 * CHANGED: Blueprint dropdown lists to default to showing content type too.
 * CHANGED: Extended Architect name to Architect DIY Kit
 * FIXED: Accordions closed styling overridden by Bootstrap styling

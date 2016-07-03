@@ -1838,10 +1838,14 @@
    * @param $display_title
    * @param $title_override
    *
-   * @return null|string
+   * @return $return string
    */
   function pzarc_display_page_title( &$blueprint, &$arcoptions, $tag = 'h1' ) {
+    global $wp_the_query;
+    $return = '';
     $display_title  = $blueprint[ '_blueprints_page-title' ];
+    $display_description  = (!isset($blueprint[ '_blueprints_show-archive-description' ]) || !empty($blueprint[ '_blueprints_show-archive-description' ]) );
+    $desc= '';
     $title_override = array(
       'category' => $arcoptions[ 'architect_language-categories-archive-pages-title' ],
       'tag'      => $arcoptions[ 'architect_language-tags-archive-pages-title' ],
@@ -1858,7 +1862,6 @@
        * Get the original page query global
        */
 
-      global $wp_the_query;
       switch ( true ) {
         case is_category():
           $title = single_cat_title( __( $inc_prefix ? $title_override[ 'category' ] : '', 'pzarchitect' ), false );
@@ -1891,13 +1894,35 @@
           break;
       }
       if ( $title ) {
-        return '<' . $tag . ' class="pzarc-page-title">' . esc_attr( $title ) . '</' . $tag . '>';
+        $return .= '<' . $tag . ' class="pzarc-page-title">' . esc_attr( $title ) . '</' . $tag . '>';
       }
     }
 
-    return null;
+    return $return;
   }
 
+  /**
+   * @param $blueprint
+   *
+   * @return string
+   */
+  function pzarc_display_archive_description(&$blueprint) {
+    global $wp_the_query;
+    $return = '';
+    $display_description  = !empty($blueprint[ '_blueprints_show-archive-description' ]) ;
+    if ($display_description) {
+      if (is_category() || is_tag() || is_tax() || $wp_the_query->is_category || $wp_the_query->is_tag ||$wp_the_query->is_tax ) {
+        $desc = !empty($wp_the_query->queried_object->description)?$wp_the_query->queried_object->description:get_the_archive_description();
+        $return .= '<div class="archive-desc">' . esc_attr( $desc ) . '</div>';
+      }
+    }
+    return $return;
+  }
+
+
+  /**
+   * 
+   */
   function bfi_flush_image_cache() {
     $upload_info = wp_upload_dir();
     $upload_dir  = $upload_info[ 'basedir' ];
@@ -1919,6 +1944,9 @@
     }
   }
 
+  /**
+   * @return array
+   */
   function return_taxonomies() {
     $args       = array( 'public' => true, '_builtin' => false );
     $output     = 'names';
