@@ -102,10 +102,14 @@ TODO: Remove shortcode Defaults blocking message.
 
 TODO: Add description option to archive pages
 TODO: Fix images cropping on iPhone
+
 == Changelog ==
 
 
 = 1.9.3 =
+TODO: ADD REQUEST LICENCE TRANSFER BUTTON WITH DETAILS OF EXISTING
+TODO: Disable Retina Images
+
 * ADDED: Option to set default terms selection in Masonry filtering.
 * ADDED: Option in Sources for multiple content types. Using this has limitations, as any filtering or other criteria will apply to all content. For example, if you mix pages and posts, don't filter on categories since no pages will be found.
 * ADDED: Options to change the slug name that appears in the URL of Architect's custom post types - Snippets, Testimonials and Showcases.
@@ -118,8 +122,10 @@ TODO: Fix images cropping on iPhone
 * FIXED: Filtering and sorting not working when multiple masonry Blueprints on a page.
 * FIXED: Masonry losing gutter when filtering
 * FIXED: Actions Editor not displaying Blueprints on tablets
+* FIXED: Shortcode showing wrong content
 * UPDATED: Masonry library, Isotope, to v3.
 * UPDATED: Masonry library, Packery, to v2.
+* UPDATED: TGM to 2.6.1
 
 = 1.9.2 : 15 May 2016 =
 * ADDED: Column in Blueprint list showing the pages Blueprints are used on. Requires pages to have been viewed since 1.9.2 update.

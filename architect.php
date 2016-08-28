@@ -1,7 +1,7 @@
 <?php
 
   /*
-    Plugin Name: Architect DIY Kit
+    Plugin Name: Architect content display framework
     Plugin URI: http://architect4wp.com
     Description: Architect is a multipurpose, all-in-one content layout builder. <strong>Build your own slider, grid, tabbed, gallery, masonry, accordion or tabular layouts with ANY content source</strong>. Display using shortcodes, widgets, Headway blocks, Beaver Builder modules, WP action hooks and template tags, and WP Gallery shortcode.
     Version: 1.9.3
@@ -15,6 +15,35 @@
     echo '+++Divide By Cucumber Error. Please Reinstall Universe And Reboot +++. R.I.P Terry Pratchett 1948-2015';
     exit;
   } // Exit if accessed directly
+
+  // Create a helper function for easy SDK access.
+  function pzarc_fs() {
+    global $pzarc_fs;
+
+    if ( ! isset( $pzarc_fs ) ) {
+      // Include Freemius SDK.
+      require_once dirname( __FILE__ ) . '/freemius/start.php';
+
+      $pzarc_fs = fs_dynamic_init( array(
+                                     'id'             => '371',
+                                     'slug'           => 'pizazzwp-architect',
+                                     'public_key'     => 'pk_22c22ef78ca4720aa2e21369cb802',
+                                     'is_premium'     => true,
+                                     'has_addons'     => false,
+                                     'has_paid_plans' => true,
+                                     'menu'           => array(
+                                       'slug' => 'pzarc',
+                                       'first-path' => 'admin.php?page=pzarc_support',
+                                       'support'    => false
+                                     ),
+                                   ) );
+    }
+
+    return $pzarc_fs;
+  }
+
+// Init Freemius.
+// pzarc_fs();
 
   if ( defined( 'PZARC_DEBUG' ) && PZARC_DEBUG ) {
     global $pzstart_time;
@@ -77,7 +106,10 @@
       //	register_uninstall_hook( __FILE__, array( $this, 'uninstall' ) );
 
       add_action( 'init', array( $this, 'init' ) );
-      add_action( 'after_setup_theme', array( $this, 'register_architect_block' ) );
+      add_action( 'after_setup_theme', array(
+        $this,
+        'register_architect_block'
+      ) );
 
       add_action( "redux/options/_architect/saved", 'pzarc_set_defaults', 20, 2 );
 
@@ -110,11 +142,11 @@
 
       // Load Architect page templater
       $pzarc_use_page_templater = get_option( 'architect_use-builder' );
-  //    var_dump($pzarc_use_page_templater);
+      //    var_dump($pzarc_use_page_templater);
 ////
-      if ( $pzarc_use_page_templater && !class_exists('HeadwayDisplay')) {
+      if ( $pzarc_use_page_templater && ! class_exists( 'HeadwayDisplay' ) ) {
         // TODO: Get this workign one day
-   //     require_once PZARC_PLUGIN_APP_PATH . '/admin/php/class_arcPageTemplater.php';
+        //     require_once PZARC_PLUGIN_APP_PATH . '/admin/php/class_arcPageTemplater.php';
       }
 
 
@@ -218,7 +250,6 @@
       if ( ! class_exists( 'TGM_Plugin_Activation' ) ) {
         require_once PZARC_PLUGIN_APP_PATH . '/shared/architect/php/arc-check-dependencies.php';
       }
-      TGM_Plugin_Activation::get_instance()->update_dismiss();
       pzarc_set_defaults(); //Run here in case we've added any new fields or changed their defaults.
       update_option( 'pzarc-run-rebuild', true );
 
@@ -326,8 +357,8 @@
       wp_enqueue_script( 'jquery' );
       wp_register_script( 'js-imagesloaded', PZARC_PLUGIN_APP_URL . '/public/js/imagesloaded.pkgd.min.js', array( 'jquery' ), PZARC_VERSION, true );
 
-        wp_register_script( 'js-isotope', PZARC_PLUGIN_APP_URL . '/public/js/isotope.pkgd.js', array( 'jquery' ), PZARC_VERSION, true );
-        wp_register_script( 'js-isotope-packery', PZARC_PLUGIN_APP_URL . '/public/js/packery-mode.pkgd.js', array( 'jquery' ), PZARC_VERSION, true );
+      wp_register_script( 'js-isotope', PZARC_PLUGIN_APP_URL . '/public/js/isotope.pkgd.js', array( 'jquery' ), PZARC_VERSION, true );
+      wp_register_script( 'js-isotope-packery', PZARC_PLUGIN_APP_URL . '/public/js/packery-mode.pkgd.js', array( 'jquery' ), PZARC_VERSION, true );
 
 //        wp_register_script( 'js-isotope', PZARC_PLUGIN_APP_URL . '/public/js/isotope.pkgd.min.js', array( 'jquery' ), PZARC_VERSION, true );
 //        wp_register_script( 'js-isotope-packery', PZARC_PLUGIN_APP_URL . '/public/js/packery-mode.pkgd.min.js', array( 'jquery' ), PZARC_VERSION, true );
@@ -379,7 +410,7 @@
       $file    = basename( $btr[ 0 ][ 'file' ] );
       global $pzstart_time;
 //      var_dump( strtoupper( $pre ) . ': ' . $file . ':' . $line . ': ' . round( ( microtime( true ) - $pzstart_time ), 5 ) . 's. Time since last: ' . round( microtime( true ) - $oldtime, 5 ) . 's' );
-      echo "\n<!-- ". strtoupper( $pre ) . ': ' . $file . ':' . $line . ': ' . round( ( microtime( true ) - $pzstart_time ), 5 ) . 's. Time since last: ' . round( microtime( true ) - $oldtime, 5 ) . "s -->\n" ;
+      echo "\n<!-- " . strtoupper( $pre ) . ': ' . $file . ':' . $line . ': ' . round( ( microtime( true ) - $pzstart_time ), 5 ) . 's. Time since last: ' . round( microtime( true ) - $oldtime, 5 ) . "s -->\n";
       $oldtime = microtime( true );
       if ( $var !== 'dorkus' ) {
         var_dump( $var );
