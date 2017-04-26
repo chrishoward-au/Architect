@@ -3,8 +3,8 @@
   /*
     Plugin Name: Architect content display framework
     Plugin URI: http://architect4wp.com
-    Description: Architect is a multipurpose, all-in-one content layout builder. <strong>Build your own slider, grid, tabbed, gallery, masonry, accordion or tabular layouts with ANY content source</strong>. Display using shortcodes, widgets, Headway blocks, Beaver Builder modules, WP action hooks and template tags, and WP Gallery shortcode.
-    Version: 1.9.3
+    Description: Architect is a framework for creating and managing custom content layouts. <strong>Build your own slider, grid, tabbed, gallery, masonry, accordion or tabular layouts with ANY content source</strong>. Display using shortcodes, widgets, Headway blocks, Beaver Builder modules, WP action hooks and template tags, or override the WP Gallery shortcode layout with your own.
+    Version: 1.9.10
     Author: Chris Howard
     Author URI: http://pizazzwp.com
     License: GNU GPL v2
@@ -16,33 +16,33 @@
     exit;
   } // Exit if accessed directly
 
-  // Create a helper function for easy SDK access.
-  function pzarc_fs() {
-    global $pzarc_fs;
+//  // Create a helper function for easy SDK access.
+//  function pzarc_fs() {
+//    global $pzarc_fs;
+//
+//    if ( ! isset( $pzarc_fs ) ) {
+//      // Include Freemius SDK.
+//      require_once dirname( __FILE__ ) . '/freemius/start.php';
+//
+//      $pzarc_fs = fs_dynamic_init( array(
+//                                     'id'             => '371',
+//                                     'slug'           => 'pizazzwp-architect',
+//                                     'public_key'     => 'pk_22c22ef78ca4720aa2e21369cb802',
+//                                     'is_premium'     => true,
+//                                     'has_addons'     => false,
+//                                     'has_paid_plans' => true,
+//                                     'menu'           => array(
+//                                       'slug' => 'pzarc',
+//                                       'first-path' => 'admin.php?page=pzarc_support',
+//                                       'support'    => false
+//                                     ),
+//                                   ) );
+//    }
+//
+//    return $pzarc_fs;
+//  }
 
-    if ( ! isset( $pzarc_fs ) ) {
-      // Include Freemius SDK.
-      require_once dirname( __FILE__ ) . '/freemius/start.php';
-
-      $pzarc_fs = fs_dynamic_init( array(
-                                     'id'             => '371',
-                                     'slug'           => 'pizazzwp-architect',
-                                     'public_key'     => 'pk_22c22ef78ca4720aa2e21369cb802',
-                                     'is_premium'     => true,
-                                     'has_addons'     => false,
-                                     'has_paid_plans' => true,
-                                     'menu'           => array(
-                                       'slug' => 'pzarc',
-                                       'first-path' => 'admin.php?page=pzarc_support',
-                                       'support'    => false
-                                     ),
-                                   ) );
-    }
-
-    return $pzarc_fs;
-  }
-
-// Init Freemius.
+/** Init Freemius. **/
 // pzarc_fs();
 
   if ( defined( 'PZARC_DEBUG' ) && PZARC_DEBUG ) {
@@ -59,7 +59,7 @@
   /**
    * REMEMBER TO UPDATE VERSION IN arc-admin.scss
    */
-  define( 'PZARC_VERSION', '1.9.3' );
+  define( 'PZARC_VERSION', '1.9.10' );
 
   class pzArchitect {
 
@@ -106,10 +106,8 @@
       //	register_uninstall_hook( __FILE__, array( $this, 'uninstall' ) );
 
       add_action( 'init', array( $this, 'init' ) );
-      add_action( 'after_setup_theme', array(
-        $this,
-        'register_architect_block'
-      ) );
+      add_action( 'after_setup_theme', array($this, 'register_architect_headway_block') );
+      add_action( 'after_setup_theme', array($this, 'register_architect_blox_block') );
 
       add_action( "redux/options/_architect/saved", 'pzarc_set_defaults', 20, 2 );
 
@@ -222,13 +220,23 @@
     }
 
 
-    public function register_architect_block() {
+    public function register_architect_headway_block() {
 
       if ( class_exists( 'HeadwayDisplay' ) ) {
-        require( 'application/public/php/headway/arc-headway-block-display.php' );
-        require( 'application/admin/php/headway/arc-headway-block-options.php' );
+        require( 'extensions-inc/headway/public/arc-headway-block-display.php' );
+        require( 'extensions-inc/headway/admin/arc-headway-block-options.php' );
 
-        return headway_register_block( 'HeadwayArchitectBlock', PZARC_PLUGIN_APP_URL . '/admin/php/headway' );
+        return headway_register_block( 'HeadwayArchitectBlock', PZARC_PLUGIN_URL . '/extensions-inc/headway/admin' );
+      }
+    }
+
+    public function register_architect_blox_block() {
+
+      if ( class_exists( 'BloxDisplay' ) ) {
+        require( 'extensions-inc/blox/public/arc-blox-block-display.php' );
+        require( 'extensions-inc/blox/admin/arc-blox-block-options.php' );
+
+        return blox_register_block( 'BloxArchitectBlock', PZARC_PLUGIN_URL . '/extensions-inc/blox/admin' );
       }
     }
 

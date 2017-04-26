@@ -8,11 +8,13 @@
       <library name="PHP">
         <CLASSES>
           <root url="file://$MODULE_DIR$/../../../wp-admin/includes" />
+          <root url="file://$MODULE_DIR$/../../themes/bloxtheme/library" />
           <root url="file://$MODULE_DIR$/../../themes/headway/library" />
           <root url="file://$MODULE_DIR$/../../../wp-includes" />
         </CLASSES>
         <SOURCES>
           <root url="file://$MODULE_DIR$/../../../wp-admin/includes" />
+          <root url="file://$MODULE_DIR$/../../themes/bloxtheme/library" />
           <root url="file://$MODULE_DIR$/../../themes/headway/library" />
           <root url="file://$MODULE_DIR$/../../../wp-includes" />
         </SOURCES>

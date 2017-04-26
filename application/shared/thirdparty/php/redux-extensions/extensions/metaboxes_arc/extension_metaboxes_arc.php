@@ -68,7 +68,9 @@
 
         if (empty(self::$_extension_dir)) {
           $this->_extension_dir = trailingslashit(str_replace('\\', '/', dirname(__FILE__)));
-          $this->_extension_url = site_url(str_replace(trailingslashit(str_replace('\\', '/', ABSPATH)), '', $this->_extension_dir));
+//          $this->_extension_url = site_url(str_replace(trailingslashit(str_replace('\\', '/', ABSPATH)), '', $this->_extension_dir));
+          // changed v1.9.3 to accommodate when wp-content is moved
+          $this->_extension_url = trailingslashit(plugins_url('',__FILE__));
         }
 
         // Only run metaboxes on the pages/posts, not the front-end

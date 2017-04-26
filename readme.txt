@@ -1,9 +1,9 @@
-=== Architect: A DIY WP Content Layout Kit ===
+=== Architect content display framework ===
 Contributors: chrishoward
 Tags: content,display,posts,pages,gallery,slider,tabs,tabbed,tabular,widget,hooks
 Requires at least: 3.5.0
-Tested up to: 4.6
-Stable tag: 1.9.3
+Tested up to: 4.7
+Stable tag: 1.9.10
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Plugin URI: http://architect4wp.com
@@ -42,6 +42,7 @@ There are several ways to display Architect Blueprints.
 * Template tag: echo pzarchitect('yourblueprint','1,2,3,4,5');
 * Widget
 * Headway Block
+* Blox Block
 * Action hooks (Insert a hook in your theme page template, then hook Architect to it)
 * Actions editor (Built into Architect, all you have to know is the name of the hook you want to use)
 * WP Gallery shortcode override
@@ -60,18 +61,6 @@ Yes. Architect has been successfully tested with WPML.
 
 = Do you provide refunds =
 Yes! We're pretty flexible on refunds, allowing 60 days. But we would like you to make sure you've done everything possible to get Architect to work to your requirements, especially seeking support on our help desk.
-
-= Do you have a demo version? =
-Yes. A "lite" version that displays only posts is available on request to support@pizazzwp.com
-
-= Does a licence have an expiry =
-Yes. 12 months.
-
-= How many sites can I install Architect on? =
-As per Headway licencing agreement
-
-= Can I install Architect on client sites using my licence? =
-As per Headway licencing agreement
 
 = If I deactivate Architect, will I lose all my Blueprints =
 No. We don't delete any of your data. In the future a method will be provided for you to remove all Architect data if you really need to.
@@ -99,16 +88,40 @@ TODO: Add option for custom content within Blueprints
 TODO: Check captions styling
 TODO: Replace curl with wp_remote_get
 TODO: Remove shortcode Defaults blocking message.
+TODO: Disable page builder
+TODO: Add min specs for max input vars
 
 TODO: Add description option to archive pages
 TODO: Fix images cropping on iPhone
+TODO: ADD REQUEST LICENCE TRANSFER BUTTON WITH DETAILS OF EXISTING
 
 == Changelog ==
 
+= Notes =
+* If you have trouble upgrading, try deactivating and reactivating your licence
 
-= 1.9.3 =
-TODO: ADD REQUEST LICENCE TRANSFER BUTTON WITH DETAILS OF EXISTING
-TODO: Disable Retina Images
+= 1.9.9 = : 4 Apr 2017
+* FIXED: Redux 3.6.4 broke parts of the Blueprint designer
+
+= 1.9.8 = 26 Mar 2017
+* ADDED: Shortcode processing option to custom fields
+* FIXED: Notices warning on custom field setting Field Type in admin
+* FIXED: Set defaults for responsive Title and Content fonts
+
+= 1.9.7 =
+* FIXED: Missing options when Blox is the active theme
+* FIXED: Architect menu was only meant to be available to Admins
+
+= 1.9.6 = 7 Dec 2016
+* FIXED: Incorrect version number causing upgrade info to not go away
+
+= 1.9.5 = 30 Nov 2016
+* ADDED: Option for custom fields that are saved as an array to be displayed in a table by selecting Group. This does not work for ACF repeater fields, as they are stored differently.
+
+= 1.9.4 = 15 Nov 2016
+* CHANGED: Added Blox compatibility
+
+= 1.9.3 = 30 Sep 2016
 
 * ADDED: Option to set default terms selection in Masonry filtering.
 * ADDED: Option in Sources for multiple content types. Using this has limitations, as any filtering or other criteria will apply to all content. For example, if you mix pages and posts, don't filter on categories since no pages will be found.
@@ -123,6 +136,8 @@ TODO: Disable Retina Images
 * FIXED: Masonry losing gutter when filtering
 * FIXED: Actions Editor not displaying Blueprints on tablets
 * FIXED: Shortcode showing wrong content
+* FIXED: Blueprint editor tabs disappeared if /wp-content was moved
+* REMOVED: Retina images option as it wasn't working properly anymore. Will rebuild it.
 * UPDATED: Masonry library, Isotope, to v3.
 * UPDATED: Masonry library, Packery, to v2.
 * UPDATED: TGM to 2.6.1

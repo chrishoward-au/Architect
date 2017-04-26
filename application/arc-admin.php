@@ -42,7 +42,7 @@
      */
     function init() {
       // @TODO: verify this blocks non admins!
-      if ( ! is_admin() || ! current_user_can( 'edit_others_pages' ) ) {
+      if ( ! is_admin() || ! current_user_can( 'install_plugins' ) ) {
         return;
       }
       if ( ! class_exists( 'SysInfo' ) ) {
@@ -514,7 +514,7 @@
                     <div class="arc-info col2"><h3><span class="dashicons dashicons-welcome-widgets-menus"></span>Blueprints</h3>
                     <p>Blueprints is where you create and manage the content layouts.</p>
                     <p> These can take any of the six basic forms: Grid, Slider, Tabbed, Tabular, Masonry and Accordion.</p>
-                    <p>Blueprints can be displayed using Widgets; Shortcodes; Headway Blocks; Template tags; Action Hooks; or the Architect Builder</p>
+                    <p>Blueprints can be displayed using Widgets; Shortcodes; Headway blocks; Blox blocks; Template tags; Action Hooks; or the Architect Builder</p>
                     </div>
                     <div class="arc-info col2"><h3><span class="dashicons dashicons-hammer"></span>Tools</h3>
                     <p>The Tools menu provides methods for clearing the Architect CSS cache and the Architect image cache.</p>
@@ -570,6 +570,10 @@
                     Add the Architect Headway blocks in the <em>Headway Visual Editor</em>
                     </div>
 
+                    <div class="arc-info col1">
+                    <h3>' . __( 'Blox Block', 'pzarchitect' ) . '</h3>
+                    Add the Architect Blox blocks in the <em>Blox Visual Editor</em>
+                    </div>
 
                     <div class="arc-info col1">
                     <h3>' . __( 'Action Hooks', 'pzarchitect' ) . '</h3>

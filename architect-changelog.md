@@ -1,5 +1,50 @@
 # Architect change history 
 
+## Notes:
+* If you have trouble upgrading, try deactivating and reactivating your licence
+
+## 1.9.9 : 4 Apr 2017
+* FIXED: Redux 3.6.4 broke parts of the Blueprint designer
+
+## 1.9.8 : 26 Mar 2017
+* ADDED: Shortcode processing option to custom fields
+* FIXED: Notices warning on custom field setting Field Type in admin
+* FIXED: Set defaults for responsive Title and Content fonts
+
+## 1.9.7 
+* FIXED: Missing options when Blox is the active theme
+* FIXED: Architect menu was only meant to be available to Admins
+
+## 1.9.6 : 7 Dec 2016
+* FIXED: Incorrect version number causing upgrade info to not go away
+
+## 1.9.5 : 30 Nov 2016
+* ADDED: Option for custom fields that are saved as an array to be displayed in a table by selecting Group. This does not work for ACF repeater fields, as they are stored differently.
+
+## 1.9.4 : 15 Nov 2016
+* CHANGED: Added Blox compatibility
+
+## 1.9.3 : 30 Sep 2016
+
+* ADDED: Option to set default terms selection in Masonry filtering.
+* ADDED: Option in Sources for multiple content types. Using this has limitations, as any filtering or other criteria will apply to all content. For example, if you mix pages and posts, don't filter on categories since no pages will be found.
+* ADDED: Options to change the slug name that appears in the URL of Architect's custom post types - Snippets, Testimonials and Showcases.
+* ADDED: Text field for filter labels
+* ADDED: Option to display of archive descriptions.
+* CHANGED: Blueprint dropdown lists to default to showing content type too.
+* CHANGED: Extended Architect name to Architect DIY Kit
+* FIXED: Accordions closed styling overridden by Bootstrap styling
+* FIXED: Blueprints not showing in dropdown in Architect Beaver module
+* FIXED: Filtering and sorting not working when multiple masonry Blueprints on a page.
+* FIXED: Masonry losing gutter when filtering
+* FIXED: Actions Editor not displaying Blueprints on tablets
+* FIXED: Shortcode showing wrong content
+* FIXED: Blueprint editor tabs disappeared if /wp-content was moved
+* REMOVED: Retina images option as it wasn't working properly anymore. Will rebuild it.
+* UPDATED: Masonry library, Isotope, to v3.
+* UPDATED: Masonry library, Packery, to v2.
+* UPDATED: TGM to 2.6.1
+
 ## 1.9.2 : 15 May 2016
 * ADDED: Column in Blueprint list showing the pages Blueprints are used on. Requires pages to have been viewed since 1.9.2 update.
 * CHANGED: Blueprint list now indicates layout type with an icon

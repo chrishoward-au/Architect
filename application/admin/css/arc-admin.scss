@@ -1,7 +1,7 @@
 //  http://bourbon.io/docs/
 @import "bourbon";
 
-$version: "1.9.3";
+$version: "1.9.10";
 // THIS IS THE SCSS VERSION
 $highlight: #0074a2;
 $border-radius: 3px;
@@ -66,19 +66,6 @@ body span.pzarc-shortname {
   color: inherit !important;
 }
 
-/*
-#xpzwp_arc-panels-id ul#pzarc-meta-nav li.pzarc-meta-tab-title a span
-{display:inline-block;
- padding:3px 0 0 0px;
-}
-#xpzwp_arc-panels-id ul#pzarc-meta-nav li.pzarc-meta-tab-title a img {
-	float:right;
-	padding:0 0 0 1px;
-}
-#xpzwp_arc-panels-id ul#pzarc-meta-nav li.pzarc-meta-tab-title a {
-	right:0;
-}
-*/
 
 .arc-updates ul,
 .pzarc-infobox ul {
