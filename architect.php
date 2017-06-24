@@ -3,9 +3,9 @@
   /*
     Plugin Name: Architect content display framework
     Plugin URI: http://architect4wp.com
-    Description: Architect is a framework for creating and managing custom content layouts. <strong>Build your own slider, grid, tabbed, gallery, masonry, accordion or tabular layouts with ANY content source</strong>. Display using shortcodes, widgets, Headway blocks, Beaver Builder modules, WP action hooks and template tags, or override the WP Gallery shortcode layout with your own.
-    Version: 1.9.10
-    Author: Chris Howard
+    Description: Architect is a framework for creating and managing custom content layouts. <strong>Build your own slider, grid, tabbed, gallery, masonry, accordion or tabular layouts with ANY content source</strong>. Display using shortcodes, widgets, Blox blocks, Beaver Builder modules, WP action hooks and template tags, or override the WP Gallery shortcode layout with your own.
+    Version: 1.10.0.1
+    Author: pizazzwp
     Author URI: http://pizazzwp.com
     License: GNU GPL v2
     Support: support@pizazzwp.com
@@ -59,7 +59,7 @@
   /**
    * REMEMBER TO UPDATE VERSION IN arc-admin.scss
    */
-  define( 'PZARC_VERSION', '1.9.10' );
+  define( 'PZARC_VERSION', '1.10.0' );
 
   class pzArchitect {
 
@@ -139,13 +139,13 @@
       require_once PZARC_PLUGIN_APP_PATH . '/shared/architect/php/content-types/dummy/class_arc_content_dummy.php';
 
       // Load Architect page templater
-      $pzarc_use_page_templater = get_option( 'architect_use-builder' );
+      //$pzarc_use_page_templater = get_option( 'architect_use-builder' );
       //    var_dump($pzarc_use_page_templater);
 ////
-      if ( $pzarc_use_page_templater && ! class_exists( 'HeadwayDisplay' ) ) {
+     // if ( $pzarc_use_page_templater && ! class_exists( 'HeadwayDisplay' ) ) {
         // TODO: Get this workign one day
         //     require_once PZARC_PLUGIN_APP_PATH . '/admin/php/class_arcPageTemplater.php';
-      }
+      //}
 
 
       require_once PZARC_PLUGIN_PATH . '/extensions-inc/beaver-builder/fl-custom-module-architect.php';

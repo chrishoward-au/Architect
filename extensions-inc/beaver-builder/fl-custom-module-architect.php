@@ -1,6 +1,6 @@
 <?php
 /**
- * Beaver Builder Custom Modules
+ * Beaver Builder Architect Modules
  *  http://www.wpbeaverbuilder.com
  * Description: An architect plugin for creating custom builder modules.
  * Version: 1.0
@@ -16,7 +16,8 @@ define( 'FL_MODULE_ARCHITECT_URL', plugins_url( '/', __FILE__ ) );
 function fl_load_module_architects() {
 	if ( class_exists( 'FLBuilder' ) ) {
 	    require_once 'basic-architect/basic-architect-module.php';
-//	    require_once 'architect/architect-module.php';
+	    require_once 'includes/form-styles-editor.php';
+	   // require_once 'architect/architect-module.php'; //This will be the full version - somehow!
 	}
 }
 add_action( 'init', 'fl_load_module_architects' );

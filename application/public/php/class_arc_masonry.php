@@ -294,9 +294,15 @@
             setGutterGridOn();
           container.isotope({ filter: '.' + filterValue });
           defaultsSet = filterValue.split('.');
-          for (let taxterm of defaultsSet) {
+     //     for (let taxterm of defaultsSet) {
+//          for each (var taxterm in defaultsSet ) {
+          console.log(defaultsSet);
+          defaultsSet.each(function() {
+            console.log(this);
+            var taxterm = this;
             jQuery( '{$blueprint_id} .filter-button-group [data-filter=\".' + taxterm + '\"]').addClass('selected') ;
           }
+          );
         }
         
           /*

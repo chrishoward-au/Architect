@@ -89,6 +89,11 @@
     // jQuery Collapse
     wp_register_script( 'js-jquery-collapse', PZARC_PLUGIN_APP_URL . '/public/js/jQuery-Collapse/src/jquery.collapse.js', array( 'jquery' ), PZARC_VERSION, true );
 
+    // hints.css
+    wp_register_style( 'css-hints', 'https://cdnjs.cloudflare.com/ajax/libs/hint.css/2.5.0/hint.base.min.css', false, PZARC_VERSION );
+    if (isset($_GET['demo']) || isset($_GET['debug'])) {
+      wp_enqueue_style( 'css-hints' );
+    }
 
     $actions_options = get_option( '_architect_actions' );
     $actions         = array();
@@ -198,10 +203,9 @@
    * @param null $tablet_bp
    * @param null $phone_bp
    */
-  function pzarchitect( $pzarc_blueprint = null, $pzarc_overrides = null, $tablet_bp = null, $phone_bp = null ) {
+  function pzarchitect( $pzarc_blueprint = null, $pzarc_overrides = null, $tablet_bp = null, $phone_bp = null, $additional_overrides=null ) {
     $pzarc_caller         = 'template_tag';
     $tag                  = null;
-    $additional_overrides = null;
     do_action( 'arc_before_template_tag', $pzarc_blueprint, $pzarc_overrides, $pzarc_caller );
     do_action( 'arc_do_template_tag', $pzarc_blueprint, $pzarc_overrides, $pzarc_caller, $tag, $additional_overrides, $tablet_bp, $phone_bp );
     do_action( 'arc_after_template_tag', $pzarc_blueprint, $pzarc_overrides, $pzarc_caller );
@@ -230,11 +234,19 @@
    *
    * Blueprint main display function
    * Overrides is a list of ids
-   *
-   ******************************/
+ * @param null $blueprint
+ * @param null $overrides - IDs
+ * @param null $caller
+ * @param null $tag
+ * @param null $additional_overrides
+ * @param null $tablet_bp
+ * @param null $phone_bp
+ */
   function pzarc( $blueprint = null, $overrides = null, $caller = null, $tag = null, $additional_overrides = null, $tablet_bp = null, $phone_bp = null ) {
     pzdb( 'start pzarc' );
-//var_dump(func_get_args());
+
+    //  var_dump(func_get_args());
+
     if ( ! class_exists( 'Mobile_Detect' ) ) {
       require_once( PZARC_PLUGIN_APP_PATH . '/shared/thirdparty/php/Mobile-Detect/Mobile_Detect.php' );
     }
@@ -402,7 +414,9 @@
     if ( ! in_array( 'pzarchitect', $classes ) ) {
       $classes[] = 'pzarchitect';
     }
-
+    if (isset($_GET['demo']) || isset($_GET['debug'])) {
+      $classes[] = 'architect-demo-mode';
+    }
     $classes[] = 'theme-' . get_stylesheet();
 
     // return the $classes array

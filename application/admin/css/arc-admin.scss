@@ -1,7 +1,7 @@
 //  http://bourbon.io/docs/
 @import "bourbon";
 
-$version: "1.9.10";
+$version: "1.10.0";
 // THIS IS THE SCSS VERSION
 $highlight: #0074a2;
 $border-radius: 3px;
@@ -839,34 +839,76 @@ body.screen-arc-blueprints #blueprint-preview .pzarc-section-cell p {
 }
 
 body.arc-bgimage {
-  &.arc-bg-blue #wpwrap {
-    background-size: cover;
-    background-image: url('images/trianglify-background-blue.svg');
-  }
   &.arc-bg-green #wpwrap {
     background-size: cover;
-    background-image: url('images/trianglify-background-green.svg');
+    background: #DCE35B;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to bottom, #DCE35B, #45B649);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to bottom, #DCE35B, #45B649); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
   }
   &.arc-bg-ocean-blue #wpwrap {
     background-size: cover;
-    background-image: url('images/trianglify-background-ocean-blue.svg');
+    background: #43C6AC;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to top, #191654, #43C6AC);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to top, #191654, #43C6AC); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
   }
   &.arc-bg-orange-green #wpwrap {
     background-size: cover;
-    background-image: url('images/trianglify-background-orange-green.svg');
+    background: #c21500;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to bottom, #ffc500, #c21500);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to bottom, #ffc500, #c21500); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
   }
   &.arc-bg-pink #wpwrap {
     background-size: cover;
-    background-image: url('images/trianglify-background-pink.svg');
+    background: #C6426E;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to bottom, #C6426E, #642B73);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to bottom, #C6426E, #642B73); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
   }
-  &.arc-bg-purple #wpwrap {
+
+  &.arc-bg-malibu-beach #wpwrap {
     background-size: cover;
-    background-image: url('images/trianglify-background-purple.svg');
+    background-image: linear-gradient(to right, #4facfe 0%, #00f2fe 100%);
   }
-  &.arc-bg-red-blue #wpwrap {
+  &.arc-bg-morpheous-den #wpwrap {
     background-size: cover;
-    background-image: url('images/trianglify-background-red-blue.svg');
+    background-image: linear-gradient(to top, #30cfd0 0%, #330867 100%);
   }
+  &.arc-bg-dusty-grass #wpwrap {
+    background-size: cover;
+    background-image: linear-gradient(120deg, #d4fc79 0%, #96e6a1 100%);
+  }
+
+  &.arc-bg-mixed-hopes #wpwrap {
+    background-size: cover;
+    background-image: linear-gradient(to top, #c471f5 0%, #fa71cd 100%);
+  }
+  &.arc-bg- #wpwrap {
+    background-size: cover;
+
+  }
+  &.arc-bg- #wpwrap {
+    background-size: cover;
+
+  }
+  &.arc-bg- #wpwrap {
+    background-size: cover;
+
+  }
+  &.arc-bg- #wpwrap {
+    background-size: cover;
+
+  }
+  &.arc-bg- #wpwrap {
+    background-size: cover;
+
+  }
+  &.arc-bg- #wpwrap {
+    background-size: cover;
+
+  }
+
+
+
+
 
   &.architect_page_pzarc_about .wrap {
     background: rgba(255, 255, 255, 0.9);
@@ -916,7 +958,7 @@ body.arc-bgimage {
     }
     .redux-container,
     .redux_metabox_panel {
-      background: rgba(255, 255, 255, 0.0);
+      background: rgba(255, 255, 255, 0.42);
     }
 
     .postbox {

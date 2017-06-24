@@ -7,7 +7,7 @@
 		"uuidString": "B9DF534E-C004-4F8D-BDF1-000334490B8A"
 		}
 	],
-"creatorBuild": "25813",
+"creatorBuild": "25849",
 "files": {
 	"\/.gitignore": {
 		"ft": 8192,
@@ -595,7 +595,7 @@
 		"bl": 0,
 		"ft": 16,
 		"ma": 0,
-		"oA": 1,
+		"oA": 2,
 		"oAP": "\/application\/admin\/css\/arc-admin-min.css",
 		"oF": 0,
 		"oS": 0
@@ -657,36 +657,6 @@
 		"opt": 0,
 		"oT": 1,
 		"q": 100
-		},
-	"\/application\/admin\/css\/images\/trianglify-background-green.svg": {
-		"ft": 2097152,
-		"miP": 0,
-		"oA": 2,
-		"oAP": "\/application\/admin\/css\/images\/trianglify-background-green.svg",
-		"oF": 0,
-		"opt": 0,
-		"plM": 3758088159,
-		"prP": 0
-		},
-	"\/application\/admin\/css\/images\/trianglify-background-ocean-blue.svg": {
-		"ft": 2097152,
-		"miP": 0,
-		"oA": 2,
-		"oAP": "\/application\/admin\/css\/images\/trianglify-background-ocean-blue.svg",
-		"oF": 0,
-		"opt": 0,
-		"plM": 3758088159,
-		"prP": 0
-		},
-	"\/application\/admin\/css\/images\/trianglify-background-pink.svg": {
-		"ft": 2097152,
-		"miP": 0,
-		"oA": 2,
-		"oAP": "\/application\/admin\/css\/images\/trianglify-background-pink.svg",
-		"oF": 0,
-		"opt": 0,
-		"plM": 3758088159,
-		"prP": 0
 		},
 	"\/application\/admin\/index.php": {
 		"ft": 8192,
@@ -886,7 +856,7 @@
 	"\/application\/admin\/js\/min\/arc-metaboxes-panels-min.js": {
 		"ft": 64,
 		"mi": 1,
-		"oA": 1,
+		"oA": 0,
 		"oAP": "\/application\/admin\/js\/min\/min\/arc-metaboxes-panels-min-min.js",
 		"oF": 0,
 		"sC": 1,
@@ -997,19 +967,19 @@
 		},
 	"\/application\/admin\/php\/arc-options-styling.php": {
 		"ft": 8192,
-		"oA": 0,
+		"oA": 2,
 		"oAP": "\/application\/admin\/php\/arc-options-styling.php",
 		"oF": 0
 		},
 	"\/application\/admin\/php\/arc-options.php": {
 		"ft": 8192,
-		"oA": 0,
+		"oA": 2,
 		"oAP": "\/application\/admin\/php\/arc-options.php",
 		"oF": 0
 		},
 	"\/application\/admin\/php\/arc-save-process-blueprints.php": {
 		"ft": 8192,
-		"oA": 0,
+		"oA": 2,
 		"oAP": "\/application\/admin\/php\/arc-save-process-blueprints.php",
 		"oF": 0
 		},
@@ -1039,7 +1009,7 @@
 		},
 	"\/application\/admin\/php\/class_arc_blueprints_designer.php": {
 		"ft": 8192,
-		"oA": 0,
+		"oA": 2,
 		"oAP": "\/application\/admin\/php\/class_arc_blueprints_designer.php",
 		"oF": 0
 		},
@@ -1075,13 +1045,13 @@
 		},
 	"\/application\/arc-admin.php": {
 		"ft": 8192,
-		"oA": 0,
+		"oA": 2,
 		"oAP": "\/application\/arc-admin.php",
 		"oF": 0
 		},
 	"\/application\/arc-public.php": {
 		"ft": 8192,
-		"oA": 0,
+		"oA": 2,
 		"oAP": "\/application\/arc-public.php",
 		"oF": 0
 		},
@@ -1886,7 +1856,7 @@
 		"bl": 0,
 		"ft": 16,
 		"ma": 0,
-		"oA": 1,
+		"oA": 2,
 		"oAP": "\/application\/public\/css\/arc-front-min.css",
 		"oF": 0,
 		"oS": 0
@@ -1929,6 +1899,94 @@
 		"oAP": "\/application\/public\/css\/architect-styles-min.css",
 		"oF": 0,
 		"oS": 0
+		},
+	"\/application\/public\/css\/vendor\/hint.css\/.editorconfig": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/application\/public\/css\/vendor\/hint.css\/.editorconfig",
+		"oF": 0
+		},
+	"\/application\/public\/css\/vendor\/hint.css\/.gitignore": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/application\/public\/css\/vendor\/hint.css\/.gitignore",
+		"oF": 0
+		},
+	"\/application\/public\/css\/vendor\/hint.css\/hint.base.css": {
+		"aP": 0,
+		"bl": 0,
+		"ft": 16,
+		"ma": 0,
+		"oA": 2,
+		"oAP": "\/application\/public\/css\/vendor\/hint.css\/hint.base-min.css",
+		"oF": 0,
+		"oS": 0
+		},
+	"\/application\/public\/css\/vendor\/hint.css\/hint.base.min.css": {
+		"aP": 0,
+		"bl": 0,
+		"ft": 16,
+		"ma": 0,
+		"oA": 2,
+		"oAP": "\/application\/public\/css\/vendor\/hint.css\/hint.base.min-min.css",
+		"oF": 0,
+		"oS": 0
+		},
+	"\/application\/public\/css\/vendor\/hint.css\/hint.css": {
+		"aP": 0,
+		"bl": 0,
+		"ft": 16,
+		"ma": 0,
+		"oA": 2,
+		"oAP": "\/application\/public\/css\/vendor\/hint.css\/hint-min.css",
+		"oF": 0,
+		"oS": 0
+		},
+	"\/application\/public\/css\/vendor\/hint.css\/hint.min.css": {
+		"aP": 0,
+		"bl": 0,
+		"ft": 16,
+		"ma": 0,
+		"oA": 2,
+		"oAP": "\/application\/public\/css\/vendor\/hint.css\/hint.min-min.css",
+		"oF": 0,
+		"oS": 0
+		},
+	"\/application\/public\/css\/vendor\/hint.css\/LICENSE.md": {
+		"cS": 0,
+		"eF": 0,
+		"eL": 1,
+		"eLB": 0,
+		"ema": 1,
+		"eSQ": 1,
+		"ft": 4096,
+		"oA": 0,
+		"oAP": "\/application\/public\/css\/vendor\/hint.css\/LICENSE.html",
+		"oF": 0,
+		"oFM": 0,
+		"oS": 0,
+		"pHT": 0,
+		"pME": 1,
+		"rFN": 0,
+		"uCM": 0
+		},
+	"\/application\/public\/css\/vendor\/hint.css\/README.md": {
+		"cS": 0,
+		"eF": 0,
+		"eL": 1,
+		"eLB": 0,
+		"ema": 1,
+		"eSQ": 1,
+		"ft": 4096,
+		"oA": 0,
+		"oAP": "\/application\/public\/css\/vendor\/hint.css\/README.html",
+		"oF": 0,
+		"oFM": 0,
+		"oS": 0,
+		"pHT": 0,
+		"pME": 1,
+		"rFN": 0,
+		"uCM": 0
 		},
 	"\/application\/public\/index.php": {
 		"ft": 8192,
@@ -2781,7 +2839,7 @@
 	"\/application\/public\/js\/min\/isotope.pkgd-min.js": {
 		"ft": 64,
 		"mi": 1,
-		"oA": 1,
+		"oA": 0,
 		"oAP": "\/application\/public\/js\/min\/min\/isotope.pkgd-min-min.js",
 		"oF": 0,
 		"sC": 1,
@@ -2841,10 +2899,28 @@
 		"sC": 1,
 		"tS": 0
 		},
+	"\/application\/public\/js\/min\/min\/packery-mode.pkgd.min-min-min.js": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 0,
+		"oAP": "\/application\/public\/js\/min\/min\/min\/packery-mode.pkgd.min-min-min-min.js",
+		"oF": 0,
+		"sC": 1,
+		"tS": 0
+		},
+	"\/application\/public\/js\/min\/packery-mode.pkgd-min.js": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 0,
+		"oAP": "\/application\/public\/js\/min\/min\/packery-mode.pkgd-min-min.js",
+		"oF": 0,
+		"sC": 1,
+		"tS": 0
+		},
 	"\/application\/public\/js\/min\/packery-mode.pkgd.min-min.js": {
 		"ft": 64,
 		"mi": 1,
-		"oA": 1,
+		"oA": 0,
 		"oAP": "\/application\/public\/js\/min\/min\/packery-mode.pkgd.min-min-min.js",
 		"oF": 0,
 		"sC": 1,
@@ -2906,13 +2982,13 @@
 		},
 	"\/application\/public\/php\/class_arc_blueprint.php": {
 		"ft": 8192,
-		"oA": 0,
+		"oA": 2,
 		"oAP": "\/application\/public\/php\/class_arc_blueprint.php",
 		"oF": 0
 		},
 	"\/application\/public\/php\/class_arc_masonry.php": {
 		"ft": 8192,
-		"oA": 0,
+		"oA": 2,
 		"oAP": "\/application\/public\/php\/class_arc_masonry.php",
 		"oF": 0
 		},
@@ -2936,7 +3012,7 @@
 		},
 	"\/application\/public\/php\/class_arc_section.php": {
 		"ft": 8192,
-		"oA": 0,
+		"oA": 2,
 		"oAP": "\/application\/public\/php\/class_arc_section.php",
 		"oF": 0
 		},
@@ -2954,13 +3030,13 @@
 		},
 	"\/application\/public\/php\/class_architect_public.php": {
 		"ft": 8192,
-		"oA": 0,
+		"oA": 2,
 		"oAP": "\/application\/public\/php\/class_architect_public.php",
 		"oF": 0
 		},
 	"\/application\/public\/php\/class_showblueprint.php": {
 		"ft": 8192,
-		"oA": 0,
+		"oA": 2,
 		"oAP": "\/application\/public\/php\/class_showblueprint.php",
 		"oF": 0
 		},
@@ -2981,7 +3057,7 @@
 		},
 	"\/application\/shared\/architect\/php\/arc-check-dependencies.php": {
 		"ft": 8192,
-		"oA": 0,
+		"oA": 2,
 		"oAP": "\/application\/shared\/architect\/php\/arc-check-dependencies.php",
 		"oF": 0
 		},
@@ -3005,7 +3081,7 @@
 		},
 	"\/application\/shared\/architect\/php\/arc-functions.php": {
 		"ft": 8192,
-		"oA": 0,
+		"oA": 2,
 		"oAP": "\/application\/shared\/architect\/php\/arc-functions.php",
 		"oF": 0
 		},
@@ -3101,7 +3177,7 @@
 		},
 	"\/application\/shared\/architect\/php\/content-types\/generic\/class_arc_panel_generic.php": {
 		"ft": 8192,
-		"oA": 0,
+		"oA": 2,
 		"oAP": "\/application\/shared\/architect\/php\/content-types\/generic\/class_arc_panel_generic.php",
 		"oF": 0
 		},
@@ -3908,7 +3984,7 @@
 		},
 	"\/application\/shared\/thirdparty\/php\/class-tgm-plugin-activation.php": {
 		"ft": 8192,
-		"oA": 0,
+		"oA": 2,
 		"oAP": "\/application\/shared\/thirdparty\/php\/class-tgm-plugin-activation.php",
 		"oF": 0
 		},
@@ -4673,7 +4749,7 @@
 		"bl": 0,
 		"ft": 16,
 		"ma": 0,
-		"oA": 0,
+		"oA": 2,
 		"oAP": "\/application\/shared\/thirdparty\/php\/redux-custom-fields\/tabbed\/field_tabbed-min.css",
 		"oF": 0,
 		"oS": 0
@@ -4791,7 +4867,7 @@
 		},
 	"\/application\/shared\/thirdparty\/php\/redux-extensions\/extensions\/metaboxes_arc\/extension_metaboxes_arc.php": {
 		"ft": 8192,
-		"oA": 0,
+		"oA": 2,
 		"oAP": "\/application\/shared\/thirdparty\/php\/redux-extensions\/extensions\/metaboxes_arc\/extension_metaboxes_arc.php",
 		"oF": 0
 		},
@@ -4914,7 +4990,7 @@
 		},
 	"\/architect-changelog.html": {
 		"ft": 8192,
-		"oA": 0,
+		"oA": 2,
 		"oAP": "\/architect-changelog.html",
 		"oF": 0
 		},
@@ -4938,7 +5014,7 @@
 		},
 	"\/architect.php": {
 		"ft": 8192,
-		"oA": 0,
+		"oA": 2,
 		"oAP": "\/architect.php",
 		"oF": 0
 		},
@@ -5745,7 +5821,7 @@
 		"bl": 0,
 		"ft": 16,
 		"ma": 0,
-		"oA": 0,
+		"oA": 2,
 		"oAP": "\/extensions-inc\/beaver-builder\/assets\/css\/fields-min.css",
 		"oF": 0,
 		"oS": 0
@@ -5765,16 +5841,131 @@
 		"oAP": "\/extensions-inc\/beaver-builder\/basic-architect\/basic-architect-module.php",
 		"oF": 0
 		},
+	"\/extensions-inc\/beaver-builder\/basic-architect\/includes\/frontend.css.php": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/extensions-inc\/beaver-builder\/basic-architect\/includes\/frontend.css.php",
+		"oF": 0
+		},
 	"\/extensions-inc\/beaver-builder\/basic-architect\/includes\/frontend.php": {
 		"ft": 8192,
 		"oA": 0,
 		"oAP": "\/extensions-inc\/beaver-builder\/basic-architect\/includes\/frontend.php",
 		"oF": 0
 		},
+	"\/extensions-inc\/beaver-builder\/example\/css\/example-lib.css": {
+		"aP": 0,
+		"bl": 0,
+		"ft": 16,
+		"ma": 0,
+		"oA": 2,
+		"oAP": "\/extensions-inc\/beaver-builder\/example\/css\/example-lib-min.css",
+		"oF": 0,
+		"oS": 0
+		},
+	"\/extensions-inc\/beaver-builder\/example\/css\/frontend.css": {
+		"aP": 0,
+		"bl": 0,
+		"ft": 16,
+		"ma": 0,
+		"oA": 2,
+		"oAP": "\/extensions-inc\/beaver-builder\/example\/css\/frontend-min.css",
+		"oF": 0,
+		"oS": 0
+		},
+	"\/extensions-inc\/beaver-builder\/example\/css\/frontend.responsive.css": {
+		"aP": 0,
+		"bl": 0,
+		"ft": 16,
+		"ma": 0,
+		"oA": 2,
+		"oAP": "\/extensions-inc\/beaver-builder\/example\/css\/frontend.responsive-min.css",
+		"oF": 0,
+		"oS": 0
+		},
+	"\/extensions-inc\/beaver-builder\/example\/css\/settings.css": {
+		"aP": 0,
+		"bl": 0,
+		"ft": 16,
+		"ma": 0,
+		"oA": 2,
+		"oAP": "\/extensions-inc\/beaver-builder\/example\/css\/settings-min.css",
+		"oF": 0,
+		"oS": 0
+		},
+	"\/extensions-inc\/beaver-builder\/example\/example.php": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/extensions-inc\/beaver-builder\/example\/example.php",
+		"oF": 0
+		},
+	"\/extensions-inc\/beaver-builder\/example\/includes\/frontend.css.php": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/extensions-inc\/beaver-builder\/example\/includes\/frontend.css.php",
+		"oF": 0
+		},
+	"\/extensions-inc\/beaver-builder\/example\/includes\/frontend.js.php": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/extensions-inc\/beaver-builder\/example\/includes\/frontend.js.php",
+		"oF": 0
+		},
+	"\/extensions-inc\/beaver-builder\/example\/includes\/frontend.php": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/extensions-inc\/beaver-builder\/example\/includes\/frontend.php",
+		"oF": 0
+		},
+	"\/extensions-inc\/beaver-builder\/example\/includes\/settings-example.php": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/extensions-inc\/beaver-builder\/example\/includes\/settings-example.php",
+		"oF": 0
+		},
+	"\/extensions-inc\/beaver-builder\/example\/js\/example-lib.js": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 0,
+		"oAP": "\/extensions-inc\/beaver-builder\/example\/js\/min\/example-lib-min.js",
+		"oF": 0,
+		"sC": 1,
+		"tS": 0
+		},
+	"\/extensions-inc\/beaver-builder\/example\/js\/frontend.js": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 0,
+		"oAP": "\/extensions-inc\/beaver-builder\/example\/js\/min\/frontend-min.js",
+		"oF": 0,
+		"sC": 1,
+		"tS": 0
+		},
+	"\/extensions-inc\/beaver-builder\/example\/js\/settings.js": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 0,
+		"oAP": "\/extensions-inc\/beaver-builder\/example\/js\/min\/settings-min.js",
+		"oF": 0,
+		"sC": 1,
+		"tS": 0
+		},
 	"\/extensions-inc\/beaver-builder\/fl-custom-module-architect.php": {
 		"ft": 8192,
 		"oA": 0,
 		"oAP": "\/extensions-inc\/beaver-builder\/fl-custom-module-architect.php",
+		"oF": 0
+		},
+	"\/extensions-inc\/beaver-builder\/functions.php": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/extensions-inc\/beaver-builder\/functions.php",
+		"oF": 0
+		},
+	"\/extensions-inc\/beaver-builder\/includes\/form-styles-editor.php": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/extensions-inc\/beaver-builder\/includes\/form-styles-editor.php",
 		"oF": 0
 		},
 	"\/extensions-inc\/beaver-builder\/index.php": {
@@ -5901,7 +6092,7 @@
 		},
 	"\/extensions-inc\/sliders\/slick15\/arc-slick15-admin.php": {
 		"ft": 8192,
-		"oA": 0,
+		"oA": 2,
 		"oAP": "\/extensions-inc\/sliders\/slick15\/arc-slick15-admin.php",
 		"oF": 0
 		},
@@ -6501,7 +6692,7 @@
 		},
 	"\/extensions\/content-types\/nextgen\/class_arc_content_nextgen.php": {
 		"ft": 8192,
-		"oA": 0,
+		"oA": 2,
 		"oAP": "\/extensions\/content-types\/nextgen\/class_arc_content_nextgen.php",
 		"oF": 0
 		},
@@ -6661,6 +6852,16 @@
 		"oAP": "\/favicon.ico",
 		"oF": 0
 		},
+	"\/freemius\/assets\/css\/admin\/account-min.css": {
+		"aP": 0,
+		"bl": 0,
+		"ft": 16,
+		"ma": 0,
+		"oA": 2,
+		"oAP": "\/freemius\/assets\/css\/admin\/account-min-min.css",
+		"oF": 0,
+		"oS": 0
+		},
 	"\/freemius\/assets\/css\/admin\/account.css": {
 		"aP": 0,
 		"bl": 0,
@@ -6809,8 +7010,8 @@
 		"tS": 0
 		},
 	"\/freemius\/assets\/scss\/_colors.scss": {
-		"aP": 0,
-		"bl": 0,
+		"aP": 1,
+		"bl": 1,
 		"dP": 10,
 		"dS": 0,
 		"ft": 4,
@@ -6822,8 +7023,8 @@
 		"uL": 1
 		},
 	"\/freemius\/assets\/scss\/_functions.scss": {
-		"aP": 0,
-		"bl": 0,
+		"aP": 1,
+		"bl": 1,
 		"dP": 10,
 		"dS": 0,
 		"ft": 4,
@@ -6835,8 +7036,8 @@
 		"uL": 1
 		},
 	"\/freemius\/assets\/scss\/_load.scss": {
-		"aP": 0,
-		"bl": 0,
+		"aP": 1,
+		"bl": 1,
 		"dP": 10,
 		"dS": 0,
 		"ft": 4,
@@ -6848,8 +7049,8 @@
 		"uL": 1
 		},
 	"\/freemius\/assets\/scss\/_mixins.scss": {
-		"aP": 0,
-		"bl": 0,
+		"aP": 1,
+		"bl": 1,
 		"dP": 10,
 		"dS": 0,
 		"ft": 4,
@@ -6861,8 +7062,8 @@
 		"uL": 1
 		},
 	"\/freemius\/assets\/scss\/_start.scss": {
-		"aP": 0,
-		"bl": 0,
+		"aP": 1,
+		"bl": 1,
 		"dP": 10,
 		"dS": 0,
 		"ft": 4,
@@ -6874,8 +7075,8 @@
 		"uL": 1
 		},
 	"\/freemius\/assets\/scss\/_vars.scss": {
-		"aP": 0,
-		"bl": 0,
+		"aP": 1,
+		"bl": 1,
 		"dP": 10,
 		"dS": 0,
 		"ft": 4,
@@ -6887,8 +7088,8 @@
 		"uL": 1
 		},
 	"\/freemius\/assets\/scss\/admin\/account.scss": {
-		"aP": 0,
-		"bl": 0,
+		"aP": 1,
+		"bl": 1,
 		"dP": 10,
 		"dS": 0,
 		"ft": 4,
@@ -6900,8 +7101,8 @@
 		"uL": 1
 		},
 	"\/freemius\/assets\/scss\/admin\/add-ons.scss": {
-		"aP": 0,
-		"bl": 0,
+		"aP": 1,
+		"bl": 1,
 		"dP": 10,
 		"dS": 0,
 		"ft": 4,
@@ -6913,8 +7114,8 @@
 		"uL": 1
 		},
 	"\/freemius\/assets\/scss\/admin\/common.scss": {
-		"aP": 0,
-		"bl": 0,
+		"aP": 1,
+		"bl": 1,
 		"dP": 10,
 		"dS": 0,
 		"ft": 4,
@@ -6926,8 +7127,8 @@
 		"uL": 1
 		},
 	"\/freemius\/assets\/scss\/admin\/connect.scss": {
-		"aP": 0,
-		"bl": 0,
+		"aP": 1,
+		"bl": 1,
 		"dP": 10,
 		"dS": 0,
 		"ft": 4,
@@ -6939,8 +7140,8 @@
 		"uL": 1
 		},
 	"\/freemius\/assets\/scss\/admin\/deactivation-feedback.scss": {
-		"aP": 0,
-		"bl": 0,
+		"aP": 1,
+		"bl": 1,
 		"dP": 10,
 		"dS": 0,
 		"ft": 4,
@@ -6952,8 +7153,8 @@
 		"uL": 1
 		},
 	"\/freemius\/assets\/scss\/admin\/debug.scss": {
-		"aP": 0,
-		"bl": 0,
+		"aP": 1,
+		"bl": 1,
 		"dP": 10,
 		"dS": 0,
 		"ft": 4,
@@ -6965,8 +7166,8 @@
 		"uL": 1
 		},
 	"\/freemius\/assets\/scss\/admin\/license-activation.scss": {
-		"aP": 0,
-		"bl": 0,
+		"aP": 1,
+		"bl": 1,
 		"dP": 10,
 		"dS": 0,
 		"ft": 4,
@@ -7235,6 +7436,12 @@
 		"ft": 8192,
 		"oA": 2,
 		"oAP": "\/freemius\/LICENSE.txt",
+		"oF": 0
+		},
+	"\/freemius\/README.html": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/freemius\/README.html",
 		"oF": 0
 		},
 	"\/freemius\/README.md": {
@@ -9804,6 +10011,7 @@
 		},
 	"languageDefaultsUserDefined": [
 		],
+	"overrideExternalServerCSS": 0,
 	"previewPathAddition": "",
 	"skippedFoldersString": "log, _logs, logs, _cache, cache, \/storage\/framework\/sessions, node_modules, \/_gsdata_, \/.idea",
 	"sourceFolderName": "source",

@@ -443,7 +443,7 @@
                         <!-- <a class="pzarc-button-help" href="https://pizazzwp.freshdesk.com/support/discussions" target="_blank">
                         <span class="dashicons dashicons-groups"></span>
                         Community support</a>&nbsp; -->
-                        <a class="pzarc-button-help" href="https://pizazzwp.freshdesk.com/support/tickets/new" target="_blank">
+                        <a class="pzarc-button-help" href="mailto:support@pizazzwp.com?subject=Architect%20help" target="_blank">
                         <span class="dashicons dashicons-admin-tools"></span>
                         Tech support</a>
                         <a class="pzarc-button-help" href="https://shop.pizazzwp.com/checkout/customer-dashboard/" target="_blank">

@@ -1,4 +1,16 @@
 // MAKE SURE NO FORMATTING OF GENERIC ELEMENTS
+.architect-demo-mode {
+  .pzarc-blueprint {
+    border:1px dashed blue!important;
+    box-sizing:border-box!important;
+    &:hover {
+      .pzarc-panel {
+        outline:1px dashed red!important;
+      }
+    }
+
+  }
+}
 .pzarchitect {
   a.button, button, html input[type="button"], input[type="reset"], input[type="submit"] {
     border: none;

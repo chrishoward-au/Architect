@@ -3,7 +3,7 @@ Contributors: chrishoward
 Tags: content,display,posts,pages,gallery,slider,tabs,tabbed,tabular,widget,hooks
 Requires at least: 3.5.0
 Tested up to: 4.7
-Stable tag: 1.9.10
+Stable tag: 1.10.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Plugin URI: http://architect4wp.com
@@ -88,17 +88,36 @@ TODO: Add option for custom content within Blueprints
 TODO: Check captions styling
 TODO: Replace curl with wp_remote_get
 TODO: Remove shortcode Defaults blocking message.
-TODO: Disable page builder
 TODO: Add min specs for max input vars
 
 TODO: Add description option to archive pages
 TODO: Fix images cropping on iPhone
-TODO: ADD REQUEST LICENCE TRANSFER BUTTON WITH DETAILS OF EXISTING
+TODO: Add Unsplash as a source for dummy photos
+TODO: Implement Freemius?
 
 == Changelog ==
 
 = Notes =
 * If you have trouble upgrading, try deactivating and reactivating your licence
+
+= 1.10.0 =
+* ADDED: More extensive filtering overrides the the Beaver Architect module
+* ADDED: RSS Feed as a content source
+* ADDED: Option to use 'Specific Text, HTML or Shortcodes' as a custom field source
+* ADDED: Option to hide specific category names in meta field category name list
+* ADDED: Message field that can be displayed immediately below content.
+* ADDED: Simple demo mode that outlines Architect Blueprints. Add ?demo to the page URL.
+* CHANGED: Admin backgrounds are now just gradients rather than SVG to save space
+* CHANGED: Using the 'No field. Use prefix and suffix only' option for custom field source no longer requires the Link Field attribute enabled.
+* CHANGED: Tech support link to support email address
+* CHANGED: In Blueprint listings, limited the "Used on" column to only show the first 5 instances
+* REMOVED: Removed Architect page builder. Recommend to use Beaver instead!
+* FIXED: Filler images not working for Featured images
+* FIXED: Category and Tag exclusion only working when inclusion was set too
+* FIXED: Duplication of @media CSS declarations on panels. Finally!!!
+TODO: ADD REQUEST LICENCE TRANSFER BUTTON WITH DETAILS OF EXISTING
+TODO: Finish styles for Beaver
+TODO: Finish Admin backgrounds
 
 = 1.9.9 = : 4 Apr 2017
 * FIXED: Redux 3.6.4 broke parts of the Blueprint designer

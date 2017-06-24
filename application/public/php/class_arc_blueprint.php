@@ -126,13 +126,14 @@
 
       if (!isset($bp[ 0 ]) || !isset($blueprint_query->posts[ 0 ]->ID)) {
 
-        $this->blueprint = array('err_msg' => '<p class="message-error">Architect Blueprint <strong>' . $this->name . '</strong> not found</p>');
+        $this->blueprint = array('err_msg' => '<p class="message-error">Architect Blueprint <em><strong>' . $this->name . '</strong></em> not found</p>');
 
         return $this->blueprint;
 
       }
 
       $this->blueprint[ 'blueprint-id' ] = $blueprint_query->posts[ 0 ]->ID;
+      $this->blueprint[ 'blueprint-title' ] = $blueprint_query->posts[ 0 ]->post_title;
       global $arc_blueprint_id;
       $arc_blueprint_id = $this->blueprint[ 'blueprint-id' ];
       $blueprint_info = get_post_meta($blueprint_query->posts[ 0 ]->ID);

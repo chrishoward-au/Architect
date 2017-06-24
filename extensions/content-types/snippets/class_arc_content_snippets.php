@@ -16,12 +16,12 @@
       $prefix                          = '_content_snippets_';
       $settings[ 'blueprint-content' ] = array(
         'type'        => 'snippets',
-        'name'        => 'Snippets',
+        'name'        => 'Snippet',
         'panel_class' => 'arc_panel_Snippets',
         'prefix'      => $prefix,
         // These are the sections to display on the admin metabox. We also use them to get default values.
         'sections'    => array(
-          'title'      => 'Snippets',
+          'title'      => 'Snippet',
           'icon_class' => 'icon-large',
           'icon'       => 'el-icon-file',
           'fields'     => array(

@@ -73,6 +73,7 @@
       add_shortcode( 'arcshare', array( $this, 'arcshare_shortcode' ) );
 
 
+
     }
 
 
