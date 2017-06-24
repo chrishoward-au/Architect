@@ -22,3 +22,4 @@ sitemap.xml.gz
 /.idea/workspace.xml
 /.project
 application/config.codekit
+/config.codekit3
