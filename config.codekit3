@@ -7,7 +7,7 @@
 		"uuidString": "B9DF534E-C004-4F8D-BDF1-000334490B8A"
 		}
 	],
-"creatorBuild": "25813",
+"creatorBuild": "25849",
 "files": {
 	"\/.gitignore": {
 		"ft": 8192,
@@ -598,7 +598,7 @@
 		"oA": 2,
 		"oAP": "\/application\/admin\/css\/arc-admin-min.css",
 		"oF": 0,
-		"oS": 0
+		"oS": 3
 		},
 	"\/application\/admin\/css\/arc-admin.css.map": {
 		"ft": 8192,
@@ -1039,7 +1039,7 @@
 		},
 	"\/application\/admin\/php\/class_arc_blueprints_designer.php": {
 		"ft": 8192,
-		"oA": 0,
+		"oA": 2,
 		"oAP": "\/application\/admin\/php\/class_arc_blueprints_designer.php",
 		"oF": 0
 		},
@@ -1917,7 +1917,7 @@
 		"oA": 2,
 		"oAP": "\/application\/public\/css\/arc-front-min.css",
 		"oF": 0,
-		"oS": 0
+		"oS": 3
 		},
 	"\/application\/public\/css\/arc-front.css.map": {
 		"ft": 8192,
@@ -2943,7 +2943,7 @@
 		},
 	"\/application\/public\/php\/class_arc_shortcodes.php": {
 		"ft": 8192,
-		"oA": 0,
+		"oA": 2,
 		"oAP": "\/application\/public\/php\/class_arc_shortcodes.php",
 		"oF": 0
 		},
@@ -3084,13 +3084,13 @@
 		},
 	"\/application\/shared\/architect\/php\/content-types\/dummy\/class_arc_content_dummy.php": {
 		"ft": 8192,
-		"oA": 0,
+		"oA": 2,
 		"oAP": "\/application\/shared\/architect\/php\/content-types\/dummy\/class_arc_content_dummy.php",
 		"oF": 0
 		},
 	"\/application\/shared\/architect\/php\/content-types\/dummy\/class_arc_panel_dummy.php": {
 		"ft": 8192,
-		"oA": 0,
+		"oA": 2,
 		"oAP": "\/application\/shared\/architect\/php\/content-types\/dummy\/class_arc_panel_dummy.php",
 		"oF": 0
 		},
@@ -3114,13 +3114,13 @@
 		},
 	"\/application\/shared\/architect\/php\/content-types\/generic\/class_arc_panel_generic.php": {
 		"ft": 8192,
-		"oA": 0,
+		"oA": 2,
 		"oAP": "\/application\/shared\/architect\/php\/content-types\/generic\/class_arc_panel_generic.php",
 		"oF": 0
 		},
 	"\/application\/shared\/architect\/php\/content-types\/generic\/class_arc_query_generic.php": {
 		"ft": 8192,
-		"oA": 0,
+		"oA": 2,
 		"oAP": "\/application\/shared\/architect\/php\/content-types\/generic\/class_arc_query_generic.php",
 		"oF": 0
 		},
@@ -4669,7 +4669,7 @@
 		"oA": 2,
 		"oAP": "\/application\/shared\/thirdparty\/php\/redux-custom-fields\/tabbed\/field_tabbed-min.css",
 		"oF": 0,
-		"oS": 0
+		"oS": 3
 		},
 	"\/application\/shared\/thirdparty\/php\/redux-custom-fields\/tabbed\/field_tabbed.js": {
 		"ft": 64,
@@ -5638,7 +5638,7 @@
 		},
 	"\/extensions-inc\/beaver-builder\/architect\/architect-module.php": {
 		"ft": 8192,
-		"oA": 0,
+		"oA": 2,
 		"oAP": "\/extensions-inc\/beaver-builder\/architect\/architect-module.php",
 		"oF": 0
 		},
@@ -5738,7 +5738,7 @@
 		"bl": 0,
 		"ft": 16,
 		"ma": 0,
-		"oA": 0,
+		"oA": 2,
 		"oAP": "\/extensions-inc\/beaver-builder\/assets\/css\/fields-min.css",
 		"oF": 0,
 		"oS": 0
@@ -5754,19 +5754,19 @@
 		},
 	"\/extensions-inc\/beaver-builder\/basic-architect\/basic-architect-module.php": {
 		"ft": 8192,
-		"oA": 0,
+		"oA": 2,
 		"oAP": "\/extensions-inc\/beaver-builder\/basic-architect\/basic-architect-module.php",
 		"oF": 0
 		},
 	"\/extensions-inc\/beaver-builder\/basic-architect\/includes\/frontend.php": {
 		"ft": 8192,
-		"oA": 0,
+		"oA": 2,
 		"oAP": "\/extensions-inc\/beaver-builder\/basic-architect\/includes\/frontend.php",
 		"oF": 0
 		},
 	"\/extensions-inc\/beaver-builder\/fl-custom-module-architect.php": {
 		"ft": 8192,
-		"oA": 0,
+		"oA": 2,
 		"oAP": "\/extensions-inc\/beaver-builder\/fl-custom-module-architect.php",
 		"oF": 0
 		},
@@ -6354,13 +6354,13 @@
 		},
 	"\/extensions\/architect-pro-cpt.php": {
 		"ft": 8192,
-		"oA": 0,
+		"oA": 2,
 		"oAP": "\/extensions\/architect-pro-cpt.php",
 		"oF": 0
 		},
 	"\/extensions\/architect-pro-layout.php": {
 		"ft": 8192,
-		"oA": 0,
+		"oA": 2,
 		"oAP": "\/extensions\/architect-pro-layout.php",
 		"oF": 0
 		},
@@ -6432,7 +6432,7 @@
 		},
 	"\/extensions\/content-types\/nextgen\/class_arc_panel_nextgen.php": {
 		"ft": 8192,
-		"oA": 0,
+		"oA": 2,
 		"oAP": "\/extensions\/content-types\/nextgen\/class_arc_panel_nextgen.php",
 		"oF": 0
 		},
@@ -6444,19 +6444,19 @@
 		},
 	"\/extensions\/content-types\/rss\/class_arc_content_rss.php": {
 		"ft": 8192,
-		"oA": 0,
+		"oA": 2,
 		"oAP": "\/extensions\/content-types\/rss\/class_arc_content_rss.php",
 		"oF": 0
 		},
 	"\/extensions\/content-types\/rss\/class_arc_panel_rss.php": {
 		"ft": 8192,
-		"oA": 0,
+		"oA": 2,
 		"oAP": "\/extensions\/content-types\/rss\/class_arc_panel_rss.php",
 		"oF": 0
 		},
 	"\/extensions\/content-types\/rss\/class_arc_query_rss.php": {
 		"ft": 8192,
-		"oA": 0,
+		"oA": 2,
 		"oAP": "\/extensions\/content-types\/rss\/class_arc_query_rss.php",
 		"oF": 0
 		},
@@ -6510,7 +6510,7 @@
 		},
 	"\/extensions\/content-types\/snippets\/class_arc_content_snippets.php": {
 		"ft": 8192,
-		"oA": 0,
+		"oA": 2,
 		"oAP": "\/extensions\/content-types\/snippets\/class_arc_content_snippets.php",
 		"oF": 0
 		},
@@ -6522,7 +6522,7 @@
 		},
 	"\/extensions\/content-types\/snippets\/class_arc_query_snippets.php": {
 		"ft": 8192,
-		"oA": 0,
+		"oA": 2,
 		"oAP": "\/extensions\/content-types\/snippets\/class_arc_query_snippets.php",
 		"oF": 0
 		},
@@ -7012,31 +7012,31 @@
 		},
 	"\/updates\/architect-1300.php": {
 		"ft": 8192,
-		"oA": 0,
+		"oA": 2,
 		"oAP": "\/updates\/architect-1300.php",
 		"oF": 0
 		},
 	"\/updates\/architect-1400.php": {
 		"ft": 8192,
-		"oA": 0,
+		"oA": 2,
 		"oAP": "\/updates\/architect-1400.php",
 		"oF": 0
 		},
 	"\/updates\/architect-1500.php": {
 		"ft": 8192,
-		"oA": 0,
+		"oA": 2,
 		"oAP": "\/updates\/architect-1500.php",
 		"oF": 0
 		},
 	"\/updates\/architect-1600.php": {
 		"ft": 8192,
-		"oA": 0,
+		"oA": 2,
 		"oAP": "\/updates\/architect-1600.php",
 		"oF": 0
 		},
 	"\/updates\/architect-1800.php": {
 		"ft": 8192,
-		"oA": 0,
+		"oA": 2,
 		"oAP": "\/updates\/architect-1800.php",
 		"oF": 0
 		},
@@ -8991,6 +8991,7 @@
 		},
 	"languageDefaultsUserDefined": [
 		],
+	"overrideExternalServerCSS": 0,
 	"previewPathAddition": "",
 	"skippedFoldersString": "log, _logs, logs, _cache, cache, \/storage\/framework\/sessions, node_modules, \/_gsdata_, \/.idea",
 	"sourceFolderName": "source",
