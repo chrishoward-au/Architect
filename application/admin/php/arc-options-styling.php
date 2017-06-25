@@ -1130,7 +1130,7 @@
             pzarc_redux_bg( 'architect_config_' . $thisSection . '-hover-background', array( $primaryClass . $buttonClass . ':hover ' ), array( 'color' => '#999999' ) ),
             pzarc_redux_borders( 'architect_config_' . $thisSection . '-hover-borders', array( $primaryClass . $buttonClass . ':hover ' ) ),
             array(
-              'title'  => __( 'Clear', 'pzarchitect' ),
+              'title'  => __( 'Clear All and Defaults buttons', 'pzarchitect' ),
               'id'     => 'architect_config_' . $thisSection . '-clear-css-heading',
               'type'   => 'section',
               'indent' => true,
@@ -1142,11 +1142,11 @@
               'id'       => 'architect_config_' . $thisSection . '-clear-selectors',
               'type'     => 'text',
               'readonly' => true,
-              'default'  => $primaryClass . $buttonClass . '.showall',
+              'default'  => $primaryClass . $buttonClass . '.showall, '.$primaryClass . $buttonClass . '.reset-to-defaults',
             ),
-            pzarc_redux_font( 'architect_config_' . $thisSection . '-clear-font', array( $primaryClass . $buttonClass . '.showall ' ), array( 'color' => '#ffffff' ) ),
-            pzarc_redux_bg( 'architect_config_' . $thisSection . '-clear-background', array( $primaryClass . $buttonClass . '.showall ' ), array( 'color' => 'tomato' ) ),
-            pzarc_redux_borders( 'architect_config_' . $thisSection . '-clear-borders', array( $primaryClass . $buttonClass . '.showall ' ) ),
+            pzarc_redux_font( 'architect_config_' . $thisSection . '-clear-font', array( $primaryClass . $buttonClass . '.showall ', $primaryClass . $buttonClass . '.reset-to-defaults' ), array( 'color' => '#ffffff' ) ),
+            pzarc_redux_bg( 'architect_config_' . $thisSection . '-clear-background', array( $primaryClass . $buttonClass . '.showall ', $primaryClass . $buttonClass . '.reset-to-defaults' ), array( 'color' => 'tomato' ) ),
+            pzarc_redux_borders( 'architect_config_' . $thisSection . '-clear-borders', array( $primaryClass . $buttonClass . '.showall ', $primaryClass . $buttonClass . '.reset-to-defaults' ) ),
           ),
         );
 

@@ -6,20 +6,28 @@
   color: #aa0;
   border: solid 1px #aa0;
   padding: 10px; }
+
 .pzarchitect .message-error {
   font-size: 16px;
   font-family: sans-serif;
-  color: tomato;
-  background: #faf2f5;
-  border: 1px solid tomato;
+  color: white;
+  background: tomato;
+  border: none;
   display: inline-block;
   margin: 10px 0;
   padding: 20px; }
+
+.architect-demo-mode .pzarc-blueprint {
+  border: 1px dashed blue !important;
+  box-sizing: border-box !important; }
+  .architect-demo-mode .pzarc-blueprint:hover .pzarc-panel {
+    outline: 1px dashed red !important; }
 
 .pzarchitect a.button, .pzarchitect button, .pzarchitect html input[type="button"], .pzarchitect input[type="reset"], .pzarchitect input[type="submit"] {
   border: none;
   box-shadow: none;
   text-shadow: none; }
+
 .pzarchitect.pzarc-blueprint {
   display: block;
   position: relative; }
@@ -29,8 +37,10 @@
     padding: 5px; }
     .pzarchitect.pzarc-blueprint .arc-sorting-and-filtering .button-group.sort-by-button-group, .pzarchitect.pzarc-blueprint .arc-sorting-and-filtering .button-group.sort-order-button-group {
       display: inline-block; }
+
 .pzarchitect .pzarc-sections {
   box-sizing: border-box; }
+
 .pzarchitect .pzarc-section {
   box-sizing: border-box;
   position: relative;
@@ -40,72 +50,120 @@
   .pzarchitect .pzarc-section.tiles {
     display: -webkit-box;
     display: -ms-flexbox;
-    display: -webkit-flex;
     display: flex;
-    -webkit-justify-content: flex-start;
     -webkit-box-pack: start;
         -ms-flex-pack: start;
             justify-content: flex-start;
-    -webkit-flex-flow: row wrap;
     /* Unsupported in FF ATOW!! Argh! */
-    -ms-flex-flow: row wrap;
-        flex-flow: row wrap;
     -webkit-box-orient: horizontal;
     -webkit-box-direction: normal;
-    -webkit-flex-direction: row;
-        -ms-flex-direction: row;
-            flex-direction: row;
-    -webkit-flex-wrap: wrap;
-        -ms-flex-wrap: wrap;
-            flex-wrap: wrap; }
+        -ms-flex-flow: row wrap;
+            flex-flow: row wrap;
+    -ms-flex-direction: row;
+        flex-direction: row;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap; }
+
 .pzarchitect h2.pzarc-page-title {
   font-size: 1.5em;
   line-height: 1.5em; }
+
 .pzarchitect .pzarc-section-title h3 {
   font-size: 1.2em;
   line-height: 1.2em; }
+
 .pzarchitect .pzarc-pager {
   display: table;
   padding: 10px 0;
   width: 100%; }
+
 .pzarchitect .pzarc-pager-prev,
 .pzarchitect .pzarc-pager-next {
   /*font-size:13px;*/
   /*font-weight:bold;*/
   /*background: #eee;*/
   /*padding:10px 5px;*/ }
+
 .pzarchitect .pzarc-pager-prev {
   float: left;
   /*border-top-left-radius: 20px;*/
   /*border-bottom-left-radius: 20px;*/
   /*padding-right:10px;*/ }
+
 .pzarchitect .pzarc-pager-next {
   float: right;
   /*border-top-right-radius: 20px;*/
   /*border-bottom-right-radius: 20px;*/
   /*padding-left:10px;*/ }
+
 .pzarchitect .pzarc-blueprint .entry-excerpt.pznothumb,
 .pzarchitect .pzarc-blueprint .entry-content.pznothumb {
   width: 100%; }
+
 .pzarchitect .pzarc-align.left {
   float: left;
   padding-right: 2%; }
+
 .pzarchitect .pzarc-align.right {
   float: right;
   padding-left: 2%; }
+
 .pzarchitect .mfp-content .mfp-title {
   font-weight: bold; }
   .pzarchitect .mfp-content .mfp-title .caption {
     font-weight: normal;
     font-size: smaller; }
+
 .pzarchitect .hide-content + article,
 .pzarchitect .hide-content + .page,
 .pzarchitect .hide-content + .hentry {
   display: none; }
+
 .pzarchitect .pzarc-blueprint-footer {
   display: inline-block;
   margin: 5px 0;
   padding: 5px 0; }
+
+.pzarchitect .arc-fs-loc-top,
+.pzarchitect .arc-fs-loc-left,
+.pzarchitect .arc-fs-loc-bottom,
+.pzarchitect .arc-fs-loc-right {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap; }
+  .pzarchitect .arc-fs-loc-top .pzarc-sections,
+  .pzarchitect .arc-fs-loc-left .pzarc-sections,
+  .pzarchitect .arc-fs-loc-bottom .pzarc-sections,
+  .pzarchitect .arc-fs-loc-right .pzarc-sections {
+    -webkit-box-flex: 1;
+        -ms-flex-positive: 1;
+            flex-grow: 1; }
+
+.pzarchitect .arc-fs-loc-top {
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column; }
+
+.pzarchitect .arc-fs-loc-left {
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row; }
+
+.pzarchitect .arc-fs-loc-bottom {
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: reverse;
+      -ms-flex-direction: column-reverse;
+          flex-direction: column-reverse; }
+
+.pzarchitect .arc-fs-loc-right {
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: reverse;
+      -ms-flex-direction: row-reverse;
+          flex-direction: row-reverse; }
 
 .pzarchitect .pzarc-panel {
   /* Remember to remove space between divs to stop inline-block space issue */
@@ -128,17 +186,18 @@
   .pzarchitect .pzarc-panel .pzarc-panel-overlay {
     position: absolute;
     top: 0;
+    left: 0;
     bottom: 0;
     width: 100%;
     height: 100%;
     z-index: 99; }
   .pzarchitect .pzarc-panel .entry-excerpt,
   .pzarchitect .pzarc-panel .entry-content {
-      /*    -ms-word-break: break-all;
+    /*    -ms-word-break: break-all;
           word-break: break-all;
 
           /* Non standard for webkit */
-      /* word-break: break-word;
+    /* word-break: break-word;
 
        -webkit-hyphens: auto;
        -moz-hyphens: auto;
@@ -192,7 +251,6 @@
       float: right; }
   .pzarchitect .pzarc-panel .pzarc-title-thumb {
     display: -webkit-inline-box;
-    display: -webkit-inline-flex;
     display: -ms-inline-flexbox;
     display: inline-flex;
     float: left;
@@ -317,10 +375,12 @@
   .pzarchitect .pzarc-panel .pzarc-close-back {
     text-align: center;
     padding: 5px; }
+
 .pzarchitect tr.pzarc-panel {
   display: table-row; }
   .pzarchitect tr.pzarc-panel h1.entry-title {
     width: 100% !important; }
+
 .pzarchitect table {
   border-collapse: collapse; }
   .pzarchitect table thead {
@@ -329,16 +389,19 @@
   .pzarchitect table.datatables thead {
     display: table;
     width: 100%; }
+
 .pzarchitect .rtl .pzarc-accordion.title a:after {
   content: "►";
   float: left;
   margin-left: 10px;
   font-size: 10px; }
+
 .pzarchitect .ltr .pzarc-accordion.title a:after {
   content: "◄";
   float: right;
   margin-right: 10px;
   font-size: 12px; }
+
 .pzarchitect .pzarc-accordion.title a {
   color: inherit;
   text-decoration: none;
@@ -346,12 +409,15 @@
   .pzarchitect .pzarc-accordion.title a:after {
     font-family: sans-serif;
     font-size: 12px; }
+
 .pzarchitect .pzarc-accordion.title:hover a {
   color: inherit;
   text-decoration: none; }
+
 .pzarchitect .pzarc-accordion.title.open a:after {
   content: "▼";
   font-size: 9px; }
+
 .pzarchitect .pzarc-accordion.title.close {
   float: none; }
 
@@ -372,19 +438,16 @@
     display: block; }
     .pzarchitect .pzarc-navigator.tabbed {
       display: -ms-flex;
-      display: -webkit-flex;
       display: -webkit-box;
       display: -ms-flexbox;
       display: flex;
       -webkit-box-orient: horizontal;
       -webkit-box-direction: normal;
-      -webkit-flex-direction: row;
           -ms-flex-direction: row;
               flex-direction: row; }
       .pzarchitect .pzarc-navigator.tabbed.vertical {
         -webkit-box-orient: vertical;
         -webkit-box-direction: normal;
-        -webkit-flex-direction: column;
             -ms-flex-direction: column;
                 flex-direction: column; }
     .pzarchitect .pzarc-navigator.outside.top {
@@ -600,88 +663,3 @@
     background: rgba(255, 255, 255, 0.3); }
   .pzarchitect .arc-slider-nav.thumbs .arc-slider-slide {
     display: inline-block; }
-
-/*
- Set a base font size
-html {
-  font-size:62.5%;
-}
-
-
-.pzarc_panel {
-    float:left;
-    box-sizing:border-box;
- }
-
-.pzarc_panel_header,
-.pzarc_panel_footer {
-    width:100%;
-    box-sizing:border-box;
-    clear:both;
-}
-.pzarc_panel_header {
-  margin-bottom:20px;
-  margin-bottom:2rems;
-}
-.pzarc_panel_footer {
-  margin-top:10px;
-  margin-top:1rems;
-}
-.pzarc_panel_header_left,
-.pzarc_panel_footer_left {
-    float:left;
-    box-sizing:border-box;
-}
-.pzarc_panel_header_right,
-.pzarc_panel_footer_right {
-    float:right;
-    box-sizing:border-box;
-}
-
-
-.pzarc_panel_columns {
-    width:100%;
-    box-sizing:border-box;
-    clear:both;
-}
-
-.pzarc_panel_left_col,
-.pzarc_panel_centre_col,
-.pzarc_panel_right_col {
-    float:left;
-    box-sizing:border-box;
-}
-.pzarc_panel_left_col {width:25%;}
-.pzarc_panel_centre_col {width:75%;}
-.pzarc_panel_right_col {width:0;}
-
-
-.pzarc_clearfloat {
-    clear:both;
-}
-
-default styling
-.pzarc_entry_meta,
-.pzarc_entry_meta a
- {
-  font-size:11px;
-  font-size:1.1rems;
-    color:#777;
-    text-decoration:none;
-  margin-bottom:5px;
-  margin-bottom:0.5rems;
-}
-
-
-
- remember this for the background of text
-.pzarc-a-textarea {
-    background:rgba(32,63,96,0.5);
-    color:red;
-    width:50%;
-  padding:20px;
-  padding:2rems;
-  margin:5px;
-  margin:0.5rems;
-}
-*/

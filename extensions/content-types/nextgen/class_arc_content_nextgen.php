@@ -77,6 +77,9 @@
     if (method_exists('HeadwayBlocksData', 'get_legacy_id')) {
       $block[ 'id' ] = HeadwayBlocksData::get_legacy_id($block);
     }
+    if (method_exists('BloxBlocksData', 'get_legacy_id')) {
+      $block[ 'id' ] = BloxBlocksData::get_legacy_id($block);
+    }
     $settings = GalleryPBlockOptions::get_settings($block);
 
     $results = array();

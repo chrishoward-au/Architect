@@ -11,6 +11,7 @@
   function pzarc_slick15($sliders)
   {
     $sliders[ 'slick' ] = 'Slick';
+//    var_dump($sliders);
 
     return $sliders;
   }

@@ -1,12 +1,12 @@
-.redux-container-tabbed {
+.post-type-arc-blueprints .redux-container-tabbed {
   padding:0;
   background:transparent;
   border-bottom-color: #0074A2;
 }
-.redux-container-tabbed ul.data-full {
+.post-type-arc-blueprints .redux-container-tabbed ul.data-full {
   padding-left:5px;
 }
-.redux-container-tabbed ul.data-full li {
+.post-type-arc-blueprints .redux-container-tabbed ul.data-full li {
   display: inline-block;
   line-height: 28px;
   padding:5px 10px;
@@ -20,13 +20,13 @@
   font-weight:bold;
 }
 
-.redux-container-tabbed ul.data-full li:hover {
+.post-type-arc-blueprints .redux-container-tabbed ul.data-full li:hover {
   background:#2EA2CC;
   cursor:pointer;
   color:#eee;
 }
 
-.redux-container-tabbed ul.data-full li.active {
+.post-type-arc-blueprints .redux-container-tabbed ul.data-full li.active {
   background:#0074A2;
   color:#fff;
 }
@@ -49,10 +49,10 @@ body.admin-color-midnight .redux-container-tabbed   ul.data-full li.active {
   width:16px;
 }
 
-.redux-container-tabbed ul.data-full li.pztabs-unused {
+.post-type-arc-blueprints .redux-container-tabbed ul.data-full li.pztabs-unused {
   color:#bbb;
 }
-.redux-container-tabbed ul.data-full li.pztabs-unused:hover {
+.post-type-arc-blueprints .redux-container-tabbed ul.data-full li.pztabs-unused:hover {
   cursor: default;
   background:transparent;
   color:#bbb;

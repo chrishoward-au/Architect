@@ -14,7 +14,7 @@
 
     function __construct(&$blueprint) {
       $this->blueprint = $blueprint->blueprint;
-      add_shortcode('arcdummytext', array($this,'dummy_text'));
+      add_shortcode('arcdummytext', array($this,'dummy_text')); // A test shortcode
       add_shortcode('arcpagetitle', array($this,'display_page_title'));
     }
 

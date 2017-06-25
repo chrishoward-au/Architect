@@ -69,7 +69,7 @@
     }
 
     /**
-     * Custom loop for Dummy data
+     * Custom loop
      */
     public function loop($section_no, &$architect, &$panel_class, $class)
     {

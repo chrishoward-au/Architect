@@ -73,6 +73,7 @@
       add_shortcode( 'arcshare', array( $this, 'arcshare_shortcode' ) );
 
 
+
     }
 
 
@@ -121,7 +122,7 @@
 
           // Do we load up the MAsonry here?
           wp_enqueue_script( 'js-imagesloaded' );
-          wp_enqueue_script( 'js-isotope-v2' );
+          wp_enqueue_script( 'js-isotope' );
           wp_enqueue_script( 'js-isotope-packery' );
           wp_enqueue_script( 'js-front-isotope' );
 //          add_action('init',array($this,'init_scripts'));

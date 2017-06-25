@@ -60,7 +60,9 @@
         case (in_array('search', $this->pageid) && (is_search())) :
         case (in_array('404', $this->pageid) && (is_404())) :
 
-          pzarchitect($this->blueprint, $this->overrides, $this->caller); // Overrides not used yet
+          $tablet_bp = null;
+          $phone_bp = null;
+          pzarchitect($this->blueprint, $this->overrides, $tablet_bp,$phone_bp); // Overrides and tablet/phone bp not used yet
 
           break;
 
