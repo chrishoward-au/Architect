@@ -4051,6 +4051,22 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
                                     'desc'=>__('These category names won\'t be shown in the meta field\'s list of categories, but posts in these categories will still display. Use filters to exclude specific categories from displaying.','pzarchitect')
                                 ),
                                 array(
+                                    'title'    => __( 'Roles with generic emails', 'pzarchitect' ),
+                                    'id'       => $prefix . 'authors-generic-emails',
+                                    'type'     => 'select',
+                                    'multi'    => true,
+                                    'default'  => array(),
+                                    'data'     => 'roles',
+                                    'subtitle' => __( 'Select roles to use a generic email address for (entered below).', 'pzarchitect' )
+                                ),
+                                array(
+                                    'title'    => __( 'Generic email address', 'pzarchitect' ),
+                                    'id'       => $prefix . 'authors-generic-email-address',
+                                    'type'     => 'text',
+                                    'default'  => '',
+                                    'subtitle' => __( 'Enter a generic email address to use for the above selected roles,  or leave blank for none.', 'pzarchitect' )
+                                ),
+                                array(
                                     'title'    => __('Excluded authors', 'pzarchitect'),
                                     'id'       => $prefix . 'excluded-authors',
                                     'type'     => 'select',

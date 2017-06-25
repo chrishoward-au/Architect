@@ -242,10 +242,19 @@
         $this->data['meta']['tags']      = pzarc_tax_string_list(get_the_tags(), 'tag-', '', ' ');
       }
       if (strpos($meta_string, '%author%') !== FALSE) {
-
-        $this->data['meta']['authorlink'] = get_author_posts_url(get_the_author_meta('ID'));
-        $this->data['meta']['authorname'] = sanitize_text_field(get_the_author_meta('display_name'));
-        $rawemail                         = sanitize_email(get_the_author_meta('user_email'));
+        $use_generic = false;
+        if (!empty($this->section[ '_panels_design_authors-generic-emails' ])) {
+          $user = new WP_User( get_the_author_meta( 'ID' ) );
+          if ( ! empty( $user->roles ) && is_array( $user->roles ) ) {
+            foreach ( $user->roles as $role ) {
+              $use_generic = in_array( $role, $this->section[ '_panels_design_authors-generic-emails' ] );
+            }
+          }
+        }
+        $generic_email = empty($this->section[ '_panels_design_authors-generic-email-address' ])?'':$this->section[ '_panels_design_authors-generic-email-address' ];
+        $this->data[ 'meta' ][ 'authorlink' ] = get_author_posts_url(get_the_author_meta('ID'));
+        $this->data[ 'meta' ][ 'authorname' ] = sanitize_text_field(get_the_author_meta('display_name'));
+        $rawemail                             = sanitize_email($use_generic?$generic_email:get_the_author_meta('user_email'));
         $encodedmail                      = '';
         for ($i = 0; $i < strlen($rawemail); $i++) {
           $encodedmail .= "&#" . ord($rawemail[$i]) . ';';

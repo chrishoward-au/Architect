@@ -147,6 +147,7 @@ TODO: Finish Admin backgrounds
 * ADDED: Options to change the slug name that appears in the URL of Architect's custom post types - Snippets, Testimonials and Showcases.
 * ADDED: Text field for filter labels
 * ADDED: Option to display of archive descriptions.
+* ADDED: Option to use generic email addresses for users with specific roles. Great when an author leaves but you still want a valid email on their posts. i.e. set them to subscriber
 * CHANGED: Blueprint dropdown lists to default to showing content type too.
 * CHANGED: Extended Architect name to Architect DIY Kit
 * FIXED: Accordions closed styling overridden by Bootstrap styling
