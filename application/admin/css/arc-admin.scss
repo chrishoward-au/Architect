@@ -36,6 +36,14 @@ $darker: 10%;
 
 li.arc-message {
   width: 100%;
+  margin-left: 25px;
+  .after-title-help {
+    border:none;
+    background:none;
+    .inside {
+      padding:0;
+    }
+  }
 }
 
 .pzarc-tab-icon {
@@ -1900,18 +1908,15 @@ li.arc-message {
 }
 
 .arc-presets-selector {
-  border-radius: $border-radius;
   position: relative;
-  background: #777;
+  background: #ddd;
   height: auto;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
   h2.heading {
     width: 100%;
     color: #fff;
-    background: #333;
+    background: #00a0d2;
     box-sizing: border-box;
-    border-top-left-radius: $border-radius;
-    border-top-right-radius: $border-radius;
+    border-radius: 0;
     padding: 10px;
     font-size: 17px;
     cursor: pointer;
@@ -1935,28 +1940,25 @@ li.arc-message {
     border: none;
     button {
       color: #eee;
-      background: #999;
+      background: #00a0d2;
       margin: 2px 2px 0 2px;
       padding: 10px;
       border: none;
-      border-top-left-radius: $border-radius;
-      border-top-right-radius: $border-radius;
-      border-bottom-left-radius: 0;
-      border-bottom-right-radius: 0;
+      border-radius: 0;
       &:hover {
         cursor: pointer;
-        background: #aaa;
+        background: #00b9eb;
         color: #fff;
       }
       &.active {
-        background: #f3f3f3;
+        background: #fff;
         color: $highlight;
       }
     }
   }
   .footer {
     padding: 5px 10px;
-    color: #fff;
+    color: #006799;
     width: 60%;
     white-space: normal;
     margin: 5px;
@@ -1973,7 +1975,7 @@ li.arc-message {
 
   }
   .container {
-    background: #f3f3f3;
+    background: #fff;
     width: 100%;
     padding: 20px;
     box-sizing: border-box;
@@ -1988,11 +1990,11 @@ li.arc-message {
       vertical-align: top;
       max-width: 200px;
       padding: 5px 10px;
-      background: #e7e7e7;
+      background: #fff;
       white-space: normal;
       min-height: 280px;
       &:hover {
-        background: #fff;
+        background: #e7e7e7;
       }
       label {
         p {

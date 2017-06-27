@@ -549,7 +549,7 @@
       );
 
       $current_theme = wp_get_theme();
-      $is_hw         = (($current_theme->get('Name') === 'Headway Base' || $current_theme->get('Template') == 'headway'));
+      $is_hw         = (($current_theme->get('Name') == 'Headway' || $current_theme->get('Name') == 'Headway Base' || $current_theme->get('Template') == 'headway'));
       $is_blox       = (($current_theme->get('Name') === 'Blox' || $current_theme->get('Template') == 'blox'));
 
       if (!$_architect_options['architect_enable_styling']) {
@@ -4051,6 +4051,12 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
                                     'desc'=>__('These category names won\'t be shown in the meta field\'s list of categories, but posts in these categories will still display. Use filters to exclude specific categories from displaying.','pzarchitect')
                                 ),
                                 array(
+                                    'title'    => __( 'Authors', 'pzarchitect' ),
+                                    'id'       => $prefix . 'meta-authors-section-open',
+                                    'type'     => 'section',
+                                    'indent'   => true,
+                                ),
+                                array(
                                     'title'    => __( 'Roles with generic emails', 'pzarchitect' ),
                                     'id'       => $prefix . 'authors-generic-emails',
                                     'type'     => 'select',
@@ -4104,6 +4110,11 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
                                     'max'      => 256,
                                     'step'     => 1,
                                     'subtitle' => __('Width and height of avatar if displayed.', 'pzarchitect'),
+                                ),
+                                array(
+                                    'id'       => $prefix . 'meta-authors-section-close',
+                                    'type'     => 'section',
+                                    'indent'   => false,
                                 ),
           ),
       );

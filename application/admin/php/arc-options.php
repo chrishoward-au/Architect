@@ -279,7 +279,7 @@ if (!class_exists("Redux_Framework_Architect_Options")) {
       }
 
 
-      $is_hw   = (($current_theme->get('Name') === 'Headway Base' || $current_theme->get('Template') == 'headway'));
+      $is_hw         = (($current_theme->get('Name') == 'Headway' || $current_theme->get('Name') == 'Headway Base' || $current_theme->get('Template') == 'headway'));
       $is_blox = (($current_theme->get('Name') === 'Blox Theme' || $current_theme->get('Template') == 'bloxtheme'));
 
       $this->sections['_general']    = array('title' => __('General ', 'pzarchitect'),
@@ -345,7 +345,7 @@ if (!class_exists("Redux_Framework_Architect_Options")) {
                                                                      'off' => __('No', 'pzarchitect')),
                                                                array('title' => __('Choose admin background gradient', 'pzarchitect'),
                                                                      'id' => 'architect_bgimage',
-                                                                     'type' => 'select',
+                                                                     'type' => 'button_set',
                                                                      'required' => array('architect_enable_bgimage',
                                                                                          'equals',
                                                                                          true),
@@ -355,10 +355,10 @@ if (!class_exists("Redux_Framework_Architect_Options")) {
                                                                                         'ocean-blue' => __('Ocean', 'pzarchitect'),
                                                                                         'orange-green' => __('Sunset', 'pzarchitect'),
                                                                                         'pink' => __('Pink', 'pzarchitect'),
-                                                                                        'malibu-beach' => __('Malibu Beach', 'pzarchitect'),
-                                                                                        'morpheous-den' => __('Morpheous Den', 'pzarchitect'),
-                                                                                        'dusty-grass' => __('Dusty Grass', 'pzarchitect'),
-                                                                                        'mixed-hopes' => __('Mixed Hopes', 'pzarchitect'),
+//                                                                                        'malibu-beach' => __('Malibu Beach', 'pzarchitect'),
+//                                                                                        'morpheous-den' => __('Morpheous Den', 'pzarchitect'),
+//                                                                                        'dusty-grass' => __('Dusty Grass', 'pzarchitect'),
+//                                                                                        'mixed-hopes' => __('Mixed Hopes', 'pzarchitect'),
                                                                          ),
                                                                      'default' => 'ocean-blue'),
                                                                array('id' => 'architect_appearance_end-section',

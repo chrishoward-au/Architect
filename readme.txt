@@ -106,16 +106,17 @@ TODO: Implement Freemius?
 * ADDED: Option to use 'Specific Text, HTML or Shortcodes' as a custom field source
 * ADDED: Option to hide specific category names in meta field category name list
 * ADDED: Message field that can be displayed immediately below content.
-* ADDED: Simple demo mode that outlines Architect Blueprints. Add ?demo to the page URL.
+* ADDED: Simple demo mode that outlines Architect Blueprints. Add /?demo to the page URL.
+* ADDED: Message prompting crossgrade of Architect licence from Headway.
 * CHANGED: Admin backgrounds are now just gradients rather than SVG to save space
 * CHANGED: Using the 'No field. Use prefix and suffix only' option for custom field source no longer requires the Link Field attribute enabled.
 * CHANGED: Tech support link to support email address
 * CHANGED: In Blueprint listings, limited the "Used on" column to only show the first 5 instances
+* CHANGED: New paint job on the presets selector
 * REMOVED: Removed Architect page builder. Recommend to use Beaver instead!
 * FIXED: Filler images not working for Featured images
 * FIXED: Category and Tag exclusion only working when inclusion was set too
 * FIXED: Duplication of @media CSS declarations on panels. Finally!!!
-TODO: ADD REQUEST LICENCE TRANSFER BUTTON WITH DETAILS OF EXISTING
 TODO: Finish styles for Beaver
 TODO: Finish Admin backgrounds
 
