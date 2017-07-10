@@ -27,6 +27,12 @@ $blue-900: #0d47a1;
 $indigo-900: #1a237e;
 $violet-900: #311b92;
 
+$medium-grey:#ddd;
+$light-grey:#eee;
+
+$light-blue:#9cf;
+$dark-light-blue:#0080ff;
+
 $lightest: 40%;
 $darker: 10%;
 
@@ -36,7 +42,6 @@ $darker: 10%;
 
 li.arc-message {
   width: 100%;
-  margin-left: 25px;
   .after-title-help {
     border:none;
     background:none;
@@ -137,7 +142,7 @@ div.pzarc-dragsource {
   border: #bbb solid 1px;
   height: 300px;
   box-sizing: border-box;
-  //background: #ddd url(bg-preview.jpg);
+  //background: $medium-grey url(bg-preview.jpg);
   overflow: hidden;
   width: 452px;
   position: relative;
@@ -195,7 +200,7 @@ div.pzarc-dragsource {
   box-sizing: border-box;
   width: 49%;
   background: #fff;
-  border: solid 1px #ddd;
+  border: solid 1px $medium-grey;
 }
 
 .pzarc_cell_header_right,
@@ -205,7 +210,7 @@ div.pzarc-dragsource {
   box-sizing: border-box;
   width: 49%;
   background: #fff;
-  border: solid 1px #ddd;
+  border: solid 1px $medium-grey;
 }
 
 .pzarc_cell_columns {
@@ -227,8 +232,8 @@ div.pzarc-dragsource {
 
 #pzarc-custom-pzarc_layout .ui-resizable-e {
   width: 2px;
-  background: #eee;
-  border-right: groove 5px #ccc;
+  background: $light-grey;
+  border-right: groove 5px $dark-light-blue;
   position: absolute;
   right: 0;
   top: 0;
@@ -246,8 +251,8 @@ div.pzarc-dragsource {
 }
 
 .pzarc-draggable:hover {
-  background: #ddd;
-  color: #444;
+  background: $light-blue;
+  color: #fff;
 }
 
 .pzarc-draggable:hover img {
@@ -359,7 +364,7 @@ ul#pzarc-meta-nav.vertical {
 .pzarc_palette {
   width: 290px;
   background-color: #555;
-  border: solid 1px #ddd;
+  border: solid 1px $medium-grey;
   margin: 20px 10px 10px 10px;
   display: block;
   box-shadow: 0px 0px 3px #aaa;
@@ -388,7 +393,7 @@ ul#pzarc-meta-nav.vertical {
 
 .pzarc_palette label {
   font-weight: bold;
-  color: #ddd;
+  color: $medium-grey;
   width: 90px;
   display: inline-block;
 }
@@ -412,7 +417,7 @@ ul.pzarc-meta-nav li.pzarc-meta-tab-title.ui-state-default {
   margin-right: 3px;
   margin-bottom: 0;
   padding-bottom: 0px;
-  xborder: solid 1px #eee;
+  xborder: solid 1px $light-grey;
   border-bottom: none;
   min-height: 20px;
 }
@@ -438,7 +443,7 @@ ul#pzarc-meta-nav li.pzarc-meta-tab-title {
 }
 
 .pzarc-form-table {
-  xborder: solid 1px #eee;
+  xborder: solid 1px $light-grey;
   margin-top: 0
 }
 
@@ -454,7 +459,7 @@ ul#pzarc-meta-nav li {
 }
 
 ul#pzarc-meta-nav li.pzarc-meta-tab-title {
-  xborder-bottom: solid 1px #ddd;
+  xborder-bottom: solid 1px $medium-grey;
   padding-right: 0px !important;
   padding-left: 0px !important;
   margin-right: 0 !important;
@@ -576,7 +581,7 @@ h4.pz-field-heading {
   cursor: pointer;
   font-weight: bold;
   color: #fff;
-  background-color: #ddd;
+  background-color: $medium-grey;
   padding: 2px 5px;
   border-radius: 30px;
   font-size: 10px;
@@ -1166,7 +1171,7 @@ input[readonly]:focus,
 input[readonly]:hover,
 input[readonly]:active {
   border: none;
-  background: #eee;
+  background: $light-grey;
   box-shadow: none;
   width: 90%;
 }
@@ -1397,7 +1402,7 @@ span.bold {
       position: relative;
       clear: both;
       margin-left: 0;
-      border-top: solid 1px #ddd;
+      border-top: solid 1px $medium-grey;
     }
     .postbox .redux-container .redux-sidebar .redux-group-menu .active a {
       background: #707070;
@@ -1423,7 +1428,7 @@ body .redux-sidebar .redux-group-menu li.activeChild.hasSubSections ul.subsectio
 }
 
 body .redux-sidebar .redux-group-menu li.activeChild.hasSubSections ul.subsection li a {
-  background: #ddd !important;
+  background: $medium-grey !important;
 }
 
 body .redux-sidebar .redux-group-menu li.activeChild.hasSubSections ul.subsection li a {
@@ -1455,11 +1460,11 @@ body .redux-sidebar .redux-group-menu li.activeChild.hasSubSections .active a:af
 .tabby {
   &.tabs {
     margin-top: 10px;
-    border-bottom: 1px solid #ddd;
+    border-bottom: 1px solid $medium-grey;
     outline: none;
     button {
       background: none;
-      border: 1px solid #ddd;
+      border: 1px solid $medium-grey;
       border-bottom: none;
       border-top-left-radius: 3px;
       border-bottom-right-radius: 3px;
@@ -1475,7 +1480,7 @@ body .redux-sidebar .redux-group-menu li.activeChild.hasSubSections .active a:af
         color: #fff;
         background: $highlight;
         &:hover {
-          background: #eee;
+          background: $light-grey;
           color: $highlight;
           cursor: default;
         }
@@ -1909,7 +1914,7 @@ li.arc-message {
 
 .arc-presets-selector {
   position: relative;
-  background: #ddd;
+  background: $medium-grey;
   height: auto;
   h2.heading {
     width: 100%;
@@ -1939,7 +1944,7 @@ li.arc-message {
     padding: 0;
     border: none;
     button {
-      color: #eee;
+      color: $light-grey;
       background: #00a0d2;
       margin: 2px 2px 0 2px;
       padding: 10px;
@@ -2070,7 +2075,7 @@ li.arc-message {
   }
   textarea {
     resize: none;
-    background: #eee;
+    background: $light-grey;
 
   }
 }
@@ -2119,8 +2124,8 @@ li.arc-message {
     box-sizing: border-box;
     border-top: solid 1px #fff;
     border-left: solid 1px #fff;
-    border-bottom: solid 1px #eee;
-    border-right: solid 1px #eee;
+    border-bottom: solid 1px $light-grey;
+    border-right: solid 1px $light-grey;
     background: #f6f6f6;
     display: inline-block;
     vertical-align: top;
@@ -2217,7 +2222,7 @@ body.arc-beginner {
 }
 
 .arc-installed-presets {
-  background: #eee;
+  background: $light-grey;
   padding: 1px 10px;
   border-radius: 3px;
   ul {
@@ -2321,6 +2326,6 @@ body.arc-beginner {
 .pzarc-about-box {
   background: #f9f9f9;
   padding: 20px;
-  border: 1px solid #ddd;
+  border: 1px solid $medium-grey;
   max-width: 960px;
 }

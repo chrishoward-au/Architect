@@ -5379,8 +5379,44 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
         $title = $export_data['title'];
         delete_option('arc-export-to-preset');
 
-// TODO Tutorials on saving exports and creating Presets.
-        return '<h4>Export data for Blueprint:' . $title . '</h4><p>Copy and paste the export data to its own file with a txt extension. You can then import it on another site in the Architect > Tools page. Or you can use it as the basis of a Preset that you may give away or sell.</p><form><pre class="arc-export-data"><textarea rows="10" cols="70">' . json_encode($export_data) . '</textarea></pre></form>';
+        // create file
+        $url = wp_nonce_url('edit.php?post_type=arc-blueprints', basename(__FILE__));
+
+        if (false === ($creds = request_filesystem_credentials($url, '', false, false, null))) {
+          return ''; // stop processing here
+        }
+
+        if (!WP_Filesystem($creds)) {
+          request_filesystem_credentials($url, '', true, false, null);
+
+          return '';
+        }
+
+        // create URL to file
+
+        wp_mkdir_p(trailingslashit(PZARC_CACHE_PATH)); // Just in case
+        $filename = PZARC_CACHE_PATH . sanitize_title($title).'.txt';
+
+        // Create file
+        global $wp_filesystem;
+        $wp_filesystem->put_contents(
+            $filename,
+            json_encode($export_data),
+            FS_CHMOD_FILE // predefined mode settings for WP files
+        );
+        if (file_exists($filename)) {
+          header('Content-Description: File Transfer');
+          header('Content-Type: application/octet-stream');
+          header('Content-Disposition: attachment; filename="'.basename($filename).'"');
+          header('Expires: 0');
+          header('Cache-Control: must-revalidate');
+          header('Pragma: public');
+          header('Content-Length: ' . filesize($filename));
+          ob_clean();
+          flush();
+          readfile($filename);
+          return '';
+        }        // TODO Tutorials on saving exports and creating Presets.
       }
       else {
         return '';

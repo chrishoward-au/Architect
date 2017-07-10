@@ -3,8 +3,7 @@
   background: #fee; }
 
 li.arc-message {
-  width: 100%;
-  margin-left: 25px; }
+  width: 100%; }
   li.arc-message .after-title-help {
     border: none;
     background: none; }
@@ -162,7 +161,7 @@ div.pzarc-dragsource {
 #pzarc-custom-pzarc_layout .ui-resizable-e {
   width: 2px;
   background: #eee;
-  border-right: groove 5px #ccc;
+  border-right: groove 5px #0080ff;
   position: absolute;
   right: 0;
   top: 0;
@@ -178,8 +177,8 @@ div.pzarc-dragsource {
   position: relative; }
 
 .pzarc-draggable:hover {
-  background: #ddd;
-  color: #444; }
+  background: #9cf;
+  color: #fff; }
 
 .pzarc-draggable:hover img {
   opacity: 0.5; }

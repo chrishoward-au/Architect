@@ -216,6 +216,8 @@
    *
    * Page builder
    *
+   * No longer used. Use Beaver
+   *
    ***********************/
   function pzarc_pagebuilder( $pzarc_blueprint = null ) {
     $pzarc_caller         = 'pagebuilder';

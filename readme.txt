@@ -94,6 +94,8 @@ TODO: Add description option to archive pages
 TODO: Fix images cropping on iPhone
 TODO: Add Unsplash as a source for dummy photos
 TODO: Implement Freemius?
+TODO: Add a full backup option for Blueprints
+TODO: Add a backup and restore option for all settings
 
 == Changelog ==
 
@@ -108,17 +110,18 @@ TODO: Implement Freemius?
 * ADDED: Message field that can be displayed immediately below content.
 * ADDED: Simple demo mode that outlines Architect Blueprints. Add /?demo to the page URL.
 * ADDED: Message prompting crossgrade of Architect licence from Headway.
+* ADDED: Styling to Architect Beaver module
+* CHANGED: Export a Blueprint automatically downloads to a file
 * CHANGED: Admin backgrounds are now just gradients rather than SVG to save space
 * CHANGED: Using the 'No field. Use prefix and suffix only' option for custom field source no longer requires the Link Field attribute enabled.
 * CHANGED: Tech support link to support email address
-* CHANGED: In Blueprint listings, limited the "Used on" column to only show the first 5 instances
+* CHANGED: In Blueprint listings, now limited the "Used on" column to only show the first 5 instances
 * CHANGED: New paint job on the presets selector
+* CHANGED: Hover on panels designer is now blue toned
 * REMOVED: Removed Architect page builder. Recommend to use Beaver instead!
 * FIXED: Filler images not working for Featured images
 * FIXED: Category and Tag exclusion only working when inclusion was set too
 * FIXED: Duplication of @media CSS declarations on panels. Finally!!!
-TODO: Finish styles for Beaver
-TODO: Finish Admin backgrounds
 
 = 1.9.9 = : 4 Apr 2017
 * FIXED: Redux 3.6.4 broke parts of the Blueprint designer

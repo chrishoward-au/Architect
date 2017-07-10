@@ -1322,7 +1322,7 @@ add_action(\'init\',\'gs_init\');
         $screen = get_current_screen();
         if (in_array($screen->id, array('edit-arc-blueprints'))) {
           echo '<div class="notice notice-error is-dismissible" style="background:tomato;color:#fff;margin-top:20px;">
-                 <p><strong>Please crossgrade your Architect licence purchased from Headway</strong>. <a style="color:#fff;" href="http://pizazzwp.com/cross-grade-your-architect-licence-from-the-headway-extend-store/" target="_blank" >Click here for more information.</a></p>
+                 <p><strong>Please crossgrade your Architect licence purchased from Headway to ensure you have the latest version.</strong>. <a style="color:#fff;" href="http://pizazzwp.com/cross-grade-your-architect-licence-from-the-headway-extend-store/" target="_blank" >Click here for more information.</a></p>
                 </div>';
         }
       }
