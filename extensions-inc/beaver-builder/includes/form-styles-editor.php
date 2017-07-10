@@ -8,69 +8,97 @@
 
 
   FLBuilder::register_settings_form('form_styles_editor', array(
-      'title' => __('Styles Editor', 'fl-builder'),
+      'title' => __('Styles Editor', 'pzarchitect'),
       'tabs'  => array(
           'typography' => array(
-              'title'    => __('Typography', 'fl-builder'),
+              'title'    => __('Typography', 'pzarchitect'),
               'sections' => array(
                   'typography' => array(
                       'title'  => '',
                       'fields' => array(
-                          'font'                 => array(
+                          'font'            => array(
                               'type'    => 'font',
-                              'label'   => __('Font', 'fl-builder'),
+                              'label'   => __('Font', 'pzarchitect'),
                               'default' => array(
-                                  'family' => 'Helvetica',
-                                  'weight' => '400',
+                                  'family' => 'Default',
+                                  'weight' => 'Default',
                               ),
                           ),
-                          'margins'              => array(
+                          'color'           => array(
                               'type'  => 'color',
-                              'label' => __('Colour', 'fl-builder'),
+                              'label' => __('Colour', 'pzarchitect'),
                           ),
-                          'size'                 => array(
-                              'type'  => 'unit',
-                              'label' => __('Size', 'fl-builder'),
+                          'font-size'       => array(
+                              'type'  => 'pz-box-styling',
+                              'show'  => array('number', 'type'),
+                              'label' => __('Size', 'pzarchitect'),
                           ),
-                          'size_units'           => array(
+                          'letter-spacing'  => array(
+                              'type'  => 'pz-box-styling',
+                              'show'  => array('number', 'type'),
+                              'label' => __('Letter spacing', 'pzarchitect'),
+                          ),
+                          'line--eight'     => array(
+                              'type'  => 'pz-box-styling',
+                              'show'  => array('number', 'type'),
+                              'label' => __('Line height', 'pzarchitect'),
+                          ),
+                          'text-align'      => array(
                               'type'    => 'select',
-                              'label'   => __('Units', 'fl-builder'),
+                              'label'   => __('Text alignment', 'pzarchitect'),
                               'options' => array(
-                                  ''    => '',
-                                  'px'  => 'px',
-                                  '%'   => '%',
-                                  'em'  => 'em',
-                                  'rem' => 'rem',
+                                  ''             => '',
+                                  'left'         => 'left',
+                                  'center'       => 'center',
+                                  'right'        => 'right',
+                                  'justify'      => 'justify',
+                                  'justify-all'  => 'justify-all',
+                                  'start'        => 'start',
+                                  'end'          => 'end',
+                                  'match-parent' => 'match-parent',
+                                  'inherit'      => 'inherit',
+                                  'initial'      => 'initial',
                               ),
                           ),
-                          'letter_spacing'       => array(
-                              'type'  => 'text',
-                              'label' => __('Letter spacing', 'fl-builder'),
-                          ),
-                          'letter_spacing_units' => array(
+                          'text-decoration' => array(
                               'type'    => 'select',
-                              'label'   => __('Units', 'fl-builder'),
+                              'label'   => __('Text decoration', 'pzarchitect'),
                               'options' => array(
-                                  ''    => '',
-                                  'px'  => 'px',
-                                  '%'   => '%',
-                                  'em'  => 'em',
-                                  'rem' => 'rem',
+                                  ''          => '',
+                                  'none'      => 'none',
+                                  'underline' => 'underline',
+                                  'inherit'   => 'inherit',
+                                  'initial'   => 'initial',
                               ),
                           ),
-                          'line_height'          => array(
-                              'type'  => 'text',
-                              'label' => __('Line height', 'fl-builder'),
-                          ),
-                          'line_height_units'    => array(
+                          'font-style'      => array(
                               'type'    => 'select',
-                              'label'   => __('Units', 'fl-builder'),
+                              'label'   => __('Style', 'pzarchitect'),
                               'options' => array(
-                                  ''    => '',
-                                  'px'  => 'px',
-                                  '%'   => '%',
-                                  'em'  => 'em',
-                                  'rem' => 'rem',
+                                  ''        => '',
+                                  'normal'  => 'normal',
+                                  'italic'  => 'italic',
+                                  'oblique' => 'oblique',
+                                  'inherit' => 'inherit',
+                                  'initial' => 'initial',
+                                  'unset'   => 'unset',
+                              ),
+                          ),
+                          'font-variant'    => array(
+                              'type'    => 'select',
+                              'label'   => __('Variant', 'pzarchitect'),
+                              'options' => array(
+                                  ''                => '',
+                                  'small-caps'      => 'small-caps',
+                                  'all-caps'        => 'all-caps',
+                                  'all-small-caps'  => 'all-small-caps',
+                                  'petite-caps'     => 'petite-caps',
+                                  'all-petite-caps' => 'all-petite-caps',
+                                  'unicase'         => 'unicase',
+                                  'titling-caps'    => 'titling-caps',
+                                  'inherit'         => 'inherit',
+                                  'initial'         => 'initial',
+                                  'unset'           => 'unset',
                               ),
                           ),
                       ),
@@ -78,58 +106,198 @@
               ),
           ),
           'layout'     => array(
-              'title'    => __('Layout', 'fl-builder'),
+              'title'    => __('Layout', 'pzarchitect'),
               'sections' => array(
-
-                  'layout' => array(
-                      'title'  => '',
+                  'margins' => array(
+                      'title'  => 'Margins',
                       'fields' => array(
-                          'margins' => array(
-                              'type'  => 'text',
-                              'label' => __('Margins', 'fl-builder'),
+                          'margin-top'    => array(
+                              'type'  => 'pz-box-styling',
+                              'show'  => array('number', 'type'),
+                              'label' => __('Top', 'pzarchitect'),
                           ),
-                          'padding' => array(
-                              'type'  => 'text',
-                              'label' => __('Padding', 'fl-builder'),
+                          'margin-bottom' => array(
+                              'type'  => 'pz-box-styling',
+                              'show'  => array('number', 'type'),
+                              'label' => __('Bottom', 'pzarchitect'),
+                          ),
+                          'margin-left'   => array(
+                              'type'  => 'pz-box-styling',
+                              'show'  => array('number', 'type'),
+                              'label' => __('Left', 'pzarchitect'),
+                          ),
+                          'margin-right'  => array(
+                              'type'  => 'pz-box-styling',
+                              'show'  => array('number', 'type'),
+                              'label' => __('Right', 'pzarchitect'),
+                          ),
+                      ),
+                  ),
+                  'padding' => array(
+                      'title'  => 'Padding',
+                      'fields' => array(
+                          'padding-top'    => array(
+                              'type'  => 'pz-box-styling',
+                              'show'  => array('number', 'type'),
+                              'label' => __('Padding top', 'pzarchitect'),
+                          ),
+                          'padding-bottom' => array(
+                              'type'  => 'pz-box-styling',
+                              'show'  => array('number', 'type'),
+                              'label' => __('Padding bottom', 'pzarchitect'),
+                          ),
+                          'padding-left'   => array(
+                              'type'  => 'pz-box-styling',
+                              'show'  => array('number', 'type'),
+                              'label' => __('Padding left', 'pzarchitect'),
+                          ),
+                          'padding-right'  => array(
+                              'type'  => 'pz-box-styling',
+                              'show'  => array('number', 'type'),
+                              'label' => __('Padding right', 'pzarchitect'),
                           ),
                       ),
                   ),
               ),
           ),
           'design'     => array(
-              'title'    => __('Design', 'fl-builder'),
+              'title'    => __('Design', 'pzarchitect'),
               'sections' => array(
-
-                  'design' => array(
-                      'title'  => '',
+                  'background' => array(
+                      'title'  => __('Background', 'pzarchitect'),
                       'fields' => array(
-                          'margins'          => array(
+                          'background-color'      => array(
                               'type'  => 'color',
-                              'label' => __('Background', 'fl-builder'),
+                              'label' => __('Colour', 'pzarchitect'),
                           ),
-                          'background_image' => array(
+                          'background-image'      => array(
                               'type'        => 'photo',
-                              'label'       => __('Background image', 'fl-builder'),
-                              'show_remove' => FALSE,
+                              'label'       => __('Image', 'pzarchitect'),
+                              'show_remove' => TRUE,
                           ),
-                          'padding'          => array(
-                              'type'  => 'text',
-                              'label' => __('Border', 'fl-builder'),
+                          'background-attachment' => array(
+                              'type'    => 'select',
+                              'label'   => __('Attachment', 'pzarchitect'),
+                              'options' => array(
+                                  'scroll'  => 'scroll',
+                                  'fixed'   => 'fixed',
+                                  'local'   => 'local',
+                                  'inherit' => 'inherit',
+                              ),
+                          ),
+                          'background-position-x' => array(
+                              'type'    => 'select',
+                              'label'   => __('Position X', 'pzarchitect'),
+                              'options' => array(
+                                  ''        => '',
+                                  'left'    => 'left',
+                                  'center'  => 'center',
+                                  'right'   => 'right',
+                                  'inherit' => 'inherit',
+                                  'initial' => 'initial',
+                                  'unset'   => 'unset',
+                              ),
+                          ),
+                          'background-position-y' => array(
+                              'type'    => 'select',
+                              'label'   => __('Position Y', 'pzarchitect'),
+                              'options' => array(
+                                  ''        => '',
+                                  'top'     => 'top',
+                                  'middle'  => 'middle',
+                                  'bottom'  => 'bottom',
+                                  'inherit' => 'inherit',
+                                  'initial' => 'initial',
+                                  'unset'   => 'unset',
+                              ),
+                          ),
+                          'background-repeat'     => array(
+                              'type'    => 'select',
+                              'label'   => __('Repeat', 'pzarchitect'),
+                              'options' => array(
+                                  ''          => '',
+                                  'no-repeat' => 'no-repeat',
+                                  'repeat'    => 'repeat',
+                                  'repeat-x'  => 'repeat-x',
+                                  'repeat-y'  => 'repeat-y',
+                                  'space'     => 'space',
+                                  'round'     => 'round',
+                              ),
+                          ),
+                          'background-size'       => array(
+                              'type'    => 'select',
+                              'label'   => __('Size', 'pzarchitect'),
+                              'options' => array(
+                                  ''        => '',
+                                  'cover'   => 'cover',
+                                  'contain' => 'contain',
+                                  'auto'    => 'auto',
+                              ),
+                          ),
+                          'background-origin'     => array(
+                              'type'    => 'select',
+                              'label'   => __('Origin', 'pzarchitect'),
+                              'options' => array(
+                                  ''            => '',
+                                  'border-box'  => 'border-box',
+                                  'content-box' => 'content-box',
+                                  'padding-box' => 'padding-box',
+                                  'inherit'     => 'inherit',
+                              ),
+                          ),
+                          'background-clip'       => array(
+                              'type'    => 'select',
+                              'label'   => __('Clip', 'pzarchitect'),
+                              'options' => array(
+                                  ''            => '',
+                                  'border-box'  => 'border-box',
+                                  'content-box' => 'content-box',
+                                  'padding-box' => 'padding-box',
+                                  'text'        => 'text',
+                                  'inherit'     => 'inherit',
+                                  'initial'     => 'initial',
+                                  'unset'       => 'unset',
+                              ),
+
                           ),
                       ),
                   ),
-
+                  'borders'    => array(
+                      'title'  => __('Borders', 'pzarchitect'),
+                      'fields' => array(
+                          'border-top'    => array(
+                              'type'  => 'pz-box-styling',
+                              'label' => __('Border top', 'pzarchitect'),
+                              'show'  => array('number', 'type', 'colour', 'border_style'),
+                          ),
+                          'border-left'   => array(
+                              'type'  => 'pz-box-styling',
+                              'label' => __('Border left', 'pzarchitect'),
+                              'show'  => array('number', 'type', 'colour', 'border_style'),
+                          ),
+                          'border-bottom' => array(
+                              'type'  => 'pz-box-styling',
+                              'label' => __('Border bottom', 'pzarchitect'),
+                              'show'  => array('number', 'type', 'colour', 'border_style'),
+                          ),
+                          'border-right'  => array(
+                              'type'  => 'pz-box-styling',
+                              'label' => __('Border right', 'pzarchitect'),
+                              'show'  => array('number', 'type', 'colour', 'border_style'),
+                          ),
+                      ),
+                  ),
               ),
           ),
           'extras'     => array(
-              'title'    => __('Extras', 'fl-builder'),
+              'title'    => __('Extras', 'pzarchitect'),
               'sections' => array(
                   'extra' => array(
                       'title'  => '',
                       'fields' => array(
                           'alternate_classes' => array(
                               'type'  => 'text',
-                              'label' => __('Alternate classes', 'fl-builder'),
+                              'label' => __('Alternate classes', 'pzarchitect'),
                           ),
                       ),
                   ),

@@ -15,8 +15,14 @@ define( 'FL_MODULE_ARCHITECT_URL', plugins_url( '/', __FILE__ ) );
  */
 function fl_load_module_architects() {
 	if ( class_exists( 'FLBuilder' ) ) {
+
+	  // Load custom fields
+    require_once 'fields/pz-box-styling.php';
 	    require_once 'basic-architect/basic-architect-module.php';
+	    require_once 'includes/functions.php';
+	    require_once 'includes/function-generate-beaver-css.php';
 	    require_once 'includes/form-styles-editor.php';
+//	    require_once 'includes/form-styles-blueprints.php'; //no longer used
 	   // require_once 'architect/architect-module.php'; //This will be the full version - somehow!
 	}
 }
