@@ -6,7 +6,6 @@
    * Time: 8:32 PM
    */
 
-
   // Front end includes, Register site styles and scripts
   add_action( 'wp_enqueue_scripts', array( $this, 'register_plugin_styles' ) );
   add_action( 'wp_enqueue_scripts', array( $this, 'register_plugin_scripts' ) );

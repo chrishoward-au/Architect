@@ -10,6 +10,39 @@
   FLBuilder::register_settings_form('form_styles_editor', array(
       'title' => __('Styles Editor', 'pzarchitect'),
       'tabs'  => array(
+          'options'    => array(
+              'title'    => __('Options', 'pzarchitect'),
+              'sections' => array(
+                  'options' => array(
+                      'title'  => 'Options',
+                      'fields' => array(
+                          'enable_styling' => array(
+                              'type'    => 'select',
+                              'label'   => __('Enable styling', 'pzarchitect'),
+                              'default' => 'off',
+                              'options' => array(
+                                  'off' => __('', 'pzarchitect'),
+                                  'on'  => __('Enabled', 'pzarchitect'),
+                              ),
+                              'toggle'  => array(
+                                  'on' => array(
+                                      'tabs' => array(
+                                          'typography',
+                                          'layout',
+                                          'design',
+                                      ),
+                                  ),
+                              ),
+                          ),
+                          //                                    'alternate_classes' => array(
+                          //                                        'type'  => 'text',
+                          //                                        'label' => __('Alternate classes', 'pzarchitect'),
+                          //                                    ),
+                      ),
+                  ),
+
+              ),
+          ),
           'typography' => array(
               'title'    => __('Typography', 'pzarchitect'),
               'sections' => array(
@@ -25,8 +58,10 @@
                               ),
                           ),
                           'color'           => array(
-                              'type'  => 'color',
-                              'label' => __('Colour', 'pzarchitect'),
+                              'type'       => 'color',
+                              'label'      => __('Colour', 'pzarchitect'),
+                              'show_reset' => TRUE,
+                              'show_alpha' => TRUE,
                           ),
                           'font-size'       => array(
                               'type'  => 'pz-box-styling',
@@ -38,14 +73,19 @@
                               'show'  => array('number', 'type'),
                               'label' => __('Letter spacing', 'pzarchitect'),
                           ),
-                          'line--eight'     => array(
+                          'word-spacing'    => array(
+                              'type'  => 'pz-box-styling',
+                              'show'  => array('number', 'type'),
+                              'label' => __('Word spacing', 'pzarchitect'),
+                          ),
+                          'line-height'     => array(
                               'type'  => 'pz-box-styling',
                               'show'  => array('number', 'type'),
                               'label' => __('Line height', 'pzarchitect'),
                           ),
                           'text-align'      => array(
                               'type'    => 'select',
-                              'label'   => __('Text alignment', 'pzarchitect'),
+                              'label'   => __('Alignment', 'pzarchitect'),
                               'options' => array(
                                   ''             => '',
                                   'left'         => 'left',
@@ -62,13 +102,28 @@
                           ),
                           'text-decoration' => array(
                               'type'    => 'select',
-                              'label'   => __('Text decoration', 'pzarchitect'),
+                              'label'   => __('Decoration', 'pzarchitect'),
                               'options' => array(
                                   ''          => '',
                                   'none'      => 'none',
                                   'underline' => 'underline',
                                   'inherit'   => 'inherit',
                                   'initial'   => 'initial',
+                              ),
+                          ),
+                          'text-transform'  => array(
+                              'type'    => 'select',
+                              'label'   => __('Transform', 'pzarchitect'),
+                              'options' => array(
+                                  ''           => '',
+                                  'none'       => 'none',
+                                  'capitalize' => 'capitalize',
+                                  'uppercase'  => 'uppercase',
+                                  'lowercase'  => 'lowercase',
+                                  //                                  'full-width' => 'full-width',
+                                  'inherit'    => 'inherit',
+                                  'initial'    => 'initial',
+                                  'unset'      => 'unset',
                               ),
                           ),
                           'font-style'      => array(
@@ -88,17 +143,53 @@
                               'type'    => 'select',
                               'label'   => __('Variant', 'pzarchitect'),
                               'options' => array(
-                                  ''                => '',
-                                  'small-caps'      => 'small-caps',
-                                  'all-caps'        => 'all-caps',
-                                  'all-small-caps'  => 'all-small-caps',
-                                  'petite-caps'     => 'petite-caps',
-                                  'all-petite-caps' => 'all-petite-caps',
-                                  'unicase'         => 'unicase',
-                                  'titling-caps'    => 'titling-caps',
-                                  'inherit'         => 'inherit',
-                                  'initial'         => 'initial',
-                                  'unset'           => 'unset',
+                                  ''           => '',
+                                  'normal'     => 'normal',
+                                  'small-caps' => 'small-caps',
+                                  'inherit'    => 'inherit',
+                                  'initial'    => 'initial',
+                                  'unset'      => 'unset',
+                              ),
+                          ),
+                          'white-space'     => array(
+                              'type'    => 'select',
+                              'label'   => __('White space', 'pzarchitect'),
+                              'options' => array(
+                                  ''         => '',
+                                  'normal'   => 'normal',
+                                  'nowrap'   => 'nowrap',
+                                  'pre'      => 'pre',
+                                  'pre-wrap' => 'pre-wrap',
+                                  'pre-line' => 'pre-line',
+                                  'inherit'  => 'inherit',
+                                  'initial'  => 'initial',
+                                  'unset'    => 'unset',
+                              ),
+                          ),
+                          'word-break'      => array(
+                              'type'    => 'select',
+                              'label'   => __('Word break', 'pzarchitect'),
+                              'options' => array(
+                                  ''          => '',
+                                  'normal'    => 'normal',
+                                  'break-all' => 'break-all',
+                                  'keep-all'  => 'keep-all',
+                                  'inherit'   => 'inherit',
+                                  'initial'   => 'initial',
+                                  'unset'     => 'unset',
+                              ),
+                          ),
+                          'hyphens'         => array(
+                              'type'    => 'select',
+                              'label'   => __('Hyphens', 'pzarchitect'),
+                              'options' => array(
+                                  ''        => '',
+                                  'none'    => 'none',
+                                  'manual'  => 'manual',
+                                  'auto'    => 'auto',
+                                  'inherit' => 'inherit',
+                                  'initial' => 'initial',
+                                  'unset'   => 'unset',
                               ),
                           ),
                       ),
@@ -166,9 +257,37 @@
                   'background' => array(
                       'title'  => __('Background', 'pzarchitect'),
                       'fields' => array(
+                          'background_type'       => array(
+                              'type'    => 'select',
+                              'label'   => __('Background type', 'pzarchitect'),
+                              'options' => array(
+                                  'none'   => __('None', 'pzarchitect'),
+                                  'colour' => __('Colour', 'pzarchitect'),
+                                  'image'  => __('Image', 'pzarchitect'),
+                              ),
+                              'toggle'  => array(
+                                  'colour' => array(
+                                      'fields' => array('background-color'),
+                                  ),
+                                  'image'  => array(
+                                      'fields' => array(
+                                          'background-image',
+                                          'background-attachment',
+                                          'background-position-x',
+                                          'background-position-y',
+                                          'background-repeat',
+                                          'background-size',
+                                          'background-origin',
+                                          'background-clip',
+                                      ),
+                                  ),
+                              ),
+                          ),
                           'background-color'      => array(
-                              'type'  => 'color',
-                              'label' => __('Colour', 'pzarchitect'),
+                              'type'       => 'color',
+                              'label'      => __('Colour', 'pzarchitect'),
+                              'show_reset' => TRUE,
+                              'show_alpha' => TRUE,
                           ),
                           'background-image'      => array(
                               'type'        => 'photo',
@@ -179,6 +298,7 @@
                               'type'    => 'select',
                               'label'   => __('Attachment', 'pzarchitect'),
                               'options' => array(
+                                  ''        => '',
                                   'scroll'  => 'scroll',
                                   'fixed'   => 'fixed',
                                   'local'   => 'local',
@@ -204,7 +324,7 @@
                               'options' => array(
                                   ''        => '',
                                   'top'     => 'top',
-                                  'middle'  => 'middle',
+                                  'center'  => 'center',
                                   'bottom'  => 'bottom',
                                   'inherit' => 'inherit',
                                   'initial' => 'initial',
@@ -287,21 +407,6 @@
                           ),
                       ),
                   ),
-              ),
-          ),
-          'extras'     => array(
-              'title'    => __('Extras', 'pzarchitect'),
-              'sections' => array(
-                  'extra' => array(
-                      'title'  => '',
-                      'fields' => array(
-                          'alternate_classes' => array(
-                              'type'  => 'text',
-                              'label' => __('Alternate classes', 'pzarchitect'),
-                          ),
-                      ),
-                  ),
-
               ),
           ),
       ),

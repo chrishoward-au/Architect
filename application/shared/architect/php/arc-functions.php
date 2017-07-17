@@ -670,7 +670,7 @@
    *
    * @return array
    */
-  function pzarc_get_posts_in_post_type($pzarc_post_type = 'arc-blueprints', $use_shortname = FALSE, $override_admin = FALSE, $append_post_type = TRUE) {
+  function pzarc_get_posts_in_post_type($pzarc_post_type = 'arc-blueprints', $use_shortname = FALSE, $override_admin = FALSE, $append_post_type = TRUE, $append_bp_type = TRUE) {
 //    // No point doing this if not on a screen that can use it.
 // Except it didn't work!
 //    if (!function_exists('get_current_screen')) {
@@ -716,10 +716,18 @@
       else {
         $use_key = $pzarc_post_type_obj->post_name;
       }
+
       $pz_post_type = ucwords(get_post_meta($pzarc_post_type_obj->ID, '_blueprints_content-source', TRUE));
       $pz_post_type = $pz_post_type === 'Cpt' ? 'Custom' : $pz_post_type;
 
-      $pzarc_post_type_list[$use_key] = $pzarc_post_type_obj->post_title . ($append_post_type ? '  [' . ($pz_post_type ? $pz_post_type : 'Defaults') . ']' : '');
+      $pz_bp_type = ucwords(get_post_meta($pzarc_post_type_obj->ID, '_blueprints_section-0-layout-mode', TRUE));
+      $pz_bp_type = ($pz_bp_type === 'Basic' ? 'Grid' : $pz_bp_type);
+
+      $pzarc_post_type_list[$use_key] = ($append_bp_type ?  (!empty($pz_bp_type) ? $pz_bp_type : 'Grid') . ': ' : '');
+      $pzarc_post_type_list[$use_key] .= $pzarc_post_type_obj->post_title;
+      $pzarc_post_type_list[$use_key] .= ($append_post_type ? '  [' . ($pz_post_type ? $pz_post_type : 'Defaults') . ']' : '');
+
+      asort($pzarc_post_type_list);
     }
 
     return $pzarc_post_type_list;
@@ -2095,14 +2103,25 @@
     return $pzarc_overrides;
   }
 
-  function pzarc_hide_categories($categories,$cats_to_hide) {
-    $cat_list = explode(',',$categories);
-    foreach ($cats_to_hide as $cat_to_hide){
-      foreach ($cat_list as $cat_key => $cat_val){
-        if (strpos($cat_val,get_the_category_by_ID( $cat_to_hide ))) {
+  function pzarc_hide_categories($categories, $cats_to_hide) {
+    $cat_list = explode(',', $categories);
+    foreach ($cats_to_hide as $cat_to_hide) {
+      foreach ($cat_list as $cat_key => $cat_val) {
+        if (strpos($cat_val, get_the_category_by_ID($cat_to_hide))) {
           unset($cat_list[$cat_key]);
         }
       }
     }
-    return implode(',',$cat_list);
+
+    return implode(',', $cat_list);
+  }
+
+  function pzarc_get_option($pzarc_option, $pz_default = '') {
+    if (!isset($GLOBALS['_architect_options'])) {
+      $GLOBALS['_architect_options'] = get_option('_architect_options', array());
+    }
+    global $_architect_options;
+    $pz_value = empty($_architect_options[$pzarc_option]) ? $pz_default : $_architect_options[$pzarc_option];
+
+    return $pz_value;
   }

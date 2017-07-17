@@ -2329,3 +2329,11 @@ body.arc-beginner {
   border: 1px solid $medium-grey;
   max-width: 960px;
 }
+
+.arc-export-save {
+  font-weight:bold;
+  font-size:15px;
+  border-left:solid 3px RGB(61, 180, 76);
+  padding-left:10px;
+  background:RGBA(61, 180, 76, 0.07)
+}

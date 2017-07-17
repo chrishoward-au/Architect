@@ -5373,6 +5373,7 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
 
 
     private static function arc_has_export_data() {
+      return '';
       pzdb(__FUNCTION__);
       $export_data = get_option('arc-export-to-preset');
       if (!empty($export_data)) {
@@ -5396,6 +5397,7 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
 
         wp_mkdir_p(trailingslashit(PZARC_CACHE_PATH)); // Just in case
         $filename = PZARC_CACHE_PATH . sanitize_title($title).'.txt';
+        $filename_url = PZARC_CACHE_URL . sanitize_title($title).'.txt';
 
         // Create file
         global $wp_filesystem;
@@ -5405,17 +5407,17 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
             FS_CHMOD_FILE // predefined mode settings for WP files
         );
         if (file_exists($filename)) {
-          header('Content-Description: File Transfer');
-          header('Content-Type: application/octet-stream');
-          header('Content-Disposition: attachment; filename="'.basename($filename).'"');
-          header('Expires: 0');
-          header('Cache-Control: must-revalidate');
-          header('Pragma: public');
-          header('Content-Length: ' . filesize($filename));
-          ob_clean();
-          flush();
-          readfile($filename);
-          return '';
+//          header('Content-Description: File Transfer');
+//          header('Content-Type: text/plain');
+//          header('Content-Disposition: attachment; filename="'.basename($filename).'"');
+//          header('Expires: 0');
+//          header('Cache-Control: must-revalidate');
+//          header('Pragma: public');
+//          header('Content-Length: ' . filesize($filename));
+//          ob_clean();
+//          readfile($filename);
+//          flush();
+          return '<p class="arc-export-save">Ready for download: <a href="'.$filename_url.'" target=_blank download>'.basename($filename).'</a></p>';
         }        // TODO Tutorials on saving exports and creating Presets.
       }
       else {

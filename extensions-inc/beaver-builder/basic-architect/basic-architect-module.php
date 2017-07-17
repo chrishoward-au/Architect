@@ -35,15 +35,17 @@
   }
 
   // v1.9.2 changed last param to false from true.
-  $blueprint_list = pzarc_get_posts_in_post_type('arc-blueprints', TRUE, TRUE, TRUE);
-//var_dump( $blueprint_list );
+  $blueprint_list = pzarc_get_posts_in_post_type('arc-blueprints', TRUE, TRUE, TRUE, TRUE);
   $blueprint_list = array_merge(array('none' => 'None'), $blueprint_list, array('show-none' => 'DO NOT SHOW ANY BLUEPRINT'));
   $blank_array    = array('none' => '');
   $taxonomy_list  = pzarc_get_taxonomies(TRUE);
 
+  if ( ! isset( $GLOBALS[ '_architect_options' ] ) ) {
+    $GLOBALS[ '_architect_options' ] = get_option( '_architect_options', array() );
+  }
+  global $_architect_options;
+  $global_settings = FLBuilderModel::get_global_settings();
   // $styles = fl_render_styles_settings($arc_styles);
-
-  //  var_dump($taxonomy_list);
 
   /**
    * Register the module and its form settings.
@@ -217,105 +219,105 @@
                       'default__.entry-title'           => array(
                           'type'         => 'form',
                           'form'         => 'form_styles_editor',
-                          'preview_text' => 'alternate_classes',
+                          'preview_text' => 'enable_styling',
                           'label'        => 'Entry title',
                           'help'         => '.entry-title',
                       ),
                       'default__.entry-title a'         => array(
                           'type'         => 'form',
                           'form'         => 'form_styles_editor',
-                          'preview_text' => 'alternate_classes',
+                          'preview_text' => 'enable_styling',
                           'label'        => 'Entry title linked',
                           'help'         => '.entry-title a',
                       ),
                       'default__.entry-title a:hover'   => array(
                           'type'         => 'form',
                           'form'         => 'form_styles_editor',
-                          'preview_text' => 'alternate_classes',
+                          'preview_text' => 'enable_styling',
                           'label'        => 'Entry title linked hover',
                           'help'         => '.entry-title a:hover',
                       ),
                       'default__.entry-meta'            => array(
                           'type'         => 'form',
                           'form'         => 'form_styles_editor',
-                          'preview_text' => 'alternate_classes',
+                          'preview_text' => 'enable_styling',
                           'label'        => __('Entry meta', '.pzarchitect'),
                           'help'         => '.entry-meta',
                       ),
                       'default__.entry-meta a'          => array(
                           'type'         => 'form',
                           'form'         => 'form_styles_editor',
-                          'preview_text' => 'alternate_classes',
+                          'preview_text' => 'enable_styling',
                           'label'        => __('Entry meta links', 'pzarchitect'),
                           'help'         => __('.entry-meta a', 'pzarchitect'),
                       ),
                       'default__.entry-meta a:hover'    => array(
                           'type'         => 'form',
                           'form'         => 'form_styles_editor',
-                          'preview_text' => 'alternate_classes',
+                          'preview_text' => 'enable_styling',
                           'label'        => __('Entry meta links hover', 'pzarchitect'),
                           'help'         => __('.entry-meta a:hover', 'pzarchitect'),
                       ),
                       'default__.entry-content'         => array(
                           'type'         => 'form',
                           'form'         => 'form_styles_editor',
-                          'preview_text' => 'alternate_classes',
+                          'preview_text' => 'enable_styling',
                           'label'        => __('Entry content', 'pzarchitect'),
                           'help'         => __('.entry-content', 'pzarchitect'),
                       ),
                       'default__.entry-content a'       => array(
                           'type'         => 'form',
                           'form'         => 'form_styles_editor',
-                          'preview_text' => 'alternate_classes',
+                          'preview_text' => 'enable_styling',
                           'label'        => __('Entry content links', 'pzarchitect'),
                           'help'         => __('.entry-content a', 'pzarchitect'),
                       ),
                       'default__.entry-content a:hover' => array(
                           'type'         => 'form',
                           'form'         => 'form_styles_editor',
-                          'preview_text' => 'alternate_classes',
+                          'preview_text' => 'enable_styling',
                           'label'        => __('Entry content links hover', 'pzarchitect'),
                           'help'         => __('.entry-content a:hover', 'pzarchitect'),
                       ),
                       'default__.entry-excerpt'         => array(
                           'type'         => 'form',
                           'form'         => 'form_styles_editor',
-                          'preview_text' => 'alternate_classes',
+                          'preview_text' => 'enable_styling',
                           'label'        => __('Entry excerpt', 'pzarchitect'),
                           'help'         => __('.entry-excerpt', 'pzarchitect'),
                       ),
                       'default__.entry-excerpt a'       => array(
                           'type'         => 'form',
                           'form'         => 'form_styles_editor',
-                          'preview_text' => 'alternate_classes',
+                          'preview_text' => 'enable_styling',
                           'label'        => __('Entry excerpt links', 'pzarchitect'),
                           'help'         => __('.entry-excerpt a', 'pzarchitect'),
                       ),
                       'default__.entry-excerpt a:hover' => array(
                           'type'         => 'form',
                           'form'         => 'form_styles_editor',
-                          'preview_text' => 'alternate_classes',
+                          'preview_text' => 'enable_styling',
                           'label'        => __('Entry excerpt links hover', 'pzarchitect'),
                           'help'         => __('.entry-excerpt a:hover', 'pzarchitect'),
                       ),
                       'default__.pzarc-components'      => array(
                           'type'         => 'form',
                           'form'         => 'form_styles_editor',
-                          'preview_text' => 'alternate_classes',
+                          'preview_text' => 'enable_styling',
                           'label'        => 'Components group',
                           'help'         => '.pzarc-components',
                       ),
                       'default__.pzarc-panel'           => array(
                           'type'         => 'form',
                           'form'         => 'form_styles_editor',
-                          'preview_text' => 'alternate_classes',
+                          'preview_text' => 'enable_styling',
                           'label'        => 'Panels',
                           'help'         => '.pzarc-panel',
                       ),
                       'default__.pzarc-blueprint'       => array(
                           'type'         => 'form',
                           'form'         => 'form_styles_editor',
-                          'preview_text' => 'alternate_classes',
+                          'preview_text' => 'enable_styling',
                           'label'        => 'Blueprint',
                           'help'         => '.pzarc-blueprint',
                       ),
@@ -339,108 +341,117 @@
 
               'styles_medium' => array(
                   'fields' => array(
+                      'medium__breakpoint'=>array(
+                          'type'=>'select',
+                          'label'=> __('Use medium breakpoint from','pzarchitect'),
+                          'default'=>'beaver',
+                          'options'=>array(
+                              'architect'=>'Architect ('.$_architect_options['architect_breakpoint_1']['width'].'px)',
+                              'beaver'=>'Beaver ('.$global_settings->medium_breakpoint.'px)'
+                          )
+                      ),
                       'medium__.entry-title'           => array(
                           'type'         => 'form',
                           'form'         => 'form_styles_editor',
-                          'preview_text' => 'alternate_classes',
+                          'preview_text' => 'enable_styling',
                           'label'        => 'Entry title',
                           'help'         => '.entry-title',
                       ),
                       'medium__.entry-title a'         => array(
                           'type'         => 'form',
                           'form'         => 'form_styles_editor',
-                          'preview_text' => 'alternate_classes',
+                          'preview_text' => 'enable_styling',
                           'label'        => 'Entry title linked',
                           'help'         => '.entry-title a',
                       ),
                       'medium__.entry-title a:hover'   => array(
                           'type'         => 'form',
                           'form'         => 'form_styles_editor',
-                          'preview_text' => 'alternate_classes',
+                          'preview_text' => 'enable_styling',
                           'label'        => 'Entry title linked hover',
                           'help'         => '.entry-title a:hover',
                       ),
                       'medium__.entry-meta'            => array(
                           'type'         => 'form',
                           'form'         => 'form_styles_editor',
-                          'preview_text' => 'alternate_classes',
+                          'preview_text' => 'enable_styling',
                           'label'        => __('Entry meta', '.pzarchitect'),
                           'help'         => '.entry-meta',
                       ),
                       'medium__.entry-meta a'          => array(
                           'type'         => 'form',
                           'form'         => 'form_styles_editor',
-                          'preview_text' => 'alternate_classes',
+                          'preview_text' => 'enable_styling',
                           'label'        => __('Entry meta links', 'pzarchitect'),
                           'help'         => __('.entry-meta a', 'pzarchitect'),
                       ),
                       'medium__.entry-meta a:hover'    => array(
                           'type'         => 'form',
                           'form'         => 'form_styles_editor',
-                          'preview_text' => 'alternate_classes',
+                          'preview_text' => 'enable_styling',
                           'label'        => __('Entry meta links hover', 'pzarchitect'),
                           'help'         => __('.entry-meta a:hover', 'pzarchitect'),
                       ),
                       'medium__.entry-content'         => array(
                           'type'         => 'form',
                           'form'         => 'form_styles_editor',
-                          'preview_text' => 'alternate_classes',
+                          'preview_text' => 'enable_styling',
                           'label'        => __('Entry content', 'pzarchitect'),
                           'help'         => __('.entry-content', 'pzarchitect'),
                       ),
                       'medium__.entry-content a'       => array(
                           'type'         => 'form',
                           'form'         => 'form_styles_editor',
-                          'preview_text' => 'alternate_classes',
+                          'preview_text' => 'enable_styling',
                           'label'        => __('Entry content links', 'pzarchitect'),
                           'help'         => __('.entry-content a', 'pzarchitect'),
                       ),
                       'medium__.entry-content a:hover' => array(
                           'type'         => 'form',
                           'form'         => 'form_styles_editor',
-                          'preview_text' => 'alternate_classes',
+                          'preview_text' => 'enable_styling',
                           'label'        => __('Entry content links hover', 'pzarchitect'),
                           'help'         => __('.entry-content a:hover', 'pzarchitect'),
                       ),
                       'medium__.entry-excerpt'         => array(
                           'type'         => 'form',
                           'form'         => 'form_styles_editor',
-                          'preview_text' => 'alternate_classes',
+                          'preview_text' => 'enable_styling',
                           'label'        => __('Entry excerpt', 'pzarchitect'),
                           'help'         => __('.entry-excerpt', 'pzarchitect'),
                       ),
                       'medium__.entry-excerpt a'       => array(
                           'type'         => 'form',
                           'form'         => 'form_styles_editor',
-                          'preview_text' => 'alternate_classes',
+                          'preview_text' => 'enable_styling',
                           'label'        => __('Entry excerpt links', 'pzarchitect'),
                           'help'         => __('.entry-excerpt a', 'pzarchitect'),
                       ),
                       'medium__.entry-excerpt a:hover' => array(
                           'type'         => 'form',
                           'form'         => 'form_styles_editor',
-                          'preview_text' => 'alternate_classes',
+                          'preview_text' => 'enable_styling',
                           'label'        => __('Entry excerpt links hover', 'pzarchitect'),
                           'help'         => __('.entry-excerpt a:hover', 'pzarchitect'),
                       ),
                       'medium__.pzarc-components'      => array(
                           'type'         => 'form',
                           'form'         => 'form_styles_editor',
-                          'preview_text' => 'alternate_classes',
+                          'preview_text' => 'enable_styling',
                           'label'        => 'Components group',
                           'help'         => '.pzarc-components',
                       ),
                       'medium__.pzarc-panel'           => array(
                           'type'         => 'form',
                           'form'         => 'form_styles_editor',
-                          'preview_text' => 'alternate_classes',
+                          'preview_text' => 'enable_styling',
                           'label'        => 'Panels',
                           'help'         => '.pzarc-panel',
                       ),
                       'medium__.pzarc-blueprint'       => array(
                           'type'         => 'form',
                           'form'         => 'form_styles_editor',
-                          'preview_text' => 'alternate_classes',
+                          'preview_text' => 'enable_styling',
                           'label'        => 'Blueprint',
                           'help'         => '.pzarc-blueprint',
                       ),
@@ -464,108 +475,117 @@
 
               'styles_small' => array(
                   'fields' => array(
+                      'small__breakpoint'=>array(
+                          'type'=>'select',
+                          'label'=> __('Use small breakpoint from','pzarchitect'),
+                          'default'=>'beaver',
+                          'options'=>array(
+                              'architect'=>'Architect ('.$_architect_options['architect_breakpoint_2']['width'].'px)',
+                              'beaver'=>'Beaver ('.$global_settings->responsive_breakpoint.'px)'
+                          )
+                      ),
                       'small__.entry-title'           => array(
                           'type'         => 'form',
                           'form'         => 'form_styles_editor',
-                          'preview_text' => 'alternate_classes',
+                          'preview_text' => 'enable_styling',
                           'label'        => 'Entry title',
                           'help'         => '.entry-title',
                       ),
                       'small__.entry-title a'         => array(
                           'type'         => 'form',
                           'form'         => 'form_styles_editor',
-                          'preview_text' => 'alternate_classes',
+                          'preview_text' => 'enable_styling',
                           'label'        => 'Entry title linked',
                           'help'         => '.entry-title a',
                       ),
                       'small__.entry-title a:hover'   => array(
                           'type'         => 'form',
                           'form'         => 'form_styles_editor',
-                          'preview_text' => 'alternate_classes',
+                          'preview_text' => 'enable_styling',
                           'label'        => 'Entry title linked hover',
                           'help'         => '.entry-title a:hover',
                       ),
                       'small__.entry-meta'            => array(
                           'type'         => 'form',
                           'form'         => 'form_styles_editor',
-                          'preview_text' => 'alternate_classes',
+                          'preview_text' => 'enable_styling',
                           'label'        => __('Entry meta', '.pzarchitect'),
                           'help'         => '.entry-meta',
                       ),
                       'small__.entry-meta a'          => array(
                           'type'         => 'form',
                           'form'         => 'form_styles_editor',
-                          'preview_text' => 'alternate_classes',
+                          'preview_text' => 'enable_styling',
                           'label'        => __('Entry meta links', 'pzarchitect'),
                           'help'         => __('.entry-meta a', 'pzarchitect'),
                       ),
                       'small__.entry-meta a:hover'    => array(
                           'type'         => 'form',
                           'form'         => 'form_styles_editor',
-                          'preview_text' => 'alternate_classes',
+                          'preview_text' => 'enable_styling',
                           'label'        => __('Entry meta links hover', 'pzarchitect'),
                           'help'         => __('.entry-meta a:hover', 'pzarchitect'),
                       ),
                       'small__.entry-content'         => array(
                           'type'         => 'form',
                           'form'         => 'form_styles_editor',
-                          'preview_text' => 'alternate_classes',
+                          'preview_text' => 'enable_styling',
                           'label'        => __('Entry content', 'pzarchitect'),
                           'help'         => __('.entry-content', 'pzarchitect'),
                       ),
                       'small__.entry-content a'       => array(
                           'type'         => 'form',
                           'form'         => 'form_styles_editor',
-                          'preview_text' => 'alternate_classes',
+                          'preview_text' => 'enable_styling',
                           'label'        => __('Entry content links', 'pzarchitect'),
                           'help'         => __('.entry-content a', 'pzarchitect'),
                       ),
                       'small__.entry-content a:hover' => array(
                           'type'         => 'form',
                           'form'         => 'form_styles_editor',
-                          'preview_text' => 'alternate_classes',
+                          'preview_text' => 'enable_styling',
                           'label'        => __('Entry content links hover', 'pzarchitect'),
                           'help'         => __('.entry-content a:hover', 'pzarchitect'),
                       ),
                       'small__.entry-excerpt'         => array(
                           'type'         => 'form',
                           'form'         => 'form_styles_editor',
-                          'preview_text' => 'alternate_classes',
+                          'preview_text' => 'enable_styling',
                           'label'        => __('Entry excerpt', 'pzarchitect'),
                           'help'         => __('.entry-excerpt', 'pzarchitect'),
                       ),
                       'small__.entry-excerpt a'       => array(
                           'type'         => 'form',
                           'form'         => 'form_styles_editor',
-                          'preview_text' => 'alternate_classes',
+                          'preview_text' => 'enable_styling',
                           'label'        => __('Entry excerpt links', 'pzarchitect'),
                           'help'         => __('.entry-excerpt a', 'pzarchitect'),
                       ),
                       'small__.entry-excerpt a:hover' => array(
                           'type'         => 'form',
                           'form'         => 'form_styles_editor',
-                          'preview_text' => 'alternate_classes',
+                          'preview_text' => 'enable_styling',
                           'label'        => __('Entry excerpt links hover', 'pzarchitect'),
                           'help'         => __('.entry-excerpt a:hover', 'pzarchitect'),
                       ),
                       'small__.pzarc-components'      => array(
                           'type'         => 'form',
                           'form'         => 'form_styles_editor',
-                          'preview_text' => 'alternate_classes',
+                          'preview_text' => 'enable_styling',
                           'label'        => 'Components group',
                           'help'         => '.pzarc-components',
                       ),
                       'small__.pzarc-panel'           => array(
                           'type'         => 'form',
                           'form'         => 'form_styles_editor',
-                          'preview_text' => 'alternate_classes',
+                          'preview_text' => 'enable_styling',
                           'label'        => 'Panels',
                           'help'         => '.pzarc-panel',
                       ),
                       'small__.pzarc-blueprint'       => array(
                           'type'         => 'form',
                           'form'         => 'form_styles_editor',
-                          'preview_text' => 'alternate_classes',
+                          'preview_text' => 'enable_styling',
                           'label'        => 'Blueprint',
                           'help'         => '.pzarc-blueprint',
                       ),

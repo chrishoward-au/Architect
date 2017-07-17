@@ -450,14 +450,18 @@
 
       // Set posts to show
       $limited = (int)$this->build->blueprint['_blueprints_section-0-panels-limited'];
-
-      if (!$limited) {
+      if (!$limited && !isset($_GET['fl_builder'])) {
+//      if (!$limited) {
 
         $this->criteria['panels_to_show'] = -1;
         $this->criteria['nopaging']       = TRUE;
 
-      }
-      else {
+        // TODO: Fix this as anymore than 1 and it creates multiple rows in the Builder!
+      } elseif (isset($_GET['fl_builder'])) {
+        $this->criteria['panels_to_show'] = '1';
+        $this->criteria['nopaging']       = FALSE;
+
+      } else {
 
         $this->criteria['panels_to_show'] = $this->build->blueprint['_blueprints_section-0-panels-per-view'];
         $this->criteria['nopaging']       = FALSE;

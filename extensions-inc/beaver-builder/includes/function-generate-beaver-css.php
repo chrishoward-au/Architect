@@ -8,7 +8,6 @@
 
   function pzarc_generate_beaver_css($field_styling) {
     $css_styling = '';
-
     foreach ($field_styling as $k => $v) {
       switch ($k) {
 
@@ -24,6 +23,7 @@
 
         case 'font-size':
         case 'letter-spacing':
+        case 'word-spacing':
         case 'line-height':
         case 'margin-top':
         case 'margin-bottom':
@@ -56,10 +56,13 @@
           $css_styling .= !empty($v) ? $k.': url("' . wp_get_attachment_image_url($v) . '");' : '';
           break;
 
-        case 'text-alignment':
+        case 'text-align':
         case 'text-decoration':
+        case 'text-transform':
         case 'font-style':
         case 'font-variant':
+        case 'white-space':
+        case 'word-break':
         case 'background-attachment':
         case 'background-position-x':
         case 'background-position-y':

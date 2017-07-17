@@ -1,13 +1,16 @@
 <?php
 
   function pz_box_styling($name, $value, $field, $settings) {
+
     $value          = ( array )$value; // Make sure we have an array and not an object.
+
     $default_values = array(
         'number'       => '',
         'type'         => '',
         'colour'       => '',
         'border_style' => '',
     );
+
     $field_defaults = isset($field['default']) ? (array)$field['default'] : array();
 
     $defaults                = array_replace($default_values, $field_defaults);
@@ -18,6 +21,7 @@
         'em'  => 'em',
         'rem' => 'rem',
     );
+
     $border_styles           = array(
         ''       => '',
         'none'   => 'None',
@@ -25,6 +29,7 @@
         'dotted' => 'Dotted',
         'dashed' => 'Dashed',
     );
+
     $unit_number_name        = $name . '[][number]';
     $unit_number_value       = empty($value['number']) ? $defaults['number'] : $value['number'];
     $unit_colour_name        = $name . '[][colour]';
@@ -36,11 +41,12 @@
 
     echo '<div class="fl-field-box-styling">';
 
-    // Numeric value
+    /** Numeric value */
     if (in_array('number', $field['show'])) {
       echo '<input type="number"  class="text" name="' . $unit_number_name . '" value="' . $unit_number_value . '" />';
     }
-    // Unit type
+
+    /** Unit type */
     if (in_array('type', $field['show'])) {
       echo '
     <select name="' . $unit_type_name . '" class="fl-field-css-units-units">';
@@ -50,12 +56,12 @@
       echo '</select>';
     }
 
-    // Colour
+    /** Colour */
     if (in_array('colour', $field['show']) || in_array('color', $field['show'])) {
       echo '<input type="color"  class="text" name="' . $unit_colour_name . '" value="' . $unit_colour_value . '" />';
     }
 
-    // Border style
+    /** Border style */
     if (in_array('border_style', $field['show'])) {
       echo '    
       <select name="' . $unit_border_style_name . '" class="fl-field-css-units-border-style">';
@@ -66,7 +72,7 @@
     }
 
     echo '</div>';
-    //  var_dump($name, $value, $field, $settings);
+
   }
 
   add_action('fl_builder_control_pz-box-styling', 'pz_box_styling', 1, 4);

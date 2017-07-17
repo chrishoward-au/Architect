@@ -514,7 +514,7 @@
                     <div class="arc-info col2"><h3><span class="dashicons dashicons-welcome-widgets-menus"></span>Blueprints</h3>
                     <p>Blueprints is where you create and manage the content layouts.</p>
                     <p> These can take any of the six basic forms: Grid, Slider, Tabbed, Tabular, Masonry and Accordion.</p>
-                    <p>Blueprints can be displayed using Widgets; Shortcodes; Headway blocks; Blox blocks; Template tags; Action Hooks; or the Architect Builder</p>
+                    <p>Blueprints can be displayed using Widgets; Shortcodes; Headway blocks; Blox blocks; Template tags; Action Hooks; or the Architect Beaver Builder module</p>
                     </div>
                     <div class="arc-info col2"><h3><span class="dashicons dashicons-hammer"></span>Tools</h3>
                     <p>The Tools menu provides methods for clearing the Architect CSS cache and the Architect image cache.</p>
@@ -610,10 +610,8 @@ add_action(\'init\',\'gs_init\');
 
 
                     <div class="arc-info col1">
-                    <h3>' . __('Architect Builder', 'pzarchitect') . '</h3>
-                      <p>The Architect Builder is available on the <em>WP Pages editor</em> screen.</p>
-                      <p>It provides a drag &  drop interface for arranging Blueprints to display on that page.</p>
-                      <p>NOTE: To use the Architect Builder, you must set the page\'s <em>Page Template</em> to <em>Architect Builder</em>.</p>
+                    <h3>' . __('Beaver Builder', 'pzarchitect') . '</h3>
+                      <p>In the Beaver Builder page builder, drag and drop the Architect module to your page.</p>
                     </div>
                 </div>
                 </div>
@@ -683,8 +681,7 @@ add_action(\'init\',\'gs_init\');
         echo '<p>You can download this version anytime directly from: <a href="https://s3.amazonaws.com/341public/LATEST/Architect/pizazzwp-architect-' . str_replace('.', '', PZARC_VERSION) . '.zip">Version ' . PZARC_VERSION . '</a></p>';
       }
       echo '<p>' . __('For more detailed help, visit', 'pzarchitect') . ' <a href="http://architect4wp.com/codex-listings" target="_blank" class="arc-codex">' . __('Architect documentation at architect4wp.com', 'pzarchitect') . '</a></p>
-                        <p>' . __('For <strong>technical support</strong>, either fill out the form below or email', 'pzarchitect') . ' <a href="mailto://support@pizazzwp.com" target="_blank" class="arc-codex">' . __('support@pizazzwp.com', 'pzarchitect') . '</a></p>
-                        <p>' . __('For <strong>community and peer-to-peer support</strong>, visit the', 'pzarchitect') . ' <a href="https://pizazzwp.freshdesk.com/support/discussions" target="_blank" class="arc-codex">' . __('Architect Community', 'pzarchitect') . '</a></p>
+                        <p>' . __('For <strong>technical support</strong>, email us at', 'pzarchitect') . ' <a href="mailto:support@pizazzwp.com" target="_blank" class="arc-codex">' . __('support@pizazzwp.com', 'pzarchitect') . '</a></p>
                     <h3>' . __('Things to try first', 'pzarchitect') . '</h3>
                     <ul>
                   	<li>If updates are not showing, try looking in Dashboard > Updates. If they still don\'t show, try deactivating and reactivating the Architect licence and trying again.</li>
@@ -693,20 +690,6 @@ add_action(\'init\',\'gs_init\');
                     </ul>
                     </div>
                     </div>';
-      if (!$lite) {
-        echo '      <h2>Submit a help request directly</h2>
-                                  <div class="arc-info-boxes">
-                    <div class="arc-info col1">
-
-          <script type="text/javascript" src="http://assets.freshdesk.com/widget/freshwidget.js"></script>
-            <style type="text/css" media="screen, projection">
-        @import url(http://assets.freshdesk.com/widget/freshwidget.css);
-            </style>
-            <iframe class="freshwidget-embedded-form" id="freshwidget-embedded-form" src="https://pizazzwp.freshdesk.com/widgets/feedback_widget/new?&widgetType=embedded&formTitle=&screenshot=no&searchArea=no" scrolling="yes" height="1050px" width="90%" frameborder="0"  style="margin:20px 10px 10px 40px;background:#eee;overflow-y: auto;">
-            </iframe>
-                </div>
-           </div>';
-      }
       echo '                </div>
 
                 <div class="tabs-pane " id="shout">
@@ -955,6 +938,52 @@ add_action(\'init\',\'gs_init\');
       $arc_exp_post['title']  = $post->post_title;
       $arc_exp_post['bptype'] = (empty($arc_post_meta['_blueprints_section-0-layout-mode']) ? 'basic' : $arc_post_meta['_blueprints_section-0-layout-mode'][0]);
       update_option('arc-export-to-preset', $arc_exp_post);
+      $export_data = get_option('arc-export-to-preset');
+      if (!empty($export_data)) {
+        $title = $export_data['title'];
+        delete_option('arc-export-to-preset');
+
+        // create file
+        $url = wp_nonce_url('edit.php?post_type=arc-blueprints', basename(__FILE__));
+
+        if (false === ($creds = request_filesystem_credentials($url, '', false, false, null))) {
+          return ''; // stop processing here
+        }
+
+        if (!WP_Filesystem($creds)) {
+          request_filesystem_credentials($url, '', true, false, null);
+
+          return '';
+        }
+
+        // create URL to file
+
+        wp_mkdir_p(trailingslashit(PZARC_CACHE_PATH)); // Just in case
+        $filename = PZARC_CACHE_PATH . sanitize_title($title).'.txt';
+        $filename_url = PZARC_CACHE_URL . sanitize_title($title).'.txt';
+
+        // Create file
+        global $wp_filesystem;
+        $wp_filesystem->put_contents(
+            $filename,
+            json_encode($export_data),
+            FS_CHMOD_FILE // predefined mode settings for WP files
+        );
+        if (file_exists($filename)) {
+          header('Content-Description: File Transfer');
+          header('Content-Type: text/plain');
+          header('Content-Disposition: attachment; filename="'.basename($filename).'"');
+          header('Expires: 0');
+          header('Cache-Control: must-revalidate');
+          header('Pragma: public');
+          header('Content-Length: ' . filesize($filename));
+          ob_clean();
+          flush();
+          readfile($filename);
+          exit;
+        }        // TODO Tutorials on saving exports and creating Presets.
+      }
+
       wp_redirect(admin_url('edit.php?post_type=' . $post->post_type));
       exit;
     }

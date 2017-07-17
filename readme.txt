@@ -43,6 +43,7 @@ There are several ways to display Architect Blueprints.
 * Widget
 * Headway Block
 * Blox Block
+* Beaver module
 * Action hooks (Insert a hook in your theme page template, then hook Architect to it)
 * Actions editor (Built into Architect, all you have to know is the name of the hook you want to use)
 * WP Gallery shortcode override
@@ -91,7 +92,7 @@ TODO: Remove shortcode Defaults blocking message.
 TODO: Add min specs for max input vars
 
 TODO: Add description option to archive pages
-TODO: Fix images cropping on iPhone
+TODO: Fix images cropping on iPhone?
 TODO: Add Unsplash as a source for dummy photos
 TODO: Implement Freemius?
 TODO: Add a full backup option for Blueprints
@@ -102,7 +103,7 @@ TODO: Add a backup and restore option for all settings
 = Notes =
 * If you have trouble upgrading, try deactivating and reactivating your licence
 
-= 1.10.0 =
+= 1.10.0 = : 15 Jul 2017
 * ADDED: More extensive filtering overrides the the Beaver Architect module
 * ADDED: RSS Feed as a content source
 * ADDED: Option to use 'Specific Text, HTML or Shortcodes' as a custom field source
@@ -111,6 +112,8 @@ TODO: Add a backup and restore option for all settings
 * ADDED: Simple demo mode that outlines Architect Blueprints. Add /?demo to the page URL.
 * ADDED: Message prompting crossgrade of Architect licence from Headway.
 * ADDED: Styling to Architect Beaver module
+* ADDED: Option to set and use a default Focal Point when no Focal Point set on an image
+* ADDED: Blueprint type to dropdown selector in Widget and Beaver module Blueprint selector
 * CHANGED: Export a Blueprint automatically downloads to a file
 * CHANGED: Admin backgrounds are now just gradients rather than SVG to save space
 * CHANGED: Using the 'No field. Use prefix and suffix only' option for custom field source no longer requires the Link Field attribute enabled.
@@ -118,10 +121,17 @@ TODO: Add a backup and restore option for all settings
 * CHANGED: In Blueprint listings, now limited the "Used on" column to only show the first 5 instances
 * CHANGED: New paint job on the presets selector
 * CHANGED: Hover on panels designer is now blue toned
-* REMOVED: Removed Architect page builder. Recommend to use Beaver instead!
+* CHANGED: Updated help text on Help & Support screen
 * FIXED: Filler images not working for Featured images
 * FIXED: Category and Tag exclusion only working when inclusion was set too
 * FIXED: Duplication of @media CSS declarations on panels. Finally!!!
+* FIXED: Incorrect email url for support
+* REMOVED: Support contact form as no longer using Freshdesk for support
+* REMOVED: Support forum link as no longer using Freshdesk for support
+* REMOVED: Removed Architect page builder. Recommend to use Beaver instead!
+TODO Update tutes
+TODO: Fix comments showing with Arc module
+TODO: Fix infinite loop when using Defaults in Blueprint in Builder
 
 = 1.9.9 = : 4 Apr 2017
 * FIXED: Redux 3.6.4 broke parts of the Blueprint designer
