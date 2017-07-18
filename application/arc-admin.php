@@ -248,13 +248,13 @@
         // add_submenu_page( $parent_slug, $page_title, $menu_title, $capability, $menu_slug, $function );
 
         add_submenu_page('pzarc', __('Tools', 'pzarchitect'), '<span class="dashicons dashicons-hammer size-small"></span>' . __('Tools', 'pzarchitect'), 'edit_others_pages', 'pzarc_tools', array(
-                $this,
-                'pzarc_tools',
-            ));
+            $this,
+            'pzarc_tools',
+        ));
         add_submenu_page('pzarc', __('Help & Support', 'pzarchitect'), '<span class="dashicons dashicons-editor-help size-small"></span>' . __('Help & Support', 'pzarchitect'), 'edit_others_pages', 'pzarc_support', array(
-                $this,
-                'pzarc_support',
-            ));
+            $this,
+            'pzarc_support',
+        ));
 
         global $submenu;
         // Shift those last  to the top
@@ -291,8 +291,8 @@
     }
 
 
-    /*********************************************
-     *
+    /**
+     * pzarc_tools
      */
     function pzarc_tools() {
       global $title;
@@ -375,39 +375,43 @@
           }
           echo '</ul></div>';
         }
+
         echo '<p>Tutorial: <a href="http://architect4wp.com/codex/architect-importing-blueprints-and-presets/" target=_blank>Importing Blueprints and Presets</a></p>';
         echo '<p>' . __('<strong>Blueprints</strong>: If you have a <strong>Blueprint</strong> in a .txt format, you may import it by uploading it here. The new Blueprint will then be opened ready for editing. Blueprint export files can be created from context menu on the Blueprint listing.') . '</p>';
         echo '<p>' . __('<strong>Presets</strong>: If you have a <strong>Preset</strong> in a .zip format, you may import it by uploading it here. It will then appear in the Blueprints, Preset Selector') . '</p>
-      <div class="pzarc-upload-preset">
-                        <form method="post" enctype="multipart/form-data" class="pzarc-preset-upload-form" action="">';
+        <div class="pzarc-upload-preset">
+             <form method="post" enctype="multipart/form-data" class="pzarc-preset-upload-form" action="">';
         wp_nonce_field('arc-preset-upload');
         echo '<label class="screen-reader-text" for="txtorzip">' . __('Select Blueprint .txt file or Preset zip file') . '</label>
-                          <input type="file" id="txtorzip" name="txtorzip" />
-                          ';
-//      submit_button(__('Install Now'), 'button', 'install-blueprint-or-preset-submit', true);
+                  <input type="file" id="txtorzip" name="txtorzip" />';
         echo '<p><button class="button-primary"  style="min-width:100px;" type="submit" name="install-blueprint-or-preset-submit" value="' . __('Import', 'pzarchitect') . '">' . __('Import') . '  <span class="dashicons dashicons-id-alt" style="margin-left:1%;color:inherit;font-size:22px;vertical-align:text-bottom"></span></button></p>';
         echo '</form>
-                      </div>';
+        </div>';
+
         if (isset($_POST['install-blueprint-or-preset-submit']) && check_admin_referer('arc-preset-upload')) {
+
           switch (TRUE) {
             case ((substr($_FILES['txtorzip']['name'], -4, 4) === '.zip') && file_exists(PZARC_PRESETS_PATH . '/' . str_replace('.zip', '', $_FILES['txtorzip']['name']))):
               echo '<div id="message" class="error"><p>' . __('A Preset with that name already exists.', 'pzarchitect') . '</p></div>';
               break;
+
             case (!empty($_FILES['txtorzip']['name']) && (substr($_FILES['txtorzip']['name'], -4, 4) === '.zip')):
               pzarc_upload_file($_FILES['txtorzip'], 'preset');
               break;
-            case (!empty($_FILES['txtorzip']['name']) && (substr($_FILES['txtorzip']['name'], -4, 4) === '.txt')):
 
-              //var_dump($_FILES[ 'txtorzip' ][ 'name' ]);
+            case (!empty($_FILES['txtorzip']['name']) && (substr($_FILES['txtorzip']['name'], -4, 4) === '.txt')):
               pzarc_upload_file($_FILES['txtorzip'], 'blueprint');
               // todo: add method of styled or unstyled
               break;
+
             case empty($_FILES['txtorzip']['name']):
               echo '<div id="message" class="error"><p>' . __('No file specified.', 'pzarchitect') . '</p></div>';
               break;
+
             case (substr($_FILES['txtorzip']['name'], -4, 4) !== '.zip' && substr($_FILES['txtorzip']['name'], -4, 4) !== '.txt'):
               echo '<div id="message" class="error"><p>' . __('File must be a txt or zip file.', 'pzarchitect') . '</p></div>';
               break;
+
           }
         }
       }
@@ -946,12 +950,12 @@ add_action(\'init\',\'gs_init\');
         // create file
         $url = wp_nonce_url('edit.php?post_type=arc-blueprints', basename(__FILE__));
 
-        if (false === ($creds = request_filesystem_credentials($url, '', false, false, null))) {
+        if (FALSE === ($creds = request_filesystem_credentials($url, '', FALSE, FALSE, NULL))) {
           return ''; // stop processing here
         }
 
         if (!WP_Filesystem($creds)) {
-          request_filesystem_credentials($url, '', true, false, null);
+          request_filesystem_credentials($url, '', TRUE, FALSE, NULL);
 
           return '';
         }
@@ -959,20 +963,17 @@ add_action(\'init\',\'gs_init\');
         // create URL to file
 
         wp_mkdir_p(trailingslashit(PZARC_CACHE_PATH)); // Just in case
-        $filename = PZARC_CACHE_PATH . sanitize_title($title).'.txt';
-        $filename_url = PZARC_CACHE_URL . sanitize_title($title).'.txt';
+        $filename     = PZARC_CACHE_PATH . sanitize_title($title) . '.txt';
+        $filename_url = PZARC_CACHE_URL . sanitize_title($title) . '.txt';
 
         // Create file
         global $wp_filesystem;
-        $wp_filesystem->put_contents(
-            $filename,
-            json_encode($export_data),
-            FS_CHMOD_FILE // predefined mode settings for WP files
+        $wp_filesystem->put_contents($filename, json_encode($export_data), FS_CHMOD_FILE // predefined mode settings for WP files
         );
         if (file_exists($filename)) {
           header('Content-Description: File Transfer');
           header('Content-Type: text/plain');
-          header('Content-Disposition: attachment; filename="'.basename($filename).'"');
+          header('Content-Disposition: attachment; filename="' . basename($filename) . '"');
           header('Expires: 0');
           header('Cache-Control: must-revalidate');
           header('Pragma: public');
@@ -1197,57 +1198,57 @@ add_action(\'init\',\'gs_init\');
     $pzarc_blueprints = array_merge(array('none' => 'None'), pzarc_get_blueprints(), array('show-none' => 'DO NOT SHOW ANY BLUEPRINT'));
     shortcode_ui_register_for_shortcode('architectsc', array(
 
-          // Display label. String. Required.
-          'label'         => __('Architect Blueprint', 'pzarchitect'),
-          // Icon/attachment for shortcode. Optional. src or dashicons-$icon. Defaults to carrot.
-          'listItemImage' => '<img src="' . PZARC_PLUGIN_URL . '/assets/architect-logo-final-logo-only.svg">',
-          // Visibility
-          //         'post_type'     => array( 'post','page' ),
+      // Display label. String. Required.
+      'label'         => __('Architect Blueprint', 'pzarchitect'),
+      // Icon/attachment for shortcode. Optional. src or dashicons-$icon. Defaults to carrot.
+      'listItemImage' => '<img src="' . PZARC_PLUGIN_URL . '/assets/architect-logo-final-logo-only.svg">',
+      // Visibility
+      //         'post_type'     => array( 'post','page' ),
 
-          // Available shortcode attributes and default values. Required. Array.
-          // Attribute model expects 'attr', 'type' and 'label'
-          // Supported field types: text, checkbox, textarea, radio, select, email, url, number, and date.
-          'attrs'         => array(
+      // Available shortcode attributes and default values. Required. Array.
+      // Attribute model expects 'attr', 'type' and 'label'
+      // Supported field types: text, checkbox, textarea, radio, select, email, url, number, and date.
+      'attrs'         => array(
 
-              array(
-                  'label'   => __('Blueprint - any device', 'pzarchitect'),
-                  'attr'    => 'blueprint',
-                  'type'    => 'select',
-                  'options' => $pzarc_blueprints,
-              ),
-              array(
-                  'label'   => __('Blueprint - tablet (optional)', 'pzarchitect'),
-                  'attr'    => 'tablet',
-                  'type'    => 'select',
-                  'options' => $pzarc_blueprints,
-              ),
-              array(
-                  'label'   => __('Blueprint - phone (optional)', 'pzarchitect'),
-                  'attr'    => 'phone',
-                  'type'    => 'select',
-                  'options' => $pzarc_blueprints,
-              ),
-              array(
-                  'label'       => __('Specific IDs (optional)', 'pzarchitect'),
-                  'attr'        => 'ids',
-                  'type'        => 'text',
-                  'description' => __('Comma separated post, page, snippets, etc ids', 'pzarchitect'),
-              ),
-              array(
-                  'label'   => __('Taxonomy (optional)', 'pzarchitect'),
-                  'attr'    => 'tax',
-                  'type'    => 'select',
-                  'options' => pzarc_get_taxonomies(TRUE),
-              ),
-              array(
-                  'label'       => __('Term IDs (optional)', 'pzarchitect'),
-                  'attr'        => 'terms',
-                  'type'        => 'text',
-                  'description' => __('Comma separated term ids from the chosen taxonomy', 'pzarchitect'),
-              ),
+          array(
+              'label'   => __('Blueprint - any device', 'pzarchitect'),
+              'attr'    => 'blueprint',
+              'type'    => 'select',
+              'options' => $pzarc_blueprints,
           ),
+          array(
+              'label'   => __('Blueprint - tablet (optional)', 'pzarchitect'),
+              'attr'    => 'tablet',
+              'type'    => 'select',
+              'options' => $pzarc_blueprints,
+          ),
+          array(
+              'label'   => __('Blueprint - phone (optional)', 'pzarchitect'),
+              'attr'    => 'phone',
+              'type'    => 'select',
+              'options' => $pzarc_blueprints,
+          ),
+          array(
+              'label'       => __('Specific IDs (optional)', 'pzarchitect'),
+              'attr'        => 'ids',
+              'type'        => 'text',
+              'description' => __('Comma separated post, page, snippets, etc ids', 'pzarchitect'),
+          ),
+          array(
+              'label'   => __('Taxonomy (optional)', 'pzarchitect'),
+              'attr'    => 'tax',
+              'type'    => 'select',
+              'options' => pzarc_get_taxonomies(TRUE),
+          ),
+          array(
+              'label'       => __('Term IDs (optional)', 'pzarchitect'),
+              'attr'        => 'terms',
+              'type'        => 'text',
+              'description' => __('Comma separated term ids from the chosen taxonomy', 'pzarchitect'),
+          ),
+      ),
 
-        ));
+    ));
 
   }
 
@@ -1343,7 +1344,7 @@ add_action(\'init\',\'gs_init\');
   // If hw and not arc licence
   $current_theme = wp_get_theme();
   $is_hw         = (($current_theme->get('Name') == 'Headway' || $current_theme->get('Name') == 'Headway Base' || $current_theme->get('Template') == 'headway'));
-  $pzarc_status = get_option('edd_architect_license_status');
+  $pzarc_status  = get_option('edd_architect_license_status');
 
   if ($is_hw && !$pzarc_status && $pzarc_status !== 'valid') {
     function pz_hw_to_pizazz_licence() {

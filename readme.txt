@@ -126,11 +126,12 @@ TODO: Add a backup and restore option for all settings
 * FIXED: Category and Tag exclusion only working when inclusion was set too
 * FIXED: Duplication of @media CSS declarations on panels. Finally!!!
 * FIXED: Incorrect email url for support
+* FIXED: Importing Blueprint failed to go to new Blueprint screen. Now provides a link.
 * REMOVED: Support contact form as no longer using Freshdesk for support
 * REMOVED: Support forum link as no longer using Freshdesk for support
 * REMOVED: Removed Architect page builder. Recommend to use Beaver instead!
 TODO Update tutes
-TODO: Fix comments showing with Arc module
+TODO: Fix comments showing with Arc module when type is posts or page
 TODO: Fix infinite loop when using Defaults in Blueprint in Builder
 
 = 1.9.9 = : 4 Apr 2017

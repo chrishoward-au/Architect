@@ -723,7 +723,7 @@
       $pz_bp_type = ucwords(get_post_meta($pzarc_post_type_obj->ID, '_blueprints_section-0-layout-mode', TRUE));
       $pz_bp_type = ($pz_bp_type === 'Basic' ? 'Grid' : $pz_bp_type);
 
-      $pzarc_post_type_list[$use_key] = ($append_bp_type ?  (!empty($pz_bp_type) ? $pz_bp_type : 'Grid') . ': ' : '');
+      $pzarc_post_type_list[$use_key] = ($append_bp_type ? (!empty($pz_bp_type) ? $pz_bp_type : 'Grid') . ': ' : '');
       $pzarc_post_type_list[$use_key] .= $pzarc_post_type_obj->post_title;
       $pzarc_post_type_list[$use_key] .= ($append_post_type ? '  [' . ($pz_post_type ? $pz_post_type : 'Defaults') . ']' : '');
 
@@ -1597,12 +1597,19 @@
          * finally, redirect to the edit post screen for the new draft
          */
       if (!$alt_slug) {
-        wp_redirect(admin_url('post.php?action=edit&post=' . $new_post_id));
+        $pazrc_screen_id = NULL;
+        if (function_exists('get_current_screen')) {
+          $pzarc_current_screen = get_current_screen();
+          $pazrc_screen_id      = $pzarc_current_screen->base;
+        }
+        if ($pazrc_screen_id === 'architect_page_pzarc_tools') {
+          echo '<div id="message" class="updated notice notice-success"><p>Edit new Blueprint: <a href="' . admin_url('post.php?action=edit&post=' . $new_post_id) . '">' . $args['post_title'] . '</a></p></div>';
+        }
+        else {
+          wp_safe_redirect(admin_url('post.php?action=edit&post=' . $new_post_id));
+        }
         exit;
       }
-//      } else {
-//        wp_redirect(admin_url('edit.php?post_type=' . $preset[ 'post' ]->post_type));
-//      }
 
     }
     else {
@@ -1707,6 +1714,11 @@
     }
   }
 
+  /**
+   * @param $pzarc_dir
+   *
+   * @return mixed
+   */
   function pzarc_tidy_dir($pzarc_dir) {
     foreach ($pzarc_dir as $k => $v) {
       if (substr($v, 0, 1) === '.') {
@@ -1717,6 +1729,10 @@
     return $pzarc_dir;
   }
 
+  /**
+   * @param null $pzarc_file
+   * @param null $pzarc_upload_type
+   */
   function pzarc_upload_file($pzarc_file = NULL, $pzarc_upload_type = NULL) {
     if (in_array($pzarc_upload_type, array(
             'blueprint',
@@ -1740,7 +1756,6 @@
 
       switch ($pzarc_upload_type) {
         case 'preset':
-
           add_filter('upload_dir', 'pzarc_presets_upload_dir');
           $movefile = wp_handle_upload($uploadedfile, $upload_overrides);
           remove_filter('upload_dir', 'pzarc_presets_upload_dir');
@@ -1763,6 +1778,7 @@
             echo $movefile['error'];
           }
           break;
+
         case 'blueprint':
           add_filter('upload_dir', 'pzarc_blueprints_upload_dir');
           $movefile = wp_handle_upload($uploadedfile, $upload_overrides);
@@ -1779,10 +1795,16 @@
             echo $movefile['error'];
           }
           break;
+
       }
     }
   }
 
+  /**
+   * @param $dir
+   *
+   * @return array
+   */
   function pzarc_presets_upload_dir($dir) {
     return array(
             'path'   => $dir['basedir'] . '/pizazzwp/architect/presets',
@@ -1791,6 +1813,11 @@
         ) + $dir;
   }
 
+  /**
+   * @param $dir
+   *
+   * @return array
+   */
   function pzarc_blueprints_upload_dir($dir) {
     return array(
             'path'   => PZARC_CACHE_PATH,
@@ -1799,9 +1826,10 @@
         ) + $dir;
   }
 
-  /*
-     * Function creates post duplicate as a draft and redirects then to the edit post screen
-     */
+  /**
+   * Function creates post duplicate as a draft and redirects then to the edit post screen
+   *
+   */
   function pzarc_new_from_preset() {
     // How do we add some security?
     if (!(isset($_GET['name']) || isset($_POST['name']) || (isset($_REQUEST['action']) && 'pzarc_new_from_preset' == $_REQUEST['action']))) {
@@ -1825,6 +1853,12 @@
     pzarc_create_blueprint($arc_preset_data, $preset_name, $process_type, NULL, NULL);
   }
 
+  /**
+   * @param null   $bpexpfile
+   * @param null   $alt_slug
+   * @param null   $alt_title
+   * @param string $process_type
+   */
   function pzarc_import_blueprint($bpexpfile = NULL, $alt_slug = NULL, $alt_title = NULL, $process_type = 'styled') {
 
     if (!empty($bpexpfile)) {
@@ -1846,7 +1880,10 @@
     }
   }
 
-// Unused until can find a way to make this load before Blueprints editor
+  /**
+   * @param string $pzarc_tax
+   * Unused until can find a way to make this load before Blueprints editor
+   */
   function pzarc_set_tax_titles($pzarc_tax = '') {
     global $pzarc_taxonomy_list;
     $pzarc_taxonomy_list = array();
@@ -1857,11 +1894,20 @@
     }
   }
 
-// Because Redux passing arguments doesn'ty  seem to be working now
+  /**
+   * @return array
+   * Because Redux passing arguments doesn'ty  seem to be working now
+   */
   function pzarc_get_taxonomies_ctb() {
     return pzarc_get_taxonomies(TRUE, FALSE);
   }
 
+  /**
+   * @param bool $catstags
+   * @param bool $has_blank
+   *
+   * @return array
+   */
   function pzarc_get_taxonomies($catstags = TRUE, $has_blank = TRUE) {
     $taxonomy_list = get_taxonomies(array(
         'public'   => TRUE,
@@ -1885,6 +1931,13 @@
     return $taxonomy_list;
   }
 
+  /**
+   * @param string $taxonomy
+   * @param array  $args
+   * @param bool   $array
+   *
+   * @return array|int|null|WP_Error
+   */
   function pzarc_get_terms($taxonomy = '', $args = array(), $array = TRUE) {
 
     $terms = get_terms($taxonomy, $args);
