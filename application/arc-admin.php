@@ -382,8 +382,10 @@
         <div class="pzarc-upload-preset">
              <form method="post" enctype="multipart/form-data" class="pzarc-preset-upload-form" action="">';
         wp_nonce_field('arc-preset-upload');
-        echo '<label class="screen-reader-text" for="txtorzip">' . __('Select Blueprint .txt file or Preset zip file') . '</label>
-                  <input type="file" id="txtorzip" name="txtorzip" />';
+        echo '<p><label  for="txtorzip">' . __('Select Blueprint .txt file or Preset zip file') . '</label>
+                  <input type="file" id="txtorzip" name="txtorzip" /></p>';
+        echo '<p><label for="newbpname">' . __('Name for new Blueprint') . '</label>
+                  <input type="text" size=40 id="newbpname" name="newbpname" placeholder="(New) Unnamed Blueprint"/></p>';
         echo '<p><button class="button-primary"  style="min-width:100px;" type="submit" name="install-blueprint-or-preset-submit" value="' . __('Import', 'pzarchitect') . '">' . __('Import') . '  <span class="dashicons dashicons-id-alt" style="margin-left:1%;color:inherit;font-size:22px;vertical-align:text-bottom"></span></button></p>';
         echo '</form>
         </div>';
@@ -400,7 +402,7 @@
               break;
 
             case (!empty($_FILES['txtorzip']['name']) && (substr($_FILES['txtorzip']['name'], -4, 4) === '.txt')):
-              pzarc_upload_file($_FILES['txtorzip'], 'blueprint');
+              pzarc_upload_file($_FILES['txtorzip'], 'blueprint', $_POST['newbpname']);
               // todo: add method of styled or unstyled
               break;
 

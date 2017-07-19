@@ -103,7 +103,7 @@ TODO: Add a backup and restore option for all settings
 = Notes =
 * If you have trouble upgrading, try deactivating and reactivating your licence
 
-= 1.10.0 = : 15 Jul 2017
+= 1.10.0 =
 * ADDED: More extensive filtering overrides the the Beaver Architect module
 * ADDED: RSS Feed as a content source
 * ADDED: Option to use 'Specific Text, HTML or Shortcodes' as a custom field source
@@ -114,6 +114,9 @@ TODO: Add a backup and restore option for all settings
 * ADDED: Styling to Architect Beaver module
 * ADDED: Option to set and use a default Focal Point when no Focal Point set on an image
 * ADDED: Blueprint type to dropdown selector in Widget and Beaver module Blueprint selector
+* ADDED: Option to name new Blueprints when importing
+* ADDED: Option to insert a shortcode (or basic HTML) after a specific paragraph in body content. Good for inserting advertising!
+
 * CHANGED: Export a Blueprint automatically downloads to a file
 * CHANGED: Admin backgrounds are now just gradients rather than SVG to save space
 * CHANGED: Using the 'No field. Use prefix and suffix only' option for custom field source no longer requires the Link Field attribute enabled.
@@ -122,6 +125,7 @@ TODO: Add a backup and restore option for all settings
 * CHANGED: New paint job on the presets selector
 * CHANGED: Hover on panels designer is now blue toned
 * CHANGED: Updated help text on Help & Support screen
+
 * FIXED: Filler images not working for Featured images
 * FIXED: Category and Tag exclusion only working when inclusion was set too
 * FIXED: Duplication of @media CSS declarations on panels. Finally!!!

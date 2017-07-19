@@ -325,8 +325,8 @@
                 echo ucwords($uo_post->post_type) . ' : ' . $uo_post->post_title . '<br>';
                 $i++;
               }
-              if ($i>5) {
-                if ($i<count($bp_uses)) {
+              if ($i > 5) {
+                if ($i < count($bp_uses)) {
                   echo __('... and more', 'pzarchitect');
                 }
                 break;
@@ -4042,35 +4042,35 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
                                     'desc'    => __('See here for information on <a href="http://codex.wordpress.org/Formatting_Date_and_Time" target=_blank>formatting date and time</a>', 'pzarchitect'),
                                 ),
                                 array(
-                                    'title'   => __( 'Hide category names', 'pzarchitect' ),
+                                    'title'   => __('Hide category names', 'pzarchitect'),
                                     'id'      => $prefix . 'hide-cats',
                                     'type'    => 'select',
-                                    'select2' => array( 'allowClear' => true ),
+                                    'select2' => array('allowClear' => TRUE),
                                     'data'    => 'category',
-                                    'multi'   => true,
-                                    'desc'=>__('These category names won\'t be shown in the meta field\'s list of categories, but posts in these categories will still display. Use filters to exclude specific categories from displaying.','pzarchitect')
+                                    'multi'   => TRUE,
+                                    'desc'    => __('These category names won\'t be shown in the meta field\'s list of categories, but posts in these categories will still display. Use filters to exclude specific categories from displaying.', 'pzarchitect'),
                                 ),
                                 array(
-                                    'title'    => __( 'Authors', 'pzarchitect' ),
-                                    'id'       => $prefix . 'meta-authors-section-open',
-                                    'type'     => 'section',
-                                    'indent'   => true,
+                                    'title'  => __('Authors', 'pzarchitect'),
+                                    'id'     => $prefix . 'meta-authors-section-open',
+                                    'type'   => 'section',
+                                    'indent' => TRUE,
                                 ),
                                 array(
-                                    'title'    => __( 'Roles with generic emails', 'pzarchitect' ),
+                                    'title'    => __('Roles with generic emails', 'pzarchitect'),
                                     'id'       => $prefix . 'authors-generic-emails',
                                     'type'     => 'select',
-                                    'multi'    => true,
+                                    'multi'    => TRUE,
                                     'default'  => array(),
                                     'data'     => 'roles',
-                                    'subtitle' => __( 'Select roles to use a generic email address for (entered below).', 'pzarchitect' )
+                                    'subtitle' => __('Select roles to use a generic email address for (entered below).', 'pzarchitect'),
                                 ),
                                 array(
-                                    'title'    => __( 'Generic email address', 'pzarchitect' ),
+                                    'title'    => __('Generic email address', 'pzarchitect'),
                                     'id'       => $prefix . 'authors-generic-email-address',
                                     'type'     => 'text',
                                     'default'  => '',
-                                    'subtitle' => __( 'Enter a generic email address to use for the above selected roles,  or leave blank for none.', 'pzarchitect' )
+                                    'subtitle' => __('Enter a generic email address to use for the above selected roles,  or leave blank for none.', 'pzarchitect'),
                                 ),
                                 array(
                                     'title'    => __('Excluded authors', 'pzarchitect'),
@@ -4112,9 +4112,9 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
                                     'subtitle' => __('Width and height of avatar if displayed.', 'pzarchitect'),
                                 ),
                                 array(
-                                    'id'       => $prefix . 'meta-authors-section-close',
-                                    'type'     => 'section',
-                                    'indent'   => false,
+                                    'id'     => $prefix . 'meta-authors-section-close',
+                                    'type'   => 'section',
+                                    'indent' => FALSE,
                                 ),
           ),
       );
@@ -4628,6 +4628,13 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
           'icon'       => 'el-icon-adjust-alt',
           'fields'     => array(
               array(
+                  'id'     => $prefix . 'excerpt-heading',
+                  'title'  => __('Body', 'pzarchitect'),
+                  'type'   => 'section',
+                  'indent' => TRUE,
+                  'class'  => 'heading',
+              ),
+              array(
                   'title'    => __('Maximize body', 'pzarchitect'),
                   'id'       => $prefix . 'maximize-content',
                   'type'     => 'switch',
@@ -4649,6 +4656,28 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
                   'default'  => 'none',
                   //'required' => array('show_advanced', 'equals', true),
                   'subtitle' => __('Choose how body content will appear when clicking the more link', 'pzarchitect'),
+              ),
+              array(
+                  'title'    => __('Additional message after Body content', 'pzarchitect'),
+                  'subtitle' => __('Shortcodes and limited HTML only', 'pzarchitect'),
+                  'id'       => $prefix . 'additional-message',
+                  'type'     => 'text',
+                  'default'  => __('', 'pzarchitect'),
+              ),
+              array(
+                  'title'    => __('Insert shortcode', 'pzarchitect'),
+                  'subtitle' => __('Useful to insert advertising into content', 'pzarchitect'),
+                  'id'       => $prefix . 'insert-content-shortcode',
+                  'type'     => 'text',
+                  'default'  => __('', 'pzarchitect'),
+              ),
+              array(
+                  'title'   => __('Paragraph number to insert shortcode after', 'pzarchitect'),
+                  'id'      => $prefix . 'insert-after-paragraph',
+                  'type'    => 'spinner',
+                  'default' => '0',
+                  'min'     => '0',
+                  'max'     => '999',
               ),
 
               array(
@@ -4740,25 +4769,18 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
                       FALSE,
                   ),
               ),
-              array(
-                  'title'    => __('Additional message after Body content', 'pzarchitect'),
-                  'subtitle'=>__('Shortcodes and limited HTML only','pzarchitect'),
-                  'id'       => $prefix . 'additional-message',
-                  'type'     => 'text',
-                  'default'  => __('', 'pzarchitect'),
-              ),
-//              array(
-//                  'title'    => __('Additional image after content', 'pzarchitect'),
-//                  'id'       => $prefix . 'additional-message',
-//                  'type'     => 'text',
-//                  'default'  => __('', 'pzarchitect'),
-//              ),
-//              array(
-//                  'title'    => __('Additional image after content', 'pzarchitect'),
-//                  'id'       => $prefix . 'additional-message',
-//                  'type'     => 'text',
-//                  'default'  => __('', 'pzarchitect'),
-//              ),
+              //              array(
+              //                  'title'    => __('Additional image after content', 'pzarchitect'),
+              //                  'id'       => $prefix . 'additional-message',
+              //                  'type'     => 'text',
+              //                  'default'  => __('', 'pzarchitect'),
+              //              ),
+              //              array(
+              //                  'title'    => __('Additional image after content', 'pzarchitect'),
+              //                  'id'       => $prefix . 'additional-message',
+              //                  'type'     => 'text',
+              //                  'default'  => __('', 'pzarchitect'),
+              //              ),
 
           ),
       );
@@ -5147,11 +5169,11 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
                             'group'           => __('Group', 'pzarchitect'), // WTF is a group
                             //'acf-repeater' => _('ACF Repeater'pzarchitect),
                         ),
-//                        'required' => array(
-//                            $prefix . 'cfield-' . $i . '-name',
-//                            '!=',
-//                            'specific_code',
-//                        ),
+                        //                        'required' => array(
+                        //                            $prefix . 'cfield-' . $i . '-name',
+                        //                            '!=',
+                        //                            'specific_code',
+                        //                        ),
 
                     ),
                     array(
@@ -5383,12 +5405,12 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
         // create file
         $url = wp_nonce_url('edit.php?post_type=arc-blueprints', basename(__FILE__));
 
-        if (false === ($creds = request_filesystem_credentials($url, '', false, false, null))) {
+        if (FALSE === ($creds = request_filesystem_credentials($url, '', FALSE, FALSE, NULL))) {
           return ''; // stop processing here
         }
 
         if (!WP_Filesystem($creds)) {
-          request_filesystem_credentials($url, '', true, false, null);
+          request_filesystem_credentials($url, '', TRUE, FALSE, NULL);
 
           return '';
         }
@@ -5396,15 +5418,12 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
         // create URL to file
 
         wp_mkdir_p(trailingslashit(PZARC_CACHE_PATH)); // Just in case
-        $filename = PZARC_CACHE_PATH . sanitize_title($title).'.txt';
-        $filename_url = PZARC_CACHE_URL . sanitize_title($title).'.txt';
+        $filename     = PZARC_CACHE_PATH . sanitize_title($title) . '.txt';
+        $filename_url = PZARC_CACHE_URL . sanitize_title($title) . '.txt';
 
         // Create file
         global $wp_filesystem;
-        $wp_filesystem->put_contents(
-            $filename,
-            json_encode($export_data),
-            FS_CHMOD_FILE // predefined mode settings for WP files
+        $wp_filesystem->put_contents($filename, json_encode($export_data), FS_CHMOD_FILE // predefined mode settings for WP files
         );
         if (file_exists($filename)) {
 //          header('Content-Description: File Transfer');
@@ -5417,7 +5436,7 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
 //          ob_clean();
 //          readfile($filename);
 //          flush();
-          return '<p class="arc-export-save">Ready for download: <a href="'.$filename_url.'" target=_blank download>'.basename($filename).'</a></p>';
+          return '<p class="arc-export-save">Ready for download: <a href="' . $filename_url . '" target=_blank download>' . basename($filename) . '</a></p>';
         }        // TODO Tutorials on saving exports and creating Presets.
       }
       else {

@@ -1594,8 +1594,8 @@
 
 
       /*
-         * finally, redirect to the edit post screen for the new draft
-         */
+       * finally, redirect to the edit post screen for the new draft
+       */
       if (!$alt_slug) {
         $pazrc_screen_id = NULL;
         if (function_exists('get_current_screen')) {
@@ -1733,7 +1733,7 @@
    * @param null $pzarc_file
    * @param null $pzarc_upload_type
    */
-  function pzarc_upload_file($pzarc_file = NULL, $pzarc_upload_type = NULL) {
+  function pzarc_upload_file($pzarc_file = NULL, $pzarc_upload_type = NULL, $pzarc_newbpname = NULL) {
     if (in_array($pzarc_upload_type, array(
             'blueprint',
             'preset',
@@ -1785,7 +1785,7 @@
           remove_filter('upload_dir', 'pzarc_blueprints_upload_dir');
 
           if ($movefile && !isset($movefile['error'])) {
-            pzarc_import_blueprint($movefile['url'], $alt_slug = NULL, $alt_title = NULL, $process_type = 'styled');
+            pzarc_import_blueprint($movefile['url'], $alt_slug = NULL, $pzarc_newbpname, $process_type = 'styled');
           }
           else {
             /**

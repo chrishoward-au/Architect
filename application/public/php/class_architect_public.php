@@ -39,7 +39,7 @@
      * @param $is_shortcode
      */
     public function __construct($blueprint, $is_shortcode) {
-      echo '<div class="thewhoelshebang">';
+      echo '<div class="arc-wrapper">';
       // Might use this for transients to check last DB change
       //      global $wpdb;
       //      $newest = $wpdb->get_row("select post_modified from $wpdb->posts

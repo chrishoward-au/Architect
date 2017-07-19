@@ -49,7 +49,7 @@ class arc_content_rss extends arc_set_data{
                 array(
                     'title'    => __( 'Hide content', 'pzarchitect' ),
                     'id'       => $prefix . 'rss-feed-hide-content',
-                    'type'     => 'button_list',
+                    'type'     => 'button_set',
                     'default'  => 'no',
                     'options'=>array(
                         'no'=>__('No','pzarchitect'),

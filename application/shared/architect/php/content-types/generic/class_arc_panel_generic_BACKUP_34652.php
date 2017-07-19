@@ -194,7 +194,7 @@
         if (empty($focal_point)) {
           $focal_point = get_post_meta(get_the_ID(), 'pzgp_focal_point', TRUE);
         }
-        $focal_point = (empty($focal_point) ? explode(',', pzarc_get_option('architect_focal_point_default','50,10')) : explode(',', $focal_point));
+        $focal_point = (empty($focal_point) ? explode(',', pzarc_get_option('architect_focal_point_default', '50,10')) : explode(',', $focal_point));
         if (!empty($thumb_id)) {
           $thumb_prefix                 = wp_get_attachment_image($thumb_id, array(
               $this->section['_panels_design_title-thumb-width'],
@@ -232,26 +232,26 @@
         if (!empty($this->section['_panels_design_hide-cats'])) {
           $this->data['meta']['categorieslinks'] = pzarc_hide_categories($this->data['meta']['categorieslinks'], $this->section['_panels_design_hide-cats']);
         }
-        $this->data['meta']['categories']      = pzarc_tax_string_list(get_the_category(), 'category-', '', ' ');
+        $this->data['meta']['categories'] = pzarc_tax_string_list(get_the_category(), 'category-', '', ' ');
       }
       if (strpos($meta_string, '%tags%') !== FALSE) {
         $this->data['meta']['tagslinks'] = get_the_tag_list(NULL, ', ');
         $this->data['meta']['tags']      = pzarc_tax_string_list(get_the_tags(), 'tag-', '', ' ');
       }
       if (strpos($meta_string, '%author%') !== FALSE) {
-        $use_generic = false;
-        if (!empty($this->section[ '_panels_design_authors-generic-emails' ])) {
-          $user = new WP_User( get_the_author_meta( 'ID' ) );
-          if ( ! empty( $user->roles ) && is_array( $user->roles ) ) {
-            foreach ( $user->roles as $role ) {
-              $use_generic = in_array( $role, $this->section[ '_panels_design_authors-generic-emails' ] );
+        $use_generic = FALSE;
+        if (!empty($this->section['_panels_design_authors-generic-emails'])) {
+          $user = new WP_User(get_the_author_meta('ID'));
+          if (!empty($user->roles) && is_array($user->roles)) {
+            foreach ($user->roles as $role) {
+              $use_generic = in_array($role, $this->section['_panels_design_authors-generic-emails']);
             }
           }
         }
-        $generic_email = empty($this->section[ '_panels_design_authors-generic-email-address' ])?'':$this->section[ '_panels_design_authors-generic-email-address' ];
-        $this->data[ 'meta' ][ 'authorlink' ] = get_author_posts_url(get_the_author_meta('ID'));
-        $this->data[ 'meta' ][ 'authorname' ] = sanitize_text_field(get_the_author_meta('display_name'));
-        $rawemail                             = sanitize_email($use_generic?$generic_email:get_the_author_meta('user_email'));
+        $generic_email                    = empty($this->section['_panels_design_authors-generic-email-address']) ? '' : $this->section['_panels_design_authors-generic-email-address'];
+        $this->data['meta']['authorlink'] = get_author_posts_url(get_the_author_meta('ID'));
+        $this->data['meta']['authorname'] = sanitize_text_field(get_the_author_meta('display_name'));
+        $rawemail                         = sanitize_email($use_generic ? $generic_email : get_the_author_meta('user_email'));
         $encodedmail                      = '';
         for ($i = 0; $i < strlen($rawemail); $i++) {
           $encodedmail .= "&#" . ord($rawemail[$i]) . ';';
@@ -285,7 +285,7 @@
       if (empty($focal_point)) {
         $focal_point = get_post_meta(get_the_id(), 'pzgp_focal_point', TRUE);
       }
-      $focal_point = (empty($focal_point) ? explode(',', pzarc_get_option('architect_focal_point_default','50,10')) : explode(',', $focal_point));
+      $focal_point = (empty($focal_point) ? explode(',', pzarc_get_option('architect_focal_point_default', '50,10')) : explode(',', $focal_point));
 
       if (!$thumb_id && $this->section['_panels_settings_use-embedded-images']) {
         //TODO: Change to more reliable check if image is in the content?
@@ -411,7 +411,7 @@
       if (empty($focal_point)) {
         $focal_point = get_post_meta(get_the_id(), 'pzgp_focal_point', TRUE);
       }
-      $focal_point = (empty($focal_point) ? explode(',', pzarc_get_option('architect_focal_point_default','50,10')) : explode(',', $focal_point));
+      $focal_point = (empty($focal_point) ? explode(',', pzarc_get_option('architect_focal_point_default', '50,10')) : explode(',', $focal_point));
 
       $showbgimage = (has_post_thumbnail() && $this->section['_panels_design_feature-location'] === 'fill' && ($this->section['_panels_design_components-position'] == 'top' || $this->section['_panels_design_components-position'] == 'left')) || ($this->section['_panels_design_feature-location'] === 'fill' && ($this->section['_panels_design_components-position'] == 'bottom' || $this->section['_panels_design_components-position'] == 'right'));
       // Need to setup for break points.
@@ -525,10 +525,27 @@
      */
     public function get_content(&$post) {
       /** CONTENT */
-      $thecontent            = get_the_content();
-      $additional_message=  do_shortcode(strip_tags($this->section['_panels_design_additional-message'], '<br><p><a><strong><em><ul><ol><li><pre><code><blockquote><h1><h2><h3><h4><h5><h6><img>'));
+      $thecontent = get_the_content();
 
-      $thecontent .= (!empty($this->section['_panels_design_additional-message']) ? '<p class="pzarc-additional-message" >' .$additional_message  . '</p>' : '');
+      // Insert shortcode if required
+      if (!empty($this->section['_panels_design_insert-content-shortcode'])) {
+        $thecontent      = wpautop($thecontent); // Add paragraph html
+        $pattern         = "/<p(.)*>.*?<\/p>/uiUm";
+        $paragraph_count = preg_match_all($pattern, $thecontent, $matches);
+        if (count($matches[0]) > 0 && !empty($this->section['_panels_design_insert-after-paragraph']) && $this->section['_panels_design_insert-after-paragraph'] > 0) {
+          $insert_after   = min($this->section['_panels_design_insert-after-paragraph'], $paragraph_count);
+          $insert_content = strip_tags($this->section['_panels_design_insert-content-shortcode'], '<br><p><a><strong><em><ul><ol><li><pre><code><blockquote><h1><h2><h3><h4><h5><h6><img>');
+          array_splice($matches[0], $insert_after, 0, '<p class="arc-inserted-content">' . $insert_content . '</p>');
+          $thecontent = implode('', $matches[0]);
+        }
+      }
+
+      // Append additional message
+      if (!empty($this->section['_panels_design_additional-message'])) {
+        $additional_message = strip_tags($this->section['_panels_design_additional-message'], '<br><p><a><strong><em><ul><ol><li><pre><code><blockquote><h1><h2><h3><h4><h5><h6><img>');
+        $thecontent         .= '<p class="pzarc-additional-message" >' . $additional_message . '</p>';
+      }
+
       $this->data['content'] = apply_filters('the_content', $thecontent);
     }
 
@@ -648,7 +665,7 @@
             $this->data['cfield'][$i]['value'] = '{{empty}}';
           }
           elseif ($this->section['_panels_design_cfield-' . $i . '-name'] === 'specific_code') {
-            $this->data['cfield'][$i]['value'] = strip_tags($this->section['_panels_design_cfield-' . $i . '-code'],'<br><p><a><strong><em><ul><ol><li><pre><code><blockquote><h1><h2><h3><h4><h5><h6><img>');
+            $this->data['cfield'][$i]['value'] = strip_tags($this->section['_panels_design_cfield-' . $i . '-code'], '<br><p><a><strong><em><ul><ol><li><pre><code><blockquote><h1><h2><h3><h4><h5><h6><img>');
           }
           else {
             $this->data['cfield'][$i]['value'] = (!empty($postmeta[$this->section['_panels_design_cfield-' . $i . '-name']]) ? $postmeta[$this->section['_panels_design_cfield-' . $i . '-name']][0] : NULL);
@@ -830,7 +847,7 @@
       $panel_def[$component] = str_replace('{{content}}', $this->data['content'], $panel_def[$component]);
       if ($this->section['_panels_design_feature-location'] === 'content-left' || $this->section['_panels_design_feature-location'] === 'content-right' && in_array('content', $this->section['_panels_design_feature-in'])) {
         if (!empty($this->data['image']['image'])) {
-          $selectors             = str_replace(array(',', '.', '  '), ' ', $this->_architect['architect_config_entry-image-selectors']);
+          $selectors = str_replace(array(',', '.', '  '), ' ', $this->_architect['architect_config_entry-image-selectors']);
           $image_def = str_replace('{{extensionclass}}', $selectors, $panel_def['image']);
 
           $panel_def[$component] = str_replace('{{image-in-content}}', $image_def, $panel_def[$component]);
@@ -894,7 +911,7 @@
       if ($this->section['_panels_design_feature-location'] === 'content-left' || $this->section['_panels_design_feature-location'] === 'content-right' && in_array('excerpt', $this->section['_panels_design_feature-in'])) {
         if (!empty($this->data['image']['image'])) {
 
-          $selectors             = str_replace(array(',', '.', '  '), ' ', $this->_architect['architect_config_entry-image-selectors']);
+          $selectors = str_replace(array(',', '.', '  '), ' ', $this->_architect['architect_config_entry-image-selectors']);
           $image_def = str_replace('{{extensionclass}}', $selectors, $panel_def['image']);
 
           $panel_def[$component] = str_replace('{{image-in-content}}', $image_def, $panel_def[$component]);
@@ -1346,7 +1363,7 @@
               $focal_point = get_post_meta($the_post->ID, 'pzgp_focal_point', TRUE);
             }
 
-            $focal_point = (empty($focal_point) ? explode(',', pzarc_get_option('architect_focal_point_default','50,10')) : explode(',', $focal_point));
+            $focal_point = (empty($focal_point) ? explode(',', pzarc_get_option('architect_focal_point_default', '50,10')) : explode(',', $focal_point));
             if (!$thumb_id && !empty($this->build->blueprint['section_object'][1]->section['section-panel-settings']['_panels_settings_use-embedded-images'])) {
               //TODO: Changed to more reliable check if image is in the content?
               preg_match("/(?<=wp-image-)(\\d)*/uimx", get_the_content(), $matches);
