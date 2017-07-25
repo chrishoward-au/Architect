@@ -202,8 +202,7 @@
    * @param null $tablet_bp
    * @param null $phone_bp
    */
-  function pzarchitect( $pzarc_blueprint = null, $pzarc_overrides = null, $tablet_bp = null, $phone_bp = null, $additional_overrides=null ) {
-    $pzarc_caller         = 'template_tag';
+  function pzarchitect( $pzarc_blueprint = null, $pzarc_overrides = null, $tablet_bp = null, $phone_bp = null, $additional_overrides=null, $pzarc_caller='template_tag' ) {
     $tag                  = null;
     do_action( 'arc_before_template_tag', $pzarc_blueprint, $pzarc_overrides, $pzarc_caller );
     do_action( 'arc_do_template_tag', $pzarc_blueprint, $pzarc_overrides, $pzarc_caller, $tag, $additional_overrides, $tablet_bp, $phone_bp );
