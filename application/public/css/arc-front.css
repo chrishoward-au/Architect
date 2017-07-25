@@ -520,7 +520,6 @@
     width: 15px;
     height: 15px;
     background: #999;
-    box-shadow: 0px 1px 2px #555 inset;
     cursor: pointer; }
     .pzarchitect .bullets .arc-slider-slide-nav-item.small {
       width: 12px !important;
@@ -542,8 +541,7 @@
   .pzarchitect .bullets.circle .arc-slider-slide-nav-item {
     border-radius: 15px; }
   .pzarchitect .bullets.square .arc-slider-slide-nav-item {
-    border-radius: 1px;
-    border-bottom: 1px solid #999; }
+    border-radius: 1px; }
   .pzarchitect .tabbed .arc-slider-slide-nav-item {
     cursor: pointer;
     box-sizing: border-box; }
