@@ -39,6 +39,13 @@
      * @param $is_shortcode
      */
     public function __construct($blueprint, $is_shortcode) {
+//      static $once_only=0;
+//      $once_only++;
+//      var_dump($once_only, $once_only>1);
+//      if ($once_only>1) {
+//        var_Dump($blueprint);
+//        exit("Fatal error: Architect called recursively");
+//      }
       echo '<div class="arc-wrapper">';
       // Might use this for transients to check last DB change
       //      global $wpdb;
@@ -131,7 +138,7 @@
 
     public function __destruct() {
       // TODO: Implement __destruct() method.
-      echo '</div>'; // End of the whole shebang
+      echo '</div><!-- End Arc wrapper -->'; // End of the whole shebang
     }
 
     /**
@@ -271,11 +278,13 @@
       }
 
       /** Set our original query back. */
-      wp_reset_postdata(); // Pretty sure this goes here... Not after the query reassignment
+//      wp_reset_postdata(); // Pretty sure this goes here... Not after the query reassignment
       $wp_query = NULL;
       $wp_query = $original_query;
+      wp_reset_postdata(); // Other themes add comments block if it's not here v1.10.0
+      // It also might need a conditional depending on depth Architect is used
 
-    }
+    } //build_blueprint
 
     /**
      * @param $bp_nav_type
@@ -285,8 +294,7 @@
      * @param $bp_transtype
      * @param $panel_class
      * @param $content_class
-     * @param $do_section_2
-     * @param $do_section_3
+     * @param $blueprint_type
      */
     private function render_this_architect_blueprint($bp_nav_type, $bp_nav_pos, $bp_shortname, $caller, $bp_transtype, $panel_class, $content_class, $blueprint_type) {
       // TODO: Show or hide blueprint if no content
@@ -450,14 +458,15 @@
 
       // Set posts to show
       $limited = (int)$this->build->blueprint['_blueprints_section-0-panels-limited'];
-      if (!$limited && !isset($_GET['fl_builder'])) {
+      if (!$limited && !FLBuilderModel::is_builder_active()) {
 //      if (!$limited) {
 
         $this->criteria['panels_to_show'] = -1;
         $this->criteria['nopaging']       = TRUE;
 
         // TODO: Fix this as anymore than 1 and it creates multiple rows in the Builder!
-      } elseif (isset($_GET['fl_builder'])) {
+	      // This is still a hack. It will still bollocks up onb the front end
+      } elseif (FLBuilderModel::is_builder_active() && (!$limited && $this->build->blueprint['_blueprints_content-source']==='defaults')) {
         $this->criteria['panels_to_show'] = '1';
         $this->criteria['nopaging']       = FALSE;
 
@@ -542,7 +551,7 @@
     }
 
     /**
-     * @return string
+     *
      */
     private function load_criteria() {
       $registry = arc_Registry::getInstance();
@@ -589,7 +598,8 @@
     private function use_default_query() {
       global $wp_query;
       $this->arc_query = $wp_query;
-//
+
+      //
 //      // This may not do anything since the query may not update!
 //      // need to set nopaging too
 //      if (!empty($this->build->blueprint[ '_blueprints_pagination' ])) {
@@ -613,6 +623,9 @@
 // Hook my above function to the pre_get_posts action
 
 
+    /**
+     * @return string
+     */
     private function get_blueprint_content_class() {
 
       //TODO: oops! Need to get default content type when defaults chosen.
