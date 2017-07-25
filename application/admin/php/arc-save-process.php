@@ -118,7 +118,8 @@
 
       // by this point, the $wp_filesystem global should be working, so let's use it to create a file
 
-      global $wp_filesystem;
+      global $wp_filesystem, $pzarc_css_success;
+      $pzarc_css_success = true;
 
       if (isset($pzarc_css_cache[ 'blueprints' ])) {
 
@@ -137,7 +138,8 @@
                   FS_CHMOD_FILE // predefined mode settings for WP files
               )
           ) {
-            echo '<p class="error message">Error saving css cache file for Blueprint '.$k.'! Please check the permissions on the WP Uploads folder.</p>';
+            echo '<p class="error message notice notice-error">Error saving css cache file for Blueprint '.$k.'! Please check the permissions on the WP Uploads folder.</p>';
+            $pzarc_css_success = false;
           }
         }
       }
