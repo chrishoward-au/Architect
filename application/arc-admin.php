@@ -328,12 +328,18 @@
 
       if (isset($_POST['rebuildarchitectcss']) && check_admin_referer('rebuild-architect-css-cache')) {
         require_once(PZARC_PLUGIN_APP_PATH . '/admin/php/arc-save-process.php');
+	      global $pzarc_css_success;
+	      $pzarc_css_success = true;
         save_arc_layouts('all', NULL, TRUE);
         pzarc_set_defaults();
         // Clear the registry of Blueprint usages
         delete_option('arc-blueprint-usage');
-        echo '<br><div id="message" class="updated"><p>' . __('Architect CSS cache has been rebuilt. Your site should look awesome again!', 'pzarchitect') . '</p>
-        <p>' . __('If your site is using a cache plugin or service, clear that cache too.', 'pzarchitect') . '</p></div>';
+        if ($pzarc_css_success) {
+	        echo '<br><div id="message" class="updated"><p>' . __( 'Architect CSS cache has been rebuilt. Your site should look awesome again!', 'pzarchitect' ) . '</p>
+        <p>' . __( 'If your site is using a cache plugin or service, clear that cache too.', 'pzarchitect' ) . '</p></div>';
+        } else {
+          // add a message
+        }
       }
 
       /**
