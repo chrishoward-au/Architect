@@ -319,11 +319,14 @@
        * Rebuild CSS
        */
       echo '
-						<h3>' . __('Rebuild Architect CSS cache', 'pzarchitect') . '</h3>
+						<h3>' . __('Clear Architect caches', 'pzarchitect') . '</h3>
 						<p>' . __('Sometimes the CSS cache file may not exist or may even become scrambled and layouts will not look right. If so, simply click the Rebuild button and it will be recreated. This also rebuilds the default settings cache. If the problem persists, contact Pizazz Support at <strong>support@pizazzwp.com</strong>.', 'pzarchitect') . '</p>
+    <p>' . __('If you update or change images in any posts,sometimes the image cache may get out-of-sync. In that case, you can refresh the thumbs image cache to ensure your site visitors are seeing the correct images.', 'pzarchitect') . '</p>
+
+    <p>' . __('Please note: Refreshing the cache causes no problems other than the next person who visits your site may have to wait a little longer as the cache images get recreated.', 'pzarchitect') . ' <strong>' . __('No images in any post will be affected', 'pzarchitect') . '</strong>. </p>
 						<form action="admin.php?page=pzarc_tools" method="post">';
       wp_nonce_field('rebuild-architect-css-cache');
-      echo '<button class="button-primary" style="min-width:100px;" type="submit" name="rebuildarchitectcss" value="' . __('Rebuild Architect CSS Cache') . '">' . __('Rebuild') . '  <span class="dashicons dashicons-admin-appearance" style="margin-left:1%;color:inherit;font-size:22px;vertical-align:text-bottom"></span></button>
+      echo '<button class="button-primary" style="min-width:100px;" type="submit" name="rebuildarchitectcss" value="' . __('Clear Architect Caches') . '">' . __('Clear') . '  <span class="dashicons dashicons-admin-appearance" style="margin-left:1%;color:inherit;font-size:22px;vertical-align:text-bottom"></span></button>
         </form>';
 
       if (isset($_POST['rebuildarchitectcss']) && check_admin_referer('rebuild-architect-css-cache')) {
@@ -332,38 +335,19 @@
 	      $pzarc_css_success = true;
         save_arc_layouts('all', NULL, TRUE);
         pzarc_set_defaults();
-        // Clear the registry of Blueprint usages
+	      bfi_flush_image_cache();
+	      delete_option('architect_custom_fields');
+	      // Clear the registry of Blueprint usages
         delete_option('arc-blueprint-usage');
         if ($pzarc_css_success) {
-	        echo '<br><div id="message" class="updated"><p>' . __( 'Architect CSS cache has been rebuilt. Your site should look awesome again!', 'pzarchitect' ) . '</p>
+	        echo '<br><div id="message" class="updated"><p>' . __( 'Architect caches have been cleared. Your site should look awesome again!', 'pzarchitect' ) . '</p>
+
         <p>' . __( 'If your site is using a cache plugin or service, clear that cache too.', 'pzarchitect' ) . '</p></div>';
         } else {
           // add a message
         }
       }
 
-      /**
-       * Clear image cache
-       */
-      echo '<hr style="margin-top:20px;border-color:#eee;border-style:solid;"/>';
-      if (function_exists('bfi_flush_image_cache')) {
-        echo '<h3>' . __('Clear Architect images cache', 'pzarchitect') . '</h3>
-
-    <p>' . __('If you update or change images in any posts,sometimes the image cache may get out-of-sync. In that case, you can refresh the thumbs image cache to ensure your site visitors are seeing the correct images.', 'pzarchitect') . '</p>
-
-    <p>' . __('Please note: Refreshing the cache causes no problems other than the next person who visits your site may have to wait a little longer as the cache images get recreated.', 'pzarchitect') . ' <strong>' . __('No images in any post will be affected', 'pzarchitect') . '</strong>. </p>
-
-    <form action="admin.php?page=pzarc_tools" method="post">';
-        wp_nonce_field('flush-thumb-cache');
-        echo '<button class="button-primary"  style="min-width:100px;" type="submit" name="flushbficache" value="' . __('Empty Architect image cache', 'pzarchitect') . '">' . __('Clear') . '  <span class="dashicons dashicons-images-alt2" style="margin-left:1%;color:inherit;font-size:22px;vertical-align:text-bottom"></span></button>
-    </form>
-    <hr style="margin-top:20px;border-color:#eee;border-style:solid;"/>';
-        if (isset($_POST['flushbficache']) && check_admin_referer('flush-thumb-cache')) {
-          bfi_flush_image_cache();
-          echo '<div id="message" class="updated"><p>' . __('Architect image cache cleared. It will be recreated next time someone vists your site.', 'pzarchitect') . '</p></div>';
-        }
-
-      }
       /**
        * Import presets
        */
