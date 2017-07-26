@@ -5151,7 +5151,7 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
                         //                lightbox     => 'callback',
                         //                'args'     => array( 'pzarc_get_custom_fields' ),
                         'options'  => $pzarc_custom_fields,
-                        'subtitle' => __('If a custom field is not shown in the dropdown, it is because it has no data yet.', 'pzarchitect'),
+                        'subtitle' => __('If a custom field is not shown in the dropdown, it is either because it has no data yet or the custom field list cache needs clearing. Go to Architect > Tools and clear the caches.', 'pzarchitect'),
 
                     ),
                     array(
