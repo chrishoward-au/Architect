@@ -97,6 +97,7 @@ TODO: Add Unsplash as a source for dummy photos
 TODO: Implement Freemius?
 TODO: Add a full backup option for Blueprints
 TODO: Add a backup and restore option for all settings
+TODO: Add wireframe view?
 
 == Changelog ==
 
@@ -104,28 +105,38 @@ TODO: Add a backup and restore option for all settings
 * If you have trouble upgrading, try deactivating and reactivating your licence
 
 = 1.10.0 =
-* ADDED: More extensive filtering overrides the the Beaver Architect module
-* ADDED: RSS Feed as a content source
-* ADDED: Option to use 'Specific Text, HTML or Shortcodes' as a custom field source
-* ADDED: Option to hide specific category names in meta field category name list
-* ADDED: Message field that can be displayed immediately below content.
-* ADDED: Simple demo mode that outlines Architect Blueprints. Add /?demo to the page URL.
-* ADDED: Message prompting crossgrade of Architect licence from Headway.
-* ADDED: Styling to Architect Beaver module
-* ADDED: Option to set and use a default Focal Point when no Focal Point set on an image
+Beaver Builder related enhancements:
+* ADDED: More extensive filtering overrides in the Beaver Architect module
+* ADDED: Extensive styling options to Architect Beaver module
 * ADDED: Blueprint type to dropdown selector in Widget and Beaver module Blueprint selector
-* ADDED: Option to name new Blueprints when importing
-* ADDED: Option to insert a shortcode (or basic HTML) after a specific paragraph in body content. Good for inserting advertising!
+* FIXED: Comments showing with Architect Beaver module when type is posts or page
+* REMOVED: Removed Architect page builder. Recommend to use Beaver instead!
 
-* CHANGED: Export a Blueprint automatically downloads to a file
-* CHANGED: Admin backgrounds are now just gradients rather than SVG to save space
-* CHANGED: Using the 'No field. Use prefix and suffix only' option for custom field source no longer requires the Link Field attribute enabled.
-* CHANGED: Tech support link to support email address
-* CHANGED: In Blueprint listings, now limited the "Used on" column to only show the first 5 instances
+Content related enhancements:
+* ADDED: RSS Feed as a content source. In Blueprints Source tab
+* ADDED: Option to set and use a default Focal Point when no Focal Point set on an image. In Architect > Options
+* ADDED: Option to use 'Specific Text, HTML or Shortcodes' as a custom field source. In Blueprints Custom Fields tab
+* ADDED: Option to hide specific category names in meta field category name list. In Blueprints Meta tab
+* ADDED: Message field that can be displayed immediately below content. In Blueprints Body/Excerpt tab
+* ADDED: Option to insert a shortcode (or basic HTML) after a specific paragraph in body content. Good for inserting advertising!  In Blueprints Body/Excerpt tab
+
+Miscellaneous enhancements:
+* ADDED: Shortcode [arc_hasmedia] Displays icons if post has media. Can be used in meta or custom fields display. Currently identifies galleries, videos, audio playlists and various document links
+* ADDED: Shortcode [arc_debug] Dumps the $wp_query variable and some Blueprint info
+* ADDED: Simple demo mode that outlines Architect Blueprints. Add /?demo to the page URL.
+* ADDED: Message on Help & Support screen prompting crossgrade of Architect licence from Headway.
+* ADDED: Option to name new Blueprints when importing
+
+* CHANGED: Export a Blueprint automatically downloads to a file now
+* CHANGED: Admin backgrounds are now just CSS gradients rather than SVG to save size in the zip
+* CHANGED: Using the "No field. Use prefix and suffix only" option for custom field source no longer requires the Link Field attribute enabled.
+* CHANGED: Tech support links to support email address now
+* CHANGED: In Blueprint listings, have now limited the "Used on" column to only show the first 5 instances
 * CHANGED: New paint job on the presets selector
 * CHANGED: Hover on panels designer is now blue toned
 * CHANGED: Updated help text on Help & Support screen
-* CHANGED: Flattened slider nav buttons
+* CHANGED: Flattened defaults for slider nav buttons
+* CHANGED: Combined Rebuild and clear image cache into one option for all caches. In Architect > Tools
 
 * FIXED: Filler images not working for Featured images
 * FIXED: Category and Tag exclusion only working when inclusion was set too
@@ -135,15 +146,13 @@ TODO: Add a backup and restore option for all settings
 * FIXED: Rebuilding cache was giving a success message even when it failed.
 
 * UPGRADED: Isotope to v3.0.4
+* UPGRADED: Mobile Detect to 2.8.5
 
 * REMOVED: Support contact form as no longer using Freshdesk for support
 * REMOVED: Support forum link as no longer using Freshdesk for support
-* REMOVED: Removed Architect page builder. Recommend to use Beaver instead!
+
 TODO Update tutes
-TODO: Fix comments showing with Arc module when type is posts or page
 TODO: Fix infinite loop when using Defaults in Blueprint in Builder
-TODO: Add wireframe option?
-TODO: Check cache clearing on install/update working
 
 = 1.9.9 = : 4 Apr 2017
 * FIXED: Redux 3.6.4 broke parts of the Blueprint designer

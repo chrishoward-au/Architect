@@ -16,6 +16,7 @@
 			add_shortcode( 'arcdummytext', array( $this, 'dummy_text' ) ); // A test shortcode
 			add_shortcode( 'arcpagetitle', array( $this, 'display_page_title' ) );
 			add_shortcode('arc_hasmedia',array($this,'has_media'));
+			add_shortcode('arc_debug',array($this,'arc_debug'));
 		}
 
 		function dummy_text() {
@@ -27,6 +28,19 @@
 			$htag = ! empty( $atts['tag'] ) ? $atts['tag'] : 'p';
 
 			return pzarc_display_page_title( $this->blueprint, $_architect_options, $htag );
+		}
+
+		function arc_debug($atts=null,$content=null){
+			global $wp_query;
+			ob_start();
+			echo '<h3>Architect debug info</h3>';
+			echo '<p><strong>Blueprint: </strong>'.$this->blueprint['_blueprints_short-name'].'</p>';
+			echo '<p><strong>Layout: </strong>'.$this->blueprint['_blueprints_section-0-layout-mode'].'</p>';
+			echo '<p><strong>Source: </strong>'.$this->blueprint['_blueprints_content-source'].'</p>';
+			var_dump($wp_query);
+			$arc_buffer = ob_get_contents();
+			ob_end_clean();
+			return $arc_buffer;
 		}
 
 		/**

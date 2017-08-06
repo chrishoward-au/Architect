@@ -4,7 +4,7 @@
     Plugin Name: Architect content display framework
     Plugin URI: http://architect4wp.com
     Description: Architect is a framework for creating and managing custom content layouts. <strong>Build your own slider, grid, tabbed, gallery, masonry, accordion or tabular layouts with ANY content source</strong>. Display using shortcodes, widgets, Blox blocks, Beaver Builder modules, WP action hooks and template tags, or override the WP Gallery shortcode layout with your own.
-    Version: 1.10.0 b7
+    Version: 1.10.0 b9
     Author: pizazzwp
     Author URI: http://pizazzwp.com
     License: GNU GPL v2
