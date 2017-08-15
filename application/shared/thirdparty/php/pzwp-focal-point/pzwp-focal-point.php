@@ -11,7 +11,7 @@
     add_action('admin_enqueue_scripts', 'pzwp_admin_enqueue_fp');
     function pzwp_admin_enqueue_fp()
     {
-     wp_enqueue_script('pzwp-focal-point-js',plugin_dir_url(__FILE__) .'/pzwp-focal-point.js',array('jquery'),true);
+     wp_enqueue_script('pzwp-focal-point-js',plugin_dir_url(__FILE__) .'/pzwp-focal-point.js',array('jquery'),PZARC_VERSION,true);
       wp_enqueue_style('pzwp-focal-point-css',plugin_dir_url(__FILE__) .'/pzwp-focal-point.css');
     }
 

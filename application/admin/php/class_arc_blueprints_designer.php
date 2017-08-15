@@ -69,8 +69,11 @@
 			pzdb( 'end: ' . __CLASS__ . '\\' . __FUNCTION__ );
 		}
 
+		/**
+		 *
+		 */
 		public function admin_init() {
-//      add_filter('_arc_add_tax_titles','pzarc_get_tax_titles',10,1);
+	//      add_filter('_arc_add_tax_titles','pzarc_get_tax_titles',10,1);
 		}
 
 		/**
@@ -92,11 +95,11 @@
 
 				wp_enqueue_style( 'pzarc-admin-panels-css', PZARC_PLUGIN_APP_URL . '/admin/css/arc-admin-panels.css' );
 
-				wp_enqueue_script( 'jquery-pzarc-metaboxes-panels', PZARC_PLUGIN_APP_URL . '/admin/js/arc-metaboxes-panels.js', array( 'jquery' ), NULL, TRUE );
+				wp_enqueue_script( 'jquery-pzarc-metaboxes-panels', PZARC_PLUGIN_APP_URL . '/admin/js/arc-metaboxes-panels.js', array( 'jquery' ), PZARC_VERSION, TRUE );
 
 				wp_enqueue_style( 'pzarc-admin-blueprints-css', PZARC_PLUGIN_APP_URL . '/admin/css/arc-admin-blueprints.css' );
 
-				wp_enqueue_script( 'jquery-pzarc-metaboxes-blueprints', PZARC_PLUGIN_APP_URL . '/admin/js/arc-metaboxes-blueprints.js', array( 'jquery' ), TRUE );
+				wp_enqueue_script( 'jquery-pzarc-metaboxes-blueprints', PZARC_PLUGIN_APP_URL . '/admin/js/arc-metaboxes-blueprints.js', array( 'jquery' ), PZARC_VERSION,TRUE );
 
 
 			} elseif ( 'edit-arc-blueprints' === $screen->id ) {
@@ -119,6 +122,11 @@
 			$this->screen = get_current_screen();
 		}
 
+		/**
+		 * @param $content
+		 *
+		 * @return mixed
+		 */
 		function blueprints_description( $content ) {
 			pzdb( __FUNCTION__ );
 			// todo: MAKE SURE ALL PRESETS USE DUMMY CONTENT AND NO FILTERS
@@ -297,12 +305,13 @@
 		}
 
 
+
 		/**
-		 * [create_blueprints_post_type description]
-		 * @return [type] [description]
+		 * @param      $metaboxes
+		 * @param bool $defaults_only
+		 *
+		 * @return array
 		 */
-
-
 		function pzarc_mb_blueprint_tabs( $metaboxes, $defaults_only = FALSE ) {
 			pzdb( __FUNCTION__ );
 			$prefix   = '_blueprint_tabs_'; // declare prefix

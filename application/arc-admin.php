@@ -153,7 +153,6 @@
      */
     function admin_enqueue($hook) {
       wp_enqueue_style('pzarc-admin-styles');
-//    wp_enqueue_style('pzarc-jqueryui-css');
 
       wp_register_script('jquery-cookie', PZARC_PLUGIN_APP_URL . 'shared/thirdparty/js/jquery-cookie/jquery.cookie.js', array('jquery'), PZARC_VERSION, TRUE);
       wp_register_script('jquery-pageguide', PZARC_PLUGIN_APP_URL . 'shared/thirdparty/js/pageguide/pageguide.min.js', array('jquery'), PZARC_VERSION, TRUE);
@@ -161,35 +160,18 @@
 
       $screen = get_current_screen();
       if (strpos(('X' . $screen->id), 'arc-') > 0) {
-//			wp_enqueue_script( 'jquery-ui-tabs' );
-//			wp_enqueue_script( 'jquery-ui-button' );
-
-//      wp_enqueue_script('jquerui');
         wp_enqueue_style('dashicons');
+        wp_enqueue_script('jquery-pzarc-metaboxes', PZARC_PLUGIN_APP_URL . '/admin/js/arc-metaboxes.js', array('jquery'), PZARC_VERSION,TRUE);
 
-//      wp_enqueue_style('pzarc-block-css', PZARC_PLUGIN_URL . '/admin/css/arc-admin.css');
-
-        // We shouldn't need this anymore
-//        wp_enqueue_style('pzarc-jqueryui-css', PZARC_PLUGIN_APP_URL . '/shared/thirdparty/js/jquery-ui-1.10.2.custom/css/pz_architect/jquery-ui-1.10.2.custom.min.css');
-
-        wp_enqueue_script('jquery-pzarc-metaboxes', PZARC_PLUGIN_APP_URL . '/admin/js/arc-metaboxes.js', array('jquery'), TRUE);
-//        wp_enqueue_script( 'js-validator-arc', PZARC_PLUGIN_APP_URL . '/shared/thirdparty/js/jQuery-Form-Validator/form-validator/jquery.form-validator.min.js', array( 'jquery' ), true );
-
-
-        // We shouldn't need this anymore
-
-//        wp_enqueue_script('pzarc-validation-engine-js-lang', PZARC_PLUGIN_APP_URL . '/shared/thirdparty/js/jQuery-Validation-Engine/js/languages/jquery.validationEngine-en.js', array('jquery'));
-//        wp_enqueue_script('pzarc-validation-engine-js', PZARC_PLUGIN_APP_URL . '/shared/thirdparty/js/jQuery-Validation-Engine/js/jquery.validationEngine.js', array('jquery'));
-//        wp_enqueue_style('pzarc-validation-engine-css', PZARC_PLUGIN_APP_URL . '/shared/thirdparty/js/jQuery-Validation-Engine/css/validationEngine.jquery.css');
         add_filter('post_row_actions', 'pzarc_duplicate_post_link', 10, 2);
         add_filter('page_row_actions', 'pzarc_duplicate_post_link', 10, 2);
         add_filter('post_row_actions', 'pzarc_export_preset_link', 10, 3);
         add_filter('page_row_actions', 'pzarc_export_preset_link', 10, 3);
       }
       if ('architect-lite_page_pzarc_support' === $screen->id || 'architect_page_pzarc_support' === $screen->id || 'edit-arc-blueprints' === $screen->id) {
-        wp_enqueue_script('js-classlist', PZARC_PLUGIN_APP_URL . '/shared/thirdparty/js/tabby/dist/js/classList.min.js', array('jquery'), TRUE);
-        wp_enqueue_script('js-tabby', PZARC_PLUGIN_APP_URL . '/shared/thirdparty/js/tabby/dist/js/tabby.min.js', array('jquery'), TRUE);
-        wp_enqueue_script('js-tabby-arc', PZARC_PLUGIN_APP_URL . '/admin/js/arc-tabby.js', array('jquery'), TRUE);
+        wp_enqueue_script('js-classlist', PZARC_PLUGIN_APP_URL . '/shared/thirdparty/js/tabby/dist/js/classList.min.js', array('jquery'), PZARC_VERSION,TRUE);
+        wp_enqueue_script('js-tabby', PZARC_PLUGIN_APP_URL . '/shared/thirdparty/js/tabby/dist/js/tabby.min.js', array('jquery'), PZARC_VERSION,TRUE);
+        wp_enqueue_script('js-tabby-arc', PZARC_PLUGIN_APP_URL . '/admin/js/arc-tabby.js', array('jquery'), PZARC_VERSION,TRUE);
         wp_enqueue_style('css-tabby', PZARC_PLUGIN_APP_URL . '/shared/thirdparty/js/tabby/dist/css/tabby.min.css');
       }
 
@@ -255,7 +237,7 @@
         ));
 
         global $submenu;
-        // Shift those last  to the top
+        // Shift Help to the top
         array_unshift($submenu['pzarc'], array_pop($submenu['pzarc']));
       }
 
@@ -426,9 +408,9 @@
         <div class="icon32" id="icon-users">
             <br>
         </div>
-        <div class="pzarc-about-box" >
-
+        <h1 style="font-size:2rem;margin-bottom: 20px;">Architect content display framework</h1>
             <h2>' . $title . '</h2>
+        <p></p>
             <div class="pzarc-help-section">
                         <a class="pzarc-button-help" href="http://architect4wp.com/codex-listings/" target="_blank">
                         <span class="dashicons dashicons-book"></span>
@@ -446,6 +428,9 @@
                         <span class="dashicons" style="font-size:1.3em">$</span>
                         Affiliates</a>
                         </div>
+        <p></p>
+        <div class="pzarc-about-box" >
+
 
             ';
 
@@ -1007,16 +992,9 @@ add_action(\'init\',\'gs_init\');
 			<!--Display Plugin Icon, Header, and Description-->
 			<div class = "icon32" id = "icon-users"><br></div>
         <div class="pzarc-about-box" >
-
+      <h1>Architect content display framework</h1>
 			<h2>' . $title . '</h2>
 			<h3>Architect is installed but not usable accessible WP Admin until Redux is installed/activated.</h3>
-        <script type="text/javascript" src="http://assets.freshdesk.com/widget/freshwidget.js"></script>
-            <style type="text/css" media="screen, projection">
-      @import url(http://assets.freshdesk.com/widget/freshwidget.css);
-            </style>
-            <iframe class="freshwidget-embedded-form" id="freshwidget-embedded-form" src="https://pizazzwp.freshdesk.com/widgets/feedback_widget/new?&widgetType=embedded&formTitle=Submit+a+help+request&screenshot=no&searchArea=no" scrolling="no" height="850px" width="90%" frameborder="0"  style="margin:20px 10px 10px 40px;background:#eee;overflow-y: auto;">
-            </iframe>
-
 			</div></div>';
 
   }
@@ -1271,10 +1249,10 @@ add_action(\'init\',\'gs_init\');
             ?>
 
             <div class="notice notice-error is-dismissible" style="background:#fee;">
-              <p><?php echo __('To use Architect with all features enabled, you will need to increase PHP\'s default limit on input variables.<br>', 'pzarchitect');
+              <p><?php echo __('To use Architect with all features enabled, you will need to increase PHP\'s default limit on input variables.  Recommended is 2000.<br>', 'pzarchitect');
                   if (($max_su_input_vars > 0 && (int)$max_su_input_vars < 2000) || ($max_sur_input_vars > 0 && (int)$max_sur_input_vars < 2000)) {
                     _e('Your current settings are:<br>', 'pzarchitect');
-                    echo __('PHP Max Input Vars: ', 'pzarchitect') . $max_input_vars . "<br>";
+                    echo __('PHP Max Input Vars: ', 'pzarchitect') . $max_input_vars . '<br>';
                     echo __('Suhosin Max Input Vars: ', 'pzarchitect') . $max_su_input_vars . "<br>";
                     echo __('Suhosin Request Max Input Vars: ', 'pzarchitect') . $max_sur_input_vars . "<br>";
                     _e('Please follow WooCommerce\'s instructions here.', 'pzarchitect');

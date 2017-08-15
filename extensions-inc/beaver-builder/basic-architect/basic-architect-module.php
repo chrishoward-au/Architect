@@ -75,6 +75,11 @@
                           'default' => '',
                           'options' => $blueprint_list,
                       ),
+                      'blueprint_title'   => array(
+                        'type'    => 'text',
+                        'label'   => __('Override Blueprint display title', 'pzarchitect'),
+                        'default' => '',
+                      ),
                   ),
               ),
           ),

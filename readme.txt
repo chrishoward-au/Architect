@@ -98,6 +98,10 @@ TODO: Implement Freemius?
 TODO: Add a full backup option for Blueprints
 TODO: Add a backup and restore option for all settings
 TODO: Add wireframe view?
+TODO: Add Jetpack sitemap support https://developer.jetpack.com/2016/01/28/sitemaps-add-custom-post-type-support/
+TODO: Transition to Codestar framework (less than 1MB footprint!)
+TODO Update tutes
+
 
 == Changelog ==
 
@@ -109,6 +113,7 @@ Beaver Builder related enhancements:
 * ADDED: More extensive filtering overrides in the Beaver Architect module
 * ADDED: Extensive styling options to Architect Beaver module
 * ADDED: Blueprint type to dropdown selector in Widget and Beaver module Blueprint selector
+* ADDED: Option to change Blueprint display title to Architect Beaver module
 * FIXED: Comments showing with Architect Beaver module when type is posts or page
 * REMOVED: Removed Architect page builder. Recommend to use Beaver instead!
 
@@ -144,15 +149,13 @@ Miscellaneous enhancements:
 * FIXED: Incorrect email url for support
 * FIXED: Importing Blueprint failed to go to new Blueprint screen. Now provides a link.
 * FIXED: Rebuilding cache was giving a success message even when it failed.
+* FIXED: Blueprint "none" not found error on mobile devices
 
 * UPGRADED: Isotope to v3.0.4
 * UPGRADED: Mobile Detect to 2.8.5
 
 * REMOVED: Support contact form as no longer using Freshdesk for support
 * REMOVED: Support forum link as no longer using Freshdesk for support
-
-TODO Update tutes
-TODO: Fix infinite loop when using Defaults in Blueprint in Builder
 
 = 1.9.9 = : 4 Apr 2017
 * FIXED: Redux 3.6.4 broke parts of the Blueprint designer

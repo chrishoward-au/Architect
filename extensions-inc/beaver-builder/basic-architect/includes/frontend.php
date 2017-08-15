@@ -30,6 +30,6 @@
 
     // pzarchitect($pzarc_blueprint = null, $pzarc_overrides = null, $tablet_bp = null, $phone_bp = null)
 
-    pzarchitect($settings->blueprint_default, $pzarc_overrides, $settings->blueprint_tablet, $settings->blueprint_phone, NULL, 'beaver_module_basic');
+    pzarchitect($settings->blueprint_default, $pzarc_overrides, $settings->blueprint_tablet, $settings->blueprint_phone, $additional_overrides, 'beaver_module_basic');
   ?>
 </div>

@@ -19,7 +19,8 @@
       if (!get_user_meta($user_id, 'pzarc_ignore_notice_v11000')) {
         echo '<div class="message updated highlight arc-updates"><p>';
         printf(__('<h2>Architect v1.10.0</h2>
-        <h3>Architect 1.10 makes things easier</h3>
+        <h3>Architect 1.10 more power and more Beaver</h3>
+        <p>Welcome to Architect 1.10.0 release. There are a number of significant updates in this version that I hope you will like, some of the key highlights include:</p>
         <p><strong>Also, if you haven\'t already, do remember to checkout my <a href="http://pizazzwp.com/codex/about-codex-documentation-system/" target="_blank">Codex plugin</a>. Codex is for making beautiful step-based documentation.</strong></p>
 
                         <div class="pzarc-help-section">

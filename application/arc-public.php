@@ -25,11 +25,11 @@
 
   add_theme_support( 'infinite-scroll', array(
     'type'           => 'scroll',
-    'footer_widgets' => false,
+    'footer_widgets' => FALSE,
     'container'      => 'pzarc-sections_blog-grid',
-    'wrapper'        => false,
+    'wrapper'        => FALSE,
     'render'         => 'pzarc',
-    'posts_per_page' => false,
+    'posts_per_page' => FALSE,
   ) );
 
   // How do we do this only on pages needing it?
@@ -44,7 +44,7 @@
     }
     $pzarc_css_cache = maybe_unserialize( get_option( 'pzarc_css' ) );
     // No point in proceeding if no blueprints or no panels
-    if ( empty( $pzarc_css_cache[ 'blueprints' ] ) ) {
+    if ( empty( $pzarc_css_cache['blueprints'] ) ) {
       return;
     }
     // Register all the scripts in case it solves the late loading!
@@ -57,7 +57,7 @@
 //    }
 
 
-    wp_register_style( 'css-hw-float-fix', PZARC_PLUGIN_APP_URL . '/public/css/arc-hw-fix.css', false, PZARC_VERSION );
+    wp_register_style( 'css-hw-float-fix', PZARC_PLUGIN_APP_URL . '/public/css/arc-hw-fix.css', FALSE, PZARC_VERSION );
 
     // TODO: These seem to be loading late so loading in footer - even the CSS!
     // Retina Js
@@ -71,26 +71,26 @@
 //    wp_register_script('js-waypoints', PZARC_PLUGIN_APP_URL . '/public/js/waypoints/jquery.waypoints.min.js');
 
     // Magnific
-    wp_register_script( 'js-magnific-arc', PZARC_PLUGIN_APP_URL . '/public/js/arc-front-magnific.js', array( 'jquery' ), PZARC_VERSION, true );
-    wp_register_script( 'js-magnific', PZARC_PLUGIN_APP_URL . '/public/js/Magnific-Popup/jquery.magnific-popup.min.js', array( 'jquery' ), PZARC_VERSION, true );
-    wp_register_style( 'css-magnific', PZARC_PLUGIN_APP_URL . '/public/js/Magnific-Popup/magnific-popup.css', false, PZARC_VERSION );
+    wp_register_script( 'js-magnific-arc', PZARC_PLUGIN_APP_URL . '/public/js/arc-front-magnific.js', array( 'jquery' ), PZARC_VERSION, TRUE );
+    wp_register_script( 'js-magnific', PZARC_PLUGIN_APP_URL . '/public/js/Magnific-Popup/jquery.magnific-popup.min.js', array( 'jquery' ), PZARC_VERSION, TRUE );
+    wp_register_style( 'css-magnific', PZARC_PLUGIN_APP_URL . '/public/js/Magnific-Popup/magnific-popup.css', FALSE, PZARC_VERSION );
 
     //icomoon
-    wp_register_style( 'css-icomoon-arrows', PZARC_PLUGIN_APP_URL . '/shared/assets/fonts/icomoon/im-style.css', false, PZARC_VERSION );
+    wp_register_style( 'css-icomoon-arrows', PZARC_PLUGIN_APP_URL . '/shared/assets/fonts/icomoon/im-style.css', FALSE, PZARC_VERSION );
 
 // Percentify Margins
     //  wp_enqueue_script( 'js-arc-percentifymargins', PZARC_PLUGIN_APP_URL . '/public/js/marginsPercentify.js', array( 'jquery' ), null, true );
 
     // DataTables
-    wp_register_script( 'js-datatables', PZARC_PLUGIN_APP_URL . '/public/js/DataTables/media/js/jquery.dataTables.min.js', array( 'jquery' ), PZARC_VERSION, true );
-    wp_register_style( 'css-datatables', PZARC_PLUGIN_APP_URL . '/public/js/DataTables/media/css/jquery.dataTables.min.css', false, PZARC_VERSION );
+    wp_register_script( 'js-datatables', PZARC_PLUGIN_APP_URL . '/public/js/DataTables/media/js/jquery.dataTables.min.js', array( 'jquery' ), PZARC_VERSION, TRUE );
+    wp_register_style( 'css-datatables', PZARC_PLUGIN_APP_URL . '/public/js/DataTables/media/css/jquery.dataTables.min.css', FALSE, PZARC_VERSION );
 
     // jQuery Collapse
-    wp_register_script( 'js-jquery-collapse', PZARC_PLUGIN_APP_URL . '/public/js/jQuery-Collapse/src/jquery.collapse.js', array( 'jquery' ), PZARC_VERSION, true );
+    wp_register_script( 'js-jquery-collapse', PZARC_PLUGIN_APP_URL . '/public/js/jQuery-Collapse/src/jquery.collapse.js', array( 'jquery' ), PZARC_VERSION, TRUE );
 
     // hints.css
-    wp_register_style( 'css-hints', 'https://cdnjs.cloudflare.com/ajax/libs/hint.css/2.5.0/hint.base.min.css', false, PZARC_VERSION );
-    if (isset($_GET['demo']) || isset($_GET['debug'])) {
+    wp_register_style( 'css-hints', 'https://cdnjs.cloudflare.com/ajax/libs/hint.css/2.5.0/hint.base.min.css', FALSE, PZARC_VERSION );
+    if ( isset( $_GET['demo'] ) || isset( $_GET['debug'] ) ) {
       wp_enqueue_style( 'css-hints' );
     }
 
@@ -120,10 +120,10 @@
     global $_architect_options;
 
     // Just incase that didn't work... A problem from days of past
-    if ( ! isset( $GLOBALS[ '_architect_options' ] ) ) {
-      $GLOBALS[ '_architect_options' ] = get_option( '_architect_options', array() );
+    if ( ! isset( $GLOBALS['_architect_options'] ) ) {
+      $GLOBALS['_architect_options'] = get_option( '_architect_options', array() );
     }
-    if ( ! empty( $_architect_options[ 'architect_replace_wpgalleries' ] ) ) {
+    if ( ! empty( $_architect_options['architect_replace_wpgalleries'] ) ) {
       remove_shortcode( 'gallery' );
       add_shortcode( 'gallery', 'pzarc_shortcode' );
 
@@ -137,40 +137,40 @@
    * Shortcode
    *
    ***********************/
-  function pzarc_shortcode( $atts, $content = null, $tag = null ) {
+  function pzarc_shortcode( $atts, $content = NULL, $tag = NULL ) {
 //    if (is_admin()){
 //      return '<img src="'.PZARC_PLUGIN_URL.'/assets/architect-logo-final-logo-only.svg" width=32 height=32>';
 //    }
     $pzarc_caller    = 'shortcode';
     $pzarc_blueprint = '';
-    $pzarc_overrides = null;
+    $pzarc_overrides = NULL;
 
-    if ( ! empty( $atts[ 'blueprint' ] ) ) {
+    if ( ! empty( $atts['blueprint'] ) ) {
 
-      $pzarc_blueprint = $atts[ 'blueprint' ];
+      $pzarc_blueprint = $atts['blueprint'];
 
-    } elseif ( ! empty( $atts[ 0 ] ) ) {
-      $pzarc_blueprint = $atts[ 0 ];
+    } elseif ( ! empty( $atts[0] ) ) {
+      $pzarc_blueprint = $atts[0];
     } elseif ( $tag === 'gallery' ) {
       global $_architect_options;
-      $pzarc_blueprint = $_architect_options[ 'architect_replace_wpgalleries' ];
+      $pzarc_blueprint = $_architect_options['architect_replace_wpgalleries'];
     }
 
     $pzarc_overrides = array();
-    if ( isset( $atts[ 'ids' ] ) ) {
-      $pzarc_overrides[ 'ids' ] = $atts[ 'ids' ];
+    if ( isset( $atts['ids'] ) ) {
+      $pzarc_overrides['ids'] = $atts['ids'];
     }
-    if ( isset( $atts[ 'tax' ] ) ) {
-      $pzarc_overrides[ 'tax' ] = $atts[ 'tax' ];
+    if ( isset( $atts['tax'] ) ) {
+      $pzarc_overrides['tax'] = $atts['tax'];
     }
-    if ( isset( $atts[ 'terms' ] ) ) {
-      $pzarc_overrides[ 'terms' ] = $atts[ 'terms' ];
+    if ( isset( $atts['terms'] ) ) {
+      $pzarc_overrides['terms'] = $atts['terms'];
     }
 
-    $tablet_bp            = isset( $atts[ 'tablet' ] ) ? $atts[ 'tablet' ] : null;
-    $phone_bp             = isset( $atts[ 'phone' ] ) ? $atts[ 'phone' ] : null;
-    $tag                  = null;
-    $additional_overrides = null;
+    $tablet_bp            = isset( $atts['tablet'] ) ? $atts['tablet'] : NULL;
+    $phone_bp             = isset( $atts['phone'] ) ? $atts['phone'] : NULL;
+    $tag                  = NULL;
+    $additional_overrides = NULL;
 
 //    $pzarc_overrides = array( 'ids' => $pzarc_ids, 'tax' => $pzarc_tax, 'terms' => $pzarc_terms );
 
@@ -197,13 +197,14 @@
 
   /**
    * Template tag
+   *
    * @param null $pzarc_blueprint
    * @param null $pzarc_overrides
    * @param null $tablet_bp
    * @param null $phone_bp
    */
-  function pzarchitect( $pzarc_blueprint = null, $pzarc_overrides = null, $tablet_bp = null, $phone_bp = null, $additional_overrides=null, $pzarc_caller='template_tag' ) {
-    $tag                  = null;
+  function pzarchitect( $pzarc_blueprint = NULL, $pzarc_overrides = NULL, $tablet_bp = NULL, $phone_bp = NULL, $additional_overrides = NULL, $pzarc_caller = 'template_tag' ) {
+    $tag = NULL;
     do_action( 'arc_before_template_tag', $pzarc_blueprint, $pzarc_overrides, $pzarc_caller );
     do_action( 'arc_do_template_tag', $pzarc_blueprint, $pzarc_overrides, $pzarc_caller, $tag, $additional_overrides, $tablet_bp, $phone_bp );
     do_action( 'arc_after_template_tag', $pzarc_blueprint, $pzarc_overrides, $pzarc_caller );
@@ -217,15 +218,15 @@
    * No longer used. Use Beaver
    *
    ***********************/
-  function pzarc_pagebuilder( $pzarc_blueprint = null ) {
+  function pzarc_pagebuilder( $pzarc_blueprint = NULL ) {
     $pzarc_caller         = 'pagebuilder';
-    $tag                  = null;
-    $additional_overrides = null;
-    $tablet_bp            = null;
-    $phone_bp             = null;
+    $tag                  = NULL;
+    $additional_overrides = NULL;
+    $tablet_bp            = NULL;
+    $phone_bp             = NULL;
 //TODO: Need to fix this up so it uses these right
 //    do_action('arc_before_pagebuilder', $pzarc_blueprint, $pzarc_overrides, $pzarc_caller);
-    do_action( 'arc_do_pagebuilder', $pzarc_blueprint, null, $pzarc_caller, $tag, $additional_overrides, $tablet_bp, $phone_bp );
+    do_action( 'arc_do_pagebuilder', $pzarc_blueprint, NULL, $pzarc_caller, $tag, $additional_overrides, $tablet_bp, $phone_bp );
 //    do_action('arc_after_pagebuilder', $pzarc_blueprint, $pzarc_overrides, $pzarc_caller);
   }
 
@@ -234,15 +235,16 @@
    *
    * Blueprint main display function
    * Overrides is a list of ids
- * @param null $blueprint
- * @param null $overrides - IDs
- * @param null $caller
- * @param null $tag
- * @param null $additional_overrides
- * @param null $tablet_bp
- * @param null $phone_bp
- */
-  function pzarc( $blueprint = null, $overrides = null, $caller = null, $tag = null, $additional_overrides = null, $tablet_bp = null, $phone_bp = null ) {
+   *
+   * @param null $blueprint
+   * @param null $overrides - IDs
+   * @param null $caller
+   * @param null $tag
+   * @param null $additional_overrides
+   * @param null $tablet_bp
+   * @param null $phone_bp
+   */
+  function pzarc( $blueprint = NULL, $overrides = NULL, $caller = NULL, $tag = NULL, $additional_overrides = NULL, $tablet_bp = NULL, $phone_bp = NULL ) {
     pzdb( 'start pzarc' );
 
     //  var_dump(func_get_args());
@@ -253,15 +255,16 @@
     $detect = new Mobile_Detect;
     $device = 'not set';
 
-    switch ( true ) {
+    // Switch Blueprint if available.
+    switch ( TRUE ) {
       case ( $detect->isMobile() && ! $detect->isTablet() ):
         // Phone
-        $blueprint = ! empty( $phone_bp ) ? $phone_bp : $blueprint;
+        $blueprint = ( ! empty( $phone_bp ) && $phone_bp !== 'none' ) ? $phone_bp : $blueprint;
         $device    = 'phone';
         break;
       case ( $detect->isTablet() ):
         // Tablet
-        $blueprint = ! empty( $tablet_bp ) ? $tablet_bp : $blueprint;
+        $blueprint = ( ! empty( $tablet_bp ) && $tablet_bp !== 'none' ) ? $tablet_bp : $blueprint;
         $device    = 'tablet';
         break;
       default:
@@ -284,7 +287,7 @@
     } else {
       $bp_uses[ $pzarc_page_id . $blueprint ] = array(
         'id' => $pzarc_page_id,
-        'bp' => $blueprint
+        'bp' => $blueprint,
       );
       update_option( 'arc-blueprint-usage', maybe_serialize( $bp_uses ) );
 
@@ -292,7 +295,7 @@
       $filename      = PZARC_CACHE_URL . '/pzarc_blueprint_' . $blueprint . '.css';
       $filename_path = PZARC_CACHE_PATH . '/pzarc_blueprint_' . $blueprint . '.css';
       if ( file_exists( $filename_path ) ) {
-        wp_enqueue_style( 'pzarc_css_blueprint_' . $blueprint, $filename, false, filemtime( $filename_path ) );
+        wp_enqueue_style( 'pzarc_css_blueprint_' . $blueprint, $filename, FALSE, filemtime( $filename_path ) );
       } else {
         //how do we tell the developer without an horrid message on the front end?
       }
@@ -301,8 +304,8 @@
     global $in_arc;
     $in_arc = 'yes';
     // Just incase that didn't work... A problem from days of past
-    if ( ! isset( $GLOBALS[ '_architect_options' ] ) ) {
-      $GLOBALS[ '_architect_options' ] = get_option( '_architect_options', array() );
+    if ( ! isset( $GLOBALS['_architect_options'] ) ) {
+      $GLOBALS['_architect_options'] = get_option( '_architect_options', array() );
     }
 
 
@@ -314,7 +317,7 @@
     $is_shortcode = ( $caller == 'shortcode' );
 
 
-    if ( empty( $blueprint ) && ( $is_shortcode && ( empty( $_architect_options[ 'architect_default_shortcode_blueprint' ] ) ) && empty( $_architect_options[ 'architect_replace_wpgalleries' ] ) ) ) {
+    if ( empty( $blueprint ) && ( $is_shortcode && ( empty( $_architect_options['architect_default_shortcode_blueprint'] ) ) && empty( $_architect_options['architect_replace_wpgalleries'] ) ) ) {
 
       // TODO: Should we make this use a set of defaults. prob an excerpt grid
       echo '<p class="message-warning">Shortcode has no Blueprint specified.</p>';
@@ -324,9 +327,9 @@
       if ( empty( $blueprint ) && $is_shortcode ) {
 
         if ( $tag === 'gallery' ) {
-          $blueprint = ( $_architect_options[ 'architect_replace_wpgalleries' ] ? $_architect_options[ 'architect_replace_wpgalleries' ] : $_architect_options[ 'architect_default_shortcode_blueprint' ] );
+          $blueprint = ( $_architect_options['architect_replace_wpgalleries'] ? $_architect_options['architect_replace_wpgalleries'] : $_architect_options['architect_default_shortcode_blueprint'] );
         } else {
-          $blueprint = $_architect_options[ 'architect_default_shortcode_blueprint' ];
+          $blueprint = $_architect_options['architect_default_shortcode_blueprint'];
         }
       }
 
@@ -339,18 +342,18 @@
       $architect = new ArchitectPublic( $blueprint, $is_shortcode );
 //var_dump($architect);
       // If no errors, let's go!
-      if ( empty( $architect->build->blueprint[ 'err_msg' ] ) ) {
+      if ( empty( $architect->build->blueprint['err_msg'] ) ) {
 
-        if ( $architect->build->blueprint[ '_blueprints_section-0-layout-mode' ] === 'slider' || $architect->build->blueprint[ '_blueprints_section-0-layout-mode' ] === 'tabbed' ) {
+        if ( $architect->build->blueprint['_blueprints_section-0-layout-mode'] === 'slider' || $architect->build->blueprint['_blueprints_section-0-layout-mode'] === 'tabbed' ) {
 
-          $slider_engine = empty( $architect->build->blueprint[ '_blueprints_slider-engine' ] ) || $architect->build->blueprint[ '_blueprints_slider-engine' ] === 'slick15' ? 'slick' : $architect->build->blueprint[ '_blueprints_slider-engine' ];
+          $slider_engine = empty( $architect->build->blueprint['_blueprints_slider-engine'] ) || $architect->build->blueprint['_blueprints_slider-engine'] === 'slick15' ? 'slick' : $architect->build->blueprint['_blueprints_slider-engine'];
 
           $registry     = arc_Registry::getInstance();
           $slider_types = (array) $registry->get( 'slider_types' );
           foreach ( $slider_types as $st ) {
 
-            if ( $st[ 'name' ] === $slider_engine ) {
-              require_once( $st[ 'public' ] );
+            if ( $st['name'] === $slider_engine ) {
+              require_once( $st['public'] );
               break;
             }
           }
@@ -365,9 +368,9 @@
 
       // Cleanup
       // If Blueprint is none, shortname is not set
-      if ( isset( $architect->build->blueprint[ '_blueprints_short-name' ] ) ) {
-        remove_all_actions( 'arc_top_left_navigation_' . $architect->build->blueprint[ '_blueprints_short-name' ] );
-        remove_all_actions( 'arc_bottom_right_navigation_' . $architect->build->blueprint[ '_blueprints_short-name' ] );
+      if ( isset( $architect->build->blueprint['_blueprints_short-name'] ) ) {
+        remove_all_actions( 'arc_top_left_navigation_' . $architect->build->blueprint['_blueprints_short-name'] );
+        remove_all_actions( 'arc_bottom_right_navigation_' . $architect->build->blueprint['_blueprints_short-name'] );
       }
 
       unset ( $architect );
@@ -396,7 +399,7 @@
   //add_filter('arc_comments', 'pzarc_get_comments');
   function pzarc_get_comments( $pzarc_content ) {
     ob_start();
-    comments_template( null, null );
+    comments_template( NULL, NULL );
     $pzarc_comments = ob_get_contents();
     ob_end_flush();
 
@@ -414,7 +417,7 @@
     if ( ! in_array( 'pzarchitect', $classes ) ) {
       $classes[] = 'pzarchitect';
     }
-    if (isset($_GET['demo']) || isset($_GET['debug'])) {
+    if ( isset( $_GET['demo'] ) || isset( $_GET['debug'] ) ) {
       $classes[] = 'architect-demo-mode';
     }
     $classes[] = 'theme-' . get_stylesheet();
