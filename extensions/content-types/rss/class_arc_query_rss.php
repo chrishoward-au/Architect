@@ -51,7 +51,6 @@
         }
         if ($ok) {
           $thumb = ($enclosure = $aitem->get_enclosure()) ? $enclosure->get_thumbnail() : '';
-
           $rss_array[] = array(
               'id'        => $inc++,
               'title'     => $aitem->get_title(),
@@ -59,7 +58,7 @@
               'date'      => $aitem->get_date($settings['rss-feed-date-format']),
               'tags'      => $aitem->get_categories(),
               'content'   => empty($settings['rss-feed-hide-content']) ? $aitem->get_content() : '',
-              'thumb'     => $thumb,
+              'image'     => $thumb,
           );
         }
       }

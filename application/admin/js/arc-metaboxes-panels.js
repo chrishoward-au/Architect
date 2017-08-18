@@ -24,7 +24,7 @@ jQuery( document ).ready( function ()
     var showing = "";
     jQuery.each( cell_layout, function ( index, value )
     {
-      console.log(value);
+      //console.log(value);
       if ( value.show )
       {
         index = ('image' === index) ? 'feature' : index;

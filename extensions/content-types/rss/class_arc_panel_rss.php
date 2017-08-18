@@ -76,13 +76,58 @@
 //    }
 //  }
     }
-    public function get_image(&$post) {
-      // TODO
-    }
+	  function get_image(&$post)
+	  {
+		  $width  = (int)str_replace('px', '', $this->section[ '_panels_design_image-max-dimensions' ][ 'width' ]);
+		  $height = (int)str_replace('px', '', $this->section[ '_panels_design_image-max-dimensions' ][ 'height' ]);
+		  $max_wh = $this->build->blueprint['section_object'][1]->section['section-panel-settings']['_panels_design_image-max-dimensions'];
+		  switch ($this->build->blueprint['section_object'][1]->section['section-panel-settings'][ '_panels_settings_image-focal-point' ]) {
+			  case 'scale':
+				  $wh = 'width="' . $max_wh[ 'width' ] . '"';
+				  break;
+			  case 'scale_height':
+				  $wh = 'height="' . $max_wh[ 'height' ] . '"';
+				  break;
+			  default:
+			  case 'respect':
+			  case 'centre':
+			  case 'none':
+				  $wh = 'width="' . $max_wh[ 'width' ] . '"';
+				  $wh .= ' height="' . $max_wh[ 'height' ] . '"';
+				  break;
+		  }
+		  $this->data[ 'image' ][ 'image' ]         = '<img '.$wh.' src="' . bfi_thumb($post[ 'image' ], array('width'  => $width,
+		                                                                                                   'height' => $height)) . '" style="max-height:'.$max_wh['height'].'";>';
+		  $this->data[ 'image' ][ 'original' ][ 0 ] = $post[ 'image' ];
 
-    public function get_bgimage(&$post) {
-      // TODO
-    }
+	  }
+
+	  function get_bgimage(&$post)
+	  {
+		  $width  = (int)str_replace('px', '', $this->section[ '_panels_design_image-max-dimensions' ][ 'width' ]);
+		  $height = (int)str_replace('px', '', $this->section[ '_panels_design_image-max-dimensions' ][ 'height' ]);
+		  $max_wh = $this->build->blueprint['section_object'][1]->section['section-panel-settings']['_panels_design_image-max-dimensions'];
+		  switch ($this->build->blueprint['section_object'][1]->section['section-panel-settings'][ '_panels_settings_image-focal-point' ]) {
+			  case 'scale':
+				  $wh = 'width="' . $max_wh[ 'width' ] . '"';
+				  break;
+			  case 'scale_height':
+				  $wh = 'height="' . $max_wh[ 'height' ] . '"';
+				  break;
+			  default:
+			  case 'respect':
+			  case 'centre':
+			  case 'none':
+				  $wh = 'width="' . $max_wh[ 'width' ] . '"';
+				  $wh .= ' height="' . $max_wh[ 'height' ] . '"';
+				  break;
+		  }
+		  $this->data[ 'bgimage' ][ 'thumb' ]       = '<img ' . $wh . ' src="' . bfi_thumb($post[ 'image' ], array('width'  => $width,
+		                                                                                                               'height' => $height,
+		                                                                                                               'crop' =>'50x50x'.$this->build->blueprint['section_object'][1]->section['section-panel-settings'][ '_panels_settings_image-focal-point' ]
+			  )) . '">';
+		  $this->data[ 'image' ][ 'original' ][ 0 ] = $post[ 'image' ];
+	  }
 
     public function get_miscellanary(&$post) {
       global $_architect_options;

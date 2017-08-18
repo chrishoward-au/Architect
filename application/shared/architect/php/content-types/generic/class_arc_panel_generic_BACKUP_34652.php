@@ -298,12 +298,6 @@
       }
       $this->data['image']['id'] = $thumb_id;
 
-      //        if (false)
-      //        {
-      //          $post_image = ($this->panel_info[ '_panels_design_thumb-position' ] != 'none') ? job_resize($thumb_src, $params, PZARC_CACHE_PATH, PZARC_CACHE_URL) : null;
-      //        }
-      // BFI
-
       $width  = (int)str_replace('px', '', $this->section['_panels_design_image-max-dimensions']['width']);
       $height = (int)str_replace('px', '', $this->section['_panels_design_image-max-dimensions']['height']);
 
@@ -318,6 +312,7 @@
 
       ));
 
+      // TODO: Add image sizes for each device
       $this->data['image']['original'] = wp_get_attachment_image_src($thumb_id, 'full');
       preg_match("/(?<=src\\=\")(.)*(?=\" )/uiUs", $this->data['image']['image'], $results);
       if (isset($results[0]) && !empty($this->section['_panels_settings_use-retina-images']) && function_exists('bfi_thumb')) {
@@ -379,10 +374,10 @@
       // TODO: Add retina for this maybe. Tho client side retina may fix anyway
       if ((!$thumb_id || empty($this->data['image']['image'])) && 'specific' === $this->section['_panels_design_use-filler-image-source'] && !empty($this->section['_panels_design_use-filler-image-source-specific']['url'])) {
         if (function_exists('bfi_thumb')) {
-          $imageURL = bfi_thumb($this->section['_panels_design_use-filler-image-source-specific']['url'], array(
-              'width'  => $width,
-              'height' => $height,
-          ));
+	        $imageURL = bfi_thumb($this->section['_panels_design_use-filler-image-source-specific']['url'], array(
+		        'width'  => $width,
+		        'height' => $height,
+	        ));
         }
         else {
           $imageURL = $this->section['_panels_design_use-filler-image-source-specific']['url'];

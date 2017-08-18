@@ -401,7 +401,7 @@
 
       echo '<div class = "wrap">
      <script>
-          tabby.init();
+      //    tabby.init();
       </script>
 
   			<!--Display Plugin Icon, Header, and Description-->
@@ -410,7 +410,9 @@
         </div>
         <h1 style="font-size:2rem;margin-bottom: 20px;">Architect content display framework</h1>
             <h2>' . $title . '</h2>
-        <p></p>
+        <p>ADD A SPIEL HERE</p>
+        <p>ADD A SPIEL HERE</p>
+        <p>ADD A SPIEL HERE</p>
             <div class="pzarc-help-section">
                         <a class="pzarc-button-help" href="http://architect4wp.com/codex-listings/" target="_blank">
                         <span class="dashicons dashicons-book"></span>
@@ -454,7 +456,8 @@
         echo '<h3 style="color:#0074A2">Architect Lite</h3>
         <p class="arc-important" style="font-weight:bold;">You are running Architect without activating a licence, therefore it is in Lite mode. Cool features you are missing out on are: Animations and access to all content types, including Galleries, Snippets, NextGen, Testimonials and custom post types</p>
         <p style="font-weight:bold;">To get all the extra goodness of Architect, you can purchase it from the <a href="http://shop.pizazzwp.com/downloads/architect/" target="_blank">PizazzWP Shop</a></p>
-</div></div>';
+        </div>
+        </div>';
       }
       echo ' <div class="tabby tabs">
                 <button class="tabby-quick first active" data-tab="#quick">' . __('Getting started', 'pzarchitect') . '</button>
@@ -462,280 +465,22 @@
                 <button class="tabby-latest" data-tab="#latest">' . __('Latest news', 'pzarchitect') . '</button>
                 <button class="tabby-help" data-tab="#help">' . __('Support', 'pzarchitect') . '</button>
                 <button class="tabby-shout" data-tab="#shout">' . __('Shoutouts', 'pzarchitect') . '</button>
-            </div>
-            <div class="tabby tabs-content">
+                <button class="tabby-changes" data-tab="#changes">' . __('Changelog', 'pzarchitect') . '</button>
+            </div>';
 
-                <div class="tabs-pane active" id="quick">
-                <div class="arc-info-boxes">
-                <h2>Quick start</h2>
-                <div class="arc-info col1">
+          include_once('admin/parts/admin-tabs-pane-about.php');
+          include_once('admin/parts/admin-tabs-pane-usage.php');
+          include_once('admin/parts/admin-tabs-pane-news.php');
+          include_once('admin/parts/admin-tabs-pane-support.php');
+          include_once('admin/parts/admin-tabs-pane-shoutout.php');
+          include_once('admin/parts/admin-tabs-pane-changes.php');
 
-                    <ol style="list-style-type:lower-roman">
-                        <li>' . __('From the <em>Architect</em> > <em>Blueprints</em> listing, click the button that says <em>Create a new Blueprint from a Preset design</em>', 'pzarchitect') . '</li>
-                        <li>' . __('Browse the various Presets and select one to use', 'pzarchitect') . '</li>
-                        <li>' . __('To create a new Blueprint with the Preset\'s inbuilt styles, click <em>Use styled</em>', 'pzarchitect') . '</li>
-                        <li>' . __('To create a new Blueprint without any inbuilt styles, click <em>Use unstyled</em>. Note, the Blueprint when dispalyed will inherit some styling from your theme.', 'pzarchitect') . '</li>
-                        <li>' . __('Change the <em>Title</em> and <em>Blueprint Short name</em> to whatever is suitable', 'pzarchitect') . '</li>
-                        <li>' . __('Click <em>Update</em> to save.', 'pzarchitect') . '</li>
-                        <li>' . __('Within a WordPress page or post, add the shortcode <strong>[architect yourblueprint]</strong> or <strong>[architect blueprint="yourblueprint"]</strong> where <em>yourblueprint</em> is the <em>Shortname</em> you gave the Blueprint.', 'pzarchitect') . '</li>
-                        <li>' . __('Click <em>Update</em> to save and visit that page on your site to see your awesome Architect Blueprint displayed.', 'pzarchitect') . '</li>
-                    </ol>
-                    </div>
-                  </div>
-                    <h2>' . __('Overview') . '</h2>
-                    <div class="arc-info-boxes">
-                    <div class="arc-info col2"><h3><span class="dashicons dashicons-editor-help"></span>Help & Support</h3>
-                    <p>This page! Provides a brief Quick start guide, an overview of the Architect menus and:<ul>
-                    <li>Usage instructions for displaying your Blueprints</li>
-                    <li>A form for submitting a tech support request</li>
-                    <li>and most importantly, a shout out to all the third party code that make Architect great.</li></p>
-                    </div>
-                    <div class="arc-info col2"><h3><span class="dashicons dashicons-welcome-widgets-menus"></span>Blueprints</h3>
-                    <p>Blueprints is where you create and manage the content layouts.</p>
-                    <p> These can take any of the six basic forms: Grid, Slider, Tabbed, Tabular, Masonry and Accordion.</p>
-                    <p>Blueprints can be displayed using Widgets; Shortcodes; Headway blocks; Blox blocks; Template tags; Action Hooks; or the Architect Beaver Builder module</p>
-                    </div>
-                    <div class="arc-info col2"><h3><span class="dashicons dashicons-hammer"></span>Tools</h3>
-                    <p>The Tools menu provides methods for clearing the Architect CSS cache and the Architect image cache.</p>
-                    <p>If you change the Focal Point of an image, you will need to clear the Architect image cache.</p>
-                    <p>If you have a caching plugin installed and clear either of these caches, you will still need to clear it too.</p>
-                    </div>
-                    <div class="arc-info col2"><h3><span class="dashicons dashicons-admin-settings"></span>Options</h3>
-                    <p>Options contains a lot of useful settings for controlling the behaviour of Architect.</p>
-                    <p> This includes, setting Responsive breakpoints, default for shortcodes and other modifications to Architect\'s behaviour.</p>
-                    </div>
-                    <div class="arc-info col2"><h3><span class="dashicons dashicons-admin-appearance"></span>Styling Defaults</h3>
-                    <p>Styling Defaults are very useful. Set these before you get started making Blueprints from scratch to save time setting styling for every Blueprint. </p>
-                    </div>
-                    <div class="arc-info col2"><h3><span class="dashicons dashicons-migrate"></span>Actions Editor</h3>
-                    <p>If you know the names of the action hooks in your theme, the Actions Editor allows you to hook into them without any coding.</p>
-                    </div>
-                    </div>
-                </div>
-
-
-                <div class="tabs-pane " id="how">
-                    <h2>' . __('Usage') . '</h2>
-                    <div class="arc-info-boxes">
-                    <div class="arc-info col1">
-                      <h3>' . __('Shortcode', 'pzarchitect') . '</h3>
-                      <p>' . __('For example, using shortcodes, you can use any of the following formats:', 'pzarchitect') . '</p>
-                      <p><strong>[architect ' . __('blog-page-layout') . ']</strong></p>
-                      <p><strong>[architect blueprint="' . __('blog-page-layout') . '"]</strong></p>
-                      <p><strong>[architect blueprint="' . __('thumb-gallery') . '" ids="321,456,987,123,654,789"]</strong></p>
-                      <p>Since version 1.2, you can now specify Blueprints to show on phones and/or tablets. For eaxmple:</p>
-                      <p><strong>[architect' . __('blog-page-layout') . '  phone="' . __('blog-page-layout-phone') . '"  tablet="' . __('blog-page-layout-tablet') . '" ]</strong></p>
-
-                      <p>' . __('<em>ids</em> are the specific post, page etc IDs and are used to override the defined selection for the Blueprint', 'pzarchitect') . '</p>
-                    </div>
-
-
-                    <div class="arc-info col1">
-                    <h3>' . __('Template tag', 'pzarchitect') . '</h3>
-                    <p>' . __('Template tags are inserted in your page templates and the first parameter is the Blueprint short name, and the optional second one is a list of IDs to override the defaults.', 'pzarchitect') . '</p>
-                    <p><strong>pzarchitect(\'' . __('blog-page-layout') . '\')</strong></p>
-                    <p><strong>pzarchitect(\'' . __('thumb-gallery') . '\', \'321,456,987,123,654,789\')</strong></p>
-                    </div>
-
-
-                    <div class="arc-info col1">
-                    <h3>' . __('Widget', 'pzarchitect') . '</h3>
-                    Add the Architect widgets through the <em>WP</em> > <em>Appearance</em> > <em>Widgets</em> screen
-                    </div>
-
-
-                    <div class="arc-info col1">
-                    <h3>' . __('Headway Block', 'pzarchitect') . '</h3>
-                    Add the Architect Headway blocks in the <em>Headway Visual Editor</em>
-                    </div>
-
-                    <div class="arc-info col1">
-                    <h3>' . __('Blox Block', 'pzarchitect') . '</h3>
-                    Add the Architect Blox blocks in the <em>Blox Visual Editor</em>
-                    </div>
-
-                    <div class="arc-info col1">
-                    <h3>' . __('Action Hooks', 'pzarchitect') . '</h3>
-                    <p>If your theme had action hooks, you can hook specific Blueprints to them in your functions.php with the following base code:</p>
-                        <pre>new showBlueprint(’action’, ’blueprint’, ’pageids’);</pre>
-    <p><em>action</em> = Action hook to hook into</p>
-    <p><em>blueprint</em> = Blueprint short name to display</p>
-    <p><em>pageids</em> = Override IDs</p>
-                        <p>Here is a a more extensive example that would work with Genesis (if you had those named Blueprints):</p>
-<pre>function gs_init(){
-  if (class_exists(\'showBlueprint\')) {
-    new showBlueprint(\'genesis_before_header\',\'featured-posts-2x4\',\'home\');
-    new showBlueprint(\'genesis_after_header\',\'basic-grid-2x3\',\'home\');
-  }
-}
-add_action(\'init\',\'gs_init\');
-</pre>
-
-                    </div>
-
-
-                    <div class="arc-info col1">
-                    <h3>' . __('Actions Editor', 'pzarchitect') . '</h3>
-                    <p>The Actions Editor is in the <em>Architect</em> > <em>Actions Editor</em> menu and is a non-coding way to do the same thing as the Action Hooks do.</p>
-                    </div>
-
-
-                    <div class="arc-info col1">
-                    <h3>' . __('WP Gallery Shortcode Override', 'pzarchitect') . '</h3>
-                    <p>An option in <em>Architect</em> > <em>Options</em> lets you set an override for all usages of the WP Gallery shortcode with a Blueprint of your own design. The only condition is the Blueprint must be set to use <em>Galleries</em> as the content source.</p>
-                    <p>If you want to change individual <em>WP Gallery</em> shortcodes, switch to Text mode in the post editor, and replace the the word <em>gallery</em> in the short code with <em>architect</em> followed by the Blueprint short name. Keep the IDs.</p>
-                    <p>e.g. <strong>[gallery ids="11,222,33,44,555"]</strong> you would change to <strong>[architect myblueprint ids="11,222,33,44,555"]</strong> where <em>myblueprint</em> is the <em>Shortname</em> of you Blueprint.</em></p>
-                    </div>
-
-
-                    <div class="arc-info col1">
-                    <h3>' . __('Beaver Builder', 'pzarchitect') . '</h3>
-                      <p>In the Beaver Builder page builder, drag and drop the Architect module to your page.</p>
-                    </div>
-                </div>
-                </div>
-
-
-                <div class="tabs-pane " id="latest">
-                  <h2>' . __('Latest News') . '</h2>
-                  <div class="arc-info-boxes">
-                    <div class="arc-info col1">';
-      include_once(ABSPATH . WPINC . '/feed.php');
-
-      //      add_filter( 'wp_feed_cache_transient_lifetime' , 'return_10' );
-      $rss = fetch_feed('http://pizazzwp.com/category/architect/feed');
-      //      remove_filter( 'wp_feed_cache_transient_lifetime' , 'return_10' );
-      //      var_dump($rss);
-      if (!is_wp_error($rss))  // Checks that the object is created correctly
-        // Figure out how many total items there are, but limit it to 5.
-      {
-        $maxitems = $rss->get_item_quantity(5);
-
-        // Build an array of all the items, starting with element 0 (first element).
-        $rss_items = $rss->get_items(0, $maxitems);
-
-
-        echo '<div class="postbox pzwp_blog" style="width:68%;float:left;">
-                                      <h3 class="handle" style="line-height:30px;padding-left:10px;">Latest Architect News</h3>
-                                      <ul class="inside">';
-        if ($maxitems == 0) {
-          echo '<li>No items.</li>';
-        }
-        else // Loop through each feed item and display each item as a hyperlink.
-        {
-          foreach ($rss_items as $item) :
-            echo '<li>
-                                  <h4 style="font-size:15px;"><a href=' . esc_url($item->get_permalink()) . '
-                                                                 title=' . esc_html($item->get_title()) . '
-                                                                 target=_blank>
-                                      ' . esc_html($item->get_title()) . '</a></h4>
-
-                                  <p style="line-height:0;font-style:italic">' . $item->get_date('j F Y') . '</p>
-
-                                  <p>' . $item->get_description() . '<a
-                                      href="' . esc_url($item->get_permalink()) . '" target=_blank>
-                                      Continue reading</a></p>
-                                </li>';
-          endforeach;
-        }
-
-        echo '     </ul>
-                      </div>';
-      }
-      else {
-        echo "There was a problem accessing the news feed. As WP caches feeds for 12 hours, you won't be able to check again for a while.";
-      }
-
-      echo '</div>
-                  </div>
-                </div>
-
-
-                <div class="tabs-pane " id="help">
-                    <h2>' . __('Support') . '</h2>
-                    <div class="arc-info-boxes">
-                    <div class="arc-info col1">
-                    <h4>' . __('Currently installed version') . ': ' . PZARC_VERSION . '</h4>';
-      if (!$lite) {
-        echo '<p>You can download this version anytime directly from: <a href="https://s3.amazonaws.com/341public/LATEST/Architect/pizazzwp-architect-' . str_replace('.', '', PZARC_VERSION) . '.zip">Version ' . PZARC_VERSION . '</a></p>';
-      }
-      echo '<p>' . __('For more detailed help, visit', 'pzarchitect') . ' <a href="http://architect4wp.com/codex-listings" target="_blank" class="arc-codex">' . __('Architect documentation at architect4wp.com', 'pzarchitect') . '</a></p>
-                        <p>' . __('For <strong>technical support</strong>, email us at', 'pzarchitect') . ' <a href="mailto:support@pizazzwp.com" target="_blank" class="arc-codex">' . __('support@pizazzwp.com', 'pzarchitect') . '</a></p>
-                    <h3>' . __('Things to try first', 'pzarchitect') . '</h3>
-                    <ul>
-                  	<li>If updates are not showing, try looking in Dashboard > Updates. If they still don\'t show, try deactivating and reactivating the Architect licence and trying again.</li>
-                    <li>' . __('If Blueprints are not displaying as expected, please try emptying your WP cache if you are using one and then the Architect cache (under <em>Architect</em> > <em>Tools</em>)', 'pzarchitect') . '</li>
-                    <li>' . __('If things just aren\'t working, e.g. nothing displays, the page is broken - then try deactivating all other plugins. If that fixes things, reactivate one at a time until you identify the conflict, then let us know what the plugin is.', 'pzarchitect') . '</li>
-                    </ul>
-                    </div>
-                    </div>';
-      echo '                </div>
-
-                <div class="tabs-pane " id="shout">
-                    <h2>' . __('Shoutouts', 'pzarchitect') . '</h2>
-                                        <div class="arc-info-boxes">
-                    <div class="arc-info col1">
-                    <h3>Code</h3>
-                    <p>' . __('A lot of the magic in Architect is powered by third-party code libraries who deserve much credit for the awesomeness they bring to Architect:', 'pzarchitect') . '</p>
-                    <ul class="shoutout">
-                        <li><a href="http://reduxframework.com" target=_blank alt="Redux Options Framework">Redux Options Framework</a>
-                        </li>
-                        <li><a href="https://github.com/tommcfarlin/WordPress-Plugin-Boilerplate" target="_blank">Tom McPharlin\'s WP Plugin Boilerplate</a>
-                        </li>
-                        <li><a href="http://kenwheeler.github.io/slick/" target="_blank">Slick JS</a>
-                        </li>
-                        <li><a href="http://bgrins.github.io/spectrum/" target="_blank">Spectrum JS</a>
-                        </li>
-                        <li><a href="http://www.datatables.net/" target="_blank">DataTables JS</a>
-                        </li>
-                        <li><a href="http://isotope.metafizzy.co/" target="_blank">Isotope JS</a>
-                        </li>
-                        <li><a href="http://imagesloaded.desandro.com/" target="_blank">imagesLoaded</a>
-                        </li>
-                        <li><a href="http://dimsemenov.com/plugins/magnific-popup/" target="_blank">Magnific JS</a>
-                        </li>
-                        <li><a href="http://jqueryui.com/" target="_blank">jQueryUI</a>
-                        </li>
-                        <li><a href="http://webcloud.se/jQuery-Collapse/" target="_blank">jQuery Collapse</a>
-                        </li>
-                        <li><a href="https://github.com/fzaninotto/Faker" target="_blank">PHP Faker</a>
-                        </li>
-                        <li><a href="http://tinsology.net/scripts/php-lorem-ipsum-generator/" target="_blank">PHP Lorem Ipsum</a>
-                        </li>
-                        <li><a href="https://github.com/bfintal/bfi_thumb" target="_blank">BFI Thumbs (modded)</a>
-                        </li>
-                        <li><a href="http://tracelytics.github.io/pageguide/" target="_blank">PageGuide</a>
-                        </li>
-                        <li><a href="https://github.com/carhartl/jquery-cookie" target="_blank">jQuery Cookie</a>
-                        </li>
-                        <li><a href="http://www.wpexplorer.com/author/harri/" target="_blank">Page template tutorial on WP Explorer by Harri Bell-Thomas which made the Builder possible.</a>
-                        </li>
-                        <li><a href="http://jquery.eisbehr.de/lazy/" target="_blank">Lazy</a> This is used to lazy load images in the Preset Selector.
-                        </li>
-                        <li><a href="http://mobiledetect.net/" target="_blank">Mobile Detect</a>
-                        </li>
-                        <li><a href="https://github.com/davedonaldson/WordPress-SysInfo" target="_blank">WordPress SysInfo</a>
-                        </li>
-
-                    </ul>
-                    <!--
-                    <h3>Tireless beta testers</h3>
-                    <p>Thank you to all the beta testers. Some went way above and beyond so deserve special mention:</p>
-                    <ul class=""shoutout">
-                    <li>Jon Mather</li>
-                    <li>Frank Gomez</li>
-                    <li>Clay Griffiths</li>
-                    <li>Gerard Godin</li>
-                    </ul
-                    -->
-                </div>
-                </div>
+echo'
                 </div>
 
             </div>
 
 
-        </div>
 
 
       </div>';

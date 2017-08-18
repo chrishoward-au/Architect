@@ -24,7 +24,7 @@
 				add_action( 'admin_enqueue_scripts', array( $this, 'content_blueprints_admin_enqueue', ) );
 				add_filter( 'manage_arc-blueprints_posts_columns', array( $this, 'add_blueprint_columns', ) );
 				add_action( 'manage_arc-blueprints_posts_custom_column', array( $this, 'add_blueprint_column_content', ), 10, 2 );
-        add_filter( 'views_edit-arc-blueprints', array( $this, 'blueprints_description', ) );
+				add_filter( 'views_edit-arc-blueprints', array( $this, 'blueprints_description', ) );
 
 				add_action( "redux/metaboxes/$this->redux_opt_name/boxes", array( $this, 'pzarc_mb_blueprint_tabs', ), 10, 1 );
 				add_action( "redux/metaboxes/$this->redux_opt_name/boxes", array( $this, 'pzarc_mb_blueprint_general_settings', ), 10, 1 );
@@ -73,7 +73,7 @@
 		 *
 		 */
 		public function admin_init() {
-	//      add_filter('_arc_add_tax_titles','pzarc_get_tax_titles',10,1);
+			//      add_filter('_arc_add_tax_titles','pzarc_get_tax_titles',10,1);
 		}
 
 		/**
@@ -99,18 +99,15 @@
 
 				wp_enqueue_style( 'pzarc-admin-blueprints-css', PZARC_PLUGIN_APP_URL . '/admin/css/arc-admin-blueprints.css' );
 
-				wp_enqueue_script( 'jquery-pzarc-metaboxes-blueprints', PZARC_PLUGIN_APP_URL . '/admin/js/arc-metaboxes-blueprints.js', array( 'jquery' ), PZARC_VERSION,TRUE );
+				wp_enqueue_script( 'jquery-pzarc-metaboxes-blueprints', PZARC_PLUGIN_APP_URL . '/admin/js/arc-metaboxes-blueprints.js', array( 'jquery' ), PZARC_VERSION, TRUE );
 
 
 			} elseif ( 'edit-arc-blueprints' === $screen->id ) {
 //        require_once( PZARC_DOCUMENTATION_PATH.PZARC_LANGUAGE . '/blueprints-listing-pageguide.php');
 				require_once PZARC_PLUGIN_PATH . 'presets/presets.php';
-				wp_enqueue_script( 'jquery-pzarc-blueprints-presets', PZARC_PLUGIN_APP_URL . '/admin/js/arc-blueprints-presets.js', array(
-					'jquery',
-					'jquery-ui-draggable',
-				), TRUE );
+				wp_enqueue_script( 'jquery-pzarc-blueprints-presets', PZARC_PLUGIN_APP_URL . '/admin/js/arc-blueprints-presets.js', array( 'jquery', 'jquery-ui-draggable', ), PZARC_VERSION, TRUE );
 //        wp_enqueue_script('jquery-echo-js', PZARC_PLUGIN_APP_URL . '/admin/js/echo.js', array('jquery'), true);
-				wp_enqueue_script( 'jquery-lazy', PZARC_PLUGIN_APP_URL . '/admin/js/jquery.lazy.min.js', array( 'jquery' ), TRUE );
+				wp_enqueue_script( 'jquery-lazy', PZARC_PLUGIN_APP_URL . '/admin/js/jquery.lazy.min.js', array( 'jquery' ), PZARC_VERSION, TRUE );
 
 			}
 		}
@@ -268,19 +265,24 @@
 				case 'used-on':
 					if ( is_array( $bp_uses ) ) {
 						$i = 1;
+						echo '<div class="arc-used-on" >';
 						foreach ( $bp_uses as $k => $v ) {
 							if ( ! empty( $post_meta['_blueprints_short-name'][0] ) && $v['bp'] === $post_meta['_blueprints_short-name'][0] ) {
 								$uo_post = get_post( $v['id'] );
-								echo ucwords( $uo_post->post_type ) . ' : ' . $uo_post->post_title . '<br>';
-								$i ++;
+								if ( $uo_post->post_type != 'arc-blueprints' ) {
+									$odd_even = $i % 2 == 0 ? 'even' : 'odd';
+									echo '<p class="rows ' . $odd_even . '">' . ucwords( $uo_post->post_type ) . ' : ' . $uo_post->post_title . '</p>';
+									$i ++;
+								}
 							}
-							if ( $i > 5 ) {
+							if ( $i > 15 ) {
 								if ( $i < count( $bp_uses ) ) {
 									echo __( '... and more', 'pzarchitect' );
 								}
 								break;
 							}
 						}
+						echo '</div>';
 					}
 					break;
 				case 'layout-type':
@@ -303,7 +305,6 @@
 					break;
 			}
 		}
-
 
 
 		/**
@@ -2823,6 +2824,17 @@
 				'icon_class' => 'icon-large',
 				'icon'       => 'el-icon-file',
 				'fields'     => array(
+//					array( 'title'=>__('Retrieve from','pzarchitect'),
+//					       'id'=>'_blueprints_source-retrieve-from',
+//					       'type'=>'button_set',
+//					       'options'=> array(
+//					       	'local'=>__('Local','pzarchitect'),
+//					       	'remotewp'=>__('Remote WP','pzarchitect')
+//					       	'remote'=>__('Remote','pzarchitect')
+//					       ),
+//					       'subtitle'=>__('This is just here to tease you at the moment! It does nothing. Yet... This will require api keys','pzarchitect'),
+//					       'default'=>'local'
+//					),
 					array(
 						'title'    => __( 'Content source', 'pzarchitect' ),
 						'id'       => '_blueprints_content-source',
@@ -3704,7 +3716,8 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
 						'title'    => __( 'Wrapper tag', 'pzarchitect' ),
 						'id'       => $prefix . 'title-wrapper-tag',
 						'type'     => 'select',
-						'default'  => 'h1',  // Don't ever change this. It might break existing sites
+						//						'default'  => 'h1',  // Don't ever change this. It might break existing sites
+						'default'  => 'h2',  // So I changed it! v1.10.0
 						'options'  => array(
 							'h1'   => 'h1',
 							'h2'   => 'h2',

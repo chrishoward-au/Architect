@@ -2,7 +2,7 @@
 Contributors: chrishoward
 Tags: content,display,posts,pages,gallery,slider,tabs,tabbed,tabular,widget,hooks
 Requires at least: 3.5.0
-Tested up to: 4.7
+Tested up to: 4.8
 Stable tag: 1.10.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -136,20 +136,23 @@ Miscellaneous enhancements:
 * CHANGED: Admin backgrounds are now just CSS gradients rather than SVG to save size in the zip
 * CHANGED: Using the "No field. Use prefix and suffix only" option for custom field source no longer requires the Link Field attribute enabled.
 * CHANGED: Tech support links to support email address now
-* CHANGED: In Blueprint listings, have now limited the "Used on" column to only show the first 5 instances
+* CHANGED: In Blueprint listings, have now limited the "Used on" column to only show the first 15 instances
+* CHANGED: In Blueprint listings, "Used on" column's data is scrollable when more than 5 items
 * CHANGED: New paint job on the presets selector
 * CHANGED: Hover on panels designer is now blue toned
 * CHANGED: Updated help text on Help & Support screen
 * CHANGED: Flattened defaults for slider nav buttons
 * CHANGED: Combined Rebuild and clear image cache into one option for all caches. In Architect > Tools
+* CHANGED: Default title wrapper is now H2. ***This MAY affect some existing layouts that style based on the tag rather than class.***
 
 * FIXED: Filler images not working for Featured images
 * FIXED: Category and Tag exclusion only working when inclusion was set too
-* FIXED: Duplication of @media CSS declarations on panels. Finally!!!
+* FIXED: Duplication of @media CSS declarations on panels.
 * FIXED: Incorrect email url for support
 * FIXED: Importing Blueprint failed to go to new Blueprint screen. Now provides a link.
 * FIXED: Rebuilding cache was giving a success message even when it failed.
 * FIXED: Blueprint "none" not found error on mobile devices
+* FIXED: In Blueprint listings, 'Used on' column was showing Blueprints as a usage
 
 * UPGRADED: Isotope to v3.0.4
 * UPGRADED: Mobile Detect to 2.8.5

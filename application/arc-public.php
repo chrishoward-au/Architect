@@ -253,7 +253,7 @@
       require_once( PZARC_PLUGIN_APP_PATH . '/shared/thirdparty/php/Mobile-Detect/Mobile_Detect.php' );
     }
     $detect = new Mobile_Detect;
-    $device = 'not set';
+    $device = 'desktop';
 
     // Switch Blueprint if available.
     switch ( TRUE ) {
@@ -274,30 +274,30 @@
         break;
     }
 
+
     if ( 'show-none' === $blueprint ) {
       return;
     }
 
-    /** Register Blueprint usage on this page if necessary */
+    // Register Blueprint usage on this page if necessary
     $bp_uses       = maybe_unserialize( get_option( 'arc-blueprint-usage' ) );
     $pzarc_page_id = pzarc_get_page_id();
+
     if ( $bp_uses && array_key_exists( $pzarc_page_id . $blueprint, $bp_uses ) ) {
       // Probably don't need to do anything
-
     } else {
       $bp_uses[ $pzarc_page_id . $blueprint ] = array(
         'id' => $pzarc_page_id,
         'bp' => $blueprint,
       );
       update_option( 'arc-blueprint-usage', maybe_serialize( $bp_uses ) );
-
       // Shortcodes will load these late. TODO Should search for shortcode in page
       $filename      = PZARC_CACHE_URL . '/pzarc_blueprint_' . $blueprint . '.css';
       $filename_path = PZARC_CACHE_PATH . '/pzarc_blueprint_' . $blueprint . '.css';
       if ( file_exists( $filename_path ) ) {
         wp_enqueue_style( 'pzarc_css_blueprint_' . $blueprint, $filename, FALSE, filemtime( $filename_path ) );
       } else {
-        //how do we tell the developer without an horrid message on the front end?
+        //how do we tell the developer without a horrid message on the front end?
       }
     }
     global $_architect_options;
@@ -335,12 +335,11 @@
 
       require_once PZARC_PLUGIN_APP_PATH . '/public/php/class_architect_public.php';
       require_once( PZARC_PLUGIN_APP_PATH . '/shared/thirdparty/php/BFI-thumb-forked/BFI_Thumb.php' );
-      add_filter( 'wp_image_editors', 'bfi_wp_image_editor' );
-      add_filter( 'image_resize_dimensions', 'bfi_image_resize_dimensions', 10, 6 );
-      add_filter( 'image_downsize', 'bfi_image_downsize', 1, 3 );
+		    add_filter( 'wp_image_editors', 'bfi_wp_image_editor' );
+		    add_filter( 'image_resize_dimensions', 'bfi_image_resize_dimensions', 10, 6 );
+		    add_filter( 'image_downsize', 'bfi_image_downsize', 1, 3 );
+      $architect = new ArchitectPublic( $blueprint, $is_shortcode ,$device);
 
-      $architect = new ArchitectPublic( $blueprint, $is_shortcode );
-//var_dump($architect);
       // If no errors, let's go!
       if ( empty( $architect->build->blueprint['err_msg'] ) ) {
 
@@ -372,6 +371,7 @@
         remove_all_actions( 'arc_top_left_navigation_' . $architect->build->blueprint['_blueprints_short-name'] );
         remove_all_actions( 'arc_bottom_right_navigation_' . $architect->build->blueprint['_blueprints_short-name'] );
       }
+	    remove_filter( 'wp_image_editors', 'bfi_wp_image_editor' );
 
       unset ( $architect );
     }
@@ -382,7 +382,6 @@
     //    pzdebug('wp_reset_postdata');
 
     pzdb( 'end pzarc' );
-    remove_filter( 'wp_image_editors', 'bfi_wp_image_editor' );
     remove_filter( 'image_resize_dimensions', 'bfi_image_resize_dimensions' );
     remove_filter( 'image_downsize', 'bfi_image_downsize' );
 

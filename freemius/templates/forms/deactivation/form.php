@@ -10,6 +10,9 @@
 		exit;
 	}
 
+	/**
+	 * @var array $VARS
+	 */
 	$slug = $VARS['slug'];
 	$fs   = freemius( $slug );
 
@@ -20,29 +23,71 @@
 	$reasons_list_items_html = '';
 
 	foreach ( $reasons as $reason ) {
-		$list_item_classes = 'reason' . ( ! empty( $reason['input_type'] ) ? ' has-input' : '' );
-		$reasons_list_items_html .= '<li class="' . $list_item_classes . '" data-input-type="' . $reason['input_type'] . '" data-input-placeholder="' . $reason['input_placeholder'] . '"><label><span><input type="radio" name="selected-reason" value="' . $reason['id'] . '"/></span><span>' . $reason['text'] . '</span></label></li>';
+		$list_item_classes    = 'reason' . ( ! empty( $reason['input_type'] ) ? ' has-input' : '' );
+
+		if ( isset( $reason['internal_message'] ) && ! empty( $reason['internal_message'] ) ) {
+			$list_item_classes .= ' has-internal-message';
+			$reason_internal_message = $reason['internal_message'];
+		} else {
+			$reason_internal_message = '';
+		}
+
+		$reason_list_item_html = <<< HTML
+			<li class="{$list_item_classes}"
+			 	data-input-type="{$reason['input_type']}"
+			 	data-input-placeholder="{$reason['input_placeholder']}">
+	            <label>
+	            	<span>
+	            		<input type="radio" name="selected-reason" value="{$reason['id']}"/>
+                    </span>
+                    <span>{$reason['text']}</span>
+                </label>
+                <div class="internal-message">{$reason_internal_message}</div>
+            </li>
+HTML;
+
+		$reasons_list_items_html .= $reason_list_item_html;
 	}
+
+	$is_anonymous = ( ! $fs->is_registered() );
+	if ( $is_anonymous ) {
+		$anonymous_feedback_checkbox_html =
+			'<label class="anonymous-feedback-label"><input type="checkbox" class="anonymous-feedback-checkbox"> '
+				. fs_text( 'anonymous-feedback', $slug )
+			. '</label>';
+	} else {
+		$anonymous_feedback_checkbox_html = '';
+	}
+
+	fs_enqueue_local_style( 'dialog-boxes', '/admin/dialog-boxes.css' );
 ?>
 <script type="text/javascript">
 (function ($) {
 	var reasonsHtml = <?php echo json_encode( $reasons_list_items_html ); ?>,
 	    modalHtml =
-		    '<div class="fs-modal<?php echo empty( $confirmation_message ) ? ' no-confirmation-message' : ''; ?>">'
+		    '<div class="fs-modal fs-modal-deactivation-feedback<?php echo empty( $confirmation_message ) ? ' no-confirmation-message' : ''; ?>">'
 		    + '	<div class="fs-modal-dialog">'
+		    + '		<div class="fs-modal-header">'
+		    + '		    <h4><?php fs_esc_attr_echo('quick-feedback' , $slug) ?></h4>'
+		    + '		</div>'
 		    + '		<div class="fs-modal-body">'
 		    + '			<div class="fs-modal-panel" data-panel-id="confirm"><p><?php echo $confirmation_message; ?></p></div>'
-		    + '			<div class="fs-modal-panel active" data-panel-id="reasons"><h3><strong><?php printf( __fs(  'deactivation-share-reason' , $slug ) ); ?>:</strong></h3><ul id="reasons-list">' + reasonsHtml + '</ul></div>'
+		    + '			<div class="fs-modal-panel active" data-panel-id="reasons"><h3><strong><?php fs_esc_attr_echo(  'deactivation-share-reason' , $slug ) ?>:</strong></h3><ul id="reasons-list">' + reasonsHtml + '</ul></div>'
 		    + '		</div>'
 		    + '		<div class="fs-modal-footer">'
+			+ '         <?php echo $anonymous_feedback_checkbox_html ?>'
 		    + '			<a href="#" class="button button-secondary button-deactivate"></a>'
-		    + '			<a href="#" class="button button-primary button-close"><?php printf( __fs(  'deactivation-modal-button-cancel' , $slug ) ); ?></a>'
+		    + '			<a href="#" class="button button-primary button-close"><?php fs_echo(  'cancel' , $slug ) ?></a>'
 		    + '		</div>'
 		    + '	</div>'
 		    + '</div>',
-	    $modal = $(modalHtml),
-	    $deactivateLink = $('#the-list .deactivate > [data-slug=<?php echo $VARS['slug']; ?>].fs-slug').prev(),
-	    selectedReasonID = false;
+	    $modal                = $(modalHtml),
+	    $deactivateLink       = $('#the-list .deactivate > [data-slug=<?php echo $VARS['slug']; ?>].fs-slug').prev(),
+		$anonymousFeedback    = $modal.find( '.anonymous-feedback-label' ),
+		isAnonymous           = <?php echo ( $is_anonymous ? 'true' : 'false' ); ?>,
+		selectedReasonID      = false,
+		otherReasonID         = <?php echo Freemius::REASON_OTHER; ?>,
+		dontShareDataReasonID = <?php echo Freemius::REASON_DONT_LIKE_TO_SHARE_MY_INFORMATION; ?>;
 
 	$modal.appendTo($('body'));
 
@@ -91,7 +136,7 @@
 			}, 150);
 		});
 
-		$modal.on('click', '.button', function (evt) {
+		$modal.on('click', '.fs-modal-footer .button', function (evt) {
 			evt.preventDefault();
 
 			if ($(this).hasClass('disabled')) {
@@ -122,13 +167,16 @@
 					url       : ajaxurl,
 					method    : 'POST',
 					data      : {
-						'action'     : 'submit-uninstall-reason',
-						'reason_id'  : $radio.val(),
-						'reason_info': userReason
+						action      : '<?php echo $fs->get_ajax_action( 'submit_uninstall_reason' ) ?>',
+						security    : '<?php echo $fs->get_ajax_security( 'submit_uninstall_reason' ) ?>',
+						slug        : '<?php echo $slug ?>',
+						reason_id   : $radio.val(),
+						reason_info : userReason,
+						is_anonymous: isAnonymousFeedback()
 					},
 					beforeSend: function () {
-						_parent.find('.button').addClass('disabled');
-						_parent.find('.button-secondary').text('Processing...');
+						_parent.find('.fs-modal-footer .button').addClass('disabled');
+						_parent.find('.fs-modal-footer .button-secondary').text('Processing...');
 					},
 					complete  : function () {
 						// Do not show the dialog box, deactivate the plugin.
@@ -152,12 +200,25 @@
 
 			selectedReasonID = $selectedReasonOption.val();
 
+			if ( isAnonymous ) {
+				if ( isReasonSelected( dontShareDataReasonID ) ) {
+					$anonymousFeedback.hide();
+				} else {
+					$anonymousFeedback.show();
+				}
+			}
+
 			var _parent = $(this).parents('li:first');
 
 			$modal.find('.reason-input').remove();
-			$modal.find('.button-deactivate').text('<?php printf( __fs(  'deactivation-modal-button-submit' , $slug ) ); ?>');
+			$modal.find( '.internal-message' ).hide();
+			$modal.find('.button-deactivate').text('<?php printf( fs_text(  'deactivation-modal-button-submit' , $slug ) ); ?>');
 
 			enableDeactivateButton();
+
+			if ( _parent.hasClass( 'has-internal-message' ) ) {
+				_parent.find( '.internal-message' ).show();
+			}
 
 			if (_parent.hasClass('has-input')) {
 				var inputType = _parent.data('input-type'),
@@ -168,7 +229,7 @@
 				_parent.find('input, textarea').attr('placeholder', inputPlaceholder).focus();
 
 				if (isOtherReasonSelected()) {
-					showMessage('<?php printf( __fs(  'ask-for-reason-message' , $slug ) ); ?>');
+					showMessage('<?php printf( fs_text(  'ask-for-reason-message' , $slug ) ); ?>');
 					disableDeactivateButton();
 				}
 			}
@@ -189,15 +250,27 @@
 			}
 
 			closeModal();
+			return false;
 		});
 	}
 
-	function isOtherReasonSelected() {
-		// Get the selected radio input element.
-		var $selectedReasonOption = $modal.find('input[type="radio"]:checked'),
-		    selectedReason = $selectedReasonOption.parent().next().text().trim();
+	function isAnonymousFeedback() {
+		if ( ! isAnonymous ) {
+			return false;
+		}
 
-		return ( 'Other' === selectedReason );
+		return ( isReasonSelected( dontShareDataReasonID ) || $anonymousFeedback.find( 'input' ).prop( 'checked' ) );
+	}
+
+	function isReasonSelected( reasonID ) {
+		// Get the selected radio input element.
+		var $selectedReasonOption = $modal.find('input[type="radio"]:checked');
+
+		return ( reasonID == $selectedReasonOption.val() );
+	}
+
+	function isOtherReasonSelected() {
+		return isReasonSelected( otherReasonID );
 	}
 
 	function showModal() {
@@ -227,6 +300,13 @@
 		$modal.find('.reason-input').remove();
 
 		$modal.find('.message').hide();
+
+		if ( isAnonymous ) {
+			$anonymousFeedback.find( 'input' ).prop( 'checked', false );
+
+			// Hide, since by default there is no selected reason.
+			$anonymousFeedback.hide();
+		}
 
 		var $deactivateButton = $modal.find('.button-deactivate');
 
@@ -269,9 +349,9 @@
 
 		// Reset the deactivate button's text.
 		if ('confirm' === getCurrentPanel()) {
-			$deactivateButton.text('<?php printf( __fs( 'deactivation-modal-button-confirm' , $slug ) ); ?>');
+			$deactivateButton.text('<?php printf( fs_text( 'deactivation-modal-button-confirm' , $slug ) ); ?>');
 		} else {
-			$deactivateButton.text('<?php printf( __fs( 'skip-deactivate' , $slug ) ); ?>');
+			$deactivateButton.text('<?php printf( fs_text( 'skip-deactivate' , $slug ) ); ?>');
 		}
 	}
 

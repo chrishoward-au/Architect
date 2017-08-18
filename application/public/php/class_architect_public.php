@@ -38,14 +38,7 @@
 		 * @param $blueprint
 		 * @param $is_shortcode
 		 */
-		public function __construct( $blueprint, $is_shortcode ) {
-//      static $once_only=0;
-//      $once_only++;
-//      var_dump($once_only, $once_only>1);
-//      if ($once_only>1) {
-//        var_Dump($blueprint);
-//        exit("Fatal error: Architect called recursively");
-//      }
+		public function __construct( $blueprint, $is_shortcode ,$device='desktop') {
 			echo '<div class="arc-wrapper">';
 			// Might use this for transients to check last DB change
 			//      global $wpdb;
@@ -64,7 +57,7 @@
 			require_once( PZARC_PLUGIN_APP_PATH . '/shared/architect/php/content-types/generic/class_arc_query_generic.php' );
 
 			/** This is the first point we have all the Blueprint data */
-			$this->build = new arc_Blueprint( $blueprint );
+			$this->build = new arc_Blueprint( $blueprint,$device );
 
 			new arc_shortcodes( $this->build );
 

@@ -1,7 +1,7 @@
 //  http://bourbon.io/docs/
 @import "bourbon";
 
-$version: "1.10.0 RC1";
+$version: "1.10.0 RC2";
 // THIS IS THE SCSS VERSION
 $highlight: #0074a2;
 $border-radius: 3px;
@@ -27,11 +27,11 @@ $blue-900: #0d47a1;
 $indigo-900: #1a237e;
 $violet-900: #311b92;
 
-$medium-grey:#ddd;
-$light-grey:#eee;
+$medium-grey: #ddd;
+$light-grey: #eee;
 
-$light-blue:#9cf;
-$dark-light-blue:#0080ff;
+$light-blue: #9cf;
+$dark-light-blue: #0080ff;
 
 $lightest: 40%;
 $darker: 10%;
@@ -43,10 +43,10 @@ $darker: 10%;
 li.arc-message {
   width: 100%;
   .after-title-help {
-    border:none;
-    background:none;
+    border: none;
+    background: none;
     .inside {
-      padding:0;
+      padding: 0;
     }
   }
 }
@@ -78,7 +78,6 @@ body span.pzarc-shortname {
   font-weight: inherit !important;
   color: inherit !important;
 }
-
 
 .arc-updates ul,
 .pzarc-infobox ul {
@@ -854,26 +853,26 @@ body.screen-arc-blueprints #blueprint-preview .pzarc-section-cell p {
 body.arc-bgimage {
   &.arc-bg-green #wpwrap {
     background-size: cover;
-    background: #DCE35B;  /* fallback for old browsers */
-    background: -webkit-linear-gradient(to bottom, #DCE35B, #45B649);  /* Chrome 10-25, Safari 5.1-6 */
+    background: #DCE35B; /* fallback for old browsers */
+    background: -webkit-linear-gradient(to bottom, #DCE35B, #45B649); /* Chrome 10-25, Safari 5.1-6 */
     background: linear-gradient(to bottom, #DCE35B, #45B649); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
   }
   &.arc-bg-ocean-blue #wpwrap {
     background-size: cover;
-    background: #43C6AC;  /* fallback for old browsers */
-    background: -webkit-linear-gradient(to top, #191654, #43C6AC);  /* Chrome 10-25, Safari 5.1-6 */
+    background: #43C6AC; /* fallback for old browsers */
+    background: -webkit-linear-gradient(to top, #191654, #43C6AC); /* Chrome 10-25, Safari 5.1-6 */
     background: linear-gradient(to top, #191654, #43C6AC); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
   }
   &.arc-bg-orange-green #wpwrap {
     background-size: cover;
-    background: #c21500;  /* fallback for old browsers */
-    background: -webkit-linear-gradient(to bottom, #ffc500, #c21500);  /* Chrome 10-25, Safari 5.1-6 */
+    background: #c21500; /* fallback for old browsers */
+    background: -webkit-linear-gradient(to bottom, #ffc500, #c21500); /* Chrome 10-25, Safari 5.1-6 */
     background: linear-gradient(to bottom, #ffc500, #c21500); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
   }
   &.arc-bg-pink #wpwrap {
     background-size: cover;
-    background: #C6426E;  /* fallback for old browsers */
-    background: -webkit-linear-gradient(to bottom, #C6426E, #642B73);  /* Chrome 10-25, Safari 5.1-6 */
+    background: #C6426E; /* fallback for old browsers */
+    background: -webkit-linear-gradient(to bottom, #C6426E, #642B73); /* Chrome 10-25, Safari 5.1-6 */
     background: linear-gradient(to bottom, #C6426E, #642B73); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
   }
 
@@ -918,10 +917,6 @@ body.arc-bgimage {
     background-size: cover;
 
   }
-
-
-
-
 
   &.architect_page_pzarc_about .wrap {
     background: rgba(255, 255, 255, 0.9);
@@ -2331,9 +2326,23 @@ body.arc-beginner {
 }
 
 .arc-export-save {
-  font-weight:bold;
-  font-size:15px;
-  border-left:solid 3px RGB(61, 180, 76);
-  padding-left:10px;
-  background:RGBA(61, 180, 76, 0.07)
+  font-weight: bold;
+  font-size: 15px;
+  border-left: solid 3px RGB(61, 180, 76);
+  padding-left: 10px;
+  background: RGBA(61, 180, 76, 0.07)
+}
+
+.arc-used-on {
+  max-height: 100px;
+  overflow: auto;
+  white-space: nowrap;
+  .rows {
+    margin: 0 !important;
+    &.odd {
+    }
+    &.even {
+      background: #eee;
+    }
+  }
 }
