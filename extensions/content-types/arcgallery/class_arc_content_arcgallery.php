@@ -41,7 +41,7 @@
         'subtitle' => 'Select an Architect Gallery',
         'required' => array( $prefix . 'gallery-source', 'equals', 'arcgallery' ),
       );
-      
+
       return $arc_fields;
     }
 

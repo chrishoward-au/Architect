@@ -155,6 +155,7 @@ Miscellaneous enhancements:
 * FIXED: Rebuilding cache was giving a success message even when it failed.
 * FIXED: Blueprint "none" not found error on mobile devices
 * FIXED: In Blueprint listings, 'Used on' column was showing Blueprints as a usage
+* FIXED: Bug in Architect's custom post types not showing custom fields.
 
 * UPGRADED: Isotope to v3.0.4
 * UPGRADED: Mobile Detect to 2.8.5
