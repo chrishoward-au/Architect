@@ -406,14 +406,22 @@
 
   			<!--Display Plugin Icon, Header, and Description-->
         <div class="icon32" id="icon-users">
-            <br>
+            
         </div>
-        <h1 style="font-size:2rem;margin-bottom: 20px;">Architect content display framework</h1>
-            <h2>' . $title . '</h2>
-        <p>ADD A SPIEL HERE</p>
-        <p>ADD A SPIEL HERE</p>
-        <p>ADD A SPIEL HERE</p>
+        <h1 style="font-size:2.8rem;margin-bottom: 20px;font-weight:300"><img src="'.PZARC_PLUGIN_APP_URL.'admin/assets/images/architect-logo.png" width="96" height="96" style="vertical-align:middle;">Architect content display framework</h1>
+        ';
+
+      if (class_exists('HeadwayLayoutOptions')) {
+	      echo '<div class="pzarc-about-box alert">
+      <h2>Crossgrade Headway licences</h2>
+      <p>Anyone who purchased Architect from the Headway Extend store, please contact <a href="mailto:support@pizazzwp.com">support@pizazzwp.com</a> to arrange a discounted crosgrade licence from the Pizazz store.</p>
+      </div>
+';
+      }
+echo'                             
+        <div class="pzarc-about-box" >
             <div class="pzarc-help-section">
+            <h2>' . $title . '</h2>
                         <a class="pzarc-button-help" href="http://architect4wp.com/codex-listings/" target="_blank">
                         <span class="dashicons dashicons-book"></span>
                         Documentation</a>&nbsp;
@@ -430,9 +438,6 @@
                         <span class="dashicons" style="font-size:1.3em">$</span>
                         Affiliates</a>
                         </div>
-        <p></p>
-        <div class="pzarc-about-box" >
-
 
             ';
 
@@ -463,17 +468,17 @@
                 <button class="tabby-quick first active" data-tab="#quick">' . __('Getting started', 'pzarchitect') . '</button>
                 <button class="tabby-how" data-tab="#how">' . __('Usage', 'pzarchitect') . '</button>
                 <button class="tabby-latest" data-tab="#latest">' . __('Latest news', 'pzarchitect') . '</button>
-                <button class="tabby-help" data-tab="#help">' . __('Support', 'pzarchitect') . '</button>
-                <button class="tabby-shout" data-tab="#shout">' . __('Shoutouts', 'pzarchitect') . '</button>
                 <button class="tabby-changes" data-tab="#changes">' . __('Changelog', 'pzarchitect') . '</button>
+                <button class="tabby-shout" data-tab="#shout">' . __('Shoutouts', 'pzarchitect') . '</button>
+                <button class="tabby-help" data-tab="#help">' . __('Support', 'pzarchitect') . '</button>
             </div>';
 
           include_once('admin/parts/admin-tabs-pane-about.php');
           include_once('admin/parts/admin-tabs-pane-usage.php');
           include_once('admin/parts/admin-tabs-pane-news.php');
-          include_once('admin/parts/admin-tabs-pane-support.php');
+	    include_once('admin/parts/admin-tabs-pane-changes.php');
           include_once('admin/parts/admin-tabs-pane-shoutout.php');
-          include_once('admin/parts/admin-tabs-pane-changes.php');
+	    include_once('admin/parts/admin-tabs-pane-support.php');
 
 echo'
                 </div>
@@ -683,8 +688,8 @@ echo'
         // create URL to file
 
         wp_mkdir_p(trailingslashit(PZARC_CACHE_PATH)); // Just in case
-        $filename     = PZARC_CACHE_PATH . sanitize_title($title) . '.txt';
-        $filename_url = PZARC_CACHE_URL . sanitize_title($title) . '.txt';
+        $filename     = PZARC_CACHE_PATH . 'blueprint-'.sanitize_title($title) . '.txt';
+        $filename_url = PZARC_CACHE_URL . 'blueprint-'.sanitize_title($title) . '.txt';
 
         // Create file
         global $wp_filesystem;

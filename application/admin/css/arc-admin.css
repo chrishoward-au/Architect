@@ -1716,7 +1716,7 @@ li.arc-message .arc-presets-link {
     border-left: solid 1px #fff;
     border-bottom: solid 1px #eee;
     border-right: solid 1px #eee;
-    background: #f6f6f6;
+    background: #f2f2f2;
     display: inline-block;
     vertical-align: top;
     border-radius: 3px;
@@ -1842,7 +1842,10 @@ body.arc-beginner .redux-notice-field {
   background: #f9f9f9;
   padding: 20px;
   border: 1px solid #ddd;
-  max-width: 960px; }
+  max-width: 960px;
+  margin-bottom: 20px; }
+  .pzarc-about-box.alert {
+    border-left: solid 3px #dd2222; }
 
 .arc-export-save {
   font-weight: bold;

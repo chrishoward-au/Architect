@@ -2121,7 +2121,7 @@ li.arc-message {
     border-left: solid 1px #fff;
     border-bottom: solid 1px $light-grey;
     border-right: solid 1px $light-grey;
-    background: #f6f6f6;
+    background: #f2f2f2;
     display: inline-block;
     vertical-align: top;
     border-radius: 3px;
@@ -2323,6 +2323,10 @@ body.arc-beginner {
   padding: 20px;
   border: 1px solid $medium-grey;
   max-width: 960px;
+  margin-bottom:20px;
+  &.alert {
+    border-left:solid 3px #dd2222;
+  }
 }
 
 .arc-export-save {

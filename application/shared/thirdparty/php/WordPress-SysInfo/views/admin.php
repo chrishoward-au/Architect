@@ -1,5 +1,7 @@
 <?php
 
+  global $wpdb;
+
   // Get a reference to the SysInfo instance
   $sysinfo = SysInfo::get_instance();
 
@@ -48,8 +50,10 @@
 <textarea readonly="readonly" wrap="off">
 <?php _e( 'WordPress Version:', 'pzarchitect' ); ?>      <?php echo get_bloginfo( 'version' ) . "\n"; ?>
 <?php _e( 'PHP Version:', 'pzarchitect' ); ?>            <?php echo PHP_VERSION . "\n"; ?>
-<?php // _e( 'MySQL Version:', 'pzarchitect' ); ?>          <?php //echo mysql_get_server_info() . "\n"; ?>
+<?php _e( 'MySQL Version:', 'pzarchitect' ); ?>          <?php echo $wpdb->db_version() . "\n"; ?>
+<?php _e( 'DB name:', 'pzarchitect' ); ?>                <?php echo $wpdb->dbname . "\n"; ?>
 <?php _e( 'Web Server:', 'pzarchitect' ); ?>             <?php echo $_SERVER[ 'SERVER_SOFTWARE' ] . "\n"; ?>
+<?php _e( 'Server info:', 'pzarchitect' ); ?>            <?php echo php_uname() . "\n"; ?>
 
 <?php _e( 'WordPress URL:', 'pzarchitect' ); ?>          <?php echo get_bloginfo( 'wpurl' ) . "\n"; ?>
 <?php _e( 'Home URL: ', 'pzarchitect' ); ?>              <?php echo get_bloginfo( 'url' ) . "\n"; ?>
@@ -62,6 +66,7 @@
 
 <?php _e( 'Cookie Domain:', 'pzarchitect' ); ?>          <?php echo defined( 'COOKIE_DOMAIN' ) ? COOKIE_DOMAIN ? COOKIE_DOMAIN . "\n" : _e( 'Disabled', 'pzarchitect' ) . "\n" : _e( 'Not set', 'pzarchitect' ) . "\n" ?>
 <?php _e( 'Multi-Site Active:', 'pzarchitect' ); ?>      <?php echo is_multisite() ? _e( 'Yes', 'pzarchitect' ) . "\n" : _e( 'No', 'pzarchitect' ) . "\n" ?>
+<?php if (is_multisite()){ _e( 'Blog ID:', 'pzarchitect' ); ?>                <?php echo $wpdb->blogid . "\n"; }?>
 
 <?php _e( 'PHP cURL Support:', 'pzarchitect' ); ?>       <?php echo ( function_exists( 'curl_init' ) ) ? _e( 'Yes', 'pzarchitect' ) . "\n" : _e( 'No', 'pzarchitect' ) . "\n"; ?>
 <?php _e( 'PHP GD Support:', 'pzarchitect' ); ?>         <?php echo ( function_exists( 'gd_info' ) ) ? _e( 'Yes', 'pzarchitect' ) . "\n" : _e( 'No', 'pzarchitect' ) . "\n"; ?>

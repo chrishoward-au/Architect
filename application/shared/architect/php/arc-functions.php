@@ -548,6 +548,8 @@
 	}
 
 	/**
+	 * This is explicit as it's used in a callback which doesn't allow parameters
+	 *
 	 * @return array|null
 	 */
 	function pzarc_get_gp_galleries() {
@@ -574,6 +576,7 @@
 
 		return $results;
 	}
+
 
 	/**
 	 * @return array
@@ -2309,8 +2312,10 @@
 				$image->resize( $arc_image_dimensions['width'], $arc_image_dimensions['height'], false );
 				$fn= random_int(1,1000).'.jpg';
 				$image->save( PZARC_CACHE_PATH.$fn );
+				return PZARC_CACHE_URL.$fn;
+			} else {
+				return null;
 			}
-			return PZARC_CACHE_URL.$fn;
 		}
 
 	}

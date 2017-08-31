@@ -130,7 +130,8 @@ Miscellaneous enhancements:
 * ADDED: Shortcode [arc_debug] Dumps the $wp_query variable and some Blueprint info
 * ADDED: Simple demo mode that outlines Architect Blueprints. Add /?demo to the page URL.
 * ADDED: Message on Help & Support screen prompting crossgrade of Architect licence from Headway.
-* ADDED: Option to name new Blueprints when importing
+* ADDED: Option to name new Blueprints when importing. In Architect > Tools
+* ADDED: Server info, BlogID and DB name to System Info. In Tools > SysInfo
 
 * CHANGED: Export a Blueprint automatically downloads to a file now
 * CHANGED: Admin backgrounds are now just CSS gradients rather than SVG to save size in the zip
@@ -144,6 +145,7 @@ Miscellaneous enhancements:
 * CHANGED: Flattened defaults for slider nav buttons
 * CHANGED: Combined Rebuild and clear image cache into one option for all caches. In Architect > Tools
 * CHANGED: Default title wrapper is now H2. ***This MAY affect some existing layouts that style based on the tag rather than class.***
+* CHANGED: Update info is now on the Help & Support tab, rather than appearing as a message.
 
 * FIXED: Filler images not working for Featured images
 * FIXED: Category and Tag exclusion only working when inclusion was set too

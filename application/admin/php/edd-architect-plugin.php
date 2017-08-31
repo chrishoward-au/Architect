@@ -76,8 +76,6 @@
     <div class="wrap">
     <h2><?php _e( 'Architect Licence Options', 'pzarchitect' ); ?></h2>
 
-    <p class="arc-important extra">Note: This page is for licences purchased from the <strong>PizazzWP shop</strong>. For licences purchased from the <strong>Headway Extend</strong>
-      store, enter those in the <em>Headway</em> > <em>Options</em> screen</p>
     <?php
       if ( $pzarc_status === false || $pzarc_status !== 'valid' ) {
         echo ' <div class="arc-info-boxes">
@@ -85,7 +83,7 @@
         echo '<h3 style="color:#0074A2">Architect Lite</h3>
         <p class="arc-important" style="font-weight:bold;">You are running Architect without activating a licence, therefore it is in Lite mode. Cool features you are missing out on are: Animations and access to all content types, including Galleries, Snippets, NextGen, Testimonials and custom post types</p>
         <p style="font-weight:bold;">If you need to purchase a licence, you can do so at the <a href="http://shop.pizazzwp.com/downloads/architect/" target="_blank">PizazzWP Shop</a>.</p>
-        <p>Otherwise, enter and activate your licence from the Pizazz Shop licence below or on Headway > Options if you bought from Headway , </p>
+        <p>Otherwise, enter and activate your licence from the Pizazz Shop licence below</p>
 </div></div>';
       }
     ?>
@@ -206,6 +204,10 @@
       // decode the license data
       $license_data = json_decode( wp_remote_retrieve_body( $response ) );
 
+      if ((!$license_data)) {
+	      $license_data = new stdClass();
+       $license_data->error = $response['response']['code'].' '.$response['response']['message'];
+      }
 //      object(stdClass)[426]
 //  public 'success' => boolean false
 //  public 'error' => string 'missing' (length=7)
@@ -230,8 +232,7 @@
 //  public 'item_name' => string 'Architect' (length=9)
 
       // $license_data->license will be either "valid" or "invalid"
-//var_dump($license_data,$license);
-//      die();
+
       update_option( 'edd_architect_license_status', $license_data->license );
       if ( $license_data->success ) {
         update_option( 'edd_architect_license_state', '<strong>'.__("Remaining activations: ",'pzarchitect').'</strong>' . $license_data->activations_left );

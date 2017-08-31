@@ -14,7 +14,7 @@
       $architect_options = get_option( '_architect_options' );
       $rewrite_slug=(array_key_exists('architect_rewrites-testimonials',$architect_options)?esc_html(str_replace( ' ','' ,  $architect_options['architect_rewrites-testimonials'])):'pz_testimonials');
       $labels = array(
-          'name'               => _x('Testimonials', 'post type general name'),
+          'name'               => _x('Testimonials (Architect)', 'post type general name'),
           'singular_name'      => _x('Testimonial', 'post type singular name'),
           'add_new'            => _x('Add New Testimonial', 'gallery'),
           'add_new_item'       => __('Add New Testimonial'),
@@ -41,7 +41,7 @@
           'has_archive'        => true,
           'hierarchical'       => true,
           'taxonomies'         => array(),
-          //          'menu_position'      => 999,
+                  'menu_position'      => 999,
           'supports'           => array('title',
                                         'editor',
                                         'author',

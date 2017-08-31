@@ -276,7 +276,7 @@
 			// It also might need a conditional depending on depth Architect is used
 			if ($this->build->blueprint['_blueprints_content-source'] === 'defaults'
 				&& empty($this->build->blueprint['_blueprints_section-0-panels-limited'])
-        && FLBuilderModel::is_builder_enabled()
+        && (class_exists('FLBuilderModel') && FLBuilderModel::is_builder_enabled())
 			) {
 				// Needed to nudge Beaver
 				$wp_query->next_post();

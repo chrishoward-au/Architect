@@ -155,7 +155,7 @@
                         </div>
           ' .
 
-			                          self::arc_has_export_data()
+			                       self::arc_has_export_data()
 
 			                          . '
           <!-- Presets selector -->
@@ -2835,16 +2835,16 @@
 //					       'subtitle'=>__('This is just here to tease you at the moment! It does nothing. Yet... This will require api keys','pzarchitect'),
 //					       'default'=>'local'
 //					),
-					array(
-						'title'    => __( 'Content source', 'pzarchitect' ),
-						'id'       => '_blueprints_content-source',
-						'type'     => 'button_set',
-						//                  'select2'  => array('allowClear' => false),
-						'default'  => 'defaults',
-						'options'  => $content_types,
-						'desc'     => __( 'If you want a Blueprint to display the content of the specific post/page/cpt it is to be displayed on, use the Default content source.<br><strong>Select <em>Defaults</em> if this Blueprint will display blog posts on the blog page</strong>', 'pzarchitect' ),
-						'subtitle' => ( array_key_exists( 'snippets', $content_types ) ? '' : 'Several more content sources supported in Architect Pro version, including Pages, Snippets, Galleries, Custom Post Types and a special Dummy option to display dummy content' ),
-					),
+array(
+	'title'    => __( 'Content source', 'pzarchitect' ),
+	'id'       => '_blueprints_content-source',
+	'type'     => 'button_set',
+	//                  'select2'  => array('allowClear' => false),
+	'default'  => 'defaults',
+	'options'  => $content_types,
+	'desc'     => __( 'If you want a Blueprint to display the content of the specific post/page/cpt it is to be displayed on, use the Default content source.<br><strong>Select <em>Defaults</em> if this Blueprint will display blog posts on the blog page</strong>', 'pzarchitect' ),
+	'subtitle' => ( array_key_exists( 'snippets', $content_types ) ? '' : 'Several more content sources supported in Architect Pro version, including Pages, Snippets, Galleries, Custom Post Types and a special Dummy option to display dummy content' ),
+),
 				),
 			);
 
@@ -5356,7 +5356,12 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
 
 
 		private static function arc_has_export_data() {
-			return '';
+			/**
+			 * NOT USED ANYMORE
+			 */
+			return null;
+
+
 			pzdb( __FUNCTION__ );
 			$export_data = get_option( 'arc-export-to-preset' );
 			if ( ! empty( $export_data ) ) {
@@ -5379,26 +5384,17 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
 				// create URL to file
 
 				wp_mkdir_p( trailingslashit( PZARC_CACHE_PATH ) ); // Just in case
-				$filename     = PZARC_CACHE_PATH . sanitize_title( $title ) . '.txt';
-				$filename_url = PZARC_CACHE_URL . sanitize_title( $title ) . '.txt';
+				$filename     = PZARC_CACHE_PATH . 'blueprint-' . sanitize_title( $title ) . '.txt';
+				$filename_url = PZARC_CACHE_URL . 'blueprint-' . sanitize_title( $title ) . '.txt';
 
 				// Create file
 				global $wp_filesystem;
 				$wp_filesystem->put_contents( $filename, json_encode( $export_data ), FS_CHMOD_FILE // predefined mode settings for WP files
 				);
 				if ( file_exists( $filename ) ) {
-//          header('Content-Description: File Transfer');
-//          header('Content-Type: text/plain');
-//          header('Content-Disposition: attachment; filename="'.basename($filename).'"');
-//          header('Expires: 0');
-//          header('Cache-Control: must-revalidate');
-//          header('Pragma: public');
-//          header('Content-Length: ' . filesize($filename));
-//          ob_clean();
-//          readfile($filename);
-//          flush();
 					return '<p class="arc-export-save">Ready for download: <a href="' . $filename_url . '" target=_blank download>' . basename( $filename ) . '</a></p>';
-				}        // TODO Tutorials on saving exports and creating Presets.
+				}
+				// TODO Tutorials on saving exports and creating Presets.
 			} else {
 				return '';
 			}

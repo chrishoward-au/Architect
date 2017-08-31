@@ -26,9 +26,9 @@
     $pzarc_contents .= '{{fontface}}';
     global $pzarc_fontface;
     $pzarc_fontface    = '';
+
     $pzarc_bp_css[$i]  = pzarc_process_bp_sections($pzarc_blueprints, $i, $nl, $_architect_options);
     $specificity_class = '#pzarc-blueprint_' . $pzarc_blueprints['_blueprints_short-name'];
-
     $pzarc_contents .= $pzarc_bp_css[$i];
 
 
@@ -137,7 +137,6 @@
     $sections_class    = $specificity_class . '  .pzarc-sections  .pzarc-section_' . ($i + 1); // Removed > coz breaks new masonry features v1.9.3
     $panels_class      = $sections_class . ' .pzarc-panel';
     $pzarc_mediaq_css  = '';
-
 
     if (!empty($pzarc_blueprints['_blueprints_section-0-panels-fixed-width'])) {
       $pzarc_mediaq_css .= $specificity_class . ' .pzarc-section {' . $pzarc_blueprints['_blueprints_section-0-panels-fixed-width-justify'] . '}';
@@ -651,6 +650,7 @@
           $pzarc_fontface .= strpos($pkey, 'font') ? pzarc_check_googlefont($value) : '';
 //          if ( ! in_array( $pkeys[ 'id' ], array( 'custom', 'panels-load' ) ) ) {
           // Filter out old selector names hanging arouind in existing panels
+
           switch (TRUE) {
             case (strpos($pkeys['id'], 'entry-customfield-') === 0) :
               $pkeys['classes'] = array('0' => '.' . $pkeys['id']);
