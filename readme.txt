@@ -99,7 +99,7 @@ TODO: Add a full backup option for Blueprints
 TODO: Add a backup and restore option for all settings
 TODO: Add wireframe view?
 TODO: Add Jetpack sitemap support https://developer.jetpack.com/2016/01/28/sitemaps-add-custom-post-type-support/
-TODO: Transition to Codestar framework (less than 1MB footprint!)
+TODO: Transition to Codestar framework (less than 1MB footprint in zip!)
 TODO Update tutes
 
 
@@ -124,6 +124,7 @@ Content related enhancements:
 * ADDED: Option to hide specific category names in meta field category name list. In Blueprints Meta tab
 * ADDED: Message field that can be displayed immediately below content. In Blueprints Body/Excerpt tab
 * ADDED: Option to insert a shortcode (or basic HTML) after a specific paragraph in body content. Good for inserting advertising!  In Blueprints Body/Excerpt tab
+* ADDING: TODO Architect Galleries custom post type
 
 Miscellaneous enhancements:
 * ADDED: Shortcode [arc_hasmedia] Displays icons if post has media. Can be used in meta or custom fields display. Currently identifies galleries, videos, audio playlists and various document links
@@ -146,6 +147,8 @@ Miscellaneous enhancements:
 * CHANGED: Combined Rebuild and clear image cache into one option for all caches. In Architect > Tools
 * CHANGED: Default title wrapper is now H2. ***This MAY affect some existing layouts that style based on the tag rather than class.***
 * CHANGED: Update info is now on the Help & Support tab, rather than appearing as a message.
+* CHANGED: Changed licensing from EDD to Freemius
+// TODO ADD Message about swith to Freemius
 
 * FIXED: Filler images not working for Featured images
 * FIXED: Category and Tag exclusion only working when inclusion was set too

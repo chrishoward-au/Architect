@@ -9,6 +9,8 @@
 	  Author URI: http://pizazzwp.com
 	  License: GNU GPL v2
 	  Support: support@pizazzwp.com
+
+	 * @fs_premium_only /extensions/
 	 */
 
 	if ( ! defined( 'ABSPATH' ) ) {
@@ -27,7 +29,7 @@
 		pzdb( 'start' );
 	}
 
-	// include_once 'load-freemius.php';
+	 include_once 'load-freemius.php';
 
 	require_once('class_pzarchitect.php');
 	$pzarc = new pzArchitect();

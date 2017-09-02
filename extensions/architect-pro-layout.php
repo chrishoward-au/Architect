@@ -1,54 +1,57 @@
 <?php
+  if ( arc_fs()->is__premium_only() ) {
 
-  add_action( 'arc_load_extensions', 'pzarcpro_load' );
+    add_action( 'arc_load_extensions', 'pzarcpro_load' );
 
-  function pzarcpro_load() {
+    function pzarcpro_load() {
 
-    pzdb( 'pre content types load' );
-    /** Content types */
-    require_once plugin_dir_path( __FILE__ ) . '/content-types/gallery/class_arc_content_gallery.php';
-    require_once plugin_dir_path( __FILE__ ) . '/content-types/slide/class_arc_content_slide.php';
-    require_once plugin_dir_path( __FILE__ ) . '/content-types/nextgen/class_arc_content_nextgen.php';
-    require_once plugin_dir_path( __FILE__ ) . '/content-types/cpt/class_arc_content_cpt.php';
-    require_once plugin_dir_path( __FILE__ ) . '/content-types/multi/class_arc_content_multi.php';
-    require_once plugin_dir_path( __FILE__ ) . '/content-types/rss/class_arc_content_rss.php';
+      pzdb( 'pre content types load' );
+      /** Content types */
+      require_once plugin_dir_path( __FILE__ ) . '/content-types/gallery/class_arc_content_gallery.php';
+      require_once plugin_dir_path( __FILE__ ) . '/content-types/slide/class_arc_content_slide.php';
+      require_once plugin_dir_path( __FILE__ ) . '/content-types/nextgen/class_arc_content_nextgen.php';
+      require_once plugin_dir_path( __FILE__ ) . '/content-types/cpt/class_arc_content_cpt.php';
+      require_once plugin_dir_path( __FILE__ ) . '/content-types/multi/class_arc_content_multi.php';
+      require_once plugin_dir_path( __FILE__ ) . '/content-types/rss/class_arc_content_rss.php';
 
-    /** Load additional functionality */
+      /** Load additional functionality */
 
-    // Animation add on
-    require_once plugin_dir_path( __FILE__ ) . '/animation/arc-animation.php';
+      // Animation add on
+      require_once plugin_dir_path( __FILE__ ) . '/animation/arc-animation.php';
 
-    /** Create additional post types */
-    global $_architect_options;
-    if ( ! isset( $GLOBALS[ '_architect_options' ] ) ) {
-      $GLOBALS[ '_architect_options' ] = get_option( '_architect_options', array() );
-    }
+      /** Create additional post types */
+      global $_architect_options;
+      if ( ! isset( $GLOBALS['_architect_options'] ) ) {
+        $GLOBALS['_architect_options'] = get_option( '_architect_options', array() );
+      }
 
 //	  var_dump($_architect_options);
 
-    // TODO: Check this doesn't break front page!
-	  // WHY is this set to not admin?
+      // TODO: Check this doesn't break front page!
+      // WHY is this set to not admin?
 //    if ( !is_admin() || pzarc_get_post_type() === 'arc-blueprints') { // Changed 1.10.0
-    if ( is_admin() || pzarc_get_post_type() === 'arc-blueprints') {
-  //  var_dump($_architect_options);
+      if ( is_admin() || pzarc_get_post_type() === 'arc-blueprints' ) {
+        //  var_dump($_architect_options);
 
-      if ( ! isset( $_architect_options[ 'architect_add-content-types' ][ 'pz_snippets' ] ) || $_architect_options[ 'architect_add-content-types' ][ 'pz_snippets' ] == 1 ) {
-        require_once plugin_dir_path( __FILE__ ) . '/content-types/snippets/class_arc_content_snippets.php';
+        if ( ! isset( $_architect_options['architect_add-content-types']['pz_snippets'] ) || $_architect_options['architect_add-content-types']['pz_snippets'] == 1 ) {
+          require_once plugin_dir_path( __FILE__ ) . '/content-types/snippets/class_arc_content_snippets.php';
+        }
+
+        if ( ! isset( $_architect_options['architect_add-content-types']['pz_testimonials'] ) || $_architect_options['architect_add-content-types']['pz_testimonials'] == 1 ) {
+          require_once plugin_dir_path( __FILE__ ) . '/content-types/testimonials/class_arc_content_testimonials.php';
+        }
+
+        if ( ! isset( $_architect_options['architect_add-content-types']['pz_showcases'] ) || $_architect_options['architect_add-content-types']['pz_showcases'] == 1 ) {
+          require_once plugin_dir_path( __FILE__ ) . '/content-types/showcases/class_arc_content_showcases.php';
+        }
+
+        if ( ! isset( $_architect_options['architect_add-content-types']['pz_arcgallery'] ) || $_architect_options['architect_add-content-types']['pz_arcgallery'] == 1 ) {
+          require_once plugin_dir_path( __FILE__ ) . '/content-types/arcgallery/class_arc_content_arcgallery.php';
+        }
       }
-
-      if ( ! isset( $_architect_options[ 'architect_add-content-types' ][ 'pz_testimonials' ] ) || $_architect_options[ 'architect_add-content-types' ][ 'pz_testimonials' ] == 1 ) {
-        require_once plugin_dir_path( __FILE__ ) . '/content-types/testimonials/class_arc_content_testimonials.php';
-      }
-
-      if ( ! isset( $_architect_options[ 'architect_add-content-types' ][ 'pz_showcases' ] ) || $_architect_options[ 'architect_add-content-types' ][ 'pz_showcases' ] == 1 ) {
-        require_once plugin_dir_path( __FILE__ ) . '/content-types/showcases/class_arc_content_showcases.php';
-      }
-
-      if ( ! isset( $_architect_options[ 'architect_add-content-types' ][ 'pz_arcgallery' ] ) || $_architect_options[ 'architect_add-content-types' ][ 'pz_arcgallery' ] == 1 ) {
-        require_once plugin_dir_path( __FILE__ ) . '/content-types/arcgallery/class_arc_content_arcgallery.php';
-      }
-    }
-    pzdb( 'post content types load' );
+      pzdb( 'post content types load' );
 
 
-  } // EOF
+    } // EOF
+    // ... premium only logic ...
+  }

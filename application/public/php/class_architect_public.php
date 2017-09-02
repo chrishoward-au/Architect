@@ -5,8 +5,6 @@
 	 * User: chrishoward
 	 * Date: 15/12/2013
 	 * Time: 10:02 PM
-	 */
-	/*
 	* class for displaying content
 	* this captures the content and returns it, so needs an echo statemnet to display in blueprints
 	* this is necessary to work in a shortcode
@@ -24,7 +22,7 @@
 	 * @properties: $build, $panel_def, $arc, $query, $is_shortcode
 	 *
 	 */
-	class ArchitectPublic {
+	class Architect_Public {
 
 		public $build;
 		private $arc_pagination;

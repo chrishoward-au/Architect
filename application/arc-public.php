@@ -338,7 +338,7 @@
 		    add_filter( 'wp_image_editors', 'bfi_wp_image_editor' );
 		    add_filter( 'image_resize_dimensions', 'bfi_image_resize_dimensions', 10, 6 );
 		    add_filter( 'image_downsize', 'bfi_image_downsize', 1, 3 );
-      $architect = new ArchitectPublic( $blueprint, $is_shortcode ,$device);
+      $architect = new Architect_Public( $blueprint, $is_shortcode ,$device);
 
       // If no errors, let's go!
       if ( empty( $architect->build->blueprint['err_msg'] ) ) {
