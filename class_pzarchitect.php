@@ -329,8 +329,10 @@
 
       }
 
-      if ( arc_fs()->is__premium_only() ) {
+      if (function_exists('arc_fs') &&  (arc_fs()->is_plan('architectpro') || arc_fs()->is_plan('is_free_localhost'))) {
         $pzarc_status = 'valid';
+      } else {
+        $pzarc_status = '';
       }
 
       if ( ( ! empty( $hw_opts['license-status-architect'] ) && $hw_opts['license-status-architect'] == 'valid' ) || ( $pzarc_status !== FALSE && $pzarc_status == 'valid' ) ) {

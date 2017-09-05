@@ -2132,6 +2132,9 @@ li.arc-message {
     &.col2 {
       width: 45%;
     }
+    &.arc-is-lite {
+      background:$blue-50;
+    }
 
     h3 {
       color: $highlight;
@@ -2349,4 +2352,13 @@ body.arc-beginner {
       background: #eee;
     }
   }
+}
+
+.fs-submenu-item.pzarchitect.account::before,
+.fs-submenu-item.pzarchitect.contact::before,
+.fs-submenu-item.pzarchitect.pricing::before ,
+.fs-submenu-item.pzarchitect.upgrade::before {
+  content: " ";
+  padding-left:25px;
+  display:inline-block;
 }

@@ -31,7 +31,7 @@
 //      add_action('plugins_loaded', array($this, 'init'));
       add_action( 'plugins_loaded', array( $this, 'init' ) );
 
-      if ( ! arc_fs()->is__premium_only() ) {
+      if ( ( function_exists( 'arc_fs' ) && ! arc_fs()->is__premium_only() ) || ! function_exists( 'arc_fs' ) ) {
         add_action( 'after_setup_theme', 'pzarc_initiate_updater' );
       }
 
@@ -46,15 +46,18 @@
       if ( ! is_admin() || ! current_user_can( 'install_plugins' ) ) {
         return;
       }
+
       if ( ! class_exists( 'SysInfo' ) ) {
         require_once( PZARC_PLUGIN_APP_PATH . '/shared/thirdparty/php/WordPress-SysInfo/sysinfo.php' );
       }
+
       if ( ! ( class_exists( 'ReduxFramework' ) || class_exists( 'ReduxFrameworkPlugin' ) ) ) {
         add_action( 'admin_notices', array( $this, 'missing_redux_admin_notice' ) );
 
         // TODO: Add an alternativeArchitect Admin screen.
         add_action( 'admin_menu', array( $this, 'admin_menu_no_redux' ) );
         require_once( PZARC_PLUGIN_APP_PATH . '/shared/thirdparty/php/pzwp-focal-point/pzwp-focal-point.php' );
+
         return;
 
       } else {
@@ -85,167 +88,186 @@
         require_once PZARC_PLUGIN_APP_PATH . 'admin/php/arc-options.php';
         require_once PZARC_PLUGIN_APP_PATH . 'admin/php/arc-options-styling.php';
 
-        if ( arc_fs()->is__premium_only() ) {
+        if ( ( function_exists( 'arc_fs' ) && arc_fs()->is__premium_only() ) || defined( 'PZARC_PRO' ) ) {
           require_once PZARC_PLUGIN_APP_PATH . 'admin/php/arc-options-actions.php';
         }
+          require_once( PZARC_PLUGIN_APP_PATH . '/shared/thirdparty/php/pzwp-focal-point/pzwp-focal-point.php' );
 
-        require_once( PZARC_PLUGIN_APP_PATH . '/shared/thirdparty/php/pzwp-focal-point/pzwp-focal-point.php' );
-
-      }
-    }
-
-    /*********************************************
-     *
-     */
-    function missing_redux_admin_notice() {
-      echo '<div id="message" class="error"><h3>' . __( 'Architect requires Redux Framework', 'pzarchitect' ) . '</h3><p><strong>' . __( 'One final step in installing Architect.', 'pzarchitect' ) . '</strong><br>' . __( 'It cannot function without the Redux Framework plugin. You need to install and/or activate Redux.', 'pzarchitect' ) . '<br>' . __( 'Redux is the backbone of Architect, providing all the necessary code libraries for Architect\'s fields and options.', 'pzarchitect' ) . '<br>' . __( 'There should be another message with a link to make installing and activating Redux easy. If you can\'t find it, contact PizazzWP support.', 'pzarchitect' ) . '</p></div>';
-    }
-
-
-    /*********************************************
-     * @param $classes
-     *
-     * @return string
-     */
-    function add_admin_body_class( $classes ) {
-      $screen = get_current_screen();
-
-      switch ( $screen->id ) {
-        case 'architect_page__architect_options':
-        case 'architect_page__architect_styling':
-        case 'architect_page__architect_actions_editor':
-        case 'edit-arc-panels':
-        case 'edit-arc-blueprints':
-        case 'arc-panels':
-        case 'arc-blueprints':
-        case 'architect_page_pzarc_tools':
-        case 'architect_page_pzarc_about':
-          global $_architect_options;
-          if ( $_architect_options['architect_enable_bgimage'] ) {
-            $arc_bg  = $_architect_options['architect_bgimage'];
-            $classes .= ' arc-bgimage arc-bg-' . $arc_bg;
-          }
-          $classes .= ' ' . $screen->post_type;
-          break;
+        }
       }
 
-      global $_architect_options;
-      if ( ! empty( $_architect_options['architect_show_advanced'] ) ) {
-        $classes .= ' arc-advanced';
-      } else {
-        $classes .= ' arc-beginner';
+      /*********************************************
+       *
+       */
+      function missing_redux_admin_notice() {
+        echo '<div id="message" class="error"><h3>' . __( 'Architect requires Redux Framework', 'pzarchitect' ) . '</h3><p><strong>' . __( 'One final step in installing Architect.', 'pzarchitect' ) . '</strong><br>' . __( 'It cannot function without the Redux Framework plugin. You need to install and/or activate Redux.', 'pzarchitect' ) . '<br>' . __( 'Redux is the backbone of Architect, providing all the necessary code libraries for Architect\'s fields and options.', 'pzarchitect' ) . '<br>' . __( 'There should be another message with a link to make installing and activating Redux easy. If you can\'t find it, contact PizazzWP support.', 'pzarchitect' ) . '</p></div>';
       }
 
-      return $classes;
-    }
 
+      /*********************************************
+       * @param $classes
+       *
+       * @return string
+       */
+      function add_admin_body_class( $classes ) {
+        $screen = get_current_screen();
 
-    /*********************************************
-     * @param $hook
-     */
-    function admin_enqueue( $hook ) {
-      wp_enqueue_style( 'pzarc-admin-styles' );
+        switch ( $screen->id ) {
+          case 'architect_page__architect_options':
+          case 'architect_page__architect_styling':
+          case 'architect_page__architect_actions_editor':
+          case 'edit-arc-panels':
+          case 'edit-arc-blueprints':
+          case 'arc-panels':
+          case 'arc-blueprints':
+          case 'architect_page_pzarc_tools':
+          case 'architect_page_pzarc_about':
+            global $_architect_options;
+            if ( $_architect_options['architect_enable_bgimage'] ) {
+              $arc_bg  = $_architect_options['architect_bgimage'];
+              $classes .= ' arc-bgimage arc-bg-' . $arc_bg;
+            }
+            $classes .= ' ' . $screen->post_type;
+            break;
+        }
 
-      wp_register_script( 'jquery-cookie', PZARC_PLUGIN_APP_URL . 'shared/thirdparty/js/jquery-cookie/jquery.cookie.js', array( 'jquery' ), PZARC_VERSION, TRUE );
-      wp_register_script( 'jquery-pageguide', PZARC_PLUGIN_APP_URL . 'shared/thirdparty/js/pageguide/pageguide.min.js', array( 'jquery' ), PZARC_VERSION, TRUE );
-      wp_register_style( 'css-pageguide', PZARC_PLUGIN_APP_URL . 'shared/thirdparty/js/pageguide/css/pageguide.css', FALSE, PZARC_VERSION );
+        global $_architect_options;
+        if ( ! empty( $_architect_options['architect_show_advanced'] ) ) {
+          $classes .= ' arc-advanced';
+        } else {
+          $classes .= ' arc-beginner';
+        }
 
-      $screen = get_current_screen();
-      if ( strpos( ( 'X' . $screen->id ), 'arc-' ) > 0 ) {
-        wp_enqueue_style( 'dashicons' );
-        wp_enqueue_script( 'jquery-pzarc-metaboxes', PZARC_PLUGIN_APP_URL . '/admin/js/arc-metaboxes.js', array( 'jquery' ), PZARC_VERSION, TRUE );
-
-        add_filter( 'post_row_actions', 'pzarc_duplicate_post_link', 10, 2 );
-        add_filter( 'page_row_actions', 'pzarc_duplicate_post_link', 10, 2 );
-        add_filter( 'post_row_actions', 'pzarc_export_preset_link', 10, 3 );
-        add_filter( 'page_row_actions', 'pzarc_export_preset_link', 10, 3 );
+        return $classes;
       }
-      if ( 'architect-lite_page_pzarc_support' === $screen->id || 'architect_page_pzarc_support' === $screen->id || 'edit-arc-blueprints' === $screen->id ) {
-        wp_enqueue_script( 'js-classlist', PZARC_PLUGIN_APP_URL . '/shared/thirdparty/js/tabby/dist/js/classList.min.js', array( 'jquery' ), PZARC_VERSION, TRUE );
-        wp_enqueue_script( 'js-tabby', PZARC_PLUGIN_APP_URL . '/shared/thirdparty/js/tabby/dist/js/tabby.min.js', array( 'jquery' ), PZARC_VERSION, TRUE );
-        wp_enqueue_script( 'js-tabby-arc', PZARC_PLUGIN_APP_URL . '/admin/js/arc-tabby.js', array( 'jquery' ), PZARC_VERSION, TRUE );
-        wp_enqueue_style( 'css-tabby', PZARC_PLUGIN_APP_URL . '/shared/thirdparty/js/tabby/dist/css/tabby.min.css' );
-      }
 
-      switch ( $screen->id ) {
-        case 'architect_page__architect_options':
-        case 'architect_page__architect_styling':
-        case 'architect_page__architect_actions_editor':
-        case 'edit-arc-blueprints':
-        case 'arc-blueprints':
-        case 'architect_page_pzarc_tools':
-        case 'architect_page_pzarc_about':
 
-          global $_architect_options;
-          if ( ! isset( $GLOBALS['_architect_options'] ) ) {
-            $GLOBALS['_architect_options'] = get_option( '_architect_options', array() );
-          }
+      /*********************************************
+       * @param $hook
+       */
+      function admin_enqueue( $hook ) {
+        wp_enqueue_style( 'pzarc-admin-styles' );
+
+        wp_register_script( 'jquery-cookie', PZARC_PLUGIN_APP_URL . 'shared/thirdparty/js/jquery-cookie/jquery.cookie.js', array( 'jquery' ), PZARC_VERSION, TRUE );
+        wp_register_script( 'jquery-pageguide', PZARC_PLUGIN_APP_URL . 'shared/thirdparty/js/pageguide/pageguide.min.js', array( 'jquery' ), PZARC_VERSION, TRUE );
+        wp_register_style( 'css-pageguide', PZARC_PLUGIN_APP_URL . 'shared/thirdparty/js/pageguide/css/pageguide.css', FALSE, PZARC_VERSION );
+
+        $screen = get_current_screen();
+        if ( strpos( ( 'X' . $screen->id ), 'arc-' ) > 0 ) {
+          wp_enqueue_style( 'dashicons' );
+          wp_enqueue_script( 'jquery-pzarc-metaboxes', PZARC_PLUGIN_APP_URL . '/admin/js/arc-metaboxes.js', array( 'jquery' ), PZARC_VERSION, TRUE );
+
+          add_filter( 'post_row_actions', 'pzarc_duplicate_post_link', 10, 2 );
+          add_filter( 'page_row_actions', 'pzarc_duplicate_post_link', 10, 2 );
+          add_filter( 'post_row_actions', 'pzarc_export_preset_link', 10, 3 );
+          add_filter( 'page_row_actions', 'pzarc_export_preset_link', 10, 3 );
+        }
+        if ( 'architect-lite_page_pzarc_support' === $screen->id || 'architect_page_pzarc_support' === $screen->id || 'edit-arc-blueprints' === $screen->id ) {
+          wp_enqueue_script( 'js-classlist', PZARC_PLUGIN_APP_URL . '/shared/thirdparty/js/tabby/dist/js/classList.min.js', array( 'jquery' ), PZARC_VERSION, TRUE );
+          wp_enqueue_script( 'js-tabby', PZARC_PLUGIN_APP_URL . '/shared/thirdparty/js/tabby/dist/js/tabby.min.js', array( 'jquery' ), PZARC_VERSION, TRUE );
+          wp_enqueue_script( 'js-tabby-arc', PZARC_PLUGIN_APP_URL . '/admin/js/arc-tabby.js', array( 'jquery' ), PZARC_VERSION, TRUE );
+          wp_enqueue_style( 'css-tabby', PZARC_PLUGIN_APP_URL . '/shared/thirdparty/js/tabby/dist/css/tabby.min.css' );
+        }
+
+        switch ( $screen->id ) {
+          case 'architect_page__architect_options':
+          case 'architect_page__architect_styling':
+          case 'architect_page__architect_actions_editor':
+          case 'edit-arc-blueprints':
+          case 'arc-blueprints':
+          case 'architect_page_pzarc_tools':
+          case 'architect_page_pzarc_about':
+
+            global $_architect_options;
+            if ( ! isset( $GLOBALS['_architect_options'] ) ) {
+              $GLOBALS['_architect_options'] = get_option( '_architect_options', array() );
+            }
 //          if ( empty( $_architect_options[ 'architect_remove_support_button' ] ) ) {
 //            wp_enqueue_script( 'js-freshdesk', 'http://assets.freshdesk.com/widget/freshwidget.js', false, true );
 //            wp_enqueue_script( 'js-freshdesk-support', PZARC_PLUGIN_APP_URL . '/admin/js/freshdesk-support.js', false, true );
 //
 //          }
-          break;
-      }
+            break;
+        }
 
-      if ( $screen->id === 'edit-arc-blueprints' ) {
-        wp_enqueue_script( 'jquery-cookie' );
-        require_once( PZARC_DOCUMENTATION_PATH . PZARC_LANGUAGE . '/blueprints-listings-pageguide.php' );
-      }
+        if ( $screen->id === 'edit-arc-blueprints' ) {
+          wp_enqueue_script( 'jquery-cookie' );
+          require_once( PZARC_DOCUMENTATION_PATH . PZARC_LANGUAGE . '/blueprints-listings-pageguide.php' );
+        }
 
 //      if ($screen post ot page editor)
 //      require_once (PZARC_PLUGIN_APP_PATH.'admin/php/arcMCEButtons.php');
-    }
-
-    /*********************************************
-     *
-     */
-    function admin_menu() {
-      global $pzarc_menu, $pizazzwp_updates;
-      if ( ! $pzarc_menu ) {
-        //add_menu_page( $page_title,  $menu_title, $capability,   $menu_slug, $function,    $icon_url, $position );
-        $pzarc_status        = get_option( 'edd_architect_license_status' );
-        $pzarc_current_theme = wp_get_theme();
-        if ( ( $pzarc_current_theme->get( 'Name' ) === 'Headway' || $pzarc_current_theme->get( 'Name' ) === 'Headway Base' || $pzarc_current_theme->get( 'Template' ) == 'headway' ) ) {
-
-          if ( is_multisite() ) {
-            $hw_opts = get_blog_option( 1, 'headway_option_group_general' );
-          } else {
-            $hw_opts = get_option( 'headway_option_group_general' );
-          }
-        }
-        if ( arc_fs()->is__premium_only() ) {
-          $pzarc_status = 'valid';
-        }
-
-        $vers       = ( ( ! empty( $hw_opts['license-status-architect'] ) && $hw_opts['license-status-architect'] == 'valid' ) || $pzarc_status !== FALSE && $pzarc_status == 'valid' ) ? '' : 'Lite';
-        $pzarc_menu = add_menu_page( __( 'Getting started', 'pzarchitect' ), 'Architect ' . $vers, 'edit_posts', 'pzarc', 'pzarc_about', PZARC_PLUGIN_APP_URL . 'wp-icon.png' );
-        // add_submenu_page( $parent_slug, $page_title, $menu_title, $capability, $menu_slug, $function );
-
-        add_submenu_page( 'pzarc', __( 'Tools', 'pzarchitect' ), '<span class="dashicons dashicons-hammer size-small"></span>' . __( 'Tools', 'pzarchitect' ), 'edit_others_pages', 'pzarc_tools', array(
-          $this,
-          'pzarc_tools',
-        ) );
-        add_submenu_page( 'pzarc', __( 'Help & Support', 'pzarchitect' ), '<span class="dashicons dashicons-editor-help size-small"></span>' . __( 'Help & Support', 'pzarchitect' ), 'edit_others_pages', 'pzarc_support', array(
-          $this,
-          'pzarc_support',
-        ) );
-
-        global $submenu;
-        // Shift Help to the top
-        array_unshift( $submenu['pzarc'], array_pop( $submenu['pzarc'] ) );
       }
 
-    }
+      /*********************************************
+       *
+       */
+      function admin_menu() {
+        global $pzarc_menu, $pizazzwp_updates;
+        global $submenu;
+        if ( ! $pzarc_menu ) {
+          //add_menu_page( $page_title,  $menu_title, $capability,   $menu_slug, $function,    $icon_url, $position );
+          $pzarc_status        = get_option( 'edd_architect_license_status' );
+          $pzarc_current_theme = wp_get_theme();
+          if ( ( $pzarc_current_theme->get( 'Name' ) === 'Headway' || $pzarc_current_theme->get( 'Name' ) === 'Headway Base' || $pzarc_current_theme->get( 'Template' ) == 'headway' ) ) {
 
-    /*********************************************
-     *
-     */
-    function admin_menu_no_redux() {
+            if ( is_multisite() ) {
+              $hw_opts = get_blog_option( 1, 'headway_option_group_general' );
+            } else {
+              $hw_opts = get_option( 'headway_option_group_general' );
+            }
+          }
+
+          if ( function_exists( 'arc_fs' ) && ( arc_fs()->is_plan( 'architectpro' ) || arc_fs()->is_plan( 'is_free_localhost' ) ) ) {
+            $pzarc_status = 'valid';
+          } else {
+            $pzarc_status = '';
+          }
+
+          $vers       = ( ( ! empty( $hw_opts['license-status-architect'] ) && $hw_opts['license-status-architect'] == 'valid' ) || $pzarc_status !== FALSE && $pzarc_status == 'valid' ) ? '' : 'Lite';
+          $pzarc_menu = add_menu_page( __( 'Getting started', 'pzarchitect' ), 'Architect ' . $vers, 'edit_posts', 'pzarc', 'pzarc_about', PZARC_PLUGIN_APP_URL . 'wp-icon.png' );
+          // add_submenu_page( $parent_slug, $page_title, $menu_title, $capability, $menu_slug, $function );
+
+          add_submenu_page( 'pzarc', __( 'Tools', 'pzarchitect' ), '<span class="dashicons dashicons-hammer size-small"></span>' . __( 'Tools', 'pzarchitect' ), 'edit_others_pages', 'pzarc_tools', array(
+            $this,
+            'pzarc_tools',
+          ) );
+          add_submenu_page( 'pzarc', __( 'Help & Support', 'pzarchitect' ), '<span class="dashicons dashicons-editor-help size-small"></span>' . __( 'Help & Support', 'pzarchitect' ), 'edit_others_pages', 'pzarc_support', array(
+            $this,
+            'pzarc_support',
+          ) );
+
+          // Shift Help to the top
+          array_unshift( $submenu['pzarc'], array_pop( $submenu['pzarc'] ) );
+        }
+
+        // This should ensure the support menu is available before Freemius licence activation
+        if ( isset( $submenu['pzarc'] ) ) {
+          $missing_support = TRUE;
+          foreach ( $submenu['pzarc'] as $v ) {
+            if ( in_array( 'pzarc_support', $v ) ) {
+              $missing_support = FALSE;
+              break;
+            }
+          }
+          if ( $missing_support ) {
+            add_submenu_page( 'pzarc', __( 'Help & Support', 'pzarchitect' ), '<span class="dashicons dashicons-editor-help size-small"></span>' . __( 'Help & Support', 'pzarchitect' ), 'edit_others_pages', 'pzarc_support', array(
+              $this,
+              'pzarc_support',
+            ) );
+          }
+        }
+
+      }
+
+      /**
+       *
+       */
+      function admin_menu_no_redux() {
 //      global $pzarc_menu, $pizazzwp_updates;
 //      if (!$pzarc_menu) {
-      //add_menu_page( $page_title,  $menu_title, $capability,   $menu_slug, $function,    $icon_url, $position );
-      $pzarc_menu = add_menu_page( 'About Architect', 'Architect', 'edit_posts', 'pzarc', 'pzarc_about', PZARC_PLUGIN_APP_URL . 'wp-icon.png' );
+        //add_menu_page( $page_title,  $menu_title, $capability,   $menu_slug, $function,    $icon_url, $position );
+        $pzarc_menu = add_menu_page( 'About Architect', 'Architect', 'edit_posts', 'pzarc', 'pzarc_about', PZARC_PLUGIN_APP_URL . 'wp-icon.png' );
 //        add_submenu_page(
 //            'pzarc', 'Help & Support', '<span class="dashicons dashicons-editor-help size-small"></span>Help & Support', 'manage_options', 'pzarc_support', array($this,
 //                                                                                                                                                                  'pzarc_support')
@@ -256,23 +278,23 @@
 //        array_unshift($submenu[ 'pzarc' ], array_pop($submenu[ 'pzarc' ]));
 //      }
 
-    }
+      }
 
-    /*********************************************
-     *
-     */
-    function admin_head() {
+      /*********************************************
+       *
+       */
+      function admin_head() {
 
-    }
+      }
 
 
-    /**
-     * pzarc_tools
-     */
-    function pzarc_tools() {
-      global $title;
+      /**
+       * pzarc_tools
+       */
+      function pzarc_tools() {
+        global $title;
 
-      echo '<div class = "wrap">
+        echo '<div class = "wrap">
 
 			<!--Display Plugin Icon, Header, and Description-->
 			<div class = "icon32" id = "icon-users"><br></div>
@@ -290,114 +312,114 @@
 						<h3>Duplicate</h3>
 						<p>Duplicate single or multiple blueprints and panels</p>-->
 						';
-      /**
-       * Rebuild CSS
-       */
-      echo '
+        /**
+         * Rebuild CSS
+         */
+        echo '
 						<h3>' . __( 'Clear Architect caches', 'pzarchitect' ) . '</h3>
 						<p>' . __( 'Sometimes the CSS cache file may not exist or may even become scrambled and layouts will not look right. If so, simply click the Rebuild button and it will be recreated. This also rebuilds the default settings cache. If the problem persists, contact Pizazz Support at <strong>support@pizazzwp.com</strong>.', 'pzarchitect' ) . '</p>
     <p>' . __( 'If you update or change images in any posts,sometimes the image cache may get out-of-sync. In that case, you can refresh the thumbs image cache to ensure your site visitors are seeing the correct images.', 'pzarchitect' ) . '</p>
 
     <p>' . __( 'Please note: Refreshing the cache causes no problems other than the next person who visits your site may have to wait a little longer as the cache images get recreated.', 'pzarchitect' ) . ' <strong>' . __( 'No images in any post will be affected', 'pzarchitect' ) . '</strong>. </p>
 						<form action="admin.php?page=pzarc_tools" method="post">';
-      wp_nonce_field( 'rebuild-architect-css-cache' );
-      echo '<button class="button-primary" style="min-width:100px;" type="submit" name="rebuildarchitectcss" value="' . __( 'Clear Architect Caches' ) . '">' . __( 'Clear' ) . '  <span class="dashicons dashicons-admin-appearance" style="margin-left:1%;color:inherit;font-size:22px;vertical-align:text-bottom"></span></button>
+        wp_nonce_field( 'rebuild-architect-css-cache' );
+        echo '<button class="button-primary" style="min-width:100px;" type="submit" name="rebuildarchitectcss" value="' . __( 'Clear Architect Caches' ) . '">' . __( 'Clear' ) . '  <span class="dashicons dashicons-admin-appearance" style="margin-left:1%;color:inherit;font-size:22px;vertical-align:text-bottom"></span></button>
         </form>';
 
-      if ( isset( $_POST['rebuildarchitectcss'] ) && check_admin_referer( 'rebuild-architect-css-cache' ) ) {
-        require_once( PZARC_PLUGIN_APP_PATH . '/admin/php/arc-save-process.php' );
-        global $pzarc_css_success;
-        $pzarc_css_success = TRUE;
-        save_arc_layouts( 'all', NULL, TRUE );
-        pzarc_set_defaults();
-        bfi_flush_image_cache();
-        delete_option( 'architect_custom_fields' );
-        // Clear the registry of Blueprint usages
-        delete_option( 'arc-blueprint-usage' );
-        if ( $pzarc_css_success ) {
-          echo '<br><div id="message" class="updated"><p>' . __( 'Architect caches have been cleared. Your site should look awesome again!', 'pzarchitect' ) . '</p>
+        if ( isset( $_POST['rebuildarchitectcss'] ) && check_admin_referer( 'rebuild-architect-css-cache' ) ) {
+          require_once( PZARC_PLUGIN_APP_PATH . '/admin/php/arc-save-process.php' );
+          global $pzarc_css_success;
+          $pzarc_css_success = TRUE;
+          save_arc_layouts( 'all', NULL, TRUE );
+          pzarc_set_defaults();
+          bfi_flush_image_cache();
+          delete_option( 'architect_custom_fields' );
+          // Clear the registry of Blueprint usages
+          delete_option( 'arc-blueprint-usage' );
+          if ( $pzarc_css_success ) {
+            echo '<br><div id="message" class="updated"><p>' . __( 'Architect caches have been cleared. Your site should look awesome again!', 'pzarchitect' ) . '</p>
 
         <p>' . __( 'If your site is using a cache plugin or service, clear that cache too.', 'pzarchitect' ) . '</p></div>';
-        } else {
-          // add a message
-        }
-      }
-
-      if ( arc_fs()->is__premium_only() ) {
-
-        /**
-         * Import presets
-         */
-        if ( defined( 'PZARC_PRO' ) && PZARC_PRO == TRUE && wp_mkdir_p( PZARC_PRESETS_PATH ) ) {
-          $pzarc_custom_presets = pzarc_tidy_dir( scandir( PZARC_PRESETS_PATH ) );
-          // TODO: add existing presets with option to delete (custom) or hide (builtin)
-          echo '<h3>' . __( 'Import Blueprint or Preset', 'pzarchitect' ) . '</h3>';
-          if ( count( $pzarc_custom_presets ) > 0 ) {
-            echo '<div class="arc-installed-presets"><h4>Currently installed additional Presets</h4>';
-            echo '<ul>';
-            foreach ( $pzarc_custom_presets as $f ) {
-              if ( is_dir( PZARC_PRESETS_PATH . '/' . $f ) ) {
-                echo '<li>' . ucwords( $f ) . '</li>';
-              }
-            }
-            echo '</ul></div>';
+          } else {
+            // add a message
           }
         }
 
-        echo '<p>Tutorial: <a href="http://architect4wp.com/codex/architect-importing-blueprints-and-presets/" target=_blank>Importing Blueprints and Presets</a></p>';
-        echo '<p>' . __( '<strong>Blueprints</strong>: If you have a <strong>Blueprint</strong> in a .txt format, you may import it by uploading it here. The new Blueprint will then be opened ready for editing. Blueprint export files can be created from context menu on the Blueprint listing.' ) . '</p>';
-        echo '<p>' . __( '<strong>Presets</strong>: If you have a <strong>Preset</strong> in a .zip format, you may import it by uploading it here. It will then appear in the Blueprints, Preset Selector' ) . '</p>
+        if ( ( function_exists( 'arc_fs' ) && arc_fs()->is__premium_only() ) || defined( 'PZARC_PRO' ) ) {
+
+          /**
+           * Import presets
+           */
+          if ( defined( 'PZARC_PRO' ) && PZARC_PRO == TRUE && wp_mkdir_p( PZARC_PRESETS_PATH ) ) {
+            $pzarc_custom_presets = pzarc_tidy_dir( scandir( PZARC_PRESETS_PATH ) );
+            // TODO: add existing presets with option to delete (custom) or hide (builtin)
+            echo '<h3>' . __( 'Import Blueprint or Preset', 'pzarchitect' ) . '</h3>';
+            if ( count( $pzarc_custom_presets ) > 0 ) {
+              echo '<div class="arc-installed-presets"><h4>Currently installed additional Presets</h4>';
+              echo '<ul>';
+              foreach ( $pzarc_custom_presets as $f ) {
+                if ( is_dir( PZARC_PRESETS_PATH . '/' . $f ) ) {
+                  echo '<li>' . ucwords( $f ) . '</li>';
+                }
+              }
+              echo '</ul></div>';
+            }
+          }
+
+          echo '<p>Tutorial: <a href="http://architect4wp.com/codex/architect-importing-blueprints-and-presets/" target=_blank>Importing Blueprints and Presets</a></p>';
+          echo '<p>' . __( '<strong>Blueprints</strong>: If you have a <strong>Blueprint</strong> in a .txt format, you may import it by uploading it here. The new Blueprint will then be opened ready for editing. Blueprint export files can be created from context menu on the Blueprint listing.' ) . '</p>';
+          echo '<p>' . __( '<strong>Presets</strong>: If you have a <strong>Preset</strong> in a .zip format, you may import it by uploading it here. It will then appear in the Blueprints, Preset Selector' ) . '</p>
         <div class="pzarc-upload-preset">
              <form method="post" enctype="multipart/form-data" class="pzarc-preset-upload-form" action="">';
-        wp_nonce_field( 'arc-preset-upload' );
-        echo '<p><label  for="txtorzip">' . __( 'Select Blueprint .txt file or Preset zip file' ) . '</label>
+          wp_nonce_field( 'arc-preset-upload' );
+          echo '<p><label  for="txtorzip">' . __( 'Select Blueprint .txt file or Preset zip file' ) . '</label>
                   <input type="file" id="txtorzip" name="txtorzip" /></p>';
-        echo '<p><label for="newbpname">' . __( 'Name for new Blueprint' ) . '</label>
+          echo '<p><label for="newbpname">' . __( 'Name for new Blueprint' ) . '</label>
                   <input type="text" size=40 id="newbpname" name="newbpname" placeholder="(New) Unnamed Blueprint"/></p>';
-        echo '<p><button class="button-primary"  style="min-width:100px;" type="submit" name="install-blueprint-or-preset-submit" value="' . __( 'Import', 'pzarchitect' ) . '">' . __( 'Import' ) . '  <span class="dashicons dashicons-id-alt" style="margin-left:1%;color:inherit;font-size:22px;vertical-align:text-bottom"></span></button></p>';
-        echo '</form>
+          echo '<p><button class="button-primary"  style="min-width:100px;" type="submit" name="install-blueprint-or-preset-submit" value="' . __( 'Import', 'pzarchitect' ) . '">' . __( 'Import' ) . '  <span class="dashicons dashicons-id-alt" style="margin-left:1%;color:inherit;font-size:22px;vertical-align:text-bottom"></span></button></p>';
+          echo '</form>
         </div>';
 
-        if ( isset( $_POST['install-blueprint-or-preset-submit'] ) && check_admin_referer( 'arc-preset-upload' ) ) {
+          if ( isset( $_POST['install-blueprint-or-preset-submit'] ) && check_admin_referer( 'arc-preset-upload' ) ) {
 
-          switch ( TRUE ) {
-            case ( ( substr( $_FILES['txtorzip']['name'], - 4, 4 ) === '.zip' ) && file_exists( PZARC_PRESETS_PATH . '/' . str_replace( '.zip', '', $_FILES['txtorzip']['name'] ) ) ):
-              echo '<div id="message" class="error"><p>' . __( 'A Preset with that name already exists.', 'pzarchitect' ) . '</p></div>';
-              break;
+            switch ( TRUE ) {
+              case ( ( substr( $_FILES['txtorzip']['name'], - 4, 4 ) === '.zip' ) && file_exists( PZARC_PRESETS_PATH . '/' . str_replace( '.zip', '', $_FILES['txtorzip']['name'] ) ) ):
+                echo '<div id="message" class="error"><p>' . __( 'A Preset with that name already exists.', 'pzarchitect' ) . '</p></div>';
+                break;
 
-            case ( ! empty( $_FILES['txtorzip']['name'] ) && ( substr( $_FILES['txtorzip']['name'], - 4, 4 ) === '.zip' ) ):
-              pzarc_upload_file( $_FILES['txtorzip'], 'preset' );
-              break;
+              case ( ! empty( $_FILES['txtorzip']['name'] ) && ( substr( $_FILES['txtorzip']['name'], - 4, 4 ) === '.zip' ) ):
+                pzarc_upload_file( $_FILES['txtorzip'], 'preset' );
+                break;
 
-            case ( ! empty( $_FILES['txtorzip']['name'] ) && ( substr( $_FILES['txtorzip']['name'], - 4, 4 ) === '.txt' ) ):
-              pzarc_upload_file( $_FILES['txtorzip'], 'blueprint', $_POST['newbpname'] );
-              // todo: add method of styled or unstyled
-              break;
+              case ( ! empty( $_FILES['txtorzip']['name'] ) && ( substr( $_FILES['txtorzip']['name'], - 4, 4 ) === '.txt' ) ):
+                pzarc_upload_file( $_FILES['txtorzip'], 'blueprint', $_POST['newbpname'] );
+                // todo: add method of styled or unstyled
+                break;
 
-            case empty( $_FILES['txtorzip']['name'] ):
-              echo '<div id="message" class="error"><p>' . __( 'No file specified.', 'pzarchitect' ) . '</p></div>';
-              break;
+              case empty( $_FILES['txtorzip']['name'] ):
+                echo '<div id="message" class="error"><p>' . __( 'No file specified.', 'pzarchitect' ) . '</p></div>';
+                break;
 
-            case ( substr( $_FILES['txtorzip']['name'], - 4, 4 ) !== '.zip' && substr( $_FILES['txtorzip']['name'], - 4, 4 ) !== '.txt' ):
-              echo '<div id="message" class="error"><p>' . __( 'File must be a txt or zip file.', 'pzarchitect' ) . '</p></div>';
-              break;
+              case ( substr( $_FILES['txtorzip']['name'], - 4, 4 ) !== '.zip' && substr( $_FILES['txtorzip']['name'], - 4, 4 ) !== '.txt' ):
+                echo '<div id="message" class="error"><p>' . __( 'File must be a txt or zip file.', 'pzarchitect' ) . '</p></div>';
+                break;
 
+            }
           }
         }
-      }
-      echo '</div><!--end table-->
+        echo '</div><!--end table-->
 			</div>
       ';
-    }
+      }
 
-    /*********************************************
-     *
-     */
-    function pzarc_support() {
-      global $title;
+      /*********************************************
+       *
+       */
+      function pzarc_support() {
+        global $title;
 //      require_once(PZARC_DOCUMENTATION_PATH . PZARC_LANGUAGE . '/architect-pageguide.php');
 
-      echo '<div class = "wrap">
+        echo '<div class = "wrap">
      <script>
       //    tabby.init();
       </script>
@@ -409,14 +431,14 @@
         <h1 style="font-size:2.8rem;margin-bottom: 20px;font-weight:300"><img src="' . PZARC_PLUGIN_APP_URL . 'admin/assets/images/architect-logo.png" width="96" height="96" style="vertical-align:middle;">Architect content display framework</h1>
         ';
 
-      if ( class_exists( 'HeadwayLayoutOptions' ) ) {
-        echo '<div class="pzarc-about-box alert">
+        if ( class_exists( 'HeadwayLayoutOptions' ) ) {
+          echo '<div class="pzarc-about-box alert">
       <h2>Crossgrade Headway licences</h2>
       <p>Anyone who purchased Architect from the Headway Extend store, please contact <a href="mailto:support@pizazzwp.com">support@pizazzwp.com</a> to arrange a discounted crosgrade licence from the Pizazz store.</p>
       </div>
 ';
-      }
-      echo '                             
+        }
+        echo '                             
         <div class="pzarc-about-box" >
             <div class="pzarc-help-section">
             <h2>' . $title . '</h2>
@@ -439,49 +461,53 @@
 
             ';
 
-      $pzarc_status        = get_option( 'edd_architect_license_status' );
-      $pzarc_current_theme = wp_get_theme();
-      if ( ( $pzarc_current_theme->get( 'Name' ) === 'Headway' || $pzarc_current_theme->get( 'Name' ) === 'Headway Base' || $pzarc_current_theme->get( 'Template' ) == 'headway' ) ) {
+        $pzarc_status = get_option( 'edd_architect_license_status' );
 
-        if ( is_multisite() ) {
-          $hw_opts = get_blog_option( 1, 'headway_option_group_general' );
-        } else {
-          $hw_opts = get_option( 'headway_option_group_general' );
+        $pzarc_current_theme = wp_get_theme();
+        if ( ( $pzarc_current_theme->get( 'Name' ) === 'Headway' || $pzarc_current_theme->get( 'Name' ) === 'Headway Base' || $pzarc_current_theme->get( 'Template' ) == 'headway' ) ) {
+          if ( is_multisite() ) {
+            $hw_opts = get_blog_option( 1, 'headway_option_group_general' );
+          } else {
+            $hw_opts = get_option( 'headway_option_group_general' );
+          }
         }
-      }
 
-      if ( arc_fs()->is__premium_only() ) {
-        $pzarc_status = 'valid';
-      }
+        if ( function_exists( 'arc_fs' ) && ( arc_fs()->is_plan( 'architectpro' ) || arc_fs()->is_plan( 'is_free_localhost' ) ) ) {
+          $pzarc_status = 'valid';
+        } else {
+          $pzarc_status = '';
+        }
 
-      $lite = ( ( ! empty( $hw_opts['license-status-architect'] ) && $hw_opts['license-status-architect'] == 'valid' ) || $pzarc_status !== FALSE && $pzarc_status == 'valid' ) ? FALSE : TRUE;
+        $lite = ( ( ! empty( $hw_opts['license-status-architect'] ) && $hw_opts['license-status-architect'] == 'valid' ) || $pzarc_status !== FALSE && $pzarc_status == 'valid' ) ? FALSE : TRUE;
 
-      if ( $lite ) {
-        echo ' <div class="arc-info-boxes">
-                    <div class="arc-info col1">';
-        echo '<h3 style="color:#0074A2">Architect Lite</h3>
+        if ( $lite ) {
+          echo ' <div class="arc-info-boxes">
+                    <div class="arc-info col1 arc-is-lite">';
+          echo '<h3 style="color:#0074A2">Architect Lite</h3>
         <p class="arc-important" style="font-weight:bold;">You are running Architect without activating a licence, therefore it is in Lite mode. Cool features you are missing out on are: Animations and access to all content types, including Galleries, Snippets, NextGen, Testimonials and custom post types</p>
         <p style="font-weight:bold;">To get all the extra goodness of Architect, you can purchase it from the <a href="http://shop.pizazzwp.com/downloads/architect/" target="_blank">PizazzWP Shop</a></p>
         </div>
         </div>';
-      }
-      echo ' <div class="tabby tabs">
+        }
+        echo ' <div class="tabby tabs">
                 <button class="tabby-quick first active" data-tab="#quick">' . __( 'Getting started', 'pzarchitect' ) . '</button>
                 <button class="tabby-how" data-tab="#how">' . __( 'Usage', 'pzarchitect' ) . '</button>
                 <button class="tabby-latest" data-tab="#latest">' . __( 'Latest news', 'pzarchitect' ) . '</button>
                 <button class="tabby-changes" data-tab="#changes">' . __( 'Changelog', 'pzarchitect' ) . '</button>
                 <button class="tabby-shout" data-tab="#shout">' . __( 'Shoutouts', 'pzarchitect' ) . '</button>
+                <button class="tabby-features" data-tab="#features">' . __( 'Features', 'pzarchitect' ) . '</button>
                 <button class="tabby-help" data-tab="#help">' . __( 'Support', 'pzarchitect' ) . '</button>
             </div>';
 
-      include_once( 'admin/parts/admin-tabs-pane-about.php' );
-      include_once( 'admin/parts/admin-tabs-pane-usage.php' );
-      include_once( 'admin/parts/admin-tabs-pane-news.php' );
-      include_once( 'admin/parts/admin-tabs-pane-changes.php' );
-      include_once( 'admin/parts/admin-tabs-pane-shoutout.php' );
-      include_once( 'admin/parts/admin-tabs-pane-support.php' );
+        include_once( 'admin/parts/admin-tabs-pane-about.php' );
+        include_once( 'admin/parts/admin-tabs-pane-usage.php' );
+        include_once( 'admin/parts/admin-tabs-pane-news.php' );
+        include_once( 'admin/parts/admin-tabs-pane-changes.php' );
+        include_once( 'admin/parts/admin-tabs-pane-shoutout.php' );
+        include_once( 'admin/parts/admin-tabs-pane-features.php' );
+        include_once( 'admin/parts/admin-tabs-pane-support.php' );
 
-      echo '
+        echo '
                 </div>
 
             </div>
@@ -490,10 +516,11 @@
 
 
       </div>';
+      }
+
+
     }
 
-
-  }
 
 // end pzarcAdmin
 

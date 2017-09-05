@@ -29,7 +29,7 @@
 		pzdb( 'start' );
 	}
 
-	 include_once 'load-freemius.php';
+	include_once 'load-freemius.php';
 
 	require_once('class_pzarchitect.php');
 	$pzarc = new pzArchitect();

@@ -269,7 +269,7 @@
 						foreach ( $bp_uses as $k => $v ) {
 							if ( ! empty( $post_meta['_blueprints_short-name'][0] ) && $v['bp'] === $post_meta['_blueprints_short-name'][0] ) {
 								$uo_post = get_post( $v['id'] );
-								if ( $uo_post->post_type != 'arc-blueprints' ) {
+								if ( !in_array($uo_post->post_type, array( 'arc-blueprints','revision','attachment')) ) {
 									$odd_even = $i % 2 == 0 ? 'even' : 'odd';
 									echo '<p class="rows ' . $odd_even . '">' . ucwords( $uo_post->post_type ) . ' : ' . $uo_post->post_title . '</p>';
 									$i ++;

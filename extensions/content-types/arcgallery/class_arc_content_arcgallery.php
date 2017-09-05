@@ -15,35 +15,29 @@
     protected function __construct() {
 
       add_filter( 'arc-show-content-types', array( $this, 'add_show_arcgallery' ) );
-      add_filter( 'arc-galleries-settings', array( $this, 'arcgallery_settings' ) );
-    }
+      // This has to be post_type
+      $registry = arc_Registry::getInstance();
+      $settings = $registry->get( 'post_types' );
 
-    function arcgallery_settings( $arc_fields ) {
+      $prefix = '_content_galleries_';
 
-      $prefix       = '_content_arcgallery_';
-      $arc_fields[] = array(
-        'title'   => __( 'Specific gallery', 'pzarchitect' ),
-        'id'      => $prefix . 'specific-arcgallery',
-        'type'    => 'select',
-        'select2' => array( 'allowClear' => TRUE ),
-        'options' => pzarc_get_posts_in_post_type( 'pz_arcgallery', 'id-slug' ),
-        'multi'   => TRUE,
-        'default' => array(),
-      );
-      $prefix   = '_content_galleries_';
-
-      $arc_fields[] = array(
-        'title'    => __( 'Architect Gallery', 'pzarchitect' ),
-        'id'       => $prefix . 'arcgallery',
+      $settings[ $prefix ]['blueprint-content']['sections']['fields'][] = array(
+        'title'    => __( 'Architect gallery', 'pzarchitect' ),
+        'id'       => '_content_arcgallery_specific-arcgallery',
         'type'     => 'select',
+        'select2'  => array( 'allowClear' => TRUE ),
         'data'     => 'callback',
         'args'     => array( 'pzarc_get_arcgalleries' ),
-        'subtitle' => 'Select an Architect Gallery',
+        'multi'    => FALSE,
         'required' => array( $prefix . 'gallery-source', 'equals', 'arcgallery' ),
       );
 
-      return $arc_fields;
+      $settings[ $prefix ]['blueprint-content']['sections']['fields'][0]['options']['arcgallery'] = __( 'Architect Galleries', 'pzarchitect' );
+
+      $registry->set( 'post_types', $settings[ $prefix ], $prefix );
+      add_action( "redux/metaboxes/_architect/boxes", array( $this, "add_arcgallery_metaboxes" ), 10, 1 );
     }
+
 
     private function __clone() {
     }
@@ -60,7 +54,7 @@
 
     }
 
-    function pzarc_add_arcgallery_metaboxes( $metaboxes ) {
+    function add_arcgallery_metaboxes( $metaboxes ) {
       // Declare your sections
       global $_architect_options;
       $boxSections   = array();
@@ -122,3 +116,4 @@
 
     return $results;
   }
+

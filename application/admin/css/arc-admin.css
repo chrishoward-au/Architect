@@ -1725,6 +1725,8 @@ li.arc-message .arc-presets-link {
       width: 92%; }
     .arc-info-boxes .arc-info.col2 {
       width: 45%; }
+    .arc-info-boxes .arc-info.arc-is-lite {
+      background: #e3f2fd; }
     .arc-info-boxes .arc-info h3 {
       color: #0074a2; }
     .arc-info-boxes .arc-info span {
@@ -1862,3 +1864,11 @@ body.arc-beginner .redux-notice-field {
     margin: 0 !important; }
     .arc-used-on .rows.even {
       background: #eee; }
+
+.fs-submenu-item.pzarchitect.account::before,
+.fs-submenu-item.pzarchitect.contact::before,
+.fs-submenu-item.pzarchitect.pricing::before,
+.fs-submenu-item.pzarchitect.upgrade::before {
+  content: " ";
+  padding-left: 25px;
+  display: inline-block; }

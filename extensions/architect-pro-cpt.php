@@ -1,6 +1,6 @@
 <?php
 
-  if ( arc_fs()->is__premium_only() ) {
+  if ((function_exists('arc_fs') &&  arc_fs()->is__premium_only())  || defined('PZARC_PRO')) {
 
 
     function pzarcpro_init_cpt() {
