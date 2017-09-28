@@ -55,8 +55,5 @@ echo'                <div class="arc-info-boxes">
                     <div class="arc-info col2"><h3><span class="dashicons dashicons-migrate"></span>Actions Editor</h3>
                     <p>If you know the names of the action hooks in your theme, the Actions Editor allows you to hook into them without any coding.</p>
                     </div>
-                    <div class="arc-info col1"><h3><span class="dashicons dashicons-media-document"></span>Licence</h3>
-                    <p>Enter your licence details on this page. If you need to transfer a licence from Headway Extend store, please email me at <a href="mailto:support@pizazzwp.com">support@pizazzwp.com</a>.</p>
-                    </div>
                     </div>
                 </div>';

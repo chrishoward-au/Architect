@@ -311,7 +311,7 @@
           'crop'      => (int)$focal_point[0] . 'x' . (int)$focal_point[1] . 'x' . $this->section['_panels_settings_image-focal-point'],
 
       ));
-
+var_dump($this->data['image']);
       // TODO: Add image sizes for each device
       $this->data['image']['original'] = wp_get_attachment_image_src($thumb_id, 'full');
       preg_match("/(?<=src\\=\")(.)*(?=\" )/uiUs", $this->data['image']['image'], $results);

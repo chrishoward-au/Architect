@@ -27,7 +27,7 @@
       }
 
       if ( ! isset( $_architect_options['architect_add-content-types']['pz_arcgallery'] ) || $_architect_options['architect_add-content-types']['pz_arcgallery'] == 1 ) {
-        require_once plugin_dir_path( __FILE__ ) . '/content-types/arcgallery/arc-cpt-arcgallery.php';
+  //      require_once plugin_dir_path( __FILE__ ) . '/content-types/arcgallery/arc-cpt-arcgallery.php';
       }
       pzdb( 'post content types load' );
 

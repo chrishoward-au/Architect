@@ -1,8 +1,8 @@
 === Architect content display framework ===
 Contributors: chrishoward
 Tags: content,display,posts,pages,gallery,slider,tabs,tabbed,tabular,widget,hooks
-Requires at least: 3.5.0
-Tested up to: 4.8
+Requires at least: 4.0
+Tested up to: 4.8.2
 Stable tag: 1.10.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -83,7 +83,7 @@ For support, please send an email to support@pizazzwp.com
 1. Architect Blueprint - Layout design
 2. Slider example
 
-== Todo ==
+== Possible Todos ==
 TODO: Add a default single post/page Blueprint;  Add codex links;
 TODO: Add option for custom content within Blueprints
 TODO: Check captions styling
@@ -94,13 +94,13 @@ TODO: Add min specs for max input vars
 TODO: Add description option to archive pages
 TODO: Fix images cropping on iPhone?
 TODO: Add Unsplash as a source for dummy photos
-TODO: Implement Freemius?
 TODO: Add a full backup option for Blueprints
 TODO: Add a backup and restore option for all settings
 TODO: Add wireframe view?
 TODO: Add Jetpack sitemap support https://developer.jetpack.com/2016/01/28/sitemaps-add-custom-post-type-support/
 TODO: Transition to Codestar framework (less than 1MB footprint in zip!)
 TODO Update tutes
+TODO Architect Galleries custom post type
 
 
 == Changelog ==
@@ -108,7 +108,7 @@ TODO Update tutes
 = Notes =
 * If you have trouble upgrading, try deactivating and reactivating your licence
 
-= 1.10.0 =
+= 1.10.0 = : 22 Sep 2017
 Beaver Builder related enhancements:
 * ADDED: More extensive filtering overrides in the Beaver Architect module
 * ADDED: Extensive styling options to Architect Beaver module
@@ -124,7 +124,6 @@ Content related enhancements:
 * ADDED: Option to hide specific category names in meta field category name list. In Blueprints Meta tab
 * ADDED: Message field that can be displayed immediately below content. In Blueprints Body/Excerpt tab
 * ADDED: Option to insert a shortcode (or basic HTML) after a specific paragraph in body content. Good for inserting advertising!  In Blueprints Body/Excerpt tab
-* ADDING: TODO Architect Galleries custom post type
 
 Miscellaneous enhancements:
 * ADDED: Shortcode [arc_hasmedia] Displays icons if post has media. Can be used in meta or custom fields display. Currently identifies galleries, videos, audio playlists and various document links
@@ -148,7 +147,6 @@ Miscellaneous enhancements:
 * CHANGED: Default title wrapper is now H2. ***This MAY affect some existing layouts that style based on the tag rather than class.***
 * CHANGED: Update info is now on the Help & Support tab, rather than appearing as a message.
 * CHANGED: Changed licensing from EDD to Freemius
-// TODO ADD Message about swith to Freemius
 
 * FIXED: Filler images not working for Featured images
 * FIXED: Category and Tag exclusion only working when inclusion was set too

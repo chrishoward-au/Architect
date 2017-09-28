@@ -25,7 +25,8 @@ li.arc-message {
 #pzarc-custom-pzarc_layout-cell-preview {
   width: 452px;
   border-radius: 3px 3px 0 0;
-  box-shadow: 0 0 10px #aaa;
+  -webkit-box-shadow: 0 0 10px #aaa;
+          box-shadow: 0 0 10px #aaa;
   margin-bottom: 10px; }
 
 body span.pzarc-shortname {
@@ -85,7 +86,8 @@ div.pzarc-dragsource {
   padding: 0px;
   border: #bbb solid 1px;
   height: 300px;
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
   overflow: hidden;
   width: 452px;
   position: relative;
@@ -94,7 +96,8 @@ div.pzarc-dragsource {
 .pzarc-content-area {
   position: absolute;
   background: rgba(16, 32, 64, 0.25);
-  box-sizing: border-box; }
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box; }
 
 .pzgp-cell-image-behind {
   position: absolute;
@@ -107,7 +110,8 @@ div.pzarc-dragsource {
 /* */
 .pzarc_cell {
   float: left;
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
   background: #bbb;
   padding: 10px;
   width: 100%;
@@ -117,7 +121,8 @@ div.pzarc-dragsource {
 .pzarc_cell_header,
 .pzarc_cell_footer {
   width: 100%;
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
   clear: both; }
 
 .pzarc_cell_header {
@@ -130,7 +135,8 @@ div.pzarc-dragsource {
 .pzarc_cell_left_col,
 .pzarc_cell_footer_left {
   float: left;
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
   width: 49%;
   background: #fff;
   border: solid 1px #ddd; }
@@ -139,14 +145,16 @@ div.pzarc-dragsource {
 .pzarc_cell_right_col,
 .pzarc_cell_footer_right {
   float: right;
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
   width: 49%;
   background: #fff;
   border: solid 1px #ddd; }
 
 .pzarc_cell_columns {
   width: 100%;
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
   clear: both;
   margin: 10px 0; }
 
@@ -255,9 +263,11 @@ ul#pzarc-meta-nav.vertical {
 .pzarc_options {
   width: 98%;
   overflow: auto;
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
   background: #fff;
-  box-shadow: 3px 3px 4px #ccc;
+  -webkit-box-shadow: 3px 3px 4px #ccc;
+          box-shadow: 3px 3px 4px #ccc;
   border-radius: 3px;
   min-height: 410px !important;
   margin: 0 5px 5px 0; }
@@ -273,7 +283,8 @@ ul#pzarc-meta-nav.vertical {
   border: solid 1px #ddd;
   margin: 20px 10px 10px 10px;
   display: block;
-  box-shadow: 0px 0px 3px #aaa; }
+  -webkit-box-shadow: 0px 0px 3px #aaa;
+          box-shadow: 0px 0px 3px #aaa; }
 
 /* Need to make this only for my form! */
 #wpbody-content {
@@ -305,7 +316,8 @@ ul#pzarc-meta-nav.vertical {
 
 /* Metabox tabs */
 img.pzarc-layout-images {
-  box-shadow: 0 0 5px #aaa;
+  -webkit-box-shadow: 0 0 5px #aaa;
+          box-shadow: 0 0 5px #aaa;
   margin-right: 20px;
   margin-left: 5px; }
 
@@ -326,7 +338,8 @@ ul.pzarc-meta-nav li.pzarc-meta-tab-title.ui-state-active {
 li.pzarc-meta-tab-title a {
   text-decoration: none;
   background: #fff;
-  box-shadow: 3px 3px 4px #ccc;
+  -webkit-box-shadow: 3px 3px 4px #ccc;
+          box-shadow: 3px 3px 4px #ccc;
   border-top-left-radius: 3px;
   border-bottom-left-radius: 3px; }
 
@@ -593,7 +606,8 @@ select#_pzarc_layout-show-cmb-field-0 {
 /* This is all the sections preview */
 .pzarc-sections {
   padding: 5px;
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
   overflow: hidden; }
 
 .pzarc-sections .pzarc-section-cell {
@@ -602,7 +616,8 @@ select#_pzarc_layout-show-cmb-field-0 {
   margin: 0 0 10px 0;
   /* Remember to remove space between divs to stop inline-block space issue */
   display: inline-block;
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
   color: #222;
   overflow: visible;
   padding: 5px;
@@ -661,6 +676,7 @@ body.arc-bgimage.arc-bg-green #wpwrap {
   background: #DCE35B;
   /* fallback for old browsers */
   /* Chrome 10-25, Safari 5.1-6 */
+  background: -webkit-gradient(linear, left top, left bottom, from(#DCE35B), to(#45B649));
   background: linear-gradient(to bottom, #DCE35B, #45B649);
   /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */ }
 
@@ -669,6 +685,7 @@ body.arc-bgimage.arc-bg-ocean-blue #wpwrap {
   background: #43C6AC;
   /* fallback for old browsers */
   /* Chrome 10-25, Safari 5.1-6 */
+  background: -webkit-gradient(linear, left bottom, left top, from(#191654), to(#43C6AC));
   background: linear-gradient(to top, #191654, #43C6AC);
   /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */ }
 
@@ -677,6 +694,7 @@ body.arc-bgimage.arc-bg-orange-green #wpwrap {
   background: #c21500;
   /* fallback for old browsers */
   /* Chrome 10-25, Safari 5.1-6 */
+  background: -webkit-gradient(linear, left top, left bottom, from(#ffc500), to(#c21500));
   background: linear-gradient(to bottom, #ffc500, #c21500);
   /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */ }
 
@@ -685,15 +703,18 @@ body.arc-bgimage.arc-bg-pink #wpwrap {
   background: #C6426E;
   /* fallback for old browsers */
   /* Chrome 10-25, Safari 5.1-6 */
+  background: -webkit-gradient(linear, left top, left bottom, from(#C6426E), to(#642B73));
   background: linear-gradient(to bottom, #C6426E, #642B73);
   /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */ }
 
 body.arc-bgimage.arc-bg-malibu-beach #wpwrap {
   background-size: cover;
+  background-image: -webkit-gradient(linear, left top, right top, from(#4facfe), to(#00f2fe));
   background-image: linear-gradient(to right, #4facfe 0%, #00f2fe 100%); }
 
 body.arc-bgimage.arc-bg-morpheous-den #wpwrap {
   background-size: cover;
+  background-image: -webkit-gradient(linear, left bottom, left top, from(#30cfd0), to(#330867));
   background-image: linear-gradient(to top, #30cfd0 0%, #330867 100%); }
 
 body.arc-bgimage.arc-bg-dusty-grass #wpwrap {
@@ -702,6 +723,7 @@ body.arc-bgimage.arc-bg-dusty-grass #wpwrap {
 
 body.arc-bgimage.arc-bg-mixed-hopes #wpwrap {
   background-size: cover;
+  background-image: -webkit-gradient(linear, left bottom, left top, from(#c471f5), to(#fa71cd));
   background-image: linear-gradient(to top, #c471f5 0%, #fa71cd 100%); }
 
 body.arc-bgimage.arc-bg- #wpwrap {
@@ -918,7 +940,8 @@ body.admin-color-midnight .metabox-holder h3.redux-section-title {
 #redux-_architect-metabox-blueprint_tabs_blueprints .redux-main {
   padding: 0;
   border: none;
-  box-shadow: none;
+  -webkit-box-shadow: none;
+          box-shadow: none;
   background: none; }
 
 .redux-multi-text li:first-child a.redux-multi-text-remove {
@@ -930,7 +953,8 @@ input[readonly]:hover,
 input[readonly]:active {
   border: none;
   background: #eee;
-  box-shadow: none;
+  -webkit-box-shadow: none;
+          box-shadow: none;
   width: 90%; }
 
 body.post-type-arc-panels .ui-button,
@@ -983,7 +1007,7 @@ body .redux-container .redux-main .redux-section-field.redux-field.heading h3 {
   opacity: 1; }
 
 #adminmenu li.toplevel_page_pzarc .wp-menu-name:after {
-  content: "1.10.0 RC2";
+  content: "1.10.0";
   opacity: 0;
   font-size: 10px;
   padding-left: 5px; }
@@ -1317,7 +1341,8 @@ body.admin-color-midnight #redux-_architect-metabox-_blueprint_tabs_blueprints {
 
 #redux-_architect-metabox-_blueprint_tabs_blueprints .redux-main {
   padding: 0 !important;
-  box-shadow: none; }
+  -webkit-box-shadow: none;
+          box-shadow: none; }
 
 .arc-important {
   color: tomato; }
@@ -1326,7 +1351,8 @@ body.admin-color-midnight #redux-_architect-metabox-_blueprint_tabs_blueprints {
     color: #fff;
     padding: 5px;
     border-radius: 3px;
-    box-shadow: 0 0 1px #fff;
+    -webkit-box-shadow: 0 0 1px #fff;
+            box-shadow: 0 0 1px #fff;
     display: inline-block; }
     .arc-important.extra strong {
       color: #97e7ff;
@@ -1562,7 +1588,8 @@ li.arc-message .arc-presets-link {
     width: 100%;
     color: #fff;
     background: #00a0d2;
-    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
     border-radius: 0;
     padding: 10px;
     font-size: 17px;
@@ -1579,7 +1606,8 @@ li.arc-message .arc-presets-link {
   .arc-presets-selector .tabs {
     display: block;
     width: 100%;
-    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
     padding: 0;
     border: none; }
     .arc-presets-selector .tabs button {
@@ -1614,7 +1642,8 @@ li.arc-message .arc-presets-link {
     background: #fff;
     width: 100%;
     padding: 20px;
-    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
     overflow-x: auto;
     overflow-y: hidden;
     white-space: nowrap; }
@@ -1711,7 +1740,8 @@ li.arc-message .arc-presets-link {
   .arc-info-boxes .arc-info {
     margin: 1%;
     padding: 1%;
-    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
     border-top: solid 1px #fff;
     border-left: solid 1px #fff;
     border-bottom: solid 1px #eee;
@@ -1720,7 +1750,8 @@ li.arc-message .arc-presets-link {
     display: inline-block;
     vertical-align: top;
     border-radius: 3px;
-    box-shadow: 0 0 1px rgba(0, 0, 0, 0.5); }
+    -webkit-box-shadow: 0 0 1px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 0 1px rgba(0, 0, 0, 0.5); }
     .arc-info-boxes .arc-info.col1 {
       width: 92%; }
     .arc-info-boxes .arc-info.col2 {
@@ -1767,7 +1798,8 @@ li.arc-message .arc-presets-link {
     font-size: 15px;
     display: inline-block;
     margin-top: -6px;
-    box-sizing: border-box; }
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box; }
 
 body.post-type-arc-blueprints input:required:invalid,
 body.post-type-arc-blueprints input:focus:invalid {
