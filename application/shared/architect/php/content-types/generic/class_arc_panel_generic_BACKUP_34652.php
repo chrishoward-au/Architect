@@ -301,9 +301,11 @@
       $width  = (int)str_replace('px', '', $this->section['_panels_design_image-max-dimensions']['width']);
       $height = (int)str_replace('px', '', $this->section['_panels_design_image-max-dimensions']['height']);
 
+
       // TODO: Add all the focal point stuff to all the post types images and bgimages
       // Easiest to do via a reusable function or all this stuff could be done once!!!!!!!!!
       // could pass $this->data thru a filter
+      /** Get the image */
       $this->data['image']['image'] = wp_get_attachment_image($thumb_id, array(
           $width,
           $height,
@@ -311,8 +313,11 @@
           'crop'      => (int)$focal_point[0] . 'x' . (int)$focal_point[1] . 'x' . $this->section['_panels_settings_image-focal-point'],
 
       ));
-var_dump($this->data['image']);
+      var_dump($this->data['image']['image']);
+
+
       // TODO: Add image sizes for each device
+      /** Get the original image  */
       $this->data['image']['original'] = wp_get_attachment_image_src($thumb_id, 'full');
       preg_match("/(?<=src\\=\")(.)*(?=\" )/uiUs", $this->data['image']['image'], $results);
       if (isset($results[0]) && !empty($this->section['_panels_settings_use-retina-images']) && function_exists('bfi_thumb')) {
@@ -391,10 +396,13 @@ var_dump($this->data['image']);
         );
         $this->data['image']['caption']  = '';
       }
+
     }
 
+    /**
+     * BACKGROUND IMAGE
+     */
     public function get_bgimage(&$post) {
-      /** BACKGROUND IMAGE */
 
       $thumb_id    = get_post_thumbnail_id();
       $focal_point = get_post_meta($thumb_id, 'pzgp_focal_point', TRUE);

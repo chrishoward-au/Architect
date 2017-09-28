@@ -101,6 +101,7 @@ TODO: Add Jetpack sitemap support https://developer.jetpack.com/2016/01/28/sitem
 TODO: Transition to Codestar framework (less than 1MB footprint in zip!)
 TODO Update tutes
 TODO Architect Galleries custom post type
+TODO: Fix small images scaling up
 
 
 == Changelog ==

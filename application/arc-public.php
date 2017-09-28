@@ -335,10 +335,10 @@
 
       require_once PZARC_PLUGIN_APP_PATH . '/public/php/class_architect_public.php';
       require_once( PZARC_PLUGIN_APP_PATH . '/shared/thirdparty/php/BFI-thumb-forked/BFI_Thumb.php' );
-		    add_filter( 'wp_image_editors', 'bfi_wp_image_editor' );
-		    add_filter( 'image_resize_dimensions', 'bfi_image_resize_dimensions', 10, 6 );
-		    add_filter( 'image_downsize', 'bfi_image_downsize', 1, 3 );
-      $architect = new Architect_Public( $blueprint, $is_shortcode ,$device);
+      add_filter( 'wp_image_editors', 'bfi_wp_image_editor' );
+      add_filter( 'image_resize_dimensions', 'bfi_image_resize_dimensions', 10, 6 );
+      add_filter( 'image_downsize', 'bfi_image_downsize', 1, 3 );
+      $architect = new Architect_Public( $blueprint, $is_shortcode, $device );
 
       // If no errors, let's go!
       if ( empty( $architect->build->blueprint['err_msg'] ) ) {
@@ -371,7 +371,7 @@
         remove_all_actions( 'arc_top_left_navigation_' . $architect->build->blueprint['_blueprints_short-name'] );
         remove_all_actions( 'arc_bottom_right_navigation_' . $architect->build->blueprint['_blueprints_short-name'] );
       }
-	    remove_filter( 'wp_image_editors', 'bfi_wp_image_editor' );
+      remove_filter( 'wp_image_editors', 'bfi_wp_image_editor' );
 
       unset ( $architect );
     }
@@ -382,6 +382,7 @@
     //    pzdebug('wp_reset_postdata');
 
     pzdb( 'end pzarc' );
+    //remove_filter( 'wp_image_editors', 'bfi_wp_image_editor' );// Maybe problem with?
     remove_filter( 'image_resize_dimensions', 'bfi_image_resize_dimensions' );
     remove_filter( 'image_downsize', 'bfi_image_downsize' );
 
