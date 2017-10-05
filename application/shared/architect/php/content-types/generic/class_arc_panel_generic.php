@@ -313,8 +313,6 @@
           'crop'      => (int)$focal_point[0] . 'x' . (int)$focal_point[1] . 'x' . $this->section['_panels_settings_image-focal-point'],
 
       ));
-      var_dump($this->data['image']['image']);
-
 
       // TODO: Add image sizes for each device
       /** Get the original image  */

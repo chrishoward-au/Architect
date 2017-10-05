@@ -315,7 +315,8 @@
       $pzarc_current_theme = wp_get_theme();
 
       $hw_opts      = NULL;
-      $pzarc_status = get_option( 'edd_architect_license_status' );
+
+      $pzarc_status = pzarc_status();
 
       // There is no Blox licencing so don't need to check for that
       if ( ( $pzarc_current_theme->get( 'Name' ) === 'Headway Base' || $pzarc_current_theme->get( 'Template' ) == 'headway' ) && ( $pzarc_status == FALSE || $pzarc_status !== 'valid' ) ) {
@@ -327,12 +328,6 @@
         }
 
 
-      }
-
-      if (function_exists('arc_fs') &&  (arc_fs()->is_plan('architectpro') || arc_fs()->is_plan('is_free_localhost'))) {
-        $pzarc_status = 'valid';
-      } else {
-        $pzarc_status = '';
       }
 
       if ( ( ! empty( $hw_opts['license-status-architect'] ) && $hw_opts['license-status-architect'] == 'valid' ) || ( $pzarc_status !== FALSE && $pzarc_status == 'valid' ) ) {

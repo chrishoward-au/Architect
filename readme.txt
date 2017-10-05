@@ -107,7 +107,7 @@ TODO: Fix small images scaling up
 == Changelog ==
 
 = Notes =
-* If you have trouble upgrading, try deactivating and reactivating your licence
+* If you have trouble with the new licensing on Freemius, please contact support@pizazzwp.com
 
 = 1.10.0 = : 22 Sep 2017
 Beaver Builder related enhancements:

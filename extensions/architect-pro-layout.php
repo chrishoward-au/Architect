@@ -25,13 +25,8 @@
         $GLOBALS['_architect_options'] = get_option( '_architect_options', array() );
       }
 
-//	  var_dump($_architect_options);
 
-      // TODO: Check this doesn't break front page!
-      // WHY is this set to not admin?
-//    if ( !is_admin() || pzarc_get_post_type() === 'arc-blueprints') { // Changed 1.10.0
-      if ( is_admin() || pzarc_get_post_type() === 'arc-blueprints' ) {
-        //  var_dump($_architect_options);
+      if ( !is_admin() || (is_admin() && pzarc_get_post_type() === 'arc-blueprints') ) { // Changed 1.10.0
 
         if ( ! isset( $_architect_options['architect_add-content-types']['pz_snippets'] ) || $_architect_options['architect_add-content-types']['pz_snippets'] == 1 ) {
           require_once plugin_dir_path( __FILE__ ) . '/content-types/snippets/class_arc_content_snippets.php';

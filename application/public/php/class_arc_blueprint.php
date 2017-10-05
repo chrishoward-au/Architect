@@ -21,7 +21,7 @@
 			// strip out string text containment characters incase user enters them
 			$this->name = str_replace( array( '\'', '\"' ), '', $name );
 
-			self::get_blueprint();
+  		self::get_blueprint();
 			$this->blueprint['parent-page-url'] = get_the_permalink();
 			$this->blueprint['device']          = $device;
 			if ( empty( $this->blueprint['err_msg'] ) ) {

@@ -206,7 +206,6 @@
       global $submenu;
       if ( ! $pzarc_menu ) {
         //add_menu_page( $page_title,  $menu_title, $capability,   $menu_slug, $function,    $icon_url, $position );
-        $pzarc_status        = get_option( 'edd_architect_license_status' );
         $pzarc_current_theme = wp_get_theme();
         if ( ( $pzarc_current_theme->get( 'Name' ) === 'Headway' || $pzarc_current_theme->get( 'Name' ) === 'Headway Base' || $pzarc_current_theme->get( 'Template' ) == 'headway' ) ) {
 
@@ -217,11 +216,7 @@
           }
         }
 
-        if ( function_exists( 'arc_fs' ) && ( arc_fs()->is_plan( 'architectpro' ) || arc_fs()->is_plan( 'is_free_localhost' ) ) ) {
-          $pzarc_status = 'valid';
-        } else {
-          $pzarc_status = '';
-        }
+        $pzarc_status = pzarc_status();
 
         $vers       = ( ( ! empty( $hw_opts['license-status-architect'] ) && $hw_opts['license-status-architect'] == 'valid' ) || $pzarc_status !== FALSE && $pzarc_status == 'valid' ) ? '' : 'Lite';
         $pzarc_menu = add_menu_page( __( 'Getting started', 'pzarchitect' ), 'Architect ' . $vers, 'edit_posts', 'pzarc', array( $this, 'pzarc_support', ), PZARC_PLUGIN_APP_URL . 'wp-icon.png' );
@@ -260,19 +255,18 @@
      *
      */
     function admin_menu_no_redux() {
-//      global $pzarc_menu, $pizazzwp_updates;
-//      if (!$pzarc_menu) {
-      //add_menu_page( $page_title,  $menu_title, $capability,   $menu_slug, $function,    $icon_url, $position );
+      global $pzarc_menu, $pizazzwp_updates;
+      if (!$pzarc_menu) {
       $pzarc_menu = add_menu_page( 'About Architect', 'Architect', 'edit_posts', 'pzarc', 'pzarc_about', PZARC_PLUGIN_APP_URL . 'wp-icon.png' );
-//        add_submenu_page(
-//            'pzarc', 'Help & Support', '<span class="dashicons dashicons-editor-help size-small"></span>Help & Support', 'manage_options', 'pzarc_support', array($this,
-//                                                                                                                                                                  'pzarc_support')
-//        );
-//
-//        global $submenu;
-//        // Shift those last  to the top
-//        array_unshift($submenu[ 'pzarc' ], array_pop($submenu[ 'pzarc' ]));
-//      }
+        add_submenu_page(
+            'pzarc', 'Help & Support', '<span class="dashicons dashicons-editor-help size-small"></span>Help & Support', 'manage_options', 'pzarc_support', array($this,
+                                                                                                                                                                  'pzarc_support')
+        );
+
+        global $submenu;
+        // Shift those last  to the top
+        array_unshift($submenu[ 'pzarc' ], array_pop($submenu[ 'pzarc' ]));
+      }
 
     }
 
@@ -457,7 +451,7 @@
 
             ';
 
-      $pzarc_status = get_option( 'edd_architect_license_status' );
+      $pzarc_status = pzarc_status();
 
       $pzarc_current_theme = wp_get_theme();
       if ( ( $pzarc_current_theme->get( 'Name' ) === 'Headway' || $pzarc_current_theme->get( 'Name' ) === 'Headway Base' || $pzarc_current_theme->get( 'Template' ) == 'headway' ) ) {
@@ -468,12 +462,6 @@
         }
       }
 
-      if ( function_exists( 'arc_fs' ) && ( arc_fs()->is_plan( 'architectpro' ) || arc_fs()->is_plan( 'is_free_localhost' ) ) ) {
-        $pzarc_status = 'valid';
-      } else {
-        $pzarc_status = '';
-      }
-
       $lite = ( ( ! empty( $hw_opts['license-status-architect'] ) && $hw_opts['license-status-architect'] == 'valid' ) || $pzarc_status !== FALSE && $pzarc_status == 'valid' ) ? FALSE : TRUE;
 
       if ( $lite ) {
@@ -481,7 +469,7 @@
                     <div class="arc-info col1 arc-is-lite">';
         echo '<h3 style="color:#0074A2">Architect Lite</h3>
         <p class="arc-important" style="font-weight:bold;">You are running Architect without activating a licence, therefore it is in Lite mode. Cool features you are missing out on are: Animations and access to all content types, including Galleries, Snippets, NextGen, Testimonials and custom post types</p>
-        <p style="font-weight:bold;">To get all the extra goodness of Architect, you can purchase it from the <a href="http://shop.pizazzwp.com/downloads/architect/" target="_blank">PizazzWP Shop</a></p>
+        <p style="font-weight:bold;">To get all the extra goodness of Architect, you can purchase it from the <a href="http://shop.pizazzwp.com/downloads/architect/" target="_blank">PizazzWP Shop</a> or just click the <a href="./admin.php?page=pzarc-pricing">Upgrade link</a> in the Architect menu</p>
         </div>
         </div>';
       }
@@ -848,7 +836,7 @@
   function pzarc_initiate_updater() {
     // TODO: Try to not run this too mcuh
     // Check on Headway if enabled since it was probably bought there
-    $pzarc_status = get_option( 'edd_architect_license_status' );
+    $pzarc_status = pzarc_status();
 
     // Checks for HW and that we havem't already activated a Pizazz licence
     if ( class_exists( 'HeadwayUpdaterAPI' ) && ! ( $pzarc_status !== FALSE && $pzarc_status == 'valid' ) ) {

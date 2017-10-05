@@ -2093,6 +2093,7 @@
 					break;
 			}
 		}
+
 		return $return;
 
 	}
@@ -2302,20 +2303,49 @@
 		return $arc_overrides;
 	}
 
-	if (!function_exists('bfi_thumb')) {
-		function bfi_thumb($arc_image_url=null,$arc_image_dimensions=array()){
-			remove_filter( 'wp_image_editors', 'bfi_wp_image_editor' );
-			remove_filter( 'image_resize_dimensions', 'bfi_image_resize_dimensions', 10, 6 );
-			remove_filter( 'image_downsize', 'bfi_image_downsize', 1, 3 );
-			$image = wp_get_image_editor( $arc_image_url );
-			if ( ! is_wp_error( $image ) ) {
-				$image->resize( $arc_image_dimensions['width'], $arc_image_dimensions['height'], false );
-				$fn= random_int(1,1000).'.jpg';
-				$image->save( PZARC_CACHE_PATH.$fn );
-				return PZARC_CACHE_URL.$fn;
+  /**
+   * @return mixed|string|void
+   */
+  function pzarc_status() {
+    if ( function_exists( 'arc_fs' )){
+        switch ( TRUE ) {
+          case arc_fs()->is_premium() && arc_fs()->is_plan( 'is_free_localhost' ) && defined('WP_FS__IS_LOCALHOST_FOR_SERVER') && WP_FS__IS_LOCALHOST_FOR_SERVER:
+            $pzarc_status = 'valid';
+            break;
+          case arc_fs()->is_free_plan():
+            $pzarc_status = '';
+            break;
+          case arc_fs()->is_plan( 'architectpro' ):
+            $pzarc_status = 'valid';
+            break;
+          default:
+            $pzarc_status = '';
+
+        }
 			} else {
-				return null;
+      $pzarc_status = get_option( 'edd_architect_license_status' );
 			}
+
+    return $pzarc_status;
 		}
 
-	}
+
+  // What was the point of this? Trying to do cropping without bfi?
+  //	if (!function_exists('bfi_thumb')) {
+  //		function bfi_thumb($arc_image_url=null,$arc_image_dimensions=array()){
+  //		  // Was rthis here just for testing?!
+  ////			remove_filter( 'wp_image_editors', 'bfi_wp_image_editor' );
+  ////			remove_filter( 'image_resize_dimensions', 'bfi_image_resize_dimensions', 10, 6 );
+  ////			remove_filter( 'image_downsize', 'bfi_image_downsize', 1, 3 );
+  //			$image = wp_get_image_editor( $arc_image_url );
+  //			if ( ! is_wp_error( $image ) ) {
+  //				$image->resize( $arc_image_dimensions['width'], $arc_image_dimensions['height'], false );
+  //				$fn= random_int(1,1000).'.jpg';
+  //				$image->save( PZARC_CACHE_PATH.$fn );
+  //				return PZARC_CACHE_URL.$fn;
+  //			} else {
+  //				return null;
+  //			}
+  //		}
+  //
+  //}

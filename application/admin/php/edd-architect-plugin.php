@@ -61,8 +61,9 @@
     }
   }
 
+  if (!function_exists('arc_fs')) {
   add_action( 'admin_menu', 'edd_architect_licence_menu' );
-
+  }
 
   function edd_architect_licence_page() {
     $license   = get_option( 'edd_architect_license_key' );
