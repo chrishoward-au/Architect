@@ -3,12 +3,12 @@ Contributors: chrishoward
 Tags: content,display,posts,pages,gallery,slider,tabs,tabbed,tabular,widget,hooks
 Requires at least: 4.0
 Tested up to: 4.8.2
-Stable tag: 1.10.0
+Stable tag: 1.10.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Plugin URI: http://architect4wp.com
 
-Go beyond the limitations of the layouts in the theme you use to easily build any content layouts for it. E.g. grids, sliders, lists, galleries, tables etc.
+Go beyond the limitations of the layouts in the theme or page builder you use to easily build any content layouts for it. E.g. grids, sliders, lists, galleries, tables etc.
 
 == Description ==
 Most themes give you great looking layouts for your content, but are usually limited to what that theme provides. Frameworks give you control, but often require getting your hands dirty.
@@ -109,7 +109,7 @@ TODO: Fix small images scaling up
 = Notes =
 * If you have trouble with the new licensing on Freemius, please contact support@pizazzwp.com
 
-= 1.10.0 = : 22 Sep 2017
+= 1.10.1 =
 Beaver Builder related enhancements:
 * ADDED: More extensive filtering overrides in the Beaver Architect module
 * ADDED: Extensive styling options to Architect Beaver module
@@ -158,6 +158,10 @@ Miscellaneous enhancements:
 * FIXED: Blueprint "none" not found error on mobile devices
 * FIXED: In Blueprint listings, 'Used on' column was showing Blueprints as a usage
 * FIXED: Bug in Architect's custom post types not showing custom fields.
+* FIXED: Old Architect widgets could return an error
+* FIXED: WPML overriding CSS for paragraphs affecting layout
+* FIXED: Default classes not being applied to components in custom post types
+* FIXED: Rounding problem that could cause some grid layouts to wrap around
 
 * UPGRADED: Isotope to v3.0.4
 * UPGRADED: Mobile Detect to 2.8.5

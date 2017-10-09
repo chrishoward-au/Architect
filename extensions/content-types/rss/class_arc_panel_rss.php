@@ -10,6 +10,10 @@
   class arc_Panel_RSS extends arc_Panel_Generic {
 
     // This one will need a lot of stuff!
+    public function __construct(&$build) {
+
+      parent::__construct( $build );
+    }
 
     function get_title(&$post) {
       $this->data['title']['title'] = $post['title'];

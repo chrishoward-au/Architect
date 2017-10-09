@@ -10,5 +10,9 @@
 class arc_Panel_Page  extends arc_Panel_Generic{
 
   // Pages currently use default renderings
+  public function __construct(&$build) {
+
+    parent::__construct( $build );
+  }
 
 } 

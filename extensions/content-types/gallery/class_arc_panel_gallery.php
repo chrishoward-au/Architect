@@ -10,4 +10,10 @@
 
   class arc_Panel_gallery extends arc_Panel_Generic
   {
+    public function __construct(&$build) {
+
+      parent::__construct( $build );
+    }
+
   }
+

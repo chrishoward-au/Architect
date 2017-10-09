@@ -21,8 +21,9 @@
     /**
      *
      */
-    public function __construct() {
+    public function __construct(&$build) {
 
+      parent::__construct($build);
       parent::initialise_data();
 
       // Faker requires PHP 5.3.3

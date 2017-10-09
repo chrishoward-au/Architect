@@ -15,6 +15,11 @@
      */
 
 //    private $data;
+    public function __construct(&$build) {
+
+      parent::__construct( $build );
+    }
+
 
   }
 

@@ -2041,7 +2041,7 @@
 		$cache_files = scandir( $upload_dir );
 		foreach ( $cache_files as $cache_file ) {
 			if ( ! is_dir( $upload_dir . '/' . $cache_file ) ) {
-				unlink( $upload_dir . '/' . $cache_file );
+				@unlink( $upload_dir . '/' . $cache_file );
 			}
 		}
 	}
@@ -2286,7 +2286,7 @@
 
 	function arc_process_overrides( $arc_overrides, &$arc_blueprint ) {
 
-		if ( ! empty( $arc_overrides ) ) {
+		if ( ! empty( $arc_overrides ) && is_array($arc_overrides)) {
 
 			foreach ( $arc_overrides as $k => $v ) {
 
@@ -2329,6 +2329,11 @@
     return $pzarc_status;
 		}
 
+  function pzarc_truncate($pzval, $pzprecision) {
+
+    return floor($pzval*pow(10,$pzprecision)+(1/pow(10,($pzprecision+1))))/pow(10,$pzprecision);
+
+  }
 
   // What was the point of this? Trying to do cropping without bfi?
   //	if (!function_exists('bfi_thumb')) {

@@ -10,4 +10,9 @@
 class arc_panel_multi extends arc_Panel_Generic{
 
   // Posts currently uses all default renderings
+  public function __construct(&$build) {
+
+    parent::__construct( $build );
+  }
+
 } 

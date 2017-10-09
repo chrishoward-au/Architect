@@ -19,13 +19,15 @@
 
 .architect-demo-mode .pzarc-blueprint {
   border: 1px dashed blue !important;
-  box-sizing: border-box !important; }
+  -webkit-box-sizing: border-box !important;
+          box-sizing: border-box !important; }
   .architect-demo-mode .pzarc-blueprint:hover .pzarc-panel {
     outline: 1px dashed red !important; }
 
 .pzarchitect a.button, .pzarchitect button, .pzarchitect html input[type="button"], .pzarchitect input[type="reset"], .pzarchitect input[type="submit"] {
   border: none;
-  box-shadow: none;
+  -webkit-box-shadow: none;
+          box-shadow: none;
   text-shadow: none; }
 
 .pzarchitect.pzarc-blueprint {
@@ -39,10 +41,12 @@
       display: inline-block; }
 
 .pzarchitect .pzarc-sections {
-  box-sizing: border-box; }
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box; }
 
 .pzarchitect .pzarc-section {
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
   position: relative;
   /* Added for gridded layout. May break others! Equal height panels*/
   display: block;
@@ -168,7 +172,8 @@
 .pzarchitect .pzarc-panel {
   /* Remember to remove space between divs to stop inline-block space issue */
   display: inline-block;
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
   vertical-align: top;
   position: relative;
   overflow: hidden; }
@@ -265,7 +270,8 @@
     display: block;
     float: left;
     vertical-align: top;
-    box-sizing: border-box; }
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box; }
     .pzarchitect .pzarc-panel .entry-title img.avatar,
     .pzarchitect .pzarc-panel .entry-excerpt img.avatar,
     .pzarchitect .pzarc-panel .entry-thumbnail img.avatar,
@@ -282,7 +288,8 @@
     bottom: 0;
     height: 100%; }
   .pzarchitect .pzarc-panel .pzarc-components {
-    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
     overflow: hidden;
     position: relative; }
     .pzarchitect .pzarc-panel .pzarc-components.pzarc-align-left {
@@ -421,6 +428,9 @@
 .pzarchitect .pzarc-accordion.title.close {
   float: none; }
 
+.pzarchitect p.wpml-ls-statics-post_translations.wpml-ls {
+  clear: none; }
+
 .pzarchitect {
   /* ===============================================================
     Your custom styles, here you need to specify container's and slide's
@@ -544,7 +554,8 @@
     border-radius: 1px; }
   .pzarchitect .tabbed .arc-slider-slide-nav-item {
     cursor: pointer;
-    box-sizing: border-box; }
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box; }
   .pzarchitect .thumbs .arc-slider-slide-nav-item {
     /* Stylize pagination button: */ }
     .pzarchitect .thumbs .arc-slider-slide-nav-item img {
@@ -555,9 +566,11 @@
       max-width: 100%;
       margin: 2px; }
       .pzarchitect .thumbs .arc-slider-slide-nav-item img:hover {
-        box-shadow: 0 0 0 1px #000, 0 0 0 2px #fff; }
+        -webkit-box-shadow: 0 0 0 1px #000, 0 0 0 2px #fff;
+                box-shadow: 0 0 0 1px #000, 0 0 0 2px #fff; }
     .pzarchitect .thumbs .arc-slider-slide-nav-item.active img {
-      box-shadow: 0 0 0 1px #fff, 0 0 0 2px #000; }
+      -webkit-box-shadow: 0 0 0 1px #fff, 0 0 0 2px #000;
+              box-shadow: 0 0 0 1px #fff, 0 0 0 2px #000; }
   .pzarchitect .thumbs span.dashicons {
     font-size: 3em;
     display: inline-table; }
