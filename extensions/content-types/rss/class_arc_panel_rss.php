@@ -10,47 +10,87 @@
   class arc_Panel_RSS extends arc_Panel_Generic {
 
     // This one will need a lot of stuff!
-    public function __construct(&$build) {
+    public function __construct( &$build ) {
 
       parent::__construct( $build );
     }
 
-    function get_title(&$post) {
+    function get_title( &$post ) {
       $this->data['title']['title'] = $post['title'];
     }
 
-    public function get_content(&$post) {
+    public function get_content( &$post ) {
       /** CONTENT */
       $this->data['content'] = $post['content'];
     }
 
-    public function get_excerpt(&$post) {
-      $this->data['excerpt'] = wp_html_excerpt($post['content'], 50, '...');
+    public function get_excerpt( &$post ) {
+
+      switch ( $this->section["_panels_design_excerpts-trim-type"] ) {
+        case 'characters':
+          $this->data['excerpt'] = wp_html_excerpt( $post['content'], strlen( $post['content'] ) );
+          $cutoff                = min( $this->section["_panels_design_excerpts-word-count"], strlen( $this->data['excerpt'] ) );
+          $this->data['excerpt'] = wp_html_excerpt( $post['content'], $cutoff, pzarc_make_excerpt_more( $this->section ) );
+          break;
+
+        case 'paragraphs':
+          $this->data['excerpt'] = '';
+          $the_content           = array_filter( wp_html_split( strip_tags( $post['content'], '<p><br>' ) ), 'pzarc_strip_empty_lines', ARRAY_FILTER_USE_BOTH );
+          $i                     = 1;
+          foreach ( $the_content as $key => $value ) {
+
+            if ( ++ $i > $this->section["_panels_design_excerpts-word-count"] ) {
+              if ( count( $this->section["_panels_design_excerpts-word-count"] ) < count( $the_content ) ) {
+                $this->data['excerpt'] .= '<p>' . trim( strip_tags( $value ) ) . pzarc_make_excerpt_more( $this->section, $post ) . '</p>';
+              } else {
+                $this->data['excerpt'] .= '<p>' . trim( strip_tags( $value ) ) . '</p>';
+              }
+              break;
+            } else {
+              $this->data['excerpt'] .= '<p>' . trim( strip_tags( $value ) ) . '</p>';
+            }
+
+          }
+          break;
+
+        case 'words':
+        default:
+          $this->data['excerpt'] = implode( ' ', array_slice( explode( ' ', wp_html_excerpt( $post['content'], strlen( $post['content'] ) ) ), 0, $this->section["_panels_design_excerpts-word-count"] ) );
+
+          if ( strlen( $this->data['excerpt'] ) < strlen( wp_html_excerpt( $post['content'], strlen( $post['content'] ) ) ) ) {
+            $this->data['excerpt'] .= pzarc_make_excerpt_more( $this->section );
+          }
+
+          break;
+
+      }
+
+
     }
 
-    public function get_meta(&$post) {
+    public function get_meta( &$post ) {
       $meta_string = $this->toshow['meta1']['show'] ? $this->section['_panels_design_meta1-config'] : '';
       $meta_string .= $this->toshow['meta2']['show'] ? $this->section['_panels_design_meta2-config'] : '';
       $meta_string .= $this->toshow['meta3']['show'] ? $this->section['_panels_design_meta3-config'] : '';
 
       /** META */
-      if (strpos($meta_string, '%id%') !== FALSE) {
+      if ( strpos( $meta_string, '%id%' ) !== FALSE ) {
         $this->data['meta']['id'] = $post['id'];
         $this->data['meta']['id'] .= ' blueprint=' . $this->build->blueprint['blueprint-id'];
       }
-      if (strpos($meta_string, '%date%') !== FALSE) {
+      if ( strpos( $meta_string, '%date%' ) !== FALSE ) {
         $this->data['meta']['datetime'] = $post['date'];
 //        $this->data[ 'meta' ][ 'fdatetime' ] = date_i18n(strip_tags($this->section[ '_panels_design_meta-date-format' ]), str_replace(',', ' ', strtotime(get_the_date())));
-        $this->data['meta']['fdatetime'] = date_i18n(strip_tags($this->section['_panels_design_meta-date-format']), strtotime(str_replace(',', ' ', get_the_date())));
+        $this->data['meta']['fdatetime'] = date_i18n( strip_tags( $this->section['_panels_design_meta-date-format'] ), strtotime( str_replace( ',', ' ', get_the_date() ) ) );
       }
 //      if (strpos($meta_string, '%categories%') !== FALSE) {
 ////      $this->data['meta']['categorieslinks'] = get_the_category_list(', ');
 //        $this->data['meta']['categories'] = pzarc_tax_string_list($post['categories'], 'category-', '', ' ');
 //      }
-    if (strpos($meta_string, '%tags%') !== false) {
+      if ( strpos( $meta_string, '%tags%' ) !== FALSE ) {
 //      $this->data['meta']['tagslinks'] = get_the_tag_list(null, ', ');
-      $this->data['meta']['tags']      = pzarc_tax_string_list($post['tags'], 'tag-', '', ' ');
-    }
+        $this->data['meta']['tags'] = pzarc_tax_string_list( $post['tags'], 'tag-', '', ' ' );
+      }
 //    if (strpos($meta_string, '%author%') !== false) {
 //
 //      $this->data['meta']['authorlink'] = get_author_posts_url(get_the_author_meta('ID'));
@@ -80,78 +120,80 @@
 //    }
 //  }
     }
-	  function get_image(&$post)
-	  {
-		  $width  = (int)str_replace('px', '', $this->section[ '_panels_design_image-max-dimensions' ][ 'width' ]);
-		  $height = (int)str_replace('px', '', $this->section[ '_panels_design_image-max-dimensions' ][ 'height' ]);
-		  $max_wh = $this->build->blueprint['section_object'][1]->section['section-panel-settings']['_panels_design_image-max-dimensions'];
-		  switch ($this->build->blueprint['section_object'][1]->section['section-panel-settings'][ '_panels_settings_image-focal-point' ]) {
-			  case 'scale':
-				  $wh = 'width="' . $max_wh[ 'width' ] . '"';
-				  break;
-			  case 'scale_height':
-				  $wh = 'height="' . $max_wh[ 'height' ] . '"';
-				  break;
-			  default:
-			  case 'respect':
-			  case 'centre':
-			  case 'none':
-				  $wh = 'width="' . $max_wh[ 'width' ] . '"';
-				  $wh .= ' height="' . $max_wh[ 'height' ] . '"';
-				  break;
-		  }
-		  $this->data[ 'image' ][ 'image' ]         = '<img '.$wh.' src="' . bfi_thumb($post[ 'image' ], array('width'  => $width,
-		                                                                                                   'height' => $height)) . '" style="max-height:'.$max_wh['height'].'";>';
-		  $this->data[ 'image' ][ 'original' ][ 0 ] = $post[ 'image' ];
 
-	  }
+    function get_image( &$post ) {
+      $width  = (int) str_replace( 'px', '', $this->section['_panels_design_image-max-dimensions']['width'] );
+      $height = (int) str_replace( 'px', '', $this->section['_panels_design_image-max-dimensions']['height'] );
+      $max_wh = $this->build->blueprint['section_object'][1]->section['section-panel-settings']['_panels_design_image-max-dimensions'];
+      switch ( $this->build->blueprint['section_object'][1]->section['section-panel-settings']['_panels_settings_image-focal-point'] ) {
+        case 'scale':
+          $wh = 'width="' . $max_wh['width'] . '"';
+          break;
+        case 'scale_height':
+          $wh = 'height="' . $max_wh['height'] . '"';
+          break;
+        default:
+        case 'respect':
+        case 'centre':
+        case 'none':
+          $wh = 'width="' . $max_wh['width'] . '"';
+          $wh .= ' height="' . $max_wh['height'] . '"';
+          break;
+      }
+      $this->data['image']['image']       = '<img ' . $wh . ' src="' . bfi_thumb( $post['image'], array(
+          'width'  => $width,
+          'height' => $height,
+        ) ) . '" style="max-height:' . $max_wh['height'] . '";>';
+      $this->data['image']['original'][0] = $post['image'];
 
-	  function get_bgimage(&$post)
-	  {
-		  $width  = (int)str_replace('px', '', $this->section[ '_panels_design_image-max-dimensions' ][ 'width' ]);
-		  $height = (int)str_replace('px', '', $this->section[ '_panels_design_image-max-dimensions' ][ 'height' ]);
-		  $max_wh = $this->build->blueprint['section_object'][1]->section['section-panel-settings']['_panels_design_image-max-dimensions'];
-		  switch ($this->build->blueprint['section_object'][1]->section['section-panel-settings'][ '_panels_settings_image-focal-point' ]) {
-			  case 'scale':
-				  $wh = 'width="' . $max_wh[ 'width' ] . '"';
-				  break;
-			  case 'scale_height':
-				  $wh = 'height="' . $max_wh[ 'height' ] . '"';
-				  break;
-			  default:
-			  case 'respect':
-			  case 'centre':
-			  case 'none':
-				  $wh = 'width="' . $max_wh[ 'width' ] . '"';
-				  $wh .= ' height="' . $max_wh[ 'height' ] . '"';
-				  break;
-		  }
-		  $this->data[ 'bgimage' ][ 'thumb' ]       = '<img ' . $wh . ' src="' . bfi_thumb($post[ 'image' ], array('width'  => $width,
-		                                                                                                               'height' => $height,
-		                                                                                                               'crop' =>'50x50x'.$this->build->blueprint['section_object'][1]->section['section-panel-settings'][ '_panels_settings_image-focal-point' ]
-			  )) . '">';
-		  $this->data[ 'image' ][ 'original' ][ 0 ] = $post[ 'image' ];
-	  }
+    }
 
-    public function get_miscellanary(&$post) {
+    function get_bgimage( &$post ) {
+      $width  = (int) str_replace( 'px', '', $this->section['_panels_design_image-max-dimensions']['width'] );
+      $height = (int) str_replace( 'px', '', $this->section['_panels_design_image-max-dimensions']['height'] );
+      $max_wh = $this->build->blueprint['section_object'][1]->section['section-panel-settings']['_panels_design_image-max-dimensions'];
+      switch ( $this->build->blueprint['section_object'][1]->section['section-panel-settings']['_panels_settings_image-focal-point'] ) {
+        case 'scale':
+          $wh = 'width="' . $max_wh['width'] . '"';
+          break;
+        case 'scale_height':
+          $wh = 'height="' . $max_wh['height'] . '"';
+          break;
+        default:
+        case 'respect':
+        case 'centre':
+        case 'none':
+          $wh = 'width="' . $max_wh['width'] . '"';
+          $wh .= ' height="' . $max_wh['height'] . '"';
+          break;
+      }
+      $this->data['bgimage']['thumb']     = '<img ' . $wh . ' src="' . bfi_thumb( $post['image'], array(
+          'width'  => $width,
+          'height' => $height,
+          'crop'   => '50x50x' . $this->build->blueprint['section_object'][1]->section['section-panel-settings']['_panels_settings_image-focal-point'],
+        ) ) . '">';
+      $this->data['image']['original'][0] = $post['image'];
+    }
+
+    public function get_miscellanary( &$post ) {
       global $_architect_options;
-      $this->data['inherit-hw-block-type'] = (!empty($_architect_options['architect_hw-content-class']) ? 'block-type-content ' : '');
+      $this->data['inherit-hw-block-type'] = ( ! empty( $_architect_options['architect_hw-content-class'] ) ? 'block-type-content ' : '' );
       $this->data['postid']                = $post['id'];
 //      $this->data['poststatus']            = get_post_status();
 //      $this->data[ 'posttype' ]    = get_post_type();
-      $this->data['posttype']    = 'rssfeed';
-      $this->data['permalink']   = $post['permalink'];
+      $this->data['posttype']  = 'rssfeed';
+      $this->data['permalink'] = $post['permalink'];
 //      $post_format               = get_post_format();
 //      $this->data ['postformat'] = (empty($post_format) ? 'standard' : $post_format);
     }
 
 
-    public function loop($section_no, &$architect, &$panel_class, $class) {
-      parent::loop_from_array($section_no, $architect, $panel_class, $class);
+    public function loop( $section_no, &$architect, &$panel_class, $class ) {
+      parent::loop_from_array( $section_no, $architect, $panel_class, $class );
     }
 
-    public function get_nav_items($blueprints_navigator, &$arc_query, $nav_labels, $nav_title_len = 0) {
-      return parent::get_nav_items_from_array($blueprints_navigator, $arc_query, $nav_labels, $nav_title_len);
+    public function get_nav_items( $blueprints_navigator, &$arc_query, $nav_labels, $nav_title_len = 0 ) {
+      return parent::get_nav_items_from_array( $blueprints_navigator, $arc_query, $nav_labels, $nav_title_len );
     }
 
   }

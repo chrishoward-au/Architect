@@ -3,7 +3,7 @@ Contributors: chrishoward
 Tags: content,display,posts,pages,gallery,slider,tabs,tabbed,tabular,widget,hooks
 Requires at least: 4.0
 Tested up to: 4.8.2
-Stable tag: 1.10.1
+Stable tag: 1.10.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Plugin URI: http://architect4wp.com
@@ -86,11 +86,9 @@ For support, please send an email to support@pizazzwp.com
 == Possible Todos ==
 TODO: Add a default single post/page Blueprint;  Add codex links;
 TODO: Add option for custom content within Blueprints
-TODO: Check captions styling
 TODO: Replace curl with wp_remote_get
 TODO: Remove shortcode Defaults blocking message.
 TODO: Add min specs for max input vars
-
 TODO: Add description option to archive pages
 TODO: Fix images cropping on iPhone?
 TODO: Add Unsplash as a source for dummy photos
@@ -99,7 +97,6 @@ TODO: Add a backup and restore option for all settings
 TODO: Add wireframe view?
 TODO: Add Jetpack sitemap support https://developer.jetpack.com/2016/01/28/sitemaps-add-custom-post-type-support/
 TODO: Transition to Codestar framework (less than 1MB footprint in zip!)
-TODO Update tutes
 TODO Architect Galleries custom post type
 TODO: Fix small images scaling up
 
@@ -109,7 +106,27 @@ TODO: Fix small images scaling up
 = Notes =
 * If you have trouble with the new licensing on Freemius, please contact support@pizazzwp.com
 
+= 1.10.3 =
+TODO: Verify masonry tags filter
+TODO: Fix filler image not cropping
+TODO: Solve cache clearing on install/update
+TODO Update tutorials
+
+= 1.10.2 =
+TODO: Beaver comment problem
+TODO: Fix stickies showing
+
+* FIXED: Default classes not being applied to components in custom post types
+* FIXED: Rounding problem that could cause some grid layouts to wrap around
+* FIXED: Content not showing for RSS feed source.
+
+* UPGRADED: Slick.js v1.8.0
+
 = 1.10.1 =
+* FIXED: Old Architect widgets could return an error
+* FIXED: WPML overriding CSS for paragraphs affecting layout
+
+= 1.10.0 =
 Beaver Builder related enhancements:
 * ADDED: More extensive filtering overrides in the Beaver Architect module
 * ADDED: Extensive styling options to Architect Beaver module
@@ -158,10 +175,6 @@ Miscellaneous enhancements:
 * FIXED: Blueprint "none" not found error on mobile devices
 * FIXED: In Blueprint listings, 'Used on' column was showing Blueprints as a usage
 * FIXED: Bug in Architect's custom post types not showing custom fields.
-* FIXED: Old Architect widgets could return an error
-* FIXED: WPML overriding CSS for paragraphs affecting layout
-* FIXED: Default classes not being applied to components in custom post types
-* FIXED: Rounding problem that could cause some grid layouts to wrap around
 
 * UPGRADED: Isotope to v3.0.4
 * UPGRADED: Mobile Detect to 2.8.5

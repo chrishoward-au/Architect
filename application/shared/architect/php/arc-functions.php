@@ -2066,13 +2066,19 @@
 	 * @return string
 	 * Use in Loop
 	 */
-	function pzarc_make_excerpt_more( $pzarc_settings ) {
-		$new_more = $pzarc_settings['_panels_design_readmore-truncation-indicator'];
-		$new_more .= ( $pzarc_settings['_panels_design_readmore-text'] ? '<a href="' . get_the_permalink() . '" class="readmore moretag">' . $pzarc_settings['_panels_design_readmore-text'] . '</a>' : NULL );
+  function pzarc_make_excerpt_more( $pzarc_settings, $pzarc_post = null) {
 
-		return $new_more;
+    if (is_array($pzarc_post)) {
+      $pzarc_permalink = isset($pzarc_post['permalink'])?$pzarc_post['permalink']:null;
+    } else {
+      $pzarc_permalink = get_permalink($pzarc_post->ID);
+    }
+    $new_more = $pzarc_settings['_panels_design_readmore-truncation-indicator'];
+    $new_more .= ( $pzarc_settings['_panels_design_readmore-text'] ? '<a href="' . $pzarc_permalink . '" class="readmore moretag">' . $pzarc_settings['_panels_design_readmore-text'] . '</a>' : NULL );
 
-	}
+    return $new_more;
+
+  }
 
 	function pzarc_get_page_id() {
 		// Use the original wp query global

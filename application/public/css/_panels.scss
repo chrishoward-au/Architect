@@ -15,7 +15,7 @@
       visibility: hidden;
     }
     &.arc-layout-slider {
-      visibility: hidden;
+      // visibility: hidden; // Removed v1.10.2 to test if stops blanks and half loads
     }
     // Footer and header floating to top of components. This CSS is needed but why is it even necessary?
     header.entry-header,

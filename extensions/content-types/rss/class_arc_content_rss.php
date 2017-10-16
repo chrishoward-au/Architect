@@ -28,7 +28,8 @@ class arc_content_rss extends arc_set_data{
                     'title'    => __( 'RSS feed URL', 'pzarchitect' ),
                     'id'       => $prefix . 'rss-feed-url',
                     'type'     => 'text',
-                    'default'  => ''
+                    'default'  => '',
+                    'desc'=>__('The URL should include the tag. e.g. http://mysite.com/tag/novels/feed/?post_type=books','pzarchitect')
                 ),
                 array(
                     'title'    => __( 'Maximum items', 'pzarchitect' ),

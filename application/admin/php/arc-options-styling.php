@@ -1506,7 +1506,7 @@ body.theme-twentyfifteen MYBLUEPRINT .hentry {margin:0;}
             $v = str_replace( "-", "_", $this->args[ 'opt_name' ] );
           }
           $this->args[ 'intro_text' ]
-            = sprintf( __( '<p>On this page you can configure default CSS styling as well as indicating the classes it applies to.</p><p><strong>NOTE: Any changes you make will apply to any existing Blueprint fields that are using default values.</strong></p>', 'pzarchitect' ), $v );
+            = sprintf( __( '<p>On this page you can configure default CSS styling as well as indicating the classes it applies to.</p><p><strong style="color:tomato">NOTE: Any changes you make will apply to any existing Blueprint fields that are using default values.</strong></p>', 'pzarchitect' ), $v );
         } else {
 //          $this->args[ 'intro_text' ]
 //              = __('<p>This text is displayed above the options panel. It isn\'t required, but more info is always better! The intro_text field accepts all HTML.</p>', 'pzarchitect');

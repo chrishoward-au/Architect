@@ -225,6 +225,44 @@
               'indent' => false
             ),
             array(
+              'title'  => __( 'Dates', 'pzarchitect' ),
+              'id'     => $prefix . 'dates-section-start',
+              'type'   => 'section',
+              'class'  => ' heading',
+              'indent' => true
+            ),
+            array(
+              'title'   => __( 'Number of days to show', 'pzarchitect' ),
+              'id'      => $prefix . 'days-to-show',
+              'type'     => 'spinner',
+              'default'  => 0,
+              'min'      => 0,
+              'max'      => 9999,
+            ),
+            array(
+              'title'   => __( 'Start date', 'pzarchitect' ),
+              'id'      => $prefix . 'start-date',
+              'type'    => 'date',
+              'default' => '',
+            ),
+            array(
+              'title'   => __( 'End date', 'pzarchitect' ),
+              'id'      => $prefix . 'end-date',
+              'type'    => 'date',
+              'default' => '',
+            ),
+            array(
+              'title'   => __( 'Use timezone', 'pzarchitect' ),
+              'id'      => $prefix . 'use-timezone',
+              'type'    => 'checkbox',
+              'default' => false,
+            ),
+            array(
+              'id'     => $prefix . 'dates-section-end',
+              'type'   => 'section',
+              'indent' => false
+            ),
+            array(
               'title'  => __( 'Others', 'pzarchitect' ),
               'id'     => $prefix . 'other-section-start',
               'type'   => 'section',

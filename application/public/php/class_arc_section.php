@@ -211,7 +211,7 @@
 //      $new_more = $this->section[ 'section-panel-settings' ][ '_panels_design_readmore-truncation-indicator' ];
 //      $new_more .= ($this->section[ 'section-panel-settings' ][ '_panels_design_readmore-text' ] ? '<a href="' . get_the_permalink() . '" class="readmore moretag">' . $this->section[ 'section-panel-settings' ][ '_panels_design_readmore-text' ] . '</a>' : null);
 
-      return pzarc_make_excerpt_more( $this->section[ 'section-panel-settings' ] );
+      return pzarc_make_excerpt_more( $this->section[ 'section-panel-settings' ]);
 
     }
 

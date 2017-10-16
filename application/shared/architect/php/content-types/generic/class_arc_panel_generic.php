@@ -561,7 +561,7 @@
           break;
 
         case !empty($this->section['_panels_design_excerpts-trim-type']) && $this->section['_panels_design_excerpts-trim-type'] === 'characters':
-          $this->data['excerpt'] = apply_filters('the_excerpt', substr(wp_strip_all_tags(get_the_content()), 0, $this->section['_panels_design_excerpts-word-count']) . pzarc_make_excerpt_more($this->section));
+          $this->data['excerpt'] = apply_filters('the_excerpt', substr(wp_strip_all_tags(get_the_content()), 0, $this->section['_panels_design_excerpts-word-count']) . pzarc_make_excerpt_more($this->section,$post));
           break;
 
         case !empty($this->section['_panels_design_excerpts-trim-type']) && $this->section['_panels_design_excerpts-trim-type'] === 'paragraphs':
@@ -591,7 +591,7 @@
             $this->data['excerpt'] .= '<p>' . $the_paras[$i - 1] . '</p>';
             $i++;
           }
-          $this->data['excerpt'] = apply_filters('the_excerpt', do_shortcode($this->data['excerpt']) . pzarc_make_excerpt_more($this->section));
+          $this->data['excerpt'] = apply_filters('the_excerpt', do_shortcode($this->data['excerpt']) . pzarc_make_excerpt_more($this->section,$post));
 
           break;
 

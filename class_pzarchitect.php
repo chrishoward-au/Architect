@@ -98,7 +98,7 @@
       do_action( 'arc_load_extensions' );
 
 
-      require_once( PZARC_PLUGIN_PATH . '/extensions-inc/sliders/slick15/arc-slick15-init.php' );
+      require_once( PZARC_PLUGIN_PATH . '/extensions-inc/sliders/slick/arc-slick-init.php' );
 
 
       // Rebuiild cache if instructed
