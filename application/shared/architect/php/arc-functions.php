@@ -2070,8 +2070,10 @@
 
     if (is_array($pzarc_post)) {
       $pzarc_permalink = isset($pzarc_post['permalink'])?$pzarc_post['permalink']:null;
-    } else {
+    } elseif (is_object($pzarc_post)) {
       $pzarc_permalink = get_permalink($pzarc_post->ID);
+    } else {
+      $pzarc_permalink ='';
     }
     $new_more = $pzarc_settings['_panels_design_readmore-truncation-indicator'];
     $new_more .= ( $pzarc_settings['_panels_design_readmore-text'] ? '<a href="' . $pzarc_permalink . '" class="readmore moretag">' . $pzarc_settings['_panels_design_readmore-text'] . '</a>' : NULL );

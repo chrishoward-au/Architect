@@ -17,6 +17,10 @@
   margin: 10px 0;
   padding: 20px; }
 
+.pzarchitect .arc-date-filter-error {
+  color: red;
+  padding: 5px 0; }
+
 .architect-demo-mode .pzarc-blueprint {
   border: 1px dashed blue !important;
   -webkit-box-sizing: border-box !important;

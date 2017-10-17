@@ -115,10 +115,13 @@ TODO Update tutorials
 = 1.10.2 =
 TODO: Beaver comment problem
 TODO: Fix stickies showing
+* ADDED: Date filtering
 
 * FIXED: Default classes not being applied to components in custom post types
 * FIXED: Rounding problem that could cause some grid layouts to wrap around
 * FIXED: Content not showing for RSS feed source.
+* FIXED: Error if number of fields is less than number of columns in tabular
+* FIXED: Author filtering not working!
 
 * UPGRADED: Slick.js v1.8.0
 

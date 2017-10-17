@@ -6,6 +6,7 @@
    * Date: 13/10/14
    * Time: 5:37 PM
    */
+
   // Add content info to the registry
   class arc_Blueprint_Data extends arc_set_data {
 
@@ -15,7 +16,7 @@
 
       $prefix = '_content_general_';
 
-      $settings[ 'settings' ] = array(
+      $settings['settings'] = array(
         'prefix'   => $prefix,
         'sections' => array(
           'title'      => 'Settings & sorting',
@@ -35,10 +36,10 @@
                 'post__in'   => 'Specified',
                 'rand'       => 'Random',
                 'none'       => 'None',
-                'custom'     => 'Custom field'
+                'custom'     => 'Custom field',
               ),
-              'desc'=>__('Specified only works when the if the source is using the specific posts/page/etc option.','pzarchitect'),
-              'subtitle' => 'Some hosts disable random as it slows things down significantly on large sites. WPEngine does this. Look in WPE Dashboard, Advanced Configuration.'
+              'desc'     => __( 'Specified only works when the if the source is using the specific posts/page/etc option.', 'pzarchitect' ),
+              'subtitle' => 'Some hosts disable random as it slows things down significantly on large sites. WPEngine does this. Look in WPE Dashboard, Advanced Configuration.',
             ),
             array(
               'title'   => __( 'Sort direction', 'pzarchitect' ),
@@ -71,7 +72,7 @@
               'type'    => 'switch',
               'on'      => 'Yes',
               'off'     => 'No',
-              'default' => false,
+              'default' => FALSE,
             ),
             //                  array(
             //                      'title'  => __('Pagination', 'pzarchitect'),
@@ -79,14 +80,14 @@
             //                      'type'   => 'section',
             //                      'indent' => false
             //                  ),
-          )
-        )
+          ),
+        ),
       );
 
       /** GENERAL  Filters*/
       $prefix = '_content_general_';
 
-      $settings[ 'filters' ] = array(
+      $settings['filters'] = array(
         'prefix'   => $prefix,
         'sections' => array(
           'title'      => __( 'Filters', 'pzarchitect' ),
@@ -98,16 +99,16 @@
               'id'     => $prefix . 'categories-heading-start',
               'type'   => 'section',
               'class'  => ' heading',
-              'indent' => true
+              'indent' => TRUE,
             ),
             array(
               'title'   => __( 'Include categories', 'pzarchitect' ),
               'id'      => $prefix . 'inc-cats',
               'type'    => 'select',
-              'select2' => array( 'allowClear' => true ),
+              'select2' => array( 'allowClear' => TRUE ),
               //                'wpqv'    => 'category__in',
               'data'    => 'category',
-              'multi'   => true
+              'multi'   => TRUE,
             ),
             array(
               'title'   => __( 'In ANY or ALL categories', 'pzarchitect' ),
@@ -121,10 +122,10 @@
               'title'   => __( 'Exclude categories', 'pzarchitect' ),
               'id'      => $prefix . 'exc-cats',
               'type'    => 'select',
-              'select2' => array( 'allowClear' => true ),
+              'select2' => array( 'allowClear' => TRUE ),
               //                'wpqv'  => 'category__not_in',
               'data'    => 'category',
-              'multi'   => true
+              'multi'   => TRUE,
             ),
             array(
               'title'    => __( 'Include sub-categories on archives', 'pzarchitect' ),
@@ -132,20 +133,20 @@
               'type'     => 'switch',
               'on'       => 'Yes',
               'off'      => 'No',
-              'default'  => false,
-              'subtitle' => 'This requires a specified post type, not Defaults'
+              'default'  => FALSE,
+              'subtitle' => 'This requires a specified post type, not Defaults',
             ),
             array(
               'id'     => $prefix . 'categories-section-end',
               'type'   => 'section',
-              'indent' => false
+              'indent' => FALSE,
             ),
             array(
               'title'  => __( 'Tags', 'pzarchitect' ),
               'id'     => $prefix . 'tags-section-start',
               'type'   => 'section',
               'class'  => ' heading',
-              'indent' => true
+              'indent' => TRUE,
             ),
             array(
               'title' => __( 'Tags', 'pzarchitect' ),
@@ -153,27 +154,27 @@
               'type'  => 'select',
               //              'select2' => array('allowClear' => true),
               'data'  => 'tags',
-              'multi' => true
+              'multi' => TRUE,
             ),
             array(
               'title'   => __( 'Exclude tags', 'pzarchitect' ),
               'id'      => $prefix . 'exc-tags',
               'type'    => 'select',
-              'select2' => array( 'allowClear' => true ),
+              'select2' => array( 'allowClear' => TRUE ),
               'data'    => 'tags',
-              'multi'   => true
+              'multi'   => TRUE,
             ),
             array(
               'id'     => $prefix . 'tags-section-end',
               'type'   => 'section',
-              'indent' => false
+              'indent' => FALSE,
             ),
             array(
               'title'  => __( 'Custom taxonomies', 'pzarchitect' ),
               'id'     => $prefix . 'custom-taxonomies-section-start',
               'type'   => 'section',
               'class'  => ' heading',
-              'indent' => true
+              'indent' => TRUE,
             ),
             // TODO: Add a loop to display all custom taxonomies
             // foreach($taxonomies as $taxonomy ){}
@@ -181,20 +182,20 @@
               'title'   => __( 'Other taxonomies', 'pzarchitect' ),
               'id'      => $prefix . 'other-tax',
               'type'    => 'select',
-              'select2' => array( 'allowClear' => true ),
+              'select2' => array( 'allowClear' => TRUE ),
               'data'    => 'taxonomies',
-              'args'    => array( '_builtin' => false )
+              'args'    => array( '_builtin' => FALSE ),
             ),
             array(
               'title'    => __( 'Other taxonomy terms', 'pzarchitect' ),
               'id'       => $prefix . 'other-tax-tags',
               'type'     => 'select',
-              'select2'  => array( 'allowClear' => true ),
+              'select2'  => array( 'allowClear' => TRUE ),
               'data'     => 'callback',
-              'multi'    => true,
+              'multi'    => TRUE,
               'args'     => array( 'pzarc_get_tags' ),
               'subtitle' => __( 'Select terms to filter by in the chosen custom taxonomy', 'pzarchitect' ),
-              'desc'     => __( 'To populate this dropdown, select the Custom Taxonomy above, then Publish or Update this Blueprint', 'pzarchitect' )
+              'desc'     => __( 'To populate this dropdown, select the Custom Taxonomy above, then Publish or Update this Blueprint', 'pzarchitect' ),
             ),
             array(
               'title'   => __( 'Taxonomies operator', 'pzarchitect' ),
@@ -222,68 +223,82 @@
             array(
               'id'     => $prefix . 'custom-taxonomies-section-end',
               'type'   => 'section',
-              'indent' => false
+              'indent' => FALSE,
             ),
             array(
               'title'  => __( 'Dates', 'pzarchitect' ),
               'id'     => $prefix . 'dates-section-start',
               'type'   => 'section',
               'class'  => ' heading',
-              'indent' => true
+              'indent' => TRUE,
             ),
             array(
               'title'   => __( 'Number of days to show', 'pzarchitect' ),
               'id'      => $prefix . 'days-to-show',
-              'type'     => 'spinner',
-              'default'  => 0,
-              'min'      => 0,
-              'max'      => 9999,
+              'type'    => 'text',
+              'default' => '',
+              'desc'    => __( 'Limit number of days to show. Use only end or start date. Enter \'all\' to show all', 'pzarchitect' ),
             ),
             array(
               'title'   => __( 'Start date', 'pzarchitect' ),
               'id'      => $prefix . 'start-date',
-              'type'    => 'date',
+              'type'    => 'text',
               'default' => '',
+              'desc'    => __( 'Enter a date string. e.g. today, yesterday, 2017-10-24, 24-10-2017, 24 October 2017, 10/24/2017.', 'pzarchitect' ),
             ),
             array(
               'title'   => __( 'End date', 'pzarchitect' ),
               'id'      => $prefix . 'end-date',
-              'type'    => 'date',
+              'type'    => 'text',
               'default' => '',
+              'desc'    => __( 'Enter a valid date string. e.g. today, yesterday, 2017-10-24, 24-10-2017, 24 October 2017, 10/24/2017', 'pzarchitect' ),
+            ),
+            array(
+              'title'   => __( 'Inclusive', 'pzarchitect' ),
+              'id'      => $prefix . 'inclusive',
+              'type'    => 'checkbox',
+              'default' => FALSE,
             ),
             array(
               'title'   => __( 'Use timezone', 'pzarchitect' ),
               'id'      => $prefix . 'use-timezone',
               'type'    => 'checkbox',
-              'default' => false,
+              'default' => FALSE,
             ),
             array(
               'id'     => $prefix . 'dates-section-end',
               'type'   => 'section',
-              'indent' => false
+              'indent' => FALSE,
             ),
             array(
-              'title'  => __( 'Others', 'pzarchitect' ),
-              'id'     => $prefix . 'other-section-start',
+              'title'  => __( 'Authors', 'pzarchitect' ),
+              'id'     => $prefix . 'authors-section-start',
               'type'   => 'section',
               'class'  => ' heading',
-              'indent' => true
+              'indent' => TRUE,
             ),
             array(
               'title'   => __( 'Authors', 'pzarchitect' ),
               'id'      => $prefix . 'authors',
               'type'    => 'select',
+              'multi'   => TRUE,
               'data'    => 'callback',
               'args'    => array( 'pzarc_get_authors' ),
               'default' => 'all',
             ),
             array(
-              'id'     => $prefix . 'other-section-end',
-              'type'   => 'section',
-              'indent' => false
+              'title'   => __( 'Exclude these authors', 'pzarchitect' ),
+              'id'      => $prefix . 'exclude-authors',
+              'type'    => 'checkbox',
+              'default' => FALSE,
             ),
-          )
-        )
+            array(
+              'id'     => $prefix . 'authors-section-end',
+              'type'   => 'section',
+              'indent' => FALSE,
+            ),
+          ),
+        ),
       );
 
       // This has to be post_type

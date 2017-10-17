@@ -183,7 +183,11 @@
 
         $i = 0;
         foreach ( $this->table_accordion_titles as $title ) {
-          echo '<th style="width:' . $widths[ $i ++ ] . '%;">' . $title . '</th>';
+          if ($i+1>count($widths)) {
+            break;
+          } else {
+            echo '<th style="width:' . $widths[ $i ++ ] . '%;">' . $title . '</th>';
+          }
         }
         echo '</tr></thead>';
       }
