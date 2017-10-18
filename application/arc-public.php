@@ -90,7 +90,7 @@
 
     // hints.css
     wp_register_style( 'css-hints', 'https://cdnjs.cloudflare.com/ajax/libs/hint.css/2.5.0/hint.base.min.css', FALSE, PZARC_VERSION );
-    if ( isset( $_GET['demo'] ) || isset( $_GET['debug'] ) ) {
+    if ( isset( $_GET['demo'] ) || (isset( $_GET['debug'] ) && is_user_logged_in()) ) {
       wp_enqueue_style( 'css-hints' );
     }
 
@@ -417,7 +417,7 @@
     if ( ! in_array( 'pzarchitect', $classes ) ) {
       $classes[] = 'pzarchitect';
     }
-    if ( isset( $_GET['demo'] ) || isset( $_GET['debug'] ) ) {
+    if ( isset( $_GET['demo'] ) || (isset( $_GET['debug'] ) && is_user_logged_in()) ) {
       $classes[] = 'architect-demo-mode';
     }
     $classes[] = 'theme-' . get_stylesheet();

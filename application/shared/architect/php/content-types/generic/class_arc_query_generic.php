@@ -314,11 +314,11 @@
             break;
         }
       }
-      /*
+      /**
        * Author
        */
       // TODO: Why isn't this done yet?
-      if ( ! empty( $this->build->blueprint['_content_general_authors'] ) ) {
+      if ( ! empty( $this->build->blueprint['_content_general_authors'] ) && $this->build->blueprint['_content_general_authors'] != 'all') {
         if (isset($this->build->blueprint['_content_general_exclude-authors'])) {
           $this->query_options['author__not_in'] = $this->build->blueprint['_content_general_authors'];
         } else {
@@ -383,7 +383,7 @@
         );
       }
 
-      if ( isset( $_GET['debug'] ) ) {
+      if ( (isset( $_GET['debug'] ) && is_user_logged_in()) ) {
         d( $this->query_options );
       }
     } //EOF
@@ -454,5 +454,6 @@
     function set_date_range( $where ) {
       return ( $where . $this->where );
     }
+
   }
 
