@@ -1020,7 +1020,7 @@
 							'default' => 'center',
 						),
 						array(
-							'title'    => 'Page title',
+							'title'    => __('Page title','pzarchitect'),
 							'id'       => $prefix . 'page-title',
 							'type'     => 'switch',
 							'subtitle' => __( 'Show page title on single and archive pages', 'pzarchitect' ),
@@ -1029,7 +1029,7 @@
 							'default'  => FALSE,
 						),
 						array(
-							'title'    => 'Hide archive title prefix',
+							'title'    => __('Hide archive title prefix','pzarchitect'),
 							'id'       => $prefix . 'hide-archive-title-prefix',
 							'type'     => 'switch',
 							'subtitle' => __( 'When on an Archive page, hide the archive prefix from Architect > Options > Language', 'pzarchitect' ),
@@ -1043,7 +1043,7 @@
 							),
 						),
 						array(
-							'title'    => 'Show archive description',
+							'title'    => __('Show archive description','pzarchitect'),
 							'id'       => $prefix . 'show-archive-description',
 							'type'     => 'switch',
 							'subtitle' => __( 'When on an Archive page, choose to show or not archive description', 'pzarchitect' ),
@@ -1052,17 +1052,31 @@
 							'default'  => FALSE,
 						),
 						array(
-							'title'    => 'Blueprint display title',
+							'title'    => __('Blueprint display title','pzarchitect'),
 							'id'       => $prefix . 'blueprint-title',
 							'type'     => 'text',
 							'subtitle' => __( 'Enter a title to display above the Blueprint', 'pzarchitect' ),
 						),
 						array(
-							'title'    => 'Blueprint footer text',
+							'title'    => __('Blueprint footer text','pzarchitect'),
 							'id'       => $prefix . 'footer-text-link',
 							'type'     => 'text',
 							'subtitle' => __( 'Enter text to show at the foot of the Blueprint. You can also enter a shortcode here.', 'pzarchitect' ),
 						),
+            array(
+              'title'    => __('Message if no content','pzarchitect'),
+              'id'       => $prefix . 'no-content-message',
+              'type'     => 'text',
+              'default'=>''
+            ),
+            array(
+              'title'    => __('Hide Blueprint if no content','pzarchitect'),
+              'id'       => $prefix . 'hide-blueprint',
+              'type'     => 'switch',
+              'on'       => 'Yes',
+              'off'      => 'No',
+              'default'  => FALSE,
+            ),
 					),
 
 				);
