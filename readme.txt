@@ -2,7 +2,7 @@
 Contributors: chrishoward
 Tags: content,display,posts,pages,gallery,slider,tabs,tabbed,tabular,widget,hooks
 Requires at least: 4.0
-Tested up to: 4.8.2
+Tested up to: 4.9
 Stable tag: 1.10.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -99,6 +99,13 @@ TODO: Add Jetpack sitemap support https://developer.jetpack.com/2016/01/28/sitem
 TODO: Transition to Codestar framework (less than 1MB footprint in zip!)
 TODO Architect Galleries custom post type
 TODO: Fix small images scaling up
+TODO: Fix stickies possibly showing incorrectly in Tabular
+
+TODO: Verify masonry tags filter
+TODO: Fix filler image not cropping
+TODO: Solve cache clearing on install/update
+TODO Update tutorials
+TODO: Possible Beaver comments showing unexpectedly
 
 
 == Changelog ==
@@ -106,22 +113,18 @@ TODO: Fix small images scaling up
 = Notes =
 * If you have trouble with the new licensing on Freemius, please contact support@pizazzwp.com
 
-= 1.10.3 =
-TODO: Verify masonry tags filter
-TODO: Fix filler image not cropping
-TODO: Solve cache clearing on install/update
-TODO Update tutorials
-
 = 1.10.2 =
-TODO: Beaver comment problem
-TODO: Fix stickies showing
-* ADDED: Date filtering
+
+* ADDED: Date filtering. Finally!
+* ADDED: Option to hide empty Blueprints
+* ADDED: Optional message if no content found for a Blueprint
 
 * FIXED: Default classes not being applied to components in custom post types
 * FIXED: Rounding problem that could cause some grid layouts to wrap around
 * FIXED: Content not showing for RSS feed source.
 * FIXED: Error if number of fields is less than number of columns in tabular
 * FIXED: Author filtering not working!
+* FIXED: Date filtering applied to all Blueprints on the same page
 
 * UPGRADED: Slick.js v1.8.0
 

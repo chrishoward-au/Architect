@@ -12,6 +12,25 @@
                     <div class="arc-info-boxes">
                     <div class="arc-info col1">'.
 wpautop('
+<h2>1.10.2</h2>
+* ADDED: Date filtering. Finally!
+* ADDED: Option to hide empty Blueprints
+* ADDED: Optional message if no content found for a Blueprint
+
+* FIXED: Default classes not being applied to components in custom post types
+* FIXED: Rounding problem that could cause some grid layouts to wrap around
+* FIXED: Content not showing for RSS feed source.
+* FIXED: Error if number of fields is less than number of columns in tabular
+* FIXED: Author filtering not working!
+* FIXED: Date filtering applied to all Blueprints on the same page
+
+* UPGRADED: Slick.js v1.8.0
+
+<h2>1.10.1</h2>
+* FIXED: Old Architect widgets could return an error
+* FIXED: WPML overriding CSS for paragraphs affecting layout
+
+<h2>1.10.0</h2>
 <h3>Beaver Builder related enhancements and fixes</h3>
 * ADDED: More extensive filtering overrides in the Beaver Architect module
 * ADDED: Extensive styling options to Architect Beaver module
@@ -60,10 +79,6 @@ wpautop('
 * FIXED: Blueprint "none" not found error on mobile devices
 * FIXED: In Blueprint listings, \'Used on\' column was showing Blueprints as a usage
 * FIXED: Bug in Architect\'s custom post types not showing custom fields.
-* FIXED: Old Architect widgets could generate an error
-* FIXED: WPML overriding CSS for paragraphs affecting layout
-* FIXED: Default classes not being applied to components in custom post types
-* FIXED: Rounding problem that could cause some grid layouts to wrap around
 
 * UPGRADED: Isotope to v3.0.4
 * UPGRADED: Mobile Detect to 2.8.5
@@ -73,7 +88,7 @@ wpautop('
 
 ').'
                     <h3>Full changelog</h3>
-                    Click to view the full historical <a href="readme.txt" target="_blank">changelog</a>
+                    Click to view the full historical <a href="'.PZARC_PLUGIN_URL.'readme.txt" target="_blank">changelog</a>
 			</div>
 		</div>
 	</div>
