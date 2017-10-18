@@ -1312,7 +1312,6 @@
 
       // Unsetting causes it to run the destruct, which closes the div. :D
       unset($section[$section_no]);
-
     }
 
     /**

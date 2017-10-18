@@ -231,6 +231,7 @@
 
       remove_filter( 'excerpt_length', array( &$this, 'set_excerpt_length' ), 999 );
       remove_filter( 'excerpt_more', array( &$this, 'set_excerpt_more' ), 999 );
+      remove_all_filters('posts_where',17);
       pzdb( 'close_section' );
 
     }

@@ -258,13 +258,15 @@
               'id'      => $prefix . 'inclusive',
               'type'    => 'checkbox',
               'default' => FALSE,
+              'desc'=> __('Include posts made on start and end dates','pzarchitect')
             ),
-            array(
-              'title'   => __( 'Use timezone', 'pzarchitect' ),
-              'id'      => $prefix . 'use-timezone',
-              'type'    => 'checkbox',
-              'default' => FALSE,
-            ),
+// Add this later if needed
+//            array(
+//              'title'   => __( 'Use timezone', 'pzarchitect' ),
+//              'id'      => $prefix . 'use-timezone',
+//              'type'    => 'checkbox',
+//              'default' => FALSE,
+//            ),
             array(
               'id'     => $prefix . 'dates-section-end',
               'type'   => 'section',
