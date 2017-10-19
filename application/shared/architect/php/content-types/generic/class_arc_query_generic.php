@@ -239,7 +239,7 @@
             );
             $date_query      = new WP_Date_Query( $date_query_vars );
             $this->where     = $date_query->get_sql();
-            add_filter( 'posts_where', array( $this, 'set_date_range' ) );
+            add_filter( 'posts_where', array( $this, 'set_date_range' ),17 );
             break;
 
           // Days and end date
@@ -272,7 +272,7 @@
 
             $date_query  = new WP_Date_Query( $date_query_vars );
             $this->where = $date_query->get_sql();
-            add_filter( 'posts_where', array( $this, 'set_date_range' ) );
+            add_filter( 'posts_where', array( $this, 'set_date_range' ),17 );
 
             break;
 
@@ -305,7 +305,7 @@
 
             $date_query  = new WP_Date_Query( $date_query_vars );
             $this->where = $date_query->get_sql();
-            add_filter( 'posts_where', array( $this, 'set_date_range' ) );
+            add_filter( 'posts_where', array( $this, 'set_date_range' ),17 );
             break;
 
 
