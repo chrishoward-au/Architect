@@ -247,11 +247,14 @@
 
         /** RENDER THE BLUEPRINT */
         pzdb( 'pre render' );
+
+        $post_count = is_object( $this->arc_query ) ? $this->arc_query->post_count : count( $this->arc_query );
+
         switch ( TRUE ) {
-          case ( ! empty( $this->arc_query->post_count ) || ( empty( $this->arc_query->post_count ) && ! empty( $this->build->blueprint['_blueprints_no-content-message'] ) && empty( $this->build->blueprint['_blueprints_hide-blueprint'] ) ) ):
-            self::render_this_architect_blueprint( $bp_nav_type, $bp_nav_pos, $bp_shortname, $caller, $bp_transtype, $panel_class, $content_class, $bp_type );
+          case ( $post_count > 0 || ( $post_count == 0 && empty( $this->build->blueprint['_blueprints_hide-blueprint'] ) ) ):
+            self::render_this_architect_blueprint( $bp_nav_type, $bp_nav_pos, $bp_shortname, $caller, $bp_transtype, $panel_class, $content_class, $bp_type, $post_count );
             break;
-          case empty( $this->arc_query->post_count ) && ! empty( $this->build->blueprint['_blueprints_hide-blueprint'] ):
+          case $post_count == 0 && ! empty( $this->build->blueprint['_blueprints_hide-blueprint'] ):
             // do nothing
             break;
         }
@@ -297,7 +300,7 @@
      * @param $content_class
      * @param $blueprint_type
      */
-    private function render_this_architect_blueprint( $bp_nav_type, $bp_nav_pos, $bp_shortname, $caller, $bp_transtype, $panel_class, $content_class, $blueprint_type ) {
+    private function render_this_architect_blueprint( $bp_nav_type, $bp_nav_pos, $bp_shortname, $caller, $bp_transtype, $panel_class, $content_class, $blueprint_type, $post_count ) {
       // TODO: Show or hide blueprint if no content
       do_action( 'arc_before_architect' );
       do_action( "arc_before_architect_{$bp_shortname}" );
@@ -382,8 +385,8 @@
 
       pzdb();
 
-      if (empty($this->arc_query->post_count) && !empty($this->build->blueprint['_blueprints_no-content-message'])){
-        echo '<div class="arc-no-content">'.$this->build->blueprint['_blueprints_no-content-message'].'</div>';
+      if ( $post_count === 0 && ! empty( $this->build->blueprint['_blueprints_no-content-message'] ) ) {
+        echo '<div class="arc-no-content">' . $this->build->blueprint['_blueprints_no-content-message'] . '</div>';
       } else {
         /** LOOPS */
         // First loop always executes
@@ -391,9 +394,8 @@
 
         pzdb();
 
-        // End loop
-        echo '</div>';
       }
+      echo '</div><!-- End section -->';
 
       do_action( 'arc_after_panels_wrapper' );
       do_action( "arc_after_panels_wrapper_{$bp_shortname}" );
