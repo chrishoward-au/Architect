@@ -2343,6 +2343,20 @@
 
   }
 
+  /**
+   * @param $value
+   * @param $key
+   * Used in conjunction with array_filter
+   * @return bool
+   */
+  function pzarc_strip_empty_lines($value,$key) {
+    if (empty(trim(strip_tags($value)))) {
+      return false;
+    } else {
+      return true;
+    }
+  }
+
   // What was the point of this? Trying to do cropping without bfi?
   //	if (!function_exists('bfi_thumb')) {
   //		function bfi_thumb($arc_image_url=null,$arc_image_dimensions=array()){
